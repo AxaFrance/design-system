@@ -1,0 +1,20 @@
+{
+  "name": "@axa-fr/design-system-css",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": "AxaFrance",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme"
+}

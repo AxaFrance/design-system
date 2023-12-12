@@ -1,0 +1,49 @@
+{
+  "name": "@axa-fr/design-system-react",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    "client": "./slash.ts",
+    "look-and-feel": "./look-and-feel.ts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "tsc": "tsc --init",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": "AxaFrance",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "peerDependencies": {
+    "react": ">= 18"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "7.6.4",
+    "@storybook/addon-interactions": "7.6.4",
+    "@storybook/addon-links": "7.6.4",
+    "@storybook/addon-onboarding": "1.0.10",
+    "@storybook/blocks": "7.6.4",
+    "@storybook/react": "7.6.4",
+    "@storybook/react-vite": "7.6.4",
+    "@storybook/test": "7.6.4",
+    "prop-types": "15.8.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "storybook": "7.6.4",
+    "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "@types/react": "18.2.43"
+  }
+}
