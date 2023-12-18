@@ -5,14 +5,13 @@
   "main": "index.js",
   "type": "module",
   "exports": {
-    "client": "./slash.ts",
-    "look-and-feel": "./look-and-feel.ts"
+    "agent": "./agent.ts",
+    "client": "./client.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "tsc": "tsc --init",
     "build": "tsc"
   },
   "repository": {
