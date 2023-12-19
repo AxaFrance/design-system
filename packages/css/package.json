@@ -3,9 +3,26 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@storybook/addon-essentials": "7.6.4",
+    "@storybook/addon-interactions": "7.6.4",
+    "@storybook/addon-links": "7.6.4",
+    "@storybook/blocks": "7.6.4",
+    "@storybook/html": "7.6.4",
+    "@storybook/html-vite": "7.6.4",
+    "@storybook/test": "7.6.4",
+    "@whitespace/storybook-addon-html": "5.1.6",
+    "prettier": "2.8.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-syntax-highlighter": "15.5.0",
+    "sass": "1.69.5",
+    "storybook": "7.6.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build": "sass ./src/agent.scss dist/agent.css --style=compressed"
   },
   "repository": {
     "type": "git",
@@ -16,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/AxaFrance/design-system/issues"
   },
-  "homepage": "https://github.com/AxaFrance/design-system#readme"
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "dependencies": {
+    "@storybook/addon-storysource": "7.6.4"
+  }
 }
