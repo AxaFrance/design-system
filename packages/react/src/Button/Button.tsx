@@ -1,11 +1,25 @@
-import { PropsWithChildren } from "react";
-type ButtonProps = { type: "submit" | "reset" | "button" };
+import "@axa-fr/design-system-css/src/Button/Button.agent.scss";
+import { cx } from "classix";
 
-const Button = ({
+import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+type ButtonProps = {
+  classModifier?: string;
+} & ComponentPropsWithoutRef<"button">;
+
+export const Button = ({
   children,
-  type = "button",
+  classModifier,
+  className,
+  ...args
 }: PropsWithChildren<ButtonProps>) => {
-  return <button type={type}>{children}</button>;
-};
+  const classes = classModifier
+    ?.split(" ")
+    .map((modifier) => `af-btn--${modifier}`)
+    .join(" ");
 
-export default Button;
+  return (
+    <button className={cx("af-btn", classes, className)} {...args}>
+      {children}
+    </button>
+  );
+};
