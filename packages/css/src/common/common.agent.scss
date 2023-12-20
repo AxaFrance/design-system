@@ -1,14 +1,18 @@
 @use "sass:map";
+@use "sass:list";
+@use "sass:string";
+@use "sass:color";
+@use "sass:math";
 
 // Breakpoint viewport sizes and media queries.
-//
+
 // Breakpoints are defined as a map of (name: minimum width), order from small to large:
-//
+
 //    (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)
-//
+
 // The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
 // Name of the next breakpoint, or null for the last breakpoint.
-//
+
 //    >> breakpoint-next(sm)
 //    md
 //    >> breakpoint-next(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
@@ -20,7 +24,8 @@
   $breakpoints: $grid-breakpoints,
   $breakpoint-names: map-keys($breakpoints)
 ) {
-  $n: index($breakpoint-names, $name);
+  $n: list.index($breakpoint-names, $name);
+
   @return if(
     $n < length($breakpoint-names),
     nth($breakpoint-names, $n + 1),
@@ -29,11 +34,12 @@
 }
 
 // Minimum breakpoint width. Null for the smallest (first) breakpoint.
-//
+
 //    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    576px
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
   $min: map.get($breakpoints, $name);
+
   @return if($min != 0, $min, null);
 }
 
@@ -43,17 +49,18 @@
 // See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
 // Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
 // See https://bugs.webkit.org/show_bug.cgi?id=178261
-//
+
 //    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    767.98px
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
   $next: breakpoint-next($name, $breakpoints);
+
   @return if($next, breakpoint-min($next, $breakpoints) - 0.02px, null);
 }
 
 // Returns a blank string if smallest breakpoint, otherwise returns the name with a dash in front.
 // Useful for making responsive utilities.
-//
+
 //    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    ""  (Returns a blank string)
 //    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
@@ -66,6 +73,7 @@
 // Makes the @content apply to the given breakpoint and wider.
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
+
   @if $min {
     @media (min-width: $min) {
       @content;
@@ -79,6 +87,7 @@
 // Makes the @content apply to the given breakpoint and narrower.
 @mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
   $max: breakpoint-max($name, $breakpoints);
+
   @if $max {
     @media (max-width: $max) {
       @content;
@@ -135,8 +144,8 @@
   }
 }
 
-$font-family-sans-serif: "Source Sans Pro", Arial, sans-serif !default;
-$font-family-serif: Georgia, Times, "Times New Roman", serif !default;
+$font-family-sans-serif: "Source Sans Pro", arial, sans-serif !default;
+$font-family-serif: georgia, times, "Times New Roman", serif !default;
 // $font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
 //   monospace !default;
 $font-family-base: $font-family-sans-serif !default;
@@ -320,6 +329,7 @@ $universes: (
 
 @function rem($size) {
   $remSize: math.div($size, 16px);
+
   @return #{$remSize}rem;
 }
 
@@ -445,7 +455,7 @@ $yiq-text-dark: $gray-900 !default;
 $yiq-text-light: $white !default;
 
 // Options
-//
+
 // Quickly modify global styling by enabling or disabling optional features.
 
 $enable-caret: true !default;
@@ -458,7 +468,7 @@ $enable-grid-classes: true !default;
 $enable-print-styles: true !default;
 
 // Spacing
-//
+
 // Control the default styling of most Bootstrap elements by modifying these
 // variables. Mostly focused on spacing.
 // You can add more entries to the $spacers map, should you need more variation.
@@ -501,7 +511,7 @@ $sizes: map.merge(
 );
 
 // Body
-//
+
 // Settings for the `<body>` element.
 
 $body-bg: $white !default;
@@ -512,7 +522,9 @@ $body-color: $gray-900 !default;
 @mixin _assert-ascending($map, $map-name) {
   $prev-key: null;
   $prev-num: null;
+
   @each $key, $num in $map {
+    // stylelint-disable-next-line scss/at-if-no-null
     @if $prev-num == null {
       // Do nothing
     } @else if not comparable($prev-num, $num) {
@@ -528,8 +540,9 @@ $body-color: $gray-900 !default;
 // Starts at zero
 // Another grid mixin that ensures the min-width of the lowest breakpoint starts at 0.
 @mixin _assert-starts-at-zero($map) {
-  $values: map-values($map);
-  $first-value: nth($values, 1);
+  $values: map.values($map);
+  $first-value: list.nth($values, 1);
+
   @if $first-value != 0 {
     @warn "First breakpoint in `$grid-breakpoints` must start at 0, but starts at #{$first-value}.";
   }
@@ -537,14 +550,14 @@ $body-color: $gray-900 !default;
 
 // Replace `$search` with `$replace` in `$string`
 // Used on our SVG icon backgrounds for custom forms.
-//
+
 // @author Hugo Giraudel
 // @param {String} $string - Initial string
 // @param {String} $search - Substring to replace
 // @param {String} $replace ('') - New value
 // @return {String} - Updated string
 @function str-replace($string, $search, $replace: "") {
-  $index: str-index($string, $search);
+  $index: string.index($string, $search);
 
   @if $index {
     @return str-slice($string, 1, $index - 1) + $replace +
@@ -560,9 +573,9 @@ $body-color: $gray-900 !default;
 
 // Color contrast
 @function color-yiq($color) {
-  $r: red($color);
-  $g: green($color);
-  $b: blue($color);
+  $r: color.red($color);
+  $g: color.green($color);
+  $b: color.blue($color);
 
   $yiq: (($r * 299) + ($g * 587) + ($b * 114)) * 0.001;
 
@@ -590,28 +603,28 @@ $body-color: $gray-900 !default;
 @function theme-color-level($color-name: "primary", $level: 0) {
   $color: theme-color($color-name);
   $color-base: if($level > 0, $black, $white);
-  $level: abs($level);
+  $level: math.abs($level);
 
   @return mix($color-base, $color, $level * $theme-color-interval);
 }
 // Links
-//
+
 // Style anchor elements.
 
 $link-color: map.get($theme-colors, "primary") !default;
 
 $link-decoration: none !default;
-$link-hover-color: darken($link-color, 15%) !default;
+$link-hover-color: color.adjust($link-color, $lightness: -15%) !default;
 $link-hover-decoration: underline !default;
 
 // Paragraphs
-//
+
 // Style p element.
 
 $paragraph-margin-bottom: 1rem !default;
 
 // Grid breakpoints
-//
+
 // Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
@@ -627,7 +640,7 @@ $grid-breakpoints: (
 @include _assert-starts-at-zero($grid-breakpoints);
 
 // Grid containers
-//
+
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
@@ -640,14 +653,14 @@ $container-max-widths: (
 @include _assert-ascending($container-max-widths, "$container-max-widths");
 
 // Grid columns
-//
+
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns: 12 !default;
 $grid-gutter-width: 30px !default;
 
 // Components
-//
+
 // Define common padding and border radius sizes and more.
 
 $line-height-lg: 1.5 !default;
@@ -674,7 +687,7 @@ $transition-fade: opacity 0.15s linear !default;
 $transition-collapse: height 0.35s ease !default;
 
 // Fonts
-//
+
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
@@ -748,7 +761,7 @@ $mark-bg: #fcf8e3 !default;
 $hr-margin-y: $spacer !default;
 
 // Tables
-//
+
 // Customizes the `.table` component with basic values, each used across all table variations.
 
 $table-cell-padding: 0.75rem !default;
@@ -768,7 +781,7 @@ $table-head-color: $gray-700 !default;
 $table-dark-bg: $gray-900 !default;
 $table-dark-accent-bg: rgba($white, 0.05) !default;
 $table-dark-hover-bg: rgba($white, 0.075) !default;
-$table-dark-border-color: lighten($gray-900, 7.5%) !default;
+$table-dark-border-color: color.adjust($gray-900, $lightness: 7.5%) !default;
 $table-dark-color: $body-bg !default;
 
 $table-striped-order: odd !default;
@@ -776,7 +789,7 @@ $table-striped-order: odd !default;
 $table-caption-color: $text-muted !default;
 
 // Buttons + Forms
-//
+
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
 $input-btn-padding-y: 0.375rem !default;
@@ -798,7 +811,7 @@ $input-btn-line-height-lg: $line-height-lg !default;
 $input-btn-border-width: $border-width !default;
 
 // Buttons
-//
+
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 $btn-padding-y: $input-btn-padding-y !default;
@@ -816,7 +829,9 @@ $btn-line-height-lg: $input-btn-line-height-lg !default;
 $btn-border-width: $input-btn-border-width !default;
 
 $btn-font-weight: $font-weight-normal !default;
-$btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
+$btn-box-shadow:
+  inset 0 1px 0 rgba($white, 0.15),
+  0 1px 1px rgba($black, 0.075) !default;
 $btn-focus-width: $input-btn-focus-width !default;
 $btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
 $btn-disabled-opacity: 0.65 !default;
@@ -831,8 +846,11 @@ $btn-border-radius: $border-radius !default;
 $btn-border-radius-lg: $border-radius-lg !default;
 $btn-border-radius-sm: $border-radius-sm !default;
 
-$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+$btn-transition:
+  color 0.15s ease-in-out,
+  background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out !default;
 
 // Forms
 
@@ -863,7 +881,10 @@ $input-border-radius-lg: $border-radius-lg !default;
 $input-border-radius-sm: $border-radius-sm !default;
 
 $input-focus-bg: $input-bg !default;
-$input-focus-border-color: lighten($component-active-bg, 25%) !default;
+$input-focus-border-color: color.adjust(
+  $component-active-bg,
+  $lightness: 25%
+) !default;
 $input-focus-color: $input-color !default;
 $input-focus-width: $input-btn-focus-width !default;
 $input-focus-box-shadow: $input-btn-focus-box-shadow !default;
@@ -889,7 +910,9 @@ $input-height-lg: calc(
   #{$input-height-inner-lg} + #{$input-height-border}
 ) !default;
 
-$input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+$input-transition:
+  border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out !default;
 
 $form-text-margin-top: 0.25rem !default;
 
@@ -906,8 +929,10 @@ $input-group-addon-color: $input-color !default;
 $input-group-addon-bg: $gray-200 !default;
 $input-group-addon-border-color: $input-border-color !default;
 
-$custom-forms-transition: background-color 0.15s ease-in-out,
-  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+$custom-forms-transition:
+  background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out !default;
 
 $custom-control-gutter: 1.5rem !default;
 $custom-control-spacer-x: 1rem !default;
@@ -928,13 +953,14 @@ $custom-control-indicator-checked-disabled-bg: rgba(
 ) !default;
 $custom-control-indicator-checked-box-shadow: none !default;
 
-$custom-control-indicator-focus-box-shadow: 0 0 0 1px $body-bg,
+$custom-control-indicator-focus-box-shadow:
+  0 0 0 1px $body-bg,
   $input-btn-focus-box-shadow !default;
 
 $custom-control-indicator-active-color: $component-active-color !default;
-$custom-control-indicator-active-bg: lighten(
+$custom-control-indicator-active-bg: color.adjust(
   $component-active-bg,
-  35%
+  $lightness: 35%
 ) !default;
 $custom-control-indicator-active-box-shadow: none !default;
 
@@ -1006,10 +1032,14 @@ $custom-range-thumb-bg: $component-active-bg !default;
 $custom-range-thumb-border: 0 !default;
 $custom-range-thumb-border-radius: 1rem !default;
 $custom-range-thumb-box-shadow: 0 0.1rem 0.25rem rgba($black, 0.1) !default;
-$custom-range-thumb-focus-box-shadow: 0 0 0 1px $body-bg,
+$custom-range-thumb-focus-box-shadow:
+  0 0 0 1px $body-bg,
   $input-btn-focus-box-shadow !default;
 $custom-range-thumb-focus-box-shadow-width: $input-btn-focus-width !default; // For focus box shadow issue in IE/Edge
-$custom-range-thumb-active-bg: lighten($component-active-bg, 35%) !default;
+$custom-range-thumb-active-bg: color.adjust(
+  $component-active-bg,
+  $lightness: 35%
+) !default;
 
 $custom-file-height: $input-height !default;
 $custom-file-height-inner: $input-height-inner !default;
@@ -1039,7 +1069,7 @@ $form-feedback-valid-color: theme-color("success") !default;
 $form-feedback-invalid-color: theme-color("danger") !default;
 
 // Dropdowns
-//
+
 // Dropdown menu container and contents.
 
 $dropdown-min-width: 10rem !default;
@@ -1053,7 +1083,7 @@ $dropdown-divider-bg: $gray-200 !default;
 $dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
 
 $dropdown-link-color: $gray-900 !default;
-$dropdown-link-hover-color: darken($gray-900, 5%) !default;
+$dropdown-link-hover-color: color.adjust($gray-900, $lightness: -5%) !default;
 $dropdown-link-hover-bg: $gray-100 !default;
 
 $dropdown-link-active-color: $component-active-color !default;
@@ -1067,7 +1097,7 @@ $dropdown-item-padding-x: 1.5rem !default;
 $dropdown-header-color: $gray-600 !default;
 
 // Z-index master list
-//
+
 // Warning: Avoid customizing these values. They're used for a bird's eye view
 // of components dependent on the z-axis and are designed to all work together.
 
@@ -1225,7 +1255,7 @@ $popover-border-color: rgba($black, 0.2) !default;
 $popover-border-radius: $border-radius-lg !default;
 $popover-box-shadow: 0 0.25rem 0.5rem rgba($black, 0.2) !default;
 
-$popover-header-bg: darken($popover-bg, 3%) !default;
+$popover-header-bg: color.adjust($popover-bg, $lightness: -3%) !default;
 $popover-header-color: $headings-color !default;
 $popover-header-padding-y: 0.5rem !default;
 $popover-header-padding-x: 0.75rem !default;
@@ -1285,7 +1315,7 @@ $modal-sm: 300px !default;
 $modal-transition: transform 0.3s ease-out !default;
 
 // Alerts
-//
+
 // Define alert colors, border radius, and padding.
 
 $alert-padding-y: 0.75rem !default;
@@ -1360,7 +1390,7 @@ $breadcrumb-margin-bottom: 1rem !default;
 $breadcrumb-bg: $gray-200 !default;
 $breadcrumb-divider-color: $gray-600 !default;
 $breadcrumb-active-color: $gray-600 !default;
-$breadcrumb-divider: quote("/") !default;
+$breadcrumb-divider: "/" !default;
 
 $breadcrumb-border-radius: $border-radius !default;
 

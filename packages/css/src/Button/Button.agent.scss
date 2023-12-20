@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../common/common.agent.scss" as common;
 
 $active-sort-table-th: common.$color-table-sorting !default;
@@ -19,26 +20,26 @@ $active-sort-table-th: common.$color-table-sorting !default;
 }
 
 .af-btn {
-  font-family: common.$font-family-base;
-  background-color: common.$color-azur;
-  color: common.$table-inverse-color;
+  position: relative;
+  min-width: 10rem;
+  padding: 0.8rem 1.2rem;
   border: 0;
   border-radius: 0;
-  min-width: 10rem;
-  cursor: pointer;
-  font-weight: 400;
-  position: relative;
+  font-family: common.$font-family-base;
   font-size: 1em;
-  padding: 0.8rem 1.2rem 0.8rem 1.2rem;
+  font-weight: 400;
+  color: common.$table-inverse-color;
+  background-color: common.$color-azur;
   box-shadow: inset 0 -3px common.$color-axa;
   transition: all 0.2s linear;
+  cursor: pointer;
 
   .glyphicon {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 17px;
+    transform: translate(-50%, -50%);
   }
 
   &:hover,
@@ -51,18 +52,18 @@ $active-sort-table-th: common.$color-table-sorting !default;
     box-shadow: 0 0 3px 3px common.$color-azur-focused;
   }
   @include common.generate-universes() using ($color) {
-    background-color: $color;
-    color: common.$white;
-    border-radius: 0;
     min-width: 10rem;
-    cursor: pointer;
+    border-radius: 0;
     font-size: 1em;
-    box-shadow: inset 0 -3px darken($color, 20%);
+    color: common.$white;
+    background-color: $color;
+    box-shadow: inset 0 -3px color.adjust($color, $lightness: -20%);
     transition: all 0.2s linear;
+    cursor: pointer;
 
     &:hover {
-      box-shadow: inset 0 -3px darken($color, 20%);
-      background-color: darken($color, 20%);
+      background-color: color.adjust($color, $lightness: -20%);
+      box-shadow: inset 0 -3px color.adjust($color, $lightness: -20%);
     }
   }
 
@@ -107,19 +108,19 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--reverse {
+    padding: 0.625rem 0.3125rem 0.8125rem;
+    border: 2px solid common.$color-azur;
+    border-bottom: none;
     color: common.$color-azur;
     background-color: common.$table-inverse-color;
     box-shadow: inset 0 -3px common.$color-azur;
-    border: 2px solid common.$color-azur;
-    border-bottom: none;
-    padding: 0.625rem 0.3125rem 0.8125rem 0.3125rem;
 
     &:hover,
     &:focus {
+      border-color: common.$color-axa;
       color: common.$white;
       background-color: common.$color-axa;
       box-shadow: inset 0 -3px common.$color-axa;
-      border-color: common.$color-axa;
     }
 
     &:focus {
@@ -128,12 +129,12 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--reverse.af-btn--disabled {
-    cursor: not-allowed;
-    background-color: common.$white;
-    box-shadow: inset 0 -3px common.$color-silver;
-    color: common.$color-btn-disabled;
     border-color: common.$color-silver;
     border-bottom: none;
+    color: common.$color-btn-disabled;
+    background-color: common.$white;
+    box-shadow: inset 0 -3px common.$color-silver;
+    cursor: not-allowed;
   }
 
   &--reverse.af-btn--hasiconLeft,
@@ -151,28 +152,28 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--small {
-    padding: 0.625rem 0.3125rem;
     min-width: 3rem;
+    padding: 0.625rem 0.3125rem;
   }
 
   &--circle {
+    position: relative;
     display: inline-block;
+    box-sizing: border-box;
     width: 2rem;
-    height: 2rem;
     min-width: 0;
+    height: 2rem;
     padding: 0;
     border: 1px solid common.$white;
-    background: common.$color-azur;
     border-radius: 50%;
     text-align: center;
     color: common.$white;
-    box-sizing: border-box;
-    position: relative;
+    background: common.$color-azur;
 
     &:hover {
-      background-color: common.$white;
-      color: common.$brand-primary;
       border-color: common.$brand-primary;
+      color: common.$brand-primary;
+      background-color: common.$white;
     }
 
     &:focus {
@@ -192,9 +193,11 @@ $active-sort-table-th: common.$color-table-sorting !default;
     height: 1.5rem;
     font-size: 0.625rem;
     cursor: pointer;
+
     .glyphicon {
       width: 10px;
     }
+
     .af-more-help {
       font-weight: 900;
     }
@@ -208,9 +211,14 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--circle-reverse {
-    background: common.$white;
     border-color: common.$brand-primary;
     color: common.$brand-primary;
+    background: common.$white;
+
+    &:hover {
+      color: common.$white;
+      background: common.$brand-primary;
+    }
 
     &:focus {
       color: common.$brand-primary;
@@ -221,20 +229,15 @@ $active-sort-table-th: common.$color-table-sorting !default;
         color: common.$white;
       }
     }
-
-    &:hover {
-      background: common.$brand-primary;
-      color: common.$white;
-    }
   }
 
   &--circle-menu {
     @include common.media-breakpoint-down(sm) {
-      height: common.$menu-button-size;
       width: common.$menu-button-size;
+      height: common.$menu-button-size;
+      border-color: common.$white;
       line-height: common.$menu-button-size;
       color: common.$white;
-      border-color: common.$white;
       background: transparent;
 
       &:hover {
@@ -245,32 +248,32 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--disabled {
-    cursor: not-allowed;
+    color: common.$color-btn-disabled;
     background-color: common.$color-mercury;
     box-shadow: inset 0 -3px common.$color-silver;
-    color: common.$color-btn-disabled;
+    cursor: not-allowed;
 
     &:hover,
     &:focus {
+      border-color: transparent;
+      color: common.$color-btn-disabled;
       background-color: common.$color-mercury;
       box-shadow: inset 0 -3px common.$color-silver;
-      color: common.$color-btn-disabled;
-      border-color: transparent;
     }
   }
 
   &--table-sorting {
     display: flex;
-    align-items: center;
     width: 100%;
     height: 100%;
+    padding: 0.881em 1rem;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 200;
     text-align: inherit;
-    justify-content: space-between;
-    cursor: pointer;
     color: white;
-    padding: 0.881em 1rem 0.881em 1rem;
     box-shadow: inherit;
+    cursor: pointer;
 
     &:focus,
     &:hover {
