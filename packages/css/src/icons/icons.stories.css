@@ -1,22 +1,22 @@
 .icon-list {
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  list-style: none;
 
   li {
+    display: flex;
     width: 10rem;
     height: 10rem;
-    border: 1px solid #ccc;
-    display: flex;
     margin-bottom: 1rem;
-    background: #fff;
-    box-shadow: 0 0 5px 0 rgba(250, 250, 250, 0.5);
+    border: 1px solid #ccc;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    background: #fff;
+    box-shadow: 0 0 5px 0 rgba(250, 250, 250, 50%);
 
     .glyphicon {
       font-size: 8rem;
