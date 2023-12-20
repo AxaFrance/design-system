@@ -28,7 +28,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "rimraf dist && sass ./src/agent.scss dist/agent.css --style=compressed && copyfiles --up 1 \"./src/**/*.scss\" ./dist/"
+    "build": "rimraf dist  && copyfiles --up 1 \"./src/**/*.scss\" ./dist/ && copyfiles  --flat \"./src/common/glyphicons/*\" ./dist/glyphicons && copyfiles  --flat \"./src/common/glyphicons/*\" ./dist/common/glyphicons && sass ./src/agent.scss dist/agent.css --style=compressed"
   },
   "repository": {
     "type": "git",

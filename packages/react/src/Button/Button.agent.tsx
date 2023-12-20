@@ -1,7 +1,8 @@
-import "@axa-fr/design-system-css/src/Button/Button.agent.scss";
+import "@axa-fr/design-system-css/dist/Button/Button.agent.scss";
 import { cx } from "classix";
 
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+
 type ButtonProps = {
   classModifier?: string;
 } & ComponentPropsWithoutRef<"button">;

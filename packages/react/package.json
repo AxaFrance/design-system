@@ -5,9 +5,12 @@
   "main": "index.js",
   "type": "module",
   "exports": {
-    "agent": "./agent.ts",
-    "client": "./client.ts"
+    "./agent": "./dist/agent.js",
+    "./client": "./dist/client.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",

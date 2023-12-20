@@ -33,6 +33,14 @@ $active-sort-table-th: common.$color-table-sorting !default;
   box-shadow: inset 0 -3px common.$color-axa;
   transition: all 0.2s linear;
 
+  .glyphicon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 17px;
+  }
+
   &:hover,
   &:focus {
     color: common.$white;
@@ -66,21 +74,6 @@ $active-sort-table-th: common.$color-table-sorting !default;
   &--hasiconRight,
   &--hasIconRight {
     @include hasIcon("right");
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    background-color: common.$color-mercury;
-    box-shadow: inset 0 -3px common.$color-silver;
-    color: common.$color-btn-disabled;
-
-    &:hover,
-    &:focus {
-      background-color: common.$color-mercury;
-      box-shadow: inset 0 -3px common.$color-silver;
-      color: common.$color-btn-disabled;
-      border-color: transparent;
-    }
   }
 
   &--success {
@@ -166,6 +159,7 @@ $active-sort-table-th: common.$color-table-sorting !default;
     display: inline-block;
     width: 2rem;
     height: 2rem;
+    min-width: 0;
     padding: 0;
     border: 1px solid common.$white;
     background: common.$color-azur;
@@ -188,14 +182,6 @@ $active-sort-table-th: common.$color-table-sorting !default;
       &:hover {
         color: common.$brand-primary;
       }
-    }
-
-    .glyphicon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 17px;
     }
   }
 
@@ -258,6 +244,21 @@ $active-sort-table-th: common.$color-table-sorting !default;
     }
   }
 
+  &--disabled {
+    cursor: not-allowed;
+    background-color: common.$color-mercury;
+    box-shadow: inset 0 -3px common.$color-silver;
+    color: common.$color-btn-disabled;
+
+    &:hover,
+    &:focus {
+      background-color: common.$color-mercury;
+      box-shadow: inset 0 -3px common.$color-silver;
+      color: common.$color-btn-disabled;
+      border-color: transparent;
+    }
+  }
+
   &--table-sorting {
     display: flex;
     align-items: center;
@@ -287,13 +288,6 @@ $active-sort-table-th: common.$color-table-sorting !default;
         background-color: $active-sort-table-th;
       }
     }
-  }
-
-  .glyphicon {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 17px;
   }
 
   .af-badge {
