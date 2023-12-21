@@ -31,24 +31,24 @@
     "react": ">= 18"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "7.6.5",
-    "@storybook/addon-interactions": "7.6.5",
-    "@storybook/addon-links": "7.6.5",
-    "@storybook/addon-mdx-gfm": "7.6.5",
-    "@storybook/addon-onboarding": "1.0.10",
-    "@storybook/blocks": "7.6.5",
-    "@storybook/react": "7.6.5",
-    "@storybook/react-vite": "7.6.5",
-    "@storybook/test": "7.6.5",
-    "@types/react": "18.2.43",
-    "prop-types": "15.8.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "storybook": "7.6.5",
-    "typescript": "5.3.3"
+    "@storybook/addon-essentials": "^7.6.5",
+    "@storybook/addon-interactions": "^7.6.5",
+    "@storybook/addon-links": "^7.6.5",
+    "@storybook/addon-mdx-gfm": "^7.6.6",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.5",
+    "@storybook/react": "^7.6.5",
+    "@storybook/react-vite": "^7.6.5",
+    "@storybook/test": "^7.6.5",
+    "@types/react": "^18.2.43",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.5",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@axa-fr/design-system-css": "0.1.0",
-    "classix": "2.1.35"
+    "@axa-fr/design-system-css": "^0.1.0",
+    "classix": "^2.1.35"
   }
 }
