@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "./tsconfig"
+  ],
+  "compilerOptions": {
+    "module": "CommonJS" /* Specify what module code is generated. */,
+    "outDir": "./dist/cjs" /* Specify an output folder for all emitted files. */,
+
+  }
+}
