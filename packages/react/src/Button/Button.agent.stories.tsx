@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "./Button.agent";
+import { ButtonAgent } from "./Button.agent";
 
 const MODIFIERS = [
   "success",
@@ -12,8 +12,8 @@ const MODIFIERS = [
   "hasiconRight",
 ];
 
-const meta: Meta<typeof Button> = {
-  component: Button,
+const meta: Meta<typeof ButtonAgent> = {
+  component: ButtonAgent,
   title: "Components/Button",
   parameters: {
     layout: "centered",
@@ -24,7 +24,7 @@ const meta: Meta<typeof Button> = {
 export default meta;
 
 type StoryProps = Omit<
-  React.ComponentProps<typeof Button>,
+  React.ComponentProps<typeof ButtonAgent>,
   "classModifier" | "children"
 > & {
   children: string;
@@ -35,9 +35,13 @@ type Story = StoryObj<StoryProps>;
 export const Playground: Story = {
   name: "Button",
   render: ({ children: text, classModifier, onClick, ...args }) => (
-    <Button classModifier={classModifier.join(" ")} onClick={onClick} {...args}>
+    <ButtonAgent
+      classModifier={classModifier.join(" ")}
+      onClick={onClick}
+      {...args}
+    >
       {text}
-    </Button>
+    </ButtonAgent>
   ),
   args: {
     children: "Button",
@@ -51,7 +55,7 @@ export const Playground: Story = {
   },
 };
 
-export const MultiExamples: StoryObj<typeof Button> = {
+export const MultiExamples: StoryObj<typeof ButtonAgent> = {
   name: "Button with modifiers",
   render: () => {
     return (
@@ -64,17 +68,17 @@ export const MultiExamples: StoryObj<typeof Button> = {
           gap: "2rem",
         }}
       >
-        <Button classModifier="reverse">Button Reverse</Button>
-        <Button classModifier="success">Button Success</Button>
-        <Button classModifier="danger">Button Danger</Button>
-        <Button classModifier="small">Button Small</Button>
-        <Button classModifier="disabled">Button disabled</Button>
+        <ButtonAgent classModifier="reverse">Button Reverse</ButtonAgent>
+        <ButtonAgent classModifier="success">Button Success</ButtonAgent>
+        <ButtonAgent classModifier="danger">Button Danger</ButtonAgent>
+        <ButtonAgent classModifier="small">Button Small</ButtonAgent>
+        <ButtonAgent classModifier="disabled">Button disabled</ButtonAgent>
       </div>
     );
   },
 };
 
-export const Reverse: StoryObj<typeof Button> = {
+export const Reverse: StoryObj<typeof ButtonAgent> = {
   name: "Button reverse",
   args: {
     children: "Button Reverse",
@@ -82,7 +86,7 @@ export const Reverse: StoryObj<typeof Button> = {
   },
 };
 
-export const Success: StoryObj<typeof Button> = {
+export const Success: StoryObj<typeof ButtonAgent> = {
   name: "Button success",
   args: {
     children: "Button success",
@@ -90,7 +94,7 @@ export const Success: StoryObj<typeof Button> = {
   },
 };
 
-export const Danger: StoryObj<typeof Button> = {
+export const Danger: StoryObj<typeof ButtonAgent> = {
   name: "Button danger",
   args: {
     children: "Button Danger",
@@ -98,12 +102,12 @@ export const Danger: StoryObj<typeof Button> = {
   },
 };
 
-export const WithIconRight: StoryObj<typeof Button> = {
+export const WithIconRight: StoryObj<typeof ButtonAgent> = {
   name: "Button with right icon",
   args: {
     children: (
       <>
-        <span className="glyphicon glyphicon-arrow-right"></span>
+        <span className="glyphicon glyphicon-arrow-right" />
         <span className="af-btn__text">With icon</span>
       </>
     ),
@@ -111,12 +115,12 @@ export const WithIconRight: StoryObj<typeof Button> = {
   },
 };
 
-export const WithIconLeft: StoryObj<typeof Button> = {
+export const WithIconLeft: StoryObj<typeof ButtonAgent> = {
   name: "Button with left icon",
   args: {
     children: (
       <>
-        <span className="glyphicon glyphicon-arrow-left"></span>
+        <span className="glyphicon glyphicon-arrow-left" />
         <span className="af-btn__text">With icon</span>
       </>
     ),
@@ -124,7 +128,7 @@ export const WithIconLeft: StoryObj<typeof Button> = {
   },
 };
 
-export const Small: StoryObj<typeof Button> = {
+export const Small: StoryObj<typeof ButtonAgent> = {
   name: "Button small",
   args: {
     children: "Button Small",
@@ -132,11 +136,11 @@ export const Small: StoryObj<typeof Button> = {
   },
 };
 
-export const Circle: StoryObj<typeof Button> = {
+export const Circle: StoryObj<typeof ButtonAgent> = {
   name: "Button circle",
   args: {
     classModifier: "circle",
     title: "Save",
-    children: <span className="glyphicon glyphicon-floppy-disk"></span>,
+    children: <span className="glyphicon glyphicon-floppy-disk" />,
   },
 };
