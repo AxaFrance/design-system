@@ -16,9 +16,8 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsc --watch",
     "build": "tsc",
-    "start:storybook": "storybook dev -p 6006",
+    "start:storybook": "storybook dev -p 6007",
     "build:storybook": "storybook build",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
