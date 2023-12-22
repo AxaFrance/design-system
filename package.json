@@ -9,7 +9,8 @@
   "scripts": {
     "start": "turbo start start:storybook",
     "build": "turbo build build:storybook --no-daemon --concurrency 1",
-    "lint": "turbo eslint stylelint prettier tsc --no-daemon"
+    "lint": "turbo eslint stylelint prettier tsc --no-daemon",
+    "prepare": "husky install"
   },
   "author": "AxaFrance",
   "license": "MIT",
@@ -22,6 +23,14 @@
     "packages/css"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "turbo": "^1.11.2"
+  },
+  "volta": {
+    "node": "20.10.0",
+    "npm": "10.2.5"
   }
 }
