@@ -7,7 +7,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist  && copyfiles --up 1 \"./src/**/*.scss\" ./dist/ && copyfiles  --flat \"./src/common/glyphicons/*\" ./dist/glyphicons && copyfiles  --flat \"./src/common/glyphicons/*\" ./dist/common/glyphicons && sass ./src/agent.scss dist/agent.css --style=compressed",
+    "start": "postcss src/**/*.scss --base src --dir dist --ext css --verbose --watch --config ../../config/postcss.config.js",
+    "build": "postcss src/**/*.scss --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
     "start:storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "eslint": "eslint src --ext js,jsx,ts,tsx",
@@ -19,6 +20,7 @@
     "tsc": "tsc --noEmit"
   },
   "devDependencies": {
+    "@csstools/postcss-sass": "^5.0.1",
     "@storybook/addon-essentials": "^7.6.5",
     "@storybook/addon-interactions": "^7.6.5",
     "@storybook/addon-links": "^7.6.5",
@@ -30,7 +32,9 @@
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "@whitespace/storybook-addon-html": "^5.1.6",
+    "browserslist": "^4.22.2",
     "copyfiles": "^2.4.1",
+    "cssnano": "^6.0.2",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
@@ -39,9 +43,14 @@
     "eslint-plugin-prettier": "^5.1.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-normalize": "^10.0.1",
+    "postcss-preset-env": "^9.3.0",
+    "postcss-scss": "^4.0.9",
     "prettier": "^3.1.1",
     "rimraf": "^5.0.5",
-    "sass": "^1.69.5",
     "storybook": "^7.6.4",
     "stylelint": "^16.0.2",
     "stylelint-config-pretty-order": "^0.4.1",
@@ -58,5 +67,17 @@
   "bugs": {
     "url": "https://github.com/AxaFrance/design-system/issues"
   },
-  "homepage": "https://github.com/AxaFrance/design-system#readme"
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
