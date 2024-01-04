@@ -10,6 +10,7 @@
     "start": "turbo start start:storybook",
     "build": "turbo build build:storybook --no-daemon --concurrency 1",
     "lint": "turbo eslint stylelint prettier tsc --no-daemon",
+    "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky install"
   },
   "author": "AxaFrance",
@@ -28,6 +29,9 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "turbo": "^1.11.2"
+  },
+  "lint-staged": {
+    "{package,package-lock}.json": "npm run package:check"
   },
   "volta": {
     "node": "20.10.0",
