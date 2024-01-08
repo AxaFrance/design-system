@@ -1,3 +1,5 @@
+import "@axa-fr/design-system-css/dist/common/icons.scss";
+
 /** @type { import('@storybook/html').Preview } */
 const preview = {
   parameters: {
