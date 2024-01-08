@@ -21,7 +21,9 @@ const MODIFIERS = [
 export const Primary: StoryObj = {
   render: (args) => {
     const btn = document.createElement("button");
-    btn.innerText = args.label;
+    btn.innerHTML = args.icon
+      ? `<span class="af-btn__text">${args.label}</span> <span class="glyphicon glyphicon-${args.icon}" /> `
+      : args.label;
 
     btn.className = [
       "af-btn",
@@ -33,11 +35,15 @@ export const Primary: StoryObj = {
   args: {
     label: "Button",
     classModifier: "",
+    icon: null,
   },
   argTypes: {
     classModifier: {
       options: MODIFIERS,
       control: { type: "select" },
+    },
+    icon: {
+      control: { type: "text" },
     },
   },
 };
