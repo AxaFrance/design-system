@@ -18,6 +18,21 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 }
 
+@mixin disabled {
+  cursor: not-allowed;
+  background-color: common.$color-mercury;
+  box-shadow: inset 0 -3px common.$color-silver;
+  color: common.$color-btn-disabled;
+
+  &:hover,
+  &:focus {
+    background-color: common.$color-mercury;
+    box-shadow: inset 0 -3px common.$color-silver;
+    color: common.$color-btn-disabled;
+    border-color: transparent;
+  }
+}
+
 .af-btn {
   font-family: common.$font-family-base;
   background-color: common.$color-azur;
@@ -245,18 +260,7 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--disabled {
-    cursor: not-allowed;
-    background-color: common.$color-mercury;
-    box-shadow: inset 0 -3px common.$color-silver;
-    color: common.$color-btn-disabled;
-
-    &:hover,
-    &:focus {
-      background-color: common.$color-mercury;
-      box-shadow: inset 0 -3px common.$color-silver;
-      color: common.$color-btn-disabled;
-      border-color: transparent;
-    }
+    @include disabled;
   }
 
   &--table-sorting {
@@ -293,4 +297,8 @@ $active-sort-table-th: common.$color-table-sorting !default;
   .af-badge {
     margin-left: 2rem;
   }
+}
+
+button[aria-disabled="true"] {
+  @include disabled;
 }

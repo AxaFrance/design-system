@@ -18,7 +18,7 @@ const MODIFIERS = [
   "hasiconRight",
 ];
 
-export const Primary: StoryObj = {
+export const PrimaryButton: StoryObj = {
   render: (args) => {
     const btn = document.createElement("button");
     btn.innerHTML = args.icon
@@ -29,6 +29,68 @@ export const Primary: StoryObj = {
       "af-btn",
       args.classModifier ? "af-btn--" + args.classModifier : "",
     ].join(" ");
+
+    return btn;
+  },
+  args: {
+    label: "Button",
+    classModifier: "",
+    icon: null,
+  },
+  argTypes: {
+    classModifier: {
+      options: MODIFIERS,
+      control: { type: "select" },
+    },
+    icon: {
+      control: { type: "text" },
+    },
+  },
+};
+
+export const DisabledButton: StoryObj = {
+  render: (args) => {
+    const btn = document.createElement("button");
+    btn.innerHTML = args.icon
+      ? `<span class="af-btn__text">${args.label}</span> <span class="glyphicon glyphicon-${args.icon}" /> `
+      : args.label;
+
+    btn.className = [
+      "af-btn",
+      args.classModifier ? "af-btn--" + args.classModifier : "",
+    ].join(" ");
+    
+    return btn;
+  },
+  args: {
+    label: "Button",
+    classModifier: "disabled",
+    icon: null,
+  },
+  argTypes: {
+    classModifier: {
+      options: MODIFIERS,
+      control: { type: "select" },
+    },
+    icon: {
+      control: { type: "text" },
+    },
+  },
+};
+
+export const AriaDisabledButton: StoryObj = {
+  render: (args) => {
+    const btn = document.createElement("button");
+    btn.innerHTML = args.icon
+      ? `<span class="af-btn__text">${args.label}</span> <span class="glyphicon glyphicon-${args.icon}" /> `
+      : args.label;
+
+    btn.className = [
+      "af-btn",
+      args.classModifier ? "af-btn--" + args.classModifier : "",
+    ].join(" ");
+    
+    btn.setAttribute('aria-disabled', "true");
 
     return btn;
   },
