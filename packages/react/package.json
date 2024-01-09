@@ -70,7 +70,8 @@
   "dependencies": {
     "@axa-fr/design-system-css": "^0.1.0",
     "@fontsource/source-sans-pro": "^5.0.8",
-    "classix": "^2.1.35"
+    "classix": "^2.1.35",
+    "classnames": "^2.5.1"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
