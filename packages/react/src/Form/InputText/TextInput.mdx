@@ -1,0 +1,18 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { ArgsTable } from '@storybook/addon-docs';
+import * as TextInputStories from './TextInput.stories';
+
+
+<Meta
+  of={TextInputStories}
+/>
+
+## Text Input
+
+
+<Canvas>
+  <Story of={TextInputStories.TextInputStory}>
+  </Story>
+</Canvas>
+
+<ArgsTable story="TextInput" />
