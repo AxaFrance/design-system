@@ -29,7 +29,7 @@
     "@storybook/html": "^7.6.4",
     "@storybook/html-vite": "^7.6.4",
     "@storybook/test": "^7.6.4",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.15.0",
     "@whitespace/storybook-addon-html": "^5.1.6",
     "browserslist": "^4.22.2",
