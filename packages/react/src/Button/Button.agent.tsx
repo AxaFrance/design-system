@@ -7,7 +7,7 @@ type ButtonProps = {
   classModifier?: string;
 } & ComponentPropsWithoutRef<"button">;
 
-export const Button = ({
+export const ButtonAgent = ({
   children,
   classModifier,
   className,
@@ -19,7 +19,11 @@ export const Button = ({
     .join(" ");
 
   return (
-    <button className={cx("af-btn", classes, className)} {...args}>
+    <button
+      className={cx("af-btn", classes, className)}
+      type="button"
+      {...args}
+    >
       {children}
     </button>
   );

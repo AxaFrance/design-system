@@ -1,2 +1,3 @@
 import "@axa-fr/design-system-css/dist/common/icons.scss";
-export { Button } from "./Button/Button.agent";
+
+export { ButtonAgent as Button } from "./Button/Button.agent";

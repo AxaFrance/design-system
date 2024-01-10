@@ -2,20 +2,28 @@
   "name": "@axa-fr/design-system-react",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
   "exports": {
-    "./agent": "./dist/agent.js",
-    "./client": "./dist/client.js"
+    "./agent": {
+      "import": "./dist/agent.js",
+      "types": "./dist/agent.d.ts"
+    },
+    "./client": {
+      "import": "./dist/client.js",
+      "types": "./dist/client.d.ts"
+    }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "build": "tsc"
+    "build": "tsc",
+    "start:storybook": "storybook dev -p 6007",
+    "build:storybook": "storybook build",
+    "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
+    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx)\" --check",
+    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx)\" --write",
+    "tsc": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -31,24 +39,45 @@
     "react": ">= 18"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "7.6.5",
-    "@storybook/addon-interactions": "7.6.5",
-    "@storybook/addon-links": "7.6.5",
-    "@storybook/addon-mdx-gfm": "7.6.5",
-    "@storybook/addon-onboarding": "1.0.10",
-    "@storybook/blocks": "7.6.5",
-    "@storybook/react": "7.6.5",
-    "@storybook/react-vite": "7.6.5",
-    "@storybook/test": "7.6.5",
-    "@types/react": "18.2.43",
-    "prop-types": "15.8.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "storybook": "7.6.5",
-    "typescript": "5.3.3"
+    "@storybook/addon-docs": "^7.6.6",
+    "@storybook/addon-essentials": "^7.6.5",
+    "@storybook/addon-interactions": "^7.6.5",
+    "@storybook/addon-links": "^7.6.5",
+    "@storybook/addon-mdx-gfm": "^7.6.6",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.5",
+    "@storybook/react": "^7.6.5",
+    "@storybook/react-vite": "^7.6.5",
+    "@storybook/test": "^7.6.5",
+    "@types/react": "^18.2.43",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.1.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^5.0.5",
+    "storybook": "^7.6.5",
+    "tsc-files": "^1.1.4",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@axa-fr/design-system-css": "0.1.0",
-    "classix": "2.1.35"
+    "@axa-fr/design-system-css": "^0.1.0",
+    "classix": "^2.1.35"
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": "eslint --fix",
+    "*.(ts|tsx)": "tsc-files --noEmit",
+    "*.!(js|jsx|ts|tsx)": "prettier --write"
+  },
+  "volta": {
+    "node": "20.10.0",
+    "npm": "10.2.5"
   }
 }

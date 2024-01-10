@@ -14,7 +14,7 @@ export const Example: StoryObj = {
 
     btn.className = [
       "glyphicon",
-      args.iconName ? "glyphicon-" + args.iconName : "",
+      args.iconName ? `glyphicon-${args.iconName}` : "",
     ].join(" ");
 
     return btn;
@@ -331,14 +331,14 @@ const icons = [
 ];
 
 export const AllIcons: StoryObj = {
-  render: (args) => {
+  render: () => {
     const container = document.createElement("ul");
     container.className = "icon-list";
     for (const icon of icons) {
       const iconListElement = document.createElement("li");
       const iconElement = document.createElement("span");
 
-      iconElement.className = ["glyphicon", "glyphicon-" + icon].join(" ");
+      iconElement.className = ["glyphicon", `glyphicon-${icon}`].join(" ");
 
       const iconName = document.createElement("span");
       iconName.innerText = icon;

@@ -27,7 +27,7 @@ export const Primary: StoryObj = {
 
     btn.className = [
       "af-btn",
-      args.classModifier ? "af-btn--" + args.classModifier : "",
+      args.classModifier ? `af-btn--${args.classModifier}` : "",
     ].join(" ");
 
     return btn;
