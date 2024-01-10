@@ -5,12 +5,12 @@ export { ButtonAgent as Button } from "./Button/Button.agent";
 export { Text, TextInput } from "./Form/InputText";
 export {
   Field,
-  FieldInput,
-  MessageTypes,
   FieldError,
-  FormClassManager,
   FieldForm,
+  FieldInput,
+  FormClassManager,
   HelpMessage,
   InputList,
+  MessageTypes,
   getComponentClassName,
 } from "./Form/core";

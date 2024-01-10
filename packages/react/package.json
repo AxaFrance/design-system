@@ -77,7 +77,7 @@
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
     "*.(ts|tsx)": "tsc-files --noEmit",
-    "*.!(js|jsx|ts|tsx)": "prettier --write"
+    "*.mdx": "prettier --write"
   },
   "volta": {
     "node": "20.10.0",
