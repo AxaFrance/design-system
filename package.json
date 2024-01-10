@@ -28,7 +28,7 @@
     "@commitlint/config-conventional": "^18.4.3",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "turbo": "^1.11.2"
+    "turbo": "^1.11.3"
   },
   "lint-staged": {
     "{package,package-lock}.json": "npm run package:check"
