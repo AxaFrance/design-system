@@ -20,7 +20,7 @@
     "tsc": "tsc --noEmit"
   },
   "devDependencies": {
-    "@csstools/postcss-sass": "^5.0.1",
+    "@csstools/postcss-sass": "^5.1.1",
     "@storybook/addon-essentials": "^7.6.5",
     "@storybook/addon-interactions": "^7.6.5",
     "@storybook/addon-links": "^7.6.5",
