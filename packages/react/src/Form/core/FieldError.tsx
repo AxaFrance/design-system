@@ -1,5 +1,5 @@
 import { getComponentClassName } from "./getComponentClassName";
-import MessageTypes from "./MessageTypes";
+import { MessageTypes } from "./MessageTypes";
 
 const DEFAULT_CLASS_NAME = "af-form__message";
 
