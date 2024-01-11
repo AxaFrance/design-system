@@ -35,6 +35,10 @@ module.exports = {
         tsx: "never",
       },
     ],
+    "import/no-unresolved": [
+      "error",
+      { ignore: ["@axa-fr\\/design-system-css(.*)\\.(scss|css)"] },
+    ],
 
     // eslint-plugin-react https://github.com/jsx-eslint/eslint-plugin-react
     "react/no-multi-comp": [
