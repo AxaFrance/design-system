@@ -80,6 +80,13 @@ module.exports = {
     "@typescript-eslint/no-useless-constructor": "error",
 
     "@typescript-eslint/consistent-type-assertions": "warn",
+
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        devDependencies: [".storybook/**", "**/*.stories.tsx"],
+      },
+    ],
   },
   settings: {
     react: {
