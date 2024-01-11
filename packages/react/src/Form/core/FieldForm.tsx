@@ -66,7 +66,7 @@ export const setStateHasChange = (): SetState => (prevState) => ({
 export const onChangeByState = (
   setState: Function,
   stateHasChange: boolean,
-  setStateHasChangeFn = setStateHasChange
+  setStateHasChangeFn = setStateHasChange,
 ) => !stateHasChange && setState(setStateHasChangeFn());
 
 export const setStateOnBlur = (): SetState => (prevState) => ({
@@ -82,58 +82,6 @@ export const setStateOnFocus =
     hasFocus: true,
     memory: { message, messageType },
   });
-
-export const FieldForm = ({
-  children,
-  message = null,
-  messageType = MessageTypes.error,
-  className = defaultClassName,
-  classModifier = "",
-  forceDisplayMessage = false,
-  setStateMemoryFn = setStateMemory,
-  onChangeByStateFn = onChangeByState,
-  setStateOnBlurFn = setStateOnBlur,
-  setStateOnFocusFn = setStateOnFocus,
-  initialState = INITIAL_STATE,
-}: FieldFormProps) => {
-  const [state, setState] = useState(initialState);
-
-  const previousForceDisplayMessage = useRef(forceDisplayMessage);
-
-  useEffect(() => {
-    if (previousForceDisplayMessage.current !== forceDisplayMessage) {
-      setState(setStateMemoryFn({ message, messageType }));
-    }
-  }, [
-    forceDisplayMessage,
-    message,
-    messageType,
-    previousForceDisplayMessage,
-    setState,
-    setStateMemoryFn,
-  ]);
-
-  // for particular case on particular browers which does not throw onFocus or onBlur event
-  const onChange = () => onChangeByStateFn(setState, state?.hasChange);
-
-  const onBlur = () => setState(setStateOnBlurFn());
-
-  const onFocus = () => setState(setStateOnFocusFn({ message, messageType }));
-
-  const childrenCloned = renderedChildren({
-    children,
-    wrapper: { onFocus, onChange, onBlur },
-    ...getMessageInfo({ ...state, forceDisplayMessage, message, messageType }),
-  });
-
-  const subComponentClassName = getComponentClassName(
-    className,
-    classModifier,
-    defaultClassName
-  );
-
-  return <div className={subComponentClassName}>{childrenCloned}</div>;
-};
 
 type GetMessageInfoProps = typeof INITIAL_STATE &
   Required<
@@ -213,7 +161,7 @@ export const addPropsClone = ({
   const messageClassModifier = getMessageClassModifierFn(
     messageType,
     message,
-    classModifier
+    classModifier,
   );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -288,3 +236,55 @@ export const renderedChildren = ({
       }),
     });
   });
+
+export const FieldForm = ({
+  children,
+  message = null,
+  messageType = MessageTypes.error,
+  className = defaultClassName,
+  classModifier = "",
+  forceDisplayMessage = false,
+  setStateMemoryFn = setStateMemory,
+  onChangeByStateFn = onChangeByState,
+  setStateOnBlurFn = setStateOnBlur,
+  setStateOnFocusFn = setStateOnFocus,
+  initialState = INITIAL_STATE,
+}: FieldFormProps) => {
+  const [state, setState] = useState(initialState);
+
+  const previousForceDisplayMessage = useRef(forceDisplayMessage);
+
+  useEffect(() => {
+    if (previousForceDisplayMessage.current !== forceDisplayMessage) {
+      setState(setStateMemoryFn({ message, messageType }));
+    }
+  }, [
+    forceDisplayMessage,
+    message,
+    messageType,
+    previousForceDisplayMessage,
+    setState,
+    setStateMemoryFn,
+  ]);
+
+  // for particular case on particular browers which does not throw onFocus or onBlur event
+  const onChange = () => onChangeByStateFn(setState, state?.hasChange);
+
+  const onBlur = () => setState(setStateOnBlurFn());
+
+  const onFocus = () => setState(setStateOnFocusFn({ message, messageType }));
+
+  const childrenCloned = renderedChildren({
+    children,
+    wrapper: { onFocus, onChange, onBlur },
+    ...getMessageInfo({ ...state, forceDisplayMessage, message, messageType }),
+  });
+
+  const subComponentClassName = getComponentClassName(
+    className,
+    classModifier,
+    defaultClassName,
+  );
+
+  return <div className={subComponentClassName}>{childrenCloned}</div>;
+};

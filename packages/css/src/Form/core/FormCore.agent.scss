@@ -1,14 +1,14 @@
 @use "../../common/common.agent.scss" as common;
 
 .af-form {
-  background: common.$color-wild-sand;
   padding: 1rem;
+  background: common.$color-wild-sand;
 
   &__group {
-    margin-bottom: 3rem;
-    align-items: center;
     display: flex;
+    margin-bottom: 3rem;
     flex-wrap: wrap;
+    align-items: center;
 
     &--label-top {
       align-items: flex-start;
@@ -16,42 +16,43 @@
   }
 
   &__group-label {
-    font-weight: normal;
     margin: 0;
+    font-weight: normal;
   }
 
   &__group--required &__group-label {
-    &:after {
-      content: "*";
+    &::after {
       color: common.$color-red-error;
+      content: "*";
     }
   }
 
   &__message {
     position: absolute;
-    min-height: 1.6em;
     display: flex;
+    min-height: 1.6em;
+    margin: 0.2rem 0;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    margin: 0.2rem 0;
 
     .glyphicon {
-      margin-right: 0.4rem;
       width: 17px;
+      margin-right: 0.4rem;
     }
 
     &--error {
       color: common.$color-red-axa;
     }
+
     &--warning {
       color: common.$color-orange-dark;
     }
   }
 
   &__input-cmplt {
-    margin-left: 1rem;
     display: inline-flex;
+    margin-left: 1rem;
   }
 
   &__fields-inline {
@@ -70,32 +71,32 @@
 
   /* Commons styles ****************************************************************/
   &__label {
-    font-weight: normal;
-    cursor: pointer;
     display: flex;
-    align-items: center;
     margin: 0;
     padding: 1rem 0;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
   }
 
   &__indicator {
     position: absolute;
+    top: 50%;
+    left: 0;
     width: 1rem;
     height: 1rem;
-    background: common.$white;
     border: 1px solid common.$color-silver;
-    left: 0;
-    top: 50%;
+    background: common.$white;
     transform: translate(0, -50%);
 
     .glyphicon-ok {
-      display: none;
       position: absolute;
-      left: 2px;
       top: 2px;
+      left: 2px;
+      display: none;
+      width: 10px;
       font-size: 0.625rem;
       font-weight: 100;
-      width: 10px;
     }
   }
 

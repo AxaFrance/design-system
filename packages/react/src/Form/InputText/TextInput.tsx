@@ -30,7 +30,7 @@ export const TextInput = ({
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
     disabled,
-    Boolean(children)
+    Boolean(children),
   );
 
   return (

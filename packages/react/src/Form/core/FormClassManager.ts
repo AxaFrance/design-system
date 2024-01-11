@@ -25,7 +25,7 @@ const getModifier = (messageType: string) => {
 const getMessageClassModifier = (
   messageType: "error" | "success" | "warning",
   message?: string | null,
-  modifier?: string
+  modifier?: string,
 ) => {
   if (message) {
     const messageModifier = getModifier(messageType);

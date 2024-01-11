@@ -43,7 +43,7 @@ export const Field = ({
   const componentClassName = getComponentClassName(
     className,
     classModifier,
-    "row af-form__group"
+    "row af-form__group",
   );
 
   return (

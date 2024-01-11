@@ -1,7 +1,7 @@
 export function useInputClassModifier(
   classModifier: string,
   disabled: boolean,
-  hasChildren: boolean
+  hasChildren: boolean,
 ) {
   return {
     inputClassModifier: [
