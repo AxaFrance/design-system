@@ -1,0 +1,45 @@
+import * as SelectInputStories from "./SelectInput.stories.tsx";
+import * as SelectStories from "./Select.stories.tsx";
+import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
+
+<Meta of={SelectInputStories} />
+
+# Select
+
+The select component comes in two variants: [**with layout** `InputSelect`](#inputselect--with-label) and [**without** label `Select`](#select-without-label).
+`SelectBase` also exists, but is just the `Select` component in `mode="base"`, and will be deprecated in the future.
+
+In most cases you will want to use the version with the label. However, in some cases, the default layout will not work for you.
+In that case, you can use the version without the label.
+
+## `InputSelect` — With label
+
+This is the complete component, with label, description, and error message.
+
+<Canvas of={SelectInputStories.SelectInputStory} />
+
+<ArgsTable story="Select with label" />
+
+### Required
+
+The component can be required. In that case, the label will be followed by a red asterisk. In order to make the component required, you need to add to the `classModifier` the value `required`.
+
+### Status messages
+
+The component can be in one of 4 states: the default one which will display the help message, `success`, `error`, and `warning`.
+In order to display the message and color the component, you need to pass the `message`, `messageType` props and set `forceDisplayMessage` to `true`.
+
+<Canvas of={SelectInputStories.SelectWithStatus} />
+
+### Placeholders
+
+The component comes with 2 modes : `base` and `default`. The only difference is that the `base` mode **never** displays the placeholder.
+If you are not sure which mode to use, use the `default` mode.
+
+## `Select` Without label
+
+The component without the label is a bare-bones version of the component. It is useful when you need to customize the layout of the component.
+
+<Canvas of={SelectStories.SelectStory} />
+
+<ArgsTable story="Select" />

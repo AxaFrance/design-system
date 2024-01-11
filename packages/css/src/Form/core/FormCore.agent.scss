@@ -50,6 +50,14 @@
     }
   }
 
+  &__help {
+    position: absolute;
+    bottom: -20px;
+    display: block;
+    font-size: 0.8125em;
+    color: common.$color-gray;
+  }
+
   &__input-cmplt {
     display: inline-flex;
     margin-left: 1rem;
