@@ -22,7 +22,7 @@ const listClassModifier = (classModifier?: string) => {
 export const getComponentClassName = (
   className?: string,
   classModifier?: string,
-  defaultClassName?: string
+  defaultClassName?: string,
 ) => {
   const classNameToUse = className || defaultClassName;
 

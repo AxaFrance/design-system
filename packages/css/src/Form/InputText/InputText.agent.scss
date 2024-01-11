@@ -1,6 +1,22 @@
 @use "../../common/common.agent.scss" as common;
 
 .af-form {
+  &__input-text {
+    padding: 0.625rem 1.25rem;
+    border: 1px solid common.$color-silver;
+    font-size: 1em;
+    line-height: 20px;
+
+    &:focus {
+      border-color: common.$color-axa;
+      color: common.$color-axa;
+    }
+
+    &--hasinfobulle {
+      margin-right: 1rem;
+    }
+  }
+
   &__text {
     &--disabled {
       .af-form__input-text {
@@ -15,11 +31,11 @@
       }
 
       &::after {
-        font-family: common.$font-family-icon;
-        content: "\EABA";
-        color: common.$color-malachite;
         position: relative;
         top: 5px;
+        font-family: common.$font-family-icon;
+        color: common.$color-malachite;
+        content: "\EABA";
       }
 
       > .af-btn--circle {
@@ -34,13 +50,14 @@
 
       .glyphicon-ok {
         width: 17px;
-        fill: common.$color-btn-success;
         margin-left: 2px;
+        fill: common.$color-btn-success;
       }
     }
 
     &--error {
       padding: 0;
+
       .af-form__input-text {
         border: 1px solid common.$color-red-axa;
         color: common.$color-red-axa;
@@ -49,6 +66,7 @@
 
     &--warning {
       padding: 0;
+
       .af-form__input-text {
         border: 1px solid common.$color-orange-dark;
         color: common.$color-orange-dark;
@@ -61,22 +79,6 @@
     }
   }
 
-  &__input-text {
-    border: 1px solid common.$color-silver;
-    padding: 0.625rem 1.25rem;
-    font-size: 1em;
-    line-height: 20px;
-
-    &:focus {
-      border-color: common.$color-axa;
-      color: common.$color-axa;
-    }
-
-    &--hasinfobulle {
-      margin-right: 1rem;
-    }
-  }
-
   &__input-text::-ms-clear,
   &__input-text::-ms-reveal {
     display: none;
@@ -84,27 +86,28 @@
 
   &__help {
     position: absolute;
-    display: block;
     bottom: -20px;
-    color: common.$color-gray;
+    display: block;
     font-size: 0.8125em;
+    color: common.$color-gray;
   }
 
   &__clear {
     position: absolute;
-    right: 3rem;
     top: 0.75rem;
+    right: 3rem;
 
     &:hover {
-      background: common.$color-mercury;
       border-radius: 100%;
+      background: common.$color-mercury;
       box-shadow: 0 0 0 6px common.$color-mercury;
     }
+
     .glyphicon {
+      display: inherit;
       width: 19px;
       height: 100%;
       padding-top: 0;
-      display: inherit;
     }
   }
 }

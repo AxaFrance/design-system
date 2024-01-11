@@ -15,7 +15,7 @@ export const FieldError = ({
   const className = getComponentClassName(
     DEFAULT_CLASS_NAME,
     messageType,
-    DEFAULT_CLASS_NAME
+    DEFAULT_CLASS_NAME,
   );
 
   return (

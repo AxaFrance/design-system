@@ -4,7 +4,7 @@ export function getOptionClassName(
   className: string,
   classModifier: string,
   defaultClassName: string,
-  disabled: boolean
+  disabled: boolean,
 ) {
   const classModifierWithDisabled = [
     classModifier,
@@ -16,6 +16,6 @@ export function getOptionClassName(
   return getComponentClassName(
     className,
     classModifierWithDisabled,
-    defaultClassName
+    defaultClassName,
   );
 }

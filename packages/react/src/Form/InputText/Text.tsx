@@ -12,7 +12,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
     const componentClassName = getComponentClassName(
       className,
       classModifier,
-      "af-form__input-text"
+      "af-form__input-text",
     );
 
     return (
@@ -24,7 +24,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
         required={classModifier?.includes("required")}
       />
     );
-  }
+  },
 );
 
 Text.displayName = "Text";
