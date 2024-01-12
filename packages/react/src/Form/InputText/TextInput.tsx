@@ -12,6 +12,7 @@ type Props = ComponentProps<typeof Field> &
   };
 
 export const TextInput = ({
+  id,
   message,
   children,
   helpMessage,
@@ -26,7 +27,8 @@ export const TextInput = ({
   disabled = false,
   ...inputTextProps
 }: Props) => {
-  const inputId = useId();
+  const inputUseId = useId();
+  const inputId = id ?? inputUseId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
     disabled,
