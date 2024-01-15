@@ -50,7 +50,7 @@
     "@storybook/react": "^7.6.5",
     "@storybook/react-vite": "^7.6.5",
     "@storybook/test": "^7.6.5",
-    "@types/react": "^18.2.47",
+    "@types/react": "^18.2.48",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
