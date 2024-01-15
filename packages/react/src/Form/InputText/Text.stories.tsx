@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Text } from "./Text";
+import { TYPES } from "./constants";
 
 const MODIFIERS = ["", "required", "disabled"];
 
@@ -35,11 +36,16 @@ export const TextStory: Story = {
     disabled: false,
     autoFocus: false,
     className: "",
+    type: "text",
   },
   argTypes: {
     classModifier: {
       options: MODIFIERS,
       control: { type: "multi-select" },
+    },
+    type: {
+      options: TYPES,
+      control: { type: "select" },
     },
   },
 };
