@@ -10,7 +10,7 @@ export function getOptionClassName(
     classModifier,
     disabled ? "disabled" : undefined,
   ]
-    .filter((c) => !!c)
+    .filter((c) => Boolean(c))
     .join(" ");
 
   return getComponentClassName(

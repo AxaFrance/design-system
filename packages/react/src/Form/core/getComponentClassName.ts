@@ -8,7 +8,7 @@ const getLastClassName = (classNameToUse: string) => {
   return classNameToUse
     .split(" ")
     .reverse()
-    .find((it) => !!it);
+    .find((it) => Boolean(it));
 };
 
 const listClassModifier = (classModifier?: string) => {
