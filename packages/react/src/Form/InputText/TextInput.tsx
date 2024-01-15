@@ -1,8 +1,8 @@
-import { ComponentProps, ReactNode, useId } from "react";
-import { Field, HelpMessage, FieldInput, useInputClassModifier } from "../core";
-import "@axa-fr/design-system-css/dist/common/reboot.scss";
-import "@axa-fr/design-system-css/dist/common/grid.scss";
 import "@axa-fr/design-system-css/dist/Form/core/FormCore.agent.scss";
+import "@axa-fr/design-system-css/dist/common/grid.scss";
+import "@axa-fr/design-system-css/dist/common/reboot.scss";
+import { ComponentProps, ReactNode, useId } from "react";
+import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
 
 import { Text } from "./Text";
 
@@ -12,6 +12,7 @@ type Props = ComponentProps<typeof Field> &
   };
 
 export const TextInput = ({
+  id,
   message,
   children,
   helpMessage,
@@ -41,7 +42,7 @@ export const TextInput = ({
       isVisible={isVisible}
       forceDisplayMessage={forceDisplayMessage}
       className={className}
-      id={inputId}
+      id={id || inputId}
       classModifier={classModifier}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
@@ -51,7 +52,7 @@ export const TextInput = ({
         classModifier={inputFieldClassModifier}
       >
         <Text
-          id={inputId}
+          id={id || inputId}
           classModifier={inputClassModifier}
           disabled={disabled}
           {...inputTextProps}
