@@ -5,7 +5,7 @@ import { TYPES } from "./constants";
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
-  title: "Components/Form/Input/TextInput",
+  title: "Components/Form/Input/Text",
   argTypes: { onChange: { action: "onChange" } },
 };
 
@@ -19,7 +19,7 @@ export const TextInputStory: Story = {
     <TextInput onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: "",
+    classModifier: "required",
     value: "John Doe",
     placeholder: "Your name",
     name: "name",
@@ -37,6 +37,106 @@ export const TextInputStory: Story = {
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
     "aria-disabled": false,
+  },
+  argTypes: {
+    type: {
+      options: TYPES,
+      control: { type: "select" },
+    },
+  },
+};
+
+export const TextInputErrorStory: Story = {
+  name: "TextInputError",
+  render: ({ onChange, ...args }) => (
+    <TextInput onChange={onChange} {...args} />
+  ),
+  args: {
+    classModifier: "required",
+    value: "John Doe",
+    placeholder: "Your name",
+    name: "name",
+    id: "nameid",
+    readOnly: false,
+    disabled: false,
+    autoFocus: false,
+    className: "",
+    type: "text",
+    label: "Your name",
+    message: "The field is required",
+    helpMessage: "Aide à la saisie",
+    forceDisplayMessage: true,
+    messageType: MessageTypes.error,
+    classNameContainerLabel: "col-md-2",
+    classNameContainerInput: "col-md-10",
+    "aria-disabled": false,
+  },
+  argTypes: {
+    type: {
+      options: TYPES,
+      control: { type: "select" },
+    },
+  },
+};
+
+export const TextInputSuccessStory: Story = {
+  name: "TextInputSuccess",
+  render: ({ onChange, ...args }) => (
+    <TextInput onChange={onChange} {...args} />
+  ),
+  args: {
+    classModifier: "required",
+    value: "John Doe",
+    placeholder: "Your name",
+    name: "name",
+    id: "nameid",
+    readOnly: false,
+    disabled: false,
+    autoFocus: false,
+    className: "",
+    type: "text",
+    label: "Your name",
+    message: "Success Message Type",
+    helpMessage: "Aide à la saisie",
+    forceDisplayMessage: true,
+    messageType: MessageTypes.success,
+    classNameContainerLabel: "col-md-2",
+    classNameContainerInput: "col-md-10",
+    "aria-disabled": false,
+  },
+  argTypes: {
+    type: {
+      options: TYPES,
+      control: { type: "select" },
+    },
+  },
+};
+
+export const TextInputRichLabelStory: Story = {
+  name: "TextInputRichLabel",
+  render: ({ onChange, ...args }) => (
+    <TextInput onChange={onChange} {...args} />
+  ),
+  args: {
+    classModifier: "required",
+    value: "John Doe",
+    placeholder: "Your name",
+    name: "name",
+    id: "nameid",
+    readOnly: false,
+    disabled: false,
+    autoFocus: false,
+    className: "",
+    type: "text",
+    label: (
+      <span>
+        Place name <i>optional</i>
+      </span>
+    ),
+    message: "The field is required",
+    helpMessage: "Aide à la saisie",
+    forceDisplayMessage: false,
+    messageType: MessageTypes.error,
   },
   argTypes: {
     type: {
