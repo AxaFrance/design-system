@@ -27,13 +27,16 @@ const getMessageClassModifier = (
   message?: string | null,
   modifier?: string,
 ) => {
-  if (message) {
-    const messageModifier = getModifier(messageType);
-    if (messageModifier) {
-      return modifier ? `${modifier} ${messageModifier}` : messageModifier;
-    }
+  if (!message) {
+    return "";
   }
-  return "";
+
+  const messageModifier = getModifier(messageType);
+  if (!messageModifier) {
+    return "";
+  }
+
+  return modifier ? `${modifier} ${messageModifier}` : messageModifier;
 };
 
 export const FormClassManager = {
