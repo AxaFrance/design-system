@@ -1,0 +1,44 @@
+@use "../../common/common.agent.scss" as common;
+@use "../core/FormCore.agent.scss";
+@use "../../common/grid.scss";
+@use "../../common/reboot.scss";
+
+.af-form {
+  &__input-textarea {
+    padding: 0.7rem 1.2rem;
+    border: 1px solid common.$color-silver;
+    font-family: common.$font-family-base;
+    font-size: 1em;
+
+    &:focus {
+      border-color: common.$color-axa;
+      color: common.$color-axa;
+    }
+
+    &--hasinfobulle {
+      margin-right: 1rem;
+    }
+  }
+
+  &__textarea {
+    &--disabled {
+      .af-form__input-textarea {
+        cursor: not-allowed;
+      }
+    }
+
+    &--error {
+      .af-form__input-textarea {
+        border: 1px solid common.$color-red-axa;
+        color: common.$color-red-axa;
+      }
+    }
+
+    &--warning {
+      .af-form__input-textarea {
+        border: 1px solid common.$color-orange-dark;
+        color: common.$color-orange-dark;
+      }
+    }
+  }
+}
