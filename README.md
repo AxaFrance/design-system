@@ -13,6 +13,12 @@ Vous pouvez suivre son avancement à travers [les issues](https://github.com/Axa
 Si vous souhaitez contribuer, le fichier [CONTRIBUTING.md](./CONTRIBUTING.md) est là pour vous aiguiller.
 Vous pouvez également consulter notre [Code de conduite](./CODE_OF_CONDUCT.md).
 
-## Structure du Projet
+## Structure du projet
 
 Le projet proposera d'utiliser des composants React ou juste la partie CSS avec l'implémentation HTML (ou autres frameworks que vous souhaitez). Vous pouvez retrouver ces deux implémentations dans les dossiers `/packages/css` et `/packages/react`.
+
+## Démarrer le projet
+
+La commande `npm start` démarrent automatiquement les différentes étapes  nécessaire aux développement du projet, notamment le build CSS et le storybook react. 
+
+La commande `npm run build` permet de générer un build qui vous permettra de tester votre nouveau composant.

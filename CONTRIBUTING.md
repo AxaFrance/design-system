@@ -2,6 +2,12 @@
 
 Merci de considérer la contribution au Design System AXA France ! Nous sommes ravis de voir que vous souhaitez participer à l'amélioration de notre projet qui regroupe les design systems d'AXA France.
 
+## Démarrage du projet
+
+Le développement de composant est facilité grâce à storybook.
+
+Vous pouvez le lancer grâce à la commande `npm run start` qui lancera en parallèle le build du CSS, son storybook et le storybook React.
+
 ## Comment contribuer
 
 1. **Fork du Projet :** Commencez par forker le projet vers votre compte GitHub.
