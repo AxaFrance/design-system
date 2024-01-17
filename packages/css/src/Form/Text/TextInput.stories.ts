@@ -5,7 +5,7 @@ import "../core/FormCore.agent.scss";
 import "./InputText.agent.scss";
 
 const meta: Meta = {
-  title: "Components/Form/Input/TextInput",
+  title: "Components/Form/Input/Text",
 };
 
 export default meta;
