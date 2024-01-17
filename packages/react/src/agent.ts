@@ -15,4 +15,4 @@ export {
   getComponentClassName,
 } from "./Form/core";
 
-export { Number, NumberInput } from "./Form/InputNumber";
+export { Number, NumberInput } from "./Form/Number";
