@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-css/dist/Form/InputText/InputText.agent.scss";
+import "@axa-fr/design-system-css/dist/Form/Text/InputText.agent.scss";
 import {
   ComponentPropsWithRef,
   HTMLInputTypeAttribute,
