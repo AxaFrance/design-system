@@ -16,3 +16,5 @@ export {
   MessageTypes,
   getComponentClassName,
 } from "./Form/core";
+
+export { Number, NumberInput } from "./Form/Number";
