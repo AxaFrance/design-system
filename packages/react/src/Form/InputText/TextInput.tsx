@@ -27,7 +27,8 @@ export const TextInput = ({
   disabled = false,
   ...inputTextProps
 }: Props) => {
-  const inputId = useId();
+  const inputUseId = useId();
+  const inputId = id || inputUseId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
     disabled,
@@ -42,7 +43,7 @@ export const TextInput = ({
       isVisible={isVisible}
       forceDisplayMessage={forceDisplayMessage}
       className={className}
-      id={id || inputId}
+      id={inputId}
       classModifier={classModifier}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
@@ -52,7 +53,7 @@ export const TextInput = ({
         classModifier={inputFieldClassModifier}
       >
         <Text
-          id={id || inputId}
+          id={inputId}
           classModifier={inputClassModifier}
           disabled={disabled}
           {...inputTextProps}
