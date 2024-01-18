@@ -15,14 +15,13 @@ const config = {
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-interactions"),
-    "@whitespace/storybook-addon-html",
   ],
   framework: {
     name: getAbsolutePath("@storybook/html-vite"),
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: true,
   },
 };
 export default config;

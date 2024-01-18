@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-css/dist/Form/InputSelect/InputSelect.agent.scss";
+import "@axa-fr/design-system-css/dist/Form/Select/Select.agent.scss";
 import {
   ComponentPropsWithoutRef,
   forwardRef,

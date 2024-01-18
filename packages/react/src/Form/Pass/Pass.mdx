@@ -1,0 +1,124 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as PassStories from "./Pass.stories";
+import * as PassInputStories from "./PassInput.stories";
+
+# Pass field
+
+The Pass field component exposes a native HTML password input, with a toggle to display in clear text the password, and a color system to evaluate the strength of the password.
+
+<Meta of={PassStories} />
+## Pass
+
+<Canvas of={PassStories.PassStory} />
+<Controls of={PassStories.PassStory} />
+
+### Import
+
+```ts
+import { Pass } from "@axa-fr/design-system/agent";
+```
+
+or
+
+```javascript
+import { Pass } from "@axa-fr/design-system/client";
+```
+
+### Modifiers
+
+<table>
+  <thead>
+    <tr>
+      <th>classModifiers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bad</td>
+    </tr>
+    <tr>
+      <td>okay</td>
+    </tr>
+    <tr>
+      <td>good</td>
+    </tr>
+    <tr>
+      <td>verygood</td>
+    </tr>
+    <tr>
+      <td>excellent</td>
+    </tr>
+  </tbody>
+</table>
+
+### Use
+
+```typescript
+const PassInput = () => (
+  <form className="af-form" name="myform">
+    <Pass
+      id="uniqueid"
+      classModifier="good"
+      onChange={(e) => {
+        console.log(e);
+      }}
+      onToggleType={() => {
+        console.log('your function');
+      }}
+      name="password"
+      type="password"
+      value="your value"
+    />
+  </form>
+);
+```
+
+## PassInput
+
+<Canvas of={PassInputStories.PassInputStory} />
+<Controls of={PassInputStories.PassInputStory} />
+
+```typescript
+import { NumberInput } from "@axa-fr/design-system/agent";
+```
+
+or
+
+```typescript
+import { NumberInput } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const PassInputReturn = () => (
+  <form className="af-form" name="myform">
+    <PassInput
+      id="uniqueid"
+      name="password"
+      value=""
+      label="Password"
+      onChange={(e) => {
+        console.log(e);
+      }}
+      onToggleType={() => console.log("onToggle")}
+      helpMessage="8 characters minimum"
+    >
+      <Help mode={PopoverModes.click} placement={PopoverPlacements.right}>
+        Choose a password
+      </Help>
+    </PassInput>
+  </form>
+);
+export default PassInputReturn;
+```
+
+### PassInput Required
+
+To achieve PassInput Required, you need to add this :
+
+```javascript
+classModifier = "required";
+```
+
+to the **PassInput** component

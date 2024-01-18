@@ -1,4 +1,6 @@
 @use "./Button/Button.agent";
 @use "./Form/core/FormCore.agent.scss";
-@use "./Form/Text/InputText.agent.scss";
-@use "./Form/InputTextarea/InputTextarea.agent.scss";
+@use "./Form/Text/Text.agent.scss";
+@use "./Form/Textarea/Textarea.agent.scss";
+@use "./Form/Select/Select.agent.scss";
+@use "./Form/Pass/Pass.agent.scss";

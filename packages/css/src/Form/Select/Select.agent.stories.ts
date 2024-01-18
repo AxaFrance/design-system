@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../../common/icons.scss";
-import "./InputSelect.agent.scss";
+import "./Select.agent.scss";
 
 const meta: Meta = {
   title: "Select",
