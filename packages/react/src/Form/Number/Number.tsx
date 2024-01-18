@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-css/dist/Form/Text/InputText.agent.scss";
+import "@axa-fr/design-system-css/dist/Form/Text/Text.agent.scss";
 import { ComponentPropsWithRef, forwardRef, useId } from "react";
 import { getComponentClassName } from "../core";
 
