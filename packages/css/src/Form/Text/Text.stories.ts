@@ -13,31 +13,24 @@ const INPUT_TYPES = ["text", "email", "password"];
 export const TextStory: StoryObj = {
   name: "Text",
   render: (args) => {
-    const inputDefaultClassNames: string[] = args.className
-      ? args.className.split(" ")
-      : ["af-form__input-text"];
-
     const input = document.createElement("input");
-    input.className = inputDefaultClassNames.join(" ");
-    input.id = args.id;
+    input.className = "af-form__input-text";
+    input.id = "nameid";
     input.placeholder = args.placeholder;
     input.type = args.type;
     input.value = args.value;
-    input.name = args.name;
+    input.name = "name";
     input.readOnly = args.readOnly;
     input.disabled = args.disabled;
     input.autofocus = args.autoFocus;
-    input.ariaDisabled = args["aria-disabled"];
 
     const classModifiers = args.classModifier.filter(
       (classModifier: string) => classModifier !== "",
     );
     if (classModifiers) {
-      const lastInputClassName: string =
-        inputDefaultClassNames[inputDefaultClassNames.length - 1];
       input.className += classModifiers
         .map(
-          (classModifier: string) => ` ${lastInputClassName}--${classModifier}`,
+          (classModifier: string) => ` af-form__input-text--${classModifier}`,
         )
         .join(" ");
     }
@@ -48,12 +41,9 @@ export const TextStory: StoryObj = {
     classModifier: [] as string[],
     value: "John Doe",
     placeholder: "Your name",
-    name: "name",
-    id: "nameid",
     readOnly: false,
     disabled: false,
     autoFocus: false,
-    className: "",
     type: "text",
   },
   argTypes: {

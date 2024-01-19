@@ -10,34 +10,29 @@ const meta: Meta = {
 
 export default meta;
 
+const MODIFIERS = ["", "required", "disabled"];
 const MESSAGE_TYPES = ["error", "success", "warning"];
 const INPUT_TYPES = ["text", "email", "password"];
 
 export const TextInputStory: StoryObj = {
   name: "TextInput",
   render: (args) => {
-    const rowDivDefaultClassNames: string[] = args.className
-      ? args.className.split(" ")
-      : ["row", "af-form__group"];
-
     const rowDiv = document.createElement("div");
-    rowDiv.className = rowDivDefaultClassNames.join(" ");
+    rowDiv.className = "row af-form__group";
     if (args.classModifier) {
-      rowDiv.className += ` ${
-        rowDivDefaultClassNames[rowDivDefaultClassNames.length - 1]
-      }--${args.classModifier}`;
+      rowDiv.className += ` af-form__group--${args.classModifier}`;
     }
 
     const labelColDiv = document.createElement("div");
-    labelColDiv.className = args.classNameContainerLabel;
+    labelColDiv.className = "col-md-2";
 
     const label = document.createElement("label");
     label.className = ["af-form__group-label"].join(" ");
-    label.htmlFor = args.id;
+    label.htmlFor = "nameid";
     label.textContent = args.label;
 
     const inputColDiv = document.createElement("div");
-    inputColDiv.className = args.classNameContainerInput;
+    inputColDiv.className = "col-md-10";
 
     const inputDiv = document.createElement("div");
     inputDiv.className = [
@@ -50,15 +45,14 @@ export const TextInputStory: StoryObj = {
       "af-form__input-text",
       args.classModifier ? `af-form__input-text--${args.classModifier}` : "",
     ].join(" ");
-    input.id = args.id;
+    input.id = "nameid";
     input.placeholder = args.placeholder;
     input.type = args.type;
     input.value = args.value;
-    input.name = args.name;
+    input.name = "name";
     input.readOnly = args.readOnly;
     input.disabled = args.disabled;
     input.autofocus = args.autoFocus;
-    input.ariaDisabled = args["aria-disabled"];
 
     const small = document.createElement("small");
     small.className = args.forceDisplayMessage
@@ -94,23 +88,21 @@ export const TextInputStory: StoryObj = {
     classModifier: "",
     value: "John Doe",
     placeholder: "Your name",
-    name: "name",
-    id: "nameid",
     readOnly: false,
     disabled: false,
     autoFocus: false,
-    className: "",
     type: INPUT_TYPES[0],
     label: "Your name",
-    message: "",
+    message: "Saisie incorrecte",
     helpMessage: "Aide à la saisie",
     forceDisplayMessage: false,
     messageType: MESSAGE_TYPES[0],
-    classNameContainerLabel: "col-md-2",
-    classNameContainerInput: "col-md-10",
-    "aria-disabled": false,
   },
   argTypes: {
+    classModifier: {
+      options: MODIFIERS,
+      control: { type: "multi-select" },
+    },
     messageType: {
       options: MESSAGE_TYPES,
       control: { type: "select" },
