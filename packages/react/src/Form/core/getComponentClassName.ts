@@ -5,10 +5,7 @@ const getLastClassName = (classNameToUse: string) => {
     return null;
   }
 
-  return classNameToUse
-    .split(" ")
-    .reverse()
-    .find((it) => Boolean(it));
+  return classNameToUse.split(" ").reverse().find(Boolean);
 };
 
 const listClassModifier = (classModifier?: string) => {
