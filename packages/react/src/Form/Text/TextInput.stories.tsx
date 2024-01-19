@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MessageTypes } from "../core";
 import { TextInput } from "./TextInput";
-import { TYPES } from "./constants";
+import { inputTypes } from "./inputTypes";
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
@@ -40,7 +40,7 @@ export const TextInputStory: Story = {
   },
   argTypes: {
     type: {
-      options: TYPES,
+      options: inputTypes,
       control: { type: "select" },
     },
   },
@@ -73,7 +73,7 @@ export const TextInputErrorStory: Story = {
   },
   argTypes: {
     type: {
-      options: TYPES,
+      options: inputTypes,
       control: { type: "select" },
     },
   },
@@ -106,7 +106,7 @@ export const TextInputSuccessStory: Story = {
   },
   argTypes: {
     type: {
-      options: TYPES,
+      options: inputTypes,
       control: { type: "select" },
     },
   },
@@ -140,7 +140,7 @@ export const TextInputRichLabelStory: Story = {
   },
   argTypes: {
     type: {
-      options: TYPES,
+      options: inputTypes,
       control: { type: "select" },
     },
   },
