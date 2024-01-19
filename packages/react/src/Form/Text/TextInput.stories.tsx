@@ -130,7 +130,7 @@ export const TextInputRichLabelStory: Story = {
     type: "text",
     label: (
       <span>
-        Place name <i>optional</i>
+        Place name <em>optional</em>
       </span>
     ),
     message: "The field is required",
