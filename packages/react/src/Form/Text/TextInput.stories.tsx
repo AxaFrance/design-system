@@ -11,7 +11,7 @@ const meta: Meta<typeof TextInput> = {
 
 export default meta;
 
-type Story = StoryObj<React.ComponentProps<typeof TextInput>>;
+type Story = StoryObj<typeof TextInput>;
 
 export const TextInputStory: Story = {
   name: "TextInput",
