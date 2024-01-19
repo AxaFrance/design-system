@@ -1,0 +1,25 @@
+import * as DateInputStories from "./DateInput.stories";
+import * as DateStories from "./Date.stories";
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+
+<Meta of={DateInputStories} />
+
+## `Date Input` — With label
+
+<Canvas of={DateInputStories.DateInputStory} />
+
+<Controls of={DateInputStories.DateInputStory} />
+
+## `Required Date Input` — With required status
+
+<Canvas of={DateInputStories.DateInputRequiredStory} />
+
+<Controls of={DateInputStories.DateInputRequiredStory} />
+
+## `Date` Without label
+
+The component without the label is a bare-bones version of the component. It is useful when you need to customize the layout of the component.
+
+<Canvas of={DateStories.DateStory} />
+
+<Controls of={DateStories.DateStory} />
