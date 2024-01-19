@@ -1,0 +1,84 @@
+import * as Stories from "./Checkbox.agent.stories.tsx";
+import { Meta, Canvas, Controls, Description } from "@storybook/blocks";
+
+<Meta of={Stories} />
+
+# Checkbox
+
+1. [CheckboxItem](#checkboxitem)
+2. [Checkbox](#checkbox)
+3. [CheckboxInput](#checkboxinput)
+
+## CheckboxItem
+
+The smallest component, it only displays a single input and its label.
+
+### Import
+
+```javascript
+import { CheckboxItem } from "@axa-fr/design-system-react/agent";
+```
+
+### Use
+
+<Canvas of={Stories.CheckboxItemStory} />
+
+### Toggle
+
+If you need a look that resembles an iPhone toggle, you can use the `af-form__checkbox-toggle` class on the CheckboxItem component.
+
+<Canvas of={Stories.CheckboxItemToggleStory} />
+<Controls of={Stories.CheckboxItemToggleStory} />
+
+## Checkbox
+
+Displays a list of checkbox items. It has several modes you can choose from. See the [modes](#modes) section for more details.
+The default mode is `"default"`.
+
+### Import
+
+```javascript
+import { Checkbox, CheckboxModes } from "@axa-fr/design-system-react/agent";
+```
+
+### Modes
+
+<Canvas of={Stories.CheckboxStory} />
+<Controls of={Stories.CheckboxStory} />
+
+## CheckboxInput
+
+Displays a list of checkbox items with a global label. It has several modes you can choose from. You can see the different [modes in action in the playground section](#checkboxinput-playground).
+
+### Import
+
+```javascript
+import {
+  CheckboxInput,
+  CheckboxModes,
+} from "@axa-fr/react-toolkit-form-input-checkbox";
+```
+
+### Modifiers
+
+There are 2 modifiers available for the CheckboxInput component :
+
+<table>
+  <tr>
+    <th>modifier</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>required</td>
+    <td>Makes the input required, and adds the red star next to the label</td>
+  </tr>
+  <tr>
+    <td>disabled</td>
+    <td>Disables all the inputs in the component</td>
+  </tr>
+</table>
+
+### CheckboxInput playground
+
+<Canvas of={Stories.CheckboxInputStory} />
+<Controls of={Stories.CheckboxInputStory} />
