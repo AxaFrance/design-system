@@ -1,0 +1,252 @@
+@use "../../common/common.agent.scss" as common;
+@use "../core/FormCore.agent.scss";
+@use "../../common/grid.scss";
+@use "../../common/reboot.scss";
+
+/* stylelint-disable no-descending-specificity */
+.af-form {
+  &__checkbox,
+  &__checkbox-inline {
+    &--disabled {
+      .af-form__label {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+
+    &--error {
+      .af-form__label {
+        color: common.$color-red-axa;
+      }
+
+      .af-form__indicator {
+        border-color: common.$color-red-axa;
+      }
+    }
+
+    &--warning {
+      .af-form__label {
+        color: common.$color-orange-dark;
+      }
+
+      .af-form__indicator {
+        border-color: common.$color-orange-dark;
+      }
+    }
+  }
+
+  &__input-checkbox {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + .af-form__label {
+      .af-form__indicator {
+        border-color: common.$color-azur;
+        color: common.$white;
+        background-color: common.$color-azur;
+
+        .glyphicon-ok {
+          display: block;
+        }
+      }
+    }
+
+    &:focus + .af-form__label {
+      color: common.$color-azur;
+    }
+  }
+
+  /* Déclinaisons des checkbox ****************************************************/
+
+  /* Classic */
+  &__checkbox {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid common.$color-silver;
+    align-items: center;
+
+    &:nth-last-child(1) {
+      border-bottom: 0;
+    }
+  }
+
+  /* Inline */
+  &__checkbox-inline {
+    position: relative;
+    display: inline-flex;
+    margin-right: 1rem;
+    align-items: center;
+
+    .af-form__label {
+      padding: 0;
+    }
+  }
+
+  /* Custom */
+  &__checkbox-custom,
+  &__checkbox-toggle {
+    position: relative;
+    display: inline-flex;
+    margin: 0 0.3rem 0.3rem 0;
+    align-items: center;
+    text-align: center;
+
+    .af-form__label {
+      margin: 0;
+      padding: 0.6rem 2rem;
+      border: common.$color-gray;
+      font-weight: normal;
+      background: common.$color-mercury;
+      box-shadow: inset 0 -2px 0 0 common.$color-scorpion;
+      cursor: pointer;
+    }
+
+    .af-form__indicator {
+      left: 1rem;
+    }
+
+    .af-form__description {
+      padding-left: 0.5em;
+    }
+
+    .af-form__input-checkbox {
+      position: absolute;
+      opacity: 0;
+
+      &:checked + .af-form__label {
+        color: common.$white;
+        background-color: common.$color-azur;
+        box-shadow: inset 0 -2px 0 0 common.$color-axa;
+
+        .af-form__indicator {
+          border: 1px solid common.$color-silver;
+          color: common.$color-mine-shaft;
+          background: common.$white;
+
+          .glyphicon-ok {
+            color: common.$color-azur;
+          }
+        }
+      }
+
+      &:focus + .af-form__label {
+        color: common.$white;
+        background-color: common.$color-axa;
+        box-shadow: 0 0 5px common.$color-axa;
+      }
+    }
+
+    &--disabled {
+      .af-form__label {
+        opacity: 0.6;
+        box-shadow: inset 0 -2px 0 0 common.$color-silver;
+        cursor: not-allowed;
+      }
+
+      .af-form__description {
+        opacity: 0.4;
+      }
+    }
+
+    &--error {
+      .af-form__label {
+        border: 1px solid common.$error-custom-border;
+        color: common.$color-red-axa;
+        background: common.$error-custom-bg;
+        box-shadow: inset 0 -2px 0 0 common.$color-red-axa;
+      }
+
+      .af-form__indicator {
+        border-color: common.$color-red-axa;
+      }
+    }
+
+    &:hover {
+      .af-form__label {
+        border-color: common.$color-axa;
+        color: common.$white;
+        background-color: common.$color-azur;
+        box-shadow: inset 0 -2px 0 0 common.$color-axa;
+      }
+    }
+  }
+
+  /* Toggle */
+
+  &__checkbox-toggle {
+    .af-form__label {
+      padding: 1rem 1.6rem;
+      border: none;
+      border-radius: 50px;
+      box-shadow: none;
+    }
+
+    .af-form__indicator {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      padding: 0.7rem;
+      border: 0;
+      border-radius: 100%;
+      transform: translate(0, -50%);
+      transition: 0.4s;
+    }
+
+    .af-form__description {
+      display: none;
+    }
+
+    .af-form__input-checkbox {
+      &:checked + .af-form__label {
+        border: none;
+        color: common.$white;
+        background-color: common.$color-green-4;
+        box-shadow: none;
+
+        .af-form__indicator {
+          color: common.$color-mine-shaft;
+          background: common.$white;
+          transform: translate(17px, -50%);
+
+          .glyphicon-ok {
+            display: none;
+            color: common.$color-azur;
+          }
+        }
+      }
+
+      &:focus + .af-form__label {
+        border: none;
+        color: common.$white;
+        background-color: common.$color-axa;
+        box-shadow: none;
+      }
+    }
+
+    &:hover {
+      .af-form__label {
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    &--error {
+      .af-form__label {
+        background-color: common.$color-red-error;
+      }
+    }
+
+    &--warning {
+      .af-form__label {
+        background-color: common.$color-orange-dark;
+      }
+    }
+
+    &--disabled:hover {
+      .af-form__label {
+        background-color: common.$color-gray-3;
+      }
+    }
+  }
+}
+/* stylelint-enable no-descending-specificity */
