@@ -1,0 +1,65 @@
+import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
+import { Field, HelpMessage, FieldInput, useInputClassModifier } from "../core";
+import { Date } from "./Date";
+
+type Props = Omit<ComponentPropsWithoutRef<typeof Date>, "placeholderText"> &
+  ComponentPropsWithoutRef<typeof Field> & {
+    placeholder?: string;
+    helpMessage?: ReactNode;
+    children?: ReactNode;
+  };
+
+const DateInput = ({
+  classModifier = "",
+  message,
+  children,
+  helpMessage,
+  id,
+  classNameContainerLabel,
+  classNameContainerInput,
+  label,
+  messageType,
+  isVisible,
+  forceDisplayMessage,
+  className,
+  disabled = false,
+  ...otherProps
+}: Props) => {
+  const inputUseId = useId();
+  const inputId = id ?? inputUseId;
+  const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
+    classModifier,
+    disabled,
+    Boolean(children),
+  );
+  return (
+    <Field
+      label={label}
+      id={inputId}
+      message={message}
+      messageType={messageType}
+      isVisible={isVisible}
+      forceDisplayMessage={forceDisplayMessage}
+      className={className}
+      classModifier={classModifier}
+      classNameContainerLabel={classNameContainerLabel}
+      classNameContainerInput={classNameContainerInput}
+    >
+      <FieldInput
+        className="af-form__date"
+        classModifier={inputFieldClassModifier}
+      >
+        <Date
+          id={inputId}
+          classModifier={inputClassModifier}
+          disabled={disabled}
+          {...otherProps}
+        />
+        {children}
+      </FieldInput>
+      <HelpMessage message={helpMessage} isVisible={!message} />
+    </Field>
+  );
+};
+
+export { DateInput };

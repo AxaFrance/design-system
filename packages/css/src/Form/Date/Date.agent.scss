@@ -1,0 +1,95 @@
+/* stylelint-disable no-descending-specificity */
+@use "../../common/common.agent.scss" as common;
+@use "../core/FormCore.agent.scss";
+@use "../../common/grid.scss";
+@use "../../common/reboot.scss";
+
+.af-form {
+  &__date {
+    &--disabled {
+      .af-form__input-date {
+        cursor: not-allowed;
+      }
+    }
+
+    &--success {
+      .af-form__input-date {
+        margin-right: 1rem;
+      }
+
+      &::after {
+        position: relative;
+        top: 5px;
+        font-family: common.$font-family-icon;
+        color: common.$color-malachite;
+        content: "\EABA";
+      }
+
+      > .af-btn--circle {
+        margin-right: 1rem;
+      }
+    }
+
+    &--error {
+      padding: 0;
+
+      .af-form__input-date {
+        border: 1px solid common.$color-red-axa;
+        color: common.$color-red-axa;
+      }
+    }
+
+    &--warning {
+      padding: 0;
+
+      .af-form__input-date {
+        border: 1px solid common.$color-orange-dark;
+        color: common.$color-orange-dark;
+      }
+    }
+
+    &-wrapper {
+      position: relative;
+      display: inline-flex;
+    }
+  }
+
+  &__input-date {
+    padding: 0.5625rem 1.2rem;
+    border: 1px solid common.$color-silver;
+    font-size: 1em;
+    line-height: 20px;
+
+    &:focus {
+      border-color: common.$color-axa;
+      color: common.$color-axa;
+    }
+
+    &--hasinfobulle {
+      margin-right: 1rem;
+    }
+  }
+
+  &__input-date::-ms-clear,
+  &__input-date::-ms-reveal {
+    display: none;
+  }
+
+  &__help {
+    position: absolute;
+    bottom: -20px;
+    display: block;
+  }
+
+  &__clear {
+    position: absolute;
+    top: 0.75rem;
+    right: 3rem;
+
+    &:hover {
+      border-radius: 100%;
+      background: common.$color-mercury;
+      box-shadow: 0 0 0 6px common.$color-mercury;
+    }
+  }
+}
