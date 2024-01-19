@@ -28,7 +28,7 @@ export const TextInput = ({
   ...inputTextProps
 }: Props) => {
   const inputUseId = useId();
-  const inputId = id || inputUseId;
+  const inputId = id ?? inputUseId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
     disabled,
