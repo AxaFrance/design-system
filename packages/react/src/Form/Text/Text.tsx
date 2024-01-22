@@ -1,19 +1,14 @@
 import "@axa-fr/design-system-css/dist/Form/Text/InputText.agent.scss";
-import {
-  ComponentPropsWithRef,
-  HTMLInputTypeAttribute,
-  forwardRef,
-} from "react";
+import { ComponentPropsWithRef, forwardRef } from "react";
 
 import { getComponentClassName } from "../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   classModifier?: string;
-  type?: HTMLInputTypeAttribute;
 };
 
 const Text = forwardRef<HTMLInputElement, Props>(
-  ({ className, classModifier, type = "text", ...otherProps }, inputRef) => {
+  ({ className, classModifier, ...otherProps }, inputRef) => {
     const componentClassName = getComponentClassName(
       className,
       classModifier,
@@ -22,11 +17,11 @@ const Text = forwardRef<HTMLInputElement, Props>(
 
     return (
       <input
-        {...otherProps}
         className={componentClassName}
-        type={type}
+        type="text"
         ref={inputRef}
         required={classModifier?.includes("required")}
+        {...otherProps}
       />
     );
   },
