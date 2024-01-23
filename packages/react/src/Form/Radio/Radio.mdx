@@ -1,0 +1,34 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as RadioItemStories from "./RadioItem.stories";
+import * as RadioStories from "./Radio.stories";
+import * as RadioInput from "./RadioInput.stories";
+
+<Meta of={RadioItemStories} />
+
+# Radio components
+
+## RadioItem
+
+This is the smallest component for the radio. It only contains the input with a label.
+
+<Canvas of={RadioItemStories.RadioItemStory} />
+<Controls of={RadioItemStories.RadioItemStory} />
+
+## Radio
+
+This is the a multi-options component. You can use it to create a list of options without the main label.
+
+<Canvas of={RadioStories.RadioStory} />
+<Controls of={RadioStories.RadioStory} />
+
+## RadioInput
+
+This is the complete input component. It contains the main label and the list of options.
+
+<Canvas of={RadioInput.RadioInputStory} />
+<Controls of={RadioInput.RadioInputStory} />
+
+## Modes
+
+The Radio component has 3 modes: `default`, `classic` and `inline`.
+You can see them in action in the stories above.
