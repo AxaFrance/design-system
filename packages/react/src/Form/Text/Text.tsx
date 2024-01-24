@@ -21,6 +21,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
         type="text"
         ref={inputRef}
         required={classModifier?.includes("required")}
+        disabled={classModifier?.includes("disabled")}
         {...otherProps}
       />
     );
