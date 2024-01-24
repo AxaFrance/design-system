@@ -1,6 +1,6 @@
+import "@axa-fr/design-system-css/dist/Form/Text/InputText.agent.scss";
 import { ComponentPropsWithRef, forwardRef, useId } from "react";
 import { getComponentClassName } from "../core";
-import "@axa-fr/design-system-css/dist/Form/InputText/InputText.agent.scss";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "required" | "type"> & {
   classModifier?: string;
