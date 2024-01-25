@@ -3,32 +3,18 @@ import * as TitleStories from "./Title.agent.stories";
 
 <Meta of={TitleStories} />
 
-# `@axa-fr/react-toolkit-title`
+## Title
 
-## Default
+### Use of Title
 
-### Installation
+```tsx title="test.js"
+import { Title } from "@axa-fr/design-system-react/agent";
 
-```shell script
-npm i @axa-fr/react-toolkit-title
-```
-
-### Import
-
-```javascript
-import Title from "@axa-fr/react-toolkit-title";
-import "@axa-fr/react-toolkit-title/dist/af-title.css";
-```
-
-### Use
-
-```javascript
-const TitleDefault = () => (
-  <Title classModifier="" className="">
+export const MyComponent = () => (
+  <Title classModifier="af-title" className="">
     Sample Title
   </Title>
 );
-export default TitleDefault;
 ```
 
 ## Playground
