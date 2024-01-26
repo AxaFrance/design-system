@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Title } from "./Title.agent";
+import { ButtonAgent as Button } from "../Button/Button.agent";
 
 const meta: Meta<typeof Title> = {
   title: "Components/Title",
@@ -7,7 +8,7 @@ const meta: Meta<typeof Title> = {
 };
 export default meta;
 
-const MODIFIERS = ["", "content", "bigTitle"];
+const MODIFIERS = ["", "content"];
 
 type StoryProps = Omit<
   React.ComponentProps<typeof Title>,
@@ -39,75 +40,43 @@ export const Template: Story = {
   },
 };
 
-export const MultiExamples: StoryObj<typeof Title> = {
-  name: "Title with modifiers",
-  render: (args) => {
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "2rem",
-          flexWrap: "wrap",
-          gap: "2rem",
-        }}
-      >
-        <Title heading={args.heading} classModifier="af-title">
-          Default Title
-        </Title>
-        <Title heading={args.heading} classModifier="content">
-          Content Title
-        </Title>
-        <Title heading={args.heading} classModifier="bigTitle">
-          Big Title
-        </Title>
-        <Title heading={args.heading} className="af-subtitle">
-          Sub-Title
-        </Title>
-      </div>
-    );
-  },
-  args: {
-    heading: "h2",
-  },
-  argTypes: {
-    heading: {
-      options: ["h2", "h3", "h4"],
-      control: { type: "radio" },
-    },
-  },
-};
-
 export const DefaultTitle: StoryObj<typeof Title> = {
   name: "Default Title",
   args: {
     children: "Default Title",
-    classModifier: "",
-    heading: "h2",
-  },
-};
-
-export const BigTitle: StoryObj<typeof Title> = {
-  name: "Big Title",
-  args: {
-    children: "Big Title",
-    classModifier: "bigTitle",
-    heading: "h2",
-  },
-};
-
-export const SubTitle: StoryObj<typeof Title> = {
-  name: "Sub-Title",
-  args: {
-    children: "Sub-Title",
-    classModifier: "",
-    className: "af-subtitle",
     heading: "h2",
   },
 };
 
 export const contentTitle: StoryObj<typeof Title> = {
   name: "Content Title",
+  args: {
+    children: "Content Title",
+    classModifier: "content",
+    className: "",
+    heading: "h2",
+  },
+};
+
+export const contentTitleWithLink: StoryObj<typeof Title> = {
+  name: "Content Title With Button",
+  render: (args) => {
+    return (
+      <Title
+        heading={args.heading}
+        classModifier="content"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        Content Title
+        <Button> Click Me </Button>
+      </Title>
+    );
+  },
   args: {
     children: "Content Title",
     classModifier: "content",

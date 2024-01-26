@@ -7,7 +7,7 @@ const meta: Meta = {
 
 export default meta;
 
-const MODIFIERS = ["", "content", "bigTitle"];
+const MODIFIERS = ["", "content"];
 
 export const Default: StoryObj = {
   render: (args) => {
