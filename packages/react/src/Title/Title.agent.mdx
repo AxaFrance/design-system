@@ -1,4 +1,4 @@
-import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
+import { Controls, Canvas, Meta } from "@storybook/blocks";
 import * as TitleStories from "./Title.agent.stories";
 
 <Meta of={TitleStories} />
@@ -21,7 +21,7 @@ export const MyComponent = () => (
 
 <Canvas of={TitleStories.Template}></Canvas>
 
-<ArgsTable story="Title" />
+<Controls of={TitleStories.Template} />
 
 ## Examples of class modifiers
 
