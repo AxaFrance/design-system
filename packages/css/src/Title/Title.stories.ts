@@ -7,16 +7,33 @@ const meta: Meta = {
 
 export default meta;
 
+const MODIFIERS = ["", "content", "bigTitle"];
+
 export const Default: StoryObj = {
   render: (args) => {
-    const title = document.createElement("h1");
+    const title = document.createElement(args.heading);
     title.innerHTML = args.text;
-    title.className = args.classModifier ? args.classModifier : "";
+
+    title.className += [
+      "af-title",
+      args.classModifier ? `af-title--${args.classModifier}` : "",
+    ].join(" ");
 
     return title;
   },
   args: {
     text: "Sample Title",
-    classModifier: "af-title",
+    heading: "h2",
+    classModifier: "",
+  },
+  argTypes: {
+    classModifier: {
+      options: MODIFIERS,
+      control: { type: "select" },
+    },
+    heading: {
+      options: ["h2", "h3", "h4"],
+      control: { type: "radio" },
+    },
   },
 };
