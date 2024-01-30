@@ -1,5 +1,5 @@
 import "@axa-fr/design-system-css/dist/Button/Button.agent.scss";
-import { cx } from "classix";
+import classNames from "classnames";
 
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
@@ -20,7 +20,7 @@ export const ButtonAgent = ({
 
   return (
     <button
-      className={cx("af-btn", classes, className)}
+      className={classNames("af-btn", classes, className)}
       type="button"
       {...args}
     >
