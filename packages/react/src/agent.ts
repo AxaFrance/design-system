@@ -16,6 +16,7 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Title } from "./Title/Title.agent";
+export { Footer } from "./Layout/Footer";
 
 export {
   Field,
