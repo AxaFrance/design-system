@@ -1,0 +1,52 @@
+@use "../../common/common.agent.scss" as common;
+@use "../core/FormCore.agent.scss";
+@use "../../common/grid.scss";
+@use "../../common/reboot.scss";
+@use "../Radio//Radio.agent.scss";
+
+.af-form {
+  &-switch {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 24px;
+    border-radius: 15px;
+    font-size: 0.819rem;
+    background-color: common.$color-mercury;
+
+    .af-form__radio-custom {
+      box-sizing: border-box;
+      height: 100%;
+      margin: 0;
+      color: common.$color-pager-link;
+      cursor: pointer;
+      user-select: none;
+
+      .af-form__label,
+      &:hover .af-form__label,
+      .af-form__input-radio:checked + .af-form__label {
+        z-index: 1;
+        height: 100%;
+        padding: 0 12px;
+        border: none;
+        background: none;
+        box-shadow: none;
+      }
+    }
+
+    .af-btn-switch-slider {
+      position: absolute;
+      top: -3px;
+      display: inline-block;
+      width: 100%;
+      height: 30px;
+      padding: 0 12px;
+      border-radius: 15px;
+      background-color: common.$color-azur;
+      box-shadow: 0 2px 4px 0 rgba(123, 123, 123, 50%);
+      transform: translateX(0);
+      transition: 0.4s;
+      cursor: pointer;
+    }
+  }
+}

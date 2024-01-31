@@ -16,6 +16,8 @@ export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Title } from "./Title/Title.agent";
 
+export { Switch, SwitchInput } from "./Form/Switch";
+
 export {
   Field,
   FieldError,
