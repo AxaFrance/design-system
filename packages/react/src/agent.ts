@@ -8,6 +8,7 @@ export {
   CheckboxItem,
   CheckboxModes,
 } from "./Form/Checkbox";
+export { Choice, ChoiceInput } from "./Form/Choice";
 export { Date, DateInput } from "./Form/Date";
 export { Number, NumberInput } from "./Form/Number";
 export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio";
