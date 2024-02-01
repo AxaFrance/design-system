@@ -34,6 +34,10 @@ module.exports = ({ ...ctx }) => {
           recursive: true,
         });
 
+        cpSync("src/common/assets/", "dist/common/assets/", {
+          recursive: true,
+        });
+
         return {
           postcssPlugin: "Copy file",
         };

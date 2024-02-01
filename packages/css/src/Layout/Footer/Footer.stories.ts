@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/html";
+import logo from "../../common/assets/logo-axa.svg";
 import "./Footer.scss";
 
 const meta: Meta = {
@@ -30,7 +31,7 @@ export const Primary: StoryObj = {
     className: "",
     href: "https://www.axa.fr/",
     title: "Site Axa",
-    icon: "",
+    icon: logo,
     alt: "Logo Axa",
     children: `© ${new Date().getFullYear()} AXA Tous droits réservés`,
   },

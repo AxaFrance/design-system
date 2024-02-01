@@ -1,4 +1,5 @@
 import { PropsWithChildren, forwardRef } from "react";
+import logo from "@axa-fr/design-system-css/dist/common/assets/logo-axa.svg";
 import "@axa-fr/design-system-css/dist/Layout/Footer/Footer.scss";
 
 type FooterProps = {
@@ -18,7 +19,7 @@ export const Footer = forwardRef<
       className = "af-footer",
       href = "https://www.axa.fr/",
       title = "Site Axa",
-      icon,
+      icon = logo,
       alt = "Logo Axa",
       children = `© ${new Date().getFullYear()} AXA Tous droits réservés`,
     },
