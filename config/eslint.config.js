@@ -93,10 +93,11 @@ module.exports = {
       version: "detect",
     },
     "import/resolver": {
-      node: {
-        extensions: [".ts", ".tsx"],
-      },
-    },
+      "typescript": true,
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   },
   overrides: [
     {

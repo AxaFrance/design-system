@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Button.agent.scss";
 
 const meta: Meta = {
-  title: "Components/Button",
+  title: "Components/Button Agent",
 };
 
 export default meta;

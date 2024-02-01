@@ -14,7 +14,7 @@ const MODIFIERS = [
 
 const meta: Meta<typeof ButtonAgent> = {
   component: ButtonAgent,
-  title: "Components/Button",
+  title: "Components/ButtonAgent",
   parameters: {
     layout: "centered",
   },

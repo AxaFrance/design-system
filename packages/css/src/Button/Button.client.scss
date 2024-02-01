@@ -1,0 +1,147 @@
+@use "../common/common.client.scss" as common;
+
+.af-btn-client {
+  display: flex;
+  min-width: 11.25rem;
+  min-height: 3.5rem;
+  padding: 0.8rem 1.2rem;
+  border: 0;
+  border-radius: common.$component-border-radius;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: common.$font-family-base;
+  font-size: 1rem;
+  font-weight: 600;
+  color: common.$color-white;
+  background-color: common.$color-axa;
+  transition-duration: common.$transition-duration;
+  transition-property: width, height, border, color, background-color, outline,
+    box-shadow;
+  transition-timing-function: linear;
+  cursor: pointer;
+
+  &:hover {
+    color: common.$color-white;
+    background-color: common.$color-deep-sapphire;
+  }
+
+  &:active,
+  &:focus {
+    color: common.$color-white;
+    background-color: common.$color-st-tropaz;
+  }
+
+  &:focus-visible {
+    outline: 2px solid common.$color-blue-3;
+    outline-offset: 3px;
+  }
+
+  & > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    aspect-ratio: 1;
+  }
+
+  &--ghost {
+    color: common.$color-axa;
+    background-color: transparent;
+
+    &:hover {
+      color: common.$color-axa;
+      background-color: common.$color-btn-tertiary-bg-darker;
+    }
+
+    &:focus,
+    &:active {
+      color: common.$color-axa;
+      background-color: common.$color-btn-tertiary-bg-lighter;
+    }
+  }
+
+  &--primary-business {
+    background-color: common.$color-btn-business;
+
+    &:hover {
+      background-color: common.$color-btn-business-dark;
+    }
+
+    &:focus {
+      background-color: common.$color-btn-business-light;
+    }
+  }
+
+  &--tertiary {
+    color: common.$color-axa;
+    background-color: common.$color-btn-tertiary-bg;
+
+    &:hover {
+      color: common.$color-axa;
+      background-color: common.$color-btn-tertiary-bg-darker;
+    }
+
+    &:focus,
+    &:active {
+      color: common.$color-axa;
+      background-color: common.$color-btn-tertiary-bg-lighter;
+    }
+  }
+
+  &--secondary {
+    color: common.$color-axa;
+    background-color: common.$color-white;
+    box-shadow: 0 0 0 1px common.$color-axa inset;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: common.$color-blue-1;
+      background-color: common.$color-white;
+      box-shadow: 0 0 0 2px common.$color-blue-1 inset;
+    }
+
+    &:active {
+      background-color: common.$color-blue-2;
+    }
+  }
+
+  &--secondary-error {
+    color: common.$color-btn-error;
+    background-color: common.$color-white;
+    box-shadow: 0 0 0 1px common.$color-btn-error inset;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: common.$color-btn-error-text;
+      background-color: common.$color-white;
+      box-shadow: 0 0 0 2px common.$color-btn-error-text inset;
+    }
+
+    &:active {
+      background-color: common.$color-btn-error-bg;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    color: common.$color-btn-disabled-text;
+    background-color: common.$color-btn-disabled-bg;
+    box-shadow: none;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      border-color: transparent;
+      color: common.$color-btn-disabled-text;
+      background-color: common.$color-btn-disabled-bg;
+    }
+  }
+}
