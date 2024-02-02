@@ -11,7 +11,7 @@
     "build": "npm run build --workspaces && npm run build:storybook --workspaces",
     "lint": "concurrently \"npm:eslint --workspaces\" \"npm:stylelint -w=packages/css\" \"npm:prettier --workspaces\" \"npm:tsc --workspaces\" -c auto -n eslint,stylelint,prettier,tsc",
     "package:check": "npx --yes package-lock-utd@1.1.3",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "author": "AxaFrance",
   "license": "MIT",
