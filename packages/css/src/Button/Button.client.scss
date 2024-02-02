@@ -23,13 +23,13 @@
 
   &:hover {
     color: common.$color-white;
-    background-color: common.$color-deep-sapphire;
+    background-color: common.$color-blue-1;
   }
 
   &:active,
   &:focus {
     color: common.$color-white;
-    background-color: common.$color-st-tropaz;
+    background-color: common.$color-btn-light;
   }
 
   &:focus-visible {
@@ -44,18 +44,21 @@
   }
 
   &--ghost {
+    min-width: auto;
+    min-height: auto;
+    padding: 0.25rem;
     color: common.$color-axa;
     background-color: transparent;
 
     &:hover {
-      color: common.$color-axa;
-      background-color: common.$color-btn-tertiary-bg-darker;
+      color: common.$color-blue-1;
+      background-color: transparent;
     }
 
     &:focus,
     &:active {
-      color: common.$color-axa;
-      background-color: common.$color-btn-tertiary-bg-lighter;
+      color: common.$color-btn-light;
+      background-color: transparent;
     }
   }
 
