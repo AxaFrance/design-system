@@ -1,0 +1,59 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as LoaderStories from "./Loader.stories";
+
+<Meta of={LoaderStories} />
+
+## Loader
+
+### Import
+
+```tsx
+import { Loader } from "@axa-fr/design-system-react/agent";
+```
+
+### Use
+
+The `text` attribute is optionnal. If you pass it to the component it will be displayed under the loader.
+If not, the message will be calculated based on the mode you're using.
+
+<table style={{ width: "100%" }}>
+  <tr>
+    <th>mode</th>
+    <th>Associated message</th>
+  </tr>
+  <tr>
+    <td>get</td>
+    <td>Chargement en cours</td>
+  </tr>
+  <tr>
+    <td>post</td>
+    <td>Sauvegarde en cours</td>
+  </tr>
+  <tr>
+    <td>delete</td>
+    <td>Suppression en cours</td>
+  </tr>
+  <tr>
+    <td>update</td>
+    <td>Mise à jour en cours</td>
+  </tr>
+  <tr>
+    <td>error</td>
+    <td>Une erreur est survenue lors du chargement du composant</td>
+  </tr>
+</table>
+
+```tsx
+<Loader mode="get">
+  <div>
+    <h1>Title Child</h1>
+    <span>Here your child component</span>
+  </div>
+</Loader>
+```
+
+## Playground
+
+<Canvas of={LoaderStories.Default} />
+
+<Controls of={LoaderStories.Default} />
