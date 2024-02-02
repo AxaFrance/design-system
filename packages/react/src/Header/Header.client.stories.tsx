@@ -1,0 +1,56 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import { Save } from "@mui/icons-material";
+import { Header } from "./Header.client";
+import { Button } from "../client";
+import { Variants } from "../Button/Button.client";
+import "./Header.client.stories.css";
+
+const meta: Meta<typeof Header> = {
+  component: Header,
+  title: "Look'n feel/Components/Header",
+  parameters: {
+    layout: "centered",
+  },
+};
+
+export default meta;
+
+type StoryProps = Omit<React.ComponentProps<typeof Header>, "rightItem"> & {
+  rightItem: JSX.Element;
+};
+type Story = StoryObj<StoryProps>;
+
+export const Playground: Story = {
+  name: "Header",
+  render: ({ rightItem }) => (
+    <div style={{ minWidth: "70vw" }}>
+      <Header rightItem={rightItem} />
+    </div>
+  ),
+  argTypes: {
+    rightItem: {
+      control: { type: "input" },
+    },
+  },
+};
+
+export const HeaderWithRightItem: StoryObj<typeof Header> = {
+  name: "Header with right item",
+  render: ({ rightItem }) => (
+    <div style={{ minWidth: "70vw" }}>
+      <Header rightItem={rightItem} />
+    </div>
+  ),
+  args: {
+    rightItem: (
+      <Button
+        className="header-client-stories-button"
+        variant={Variants.secondary}
+        iconLeft={<Save />}
+      >
+        <span>Enregistrer dans mon espace client</span>
+        <span>Enregistrer</span>
+      </Button>
+    ),
+  },
+};
