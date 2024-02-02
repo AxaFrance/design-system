@@ -118,6 +118,7 @@ export const MultiExamples: StoryObj<typeof ButtonClient> = {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
+          alignItems: "center",
           padding: "2rem",
           flexWrap: "wrap",
           gap: "2rem",
