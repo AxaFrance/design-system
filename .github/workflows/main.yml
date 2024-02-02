@@ -16,7 +16,11 @@ jobs:
         with:
           node-version: "*" # Use the LTS Node.js version
           cache: "npm"
+          registry-url: "https://registry.npmjs.org"
       - run: npm run package:check
       - run: npm ci
       - run: npm run lint -- --max-processes 1
       - run: npm run build
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
