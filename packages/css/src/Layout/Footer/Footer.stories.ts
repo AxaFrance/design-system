@@ -12,7 +12,7 @@ export const Primary: StoryObj = {
   render: (args) => {
     const footer = document.createElement("footer");
 
-    footer.className = args.className ? args.className : "af-footer";
+    footer.className = args.className ?? "af-footer";
 
     footer.innerHTML = `
     <div class="container-fluid container">
