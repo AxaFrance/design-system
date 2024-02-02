@@ -1,0 +1,13 @@
+.header-client-stories-button > :nth-child(2) {
+  display: none;
+}
+
+@media only screen and (width >=64em) {
+  .header-client-stories-button > :nth-child(2) {
+    display: block;
+  }
+
+  .header-client-stories-button > :nth-child(3) {
+    display: none;
+  }
+}
