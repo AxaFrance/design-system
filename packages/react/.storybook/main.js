@@ -1,4 +1,5 @@
 import { dirname, join } from "path";
+import { mergeConfig } from 'vite';
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -25,6 +26,23 @@ const config = {
   },
   docs: {
     autodocs: "tag",
+  },
+  // See https://github.com/rollup/rollup/issues/4699
+  // and https://github.com/TanStack/query/issues/5175
+  async viteFinal(config) {
+    // Merge custom configuration into the default config
+    return mergeConfig(config, {
+      build: {
+        chunkSizeWarningLimit: 100,
+        rollupOptions: {
+        onwarn(warning, warn) {
+          if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+            return
+          }
+          warn(warning)
+        }}
+      },
+    });
   },
 };
 export default config;
