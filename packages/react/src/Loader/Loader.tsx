@@ -3,7 +3,7 @@ import { getComponentClassName } from "../Form/core";
 import { Modes } from "./LoaderModes";
 import "@axa-fr/design-system-css/dist/Loader/Loader.scss";
 
-const texts: { [index: string]: string } = {
+const texts: Record<string, string> = {
   get: "Chargement en cours",
   post: "Sauvegarde en cours",
   delete: "Suppression en cours",
@@ -11,9 +11,12 @@ const texts: { [index: string]: string } = {
   error: "Une erreur est survenue lors du chargement du composant",
 };
 
+type ValueOf<T> = T[keyof T];
+type Mode = ValueOf<typeof Modes>;
+
 type LoaderProps = {
   className?: string;
-  mode: string;
+  mode: Mode;
   text?: string;
   classModifier?: string;
 };
