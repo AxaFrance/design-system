@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: "*" # Use the LTS Node.js version
           cache: "npm"
+          registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       # - run: npm version prerelease --workspaces
       - run: npm run build
