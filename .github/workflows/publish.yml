@@ -17,7 +17,7 @@ jobs:
           node-version: "*" # Use the LTS Node.js version
           cache: "npm"
       - run: npm ci
-      - run: npm version prelease --workspaces
+      - run: npm version prerelease --workspaces
       - run: npm run build
       - run: npm publish --workspaces
         env:
