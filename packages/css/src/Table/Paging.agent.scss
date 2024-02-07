@@ -1,0 +1,61 @@
+@use "../common/common.agent.scss" as common;
+@use "../Form/Select/Agent/Select.agent.scss";
+
+.af-paging {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__limit {
+    margin-top: 2rem;
+    order: 2;
+    color: common.$color-pager-link;
+
+    .af-form__group {
+      margin: 0;
+      font-size: 0.9375rem;
+
+      &-label {
+        font-weight: normal;
+      }
+
+      .af-form__input-select {
+        padding: 2px 29px 2px 14px;
+      }
+    }
+  }
+
+  &__pager {
+    flex-basis: 100%;
+    order: 1;
+  }
+}
+
+@include common.media-breakpoint-up(md) {
+  .af-paging {
+    &__limit {
+      margin: 0;
+      flex-basis: 40%;
+      order: 1;
+    }
+
+    &__pager {
+      flex-basis: 60%;
+      order: 2;
+    }
+  }
+}
+@include common.media-breakpoint-up(xl) {
+  .af-paging {
+    &__limit {
+      flex-basis: 30%;
+      order: 1;
+    }
+
+    &__pager {
+      flex-basis: 70%;
+      order: 2;
+    }
+  }
+}

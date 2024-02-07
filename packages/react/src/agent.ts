@@ -12,6 +12,14 @@ export {
   CheckboxModes,
 } from "./Form/Checkbox/Agent";
 export { Choice, ChoiceInput } from "./Form/Choice";
+export { Date, DateInput } from "./Form/Date";
+export { MultiSelect, MultiSelectInput } from "./Form/MultiSelect";
+export { Number, NumberInput } from "./Form/Number";
+export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Agent";
+export { Select, SelectBase, SelectInput } from "./Form/Select/Agent";
+export { Slider, SliderInput } from "./Form/Slider";
+export { Text, TextInput } from "./Form/Text/Agent";
+export { Textarea, TextareaInput } from "./Form/Textarea";
 export {
   Field,
   FieldError,
@@ -23,14 +31,6 @@ export {
   MessageTypes,
   getComponentClassName,
 } from "./Form/core";
-export { Date, DateInput } from "./Form/Date";
-export { MultiSelect, MultiSelectInput } from "./Form/MultiSelect";
-export { Number, NumberInput } from "./Form/Number";
-export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Agent";
-export { Select, SelectBase, SelectInput } from "./Form/Select/Agent";
-export { Slider, SliderInput } from "./Form/Slider";
-export { Text, TextInput } from "./Form/Text/Agent";
-export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer/Agent";
 export {
   HeaderAgent as Header,
@@ -57,3 +57,5 @@ export { Step, StepBase, Steps } from "./Steps";
 export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Agent/Tabs.agent";
 export { Title } from "./Title/Title.agent";
+
+export * from "./Table";
