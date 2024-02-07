@@ -1,0 +1,78 @@
+@use "../common/common.agent.scss" as common;
+
+/* stylelint-disable no-descending-specificity */
+.af-pager {
+  &__pagination {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+  }
+
+  &__item {
+    border-radius: common.px-to-rem(25);
+    font-size: 0.9375rem;
+
+    &--active {
+      min-width: 1.9rem;
+      height: 1.9rem;
+      text-align: center;
+      color: common.$white;
+      background: common.$color-axa;
+
+      &:hover {
+        background: common.$color-azur;
+      }
+
+      .af-pager__item-link {
+        color: common.$white;
+      }
+    }
+
+    &-link,
+    &-nolink {
+      display: inline-flex;
+      padding: 0.3em 0.5rem;
+      color: common.$color-pager-link;
+    }
+
+    &-text {
+      text-decoration: underline;
+    }
+
+    &-icon {
+      margin: 0 0.5rem;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@include common.media-breakpoint-down(xs) {
+  .af-paging__pager {
+    margin-top: 2rem;
+  }
+
+  .af-paging__limit {
+    width: 100%;
+    margin: 1rem auto;
+    text-align: center;
+
+    [class^="col"] {
+      width: inherit;
+      padding: inherit;
+      flex-basis: inherit;
+      flex-grow: inherit;
+    }
+
+    .af-form__group {
+      justify-content: space-evenly;
+    }
+  }
+}
+/* stylelint-enable no-descending-specificity */

@@ -29,6 +29,7 @@
         position: absolute;
         top: 50%;
         right: 1em;
+        height: 0.7em; /* when using pure svgs */
         font-size: 0.7em;
         transform: translateY(-50%);
       }

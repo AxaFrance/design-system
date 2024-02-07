@@ -9,11 +9,13 @@ import "./Reset.css";
 
 const App = () => (
   <>
-    <Header navBarLinks={[
-      <NavLink to="/client">CLIENT</NavLink>,
-      <NavLink to="/agent">AGENT</NavLink>
-    ]}
-    previousLink={<NavLink to="/client">Retour à la partie client</NavLink>}/>
+    <Header
+      navBarLinks={[
+        <NavLink to="/client">CLIENT</NavLink>,
+        <NavLink to="/agent">AGENT</NavLink>,
+      ]}
+      previousLink={<NavLink to="/client">Retour à la partie client</NavLink>}
+    />
     <Suspense>
       <Routes>
         <Route path="/" element={<Navigate to={"/client"} />} />
@@ -22,6 +24,6 @@ const App = () => (
       </Routes>
     </Suspense>
   </>
-)
+);
 
 export default App;
