@@ -1,6 +1,5 @@
-$font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
-  "Helvetica Neue", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-  "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif: "Source Sans Pro", arial, sans-serif !default;
+$font-family-serif: georgia, times, "Times New Roman", serif !default;
 $font-family-base: $font-family-sans-serif !default;
 $color-axa: #00008f !default;
 $color-white: #fff !default;
@@ -20,7 +19,55 @@ $color-btn-error-bg: #fff3f5 !default;
 $color-btn-tertiary-bg: #eef !default;
 $color-btn-tertiary-bg-darker: #e4e4ff !default;
 $color-btn-tertiary-bg-lighter: #f8f8ff !default;
+$color-oceanBlue: #4976ba !default;
 
 $component-border-radius: 8px !default;
 
 $transition-duration: 0.2s !default;
+
+$sizing-u0: 0;
+$sizing-u05: 0.4rem;
+$sizing-u1: 0.8rem;
+$sizing-u2: 1.6rem;
+$sizing-u3: 2.4rem;
+$sizing-u4: 3.2rem;
+$sizing-u5: 4rem;
+$sizing-u6: 4.8rem;
+$sizing-u7: 5.6rem;
+$sizing-u8: 6.4rem;
+$sizing-u9: 7.2rem;
+$sizing-u10: 8rem;
+$spacing-u0: 0;
+$spacing-u05: 0.4rem;
+$spacing-u1: 0.8rem;
+$spacing-u2: 1.6rem;
+$spacing-u3: 2.4rem;
+$spacing-u4: 3.2rem;
+$spacing-u5: 4rem;
+$spacing-u6: 4.8rem;
+$spacing-u7: 5.6rem;
+$spacing-u8: 6.4rem;
+$spacing-u9: 7.2rem;
+$spacing-u10: 8rem;
+$spacing-u11: 8.8rem;
+$spacing-u12: 9.6rem;
+$spacing-u13: 10.4rem;
+$spacing-u14: 11.2rem;
+$spacing-u15: 12rem;
+$spacing-u16: 12.8rem;
+$spacing-u17: 13.6rem;
+$spacing-u18: 14.4rem;
+$spacing-u19: 15.2rem;
+$spacing-u20: 16rem;
+$screen-size-668: s;
+$screen-size-1024: m;
+$screen-size-1200: oldl;
+$screen-size-1280: l;
+$screen-size-1540: oldxl;
+$screen-size-1600: xl;
+$screen-size-s: 668px;
+$screen-size-m: 1024px;
+$screen-size-l: 1280px;
+$screen-size-xl: 1600px;
+$screen-size-oldl: 1200px;
+$screen-size-oldxl: 1540px;
