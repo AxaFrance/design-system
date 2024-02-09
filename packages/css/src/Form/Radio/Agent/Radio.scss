@@ -1,7 +1,7 @@
-@use "../../common/common.agent.scss" as common;
-@use "../core/FormCore.agent.scss";
-@use "../../common/grid.scss";
-@use "../../common/reboot.scss";
+@use "./../../../common/common.agent.scss" as common;
+@use "../../core/FormCore.agent.scss";
+@use "../../../common/grid.scss";
+@use "../../../common/reboot.scss";
 
 /* stylelint-disable no-descending-specificity */
 .af-form {

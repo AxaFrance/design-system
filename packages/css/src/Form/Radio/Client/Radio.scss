@@ -1,0 +1,210 @@
+@use "./../../../common/common.client.scss" as common;
+
+.af-form-client {
+  &__radio-container,
+  &__radio-container-inline,
+  &__radio-container-custom {
+    display: flex;
+  }
+
+  &__radio-container {
+    max-width: 430px;
+    flex-direction: column;
+  }
+
+  &__radio-container-inline,
+  &__radio-container-custom {
+    width: 100%;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+
+  &__radio-inline {
+    display: inline-flex;
+    margin-right: 1rem;
+
+    .af-form__label {
+      padding: 0;
+    }
+  }
+
+  &__radio-custom {
+    display: flex;
+    max-width: 333px;
+    height: 127px;
+    margin: 0 0.3rem 0.3rem 0;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    text-align: center;
+
+    .af-form-client__icon {
+      margin-bottom: 8px;
+    }
+
+    .af-form-client__content {
+      display: flex;
+      margin: 0;
+      padding: 1rem 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: normal;
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        top: 1rem;
+      }
+
+      &::before {
+        left: 0.4rem;
+      }
+
+      &::after {
+        left: 0.65rem;
+      }
+    }
+
+    .af-form-client__label {
+      cursor: pointer;
+    }
+
+    .af-form-client__description {
+      padding: 0;
+    }
+
+    .af-form-client__input-radio {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+
+  &__radio,
+  &__radio-inline {
+    max-width: 26.87rem;
+    height: 5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+
+    .af-form-client__icon {
+      margin-right: 1rem;
+    }
+
+    .af-form-client__content {
+      display: flex;
+      height: 55px;
+      margin-left: 2.5rem;
+      align-items: center;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 50%;
+      }
+
+      &::before {
+        left: 5%;
+      }
+
+      &::after {
+        left: 5.8%;
+      }
+    }
+
+    .af-form-client__label {
+      display: flex;
+      margin-bottom: 0;
+      flex-direction: column;
+      justify-content: center;
+      font-family: common.$font-family-base;
+
+      .af-form-client__choice {
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+      }
+
+      .af-form-client__description {
+        font-size: 1rem;
+        line-height: 1.25;
+      }
+
+      .af-form-client__description:empty {
+        display: none;
+      }
+    }
+  }
+
+  &__radio,
+  &__radio-inline,
+  &__radio-custom {
+    position: relative;
+    width: 100%;
+    border: 1px solid common.$color-gray;
+    border-radius: 4px;
+    align-items: center;
+    cursor: pointer;
+
+    .af-form-client__icon {
+      color: common.$color-axa;
+
+      svg {
+        font-size: 2.5rem;
+      }
+    }
+
+    .af-form-client__content {
+      margin-bottom: 0;
+      align-items: center;
+      cursor: pointer;
+
+      &::before {
+        position: absolute;
+        display: inline;
+        width: 24px;
+        height: 24px;
+        border: 2px solid common.$color-gray;
+        border-radius: 100%;
+        background: common.$color-white;
+        transform: translate(0, -50%);
+        content: "";
+      }
+
+      &::after {
+        position: absolute;
+        display: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        background: common.$color-axa;
+        transform: translate(0, -50%);
+        content: "";
+      }
+    }
+
+    &--disabled {
+      .af-form-client__content {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+
+    .af-form-client__input-radio {
+      position: absolute;
+      opacity: 0;
+
+      &:checked + .af-form-client__content {
+        &::after {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__radio:has(.af-form-client__input-radio:checked),
+  &__radio-inline:has(.af-form-client__input-radio:checked) {
+    border-width: 2px;
+    border-color: common.$color-axa;
+  }
+}

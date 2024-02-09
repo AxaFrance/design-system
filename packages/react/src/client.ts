@@ -2,4 +2,5 @@ import "@fontsource/source-sans-pro";
 
 export { ButtonClient as Button } from "./Button/Button.client";
 export { Header } from "./Header/Header.client";
+export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Client";
 export { Footer } from "./Footer/Footer.client";

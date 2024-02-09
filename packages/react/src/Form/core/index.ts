@@ -17,7 +17,9 @@ export { getFirstId } from "./getFirstId";
 
 export type Option = {
   id?: string;
+  icon?: ReactNode;
   label: ReactNode;
+  description?: ReactNode;
   value: string;
   disabled?: boolean;
 };
