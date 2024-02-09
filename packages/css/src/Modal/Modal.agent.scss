@@ -1,0 +1,122 @@
+@use "../common/common.agent.scss" as common;
+@use "../common/grid.scss";
+@use "../common/reboot.scss";
+
+.af-modal {
+  padding: 0;
+  border: 1px solid #333;
+  animation: appeardialog 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+
+  &::backdrop {
+    background: rgba(common.$color-azur, 0.62);
+    animation: fademodal 0.1s linear;
+  }
+
+  &--lg {
+    max-width: 800px;
+  }
+
+  &--sm {
+    max-width: 300px;
+  }
+
+  &__content {
+    background-clip: padding-box;
+    background-color: common.$white;
+  }
+
+  &__header {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid common.$gray-lighter;
+    align-items: center;
+    justify-content: space-between;
+
+    &-title {
+      margin-bottom: 0;
+      font-weight: inherit;
+    }
+
+    &-close-btn {
+      padding: 0.5rem;
+      border: none;
+      font-size: 1rem;
+      line-height: 1rem;
+      background: none;
+      box-shadow: none;
+
+      &:hover {
+        background-color: common.$gray-lighter;
+      }
+
+      .glyphicon-close {
+        width: 17px;
+      }
+    }
+  }
+
+  &__body {
+    position: relative;
+    padding: 15px;
+    flex: 1 1 auto;
+    -webkit-box-flex: 1;
+  }
+
+  &__footer {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid common.$gray-lighter;
+    align-items: center;
+    justify-content: flex-end;
+
+    & > .af-btn:not(:last-child) {
+      margin-right: 0.25rem;
+    }
+
+    & > .af-btn:not(:first-child) {
+      margin-left: 0.25rem;
+    }
+  }
+}
+
+@include common.media-breakpoint-up(sm) {
+  .af-modal {
+    max-width: 500px;
+    margin: 30px auto;
+
+    &--sm {
+      max-width: 300px;
+    }
+  }
+}
+
+@include common.media-breakpoint-up(lg) {
+  .af-modal {
+    &--lg {
+      max-width: 800px;
+      margin: 30px auto;
+    }
+  }
+}
+
+@keyframes appeardialog {
+  0% {
+    top: -100%;
+    opacity: 0;
+  }
+
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes fademodal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
