@@ -1,11 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithRef } from "react";
-import { RadioModes } from "./Radio";
+import HomeIcon from "@mui/icons-material/Home";
+import FlagIcon from "@mui/icons-material/Flag";
 import { RadioInput } from "./RadioInput";
+import { RadioModes } from "./Radio";
 
 const meta: Meta<typeof RadioInput> = {
   component: RadioInput,
-  title: "Agent/Components/Form/Input/Radio",
+  title: "Client/Components/Form/Input/Radio",
   argTypes: { onChange: { action: "onChange" } },
 };
 
@@ -24,7 +26,7 @@ export const RadioInputStory: StoryObj<RadioInputProps> = {
   ),
   args: {
     label: "Where are you ?",
-    mode: RadioModes.default,
+    mode: RadioModes.inline,
     value: "",
     classModifier: [],
     isChecked: false,
@@ -32,9 +34,22 @@ export const RadioInputStory: StoryObj<RadioInputProps> = {
     disabled: false,
     name: "placeName",
     options: [
-      { label: "Paris", value: "paris" },
-      { label: "Lille", value: "lille" },
-      { label: "Madrid", value: "madrid" },
+      {
+        icon: <FlagIcon />,
+        label: "Paris",
+        description: "Capitale de la France",
+        value: "paris",
+      },
+      { icon: <HomeIcon />, label: "Lille", value: "lille" },
+      {
+        label: "Madrid",
+        description: "Capitale de l'Espagne",
+        value: "madrid",
+      },
+      {
+        label: "Berlin",
+        value: "berlin",
+      },
     ],
   },
   argTypes: {
@@ -44,14 +59,14 @@ export const RadioInputStory: StoryObj<RadioInputProps> = {
       control: { type: "inline-radio" },
     },
     value: {
-      options: ["empty", "paris", "lille", "madrid"],
+      options: ["empty", "paris", "lille", "madrid", "berlin"],
       mapping: {
         empty: "",
       },
       control: { type: "inline-radio" },
     },
     classModifier: {
-      options: ["disabled", "required"],
+      options: ["disabled"],
       control: { type: "inline-check" },
     },
   },

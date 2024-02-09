@@ -1,6 +1,6 @@
-import "@axa-fr/design-system-css/dist/Form/Radio/Radio.agent.scss";
+import "@axa-fr/design-system-css/dist/Form/Radio/Agent/Radio.scss";
 import { ComponentPropsWithRef, forwardRef, ReactNode, useId } from "react";
-import { getOptionClassName } from "../core";
+import { getOptionClassName } from "../../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "checked" | "type"> & {
   classModifier?: string;

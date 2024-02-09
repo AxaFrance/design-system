@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import { Field, getFirstId, useOptionsWithId } from "../core";
+import { Field, getFirstId, useOptionsWithId } from "../../core";
 import { Radio, RadioModes } from "./Radio";
 
 type RadioInputProps = ComponentPropsWithoutRef<typeof Field> &
