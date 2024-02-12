@@ -28,7 +28,6 @@ export const Primary: StoryObj = {
     return footer;
   },
   args: {
-    className: "",
     href: "https://www.axa.fr/",
     title: "Site Axa",
     icon: logo,

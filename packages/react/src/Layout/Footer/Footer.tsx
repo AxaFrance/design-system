@@ -22,12 +22,13 @@ export const Footer = forwardRef<
       icon = logo,
       alt = "Logo Axa",
       children = `© ${new Date().getFullYear()} AXA Tous droits réservés`,
+      ...props
     },
     ref,
   ) => (
-    <footer ref={ref} className={className}>
+    <footer ref={ref} className={className} {...props}>
       <div className="container-fluid container">
-        {!!icon && (
+        {Boolean(icon) && (
           <a className="af-logo" href={href} title={title} target="blank">
             <img className="af-logo__brand" src={icon} alt={alt} />
           </a>
