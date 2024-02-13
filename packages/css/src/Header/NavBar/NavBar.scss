@@ -1,0 +1,228 @@
+@use "../../common/common.agent.scss" as common;
+
+$mask-background: rgba(0, 0, 0, 0.5);
+
+.af-menu-open {
+  overflow-y: hidden;
+}
+
+.mask {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $mask-background;
+  z-index: 17;
+  height: 100%;
+
+  &.show {
+    display: block;
+  }
+}
+
+.af-nav {
+  background: common.$gray-lighter;
+  position: relative;
+  z-index: 18;
+  max-width: 320px;
+
+  &.af-drawer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 1039;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    min-width: 320px;
+    background: common.$white;
+  }
+
+  &__link {
+    padding: 1rem;
+    text-align: left;
+    display: block;
+
+    &:focus {
+      box-shadow: 0 0 5px common.$color-axa;
+      outline: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__item {
+    position: relative;
+    width: 100%;
+
+    &--haschild {
+      >.af-nav__link {
+        padding-right: 1.1rem;
+      }
+    }
+
+    .glyphicon-arrow-xs-down {
+      position: absolute;
+      right: 0.2rem;
+      top: 50%;
+      transform: translate(0, -50%);
+      display: none;
+      width: 17px;
+    }
+
+    &--active,
+    &:hover {
+      >.af-nav__link {
+        background-color: common.$color-axa;
+        color: white;
+      }
+
+      .glyphicon-arrow-xs-down {
+        color: white;
+      }
+    }
+
+    &--open,
+    &:hover {
+      .af-nav__list--children {
+        display: block;
+      }
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    &--children {
+      top: 100%;
+      min-width: 200px;
+      font-size: 0.9em;
+      border-radius: 0 0 3px 3px;
+
+      .af-nav__link {
+        text-align: left;
+        padding: 0.4rem 1.1rem 0.4rem 2rem;
+        font-weight: 400;
+      }
+
+      .af-nav__item {
+        display: block;
+
+        &:hover {
+          .af-nav__link {
+            background-color: common.$color-axa;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  &__aside-header {
+    border-bottom: 2px solid common.$gray-light;
+    display: flex;
+    align-items: center;
+  }
+
+  &__aside-title {
+    flex: 1;
+    padding: 10px 15px;
+    margin: 0;
+  }
+
+  &__aside-close {
+    background: inherit;
+    border: none;
+    font-size: 3em;
+    color: common.$gray-light;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+@include common.media-breakpoint-up(sm) {
+  .af-nav {
+    &__wrapper {
+      width: 100%;
+    }
+  }
+}
+
+@include common.media-breakpoint-up(md) {
+  .af-nav {
+    max-width: inherit;
+
+    &-container {
+      background-color: common.$color-wild-sand;
+    }
+
+    &__wrapper {
+      width: list.nth(list.nth(common.$container-max-widths, 4), 2);
+      max-width: 100%;
+    }
+
+    &.af-drawer {
+      width: auto;
+      position: relative;
+      background: none;
+      overflow: visible;
+      z-index: 2;
+
+      &.left {
+        transform: none;
+      }
+    }
+
+    &__link {
+      text-align: center;
+    }
+
+    &__list {
+      flex-direction: row;
+
+      &--children {
+        position: absolute;
+        background: white;
+        box-shadow: 0 3px 5px gray;
+        display: none;
+
+        .af-nav__link {
+          padding-left: 1.1rem;
+        }
+      }
+    }
+
+    &__item {
+      width: inherit;
+
+      &--haschild {
+        >.af-nav__link {
+          padding-right: 2rem;
+        }
+      }
+
+      .glyphicon-arrow-xs-down {
+        display: block;
+      }
+    }
+
+    &__aside-header {
+      display: none;
+    }
+  }
+
+  .mask.show {
+    display: none;
+  }
+}
