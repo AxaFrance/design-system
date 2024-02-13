@@ -1,0 +1,46 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as UserStories from "./User.stories";
+
+<Meta of={UserStories} />
+
+# User
+
+## User With Link
+
+<Canvas of={UserStories.UserWithLink} />
+
+### Import
+
+```tsx
+import { User } from "@axa-fr/design-system-react/agent";
+```
+
+### Use
+
+```tsx
+const UserDefault = () => (
+  <User name="Pierre Martin" profile="profile" href="/profile" />
+);
+export default UserDefault;
+```
+
+## User Without Link
+
+<Canvas of={UserStories.UserWithoutLink} />
+
+### Import
+
+```tsx
+import { User } from "@axa-fr/design-system-react/agent";
+```
+
+### Use
+
+```tsx
+const NoLink = () => <User name="Pierre Martin" profile="profile" />;
+export default NoLink;
+```
+
+## Controls
+
+<Controls story={UserStories} />
