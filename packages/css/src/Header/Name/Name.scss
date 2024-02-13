@@ -1,0 +1,32 @@
+@use "../../common/common.agent.scss" as common;
+
+.af-header {
+  &__title {
+    font-size: 1.375em;
+    line-height: 1em;
+    font-weight: common.$font-weight-bold;
+    vertical-align: middle;
+    display: table-cell;
+  }
+
+  &__subtitle {
+    line-height: 1em;
+    font-weight: 400;
+    display: block;
+  }
+
+  &__name {
+    order: 1;
+    align-self: flex-start;
+    flex-basis: 60%;
+    display: table;
+  }
+}
+
+@include common.media-breakpoint-up(md) {
+  .af-header {
+    &__name {
+      flex-basis: initial;
+    }
+  }
+}

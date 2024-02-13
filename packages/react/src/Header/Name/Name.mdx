@@ -1,0 +1,31 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as NameStories from "./Name.stories";
+
+<Meta of={NameStories} />
+
+# Name
+
+<Canvas of={NameStories.Default}></Canvas>
+
+## Import
+
+```tsx
+import { Name } from "@axa-fr/design-system-react/agent";
+```
+
+## Use
+
+```tsx
+const NameComponent = () => (
+  <Name
+    alt="Logo React"
+    img="../../storybook-static/react.svg"
+    subtitle="Baseline"
+    title="Nom de l'application"
+  />
+);
+```
+
+## Controls
+
+<Controls story={NameStories} />

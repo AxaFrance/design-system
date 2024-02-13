@@ -1,0 +1,32 @@
+@use "../common/common.agent.scss" as common;
+
+.af-header {
+  &__content {
+    padding-bottom: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+@include common.media-breakpoint-up(sm) {
+  .af-header {
+    &__wrapper {
+      width: 100%;
+    }
+  }
+}
+
+@include common.media-breakpoint-up(md) {
+  .af-header {
+    &__content {
+      flex-wrap: initial;
+    }
+
+    &__wrapper {
+      width: list.nth(list.nth(common.$container-max-widths, 4), 2);
+      max-width: 100%;
+    }
+  }
+}
