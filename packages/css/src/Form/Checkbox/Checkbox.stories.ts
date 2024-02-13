@@ -3,7 +3,7 @@ import "../../common/icons.scss";
 import "./Checkbox.agent.scss";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Checkbox",
+  title: "Agent/Components/Form/Input/Checkbox",
 };
 
 export default meta;

@@ -3,7 +3,7 @@ import "../../common/icons.scss";
 import "./Select.agent.scss";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Select",
+  title: "Agent/Components/Form/Input/Select",
 };
 
 export default meta;

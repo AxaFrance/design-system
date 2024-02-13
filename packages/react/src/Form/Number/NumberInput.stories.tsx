@@ -6,7 +6,7 @@ const MODIFIERS = ["", "required", "disabled"];
 
 const meta: Meta<typeof NumberInput> = {
   component: NumberInput,
-  title: "Components/Form/Input/Number",
+  title: "Agent/Components/Form/Input/Number",
   argTypes: { onChange: { action: "onChange" } },
 };
 

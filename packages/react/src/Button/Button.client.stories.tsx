@@ -10,7 +10,7 @@ import { ButtonClient, Variants } from "./Button.client";
 
 const meta: Meta<typeof ButtonClient> = {
   component: ButtonClient,
-  title: "Look'n feel/Components/Button",
+  title: "Client/Components/Button",
   parameters: {
     layout: "centered",
   },

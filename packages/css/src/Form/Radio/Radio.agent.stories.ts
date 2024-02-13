@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Radio.agent.scss";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Radio",
+  title: "Agent/Components/Form/Input/Radio",
 };
 
 export default meta;

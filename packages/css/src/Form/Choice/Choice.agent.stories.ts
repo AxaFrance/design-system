@@ -3,7 +3,7 @@ import "../../common/icons.scss";
 import "./Choice.agent.scss";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Choice",
+  title: "Agent/Components/Form/Input/Choice",
 };
 
 const defaultOptions = ["Oui", "Non"];

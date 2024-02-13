@@ -5,7 +5,7 @@ import { RadioInput } from "./RadioInput";
 
 const meta: Meta<typeof RadioInput> = {
   component: RadioInput,
-  title: "Components/Form/Input/Radio",
+  title: "Agent/Components/Form/Input/Radio",
   argTypes: { onChange: { action: "onChange" } },
 };
 
