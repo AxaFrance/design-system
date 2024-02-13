@@ -1,0 +1,198 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as MenuTitleWrapperStories from "./MenuTitleWrapper.stories";
+
+<Meta of={MenuTitleWrapperStories} />
+
+# Menu Title Wrapper
+
+<Canvas of={MenuTitleWrapperStories.Default}></Canvas>
+
+## Import
+
+```tsx
+import { NavBar, NavBarItem, Title } from "@axa-fr/design-system-react/agent";
+```
+
+## Use
+
+```tsx
+const menuTitleWrapper = () => (
+  <ul style={{ listStyle: "none" }}>
+    <NavBar isVisible={true} onClick={() => console.log("your function")}>
+      <NavBarItem
+        actionElt={
+          <a
+            className="af-nav__link"
+            href="https://axa.fr"
+            onClick={(e) => console.log(e)}
+          >
+            Home
+          </a>
+        }
+      />
+
+      <NavBarItem
+        actionElt={
+          <a
+            className="af-nav__link"
+            href="https://axa.fr"
+            onClick={(e) => console.log(e)}
+          >
+            Form
+          </a>
+        }
+      />
+
+      <NavBarItem
+        actionElt={
+          <a
+            className="af-nav__link"
+            href="https://axa.fr"
+            onClick={(e) => console.log(e)}
+          >
+            Fielupload
+          </a>
+        }
+      />
+
+      <NavBarItem
+        className="af-nav__item--haschild af-nav__item"
+        aria-haspopup="true"
+        aria-expanded="false"
+        ariaLabel="Table"
+        actionElt={<span className="af-nav__link">Table</span>}
+      >
+        <NavBarItem
+          key="table-1"
+          actionElt={
+            <a
+              className="af-nav__link"
+              href="https://axa.fr"
+              onClick={(e) => console.log(e)}
+            >
+              Sous lien 1
+            </a>
+          }
+        />
+        <NavBarItem
+          key="table-2"
+          actionElt={
+            <a
+              className="af-nav__link"
+              href="https://axa.fr"
+              onClick={(e) => console.log(e)}
+            >
+              Sous lien 2
+            </a>
+          }
+        />
+
+        <NavBarItem
+          key="table-3"
+          actionElt={
+            <a
+              className="af-nav__link"
+              href="https://axa.fr"
+              onClick={(e) => console.log(e)}
+            >
+              Sous lien 3
+            </a>
+          }
+        />
+      </NavBarItem>
+
+      <NavBarItem
+        actionElt={
+          <a
+            className="af-nav__link"
+            href="https://axa.fr"
+            onClick={(e) => console.log(e)}
+          >
+            Accordions
+          </a>
+        }
+      />
+
+      <NavBarItem
+        actionElt={
+          <a
+            className="af-nav__link"
+            href="https://axa.fr"
+            onClick={(e) => console.log(e)}
+          >
+            Alert
+          </a>
+        }
+      />
+
+      <NavBarItem
+        actionElt={
+          <a
+            className="af-nav__link"
+            href="https://axa.fr"
+            onClick={(e) => console.log(e)}
+          >
+            Validation
+          </a>
+        }
+      />
+
+      <NavBarItem
+        className="af-nav__item--haschild af-nav__item"
+        aria-haspopup="true"
+        aria-expanded="false"
+        ariaLabel="Table"
+        actionElt={<span className="af-nav__link">Doc</span>}
+      >
+        <NavBarItem
+          key="table-1"
+          actionElt={
+            <a
+              className="af-nav__link"
+              href="https://axa.fr"
+              onClick={(e) => console.log(e)}
+            >
+              Sous lien 1
+            </a>
+          }
+        />
+        <NavBarItem
+          key="table-2"
+          actionElt={
+            <a
+              className="af-nav__link"
+              href="https://axa.fr"
+              onClick={(e) => console.log(e)}
+            >
+              Sous lien 2
+            </a>
+          }
+        />
+
+        <NavBarItem
+          key="table-3"
+          actionElt={
+            <a
+              className="af-nav__link"
+              href="https://axa.fr"
+              onClick={(e) => console.log(e)}
+            >
+              Sous lien 3
+            </a>
+          }
+        />
+      </NavBarItem>
+    </NavBar>
+    <Title
+      title="Toolkit Axa"
+      subtitle="Info complémentaire"
+      toggleMenu={() => console.log("your function")}
+    />
+  </ul>
+);
+export default menuTitleWrapper;
+```
+
+## Controls
+
+<Controls story={MenuTitleWrapperStories} />
