@@ -5,7 +5,7 @@ import { SocialMedia } from "./MenuIcons.client";
 
 const meta: Meta<typeof Footer> = {
   component: Footer,
-  title: "Look'n feel/Components/Footer",
+  title: "Client/Components/Footer",
   parameters: {
     layout: "centered",
   },

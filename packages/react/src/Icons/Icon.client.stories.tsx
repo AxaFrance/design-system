@@ -3,7 +3,7 @@ import * as Icons from "@mui/icons-material";
 import "./Icon.client.stories.css";
 
 const meta: Meta = {
-  title: "Look'n feel/Icons",
+  title: "Client/Icons",
 };
 
 export default meta;

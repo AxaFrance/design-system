@@ -5,7 +5,7 @@ import { MessageTypes } from "../core";
 import { PassInput } from "./PassInput";
 
 export default {
-  title: "Components/Form/Input/Pass",
+  title: "Agent/Components/Form/Input/Pass",
   component: PassInput,
 } as Meta;
 

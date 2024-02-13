@@ -3,7 +3,7 @@ import "../agent.scss";
 import "./icons.stories.css";
 
 const meta: Meta = {
-  title: "icons",
+  title: "Agent/icons",
 };
 
 export default meta;

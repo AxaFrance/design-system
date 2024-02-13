@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Footer.client.scss";
 
 const meta: Meta = {
-  title: "Look'n feel/Components/Footer",
+  title: "Client/Components/Footer",
 };
 
 export default meta;

@@ -3,7 +3,7 @@ import { Title } from "./Title.agent";
 import { ButtonAgent as Button } from "../Button/Button.agent";
 
 const meta: Meta<typeof Title> = {
-  title: "Components/Title",
+  title: "Agent/Components/Title",
   component: Title,
 };
 export default meta;
