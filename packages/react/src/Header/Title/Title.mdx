@@ -1,0 +1,94 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as TitleStories from "./Title.stories";
+
+<Meta of={TitleStories} />
+
+# Title
+
+## Default Title
+
+By default, the title bar is sticky on the top when you scroll down the page. If you want to disable that behavior you can set to false the `isSticky` property of the component.
+
+<Canvas of={TitleStories.DefaultTitle} />
+
+### Import
+
+```tsx
+import { Title } from "@axa-fr/design-system-react/agent";
+```
+
+### Use
+
+```tsx
+const TitleDefault = () => (
+  <Title
+    title="Toolkit Axa"
+    subtitle="Info complémentaire"
+    toggleMenu={() => {
+      console.log("your function");
+    }}
+  />
+);
+export default TitleDefault;
+```
+
+## Complex Title
+
+<Canvas of={TitleStories.ComplexTitle} />
+
+### Import
+
+```tsx
+import { Title } from "@axa-fr/design-system-react/agent";
+```
+
+### Use
+
+```tsx
+const actions = [
+  {
+    id: "001",
+    href: "#enregistrer",
+    icon: "floppy-disk",
+    title: "Enregistrer",
+  },
+  {
+    id: "002",
+    href: "#imprimer",
+    icon: "print",
+    title: "Imprimer",
+  },
+];
+
+const TitleComplex = () => (
+  <Title
+    title="Toolkit Axa"
+    subtitle="Info complémentaire"
+    toggleMenu={() => {
+      console.log("your function");
+    }}
+  >
+    <div className="af-title-bar__actions">
+      <a className="af-title-bar__link" href="#lien" title="lien titlebar">
+        lien titlebar
+      </a>
+      {actions.map(({ icon, href, title, id }) => (
+        <Action
+          key={id}
+          icon={icon}
+          href={href}
+          title={title}
+          onClick={(e) => {
+            console.log(e);
+          }}
+        />
+      ))}
+    </div>
+  </Title>
+);
+export default TitleComplex;
+```
+
+## Controls
+
+<Controls story={TitleStories} />
