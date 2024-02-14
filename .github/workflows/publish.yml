@@ -27,8 +27,8 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
       - run: npm ci
-      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" --workspaces
       - run: npm run build
+      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" --workspaces --workspaces-update=true
       - run: npm publish --workspaces --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
