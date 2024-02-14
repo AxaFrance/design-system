@@ -27,7 +27,7 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
       - run: npm ci
-      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}"" --workspaces
+      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" --workspaces
       - run: npm run build
       - run: npm publish --workspaces --access public
         env:
