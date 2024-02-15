@@ -3,7 +3,7 @@ import logo from "../common/assets/logo-axa.svg";
 import "./Header.client.scss";
 
 const meta: Meta = {
-  title: "Look'n feel/Components/Header",
+  title: "Client/Components/Header",
 };
 
 export default meta;

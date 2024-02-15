@@ -7,7 +7,7 @@ import "./Header.client.stories.css";
 
 const meta: Meta<typeof Header> = {
   component: Header,
-  title: "Look'n feel/Components/Header",
+  title: "Client/Components/Header",
   parameters: {
     layout: "centered",
   },
