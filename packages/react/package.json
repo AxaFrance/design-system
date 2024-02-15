@@ -11,7 +11,7 @@
       "import": "./dist/client.js",
       "types": "./dist/client.d.ts"
     },
-    "./client/icons": {
+    "./icons": {
       "import": "./dist/Icons/icons.client.js",
       "types": "./dist/Icons/icons.client.d.ts"
     }
