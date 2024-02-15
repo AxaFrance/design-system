@@ -29,6 +29,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" --workspaces --workspaces-update=true
-      - run: npm publish --workspaces --access public
+      - run: npm publish --workspace "packages" --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
