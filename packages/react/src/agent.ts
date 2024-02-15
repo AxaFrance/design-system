@@ -29,6 +29,16 @@ export { Title } from "./Title/Title.agent";
 export { Action } from "./Action/Action";
 
 export {
+  ArticleRestitution,
+  HeaderRestitution,
+  Restitution,
+  RestitutionList,
+  SectionRestitution,
+  SectionRestitutionColumn,
+  SectionRestitutionRow,
+  SectionRestitutionTitle,
+} from "./Restitution";
+export {
   Field,
   FieldError,
   FieldForm,

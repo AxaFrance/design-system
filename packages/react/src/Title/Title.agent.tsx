@@ -1,6 +1,5 @@
 import "@axa-fr/design-system-css/dist/Title/Title.agent.scss";
 import { ComponentPropsWithRef, PropsWithChildren, forwardRef } from "react";
-
 import { getComponentClassName } from "../Form/core";
 
 type Headings = "h2" | "h3" | "h4";
