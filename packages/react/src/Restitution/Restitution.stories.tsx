@@ -8,7 +8,7 @@ import { SectionRestitutionRow } from "./SectionRestitutionRow";
 import { RestitutionList } from "./RestitutionList";
 
 const meta: Meta = {
-  title: "Components/Restitution",
+  title: "Agent/Components/Restitution",
   component: Restitution,
   args: {
     classModifier: "",

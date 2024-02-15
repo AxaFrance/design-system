@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Restitution.scss";
 
 const meta: Meta = {
-  title: "Components/Restitution",
+  title: "Agent/Components/Restitution",
 };
 
 export default meta;
