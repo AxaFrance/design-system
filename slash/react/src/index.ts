@@ -13,6 +13,16 @@ export {
 } from "./Form/Checkbox";
 export { Choice, ChoiceInput } from "./Form/Choice";
 export {
+  ArticleRestitution,
+  HeaderRestitution,
+  Restitution,
+  RestitutionList,
+  SectionRestitution,
+  SectionRestitutionColumn,
+  SectionRestitutionRow,
+  SectionRestitutionTitle,
+} from "./Restitution";
+export {
   Field,
   FieldError,
   FieldForm,
