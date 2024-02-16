@@ -15,7 +15,7 @@ export const SectionRestitutionRow = ({
   title,
   className = DEFAULT_CLASSNAME,
   classNameContainer = "row af-restitution__content-left",
-  children = null,
+  children,
   classModifier,
 }: PropsWithChildren<SectionRestitutionRowProps>) => {
   const componentClassName = getComponentClassName(

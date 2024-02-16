@@ -72,7 +72,7 @@ export const Default: StoryObj = {
                     Vol étendu aux appareils nomades
                   </li>
                   <li class="af-restitution__listul-item">
-                    Bris des glaces
+                    Bris de glace
                   </li>
                   <li class="af-restitution__listul-item">
                     Plomberie et électricité
@@ -116,7 +116,7 @@ export const Default: StoryObj = {
                     Vol étendu aux appareils nomades
                   </li>
                   <li class="af-restitution__listul-item">
-                    Bris des glaces
+                    Bris de glace
                   </li>
                   <li class="af-restitution__listul-item">
                     Plomberie et électricité
@@ -167,7 +167,7 @@ export const Default: StoryObj = {
                     Vol étendu aux appareils nomades
                   </li>
                   <li class="af-restitution__listul-item">
-                    Bris des glaces
+                    Bris de glace
                   </li>
                   <li class="af-restitution__listul-item">
                     Plomberie et électricité
@@ -207,7 +207,7 @@ export const Default: StoryObj = {
                     Vol étendu aux appareils nomades
                   </li>
                   <li class="af-restitution__listul-item">
-                    Bris des glaces
+                    Bris de glace
                   </li>
                   <li class="af-restitution__listul-item">
                     Plomberie et électricité

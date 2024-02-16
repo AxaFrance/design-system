@@ -5,15 +5,13 @@ type RestitutionListProps = ComponentPropsWithoutRef<"ul"> & {
 };
 
 export const RestitutionList = ({ values, ...props }: RestitutionListProps) => {
-  const li = values.map((value: string) => (
-    <li key={value} className="af-restitution__listul-item">
-      {value}
-    </li>
-  ));
-
   return (
     <ul className="af-restitution__listul" {...props}>
-      {li}
+      {values.map((value: string) => (
+        <li key={value} className="af-restitution__listul-item">
+          {value}
+        </li>
+      ))}
     </ul>
   );
 };

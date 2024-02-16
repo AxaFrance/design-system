@@ -44,7 +44,7 @@ export const Default: StoryObj = {
                 values={[
                   "Vol au domicile",
                   "Vol étendu aux appareils nomades",
-                  "Bris des glaces",
+                  "Bris de glace",
                   "Plomberie et électricité",
                   "Jardin",
                 ]}
@@ -63,7 +63,7 @@ export const Default: StoryObj = {
                 values={[
                   "Vol au domicile",
                   "Vol étendu aux appareils nomades",
-                  "Bris des glaces",
+                  "Bris de glace",
                   "Plomberie et électricité",
                   "Jardin",
                 ]}
@@ -85,7 +85,7 @@ export const Default: StoryObj = {
                 values={[
                   "Vol au domicile",
                   "Vol étendu aux appareils nomades",
-                  "Bris des glaces",
+                  "Bris de glace",
                   "Plomberie et électricité",
                   "Jardin",
                 ]}
@@ -105,7 +105,7 @@ export const Default: StoryObj = {
                 values={[
                   "Vol au domicile",
                   "Vol étendu aux appareils nomades",
-                  "Bris des glaces",
+                  "Bris de glace",
                   "Plomberie et électricité",
                   "Jardin",
                 ]}

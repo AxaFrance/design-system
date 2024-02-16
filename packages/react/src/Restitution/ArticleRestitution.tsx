@@ -6,7 +6,7 @@ type ArticleRestitutionProps = ComponentPropsWithoutRef<"article"> & {
 };
 
 export const ArticleRestitution = ({
-  children = null,
+  children,
   className,
   classModifier,
   ...otherProps

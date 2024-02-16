@@ -7,7 +7,7 @@ export type SectionRestitutionProps = {
 };
 
 export const SectionRestitution = ({
-  children = null,
+  children,
   className,
   classModifier,
 }: PropsWithChildren<SectionRestitutionProps>) => {

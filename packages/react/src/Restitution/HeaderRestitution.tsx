@@ -25,8 +25,10 @@ export const HeaderRestitution = ({
     <header className={componentClassName}>
       <div className="af-restitution__header-left">
         <div className="af-restitution__title">
-          {title && <span className="af-restitution__title-main">{title}</span>}
-          <span className="af-restitution__title-subtitle">{subtitle}</span>
+          <span className="af-restitution__title-main">{title}</span>
+          {subtitle && (
+            <span className="af-restitution__title-subtitle">{subtitle}</span>
+          )}
         </div>
       </div>
       {rightTitle && (
