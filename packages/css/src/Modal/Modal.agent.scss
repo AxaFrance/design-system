@@ -13,11 +13,11 @@
   }
 
   &--lg {
-    max-width: 800px;
+    max-width: common.px-to-rem(800);
   }
 
   &--sm {
-    max-width: 300px;
+    max-width: common.px-to-rem(300);
   }
 
   &__content {
@@ -27,7 +27,7 @@
 
   &__header {
     display: flex;
-    padding: 15px;
+    padding: common.px-to-rem(15);
     border-bottom: 1px solid common.$gray-lighter;
     align-items: center;
     justify-content: space-between;
@@ -50,21 +50,21 @@
       }
 
       .glyphicon-close {
-        width: 17px;
+        width: common.px-to-rem(17);
       }
     }
   }
 
   &__body {
     position: relative;
-    padding: 15px;
+    padding: common.px-to-rem(15);
     flex: 1 1 auto;
     -webkit-box-flex: 1;
   }
 
   &__footer {
     display: flex;
-    padding: 15px;
+    padding: common.px-to-rem(15);
     border-top: 1px solid common.$gray-lighter;
     align-items: center;
     justify-content: flex-end;
@@ -81,11 +81,11 @@
 
 @include common.media-breakpoint-up(sm) {
   .af-modal {
-    max-width: 500px;
-    margin: 30px auto;
+    max-width: common.px-to-rem(500);
+    margin: common.px-to-rem(30) auto;
 
     &--sm {
-      max-width: 300px;
+      max-width: common.px-to-rem(300);
     }
   }
 }
@@ -93,8 +93,8 @@
 @include common.media-breakpoint-up(lg) {
   .af-modal {
     &--lg {
-      max-width: 800px;
-      margin: 30px auto;
+      max-width: common.px-to-rem(800);
+      margin: common.px-to-rem(30) auto;
     }
   }
 }
