@@ -1,0 +1,46 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as ActionStories from "./Action.stories.tsx";
+
+<Meta of={ActionStories} />
+
+## Action
+
+### Import
+
+```tsx title="test.js"
+import { Action } from "@axa-fr/design-system-react/agent";
+```
+
+### Use
+
+#### Link Action Button Example:
+
+```tsx title="test.js"
+export const LinkAction = () => (
+  <Action
+    id="id"
+    icon="link"
+    href="http://www.axa.fr"
+    title="Test Link"
+    target="_blank"
+  />
+);
+```
+
+#### Playground:
+
+<Canvas of={ActionStories.Default} />
+
+<Controls of={ActionStories.Default} />
+
+#### Action Button Example:
+
+```tsx title="test.js"
+const ButtonAction = () => <Action id="id" icon="floppy-disk" title="Save" />;
+```
+
+#### Playground:
+
+<Canvas of={ActionStories.Button} />
+
+<Controls of={ActionStories.Button} />
