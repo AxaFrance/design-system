@@ -26,6 +26,8 @@ export {
   ModalHeaderBase,
 } from "./Modal";
 export { Title } from "./Title/Title.agent";
+export { Action } from "./Action/Action";
+
 export {
   Field,
   FieldError,
