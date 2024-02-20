@@ -26,16 +26,16 @@ export const HeaderRestitution = ({
       <div className="af-restitution__header-left">
         <div className="af-restitution__title">
           <span className="af-restitution__title-main">{title}</span>
-          {subtitle && (
+          {subtitle ? (
             <span className="af-restitution__title-subtitle">{subtitle}</span>
-          )}
+          ) : null}
         </div>
       </div>
-      {rightTitle && (
+      {rightTitle ? (
         <div className="af-restitution__header-right">
           <span className="af-restitution__title">{rightTitle}</span>
         </div>
-      )}
+      ) : null}
     </header>
   );
 };

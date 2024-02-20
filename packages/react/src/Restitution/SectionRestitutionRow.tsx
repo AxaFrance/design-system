@@ -25,7 +25,7 @@ export const SectionRestitutionRow = ({
   );
   return (
     <div className={componentClassName}>
-      {title && <SectionRestitutionTitle title={title} />}
+      {title ? <SectionRestitutionTitle title={title} /> : null}
       <div className={classNameContainer}>{children}</div>
     </div>
   );
