@@ -19,7 +19,7 @@ export const RadioStory: StoryObj<RadioProps> = {
     <Radio classModifier={classModifier?.join(" ")} {...args} />
   ),
   args: {
-    mode: RadioModes.default,
+    mode: RadioModes.classic,
     value: "",
     classModifier: [],
     isChecked: false,

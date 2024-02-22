@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "concurrently \"npm run start -w=packages/css\" \"npm run start:storybook -w=packages/css\" \"npm run start:storybook -w=packages/react\" -c auto -n css,css:storybook,react:storybook",
-    "build": "npm run build --workspaces && npm run build:storybook --workspaces",
-    "lint": "concurrently \"npm:eslint --workspaces\" \"npm:stylelint -w=packages/css\" \"npm:prettier --workspaces\" \"npm:tsc --workspaces\" -c auto -n eslint,stylelint,prettier,tsc",
+    "build": "npm run build --workspace=packages && npm run build:storybook --workspace=packages",
+    "lint": "concurrently \"npm:eslint --workspace=packages\" \"npm:stylelint -w=packages/css\" \"npm:prettier --workspace=packages\" \"npm:tsc --workspace=packages\" -c auto -n eslint,stylelint,prettier,tsc",
     "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky"
   },
@@ -21,7 +21,8 @@
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "workspaces": [
     "packages/css",
-    "packages/react"
+    "packages/react",
+    "samples/vite"
   ],
   "devDependencies": {
     "@commitlint/cli": "^18.6.1",
