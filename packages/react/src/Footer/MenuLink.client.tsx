@@ -1,4 +1,7 @@
 import classNames from "classnames";
+import { useIsSmallScreen } from "../utilities/hooks/useIsSmallScreen";
+
+const BREAKPOINT_SMALL = 1024;
 
 export type Link = {
   link: string;
@@ -12,6 +15,8 @@ type MenuLinkProps = {
 };
 
 export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
+  const isSmallScreen = useIsSmallScreen(BREAKPOINT_SMALL);
+
   if (links.length === 0) {
     return null;
   }
@@ -29,7 +34,7 @@ export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
           href={menuItem.link}
           target={menuItem.openInCurrentTab ? "_top" : "_blank"}
           rel="noreferrer"
-          {...(!isAboutOpen && { tabIndex: -1 })}
+          tabIndex={isSmallScreen && !isAboutOpen ? -1 : undefined}
         >
           {menuItem.text}
         </a>
