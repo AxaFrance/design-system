@@ -13,16 +13,6 @@ export {
 } from "./Form/Checkbox";
 export { Choice, ChoiceInput } from "./Form/Choice";
 export {
-  ArticleRestitution,
-  HeaderRestitution,
-  Restitution,
-  RestitutionList,
-  SectionRestitution,
-  SectionRestitutionColumn,
-  SectionRestitutionRow,
-  SectionRestitutionTitle,
-} from "./Restitution";
-export {
   Field,
   FieldError,
   FieldForm,
@@ -33,6 +23,7 @@ export {
   MessageTypes,
 } from "./Form/core";
 export { Date, DateInput } from "./Form/Date";
+export { File, FileInput, FileTable } from "./Form/File";
 export { MultiSelect, MultiSelectInput } from "./Form/MultiSelect";
 export { Number, NumberInput } from "./Form/Number";
 export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio";
@@ -40,7 +31,6 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
-export { File, FileInput, FileTable } from "./Form/File";
 export { Footer } from "./Layout/Footer";
 export {
   Header,
@@ -63,6 +53,16 @@ export {
   ModalHeader,
   ModalHeaderBase,
 } from "./ModalAgent";
+export {
+  ArticleRestitution,
+  HeaderRestitution,
+  Restitution,
+  RestitutionList,
+  SectionRestitution,
+  SectionRestitutionColumn,
+  SectionRestitutionRow,
+  SectionRestitutionTitle,
+} from "./Restitution";
 export { Step, StepBase, Steps } from "./Steps";
 export { Summary } from "./Summary";
 export { Svg } from "./Svg";
@@ -70,4 +70,5 @@ export { Tabs } from "./Tabs/Tabs";
 export { Title } from "./Title/Title";
 export { getComponentClassName } from "./utilities";
 
+export * from "./Accordion";
 export * from "./Table";
