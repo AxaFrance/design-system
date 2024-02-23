@@ -34,7 +34,7 @@
     "@typescript-eslint/parser": "^7.0.2",
     "browserslist": "^4.23.0",
     "copyfiles": "^2.4.1",
-    "cssnano": "^6.0.2",
+    "cssnano": "^6.0.4",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
