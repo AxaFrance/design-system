@@ -3,6 +3,7 @@ import "@fontsource/source-sans-pro";
 
 export { Action } from "./Action/Action";
 export { Alert } from "./Alert/Alert.agent";
+export { Badge } from "./Badge/Badge";
 export { ButtonAgent as Button } from "./Button/Button.agent";
 export {
   Checkbox,
