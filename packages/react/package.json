@@ -82,7 +82,8 @@
   "dependencies": {
     "@axa-fr/design-system-css": "*",
     "@fontsource/source-sans-pro": "^5.0.8",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "rc-slider": "^10.5.0"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
