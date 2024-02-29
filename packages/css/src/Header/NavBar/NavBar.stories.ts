@@ -3,7 +3,7 @@ import "../Drawer/Drawer.scss";
 import "./NavBar.scss";
 
 const meta: Meta = {
-  title: "Components/Header/Navigation",
+  title: "Agent/Components/Header/Navigation",
 };
 
 export default meta;
@@ -12,15 +12,16 @@ export const Default: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-    <div class="af-nav-container">
-        <button aria-controls='${args.id}' aria-haspopup="true" type="button" class="mask fade show" id="open-${args.toggleMenuId}" aria-label="Open Menu"></button>
+    <div class="${args.className}${args.classModifier !== "" ? ` ${args.className}--${args.classModifier}` : ""}">
+        <button aria-controls='${args.id}' aria-haspopup="true" type="button" class="mask fade show" id="open-${args.toggleMenuId}" aria-label="Open Menu" onclick="${args.onClick}">
+        </button>
         <nav class="af-nav af-drawer left ${args.isVisible ? "show" : ""}" role="navigation" aria-label="Menu principal">
           <div class="container af-nav__wrapper">
               <div class="af-nav__aside-header">
                 <h4 class="af-nav__aside-title">Menu</h4>
                 <button aria-controls=${args.id}' aria-haspopup="true" type="button" class="af-nav__aside-close" id="close-${args.toggleMenuId}" aria-label="Close Menu">×</button>
               </div>
-              <ul class="af-nav__list " role="menubar" id='${args.id}'>
+              <ul class="af-nav__list " role="menubar" id='${args.id}' onkeydown="${args.handleKeys}" onfocus="${args.onFocus}" onblur="${args.onBlur}">
                 ${args.children}
               </ul>
           </div>
@@ -50,9 +51,15 @@ export const Default: StoryObj = {
         </ul>
       </li>
     `,
+    classModifier: "",
+    className: "af-nav",
+    handleKeys: () => {},
     id: "mainmenu",
     isMenuFocused: false,
     isVisible: true,
+    onBlur: () => {},
+    onClick: () => {},
+    onFocus: () => {},
     toggleMenuId: "togglemenu",
   },
   argTypes: {

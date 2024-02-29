@@ -2,8 +2,6 @@ import { AllHTMLAttributes, RefObject } from "react";
 import "@axa-fr/design-system-css/dist/Header/NavBar/NavBar.scss";
 import "@axa-fr/design-system-css/dist/Header/Drawer/Drawer.scss";
 
-const defaultClassName = "af-nav__link";
-
 type Props = AllHTMLAttributes<HTMLAnchorElement> & {
   handleKeys: () => void;
   isMenuOpen?: boolean;
@@ -11,7 +9,7 @@ type Props = AllHTMLAttributes<HTMLAnchorElement> & {
 };
 
 const NavBarItemLink = ({
-  className = defaultClassName,
+  className = "af-nav__link",
   label,
   href = "#",
   tabIndex = -1,

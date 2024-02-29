@@ -5,6 +5,8 @@ import * as MenuTitleWrapperStories from "./MenuTitleWrapper.stories";
 
 # Menu Title Wrapper
 
+## Stories
+
 <Canvas of={MenuTitleWrapperStories.Default}></Canvas>
 
 ## Import
@@ -18,14 +20,10 @@ import { NavBar, NavBarItem, Title } from "@axa-fr/design-system-react/agent";
 ```tsx
 const menuTitleWrapper = () => (
   <ul style={{ listStyle: "none" }}>
-    <NavBar isVisible={true} onClick={() => console.log("your function")}>
+    <NavBar isVisible={true} onClick={() => {}}>
       <NavBarItem
         actionElt={
-          <a
-            className="af-nav__link"
-            href="https://axa.fr"
-            onClick={(e) => console.log(e)}
-          >
+          <a className="af-nav__link" href="https://axa.fr" onClick={() => {}}>
             Home
           </a>
         }
@@ -33,11 +31,7 @@ const menuTitleWrapper = () => (
 
       <NavBarItem
         actionElt={
-          <a
-            className="af-nav__link"
-            href="https://axa.fr"
-            onClick={(e) => console.log(e)}
-          >
+          <a className="af-nav__link" href="https://axa.fr" onClick={() => {}}>
             Form
           </a>
         }
@@ -45,11 +39,7 @@ const menuTitleWrapper = () => (
 
       <NavBarItem
         actionElt={
-          <a
-            className="af-nav__link"
-            href="https://axa.fr"
-            onClick={(e) => console.log(e)}
-          >
+          <a className="af-nav__link" href="https://axa.fr" onClick={() => {}}>
             Fielupload
           </a>
         }
@@ -68,7 +58,7 @@ const menuTitleWrapper = () => (
             <a
               className="af-nav__link"
               href="https://axa.fr"
-              onClick={(e) => console.log(e)}
+              onClick={() => {}}
             >
               Sous lien 1
             </a>
@@ -80,7 +70,7 @@ const menuTitleWrapper = () => (
             <a
               className="af-nav__link"
               href="https://axa.fr"
-              onClick={(e) => console.log(e)}
+              onClick={() => {}}
             >
               Sous lien 2
             </a>
@@ -93,7 +83,7 @@ const menuTitleWrapper = () => (
             <a
               className="af-nav__link"
               href="https://axa.fr"
-              onClick={(e) => console.log(e)}
+              onClick={() => {}}
             >
               Sous lien 3
             </a>
@@ -103,11 +93,7 @@ const menuTitleWrapper = () => (
 
       <NavBarItem
         actionElt={
-          <a
-            className="af-nav__link"
-            href="https://axa.fr"
-            onClick={(e) => console.log(e)}
-          >
+          <a className="af-nav__link" href="https://axa.fr" onClick={() => {}}>
             Accordions
           </a>
         }
@@ -115,11 +101,7 @@ const menuTitleWrapper = () => (
 
       <NavBarItem
         actionElt={
-          <a
-            className="af-nav__link"
-            href="https://axa.fr"
-            onClick={(e) => console.log(e)}
-          >
+          <a className="af-nav__link" href="https://axa.fr" onClick={() => {}}>
             Alert
           </a>
         }
@@ -127,11 +109,7 @@ const menuTitleWrapper = () => (
 
       <NavBarItem
         actionElt={
-          <a
-            className="af-nav__link"
-            href="https://axa.fr"
-            onClick={(e) => console.log(e)}
-          >
+          <a className="af-nav__link" href="https://axa.fr" onClick={() => {}}>
             Validation
           </a>
         }
@@ -150,7 +128,7 @@ const menuTitleWrapper = () => (
             <a
               className="af-nav__link"
               href="https://axa.fr"
-              onClick={(e) => console.log(e)}
+              onClick={() => {}}
             >
               Sous lien 1
             </a>
@@ -162,7 +140,7 @@ const menuTitleWrapper = () => (
             <a
               className="af-nav__link"
               href="https://axa.fr"
-              onClick={(e) => console.log(e)}
+              onClick={() => {}}
             >
               Sous lien 2
             </a>
@@ -175,7 +153,7 @@ const menuTitleWrapper = () => (
             <a
               className="af-nav__link"
               href="https://axa.fr"
-              onClick={(e) => console.log(e)}
+              onClick={() => {}}
             >
               Sous lien 3
             </a>
@@ -186,7 +164,7 @@ const menuTitleWrapper = () => (
     <Title
       title="Toolkit Axa"
       subtitle="Info complémentaire"
-      toggleMenu={() => console.log("your function")}
+      toggleMenu={() => {}}
     />
   </ul>
 );

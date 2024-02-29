@@ -3,8 +3,13 @@ import "./User.scss";
 
 const meta: Meta = {
   args: {
+    children: "",
+    className: "af-info-user",
+    classModifier: "",
     name: "Pierre Martin",
+    onClick: () => {},
     profile: "profile",
+    title: "Voir mon profil",
   },
   argTypes: {
     classModifier: {
@@ -38,16 +43,10 @@ const meta: Meta = {
       },
     },
     onClick: {
-      action: "clicked",
+      action: "onClick",
       control: "function",
       table: {
         type: { summary: "function" },
-      },
-    },
-    path: {
-      control: "text",
-      table: {
-        type: { summary: "text" },
       },
     },
     profile: {
@@ -60,28 +59,41 @@ const meta: Meta = {
       control: "text",
       table: {
         type: { summary: "text" },
-        defaultValue: { summary: "Voir mon profil" },
       },
     },
   },
   render: (args: Partial<Args>) => {
     const container = document.createElement("div");
     container.innerHTML = `
-        <div class="af-info-user">
-            <a class="af-info-user__link" ${args.href ? `href=${args.href}` : ""} title="Voir mon profil">
-                <span class="af-info-user__name">
+        <div class="${args.className}${args.classModifier !== "" ? ` ${args.className}--${args.classModifier}` : ""}">
+            ${
+              args.href
+                ? `
+                <a class="${args.className}__link" href=${args.href} title="${args.title}" onclick="${args.onClick}" >
+                    <span class="${args.className}__name">
+                        ${args.name}
+                    </span>
+                    <span class="${args.className}__profile">
+                        ${args.profile}
+                    </span>
+                </a>
+              `
+                : `
+                <span class="${args.className}__name">
                     ${args.name}
                 </span>
-                <span class="af-info-user__profile">
+                <span class="${args.className}__profile">
                     ${args.profile}
                 </span>
-            </a>
+              `
+            }
+            ${args.children}
         </div>
     `;
 
     return container;
   },
-  title: "Components/Header/User",
+  title: "Agent/Components/Header/User",
 };
 
 export default meta;

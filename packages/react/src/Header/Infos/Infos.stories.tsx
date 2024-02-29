@@ -1,18 +1,15 @@
-import { Args, Meta, StoryObj } from "@storybook/react";
-import { ComponentPropsWithoutRef } from "react";
+import { Meta, StoryObj } from "@storybook/react";
+
 import { Infos } from "./Infos";
 
 const meta: Meta<typeof Infos> = {
   component: Infos,
-  title: "Components/Header/Infos",
+  title: "Agent/Components/Header/Infos",
 };
 
 export default meta;
 
-export const Default: StoryObj<ComponentPropsWithoutRef<typeof Infos>> = {
-  render: ({ infos, ...args }: Partial<Args>) => (
-    <Infos infos={infos} {...args} />
-  ),
+export const Default: StoryObj<typeof Infos> = {
   args: {
     classModifier: "",
     className: "",

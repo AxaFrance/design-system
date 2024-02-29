@@ -3,23 +3,23 @@
 .af-contrat {
   position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0.4rem 0.3rem 0.4rem 3rem;
   border: 1px solid common.$gray-lighter;
   border-radius: 25px;
-  padding: 0.4rem 0.3rem 0.4rem 3rem;
+  order: 3;
+  align-items: center;
+  justify-content: space-between;
   font-size: 1em;
   color: common.$color-text-contract;
-  order: 3;
 
   .glyphicon-info-sign {
     position: absolute;
-    color: common.$color-gray-contract;
-    font-size: 1.25rem;
     top: 50%;
     left: 0.7rem;
-    transform: translate(0, -50%);
     width: 21px;
+    font-size: 1.25rem;
+    color: common.$color-gray-contract;
+    transform: translate(0, -50%);
   }
 
   &__list {
@@ -39,7 +39,7 @@
 
 @include common.media-breakpoint-up(md) {
   .af-contrat {
-    order: 2;
     margin: 0;
+    order: 2;
   }
 }

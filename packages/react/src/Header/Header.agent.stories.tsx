@@ -1,12 +1,9 @@
-import { Args, Meta, StoryObj } from "@storybook/react";
-import { ComponentPropsWithRef } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./Header.agent";
 import { Infos } from "./Infos/Infos";
 import { Name } from "./Name/Name";
 
 const meta: Meta<typeof Header> = {
-  component: Header,
-  title: "Components/Header",
   argTypes: {
     children: {
       control: "object",
@@ -27,39 +24,38 @@ const meta: Meta<typeof Header> = {
       },
     },
   },
-  render: ({ children, ...args }: Partial<Args>) => (
-    <Header {...args}>{children}</Header>
-  ),
+  component: Header,
+  title: "Agent/Components/Header",
 };
 
 export default meta;
 
-export const HeaderWithName: StoryObj<ComponentPropsWithRef<typeof Header>> = {
+export const HeaderWithName: StoryObj<typeof Header> = {
   name: "Header With Name",
   args: {
     children: (
       <Name
-        title="Nom de l'application"
-        subtitle="Baseline"
-        img="../../storybook-static/assets/react.svg"
         alt="Logo React"
+        img="../../storybook-static/assets/react.svg"
+        onClick={() => {}}
+        subtitle="Baseline"
+        title="Nom de l'application"
       />
     ),
   },
 };
 
-export const HeaderWithNameAndInfos: StoryObj<
-  ComponentPropsWithRef<typeof Header>
-> = {
+export const HeaderWithNameAndInfos: StoryObj<typeof Header> = {
   name: "Header With Name And Infos",
   args: {
     children: (
       <>
         <Name
-          title="Nom de l'application"
-          subtitle="Baseline"
-          img="../../storybook-static/assets/react.svg"
           alt="Logo React"
+          img="../../storybook-static/assets/react.svg"
+          onClick={() => {}}
+          subtitle="Baseline"
+          title="Nom de l'application"
         />
         <Infos
           infos={[

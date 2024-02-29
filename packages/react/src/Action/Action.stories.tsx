@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { Action } from "./Action";
 
 const meta: Meta<typeof Action> = {
@@ -23,9 +24,11 @@ export const Button: StoryObj<typeof Action> = {
   name: "Action Button",
   render: ({ onClick, ...args }) => <Action onClick={onClick} {...args} />,
   args: {
-    icon: "floppy-disk",
-    title: "Enregistrer",
     id: "id",
+    icon: "floppy-disk",
+    onClick: () => action("clicked"),
+    role: "button",
+    title: "Enregistrer",
   },
   argTypes: {
     onClick: { action: "clicked" },

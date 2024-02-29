@@ -1,18 +1,24 @@
 import { Fragment, ReactNode } from "react";
 import { createId } from "@paralleldrive/cuid2";
-import { getComponentClassName } from "../../agent";
 import "@axa-fr/design-system-css/dist/Header/Infos/Infos.scss";
+
+import { getComponentClassName } from "../../agent";
 
 const defaultClassName = "af-contrat";
 
-type TInfo = { id?: string; word: ReactNode; definition: ReactNode };
-type InfosProps = {
-  infos: TInfo[];
-  className?: string;
-  classModifier?: string;
+type TInfo = {
+  definition: ReactNode;
+  id?: string;
+  word: ReactNode;
 };
 
-const Infos = ({ infos, className, classModifier }: InfosProps) => {
+type InfosProps = {
+  classModifier?: string;
+  className?: string;
+  infos: TInfo[];
+};
+
+const Infos = ({ classModifier, className, infos }: InfosProps) => {
   const componentClassName = getComponentClassName(
     className,
     classModifier,

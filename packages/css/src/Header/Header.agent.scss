@@ -1,12 +1,13 @@
 @use "../common/common.agent.scss" as common;
+@use "sass:list";
 
 .af-header {
   &__content {
-    padding-bottom: 1.75rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding-bottom: 1.75rem;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 

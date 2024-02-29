@@ -6,30 +6,30 @@ import "@axa-fr/design-system-css/dist/Header/User/User.scss";
 const defaultClassName = "af-info-user";
 
 type Props = {
-  name: string;
-  path?: string;
-  profile?: string;
-  href?: string;
-  title?: string;
   children?: ReactNode;
-  className?: string;
   classModifier?: string;
+  className?: string;
+  href?: string;
+  name: string;
   onClick?: (action: {
     path?: string;
     event: MouseEvent<HTMLAnchorElement>;
   }) => void;
+  path?: string;
+  profile?: string;
+  title?: string;
 };
 
 const User = ({
-  path,
-  name,
-  profile,
-  href,
-  title = "Voir mon profil",
   children,
-  className,
   classModifier,
+  className,
+  href,
+  name,
+  path,
+  profile,
   onClick,
+  title = "Voir mon profil",
 }: Props) => {
   const componentClassName = getComponentClassName(
     className,
@@ -42,7 +42,7 @@ const User = ({
       {href ? (
         <a
           aria-label="user info link"
-          className="af-info-user__link"
+          className={`${defaultClassName}__link`}
           href={href}
           title={title}
           onClick={(event) => onClick && onClick({ path, event })}

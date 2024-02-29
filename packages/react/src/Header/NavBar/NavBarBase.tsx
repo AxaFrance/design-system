@@ -1,41 +1,40 @@
 import { FocusEvent, MouseEvent, ReactNode } from "react";
-import { getComponentClassName } from "../../agent";
 import "@axa-fr/design-system-css/dist/Header/NavBar/NavBar.scss";
 import "@axa-fr/design-system-css/dist/Header/Drawer/Drawer.scss";
 
-const defaultClassName = "af-nav-container";
+import { getComponentClassName } from "../../agent";
 
 type Props = {
-  isVisible: boolean;
-  id?: string;
-  toggleMenuId?: string;
-  isMenuFocused?: boolean;
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-  className?: string;
-  classModifier?: string;
-  handleKeys: (key: string) => void;
-  onFocus: (action: { e: FocusEvent<HTMLUListElement> }) => void;
-  onBlur: (action: { e: FocusEvent<HTMLUListElement> }) => void;
   children?: ReactNode;
+  classModifier?: string;
+  className?: string;
+  handleKeys: (key: string) => void;
+  id?: string;
+  isMenuFocused?: boolean;
+  isVisible: boolean;
+  onBlur: (action: { e: FocusEvent<HTMLUListElement> }) => void;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  onFocus: (action: { e: FocusEvent<HTMLUListElement> }) => void;
+  toggleMenuId?: string;
 };
 
 const NavBarBase = ({
-  isVisible = true,
-  onClick,
-  id = "mainmenu",
-  toggleMenuId = "togglemenu",
-  isMenuFocused,
+  children,
   className,
   classModifier,
   handleKeys,
-  onFocus,
+  id = "mainmenu",
+  isMenuFocused,
+  isVisible = true,
   onBlur,
-  children,
+  onClick,
+  onFocus,
+  toggleMenuId = "togglemenu",
 }: Props) => {
   const componentClassName = getComponentClassName(
     className,
     classModifier,
-    defaultClassName,
+    "af-nav",
   );
 
   return (

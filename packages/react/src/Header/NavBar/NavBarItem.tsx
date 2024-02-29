@@ -7,12 +7,11 @@ import {
   isValidElement,
   useState,
 } from "react";
-import { getPosition } from "./NavBar.helpers";
-import { NavBarItemBase } from "./NavBarItemBase";
 import "@axa-fr/design-system-css/dist/Header/NavBar/NavBar.scss";
 import "@axa-fr/design-system-css/dist/Header/Drawer/Drawer.scss";
 
-const defaultClassName = "af-nav__item";
+import { getPosition } from "./NavBar.helpers";
+import { NavBarItemBase } from "./NavBarItemBase";
 
 type Props = Omit<
   ComponentProps<typeof NavBarItemBase>,
@@ -28,7 +27,7 @@ const NavBarItem = ({
   ariaLabel = "",
   tabIndex = -1,
   role = "menuitem",
-  className = defaultClassName,
+  className = "af-nav__item",
   ...otherProps
 }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -5,18 +5,20 @@ import * as HeaderStories from "./Header.agent.stories";
 
 # Header
 
-## Header With Name
+## Stories
 
 <Canvas of={HeaderStories.HeaderWithName} />
 
-### Import
+<Canvas of={HeaderStories.HeaderWithNameAndInfos} />
+
+## Import
 
 ```tsx
 import { Header, Name } from "@axa-fr/design-system-react/agent";
 import logo from "../../storybook-static/assets/react.svg";
 ```
 
-### Use
+## Use
 
 ```tsx
 const HeaderWithNameComponent = () => (
@@ -31,41 +33,6 @@ const HeaderWithNameComponent = () => (
 );
 
 export default HeaderWithNameComponent;
-```
-
-## Header With Name and Infos
-
-<Canvas of={HeaderStories.HeaderWithNameAndInfos} />
-
-### Import
-
-```tsx
-import { Header, Name, Infos } from "@axa-fr/design-system-react/agent";
-import logo from "../../storybook-static/assets/react.svg";
-```
-
-### Use
-
-```tsx
-const HeaderWithNameAndInfosComponent = () => (
-  <Header>
-    <Name
-      title="Nom de l'application"
-      subtitle="Baseline"
-      img="../../storybook-static/react.svg"
-      alt="Logo React"
-    />
-    <Infos
-      infos={[
-        { word: "Customer :", definition: "0123456789 - NOM" },
-        { word: "Wallet:", definition: "000123456789" },
-        { word: "Status :", definition: "New business" },
-      ]}
-    />
-  </Header>
-);
-
-export default HeaderWithNameAndInfosComponent;
 ```
 
 ## Controls

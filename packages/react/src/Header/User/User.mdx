@@ -5,40 +5,25 @@ import * as UserStories from "./User.stories";
 
 # User
 
-## User With Link
+## Stories
 
 <Canvas of={UserStories.UserWithLink} />
 
-### Import
+<Canvas of={UserStories.UserWithoutLink} />
+
+## Import
 
 ```tsx
 import { User } from "@axa-fr/design-system-react/agent";
 ```
 
-### Use
+## Use
 
 ```tsx
 const UserDefault = () => (
   <User name="Pierre Martin" profile="profile" href="/profile" />
 );
 export default UserDefault;
-```
-
-## User Without Link
-
-<Canvas of={UserStories.UserWithoutLink} />
-
-### Import
-
-```tsx
-import { User } from "@axa-fr/design-system-react/agent";
-```
-
-### Use
-
-```tsx
-const NoLink = () => <User name="Pierre Martin" profile="profile" />;
-export default NoLink;
 ```
 
 ## Controls

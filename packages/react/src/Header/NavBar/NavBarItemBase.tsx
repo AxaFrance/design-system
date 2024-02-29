@@ -5,12 +5,11 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { getComponentClassName } from "../../agent";
-import { handleLinkFocus } from "./NavBarItem.helpers";
 import "@axa-fr/design-system-css/dist/Header/NavBar/NavBar.scss";
 import "@axa-fr/design-system-css/dist/Header/Drawer/Drawer.scss";
 
-const defaultClassName = "af-nav__item";
+import { getComponentClassName } from "../../agent";
+import { handleLinkFocus } from "./NavBarItem.helpers";
 
 type Props = HTMLAttributes<HTMLLIElement> & {
   actionElt: ReactElement;
@@ -34,7 +33,7 @@ export const NavBarItemBase = ({
   const componentClassName = getComponentClassName(
     className,
     classModifier,
-    defaultClassName,
+    "af-nav__item",
   );
   const ref = useRef(null);
 

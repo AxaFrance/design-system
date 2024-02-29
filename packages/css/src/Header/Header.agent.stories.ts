@@ -5,7 +5,10 @@ import "./Name/Name.scss";
 import "./Infos/Infos.scss";
 
 const meta: Meta = {
-  title: "Components/Header",
+  args: {
+    className: "af-header",
+    classModifier: "",
+  },
   argTypes: {
     children: {
       control: "object",
@@ -26,6 +29,7 @@ const meta: Meta = {
       },
     },
   },
+  title: "Agent/Components/Header",
 };
 
 export default meta;
@@ -34,9 +38,9 @@ export const HeaderWithName: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-        <div class="af-header">
-            <div class="container af-header__wrapper">
-                <header class="af-header__content" role="banner">
+        <div class="${args.className}${args.classModifier !== "" ? ` ${args.className}--${args.classModifier}` : ""}">
+            <div class="container ${args.className}__wrapper">
+                <header class="${args.className}__content" role="banner">
                   ${args.children}
                 </header>
             </div>
@@ -65,9 +69,9 @@ export const HeaderWithNameAndInfos: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-        <div class="af-header">
-            <div class="container af-header__wrapper">
-                <header class="af-header__content" role="banner">
+        <div class="${args.className}${args.classModifier !== "" ? ` ${args.className}--${args.classModifier}` : ""}">
+            <div class="container ${args.className}__wrapper">
+                <header class="${args.className}__content" role="banner">
                     ${args.children}
                 </header>
             </div>
