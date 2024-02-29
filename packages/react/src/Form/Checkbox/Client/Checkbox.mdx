@@ -1,0 +1,46 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as CheckboxItemStories from "./CheckboxItem.stories";
+import * as CheckboxStories from "./Checkbox.stories";
+import * as CheckboxInputStories from "./CheckboxInput.stories";
+
+<Meta of={CheckboxInputStories} />
+
+# Checkbox components
+
+## CheckboxItem
+
+This is the smallest component for the Checkbox, it has at least a label. The icon and description are optional
+
+<Canvas of={CheckboxItemStories.CheckboxItemStory} />
+<Controls of={CheckboxItemStories.CheckboxItemStory} />
+
+### With only a label
+
+<Canvas of={CheckboxItemStories.WithOnlyLabel} />
+
+### With an icon
+
+<Canvas of={CheckboxItemStories.WithIcon} />
+
+### With a description
+
+<Canvas of={CheckboxItemStories.WithDescription} />
+
+## Checkbox
+
+This is the a multi-options component. You can use it to create a list of options without the main label.
+
+<Canvas of={CheckboxStories.CheckboxStory} />
+<Controls of={CheckboxStories.CheckboxStory} />
+
+## CheckboxInput
+
+This is the complete input component. It contains the main label and the list of options.
+
+<Canvas of={CheckboxInputStories.CheckboxInputStory} />
+<Controls of={CheckboxInputStories.CheckboxInputStory} />
+
+## Modes
+
+The Checkbox component has 3 modes: `default`, `classic` and `inline`.
+You can see them in action in the stories above.

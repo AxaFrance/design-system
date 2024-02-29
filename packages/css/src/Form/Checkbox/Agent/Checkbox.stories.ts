@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "../../common/icons.scss";
-import "./Checkbox.agent.scss";
+import "../../../common/icons.scss";
+import "./Checkbox.scss";
 
 const meta: Meta = {
   title: "Agent/Components/Form/Input/Checkbox",
