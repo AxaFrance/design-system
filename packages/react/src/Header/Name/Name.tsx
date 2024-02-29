@@ -1,26 +1,27 @@
 import { MouseEvent } from "react";
-import { getComponentClassName } from "../../agent";
 import "@axa-fr/design-system-css/dist/Header/Name/Name.scss";
 import "@axa-fr/design-system-css/dist/Header/Logo/Logo.scss";
 
+import { getComponentClassName } from "../../agent";
+
 type Props = {
-  title: string;
-  subtitle?: string;
-  img?: string;
   alt?: string;
   className?: string;
   classModifier?: string;
+  img?: string;
   onClick?: (action: { event: MouseEvent<HTMLAnchorElement> }) => void;
+  subtitle?: string;
+  title: string;
 };
 
 const Name = ({
-  title,
-  subtitle,
-  img,
   alt = "logo",
-  className,
   classModifier,
+  className,
+  img,
   onClick,
+  subtitle,
+  title,
 }: Props) => {
   const componentClassName = getComponentClassName(
     className,

@@ -5,25 +5,26 @@ import {
   Children,
   cloneElement,
 } from "react";
+
 import { getPosition } from "./NavBar.helpers";
 import { NavBarBase } from "./NavBarBase";
 
 type Props = {
-  id?: string;
-  toggleMenuId?: string;
-  positionInit?: number;
-  className?: string;
-  isVisible: boolean;
   children: ReactNode;
+  className?: string;
+  id?: string;
+  isVisible: boolean;
   onClick: () => void;
+  positionInit?: number;
+  toggleMenuId?: string;
 };
 
-const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
+const NavBar = ({ children, positionInit = 0, ...otherProps }: Props) => {
   const [isMenuFocused, setIsMenuFocused] = useState(false);
   const [position, setPosition] = useState(positionInit);
   const validChildren =
     Children.map(children, (child) => isValidElement(child) && child)?.filter(
-      Boolean,
+      (c) => !!c,
     ) ?? [];
 
   const handleKeys = (key: string) => {
@@ -31,7 +32,7 @@ const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
       setIsMenuFocused(false);
     }
     if (key === "ArrowRight" || key === "ArrowLeft") {
-      const newPosition = getPosition(validChildren?.length, position, key);
+      const newPosition = getPosition(validChildren.length, position, key);
       setPosition(newPosition);
     }
   };

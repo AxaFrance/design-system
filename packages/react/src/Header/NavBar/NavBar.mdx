@@ -1,26 +1,27 @@
 import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+
 import * as NavBarStories from "./NavBar.stories";
 
 <Meta of={NavBarStories} />
 
 # Navigation Bar
 
-## Default Navigation Bar
+## Stories
 
 <Canvas of={NavBarStories.Default}></Canvas>
 
-### Import
+## Import
 
-```tsx 
+```tsx
 import { NavBar, NavBarItem } from "@axa-fr/design-system-react/agent";
 ```
 
-### Use
+## Use
 
-```tsx 
+```tsx
 const NavBarBase = () => (
   <ul style={{ listStyle: 'none' }}>
-    <NavBar isVisible={true} positionInit={3} onClick={() => console.log('your function')}>
+    <NavBar isVisible={true} positionInit={3} onClick={() => {}}>
       <NavBarItem
         actionElt={
           <a

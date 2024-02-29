@@ -6,11 +6,10 @@ import { Action } from "../../Action/Action";
 import "@axa-fr/design-system-css/dist/Header/Title/Title.scss";
 
 const meta: Meta<typeof Title> = {
-  component: Title,
-  title: "Components/Header/Title",
   args: {
-    title: "Toolkit Axa",
+    isSticky: true,
     subtitle: "Info complémentaire",
+    title: "Toolkit Axa",
   },
   argTypes: {
     classModifier: {
@@ -35,7 +34,6 @@ const meta: Meta<typeof Title> = {
       control: "boolean",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: true },
       },
     },
     subtitle: {
@@ -51,13 +49,15 @@ const meta: Meta<typeof Title> = {
       },
     },
     toggleMenu: {
-      action: "toggled",
+      action: "onToggle",
       control: "function",
       table: {
         type: { summary: "function" },
       },
     },
   },
+  component: Title,
+  title: "Agent/Components/Header/Title",
 };
 
 export default meta;
@@ -75,45 +75,33 @@ const actions = [
   },
 ];
 
-type TitleProps = ComponentProps<typeof Title>;
-
-export const DefaultTitle: StoryObj<TitleProps> = {
+export const DefaultTitle: StoryObj<typeof Title> = {
   name: "Default Title",
-  render: (args) => <Title {...args} />,
   args: {
-    title: "Toolkit Axa",
-    subtitle: "Info complémentaire",
     isSticky: true,
-  },
-  argTypes: {
-    toggleMenu: { action: "onToggle" },
+    toggleMenu: () => action("toggled"),
   },
 };
 
-export const ComplexTitle: StoryObj<TitleProps> = {
+export const ComplexTitle: StoryObj<typeof Title> = {
   name: "Complex Title",
-  render: ({ children, ...args }) => <Title {...args}>{children}</Title>,
   args: {
     children: (
       <div className="af-title-bar__actions">
         <a className="af-title-bar__link" href="#lien" title="lien titlebar">
           lien titlebar
         </a>
-        {actions.map(
-          ({ icon, href, title, id }: ComponentProps<typeof Action>) => (
-            <Action
-              key={id}
-              icon={icon}
-              href={href}
-              title={title}
-              onClick={() => action("click action")}
-            />
-          ),
-        )}
+        {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
+          <Action
+            key={id}
+            icon={icon}
+            title={title}
+            onClick={() => action("clicked")}
+          />
+        ))}
       </div>
     ),
     isSticky: true,
-    subtitle: "Info complémentaire",
-    title: "Toolkit Axa",
+    toggleMenu: () => action("toggled"),
   },
 };

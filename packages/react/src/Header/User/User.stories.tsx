@@ -1,13 +1,11 @@
-import { Args, Meta, StoryObj } from "@storybook/react";
-import { ComponentProps } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { User } from "./User";
 
 const meta: Meta<typeof User> = {
-  component: User,
-  title: "Components/Header/User",
   args: {
     name: "Pierre Martin",
     profile: "profile",
+    title: "Voir mon profil",
   },
   argTypes: {
     classModifier: {
@@ -41,7 +39,7 @@ const meta: Meta<typeof User> = {
       },
     },
     onClick: {
-      action: "clicked",
+      action: "onClick",
       control: "function",
       table: {
         type: { summary: "function" },
@@ -63,24 +61,22 @@ const meta: Meta<typeof User> = {
       control: "text",
       table: {
         type: { summary: "text" },
-        defaultValue: { summary: "Voir mon profil" },
       },
     },
   },
-  render: (args: Partial<Args>) => <User name={args.name} {...args} />,
+  component: User,
+  title: "Agent/Components/Header/User",
 };
 
 export default meta;
 
-type UserProps = ComponentProps<typeof User>;
-
-export const UserWithLink: StoryObj<UserProps> = {
+export const UserWithLink: StoryObj<typeof User> = {
   name: "User With Link",
   args: {
     href: "/#",
   },
 };
 
-export const UserWithoutLink: StoryObj<UserProps> = {
+export const UserWithoutLink: StoryObj<typeof User> = {
   name: "User Without link",
 };

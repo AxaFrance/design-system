@@ -1,20 +1,21 @@
 @use "../../common/common.agent.scss" as common;
+@use "sass:list";
 
-$mask-background: rgba(0, 0, 0, 0.5);
+$mask-background: rgba(0, 0, 0, 50%);
 
 .af-menu-open {
   overflow-y: hidden;
 }
 
 .mask {
-  display: none;
   position: fixed;
+  z-index: 17;
   top: 0;
   left: 0;
+  display: none;
   width: 100%;
-  background-color: $mask-background;
-  z-index: 17;
   height: 100%;
+  background-color: $mask-background;
 
   &.show {
     display: block;
@@ -22,26 +23,26 @@ $mask-background: rgba(0, 0, 0, 0.5);
 }
 
 .af-nav {
-  background: common.$gray-lighter;
   position: relative;
   z-index: 18;
   max-width: 320px;
+  background: common.$gray-lighter;
 
   &.af-drawer {
     position: fixed;
+    z-index: 1039;
     top: 0;
     bottom: 0;
-    z-index: 1039;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
     min-width: 320px;
+    overflow: auto;
     background: common.$white;
+    -webkit-overflow-scrolling: touch;
   }
 
   &__link {
+    display: block;
     padding: 1rem;
     text-align: left;
-    display: block;
 
     &:focus {
       box-shadow: 0 0 5px common.$color-axa;
@@ -53,30 +54,47 @@ $mask-background: rgba(0, 0, 0, 0.5);
     }
   }
 
+  &__list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    list-style: none;
+  }
+
+  &__list--children {
+    top: 100%;
+    min-width: 200px;
+    border-radius: 0 0 3px 3px;
+    font-size: 0.9em;
+  }
+
   &__item {
     position: relative;
     width: 100%;
 
     &--haschild {
-      >.af-nav__link {
+      > .af-nav__link {
         padding-right: 1.1rem;
       }
     }
 
     .glyphicon-arrow-xs-down {
       position: absolute;
-      right: 0.2rem;
       top: 50%;
-      transform: translate(0, -50%);
+      right: 0.2rem;
       display: none;
       width: 17px;
+      transform: translate(0, -50%);
     }
 
     &--active,
     &:hover {
-      >.af-nav__link {
-        background-color: common.$color-axa;
+      > .af-nav__link {
         color: white;
+        background-color: common.$color-axa;
       }
 
       .glyphicon-arrow-xs-down {
@@ -92,57 +110,40 @@ $mask-background: rgba(0, 0, 0, 0.5);
     }
   }
 
-  &__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
+  &__list--children.af-nav__link {
+    padding: 0.4rem 1.1rem 0.4rem 2rem;
+    font-weight: 400;
+    text-align: left;
+  }
 
-    &--children {
-      top: 100%;
-      min-width: 200px;
-      font-size: 0.9em;
-      border-radius: 0 0 3px 3px;
+  &__list--children.af-nav__item {
+    display: block;
 
+    &:hover {
       .af-nav__link {
-        text-align: left;
-        padding: 0.4rem 1.1rem 0.4rem 2rem;
-        font-weight: 400;
-      }
-
-      .af-nav__item {
-        display: block;
-
-        &:hover {
-          .af-nav__link {
-            background-color: common.$color-axa;
-            color: white;
-          }
-        }
+        color: white;
+        background-color: common.$color-axa;
       }
     }
   }
 
   &__aside-header {
-    border-bottom: 2px solid common.$gray-light;
     display: flex;
+    border-bottom: 2px solid common.$gray-light;
     align-items: center;
   }
 
   &__aside-title {
-    flex: 1;
-    padding: 10px 15px;
     margin: 0;
+    padding: 10px 15px;
+    flex: 1;
   }
 
   &__aside-close {
-    background: inherit;
     border: none;
     font-size: 3em;
     color: common.$gray-light;
+    background: inherit;
     cursor: pointer;
 
     &:hover {
@@ -173,11 +174,11 @@ $mask-background: rgba(0, 0, 0, 0.5);
     }
 
     &.af-drawer {
-      width: auto;
       position: relative;
-      background: none;
-      overflow: visible;
       z-index: 2;
+      width: auto;
+      overflow: visible;
+      background: none;
 
       &.left {
         transform: none;
@@ -193,9 +194,9 @@ $mask-background: rgba(0, 0, 0, 0.5);
 
       &--children {
         position: absolute;
+        display: none;
         background: white;
         box-shadow: 0 3px 5px gray;
-        display: none;
 
         .af-nav__link {
           padding-left: 1.1rem;
@@ -207,7 +208,7 @@ $mask-background: rgba(0, 0, 0, 0.5);
       width: inherit;
 
       &--haschild {
-        >.af-nav__link {
+        > .af-nav__link {
           padding-right: 2rem;
         }
       }

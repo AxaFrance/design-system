@@ -1,5 +1,6 @@
 @use "sass:color";
 @use "../common/common.agent.scss" as common;
+@use "sass:color";
 
 $active-sort-table-th: common.$color-table-sorting !default;
 

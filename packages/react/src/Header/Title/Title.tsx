@@ -1,29 +1,30 @@
 import { ReactNode } from "react";
+import "@axa-fr/design-system-css/dist/Header/Title/Title.scss";
+
 import { getComponentClassName } from "../../agent";
 import { ToggleButton } from "../ToggleButton/ToggleButton";
 import { Action } from "../../Action/Action";
-import "@axa-fr/design-system-css/dist/Header/Title/Title.scss";
 
 const defaultClassName = "af-title-bar";
 
 type Props = {
-  title: string;
-  subtitle?: string;
   children?: ReactNode;
-  toggleMenu?: () => void;
-  className?: string;
   classModifier?: string;
+  className?: string;
   isSticky?: boolean;
+  subtitle?: string;
+  title: string;
+  toggleMenu?: () => void;
 };
 
 const Title = ({
-  title,
-  subtitle,
   children,
-  toggleMenu,
-  className,
   classModifier,
+  className,
   isSticky = true,
+  subtitle,
+  title,
+  toggleMenu,
 }: Props) => {
   const classModifierSticky =
     classModifier !== undefined ? "sticky" : `${classModifier} sticky`.trim();

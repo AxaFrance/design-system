@@ -3,7 +3,7 @@ import "../Logo/Logo.scss";
 import "./Name.scss";
 
 const meta: Meta = {
-  title: "Components/Header/Name",
+  title: "Agent/Components/Header/Name",
 };
 
 export default meta;
@@ -12,8 +12,8 @@ export const Default: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-        <div class="af-header__name">
-            <a class="af-logo" href="/#">
+        <div class="${args.className}${args.classModifier !== "" ? `${args.className}--${args.classModifier}` : ""}">
+            <a class="af-logo" href="/#" onclick="${args.onClick}">
                 <img class="af-logo__brand" src=${args.img} alt=${args.alt} />
             </a>
             <h2 class="af-header__title">
@@ -29,9 +29,12 @@ export const Default: StoryObj = {
   },
   args: {
     alt: "Logo React",
+    classModifier: "",
+    className: "af-header__name",
     img: "../../storybook-static/assets/react.svg",
-    title: "Nom de l'application",
+    onClick: () => {},
     subtitle: "Baseline",
+    title: "Nom de l'application",
   },
   argTypes: {
     alt: {

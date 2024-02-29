@@ -2,12 +2,12 @@
 
 .af-drawer {
   position: absolute;
+  z-index: 1;
   right: 0;
   width: common.$drawer-width;
   height: 100%;
   margin: 0;
   transform: translateX(100%);
-  z-index: 1;
   transition: common.$drawer-transition;
 
   &.show {

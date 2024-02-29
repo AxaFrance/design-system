@@ -4,6 +4,7 @@ type Props = {
   children: ReactNode;
   idControl: string;
 };
+
 const ToggleButton = ({ children, idControl }: Props) =>
   isValidElement(children) &&
   cloneElement(children, {

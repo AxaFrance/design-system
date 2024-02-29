@@ -1,21 +1,19 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps } from "react";
 import { action } from "@storybook/addon-actions";
 import { Name } from "./Name";
 
 const meta: Meta<typeof Name> = {
   component: Name,
-  title: "Components/Header/Name",
+  title: "Agent/Components/Header/Name",
 };
 
 export default meta;
 
-export const Default: StoryObj<ComponentProps<typeof Name>> = {
-  render: (args) => <Name {...args} />,
+export const Default: StoryObj<typeof Name> = {
   args: {
     alt: "Logo React",
     img: "../../../storybook-static/assets/react.svg",
-    onClick: () => action("click action"),
+    onClick: () => action("clicked"),
     subtitle: "Baseline",
     title: "Nom de l'application",
   },
@@ -24,7 +22,6 @@ export const Default: StoryObj<ComponentProps<typeof Name>> = {
       control: "text",
       table: {
         type: { summary: "text" },
-        defaultValue: { summary: "logo" },
       },
     },
     classModifier: {
@@ -46,7 +43,7 @@ export const Default: StoryObj<ComponentProps<typeof Name>> = {
       },
     },
     onClick: {
-      action: "clicked",
+      action: "onClick",
       control: "function",
       table: {
         type: { summary: "function" },
