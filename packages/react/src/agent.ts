@@ -17,6 +17,7 @@ export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Title } from "./Title/Title.agent";
 export { Footer } from "./Layout/Footer";
+export { Alert } from "./Alert/Alert";
 
 export {
   Field,
