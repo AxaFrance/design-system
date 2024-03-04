@@ -6,10 +6,16 @@ $font-family-base: $font-family-sans-serif !default;
 
 $color-axa: #00008f !default;
 $color-white: #fff !default;
-$color-btn-light: #3333a5 !default;
+$color-red: #ff1721 !default;
+$color-gray: #5f5f5f !default;
 $color-blue-1: #000072 !default;
 $color-blue-2: #f8f8ff !default;
 $color-blue-3: #36f !default;
+$color-orange-dark: #c5901b !default;
+$color-scorpion: #333 !default;
+$color-mercury: #e5e5e5 !default;
+$color-silver: #ccc !default;
+$color-btn-light: #3333a5 !default;
 $color-btn-business: #c94e14 !default;
 $color-btn-business-dark: #a8391c !default;
 $color-btn-business-light: #df7e65 !default;
@@ -79,3 +85,9 @@ $screen-size-l: 1280px !default;
 $screen-size-xl: 1600px !default;
 $screen-size-oldl: 1200px !default;
 $screen-size-oldxl: 1540px !default;
+
+$error-custom-border: #d18e8e !default;
+$error-custom-bg: #ffbfbf !default;
+
+$color-alertDanger-colorBorder: #c8b282 !default;
+$color-alertDanger-bgColor: #f1d596 !default;

@@ -1,0 +1,23 @@
+#root {
+  width: 100%;
+  margin: auto;
+  padding: 0 5%;
+}
+.design-section {
+  padding: 0 0 3rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.design-section:first-of-type {
+  border-bottom: 2px dashed #ccc;
+  padding-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+article {
+  padding: 1rem 0;
+  margin: auto;
+}

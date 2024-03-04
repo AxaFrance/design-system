@@ -1,0 +1,31 @@
+@use "sass:color";
+@use "sass:list";
+@use "../common/common.agent.scss" as common;
+
+$types: (
+  success common.$color-malachite,
+  info common.$color-blue-alert,
+  danger common.$color-orange,
+  error common.$color-pink
+);
+
+.af-badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 16px;
+  line-height: 1.25rem;
+  color: common.$white;
+  @each $type in $types {
+    &--#{nth($type, 1)} {
+      background-color: list.nth($type, 2);
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.65;
+  }
+
+  & > * {
+    vertical-align: middle;
+  }
+}

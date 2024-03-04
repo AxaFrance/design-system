@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from "react";
-import type { Option } from "../core";
+import type { Option } from "../../core";
 import { RadioItem } from "./RadioItem";
 
 export enum RadioModes {
@@ -37,25 +37,21 @@ const Radio = ({
   ...otherProps
 }: Props) => {
   const classNameMode = getClassNameMode(mode);
-  return options.map((option: Option) => {
-    const isChecked = option.value === value;
-
-    return (
-      <RadioItem
-        {...otherProps}
-        key={option.value}
-        id={option.id}
-        value={option.value}
-        label={option.label}
-        isChecked={isChecked}
-        disabled={option.disabled || disabled}
-        className={classNameMode}
-        classModifier={classModifier}
-      >
-        {children}
-      </RadioItem>
-    );
-  });
+  return options.map((option: Option) => (
+    <RadioItem
+      {...otherProps}
+      key={option.value}
+      id={option.id}
+      value={option.value}
+      label={option.label}
+      isChecked={option.value === value}
+      disabled={option.disabled || disabled}
+      className={classNameMode}
+      classModifier={classModifier}
+    >
+      {children}
+    </RadioItem>
+  ));
 };
 
 Radio.displayName = "EnhancedInputRadio";
