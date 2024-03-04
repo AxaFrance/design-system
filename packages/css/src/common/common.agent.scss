@@ -360,7 +360,7 @@ $card-bg-disabled: $color-mercury !default;
 $error-custom-bg: $color-error-custom-1 !default;
 $error-custom-border: $color-error-custom-2 !default;
 // NavBar
-$mask-background: #00000080;
+$mask-background: rgba(0, 0, 0, 50%);
 // OTHERS
 $font-family-icon: icons !default;
 

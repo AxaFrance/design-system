@@ -1,0 +1,35 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+
+import * as HeaderStories from "./Header.agent.stories";
+
+<Meta of={HeaderStories} />
+
+# Header
+
+## Import
+
+```tsx
+import { Header } from "@axa-fr/design-system-react/agent";
+```
+
+## Use
+
+```tsx
+const HeaderComponent = (children: React.ReactNode) => (
+  <Header>{children}</Header>
+);
+
+export default HeaderWithNameComponent;
+```
+
+## Stories
+
+### Header With Name
+
+<Canvas of={HeaderStories.HeaderWithName} />
+<Controls of={HeaderStories.HeaderWithName} />
+
+### Header With Name And Infos
+
+<Canvas of={HeaderStories.HeaderWithNameAndInfos} />
+<Controls of={HeaderStories.HeaderWithNameAndInfos} />
