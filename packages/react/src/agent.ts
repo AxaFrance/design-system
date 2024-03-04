@@ -32,13 +32,6 @@ export { Text, TextInput } from "./Form/Text/Agent";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer/Agent";
 export {
-  NavBar,
-  NavBarBase,
-  NavBarItem,
-  NavBarItemBase,
-  NavBarItemLink,
-} from "./Layout/Header";
-export {
   BooleanModal,
   Modal,
   ModalBody,
@@ -49,3 +42,17 @@ export {
 export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Agent/Tabs.agent";
 export { Title } from "./Title/Title.agent";
+
+export {
+  HeaderAgent as Header,
+  Infos,
+  Name,
+  NavBar,
+  NavBarBase,
+  NavBarItem,
+  NavBarItemBase,
+  NavBarItemLink,
+  TitleHeader,
+  ToggleButton,
+  User,
+} from "./Layout/Header";

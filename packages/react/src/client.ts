@@ -10,7 +10,6 @@ export {
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox/Client";
 export { Radio, RadioSelect } from "./Form/Radio/Client";
 export { Text as TextInput } from "./Form/Text/Client";
-export { Header } from "./Header/Header.client";
 export { Footer } from "./Layout/Footer/Client/Footer";
 export { Link } from "./Link/Link.client";
 export { Modal } from "./ModalClient/Modal.client";
@@ -18,6 +17,7 @@ export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal.clie
 export { Pagination } from "./Pagination/Pagination.client";
 export { Stepper } from "./Stepper/Stepper.client";
 export { Svg } from "./Svg";
+export { HeaderClient as Header } from "./Layout/Header";
 export {
   TabsClient as Tabs,
   Direction as TabsDirection,
