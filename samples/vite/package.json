@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@swc/core": "^1.4.2",
-    "@types/react": "^18.2.55",
+    "@types/react": "^18.2.63",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^7.0.2",
