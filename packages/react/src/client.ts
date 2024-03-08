@@ -13,5 +13,9 @@ export {
   CheckboxModes,
 } from "./Form/Checkbox/Client";
 export { Footer } from "./Footer/Footer.client";
+export {
+  TabsClient as Tabs,
+  Direction as TabsDirection,
+} from "./Tabs/Tabs.client";
 export { Stepper } from "./Stepper/Stepper.client";
 export { Accordion } from "./Accordion/Client/Accordion";
