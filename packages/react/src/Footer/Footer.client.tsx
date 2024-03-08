@@ -11,6 +11,7 @@ type Props = {
   socialMedias?: SocialMedia[];
   copyright: string;
   expandLinkText: string;
+  id?: string;
 };
 
 export const Footer: FC<Props> = ({
@@ -18,13 +19,14 @@ export const Footer: FC<Props> = ({
   socialMedias = [],
   copyright,
   expandLinkText,
+  id,
 }) => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const handleClick = useCallback(() => {
     setIsAboutOpen((isOpen) => !isOpen);
   }, []);
   return (
-    <footer className="af-footer">
+    <footer id={id} className="af-footer">
       <div className="af-footer__footerTop">
         <nav className="af-footer__menuTop" aria-label={expandLinkText}>
           <button
