@@ -17,4 +17,5 @@ export {
   TabsClient as Tabs,
   Direction as TabsDirection,
 } from "./Tabs/Tabs.client";
+export { Stepper } from "./Stepper/Stepper.client";
 export { Accordion } from "./Accordion/Client/Accordion";
