@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ReactNode, forwardRef, useId } from "react";
-import { getOptionClassName } from "../core";
+import { getOptionClassName } from "../../core";
 
-import "@axa-fr/design-system-css/dist/Form/Checkbox/Checkbox.agent.scss";
+import "@axa-fr/design-system-css/dist/Form/Checkbox/Agent/Checkbox.scss";
 
 type Props = Omit<ComponentPropsWithoutRef<"input">, "type" | "label"> & {
   classModifier?: string;
