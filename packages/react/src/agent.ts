@@ -7,7 +7,7 @@ export {
   CheckboxInput,
   CheckboxItem,
   CheckboxModes,
-} from "./Form/Checkbox";
+} from "./Form/Checkbox/Agent";
 export { Choice, ChoiceInput } from "./Form/Choice";
 export { Date, DateInput } from "./Form/Date";
 export { Number, NumberInput } from "./Form/Number";
@@ -15,10 +15,17 @@ export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Agent";
 export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
-export { Title } from "./Title/Title.agent";
 export { Footer } from "./Layout/Footer";
 export { Alert } from "./Alert/Alert";
-
+export {
+  BooleanModal,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalHeaderBase,
+} from "./Modal";
+export { Title } from "./Title/Title.agent";
 export {
   Field,
   FieldError,

@@ -1,5 +1,5 @@
 @use "./Button/Button.agent";
-@use "./Form/Checkbox/Checkbox.agent.scss";
+@use "./Form/Checkbox/Agent/Checkbox.scss";
 @use "./Form/Choice/Choice.agent.scss";
 @use "./Form/core/FormCore.agent.scss";
 @use "./Form/Date/Date.agent.scss";
@@ -8,6 +8,7 @@
 @use "./Form/Select/Select.agent.scss";
 @use "./Form/Text/Text.agent.scss";
 @use "./Form/Textarea/Textarea.agent.scss";
+@use "./Modal/Modal.agent.scss";
 @use "./Title/Title.agent.scss";
 @use "./Layout/Footer/Footer.scss";
 @use "./Badge/Badge.scss";

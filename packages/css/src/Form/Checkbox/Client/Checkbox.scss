@@ -1,0 +1,187 @@
+@use "./../../../common/common.client.scss" as common;
+
+.af-form-client {
+  &__checkbox-container,
+  &__checkbox-container-inline,
+  &__checkbox-container-custom {
+    display: flex;
+  }
+
+  &__checkbox-container {
+    max-width: 333px;
+    flex-direction: column;
+  }
+
+  &__checkbox-container-inline,
+  &__checkbox-container-custom {
+    width: 100%;
+    flex-direction: row;
+    flex-grow: 1;
+    gap: 12px;
+  }
+
+  &__checkbox-inline {
+    display: inline-flex;
+    margin-right: 1rem;
+
+    .af-form__label {
+      padding: 0;
+    }
+  }
+
+  &__checkbox-custom {
+    display: flex;
+    max-width: 333px;
+    height: 127px;
+    margin: 0 0.3rem 0.3rem 0;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    text-align: center;
+
+    .af-form-client__icon {
+      margin-bottom: 8px;
+    }
+
+    .af-form-client__content {
+      display: flex;
+      margin: 0;
+      padding: 1rem 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: normal;
+      cursor: pointer;
+    }
+
+    .af-form-client__label {
+      cursor: pointer;
+    }
+
+    .af-form-client__description {
+      padding: 0;
+    }
+
+    .af-form-client__input-checkbox {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .af-form-client__checkbox-unchecked-icon,
+    .af-form-client__checkbox-checked-icon {
+      top: 0.4rem;
+      left: 0.4rem;
+    }
+  }
+
+  &__checkbox,
+  &__checkbox-inline {
+    max-width: 26.87rem;
+    height: 5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+
+    .af-form-client__icon {
+      margin-right: 1rem;
+    }
+
+    .af-form-client__content {
+      display: flex;
+      height: 55px;
+      margin-left: 2.5rem;
+      align-items: center;
+    }
+
+    .af-form-client__label {
+      display: flex;
+      margin-bottom: 0;
+      flex-direction: column;
+      justify-content: center;
+      font-family: common.$font-family-base;
+
+      .af-form-client__label {
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+      }
+
+      .af-form-client__description {
+        font-size: 1rem;
+        line-height: 1.25;
+      }
+
+      .af-form-client__description:empty {
+        display: none;
+      }
+    }
+  }
+
+  &__checkbox,
+  &__checkbox-inline,
+  &__checkbox-custom {
+    position: relative;
+    display: flex;
+    width: 100%;
+    border: 1px solid common.$color-gray;
+    border-radius: 4px;
+    align-items: center;
+    cursor: pointer;
+
+    .af-form-client__checkbox-checked-icon {
+      visibility: hidden;
+      color: common.$color-axa;
+    }
+
+    .af-form-client__checkbox-unchecked-icon {
+      color: common.$color-gray;
+    }
+
+    .af-form-client__checkbox-unchecked-icon,
+    .af-form-client__checkbox-checked-icon {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      align-items: center;
+    }
+
+    .af-form-client__icon {
+      color: common.$color-axa;
+
+      svg {
+        font-size: 2.5rem;
+      }
+    }
+
+    .af-form-client__content {
+      margin-bottom: 0;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    &--disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .af-form-client__input-checkbox {
+      position: absolute;
+      opacity: 0;
+
+      &:checked
+        + .af-form-client__checkbox-unchecked-icon
+        + .af-form-client__checkbox-checked-icon {
+        visibility: visible;
+      }
+
+      &:checked + .af-form-client__checkbox-unchecked-icon {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__checkbox:has(.af-form-client__input-checkbox:checked),
+  &__checkbox-inline:has(.af-form-client__input-checkbox:checked) {
+    border-width: 2px;
+    border-color: common.$color-axa;
+  }
+}
