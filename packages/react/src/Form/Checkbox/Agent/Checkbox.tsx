@@ -1,5 +1,5 @@
 import React, { ComponentProps, ReactNode } from "react";
-import { Option } from "../core";
+import { Option } from "../../core";
 import { CheckboxItem } from "./CheckboxItem";
 import { CheckboxModes } from "./CheckboxModes";
 

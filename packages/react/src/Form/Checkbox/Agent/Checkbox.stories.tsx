@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
-import { MessageTypes } from "../core";
+import { MessageTypes } from "../../core";
 import { Checkbox } from "./Checkbox";
 import { CheckboxInput } from "./CheckboxInput";
 import { CheckboxItem } from "./CheckboxItem";

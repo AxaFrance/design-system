@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 
-import { Field, useOptionsWithId } from "../core";
+import { Field, useOptionsWithId } from "../../core";
 import { Checkbox } from "./Checkbox";
 import { CheckboxModes } from "./CheckboxModes";
 
