@@ -1,0 +1,129 @@
+@use "../common/common.client.scss" as common;
+
+.af-modal {
+  position: fixed;
+  min-width: 100%;
+  max-width: 100%;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background-color: white;
+
+  &::backdrop {
+    background: #3333337a;
+  }
+
+  &__top {
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid common.$color-btn-disabled-border;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: white;
+
+    &-title {
+      display: flex;
+      width: 100%;
+      margin: 0;
+      align-items: center;
+      justify-content: space-between;
+
+      &-text {
+        font-family: common.$font-family-publico, common.$font-family-base;
+        font-size: 1.5rem;
+        line-height: 1.875rem;
+      }
+
+      &-close-btn {
+        all: unset;
+        display: flex;
+        width: 32px;
+        height: 32px;
+        margin-left: 1rem;
+        border-radius: 50px;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          color: white;
+          background-color: common.$color-blue-1;
+          outline: none;
+          fill: white;
+        }
+
+        &:active,
+        &:focus {
+          color: white;
+          background-color: common.$color-btn-light;
+          outline: none;
+          fill: white;
+        }
+
+        &:focus-visible {
+          outline: 2px solid common.$color-blue-3;
+          outline-offset: 3px;
+        }
+      }
+    }
+  }
+
+  &__content {
+    padding: 1.5rem 2rem;
+    font-family: common.$font-family-base;
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+
+  &__actions {
+    display: flex;
+    padding: 1.5rem 2rem;
+    padding-top: 0;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    // force fullwidth in mobile
+    & * {
+      width: 100%;
+      flex-grow: 1;
+    }
+
+    &--fullWidth {
+      & * {
+        width: 100%;
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+@media only screen and (width >= #{common.$screen-size-m}) {
+  .af-modal {
+    min-width: 64em;
+    max-width: 64em;
+    margin: auto;
+
+    &__actions {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+
+      & * {
+        width: auto;
+        flex-grow: unset;
+      }
+
+      &--fullWidth {
+        & * {
+          width: 100%;
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}

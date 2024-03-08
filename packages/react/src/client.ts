@@ -19,3 +19,5 @@ export {
 } from "./Tabs/Tabs.client";
 export { Stepper } from "./Stepper/Stepper.client";
 export { Accordion } from "./Accordion/Client/Accordion";
+export { Modal } from "./ModalClient/Modal.client";
+export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal.client";
