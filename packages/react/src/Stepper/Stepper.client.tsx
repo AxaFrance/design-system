@@ -60,10 +60,10 @@ export const Stepper = ({
         aria-label={currentTitle}
         className={classNames("af-stepper-client__content", className)}
       >
-        {[...Array(nbSteps).keys()].map((_, index) => (
+        {[...Array(nbSteps).keys()].map((index) => (
           <div
             className="af-stepper-client__progressbar"
-            key={_}
+            key={`${stepperId}-${index}`}
             aria-current={index === currentStep}
             aria-hidden={index !== currentStep}
             aria-label={`${getCurrentProgress(index)}%`}

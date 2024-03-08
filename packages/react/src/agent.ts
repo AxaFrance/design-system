@@ -7,7 +7,7 @@ export {
   CheckboxInput,
   CheckboxItem,
   CheckboxModes,
-} from "./Form/Checkbox";
+} from "./Form/Checkbox/Agent";
 export { Choice, ChoiceInput } from "./Form/Choice";
 export { Date, DateInput } from "./Form/Date";
 export { Number, NumberInput } from "./Form/Number";
