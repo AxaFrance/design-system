@@ -16,6 +16,7 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer";
+export { Alert } from "./Alert/Alert";
 export {
   BooleanModal,
   Modal,
@@ -25,7 +26,6 @@ export {
   ModalHeaderBase,
 } from "./Modal";
 export { Title } from "./Title/Title.agent";
-
 export {
   Field,
   FieldError,
