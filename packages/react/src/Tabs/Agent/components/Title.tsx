@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React from "react";
 import { getComponentClassName } from "../../../agent";
 
@@ -20,9 +21,10 @@ const Title = ({
   enable,
   id,
 }: TitleComponentProps) => {
-  const newClassModifier = (classModifier || "").concat(
-    (enable === false ? " disabled" : "").concat(active ? " active" : ""),
-  );
+  const newClassModifier = classNames(classModifier, {
+    disabled: enable === false,
+    active,
+  });
 
   const componentClassName = getComponentClassName(
     className,
