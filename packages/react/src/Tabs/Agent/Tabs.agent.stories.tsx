@@ -1,5 +1,5 @@
 import { Meta, type StoryObj } from "@storybook/react";
-import { Badge } from "../Badge/Badge";
+import { Badge } from "../../Badge/Badge";
 import { Tabs } from "./Tabs.agent";
 import type { TabsCoreProps } from "./components/TabsCore";
 

@@ -40,4 +40,4 @@ export {
   MessageTypes,
   getComponentClassName,
 } from "./Form/core";
-export { Tabs } from "./Tabs/Tabs.agent";
+export { Tabs } from "./Tabs/Agent/Tabs.agent";
