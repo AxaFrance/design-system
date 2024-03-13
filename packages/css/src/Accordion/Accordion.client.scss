@@ -13,7 +13,7 @@
       border-bottom: 1px solid #e9ecf2;
     }
 
-    & h3 {
+    & > h3 {
       width: 100%;
       margin: 0;
       font-size: 1.125rem;
@@ -23,45 +23,45 @@
         border-bottom: none;
         color: common.$color-axa;
       }
-    }
 
-    & button {
-      display: flex;
-      width: 100%;
-      padding: 15px 20px;
-      border: 0;
-      align-items: center;
-      font-size: 1.125rem;
-      font-weight: 600;
-      text-align: start;
-      color: inherit;
-      background-color: inherit;
-      cursor: pointer;
+      & > button {
+        display: flex;
+        width: 100%;
+        padding: 15px 20px;
+        border: 0;
+        align-items: center;
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-align: start;
+        color: inherit;
+        background-color: inherit;
+        cursor: pointer;
 
-      &:focus {
-        outline: unset;
-      }
+        &:focus {
+          outline: unset;
+        }
 
-      &:focus-visible {
-        outline: 2px solid common.$color-blue-3;
-        outline-offset: 3px;
-      }
+        &:focus-visible {
+          outline: 2px solid common.$color-blue-3;
+          outline-offset: 3px;
+        }
 
-      &::after {
-        width: 32px;
-        height: 32px;
-        margin-left: auto;
-        flex-shrink: 0;
-        background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cg%20clip-path%3D%22url(%23clip0_14583_27882)%22%3E%0A%3Cpath%20d%3D%22M24%2013.3331L22.12%2011.4531L16%2017.5598L9.88%2011.4531L8%2013.3331L16%2021.3331L24%2013.3331Z%22%20fill%3D%22%2300008F%22%2F%3E%0A%3C%2Fg%3E%0A%3Cdefs%3E%0A%3CclipPath%20id%3D%22clip0_14583_27882%22%3E%0A%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22white%22%20transform%3D%22matrix(0%201%20-1%200%2032%200)%22%2F%3E%0A%3C%2FclipPath%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A");
-        background-repeat: no-repeat;
-        background-size: 100%;
-        transition: transform 0.2s ease-in-out;
-        content: "";
-      }
-
-      &[aria-expanded="true"] {
         &::after {
-          transform: rotate(180deg);
+          width: 32px;
+          height: 32px;
+          margin-left: auto;
+          flex-shrink: 0;
+          background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cg%20clip-path%3D%22url(%23clip0_14583_27882)%22%3E%0A%3Cpath%20d%3D%22M24%2013.3331L22.12%2011.4531L16%2017.5598L9.88%2011.4531L8%2013.3331L16%2021.3331L24%2013.3331Z%22%20fill%3D%22%2300008F%22%2F%3E%0A%3C%2Fg%3E%0A%3Cdefs%3E%0A%3CclipPath%20id%3D%22clip0_14583_27882%22%3E%0A%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22white%22%20transform%3D%22matrix(0%201%20-1%200%2032%200)%22%2F%3E%0A%3C%2FclipPath%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          transition: transform 0.2s ease-in-out;
+          content: "";
+        }
+
+        &[aria-expanded="true"] {
+          &::after {
+            transform: rotate(180deg);
+          }
         }
       }
     }
