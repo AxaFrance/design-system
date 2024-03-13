@@ -24,7 +24,7 @@ export {
   ModalFooter,
   ModalHeader,
   ModalHeaderBase,
-} from "./Modal";
+} from "./ModalAgent";
 export { Title } from "./Title/Title.agent";
 export { Action } from "./Action/Action";
 
