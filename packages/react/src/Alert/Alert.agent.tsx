@@ -1,6 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from "react";
 import { getComponentClassName } from "../Form/core";
-import "@axa-fr/design-system-css/dist/Alert/Alert.scss";
+import "@axa-fr/design-system-css/dist/Alert/Alert.agent.scss";
 
 export enum TypeIcons {
   error = "glyphicon glyphicon-minus-sign",

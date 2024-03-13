@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "./Alert.scss";
+import "./Alert.agent.scss";
 
 const meta: Meta = {
   title: "Agent/Components/Alert",

@@ -1,5 +1,5 @@
 import { Controls, Canvas, Meta } from "@storybook/blocks";
-import * as AlertStories from "./Alert.stories.tsx";
+import * as AlertStories from "./Alert.client.stories.tsx";
 
 <Meta of={AlertStories} />
 
@@ -8,39 +8,44 @@ import * as AlertStories from "./Alert.stories.tsx";
 ### Import
 
 ```tsx title="test.js"
-import { Alert } from "@axa-fr/design-system-react/agent";
+import { Alert } from "@axa-fr/design-system-react/client";
 ```
 
 ### Use
 
 ```tsx title="test.js"
 export const AlertComponent = () => (
-  <Alert classModifier="danger" title="Warning: information is missing" />
+  <Alert type="information" title="My alert title">
+    My alert content
+  </Alert>
 );
 ```
 
-### Modifiers
+### Types
 
-There are 4 modifiers available for the Alert component :
+There are 5 types available for the Alert component :
 
 <table style={{ width: "100%" }}>
   <thead>
     <tr>
-      <th>Modifiers</th>
+      <th>Types</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>danger</td>
+      <td>information</td>
     </tr>
     <tr>
-      <td>info</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <td>warning</td>
+    </tr>
+    <tr>
+      <td>validation</td>
     </tr>
     <tr>
       <td>error</td>
-    </tr>
-    <tr>
-      <td>success</td>
     </tr>
   </tbody>
 </table>
