@@ -16,7 +16,7 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer";
-export { Alert } from "./Alert/Alert";
+export { Alert } from "./Alert/Alert.agent";
 export {
   BooleanModal,
   Modal,

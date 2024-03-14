@@ -1,0 +1,100 @@
+@use "../common/common.client.scss" as common;
+
+.af-alert {
+  display: flex;
+  max-width: 40rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid common.$color-axa;
+  border-radius: 8px;
+  flex: 1 1 0;
+  align-items: flex-start;
+  font-family: common.$font-family-base;
+  background-color: white;
+
+  .af-alert__icon {
+    width: 1.5rem;
+    aspect-ratio: 1;
+    margin-right: 1rem;
+    flex-shrink: 0;
+  }
+
+  .af-alert__title {
+    padding-bottom: 0.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    color: common.$color-axa;
+  }
+
+  &--information {
+    border: 1px solid common.$color-axa;
+
+    svg {
+      color: common.$color-axa;
+      transform: rotate(180deg);
+      fill: common.$color-axa;
+    }
+
+    .af-alert__title {
+      color: common.$color-axa;
+    }
+  }
+
+  &--error {
+    border: 1px solid common.$color-btn-error;
+
+    svg {
+      color: common.$color-btn-error;
+      fill: common.$color-btn-error;
+    }
+
+    .af-alert__title {
+      color: common.$color-btn-error;
+    }
+  }
+
+  &--neutral {
+    border: 1px solid common.$color-gray;
+
+    svg {
+      color: common.$color-gray;
+      fill: common.$color-gray;
+    }
+
+    .af-alert__title {
+      color: common.$color-gray;
+    }
+  }
+
+  &--warning {
+    border: 1px solid common.$color-btn-business;
+
+    svg {
+      color: common.$color-btn-business;
+      fill: common.$color-btn-business;
+    }
+
+    .af-alert__title {
+      color: common.$color-btn-business;
+    }
+  }
+
+  &--validation {
+    border: 1px solid common.$color-success-40;
+
+    svg {
+      color: common.$color-success-40;
+      fill: common.$color-success-40;
+    }
+
+    .af-alert__title {
+      color: common.$color-success-40;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+}
