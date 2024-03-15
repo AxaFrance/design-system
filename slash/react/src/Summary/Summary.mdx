@@ -1,0 +1,45 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as SummaryStories from "./Summary.stories.tsx";
+
+<Meta of={SummaryStories} />
+
+# Summary
+
+The summary is used to display a list of messages related to a user action.
+It is a variation of the alert component.
+
+The component takes a `messages` props which is an array of strings or JSX elements.
+
+### Import
+
+```tsx
+import { Summary } from "@axa-fr/design-system-slash-react";
+```
+
+### Use
+
+```tsx
+export const SummaryForm = () => (
+  <Summary
+    classModifier="error"
+    title="Invalid form"
+    messages={[
+      <span>Field Author is required</span>,
+      "Field PlaceName is required",
+    ]}
+  />
+);
+```
+
+### Playground
+
+<Canvas of={SummaryStories.Template} />
+<Controls of={SummaryStories.Template} />
+
+### Modifiers
+
+The modifiers are the same as in the Action component: `error`, `info`, `success` and `warning`.
+
+#### Success
+
+<Canvas of={SummaryStories.Success} />
