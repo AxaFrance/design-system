@@ -91,5 +91,8 @@
   "volta": {
     "node": "20.10.0",
     "npm": "10.2.5"
+  },
+  "dependencies": {
+    "rc-slider": "^10.5.0"
   }
 }
