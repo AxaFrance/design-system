@@ -12,6 +12,7 @@ export {
   CheckboxModes,
 } from "./Form/Checkbox/Agent";
 export { Choice, ChoiceInput } from "./Form/Choice";
+export { Summary } from "./Summary/Summary";
 export {
   Field,
   FieldError,
