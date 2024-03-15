@@ -1,6 +1,9 @@
 import "@axa-fr/design-system-css/dist/common/icons.scss";
 import "@fontsource/source-sans-pro";
 
+export { Action } from "./Action/Action";
+export { Alert } from "./Alert/Alert.agent";
+export { Badge } from "./Badge/Badge";
 export { ButtonAgent as Button } from "./Button/Button.agent";
 export {
   Checkbox,
@@ -16,7 +19,6 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer";
-export { Alert } from "./Alert/Alert.agent";
 export {
   BooleanModal,
   Modal,
@@ -26,7 +28,6 @@ export {
   ModalHeaderBase,
 } from "./ModalAgent";
 export { Title } from "./Title/Title.agent";
-export { Action } from "./Action/Action";
 
 export {
   Field,
@@ -39,3 +40,4 @@ export {
   MessageTypes,
   getComponentClassName,
 } from "./Form/core";
+export { Tabs } from "./Tabs/Agent/Tabs.agent";
