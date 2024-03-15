@@ -53,6 +53,7 @@ export {
   ModalHeaderBase,
 } from "./ModalAgent";
 export { Step, StepBase, Steps } from "./Steps";
+export { Summary } from "./Summary";
 export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Tabs";
 export { Title } from "./Title/Title";
