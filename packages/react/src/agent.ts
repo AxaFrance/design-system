@@ -17,6 +17,7 @@ export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer";
 export { Alert } from "./Alert/Alert.agent";
+export { Summary } from "./Summary/Summary";
 export {
   BooleanModal,
   Modal,
