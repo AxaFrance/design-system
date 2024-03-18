@@ -23,3 +23,4 @@ export {
   TabsClient as Tabs,
   Direction as TabsDirection,
 } from "./Tabs/Client/Tabs.client";
+export { Link } from "./Link/Link.client";
