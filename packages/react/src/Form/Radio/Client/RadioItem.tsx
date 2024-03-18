@@ -51,7 +51,7 @@ const RadioItem = forwardRef<HTMLInputElement, Props>(
           disabled={disabled}
         />
         <div className="af-form-client__content">
-          <div className="af-form-client__icon">{icon}</div>
+          {icon && <div className="af-form-client__icon">{icon}</div>}
           <div className="af-form-client__label">
             <div className="af-form-client__choice">{newChoice}</div>
             <div className="af-form-client__description">{description}</div>
