@@ -12,6 +12,7 @@ type Props = {
   options: CheckboxItemOption[];
   mode?: keyof typeof CheckboxModes;
   disabled?: boolean;
+  erroneous?: boolean;
   onChange: React.ChangeEventHandler;
 };
 
@@ -44,6 +45,7 @@ export const Checkbox = ({
   options,
   values,
   disabled,
+  erroneous,
   mode = CheckboxModes.classic,
   onChange,
   ...otherProps
@@ -59,6 +61,7 @@ export const Checkbox = ({
         checked={values ? values.indexOf(option.value) >= 0 : false}
         name={name}
         disabled={option.disabled || disabled}
+        erroneous={option.erroneous || erroneous}
       />
     ))}
   </div>

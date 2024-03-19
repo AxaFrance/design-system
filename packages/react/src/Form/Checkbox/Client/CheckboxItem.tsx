@@ -7,13 +7,16 @@ import "@axa-fr/design-system-css/dist/Form/Checkbox/Client/Checkbox.scss";
 export type CheckboxItemOption = {
   id?: string;
   icon?: ReactNode;
-  label: ReactNode;
+  title: ReactNode;
+  subtitle?: ReactNode;
   description?: ReactNode;
   value: string;
   disabled?: boolean;
+  erroneous?: boolean;
+  centerContent?: boolean;
 };
 
-type Props = Omit<ComponentPropsWithoutRef<"input">, "type" | "label"> &
+type Props = Omit<ComponentPropsWithoutRef<"input">, "type" | "title"> &
   CheckboxItemOption & {
     checked?: boolean;
   };
@@ -22,10 +25,13 @@ export const CheckboxItem = forwardRef<HTMLInputElement, Props>(
   (
     {
       disabled = false,
+      erroneous = false,
+      centerContent = false,
       value = "",
       id,
       icon,
-      label,
+      title,
+      subtitle,
       description,
       className,
       checked,
@@ -38,9 +44,14 @@ export const CheckboxItem = forwardRef<HTMLInputElement, Props>(
     const defaultClassName = "af-form-client__checkbox";
     const getOptionClassName = () => {
       const baseClassName = className ?? defaultClassName;
-      return disabled
-        ? `${baseClassName} ${baseClassName}--disabled`
-        : baseClassName;
+      let finalClasses = baseClassName;
+      if (erroneous) {
+        finalClasses += ` ${baseClassName}--erroneous`;
+      }
+      if (disabled) {
+        finalClasses += ` ${baseClassName}--disabled`;
+      }
+      return finalClasses;
     };
 
     return (
@@ -59,13 +70,24 @@ export const CheckboxItem = forwardRef<HTMLInputElement, Props>(
           type="checkbox"
           ref={inputRef}
         />
-        <CheckBoxOutlineBlankIcon className="af-form-client__checkbox-unchecked-icon" />
-        <CheckBoxIcon className="af-form-client__checkbox-checked-icon" />
-        <div className="af-form-client__content">
-          {icon ? <div className="af-form-client__icon">{icon}</div> : null}
-          <div className="af-form-client__label">
-            <div className="af-form-client__label">{label}</div>
-            <div className="af-form-client__description">{description}</div>
+        <CheckBoxOutlineBlankIcon
+          className={`${defaultClassName}-unchecked-icon`}
+        />
+        <CheckBoxIcon className={`${defaultClassName}-checked-icon`} />
+        <div
+          className={`${defaultClassName}-content${centerContent ? "--centered" : ""}`}
+        >
+          {icon && <div className={`${defaultClassName}-icon`}>{icon}</div>}
+          <div className={`${defaultClassName}-label`}>
+            <div className={`${defaultClassName}-title`}>{title}</div>
+            {subtitle && (
+              <div className={`${defaultClassName}-subtitle`}>{subtitle}</div>
+            )}
+            {description && (
+              <div className={`${defaultClassName}-description`}>
+                {description}
+              </div>
+            )}
           </div>
         </div>
       </label>
