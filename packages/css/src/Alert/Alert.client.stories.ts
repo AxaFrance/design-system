@@ -44,7 +44,7 @@ export const Default: StoryObj = {
       ${getIconFromType(args.type)}
       <div>
         ${args.title ? `<p class="af-alert__title">${args.title}</p>` : ""}
-        <p>${args.children}</p>
+        ${args.children}
       </div>
     `;
     return alert;
