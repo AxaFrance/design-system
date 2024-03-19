@@ -8,7 +8,6 @@
   }
 
   &__radio-container {
-    max-width: 430px;
     flex-direction: column;
   }
 
@@ -30,7 +29,6 @@
 
   &__radio-custom {
     display: flex;
-    max-width: 333px;
     height: 127px;
     margin: 0 0.3rem 0.3rem 0;
     flex-direction: column;
@@ -82,7 +80,6 @@
 
   &__radio,
   &__radio-inline {
-    max-width: 26.87rem;
     height: 5rem;
     margin-bottom: 0.75rem;
     padding: 0.75rem 1rem;
@@ -141,10 +138,16 @@
   &__radio-custom {
     position: relative;
     width: 100%;
-    border: 1px solid common.$color-gray;
     border-radius: 4px;
     align-items: center;
+    box-shadow: 0 0 0 1px common.$color-gray inset;
     cursor: pointer;
+
+    &:hover {
+      color: common.$color-blue-1;
+      background-color: common.$color-blue-2;
+      box-shadow: 0 0 0 2px common.$color-blue-1 inset;
+    }
 
     .af-form-client__icon {
       color: common.$color-axa;
@@ -161,6 +164,7 @@
 
       &::before {
         position: absolute;
+        left: 1.25rem;
         display: inline;
         width: 24px;
         height: 24px;
@@ -173,12 +177,13 @@
 
       &::after {
         position: absolute;
+        left: 1.25rem;
         display: none;
-        width: 16px;
-        height: 16px;
+        width: 10px;
+        height: 10px;
         border-radius: 100%;
         background: common.$color-axa;
-        transform: translate(0, -50%);
+        transform: translate(calc((24px - 10px) / 2), -50%);
         content: "";
       }
     }
@@ -199,12 +204,17 @@
           display: block;
         }
       }
+
+      &:focus-visible + .af-form-client__content::before {
+        outline: 2px solid common.$color-blue-3;
+        outline-offset: 3px;
+      }
     }
   }
 
   &__radio:has(.af-form-client__input-radio:checked),
   &__radio-inline:has(.af-form-client__input-radio:checked) {
-    border-width: 2px;
-    border-color: common.$color-axa;
+    background-color: common.$color-blue-2;
+    box-shadow: 0 0 0 2px common.$color-axa inset;
   }
 }
