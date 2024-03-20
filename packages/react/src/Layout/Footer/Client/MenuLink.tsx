@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useIsSmallScreen } from "../utilities/hooks/useIsSmallScreen";
+import { useIsSmallScreen } from "../../../utilities/hooks/useIsSmallScreen";
 
 const BREAKPOINT_SMALL = 1024;
 
