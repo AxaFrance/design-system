@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import logo from "../../common/assets/logo-axa.svg";
-import "./Footer.scss";
+import "./Footer.agent.scss";
 
 const meta: Meta = {
   title: "Agent/Components/Footer",

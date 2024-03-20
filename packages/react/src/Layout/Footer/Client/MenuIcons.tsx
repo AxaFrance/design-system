@@ -1,4 +1,4 @@
-import { DynamicIcon } from "./DynamicIcons.client";
+import { DynamicIcon } from "./DynamicIcons";
 
 export type SocialMedia = {
   icon: "facebook" | "twitter" | "youtube" | "linkedin";
