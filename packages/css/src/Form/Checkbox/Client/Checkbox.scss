@@ -1,14 +1,26 @@
 @use "./../../../common/common.client.scss" as common;
 
 .af-form-client {
+  &__checkbox-input-label,
+  &__checkbox-input-description,
+  &__checkbox-container,
+  &__checkbox-container-inline,
+  &__checkbox-container-custom {
+    font-family: common.$font-family-base;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: common.$color-gray-700;
+  }
+
   &__checkbox-container,
   &__checkbox-container-inline,
   &__checkbox-container-custom {
     display: flex;
+    margin-top: 1rem;
   }
 
   &__checkbox-container {
-    max-width: 333px;
     flex-direction: column;
   }
 
@@ -17,21 +29,19 @@
     width: 100%;
     flex-direction: row;
     flex-grow: 1;
-    gap: 12px;
   }
 
   &__checkbox-inline {
     display: inline-flex;
     margin-right: 1rem;
 
-    .af-form__label {
+    .af-form__checkbox-label {
       padding: 0;
     }
   }
 
   &__checkbox-custom {
     display: flex;
-    max-width: 333px;
     height: 127px;
     margin: 0 0.3rem 0.3rem 0;
     flex-direction: column;
@@ -39,11 +49,11 @@
     justify-content: center;
     text-align: center;
 
-    .af-form-client__icon {
-      margin-bottom: 8px;
+    .af-form-client__checkbox-icon {
+      margin-bottom: 0.5rem;
     }
 
-    .af-form-client__content {
+    .af-form-client__checkbox-content {
       display: flex;
       margin: 0;
       padding: 1rem 0;
@@ -54,11 +64,11 @@
       cursor: pointer;
     }
 
-    .af-form-client__label {
+    .af-form-client__checkbox-label {
       cursor: pointer;
     }
 
-    .af-form-client__description {
+    .af-form-client__checkbox-description {
       padding: 0;
     }
 
@@ -76,43 +86,52 @@
 
   &__checkbox,
   &__checkbox-inline {
-    max-width: 26.87rem;
+    display: flex;
     height: 5rem;
     margin-bottom: 0.75rem;
     padding: 0.75rem 1rem;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
     vertical-align: top;
 
-    .af-form-client__icon {
-      margin-right: 1rem;
+    .af-form-client__checkbox-icon {
+      margin-right: 0.75rem;
     }
 
-    .af-form-client__content {
+    .af-form-client__checkbox-content {
       display: flex;
       height: 55px;
-      margin-left: 2.5rem;
+      margin-left: 2.75rem;
       align-items: center;
     }
 
-    .af-form-client__label {
+    .af-form-client__checkbox-label {
       display: flex;
       margin-bottom: 0;
       flex-direction: column;
       justify-content: center;
-      font-family: common.$font-family-base;
 
-      .af-form-client__label {
+      .af-form-client__checkbox-title {
         font-size: 1.125rem;
         line-height: 1.4rem;
       }
 
-      .af-form-client__description {
+      .af-form-client__checkbox-subtitle,
+      .af-form-client__checkbox-description {
         font-size: 1rem;
         line-height: 1.25;
       }
+    }
+  }
 
-      .af-form-client__description:empty {
-        display: none;
-      }
+  &__checkbox-input-errorlabel {
+    font-size: 1rem;
+    color: common.$color-btn-error;
+
+    svg {
+      margin-right: 0.5rem;
+      font-size: 1rem;
     }
   }
 
@@ -122,9 +141,13 @@
     position: relative;
     display: flex;
     width: 100%;
-    border: 1px solid common.$color-gray;
     border-radius: 4px;
     align-items: center;
+    background-color: white;
+
+    --box-shadow-color: #{common.$color-gray};
+
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
     cursor: pointer;
 
     .af-form-client__checkbox-checked-icon {
@@ -144,23 +167,55 @@
       align-items: center;
     }
 
-    .af-form-client__icon {
+    .af-form-client__checkbox-icon {
       color: common.$color-axa;
 
       svg {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
       }
     }
 
-    .af-form-client__content {
+    .af-form-client__checkbox-content {
       margin-bottom: 0;
       align-items: center;
       cursor: pointer;
+
+      .af-form-client__checkbox-label {
+        .af-form-client__checkbox-title {
+          color: common.$color-gray-900;
+        }
+      }
+
+      &--centered {
+        display: inline-flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    &--erroneous {
+      --box-shadow-color: #{common.$color-btn-error};
+
+      .af-form-client__checkbox-unchecked-icon,
+      .af-form-client__checkbox-checked-icon {
+        color: common.$color-btn-error;
+      }
     }
 
     &--disabled {
       opacity: 0.4;
       cursor: not-allowed;
+    }
+
+    &:hover {
+      background-color: common.$color-blue-2;
+      box-shadow: 0 0 0 2px common.$color-axa inset;
+
+      .af-form-client__checkbox-unchecked-icon,
+      .af-form-client__checkbox-checked-icon {
+        color: common.$color-axa;
+      }
     }
 
     .af-form-client__input-checkbox {
@@ -176,12 +231,29 @@
       &:checked + .af-form-client__checkbox-unchecked-icon {
         visibility: hidden;
       }
+
+      &:focus-visible + .af-form-client__checkbox-unchecked-icon,
+      &:focus-visible
+        + .af-form-client__checkbox-unchecked-icon
+        + .af-form-client__checkbox-checked-icon {
+        outline: 2px solid common.$color-blue-3;
+        outline-offset: 3px;
+      }
     }
   }
 
   &__checkbox:has(.af-form-client__input-checkbox:checked),
-  &__checkbox-inline:has(.af-form-client__input-checkbox:checked) {
-    border-width: 2px;
-    border-color: common.$color-axa;
+  &__checkbox-inline:has(.af-form-client__input-checkbox:checked),
+  &__checkbox-custom:has(.af-form-client__input-checkbox:checked) {
+    background-color: common.$color-blue-2;
+    box-shadow: 0 0 0 2px common.$color-axa inset;
+  }
+
+  &__checkbox-input-label {
+    font-size: 1.125rem;
+  }
+
+  &__checkbox-input-description {
+    font-size: 1rem;
   }
 }

@@ -20,19 +20,25 @@ export const CheckboxStory: StoryObj<ComponentPropsWithRef<typeof Checkbox>> = {
     values: ["lille", "madrid"],
     mode: CheckboxModes.inline,
     disabled: false,
+    erroneous: false,
     name: "placeName",
     options: [
       {
         icon: <FlagIcon />,
-        label: "Paris",
+        title: "Paris",
+        subtitle: "Île-de-France",
         description: "Capitale de la France",
         value: "paris",
       },
-      { icon: <HomeIcon />, label: "Lille", value: "lille" },
+      { icon: <HomeIcon />, title: "Lille", value: "lille" },
       {
-        label: "Madrid",
+        title: "Madrid",
         description: "Capitale de l'Espagne",
         value: "madrid",
+      },
+      {
+        title: "Berlin",
+        value: "berlin",
       },
     ],
   },
