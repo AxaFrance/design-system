@@ -1,4 +1,3 @@
-import "@axa-fr/design-system-css/dist/Header/Header.client.scss";
 import logo from "@axa-fr/design-system-css/dist/common/assets/logo-axa.svg";
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 

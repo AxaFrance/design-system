@@ -10,9 +10,17 @@
 @use "./Form/Text/Text.agent.scss";
 @use "./Form/Textarea/Textarea.agent.scss";
 @use "./Modal/Modal.agent.scss";
+@use "./Layout/Header/Agent/NavBar/NavBar.scss";
 @use "./Title/Title.agent.scss";
 @use "./Layout/Footer/Footer.scss";
 @use "./Badge/Badge.scss";
 @use "./Tabs/Tabs.agent.scss";
 @use "./Alert/Alert.agent.scss";
 @use "./Action/Action.scss";
+@use "./Layout/Header/Agent/Drawer/Drawer.scss";
+@use "./Layout/Header/Agent/Header.scss";
+@use "./Layout/Header/Agent/Infos/Infos.scss";
+@use "./Layout/Header/Agent/Logo/Logo.scss";
+@use "./Layout/Header/Agent/Name/Name.scss";
+@use "./Layout/Header/Agent/TitleHeader/TitleHeader.scss";
+@use "./Layout/Header/Agent/User/User.scss";

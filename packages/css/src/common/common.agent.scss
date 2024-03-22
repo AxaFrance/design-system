@@ -272,6 +272,8 @@ $color-malachite: #1cc54e !default;
 $color-malachite-light: #3db899 !default;
 $color-malachite-dark: #2b8c47 !default;
 
+$color-tarif-table-header-selected: #c1c4ff !default;
+
 $gray-lighter: #eceeef !default;
 
 // stylelint-disable color-no-hex
@@ -357,6 +359,8 @@ $card-bg-disabled: $color-mercury !default;
 // Af-form
 $error-custom-bg: $color-error-custom-1 !default;
 $error-custom-border: $color-error-custom-2 !default;
+// NavBar
+$mask-background: rgba(0, 0, 0, 50%);
 // OTHERS
 $font-family-icon: icons !default;
 

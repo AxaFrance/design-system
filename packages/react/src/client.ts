@@ -15,7 +15,8 @@ export {
   CheckboxModes,
 } from "./Form/Checkbox/Client";
 export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Client";
-export { Header } from "./Header/Header.client";
+export { Header } from "./Layout/Header/Client";
+export { Link } from "./Link/Link.client";
 export { Modal } from "./ModalClient/Modal.client";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal.client";
 export { Stepper } from "./Stepper/Stepper.client";
@@ -23,4 +24,3 @@ export {
   TabsClient as Tabs,
   Direction as TabsDirection,
 } from "./Tabs/Client/Tabs.client";
-export { Link } from "./Link/Link.client";
