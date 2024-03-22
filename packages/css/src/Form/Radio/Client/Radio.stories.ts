@@ -11,7 +11,8 @@ export const Default: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `<div class="col-md-2">
-      <label class="af-form__group-label">${args.label}</label>
+    <label class="af-form-client__radio-input-label" for=":r2:">${args.label}</label>
+    <div class="af-form-client__radio-input-description">${args.description}</div>
     </div>
     <div class="col-md-10">
   <div class="af-form-client__radio-container-inline">
@@ -23,10 +24,10 @@ export const Default: StoryObj = {
         type="radio"
         value="paris"
       />
-      <div class="af-form-client__content">
-        <div class="af-form-client__label">
-          <div class="af-form-client__choice">Paris</div>
-          <div class="af-form-client__description">Capitale de la France</div>
+      <div class="af-form-client__radio-content">
+        <div class="af-form-client__radio-label">
+          <div class="af-form-client__radio-title">Paris</div>
+          <div class="af-form-client__radio-description">Capitale de la France</div>
         </div>
       </div>
     </label>
@@ -38,10 +39,10 @@ export const Default: StoryObj = {
         type="radio"
         value="lille"
       />
-      <div class="af-form-client__content">
-        <div class="af-form-client__label">
-          <div class="af-form-client__choice">Lille</div>
-          <div class="af-form-client__description"></div>
+      <div class="af-form-client__radio-content">
+        <div class="af-form-client__radio-label">
+          <div class="af-form-client__radio-title">Lille</div>
+          <div class="af-form-client__radio-description"></div>
         </div>
       </div>
     </label>
@@ -53,10 +54,10 @@ export const Default: StoryObj = {
         type="radio"
         value="madrid"
       />
-      <div class="af-form-client__content">
-        <div class="af-form-client__label">
-          <div class="af-form-client__choice">Madrid</div>
-          <div class="af-form-client__description">Capitale de l'Espagne</div>
+      <div class="af-form-client__radio-content">
+        <div class="af-form-client__radio-label">
+          <div class="af-form-client__radio-title">Madrid</div>
+          <div class="af-form-client__radio-description">Capitale de l'Espagne</div>
         </div>
         </div>
     </label>
@@ -69,6 +70,7 @@ export const Default: StoryObj = {
   },
   args: {
     label: "Where are you ?",
+    description: "Right now...",
   },
   argTypes: {},
 };

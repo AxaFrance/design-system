@@ -1,10 +1,23 @@
 @use "./../../../common/common.client.scss" as common;
 
 .af-form-client {
+  &__radio-input-label,
+  &__radio-input-description,
+  &__radio-container,
+  &__radio-container-inline,
+  &__radio-container-custom {
+    font-family: common.$font-family-base;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: common.$color-gray-700;
+  }
+
   &__radio-container,
   &__radio-container-inline,
   &__radio-container-custom {
     display: flex;
+    margin-top: 1rem;
   }
 
   &__radio-container {
@@ -22,7 +35,7 @@
     display: inline-flex;
     margin-right: 1rem;
 
-    .af-form__label {
+    .af-form__radio-label {
       padding: 0;
     }
   }
@@ -36,11 +49,11 @@
     justify-content: center;
     text-align: center;
 
-    .af-form-client__icon {
-      margin-bottom: 8px;
+    .af-form-client__radio-icon {
+      margin-bottom: 0.5rem;
     }
 
-    .af-form-client__content {
+    .af-form-client__radio-content {
       display: flex;
       margin: 0;
       padding: 1rem 0;
@@ -53,22 +66,15 @@
       &::before,
       &::after {
         top: 1rem;
-      }
-
-      &::before {
         left: 0.4rem;
-      }
-
-      &::after {
-        left: 0.65rem;
       }
     }
 
-    .af-form-client__label {
+    .af-form-client__radio-label {
       cursor: pointer;
     }
 
-    .af-form-client__description {
+    .af-form-client__radio-description {
       padding: 0;
     }
 
@@ -80,56 +86,59 @@
 
   &__radio,
   &__radio-inline {
+    display: flex;
     height: 5rem;
     margin-bottom: 0.75rem;
     padding: 0.75rem 1rem;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
     vertical-align: top;
 
-    .af-form-client__icon {
-      margin-right: 1rem;
+    .af-form-client__radio-icon {
+      margin-right: 0.75rem;
     }
 
-    .af-form-client__content {
+    .af-form-client__radio-content {
       display: flex;
       height: 55px;
-      margin-left: 2.5rem;
+      margin-left: 2.75rem;
       align-items: center;
 
       &::before,
       &::after {
         position: absolute;
         top: 50%;
-      }
-
-      &::before {
-        left: 5%;
-      }
-
-      &::after {
-        left: 5.8%;
+        left: 1.25rem;
       }
     }
 
-    .af-form-client__label {
+    .af-form-client__radio-label {
       display: flex;
       margin-bottom: 0;
       flex-direction: column;
       justify-content: center;
-      font-family: common.$font-family-base;
 
-      .af-form-client__choice {
+      .af-form-client__radio-title {
         font-size: 1.125rem;
         line-height: 1.4rem;
       }
 
-      .af-form-client__description {
+      .af-form-client__radio-subtitle,
+      .af-form-client__radio-description {
         font-size: 1rem;
         line-height: 1.25;
       }
+    }
+  }
 
-      .af-form-client__description:empty {
-        display: none;
-      }
+  &__radio-input-errorlabel {
+    font-size: 1rem;
+    color: common.$color-btn-error;
+
+    svg {
+      margin-right: 0.5rem;
+      font-size: 1rem;
     }
   }
 
@@ -137,34 +146,38 @@
   &__radio-inline,
   &__radio-custom {
     position: relative;
+    display: flex;
     width: 100%;
     border-radius: 4px;
     align-items: center;
-    box-shadow: 0 0 0 1px common.$color-gray inset;
+    background-color: common.$color-white;
+
+    --box-shadow-color: #{common.$color-gray};
+
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
     cursor: pointer;
 
-    &:hover {
-      color: common.$color-blue-1;
-      background-color: common.$color-blue-2;
-      box-shadow: 0 0 0 2px common.$color-blue-1 inset;
-    }
-
-    .af-form-client__icon {
+    .af-form-client__radio-icon {
       color: common.$color-axa;
 
       svg {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
       }
     }
 
-    .af-form-client__content {
+    .af-form-client__radio-content {
       margin-bottom: 0;
       align-items: center;
       cursor: pointer;
 
+      .af-form-client__radio-label {
+        .af-form-client__radio-title {
+          color: common.$color-gray-900;
+        }
+      }
+
       &::before {
         position: absolute;
-        left: 1.25rem;
         display: inline;
         width: 24px;
         height: 24px;
@@ -177,7 +190,6 @@
 
       &::after {
         position: absolute;
-        left: 1.25rem;
         display: none;
         width: 10px;
         height: 10px;
@@ -186,26 +198,40 @@
         transform: translate(calc((24px - 10px) / 2), -50%);
         content: "";
       }
+
+      &--centered {
+        display: inline-flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    &--erroneous {
+      --box-shadow-color: #{common.$color-btn-error};
     }
 
     &--disabled {
-      .af-form-client__content {
-        opacity: 0.4;
-        cursor: not-allowed;
-      }
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      background-color: common.$color-blue-2;
+      box-shadow: 0 0 0 2px common.$color-axa inset;
     }
 
     .af-form-client__input-radio {
       position: absolute;
       opacity: 0;
 
-      &:checked + .af-form-client__content {
+      &:checked + .af-form-client__radio-content {
         &::after {
           display: block;
         }
       }
 
-      &:focus-visible + .af-form-client__content::before {
+      &:focus-visible + .af-form-client__radio-content::before {
         outline: 2px solid common.$color-blue-3;
         outline-offset: 3px;
       }
@@ -213,8 +239,17 @@
   }
 
   &__radio:has(.af-form-client__input-radio:checked),
-  &__radio-inline:has(.af-form-client__input-radio:checked) {
+  &__radio-inline:has(.af-form-client__input-radio:checked),
+  &__radio-custom:has(.af-form-client__input-radio:checked) {
     background-color: common.$color-blue-2;
     box-shadow: 0 0 0 2px common.$color-axa inset;
+  }
+
+  &__radio-input-label {
+    font-size: 1.125rem;
+  }
+
+  &__radio-input-description {
+    font-size: 1rem;
   }
 }

@@ -1,53 +1,33 @@
-import { ComponentPropsWithoutRef } from "react";
-import { Field, getFirstId, useOptionsWithId } from "../../core";
-import { Radio, RadioModes } from "./Radio";
+import { ErrorOutline } from "@mui/icons-material";
+import { ComponentProps, ReactNode } from "react";
+import { Radio } from "./Radio";
 
-type RadioInputProps = ComponentPropsWithoutRef<typeof Field> &
-  ComponentPropsWithoutRef<typeof Radio>;
+type Props = Omit<ComponentProps<typeof Radio>, "placeholder"> & {
+  label: ReactNode;
+  description?: ReactNode;
+  errorLabel?: ReactNode;
+};
+
+const baseClass = "af-form-client__radio-input";
 
 const RadioInput = ({
-  mode,
-  messageType,
-  message,
-  className,
-  classModifier,
-  isVisible,
-  options,
-  classNameContainerLabel,
-  classNameContainerInput,
   label,
-  forceDisplayMessage,
-  children,
+  description,
+  erroneous = false,
+  errorLabel,
   ...radioProps
-}: RadioInputProps) => {
-  const rowModifier = `${classModifier ?? ""}${
-    mode === RadioModes.classic ? " label-top" : ""
-  }`;
-  const newOptions = useOptionsWithId(options);
-  const firstId = getFirstId(newOptions);
-
-  return (
-    <Field
-      label={label}
-      id={firstId}
-      message={message}
-      messageType={messageType}
-      isVisible={isVisible}
-      forceDisplayMessage={forceDisplayMessage}
-      className={className}
-      classModifier={rowModifier}
-      classNameContainerLabel={classNameContainerLabel}
-      classNameContainerInput={classNameContainerInput}
-    >
-      <Radio
-        options={newOptions}
-        mode={mode}
-        classModifier={classModifier}
-        {...radioProps}
-      />
-      {children}
-    </Field>
-  );
-};
+}: Props) => (
+  <>
+    <div className={`${baseClass}-label`}>{label}</div>
+    <div className={`${baseClass}-description`}>{description}</div>
+    <Radio erroneous={erroneous} {...radioProps} />
+    {erroneous && errorLabel && (
+      <div className={`${baseClass}-errorlabel`}>
+        <ErrorOutline />
+        {errorLabel}
+      </div>
+    )}
+  </>
+);
 
 export { RadioInput };
