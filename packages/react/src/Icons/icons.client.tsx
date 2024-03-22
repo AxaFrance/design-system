@@ -1,8 +1,16 @@
-import { useState, useEffect, useRef, ComponentPropsWithoutRef } from "react";
-import { MaterialIcon } from "./types";
+import { ComponentPropsWithoutRef, Suspense, useMemo } from "react";
+import {
+  iconsFilled,
+  iconsOutlined,
+  iconsRound,
+  iconsSharp,
+  iconsTwoTone,
+} from "./IconLoader";
+
+export type IconName = keyof typeof iconsFilled;
 
 type IconProps = {
-  name: MaterialIcon;
+  name: IconName;
   styleType?: "filled" | "outlined" | "round" | "sharp" | "two-tone";
   size?: number;
   fill?: string;
@@ -11,36 +19,36 @@ type IconProps = {
 const Icon = ({
   name,
   size = 24,
-  fill = "inherited",
+  fill = "currentColor",
   styleType = "filled",
   ...others
 }: IconProps) => {
-  const ImportedIconRef = useRef<React.FunctionComponent<
-    React.ComponentProps<"svg"> & { title?: string }
-  > | null>(null);
-  const [loading, setLoading] = useState(false);
+  const SvgIconFilled = useMemo(() => iconsFilled[name], [name]);
+  const SvgIconOutlined = useMemo(() => iconsOutlined[name], [name]);
+  const SvgIconRound = useMemo(() => iconsRound[name], [name]);
+  const SvgIconSharp = useMemo(() => iconsSharp[name], [name]);
+  const SvgIconTwoTone = useMemo(() => iconsTwoTone[name], [name]);
 
-  useEffect(() => {
-    setLoading(true);
-    const importIcon = async () => {
-      try {
-        const { default: namedImport } = await import(
-          `./svg/${styleType}/${name}.svg?react`
-        );
-        ImportedIconRef.current = namedImport;
-      } finally {
-        setLoading(false);
-      }
-    };
-    importIcon();
-  }, [name, styleType]);
-
-  if (!loading && ImportedIconRef.current) {
-    const { current: ImportedIcon } = ImportedIconRef;
-    return <ImportedIcon width={size} height={size} fill={fill} {...others} />;
-  }
-
-  return null;
+  if (!SvgIconFilled || !SvgIconOutlined) return null;
+  return (
+    <Suspense fallback={null}>
+      {styleType === "filled" && (
+        <SvgIconFilled width={size} height={size} fill={fill} {...others} />
+      )}
+      {styleType === "outlined" && (
+        <SvgIconOutlined width={size} height={size} fill={fill} {...others} />
+      )}
+      {styleType === "round" && (
+        <SvgIconRound width={size} height={size} fill={fill} {...others} />
+      )}
+      {styleType === "sharp" && (
+        <SvgIconSharp width={size} height={size} fill={fill} {...others} />
+      )}
+      {styleType === "two-tone" && (
+        <SvgIconTwoTone width={size} height={size} fill={fill} {...others} />
+      )}
+    </Suspense>
+  );
 };
 
 export { Icon };

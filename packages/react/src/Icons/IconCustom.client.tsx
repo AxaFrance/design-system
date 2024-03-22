@@ -1,8 +1,10 @@
-import { useState, useEffect, useRef, ComponentPropsWithoutRef } from "react";
-import { CustomIcon } from "./types";
+import { ComponentPropsWithoutRef, Suspense, useMemo } from "react";
+import { icons } from "./IconCustomLoader";
+
+export type IconName = keyof typeof icons;
 
 type IconProps = {
-  name: CustomIcon;
+  name: IconName;
   size?: number;
   fill?: string;
 } & ComponentPropsWithoutRef<"svg">;
@@ -13,32 +15,14 @@ const IconCustom = ({
   fill = "inherited",
   ...others
 }: IconProps) => {
-  const ImportedIconRef = useRef<React.FunctionComponent<
-    React.ComponentProps<"svg"> & { title?: string }
-  > | null>(null);
-  const [loading, setLoading] = useState(false);
+  const SvgIcon = useMemo(() => icons[name], [name]);
 
-  useEffect(() => {
-    setLoading(true);
-    const importIcon = async () => {
-      try {
-        const { default: namedImport } = await import(
-          `./svg_custom/${name}.svg?react`
-        );
-        ImportedIconRef.current = namedImport;
-      } finally {
-        setLoading(false);
-      }
-    };
-    importIcon();
-  }, [name]);
-
-  if (!loading && ImportedIconRef.current) {
-    const { current: ImportedIcon } = ImportedIconRef;
-    return <ImportedIcon width={size} height={size} fill={fill} {...others} />;
-  }
-
-  return null;
+  if (!SvgIcon) return null;
+  return (
+    <Suspense fallback={null}>
+      <SvgIcon width={size} height={size} fill={fill} {...others} />
+    </Suspense>
+  );
 };
 
 export { IconCustom };
