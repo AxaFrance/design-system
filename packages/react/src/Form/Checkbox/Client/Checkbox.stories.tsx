@@ -52,7 +52,7 @@ export const CheckboxStory: StoryObj<ComponentPropsWithRef<typeof Checkbox>> = {
       control: { type: "inline-radio" },
     },
     values: {
-      options: ["paris", "lille", "madrid"],
+      options: ["paris", "lille", "madrid", "berlin"],
       control: { type: "inline-check" },
     },
   },
