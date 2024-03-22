@@ -1,6 +1,4 @@
-import { ComponentPropsWithRef } from "react";
-import type { Option } from "../../core";
-import { RadioItem } from "./RadioItem";
+import { RadioItem, RadioItemOption } from "./RadioItem";
 
 export enum RadioModes {
   classic = "classic",
@@ -8,12 +6,14 @@ export enum RadioModes {
   inline = "inline",
 }
 
-type Props = Omit<
-  ComponentPropsWithRef<typeof RadioItem>,
-  "id" | "label" | "className"
-> & {
-  options: Option[];
+type Props = {
+  name: string;
+  value: string;
+  options: RadioItemOption[];
   mode?: keyof typeof RadioModes;
+  disabled?: boolean;
+  erroneous?: boolean;
+  onChange: React.ChangeEventHandler;
 };
 
 const baseClassNameMode = "af-form-client__radio";
@@ -41,36 +41,31 @@ const getItemClassNameMode = (mode: Props["mode"]) => {
 };
 
 const Radio = ({
-  classModifier,
+  name,
   options,
-  value = "",
-  mode = RadioModes.default,
-  children,
+  value,
   disabled,
+  erroneous,
+  mode = RadioModes.classic,
+  onChange,
   ...otherProps
-}: Props) => {
-  return (
-    <div className={getContainerClassNameMode(mode)}>
-      {options.map((option: Option) => (
-        <RadioItem
-          {...otherProps}
-          key={option.value}
-          id={option.id}
-          value={option.value}
-          icon={option.icon}
-          choice={option.label}
-          description={option.description}
-          isChecked={option.value === value}
-          disabled={option.disabled || disabled}
-          className={getItemClassNameMode(mode)}
-          classModifier={classModifier}
-        >
-          {children}
-        </RadioItem>
-      ))}
-    </div>
-  );
-};
+}: Props) => (
+  <div className={getContainerClassNameMode(mode)}>
+    {options.map((option) => (
+      <RadioItem
+        {...otherProps}
+        {...option}
+        onChange={onChange}
+        key={option.value}
+        className={getItemClassNameMode(mode)}
+        checked={option.value === value}
+        name={name}
+        disabled={option.disabled || disabled}
+        erroneous={option.erroneous || erroneous}
+      />
+    ))}
+  </div>
+);
 
 Radio.displayName = "EnhancedInputRadio";
 

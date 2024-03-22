@@ -19,56 +19,18 @@ type RadioItemProps = Omit<
 };
 export const RadioItemStory: StoryObj<RadioItemProps> = {
   name: "RadioItem",
-  render: ({ classModifier, onChange, ...args }) => (
-    <RadioItem
-      classModifier={classModifier?.join(" ")}
-      onChange={onChange}
-      {...args}
-    />
-  ),
+  render: ({ ...args }) => <RadioItem {...args} />,
   args: {
     icon: <HomeIcon />,
-    choice: "Lille",
-    description: "Hauts-de-France",
+    title: "Lille",
+    subtitle: "Hauts-de-France",
+    description: "Nord",
     value: "",
-    isChecked: false,
+    checked: false,
     disabled: false,
+    erroneous: false,
+    centerContent: false,
     name: "placeName",
     id: "where-are-you",
-  },
-  argTypes: {
-    onChange: { action: "onChange" },
-    classModifier: {
-      options: ["disabled"],
-      control: { type: "inline-check" },
-    },
-  },
-};
-
-export const WithOnlyLabel: StoryObj<typeof RadioItem> = {
-  name: "Radio with only a label",
-  args: {
-    choice: "Lille",
-  },
-};
-
-export const WithIcon: StoryObj<typeof RadioItem> = {
-  name: "Radio with an icon",
-  args: {
-    icon: <HomeIcon />,
-    choice: "Lille",
-    value: "",
-    isChecked: false,
-    disabled: false,
-    name: "placeName",
-    id: "where-are-you",
-  },
-};
-
-export const WithDescription: StoryObj<typeof RadioItem> = {
-  name: "Radio with a description",
-  args: {
-    choice: "Lille",
-    description: "Hauts-de-France",
   },
 };

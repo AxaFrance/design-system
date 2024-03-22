@@ -13,47 +13,41 @@ const meta: Meta<typeof RadioInput> = {
 
 export default meta;
 
-type RadioInputProps = Omit<
-  ComponentPropsWithRef<typeof RadioInput>,
-  "classModifier"
-> & {
-  classModifier?: string[];
-};
-export const RadioInputStory: StoryObj<RadioInputProps> = {
+export const RadioInputStory: StoryObj<
+  ComponentPropsWithRef<typeof RadioInput>
+> = {
   name: "RadioInput",
-  render: ({ classModifier, ...args }) => (
-    <RadioInput classModifier={classModifier?.join(" ")} {...args} />
-  ),
+  render: ({ ...args }) => <RadioInput {...args} />,
   args: {
-    label: "Where are you ?",
+    value: "lille",
+    label: "What city do you live in ?",
+    description: "Tell us everything...",
     mode: RadioModes.inline,
-    value: "",
-    classModifier: [],
-    isChecked: false,
-    readOnly: false,
     disabled: false,
+    erroneous: false,
+    errorLabel: "Vous devez sélectionner une valeur",
     name: "placeName",
     options: [
       {
         icon: <FlagIcon />,
-        label: "Paris",
+        title: "Paris",
+        subtitle: "Île-de-France",
         description: "Capitale de la France",
         value: "paris",
       },
-      { icon: <HomeIcon />, label: "Lille", value: "lille" },
+      { icon: <HomeIcon />, title: "Lille", value: "lille" },
       {
-        label: "Madrid",
+        title: "Madrid",
         description: "Capitale de l'Espagne",
         value: "madrid",
       },
       {
-        label: "Berlin",
+        title: "Berlin",
         value: "berlin",
       },
     ],
   },
   argTypes: {
-    onChange: { action: "onChange" },
     mode: {
       options: [RadioModes.classic, RadioModes.default, RadioModes.inline],
       control: { type: "inline-radio" },
@@ -64,10 +58,6 @@ export const RadioInputStory: StoryObj<RadioInputProps> = {
         empty: "",
       },
       control: { type: "inline-radio" },
-    },
-    classModifier: {
-      options: ["disabled"],
-      control: { type: "inline-check" },
     },
   },
 };
