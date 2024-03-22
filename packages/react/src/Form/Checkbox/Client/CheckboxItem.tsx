@@ -1,8 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode, forwardRef, useId } from "react";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-
 import "@axa-fr/design-system-css/dist/Form/Checkbox/Client/Checkbox.scss";
+import { Icon } from "../../../Icons/Icons.client";
 
 export type CheckboxItemOption = {
   id?: string;
@@ -70,10 +68,11 @@ export const CheckboxItem = forwardRef<HTMLInputElement, Props>(
           type="checkbox"
           ref={inputRef}
         />
-        <CheckBoxOutlineBlankIcon
+        <Icon
+          name="check_box_outline_blank"
           className={`${defaultClassName}-unchecked-icon`}
         />
-        <CheckBoxIcon className={`${defaultClassName}-checked-icon`} />
+        <Icon name="check_box" className={`${defaultClassName}-checked-icon`} />
         <div
           className={`${defaultClassName}-content${centerContent ? "--centered" : ""}`}
         >

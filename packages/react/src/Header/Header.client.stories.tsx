@@ -1,8 +1,8 @@
-import { Save } from "@mui/icons-material";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Variants } from "../Button/Button.client";
 import { Button } from "../client";
 import { Header } from "./Header.client";
+import { Icon } from "../Icons/Icons.client";
 import "./Header.client.stories.css";
 
 const meta: Meta<typeof Header> = {
@@ -46,7 +46,7 @@ export const HeaderWithRightItem: StoryObj<typeof Header> = {
       <Button
         className="header-client-stories-button"
         variant={Variants.secondary}
-        iconLeft={<Save />}
+        iconLeft={<Icon name="save" fill="#00008F" />}
       >
         <span>Enregistrer dans mon espace client</span>
         <span>Enregistrer</span>

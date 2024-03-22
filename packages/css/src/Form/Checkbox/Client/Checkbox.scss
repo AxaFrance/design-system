@@ -130,6 +130,8 @@
     color: common.$color-btn-error;
 
     svg {
+      width: 1rem;
+      height: 1rem;
       margin-right: 0.5rem;
       font-size: 1rem;
     }
@@ -153,10 +155,12 @@
     .af-form-client__checkbox-checked-icon {
       visibility: hidden;
       color: common.$color-axa;
+      fill: common.$color-axa;
     }
 
     .af-form-client__checkbox-unchecked-icon {
       color: common.$color-gray;
+      fill: common.$color-gray;
     }
 
     .af-form-client__checkbox-unchecked-icon,
@@ -169,8 +173,11 @@
 
     .af-form-client__checkbox-icon {
       color: common.$color-axa;
+      fill: common.$color-axa;
 
       svg {
+        width: 2.25rem;
+        height: 2.25rem;
         font-size: 2.25rem;
       }
     }
@@ -200,6 +207,7 @@
       .af-form-client__checkbox-unchecked-icon,
       .af-form-client__checkbox-checked-icon {
         color: common.$color-btn-error;
+        fill: common.$color-btn-error;
       }
     }
 
@@ -215,6 +223,7 @@
       .af-form-client__checkbox-unchecked-icon,
       .af-form-client__checkbox-checked-icon {
         color: common.$color-axa;
+        fill: common.$color-axa;
       }
     }
 

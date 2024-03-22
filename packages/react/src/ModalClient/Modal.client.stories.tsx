@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
-import { BluetoothAudio } from "@mui/icons-material";
 import { ButtonAction, Modal } from "./Modal.client";
+import { Icon } from "../Icons/Icons.client";
 
 const meta: Meta<typeof Modal> = {
   title: "Client/Components/Modal",
@@ -46,7 +46,7 @@ export const Playground: Story = {
     title: "Modal title",
     children:
       "Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.",
-    iconTitle: <BluetoothAudio />,
+    iconTitle: <Icon name="bluetooth_audio" />,
     fullWidthButtons: false,
     actions: {
       primary: { text: "Save", callback: () => true },

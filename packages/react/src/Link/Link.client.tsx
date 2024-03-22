@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
-import OpenInNew from "@mui/icons-material/OpenInNew";
 import "@axa-fr/design-system-css/dist/Link/Link.client.scss";
+import { Icon } from "../Icons/Icons.client";
 
 export type AlertType =
   | "validation"
@@ -32,7 +32,7 @@ export const Link = ({
       {...props}
     >
       {children}
-      {newTabProps && <OpenInNew />}
+      {newTabProps && <Icon name="open_in_new" />}
     </a>
   );
 };

@@ -43,6 +43,10 @@
     padding: 1.2rem common.$spacing-u3;
     text-decoration: none;
     color: common.$color-white;
+
+    &:hover {
+      color: common.$color-blue-1;
+    }
   }
 
   &__footerMenuIcons {
@@ -58,6 +62,12 @@
   &__menuIconLinks {
     align-self: center;
     color: common.$color-white;
+    fill: common.$color-white;
+
+    &:hover {
+      color: common.$color-blue-1;
+      fill: common.$color-blue-1;
+    }
   }
 
   &__menuAboutTrigger {
