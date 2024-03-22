@@ -19,6 +19,7 @@ export const CheckboxInputStory: StoryObj<
   name: "CheckboxInput",
   render: ({ ...args }) => <CheckboxInput {...args} />,
   args: {
+    values: ["lille", "madrid"],
     label: "What cities have you visited ?",
     description: "During the last 10 years",
     mode: CheckboxModes.inline,
@@ -47,7 +48,6 @@ export const CheckboxInputStory: StoryObj<
     ],
   },
   argTypes: {
-    onChange: { action: "onChange" },
     mode: {
       options: [
         CheckboxModes.classic,
@@ -56,11 +56,8 @@ export const CheckboxInputStory: StoryObj<
       ],
       control: { type: "inline-radio" },
     },
-    options: {
-      options: ["empty", "paris", "lille", "madrid", "berlin"],
-      mapping: {
-        empty: "",
-      },
+    values: {
+      options: ["paris", "lille", "madrid", "berlin"],
       control: { type: "inline-check" },
     },
   },
