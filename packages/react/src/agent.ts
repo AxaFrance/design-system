@@ -9,7 +9,7 @@ export {
   Checkbox,
   CheckboxInput,
   CheckboxItem,
-  CheckboxModes
+  CheckboxModes,
 } from "./Form/Checkbox/Agent";
 export { Choice, ChoiceInput } from "./Form/Choice";
 export {
@@ -21,7 +21,7 @@ export {
   HelpMessage,
   InputList,
   MessageTypes,
-  getComponentClassName
+  getComponentClassName,
 } from "./Form/core";
 export { Date, DateInput } from "./Form/Date";
 export { Number, NumberInput } from "./Form/Number";
@@ -30,13 +30,21 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
+export {
+  Header,
+  Infos,
+  Name,
+  TitleHeader,
+  ToggleButton,
+  User,
+} from "./Header/Agent";
 export { Footer } from "./Layout/Footer";
 export {
   NavBar,
   NavBarBase,
   NavBarItem,
   NavBarItemBase,
-  NavBarItemLink
+  NavBarItemLink,
 } from "./Layout/Header";
 export {
   BooleanModal,
@@ -44,19 +52,7 @@ export {
   ModalBody,
   ModalFooter,
   ModalHeader,
-  ModalHeaderBase
+  ModalHeaderBase,
 } from "./ModalAgent";
 export { Tabs } from "./Tabs/Agent/Tabs.agent";
 export { Title } from "./Title/Title.agent";
-
-export {
-  Header,
-  Infos,
-  Name,
-  NavBar,
-  NavBarItem,
-  TitleHeader,
-  ToggleButton,
-  User
-} from "./Header/Agent";
-
