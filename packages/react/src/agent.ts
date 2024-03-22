@@ -30,6 +30,7 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
+export { Footer } from "./Layout/Footer";
 export {
   Header,
   Infos,
@@ -37,15 +38,12 @@ export {
   TitleHeader,
   ToggleButton,
   User,
-} from "./Header/Agent";
-export { Footer } from "./Layout/Footer";
-export {
   NavBar,
   NavBarBase,
   NavBarItem,
   NavBarItemBase,
   NavBarItemLink,
-} from "./Layout/Header";
+} from "./Layout/Header/Agent";
 export {
   BooleanModal,
   Modal,
