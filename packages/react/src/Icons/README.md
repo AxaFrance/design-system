@@ -1,6 +1,6 @@
 https://github.com/marella/material-design-icons/blob/main/scripts/README.md
 
-To update icons if needed
+# To update icons if needed
 
 1. Delete all svgs
 
@@ -20,10 +20,10 @@ npx @material-design-icons/scripts download svg --to packages\react\src\Icons\sv
 npx @material-design-icons/scripts download metadata --to packages\react\src\Icons\metadata
 ```
 
-4. Download types
+4. Execute icons script
 
 ```
-npx @material-design-icons/scripts generate types --in packages\react\src\Icons\types
+npm run icons:all
 ```
 
-5. Reshape types in 2 files like current (constants.ts and icons.client.tsx)
+5. Check generated index.ts in svg folders

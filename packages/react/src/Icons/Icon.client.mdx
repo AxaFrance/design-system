@@ -1,0 +1,62 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as IconStories from "./Icon.client.stories.tsx";
+
+<Meta of={IconStories} />
+
+## Icon
+
+Based on Material UI icons.
+
+### Import
+
+```tsx title="test.js"
+import { Icon } from "@axa-fr/design-system-react/icons";
+```
+
+### Use
+
+```tsx title="test.js"
+export const IconComponent = () => (
+  <Icon name="ArrowBack" styleType="filled" size={56} fill="red" />
+);
+```
+
+### Name
+
+This allow to select the svg to lazy load by the component.
+List can be found [here](https://marella.me/material-design-icons/demo/svg/)
+
+### StyleType
+
+There are 5 style types available for the Icon component :
+
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>styleType</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>filled</td>
+    </tr>
+    <tr>
+      <td>outlined</td>
+    </tr>
+    <tr>
+      <td>round</td>
+    </tr>
+    <tr>
+      <td>sharp</td>
+    </tr>
+    <tr>
+      <td>two-tone</td>
+    </tr>
+  </tbody>
+</table>
+
+## Playground
+
+<Canvas of={IconStories.Playground} />
+
+<Controls story="Icon" />

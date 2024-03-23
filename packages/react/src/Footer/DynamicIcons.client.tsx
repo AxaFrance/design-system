@@ -9,13 +9,13 @@ export const DynamicIcon = ({
 }) => {
   switch (iconName) {
     case "facebook":
-      return <IconCustom name="facebook" className={className} />;
+      return <IconCustom name="Facebook" className={className} />;
     case "twitter":
-      return <IconCustom name="twitterx" className={className} />;
+      return <IconCustom name="Twitterx" className={className} />;
     case "youtube":
-      return <IconCustom name="youtube" className={className} />;
+      return <IconCustom name="Youtube" className={className} />;
     case "linkedin":
-      return <IconCustom name="linkedin" className={className} />;
+      return <IconCustom name="Linkedin" className={className} />;
     default:
       return iconName;
   }

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { IconCustom } from "./IconCustom.client";
+import { IconCustom, IconName } from "./IconCustom.client";
+import { icons } from "./converted/svg_custom";
+
 import "./Icon.client.stories.css";
-import type { CustomIcon } from "./types";
-import { CustomIcons } from "./types/constants";
 
 const meta: Meta = {
   title: "Client/IconsCustom",
@@ -10,20 +10,43 @@ const meta: Meta = {
 
 export default meta;
 
-export const Example: StoryObj = {
+type StoryProps = Omit<
+  React.ComponentProps<typeof IconCustom>,
+  "name" | "size" | "fill"
+> & {
+  name: IconName;
+  size: number;
+  fill: string;
+};
+type Story = StoryObj<StoryProps>;
+
+export const Playground: Story = {
   name: "IconCustom",
-  render: ({ ...args }) => <IconCustom name="facebook" {...args} />,
-  args: {},
+  render: ({ name, size, fill, ...args }) => (
+    <IconCustom name={name} size={size} fill={fill} {...args} />
+  ),
+  args: {
+    name: "Youtube",
+    size: 56,
+    fill: "red",
+  },
+  argTypes: {
+    name: {
+      control: { type: "select" },
+      options: Object.keys(icons),
+    },
+  },
 };
 
 export const AllIconsCustom: StoryObj = {
+  name: "All Icons custom",
   render: () => {
     return (
       <ul className="icon-list">
-        {CustomIcons.map((name: CustomIcon) => {
+        {Object.keys(icons).map((name) => {
           return (
             <li key={name}>
-              <IconCustom name={name} />
+              <IconCustom name={name as IconName} />
               <span>{name}</span>
             </li>
           );

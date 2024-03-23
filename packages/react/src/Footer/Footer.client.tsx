@@ -4,7 +4,7 @@ import "@axa-fr/design-system-css/dist/Footer/Footer.client.scss";
 import classNames from "classnames";
 import { MenuIcons, SocialMedia } from "./MenuIcons.client";
 import { Link, MenuLink } from "./MenuLink.client";
-import { Icon } from "../Icons/Icons.client";
+import { Icon } from "../Icons/Icon.client";
 
 type Props = {
   links: Link[];
@@ -38,7 +38,7 @@ export const Footer: FC<Props> = ({
               {expandLinkText}
             </span>
             <Icon
-              name="expand_more"
+              name="ExpandMore"
               className={classNames(
                 "af-footer__icon",
                 "af-footer__iconTrigger",

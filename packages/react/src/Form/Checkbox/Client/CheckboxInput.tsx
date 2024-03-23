@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 import { Checkbox } from "./Checkbox";
-import { Icon } from "../../../Icons/Icons.client";
+import { Icon } from "../../../Icons/Icon.client";
 
 type Props = Omit<ComponentProps<typeof Checkbox>, "placeholder"> & {
   label: ReactNode;
@@ -23,7 +23,7 @@ export const CheckboxInput = ({
       <Checkbox erroneous={erroneous} {...checkboxProps} />
       {erroneous && errorLabel && (
         <div className={`${baseClass}-errorlabel`}>
-          <Icon name="error_outline" />
+          <Icon name="ErrorOutline" />
           {errorLabel}
         </div>
       )}

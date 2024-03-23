@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Icon } from "../Icons/Icons.client";
+import { Icon } from "../Icons/Icon.client";
 import {
   ButtonClient as Button,
   Variants as ButtonVariants,
@@ -97,7 +97,7 @@ export const Modal = ({
               type="button"
               aria-label="close"
             >
-              <Icon name="close" width={32} height={32} />
+              <Icon name="Close" width={32} height={32} />
             </Button>
           )}
         </h2>

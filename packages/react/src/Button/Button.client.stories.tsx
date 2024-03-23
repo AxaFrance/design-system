@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
 import { ButtonClient, Variants } from "./Button.client";
-import { Icon } from "../Icons/Icons.client";
+import { Icon } from "../Icons/Icon.client";
 
 const meta: Meta<typeof ButtonClient> = {
   component: ButtonClient,
@@ -142,31 +142,31 @@ export const MultiExamples: StoryObj<typeof ButtonClient> = {
           Button Tertiary Disabled
         </ButtonClient>
         <ButtonClient variant={Variants.ghost}>Button Ghost</ButtonClient>
-        <ButtonClient iconRight={<Icon name="arrow_back" fill="white" />}>
+        <ButtonClient iconRight={<Icon name="ArrowBack" fill="white" />}>
           test
         </ButtonClient>
         <ButtonClient
           variant={Variants.secondary}
-          iconRight={<Icon name="code" fill="#00008F" />}
+          iconRight={<Icon name="Code" fill="#00008F" />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.tertiary}
-          iconLeft={<Icon name="fire_extinguisher" fill="#00008F" />}
+          iconLeft={<Icon name="FireExtinguisher" fill="#00008F" />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.business}
-          iconRight={<Icon name="biotech" fill="white" />}
+          iconRight={<Icon name="Biotech" fill="white" />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.ghost}
-          iconLeft={<Icon name="account_balance" fill="#00008F" />}
-          iconRight={<Icon name="heart_broken" fill="#00008F" />}
+          iconLeft={<Icon name="AccountBalance" fill="#00008F" />}
+          iconRight={<Icon name="HeartBroken" fill="#00008F" />}
         >
           With icon MULTI
         </ButtonClient>
@@ -179,7 +179,7 @@ export const WithIconRight: StoryObj<typeof ButtonClient> = {
   name: "Button with right icon",
   args: {
     children: "With icon",
-    iconRight: <Icon name="heart_broken" />,
+    iconRight: <Icon name="HeartBroken" />,
   },
 };
 
@@ -187,6 +187,6 @@ export const WithIconLeft: StoryObj<typeof ButtonClient> = {
   name: "Button with left icon",
   args: {
     children: "With icon",
-    iconLeft: <Icon name="heart_broken" />,
+    iconLeft: <Icon name="HeartBroken" />,
   },
 };

@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, Suspense, useMemo } from "react";
-import { icons } from "./IconCustomLoader";
+import { icons } from "./converted/svg_custom";
 
 export type IconName = keyof typeof icons;
 
@@ -12,7 +12,7 @@ type IconProps = {
 const IconCustom = ({
   name,
   size = 24,
-  fill = "inherited",
+  fill = "currentColor",
   ...others
 }: IconProps) => {
   const SvgIcon = useMemo(() => icons[name], [name]);
