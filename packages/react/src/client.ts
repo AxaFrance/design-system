@@ -24,3 +24,4 @@ export {
   Direction as TabsDirection,
 } from "./Tabs/Client/Tabs.client";
 export { Link } from "./Link/Link.client";
+export { Pagination } from "./Pagination/Pagination.client";
