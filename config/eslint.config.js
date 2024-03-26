@@ -33,6 +33,7 @@ module.exports = {
       {
         ts: "never",
         tsx: "never",
+        js: "never",
       },
     ],
     "import/no-unresolved": [
@@ -84,7 +85,14 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       {
-        devDependencies: [".storybook/**", "**/*.stories.tsx"],
+        devDependencies: [
+          ".storybook/**",
+          "**/*.stories.tsx",
+          "**/*.test.tsx",
+          "**/*.spec.tsx",
+          "**/vitest.setup.ts",
+          "**/vitest.config.ts",
+        ],
       },
     ],
   },
@@ -93,15 +101,15 @@ module.exports = {
       version: "detect",
     },
     "import/resolver": {
-      "typescript": true,
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
+      typescript: true,
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
   },
   overrides: [
     {
-      files: ["**/*.stories.ts?(x)"],
+      files: ["**/*.stories.ts?(x)", "**/vitest.config.ts"],
       rules: {
         "import/no-default-export": "off",
       },
