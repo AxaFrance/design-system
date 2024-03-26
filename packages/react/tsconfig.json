@@ -113,6 +113,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["vite.config.ts", ".eslintrc.cjs", "src"],
+  "include": ["vitest.config.ts", ".eslintrc.js", "src"],
   "exclude": ["node_modules", "./dist/**/*"]
 }
