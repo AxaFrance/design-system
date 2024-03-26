@@ -35,7 +35,10 @@
     "icons:round": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/round -- src/Icons/svg/round",
     "icons:sharp": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/sharp -- src/Icons/svg/sharp",
     "icons:twotone": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/two-tone -- src/Icons/svg/two-tone",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -68,6 +71,9 @@
     "@svgr/cli": "^8.1.0",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.75",
+    "@types/jest": "^29.5.12",
+    "@types/jest-axe": "^3.5.9",
+    "@types/react": "^18.2.64",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "eslint": "^8.57.0",
@@ -79,6 +85,7 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jsdom": "^24.0.0",
     "prettier": "^3.2.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -91,9 +98,20 @@
   "dependencies": {
     "@axa-fr/design-system-css": "*",
     "@fontsource/source-sans-pro": "^5.0.8",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.11.30",
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^1.4.0",
     "@material-design-icons/svg": "^0.14.13",
     "classnames": "^2.5.1",
-    "rc-slider": "^10.5.0"
+    "jest-axe": "^8.0.0",
+    "rc-slider": "^10.5.0",
+    "vite": "^5.2.6",
+    "vitest": "^1.4.0"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
