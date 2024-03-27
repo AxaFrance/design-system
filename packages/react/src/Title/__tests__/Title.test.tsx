@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
 import { axe } from "jest-axe";
 import { Title } from "../Title.agent";
 
@@ -78,7 +77,7 @@ describe("Title", () => {
     ).toBeInTheDocument();
   });
 
-  it("Accessibility violation <Title/>", async () => {
+  it("shouldn't have an accessibility violation <Title/>", async () => {
     // Act
     const { container } = render(<Title heading="h3">A title</Title>);
 
