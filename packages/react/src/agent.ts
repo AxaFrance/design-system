@@ -19,7 +19,7 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
-export { Footer } from "./Layout/Footer";
+export { Footer } from "./Layout/Footer/Agent";
 export {
   BooleanModal,
   Modal,

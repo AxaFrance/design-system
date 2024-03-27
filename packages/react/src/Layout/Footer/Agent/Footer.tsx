@@ -1,6 +1,6 @@
-import { PropsWithChildren, forwardRef } from "react";
 import logo from "@axa-fr/design-system-css/dist/common/assets/logo-axa.svg";
-import "@axa-fr/design-system-css/dist/Layout/Footer/Footer.scss";
+import "@axa-fr/design-system-css/dist/Layout/Footer/Footer.agent.scss";
+import { PropsWithChildren, forwardRef } from "react";
 
 type FooterProps = {
   href?: string;
