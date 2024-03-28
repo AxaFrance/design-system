@@ -1,0 +1,33 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as IconCustomStories from "./IconCustom.client.stories.tsx";
+
+<Meta of={IconCustomStories} />
+
+## IconCustom
+
+Custom Icons
+
+### Import
+
+```tsx title="test.js"
+import { IconCustom } from "@axa-fr/design-system-react/icons";
+```
+
+### Use
+
+```tsx title="test.js"
+export const IconCustomComponent = () => (
+  <IconCustom name="Youtube" size={56} fill="red" />
+);
+```
+
+### Name
+
+This allow to select the svg to lazy load by the component.
+For now, only `Facebook, Youtube, Linkedin, Twitterx` are available
+
+## Playground
+
+<Canvas of={IconCustomStories.Playground} />
+
+<Controls story="IconCustom" />

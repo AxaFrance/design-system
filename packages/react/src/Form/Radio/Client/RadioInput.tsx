@@ -1,5 +1,5 @@
-import { ErrorOutline } from "@mui/icons-material";
 import { ComponentProps, ReactNode } from "react";
+import { Icon } from "../../../Icons/Icon.client";
 import { Radio } from "./Radio";
 
 type Props = Omit<ComponentProps<typeof Radio>, "placeholder"> & {
@@ -23,7 +23,7 @@ const RadioInput = ({
     <Radio erroneous={erroneous} {...radioProps} />
     {erroneous && errorLabel && (
       <div className={`${baseClass}-errorlabel`}>
-        <ErrorOutline />
+        <Icon name="ErrorOutline" />
         {errorLabel}
       </div>
     )}

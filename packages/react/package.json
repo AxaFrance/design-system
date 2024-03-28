@@ -12,8 +12,8 @@
       "types": "./dist/client.d.ts"
     },
     "./icons": {
-      "import": "./dist/Icons/icons.client.js",
-      "types": "./dist/Icons/icons.client.d.ts"
+      "import": "./dist/Icons/index.js",
+      "types": "./dist/Icons/index.d.ts"
     }
   },
   "files": [
@@ -28,6 +28,13 @@
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
     "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx)\" --check",
     "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx)\" --write",
+    "icons:all": "npm run icons:custom && npm run icons:filled && npm run icons:outlined && npm run icons:round && npm run icons:sharp && npm run icons:twotone",
+    "icons:custom": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg_custom -- src/Icons/svg_custom",
+    "icons:filled": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/filled -- src/Icons/svg/filled",
+    "icons:outlined": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/outlined -- src/Icons/svg/outlined",
+    "icons:round": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/round -- src/Icons/svg/round",
+    "icons:sharp": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/sharp -- src/Icons/svg/sharp",
+    "icons:twotone": "svgr --template ./src/Icons/component-template.js --index-template ./src/Icons/index-template.js --icon --typescript --jsx-runtime automatic --out-dir src/Icons/converted/svg/two-tone -- src/Icons/svg/two-tone",
     "tsc": "tsc --noEmit"
   },
   "repository": {
@@ -41,9 +48,6 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "peerDependencies": {
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.7",
-    "@mui/styled-engine": "^5.15.7",
     "react": ">= 18"
   },
   "devDependencies": {
@@ -58,6 +62,8 @@
     "@storybook/react": "^7.6.14",
     "@storybook/react-vite": "^7.6.14",
     "@storybook/test": "^7.6.14",
+    "@svgr/cli": "^8.1.0",
+    "@types/node": "^20.11.30",
     "@types/react": "^18.2.71",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.4.0",

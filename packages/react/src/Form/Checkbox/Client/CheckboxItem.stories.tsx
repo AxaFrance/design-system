@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithRef } from "react";
-import HomeIcon from "@mui/icons-material/Home";
 import { CheckboxItem } from "./CheckboxItem";
+import { Icon } from "../../../Icons/Icon.client";
 
 const meta: Meta<typeof CheckboxItem> = {
   component: CheckboxItem,
@@ -16,7 +16,7 @@ export const CheckboxItemStory: StoryObj<CheckboxItemProps> = {
   name: "CheckboxItem",
   render: ({ ...args }) => <CheckboxItem {...args} />,
   args: {
-    icon: <HomeIcon />,
+    icon: <Icon name="Home" />,
     title: "Lille",
     subtitle: "Hauts-de-France",
     description: "Nord",

@@ -1,10 +1,5 @@
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
-import {
-  AccessTime,
-  CheckCircleOutline,
-  ErrorOutline,
-  WbIncandescentOutlined,
-} from "../Icons/icons.client";
+import { Icon } from "../Icons/Icon.client";
 import "@axa-fr/design-system-css/dist/Alert/Alert.client.scss";
 
 export type AlertType =
@@ -22,17 +17,29 @@ type AlertProps = {
 function getIconFromType(type: AlertType) {
   switch (type) {
     case "information":
-      return <WbIncandescentOutlined className="af-alert__icon" />;
+      return (
+        <Icon
+          name="WbIncandescent"
+          styleType="outlined"
+          className="af-alert__icon"
+        />
+      );
     case "neutral":
-      return <ErrorOutline className="af-alert__icon" />;
+      return <Icon name="ErrorOutline" className="af-alert__icon" />;
     case "warning":
-      return <AccessTime className="af-alert__icon" />;
+      return <Icon name="AccessTime" className="af-alert__icon" />;
     case "validation":
-      return <CheckCircleOutline className="af-alert__icon" />;
+      return <Icon name="CheckCircleOutline" className="af-alert__icon" />;
     case "error":
-      return <ErrorOutline className="af-alert__icon" />;
+      return <Icon name="ErrorOutline" className="af-alert__icon" />;
     default:
-      return <WbIncandescentOutlined className="af-alert__icon" />;
+      return (
+        <Icon
+          name="WbIncandescent"
+          styleType="outlined"
+          className="af-alert__icon"
+        />
+      );
   }
 }
 

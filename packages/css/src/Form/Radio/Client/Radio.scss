@@ -159,9 +159,12 @@
 
     .af-form-client__radio-icon {
       color: common.$color-axa;
+      fill: common.$color-axa;
 
       svg {
-        font-size: 2.25rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 2.5rem;
       }
     }
 
