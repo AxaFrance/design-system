@@ -12,24 +12,6 @@ export {
   CheckboxModes,
 } from "./Form/Checkbox/Agent";
 export { Choice, ChoiceInput } from "./Form/Choice";
-export { Date, DateInput } from "./Form/Date";
-export { Number, NumberInput } from "./Form/Number";
-export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Agent";
-export { Select, SelectBase, SelectInput } from "./Form/Select";
-export { Slider, SliderInput } from "./Form/Slider";
-export { Text, TextInput } from "./Form/Text";
-export { Textarea, TextareaInput } from "./Form/Textarea";
-export { Footer } from "./Layout/Footer";
-export {
-  BooleanModal,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  ModalHeaderBase,
-} from "./ModalAgent";
-export { Title } from "./Title/Title.agent";
-
 export {
   Field,
   FieldError,
@@ -41,4 +23,28 @@ export {
   MessageTypes,
   getComponentClassName,
 } from "./Form/core";
+export { Date, DateInput } from "./Form/Date";
+export { Number, NumberInput } from "./Form/Number";
+export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Agent";
+export { Select, SelectBase, SelectInput } from "./Form/Select";
+export { Slider, SliderInput } from "./Form/Slider";
+export { Text, TextInput } from "./Form/Text";
+export { Textarea, TextareaInput } from "./Form/Textarea";
+export { Footer } from "./Layout/Footer";
+export {
+  NavBar,
+  NavBarBase,
+  NavBarItem,
+  NavBarItemBase,
+  NavBarItemLink,
+} from "./Layout/Header";
+export {
+  BooleanModal,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalHeaderBase,
+} from "./ModalAgent";
 export { Tabs } from "./Tabs/Agent/Tabs.agent";
+export { Title } from "./Title/Title.agent";
