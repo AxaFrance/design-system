@@ -51,10 +51,6 @@ export const RadioInputStory: StoryObj<
     ],
   },
   argTypes: {
-    mode: {
-      options: [RadioModes.classic, RadioModes.default, RadioModes.inline],
-      control: { type: "inline-radio" },
-    },
     value: {
       options: ["empty", "paris", "lille", "madrid", "berlin"],
       mapping: {

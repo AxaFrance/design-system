@@ -3,7 +3,7 @@ import { Icon } from "../../../Icons/Icon.client";
 import { Radio } from "./Radio";
 
 type Props = Omit<ComponentProps<typeof Radio>, "placeholder"> & {
-  label: ReactNode;
+  label?: ReactNode;
   description?: ReactNode;
   errorLabel?: ReactNode;
 };
@@ -18,8 +18,10 @@ const RadioInput = ({
   ...radioProps
 }: Props) => (
   <>
-    <div className={`${baseClass}-label`}>{label}</div>
-    <div className={`${baseClass}-description`}>{description}</div>
+    {label && <div className={`${baseClass}-label`}>{label}</div>}
+    {description && (
+      <div className={`${baseClass}-description`}>{description}</div>
+    )}
     <Radio erroneous={erroneous} {...radioProps} />
     {erroneous && errorLabel && (
       <div className={`${baseClass}-errorlabel`}>
