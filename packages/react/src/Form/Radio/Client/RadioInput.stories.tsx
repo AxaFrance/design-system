@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithRef } from "react";
 import { RadioInput } from "./RadioInput";
 import { RadioModes } from "./Radio";
-import { Icon } from "../../../Icons/Icon.client";
+import { Flag, Home } from "../../../Icons/Icon.client";
 
 const meta: Meta<typeof RadioInput> = {
   component: RadioInput,
@@ -28,14 +28,14 @@ export const RadioInputStory: StoryObj<
     name: "placeName",
     options: [
       {
-        icon: <Icon name="Flag" />,
+        icon: <Flag />,
         title: "Paris",
         subtitle: "Île-de-France",
         description: "Capitale de la France",
         value: "paris",
       },
       {
-        icon: <Icon name="Home" />,
+        icon: <Home />,
         title: "Lille",
         value: "lille",
       },

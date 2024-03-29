@@ -1,4 +1,4 @@
-import { IconCustom } from "../Icons";
+import { Facebook, X, YouTube, LinkedIn } from "../Icons/Icon.client";
 
 export const DynamicIcon = ({
   iconName,
@@ -9,13 +9,13 @@ export const DynamicIcon = ({
 }) => {
   switch (iconName) {
     case "facebook":
-      return <IconCustom name="Facebook" className={className} />;
+      return <Facebook className={className} />;
     case "twitter":
-      return <IconCustom name="Twitterx" className={className} />;
+      return <X className={className} />;
     case "youtube":
-      return <IconCustom name="Youtube" className={className} />;
+      return <YouTube className={className} />;
     case "linkedin":
-      return <IconCustom name="Linkedin" className={className} />;
+      return <LinkedIn className={className} />;
     default:
       return iconName;
   }

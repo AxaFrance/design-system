@@ -12,8 +12,8 @@
       "types": "./dist/client.d.ts"
     },
     "./icons": {
-      "import": "./dist/Icons/index.js",
-      "types": "./dist/Icons/index.d.ts"
+      "import": "./dist/Icons/Icon.client.js",
+      "types": "./dist/Icons/Icon.client.d.ts"
     }
   },
   "files": [
@@ -48,6 +48,9 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "peerDependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.7",
+    "@mui/styled-engine": "^5.15.7",
     "react": ">= 18"
   },
   "devDependencies": {
@@ -88,6 +91,7 @@
   "dependencies": {
     "@axa-fr/design-system-css": "*",
     "@fontsource/source-sans-pro": "^5.0.8",
+    "@material-design-icons/svg": "^0.14.13",
     "classnames": "^2.5.1",
     "rc-slider": "^10.5.0"
   },
