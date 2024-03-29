@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithRef } from "react";
 import { CheckboxInput } from "./CheckboxInput";
 import { CheckboxModes } from "./Checkbox";
-import { Icon } from "../../../Icons/Icon.client";
+import { Flag, Home } from "../../../Icons/Icon.client";
 
 const meta: Meta = {
   component: CheckboxInput,
@@ -28,13 +28,13 @@ export const CheckboxInputStory: StoryObj<
     name: "placeName",
     options: [
       {
-        icon: <Icon name="Flag" />,
+        icon: <Flag />,
         title: "Paris",
         subtitle: "Île-de-France",
         description: "Capitale de la France",
         value: "paris",
       },
-      { icon: <Icon name="Home" />, title: "Lille", value: "lille" },
+      { icon: <Home />, title: "Lille", value: "lille" },
       {
         title: "Madrid",
         description: "Capitale de l'Espagne",

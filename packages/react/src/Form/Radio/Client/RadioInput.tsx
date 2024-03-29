@@ -1,5 +1,5 @@
 import { ComponentProps, ReactNode } from "react";
-import { Icon } from "../../../Icons/Icon.client";
+import { ErrorOutline } from "../../../Icons/Icon.client";
 import { Radio } from "./Radio";
 
 type Props = Omit<ComponentProps<typeof Radio>, "placeholder"> & {
@@ -25,7 +25,7 @@ const RadioInput = ({
     <Radio erroneous={erroneous} {...radioProps} />
     {erroneous && errorLabel && (
       <div className={`${baseClass}-errorlabel`}>
-        <Icon name="ErrorOutline" />
+        <ErrorOutline />
         {errorLabel}
       </div>
     )}
