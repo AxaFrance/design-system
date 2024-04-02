@@ -126,6 +126,8 @@
   }
 
   &__checkbox-input-errorlabel {
+    display: flex;
+    align-items: center;
     font-size: 1rem;
     color: common.$color-btn-error;
 

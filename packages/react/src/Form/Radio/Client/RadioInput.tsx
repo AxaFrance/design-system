@@ -17,7 +17,7 @@ const RadioInput = ({
   errorLabel,
   ...radioProps
 }: Props) => (
-  <>
+  <div>
     {label && <div className={`${baseClass}-label`}>{label}</div>}
     {description && (
       <div className={`${baseClass}-description`}>{description}</div>
@@ -29,7 +29,7 @@ const RadioInput = ({
         {errorLabel}
       </div>
     )}
-  </>
+  </div>
 );
 
 export { RadioInput };
