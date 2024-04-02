@@ -17,7 +17,7 @@ export const CheckboxInput = ({
 }: Props) => {
   const baseClass = "af-form-client__checkbox-input";
   return (
-    <>
+    <div>
       <div className={`${baseClass}-label`}>{label}</div>
       <div className={`${baseClass}-description`}>{description}</div>
       <Checkbox erroneous={erroneous} {...checkboxProps} />
@@ -27,6 +27,6 @@ export const CheckboxInput = ({
           {errorLabel}
         </div>
       )}
-    </>
+    </div>
   );
 };
