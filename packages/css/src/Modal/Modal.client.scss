@@ -105,8 +105,8 @@
 
 @media only screen and (width >= #{common.$screen-size-m}) {
   .af-modal {
-    min-width: 64em;
-    max-width: 64em;
+    min-width: 48em;
+    max-width: 48em;
     margin: auto;
 
     &__actions {
