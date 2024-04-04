@@ -10,7 +10,7 @@ export const Header = ({ rightItem }: PropsWithChildren<HeaderProps>) => {
   return (
     <header className="af-header">
       <div className="af-header-container">
-        <img className="af-logo" src={logo} alt="Logo Axa" />
+        <img className="af-logo" src={logo} alt="" />
         {rightItem ? (
           <div className="af-header-right-item">{rightItem}</div>
         ) : null}
