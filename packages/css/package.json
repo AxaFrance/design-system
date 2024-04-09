@@ -30,7 +30,7 @@
     "@storybook/html": "^7.6.14",
     "@storybook/html-vite": "^7.6.14",
     "@storybook/test": "^7.6.14",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.4.0",
     "browserslist": "^4.23.0",
     "copyfiles": "^2.4.1",
