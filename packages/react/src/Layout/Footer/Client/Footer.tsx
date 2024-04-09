@@ -1,10 +1,10 @@
-import { FC, useCallback, useState } from "react";
 import "@axa-fr/design-system-css/dist/common/reboot.scss";
-import "@axa-fr/design-system-css/dist/Footer/Footer.client.scss";
+import "@axa-fr/design-system-css/dist/Layout/Footer/Footer.client.scss";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import classNames from "classnames";
-import { MenuIcons, SocialMedia } from "./MenuIcons.client";
-import { Link, MenuLink } from "./MenuLink.client";
-import { ExpandMore } from "../Icons/Icon.client";
+import { FC, useCallback, useState } from "react";
+import { MenuIcons, SocialMedia } from "./MenuIcons";
+import { Link, MenuLink } from "./MenuLink";
 
 type Props = {
   links: Link[];
