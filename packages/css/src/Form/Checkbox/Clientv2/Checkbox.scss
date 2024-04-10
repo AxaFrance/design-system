@@ -1,66 +1,12 @@
 @use "./../../../common/common.client.scss" as common;
 
 .af-checkbox {
-  font-family: common.$font-family-base;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem;
-  color: common.$color-gray-700;
-
-  & > h3 {
-    margin: 0;
-    padding: 0;
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.4rem;
-  }
-
-  &__group-description {
-    font-size: 1rem;
-    line-height: 1.25rem;
-  }
-
-  & ul {
-    padding: 0;
-    list-style-type: none;
-
-    & > li {
-      margin-bottom: 1rem;
-    }
-  }
-
-  &--horizontal {
-    & ul {
-      display: flex;
-      gap: 1rem;
-
-      li {
-        position: relative;
-        width: 12rem;
-      }
-    }
-  }
-
-  &__error {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    line-height: 1.25rem;
-    color: common.$color-btn-error;
-
-    & > svg {
-      width: 1rem;
-      height: 1rem;
-      color: common.$color-btn-error;
-      fill: common.$color-btn-error;
-    }
-  }
+  font-family: "Source Sans Pro", arial, sans-serif;
 
   &__content {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 
     & .af-checkbox__icon {
@@ -79,40 +25,72 @@
       & > span:first-child {
         font-size: 1.125rem;
         line-height: 1.4rem;
+        color: common.$color-gray-900;
+      }
+
+      & > span:not(:first-child) {
+        color: common.$color-gray-700;
       }
     }
   }
 
-  &--horizontal &__content {
+  &-select--horizontal &__content {
     flex-direction: column;
-    gap: 0;
+    gap: 0.5rem;
+  }
 
-    .af-checkbox__icon {
-      margin-bottom: 0.5rem;
+  &__group-description {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  &__error {
+    display: flex;
+    margin-left: 3.2rem;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: common.$color-btn-error;
+
+    & > svg {
+      width: 1rem;
+      height: 1rem;
+      color: common.$color-btn-error;
+      fill: common.$color-btn-error;
     }
+  }
+
+  &-select &__error {
+    margin-left: 0;
   }
 
   & label {
     display: flex;
-    height: 5rem;
     padding: 1rem;
     border-radius: 4px;
     align-items: center;
+    align-items: flex-start;
     gap: 0.75rem;
+    font-size: 1.125rem;
     background-color: white;
-    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
     cursor: pointer;
+  }
+
+  &-select label {
+    align-items: center;
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
 
     --box-shadow-color: #{common.$color-gray};
   }
 
-  &--horizontal label {
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
+  &-select--horizontal label {
     height: 100%;
-    gap: 0;
     padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    text-align: center;
 
     & .af-checkbox__icons {
       position: absolute;
@@ -150,10 +128,6 @@
   }
 
   & label:has(input[type="checkbox"][aria-invalid="true"]) {
-    --box-shadow-color: #{common.$color-btn-error};
-
-    box-shadow: 0 0 0 2px var(--box-shadow-color) inset;
-
     & .af-checkbox__checked,
     & .af-checkbox__unchecked {
       color: common.$color-btn-error;
@@ -162,9 +136,6 @@
   }
 
   & label:has(input[type="checkbox"]:checked) {
-    background-color: common.$color-blue-2;
-    box-shadow: 0 0 0 2px common.$color-axa inset;
-
     & .af-checkbox__checked {
       display: block;
       color: common.$color-axa;
@@ -176,13 +147,13 @@
     }
   }
 
-  & label:has(input[type="checkbox"]:disabled) {
-    color: common.$color-btn-disabled-text;
-    background-color: common.$color-gray-200;
-    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
-    cursor: default;
+  &-select label:has(input[type="checkbox"]:checked) {
+    background-color: common.$color-blue-2;
+    box-shadow: 0 0 0 2px common.$color-axa inset;
+  }
 
-    --box-shadow-color: #{common.$color-gray-400};
+  & label:has(input[type="checkbox"]:disabled) {
+    cursor: default;
 
     & .af-checkbox__icon,
     & .af-checkbox__checked,
@@ -192,15 +163,18 @@
     }
   }
 
-  & label:hover:not(:has(input[type="checkbox"]:disabled)) {
-    --box-shadow-color: #{common.$color-axa};
-
+  &-select label:has(input[type="checkbox"]:disabled) {
+    color: common.$color-btn-disabled-text;
+    background-color: common.$color-gray-200;
     box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
 
-    & .af-checkbox__unchecked {
-      color: common.$color-axa;
-      fill: common.$color-axa;
-    }
+    --box-shadow-color: #{common.$color-gray-400};
+  }
+
+  &-select label:has(input[type="checkbox"][aria-invalid="true"]) {
+    --box-shadow-color: #{common.$color-btn-error};
+
+    box-shadow: 0 0 0 2px var(--box-shadow-color) inset;
   }
 
   & label input[type="checkbox"]:focus-visible ~ .af-checkbox__icons {
@@ -208,6 +182,56 @@
     & .af-checkbox__checked {
       outline: 2px solid common.$color-blue-3;
       outline-offset: 3px;
+    }
+  }
+
+  & label:hover:not(:has(input[type="checkbox"]:disabled)) {
+    & .af-checkbox__unchecked {
+      color: common.$color-axa;
+      fill: common.$color-axa;
+    }
+  }
+
+  &-select label:hover:not(:has(input[type="checkbox"]:disabled)) {
+    --box-shadow-color: #{common.$color-axa};
+
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
+  }
+
+  &-select {
+    font-family: common.$font-family-base;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: common.$color-gray-700;
+
+    & > h3 {
+      margin: 0;
+      padding: 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.4rem;
+    }
+
+    & ul {
+      padding: 0;
+      list-style-type: none;
+
+      & > li {
+        margin-bottom: 1rem;
+      }
+    }
+
+    &--horizontal {
+      & ul {
+        display: flex;
+        gap: 1rem;
+
+        li {
+          position: relative;
+          width: 12rem;
+        }
+      }
     }
   }
 }

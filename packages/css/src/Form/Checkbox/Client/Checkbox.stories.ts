@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Checkbox.scss";
 
 const meta: Meta = {
-  title: "Client/Components/Form/Input/Checkbox",
+  title: "Client/Components/Form/Input/Checkbox/old",
 };
 
 export default meta;
