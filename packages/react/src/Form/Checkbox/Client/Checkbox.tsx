@@ -1,68 +1,57 @@
-import { CheckboxItem, CheckboxItemOption } from "./CheckboxItem";
+import "@axa-fr/design-system-css/dist/Form/Checkbox/Client/Checkbox.scss";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import ErrorOutline from "@mui/icons-material/ErrorOutline";
+import { CheckboxSelect } from "./CheckboxSelect";
 
-export enum CheckboxModes {
-  classic = "classic",
-  default = "default",
-  inline = "inline",
-}
-
-type Props = {
+type CheckboxProps = {
+  label: string;
   name: string;
-  values: string[];
-  options: CheckboxItemOption[];
-  mode?: keyof typeof CheckboxModes;
+  value: string;
+  checked?: boolean;
   disabled?: boolean;
-  erroneous?: boolean;
-  onChange: React.ChangeEventHandler;
-};
+  errorMessage?: string;
+  onChange?: React.ChangeEventHandler;
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const baseClassNameMode = "af-form-client__checkbox";
-
-const getContainerClassNameMode = (mode: Props["mode"]) => {
-  switch (mode) {
-    case CheckboxModes.classic:
-      return `${baseClassNameMode}-container`;
-    case CheckboxModes.inline:
-      return `${baseClassNameMode}-container-inline`;
-    default:
-      return `${baseClassNameMode}-container-custom`;
-  }
-};
-
-const getItemClassNameMode = (mode: Props["mode"]) => {
-  switch (mode) {
-    case CheckboxModes.classic:
-      return baseClassNameMode;
-    case CheckboxModes.inline:
-      return `${baseClassNameMode}-inline`;
-    default:
-      return `${baseClassNameMode}-custom`;
-  }
-};
-
-export const Checkbox = ({
+const Checkbox = ({
+  label,
   name,
-  options,
-  values,
+  value,
+  checked,
   disabled,
-  erroneous,
-  mode = CheckboxModes.classic,
+  errorMessage,
   onChange,
-  ...otherProps
-}: Props) => (
-  <div className={getContainerClassNameMode(mode)}>
-    {options.map((option) => (
-      <CheckboxItem
-        {...otherProps}
-        {...option}
-        onChange={onChange}
-        key={option.value}
-        className={getItemClassNameMode(mode)}
-        checked={values ? values.indexOf(option.value) >= 0 : false}
-        name={name}
-        disabled={option.disabled || disabled}
-        erroneous={option.erroneous || erroneous}
-      />
-    ))}
-  </div>
+  ...props
+}: CheckboxProps) => (
+  <>
+    <div className="af-checkbox" {...props}>
+      <label key={name} htmlFor={`id-${name}`}>
+        <input
+          type="checkbox"
+          id={`id-${name}`}
+          name={name}
+          value={value}
+          onChange={onChange}
+          aria-invalid={!!errorMessage}
+          disabled={disabled}
+          checked={checked}
+        />
+        <div className="af-checkbox__icons">
+          <CheckBoxOutlineBlankIcon className="af-checkbox__unchecked" />
+          <CheckBoxIcon className="af-checkbox__checked" />
+        </div>
+        {label}
+      </label>
+    </div>
+    {errorMessage && (
+      <div className="af-checkbox__error" aria-live="assertive">
+        <ErrorOutline />
+        {errorMessage}
+      </div>
+    )}
+  </>
 );
+
+Checkbox.Select = CheckboxSelect;
+export { Checkbox };

@@ -1,58 +1,43 @@
 import { Meta, StoryObj } from "@storybook/react";
-
 import { ComponentPropsWithRef } from "react";
-import { Checkbox, CheckboxModes } from "./Checkbox";
-import { Flag, Home } from "../../../Icons/Icon.client";
+import { Checkbox } from "./Checkbox";
 
 const meta: Meta = {
   title: "Client/Components/Form/Input/Checkbox",
   component: Checkbox,
-  argTypes: { onChange: { action: "onChange" } },
+  argTypes: {},
 };
 
 export default meta;
 
 export const CheckboxStory: StoryObj<ComponentPropsWithRef<typeof Checkbox>> = {
-  name: "Checkbox",
+  name: "Basic",
   render: ({ ...args }) => <Checkbox {...args} />,
   args: {
-    values: ["lille", "madrid"],
-    mode: CheckboxModes.inline,
-    disabled: false,
-    erroneous: false,
-    name: "placeName",
-    options: [
-      {
-        icon: <Flag />,
-        title: "Paris",
-        subtitle: "Île-de-France",
-        description: "Capitale de la France",
-        value: "paris",
-      },
-      { icon: <Home />, title: "Lille", value: "lille" },
-      {
-        title: "Madrid",
-        description: "Capitale de l'Espagne",
-        value: "madrid",
-      },
-      {
-        title: "Berlin",
-        value: "berlin",
-      },
-    ],
+    label:
+      "J'accepte de fournir à AXA mes coordonnées ainsi que les données  relatives à mon projet et ma situation. Ces dernières seront transmises à mon conseiller AXA qui pourra  me contacter pour m'accompagner.",
+    name: "option1",
+    value: "option1",
   },
   argTypes: {
-    mode: {
-      options: [
-        CheckboxModes.classic,
-        CheckboxModes.default,
-        CheckboxModes.inline,
-      ],
-      control: { type: "inline-radio" },
+    label: {
+      control: { type: "text" },
     },
-    values: {
-      options: ["paris", "lille", "madrid", "berlin"],
-      control: { type: "inline-check" },
+    name: {
+      control: { type: "text" },
     },
+    value: {
+      control: { type: "text" },
+    },
+    errorMessage: {
+      control: { type: "text" },
+    },
+    disabled: {
+      control: { type: "boolean" },
+    },
+    checked: {
+      control: { type: "boolean" },
+    },
+    onChange: { action: "onChange" },
   },
 };
