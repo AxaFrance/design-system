@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentPropsWithRef } from "react";
+import { ComponentProps } from "react";
 import { Checkbox } from "./Checkbox";
 
 const meta: Meta = {
@@ -10,7 +10,7 @@ const meta: Meta = {
 
 export default meta;
 
-export const CheckboxStory: StoryObj<ComponentPropsWithRef<typeof Checkbox>> = {
+export const CheckboxStory: StoryObj<ComponentProps<typeof Checkbox>> = {
   name: "Basic",
   render: ({ ...args }) => <Checkbox {...args} />,
   args: {
