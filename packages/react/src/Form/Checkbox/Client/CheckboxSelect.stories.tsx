@@ -1,6 +1,6 @@
 import Home from "@mui/icons-material/Home";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentPropsWithRef } from "react";
+import { ComponentProps } from "react";
 import { Checkbox } from "./Checkbox";
 
 const meta: Meta = {
@@ -12,7 +12,7 @@ const meta: Meta = {
 export default meta;
 
 export const CheckboxSelectStory: StoryObj<
-  ComponentPropsWithRef<typeof Checkbox.Select>
+  ComponentProps<typeof Checkbox.Select>
 > = {
   name: "Select",
   render: ({ ...args }) => <Checkbox.Select {...args} />,
