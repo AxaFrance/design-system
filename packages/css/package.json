@@ -19,6 +19,17 @@
     "prettier:fix": "prettier \"src/**/*\" --write",
     "tsc": "tsc --noEmit"
   },
+  "dependencies": {
+    "rc-slider": "^10.5.0"
+  },
+  "peerDependencies": {
+    "@material-design-icons/svg": "^0.14.13"
+  },
+  "peerDependenciesMeta": {
+    "@material-design-icons/svg": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@csstools/postcss-sass": "^5.1.1",
     "@storybook/addon-essentials": "^7.6.14",
@@ -91,8 +102,5 @@
   "volta": {
     "node": "20.10.0",
     "npm": "10.2.5"
-  },
-  "dependencies": {
-    "rc-slider": "^10.5.0"
   }
 }

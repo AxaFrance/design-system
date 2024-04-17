@@ -7,12 +7,13 @@ import {
   useRef,
   useState,
 } from "react";
-import { Close } from "../Icons/Icon.client";
+import close from "@material-design-icons/svg/outlined/close.svg";
 import {
   ButtonClient as Button,
   Variants as ButtonVariants,
 } from "../Button/Button.client";
 import "@axa-fr/design-system-css/dist/Modal/Modal.client.scss";
+import { Svg } from "../Svg";
 
 export type ButtonAction = {
   text: string;
@@ -97,7 +98,7 @@ export const Modal = ({
               type="button"
               aria-label="close"
             >
-              <Close width={32} height={32} />
+              <Svg src={close} width={32} height={32} />
             </Button>
           )}
         </h2>

@@ -1,6 +1,7 @@
 import { ComponentProps, ReactNode } from "react";
-import { ErrorOutline } from "../../../Icons/Icon.client";
+import errorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
 import { Radio } from "./Radio";
+import { Svg } from "../../../Svg";
 
 type Props = Omit<ComponentProps<typeof Radio>, "placeholder"> & {
   label?: ReactNode;
@@ -25,7 +26,7 @@ const RadioInput = ({
     <Radio erroneous={erroneous} {...radioProps} />
     {erroneous && errorLabel && (
       <div className={`${baseClass}-errorlabel`}>
-        <ErrorOutline />
+        <Svg src={errorOutline} />
         {errorLabel}
       </div>
     )}

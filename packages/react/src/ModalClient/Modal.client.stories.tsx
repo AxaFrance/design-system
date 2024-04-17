@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
+import bluetoothAudio from "@material-design-icons/svg/outlined/bluetooth_audio.svg";
 import { ButtonAction, Modal } from "./Modal.client";
-import { BluetoothAudio } from "../Icons/Icon.client";
+import { Svg } from "../Svg";
 
 const meta: Meta<typeof Modal> = {
   title: "Client/Components/Modal",
@@ -46,7 +47,7 @@ export const Playground: Story = {
     title: "Modal title",
     children:
       "Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.",
-    iconTitle: <BluetoothAudio />,
+    iconTitle: <Svg src={bluetoothAudio} />,
     fullWidthButtons: false,
     actions: {
       primary: { text: "Save", callback: () => true },

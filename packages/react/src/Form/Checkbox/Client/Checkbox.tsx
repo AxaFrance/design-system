@@ -1,9 +1,10 @@
 import "@axa-fr/design-system-css/dist/Form/Checkbox/Client/Checkbox.scss";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import ErrorOutline from "@mui/icons-material/ErrorOutline";
+import checkBoxIcon from "@material-design-icons/svg/outlined/check_box.svg";
+import checkBoxOutlineBlankIcon from "@material-design-icons/svg/outlined/check_box_outline_blank.svg";
+import errorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
 import React, { ReactNode, useId } from "react";
 import { CheckboxSelect } from "./CheckboxSelect";
+import { Svg } from "../../../Svg";
 
 type CheckboxProps = {
   label: string | ReactNode;
@@ -25,15 +26,18 @@ const Checkbox = ({ label, errorMessage, ...inputProps }: CheckboxProps) => {
             aria-invalid={!!errorMessage}
           />
           <div className="af-checkbox__icons">
-            <CheckBoxOutlineBlankIcon className="af-checkbox__unchecked" />
-            <CheckBoxIcon className="af-checkbox__checked" />
+            <Svg
+              src={checkBoxOutlineBlankIcon}
+              className="af-checkbox__unchecked"
+            />
+            <Svg src={checkBoxIcon} className="af-checkbox__checked" />
           </div>
           {label}
         </label>
       </div>
       {errorMessage && (
         <div className="af-checkbox__error" aria-live="assertive">
-          <ErrorOutline />
+          <Svg src={errorOutline} />
           {errorMessage}
         </div>
       )}

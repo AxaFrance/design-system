@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import "@axa-fr/design-system-css/dist/Link/Link.client.scss";
-import { OpenInNew } from "../Icons/Icon.client";
+import openInNew from "@material-design-icons/svg/outlined/open_in_new.svg";
+import { Svg } from "../Svg";
 
 export type AlertType =
   | "validation"
@@ -32,7 +33,7 @@ export const Link = ({
       {...props}
     >
       {children}
-      {newTabProps && <OpenInNew />}
+      {newTabProps && <Svg src={openInNew} />}
     </a>
   );
 };

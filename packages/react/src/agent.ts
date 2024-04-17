@@ -42,3 +42,4 @@ export {
   getComponentClassName,
 } from "./Form/core";
 export { Tabs } from "./Tabs/Agent/Tabs.agent";
+export { Svg } from "./Svg";

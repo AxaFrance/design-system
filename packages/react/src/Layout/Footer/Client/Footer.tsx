@@ -1,10 +1,11 @@
 import "@axa-fr/design-system-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-css/dist/Layout/Footer/Footer.client.scss";
-import ExpandMore from "@mui/icons-material/ExpandMore";
+import expandMore from "@material-design-icons/svg/outlined/expand_more.svg";
 import classNames from "classnames";
 import { FC, useCallback, useState } from "react";
 import { MenuIcons, SocialMedia } from "./MenuIcons";
 import { Link, MenuLink } from "./MenuLink";
+import { Svg } from "../../../Svg";
 
 type Props = {
   links: Link[];
@@ -37,7 +38,8 @@ export const Footer: FC<Props> = ({
             <span className="af-footer__menuAboutTriggerText">
               {expandLinkText}
             </span>
-            <ExpandMore
+            <Svg
+              src={expandMore}
               className={classNames(
                 "af-footer__icon",
                 "af-footer__iconTrigger",
