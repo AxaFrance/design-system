@@ -61,7 +61,7 @@ export const Modal = ({
       document.body.style.overflow = "hidden";
       modalElement!.showModal();
     } else {
-      document.body.style.overflow = "scroll";
+      document.body.style.overflow = "inherit";
       modalElement!.close();
     }
   }, [isModalOpen]);
