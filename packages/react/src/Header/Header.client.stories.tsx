@@ -1,8 +1,8 @@
+import Save from "@mui/icons-material/Save";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Variants } from "../Button/Button.client";
 import { Button } from "../client";
 import { Header } from "./Header.client";
-import { Save } from "../Icons/Icon.client";
 import "./Header.client.stories.css";
 
 const meta: Meta<typeof Header> = {

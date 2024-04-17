@@ -1,11 +1,9 @@
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
-import {
-  WbIncandescentOutlined,
-  ErrorOutline,
-  AccessTime,
-  CheckCircleOutline,
-} from "../Icons/Icon.client";
 import "@axa-fr/design-system-css/dist/Alert/Alert.client.scss";
+import AccessTime from "@mui/icons-material/AccessTime";
+import CheckCircleOutline from "@mui/icons-material/CheckCircleOutline";
+import ErrorOutline from "@mui/icons-material/ErrorOutline";
+import WbIncandescentOutlined from "@mui/icons-material/WbIncandescentOutlined";
+import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
 export type AlertType =
   | "validation"

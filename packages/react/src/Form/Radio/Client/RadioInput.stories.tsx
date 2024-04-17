@@ -1,8 +1,9 @@
+import Flag from "@mui/icons-material/Flag";
+import Home from "@mui/icons-material/Home";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithRef } from "react";
-import { RadioInput } from "./RadioInput";
 import { RadioModes } from "./Radio";
-import { Flag, Home } from "../../../Icons/Icon.client";
+import { RadioInput } from "./RadioInput";
 
 const meta: Meta<typeof RadioInput> = {
   component: RadioInput,

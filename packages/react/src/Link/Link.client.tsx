@@ -1,6 +1,6 @@
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import "@axa-fr/design-system-css/dist/Link/Link.client.scss";
-import { OpenInNew } from "../Icons/Icon.client";
+import OpenInNew from "@mui/icons-material/OpenInNew";
+import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
 export type AlertType =
   | "validation"

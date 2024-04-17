@@ -1,7 +1,7 @@
+import Home from "@mui/icons-material/Home";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithRef } from "react";
 import { RadioItem } from "./RadioItem";
-import { Home } from "../../../Icons/Icon.client";
 
 const meta: Meta<typeof RadioItem> = {
   component: RadioItem,

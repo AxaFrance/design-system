@@ -10,10 +10,6 @@
     "./client": {
       "import": "./dist/client.js",
       "types": "./dist/client.d.ts"
-    },
-    "./icons": {
-      "import": "./dist/Icons/Icon.client.js",
-      "types": "./dist/Icons/Icon.client.d.ts"
     }
   },
   "files": [

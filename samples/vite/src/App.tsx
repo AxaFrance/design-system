@@ -3,7 +3,7 @@ import {
   Button as ButtonClient,
   ButtonVariants as ButtonClientVariants,
 } from "@axa-fr/design-system-react/client";
-import { AcUnit } from "@axa-fr/design-system-react/icons";
+import AcUnit from "@mui/icons-material/AcUnit";
 
 import "./App.css";
 import "./Reset.css";

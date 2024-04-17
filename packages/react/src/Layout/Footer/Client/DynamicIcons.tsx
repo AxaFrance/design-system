@@ -1,4 +1,7 @@
-import { Facebook, LinkedIn, X, YouTube } from "../../../Icons/Icon.client";
+import Facebook from "@mui/icons-material/Facebook";
+import LinkedIn from "@mui/icons-material/LinkedIn";
+import X from "@mui/icons-material/X";
+import YouTube from "@mui/icons-material/YouTube";
 
 export const DynamicIcon = ({
   iconName,

@@ -1,14 +1,12 @@
+import AccountBalance from "@mui/icons-material/AccountBalance";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+import Biotech from "@mui/icons-material/Biotech";
+import Code from "@mui/icons-material/Code";
+import FireExtinguisher from "@mui/icons-material/FireExtinguisher";
+import HeartBroken from "@mui/icons-material/HeartBroken";
 import type { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
 import { ButtonClient, Variants } from "./Button.client";
-import {
-  AccountBalance,
-  ArrowBack,
-  Biotech,
-  Code,
-  FireExtinguisher,
-  HeartBroken,
-} from "../Icons/Icon.client";
 
 const meta: Meta<typeof ButtonClient> = {
   component: ButtonClient,

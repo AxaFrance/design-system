@@ -1,7 +1,7 @@
+import BluetoothAudio from "@mui/icons-material/BluetoothAudio";
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
 import { ButtonAction, Modal } from "./Modal.client";
-import { BluetoothAudio } from "../Icons/Icon.client";
 
 const meta: Meta<typeof Modal> = {
   title: "Client/Components/Modal",

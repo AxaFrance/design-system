@@ -1,6 +1,7 @@
 import "@axa-fr/design-system-css/dist/Pagination/PaginationMobile.client.scss";
+import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import { ComponentPropsWithoutRef } from "react";
-import { ArrowBackIos, ArrowForwardIos } from "../Icons/Icon.client";
 
 type PropsPaginationMobile = {
   numberPage: number;

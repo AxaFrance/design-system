@@ -1,5 +1,5 @@
+import ErrorOutline from "@mui/icons-material/ErrorOutline";
 import { ComponentProps, ReactNode } from "react";
-import { ErrorOutline } from "../../../Icons/Icon.client";
 import { Radio } from "./Radio";
 
 type Props = Omit<ComponentProps<typeof Radio>, "placeholder"> & {

@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import "@axa-fr/design-system-css/dist/Modal/Modal.client.scss";
+import Close from "@mui/icons-material/Close";
 import {
   PropsWithChildren,
   ReactNode,
@@ -7,12 +9,10 @@ import {
   useRef,
   useState,
 } from "react";
-import { Close } from "../Icons/Icon.client";
 import {
   ButtonClient as Button,
   Variants as ButtonVariants,
 } from "../Button/Button.client";
-import "@axa-fr/design-system-css/dist/Modal/Modal.client.scss";
 
 export type ButtonAction = {
   text: string;
