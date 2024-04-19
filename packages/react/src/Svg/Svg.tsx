@@ -1,5 +1,5 @@
 import {
-  type AriaAttributes,
+  ComponentProps,
   type SVGAttributes,
   useLayoutEffect,
   useRef,
@@ -7,25 +7,23 @@ import {
 } from "react";
 import { svgInjector } from "./svgInjector";
 
-type SvgProps = Pick<
-  SVGAttributes<SVGSVGElement>,
-  "id" | "width" | "height" | "className" | "style" | "fill" | "stroke"
-> &
-  AriaAttributes & {
-    src: string;
-    alt?: string;
-  };
+type SvgProps = SVGAttributes<SVGSVGElement> & {
+  src: string;
+  alt?: string;
+};
 
-export const Svg = ({
-  src,
-  alt,
-  width,
-  height,
-  fill,
-  stroke,
-  ...props
-}: SvgProps) => {
-  const rootRef = useRef<HTMLDivElement | null>(null);
+const cloneAttributes = (
+  from: HTMLElement | SVGSVGElement,
+  to: HTMLElement | SVGSVGElement,
+) => {
+  const attributes = from.getAttributeNames();
+  attributes.forEach((attribute) => {
+    to.setAttribute(attribute, from.getAttribute(attribute) as string);
+  });
+};
+
+export const Svg = ({ src, alt, ...props }: SvgProps) => {
+  const rootRef = useRef<SVGSVGElement | null>(null);
   const [hasError, setHasError] = useState(false);
 
   useLayoutEffect(() => {
@@ -36,46 +34,38 @@ export const Svg = ({
   }, [src]);
 
   useLayoutEffect(() => {
+    if (hasError) {
+      return;
+    }
+
     const root = rootRef.current;
     if (root) {
+      const parent = document.createElement("div");
       const svg = document.createElement("svg");
-      root.appendChild(svg);
+      parent.appendChild(svg);
 
-      const attributes: Record<string, unknown> = {
-        "data-src": src,
-        width,
-        height,
-        fill,
-        stroke,
-        ...props,
-      };
-
-      Object.keys(attributes).forEach((attribute) => {
-        const value = attributes[attribute] as string | number;
-        if (value) {
-          svg.setAttribute(attribute, value.toString());
-        }
-      });
+      cloneAttributes(root, svg);
 
       svgInjector(svg, {
-        afterEach: (error) => {
+        afterEach: (error, svgInject) => {
           if (error) {
             setHasError(true);
+          }
+
+          if (svgInject) {
+            root.innerHTML = svgInject.innerHTML;
+            cloneAttributes(svgInject, root);
           }
         },
       });
     }
-
-    return () => {
-      if (root) {
-        root.innerHTML = "";
-      }
-    };
-  }, [fill, height, props, src, stroke, width]);
+  }, [src, hasError]);
 
   if (hasError) {
-    return alt ? <span {...props}>{alt}</span> : null;
+    return alt ? (
+      <span {...(props as ComponentProps<"span">)}>{alt}</span>
+    ) : null;
   }
 
-  return <div style={{ display: "contents" }} ref={rootRef} />;
+  return <svg ref={rootRef} data-src={src} {...props} />;
 };

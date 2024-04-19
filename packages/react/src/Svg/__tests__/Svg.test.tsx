@@ -13,6 +13,10 @@ vi.mock("@tanem/svg-injector", () => mocks);
 describe("<Svg />", () => {
   describe("render", () => {
     it("renders correctly", () => {
+      mocks.SVGInjector.mockImplementationOnce((el, { afterEach }) => {
+        afterEach(undefined, el);
+      });
+
       const svgSrc = "svgSrc";
       render(<Svg src="svgSrc" alt="foo" aria-label="test" />);
 
