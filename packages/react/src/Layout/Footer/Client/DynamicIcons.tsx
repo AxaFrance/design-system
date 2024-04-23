@@ -1,4 +1,8 @@
-import { Facebook, LinkedIn, X, YouTube } from "../../../Icons/Icon.client";
+import facebook from "../../../assets/svg/facebook.svg";
+import linkedin from "../../../assets/svg/linkedin.svg";
+import twitterx from "../../../assets/svg/twitterx.svg";
+import youtube from "../../../assets/svg/youtube.svg";
+import { Svg } from "../../../Svg";
 
 export const DynamicIcon = ({
   iconName,
@@ -9,13 +13,13 @@ export const DynamicIcon = ({
 }) => {
   switch (iconName) {
     case "facebook":
-      return <Facebook className={className} />;
+      return <Svg src={facebook} className={className} />;
     case "twitter":
-      return <X className={className} />;
+      return <Svg src={twitterx} className={className} />;
     case "youtube":
-      return <YouTube className={className} />;
+      return <Svg src={youtube} className={className} />;
     case "linkedin":
-      return <LinkedIn className={className} />;
+      return <Svg src={linkedin} className={className} />;
     default:
       return iconName;
   }

@@ -12,6 +12,7 @@ export default meta;
 
 export const CheckboxStory: StoryObj<ComponentProps<typeof Checkbox>> = {
   name: "Basic",
+
   render: ({ ...args }) => <Checkbox {...args} />,
   args: {
     label:

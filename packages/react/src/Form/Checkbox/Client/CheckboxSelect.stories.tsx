@@ -1,7 +1,8 @@
-import Home from "@mui/icons-material/Home";
+import home from "@material-design-icons/svg/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 import { Checkbox } from "./Checkbox";
+import { Svg } from "../../../Svg";
 
 const meta: Meta = {
   title: "Client/Components/Form/Input/Checkbox/Select",
@@ -25,20 +26,20 @@ export const CheckboxSelectStory: StoryObj<
         subtitle: "Nord",
         name: "paris",
         value: "paris",
-        icon: <Home />,
+        icon: <Svg src={home} />,
       },
       {
         label: "Bruxelles",
         description: "Capitale de la Belgique",
         name: "bruxelles",
         value: "bruxelles",
-        icon: <Home />,
+        icon: <Svg src={home} />,
       },
       {
         label: "Lille",
         name: "lille",
         value: "lille",
-        icon: <Home />,
+        icon: <Svg src={home} />,
         disabled: true,
         checked: true,
       },

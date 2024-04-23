@@ -1,6 +1,8 @@
 import "@axa-fr/design-system-css/dist/Pagination/PaginationMobile.client.scss";
 import { ComponentPropsWithoutRef } from "react";
-import { ArrowBackIos, ArrowForwardIos } from "../Icons/Icon.client";
+import arrowBackIos from "@material-design-icons/svg/outlined/arrow_back_ios.svg";
+import arrowForwardIos from "@material-design-icons/svg/outlined/arrow_forward_ios.svg";
+import { Svg } from "../Svg";
 
 type PropsPaginationMobile = {
   numberPage: number;
@@ -23,7 +25,7 @@ export const PaginationMobile = ({
         disabled={isFirstPage}
         aria-label="Page précédente"
       >
-        <ArrowBackIos className="arrow" />
+        <Svg src={arrowBackIos} className="arrow" />
       </button>
       <span>
         {currentPage} sur {numberPage}
@@ -34,7 +36,7 @@ export const PaginationMobile = ({
         disabled={isLastPage}
         aria-label="Page suivant"
       >
-        <ArrowForwardIos className="arrow" />
+        <Svg src={arrowForwardIos} className="arrow" />
       </button>
     </div>
   );

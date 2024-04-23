@@ -20,3 +20,4 @@ export {
   TabsClient as Tabs,
   Direction as TabsDirection,
 } from "./Tabs/Client/Tabs.client";
+export { Svg } from "./Svg";

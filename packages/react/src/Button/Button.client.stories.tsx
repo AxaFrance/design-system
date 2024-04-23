@@ -1,14 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
+import accountBalance from "@material-design-icons/svg/outlined/account_balance.svg";
+import arrowBack from "@material-design-icons/svg/outlined/arrow_back.svg";
+import biotech from "@material-design-icons/svg/outlined/biotech.svg";
+import code from "@material-design-icons/svg/outlined/code.svg";
+import fireExtinguisher from "@material-design-icons/svg/outlined/fire_extinguisher.svg";
+import heartBroken from "@material-design-icons/svg/outlined/heart_broken.svg";
 import { ButtonClient, Variants } from "./Button.client";
-import {
-  AccountBalance,
-  ArrowBack,
-  Biotech,
-  Code,
-  FireExtinguisher,
-  HeartBroken,
-} from "../Icons/Icon.client";
+import { Svg } from "../Svg";
 
 const meta: Meta<typeof ButtonClient> = {
   component: ButtonClient,
@@ -149,29 +148,31 @@ export const MultiExamples: StoryObj<typeof ButtonClient> = {
           Button Tertiary Disabled
         </ButtonClient>
         <ButtonClient variant={Variants.ghost}>Button Ghost</ButtonClient>
-        <ButtonClient iconRight={<ArrowBack fill="white" />}>test</ButtonClient>
+        <ButtonClient iconRight={<Svg src={arrowBack} fill="white" />}>
+          test
+        </ButtonClient>
         <ButtonClient
           variant={Variants.secondary}
-          iconRight={<Code fill="#00008F" />}
+          iconRight={<Svg src={code} fill="#00008F" />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.tertiary}
-          iconLeft={<FireExtinguisher fill="#00008F" />}
+          iconLeft={<Svg src={fireExtinguisher} fill="#00008F" />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.business}
-          iconRight={<Biotech fill="white" />}
+          iconRight={<Svg src={biotech} fill="white" />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.ghost}
-          iconLeft={<AccountBalance fill="#00008F" />}
-          iconRight={<HeartBroken fill="#00008F" />}
+          iconLeft={<Svg src={accountBalance} fill="#00008F" />}
+          iconRight={<Svg src={heartBroken} fill="#00008F" />}
         >
           With icon MULTI
         </ButtonClient>
@@ -184,7 +185,7 @@ export const WithIconRight: StoryObj<typeof ButtonClient> = {
   name: "Button with right icon",
   args: {
     children: "With icon",
-    iconRight: <HeartBroken />,
+    iconRight: <Svg src={heartBroken} />,
   },
 };
 
@@ -192,6 +193,6 @@ export const WithIconLeft: StoryObj<typeof ButtonClient> = {
   name: "Button with left icon",
   args: {
     children: "With icon",
-    iconLeft: <HeartBroken />,
+    iconLeft: <Svg src={heartBroken} />,
   },
 };

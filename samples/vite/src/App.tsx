@@ -1,9 +1,9 @@
 import { Button, Title } from "@axa-fr/design-system-react/agent";
 import {
   Button as ButtonClient,
-  ButtonVariants as ButtonClientVariants,
+  ButtonVariants as ButtonClientVariants, Svg,
 } from "@axa-fr/design-system-react/client";
-import { AcUnit } from "@axa-fr/design-system-react/icons";
+import acUnit from "@material-design-icons/svg/outlined/ac_unit.svg";
 
 import "./App.css";
 import "./Reset.css";
@@ -22,7 +22,7 @@ function App() {
             variant={ButtonClientVariants.secondary}
             onClick={() => console.log("click")}
           >
-            Button <AcUnit />
+            Button <Svg src={acUnit} />
           </ButtonClient>
         </article>
       </section>
