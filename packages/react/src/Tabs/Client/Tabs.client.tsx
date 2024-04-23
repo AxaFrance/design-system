@@ -7,7 +7,7 @@ export enum Direction {
 }
 
 type TabsProps = {
-  items: { title: string; content: string | ReactNode }[];
+  items: { title: string; content: string | ReactNode; icon?: ReactNode }[];
   preSelectedTabIndex?: number;
   direction?: Direction;
 };
@@ -89,6 +89,7 @@ export const TabsClient = ({
             type="button"
             tabIndex={isActive(index) ? 0 : -1}
           >
+            {item.icon}
             <span>{item.title}</span>
           </button>
         ))}

@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
+import accessTime from "@material-design-icons/svg/outlined/access_time.svg";
+import bluetoothAudio from "@material-design-icons/svg/outlined/bluetooth_audio.svg";
 import { Direction, TabsClient } from "./Tabs.client";
+import { Svg } from "../../Svg";
 
 const meta: Meta<typeof TabsClient> = {
   component: TabsClient,
@@ -16,7 +19,7 @@ type StoryProps = Omit<
   React.ComponentProps<typeof TabsClient>,
   "items" | "direction" | "preSelectedTabIndex"
 > & {
-  items: { title: string; content: string | ReactNode }[];
+  items: { title: string; content: string | ReactNode; icon?: ReactNode }[];
   preSelectedTabIndex?: number;
   direction?: Direction;
 };
@@ -38,7 +41,7 @@ export const TabsStory: StoryObj<StoryProps> = {
   args: {
     items: [
       { title: "Tab 1", content: "Content 1" },
-      { title: "Tab 2", content: "Content 2" },
+      { title: "Tab 2", content: "Content 2", icon: <Svg src={accessTime} /> },
       { title: "Tab 3", content: "Content 3" },
     ],
     preSelectedTabIndex: 0,
@@ -63,8 +66,16 @@ export const TabsCenterDirectionStory: StoryObj<StoryProps> = {
   args: {
     items: [
       { title: "Center tab 1", content: "Content 1" },
-      { title: "Center tab 2", content: "Content 2" },
-      { title: "Center tab 3", content: "Content 3" },
+      {
+        title: "Center tab 2",
+        content: "Content 2",
+        icon: <Svg src={accessTime} />,
+      },
+      {
+        title: "Center tab 3",
+        content: "Content 3",
+        icon: <Svg src={bluetoothAudio} />,
+      },
     ],
     preSelectedTabIndex: 0,
     direction: Direction.center,
