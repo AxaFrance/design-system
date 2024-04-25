@@ -11,12 +11,14 @@ To use the tabs component import it like that:
 
 ```tsx title="test.js"
 import { Tabs } from "@axa-fr/design-system-react/client";
+import accessTime from "@material-design-icons/svg/outlined/access_time.svg";
+import { Svg } from "../../Svg";
 
 const MyComponent = () => (
   <Tabs
     items={[
       { title: "Tab 1", content: "Content 1" },
-      { title: "Tab 2", content: "Content 2" },
+      { title: "Tab 2", content: "Content 2", icon: <Svg src={accessTime} /> },
       { title: "Tab 3", content: "Content 3" },
     ]}
     direction={Direction.center}
