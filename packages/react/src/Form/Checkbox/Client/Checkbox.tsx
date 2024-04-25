@@ -1,5 +1,5 @@
 import "@axa-fr/design-system-css/dist/Form/Checkbox/Client/Checkbox.scss";
-import checkBoxIcon from "@material-design-icons/svg/outlined/check_box.svg";
+import checkBoxIcon from "@material-design-icons/svg/filled/check_box.svg";
 import checkBoxOutlineBlankIcon from "@material-design-icons/svg/outlined/check_box_outline_blank.svg";
 import errorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
 import React, { ReactNode, useId } from "react";
