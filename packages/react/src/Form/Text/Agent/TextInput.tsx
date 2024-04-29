@@ -2,7 +2,12 @@ import "@axa-fr/design-system-css/dist/Form/core/FormCore.agent.scss";
 import "@axa-fr/design-system-css/dist/common/grid.scss";
 import "@axa-fr/design-system-css/dist/common/reboot.scss";
 import { ComponentProps, ReactNode, useId } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  Field,
+  FieldInput,
+  HelpMessage,
+  useInputClassModifier,
+} from "../../core";
 
 import { Text } from "./Text";
 

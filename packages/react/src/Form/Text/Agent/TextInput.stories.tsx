@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MessageTypes } from "../core";
+import { MessageTypes } from "../../core";
 import { TextInput } from "./TextInput";
 import { inputTypes } from "./inputTypes";
 
