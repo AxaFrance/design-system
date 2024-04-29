@@ -2,8 +2,7 @@ import "@axa-fr/design-system-css/dist/Form/Checkbox/Client/Checkbox.scss";
 import checkBoxIcon from "@material-design-icons/svg/filled/check_box.svg";
 import checkBoxOutlineBlankIcon from "@material-design-icons/svg/outlined/check_box_outline_blank.svg";
 import errorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
-import React, { ReactNode, useId } from "react";
-import { CheckboxSelect } from "./CheckboxSelect";
+import React, { ReactNode, forwardRef, useId } from "react";
 import { Svg } from "../../../Svg";
 
 type CheckboxProps = {
@@ -11,39 +10,42 @@ type CheckboxProps = {
   errorMessage?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const Checkbox = ({ label, errorMessage, ...inputProps }: CheckboxProps) => {
-  let inputId = useId();
-  inputId = inputProps.id || inputId;
+const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  ({ label, errorMessage, ...inputProps }, ref) => {
+    let inputId = useId();
+    inputId = inputProps.id || inputId;
 
-  return (
-    <>
-      <div className="af-checkbox">
-        <label key={inputProps.name} htmlFor={inputId}>
-          <input
-            {...inputProps}
-            type="checkbox"
-            id={inputId}
-            aria-invalid={!!errorMessage}
-          />
-          <div className="af-checkbox__icons">
-            <Svg
-              src={checkBoxOutlineBlankIcon}
-              className="af-checkbox__unchecked"
+    return (
+      <>
+        <div className="af-checkbox">
+          <label key={inputProps.name} htmlFor={inputId}>
+            <input
+              ref={ref}
+              {...inputProps}
+              type="checkbox"
+              id={inputId}
+              aria-invalid={!!errorMessage}
             />
-            <Svg src={checkBoxIcon} className="af-checkbox__checked" />
-          </div>
-          {label}
-        </label>
-      </div>
-      {errorMessage && (
-        <div className="af-checkbox__error" aria-live="assertive">
-          <Svg src={errorOutline} />
-          {errorMessage}
+            <div className="af-checkbox__icons">
+              <Svg
+                src={checkBoxOutlineBlankIcon}
+                className="af-checkbox__unchecked"
+              />
+              <Svg src={checkBoxIcon} className="af-checkbox__checked" />
+            </div>
+            {label}
+          </label>
         </div>
-      )}
-    </>
-  );
-};
+        {errorMessage && (
+          <div className="af-checkbox__error" aria-live="assertive">
+            <Svg src={errorOutline} />
+            {errorMessage}
+          </div>
+        )}
+      </>
+    );
+  },
+);
 
-Checkbox.Select = CheckboxSelect;
+Checkbox.displayName = "Checkbox";
 export { Checkbox };
