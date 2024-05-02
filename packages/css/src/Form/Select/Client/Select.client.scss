@@ -1,0 +1,91 @@
+@use "../../../common/common.client.scss" as common;
+@use "../../../common/grid.scss";
+@use "../../../common/reboot.scss";
+
+.af-form {
+  &__select {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &__select-label {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: common.$color-gray-900;
+  }
+
+  &__select-container {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 45%;
+      right: 1rem;
+      width: 0;
+      height: 0;
+      border: 7px solid transparent;
+      border-top-color: common.$color-gray-900;
+      content: "";
+    }
+
+    &--disabled {
+      &::after {
+        border-top-color: common.$color-gray-500;
+      }
+    }
+  }
+
+  &__input-select {
+    padding: 0.75rem 1rem;
+    padding-right: 3.5rem;
+    border: 1px solid common.$color-gray-700;
+    border-radius: 0.25rem;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: common.$color-gray-700;
+    box-shadow: 0 0 0 1px common.$color-gray-700 inset;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    appearance: none;
+
+    &:disabled {
+      border: 1px solid common.$color-gray-400;
+      background-color: #eee;
+      background-image: linear-gradient(to top, #ddd, #eee 33%);
+      box-shadow: 0 0 0 1px common.$color-gray-400 inset;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 0 0 0 2px common.$color-axa inset;
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px common.$color-axa inset;
+        outline: 2px solid common.$color-focus !important;
+        outline-offset: 3px !important;
+      }
+    }
+
+    &-option {
+      font-weight: 400;
+      color: common.$color-gray-900;
+      box-shadow: none;
+
+      &:nth-child(odd) {
+        background-color: common.$color-blue-2;
+      }
+
+      &:nth-child(even) {
+        background-color: white;
+      }
+    }
+  }
+}
