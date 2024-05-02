@@ -1,22 +1,22 @@
 import home from "@material-design-icons/svg/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
-import { Checkbox } from "./Checkbox";
 import { Svg } from "../../../Svg";
+import { CheckboxSelect } from "./CheckboxSelect";
 
 const meta: Meta = {
   title: "Client/Components/Form/Input/Checkbox/Select",
-  component: Checkbox.Select,
+  component: CheckboxSelect,
   argTypes: {},
 };
 
 export default meta;
 
 export const CheckboxSelectStory: StoryObj<
-  ComponentProps<typeof Checkbox.Select>
+  ComponentProps<typeof CheckboxSelect>
 > = {
   name: "Select",
-  render: ({ ...args }) => <Checkbox.Select {...args} />,
+  render: ({ ...args }) => <CheckboxSelect {...args} />,
   args: {
     type: "vertical",
     options: [
