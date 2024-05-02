@@ -1,10 +1,10 @@
-import "@axa-fr/design-system-css/dist/Form/Select/Select.agent.scss";
+import "@axa-fr/design-system-css/dist/Form/Select/Agent/Select.agent.scss";
 import {
   ComponentPropsWithoutRef,
   forwardRef,
   OptionHTMLAttributes,
 } from "react";
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../core";
 
 type Props = Omit<
   ComponentPropsWithoutRef<"select"> & {

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
-import { MessageTypes } from "../core";
+import { MessageTypes } from "../../core";
 import { SelectInput } from "./SelectInput";
 
 const meta: Meta<typeof SelectInput> = {

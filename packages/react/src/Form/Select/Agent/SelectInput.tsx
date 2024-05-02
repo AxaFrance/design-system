@@ -6,7 +6,12 @@ import {
   useId,
 } from "react";
 
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  Field,
+  FieldInput,
+  HelpMessage,
+  useInputClassModifier,
+} from "../../core";
 import { Select } from "./Select";
 
 type Props = ComponentProps<typeof Field> &

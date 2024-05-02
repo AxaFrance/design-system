@@ -23,8 +23,8 @@ export const Default: StoryObj = {
 
     const select = document.createElement("div");
     select.innerHTML = `
-     <div class="af-form__select-container">
-            <select class="af-form__input-select" id="select-story" name="select-story" type="text">
+     <div style="width: 300px">
+            <select class="af-form__input-select-container" id="select-story" name="select-story" type="text">
                 <option class="af-form__input-select-option" value="" disabled selected>Sélectionner</option>
                 <option class="af-form__input-select-option" value="1">Option 1</option>
                 <option class="af-form__input-select-option" value="2">Option 2</option>
@@ -37,7 +37,7 @@ export const Default: StoryObj = {
     if (args.disabled) {
       select
         .querySelector("div")
-        ?.classList.add("af-form__select-container--disabled");
+        ?.classList.add("af-form__input-select-container--disabled");
       select.querySelector("select")?.setAttribute("disabled", "disabled");
     }
 

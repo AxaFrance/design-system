@@ -4,87 +4,114 @@
 
 .af-form {
   &__select {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
-  &__select-label {
-    margin-bottom: 0.5rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: common.$color-gray-900;
-  }
-
-  &__select-container {
-    position: relative;
-
-    &::after {
-      position: absolute;
-      top: 45%;
-      right: 1rem;
-      width: 0;
-      height: 0;
-      border: 7px solid transparent;
-      border-top-color: common.$color-gray-900;
-      content: "";
+    &-label {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: common.$color-gray-900;
     }
 
-    &--disabled {
-      &::after {
-        border-top-color: common.$color-gray-500;
+    &-single-value {
+      color: common.$color-gray-900;
+
+      &-disabled {
+        color: common.$color-gray-500;
+      }
+    }
+
+    &-error {
+      display: flex;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+      color: common.$color-btn-error;
+
+      &-icon {
+        path {
+          fill: common.$color-btn-error;
+        }
       }
     }
   }
 
   &__input-select {
-    padding: 0.75rem 1rem;
-    padding-right: 3.5rem;
-    border: 1px solid common.$color-gray-700;
-    border-radius: 0.25rem;
-    font-size: 1.125rem;
-    font-weight: 400;
+    min-height: unset !important;
+    font-size: 1rem;
     color: common.$color-gray-700;
-    box-shadow: 0 0 0 1px common.$color-gray-700 inset;
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-    appearance: none;
 
-    &:disabled {
-      border: 1px solid common.$color-gray-400;
-      background-color: #eee;
-      background-image: linear-gradient(to top, #ddd, #eee 33%);
-      box-shadow: 0 0 0 1px common.$color-gray-400 inset;
-      cursor: not-allowed;
-    }
+    &-container {
+      padding: 0.75rem 1rem;
+      border: 1px solid common.$color-gray-700;
+      border-radius: 0.25rem;
+      font-size: 1.125rem;
+      color: common.$color-gray-700;
+      background-color: white;
 
-    &:not(:disabled) {
+      &-error {
+        border-width: 2px;
+        border-color: common.$color-btn-error;
+
+        &:hover,
+        &:active {
+          box-shadow: 0 0 0 1px common.$color-btn-error inset !important;
+        }
+      }
+
       &:hover,
-      &:focus,
       &:active {
         box-shadow: 0 0 0 2px common.$color-axa inset;
       }
 
+      &-focused,
       &:focus-visible {
         box-shadow: 0 0 0 2px common.$color-axa inset;
-        outline: 2px solid common.$color-focus !important;
-        outline-offset: 3px !important;
+        outline: 2px solid common.$color-focus;
+        outline-offset: 3px;
+      }
+
+      &-disabled {
+        border-color: common.$color-gray-400;
+        background-color: common.$color-gray-200;
+      }
+
+      &-icon {
+        &-disabled {
+          path {
+            fill: common.$color-gray-500;
+          }
+        }
       }
     }
 
-    &-option {
-      font-weight: 400;
-      color: common.$color-gray-900;
-      box-shadow: none;
+    &-menu {
+      margin-top: 0.4rem;
+      margin-left: -1rem;
+      background-color: white;
+      box-shadow: 0 4px 16px -2px #00008f40;
 
-      &:nth-child(odd) {
-        background-color: common.$color-blue-2;
-      }
+      &-options {
+        padding: 0.75rem 1rem;
+        border: 1px solid transparent;
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: common.$color-gray-900;
+        box-shadow: none;
 
-      &:nth-child(even) {
-        background-color: white;
+        &-selected {
+          font-weight: 600;
+          color: common.$color-axa;
+        }
+
+        &-focused {
+          border: 1px solid common.$color-axa;
+        }
+
+        &:nth-child(odd) {
+          background-color: common.$color-blue-2;
+        }
+
+        &:nth-child(even) {
+          background-color: white;
+        }
       }
     }
   }
