@@ -1,62 +1,44 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentPropsWithRef } from "react";
-import flag from "@material-design-icons/svg/outlined/flag.svg";
-import home from "@material-design-icons/svg/outlined/home.svg";
-import { Radio, RadioModes } from "./Radio";
-import { Svg } from "../../../Svg";
+import { ComponentProps } from "react";
+import { Radio } from "./Radio";
 
-const meta: Meta<typeof Radio> = {
-  component: Radio,
+const meta: Meta = {
   title: "Client/Components/Form/Input/Radio",
-  argTypes: { onChange: { action: "onChange" } },
+  component: Radio,
+  argTypes: {},
 };
 
 export default meta;
 
-export const RadioStory: StoryObj<ComponentPropsWithRef<typeof Radio>> = {
-  name: "Radio",
+export const RadioStory: StoryObj<ComponentProps<typeof Radio>> = {
+  name: "Basic",
+
   render: ({ ...args }) => <Radio {...args} />,
   args: {
-    value: "lille",
-    mode: RadioModes.inline,
-    disabled: false,
-    erroneous: false,
-    name: "placeName",
-    options: [
-      {
-        icon: <Svg src={flag} fill="#00008F" />,
-        title: "Paris",
-        description: "Capitale de la France",
-        subtitle: "Île-de-France",
-        value: "paris",
-      },
-      {
-        icon: <Svg src={home} fill="#00008F" />,
-        title: "Lille",
-        value: "lille",
-      },
-      {
-        title: "Madrid",
-        description: "Capitale de l'Espagne",
-        value: "madrid",
-      },
-      {
-        title: "Berlin",
-        value: "berlin",
-      },
-    ],
+    label:
+      "J'accepte de fournir à AXA mes coordonnées ainsi que les données  relatives à mon projet et ma situation. Ces dernières seront transmises à mon conseiller AXA qui pourra  me contacter pour m'accompagner.",
+    name: "option1",
+    value: "option1",
   },
   argTypes: {
-    mode: {
-      options: [RadioModes.classic, RadioModes.default, RadioModes.inline],
-      control: { type: "inline-radio" },
+    label: {
+      control: { type: "text" },
+    },
+    name: {
+      control: { type: "text" },
     },
     value: {
-      options: ["empty", "paris", "lille", "madrid", "berlin"],
-      mapping: {
-        empty: "",
-      },
-      control: { type: "inline-radio" },
+      control: { type: "text" },
     },
+    errorMessage: {
+      control: { type: "text" },
+    },
+    disabled: {
+      control: { type: "boolean" },
+    },
+    checked: {
+      control: { type: "boolean" },
+    },
+    onChange: { action: "onChange" },
   },
 };

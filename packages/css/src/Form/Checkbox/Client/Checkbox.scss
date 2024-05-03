@@ -3,6 +3,10 @@
 .af-checkbox {
   font-family: "Source Sans Pro", arial, sans-serif;
 
+  * {
+    box-sizing: border-box;
+  }
+
   &__content {
     display: flex;
     align-items: center;
@@ -78,6 +82,7 @@
   }
 
   &-select label {
+    height: 6.4rem;
     padding: 1rem;
     align-items: center;
     box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
@@ -88,10 +93,10 @@
   &-select--horizontal label {
     position: relative;
     width: 12rem;
-    height: 100%;
+    height: auto;
     padding: 1rem;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0;
     text-align: center;
 

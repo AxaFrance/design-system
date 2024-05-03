@@ -8,7 +8,7 @@ export {
   Variants as ButtonVariants,
 } from "./Button/Button.client";
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox/Client";
-export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Client";
+export { Radio, RadioSelect } from "./Form/Radio/Client";
 export { Header } from "./Header/Header.client";
 export { Footer } from "./Layout/Footer/Client/Footer";
 export { Link } from "./Link/Link.client";
