@@ -1,3 +1,2 @@
-export { Radio, RadioModes } from "./Radio";
-export { RadioInput } from "./RadioInput";
-export { RadioItem } from "./RadioItem";
+export { Radio } from "./Radio";
+export { RadioSelect } from "./RadioSelect";
