@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "../../common/grid.scss";
-import "../../common/reboot.scss";
-import "../core/FormCore.agent.scss";
+import "../../../common/grid.scss";
+import "../../../common/reboot.scss";
+import "../../core/FormCore.agent.scss";
 import "./Text.agent.scss";
 
 const meta: Meta = {

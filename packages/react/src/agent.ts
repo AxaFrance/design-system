@@ -28,7 +28,7 @@ export { Number, NumberInput } from "./Form/Number";
 export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Agent";
 export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
-export { Text, TextInput } from "./Form/Text";
+export { Text, TextInput } from "./Form/Text/Agent";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer/Agent";
 export {

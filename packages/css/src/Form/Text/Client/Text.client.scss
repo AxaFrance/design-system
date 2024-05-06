@@ -1,0 +1,39 @@
+@use "../../../common/common.client.scss" as common;
+
+.af-form {
+  &__input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &__input-label {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: common.$color-gray-900;
+  }
+
+  &__input-text {
+    padding: 1rem;
+    padding-right: 2.5rem;
+    border: 1px solid common.$color-gray;
+    border-radius: 4px;
+    font-size: 1.125rem;
+
+    &:not(:disabled) {
+      &:focus-visible {
+        outline: 2px solid common.$color-blue-3;
+        outline-offset: 3px;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        border: 1px solid transparent;
+        box-shadow: 0 0 0 2px common.$color-axa inset;
+      }
+    }
+  }
+}

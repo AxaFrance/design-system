@@ -9,6 +9,7 @@ export {
 } from "./Button/Button.client";
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox/Client";
 export { Radio, RadioSelect } from "./Form/Radio/Client";
+export { Text as TextInput } from "./Form/Text/Client";
 export { Header } from "./Header/Header.client";
 export { Footer } from "./Layout/Footer/Client/Footer";
 export { Link } from "./Link/Link.client";

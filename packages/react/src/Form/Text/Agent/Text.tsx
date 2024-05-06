@@ -1,7 +1,7 @@
-import "@axa-fr/design-system-css/dist/Form/Text/Text.agent.scss";
+import "@axa-fr/design-system-css/dist/Form/Text/Agent/Text.agent.scss";
 import { ComponentPropsWithRef, forwardRef } from "react";
 
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   classModifier?: string;
@@ -20,8 +20,6 @@ const Text = forwardRef<HTMLInputElement, Props>(
         className={componentClassName}
         type="text"
         ref={inputRef}
-        required={classModifier?.includes("required")}
-        disabled={classModifier?.includes("disabled")}
         {...otherProps}
       />
     );
