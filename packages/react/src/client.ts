@@ -11,6 +11,7 @@ export { Checkbox, CheckboxSelect } from "./Form/Checkbox/Client";
 export { Radio, RadioSelect } from "./Form/Radio/Client";
 export { Text as TextInput } from "./Form/Text/Client";
 export { Select } from "./Form/Select/Client";
+export { FileUpload } from "./Form/FileUpload/Client";
 export { Footer } from "./Layout/Footer/Client/Footer";
 export { Link } from "./Link/Link.client";
 export { Modal } from "./ModalClient/Modal.client";
