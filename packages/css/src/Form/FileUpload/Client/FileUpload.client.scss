@@ -1,0 +1,132 @@
+@use "../../../common/common.client.scss" as common;
+
+.af-form {
+  &__group {
+    &--label {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: common.$color-gray-900;
+    }
+  }
+
+  &__file {
+    &-input {
+      position: relative;
+      display: flex;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      border: 1px dashed common.$color-axa;
+      border-radius: 8px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: normal;
+      text-align: center;
+      color: common.$color-gray-900;
+      background: common.$color-white;
+      cursor: pointer;
+
+      input {
+        display: block !important;
+        width: 0;
+        opacity: 0;
+      }
+
+      &-dropdown-text {
+        padding-top: 1rem;
+        line-height: 5px;
+      }
+
+      &-help {
+        font-size: 1rem;
+        font-weight: 400;
+        color: common.$color-gray-700;
+      }
+
+      .af-btn-client {
+        width: 50%;
+        margin-bottom: 1rem;
+      }
+    }
+
+    &-list {
+      display: flex;
+      padding: 0;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      list-style: none;
+    }
+
+    &-title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    &-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-name {
+      font-size: 1.125rem;
+      color: common.$color-gray-900;
+    }
+
+    &-size {
+      font-size: 1rem;
+      color: common.$color-gray-700;
+    }
+
+    &-error {
+      display: flex;
+      margin-top: -0.75rem;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 1rem;
+      color: common.$color-btn-error;
+    }
+
+    &-line {
+      display: flex;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0;
+      padding: 1rem;
+      border: 1px solid common.$color-gray-700;
+      border-radius: 4px;
+      align-items: center;
+      justify-content: space-between;
+      background: common.$color-white;
+
+      &--error {
+        border-color: common.$color-btn-error;
+      }
+    }
+
+    &-actions {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+}
+
+.is-mobile {
+  .af-form {
+    &__file {
+      &-input {
+        &-dropdown-text {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .af-btn-client {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
