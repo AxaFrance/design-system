@@ -58,16 +58,19 @@ const CheckboxInner = ({
     <>
       {options.map((option) => {
         const isChecked = values ? values.indexOf(option.value) >= 0 : false;
+        const { customProps, ...restOption } = option;
+
         return (
           <CheckboxItem
             {...otherProps}
-            {...option}
+            {...restOption}
             onChange={handleOnChange}
             key={option.value}
             className={className}
             isChecked={isChecked}
             name={name}
             disabled={option.disabled || disabled}
+            {...customProps}
           >
             {children}
           </CheckboxItem>

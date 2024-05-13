@@ -48,6 +48,7 @@ const Radio = ({
       disabled={option.disabled || disabled}
       className={classNameMode}
       classModifier={classModifier}
+      {...option.customProps}
     >
       {children}
     </RadioItem>

@@ -22,6 +22,7 @@ export type Option = {
   description?: ReactNode;
   value: string;
   disabled?: boolean;
+  customProps?: React.InputHTMLAttributes<HTMLInputElement>;
 };
 
 type BaseFormEvent = {
