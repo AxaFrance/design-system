@@ -6,7 +6,7 @@ type Props = ComponentPropsWithRef<"input"> & {
   border: number;
 };
 
-const Loader = ({ size, border }: Props) => (
+const Loader = ({ size = 60, border = 5 }: Props) => (
   <div
     className="af-loader__container"
     style={{

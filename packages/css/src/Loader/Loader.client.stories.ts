@@ -23,7 +23,7 @@ export const Loader: StoryObj = {
     return loader;
   },
   args: {
-    size: 50,
-    borderSize: 1,
+    size: 60,
+    borderSize: 5,
   },
 };

@@ -14,7 +14,7 @@ export const LoaderStory: Story = {
   name: "Loader",
   render: ({ ...args }) => <Loader {...args} />,
   args: {
-    size: 50,
-    border: 1,
+    size: 60,
+    border: 5,
   },
 };
