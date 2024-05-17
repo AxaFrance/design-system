@@ -4,7 +4,7 @@ import { CheckboxItem } from "./CheckboxItem";
 import { CheckboxModes } from "./CheckboxModes";
 
 type OnChange = {
-  onChange: (data: {
+  onChange?: (data: {
     values: string[];
     target: { value: string; checked: boolean };
     name?: string;
@@ -43,7 +43,7 @@ const CheckboxInner = forwardRef<HTMLInputElement, Props>(
       children,
       values = [],
       mode = CheckboxModes.default,
-      onChange,
+      onChange = () => {},
       ...otherProps
     },
     inputRef,
