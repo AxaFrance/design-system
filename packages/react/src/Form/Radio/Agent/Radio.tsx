@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, forwardRef } from "react";
 import type { Option } from "../../core";
 import { RadioItem } from "./RadioItem";
 
@@ -27,32 +27,36 @@ const getClassNameMode = (mode: Props["mode"]) => {
   }
 };
 
-const Radio = ({
-  classModifier,
-  options,
-  value = "",
-  mode = RadioModes.default,
-  children,
-  disabled,
-  ...otherProps
-}: Props) => {
-  const classNameMode = getClassNameMode(mode);
-  return options.map((option: Option) => (
-    <RadioItem
-      {...otherProps}
-      key={option.value}
-      id={option.id}
-      value={option.value}
-      label={option.label}
-      isChecked={option.value === value}
-      disabled={option.disabled || disabled}
-      className={classNameMode}
-      classModifier={classModifier}
-    >
-      {children}
-    </RadioItem>
-  ));
-};
+const Radio = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      classModifier,
+      options,
+      value = "",
+      mode = RadioModes.default,
+      children,
+      disabled,
+      ...otherProps
+    },
+    inputRef,
+  ) => {
+    const classNameMode = getClassNameMode(mode);
+    return options.map((option: Option) => (
+      <RadioItem
+        {...otherProps}
+        key={option.value}
+        isChecked={option.value === value}
+        disabled={option.disabled || disabled}
+        className={classNameMode}
+        classModifier={classModifier}
+        ref={inputRef}
+        {...option}
+      >
+        {children}
+      </RadioItem>
+    ));
+  },
+);
 
 Radio.displayName = "EnhancedInputRadio";
 
