@@ -18,25 +18,23 @@ export const RadioSelectStory: StoryObj<ComponentProps<typeof RadioSelect>> = {
   args: {
     type: "vertical",
     "aria-label": "Quelle ville ?",
+    name: "cities",
     options: [
       {
         label: "Paris",
         description: "Capitale de la France",
         subtitle: "Nord",
-        name: "cities",
         value: "paris",
         icon: <Svg src={home} />,
       },
       {
         label: "Bruxelles",
         description: "Capitale de la Belgique",
-        name: "cities",
         value: "bruxelles",
         icon: <Svg src={home} />,
       },
       {
         label: "Lille",
-        name: "cities",
         value: "lille",
         icon: <Svg src={home} />,
       },
