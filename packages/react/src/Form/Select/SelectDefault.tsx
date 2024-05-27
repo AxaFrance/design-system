@@ -1,4 +1,10 @@
-import { ComponentPropsWithRef, forwardRef, useId, useState } from "react";
+import {
+  ComponentPropsWithRef,
+  forwardRef,
+  useId,
+  useMemo,
+  useState,
+} from "react";
 import { SelectBase } from "./SelectBase";
 
 type Props = ComponentPropsWithRef<typeof SelectBase> & {
@@ -22,9 +28,13 @@ const SelectDefault = forwardRef<HTMLSelectElement, Props>(
     const [hasHandleChangeOnce, setHasHandleChangeOnce] = useState(false);
     const generatedId = useId();
     const inputId = id ?? generatedId;
-    const newOptions = hasHandleChangeOnce
-      ? options
-      : [{ value: "", label: placeholder }, ...options];
+    const newOptions = useMemo(
+      () =>
+        hasHandleChangeOnce || otherProps.defaultValue
+          ? options
+          : [{ value: "", label: placeholder }, ...options],
+      [hasHandleChangeOnce, options, otherProps.defaultValue, placeholder],
+    );
 
     return (
       <SelectBase
