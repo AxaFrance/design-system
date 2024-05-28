@@ -38,7 +38,7 @@ export const Default: StoryObj = {
       select
         .querySelector("div")
         ?.classList.add("af-form__input-select-container--disabled");
-      select.querySelector("select")?.setAttribute("disabled", "disabled");
+      select.querySelector("select")?.setAttribute("disabled", "");
     }
 
     const container = document.createElement("div");

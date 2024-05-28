@@ -36,13 +36,9 @@ const Select = ({
   id,
   required,
   disabled,
-  placeholder,
   label,
-  value,
   errorLabel,
-  options,
   noOptionsMessage,
-  onChange,
   ...otherProps
 }: PropsWithChildren<Props>) => {
   return (
@@ -98,10 +94,6 @@ const Select = ({
           dropdownIndicator: () => "af-form__select-dropdown-indicator",
         }}
         className="af-form__input-select"
-        placeholder={placeholder}
-        value={value}
-        options={options}
-        onChange={onChange}
         {...otherProps}
       />
       {errorLabel && (
