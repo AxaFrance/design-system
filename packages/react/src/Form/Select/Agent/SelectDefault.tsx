@@ -30,7 +30,7 @@ const SelectDefault = forwardRef<HTMLSelectElement, Props>(
     const inputId = id ?? generatedId;
     const newOptions = useMemo(
       () =>
-        hasHandleChangeOnce || otherProps.defaultValue
+        hasHandleChangeOnce || otherProps.defaultValue !== undefined
           ? options
           : [{ value: "", label: placeholder }, ...options],
       [hasHandleChangeOnce, options, otherProps.defaultValue, placeholder],
