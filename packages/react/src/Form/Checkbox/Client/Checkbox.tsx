@@ -3,21 +3,22 @@ import checkBoxIcon from "@material-design-icons/svg/filled/check_box.svg";
 import checkBoxOutlineBlankIcon from "@material-design-icons/svg/outlined/check_box_outline_blank.svg";
 import errorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
 import React, { ReactNode, forwardRef, useId } from "react";
+import classNames from "classnames";
 import { Svg } from "../../../Svg";
 
 type CheckboxProps = {
   label: string | ReactNode;
   errorMessage?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "label">;
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, errorMessage, ...inputProps }, ref) => {
+  ({ label, errorMessage, className, ...inputProps }, ref) => {
     let inputId = useId();
     inputId = inputProps.id || inputId;
 
     return (
       <>
-        <div className="af-checkbox">
+        <div className={classNames("af-checkbox", className)}>
           <label key={inputProps.name} htmlFor={inputId}>
             <input
               ref={ref}
