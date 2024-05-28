@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import save from "@material-design-icons/svg/outlined/save.svg";
-import { Variants } from "../Button/Button.client";
-import { Button, Svg } from "../client";
-import { Header } from "./Header.client";
+import { Variants } from "../../Button/Button.client";
+import { Button, Svg } from "../../client";
+import { HeaderClient } from "./Header.client";
 import "./Header.client.stories.css";
 
-const meta: Meta<typeof Header> = {
-  component: Header,
+const meta: Meta<typeof HeaderClient> = {
+  component: HeaderClient,
   title: "Client/Components/Header",
   parameters: {
     layout: "centered",
@@ -15,7 +15,10 @@ const meta: Meta<typeof Header> = {
 
 export default meta;
 
-type StoryProps = Omit<React.ComponentProps<typeof Header>, "rightItem"> & {
+type StoryProps = Omit<
+  React.ComponentProps<typeof HeaderClient>,
+  "rightItem"
+> & {
   rightItem: JSX.Element;
 };
 type Story = StoryObj<StoryProps>;
@@ -24,7 +27,7 @@ export const Playground: Story = {
   name: "Header",
   render: ({ rightItem }) => (
     <div style={{ minWidth: "70vw" }}>
-      <Header rightItem={rightItem} />
+      <HeaderClient rightItem={rightItem} />
     </div>
   ),
   argTypes: {
@@ -34,11 +37,11 @@ export const Playground: Story = {
   },
 };
 
-export const HeaderWithRightItem: StoryObj<typeof Header> = {
+export const HeaderWithRightItem: StoryObj<typeof HeaderClient> = {
   name: "Header with right item",
   render: ({ rightItem }) => (
     <div style={{ minWidth: "70vw" }}>
-      <Header rightItem={rightItem} />
+      <HeaderClient rightItem={rightItem} />
     </div>
   ),
   args: {

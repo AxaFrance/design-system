@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs";
-import * as HeaderStories from "./Header.client.stories";
+import * as HeaderClientStories from "./Header.client.stories";
 
-<Meta of={HeaderStories} name="Header Client" />
+<Meta of={HeaderClientStories} name="Header Client" />
 
 # Header
 
@@ -15,6 +15,6 @@ const MyComponent = () => <Header />;
 
 ## Playground
 
-<Canvas of={HeaderStories.Playground} />
+<Canvas of={HeaderClientStories.Playground} />
 
 <Controls story="Header" />
