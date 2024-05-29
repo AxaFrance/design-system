@@ -15,6 +15,13 @@
     color: common.$color-gray-900;
   }
 
+  &__input-description {
+    margin: -0.25rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: common.$color-gray-700;
+  }
+
   &__input-text {
     padding: 1rem;
     padding-right: 2.5rem;

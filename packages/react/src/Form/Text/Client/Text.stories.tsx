@@ -4,16 +4,6 @@ import { Text } from "./Text";
 const meta: Meta<typeof Text> = {
   component: Text,
   title: "Client/Components/Form/Input/Text",
-  argTypes: { onChange: { action: "onChange" } },
-};
-
-export default meta;
-
-type Story = StoryObj<typeof Text>;
-
-export const TextStory: Story = {
-  name: "Text",
-  render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
   args: {
     value: "John Doe",
     label: "Name",
@@ -29,5 +19,23 @@ export const TextStory: Story = {
     type: {
       control: { type: "text" },
     },
+    onChange: { action: "onChange" },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Text>;
+
+export const TextStory: Story = {
+  name: "Text",
+  render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
+};
+
+export const TextWithDescriptionStory: Story = {
+  name: "Text with description",
+  render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
+  args: {
+    description: "Description",
   },
 };
