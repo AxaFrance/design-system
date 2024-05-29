@@ -5,7 +5,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
   }
 
   &__input-label {
@@ -29,18 +28,42 @@
     border-radius: 4px;
     font-size: 1.125rem;
 
-    &:not(:disabled) {
-      &:focus-visible {
-        outline: 2px solid common.$color-blue-3;
-        outline-offset: 3px;
-      }
+    &--error {
+      border: 2px solid common.$color-btn-error;
+    }
 
-      &:hover,
+    &:not(:disabled) {
       &:focus,
       &:active {
-        border: 1px solid transparent;
-        box-shadow: 0 0 0 2px common.$color-axa inset;
+        border: 1px solid common.$color-axa;
+        outline: none;
       }
+    }
+
+    &:not(:disabled, :focus, :active, &--error):hover {
+      border: 2px solid common.$color-axa;
+      outline: none;
+    }
+  }
+
+  &__input-alert {
+    display: flex;
+    margin-top: 0.4rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.185rem;
+
+    & > svg {
+      width: 1.1rem;
+      aspect-ratio: 1;
+      flex-shrink: 0;
+      color: common.$color-btn-error;
+      fill: common.$color-btn-error;
+    }
+
+    & > span {
+      font-size: 1rem;
+      color: common.$color-btn-error;
     }
   }
 }
