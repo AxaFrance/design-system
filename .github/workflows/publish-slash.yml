@@ -1,4 +1,4 @@
-name: Publish prerelease
+name: Publish Slash prerelease
 
 on:
   push:

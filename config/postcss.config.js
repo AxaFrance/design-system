@@ -3,7 +3,7 @@ const postcssPresetEnv = require("postcss-preset-env");
 const postcssNormalize = require("postcss-normalize");
 const postcssSass = require("@csstools/postcss-sass");
 const cssnano = require("cssnano");
-const { cpSync, lstatSync } = require("fs");
+const { cpSync, lstatSync, existsSync } = require("fs");
 const { sync } = require("rimraf");
 
 sync("dist");
@@ -30,13 +30,17 @@ module.exports = ({ ...ctx }) => {
           },
         });
 
-        cpSync("src/common/glyphicons/", "dist/common/glyphicons/", {
-          recursive: true,
-        });
+        if (existsSync("src/common/glyphicons/")) {
+          cpSync("src/common/glyphicons/", "dist/common/glyphicons/", {
+            recursive: true,
+          });
+        }
 
-        cpSync("src/common/assets/", "dist/common/assets/", {
-          recursive: true,
-        });
+        if (existsSync("src/common/assets/")) {
+          cpSync("src/common/assets/", "dist/common/assets/", {
+            recursive: true,
+          });
+        }
 
         return {
           postcssPlugin: "Copy file",

@@ -9,10 +9,13 @@
   "scripts": {
     "start": "concurrently \"npm run start:*\"",
     "start:slash": "concurrently \"npm run start -w=slash/css\" \"npm run start:storybook -w=slash/css\" \"npm run start:storybook -w=slash/react\" -c auto -n css,css:storybook,react:storybook",
-    "build": "npm run build:slash",
+    "start:look-and-feel": "concurrently \"npm run start -w=look-and-feel/css\" \"npm run start:storybook -w=look-and-feel/css\" \"npm run start:storybook -w=look-and-feel/react\" -c auto -n css,css:storybook,react:storybook",
+    "build": "concurrently \"npm run build:*\"",
     "build:slash": "npm run build --workspace=slash && npm run build:storybook --workspace=slash",
-    "lint": "npm run lint:slash",
+    "build:look-and-feel": "npm run build --workspace=look-and-feel && npm run build:storybook --workspace=look-and-feel",
+    "lint": "concurrently \"npm run lint:*\"",
     "lint:slash": "concurrently \"npm:eslint --workspace=slash\" \"npm:stylelint -w=slash/css\" \"npm:prettier --workspace=slash/css\" \"npm:prettier --workspace=slash/react\" \"npm:tsc --workspace=slash\" -c auto -n slash-eslint,slash-stylelint,slash-css-prettier,slash-react-prettier,slash-tsc",
+    "lint:look-and-feel": "concurrently \"npm:eslint --workspace=look-and-feel\" \"npm:stylelint -w=look-and-feel/css\" \"npm:prettier --workspace=look-and-feel/css\" \"npm:prettier --workspace=look-and-feel/react\" \"npm:tsc --workspace=look-and-feel\" -c auto -n look-and-feel-eslint,look-and-feel-stylelint,look-and-feel-css-prettier,look-and-feel-react-prettier,look-and-feel-tsc",
     "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky"
   },
@@ -25,6 +28,8 @@
   "workspaces": [
     "slash/css",
     "slash/react",
+    "look-and-feel/css",
+    "look-and-feel/react",
     "samples/vite"
   ],
   "devDependencies": {

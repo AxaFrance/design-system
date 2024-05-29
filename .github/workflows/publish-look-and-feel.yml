@@ -1,0 +1,39 @@
+name: Publish Look And Feel prerelease
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "look-and-feel/css/**"
+      - "look-and-feel/react/**"
+
+jobs:
+  build:
+    if: github.repository_owner == 'AxaFrance'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "*"
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+      - name: Determine Version
+        id: determine_version
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          VERSION=${BRANCH_NAME#release/}
+          echo 'Version extracted from branch name: $VERSION'
+          echo '::set-output name=version::$VERSION'
+      - run: npm run package:check
+      - run: npm ci
+      - run: npm run build:look-and-feel
+      - run: npm version ${{ steps.determine_version.outputs.version }} -w look-and-feel/css -w look-and-feel/react
+      - run: npm publish -w look-and-feel/css -w look-and-feel/react --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  
