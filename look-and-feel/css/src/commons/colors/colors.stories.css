@@ -1,0 +1,18 @@
+.colors__list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.colors__list--figure {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.colors__list--figcaption {
+  text-align: center;
+  background-color: white;
+}

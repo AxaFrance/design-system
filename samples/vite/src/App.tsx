@@ -1,8 +1,8 @@
-import { Button, Title } from "@axa-fr/design-system-react/agent";
+import { Button, Title } from "@axa-fr/design-system-slash-react/agent";
 import {
   Button as ButtonClient,
   ButtonVariants as ButtonClientVariants, Svg,
-} from "@axa-fr/design-system-react/client";
+} from "@axa-fr/design-system-slash-react/client";
 import acUnit from "@material-design-icons/svg/outlined/ac_unit.svg";
 
 import "./App.css";

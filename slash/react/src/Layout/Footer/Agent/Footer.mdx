@@ -1,0 +1,28 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as FooterStories from "./Footer.stories";
+
+<Meta of={FooterStories} />
+
+## Default
+
+### Import
+
+```tsx title="test.js"
+import { Footer } from "@axa-fr/design-system-slash-react/agent";
+```
+
+### Use
+
+```tsx title="test.js"
+export const MyComponent = () => (
+  <Footer icon={logo_asset} href="https://www.axa.fr/">
+    © 2021 AXA All right right reserved
+  </Footer>
+);
+```
+
+## Playground
+
+<Canvas of={FooterStories.FooterStory} />
+
+<Controls of={FooterStories.FooterStory} />

@@ -2,7 +2,8 @@
 
 Le projet design system AXA France a pour objectif de proposer un point d'entrée unique pour utiliser le design system AXA France au sein de vos projets.
 
-Il propose d'utiliser les deux designs systems principaux : 
+Il propose d'utiliser les deux designs systems principaux :
+
 - Look & Feel (public)
 - Agent (interne)
 
@@ -19,23 +20,21 @@ Le projet proposera d'utiliser des composants React ou juste la partie CSS avec 
 
 ## Démarrer le projet
 
-La commande `npm start` démarrent automatiquement les différentes étapes  nécessaire aux développement du projet, notamment le build CSS et le storybook react. 
+La commande `npm start` démarrent automatiquement les différentes étapes nécessaire aux développement du projet, notamment le build CSS et le storybook react.
 
 La commande `npm run build` permet de générer un build qui vous permettra de tester votre nouveau composant.
 
-## Utilisation des icones 
+## Utilisation des icones
 
 Nous vous recommandons d’utiliser la librairie `@material-design-icons/svg`, mais n’importe quelle librairie qui exporte les svg de [google material](https://github.com/google/material-design-icons), ou vos propres svg fonctionnera.
 
-Exemple : 
+Exemple :
 
 ```typescript
 import home from "@material-design-icons/svg/outlined/home.svg";
-import { Svg } from "@axa-fr/design-system-react/client";
+import { Svg } from "@axa-fr/design-system-slash-react/client";
 
 const App = () => {
-    return (
-        <Svg src={home} />
-    )
-}
+  return <Svg src={home} />;
+};
 ```

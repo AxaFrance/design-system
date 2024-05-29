@@ -1,0 +1,28 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as ActionStories from "./Svg.client.stories";
+
+<Meta of={ActionStories} />
+
+## Svg
+
+### Import
+
+```tsx title="test.js"
+import { Svg } from "@axa-fr/design-system-slash-react/client";
+```
+
+### Use
+
+<Canvas of={ActionStories.Headphones} />
+
+```tsx title="test.js"
+import headphonesIcons from "@material-design-icons/svg/outlined/headphones.svg";
+
+export const LinkAction = () => <Svg src={headphonesIcons} fill="#00008f" />;
+```
+
+#### Playground:
+
+<Canvas of={ActionStories.Default} />
+
+<Controls of={ActionStories.Default} />
