@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Alert } from "./Alert.client";
+import { Link } from "../client";
 
 const MODIFIERS = ["information", "neutral", "error", "validation", "warning"];
 
@@ -16,6 +17,11 @@ export const Default: StoryObj<typeof Alert> = {
     type: "information",
     children:
       "Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.",
+    link: (
+      <Link openInNewTab href="https://fakelink.com">
+        Plus de détails
+      </Link>
+    ),
   },
   argTypes: {
     type: {

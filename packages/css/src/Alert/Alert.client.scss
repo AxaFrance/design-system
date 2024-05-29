@@ -18,6 +18,10 @@
     flex-shrink: 0;
   }
 
+  .af-alert__link {
+    text-align: right;
+  }
+
   .af-alert__title {
     padding-bottom: 0.25rem;
     font-weight: 600;
@@ -28,7 +32,7 @@
   &--information {
     border: 1px solid common.$color-axa;
 
-    svg {
+    .af-alert__icon {
       color: common.$color-axa;
       transform: rotate(180deg);
       fill: common.$color-axa;
@@ -42,7 +46,7 @@
   &--error {
     border: 1px solid common.$color-btn-error;
 
-    svg {
+    .af-alert__icon {
       color: common.$color-btn-error;
       fill: common.$color-btn-error;
     }
@@ -55,7 +59,7 @@
   &--neutral {
     border: 1px solid common.$color-gray;
 
-    svg {
+    .af-alert__icon {
       color: common.$color-gray;
       fill: common.$color-gray;
     }
@@ -68,7 +72,7 @@
   &--warning {
     border: 1px solid common.$color-btn-business;
 
-    svg {
+    .af-alert__icon {
       color: common.$color-btn-business;
       fill: common.$color-btn-business;
     }
@@ -81,7 +85,7 @@
   &--validation {
     border: 1px solid common.$color-success-40;
 
-    svg {
+    .af-alert__icon {
       color: common.$color-success-40;
       fill: common.$color-success-40;
     }
