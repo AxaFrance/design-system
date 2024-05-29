@@ -18,6 +18,7 @@ const meta: Meta<typeof Text> = {
   argTypes: {
     type: {
       control: { type: "text" },
+      onChange: { action: "onChange" },
     },
     onChange: { action: "onChange" },
   },
@@ -37,5 +38,13 @@ export const TextWithDescriptionStory: Story = {
   render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
   args: {
     description: "Description",
+  },
+};
+
+export const TextOnErrorStory: Story = {
+  name: "Text on error",
+  render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
+  args: {
+    classModifier: "error",
   },
 };
