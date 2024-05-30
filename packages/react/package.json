@@ -41,11 +41,11 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "peerDependencies": {
-    "@material-design-icons/svg": " >= 0.14.13",
+    "@material-symbols/svg-400": ">= 0.19.0",
     "react": ">= 18"
   },
   "peerDependenciesMeta": {
-    "@material-design-icons/svg": {
+    "@material-symbols/svg-400": {
       "optional": true
     }
   },
@@ -59,7 +59,7 @@
     "react-select": "^5.8.0"
   },
   "devDependencies": {
-    "@material-design-icons/svg": "*",
+    "@material-symbols/svg-400": "*",
     "@storybook/addon-docs": "^7.6.14",
     "@storybook/addon-essentials": "^7.6.14",
     "@storybook/addon-interactions": "^7.6.14",

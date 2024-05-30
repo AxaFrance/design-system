@@ -22,7 +22,13 @@ const cloneAttributes = (
   });
 };
 
-export const Svg = ({ src, alt, ...props }: SvgProps) => {
+export const Svg = ({
+  src,
+  alt,
+  width = 24,
+  height = 24,
+  ...props
+}: SvgProps) => {
   const rootRef = useRef<SVGSVGElement | null>(null);
   const [hasError, setHasError] = useState(false);
 
@@ -46,6 +52,11 @@ export const Svg = ({ src, alt, ...props }: SvgProps) => {
 
       cloneAttributes(root, svg);
 
+      // Default SVG size was 24px with @material-design-icons/svg. With @material-symbols/svg-400 this is now 48px (with no native way to change it)
+      // In order not to break existing CSS, we manually set the default value back to 24px
+      svg.setAttribute("width", width.toString());
+      svg.setAttribute("height", height.toString());
+
       svgInjector(svg, {
         afterEach: (error, svgInject) => {
           if (error) {
@@ -59,7 +70,7 @@ export const Svg = ({ src, alt, ...props }: SvgProps) => {
         },
       });
     }
-  }, [src, hasError]);
+  }, [src, width, height, hasError]);
 
   if (hasError) {
     return alt ? (

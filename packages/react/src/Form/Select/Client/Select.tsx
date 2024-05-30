@@ -1,5 +1,5 @@
 import "@axa-fr/design-system-css/dist/Form/Select/Client/Select.client.scss";
-import ErrorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
+import ErrorOutline from "@material-symbols/svg-400/outlined/error.svg";
 import ReactSelect, {
   ActionMeta,
   ContainerProps,

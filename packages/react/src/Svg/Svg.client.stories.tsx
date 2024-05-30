@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import headphonesIcons from "@material-design-icons/svg/outlined/headphones.svg";
-import homeIcons from "@material-design-icons/svg/outlined/home.svg";
-import saveIcons from "@material-design-icons/svg/outlined/save.svg";
-import closeIcons from "@material-design-icons/svg/outlined/close.svg";
+import headphonesIcons from "@material-symbols/svg-400/outlined/headphones.svg";
+import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
+import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
+import closeIcons from "@material-symbols/svg-400/outlined/close.svg";
 import "./Svg.stories.css";
 import { Svg } from "./index";
 

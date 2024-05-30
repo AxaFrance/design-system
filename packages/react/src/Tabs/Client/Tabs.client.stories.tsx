@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
-import accessTime from "@material-design-icons/svg/outlined/access_time.svg";
-import bluetoothAudio from "@material-design-icons/svg/outlined/bluetooth_audio.svg";
+import accessTime from "@material-symbols/svg-400/outlined/schedule.svg";
+import bluetoothAudio from "@material-symbols/svg-400/outlined/bluetooth_searching.svg";
 import { Direction, TabsClient } from "./Tabs.client";
 import { Svg } from "../../Svg";
 

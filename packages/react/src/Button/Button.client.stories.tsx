@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
-import accountBalance from "@material-design-icons/svg/outlined/account_balance.svg";
-import arrowBack from "@material-design-icons/svg/outlined/arrow_back.svg";
-import biotech from "@material-design-icons/svg/outlined/biotech.svg";
-import code from "@material-design-icons/svg/outlined/code.svg";
-import fireExtinguisher from "@material-design-icons/svg/outlined/fire_extinguisher.svg";
-import heartBroken from "@material-design-icons/svg/outlined/heart_broken.svg";
+import accountBalance from "@material-symbols/svg-400/outlined/account_balance.svg";
+import arrowBack from "@material-symbols/svg-400/outlined/arrow_back.svg";
+import biotech from "@material-symbols/svg-400/outlined/biotech.svg";
+import code from "@material-symbols/svg-400/outlined/code.svg";
+import fireExtinguisher from "@material-symbols/svg-400/outlined/fire_extinguisher.svg";
+import heartBroken from "@material-symbols/svg-400/outlined/heart_broken.svg";
 import { ButtonClient, Variants } from "./Button.client";
 import { Svg } from "../Svg";
 

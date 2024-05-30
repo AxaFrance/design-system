@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
-import bluetoothAudio from "@material-design-icons/svg/outlined/bluetooth_audio.svg";
+import bluetoothAudio from "@material-symbols/svg-400/outlined/bluetooth_searching.svg";
 import { ButtonAction, Modal } from "./Modal.client";
 import { Svg } from "../Svg";
 

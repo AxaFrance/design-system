@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-css/dist/Layout/Footer/Footer.client.scss";
-import expandMore from "@material-design-icons/svg/outlined/expand_more.svg";
+import expandMore from "@material-symbols/svg-400/outlined/keyboard_arrow_down.svg";
 import classNames from "classnames";
 import { FC, useCallback, useState } from "react";
 import { MenuIcons, SocialMedia } from "./MenuIcons";

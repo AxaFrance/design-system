@@ -3,9 +3,10 @@ import {
   PropsWithChildren,
   ReactElement,
 } from "react";
-import wbIncandescentOutlined from "@material-design-icons/svg/outlined/wb_incandescent.svg";
-import errorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
-import checkCircleOutline from "@material-design-icons/svg/outlined/check_circle_outline.svg";
+import wbIncandescentOutlined from "@material-symbols/svg-400/outlined/wb_incandescent.svg";
+import errorIcon from "@material-symbols/svg-400/outlined/emergency_home.svg";
+import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
+import checkCircleOutline from "@material-symbols/svg-400/outlined/check_circle.svg";
 import "@axa-fr/design-system-css/dist/Alert/Alert.client.scss";
 import { Svg } from "../Svg";
 import { Link } from "../client";
@@ -25,10 +26,11 @@ type AlertProps = {
 
 function getIconFromType(type: AlertType) {
   switch (type) {
+    case "error":
+      return <Svg src={errorIcon} className="af-alert__icon" />;
     case "validation":
       return <Svg src={checkCircleOutline} className="af-alert__icon" />;
     case "neutral":
-    case "error":
     case "warning":
       return <Svg src={errorOutline} className="af-alert__icon" />;
     case "information":
