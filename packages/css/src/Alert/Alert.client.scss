@@ -18,17 +18,6 @@
     flex-shrink: 0;
   }
 
-  .af-alert__link {
-    text-align: right;
-  }
-
-  .af-alert__title {
-    padding-bottom: 0.25rem;
-    font-weight: 600;
-    line-height: 1.5rem;
-    color: common.$color-axa;
-  }
-
   &--information {
     border: 1px solid common.$color-axa;
 
@@ -92,6 +81,21 @@
 
     .af-alert__title {
       color: common.$color-success-40;
+    }
+  }
+
+  .af-alert-client__content {
+    width: 100%;
+
+    .af-alert__link {
+      text-align: right;
+    }
+
+    .af-alert__title {
+      padding-bottom: 0.25rem;
+      font-weight: 600;
+      line-height: 1.5rem;
+      color: common.$color-axa;
     }
   }
 
