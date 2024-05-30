@@ -46,7 +46,7 @@ export const Alert = ({
   return (
     <div className={`af-alert af-alert--${type}`}>
       {getIconFromType(type)}
-      <div>
+      <div className="af-alert-client__content">
         {title && <p className="af-alert__title">{title}</p>}
         {children}
         {link && <p className="af-alert__link">{link}</p>}
