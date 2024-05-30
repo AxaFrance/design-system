@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-css/dist/Form/Radio/Client/Radio.scss";
-import radioIcon from "@material-design-icons/svg/outlined/radio_button_checked.svg";
-import radioOutlineBlankIcon from "@material-design-icons/svg/filled/radio_button_unchecked.svg";
-import errorOutline from "@material-design-icons/svg/outlined/error_outline.svg";
+import radioIcon from "@material-symbols/svg-400/outlined/radio_button_checked.svg";
+import radioOutlineBlankIcon from "@material-symbols/svg-400/outlined/radio_button_unchecked-fill.svg";
+import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
 import React, {
   ComponentPropsWithRef,
   ReactNode,

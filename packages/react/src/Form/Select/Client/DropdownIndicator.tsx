@@ -1,5 +1,5 @@
-import arrowDropDown from "@material-design-icons/svg/outlined/arrow_drop_down.svg";
-import arrowDropUp from "@material-design-icons/svg/outlined/arrow_drop_up.svg";
+import arrowDropDown from "@material-symbols/svg-400/outlined/arrow_drop_down.svg";
+import arrowDropUp from "@material-symbols/svg-400/outlined/arrow_drop_up.svg";
 import React from "react";
 import { components, DropdownIndicatorProps } from "react-select";
 import classNames from "classnames";

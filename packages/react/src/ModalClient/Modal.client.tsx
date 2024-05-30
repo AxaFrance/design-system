@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import close from "@material-design-icons/svg/outlined/close.svg";
+import close from "@material-symbols/svg-400/outlined/close.svg";
 import {
   ButtonClient as Button,
   Variants as ButtonVariants,

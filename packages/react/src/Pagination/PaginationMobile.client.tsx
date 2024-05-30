@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-css/dist/Pagination/PaginationMobile.client.scss";
 import { ComponentPropsWithoutRef } from "react";
-import arrowBackIos from "@material-design-icons/svg/outlined/arrow_back_ios.svg";
-import arrowForwardIos from "@material-design-icons/svg/outlined/arrow_forward_ios.svg";
+import arrowBackIos from "@material-symbols/svg-400/outlined/arrow_back_ios.svg";
+import arrowForwardIos from "@material-symbols/svg-400/outlined/arrow_forward_ios.svg";
 import { Svg } from "../Svg";
 
 type PropsPaginationMobile = {

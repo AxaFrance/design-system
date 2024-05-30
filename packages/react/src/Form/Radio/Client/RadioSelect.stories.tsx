@@ -1,4 +1,4 @@
-import home from "@material-design-icons/svg/outlined/home.svg";
+import home from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 import { Svg } from "../../../Svg";
