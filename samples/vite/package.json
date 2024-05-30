@@ -12,12 +12,12 @@
   "dependencies": {
     "@material-design-icons/svg": "^0.14.13",
     "react": "^18.3.1",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@swc/core": "^1.5.7",
     "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.2.24",
+    "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.4.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
