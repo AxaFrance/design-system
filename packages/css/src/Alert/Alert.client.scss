@@ -4,8 +4,7 @@
   display: flex;
   margin-top: 1rem;
   padding: 1rem;
-  border: 1px solid common.$color-axa;
-  border-radius: 8px;
+  border-radius: 12px;
   flex: 1 1 0;
   align-items: flex-start;
   font-family: common.$font-family-base;
@@ -95,7 +94,6 @@
       padding-bottom: 0.25rem;
       font-weight: 600;
       line-height: 1.5rem;
-      color: common.$color-axa;
     }
   }
 
