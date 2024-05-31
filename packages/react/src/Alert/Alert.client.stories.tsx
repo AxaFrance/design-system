@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Alert } from "./Alert.client";
-import { Link } from "../client";
+import { Link } from "../Link/Link.client";
 
 const MODIFIERS = ["information", "neutral", "error", "validation", "warning"];
 

@@ -9,7 +9,7 @@ import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
 import checkCircleOutline from "@material-symbols/svg-400/outlined/check_circle.svg";
 import "@axa-fr/design-system-css/dist/Alert/Alert.client.scss";
 import { Svg } from "../Svg";
-import { Link } from "../client";
+import { Link } from "../Link/Link.client";
 
 export type AlertType =
   | "validation"
