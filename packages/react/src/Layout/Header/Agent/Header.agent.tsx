@@ -1,20 +1,31 @@
 import { ReactNode } from "react";
 import "@axa-fr/design-system-css/dist/Layout/Header/Header.agent.scss";
+import { getComponentClassName } from "../../../agent";
 
 const defaultClassName = "af-header";
 
 type Props = {
   children: ReactNode;
+  classModifier?: string;
+  className?: string;
 };
 
-const HeaderAgent = ({ children }: Props) => (
-  <div className={defaultClassName}>
-    <div className={`container ${defaultClassName}__wrapper`}>
-      <header className={`${defaultClassName}__content`} role="banner">
-        {children}
-      </header>
+const HeaderAgent = ({ classModifier, className, children }: Props) => {
+  const componentClassName = getComponentClassName(
+    className,
+    classModifier,
+    defaultClassName,
+  );
+
+  return (
+    <div className={componentClassName}>
+      <div className={`container ${defaultClassName}__wrapper`}>
+        <header className={`${defaultClassName}__content`} role="banner">
+          {children}
+        </header>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export { HeaderAgent };
