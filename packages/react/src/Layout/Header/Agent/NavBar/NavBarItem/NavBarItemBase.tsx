@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { getComponentClassName } from "../../../../agent";
+import { getComponentClassName } from "../../../../../agent";
 import { handleLinkFocus } from "./NavBarItemBase.helpers";
 
 type Props = HTMLAttributes<HTMLLIElement> & {

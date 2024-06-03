@@ -1,5 +1,5 @@
 import { FocusEvent, MouseEvent, ReactNode } from "react";
-import { getComponentClassName } from "../../../agent";
+import { getComponentClassName } from "../../../../agent";
 
 const defaultClassName = "af-nav-container";
 

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
-import { Action } from "../../../Action/Action";
+import { Action } from "../../../../Action/Action";
 import "@axa-fr/design-system-css/dist/Layout/Header/TitleHeader/TitleHeader.scss";
 import { TitleHeader } from "./TitleHeader";
 

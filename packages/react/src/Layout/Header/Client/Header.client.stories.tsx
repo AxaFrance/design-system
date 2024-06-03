@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import save from "@material-symbols/svg-400/outlined/save.svg";
-import { Variants } from "../../Button/Button.client";
-import { Button, Svg } from "../../client";
+import { Variants } from "../../../Button/Button.client";
+import { Button, Svg } from "../../../client";
 import { HeaderClient } from "./Header.client";
 import "./Header.client.stories.css";
 

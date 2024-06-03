@@ -19,7 +19,7 @@ export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal.clie
 export { Pagination } from "./Pagination/Pagination.client";
 export { Stepper } from "./Stepper/Stepper.client";
 export { Svg } from "./Svg";
-export { HeaderClient as Header } from "./Layout/Header";
+export { HeaderClient as Header } from "./Layout/Header/Client";
 export {
   TabsClient as Tabs,
   Direction as TabsDirection,

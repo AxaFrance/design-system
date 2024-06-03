@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
-import { Action } from "../../../Action/Action";
+import { Action } from "../../../../Action/Action";
 import { ToggleButton } from "./ToggleButton";
 
 const meta: Meta<typeof ToggleButton> = {
