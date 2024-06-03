@@ -1,11 +1,11 @@
 import { ComponentPropsWithRef } from "react";
 import "@axa-fr/design-system-css/dist/Form/FileUpload/Client/FileUpload.client.scss";
-import visibility from "@material-design-icons/svg/filled/visibility.svg";
-import close from "@material-design-icons/svg/filled/close.svg";
-import check from "@material-design-icons/svg/filled/check_circle.svg";
-import error from "@material-design-icons/svg/filled/error.svg";
-import errorO from "@material-design-icons/svg/filled/error_outline.svg";
-import plus from "@material-design-icons/svg/filled/add_circle.svg";
+import visibility from "@material-symbols/svg-400/outlined/visibility-fill.svg";
+import close from "@material-symbols/svg-400/outlined/close-fill.svg";
+import check from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
+import error from "@material-symbols/svg-400/outlined/error-fill.svg";
+import errorO from "@material-symbols/svg-400/outlined/error.svg";
+import plus from "@material-symbols/svg-400/outlined/add_circle-fill.svg";
 import classNames from "classnames";
 import { Svg } from "../../../Svg";
 import { Loader } from "../../../Loader/Client";
