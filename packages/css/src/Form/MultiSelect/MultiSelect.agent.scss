@@ -1,0 +1,22 @@
+@use "../../common/common.agent.scss" as common;
+@use "../core/FormCore.agent.scss";
+@use "../../common/grid.scss";
+@use "../../common/reboot.scss";
+
+.react-select > div:nth-of-type(2) {
+  z-index: 2;
+}
+
+.af-form__select {
+  &--error {
+    .react-select > div {
+      border-color: common.$color-red-axa;
+    }
+  }
+
+  &--warning {
+    .react-select > div {
+      border-color: common.$color-orange-dark;
+    }
+  }
+}

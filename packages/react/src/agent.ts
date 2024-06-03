@@ -24,6 +24,7 @@ export {
   getComponentClassName,
 } from "./Form/core";
 export { Date, DateInput } from "./Form/Date";
+export { MultiSelect, MultiSelectInput } from "./Form/MultiSelect";
 export { Number, NumberInput } from "./Form/Number";
 export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio/Agent";
 export { Select, SelectBase, SelectInput } from "./Form/Select/Agent";
