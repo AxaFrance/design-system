@@ -45,6 +45,7 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "peerDependencies": {
+    "@axa-fr/design-system-css": "*",
     "@material-symbols/svg-400": ">= 0.19.0",
     "react": ">= 18"
   },
@@ -54,7 +55,6 @@
     }
   },
   "dependencies": {
-    "@axa-fr/design-system-css": "*",
     "@fontsource/source-sans-pro": "^5.0.8",
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",
