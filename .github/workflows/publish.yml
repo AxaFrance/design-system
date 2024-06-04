@@ -30,6 +30,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" --workspaces --workspaces-update=true
+      - name: Set to react package the @axa-fr/design-system-css dependency version
+        run: |
+          cd packages/react
+          jq '.peerDependencies["@axa-fr/design-system-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
       - run: npm publish --workspace "packages" --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
