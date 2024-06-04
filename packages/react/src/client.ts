@@ -17,6 +17,7 @@ export { Link } from "./Link/Link.client";
 export { Modal } from "./ModalClient/Modal.client";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal.client";
 export { Pagination } from "./Pagination/Pagination.client";
+export { Loader } from "./Loader/Client/Loader";
 export { Stepper } from "./Stepper/Stepper.client";
 export { Svg } from "./Svg";
 export { HeaderClient as Header } from "./Layout/Header/Client";
