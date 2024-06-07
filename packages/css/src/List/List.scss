@@ -1,0 +1,18 @@
+@use "../common/common.client.scss" as common;
+
+.af-list {
+  display: flex;
+  width: fit-content;
+  margin: 0;
+  padding: 0 1rem;
+  border: 1px solid common.$color-btn-disabled-bg;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  background-color: common.$color-white;
+  list-style-type: none;
+
+  &__item {
+    padding: 1rem 0;
+    border-bottom: 1px solid common.$color-btn-disabled-bg;
+  }
+}
