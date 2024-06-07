@@ -61,7 +61,7 @@ const MultiSelect = ({
   };
 
   const commonProps = {
-    id: inputId,
+    inputId,
     name,
     onChange: handleOnChange,
     onBlur,

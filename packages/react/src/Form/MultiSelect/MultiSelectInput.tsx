@@ -49,7 +49,11 @@ const MultiSelectInput = ({
         className="af-form__select"
         classModifier={inputFieldClassModifier}
       >
-        <MultiSelect id={inputId} disabled={disabled} {...multiSelectProps} />
+        <MultiSelect
+          inputId={inputId}
+          disabled={disabled}
+          {...multiSelectProps}
+        />
         {children}
       </FieldInput>
       <HelpMessage message={helpMessage} isVisible={!message} />
