@@ -21,11 +21,21 @@ type RadioSelectProps = {
   name: string;
   errorMessage?: string;
   onChange?: React.ChangeEventHandler;
+  value?: string;
 } & Omit<ComponentPropsWithRef<"div">, "className" | "aria-invalid">;
 
 export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
   (
-    { id, options, errorMessage, onChange, type = "vertical", name, ...rest },
+    {
+      id,
+      options,
+      errorMessage,
+      onChange,
+      type = "vertical",
+      name,
+      value,
+      ...rest
+    },
     ref,
   ) => {
     const generatedId = useId();
@@ -48,7 +58,10 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
                   name={name}
                   id={`${optionId}-${label}`}
                   onChange={onChange}
-                  aria-checked={inputProps.checked}
+                  {...(value && {
+                    "aria-checked": value === inputProps.value,
+                    checked: value === inputProps.value,
+                  })}
                 />
                 <div className="af-radio__icons">
                   <Svg
