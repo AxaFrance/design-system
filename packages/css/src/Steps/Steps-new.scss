@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "../common/common.agent.scss" as common;
 @use "../common/reboot.scss";
 
@@ -29,6 +30,32 @@ $steps-color-active: common.$color-axa;
       font-size: $font-size-step;
       color: $steps-color;
       counter-increment: stepper-counter;
+
+      &__label {
+        display: inline-flex;
+        padding-right: 2rem;
+      }
+
+      &__number {
+        margin-right: 0.6rem;
+        font-size: $font-size-step-number;
+        font-weight: 600;
+        color: $steps-color;
+
+        .glyphicon {
+          width: 17px;
+          font-size: 1.5rem;
+        }
+      }
+
+      &__title {
+        font-weight: 600;
+        color: $steps-color;
+
+        &:hover {
+          color: $steps-color-active;
+        }
+      }
 
       &.number {
         &::before {
@@ -77,35 +104,9 @@ $steps-color-active: common.$color-axa;
           color: common.$color-gray-1;
         }
 
-        & .af-steps-list__step-number,
-& .af-steps-list__step-title {
-  color: common.$color-gray-1;
-}
-      }
-
-      &Label {
-        display: inline-flex;
-        padding-right: 2rem;
-      }
-
-      &Number {
-        margin-right: 0.6rem;
-        font-size: $font-size-step-number;
-        font-weight: 600;
-        color: $steps-color;
-
-        .glyphicon {
-          width: 17px;
-          font-size: 1.5rem;
-        }
-      }
-
-      &Title {
-        font-weight: 600;
-        color: $steps-color;
-
-        &:hover {
-          color: $steps-color-active;
+        & .af-steps-list-step__number,
+        & .af-steps-list-step__title {
+          color: common.$color-gray-1;
         }
       }
 
@@ -123,7 +124,7 @@ $steps-color-active: common.$color-axa;
           content: none;
         }
 
-        .af-steps-list-stepLabel {
+        .af-steps-list-step__label {
           padding-right: 0;
 
           &::after,
@@ -132,8 +133,8 @@ $steps-color-active: common.$color-axa;
           }
         }
 
-        .af-steps-list-stepNumber {
-          font-size: ceil(($font-size-step * 1.1));
+        .af-steps-list-step__number {
+          font-size: math.ceil(($font-size-step * 1.1));
         }
       }
     }
@@ -147,11 +148,11 @@ $steps-color-active: common.$color-axa;
         min-width: 3rem;
         padding-left: 0;
 
-        &Title {
+        &__title {
           display: none;
         }
 
-        &Number {
+        &__number {
           z-index: 2;
           left: 2rem;
           margin-right: 1rem;
@@ -162,11 +163,11 @@ $steps-color-active: common.$color-axa;
         }
 
         &.on {
-          .af-steps-list-stepTitle {
+          .af-steps-list-step__title {
             display: block;
           }
 
-          .af-steps-list-stepNumber {
+          .af-steps-list-step__number {
             margin-right: 0.5rem;
 
             .glyphicon {

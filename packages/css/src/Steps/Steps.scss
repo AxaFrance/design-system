@@ -1,3 +1,5 @@
+@use "sass:math";
+@use "sass:color";
 @use "../common/common.agent.scss" as common;
 @use "../common/reboot.scss";
 
@@ -6,9 +8,9 @@
 $steps-bg: common.$gray-lighter;
 $steps-bg-active: common.$white;
 $font-size-step: common.$font-size-base;
-$font-size-step-number: ceil(($font-size-step * 1.6));
+$font-size-step-number: math.ceil(($font-size-step * 1.6));
 $steps-color: common.$gray-dark;
-$steps-color-active: mix(common.$black, common.$brand-primary, 20%);
+$steps-color-active: color.mix(common.$black, common.$brand-primary, 20%);
 
 .af-steps {
   margin-bottom: 2rem;
@@ -16,53 +18,87 @@ $steps-color-active: mix(common.$black, common.$brand-primary, 20%);
   .af-steps-list {
     display: table;
     width: 100%;
-    table-layout: fixed;
-    border-radius: 4px;
-    overflow: hidden;
-    padding: 0;
     margin: 0;
+    padding: 0;
     border: 2px solid $steps-bg;
+    border-radius: 4px;
+    table-layout: fixed;
+    overflow: hidden;
 
     &-step {
       display: table-cell;
-      font-size: $font-size-step;
-      background: $steps-bg;
-      color: $steps-color;
       padding-left: 1.875em;
+      font-size: $font-size-step;
+      color: $steps-color;
+      background: $steps-bg;
+
+      &__label {
+        position: relative;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          right: -23px;
+          width: 0;
+          height: 0;
+          border-width: 50px 0 50px 36px;
+          border-style: solid;
+          border-color: transparent transparent transparent common.$white;
+          transform: translate(0, -50%);
+          content: "";
+        }
+
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: -20px;
+          width: 0;
+          height: 0;
+          border-width: 50px 0 50px 36px;
+          border-style: solid;
+          border-color: transparent transparent transparent $steps-bg;
+          transform: translate(0, -50%);
+          content: "";
+        }
+      }
+
+      &__number,
+      &__title {
+        opacity: 0.3;
+      }
+
+      &__number {
+        margin-right: 0.3125rem;
+        font-size: $font-size-step-number;
+        font-weight: 600;
+
+        .glyphicon {
+          width: 17px;
+          font-size: 1.5rem;
+        }
+      }
+
+      &__title {
+        padding-top: 0.5rem;
+        font-weight: 600;
+      }
 
       &.on {
         color: $steps-color-active;
         background: $steps-bg-active;
 
-        .af-steps-list-stepNumber,
-        .af-steps-list-stepTitle {
+        .af-steps-list-step__number,
+        .af-steps-list-step__title {
           opacity: 1;
         }
 
-        .af-steps-list-stepLabel::after {
+        .af-steps-list-step__label::after {
           border-color: transparent transparent transparent $steps-bg-active;
-        }
-      }
-
-      &.past {
-        color: $steps-color-active;
-
-        .af-steps-list-stepNumber,
-        .af-steps-list-stepTitle {
-          opacity: 0.5;
-        }
-
-        &:hover {
-          cursor: pointer;
-
-          .af-steps-list-stepNumber,
-          .af-steps-list-stepTitle {
-            opacity: 1;
-          }
-        }
-
-        .af-steps-list-stepLabel:first-child::after {
-          border-color: transparent transparent transparent $steps-bg;
         }
       }
 
@@ -70,77 +106,43 @@ $steps-color-active: mix(common.$black, common.$brand-primary, 20%);
         color: common.$gray-lightest;
         background: common.$gray-lighter;
 
-        .af-steps-list-stepLabel::after {
+        .af-steps-list-step__label::after {
           border-color: transparent transparent transparent $steps-bg;
         }
-      }
-
-      &Label {
-        position: relative;
-        width: 100%;
-        vertical-align: middle;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &::before {
-          content: "";
-          position: absolute;
-          width: 0;
-          height: 0;
-          right: -23px;
-          top: 50%;
-          transform: translate(0, -50%);
-          border-style: solid;
-          border-width: 50px 0 50px 36px;
-          border-color: transparent transparent transparent common.$white;
-        }
-
-        &::after {
-          content: "";
-          position: absolute;
-          width: 0;
-          height: 0;
-          right: -20px;
-          top: 50%;
-          transform: translate(0, -50%);
-          border-style: solid;
-          border-width: 50px 0 50px 36px;
-          border-color: transparent transparent transparent $steps-bg;
-        }
-      }
-
-      &Number,
-      &Title {
-        opacity: 0.3;
-      }
-
-      &Number {
-        margin-right: 0.3125rem;
-        font-size: $font-size-step-number;
-        font-weight: 600;
-
-        .glyphicon {
-          font-size: 1.5rem;
-          width: 17px;
-        }
-      }
-
-      &Title {
-        font-weight: 600;
-        padding-top: 0.5rem;
       }
 
       &:last-child {
-        .af-steps-list-stepLabel {
+        .af-steps-list-step__label {
           &::after,
           &::before {
             display: none;
           }
         }
 
-        .af-steps-list-stepNumber {
-          font-size: ceil(($font-size-step * 1.1));
+        .af-steps-list-step__number {
+          font-size: math.ceil(($font-size-step * 1.1));
+        }
+      }
+
+      &.past {
+        color: $steps-color-active;
+
+        .af-steps-list-step__number,
+        .af-steps-list-step__title {
+          opacity: 0.5;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .af-steps-list-step__number,
+          .af-steps-list-step__title {
+            opacity: 1;
+          }
+        }
+
+        .af-steps-list-step__label:first-child::after {
+          border-color: transparent transparent transparent $steps-bg;
         }
       }
     }
@@ -152,29 +154,29 @@ $steps-color-active: mix(common.$black, common.$brand-primary, 20%);
       &-step {
         min-width: 3.125rem;
 
-        &Title {
+        &__title {
           display: none;
         }
 
-        &Number {
-          left: 2rem;
+        &__number {
           z-index: 2;
+          left: 2rem;
 
           .glyphicon {
-            font-size: ceil(($font-size-step * 1.2));
             width: 17px;
+            font-size: math.ceil(($font-size-step * 1.2));
           }
         }
 
         &.on {
-          .af-steps-list-stepTitle {
+          .af-steps-list-step__title {
             display: block;
           }
 
-          .af-steps-list-stepNumber {
+          .af-steps-list-step__number {
             .glyphicon {
-              font-size: ceil(($font-size-step * 1.1));
               width: 17px;
+              font-size: math.ceil(($font-size-step * 1.1));
             }
           }
         }
