@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Steps> > renders Steps correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="af-steps-new"
+  >
+    <ol
+      class="af-steps-list"
+    >
+      <li
+        class="past af-steps-list-step number"
+        title="Previous step"
+      >
+        <a
+          class="af-steps-list-step__label"
+          href="/etape1"
+        >
+          <div
+            class="af-steps-list-step__number"
+          >
+            1
+          </div>
+          <div
+            class="af-steps-list-step__title"
+          >
+            Previous step
+          </div>
+        </a>
+      </li>
+      <li
+        class="af-steps-list-step"
+        title="Un titre"
+      >
+        <a
+          class="af-steps-list-step__label"
+          href="/#"
+        >
+          <span
+            class="af-steps-list-step__number"
+          >
+            <i
+              class="glyphicon glyphicon-ok"
+            />
+          </span>
+          <span
+            class="af-steps-list-step__title"
+          >
+            Custom
+          </span>
+        </a>
+      </li>
+      <li
+        class="disabled af-steps-list-step number"
+        title="Final step"
+      >
+        <div
+          class="af-steps-list-step__label"
+        >
+          <div
+            class="af-steps-list-step__number"
+          >
+            5
+          </div>
+          <div
+            class="af-steps-list-step__title"
+          >
+            Final step
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</DocumentFragment>
+`;
