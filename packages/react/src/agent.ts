@@ -33,18 +33,6 @@ export { Text, TextInput } from "./Form/Text/Agent";
 export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer/Agent";
 export {
-  BooleanModal,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  ModalHeaderBase,
-} from "./ModalAgent";
-export { Svg } from "./Svg";
-export { Tabs } from "./Tabs/Agent/Tabs.agent";
-export { Title } from "./Title/Title.agent";
-
-export {
   HeaderAgent as Header,
   Infos,
   Name,
@@ -57,3 +45,15 @@ export {
   ToggleButton,
   User,
 } from "./Layout/Header/Agent";
+export {
+  BooleanModal,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalHeaderBase,
+} from "./ModalAgent";
+export { Step, StepBase, Steps } from "./Steps";
+export { Svg } from "./Svg";
+export { Tabs } from "./Tabs/Agent/Tabs.agent";
+export { Title } from "./Title/Title.agent";
