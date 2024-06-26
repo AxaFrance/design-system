@@ -48,7 +48,7 @@
         border-radius: 50px;
         align-items: center;
         justify-content: center;
-        fill: #00008f;
+        fill: common.$color-axa;
 
         &:hover {
           color: white;
@@ -59,7 +59,7 @@
 
         &:active,
         &:focus {
-          color: #00008f;
+          color: common.$color-axa;
           background-color: common.$color-btn-light;
           outline: none;
           fill: white;
