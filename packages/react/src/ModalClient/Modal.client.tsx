@@ -96,7 +96,6 @@ export const Modal = ({
               className="af-modal__top-title-close-btn"
               onClick={handleCloseModal}
               type="button"
-              color="primary"
               aria-label="close"
             >
               <Svg src={close} width={32} height={32} />
