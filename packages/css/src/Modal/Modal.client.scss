@@ -27,6 +27,7 @@
     background-color: white;
 
     &-title {
+      font-family: common.$font-family-publico;
       display: flex;
       width: 100%;
       margin: 0;
@@ -34,7 +35,7 @@
       justify-content: space-between;
 
       &-text {
-        font-family: common.$font-family-publico;
+        font-family: common.$font-family-base;
         font-size: 1.5rem;
         line-height: 1.875rem;
       }
@@ -48,8 +49,7 @@
         border-radius: 50px;
         align-items: center;
         justify-content: center;
-        fill: #00008F;
-
+        fill: common.$color-axa;
 
         &:hover {
           color: white;
@@ -60,7 +60,7 @@
 
         &:active,
         &:focus {
-          color: #00008F;
+          color: common.$color-axa;
           background-color: common.$color-btn-light;
           outline: none;
           fill: white;
