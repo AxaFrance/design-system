@@ -1,0 +1,46 @@
+@use "../common/common.client.scss" as common;
+
+.af-chip {
+  display: inline-flex;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid common.$color-gray;
+  border-radius: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-family: common.$font-family-base;
+  color: common.$color-gray;
+  background-color: common.$color-white;
+  cursor: default;
+
+  span {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+  }
+
+  &--mobile span {
+    font-size: 0.875rem;
+    line-height: 1.094rem;
+  }
+
+  &--success {
+    border-color: common.$color-success-40;
+    color: common.$color-success-40;
+  }
+
+  &--error {
+    border-color: common.$color-btn-error;
+    color: common.$color-btn-error;
+  }
+
+  &--warning {
+    border-color: common.$color-btn-business;
+    color: common.$color-btn-business;
+  }
+
+  &--info {
+    border-color: common.$color-axa;
+    color: common.$color-axa;
+  }
+}
