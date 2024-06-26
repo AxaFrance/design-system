@@ -34,7 +34,7 @@
       justify-content: space-between;
 
       &-text {
-        font-family: common.$font-family-publico, common.$font-family-base;
+        font-family: common.$font-family-publico;
         font-size: 1.5rem;
         line-height: 1.875rem;
       }
@@ -48,6 +48,8 @@
         border-radius: 50px;
         align-items: center;
         justify-content: center;
+        fill: #00008F;
+
 
         &:hover {
           color: white;
@@ -58,7 +60,7 @@
 
         &:active,
         &:focus {
-          color: white;
+          color: #00008F;
           background-color: common.$color-btn-light;
           outline: none;
           fill: white;
