@@ -25,6 +25,7 @@ type ModalProps = {
   hasCloseBtn?: boolean;
   onClose?: () => void;
   title: string;
+  subtitle?: string;
   iconTitle?: ReactNode;
   fullWidthButtons?: boolean;
   actions?: {
@@ -40,6 +41,7 @@ export const Modal = ({
   onClose,
   children,
   title,
+  subtitle,
   iconTitle,
   actions,
   fullWidthButtons,
@@ -91,6 +93,7 @@ export const Modal = ({
         {iconTitle}
         <h2 className="af-modal__top-title">
           <div className="af-modal__top-title-text">{title}</div>
+          {!subtitle && <span>{subtitle}</span>}
           {hasCloseBtn && (
             <Button
               className="af-modal__top-title-close-btn"
@@ -105,8 +108,38 @@ export const Modal = ({
       </div>
       <div id={idContent} className="af-modal__content">
         {children}
+        {actions && (
+          <div
+            className={`af-modal__actions${fullWidthButtons ? " af-modal__actions--fullWidth" : ""} `}
+          >
+            {actions?.primary && (
+              <Button
+                variant={ButtonVariants.primary}
+                onClick={actions?.primary.callback}
+              >
+                {actions?.primary.text}
+              </Button>
+            )}
+            {actions?.secondary && (
+              <Button
+                variant={ButtonVariants.secondary}
+                onClick={actions?.secondary.callback}
+              >
+                {actions?.secondary.text}
+              </Button>
+            )}
+            {actions?.tertiary && (
+              <Button
+                variant={ButtonVariants.tertiary}
+                onClick={actions?.tertiary.callback}
+              >
+                {actions?.tertiary.text}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
-      {actions && (
+      {/*  {actions && (
         <div
           className={`af-modal__actions${fullWidthButtons ? " af-modal__actions--fullWidth" : ""} `}
         >
@@ -135,7 +168,7 @@ export const Modal = ({
             </Button>
           )}
         </div>
-      )}
+      )} */}
     </dialog>
   );
 };
