@@ -11,45 +11,60 @@
 
 .af-header-container {
   display: flex;
-  width: 100%;
-  height: 72px;
-  border-bottom: 1px solid common.$color-gray-1;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   font-family: common.$font-family-sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1.563rem;
-  color: common.$color-axa;
-}
+  height: 4.4rem;
+  border-top: 2px solid common.$color-axa;
+  border-bottom: 1px solid common.$color-gray-1;
+  padding: 0 common.$spacing-u4;
 
-.af-logo {
-  width: 40px;
-  height: 40px;
-  margin-left: common.$spacing-u1;
-  align-self: center;
-}
+  .af-header-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: inherit;
 
-.af-header-right-item {
-  margin-right: common.$spacing-u1;
-  margin-block: 10.5px;
-  align-self: center;
-}
+    .af-logo {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
 
-@media only screen and (width >=64em) {
-  .af-header-container {
-    height: 77px;
-    border-top: 2px solid common.$color-axa;
-    border-bottom: 1px solid common.$color-gray-1;
-    font-size: 1.125rem;
-  }
+    .af-header-menu {
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      list-style-type: none;
+      gap: common.$spacing-u1;
+      height: inherit;
 
-  .af-logo {
-    width: 56px;
-    height: 56px;
-    margin-left: common.$spacing-u4;
-  }
+      &>.af-header-menu-link {
+        height: inherit;
+        padding: 1.5rem;
+        font-weight: 400;
+        font-size: 1rem;
+        color: common.$color-gray-900;
+        cursor: pointer;
+        box-sizing: border-box;
 
-  .af-header-right-item {
-    margin-right: common.$spacing-u4;
+        &--active {
+          font-weight: 600;
+          font-size: 1rem;
+          color: common.$color-axa;
+          border-bottom: 4px solid common.$color-btn-active;
+        }
+
+        &:hover {
+          font-weight: 600;
+          font-size: 1rem;
+          color: common.$color-axa;
+          border-bottom: 4px solid common.$color-axa;
+        }
+      }
+    }
   }
 }
