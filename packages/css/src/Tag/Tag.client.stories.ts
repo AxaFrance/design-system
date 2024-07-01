@@ -16,7 +16,6 @@ export const Default: StoryObj = {
 
     if (args.classModifier !== "default")
       tag.className += ` af-tag--${args.classModifier}`;
-    if (args.isMobile) tag.className += " af-tag--mobile";
 
     tag.innerHTML = `<span class="af-tag__label">${args.label}</span>`;
 
@@ -25,7 +24,6 @@ export const Default: StoryObj = {
   args: {
     label: "Texte",
     classModifier: "default",
-    isMobile: false,
   },
   argTypes: {
     classModifier: {

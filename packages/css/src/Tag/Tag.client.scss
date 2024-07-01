@@ -19,11 +19,6 @@
     line-height: 1.25rem;
   }
 
-  &--mobile span {
-    font-size: 0.875rem;
-    line-height: 1.094rem;
-  }
-
   &--success {
     border-color: common.$color-success-40;
     color: common.$color-success-40;
@@ -42,5 +37,12 @@
   &--info {
     border-color: common.$color-axa;
     color: common.$color-axa;
+  }
+
+  @media (width <= 667px) {
+    span {
+      font-size: 0.875rem;
+      line-height: 1.094rem;
+    }
   }
 }

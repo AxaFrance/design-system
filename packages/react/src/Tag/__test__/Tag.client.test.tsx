@@ -13,19 +13,14 @@ describe("Tag", () => {
     expect(tagSpan.parentElement).toHaveClass("af-tag");
   });
 
-  it("should have custom classModifier and mobile classModifier", () => {
+  it("should have custom classModifier", () => {
     const children = "Sample Tag";
     const classModifier = "modifier";
-    const isMobile = true;
 
-    render(
-      <Tag classModifier={classModifier} isMobile={isMobile}>
-        {children}
-      </Tag>,
-    );
+    render(<Tag classModifier={classModifier}>{children}</Tag>);
 
     expect(screen.getByText(children).parentElement).toHaveClass(
-      `af-tag af-tag--${classModifier} af-tag--mobile`,
+      `af-tag af-tag--${classModifier}`,
     );
   });
 });

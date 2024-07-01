@@ -14,7 +14,6 @@ export const Default: StoryObj<typeof Tag> = {
   args: {
     children: "Texte",
     classModifier: "",
-    isMobile: false,
   },
   argTypes: {
     classModifier: {
