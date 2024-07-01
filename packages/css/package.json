@@ -7,8 +7,9 @@
     "dist"
   ],
   "scripts": {
-    "start": "postcss src/**/*.scss --base src --dir dist --ext css --verbose --watch --config ../../config/postcss.config.js",
-    "build": "postcss src/**/*.scss --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
+    "prebuild": "rimraf dist",
+    "start": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --config ../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
     "start:storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "eslint": "eslint src --ext js,jsx,ts,tsx",
