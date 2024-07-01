@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Chip } from ".";
+import { Tag } from ".";
 
-const meta: Meta<typeof Chip> = {
-  title: "Client/Components/Chip",
-  component: Chip,
+const meta: Meta<typeof Tag> = {
+  title: "Client/Components/Tag",
+  component: Tag,
 };
 
 export default meta;
 
-export const Default: StoryObj<typeof Chip> = {
-  name: "Chip",
-  render: (args) => <Chip {...args} />,
+export const Default: StoryObj<typeof Tag> = {
+  name: "Tag",
+  render: (args) => <Tag {...args} />,
   args: {
     children: "Texte",
     classModifier: "",

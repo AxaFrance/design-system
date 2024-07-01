@@ -1,31 +1,31 @@
 import { useMemo, type ComponentProps } from "react";
 import { getComponentClassName } from "../Form/core";
 
-type ChipProps = ComponentProps<"div"> & {
+type TagProps = ComponentProps<"div"> & {
   isMobile?: boolean;
   classModifier?: string;
 };
 
-export const Chip = ({
+export const Tag = ({
   children,
   className,
   classModifier = "",
   isMobile = false,
   ...divProps
-}: ChipProps) => {
+}: TagProps) => {
   const componentClassName = useMemo(
     () =>
       getComponentClassName(
         className,
         isMobile ? `${classModifier} mobile` : classModifier,
-        "af-chip",
+        "af-tag",
       ),
     [className, isMobile, classModifier],
   );
 
   return (
     <div className={componentClassName} {...divProps}>
-      <span className="af-chip__label">{children}</span>
+      <span className="af-tag__label">{children}</span>
     </div>
   );
 };

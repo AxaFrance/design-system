@@ -1,26 +1,26 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "./Chip.client.scss";
+import "./Tag.client.scss";
 
 const meta: Meta = {
-  title: "Client/Components/Chip",
+  title: "Client/Components/Tag",
 };
 
 export default meta;
 
 export const Default: StoryObj = {
-  name: "Chip",
+  name: "Tag",
   render: (args) => {
-    const chip = document.createElement("div");
+    const tag = document.createElement("div");
 
-    chip.className = "af-chip";
+    tag.className = "af-tag";
 
     if (args.classModifier !== "default")
-      chip.className += ` af-chip--${args.classModifier}`;
-    if (args.isMobile) chip.className += " af-chip--mobile";
+      tag.className += ` af-tag--${args.classModifier}`;
+    if (args.isMobile) tag.className += " af-tag--mobile";
 
-    chip.innerHTML = `<span class="af-chip__label">${args.label}</span>`;
+    tag.innerHTML = `<span class="af-tag__label">${args.label}</span>`;
 
-    return chip;
+    return tag;
   },
   args: {
     label: "Texte",

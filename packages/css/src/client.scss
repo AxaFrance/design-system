@@ -1,5 +1,4 @@
 @use "./Button/Button.client";
-@use "./Chip/Chip.client";
 @use "./Layout/Footer/Footer.client.scss";
 @use "./Stepper/Stepper.client";
 @use "./Layout/Header/Header.client.scss";
@@ -15,3 +14,4 @@
 @use "./Pagination/Pagination.client.scss";
 @use "./Loader/Loader.client.scss";
 @use "./List/List.scss";
+@use "./Tag/Tag.client";
