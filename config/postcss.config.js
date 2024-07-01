@@ -4,9 +4,6 @@ const postcssNormalize = require("postcss-normalize");
 const postcssSass = require("@csstools/postcss-sass");
 const cssnano = require("cssnano");
 const { cpSync, lstatSync } = require("fs");
-const { sync } = require("rimraf");
-
-sync("dist");
 
 module.exports = ({ ...ctx }) => {
   const prod = ctx.env === "production";
