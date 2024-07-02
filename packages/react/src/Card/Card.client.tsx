@@ -17,21 +17,20 @@ export const Card = ({
     () => getComponentClassName(className, classModifier, "af-card"),
     [className, classModifier],
   );
+  const Component = useMemo(() => (onClick ? "button" : "section"), [onClick]);
+  const componentProps: ComponentProps<"section"> & ComponentProps<"button"> =
+    useMemo(
+      () => (onClick ? { type: "button", onClick } : { tabIndex: 0 }),
+      [onClick],
+    );
 
-  return onClick ? ( // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-    <button
-      type="button"
+  return (
+    <Component
       className={componentClassName}
-      tabIndex={0}
-      onClick={onClick}
+      {...componentProps}
       {...otherProps}
     >
       {children}
-    </button>
-  ) : (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-    <section className={componentClassName} tabIndex={0} {...otherProps}>
-      {children}
-    </section>
+    </Component>
   );
 };
