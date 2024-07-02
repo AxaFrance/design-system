@@ -1,7 +1,7 @@
 import { useMemo, type ComponentProps } from "react";
 import { getComponentClassName } from "../Form/core";
 
-type CardProps = ComponentProps<"div"> &
+type CardProps = ComponentProps<"section"> &
   ComponentProps<"button"> & {
     classModifier?: string;
   };
@@ -35,8 +35,8 @@ export const Card = ({
     </button>
   ) : (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-    <div className={componentClassName} tabIndex={0} {...otherProps}>
+    <section className={componentClassName} tabIndex={0} {...otherProps}>
       {children}
-    </div>
+    </section>
   );
 };
