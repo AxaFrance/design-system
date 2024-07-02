@@ -17,19 +17,6 @@
     margin-block-end: 0;
   }
 
-  &--button {
-    text-align: initial;
-    cursor: pointer;
-
-    &:active {
-      box-shadow: none;
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-
   &:focus-visible {
     border: 2px solid common.$color-focus;
     outline: none;
@@ -44,5 +31,18 @@
     font-weight: 600;
     line-height: 1.4rem;
     color: common.$color-axa;
+  }
+}
+
+button.af-card {
+  text-align: initial;
+  cursor: pointer;
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none;
   }
 }

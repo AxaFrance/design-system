@@ -14,13 +14,8 @@ export const Card = ({
   ...otherProps
 }: CardProps) => {
   const componentClassName = useMemo(
-    () =>
-      getComponentClassName(
-        className,
-        onClick ? `${classModifier} button` : classModifier,
-        "af-card",
-      ),
-    [className, onClick, classModifier],
+    () => getComponentClassName(className, classModifier, "af-card"),
+    [className, classModifier],
   );
 
   return onClick ? ( // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
