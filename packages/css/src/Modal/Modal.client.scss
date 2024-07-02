@@ -1,16 +1,19 @@
 @use "../common/common.client.scss" as common;
 
 .af-modal {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   min-width: 100%;
   max-width: 100%;
   margin-right: auto;
   margin-bottom: 0;
   margin-left: auto;
-  padding: 0;
   border: 0;
   border-radius: 8px;
-  background-color: white;
+  background-color: #ffffff;
+  padding: 24px 0 24px 0;
+  gap: 24px;
 
   &::backdrop {
     background: #3333337a;
@@ -20,7 +23,7 @@
     position: sticky;
     top: 0;
     display: flex;
-    padding: 1.5rem 2rem;
+    padding: 0rem 2rem 1rem 2rem;
     border-bottom: 1px solid common.$color-btn-disabled-border;
     align-items: center;
     gap: 1.5rem;
@@ -44,45 +47,30 @@
         display: flex;
         width: 32px;
         height: 32px;
-        margin-left: 1rem;
-        border-radius: 50px;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
         fill: common.$color-axa;
-
-        &:hover {
-          color: white;
-          background-color: common.$color-blue-1;
-          outline: none;
-          fill: white;
-        }
-
-        &:active,
-        &:focus {
-          color: common.$color-axa;
-          background-color: common.$color-btn-light;
-          outline: none;
-          fill: white;
-        }
-
-        &:focus-visible {
-          outline: 2px solid common.$color-blue-3;
-          outline-offset: 3px;
-        }
       }
+      :hover {
+        background: none;
+      }
+      :focus {background: none;border: none;}
     }
   }
 
   &__content {
-    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 2rem;
     font-family: common.$font-family-base;
     font-size: 1.125rem;
     font-weight: 400;
+    gap: 40px;
   }
 
   &__actions {
     display: flex;
-    padding: 1.5rem 2rem;
     padding-top: 0;
     flex-direction: column-reverse;
     align-items: flex-end;

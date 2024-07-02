@@ -48,6 +48,7 @@ export const Playground: Story = {
     children:
       "Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.",
     iconTitle: <Svg src={bluetoothAudio} />,
+    subtitle: "Info complémentaire",
     fullWidthButtons: false,
     actions: {
       primary: { text: "Save", callback: () => true },
