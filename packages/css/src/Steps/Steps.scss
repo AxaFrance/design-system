@@ -1,0 +1,186 @@
+@use "sass:math";
+@use "sass:color";
+@use "../common/common.agent.scss" as common;
+@use "../common/reboot.scss";
+
+// Wizard Steps
+// --------------------------------------------------
+$steps-bg: common.$gray-lighter;
+$steps-bg-active: common.$white;
+$font-size-step: common.$font-size-base;
+$font-size-step-number: math.ceil(($font-size-step * 1.6));
+$steps-color: common.$gray-dark;
+$steps-color-active: color.mix(common.$black, common.$brand-primary, 20%);
+
+.af-steps {
+  margin-bottom: 2rem;
+
+  .af-steps-list {
+    display: table;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 2px solid $steps-bg;
+    border-radius: 4px;
+    table-layout: fixed;
+    overflow: hidden;
+
+    &-step {
+      display: table-cell;
+      padding-left: 1.875em;
+      font-size: $font-size-step;
+      color: $steps-color;
+      background: $steps-bg;
+
+      &__label {
+        position: relative;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          right: -23px;
+          width: 0;
+          height: 0;
+          border-width: 50px 0 50px 36px;
+          border-style: solid;
+          border-color: transparent transparent transparent common.$white;
+          transform: translate(0, -50%);
+          content: "";
+        }
+
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: -20px;
+          width: 0;
+          height: 0;
+          border-width: 50px 0 50px 36px;
+          border-style: solid;
+          border-color: transparent transparent transparent $steps-bg;
+          transform: translate(0, -50%);
+          content: "";
+        }
+      }
+
+      &__number,
+      &__title {
+        opacity: 0.3;
+      }
+
+      &__number {
+        margin-right: 0.3125rem;
+        font-size: $font-size-step-number;
+        font-weight: 600;
+
+        .glyphicon {
+          width: 17px;
+          font-size: 1.5rem;
+        }
+      }
+
+      &__title {
+        padding-top: 0.5rem;
+        font-weight: 600;
+      }
+
+      &.on {
+        color: $steps-color-active;
+        background: $steps-bg-active;
+
+        .af-steps-list-step__number,
+        .af-steps-list-step__title {
+          opacity: 1;
+        }
+
+        .af-steps-list-step__label::after {
+          border-color: transparent transparent transparent $steps-bg-active;
+        }
+      }
+
+      &.disabled {
+        color: common.$gray-lightest;
+        background: common.$gray-lighter;
+
+        .af-steps-list-step__label::after {
+          border-color: transparent transparent transparent $steps-bg;
+        }
+      }
+
+      &:last-child {
+        .af-steps-list-step__label {
+          &::after,
+          &::before {
+            display: none;
+          }
+        }
+
+        .af-steps-list-step__number {
+          font-size: math.ceil(($font-size-step * 1.1));
+        }
+      }
+
+      &.past {
+        color: $steps-color-active;
+
+        .af-steps-list-step__number,
+        .af-steps-list-step__title {
+          opacity: 0.5;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .af-steps-list-step__number,
+          .af-steps-list-step__title {
+            opacity: 1;
+          }
+        }
+
+        .af-steps-list-step__label:first-child::after {
+          border-color: transparent transparent transparent $steps-bg;
+        }
+      }
+    }
+  }
+  @include common.media-breakpoint-down(xs) {
+    &-list {
+      table-layout: auto;
+
+      &-step {
+        min-width: 3.125rem;
+
+        &__title {
+          display: none;
+        }
+
+        &__number {
+          z-index: 2;
+          left: 2rem;
+
+          .glyphicon {
+            width: 17px;
+            font-size: math.ceil(($font-size-step * 1.2));
+          }
+        }
+
+        &.on {
+          .af-steps-list-step__title {
+            display: block;
+          }
+
+          .af-steps-list-step__number {
+            .glyphicon {
+              width: 17px;
+              font-size: math.ceil(($font-size-step * 1.1));
+            }
+          }
+        }
+      }
+    }
+  }
+}
