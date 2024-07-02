@@ -7,6 +7,7 @@ $font-family-publico: "Publico Headline" !default;
 
 $color-axa: #00008f !default;
 $color-white: #fff !default;
+$color-black: #000 !default;
 $color-red: #ff1721 !default;
 $color-gray: #5f5f5f !default;
 $color-blue-1: #000072 !default;
@@ -96,3 +97,11 @@ $error-custom-bg: #ffbfbf !default;
 
 $color-alertDanger-colorBorder: #c8b282 !default;
 $color-alertDanger-bgColor: #f1d596 !default;
+
+// breakpoints
+
+$breakpoint-xs: 0 !default;
+$breakpoint-sm: 667px !default;
+$breakpoint-md: 1023px !default;
+$breakpoint-lg: 1279px !default;
+$breakpoint-xl: 1599px !default;
