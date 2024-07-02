@@ -9,7 +9,7 @@ export default meta;
 
 export const Default: StoryObj = {
   render: (args) => {
-    const container = document.createElement("div");
+    const container = document.createElement("section");
     container.className = `af-card${args.classModifier
       .map((classModifier: string) => ` af-card--${classModifier}`)
       .join("")}`;
