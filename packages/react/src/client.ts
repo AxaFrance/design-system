@@ -7,6 +7,7 @@ export {
   ButtonClient as Button,
   Variants as ButtonVariants,
 } from "./Button/Button.client";
+export { Card } from "./Card";
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox/Client";
 export { FileUpload } from "./Form/FileUpload/Client";
 export { Radio, RadioSelect } from "./Form/Radio/Client";
