@@ -2,9 +2,11 @@ import "@axa-fr/design-system-css/dist/Form/Text/Client/Text.client.scss";
 import { ComponentPropsWithRef, forwardRef } from "react";
 
 import { getComponentClassName } from "../../core";
+import { InputError } from "../../InputError";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   classModifier?: string;
+  error?: string;
   description?: string;
   label?: string;
   required?: boolean;
@@ -18,7 +20,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
       "af-form__input-text",
     );
 
-    const { description, disabled, id, label, required } = otherProps;
+    const { id, label, required, disabled, description, error } = otherProps;
 
     return (
       <div className="af-form__input-container">
@@ -36,6 +38,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
           disabled={disabled}
           {...otherProps}
         />
+        {error && <InputError message={error} />}
       </div>
     );
   },
