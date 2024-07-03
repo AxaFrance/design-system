@@ -1,40 +1,41 @@
 @use "../common/common.client.scss" as common;
 
 .af-modal {
-  display: flex;
-  flex-direction: column;
   position: fixed;
+  display: flex;
   min-width: 100%;
   max-width: 100%;
   margin-right: auto;
   margin-bottom: 0;
   margin-left: auto;
+  padding: 1.5rem 0;
   border: 0;
-  border-radius: 8px;
-  background-color: #ffffff;
-  padding: 24px 0 24px 0;
-  gap: 24px;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: common.$color-white;
 
   &::backdrop {
-    background: #3333337a;
+    background: common.$color-gray-900;
   }
 
   &__top {
     position: sticky;
     top: 0;
     display: flex;
-    padding: 0rem 2rem 1rem 2rem;
+    padding: 0 2rem 1rem;
     border-bottom: 1px solid common.$color-btn-disabled-border;
-    align-items: center;
+    align-items: start;
     gap: 1.5rem;
-    background-color: white;
+    background-color: common.$color-white;
 
     &-title {
       display: flex;
       width: 100%;
       margin: 0;
-      align-items: center;
+      align-items: start;
       justify-content: space-between;
+      color: common.$color-gray-900;
 
       &-text {
         font-family: common.$font-family-publico;
@@ -42,31 +43,43 @@
         line-height: 1.875rem;
       }
 
+      &-subtitle {
+        font-family: common.$font-family-publico;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22.5px;
+      }
+
       &-close-btn {
         all: unset;
         display: flex;
-        width: 32px;
-        height: 32px;
+        width: 2rem;
+        height: 2rem;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         fill: common.$color-axa;
       }
+
       :hover {
         background: none;
       }
-      :focus {background: none;border: none;}
+
+      :focus {
+        border: none;
+        background: none;
+      }
     }
   }
 
   &__content {
     display: flex;
+    padding: 0 2rem;
     flex-direction: column;
-    padding: 0rem 2rem;
+    gap: 2.5rem;
     font-family: common.$font-family-base;
     font-size: 1.125rem;
     font-weight: 400;
-    gap: 40px;
   }
 
   &__actions {

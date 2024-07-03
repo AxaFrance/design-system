@@ -92,8 +92,12 @@ export const Modal = ({
       <div id={idTitle} className="af-modal__top">
         {iconTitle}
         <h2 className="af-modal__top-title">
-          <div className="af-modal__top-title-text">{title}</div>
-          {!subtitle && <span>{subtitle}</span>}
+          <div>
+            <div className="af-modal__top-title-text">{title}</div>
+            {subtitle && (
+              <span className="af-modal__top-title-subtitle">{subtitle}</span>
+            )}
+          </div>
           {hasCloseBtn && (
             <Button
               className="af-modal__top-title-close-btn"
@@ -139,36 +143,6 @@ export const Modal = ({
           </div>
         )}
       </div>
-      {/*  {actions && (
-        <div
-          className={`af-modal__actions${fullWidthButtons ? " af-modal__actions--fullWidth" : ""} `}
-        >
-          {actions?.primary && (
-            <Button
-              variant={ButtonVariants.primary}
-              onClick={actions?.primary.callback}
-            >
-              {actions?.primary.text}
-            </Button>
-          )}
-          {actions?.secondary && (
-            <Button
-              variant={ButtonVariants.secondary}
-              onClick={actions?.secondary.callback}
-            >
-              {actions?.secondary.text}
-            </Button>
-          )}
-          {actions?.tertiary && (
-            <Button
-              variant={ButtonVariants.tertiary}
-              onClick={actions?.tertiary.callback}
-            >
-              {actions?.tertiary.text}
-            </Button>
-          )}
-        </div>
-      )} */}
     </dialog>
   );
 };
