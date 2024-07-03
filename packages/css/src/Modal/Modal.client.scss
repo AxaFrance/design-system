@@ -45,9 +45,9 @@
 
       &-subtitle {
         font-family: common.$font-family-publico;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 400;
-        line-height: 22.5px;
+        line-height: 1.406rem;
       }
 
       &-close-btn {
@@ -61,11 +61,11 @@
         fill: common.$color-axa;
       }
 
-      :hover {
+      &:hover {
         background: none;
       }
 
-      :focus {
+      &:focus {
         border: none;
         background: none;
       }
