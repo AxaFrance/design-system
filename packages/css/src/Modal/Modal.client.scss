@@ -69,12 +69,12 @@
 
   &__content {
     display: flex;
+    margin-top: 2.5rem;
     padding: 0 2.5rem;
     flex-direction: column;
     gap: 2.5rem;
     font-family: common.$font-family-base;
     font-size: 1.125rem;
-    margin-top: 2.5rem;
     font-weight: 400;
   }
 

@@ -2,7 +2,7 @@
 @use "./Card/Card.client";
 @use "./Layout/Footer/Footer.client.scss";
 @use "./Stepper/Stepper.client";
-@use "./Layout/Header/Header.client.scss";
+@use "./Layout/Header/Client/Header.client.scss";
 @use "./Form/Radio/Client/Radio.scss";
 @use "./Tabs/Tabs.client.scss";
 @use "./Form/Checkbox/Client/Checkbox.scss";
@@ -18,3 +18,5 @@
 @use "./List/ClickList/ClickList.client.scss";
 @use "./Tag/Tag.client";
 @use "./Form/InputError/InputError.client.scss";
+@use "./Layout/Header/Client/NavBar/NavBar.scss";
+@use "./Layout/Header/Client/PreviousLink/PreviousLink.scss";

@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-css/dist/Layout/Header/NavBar/NavBar.scss";
+import "@axa-fr/design-system-css/dist/Layout/Header/Agent/NavBar/NavBar.scss";
 
 export { NavBar } from "./NavBar";
 export { NavBarBase } from "./NavBarBase";

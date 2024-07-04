@@ -1,0 +1,41 @@
+@use "../../../common/common.client.scss" as common;
+
+.af-header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  background-color: common.$color-white;
+}
+
+.af-header-container {
+  display: flex;
+  padding: 0 4rem;
+  border-top: 2px solid common.$color-axa;
+  border-bottom: 1px solid common.$color-gray-1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: common.$font-family-base;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.af-header-left-item {
+  display: flex;
+  height: 5rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.af-logo {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.af-header-right-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
