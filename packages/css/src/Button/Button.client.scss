@@ -136,7 +136,7 @@
   &:disabled,
   &[aria-disabled="true"] {
     color: common.$color-btn-disabled-text;
-    background-color: common.$color-btn-disabled-bg;
+    background-color: common.$color-gray-300;
     box-shadow: none;
     cursor: not-allowed;
 
@@ -144,7 +144,7 @@
     &:focus {
       border-color: transparent;
       color: common.$color-btn-disabled-text;
-      background-color: common.$color-btn-disabled-bg;
+      background-color: common.$color-gray-300;
     }
   }
 }
