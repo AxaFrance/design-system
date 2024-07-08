@@ -46,5 +46,7 @@ export const TextOnErrorStory: Story = {
   render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
   args: {
     classModifier: "error",
+    description: "Description",
+    error: "Error Message",
   },
 };

@@ -3,6 +3,7 @@ import {
   Button as ButtonClient,
   ButtonVariants as ButtonClientVariants,
   Svg,
+  TextInput,
 } from "@axa-fr/design-system-react/client";
 import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
 
@@ -16,6 +17,10 @@ function App() {
         <header>
           <h1>Client sample</h1>
         </header>
+
+        <article>
+          <TextInput classModifier="error" label="Name" description="Description" error="This field is required" />
+        </article>
 
         <article>
           <ButtonClient
