@@ -5,42 +5,46 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
   }
 
   &__input-label {
-    margin-bottom: 0.5rem;
+    margin: 0;
     font-size: 1.125rem;
     font-weight: 600;
     color: common.$color-gray-900;
   }
 
   &__input-description {
-    margin: -0.25rem 0 0.5rem;
+    margin-top: -0.25rem;
     font-size: 1rem;
     font-weight: 400;
     color: common.$color-gray-700;
   }
 
   &__input-text {
+    margin: 0.5rem 0;
     padding: 1rem;
     padding-right: 2.5rem;
     border: 1px solid common.$color-gray;
     border-radius: 4px;
     font-size: 1.125rem;
+    color: common.$color-gray-900;
 
-    &:not(:disabled) {
-      &:focus-visible {
-        outline: 2px solid common.$color-blue-3;
-        outline-offset: 3px;
-      }
+    &--error {
+      border: 2px solid common.$color-btn-error;
+    }
 
-      &:hover,
+    &:enabled {
       &:focus,
       &:active {
-        border: 1px solid transparent;
-        box-shadow: 0 0 0 2px common.$color-axa inset;
+        border: 1px solid common.$color-axa;
+        outline: none;
       }
+    }
+
+    &:not(:disabled, :focus, :active, &--error):hover {
+      border: 2px solid common.$color-axa;
+      outline: none;
     }
   }
 }

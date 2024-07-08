@@ -4,20 +4,21 @@ import { ComponentPropsWithRef, forwardRef } from "react";
 import { getComponentClassName } from "../../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
+  classModifier?: string;
   description?: string;
   label?: string;
   required?: boolean;
 };
 
 const Text = forwardRef<HTMLInputElement, Props>(
-  ({ className, ...otherProps }, inputRef) => {
+  ({ className, classModifier = "", ...otherProps }, inputRef) => {
     const componentClassName = getComponentClassName(
       className,
-      "",
+      classModifier,
       "af-form__input-text",
     );
 
-    const { id, label, required, disabled, description } = otherProps;
+    const { description, disabled, id, label, required } = otherProps;
 
     return (
       <div className="af-form__input-container">

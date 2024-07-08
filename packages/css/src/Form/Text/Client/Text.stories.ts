@@ -8,6 +8,7 @@ const meta: Meta = {
     placeholder: "Your name",
     disabled: false,
     required: true,
+    isOnError: false,
   },
   argTypes: {
     label: {
@@ -31,6 +32,7 @@ const getInput = (args: Args) => {
   input.id = "nameid";
   input.name = "name";
   input.className = "af-form__input-text";
+  if (args.isOnError) input.className += " af-form__input-text--error";
   input.placeholder = args.placeholder;
   input.type = args.type;
   input.value = args.value;
@@ -93,5 +95,22 @@ export const TextWithDescriptionStory: StoryObj = {
   },
   args: {
     description: "Description",
+  },
+};
+
+export const TextOnErrorStory: StoryObj = {
+  name: "Text on error",
+  render: (args) => {
+    const container = getContainer();
+    const input = getInput(args);
+    const label = getLabel(args);
+
+    container.appendChild(label);
+    container.appendChild(input);
+
+    return container;
+  },
+  args: {
+    isOnError: true,
   },
 };
