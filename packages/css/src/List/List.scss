@@ -1,18 +1,21 @@
 @use "../common/common.client.scss" as common;
 
-.af-list {
-  display: flex;
-  width: inherit;
-  margin: 0;
+.af-card--list {
   padding: 0 1rem;
-  border: 1px solid common.$color-btn-disabled-bg;
-  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+.af-list {
+  padding: 0;
   flex-direction: column;
-  background-color: common.$color-white;
   list-style-type: none;
 
   &__item {
     padding: 1rem 0;
-    border-bottom: 1px solid common.$color-btn-disabled-bg;
+  }
+
+  &__separator {
+    margin: 0;
+    border: 1px solid common.$color-gray-300;
   }
 }

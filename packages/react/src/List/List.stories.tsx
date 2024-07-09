@@ -1,9 +1,9 @@
-import { Meta, StoryObj } from "@storybook/react";
+import arrow from "@material-symbols/svg-400/outlined/arrow_right.svg";
 import trash from "@material-symbols/svg-400/outlined/delete.svg";
 import sync from "@material-symbols/svg-400/outlined/sync-fill.svg";
-import arrow from "@material-symbols/svg-400/outlined/arrow_right.svg";
-import { List } from "./List";
+import { Meta, StoryObj } from "@storybook/react";
 import { Svg } from "../Svg";
+import { List } from "./List";
 
 const meta: Meta<typeof List> = {
   title: "Client/Components/List",
@@ -20,7 +20,7 @@ export const Default: StoryObj<typeof List> = {
         <span>Prénom NOM</span>
       </div>,
       <div key="list-item-2">
-        <span>npm.prénom@mail.fr</span>
+        <span>nom.prénom@mail.fr</span>
       </div>,
       <div
         key="list-item-3"
