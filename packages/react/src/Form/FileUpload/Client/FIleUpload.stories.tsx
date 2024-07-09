@@ -56,6 +56,7 @@ export const FileUploadStory: Story = {
     dropzoneDescription: "Glissez/déposez vos fichiers",
     required: false,
     isMobile: false,
+    multiple: false,
   },
   argTypes: {
     onChange: { action: "onChange" },

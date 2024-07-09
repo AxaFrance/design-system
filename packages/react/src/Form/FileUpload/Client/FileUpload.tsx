@@ -58,10 +58,8 @@ const FileUpload = ({ ...otherProps }: Props) => {
     dropzoneDescription,
     required,
     files,
-    accept,
     errors,
     isMobile,
-    onChange,
     onView,
     onDelete,
   } = otherProps;
@@ -91,13 +89,7 @@ const FileUpload = ({ ...otherProps }: Props) => {
           (isMobile || !dropzoneDescription) && "is-mobile",
         )}
       >
-        <input
-          id={id}
-          onChange={onChange}
-          accept={accept}
-          type="file"
-          name="file-input"
-        />
+        <input type="file" name="file-input" {...otherProps} />
         {dropzoneDescription && (
           <div className="af-form__file-input-dropdown-text">
             <p>{dropzoneDescription}</p>
