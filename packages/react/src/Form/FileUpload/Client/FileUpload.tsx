@@ -12,6 +12,18 @@ import { Loader } from "../../../Loader/Client";
 import { Button } from "../../../client";
 import { Variants } from "../../../Button/Button.client";
 
+function getReadableFileSizeString(fileSizeInBytes: number) {
+  let i = -1;
+  let fileSizeInBytesCopy = fileSizeInBytes;
+  const byteUnits = [" Ko", " Mo", " Go"];
+  do {
+    fileSizeInBytesCopy /= 1024;
+    i += 1;
+  } while (fileSizeInBytesCopy > 1024);
+
+  return Math.max(fileSizeInBytesCopy, 0.1).toFixed(1) + byteUnits[i];
+}
+
 type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   id: string;
   label?: string;
@@ -104,8 +116,7 @@ const FileUpload = ({ ...otherProps }: Props) => {
       <div className="custom-table-file af-file-table">
         <ul className="af-form__file-list">
           {files.map(({ id: fileId, name, size, isLoading }) => {
-            const sizeInMo = size / 1024;
-            const effectiveSize = sizeInMo.toFixed(1);
+            const effectiveSize = getReadableFileSizeString(size);
 
             const isInError = errors.some(
               (fileError) => fileError.id === fileId,
@@ -126,7 +137,7 @@ const FileUpload = ({ ...otherProps }: Props) => {
                     <div className="af-form__file-title">
                       <span className="af-form__file-name">{name}</span>
                       <span className="af-form__file-size">
-                        {effectiveSize} Mo
+                        {effectiveSize}
                       </span>
                     </div>
                   </div>

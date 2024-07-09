@@ -27,19 +27,19 @@ export const FileUploadStory: Story = {
       {
         id: "1",
         name: " IMG_8904587880.jpg",
-        size: 1024,
+        size: 109936,
         isLoading: false,
       },
       {
         id: "2",
         name: " IMG_465510680.jpg",
-        size: 10254,
+        size: 5010,
         isLoading: true,
       },
       {
         id: "3",
         name: " IMG_8904587880.jpg",
-        size: 85023,
+        size: 23000000,
         isLoading: true,
       },
     ],
