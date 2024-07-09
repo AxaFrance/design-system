@@ -71,15 +71,15 @@
   }
 
   &--validation {
-    border: 1px solid common.$color-success-40;
+    border: 1px solid common.$color-green-600;
 
     .af-alert__icon {
-      color: common.$color-success-40;
-      fill: common.$color-success-40;
+      color: common.$color-green-600;
+      fill: common.$color-green-600;
     }
 
     .af-alert__title {
-      color: common.$color-success-40;
+      color: common.$color-green-600;
     }
   }
 
