@@ -28,3 +28,4 @@ export {
   Direction as TabsDirection,
 } from "./Tabs/Client/Tabs.client";
 export { Tag } from "./Tag";
+export { Loader } from "./Loader/Client";

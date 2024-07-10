@@ -2,8 +2,8 @@ import "@axa-fr/design-system-css/dist/Loader/Loader.client.scss";
 import { ComponentPropsWithRef } from "react";
 
 type Props = ComponentPropsWithRef<"input"> & {
-  size: number;
-  border: number;
+  size?: number;
+  border?: number;
 };
 
 const Loader = ({ size = 60, border = 5 }: Props) => (
