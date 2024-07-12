@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import "@axa-fr/design-system-css/dist/Layout/Header/TitleHeader/TitleHeader.scss";
+import "@axa-fr/design-system-css/dist/Layout/Header/Agent/TitleHeader/TitleHeader.scss";
 
 import { getComponentClassName } from "../../../../agent";
 import { ToggleButton } from "../ToggleButton/ToggleButton";

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../Logo/Logo.scss";
 import "./Name.scss";
-import logo from "../../../common/assets/logo-axa.svg";
+import logo from "../../../../common/assets/logo-axa.svg";
 
 const meta: Meta = {
   title: "Agent/Components/Header/Name",

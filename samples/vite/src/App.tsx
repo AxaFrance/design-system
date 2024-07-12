@@ -1,49 +1,27 @@
-import { Button, Title } from "@axa-fr/design-system-react/agent";
-import {
-  Button as ButtonClient,
-  ButtonVariants as ButtonClientVariants,
-  Svg,
-  TextInput,
-} from "@axa-fr/design-system-react/client";
-import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
+import { Header } from "@axa-fr/design-system-react/client";
+import { Suspense } from "react";
+import { Navigate, NavLink, Route, Routes } from "react-router-dom";
+import Agent from "./Agent";
+import Client from "./Client";
 
 import "./App.css";
 import "./Reset.css";
 
-function App() {
-  return (
-    <>
-      <section className="design-section">
-        <header>
-          <h1>Client sample</h1>
-        </header>
-
-        <article>
-          <TextInput classModifier="error" label="Name" description="Description" error="This field is required" />
-        </article>
-
-        <article>
-          <ButtonClient
-            id="button"
-            variant={ButtonClientVariants.secondary}
-            onClick={() => console.log("click")}
-          >
-            Button <Svg src={acUnit} />
-          </ButtonClient>
-        </article>
-      </section>
-
-      <section className="design-section">
-        <header>
-          <Title heading="h2">Agent</Title>
-        </header>
-
-        <article>
-          <Button>Button</Button>
-        </article>
-      </section>
-    </>
-  );
-}
+const App = () => (
+  <>
+    <Header navBarLinks={[
+      <NavLink to="/client">CLIENT</NavLink>,
+      <NavLink to="/agent">AGENT</NavLink>
+    ]}
+    previousLink={<NavLink to="/client">Retour à la partie client</NavLink>}/>
+    <Suspense>
+      <Routes>
+        <Route path="/" element={<Navigate to={"/client"} />} />
+        <Route path="/client" element={<Client />} />
+        <Route path="/agent" element={<Agent />} />
+      </Routes>
+    </Suspense>
+  </>
+)
 
 export default App;

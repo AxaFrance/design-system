@@ -1,0 +1,37 @@
+@use "../../../../common/common.client.scss" as common;
+
+.af-header-previous-link-container {
+  display: flex;
+  padding: 1.5rem 0 1.5rem 7.5rem;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.af-header-previous-link-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.1rem;
+  cursor: pointer;
+  fill: common.$color-gray-700;
+}
+
+.af-header-previous-link {
+  font-family: common.$font-family-sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  color: common.$color-gray-700;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    color: common.$color-gray-700;
+  }
+}

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "./TitleHeader.scss";
-import "../../../Action/Action.scss";
+import "../../../../Action/Action.scss";
 
 const MODIFIERS = ["sticky", "fixed"];
 

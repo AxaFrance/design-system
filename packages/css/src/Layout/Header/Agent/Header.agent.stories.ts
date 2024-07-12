@@ -3,7 +3,7 @@ import "./Header.agent.scss";
 import "./Logo/Logo.scss";
 import "./Name/Name.scss";
 import "./Infos/Infos.scss";
-import logo from "../../common/assets/logo-axa.svg";
+import logo from "../../../common/assets/logo-axa.svg";
 
 const meta: Meta = {
   args: {

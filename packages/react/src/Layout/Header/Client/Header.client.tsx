@@ -1,20 +1,47 @@
-import "@axa-fr/design-system-css/dist/Layout/Header/Header.client.scss";
+import "@axa-fr/design-system-css/dist/Layout/Header/Client/Header.client.scss";
 import logo from "@axa-fr/design-system-css/dist/common/assets/logo-axa.svg";
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import { ComponentPropsWithoutRef, useCallback, useState } from "react";
+import { NavBar } from "./NavBar";
+import { PreviousLink } from "./PreviousLink/PreviousLink";
 
 type HeaderProps = {
-  rightItem?: JSX.Element;
+  defaultActiveLink?: number;
+  previousLink?: JSX.Element;
+  navBarLinks?: JSX.Element[];
+  rightItem?: JSX.Element[];
 } & ComponentPropsWithoutRef<"header">;
 
-export const HeaderClient = ({ rightItem }: PropsWithChildren<HeaderProps>) => {
+export const HeaderClient = ({
+  defaultActiveLink = 0,
+  navBarLinks,
+  previousLink,
+  rightItem,
+}: HeaderProps) => {
+  const [activeLink, setActiveLink] = useState<number>(defaultActiveLink);
+
+  const resetActiveLink = useCallback(
+    () => setActiveLink(defaultActiveLink),
+    [defaultActiveLink],
+  );
+
   return (
     <header className="af-header">
       <div className="af-header-container">
-        <img className="af-logo" src={logo} alt="" />
-        {rightItem ? (
-          <div className="af-header-right-item">{rightItem}</div>
-        ) : null}
+        <div className="af-header-left-item">
+          <img className="af-logo" src={logo} alt="Logo AXA" />
+          {navBarLinks && (
+            <NavBar activeLink={activeLink} setActiveLink={setActiveLink}>
+              {navBarLinks}
+            </NavBar>
+          )}
+        </div>
+        {rightItem && <div className="af-header-right-item">{rightItem}</div>}
       </div>
+      {previousLink && (
+        <PreviousLink handleClick={resetActiveLink}>
+          {previousLink}
+        </PreviousLink>
+      )}
     </header>
   );
 };
