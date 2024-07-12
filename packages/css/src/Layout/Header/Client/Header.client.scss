@@ -4,7 +4,6 @@
   position: sticky;
   z-index: 100;
   top: 0;
-  background-color: common.$color-white;
 }
 
 .af-header-container {
@@ -18,6 +17,7 @@
   font-family: common.$font-family-base;
   font-size: 1.25rem;
   font-weight: 600;
+  background-color: common.$color-white;
 }
 
 .af-header-left-item {
