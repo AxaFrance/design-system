@@ -1,6 +1,8 @@
 #root {
   width: 100%;
   margin: auto;
+  background-color: #fafafa;
+  height: 100vh;
 }
 .design-section {
   padding: 0 10rem 3rem 10rem;
@@ -11,7 +13,6 @@
 }
 
 .design-section:first-of-type {
-  border-bottom: 2px dashed #ccc;
   padding-top: 3rem;
   margin-bottom: 1rem;
 }
