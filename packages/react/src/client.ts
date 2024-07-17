@@ -17,6 +17,7 @@ export { Footer } from "./Layout/Footer/Client/Footer";
 export { Link } from "./Link/Link.client";
 export { List } from "./List";
 export { ClickList } from "./List/ClickList";
+export { ContentTabList } from "./List/ContentTabList";
 export { Modal } from "./ModalClient/Modal.client";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal.client";
 export { Pagination } from "./Pagination/Pagination.client";
