@@ -6,6 +6,7 @@ import { InputError } from "../../InputError";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   classModifier?: string;
+  helper?: string;
   error?: string;
   description?: string;
   label?: string;
@@ -20,7 +21,8 @@ const Text = forwardRef<HTMLInputElement, Props>(
       "af-form__input-text",
     );
 
-    const { id, label, required, disabled, description, error } = otherProps;
+    const { id, label, required, disabled, description, helper, error } =
+      otherProps;
 
     return (
       <div className="af-form__input-container">
@@ -38,6 +40,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
           disabled={disabled}
           {...otherProps}
         />
+        {helper && <span className="af-form__input-helper">{helper}</span>}
         {error && <InputError message={error} />}
       </div>
     );

@@ -21,8 +21,14 @@
     color: common.$color-gray-700;
   }
 
+  &__input-helper {
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    color: common.$color-gray-700;
+  }
+
   &__input-text {
-    margin: 0.5rem 0;
+    margin-top: 0.5rem;
     padding: 1rem;
     padding-right: 2.5rem;
     border: 1px solid common.$color-gray;
