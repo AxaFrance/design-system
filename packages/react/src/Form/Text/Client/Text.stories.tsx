@@ -6,8 +6,9 @@ const meta: Meta<typeof Text> = {
   title: "Client/Components/Form/Input/Text",
   args: {
     value: "John Doe",
-    label: "Name",
-    placeholder: "Your name",
+    label: "Label",
+    placeholder: "¨Placeholder",
+    helper: "Informations complémentaires",
     name: "name",
     id: "nameid",
     disabled: false,
