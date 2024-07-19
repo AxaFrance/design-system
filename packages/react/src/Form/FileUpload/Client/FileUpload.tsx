@@ -11,6 +11,7 @@ import { Svg } from "../../../Svg";
 import { Loader } from "../../../Loader/Client";
 import { Button } from "../../../client";
 import { Variants } from "../../../Button/Button.client";
+import { InputError } from "../../InputError";
 
 function getReadableFileSizeString(fileSizeInBytes: number) {
   let i = -1;
@@ -31,6 +32,7 @@ type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   dropzoneDescription?: string;
   instructions?: string;
   required?: boolean;
+  globalError: string;
   errors: Array<{
     id?: string | undefined;
     message: string;
@@ -59,6 +61,7 @@ const FileUpload = ({ ...otherProps }: Props) => {
     required,
     files,
     errors,
+    globalError,
     isMobile,
     onView,
     onDelete,
@@ -86,6 +89,7 @@ const FileUpload = ({ ...otherProps }: Props) => {
       <div
         className={classNames(
           "af-form__file-input",
+          globalError && "af-form__file-input--error",
           (isMobile || !dropzoneDescription) && "is-mobile",
         )}
       >
@@ -104,6 +108,7 @@ const FileUpload = ({ ...otherProps }: Props) => {
           {buttonLabel}
         </Button>
       </div>
+      {globalError && <InputError message={globalError} />}
       <small className="af-form__file-input-help">{instructions}</small>
       <div className="custom-table-file af-file-table">
         <ul className="af-form__file-list">

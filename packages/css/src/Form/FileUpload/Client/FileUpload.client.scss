@@ -14,9 +14,10 @@
       position: relative;
       display: flex;
       margin-top: 0.5rem;
+      margin-bottom: 0.6rem;
       padding: 1rem;
       padding-bottom: 2rem;
-      border: 1px dashed common.$color-axa;
+      border: 2px dashed common.$color-axa;
       border-radius: 8px;
       flex-direction: column;
       align-items: center;
@@ -33,6 +34,10 @@
 
       &:hover {
         border-color: common.$color-gray-700;
+      }
+
+      &--error {
+        border-color: common.$color-btn-error;
       }
 
       input {
