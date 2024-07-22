@@ -1,5 +1,8 @@
+import download from "@material-symbols/svg-400/rounded/download_2-fill.svg";
+import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
+import { ButtonVariants, Svg } from "../../client";
 import { ContentTabList } from "./ContentTabList.client";
 
 const meta: Meta<typeof ContentTabList> = {
@@ -25,14 +28,36 @@ export const ContentTabListWithButtons: StoryObj<
         subtitle: "Titre onglet",
         tag: "En attente",
         date: "01/01/2024",
-        onDownload: () => {},
+        buttons: [
+          {
+            id: "download_button",
+            children: "Télécharger",
+            variant: ButtonVariants.ghost,
+            iconLeft: <Svg src={download} fill="#00008F" />,
+            onClick: () => {},
+          },
+        ],
       },
       {
         id: "2",
         title: "Remboursement soins",
         tag: "En attente",
-        onDownload: () => {},
-        onDisplay: () => {},
+        buttons: [
+          {
+            id: "download_button",
+            children: "Télécharger",
+            variant: ButtonVariants.ghost,
+            iconLeft: <Svg src={download} fill="#00008F" />,
+            onClick: () => {},
+          },
+          {
+            id: "display_button",
+            children: "Afficher",
+            variant: ButtonVariants.ghost,
+            iconLeft: <Svg src={visibility} fill="#00008F" />,
+            onClick: () => {},
+          },
+        ],
       },
     ],
     classModifier: "",

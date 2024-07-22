@@ -17,8 +17,7 @@ type TContentTabList = {
     subtitle?: string;
     tag?: string;
     date?: string;
-    showDownloadButton?: boolean;
-    showDisplayButton?: boolean;
+    buttons?: string[];
     value?: string;
   }[];
 };
@@ -33,18 +32,7 @@ const template = ({ items }: TContentTabList) => {
   ul.className = "af-list";
 
   items.forEach(
-    (
-      {
-        title,
-        subtitle,
-        date,
-        tag,
-        showDownloadButton,
-        showDisplayButton,
-        value,
-      },
-      index: number,
-    ) => {
+    ({ title, subtitle, date, tag, buttons = [], value }, index: number) => {
       const item = document.createElement("li");
       item.className = "af-list__item";
 
@@ -112,41 +100,15 @@ const template = ({ items }: TContentTabList) => {
 
       item.appendChild(leftContainer);
 
-      if (showDownloadButton) {
-        const downloadButtonContainer = document.createElement("div");
-        downloadButtonContainer.className = "af-list-item__button-container";
+      buttons.forEach((button) => {
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.className = "af-list-item__button-container";
 
-        const downloadButton = document.createElement("button");
-        downloadButton.className = "af-btn-client af-btn-client--ghost";
-        downloadButton.type = "button";
-        downloadButton.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00008F" viewBox="0 0 24 24">
-            <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/>
-          </svg>
-          Télécharger
-        `;
-        downloadButtonContainer.appendChild(downloadButton);
-
-        rightContainer.appendChild(downloadButtonContainer);
-      }
-
-      if (showDisplayButton) {
-        const showButtonContainer = document.createElement("div");
-        showButtonContainer.className = "af-list-item__button-container";
-
-        const displayButton = document.createElement("button");
-        displayButton.className = "af-btn-client af-btn-client--ghost";
-        displayButton.type = "button";
-        displayButton.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00008F" viewBox="0 0 24 24">
-            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-          </svg>
-          Afficher
-        `;
-        showButtonContainer.appendChild(displayButton);
-
-        rightContainer.appendChild(showButtonContainer);
-      }
+        const buttonElement = document.createElement("div");
+        buttonElement.innerHTML = button;
+        buttonsContainer.appendChild(buttonElement);
+        rightContainer.appendChild(buttonsContainer);
+      });
 
       if (value) {
         const valueElement = document.createElement("span");
@@ -180,13 +142,32 @@ export const ContentTabListWithButtons: StoryObj<TContentTabList> = {
         subtitle: "Titre onglet",
         tag: "En attente",
         date: "01/01/2024",
-        showDownloadButton: true,
+        buttons: [
+          `<button class="af-btn-client af-btn-client--ghost" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00008F" viewBox="0 0 24 24">
+              <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path>
+            </svg>
+            Télécharger
+          </button>`,
+        ],
       },
       {
         title: "Remboursement soins",
         tag: "En attente",
-        showDownloadButton: true,
-        showDisplayButton: true,
+        buttons: [
+          `<button class="af-btn-client af-btn-client--ghost" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00008F" viewBox="0 0 24 24">
+              <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path>
+            </svg>
+            Télécharger
+          </button>`,
+          `<button class="af-btn-client af-btn-client--ghost" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00008F" viewBox="0 0 24 24">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
+            </svg>
+            Afficher
+          </button>`,
+        ],
       },
     ],
   },

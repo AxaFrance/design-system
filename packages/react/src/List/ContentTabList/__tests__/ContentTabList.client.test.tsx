@@ -1,17 +1,35 @@
+import download from "@material-symbols/svg-400/rounded/download_2-fill.svg";
+import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ButtonVariants, Svg } from "../../../client";
 import { ContentTabList } from "../ContentTabList.client";
+import type { ContentTabItem } from "../types";
 
 describe("ContentTabList", () => {
-  const items = [
+  const items: ContentTabItem[] = [
     {
       id: "1",
       title: "Title 1",
       subtitle: "Subtitle 1",
       tag: "Tag 1",
       date: "Date 1",
-      onDownload: vi.fn(),
-      onDisplay: vi.fn(),
+      buttons: [
+        {
+          id: "download_button",
+          children: "Télécharger",
+          variant: ButtonVariants.ghost,
+          iconLeft: <Svg src={download} fill="#00008F" />,
+          onClick: vi.fn(),
+        },
+        {
+          id: "display_button",
+          children: "Afficher",
+          variant: ButtonVariants.ghost,
+          iconLeft: <Svg src={visibility} fill="#00008F" />,
+          onClick: vi.fn(),
+        },
+      ],
     },
     {
       id: "2",
@@ -56,7 +74,7 @@ describe("ContentTabList", () => {
 
     await userEvent.click(screen.getByRole("button", { name: /Télécharger$/ }));
 
-    expect(items[0].onDownload).toHaveBeenCalled();
+    expect(items?.[0]?.buttons?.[0].onClick).toHaveBeenCalled();
   });
 
   it("should call onDisplay when display button is clicked", async () => {
@@ -64,6 +82,6 @@ describe("ContentTabList", () => {
 
     await userEvent.click(screen.getByRole("button", { name: /Afficher$/ }));
 
-    expect(items[0].onDisplay).toHaveBeenCalled();
+    expect(items?.[0]?.buttons?.[1].onClick).toHaveBeenCalled();
   });
 });

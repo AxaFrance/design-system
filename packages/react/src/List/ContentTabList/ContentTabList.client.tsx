@@ -1,22 +1,8 @@
-import download from "@material-symbols/svg-400/rounded/download_2-fill.svg";
-import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
-import type { ComponentProps } from "react";
 import React from "react";
-import { Button, ButtonVariants, List, Svg, Tag } from "../../client";
+import { Button, List, Tag } from "../../client";
 
 import "@axa-fr/design-system-css/dist/List/ContentTabList/ContentTabList.client.scss";
-
-type ContentTabItem = {
-  id?: string;
-  title: string;
-  subtitle?: string;
-  tag?: string;
-  tagProps?: ComponentProps<typeof Tag>;
-  date?: string;
-  onDownload?: () => void;
-  onDisplay?: () => void;
-  value?: string;
-};
+import type { ContentTabItem } from "./types";
 
 type ContentTabListProps = {
   items: ContentTabItem[];
@@ -29,17 +15,7 @@ export const ContentTabList = ({
 }: ContentTabListProps) => (
   <List classModifier={`list content-tab-list ${classModifier}`} tabIndex={-1}>
     {items.map(
-      ({
-        id,
-        title,
-        subtitle,
-        tag,
-        tagProps,
-        date,
-        onDownload,
-        onDisplay,
-        value,
-      }) => (
+      ({ id, title, subtitle, tag, tagProps, date, buttons = [], value }) => (
         <React.Fragment key={id ?? title}>
           <div className="af-list-item__left-container">
             {Boolean(value) && (Boolean(tag) || Boolean(date)) && (
@@ -73,30 +49,16 @@ export const ContentTabList = ({
               </div>
             )}
           </div>
-          {(Boolean(onDownload) || Boolean(onDisplay) || Boolean(value)) && (
+          {(buttons.length > 0 || Boolean(value)) && (
             <div className="af-list-item__right-container">
-              {Boolean(onDownload) && (
-                <div className="af-list-item__button-container">
-                  <Button
-                    variant={ButtonVariants.ghost}
-                    iconLeft={<Svg src={download} fill="#00008F" />}
-                    onClick={onDownload}
-                  >
-                    Télécharger
-                  </Button>
+              {buttons.map((button) => (
+                <div
+                  className="af-list-item__button-container"
+                  key={button?.id}
+                >
+                  <Button {...button} />
                 </div>
-              )}
-              {Boolean(onDisplay) && (
-                <div className="af-list-item__button-container">
-                  <Button
-                    variant={ButtonVariants.ghost}
-                    iconLeft={<Svg src={visibility} fill="#00008F" />}
-                    onClick={onDisplay}
-                  >
-                    Afficher
-                  </Button>
-                </div>
-              )}
+              ))}
               {Boolean(value) && (
                 <span className="af-list-item__value">{value}</span>
               )}
