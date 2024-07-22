@@ -43,6 +43,7 @@ export const FileUploadStory: Story = {
         isLoading: true,
       },
     ],
+    globalError: "Erreur",
     errors: [
       {
         id: "3",
