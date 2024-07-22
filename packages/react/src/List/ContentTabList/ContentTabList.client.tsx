@@ -92,6 +92,7 @@ export const ContentTabList = ({
                     variant={ButtonVariants.ghost}
                     iconLeft={<Svg src={visibility} fill="#00008F" />}
                     onClick={onDisplay}
+                    aria-label="afficher"
                   >
                     Afficher
                   </Button>
