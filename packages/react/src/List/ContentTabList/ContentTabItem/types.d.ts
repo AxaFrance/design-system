@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
-import { Button, Tag } from "../../client";
+import { Button, Tag } from "../../../client";
 
-export type ContentTabItem = {
+export type TContentTabItem = {
   id?: string;
   title: string;
   subtitle?: string;

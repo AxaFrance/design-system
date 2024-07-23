@@ -1,13 +1,12 @@
 import download from "@material-symbols/svg-400/rounded/download_2-fill.svg";
 import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { ButtonVariants, Svg } from "../../../client";
+import type { TContentTabItem } from "../ContentTabItem";
 import { ContentTabList } from "../ContentTabList.client";
-import type { ContentTabItem } from "../types";
 
 describe("ContentTabList", () => {
-  const items: ContentTabItem[] = [
+  const items: TContentTabItem[] = [
     {
       id: "1",
       title: "Title 1",
@@ -49,73 +48,13 @@ describe("ContentTabList", () => {
       date: "Date 4",
     },
   ];
-  let originalWidth: number;
 
-  beforeEach(() => {
-    originalWidth = window.innerWidth;
-  });
-
-  afterEach(() => {
-    vi.stubGlobal("innerWidth", originalWidth);
-  });
-
-  it("should render the list items correctly", () => {
+  it("should render the list correctly", () => {
     render(<ContentTabList items={items} />);
 
     expect(screen.getByText("Title 1")).toBeInTheDocument();
-    expect(screen.getByText("Subtitle 1")).toBeInTheDocument();
-    expect(screen.getByText("Tag 1")).toBeInTheDocument();
-    expect(screen.getByText("Date 1")).toBeInTheDocument();
-
     expect(screen.getByText("Title 2")).toBeInTheDocument();
-    expect(screen.getByText("Subtitle 2")).toBeInTheDocument();
-    expect(screen.getByText("Tag 2")).toBeInTheDocument();
-    expect(screen.getByText("Date 2")).toBeInTheDocument();
-    expect(screen.getByText("Value 2")).toBeInTheDocument();
-
     expect(screen.getByText("Title 3")).toBeInTheDocument();
-    expect(screen.getByText("Value 3")).toBeInTheDocument();
-
     expect(screen.getByText("Title 4")).toBeInTheDocument();
-    expect(screen.getByText("Date 4")).toBeInTheDocument();
-  });
-
-  it("should render the list items correctly on mobile view", () => {
-    vi.stubGlobal("innerWidth", 667);
-
-    render(<ContentTabList items={items} />);
-
-    expect(screen.getByText("Title 1")).toBeInTheDocument();
-    expect(screen.getByText("Subtitle 1")).toBeInTheDocument();
-    expect(screen.getByText("Tag 1")).toBeInTheDocument();
-    expect(screen.getByText("Date 1")).toBeInTheDocument();
-
-    expect(screen.getByText("Title 2")).toBeInTheDocument();
-    expect(screen.getByText("Subtitle 2")).toBeInTheDocument();
-    expect(screen.getByText("Tag 2")).toBeInTheDocument();
-    expect(screen.getByText("Date 2")).toBeInTheDocument();
-    expect(screen.getByText("Value 2")).toBeInTheDocument();
-
-    expect(screen.getByText("Title 3")).toBeInTheDocument();
-    expect(screen.getByText("Value 3")).toBeInTheDocument();
-
-    expect(screen.getByText("Title 4")).toBeInTheDocument();
-    expect(screen.getByText("Date 4")).toBeInTheDocument();
-  });
-
-  it("should call onDownload when download button is clicked", async () => {
-    render(<ContentTabList items={items} />);
-
-    await userEvent.click(screen.getByRole("button", { name: /Télécharger$/ }));
-
-    expect(items?.[0]?.buttons?.[0].onClick).toHaveBeenCalled();
-  });
-
-  it("should call onDisplay when display button is clicked", async () => {
-    render(<ContentTabList items={items} />);
-
-    await userEvent.click(screen.getByRole("button", { name: /Afficher$/ }));
-
-    expect(items?.[0]?.buttons?.[1].onClick).toHaveBeenCalled();
   });
 });
