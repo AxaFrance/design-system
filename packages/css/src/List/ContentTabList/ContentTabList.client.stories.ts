@@ -20,9 +20,10 @@ type TContentTabList = {
     buttons?: string[];
     value?: string;
   }[];
+  isMobile?: boolean;
 };
 
-const template = ({ items }: TContentTabList) => {
+const template = ({ items, isMobile }: TContentTabList) => {
   const list = document.createElement("section");
 
   list.className = "af-card af-card--list af-card--content-tab-list";
@@ -42,7 +43,7 @@ const template = ({ items }: TContentTabList) => {
       const rightContainer = document.createElement("div");
       rightContainer.className = "af-list-item__right-container";
 
-      if (value) {
+      if (value && (date || tag)) {
         const additionalDataContainer = document.createElement("div");
         additionalDataContainer.className =
           "af-list-item__additional-data-container";
@@ -61,9 +62,7 @@ const template = ({ items }: TContentTabList) => {
           additionalDataContainer.appendChild(tagElement);
         }
 
-        if (date || tag) {
-          leftContainer.appendChild(additionalDataContainer);
-        }
+        leftContainer.appendChild(additionalDataContainer);
       }
 
       const labelElement = document.createElement("div");
@@ -74,7 +73,7 @@ const template = ({ items }: TContentTabList) => {
       }
       leftContainer.appendChild(labelElement);
 
-      if (!value) {
+      if (!value && isMobile && (date || tag)) {
         const additionalDataContainer = document.createElement("div");
         additionalDataContainer.className =
           "af-list-item__additional-data-container";
@@ -93,12 +92,32 @@ const template = ({ items }: TContentTabList) => {
           additionalDataContainer.appendChild(dateElement);
         }
 
-        if (tag || date) {
-          leftContainer.appendChild(additionalDataContainer);
-        }
+        leftContainer.appendChild(additionalDataContainer);
       }
 
       item.appendChild(leftContainer);
+
+      if (!value && !isMobile && (date || tag)) {
+        const additionalDataContainer = document.createElement("div");
+        additionalDataContainer.className =
+          "af-list-item__additional-data-container";
+
+        if (tag) {
+          const tagElement = document.createElement("div");
+          tagElement.className = "af-tag af-tag--warning";
+          tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
+          additionalDataContainer.appendChild(tagElement);
+        }
+
+        if (date) {
+          const dateElement = document.createElement("span");
+          dateElement.className = "af-list-item__date";
+          dateElement.textContent = date;
+          additionalDataContainer.appendChild(dateElement);
+        }
+
+        rightContainer.appendChild(additionalDataContainer);
+      }
 
       buttons.forEach((button) => {
         const buttonsContainer = document.createElement("div");
@@ -170,6 +189,7 @@ export const ContentTabListWithButtons: StoryObj<TContentTabList> = {
         ],
       },
     ],
+    isMobile: false,
   },
 };
 
@@ -189,5 +209,6 @@ export const ContentTabListWithValue: StoryObj<TContentTabList> = {
         value: "+ 11,86 €",
       },
     ],
+    isMobile: false,
   },
 };

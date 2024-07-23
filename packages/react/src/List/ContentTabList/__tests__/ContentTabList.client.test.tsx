@@ -46,8 +46,18 @@ describe("ContentTabList", () => {
     },
     {
       title: "Title 4",
+      date: "Date 4",
     },
   ];
+  let originalWidth: number;
+
+  beforeEach(() => {
+    originalWidth = window.innerWidth;
+  });
+
+  afterEach(() => {
+    vi.stubGlobal("innerWidth", originalWidth);
+  });
 
   it("should render the list items correctly", () => {
     render(<ContentTabList items={items} />);
@@ -67,6 +77,30 @@ describe("ContentTabList", () => {
     expect(screen.getByText("Value 3")).toBeInTheDocument();
 
     expect(screen.getByText("Title 4")).toBeInTheDocument();
+    expect(screen.getByText("Date 4")).toBeInTheDocument();
+  });
+
+  it("should render the list items correctly on mobile view", () => {
+    vi.stubGlobal("innerWidth", 667);
+
+    render(<ContentTabList items={items} />);
+
+    expect(screen.getByText("Title 1")).toBeInTheDocument();
+    expect(screen.getByText("Subtitle 1")).toBeInTheDocument();
+    expect(screen.getByText("Tag 1")).toBeInTheDocument();
+    expect(screen.getByText("Date 1")).toBeInTheDocument();
+
+    expect(screen.getByText("Title 2")).toBeInTheDocument();
+    expect(screen.getByText("Subtitle 2")).toBeInTheDocument();
+    expect(screen.getByText("Tag 2")).toBeInTheDocument();
+    expect(screen.getByText("Date 2")).toBeInTheDocument();
+    expect(screen.getByText("Value 2")).toBeInTheDocument();
+
+    expect(screen.getByText("Title 3")).toBeInTheDocument();
+    expect(screen.getByText("Value 3")).toBeInTheDocument();
+
+    expect(screen.getByText("Title 4")).toBeInTheDocument();
+    expect(screen.getByText("Date 4")).toBeInTheDocument();
   });
 
   it("should call onDownload when download button is clicked", async () => {
