@@ -1,6 +1,7 @@
 @use "../../common/common.client.scss" as common;
 
 .af-card--content-tab-list {
+  width: 100%;
   padding: 0.5rem 1.5rem;
 
   .af-list {
@@ -74,6 +75,12 @@
 
       &__button-container {
         margin: 0 0.625rem;
+
+        svg {
+          width: 1.25rem;
+          height: 1.25rem;
+          fill: common.$color-axa;
+        }
       }
     }
 

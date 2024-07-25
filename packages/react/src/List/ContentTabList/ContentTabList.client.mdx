@@ -25,14 +25,36 @@ const MyComponentWithButtons = () => (
         subtitle: "Titre onglet",
         tag: "En attente",
         date: "01/01/2024",
-        onDownload,
+        buttons: [
+          {
+            id: "download_button",
+            children: "Télécharger",
+            variant: ButtonVariants.ghost,
+            iconLeft: <Svg src={download} />,
+            onClick,
+          },
+        ],
       },
       {
         id: "2",
         title: "Remboursement soins",
         tag: "En attente",
-        onDownload,
-        onDisplay,
+        buttons: [
+          {
+            id: "download_button",
+            children: "Télécharger",
+            variant: ButtonVariants.ghost,
+            iconLeft: <Svg src={download} />,
+            onClick,
+          },
+          {
+            id: "display_button",
+            children: "Afficher",
+            variant: ButtonVariants.ghost,
+            iconLeft: <Svg src={visibility} />,
+            onClick,
+          },
+        ],
       },
     ]}
   />
