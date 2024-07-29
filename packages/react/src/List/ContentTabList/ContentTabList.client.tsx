@@ -19,7 +19,7 @@ export const ContentTabList = ({
 
   return (
     <List
-      classModifier={`list content-tab-list ${classModifier}`}
+      classModifier={`list large content-tab-list ${classModifier}`}
       tabIndex={-1}
     >
       {items.map(({ id, ...item }) => (
