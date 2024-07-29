@@ -1,8 +1,14 @@
 @use "../common/common.client.scss" as common;
 
-.af-card--list {
-  padding: 0 1rem;
-  box-shadow: none;
+.af-card {
+  &--list {
+    padding: 0 1rem;
+    box-shadow: none;
+  }
+
+  &--large {
+    width: 100%;
+  }
 }
 
 .af-list {

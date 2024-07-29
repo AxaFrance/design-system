@@ -28,21 +28,22 @@ export const Default: StoryObj<typeof List> = {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          gap: "4rem",
+          gap: "0.5rem",
         }}
       >
+        <Svg src={sync} />
         <div
           style={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            gap: "0.5rem",
+            justifyContent: "space-between",
+            width: "100%",
           }}
         >
-          <Svg src={sync} />
           <span>Modifier le profil</span>
+          <Svg src={arrow} />
         </div>
-        <Svg src={arrow} />
       </div>,
       <div
         key="list-element-3"
@@ -66,5 +67,13 @@ export const Default: StoryObj<typeof List> = {
         </div>
       </div>,
     ],
+    classModifier: "",
+  },
+  argTypes: {
+    classModifier: {
+      options: ["", "large"],
+      control: { type: "select" },
+      defaultValue: "",
+    },
   },
 };

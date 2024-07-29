@@ -13,7 +13,7 @@ const defaultClassName = "af-list";
 
 type TList = ComponentProps<typeof Card>;
 
-export const List = ({ children, ...cardProps }: TList) => {
+export const List = ({ children, classModifier, ...cardProps }: TList) => {
   const validChildren = useMemo<ReactElement[]>(
     () =>
       (
@@ -23,7 +23,7 @@ export const List = ({ children, ...cardProps }: TList) => {
   );
 
   return (
-    <Card classModifier="list" {...cardProps}>
+    <Card classModifier={`list ${classModifier}`} {...cardProps}>
       <ul className={defaultClassName}>
         {Children.map(validChildren, (child, index) => (
           <React.Fragment key={child.key}>
