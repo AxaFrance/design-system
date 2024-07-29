@@ -13,18 +13,19 @@ export { FileUpload } from "./Form/FileUpload/Client";
 export { Radio, RadioSelect } from "./Form/Radio/Client";
 export { Select } from "./Form/Select/Client";
 export { Text as TextInput } from "./Form/Text/Client";
+export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Client/Footer";
+export { HeaderClient as Header } from "./Layout/Header/Client";
 export { Link } from "./Link/Link.client";
 export { List } from "./List";
 export { ClickList } from "./List/ClickList";
 export { ContentTabList } from "./List/ContentTabList";
+export { Loader } from "./Loader/Client";
 export { Modal } from "./ModalClient/Modal.client";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal.client";
 export { Pagination } from "./Pagination/Pagination.client";
-export { Loader } from "./Loader/Client";
 export { Stepper } from "./Stepper/Stepper.client";
 export { Svg } from "./Svg";
-export { HeaderClient as Header } from "./Layout/Header/Client";
 export {
   TabsClient as Tabs,
   Direction as TabsDirection,
