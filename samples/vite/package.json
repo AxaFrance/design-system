@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@material-symbols/svg-400": "^0.19.0",
+    "@material-symbols/svg-400": "^0.21.2",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.24.1"
