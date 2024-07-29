@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "./Title.agent.scss";
+import "./Title.scss";
 
 const meta: Meta = {
   title: "Agent/Components/Title",
