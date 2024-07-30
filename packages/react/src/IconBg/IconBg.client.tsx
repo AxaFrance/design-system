@@ -1,5 +1,5 @@
 import { useMemo, type ReactNode } from "react";
-import { getComponentClassName } from "../agent";
+import { getComponentClassName } from "../Form/core";
 
 type IconBgProps = {
   isDisabled?: boolean;
