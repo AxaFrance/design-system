@@ -44,13 +44,18 @@ const Select = ({
   return (
     <>
       {label && (
-        <label htmlFor={id} className="af-form__select-label">
+        <label
+          id={`label-${id}`}
+          htmlFor={id}
+          className="af-form__select-label"
+        >
           {label}
           {required && <span> *</span>}
         </label>
       )}
       <ReactSelect
-        id={id}
+        inputId={id}
+        aria-labelledby={`label-${id}`}
         unstyled
         isDisabled={disabled}
         noOptionsMessage={() => noOptionsMessage || "Aucun résultat"}
