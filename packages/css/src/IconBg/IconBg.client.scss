@@ -1,0 +1,38 @@
+@use "../common/common.client.scss" as common;
+
+.af-icon-bg {
+  display: grid;
+  width: min-content;
+  height: min-content;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background-color: common.$color-white;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    fill: common.$color-axa;
+  }
+
+  &--secondary {
+    background-color: common.$color-axa;
+
+    svg {
+      fill: common.$color-white;
+    }
+  }
+
+  &--disabled {
+    background-color: common.$color-gray-200;
+
+    svg {
+      fill: common.$color-gray-500;
+    }
+  }
+}
+
+@media (width <= #{common.$breakpoint-sm}) {
+  .af-icon-bg {
+    padding: 0.5rem;
+  }
+}
