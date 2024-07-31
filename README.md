@@ -16,7 +16,7 @@ Vous pouvez également consulter notre [Code de conduite](./CODE_OF_CONDUCT.md).
 
 ## Structure du projet
 
-Le projet proposera d'utiliser des composants React ou juste la partie CSS avec l'implémentation HTML (ou autres frameworks que vous souhaitez). Vous pouvez retrouver ces deux implémentations dans les dossiers `/packages/css` et `/packages/react`.
+Le projet proposera d'utiliser des composants React ou juste la partie CSS avec l'implémentation HTML (ou autres frameworks que vous souhaitez). Vous pouvez retrouver ces deux implémentations dans les dossiers `/slash/css` et `/slash/react`.
 
 ## Démarrer le projet
 
