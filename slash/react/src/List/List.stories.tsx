@@ -2,6 +2,7 @@ import arrow from "@material-symbols/svg-400/outlined/arrow_right.svg";
 import trash from "@material-symbols/svg-400/outlined/delete.svg";
 import sync from "@material-symbols/svg-400/outlined/sync-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
+import type { ComponentProps } from "react";
 import { Svg } from "../Svg";
 import { List } from "./List";
 
@@ -11,9 +12,15 @@ const meta: Meta<typeof List> = {
 };
 export default meta;
 
-export const Default: StoryObj<typeof List> = {
+export const Default: StoryObj<
+  Omit<ComponentProps<typeof List>, "classModifier"> & {
+    classModifier: string[];
+  }
+> = {
   name: "List",
-  render: (args) => <List {...args} />,
+  render: ({ classModifier, ...args }) => (
+    <List classModifier={classModifier.join(" ")} {...args} />
+  ),
   args: {
     children: [
       <div key="list-item-1">
@@ -67,13 +74,13 @@ export const Default: StoryObj<typeof List> = {
         </div>
       </div>,
     ],
-    classModifier: "",
+    classModifier: [],
   },
   argTypes: {
     classModifier: {
-      options: ["", "large"],
-      control: { type: "select" },
-      defaultValue: "",
+      options: ["large", "full-width-separators"],
+      control: { type: "multi-select" },
+      defaultValue: [],
     },
   },
 };

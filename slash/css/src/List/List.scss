@@ -1,5 +1,20 @@
 @use "../common/common.client.scss" as common;
 
+.af-list {
+  padding: 0;
+  flex-direction: column;
+  list-style-type: none;
+
+  &__item {
+    padding: 1rem 0;
+  }
+
+  &__separator {
+    margin: 0;
+    border: 1px solid common.$color-gray-300;
+  }
+}
+
 .af-card {
   &--list {
     padding: 0 1rem;
@@ -13,20 +28,13 @@
   &--extra-padding {
     padding: 0.5rem 1.5rem;
   }
-}
 
-.af-list {
-  padding: 0;
-  flex-direction: column;
-  list-style-type: none;
+  &--full-width-separators {
+    padding: 0;
 
-  &__item {
-    padding: 1rem 0;
-  }
-
-  &__separator {
-    margin: 0;
-    border: 1px solid common.$color-gray-300;
+    .af-list__item {
+      padding: 1rem;
+    }
   }
 }
 
