@@ -12,7 +12,8 @@
     "build": "concurrently \"npm run build:*\"",
     "build:slash": "npm run build --workspace=slash && npm run build:storybook --workspace=slash",
     "lint": "concurrently \"npm run lint:*\"",
-    "lint:slash": "concurrently \"npm:eslint --workspace=slash\" \"npm:stylelint -w=slash/css\" \"npm:prettier --workspace=slash/css\" \"npm:prettier --workspace=slash/react\" \"npm:tsc --workspace=slash\" -c auto -n slash-eslint,slash-stylelint,slash-css-prettier,slash-react-prettier,slash-tsc",    "package:check": "npx --yes package-lock-utd@1.1.3",
+    "lint:slash": "concurrently \"npm:eslint --workspace=slash\" \"npm:stylelint -w=slash/css\" \"npm:prettier --workspace=slash/css\" \"npm:prettier --workspace=slash/react\" \"npm:tsc --workspace=slash\" -c auto -n slash-eslint,slash-stylelint,slash-css-prettier,slash-react-prettier,slash-tsc",
+    "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky"
   },
   "author": "AxaFrance",
