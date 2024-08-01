@@ -183,13 +183,13 @@ export const ContentItemMonoList: StoryObj = {
       contentItemMonoWithIconArgs,
       contentItemMonoWithStickArgs,
     ],
-    classModifier: ["full-width-separators"],
+    classModifier: ["first-separator-full-width"],
   },
   argTypes: {
     classModifier: {
-      options: ["large", "full-width-separators"],
+      options: ["large", "first-separator-full-width"],
       control: { type: "multi-select" },
-      defaultValue: ["full-width-separators"],
+      defaultValue: ["first-separator-full-width"],
     },
   },
 };

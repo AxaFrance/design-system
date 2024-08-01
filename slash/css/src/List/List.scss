@@ -29,11 +29,15 @@
     padding: 0.5rem 1.5rem;
   }
 
-  &--full-width-separators {
+  &--first-separator-full-width {
     padding: 0;
 
     .af-list__item {
       padding: 1rem;
+    }
+
+    .af-list__separator ~ .af-list__separator {
+      margin: 0 1rem;
     }
   }
 }
