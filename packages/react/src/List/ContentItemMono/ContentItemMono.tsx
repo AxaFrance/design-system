@@ -1,5 +1,6 @@
 import { useMemo, type ReactNode } from "react";
 import { getComponentClassName } from "../../Form/core";
+import { ContentItemMonoSize } from "./constants";
 
 type ContentItemMonoProps = {
   children: ReactNode;
@@ -8,7 +9,7 @@ type ContentItemMonoProps = {
   secondaryText?: string;
   tertiaryText?: string;
   leftElement?: ReactNode;
-  isXlText?: boolean;
+  size?: ContentItemMonoSize;
   isDisabled?: boolean;
   isLeftElementCentered?: boolean;
   hasStick?: boolean;
@@ -21,24 +22,26 @@ export const ContentItemMono = ({
   secondaryText,
   tertiaryText,
   leftElement,
-  isXlText = false,
+  size = ContentItemMonoSize.M,
   isDisabled = false,
   isLeftElementCentered = false,
   hasStick = false,
 }: ContentItemMonoProps) => {
   const componentClassName = useMemo(() => {
-    let newClassModifier = classModifier;
+    let newClassModifier = classModifier ?? "";
 
     if (isDisabled) {
       newClassModifier += " disabled";
     }
+
+    newClassModifier += ` ${size}`;
 
     return getComponentClassName(
       className,
       newClassModifier,
       "af-content-item-mono",
     );
-  }, [classModifier, isDisabled, className]);
+  }, [classModifier, isDisabled, size, className]);
 
   return (
     <div className={componentClassName}>
@@ -56,16 +59,14 @@ export const ContentItemMono = ({
           {leftElement}
         </div>
       )}
-      <div
-        className={`af-content-item-mono__text-container${isXlText ? " af-content-item-mono__text-container--xl" : ""}`}
-      >
+      <div className="af-content-item-mono__text-container">
         <p className="af-content-item-mono__main-text"> {children}</p>
         {secondaryText && (
           <p className="af-content-item-mono__secondary-text">
             {secondaryText}
           </p>
         )}
-        {tertiaryText && (
+        {tertiaryText && size !== ContentItemMonoSize.XL && (
           <p className="af-content-item-mono__tertiary-text">{tertiaryText}</p>
         )}
       </div>

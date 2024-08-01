@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ContentItemMono } from "../ContentItemMono";
+import { ContentItemMonoSize } from "../constants";
 
 describe("ContentItemMono", () => {
   it("should render correctly", () => {
@@ -26,14 +27,33 @@ describe("ContentItemMono", () => {
     expect(screen.getByRole("presentation")).toBeInTheDocument();
   });
 
-  it("should have custom class", () => {
+  it("should have custom class and M size", () => {
     const className = "custom-class";
 
     render(<ContentItemMono className={className}>Content</ContentItemMono>);
 
     expect(
       screen.getByText("Content").parentElement?.parentElement,
-    ).toHaveClass(className);
+    ).toHaveClass(`${className} ${className}--m`);
+  });
+
+  it("should have XL size and no tertiary text", () => {
+    const className = "custom-class";
+
+    render(
+      <ContentItemMono
+        className={className}
+        size={ContentItemMonoSize.XL}
+        tertiaryText="tertiaryText"
+      >
+        Content
+      </ContentItemMono>,
+    );
+
+    expect(
+      screen.getByText("Content").parentElement?.parentElement,
+    ).toHaveClass(`${className} ${className}--xl`);
+    expect(screen.queryByText("tertiaryText")).not.toBeInTheDocument();
   });
 
   it("should have custom class with modifier", () => {
@@ -63,14 +83,6 @@ describe("ContentItemMono", () => {
     expect(
       screen.getByText("Content").parentElement?.parentElement,
     ).toHaveClass(`${className} ${className}--disabled`);
-  });
-
-  it("should have XL text", () => {
-    render(<ContentItemMono isXlText>Content</ContentItemMono>);
-
-    expect(screen.getByText("Content").parentElement).toHaveClass(
-      "af-content-item-mono__text-container af-content-item-mono__text-container--xl",
-    );
   });
 
   it("should have centered left element", () => {

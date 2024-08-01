@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { Svg } from "../../Svg";
 import { List } from "../List";
 import { ContentItemMono } from "./ContentItemMono";
+import { ContentItemMonoSize } from "./constants";
 
 const meta: Meta<typeof ContentItemMono> = {
   title: "Client/Components/List/ContentItemMono",
@@ -16,7 +17,7 @@ const defaultArgs: ComponentProps<typeof ContentItemMono> = {
   children: "Texte principal",
   secondaryText: "Texte secondaire",
   tertiaryText: "Texte tertiaire",
-  isXlText: false,
+  size: ContentItemMonoSize.M,
   isDisabled: false,
   leftElement: "",
   isLeftElementCentered: false,
@@ -28,7 +29,7 @@ const contentItemMonoWithIconArgs: ComponentProps<typeof ContentItemMono> = {
   children: "Texte principal",
   secondaryText: "Texte secondaire",
   tertiaryText: "Texte tertiaire",
-  isXlText: false,
+  size: ContentItemMonoSize.M,
   isDisabled: false,
   leftElement: <Svg src={arrowForward} />,
   isLeftElementCentered: true,
@@ -40,7 +41,7 @@ const contentItemMonoWithStickArgs: ComponentProps<typeof ContentItemMono> = {
   children: "Texte principal",
   secondaryText: "Texte secondaire",
   tertiaryText: "",
-  isXlText: false,
+  size: ContentItemMonoSize.M,
   isDisabled: false,
   leftElement: "",
   isLeftElementCentered: false,
@@ -52,18 +53,39 @@ export const Default: StoryObj<typeof ContentItemMono> = {
   name: "Default",
   render: (args) => <ContentItemMono {...args} />,
   args: defaultArgs,
+  argTypes: {
+    size: {
+      options: Object.values(ContentItemMonoSize),
+      control: { type: "select" },
+      defaultValue: "m",
+    },
+  },
 };
 
 export const ContentItemMonoWithIcon: StoryObj<typeof ContentItemMono> = {
   name: "ContentItemMono With Icon",
   render: (args) => <ContentItemMono {...args} />,
   args: contentItemMonoWithIconArgs,
+  argTypes: {
+    size: {
+      options: Object.values(ContentItemMonoSize),
+      control: { type: "select" },
+      defaultValue: "m",
+    },
+  },
 };
 
 export const ContentItemMonoWithStick: StoryObj<typeof ContentItemMono> = {
-  name: "Stick And Text",
+  name: "ContentItemMono With Stick",
   render: (args) => <ContentItemMono {...args} />,
   args: contentItemMonoWithStickArgs,
+  argTypes: {
+    size: {
+      options: Object.values(ContentItemMonoSize),
+      control: { type: "select" },
+      defaultValue: "m",
+    },
+  },
 };
 
 export const ContentItemMonoList: StoryObj<

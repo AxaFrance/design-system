@@ -20,7 +20,7 @@ export { Link } from "./Link/Link.client";
 export { List } from "./List";
 export { ClickList } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";
-export { ContentItemMono } from "./List/ContentItemMono";
+export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabList } from "./List/ContentTabList";
 export { Loader } from "./Loader/Client";
 export { Modal } from "./ModalClient/Modal.client";

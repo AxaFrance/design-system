@@ -17,6 +17,7 @@ const template = ({ classModifier, ...args }: Args) => {
     .filter(Boolean)
     .map((modifier: string) => ` af-content-item-mono--${modifier}`)
     .join("")}`;
+  container.className += ` af-content-item-mono--${args.size}`;
 
   if (args.isDisabled) {
     container.className += " af-content-item-mono--disabled";
@@ -42,9 +43,6 @@ const template = ({ classModifier, ...args }: Args) => {
 
   const textContainer = document.createElement("div");
   textContainer.className = "af-content-item-mono__text-container";
-  if (args.isXlText) {
-    textContainer.className += " af-content-item-mono__text-container--xl";
-  }
 
   const mainText = document.createElement("p");
   mainText.className = "af-content-item-mono__main-text";
@@ -58,7 +56,7 @@ const template = ({ classModifier, ...args }: Args) => {
     textContainer.appendChild(secondaryText);
   }
 
-  if (args.tertiaryText) {
+  if (args.tertiaryText && args.size !== "xl") {
     const tertiaryText = document.createElement("p");
     tertiaryText.className = "af-content-item-mono__tertiary-text";
     tertiaryText.innerHTML = args.tertiaryText;
@@ -74,7 +72,7 @@ const defaultArgs: Args = {
   children: "Texte principal",
   secondaryText: "Texte secondaire",
   tertiaryText: "Texte tertiaire",
-  isXlText: false,
+  size: "m",
   isDisabled: false,
   leftElement: "",
   isLeftElementCentered: false,
@@ -86,7 +84,7 @@ const contentItemMonoWithIconArgs: Args = {
   children: "Texte principal",
   secondaryText: "Texte secondaire",
   tertiaryText: "Texte tertiaire",
-  isXlText: false,
+  size: "m",
   isDisabled: false,
   leftElement: `
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960">
@@ -101,7 +99,7 @@ const contentItemMonoWithStickArgs: Args = {
   children: "Texte principal",
   secondaryText: "Texte secondaire",
   tertiaryText: "",
-  isXlText: false,
+  size: "m",
   isDisabled: false,
   leftElement: "",
   isLeftElementCentered: false,
@@ -112,16 +110,37 @@ const contentItemMonoWithStickArgs: Args = {
 export const Default: StoryObj = {
   render: template,
   args: defaultArgs,
+  argTypes: {
+    size: {
+      options: ["xl", "m"],
+      control: { type: "select" },
+      defaultValue: "m",
+    },
+  },
 };
 
 export const ContentItemMonoWithIcon: StoryObj = {
   render: template,
   args: contentItemMonoWithIconArgs,
+  argTypes: {
+    size: {
+      options: ["xl", "m"],
+      control: { type: "select" },
+      defaultValue: "m",
+    },
+  },
 };
 
 export const ContentItemMonoWithStick: StoryObj = {
   render: template,
   args: contentItemMonoWithStickArgs,
+  argTypes: {
+    size: {
+      options: ["xl", "m"],
+      control: { type: "select" },
+      defaultValue: "m",
+    },
+  },
 };
 
 export const ContentItemMonoList: StoryObj = {
