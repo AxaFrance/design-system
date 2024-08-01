@@ -9,6 +9,7 @@ type ContentItemMonoProps = {
   tertiaryText?: string;
   leftElement?: ReactNode;
   isXlText?: boolean;
+  isDisabled?: boolean;
   isLeftElementCentered?: boolean;
   hasStick?: boolean;
 };
@@ -21,14 +22,23 @@ export const ContentItemMono = ({
   tertiaryText,
   leftElement,
   isXlText = false,
+  isDisabled = false,
   isLeftElementCentered = false,
   hasStick = false,
 }: ContentItemMonoProps) => {
-  const componentClassName = useMemo(
-    () =>
-      getComponentClassName(className, classModifier, "af-content-item-mono"),
-    [classModifier, className],
-  );
+  const componentClassName = useMemo(() => {
+    let newClassModifier = classModifier;
+
+    if (isDisabled) {
+      newClassModifier += " disabled";
+    }
+
+    return getComponentClassName(
+      className,
+      newClassModifier,
+      "af-content-item-mono",
+    );
+  }, [classModifier, isDisabled, className]);
 
   return (
     <div className={componentClassName}>

@@ -51,6 +51,20 @@ describe("ContentItemMono", () => {
     ).toHaveClass(`${className} ${className}--${classModifier}`);
   });
 
+  it("should be disabled", () => {
+    const className = "custom-class";
+
+    render(
+      <ContentItemMono className={className} isDisabled>
+        Content
+      </ContentItemMono>,
+    );
+
+    expect(
+      screen.getByText("Content").parentElement?.parentElement,
+    ).toHaveClass(`${className} ${className}--disabled`);
+  });
+
   it("should have XL text", () => {
     render(<ContentItemMono isXlText>Content</ContentItemMono>);
 

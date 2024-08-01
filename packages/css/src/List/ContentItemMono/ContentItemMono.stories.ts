@@ -13,9 +13,14 @@ const template = ({ classModifier, ...args }: Args) => {
   const container = document.createElement("div");
 
   container.className = `af-content-item-mono${classModifier
+    .split(" ")
     .filter(Boolean)
     .map((modifier: string) => ` af-content-item-mono--${modifier}`)
     .join("")}`;
+
+  if (args.isDisabled) {
+    container.className += " af-content-item-mono--disabled";
+  }
 
   if (args.hasStick) {
     const stick = document.createElement("div");
@@ -70,10 +75,11 @@ const defaultArgs: Args = {
   secondaryText: "Texte secondaire",
   tertiaryText: "Texte tertiaire",
   isXlText: false,
+  isDisabled: false,
   leftElement: "",
   isLeftElementCentered: false,
   hasStick: false,
-  classModifier: [],
+  classModifier: "",
 };
 
 const contentItemMonoWithIconArgs: Args = {
@@ -81,13 +87,14 @@ const contentItemMonoWithIconArgs: Args = {
   secondaryText: "Texte secondaire",
   tertiaryText: "Texte tertiaire",
   isXlText: false,
+  isDisabled: false,
   leftElement: `
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960">
             <path d="M686-450H190q-13 0-21.5-8.5T160-480q0-13 8.5-21.5T190-510h496L459-737q-9-9-9-21t9-21q9-9 21-9t21 9l278 278q5 5 7 10t2 11q0 6-2 11t-7 10L501-181q-9 9-21 9t-21-9q-9-9-9-21t9-21l227-227Z"/>
         </svg>`,
   isLeftElementCentered: true,
   hasStick: false,
-  classModifier: [],
+  classModifier: "",
 };
 
 const contentItemMonoWithStickArgs: Args = {
@@ -95,43 +102,26 @@ const contentItemMonoWithStickArgs: Args = {
   secondaryText: "Texte secondaire",
   tertiaryText: "",
   isXlText: false,
+  isDisabled: false,
   leftElement: "",
   isLeftElementCentered: false,
   hasStick: true,
-  classModifier: [],
+  classModifier: "",
 };
 
 export const Default: StoryObj = {
   render: template,
   args: defaultArgs,
-  argTypes: {
-    classModifier: {
-      options: ["disabled"],
-      control: { type: "multi-select" },
-    },
-  },
 };
 
 export const ContentItemMonoWithIcon: StoryObj = {
   render: template,
   args: contentItemMonoWithIconArgs,
-  argTypes: {
-    classModifier: {
-      options: ["disabled"],
-      control: { type: "multi-select" },
-    },
-  },
 };
 
 export const ContentItemMonoWithStick: StoryObj = {
   render: template,
   args: contentItemMonoWithStickArgs,
-  argTypes: {
-    classModifier: {
-      options: ["disabled"],
-      control: { type: "multi-select" },
-    },
-  },
 };
 
 export const ContentItemMonoList: StoryObj = {
