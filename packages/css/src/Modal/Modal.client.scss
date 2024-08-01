@@ -10,6 +10,7 @@
   background-color: common.$color-white;
 
   &::backdrop {
+    opacity: 0.4;
     background: common.$color-gray-900;
   }
 
@@ -70,7 +71,7 @@
   &__content {
     display: flex;
     margin-top: 2.5rem;
-    padding: 0 2.5rem;
+    padding: 0 1.5rem;
     flex-direction: column;
     gap: 2.5rem;
     font-family: common.$font-family-base;
