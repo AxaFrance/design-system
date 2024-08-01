@@ -31,4 +31,4 @@ export {
   Direction as TabsDirection,
 } from "./Tabs/Client/Tabs.client";
 export { Tag } from "./Tag";
-export { Title } from "./Title/Client/Title";
+export { Title, TitleSize } from "./Title/Client";

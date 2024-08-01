@@ -7,9 +7,7 @@
   h1.af-title__title {
     margin: 0;
     font-family: common.$font-family-publico;
-    font-size: 2rem;
     font-weight: 700;
-    line-height: 2.5rem;
   }
 
   span.af-title__subtitle {
@@ -39,8 +37,15 @@
     }
   }
 
-  &:not(:has(.af-title__subtitle:nth-of-type(2))) {
-    .af-title__title {
+  &--xl {
+    h1.af-title__title {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &--l {
+    h1.af-title__title {
       font-size: 1.5rem;
       line-height: 1.875rem;
     }
@@ -49,21 +54,23 @@
 
 @media (width <= #{common.$breakpoint-md}) {
   .af-title {
-    h1.af-title__title {
-      font-size: 1.5rem;
-      line-height: 1.875rem;
+    &--xl {
+      h1.af-title__title {
+        font-size: 1.5rem;
+        line-height: 1.875rem;
+      }
+    }
+
+    &--l {
+      h1.af-title__title {
+        font-size: 1.25rem;
+        line-height: 1.56rem;
+      }
     }
 
     span.af-title__subtitle {
       font-size: 1rem;
       line-height: 1.25rem;
-    }
-
-    &:not(:has(.af-title__subtitle:nth-of-type(2))) {
-      .af-title__title {
-        font-size: 1.25rem;
-        line-height: 1.56rem;
-      }
     }
   }
 }
