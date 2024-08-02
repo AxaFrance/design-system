@@ -7,13 +7,13 @@
 
   &__icon {
     width: 1rem;
-    color: common.$color-btn-error;
-    fill: common.$color-btn-error;
+    color: common.$color-red-700;
+    fill: common.$color-red-700;
   }
 
   &__message {
     font-family: common.$font-family-base;
     font-size: 1rem;
-    color: common.$color-btn-error;
+    color: common.$color-red-700;
   }
 }

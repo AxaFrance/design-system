@@ -56,13 +56,13 @@
     font-family: "Source Sans Pro", arial, sans-serif;
     font-size: 1rem;
     line-height: 1.25rem;
-    color: common.$color-btn-error;
+    color: common.$color-red-700;
 
     & > svg {
       width: 1rem;
       height: 1rem;
-      color: common.$color-btn-error;
-      fill: common.$color-btn-error;
+      color: common.$color-red-700;
+      fill: common.$color-red-700;
     }
   }
 
@@ -138,8 +138,8 @@
   & label:has(input[type="checkbox"][aria-invalid="true"]) {
     & .af-checkbox__checked,
     & .af-checkbox__unchecked {
-      color: common.$color-btn-error;
-      fill: common.$color-btn-error;
+      color: common.$color-red-700;
+      fill: common.$color-red-700;
     }
   }
 
@@ -180,7 +180,7 @@
   }
 
   &-select label:has(input[type="checkbox"][aria-invalid="true"]) {
-    --box-shadow-color: #{common.$color-btn-error};
+    --box-shadow-color: #{common.$color-red-700};
 
     box-shadow: 0 0 0 2px var(--box-shadow-color) inset;
   }
