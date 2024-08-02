@@ -12,6 +12,7 @@ import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import classNames from "classnames";
 import { DropdownIndicator } from "./DropdownIndicator";
 import { Svg } from "../../../Svg";
+import { CustomOption } from "./CustomOption";
 
 type Props = Omit<
   ComponentPropsWithoutRef<ReactSelect>,
@@ -45,8 +46,8 @@ const Select = ({
     <>
       {label && (
         <label
-          id={`label-${id}`}
-          htmlFor={id}
+          id={`${id}__label`}
+          htmlFor={`${id}__input`}
           className="af-form__select-label"
         >
           {label}
@@ -54,13 +55,14 @@ const Select = ({
         </label>
       )}
       <ReactSelect
-        inputId={id}
-        aria-labelledby={`label-${id}`}
+        inputId={`${id}__input`}
+        aria-labelledby={`${id}__label`}
         unstyled
         isDisabled={disabled}
         noOptionsMessage={() => noOptionsMessage || "Aucun résultat"}
         components={{
           DropdownIndicator,
+          Option: CustomOption,
         }}
         classNames={{
           control: () => "af-form__input-select",
