@@ -20,19 +20,19 @@ exports[`renders MultiSelect correctly 1`] = `
       class=" css-13cymwt-control"
     >
       <div
-        class=" css-3w2yfm-ValueContainer"
+        class=" css-1dyz3mf"
       >
         <div
           class=" css-1p3m7a8-multiValue"
         >
           <div
-            class=" css-wsp0cs-MultiValueGeneric"
+            class=" css-9jq23d"
           >
             For fun
           </div>
           <div
             aria-label="Remove For fun"
-            class=" css-12a83d4-MultiValueRemove"
+            class=" css-v7duua"
             role="button"
           >
             <svg
@@ -53,13 +53,13 @@ exports[`renders MultiSelect correctly 1`] = `
           class=" css-1p3m7a8-multiValue"
         >
           <div
-            class=" css-wsp0cs-MultiValueGeneric"
+            class=" css-9jq23d"
           >
             For drink
           </div>
           <div
             aria-label="Remove For drink"
-            class=" css-12a83d4-MultiValueRemove"
+            class=" css-v7duua"
             role="button"
           >
             <svg
@@ -77,7 +77,7 @@ exports[`renders MultiSelect correctly 1`] = `
           </div>
         </div>
         <div
-          class=" css-qbdosj-Input"
+          class=" css-19bb58m"
           data-value=""
         >
           <input
@@ -100,7 +100,7 @@ exports[`renders MultiSelect correctly 1`] = `
         </div>
       </div>
       <div
-        class=" css-1hb7zxy-IndicatorsContainer"
+        class=" css-1wy0on6"
       >
         <div
           aria-hidden="true"

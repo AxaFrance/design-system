@@ -32,7 +32,7 @@ Exemple :
 
 ```typescript
 import home from "@material-symbols/svg-400/outlined/home.svg";
-import { Svg } from "@axa-fr/design-system-react/client";
+import { Svg } from "@axa-fr/design-system-slash-react/client";
 
 const App = () => {
     return (
