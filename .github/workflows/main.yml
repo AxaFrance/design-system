@@ -18,6 +18,6 @@ jobs:
           cache: "npm"
       - run: npm run package:check
       - run: npm ci
-      - run: npm run lint -- --max-processes 1
       - run: npm run build
+      - run: npm run lint -- --max-processes 1
       - run: npm run --workspace slash/react test

@@ -1,10 +1,10 @@
 import {
-    Button as ButtonClient,
-    ButtonVariants as ButtonClientVariants,
-    Svg,
-    TextInput,
-  } from "@axa-fr/design-system-slash-react/client";
-  import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
+  Button as ButtonClient,
+  ButtonVariants as ButtonClientVariants,
+  Svg,
+  TextInput,
+} from "@axa-fr/design-system-slash-react/client";
+import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
 
 const Client = () => (
   <section className="design-section">
