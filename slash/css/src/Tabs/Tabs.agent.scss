@@ -1,6 +1,6 @@
-@use "../common/common.agent.scss" as common;
-@use "../common/grid.scss";
-@use "../common/reboot.scss";
+@use "../common/common.agent" as common;
+@use "../common/grid";
+@use "../common/reboot";
 
 .af-tabs {
   &__title {
