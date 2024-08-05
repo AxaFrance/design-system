@@ -1,0 +1,109 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as Stories from "./Table.stories.tsx";
+
+<Meta of={Stories} />
+
+# Table
+
+The design system provides components that are simple wrappers around the HTML table elements.
+
+<table>
+  <thead>
+    <tr>
+      <th>HTMl element</th>
+      <th>Design system component</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>table</td>
+      <td>Table</td>
+    </tr>
+    <tr>
+      <td>thead</td>
+      <td>Thead</td>
+    </tr>
+    <tr>
+      <td>tbody</td>
+      <td>Tbody</td>
+    </tr>
+    <tr>
+      <td>tr</td>
+      <td>Tr</td>
+    </tr>
+    <tr>
+      <td>td</td>
+      <td>Td</td>
+    </tr>
+    <tr>
+      <td>th</td>
+      <td>Th</td>
+    </tr>
+  </tbody>
+</table>
+
+### Use
+
+```tsx
+import { Table } from "@axa-fr/design-system-slash-react/agent";
+
+const MyTable = () => (
+  <Table>
+    <Table.THead>
+      <Table.Tr>
+        <Table.Th>Some text</Table.Th>
+      </Table.Tr>
+    </Table.THead>
+    <Table.TBody>
+      <Table.Tr>
+        <Table.Td>
+          Some <strong>text</strong>
+        </Table.Td>
+      </Table.Tr>
+    </Table.TBody>
+  </Table>
+);
+```
+
+<Canvas of={Stories.Simple} />
+
+Alternatively, you can also import directly the sub-components you need.
+
+```tsx
+import { Table, THead, Tr, Th } from "@axa-fr/design-system-slash-react/agent";
+
+const MyTable = () => (
+  <Table>
+    <THead>
+      <Tr>
+        <Th>Some text</Th>
+      </Tr>
+    </THead>
+    <TBody>
+      <Tr>
+        <Td>
+          Some <strong>text</strong>
+        </Td>
+      </Tr>
+    </TBody>
+  </Table>
+);
+```
+
+### Pagination
+
+The table comes with a pagination component that can be used to navigate through the data.
+
+```tsx
+import { Table } from "@axa-fr/design-system-slash-react/agent";
+
+const MyPaginatedTable = () => (
+  <>
+    <Table>{/* Table content */}</Table>
+    <Paging currentPage={3} numberItems={10} numberPages={9} mode="default" />
+  </>
+);
+```
+
+<Canvas of={Stories.WithPagination} />
+<Controls of={Stories.WithPagination} />

@@ -1,0 +1,113 @@
+@use "../../../common/common.agent.scss" as common;
+@use "../../core/FormCore.agent";
+@use "../../../common/grid";
+@use "../../../common/reboot";
+
+@mixin _set-message-type($color) {
+  .af-form__input-text {
+    border: 1px solid $color;
+    color: $color;
+  }
+
+  .af-form__select-container {
+    border: 1px solid $color;
+    color: $color;
+  }
+}
+
+.af-form {
+  &__select {
+    position: relative;
+
+    &-container {
+      position: relative;
+      display: inline-block;
+      border: 1px solid common.$color-silver;
+      background: common.$white;
+
+      .glyphicon-menu-down {
+        position: absolute;
+        top: 50%;
+        right: 1em;
+        height: 0.7em; /* when using pure svgs */
+        font-size: 0.7em;
+        transform: translateY(-50%);
+      }
+    }
+
+    &--success,
+    &--valid {
+      .af-form__select-container {
+        margin-right: 1rem;
+      }
+
+      &::after {
+        font-family: common.$font-family-icon;
+        color: common.$color-malachite;
+        content: "\EABA";
+      }
+
+      > .af-btn--circle,
+      > .af-form__message {
+        display: none;
+      }
+    }
+
+    &--valid {
+      &::after {
+        display: none;
+      }
+
+      .glyphicon-ok {
+        position: absolute;
+        top: 50%;
+        right: -25px;
+        width: 17px;
+        margin-left: 2px;
+        transform: translate(0, -50%);
+        fill: common.$color-btn-success;
+      }
+    }
+
+    &--disabled {
+      .af-form__select-container {
+        background: common.$color-mercury;
+        cursor: not-allowed;
+      }
+    }
+
+    &--error {
+      @include _set-message-type(common.$color-red-axa);
+
+      select {
+        color: common.$color-red-axa;
+      }
+    }
+
+    &--warning {
+      @include _set-message-type(common.$color-orange-dark);
+    }
+  }
+
+  &__input-select {
+    position: relative;
+    z-index: 1;
+    padding: 0.5em 2.7em 0.5em 1em;
+    border: 0;
+    font-size: 1em;
+    background: transparent;
+    appearance: none;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:focus {
+      border-color: common.$color-axa;
+    }
+
+    &--hasinfobulle {
+      margin-right: 1rem;
+    }
+  }
+}

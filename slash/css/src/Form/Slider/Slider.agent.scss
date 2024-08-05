@@ -1,0 +1,71 @@
+@use "../../common/common.agent.scss" as common;
+@use "../../common/grid";
+@use "../../common/reboot";
+@import "rc-slider/assets/index.css";
+
+$heightslide: 6px;
+
+.rc-slider {
+  width: 80% !important;
+  margin-bottom: 1.2em;
+  border-radius: 0;
+
+  &-rail {
+    height: $heightslide;
+    background: common.$color-mercury;
+  }
+
+  &-track {
+    height: $heightslide;
+    border-radius: 0;
+    background: common.$color-azur;
+  }
+
+  &-handle {
+    width: 20px;
+    height: 20px;
+    border-color: common.$color-azur;
+    opacity: 1;
+    color: common.$white;
+    background: common.$color-azur;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: $heightslide;
+      background: common.$color-silver;
+      transform: translate(-50%, -50%);
+      content: "";
+    }
+  }
+
+  &-step {
+    height: $heightslide;
+  }
+
+  &-dot {
+    position: absolute;
+    top: 50%;
+    width: 2px;
+    height: $heightslide;
+    border-color: common.$color-gray;
+    border-radius: 0;
+    background: common.$color-gray;
+    transform: translate(0, -50%);
+
+    &.active {
+      border-color: common.$color-silver;
+      background: common.$color-silver;
+    }
+
+    &:nth-child(1) {
+      height: 12px;
+    }
+
+    &:nth-last-child(1) {
+      height: 12px;
+    }
+  }
+}
