@@ -8,8 +8,8 @@ import React, {
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Client/NavBar/NavBar.scss";
 
 type NavBarProps = {
-  activeLink: number;
-  setActiveLink: React.Dispatch<React.SetStateAction<number>>;
+  activeLink?: number;
+  setActiveLink: React.Dispatch<React.SetStateAction<number | undefined>>;
 } & ComponentPropsWithoutRef<"nav">;
 
 const NavBar = ({

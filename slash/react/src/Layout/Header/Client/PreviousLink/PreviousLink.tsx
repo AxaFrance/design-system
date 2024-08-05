@@ -31,9 +31,16 @@ const PreviousLink = ({
 
   return (
     <div className="af-header-previous-link-container" {...otherProps}>
-      <Svg className="af-header-previous-link-icon" src={arrowBack} />
       {React.Children.map(validChildren, (child) =>
         React.cloneElement(child, {
+          children: (
+            <>
+              <Svg className="af-header-previous-link__icon" src={arrowBack} />
+              <span className="af-header-previous-link__text">
+                {child.props.children}
+              </span>
+            </>
+          ),
           className: "af-header-previous-link",
           onClick: handleClick,
         }),

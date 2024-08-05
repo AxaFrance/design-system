@@ -10,12 +10,11 @@ import "./Reset.css";
 const App = () => (
   <>
     <Header
-      navBarLinks={[
-        <NavLink to="/client">CLIENT</NavLink>,
-        <NavLink to="/agent">AGENT</NavLink>,
-      ]}
-      previousLink={<NavLink to="/client">Retour à la partie client</NavLink>}
-    />
+      previousLink={<NavLink to="/agent">Retour à la partie client</NavLink>}
+    >
+      <NavLink to="/client">CLIENT</NavLink>,
+      <NavLink to="/agent">AGENT</NavLink>,
+    </Header>
     <Suspense>
       <Routes>
         <Route path="/" element={<Navigate to={"/client"} />} />
