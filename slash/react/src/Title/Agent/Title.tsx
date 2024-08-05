@@ -1,7 +1,7 @@
-import "@axa-fr/design-system-slash-css/dist/Title/Title.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Title/Agent/Title.scss";
 import { ComponentPropsWithRef, PropsWithChildren, forwardRef } from "react";
 
-import { getComponentClassName } from "../Form/core";
+import { getComponentClassName } from "../../Form/core";
 
 type Headings = "h2" | "h3" | "h4";
 
