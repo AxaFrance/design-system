@@ -1,0 +1,138 @@
+@use "../common/common.agent" as common;
+@use "../common/grid";
+@use "../common/reboot";
+
+.af-tabs {
+  &__title {
+    font-family: common.$font-family-serif;
+    font-size: 2.25rem;
+    font-weight: bold;
+    text-align: left;
+    color: common.$white;
+  }
+
+  &__control {
+    display: flex;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  &__link {
+    display: block;
+    height: 100%;
+    padding: 0 2.875rem;
+    border: none;
+    overflow: hidden;
+    font-weight: lighter;
+    line-height: 2.688rem;
+    color: common.$color-tabs-link;
+    background: none;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__item {
+    position: relative;
+    box-sizing: border-box;
+    height: 2.5rem;
+    margin-top: 0.4375rem;
+    margin-right: 0.375rem;
+    margin-left: 0;
+    border: 1px solid;
+    border-color: transparent;
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+    vertical-align: bottom;
+    background-color: common.$color-tabs-item;
+    cursor: pointer;
+
+    &--active {
+      height: 46px;
+      margin-top: 1px;
+      border-color: common.$color-azur;
+      background-color: common.$color-azur;
+
+      .af-tabs__link {
+        color: common.$white;
+      }
+    }
+
+    &:hover {
+      border-color: common.$color-azur;
+      background-color: common.$color-azur;
+
+      .af-tabs__link {
+        border: none;
+        color: common.$color-white;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &--disabled {
+      background-color: common.$color-tabs-disabled;
+      cursor: not-allowed;
+
+      button {
+        color: common.$color-tabs-disabled-button;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      &:hover {
+        border-color: transparent;
+        background-color: common.$color-tabs-disabled;
+
+        button {
+          color: common.$color-tabs-disabled-button;
+        }
+      }
+    }
+
+    &--has-icon-left {
+      padding-left: 1rem;
+
+      .glyphicon {
+        left: 1.5rem;
+      }
+    }
+
+    &--has-icon-right {
+      padding-right: 1rem;
+
+      .glyphicon {
+        right: 1.5rem;
+      }
+    }
+
+    .glyphicon {
+      position: absolute;
+      top: 50%;
+      width: 17px;
+      transform: translate(0, -50%);
+    }
+
+    .af-badge {
+      position: absolute;
+      z-index: 1;
+      top: -14px;
+      right: -14px;
+    }
+  }
+
+  &__content {
+    border: solid 1px common.$color-tabs-content;
+    border-top: 2px solid common.$color-azur;
+    background-color: common.$white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 11%);
+  }
+
+  &__pane {
+    padding: 1.25rem;
+  }
+}

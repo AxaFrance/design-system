@@ -1,0 +1,181 @@
+@use "sass:math";
+@use "../common/common.agent.scss" as common;
+@use "../common/reboot";
+
+// Wizard Steps
+// --------------------------------------------------
+$steps-bg: common.$gray-lighter;
+$steps-bg-active: common.$white;
+$font-size-step: common.$font-size-base;
+$font-size-step-number: common.$font-size-base + 0.2rem;
+$steps-color: common.$color-texte;
+$steps-color-active: common.$color-axa;
+
+.af-steps-new {
+  margin-bottom: 2rem;
+  background: common.$white;
+
+  .af-steps-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid $steps-bg;
+    justify-content: space-around;
+    line-height: 3rem;
+    counter-reset: stepper-counter;
+    list-style: none;
+
+    &-step {
+      display: inline-flex;
+      font-size: $font-size-step;
+      color: $steps-color;
+      counter-increment: stepper-counter;
+
+      &__label {
+        display: inline-flex;
+        padding-right: 2rem;
+      }
+
+      &__number {
+        margin-right: 0.6rem;
+        font-size: $font-size-step-number;
+        font-weight: 600;
+        color: $steps-color;
+
+        .glyphicon {
+          width: 17px;
+          font-size: 1.5rem;
+        }
+      }
+
+      &__title {
+        font-weight: 600;
+        color: $steps-color;
+
+        &:hover {
+          color: $steps-color-active;
+        }
+      }
+
+      &.number {
+        &::before {
+          content: none;
+        }
+      }
+
+      &::before {
+        margin-right: 0.8rem;
+        font-size: $font-size-step-number;
+        font-weight: 600;
+        color: $steps-color;
+        content: counter(stepper-counter);
+      }
+
+      &::after {
+        font-family: icons;
+        content: "\EA12";
+      }
+
+      &.on {
+        color: $steps-color-active;
+
+        &::before,
+        * {
+          color: $steps-color-active;
+        }
+      }
+
+      &.past {
+        color: common.$color-pager-link;
+
+        &::before {
+          color: common.$color-pager-link;
+        }
+
+        &:hover {
+          color: $steps-color-active;
+        }
+      }
+
+      &.disabled {
+        color: common.$color-gray-1;
+
+        &::before {
+          color: common.$color-gray-1;
+        }
+
+        & .af-steps-list-step__number,
+        & .af-steps-list-step__title {
+          color: common.$color-gray-1;
+        }
+      }
+
+      &:last-child {
+        &.on::before {
+          color: common.$color-btn-success;
+        }
+
+        &::before {
+          font-family: icons;
+          content: "\EABA";
+        }
+
+        &::after {
+          content: none;
+        }
+
+        .af-steps-list-step__label {
+          padding-right: 0;
+
+          &::after,
+          &::before {
+            display: none;
+          }
+        }
+
+        .af-steps-list-step__number {
+          font-size: math.ceil(($font-size-step * 1.1));
+        }
+      }
+    }
+  }
+
+  @include common.media-breakpoint-down(xs) {
+    .af-steps-list {
+      table-layout: auto;
+
+      &-step {
+        min-width: 3rem;
+        padding-left: 0;
+
+        &__title {
+          display: none;
+        }
+
+        &__number {
+          z-index: 2;
+          left: 2rem;
+          margin-right: 1rem;
+
+          .glyphicon {
+            font-size: 1.2rem;
+          }
+        }
+
+        &.on {
+          .af-steps-list-step__title {
+            display: block;
+          }
+
+          .af-steps-list-step__number {
+            margin-right: 0.5rem;
+
+            .glyphicon {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
