@@ -15,9 +15,10 @@ const template = (args: Args) => {
     .filter(Boolean)
     .map((classModifier: string) => ` af-title--${classModifier}`)
     .join("")}`;
+  container.className += ` af-title--${args.size}`;
 
   const textContainer = args.icon ? document.createElement("div") : container;
-  if (args.icon) {
+  if (args.icon && args.size === "xl") {
     textContainer.className = "af-title__text-container";
 
     const icon = document.createElement("div");
@@ -39,7 +40,7 @@ const template = (args: Args) => {
     textContainer.appendChild(subtitle);
   }
 
-  if (args.secondSubtitle) {
+  if (args.secondSubtitle && args.size === "xl") {
     const subtitle = document.createElement("span");
     subtitle.className = "af-title__subtitle";
     subtitle.textContent = args.secondSubtitle;
@@ -64,6 +65,14 @@ export const TitleWithIcon: StoryObj = {
     firstSubtitle: "Sous Titre 1",
     secondSubtitle: "Sous Titre 2",
     classModifier: "",
+    size: "xl",
+  },
+  argTypes: {
+    size: {
+      options: ["xl", "l"],
+      control: { type: "select" },
+      defaultValue: "xl",
+    },
   },
 };
 
@@ -75,16 +84,13 @@ export const TitleWithoutIcon: StoryObj = {
     firstSubtitle: "Sous Titre 1",
     secondSubtitle: "Sous Titre 2",
     classModifier: "",
+    size: "xl",
   },
-};
-
-export const TitleWithOneSubtitle: StoryObj = {
-  render: template,
-  args: {
-    children: "Titre de la page",
-    icon: "",
-    firstSubtitle: "Sous Titre 1",
-    secondSubtitle: "",
-    classModifier: "",
+  argTypes: {
+    size: {
+      options: ["xl", "l"],
+      control: { type: "select" },
+      defaultValue: "xl",
+    },
   },
 };
