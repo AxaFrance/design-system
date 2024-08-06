@@ -4,15 +4,15 @@
   display: grid;
   width: 100%;
   grid-template:
-    "content-item-duo__icon content-item-duo__label content-item-duo__value"
-    "content-item-duo__icon content-item-duo__label content-item-duo__button";
+    "icon label value"
+    "icon label button";
   grid-template-columns: auto 1fr 1fr;
   row-gap: 0.5rem;
 
   &__icon {
     margin-top: 0.125rem;
     margin-right: 0.75rem;
-    grid-area: content-item-duo__icon;
+    grid-area: icon;
 
     svg {
       width: 1.5rem;
@@ -43,20 +43,20 @@
 
   &__label {
     margin-right: 1rem;
-    grid-area: content-item-duo__label;
+    grid-area: label;
     font-weight: 400;
     color: common.$color-gray-700;
   }
 
   &__value {
-    grid-area: content-item-duo__value;
+    grid-area: value;
     font-weight: 600;
     text-align: end;
     color: common.$color-gray-900;
   }
 
   &__button {
-    grid-area: content-item-duo__button;
+    grid-area: button;
     justify-self: end;
   }
 
@@ -90,8 +90,8 @@
 
   &--vertical {
     grid-template:
-      "content-item-duo__icon content-item-duo__label content-item-duo__button"
-      ". content-item-duo__value content-item-duo__value";
+      "icon label button"
+      ". value value";
     grid-template-columns: auto 1fr auto;
     gap: 0.375rem 0.75rem;
 
