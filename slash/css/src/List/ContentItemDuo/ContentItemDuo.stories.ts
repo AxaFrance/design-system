@@ -13,14 +13,18 @@ export default meta;
 const contentItemDuoRender = (args: Args) => {
   const container = document.createElement("div");
 
-  container.className = `af-content-item-duo${args.classModifier
-    .filter(Boolean)
-    .map((modifier: string) => ` af-content-item-duo--${modifier}`)
-    .join("")}`;
+  const modifiers = structuredClone(args.classModifier);
 
   if (args.isVertical) {
-    container.className += " af-content-item-duo--vertical";
+    modifiers.push("vertical");
   }
+
+  container.classList.add(
+    "af-content-item-duo",
+    ...modifiers
+      .filter(Boolean)
+      .map((modifier: string) => `af-content-item-duo--${modifier}`),
+  );
 
   if (args.isShowingDoneIcon) {
     const doneIconContainer = document.createElement("div");
