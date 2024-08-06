@@ -12,16 +12,18 @@ export default meta;
 const template = ({ classModifier, ...args }: Args) => {
   const container = document.createElement("div");
 
-  container.className = `af-content-item-mono${classModifier
-    .split(" ")
-    .filter(Boolean)
-    .map((modifier: string) => ` af-content-item-mono--${modifier}`)
-    .join("")}`;
-  container.className += ` af-content-item-mono--${args.size}`;
+  const modifiers = [args.size, ...classModifier.split(" ")];
 
   if (args.isDisabled) {
-    container.className += " af-content-item-mono--disabled";
+    modifiers.push("disabled");
   }
+
+  container.classList.add(
+    "af-content-item-mono",
+    ...modifiers
+      .filter(Boolean)
+      .map((modifier) => `af-content-item-mono--${modifier}`),
+  );
 
   if (args.hasStick) {
     const stick = document.createElement("div");
