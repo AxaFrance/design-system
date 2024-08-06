@@ -4,13 +4,13 @@
   gap: 0.25rem;
   color: common.$color-gray-900;
 
-  h1.af-title__title {
+  &__title {
     margin: 0;
     font-family: common.$font-family-publico;
     font-weight: 700;
   }
 
-  span.af-title__subtitle {
+  &__subtitle {
     display: block;
     font-family: common.$font-family-base;
     font-size: 1.125rem;
