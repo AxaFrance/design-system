@@ -29,15 +29,15 @@ export const ContentItemDuo = ({
   onButtonClick,
 }: ContentItemDuoProps) => {
   const componentClassName = useMemo(() => {
-    let newClassModifier = classModifier ?? "";
+    const classModifiers = [classModifier];
 
     if (isVertical) {
-      newClassModifier += " vertical";
+      classModifiers.push("vertical");
     }
 
     return getComponentClassName(
       className,
-      newClassModifier,
+      classModifiers.filter(Boolean).join(" "),
       "af-content-item-duo",
     );
   }, [classModifier, className, isVertical]);
