@@ -16,35 +16,32 @@ type StoryProps = React.ComponentProps<typeof NavBar>;
 type Story = StoryObj<StoryProps>;
 
 export const Default: Story = {
-  render: ({ activeLink, children, setActiveLink }: StoryProps) => (
+  render: ({ activeLink, setActiveLink }: StoryProps) => (
     <NavBar activeLink={activeLink} setActiveLink={setActiveLink}>
-      {children}
-    </NavBar>
-  ),
-  args: {
-    activeLink: 0,
-    children: [
       <a
         key="MES CONTRATS link"
         className="af-navbar-item__link"
         href="/mes-contrats"
       >
         MES CONTRATS
-      </a>,
+      </a>
       <a
         key="MES AVANTAGES link"
         className="af-navbar-item__link"
         href="/mes-avantages"
       >
         MES AVANTAGES
-      </a>,
+      </a>
       <a
         key="MES DOCUMENTS link"
         className="af-navbar-item__link"
         href="/mes-documents"
       >
         MES DOCUMENTS
-      </a>,
-    ],
+      </a>
+    </NavBar>
+  ),
+  args: {
+    activeLink: 0,
   },
 };

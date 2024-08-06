@@ -7,17 +7,18 @@ import { PreviousLink } from "./PreviousLink/PreviousLink";
 type HeaderProps = {
   defaultActiveLink?: number;
   previousLink?: JSX.Element;
-  navBarLinks?: JSX.Element[];
   rightItem?: JSX.Element[];
 } & ComponentPropsWithoutRef<"header">;
 
 export const HeaderClient = ({
-  defaultActiveLink = 0,
-  navBarLinks,
+  children,
+  defaultActiveLink,
   previousLink,
   rightItem,
 }: HeaderProps) => {
-  const [activeLink, setActiveLink] = useState<number>(defaultActiveLink);
+  const [activeLink, setActiveLink] = useState<number | undefined>(
+    defaultActiveLink,
+  );
 
   const resetActiveLink = useCallback(
     () => setActiveLink(defaultActiveLink),
@@ -29,9 +30,9 @@ export const HeaderClient = ({
       <div className="af-header-container">
         <div className="af-header-left-item">
           <img className="af-logo" src={logo} alt="Logo AXA" />
-          {navBarLinks && (
+          {children && (
             <NavBar activeLink={activeLink} setActiveLink={setActiveLink}>
-              {navBarLinks}
+              {children}
             </NavBar>
           )}
         </div>

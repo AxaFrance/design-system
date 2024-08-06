@@ -7,23 +7,28 @@
   gap: 0.25rem;
 }
 
-.af-header-previous-link-icon {
-  width: 1rem;
-  height: 1rem;
-  margin-top: 0.1rem;
-  cursor: pointer;
-  fill: common.$color-gray-700;
-}
-
 .af-header-previous-link {
-  font-family: common.$font-family-sans-serif;
-  font-size: 1rem;
-  font-weight: normal;
-  line-height: 1.25rem;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
-  color: common.$color-gray-700;
   cursor: pointer;
+
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    fill: common.$color-gray-700;
+  }
+
+  &__text {
+    font-family: common.$font-family-sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.25rem;
+    text-align: center;
+    color: common.$color-gray-700;
+  }
 
   &:focus {
     outline: none;

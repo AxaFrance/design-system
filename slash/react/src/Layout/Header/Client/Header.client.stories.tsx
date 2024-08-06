@@ -21,63 +21,64 @@ export const Default: Story = {
 
 export const HeaderWithNavBar: StoryObj<typeof HeaderClient> = {
   name: "Header with navigation bar",
-  render: ({ navBarLinks }) => <HeaderClient navBarLinks={navBarLinks} />,
-  args: {
-    navBarLinks: [
+  render: () => (
+    <HeaderClient>
       <a
         key="MES CONTRATS link"
         className="af-navbar-item__link"
         href="/mes-contrats"
+        target="_"
       >
         MES CONTRATS
-      </a>,
+      </a>
       <a
         key="MES AVANTAGES link"
         className="af-navbar-item__link"
         href="/mes-avantages"
+        target="_"
       >
         MES AVANTAGES
-      </a>,
+      </a>
       <a
         key="MES DOCUMENTS link"
         className="af-navbar-item__link"
         href="/mes-documents"
+        target="_"
       >
         MES DOCUMENTS
-      </a>,
-    ],
-  },
+      </a>
+    </HeaderClient>
+  ),
 };
 
 export const HeaderWithNavBarAndRightItem: StoryObj<typeof HeaderClient> = {
   name: "Header with navigation bar and right item",
-  render: ({ navBarLinks, rightItem }) => (
-    <HeaderClient navBarLinks={navBarLinks} rightItem={rightItem} />
-  ),
-  args: {
-    navBarLinks: [
+  render: ({ rightItem }) => (
+    <HeaderClient rightItem={rightItem}>
       <a
         key="MES CONTRATS link"
         className="af-navbar-item__link"
         href="/mes-contrats"
       >
         MES CONTRATS
-      </a>,
+      </a>
       <a
         key="MES AVANTAGES link"
         className="af-navbar-item__link"
         href="/mes-avantages"
       >
         MES AVANTAGES
-      </a>,
+      </a>
       <a
         key="MES DOCUMENTS link"
         className="af-navbar-item__link"
         href="/mes-documents"
       >
         MES DOCUMENTS
-      </a>,
-    ],
+      </a>
+    </HeaderClient>
+  ),
+  args: {
     rightItem: [
       <Button
         key="Banking Space Button"
@@ -101,39 +102,93 @@ export const HeaderWithLinksAndRightItemAndPreviousLink: StoryObj<
   typeof HeaderClient
 > = {
   name: "Header with links, right item and Previous link",
-  render: ({ navBarLinks, previousLink, rightItem }) => (
-    <HeaderClient
-      navBarLinks={navBarLinks}
-      previousLink={previousLink}
-      rightItem={rightItem}
-    />
-  ),
-  args: {
-    navBarLinks: [
+  render: ({ previousLink, rightItem }) => (
+    <HeaderClient previousLink={previousLink} rightItem={rightItem}>
       <a
         key="MES CONTRATS link"
         className="af-navbar-item__link"
         href="/mes-contrats"
       >
         MES CONTRATS
-      </a>,
+      </a>
       <a
         key="MES AVANTAGES link"
         className="af-navbar-item__link"
         href="/mes-avantages"
       >
         MES AVANTAGES
-      </a>,
+      </a>
       <a
         key="MES DOCUMENTS link"
         className="af-navbar-item__link"
         href="/mes-documents"
       >
         MES DOCUMENTS
-      </a>,
-    ],
+      </a>
+    </HeaderClient>
+  ),
+  args: {
     previousLink: (
-      <a key="Previous link" href="/mes-contrats" target="_">
+      <a key="Previous link" href="/mes-contrats">
+        Retour à mes contrats
+      </a>
+    ),
+    rightItem: [
+      <Button
+        key="Banking Space Button"
+        iconLeft={<Svg src={lock} fill="#00008f" />}
+        variant={ButtonVariants.secondary}
+      >
+        Espace Banque
+      </Button>,
+      <Button
+        key="Profile Button"
+        iconLeft={<Svg src={person} fill="#00008f" />}
+        variant={ButtonVariants.ghost}
+      >
+        Mon Profil
+      </Button>,
+    ],
+  },
+};
+
+export const HeaderWithLinksAndRightItemAndPreviousLinkAndActiveLink: StoryObj<
+  typeof HeaderClient
+> = {
+  name: "Header with links, right item, Previous link and active link",
+  render: ({ defaultActiveLink, previousLink, rightItem }) => (
+    <HeaderClient
+      defaultActiveLink={defaultActiveLink}
+      previousLink={previousLink}
+      rightItem={rightItem}
+    >
+      <a
+        key="MES CONTRATS link"
+        className="af-navbar-item__link"
+        href="/mes-contrats"
+      >
+        MES CONTRATS
+      </a>
+      <a
+        key="MES AVANTAGES link"
+        className="af-navbar-item__link"
+        href="/mes-avantages"
+      >
+        MES AVANTAGES
+      </a>
+      <a
+        key="MES DOCUMENTS link"
+        className="af-navbar-item__link"
+        href="/mes-documents"
+      >
+        MES DOCUMENTS
+      </a>
+    </HeaderClient>
+  ),
+  args: {
+    defaultActiveLink: 0,
+    previousLink: (
+      <a key="Previous link" href="/mes-contrats">
         Retour à mes contrats
       </a>
     ),
