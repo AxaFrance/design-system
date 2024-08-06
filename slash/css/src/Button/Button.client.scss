@@ -110,9 +110,9 @@
   }
 
   &--secondary-error {
-    color: common.$color-btn-error;
+    color: common.$color-red-700;
     background-color: common.$color-white;
-    box-shadow: 0 0 0 1px common.$color-btn-error inset;
+    box-shadow: 0 0 0 1px common.$color-red-700 inset;
 
     &:hover,
     &:focus,

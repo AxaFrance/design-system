@@ -19,6 +19,7 @@ export { HeaderClient as Header } from "./Layout/Header/Client";
 export { Link } from "./Link/Link.client";
 export { List } from "./List";
 export { ClickList } from "./List/ClickList";
+export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentTabList } from "./List/ContentTabList";
 export { Loader } from "./Loader/Client";
 export { Modal } from "./ModalClient/Modal.client";

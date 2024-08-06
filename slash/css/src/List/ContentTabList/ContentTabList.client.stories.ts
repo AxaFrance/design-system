@@ -26,7 +26,8 @@ type TContentTabList = {
 const template = ({ items, isMobile }: TContentTabList) => {
   const list = document.createElement("section");
 
-  list.className = "af-card af-card--list af-card--content-tab-list";
+  list.className =
+    "af-card af-card--list af-card--extra-padding af-card--content-tab-list";
 
   const ul = document.createElement("ul");
 
