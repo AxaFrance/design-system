@@ -37,7 +37,7 @@
       }
 
       &--error {
-        border-color: common.$color-btn-error;
+        border-color: common.$color-red-700;
       }
 
       input {
@@ -90,7 +90,7 @@
       &-icon {
         &-error {
           path {
-            fill: common.$color-btn-error;
+            fill: common.$color-red-700;
           }
         }
 
@@ -124,11 +124,11 @@
       align-items: center;
       gap: 0.25rem;
       font-size: 1rem;
-      color: common.$color-btn-error;
+      color: common.$color-red-700;
 
       &-icon {
         path {
-          fill: common.$color-btn-error;
+          fill: common.$color-red-700;
         }
       }
     }
@@ -146,7 +146,7 @@
       background: common.$color-white;
 
       &--error {
-        border-color: common.$color-btn-error;
+        border-color: common.$color-red-700;
       }
     }
 

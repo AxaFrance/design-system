@@ -32,15 +32,15 @@
   }
 
   &--error {
-    border: 1px solid common.$color-btn-error;
+    border: 1px solid common.$color-red-700;
 
     .af-alert__icon {
-      color: common.$color-btn-error;
-      fill: common.$color-btn-error;
+      color: common.$color-red-700;
+      fill: common.$color-red-700;
     }
 
     .af-alert__title {
-      color: common.$color-btn-error;
+      color: common.$color-red-700;
     }
   }
 

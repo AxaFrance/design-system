@@ -1,0 +1,168 @@
+@use "../../common/common.client.scss" as common;
+
+.af-content-item-duo {
+  display: grid;
+  width: 100%;
+  grid-template:
+    "content-item-duo__icon content-item-duo__label content-item-duo__value"
+    "content-item-duo__icon content-item-duo__label content-item-duo__button";
+  grid-template-columns: auto 1fr 1fr;
+  row-gap: 0.5rem;
+
+  &__icon {
+    margin-top: 0.125rem;
+    margin-right: 0.75rem;
+    grid-area: content-item-duo__icon;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &--done {
+      svg {
+        fill: common.$color-axa;
+      }
+    }
+
+    &--close {
+      svg {
+        fill: common.$color-red-700;
+      }
+    }
+  }
+
+  &__label,
+  &__value {
+    margin: 0;
+    font-family: common.$font-family-base;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    overflow-wrap: break-word;
+  }
+
+  &__label {
+    margin-right: 1rem;
+    grid-area: content-item-duo__label;
+    font-weight: 400;
+    color: common.$color-gray-700;
+  }
+
+  &__value {
+    grid-area: content-item-duo__value;
+    font-weight: 600;
+    text-align: end;
+    color: common.$color-gray-900;
+  }
+
+  &__button {
+    grid-area: content-item-duo__button;
+    justify-self: end;
+  }
+
+  &--large {
+    row-gap: 0.75rem;
+
+    .af-content-item-duo {
+      &__icon {
+        margin-top: 0.25rem;
+      }
+
+      &__label,
+      &__value {
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+      }
+
+      &__label {
+        margin-right: 2.5rem;
+      }
+
+      &__value {
+        text-align: start;
+      }
+
+      &__button {
+        justify-self: start;
+      }
+    }
+  }
+
+  &--vertical {
+    grid-template:
+      "content-item-duo__icon content-item-duo__label content-item-duo__button"
+      ". content-item-duo__value content-item-duo__value";
+    grid-template-columns: auto 1fr auto;
+    gap: 0.375rem 0.75rem;
+
+    .af-content-item-duo {
+      &__icon {
+        margin-top: 0.125rem;
+        margin-right: 0;
+      }
+
+      &__label,
+      &__value {
+        margin-right: 0;
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+        text-align: start;
+      }
+
+      &__value {
+        margin: 0;
+      }
+
+      &__button {
+        margin-left: 0;
+        justify-self: end;
+      }
+    }
+  }
+}
+
+@media (width <= #{common.$breakpoint-sm}) {
+  .af-content-item-duo {
+    &--large {
+      row-gap: 0.5rem;
+
+      .af-content-item-duo {
+        &__icon {
+          margin-top: 0.125rem;
+        }
+
+        &__label,
+        &__value {
+          font-size: 1rem;
+          line-height: 1.25rem;
+        }
+
+        &__label {
+          margin-right: 1rem;
+        }
+
+        &__value {
+          text-align: end;
+        }
+
+        &__button {
+          margin-left: 0;
+          justify-self: end;
+        }
+      }
+    }
+
+    &--vertical {
+      row-gap: 0.375rem;
+
+      .af-content-item-duo {
+        &__label,
+        &__value {
+          font-size: 1rem;
+          line-height: 1.25rem;
+          text-align: start;
+        }
+      }
+    }
+  }
+}
