@@ -1,4 +1,9 @@
-import { useCallback, useMemo, type ReactNode } from "react";
+import {
+  useCallback,
+  useMemo,
+  type ComponentProps,
+  type ReactNode,
+} from "react";
 import { IconBg } from "../../client";
 import { getComponentClassName } from "../../Form/core";
 import { TitleSize } from "./constants";
@@ -33,14 +38,19 @@ export const Title = ({
     [classModifier, className, size],
   );
   const TitleWithSubtitlesPart = useCallback(
-    () => (
+    ({
+      ...args
+    }: Omit<
+      ComponentProps<typeof TitleWithSubtitles>,
+      "title" | "firstSubtitle"
+    >) => (
       <TitleWithSubtitles
         title={title}
         firstSubtitle={firstSubtitle}
-        secondSubtitle={size === TitleSize.XL ? secondSubtitle : undefined}
+        {...args}
       />
     ),
-    [title, firstSubtitle, size, secondSubtitle],
+    [title, firstSubtitle],
   );
 
   return (
@@ -49,7 +59,7 @@ export const Title = ({
         <>
           <IconBg className="af-title__icon af-icon-bg">{icon}</IconBg>
           <div className="af-title__text-container">
-            <TitleWithSubtitlesPart />
+            <TitleWithSubtitlesPart secondSubtitle={secondSubtitle} />
           </div>
         </>
       ) : (

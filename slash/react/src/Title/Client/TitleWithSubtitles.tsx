@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 
 type TitleTextProps = {
   title: ReactNode;
-  firstSubtitle: string;
-  secondSubtitle: string | undefined;
+  firstSubtitle?: string;
+  secondSubtitle?: string;
 };
 
 export const TitleWithSubtitles = ({
