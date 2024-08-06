@@ -43,10 +43,7 @@ export const ContentItemDuo = ({
   }, [classModifier, className, isVertical]);
 
   const iconContainerModifier = useMemo(
-    () =>
-      isShowingDoneIcon
-        ? " af-content-item-duo__icon--done"
-        : " af-content-item-duo__icon--close",
+    () => ` af-content-item-duo__icon--${isShowingDoneIcon ? "done" : "close"}`,
     [isShowingDoneIcon],
   );
 
