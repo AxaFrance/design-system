@@ -58,7 +58,7 @@ export const ContentItemMono = ({
         </div>
       )}
       <div className="af-content-item-mono__text-container">
-        <p className="af-content-item-mono__main-text"> {children}</p>
+        <p className="af-content-item-mono__main-text">{children}</p>
         {secondaryText && (
           <p className="af-content-item-mono__secondary-text">
             {secondaryText}
