@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Title } from "./Title.agent";
-import { ButtonAgent as Button } from "../Button/Button.agent";
+import { ButtonAgent as Button } from "../../Button/Button.agent";
+import { Title } from "./Title";
 
 const meta: Meta<typeof Title> = {
   title: "Agent/Components/Title",

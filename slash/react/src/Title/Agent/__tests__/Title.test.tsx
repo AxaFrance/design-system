@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { Title } from "../Title.agent";
+import { Title } from "../Title";
 
 describe("Title", () => {
   it("should render children", () => {
