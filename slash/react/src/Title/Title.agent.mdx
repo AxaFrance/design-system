@@ -1,0 +1,24 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as TitleStories from "./Title.agent.stories";
+
+<Meta of={TitleStories} />
+
+## Title
+
+### Use of Title
+
+```tsx title="test.js"
+import { Title } from "@axa-fr/design-system-slash-react/agent";
+
+export const MyComponent = () => (
+  <Title classModifier="af-title" className="">
+    Sample Title
+  </Title>
+);
+```
+
+## Playground
+
+<Canvas of={TitleStories.Template}></Canvas>
+
+<Controls of={TitleStories.Template} />

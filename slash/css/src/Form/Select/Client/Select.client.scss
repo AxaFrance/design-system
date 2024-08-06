@@ -1,0 +1,118 @@
+@use "../../../common/common.client.scss" as common;
+@use "../../../common/grid";
+@use "../../../common/reboot";
+
+.af-form {
+  &__select {
+    &-label {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: common.$color-gray-900;
+    }
+
+    &-single-value {
+      color: common.$color-gray-900;
+
+      &-disabled {
+        color: common.$color-gray-500;
+      }
+    }
+
+    &-error {
+      display: flex;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+      color: common.$color-red-700;
+
+      &-icon {
+        path {
+          fill: common.$color-red-700;
+        }
+      }
+    }
+  }
+
+  &__input-select {
+    min-height: unset !important;
+    font-size: 1rem;
+    color: common.$color-gray-700;
+
+    &-container {
+      padding: 0.75rem 1rem;
+      border: 1px solid common.$color-gray-700;
+      border-radius: 4px;
+      font-size: 1.125rem;
+      color: common.$color-gray-700;
+      background-color: common.$color-white;
+
+      &-error {
+        border-width: 2px;
+        border-color: common.$color-red-700;
+
+        &:hover,
+        &:active {
+          box-shadow: 0 0 0 1px common.$color-red-700 inset !important;
+        }
+      }
+
+      &:hover,
+      &:active {
+        box-shadow: 0 0 0 2px common.$color-axa inset;
+      }
+
+      &-focused,
+      &:focus-visible {
+        box-shadow: 0 0 0 2px common.$color-axa inset;
+        outline: 2px solid common.$color-focus;
+        outline-offset: 3px;
+      }
+
+      &-disabled {
+        border-color: common.$color-gray-400;
+        background-color: common.$color-gray-200;
+      }
+
+      &-icon {
+        &-disabled {
+          path {
+            fill: common.$color-gray-500;
+          }
+        }
+      }
+    }
+
+    &-menu {
+      margin-top: 0.4rem;
+      margin-left: -1rem;
+      background-color: common.$color-white;
+      box-shadow: 0 4px 16px -2px #00008f40;
+
+      &-options {
+        padding: 0.75rem 1rem;
+        border: 1px solid transparent;
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: common.$color-gray-900;
+        box-shadow: none;
+
+        &-selected {
+          font-weight: 600;
+          color: common.$color-axa;
+        }
+
+        &-focused {
+          border: 1px solid common.$color-axa;
+        }
+
+        &:nth-child(odd) {
+          background-color: common.$color-blue-2;
+        }
+
+        &:nth-child(even) {
+          background-color: common.$color-white;
+        }
+      }
+    }
+  }
+}
