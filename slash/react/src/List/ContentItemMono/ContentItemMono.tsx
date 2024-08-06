@@ -28,17 +28,15 @@ export const ContentItemMono = ({
   hasStick = false,
 }: ContentItemMonoProps) => {
   const componentClassName = useMemo(() => {
-    let newClassModifier = classModifier ?? "";
+    const classModifiers = [size, classModifier];
 
     if (isDisabled) {
-      newClassModifier += " disabled";
+      classModifiers.push("disabled");
     }
-
-    newClassModifier += ` ${size}`;
 
     return getComponentClassName(
       className,
-      newClassModifier,
+      classModifiers.filter(Boolean).join(" "),
       "af-content-item-mono",
     );
   }, [classModifier, isDisabled, size, className]);
