@@ -93,11 +93,10 @@ export const DefaultContentItemDuoList: StoryObj<
     </List>
   ),
   args: {
-    items: [
-      { id: "1", ...defaultArgs },
-      { id: "2", ...defaultArgs },
-      { id: "3", ...defaultArgs },
-    ],
+    items: Array.from({ length: 3 }, (_, i) => ({
+      id: i.toString(),
+      ...defaultArgs,
+    })),
     classModifier: ["extra-padding"],
   },
   argTypes: {
@@ -134,11 +133,10 @@ export const VerticalContentItemDuoList: StoryObj<
     </List>
   ),
   args: {
-    items: [
-      { id: "1", ...verticalArgs },
-      { id: "2", ...verticalArgs },
-      { id: "3", ...verticalArgs },
-    ],
+    items: Array.from({ length: 3 }, (_, i) => ({
+      id: i.toString(),
+      ...verticalArgs,
+    })),
     classModifier: ["extra-padding"],
   },
   argTypes: {

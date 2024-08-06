@@ -160,7 +160,7 @@ export const Vertical: StoryObj = {
 export const DefaultContentItemDuoList: StoryObj = {
   render: contentItemDuoListRender,
   args: {
-    items: [defaultArgs, defaultArgs, defaultArgs],
+    items: Array(3).fill(defaultArgs),
     isItemsLarge: false,
     classModifier: [],
   },
@@ -176,7 +176,7 @@ export const DefaultContentItemDuoList: StoryObj = {
 export const verticalContentItemDuoList: StoryObj = {
   render: contentItemDuoListRender,
   args: {
-    items: [verticalArgs, verticalArgs, verticalArgs],
+    items: Array(3).fill(verticalArgs),
     classModifier: [],
   },
   argTypes: {
