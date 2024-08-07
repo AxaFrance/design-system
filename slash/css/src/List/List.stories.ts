@@ -12,8 +12,7 @@ export const Default: StoryObj = {
   render: ({ classModifier, ...args }) => {
     const list = document.createElement("section");
 
-    list.className = `af-card ${classModifier
-      .split(" ")
+    list.className = `af-card ${["list", ...classModifier]
       .filter(Boolean)
       .map((modifier: string) => ` af-card--${modifier}`)
       .join("")}`;
@@ -67,13 +66,13 @@ export const Default: StoryObj = {
         </div>
       </div>`,
     ],
-    classModifier: "",
+    classModifier: [],
   },
   argTypes: {
     classModifier: {
-      options: ["list", "list large"],
-      control: { type: "select" },
-      defaultValue: "list",
+      options: ["large", "first-separator-full-width"],
+      control: { type: "multi-select" },
+      defaultValue: [],
     },
   },
 };
