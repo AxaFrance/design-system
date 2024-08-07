@@ -78,11 +78,7 @@ export const Default: StoryObj<
   },
   argTypes: {
     classModifier: {
-      options: [
-        "large",
-        "first-separator-full-width",
-        "first-separator-full-width",
-      ],
+      options: ["large", "extra-padding", "first-separator-full-width"],
       control: { type: "multi-select" },
       defaultValue: [],
     },
