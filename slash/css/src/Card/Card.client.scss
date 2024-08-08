@@ -32,6 +32,15 @@
     line-height: 1.4rem;
     color: common.$color-axa;
   }
+
+  &--large {
+    width: 100%;
+  }
+
+  &--accordion {
+    padding: 0;
+    box-shadow: none;
+  }
 }
 
 button.af-card {
