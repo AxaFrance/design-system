@@ -1,7 +1,7 @@
 import { List } from "../List";
 
 import "@axa-fr/design-system-look-and-feel-css/dist/List/ContentTabList/ContentTabList.scss";
-import { useIsSmallScreen } from "../../utilities";
+import { BREAKPOINT, useIsSmallScreen } from "../../utilities";
 import { ContentTabItem, type TContentTabItem } from "./ContentTabItem";
 
 type ContentTabListProps = {
@@ -9,13 +9,11 @@ type ContentTabListProps = {
   classModifier?: string;
 };
 
-const BREAKPOINT_SMALL = 668;
-
 export const ContentTabList = ({
   items,
   classModifier,
 }: ContentTabListProps) => {
-  const isMobile = useIsSmallScreen(BREAKPOINT_SMALL);
+  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
 
   return (
     <List

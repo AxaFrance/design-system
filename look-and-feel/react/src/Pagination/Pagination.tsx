@@ -1,8 +1,8 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Pagination/Pagination.scss";
 import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import { useIsSmallScreen } from "../utilities";
-import { PaginationMobile } from "./PaginationMobile";
+import { BREAKPOINT, useIsSmallScreen } from "../utilities";
 import { PaginationDesktop } from "./PaginationDesktop";
+import { PaginationMobile } from "./PaginationMobile";
 
 type PaginationProps = {
   numberPage: number;
@@ -10,14 +10,12 @@ type PaginationProps = {
   defaultPage?: number;
 } & ComponentPropsWithoutRef<"div">;
 
-const BREAKPOINT_SMALL = 1024;
-
 export const Pagination = ({
   numberPage,
   onChangePage,
   defaultPage,
 }: PaginationProps) => {
-  const isMobile = useIsSmallScreen(BREAKPOINT_SMALL);
+  const isMobile = useIsSmallScreen(BREAKPOINT.MD);
   const [currentPage, setCurrentPage] = useState<number>(defaultPage || 1);
 
   useEffect(() => {
