@@ -51,22 +51,21 @@ type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   onDelete?: (id: string) => void;
 };
 
-const FileUpload = ({ ...otherProps }: Props) => {
-  const {
-    id,
-    label,
-    buttonLabel,
-    instructions,
-    dropzoneDescription,
-    required,
-    files,
-    errors,
-    globalError,
-    isMobile,
-    onView,
-    onDelete,
-  } = otherProps;
-
+const FileUpload = ({
+  id,
+  label,
+  buttonLabel,
+  instructions,
+  dropzoneDescription,
+  required,
+  files,
+  errors,
+  globalError,
+  isMobile,
+  onView,
+  onDelete,
+  ...otherProps
+}: Props) => {
   const getIcon = (isInError: boolean, isLoading: boolean) => {
     if (isInError) {
       return (
@@ -93,7 +92,7 @@ const FileUpload = ({ ...otherProps }: Props) => {
           (isMobile || !dropzoneDescription) && "is-mobile",
         )}
       >
-        <input type="file" name="file-input" {...otherProps} />
+        <input type="file" name="file-input" id={id} {...otherProps} />
         {dropzoneDescription && (
           <div className="af-form__file-input-dropdown-text">
             <p>{dropzoneDescription}</p>

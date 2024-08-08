@@ -14,6 +14,8 @@ import { DropdownIndicator } from "./DropdownIndicator";
 import { Svg } from "../../../Svg";
 import { CustomOption } from "./CustomOption";
 
+type Option = { label: string; value: string | number };
+
 type Props = Omit<
   ComponentPropsWithoutRef<ReactSelect>,
   "placeholder" | "noOptionsMessage"
@@ -26,7 +28,7 @@ type Props = Omit<
   placeholder?: string;
   noOptionsMessage?: string;
   onChange: (
-    newValue: SingleValue<string>,
+    newValue: SingleValue<Option>,
     actionMeta: ActionMeta<string>,
   ) => void;
   disabled?: boolean;
