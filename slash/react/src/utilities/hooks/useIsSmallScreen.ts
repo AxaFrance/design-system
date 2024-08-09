@@ -9,7 +9,7 @@ export const useIsSmallScreen = (breakPointToCheck: number) => {
   }, []);
 
   const getSnapshot = useCallback(() => {
-    return window.innerWidth < breakPointToCheck;
+    return window.innerWidth <= breakPointToCheck;
   }, [breakPointToCheck]);
 
   const getServerSnapshot = useCallback(() => false, []);
