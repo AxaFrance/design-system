@@ -1,6 +1,6 @@
 import "@fontsource/source-sans-pro";
 
-export { Accordion } from "./Accordion/Client/Accordion";
+export { Accordion } from "./Accordion/Client";
 export { Alert } from "./Alert/Alert.client";
 export type { AlertType } from "./Alert/Alert.client";
 export {
