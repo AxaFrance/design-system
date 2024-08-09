@@ -5,7 +5,7 @@ import {
   type ReactNode,
 } from "react";
 import { IconBg } from "../../client";
-import { getComponentClassName } from "../../Form/core";
+import { getComponentClassName } from "../../utilities";
 import { TitleSize } from "./constants";
 import { TitleWithSubtitles } from "./TitleWithSubtitles";
 

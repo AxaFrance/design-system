@@ -21,7 +21,6 @@ export {
   HelpMessage,
   InputList,
   MessageTypes,
-  getComponentClassName,
 } from "./Form/core";
 export { Date, DateInput } from "./Form/Date";
 export { MultiSelect, MultiSelectInput } from "./Form/MultiSelect";
@@ -57,5 +56,6 @@ export { Step, StepBase, Steps } from "./Steps";
 export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Agent/Tabs.agent";
 export { Title } from "./Title/Agent/Title";
+export { getComponentClassName } from "./utilities";
 
 export * from "./Table";

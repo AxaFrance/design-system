@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-slash-css/dist/Form/Textarea/Textarea.agent.scss";
 import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
 
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../utilities";
 
 type Props = ComponentPropsWithoutRef<"textarea"> & {
   classModifier?: string;

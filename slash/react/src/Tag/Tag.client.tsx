@@ -1,5 +1,5 @@
 import { useMemo, type ComponentProps } from "react";
-import { getComponentClassName } from "../Form/core";
+import { getComponentClassName } from "../utilities";
 
 type TagProps = ComponentProps<"div"> & {
   classModifier?: string;
