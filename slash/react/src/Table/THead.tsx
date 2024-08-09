@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../Form/core";
+import { getComponentClassName } from "../utilities";
 
 type Props = ComponentPropsWithoutRef<"thead"> & {
   classModifier?: string;

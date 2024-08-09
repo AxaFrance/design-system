@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { getComponentClassName } from "./getComponentClassName";
+import { getComponentClassName } from "../../utilities";
 
 type FieldProps = {
   isVisible?: boolean;

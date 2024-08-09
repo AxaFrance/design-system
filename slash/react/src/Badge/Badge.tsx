@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, PropsWithChildren, forwardRef } from "react";
-import { getComponentClassName } from "../Form/core";
+import { getComponentClassName } from "../utilities";
 import "@axa-fr/design-system-slash-css/dist/Badge/Badge.scss";
 
 type BadgeProps = ComponentPropsWithRef<"span"> & {

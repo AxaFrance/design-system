@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Agent/Header.agent.scss";
-import { getComponentClassName } from "../../../agent";
+import { getComponentClassName } from "../../../utilities";
 
 const defaultClassName = "af-header";
 

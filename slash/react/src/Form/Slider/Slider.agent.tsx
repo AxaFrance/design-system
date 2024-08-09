@@ -5,7 +5,7 @@ import {
   type ComponentProps,
   type ReactNode,
 } from "react";
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../utilities";
 
 type RcSliderProps = ComponentProps<typeof RcSlider>;
 type Marks = RcSliderProps["marks"];

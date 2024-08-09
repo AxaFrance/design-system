@@ -12,7 +12,6 @@ export { InputList } from "./InputList";
 export { useInputClassModifier } from "./useInputClassModifier";
 export { getOptionClassName } from "./getOptionClassName";
 export { useOptionsWithId } from "./useOptionsWithId";
-export { getComponentClassName } from "./getComponentClassName";
 export { getFirstId } from "./getFirstId";
 
 export type Option = {

@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../Form/core";
+import { getComponentClassName } from "../utilities";
 import "@axa-fr/design-system-slash-css/dist/Action/Action.scss";
 
 type ActionCoreProps = ComponentPropsWithoutRef<"a"> & {

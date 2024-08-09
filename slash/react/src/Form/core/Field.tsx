@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react";
-import { getComponentClassName } from "./getComponentClassName";
+import { getComponentClassName } from "../../utilities";
 import { FieldError } from "./FieldError";
 import { MessageTypes } from "./MessageTypes";
 import { FieldForm } from "./FieldForm";

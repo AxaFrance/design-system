@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Agent/TitleHeader/TitleHeader.scss";
 
-import { getComponentClassName } from "../../../../agent";
+import { getComponentClassName } from "../../../../utilities";
 import { ToggleButton } from "../ToggleButton/ToggleButton";
 import { Action } from "../../../../Action/Action";
 import { getClassModifier } from "./TitleHeader.helpers";
