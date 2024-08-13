@@ -46,30 +46,22 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
       {
         label: (
           <>
-            <h3 className="af-list-item-content-label__title">
+            <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
             </h3>
-            <p className="af-list-item-content-label__subtitle">
-              30 novembre 2021
-            </p>
-            <p className="af-list-item-content-label__secondary">
-              Signé électroniquement
-            </p>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
       },
       {
         label: (
           <>
-            <h3 className="af-list-item-content-label__title">
+            <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
             </h3>
-            <p className="af-list-item-content-label__subtitle">
-              30 novembre 2021
-            </p>
-            <p className="af-list-item-content-label__secondary">
-              Signé électroniquement
-            </p>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
         disabled: true,
@@ -94,15 +86,11 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
       {
         label: (
           <>
-            <h3 className="af-list-item-content-label__title">
+            <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
             </h3>
-            <p className="af-list-item-content-label__subtitle">
-              30 novembre 2021
-            </p>
-            <p className="af-list-item-content-label__secondary">
-              Signé électroniquement
-            </p>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
         href: "https://github.com/AxaFrance/design-system",
@@ -111,15 +99,11 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
       {
         label: (
           <>
-            <h3 className="af-list-item-content-label__title">
+            <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
             </h3>
-            <p className="af-list-item-content-label__subtitle">
-              30 novembre 2021
-            </p>
-            <p className="af-list-item-content-label__secondary">
-              Signé électroniquement
-            </p>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
         href: "https://github.com/AxaFrance/design-system",

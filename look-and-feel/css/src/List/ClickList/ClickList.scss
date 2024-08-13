@@ -1,49 +1,56 @@
 @use "../../common/reboot";
 @use "../../common/common" as common;
 
-.af-list-item {
+.af-click-item {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: common.$default-border-radius;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+
   &__content {
     display: inherit;
     align-items: inherit;
     gap: 0.75rem;
   }
 
-  &-content {
-    &__icon svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      fill: common.$color-axa;
-    }
+  &__icon svg {
+    width: 1.4rem;
+    height: 1.4rem;
+    fill: common.$color-axa;
+  }
 
-    &__label {
-      text-align: left;
-    }
+  &__label {
+    text-align: left;
+  }
 
-    &-label {
-      &__title {
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.4rem;
-        color: common.$color-gray-900;
-      }
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4rem;
+    color: common.$color-gray-900;
+  }
 
-      &__subtitle {
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.4rem;
-        color: common.$color-gray-700;
-      }
+  &__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: common.$color-gray-700;
+  }
 
-      &__secondary {
-        margin: 0;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1.1rem;
-        color: common.$color-gray-700;
-      }
-    }
+  &__secondary {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.1rem;
+    color: common.$color-gray-700;
   }
 
   &__action {
@@ -57,120 +64,72 @@
   }
 }
 
-.af-card--large .af-list-item {
-  &-content__label {
+.af-card--large .af-click-item {
+  &__label {
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.4rem;
   }
 
-  &-content-label {
-    &__title {
-      font-size: 1.125rem;
-      line-height: 1.4rem;
+  &__title {
+    font-size: 1.125rem;
+    line-height: 1.4rem;
+  }
+
+  &__subtitle {
+    font-size: 1.125rem;
+    line-height: 1.4rem;
+  }
+}
+
+.af-click-item:disabled {
+  cursor: default;
+
+  .af-click-item {
+    &__action svg {
+      fill: common.$color-gray-500;
     }
 
-    &__subtitle {
-      font-size: 1.125rem;
-      line-height: 1.4rem;
+    &__icon svg {
+      fill: common.$color-gray-500;
+    }
+
+    &__label {
+      color: common.$color-gray-500;
+    }
+
+    &__title,
+    &__subtitle,
+    &__secondary {
+      color: common.$color-gray-500;
     }
   }
 }
 
-.af-list__item .af-list-item__button {
-  display: flex;
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  border-radius: common.$default-border-radius;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: inherit;
-  background: none;
-  cursor: pointer;
-
-  &:disabled {
-    cursor: default;
-
-    .af-list-item {
-      &-content {
-        &__icon svg {
-          fill: common.$color-gray-500;
-        }
-
-        &__label {
-          color: common.$color-gray-500;
-        }
-
-        &-label__title,
-        &-label__subtitle,
-        &-label__secondary {
-          color: common.$color-gray-500;
-        }
-      }
-
-      &__action svg {
-        fill: common.$color-gray-500;
-      }
-    }
+.af-click-item:not(:disabled) {
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 hsla(230deg, 60%, 16%, 8%);
   }
 
-  &:not(:disabled) {
-    &:hover {
-      box-shadow: 0 4px 8px 0 hsla(230deg, 60%, 16%, 8%);
-    }
+  &:active {
+    box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
+    outline: none;
+  }
 
-    &:active {
-      box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
-      outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 
-    &:focus {
-      outline: none;
-    }
-
-    &:focus-visible {
-      border: 2px solid common.$color-focus;
-      outline: none;
-    }
+  &:focus-visible {
+    border: 2px solid common.$color-focus;
+    outline: none;
   }
 }
 
 @media (width <= #{common.$breakpoint-sm}) {
-  .af-list-item-content {
-    &__label {
-      font-size: 0.875rem;
-      line-height: 1.1rem;
-    }
-
-    &-label {
-      &__title,
-      &__subtitle {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-      }
-    }
-  }
-
-  .af-card--large .af-list-item-content {
-    &__label {
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.25rem;
-    }
-
-    &-label {
-      &__title,
-      &__subtitle {
-        font-size: 1rem;
-        line-height: 1.25rem;
-      }
-    }
-  }
-
-  .af-list-item__button {
-    &:enabled {
+  .af-click-item {
+    &:not(:disabled) {
       box-shadow: none;
 
       &:hover {
@@ -181,9 +140,9 @@
             color: common.$color-axa;
           }
 
-          &-label__title,
-          &-label__subtitle,
-          &-label__secondary {
+          &__title,
+          &__subtitle,
+          &__secondary {
             color: common.$color-axa;
           }
         }
@@ -197,9 +156,9 @@
             color: common.$color-blue-1;
           }
 
-          &-label__title,
-          &-label__subtitle,
-          &-label__secondary {
+          &__title,
+          &__subtitle,
+          &__secondary {
             color: common.$color-blue-1;
           }
         }
@@ -209,6 +168,31 @@
         border: none;
         border: 1px solid common.$color-focus;
       }
+    }
+
+    &__label {
+      font-size: 0.875rem;
+      line-height: 1.1rem;
+    }
+
+    &__title,
+    &__subtitle {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
+
+  .af-card--large .af-click-item {
+    &__label {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+    }
+
+    &__title,
+    &__subtitle {
+      font-size: 1rem;
+      line-height: 1.25rem;
     }
   }
 }

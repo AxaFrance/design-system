@@ -34,12 +34,12 @@ export const ClickItem = ({
     );
 
   return (
-    <ClickComponent className="af-list-item__button" {...clickComponentProps}>
-      <div className="af-list-item__content">
-        {icon && <div className="af-list-item-content__icon">{icon}</div>}
-        <div className="af-list-item-content__label">{label}</div>
+    <ClickComponent className="af-click-item" {...clickComponentProps}>
+      <div className="af-click-item__content">
+        {icon && <div className="af-click-item__icon">{icon}</div>}
+        <div className="af-click-item__label">{label}</div>
       </div>
-      <div className="af-list-item__action">
+      <div className="af-click-item__action">
         <Svg src={chevron} />
       </div>
     </ClickComponent>

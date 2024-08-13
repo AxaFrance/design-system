@@ -50,26 +50,26 @@ const template = ({ items, cardClassModifier }: TClickList) => {
       clickItem.disabled = child.disabled;
     }
 
-    clickItem.className = "af-list-item__button";
+    clickItem.className = "af-click-item";
 
     const contentContainer = document.createElement("div");
-    contentContainer.className = "af-list-item__content";
+    contentContainer.className = "af-click-item__content";
 
     if (child.icon) {
       const itemIcon = document.createElement("div");
-      itemIcon.className = "af-list-item-content__icon";
+      itemIcon.className = "af-click-item__icon";
       itemIcon.innerHTML = child.icon;
       contentContainer.appendChild(itemIcon);
     }
 
     const itemLabel = document.createElement("div");
-    itemLabel.className = "af-list-item-content__label";
+    itemLabel.className = "af-click-item__label";
     itemLabel.innerHTML = child.label;
     contentContainer.appendChild(itemLabel);
     clickItem.appendChild(contentContainer);
 
     const itemAction = document.createElement("div");
-    itemAction.className = "af-list-item__action";
+    itemAction.className = "af-click-item__action";
     itemAction.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
@@ -129,16 +129,16 @@ export const ClickListWithoutIcon: StoryObj<TClickList> = {
     items: [
       {
         label: `
-          <h3 class="af-list-item-content-label__title">Fiche Orias précontractuelle</h3>
-          <p class="af-list-item-content-label__subtitle">30 novembre 2021</p>
-          <p class="af-list-item-content-label__secondary">Signé électroniquement</p>`,
+          <h3 class="af-click-item__title">Fiche Orias précontractuelle</h3>
+          <p class="af-click-item__subtitle">30 novembre 2021</p>
+          <p class="af-click-item__secondary">Signé électroniquement</p>`,
         disabled: false,
       },
       {
         label: `
-          <h3 class="af-list-item-content-label__title">Fiche Orias précontractuelle</h3>
-          <p class="af-list-item-content-label__subtitle">30 novembre 2021</p>
-          <p class="af-list-item-content-label__secondary">Signé électroniquement</p>`,
+          <h3 class="af-click-item__title">Fiche Orias précontractuelle</h3>
+          <p class="af-click-item__subtitle">30 novembre 2021</p>
+          <p class="af-click-item__secondary">Signé électroniquement</p>`,
         disabled: true,
       },
     ],
@@ -159,18 +159,18 @@ export const ClickListLinkWithoutIcon: StoryObj<TClickList> = {
     items: [
       {
         label: `
-          <h3 class="af-list-item-content-label__title">Fiche Orias précontractuelle</h3>
-          <p class="af-list-item-content-label__subtitle">30 novembre 2021</p>
-          <p class="af-list-item-content-label__secondary">Signé électroniquement</p>`,
+          <h3 class="af-click-item__title">Fiche Orias précontractuelle</h3>
+          <p class="af-click-item__subtitle">30 novembre 2021</p>
+          <p class="af-click-item__secondary">Signé électroniquement</p>`,
         href: "https://github.com/AxaFrance/design-system",
         target: "_blank",
         disabled: false,
       },
       {
         label: `
-          <h3 class="af-list-item-content-label__title">Fiche Orias précontractuelle</h3>
-          <p class="af-list-item-content-label__subtitle">30 novembre 2021</p>
-          <p class="af-list-item-content-label__secondary">Signé électroniquement</p>`,
+          <h3 class="af-click-item__title">Fiche Orias précontractuelle</h3>
+          <p class="af-click-item__subtitle">30 novembre 2021</p>
+          <p class="af-click-item__secondary">Signé électroniquement</p>`,
         href: "https://github.com/AxaFrance/design-system",
         target: "_blank",
         disabled: true,
