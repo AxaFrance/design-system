@@ -85,3 +85,55 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
     },
   },
 };
+
+export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
+  name: "ClickList link without icon",
+  render: (args) => <ClickList {...args} />,
+  args: {
+    items: [
+      {
+        label: (
+          <>
+            <h3 className="af-list-item-content-label__title">
+              Fiche Orias précontractuelle
+            </h3>
+            <p className="af-list-item-content-label__subtitle">
+              30 novembre 2021
+            </p>
+            <p className="af-list-item-content-label__secondary">
+              Signé électroniquement
+            </p>
+          </>
+        ),
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
+      },
+      {
+        label: (
+          <>
+            <h3 className="af-list-item-content-label__title">
+              Fiche Orias précontractuelle
+            </h3>
+            <p className="af-list-item-content-label__subtitle">
+              30 novembre 2021
+            </p>
+            <p className="af-list-item-content-label__secondary">
+              Signé électroniquement
+            </p>
+          </>
+        ),
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
+        disabled: true,
+      },
+    ],
+    classModifier: "",
+  },
+  argTypes: {
+    classModifier: {
+      options: ["", "large"],
+      control: { type: "select" },
+      defaultValue: "",
+    },
+  },
+};

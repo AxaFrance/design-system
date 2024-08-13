@@ -10,7 +10,13 @@ const meta: Meta = {
 export default meta;
 
 type TClickList = {
-  items: { icon?: string; label: string; disabled: boolean }[];
+  items: {
+    icon?: string;
+    label: string;
+    disabled: boolean;
+    href?: string;
+    target?: string;
+  }[];
   cardClassModifier?: string;
 };
 
@@ -30,10 +36,21 @@ const template = ({ items, cardClassModifier }: TClickList) => {
     const item = document.createElement("li");
     item.className = "af-list__item";
 
-    const itemButton = document.createElement("button");
-    itemButton.className = "af-list-item__button";
-    itemButton.type = "button";
-    itemButton.disabled = child.disabled;
+    let clickItem: HTMLButtonElement | HTMLAnchorElement;
+
+    if (child.href && !child.disabled) {
+      clickItem = document.createElement("a");
+      clickItem.href = child.href;
+      if (child.target) {
+        clickItem.target = child.target;
+      }
+    } else {
+      clickItem = document.createElement("button");
+      clickItem.type = "button";
+      clickItem.disabled = child.disabled;
+    }
+
+    clickItem.className = "af-list-item__button";
 
     const contentContainer = document.createElement("div");
     contentContainer.className = "af-list-item__content";
@@ -49,7 +66,7 @@ const template = ({ items, cardClassModifier }: TClickList) => {
     itemLabel.className = "af-list-item-content__label";
     itemLabel.innerHTML = child.label;
     contentContainer.appendChild(itemLabel);
-    itemButton.appendChild(contentContainer);
+    clickItem.appendChild(contentContainer);
 
     const itemAction = document.createElement("div");
     itemAction.className = "af-list-item__action";
@@ -57,9 +74,9 @@ const template = ({ items, cardClassModifier }: TClickList) => {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
         </svg>`;
-    itemButton.appendChild(itemAction);
+    clickItem.appendChild(itemAction);
 
-    item.appendChild(itemButton);
+    item.appendChild(clickItem);
     ul.appendChild(item);
 
     if (index < items.length - 1) {
@@ -122,6 +139,40 @@ export const ClickListWithoutIcon: StoryObj<TClickList> = {
           <h3 class="af-list-item-content-label__title">Fiche Orias précontractuelle</h3>
           <p class="af-list-item-content-label__subtitle">30 novembre 2021</p>
           <p class="af-list-item-content-label__secondary">Signé électroniquement</p>`,
+        disabled: true,
+      },
+    ],
+    cardClassModifier: "",
+  },
+  argTypes: {
+    cardClassModifier: {
+      options: ["", "large"],
+      control: { type: "select" },
+      defaultValue: "",
+    },
+  },
+};
+
+export const ClickListLinkWithoutIcon: StoryObj<TClickList> = {
+  render: template,
+  args: {
+    items: [
+      {
+        label: `
+          <h3 class="af-list-item-content-label__title">Fiche Orias précontractuelle</h3>
+          <p class="af-list-item-content-label__subtitle">30 novembre 2021</p>
+          <p class="af-list-item-content-label__secondary">Signé électroniquement</p>`,
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
+        disabled: false,
+      },
+      {
+        label: `
+          <h3 class="af-list-item-content-label__title">Fiche Orias précontractuelle</h3>
+          <p class="af-list-item-content-label__subtitle">30 novembre 2021</p>
+          <p class="af-list-item-content-label__secondary">Signé électroniquement</p>`,
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
         disabled: true,
       },
     ],

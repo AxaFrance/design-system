@@ -79,6 +79,54 @@ const MyComponentWithoutIcon = () => (
 );
 ```
 
+### Use with link and without left icon
+
+```tsx
+const MyComponentWithoutIcon = () => (
+  <ClickList
+    items={[
+      {
+        id: "pre-contractual_Orias_sheet",
+        label: (
+          <>
+            <h3 className="af-list-item-content-label__title">
+              Fiche Orias précontractuelle
+            </h3>
+            <p className="af-list-item-content-label__subtitle">
+              30 novembre 2021
+            </p>
+            <p className="af-list-item-content-label__secondary">
+              Signé électroniquement
+            </p>
+          </>
+        ),
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
+      },
+      {
+        id: "contractual_Orias_sheet-2",
+        label: (
+          <>
+            <h3 className="af-list-item-content-label__title">
+              Fiche Orias précontractuelle
+            </h3>
+            <p className="af-list-item-content-label__subtitle">
+              30 novembre 2021
+            </p>
+            <p className="af-list-item-content-label__secondary">
+              Signé électroniquement
+            </p>
+          </>
+        ),
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
+        disabled: true,
+      },
+    ]}
+  />
+);
+```
+
 ## Playground
 
 ### ClickList with left icons
@@ -92,3 +140,9 @@ const MyComponentWithoutIcon = () => (
 <Canvas of={ClickListStories.ClickListWithoutIcon} />
 
 <Controls of={ClickListStories.ClickListWithoutIcon} />
+
+### ClickList with link and without left icon
+
+<Canvas of={ClickListStories.ClickListLinkWithoutIcon} />
+
+<Controls of={ClickListStories.ClickListLinkWithoutIcon} />
