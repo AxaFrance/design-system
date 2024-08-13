@@ -22,6 +22,7 @@ export const Default: StoryObj<typeof Alert> = {
         Plus de détails
       </Link>
     ),
+    iconSize: 24,
   },
   argTypes: {
     type: {

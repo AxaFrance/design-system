@@ -27,6 +27,8 @@ export const Default: StoryObj<typeof Svg> = {
   args: {
     src: "/public/headphones.svg",
     fill: "#00008f",
+    width: 24,
+    height: 24,
     alt: "error",
   },
   argTypes: {
