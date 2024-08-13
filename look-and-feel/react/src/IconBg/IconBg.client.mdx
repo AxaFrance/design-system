@@ -1,0 +1,28 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as IconBgStories from "./IconBg.client.stories";
+
+<Meta of={IconBgStories} name="IconBg" />
+
+# IconBg
+
+### Import
+
+```tsx
+import { IconBg } from "@axa-fr/design-system-look-and-feel-react/client";
+```
+
+### Use
+
+```tsx
+export const IconBgComponent = () => (
+  <IconBg classModifier="secondary">
+    <Svg src={article} />
+  </IconBg>
+);
+```
+
+## Playground
+
+<Canvas of={IconBgStories.Default} />
+
+<Controls of={IconBgStories.Default} />

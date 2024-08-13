@@ -7,7 +7,7 @@ import "./Svg.stories.css";
 import { Svg } from "./index";
 
 const meta: Meta = {
-  title: "Agent/Components/Svg",
+  title: "Slash/Components/Svg",
   component: Svg,
 };
 

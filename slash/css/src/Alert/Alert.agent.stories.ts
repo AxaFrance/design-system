@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Alert.agent.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Alert",
+  title: "Slash/Components/Alert",
 };
 
 export default meta;

@@ -50,7 +50,7 @@ const meta: Meta = {
 
     return container;
   },
-  title: "Agent/Components/Header/TitleHeader",
+  title: "Slash/Components/Header/TitleHeader",
 };
 
 export default meta;

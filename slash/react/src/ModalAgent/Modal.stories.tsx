@@ -15,7 +15,7 @@ const MODIFIERS = [
 ];
 
 const meta: Meta<typeof Modal> = {
-  title: "Agent/Components/Modal",
+  title: "Slash/Components/Modal",
   component: Modal,
   parameters: {
     options: {},

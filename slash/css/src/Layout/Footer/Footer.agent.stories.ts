@@ -3,7 +3,7 @@ import logo from "../../common/assets/logo-axa.svg";
 import "./Footer.agent.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Footer",
+  title: "Slash/Components/Footer",
 };
 
 export default meta;

@@ -5,7 +5,7 @@ import { SelectInput } from "./SelectInput";
 
 const meta: Meta<typeof SelectInput> = {
   component: SelectInput,
-  title: "Agent/Components/Form/Input/Select",
+  title: "Slash/Components/Form/Input/Select",
   argTypes: { onChange: { action: "onChange" } },
 };
 

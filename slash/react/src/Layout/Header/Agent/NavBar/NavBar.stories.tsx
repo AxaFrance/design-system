@@ -3,7 +3,7 @@ import type React from "react";
 import { NavBar, NavBarItem } from ".";
 
 const meta: Meta<typeof NavBar> = {
-  title: "Agent/Components/NavBar",
+  title: "Slash/Components/NavBar",
   component: NavBar,
   argTypes: {
     onClick: { action: "onClick" },

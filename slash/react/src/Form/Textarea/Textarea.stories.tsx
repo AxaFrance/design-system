@@ -5,7 +5,7 @@ const MODIFIERS = ["", "required", "disabled"];
 
 const meta: Meta<typeof Textarea> = {
   component: Textarea,
-  title: "Agent/Components/Form/Input/Textarea",
+  title: "Slash/Components/Form/Input/Textarea",
   argTypes: { onChange: { action: "onChange" } },
 };
 

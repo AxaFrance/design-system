@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Badge.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Badge",
+  title: "Slash/Components/Badge",
   parameters: {
     layout: "centered",
   },

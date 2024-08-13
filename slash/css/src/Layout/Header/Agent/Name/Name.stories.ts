@@ -4,7 +4,7 @@ import "./Name.scss";
 import logo from "../../../../common/assets/logo-axa.svg";
 
 const meta: Meta = {
-  title: "Agent/Components/Header/Name",
+  title: "Slash/Components/Header/Name",
 };
 
 export default meta;

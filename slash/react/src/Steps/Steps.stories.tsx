@@ -9,7 +9,7 @@ type StoryProps = React.ComponentProps<typeof Steps> & {
 
 const meta: Meta<StoryProps> = {
   component: Steps,
-  title: "Agent/Components/Steps",
+  title: "Slash/Components/Steps",
   args: {
     mode: "link",
   },

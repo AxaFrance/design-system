@@ -3,7 +3,7 @@ import {
   ButtonVariants as ButtonClientVariants,
   Svg,
   TextInput,
-} from "@axa-fr/design-system-slash-react/client";
+} from "@axa-fr/design-system-look-and-feel-react/client";
 import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
 
 const Client = () => (

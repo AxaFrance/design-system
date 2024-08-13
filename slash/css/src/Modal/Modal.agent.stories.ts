@@ -3,7 +3,7 @@ import "../Button/Button.agent.scss";
 import "./Modal.agent.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Modal",
+  title: "Slash/Components/Modal",
 };
 
 export default meta;

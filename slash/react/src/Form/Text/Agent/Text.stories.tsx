@@ -6,7 +6,7 @@ const MODIFIERS = ["", "required", "disabled"];
 
 const meta: Meta<typeof Text> = {
   component: Text,
-  title: "Agent/Components/Form/Input/Text",
+  title: "Slash/Components/Form/Input/Text",
   argTypes: { onChange: { action: "onChange" } },
 };
 

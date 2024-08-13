@@ -4,7 +4,7 @@ import { Table } from "./Table";
 
 const meta: Meta<typeof Paging> = {
   component: Paging,
-  title: "Agent/Components/Table",
+  title: "Slash/Components/Table",
   argTypes: { onChange: { action: "onChange" } },
 };
 

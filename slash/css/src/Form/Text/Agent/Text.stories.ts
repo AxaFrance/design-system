@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Text.agent.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Form/Input/Text",
+  title: "Slash/Components/Form/Input/Text",
 };
 
 export default meta;

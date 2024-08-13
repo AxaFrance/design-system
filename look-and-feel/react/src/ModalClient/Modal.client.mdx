@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ModalStories from "./Modal.client.stories";
+
+<Meta of={ModalStories} name="Modal Client" />
+
+# Modal
+
+To use the modal import it like that:
+
+```tsx title="test.js"
+import { Modal } from "@axa-fr/design-system-look-and-feel-react/client";
+
+const MyComponent = () => <Modal isOpen={true} />;
+```
+
+## Playground
+
+<Canvas of={ModalStories.Playground} />
+
+<Controls story="Modal" />

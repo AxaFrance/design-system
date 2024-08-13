@@ -1,0 +1,105 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as HeaderClientStories from "./Header.client.stories";
+
+<Meta of={HeaderClientStories} name="Header Client" />
+
+# Header Client
+
+## Import
+
+```tsx
+import { Header } from "@axa-fr/design-system-look-and-feel-react/client";
+```
+
+## Use
+
+### Use Default Header
+
+```tsx
+const DefaultHeader = () => <Header />;
+```
+
+### Use Header with Navigation Bar
+
+```tsx
+const HeaderWithNavBar = () => <Header links={links} />;
+```
+
+### Use Header with Navigation Bar and right item
+
+```tsx
+const HeaderWithNavBarAndRightItem = () => (
+  <Header
+    links={links}
+    rightItem={[
+      <Button
+        key="Banking Space Button"
+        iconLeft={<Svg src={lock} fill="#00008f" />}
+        variant={ButtonVariants.secondary}
+      >
+        Espace Banque
+      </Button>,
+      <Button
+        key="Profile Button"
+        iconLeft={<Svg src={person} fill="#00008f" />}
+        variant={ButtonVariants.ghost}
+      >
+        Mon Profil
+      </Button>,
+    ]}
+  />
+);
+```
+
+### Use Header with Navigation Bar, right item and previous link
+
+```tsx
+const HeaderWithLinksAndRightItemAndHomeLink = () =>
+<Header
+    links={links}
+    rightItem={
+    [
+        <Button
+            key="Banking Space Button"
+            iconLeft={<Svg src={lock} fill="#00008f" />}
+            variant={ButtonVariants.secondary}
+        >
+            Espace Banque
+        </Button>,
+        <Button
+            key="Profile Button"
+            iconLeft={<Svg src={person} fill="#00008f" />}
+            variant={ButtonVariants.ghost}
+        >
+            Mon Profil
+        </Button>,
+    ]
+    previousLink={previousLink}
+}/>;
+```
+
+## Playground
+
+### Default Header
+
+<Canvas of={HeaderClientStories.Default} />
+
+<Controls of={HeaderClientStories.Default} />
+
+### Header with Navigation Bar
+
+<Canvas of={HeaderClientStories.HeaderWithNavBar} />
+
+<Controls of={HeaderClientStories.HeaderWithNavBar} />
+
+### Header with Navigation Bar and right item
+
+<Canvas of={HeaderClientStories.HeaderWithNavBarAndRightItem} />
+
+<Controls of={HeaderClientStories.HeaderWithNavBarAndRightItem} />
+
+### Header with Navigation Bar, right item and previous link
+
+<Canvas of={HeaderClientStories.HeaderWithLinksAndRightItemAndPreviousLink} />
+
+<Controls of={HeaderClientStories.HeaderWithLinksAndRightItemAndPreviousLink} />

@@ -4,7 +4,7 @@ import { RadioItem } from "./RadioItem";
 
 const meta: Meta<typeof RadioItem> = {
   component: RadioItem,
-  title: "Agent/Components/Form/Input/Radio",
+  title: "Slash/Components/Form/Input/Radio",
   argTypes: { onChange: { action: "onChange" } },
 };
 

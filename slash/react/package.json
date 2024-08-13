@@ -7,10 +7,6 @@
       "import": "./dist/agent.js",
       "types": "./dist/agent.d.ts"
     },
-    "./client": {
-      "import": "./dist/client.js",
-      "types": "./dist/client.d.ts"
-    },
     "./utilities": {
       "import": "./dist/utilities.js",
       "types": "./dist/utilities.d.ts"

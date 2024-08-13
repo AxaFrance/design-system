@@ -10,7 +10,7 @@ const options = [
 
 const meta: Meta<typeof Select> = {
   component: Select,
-  title: "Agent/Components/Form/Input/Select",
+  title: "Slash/Components/Form/Input/Select",
   argTypes: { onChange: { action: "onChange" } },
 };
 

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./Title.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Title",
+  title: "Slash/Components/Title",
 };
 
 export default meta;

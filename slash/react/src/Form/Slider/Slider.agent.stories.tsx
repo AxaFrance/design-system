@@ -5,7 +5,7 @@ import { Slider } from ".";
 const MODIFIERS = ["required", "disabled"];
 
 const meta: Meta = {
-  title: "Agent/Components/Form/Input/Slider",
+  title: "Slash/Components/Form/Input/Slider",
   component: Slider,
 };
 

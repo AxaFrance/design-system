@@ -1,0 +1,107 @@
+{
+  "name": "@axa-fr/design-system-look-and-feel-css",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --config ../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
+    "start:storybook": "storybook dev -p 6008",
+    "build:storybook": "storybook build",
+    "eslint": "eslint src --ext js,jsx,ts,tsx",
+    "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
+    "stylelint": "stylelint \"src/**/*.{scss,css}\"",
+    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
+    "prettier": "prettier \"src/**/*\" --check",
+    "prettier:fix": "prettier \"src/**/*\" --write",
+    "tsc": "tsc --noEmit"
+  },
+  "dependencies": {
+    "rc-slider": "^10.5.0"
+  },
+  "peerDependencies": {
+    "@material-symbols/svg-400": ">= 0.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@material-symbols/svg-400": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@csstools/postcss-sass": "^5.1.1",
+    "@storybook/addon-essentials": "^7.6.14",
+    "@storybook/addon-interactions": "^7.6.14",
+    "@storybook/addon-links": "^7.6.14",
+    "@storybook/addon-storysource": "^7.6.14",
+    "@storybook/addons": "^7.6.14",
+    "@storybook/blocks": "^7.6.14",
+    "@storybook/html": "^7.6.14",
+    "@storybook/html-vite": "^7.6.14",
+    "@storybook/test": "^7.6.14",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "browserslist": "^4.23.0",
+    "copyfiles": "^2.4.1",
+    "cssnano": "^7.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-normalize": "^10.0.1",
+    "postcss-preset-env": "^9.5.2",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.3.3",
+    "rimraf": "^5.0.5",
+    "storybook": "^7.6.14",
+    "stylelint": "^16.3.1",
+    "stylelint-config-pretty-order": "^0.5.1",
+    "stylelint-config-recommended-scss": "^14.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-prettier": "^5.0.0",
+    "tsc-files": "^1.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": "AxaFrance",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": "eslint --fix",
+    "*.(ts|tsx)": "tsc-files --noEmit",
+    "*.(scss|css)": "stylelint --fix",
+    "*.mdx": "prettier --write"
+  },
+  "volta": {
+    "node": "20.10.0",
+    "npm": "10.2.5"
+  }
+}

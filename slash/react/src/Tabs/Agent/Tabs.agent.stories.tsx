@@ -4,7 +4,7 @@ import { Tabs } from "./Tabs.agent";
 import type { TabsCoreProps } from "./components/TabsCore";
 
 export default {
-  title: "Agent/Components/Tabs",
+  title: "Slash/Components/Tabs",
   component: Tabs,
   parameters: {
     options: {},

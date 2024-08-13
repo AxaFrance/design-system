@@ -3,7 +3,7 @@ import { ButtonAgent as Button } from "../../Button/Button.agent";
 import { Title } from "./Title";
 
 const meta: Meta<typeof Title> = {
-  title: "Agent/Components/Title",
+  title: "Slash/Components/Title",
   component: Title,
 };
 export default meta;

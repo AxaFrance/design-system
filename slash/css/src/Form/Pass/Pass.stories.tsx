@@ -3,7 +3,7 @@ import "../../common/icons.scss";
 import "./Pass.agent.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Form/Input/Pass",
+  title: "Slash/Components/Form/Input/Pass",
 };
 
 export default meta;

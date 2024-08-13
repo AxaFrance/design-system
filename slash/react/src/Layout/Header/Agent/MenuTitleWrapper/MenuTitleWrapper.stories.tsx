@@ -6,7 +6,7 @@ import { MenuTitleWrapper } from "./MenuTitleWrapper";
 
 const meta: Meta<typeof NavBar> = {
   component: NavBar,
-  title: "Agent/Components/Header/MenuTitleWrapper",
+  title: "Slash/Components/Header/MenuTitleWrapper",
 };
 
 export default meta;

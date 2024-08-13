@@ -4,7 +4,7 @@ import { Infos } from "./Infos";
 
 const meta: Meta<typeof Infos> = {
   component: Infos,
-  title: "Agent/Components/Header/Infos",
+  title: "Slash/Components/Header/Infos",
 };
 
 export default meta;

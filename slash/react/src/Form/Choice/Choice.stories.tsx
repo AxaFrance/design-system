@@ -4,7 +4,7 @@ import { Choice } from "./Choice";
 
 const meta: Meta<typeof Choice> = {
   component: Choice,
-  title: "Agent/Components/Form/Input/Choice",
+  title: "Slash/Components/Form/Input/Choice",
   argTypes: { onChange: { action: "onChange" } },
 };
 

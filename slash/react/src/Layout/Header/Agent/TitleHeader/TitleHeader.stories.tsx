@@ -22,7 +22,7 @@ const meta: Meta<typeof TitleHeader> = {
     },
   },
   component: TitleHeader,
-  title: "Agent/Components/Header/TitleHeader",
+  title: "Slash/Components/Header/TitleHeader",
 };
 
 export default meta;

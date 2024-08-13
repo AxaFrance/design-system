@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { NavBarItem } from "..";
 
 const meta: Meta<typeof NavBarItem> = {
-  title: "Agent/Components/NavBar/NavBarItem",
+  title: "Slash/Components/NavBar/NavBarItem",
   component: NavBarItem,
   args: {
     hasFocus: false,

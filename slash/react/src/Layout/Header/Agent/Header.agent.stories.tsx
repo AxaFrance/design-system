@@ -7,7 +7,7 @@ import { Name } from "./Name/Name";
 
 const meta: Meta<typeof HeaderAgent> = {
   component: HeaderAgent,
-  title: "Agent/Components/Header",
+  title: "Slash/Components/Header",
 };
 
 export default meta;

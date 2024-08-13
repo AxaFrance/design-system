@@ -5,7 +5,7 @@ import "./Paging.agent.scss";
 import "./Table.agent.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Table",
+  title: "Slash/Components/Table",
 };
 
 export default meta;

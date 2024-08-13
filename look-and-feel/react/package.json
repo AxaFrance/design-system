@@ -1,0 +1,119 @@
+{
+  "name": "@axa-fr/design-system-look-and-feel-react",
+  "version": "0.1.0",
+  "description": "",
+  "exports": {
+    "./client": {
+      "import": "./dist/client.js",
+      "types": "./dist/client.d.ts"
+    },
+    "./utilities": {
+      "import": "./dist/utilities.js",
+      "types": "./dist/utilities.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "postbuild": "copyfiles --up 1 \"src/assets/svg/*.svg\" ./dist/",
+    "start:storybook": "storybook dev -p 6009",
+    "build:storybook": "storybook build",
+    "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
+    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx)\" --check",
+    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx)\" --write",
+    "tsc": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:ci": "vitest run --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": "AxaFrance",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "peerDependencies": {
+    "@axa-fr/design-system-look-and-feel-css": "*",
+    "@material-symbols/svg-400": ">= 0.19.0",
+    "react": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "@material-symbols/svg-400": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@fontsource/source-sans-pro": "^5.0.8",
+    "@tanem/svg-injector": "^10.1.68",
+    "classnames": "^2.5.1",
+    "dompurify": "^3.1.5",
+    "rc-slider": "^10.5.0",
+    "react-select": "^5.8.0"
+  },
+  "devDependencies": {
+    "@material-symbols/svg-400": "*",
+    "@storybook/addon-docs": "^7.6.14",
+    "@storybook/addon-essentials": "^7.6.14",
+    "@storybook/addon-interactions": "^7.6.14",
+    "@storybook/addon-links": "^7.6.14",
+    "@storybook/addon-mdx-gfm": "^7.6.14",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/addons": "^7.6.14",
+    "@storybook/blocks": "^7.6.14",
+    "@storybook/react": "^7.6.14",
+    "@storybook/react-vite": "^7.6.14",
+    "@storybook/test": "^7.6.14",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/dompurify": "^3.0.5",
+    "@types/jest": "^29.5.12",
+    "@types/jest-axe": "^3.5.9",
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.2",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.4.0",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest-axe": "^8.0.0",
+    "jsdom": "^24.0.0",
+    "prettier": "^3.3.3",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.2.0",
+    "rimraf": "^5.0.5",
+    "storybook": "^7.6.14",
+    "tsc-files": "^1.1.4",
+    "typescript": "^5.4.4",
+    "vitest": "^1.4.0"
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": "eslint --fix",
+    "*.(ts|tsx)": "tsc-files --noEmit",
+    "*.mdx": "prettier --write"
+  },
+  "volta": {
+    "node": "20.10.0",
+    "npm": "10.2.5"
+  }
+}

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./NavBar.scss";
 
 const meta: Meta = {
-  title: "Agent/Components/Header/NavBar",
+  title: "Slash/Components/Header/NavBar",
 };
 
 export default meta;

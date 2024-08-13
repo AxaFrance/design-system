@@ -5,7 +5,7 @@ import { inputTypes } from "./inputTypes";
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
-  title: "Agent/Components/Form/Input/Text",
+  title: "Slash/Components/Form/Input/Text",
   argTypes: { onChange: { action: "onChange" } },
 };
 

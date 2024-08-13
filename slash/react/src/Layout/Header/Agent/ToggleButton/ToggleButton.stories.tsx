@@ -5,7 +5,7 @@ import { ToggleButton } from "./ToggleButton";
 
 const meta: Meta<typeof ToggleButton> = {
   component: ToggleButton,
-  title: "Agent/Components/Header/ToggleButton",
+  title: "Slash/Components/Header/ToggleButton",
 };
 
 export default meta;

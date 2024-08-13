@@ -6,7 +6,7 @@ import { MessageTypes } from "../core";
 const MODIFIERS = ["required", "disabled"];
 
 const meta: Meta = {
-  title: "Agent/Components/Form/Input/Slider/SliderInput",
+  title: "Slash/Components/Form/Input/Slider/SliderInput",
   component: SliderInput,
 };
 

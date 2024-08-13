@@ -4,7 +4,7 @@ import { Alert } from "./Alert.agent";
 const MODIFIERS = ["success", "info", "danger", "error"];
 
 const meta: Meta<typeof Alert> = {
-  title: "Agent/Components/Alert",
+  title: "Slash/Components/Alert",
   component: Alert,
 };
 export default meta;

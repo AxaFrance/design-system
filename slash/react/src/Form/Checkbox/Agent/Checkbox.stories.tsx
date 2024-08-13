@@ -7,7 +7,7 @@ import { CheckboxItem } from "./CheckboxItem";
 import { CheckboxModes } from "./CheckboxModes";
 
 const meta: Meta = {
-  title: "Agent/Components/Form/Input/Checkbox",
+  title: "Slash/Components/Form/Input/Checkbox",
   component: CheckboxInput,
   argTypes: {
     onChange: { action: "onChange" },

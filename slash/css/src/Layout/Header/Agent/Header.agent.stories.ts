@@ -10,7 +10,7 @@ const meta: Meta = {
     className: "af-header",
     classModifier: "",
   },
-  title: "Agent/Components/Header",
+  title: "Slash/Components/Header",
 };
 
 export default meta;

@@ -11,7 +11,7 @@ const meta: Meta<typeof User> = {
     onClick: { action: "onClick" },
   },
   component: User,
-  title: "Agent/Components/Header/User",
+  title: "Slash/Components/Header/User",
 };
 
 export default meta;
