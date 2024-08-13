@@ -29,7 +29,7 @@ export const HeaderClient = ({
     <header className="af-header">
       <div className="af-header-container">
         <div className="af-header-left-item">
-          <img className="af-logo" src={logo} alt="Logo AXA" />
+          <img className="af-logo" src={logo} alt="" />
           {children && (
             <NavBar activeLink={activeLink} setActiveLink={setActiveLink}>
               {children}
