@@ -9,17 +9,17 @@
   border-radius: common.$default-border-radius;
   align-items: center;
   gap: 0.5rem;
-  color: inherit;
   background: none;
   cursor: pointer;
 
   &__content {
-    display: inherit;
-    align-items: inherit;
+    display: flex;
+    align-items: center;
     gap: 0.75rem;
   }
 
-  &__icon svg {
+  &__icon svg,
+  &__action svg {
     width: 1.4rem;
     height: 1.4rem;
     fill: common.$color-axa;
@@ -29,8 +29,13 @@
     text-align: left;
   }
 
-  &__title {
+  &__title,
+  &__subtitle,
+  &__secondary {
     margin: 0;
+  }
+
+  &__title {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.4rem;
@@ -38,7 +43,6 @@
   }
 
   &__subtitle {
-    margin: 0;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.4rem;
@@ -46,7 +50,6 @@
   }
 
   &__secondary {
-    margin: 0;
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.1rem;
@@ -55,28 +58,17 @@
 
   &__action {
     margin-left: auto;
-
-    svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      fill: common.$color-axa;
-    }
   }
 }
 
 .af-card--large .af-click-item {
   &__label {
-    font-size: 1.125rem;
     font-weight: 600;
-    line-height: 1.4rem;
   }
 
-  &__title {
-    font-size: 1.125rem;
-    line-height: 1.4rem;
-  }
-
-  &__subtitle {
+  &__title,
+  &__subtitle,
+  &__label {
     font-size: 1.125rem;
     line-height: 1.4rem;
   }
@@ -86,18 +78,12 @@
   cursor: default;
 
   .af-click-item {
-    &__action svg {
-      fill: common.$color-gray-500;
-    }
-
+    &__action svg,
     &__icon svg {
       fill: common.$color-gray-500;
     }
 
-    &__label {
-      color: common.$color-gray-500;
-    }
-
+    &__label,
     &__title,
     &__subtitle,
     &__secondary {
@@ -112,23 +98,38 @@
     box-shadow: 0 4px 8px 0 hsla(230deg, 60%, 16%, 8%);
   }
 
-  &:active {
-    box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
+  &:active,
+  &:focus,
+  &:focus-visible {
     outline: none;
   }
 
-  &:focus {
-    outline: none;
+  &:active {
+    box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
   }
 
   &:focus-visible {
     border: 2px solid common.$color-focus;
-    outline: none;
   }
 }
 
 @media (width <= #{common.$breakpoint-sm}) {
   .af-click-item {
+    &__label,
+    &__title,
+    &__subtitle {
+      font-size: 0.875rem;
+    }
+
+    &__label {
+      line-height: 1.1rem;
+    }
+
+    &__title,
+    &__subtitle {
+      line-height: 1.25rem;
+    }
+
     &:not(:disabled) {
       box-shadow: none;
 
@@ -136,10 +137,7 @@
         box-shadow: none;
 
         .af-list-item {
-          &__label {
-            color: common.$color-axa;
-          }
-
+          &__label,
           &__title,
           &__subtitle,
           &__secondary {
@@ -152,10 +150,7 @@
         box-shadow: none;
 
         .af-list-item {
-          &__label {
-            color: common.$color-blue-1;
-          }
-
+          &__label,
           &__title,
           &__subtitle,
           &__secondary {
@@ -169,26 +164,14 @@
         border: 1px solid common.$color-focus;
       }
     }
-
-    &__label {
-      font-size: 0.875rem;
-      line-height: 1.1rem;
-    }
-
-    &__title,
-    &__subtitle {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-    }
   }
 
   .af-card--large .af-click-item {
     &__label {
-      font-size: 1rem;
       font-weight: 600;
-      line-height: 1.25rem;
     }
 
+    &__label,
     &__title,
     &__subtitle {
       font-size: 1rem;
