@@ -17,6 +17,7 @@ export default defineConfig({
     // since parsing CSS is slow
     css: true,
     coverage: {
+      provider: "v8",
       exclude: ["**/*.stories.tsx", "**/*.mdx", "**/index.ts"],
     },
   },

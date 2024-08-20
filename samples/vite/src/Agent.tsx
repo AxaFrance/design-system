@@ -7,7 +7,7 @@ import {
   Th,
   Title,
   Tr,
-} from "@axa-fr/design-system-slash-react/agent";
+} from "@axa-fr/design-system-slash-react/slash";
 
 const Agent = () => (
   <section className="design-section">
