@@ -6,12 +6,14 @@ $active-sort-table-th: common.$color-table-sorting !default;
 @mixin hasIcon($direction) {
   @if $direction == "left" {
     padding-left: 3rem;
+    @content;
 
     .glyphicon {
       left: 1rem;
     }
   } @else {
     padding-right: 3rem;
+    @content;
 
     .glyphicon {
       right: 1rem;
@@ -140,16 +142,16 @@ $active-sort-table-th: common.$color-table-sorting !default;
 
   &--reverse.af-btn--hasiconLeft,
   &--reverse.af-btn--hasIconLeft {
-    @include hasIcon("left");
-
-    padding-right: 1.2rem;
+    @include hasIcon("left") {
+      padding-right: 1.2rem;
+    }
   }
 
   &--reverse.af-btn--hasiconRight,
   &--reverse.af-btn--hasIconRight {
-    @include hasIcon("right");
-
-    padding-left: 1.2rem;
+    @include hasIcon("right") {
+      padding-right: 1.2rem;
+    }
   }
 
   &--small {
