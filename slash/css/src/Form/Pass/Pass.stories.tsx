@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../../common/icons.scss";
-import "./Pass.agent.scss";
+import "./Pass.scss";
 
 const meta: Meta = {
-  title: "Slash/Components/Form/Input/Pass",
+  title: "Components/Form/Input/Pass",
 };
 
 export default meta;

@@ -4,7 +4,7 @@ import { ContentItemDuo } from ".";
 import { List } from "../List";
 
 const meta: Meta<typeof ContentItemDuo> = {
-  title: "Look-and-feel/Components/List/ContentItemDuo",
+  title: "Components/List/ContentItemDuo",
   component: ContentItemDuo,
 };
 export default meta;

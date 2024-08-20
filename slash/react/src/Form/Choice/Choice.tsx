@@ -1,6 +1,6 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Choice/Choice.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Choice/Choice.scss";
 import { forwardRef, type ComponentProps } from "react";
-import { Radio } from "../Radio/Agent";
+import { Radio } from "../Radio";
 import type { Option } from "../core";
 
 const defaultOptions = [

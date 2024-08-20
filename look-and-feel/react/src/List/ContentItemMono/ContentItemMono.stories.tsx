@@ -7,7 +7,7 @@ import { ContentItemMono } from "./ContentItemMono";
 import { ContentItemMonoSize } from "./constants";
 
 const meta: Meta<typeof ContentItemMono> = {
-  title: "Look-and-feel/Components/List/ContentItemMono",
+  title: "Components/List/ContentItemMono",
   component: ContentItemMono,
 };
 

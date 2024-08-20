@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Pass } from "./Pass";
 
 export default {
-  title: "Slash/Components/Form/Input/Pass",
+  title: "Components/Form/Input/Pass",
   component: Pass,
 } as Meta;
 

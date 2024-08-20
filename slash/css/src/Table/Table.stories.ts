@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "../Button/Button.agent.scss";
-import "./Pager.agent.scss";
-import "./Paging.agent.scss";
-import "./Table.agent.scss";
+import "../Button/Button.scss";
+import "./Pager.scss";
+import "./Paging.scss";
+import "./Table.scss";
 
 const meta: Meta = {
-  title: "Slash/Components/Table",
+  title: "Components/Table",
 };
 
 export default meta;

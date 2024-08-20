@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.scss";
 
 import { useId, type ComponentProps, type ReactNode } from "react";
 import { Field, FieldInput, HelpMessage } from "../core";

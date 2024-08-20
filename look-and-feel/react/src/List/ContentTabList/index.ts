@@ -1,1 +1,1 @@
-export { ContentTabList } from "./ContentTabList.client";
+export { ContentTabList } from "./ContentTabList";

@@ -5,7 +5,7 @@ import { MultiSelect } from "./MultiSelect";
 import { MultiSelectInput } from "./MultiSelectInput";
 
 const meta: Meta = {
-  title: "Slash/Components/Form/Input/MultiSelect",
+  title: "Components/Form/Input/MultiSelect",
   component: MultiSelect,
   argTypes: {
     onChange: { action: "onChange" },

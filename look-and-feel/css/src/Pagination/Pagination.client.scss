@@ -1,8 +1,0 @@
-@use "../common/common.client.scss" as common;
-
-.af-container-pagination > div {
-  display: flex;
-  padding: 0.5rem;
-  border: 1px solid common.$color-border;
-  border-radius: 41px;
-}

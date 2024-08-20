@@ -3,7 +3,7 @@ import { Loader } from "./Loader";
 
 const meta: Meta<typeof Loader> = {
   component: Loader,
-  title: "Look-and-feel/Components/Loader",
+  title: "Components/Loader",
 };
 
 export default meta;

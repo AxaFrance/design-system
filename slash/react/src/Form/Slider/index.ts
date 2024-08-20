@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Slider/Slider.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Slider/Slider.scss";
 
-export { Slider } from "./Slider.agent";
-export { SliderInput } from "./SliderInput.agent";
+export { Slider } from "./Slider";
+export { SliderInput } from "./SliderInput";

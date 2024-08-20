@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Loader/Loader.client.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/Loader/Loader.scss";
 import { ComponentPropsWithRef } from "react";
 
 type Props = ComponentPropsWithRef<"input"> & {

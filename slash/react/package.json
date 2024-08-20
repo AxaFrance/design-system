@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "exports": {
-    "./agent": {
-      "import": "./dist/agent.js",
-      "types": "./dist/agent.d.ts"
+    "./slash": {
+      "import": "./dist/slash.js",
+      "types": "./dist/slash.d.ts"
     },
     "./utilities": {
       "import": "./dist/utilities.js",

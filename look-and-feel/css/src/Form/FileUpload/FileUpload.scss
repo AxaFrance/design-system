@@ -1,0 +1,183 @@
+@use "../../common/common" as common;
+
+.af-form {
+  &__group {
+    &--label {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: common.$color-gray-900;
+    }
+  }
+
+  &__file {
+    &-input {
+      position: relative;
+      display: flex;
+      margin-top: 0.5rem;
+      margin-bottom: 0.6rem;
+      padding: 1rem;
+      padding-bottom: 2rem;
+      border: 2px dashed common.$color-axa;
+      border-radius: 8px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: normal;
+      text-align: center;
+      color: common.$color-gray-900;
+      background-color: common.$color-white;
+      cursor: pointer;
+
+      &.is-mobile {
+        padding-bottom: 1rem;
+      }
+
+      &:hover {
+        border-color: common.$color-gray-700;
+      }
+
+      &--error {
+        border-color: common.$color-red-700;
+      }
+
+      input {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      &-dropdown-text {
+        padding-top: 1rem;
+        line-height: 5px;
+      }
+
+      &-help {
+        font-size: 1rem;
+        font-weight: 400;
+        color: common.$color-gray-700;
+      }
+
+      &-icon {
+        path {
+          fill: common.$color-axa;
+        }
+      }
+
+      .af-btn-client {
+        width: 50%;
+      }
+    }
+
+    &-list {
+      display: flex;
+      margin-top: 1.125rem;
+      padding: 0;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      list-style: none;
+    }
+
+    &-title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      &-icon {
+        &-error {
+          path {
+            fill: common.$color-red-700;
+          }
+        }
+
+        &-success {
+          path {
+            fill: common.$color-green-600;
+          }
+        }
+      }
+    }
+
+    &-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-name {
+      font-size: 1.125rem;
+      color: common.$color-gray-900;
+    }
+
+    &-size {
+      font-size: 1rem;
+      color: common.$color-gray-700;
+    }
+
+    &-error {
+      display: flex;
+      margin-top: -0.9rem;
+      margin-bottom: 0.9rem;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 1rem;
+      color: common.$color-red-700;
+
+      &-icon {
+        path {
+          fill: common.$color-red-700;
+        }
+      }
+    }
+
+    &-line {
+      display: flex;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0;
+      padding: 1rem;
+      border: 1px solid common.$color-gray-700;
+      border-radius: 4px;
+      align-items: center;
+      justify-content: space-between;
+      background: common.$color-white;
+
+      &--error {
+        border-color: common.$color-red-700;
+      }
+    }
+
+    &-actions {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 1rem;
+      cursor: pointer;
+
+      &-icon {
+        path {
+          fill: common.$color-gray-700;
+        }
+      }
+    }
+  }
+}
+
+.is-mobile {
+  .af-form {
+    &__file {
+      &-input {
+        &-dropdown-text {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .af-btn-client {
+    width: 100%;
+  }
+}

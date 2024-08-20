@@ -1,3 +1,3 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/IconBg/IconBg.client.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/IconBg/IconBg.scss";
 
-export { IconBg } from "./IconBg.client";
+export { IconBg } from "./IconBg";

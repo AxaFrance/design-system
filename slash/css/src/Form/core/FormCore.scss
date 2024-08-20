@@ -1,0 +1,114 @@
+@use "../../common/common" as common;
+
+.af-form {
+  padding: 1rem;
+  background: common.$color-wild-sand;
+
+  &__group {
+    display: flex;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &--label-top {
+      align-items: flex-start;
+    }
+  }
+
+  &__group-label {
+    margin: 0;
+    font-weight: normal;
+  }
+
+  &__group--required &__group-label {
+    &::after {
+      color: common.$color-red-error;
+      content: " *";
+    }
+  }
+
+  &__message {
+    position: absolute;
+    display: flex;
+    min-height: 1.6em;
+    margin: 0.2rem 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    .glyphicon {
+      width: 17px;
+      margin-right: 0.4rem;
+    }
+
+    &--error {
+      color: common.$color-red-axa;
+    }
+
+    &--warning {
+      color: common.$color-orange-dark;
+    }
+  }
+
+  &__help {
+    position: absolute;
+    bottom: -20px;
+    display: block;
+    font-size: 0.8125em;
+    color: common.$color-gray;
+  }
+
+  &__input-cmplt {
+    display: inline-flex;
+    margin-left: 1rem;
+  }
+
+  &__fields-inline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .af-form__text {
+      padding: 0;
+    }
+  }
+
+  &__input-inline {
+    margin-right: 1rem;
+  }
+
+  /* Commons styles ****************************************************************/
+  &__label {
+    display: flex;
+    margin: 0;
+    padding: 1rem 0;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  &__indicator {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid common.$color-silver;
+    background: common.$white;
+    transform: translate(0, -50%);
+
+    .glyphicon-ok {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      display: none;
+      width: 10px;
+      font-size: 0.625rem;
+      font-weight: 100;
+    }
+  }
+
+  &__description {
+    padding-left: 1.8rem;
+  }
+}

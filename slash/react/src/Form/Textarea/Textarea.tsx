@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Textarea/Textarea.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Textarea/Textarea.scss";
 import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
 
 import { getComponentClassName } from "../core";

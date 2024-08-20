@@ -1,11 +1,11 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
-import "../../Button/Button.client.scss";
-import "../../Card/Card.client.scss";
+import "../../Button/Button.scss";
+import "../../Card/Card.scss";
 import "../List.scss";
 import "./ContentItemDuo.scss";
 
 const meta: Meta = {
-  title: "Look-and-feel/Components/List/ContentItemDuo",
+  title: "Components/List/ContentItemDuo",
 };
 
 export default meta;

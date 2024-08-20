@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Action } from "./Action";
 
 const meta: Meta<typeof Action> = {
-  title: "Slash/Components/Action",
+  title: "Components/Action",
   component: Action,
 };
 export default meta;

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "./Accordion.client.scss";
+import "./Accordion.scss";
 
 const meta: Meta = {
-  title: "Look-and-feel/Components/Accordion",
+  title: "Components/Accordion",
 };
 
 export default meta;

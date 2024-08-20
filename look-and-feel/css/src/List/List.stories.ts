@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "../Card/Card.client.scss";
+import "../Card/Card.scss";
 import "./List.scss";
 
 const meta: Meta = {
-  title: "Look-and-feel/Components/List",
+  title: "Components/List",
 };
 
 export default meta;

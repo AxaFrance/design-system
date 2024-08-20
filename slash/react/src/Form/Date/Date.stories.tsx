@@ -11,7 +11,7 @@ const commonProps = {
 
 const meta: Meta<typeof DateComponent> = {
   component: DateComponent,
-  title: "Slash/Components/Form/Input/Date",
+  title: "Components/Form/Input/Date",
   argTypes: { onChange: { action: "onChange" } },
 };
 

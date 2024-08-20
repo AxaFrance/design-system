@@ -1,5 +1,5 @@
 import { forwardRef, type ReactNode } from "react";
-import { getComponentClassName } from "../agent";
+import { getComponentClassName } from "../slash";
 
 export type ModalProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,

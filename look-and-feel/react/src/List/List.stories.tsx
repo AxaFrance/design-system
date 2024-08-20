@@ -7,7 +7,7 @@ import { Svg } from "../Svg";
 import { List } from "./List";
 
 const meta: Meta<typeof List> = {
-  title: "Look-and-feel/Components/List",
+  title: "Components/List",
   component: List,
 };
 export default meta;

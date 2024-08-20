@@ -1,0 +1,40 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as TitleHeaderStories from "./TitleHeader.stories";
+
+<Meta of={TitleHeaderStories} />
+
+# TitleHeader
+
+By default, the title bar is sticky on the top when you scroll down the page. If you want to disable that behavior you can set to false the `isSticky` property of the component.
+
+## Import
+
+```tsx
+import { TitleHeader } from "@axa-fr/design-system-slash-react/slash";
+```
+
+## Use
+
+```tsx
+const TitleComponent = () => (
+  <TitleHeader
+    isSticky
+    title="Toolkit Axa"
+    subtitle="Info complémentaire"
+    toggleMenu={() => {}}
+  />
+);
+export default TitleComponent;
+```
+
+## Stories
+
+### Default Title
+
+<Canvas of={TitleHeaderStories.DefaultTitle} />
+<Controls of={TitleHeaderStories.DefaultTitle} />
+
+### Complex Title
+
+<Canvas of={TitleHeaderStories.ComplexTitle} />
+<Controls of={TitleHeaderStories.ComplexTitle} />

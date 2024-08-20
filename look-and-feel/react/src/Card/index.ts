@@ -1,3 +1,3 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Card/Card.client.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/Card/Card.scss";
 
-export { Card } from "./Card.client";
+export { Card } from "./Card";

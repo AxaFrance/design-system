@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Modal/Modal.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Modal/Modal.scss";
 
 export { BooleanModal } from "./BooleanModal";
 export { Modal } from "./Modal";

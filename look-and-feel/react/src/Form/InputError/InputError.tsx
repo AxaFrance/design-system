@@ -1,5 +1,5 @@
 import errorIcon from "@material-symbols/svg-400/outlined/error.svg";
-import "@axa-fr/design-system-look-and-feel-css/dist/Form/InputError/InputError.client.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/Form/InputError/InputError.scss";
 import { Svg } from "../../Svg";
 
 type InputErrorProps = {

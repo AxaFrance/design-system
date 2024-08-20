@@ -1,10 +1,10 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
-import "../../Card/Card.client.scss";
+import "../../Card/Card.scss";
 import "../List.scss";
 import "./ContentItemMono.scss";
 
 const meta: Meta = {
-  title: "Look-and-feel/Components/List/ContentItemMono",
+  title: "Components/List/ContentItemMono",
 };
 
 export default meta;

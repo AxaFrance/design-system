@@ -5,7 +5,7 @@ import { ChoiceInput } from "./ChoiceInput";
 
 const meta: Meta<typeof ChoiceInput> = {
   component: ChoiceInput,
-  title: "Slash/Components/Form/Input/Choice",
+  title: "Components/Form/Input/Choice",
   argTypes: { onChange: { action: "onChange" } },
 };
 

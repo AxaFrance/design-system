@@ -1,1 +1,1 @@
-export { ClickList } from "./ClickList.client";
+export { ClickList } from "./ClickList";

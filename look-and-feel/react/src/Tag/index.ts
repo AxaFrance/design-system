@@ -1,3 +1,3 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Tag/Tag.client.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/Tag/Tag.scss";
 
-export { Tag } from "./Tag.client";
+export { Tag } from "./Tag";

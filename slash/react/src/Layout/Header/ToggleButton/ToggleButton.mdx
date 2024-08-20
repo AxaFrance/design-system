@@ -1,0 +1,34 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as ToggleButtonStories from "./ToggleButton.stories";
+
+<Meta of={ToggleButtonStories} />
+
+# Toggle Button
+
+## Import
+
+```tsx
+import { ToggleButton } from "@axa-fr/design-system-slash-react/slash";
+```
+
+## Use
+
+```tsx
+const actionToggle = {
+  icon: "menu-hamburger",
+  title: "Toggle",
+};
+
+const ToggleButtonLayout = ({
+  children,
+  idControl,
+}: TToggleButtonLayoutProps) => (
+  <ToggleButton idControl={idControl}>{children}</ToggleButton>
+);
+export default ToggleButtonLayout;
+```
+
+## Stories
+
+<Canvas of={ToggleButtonStories.Default} />
+<Controls of={ToggleButtonStories.Default} />

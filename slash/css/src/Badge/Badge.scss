@@ -1,6 +1,6 @@
 @use "sass:color";
 @use "sass:list";
-@use "../common/common.agent.scss" as common;
+@use "../common/common" as common;
 
 $types: (
   success common.$color-malachite,

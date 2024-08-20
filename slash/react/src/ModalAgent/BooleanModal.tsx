@@ -1,5 +1,5 @@
 import React, { type ReactNode, type Ref } from "react";
-import { Button, Modal, getComponentClassName } from "../agent";
+import { Button, Modal, getComponentClassName } from "../slash";
 import { Body } from "./components/Body";
 import { Footer } from "./components/Footer";
 import { Header, type HeaderProps } from "./components/Header";

@@ -1,0 +1,44 @@
+@use "../common/common" as common;
+
+.af-link {
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
+  font-family: common.$font-family-base;
+  text-decoration: underline;
+  color: common.$color-axa;
+  fill: common.$color-axa;
+
+  &:hover {
+    color: common.$color-blue-1;
+    fill: common.$color-blue-1;
+  }
+
+  &:active,
+  &:focus {
+    color: common.$color-blue-1;
+    fill: common.$color-blue-1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid common.$color-blue-3;
+    outline-offset: 3px;
+  }
+
+  &--openInNewTab {
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      aspect-ratio: 1;
+      margin-left: 0.2rem;
+    }
+  }
+}

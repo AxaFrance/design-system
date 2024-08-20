@@ -5,7 +5,7 @@ import { MessageTypes } from "../core";
 import { PassInput } from "./PassInput";
 
 export default {
-  title: "Slash/Components/Form/Input/Pass",
+  title: "Components/Form/Input/Pass",
   component: PassInput,
 } as Meta;
 
