@@ -52,7 +52,11 @@ const Container = (props: ComponentProps<typeof Modal>) => {
         actions={{
           primary: { text: "Save", callback: () => setIsOpen(false) },
           secondary: { text: "Cancel", callback: () => setIsOpen(false) },
-          tertiary: { text: "Reset", callback: () => setIsOpen(false) },
+          tertiary: {
+            text: "Reset",
+            callback: () => setIsOpen(false),
+            disabled: true,
+          },
         }}
       />
     </>
