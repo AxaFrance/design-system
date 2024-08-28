@@ -17,6 +17,7 @@ import { Svg } from "../Svg";
 
 export type ButtonAction = {
   text: string;
+  disabled?: boolean;
   callback: () => void;
 };
 
@@ -120,6 +121,7 @@ export const Modal = ({
               <Button
                 variant={ButtonVariants.primary}
                 onClick={actions?.primary.callback}
+                disabled={actions?.primary.disabled}
               >
                 {actions?.primary.text}
               </Button>
@@ -128,6 +130,7 @@ export const Modal = ({
               <Button
                 variant={ButtonVariants.secondary}
                 onClick={actions?.secondary.callback}
+                disabled={actions?.secondary.disabled}
               >
                 {actions?.secondary.text}
               </Button>
@@ -136,6 +139,7 @@ export const Modal = ({
               <Button
                 variant={ButtonVariants.tertiary}
                 onClick={actions?.tertiary.callback}
+                disabled={actions?.tertiary.disabled}
               >
                 {actions?.tertiary.text}
               </Button>
