@@ -104,7 +104,13 @@
 
     &-title {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+      }
     }
 
     &-name {
@@ -134,19 +140,21 @@
     }
 
     &-line {
-      display: flex;
       width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.5rem 0;
-      padding: 1rem;
-      border: 1px solid common.$color-gray-700;
-      border-radius: 4px;
-      align-items: center;
-      justify-content: space-between;
-      background: common.$color-white;
 
-      &--error {
-        border-color: common.$color-red-700;
+      &-container {
+        display: flex;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid common.$color-gray-700;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: space-between;
+        background: common.$color-white;
+
+        &--error {
+          border-color: common.$color-red-700;
+        }
       }
     }
 
