@@ -38,10 +38,12 @@ const Text = forwardRef<HTMLInputElement, Props>(
           ref={inputRef}
           required={required}
           disabled={disabled}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? `${id}-error` : undefined}
           {...otherProps}
         />
         {helper && <span className="af-form__input-helper">{helper}</span>}
-        {error && <InputError message={error} />}
+        {error && <InputError id={`${id}-error`} message={error} />}
       </div>
     );
   },
