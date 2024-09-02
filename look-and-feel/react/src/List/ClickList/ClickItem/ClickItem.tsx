@@ -1,8 +1,12 @@
 import chevron from "@material-symbols/svg-400/outlined/chevron_right.svg";
 import { useMemo, type ComponentProps, type ReactNode } from "react";
 import { Svg } from "../../../Svg";
+import { getComponentClassName } from "../../../utilities";
 
-type TClickItem = ComponentProps<"button"> &
+type TClickItem = { classModifier?: string; isDisabled?: boolean } & Omit<
+  ComponentProps<"button">,
+  "disabled"
+> &
   ComponentProps<"a"> & {
     label: ReactNode;
     icon?: ReactNode;
@@ -12,29 +16,38 @@ export const ClickItem = ({
   label,
   icon,
   href,
-  disabled,
+  isDisabled = false,
+  className,
+  classModifier = "",
   ...otherProps
 }: TClickItem) => {
-  const ClickComponent = useMemo(
-    () => (href && !disabled ? "a" : "button"),
-    [disabled, href],
+  const componentClassName = useMemo(
+    () =>
+      getComponentClassName(
+        className,
+        `${classModifier}${isDisabled ? " disabled" : ""}`,
+        "af-click-item",
+      ),
+    [className, classModifier, isDisabled],
   );
+
+  const ClickComponent = useMemo(() => (href ? "a" : "button"), [href]);
 
   const clickComponentProps: ComponentProps<"button"> & ComponentProps<"a"> =
     useMemo(
       () =>
-        ClickComponent === "a"
-          ? { href, ...otherProps }
+        href
+          ? { href, "aria-disabled": isDisabled, ...otherProps }
           : {
               type: "button",
-              disabled,
+              disabled: isDisabled,
               ...otherProps,
             },
-      [ClickComponent, disabled, href, otherProps],
+      [isDisabled, href, otherProps],
     );
 
   return (
-    <ClickComponent className="af-click-item" {...clickComponentProps}>
+    <ClickComponent className={componentClassName} {...clickComponentProps}>
       <div className="af-click-item__content">
         {icon && <div className="af-click-item__icon">{icon}</div>}
         <div className="af-click-item__label">{label}</div>

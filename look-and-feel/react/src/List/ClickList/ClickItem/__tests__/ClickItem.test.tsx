@@ -12,6 +12,24 @@ describe("ClickItem", () => {
     expect(labelElement).toBeInTheDocument();
   });
 
+  it("should have custom class with modifier", () => {
+    const label = "Sample Label";
+    const className = "custom-class";
+    const classModifier = "modifier";
+
+    render(
+      <ClickItem
+        className={className}
+        classModifier={classModifier}
+        label={label}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: label })).toHaveClass(
+      `${className} ${className}--${classModifier}`,
+    );
+  });
+
   it("should render icon correctly", () => {
     const label = "Sample Label";
     const icon = <span>Icon</span>;
@@ -45,15 +63,28 @@ describe("ClickItem", () => {
     expect(linkElement).toHaveAttribute("href", href);
   });
 
-  it("should be disabled and a button", () => {
+  it("should be a disabled anchor", () => {
     const label = "Sample Label";
     const href = "https://example.com";
     const disabled = true;
 
-    render(<ClickItem label={label} href={href} disabled={disabled} />);
+    render(<ClickItem label={label} href={href} isDisabled={disabled} />);
+
+    const anchorElement = screen.getByRole("link", { name: label });
+
+    expect(anchorElement).toHaveClass("af-click-item--disabled");
+    expect(anchorElement).toHaveAttribute("aria-disabled", "true");
+  });
+
+  it("should be a disabled button", () => {
+    const label = "Sample Label";
+    const disabled = true;
+
+    render(<ClickItem label={label} isDisabled={disabled} />);
 
     const buttonElement = screen.getByRole("button", { name: label });
 
     expect(buttonElement).toBeDisabled();
+    expect(buttonElement).toHaveClass("af-click-item--disabled");
   });
 });

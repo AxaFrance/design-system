@@ -24,7 +24,7 @@ export const ClickListWithIcon: StoryObj<typeof ClickList> = {
         id: "follow-claim",
         icon: <Svg src={contentPasteGo} />,
         label: "Suivre mes sinistres",
-        disabled: true,
+        isDisabled: true,
       },
     ],
     classModifier: "",
@@ -44,6 +44,7 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
   args: {
     items: [
       {
+        id: "1",
         label: (
           <>
             <h3 className="af-click-item__title">
@@ -55,6 +56,7 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
         ),
       },
       {
+        id: "2",
         label: (
           <>
             <h3 className="af-click-item__title">
@@ -64,7 +66,7 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
             <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
-        disabled: true,
+        isDisabled: true,
       },
     ],
     classModifier: "",
@@ -84,6 +86,7 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
   args: {
     items: [
       {
+        id: "1",
         label: (
           <>
             <h3 className="af-click-item__title">
@@ -97,6 +100,7 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
         target: "_blank",
       },
       {
+        id: "2",
         label: (
           <>
             <h3 className="af-click-item__title">
@@ -108,7 +112,7 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
         ),
         href: "https://github.com/AxaFrance/design-system",
         target: "_blank",
-        disabled: true,
+        isDisabled: true,
       },
     ],
     classModifier: "",

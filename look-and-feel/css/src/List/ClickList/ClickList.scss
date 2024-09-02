@@ -12,6 +12,20 @@
   background: none;
   cursor: pointer;
 
+  &:active,
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    border: 2px solid common.$color-focus;
+  }
+
   &__content {
     display: flex;
     align-items: center;
@@ -59,62 +73,56 @@
   &__action {
     margin-left: auto;
   }
-}
 
-.af-card--large .af-click-item {
-  &__label {
-    font-weight: 600;
-  }
-
-  &__title,
-  &__subtitle,
-  &__label {
-    font-size: 1.125rem;
-    line-height: 1.4rem;
-  }
-}
-
-.af-click-item:disabled {
-  cursor: default;
-
-  .af-click-item {
-    &__action svg,
-    &__icon svg {
-      fill: common.$color-gray-500;
+  .af-card--large & {
+    &__label {
+      font-weight: 600;
     }
 
-    &__label,
     &__title,
     &__subtitle,
-    &__secondary {
-      color: common.$color-gray-500;
+    &__label {
+      font-size: 1.125rem;
+      line-height: 1.4rem;
     }
   }
-}
 
-.af-click-item:not(:disabled) {
-  &:hover {
-    text-decoration: none;
-    box-shadow: 0 4px 8px 0 hsla(230deg, 60%, 16%, 8%);
+  &.af-click-item--disabled {
+    pointer-events: none;
+
+    .af-click-item {
+      &__action svg,
+      &__icon svg {
+        fill: common.$color-gray-500;
+      }
+
+      &__label,
+      &__title,
+      &__subtitle,
+      &__secondary {
+        color: common.$color-gray-500;
+      }
+    }
   }
 
-  &:active,
-  &:focus,
-  &:focus-visible {
-    outline: none;
-  }
+  &:not(.af-click-item--disabled) {
+    &:hover {
+      box-shadow: 0 4px 8px 0 hsla(230deg, 60%, 16%, 8%);
+    }
 
-  &:active {
-    box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
-  }
-
-  &:focus-visible {
-    border: 2px solid common.$color-focus;
+    &:active {
+      box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
+    }
   }
 }
 
 @media (width <= #{common.$breakpoint-sm}) {
   .af-click-item {
+    &:focus-visible {
+      border: none;
+      border: 1px solid common.$color-focus;
+    }
+
     &__label,
     &__title,
     &__subtitle {
@@ -130,13 +138,22 @@
       line-height: 1.25rem;
     }
 
-    &:not(:disabled) {
+    .af-card--large & {
+      &__label,
+      &__title,
+      &__subtitle {
+        font-size: 1rem;
+        line-height: 1.25rem;
+      }
+    }
+
+    &:not(.af-click-item--disabled) {
       box-shadow: none;
 
       &:hover {
         box-shadow: none;
 
-        .af-list-item {
+        .af-click-item {
           &__label,
           &__title,
           &__subtitle,
@@ -149,7 +166,7 @@
       &:active {
         box-shadow: none;
 
-        .af-list-item {
+        .af-click-item {
           &__label,
           &__title,
           &__subtitle,
@@ -158,24 +175,6 @@
           }
         }
       }
-
-      &:focus-visible {
-        border: none;
-        border: 1px solid common.$color-focus;
-      }
-    }
-  }
-
-  .af-card--large .af-click-item {
-    &__label {
-      font-weight: 600;
-    }
-
-    &__label,
-    &__title,
-    &__subtitle {
-      font-size: 1rem;
-      line-height: 1.25rem;
     }
   }
 }
