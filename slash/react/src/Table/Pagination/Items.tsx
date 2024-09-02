@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { getComponentClassName } from "../../Form/core";
+import { getComponentClassName } from "../../utilities";
 
 export type Props = {
   id?: string;

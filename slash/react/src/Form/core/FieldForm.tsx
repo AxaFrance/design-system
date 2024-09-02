@@ -10,7 +10,7 @@ import {
   isValidElement,
   ReactNode,
 } from "react";
-import { getComponentClassName } from "./getComponentClassName";
+import { getComponentClassName } from "../../utilities";
 import { MessageTypes } from "./MessageTypes";
 import { FormClassManager } from "./FormClassManager";
 
