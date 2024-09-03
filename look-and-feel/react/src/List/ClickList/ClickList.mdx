@@ -20,20 +20,36 @@ const MyComponentWithIcon = () => (
   <ClickList
     items={[
       {
-        id: "report-claim",
+        id: "1",
         icon: <Svg src={error} />,
-        label: "Déclarer un sinistre",
+        label: "Texte principal",
+        classModifier: "small",
       },
       {
-        id: "follow-claim",
+        id: "2",
         icon: <Svg src={contentPasteGo} />,
-        label: "Suivre mes sinistres",
+        label: "Texte principal",
+      },
+      {
+        id: "3",
+        icon: <Svg src={contentPasteGo} />,
+        label: "Texte principal",
+        classModifier: "large",
+      },
+      {
+        id: "4",
+        icon: <Svg src={contentPasteGo} />,
+        label: "Texte principal",
         disabled: true,
       },
     ]}
   />
 );
 ```
+
+<Canvas of={ClickListStories.ClickListWithIcon} />
+
+<Controls of={ClickListStories.ClickListWithIcon} />
 
 ### Use without left icon
 
@@ -78,6 +94,10 @@ const MyComponentWithoutIcon = () => (
   />
 );
 ```
+
+<Canvas of={ClickListStories.ClickListWithoutIcon} />
+
+<Controls of={ClickListStories.ClickListWithoutIcon} />
 
 ### Use with link and without left icon
 
@@ -126,22 +146,6 @@ const MyComponentWithoutIcon = () => (
   />
 );
 ```
-
-## Playground
-
-### ClickList with left icons
-
-<Canvas of={ClickListStories.ClickListWithIcon} />
-
-<Controls of={ClickListStories.ClickListWithIcon} />
-
-### ClickList without left icon
-
-<Canvas of={ClickListStories.ClickListWithoutIcon} />
-
-<Controls of={ClickListStories.ClickListWithoutIcon} />
-
-### ClickList with link and without left icon
 
 <Canvas of={ClickListStories.ClickListLinkWithoutIcon} />
 

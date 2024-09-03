@@ -16,14 +16,26 @@ export const ClickListWithIcon: StoryObj<typeof ClickList> = {
   args: {
     items: [
       {
-        id: "report-claim",
+        id: "1",
         icon: <Svg src={error} />,
-        label: "Déclarer un sinistre",
+        label: "Texte principal",
+        classModifier: "small",
       },
       {
-        id: "follow-claim",
+        id: "2",
+        icon: <Svg src={error} />,
+        label: "Texte principal",
+      },
+      {
+        id: "3",
+        icon: <Svg src={error} />,
+        label: "Texte principal",
+        classModifier: "large",
+      },
+      {
+        id: "4",
         icon: <Svg src={contentPasteGo} />,
-        label: "Suivre mes sinistres",
+        label: "Texte principal",
         isDisabled: true,
       },
     ],

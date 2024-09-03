@@ -39,8 +39,11 @@
     fill: common.$color-axa;
   }
 
+  &__title,
+  &__subtitle,
   &__label {
-    text-align: left;
+    font-size: 1.125rem;
+    line-height: 1.4rem;
   }
 
   &__title,
@@ -49,17 +52,17 @@
     margin: 0;
   }
 
+  &__label {
+    text-align: left;
+  }
+
   &__title {
-    font-size: 1rem;
     font-weight: 600;
-    line-height: 1.4rem;
     color: common.$color-gray-900;
   }
 
   &__subtitle {
-    font-size: 1rem;
     font-weight: 400;
-    line-height: 1.4rem;
     color: common.$color-gray-700;
   }
 
@@ -74,17 +77,13 @@
     margin-left: auto;
   }
 
-  .af-card--large & {
-    &__label {
-      font-weight: 600;
-    }
+  &--small &__label {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
 
-    &__title,
-    &__subtitle,
-    &__label {
-      font-size: 1.125rem;
-      line-height: 1.4rem;
-    }
+  &--large &__label {
+    font-weight: 600;
   }
 
   &.af-click-item--disabled {
@@ -126,25 +125,13 @@
     &__label,
     &__title,
     &__subtitle {
-      font-size: 0.875rem;
-    }
-
-    &__label {
-      line-height: 1.1rem;
-    }
-
-    &__title,
-    &__subtitle {
+      font-size: 1rem;
       line-height: 1.25rem;
     }
 
-    .af-card--large & {
-      &__label,
-      &__title,
-      &__subtitle {
-        font-size: 1rem;
-        line-height: 1.25rem;
-      }
+    &--small &__label {
+      font-size: 0.875rem;
+      line-height: 1.1rem;
     }
 
     &:not(.af-click-item--disabled) {
