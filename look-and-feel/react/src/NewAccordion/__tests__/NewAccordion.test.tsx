@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { Accordion } from "../Accordion";
+import { NewAccordion } from "../NewAccordion";
 
-describe("Accordion", () => {
+describe("NewAccordion", () => {
   const originalWindowWidth = global.innerWidth;
 
   beforeAll(() => {
@@ -18,7 +18,7 @@ describe("Accordion", () => {
     const value = "Accordion Value";
 
     render(
-      <Accordion
+      <NewAccordion
         icon={icon}
         title={title}
         subtitle={subtitle}
@@ -27,7 +27,7 @@ describe("Accordion", () => {
         value={value}
       >
         {children}
-      </Accordion>,
+      </NewAccordion>,
     );
 
     expect(screen.getByText(icon)).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("Accordion", () => {
     expect(screen.getByText(value)).toBeInTheDocument();
     expect(
       screen.getByText("Accordion Content").closest("details"),
-    ).toHaveClass("af-accordion");
+    ).toHaveClass("af-new-accordion");
 
     // test that the accordion is closed by default
     const details = screen.getByText(children).closest("details");
@@ -58,13 +58,13 @@ describe("Accordion", () => {
     const classModifier = "modifier";
 
     render(
-      <Accordion
+      <NewAccordion
         title="Accordion Title"
         className={className}
         classModifier={classModifier}
       >
         Accordion Content
-      </Accordion>,
+      </NewAccordion>,
     );
 
     expect(
@@ -74,9 +74,9 @@ describe("Accordion", () => {
 
   it("renders Accordion with open details", () => {
     render(
-      <Accordion title="Accordion Title" isOpen>
+      <NewAccordion title="Accordion Title" isOpen>
         Accordion Content
-      </Accordion>,
+      </NewAccordion>,
     );
 
     const details = screen.getByText("Accordion Content").closest("details");
@@ -85,9 +85,9 @@ describe("Accordion", () => {
 
   it("renders Accordion with close details", () => {
     render(
-      <Accordion title="Accordion Title" isOpen={false}>
+      <NewAccordion title="Accordion Title" isOpen={false}>
         Accordion Content
-      </Accordion>,
+      </NewAccordion>,
     );
 
     const details = screen.getByText("Accordion Content").closest("details");
@@ -97,9 +97,9 @@ describe("Accordion", () => {
   it("use onClick prop when summary click", () => {
     const onClick = vi.fn();
     render(
-      <Accordion title="Accordion Title" onClick={onClick}>
+      <NewAccordion title="Accordion Title" onClick={onClick}>
         Accordion Content
-      </Accordion>,
+      </NewAccordion>,
     );
 
     const summary = screen.getByText("Accordion Title");
@@ -109,18 +109,18 @@ describe("Accordion", () => {
 
   it("renders with isTitleFirst false", () => {
     render(
-      <Accordion
+      <NewAccordion
         icon="icon"
         title="Accordion Title"
         date="date"
         isTitleFirst={false}
       >
         Accordion Content
-      </Accordion>,
+      </NewAccordion>,
     );
 
     const summary = screen.getByText("Accordion Title").closest("summary");
-    expect(summary).not.toHaveClass("af-accordion__summary--title-first");
+    expect(summary).not.toHaveClass("af-new-accordion__summary--title-first");
     expect(screen.queryByText("icon")).toBeNull();
 
     expect(
@@ -132,15 +132,20 @@ describe("Accordion", () => {
 
   it("renders with isTitleFirst true", () => {
     render(
-      <Accordion icon="icon" title="Accordion Title" date="date" isTitleFirst>
+      <NewAccordion
+        icon="icon"
+        title="Accordion Title"
+        date="date"
+        isTitleFirst
+      >
         Accordion Content
-      </Accordion>,
+      </NewAccordion>,
     );
 
     const summary = screen.getByText("Accordion Title").closest("summary");
-    expect(summary).toHaveClass("af-accordion__summary--title-first");
+    expect(summary).toHaveClass("af-new-accordion__summary--title-first");
     expect(screen.getByText("icon").parentElement).toHaveClass(
-      "af-accordion__title-container",
+      "af-new-accordion__title-container",
     );
 
     expect(
@@ -153,13 +158,13 @@ describe("Accordion", () => {
   it("renders on mobile", () => {
     global.innerWidth = 500;
     render(
-      <Accordion icon="icon" title="Accordion Title" date="date">
+      <NewAccordion icon="icon" title="Accordion Title" date="date">
         Accordion Content
-      </Accordion>,
+      </NewAccordion>,
     );
 
     expect(screen.getByText("icon").parentElement).toHaveClass(
-      "af-accordion__summary",
+      "af-new-accordion__summary",
     );
   });
 });

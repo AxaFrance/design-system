@@ -1,17 +1,17 @@
 import { useMemo, type ComponentProps } from "react";
 import { Tag } from "../Tag";
 
-type AccordionTagDateContainerProps = {
+type NewAccordionTagDateContainerProps = {
   tag?: string;
   tagProps?: ComponentProps<typeof Tag>;
   date?: string;
 };
 
-export const AccordionTagDateContainer = ({
+export const NewAccordionTagDateContainer = ({
   tag,
   tagProps,
   date,
-}: AccordionTagDateContainerProps) => {
+}: NewAccordionTagDateContainerProps) => {
   const isShowing = useMemo(() => Boolean(tag) || Boolean(date), [tag, date]);
 
   if (!isShowing) {
@@ -19,15 +19,15 @@ export const AccordionTagDateContainer = ({
   }
 
   return (
-    <div className="af-accordion__tag-date-container">
+    <div className="af-new-accordion__tag-date-container">
       {tag && (
-        <div className="af-accordion__tag-container">
+        <div className="af-new-accordion__tag-container">
           <Tag classModifier="warning" {...tagProps}>
             {tag}
           </Tag>
         </div>
       )}
-      {date && <p className="af-accordion__date">{date}</p>}
+      {date && <p className="af-new-accordion__date">{date}</p>}
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { AccordionTagDateContainer } from "../AccordionTagDateContainer";
+import { NewAccordionTagDateContainer } from "../NewAccordionTagDateContainer";
 
-describe("AccordionTagDateContainer", () => {
+describe("NewAccordionTagDateContainer", () => {
   it("renders correctly", () => {
     const date = "2021-01-01";
     const tag = "tag";
 
-    render(<AccordionTagDateContainer tag={tag} date={date} />);
+    render(<NewAccordionTagDateContainer tag={tag} date={date} />);
 
     expect(screen.getByText(tag).parentElement).toHaveClass(
       "af-tag af-tag--warning",
@@ -18,7 +18,7 @@ describe("AccordionTagDateContainer", () => {
     const tag = "tag";
     const tagProps = { classModifier: "success" };
 
-    render(<AccordionTagDateContainer tag={tag} tagProps={tagProps} />);
+    render(<NewAccordionTagDateContainer tag={tag} tagProps={tagProps} />);
 
     expect(screen.getByText(tag).parentElement).toHaveClass(
       "af-tag af-tag--success",
@@ -26,7 +26,7 @@ describe("AccordionTagDateContainer", () => {
   });
 
   it("should return null if no tag or date", () => {
-    const { container } = render(<AccordionTagDateContainer />);
+    const { container } = render(<NewAccordionTagDateContainer />);
     expect(container).toBeEmptyDOMElement();
   });
 });
