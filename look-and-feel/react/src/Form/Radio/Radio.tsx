@@ -1,9 +1,9 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/Radio/Radio.scss";
 import radioIcon from "@material-symbols/svg-400/outlined/radio_button_checked.svg";
 import radioOutlineBlankIcon from "@material-symbols/svg-400/outlined/radio_button_unchecked.svg";
-import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
 import React, { ReactNode, forwardRef, useId } from "react";
 import { Svg } from "../../Svg";
+import { InputError } from "../InputError";
 
 type RadioProps = {
   label: string | ReactNode;
@@ -34,12 +34,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
             {label}
           </label>
         </div>
-        {errorMessage && (
-          <div className="af-radio__error" aria-live="assertive">
-            <Svg src={errorOutline} />
-            {errorMessage}
-          </div>
-        )}
+        {errorMessage && <InputError message={errorMessage} />}
       </>
     );
   },
