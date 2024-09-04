@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../slash";
+import { getComponentClassName } from "..";
 
 type Props = ComponentPropsWithoutRef<"tbody"> & {
   classModifier?: string;

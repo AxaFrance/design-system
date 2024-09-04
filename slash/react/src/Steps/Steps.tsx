@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { getComponentClassName } from "../slash";
+import { getComponentClassName } from "..";
 
 const defaultClassName = "af-steps-new";
 

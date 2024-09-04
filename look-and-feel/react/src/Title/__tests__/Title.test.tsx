@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Title } from "../index";
+import { Title } from "..";
 import { TitleSize } from "../constants";
 
 describe("Title", () => {

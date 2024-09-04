@@ -22,7 +22,7 @@ export { ClickList } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabList } from "./List/ContentTabList";
-export { Loader } from "./Loader/Client";
+export { Loader } from "./Loader";
 export { Modal } from "./ModalClient/Modal";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal";
 export { Pagination } from "./Pagination/Pagination";

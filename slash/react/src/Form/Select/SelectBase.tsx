@@ -4,7 +4,7 @@ import {
   forwardRef,
   OptionHTMLAttributes,
 } from "react";
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../utilities";
 
 type Props = Omit<
   ComponentPropsWithoutRef<"select"> & {

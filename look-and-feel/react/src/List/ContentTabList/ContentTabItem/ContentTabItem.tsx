@@ -1,4 +1,4 @@
-import { Button, Tag } from "../../../look-and-feel";
+import { Button, Tag } from "../../..";
 import type { TContentTabItem } from "./types";
 
 type TContentTabItemProps = TContentTabItem & {

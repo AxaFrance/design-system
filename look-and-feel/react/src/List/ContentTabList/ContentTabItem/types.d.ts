@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { Button, Tag } from "../../../look-and-feel";
+import { Button, Tag } from "../../..";
 
 export type TContentTabItem = {
   id?: string;

@@ -1,4 +1,4 @@
-import { getComponentClassName } from "./getComponentClassName";
+import { getComponentClassName } from "../../utilities";
 import { MessageTypes } from "./MessageTypes";
 
 const DEFAULT_CLASS_NAME = "af-form__message";

@@ -1,6 +1,6 @@
 import article from "@material-symbols/svg-400/outlined/article-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Title } from "./index";
+import { Title } from ".";
 import { Svg } from "../Svg";
 import { TitleSize } from "./constants";
 

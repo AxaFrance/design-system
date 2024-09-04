@@ -5,7 +5,7 @@ import React, {
   useMemo,
   type ComponentProps,
 } from "react";
-import { Card } from "../look-and-feel";
+import { Card } from "..";
 
 import "@axa-fr/design-system-look-and-feel-css/dist/List/List.scss";
 

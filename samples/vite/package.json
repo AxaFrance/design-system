@@ -13,10 +13,10 @@
     "@material-symbols/svg-400": "^0.19.0",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
-    "@swc/core": "^1.7.4",
+    "@swc/core": "^1.7.22",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.24",
     "@typescript-eslint/eslint-plugin": "^7.17.0",

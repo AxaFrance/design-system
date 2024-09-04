@@ -41,7 +41,7 @@
     &-container {
       padding: 0.75rem 1rem;
       border: 1px solid common.$color-gray-700;
-      border-radius: 4px;
+      border-radius: common.$default-border-radius;
       color: common.$color-gray-700;
       background-color: common.$color-white;
 

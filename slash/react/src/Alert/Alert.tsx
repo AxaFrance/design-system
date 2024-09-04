@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren } from "react";
-import { getComponentClassName } from "../Form/core";
+import { getComponentClassName } from "../utilities";
 import "@axa-fr/design-system-slash-css/dist/Alert/Alert.scss";
 
 export enum TypeIcons {

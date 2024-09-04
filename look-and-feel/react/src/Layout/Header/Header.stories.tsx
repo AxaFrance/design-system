@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import person from "@material-symbols/svg-400/outlined/person-fill.svg";
 import lock from "@material-symbols/svg-400/outlined/lock-fill.svg";
 import { Svg } from "../../Svg";
-import { Button, ButtonVariants } from "../../look-and-feel";
+import { Button, ButtonVariants } from "../..";
 import { Header } from "./Header";
 
 const meta: Meta<typeof Header> = {

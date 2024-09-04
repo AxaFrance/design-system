@@ -8,8 +8,8 @@ import errorO from "@material-symbols/svg-400/outlined/error.svg";
 import plus from "@material-symbols/svg-400/outlined/add_circle-fill.svg";
 import classNames from "classnames";
 import { Svg } from "../../Svg";
-import { Loader } from "../../Loader/Client";
-import { Button } from "../../look-and-feel";
+import { Loader } from "../../Loader";
+import { Button } from "../..";
 import { Variants } from "../../Button/Button";
 import { InputError } from "../InputError";
 
@@ -123,14 +123,13 @@ const FileUpload = ({
             )?.message;
 
             return (
-              <>
-                <li
-                  key={fileId}
-                  className={`af-form__file-line ${isInError ? "af-form__file-line--error" : ""}`}
+              <li key={fileId} className="af-form__file-line">
+                <div
+                  className={`af-form__file-line-container ${isInError ? "af-form__file-line-container--error" : ""}`}
                 >
-                  <div className="af-form__file-title-container">
+                  <div className="af-form__file-title">
                     {getIcon(isInError, isLoading)}
-                    <div className="af-form__file-title">
+                    <div>
                       <span className="af-form__file-name">{name}</span>
                       <span className="af-form__file-size">
                         {effectiveSize}
@@ -169,7 +168,7 @@ const FileUpload = ({
                       />
                     )}
                   </div>
-                </li>
+                </div>
                 {isInError && (
                   <small className="af-form__file-error">
                     <Svg
@@ -180,7 +179,7 @@ const FileUpload = ({
                     {errorMessage}
                   </small>
                 )}
-              </>
+              </li>
             );
           })}
         </ul>

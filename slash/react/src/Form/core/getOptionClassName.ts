@@ -1,4 +1,4 @@
-import { getComponentClassName } from "./getComponentClassName";
+import { getComponentClassName } from "../../utilities";
 
 export function getOptionClassName(
   className: string,

@@ -1,7 +1,7 @@
 import download from "@material-symbols/svg-400/rounded/download_2-fill.svg";
 import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import { render, screen } from "@testing-library/react";
-import { ButtonVariants, Svg } from "../../../look-and-feel";
+import { ButtonVariants, Svg } from "../../..";
 import type { TContentTabItem } from "../ContentTabItem";
 import { ContentTabList } from "../ContentTabList";
 

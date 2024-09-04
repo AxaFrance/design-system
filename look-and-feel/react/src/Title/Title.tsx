@@ -4,8 +4,8 @@ import {
   type ComponentProps,
   type ReactNode,
 } from "react";
-import { IconBg } from "../look-and-feel";
-import { getComponentClassName } from "../Form/core";
+import { IconBg } from "..";
+import { getComponentClassName } from "../utilities";
 import { TitleSize } from "./constants";
 import { TitleWithSubtitles } from "./TitleWithSubtitles";
 

@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/Form/Date/Date.scss";
 import { ComponentPropsWithRef, forwardRef, useMemo } from "react";
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../utilities";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "value"> & {
   classModifier?: string;

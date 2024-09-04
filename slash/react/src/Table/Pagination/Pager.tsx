@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/Table/Pager.scss";
 import { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../../slash";
+import { getComponentClassName } from "../..";
 import { Li } from "./Li";
 import { LiPoint } from "./LiPoint";
 import { PaginationButton } from "./PaginationButton";

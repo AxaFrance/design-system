@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../Form/core";
+import { getComponentClassName } from "../utilities";
 import { TBody } from "./TBody";
 import { THead } from "./THead";
 import { Td } from "./Td";

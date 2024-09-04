@@ -1,5 +1,5 @@
 import { useMemo, type ReactNode } from "react";
-import { getComponentClassName } from "../../Form/core";
+import { getComponentClassName } from "../../utilities";
 import { ContentItemMonoSize } from "./constants";
 
 type ContentItemMonoProps = {

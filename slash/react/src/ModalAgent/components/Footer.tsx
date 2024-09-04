@@ -1,4 +1,4 @@
-import { getComponentClassName } from "../../slash";
+import { getComponentClassName } from "../..";
 
 export type FooterProps = React.HTMLAttributes<HTMLDivElement> & {
   classModifier?: string;

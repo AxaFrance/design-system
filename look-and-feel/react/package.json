@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "exports": {
-    "./look-and-feel": {
-      "import": "./dist/look-and-feel.js",
-      "types": "./dist/look-and-feel.d.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./utilities": {
       "import": "./dist/utilities.js",

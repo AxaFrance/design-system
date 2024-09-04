@@ -4,7 +4,7 @@ import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
 import closeIcons from "@material-symbols/svg-400/outlined/close.svg";
 import "./Svg.stories.css";
-import { Svg } from "./index";
+import { Svg } from ".";
 
 const meta: Meta = {
   title: "Components/Svg",

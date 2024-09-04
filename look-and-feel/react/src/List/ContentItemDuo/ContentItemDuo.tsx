@@ -2,8 +2,8 @@ import checkIcon from "@material-symbols/svg-400/outlined/check.svg";
 import closeIcon from "@material-symbols/svg-400/outlined/close.svg";
 import { useMemo } from "react";
 import { Variants } from "../../Button/Button";
-import { getComponentClassName } from "../../Form/core";
-import { Button, Svg } from "../../look-and-feel";
+import { getComponentClassName } from "../../utilities";
+import { Button, Svg } from "../..";
 
 type ContentItemDuoProps = {
   label: string;

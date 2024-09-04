@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, forwardRef } from "react";
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../utilities";
 
 import "@axa-fr/design-system-slash-css/dist/Form/Pass/Pass.scss";
 

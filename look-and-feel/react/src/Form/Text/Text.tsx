@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/Text/Text.scss";
 import { ComponentPropsWithRef, forwardRef } from "react";
 
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../utilities";
 import { InputError } from "../InputError";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
@@ -38,10 +38,12 @@ const Text = forwardRef<HTMLInputElement, Props>(
           ref={inputRef}
           required={required}
           disabled={disabled}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? `${id}-error` : undefined}
           {...otherProps}
         />
         {helper && <span className="af-form__input-helper">{helper}</span>}
-        {error && <InputError message={error} />}
+        {error && <InputError id={`${id}-error`} message={error} />}
       </div>
     );
   },

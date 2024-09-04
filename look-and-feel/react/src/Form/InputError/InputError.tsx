@@ -4,11 +4,14 @@ import { Svg } from "../../Svg";
 
 type InputErrorProps = {
   message: string;
+  id?: string;
 };
 
-export const InputError = ({ message }: InputErrorProps) => (
+export const InputError = ({ message, id }: InputErrorProps) => (
   <div className="af-input-error">
     <Svg src={errorIcon} className="af-input-error__icon" />
-    <span className="af-input-error__message">{message}</span>
+    <span id={id} aria-live="assertive" className="af-input-error__message">
+      {message}
+    </span>
   </div>
 );

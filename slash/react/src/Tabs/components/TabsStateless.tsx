@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Children, ReactNode, isValidElement } from "react";
-import { getComponentClassName } from "../../slash";
+import { getComponentClassName } from "../..";
 import { Pane } from "./Pane";
 import { Title } from "./Title";
 

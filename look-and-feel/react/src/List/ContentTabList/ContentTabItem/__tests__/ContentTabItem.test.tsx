@@ -3,7 +3,7 @@ import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ContentTabItem, type TContentTabItem } from "..";
-import { ButtonVariants, Svg } from "../../../../look-and-feel";
+import { ButtonVariants, Svg } from "../../../..";
 
 describe("ContentTabList", () => {
   const items: TContentTabItem[] = [

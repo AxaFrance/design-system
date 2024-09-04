@@ -1,4 +1,4 @@
-import { getComponentClassName } from "../../slash";
+import { getComponentClassName } from "../..";
 
 export type BodyProps = React.HTMLAttributes<HTMLDivElement> & {
   classModifier?: string;
