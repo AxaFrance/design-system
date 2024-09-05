@@ -164,22 +164,22 @@
     & .af-radio__content > svg,
     & .af-radio__checked,
     & .af-radio__unchecked {
-      color: common.$color-btn-disabled-text;
-      fill: common.$color-btn-disabled-text;
+      color: common.$color-gray-500;
+      fill: common.$color-gray-500;
     }
-  }
-
-  &-select label:has(input[type="radio"]:disabled) {
-    color: common.$color-btn-disabled-text;
-    background-color: common.$color-gray-200;
-    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
-
-    --box-shadow-color: #{common.$color-gray-400};
   }
 
   &-select[aria-invalid="false"] label:has(input[type="radio"]:checked) {
     background-color: common.$color-blue-2;
     box-shadow: 0 0 0 2px common.$color-axa inset;
+  }
+
+  &-select[aria-invalid="false"] label:has(input[type="radio"]:disabled) {
+    color: common.$color-gray-500;
+    background-color: common.$color-gray-200;
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
+
+    --box-shadow-color: #{common.$color-gray-400};
   }
 
   & label input[type="radio"]:focus-visible ~ .af-radio__icons {
