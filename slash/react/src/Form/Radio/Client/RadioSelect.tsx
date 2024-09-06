@@ -22,6 +22,7 @@ type RadioSelectProps = {
   errorMessage?: string;
   onChange?: React.ChangeEventHandler;
   value?: string;
+  isDisabled?: boolean;
 } & Omit<ComponentPropsWithRef<"div">, "className" | "aria-invalid">;
 
 export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
@@ -34,6 +35,7 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
       type = "vertical",
       name,
       value,
+      isDisabled,
       ...rest
     },
     ref,
@@ -50,10 +52,18 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
           aria-invalid={Boolean(errorMessage)}
         >
           {options.map(
-            ({ label, description, subtitle, icon, ...inputProps }) => (
+            ({
+              label,
+              description,
+              subtitle,
+              icon,
+              disabled: inputDisabled,
+              ...inputProps
+            }) => (
               <label key={label as string} htmlFor={`${optionId}-${label}`}>
                 <input
                   type="radio"
+                  {...(isDisabled || inputDisabled ? { disabled: true } : null)}
                   {...inputProps}
                   name={name}
                   id={`${optionId}-${label}`}
