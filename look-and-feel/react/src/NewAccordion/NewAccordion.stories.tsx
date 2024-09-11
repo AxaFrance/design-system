@@ -37,6 +37,49 @@ export const NewAccordionStory: StoryObj<ComponentProps<typeof NewAccordion>> =
     },
   };
 
+export const NewAccordionWithCustomSummaryStory: StoryObj<
+  ComponentProps<typeof NewAccordion>
+> = {
+  name: "NewAccordion With Custom Summary",
+  render: (args) => (
+    <>
+      <style>
+        {`
+        .af-new-accordion--custom .af-new-accordion__summary {
+          grid-template-areas: "title-container arrow";
+          grid-template-columns: 1fr auto;
+
+          
+          .af-new-accordion__title-container {
+            display: block;
+          }
+        }
+        `}
+      </style>
+      <NewAccordion {...args} />
+    </>
+  ),
+  args: {
+    title: (
+      <div
+        style={{
+          backgroundColor: "red",
+          paddingBottom: "32px",
+        }}
+      />
+    ),
+    children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et tempor blandit. 
+              Nulla vitae eros a odio pretium gravida. Sed eget tortor nec massa lobortis bibendum. Morbi eget 
+              ligula porttitor, euismod odio vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.`,
+    isOpen: undefined,
+    onClick: undefined,
+    classModifier: "custom",
+  },
+  argTypes: {
+    date: { control: "text" },
+  },
+};
+
 export const NewAccordionWithCardStory: StoryObj<
   ComponentProps<typeof NewAccordion>
 > = {

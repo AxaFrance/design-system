@@ -155,6 +155,16 @@ describe("NewAccordion", () => {
     ).toBe(Node.DOCUMENT_POSITION_PRECEDING);
   });
 
+  it("renders with custom title summary", () => {
+    render(
+      <NewAccordion title={<p className="custom-title">Custom Title</p>}>
+        Accordion Content
+      </NewAccordion>,
+    );
+
+    expect(screen.getByText("Custom Title")).toHaveClass("custom-title");
+  });
+
   it("renders on mobile", () => {
     global.innerWidth = 500;
     render(

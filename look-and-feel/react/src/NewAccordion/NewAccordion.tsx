@@ -1,5 +1,10 @@
-import type React from "react";
-import { useCallback, useMemo, type ComponentProps } from "react";
+import {
+  useCallback,
+  useMemo,
+  type ComponentProps,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 import { Tag } from "../Tag";
 import {
   BREAKPOINT,
@@ -9,18 +14,18 @@ import {
 import { NewAccordionTagDateContainer } from "./NewAccordionTagDateContainer";
 
 type NewAccordionProps = {
-  title: string;
-  children: React.ReactNode;
+  title: ReactNode;
+  children: ReactNode;
   className?: string;
   classModifier?: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   subtitle?: string;
   tag?: string;
   tagProps?: ComponentProps<typeof Tag>;
   date?: string;
   value?: string;
   isOpen?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   isTitleFirst?: boolean;
 };
 
@@ -52,7 +57,7 @@ export const NewAccordion = ({
   );
 
   const handleToggle = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
+    (event: MouseEvent<HTMLButtonElement>) => {
       if (onClick) {
         event.preventDefault();
         onClick(event);
@@ -84,7 +89,11 @@ export const NewAccordion = ({
           {isShowingIcon && !isMobile && (
             <div className="af-new-accordion__icon">{icon}</div>
           )}
-          <p className="af-new-accordion__title">{title}</p>
+          {typeof title === "string" ? (
+            <p className="af-new-accordion__title">{title}</p>
+          ) : (
+            title
+          )}
           {subtitle && <p className="af-new-accordion__subtitle">{subtitle}</p>}
         </div>
         {isTitleFirst && (
