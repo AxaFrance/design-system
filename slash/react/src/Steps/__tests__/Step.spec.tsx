@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Step, StepBase, Steps } from "../index";
+import { Step, StepBase, Steps } from "..";
 
 describe("<Steps>", () => {
   it("renders Steps correctly", () => {

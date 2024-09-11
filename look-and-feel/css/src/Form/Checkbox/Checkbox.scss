@@ -1,0 +1,218 @@
+@use "../../common/common" as common;
+
+.af-checkbox {
+  font-family: "Source Sans Pro", arial, sans-serif;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    & > svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: common.$color-axa;
+      fill: common.$color-axa;
+    }
+
+    & &-description {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      line-height: 1.25rem;
+
+      & > span:first-child {
+        line-height: 1.4rem;
+        color: common.$color-gray-900;
+      }
+
+      & > span:not(:first-child) {
+        color: common.$color-gray-700;
+      }
+    }
+  }
+
+  &-select--horizontal &__content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__group-description {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  & ~ &__error {
+    display: flex;
+    margin-left: 3.2rem;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Source Sans Pro", arial, sans-serif;
+    line-height: 1.25rem;
+    color: common.$color-red-700;
+
+    & > svg {
+      color: common.$color-red-700;
+      fill: common.$color-red-700;
+    }
+  }
+
+  &-select ~ &__error {
+    margin: 1rem 0 0;
+  }
+
+  & label {
+    display: flex;
+    margin: 0;
+    border-radius: common.$default-border-radius;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+
+  &-select label {
+    height: 6.4rem;
+    padding: 1rem;
+    align-items: center;
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
+
+    --box-shadow-color: #{common.$color-gray};
+  }
+
+  &-select--horizontal label {
+    position: relative;
+    width: 12rem;
+    height: auto;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    text-align: center;
+
+    & .af-checkbox__icons {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+    }
+  }
+
+  & label input[type="checkbox"] {
+    position: absolute;
+    margin-right: 0.5rem;
+    opacity: 0;
+
+    & ~ .af-checkbox__icons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      & .af-checkbox__checked,
+      & .af-checkbox__unchecked {
+        width: 1.75rem;
+        height: 1.75rem;
+        align-items: center;
+      }
+
+      & .af-checkbox__checked {
+        display: none;
+      }
+
+      & .af-checkbox__unchecked {
+        color: common.$color-gray-700;
+        fill: common.$color-gray-700;
+      }
+    }
+  }
+
+  & label:has(input[type="checkbox"][aria-invalid="true"]) {
+    & .af-checkbox__checked,
+    & .af-checkbox__unchecked {
+      color: common.$color-red-700;
+      fill: common.$color-red-700;
+    }
+  }
+
+  & label:has(input[type="checkbox"]:checked) {
+    & .af-checkbox__checked {
+      display: block;
+      color: common.$color-axa;
+      fill: common.$color-axa;
+    }
+
+    & .af-checkbox__unchecked {
+      display: none;
+    }
+  }
+
+  &-select label:has(input[type="checkbox"]:checked) {
+    background-color: common.$color-blue-2;
+    box-shadow: 0 0 0 2px common.$color-axa inset;
+  }
+
+  & label:has(input[type="checkbox"]:disabled) {
+    cursor: default;
+
+    & .af-checkbox__content > svg,
+    & .af-checkbox__checked,
+    & .af-checkbox__unchecked {
+      color: common.$color-btn-disabled-text;
+      fill: common.$color-btn-disabled-text;
+    }
+  }
+
+  &-select label:has(input[type="checkbox"]:disabled) {
+    color: common.$color-btn-disabled-text;
+    background-color: common.$color-gray-200;
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
+
+    --box-shadow-color: #{common.$color-gray-400};
+  }
+
+  &-select label:has(input[type="checkbox"][aria-invalid="true"]) {
+    --box-shadow-color: #{common.$color-red-700};
+
+    box-shadow: 0 0 0 2px var(--box-shadow-color) inset;
+  }
+
+  & label input[type="checkbox"]:focus-visible ~ .af-checkbox__icons {
+    & .af-checkbox__unchecked,
+    & .af-checkbox__checked {
+      outline: 2px solid common.$color-blue-3;
+      outline-offset: 3px;
+    }
+  }
+
+  & label:hover:not(:has(input[type="checkbox"]:disabled)) {
+    & .af-checkbox__unchecked {
+      color: common.$color-axa;
+      fill: common.$color-axa;
+    }
+  }
+
+  &-select label:hover:not(:has(input[type="checkbox"]:disabled)) {
+    --box-shadow-color: #{common.$color-axa};
+
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
+  }
+
+  &-select {
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: common.$font-family-base;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: common.$color-gray-700;
+
+    &--horizontal {
+      flex-direction: row;
+    }
+  }
+}

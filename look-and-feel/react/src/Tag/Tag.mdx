@@ -1,0 +1,24 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as TagStories from "./Tag.stories";
+
+<Meta of={TagStories} name="Tag" />
+
+# Tag
+
+### Import
+
+```tsx
+import { Tag } from "@axa-fr/design-system-look-and-feel-react";
+```
+
+### Use
+
+```tsx
+export const TagComponent = () => <Tag>Texte</Tag>;
+```
+
+## Playground
+
+<Canvas of={TagStories.Default} />
+
+<Controls of={TagStories.Default} />

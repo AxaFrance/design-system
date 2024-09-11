@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Date/Date.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Date/Date.scss";
 import { ComponentPropsWithRef, forwardRef, useMemo } from "react";
 import { getComponentClassName } from "../../utilities";
 

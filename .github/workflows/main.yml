@@ -21,3 +21,4 @@ jobs:
       - run: npm run build
       - run: npm run lint -- --max-processes 1
       - run: npm run --workspace slash/react test
+      - run: npm run --workspace look-and-feel/react test

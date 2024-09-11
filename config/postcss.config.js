@@ -27,11 +27,11 @@ module.exports = ({ ...ctx }) => {
           },
         });
 
-        cpSync("src/common/glyphicons/", "dist/common/glyphicons/", {
+        cpSync("../../common/glyphicons/", "dist/common/glyphicons/", {
           recursive: true,
         });
 
-        cpSync("src/common/assets/", "dist/common/assets/", {
+        cpSync("../../common/assets/", "dist/common/assets/", {
           recursive: true,
         });
 

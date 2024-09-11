@@ -1,0 +1,105 @@
+@use "../../common/common" as common;
+
+.af-form {
+  &__input-text {
+    padding: 0.625rem 1.25rem;
+    border: 1px solid common.$color-silver;
+    font-size: 1em;
+    line-height: 20px;
+
+    &:focus {
+      border-color: common.$color-axa;
+      color: common.$color-axa;
+    }
+
+    &--hasinfobulle {
+      margin-right: 1rem;
+    }
+  }
+
+  &__text {
+    &--disabled {
+      .af-form__input-text {
+        cursor: not-allowed;
+      }
+    }
+
+    &--success,
+    &--valid {
+      .af-form__input-text {
+        margin-right: 1rem;
+      }
+
+      &::after {
+        position: relative;
+        top: 5px;
+        font-family: common.$font-family-icon;
+        color: common.$color-malachite;
+        content: "\EABA";
+      }
+
+      > .af-btn--circle {
+        margin-right: 1rem;
+      }
+    }
+
+    &--valid {
+      &::after {
+        display: none;
+      }
+
+      .glyphicon-ok {
+        width: 17px;
+        margin-left: 2px;
+        fill: common.$color-btn-success;
+      }
+    }
+
+    &--error {
+      padding: 0;
+
+      .af-form__input-text {
+        border: 1px solid common.$color-red-axa;
+        color: common.$color-red-axa;
+      }
+    }
+
+    &--warning {
+      padding: 0;
+
+      .af-form__input-text {
+        border: 1px solid common.$color-orange-dark;
+        color: common.$color-orange-dark;
+      }
+    }
+
+    &-wrapper {
+      position: relative;
+      display: inline-flex;
+    }
+  }
+
+  &__input-text::-ms-clear,
+  &__input-text::-ms-reveal {
+    display: none;
+  }
+
+  &__clear {
+    position: absolute;
+    top: 0.75rem;
+    right: 3rem;
+
+    &:hover {
+      border-radius: 100%;
+      background: common.$color-mercury;
+      box-shadow: 0 0 0 6px common.$color-mercury;
+    }
+
+    .glyphicon {
+      display: inherit;
+      width: 19px;
+      height: 100%;
+      padding-top: 0;
+    }
+  }
+}

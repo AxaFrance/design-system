@@ -1,0 +1,220 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Controls } from "@storybook/blocks";
+import * as TextStories from "./Text.stories";
+import * as TextInputStories from "./TextInput.stories";
+
+# Input Text
+
+1. [Text](#text)
+2. [TextInput](#textinput)
+   1. [TextInput Required](#textinput-required)
+3. [TextInput Error](#textinput-error)
+4. [Text Success](#text-success)
+   1. [Text Disabled](#text-disabled)
+5. [TextInput Rich Label](#textinput-rich-label)
+
+<Meta of={TextStories} />
+
+## Text
+
+### Import
+
+```javascript
+import { Text } from "@axa-fr/design-system";
+```
+
+or
+
+```javascript
+import { Text } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const textReturn = () => (
+  <form className="af-form" name="myform">
+    <Text id="nameid" name="name" placeholder="Your name" value="John Doe" />
+  </form>
+);
+export default textReturn;
+```
+
+<Canvas of={TextStories.TextStory} />
+
+<Controls of={TextStories.TextStory} />
+
+## TextInput
+
+### Import
+
+```javascript
+import { TextInput } from "@axa-fr/design-system";
+```
+
+or
+
+```javascript
+import { TextInput } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const textInputReturn = () => (
+  <form className="af-form" name="myform">
+    <TextInput
+      id="nameid"
+      name="name"
+      label="Your name"
+      value="John Doe"
+      placeholder="Your name"
+      helpMessage="Aide à la saisie"
+      onChange={(e) => {
+        console.log(e);
+      }}
+    />
+  </form>
+);
+export default textInputReturn;
+```
+
+<Canvas of={TextInputStories.TextInputStory} />
+
+<Controls of={TextInputStories.TextInputStory} />
+
+### TextInput Required
+
+To achieve TextInput Required, you need to add this :
+
+```javascript
+classModifier = "required";
+```
+
+in **TextInput**.
+
+## TextInput Error
+
+### Import
+
+```javascript
+import { TextInput } from "@axa-fr/design-system";
+```
+
+or
+
+```javascript
+import { TextInput } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const textInputError = () => (
+  <form className="af-form" name="myform">
+    <TextInput
+      id="nameid"
+      name="name"
+      label="Your name"
+      value="John Doe"
+      placeholder="Your name"
+      classModifier="required"
+      message="The field is required"
+      messageType={MessageTypes.error}
+      forceDisplayMessage={true}
+    />
+  </form>
+);
+export default textInputError;
+```
+
+<Canvas of={TextInputStories.TextInputErrorStory} />
+
+## Text Success
+
+### Import
+
+```javascript
+import { TextInput } from "@axa-fr/design-system";
+```
+
+or
+
+```javascript
+import { TextInput } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const textSuccess = () => (
+  <form className="af-form" name="myform">
+    <TextInput
+      id="nameid"
+      name="name"
+      label="Your name"
+      value="John Doe"
+      placeholder="Your name"
+      message="Success Message Type"
+      messageType={MessageTypes.success}
+      forceDisplayMessage={true}
+    />
+  </form>
+);
+export default textSuccess;
+```
+
+<Canvas of={TextInputStories.TextInputSuccessStory} />
+
+### Text Disabled
+
+To achieve Text Disabled, you need to add this :
+
+```javascript
+disabled = { true };
+```
+
+in **the component of your choice**.
+
+## TextInput Rich Label
+
+### Import
+
+```javascript
+import { TextInput } from "@axa-fr/design-system";
+```
+
+or
+
+```javascript
+import { TextInput } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const richLabel = (
+  <span>
+    Place name <i>optional</i>
+  </span>
+);
+
+const textInputRichLabel = () => (
+  <form className="af-form" name="myform">
+    <TextInput
+      id="nameid"
+      name="name"
+      label={richLabel}
+      value="John Doe"
+      placeholder="Your name"
+      helpMessage="Aide à la saisie"
+      message="The field is required"
+      messageType={MessageTypes.error}
+      forceDisplayMessage={true}
+    />
+  </form>
+);
+export default textInputRichLabel;
+```
+
+<Canvas of={TextInputStories.TextInputRichLabelStory} />

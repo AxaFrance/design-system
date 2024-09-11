@@ -1,0 +1,84 @@
+@use "../../common/common" as common;
+
+.af-header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  background-color: common.$color-white;
+}
+
+.af-header-container {
+  display: flex;
+  width: 100%;
+  height: 72px;
+  border-bottom: 1px solid common.$color-gray-1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: common.$font-family-sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: common.$color-axa;
+
+  & .af-btn-client {
+    min-width: initial;
+
+    & > svg {
+      display: none;
+    }
+  }
+}
+
+.af-logo {
+  width: 40px;
+  height: 40px;
+  margin: 0 common.$spacing-u1;
+  align-self: center;
+}
+
+.af-header-left-item > nav {
+  display: none;
+}
+
+.af-header-right-item {
+  display: flex;
+  margin: 0 common.$spacing-u1;
+  flex-direction: row;
+  align-items: center;
+  gap: common.$spacing-u1;
+}
+
+@media only screen and (width >=64em) {
+  .af-header-container {
+    width: auto;
+    height: 80px;
+    padding: 0 common.$spacing-u4;
+    border-top: 2px solid common.$color-axa;
+
+    & .af-btn-client > svg {
+      display: block;
+    }
+  }
+
+  .af-logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .af-header-left-item {
+    display: flex;
+    height: 5rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+
+    & > nav {
+      display: block;
+    }
+  }
+
+  .af-header-right-item {
+    margin: 0;
+    gap: common.$spacing-u2;
+  }
+}

@@ -1,0 +1,39 @@
+name: Publish look and feel prerelease
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    if: github.repository_owner == 'AxaFrance'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "*" # Use the LTS Node.js version
+          cache: "npm"
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0
+      - run: npm run package:check
+      - run: npm ci
+      - run: npm run build:look-and-feel
+      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w look-and-feel/css -w look-and-feel/react
+      - name: Set to react package the @axa-fr/design-system-look-and-feel-css dependency version
+        run: |
+          cd look-and-feel/react
+          jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
+      - run: npm publish -w look-and-feel/css -w look-and-feel/react --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

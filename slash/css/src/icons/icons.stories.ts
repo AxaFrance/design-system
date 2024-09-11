@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "../agent.scss";
+import "../slash.scss";
 import "./icons.stories.css";
 
 const meta: Meta = {
-  title: "Agent/icons",
+  title: "icons",
 };
 
 export default meta;

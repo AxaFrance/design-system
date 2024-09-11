@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Modal/Modal.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Modal/Modal.scss";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactElement, ReactNode } from "react";
 import { BooleanModal } from "./BooleanModal";
@@ -15,7 +15,7 @@ const MODIFIERS = [
 ];
 
 const meta: Meta<typeof Modal> = {
-  title: "Agent/Components/Modal",
+  title: "Components/Modal",
   component: Modal,
   parameters: {
     options: {},

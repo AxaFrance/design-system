@@ -1,0 +1,54 @@
+@use "sass:color";
+@use "../common/common" as common;
+
+h2.af-title {
+  font-size: 1.5rem;
+}
+
+h3.af-title {
+  font-size: 1.25rem;
+}
+
+h4.af-title {
+  font-size: 1.125rem;
+}
+
+h3.af-title::after,
+h4.af-title::after {
+  bottom: 0.1rem;
+}
+
+.af-title {
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  color: common.$color-texte;
+
+  &::after {
+    position: absolute;
+    z-index: 1;
+    bottom: 0.3rem;
+    width: 100%;
+    height: 1px;
+    margin: 0.5rem 1rem;
+    background-color: common.$color-gray-1;
+    content: " ";
+  }
+
+  & + .af-title {
+    margin-top: 0;
+  }
+
+  &--content {
+    margin: 2rem 0 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid common.$color-silver;
+    font-size: 1.75em;
+    font-weight: 600;
+    color: common.$color-mine-shaft;
+
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+}

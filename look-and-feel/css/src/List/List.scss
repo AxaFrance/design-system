@@ -1,0 +1,53 @@
+@use "../common/common" as common;
+
+.af-list {
+  padding: 0;
+  flex-direction: column;
+  list-style-type: none;
+
+  &__item {
+    padding: 1rem 0;
+  }
+
+  &__separator {
+    margin: 0;
+    border: 1px solid common.$color-gray-300;
+  }
+}
+
+.af-card {
+  &--list {
+    padding: 0 1rem;
+    box-shadow: none;
+  }
+
+  &--large {
+    width: 100%;
+  }
+
+  &--extra-padding {
+    padding: 0.5rem 1.5rem;
+  }
+
+  &--first-separator-full-width {
+    padding: 0;
+
+    .af-list__item {
+      padding: 1rem;
+    }
+
+    .af-list__separator ~ .af-list__separator {
+      margin: 0 1rem;
+    }
+  }
+}
+
+@media (width <= #{common.$breakpoint-sm}) {
+  .af-card--extra-padding {
+    padding: 0.25rem 1rem;
+
+    .af-list__item {
+      padding: 0.75rem 0;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@use "../../../common/common" as common;
+
+.af-drawer {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  width: common.$drawer-width;
+  height: 100%;
+  margin: 0;
+  transform: translateX(100%);
+  transition: common.$drawer-transition;
+
+  &.show {
+    transform: translateX(0);
+  }
+
+  &.left {
+    left: 0;
+    transform: translateX(-100%);
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+}

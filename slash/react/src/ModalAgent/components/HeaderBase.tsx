@@ -1,4 +1,4 @@
-import { getComponentClassName } from "../../agent";
+import { getComponentClassName } from "../..";
 
 export type HeaderBaseProps = React.HTMLAttributes<HTMLDivElement> & {
   classModifier?: string;

@@ -1,0 +1,35 @@
+@use "../common/common" as common;
+
+.af-pagination-mobile {
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+
+  > span {
+    color: common.$color-gray;
+  }
+
+  button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 1px solid common.$color-axa;
+    }
+
+    .arrow {
+      color: common.$color-axa;
+    }
+
+    &:disabled {
+      pointer-events: none;
+
+      .arrow {
+        color: common.$color-gray-400;
+      }
+    }
+  }
+}

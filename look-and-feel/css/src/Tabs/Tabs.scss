@@ -1,0 +1,63 @@
+@use "../common/common" as common;
+
+.af-tabs-client {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  font-family: "Source Sans Pro", arial, sans-serif;
+
+  & > [role="tablist"] {
+    display: flex;
+    width: 100%;
+    margin-bottom: common.$spacing-u1;
+    box-shadow: inset 0 -2px 0 0 common.$color-gray-300;
+  }
+
+  & [role="tab"] {
+    all: unset;
+    position: relative;
+    padding: 1rem;
+    font-size: 1.25rem;
+    line-height: common.$sizing-u2;
+    text-align: center;
+    cursor: pointer;
+
+    & > span {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    &[aria-selected="true"] {
+      border-bottom: 4px solid common.$color-axa;
+      font-weight: 600;
+      color: common.$color-axa;
+    }
+  }
+
+  &--center {
+    & > [role="tablist"] {
+      justify-content: center;
+    }
+
+    & [role="tab"] {
+      width: 100%;
+      flex-grow: 1;
+    }
+  }
+
+  & [role="tab"]:focus {
+    outline: unset;
+  }
+
+  & [role="tab"]:focus-visible {
+    outline: 2px solid common.$color-blue-3;
+    outline-offset: 3px;
+  }
+
+  & > [role="tabpanel"][aria-hidden="true"] {
+    display: none;
+  }
+}

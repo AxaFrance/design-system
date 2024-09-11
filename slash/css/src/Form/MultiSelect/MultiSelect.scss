@@ -1,0 +1,22 @@
+@use "../../common/common" as common;
+@use "../core/FormCore";
+@use "../../../../../look-and-feel/css/src/common/grid";
+@use "../../../../../look-and-feel/css/src/common/reboot";
+
+.react-select > div:nth-of-type(2) {
+  z-index: 2;
+}
+
+.af-form__select {
+  &--error {
+    .react-select > div {
+      border-color: common.$color-red-axa;
+    }
+  }
+
+  &--warning {
+    .react-select > div {
+      border-color: common.$color-orange-dark;
+    }
+  }
+}

@@ -3,13 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "exports": {
-    "./agent": {
-      "import": "./dist/agent.js",
-      "types": "./dist/agent.d.ts"
-    },
-    "./client": {
-      "import": "./dist/client.js",
-      "types": "./dist/client.d.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./utilities": {
       "import": "./dist/utilities.js",

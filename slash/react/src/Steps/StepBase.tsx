@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { getComponentClassName } from "../agent";
+import { getComponentClassName } from "..";
 
 type Props = {
   id: string;

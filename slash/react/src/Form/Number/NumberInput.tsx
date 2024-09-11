@@ -7,7 +7,7 @@ import {
 import { Field, HelpMessage, FieldInput, useInputClassModifier } from "../core";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
-import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.agent.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
 
 import { Number } from "./Number";
 

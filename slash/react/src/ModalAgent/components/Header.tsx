@@ -1,5 +1,5 @@
 import type { MouseEventHandler } from "react";
-import { getComponentClassName } from "../../agent";
+import { getComponentClassName } from "../..";
 
 export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
