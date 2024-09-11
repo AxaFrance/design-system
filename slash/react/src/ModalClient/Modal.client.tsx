@@ -70,6 +70,12 @@ export const Modal = ({
     }
   }, [isModalOpen]);
 
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "inherit";
+    };
+  }, []);
+
   const handleCloseModal = () => {
     onClose?.();
     setIsModalOpen(false);
