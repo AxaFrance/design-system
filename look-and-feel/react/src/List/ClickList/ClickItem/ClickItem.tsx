@@ -8,12 +8,17 @@ type TClickItem = { classModifier?: string; isDisabled?: boolean } & Omit<
   "disabled"
 > &
   ComponentProps<"a"> & {
-    label: ReactNode;
+    /**
+     * @deprecated Use children prop instead
+     */
+    label?: ReactNode;
+    children?: ReactNode;
     icon?: ReactNode;
   };
 
 export const ClickItem = ({
   label,
+  children,
   icon,
   href,
   isDisabled = false,
@@ -50,7 +55,7 @@ export const ClickItem = ({
     <ClickComponent className={componentClassName} {...clickComponentProps}>
       <div className="af-click-item__content">
         {icon && <div className="af-click-item__icon">{icon}</div>}
-        <div className="af-click-item__label">{label}</div>
+        <div className="af-click-item__label">{children || label}</div>
       </div>
       <div className="af-click-item__action">
         <Svg src={chevron} />

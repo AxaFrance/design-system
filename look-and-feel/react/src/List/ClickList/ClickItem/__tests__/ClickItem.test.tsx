@@ -2,7 +2,17 @@ import { render, screen } from "@testing-library/react";
 import { ClickItem } from "../ClickItem";
 
 describe("ClickItem", () => {
-  it("should render label correctly", () => {
+  it("should render label correctly with children prop", () => {
+    const label = "Sample Label";
+
+    render(<ClickItem>{label}</ClickItem>);
+
+    const labelElement = screen.getByText(label);
+
+    expect(labelElement).toBeInTheDocument();
+  });
+
+  it("should render label correctly with label prop", () => {
     const label = "Sample Label";
 
     render(<ClickItem label={label} />);
@@ -18,11 +28,9 @@ describe("ClickItem", () => {
     const classModifier = "modifier";
 
     render(
-      <ClickItem
-        className={className}
-        classModifier={classModifier}
-        label={label}
-      />,
+      <ClickItem className={className} classModifier={classModifier}>
+        {label}
+      </ClickItem>,
     );
 
     expect(screen.getByRole("button", { name: label })).toHaveClass(
@@ -34,7 +42,7 @@ describe("ClickItem", () => {
     const label = "Sample Label";
     const icon = <span>Icon</span>;
 
-    render(<ClickItem label={label} icon={icon} />);
+    render(<ClickItem icon={icon}>{label}</ClickItem>);
 
     const iconElement = screen.getByText("Icon");
 
@@ -44,7 +52,7 @@ describe("ClickItem", () => {
   it("should render as a button by default", () => {
     const label = "Sample Label";
 
-    render(<ClickItem label={label} />);
+    render(<ClickItem>{label}</ClickItem>);
 
     const buttonElement = screen.getByRole("button", { name: label });
 
@@ -55,7 +63,7 @@ describe("ClickItem", () => {
     const label = "Sample Label";
     const href = "https://example.com";
 
-    render(<ClickItem label={label} href={href} />);
+    render(<ClickItem href={href}>{label}</ClickItem>);
 
     const linkElement = screen.getByRole("link", { name: label });
 
@@ -68,7 +76,11 @@ describe("ClickItem", () => {
     const href = "https://example.com";
     const disabled = true;
 
-    render(<ClickItem label={label} href={href} isDisabled={disabled} />);
+    render(
+      <ClickItem href={href} isDisabled={disabled}>
+        {label}
+      </ClickItem>,
+    );
 
     const anchorElement = screen.getByRole("link", { name: label });
 
@@ -80,7 +92,7 @@ describe("ClickItem", () => {
     const label = "Sample Label";
     const disabled = true;
 
-    render(<ClickItem label={label} isDisabled={disabled} />);
+    render(<ClickItem isDisabled={disabled}>{label}</ClickItem>);
 
     const buttonElement = screen.getByRole("button", { name: label });
 

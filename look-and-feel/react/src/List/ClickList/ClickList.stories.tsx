@@ -18,24 +18,24 @@ export const ClickListWithIcon: StoryObj<typeof ClickList> = {
       {
         id: "1",
         icon: <Svg src={error} />,
-        label: "Texte principal",
+        children: "Texte principal",
         classModifier: "small",
       },
       {
         id: "2",
         icon: <Svg src={error} />,
-        label: "Texte principal",
+        children: "Texte principal",
       },
       {
         id: "3",
         icon: <Svg src={error} />,
-        label: "Texte principal",
+        children: "Texte principal",
         classModifier: "large",
       },
       {
         id: "4",
         icon: <Svg src={contentPasteGo} />,
-        label: "Texte principal",
+        children: "Texte principal",
         isDisabled: true,
       },
     ],
@@ -57,7 +57,7 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
     items: [
       {
         id: "1",
-        label: (
+        children: (
           <>
             <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
@@ -69,7 +69,7 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
       },
       {
         id: "2",
-        label: (
+        children: (
           <>
             <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
@@ -99,7 +99,7 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
     items: [
       {
         id: "1",
-        label: (
+        children: (
           <>
             <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
@@ -113,7 +113,7 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
       },
       {
         id: "2",
-        label: (
+        children: (
           <>
             <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
