@@ -1,4 +1,4 @@
-import { getComponentClassName } from "../../../utilities";
+import { getComponentClassName } from "../../utilities";
 import { CustomFile } from "./File";
 
 type Props = CustomFile & {

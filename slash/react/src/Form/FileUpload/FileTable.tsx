@@ -3,7 +3,7 @@ import { FileRejection } from "react-dropzone";
 import { FileLine } from "./FileLine";
 import { CustomFile } from "./File";
 import { FileErrors } from "./FileErrors";
-import { getComponentClassName } from "../../../utilities";
+import { getComponentClassName } from "../../utilities";
 
 type FileLineProps = ComponentPropsWithoutRef<typeof FileLine>;
 type Props = Pick<FileLineProps, "onClick"> & {

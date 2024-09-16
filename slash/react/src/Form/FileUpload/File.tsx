@@ -5,8 +5,8 @@ import {
   useDropzone,
 } from "react-dropzone";
 import { useId } from "react";
-import { getComponentClassName } from "../../../utilities";
-import { Button } from "../../../Button/Button";
+import { getComponentClassName } from "../../utilities";
+import { Button } from "../../Button/Button";
 
 type Dropzone = DropzoneInputProps & DropzoneOptions;
 type Props = Omit<Dropzone, "onDrop" | "onChange"> & {

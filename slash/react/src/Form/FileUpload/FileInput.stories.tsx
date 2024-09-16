@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { FileRejection } from "react-dropzone";
-import { HelpMessage, MessageTypes } from "../../core";
+import { HelpMessage, MessageTypes } from "../core";
 import { FileInput } from "./FileInput";
 import { File, FilePreview } from "./File";
 import { FileTable } from "./FileTable";

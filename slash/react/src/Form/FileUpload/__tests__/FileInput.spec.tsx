@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { FileInput } from "../FileInput";
-import { MessageTypes } from "../../../core";
+import { MessageTypes } from "../../core";
 
 describe("<FileInput>", () => {
   it("renders FileInput correctly", () => {
