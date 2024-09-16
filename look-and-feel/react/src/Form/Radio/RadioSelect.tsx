@@ -12,6 +12,8 @@ import { Svg } from "../../Svg";
 
 type RadioSelectProps = {
   type: "vertical" | "horizontal";
+  label?: string;
+  isRequired?: boolean;
   options: ({
     label: ReactNode;
     subtitle?: ReactNode;
@@ -29,6 +31,7 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
   (
     {
       id,
+      label,
       options,
       errorMessage,
       onChange,
@@ -36,6 +39,7 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
       name,
       value,
       isDisabled,
+      isRequired,
       ...rest
     },
     ref,
@@ -44,29 +48,40 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
     const optionId = id || generatedId;
     return (
       <>
+        {label && (
+          <span className="af-radio__label" id={optionId}>
+            {label}
+            {isRequired && <span aria-hidden="true">&nbsp;*</span>}
+          </span>
+        )}
         <div
           ref={ref}
           {...rest}
           role="radiogroup"
           className={`af-radio af-radio-select af-radio-select--${type}`}
           aria-invalid={Boolean(errorMessage)}
+          aria-labelledby={optionId}
         >
           {options.map(
             ({
-              label,
+              label: inputLabel,
               description,
               subtitle,
               icon,
               disabled: inputDisabled,
               ...inputProps
             }) => (
-              <label key={label as string} htmlFor={`${optionId}-${label}`}>
+              <label
+                key={inputLabel as string}
+                htmlFor={`${optionId}-${inputLabel}`}
+              >
                 <input
                   type="radio"
+                  aria-labelledby={optionId}
                   {...(isDisabled || inputDisabled ? { disabled: true } : null)}
                   {...inputProps}
                   name={name}
-                  id={`${optionId}-${label}`}
+                  id={`${optionId}-${inputLabel}`}
                   onChange={onChange}
                   {...(value && {
                     "aria-checked": value === inputProps.value,
@@ -83,7 +98,7 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
                 <div className="af-radio__content">
                   {icon}
                   <div className="af-radio__content-description">
-                    <span>{label}</span>
+                    <span>{inputLabel}</span>
                     {description && <span>{description}</span>}
                     {subtitle && <span>{subtitle}</span>}
                   </div>

@@ -234,6 +234,163 @@ export const VerticalWithError: StoryObj = {
   argTypes: {},
 };
 
+export const VerticalWithLabel: StoryObj = {
+  render: () => {
+    const container = document.createElement("div");
+    container.innerHTML = `
+     <legend class="af-radio__label" aria-label="Quelle ville ?">
+    Quelle ville ?<span aria-hidden="true">&nbsp;*</span>
+  </legend>
+  <div
+    role="radiogroup"
+    class="af-radio af-radio-select af-radio-select--vertical"
+    aria-invalid="false"
+  >
+    <label for=":r1:-Paris"
+      ><input type="radio" name="cities" id=":r1:-Paris" value="paris" />
+      <div class="af-radio__icons">
+        <svg
+          class="af-radio__unchecked"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="radioOutlineBlankOutlinedIcon"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+          ></path>
+        </svg>
+        <svg
+          class="af-radio__checked"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="radioIcon"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+          ></path>
+          <circle r="5" cy="12" cx="12"></circle>
+        </svg>
+      </div>
+      <div class="af-radio__content">
+        <svg
+          class="af-radio__icon"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="HomeIcon"
+        >
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+        </svg>
+        <div class="af-radio__content-description">
+          <span>Paris</span>
+          <span>Capitale de la France</span>
+          <span>Nord</span>
+        </div>
+      </div>
+    </label>
+
+    <label for=":r1:-Bruxelles"
+      ><input
+        type="radio"
+        name="cities"
+        id=":r1:-Bruxelles"
+        value="bruxelles"
+      />
+      <div class="af-radio__icons">
+        <svg
+          class="af-radio__unchecked"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="radioOutlineBlankOutlinedIcon"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+          ></path>
+        </svg>
+        <svg
+          class="af-radio__checked"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="radioIcon"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+          ></path>
+          <circle r="5" cy="12" cx="12"></circle>
+        </svg>
+      </div>
+      <div class="af-radio__content">
+        <svg
+          class="af-radio__icon"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="HomeIcon"
+        >
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+        </svg>
+        <div class="af-radio__content-description">
+          <span>Bruxelles</span>
+          <span>Capitale de la Belgique</span>
+        </div>
+      </div>
+    </label>
+
+    <label for=":r1:-Lille"
+      ><input type="radio" name="cities" id=":r1:-Lille" value="lille" />
+      <div class="af-radio__icons">
+        <svg
+          class="af-radio__unchecked"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="radioOutlineBlankOutlinedIcon"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+          ></path>
+        </svg>
+        <svg
+          class="af-radio__checked"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="radioIcon"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+          ></path>
+          <circle r="5" cy="12" cx="12"></circle>
+        </svg>
+      </div>
+      <div class="af-radio__content">
+        <svg
+          class="af-radio__icon"
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          data-testid="HomeIcon"
+        >
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+        </svg>
+        <div class="af-radio__content-description">
+          <span>Lille</span>
+        </div>
+      </div>
+    </label>
+  </div>
+    `;
+
+    return container;
+  },
+  args: {},
+  argTypes: {},
+};
+
 export const Horizontal: StoryObj = {
   render: () => {
     const container = document.createElement("div");
