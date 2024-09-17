@@ -13,7 +13,7 @@ import { Svg } from "../Svg";
 import { Link } from "../Link/Link";
 import { ButtonClient } from "../Button/Button";
 
-type Headings = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
 
 export const alertTypes = {
   validation: "validation",
@@ -33,20 +33,14 @@ type AlertProps = {
   heading?: Headings;
 } & ComponentPropsWithoutRef<"div">;
 
-function getIconFromType(type: AlertType) {
-  switch (type) {
-    case "error":
-      return errorIcon;
-    case "validation":
-      return checkCircleOutline;
-    case "neutral":
-    case "warning":
-      return errorOutline;
-    case "information":
-    default:
-      return wbIncandescentOutlined;
-  }
-}
+const getIconFromType = (type: AlertType) =>
+  ({
+    [alertTypes.validation]: checkCircleOutline,
+    [alertTypes.error]: errorIcon,
+    [alertTypes.neutral]: errorOutline,
+    [alertTypes.warning]: errorOutline,
+    [alertTypes.information]: wbIncandescentOutlined,
+  })[type] || wbIncandescentOutlined;
 
 export const Alert = ({
   type = alertTypes.information,
