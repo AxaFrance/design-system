@@ -65,7 +65,7 @@ export const Alert = ({
         width={iconSize}
         height={iconSize}
         className="af-alert__icon"
-        aria-label="hidden"
+        aria-hidden
       />
       <div className="af-alert-client__content">
         {title && <Heading className="af-alert__title">{title}</Heading>}
