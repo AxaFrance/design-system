@@ -20,10 +20,10 @@
     border: 1px solid common.$color-axa;
 
     .af-alert__icon {
+      margin-top: 0.75rem;
       color: common.$color-axa;
       transform: rotate(180deg);
       fill: common.$color-axa;
-      margin-top: 0.75rem;
     }
 
     .af-alert__title {
@@ -86,7 +86,9 @@
   .af-alert-client__content {
     width: 100%;
 
-    .af-alert__link {
+    .af-alert__action {
+      display: flex;
+      justify-content: end;
       text-align: right;
     }
 

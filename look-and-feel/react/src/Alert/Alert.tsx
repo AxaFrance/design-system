@@ -11,57 +11,60 @@ import checkCircleOutline from "@material-symbols/svg-400/outlined/check_circle.
 import "@axa-fr/design-system-look-and-feel-css/dist/Alert/Alert.scss";
 import { Svg } from "../Svg";
 import { Link } from "../Link/Link";
+import { ButtonClient } from "../Button/Button";
 
-export type AlertType =
-  | "validation"
-  | "error"
-  | "warning"
-  | "information"
-  | "neutral";
+type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
+
+export const alertTypes = {
+  validation: "validation",
+  error: "error",
+  warning: "warning",
+  information: "information",
+  neutral: "neutral",
+} as const;
+
+export type AlertType = keyof typeof alertTypes;
 
 type AlertProps = {
   type: AlertType;
   title?: string;
-  link?: ReactElement<typeof Link>;
+  action?: ReactElement<typeof Link | typeof ButtonClient>;
   iconSize?: number;
+  heading?: Headings;
 } & ComponentPropsWithoutRef<"div">;
 
-function getIconFromType(type: AlertType) {
-  switch (type) {
-    case "error":
-      return errorIcon;
-    case "validation":
-      return checkCircleOutline;
-    case "neutral":
-    case "warning":
-      return errorOutline;
-    case "information":
-    default:
-      return wbIncandescentOutlined;
-  }
-}
+const getIconFromType = (type: AlertType) =>
+  ({
+    [alertTypes.validation]: checkCircleOutline,
+    [alertTypes.error]: errorIcon,
+    [alertTypes.neutral]: errorOutline,
+    [alertTypes.warning]: errorOutline,
+    [alertTypes.information]: wbIncandescentOutlined,
+  })[type] || wbIncandescentOutlined;
 
 export const Alert = ({
-  type = "information",
+  type = alertTypes.information,
   title,
   children,
-  link,
+  action,
   iconSize = 24,
+  heading: Heading = "h4",
 }: PropsWithChildren<AlertProps>) => {
   const icon = useMemo(() => getIconFromType(type), [type]);
 
   return (
-    <div className={`af-alert af-alert--${type}`}>
+    <div className={`af-alert af-alert--${type}`} role="alert">
       <Svg
         src={icon}
         width={iconSize}
         height={iconSize}
         className="af-alert__icon"
+        aria-hidden
       />
       <div className="af-alert-client__content">
-        {title && <p className="af-alert__title">{title}</p>}
+        {title && <Heading className="af-alert__title">{title}</Heading>}
         {children}
-        {link && <p className="af-alert__link">{link}</p>}
+        {action && <p className="af-alert__action">{action}</p>}
       </div>
     </div>
   );
