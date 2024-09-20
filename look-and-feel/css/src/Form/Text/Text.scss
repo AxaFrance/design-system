@@ -27,6 +27,15 @@
     color: common.$color-gray-700;
   }
 
+  &__input-more {
+    fill: common.$color-axa;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
   &__input-text {
     margin-top: 0.5rem;
     padding: 1rem;

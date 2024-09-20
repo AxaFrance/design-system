@@ -15,12 +15,9 @@ const meta: Meta<typeof Text> = {
     required: false,
     className: "",
     type: "text",
+    buttonLabel: "",
   },
   argTypes: {
-    type: {
-      control: { type: "text" },
-      onChange: { action: "onChange" },
-    },
     onChange: { action: "onChange" },
   },
 };
@@ -29,14 +26,18 @@ export default meta;
 
 type Story = StoryObj<typeof Text>;
 
+const render = ({ onChange, ...args }: React.ComponentProps<typeof Text>) => (
+  <Text onChange={onChange} {...args} />
+);
+
 export const TextStory: Story = {
   name: "Text",
-  render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
+  render,
 };
 
 export const TextWithDescriptionStory: Story = {
   name: "Text with description",
-  render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
+  render,
   args: {
     description: "Description",
   },
@@ -44,10 +45,18 @@ export const TextWithDescriptionStory: Story = {
 
 export const TextOnErrorStory: Story = {
   name: "Text on error",
-  render: ({ onChange, ...args }) => <Text onChange={onChange} {...args} />,
+  render,
   args: {
     classModifier: "error",
     description: "Description",
     error: "Error Message",
+  },
+};
+
+export const TextWithButton: Story = {
+  name: "Text with button",
+  render,
+  args: {
+    buttonLabel: "En savoir plus",
   },
 };
