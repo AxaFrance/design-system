@@ -7,12 +7,15 @@
 @use "Tabs/Tabs";
 @use "Form/Checkbox/Checkbox";
 @use "Form/Select/Select";
+@use "Form/Text/Text";
 @use "Form/FileUpload/FileUpload";
 @use "Accordion/Accordion";
 @use "Modal/Modal";
 @use "Alert/Alert";
 @use "Link/Link";
 @use "Pagination/Pagination";
+@use "Pagination/PaginationDesktop";
+@use "Pagination/PaginationMobile";
 @use "Loader/Loader";
 @use "./List/List";
 @use "List/ClickList/ClickList";
