@@ -1,226 +1,165 @@
 @use "../../common/reboot";
 @use "../../common/common" as common;
 
-.af-card--click-list {
-  padding: 0;
+.af-click-item {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: common.$default-border-radius;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  cursor: pointer;
 
-  .af-list__separator {
-    width: calc(100% - 2rem);
-    margin: auto;
+  &:active,
+  &:focus,
+  &:focus-visible {
+    outline: none;
   }
 
-  .af-list__item {
-    padding: 0;
-
-    .af-list-item {
-      &__content {
-        display: inherit;
-        align-items: inherit;
-        gap: 12px;
-      }
-
-      &-content {
-        &__icon svg {
-          width: 1.4rem;
-          height: 1.4rem;
-          fill: common.$color-axa;
-        }
-
-        &__label {
-          text-align: left;
-        }
-
-        &-label {
-          &__title {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.4rem;
-            color: common.$color-gray-900;
-          }
-
-          &__subtitle {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.4rem;
-            color: common.$color-gray-700;
-          }
-
-          &__secondary {
-            margin: 0;
-            font-size: 0.875rem;
-            font-weight: 400;
-            line-height: 1.1rem;
-            color: common.$color-gray-700;
-          }
-        }
-      }
-
-      &__action {
-        margin-left: auto;
-
-        svg {
-          width: 1.4rem;
-          height: 1.4rem;
-          fill: common.$color-axa;
-        }
-      }
-    }
+  &:hover {
+    text-decoration: none;
   }
 
-  &.af-card--large .af-list-item {
-    &-content__label {
-      font-size: 1.125rem;
-      font-weight: 600;
-      line-height: 1.4rem;
-    }
-
-    &-content-label {
-      &__title {
-        font-size: 1.125rem;
-        line-height: 1.4rem;
-      }
-
-      &__subtitle {
-        font-size: 1.125rem;
-        line-height: 1.4rem;
-      }
-    }
+  &:focus-visible {
+    border: 2px solid common.$color-focus;
   }
 
-  .af-list__item .af-list-item__button {
+  &__content {
     display: flex;
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-radius: common.$default-border-radius;
     align-items: center;
-    gap: 0.5rem;
-    color: inherit;
-    background: none;
-    cursor: pointer;
+    gap: 0.75rem;
+  }
 
-    &:disabled {
-      cursor: default;
+  &__icon svg,
+  &__action svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: common.$color-axa;
+  }
 
-      .af-list-item {
-        &-content {
-          &__icon svg {
-            fill: common.$color-gray-500;
-          }
+  &__title,
+  &__subtitle,
+  &__label {
+    font-size: 1.125rem;
+    line-height: 1.4rem;
+  }
 
-          &__label {
-            color: common.$color-gray-500;
-          }
+  &__title,
+  &__subtitle,
+  &__secondary {
+    margin: 0;
+  }
 
-          &-label__title,
-          &-label__subtitle,
-          &-label__secondary {
-            color: common.$color-gray-500;
-          }
-        }
+  &__label {
+    text-align: left;
+  }
 
-        &__action svg {
-          fill: common.$color-gray-500;
-        }
+  &__title {
+    font-weight: 600;
+    color: common.$color-gray-900;
+  }
+
+  &__subtitle {
+    font-weight: 400;
+    color: common.$color-gray-700;
+  }
+
+  &__secondary {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.1rem;
+    color: common.$color-gray-700;
+  }
+
+  &__action {
+    margin-left: auto;
+  }
+
+  &--small &__label {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  &--large &__label {
+    font-weight: 600;
+  }
+
+  &.af-click-item--disabled {
+    pointer-events: none;
+
+    .af-click-item {
+      &__action svg,
+      &__icon svg {
+        fill: common.$color-gray-500;
+      }
+
+      &__label,
+      &__title,
+      &__subtitle,
+      &__secondary {
+        color: common.$color-gray-500;
       }
     }
+  }
 
-    &:enabled {
-      &:hover {
-        box-shadow: 0 4px 8px 0 hsla(230deg, 60%, 16%, 8%);
-      }
+  &:not(.af-click-item--disabled) {
+    &:hover {
+      box-shadow: 0 4px 8px 0 hsla(230deg, 60%, 16%, 8%);
+    }
 
-      &:active {
-        box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
-        outline: none;
-      }
-
-      &:focus {
-        outline: none;
-      }
-
-      &:focus-visible {
-        border: 2px solid common.$color-focus;
-        outline: none;
-      }
+    &:active {
+      box-shadow: 0 2px 8px 0 hsla(0deg, 0%, 0%, 15%) inset;
     }
   }
 }
 
 @media (width <= #{common.$breakpoint-sm}) {
-  .af-card--click-list {
-    .af-list-item-content {
-      &__label {
-        font-size: 0.875rem;
-        line-height: 1.1rem;
-      }
-
-      &-label {
-        &__title,
-        &__subtitle {
-          font-size: 0.875rem;
-          line-height: 1.25rem;
-        }
-      }
+  .af-click-item {
+    &:focus-visible {
+      border: none;
+      border: 1px solid common.$color-focus;
     }
 
-    &.af-card--large .af-list-item-content {
-      &__label {
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.25rem;
-      }
-
-      &-label {
-        &__title,
-        &__subtitle {
-          font-size: 1rem;
-          line-height: 1.25rem;
-        }
-      }
+    &__label,
+    &__title,
+    &__subtitle {
+      font-size: 1rem;
+      line-height: 1.25rem;
     }
 
-    .af-list-item__button {
-      &:enabled {
+    &--small &__label {
+      font-size: 0.875rem;
+      line-height: 1.1rem;
+    }
+
+    &:not(.af-click-item--disabled) {
+      box-shadow: none;
+
+      &:hover {
         box-shadow: none;
 
-        &:hover {
-          box-shadow: none;
-
-          .af-list-item {
-            &__label {
-              color: common.$color-axa;
-            }
-
-            &-label__title,
-            &-label__subtitle,
-            &-label__secondary {
-              color: common.$color-axa;
-            }
+        .af-click-item {
+          &__label,
+          &__title,
+          &__subtitle,
+          &__secondary {
+            color: common.$color-axa;
           }
         }
+      }
 
-        &:active {
-          box-shadow: none;
+      &:active {
+        box-shadow: none;
 
-          .af-list-item {
-            &__label {
-              color: common.$color-blue-1;
-            }
-
-            &-label__title,
-            &-label__subtitle,
-            &-label__secondary {
-              color: common.$color-blue-1;
-            }
+        .af-click-item {
+          &__label,
+          &__title,
+          &__subtitle,
+          &__secondary {
+            color: common.$color-blue-1;
           }
-        }
-
-        &:focus-visible {
-          border: none;
-          border: 1px solid common.$color-focus;
         }
       }
     }

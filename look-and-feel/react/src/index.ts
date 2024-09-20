@@ -18,7 +18,7 @@ export { Footer } from "./Layout/Footer/Footer";
 export { Header } from "./Layout/Header";
 export { Link } from "./Link/Link";
 export { List } from "./List";
-export { ClickList } from "./List/ClickList";
+export { ClickItem, ClickList } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabList } from "./List/ContentTabList";

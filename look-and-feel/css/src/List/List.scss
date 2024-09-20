@@ -21,6 +21,19 @@
     box-shadow: none;
   }
 
+  &--click-list {
+    padding: 0;
+
+    .af-list__separator {
+      width: calc(100% - 2rem);
+      margin: auto;
+    }
+
+    .af-list__item {
+      padding: 0;
+    }
+  }
+
   &--large {
     width: 100%;
   }

@@ -16,15 +16,27 @@ export const ClickListWithIcon: StoryObj<typeof ClickList> = {
   args: {
     items: [
       {
-        id: "report-claim",
+        id: "1",
         icon: <Svg src={error} />,
-        label: "Déclarer un sinistre",
+        children: "Texte principal",
+        classModifier: "small",
       },
       {
-        id: "follow-claim",
+        id: "2",
+        icon: <Svg src={error} />,
+        children: "Texte principal",
+      },
+      {
+        id: "3",
+        icon: <Svg src={error} />,
+        children: "Texte principal",
+        classModifier: "large",
+      },
+      {
+        id: "4",
         icon: <Svg src={contentPasteGo} />,
-        label: "Suivre mes sinistres",
-        disabled: true,
+        children: "Texte principal",
+        isDisabled: true,
       },
     ],
     classModifier: "",
@@ -44,35 +56,75 @@ export const ClickListWithoutIcon: StoryObj<typeof ClickList> = {
   args: {
     items: [
       {
-        label: (
+        id: "1",
+        children: (
           <>
-            <h3 className="af-list-item-content-label__title">
+            <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
             </h3>
-            <p className="af-list-item-content-label__subtitle">
-              30 novembre 2021
-            </p>
-            <p className="af-list-item-content-label__secondary">
-              Signé électroniquement
-            </p>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
       },
       {
-        label: (
+        id: "2",
+        children: (
           <>
-            <h3 className="af-list-item-content-label__title">
+            <h3 className="af-click-item__title">
               Fiche Orias précontractuelle
             </h3>
-            <p className="af-list-item-content-label__subtitle">
-              30 novembre 2021
-            </p>
-            <p className="af-list-item-content-label__secondary">
-              Signé électroniquement
-            </p>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
-        disabled: true,
+        isDisabled: true,
+      },
+    ],
+    classModifier: "",
+  },
+  argTypes: {
+    classModifier: {
+      options: ["", "large"],
+      control: { type: "select" },
+      defaultValue: "",
+    },
+  },
+};
+
+export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
+  name: "ClickList link without icon",
+  render: (args) => <ClickList {...args} />,
+  args: {
+    items: [
+      {
+        id: "1",
+        children: (
+          <>
+            <h3 className="af-click-item__title">
+              Fiche Orias précontractuelle
+            </h3>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
+          </>
+        ),
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
+      },
+      {
+        id: "2",
+        children: (
+          <>
+            <h3 className="af-click-item__title">
+              Fiche Orias précontractuelle
+            </h3>
+            <p className="af-click-item__subtitle">30 novembre 2021</p>
+            <p className="af-click-item__secondary">Signé électroniquement</p>
+          </>
+        ),
+        href: "https://github.com/AxaFrance/design-system",
+        target: "_blank",
+        isDisabled: true,
       },
     ],
     classModifier: "",
