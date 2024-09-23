@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
 import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
 import { FileTable } from "./FileTable";
 import { CustomFile, File } from "./File";
-import "@axa-fr/design-system-slash-css/dist/Form/FileUpload/Agent/File.agent.css";
+import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
 
 type FieldProps = ComponentPropsWithoutRef<typeof Field>;
 type FileProps = ComponentPropsWithoutRef<typeof File>;

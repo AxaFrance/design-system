@@ -1,0 +1,80 @@
+@use "../../common/common" as common;
+
+.af-form {
+  &__file {
+    &-input {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      background: common.$white;
+      cursor: pointer;
+
+      .drop-box {
+        display: flex;
+        padding-left: 1rem;
+        border: 2px dashed common.$color-mercury;
+        border-right: 0;
+        flex: 1;
+        align-items: center;
+        text-align: center;
+
+        input {
+          display: block !important;
+          width: 0;
+          opacity: 0;
+        }
+      }
+
+      .af-btn--file {
+        min-width: 8rem;
+      }
+
+      &:hover,
+      &:focus {
+        .drop-box {
+          border-color: common.$color-axa;
+        }
+      }
+    }
+
+    &-errors {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: common.$color-red-error;
+    }
+
+    &-list {
+      display: flex;
+      padding: 0;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      list-style: none;
+    }
+
+    &-line {
+      display: flex;
+      width: 100%;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid common.$color-mercury;
+      align-items: center;
+      justify-content: space-around;
+      background: common.$white;
+
+      .glyphicon {
+        width: 17px;
+      }
+    }
+  }
+}
+
+.af-link {
+  &--delete-file {
+    border: 0;
+    text-decoration: underline;
+    background: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
