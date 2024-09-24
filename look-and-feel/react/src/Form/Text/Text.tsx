@@ -8,36 +8,38 @@ import { Svg } from "../../Svg";
 import { getComponentClassName } from "../../utilities";
 import { InputError } from "../InputError";
 
-type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
+type Props = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
   helper?: string;
   error?: string;
   description?: string;
   label?: string;
-  required?: boolean;
   buttonLabel?: string;
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Text = forwardRef<HTMLInputElement, Props>(
-  ({ className, classModifier = "", ...otherProps }, inputRef) => {
+  (
+    {
+      className,
+      classModifier = "",
+      label,
+      description,
+      helper,
+      error,
+      buttonLabel,
+      onButtonClick,
+      ...otherProps
+    },
+    inputRef,
+  ) => {
     const componentClassName = getComponentClassName(
       className,
       classModifier,
       "af-form__input-text",
     );
 
-    const {
-      id,
-      label,
-      required,
-      disabled,
-      description,
-      helper,
-      error,
-      buttonLabel,
-      onButtonClick,
-    } = otherProps;
+    const { id, required } = otherProps;
 
     return (
       <div className="af-form__input-container">
@@ -61,8 +63,6 @@ const Text = forwardRef<HTMLInputElement, Props>(
           className={componentClassName}
           type="text"
           ref={inputRef}
-          required={required}
-          disabled={disabled}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${id}-error` : undefined}
           {...otherProps}
