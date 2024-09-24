@@ -7,6 +7,7 @@ exports[`<File.File> > renders File.File correctly 1`] = `
   >
     <div
       class="drop-box"
+      role="button"
       tabindex="0"
     >
       <input
