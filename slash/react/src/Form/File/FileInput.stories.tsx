@@ -63,7 +63,6 @@ const errors = [
   {
     file: {
       name: "too-big-file.jpg",
-      preview: "",
       size: 100,
     },
     errors: {},
@@ -75,7 +74,7 @@ const errors = [
       size: 100,
     },
   },
-] as unknown as FileRejection[];
+] as FileRejection[];
 
 const values = [
   {
@@ -102,7 +101,7 @@ const values = [
       name: "fichier.csv",
       preview: "https://via.placeholder.com/150Cx50",
       size: 100,
-    } as unknown as FilePreview,
+    } as FilePreview,
   },
 ];
 

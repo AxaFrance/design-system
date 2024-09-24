@@ -19,7 +19,7 @@
         text-align: center;
 
         input {
-          display: block !important;
+          display: block;
           width: 0;
           opacity: 0;
         }
@@ -61,20 +61,19 @@
       background: common.$white;
 
       .glyphicon {
-        width: 17px;
+        width: 1rem;
       }
     }
   }
 }
 
-.af-link {
-  &--delete-file {
-    border: 0;
-    text-decoration: underline;
-    background: none;
+.af-link--delete-file {
+  border: 0;
+  text-decoration: underline;
+  color: common.$color-azur;
+  background: none;
 
-    &:hover {
-      text-decoration: none;
-    }
+  &:hover {
+    text-decoration: none;
   }
 }

@@ -51,7 +51,7 @@ const FileInput = ({
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
     disabled,
-    !!children,
+    Boolean(children),
   );
   return (
     <Field
