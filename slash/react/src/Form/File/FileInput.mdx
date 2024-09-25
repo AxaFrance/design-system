@@ -17,12 +17,12 @@ import * as FileInputStories from "./FileInput.stories";
 ### Import
 
 ```javascript
-import { FileInput } from "@axa-fr/design-system-slash-react/agent";
+import { FileInput } from "@axa-fr/design-system-slash-react";
 ```
 
 ### Use
 
-```javascript
+```tsx
 const FileInputReturn = () => (
   <FileInput
     id="uniqueid"
@@ -41,7 +41,7 @@ export default FileInputReturn;
 
 <Canvas of={FileInputStories.FileInputStory} />
 
-<Controls story="File" />
+<Controls of={FileInputStories.FileInputStory} />
 
 ### FileInput Required
 
@@ -58,12 +58,12 @@ to the **FileInput** component
 ### Import
 
 ```javascript
-import { File } from "@axa-fr/design-system-slash-react/agent";
+import { File } from "@axa-fr/design-system-slash-react";
 ```
 
 ### Use
 
-```javascript
+```tsx
 const fileReturn = () => (
   <form className="af-form" name="myform">
     <File
@@ -92,12 +92,12 @@ import {
   File,
   FileTable,
   HelpMessage,
-} from "@axa-fr/design-system-slash-react/agent";
+} from "@axa-fr/design-system-slash-react";
 ```
 
 ### Use
 
-```javascript
+```tsx
 const values = [
   {
     id: "000003",
@@ -163,12 +163,12 @@ import {
   File,
   FileTable,
   HelpMessage,
-} from "@axa-fr/design-system-slash-react/agent";
+} from "@axa-fr/design-system-slash-react";
 ```
 
 ### Use
 
-```javascript
+```tsx
 const values = [
   {
     id: "000003",

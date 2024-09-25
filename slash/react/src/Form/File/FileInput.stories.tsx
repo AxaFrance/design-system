@@ -84,7 +84,7 @@ const values = [
       size: 100,
       preview: "https://via.placeholder.com/150Cx50",
       type: "image",
-    } as unknown as FilePreview,
+    } as FilePreview,
   },
   {
     id: "000004",
@@ -93,7 +93,7 @@ const values = [
       size: 100,
       preview: "https://via.placeholder.com/150Cx50",
       type: "image",
-    } as unknown as FilePreview,
+    } as FilePreview,
   },
   {
     id: "000005",
