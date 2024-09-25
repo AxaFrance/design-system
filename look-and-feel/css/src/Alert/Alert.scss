@@ -6,7 +6,6 @@
   padding: 1rem;
   border-radius: 12px;
   flex: 1 1 0;
-  align-items: center;
   font-family: common.$font-family-base;
   background-color: white;
 
@@ -20,7 +19,6 @@
     border: 1px solid common.$color-axa;
 
     .af-alert__icon {
-      margin-top: 0.75rem;
       color: common.$color-axa;
       transform: rotate(180deg);
       fill: common.$color-axa;
