@@ -5,6 +5,7 @@ import {
   useMemo,
 } from "react";
 import wbIncandescentOutlined from "@material-symbols/svg-400/outlined/wb_incandescent.svg";
+import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/emergency_home.svg";
 import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
 import checkCircleOutline from "@material-symbols/svg-400/outlined/check_circle.svg";
@@ -37,7 +38,7 @@ const getIconFromType = (type: AlertType) =>
   ({
     [alertTypes.validation]: checkCircleOutline,
     [alertTypes.error]: errorIcon,
-    [alertTypes.neutral]: errorOutline,
+    [alertTypes.neutral]: infoIcon,
     [alertTypes.warning]: errorOutline,
     [alertTypes.information]: wbIncandescentOutlined,
   })[type] || wbIncandescentOutlined;
