@@ -1,9 +1,10 @@
-import arrow from "@material-symbols/svg-400/outlined/arrow_right.svg";
-import trash from "@material-symbols/svg-400/outlined/delete.svg";
-import sync from "@material-symbols/svg-400/outlined/sync-fill.svg";
+import trashIcon from "@material-symbols/svg-400/outlined/delete.svg";
+import publishedWithChangesIcon from "@material-symbols/svg-400/outlined/published_with_changes-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 import { Svg } from "../Svg";
+import { ClickItem } from "./ClickList";
+import { ContentItemMono } from "./ContentItemMono";
 import { List } from "./List";
 
 const meta: Meta<typeof List> = {
@@ -23,66 +24,21 @@ export const Default: StoryObj<
   ),
   args: {
     children: [
-      <div key="list-item-1">
-        <span>Prénom NOM</span>
-      </div>,
-      <div key="list-item-2">
-        <span>nom.prénom@mail.fr</span>
-      </div>,
-      <div
-        key="list-item-3"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
-        <Svg src={sync} />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <span>Modifier le profil</span>
-          <Svg src={arrow} />
-        </div>
-      </div>,
-      <div
-        key="list-element-3"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "4rem",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <Svg src={trash} />
-          <span>Supprimer le profil</span>
-        </div>
-      </div>,
+      <ContentItemMono key={0} secondaryText="nom.prénom@mail.fr">
+        Prénom NOM
+      </ContentItemMono>,
+      <ClickItem key={1} icon={<Svg src={publishedWithChangesIcon} />}>
+        Modifier le profil
+      </ClickItem>,
+      <ClickItem key={2} icon={<Svg src={trashIcon} />}>
+        Supprimer le profil
+      </ClickItem>,
     ],
-    classModifier: [],
+    classModifier: ["first-separator-full-width"],
   },
   argTypes: {
     classModifier: {
-      options: [
-        "large",
-        "first-separator-full-width",
-        "first-separator-full-width",
-      ],
+      options: ["large", "first-separator-full-width"],
       control: { type: "multi-select" },
       defaultValue: [],
     },
