@@ -10,67 +10,27 @@ import * as ListStories from "./List.stories";
 To use the List component import it like that:
 
 ```tsx title="test.js"
-import { List } from "./List";
-import { Svg } from "../Svg";
-import trash from "@material-symbols/svg-400/outlined/delete.svg";
-import sync from "@material-symbols/svg-400/outlined/sync-fill.svg";
-import arrow from "@material-symbols/svg-400/outlined/arrow_right.svg";
+import {
+  ClickItem,
+  ContentItemMono,
+  List,
+  Svg,
+} from "@axa-fr/design-system-look-and-feel-react";
+import trashIcon from "@material-symbols/svg-400/outlined/delete.svg";
+import publishedWithChangesIcon from "@material-symbols/svg-400/outlined/published_with_changes-fill.svg";
 
 const MyComponent = () => (
-  <List>
-    <div key="list-item-1">
-      <span>Prénom NOM</span>
-    </div>
-    <div key="list-item-2">
-      <span>npm.prénom@mail.fr</span>
-    </div>
-    <div
-      key="list-item-3"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gap: "4rem",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
-        <Svg src={sync} />
-        <span>Modifier le profil</span>
-      </div>
-      <Svg src={arrow} />
-    </div>
-    <div
-      key="list-element-3"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gap: "4rem",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
-        <Svg src={trash} />
-        <span>Supprimer le profil</span>
-      </div>
-    </div>
+  <List classModifier="first-separator-full-width">
+    <ContentItemMono secondaryText="nom.prénom@mail.fr">
+      Prénom NOM
+    </ContentItemMono>
+    <ClickItem icon={<Svg src={publishedWithChangesIcon} />}>
+      Modifier le profil
+    </ClickItem>
+    <ClickItem icon={<Svg src={trashIcon} />}>Supprimer le profil</ClickItem>
   </List>
 );
 ```
 
 <Canvas of={ListStories.Default} />
-
 <Controls story="List" />

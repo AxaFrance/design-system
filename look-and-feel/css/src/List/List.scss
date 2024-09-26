@@ -48,6 +48,10 @@
 
     .af-list__item {
       padding: 1rem;
+
+      &:has(.af-click-item) {
+        padding: 0;
+      }
     }
 
     .af-list__separator ~ .af-list__separator {
