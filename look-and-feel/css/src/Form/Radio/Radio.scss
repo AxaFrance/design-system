@@ -55,25 +55,16 @@
     line-height: 1.25rem;
   }
 
-  & ~ &__error {
-    display: flex;
+  & ~ .af-input-error {
     margin-left: 3.2rem;
-    align-items: center;
     gap: 0.5rem;
-    font-family: "Source Sans Pro", arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.25rem;
-    color: common.$color-red-700;
 
-    & > svg {
-      width: 1rem;
-      height: 1rem;
-      color: common.$color-red-700;
-      fill: common.$color-red-700;
+    &__message {
+      line-height: 1.25rem;
     }
   }
 
-  &-select ~ &__error {
+  &-select ~ .af-input-error {
     margin: 1rem 0 0;
   }
 
@@ -96,7 +87,7 @@
   }
 
   &[aria-invalid="true"] {
-    * {
+    *:not(.af-radio__content *) {
       color: common.$color-red-700;
       fill: common.$color-red-700;
     }
@@ -165,6 +156,12 @@
     }
   }
 
+  &-select[aria-invalid="false"] label:hover {
+    --box-shadow-color: #{common.$color-axa};
+
+    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
+  }
+
   & label:has(input[type="radio"]:disabled) {
     cursor: default;
 
@@ -202,12 +199,6 @@
       color: common.$color-axa;
       fill: common.$color-axa;
     }
-  }
-
-  &-select label:hover:not(:has(input[type="radio"]:disabled)) {
-    --box-shadow-color: #{common.$color-axa};
-
-    box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
   }
 
   &-select {

@@ -73,12 +73,18 @@ export const Basic: StoryObj = {
   argTypes: {},
 };
 
+const InputError = `<div class="af-input-error">
+<svg class="af-input-error__icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ErrorOutlineIcon"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8"></path></svg>
+<span class="af-input-error__message">Veuillez sélectionner au moins une ville</span>
+</div>`;
+
 export const BasicWithError: StoryObj = {
   render: () => {
     const container = document.createElement("div");
-    container.innerHTML = `<div class="af-radio">
+    container.innerHTML = `
+    <div class="af-radio" aria-invalid="true">
       <label>
-        <input type="radio" name="lorem" value="lorem" aria-invalid="true" />        
+        <input type="radio" name="lorem" value="lorem" />        
         <div class="af-radio__icons">
           <svg class="af-radio__unchecked" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="radioOutlineBlankOutlinedIcon">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
@@ -90,11 +96,13 @@ export const BasicWithError: StoryObj = {
         J'accepte la convention de preuve relative à ma demande de versement complémentaire sur internet et déclare en accepter expressément les conditions. Je déclare être pleinement informé(e) qu'AXA, en sa qualité d'organisme financier, est soumise aux obligations légales issues principalement du code monétaire et financier en matière de lutte contre le blanchiment des capitaux et le financement du terrorisme.
       </label>
     </div>
-    <div class="af-radio__error" aria-live="assertive">
-      <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ErrorOutlineIcon">
+    <div class="af-input-error">
+      <svg class="af-input-error__icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ErrorOutlineIcon">
         <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8"></path>
       </svg>
-      Veuillez cocher une case
+      <span aria-live="assertive" class="af-input-error__message">
+        Veuillez cocher une case
+      </span>
     </div>`;
 
     return container;
@@ -178,9 +186,9 @@ export const Vertical: StoryObj = {
 export const VerticalWithError: StoryObj = {
   render: () => {
     const container = document.createElement("div");
-    container.innerHTML = `<div role="group" class="af-radio af-radio-select">
+    container.innerHTML = `<div role="group" class="af-radio af-radio-select" aria-invalid="true">
       <label>
-        <input type="radio" name="cities" value="paris" aria-invalid="true" />
+        <input type="radio" name="cities" value="paris" />
         <div class="af-radio__icons">
           <svg class="af-radio__unchecked" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="radioOutlineBlankOutlinedIcon">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
@@ -221,12 +229,7 @@ export const VerticalWithError: StoryObj = {
         </div>
       </label>
     </div>
-    <div class="af-radio__error" aria-live="assertive">
-      <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ErrorOutlineIcon">
-        <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8"></path>
-      </svg>
-      Veuillez sélectionner au moins une ville
-    </div>`;
+    ${InputError}`;
 
     return container;
   },
@@ -466,9 +469,9 @@ export const Horizontal: StoryObj = {
 export const HorizontalWithError: StoryObj = {
   render: () => {
     const container = document.createElement("div");
-    container.innerHTML = `<div role="group" class="af-radio af-radio-select af-radio-select--horizontal">
+    container.innerHTML = `<div role="group" class="af-radio af-radio-select af-radio-select--horizontal" aria-invalid="true">
       <label>
-        <input type="radio" name="cities" value="paris" aria-invalid="true" />
+        <input type="radio" name="cities" value="paris" />
         <div class="af-radio__icons">
           <svg class="af-radio__unchecked" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="radioOutlineBlankOutlinedIcon">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
@@ -509,12 +512,7 @@ export const HorizontalWithError: StoryObj = {
         </div>
       </label>
     </div>
-    <div class="af-radio__error" aria-live="assertive">
-      <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ErrorOutlineIcon">
-        <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8"></path>
-      </svg>
-      Veuillez sélectionner au moins une ville
-    </div>`;
+    ${InputError}`;
 
     return container;
   },
