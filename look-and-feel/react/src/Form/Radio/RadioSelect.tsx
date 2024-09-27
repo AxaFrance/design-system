@@ -77,7 +77,6 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
               >
                 <input
                   type="radio"
-                  aria-labelledby={optionId}
                   {...(isDisabled || inputDisabled ? { disabled: true } : null)}
                   {...inputProps}
                   name={name}
