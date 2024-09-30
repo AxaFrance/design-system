@@ -1,4 +1,4 @@
-import { Header } from "@axa-fr/design-system-slash-react/client";
+import { Header } from "@axa-fr/design-system-look-and-feel-react";
 import { Suspense } from "react";
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import Agent from "./Agent";

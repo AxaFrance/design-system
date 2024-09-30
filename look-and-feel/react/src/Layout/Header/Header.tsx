@@ -26,23 +26,25 @@ export const Header = ({
   );
 
   return (
-    <header className="af-header">
-      <div className="af-header-container">
-        <div className="af-header-left-item">
-          <img className="af-logo" src={logo} alt="" />
-          {children && (
-            <NavBar activeLink={activeLink} setActiveLink={setActiveLink}>
-              {children}
-            </NavBar>
-          )}
+    <>
+      <header className="af-header">
+        <div className="af-header-container">
+          <div className="af-header-left-item">
+            <img className="af-logo" src={logo} alt="" />
+            {children && (
+              <NavBar activeLink={activeLink} setActiveLink={setActiveLink}>
+                {children}
+              </NavBar>
+            )}
+          </div>
+          {rightItem && <div className="af-header-right-item">{rightItem}</div>}
         </div>
-        {rightItem && <div className="af-header-right-item">{rightItem}</div>}
-      </div>
+      </header>
       {previousLink && (
         <PreviousLink handleClick={resetActiveLink}>
           {previousLink}
         </PreviousLink>
       )}
-    </header>
+    </>
   );
 };
