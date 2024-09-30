@@ -40,6 +40,7 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
+export { File, FileInput, FileTable } from "./Form/File";
 export { Footer } from "./Layout/Footer";
 export {
   Header,
