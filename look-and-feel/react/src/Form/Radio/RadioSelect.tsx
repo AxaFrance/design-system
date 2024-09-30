@@ -47,7 +47,7 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
     const generatedId = useId();
     const optionId = id || generatedId;
     return (
-      <>
+      <div className="af-radio__container">
         {label && (
           <span className="af-radio__label" id={optionId}>
             {label}
@@ -61,6 +61,7 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
           className={`af-radio af-radio-select af-radio-select--${type}`}
           aria-invalid={Boolean(errorMessage)}
           aria-labelledby={optionId}
+          aria-describedby={errorMessage ? `${optionId}-error` : undefined}
         >
           {options.map(
             ({
@@ -106,8 +107,10 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
             ),
           )}
         </div>
-        {errorMessage && <InputError message={errorMessage} />}
-      </>
+        {errorMessage && (
+          <InputError id={`${optionId}-error`} message={errorMessage} />
+        )}
+      </div>
     );
   },
 );
