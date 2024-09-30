@@ -48,7 +48,7 @@
   gap: common.$spacing-u1;
 }
 
-@media only screen and (width >=64em) {
+@media only screen and (width >= #{common.$breakpoint-md}) {
   .af-header-container {
     width: auto;
     height: 80px;

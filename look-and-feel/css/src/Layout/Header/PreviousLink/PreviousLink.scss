@@ -2,7 +2,7 @@
 
 .af-header-previous-link-container {
   display: flex;
-  padding: 1.5rem 0 1.5rem 7.5rem;
+  padding: 1rem 0 1rem 0.8rem;
   align-items: center;
   gap: 0.25rem;
 }
@@ -38,5 +38,11 @@
   &:hover {
     text-decoration: none;
     color: common.$color-gray-700;
+  }
+}
+
+@media only screen and (width >= #{common.$breakpoint-md}) {
+  .af-header-previous-link-container {
+    padding: 1.5rem 0 1.5rem 7.5rem;
   }
 }

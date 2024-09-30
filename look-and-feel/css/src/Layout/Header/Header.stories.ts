@@ -190,6 +190,7 @@ export const HeaderWithLinksAndRightItem: StoryObj = {
 export const HeaderWithLinksAndRightItemAndHomeLink: StoryObj = {
   name: "Header with links, profile button and Home link",
   render: (args) => {
+    const headerContainer = document.createElement("div");
     const header = document.createElement("header");
     header.classList.add("af-header");
 
@@ -244,9 +245,11 @@ export const HeaderWithLinksAndRightItemAndHomeLink: StoryObj = {
     container.append(leftItem);
     container.append(rightItem);
     header.append(container);
-    header.append(previousLink);
 
-    return header;
+    headerContainer.append(header);
+    headerContainer.append(previousLink);
+
+    return headerContainer;
   },
   args: {
     links: ["MES CONTRATS", "MES AVANTAGES", "MES DOCUMENTS"],
