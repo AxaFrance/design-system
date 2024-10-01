@@ -1,8 +1,8 @@
 /* stylelint-disable no-descending-specificity */
 @use "../../common/common" as common;
 @use "../core/FormCore";
-@use "../../../../../slash/css/src/common/grid";
-@use "../../../../../slash/css/src/common/reboot";
+@use "../../common/grid";
+@use "../../common/reboot";
 
 .af-form {
   &__date {
