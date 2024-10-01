@@ -1,6 +1,6 @@
 @use "../common/common" as common;
-@use "../../../../slash/css/src/common/grid";
-@use "../../../../slash/css/src/common/reboot";
+@use "../common/grid";
+@use "../common/reboot";
 
 .af-modal {
   padding: 0;
