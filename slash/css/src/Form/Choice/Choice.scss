@@ -1,7 +1,7 @@
 @use "../../common/common" as common;
 @use "../core/FormCore";
-@use "../../../../../slash/css/src/common/grid";
-@use "../../../../../slash/css/src/common/reboot";
+@use "../../common/grid";
+@use "../../common/reboot";
 
 /* stylelint-disable no-descending-specificity */
 .af-form {
