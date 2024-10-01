@@ -28,6 +28,7 @@ export default defineConfig({
         "**/*.stories.tsx",
         "**/*.mdx",
         "**/index.ts",
+        "**/__tests__/**",
       ],
     },
   },
