@@ -1,13 +1,21 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Loader/Loader.scss";
-import { ComponentPropsWithRef } from "react";
 
-type Props = ComponentPropsWithRef<"input"> & {
-  size?: number;
+type LoaderProps = {
   border?: number;
+  size?: number;
+  text?: string;
 };
 
-const Loader = ({ size = 60, border = 5 }: Props) => (
+const Loader = ({
+  border = 5,
+  size = 60,
+  text = "Chargement en cours",
+}: LoaderProps) => (
   <div
+    role="alert"
+    aria-busy
+    aria-label={text}
+    aria-live="assertive"
     className="af-loader__container"
     style={{
       width: `${size}px`,

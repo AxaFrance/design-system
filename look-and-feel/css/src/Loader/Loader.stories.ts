@@ -11,6 +11,10 @@ export const Loader: StoryObj = {
   render: (args) => {
     const loader = document.createElement("div");
     loader.classList.add("af-loader__container");
+    loader.role = "alert";
+    loader.ariaLabel = "Chargement en cours";
+    loader.ariaBusy = "true";
+    loader.ariaLive = "assertive";
     loader.style.width = `${args.size}px`;
     loader.style.height = `${args.size}px`;
     loader.style.border = `${args.borderSize}px solid #f3f3f3`;
