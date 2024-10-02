@@ -6,7 +6,7 @@ describe("AccordionCore", () => {
     const title = "Accordion Title";
     const children = "Accordion Content";
 
-    render(<AccordionCore title={title}>{children}</AccordionCore>);
+    render(<AccordionCore summary={title}>{children}</AccordionCore>);
 
     expect(screen.getByText(title)).toBeInTheDocument();
     expect(screen.getByText(children)).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("AccordionCore", () => {
 
     render(
       <AccordionCore
-        title="Accordion Title"
+        summary="Accordion Title"
         className={className}
         classModifier={classModifier}
       >
@@ -47,7 +47,7 @@ describe("AccordionCore", () => {
 
   it("renders Accordion with open details", () => {
     render(
-      <AccordionCore title="Accordion Title" isOpen>
+      <AccordionCore summary="Accordion Title" isOpen>
         Accordion Content
       </AccordionCore>,
     );
@@ -58,7 +58,7 @@ describe("AccordionCore", () => {
 
   it("renders Accordion with close details", () => {
     render(
-      <AccordionCore title="Accordion Title" isOpen={false}>
+      <AccordionCore summary="Accordion Title" isOpen={false}>
         Accordion Content
       </AccordionCore>,
     );
@@ -70,7 +70,7 @@ describe("AccordionCore", () => {
   it("use onClick prop when summary click", () => {
     const onClick = vi.fn();
     render(
-      <AccordionCore title="Accordion Title" onClick={onClick}>
+      <AccordionCore summary="Accordion Title" onClick={onClick}>
         Accordion Content
       </AccordionCore>,
     );
@@ -82,7 +82,7 @@ describe("AccordionCore", () => {
 
   it("renders with custom title summary", () => {
     render(
-      <AccordionCore title={<p className="custom-title">Custom Title</p>}>
+      <AccordionCore summary={<p className="custom-title">Custom Title</p>}>
         Accordion Content
       </AccordionCore>,
     );

@@ -58,7 +58,7 @@ export const AccordionCore: StoryObj = {
 export const AccordionInCard: StoryObj = {
   render: (args) => {
     const container = document.createElement("section");
-    container.className = "af-card af-card--large af-card--new-accordion";
+    container.className = "af-card af-card--large af-card--accordion";
 
     container.appendChild(template(args));
 

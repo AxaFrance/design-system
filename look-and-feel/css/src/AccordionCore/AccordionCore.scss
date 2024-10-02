@@ -6,7 +6,7 @@
   &__summary {
     display: grid;
     padding: 1rem;
-    grid-template-areas: "title-container arrow";
+    grid-template-areas: "summary arrow";
     grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: 2.5rem;
@@ -20,8 +20,8 @@
       margin: 0;
     }
 
-    .af-accordion__title-container {
-      grid-area: title-container;
+    &:first-child {
+      grid-area: summary;
     }
 
     &::after {

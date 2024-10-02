@@ -1,21 +1,22 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
+import "../AccordionCore/AccordionCore.scss";
 import "../Card/Card.scss";
 import "../Tag/Tag.scss";
-import "./NewAccordion.scss";
+import "./Accordion.scss";
 
 const meta: Meta = {
-  title: "Components/NewAccordion",
+  title: "Components/Accordion",
 };
 
 export default meta;
 
 const getTagDateContainer = (tag: string, date: string) => {
   const tagDateContainer = document.createElement("div");
-  tagDateContainer.className = "af-new-accordion__tag-date-container";
+  tagDateContainer.className = "af-accordion__tag-date-container";
 
   if (tag) {
     const tagContainer = document.createElement("div");
-    tagContainer.className = "af-new-accordion__tag-container";
+    tagContainer.className = "af-accordion__tag-container";
     const tagElement = document.createElement("div");
     tagElement.className = "af-tag af-tag--warning";
     tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
@@ -25,7 +26,7 @@ const getTagDateContainer = (tag: string, date: string) => {
 
   if (date) {
     const dateElement = document.createElement("p");
-    dateElement.className = "af-new-accordion__date";
+    dateElement.className = "af-accordion__date";
     dateElement.textContent = date;
     tagDateContainer.appendChild(dateElement);
   }
@@ -46,38 +47,38 @@ const template = ({
 }: Args) => {
   const isMobile = window.screen.width <= 667;
   const container = document.createElement("details");
-  container.className = "af-new-accordion";
+  container.className = "af-accordion";
   container.open = isOpen;
 
   const summary = document.createElement("summary");
-  summary.className = "af-new-accordion__summary";
+  summary.className = "af-accordion__summary";
 
   const titleContainer = document.createElement("div");
-  titleContainer.className = "af-new-accordion__title-container";
+  titleContainer.className = "af-accordion__title-container";
 
   if (!isTitleFirst) {
     if (tag || date) {
       summary.appendChild(getTagDateContainer(tag, date));
     }
   } else {
-    summary.className += " af-new-accordion__summary--title-first";
+    summary.className += " af-accordion__summary--title-first";
   }
 
   if (icon && isTitleFirst) {
     const iconContainer = document.createElement("div");
-    iconContainer.className = "af-new-accordion__icon";
+    iconContainer.className = "af-accordion__icon";
     iconContainer.innerHTML = icon;
     (isMobile ? summary : titleContainer).appendChild(iconContainer);
   }
 
   const titleElement = document.createElement("p");
-  titleElement.className = "af-new-accordion__title";
+  titleElement.className = "af-accordion__title";
   titleElement.textContent = title;
   titleContainer.appendChild(titleElement);
 
   if (subtitle) {
     const subtitleElement = document.createElement("p");
-    subtitleElement.className = "af-new-accordion__subtitle";
+    subtitleElement.className = "af-accordion__subtitle";
     subtitleElement.textContent = subtitle;
     titleContainer.appendChild(subtitleElement);
   }
@@ -90,7 +91,7 @@ const template = ({
 
   if (value) {
     const valueElement = document.createElement("p");
-    valueElement.className = "af-new-accordion__value";
+    valueElement.className = "af-accordion__value";
     valueElement.textContent = value;
     summary.appendChild(valueElement);
   }
@@ -98,11 +99,11 @@ const template = ({
   container.appendChild(summary);
 
   const separator = document.createElement("hr");
-  separator.className = "af-new-accordion__separator";
+  separator.className = "af-accordion__separator";
   container.appendChild(separator);
 
   const accordionContent = document.createElement("div");
-  accordionContent.className = "af-new-accordion__content";
+  accordionContent.className = "af-accordion__content";
   accordionContent.innerHTML = content;
   container.appendChild(accordionContent);
 
@@ -110,6 +111,7 @@ const template = ({
 };
 
 const defaultArgs = {
+  isTitleFirst: true,
   icon: `<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
       <mask id="mask0_12386_25920" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
         <rect y="0.5" width="24" height="24" fill="#D9D9D9"/>
@@ -127,7 +129,6 @@ const defaultArgs = {
               Nulla vitae eros a odio pretium gravida. Sed eget tortor nec massa lobortis bibendum. Morbi eget 
               ligula porttitor, euismod odio vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.`,
   isOpen: false,
-  isTitleFirst: true,
 };
 
 export const Accordion: StoryObj = {
@@ -141,7 +142,7 @@ export const Accordion: StoryObj = {
 export const AccordionInCard: StoryObj = {
   render: (args) => {
     const container = document.createElement("section");
-    container.className = "af-card af-card--large af-card--new-accordion";
+    container.className = "af-card af-card--large af-card--accordion";
 
     container.appendChild(template(args));
 

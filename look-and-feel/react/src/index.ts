@@ -1,5 +1,6 @@
 import "@fontsource/source-sans-pro";
 
+export { Accordion } from "./Accordion";
 export { AccordionCore } from "./AccordionCore";
 export { Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
@@ -25,7 +26,6 @@ export { ContentTabList } from "./List/ContentTabList";
 export { Loader } from "./Loader";
 export { Modal } from "./ModalClient/Modal";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal";
-export { NewAccordion } from "./NewAccordion";
 export { Pagination } from "./Pagination/Pagination";
 export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";

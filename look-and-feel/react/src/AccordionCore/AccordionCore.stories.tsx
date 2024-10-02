@@ -11,7 +11,7 @@ const meta: Meta<typeof AccordionCore> = {
 export default meta;
 
 const defaultArgs = {
-  title: "Titre onglet",
+  summary: "Titre onglet",
   children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et tempor blandit. 
               Nulla vitae eros a odio pretium gravida. Sed eget tortor nec massa lobortis bibendum. Morbi eget 
               ligula porttitor, euismod odio vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.`,
@@ -33,7 +33,7 @@ export const AccordionCoreWithCustomStyledSummaryStory: StoryObj<
   name: "AccordionCore With Custom Styled Summary",
   render: (args) => <AccordionCore {...args} />,
   args: {
-    title: (
+    summary: (
       <div
         style={{
           backgroundColor: "red",
@@ -54,7 +54,7 @@ export const AccordionCoreWithCardStory: StoryObj<
 > = {
   name: "AccordionCore With Card",
   render: (args) => (
-    <Card classModifier="large new-accordion" tabIndex={undefined}>
+    <Card classModifier="large accordion" tabIndex={undefined}>
       <AccordionCore {...args} />
     </Card>
   ),

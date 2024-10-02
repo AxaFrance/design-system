@@ -1,0 +1,241 @@
+@use "../common/common.scss" as common;
+
+.af-accordion {
+  --summary-areas: "tag-date-container title-container value arrow";
+  --summary-columns: auto 1fr repeat(2, auto);
+  --title-container-areas: "icon title" "icon subtitle";
+  --title-container-columns: min-content 1fr;
+
+  &__summary {
+    grid-template-areas: var(--summary-areas);
+    grid-template-columns: var(--summary-columns);
+
+    &:not(:has(.af-accordion__tag-date-container)) {
+      --summary-areas: "title-container value arrow";
+      --summary-columns: 1fr repeat(2, auto);
+    }
+
+    &:not(:has(.af-accordion__value)) {
+      --summary-areas: "tag-date-container title-container arrow";
+      --summary-columns: auto 1fr auto;
+
+      &:not(:has(.af-accordion__tag-date-container)) {
+        --summary-areas: "title-container arrow";
+        --summary-columns: 1fr auto;
+      }
+    }
+
+    .af-accordion {
+      &__icon {
+        display: grid;
+        grid-area: icon;
+        align-items: center;
+      }
+
+      &__title-container {
+        display: grid;
+        grid-area: title-container;
+        grid-template: var(--title-container-areas);
+        grid-template-columns: var(--title-container-columns);
+        gap: 0.125rem 1rem;
+
+        &:not(:has(.af-accordion__icon)) {
+          --title-container-areas: "title" "subtitle";
+          --title-container-columns: 1fr;
+
+          column-gap: 0;
+        }
+
+        &:not(:has(.af-accordion__subtitle)) {
+          --title-container-areas: "icon title";
+
+          row-gap: 0;
+
+          &:not(:has(.af-accordion__icon)) {
+            --title-container-areas: "title";
+          }
+        }
+
+        .af-accordion {
+          &__title {
+            grid-area: title;
+          }
+
+          &__subtitle {
+            grid-area: subtitle;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.25rem;
+            color: common.$color-gray-700;
+          }
+        }
+      }
+
+      &__value {
+        display: grid;
+        min-width: 9.375rem;
+        grid-area: value;
+        justify-items: center;
+        color: common.$color-green-600;
+      }
+
+      &__tag-date-container {
+        display: grid;
+        padding-right: 3.93rem;
+        grid-area: tag-date-container;
+        grid-template: "tag" "date";
+        row-gap: 0.5rem;
+
+        .af-accordion {
+          &__tag-container {
+            grid-area: tag;
+            justify-items: center;
+            text-align: center;
+
+            .af-tag {
+              cursor: inherit;
+            }
+          }
+
+          &__date {
+            display: grid;
+            grid-area: date;
+            align-items: center;
+            text-align: center;
+            color: common.$color-gray-700;
+          }
+        }
+      }
+    }
+
+    &--title-first {
+      --summary-areas: "title-container tag-date-container value arrow";
+      --summary-columns: repeat(3, auto) min-content;
+
+      &:not(:has(.af-accordion__value)) {
+        --summary-areas: "title-container tag-date-container arrow";
+        --summary-columns: repeat(2, auto) min-content;
+      }
+
+      .af-accordion {
+        &__tag-date-container {
+          padding: 0;
+          grid-template: "tag date";
+          column-gap: inherit;
+
+          .af-accordion {
+            &__tag-container {
+              padding: 0 1.688rem;
+            }
+
+            &__date {
+              padding: 0 3.125rem;
+            }
+          }
+        }
+
+        &__value {
+          min-width: auto;
+        }
+      }
+    }
+
+    .af-accordion__tag-date-container:has(> :only-child) {
+      row-gap: 0;
+    }
+  }
+
+  @media (width <= #{common.$breakpoint-md}) {
+    .af-accordion__summary--title-first
+      .af-accordion__tag-date-container
+      .af-accordion {
+      &__tag-container,
+      &__date {
+        padding: 0;
+      }
+    }
+  }
+
+  @media (width <= #{common.$breakpoint-sm}) {
+    .af-accordion__summary {
+      --summary-areas: "tag-date-container arrow" "title-container arrow"
+        "value arrow";
+      --summary-columns: 1fr;
+
+      column-gap: 0;
+
+      .af-accordion {
+        &__title-container {
+          justify-content: start;
+
+          .af-accordion {
+            &__subtitle {
+              font-size: 0.875rem;
+              line-height: 1.1rem;
+            }
+          }
+        }
+
+        &__tag-date-container {
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        &__value {
+          justify-content: start;
+        }
+      }
+
+      &--title-first {
+        --summary-areas: "icon title-container arrow"
+          "icon tag-date-container arrow" "icon value arrow";
+        --summary-columns: auto 1fr auto;
+
+        column-gap: 0.75rem;
+
+        &:not(:has(.af-accordion__icon)) {
+          --summary-areas: "title-container arrow" "tag-date-container arrow"
+            "value arrow";
+          --summary-columns: 1fr auto;
+        }
+
+        &:not(:has(.af-accordion__tag-date-container)) {
+          --summary-areas: "icon title-container arrow" "icon value arrow";
+        }
+
+        &:not(:has(.af-accordion__value)) {
+          --summary-areas: "icon title-container arrow"
+            "icon tag-date-container arrow";
+        }
+
+        &:not(
+            :has(.af-accordion__icon),
+            :has(.af-accordion__tag-date-container)
+          ) {
+          --summary-areas: "title-container arrow" "value arrow";
+        }
+
+        &:not(
+            :has(.af-accordion__tag-date-container),
+            :has(.af-accordion__value)
+          ) {
+          --summary-areas: "icon title-container arrow";
+          --summary-columns: auto 1fr auto;
+        }
+
+        &:not(:has(.af-accordion__icon), :has(.af-accordion__value)) {
+          --summary-areas: "title-container arrow" "tag-date-container arrow";
+        }
+
+        &:not(
+            :has(.af-accordion__icon),
+            :has(.af-accordion__tag-date-container),
+            :has(.af-accordion__value)
+          ) {
+          --summary-areas: "title-container arrow";
+          --summary-columns: 1fr auto;
+        }
+      }
+    }
+  }
+}

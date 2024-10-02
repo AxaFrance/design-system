@@ -1,23 +1,32 @@
-import { useCallback, useMemo, type MouseEvent, type ReactNode } from "react";
+import {
+  useCallback,
+  useMemo,
+  type ComponentProps,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 import { getComponentClassName } from "../utilities";
 
-type NewAccordionProps = {
-  title: ReactNode;
+type AccordionProps = {
+  summary: ReactNode;
   children: ReactNode;
+  isOpen?: boolean;
   className?: string;
   classModifier?: string;
-  isOpen?: boolean;
+  summaryProps?: ComponentProps<"summary">;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-};
+} & Partial<ComponentProps<"details">>;
 
 export const AccordionCore = ({
-  title,
+  summary,
   children,
   className,
   classModifier,
+  summaryProps,
   isOpen,
   onClick,
-}: NewAccordionProps) => {
+  ...detailsProps
+}: AccordionProps) => {
   const componentClassName = useMemo(
     () => getComponentClassName(className, classModifier, "af-accordion"),
     [classModifier, className],
@@ -34,15 +43,16 @@ export const AccordionCore = ({
   );
 
   return (
-    <details className={componentClassName} open={isOpen}>
+    <details className={componentClassName} open={isOpen} {...detailsProps}>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
       <summary
         className="af-accordion__summary"
         onClick={handleToggle}
         role="button"
         tabIndex={0}
+        {...summaryProps}
       >
-        <div className="af-accordion__title-container">{title}</div>
+        {summary}
       </summary>
       <hr className="af-accordion__separator" />
       <div className="af-accordion__content">{children}</div>
