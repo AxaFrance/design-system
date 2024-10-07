@@ -1,8 +1,82 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Accordion/Accordion.scss";
-import { AccordionItem } from "./AccordionItem";
+import { useMemo, type ComponentProps, type ReactNode } from "react";
+import { AccordionCore } from "../AccordionCore/AccordionCore";
+import {
+  BREAKPOINT,
+  getComponentClassName,
+  useIsSmallScreen,
+} from "../utilities";
+import { AccordionTagDateContainer } from "./AccordionTagDateContainer";
 
-export const Accordion = ({ children }: React.PropsWithChildren) => {
-  return <div className="af-accordion-client">{children}</div>;
+type AccordionProps = {
+  title: string;
+  subtitle?: string;
+  icon?: ReactNode;
+  value?: string;
+  isTitleFirst?: boolean;
+} & ComponentProps<typeof AccordionTagDateContainer> &
+  Partial<ComponentProps<typeof AccordionCore>>;
+
+export const Accordion = ({
+  title,
+  children,
+  icon,
+  subtitle,
+  tagLabel,
+  tagProps,
+  dateLabel,
+  dateProps,
+  value,
+  isTitleFirst = true,
+  ...accordionCoreProps
+}: AccordionProps) => {
+  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
+  const isShowingIcon = Boolean(icon && isTitleFirst);
+  const summaryClassName = useMemo(
+    () =>
+      getComponentClassName(
+        "af-accordion__summary",
+        isTitleFirst ? "title-first" : "",
+      ),
+    [isTitleFirst],
+  );
+
+  return (
+    <AccordionCore
+      summary={
+        <>
+          {isShowingIcon && isMobile && (
+            <div className="af-accordion__icon">{icon}</div>
+          )}
+          {!isTitleFirst && (
+            <AccordionTagDateContainer
+              tagLabel={tagLabel}
+              dateLabel={dateLabel}
+              tagProps={tagProps}
+              dateProps={dateProps}
+            />
+          )}
+          <div className="af-accordion__title-container">
+            {isShowingIcon && !isMobile && (
+              <div className="af-accordion__icon">{icon}</div>
+            )}
+            <p className="af-accordion__title">{title}</p>
+            {subtitle && <p className="af-accordion__subtitle">{subtitle}</p>}
+          </div>
+          {isTitleFirst && (
+            <AccordionTagDateContainer
+              tagLabel={tagLabel}
+              dateLabel={dateLabel}
+              tagProps={tagProps}
+              dateProps={dateProps}
+            />
+          )}
+          {value && <p className="af-accordion__value">{value}</p>}
+        </>
+      }
+      summaryProps={{ className: summaryClassName }}
+      {...accordionCoreProps}
+    >
+      {children}
+    </AccordionCore>
+  );
 };
-
-Accordion.Item = AccordionItem;

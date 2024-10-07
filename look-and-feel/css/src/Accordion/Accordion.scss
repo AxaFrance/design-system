@@ -1,74 +1,241 @@
-@use "../common/common" as common;
+@use "../common/common.scss" as common;
 
-.af-accordion-client {
-  display: block;
-  margin: 0;
-  padding: 0;
-  border-radius: 8px;
-  font-family: "Source Sans Pro", arial, sans-serif;
-  background-color: common.$color-white;
+.af-accordion {
+  --summary-areas: "tag-date-container title-container value arrow";
+  --summary-columns: auto 1fr repeat(2, auto);
+  --title-container-areas: "icon title" "icon subtitle";
+  --title-container-columns: min-content 1fr;
 
-  &__item {
-    &:not(:last-child) {
-      border-bottom: 1px solid #e9ecf2;
+  &__summary {
+    grid-template-areas: var(--summary-areas);
+    grid-template-columns: var(--summary-columns);
+
+    &:not(:has(.af-accordion__tag-date-container)) {
+      --summary-areas: "title-container value arrow";
+      --summary-columns: 1fr repeat(2, auto);
     }
 
-    & > h3 {
-      width: 100%;
-      margin: 0;
-      font-size: 1.125rem;
-      font-weight: 600;
+    &:not(:has(.af-accordion__value)) {
+      --summary-areas: "tag-date-container title-container arrow";
+      --summary-columns: auto 1fr auto;
 
-      &:has(button[aria-expanded="true"]) {
-        border-bottom: none;
-        color: common.$color-axa;
+      &:not(:has(.af-accordion__tag-date-container)) {
+        --summary-areas: "title-container arrow";
+        --summary-columns: 1fr auto;
+      }
+    }
+
+    .af-accordion {
+      &__icon {
+        display: grid;
+        grid-area: icon;
+        align-items: center;
       }
 
-      & > button {
-        display: flex;
-        width: 100%;
-        padding: 15px 20px;
-        border: 0;
-        align-items: center;
-        font-size: 1.125rem;
-        font-weight: 600;
-        text-align: start;
-        color: inherit;
-        background-color: inherit;
-        cursor: pointer;
+      &__title-container {
+        display: grid;
+        grid-area: title-container;
+        grid-template: var(--title-container-areas);
+        grid-template-columns: var(--title-container-columns);
+        gap: 0.125rem 1rem;
 
-        &:focus {
-          outline: unset;
+        &:not(:has(.af-accordion__icon)) {
+          --title-container-areas: "title" "subtitle";
+          --title-container-columns: 1fr;
+
+          column-gap: 0;
         }
 
-        &:focus-visible {
-          outline: 2px solid common.$color-blue-3;
-          outline-offset: 3px;
+        &:not(:has(.af-accordion__subtitle)) {
+          --title-container-areas: "icon title";
+
+          row-gap: 0;
+
+          &:not(:has(.af-accordion__icon)) {
+            --title-container-areas: "title";
+          }
         }
 
-        &::after {
-          width: 32px;
-          height: 32px;
-          margin-left: auto;
-          flex-shrink: 0;
-          background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cg%20clip-path%3D%22url(%23clip0_14583_27882)%22%3E%0A%3Cpath%20d%3D%22M24%2013.3331L22.12%2011.4531L16%2017.5598L9.88%2011.4531L8%2013.3331L16%2021.3331L24%2013.3331Z%22%20fill%3D%22%2300008F%22%2F%3E%0A%3C%2Fg%3E%0A%3Cdefs%3E%0A%3CclipPath%20id%3D%22clip0_14583_27882%22%3E%0A%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22white%22%20transform%3D%22matrix(0%201%20-1%200%2032%200)%22%2F%3E%0A%3C%2FclipPath%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A");
-          background-repeat: no-repeat;
-          background-size: 100%;
-          transition: transform 0.2s ease-in-out;
-          content: "";
-        }
+        .af-accordion {
+          &__title {
+            grid-area: title;
+          }
 
-        &[aria-expanded="true"] {
-          &::after {
-            transform: rotate(180deg);
+          &__subtitle {
+            grid-area: subtitle;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.25rem;
+            color: common.$color-gray-700;
+          }
+        }
+      }
+
+      &__value {
+        display: grid;
+        min-width: 9.375rem;
+        grid-area: value;
+        justify-items: center;
+        color: common.$color-green-600;
+      }
+
+      &__tag-date-container {
+        display: grid;
+        padding-right: 3.93rem;
+        grid-area: tag-date-container;
+        grid-template: "tag" "date";
+        row-gap: 0.5rem;
+
+        .af-accordion {
+          &__tag-container {
+            grid-area: tag;
+            justify-items: center;
+            text-align: center;
+
+            .af-tag {
+              cursor: inherit;
+            }
+          }
+
+          &__date {
+            display: grid;
+            grid-area: date;
+            align-items: center;
+            text-align: center;
+            color: common.$color-gray-700;
           }
         }
       }
     }
 
-    & > [role="region"] {
-      margin-bottom: 1rem;
-      padding: 0 20px;
+    &--title-first {
+      --summary-areas: "title-container tag-date-container value arrow";
+      --summary-columns: repeat(3, auto) min-content;
+
+      &:not(:has(.af-accordion__value)) {
+        --summary-areas: "title-container tag-date-container arrow";
+        --summary-columns: repeat(2, auto) min-content;
+      }
+
+      .af-accordion {
+        &__tag-date-container {
+          padding: 0;
+          grid-template: "tag date";
+          column-gap: inherit;
+
+          .af-accordion {
+            &__tag-container {
+              padding: 0 1.688rem;
+            }
+
+            &__date {
+              padding: 0 3.125rem;
+            }
+          }
+        }
+
+        &__value {
+          min-width: auto;
+        }
+      }
+    }
+
+    .af-accordion__tag-date-container:has(> :only-child) {
+      row-gap: 0;
+    }
+  }
+
+  @media (width <= #{common.$breakpoint-md}) {
+    .af-accordion__summary--title-first
+      .af-accordion__tag-date-container
+      .af-accordion {
+      &__tag-container,
+      &__date {
+        padding: 0;
+      }
+    }
+  }
+
+  @media (width <= #{common.$breakpoint-sm}) {
+    .af-accordion__summary {
+      --summary-areas: "tag-date-container arrow" "title-container arrow"
+        "value arrow";
+      --summary-columns: 1fr;
+
+      column-gap: 0;
+
+      .af-accordion {
+        &__title-container {
+          justify-content: start;
+
+          .af-accordion {
+            &__subtitle {
+              font-size: 0.875rem;
+              line-height: 1.1rem;
+            }
+          }
+        }
+
+        &__tag-date-container {
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        &__value {
+          justify-content: start;
+        }
+      }
+
+      &--title-first {
+        --summary-areas: "icon title-container arrow"
+          "icon tag-date-container arrow" "icon value arrow";
+        --summary-columns: auto 1fr auto;
+
+        column-gap: 0.75rem;
+
+        &:not(:has(.af-accordion__icon)) {
+          --summary-areas: "title-container arrow" "tag-date-container arrow"
+            "value arrow";
+          --summary-columns: 1fr auto;
+        }
+
+        &:not(:has(.af-accordion__tag-date-container)) {
+          --summary-areas: "icon title-container arrow" "icon value arrow";
+        }
+
+        &:not(:has(.af-accordion__value)) {
+          --summary-areas: "icon title-container arrow"
+            "icon tag-date-container arrow";
+        }
+
+        &:not(
+            :has(.af-accordion__icon),
+            :has(.af-accordion__tag-date-container)
+          ) {
+          --summary-areas: "title-container arrow" "value arrow";
+        }
+
+        &:not(
+            :has(.af-accordion__tag-date-container),
+            :has(.af-accordion__value)
+          ) {
+          --summary-areas: "icon title-container arrow";
+          --summary-columns: auto 1fr auto;
+        }
+
+        &:not(:has(.af-accordion__icon), :has(.af-accordion__value)) {
+          --summary-areas: "title-container arrow" "tag-date-container arrow";
+        }
+
+        &:not(
+            :has(.af-accordion__icon),
+            :has(.af-accordion__tag-date-container),
+            :has(.af-accordion__value)
+          ) {
+          --summary-areas: "title-container arrow";
+          --summary-columns: 1fr auto;
+        }
+      }
     }
   }
 }

@@ -18,7 +18,18 @@ export default defineConfig({
     css: true,
     coverage: {
       provider: "v8",
-      exclude: ["**/*.stories.tsx", "**/*.mdx", "**/index.ts"],
+      exclude: [
+        ".eslintrc.js",
+        ".storybook/",
+        "dist/",
+        "prettier.config.js",
+        "storybook-static/",
+        "vitest.config.mts",
+        "**/*.stories.tsx",
+        "**/*.mdx",
+        "**/index.ts",
+        "**/__tests__/**",
+      ],
     },
   },
 });

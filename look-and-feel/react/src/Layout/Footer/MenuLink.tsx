@@ -1,7 +1,5 @@
 import classNames from "classnames";
-import { useIsSmallScreen } from "../../utilities";
-
-const BREAKPOINT_SMALL = 1024;
+import { BREAKPOINT, useIsSmallScreen } from "../../utilities";
 
 export type Link = {
   link: string;
@@ -15,7 +13,7 @@ type MenuLinkProps = {
 };
 
 export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
-  const isSmallScreen = useIsSmallScreen(BREAKPOINT_SMALL);
+  const isSmallScreen = useIsSmallScreen(BREAKPOINT.MD);
 
   if (links.length === 0) {
     return null;

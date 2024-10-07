@@ -1,3 +1,5 @@
+@use "Accordion/Accordion";
+@use "AccordionCore/AccordionCore";
 @use "Button/Button";
 @use "Card/Card";
 @use "Layout/Footer/Footer";
@@ -9,7 +11,6 @@
 @use "Form/Select/Select";
 @use "Form/Text/Text";
 @use "Form/FileUpload/FileUpload";
-@use "Accordion/Accordion";
 @use "Modal/Modal";
 @use "Alert/Alert";
 @use "Link/Link";
