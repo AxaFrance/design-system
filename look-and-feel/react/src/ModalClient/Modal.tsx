@@ -25,6 +25,7 @@ type ModalProps = {
   isOpen: boolean;
   hasCloseBtn?: boolean;
   onClose?: () => void;
+  onClickOutside?: () => void;
   title: string;
   subtitle?: string;
   iconTitle?: ReactNode;
@@ -40,6 +41,7 @@ export const Modal = ({
   isOpen,
   hasCloseBtn = true,
   onClose,
+  onClickOutside,
   children,
   title,
   subtitle,
@@ -81,6 +83,15 @@ export const Modal = ({
     setIsModalOpen(false);
   };
 
+  const handleClickOutside = () => {
+    if (onClickOutside) {
+      onClickOutside();
+      setIsModalOpen(false);
+    } else {
+      handleCloseModal();
+    }
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
     if (event.key === "Escape") {
       handleCloseModal();
@@ -91,7 +102,7 @@ export const Modal = ({
     <dialog
       ref={modalRef}
       onKeyDown={handleKeyDown}
-      onClick={(e) => e.target === modalRef.current && handleCloseModal()}
+      onClick={(e) => e.target === modalRef.current && handleClickOutside()}
       className="af-modal"
       aria-labelledby={idTitle}
       aria-describedby={idContent}
