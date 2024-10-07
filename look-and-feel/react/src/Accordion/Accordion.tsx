@@ -39,17 +39,6 @@ export const Accordion = ({
       ),
     [isTitleFirst],
   );
-  const TagDateContainer = useMemo(
-    () => (
-      <AccordionTagDateContainer
-        tagLabel={tagLabel}
-        dateLabel={dateLabel}
-        tagProps={tagProps}
-        dateProps={dateProps}
-      />
-    ),
-    [tagLabel, dateLabel, tagProps, dateProps],
-  );
 
   return (
     <AccordionCore
@@ -58,7 +47,14 @@ export const Accordion = ({
           {isShowingIcon && isMobile && (
             <div className="af-accordion__icon">{icon}</div>
           )}
-          {!isTitleFirst && TagDateContainer}
+          {!isTitleFirst && (
+            <AccordionTagDateContainer
+              tagLabel={tagLabel}
+              dateLabel={dateLabel}
+              tagProps={tagProps}
+              dateProps={dateProps}
+            />
+          )}
           <div className="af-accordion__title-container">
             {isShowingIcon && !isMobile && (
               <div className="af-accordion__icon">{icon}</div>
@@ -66,7 +62,14 @@ export const Accordion = ({
             <p className="af-accordion__title">{title}</p>
             {subtitle && <p className="af-accordion__subtitle">{subtitle}</p>}
           </div>
-          {isTitleFirst && TagDateContainer}
+          {isTitleFirst && (
+            <AccordionTagDateContainer
+              tagLabel={tagLabel}
+              dateLabel={dateLabel}
+              tagProps={tagProps}
+              dateProps={dateProps}
+            />
+          )}
           {value && <p className="af-accordion__value">{value}</p>}
         </>
       }
