@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps, ReactNode, useState } from "react";
+import { ComponentProps, useState } from "react";
 import bluetoothAudio from "@material-symbols/svg-400/outlined/bluetooth_searching.svg";
-import { ButtonAction, Modal } from "./Modal";
+import { Modal } from "./Modal";
 import { Svg } from "../Svg";
 
 const meta: Meta<typeof Modal> = {
@@ -13,28 +13,7 @@ const meta: Meta<typeof Modal> = {
 };
 export default meta;
 
-type StoryProps = Omit<
-  React.ComponentProps<typeof Modal>,
-  | "isOpen"
-  | "hasCloseBtn"
-  | "onClose"
-  | "title"
-  | "iconTitle"
-  | "fullWidthButtons"
-  | "actions"
-> & {
-  isOpen: boolean;
-  hasCloseBtn?: boolean;
-  onClose?: () => void;
-  title: string;
-  iconTitle?: ReactNode;
-  fullWidthButtons?: boolean;
-  actions?: {
-    primary?: ButtonAction;
-    secondary?: ButtonAction;
-    tertiary?: ButtonAction;
-  };
-};
+type StoryProps = React.ComponentProps<typeof Modal>;
 type Story = StoryObj<StoryProps>;
 
 const Container = (props: ComponentProps<typeof Modal>) => {
@@ -49,6 +28,7 @@ const Container = (props: ComponentProps<typeof Modal>) => {
         {...props}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
+        onClickOutside={undefined}
         actions={{
           primary: { text: "Save", callback: () => setIsOpen(false) },
           secondary: { text: "Cancel", callback: () => setIsOpen(false) },
