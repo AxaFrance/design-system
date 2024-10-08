@@ -4,7 +4,7 @@
   position: fixed;
   width: 100%;
   margin: 0 auto;
-  padding: 1.5rem 0;
+  padding: 0 0 1.5rem;
   border: none;
   border-radius: 0.5rem;
   background-color: common.$color-white;
@@ -16,9 +16,10 @@
 
   &__top {
     position: sticky;
+    z-index: 5;
     top: 0;
     display: flex;
-    padding: 0 1.5rem 1.5rem;
+    padding: 1.5rem;
     border-bottom: 1px solid common.$color-btn-disabled-border;
     align-items: center;
     gap: 1rem;
@@ -69,6 +70,7 @@
   }
 
   &__content {
+    z-index: 0;
     display: flex;
     margin-top: 2.5rem;
     padding: 0 1.5rem;
