@@ -11,11 +11,11 @@ import { TitleWithSubtitles } from "./TitleWithSubtitles";
 
 type TitleProps = {
   children: ReactNode;
-  firstSubtitle: string;
+  firstSubtitle?: string;
+  secondSubtitle?: string;
+  icon?: ReactNode;
   className?: string;
   classModifier?: string;
-  icon?: ReactNode;
-  secondSubtitle?: string;
   size?: TitleSize;
 };
 
