@@ -1,0 +1,7 @@
+@use "../common/common.scss" as common;
+
+.af-divider {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid common.$color-gray-300;
+}
