@@ -35,7 +35,6 @@ export const Default: StoryObj<
     classModifier: string[];
   }
 > = {
-  name: "Default",
   render: ({ classModifier, ...args }) => (
     <ContentItemDuo classModifier={classModifier.join(" ")} {...args} />
   ),
@@ -54,7 +53,6 @@ export const Vertical: StoryObj<
     classModifier: string[];
   }
 > = {
-  name: "Vertical",
   render: ({ classModifier, ...args }) => (
     <ContentItemDuo classModifier={classModifier.join(" ")} {...args} />
   ),

@@ -8,7 +8,6 @@ const meta: Meta<typeof Link> = {
 export default meta;
 
 export const Default: StoryObj<typeof Link> = {
-  name: "Default",
   args: {
     href: "https://fakelink.com",
     openInNewTab: true,

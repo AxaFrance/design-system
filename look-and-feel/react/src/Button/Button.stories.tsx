@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { ReactNode } from "react";
 import accountBalance from "@material-symbols/svg-400/outlined/account_balance.svg";
 import arrowBack from "@material-symbols/svg-400/outlined/arrow_back.svg";
 import biotech from "@material-symbols/svg-400/outlined/biotech.svg";
 import code from "@material-symbols/svg-400/outlined/code.svg";
 import fireExtinguisher from "@material-symbols/svg-400/outlined/fire_extinguisher.svg";
 import heartBroken from "@material-symbols/svg-400/outlined/heart_broken.svg";
-import { ButtonClient, Variants } from "./Button";
+import type { Meta, StoryObj } from "@storybook/react";
+import { ReactNode } from "react";
 import { Svg } from "../Svg";
+import { ButtonClient, Variants } from "./Button";
 
 const meta: Meta<typeof ButtonClient> = {
   component: ButtonClient,
@@ -59,14 +59,14 @@ export const Playground: Story = {
   },
   argTypes: {
     variant: {
-      options: Variants,
+      options: Object.values(Variants),
       control: { type: "multi-select" },
     },
     iconLeft: {
-      control: { type: "input" },
+      control: { type: "text" },
     },
     iconRight: {
-      control: { type: "input" },
+      control: { type: "text" },
     },
   },
 };

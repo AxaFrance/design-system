@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Alert } from "./Alert";
-import { Link } from "../Link/Link";
 import { ButtonClient, Variants } from "../Button/Button";
+import { Link } from "../Link/Link";
+import { Alert } from "./Alert";
 
 const MODIFIERS = ["information", "neutral", "error", "validation", "warning"];
 
@@ -12,7 +12,6 @@ const meta: Meta<typeof Alert> = {
 export default meta;
 
 export const Default: StoryObj<typeof Alert> = {
-  name: "Default",
   args: {
     title: "My Alert title",
     type: "information",
