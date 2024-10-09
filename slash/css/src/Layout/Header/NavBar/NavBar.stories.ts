@@ -19,10 +19,14 @@ export const Default: StoryObj = {
                         <h4 class="af-nav__aside-title">Menu</h4><a class="af-nav__aside-close" href="#" role="button" aria-haspopup="true" aria-controls="idmenu" id="menubutton">×</a>
                     </div>
                     <ul class="af-nav__list" role="menubar" aria-labelledby="menubutton" id="idmenu">
-                        <li class="af-nav__item${activeIndex === 0 ? " af-nav__item--active" : ""}" role="none">
+                        <li class="af-nav__item${
+                          activeIndex === 0 ? " af-nav__item--active" : ""
+                        }" role="none">
                           <a class="af-nav__link" role="menuitem" href="/home" tabindex="0">Home</a>
                         </li>
-                        <li class="af-nav__item af-nav__item--haschild${activeIndex === 1 ? " af-nav__item--active" : ""}" role="none">
+                        <li class="af-nav__item af-nav__item--haschild${
+                          activeIndex === 1 ? " af-nav__item--active" : ""
+                        }" role="none">
                           <a class="af-nav__link" role="menuitem" href="/table" tabindex="-1" aria-haspopup="aria-haspopup" aria-expanded="aria-expanded">Table</a>
                           <svg class="glyphicon glyphicon-arrow-xs-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                               <path d="M86.799 36.75h-73.299l36.654 35.636 36.645-35.636z"></path>
@@ -32,10 +36,14 @@ export const Default: StoryObj = {
                               <li class="af-nav__item" role="none"><a class="af-nav__link" role="menuitem" href="/table/sous-lien2" tabindex="-1">Sous lien 2</a></li>
                           </ul>
                         </li>
-                        <li class="af-nav__item${activeIndex === 2 ? " af-nav__item--active" : ""}" role="none">
+                        <li class="af-nav__item${
+                          activeIndex === 2 ? " af-nav__item--active" : ""
+                        }" role="none">
                           <a class="af-nav__link" role="menuitem" href="/accordion" tabindex="-1">Accordions</a>
                         </li>
-                        <li class="af-nav__item af-nav__item--haschild${activeIndex === 3 ? " af-nav__item--active" : ""}" role="none">
+                        <li class="af-nav__item af-nav__item--haschild${
+                          activeIndex === 3 ? " af-nav__item--active" : ""
+                        }" role="none">
                           <a class="af-nav__link" role="menuitem" href="/doc" tabindex="-1" aria-haspopup="aria-haspopup" aria-expanded="aria-expanded">Doc</a>
                           <svg class="glyphicon glyphicon-arrow-xs-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                               <path d="M86.799 36.75h-73.299l36.654 35.636 36.645-35.636z"></path>

@@ -1,6 +1,6 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
-import "./Alert.scss";
 import "../Link/Link.scss";
+import "./Alert.scss";
 
 const meta: Meta = {
   title: "Components/Alert",
@@ -52,7 +52,7 @@ function getIconFromType(type: AlertType) {
   }
 }
 
-const commonProps = {
+const commonProps: Pick<StoryObj, "render" | "argTypes"> = {
   render: (args: Args) => {
     const alert = document.createElement("div");
 

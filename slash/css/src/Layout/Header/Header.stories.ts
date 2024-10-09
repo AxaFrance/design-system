@@ -1,9 +1,9 @@
+import logo from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
 import type { Meta, StoryObj } from "@storybook/html";
 import "./Header.scss";
+import "./Infos/Infos.scss";
 import "./Logo/Logo.scss";
 import "./Name/Name.scss";
-import "./Infos/Infos.scss";
-import logo from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
 
 const meta: Meta = {
   args: {
@@ -19,7 +19,11 @@ export const HeaderWithName: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-        <div class="${args.className}${args.classModifier !== "" ? ` ${args.className}--${args.classModifier}` : ""}">
+        <div class="${args.className}${
+          args.classModifier !== ""
+            ? ` ${args.className}--${args.classModifier}`
+            : ""
+        }">
             <div class="container ${args.className}__wrapper">
                 <header class="${args.className}__content" role="banner">
                   ${args.children}
@@ -50,7 +54,11 @@ export const HeaderWithNameAndInfos: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-        <div class="${args.className}${args.classModifier !== "" ? ` ${args.className}--${args.classModifier}` : ""}">
+        <div class="${args.className}${
+          args.classModifier !== ""
+            ? ` ${args.className}--${args.classModifier}`
+            : ""
+        }">
             <div class="container ${args.className}__wrapper">
                 <header class="${args.className}__content" role="banner">
                     ${args.children}

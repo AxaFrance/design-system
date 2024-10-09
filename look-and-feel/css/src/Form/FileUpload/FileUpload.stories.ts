@@ -14,7 +14,9 @@ export const Default: StoryObj = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-<label class="af-form__group--label" for="inputtext1">${args.label} ${args.required ? "*" : ""}</label>
+<label class="af-form__group--label" for="inputtext1">${args.label} ${
+      args.required ? "*" : ""
+    }</label>
 <div>
    <div class="af-form__file-input">
       <div id="uniqueid">

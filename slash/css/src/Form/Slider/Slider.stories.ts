@@ -47,12 +47,34 @@ export const Default: StoryObj = {
     </div>
     <div tabindex="0" class="rc-slider-handle" style="left: ${percentage}%; right: auto; transform: translateX(-50%);" role="slider" aria-valuemin="0" aria-valuemax="5" aria-valuenow="3" aria-disabled="false"></div>
     <div class="rc-slider-mark">
-      <span class="rc-slider-mark-text rc-slider-mark-text-active" style="transform: translateX(-50%); left: 0%;">${args.options[0].label}</span>
-      <span class="rc-slider-mark-text${percentage >= 20 ? " rc-slider-mark-text-active" : ""}" style="transform: translateX(-50%); left: 20%;">${args.options[1].label}</span>
-      <span class="rc-slider-mark-text${percentage >= 40 ? " rc-slider-mark-text-active" : ""}" style="transform: translateX(-50%); left: 40%;">${args.options[2].label}</span>
-      <span class="rc-slider-mark-text${percentage >= 60 ? " rc-slider-mark-text-active" : ""}" style="transform: translateX(-50%); left: 60%;">${args.options[3].label}</span>
-      <span class="rc-slider-mark-text${percentage >= 80 ? " rc-slider-mark-text-active" : ""}" style="transform: translateX(-50%); left: 80%;">${args.options[4].label}</span>
-      <span class="rc-slider-mark-text${percentage >= 100 ? " rc-slider-mark-text-active" : ""}" style="transform: translateX(-50%); left: 100%;">${args.options[5].label}</span>
+      <span class="rc-slider-mark-text rc-slider-mark-text-active" style="transform: translateX(-50%); left: 0%;">${
+        args.options[0].label
+      }</span>
+      <span class="rc-slider-mark-text${
+        percentage >= 20 ? " rc-slider-mark-text-active" : ""
+      }" style="transform: translateX(-50%); left: 20%;">${
+        args.options[1].label
+      }</span>
+      <span class="rc-slider-mark-text${
+        percentage >= 40 ? " rc-slider-mark-text-active" : ""
+      }" style="transform: translateX(-50%); left: 40%;">${
+        args.options[2].label
+      }</span>
+      <span class="rc-slider-mark-text${
+        percentage >= 60 ? " rc-slider-mark-text-active" : ""
+      }" style="transform: translateX(-50%); left: 60%;">${
+        args.options[3].label
+      }</span>
+      <span class="rc-slider-mark-text${
+        percentage >= 80 ? " rc-slider-mark-text-active" : ""
+      }" style="transform: translateX(-50%); left: 80%;">${
+        args.options[4].label
+      }</span>
+      <span class="rc-slider-mark-text${
+        percentage >= 100 ? " rc-slider-mark-text-active" : ""
+      }" style="transform: translateX(-50%); left: 100%;">${
+        args.options[5].label
+      }</span>
     </div>`;
 
     return container;

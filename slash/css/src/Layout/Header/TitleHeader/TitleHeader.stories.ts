@@ -22,7 +22,9 @@ const meta: Meta = {
   render: (args) => {
     const container = document.createElement("div");
     container.innerHTML = `
-      <div class="${args.className}${args.classModifier ? ` ${args.className}--${args.classModifier}` : ""}">
+      <div class="${args.className}${
+        args.classModifier ? ` ${args.className}--${args.classModifier}` : ""
+      }">
           <div class="container ${args.className}__wrapper">
               <div class="burger-container">
                 <a 
@@ -41,7 +43,9 @@ const meta: Meta = {
               </div>
               <h1 class="${args.className}__title">
                 ${args.title}
-                <small class="${args.className}__subtitle">${args.subtitle}</small>
+                <small class="${args.className}__subtitle">${
+                  args.subtitle
+                }</small>
               </h1>
               ${args.children}
           </div>

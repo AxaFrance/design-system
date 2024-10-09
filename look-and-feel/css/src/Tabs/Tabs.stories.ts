@@ -13,13 +13,17 @@ export const Tabs: StoryObj = {
       const id = `tab-${i + 1}`;
       const ariaSelected = i + 1 === args.activeTab;
       const tabIndex = ariaSelected ? 0 : -1;
-      return `<button role="tab" type="button" aria-selected="${ariaSelected}" tabindex="${tabIndex}" id="${id}" aria-controls="tabpanel-${i + 1}"><div>Icon ${i + 1}</div><span>Tab ${i + 1}</span></button>`;
+      return `<button role="tab" type="button" aria-selected="${ariaSelected}" tabindex="${tabIndex}" id="${id}" aria-controls="tabpanel-${
+        i + 1
+      }"><div>Icon ${i + 1}</div><span>Tab ${i + 1}</span></button>`;
     }).join("\n");
 
     const panels = Array.from({ length: args.numberOfTabs }, (_, i) => {
       const id = `tabpanel-${i + 1}`;
       const ariaHidden = i + 1 !== args.activeTab;
-      return `<div role="tabpanel" aria-hidden="${ariaHidden}" id="${id}" aria-labelledby="tab-${i + 1}">Content ${i + 1}</div>`;
+      return `<div role="tabpanel" aria-hidden="${ariaHidden}" id="${id}" aria-labelledby="tab-${
+        i + 1
+      }">Content ${i + 1}</div>`;
     }).join("\n");
 
     const container = document.createElement("div");
