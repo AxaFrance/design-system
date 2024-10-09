@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Textarea } from "./Textarea";
 
 const MODIFIERS = ["", "required", "disabled"];
@@ -7,6 +8,7 @@ const meta: Meta<typeof Textarea> = {
   component: Textarea,
   title: "Components/Form/Input/Textarea",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

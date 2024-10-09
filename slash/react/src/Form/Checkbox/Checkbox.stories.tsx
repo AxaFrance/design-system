@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import { MessageTypes } from "../core";
 import { Checkbox } from "./Checkbox";
@@ -18,6 +19,7 @@ const meta: Meta = {
       control: { type: "select", options: Object.values(CheckboxModes) },
     },
   },
+  args: { onChange: fn() },
 };
 
 export default meta;

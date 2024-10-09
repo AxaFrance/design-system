@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { useState, type ComponentPropsWithoutRef } from "react";
 import { MessageTypes } from "../core";
 import { MultiSelect } from "./MultiSelect";
@@ -10,6 +11,7 @@ const meta: Meta = {
   argTypes: {
     onChange: { action: "onChange" },
   },
+  args: { onChange: fn() },
 };
 
 export default meta;

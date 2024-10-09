@@ -1,9 +1,10 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
+import "@fontsource/source-sans-pro";
 
-/** @type { import('@storybook/react').Preview } */
-const preview = {
+import type { Preview } from "@storybook/react";
+
+const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,

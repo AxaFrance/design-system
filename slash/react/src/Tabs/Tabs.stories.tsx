@@ -1,4 +1,5 @@
 import { Meta, type StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Badge } from "../Badge/Badge";
 import { Tabs } from "./Tabs";
 import type { TabsCoreProps } from "./components/TabsCore";
@@ -11,6 +12,9 @@ export default {
   },
   argTypes: {
     onChange: { action: "tab changed" },
+  },
+  args: {
+    onChange: fn(),
   },
 } as Meta;
 

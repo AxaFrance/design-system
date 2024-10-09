@@ -1,4 +1,4 @@
-import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
 import * as ButtonStories from "./Button.stories";
 
 <Meta of={ButtonStories} name="Button" />
@@ -20,8 +20,7 @@ const MyComponent = () => (
 ## Playground
 
 <Canvas of={ButtonStories.Playground}></Canvas>
-
-<ArgsTable story="Button" />
+<Controls of={ButtonStories.Playground} />
 
 ## ClassModifier
 

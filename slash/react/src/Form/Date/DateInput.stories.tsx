@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
 import { MessageTypes } from "../core";
 import { DateInput } from "./DateInput";
@@ -13,6 +14,7 @@ const meta: Meta<typeof DateInput> = {
   component: DateInput,
   title: "Components/Form/Input/Date",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

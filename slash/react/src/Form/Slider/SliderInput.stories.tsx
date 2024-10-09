@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import type { ComponentProps } from "react";
 import { SliderInput } from ".";
 import { MessageTypes } from "../core";
@@ -8,6 +9,7 @@ const MODIFIERS = ["required", "disabled"];
 const meta: Meta = {
   title: "Components/Form/Input/Slider/SliderInput",
   component: SliderInput,
+  args: { onChange: fn() },
 };
 
 export default meta;

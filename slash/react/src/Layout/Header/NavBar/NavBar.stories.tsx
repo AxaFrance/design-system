@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import type React from "react";
 import { NavBar, NavBarItem } from ".";
 
@@ -9,6 +10,7 @@ const meta: Meta<typeof NavBar> = {
     onClick: { action: "onClick" },
     positionInit: { control: { type: "number", min: 0, max: 3 } },
   },
+  args: { onClick: fn() },
 };
 export default meta;
 

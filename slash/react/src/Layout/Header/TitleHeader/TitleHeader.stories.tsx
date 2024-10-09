@@ -1,7 +1,8 @@
+import "@axa-fr/design-system-slash-css/dist/Layout/Header/TitleHeader/TitleHeader.scss";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
 import { Action } from "../../../Action/Action";
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/TitleHeader/TitleHeader.scss";
 import { TitleHeader } from "./TitleHeader";
 
 const MODIFIERS = ["sticky", "fixed"];
@@ -12,6 +13,7 @@ const meta: Meta<typeof TitleHeader> = {
     isSticky: true,
     subtitle: "Info complémentaire",
     title: "Toolkit Axa",
+    toggleMenu: fn(),
   },
   argTypes: {
     toggleMenu: { action: "onToggle" },

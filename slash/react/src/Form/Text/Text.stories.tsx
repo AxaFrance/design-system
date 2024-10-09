@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Text } from "./Text";
 import { inputTypes } from "./inputTypes";
 
@@ -8,6 +9,7 @@ const meta: Meta<typeof Text> = {
   component: Text,
   title: "Components/Form/Input/Text",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

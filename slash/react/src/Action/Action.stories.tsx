@@ -1,9 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Action } from "./Action";
 
 const meta: Meta<typeof Action> = {
   title: "Components/Action",
   component: Action,
+  args: {
+    onClick: fn(),
+  },
 };
 export default meta;
 
@@ -26,8 +30,5 @@ export const Button: StoryObj<typeof Action> = {
     icon: "floppy-disk",
     title: "Enregistrer",
     id: "id",
-  },
-  argTypes: {
-    onClick: { action: "clicked" },
   },
 };

@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Date as DateComponent } from "./Date";
 
 const MODIFIERS = ["", "required", "disabled"];
@@ -13,6 +14,7 @@ const meta: Meta<typeof DateComponent> = {
   component: DateComponent,
   title: "Components/Form/Input/Date",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Paging } from "./Pagination/Paging";
 import { Table } from "./Table";
 
@@ -6,6 +7,7 @@ const meta: Meta<typeof Paging> = {
   component: Paging,
   title: "Components/Table",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

@@ -1,4 +1,5 @@
 import { Meta, type StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Step, StepBase, Steps } from ".";
 import type { CustomClickEvent } from "./types";
 
@@ -12,6 +13,7 @@ const meta: Meta<StoryProps> = {
   title: "Components/Steps",
   args: {
     mode: "link",
+    onClick: fn(),
   },
   argTypes: {
     onClick: { action: "onClick" },

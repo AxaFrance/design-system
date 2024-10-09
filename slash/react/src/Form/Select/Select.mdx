@@ -1,6 +1,6 @@
-import * as SelectInputStories from "./SelectInput.stories.tsx";
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
 import * as SelectStories from "./Select.stories.tsx";
-import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
+import * as SelectInputStories from "./SelectInput.stories.tsx";
 
 <Meta of={SelectInputStories} />
 
@@ -18,7 +18,7 @@ This is the complete component, with label, description, and error message.
 
 <Canvas of={SelectInputStories.SelectInputStory} />
 
-<ArgsTable story="Select with label" />
+<Controls of={SelectInputStories.SelectInputStory} />
 
 ### Required
 
@@ -41,5 +41,4 @@ If you are not sure which mode to use, use the `default` mode.
 The component without the label is a bare-bones version of the component. It is useful when you need to customize the layout of the component.
 
 <Canvas of={SelectStories.SelectStory} />
-
-<ArgsTable story="Select" />
+<Controls of={SelectStories.SelectStory} />

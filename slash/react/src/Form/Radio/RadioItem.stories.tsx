@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { ComponentPropsWithRef } from "react";
 import { RadioItem } from "./RadioItem";
 
@@ -6,6 +7,7 @@ const meta: Meta<typeof RadioItem> = {
   component: RadioItem,
   title: "Components/Form/Input/Radio",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

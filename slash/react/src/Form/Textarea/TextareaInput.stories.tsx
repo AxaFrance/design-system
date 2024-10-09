@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { MessageTypes } from "../core";
 import { TextareaInput } from "./TextareaInput";
 
@@ -6,6 +7,7 @@ const meta: Meta<typeof TextareaInput> = {
   component: TextareaInput,
   title: "Components/Form/Input/TextareaInput",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

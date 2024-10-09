@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Button } from "./Button";
 
 const MODIFIERS = [
@@ -18,7 +19,7 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: "centered",
   },
-  argTypes: { onClick: { action: "clicked" } },
+  args: { onClick: fn() },
 };
 
 export default meta;
@@ -53,7 +54,7 @@ export const Playground: Story = {
 
 export const MultiExamples: StoryObj<typeof Button> = {
   name: "Button with modifiers",
-  render: () => {
+  render: ({ onClick }) => {
     return (
       <div
         style={{
@@ -64,11 +65,21 @@ export const MultiExamples: StoryObj<typeof Button> = {
           gap: "2rem",
         }}
       >
-        <Button classModifier="reverse">Button Reverse</Button>
-        <Button classModifier="success">Button Success</Button>
-        <Button classModifier="danger">Button Danger</Button>
-        <Button classModifier="small">Button Small</Button>
-        <Button classModifier="disabled">Button disabled</Button>
+        <Button classModifier="reverse" onClick={onClick}>
+          Button Reverse
+        </Button>
+        <Button classModifier="success" onClick={onClick}>
+          Button Success
+        </Button>
+        <Button classModifier="danger" onClick={onClick}>
+          Button Danger
+        </Button>
+        <Button classModifier="small" onClick={onClick}>
+          Button Small
+        </Button>
+        <Button classModifier="disabled" onClick={onClick}>
+          Button disabled
+        </Button>
       </div>
     );
   },

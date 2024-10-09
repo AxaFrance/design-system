@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { FileRejection } from "react-dropzone";
 import { HelpMessage, MessageTypes } from "../core";
-import { FileInput } from "./FileInput";
 import { File, FilePreview } from "./File";
+import { FileInput } from "./FileInput";
 import { FileTable } from "./FileTable";
 
 const meta: Meta<typeof FileInput> = {
@@ -11,6 +12,7 @@ const meta: Meta<typeof FileInput> = {
   argTypes: {
     onChange: { action: "onChange" },
   },
+  args: { onChange: fn() },
 };
 
 export default meta;

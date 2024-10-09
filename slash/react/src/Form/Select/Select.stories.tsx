@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
 import { Select } from "./Select";
 
@@ -12,6 +13,7 @@ const meta: Meta<typeof Select> = {
   component: Select,
   title: "Components/Form/Input/Select",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

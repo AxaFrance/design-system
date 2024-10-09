@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { useState } from "react";
 import { MessageTypes } from "../core";
 import { PassInput } from "./PassInput";
@@ -7,6 +8,7 @@ import { PassInput } from "./PassInput";
 export default {
   title: "Components/Form/Input/Pass",
   component: PassInput,
+  args: { onChange: fn() },
 } as Meta;
 
 export const PassInputStory: StoryObj<typeof PassInput> = {
