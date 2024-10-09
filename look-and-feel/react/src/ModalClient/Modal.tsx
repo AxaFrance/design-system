@@ -14,6 +14,7 @@ import {
 } from "../Button/Button";
 import "@axa-fr/design-system-look-and-feel-css/dist/Modal/Modal.scss";
 import { Svg } from "../Svg";
+import { Divider } from "../Divider";
 
 export type ButtonAction = {
   text: string;
@@ -128,6 +129,7 @@ export const Modal = ({
           )}
         </h2>
       </div>
+      <Divider />
       <div id={idContent} className="af-modal__content">
         {children}
         {actions && (
