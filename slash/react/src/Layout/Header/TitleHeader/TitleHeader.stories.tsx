@@ -42,12 +42,9 @@ const actions = [
   },
 ];
 
-export const DefaultTitle: StoryObj<typeof TitleHeader> = {
-  name: "Default Title",
-};
+export const DefaultTitle: StoryObj<typeof TitleHeader> = {};
 
 export const ComplexTitle: StoryObj<typeof TitleHeader> = {
-  name: "Complex Title",
   args: {
     children: (
       <div className="af-title-bar__actions">

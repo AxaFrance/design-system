@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "./TitleHeader.scss";
 import "../../../Action/Action.scss";
+import "./TitleHeader.scss";
 
 const MODIFIERS = ["sticky", "fixed"];
 
@@ -62,7 +62,6 @@ export const DefaultTitle: StoryObj = {
 };
 
 export const ComplexTitle: StoryObj = {
-  name: "Complex Title",
   args: {
     children: `
       <div class="af-title-bar__actions">

@@ -49,12 +49,9 @@ const meta: Meta = {
 export default meta;
 
 export const UserWithLink: StoryObj = {
-  name: "User With Link",
   args: {
     href: "/#",
   },
 };
 
-export const UserWithoutLink: StoryObj = {
-  name: "User Without link",
-};
+export const UserWithoutLink: StoryObj = {};

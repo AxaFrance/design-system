@@ -41,15 +41,13 @@ export const Template: Story = {
 };
 
 export const DefaultTitle: StoryObj<typeof Title> = {
-  name: "Default Title",
   args: {
     children: "Default Title",
     heading: "h2",
   },
 };
 
-export const contentTitle: StoryObj<typeof Title> = {
-  name: "Content Title",
+export const ContentTitle: StoryObj<typeof Title> = {
   args: {
     children: "Content Title",
     classModifier: "content",
@@ -58,7 +56,7 @@ export const contentTitle: StoryObj<typeof Title> = {
   },
 };
 
-export const contentTitleWithLink: StoryObj<typeof Title> = {
+export const ContentTitleWithLink: StoryObj<typeof Title> = {
   name: "Content Title With Button",
   render: (args) => {
     return (
