@@ -4,3 +4,5 @@ dist/
 *.DS_Store
 **/react/coverage
 .idea
+
+*storybook.log

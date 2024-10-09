@@ -25,9 +25,9 @@ export const FooterCoreStory: Story = {
   render: () => (
     <Footer>
       <a href="https://www.axa.fr/" target="blank">
-        <strong>@ 2018 AXA</strong>
+        <strong>@ {new Date().getFullYear()} AXA</strong>
       </a>
-      <i>Tous droits réservés</i>
+      <em>Tous droits réservés</em>
     </Footer>
   ),
 };

@@ -1,5 +1,5 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
 import * as MultiSelectStories from "./MultiSelect.stories";
-import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
 
 <Meta of={MultiSelectStories} />
 
@@ -8,14 +8,14 @@ import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
 The MultiSelect component allows users to select multiple or one option(s) from a drop-down list.
 
 <Canvas of={MultiSelectStories.MultiSelectStory} />
-<ArgsTable story="MultiSelect" />
+<Controls of={MultiSelectStories.MultiSelectStory} />
 
 # MultiSelect with one value
 
 <Canvas of={MultiSelectStories.MultiSelectOneValueStory} />
-<ArgsTable story="MultiSelect" />
+<Controls of={MultiSelectStories.MultiSelectOneValueStory} />
 
 # MultiSelectInput
 
 <Canvas of={MultiSelectStories.MultiSelectInputStory} />
-<ArgsTable story="MultiSelectInput" />
+<Controls of={MultiSelectStories.MultiSelectInputStory} />

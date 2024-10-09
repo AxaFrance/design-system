@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { NumberInput } from "./NumberInput";
+import { fn } from "@storybook/test";
 import { MessageTypes } from "../core";
+import { NumberInput } from "./NumberInput";
 
 const MODIFIERS = ["", "required", "disabled"];
 
@@ -8,6 +9,7 @@ const meta: Meta<typeof NumberInput> = {
   component: NumberInput,
   title: "Components/Form/Input/Number",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

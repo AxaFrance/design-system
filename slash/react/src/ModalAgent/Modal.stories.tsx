@@ -1,5 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/Modal/Modal.scss";
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import type { ReactElement, ReactNode } from "react";
 import { BooleanModal } from "./BooleanModal";
 import { Modal } from "./Modal";
@@ -20,6 +21,12 @@ const meta: Meta<typeof Modal> = {
   parameters: {
     options: {},
   },
+  args: {
+    onSubmit: fn(),
+    onCancel: fn(),
+    onOutsideTap: fn(),
+    onClose: fn(),
+  },
 };
 export default meta;
 
@@ -31,6 +38,9 @@ type DefaultModalStoryProps = Omit<
   bodyContent: string;
   cancelButtonText: string;
   saveButtonText: string;
+  onSubmit: () => void;
+  onCancel: () => void;
+  onOutsideTap: () => void;
 };
 type TDefaultModalStory = StoryObj<DefaultModalStoryProps>;
 
@@ -41,22 +51,22 @@ export const DefaultModalStory: TDefaultModalStory = {
       MODIFIERS.find((m) => m.label === args.classModifier) ?? MODIFIERS[0];
 
     return (
-      <Modal
-        {...args}
-        classModifier={selectClassModifier.value}
-        onOutsideTap={() => {}}
-      >
-        <Header title={args.title} onCancel={() => {}} />
+      <Modal {...args} classModifier={selectClassModifier.value}>
+        <Header title={args.title} onCancel={args.onCancel} />
         <Body>
           <p>{bodyContent}</p>
         </Body>
         <Footer>
           {selectClassModifier.value !== "sm" && (
-            <button className="btn af-btn af-btn--reverse" type="button">
+            <button
+              className="btn af-btn af-btn--reverse"
+              type="button"
+              onClick={args.onCancel}
+            >
               {cancelButtonText}
             </button>
           )}
-          <button className="btn af-btn" type="button">
+          <button className="btn af-btn" type="button" onClick={args.onSubmit}>
             {saveButtonText}
           </button>
         </Footer>

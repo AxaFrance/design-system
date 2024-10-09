@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { fn } from "@storybook/test";
 import { Pass } from "./Pass";
 
 export default {
@@ -20,6 +21,8 @@ export const PassStory: StoryObj<typeof Pass> = {
     disabled: false,
     className: "",
     autoFocus: true,
+    onChange: fn(),
+    onToggleType: fn(),
   },
   argTypes: {
     onChange: { action: "onChange" },

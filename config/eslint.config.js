@@ -92,6 +92,7 @@ module.exports = {
           "**/*.spec.tsx",
           "**/vitest.setup.ts",
           "**/vitest.config.ts",
+          "**/vite.config.ts",
         ],
       },
     ],

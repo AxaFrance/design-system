@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { Alert } from "./Alert";
 
 const MODIFIERS = ["success", "info", "danger", "error"];
@@ -6,6 +7,9 @@ const MODIFIERS = ["success", "info", "danger", "error"];
 const meta: Meta<typeof Alert> = {
   title: "Components/Alert",
   component: Alert,
+  args: {
+    onClose: fn(),
+  },
 };
 export default meta;
 

@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { ComponentPropsWithRef } from "react";
 import { Choice } from "./Choice";
 
@@ -6,6 +7,7 @@ const meta: Meta<typeof Choice> = {
   component: Choice,
   title: "Components/Form/Input/Choice",
   argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
 };
 
 export default meta;

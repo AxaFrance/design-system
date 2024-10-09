@@ -11,6 +11,9 @@ export default {
       control: { type: "select" },
     },
   },
+  args: {
+    onClose: fn(),
+  },
 } as Meta;
 
 const messages = ["Field Author is required", "Field PlaceName is required"];

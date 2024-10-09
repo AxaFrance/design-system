@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { User } from "./User";
 
 const meta: Meta<typeof User> = {
@@ -6,6 +7,7 @@ const meta: Meta<typeof User> = {
     name: "Pierre Martin",
     profile: "profile",
     title: "Voir mon profil",
+    onClick: fn(),
   },
   argTypes: {
     onClick: { action: "onClick" },

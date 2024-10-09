@@ -1,5 +1,4 @@
-import { Meta, Canvas } from "@storybook/addon-docs";
-import { ArgsTable } from "@storybook/addon-docs";
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
 import * as NumberStories from "./Number.stories";
 import * as NumberInputStories from "./NumberInput.stories";
 
@@ -54,7 +53,7 @@ export default numberInput;
 
 <Canvas of={NumberStories.NumberStory} />
 
-<ArgsTable story="Number" />
+<Controls of={NumberStories.NumberStory} />
 
 ## NumberInput
 
