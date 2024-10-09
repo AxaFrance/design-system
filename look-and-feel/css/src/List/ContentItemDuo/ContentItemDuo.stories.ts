@@ -177,7 +177,7 @@ export const DefaultContentItemDuoList: StoryObj = {
   },
 };
 
-export const verticalContentItemDuoList: StoryObj = {
+export const VerticalContentItemDuoList: StoryObj = {
   render: contentItemDuoListRender,
   args: {
     items: Array(3).fill(verticalArgs),

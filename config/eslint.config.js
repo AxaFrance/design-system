@@ -6,6 +6,7 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended",
   ],
   parserOptions: {
     ecmaVersion: "latest",
@@ -88,6 +89,7 @@ module.exports = {
         devDependencies: [
           "**/.storybook/**/*.*",
           "**/*.stories.tsx",
+          "**/*.stories.ts",
           "**/*.test.tsx",
           "**/*.spec.tsx",
           "**/vitest.setup.ts",
