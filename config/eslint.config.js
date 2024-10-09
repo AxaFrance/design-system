@@ -8,6 +8,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:storybook/recommended",
   ],
+  ignorePatterns: ["!.storybook"],
   parserOptions: {
     ecmaVersion: "latest",
   },

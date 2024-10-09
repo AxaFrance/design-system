@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "postbuild": "copyfiles --up 1 \"src/assets/svg/*.svg\" ./dist/",
     "start:storybook": "storybook dev -p 6009",
     "build:storybook": "storybook build",
