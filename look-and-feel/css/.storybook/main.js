@@ -20,8 +20,5 @@ const config = {
     name: getAbsolutePath("@storybook/html-vite"),
     options: {},
   },
-  docs: {
-    autodocs: true,
-  },
 };
 export default config;

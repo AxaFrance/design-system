@@ -1,7 +1,6 @@
-import { addons } from '@storybook/addons';
+import { addons } from "@storybook/manager-api";
+import { LookAndFeelCssTheme } from "./LFCssTheme";
 
 addons.setConfig({
-  theme: {
-    brandTitle: 'Look and feel CSS'
-  },
+  theme: LookAndFeelCssTheme,
 });

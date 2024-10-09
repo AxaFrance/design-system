@@ -1,7 +1,8 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
-import logo from "@axa-fr/design-system-look-and-feel-css/dist/common/assets/logo-axa.svg";
-import "./Header.scss";
 import "../../Button/Button.scss";
+// eslint-disable-next-line import/no-relative-packages
+import logo from "../../../../../common/assets/logo-axa.svg";
+import "./Header.scss";
 import "./NavBar/NavBar.scss";
 import "./PreviousLink/PreviousLink.scss";
 
