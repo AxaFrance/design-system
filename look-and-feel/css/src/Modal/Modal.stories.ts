@@ -43,7 +43,9 @@ export const Default: StoryObj = {
       Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur
       vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.
     </div>
-    <div class="af-modal__actions ${args.fullWidthButtons ? "af-modal__actions--fullWidth" : ""}">
+    <div class="af-modal__actions ${
+      args.fullWidthButtons ? "af-modal__actions--fullWidth" : ""
+    }">
     ${
       args.actions?.primary
         ? `<button class="af-btn-client af-btn-client--primary" type="button">

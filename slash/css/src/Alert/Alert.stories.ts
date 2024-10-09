@@ -29,7 +29,10 @@ export const Default: StoryObj = {
     alert.innerHTML = `
     <div class="af-alert__title">
         <div class="af-alert__title-icon">
-            <i class="${args.iconClassName || TypeIcons[args.classModifier as keyof typeof TypeIcons]}"></i>
+            <i class="${
+              args.iconClassName ||
+              TypeIcons[args.classModifier as keyof typeof TypeIcons]
+            }"></i>
         </div>
         <div class="af-alert__title-text">
             ${args.title}

@@ -16,8 +16,8 @@
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
-    "prettier": "prettier \"src/**/*\" --check",
-    "prettier:fix": "prettier \"src/**/*\" --write",
+    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --check --ignore-unknown",
+    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --write --ignore-unknown",
     "tsc": "tsc --noEmit"
   },
   "dependencies": {
@@ -64,7 +64,6 @@
     "postcss-preset-env": "^9.5.2",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.3.3",
-    "prettier-v2": "npm:prettier@2.8.8",
     "rimraf": "^5.0.5",
     "storybook": "^8.3.5",
     "stylelint": "^16.9.0",

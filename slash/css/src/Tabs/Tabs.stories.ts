@@ -14,7 +14,9 @@ export const Default: StoryObj = {
     container.className = "af-tabs";
     container.innerHTML = `
         <ul class="af-tabs__control">
-            <li class="af-tabs__item af-tabs__item--has-icon-left${args.activeIndex === 0 ? " af-tabs__item--active" : ""}">
+            <li class="af-tabs__item af-tabs__item--has-icon-left${
+              args.activeIndex === 0 ? " af-tabs__item--active" : ""
+            }">
                 <button class="af-tabs__link">
                     <span>
                         <svg class="glyphicon glyphicon-ok" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 100">
@@ -23,7 +25,9 @@ export const Default: StoryObj = {
                     </span>
                 </button>
             </li>
-            <li class="af-tabs__item af-tabs__item--has-icon-right${args.activeIndex === 1 ? " af-tabs__item--active" : ""}">
+            <li class="af-tabs__item af-tabs__item--has-icon-right${
+              args.activeIndex === 1 ? " af-tabs__item--active" : ""
+            }">
                 <button class="af-tabs__link">
                     <span>${args.secondTitle}
                         <svg class="glyphicon glyphicon-facetime-video" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -32,10 +36,16 @@ export const Default: StoryObj = {
                     </span>
                 </button>
             </li>
-            <li class="af-tabs__item${args.activeIndex === 2 ? " af-tabs__item--active" : ""}">
+            <li class="af-tabs__item${
+              args.activeIndex === 2 ? " af-tabs__item--active" : ""
+            }">
                 <button class="af-tabs__link">
                     <span>
-                        ${args.thirdTitle}<span class="af-badge af-badge--danger"> ${args.badgeContent}</span>
+                        ${
+                          args.thirdTitle
+                        }<span class="af-badge af-badge--danger"> ${
+                          args.badgeContent
+                        }</span>
                     </span>
                 </button>
             </li>

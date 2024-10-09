@@ -19,7 +19,9 @@ const meta: Meta = {
             ${
               args.href
                 ? `
-                <a class="${args.className}__link" href=${args.href} title="${args.title}" onclick="${args.onClick()}" >
+                <a class="${args.className}__link" href=${args.href} title="${
+                  args.title
+                }" onclick="${args.onClick()}" >
                     <span class="${args.className}__name">
                         ${args.name}
                     </span>

@@ -106,11 +106,15 @@ export const Pagination: StoryObj = {
     }
     div.innerHTML = `
     <div class="af-pagination-mobile">
-      <button type="button" aria-label="Page précédente" ${args.pageSelect === 1 && "disabled"}>
+      <button type="button" aria-label="Page précédente" ${
+        args.pageSelect === 1 && "disabled"
+      }>
       <i class="arrow glyphicon glyphicon-arrow-collapse-left"></i>
       </button>
       <span>${args.pageSelect} sur ${args.nbPage}</span>
-      <button type="button" aria-label="Page suivant" ${args.pageSelect === args.nbPage && "disabled"}>
+      <button type="button" aria-label="Page suivant" ${
+        args.pageSelect === args.nbPage && "disabled"
+      }>
       <i class="arrow glyphicon glyphicon-arrow-collapse-right"></i>
       </button>
     </div>
