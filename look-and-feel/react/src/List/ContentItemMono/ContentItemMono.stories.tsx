@@ -50,7 +50,6 @@ const contentItemMonoWithStickArgs: ComponentProps<typeof ContentItemMono> = {
 };
 
 export const Default: StoryObj<typeof ContentItemMono> = {
-  name: "Default",
   render: (args) => <ContentItemMono {...args} />,
   args: defaultArgs,
   argTypes: {

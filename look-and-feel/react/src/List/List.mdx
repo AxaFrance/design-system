@@ -1,4 +1,4 @@
-import { Controls, Canvas, Meta } from "@storybook/blocks";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as ListStories from "./List.stories";
 
 <Meta of={ListStories} name="List" />
@@ -33,4 +33,4 @@ const MyComponent = () => (
 ```
 
 <Canvas of={ListStories.Default} />
-<Controls story="List" />
+<Controls of={ListStories.Default} />

@@ -86,7 +86,7 @@ module.exports = {
       "error",
       {
         devDependencies: [
-          ".storybook/**",
+          "**/.storybook/**/*.*",
           "**/*.stories.tsx",
           "**/*.test.tsx",
           "**/*.spec.tsx",

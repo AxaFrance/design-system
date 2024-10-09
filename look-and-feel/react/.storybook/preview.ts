@@ -1,9 +1,8 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/common/icons.scss";
+import type { Preview } from "@storybook/react";
 
-/** @type { import('@storybook/react').Preview } */
-const preview = {
+const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -13,4 +12,5 @@ const preview = {
   },
 };
 
+// eslint-disable-next-line import/no-default-export
 export default preview;

@@ -1,4 +1,4 @@
-import { Controls, Canvas, Meta } from "@storybook/blocks";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as TabsStories from "./Tabs.stories";
 
 <Meta of={TabsStories} name="Tabs" />
@@ -29,7 +29,7 @@ const MyComponent = () => (
 
 <Canvas of={TabsStories.TabsStory} />
 
-<Controls story="Tabs" />
+<Controls of={TabsStories.TabsStory} />
 
 ## Tabs with left direction
 

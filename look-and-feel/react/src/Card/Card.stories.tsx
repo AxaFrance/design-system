@@ -33,7 +33,6 @@ export const Default: StoryObj<typeof Card> = {
 };
 
 export const ButtonCard: StoryObj<typeof Card> = {
-  name: "Button Card",
   render: (args) => <Card {...args} />,
   args: {
     children: CUSTOM_CHILDREN,
