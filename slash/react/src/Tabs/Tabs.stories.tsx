@@ -42,7 +42,6 @@ const TabTitleIconBadge = (
 );
 
 export const SingleTab: StoryObj<TabsCoreProps> = {
-  name: "Single Tab",
   render: (args) => (
     <Tabs {...args}>
       <Tabs.Tab title="My Title">Content of my single tab</Tabs.Tab>
@@ -53,7 +52,6 @@ export const SingleTab: StoryObj<TabsCoreProps> = {
 };
 
 export const ComplexTabs: StoryObj<TabsCoreProps> = {
-  name: "Complex Tabs",
   render: (args) => (
     <Tabs {...args}>
       <Tabs.Tab title={TabTitleIconLeft} classModifier="has-icon-left">

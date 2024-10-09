@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/react";
 import logo from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
+import { Meta, StoryObj } from "@storybook/react";
 
 import { Header } from "./Header";
 import { Infos } from "./Infos/Infos";
@@ -13,7 +13,6 @@ const meta: Meta<typeof Header> = {
 export default meta;
 
 export const HeaderWithName: StoryObj<typeof Header> = {
-  name: "Header With Name",
   args: {
     children: (
       <Name
@@ -28,7 +27,6 @@ export const HeaderWithName: StoryObj<typeof Header> = {
 };
 
 export const HeaderWithNameAndInfos: StoryObj<typeof Header> = {
-  name: "Header With Name And Infos",
   args: {
     children: (
       <>

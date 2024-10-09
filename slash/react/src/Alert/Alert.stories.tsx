@@ -14,7 +14,6 @@ const meta: Meta<typeof Alert> = {
 export default meta;
 
 export const Default: StoryObj<typeof Alert> = {
-  name: "Default",
   args: {
     classModifier: "danger",
     title: "Attention: Ceci est une alerte",
@@ -28,7 +27,6 @@ export const Default: StoryObj<typeof Alert> = {
 };
 
 export const DangerAlert: StoryObj<typeof Alert> = {
-  name: "Danger Alert",
   args: {
     classModifier: "danger",
     title: "Attention: des informations sont manquantes",
@@ -37,7 +35,6 @@ export const DangerAlert: StoryObj<typeof Alert> = {
 };
 
 export const InfoAlert: StoryObj<typeof Alert> = {
-  name: "Info Alert",
   args: {
     classModifier: "info",
     title: "Attention: des informations sont manquantes",
@@ -46,7 +43,6 @@ export const InfoAlert: StoryObj<typeof Alert> = {
 };
 
 export const SuccessAlert: StoryObj<typeof Alert> = {
-  name: "Success Alert",
   args: {
     classModifier: "success",
     title: "Succès: votre demande a bien été enregistrée.",
@@ -55,7 +51,6 @@ export const SuccessAlert: StoryObj<typeof Alert> = {
 };
 
 export const ErrorAlert: StoryObj<typeof Alert> = {
-  name: "Error Alert",
   args: {
     classModifier: "error",
     title: "Erreur dans les champs suivants :",

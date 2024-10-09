@@ -1,7 +1,6 @@
-import { addons } from '@storybook/addons';
+import { addons } from "@storybook/manager-api";
+import { SlashCssTheme } from "./SlashCssTheme";
 
 addons.setConfig({
-  theme: {
-    brandTitle: 'Slash CSS'
-  },
+  theme: SlashCssTheme,
 });

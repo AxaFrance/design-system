@@ -190,7 +190,6 @@ export const Default: StoryObj = {
 };
 
 export const Pagination: StoryObj = {
-  name: "Pagination",
   render: () => {
     const container = document.createElement("div");
     container.className = "af-paging";

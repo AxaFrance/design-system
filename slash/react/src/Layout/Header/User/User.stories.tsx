@@ -19,7 +19,6 @@ const meta: Meta<typeof User> = {
 export default meta;
 
 export const UserWithLink: StoryObj<typeof User> = {
-  name: "User With Link",
   args: {
     href: "/#",
   },
