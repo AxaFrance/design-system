@@ -34,11 +34,11 @@ export const Default: StoryObj<
         Supprimer le profil
       </ClickItem>,
     ],
-    classModifier: ["first-separator-full-width"],
+    classModifier: ["first-divider-full-width"],
   },
   argTypes: {
     classModifier: {
-      options: ["large", "extra-padding", "first-separator-full-width"],
+      options: ["large", "extra-padding", "first-divider-full-width"],
       control: { type: "multi-select" },
       defaultValue: [],
     },

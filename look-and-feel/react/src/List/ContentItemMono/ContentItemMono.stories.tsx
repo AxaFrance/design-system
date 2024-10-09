@@ -112,7 +112,7 @@ export const ContentItemMonoList: StoryObj<
   },
   argTypes: {
     classModifier: {
-      options: ["large", "first-separator-full-width"],
+      options: ["large", "first-divider-full-width"],
       control: { type: "multi-select" },
       defaultValue: [],
     },
