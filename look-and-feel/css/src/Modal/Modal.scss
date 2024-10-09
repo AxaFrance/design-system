@@ -20,7 +20,6 @@
     top: 0;
     display: flex;
     padding: 1.5rem;
-    border-bottom: 1px solid common.$color-btn-disabled-border;
     align-items: center;
     gap: 1rem;
     background-color: common.$color-white;
@@ -67,6 +66,10 @@
         background: none;
       }
     }
+  }
+
+  .af-divider {
+    border-color: common.$color-gray-400;
   }
 
   &__content {

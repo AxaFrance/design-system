@@ -1,5 +1,6 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
 import "../../Card/Card.scss";
+import "../../Divider/Divider.scss";
 import "../List.scss";
 import "./ContentItemMono.scss";
 
@@ -169,9 +170,9 @@ export const ContentItemMonoList: StoryObj = {
       ul.appendChild(item);
 
       if (index < args.items.length - 1) {
-        const separator = document.createElement("hr");
-        separator.className = "af-list__separator";
-        ul.appendChild(separator);
+        const divider = document.createElement("hr");
+        divider.className = "af-divider";
+        ul.appendChild(divider);
       }
     });
 
@@ -185,13 +186,13 @@ export const ContentItemMonoList: StoryObj = {
       contentItemMonoWithIconArgs,
       contentItemMonoWithStickArgs,
     ],
-    classModifier: ["first-separator-full-width"],
+    classModifier: ["first-divider-full-width"],
   },
   argTypes: {
     classModifier: {
-      options: ["large", "first-separator-full-width"],
+      options: ["large", "first-divider-full-width"],
       control: { type: "multi-select" },
-      defaultValue: ["first-separator-full-width"],
+      defaultValue: ["first-divider-full-width"],
     },
   },
 };

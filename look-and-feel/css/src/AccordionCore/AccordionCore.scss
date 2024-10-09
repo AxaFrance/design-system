@@ -43,12 +43,6 @@
     transform: rotate(180deg);
   }
 
-  &__separator {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid common.$color-gray-300;
-  }
-
   &__content {
     padding: 1rem;
     font-size: 1rem;

@@ -8,12 +8,6 @@
   &__item {
     padding: 1rem 0;
   }
-
-  &__separator {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid common.$color-gray-300;
-  }
 }
 
 .af-card {
@@ -25,7 +19,7 @@
   &--click-list {
     padding: 0;
 
-    .af-list__separator {
+    .af-divider {
       width: calc(100% - 2rem);
       margin: auto;
     }
@@ -39,7 +33,7 @@
     padding: 0.5rem 1.5rem;
   }
 
-  &--first-separator-full-width {
+  &--first-divider-full-width {
     padding: 0;
 
     .af-list__item {
@@ -50,7 +44,7 @@
       }
     }
 
-    .af-list__separator ~ .af-list__separator {
+    .af-divider ~ .af-divider {
       margin: 0 1rem;
     }
   }
