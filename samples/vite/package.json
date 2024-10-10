@@ -16,7 +16,7 @@
     "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
-    "@swc/core": "^1.7.22",
+    "@swc/core": "^1.7.35",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.24",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
