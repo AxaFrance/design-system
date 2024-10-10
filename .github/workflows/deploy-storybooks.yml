@@ -8,6 +8,7 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  pull_request:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -33,19 +34,30 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "*" # Use the LTS Node.js version
+          cache: "npm"
       - name: npm ci
         run: npm ci
       - name: build storybooks
-        run: npm build
+        run: npm run build
       - name: create artifact folder
-        run: mkdir -p site/slash
+        run:
+          mkdir -p site/slash/css & mkdir -p site/slash/react & mkdir -p
+          site/look-and-feel/css & mkdir -p site/look-and-feel/react
       - name: move storybooks to folders
-        run: cp -R slash/react/storybook-static site/slash 
+        run:
+          cp -R slash/css/storybook-static/* site/slash/css & cp -R
+          slash/react/storybook-static/* site/slash/react & cp -R
+          look-and-feel/css/storybook-static/* site/look-and-feel/css & cp -R
+          look-and-feel/react/storybook-static/* site/look-and-feel/react
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: 'site'
-#      - name: Deploy to GitHub Pages
-#        id: deployment
-#        uses: actions/deploy-pages@v4
+          path: "site"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
