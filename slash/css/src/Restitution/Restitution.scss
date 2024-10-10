@@ -10,6 +10,7 @@
 
   &__header {
     display: flex;
+    min-height: 3rem;
     padding: 0.25rem 0 0.1875rem;
     border-bottom: 1px solid common.$color-silver;
     border-radius: 0.25rem 0.25rem 0 0;
