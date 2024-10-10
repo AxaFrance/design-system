@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react";
+import classNames from "classnames";
 import { getComponentClassName } from "../../utilities";
 import { FieldError } from "./FieldError";
 import { MessageTypes } from "./MessageTypes";
@@ -54,7 +55,13 @@ export const Field = ({
     >
       <div className={classNameContainerLabel}>
         <label
-          className="af-form__group-label"
+          className={classNames(
+            {
+              "af-form__group-label--required":
+                classModifier.includes("required"),
+            },
+            "af-form__group-label",
+          )}
           htmlFor={isLabelContainerLinkedToInput ? id : undefined}
         >
           {label}
