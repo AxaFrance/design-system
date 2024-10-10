@@ -51,7 +51,7 @@ export {
   NavBarItem,
   NavBarItemBase,
   NavBarItemLink,
-  TitleHeader,
+  HeaderTitle,
   ToggleButton,
   User,
 } from "./Layout/Header";

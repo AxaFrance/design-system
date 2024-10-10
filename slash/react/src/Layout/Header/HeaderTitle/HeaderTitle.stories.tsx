@@ -1,13 +1,12 @@
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/TitleHeader/TitleHeader.scss";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
 import { Action } from "../../../Action/Action";
-import { TitleHeader } from "./TitleHeader";
+import { HeaderTitle } from "./HeaderTitle";
 
 const MODIFIERS = ["sticky", "fixed"];
 
-const meta: Meta<typeof TitleHeader> = {
+const meta: Meta<typeof HeaderTitle> = {
   args: {
     className: "af-title-bar",
     isSticky: true,
@@ -23,8 +22,8 @@ const meta: Meta<typeof TitleHeader> = {
       defaultValue: "sticky",
     },
   },
-  component: TitleHeader,
-  title: "Components/Header/TitleHeader",
+  component: HeaderTitle,
+  title: "Components/Header/HeaderTitle",
 };
 
 export default meta;
@@ -42,9 +41,9 @@ const actions = [
   },
 ];
 
-export const DefaultTitle: StoryObj<typeof TitleHeader> = {};
+export const DefaultTitle: StoryObj<typeof HeaderTitle> = {};
 
-export const ComplexTitle: StoryObj<typeof TitleHeader> = {
+export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
   args: {
     children: (
       <div className="af-title-bar__actions">

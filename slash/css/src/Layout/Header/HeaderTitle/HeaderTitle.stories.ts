@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
+import "./HeaderTitle.scss";
 import "../../../Action/Action.scss";
-import "./TitleHeader.scss";
 
 const MODIFIERS = ["sticky", "fixed"];
 
@@ -54,7 +54,7 @@ const meta: Meta = {
 
     return container;
   },
-  title: "Components/Header/TitleHeader",
+  title: "Components/Header/HeaderTitle",
 };
 
 export default meta;

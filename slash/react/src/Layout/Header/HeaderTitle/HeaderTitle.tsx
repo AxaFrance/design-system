@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/TitleHeader/TitleHeader.scss";
+import "@axa-fr/design-system-slash-css/dist/Layout/Header/HeaderTitle/HeaderTitle.scss";
 
 import { getComponentClassName } from "../../../utilities";
 import { ToggleButton } from "../ToggleButton/ToggleButton";
 import { Action } from "../../../Action/Action";
-import { getClassModifier } from "./TitleHeader.helpers";
+import { getClassModifier } from "./HeaderTitle.helpers";
 
 const defaultClassName = "af-title-bar";
 
@@ -18,7 +18,7 @@ type Props = {
   toggleMenu?: () => void;
 };
 
-const TitleHeader = ({
+const HeaderTitle = ({
   children,
   classModifier,
   className,
@@ -60,4 +60,4 @@ const TitleHeader = ({
   );
 };
 
-export { TitleHeader };
+export { HeaderTitle };

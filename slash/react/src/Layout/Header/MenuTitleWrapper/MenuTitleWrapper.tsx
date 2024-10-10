@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { NavBar } from "../NavBar";
-import { TitleHeader } from "../TitleHeader/TitleHeader";
+import { HeaderTitle } from "../HeaderTitle/HeaderTitle";
 
 type TMenuTitleWrapperProps = {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ const MenuTitleWrapper = ({
       <NavBar isVisible={isMenuVisible} onClick={handleClick}>
         {children}
       </NavBar>
-      <TitleHeader title={title} subtitle={subtitle} toggleMenu={handleClick} />
+      <HeaderTitle title={title} subtitle={subtitle} toggleMenu={handleClick} />
     </>
   );
 };

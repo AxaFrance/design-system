@@ -1,7 +1,7 @@
 export { Header } from "./Header";
 export { Infos } from "./Infos/Infos";
 export { Name } from "./Name/Name";
-export { TitleHeader } from "./TitleHeader/TitleHeader";
+export { HeaderTitle } from "./HeaderTitle/HeaderTitle";
 export { ToggleButton } from "./ToggleButton/ToggleButton";
 export { User } from "./User/User";
 export {
