@@ -12,15 +12,25 @@ type TClickItem = { classModifier?: string; isDisabled?: boolean } & Omit<
      * @deprecated Use children prop instead
      */
     label?: ReactNode;
+    parentClickComponent?: ({
+      children,
+    }: { children: ReactNode } & Record<string, unknown>) => ReactNode;
     children?: ReactNode;
     icon?: ReactNode;
-  };
+  } & Record<string, unknown>;
 
 export const ClickItem = ({
   label,
   children,
   icon,
-  href,
+  parentClickComponent: ClickComponent = ({
+    children: parentClickComponentChildren,
+    ...parentClickComponentProps
+  }) => (
+    <button type="button" {...parentClickComponentProps}>
+      {parentClickComponentChildren}
+    </button>
+  ),
   isDisabled = false,
   className,
   classModifier = "",
@@ -36,23 +46,13 @@ export const ClickItem = ({
     [className, classModifier, isDisabled],
   );
 
-  const ClickComponent = useMemo(() => (href ? "a" : "button"), [href]);
-
-  const clickComponentProps: ComponentProps<"button"> & ComponentProps<"a"> =
-    useMemo(
-      () =>
-        href
-          ? { href, "aria-disabled": isDisabled, ...otherProps }
-          : {
-              type: "button",
-              disabled: isDisabled,
-              ...otherProps,
-            },
-      [isDisabled, href, otherProps],
-    );
-
   return (
-    <ClickComponent className={componentClassName} {...clickComponentProps}>
+    <ClickComponent
+      className={componentClassName}
+      disabled={isDisabled}
+      aria-disabled={isDisabled}
+      {...otherProps}
+    >
       <div className="af-click-item__content">
         {icon && <div className="af-click-item__icon">{icon}</div>}
         <div className="af-click-item__label">{children || label}</div>
