@@ -10,8 +10,12 @@
   background: common.$white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 20%);
 
-  &-th {
-    font-weight: common.$table-head-font-weight;
+  thead .af-table__th {
+    border: 1px solid white;
+  }
+
+  tbody .af-table__tr:not(:last-child) .af-table__th {
+    border-bottom: 1px solid white;
   }
 
   &__th {
@@ -23,7 +27,6 @@
     text-align: left;
     color: common.$white;
     background: common.$color-azur;
-    box-shadow: 0 0 1px 1px common.$white;
 
     &--sortable {
       padding: 0;
