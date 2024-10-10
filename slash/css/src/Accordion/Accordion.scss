@@ -1,0 +1,87 @@
+@use "sass:color";
+@use "../common/common.scss" as common;
+
+$minHeight: 3rem;
+
+.af-accordion {
+  font-family: common.$font-family-sans-serif;
+
+  &__item-header {
+    display: flex;
+    min-height: $minHeight;
+    padding: 0 1.5rem 0 1.375rem;
+    align-items: center;
+    justify-content: space-between;
+    color: common.$white;
+    background-color: common.$color-axa;
+    cursor: pointer;
+    list-style-type: none;
+  }
+
+  &__details {
+    margin-bottom: 1px;
+  }
+
+  .glyphicon {
+    width: 17px;
+    order: 2;
+    font-size: 14px;
+    transition: transform 0.5s;
+  }
+
+  &__item-title {
+    margin: 0;
+    order: 1;
+    font-size: calc(20rem / 16);
+  }
+
+  &__content {
+    padding: 1rem;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
+  }
+
+  &__details[open] {
+    .glyphicon {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.af-accordion--light {
+  & .af-accordion__content {
+    box-shadow: none;
+  }
+
+  .af-accordion__details {
+    position: relative;
+  }
+
+  $minHeightLight: 30px;
+
+  .af-accordion__item-header {
+    display: flex;
+    width: fit-content;
+    min-height: $minHeightLight;
+    padding: 0 3rem 0 1rem;
+    align-items: center;
+    justify-content: left;
+    gap: 1rem;
+    color: common.$color-mine-shaft;
+    background-color: #f6f6f6;
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      top: calc($minHeightLight / 2);
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+      content: "";
+    }
+
+    .glyphicon {
+      order: 0;
+    }
+  }
+}

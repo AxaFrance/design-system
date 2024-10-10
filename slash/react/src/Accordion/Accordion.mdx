@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as AccordionStories from "./Accordion.stories.tsx";
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Based on [`summary` and `details` _elements_](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details), the accordion component is a simple way to hide and show related content on a page.
+
+## Components
+
+The Accordion is composed of the following components:
+
+- `Accordion`: The main container for multiple collapsable sections.
+- `CollapseItem`: A single collapsable section in the accordion.
+
+<Canvas of={AccordionStories.Default} />
+<Controls of={AccordionStories.Default} />
+
+## Usage
+
+### Only one expanded at a time
+
+Setting the `onlyOne` prop on the accordion component will ensure that only one section is expanded at a time.
+By default, this is not the case and multiple sections can be expanded at once.
+
+### Opening sections by default
+
+You can set the `open` prop on the `CollapseItem` component to have a section open by default.
+Afterwards, the component becomes uncontrolled and only the user can close it via click or keyboard inputs.
+
+### Light version
+
+The `light` classModifier can be set on the `Accordion` component to use a lighter version of the accordion.
+
+<Canvas of={AccordionStories.Light} />
+<Controls of={AccordionStories.Light} />
