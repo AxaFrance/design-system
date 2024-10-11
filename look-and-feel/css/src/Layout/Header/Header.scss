@@ -11,7 +11,9 @@
   display: flex;
   width: 100%;
   height: 72px;
-  border-bottom: 1px solid common.$color-gray-1;
+  padding: 0 1rem;
+  border-top: 2px solid common.$color-axa;
+  border-bottom: 1px solid common.$color-gray-300;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -32,7 +34,6 @@
 .af-logo {
   width: 40px;
   height: 40px;
-  margin: 0 common.$spacing-u1;
   align-self: center;
 }
 
@@ -52,7 +53,7 @@
   .af-header-container {
     width: auto;
     height: 80px;
-    padding: 0 common.$spacing-u4;
+    padding: 0 3.75rem;
     border-top: 2px solid common.$color-axa;
 
     & .af-btn-client > svg {
