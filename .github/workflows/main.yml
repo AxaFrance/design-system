@@ -4,7 +4,10 @@ on:
   pull_request:
     branches:
       - main
-
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 jobs:
   build:
     if: github.repository_owner == 'AxaFrance'
