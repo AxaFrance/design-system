@@ -17,7 +17,8 @@
     "lint:slash": "concurrently \"npm:eslint --workspace=slash\" \"npm:stylelint -w=slash/css\" \"npm:prettier --workspace=slash\" \"npm:tsc --workspace=slash\" -c auto -n eslint,stylelint,prettier,tsc",
     "lint:look-and-feel": "concurrently \"npm:eslint --workspace=look-and-feel\" \"npm:stylelint -w=look-and-feel/css\" \"npm:prettier --workspace=look-and-feel\" \"npm:tsc --workspace=look-and-feel\" -c auto -n eslint,stylelint,prettier,tsc",
     "package:check": "npx --yes package-lock-utd@1.1.3",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest --coverage"
   },
   "author": "AxaFrance",
   "license": "MIT",
