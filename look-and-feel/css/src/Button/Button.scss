@@ -29,6 +29,7 @@
   &:focus {
     color: common.$color-white;
     background-color: common.$color-btn-light;
+    outline: none;
   }
 
   &:focus-visible {
