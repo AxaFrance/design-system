@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../Card/Card.scss";
+import "../Divider/Divider.scss";
 import "./List.scss";
 
 const meta: Meta = {
@@ -32,9 +33,9 @@ export const Default: StoryObj = {
       ul.appendChild(item);
 
       if (index < args.children.length - 1) {
-        const separator = document.createElement("hr");
-        separator.className = "af-list__separator";
-        ul.appendChild(separator);
+        const divider = document.createElement("hr");
+        divider.className = "af-divider";
+        ul.appendChild(divider);
       }
     });
 
@@ -81,11 +82,11 @@ export const Default: StoryObj = {
         </div>
       </button>`,
     ],
-    classModifier: ["first-separator-full-width"],
+    classModifier: ["first-divider-full-width"],
   },
   argTypes: {
     classModifier: {
-      options: ["large", "extra-padding", "first-separator-full-width"],
+      options: ["large", "extra-padding", "first-divider-full-width"],
       control: { type: "multi-select" },
       defaultValue: [],
     },
