@@ -108,8 +108,16 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
             <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
-        href: "https://github.com/AxaFrance/design-system",
-        target: "_blank",
+        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
+          <a
+            href="https://github.com/AxaFrance/design-system"
+            target="_blank"
+            rel="noreferrer"
+            {...parentClickComponentProps}
+          >
+            {children}
+          </a>
+        ),
       },
       {
         id: "2",
@@ -122,8 +130,16 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
             <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
-        href: "https://github.com/AxaFrance/design-system",
-        target: "_blank",
+        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
+          <a
+            href="https://github.com/AxaFrance/design-system"
+            target="_blank"
+            rel="noreferrer"
+            {...parentClickComponentProps}
+          >
+            {children}
+          </a>
+        ),
         isDisabled: true,
       },
     ],

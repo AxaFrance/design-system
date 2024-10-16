@@ -120,8 +120,16 @@ const MyComponentWithoutIcon = () => (
             </p>
           </>
         ),
-        href: "https://github.com/AxaFrance/design-system",
-        target: "_blank",
+        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
+          <a
+            href="https://github.com/AxaFrance/design-system"
+            target="_blank"
+            rel="noreferrer"
+            {...parentClickComponentProps}
+          >
+            {children}
+          </a>
+        ),
       },
       {
         id: "contractual_Orias_sheet-2",
@@ -138,9 +146,17 @@ const MyComponentWithoutIcon = () => (
             </p>
           </>
         ),
-        href: "https://github.com/AxaFrance/design-system",
-        target: "_blank",
-        disabled: true,
+        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
+          <a
+            href="https://github.com/AxaFrance/design-system"
+            target="_blank"
+            rel="noreferrer"
+            {...parentClickComponentProps}
+          >
+            {children}
+          </a>
+        ),
+        isDisabled: true,
       },
     ]}
   />
