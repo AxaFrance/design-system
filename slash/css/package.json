@@ -12,13 +12,15 @@
     "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
     "start:storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
+    "build-storybook": "storybook build",
     "eslint": "eslint src --ext js,jsx,ts,tsx",
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
     "prettier": "prettier \"src/**/*\" --check",
     "prettier:fix": "prettier \"src/**/*\" --write",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "rc-slider": "^10.5.0"
@@ -32,6 +34,7 @@
     }
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^2.0.2",
     "@csstools/postcss-sass": "^5.1.1",
     "@material-symbols/svg-400": "*",
     "@storybook/addon-essentials": "^8.3.5",
@@ -49,6 +52,7 @@
     "@typescript-eslint/parser": "^7.16.0",
     "@vitejs/plugin-react": "^4.3.2",
     "browserslist": "^4.23.3",
+    "chromatic": "^11.12.0",
     "copyfiles": "^2.4.1",
     "cssnano": "^7.0.3",
     "eslint": "^8.57.0",
@@ -82,7 +86,9 @@
     "type": "git",
     "url": "git+https://github.com/AxaFrance/design-system.git"
   },
-  "author": "AxaFrance",
+  "author": {
+    "name": "AxaFrance"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AxaFrance/design-system/issues"
