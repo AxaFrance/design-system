@@ -21,6 +21,7 @@
     "postbuild": "copyfiles --up 1 \"src/assets/svg/*.svg\" ./dist/",
     "start:storybook": "storybook dev -p 6007",
     "build:storybook": "storybook build",
+    "build-storybook": "storybook build",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
     "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx)\" --check",
@@ -28,13 +29,16 @@
     "tsc": "tsc --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:ci": "vitest run --coverage"
+    "test:ci": "vitest run --coverage",
+    "chromatic": "npx chromatic"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AxaFrance/design-system.git"
   },
-  "author": "AxaFrance",
+  "author": {
+    "name": "AxaFrance"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AxaFrance/design-system/issues"
@@ -60,6 +64,7 @@
     "react-select": "^5.8.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^2.0.2",
     "@material-symbols/svg-400": "*",
     "@storybook/addon-essentials": "^8.3.5",
     "@storybook/addon-interactions": "^8.3.5",
@@ -85,6 +90,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^2.0.5",
     "@vitest/ui": "^2.1.2",
+    "chromatic": "^11.12.0",
     "copyfiles": "^2.4.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",

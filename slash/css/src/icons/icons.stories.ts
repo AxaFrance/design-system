@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "../slash.scss";
+import "../common/icons.scss";
 import "./icons.stories.css";
 
 const meta: Meta = {
