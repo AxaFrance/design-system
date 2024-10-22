@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../../Button/Button.scss";
 import "../../Card/Card.scss";
+import "../../Divider/Divider.scss";
 import "../../Tag/Tag.scss";
 import "../List.scss";
 import "./ContentTabList.scss";
@@ -141,9 +142,9 @@ const template = ({ items, isMobile }: TContentTabList) => {
       ul.appendChild(item);
 
       if (index < items.length - 1) {
-        const separator = document.createElement("hr");
-        separator.className = "af-list__separator";
-        ul.appendChild(separator);
+        const divider = document.createElement("hr");
+        divider.className = "af-divider";
+        ul.appendChild(divider);
       }
     },
   );

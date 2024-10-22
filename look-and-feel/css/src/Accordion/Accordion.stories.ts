@@ -1,6 +1,7 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
 import "../AccordionCore/AccordionCore.scss";
 import "../Card/Card.scss";
+import "../Divider/Divider.scss";
 import "../Tag/Tag.scss";
 import "./Accordion.scss";
 
@@ -98,9 +99,9 @@ const template = ({
 
   container.appendChild(summary);
 
-  const separator = document.createElement("hr");
-  separator.className = "af-accordion__separator";
-  container.appendChild(separator);
+  const divider = document.createElement("hr");
+  divider.className = "af-divider";
+  container.appendChild(divider);
 
   const accordionContent = document.createElement("div");
   accordionContent.className = "af-accordion__content";
