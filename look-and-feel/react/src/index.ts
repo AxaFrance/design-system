@@ -31,4 +31,4 @@ export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";
 export { TabsClient as Tabs } from "./Tabs/Tabs";
 export { Tag } from "./Tag";
-export { Title, TitleSize } from "./Title";
+export { Title, TitleSize, type TitleLevel } from "./Title";
