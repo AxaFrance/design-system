@@ -61,10 +61,18 @@ describe("Title", () => {
     );
 
     expect(
-      screen.getByRole("heading", { name: "Title", level: 1 }),
+      screen.getByRole("heading", { name: "Title", level: 2 }),
     ).toBeInTheDocument();
     expect(screen.getByText("firstSubtitle")).toBeInTheDocument();
     expect(screen.queryByText("secondSubtitle")).not.toBeInTheDocument();
     expect(screen.queryByText("icon")).not.toBeInTheDocument();
+  });
+
+  it("should use the h3 heading tag when level equal 3", () => {
+    render(<Title level={3}>Title H3</Title>);
+
+    expect(
+      screen.getByRole("heading", { name: "Title H3", level: 3 }),
+    ).toBeInTheDocument();
   });
 });

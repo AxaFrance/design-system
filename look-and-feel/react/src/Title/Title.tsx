@@ -6,7 +6,7 @@ import {
 } from "react";
 import { IconBg } from "..";
 import { getComponentClassName } from "../utilities";
-import { TitleSize } from "./constants";
+import { TitleSize, TitleLevel } from "./constants";
 import { TitleWithSubtitles } from "./TitleWithSubtitles";
 
 type TitleProps = {
@@ -17,6 +17,7 @@ type TitleProps = {
   className?: string;
   classModifier?: string;
   size?: TitleSize;
+  level?: TitleLevel;
 };
 
 export const Title = ({
@@ -27,6 +28,7 @@ export const Title = ({
   icon,
   secondSubtitle,
   size = TitleSize.XL,
+  level = size === TitleSize.L ? 2 : 1,
 }: TitleProps) => {
   const componentClassName = useMemo(
     () =>
@@ -59,11 +61,14 @@ export const Title = ({
         <>
           <IconBg className="af-title__icon af-icon-bg">{icon}</IconBg>
           <div className="af-title__text-container">
-            <TitleWithSubtitlesPart secondSubtitle={secondSubtitle} />
+            <TitleWithSubtitlesPart
+              secondSubtitle={secondSubtitle}
+              level={level}
+            />
           </div>
         </>
       ) : (
-        <TitleWithSubtitlesPart />
+        <TitleWithSubtitlesPart level={level} />
       )}
     </div>
   );

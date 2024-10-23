@@ -7,6 +7,32 @@ import * as TitleStories from "./Title.stories";
 
 ### Use of Title
 
+#### Title Basic
+
+The basic title use `<h1>` tag (default value of size is `<TitleSize.XL`)
+
+When you set the size to `<TitleSize.L`, this use the `<h2>` tag by default.
+
+```tsx
+import { Title } from "@axa-fr/design-system-look-and-feel-react";
+
+export const TitleBasic = () => <Title>Titre de la page</Title>;
+```
+
+<Canvas of={TitleStories.TitleBasic} />
+
+<Controls of={TitleStories.TitleBasic} />
+
+If you want to set another level heading tag, you can use the **level** property :
+
+```tsx
+import { Title } from "@axa-fr/design-system-look-and-feel-react";
+
+export const TitleH3 = () => (
+  <Title level={3}>Titre de la page with h3 tag</Title>
+);
+```
+
 #### Title with icon
 
 ```tsx
