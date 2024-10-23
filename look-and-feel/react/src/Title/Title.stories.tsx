@@ -11,6 +11,26 @@ const meta: Meta<typeof Title> = {
 
 export default meta;
 
+export const TitleBasic: StoryObj<typeof Title> = {
+  render: (args) => <Title {...args} />,
+  args: {
+    children: "Titre de la page",
+    size: TitleSize.XL,
+  },
+  argTypes: {
+    size: {
+      options: Object.values(TitleSize),
+      control: { type: "select" },
+      defaultValue: TitleSize.XL,
+    },
+    level: {
+      options: [1, 2, 3, 4, 5, 6],
+      control: { type: "select" },
+      defaultValue: 1,
+    },
+  },
+};
+
 export const TitleWithIcon: StoryObj<typeof Title> = {
   render: (args) => <Title {...args} />,
   args: {
