@@ -20,16 +20,27 @@
   }
 
   &__input-description {
-    margin-top: -0.25rem;
-    font-size: 1rem;
+    font-size: common.rem(14);
     font-weight: 400;
+    line-height: common.rem(18);
     color: common.$color-gray-700;
+
+    @media (width > #{common.$breakpoint-md}) {
+      font-size: common.rem(16);
+      line-height: common.rem(20);
+    }
   }
 
   &__input-helper {
     margin-top: 0.2rem;
-    font-size: 0.9rem;
+    font-size: common.rem(14);
+    line-height: common.rem(18);
     color: common.$color-gray-700;
+
+    @media (width > #{common.$breakpoint-md}) {
+      font-size: common.rem(16);
+      line-height: common.rem(20);
+    }
   }
 
   &__input-more {
