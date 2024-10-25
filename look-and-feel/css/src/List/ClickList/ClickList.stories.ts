@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../../Card/Card.scss";
-import "../../Divider/Divider.scss";
 import "../List.scss";
 import "./ClickList.scss";
 
@@ -34,7 +33,7 @@ const template = ({ items, cardClassModifier }: TClickList) => {
 
   ul.className = "af-list";
 
-  items.forEach((child, index: number) => {
+  items.forEach((child) => {
     const modifiers = child.classModifier ? [child.classModifier] : [];
     const item = document.createElement("li");
     item.className = "af-list__item";
@@ -90,12 +89,6 @@ const template = ({ items, cardClassModifier }: TClickList) => {
 
     item.appendChild(clickItem);
     ul.appendChild(item);
-
-    if (index < items.length - 1) {
-      const divider = document.createElement("hr");
-      divider.className = "af-divider";
-      ul.appendChild(divider);
-    }
   });
 
   list.appendChild(ul);

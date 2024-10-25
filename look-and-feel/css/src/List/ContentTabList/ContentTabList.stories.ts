@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../../Button/Button.scss";
 import "../../Card/Card.scss";
-import "../../Divider/Divider.scss";
 import "../../Tag/Tag.scss";
 import "../List.scss";
 import "./ContentTabList.scss";
@@ -34,120 +33,112 @@ const template = ({ items, isMobile }: TContentTabList) => {
 
   ul.className = "af-list";
 
-  items.forEach(
-    ({ title, subtitle, date, tag, buttons = [], value }, index: number) => {
-      const item = document.createElement("li");
-      item.className = "af-list__item";
+  items.forEach(({ title, subtitle, date, tag, buttons = [], value }) => {
+    const item = document.createElement("li");
+    item.className = "af-list__item";
 
-      const leftContainer = document.createElement("div");
-      leftContainer.className = "af-list-item__left-container";
+    const leftContainer = document.createElement("div");
+    leftContainer.className = "af-list-item__left-container";
 
-      const rightContainer = document.createElement("div");
-      rightContainer.className = "af-list-item__right-container";
+    const rightContainer = document.createElement("div");
+    rightContainer.className = "af-list-item__right-container";
 
-      if (value && (date || tag)) {
-        const additionalDataContainer = document.createElement("div");
-        additionalDataContainer.className =
-          "af-list-item__additional-data-container";
+    if (value && (date || tag)) {
+      const additionalDataContainer = document.createElement("div");
+      additionalDataContainer.className =
+        "af-list-item__additional-data-container";
 
-        if (date) {
-          const dateElement = document.createElement("span");
-          dateElement.className = "af-list-item__date";
-          dateElement.textContent = date;
-          additionalDataContainer.appendChild(dateElement);
-        }
-
-        if (tag) {
-          const tagElement = document.createElement("div");
-          tagElement.className = "af-tag af-tag--warning";
-          tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
-          additionalDataContainer.appendChild(tagElement);
-        }
-
-        leftContainer.appendChild(additionalDataContainer);
+      if (date) {
+        const dateElement = document.createElement("span");
+        dateElement.className = "af-list-item__date";
+        dateElement.textContent = date;
+        additionalDataContainer.appendChild(dateElement);
       }
 
-      const labelElement = document.createElement("div");
-      labelElement.className = "af-list-item__label";
-      labelElement.innerHTML = `<span class="af-list-item-label__title">${title}</span>`;
-      if (subtitle) {
-        labelElement.innerHTML += `<span class="af-list-item-label__subtitle">${subtitle}</span>`;
-      }
-      leftContainer.appendChild(labelElement);
-
-      if (!value && isMobile && (date || tag)) {
-        const additionalDataContainer = document.createElement("div");
-        additionalDataContainer.className =
-          "af-list-item__additional-data-container";
-
-        if (tag) {
-          const tagElement = document.createElement("div");
-          tagElement.className = "af-tag af-tag--warning";
-          tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
-          additionalDataContainer.appendChild(tagElement);
-        }
-
-        if (date) {
-          const dateElement = document.createElement("span");
-          dateElement.className = "af-list-item__date";
-          dateElement.textContent = date;
-          additionalDataContainer.appendChild(dateElement);
-        }
-
-        leftContainer.appendChild(additionalDataContainer);
+      if (tag) {
+        const tagElement = document.createElement("div");
+        tagElement.className = "af-tag af-tag--warning";
+        tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
+        additionalDataContainer.appendChild(tagElement);
       }
 
-      item.appendChild(leftContainer);
+      leftContainer.appendChild(additionalDataContainer);
+    }
 
-      if (!value && !isMobile && (date || tag)) {
-        const additionalDataContainer = document.createElement("div");
-        additionalDataContainer.className =
-          "af-list-item__additional-data-container";
+    const labelElement = document.createElement("div");
+    labelElement.className = "af-list-item__label";
+    labelElement.innerHTML = `<span class="af-list-item-label__title">${title}</span>`;
+    if (subtitle) {
+      labelElement.innerHTML += `<span class="af-list-item-label__subtitle">${subtitle}</span>`;
+    }
+    leftContainer.appendChild(labelElement);
 
-        if (tag) {
-          const tagElement = document.createElement("div");
-          tagElement.className = "af-tag af-tag--warning";
-          tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
-          additionalDataContainer.appendChild(tagElement);
-        }
+    if (!value && isMobile && (date || tag)) {
+      const additionalDataContainer = document.createElement("div");
+      additionalDataContainer.className =
+        "af-list-item__additional-data-container";
 
-        if (date) {
-          const dateElement = document.createElement("span");
-          dateElement.className = "af-list-item__date";
-          dateElement.textContent = date;
-          additionalDataContainer.appendChild(dateElement);
-        }
-
-        rightContainer.appendChild(additionalDataContainer);
+      if (tag) {
+        const tagElement = document.createElement("div");
+        tagElement.className = "af-tag af-tag--warning";
+        tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
+        additionalDataContainer.appendChild(tagElement);
       }
 
-      buttons.forEach((button) => {
-        const buttonsContainer = document.createElement("div");
-        buttonsContainer.className = "af-list-item__button-container";
-
-        const buttonElement = document.createElement("div");
-        buttonElement.innerHTML = button;
-        buttonsContainer.appendChild(buttonElement);
-        rightContainer.appendChild(buttonsContainer);
-      });
-
-      if (value) {
-        const valueElement = document.createElement("span");
-        valueElement.className = "af-list-item__value";
-        valueElement.textContent = value;
-        rightContainer.appendChild(valueElement);
+      if (date) {
+        const dateElement = document.createElement("span");
+        dateElement.className = "af-list-item__date";
+        dateElement.textContent = date;
+        additionalDataContainer.appendChild(dateElement);
       }
 
-      item.appendChild(rightContainer);
-      ul.appendChild(item);
+      leftContainer.appendChild(additionalDataContainer);
+    }
 
-      if (index < items.length - 1) {
-        const divider = document.createElement("hr");
-        divider.className = "af-divider";
-        ul.appendChild(divider);
+    item.appendChild(leftContainer);
+
+    if (!value && !isMobile && (date || tag)) {
+      const additionalDataContainer = document.createElement("div");
+      additionalDataContainer.className =
+        "af-list-item__additional-data-container";
+
+      if (tag) {
+        const tagElement = document.createElement("div");
+        tagElement.className = "af-tag af-tag--warning";
+        tagElement.innerHTML = `<span class="af-tag__label">${tag}</span>`;
+        additionalDataContainer.appendChild(tagElement);
       }
-    },
-  );
+
+      if (date) {
+        const dateElement = document.createElement("span");
+        dateElement.className = "af-list-item__date";
+        dateElement.textContent = date;
+        additionalDataContainer.appendChild(dateElement);
+      }
+
+      rightContainer.appendChild(additionalDataContainer);
+    }
+
+    buttons.forEach((button) => {
+      const buttonsContainer = document.createElement("div");
+      buttonsContainer.className = "af-list-item__button-container";
+
+      const buttonElement = document.createElement("div");
+      buttonElement.innerHTML = button;
+      buttonsContainer.appendChild(buttonElement);
+      rightContainer.appendChild(buttonsContainer);
+    });
+
+    if (value) {
+      const valueElement = document.createElement("span");
+      valueElement.className = "af-list-item__value";
+      valueElement.textContent = value;
+      rightContainer.appendChild(valueElement);
+    }
+
+    item.appendChild(rightContainer);
+    ul.appendChild(item);
+  });
 
   list.appendChild(ul);
 

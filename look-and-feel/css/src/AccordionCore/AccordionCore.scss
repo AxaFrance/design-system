@@ -39,8 +39,12 @@
     }
   }
 
-  &[open] > .af-accordion__summary::after {
-    transform: rotate(180deg);
+  &[open] > .af-accordion__summary {
+    border-bottom: 1px solid common.$color-gray-300;
+
+    &::after {
+      transform: rotate(180deg);
+    }
   }
 
   &__content {

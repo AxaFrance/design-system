@@ -1,6 +1,5 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
 import "../../Card/Card.scss";
-import "../../Divider/Divider.scss";
 import "../List.scss";
 import "./ContentItemMono.scss";
 
@@ -161,19 +160,13 @@ export const ContentItemMonoList: StoryObj = {
 
     ul.className = "af-list";
 
-    args.items.forEach((childArgs: Args, index: number) => {
+    args.items.forEach((childArgs: Args) => {
       const item = document.createElement("li");
       item.className = "af-list__item";
 
       item.appendChild(template(childArgs));
 
       ul.appendChild(item);
-
-      if (index < args.items.length - 1) {
-        const divider = document.createElement("hr");
-        divider.className = "af-divider";
-        ul.appendChild(divider);
-      }
     });
 
     list.appendChild(ul);
@@ -186,13 +179,13 @@ export const ContentItemMonoList: StoryObj = {
       contentItemMonoWithIconArgs,
       contentItemMonoWithStickArgs,
     ],
-    classModifier: ["first-divider-full-width"],
+    classModifier: ["first-separator-full-width"],
   },
   argTypes: {
     classModifier: {
-      options: ["large", "first-divider-full-width"],
+      options: ["large", "first-separator-full-width"],
       control: { type: "multi-select" },
-      defaultValue: ["first-divider-full-width"],
+      defaultValue: ["first-separator-full-width"],
     },
   },
 };

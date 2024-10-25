@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import "../Divider/Divider.scss";
 import "./Modal.scss";
 
 const meta: Meta = {
@@ -40,7 +39,6 @@ export const Default: StoryObj = {
         }
       </h2>
     </div>
-    <hr class="af-divider" />
     <div class="af-modal__content">
       Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur
       vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.

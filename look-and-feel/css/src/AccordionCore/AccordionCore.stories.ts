@@ -1,6 +1,5 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
 import "../Card/Card.scss";
-import "../Divider/Divider.scss";
 import "./AccordionCore.scss";
 
 const meta: Meta = {
@@ -27,10 +26,6 @@ const template = ({ title, content, isOpen }: Args) => {
   summary.appendChild(titleContainer);
 
   container.appendChild(summary);
-
-  const divider = document.createElement("hr");
-  divider.className = "af-divider";
-  container.appendChild(divider);
 
   const accordionContent = document.createElement("div");
   accordionContent.className = "af-accordion__content";

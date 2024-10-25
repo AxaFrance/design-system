@@ -1,7 +1,6 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
 import "../../Button/Button.scss";
 import "../../Card/Card.scss";
-import "../../Divider/Divider.scss";
 import "../List.scss";
 import "./ContentItemDuo.scss";
 
@@ -112,7 +111,7 @@ const contentItemDuoListRender = ({ classModifier, ...args }: Args) => {
 
   ul.className = "af-list";
 
-  args.items.forEach((childArgs: Args, index: number) => {
+  args.items.forEach((childArgs: Args) => {
     const item = document.createElement("li");
     item.className = "af-list__item";
 
@@ -125,12 +124,6 @@ const contentItemDuoListRender = ({ classModifier, ...args }: Args) => {
     item.appendChild(contentItemDuoRender(newChildArgs));
 
     ul.appendChild(item);
-
-    if (index < args.items.length - 1) {
-      const divider = document.createElement("hr");
-      divider.className = "af-divider";
-      ul.appendChild(divider);
-    }
   });
 
   list.appendChild(ul);

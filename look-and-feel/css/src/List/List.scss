@@ -6,7 +6,20 @@
   list-style-type: none;
 
   &__item {
+    --separator-padding: 0rem;
+
+    position: relative;
     padding: 1rem 0;
+
+    &:not(:last-child)::after {
+      position: absolute;
+      bottom: 0;
+      left: var(--separator-padding);
+      width: calc(100% - (2 * var(--separator-padding)));
+      height: 1px;
+      background-color: common.$color-gray-300;
+      content: "";
+    }
   }
 }
 
@@ -19,13 +32,12 @@
   &--click-list {
     padding: 0;
 
-    .af-divider {
-      width: calc(100% - 2rem);
-      margin: auto;
-    }
-
     .af-list__item {
       padding: 0;
+
+      &:not(:last-child)::after {
+        --separator-padding: 1rem;
+      }
     }
   }
 
@@ -33,7 +45,7 @@
     padding: 0.5rem 1.5rem;
   }
 
-  &--first-divider-full-width {
+  &--first-separator-full-width {
     padding: 0;
 
     .af-list__item {
@@ -42,10 +54,10 @@
       &:has(.af-click-item) {
         padding: 0;
       }
-    }
 
-    .af-divider ~ .af-divider {
-      margin: 0 1rem;
+      &:not(:first-child, :last-child)::after {
+        --separator-padding: 1rem;
+      }
     }
   }
 }
