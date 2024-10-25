@@ -17,24 +17,24 @@ export const ClickListWithIcon: StoryObj<typeof ClickList> = {
     items: [
       {
         id: "1",
-        icon: <Svg src={error} />,
+        icon: <Svg src={error} aria-hidden />,
         children: "Texte principal",
         classModifier: "small",
       },
       {
         id: "2",
-        icon: <Svg src={error} />,
+        icon: <Svg src={error} aria-hidden />,
         children: "Texte principal",
       },
       {
         id: "3",
-        icon: <Svg src={error} />,
+        icon: <Svg src={error} aria-hidden />,
         children: "Texte principal",
         classModifier: "large",
       },
       {
         id: "4",
-        icon: <Svg src={contentPasteGo} />,
+        icon: <Svg src={contentPasteGo} aria-hidden />,
         children: "Texte principal",
         isDisabled: true,
       },

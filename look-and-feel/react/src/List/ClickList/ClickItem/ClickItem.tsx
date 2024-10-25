@@ -58,7 +58,7 @@ export const ClickItem = ({
         <div className="af-click-item__label">{children || label}</div>
       </div>
       <div className="af-click-item__action">
-        <Svg src={chevron} />
+        <Svg src={chevron} aria-hidden />
       </div>
     </ClickComponent>
   );
