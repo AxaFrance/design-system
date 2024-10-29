@@ -29,6 +29,6 @@ export type { ButtonAction as ModalButtonAction } from "./ModalClient/Modal";
 export { Pagination } from "./Pagination/Pagination";
 export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";
-export { TabsClient as Tabs } from "./Tabs/Tabs";
+export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
 export { Tag } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
