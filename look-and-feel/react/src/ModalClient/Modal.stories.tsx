@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps, useState } from "react";
 import bluetoothAudio from "@material-symbols/svg-400/outlined/bluetooth_searching.svg";
-import { Modal } from "./Modal";
+import { ModalContainer as Modal } from "./Modal.container";
 import { Svg } from "../Svg";
 
 const meta: Meta<typeof Modal> = {
@@ -27,14 +27,21 @@ const Container = (props: ComponentProps<typeof Modal>) => {
       <Modal
         {...props}
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        onClickOutside={undefined}
+        setIsOpen={setIsOpen}
+        onClose={() => console.log("close modal")}
+        onClickOutside={() => console.log("close outside modal")}
         actions={{
-          primary: { text: "Save", callback: () => setIsOpen(false) },
-          secondary: { text: "Cancel", callback: () => setIsOpen(false) },
+          primary: {
+            text: "Save",
+            callback: () => console.log("close modal with primary"),
+          },
+          secondary: {
+            text: "Cancel",
+            callback: () => console.log("close modal with secondary"),
+          },
           tertiary: {
             text: "Reset",
-            callback: () => setIsOpen(false),
+            callback: () => console.log("close modal with tertiary"),
             disabled: true,
           },
         }}
