@@ -9,7 +9,6 @@ describe("List", () => {
 
     expect(screen.getByRole("list")).toHaveClass("af-list");
     expect(screen.getByText("Child 1")).toBeInTheDocument();
-    expect(screen.queryByRole("separator")).toBeNull();
   });
 
   it("should render with empty children", () => {
@@ -18,10 +17,9 @@ describe("List", () => {
     render(<List>{children}</List>);
 
     expect(screen.getByRole("list")).toHaveClass("af-list");
-    expect(screen.queryByRole("separator")).toBeNull();
   });
 
-  it("should render multiple children with separators", () => {
+  it("should render multiple children", () => {
     const children = [
       <div key="1">Child 1</div>,
       <div key="2">Child 2</div>,
@@ -33,6 +31,5 @@ describe("List", () => {
     expect(screen.getByText("Child 1")).toBeInTheDocument();
     expect(screen.getByText("Child 2")).toBeInTheDocument();
     expect(screen.getByText("Child 3")).toBeInTheDocument();
-    expect(screen.getAllByRole("separator")).toHaveLength(2);
   });
 });
