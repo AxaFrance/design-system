@@ -5,7 +5,6 @@ import {
   type MouseEvent,
   type ReactNode,
 } from "react";
-import { Divider } from "../Divider";
 import { getComponentClassName } from "../utilities";
 
 type AccordionProps = {
@@ -55,7 +54,6 @@ export const AccordionCore = ({
       >
         {summary}
       </summary>
-      <Divider />
       <div className="af-accordion__content">{children}</div>
     </details>
   );
