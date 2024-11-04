@@ -63,7 +63,17 @@ describe("ClickItem", () => {
     const label = "Sample Label";
     const href = "https://example.com";
 
-    render(<ClickItem href={href}>{label}</ClickItem>);
+    render(
+      <ClickItem
+        parentClickComponent={({ children, ...parentClickComponentProps }) => (
+          <a href={href} rel="noreferrer" {...parentClickComponentProps}>
+            {children}
+          </a>
+        )}
+      >
+        {label}
+      </ClickItem>,
+    );
 
     const linkElement = screen.getByRole("link", { name: label });
 
@@ -77,7 +87,14 @@ describe("ClickItem", () => {
     const disabled = true;
 
     render(
-      <ClickItem href={href} isDisabled={disabled}>
+      <ClickItem
+        parentClickComponent={({ children, ...parentClickComponentProps }) => (
+          <a href={href} rel="noreferrer" {...parentClickComponentProps}>
+            {children}
+          </a>
+        )}
+        isDisabled={disabled}
+      >
         {label}
       </ClickItem>,
     );
