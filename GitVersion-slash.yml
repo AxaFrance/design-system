@@ -1,3 +1,5 @@
-mode: ContinuousDelivery
+
+mode: ContinuousDeployment
 tag-prefix: 'slash/'
+next-version: 1.0.0
 commit-message-incrementing: Disabled
