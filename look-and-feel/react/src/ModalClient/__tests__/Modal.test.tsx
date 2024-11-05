@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { ModalContainer as Modal } from "../Modal.container";
+import { Modal } from "..";
 import { TActionButton } from "../type";
 
 const defaultProps = {
   title: "Modal Title",
-  isOpen: false,
+  isOpen: true,
   setIsOpen: vi.fn(),
   onClickOutside: vi.fn(),
   onClose: vi.fn(),
@@ -37,9 +37,10 @@ describe("Modal", () => {
     ${true}
     ${false}
   `("renders modal isOpen $isOpen", ({ isOpen }) => {
-    const { container } = render(<Modal {...defaultProps} isOpen={isOpen} />);
-    expect(screen.getByText(defaultProps.title)).toBeInTheDocument();
-    const dialog = container.querySelector(".af-modal");
+    render(<Modal {...defaultProps} isOpen={isOpen} />);
+    const dialog = screen.getByRole("dialog", {
+      hidden: true,
+    });
     waitFor(() =>
       expect(dialog).toHaveStyle(`display: ${isOpen ? "block" : "none"}`),
     );
@@ -47,18 +48,19 @@ describe("Modal", () => {
 
   it("renders close modal", () => {
     render(<Modal {...defaultProps} />);
-    const button = screen
-      .getByText(defaultProps.title)
-      .parentNode?.parentNode?.querySelector("button");
+    const button = screen.getByRole("button", {
+      hidden: true,
+    });
     button?.click();
     expect(defaultProps.setIsOpen).toHaveBeenCalledWith(false);
   });
 
   it("renders close modal outside", () => {
     render(<Modal {...defaultProps} />);
-    const div = screen.getByText(defaultProps.title).parentNode?.parentNode
-      ?.parentNode?.parentElement;
-    div?.click();
+    const dialog = screen.getByRole("dialog", {
+      hidden: true,
+    });
+    dialog?.click();
     expect(defaultProps.onClickOutside).toHaveBeenCalled();
     expect(defaultProps.onClose).not.toHaveBeenCalled();
     expect(defaultProps.setIsOpen).toHaveBeenCalledWith(false);
@@ -66,9 +68,10 @@ describe("Modal", () => {
 
   it("renders close modal outside without clickOutside function", () => {
     render(<Modal {...defaultProps} onClickOutside={undefined} />);
-    const div = screen.getByText(defaultProps.title).parentNode?.parentNode
-      ?.parentNode?.parentElement;
-    div?.click();
+    const dialog = screen.getByRole("dialog", {
+      hidden: true,
+    });
+    dialog?.click();
     expect(defaultProps.onClose).toHaveBeenCalled();
     expect(defaultProps.setIsOpen).toHaveBeenCalledWith(false);
   });
@@ -91,7 +94,10 @@ describe("Modal", () => {
     "renders close modal when actions $actionType callback",
     ({ actionType }: { actionType: keyof TActionButton }) => {
       render(<Modal {...defaultProps} actions={actions} />);
-      const actionButton = screen.getByText(actions[actionType].text);
+      const actionButton = screen.getByRole("button", {
+        hidden: true,
+        name: actions[actionType].text,
+      });
       actionButton?.click();
       expect(actions[actionType].callback).toHaveBeenCalled();
       expect(defaultProps.onClickOutside).not.toHaveBeenCalled();

@@ -13,13 +13,15 @@ export const useModal = ({
 
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
-      if ((event.target as HTMLElement).tagName === "DIALOG") {
-        if (onClickOutside) {
-          onClickOutside();
-          setIsOpen(false);
-        } else {
-          handleCloseModal();
-        }
+      if ((event.target as HTMLElement).tagName !== "DIALOG") {
+        return;
+      }
+
+      if (onClickOutside) {
+        onClickOutside();
+        setIsOpen(false);
+      } else {
+        handleCloseModal();
       }
     },
     [handleCloseModal, onClickOutside, setIsOpen],

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps, useState } from "react";
 import bluetoothAudio from "@material-symbols/svg-400/outlined/bluetooth_searching.svg";
-import { ModalContainer as Modal } from "./Modal.container";
+import { Modal } from ".";
 import { Svg } from "../Svg";
 
 const meta: Meta<typeof Modal> = {

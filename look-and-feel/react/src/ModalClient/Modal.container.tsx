@@ -1,5 +1,6 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Modal/Modal.scss";
 import { PropsWithChildren, useEffect, useId, useRef } from "react";
+import { createPortal } from "react-dom";
 import { ModalProps } from "./type";
 import { Modal } from "./Modal";
 import { useModal } from "./Modal.hook";
@@ -56,7 +57,7 @@ export const ModalContainer = ({
     };
   }, [handleClickOutside, handleKeyDown]);
 
-  return (
+  return createPortal(
     <Modal
       modalRef={modalRef}
       idTitle={idTitle}
@@ -71,6 +72,7 @@ export const ModalContainer = ({
       fullWidthButtons={fullWidthButtons}
     >
       {children}
-    </Modal>
+    </Modal>,
+    document.body,
   );
 };

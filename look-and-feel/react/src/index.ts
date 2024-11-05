@@ -24,7 +24,7 @@ export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabList } from "./List/ContentTabList";
 export { Loader } from "./Loader";
-export { ModalContainer as Modal } from "./ModalClient/Modal.container";
+export { Modal } from "./ModalClient";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/type";
 export { Pagination } from "./Pagination/Pagination";
 export { Stepper } from "./Stepper/Stepper";
