@@ -14,12 +14,13 @@ describe("Title", () => {
       </Title>,
     );
 
-    expect(
-      screen.getByRole("heading", { name: "Title", level: 1 }),
-    ).toBeInTheDocument();
-    expect(screen.getByText("firstSubtitle")).toBeInTheDocument();
-    expect(screen.getByText("secondSubtitle")).toBeInTheDocument();
-    expect(screen.getByText("icon")).toBeInTheDocument();
+    const heading = screen.getByRole("heading", {
+      level: 1,
+    });
+    expect(heading).toHaveTextContent("Title");
+    expect(heading).toHaveTextContent("firstSubtitle");
+    expect(heading).toHaveTextContent("secondSubtitle");
+    expect(heading).toHaveTextContent("icon");
   });
 
   it("should have custom class", () => {
@@ -60,19 +61,22 @@ describe("Title", () => {
       </Title>,
     );
 
-    expect(
-      screen.getByRole("heading", { name: "Title", level: 2 }),
-    ).toBeInTheDocument();
-    expect(screen.getByText("firstSubtitle")).toBeInTheDocument();
-    expect(screen.queryByText("secondSubtitle")).not.toBeInTheDocument();
-    expect(screen.queryByText("icon")).not.toBeInTheDocument();
+    const heading = screen.getByRole("heading", {
+      level: 2,
+    });
+    expect(heading).toHaveTextContent("Title");
+    expect(heading).toHaveTextContent("firstSubtitle");
+    expect(heading).not.toHaveTextContent("secondSubtitle");
+    expect(heading).not.toHaveTextContent("icon");
   });
 
   it("should use the h3 heading tag when level equal 3", () => {
     render(<Title level={3}>Title H3</Title>);
 
-    expect(
-      screen.getByRole("heading", { name: "Title H3", level: 3 }),
-    ).toBeInTheDocument();
+    const heading = screen.getByRole("heading", {
+      level: 3,
+    });
+
+    expect(heading).toHaveTextContent("Title H3");
   });
 });

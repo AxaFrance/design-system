@@ -37,7 +37,7 @@ export const TitleWithIcon: StoryObj<typeof Title> = {
     children: "Titre de la page",
     firstSubtitle: "Sous-titre 1",
     secondSubtitle: "Sous-titre 2",
-    icon: <Svg src={article} />,
+    icon: <Svg src={article} aria-hidden />,
     size: TitleSize.XL,
   },
   argTypes: {

@@ -15,7 +15,7 @@ describe("TitleWithSubtitles", () => {
       />,
     );
 
-    screen.getByRole("heading", { name: title, level: 1 });
+    expect(screen.getByText(title)).toBeInTheDocument();
     expect(screen.getByText(firstSubtitle)).toBeInTheDocument();
     expect(screen.getByText(secondSubtitle)).toBeInTheDocument();
   });

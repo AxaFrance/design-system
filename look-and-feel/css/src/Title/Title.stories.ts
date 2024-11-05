@@ -9,25 +9,27 @@ const meta: Meta = {
 export default meta;
 
 const template = (args: Args) => {
-  const container = document.createElement("div");
-  container.className = `af-title${args.classModifier
+  const headerContainer = document.createElement("h1");
+  headerContainer.className = `af-title${args.classModifier
     .split(" ")
     .filter(Boolean)
     .map((classModifier: string) => ` af-title--${classModifier}`)
     .join("")}`;
-  container.className += ` af-title--${args.size}`;
+  headerContainer.className += ` af-title--${args.size}`;
 
-  const textContainer = args.icon ? document.createElement("div") : container;
+  const textContainer = args.icon
+    ? document.createElement("div")
+    : headerContainer;
   if (args.icon && args.size === "xl") {
     textContainer.className = "af-title__text-container";
 
     const icon = document.createElement("div");
     icon.className = "af-icon-bg af-title__icon";
     icon.innerHTML = args.icon;
-    container.appendChild(icon);
+    headerContainer.appendChild(icon);
   }
 
-  const title = document.createElement("h1");
+  const title = document.createElement("p");
   title.className = "af-title__title";
   title.textContent = args.children;
 
@@ -48,10 +50,10 @@ const template = (args: Args) => {
   }
 
   if (args.icon) {
-    container.appendChild(textContainer);
+    headerContainer.appendChild(textContainer);
   }
 
-  return container;
+  return headerContainer;
 };
 
 export const TitleWithIcon: StoryObj = {

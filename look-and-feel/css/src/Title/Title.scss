@@ -1,4 +1,5 @@
 @use "../common/common" as common;
+@use "../common/reboot";
 
 .af-title {
   gap: 0.25rem;
@@ -28,6 +29,16 @@
     gap: 0.25rem;
   }
 
+  &--xl .af-title__title {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  &--l .af-title__title {
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+  }
+
   &:has(&__icon) {
     display: flex;
     gap: 0.75rem;
@@ -36,36 +47,18 @@
       color: var(--color-axa);
     }
   }
-
-  &--xl {
-    h1.af-title__title {
-      font-size: 2rem;
-      line-height: 2.5rem;
-    }
-  }
-
-  &--l {
-    h1.af-title__title {
-      font-size: 1.5rem;
-      line-height: 1.875rem;
-    }
-  }
 }
 
 @media (width <= #{common.$breakpoint-md}) {
   .af-title {
-    &--xl {
-      h1.af-title__title {
-        font-size: 1.5rem;
-        line-height: 1.875rem;
-      }
+    &--xl .af-title__title {
+      font-size: 1.5rem;
+      line-height: 1.875rem;
     }
 
-    &--l {
-      h1.af-title__title {
-        font-size: 1.25rem;
-        line-height: 1.56rem;
-      }
+    &--l .af-title__title {
+      font-size: 1.25rem;
+      line-height: 1.56rem;
     }
 
     span.af-title__subtitle {
