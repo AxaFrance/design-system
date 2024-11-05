@@ -18,22 +18,30 @@ jobs:
         with:
           node-version: "*" # Use the LTS Node.js version
           cache: "npm"
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0
+        uses: gittools/actions/gitversion/setup@v3.0.0
         with:
-          versionSpec: '5.x'
+          versionSpec: "5.x"
       - name: Determine Version
         id: gitversion
-        uses: gittools/actions/gitversion/execute@v0
+        uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          configFilePath: "GitVersion-look-and-feel.yml"
       - run: npm run package:check
       - run: npm ci
       - run: npm run build:look-and-feel
-      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w look-and-feel/css -w look-and-feel/react
-      - name: Set to react package the @axa-fr/design-system-look-and-feel-css dependency version
+      - run:
+          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
+          look-and-feel/css -w look-and-feel/react
+      - name:
+          Set to react package the @axa-fr/design-system-look-and-feel-css
+          dependency version
         run: |
           cd look-and-feel/react
           jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
-      - run: npm publish -w look-and-feel/css -w look-and-feel/react --access public
+      - run:
+          npm publish -w look-and-feel/css -w look-and-feel/react --access
+          public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
