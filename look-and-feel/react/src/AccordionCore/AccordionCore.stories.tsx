@@ -54,7 +54,7 @@ export const AccordionCoreWithCardStory: StoryObj<
 > = {
   name: "AccordionCore With Card",
   render: (args) => (
-    <Card classModifier="large accordion" tabIndex={undefined}>
+    <Card classModifier="large accordion">
       <AccordionCore {...args} />
     </Card>
   ),

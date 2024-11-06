@@ -8,7 +8,7 @@ type TClickList = {
 };
 
 export const ClickList = ({ items, classModifier }: TClickList) => (
-  <List classModifier={`click-list ${classModifier}`} tabIndex={-1}>
+  <List classModifier={`click-list ${classModifier}`}>
     {items.map(({ id, ...props }) => (
       <ClickItem key={id} id={id} {...props} />
     ))}

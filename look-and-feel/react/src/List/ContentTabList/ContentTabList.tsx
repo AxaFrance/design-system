@@ -18,7 +18,6 @@ export const ContentTabList = ({
   return (
     <List
       classModifier={`list large extra-padding content-tab-list ${classModifier}`}
-      tabIndex={-1}
     >
       {items.map(({ id, ...item }) => (
         <ContentTabItem key={id ?? item.title} {...item} isMobile={isMobile} />

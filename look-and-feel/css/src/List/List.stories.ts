@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../Card/Card.scss";
+import "./ClickList/ClickList.scss";
+import "./ContentItemMono/ContentItemMono.scss";
 import "./List.scss";
 
 const meta: Meta = {
@@ -16,8 +18,6 @@ export const Default: StoryObj = {
       .filter(Boolean)
       .map((modifier: string) => ` af-card--${modifier}`)
       .join("")}`;
-
-    list.tabIndex = 0;
 
     const ul = document.createElement("ul");
 
