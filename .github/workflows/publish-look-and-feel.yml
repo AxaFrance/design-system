@@ -27,6 +27,7 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v3.0.0
         with:
+          useConfigFile: true
           configFilePath: "GitVersion-look-and-feel.yml"
       - run: npm run package:check
       - run: npm ci
