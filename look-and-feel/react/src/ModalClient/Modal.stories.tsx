@@ -26,7 +26,7 @@ const Container = (props: ComponentProps<typeof Modal>) => {
       </button>
       <Modal
         {...props}
-        isOpen={isOpen}
+        open={isOpen}
         setIsOpen={setIsOpen}
         onClose={() => console.log("close modal")}
         onClickOutside={() => console.log("close outside modal")}
@@ -54,7 +54,7 @@ export const Playground: Story = {
   name: "Modal",
   render: (args) => <Container {...args} />,
   args: {
-    hasCloseBtn: true,
+    hasCloseButton: true,
     title: "Modal title",
     children:
       "Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.",

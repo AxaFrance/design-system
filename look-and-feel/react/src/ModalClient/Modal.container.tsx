@@ -6,9 +6,9 @@ import { Modal } from "./Modal";
 import { useModal } from "./Modal.hook";
 
 export const ModalContainer = ({
-  isOpen,
+  open,
   setIsOpen,
-  hasCloseBtn = true,
+  hasCloseButton = true,
   onClose,
   onClickOutside,
   children,
@@ -35,7 +35,7 @@ export const ModalContainer = ({
   useEffect(() => {
     const modalElement = modalRef.current;
     if (modalElement) {
-      if (isOpen) {
+      if (open) {
         document.body.style.overflow = "hidden";
         modalElement.showModal?.();
       } else {
@@ -46,7 +46,7 @@ export const ModalContainer = ({
     return () => {
       document.body.style.overflow = "inherit";
     };
-  }, [isOpen]);
+  }, [open]);
 
   useEffect(() => {
     document.body.addEventListener("keydown", handleKeyDown);
@@ -65,7 +65,7 @@ export const ModalContainer = ({
       iconTitle={iconTitle}
       title={title}
       subtitle={subtitle}
-      hasCloseBtn={hasCloseBtn}
+      hasCloseButton={hasCloseButton}
       handleCloseModal={handleCloseModal}
       actionCallback={actionCallback}
       actions={actions}

@@ -17,7 +17,7 @@ export const Modal = ({
   iconTitle,
   title,
   subtitle,
-  hasCloseBtn,
+  hasCloseButton,
   handleCloseModal,
   actionCallback,
   children,
@@ -39,7 +39,7 @@ export const Modal = ({
             <span className="af-modal__top-title-subtitle">{subtitle}</span>
           )}
         </div>
-        {hasCloseBtn && (
+        {hasCloseButton && (
           <Button
             className="af-modal__top-title-close-btn"
             onClick={handleCloseModal}

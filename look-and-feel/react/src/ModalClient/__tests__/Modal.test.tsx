@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Modal } from "..";
 import { TActionButton } from "../type";
 
 const defaultProps = {
   title: "Modal Title",
-  isOpen: true,
+  open: true,
   setIsOpen: vi.fn(),
   onClickOutside: vi.fn(),
   onClose: vi.fn(),
@@ -37,7 +38,7 @@ describe("Modal", () => {
     ${true}
     ${false}
   `("renders modal isOpen $isOpen", ({ isOpen }) => {
-    render(<Modal {...defaultProps} isOpen={isOpen} />);
+    render(<Modal {...defaultProps} open={isOpen} />);
     const dialog = screen.getByRole("dialog", {
       hidden: true,
     });
@@ -46,40 +47,40 @@ describe("Modal", () => {
     );
   });
 
-  it("renders close modal", () => {
+  it("renders close modal", async () => {
     render(<Modal {...defaultProps} />);
     const button = screen.getByRole("button", {
       hidden: true,
     });
-    button?.click();
+    await userEvent.click(button);
     expect(defaultProps.setIsOpen).toHaveBeenCalledWith(false);
   });
 
-  it("renders close modal outside", () => {
+  it("renders close modal outside", async () => {
     render(<Modal {...defaultProps} />);
     const dialog = screen.getByRole("dialog", {
       hidden: true,
     });
-    dialog?.click();
+    await userEvent.click(dialog);
     expect(defaultProps.onClickOutside).toHaveBeenCalled();
     expect(defaultProps.onClose).not.toHaveBeenCalled();
     expect(defaultProps.setIsOpen).toHaveBeenCalledWith(false);
   });
 
-  it("renders close modal outside without clickOutside function", () => {
+  it("renders close modal outside without clickOutside function", async () => {
     render(<Modal {...defaultProps} onClickOutside={undefined} />);
     const dialog = screen.getByRole("dialog", {
       hidden: true,
     });
-    dialog?.click();
+    await userEvent.click(dialog);
     expect(defaultProps.onClose).toHaveBeenCalled();
     expect(defaultProps.setIsOpen).toHaveBeenCalledWith(false);
   });
 
-  it("renders not close modal when click inside modal", () => {
+  it("renders not close modal when click inside modal", async () => {
     render(<Modal {...defaultProps} />);
     const titleDiv = screen.getByText(defaultProps.title);
-    titleDiv?.click();
+    await userEvent.click(titleDiv);
     expect(defaultProps.onClickOutside).not.toHaveBeenCalled();
     expect(defaultProps.onClose).not.toHaveBeenCalled();
     expect(defaultProps.setIsOpen).not.toHaveBeenCalled();
@@ -92,13 +93,13 @@ describe("Modal", () => {
     ${"tertiary"}
   `(
     "renders close modal when actions $actionType callback",
-    ({ actionType }: { actionType: keyof TActionButton }) => {
+    async ({ actionType }: { actionType: keyof TActionButton }) => {
       render(<Modal {...defaultProps} actions={actions} />);
       const actionButton = screen.getByRole("button", {
         hidden: true,
         name: actions[actionType].text,
       });
-      actionButton?.click();
+      await userEvent.click(actionButton);
       expect(actions[actionType].callback).toHaveBeenCalled();
       expect(defaultProps.onClickOutside).not.toHaveBeenCalled();
       expect(defaultProps.onClose).not.toHaveBeenCalled();

@@ -19,8 +19,8 @@ export type TModalHook = {
 };
 
 export type ModalProps = TModalHook & {
-  isOpen: boolean;
-  hasCloseBtn?: boolean;
+  open: boolean;
+  hasCloseButton?: boolean;
   title: string;
   subtitle?: string;
   iconTitle?: ReactNode;
@@ -35,7 +35,7 @@ export type TModalType = {
   iconTitle: ReactNode;
   title: string;
   subtitle?: string;
-  hasCloseBtn: boolean;
+  hasCloseButton: boolean;
   handleCloseModal: () => void;
   actionCallback: (callback?: () => void) => void;
   actions?: TActionButton;
