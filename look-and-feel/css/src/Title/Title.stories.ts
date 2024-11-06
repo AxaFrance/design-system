@@ -9,7 +9,7 @@ const meta: Meta = {
 export default meta;
 
 const template = (args: Args) => {
-  const headerContainer = document.createElement("h1");
+  const headerContainer = document.createElement("header");
   headerContainer.className = `af-title${args.classModifier
     .split(" ")
     .filter(Boolean)
@@ -17,12 +17,7 @@ const template = (args: Args) => {
     .join("")}`;
   headerContainer.className += ` af-title--${args.size}`;
 
-  const textContainer = args.icon
-    ? document.createElement("div")
-    : headerContainer;
   if (args.icon && args.size === "xl") {
-    textContainer.className = "af-title__text-container";
-
     const icon = document.createElement("div");
     icon.className = "af-icon-bg af-title__icon";
     icon.innerHTML = args.icon;
@@ -33,24 +28,20 @@ const template = (args: Args) => {
   title.className = "af-title__title";
   title.textContent = args.children;
 
-  textContainer.appendChild(title);
+  headerContainer.appendChild(title);
 
   if (args.firstSubtitle) {
     const subtitle = document.createElement("span");
     subtitle.className = "af-title__subtitle";
     subtitle.textContent = args.firstSubtitle;
-    textContainer.appendChild(subtitle);
+    headerContainer.appendChild(subtitle);
   }
 
   if (args.secondSubtitle && args.size === "xl") {
     const subtitle = document.createElement("span");
     subtitle.className = "af-title__subtitle";
     subtitle.textContent = args.secondSubtitle;
-    textContainer.appendChild(subtitle);
-  }
-
-  if (args.icon) {
-    headerContainer.appendChild(textContainer);
+    headerContainer.appendChild(subtitle);
   }
 
   return headerContainer;

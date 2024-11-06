@@ -30,11 +30,6 @@ export const Title = ({
   size = TitleSize.XL,
   level = size === TitleSize.L ? 2 : 1,
 }: TitleProps) => {
-  const HLevel = useMemo(
-    () => `h${level}`,
-    [level],
-  ) as keyof JSX.IntrinsicElements;
-
   const componentClassName = useMemo(
     () =>
       getComponentClassName(
@@ -54,24 +49,23 @@ export const Title = ({
       <TitleWithSubtitles
         title={title}
         firstSubtitle={firstSubtitle}
+        level={level}
         {...args}
       />
     ),
-    [title, firstSubtitle],
+    [title, firstSubtitle, level],
   );
 
   return (
-    <HLevel className={componentClassName}>
+    <header className={componentClassName}>
       {icon && size === TitleSize.XL ? (
         <>
           <IconBg className="af-title__icon af-icon-bg">{icon}</IconBg>
-          <div className="af-title__text-container">
-            <TitleWithSubtitlesPart secondSubtitle={secondSubtitle} />
-          </div>
+          <TitleWithSubtitlesPart secondSubtitle={secondSubtitle} />
         </>
       ) : (
         <TitleWithSubtitlesPart />
       )}
-    </HLevel>
+    </header>
   );
 };
