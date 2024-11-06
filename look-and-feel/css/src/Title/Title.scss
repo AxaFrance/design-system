@@ -29,12 +29,12 @@
     gap: 0.25rem;
   }
 
-  &--xl .af-title__title {
+  &--xl &__title {
     font-size: 2rem;
     line-height: 2.5rem;
   }
 
-  &--l .af-title__title {
+  &--l &__title {
     font-size: 1.5rem;
     line-height: 1.875rem;
   }
@@ -51,17 +51,17 @@
 
 @media (width <= #{common.$breakpoint-md}) {
   .af-title {
-    &--xl .af-title__title {
+    &--xl &__title {
       font-size: 1.5rem;
       line-height: 1.875rem;
     }
 
-    &--l .af-title__title {
+    &--l &__title {
       font-size: 1.25rem;
       line-height: 1.56rem;
     }
 
-    span.af-title__subtitle {
+    &__subtitle {
       font-size: 1rem;
       line-height: 1.25rem;
     }
