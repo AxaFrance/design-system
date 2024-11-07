@@ -25,12 +25,9 @@ export const List = ({ children, classModifier, ...cardProps }: TList) => {
   return (
     <Card classModifier={`list ${classModifier}`} {...cardProps}>
       <ul className={defaultClassName}>
-        {Children.map(validChildren, (child, index) => (
+        {Children.map(validChildren, (child) => (
           <React.Fragment key={child.key}>
             <li className={`${defaultClassName}__item`}>{child}</li>
-            {index < validChildren.length - 1 && (
-              <hr className={`${defaultClassName}__separator`} />
-            )}
           </React.Fragment>
         ))}
       </ul>

@@ -160,19 +160,13 @@ export const ContentItemMonoList: StoryObj = {
 
     ul.className = "af-list";
 
-    args.items.forEach((childArgs: Args, index: number) => {
+    args.items.forEach((childArgs: Args) => {
       const item = document.createElement("li");
       item.className = "af-list__item";
 
       item.appendChild(template(childArgs));
 
       ul.appendChild(item);
-
-      if (index < args.items.length - 1) {
-        const separator = document.createElement("hr");
-        separator.className = "af-list__separator";
-        ul.appendChild(separator);
-      }
     });
 
     list.appendChild(ul);

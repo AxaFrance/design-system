@@ -54,7 +54,6 @@ export const AccordionCore = ({
       >
         {summary}
       </summary>
-      <hr className="af-accordion__separator" />
       <div className="af-accordion__content">{children}</div>
     </details>
   );

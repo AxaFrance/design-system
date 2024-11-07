@@ -15,6 +15,5 @@ describe("ClickList", () => {
       expect(screen.getByText(item.icon.props.children)).toBeInTheDocument();
       expect(screen.getByText(item.label)).toBeInTheDocument();
     });
-    expect(screen.getAllByRole("separator")).toHaveLength(2);
   });
 });

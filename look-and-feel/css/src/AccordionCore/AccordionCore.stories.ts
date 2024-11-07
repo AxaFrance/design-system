@@ -27,10 +27,6 @@ const template = ({ title, content, isOpen }: Args) => {
 
   container.appendChild(summary);
 
-  const separator = document.createElement("hr");
-  separator.className = "af-accordion__separator";
-  container.appendChild(separator);
-
   const accordionContent = document.createElement("div");
   accordionContent.className = "af-accordion__content";
   accordionContent.innerHTML = content;

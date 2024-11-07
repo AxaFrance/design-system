@@ -33,7 +33,7 @@ const template = ({ items, cardClassModifier }: TClickList) => {
 
   ul.className = "af-list";
 
-  items.forEach((child, index: number) => {
+  items.forEach((child) => {
     const modifiers = child.classModifier ? [child.classModifier] : [];
     const item = document.createElement("li");
     item.className = "af-list__item";
@@ -89,12 +89,6 @@ const template = ({ items, cardClassModifier }: TClickList) => {
 
     item.appendChild(clickItem);
     ul.appendChild(item);
-
-    if (index < items.length - 1) {
-      const separator = document.createElement("hr");
-      separator.className = "af-list__separator";
-      ul.appendChild(separator);
-    }
   });
 
   list.appendChild(ul);

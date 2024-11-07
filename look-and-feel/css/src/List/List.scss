@@ -6,13 +6,20 @@
   list-style-type: none;
 
   &__item {
-    padding: 1rem 0;
-  }
+    --separator-padding: 0rem;
 
-  &__separator {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid common.$color-gray-300;
+    position: relative;
+    padding: 1rem 0;
+
+    &:not(:last-child)::after {
+      position: absolute;
+      bottom: 0;
+      left: var(--separator-padding);
+      width: calc(100% - (2 * var(--separator-padding)));
+      height: 1px;
+      background-color: common.$color-gray-300;
+      content: "";
+    }
   }
 }
 
@@ -25,13 +32,12 @@
   &--click-list {
     padding: 0;
 
-    .af-list__separator {
-      width: calc(100% - 2rem);
-      margin: auto;
-    }
-
     .af-list__item {
       padding: 0;
+
+      &:not(:last-child)::after {
+        --separator-padding: 1rem;
+      }
     }
   }
 
@@ -48,10 +54,10 @@
       &:has(.af-click-item) {
         padding: 0;
       }
-    }
 
-    .af-list__separator ~ .af-list__separator {
-      margin: 0 1rem;
+      &:not(:first-child, :last-child)::after {
+        --separator-padding: 1rem;
+      }
     }
   }
 }

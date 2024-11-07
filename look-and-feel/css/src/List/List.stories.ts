@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../Card/Card.scss";
+import "./ClickList/ClickList.scss";
+import "./ContentItemMono/ContentItemMono.scss";
 import "./List.scss";
 
 const meta: Meta = {
@@ -23,19 +25,13 @@ export const Default: StoryObj = {
 
     ul.className = "af-list";
 
-    args.children.forEach((child: string, index: number) => {
+    args.children.forEach((child: string) => {
       const item = document.createElement("li");
       item.className = "af-list__item";
 
       item.innerHTML = child;
 
       ul.appendChild(item);
-
-      if (index < args.children.length - 1) {
-        const separator = document.createElement("hr");
-        separator.className = "af-list__separator";
-        ul.appendChild(separator);
-      }
     });
 
     list.appendChild(ul);
