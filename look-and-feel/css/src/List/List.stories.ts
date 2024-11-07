@@ -19,8 +19,6 @@ export const Default: StoryObj = {
       .map((modifier: string) => ` af-card--${modifier}`)
       .join("")}`;
 
-    list.tabIndex = 0;
-
     const ul = document.createElement("ul");
 
     ul.className = "af-list";

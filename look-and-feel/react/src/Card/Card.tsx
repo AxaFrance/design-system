@@ -18,16 +18,11 @@ export const Card = ({
     [className, classModifier],
   );
   const Component = useMemo(() => (onClick ? "button" : "section"), [onClick]);
-  const componentProps: ComponentProps<"section"> & ComponentProps<"button"> =
-    useMemo(
-      () => (onClick ? { type: "button", onClick } : { tabIndex: 0 }),
-      [onClick],
-    );
 
   return (
     <Component
       className={componentClassName}
-      {...componentProps}
+      {...(onClick ? { type: "button", onClick } : {})}
       {...otherProps}
     >
       {children}

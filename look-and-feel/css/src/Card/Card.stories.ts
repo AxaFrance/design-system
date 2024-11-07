@@ -13,7 +13,6 @@ export const Default: StoryObj = {
     container.className = `af-card${args.classModifier
       .map((classModifier: string) => ` af-card--${classModifier}`)
       .join("")}`;
-    container.tabIndex = 0;
     container.innerHTML = args.children;
     return container;
   },
