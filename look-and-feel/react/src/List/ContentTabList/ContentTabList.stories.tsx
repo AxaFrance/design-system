@@ -1,8 +1,9 @@
 import download from "@material-symbols/svg-400/rounded/download_2-fill.svg";
 import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import type { ComponentProps } from "react";
-import { ButtonVariants, Svg } from "../..";
+import { Button, ButtonVariants, Svg } from "../..";
 import { ContentTabList } from "./ContentTabList";
 
 const meta: Meta<typeof ContentTabList> = {
@@ -31,10 +32,15 @@ export const ContentTabListWithButtons: StoryObj<
         buttons: [
           {
             id: "download_button",
-            children: "Télécharger",
-            variant: ButtonVariants.ghost,
-            iconLeft: <Svg src={download} />,
-            onClick: () => {},
+            component: (
+              <Button
+                variant={ButtonVariants.ghost}
+                iconLeft={<Svg src={download} />}
+                onClick={fn()}
+              >
+                Télécharger
+              </Button>
+            ),
           },
         ],
       },
@@ -45,17 +51,27 @@ export const ContentTabListWithButtons: StoryObj<
         buttons: [
           {
             id: "download_button",
-            children: "Télécharger",
-            variant: ButtonVariants.ghost,
-            iconLeft: <Svg src={download} />,
-            onClick: () => {},
+            component: (
+              <Button
+                variant={ButtonVariants.ghost}
+                iconLeft={<Svg src={download} />}
+                onClick={fn()}
+              >
+                Télécharger
+              </Button>
+            ),
           },
           {
             id: "display_button",
-            children: "Afficher",
-            variant: ButtonVariants.ghost,
-            iconLeft: <Svg src={visibility} />,
-            onClick: () => {},
+            component: (
+              <Button
+                variant={ButtonVariants.ghost}
+                iconLeft={<Svg src={visibility} />}
+                onClick={fn()}
+              >
+                Afficher
+              </Button>
+            ),
           },
         ],
       },
