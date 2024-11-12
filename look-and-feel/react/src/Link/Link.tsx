@@ -27,7 +27,7 @@ export const Link = ({
 
   return (
     <a
-      className={`af-link ${openInNewTab ? " af-link--openInNewTab" : ""}`}
+      className={`af-link${openInNewTab ? " af-link--openInNewTab" : ""}`}
       href={href}
       {...newTabProps}
       {...props}
