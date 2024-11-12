@@ -16,7 +16,7 @@ describe("ContentTabList", () => {
       subtitle: "Subtitle 1",
       tag: "Tag 1",
       date: "Date 1",
-      buttons: [
+      actions: [
         {
           id: "download_button",
           component: (

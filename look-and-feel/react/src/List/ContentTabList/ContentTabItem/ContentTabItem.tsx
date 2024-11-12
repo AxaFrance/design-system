@@ -11,7 +11,7 @@ export const ContentTabItem = ({
   tag,
   tagProps,
   date,
-  buttons = [],
+  actions = [],
   value,
   isMobile = false,
 }: TContentTabItemProps) => (
@@ -44,7 +44,7 @@ export const ContentTabItem = ({
         </div>
       )}
     </div>
-    {(buttons.length > 0 ||
+    {(actions.length > 0 ||
       Boolean(tag) ||
       Boolean(date) ||
       Boolean(value)) && (
@@ -61,8 +61,8 @@ export const ContentTabItem = ({
             )}
           </div>
         )}
-        {buttons.map(({ id, component }) => (
-          <div className="af-list-item__button-container" key={id}>
+        {actions.map(({ id, component }) => (
+          <div className="af-list-item__action-container" key={id}>
             {component}
           </div>
         ))}

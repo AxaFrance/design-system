@@ -29,7 +29,7 @@ export const ContentTabListWithButtons: StoryObj<
         subtitle: "Titre onglet",
         tag: "En attente",
         date: "01/01/2024",
-        buttons: [
+        actions: [
           {
             id: "download_button",
             component: (
@@ -48,7 +48,7 @@ export const ContentTabListWithButtons: StoryObj<
         id: "2",
         title: "Remboursement soins",
         tag: "En attente",
-        buttons: [
+        actions: [
           {
             id: "download_button",
             component: (

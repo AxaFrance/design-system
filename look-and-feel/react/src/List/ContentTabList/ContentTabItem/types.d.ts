@@ -8,6 +8,6 @@ export type TContentTabItem = {
   tag?: string;
   tagProps?: ComponentProps<typeof Tag>;
   date?: string;
-  buttons?: Array<{ id: string; component: ReactNode }>;
+  actions?: Array<{ id: string; component: ReactNode }>;
   value?: string;
 };

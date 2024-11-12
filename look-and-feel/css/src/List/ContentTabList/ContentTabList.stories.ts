@@ -17,7 +17,7 @@ type TContentTabList = {
     subtitle?: string;
     tag?: string;
     date?: string;
-    buttons?: string[];
+    actions?: string[];
     value?: string;
   }[];
   isMobile?: boolean;
@@ -33,7 +33,7 @@ const template = ({ items, isMobile }: TContentTabList) => {
 
   ul.className = "af-list";
 
-  items.forEach(({ title, subtitle, date, tag, buttons = [], value }) => {
+  items.forEach(({ title, subtitle, date, tag, actions = [], value }) => {
     const item = document.createElement("li");
     item.className = "af-list__item";
 
@@ -119,14 +119,11 @@ const template = ({ items, isMobile }: TContentTabList) => {
       rightContainer.appendChild(additionalDataContainer);
     }
 
-    buttons.forEach((button) => {
-      const buttonsContainer = document.createElement("div");
-      buttonsContainer.className = "af-list-item__button-container";
-
-      const buttonElement = document.createElement("div");
-      buttonElement.innerHTML = button;
-      buttonsContainer.appendChild(buttonElement);
-      rightContainer.appendChild(buttonsContainer);
+    actions.forEach((action) => {
+      const actionContainer = document.createElement("div");
+      actionContainer.className = "af-list-item__action-container";
+      actionContainer.innerHTML = action;
+      rightContainer.appendChild(actionContainer);
     });
 
     if (value) {
@@ -154,7 +151,7 @@ export const ContentTabListWithButtons: StoryObj<TContentTabList> = {
         subtitle: "Titre onglet",
         tag: "En attente",
         date: "01/01/2024",
-        buttons: [
+        actions: [
           `<button class="af-btn-client af-btn-client--ghost" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00008F" viewBox="0 0 24 24">
               <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path>
@@ -166,7 +163,7 @@ export const ContentTabListWithButtons: StoryObj<TContentTabList> = {
       {
         title: "Remboursement soins",
         tag: "En attente",
-        buttons: [
+        actions: [
           `<button class="af-btn-client af-btn-client--ghost" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00008F" viewBox="0 0 24 24">
               <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path>
