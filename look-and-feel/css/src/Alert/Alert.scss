@@ -1,11 +1,9 @@
-@use "../common/common" as common;
-
 .af-alert {
   display: flex;
   padding: 1rem;
   border-radius: 12px;
   flex: 1 1 0;
-  font-family: common.$font-family-base;
+  font-family: var(--font-family-base);
   background-color: white;
 
   .af-alert__icon {
@@ -15,68 +13,68 @@
   }
 
   &--information {
-    border: 1px solid common.$color-axa;
+    border: 1px solid var(--color-axa);
 
     .af-alert__icon {
-      color: common.$color-axa;
+      color: var(--color-axa);
       transform: rotate(180deg);
-      fill: common.$color-axa;
+      fill: var(--color-axa);
     }
 
     .af-alert__title {
-      color: common.$color-axa;
+      color: var(--color-axa);
     }
   }
 
   &--error {
-    border: 1px solid common.$color-red-700;
+    border: 1px solid var(--color-red-700);
 
     .af-alert__icon {
-      color: common.$color-red-700;
-      fill: common.$color-red-700;
+      color: var(--color-red-700);
+      fill: var(--color-red-700);
     }
 
     .af-alert__title {
-      color: common.$color-red-700;
+      color: var(--color-red-700);
     }
   }
 
   &--neutral {
-    border: 1px solid common.$color-gray;
+    border: 1px solid var(--color-gray);
 
     .af-alert__icon {
-      color: common.$color-gray;
-      fill: common.$color-gray;
+      color: var(--color-gray);
+      fill: var(--color-gray);
     }
 
     .af-alert__title {
-      color: common.$color-gray;
+      color: var(--color-gray);
     }
   }
 
   &--warning {
-    border: 1px solid common.$color-btn-business;
+    border: 1px solid var(--color-btn-business);
 
     .af-alert__icon {
-      color: common.$color-btn-business;
-      fill: common.$color-btn-business;
+      color: var(--color-btn-business);
+      fill: var(--color-btn-business);
     }
 
     .af-alert__title {
-      color: common.$color-btn-business;
+      color: var(--color-btn-business);
     }
   }
 
   &--validation {
-    border: 1px solid common.$color-green-600;
+    border: 1px solid var(--color-green-600);
 
     .af-alert__icon {
-      color: common.$color-green-600;
-      fill: common.$color-green-600;
+      color: var(--color-green-600);
+      fill: var(--color-green-600);
     }
 
     .af-alert__title {
-      color: common.$color-green-600;
+      color: var(--color-green-600);
     }
   }
 

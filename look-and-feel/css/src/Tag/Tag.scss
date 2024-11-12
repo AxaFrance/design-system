@@ -3,14 +3,14 @@
 .af-tag {
   display: inline-flex;
   padding: 0.125rem 0.5rem;
-  border: 1px solid common.$color-gray;
+  border: 1px solid var(--color-gray);
   border-radius: 0.25rem;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
-  font-family: common.$font-family-base;
-  color: common.$color-gray;
-  background-color: common.$color-white;
+  font-family: var(--font-family-base);
+  color: var(--color-gray);
+  background-color: var(--color-white);
   cursor: default;
 
   span {
@@ -20,23 +20,23 @@
   }
 
   &--success {
-    border-color: common.$color-green-600;
-    color: common.$color-green-600;
+    border-color: var(--color-green-600);
+    color: var(--color-green-600);
   }
 
   &--error {
-    border-color: common.$color-red-700;
-    color: common.$color-red-700;
+    border-color: var(--color-red-700);
+    color: var(--color-red-700);
   }
 
   &--warning {
-    border-color: common.$color-btn-business;
-    color: common.$color-btn-business;
+    border-color: var(--color-btn-business);
+    color: var(--color-btn-business);
   }
 
   &--info {
-    border-color: common.$color-axa;
-    color: common.$color-axa;
+    border-color: var(--color-axa);
+    color: var(--color-axa);
   }
 
   @media (width <= 667px) {

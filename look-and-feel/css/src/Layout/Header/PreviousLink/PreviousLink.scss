@@ -1,6 +1,6 @@
 @use "../../../common/common" as common;
 
-af-header-previous-link-container .af-header-previous-link-container {
+.af-header-previous-link-container {
   display: flex;
   padding-top: 1rem;
   align-items: center;
@@ -18,16 +18,16 @@ af-header-previous-link-container .af-header-previous-link-container {
   &__icon {
     width: 1rem;
     height: 1rem;
-    fill: common.$color-gray-700;
+    fill: var(--color-gray-700);
   }
 
   &__text {
-    font-family: common.$font-family-sans-serif;
+    font-family: var(--font-family-sans-serif);
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.25rem;
     text-align: center;
-    color: common.$color-gray-700;
+    color: var(--color-gray-700);
   }
 
   &:focus {
@@ -37,7 +37,7 @@ af-header-previous-link-container .af-header-previous-link-container {
   &:focus,
   &:hover {
     text-decoration: none;
-    color: common.$color-gray-700;
+    color: var(--color-gray-700);
   }
 }
 

@@ -1,28 +1,26 @@
-@use "../common/common" as common;
-
 .af-link {
   display: inline-flex;
   width: fit-content;
   height: fit-content;
   align-items: center;
-  font-family: common.$font-family-base;
+  font-family: var(--font-family-base);
   text-decoration: underline;
-  color: common.$color-axa;
-  fill: common.$color-axa;
+  color: var(--color-axa);
+  fill: var(--color-axa);
 
   &:hover {
-    color: common.$color-blue-1;
-    fill: common.$color-blue-1;
+    color: var(--color-blue-1);
+    fill: var(--color-blue-1);
   }
 
   &:active,
   &:focus {
-    color: common.$color-blue-1;
-    fill: common.$color-blue-1;
+    color: var(--color-blue-1);
+    fill: var(--color-blue-1);
   }
 
   &:focus-visible {
-    outline: 2px solid common.$color-blue-3;
+    outline: 2px solid var(--color-blue-3);
     outline-offset: 3px;
   }
 

@@ -1,5 +1,3 @@
-@use "../../common/common" as common;
-
 .af-input-error {
   display: flex;
   align-items: center;
@@ -7,13 +5,13 @@
 
   &__icon {
     width: 1rem;
-    color: common.$color-red-700;
-    fill: common.$color-red-700;
+    color: var(--color-red-700);
+    fill: var(--color-red-700);
   }
 
   &__message {
-    font-family: common.$font-family-base;
+    font-family: var(--font-family-base);
     font-size: 1rem;
-    color: common.$color-red-700;
+    color: var(--color-red-700);
   }
 }

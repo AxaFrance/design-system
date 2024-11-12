@@ -6,27 +6,27 @@
   height: min-content;
   padding: 0.75rem;
   border-radius: 0.75rem;
-  background-color: common.$color-white;
+  background-color: var(--color-white);
 
   svg {
     width: 2rem;
     height: 2rem;
-    fill: common.$color-axa;
+    fill: var(--color-axa);
   }
 
   &--secondary {
-    background-color: common.$color-axa;
+    background-color: var(--color-axa);
 
     svg {
-      fill: common.$color-white;
+      fill: var(--color-white);
     }
   }
 
   &--disabled {
-    background-color: common.$color-gray-200;
+    background-color: var(--color-gray-200);
 
     svg {
-      fill: common.$color-gray-500;
+      fill: var(--color-gray-500);
     }
   }
 }

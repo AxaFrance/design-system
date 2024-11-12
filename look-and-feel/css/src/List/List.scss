@@ -17,7 +17,7 @@
       left: var(--separator-padding);
       width: calc(100% - (2 * var(--separator-padding)));
       height: 1px;
-      background-color: common.$color-gray-300;
+      background-color: var(--color-gray-300);
       content: "";
     }
   }

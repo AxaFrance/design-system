@@ -21,13 +21,13 @@
 
     &--done {
       svg {
-        fill: common.$color-axa;
+        fill: var(--color-axa);
       }
     }
 
     &--close {
       svg {
-        fill: common.$color-red-700;
+        fill: var(--color-red-700);
       }
     }
   }
@@ -35,7 +35,7 @@
   &__label,
   &__value {
     margin: 0;
-    font-family: common.$font-family-base;
+    font-family: var(--font-family-base);
     font-size: 1rem;
     line-height: 1.25rem;
     overflow-wrap: break-word;
@@ -45,14 +45,14 @@
     margin-right: 1rem;
     grid-area: label;
     font-weight: 400;
-    color: common.$color-gray-700;
+    color: var(--color-gray-700);
   }
 
   &__value {
     grid-area: value;
     font-weight: 600;
     text-align: end;
-    color: common.$color-gray-900;
+    color: var(--color-gray-900);
   }
 
   &__button {

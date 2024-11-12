@@ -1,4 +1,6 @@
+/* eslint-disable import/no-default-export */
 import "../src/common/icons.scss";
+import "../src/common/tokens.scss";
 
 /** @type { import('@storybook/html').Preview } */
 const preview = {

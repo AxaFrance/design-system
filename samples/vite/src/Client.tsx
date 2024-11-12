@@ -11,9 +11,14 @@ const Client = () => (
     <header>
       <h1>Client sample</h1>
     </header>
-
+    <p className="af-test-token-css">Test de token CSS</p>
     <article>
-      <TextInput classModifier="error" label="Name" description="Description" error="This field is required" />
+      <TextInput
+        classModifier="error"
+        label="Name"
+        description="Description"
+        error="This field is required"
+      />
     </article>
 
     <article>
