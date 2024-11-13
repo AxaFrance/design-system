@@ -3,12 +3,7 @@ import type { ComponentProps, ReactNode } from "react";
 export type TClickItem = {
   classModifier?: string;
   isDisabled?: boolean;
-} & Omit<ComponentProps<"button">, "disabled"> &
-  ComponentProps<"a"> & {
-    /**
-     * @deprecated Use children prop instead
-     */
-    label?: ReactNode;
+} & Omit<ComponentProps<"button">, "disabled"> & {
     parentClickComponent?: (
       parentClickComponentProps: TParentClickComponentProps,
     ) => ReactNode;

@@ -5,7 +5,6 @@ import { getComponentClassName } from "../../../utilities";
 import type { TClickItem } from "./types";
 
 export const ClickItem = ({
-  label,
   children,
   icon,
   parentClickComponent: ClickComponent = ({
@@ -40,7 +39,7 @@ export const ClickItem = ({
     >
       <div className="af-click-item__content">
         {icon && <div className="af-click-item__icon">{icon}</div>}
-        <div className="af-click-item__label">{children || label}</div>
+        <div className="af-click-item__label">{children}</div>
       </div>
       <div className="af-click-item__action">
         <Svg src={chevron} aria-hidden />
