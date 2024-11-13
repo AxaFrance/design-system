@@ -1,31 +1,47 @@
 @use "./common" as common;
 
 :root {
+  /* FONTS *******************************************************************/
   --font-family-sans-serif: #{common.$font-family-sans-serif};
   --font-family-serif: #{common.$font-family-serif};
   --font-family-base: #{common.$font-family-base};
   --font-family-publico-bold: #{common.$font-family-publico-bold};
   --font-family-publico: #{common.$font-family-publico};
-  --color-axa: #{common.$color-axa};
+
+  /* COLORS *******************************************************************/
+
   --color-white: #{common.$color-white};
   --color-black: #{common.$color-black};
-  --color-red: #{common.$color-red};
-  --color-gray: #{common.$color-gray};
-  --color-red-700: #{common.$color-red-700};
+
+  /* blue */
+  --color-axa: #{common.$color-axa};
   --color-blue-1: #{common.$color-blue-1};
   --color-blue-2: #{common.$color-blue-2};
   --color-blue-3: #{common.$color-blue-3};
+  --color-ocean-blue: #{common.$color-oceanBlue};
   --color-btn-light: #{common.$color-btn-light};
-  --color-btn-business: #{common.$color-btn-business};
-  --color-btn-business-dark: #{common.$color-btn-business-dark};
-  --color-btn-business-light: #{common.$color-btn-business-light};
-  --color-btn-disabled-text: #{common.$color-btn-disabled-text};
-  --color-btn-error-text: #{common.$color-btn-error-text};
-  --color-btn-error-bg: #{common.$color-btn-error-bg};
+  --color-focus: #{common.$color-focus};
   --color-btn-tertiary-bg: #{common.$color-btn-tertiary-bg};
   --color-btn-tertiary-bg-darker: #{common.$color-btn-tertiary-bg-darker};
   --color-btn-tertiary-bg-lighter: #{common.$color-btn-tertiary-bg-lighter};
-  --color-ocean-blue: #{common.$color-oceanBlue};
+
+  /* red */
+  --color-red: #{common.$color-red};
+  --color-red-700: #{common.$color-red-700};
+  --color-btn-error-text: #{common.$color-btn-error-text};
+  --color-btn-error-bg: #{common.$color-btn-error-bg};
+  --error-custom-border: #{common.$error-custom-border};
+  --error-custom-bg: #{common.$error-custom-bg};
+
+  /* orange */
+  --color-alert-danger-color-border: #{common.$color-alertDanger-colorBorder};
+  --color-alert-danger-bg-color: #{common.$color-alertDanger-bgColor};
+  --color-btn-business: #{common.$color-btn-business};
+  --color-btn-business-dark: #{common.$color-btn-business-dark};
+  --color-btn-business-light: #{common.$color-btn-business-light};
+
+  /* gray */
+  --color-gray: #{common.$color-gray};
   --color-gray-1: #{common.$color-gray-1};
   --color-gray-200: #{common.$color-gray-200};
   --color-gray-300: #{common.$color-gray-300};
@@ -33,11 +49,14 @@
   --color-gray-500: #{common.$color-gray-500};
   --color-gray-700: #{common.$color-gray-700};
   --color-gray-900: #{common.$color-gray-900};
-  --color-green-600: #{common.$color-green-600};
+  --color-btn-disabled-text: #{common.$color-btn-disabled-text};
   --color-border: #{common.$color-border};
-  --color-focus: #{common.$color-focus};
-  --default-border-radius: #{common.$default-border-radius};
-  --transition-duration: #{common.$transition-duration};
+
+  /* green */
+  --color-green-600: #{common.$color-green-600};
+
+  /* SIZING *******************************************************************/
+
   --sizing-u0: #{common.$sizing-u0};
   --sizing-u05: #{common.$sizing-u05};
   --sizing-u1: #{common.$sizing-u1};
@@ -50,6 +69,9 @@
   --sizing-u8: #{common.$sizing-u8};
   --sizing-u9: #{common.$sizing-u9};
   --sizing-u10: #{common.$sizing-u10};
+
+  /* SPACING *******************************************************************/
+
   --spacing-u05: #{common.$spacing-u05};
   --spacing-u0: #{common.$spacing-u0};
   --spacing-u1: #{common.$spacing-u1};
@@ -72,19 +94,26 @@
   --spacing-u18: #{common.$spacing-u18};
   --spacing-u19: #{common.$spacing-u19};
   --spacing-u20: #{common.$spacing-u20};
+
+  /* SCREENS & BREAKPOINTS *******************************************************************/
+
   --screen-size-s: #{common.$screen-size-s};
   --screen-size-m: #{common.$screen-size-m};
   --screen-size-l: #{common.$screen-size-l};
   --screen-size-xl: #{common.$screen-size-xl};
   --screen-size-oldl: #{common.$screen-size-oldl};
   --screen-size-oldxl: #{common.$screen-size-oldxl};
-  --error-custom-border: #{common.$error-custom-border};
-  --error-custom-bg: #{common.$error-custom-bg};
-  --color-alert-danger-color-border: #{common.$color-alertDanger-colorBorder};
-  --color-alert-danger-bg-color: #{common.$color-alertDanger-bgColor};
   --breakpoint-xs: #{common.$breakpoint-xs};
   --breakpoint-sm: #{common.$breakpoint-sm};
   --breakpoint-md: #{common.$breakpoint-md};
   --breakpoint-lg: #{common.$breakpoint-lg};
   --breakpoint-xl: #{common.$breakpoint-xl};
+
+  /* BORDERS *******************************************************************/
+
+  --default-border-radius: #{common.$default-border-radius};
+
+  /* ANIMATIONS *******************************************************************/
+
+  --transition-duration: #{common.$transition-duration};
 }
