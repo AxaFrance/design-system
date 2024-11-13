@@ -66,3 +66,13 @@ const App = () => {
     )
 }
 ```
+
+## Utilisation des CSS variables (dispo uniquement pour L&F)
+
+Il suffit d'importer le fichier des tokens dans votre application.
+
+Exemple :
+
+```typescript
+import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
+```

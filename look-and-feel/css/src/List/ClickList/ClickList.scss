@@ -6,7 +6,7 @@
   width: 100%;
   padding: 1rem;
   border: none;
-  border-radius: common.$default-border-radius;
+  border-radius: var(--default-border-radius);
   align-items: center;
   gap: 0.5rem;
   background: none;
@@ -23,7 +23,7 @@
   }
 
   &:focus-visible {
-    border: 2px solid common.$color-focus;
+    border: 2px solid var(--color-focus);
   }
 
   &__content {
@@ -36,7 +36,7 @@
   &__action svg {
     width: 1.5rem;
     height: 1.5rem;
-    fill: common.$color-axa;
+    fill: var(--color-axa);
   }
 
   &__title,
@@ -54,24 +54,24 @@
 
   &__label {
     text-align: left;
-    color: common.$color-gray-900;
+    color: var(--color-gray-900);
   }
 
   &__title {
     font-weight: 600;
-    color: common.$color-gray-900;
+    color: var(--color-gray-900);
   }
 
   &__subtitle {
     font-weight: 400;
-    color: common.$color-gray-700;
+    color: var(--color-gray-700);
   }
 
   &__secondary {
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.1rem;
-    color: common.$color-gray-700;
+    color: var(--color-gray-700);
   }
 
   &__action {
@@ -93,14 +93,14 @@
     .af-click-item {
       &__action svg,
       &__icon svg {
-        fill: common.$color-gray-500;
+        fill: var(--color-gray-500);
       }
 
       &__label,
       &__title,
       &__subtitle,
       &__secondary {
-        color: common.$color-gray-500;
+        color: var(--color-gray-500);
       }
     }
   }
@@ -120,7 +120,7 @@
   .af-click-item {
     &:focus-visible {
       border: none;
-      border: 1px solid common.$color-focus;
+      border: 1px solid var(--color-focus);
     }
 
     &__label,
@@ -146,7 +146,7 @@
           &__title,
           &__subtitle,
           &__secondary {
-            color: common.$color-axa;
+            color: var(--color-axa);
           }
         }
       }
@@ -159,7 +159,7 @@
           &__title,
           &__subtitle,
           &__secondary {
-            color: common.$color-blue-1;
+            color: var(--color-blue-1);
           }
         }
       }

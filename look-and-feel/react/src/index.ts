@@ -1,4 +1,5 @@
 import "@fontsource/source-sans-pro";
+import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
 
 export { Accordion } from "./Accordion";
 export { AccordionCore } from "./AccordionCore";

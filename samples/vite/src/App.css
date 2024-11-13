@@ -21,3 +21,9 @@ article {
   padding: 1rem 0;
   margin: auto;
 }
+
+.af-test-token-css {
+  color: var(--color-axa);
+  border: 1px solid var(--color-red);
+  padding: var(--spacing-u1);
+}

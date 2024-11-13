@@ -7,14 +7,14 @@
   &__stick {
     width: 0.25rem;
     border-radius: 0.125rem;
-    background-color: common.$color-axa;
+    background-color: var(--color-axa);
   }
 
   &__left-container {
     svg {
       width: 1.5rem;
       height: 1.5rem;
-      fill: common.$color-axa;
+      fill: var(--color-axa);
     }
 
     &--center {
@@ -25,11 +25,11 @@
 
   &--disabled {
     .af-content-item-mono__stick {
-      background-color: common.$color-gray-900;
+      background-color: var(--color-gray-900);
     }
 
     .af-content-item-mono__left-container svg {
-      fill: common.$color-gray-900;
+      fill: var(--color-gray-900);
     }
   }
 
@@ -42,18 +42,18 @@
     }
 
     .af-content-item-mono__main-text {
-      color: common.$color-gray-900;
+      color: var(--color-gray-900);
     }
 
     .af-content-item-mono__secondary-text {
-      font-family: common.$font-family-base;
+      font-family: var(--font-family-base);
       font-weight: 400;
     }
   }
 
   &--xl .af-content-item-mono__text-container {
     .af-content-item-mono__main-text {
-      font-family: common.$font-family-publico;
+      font-family: var(--font-family-publico);
       font-size: 1.5rem;
       font-weight: 700;
       line-height: 1.875rem;
@@ -62,14 +62,14 @@
     .af-content-item-mono__secondary-text {
       font-size: 1.125rem;
       line-height: 1.4rem;
-      color: common.$color-gray-700;
+      color: var(--color-gray-700);
     }
   }
 
   &--m {
     .af-content-item-mono__text-container {
       .af-content-item-mono__main-text {
-        font-family: common.$font-family-base;
+        font-family: var(--font-family-base);
         font-size: 1.125rem;
         font-weight: 600;
         line-height: 1.4rem;
@@ -81,18 +81,18 @@
       }
 
       .af-content-item-mono__tertiary-text {
-        font-family: common.$font-family-base;
+        font-family: var(--font-family-base);
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.25rem;
-        color: common.$color-gray-700;
+        color: var(--color-gray-700);
       }
 
       &:not(:has(.af-content-item-mono__tertiary-text)) {
         .af-content-item-mono__secondary-text {
           font-size: 1rem;
           line-height: 1.25rem;
-          color: common.$color-gray-700;
+          color: var(--color-gray-700);
         }
       }
     }

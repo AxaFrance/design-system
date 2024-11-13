@@ -1,4 +1,5 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/common/icons.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
 import type { Preview } from "@storybook/react";
 
 const preview: Preview = {

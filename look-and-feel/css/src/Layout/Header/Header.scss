@@ -4,7 +4,7 @@
   position: sticky;
   z-index: 100;
   top: 0;
-  background-color: common.$color-white;
+  background-color: var(--color-white);
 }
 
 .af-header-container {
@@ -12,15 +12,15 @@
   width: 100%;
   height: 72px;
   padding: 0 1rem;
-  border-top: 2px solid common.$color-axa;
-  border-bottom: 1px solid common.$color-gray-300;
+  border-top: 2px solid var(--color-axa);
+  border-bottom: 1px solid var(--color-gray-300);
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-family: common.$font-family-sans-serif;
+  font-family: var(--font-family-sans-serif);
   font-size: 1.25rem;
   font-weight: 600;
-  color: common.$color-axa;
+  color: var(--color-axa);
 
   & .af-btn-client {
     min-width: initial;
@@ -43,10 +43,10 @@
 
 .af-header-right-item {
   display: flex;
-  margin: 0 common.$spacing-u1;
+  margin: 0 var(--spacing-u1);
   flex-direction: row;
   align-items: center;
-  gap: common.$spacing-u1;
+  gap: var(--spacing-u1);
 }
 
 @media only screen and (width >= #{common.$breakpoint-md}) {
@@ -54,7 +54,7 @@
     width: auto;
     height: 80px;
     padding: 0 3.75rem;
-    border-top: 2px solid common.$color-axa;
+    border-top: 2px solid var(--color-axa);
 
     & .af-btn-client > svg {
       display: block;
@@ -80,6 +80,6 @@
 
   .af-header-right-item {
     margin: 0;
-    gap: common.$spacing-u2;
+    gap: var(--spacing-u2);
   }
 }

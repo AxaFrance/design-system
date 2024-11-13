@@ -6,7 +6,6 @@ import Client from "./Client";
 
 import "./App.css";
 import "./Reset.css";
-
 const App = () => (
   <>
     <Header

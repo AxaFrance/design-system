@@ -1,7 +1,7 @@
 @use "../common/common.scss" as common;
 
 .af-accordion {
-  font-family: common.$font-family-base;
+  font-family: var(--font-family-base);
 
   &__summary {
     display: grid;
@@ -13,7 +13,7 @@
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.4rem;
-    color: common.$color-gray-900;
+    color: var(--color-gray-900);
     cursor: pointer;
 
     p {
@@ -40,7 +40,7 @@
   }
 
   &[open] > .af-accordion__summary {
-    border-bottom: 1px solid common.$color-gray-300;
+    border-bottom: 1px solid var(--color-gray-300);
 
     &::after {
       transform: rotate(180deg);
@@ -52,7 +52,7 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.25rem;
-    color: common.$color-gray-700;
+    color: var(--color-gray-700);
   }
 }
 
