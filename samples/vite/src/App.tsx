@@ -6,8 +6,6 @@ import Client from "./Client";
 
 import "./App.css";
 import "./Reset.css";
-import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
-
 const App = () => (
   <>
     <Header
