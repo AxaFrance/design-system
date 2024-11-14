@@ -18,7 +18,7 @@ export { Text as TextInput } from "./Form/Text";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";
 export { Header } from "./Layout/Header";
-export { Link } from "./Link/Link";
+export { Link } from "./Link";
 export { List } from "./List";
 export { ClickItem, ClickList } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";

@@ -1,16 +1,28 @@
+@use "../common/common" as common;
+
 .af-link {
   display: inline-flex;
   width: fit-content;
   height: fit-content;
   align-items: center;
+  gap: common.rem(4);
   font-family: var(--font-family-base);
   text-decoration: underline;
   color: var(--color-axa);
   fill: var(--color-axa);
 
-  &:hover {
-    color: var(--color-blue-1);
-    fill: var(--color-blue-1);
+  svg {
+    width: common.rem(20);
+    height: common.rem(20);
+    aspect-ratio: 1;
+  }
+
+  &--openInNewTab {
+    font-weight: 600;
+  }
+
+  &:has(svg) {
+    text-decoration: none;
   }
 
   &:active,
@@ -24,19 +36,12 @@
     outline-offset: 3px;
   }
 
-  &--openInNewTab {
-    font-weight: 600;
-    text-decoration: none;
+  &:hover {
+    color: var(--color-blue-1);
+    fill: var(--color-blue-1);
 
-    &:hover {
+    &:has(svg) {
       text-decoration: none;
-    }
-
-    svg {
-      width: 1.25rem;
-      height: 1.25rem;
-      aspect-ratio: 1;
-      margin-left: 0.2rem;
     }
   }
 }

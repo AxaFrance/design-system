@@ -18,6 +18,7 @@
   cursor: pointer;
 
   &:hover {
+    text-decoration: none;
     color: var(--color-white);
     background-color: var(--color-blue-1);
   }
