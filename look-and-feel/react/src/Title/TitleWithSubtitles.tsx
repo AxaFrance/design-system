@@ -1,5 +1,5 @@
-import { useMemo, type ReactNode } from "react";
-import { TitleLevel } from "./constants";
+import { type ReactNode } from "react";
+import type { TitleLevel } from ".";
 
 type TitleTextProps = {
   title: ReactNode;
@@ -14,10 +14,7 @@ export const TitleWithSubtitles = ({
   secondSubtitle,
   level = 1,
 }: TitleTextProps) => {
-  const HLevel = useMemo(
-    () => `h${level}`,
-    [level],
-  ) as keyof JSX.IntrinsicElements;
+  const HLevel = `h${level}` as keyof JSX.IntrinsicElements;
 
   return (
     <>

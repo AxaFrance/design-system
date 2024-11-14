@@ -6,7 +6,7 @@ import {
 } from "react";
 import { IconBg } from "..";
 import { getComponentClassName } from "../utilities";
-import { TitleSize, TitleLevel } from "./constants";
+import { TitleLevel, TitleSize } from "./constants";
 import { TitleWithSubtitles } from "./TitleWithSubtitles";
 
 type TitleProps = {
@@ -49,27 +49,23 @@ export const Title = ({
       <TitleWithSubtitles
         title={title}
         firstSubtitle={firstSubtitle}
+        level={level}
         {...args}
       />
     ),
-    [title, firstSubtitle],
+    [title, firstSubtitle, level],
   );
 
   return (
-    <div className={componentClassName}>
+    <header className={componentClassName}>
       {icon && size === TitleSize.XL ? (
         <>
           <IconBg className="af-title__icon af-icon-bg">{icon}</IconBg>
-          <div className="af-title__text-container">
-            <TitleWithSubtitlesPart
-              secondSubtitle={secondSubtitle}
-              level={level}
-            />
-          </div>
+          <TitleWithSubtitlesPart secondSubtitle={secondSubtitle} />
         </>
       ) : (
-        <TitleWithSubtitlesPart level={level} />
+        <TitleWithSubtitlesPart />
       )}
-    </div>
+    </header>
   );
 };

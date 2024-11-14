@@ -9,49 +9,42 @@ const meta: Meta = {
 export default meta;
 
 const template = (args: Args) => {
-  const container = document.createElement("div");
-  container.className = `af-title${args.classModifier
+  const headerContainer = document.createElement("header");
+  headerContainer.className = `af-title${args.classModifier
     .split(" ")
     .filter(Boolean)
     .map((classModifier: string) => ` af-title--${classModifier}`)
     .join("")}`;
-  container.className += ` af-title--${args.size}`;
+  headerContainer.className += ` af-title--${args.size}`;
 
-  const textContainer = args.icon ? document.createElement("div") : container;
   if (args.icon && args.size === "xl") {
-    textContainer.className = "af-title__text-container";
-
     const icon = document.createElement("div");
     icon.className = "af-icon-bg af-title__icon";
     icon.innerHTML = args.icon;
-    container.appendChild(icon);
+    headerContainer.appendChild(icon);
   }
 
-  const title = document.createElement("h1");
+  const title = document.createElement("p");
   title.className = "af-title__title";
   title.textContent = args.children;
 
-  textContainer.appendChild(title);
+  headerContainer.appendChild(title);
 
   if (args.firstSubtitle) {
     const subtitle = document.createElement("span");
     subtitle.className = "af-title__subtitle";
     subtitle.textContent = args.firstSubtitle;
-    textContainer.appendChild(subtitle);
+    headerContainer.appendChild(subtitle);
   }
 
   if (args.secondSubtitle && args.size === "xl") {
     const subtitle = document.createElement("span");
     subtitle.className = "af-title__subtitle";
     subtitle.textContent = args.secondSubtitle;
-    textContainer.appendChild(subtitle);
+    headerContainer.appendChild(subtitle);
   }
 
-  if (args.icon) {
-    container.appendChild(textContainer);
-  }
-
-  return container;
+  return headerContainer;
 };
 
 export const TitleWithIcon: StoryObj = {
