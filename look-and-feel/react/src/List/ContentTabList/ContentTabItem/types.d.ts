@@ -1,5 +1,5 @@
-import type { ComponentProps } from "react";
-import { Button, Tag } from "../../..";
+import type { ComponentProps, ReactNode } from "react";
+import { Tag } from "../../..";
 
 export type TContentTabItem = {
   id?: string;
@@ -8,6 +8,6 @@ export type TContentTabItem = {
   tag?: string;
   tagProps?: ComponentProps<typeof Tag>;
   date?: string;
-  buttons?: Array<ComponentProps<typeof Button>>;
+  actions?: Array<{ id: string; component: ReactNode }>;
   value?: string;
 };

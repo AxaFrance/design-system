@@ -1,4 +1,4 @@
-import { Button, Tag } from "../../..";
+import { Tag } from "../../..";
 import type { TContentTabItem } from "./types";
 
 type TContentTabItemProps = TContentTabItem & {
@@ -11,7 +11,7 @@ export const ContentTabItem = ({
   tag,
   tagProps,
   date,
-  buttons = [],
+  actions = [],
   value,
   isMobile = false,
 }: TContentTabItemProps) => (
@@ -44,7 +44,7 @@ export const ContentTabItem = ({
         </div>
       )}
     </div>
-    {(buttons.length > 0 ||
+    {(actions.length > 0 ||
       Boolean(tag) ||
       Boolean(date) ||
       Boolean(value)) && (
@@ -61,9 +61,9 @@ export const ContentTabItem = ({
             )}
           </div>
         )}
-        {buttons.map((button) => (
-          <div className="af-list-item__button-container" key={button?.id}>
-            <Button {...button} />
+        {actions.map(({ id, component }) => (
+          <div className="af-list-item__action-container" key={id}>
+            {component}
           </div>
         ))}
         {Boolean(value) && <span className="af-list-item__value">{value}</span>}

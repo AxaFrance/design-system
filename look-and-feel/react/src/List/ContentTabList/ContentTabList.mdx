@@ -25,13 +25,18 @@ const MyComponentWithButtons = () => (
         subtitle: "Titre onglet",
         tag: "En attente",
         date: "01/01/2024",
-        buttons: [
+        actions: [
           {
             id: "download_button",
-            children: "Télécharger",
-            variant: ButtonVariants.ghost,
-            iconLeft: <Svg src={download} />,
-            onClick,
+            component: (
+              <Button
+                variant={ButtonVariants.ghost}
+                iconLeft={<Svg src={download} />}
+                onClick={fn()}
+              >
+                Télécharger
+              </Button>
+            ),
           },
         ],
       },
@@ -39,20 +44,30 @@ const MyComponentWithButtons = () => (
         id: "2",
         title: "Remboursement soins",
         tag: "En attente",
-        buttons: [
+        actions: [
           {
             id: "download_button",
-            children: "Télécharger",
-            variant: ButtonVariants.ghost,
-            iconLeft: <Svg src={download} />,
-            onClick,
+            component: (
+              <Button
+                variant={ButtonVariants.ghost}
+                iconLeft={<Svg src={download} />}
+                onClick={fn()}
+              >
+                Télécharger
+              </Button>
+            ),
           },
           {
             id: "display_button",
-            children: "Afficher",
-            variant: ButtonVariants.ghost,
-            iconLeft: <Svg src={visibility} />,
-            onClick,
+            component: (
+              <Button
+                variant={ButtonVariants.ghost}
+                iconLeft={<Svg src={visibility} />}
+                onClick={fn()}
+              >
+                Afficher
+              </Button>
+            ),
           },
         ],
       },

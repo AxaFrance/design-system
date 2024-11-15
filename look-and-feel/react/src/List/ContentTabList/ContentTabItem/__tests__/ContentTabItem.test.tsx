@@ -3,9 +3,12 @@ import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ContentTabItem, type TContentTabItem } from "..";
-import { ButtonVariants, Svg } from "../../../..";
+import { Button, ButtonVariants, Svg } from "../../../..";
 
 describe("ContentTabList", () => {
+  const onDownload = vi.fn();
+  const onDisplay = vi.fn();
+
   const items: TContentTabItem[] = [
     {
       id: "1",
@@ -13,20 +16,30 @@ describe("ContentTabList", () => {
       subtitle: "Subtitle 1",
       tag: "Tag 1",
       date: "Date 1",
-      buttons: [
+      actions: [
         {
           id: "download_button",
-          children: "Télécharger",
-          variant: ButtonVariants.ghost,
-          iconLeft: <Svg src={download} fill="#00008F" />,
-          onClick: vi.fn(),
+          component: (
+            <Button
+              variant={ButtonVariants.ghost}
+              iconLeft={<Svg src={download} fill="#00008F" />}
+              onClick={onDownload}
+            >
+              Télécharger
+            </Button>
+          ),
         },
         {
           id: "display_button",
-          children: "Afficher",
-          variant: ButtonVariants.ghost,
-          iconLeft: <Svg src={visibility} fill="#00008F" />,
-          onClick: vi.fn(),
+          component: (
+            <Button
+              variant={ButtonVariants.ghost}
+              iconLeft={<Svg src={visibility} fill="#00008F" />}
+              onClick={onDisplay}
+            >
+              Afficher
+            </Button>
+          ),
         },
       ],
     },
@@ -105,7 +118,7 @@ describe("ContentTabList", () => {
 
     await userEvent.click(screen.getByRole("button", { name: /Télécharger$/ }));
 
-    expect(items?.[0]?.buttons?.[0].onClick).toHaveBeenCalled();
+    expect(onDownload).toHaveBeenCalled();
   });
 
   it("should call onDisplay when display button is clicked", async () => {
@@ -113,6 +126,6 @@ describe("ContentTabList", () => {
 
     await userEvent.click(screen.getByRole("button", { name: /Afficher$/ }));
 
-    expect(items?.[0]?.buttons?.[1].onClick).toHaveBeenCalled();
+    expect(onDownload).toHaveBeenCalled();
   });
 });

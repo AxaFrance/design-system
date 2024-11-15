@@ -70,7 +70,7 @@
         color: var(--color-green-600);
       }
 
-      &__button-container {
+      &__action-container {
         margin: 0 0.625rem;
 
         svg {
@@ -143,10 +143,10 @@
         line-height: 1.25rem;
       }
 
-      &__button-container {
+      &__action-container {
         margin: 0;
 
-        button {
+        > * {
           padding: 0;
           gap: 0;
           font-size: 0;
