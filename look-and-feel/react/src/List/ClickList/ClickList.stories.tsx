@@ -2,6 +2,7 @@ import contentPasteGo from "@material-symbols/svg-400/outlined/content_paste_go.
 import error from "@material-symbols/svg-400/outlined/error-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Svg } from "../../Svg";
+import { createClickItemParent } from "./ClickItem";
 import { ClickList } from "./ClickList";
 
 const meta: Meta<typeof ClickList> = {
@@ -108,16 +109,11 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
             <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
-        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
-          <a
-            href="https://github.com/AxaFrance/design-system"
-            target="_blank"
-            rel="noreferrer"
-            {...parentClickComponentProps}
-          >
-            {children}
-          </a>
-        ),
+        parentClickComponent: createClickItemParent("a", {
+          href: "https://github.com/AxaFrance/design-system",
+          target: "_blank",
+          rel: "noreferrer",
+        }),
       },
       {
         id: "2",
@@ -130,16 +126,11 @@ export const ClickListLinkWithoutIcon: StoryObj<typeof ClickList> = {
             <p className="af-click-item__secondary">Signé électroniquement</p>
           </>
         ),
-        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
-          <a
-            href="https://github.com/AxaFrance/design-system"
-            target="_blank"
-            rel="noreferrer"
-            {...parentClickComponentProps}
-          >
-            {children}
-          </a>
-        ),
+        parentClickComponent: createClickItemParent("a", {
+          href: "https://github.com/AxaFrance/design-system",
+          target: "_blank",
+          rel: "noreferrer",
+        }),
         isDisabled: true,
       },
     ],

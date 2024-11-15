@@ -15,7 +15,7 @@ describe("ClickItem", () => {
   it("should render label correctly with label prop", () => {
     const label = "Sample Label";
 
-    render(<ClickItem label={label} />);
+    render(<ClickItem>{label}</ClickItem>);
 
     const labelElement = screen.getByText(label);
 

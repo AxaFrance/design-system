@@ -101,6 +101,10 @@ const MyComponentWithoutIcon = () => (
 
 ### Use with link and without left icon
 
+You can override the default parent component by passing a `parentClickComponent` prop to the item.
+
+A function named `createClickItemParent` is provided to create a parent component with the desired props easier.
+
 ```tsx
 const MyComponentWithoutIcon = () => (
   <ClickList
@@ -120,16 +124,11 @@ const MyComponentWithoutIcon = () => (
             </p>
           </>
         ),
-        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
-          <a
-            href="https://github.com/AxaFrance/design-system"
-            target="_blank"
-            rel="noreferrer"
-            {...parentClickComponentProps}
-          >
-            {children}
-          </a>
-        ),
+        parentClickComponent: createClickItemParent("a", {
+          href: "https://github.com/AxaFrance/design-system",
+          target: "_blank",
+          rel: "noreferrer",
+        }),
       },
       {
         id: "contractual_Orias_sheet-2",
@@ -146,16 +145,11 @@ const MyComponentWithoutIcon = () => (
             </p>
           </>
         ),
-        parentClickComponent: ({ children, ...parentClickComponentProps }) => (
-          <a
-            href="https://github.com/AxaFrance/design-system"
-            target="_blank"
-            rel="noreferrer"
-            {...parentClickComponentProps}
-          >
-            {children}
-          </a>
-        ),
+        parentClickComponent: createClickItemParent("a", {
+          href: "https://github.com/AxaFrance/design-system",
+          target: "_blank",
+          rel: "noreferrer",
+        }),
         isDisabled: true,
       },
     ]}
