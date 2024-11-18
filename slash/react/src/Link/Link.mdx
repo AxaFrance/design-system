@@ -1,0 +1,45 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as LinkStories from "./Link.stories";
+
+<Meta of={LinkStories} />
+
+## Link
+
+### Import
+
+```tsx
+import { Link } from "@axa-fr/design-system-slash-react";
+```
+
+### Use
+
+#### Link Example:
+
+```tsx
+export const LinkExample = () => (
+  <Link href="http://www.axa.fr" target="_blank">
+    Lien vers AXA
+  </Link>
+);
+```
+
+#### Playground:
+
+<Canvas of={LinkStories.LinkStory} />
+
+<Controls of={LinkStories.LinkStory} />
+
+#### Use Link with react-router-dom:
+
+The `Link` component is interoperable with other libraries like `react-router-dom`. In this case, you need to use the `component` prop to specify the link component to use.
+The `component` prop overrides the root element, which is by default an `a` tag, and all associated props.
+
+```tsx
+import { Link as RouterLink } from "react-router-dom";
+
+export const LinkExample = () => (
+  <Link component={RouterLink} to="/contact">
+    Go to Contact Page
+  </Link>
+);
+```
