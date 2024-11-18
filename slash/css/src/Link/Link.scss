@@ -1,0 +1,68 @@
+@use "../common/common" as common;
+
+.af-slash-link {
+  font-family: common.$font-family-sans-serif;
+  font-size: common.px-to-rem(16);
+  line-height: common.px-to-rem(20);
+  text-align: start;
+  text-decoration: underline;
+  color: common.$color-azur;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:has(svg) {
+    & > svg {
+      width: common.px-to-rem(15);
+      height: common.px-to-rem(15);
+      vertical-align: middle;
+      fill: common.$color-azur;
+    }
+
+    &[aria-disabled="true"] > svg {
+      fill: common.$color-gray-1;
+    }
+
+    & > svg:is(svg:first-child) {
+      margin-right: common.px-to-rem(4);
+    }
+
+    & > svg:is(svg:last-child) {
+      margin-left: common.px-to-rem(4);
+    }
+  }
+
+  &:has(.glyphicon) {
+    & > .glyphicon {
+      vertical-align: middle;
+      font-size: common.px-to-rem(14);
+      line-height: common.px-to-rem(14);
+    }
+
+    & > .glyphicon:is(.glyphicon:first-child) {
+      margin-right: common.px-to-rem(4);
+    }
+
+    & > .glyphicon:is(.glyphicon:last-child) {
+      margin-left: common.px-to-rem(4);
+    }
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: 2px solid common.$color-azur;
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: common.$color-azur;
+  }
+
+  &[aria-disabled="true"] {
+    text-decoration: underline;
+    color: common.$color-gray-1;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
