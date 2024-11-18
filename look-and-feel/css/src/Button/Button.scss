@@ -17,6 +17,7 @@
     box-shadow;
   transition-timing-function: linear;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     text-decoration: none;
