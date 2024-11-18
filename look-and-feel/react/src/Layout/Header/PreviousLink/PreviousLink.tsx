@@ -1,5 +1,5 @@
-import arrowBack from "@material-symbols/svg-400/outlined/arrow_back.svg";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/PreviousLink/PreviousLink.scss";
+import arrowBack from "@material-symbols/svg-400/outlined/arrow_back.svg";
 import React, {
   ComponentPropsWithoutRef,
   isValidElement,
@@ -35,13 +35,12 @@ const PreviousLink = ({
         React.cloneElement(child, {
           children: (
             <>
-              <Svg className="af-header-previous-link__icon" src={arrowBack} />
-              <span className="af-header-previous-link__text">
-                {child.props.children}
-              </span>
+              <Svg src={arrowBack} />
+              {child.props.children}
             </>
           ),
-          className: "af-header-previous-link",
+          className:
+            "af-btn-client af-btn-client--ghost af-btn-client--header-previous-link",
           onClick: handleClick,
         }),
       )}
