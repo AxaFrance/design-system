@@ -15,7 +15,6 @@ export default meta;
 
 export const Default: StoryObj<typeof Alert> = {
   args: {
-    classModifier: "danger",
     title: "Attention: Ceci est une alerte",
   },
   argTypes: {
