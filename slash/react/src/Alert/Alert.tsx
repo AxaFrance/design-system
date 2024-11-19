@@ -23,7 +23,7 @@ export const Alert = ({
   iconClassName,
   title,
   children,
-  classModifier,
+  classModifier = "error",
 }: PropsWithChildren<AlertCoreComponentProps>) => {
   const componentClassName = getComponentClassName(
     className,
