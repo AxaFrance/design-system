@@ -30,6 +30,51 @@ git switch -c nom-de-ma-branche
 
 3. **Soumettre une Pull Request :** Une fois que vous êtes satisfait de vos modifications, soumettez une pull request vers la branche principale du projet.
 
+## Règles de Commit
+
+### Convention de Commit
+
+Nous utilisons [Conventional Commits](https://www.conventionalcommits.org/) pour nous assurer que les messages de commit respectent les conventions spécifiées.
+
+````plaintext
+<type>[scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+````
+
+Voici les règles à suivre pour les scopes de commit :
+- Utilisez le scope correspondant au design system mis à jour par le commit. Les scopes disponibles sont :
+    - `slash`
+    - `look&feel`
+    - `apollo`
+- Si le commit traite de deux ou plusieurs design systems, séparez les scopes par une virgule (`,`).
+- Si le commit est plus général au projet, utilisez le scope `design-system`.
+- Les scopes `deps`, `deps-dev` et `release` sont réservés et ne doivent pas être utilisés.
+
+Exemples de messages de commit valides :
+
+```plaintext
+feat(slash): ajout d'un nouveau composant
+fix(look&feel,apollo): correction des styles et des icônes
+chore(design-system): mise à jour des dépendances
+```
+
+### Breaking Changes
+
+Pour indiquer un changement majeur qui casse la compatibilité, ajoutez un '!' entre le scope et les ':' ainsi qu'une section "BREAKING CHANGE" dans le footer du commit.
+
+> Le '!' permet de signaler que le commit contient une breaking change.\
+> La section "BREAKING CHANGE" permet de décrire les changements majeurs apportés par le commit.
+
+Exemple :
+```plaintext
+feat(slash)!: suppression des classModifiers
+
+BREAKING CHANGE: Les classModifiers ont été supprimés des composant Slash. Il faut désormais utiliser les props dédiés comme `variant` ou `size`.
+```
+
 ## Système de Tâches
 
 Toutes les tâches et discussions sont gérées via les issues sur GitHub. Consultez la [page des issues](https://github.com/AxaFrance/design-system/issues) pour voir ce sur quoi les collaborateurs travaillent actuellement.
