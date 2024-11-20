@@ -1,4 +1,5 @@
 import {
+  Action,
   Button,
   Paging,
   THead,
@@ -14,6 +15,11 @@ const Agent = () => (
     <header>
       <Title heading="h2">Agent</Title>
     </header>
+
+    <article>
+      <Title heading="h3">Action</Title>
+      <Action icon="plus" onClick={() => console.log("hello")} />
+    </article>
 
     <article>
       <Button>Button</Button>
