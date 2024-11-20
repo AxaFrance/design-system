@@ -1,5 +1,6 @@
 import { Controls, Canvas, Meta } from "@storybook/blocks";
 import * as SkeletonStories from "./Skeleton.stories.tsx";
+import * as SkeletonWrapperStories from "./SkeletonWrapper.stories.tsx";
 
 <Meta of={SkeletonStories} />
 
@@ -100,3 +101,17 @@ export const SkeletonComponent = () => (
 <Canvas of={SkeletonStories.RowGap} />
 
 <Controls of={SkeletonStories.RowGap} />
+
+## Wrapper mode
+
+You can use the Skeleton like a wrapper
+
+```tsx
+export const SkeletonComponent = () => (
+  <Skeleton rowGap={1} grid={[[12], [12], [6, 6]]} />
+);
+```
+
+<Canvas of={SkeletonWrapperStories.WrapperMode} />
+
+<Controls of={SkeletonWrapperStories.WrapperMode} />

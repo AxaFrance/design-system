@@ -119,35 +119,3 @@ export const RowGap: StoryObj<typeof Skeleton> = {
     rowGap: 32,
   },
 };
-
-export const WrapperMode: StoryObj<typeof Skeleton> = {
-  args: {
-    grid: [[8], [8], [5]],
-  },
-  render: (props) => {
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-      const interval = setInterval(() => {
-        if (isLoading) {
-          setIsLoading(false);
-        } else {
-          setIsLoading(true);
-        }
-      }, 5000);
-      return () => clearInterval(interval);
-    }, [isLoading]);
-
-    return (
-      <div className="skeleton-wrapper-demo">
-        <Skeleton {...props} isLoading={isLoading}>
-          <div className="skeleton-wrapper-content">
-            <p>Ceci est mon contenu à charger</p>
-            <p>Ceci est mon contenu à charger</p>
-            <p>mon contenu</p>
-          </div>
-        </Skeleton>
-      </div>
-    );
-  },
-};
