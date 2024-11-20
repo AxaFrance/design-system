@@ -1,0 +1,9 @@
+.skeleton-demo {
+  display: grid;
+  row-gap: 3rem;
+  form {
+    display: grid;
+    grid-template-columns: repeat(2, auto 1fr);
+    gap: 1rem;
+  }
+}
