@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/no-array-index-key */
 import "@axa-fr/design-system-look-and-feel-css/dist/Skeleton/Skeleton.scss";
 import { ReactNode } from "react";
@@ -54,5 +53,5 @@ export const Skeleton = ({
       )}
     </div>
   ) : (
-    <>{children}</>
+    children
   );

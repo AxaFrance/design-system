@@ -15,11 +15,7 @@ const RenderWrapper = (props: ComponentPropsWithoutRef<typeof Skeleton>) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (isLoading) {
-        setIsLoading(false);
-      } else {
-        setIsLoading(true);
-      }
+      setIsLoading((currentIsLoading) => !currentIsLoading);
     }, 5000);
     return () => clearInterval(interval);
   }, [isLoading]);
