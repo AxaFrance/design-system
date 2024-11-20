@@ -7,3 +7,12 @@
     gap: 1rem;
   }
 }
+
+.skeleton-wrapper {
+  &-demo {
+    width: 300px;
+    p {
+      margin: 0;
+    }
+  }
+}

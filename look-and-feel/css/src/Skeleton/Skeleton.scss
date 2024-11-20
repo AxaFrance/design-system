@@ -24,7 +24,12 @@
     var(--color-gray-300) 60%
   );
   background-size: 400% 400%;
-  animation: pulse 1s ease-in infinite;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .af-skeleton {
+    animation: pulse 1s ease-in infinite;
+  }
 }
 
 @keyframes pulse {

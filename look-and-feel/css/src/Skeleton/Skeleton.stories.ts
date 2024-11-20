@@ -86,7 +86,7 @@ export const ColGap: StoryObj = {
       [4, 4, 4],
       [6, 6],
     ],
-    colGap: 2,
+    colGap: 32,
   },
 };
 
@@ -101,6 +101,6 @@ export const RowGap: StoryObj = {
       [4, 4, 4],
       [6, 6],
     ],
-    rowGap: 2,
+    rowGap: 32,
   },
 };

@@ -36,4 +36,23 @@ describe("<Skeleton/>", () => {
       expect(skeleton.children.length).toEqual(nbChild);
     },
   );
+
+  it("Should display content when isLoading false", () => {
+    render(
+      <Skeleton {...defaultProps} isLoading={false}>
+        My content
+      </Skeleton>,
+    );
+
+    expect(screen.getByText("My content")).toBeInTheDocument();
+  });
+
+  it("Should not display content when isLoading true", () => {
+    render(
+      <Skeleton {...defaultProps} isLoading>
+        My content
+      </Skeleton>,
+    );
+    expect(screen.queryByText("My content")).not.toBeInTheDocument();
+  });
 });
