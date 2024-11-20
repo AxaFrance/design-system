@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import {
-  cloneElement,
-  Children,
-  useState,
-  useRef,
-  useEffect,
   BaseSyntheticEvent,
-  ReactElement,
+  Children,
+  cloneElement,
   isValidElement,
+  ReactElement,
   ReactNode,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
 import { getComponentClassName } from "../../utilities";
-import { MessageTypes } from "./MessageTypes";
 import { FormClassManager } from "./FormClassManager";
+import { MessageTypes } from "./MessageTypes";
 
 const defaultClassName = "md-10";
 
-type Tmessage = {
-  message: string | null;
+type TMessage = {
+  message?: string;
   messageType: MessageTypes;
 };
 
@@ -25,7 +25,7 @@ const INITIAL_STATE = {
   hasLostFocusOnce: false,
   hasFocus: false,
   hasChange: false,
-  memory: { message: "", messageType: MessageTypes.error } as Tmessage,
+  memory: { message: "", messageType: MessageTypes.error } as TMessage,
 };
 
 type EventFunction = {
@@ -34,7 +34,7 @@ type EventFunction = {
   onFocus?: Function;
 };
 
-type FieldFormProps = Tmessage & {
+type FieldFormProps = TMessage & {
   className?: string;
   classModifier?: string;
   forceDisplayMessage?: boolean;
@@ -49,7 +49,7 @@ type FieldFormProps = Tmessage & {
 type SetState = (prevState: typeof INITIAL_STATE) => typeof INITIAL_STATE;
 
 export const setStateMemory =
-  ({ message = null, messageType = MessageTypes.error }: Tmessage): SetState =>
+  ({ message, messageType = MessageTypes.error }: TMessage): SetState =>
   (prevState) => ({
     ...prevState,
     memory: {
@@ -76,7 +76,7 @@ export const setStateOnBlur = (): SetState => (prevState) => ({
 });
 
 export const setStateOnFocus =
-  ({ message = null, messageType = MessageTypes.error }: Tmessage): SetState =>
+  ({ message, messageType = MessageTypes.error }: TMessage): SetState =>
   (prevState) => ({
     ...prevState,
     hasFocus: true,
@@ -239,7 +239,7 @@ export const renderedChildren = ({
 
 export const FieldForm = ({
   children,
-  message = null,
+  message = "",
   messageType = MessageTypes.error,
   className = defaultClassName,
   classModifier = "",
@@ -277,7 +277,12 @@ export const FieldForm = ({
   const childrenCloned = renderedChildren({
     children,
     wrapper: { onFocus, onChange, onBlur },
-    ...getMessageInfo({ ...state, forceDisplayMessage, message, messageType }),
+    ...getMessageInfo({
+      ...state,
+      forceDisplayMessage,
+      message,
+      messageType,
+    }),
   });
 
   const subComponentClassName = getComponentClassName(

@@ -119,7 +119,6 @@ export const MultiSelectInputStory: StoryObj<
     id: "uniqueid",
     label: "Place type",
     helpMessage: "Enter the place type",
-    message: "",
     messageType: MessageTypes.error,
     forceDisplayMessage: false,
     isVisible: true,

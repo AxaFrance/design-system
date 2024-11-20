@@ -32,7 +32,6 @@ export const TextInputStory: Story = {
     className: "",
     type: "text",
     label: "Your name",
-    message: "",
     helpMessage: "Aide à la saisie",
     forceDisplayMessage: false,
     messageType: MessageTypes.error,

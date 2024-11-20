@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { FileInput } from "../FileInput";
 import { MessageTypes } from "../../core";
+import { FileInput } from "../FileInput";
 
 describe("<FileInput>", () => {
   it("renders FileInput correctly", () => {
@@ -12,7 +12,6 @@ describe("<FileInput>", () => {
         onChange={() => {}}
         accept="image/jpeg, image/png, application/*"
         messageType={MessageTypes.error}
-        message={null}
       />,
     );
     expect(asFragment()).toMatchSnapshot();
