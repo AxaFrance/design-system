@@ -44,7 +44,6 @@ export const SliderInputStory: Story = {
     className: "",
     classModifier: [],
     label: "Your name",
-    message: "",
     helpMessage: "Aide à la saisie",
     forceDisplayMessage: false,
     messageType: MessageTypes.error,

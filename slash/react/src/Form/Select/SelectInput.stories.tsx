@@ -38,7 +38,6 @@ export const SelectInputStory: Story = {
     classModifier: "",
     className: "",
     placeholder: "- Select -",
-    message: "",
     messageType: undefined,
     forceDisplayMessage: false,
     classNameContainerLabel: "col-md-2",

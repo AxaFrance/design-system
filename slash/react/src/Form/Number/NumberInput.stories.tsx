@@ -43,7 +43,6 @@ export const NumberInputStory: Story = {
     autoFocus: false,
     className: "",
     label: "Your name",
-    message: "",
     helpMessage: "Aide à la saisie",
     forceDisplayMessage: false,
     messageType: MessageTypes.error,

@@ -13,7 +13,6 @@ test("renders MultiSelectInput correctly", () => {
       onChange={vi.fn()}
       values={values}
       helpMessage="Enter the place type"
-      message={null}
       messageType={MessageTypes.error}
     />,
   );
