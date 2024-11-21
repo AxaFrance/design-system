@@ -32,6 +32,7 @@ export const NumberInputStory: Story = {
     />
   ),
   args: {
+    required: true,
     classModifier: [] as string[],
     value: 5,
     placeholder: "Your name",

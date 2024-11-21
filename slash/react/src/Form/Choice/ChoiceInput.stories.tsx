@@ -27,6 +27,7 @@ export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
   ),
   args: {
     name: "placeName",
+    required: true,
     label: "Place type",
     placeholder: "Paris",
     message: "",

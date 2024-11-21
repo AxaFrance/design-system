@@ -2,6 +2,7 @@ export function useInputClassModifier(
   classModifier: string,
   disabled: boolean,
   hasChildren: boolean,
+  required = false,
 ) {
   return {
     inputClassModifier: [
@@ -11,6 +12,7 @@ export function useInputClassModifier(
     inputFieldClassModifier: [
       classModifier ?? "",
       disabled ? "disabled" : "",
+      required ? "required" : "",
     ].join(" "),
   };
 }

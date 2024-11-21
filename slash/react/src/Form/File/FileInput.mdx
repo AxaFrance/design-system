@@ -1,4 +1,4 @@
-import { Meta, Canvas } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { Controls } from "@storybook/blocks";
 import * as FileInputStories from "./FileInput.stories";
 
@@ -45,13 +45,9 @@ export default FileInputReturn;
 
 ### FileInput Required
 
-To achieve FileInput Required, you need to add this :
+The component can be required. In that case, the label will be followed by a red asterisk. In order to make the component required, set the `required` prop to `true`.
 
-```javascript
-classModifier = "required";
-```
-
-to the **FileInput** component
+Alternatively you can to add to the `classModifier` the value `required`. This behaviour exists to keep backward compatibility but might disapear in the future.
 
 ## File
 

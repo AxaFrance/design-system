@@ -33,6 +33,7 @@ export const SelectStory: Story = {
     name: "name",
     id: "nameid",
     disabled: false,
+    required: false,
   },
   argTypes: {
     mode: {

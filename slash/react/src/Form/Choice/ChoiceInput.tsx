@@ -1,5 +1,5 @@
 import { forwardRef, type ComponentProps } from "react";
-import { Field, useOptionsWithId } from "../core";
+import { Field, useInputClassModifier, useOptionsWithId } from "../core";
 import { Choice } from "./Choice";
 
 type Props = ComponentProps<typeof Choice> &
@@ -24,6 +24,8 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
       label,
       forceDisplayMessage,
       options = defaultOptions,
+      disabled,
+      required,
       ...otherProps
     },
     inputRef,
@@ -32,6 +34,15 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
       options.map((o) => ({ ...o, value: `${o.value}` })),
       id,
     );
+
+    const { inputClassModifier, inputFieldClassModifier } =
+      useInputClassModifier(
+        classModifier ?? "",
+        disabled ?? false,
+        false,
+        required,
+      );
+
     const firstId = newOptions?.[0]?.id ?? "";
     const choiceOptions = newOptions.map((o) => ({
       ...o,
@@ -46,7 +57,7 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
         isVisible={isVisible}
         forceDisplayMessage={forceDisplayMessage}
         className={className}
-        classModifier={classModifier}
+        classModifier={inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
       >
@@ -54,9 +65,10 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
           {...otherProps}
           id={id}
           ref={inputRef}
-          classModifier={classModifier}
+          classModifier={inputClassModifier}
           options={options ? choiceOptions : undefined}
-          required={classModifier?.includes("required")}
+          required={required}
+          disabled={disabled}
         />
       </Field>
     );

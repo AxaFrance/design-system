@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.scss";
 
 import { useId, type ComponentProps, type ReactNode } from "react";
-import { Field, FieldInput, HelpMessage } from "../core";
+import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
 import { MultiSelect } from "./MultiSelect";
 
 type Props = ComponentProps<typeof Field> &
@@ -23,11 +23,15 @@ const MultiSelectInput = ({
   isVisible,
   forceDisplayMessage,
   className,
+  required,
   ...multiSelectProps
 }: Props) => {
-  const inputFieldClassModifier = `${classModifier} ${
-    disabled ? "disabled" : ""
-  }`;
+  const { inputFieldClassModifier } = useInputClassModifier(
+    classModifier ?? "",
+    disabled ?? false,
+    Boolean(children),
+    required,
+  );
 
   const generatedId = useId();
   const inputId = id || generatedId;
@@ -41,7 +45,7 @@ const MultiSelectInput = ({
       isVisible={isVisible}
       forceDisplayMessage={forceDisplayMessage}
       className={className}
-      classModifier={classModifier}
+      classModifier={inputFieldClassModifier}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
     >
@@ -52,6 +56,7 @@ const MultiSelectInput = ({
         <MultiSelect
           inputId={inputId}
           disabled={disabled}
+          required={required}
           {...multiSelectProps}
         />
         {children}

@@ -6,19 +6,19 @@ import {
 } from "react";
 import { getComponentClassName } from "../../utilities";
 
-type Props = Omit<
-  ComponentPropsWithoutRef<"select"> & {
-    options: OptionHTMLAttributes<HTMLOptionElement>[];
-    classModifier?: string;
-  },
-  "required"
->;
+type Props = ComponentPropsWithoutRef<"select"> & {
+  options: OptionHTMLAttributes<HTMLOptionElement>[];
+  classModifier?: string;
+};
 
 /**
  * @deprecated Use Select instead
  */
 const SelectBase = forwardRef<HTMLSelectElement, Props>(
-  ({ options, id, className, classModifier, ...otherProps }, inputRef) => {
+  (
+    { options, id, className, classModifier, required, ...otherProps },
+    inputRef,
+  ) => {
     const componentClassName = getComponentClassName(
       className,
       classModifier,
@@ -31,7 +31,7 @@ const SelectBase = forwardRef<HTMLSelectElement, Props>(
           id={id}
           className={componentClassName}
           ref={inputRef}
-          required={classModifier?.includes("required")}
+          required={classModifier?.includes("required") || required}
         >
           {options.map(({ label, ...opt }) => (
             <option key={opt.value?.toString()} {...opt}>

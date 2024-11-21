@@ -23,6 +23,7 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
       isVisible,
       className,
       forceDisplayMessage,
+      required,
       ...checkboxProps
     },
     inputRef,
@@ -30,6 +31,9 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
     let rowModifier = classModifier;
     if (mode === CheckboxModes.classic) {
       rowModifier += " label-top";
+    }
+    if (required) {
+      rowModifier += " required";
     }
     const newOptions = useOptionsWithId(options);
 

@@ -2,12 +2,12 @@ import "@axa-fr/design-system-slash-css/dist/Form/Text/Text.scss";
 import { ComponentPropsWithRef, forwardRef, useId } from "react";
 import { getComponentClassName } from "../../utilities";
 
-type Props = Omit<ComponentPropsWithRef<"input">, "required" | "type"> & {
+type Props = Omit<ComponentPropsWithRef<"input">, "type"> & {
   classModifier?: string;
 };
 
 const Number = forwardRef<HTMLInputElement, Props>(
-  ({ id, className, classModifier, ...otherProps }, inputRef) => {
+  ({ id, className, classModifier, required, ...otherProps }, inputRef) => {
     const inputUseId = useId();
     const inputId = id ?? inputUseId;
     const componentClassName = getComponentClassName(
@@ -21,7 +21,7 @@ const Number = forwardRef<HTMLInputElement, Props>(
         id={inputId}
         type="number"
         ref={inputRef}
-        required={classModifier?.includes("required")}
+        required={required || classModifier?.includes("required")}
         {...otherProps}
       />
     );

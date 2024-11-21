@@ -25,7 +25,7 @@ export const FileInputStory: Story = {
     <FileInput onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: "required",
+    required: true,
     label: "Image",
     fileLabel: "Browse",
     name: "placeImage",
