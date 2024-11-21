@@ -27,6 +27,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(
       forceDisplayMessage,
       classModifier = "",
       disabled = false,
+      required,
       ...inputTextProps
     },
     inputRef,
@@ -34,7 +35,12 @@ const TextInput = forwardRef<HTMLInputElement, Props>(
     const inputUseId = useId();
     const inputId = id ?? inputUseId;
     const { inputClassModifier, inputFieldClassModifier } =
-      useInputClassModifier(classModifier, disabled, Boolean(children));
+      useInputClassModifier(
+        classModifier,
+        disabled,
+        Boolean(children),
+        required,
+      );
 
     return (
       <Field
@@ -58,6 +64,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(
             classModifier={inputClassModifier}
             disabled={disabled}
             ref={inputRef}
+            required={required}
             {...inputTextProps}
           />
           {children}

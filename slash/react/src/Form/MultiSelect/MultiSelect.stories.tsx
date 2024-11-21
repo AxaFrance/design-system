@@ -31,6 +31,7 @@ const commonArgs = {
   name: "multiSelectName",
   options,
   disabled: false,
+  required: true,
   className: "",
   placeholder: "Select",
 };

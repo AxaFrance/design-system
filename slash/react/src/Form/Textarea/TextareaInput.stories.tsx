@@ -24,6 +24,7 @@ export const TextareaInputStory: Story = {
     name: "comment",
     id: "commentid",
     value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    required: true,
     rows: 6,
     cols: 60,
     placeholder: "",

@@ -32,6 +32,7 @@ export const SelectInputStory: Story = {
     label: "Place type",
     mode: "default",
     helpMessage: "Enter the place type",
+    required: false,
     disabled: false,
     isVisible: true,
     classModifier: "",

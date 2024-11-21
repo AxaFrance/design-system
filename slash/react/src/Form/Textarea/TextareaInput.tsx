@@ -29,6 +29,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
       rows = 5,
       cols = 50,
       disabled = false,
+      required,
       ...textareaInputProps
     },
     inputRef,
@@ -37,7 +38,12 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
     const inputUseId = useId();
     const inputId = id ?? inputUseId;
     const { inputClassModifier, inputFieldClassModifier } =
-      useInputClassModifier(classModifier, disabled, Boolean(children));
+      useInputClassModifier(
+        classModifier,
+        disabled,
+        Boolean(children),
+        required,
+      );
 
     return (
       <Field
@@ -48,13 +54,13 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
         isVisible={isVisible}
         forceDisplayMessage={forceDisplayMessage}
         className={className}
-        classModifier={rowModifier}
+        classModifier={inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
       >
         <FieldInput
           className="af-form__textarea"
-          classModifier={inputFieldClassModifier}
+          classModifier={`${rowModifier} ${inputFieldClassModifier}`}
         >
           <Textarea
             {...textareaInputProps}

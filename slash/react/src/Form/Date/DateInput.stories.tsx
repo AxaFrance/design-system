@@ -30,6 +30,7 @@ export const DateInputStory: Story = {
   ),
   args: {
     ...commonProps,
+    required: false,
     isVisible: true,
     label: "Birth date",
     helpMessage: "jj/mm/aaaa",
@@ -52,6 +53,7 @@ export const DateInputRequiredStory: Story = {
     <DateInput onChange={onChange} {...args} />
   ),
   args: {
+    required: true,
     ...commonProps,
     isVisible: true,
     label: "Birth date",
@@ -60,7 +62,6 @@ export const DateInputRequiredStory: Story = {
     messageType: MessageTypes.success,
     forceDisplayMessage: false,
     id: "dateId",
-    classModifier: "required",
     className: "",
     disabled: false,
     classNameContainerLabel: "col-md-2",

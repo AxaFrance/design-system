@@ -36,6 +36,7 @@ export const PassInputStory: StoryObj<typeof PassInput> = {
   args: {
     label: "Password",
     helpMessage: "8 caractères minimum",
+    required: true,
     message: "",
     messageType: MessageTypes.error,
     forceDisplayMessage: false,

@@ -1,5 +1,10 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
-import { Field, getFirstId, useOptionsWithId } from "../core";
+import {
+  Field,
+  getFirstId,
+  useInputClassModifier,
+  useOptionsWithId,
+} from "../core";
 import { Radio, RadioModes } from "./Radio";
 
 type RadioInputProps = ComponentPropsWithoutRef<typeof Field> &
@@ -12,7 +17,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
       messageType,
       message,
       className,
-      classModifier,
+      classModifier = "",
       isVisible,
       options,
       classNameContainerLabel,
@@ -20,15 +25,25 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
       label,
       forceDisplayMessage,
       children,
+      required,
+      disabled = false,
       ...radioProps
     },
     inputRef,
   ) => {
     const rowModifier = `${classModifier ?? ""}${
-      mode === RadioModes.classic ? " label-top" : ""
+      mode === RadioModes.classic ? " label-top " : ""
     }`;
     const newOptions = useOptionsWithId(options);
     const firstId = getFirstId(newOptions);
+
+    const { inputClassModifier, inputFieldClassModifier } =
+      useInputClassModifier(
+        classModifier,
+        disabled,
+        Boolean(children),
+        required,
+      );
 
     return (
       <Field
@@ -39,15 +54,17 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         isVisible={isVisible}
         forceDisplayMessage={forceDisplayMessage}
         className={className}
-        classModifier={rowModifier}
+        classModifier={rowModifier + inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
       >
         <Radio
           options={newOptions}
           mode={mode}
-          classModifier={classModifier}
+          classModifier={inputClassModifier}
           ref={inputRef}
+          disabled={disabled}
+          required={required}
           {...radioProps}
         />
         {children}

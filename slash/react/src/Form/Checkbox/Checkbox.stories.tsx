@@ -69,7 +69,8 @@ export const CheckboxInputStory: Story = {
   ),
   args: {
     label: "Place type",
-    classModifier: ["required"],
+    required: true,
+    classModifier: [],
     mode: CheckboxModes.classic,
     message: "Error message",
     messageType: MessageTypes.error,
@@ -81,6 +82,10 @@ export const CheckboxInputStory: Story = {
     classModifier: {
       options: modifiers,
       control: { type: "inline-check" },
+    },
+    mode: {
+      options: Object.values(CheckboxModes),
+      control: { type: "select", options: Object.values(CheckboxModes) },
     },
     onChange: { action: "onChange" },
   },
@@ -94,6 +99,7 @@ export const CheckboxInputStory: Story = {
         "messageType",
         "forceDisplayMessage",
         "onChange",
+        "required",
       ],
     },
   },

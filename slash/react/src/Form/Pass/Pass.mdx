@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as PassStories from "./Pass.stories";
 import * as PassInputStories from "./PassInput.stories";
 
@@ -109,10 +109,6 @@ export default PassInputReturn;
 
 ### PassInput Required
 
-To achieve PassInput Required, you need to add this :
+The component can be required. In that case, the label will be followed by a red asterisk. In order to make the component required, set the `required` prop to `true`.
 
-```javascript
-classModifier = "required";
-```
-
-to the **PassInput** component
+Alternatively you can to add to the `classModifier` the value `required`. This behaviour exists to keep backward compatibility but might disapear in the future.

@@ -52,12 +52,6 @@ export default textReturn;
 import { TextInput } from "@axa-fr/design-system";
 ```
 
-or
-
-```javascript
-import { TextInput } from "@axa-fr/design-system/client";
-```
-
 ### Use
 
 ```javascript
@@ -85,29 +79,11 @@ export default textInputReturn;
 
 ### TextInput Required
 
-To achieve TextInput Required, you need to add this :
+The component can be required. In that case, the label will be followed by a red asterisk. In order to make the component required, set the `required` prop to `true`.
 
-```javascript
-classModifier = "required";
-```
-
-in **TextInput**.
+Alternatively you can to add to the `classModifier` the value `required`. This behaviour exists to keep backward compatibility but _might_ disapear in the future.
 
 ## TextInput Error
-
-### Import
-
-```javascript
-import { TextInput } from "@axa-fr/design-system";
-```
-
-or
-
-```javascript
-import { TextInput } from "@axa-fr/design-system/client";
-```
-
-### Use
 
 ```javascript
 const textInputError = () => (
@@ -118,7 +94,7 @@ const textInputError = () => (
       label="Your name"
       value="John Doe"
       placeholder="Your name"
-      classModifier="required"
+      required
       message="The field is required"
       messageType={MessageTypes.error}
       forceDisplayMessage={true}

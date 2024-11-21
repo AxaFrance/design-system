@@ -54,7 +54,7 @@ export const TextInputErrorStory: Story = {
     <TextInput onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: "required",
+    required: true,
     value: "John Doe",
     placeholder: "Your name",
     name: "name",
@@ -87,7 +87,7 @@ export const TextInputSuccessStory: Story = {
     <TextInput onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: "required",
+    required: true,
     value: "John Doe",
     placeholder: "Your name",
     name: "name",
@@ -120,7 +120,7 @@ export const TextInputRichLabelStory: Story = {
     <TextInput onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: "required",
+    required: true,
     value: "John Doe",
     placeholder: "Your name",
     name: "name",

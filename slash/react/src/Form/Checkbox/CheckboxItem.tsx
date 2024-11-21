@@ -3,7 +3,7 @@ import { getOptionClassName } from "../core";
 
 import "@axa-fr/design-system-slash-css/dist/Form/Checkbox/Checkbox.scss";
 
-type Props = Omit<ComponentPropsWithoutRef<"input">, "type" | "label"> & {
+type Props = Omit<ComponentPropsWithoutRef<"input">, "type"> & {
   classModifier?: string;
   optionClassName?: string;
   children?: ReactNode;

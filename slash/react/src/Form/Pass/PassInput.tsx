@@ -46,6 +46,7 @@ const PassInput = ({
   classNameContainerLabel,
   classNameContainerInput,
   score,
+  required,
   ...passProps
 }: Props) => {
   const strength = calculateStrength(score);
@@ -58,6 +59,7 @@ const PassInput = ({
     classModifierStrength,
     disabled,
     Boolean(children),
+    required,
   );
 
   return (
@@ -69,7 +71,7 @@ const PassInput = ({
       forceDisplayMessage={forceDisplayMessage}
       className={className}
       id={finalId}
-      classModifier={classModifierStrength}
+      classModifier={`${classModifierStrength} ${inputFieldClassModifier}`}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
     >

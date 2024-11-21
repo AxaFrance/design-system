@@ -30,6 +30,7 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
       isVisible,
       forceDisplayMessage,
       className,
+      required,
       ...otherSelectProps
     },
     inputRef,
@@ -37,7 +38,12 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
     const generatedId = useId();
     const inputId = id ?? generatedId;
     const { inputClassModifier, inputFieldClassModifier } =
-      useInputClassModifier(classModifier, disabled, Boolean(children));
+      useInputClassModifier(
+        classModifier,
+        disabled,
+        Boolean(children),
+        required,
+      );
     return (
       <Field
         label={label}
@@ -60,6 +66,7 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
             disabled={disabled}
             classModifier={inputClassModifier}
             ref={inputRef}
+            required={required}
             {...otherSelectProps}
           />
           {children}

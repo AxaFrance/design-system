@@ -1,6 +1,6 @@
-import * as DateInputStories from "./DateInput.stories";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as DateStories from "./Date.stories";
-import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as DateInputStories from "./DateInput.stories";
 
 <Meta of={DateInputStories} />
 
@@ -23,3 +23,9 @@ The component without the label is a bare-bones version of the component. It is 
 <Canvas of={DateStories.DateStory} />
 
 <Controls of={DateStories.DateStory} />
+
+## Required
+
+The component can be required. In that case, the label will be followed by a red asterisk. In order to make the component required, set the `required` prop to `true`.
+
+Alternatively you can to add to the `classModifier` the value `required`. This behaviour exists to keep backward compatibility but might disapear in the future.

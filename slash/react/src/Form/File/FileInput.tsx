@@ -1,8 +1,8 @@
+import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
 import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
-import { FileTable } from "./FileTable";
 import { CustomFile, File } from "./File";
-import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
+import { FileTable } from "./FileTable";
 
 type FieldProps = ComponentPropsWithoutRef<typeof Field>;
 type FileProps = ComponentPropsWithoutRef<typeof File>;
@@ -33,6 +33,7 @@ const FileInput = ({
   errors,
   fileLabel,
   disabled = false,
+  required,
   ...otherFileProps
 }: Props) => {
   const onDeleteClick = (selectedId: string, selectInputId: string) => {
@@ -45,14 +46,15 @@ const FileInput = ({
       id: selectInputId,
     });
   };
-  const rowModifier = `${classModifier} label-top`;
   const inputUseId = useId();
   const inputId = id ?? inputUseId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
     disabled,
     Boolean(children),
+    required,
   );
+  const rowModifier = `${inputFieldClassModifier} label-top`;
   return (
     <Field
       label={label}
@@ -77,7 +79,7 @@ const FileInput = ({
           disabled={disabled}
           classModifier={inputClassModifier}
           label={fileLabel}
-          required={classModifier?.includes("required")}
+          required={required || classModifier?.includes("required")}
           {...otherFileProps}
         />
         {children}

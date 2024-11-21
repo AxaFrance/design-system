@@ -26,6 +26,7 @@ export const RadioInputStory: StoryObj<RadioInputProps> = {
   ),
   args: {
     label: "Where are you ?",
+    required: true,
     mode: RadioModes.classic,
     value: "",
     classModifier: [],

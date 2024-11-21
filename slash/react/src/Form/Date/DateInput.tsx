@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
-import { Field, HelpMessage, FieldInput, useInputClassModifier } from "../core";
+import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
 import { Date } from "./Date";
 
 type Props = Omit<ComponentPropsWithoutRef<typeof Date>, "placeholderText"> &
@@ -23,6 +23,7 @@ const DateInput = ({
   forceDisplayMessage,
   className,
   disabled = false,
+  required,
   ...otherProps
 }: Props) => {
   const inputUseId = useId();
@@ -31,6 +32,7 @@ const DateInput = ({
     classModifier,
     disabled,
     Boolean(children),
+    required,
   );
   return (
     <Field
@@ -41,7 +43,7 @@ const DateInput = ({
       isVisible={isVisible}
       forceDisplayMessage={forceDisplayMessage}
       className={className}
-      classModifier={classModifier}
+      classModifier={inputFieldClassModifier}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
     >
@@ -53,6 +55,7 @@ const DateInput = ({
           id={inputId}
           classModifier={inputClassModifier}
           disabled={disabled}
+          required={required}
           {...otherProps}
         />
         {children}

@@ -1,13 +1,13 @@
+import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
+import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
 import {
-  useId,
   ComponentPropsWithoutRef,
   ComponentPropsWithRef,
   ReactNode,
+  useId,
 } from "react";
-import { Field, HelpMessage, FieldInput, useInputClassModifier } from "../core";
-import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
-import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
-import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
+import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
 
 import { Number } from "./Number";
 
@@ -31,6 +31,7 @@ export const NumberInput = ({
   className,
   disabled = false,
   classModifier = "",
+  required,
   ...otherProps
 }: Props) => {
   const inputUseId = useId();
@@ -39,6 +40,7 @@ export const NumberInput = ({
     classModifier,
     disabled,
     Boolean(children),
+    required,
   );
   return (
     <Field
@@ -49,7 +51,7 @@ export const NumberInput = ({
       isVisible={isVisible}
       forceDisplayMessage={forceDisplayMessage}
       className={className}
-      classModifier={classModifier}
+      classModifier={inputFieldClassModifier}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
     >
