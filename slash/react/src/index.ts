@@ -34,6 +34,7 @@ export { Textarea, TextareaInput } from "./Form/Textarea";
 export { Footer } from "./Layout/Footer";
 export {
   Header,
+  HeaderTitle,
   Infos,
   Name,
   NavBar,
@@ -41,7 +42,6 @@ export {
   NavBarItem,
   NavBarItemBase,
   NavBarItemLink,
-  HeaderTitle,
   ToggleButton,
   User,
 } from "./Layout/Header";
@@ -71,4 +71,5 @@ export { Title } from "./Title/Title";
 export { getComponentClassName } from "./utilities";
 
 export * from "./Accordion";
+export * from "./Popover";
 export * from "./Table";
