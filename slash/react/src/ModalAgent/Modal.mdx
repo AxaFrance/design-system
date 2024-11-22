@@ -77,7 +77,7 @@ export const YourComponent = () => {
   return (
     <>
       <button type="button" onClick={() => ref.current?.showModal()}>
-        Ouvrir la modal
+        Open modal
       </button>
 
       <Modal onOutsideTap={() => ref.current?.close()} ref={ref}>
@@ -123,8 +123,15 @@ export const YourComponent = () => {
 
 Example of usage of BooleanModal component :
 
-```javascript
-<BooleanModal open {...args} onCancel={() => {}}>
+```tsx
+<button type="button" onClick={() => ref.current?.showModal()}>
+  Open modal
+</button>
+
+<BooleanModal ref={ref} {...args}
+    onCancel={() => ref.current?.close()}
+    onSubmit={() => ref.current?.close()}
+>
   <p>
     Reprehenderit sit quis aute nisi consequat consequat mollit. Commodo in
     aliquip consectetur nulla sit anim. Pariatur minim commodo enim ea eu
