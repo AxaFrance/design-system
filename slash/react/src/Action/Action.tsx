@@ -1,26 +1,25 @@
-import { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../utilities";
 import "@axa-fr/design-system-slash-css/dist/Action/Action.scss";
+import { ComponentPropsWithoutRef, forwardRef } from "react";
+import { getComponentClassName } from "../utilities";
 
 type ActionCoreProps = ComponentPropsWithoutRef<"a"> & {
   icon: string;
   classModifier?: string;
 };
 
-export const Action = ({
-  icon,
-  className,
-  classModifier,
-  ...otherProps
-}: ActionCoreProps) => {
-  const componentClassName = getComponentClassName(
-    className,
-    classModifier,
-    "btn af-btn--circle",
-  );
-  return (
-    <a {...otherProps} className={componentClassName}>
-      <i className={`glyphicon glyphicon-${icon}`} />
-    </a>
-  );
-};
+export const Action = forwardRef<HTMLAnchorElement, ActionCoreProps>(
+  ({ icon, className, classModifier, ...otherProps }, ref) => {
+    const componentClassName = getComponentClassName(
+      className,
+      classModifier,
+      "btn af-btn--circle",
+    );
+    return (
+      <a {...otherProps} className={componentClassName} ref={ref}>
+        <i className={`glyphicon glyphicon-${icon}`} />
+      </a>
+    );
+  },
+);
+
+Action.displayName = "Action";
