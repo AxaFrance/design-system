@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-slash-css/dist/Modal/Modal.scss";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import type { ReactElement, ReactNode } from "react";
+import { useRef, type ReactElement, type ReactNode } from "react";
 import { BooleanModal } from "./BooleanModal";
 import { Modal } from "./Modal";
 import { Body } from "./components/Body";
@@ -49,32 +49,62 @@ export const DefaultModalStory: TDefaultModalStory = {
   render: ({ bodyContent, cancelButtonText, saveButtonText, ...args }) => {
     const selectClassModifier =
       MODIFIERS.find((m) => m.label === args.classModifier) ?? MODIFIERS[0];
-
+    const ref = useRef<HTMLDialogElement>(null);
     return (
-      <Modal {...args} classModifier={selectClassModifier.value}>
-        <Header title={args.title} onCancel={args.onCancel} />
-        <Body>
-          <p>{bodyContent}</p>
-        </Body>
-        <Footer>
-          {selectClassModifier.value !== "sm" && (
+      <>
+        <button type="button" onClick={() => ref.current?.showModal()}>
+          Open the modal
+        </button>
+        <Modal
+          {...args}
+          classModifier={selectClassModifier.value}
+          ref={ref}
+          onClose={() => ref.current?.close()}
+          onOutsideTap={() => {
+            args.onOutsideTap();
+            ref.current?.close();
+          }}
+        >
+          <Header
+            title={args.title}
+            onCancel={() => {
+              args.onCancel();
+              ref.current?.close();
+            }}
+          />
+          <Body>
+            <p>{bodyContent}</p>
+          </Body>
+          <Footer>
+            {selectClassModifier.value !== "sm" && (
+              <button
+                className="btn af-btn af-btn--reverse"
+                type="button"
+                onClick={() => {
+                  args.onCancel();
+                  ref.current?.close();
+                }}
+              >
+                {cancelButtonText}
+              </button>
+            )}
             <button
-              className="btn af-btn af-btn--reverse"
+              className="btn af-btn"
               type="button"
-              onClick={args.onCancel}
+              onClick={() => {
+                args.onSubmit();
+                ref.current?.close();
+              }}
             >
-              {cancelButtonText}
+              {saveButtonText}
             </button>
-          )}
-          <button className="btn af-btn" type="button" onClick={args.onSubmit}>
-            {saveButtonText}
-          </button>
-        </Footer>
-      </Modal>
+          </Footer>
+        </Modal>
+      </>
     );
   },
   args: {
-    open: true,
+    open: false,
     title: "Modal title",
     bodyContent:
       'Voici une version avec un header classique Modal.Header. Un classModifier "lg" a été mis pour montrer une version plus large d\'une modale. Il est existe également un modifier "sm", pour les modales plus petites. Mais il est possible d\'ajouter son propre modifier pour personnaliser selon ses besoins avec un peu de CSS.',
@@ -168,19 +198,30 @@ export const BooleanModalStory: TBooleanModalStory = {
   render: ({ classModifier, ...args }) => {
     const selectClassModifier =
       MODIFIERS.find((m) => m.label === classModifier) ?? MODIFIERS[0];
-
+    const ref = useRef<HTMLDialogElement>(null);
     return (
-      <BooleanModal
-        classModifier={selectClassModifier.value}
-        {...args}
-        onCancel={() => {}}
-      >
-        {args.bodyContent}
-      </BooleanModal>
+      <>
+        <button type="button" onClick={() => ref.current?.showModal()}>
+          Open modal
+        </button>
+        <BooleanModal
+          classModifier={selectClassModifier.value}
+          ref={ref}
+          {...args}
+          onCancel={() => {
+            ref.current?.close();
+          }}
+          onSubmit={() => {
+            ref.current?.close();
+          }}
+        >
+          {args.bodyContent}
+        </BooleanModal>
+      </>
     );
   },
   args: {
-    open: true,
+    open: false,
     title: "Boolean Modal title",
     bodyContent: (
       <p>
