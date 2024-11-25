@@ -73,3 +73,5 @@ export { getComponentClassName } from "./utilities";
 export * from "./Accordion";
 export * from "./Popover";
 export * from "./Table";
+
+export { HelpButton } from "./HelpButton";
