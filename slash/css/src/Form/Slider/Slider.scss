@@ -5,11 +5,13 @@
 
 $heightslide: 6px;
 
-.rc-slider {
+.af-slider.rc-slider {
   width: 80% !important;
   margin-bottom: 1.2em;
   border-radius: 0;
+}
 
+.af-slider .rc-slider {
   &-rail {
     height: $heightslide;
     background: common.$color-mercury;

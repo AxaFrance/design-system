@@ -60,7 +60,7 @@ const Slider = ({
   );
 
   const componentClassName = useMemo(
-    () => getComponentClassName(className, classModifier),
+    () => getComponentClassName(className, classModifier, "af-slider"),
     [className, classModifier],
   );
 
