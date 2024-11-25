@@ -31,6 +31,7 @@ export const SliderStory: Story = {
   name: "Slider",
   render: ({ classModifier, ...args }) => (
     <form className="af-form" name="myform">
+      {JSON.stringify({ a: args.className })}
       <Slider classModifier={classModifier.join(" ")} {...args} />
     </form>
   ),
@@ -40,7 +41,6 @@ export const SliderStory: Story = {
     id: "uniqueid",
     value: 2048,
     disabled: false,
-    className: "",
     classModifier: [],
   },
   argTypes: {
