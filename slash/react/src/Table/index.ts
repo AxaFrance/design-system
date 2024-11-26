@@ -1,3 +1,4 @@
+export { Pager } from "./Pagination/Pager";
 export { Paging } from "./Pagination/Paging";
 export { TBody } from "./TBody";
 export { THead } from "./THead";
