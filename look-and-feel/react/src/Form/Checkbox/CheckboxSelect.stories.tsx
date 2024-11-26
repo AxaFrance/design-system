@@ -19,6 +19,8 @@ export const CheckboxSelectStory: StoryObj<
   render: ({ ...args }) => <CheckboxSelect {...args} />,
   args: {
     type: "vertical",
+    labelGroup: "Quelle ville ?",
+    isRequired: true,
     options: [
       {
         label: "Paris",
