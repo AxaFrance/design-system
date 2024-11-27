@@ -75,3 +75,4 @@ export * from "./Popover";
 export * from "./Table";
 
 export { HelpButton } from "./HelpButton";
+export { Loader } from "./Loader/Loader";
