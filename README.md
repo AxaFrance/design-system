@@ -10,6 +10,12 @@ Il propose d'utiliser les deux designs systems principaux :
 - **Slash** pour le <abbr title="Business to business">B2B</abbr>, les
   applications internes
 
+## Migration depuis @axa-fr/react-toolkit
+
+Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers
+`@axa-fr/design-system`, vous pouvez suivre notre
+[guide de migration](./MIGRATION-GUIDE-TOOLKIT.md).
+
 ## Packages
 
 | name                                          | Storybook                                                                                                                                                                           | npm                                                                                                                                                             | Documentation UI et UX                                                                                                                                                                                                                                                                                              |
