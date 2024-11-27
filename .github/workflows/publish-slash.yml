@@ -2,8 +2,10 @@ name: Publish slash
 
 on:
   push:
-    tags:
-      - "slash/*"
+    branches:
+      - "releases-slash/*"
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
