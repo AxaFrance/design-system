@@ -1,4 +1,4 @@
-name: Publish slash prerelease
+name: Publish slash
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.gitversion.outputs.fullSemVer }}
-      isPrerelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
+      isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -57,7 +57,7 @@ jobs:
         run:
           cp -R slash/css/storybook-static/* artifact/css & cp -R
           slash/react/storybook-static/* artifact/react
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: storybooks
           path: |
@@ -66,7 +66,7 @@ jobs:
 
   deploy:
     needs: build
-    if: needs.build.outputs.isPrerelease
+    if: needs.build.outputs.isStableRelease
     runs-on: ubuntu-latest
     name: Deploy new version of storybook to gh-pages
     steps:
