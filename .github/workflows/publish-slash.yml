@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "slash/*"
+  workflow_dispatch:
 
 permissions:
   contents: write
