@@ -26,6 +26,7 @@ export { Date, DateInput } from "./Form/Date";
 export { File, FileInput, FileTable } from "./Form/File";
 export { MultiSelect, MultiSelectInput } from "./Form/MultiSelect";
 export { Number, NumberInput } from "./Form/Number";
+export { Pass, PassInput } from "./Form/Pass";
 export { Radio, RadioInput, RadioItem, RadioModes } from "./Form/Radio";
 export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
