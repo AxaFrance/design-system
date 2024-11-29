@@ -18,8 +18,30 @@ It wraps around the more customisable `Popover` component with defaults styles. 
 ```tsx title="test.js"
 import { HelpButton } from "@axa-fr/design-system-slash-react";
 
-const MyComponent = () => <HelpButton>Content of the tooltip</HelpButton>;
+const MyComponent = () => (
+  <HelpButton mode="hover">Content of the tooltip</HelpButton>
+);
 ```
+
+### Mode
+
+There are 2 modes available for the HelpButton component
+
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>Modes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>hover</td>
+    </tr>
+    <tr>
+      <td>click</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Customize
 

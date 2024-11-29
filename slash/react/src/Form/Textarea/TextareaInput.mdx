@@ -5,6 +5,37 @@ import * as TextareaInputStories from "./TextareaInput.stories";
 
 ## TextareaInput
 
+### Import
+
+```javascript
+import { MessageTypes, TextareaInput } from "@axa-fr/design-system-slash-react";
+```
+
+### Use
+
+```javascript
+const TextareaInputReturn = () => (
+  <form className="af-form" name="myform">
+    <TextareaInput
+      id="uniqueId"
+      value=""
+      onChange={(e) => {
+        console.log(e);
+      }}
+      label="Place type"
+      name="textareainputName"
+      rows={6}
+      cols={60}
+      helpMessage="Enter the place type"
+      messageType={MessageTypes.error}
+      classNameContainerLabel="col-md-2"
+      classNameContainerInput="col-md-10"
+    />
+  </form>
+);
+export default TextareaInputReturn;
+```
+
 <Canvas of={TextareaInputStories.TextareaInputStory} />
 <Controls of={TextareaInputStories.TextareaInputStory} />
 
