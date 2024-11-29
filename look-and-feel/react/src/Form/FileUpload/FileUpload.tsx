@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, useId } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/FileUpload/FileUpload.scss";
 import visibility from "@material-symbols/svg-400/outlined/visibility-fill.svg";
 import close from "@material-symbols/svg-400/outlined/close-fill.svg";
@@ -66,6 +66,7 @@ const FileUpload = ({
   onDelete,
   ...otherProps
 }: Props) => {
+  const idError = useId();
   const getIcon = (isInError: boolean, isLoading: boolean) => {
     if (isInError) {
       return (
@@ -92,7 +93,14 @@ const FileUpload = ({
           (isMobile || !dropzoneDescription) && "is-mobile",
         )}
       >
-        <input type="file" name="file-input" id={id} {...otherProps} />
+        <input
+          type="file"
+          name="file-input"
+          id={id}
+          aria-errormessage={idError}
+          aria-invalid={Boolean(globalError)}
+          {...otherProps}
+        />
         {dropzoneDescription && (
           <div className="af-form__file-input-dropdown-text">
             <p>{dropzoneDescription}</p>
@@ -107,7 +115,7 @@ const FileUpload = ({
           {buttonLabel}
         </Button>
       </div>
-      {globalError && <InputError message={globalError} />}
+      {globalError && <InputError id={idError} message={globalError} />}
       <small className="af-form__file-input-help">{instructions}</small>
       <div className="custom-table-file af-file-table">
         <ul className="af-form__file-list">

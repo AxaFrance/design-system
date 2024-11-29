@@ -1,5 +1,10 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/Text/Text.scss";
-import { ComponentPropsWithRef, forwardRef, MouseEventHandler } from "react";
+import {
+  ComponentPropsWithRef,
+  forwardRef,
+  MouseEventHandler,
+  useId,
+} from "react";
 
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 import { Button } from "../..";
@@ -29,6 +34,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
       error,
       buttonLabel,
       onButtonClick,
+      required,
       ...otherProps
     },
     inputRef,
@@ -39,11 +45,13 @@ const Text = forwardRef<HTMLInputElement, Props>(
       "af-form__input-text",
     );
 
-    const { id, required } = otherProps;
+    let inputId = useId();
+    inputId = otherProps.id || inputId;
+    const idError = useId();
 
     return (
       <div className="af-form__input-container">
-        <label htmlFor={id} className="af-form__input-label">
+        <label htmlFor={inputId} className="af-form__input-label">
           {label} {required && <span> *</span>}
         </label>
         {description && (
@@ -60,15 +68,16 @@ const Text = forwardRef<HTMLInputElement, Props>(
           </Button>
         )}
         <input
+          id={inputId}
           className={componentClassName}
           type="text"
           ref={inputRef}
+          aria-errormessage={idError}
           aria-invalid={Boolean(error)}
-          aria-describedby={error ? `${id}-error` : undefined}
           {...otherProps}
         />
         {helper && <span className="af-form__input-helper">{helper}</span>}
-        {error && <InputError id={`${id}-error`} message={error} />}
+        {error && <InputError id={idError} message={error} />}
       </div>
     );
   },

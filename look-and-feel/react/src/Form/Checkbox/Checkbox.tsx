@@ -13,6 +13,7 @@ type CheckboxProps = {
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, errorMessage, className, ...inputProps }, ref) => {
+    const idError = useId();
     let inputId = useId();
     inputId = inputProps.id || inputId;
 
@@ -25,6 +26,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               {...inputProps}
               type="checkbox"
               id={inputId}
+              aria-errormessage={idError}
               aria-invalid={!!errorMessage}
             />
             <div className="af-checkbox__icons">
@@ -38,7 +40,11 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           </label>
         </div>
         {errorMessage && (
-          <div className="af-checkbox__error" aria-live="assertive">
+          <div
+            className="af-checkbox__error"
+            aria-live="assertive"
+            id={idError}
+          >
             <Svg src={errorOutline} />
             {errorMessage}
           </div>
