@@ -5,5 +5,31 @@ import * as TextareaStories from "./Textarea.stories";
 
 ## Textarea
 
+### Import
+
+```javascript
+import { Textarea } from "@axa-fr/design-system-slash-react";
+```
+
+### Use
+
+```javascript
+const TextareaReturn = () => (
+  <form className="af-form" name="myform">
+    <Textarea
+      id="uniqueId"
+      value=""
+      onChange={(e) => {
+        console.log(e);
+      }}
+      name="textareainputName"
+      rows={6}
+      cols={60}
+    />
+  </form>
+);
+export default TextareaReturn;
+```
+
 <Canvas of={TextareaStories.TextareaStory} />
 <Controls of={TextareaStories.TextareaStory} />
