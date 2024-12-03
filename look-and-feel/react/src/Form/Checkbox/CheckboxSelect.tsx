@@ -2,7 +2,7 @@ import "@axa-fr/design-system-look-and-feel-css/dist/Form/Checkbox/Checkbox.scss
 import checkBoxIcon from "@material-symbols/svg-400/outlined/check_box-fill.svg";
 import checkBoxOutlineBlankIcon from "@material-symbols/svg-400/outlined/check_box_outline_blank.svg";
 import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
-import React, { ReactNode, useId } from "react";
+import React, { type ReactNode, useId } from "react";
 import { Svg } from "../../Svg";
 
 type CheckboxProps = {
