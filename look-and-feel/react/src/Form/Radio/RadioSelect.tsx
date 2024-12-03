@@ -5,6 +5,7 @@ import React, {
   ComponentPropsWithRef,
   ReactNode,
   forwardRef,
+  useCallback,
   useId,
 } from "react";
 import { Svg } from "../../Svg";
@@ -27,7 +28,7 @@ type RadioSelectProps = {
   isDisabled?: boolean;
 } & Omit<ComponentPropsWithRef<"div">, "className" | "aria-invalid">;
 
-export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
+export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
   (
     {
       id,
@@ -46,6 +47,22 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
   ) => {
     const generatedId = useId();
     const optionId = id || generatedId;
+
+    const getRef = useCallback(
+      (
+        index: number,
+        reference: React.ForwardedRef<HTMLInputElement>,
+        val?: string,
+        inputVal?: string | number | readonly string[],
+      ) => {
+        if ((!val && index === 0) || val === inputVal) {
+          return reference;
+        }
+        return null;
+      },
+      [],
+    );
+
     return (
       <div className="af-radio__container">
         {label && (
@@ -55,23 +72,25 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
           </span>
         )}
         <div
-          ref={ref}
           {...rest}
           role="radiogroup"
           className={`af-radio af-radio-select af-radio-select--${type}`}
           aria-invalid={Boolean(errorMessage)}
           aria-labelledby={optionId}
-          aria-describedby={errorMessage ? `${optionId}-error` : undefined}
+          aria-errormessage={`${optionId}-error`}
         >
           {options.map(
-            ({
-              label: inputLabel,
-              description,
-              subtitle,
-              icon,
-              disabled: inputDisabled,
-              ...inputProps
-            }) => (
+            (
+              {
+                label: inputLabel,
+                description,
+                subtitle,
+                icon,
+                disabled: inputDisabled,
+                ...inputProps
+              },
+              idx,
+            ) => (
               <label
                 key={inputLabel as string}
                 htmlFor={`${optionId}-${inputLabel}`}
@@ -87,6 +106,7 @@ export const RadioSelect = forwardRef<HTMLDivElement, RadioSelectProps>(
                     "aria-checked": value === inputProps.value,
                     checked: value === inputProps.value,
                   })}
+                  ref={getRef(idx, ref, value, inputProps.value)}
                 />
                 <div className="af-radio__icons">
                   <Svg

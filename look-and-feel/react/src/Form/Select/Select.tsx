@@ -59,6 +59,8 @@ const Select = ({
       <ReactSelect
         inputId={`${id}__input`}
         aria-labelledby={`${id}__label`}
+        aria-errormessage={`${id}__error`}
+        aria-invalid={Boolean(errorLabel)}
         unstyled
         isDisabled={disabled}
         noOptionsMessage={() => noOptionsMessage || "Aucun résultat"}
@@ -106,7 +108,11 @@ const Select = ({
         {...otherProps}
       />
       {errorLabel && (
-        <div className="af-form__select-error">
+        <div
+          id={`${id}__error`}
+          className="af-form__select-error"
+          aria-live="assertive"
+        >
           <Svg
             src={ErrorOutline}
             width={16}

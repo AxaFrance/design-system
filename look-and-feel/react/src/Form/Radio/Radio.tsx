@@ -14,6 +14,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, errorMessage, ...inputProps }, ref) => {
     let inputId = useId();
     inputId = inputProps.id || inputId;
+    const idError = useId();
 
     return (
       <>
@@ -21,6 +22,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
           className="af-radio"
           role="radiogroup"
           aria-invalid={Boolean(errorMessage)}
+          aria-errormessage={idError}
         >
           <label key={inputProps.name} htmlFor={inputId}>
             <input ref={ref} {...inputProps} type="radio" id={inputId} />
@@ -34,7 +36,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
             {label}
           </label>
         </div>
-        {errorMessage && <InputError message={errorMessage} />}
+        {errorMessage && <InputError id={idError} message={errorMessage} />}
       </>
     );
   },
