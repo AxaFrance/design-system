@@ -4,7 +4,7 @@ import { Tag } from "../../..";
 export type TContentTabItem = {
   id?: string;
   title: string;
-  subtitle?: string;
+  subtitle?: ReactNode;
   tag?: string;
   tagProps?: ComponentProps<typeof Tag>;
   date?: string;
