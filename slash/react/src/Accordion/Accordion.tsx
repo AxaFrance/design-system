@@ -2,15 +2,11 @@ import "@axa-fr/design-system-slash-css/dist/Accordion/Accordion.scss";
 import React, { useId } from "react";
 import { getComponentClassName } from "../utilities";
 import { CollapseCard, CollapseProps } from "./CollapseCard";
+import { TDefaultProps } from "./types";
 
 const defaultClassName = "af-accordion";
 
-const defaultProps = {
-  onlyOne: false,
-  className: defaultClassName,
-};
-
-export type EnhancedProps = Partial<typeof defaultProps> & {
+export type EnhancedProps = Partial<TDefaultProps> & {
   onlyOne?: boolean;
   className?: string;
   classModifier?: string;
