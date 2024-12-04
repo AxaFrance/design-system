@@ -3,12 +3,21 @@ name: Publish look and feel prerelease
 on:
   push:
     branches:
+      - "releases-look-and-feel/*"
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
   build:
     if: github.repository_owner == 'AxaFrance'
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.gitversion.outputs.fullSemVer }}
+      isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,17 +41,60 @@ jobs:
       - run: npm run package:check
       - run: npm ci
       - run: npm run build:look-and-feel
-      - run:
-          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
+      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
           look-and-feel/css -w look-and-feel/react
-      - name:
-          Set to react package the @axa-fr/design-system-look-and-feel-css
+      - name: Set to react package the @axa-fr/design-system-look-and-feel-css
           dependency version
         run: |
           cd look-and-feel/react
           jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
-      - run:
-          npm publish -w look-and-feel/css -w look-and-feel/react --access
+      - run: npm publish -w look-and-feel/css -w look-and-feel/react --access
           public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: create artifact folder
+        run: mkdir -p artifact/css & mkdir -p artifact/react
+      - name: move storybooks to artifact folders
+        run: cp -R look-and-feel/css/storybook-static/* artifact/css & cp -R
+          look-and-feel/react/storybook-static/* artifact/react
+      - uses: actions/upload-artifact@v4
+        with:
+          name: storybooks
+          path: |
+            artifact
+          retention-days: 2
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.isStableRelease
+    runs-on: ubuntu-latest
+    name: Deploy new version of storybook to gh-pages
+    steps:
+      - name: Download storybooks
+        uses: actions/download-artifact@v4
+        with:
+          name: storybooks
+      - name: Upload the latest react storybook
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./react
+          destination_dir: look-and-feel/react/latest
+      - name: Upload the react storybook to its version folder
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./react
+          destination_dir: look-and-feel/react/${{ needs.build.outputs.version }}
+      - name: Upload the latest css storybook
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./css
+          destination_dir: look-and-feel/css/latest
+      - name: Upload the css to its version folder
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./css
+          destination_dir: look-and-feel/css/${{ needs.build.outputs.version }}
