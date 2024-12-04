@@ -8,7 +8,21 @@ import { Button, ButtonVariants, Svg } from "../../../..";
 describe("ContentTabList", () => {
   const onDownload = vi.fn();
   const onDisplay = vi.fn();
-
+  const testContentTabItem = (item: TContentTabItem) => {
+    expect(screen.getByText(item.title)).toBeInTheDocument();
+    if (item.subtitle) {
+      expect(screen.getByText(item.subtitle as string)).toBeInTheDocument();
+    }
+    if (item.tag) {
+      expect(screen.getByText(item.tag)).toBeInTheDocument();
+    }
+    if (item.date) {
+      expect(screen.getByText(item.date)).toBeInTheDocument();
+    }
+    if (item.value) {
+      expect(screen.getByText(item.value)).toBeInTheDocument();
+    }
+  };
   const items: TContentTabItem[] = [
     {
       id: "1",
@@ -75,20 +89,7 @@ describe("ContentTabList", () => {
     "should render the items correctly",
     (item) => {
       render(<ContentTabItem {...item} />);
-
-      expect(screen.getByText(item.title)).toBeInTheDocument();
-      if (item.subtitle) {
-        expect(screen.getByText(item.subtitle)).toBeInTheDocument();
-      }
-      if (item.tag) {
-        expect(screen.getByText(item.tag)).toBeInTheDocument();
-      }
-      if (item.date) {
-        expect(screen.getByText(item.date)).toBeInTheDocument();
-      }
-      if (item.value) {
-        expect(screen.getByText(item.value)).toBeInTheDocument();
-      }
+      testContentTabItem(item);
     },
   );
 
@@ -96,20 +97,7 @@ describe("ContentTabList", () => {
     "should render the items correctly on mobile view",
     (item) => {
       render(<ContentTabItem {...item} isMobile />);
-
-      expect(screen.getByText(item.title)).toBeInTheDocument();
-      if (item.subtitle) {
-        expect(screen.getByText(item.subtitle)).toBeInTheDocument();
-      }
-      if (item.tag) {
-        expect(screen.getByText(item.tag)).toBeInTheDocument();
-      }
-      if (item.date) {
-        expect(screen.getByText(item.date)).toBeInTheDocument();
-      }
-      if (item.value) {
-        expect(screen.getByText(item.value)).toBeInTheDocument();
-      }
+      testContentTabItem(item);
     },
   );
 
