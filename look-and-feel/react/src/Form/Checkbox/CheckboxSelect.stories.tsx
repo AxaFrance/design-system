@@ -19,6 +19,57 @@ export const CheckboxSelectStory: StoryObj<
   render: ({ ...args }) => <CheckboxSelect {...args} />,
   args: {
     type: "vertical",
+    isRequired: true,
+    options: [
+      {
+        label: "Paris",
+        description: "Capitale de la France",
+        subtitle: "Nord",
+        name: "paris",
+        value: "paris",
+        icon: <Svg src={home} />,
+      },
+      {
+        label: "Bruxelles",
+        description: "Capitale de la Belgique",
+        name: "bruxelles",
+        value: "bruxelles",
+        icon: <Svg src={home} />,
+      },
+      {
+        label: "Lille",
+        name: "lille",
+        value: "lille",
+        icon: <Svg src={home} />,
+        disabled: true,
+        checked: true,
+      },
+    ],
+  },
+  argTypes: {
+    type: {
+      control: { type: "inline-radio" },
+      options: ["vertical", "horizontal"],
+    },
+    options: {
+      control: { type: "object" },
+    },
+    errorMessage: {
+      control: { type: "text" },
+    },
+    onChange: { action: "onChange" },
+  },
+};
+
+export const CheckboxSelectWithLabel: StoryObj<
+  ComponentProps<typeof CheckboxSelect>
+> = {
+  name: "SelectWithLabel",
+  render: ({ ...args }) => <CheckboxSelect {...args} />,
+  args: {
+    type: "vertical",
+    labelGroup: "Quelle ville ?",
+    isRequired: true,
     options: [
       {
         label: "Paris",

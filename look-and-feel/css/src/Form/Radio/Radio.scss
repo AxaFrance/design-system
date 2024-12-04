@@ -1,3 +1,5 @@
+@use "../../common/common" as common;
+
 .af-radio {
   font-family: "Source Sans Pro", arial, sans-serif;
 
@@ -12,7 +14,7 @@
   }
 
   &__label {
-    font-size: 1.25rem;
+    font-size: common.rem(18);
     font-weight: 600;
     color: var(--color-gray-900);
   }

@@ -1,7 +1,9 @@
+@use "../../common/common" as common;
+
 .af-form {
   &__group {
     &--label {
-      font-size: 1.125rem;
+      font-size: common.rem(18);
       font-weight: 600;
       color: var(--color-gray-900);
     }

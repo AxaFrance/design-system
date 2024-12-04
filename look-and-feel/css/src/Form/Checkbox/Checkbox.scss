@@ -1,8 +1,22 @@
+@use "../../common/common" as common;
+
 .af-checkbox {
   font-family: "Source Sans Pro", arial, sans-serif;
 
   * {
     box-sizing: border-box;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__label {
+    font-size: common.rem(18);
+    font-weight: 600;
+    color: var(--color-gray-900);
   }
 
   &__content {
