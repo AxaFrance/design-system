@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import {
   cloneElement,
   Children,
@@ -9,6 +8,8 @@ import {
   ReactElement,
   isValidElement,
   ReactNode,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import { getComponentClassName } from "./getComponentClassName";
 import { MessageTypes } from "./MessageTypes";
@@ -29,9 +30,9 @@ const INITIAL_STATE = {
 };
 
 type EventFunction = {
-  onChange?: Function;
-  onBlur?: Function;
-  onFocus?: Function;
+  onChange?: (event: BaseSyntheticEvent) => void;
+  onBlur?: (event: BaseSyntheticEvent) => void;
+  onFocus?: (event: BaseSyntheticEvent) => void;
 };
 
 type FieldFormProps = Tmessage & {
@@ -64,7 +65,14 @@ export const setStateHasChange = (): SetState => (prevState) => ({
 });
 
 export const onChangeByState = (
-  setState: Function,
+  setState: Dispatch<
+    SetStateAction<{
+      hasLostFocusOnce: boolean;
+      hasFocus: boolean;
+      hasChange: boolean;
+      memory: Tmessage;
+    }>
+  >,
   stateHasChange: boolean,
   setStateHasChangeFn = setStateHasChange,
 ) => !stateHasChange && setState(setStateHasChangeFn());
@@ -144,7 +152,11 @@ type AddPropsClone = Omit<RenderChildrenProps, "children"> & {
   classModifier: string;
   name: string;
   getMessageClassModifierFn?: typeof FormClassManager.getMessageClassModifier;
-  eventWrapperFn?: Function;
+  eventWrapperFn?: ({ wrapper, props }: EventWrapperProps) => {
+    onChange: (ev: BaseSyntheticEvent) => void;
+    onBlur: (ev: BaseSyntheticEvent) => void;
+    onFocus: (ev: BaseSyntheticEvent) => void;
+  };
 };
 
 export const addPropsClone = ({
