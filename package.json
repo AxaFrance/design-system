@@ -38,6 +38,8 @@
     "@commitlint/config-conventional": "^19.1.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
     "concurrently": "^8.2.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.10"
