@@ -37,6 +37,15 @@ npm install sass
 
 If you are using vite, it will automatically pickup on sass being present.
 
+### SVG
+
+The import of the axa logo has to be changed as well. The logo is now in the `@axa-fr/design-system-slash-css` package.
+
+```diff
+- @import logo from '@axa-fr/react-toolkit-core/dist/assets/logo-axa.svg';
++ import logo from '@axa-fr/design-system-slash-css/dist/common/logo-axa.svg';
+```
+
 ## Visual changes
 
 ### Alert
