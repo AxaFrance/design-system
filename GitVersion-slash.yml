@@ -1,11 +1,12 @@
 mode: ContinuousDelivery
 tag-prefix: 'slash/'
-next-version: 1.0.0
 commit-message-incrementing: Disabled
 branches:
+  main:
+    tag: 'CI'
   release:
     tag: RC
     regex: ^releases?-slash[/-](?<BranchName>.+)
     commit-message-incrementing: Disabled
     source-branches:
-    - main
+      - main
