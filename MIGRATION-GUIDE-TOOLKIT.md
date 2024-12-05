@@ -22,6 +22,12 @@ can remove the following line from your project:
 - import '@axa-fr/react-toolkit-core/dist/assets/fonts/icons/af-icons.css';
 ```
 
+For retrieving the design system sass variables (for colours, etc.), we use to import a scss file into the scss file inside the projet. The import has to be changed in order to still get those variables.
+```diff
+- @import '@axa-fr/react-toolkit-core/dist/assets/scss/core.scss';
++ @import '@axa-fr/design-system-slash-css/dist/common/common.scss';
+```
+
 However we now require sass support in your project. If you don't have it, you
 can install it with:
 
