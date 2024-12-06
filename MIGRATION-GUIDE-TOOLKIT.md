@@ -128,3 +128,21 @@ Here's a example of how to update your code:
 
 The `HelpButton` component has been updated to use string unions for the `mode`
 and `placement` props intead of enums just like `Popover`.
+
+### 🧹 Accordion
+
+The `CollapseCard` component has been simplified. Before you needed to use the `Header` and `Body` components, but now you can use the `CollapseCard` component directly.
+
+```diff
+- <CollapseCard>
+-    <CollapseCard.Header>Header</CollapseCard.Header>
+-    <CollapseCard.Body>
+-        <p>Body</p>
+-    </CollapseCard.Body>
+- </CollapseCard>
++ <CollapseCard
++    title="Header"
++ >
++    <p>Body</p>
++ </CollapseCard>
+```
