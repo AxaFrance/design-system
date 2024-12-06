@@ -22,11 +22,11 @@ export const CollapseCard = ({
   open,
   onToggle,
   className,
-  classModifier = '',
+  classModifier = "",
 }: CollapseProps) => {
   const headerId = id;
 
-  let newClassModifier = open ? 'open' : '';
+  let newClassModifier = open ? "open" : "";
   newClassModifier += ` ${classModifier}`;
 
   const componentClassName = getComponentClassName(
