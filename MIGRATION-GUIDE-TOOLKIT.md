@@ -23,6 +23,7 @@ can remove the following line from your project:
 ```
 
 For retrieving the design system sass variables (for colours, etc.), we use to import a scss file into the scss file inside the projet. The import has to be changed in order to still get those variables.
+
 ```diff
 - @import '@axa-fr/react-toolkit-core/dist/assets/scss/core.scss';
 + @import '@axa-fr/design-system-slash-css/dist/common/common.scss';
@@ -128,3 +129,16 @@ Here's a example of how to update your code:
 
 The `HelpButton` component has been updated to use string unions for the `mode`
 and `placement` props intead of enums just like `Popover`.
+
+### 🧹 Alert
+
+The `icon` property of the `Alert` component has been renamed `iconClassName`.
+
+```diff
+- <Alert
+-    icon="glyphicon glyphicon-ok"
+- />
++ <Alert
++    iconClassName="glyphicon glyphicon-ok"
++ />
+```
