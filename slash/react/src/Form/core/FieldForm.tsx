@@ -19,7 +19,7 @@ const defaultClassName = "md-10";
 
 type TMessage = {
   message?: string;
-  messageType: MessageTypes;
+  messageType?: MessageTypes;
 };
 
 const INITIAL_STATE = {

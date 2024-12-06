@@ -7,7 +7,7 @@ const getFieldInputClassModifier = (modifier: string, disabled: boolean) =>
 const getInputClassModifier = (modifier: string, children: ReactNode) =>
   children ? `${modifier} hasinfobulle` : modifier;
 
-const getModifier = (messageType: string) => {
+const getModifier = (messageType: string | undefined) => {
   let modifier = "error";
   switch (messageType) {
     case MessageTypes.success:
@@ -23,7 +23,7 @@ const getModifier = (messageType: string) => {
 };
 
 const getMessageClassModifier = (
-  messageType: "error" | "success" | "warning",
+  messageType?: "error" | "success" | "warning",
   message?: string | null,
   modifier?: string,
 ) => {
