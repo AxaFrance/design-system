@@ -3,7 +3,8 @@ tag-prefix: 'slash/'
 commit-message-incrementing: Disabled
 branches:
   main:
-    tag: 'CI'
+    tag: 'alpha'
+    mode: ContinuousDeployment
   release:
     tag: RC
     regex: ^releases?-slash[/-](?<BranchName>.+)
