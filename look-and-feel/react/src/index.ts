@@ -1,5 +1,5 @@
-import "@fontsource/source-sans-pro";
 import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
+import "@fontsource/source-sans-pro";
 
 export { Accordion } from "./Accordion";
 export { AccordionCore } from "./AccordionCore";
@@ -23,14 +23,15 @@ export { List } from "./List";
 export { ClickItem, ClickList, createClickItemParent } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
-export { ContentTabList, ContentTabItem } from "./List/ContentTabList";
+export { ContentTabItem, ContentTabList } from "./List/ContentTabList";
 export { Loader } from "./Loader";
 export { Modal } from "./ModalClient";
 export type { ButtonAction as ModalButtonAction } from "./ModalClient/type";
 export { Pagination } from "./Pagination/Pagination";
+export { Skeleton } from "./Skeleton/Skeleton";
+export { SkeletonList } from "./SkeletonList/SkeletonList";
 export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
 export { Tag } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
-export { Skeleton } from "./Skeleton/Skeleton";
