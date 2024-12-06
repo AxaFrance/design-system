@@ -12,7 +12,7 @@ export const Default: StoryObj<typeof Accordion> = {
   name: "Regular Accordion",
   render: ({ ...args }) => (
     <Accordion {...args}>
-      <CollapseCard title="About AXA" id="t1" open>
+      <CollapseCard title="About AXA" id="t1" open classModifier="test">
         <p>
           AXA is a French multinational insurance firm headquartered in the 8th
           arrondissement of Pars that engages in global insurance, investment
@@ -34,7 +34,7 @@ export const Default: StoryObj<typeof Accordion> = {
           industry.
         </p>
       </CollapseCard>
-      <CollapseCard title="About insurance" id="t2" open>
+      <CollapseCard title="About insurance" id="t2" open className="maClasse">
         Insurance is a means of protection from financial loss. It is a form of
         risk management, primarily used to hedge against the risk of a
         contingent or uncertain loss.
