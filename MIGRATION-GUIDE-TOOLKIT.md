@@ -142,3 +142,21 @@ The `icon` property of the `Alert` component has been renamed `iconClassName`.
 +    iconClassName="glyphicon glyphicon-ok"
 + />
 ```
+
+### 🧹 Accordion
+
+The `CollapseCard` component has been simplified. Before you needed to use the `Header` and `Body` components, but now you can use the `CollapseCard` component directly.
+
+```diff
+- <CollapseCard>
+-    <CollapseCard.Header>Header</CollapseCard.Header>
+-    <CollapseCard.Body>
+-        <p>Body</p>
+-    </CollapseCard.Body>
+- </CollapseCard>
++ <CollapseCard
++    title="Header"
++ >
++    <p>Body</p>
++ </CollapseCard>
+```
