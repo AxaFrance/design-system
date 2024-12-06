@@ -146,3 +146,12 @@ The `CollapseCard` component has been simplified. Before you needed to use the `
 +    <p>Body</p>
 + </CollapseCard>
 ```
+
+### 🧹 Footer
+
+The `Footer` component has been simplified. Before you needed to use the `copyright` property to pass a content, but now you can directly put that content as child of the component.
+
+```diff
+- <Footer copyright="© 2024 Tous droits réservés — v1.0.0" />
++ <Footer>© 2024 Tous droits réservés — v1.0.0</Footer>
+```
