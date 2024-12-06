@@ -23,6 +23,7 @@ can remove the following line from your project:
 ```
 
 For retrieving the design system sass variables (for colours, etc.), we use to import a scss file into the scss file inside the projet. The import has to be changed in order to still get those variables.
+
 ```diff
 - @import '@axa-fr/react-toolkit-core/dist/assets/scss/core.scss';
 + @import '@axa-fr/design-system-slash-css/dist/common/common.scss';
@@ -128,3 +129,43 @@ Here's a example of how to update your code:
 
 The `HelpButton` component has been updated to use string unions for the `mode`
 and `placement` props intead of enums just like `Popover`.
+
+### 🧹 Alert
+
+The `icon` property of the `Alert` component has been renamed `iconClassName`.
+
+```diff
+- <Alert
+-    icon="glyphicon glyphicon-ok"
+- />
++ <Alert
++    iconClassName="glyphicon glyphicon-ok"
++ />
+```
+
+### 🧹 Accordion
+
+The `CollapseCard` component has been simplified. Before you needed to use the `Header` and `Body` components, but now you can use the `CollapseCard` component directly.
+
+```diff
+- <CollapseCard>
+-    <CollapseCard.Header>Header</CollapseCard.Header>
+-    <CollapseCard.Body>
+-        <p>Body</p>
+-    </CollapseCard.Body>
+- </CollapseCard>
++ <CollapseCard
++    title="Header"
++ >
++    <p>Body</p>
++ </CollapseCard>
+```
+
+### 🧹 Footer
+
+The `Footer` component has been simplified. Before you needed to use the `copyright` property to pass a content, but now you can directly put that content as child of the component.
+
+```diff
+- <Footer copyright="© 2024 Tous droits réservés — v1.0.0" />
++ <Footer>© 2024 Tous droits réservés — v1.0.0</Footer>
+```
