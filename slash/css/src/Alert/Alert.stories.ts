@@ -30,7 +30,7 @@ export const Default: StoryObj = {
     <div class="af-alert__title">
         <div class="af-alert__title-icon">
             <i class="${
-              args.iconClassName ||
+              args.icon ||
               TypeIcons[args.classModifier as keyof typeof TypeIcons]
             }"></i>
         </div>
@@ -48,7 +48,7 @@ export const Default: StoryObj = {
   args: {
     title: "Attention: des informations sont manquantes",
     classModifier: "success",
-    iconClassName: "",
+    icon: "",
   },
   argTypes: {
     classModifier: {

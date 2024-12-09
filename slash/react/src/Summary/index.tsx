@@ -21,7 +21,7 @@ export const Summary = ({
 
   return (
     <Alert
-      iconClassName="glyphicon glyphicon-warning-sign"
+      icon="glyphicon glyphicon-warning-sign"
       title={title}
       classModifier={classModifier}
       {...args}
