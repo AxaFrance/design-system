@@ -11,7 +11,7 @@ export enum TypeIcons {
 
 export type AlertCoreComponentProps = {
   title: string;
-  iconClassName?: string;
+  icon?: string;
   onClose?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   classModifier?: "error" | "danger" | "info" | "success";
@@ -20,7 +20,7 @@ export type AlertCoreComponentProps = {
 export const Alert = ({
   className,
   onClose,
-  iconClassName,
+  icon,
   title,
   children,
   classModifier = "error",
@@ -37,8 +37,7 @@ export const Alert = ({
         <div className="af-alert__title-icon">
           <i
             className={
-              iconClassName ||
-              TypeIcons[classModifier as keyof typeof TypeIcons]
+              icon || TypeIcons[classModifier as keyof typeof TypeIcons]
             }
           />
         </div>

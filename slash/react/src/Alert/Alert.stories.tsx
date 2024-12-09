@@ -29,7 +29,7 @@ export const DangerAlert: StoryObj<typeof Alert> = {
   args: {
     classModifier: "danger",
     title: "Attention: des informations sont manquantes",
-    iconClassName: "glyphicon glyphicon-alert",
+    icon: "glyphicon glyphicon-alert",
   },
 };
 
@@ -37,7 +37,7 @@ export const InfoAlert: StoryObj<typeof Alert> = {
   args: {
     classModifier: "info",
     title: "Attention: des informations sont manquantes",
-    iconClassName: "glyphicon glyphicon-info-sign",
+    icon: "glyphicon glyphicon-info-sign",
   },
 };
 
@@ -45,7 +45,7 @@ export const SuccessAlert: StoryObj<typeof Alert> = {
   args: {
     classModifier: "success",
     title: "Succès: votre demande a bien été enregistrée.",
-    iconClassName: "glyphicon glyphicon-ok",
+    icon: "glyphicon glyphicon-ok",
   },
 };
 
@@ -53,7 +53,7 @@ export const ErrorAlert: StoryObj<typeof Alert> = {
   args: {
     classModifier: "error",
     title: "Erreur dans les champs suivants :",
-    iconClassName: "glyphicon glyphicon-minus-sign",
+    icon: "glyphicon glyphicon-minus-sign",
     children: (
       <ul>
         <li>Le nom est obligatoire</li>
