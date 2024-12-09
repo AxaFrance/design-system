@@ -48,8 +48,12 @@ jobs:
         run: |
           cd look-and-feel/react
           jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
-      - run: npm publish -w look-and-feel/css -w look-and-feel/react --access
-          public
+      - run: |
+          if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
+            npm publish -w look-and-feel/css -w look-and-feel/react --access public --tag latest;
+          else
+            npm publish -w look-and-feel/css -w look-and-feel/react --access public --tag next;
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: create artifact folder
