@@ -155,3 +155,24 @@ The `Footer` component has been simplified. Before you needed to use the `copyri
 - <Footer copyright="© 2024 Tous droits réservés — v1.0.0" />
 + <Footer>© 2024 Tous droits réservés — v1.0.0</Footer>
 ```
+
+### 🧹 Action
+
+The `Action` component has had a change in the `role` of the element. Before, if you didn't pass any `role` to the component, the default role was `button`. Now, if you don't pass any `role` to the component, the default role won't be `button` anymore. The element is an a element, so the default role is `link` if you pass an `href` attribute.
+If you don't pass that attribute, you can pass `link` to the `role` property.
+
+Note as well that the `ActionCore` component has been removed. Use the `Action` component instead.
+
+```diff
+- <ActionCore
+-    icon="menu-left"
+-    aria-label="Retour à l'accueil"
+-    onClick={() => {}}
+- />
++ <Action
++    icon="menu-left"
++    aria-label="Retour à l'accueil"
++    role="link"
++    onClick={() => {}}
++ />
+```
