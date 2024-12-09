@@ -66,7 +66,7 @@ jobs:
 
   deploy:
     needs: build
-    if: needs.build.outputs.isStableRelease
+    if: needs.build.outputs.isStableRelease == 'true'
     runs-on: ubuntu-latest
     name: Deploy new version of storybook to gh-pages
     steps:
