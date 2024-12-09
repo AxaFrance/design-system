@@ -27,6 +27,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
       children,
       required,
       disabled = false,
+      ariaLabelContainer,
       ...radioProps
     },
     inputRef,
@@ -57,6 +58,8 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         classModifier={rowModifier + inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
+        roleContainer="radiogroup"
+        ariaLabelContainer={ariaLabelContainer ?? label?.toString()}
       >
         <Radio
           options={newOptions}
