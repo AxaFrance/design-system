@@ -50,7 +50,12 @@ jobs:
         run: |
           cd slash/react
           jq '.peerDependencies["@axa-fr/design-system-slash-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
-      - run: npm publish -w slash/css -w slash/react --access public
+      - run: |
+          if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
+            npm publish -w slash/css -w slash/react --access public --tag latest;
+          else
+            npm publish -w slash/css -w slash/react --access public --tag next;
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: create artifact folder
