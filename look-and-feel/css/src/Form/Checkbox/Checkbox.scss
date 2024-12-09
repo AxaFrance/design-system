@@ -21,6 +21,7 @@
 
   &__content {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -215,7 +216,6 @@
 
   &-select {
     display: flex;
-    margin-top: 1rem;
     flex-direction: column;
     gap: 1rem;
     font-family: var(--font-family-base);
