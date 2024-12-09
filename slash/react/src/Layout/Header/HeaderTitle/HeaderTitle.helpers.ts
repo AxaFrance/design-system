@@ -3,9 +3,7 @@ export const getClassModifier = (
   isSticky?: boolean,
 ) => {
   if (isSticky) {
-    return classModifier !== undefined
-      ? "sticky"
-      : `${classModifier} sticky`.trim();
+    return !classModifier ? "sticky" : `${classModifier} sticky`.trim();
   }
 
   return classModifier;
