@@ -148,31 +148,29 @@ export const MultiExamples: StoryObj<typeof ButtonClient> = {
           Button Tertiary Disabled
         </ButtonClient>
         <ButtonClient variant={Variants.ghost}>Button Ghost</ButtonClient>
-        <ButtonClient iconRight={<Svg src={arrowBack} fill="white" />}>
-          test
-        </ButtonClient>
+        <ButtonClient iconRight={<Svg src={arrowBack} />}>test</ButtonClient>
         <ButtonClient
           variant={Variants.secondary}
-          iconRight={<Svg src={code} fill="#00008F" />}
+          iconRight={<Svg src={code} />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.tertiary}
-          iconLeft={<Svg src={fireExtinguisher} fill="#00008F" />}
+          iconLeft={<Svg src={fireExtinguisher} />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.business}
-          iconRight={<Svg src={biotech} fill="white" />}
+          iconRight={<Svg src={biotech} />}
         >
           With icon
         </ButtonClient>
         <ButtonClient
           variant={Variants.ghost}
-          iconLeft={<Svg src={accountBalance} fill="#00008F" />}
-          iconRight={<Svg src={heartBroken} fill="#00008F" />}
+          iconLeft={<Svg src={accountBalance} />}
+          iconRight={<Svg src={heartBroken} />}
         >
           With icon MULTI
         </ButtonClient>
