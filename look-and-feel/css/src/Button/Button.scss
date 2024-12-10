@@ -1,6 +1,4 @@
 .af-btn-client {
-  --content-color: var(--color-white);
-
   display: flex;
   min-height: 3.5rem;
   padding: 0.8rem 1.2rem;
@@ -12,7 +10,7 @@
   font-family: var(--font-family-base);
   font-weight: 600;
   text-decoration: none;
-  color: var(--content-color);
+  color: var(--color-white);
   background-color: var(--color-axa);
   transition-duration: var(--transition-duration);
   transition-property: width, height, border, color, background-color, outline,
@@ -21,22 +19,15 @@
   cursor: pointer;
   user-select: none;
 
-  & > svg {
-    aspect-ratio: 1;
-    fill: var(--content-color);
-  }
-
   &:hover {
-    --content-color: var(--color-white);
-
     text-decoration: none;
+    color: var(--color-white);
     background-color: var(--color-blue-1);
   }
 
   &:active,
   &:focus {
-    --content-color: var(--color-white);
-
+    color: var(--color-white);
     background-color: var(--color-btn-light);
     outline: none;
   }
@@ -46,25 +37,27 @@
     outline-offset: 3px;
   }
 
-  &--ghost {
-    --content-color: var(--color-axa);
+  & > svg {
+    aspect-ratio: 1;
+    fill: currentcolor;
+  }
 
+  &--ghost {
     min-width: auto;
     min-height: auto;
     padding: 0;
     gap: 0.25rem;
+    color: var(--color-axa);
     background-color: transparent;
 
     &:hover {
-      --content-color: var(--color-blue-1);
-
+      color: var(--color-blue-1);
       background-color: transparent;
     }
 
     &:focus,
     &:active {
-      --content-color: var(--color-btn-light);
-
+      color: var(--color-btn-light);
       background-color: transparent;
     }
   }
@@ -82,35 +75,30 @@
   }
 
   &--tertiary {
-    --content-color: var(--color-axa);
-
+    color: var(--color-axa);
     background-color: var(--color-btn-tertiary-bg);
 
     &:hover {
-      --content-color: var(--color-axa);
-
+      color: var(--color-axa);
       background-color: var(--color-btn-tertiary-bg-darker);
     }
 
     &:focus,
     &:active {
-      --content-color: var(--color-axa);
-
+      color: var(--color-axa);
       background-color: var(--color-btn-tertiary-bg-lighter);
     }
   }
 
   &--secondary {
-    --content-color: var(--color-axa);
-
+    color: var(--color-axa);
     background-color: var(--color-white);
     box-shadow: 0 0 0 1px var(--color-axa) inset;
 
     &:hover,
     &:focus,
     &:active {
-      --content-color: var(--color-blue-1);
-
+      color: var(--color-blue-1);
       background-color: var(--color-white);
       box-shadow: 0 0 0 2px var(--color-blue-1) inset;
     }
@@ -121,16 +109,14 @@
   }
 
   &--secondary-error {
-    --content-color: var(--color-red-700);
-
+    color: var(--color-red-700);
     background-color: var(--color-white);
     box-shadow: 0 0 0 1px var(--color-red-700) inset;
 
     &:hover,
     &:focus,
     &:active {
-      --content-color: var(--color-btn-error-text);
-
+      color: var(--color-btn-error-text);
       background-color: var(--color-white);
       box-shadow: 0 0 0 2px var(--color-btn-error-text) inset;
     }
@@ -149,17 +135,15 @@
 
   &:disabled,
   &[aria-disabled="true"] {
-    --content-color: var(--color-btn-disabled-text);
-
+    color: var(--color-btn-disabled-text);
     background-color: var(--color-gray-300);
     box-shadow: none;
     cursor: not-allowed;
 
     &:hover,
     &:focus {
-      --content-color: var(--color-btn-disabled-text);
-
       border-color: transparent;
+      color: var(--color-btn-disabled-text);
       background-color: var(--color-gray-300);
     }
   }
