@@ -1,0 +1,88 @@
+@use "../../common/common" as common;
+
+.af-form {
+  &__input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__input-label {
+    font-size: common.rem(18);
+    font-weight: 600;
+    line-height: common.rem(20);
+    color: var(--color-gray-900);
+
+    @media (width > #{common.$breakpoint-md}) {
+      font-size: common.rem(18);
+      line-height: common.rem(24);
+    }
+  }
+
+  &__input-description {
+    font-size: common.rem(14);
+    font-weight: 400;
+    line-height: common.rem(18);
+    color: var(--color-gray-700);
+
+    @media (width > #{common.$breakpoint-md}) {
+      font-size: common.rem(16);
+      line-height: common.rem(20);
+    }
+  }
+
+  &__input-helper {
+    margin-top: 0.2rem;
+    font-size: common.rem(14);
+    line-height: common.rem(18);
+    color: var(--color-gray-700);
+
+    @media (width > #{common.$breakpoint-md}) {
+      font-size: common.rem(16);
+      line-height: common.rem(20);
+    }
+  }
+
+  &__input-more {
+    fill: var(--color-axa);
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &__input-textarea {
+    width: common.rem(384);
+    height: common.rem(142);
+    margin-top: 0.5rem;
+    padding: 1rem 2.5rem 1rem 1rem;
+    border: 1px solid var(--color-gray);
+    border-radius: var(--default-border-radius);
+    font-size: common.rem(16);
+    line-height: common.rem(20);
+    color: var(--color-gray-900);
+
+    @media (width > #{common.$breakpoint-md}) {
+      font-size: common.rem(18);
+      line-height: common.rem(24);
+    }
+
+    &--error {
+      border: 2px solid var(--color-red-700);
+    }
+
+    &:enabled {
+      &:focus,
+      &:active {
+        border: 1px solid var(--color-axa);
+        outline: none;
+      }
+    }
+
+    &:not(:disabled, :focus, :active, &--error):hover {
+      border: 2px solid var(--color-axa);
+      outline: none;
+    }
+  }
+}
