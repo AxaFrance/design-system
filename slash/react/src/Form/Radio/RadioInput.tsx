@@ -60,6 +60,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         classNameContainerInput={classNameContainerInput}
         roleContainer="radiogroup"
         ariaLabelContainer={ariaLabelContainer ?? label?.toString()}
+        isLabelContainerLinkedToInput={false}
       >
         <Radio
           options={newOptions}
