@@ -18,6 +18,7 @@ export const ClickItem = ({
   isDisabled = false,
   className,
   classModifier = "",
+  actionIcon = <Svg src={chevron} aria-hidden />,
   ...otherProps
 }: TClickItem) => {
   const componentClassName = useMemo(
@@ -41,9 +42,7 @@ export const ClickItem = ({
         {icon && <div className="af-click-item__icon">{icon}</div>}
         <div className="af-click-item__label">{children}</div>
       </div>
-      <div className="af-click-item__action">
-        <Svg src={chevron} aria-hidden />
-      </div>
+      <div className="af-click-item__action">{actionIcon}</div>
     </ClickComponent>
   );
 };

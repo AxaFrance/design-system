@@ -49,6 +49,17 @@ describe("ClickItem", () => {
     expect(iconElement).toBeInTheDocument();
   });
 
+  it("should render action icon correctly", () => {
+    const label = "Sample Label";
+    const actionIcon = <span>Action Icon</span>;
+
+    render(<ClickItem actionIcon={actionIcon}>{label}</ClickItem>);
+
+    const iconElement = screen.getByText("Action Icon");
+
+    expect(iconElement).toBeInTheDocument();
+  });
+
   it("should render as a button by default", () => {
     const label = "Sample Label";
 

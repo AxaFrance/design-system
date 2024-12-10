@@ -1,5 +1,6 @@
 import contentPasteGo from "@material-symbols/svg-400/outlined/content_paste_go.svg";
 import error from "@material-symbols/svg-400/outlined/error-fill.svg";
+import openInNew from "@material-symbols/svg-400/outlined/open_in_new.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Svg } from "../../Svg";
 import { createClickItemParent } from "./ClickItem";
@@ -21,6 +22,7 @@ export const ClickListWithIcon: StoryObj<typeof ClickList> = {
         icon: <Svg src={error} aria-hidden />,
         children: "Texte principal",
         classModifier: "small",
+        actionIcon: <Svg src={openInNew} aria-hidden />,
       },
       {
         id: "2",
