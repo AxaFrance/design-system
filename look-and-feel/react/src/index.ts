@@ -15,6 +15,7 @@ export { FileUpload } from "./Form/FileUpload";
 export { Radio, RadioSelect } from "./Form/Radio";
 export { Select } from "./Form/Select";
 export { Text as TextInput } from "./Form/Text";
+export { TextArea } from "./Form/TextArea";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";
 export { Header } from "./Layout/Header";
