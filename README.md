@@ -25,6 +25,19 @@ Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers
 | **@axa-fr/design-system-look-and-feel-css**   | [![Storybook](https://img.shields.io/badge/Storybook-look--and--feel--css-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/look-and-feel/css/latest/)     | [![Lien vers npm](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-css)     | [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-look_and_feel-00008F)](https://zeroheight.com/54c5bd254/v/latest/p/07c120-espace-client) [![Figma](https://img.shields.io/badge/Figma-look_and_feel-F24E1E?logo=figma)](https://www.figma.com/design/06u5N0AkHDjJW3Sbis7FOJ/04.-Zero-Height---Look%2526Feel) |
 | **@axa-fr/design-system-look-and-feel-react** | [![Storybook](https://img.shields.io/badge/Storybook-look--and--feel--react-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/look-and-feel/react/latest/) | [![Lien vers npm](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-react) | [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-look_and_feel-00008F)](https://zeroheight.com/54c5bd254/v/latest/p/07c120-espace-client) [![Figma](https://img.shields.io/badge/Figma-look_and_feel-F24E1E?logo=figma)](https://www.figma.com/design/06u5N0AkHDjJW3Sbis7FOJ/04.-Zero-Height---Look%2526Feel) |
 
+## Build status
+
+#### Sonarcloud Quality metrics
+
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=bugs)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=coverage)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
+
+
 ### Composants Slash
 
 L'ensemble des composants Slash ont été migrés depuis l'ancien repository [Slash](https://github.com/AxaFrance/react-toolkit), nous vous invitons à migrer vos projets vers ce nouveau package. Vous pouvez consulter notre [guide de migration](./MIGRATION-GUIDE-TOOLKIT.md)
