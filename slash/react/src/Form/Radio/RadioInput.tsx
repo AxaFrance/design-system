@@ -67,7 +67,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
           classModifier={inputClassModifier}
           ref={inputRef}
           disabled={disabled}
-          required={required}
+          required={required || classModifier?.includes("required")}
           {...radioProps}
         />
         {children}
