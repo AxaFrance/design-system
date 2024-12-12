@@ -29,7 +29,7 @@ const getContainer = () => {
   return container;
 };
 
-const getInput = (args: Args) => {
+const getTextArea = (args: Args) => {
   const input = document.createElement("textarea");
   input.id = "nameid";
   input.name = "name";
@@ -95,7 +95,7 @@ export const TextAreaStory: StoryObj = {
   name: "TextArea",
   render: (args) => {
     const container = getContainer();
-    const input = getInput(args);
+    const input = getTextArea(args);
     const label = getLabel(args);
 
     container.appendChild(label);
@@ -109,7 +109,7 @@ export const TextAreaWithDescriptionStory: StoryObj = {
   name: "TextArea with description",
   render: (args) => {
     const container = getContainer();
-    const input = getInput(args);
+    const input = getTextArea(args);
     const label = getLabel(args);
     const description = getDescription(args);
 
@@ -128,7 +128,7 @@ export const TextAreaOnErrorStory: StoryObj = {
   name: "TextArea on error",
   render: (args) => {
     const container = getContainer();
-    const input = getInput(args);
+    const input = getTextArea(args);
     const label = getLabel(args);
 
     const description = getDescription(args);
@@ -152,7 +152,7 @@ export const TextAreaWithKnowMore: StoryObj = {
   name: "TextArea with know more",
   render: (args) => {
     const container = getContainer();
-    const input = getInput(args);
+    const input = getTextArea(args);
     const label = getLabel(args);
     const description = getDescription(args);
     const knowMore = getKnowMore();

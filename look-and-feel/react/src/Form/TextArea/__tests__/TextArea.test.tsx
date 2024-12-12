@@ -14,6 +14,7 @@ describe("<TextArea />", () => {
       />,
     );
 
+    screen.getByRole("textbox");
     screen.getByText("Label");
     screen.getByText("Lorem Ipsum");
     screen.getByText("Description");
