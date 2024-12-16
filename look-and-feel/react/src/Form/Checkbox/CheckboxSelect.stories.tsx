@@ -69,6 +69,7 @@ export const CheckboxSelectWithLabel: StoryObj<
   args: {
     type: "vertical",
     labelGroup: "Quelle ville ?",
+    descriptionGroup: "Choisissez une ville",
     isRequired: true,
     options: [
       {
