@@ -9,6 +9,7 @@ export type TClickItem = {
     ) => ReactNode;
     children?: ReactNode;
     icon?: ReactNode;
+    actionIcon?: ReactNode;
   } & Record<string, unknown>;
 
 export type TParentClickComponentProps = { children: ReactNode } & Record<
