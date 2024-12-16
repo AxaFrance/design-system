@@ -42,6 +42,10 @@ export const svgInjector = (
   element: HTMLElement | SVGSVGElement | null,
   { beforeEach = () => {}, ...options }: Options = {},
 ) => {
+  if (!element) {
+    return;
+  }
+
   SVGInjector(element, {
     ...options,
     beforeEach: (svg) => {
