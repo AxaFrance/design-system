@@ -8,6 +8,7 @@ import { Svg } from "../../Svg";
 type CheckboxProps = {
   type: "vertical" | "horizontal";
   labelGroup?: string;
+  descriptionGroup?: string;
   isRequired?: boolean;
   options: ({
     label: ReactNode;
@@ -21,6 +22,7 @@ type CheckboxProps = {
 
 export const CheckboxSelect = ({
   labelGroup,
+  descriptionGroup,
   isRequired,
   options,
   errorMessage,
@@ -35,6 +37,9 @@ export const CheckboxSelect = ({
           {labelGroup}
           {isRequired && <span aria-hidden="true">&nbsp;*</span>}
         </span>
+      )}
+      {descriptionGroup && (
+        <span className="af-checkbox__description">{descriptionGroup}</span>
       )}
       <div
         role="group"

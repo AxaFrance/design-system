@@ -19,6 +19,18 @@
     color: var(--color-gray-900);
   }
 
+  &__description {
+    font-size: common.rem(14);
+    font-weight: 400;
+    line-height: common.rem(18);
+    color: var(--color-gray-700);
+
+    @media (width > #{common.$breakpoint-md}) {
+      font-size: common.rem(16);
+      line-height: common.rem(20);
+    }
+  }
+
   &__content {
     display: flex;
     width: 100%;
