@@ -48,7 +48,7 @@
     "@storybook/preview-api": "^8.3.5",
     "@storybook/test": "^8.3.5",
     "@storybook/theming": "^8.3.5",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
     "@typescript-eslint/parser": "^8.17.0",
     "@vitejs/plugin-react": "^4.3.2",
     "browserslist": "^4.23.3",
