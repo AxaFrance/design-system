@@ -10,6 +10,21 @@
     align-items: center;
     justify-content: center;
     animation: spin 2s linear infinite;
+
+    &--blue {
+      border: solid color-mix(in srgb, var(--color-axa), transparent 80%);
+      border-top: solid var(--color-axa);
+    }
+
+    &--gray {
+      border: solid color-mix(in srgb, var(--color-gray), transparent 80%);
+      border-top: solid var(--color-gray);
+    }
+
+    &--white {
+      border: solid color-mix(in srgb, var(--color-white), transparent 80%);
+      border-top: solid var(--color-white);
+    }
   }
 }
 
