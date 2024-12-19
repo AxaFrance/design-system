@@ -60,3 +60,14 @@ export const TextWithButton: Story = {
     buttonLabel: "En savoir plus",
   },
 };
+
+export const TextWithFull: StoryObj = {
+  name: "Text Full",
+  render,
+  args: {
+    classModifier: "error",
+    description: "Description",
+    buttonLabel: "En savoir plus",
+    error: "Error Message",
+  },
+};

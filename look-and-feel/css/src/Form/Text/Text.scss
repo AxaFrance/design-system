@@ -2,9 +2,20 @@
 
 .af-form {
   &__input-container {
+    --row-gap: calc(8 / var(--font-size-base) * 1rem);
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    row-gap: var(--row-gap);
+  }
+
+  &__label-container {
+    --row-gap: calc(4 / var(--font-size-base) * 1rem);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--row-gap);
   }
 
   &__input-label {
@@ -32,7 +43,6 @@
   }
 
   &__input-helper {
-    margin-top: 0.2rem;
     font-size: common.rem(14);
     line-height: common.rem(18);
     color: var(--color-gray-700);
@@ -44,6 +54,7 @@
   }
 
   &__input-more {
+    width: fit-content;
     fill: var(--color-axa);
 
     svg {
@@ -53,7 +64,6 @@
   }
 
   &__input-text {
-    margin-top: 0.5rem;
     padding: 1rem 2.5rem 1rem 1rem;
     border: 1px solid var(--color-gray);
     border-radius: var(--default-border-radius);

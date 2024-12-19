@@ -1,0 +1,13 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as DebugGridStories from "./DebugGrid.stories.tsx";
+
+<Meta of={DebugGridStories} />
+
+## DebugGrid
+
+Le composant DebuGrid permettant de visualiser les grilles du Design System est disponible (Il complète l'outil du navigateur).
+
+Ce composant reprend les codes couleurs utilisés sur les maquettes et affiche les breakpoints en fonction de la taille de l'écran.
+
+<Canvas of={DebugGridStories.Default} />
+<Controls of={DebugGridStories.Default} />

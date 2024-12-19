@@ -1,5 +1,6 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
 import "./Skeleton.scss";
+import { div } from "../utils";
 
 const meta: Meta = {
   title: "Components/Skeleton",
@@ -13,22 +14,9 @@ const args = {
   ariaBusy: true,
   ariaLabel: "Chargement",
   maxCols: 12,
-  colGap: 1,
-  rowGap: 0.5,
+  colGap: 16,
+  rowGap: 8,
 };
-
-function createNode(
-  node: keyof HTMLElementTagNameMap,
-  attributes: Record<string, string>,
-) {
-  const el = document.createElement(node);
-  for (const key in attributes) {
-    if (attributes[key]) {
-      el.setAttribute(key, attributes[key]);
-    }
-  }
-  return el;
-}
 
 const render = ({
   className,
@@ -39,26 +27,22 @@ const render = ({
   colGap,
   rowGap,
 }: Args) => {
-  const skelelonContainer = createNode("div", {
-    style: `--max-cols: ${maxCols}; --col-gap: ${colGap}rem; --row-gap: ${rowGap}rem;`,
-    class: `${className}-container`,
-    "aria-busy": ariaBusy,
-    "aria-label": ariaLabel,
-  });
-
   const addSkeleton = (colSize: number) =>
-    createNode("div", {
+    div([], {
       style: `--col-size: ${colSize};`,
       class: className,
     });
 
-  grid.forEach((cols: number[]) => {
-    cols.forEach((colSize) => {
-      skelelonContainer.appendChild(addSkeleton(colSize));
-    });
-  });
+  const skeletons = grid.map((cols: number[]) =>
+    cols.map((colSize) => addSkeleton(colSize)),
+  );
 
-  return skelelonContainer;
+  return div([...skeletons.flat()], {
+    style: `--max-cols: ${maxCols}; --col-gap: calc(${colGap} / var(--font-size-base) * 1rem); --row-gap: calc(${rowGap} / var(--font-size-base) * 1rem);`,
+    class: `${className}-container`,
+    "aria-busy": ariaBusy,
+    "aria-label": ariaLabel,
+  });
 };
 
 export const Default: StoryObj = {

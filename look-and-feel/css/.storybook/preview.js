@@ -5,6 +5,11 @@ import "../src/common/tokens.scss";
 /** @type { import('@storybook/html').Preview } */
 const preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ["Guidelines", "Components"],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
