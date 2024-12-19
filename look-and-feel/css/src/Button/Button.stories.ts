@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/html";
+import { render } from "./render";
 import "./Button.scss";
 
 const meta: Meta = {
@@ -17,27 +18,7 @@ const VARIANTS = [
 ];
 
 export const Primary: StoryObj = {
-  render: (args) => {
-    const btn = document.createElement("button");
-    btn.innerHTML = args.label;
-    if (args.iconLeft) {
-      btn.innerHTML = `${args.iconLeft}${btn.innerHTML}`;
-    }
-    if (args.iconRight) {
-      btn.innerHTML = `${btn.innerHTML}${args.iconRight}`;
-    }
-
-    btn.className = [
-      "af-btn-client",
-      args.variant ? `af-btn-client--${args.variant}` : "",
-    ].join(" ");
-
-    if (args.disabled) {
-      btn.setAttribute("disabled", args.disabled);
-    }
-
-    return btn;
-  },
+  render,
   args: {
     label: "Button",
     variant: "",

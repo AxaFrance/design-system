@@ -1,0 +1,495 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as GridWireframeStories from "./GridWireframe.stories.ts";
+import * as GridExamplePageStories from "./GridExamplePage.stories.ts";
+import * as GridExampleFormStories from "./GridExampleForm.stories.ts";
+import "../look-and-feel.scss";
+
+<Meta
+  of={GridWireframeStories}
+  parameters={{
+    layout: "fullscreen",
+    options: {
+      storySort: {
+        order: ["Wireframe", "Example Page", "Example Form"],
+      },
+    },
+  }}
+/>
+
+## Grid System
+
+See all guidelines on **[ZeroHeight](https://zeroheight.com/54c5bd254/v/latest/p/48d0d1-grille)**
+
+<p style={{ textAlign: "center" }}>
+  ![Grille Look And Feel](./grille-look-and-feel.png "Grille Look And Feel")
+</p>
+
+### Table of breakpoint values
+
+<table style={{ marginInline: "auto" }}>
+  <tbody>
+    <tr>
+      <td colspan="1" rowspan="1" colwidth="363">
+        <p>
+          <strong>Breakpoint</strong>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="95">
+        <p>
+          <strong>Columns</strong>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="150">
+        <p>
+          <strong>Body</strong>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="117">
+        <p>
+          <strong>Gutters</strong>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="null">
+        <p>
+          <strong>Margins</strong>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="1" colwidth="363">
+        <p>
+          <code>
+            <strong>Mobile </strong>(0 to 667)
+          </code>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="95">
+        <p>4</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="150">
+        <p>Scaling</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="117">
+        <p>8</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="null">
+        <p>16</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="1" colwidth="363">
+        <p>
+          <code>
+            <strong>Tablet</strong> (668 to 1023)
+          </code>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="95">
+        <p>8</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="150">
+        <p>Scaling</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="117">
+        <p>16</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="null">
+        <p>60</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="1" colwidth="363">
+        <p>
+          <code>
+            <strong>Small Desktop</strong> (1024 to 1279)
+          </code>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="95">
+        <p>12</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="150">
+        <p>Scaling</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="117">
+        <p>24</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="null">
+        <p>80</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="1" colwidth="363">
+        <p>
+          <code>
+            <strong>Medium Desktop</strong> (1280 to 1599px)
+          </code>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="95">
+        <p>12</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="150">
+        <p>Scaling</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="117">
+        <p>24</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="null">
+        <p>120</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="1" colwidth="363">
+        <p>
+          <code>
+            <strong>Large Desktop</strong> (1600 to ∞ px)
+          </code>
+        </p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="95">
+        <p>12</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="150">
+        <p>1320</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="117">
+        <p>24</p>
+      </td>
+      <td colspan="1" rowspan="1" colwidth="null">
+        <p>Scaling</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Breakpoint
+
+SCSS variables are available in the <code>**commons.scss**</code> file to manage breakpoints in projects.
+
+```css
+@media (width > #{common.$breakpoint-sm}) {
+  /* more than  667px */
+}
+@media (width > #{common.$breakpoint-md}) {
+  /* more than 1023px */
+}
+@media (width > #{common.$breakpoint-lg}) {
+  /* more than 1279px */
+}
+@media (width > #{common.$breakpoint-xl}) {
+  /* more than 1599px */
+}
+```
+
+## How to use
+
+### Parent element
+
+You must first place the CSS class **'grid'** on the <u>parent element</u> for which child elements are to follow the grids.
+
+All direct child elements will follow the grids.
+
+```html
+<main class="grid">
+  <h1>My title</h1>
+  <!-- direct child -->
+  <section class="left-part"></section>
+  <!-- direct child -->
+  <aside class="right-part"></aside>
+  <!-- direct child -->
+  <main></main>
+</main>
+```
+
+The grid system is based on a number of columns according to breakpoints.
+
+- Mobile (0 to 667) : **4 columns**
+- Tablet (668 to 1023) : **8 columns**
+- Small Desktop (1024 to 1279) : **12 columns**
+- Medium Desktop (1280 to 1599px) : **12 columns**
+- Large Desktop (1600 to ∞ px) : **12 columns**
+
+As defined in the [guidelines](https://zeroheight.com/54c5bd254/v/latest/p/48d0d1-grille).
+
+The grid system is **mobile first** and works with **native cascading** in terms of inheriting CSS variable values.
+
+This means we define the mobile behavior first, then add media to overload the variable.
+
+By default, an element will take all columns.
+
+### Number of columns
+
+To define the number of columns an element must have, a <u>CSS variable</u> is available: <code>**--cols**</code>
+
+If we return to our previous structure example :
+
+```css
+.left-part {
+  /* Mobile et tablet : here, we don't specify anything because we want the element to take 4 columns (i.e. 100%) */
+
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 8; /* Small Desktop : here, we want 8 columns out of 12 */
+  }
+
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 9; /* Medium Desktop : here, we want 9 columns out of 12 */
+  }
+
+  /* Large Desktop : here, we specify nothing because we inherit from the previous declaration */
+}
+
+.right-part {
+  /* Mobile et tablet : here, we don't specify anything because we want the element to take 4 columns (i.e. 100%) */
+
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 4; /* Small Desktop : here, we want 4 columns out of 12 */
+  }
+
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 3; /* Medium Desktop : here, we want 3 columns out of 12 */
+  }
+
+  /* Large Desktop : here, we specify nothing because we inherit from the previous declaration */
+}
+```
+
+Here's a **[demo of the code](https://codesandbox.io/p/devbox/grid-system-cols-gwdyq7?file=%2Fsrc%2Fpages%2Fgrid.scss%3A16%2C8&workspaceId=ws_ERmrBb2dGX9A3LatFpNkJS)**
+
+### Gutters
+
+The gutters are managed by the grid system, so in principle there's no need to overload them, as they comply with the Design System guidelines :
+
+- Mobile (0 to 667) : 8px
+- Tablet (668 to 1023) : 16px
+- Small Desktop (1024 to 1279) : 24px
+- Medium Desktop (1280 to 1599px) : 24px
+- Large Desktop (1600 to ∞ px) : 24px
+
+Here's a **[demo of the code](https://codesandbox.io/p/devbox/grid-system-gutters-jycthz?file=%2Fsrc%2Fpages%2Fdemo.scss%3A16%2C13&workspaceId=ws_ERmrBb2dGX9A3LatFpNkJS)**
+
+> There is, however, a CSS variable for overloading: <code>**--col-gap**</code>, but you shouldn't use it.
+
+### Vertical spacing
+
+Vertical spacing within each **direct child element** can be managed with the CSS variable <code>**--row-gap**</code>.
+
+Example :
+
+```html
+<main class="grid">
+  <h1>My title</h1>
+  <!-- direct child -->
+  <section class="left-part">
+    <!-- direct child -->
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+  </section>
+  <aside class="right-part">
+    <!-- direct child -->
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+    <div class="box" />
+  </aside>
+  <main></main>
+</main>
+```
+
+```css
+.left-part {
+  /* Mobile et tablet : here, the boxes will be vertically spaced by 4px */
+  --row-gap: calc(4 / var(--font-size-base) * 1rem);
+
+  background-color: hsla(39, 100%, 50%, 50%);
+
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 8;
+    /* Small Desktop : here, the boxes will be vertically spaced by 16px */
+    --row-gap: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 9;
+    /* Large Desktop : here, 16px spacing is inherited */
+  }
+}
+
+.right-part {
+  /* Mobile et tablet : here, the boxes will be spaced vertically by 8px */
+  --row-gap: calc(8 / var(--font-size-base) * 1rem);
+
+  background-color: hsla(120, 100%, 25%, 50%);
+
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 4;
+    /* Small Desktop : here, the boxes will be spaced vertically by 24px */
+    --row-gap: calc(24 / var(--font-size-base) * 1rem);
+  }
+
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 3;
+    /* Large Desktop : here, we inherit 24px spacing */
+  }
+}
+```
+
+Here's a **[demo of the code](https://codesandbox.io/p/devbox/grid-system-row-gap-wyhlyz?file=%2Fsrc%2Fpages%2Fdemo.scss%3A14%2C23)**
+
+### Offsets
+
+It is possible to apply an offset to a **direct child element** to make it 'start' from a given column. To do this, use the CSS variable : <code>**--start**</code>.
+
+<p style={{ textAlign: "center" }}>
+  ![Grid Look And Feel](./offsets.png "Grid Look And Feel Offset")
+</p>
+
+Here's a **[demo of the code](https://codesandbox.io/p/devbox/grid-system-offsets-df46sc?file=%2Fsrc%2Fpages%2Findex.astro%3A15%2C9&workspaceId=ws_ERmrBb2dGX9A3LatFpNkJS)**
+
+Offsets are also demoed on the wireframe and sample form.
+
+### Subgrid
+
+If you need to apply the grid system to an <u>**element that is not a direct child**</u>, you can apply the <code>**subgrid**</code> class to it.
+
+You can then apply the CSS variable overloads used above (<code>**--cols**</code>, <code>**--row-gap**</code>, <code>**--start**</code>).
+
+Let's go back to our example with cards on the right and on the left :
+
+```html
+<main class="grid">
+  <h1>My title</h1>
+  <section class="left-part">
+    <div class="box-card">
+      <!-- not direct child -->
+      <h3>title</h3>
+      <p>content</p>
+    </div>
+    ...
+  </section>
+  <aside class="right-part">
+    <div class="box-card">
+      <!-- not direct child -->
+      <h3>title</h3>
+      <p>content</p>
+    </div>
+    ...
+  </aside>
+</main>
+```
+
+We would like these cards to follow the grids with the following rules:
+
+For the left side :
+
+- Mobile (0 to 667) : **4 columns**
+- Tablet (668 to 1023) : **4 columns**
+- Small Desktop (1024 to 1279) : **4 columns**
+- Medium Desktop (1280 to 1599px) : **3 columns**
+- Large Desktop (1600 to ∞ px) : **3 columns**
+
+For the right side :
+
+- Mobile (0 to 667) : **2 columns**
+- Tablet (668 to 1023) : **2 columns**
+- Small Desktop (1024 to 1279) : **4 columns**
+- Medium Desktop (1280 to 1599px) : **3 columns**
+- Large Desktop (1600 to ∞ px) : **3 columns**
+
+We'll start by setting the subgrid <code>**subgrid**</code> on the parent elements containing the cards :
+
+```html
+<main class="grid">
+  <h1>My title</h1>
+  <section class="left-part subgrid">
+    <!-- We apply the subgrid class -->
+    ...
+  </section>
+  <aside class="right-part subgrid">
+    <!-- We apply the subgrid class -->
+    ...
+  </aside>
+</main>
+```
+
+We can now use the grids on our cards :
+
+```css
+.left-part {
+  ... .box-card {
+    --color-box: rgb(255, 233, 233);
+    --cols: 4; /* Mobile, tablet, Small Desktop : 4 column cards are defined */
+
+    @media (width > #{common.$breakpoint-lg}) {
+      --cols: 3; /* Large Desktop : 3 column cards are defined */
+    }
+
+    /* beyond: inherits the previous declaration */
+  }
+}
+
+.right-part {
+  ... .box-card {
+    --color-box: rgb(218, 255, 218);
+    --cols: 2; /* Mobile, tablet : 2 column cards are defined */
+
+    @media (width > #{common.$breakpoint-md}) {
+      --cols: 4; /* Small Desktop : 4 column cards are defined */
+    }
+
+    @media (width > #{common.$breakpoint-lg}) {
+      --cols: 3; /* Large Desktop : 3 column cards are defined */
+    }
+    /* beyond: inherits the previous declaration */
+  }
+}
+```
+
+Here's a **[demo of the code](https://codesandbox.io/p/devbox/grid-system-subgrid-q92c89?file=%2Fsrc%2Fpages%2Fdemo.scss%3A40%2C2)**
+
+### Has Subgrid
+
+It's not always possible to apply the <code>**subgrid**</code> class to the wrapper element of a Design System component.
+
+For example, fields can be assigned a class, but it will be applied to the input element and not to its parent.
+
+The grid system anticipates this and applies the subgrid behavior also to an element that has a direct child with the <code>**subgrid**</code> class, using the <code>**:has()**</code> property.
+
+### DebugGrid
+
+A [DebuGrid](https://axafrance.github.io/design-system/look-and-feel/css/latest?path=/story/guidelines-grid-system-debuggrid--default) component for viewing Design System grids is now available (it complements the browser tool).
+
+This component reproduces the color codes used on figma prototypes and displays breakpoints according to screen size.
+
+## Example with wireframe
+
+This wireframe will show you the basic usage :
+
+<Canvas of={GridWireframeStories.Wireframe} />
+
+<Controls of={GridWireframeStories.Wireframe} />
+
+## Example page
+
+An example with lists components :
+
+<Canvas of={GridExamplePageStories.Page} />
+
+<Controls of={GridExamplePageStories.Page} />
+
+## Example form
+
+An example with form components :
+
+<Canvas of={GridExampleFormStories.Form} />
+
+<Controls of={GridExampleFormStories.Form} />

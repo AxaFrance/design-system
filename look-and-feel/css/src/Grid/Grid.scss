@@ -1,0 +1,71 @@
+@use "../common/common.scss" as common;
+
+/* GRID SYSTEM DESIGN SYSTEM AXA FRANCE (Look & Feel)****************
+
+See the documentation : https://zeroheight.com/54c5bd254/v/latest/p/48d0d1-grille
+
+Its MOBILE FIRST approach, so the defauts values target the mobile.
+
+@media (width > #{common.$breakpoint-sm}) { >>>>> more than  667px
+@media (width > #{common.$breakpoint-md}) { >>>>> more than 1023px
+@media (width > #{common.$breakpoint-lg}) { >>>>> more than 1279px
+@media (width > #{common.$breakpoint-xl}) { >>>>> more than 1599px
+
+********************************************************************* */
+
+.grid {
+  --col-gap: calc(8 / var(--font-size-base) * 1rem);
+  --row-gap: calc(16 / var(--font-size-base) * 1rem);
+  --margin-inline: calc(16 / var(--font-size-base) * 1rem);
+  --cols: 4;
+  --start: auto;
+
+  display: grid;
+  margin-inline: var(--margin-inline);
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: var(--row-gap) var(--col-gap);
+
+  @media (width > #{common.$breakpoint-sm}) {
+    --cols: 8;
+    --col-gap: calc(16 / var(--font-size-base) * 1rem);
+    --margin-inline: calc(60 / var(--font-size-base) * 1rem);
+  }
+
+  @media (width > #{common.$breakpoint-md}) {
+    --col-gap: calc(24 / var(--font-size-base) * 1rem);
+    --margin-inline: calc(80 / var(--font-size-base) * 1rem);
+    --cols: 12;
+  }
+
+  @media (width > #{common.$breakpoint-lg}) {
+    --margin-inline: calc(120 / var(--font-size-base) * 1rem);
+  }
+
+  @media (width > #{common.$breakpoint-xl}) {
+    --margin-inline: auto;
+
+    max-width: 1320px;
+  }
+
+  > *,
+  & .subgrid,
+  & :has(> .subgrid) {
+    display: grid;
+    grid-column: var(--start) / span var(--cols);
+    align-content: start;
+    row-gap: var(--row-gap);
+  }
+
+  > * > * {
+    --start: auto;
+  }
+
+  .subgrid,
+  & :has(> .subgrid) {
+    grid-template-columns: subgrid;
+
+    > * {
+      grid-column: var(--start) / span var(--cols);
+    }
+  }
+}
