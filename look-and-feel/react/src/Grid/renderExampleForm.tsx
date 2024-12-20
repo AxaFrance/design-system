@@ -46,7 +46,7 @@ export const render = () => (
             <TextInput
               key={field.id}
               {...field}
-              classModifier={field.error ? "error" : "error"}
+              classModifier={field.error ? "error" : ""}
             />
           ))}
         </div>
