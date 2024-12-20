@@ -51,22 +51,27 @@ const Text = forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className="af-form__input-container">
-        <label htmlFor={inputId} className="af-form__input-label">
-          {label} {required && <span> *</span>}
-        </label>
-        {description && (
-          <span className="af-form__input-description">{description}</span>
+        {(label || description || buttonLabel) && (
+          <div className="af-form__label-container">
+            <label htmlFor={inputId} className="af-form__input-label">
+              {label} {required && <span> *</span>}
+            </label>
+            {description && (
+              <span className="af-form__input-description">{description}</span>
+            )}
+            {buttonLabel && (
+              <Button
+                className="af-form__input-more"
+                variant={Variants.ghost}
+                iconLeft={<Svg src={infoIcon} />}
+                onClick={onButtonClick}
+              >
+                {buttonLabel}
+              </Button>
+            )}
+          </div>
         )}
-        {buttonLabel && (
-          <Button
-            className="af-form__input-more"
-            variant={Variants.ghost}
-            iconLeft={<Svg src={infoIcon} />}
-            onClick={onButtonClick}
-          >
-            {buttonLabel}
-          </Button>
-        )}
+
         <input
           id={inputId}
           className={componentClassName}

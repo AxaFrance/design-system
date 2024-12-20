@@ -1,0 +1,67 @@
+@use "../common/common.scss" as common;
+
+main.example-form {
+  padding-block: 4rem;
+}
+
+.form {
+  --start: 3;
+  --cols: 8;
+  @media (width > #{common.$breakpoint-md}) {
+    --row-gap: calc(64 / var(--font-size-base) * 1rem);
+  }
+
+  &__header {
+    --row-gap: calc(32 / var(--font-size-base) * 1rem);
+  }
+
+  &__fields {
+    --row-gap: 2rem;
+
+    .af-form__input-text {
+      @media (width > #{common.$breakpoint-sm}) {
+        --cols: 5;
+      }
+      @media (width > #{common.$breakpoint-md}) {
+        --cols: 4;
+
+        &[type="email"] {
+          --cols: 5;
+        }
+      }
+      @media (width > #{common.$breakpoint-lg}) {
+        --cols: 3;
+
+        &[type="email"] {
+          --cols: 4;
+        }
+      }
+    }
+  }
+
+  &__actions {
+    > :first-child {
+      --cols: 2;
+
+      @media (width > #{common.$breakpoint-md}) {
+        --cols: 3;
+      }
+
+      @media (width > #{common.$breakpoint-lg}) {
+        --cols: 2;
+      }
+    }
+
+    > :last-child {
+      --cols: 2;
+
+      @media (width > #{common.$breakpoint-sm}) {
+        --cols: 3;
+      }
+
+      @media (width > #{common.$breakpoint-lg}) {
+        --cols: 2;
+      }
+    }
+  }
+}
