@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Accordion } from "./Accordion";
 import { CollapseCard } from "./CollapseCard";
+import { CheckboxItem } from "../Form/Checkbox";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
@@ -18,6 +19,8 @@ export const Default: StoryObj<typeof Accordion> = {
           arrondissement of Pars that engages in global insurance, investment
           management, and other financial services.
         </p>
+
+        <CheckboxItem label="Check me" />
 
         <p>
           The AXA Group operates primarily in Western Europe, North America, the

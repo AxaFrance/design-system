@@ -41,7 +41,7 @@ $minHeight: 3rem;
   }
 
   &__details[open] {
-    .glyphicon {
+    .glyphicon-menu-down {
       transform: rotate(180deg);
     }
   }
