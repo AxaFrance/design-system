@@ -32,6 +32,7 @@ export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
     placeholder: "Paris",
     messageType: MessageTypes.error,
     forceDisplayMessage: false,
+    message: "",
     id: "uniqueid",
     classModifier: [],
     isVisible: true,

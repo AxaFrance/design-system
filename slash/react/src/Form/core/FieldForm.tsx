@@ -4,7 +4,6 @@ import {
   cloneElement,
   Dispatch,
   isValidElement,
-  ReactElement,
   ReactNode,
   SetStateAction,
   useEffect,
@@ -148,7 +147,7 @@ export const eventWrapper = ({ wrapper, props }: EventWrapperProps) => ({
 });
 
 type AddPropsClone = Omit<RenderChildrenProps, "children"> & {
-  child: ReactElement;
+  child: JSX.Element;
   classModifier: string;
   name: string;
   getMessageClassModifierFn?: typeof FormClassManager.getMessageClassModifier;
@@ -168,7 +167,6 @@ export const addPropsClone = ({
   name,
   getMessageClassModifierFn = FormClassManager.getMessageClassModifier,
   eventWrapperFn = eventWrapper,
-  ...rest
 }: AddPropsClone) => {
   const messageClassModifier = getMessageClassModifierFn(
     messageType,
@@ -176,9 +174,7 @@ export const addPropsClone = ({
     classModifier,
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const type: any = { ...rest };
-  const displayName = type?.displayName ?? name;
+  const displayName = child.type.displayName ?? name;
 
   switch (displayName) {
     case "HelpMessage":

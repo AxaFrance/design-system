@@ -77,6 +77,6 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
   },
 );
 
-RadioInput.displayName = "RadioInput";
+RadioInput.displayName = "EnhancedInputRadio";
 
 export { RadioInput };

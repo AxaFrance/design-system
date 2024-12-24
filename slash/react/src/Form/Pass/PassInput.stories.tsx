@@ -39,6 +39,7 @@ export const PassInputStory: StoryObj<typeof PassInput> = {
     required: true,
     messageType: MessageTypes.error,
     forceDisplayMessage: false,
+    message: "",
     readOnly: false,
     disabled: false,
     isVisible: true,

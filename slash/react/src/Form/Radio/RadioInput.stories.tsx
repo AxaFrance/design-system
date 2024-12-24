@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { ComponentPropsWithRef } from "react";
 import { RadioModes } from "./Radio";
 import { RadioInput } from "./RadioInput";
+import { MessageTypes } from "../core";
 
 const meta: Meta<typeof RadioInput> = {
   component: RadioInput,
@@ -13,27 +13,24 @@ const meta: Meta<typeof RadioInput> = {
 
 export default meta;
 
-type RadioInputProps = Omit<
-  ComponentPropsWithRef<typeof RadioInput>,
-  "classModifier"
-> & {
-  classModifier?: string[];
-};
-export const RadioInputStory: StoryObj<RadioInputProps> = {
+type Story = StoryObj<typeof RadioInput>;
+
+export const RadioInputStory: Story = {
   name: "RadioInput",
-  render: ({ classModifier, ...args }) => (
-    <RadioInput classModifier={classModifier?.join(" ")} {...args} />
-  ),
+  render: ({ ...args }) => <RadioInput {...args} />,
   args: {
     label: "Where are you ?",
     required: true,
     mode: RadioModes.classic,
     value: "",
-    classModifier: [],
+    classModifier: "",
     isChecked: false,
     readOnly: false,
     disabled: false,
     name: "placeName",
+    forceDisplayMessage: true,
+    messageType: MessageTypes.error,
+    message: "",
     options: [
       { label: "Paris", value: "paris" },
       { label: "Lille", value: "lille" },
@@ -52,10 +49,6 @@ export const RadioInputStory: StoryObj<RadioInputProps> = {
         empty: "",
       },
       control: { type: "inline-radio" },
-    },
-    classModifier: {
-      options: ["disabled", "required"],
-      control: { type: "inline-check" },
     },
   },
 };
