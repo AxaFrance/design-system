@@ -121,6 +121,7 @@ export const MultiSelectInputStory: StoryObj<
     helpMessage: "Enter the place type",
     messageType: MessageTypes.error,
     forceDisplayMessage: false,
+    message: "",
     isVisible: true,
     classModifier: "",
     classNameContainerLabel: "col-md-2",

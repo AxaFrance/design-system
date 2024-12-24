@@ -30,6 +30,7 @@ export const TextareaInputStory: Story = {
     placeholder: "",
     helpMessage: "Enter a comment",
     messageType: MessageTypes.error,
+    message: "",
     forceDisplayMessage: false,
     readOnly: false,
     disabled: false,

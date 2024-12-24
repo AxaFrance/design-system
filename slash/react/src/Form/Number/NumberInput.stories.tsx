@@ -45,6 +45,7 @@ export const NumberInputStory: Story = {
     label: "Your name",
     helpMessage: "Aide à la saisie",
     forceDisplayMessage: false,
+    message: "",
     messageType: MessageTypes.error,
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
