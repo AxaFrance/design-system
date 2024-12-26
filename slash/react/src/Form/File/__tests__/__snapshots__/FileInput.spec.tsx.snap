@@ -44,7 +44,7 @@ exports[`<FileInput> > renders FileInput correctly 1`] = `
             </div>
           </div>
           <button
-            class="af-btn af-btn--file af-btn--hasIconLeft af-btn"
+            class="af-btn af-btn--file af-btn--hasIconLeft"
             type="button"
           >
             <i

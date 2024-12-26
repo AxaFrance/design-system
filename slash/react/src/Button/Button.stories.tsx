@@ -30,6 +30,7 @@ type StoryProps = Omit<
 > & {
   children: string;
   classModifier: string[];
+  className: string;
 };
 type Story = StoryObj<StoryProps>;
 
@@ -43,6 +44,7 @@ export const Playground: Story = {
   args: {
     children: "Button",
     classModifier: [] as string[],
+    className: "",
   },
   argTypes: {
     classModifier: {

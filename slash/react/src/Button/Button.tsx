@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-slash-css/dist/Button/Button.scss";
-import classNames from "classnames";
 
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import { getComponentClassName } from "../utilities";
 
 type ButtonProps = {
   classModifier?: string;
@@ -13,17 +13,14 @@ export const Button = ({
   className,
   ...args
 }: PropsWithChildren<ButtonProps>) => {
-  const classes = classModifier
-    ?.split(" ")
-    .map((modifier) => `af-btn--${modifier}`)
-    .join(" ");
+  const componentClassName = getComponentClassName(
+    className,
+    classModifier,
+    "af-btn",
+  );
 
   return (
-    <button
-      className={classNames("af-btn", classes, className)}
-      type="button"
-      {...args}
-    >
+    <button className={componentClassName} type="button" {...args}>
       {children}
     </button>
   );
