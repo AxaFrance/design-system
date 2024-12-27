@@ -8,6 +8,7 @@ export const PopoverOver = ({
   className,
   classModifier,
   element: content,
+  colorArrow,
 }: PopoverProps) => {
   const [isOpen, setOpen] = React.useState(false);
 
@@ -35,6 +36,7 @@ export const PopoverOver = ({
         className={className}
         classModifier={classModifier}
         element={content}
+        colorArrow={colorArrow}
       >
         {children}
       </PopoverBase>
