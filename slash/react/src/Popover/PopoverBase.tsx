@@ -1,5 +1,5 @@
-import { Placement } from "@popperjs/core";
 import React from "react";
+import { Placement } from "@floating-ui/react";
 import { AnimatedPopover } from "./AnimatedPopover";
 
 import "@axa-fr/design-system-slash-css/dist/Popover/Popover.scss";
@@ -20,7 +20,7 @@ type Props = {
 const PopoverBase = ({
   children,
   isOpen,
-  placement = "auto",
+  placement = "right",
   className = defaultClassName,
   classModifier,
   element,

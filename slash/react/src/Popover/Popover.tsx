@@ -1,5 +1,5 @@
-import { Placement } from "@popperjs/core";
 import React from "react";
+import { Placement } from "@floating-ui/react";
 import { PopoverModes } from "./Popover.types";
 import { PopoverClick } from "./PopoverClick";
 import { PopoverOver } from "./PopoverOver";

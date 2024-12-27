@@ -6,15 +6,7 @@
     &__container-pop {
       width: 300px;
       background: white;
-      box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.2);
       padding: 0;
-
-      &[data-popper-placement^="top"] > .af-popover__arrow::before,
-      &[data-popper-placement^="right"] > .af-popover__arrow::before,
-      &[data-popper-placement^="left"] > .af-popover__arrow::before {
-        background: white;
-        box-shadow: -2px 0 5px 0px rgba(0, 0, 0, 0.2);
-      }
     }
   }
 }

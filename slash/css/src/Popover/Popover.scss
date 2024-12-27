@@ -1,8 +1,6 @@
 @use "sass:color";
 @use "../common/common" as common;
 
-$arrow-size: 16px;
-$arrow-offset: -4px;
 $padding-popover: 0.5rem 1rem;
 
 .af-popover {
@@ -26,8 +24,10 @@ $padding-popover: 0.5rem 1rem;
       width: calc(260 / 16 * 1rem);
       padding: $padding-popover;
       border-radius: 3px;
-      color: common.$white;
-      background: common.$color-azur;
+      line-height: 1.125rem;
+      color: common.$color-azur;
+      background: common.$white;
+      box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
 
       .af-subtitle {
         font-size: 2em;
@@ -46,38 +46,6 @@ $padding-popover: 0.5rem 1rem;
           height: 2rem;
         }
       }
-    }
-
-    .af-popover__arrow {
-      position: absolute;
-      z-index: -1;
-      width: $arrow-size;
-      height: $arrow-size;
-
-      &::before {
-        position: absolute;
-        width: $arrow-size;
-        height: $arrow-size;
-        background: common.$color-azur;
-        transform: rotate(45deg);
-        content: "";
-      }
-    }
-
-    [data-popper-placement^="top"] > .af-popover__arrow {
-      bottom: $arrow-offset;
-    }
-
-    [data-popper-placement^="bottom"] > .af-popover__arrow {
-      top: $arrow-offset;
-    }
-
-    [data-popper-placement^="right"] > .af-popover__arrow {
-      left: $arrow-offset;
-    }
-
-    [data-popper-placement^="left"] > .af-popover__arrow {
-      right: $arrow-offset;
     }
   }
 }

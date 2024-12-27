@@ -55,14 +55,13 @@
     }
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.2",
     "@fontsource/source-sans-pro": "^5.0.8",
-    "@popperjs/core": "^2.11.8",
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",
     "dompurify": "^3.1.5",
     "rc-slider": "^11.1.7",
     "react-dropzone": "^11.5.3",
-    "react-popper": "^2.3.0",
     "react-select": "^5.9.0"
   },
   "devDependencies": {
