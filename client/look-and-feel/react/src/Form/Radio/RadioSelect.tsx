@@ -14,6 +14,7 @@ import { InputError } from "../InputError";
 type RadioSelectProps = {
   type: "vertical" | "horizontal";
   label?: string;
+  description?: string;
   isRequired?: boolean;
   options: ({
     label: ReactNode;
@@ -33,6 +34,7 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
     {
       id,
       label,
+      description,
       options,
       errorMessage,
       onChange,
@@ -65,12 +67,17 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
 
     return (
       <div className="af-radio__container">
-        {label && (
-          <span className="af-radio__label" id={optionId}>
-            {label}
-            {isRequired && <span aria-hidden="true">&nbsp;*</span>}
-          </span>
-        )}
+        <div className="af-radio__label-container">
+          {label && (
+            <span className="af-radio__label" id={optionId}>
+              {label}
+              {isRequired && <span aria-hidden="true">&nbsp;*</span>}
+            </span>
+          )}
+          {description && (
+            <span className="af-radio__description">{description}</span>
+          )}
+        </div>
         <div
           {...rest}
           role="radiogroup"
@@ -83,7 +90,7 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
             (
               {
                 label: inputLabel,
-                description,
+                description: inputDescription,
                 subtitle,
                 icon,
                 disabled: inputDisabled,
@@ -117,7 +124,7 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
                   {icon}
                   <div className="af-radio__content-description">
                     <span>{inputLabel}</span>
-                    {description && <span>{description}</span>}
+                    {inputDescription && <span>{inputDescription}</span>}
                     {subtitle && <span>{subtitle}</span>}
                   </div>
                 </div>
