@@ -32,15 +32,17 @@ export const CheckboxSelect = ({
   const optionId = useId();
   return (
     <div className="af-checkbox__container">
-      {labelGroup && (
-        <span className="af-checkbox__label" id={optionId}>
-          {labelGroup}
-          {isRequired && <span aria-hidden="true">&nbsp;*</span>}
-        </span>
-      )}
-      {descriptionGroup && (
-        <span className="af-checkbox__description">{descriptionGroup}</span>
-      )}
+      <div className="af-checkbox__label-container">
+        {labelGroup && (
+          <span className="af-checkbox__label" id={optionId}>
+            {labelGroup}
+            {isRequired && <span aria-hidden="true">&nbsp;*</span>}
+          </span>
+        )}
+        {descriptionGroup && (
+          <span className="af-checkbox__description">{descriptionGroup}</span>
+        )}
+      </div>
       <div
         role="group"
         className={`af-checkbox af-checkbox-select af-checkbox-select--${type}`}
