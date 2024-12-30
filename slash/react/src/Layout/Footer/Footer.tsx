@@ -29,7 +29,13 @@ export const Footer = forwardRef<
     <footer ref={ref} className={className} {...props}>
       <div className="container-fluid container">
         {Boolean(icon) && (
-          <a className="af-logo" href={href} title={title} target="blank">
+          <a
+            className="af-logo"
+            href={href}
+            title={title}
+            target="blank"
+            rel="noopener noreferrer"
+          >
             <img className="af-logo__brand" src={icon} alt={alt} />
           </a>
         )}
