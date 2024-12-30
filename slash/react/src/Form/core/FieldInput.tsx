@@ -21,3 +21,5 @@ export const FieldInput = ({
   const newClassName = getComponentClassName(className, classModifier, "");
   return <div className={newClassName}>{children}</div>;
 };
+
+FieldInput.displayName = "FieldInput";
