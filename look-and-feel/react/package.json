@@ -61,7 +61,7 @@
     "classnames": "^2.5.1",
     "dompurify": "^3.1.5",
     "rc-slider": "^11.1.7",
-    "react-select": "^5.8.0"
+    "react-select": "^5.9.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",

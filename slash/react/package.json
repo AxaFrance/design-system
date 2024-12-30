@@ -63,7 +63,7 @@
     "rc-slider": "^11.1.7",
     "react-dropzone": "^11.5.3",
     "react-popper": "^2.3.0",
-    "react-select": "^5.8.0"
+    "react-select": "^5.9.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^2.0.2",
