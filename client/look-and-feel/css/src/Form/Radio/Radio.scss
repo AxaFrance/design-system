@@ -14,11 +14,9 @@
   }
 
   &__label-container {
-    --row-gap: calc(4 / var(--font-size-base) * 1rem);
-
     display: flex;
     flex-direction: column;
-    row-gap: var(--row-gap);
+    row-gap: calc(4 / var(--font-size-base) * 1rem);
   }
 
   &__label {
