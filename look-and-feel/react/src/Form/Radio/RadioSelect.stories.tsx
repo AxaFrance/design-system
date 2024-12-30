@@ -106,6 +106,7 @@ export const RadioSelectWithLabel: StoryObj<
   args: {
     type: "vertical",
     label: "Quelle ville ?",
+    description: "Choisissez une ville",
     isRequired: true,
     name: "cities",
     options: storyOptions,
