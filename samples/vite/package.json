@@ -19,7 +19,7 @@
     "@swc/core": "^1.7.35",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.24",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
     "@typescript-eslint/parser": "^7.16.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "eslint": "^8.57.0",
