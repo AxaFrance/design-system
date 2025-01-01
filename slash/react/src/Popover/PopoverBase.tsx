@@ -1,5 +1,5 @@
-import { Placement } from "@popperjs/core";
 import React from "react";
+import { Placement } from "@floating-ui/react";
 import { AnimatedPopover } from "./AnimatedPopover";
 
 import "@axa-fr/design-system-slash-css/dist/Popover/Popover.scss";
@@ -13,6 +13,7 @@ type Props = {
   element: React.ReactNode;
   children: React.ReactNode | React.ReactNode[];
   isOpen: boolean;
+  colorArrow?: string;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: (event: React.MouseEvent) => void;
 };
@@ -20,10 +21,11 @@ type Props = {
 const PopoverBase = ({
   children,
   isOpen,
-  placement = "auto",
+  placement = "right",
   className = defaultClassName,
   classModifier,
   element,
+  colorArrow,
   onMouseEnter,
   onMouseLeave,
 }: Props) => {
@@ -36,6 +38,7 @@ const PopoverBase = ({
       classModifier={classModifier}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      colorArrow={colorArrow}
     >
       {element}
     </AnimatedPopover>

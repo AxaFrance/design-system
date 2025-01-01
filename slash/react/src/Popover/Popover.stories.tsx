@@ -44,9 +44,6 @@ export const Default: StoryObj<typeof Popover> = {
   argTypes: {
     placement: {
       options: [
-        "auto",
-        "auto-start",
-        "auto-end",
         "top",
         "top-start",
         "top-end",

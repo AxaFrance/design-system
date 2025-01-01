@@ -1,4 +1,4 @@
-import { Placement } from "@popperjs/core";
+import { Placement } from "@floating-ui/react";
 
 export type PopoverModes = "hover" | "click";
 
@@ -8,4 +8,5 @@ export type PopoverProps = {
   placement?: Placement;
   children?: React.ReactNode;
   element: React.ReactNode;
+  colorArrow?: string;
 };
