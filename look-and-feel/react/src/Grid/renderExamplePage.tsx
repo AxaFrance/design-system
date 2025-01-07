@@ -1,14 +1,14 @@
-import { MyHeader } from "./components/MyHeader";
-import { MyFooter } from "./components/MyFooter";
-import { MainTitle } from "./components/MainTitle";
-import { DebugGrid } from "./DebugGrid";
-import { MyList } from "./components/MyList";
-import { Contacts } from "./components/Contacts";
 import { Title, TitleSize } from "../Title";
+import { Contacts } from "./components/Contacts";
+import { MainTitle } from "./components/MainTitle";
+import { MyFooter } from "./components/MyFooter";
+import { MyHeader } from "./components/MyHeader";
+import { MyList } from "./components/MyList";
+import { DebugGrid } from "./DebugGrid";
 
 export const render = () => (
   <>
-    <DebugGrid />
+    <DebugGrid isCheckedByDefault />
     <MyHeader />
     <main className="grid example-page">
       <MainTitle />

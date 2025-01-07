@@ -4,7 +4,7 @@ import { Offsets } from "./components/Offsets";
 
 export const render = () => (
   <>
-    <DebugGrid />
+    <DebugGrid isCheckedByDefault />
     <main className="grid">
       <h1 className="box">Bonjour, Samuel G.</h1>
       <div className="box box-example-1 subgrid">

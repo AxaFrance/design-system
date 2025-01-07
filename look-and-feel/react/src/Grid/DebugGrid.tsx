@@ -1,9 +1,15 @@
-import { useState } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Grid/DebugGrid.scss";
+import { useState } from "react";
 import { Checkbox } from "../Form/Checkbox";
 
-export const DebugGrid = ({ cols = 12 }: { cols?: number }) => {
-  const [checked, setChecked] = useState(true);
+export const DebugGrid = ({
+  cols = 12,
+  isCheckedByDefault = false,
+}: {
+  cols?: number;
+  isCheckedByDefault?: boolean;
+}) => {
+  const [checked, setChecked] = useState(isCheckedByDefault);
 
   const handleChecked = () => setChecked(!checked);
   return (

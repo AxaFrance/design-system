@@ -1,5 +1,5 @@
-import { MyHeader } from "./components/MyHeader";
 import { MyFooter } from "./components/MyFooter";
+import { MyHeader } from "./components/MyHeader";
 
 import { Button, ButtonVariants, TextInput, Title } from "..";
 import { DebugGrid } from "./DebugGrid";
@@ -33,7 +33,7 @@ const FIELDS = [
 
 export const render = () => (
   <>
-    <DebugGrid />
+    <DebugGrid isCheckedByDefault />
     <MyHeader />
     <main className="grid example-form">
       <form className="form">
