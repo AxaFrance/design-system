@@ -1,0 +1,1 @@
+/* empty css              */const t={parameters:{options:{storySort:{order:["Guidelines","Components"]}},controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}}},tags:["autodocs"]};export{t as default};

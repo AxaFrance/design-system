@@ -1,4 +1,4 @@
-/* empty css              */import"./Button.stories-D8gUZOTy.js";/* empty css               */const f={title:"Components/Form/Input/FileUpload"},s={render:i=>{const e=document.createElement("div");return e.innerHTML=`
+/* empty css              */import"./Button.stories-BqEslE8d.js";/* empty css               */import"./render-BrQnipfe.js";const r={title:"Components/Form/Input/FileUpload"},s={render:i=>{const e=document.createElement("div");return e.innerHTML=`
 <label class="af-form__group--label" for="inputtext1">${i.label} ${i.required?"*":""}</label>
 <div>
    <div class="af-form__file-input">
@@ -247,4 +247,4 @@
       }
     }
   }
-}`,...(a=(n=s.parameters)==null?void 0:n.docs)==null?void 0:a.source}}};const r=["Default"];export{s as Default,r as __namedExportsOrder,f as default};
+}`,...(a=(n=s.parameters)==null?void 0:n.docs)==null?void 0:a.source}}};const p=["Default"];export{s as Default,p as __namedExportsOrder,r as default};
