@@ -102,10 +102,8 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
                   name={name}
                   id={`${optionId}-${inputLabel}`}
                   onChange={onChange}
-                  {...(value && {
-                    "aria-checked": value === inputProps.value,
-                    checked: value === inputProps.value,
-                  })}
+                  aria-checked={value === inputProps.value}
+                  checked={value === inputProps.value}
                   ref={getRef(idx, ref, value, inputProps.value)}
                 />
                 <div className="af-radio__icons">
