@@ -1,0 +1,6 @@
+import{j as t}from"./jsx-runtime-QvZ8i92b.js";import{useMDXComponents as n}from"./index-FeUjBnvO.js";import{ae as s,af as m,ag as a}from"./index-DpqKoUO0.js";import{D as p,a as r}from"./DebugGrid.stories-mGq-FpK1.js";import"./index-uubelm5h.js";import"./iframe-DKPei0sB.js";import"../sb-preview/runtime.js";import"./index-CfOt2XX2.js";import"./index-D-8MO0q_.js";import"./isNativeReflectConstruct-DULPOR7A.js";import"./index-DmeKSGxc.js";import"./index-DrFu-skq.js";import"./DebugGrid-Cic2SHJb.js";import"./Checkbox-C_sWxrJ4.js";import"./check_box_outline_blank-C3eXZyiA.js";import"./error-BHKM2E7q.js";import"./index-vAxXS4R5.js";import"./Svg-CUaNRA4q.js";import"./CheckboxSelect-POhRhbxH.js";function i(e){const o={h2:"h2",p:"p",...n(),...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(s,{of:p}),`
+`,t.jsx(o.h2,{id:"debuggrid",children:"DebugGrid"}),`
+`,t.jsx(o.p,{children:"Le composant DebuGrid permettant de visualiser les grilles du Design System est disponible (Il complète l'outil du navigateur)."}),`
+`,t.jsx(o.p,{children:"Ce composant reprend les codes couleurs utilisés sur les maquettes et affiche les breakpoints en fonction de la taille de l'écran."}),`
+`,t.jsx(m,{of:r}),`
+`,t.jsx(a,{of:r})]})}function _(e={}){const{wrapper:o}={...n(),...e.components};return o?t.jsx(o,{...e,children:t.jsx(i,{...e})}):i(e)}export{_ as default};
