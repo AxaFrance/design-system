@@ -1,0 +1,1 @@
+const t=n=>{const e=document.createElement("button");return e.innerHTML=n.label,n.iconLeft&&(e.innerHTML=`${n.iconLeft}${e.innerHTML}`),n.iconRight&&(e.innerHTML=`${e.innerHTML}${n.iconRight}`),e.className=["af-btn-client",n.variant?`af-btn-client--${n.variant}`:""].join(" "),n.disabled&&e.setAttribute("disabled",n.disabled),e};export{t as r};
