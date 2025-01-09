@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "../../Button/Button.scss";
 // eslint-disable-next-line import/no-relative-packages
-import logo from "../../../../../common/assets/logo-axa.svg";
+import logo from "../../../../../../common/assets/logo-axa.svg";
 import { getButton, getNavBar, getPreviousLink, render } from "./render";
 import "./Header.scss";
 import "./NavBar/NavBar.scss";
