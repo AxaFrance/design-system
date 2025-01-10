@@ -42,25 +42,25 @@ jobs:
       - run: npm ci
       - run: npm run build:look-and-feel
       - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
-          look-and-feel/css -w look-and-feel/react
+          client/look-and-feel/css -w client/look-and-feel/react
       - name: Set to react package the @axa-fr/design-system-look-and-feel-css
           dependency version
         run: |
-          cd look-and-feel/react
+          cd client/look-and-feel/react
           jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
       - run: |
           if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
-            npm publish -w look-and-feel/css -w look-and-feel/react --access public --tag latest;
+            npm publish -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag latest;
           else
-            npm publish -w look-and-feel/css -w look-and-feel/react --access public --tag next;
+            npm publish -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag next;
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: create artifact folder
         run: mkdir -p artifact/css & mkdir -p artifact/react
       - name: move storybooks to artifact folders
-        run: cp -R look-and-feel/css/storybook-static/* artifact/css & cp -R
-          look-and-feel/react/storybook-static/* artifact/react
+        run: cp -R client/look-and-feel/css/storybook-static/* artifact/css & cp -R
+          client/look-and-feel/react/storybook-static/* artifact/react
       - uses: actions/upload-artifact@v4
         with:
           name: storybooks

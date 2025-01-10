@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build css packages
-        run: npm run build -w slash/css &&  npm run build -w look-and-feel/css
+        run: npm run build -w slash/css &&  npm run build -w client/look-and-feel/css
       - uses: chromaui/action@latest
         name: Run Chromatic for design-system-slash-react
         with:
@@ -40,7 +40,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
           zip: true
           buildScriptName: "build:storybook"
-          workingDir: "look-and-feel/react"
+          workingDir: "client/look-and-feel/react"
           onlyChanged: true
       - uses: chromaui/action@latest
         name: Run Chromatic for design-system-lookandfeel-css
@@ -48,5 +48,5 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_CSS }}
           zip: true
           buildScriptName: "build:storybook"
-          workingDir: "look-and-feel/css"
+          workingDir: "client/look-and-feel/css"
           onlyChanged: true

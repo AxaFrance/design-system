@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --config ../../config/postcss.config.js",
-    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
+    "start": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --env development_client --config ../../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production_client --config ../../../config/postcss.config.js",
     "start:storybook": "storybook dev -p 6008",
     "build:storybook": "storybook build",
     "build-storybook": "storybook build",
