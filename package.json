@@ -38,7 +38,7 @@
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.1.0",
     "@csstools/postcss-sass": "^5.1.1",
-    "@material-symbols/svg-400": "*",
+    "@material-symbols/svg-400": "^0.25.1",
     "@storybook/addon-docs": "^8.3.5",
     "@storybook/addon-essentials": "^8.3.5",
     "@storybook/addon-interactions": "^8.3.5",
@@ -62,7 +62,7 @@
     "@types/dompurify": "^3.0.5",
     "@types/jest": "^29.5.12",
     "@types/jest-axe": "^3.5.9",
-    "@types/node": "^20.14.9",
+    "@types/node": "^22.10.6",
     "@types/react": "^18.3.2",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
@@ -114,7 +114,7 @@
     "{package,package-lock}.json": "npm run package:check"
   },
   "volta": {
-    "node": "20.10.0",
-    "npm": "10.2.5"
+    "node": "22.13.0",
+    "npm": "11.0.0"
   }
 }
