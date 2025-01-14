@@ -1,6 +1,8 @@
 import { Fragment, ReactNode } from "react";
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/Infos/Infos.scss";
 import { getComponentClassName } from "../../../utilities";
+import { generateId } from "../../../utilities/helpers/generateId";
+
+import "@axa-fr/design-system-slash-css/dist/Layout/Header/Infos/Infos.scss";
 
 const defaultClassName = "af-contrat";
 
@@ -28,7 +30,7 @@ const Infos = ({ infos, className, classModifier }: InfosProps) => {
       <i className="glyphicon glyphicon-info-sign" />
       <dl className={`${defaultClassName}__list`}>
         {infos.map((info) => (
-          <Fragment key={`info-${info.id}`}>
+          <Fragment key={`info-${generateId(info)}`}>
             <dt className={`${defaultClassName}__word`}>{info.word}</dt>
             <dd className={`${defaultClassName}__def`}>{info.definition}</dd>
           </Fragment>
