@@ -118,5 +118,11 @@ module.exports = {
         "import/no-default-export": "off",
       },
     },
+    {
+      files: ["**/*.{stories,test,spec}.ts?(x)"],
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
   ],
 };
