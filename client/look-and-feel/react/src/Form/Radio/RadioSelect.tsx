@@ -10,8 +10,9 @@ import React, {
 } from "react";
 import { Svg } from "../../Svg";
 import { InputError } from "../InputError";
+import { getComponentClassName } from "../../utilities/helpers/getComponentClassName";
 
-type RadioSelectProps = {
+type RadioSelectProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
   label?: string;
   description?: string;
@@ -32,6 +33,7 @@ type RadioSelectProps = {
 export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
   (
     {
+      className,
       id,
       label,
       description,
@@ -47,6 +49,14 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
     },
     ref,
   ) => {
+    const componentClassName = getComponentClassName(
+      "af-radio__container",
+      className,
+    );
+    const radioGroupClassName = getComponentClassName(
+      `af-radio af-radio-select af-radio-select--${type}`,
+      className,
+    );
     const generatedId = useId();
     const optionId = id || generatedId;
 
@@ -66,7 +76,7 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
     );
 
     return (
-      <div className="af-radio__container">
+      <div className={componentClassName}>
         <div className="af-radio__label-container">
           {label && (
             <span className="af-radio__label" id={optionId}>
@@ -81,7 +91,7 @@ export const RadioSelect = forwardRef<HTMLInputElement, RadioSelectProps>(
         <div
           {...rest}
           role="radiogroup"
-          className={`af-radio af-radio-select af-radio-select--${type}`}
+          className={radioGroupClassName}
           aria-invalid={Boolean(errorMessage)}
           aria-labelledby={optionId}
           aria-errormessage={`${optionId}-error`}

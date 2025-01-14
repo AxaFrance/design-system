@@ -12,7 +12,7 @@ export const Tag = ({
   ...divProps
 }: TagProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName(className, classModifier, "af-tag"),
+    () => getComponentClassName("af-tag", className, classModifier),
     [className, classModifier],
   );
 

@@ -36,9 +36,9 @@ export const ContentItemDuo = ({
     }
 
     return getComponentClassName(
+      "af-content-item-duo",
       className,
       classModifiers.filter(Boolean).join(" "),
-      "af-content-item-duo",
     );
   }, [classModifier, className, isVertical]);
 

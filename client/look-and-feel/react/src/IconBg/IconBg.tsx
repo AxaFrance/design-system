@@ -21,7 +21,7 @@ export const IconBg = ({
       newClassModifier += " disabled";
     }
 
-    return getComponentClassName(className, newClassModifier, "af-icon-bg");
+    return getComponentClassName("af-icon-bg", className, newClassModifier);
   }, [classModifier, isDisabled, className]);
 
   return <div className={componentClassName}>{children}</div>;

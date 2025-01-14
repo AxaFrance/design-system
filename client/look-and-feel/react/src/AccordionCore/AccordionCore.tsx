@@ -28,7 +28,7 @@ export const AccordionCore = ({
   ...detailsProps
 }: AccordionProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName(className, classModifier, "af-accordion"),
+    () => getComponentClassName("af-accordion", className, classModifier),
     [classModifier, className],
   );
 

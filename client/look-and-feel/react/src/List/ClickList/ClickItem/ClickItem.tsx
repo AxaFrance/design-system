@@ -24,9 +24,9 @@ export const ClickItem = ({
   const componentClassName = useMemo(
     () =>
       getComponentClassName(
+        "af-click-item",
         className,
         `${classModifier}${isDisabled ? " disabled" : ""}`,
-        "af-click-item",
       ),
     [className, classModifier, isDisabled],
   );
