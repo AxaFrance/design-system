@@ -42,7 +42,7 @@ describe("Slider", () => {
     user = userEvent.setup();
   });
 
-  it("should have active class to default value 64", () => {
+  it("should value 64 have active class", () => {
     let valueSlider: number = 64;
     // Act
     render(
@@ -61,6 +61,30 @@ describe("Slider", () => {
     sliderIsActive("64");
     sliderIsNotActive("128");
     sliderIsNotActive("256");
+    sliderIsNotActive("1024");
+    sliderIsNotActive("2048");
+    sliderIsNotActive("4096");
+  });
+
+  it("should have default value 128", () => {
+    let valueSlider: number = 256;
+    // Act
+    render(
+      <Slider
+        id="slider-id"
+        name="slider-name"
+        options={options}
+        defaultValue={valueSlider}
+        onChange={({ value }) => {
+          valueSlider = value;
+        }}
+      />,
+    );
+
+    // Assert
+    sliderIsActive("64");
+    sliderIsActive("128");
+    sliderIsActive("256");
     sliderIsNotActive("1024");
     sliderIsNotActive("2048");
     sliderIsNotActive("4096");
@@ -178,6 +202,28 @@ describe("Slider", () => {
     sliderIsActive("1024");
     sliderIsNotActive("2048");
     sliderIsNotActive("4096");
+  });
+
+  it("should have Slider with onChangeComplet", async () => {
+    // Act
+    const { container } = render(
+      <Slider
+        id="slider-id"
+        name="slider-name"
+        ariaLabelForHandle="slider-label"
+        options={optionsWithoutLabel}
+        onChangeComplete={(selectedValue: {
+          id: string;
+          name: string;
+          value: number;
+        }) => {
+          console.log(selectedValue);
+        }}
+      />,
+    );
+
+    // Assert
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   it("shouldn't have an accesibility violation <Slider />", async () => {
