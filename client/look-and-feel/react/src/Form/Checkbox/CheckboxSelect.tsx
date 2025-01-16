@@ -53,10 +53,7 @@ export const CheckboxSelect = ({
           <span className="af-checkbox__description">{descriptionGroup}</span>
         )}
       </div>
-      <div
-        role="group"
-        className={checkboxGroupClassName}
-      >
+      <div role="group" className={checkboxGroupClassName}>
         {options.map(
           ({ label, description, subtitle, icon, ...inputProps }) => (
             <label key={inputProps.name} htmlFor={`id-${inputProps.name}`}>

@@ -90,6 +90,11 @@ export const label = (
 export const input = (attributes?: Tattributes): HTMLElement =>
   createNode({ node: "input", attributes });
 
+export const span = (
+  children: Tchildren,
+  attributes?: Tattributes,
+): HTMLElement => createNode({ node: "span", attributes, children });
+
 export const checkbox = (attributes?: Tattributes): HTMLElement =>
   input({ type: "checkbox", ...attributes });
 
@@ -103,7 +108,7 @@ export const svg = ({ path, ...svgAttributes }: Tattributes): HTMLElement => {
     ...restSvgAttributes
   } = svgAttributes;
 
-  const svgElement = createNode({
+  return createNode({
     node: "svg",
     attributes: {
       focusable,
@@ -113,8 +118,6 @@ export const svg = ({ path, ...svgAttributes }: Tattributes): HTMLElement => {
     },
     children: [pathElement],
   });
-
-  return svgElement;
 };
 
 export const grid = ({

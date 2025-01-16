@@ -24,6 +24,8 @@ describe("Divider component", () => {
   it("should render with custom class name and class modifier", () => {
     render(<Divider className="custom-class" classModifier="modifier" />);
     const dividerElement = screen.getByRole("separator");
-    expect(dividerElement).toHaveClass("custom-class custom-class--modifier");
+    expect(dividerElement).toHaveClass(
+      "af-divider custom-class af-divider--modifier",
+    );
   });
 });

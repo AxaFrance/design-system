@@ -79,7 +79,7 @@ describe("Accordion", () => {
     );
 
     const summary = screen.getByText("Accordion Title").closest("summary");
-    expect(summary).toHaveClass("af-accordion__summary--title-first");
+    expect(summary).toHaveClass("af-accordion__summary title-first");
     expect(screen.getByText("icon").parentElement).toHaveClass(
       "af-accordion__title-container",
     );

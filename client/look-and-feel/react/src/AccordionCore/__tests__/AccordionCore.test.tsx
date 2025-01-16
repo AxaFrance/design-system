@@ -42,7 +42,7 @@ describe("AccordionCore", () => {
 
     expect(
       screen.getByText("Accordion Content").closest("details"),
-    ).toHaveClass(`${className} ${className}--${classModifier}`);
+    ).toHaveClass(`af-accordion custom-class af-accordion--modifier`);
   });
 
   it("renders Accordion with open details", () => {
