@@ -37,3 +37,4 @@ export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
 export { Tag } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
 export { DebugGrid } from "./Grid/DebugGrid";
+export { Divider } from "./Divider";
