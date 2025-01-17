@@ -9,9 +9,10 @@ type Props = Omit<ComponentPropsWithRef<"input">, "value"> & {
 };
 
 const formatDateValue = (dateValue: Date) => {
-  const monthFormatted = `0${dateValue.getMonth() + 1}`.slice(-2);
-  const dayFormatted = `0${dateValue.getDate()}`.slice(-2);
-  return `${dateValue.getFullYear()}-${monthFormatted}-${dayFormatted}`;
+  const formattedDateValue = new globalThis.Date(dateValue);
+  const monthFormatted = `0${formattedDateValue.getMonth() + 1}`.slice(-2);
+  const dayFormatted = `0${formattedDateValue.getDate()}`.slice(-2);
+  return `${formattedDateValue.getFullYear()}-${monthFormatted}-${dayFormatted}`;
 };
 
 const Date = forwardRef<HTMLInputElement, Props>(
