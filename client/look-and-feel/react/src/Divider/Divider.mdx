@@ -1,0 +1,32 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as DividerStories from "./Divider.stories";
+
+<Meta of={DividerStories} name="Divider" />
+
+# Divider
+
+### Import
+
+```tsx
+import { Divider } from "@axa-fr/design-system-look-and-feel-react";
+```
+
+### Use
+
+```tsx
+export const DividerComponent = () => (
+  <div>
+  <span>Hello</span>
+  <Divider />
+  <span>world!</span>
+  <div>
+);
+```
+
+## Playground
+
+### Default Divider
+
+<Canvas of={DividerStories.Default} />
+
+<Controls of={DividerStories.Default} />
