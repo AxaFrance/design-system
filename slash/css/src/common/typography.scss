@@ -1,0 +1,13 @@
+:root {
+  --font-family-base: "Source Sans Pro", arial, sans-serif;
+  --font-size-16: calc(16rem / 16);
+  --font-line-height-20: calc(20rem / 16);
+  --font-weight-bold: 700;
+}
+
+@mixin label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-20);
+}
