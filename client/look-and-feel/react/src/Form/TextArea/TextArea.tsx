@@ -48,7 +48,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
 
     return (
       <div className="af-form__input-container">
-        {(label || description || buttonLabel) && (
+        {label && (
           <div className="af-form__label-container">
             <label htmlFor={inputId} className="af-form__input-label">
               {label} {required && <span> *</span>}
