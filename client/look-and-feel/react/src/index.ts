@@ -14,10 +14,7 @@ export { Checkbox, CheckboxSelect } from "./Form/Checkbox";
 export { FileUpload } from "./Form/FileUpload";
 export { Radio, RadioSelect } from "./Form/Radio";
 export { Select } from "./Form/Select";
-export {
-  Text as TextInput,
-  TextVariants as TextInputVariants,
-} from "./Form/Text";
+export { Text as TextInput } from "./Form/Text";
 export { TextArea } from "./Form/TextArea";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";

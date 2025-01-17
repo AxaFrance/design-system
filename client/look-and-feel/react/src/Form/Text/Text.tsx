@@ -7,7 +7,6 @@ import {
 } from "react";
 
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
-import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
 
 import { Button } from "../..";
 import { Variants } from "../../Button/Button";
@@ -15,13 +14,8 @@ import { Svg } from "../../Svg";
 import { getComponentClassName } from "../../utilities";
 import { InputError } from "../InputError";
 
-enum TextVariants {
-  currency = "currency",
-  years = "years",
-}
-
 type Props = ComponentPropsWithRef<"input"> & {
-  variant?: TextVariants;
+  unit?: React.ReactNode;
   classModifier?: string;
   helper?: string;
   error?: string;
@@ -34,7 +28,7 @@ type Props = ComponentPropsWithRef<"input"> & {
 const Text = forwardRef<HTMLInputElement, Props>(
   (
     {
-      variant,
+      unit,
       className,
       classModifier = "",
       label,
@@ -102,23 +96,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
             aria-describedby={idHelp}
             {...otherProps}
           />
-          {variant === TextVariants.currency && (
-            <Svg
-              src={euroSymbolIcon}
-              id={idLabel}
-              aria-label={`${label} en euros`}
-              className="af-form__input-icon"
-            />
-          )}
-          {variant === TextVariants.years && (
-            <span
-              id={idLabel}
-              aria-label={`${label} en années`}
-              className="af-form__input-icon"
-            >
-              ans
-            </span>
-          )}
+          {unit}
         </div>
         {helper && (
           <span id={idHelp} className="af-form__input-helper">
@@ -133,4 +111,4 @@ const Text = forwardRef<HTMLInputElement, Props>(
 
 Text.displayName = "Text";
 
-export { Text, TextVariants };
+export { Text };

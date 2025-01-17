@@ -63,38 +63,33 @@
     }
   }
 
-  &__input-variant {
-    position: relative;
-  }
-
-  &__input-icon {
-    position: absolute;
-    top: 50%;
-    right: 1rem;
-    width: 1.5rem;
-    height: 1.5rem;
-    aspect-ratio: 1;
-    font-weight: 600;
-    fill: var(--color-gray-900);
-    transform: translateY(-50%);
-  }
-
   &__input-text {
-    padding: 1rem 2.5rem 1rem 1rem;
-    border: 1px solid var(--color-gray);
-    border-radius: var(--default-border-radius);
     font-size: common.rem(16);
     line-height: common.rem(20);
     color: var(--color-gray-900);
+
+    & ~ * {
+      color: var(--color-gray-900);
+      fill: var(--color-gray-900);
+    }
 
     @media (width > #{common.$breakpoint-md}) {
       font-size: common.rem(18);
       line-height: common.rem(24);
     }
+  }
 
-    &--error {
-      border: 1px solid var(--color-red-700);
+  &__input-variant {
+    & > input {
+      all: unset;
     }
+
+    display: grid;
+    padding: 1rem;
+    border: 1px solid var(--color-gray);
+    border-radius: var(--default-border-radius);
+    grid-template-columns: auto auto;
+    align-items: center;
 
     &:focus-within,
     &:active,
@@ -109,23 +104,32 @@
       box-shadow: 0 0 0 1px var(--color-axa) inset;
     }
 
-    &--error:is(:hover, :focus, :active) {
+    &:has(> input[class*="--error"]) {
       border: 1px solid var(--color-red-700);
-      box-shadow: 0 0 0 1px var(--color-red-700) inset;
     }
 
-    &:disabled,
-    &:disabled:is(:hover, :focus, :active) {
-      color: var(--color-gray-500);
+    & > input ~ * {
+      margin-left: 0.5rem;
+    }
+
+    &:has(> input:disabled),
+    &:has(> input:disabled):is(:hover, :focus, :active) {
       border: 1px solid var(--color-gray-400);
+      color: var(--color-gray-500);
       background-color: var(--color-border);
       box-shadow: unset;
       cursor: not-allowed;
 
-      & ~ svg {
-        fill: var(--color-gray-500);
+      & > input ~ * {
+        color: var(--color-gray-500);
         cursor: not-allowed;
+        fill: var(--color-gray-500);
       }
+    }
+
+    &:has(> input[class*="--error"]):is(:hover, :focus, :active) {
+      border: 1px solid var(--color-red-700);
+      box-shadow: 0 0 0 1px var(--color-red-700) inset;
     }
   }
 }

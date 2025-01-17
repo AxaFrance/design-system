@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Text, TextVariants } from "./Text";
+import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
+import { Text } from "./Text";
+import { Svg } from "../../Svg";
 
 const meta: Meta<typeof Text> = {
   component: Text,
@@ -16,7 +18,7 @@ const meta: Meta<typeof Text> = {
     className: "",
     type: "text",
     buttonLabel: "",
-    variant: undefined,
+    unit: undefined,
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -24,8 +26,6 @@ const meta: Meta<typeof Text> = {
 };
 
 export default meta;
-
-const VARIANTS = [undefined, TextVariants.currency, TextVariants.years];
 
 type Story = StoryObj<typeof Text>;
 
@@ -64,18 +64,11 @@ export const TextWithButton: Story = {
   },
 };
 
-export const TextWithVariant: Story = {
-  name: "Text with variant",
+export const TextWithUnit: Story = {
+  name: "Text with unit",
   render,
   args: {
-    variant: TextVariants.currency,
-  },
-  argTypes: {
-    variant: {
-      options: VARIANTS,
-      control: { type: "select" },
-      defaultValue: undefined,
-    },
+    unit: <div>test</div>,
   },
 };
 
@@ -83,17 +76,10 @@ export const TextWithFull: StoryObj = {
   name: "Text Full",
   render,
   args: {
-    variant: TextVariants.currency,
+    unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,
     classModifier: "error",
     description: "Description",
     buttonLabel: "En savoir plus",
     error: "Error Message",
-  },
-  argTypes: {
-    variant: {
-      options: VARIANTS,
-      control: { type: "select" },
-      defaultValue: undefined,
-    },
   },
 };
