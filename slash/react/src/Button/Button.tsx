@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Button/Button.scss";
+import "@axa-fr/design-system-slash-css/dist/Button/Button.css";
 
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import { getComponentClassName } from "../utilities";
