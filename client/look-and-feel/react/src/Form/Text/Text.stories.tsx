@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Text } from "./Text";
+import { Text, TextVariants } from "./Text";
 
 const meta: Meta<typeof Text> = {
   component: Text,
@@ -7,7 +7,7 @@ const meta: Meta<typeof Text> = {
   args: {
     value: "John Doe",
     label: "Label",
-    placeholder: "¨Placeholder",
+    placeholder: "Placeholder",
     helper: "Informations complémentaires",
     name: "name",
     id: "nameid",
@@ -16,6 +16,7 @@ const meta: Meta<typeof Text> = {
     className: "",
     type: "text",
     buttonLabel: "",
+    variant: undefined,
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -23,6 +24,8 @@ const meta: Meta<typeof Text> = {
 };
 
 export default meta;
+
+const VARIANTS = [undefined, TextVariants.currency, TextVariants.years];
 
 type Story = StoryObj<typeof Text>;
 
@@ -61,13 +64,36 @@ export const TextWithButton: Story = {
   },
 };
 
+export const TextWithVariant: Story = {
+  name: "Text with variant",
+  render,
+  args: {
+    variant: TextVariants.currency,
+  },
+  argTypes: {
+    variant: {
+      options: VARIANTS,
+      control: { type: "select" },
+      defaultValue: undefined,
+    },
+  },
+};
+
 export const TextWithFull: StoryObj = {
   name: "Text Full",
   render,
   args: {
+    variant: TextVariants.currency,
     classModifier: "error",
     description: "Description",
     buttonLabel: "En savoir plus",
     error: "Error Message",
+  },
+  argTypes: {
+    variant: {
+      options: VARIANTS,
+      control: { type: "select" },
+      defaultValue: undefined,
+    },
   },
 };
