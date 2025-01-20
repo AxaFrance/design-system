@@ -1,10 +1,9 @@
 import { Header } from "@axa-fr/design-system-look-and-feel-react";
-import { Suspense } from "react";
-import { Navigate, NavLink, Route, Routes } from "react-router-dom";
-import Agent from "./Agent";
-import Client from "./Client";
+import { Navigate, NavLink, Route, Routes } from "react-router";
 
+import Agent from "./Agent";
 import "./App.css";
+import Client from "./Client";
 import "./Reset.css";
 const App = () => (
   <>
@@ -14,13 +13,11 @@ const App = () => (
       <NavLink to="/client">CLIENT</NavLink>,
       <NavLink to="/agent">AGENT</NavLink>,
     </Header>
-    <Suspense>
-      <Routes>
-        <Route path="/" element={<Navigate to={"/client"} />} />
-        <Route path="/client" element={<Client />} />
-        <Route path="/agent" element={<Agent />} />
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route index element={<Navigate to={"/client"} />} />
+      <Route path="/client" element={<Client />} />
+      <Route path="/agent" element={<Agent />} />
+    </Routes>
   </>
 );
 
