@@ -1,4 +1,5 @@
 import type { Args, Meta, StoryObj } from "@storybook/html";
+import "../Button/Button.scss";
 import "../Link/Link.scss";
 import "./Alert.scss";
 
@@ -84,7 +85,7 @@ export const Default: StoryObj = {
     title: "My Alert title",
     type: "information",
     children: `Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.
-      <p class="af-alert__action"><a class="af-link  af-link--openInNewTab" href="https://fakelink.com" target="_blank" rel="noopener noreferrer">Plus de détails<svg data-src="/@fs/Users/a770ml/Documents/DEV/GITHUB%20AXAFRANCE/design-system/node_modules/@material-symbols/svg-400/outlined/open_in_new.svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="injected-svg" viewBox="0 -960 960 960" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"></path></svg></a></p>
+      <div class="af-alert__action"><a class="af-link  af-link--openInNewTab" href="https://fakelink.com" target="_blank" rel="noopener noreferrer">Plus de détails<svg data-src="/@fs/Users/a770ml/Documents/DEV/GITHUB%20AXAFRANCE/design-system/node_modules/@material-symbols/svg-400/outlined/open_in_new.svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="injected-svg" viewBox="0 -960 960 960" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"></path></svg></a></div>
       `,
   },
 };
@@ -96,7 +97,7 @@ export const WithButtonAction: StoryObj = {
     title: "My Alert title",
     type: "information",
     children: `Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.
-      <p class="af-alert__action"><button class="af-btn-client af-btn-client--ghost" type="button">Button Ghost</button></p>
+      <div class="af-alert__action"><button class="af-btn-client af-btn-client--ghost" type="button">Button Ghost</button></div>
       `,
   },
 };

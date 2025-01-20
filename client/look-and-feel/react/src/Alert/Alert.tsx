@@ -1,18 +1,18 @@
+import "@axa-fr/design-system-look-and-feel-css/dist/Alert/Alert.scss";
+import checkCircleOutline from "@material-symbols/svg-400/outlined/check_circle.svg";
+import errorIcon from "@material-symbols/svg-400/outlined/emergency_home.svg";
+import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
+import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
+import wbIncandescentOutlined from "@material-symbols/svg-400/outlined/wb_incandescent.svg";
 import {
   ComponentPropsWithoutRef,
   PropsWithChildren,
   ReactElement,
   useMemo,
 } from "react";
-import wbIncandescentOutlined from "@material-symbols/svg-400/outlined/wb_incandescent.svg";
-import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
-import errorIcon from "@material-symbols/svg-400/outlined/emergency_home.svg";
-import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
-import checkCircleOutline from "@material-symbols/svg-400/outlined/check_circle.svg";
-import "@axa-fr/design-system-look-and-feel-css/dist/Alert/Alert.scss";
-import { Svg } from "../Svg";
-import { Link } from "../Link/Link";
 import { ButtonClient } from "../Button/Button";
+import { Link } from "../Link/Link";
+import { Svg } from "../Svg";
 
 type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -65,7 +65,7 @@ export const Alert = ({
       <div className="af-alert-client__content">
         {title && <Heading className="af-alert__title">{title}</Heading>}
         {children}
-        {action && <p className="af-alert__action">{action}</p>}
+        {action && <div className="af-alert__action">{action}</div>}
       </div>
     </div>
   );
