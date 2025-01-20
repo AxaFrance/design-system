@@ -85,11 +85,13 @@
     }
 
     display: grid;
+    width: 100%;
     padding: 1rem;
     border: 1px solid var(--color-gray);
     border-radius: var(--default-border-radius);
-    grid-template-columns: auto auto;
+    grid-template-columns: auto min-content;
     align-items: center;
+    background-color: var(--color-white);
 
     &:focus-within,
     &:active,

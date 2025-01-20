@@ -147,6 +147,8 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      background-color: var(--color-white);
+      clip-path: circle(0.72rem at 50% 50%);
 
       & .af-radio__checked,
       & .af-radio__unchecked {
@@ -193,6 +195,10 @@
       color: var(--color-gray-500);
       fill: var(--color-gray-500);
     }
+  }
+
+  &-select[aria-invalid="false"] label:has(input[type="radio"]) {
+    background-color: var(--color-white);
   }
 
   &-select[aria-invalid="false"] label:has(input[type="radio"]:checked) {

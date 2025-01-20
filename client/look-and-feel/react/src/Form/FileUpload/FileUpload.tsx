@@ -82,7 +82,7 @@ const FileUpload = ({
   };
 
   return (
-    <>
+    <div>
       <label className="af-form__group--label" htmlFor={id}>
         {label} {required ? "*" : ""}
       </label>
@@ -192,7 +192,7 @@ const FileUpload = ({
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
