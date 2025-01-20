@@ -10,6 +10,7 @@
   font-size: common.rem(16);
   line-height: common.rem(20);
   color: var(--color-gray-900);
+  background-color: var(--color-white);
 
   @media (width > #{common.$breakpoint-md}) {
     font-size: common.rem(18);

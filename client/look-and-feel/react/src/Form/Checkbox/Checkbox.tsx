@@ -18,7 +18,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     inputId = inputProps.id || inputId;
 
     return (
-      <>
+      <div>
         <div className={classNames("af-checkbox", className)}>
           <label key={inputProps.name} htmlFor={inputId}>
             <input
@@ -49,7 +49,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             {errorMessage}
           </div>
         )}
-      </>
+      </div>
     );
   },
 );
