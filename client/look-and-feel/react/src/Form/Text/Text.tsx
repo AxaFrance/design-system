@@ -61,6 +61,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
           <div className="af-form__label-container">
             <label
               htmlFor={inputId}
+              id={idLabel}
               aria-describedby={idDescription}
               className="af-form__input-label"
             >
