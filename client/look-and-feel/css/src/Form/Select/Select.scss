@@ -5,6 +5,7 @@
 .af-form {
   &__select {
     &-label {
+      display: inline-block;
       margin-bottom: 0.5rem;
       font-size: common.rem(18);
       font-weight: 600;
@@ -35,8 +36,13 @@
 
   &__input-select {
     min-height: unset !important;
-    font-size: 1rem;
+    font-size: 1.125rem;
     color: var(--color-gray-700);
+
+    &[aria-disabled] {
+      cursor: not-allowed !important;
+      pointer-events: auto !important;
+    }
 
     &-container {
       padding: 0.75rem 1rem;
@@ -46,30 +52,35 @@
       background-color: var(--color-white);
 
       &-error {
-        border-width: 2px;
+        margin-bottom: 0.5rem;
+        border-width: 1px;
         border-color: var(--color-red-700);
 
-        &:hover,
-        &:active {
+        &:not([class*="-disabled"]):hover,
+        &:not([class*="-disabled"]):active {
+          border-color: var(--color-red-700);
           box-shadow: 0 0 0 1px var(--color-red-700) inset !important;
         }
       }
 
-      &:hover,
-      &:active {
-        box-shadow: 0 0 0 2px var(--color-axa) inset;
-      }
-
       &-focused,
       &:focus-visible {
-        box-shadow: 0 0 0 2px var(--color-axa) inset;
+        box-shadow: 0 0 0 1px var(--color-axa) inset;
         outline: 2px solid var(--color-focus);
         outline-offset: 3px;
+      }
+
+      &:not(&-disabled, &-error):hover,
+      &:not(&-disabled, &-error):active {
+        border-color: var(--color-axa);
+        box-shadow: 0 0 0 1px var(--color-axa) inset;
       }
 
       &-disabled {
         border-color: var(--color-gray-400);
         background-color: var(--color-gray-200);
+        cursor: not-allowed !important;
+        pointer-events: auto !important;
       }
 
       &-icon {
