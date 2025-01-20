@@ -21,8 +21,8 @@ type Props = Omit<
   ComponentPropsWithRef<ReactSelect>,
   "placeholder" | "noOptionsMessage"
 > & {
-  id: string;
-  label: string;
+  id?: string;
+  label?: string;
   options: { label: string; value?: string | number | readonly string[] }[];
   value: Option | null;
   errorLabel?: string;
@@ -57,7 +57,7 @@ const Select = forwardRef<
     inputId = id || inputId;
 
     return (
-      <>
+      <div>
         {label && (
           <label htmlFor={inputId} className="af-form__select-label">
             {label}
@@ -120,7 +120,7 @@ const Select = forwardRef<
           ref={inputRef}
         />
         {errorLabel && <InputError id={idError} message={errorLabel} />}
-      </>
+      </div>
     );
   },
 );
