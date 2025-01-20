@@ -65,7 +65,7 @@ const Select = forwardRef<
           </label>
         )}
         <ReactSelect
-          id={inputId}
+          inputId={inputId}
           aria-errormessage={idError}
           aria-invalid={Boolean(errorLabel)}
           ariaLiveMessages={defaultAriaLiveMessages}
