@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
+
 import { Button } from "../..";
 import { Variants } from "../../Button/Button";
 import { Svg } from "../../Svg";
@@ -14,6 +15,7 @@ import { getComponentClassName } from "../../utilities";
 import { InputError } from "../InputError";
 
 type Props = ComponentPropsWithRef<"input"> & {
+  unit?: React.ReactNode;
   classModifier?: string;
   helper?: string;
   error?: string;
@@ -26,6 +28,7 @@ type Props = ComponentPropsWithRef<"input"> & {
 const Text = forwardRef<HTMLInputElement, Props>(
   (
     {
+      unit,
       className,
       classModifier = "",
       label,
@@ -47,17 +50,26 @@ const Text = forwardRef<HTMLInputElement, Props>(
 
     let inputId = useId();
     inputId = otherProps.id || inputId;
+    const idDescription = useId();
     const idError = useId();
+    const idHelp = useId();
+    const idLabel = useId();
 
     return (
       <div className="af-form__input-container">
         {(label || description || buttonLabel) && (
           <div className="af-form__label-container">
-            <label htmlFor={inputId} className="af-form__input-label">
-              {label} {required && <span> *</span>}
+            <label
+              htmlFor={inputId}
+              aria-describedby={idDescription}
+              className="af-form__input-label"
+            >
+              {label} {required && <span aria-hidden="true"> *</span>}
             </label>
             {description && (
-              <span className="af-form__input-description">{description}</span>
+              <span id={idDescription} className="af-form__input-description">
+                {description}
+              </span>
             )}
             {buttonLabel && (
               <Button
@@ -72,16 +84,25 @@ const Text = forwardRef<HTMLInputElement, Props>(
           </div>
         )}
 
-        <input
-          id={inputId}
-          className={componentClassName}
-          type="text"
-          ref={inputRef}
-          aria-errormessage={idError}
-          aria-invalid={Boolean(error)}
-          {...otherProps}
-        />
-        {helper && <span className="af-form__input-helper">{helper}</span>}
+        <div className="af-form__input-variant">
+          <input
+            id={inputId}
+            className={componentClassName}
+            type="text"
+            ref={inputRef}
+            aria-labelledby={idLabel}
+            aria-errormessage={idError}
+            aria-invalid={Boolean(error)}
+            aria-describedby={idHelp}
+            {...otherProps}
+          />
+          {unit}
+        </div>
+        {helper && (
+          <span id={idHelp} className="af-form__input-helper">
+            {helper}
+          </span>
+        )}
         {error && <InputError id={idError} message={error} />}
       </div>
     );

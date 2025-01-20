@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
 import { Text } from "./Text";
+import { Svg } from "../../Svg";
 
 const meta: Meta<typeof Text> = {
   component: Text,
@@ -7,7 +9,7 @@ const meta: Meta<typeof Text> = {
   args: {
     value: "John Doe",
     label: "Label",
-    placeholder: "¨Placeholder",
+    placeholder: "Placeholder",
     helper: "Informations complémentaires",
     name: "name",
     id: "nameid",
@@ -16,6 +18,7 @@ const meta: Meta<typeof Text> = {
     className: "",
     type: "text",
     buttonLabel: "",
+    unit: undefined,
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -61,10 +64,19 @@ export const TextWithButton: Story = {
   },
 };
 
+export const TextWithUnit: Story = {
+  name: "Text with unit",
+  render,
+  args: {
+    unit: <div>test</div>,
+  },
+};
+
 export const TextWithFull: StoryObj = {
   name: "Text Full",
   render,
   args: {
+    unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,
     classModifier: "error",
     description: "Description",
     buttonLabel: "En savoir plus",
