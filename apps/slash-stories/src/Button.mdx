@@ -3,64 +3,76 @@ import * as ButtonStories from "./Button.stories";
 
 <Meta of={ButtonStories} name="Button" />
 
-# Button
+## Button
 
-To use the button import it like that:
+### Import
 
-```tsx title="test.js"
+```tsx
 import { Button } from "@axa-fr/design-system-slash-react";
+```
 
-const MyComponent = () => (
-  <Button classModifier="reverse" type="submit">
-    My button
+### Use
+
+#### Button Example
+
+```tsx
+const SubmitButton = () => (
+  <Button type="submit" variant="secondary">
+    My Submit button
   </Button>
 );
 ```
 
-## Playground
+#### Playground
 
-<Canvas of={ButtonStories.Playground}></Canvas>
+<Canvas of={ButtonStories.Playground} />
+
 <Controls of={ButtonStories.Playground} />
 
-## ClassModifier
+## Button variation
 
-Use the `classModifier` prop to change the look of the button.
-[See the examples](#examples-of-class-modifiers).
+The button has 6 variants, `primary` (default variant), `secondary`, `validated`, `danger`, `ghost` and `ghost-reverse`.\
+To choose them, simply use the variant `props`.
 
-Its value is a list of space separated values which can be:
+### Primary
 
-- `hasiconLeft`/`hasiconRight` to add an icon on the left or right of the text
-- `disabled`
-- `success`
-- `danger`
-- `reverse`
-- `small`
-- `circle`
-- `circle-menu`
-- `circle-reverse`
-- `circle-small`
+The Primary CTA component allows you to create one and only one primary action within: a page, a horizontal step train page, a vertical step train section or a modal.
 
-You can also add your own modifier, and the output will be a custom class called
-`af-btn--<yourModifier>` that you can target in your css The rest of the props
-(eg: `type`, `title`) will be passed down to the actual `button` HTML element.
+<Canvas of={ButtonStories.Primary} sourceState="shown" />
 
-## Examples of class modifiers
+### Secondary
 
-<Canvas of={ButtonStories.MultiExamples} layout="fullscreen" />
+The CTA Secondary component allows you to create one or more secondary actions within projects.
 
-## With icons
+<Canvas of={ButtonStories.Secondary} sourceState="shown" />
 
-To add an icon you need to add a `classModifier`, either `hasiconLeft` or
-`hasiconRight` whether you want the icon on the left of or on the right. The
-text of the button needs to be wrapped in a `span` with the class
-`af-btn__text`.
+### Validated
 
-<Canvas of={ButtonStories.WithIconLeft} />
-<Canvas of={ButtonStories.WithIconRight} />
+<Canvas of={ButtonStories.Validated} sourceState="shown" />
 
-## Circle button with no text
+### Danger
 
-You can make small round buttons, but do not forget to add a `title`, or an
-`aria-label` to make your button accessible!
+<Canvas of={ButtonStories.Danger} sourceState="shown" />
 
-<Canvas of={ButtonStories.Circle} />
+### Ghost
+
+<Canvas of={ButtonStories.Ghost} sourceState="shown" />
+
+### Ghost Reverse
+
+<Canvas of={ButtonStories.GhostReverse} sourceState="shown" />
+
+## Button Size
+
+The button has 2 sizes, "default" and "small" configurable from the props size
+
+<Canvas of={ButtonStories.Small} sourceState="shown" />
+
+## Button With icons
+
+It is possible to add an icon on the right or left via the `leftIcon` and `rightIcon` props.\
+This props expects a react component, you can use an svg or a glyphicon component.
+
+<Canvas of={ButtonStories.WithIconLeft} sourceState="shown" />
+
+<Canvas of={ButtonStories.WithIconRight} sourceState="shown" />
