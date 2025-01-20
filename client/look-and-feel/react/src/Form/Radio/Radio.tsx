@@ -17,7 +17,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const idError = useId();
 
     return (
-      <>
+      <div>
         <div
           className="af-radio"
           role="radiogroup"
@@ -37,7 +37,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
           </label>
         </div>
         {errorMessage && <InputError id={idError} message={errorMessage} />}
-      </>
+      </div>
     );
   },
 );

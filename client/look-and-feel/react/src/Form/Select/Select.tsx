@@ -57,7 +57,7 @@ const Select = forwardRef<
     inputId = id || inputId;
 
     return (
-      <>
+      <div>
         {label && (
           <label htmlFor={inputId} className="af-form__select-label">
             {label}
@@ -120,7 +120,7 @@ const Select = forwardRef<
           ref={inputRef}
         />
         {errorLabel && <InputError id={idError} message={errorLabel} />}
-      </>
+      </div>
     );
   },
 );
