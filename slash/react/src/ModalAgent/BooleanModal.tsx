@@ -84,10 +84,10 @@ const BooleanModal = forwardRef<HTMLDialogElement, BooleanModalProps>(
         />
         <Body>{children}</Body>
         <Footer>
-          <Button classModifier="reverse" onClick={onCancel}>
+          <Button variant="secondary" onClick={onCancel}>
             {cancelTitle}
           </Button>
-          <Button onClick={onSubmit} classModifier="success">
+          <Button onClick={onSubmit} variant="validated">
             {submitTitle}
           </Button>
         </Footer>

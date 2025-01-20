@@ -119,13 +119,12 @@ const File = ({
         <div>{placeholder}</div>
       </div>
       <Button
-        type="button"
-        className="af-btn"
-        classModifier="file hasIconLeft"
+        className="af-btn--file"
+        leftIcon={<i className={`glyphicon glyphicon-${icon}`} />}
         onClick={open}
         disabled={disabled}
       >
-        <i className={`glyphicon glyphicon-${icon}`} /> {label}
+        {label}
       </Button>
     </div>
   );
