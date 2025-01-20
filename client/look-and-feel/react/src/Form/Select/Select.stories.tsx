@@ -30,7 +30,6 @@ export const SelectStory: Story = {
     className: "",
     options,
     label: "Label",
-    id: "nameid",
     disabled: false,
     required: false,
     placeholder: "Placeholder",
