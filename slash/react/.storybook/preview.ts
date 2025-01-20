@@ -1,5 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@fontsource/source-sans-pro";
+import "@fontsource/source-sans-pro/700.css";
 
 import type { Preview } from "@storybook/react";
 
