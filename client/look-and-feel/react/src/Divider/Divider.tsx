@@ -8,7 +8,7 @@ type DividerProps = {
 
 export const Divider = ({ className, classModifier }: DividerProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName(className, classModifier, "af-divider"),
+    () => getComponentClassName("af-divider", className, classModifier),
     [className, classModifier],
   );
 

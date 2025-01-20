@@ -133,6 +133,10 @@
     }
   }
 
+  &-select.subgrid label {
+    width: inherit;
+  }
+
   & label input[type="checkbox"] {
     position: absolute;
     margin-right: 0.5rem;

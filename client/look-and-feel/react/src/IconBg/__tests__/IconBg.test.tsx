@@ -23,7 +23,7 @@ describe("IconBg", () => {
     );
 
     expect(screen.getByText("An IconBg")).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-icon-bg custom-class af-icon-bg--modifier",
     );
   });
 
@@ -35,7 +35,7 @@ describe("IconBg", () => {
     );
 
     expect(screen.getByText("An IconBg")).toHaveClass(
-      "custom-class custom-class--disabled",
+      "af-icon-bg custom-class af-icon-bg--disabled",
     );
   });
 });

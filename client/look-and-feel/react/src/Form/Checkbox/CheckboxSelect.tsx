@@ -2,10 +2,11 @@ import "@axa-fr/design-system-look-and-feel-css/dist/Form/Checkbox/Checkbox.scss
 import checkBoxIcon from "@material-symbols/svg-400/outlined/check_box-fill.svg";
 import checkBoxOutlineBlankIcon from "@material-symbols/svg-400/outlined/check_box_outline_blank.svg";
 import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
-import React, { type ReactNode, useId } from "react";
+import React, { ComponentPropsWithRef, type ReactNode, useId } from "react";
 import { Svg } from "../../Svg";
+import { getComponentClassName } from "../../utilities/helpers/getComponentClassName";
 
-type CheckboxProps = {
+type CheckboxProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
@@ -21,6 +22,7 @@ type CheckboxProps = {
 };
 
 export const CheckboxSelect = ({
+  className,
   labelGroup,
   descriptionGroup,
   isRequired,
@@ -29,9 +31,17 @@ export const CheckboxSelect = ({
   onChange,
   type = "vertical",
 }: CheckboxProps) => {
+  const componentClassName = getComponentClassName(
+    "af-checkbox__container",
+    className,
+  );
+  const checkboxGroupClassName = getComponentClassName(
+    `af-checkbox af-checkbox-select af-checkbox-select--${type}`,
+    className,
+  );
   const optionId = useId();
   return (
-    <div className="af-checkbox__container">
+    <div className={componentClassName}>
       <div className="af-checkbox__label-container">
         {labelGroup && (
           <span className="af-checkbox__label" id={optionId}>
@@ -43,10 +53,7 @@ export const CheckboxSelect = ({
           <span className="af-checkbox__description">{descriptionGroup}</span>
         )}
       </div>
-      <div
-        role="group"
-        className={`af-checkbox af-checkbox-select af-checkbox-select--${type}`}
-      >
+      <div role="group" className={checkboxGroupClassName}>
         {options.map(
           ({ label, description, subtitle, icon, ...inputProps }) => (
             <label key={inputProps.name} htmlFor={`id-${inputProps.name}`}>

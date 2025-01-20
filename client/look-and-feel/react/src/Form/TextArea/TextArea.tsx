@@ -37,9 +37,9 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
     inputRef,
   ) => {
     const componentClassName = getComponentClassName(
+      "af-form__input-textarea",
       className,
       classModifier,
-      "af-form__input-textarea",
     );
 
     let inputId = useId();

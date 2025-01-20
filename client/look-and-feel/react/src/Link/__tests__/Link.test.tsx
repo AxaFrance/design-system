@@ -83,7 +83,7 @@ describe("Link component", () => {
         expect(link).toHaveClass(className);
       }
       if (classModifier) {
-        expect(link).toHaveClass(`${className ?? "af-link"}--${classModifier}`);
+        expect(link).toHaveClass(`af-link af-link--test-modifier`);
       }
     },
   );

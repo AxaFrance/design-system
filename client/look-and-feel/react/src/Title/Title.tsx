@@ -33,9 +33,9 @@ export const Title = ({
   const componentClassName = useMemo(
     () =>
       getComponentClassName(
+        "af-title",
         className,
         classModifier ? `${classModifier} ${size}` : size,
-        "af-title",
       ),
     [classModifier, className, size],
   );

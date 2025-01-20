@@ -1,11 +1,11 @@
 import classNames from "classnames";
 
-const getLastClassName = (classNameToUse: string) => {
-  if (!classNameToUse) {
+const getLastClassName = (defaultClassName: string) => {
+  if (!defaultClassName) {
     return null;
   }
 
-  return classNameToUse.split(" ").filter(Boolean).at(-1);
+  return defaultClassName.split(" ").filter(Boolean).at(-1);
 };
 
 const listClassModifier = (classModifier?: string) => {
@@ -17,18 +17,16 @@ const listClassModifier = (classModifier?: string) => {
 };
 
 export const getComponentClassName = (
+  defaultClassName: string,
   className?: string,
   classModifier?: string,
-  defaultClassName?: string,
 ) => {
-  const classNameToUse = className || defaultClassName;
-
-  // Fail fast, when no className or defaultClassName we don't want to loop on modifier
-  if (!classNameToUse) {
+  // Fail fast, when no defaultClassName we don't want to loop on modifier
+  if (!defaultClassName) {
     return "";
   }
 
-  const classWithoutModifier = getLastClassName(classNameToUse);
+  const classWithoutModifier = getLastClassName(defaultClassName);
   const modifiers = listClassModifier(classModifier);
 
   const modifiersObject = modifiers
@@ -37,5 +35,5 @@ export const getComponentClassName = (
       return `${classWithoutModifier}--${it}`;
     });
 
-  return classNames(classNameToUse, modifiersObject);
+  return classNames(defaultClassName, className, modifiersObject);
 };

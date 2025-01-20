@@ -14,7 +14,7 @@ export const Card = ({
   ...otherProps
 }: CardProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName(className, classModifier, "af-card"),
+    () => getComponentClassName("af-card", className, classModifier),
     [className, classModifier],
   );
   const Component = useMemo(() => (onClick ? "button" : "section"), [onClick]);

@@ -1,7 +1,16 @@
+import home from "@material-symbols/svg-400/outlined/home.svg";
 import { MyFooter } from "./components/MyFooter";
 import { MyHeader } from "./components/MyHeader";
 
-import { Button, ButtonVariants, TextInput, Title } from "..";
+import {
+  Button,
+  ButtonVariants,
+  CheckboxSelect,
+  RadioSelect,
+  Svg,
+  TextInput,
+  Title,
+} from "..";
 import { DebugGrid } from "./DebugGrid";
 
 function capitalizeFirstLetter(val: string) {
@@ -19,7 +28,7 @@ const setAttributesFields = (value: string, label: string, type = "text") => ({
   placeholder: `Votre ${label}`,
   description: `Saisissez un ${label}`,
   error: `Un ${label} est obligatoire`,
-  className: "subgrid af-form__input-text",
+  className: "subgrid",
   helper: "Do you need help ?",
   buttonLabel: "En savoir plus",
 });
@@ -42,6 +51,61 @@ export const render = () => (
           <p>Les mentions avec * sont obligatoires</p>
         </div>
         <div className="form__fields subgrid">
+          <RadioSelect
+            className="subgrid"
+            label="Genre"
+            type="horizontal"
+            options={[
+              { label: "Homme", value: "H", icon: <Svg src={home} /> },
+              { label: "Femme", value: "F", icon: <Svg src={home} /> },
+              { label: "Les deux", value: "HF", icon: <Svg src={home} /> },
+              {
+                label: "Ne se prononce pas",
+                value: "N",
+                icon: <Svg src={home} />,
+              },
+            ]}
+            name="radio-name"
+          />
+          <CheckboxSelect
+            className="subgrid"
+            type="horizontal"
+            labelGroup="Titre"
+            options={[
+              {
+                label: "Développeur",
+                value: "H",
+                name: "Développeur",
+                icon: <Svg src={home} />,
+              },
+              { label: "BA", value: "F", name: "BA", icon: <Svg src={home} /> },
+              {
+                label: "EM",
+                value: "HF",
+                name: "EM",
+                icon: <Svg src={home} />,
+              },
+              { label: "PO", value: "A", name: "PO", icon: <Svg src={home} /> },
+              {
+                label: "DBA",
+                value: "Au",
+                name: "DBA",
+                icon: <Svg src={home} />,
+              },
+              {
+                label: "Scrum Master",
+                value: "P",
+                name: "Scrum Master",
+                icon: <Svg src={home} />,
+              },
+              {
+                label: "Ne se prononce pas",
+                value: "N",
+                name: "Ne se prononce pas",
+                icon: <Svg src={home} />,
+              },
+            ]}
+          />
           {FIELDS.map((field) => (
             <TextInput
               key={field.id}

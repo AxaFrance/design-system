@@ -34,7 +34,7 @@ describe("ContentItemMono", () => {
 
     expect(
       screen.getByText("Content").parentElement?.parentElement,
-    ).toHaveClass(`${className} ${className}--m`);
+    ).toHaveClass(`af-content-item-mono custom-class af-content-item-mono--m`);
   });
 
   it("should have XL size and no tertiary text", () => {
@@ -52,7 +52,7 @@ describe("ContentItemMono", () => {
 
     expect(
       screen.getByText("Content").parentElement?.parentElement,
-    ).toHaveClass(`${className} ${className}--xl`);
+    ).toHaveClass(`af-content-item-mono custom-class af-content-item-mono--xl`);
     expect(screen.queryByText("tertiaryText")).not.toBeInTheDocument();
   });
 
@@ -68,7 +68,9 @@ describe("ContentItemMono", () => {
 
     expect(
       screen.getByText("Content").parentElement?.parentElement,
-    ).toHaveClass(`${className} ${className}--${classModifier}`);
+    ).toHaveClass(
+      `af-content-item-mono custom-class af-content-item-mono--modifier`,
+    );
   });
 
   it("should be disabled", () => {
@@ -82,7 +84,9 @@ describe("ContentItemMono", () => {
 
     expect(
       screen.getByText("Content").parentElement?.parentElement,
-    ).toHaveClass(`${className} ${className}--disabled`);
+    ).toHaveClass(
+      `af-content-item-mono custom-class af-content-item-mono--disabled`,
+    );
   });
 
   it("should have centered left element", () => {

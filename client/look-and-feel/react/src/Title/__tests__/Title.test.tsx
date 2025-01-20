@@ -44,7 +44,7 @@ describe("Title", () => {
     );
 
     expect(screen.getByText("Title").parentElement).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-title custom-class af-title--modifier af-title--xl",
     );
   });
 

@@ -18,6 +18,26 @@ main.example-form {
   &__fields {
     --row-gap: 2rem;
 
+    .af-radio__container {
+      --cols: 4;
+
+      .af-radio-select > * {
+        --cols: 2;
+      }
+    }
+
+    .af-checkbox__container {
+      --cols: 6;
+
+      .af-checkbox-select {
+        --row-gap: 1rem;
+
+        & > * {
+          --cols: 3;
+        }
+      }
+    }
+
     .af-form__input-text {
       @media (width > #{common.$breakpoint-sm}) {
         --cols: 5;

@@ -35,9 +35,9 @@ export const ContentItemMono = ({
     }
 
     return getComponentClassName(
+      "af-content-item-mono",
       className,
       classModifiers.filter(Boolean).join(" "),
-      "af-content-item-mono",
     );
   }, [classModifier, isDisabled, size, className]);
 

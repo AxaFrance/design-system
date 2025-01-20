@@ -8,6 +8,8 @@ import { render as renderHeader } from "../Layout/Header/render";
 import { render as renderTitle } from "../Title/render";
 import { render as renderButton } from "../Button/render";
 import { render as renderText } from "../Form/Text/render";
+import { render as renderCheckbox } from "../Form/Checkbox/render";
+import { render as renderRadio } from "../Form/Radio/render";
 
 function capitalizeFirstLetter(val: string) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -37,10 +39,65 @@ const FIELDS = [
 ];
 
 const renderFields = () => {
+  const checkboxField = renderCheckbox({
+    label: "Quelle ville ?",
+    class: "subgrid",
+    isRequired: true,
+    error: "",
+    checkboxList: [
+      {
+        name: "Paris",
+        withIcon: true,
+        labelGroup: {
+          title: "Paris",
+          subtitle: "Capitale de la France",
+          description: "Nord",
+        },
+      },
+      {
+        name: "Bruxelles",
+        withIcon: true,
+        labelGroup: { title: "Bruxelles", subtitle: "Capitale de la Belgique" },
+      },
+      {
+        name: "Lille",
+        withIcon: true,
+        labelGroup: { title: "Lille" },
+      },
+    ],
+  });
+  const radioField = renderRadio({
+    label: "Quelle ville ?",
+    class: "subgrid",
+    isRequired: true,
+    error: "",
+    radioList: [
+      {
+        name: "cities",
+        withIcon: true,
+        labelGroup: {
+          title: "Paris",
+          subtitle: "Capitale de la France",
+          description: "Nord",
+        },
+      },
+      {
+        name: "cities",
+        withIcon: true,
+        labelGroup: { title: "Bruxelles", subtitle: "Capitale de la Belgique" },
+      },
+      {
+        name: "cities",
+        withIcon: true,
+        labelGroup: { title: "Lille" },
+      },
+    ],
+  });
+
   const fields = FIELDS.map((field) => renderText(field));
 
   return subgrid({
-    children: [...fields],
+    children: [checkboxField, radioField, ...fields],
     attributes: { class: "form__fields" },
   });
 };

@@ -34,9 +34,9 @@ export const Link = ({
   const componentClassName = useMemo(
     () =>
       getComponentClassName(
+        "af-link",
         className,
         `${classModifier}${!className && openInNewTab ? " openInNewTab" : ""}`,
-        "af-link",
       ),
     [classModifier, className, openInNewTab],
   );

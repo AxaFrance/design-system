@@ -24,7 +24,7 @@ describe("Card", () => {
     );
 
     expect(screen.getByText("A card")).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-card custom-class af-card--modifier",
     );
   });
 

@@ -34,7 +34,7 @@ describe("ClickItem", () => {
     );
 
     expect(screen.getByRole("button", { name: label })).toHaveClass(
-      `${className} ${className}--${classModifier}`,
+      `af-click-item custom-class af-click-item--modifier`,
     );
   });
 
