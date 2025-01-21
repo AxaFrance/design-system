@@ -40,6 +40,7 @@ export const Select: StoryObj = {
   render,
   args: {
     label: "Quelle ville ?",
+    border: true,
     isRequired: true,
     error: "",
     vertical: true,

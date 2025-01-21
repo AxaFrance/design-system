@@ -19,6 +19,7 @@ export const CheckboxSelectStory: StoryObj<
   render: ({ ...args }) => <CheckboxSelect {...args} />,
   args: {
     type: "vertical",
+    border: true,
     isRequired: true,
     options: [
       {
@@ -68,6 +69,7 @@ export const CheckboxSelectWithLabel: StoryObj<
   render: ({ ...args }) => <CheckboxSelect {...args} />,
   args: {
     type: "vertical",
+    border: true,
     labelGroup: "Quelle ville ?",
     descriptionGroup: "Choisissez une ville",
     isRequired: true,
@@ -94,6 +96,58 @@ export const CheckboxSelectWithLabel: StoryObj<
         icon: <Svg src={home} />,
         disabled: true,
         checked: true,
+      },
+      {
+        label: "Lille",
+        name: "lille",
+        value: "lille",
+      },
+    ],
+  },
+  argTypes: {
+    type: {
+      control: { type: "inline-radio" },
+      options: ["vertical", "horizontal"],
+    },
+    options: {
+      control: { type: "object" },
+    },
+    errorMessage: {
+      control: { type: "text" },
+    },
+    onChange: { action: "onChange" },
+  },
+};
+
+export const CheckboxSelectWithLabelNoBorder: StoryObj<
+  ComponentProps<typeof CheckboxSelect>
+> = {
+  name: "SelectWithLabelNoBorder",
+  render: ({ ...args }) => <CheckboxSelect {...args} />,
+  args: {
+    type: "vertical",
+    border: false,
+    labelGroup: "Quelle ville ?",
+    descriptionGroup: "Choisissez une ville",
+    isRequired: true,
+    options: [
+      {
+        label: "Paris",
+        name: "paris",
+        value: "paris",
+      },
+      {
+        label: "Bruxelles",
+        name: "bruxelles",
+        value: "bruxelles",
+      },
+      {
+        label: "Lille",
+        name: "lille",
+        value: "lille",
+        icon: <Svg src={home} />,
+        description: "description",
+        subtitle: "title",
       },
     ],
   },
