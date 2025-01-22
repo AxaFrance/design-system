@@ -1,0 +1,99 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ModalCoreStories from "./ModalCore.stories.tsx";
+import * as ModalStories from "./Modal.stories.tsx";
+
+<Meta of={ModalStories} name="Docs" />
+
+# Modal
+
+1. [ModalCore](#modalcore)
+2. [Modal](#modal)
+
+The ModalCore is the component to use if you want to fully configure your modal.
+
+With the `ModalCoreHeader` you can configure the header of the modal.
+
+With the `ModalCoreBody` you can configure the body of the modal.
+
+And with the `ModalCoreFooter` you can configure the footer of the modal.
+
+You need to pass a `ref` to the `Modal` component in order to call the `showModal` function when you want to open the modal and the `close` function for closing it.
+
+## ModalCore
+
+Example of usage of ModalCore component :
+
+```javascript
+import { useRef } from "react";
+
+export const YourComponent = () => {
+  const ref = useRef < HTMLDialogElement > null;
+
+  return (
+    <>
+      <ButtonClient onClick={() => ref.current?.showModal()}>
+        Open the modal
+      </ButtonClient>
+
+      <ModalCore onOutsideTap={() => ref.current?.close()} ref={ref}>
+        <ModalCoreHeader title="Modal Title" onCancel={() => {}} />
+        <ModalCoreBody>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum. Curabitur
+            pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius,
+            turpis et commodo pharetra, est eros bibendum elit, nec luctus magna
+            felis sollicitudin mauris
+          </p>
+        </ModalCoreBody>
+        <ModalCoreFooter>
+          <ButtonClient
+            variant={ButtonVariants.secondary}
+            onClick={() => ref.current?.close()}
+          >
+            Annuler
+          </ButtonClient>
+          <ButtonClient variant={ButtonVariants.primary}>Valider</ButtonClient>
+        </ModalCoreFooter>
+      </ModalCore>
+    </>
+  );
+};
+```
+
+<Canvas of={ModalCoreStories.DefaultModalStory} />
+
+<Controls of={ModalCoreStories.DefaultModalStory} />
+
+## Modal
+
+Example of usage of Modal component :
+
+```tsx
+<button type="button" onClick={() => ref.current?.showModal()}>
+  Open modal
+</button>
+
+<Modal ref={ref} {...args}
+    onCancel={() => ref.current?.close()}
+    onSubmit={() => ref.current?.close()}
+>
+  <p>
+    Reprehenderit sit quis aute nisi consequat consequat mollit. Commodo in
+    aliquip consectetur nulla sit anim. Pariatur minim commodo enim ea eu
+    laborum culpa laboris. Labore labore irure ipsum consequat enim officia anim
+    ipsum aliqua excepteur qui sint. Duis sint do culpa adipisicing dolor
+    adipisicing ea dolore aute nisi quis ullamco aliquip occaecat. Aute ut
+    mollit amet.
+  </p>
+</BooleanModal>
+```
+
+<Canvas of={ModalStories.DefaultModalStory} />
+
+<Controls of={ModalStories.DefaultModalStory} />
