@@ -1,10 +1,15 @@
 import React, { forwardRef } from "react";
 import { ModalCore, type ModalCoreProps } from "./ModalCore";
 import { ButtonClient, Variants as ButtonVariants } from "../Button/Button";
-import type { HeaderProps } from "./components/Header";
+import {
+  ModalCoreHeader,
+  type ModalCoreHeaderProps,
+} from "./components/ModalCoreHeader";
+import { ModalCoreBody } from "./components/ModalCoreBody";
+import { ModalCoreFooter } from "./components/ModalCoreFooter";
 
 export type ModalProps = Omit<ModalCoreProps, "onOutsideTap" | "title"> &
-  HeaderProps & {
+  ModalCoreHeaderProps & {
     onSubmit?: (event: React.MouseEvent | React.KeyboardEvent) => void;
     submitTitle?: string;
     cancelTitle?: string;
@@ -31,47 +36,45 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
       ...props
     },
     ref,
-  ) => {
-    return (
-      <ModalCore
-        className={className}
-        onOutsideTap={onCancel}
+  ) => (
+    <ModalCore
+      className={className}
+      onOutsideTap={onCancel}
+      title={title}
+      ref={ref}
+      {...props}
+    >
+      <ModalCoreHeader
         title={title}
-        ref={ref}
-        {...props}
-      >
-        <ModalCore.Header
-          title={title}
-          subtitle={subtitle}
-          iconTitle={iconTitle}
-          levelTitle={levelTitle}
-          onCancel={onCancel}
-          closeButtonAriaLabel={closeButtonAriaLabel}
-        />
-        <ModalCore.Body>{children}</ModalCore.Body>
-        <ModalCore.Footer>
-          {onCancel && cancelTitle && (
-            <ButtonClient
-              variant={ButtonVariants.secondary}
-              onClick={onCancel}
-              disabled={cancelDisabled}
-            >
-              {cancelTitle}
-            </ButtonClient>
-          )}
-          {onSubmit && submitTitle && (
-            <ButtonClient
-              variant={ButtonVariants.primary}
-              onClick={onSubmit}
-              disabled={submitDisabled}
-            >
-              {submitTitle}
-            </ButtonClient>
-          )}
-        </ModalCore.Footer>
-      </ModalCore>
-    );
-  },
+        subtitle={subtitle}
+        iconTitle={iconTitle}
+        levelTitle={levelTitle}
+        onCancel={onCancel}
+        closeButtonAriaLabel={closeButtonAriaLabel}
+      />
+      <ModalCoreBody>{children}</ModalCoreBody>
+      <ModalCoreFooter>
+        {onCancel && cancelTitle && (
+          <ButtonClient
+            variant={ButtonVariants.secondary}
+            onClick={onCancel}
+            disabled={cancelDisabled}
+          >
+            {cancelTitle}
+          </ButtonClient>
+        )}
+        {onSubmit && submitTitle && (
+          <ButtonClient
+            variant={ButtonVariants.primary}
+            onClick={onSubmit}
+            disabled={submitDisabled}
+          >
+            {submitTitle}
+          </ButtonClient>
+        )}
+      </ModalCoreFooter>
+    </ModalCore>
+  ),
 );
 
 Modal.displayName = "Modal";

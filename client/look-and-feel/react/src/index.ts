@@ -36,5 +36,17 @@ export { Tag } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { Divider } from "./Divider";
-export { Modal, ModalCore } from "./Modal";
-export type { ModalProps, ModalCoreProps, ModalHeaderProps } from "./Modal";
+export {
+  Modal,
+  ModalCore,
+  ModalCoreHeader,
+  ModalCoreFooter,
+  ModalCoreBody,
+} from "./Modal";
+export type {
+  ModalProps,
+  ModalCoreProps,
+  ModalCoreHeaderProps,
+  ModalCoreFooterProps,
+  ModalCoreBodyProps,
+} from "./Modal";

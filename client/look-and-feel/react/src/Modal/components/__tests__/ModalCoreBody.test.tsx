@@ -1,22 +1,24 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { Body } from "../Body";
+import { ModalCoreBody } from "../ModalCoreBody";
 
-describe("Body component", () => {
+describe("ModalCoreBody component", () => {
   it("renders children correctly", () => {
-    const { getByText } = render(<Body>Test Content</Body>);
+    const { getByText } = render(<ModalCoreBody>Test Content</ModalCoreBody>);
     expect(getByText("Test Content")).toBeInTheDocument();
   });
 
   it("applies custom className", () => {
     const { container } = render(
-      <Body className="custom-class">Test Content</Body>,
+      <ModalCoreBody className="custom-class">Test Content</ModalCoreBody>,
     );
     expect(container.firstChild).toHaveClass("af-modal__body custom-class");
   });
 
   it("passes other props to the section element", () => {
-    const { container } = render(<Body id="test-id">Test Content</Body>);
+    const { container } = render(
+      <ModalCoreBody id="test-id">Test Content</ModalCoreBody>,
+    );
     expect(container.firstChild).toHaveAttribute("id", "test-id");
   });
 });

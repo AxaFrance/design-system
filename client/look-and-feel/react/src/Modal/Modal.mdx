@@ -11,11 +11,11 @@ import * as ModalStories from "./Modal.stories.tsx";
 
 The ModalCore is the component to use if you want to fully configure your modal.
 
-With the `ModalCore.Header` you can configure the header of the modal.
+With the `ModalCoreHeader` you can configure the header of the modal.
 
-With the `ModalCore.Body` you can configure the body of the modal.
+With the `ModalCoreBody` you can configure the body of the modal.
 
-And with the `ModalCore.Footer` you can configure the footer of the modal.
+And with the `ModalCoreFooter` you can configure the footer of the modal.
 
 You need to pass a `ref` to the `Modal` component in order to call the `showModal` function when you want to open the modal and the `close` function for closing it.
 
@@ -36,8 +36,8 @@ export const YourComponent = () => {
       </ButtonClient>
 
       <ModalCore onOutsideTap={() => ref.current?.close()} ref={ref}>
-        <ModalCore.Header title="Modal Title" onCancel={() => {}} />
-        <ModalCore.Body>
+        <ModalCoreHeader title="Modal Title" onCancel={() => {}} />
+        <ModalCoreBody>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -50,8 +50,8 @@ export const YourComponent = () => {
             turpis et commodo pharetra, est eros bibendum elit, nec luctus magna
             felis sollicitudin mauris
           </p>
-        </ModalCore.Body>
-        <ModalCore.Footer>
+        </ModalCoreBody>
+        <ModalCoreFooter>
           <ButtonClient
             variant={ButtonVariants.secondary}
             onClick={() => ref.current?.close()}
@@ -59,7 +59,7 @@ export const YourComponent = () => {
             Annuler
           </ButtonClient>
           <ButtonClient variant={ButtonVariants.primary}>Valider</ButtonClient>
-        </ModalCore.Footer>
+        </ModalCoreFooter>
       </ModalCore>
     </>
   );

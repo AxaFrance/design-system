@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useRef } from "react";
-import { Modal, ModalProps } from "..";
+import { Modal, type ModalProps } from "..";
 
 const defaultProps = {
   title: "Modal Title",
@@ -19,18 +19,18 @@ const ModalDemo = (props: ModalProps) => {
 
 const getDialog = () => screen.getByRole("dialog", { hidden: true });
 
-const expectModalOpened = () => {
+const expectModalOpened = async () => {
   const dialog = getDialog();
-  waitFor(() => {
+  await waitFor(() => {
     expect(defaultProps.onCancel).not.toHaveBeenCalled();
     expect(dialog).toHaveStyle(`display: block`);
     expect(dialog).toHaveAttribute("open", "true");
   });
 };
 
-const expectModalClosed = () => {
+const expectModalClosed = async () => {
   const dialog = getDialog();
-  waitFor(() => {
+  await waitFor(() => {
     expect(defaultProps.onCancel).toHaveBeenCalled();
     expect(dialog).toHaveStyle(`display: none`);
     expect(dialog).toHaveAttribute("open", undefined);

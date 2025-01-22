@@ -3,7 +3,7 @@ import { ButtonClient, Variants } from "../../Button/Button";
 import { Svg } from "../../Svg";
 import type { TitleLevel } from "../../Title";
 
-export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
+export type ModalCoreHeaderProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
   title: string;
   subtitle?: string;
@@ -13,7 +13,7 @@ export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
   closeButtonAriaLabel?: string;
 };
 
-export const Header = ({
+export const ModalCoreHeader = ({
   className,
   title,
   subtitle,
@@ -22,7 +22,7 @@ export const Header = ({
   onCancel,
   closeButtonAriaLabel = "Fermer la boite de dialogue",
   ...props
-}: HeaderProps) => {
+}: ModalCoreHeaderProps) => {
   const HLevel = `h${levelTitle}` as keyof JSX.IntrinsicElements;
   return (
     <header

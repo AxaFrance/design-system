@@ -1,8 +1,5 @@
 import { forwardRef, type ReactNode } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Modal/Modal.scss";
-import { Body } from "./components/Body";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
 
 export type ModalCoreProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,
@@ -15,7 +12,7 @@ export type ModalCoreProps = React.DetailedHTMLProps<
   ref?: React.Ref<HTMLDialogElement>;
 };
 
-const Modal = forwardRef<HTMLDialogElement, ModalCoreProps>(
+const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
   (
     { className, title = "", onOutsideTap, children, ...props }: ModalCoreProps,
     ref,
@@ -36,6 +33,6 @@ const Modal = forwardRef<HTMLDialogElement, ModalCoreProps>(
   ),
 );
 
-Modal.displayName = "ModalCore";
+ModalCore.displayName = "ModalCore";
 
-export const ModalCore = Object.assign(Modal, { Header, Body, Footer });
+export { ModalCore };

@@ -1,3 +1,14 @@
 export { Modal, type ModalProps } from "./Modal";
 export { ModalCore, type ModalCoreProps } from "./ModalCore";
-export type { HeaderProps as ModalHeaderProps } from "./components/Header";
+export {
+  ModalCoreFooter,
+  type ModalCoreFooterProps,
+} from "./components/ModalCoreFooter";
+export {
+  ModalCoreHeader,
+  type ModalCoreHeaderProps,
+} from "./components/ModalCoreHeader";
+export {
+  ModalCoreBody,
+  type ModalCoreBodyProps,
+} from "./components/ModalCoreBody";

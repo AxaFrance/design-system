@@ -5,6 +5,9 @@ import { useRef } from "react";
 import { ModalCore } from "./ModalCore";
 import { ButtonClient } from "../Button/Button";
 import { ButtonVariants } from "..";
+import { ModalCoreHeader } from "./components/ModalCoreHeader";
+import { ModalCoreBody } from "./components/ModalCoreBody";
+import { ModalCoreFooter } from "./components/ModalCoreFooter";
 
 const meta: Meta<typeof ModalCore> = {
   title: "Components/Modal/ModalCore",
@@ -53,7 +56,7 @@ export const DefaultModalStory: TDefaultModalStory = {
             ref.current?.close();
           }}
         >
-          <ModalCore.Header
+          <ModalCoreHeader
             title={args.title}
             subtitle="Modal subtitle"
             iconTitle={home}
@@ -62,10 +65,10 @@ export const DefaultModalStory: TDefaultModalStory = {
               ref.current?.close();
             }}
           />
-          <ModalCore.Body>
+          <ModalCoreBody>
             <p>{bodyContent}</p>
-          </ModalCore.Body>
-          <ModalCore.Footer>
+          </ModalCoreBody>
+          <ModalCoreFooter>
             <ButtonClient
               variant={ButtonVariants.secondary}
               onClick={() => {
@@ -85,7 +88,7 @@ export const DefaultModalStory: TDefaultModalStory = {
             >
               {saveButtonText}
             </ButtonClient>
-          </ModalCore.Footer>
+          </ModalCoreFooter>
         </ModalCore>
       </>
     );
