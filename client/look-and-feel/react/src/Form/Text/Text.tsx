@@ -45,7 +45,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
     const componentClassName = getComponentClassName(
       "af-form__input-text",
       className,
-      classModifier,
+      classModifier + (error ? " error" : ""),
     );
 
     let inputId = useId();
