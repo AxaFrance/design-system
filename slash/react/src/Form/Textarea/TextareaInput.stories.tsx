@@ -5,7 +5,7 @@ import { TextareaInput } from "./TextareaInput";
 
 const meta: Meta<typeof TextareaInput> = {
   component: TextareaInput,
-  title: "Components/Form/Input/TextareaInput",
+  title: "Components/Form/Input/Textarea",
   argTypes: { onChange: { action: "onChange" } },
   args: { onChange: fn() },
 };
