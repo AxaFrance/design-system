@@ -1,128 +1,101 @@
-@use "../common/common" as common;
+@use "../common/common.scss" as common;
 
 .af-modal {
-  position: fixed;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 0 1.5rem;
+  --spacing-modal: calc(16 / var(--font-size-base) * 1rem);
+  --font-size-heading: calc(20 / var(--font-size-base) * 1rem);
+  --font-size-subtitle: calc(16 / var(--font-size-base) * 1rem);
+  --line-height-heading: calc(25 / var(--font-size-base) * 1rem);
+  --line-height-subtitle: calc(20 / var(--font-size-base) * 1rem);
+
+  padding: var(--spacing-modal) 0;
   border: none;
-  border-radius: 0.5rem;
-  background-color: var(--color-white);
+  border-radius: var(--radius-8);
 
   &::backdrop {
     opacity: 0.4;
     background: var(--color-gray-900);
   }
 
-  &__top {
-    position: sticky;
-    z-index: 5;
-    top: 0;
-    display: flex;
-    padding: 1.5rem;
+  &__header {
+    display: grid;
+    padding-bottom: var(--spacing-modal);
+    padding-inline: var(--spacing-modal);
     border-bottom: 1px solid var(--color-gray-400);
-    align-items: center;
-    gap: 1rem;
-    background-color: var(--color-white);
+    grid-template-areas: "headertitle closebtn";
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-modal);
+
+    > .af-btn-client {
+      width: fit-content;
+      height: fit-content;
+      grid-area: closebtn;
+      align-items: start;
+      justify-self: end;
+    }
 
     &-title {
-      display: flex;
-      width: 100%;
-      margin: 0;
-      align-items: start;
-      justify-content: space-between;
-      color: var(--color-gray-900);
+      display: grid;
+      grid-area: headertitle;
+      grid-template-areas:
+        "icon title"
+        "icon subtitle";
+      justify-self: start;
+      gap: 0 1rem;
 
-      &-text {
+      &-heading {
+        margin: 0;
+        grid-area: title;
         font-family: var(--font-family-publico);
-        font-size: 1.5rem;
-        line-height: 1.875rem;
+        font-size: var(--font-size-heading);
+        line-height: var(--line-height-heading);
+        color: var(--color-gray-900);
       }
 
       &-subtitle {
-        font-family: var(--font-family-sans-serif);
-        font-size: 1.125rem;
-        font-weight: 400;
-        line-height: 1.406rem;
+        grid-area: subtitle;
+        font-size: var(--font-size-subtitle);
+        line-height: var(--line-height-subtitle);
         color: var(--color-gray-700);
       }
 
-      &-close-btn {
-        all: unset;
-        display: flex;
-        width: 2rem;
-        height: 2rem;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+      svg {
+        grid-area: icon;
         fill: var(--color-axa);
       }
-
-      :hover {
-        background: none;
-      }
-
-      :focus {
-        border: none;
-        background: none;
-      }
     }
   }
 
-  &__content {
-    z-index: 0;
-    display: flex;
-    margin-top: 2.5rem;
-    padding: 0 1.5rem;
-    flex-direction: column;
-    gap: 2.5rem;
-    font-family: var(--font-family-base);
-    font-size: 1.125rem;
-    font-weight: 400;
+  &__body {
+    padding: var(--spacing-modal);
   }
 
-  &__actions {
+  &__footer {
     display: flex;
-    padding-top: 0;
-    flex-direction: column-reverse;
-    align-items: flex-end;
+    padding: var(--spacing-modal) var(--spacing-modal) 0 var(--spacing-modal);
     justify-content: flex-end;
-    gap: 1rem;
+    gap: var(--spacing-modal);
 
-    // force fullwidth in mobile
-    & * {
-      width: 100%;
+    .af-btn-client {
       flex-grow: 1;
     }
-
-    &--fullWidth {
-      & * {
-        width: 100%;
-        flex-grow: 1;
-      }
-    }
   }
-}
 
-@media only screen and (width >= #{common.$screen-size-m}) {
-  .af-modal {
-    min-width: 48rem;
-    max-width: 72rem;
-    margin: auto;
+  @media (width > #{common.$breakpoint-sm}) {
+    --spacing-modal: calc(24 / var(--font-size-base) * 1rem);
+    --font-size-heading: calc(24 / var(--font-size-base) * 1rem);
+    --font-size-subtitle: calc(18 / var(--font-size-base) * 1rem);
+    --line-height-heading: calc(30 / var(--font-size-base) * 1rem);
+    --line-height-subtitle: calc(22.5 / var(--font-size-base) * 1rem);
 
-    &__actions {
-      flex-direction: row-reverse;
-      justify-content: flex-start;
+    max-width: revert;
 
-      & * {
-        width: auto;
-        flex-grow: unset;
-      }
+    &__footer {
+      .af-btn-client {
+        min-width: 180px;
+        flex-grow: inherit;
 
-      &--fullWidth {
-        & * {
-          width: 100%;
-          flex-grow: 1;
+        &:last-child {
+          width: 250px;
         }
       }
     }

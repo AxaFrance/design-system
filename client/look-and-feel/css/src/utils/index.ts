@@ -70,6 +70,21 @@ export const header = (
   attributes?: Tattributes,
 ): HTMLElement => createNode({ node: "header", attributes, children });
 
+export const footer = (
+  children: Tchildren,
+  attributes?: Tattributes,
+): HTMLElement => createNode({ node: "footer", attributes, children });
+
+export const section = (
+  children: Tchildren,
+  attributes?: Tattributes,
+): HTMLElement => createNode({ node: "section", attributes, children });
+
+export const dialog = (
+  children: Tchildren,
+  attributes?: Tattributes,
+): HTMLElement => createNode({ node: "dialog", attributes, children });
+
 export const p = (children: Tchildren, attributes?: Tattributes): HTMLElement =>
   createNode({ node: "p", attributes, children });
 
