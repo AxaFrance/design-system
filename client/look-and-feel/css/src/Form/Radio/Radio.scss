@@ -146,8 +146,11 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      background-color: var(--color-white);
-      clip-path: circle(0.72rem at 50% 50%);
+
+      & svg {
+        background-color: var(--color-white);
+        clip-path: circle(0.72rem at 50% 50%);
+      }
 
       & .af-radio__checked,
       & .af-radio__unchecked {
@@ -214,11 +217,8 @@
   }
 
   & label input[type="radio"]:focus-visible ~ .af-radio__icons {
-    & .af-radio__unchecked,
-    & .af-radio__checked {
-      outline: 2px solid var(--color-blue-3);
-      outline-offset: 3px;
-    }
+    outline: 2px solid var(--color-blue-3);
+    outline-offset: 3px;
   }
 
   & label:hover:not(:has(input[type="radio"]:disabled)) {
