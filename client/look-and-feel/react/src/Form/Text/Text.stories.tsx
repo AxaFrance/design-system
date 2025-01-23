@@ -53,6 +53,12 @@ export const TextOnErrorStory: Story = {
     classModifier: "error",
     description: "Description",
     error: "Error Message",
+    "aria-errormessage": undefined,
+  },
+  argTypes: {
+    "aria-errormessage": {
+      control: { type: "text" },
+    },
   },
 };
 

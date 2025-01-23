@@ -45,7 +45,8 @@ const Text = forwardRef<HTMLInputElement, Props>(
     const componentClassName = getComponentClassName(
       "af-form__input-text",
       className,
-      classModifier + (error ? " error" : ""),
+      classModifier +
+        (error || otherProps["aria-errormessage"] ? " error" : ""),
     );
 
     let inputId = useId();
@@ -92,8 +93,8 @@ const Text = forwardRef<HTMLInputElement, Props>(
             type="text"
             ref={inputRef}
             aria-labelledby={idLabel}
-            aria-errormessage={idError}
-            aria-invalid={Boolean(error)}
+            aria-errormessage={otherProps["aria-errormessage"] ?? idError}
+            aria-invalid={Boolean(error || otherProps["aria-errormessage"])}
             aria-describedby={idHelp}
             {...otherProps}
           />
@@ -104,7 +105,9 @@ const Text = forwardRef<HTMLInputElement, Props>(
             {helper}
           </span>
         )}
-        {error && <InputError id={idError} message={error} />}
+        {!otherProps["aria-errormessage"] && error && (
+          <InputError id={idError} message={error} />
+        )}
       </div>
     );
   },
