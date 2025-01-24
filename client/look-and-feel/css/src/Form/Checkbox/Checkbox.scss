@@ -167,8 +167,11 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      background-color: var(--color-white);
-      clip-path: inset(0.22rem round 2px);
+
+      & svg {
+        background-color: var(--color-white);
+        clip-path: inset(0.22rem round 2px);
+      }
 
       & .af-checkbox__checked,
       & .af-checkbox__unchecked {
@@ -243,11 +246,8 @@
   }
 
   & label input[type="checkbox"]:focus-visible ~ .af-checkbox__icons {
-    & .af-checkbox__unchecked,
-    & .af-checkbox__checked {
-      outline: 2px solid var(--color-blue-3);
-      outline-offset: 3px;
-    }
+    outline: 2px solid var(--color-blue-3);
+    outline-offset: 3px;
   }
 
   & label:hover:not(:has(input[type="checkbox"]:disabled)) {
