@@ -32,7 +32,7 @@ describe("SelectInput", () => {
       <SelectInput
         label="label select input"
         aria-label="select-default"
-        onChange={() => console.log("Some change")}
+        onChange={() => {}}
         defaultValue="fun"
         options={options}
       />,

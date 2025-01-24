@@ -38,7 +38,7 @@ export const DefaultModalStory: TDefaultModalStory = {
           }}
           onSubmit={(e) => {
             args?.onSubmit?.(e as React.MouseEvent | React.KeyboardEvent);
-            console.log("submit the modal form");
+            // Submit the modal form
           }}
         >
           {children}

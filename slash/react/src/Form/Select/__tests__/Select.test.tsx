@@ -97,7 +97,7 @@ describe("Select", () => {
       <Select
         mode="default"
         aria-label="select-default"
-        onChange={() => console.log("Some change")}
+        onChange={() => {}}
         defaultValue="fun"
         options={options}
       />,
