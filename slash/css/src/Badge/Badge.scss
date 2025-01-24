@@ -16,7 +16,7 @@ $types: (
   line-height: 1.25rem;
   color: common.$white;
   @each $type in $types {
-    &--#{nth($type, 1)} {
+    &--#{list.nth($type, 1)} {
       background-color: list.nth($type, 2);
     }
   }
