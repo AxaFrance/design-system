@@ -63,7 +63,7 @@
     "@types/jest": "^29.5.12",
     "@types/jest-axe": "^3.5.9",
     "@types/node": "^22.10.6",
-    "@types/react": "^18.3.2",
+    "@types/react": "^19.0.8",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
     "@vitejs/plugin-react": "^4.3.2",
