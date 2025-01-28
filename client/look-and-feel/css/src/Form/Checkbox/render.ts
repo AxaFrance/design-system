@@ -126,7 +126,7 @@ export const render = (args: Args) => {
     : "af-checkbox-select--horizontal";
   const attributes: Tattributes = {
     role: "group",
-    class: `af-checkbox ${args.border ? "af-checkbox-select" : ""} ${positionClass} ${args.class}`,
+    class: `af-checkbox af-checkbox-select ${positionClass} ${args.class}`,
   };
   const checkboxLabels: (string | Node)[] = [];
   args.checkboxList.forEach((checkboxLabel: TCheckboxValue) => {

@@ -1,19 +1,13 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/Checkbox/Checkbox.scss";
-import React, {
-  ComponentPropsWithRef,
-  forwardRef,
-  ReactNode,
-  useEffect,
-  useId,
-  useState,
-} from "react";
-import { Checkbox } from "./Checkbox";
-import { getComponentClassName } from "../core";
-import { InputError } from "../InputError";
+import checkBoxIcon from "@material-symbols/svg-400/outlined/check_box-fill.svg";
+import checkBoxOutlineBlankIcon from "@material-symbols/svg-400/outlined/check_box_outline_blank.svg";
+import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
+import React, { ComponentPropsWithRef, type ReactNode, useId } from "react";
+import { Svg } from "../../Svg";
+import { getComponentClassName } from "../../utilities/helpers/getComponentClassName";
 
-type Props = ComponentPropsWithRef<"input"> & {
+type CheckboxProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
-  border?: boolean;
   labelGroup?: string;
   descriptionGroup?: string;
   isRequired?: boolean;
@@ -24,108 +18,77 @@ type Props = ComponentPropsWithRef<"input"> & {
     icon?: ReactNode;
   } & React.InputHTMLAttributes<HTMLInputElement>)[];
   errorMessage?: string;
-  onChange?: (...event: unknown[]) => void;
-  value?: unknown[];
+  onChange?: React.ChangeEventHandler;
 };
 
-const CheckboxSelect = forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      options,
-      errorMessage,
-      onChange,
-      value,
-      type = "vertical",
-      className,
-      labelGroup,
-      descriptionGroup,
-      isRequired,
-      border = true,
-    },
-    ref,
-  ) => {
-    const [checkedState, setCheckedState] = useState(
-      options.map((x) => Boolean(value?.includes(x.value))),
-    );
-    const optionId = useId();
-    const idError = useId();
-
-    const handleOnChange = (position: number) => {
-      const updatedCheckedState = checkedState.map((item, index) =>
-        index === position ? !item : item,
-      );
-
-      setCheckedState(updatedCheckedState);
-
-      if (onChange) {
-        const arr: unknown[] = [];
-
-        updatedCheckedState.forEach((x, idx) => {
-          if (x === true) {
-            arr.push(options[idx].value);
-          }
-        });
-        onChange(arr);
-      }
-    };
-
-    useEffect(() => {
-      setCheckedState(options.map((x) => Boolean(value?.includes(x.value))));
-    }, [setCheckedState, options, value]);
-
-    const componentClassName = getComponentClassName(
-      "af-checkbox__container",
-      className,
-    );
-    const checkboxGroupClassName = getComponentClassName(
-      `af-checkbox${border ? " af-checkbox-select" : ""} af-checkbox-select--${type}`,
-      className,
-    );
-
-    return (
-      <div className={componentClassName}>
-        <div className="af-checkbox__label-container">
-          {labelGroup && (
-            <span className="af-checkbox__label" id={optionId}>
-              {labelGroup}
-              {isRequired && <span aria-hidden="true">&nbsp;*</span>}
-            </span>
-          )}
-          {descriptionGroup && (
-            <span className="af-checkbox__description">{descriptionGroup}</span>
-          )}
-        </div>
-        <div role="group" className={checkboxGroupClassName}>
-          <ul>
-            {options.map(
-              ({ label, value: valueOption, ...inputProps }, idx) => (
-                <li key={`key-${inputProps.name}`}>
-                  <Checkbox
-                    {...inputProps}
-                    showErrorMessage={false}
-                    ref={idx === 0 ? ref : null}
-                    value={valueOption}
-                    checked={checkedState[idx]}
-                    onChange={() => handleOnChange(idx)}
-                    id={`id-${inputProps.name}`}
-                    label={label}
-                    errorMessage={errorMessage}
-                    aria-errormessage={
-                      Boolean(errorMessage) && !inputProps.disabled
-                        ? idError
-                        : undefined
-                    }
-                  />
-                </li>
-              ),
-            )}
-          </ul>
-        </div>
-        {errorMessage && <InputError id={idError} message={errorMessage} />}
+export const CheckboxSelect = ({
+  className,
+  labelGroup,
+  descriptionGroup,
+  isRequired,
+  options,
+  errorMessage,
+  onChange,
+  type = "vertical",
+}: CheckboxProps) => {
+  const componentClassName = getComponentClassName(
+    "af-checkbox__container",
+    className,
+  );
+  const checkboxGroupClassName = getComponentClassName(
+    `af-checkbox af-checkbox-select af-checkbox-select--${type}`,
+    className,
+  );
+  const optionId = useId();
+  return (
+    <div className={componentClassName}>
+      <div className="af-checkbox__label-container">
+        {labelGroup && (
+          <span className="af-checkbox__label" id={optionId}>
+            {labelGroup}
+            {isRequired && <span aria-hidden="true">&nbsp;*</span>}
+          </span>
+        )}
+        {descriptionGroup && (
+          <span className="af-checkbox__description">{descriptionGroup}</span>
+        )}
       </div>
-    );
-  },
-);
-
-CheckboxSelect.displayName = "CheckboxSelect";
-export { CheckboxSelect };
+      <div role="group" className={checkboxGroupClassName}>
+        {options.map(
+          ({ label, description, subtitle, icon, ...inputProps }) => (
+            <label key={inputProps.name} htmlFor={`id-${inputProps.name}`}>
+              <input
+                type="checkbox"
+                {...inputProps}
+                id={`id-${inputProps.name}`}
+                onChange={onChange}
+                aria-invalid={Boolean(errorMessage) && !inputProps.disabled}
+              />
+              <div className="af-checkbox__icons">
+                <Svg
+                  src={checkBoxOutlineBlankIcon}
+                  className="af-checkbox__unchecked"
+                />
+                <Svg src={checkBoxIcon} className="af-checkbox__checked" />
+              </div>
+              <div className="af-checkbox__content">
+                {icon}
+                <div className="af-checkbox__content-description">
+                  <span>{label}</span>
+                  {description && <span>{description}</span>}
+                  {subtitle && <span>{subtitle}</span>}
+                </div>
+              </div>
+            </label>
+          ),
+        )}
+      </div>
+      {errorMessage && (
+        <div className="af-checkbox__error" aria-live="assertive">
+          <Svg src={errorOutline} />
+          {errorMessage}
+        </div>
+      )}
+    </div>
+  );
+};
