@@ -14,8 +14,15 @@
     --row-gap: calc(4 / var(--font-size-base) * 1rem);
 
     display: flex;
+    width: 100%;
     flex-direction: column;
     row-gap: var(--row-gap);
+  }
+
+  &__label-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__input-label {
