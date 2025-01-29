@@ -1,37 +1,22 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/Checkbox/Checkbox.scss";
 import checkBoxIcon from "@material-symbols/svg-400/outlined/check_box-fill.svg";
 import checkBoxOutlineBlankIcon from "@material-symbols/svg-400/outlined/check_box_outline_blank.svg";
+import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
 import React, { ReactNode, forwardRef, useId } from "react";
 import classNames from "classnames";
 import { Svg } from "../../Svg";
-import { InputError } from "../InputError";
 
 type CheckboxProps = {
-  label: ReactNode;
-  subtitle?: ReactNode;
-  description?: ReactNode;
-  icon?: ReactNode;
+  label: string | ReactNode;
   errorMessage?: string;
-  showErrorMessage?: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "label">;
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  (
-    {
-      label,
-      icon,
-      description,
-      subtitle,
-      errorMessage,
-      className,
-      showErrorMessage = true,
-      ...inputProps
-    },
-    ref,
-  ) => {
+  ({ label, errorMessage, className, ...inputProps }, ref) => {
     const idError = useId();
     let inputId = useId();
     inputId = inputProps.id || inputId;
+
     return (
       <div>
         <div className={classNames("af-checkbox", className)}>
@@ -42,7 +27,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               type="checkbox"
               id={inputId}
               aria-errormessage={idError}
-              aria-invalid={Boolean(errorMessage) && !inputProps.disabled}
+              aria-invalid={!!errorMessage}
             />
             <div className="af-checkbox__icons">
               <Svg
@@ -51,18 +36,18 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               />
               <Svg src={checkBoxIcon} className="af-checkbox__checked" />
             </div>
-            <div className="af-checkbox__content">
-              {icon}
-              <div className="af-checkbox__content-description">
-                <span>{label}</span>
-                {description && <span>{description}</span>}
-                {subtitle && <span>{subtitle}</span>}
-              </div>
-            </div>
+            {label}
           </label>
         </div>
-        {errorMessage && showErrorMessage && (
-          <InputError id={idError} message={errorMessage} />
+        {errorMessage && (
+          <div
+            className="af-checkbox__error"
+            aria-live="assertive"
+            id={idError}
+          >
+            <Svg src={errorOutline} />
+            {errorMessage}
+          </div>
         )}
       </div>
     );

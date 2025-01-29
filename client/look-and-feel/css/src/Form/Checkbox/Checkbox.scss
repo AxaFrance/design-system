@@ -3,17 +3,6 @@
 .af-checkbox {
   font-family: "Source Sans Pro", arial, sans-serif;
 
-  ul {
-    all: unset;
-    display: flex;
-    flex-direction: inherit;
-    gap: 0.5rem;
-  }
-
-  li {
-    all: unset;
-  }
-
   * {
     box-sizing: border-box;
   }
@@ -52,6 +41,7 @@
     display: flex;
     width: 100%;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 
     & > svg {
@@ -68,7 +58,6 @@
       line-height: 1.25rem;
 
       & > span:first-child {
-        font-size: common.rem(18);
         line-height: 1.4rem;
         color: var(--color-gray-900);
       }
@@ -77,13 +66,6 @@
         color: var(--color-gray-700);
       }
     }
-  }
-
-  input[type="checkbox"]:checked
-    ~ &__content
-    &__content-description
-    > span:first-child {
-    font-weight: 600;
   }
 
   &-select--horizontal &__content {
@@ -126,15 +108,12 @@
   }
 
   &-select label {
+    height: 6.4rem;
     padding: 1rem;
     align-items: center;
     box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
 
     --box-shadow-color: #{var(--color-gray)};
-  }
-
-  &-select--vertical ul {
-    flex-direction: column;
   }
 
   &-select--horizontal label {
