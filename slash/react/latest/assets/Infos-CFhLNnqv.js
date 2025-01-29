@@ -1,5 +1,0 @@
-import{j as e}from"./jsx-runtime-Cw0GR0a5.js";import{r as o}from"./index-CTjT7uj6.js";import{g as d}from"./getComponentClassName-BBtdTm69.js";const s="af-contrat",c=({infos:a,className:n,classModifier:i})=>{const t=d(n,i,s);return e.jsxs("div",{className:t,children:[e.jsx("i",{className:"glyphicon glyphicon-info-sign"}),e.jsx("dl",{className:`${s}__list`,children:a.map(r=>e.jsxs(o.Fragment,{children:[e.jsx("dt",{className:`${s}__word`,children:r.word}),e.jsx("dd",{className:`${s}__def`,children:r.definition})]},`info-${r.id}`))})]})};c.__docgenInfo={description:"",methods:[],displayName:"Infos",props:{classModifier:{required:!1,tsType:{name:"string"},description:""},className:{required:!1,tsType:{name:"string"},description:""},infos:{required:!0,tsType:{name:"Array",elements:[{name:"signature",type:"object",raw:`{
-  definition: ReactNode;
-  id?: string;
-  word: ReactNode;
-}`,signature:{properties:[{key:"definition",value:{name:"ReactNode",required:!0}},{key:"id",value:{name:"string",required:!1}},{key:"word",value:{name:"ReactNode",required:!0}}]}}],raw:"TInfo[]"},description:""}}};export{c as I};
