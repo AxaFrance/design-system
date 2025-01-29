@@ -1,0 +1,25 @@
+import{j as t}from"./jsx-runtime-BjG_zV1W.js";import{r as b}from"./index-C33_amOP.js";import{F as x}from"./HelpMessage-D9o_4RmS.js";import"./getComponentClassName-CfMiunrP.js";import{u as q}from"./useOptionsWithId-aTvNHBF1.js";import{g as _}from"./getOptionClassName-DxuJt0H1.js";const k=b.forwardRef(({disabled:e=!1,value:s="",id:l,children:i,label:o,isChecked:n,className:d,classModifier:c,...u},m)=>{const p=i||o,f=b.useId(),a=l??f,r=_(d??"",c??"","af-form__checkbox",e);return t.jsxs("div",{className:r,children:[t.jsx("input",{...u,className:"af-form__input-checkbox",value:s,id:a,disabled:e,checked:n,type:"checkbox",ref:m}),t.jsxs("label",{className:"af-form__label",htmlFor:a,children:[t.jsx("span",{className:"af-form__indicator",children:t.jsx("i",{className:"glyphicon glyphicon-ok"})}),t.jsx("span",{className:"af-form__description",children:p})]})]})});k.displayName="CheckboxItem";k.__docgenInfo={description:"",methods:[],displayName:"CheckboxItem",props:{classModifier:{required:!1,tsType:{name:"string"},description:""},optionClassName:{required:!1,tsType:{name:"string"},description:""},children:{required:!1,tsType:{name:"ReactNode"},description:""},label:{required:!1,tsType:{name:"ReactNode"},description:""},isChecked:{required:!1,tsType:{name:"boolean"},description:""},disabled:{defaultValue:{value:"false",computed:!1},required:!1},value:{defaultValue:{value:'""',computed:!1},required:!1}}};var h=(e=>(e.classic="classic",e.default="default",e.inline="inline",e.toggle="toggle",e))(h||{});const I=e=>{switch(e){case h.default:return"af-form__checkbox-custom";case h.classic:return"af-form__checkbox";default:return`af-form__checkbox-${e}`}},v=b.forwardRef(({id:e,name:s,options:l,disabled:i,children:o,values:n=[],mode:d=h.default,onChange:c=()=>{},...u},m)=>{const p=I(d),f=({target:{value:a,checked:r}})=>{const g=r?[...n,a]:n.filter(y=>y!==a);c({values:g,target:{value:a,checked:r},id:e,name:s})};return t.jsx(t.Fragment,{children:l.map(a=>{const r=n?n.indexOf(a.value)>=0:!1;return b.createElement(k,{...u,onChange:f,key:a.value,className:p,isChecked:r,name:s,disabled:a.disabled||i,ref:m,...a},o)})})});v.displayName="Checkbox";const w=v;v.__docgenInfo={description:"",methods:[],displayName:"Checkbox",props:{options:{required:!0,tsType:{name:"Array",elements:[{name:"intersection",raw:`{
+  id?: string;
+  icon?: ReactNode;
+  label: ReactNode;
+  description?: ReactNode;
+  value: string;
+  disabled?: boolean;
+} & React.InputHTMLAttributes<HTMLInputElement>`,elements:[{name:"signature",type:"object",raw:`{
+  id?: string;
+  icon?: ReactNode;
+  label: ReactNode;
+  description?: ReactNode;
+  value: string;
+  disabled?: boolean;
+}`,signature:{properties:[{key:"id",value:{name:"string",required:!1}},{key:"icon",value:{name:"ReactNode",required:!1}},{key:"label",value:{name:"ReactNode",required:!0}},{key:"description",value:{name:"ReactNode",required:!1}},{key:"value",value:{name:"string",required:!0}},{key:"disabled",value:{name:"boolean",required:!1}}]}},{name:"ReactInputHTMLAttributes",raw:"React.InputHTMLAttributes<HTMLInputElement>",elements:[{name:"HTMLInputElement"}]}]}],raw:"Option[]"},description:""},values:{required:!1,tsType:{name:"Array",elements:[{name:"string"}],raw:"string[]"},description:"",defaultValue:{value:"[]",computed:!1}},children:{required:!1,tsType:{name:"ReactNode"},description:""},mode:{required:!1,tsType:{name:"unknown"},description:"",defaultValue:{value:"CheckboxModes.default",computed:!0}},onChange:{required:!1,tsType:{name:"signature",type:"function",raw:`(data: {
+  values: string[];
+  target: { value: string; checked: boolean };
+  name?: string;
+  id?: string;
+}) => void`,signature:{arguments:[{type:{name:"signature",type:"object",raw:`{
+  values: string[];
+  target: { value: string; checked: boolean };
+  name?: string;
+  id?: string;
+}`,signature:{properties:[{key:"values",value:{name:"Array",elements:[{name:"string"}],raw:"string[]",required:!0}},{key:"target",value:{name:"signature",type:"object",raw:"{ value: string; checked: boolean }",signature:{properties:[{key:"value",value:{name:"string",required:!0}},{key:"checked",value:{name:"boolean",required:!0}}]},required:!0}},{key:"name",value:{name:"string",required:!1}},{key:"id",value:{name:"string",required:!1}}]}},name:"data"}],return:{name:"void"}}},description:"",defaultValue:{value:"() => {}",computed:!1}}}};const N=b.forwardRef(({mode:e,messageType:s,message:l,classModifier:i,options:o,classNameContainerLabel:n,classNameContainerInput:d,label:c,isVisible:u,className:m,forceDisplayMessage:p,required:f,...a},r)=>{let g=i;e===h.classic&&(g+=" label-top"),f&&(g+=" required");const y=q(o);return t.jsx(x,{label:c,id:y[0].id,message:l,messageType:s,isVisible:u,forceDisplayMessage:p,className:m,classModifier:g,classNameContainerLabel:n,classNameContainerInput:d,children:t.jsx(w,{mode:e,options:y,classModifier:i,ref:r,...a})})});N.displayName="CheckboxInput";N.__docgenInfo={description:"",methods:[],displayName:"CheckboxInput"};export{k as C,N as a,h as b,w as c};
