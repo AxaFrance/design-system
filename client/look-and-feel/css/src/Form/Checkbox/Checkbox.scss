@@ -1,17 +1,23 @@
 @use "../../common/common" as common;
 
 .af-checkbox {
+  height: 100%;
   font-family: "Source Sans Pro", arial, sans-serif;
 
   ul {
     all: unset;
     display: flex;
     flex-direction: inherit;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
   li {
     all: unset;
+
+    > div {
+      height: 100%;
+    }
   }
 
   * {
@@ -141,6 +147,7 @@
     position: relative;
     width: 12rem;
     height: auto;
+    height: 100%;
     padding: 1rem;
     flex-direction: column;
     justify-content: flex-start;
