@@ -1,75 +1,31 @@
-import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
-import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
-import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
-import { ComponentProps, forwardRef, ReactNode, useId } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
-
+import { ComponentProps, forwardRef, ReactNode } from "react";
+import { Field } from "../core";
 import { Text } from "./Text";
 
-type Props = ComponentProps<typeof Field> &
-  ComponentProps<typeof Text> & {
-    helpMessage?: ReactNode;
-  };
-
-const TextInput = forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      id,
-      message,
-      children,
-      helpMessage,
-      classNameContainerLabel,
-      classNameContainerInput,
-      label,
-      messageType,
-      isVisible,
-      className,
-      forceDisplayMessage,
-      classModifier = "",
-      disabled = false,
-      required,
-      ...inputTextProps
+export type TextInputProps = Omit<
+  ComponentProps<typeof Field> &
+    ComponentProps<typeof Text> & {
+      helpMessage?: ReactNode;
     },
-    inputRef,
-  ) => {
-    const inputUseId = useId();
-    const inputId = id ?? inputUseId;
-    const { inputClassModifier, inputFieldClassModifier } =
-      useInputClassModifier(
-        classModifier,
-        disabled,
-        Boolean(children),
-        required,
-      );
+  "renderInput"
+>;
 
+// eslint-disable-next-line react/no-multi-comp
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  ({ children, ...props }, inputRef) => {
     return (
       <Field
-        label={label}
-        message={message}
-        messageType={messageType}
-        isVisible={isVisible}
-        forceDisplayMessage={forceDisplayMessage}
-        className={className}
-        id={inputId}
-        classModifier={classModifier}
-        classNameContainerLabel={classNameContainerLabel}
-        classNameContainerInput={classNameContainerInput}
-      >
-        <FieldInput
-          className="af-form__text"
-          classModifier={inputFieldClassModifier}
-        >
+        {...props}
+        renderInput={({ id, classModifier }) => (
           <Text
-            id={inputId}
-            classModifier={inputClassModifier}
-            disabled={disabled}
+            id={id}
+            classModifier={classModifier}
             ref={inputRef}
-            required={required}
-            {...inputTextProps}
+            {...props}
           />
-          {children}
-        </FieldInput>
-        <HelpMessage message={helpMessage} isVisible={!message} />
+        )}
+      >
+        {children}
       </Field>
     );
   },

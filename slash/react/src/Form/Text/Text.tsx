@@ -26,6 +26,6 @@ const Text = forwardRef<HTMLInputElement, Props>(
   },
 );
 
-Text.displayName = "Text";
+Text.displayName = "EnhancedInput";
 
 export { Text };

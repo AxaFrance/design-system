@@ -1,13 +1,13 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import {
-  Field,
+  LegacyField,
   getFirstId,
   useInputClassModifier,
   useOptionsWithId,
 } from "../core";
 import { Radio, RadioModes } from "./Radio";
 
-type RadioInputProps = ComponentPropsWithoutRef<typeof Field> &
+type RadioInputProps = ComponentPropsWithoutRef<typeof LegacyField> &
   ComponentPropsWithoutRef<typeof Radio>;
 
 const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
@@ -47,7 +47,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
       );
 
     return (
-      <Field
+      <LegacyField
         label={label}
         id={firstId}
         message={message}
@@ -72,7 +72,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
           {...radioProps}
         />
         {children}
-      </Field>
+      </LegacyField>
     );
   },
 );

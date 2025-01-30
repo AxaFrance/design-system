@@ -1,10 +1,15 @@
 import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.scss";
 
 import { useId, type ComponentProps, type ReactNode } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  FieldInput,
+  HelpMessage,
+  LegacyField,
+  useInputClassModifier,
+} from "../core";
 import { MultiSelect } from "./MultiSelect";
 
-type Props = ComponentProps<typeof Field> &
+type Props = ComponentProps<typeof LegacyField> &
   ComponentProps<typeof MultiSelect> & {
     helpMessage?: ReactNode;
   };
@@ -37,7 +42,7 @@ const MultiSelectInput = ({
   const inputId = id || generatedId;
 
   return (
-    <Field
+    <LegacyField
       label={label}
       id={inputId}
       message={message}
@@ -62,7 +67,7 @@ const MultiSelectInput = ({
         {children}
       </FieldInput>
       <HelpMessage message={helpMessage} isVisible={!message} />
-    </Field>
+    </LegacyField>
   );
 };
 

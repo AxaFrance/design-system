@@ -1,11 +1,11 @@
 import { ComponentProps, forwardRef } from "react";
 
-import { Field, useOptionsWithId } from "../core";
+import { LegacyField, useOptionsWithId } from "../core";
 import { Checkbox } from "./Checkbox";
 import { CheckboxModes } from "./CheckboxModes";
 
 type Props = Omit<
-  ComponentProps<typeof Checkbox> & ComponentProps<typeof Field>,
+  ComponentProps<typeof Checkbox> & ComponentProps<typeof LegacyField>,
   "children" | "placeholder"
 >;
 
@@ -38,7 +38,7 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
     const newOptions = useOptionsWithId(options);
 
     return (
-      <Field
+      <LegacyField
         label={label}
         id={newOptions[0].id}
         message={message}
@@ -57,7 +57,7 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
           ref={inputRef}
           {...checkboxProps}
         />
-      </Field>
+      </LegacyField>
     );
   },
 );
