@@ -1,8 +1,8 @@
 import { useId, useMemo, type ComponentProps, type ReactNode } from "react";
-import { Field, HelpMessage } from "../core";
+import { HelpMessage, LegacyField } from "../core";
 import { Slider } from "./Slider";
 
-type Props = ComponentProps<typeof Field> &
+type Props = ComponentProps<typeof LegacyField> &
   ComponentProps<typeof Slider> & {
     helpMessage?: ReactNode;
   };
@@ -26,7 +26,7 @@ const SliderInput = ({
   const newId = useMemo(() => id ?? generatedId, [generatedId, id]);
 
   return (
-    <Field
+    <LegacyField
       id={newId}
       label={label}
       message={message}
@@ -41,7 +41,7 @@ const SliderInput = ({
       <Slider {...sliderProps} id={id} classModifier={classModifier} />
       {children}
       <HelpMessage message={helpMessage} isVisible={!message} />
-    </Field>
+    </LegacyField>
   );
 };
 

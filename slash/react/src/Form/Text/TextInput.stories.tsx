@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { MessageTypes } from "../core";
-import { TextInput } from "./TextInput";
 import { inputTypes } from "./inputTypes";
+import { TextInput } from "./TextInput";
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
@@ -29,6 +29,8 @@ export const TextInputStory: Story = {
     readOnly: false,
     disabled: false,
     autoFocus: false,
+    message: "message",
+
     className: "",
     type: "text",
     label: "Your name",

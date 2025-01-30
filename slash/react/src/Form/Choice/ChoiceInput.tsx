@@ -1,9 +1,9 @@
 import { forwardRef, type ComponentProps } from "react";
-import { Field, useInputClassModifier, useOptionsWithId } from "../core";
+import { LegacyField, useInputClassModifier, useOptionsWithId } from "../core";
 import { Choice } from "./Choice";
 
 type Props = ComponentProps<typeof Choice> &
-  Omit<ComponentProps<typeof Field>, "children">;
+  Omit<ComponentProps<typeof LegacyField>, "children">;
 
 const defaultOptions = [
   { label: "Oui", value: true, id: "radioItemTrue" },
@@ -49,7 +49,7 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
       value: o.value === "true",
     }));
     return (
-      <Field
+      <LegacyField
         label={label}
         id={firstId}
         message={message}
@@ -70,7 +70,7 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
           required={required}
           disabled={disabled}
         />
-      </Field>
+      </LegacyField>
     );
   },
 );

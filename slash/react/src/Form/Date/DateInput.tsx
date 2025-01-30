@@ -1,9 +1,14 @@
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  FieldInput,
+  HelpMessage,
+  LegacyField,
+  useInputClassModifier,
+} from "../core";
 import { Date } from "./Date";
 
 type Props = Omit<ComponentPropsWithoutRef<typeof Date>, "placeholderText"> &
-  ComponentPropsWithoutRef<typeof Field> & {
+  ComponentPropsWithoutRef<typeof LegacyField> & {
     placeholder?: string;
     helpMessage?: ReactNode;
     children?: ReactNode;
@@ -35,7 +40,7 @@ const DateInput = ({
     required,
   );
   return (
-    <Field
+    <LegacyField
       label={label}
       id={inputId}
       message={message}
@@ -61,7 +66,7 @@ const DateInput = ({
         {children}
       </FieldInput>
       <HelpMessage message={helpMessage} isVisible={!message} />
-    </Field>
+    </LegacyField>
   );
 };
 
