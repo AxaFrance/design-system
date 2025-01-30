@@ -1,5 +1,10 @@
 import { ComponentProps, ReactNode, useId, useState } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  FieldInput,
+  HelpMessage,
+  LegacyField,
+  useInputClassModifier,
+} from "../core";
 import { Pass } from "./Pass";
 
 const strengthList: Record<number, string> = {
@@ -25,7 +30,7 @@ const calculateStrength = (score?: string | null) => {
 };
 
 type PassProps = ComponentProps<typeof Pass>;
-type Props = ComponentProps<typeof Field> &
+type Props = ComponentProps<typeof LegacyField> &
   Omit<PassProps, "onToggleType" | "type"> & {
     helpMessage?: ReactNode;
     score?: string;
@@ -63,7 +68,7 @@ const PassInput = ({
   );
 
   return (
-    <Field
+    <LegacyField
       label={label}
       message={message}
       messageType={messageType}
@@ -92,7 +97,7 @@ const PassInput = ({
         {children}
         <HelpMessage message={helpMessage} isVisible={!message} />
       </FieldInput>
-    </Field>
+    </LegacyField>
   );
 };
 

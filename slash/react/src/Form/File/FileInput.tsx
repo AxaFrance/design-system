@@ -1,10 +1,15 @@
 import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  FieldInput,
+  HelpMessage,
+  LegacyField,
+  useInputClassModifier,
+} from "../core";
 import { CustomFile, File } from "./File";
 import { FileTable } from "./FileTable";
 
-type FieldProps = ComponentPropsWithoutRef<typeof Field>;
+type FieldProps = ComponentPropsWithoutRef<typeof LegacyField>;
 type FileProps = ComponentPropsWithoutRef<typeof File>;
 type FileTableProps = ComponentPropsWithoutRef<typeof FileTable>;
 
@@ -56,7 +61,7 @@ const FileInput = ({
   );
   const rowModifier = `${inputFieldClassModifier} label-top`;
   return (
-    <Field
+    <LegacyField
       label={label}
       id={inputId}
       message={message}
@@ -91,7 +96,7 @@ const FileInput = ({
         onClick={(selectedId) => onDeleteClick(selectedId, inputId)}
         classModifier={classModifier}
       />
-    </Field>
+    </LegacyField>
   );
 };
 

@@ -6,10 +6,15 @@ import {
   useId,
 } from "react";
 
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  FieldInput,
+  HelpMessage,
+  LegacyField,
+  useInputClassModifier,
+} from "../core";
 import { Select } from "./Select";
 
-type Props = ComponentProps<typeof Field> &
+type Props = ComponentProps<typeof LegacyField> &
   ComponentProps<typeof Select> & {
     helpMessage?: ReactNode;
   };
@@ -45,7 +50,7 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
         required,
       );
     return (
-      <Field
+      <LegacyField
         label={label}
         id={inputId}
         message={message}
@@ -72,7 +77,7 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
           {children}
         </FieldInput>
         <HelpMessage message={helpMessage} isVisible={!message} />
-      </Field>
+      </LegacyField>
     );
   },
 );
