@@ -2,6 +2,8 @@
   "name": "@axa-fr/design-system-look-and-feel-react",
   "version": "0.1.0",
   "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
