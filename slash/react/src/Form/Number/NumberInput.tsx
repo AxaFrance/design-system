@@ -7,11 +7,16 @@ import {
   ReactNode,
   useId,
 } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  FieldInput,
+  HelpMessage,
+  LegacyField,
+  useInputClassModifier,
+} from "../core";
 
 import { Number } from "./Number";
 
-type Props = ComponentPropsWithoutRef<typeof Field> &
+type Props = ComponentPropsWithoutRef<typeof LegacyField> &
   ComponentPropsWithRef<typeof Number> & {
     helpMessage?: ReactNode;
     children?: ReactNode;
@@ -43,7 +48,7 @@ export const NumberInput = ({
     required,
   );
   return (
-    <Field
+    <LegacyField
       label={label}
       id={inputId}
       message={message}
@@ -68,6 +73,6 @@ export const NumberInput = ({
         {children}
       </FieldInput>
       <HelpMessage message={helpMessage} isVisible={!message} />
-    </Field>
+    </LegacyField>
   );
 };

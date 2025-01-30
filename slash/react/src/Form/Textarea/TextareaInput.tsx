@@ -2,11 +2,16 @@ import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
 import { ComponentProps, forwardRef, ReactNode, useId } from "react";
-import { Field, FieldInput, HelpMessage, useInputClassModifier } from "../core";
+import {
+  FieldInput,
+  HelpMessage,
+  LegacyField,
+  useInputClassModifier,
+} from "../core";
 
 import { Textarea } from "./Textarea";
 
-type Props = ComponentProps<typeof Field> &
+type Props = ComponentProps<typeof LegacyField> &
   ComponentProps<typeof Textarea> & {
     helpMessage?: ReactNode;
   };
@@ -46,7 +51,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
       );
 
     return (
-      <Field
+      <LegacyField
         label={label}
         id={inputId}
         message={message}
@@ -74,7 +79,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
           {children}
         </FieldInput>
         <HelpMessage message={helpMessage} isVisible={!message} />
-      </Field>
+      </LegacyField>
     );
   },
 );

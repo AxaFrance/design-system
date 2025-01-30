@@ -1,14 +1,15 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
 import classNames from "classnames";
+import { type ReactNode, useId } from "react";
+import {
+  FieldError,
+  FormClassManager,
+  HelpMessage,
+  MessageTypes,
+  useInputClassModifier,
+} from ".";
 import { getComponentClassName } from "../../utilities";
-import { FieldError } from "./FieldError";
-import { MessageTypes } from "./MessageTypes";
-import { FieldForm } from "./FieldForm";
 
-type FieldProps = Omit<
-  ComponentPropsWithoutRef<typeof FieldForm>,
-  "children"
-> & {
+type InputProps = {
   label: ReactNode;
   children?: ReactNode;
   id?: string;
@@ -19,63 +20,87 @@ type FieldProps = Omit<
   roleContainer?: string;
   ariaLabelContainer?: string;
   isLabelContainerLinkedToInput?: boolean;
+  forceDisplayMessage?: boolean;
+  message?: string;
+  messageType?: MessageTypes;
+  required?: boolean;
+  disabled?: boolean;
+  helpMessage?: ReactNode;
 };
 
 export const Field = ({
-  id = "",
-  message = "",
-  messageType = MessageTypes.error,
-  label,
-  children,
-  forceDisplayMessage,
-  classModifier = "",
-  className,
-  classNameContainerLabel = "col-md-2",
   classNameContainerInput = "col-md-10",
+  classNameContainerLabel = "col-md-2",
+  label,
+  forceDisplayMessage,
+  message,
+  messageType,
+  required,
+  classModifier = "",
+  children,
+  disabled = false,
+  helpMessage,
+  id,
   isVisible = true,
   roleContainer,
   ariaLabelContainer,
   isLabelContainerLinkedToInput = true,
-}: FieldProps) => {
+  renderInput: Element,
+}: InputProps & {
+  renderInput: (props: { id: string; classModifier: string }) => ReactNode;
+}) => {
+  const inputUseId = useId();
+  const inputId = id ?? inputUseId;
+
+  const actualRequired = required || classModifier.includes("required");
+
+  const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
+    classModifier,
+    disabled,
+    Boolean(children),
+    actualRequired,
+  );
+
   if (!isVisible) {
     return null;
   }
 
-  const componentClassName = getComponentClassName(
-    className,
-    classModifier,
-    "row af-form__group",
+  const fieldContainerClassName = getComponentClassName(
+    "af-form__text",
+    forceDisplayMessage
+      ? `${inputFieldClassModifier} ${FormClassManager.getModifier(messageType)}`
+      : inputFieldClassModifier,
   );
 
   return (
     <div
-      className={componentClassName}
+      className={classNames("row af-form__group", {
+        "af-form__group--required": actualRequired,
+      })}
       role={roleContainer}
       aria-label={ariaLabelContainer}
     >
       <div className={classNameContainerLabel}>
         <label
-          className={classNames(
-            {
-              "af-form__group-label--required":
-                classModifier.includes("required"),
-            },
-            "af-form__group-label",
-          )}
-          htmlFor={isLabelContainerLinkedToInput ? id : undefined}
+          className={classNames("af-form__group-label", {
+            "af-form__group-label--required": actualRequired,
+          })}
+          htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
         >
           {label}
         </label>
       </div>
-      <FieldForm
-        className={classNameContainerInput}
-        message={message}
-        messageType={messageType}
-        forceDisplayMessage={forceDisplayMessage}
-      >
-        {children}
-        <FieldError message={message} messageType={messageType} />
-      </FieldForm>
+      <div className={classNameContainerInput}>
+        <div className={fieldContainerClassName}>
+          <Element id={inputId} classModifier={inputClassModifier} />
+          {children}
+        </div>
+        {forceDisplayMessage ? (
+          <FieldError message={message} messageType={messageType} />
+        ) : (
+          <HelpMessage message={helpMessage} />
+        )}
+      </div>
     </div>
   );
 };
