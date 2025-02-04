@@ -14,6 +14,11 @@ const preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        order: ["Fondations", "Components"],
+      },
+    },
   },
   tags: ["autodocs"],
 };
