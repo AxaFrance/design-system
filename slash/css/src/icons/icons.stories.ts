@@ -3,7 +3,7 @@ import "../common/icons.scss";
 import "./icons.stories.css";
 
 const meta: Meta = {
-  title: "icons",
+  title: "Fondations/icons",
 };
 
 export default meta;
