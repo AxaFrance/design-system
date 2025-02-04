@@ -1,10 +1,14 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@fontsource/source-sans-pro";
-
 import type { Preview } from "@storybook/react";
+// eslint-disable-next-line import/no-unresolved
+import { viewPorts } from "./viewports";
 
 const preview: Preview = {
   parameters: {
+    viewport: {
+      viewports: viewPorts,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
