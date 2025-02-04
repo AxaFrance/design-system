@@ -72,6 +72,7 @@ export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Tabs";
 export { Title } from "./Title/Title";
 export { getComponentClassName } from "./utilities";
+export { Grid } from "./Grid/Grid";
 
 export * from "./Accordion";
 export * from "./Popover";

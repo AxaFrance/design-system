@@ -1,0 +1,45 @@
+@use "../common/common" as common;
+@use "../common/breakpoint" as breakpoint;
+
+.af-grid {
+  --grid-body-width: var(--body-width-tablet-portrait);
+
+  width: var(--grid-body-width);
+  margin-inline: auto;
+}
+
+@include breakpoint.media-less-than-width(tablet-portrait) {
+  .af-grid {
+    margin-inline: common.px-to-rem(36);
+  }
+}
+
+@include breakpoint.media-exceeds-width(tablet-landscape) {
+  .af-grid {
+    --grid-body-width: var(--body-width-tablet-landscape);
+  }
+}
+
+@include breakpoint.media-exceeds-width(desktop-s) {
+  .af-grid {
+    --grid-body-width: var(--body-width-desktop-s);
+  }
+}
+
+@include breakpoint.media-exceeds-width(desktop-m) {
+  .af-grid {
+    --grid-body-width: var(--body-width-desktop-m);
+  }
+}
+
+@include breakpoint.media-exceeds-width(desktop-l) {
+  .af-grid {
+    --grid-body-width: var(--body-width-desktop-l);
+  }
+}
+
+@include breakpoint.media-exceeds-width(desktop-xl) {
+  .af-grid {
+    --grid-body-width: var(--body-width-desktop-xl);
+  }
+}

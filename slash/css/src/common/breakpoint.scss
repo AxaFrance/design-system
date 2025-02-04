@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "./common" as common;
+
+:root {
+  --body-width-tablet-portrait: #{common.px-to-rem(700)};
+  --body-width-tablet-landscape: #{common.px-to-rem(936)};
+  --body-width-desktop-s: #{common.px-to-rem(1160)};
+  --body-width-desktop-m: #{common.px-to-rem(1320)};
+  --body-width-desktop-l: #{common.px-to-rem(1560)};
+  --body-width-desktop-xl: #{common.px-to-rem(1800)};
+}
+
+$breakpoints: (
+  tablet-portrait: common.px-to-rem(772),
+  tablet-landscape: common.px-to-rem(1016),
+  desktop-s: common.px-to-rem(1272),
+  desktop-m: common.px-to-rem(1432),
+  desktop-l: common.px-to-rem(1672),
+  desktop-xl: common.px-to-rem(1912),
+) !default;
+
+@mixin media-exceeds-width($name) {
+  $value: map.get($breakpoints, $name);
+
+  @media (width >= $value) {
+    @content;
+  }
+}
+
+@mixin media-less-than-width($name) {
+  $value: map.get($breakpoints, $name);
+
+  @media (width < $value) {
+    @content;
+  }
+}
