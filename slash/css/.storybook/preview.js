@@ -1,8 +1,13 @@
 import "../src/common/icons.scss";
+// eslint-disable-next-line import/no-unresolved
+import { viewPorts } from "./viewports";
 
 /** @type { import('@storybook/html').Preview } */
 const preview = {
   parameters: {
+    viewport: {
+      viewports: viewPorts,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -13,4 +18,5 @@ const preview = {
   tags: ["autodocs"],
 };
 
+// eslint-disable-next-line import/no-default-export
 export default preview;
