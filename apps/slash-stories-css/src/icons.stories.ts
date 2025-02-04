@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import "./icons.stories.css";
 
 const meta: Meta = {
-  title: "icons",
+  title: "Fondations/icons",
 };
 
 export default meta;
