@@ -1,0 +1,45 @@
+import { Meta, Markdown } from "@storybook/addon-docs";
+import * as GridStories from "./Grid.stories";
+
+<Meta of={GridStories} />
+
+## Grid
+
+### Import
+
+#### Grid only
+
+```js
+import "@axa-fr/design-system-slash-react/dist/Grid/Grid.scss"; // or
+import "@axa-fr/design-system-slash-react/dist/Grid/Grid.css";
+```
+
+#### Global
+
+```tsx
+import "@axa-fr/design-system-slash-react/dist/slash.scss"; // or
+import "@axa-fr/design-system-slash-react/dist/slash.css";
+```
+
+### Use
+
+```html
+<main class="af-grid">Content</main>
+```
+
+### Breakpoints and Margins
+
+> ⚠ To handle the rounded edges implemented by Edge, we are forced to reduce each of the breakpoints by 8px
+
+<Markdown>
+  {`
+| Breakpoint                          | columns | body    | margin           | comment             |
+|-------------------------------------|---------|---------|------------------|---------------------|
+| Portrait Tablet (772px to 1015px)   | 1       | 700 px  | Scale - 36px min |                     |
+| Landscape Tablet (1016px to 1271px) | 1       | 936 px  | Scale - 40px min |                     |
+| S Desktop (1272px to 1431px)        | 1       | 1160 px | Scale - 56px min | 150% - Laptop       |
+| M Desktop (1432px to 1671px)        | 1       | 1320 px | Scale - 56px min | 125% - Laptop       |
+| L Desktop (1672px to 1911px)        | 1       | 1560 px | Scale - 56px min | 100% - Laptop       |
+| XL Desktop (1912 to ∞ px)           | 1       | 1800 px | Scale - 56px min | 100% - Large screen |
+`}
+</Markdown>
