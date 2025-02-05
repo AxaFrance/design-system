@@ -240,7 +240,7 @@
     color: var(--color-gray-700);
 
     &--horizontal {
-      flex-direction: row;
+      flex-flow: row wrap;
     }
   }
 }
