@@ -17,7 +17,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Fondations", "Components"],
+        order: ["Fondations", "Components", ["✅ Footer"]],
       },
     },
   },

@@ -1,25 +1,30 @@
 @use "../../common/common" as common;
-@use "../../common/grid";
-
-$logo-size: 22px;
+@use "../../common/typography" as typography;
 
 .af-footer {
-  padding: 0.5rem 0;
-  font-size: 0.6875rem;
+  --footer-padding-h: #{common.px-to-rem(0)};
+  --footer-padding-v: #{common.px-to-rem(6)};
+  --footer-gap: #{common.px-to-rem(16)};
+  --footer-color-typography: var(--color-axa);
+  --footer-color-background: var(--color-transparent);
+  --footer-logo-size: #{common.px-to-rem(36)};
 
-  .container {
-    display: flex;
-    align-items: center;
+  display: grid;
+  padding: var(--footer-padding-v) var(--footer-padding-h);
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--footer-gap);
+  background-color: var(--footer-color-background);
 
-    .af-logo__brand {
-      width: $logo-size;
-      height: $logo-size;
-      margin-right: 0.5rem;
-    }
+  &__logo {
+    width: var(--footer-logo-size);
+    height: var(--footer-logo-size);
   }
 
-  &-content {
-    font-weight: 600;
-    color: common.$color-axa;
+  &__copyright,
+  &__version {
+    @include typography.copyright;
+
+    color: var(--footer-color-typography);
   }
 }
