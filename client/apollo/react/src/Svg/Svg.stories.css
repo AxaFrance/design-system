@@ -1,0 +1,33 @@
+.icon-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+
+  li {
+    display: flex;
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #fff;
+    box-shadow: 0 0 5px 0 rgba(250, 250, 250, 50%);
+
+    &:nth-child(even) {
+      width: unset;
+      align-items: start;
+      padding-inline: 16px;
+    }
+  }
+
+  svg {
+    width: 8rem;
+    height: 8rem;
+  }
+}

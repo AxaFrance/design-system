@@ -3,13 +3,13 @@ import home from "@material-symbols/svg-400/outlined/home-fill.svg";
 import { fn } from "@storybook/test";
 import { ComponentPropsWithRef, useRef } from "react";
 import { Modal } from "./Modal";
-import { ButtonClient } from "../Button/Button";
+import { Button } from "../Button/Button";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   args: {
     onSubmit: fn(),
@@ -26,9 +26,7 @@ export const DefaultModalStory: TDefaultModalStory = {
     const ref = useRef<HTMLDialogElement>(null);
     return (
       <>
-        <ButtonClient onClick={() => ref.current?.showModal()}>
-          Open the Modal
-        </ButtonClient>
+        <Button onClick={() => ref.current?.showModal()}>Open the Modal</Button>
         <Modal
           {...args}
           ref={ref}

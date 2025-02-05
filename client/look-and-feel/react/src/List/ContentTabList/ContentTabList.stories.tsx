@@ -3,7 +3,7 @@ import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import type { ComponentProps } from "react";
-import { Button, ButtonVariants, Svg } from "../..";
+import { Button, Svg } from "../..";
 import { ContentTabList } from "./ContentTabList";
 
 const meta: Meta<typeof ContentTabList> = {
@@ -34,7 +34,7 @@ export const ContentTabListWithButtons: StoryObj<
             id: "download_button",
             component: (
               <Button
-                variant={ButtonVariants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={download} />}
                 onClick={fn()}
               >
@@ -53,7 +53,7 @@ export const ContentTabListWithButtons: StoryObj<
             id: "download_button",
             component: (
               <Button
-                variant={ButtonVariants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={download} />}
                 onClick={fn()}
               >
@@ -65,7 +65,7 @@ export const ContentTabListWithButtons: StoryObj<
             id: "display_button",
             component: (
               <Button
-                variant={ButtonVariants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={visibility} />}
                 onClick={fn()}
               >

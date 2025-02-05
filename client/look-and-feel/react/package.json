@@ -63,7 +63,8 @@
     "classnames": "^2.5.1",
     "dompurify": "^3.1.5",
     "rc-slider": "^11.1.7",
-    "react-select": "^5.9.0"
+    "react-select": "^5.9.0",
+    "@axa-fr/design-system-common-react": "*"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",

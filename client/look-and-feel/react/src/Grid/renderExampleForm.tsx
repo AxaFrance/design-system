@@ -2,15 +2,7 @@ import home from "@material-symbols/svg-400/outlined/home.svg";
 import { MyFooter } from "./components/MyFooter";
 import { MyHeader } from "./components/MyHeader";
 
-import {
-  Button,
-  ButtonVariants,
-  CheckboxSelect,
-  RadioSelect,
-  Svg,
-  TextInput,
-  Title,
-} from "..";
+import { Button, CheckboxSelect, RadioSelect, Svg, TextInput, Title } from "..";
 import { DebugGrid } from "./DebugGrid";
 
 function capitalizeFirstLetter(val: string) {
@@ -115,8 +107,8 @@ export const render = () => (
           ))}
         </div>
         <div className="form__actions subgrid">
-          <Button variant={ButtonVariants.secondary}>Précédent</Button>
-          <Button variant={ButtonVariants.primary}>Valider</Button>
+          <Button variant="secondary">Précédent</Button>
+          <Button>Valider</Button>
         </div>
       </form>
     </main>

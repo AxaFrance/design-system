@@ -6,7 +6,12 @@ export default defineConfig({
     globals: true,
     coverage: {
       reporter: ["text", "lcov", "html"],
-      include: ["client/look-and-feel/react/src", "slash/react/src"],
+      include: [
+        "client/apollo/react/src",
+        "client/look-and-feel/react/src",
+        "slash/react/src",
+        "client/common/react/src",
+      ],
       exclude: [
         "**/*.stories.ts?(x)",
         "./config/*",

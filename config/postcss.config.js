@@ -11,12 +11,44 @@ module.exports = ({ ...ctx }) => {
   const prod = env === "production";
 
   const isClient = ctx.env.split("_")[1] === "client";
+  const isClientCommon = ctx.env.split("_")?.[2] === "common";
 
   const relativePath = isClient ? "../../../" : "../../";
 
   return {
     parser: "postcss-scss",
     plugins: [
+      () => {
+        if (!isClientCommon) {
+          return;
+        }
+        cpSync(
+          `${relativePath}client/common/css/src`,
+          `${relativePath}client/apollo/css/src/common`,
+          {
+            recursive: true,
+            filter(source) {
+              const regex = /^.+(s?css)$/;
+              return lstatSync(source).isDirectory() || regex.test(source);
+            },
+          },
+        );
+
+        cpSync(
+          `${relativePath}client/common/css/src`,
+          `${relativePath}client/look-and-feel/css/src/common`,
+          {
+            recursive: true,
+            filter(source) {
+              const regex = /^.+(s?css)$/;
+              return lstatSync(source).isDirectory() || regex.test(source);
+            },
+          },
+        );
+        return {
+          postcssPlugin: "Copy common client file",
+        };
+      },
       postcssSass,
       postcssFlexbugsFixes,
       postcssPresetEnv({
