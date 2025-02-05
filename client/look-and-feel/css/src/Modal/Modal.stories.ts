@@ -5,6 +5,9 @@ import { render } from "./render";
 
 const meta: Meta = {
   title: "Components/Modal",
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;

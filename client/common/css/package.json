@@ -1,0 +1,64 @@
+{
+  "name": "@axa-fr/design-system-common-css",
+  "version": "0.1.0",
+  "description": "",
+  "exports": {
+    ".": "./src"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --env development_client_common --config ../../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env development_client_common --config ../../../config/postcss.config.js",
+    "stylelint": "stylelint \"src/**/*.{scss,css}\"",
+    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
+    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --check --ignore-unknown",
+    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --write --ignore-unknown"
+  },
+  "dependencies": {
+    "rc-slider": "^11.1.7"
+  },
+  "peerDependencies": {
+    "@material-symbols/svg-400": ">= 0.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@material-symbols/svg-400": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": {
+    "name": "AxaFrance"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": "eslint --fix",
+    "*.(ts|tsx)": "tsc-files --noEmit",
+    "*.(scss|css)": "stylelint --fix",
+    "*.mdx": "prettier --write"
+  },
+  "volta": {
+    "extends": "../../../package.json"
+  }
+}

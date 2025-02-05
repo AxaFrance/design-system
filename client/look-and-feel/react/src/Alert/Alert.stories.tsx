@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ButtonClient, Variants } from "../Button/Button";
+import { Button } from "../Button/Button";
 import { Link } from "../Link/Link";
 import { Alert } from "./Alert";
 
@@ -40,7 +40,7 @@ export const WithButtonAction: StoryObj<typeof Alert> = {
     type: "information",
     children:
       "Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.",
-    action: <ButtonClient variant={Variants.ghost}>Actualiser</ButtonClient>,
+    action: <Button variant="ghost">Actualiser</Button>,
     iconSize: 24,
   },
 };

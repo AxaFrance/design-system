@@ -1,0 +1,101 @@
+/* stylelint-disable color-function-notation */
+:root {
+  /* *************************************************************************/
+
+  /* FONTS                                                                   */
+
+  /* *************************************************************************/
+  --font-family-sans-serif: "Source Sans Pro", arial, sans-serif;
+  --font-family-serif: georgia, times, "Times New Roman", serif;
+  --font-family-base: var(--font-family-sans-serif);
+  --font-family-publico-bold: "Publico Headline Bold";
+  --font-family-publico: "Publico Headline";
+  --font-size-base: 16;
+
+  /* *************************************************************************/
+
+  /* COLORS                                                                  */
+
+  /* *************************************************************************/
+
+  /* PRIMITIVES **************************************************************/
+
+  --black: hsl(0deg, 0%, 0%);
+  --black-20: hsl(from var(--black) h s l / 20%);
+  --white: hsl(0deg, 0%, 100%);
+  --white-20: hsl(from var(--white) h s l / 20%);
+
+  /* blue */
+
+  --axa-blue-100: hsl(240deg, 100%, 28%);
+  --axa-blue-100-20: hsl(from var(--axa-blue-100) h s l / 20%);
+  --axa-blue-100-40: hsl(from var(--axa-blue-100) h s l / 40%);
+  --axa-blue-20: hsl(240deg, 33%, 88%);
+  --axa-blue-4: hsl(240deg, 33%, 96%);
+  --axa-blue-65: hsl(240deg, 33%, 53%);
+  --axa-blue-8: hsl(240deg, 33%, 91%);
+  --axa-blue-80: hsl(240deg, 67%, 40%);
+  --axa-blue-120: hsl(240deg, 100%, 22%);
+
+  /* red */
+
+  --axa-red-100: hsl(357deg, 100%, 54%);
+  --axa-red-4: hsl(357deg, 100%, 97%);
+  --axa-red-digital-100: hsl(357deg, 100%, 63%);
+  --red-alert-100: hsl(0deg, 100%, 45%);
+  --red-alert-80: hsl(0deg, 100%, 56%);
+
+  /* orange */
+  --warning-100: hsl(20deg, 70%, 45%);
+  --warning-120: hsl(20deg, 80%, 35%);
+  --warning-4: hsl(20deg, 80%, 98%);
+  --warning-80: hsl(20deg, 70%, 60%);
+
+  /* gray */
+  --dark: hsl(from var(--black) h s 7%);
+  --neutral-100: hsl(from var(--black) h s 20%);
+  --neutral-80: hsl(from var(--black) h s 36%);
+  --neutral-50: hsl(from var(--black) h s 60%);
+  --neutral-50-20: hsl(from var(--neutral-50) h s l / 20%);
+  --neutral-25: hsl(from var(--black) h s 80%);
+  --neutral-14: hsl(from var(--black) h s 90%);
+  --neutral-5: hsl(from var(--black) h s 96%);
+
+  /* green */
+  --green-100: hsl(150deg, 80%, 32%);
+  --aqua-green-12: hsl(150deg, 80%, 96%);
+
+  /* *************************************************************************/
+
+  /* SIZING                                                                  */
+
+  /* *************************************************************************/
+
+  /* *************************************************************************/
+
+  /* SPACING                                                                 */
+
+  /* *************************************************************************/
+
+  /* *************************************************************************/
+
+  /* BREAKPOINTS                                                             */
+
+  /* *************************************************************************/
+
+  /* *************************************************************************/
+
+  /* BORDERS                                                                 */
+
+  /* *************************************************************************/
+
+  --radius-8: 8px;
+  --radius-32: 32px;
+  --radius-100: 100vmax;
+
+  /* *************************************************************************/
+
+  /* ANIMATIONS                                                                 */
+
+  /* *************************************************************************/
+}

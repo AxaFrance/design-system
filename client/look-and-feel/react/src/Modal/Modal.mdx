@@ -31,9 +31,9 @@ export const YourComponent = () => {
 
   return (
     <>
-      <ButtonClient onClick={() => ref.current?.showModal()}>
+      <Button onClick={() => ref.current?.showModal()}>
         Open the modal
-      </ButtonClient>
+      </Button>
 
       <ModalCore onOutsideTap={() => ref.current?.close()} ref={ref}>
         <ModalCoreHeader title="Modal Title" onCancel={() => {}} />
@@ -52,13 +52,13 @@ export const YourComponent = () => {
           </p>
         </ModalCoreBody>
         <ModalCoreFooter>
-          <ButtonClient
-            variant={ButtonVariants.secondary}
+          <Button
+            variant="secondary"
             onClick={() => ref.current?.close()}
           >
             Annuler
-          </ButtonClient>
-          <ButtonClient variant={ButtonVariants.primary}>Valider</ButtonClient>
+          </Button>
+          <Button >Valider</Button>
         </ModalCoreFooter>
       </ModalCore>
     </>

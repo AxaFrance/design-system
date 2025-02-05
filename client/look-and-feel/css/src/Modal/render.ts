@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 import type { Args } from "@storybook/html";
 
 import {
@@ -12,7 +13,7 @@ import {
   plorem,
 } from "../utils";
 
-import { render as renderButton } from "../Button/render";
+import { render as renderButton } from "../../../../common/css/src/Button/render";
 
 export const renderDialog = (args: Args) => {
   const svgClose = svg({
@@ -36,7 +37,8 @@ export const renderDialog = (args: Args) => {
 
   const closeHeaderButton = renderButton({
     variant: "ghost",
-    label: svgClose.outerHTML,
+    label: "",
+    iconLeft: svgClose.outerHTML,
     onclick: "document.querySelector('.af-modal').close()",
     "aria-label": "Fermer la boite de dialogue",
     type: "button",

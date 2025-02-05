@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 /* eslint-disable import/no-unresolved */
 import logo from "@axa-fr/design-system-look-and-feel-css/dist/common/assets/logo-axa.svg";
 import { div, grid, subgrid, form, p } from "../utils";
@@ -6,7 +7,7 @@ import { renderDebugGrid } from "./renderDebugGrid";
 import { render as renderFooter } from "../Layout/Footer/render";
 import { render as renderHeader } from "../Layout/Header/render";
 import { render as renderTitle } from "../Title/render";
-import { render as renderButton } from "../Button/render";
+import { render as renderButton } from "../../../../common/css/src/Button/render";
 import { render as renderText } from "../Form/Text/render";
 import { render as renderCheckbox } from "../Form/Checkbox/render";
 import { render as renderRadio } from "../Form/Radio/render";

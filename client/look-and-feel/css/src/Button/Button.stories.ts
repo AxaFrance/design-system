@@ -1,23 +1,25 @@
+/* eslint-disable import/no-relative-packages */
+/* eslint-disable import/no-unresolved */
 import type { Meta, StoryObj } from "@storybook/html";
-import { render } from "./render";
+import {
+  render,
+  VARIANTS,
+  renderAll,
+} from "../../../../common/css/src/Button/render";
 import "./Button.scss";
+import "../../../../common/css/src/Button/Button.stories.scss";
 
 const meta: Meta = {
   title: "Components/Button",
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
 
-const VARIANTS = [
-  "primary",
-  "primary-business",
-  "secondary",
-  "secondary-error",
-  "tertiary",
-  "ghost",
-];
-
-export const Primary: StoryObj = {
+export const Playground: StoryObj = {
+  name: "Button",
   render,
   args: {
     label: "Button",
@@ -38,4 +40,8 @@ export const Primary: StoryObj = {
       control: { type: "text" },
     },
   },
+};
+
+export const All: StoryObj = {
+  render: renderAll,
 };

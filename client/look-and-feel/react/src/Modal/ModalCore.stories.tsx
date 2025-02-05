@@ -3,8 +3,7 @@ import home from "@material-symbols/svg-400/outlined/home-fill.svg";
 import { fn } from "@storybook/test";
 import { useRef } from "react";
 import { ModalCore } from "./ModalCore";
-import { ButtonClient } from "../Button/Button";
-import { ButtonVariants } from "..";
+import { Button } from "../Button/Button";
 import { ModalCoreHeader } from "./components/ModalCoreHeader";
 import { ModalCoreBody } from "./components/ModalCoreBody";
 import { ModalCoreFooter } from "./components/ModalCoreFooter";
@@ -13,7 +12,7 @@ const meta: Meta<typeof ModalCore> = {
   title: "Components/Modal/ModalCore",
   component: ModalCore,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   args: {
     onSubmit: fn(),
@@ -44,9 +43,7 @@ export const DefaultModalStory: TDefaultModalStory = {
     const ref = useRef<HTMLDialogElement>(null);
     return (
       <>
-        <ButtonClient onClick={() => ref.current?.showModal()}>
-          Open the modal
-        </ButtonClient>
+        <Button onClick={() => ref.current?.showModal()}>Open the modal</Button>
         <ModalCore
           {...args}
           ref={ref}
@@ -69,25 +66,25 @@ export const DefaultModalStory: TDefaultModalStory = {
             <p>{bodyContent}</p>
           </ModalCoreBody>
           <ModalCoreFooter>
-            <ButtonClient
-              variant={ButtonVariants.secondary}
+            <Button
+              variant="secondary"
               onClick={() => {
                 args.onCancel();
                 ref.current?.close();
               }}
             >
               {cancelButtonText}
-            </ButtonClient>
+            </Button>
 
-            <ButtonClient
-              variant={ButtonVariants.primary}
+            <Button
+              variant="primary"
               onClick={() => {
                 args.onSubmit();
                 ref.current?.close();
               }}
             >
               {saveButtonText}
-            </ButtonClient>
+            </Button>
           </ModalCoreFooter>
         </ModalCore>
       </>

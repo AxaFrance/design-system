@@ -3,7 +3,7 @@ import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ContentTabItem, type TContentTabItem } from "..";
-import { Button, ButtonVariants, Svg } from "../../../..";
+import { Button, Svg } from "../../../..";
 
 describe("ContentTabList", () => {
   const onDownload = vi.fn();
@@ -35,7 +35,7 @@ describe("ContentTabList", () => {
           id: "download_button",
           component: (
             <Button
-              variant={ButtonVariants.ghost}
+              variant="ghost"
               iconLeft={<Svg src={download} fill="#00008F" />}
               onClick={onDownload}
             >
@@ -47,7 +47,7 @@ describe("ContentTabList", () => {
           id: "display_button",
           component: (
             <Button
-              variant={ButtonVariants.ghost}
+              variant="ghost"
               iconLeft={<Svg src={visibility} fill="#00008F" />}
               onClick={onDisplay}
             >

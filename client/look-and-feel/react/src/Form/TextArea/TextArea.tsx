@@ -7,7 +7,6 @@ import {
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 import { getComponentClassName } from "../core";
 import { Button, Svg } from "../..";
-import { Variants } from "../../Button/Button";
 import { InputError } from "../InputError";
 
 type Props = ComponentPropsWithRef<"textarea"> & {
@@ -59,7 +58,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
             {buttonLabel && (
               <Button
                 className="af-form__input-more"
-                variant={Variants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={infoIcon} />}
                 onClick={onButtonClick}
               >
