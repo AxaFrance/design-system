@@ -1,0 +1,15 @@
+@use "./common" as common;
+
+:root {
+  --font-family-base: "Source Sans Pro", arial, sans-serif;
+  --font-size-14: #{common.px-to-rem(14)};
+  --font-line-height-16: #{common.px-to-rem(16)};
+  --font-weight-regular: 400;
+}
+
+@mixin copyright {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-16);
+}

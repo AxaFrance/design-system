@@ -3,6 +3,7 @@
 @use "sass:string";
 @use "sass:color";
 @use "sass:math";
+@forward "./color";
 
 // Breakpoint viewport sizes and media queries.
 
@@ -157,7 +158,7 @@ $gray-lighter: #eceeef !default;
 $gray-lightest: #f7f7f9 !default;
 $gray-dark: #292b2c !default;
 // primary
-$color-axa: #00008f !default;
+$color-axa: var(--color-axa);
 $color-azur: #3032c1 !default;
 $color-action-1: #70709a !default;
 $color-action-2: #d3d3e7 !default;
