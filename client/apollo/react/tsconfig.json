@@ -1,7 +1,6 @@
 {
   "include": [
-    "src",
-    "vite.config.ts"
+    "src"
   ],
   "exclude": [
     "node_modules",
@@ -40,7 +39,7 @@
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
     "types": [
-      "./src/env.d.ts",
+      "vite/client",
       "@testing-library/jest-dom",
       "vitest/globals"
     ] /* Specify type package names to be included without being referenced in a source file. */,

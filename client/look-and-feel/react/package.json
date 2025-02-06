@@ -31,11 +31,10 @@
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.build.json",
     "postbuild": "copyfiles --up 1 \"src/assets/svg/*.svg\" ./dist/",
-    "dev": "tsc -p tsconfig.build.json --watch",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
-    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx|svg)\" --check",
-    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx|svg)\" --write",
+    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx|svg)\" --check --ignore-unknow",
+    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx|svg)\" --write --ignore-unknow",
     "check-types": "tsc --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
@@ -64,29 +63,38 @@
     }
   },
   "dependencies": {
-    "@axa-fr/design-system-apollo-react": "*",
     "@fontsource/source-sans-pro": "^5.0.8",
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",
     "dompurify": "^3.1.5"
   },
-  "lint-staged": {
-    "*.(js|jsx|ts|tsx)": "eslint --fix",
-    "*.(ts|tsx)": "tsc-files --noEmit"
-  },
-  "volta": {
-    "extends": "../../../package.json"
-  },
   "devDependencies": {
+    "@axa-fr/design-system-look-and-feel-css": "*",
+    "@axa-fr/design-system-apollo-react": "*",
+    "@axa-fr/eslint-config-design-system": "*",
+    "@axa-fr/prettier-config-design-system": "*",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
+    "@types/dompurify": "^3.0.5",
     "@types/jest": "^29.5.14",
     "@types/jest-axe": "^3.5.9",
     "@vitest/coverage-v8": "^3.0.7",
     "@vitest/ui": "^3.0.7",
+    "copyfiles": "^2.4.1",
     "jest-axe": "^9.0.0",
+    "jsdom": "^25.0.1",
+    "react": "^19.0.0",
+    "rimraf": "^6.0.1",
     "vitest": "^3.0.7"
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": "eslint --fix",
+    "*.(ts|tsx)": "tsc-files --noEmit"
+  },
+  "prettier": "@axa-fr/prettier-config-design-system",
+  "volta": {
+    "extends": "../../../package.json"
   }
 }

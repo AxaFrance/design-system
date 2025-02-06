@@ -8,7 +8,7 @@
             ],
             "dependsOn": [
                 "^build",
-                "lint"
+                "^lint"
             ]
         },
         "check-types": {
@@ -19,15 +19,11 @@
         },
         "dev": {
             "persistent": true,
-            "cache": false,
-            "dependsOn": [
-                "predev"
-            ]
+            "cache": false
         },
-        "predev": {},
         "lint": {
             "dependsOn": [
-                "check-types"
+                "^check-types"
             ]
         }
     }

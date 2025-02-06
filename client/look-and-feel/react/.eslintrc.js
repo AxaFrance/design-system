@@ -1,2 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-module.exports = require("../../../config/eslint.config");
+module.exports = {
+  extends: "@axa-fr/eslint-config-design-system",
+};
