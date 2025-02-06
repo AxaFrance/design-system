@@ -16,6 +16,7 @@
   "dependencies": {
     "@axa-fr/design-system-look-and-feel-react": "*",
     "@axa-fr/design-system-look-and-feel-css": "*",
+    "@axa-fr/prettier-config-design-system": "*",
     "@material-symbols/svg-400": "^0.28.1"
   },
   "devDependencies": {
@@ -32,5 +33,9 @@
     "storybook": "^8.5.5",
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
+  },
+  "prettier": "@axa-fr/prettier-config-design-system",
+  "volta": {
+    "extends": "../../package.json"
   }
 }

@@ -14,7 +14,8 @@
     "chromatic": "npx chromatic"
   },
   "dependencies": {
-    "@axa-fr/design-system-look-and-feel-css": "*"
+    "@axa-fr/design-system-look-and-feel-css": "*",
+    "@axa-fr/prettier-config-design-system": "*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
@@ -30,5 +31,9 @@
     "storybook": "^8.5.5",
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
+  },
+  "prettier": "@axa-fr/prettier-config-design-system",
+  "volta": {
+    "extends": "../../package.json"
   }
 }

@@ -63,11 +63,16 @@
     "react-dropzone": "^11.5.3",
     "react-select": "^5.9.0"
   },
+  "devDependencies": {
+    "@axa-fr/eslint-config-design-system": "*",
+    "@axa-fr/prettier-config-design-system": "*"
+  },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
     "*.(ts|tsx)": "tsc-files --noEmit",
     "*.mdx": "prettier --write"
   },
+  "prettier": "@axa-fr/prettier-config-design-system",
   "volta": {
     "extends": "../../package.json"
   }

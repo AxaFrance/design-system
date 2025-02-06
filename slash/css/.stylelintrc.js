@@ -1,1 +1,3 @@
-module.exports = require('../../config/stylelint.config.js')
+module.exports = {
+    extends: "@axa-fr/stylelint-config-design-system"
+}

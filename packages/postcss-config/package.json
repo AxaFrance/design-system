@@ -1,0 +1,26 @@
+{
+  "name": "@axa-fr/postcss-config-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Configurations postcss",
+  "exports": {
+    "./production": "./postcss.prod.config.js",
+    "./dev": "./postcss.dev.config.js"
+  },
+  "files": [
+    "postcss.dev.config.js",
+    "postcss.prod.config.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": {
+    "name": "AxaFrance"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme"
+}

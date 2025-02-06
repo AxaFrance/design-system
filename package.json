@@ -34,7 +34,8 @@
     "client/look-and-feel/css",
     "client/look-and-feel/react",
     "samples/vite",
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "devDependencies": {
     "@chromatic-com/storybook": "^2.0.2",

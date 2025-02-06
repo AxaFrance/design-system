@@ -9,14 +9,23 @@
   "scripts": {
     "predev": "rimraf dist",
     "prebuild": "rimraf dist",
-    "dev": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --env development_client --config ../../../config/postcss.config.js",
-    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production_client --config ../../../config/postcss.config.js",
+    "dev": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --config postcss.dev.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --config postcss.prod.config.js && npm run copy:scss && npm run copy:assets",
+    "copy:scss": "copyfiles --up 1 src/**/*.scss dist/",
+    "copy:assets": "copyfiles --up 3 ../../../common/**/* dist/",
     "eslint": "eslint src --ext js,jsx,ts,tsx",
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
-    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --check --ignore-unknown",
-    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --write --ignore-unknown"
+    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --check --ignore-unknown --no-error-on-unmatched-pattern",
+    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --write --ignore-unknown --no-error-on-unmatched-pattern"
+  },
+  "devDependencies": {
+    "@axa-fr/eslint-config-design-system": "*",
+    "@axa-fr/postcss-config-design-system": "*",
+    "@axa-fr/prettier-config-design-system": "*",
+    "@axa-fr/stylelint-config-design-system": "*",
+    "copyfiles": "^2.4.1"
   },
   "peerDependencies": {
     "@material-symbols/svg-400": ">= 0.19.0"
@@ -56,6 +65,7 @@
     "*.(scss|css)": "stylelint --fix",
     "*.mdx": "prettier --write"
   },
+  "prettier": "@axa-fr/prettier-config-design-system",
   "volta": {
     "extends": "../../../package.json"
   }
