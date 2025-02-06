@@ -1,302 +1,128 @@
-@use "sass:color";
 @use "../common/common" as common;
-
-$active-sort-table-th: common.$color-table-sorting !default;
-
-@mixin hasIcon($direction) {
-  @if $direction == "left" {
-    padding-left: 3rem;
-    @content;
-
-    .glyphicon {
-      left: 1rem;
-    }
-  } @else {
-    padding-right: 3rem;
-    @content;
-
-    .glyphicon {
-      right: 1rem;
-      left: unset;
-    }
-  }
-}
+@use "../common/typography" as typography;
 
 .af-btn {
-  position: relative;
-  min-width: 10rem;
-  padding: 0.8rem 1.2rem;
-  border: 0;
+  --button-padding-h: #{common.px-to-rem(16)};
+  --button-padding-v: #{common.px-to-rem(12)};
+  --button-color-background-default: var(--color-azur);
+  --button-color-background-hover: var(--color-axa);
+  --button-color-label: var(--color-white);
+  --button-color-border: var(--color-axa);
+
+  @include typography.label;
+
+  display: inline-block;
+  padding: var(--button-padding-v) var(--button-padding-h);
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--button-color-border);
+  border-bottom-width: common.px-to-rem(2);
   border-radius: 0;
-  font-family: common.$font-family-base;
-  font-size: 1em;
-  font-weight: 400;
-  color: common.$table-inverse-color;
-  background-color: common.$color-azur;
-  box-shadow: inset 0 -3px common.$color-axa;
+  text-align: center;
+  color: var(--button-color-label);
+  background-color: var(--button-color-background-default);
   transition: all 0.2s linear;
   cursor: pointer;
 
-  .glyphicon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 17px;
-    transform: translate(-50%, -50%);
+  &:has(svg) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: common.px-to-rem(16);
+
+    & > svg {
+      width: common.px-to-rem(20);
+      height: common.px-to-rem(20);
+      fill: currentcolor;
+    }
+
+    &:disabled > svg {
+      --button-color-label: var(--color-gray-1);
+    }
+
+    &.af-btn--secondary {
+      & > svg {
+        --button-color-label: var(--color-azur);
+      }
+
+      &:hover > svg {
+        --button-color-label: var(--color-white);
+      }
+
+      &:disabled > svg {
+        --button-color-label: var(--color-gray-1);
+      }
+    }
   }
 
-  &:hover,
-  &:focus {
-    color: common.$white;
-    background-color: common.$color-axa;
+  &:has(.glyphicon) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: common.px-to-rem(16);
   }
 
-  &:focus {
-    box-shadow: 0 0 3px 3px common.$color-azur-focused;
+  &:hover {
+    border-color: var(--button-color-border);
+    background-color: var(--button-color-background-hover);
   }
-  @include common.generate-universes() using ($color) {
-    min-width: 10rem;
-    border-radius: 0;
-    font-size: 1em;
-    color: common.$white;
-    background-color: $color;
-    box-shadow: inset 0 -3px color.adjust($color, $lightness: -20%);
-    transition: all 0.2s linear;
-    cursor: pointer;
+
+  &:disabled {
+    --button-color-background-default: var(--color-white);
+    --button-color-background-hover: var(--color-white);
+    --button-color-label: var(--color-gray-1);
+    --button-color-border: var(--color-gray-1);
+
+    cursor: not-allowed;
+
+    &.af-btn--secondary {
+      --button-color-label: var(--color-gray-1);
+    }
+  }
+
+  &:not(&:has(svg)),
+  &:not(&:has(.glyphicon)) {
+    align-content: center;
+    vertical-align: middle;
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    @include common.active-element;
+  }
+
+  &--secondary {
+    --button-padding-v: #{common.px-to-rem(11.5)};
+    --button-color-background-default: var(--color-white);
+    --button-color-label: var(--color-azur);
+    --button-color-border: var(--color-azur);
+
+    border-width: common.px-to-rem(1);
+    border-bottom-width: common.px-to-rem(2);
 
     &:hover {
-      background-color: color.adjust($color, $lightness: -20%);
-      box-shadow: inset 0 -3px color.adjust($color, $lightness: -20%);
+      --button-color-label: var(--color-white);
     }
   }
 
-  &--hasiconLeft,
-  &--hasIconLeft {
-    @include hasIcon("left");
-  }
-
-  &--hasiconRight,
-  &--hasIconRight {
-    @include hasIcon("right");
-  }
-
-  &--success {
-    background-color: common.$color-btn-success;
-    box-shadow: inset 0 -3px common.$color-btn-success-dark;
-
-    &:hover {
-      background-color: common.$color-btn-success;
-      box-shadow: inset 0 -3px common.$color-btn-success;
-    }
-
-    &:focus {
-      background-color: common.$color-btn-success;
-      box-shadow: 0 0 3px 3px common.$color-btn-success-focused;
-    }
+  &--validated {
+    --button-color-background-default: var(--color-green-1);
+    --button-color-background-hover: var(--color-green-2);
+    --button-color-border: var(--color-green-2);
   }
 
   &--danger {
-    background-color: common.$color-btn-danger;
-    box-shadow: inset 0 -3px common.$color-btn-danger-dark;
-
-    &:hover {
-      background-color: common.$color-btn-danger;
-      box-shadow: inset 0 -3px common.$color-btn-danger;
-    }
-
-    &:focus {
-      background-color: common.$color-btn-danger;
-      box-shadow: 0 0 3px 3px common.$color-btn-danger-focused;
-    }
-  }
-
-  &--reverse {
-    padding: 0.625rem 0.3125rem 0.8125rem;
-    border: 2px solid common.$color-azur;
-    border-bottom: none;
-    color: common.$color-azur;
-    background-color: common.$table-inverse-color;
-    box-shadow: inset 0 -3px common.$color-azur;
-
-    &:hover,
-    &:focus {
-      border-color: common.$color-axa;
-      color: common.$white;
-      background-color: common.$color-axa;
-      box-shadow: inset 0 -3px common.$color-axa;
-    }
-
-    &:focus {
-      box-shadow: 0 0 3px 3px common.$color-azur-focused;
-    }
-  }
-
-  &--reverse.af-btn--disabled {
-    border-color: common.$color-silver;
-    border-bottom: none;
-    color: common.$color-btn-disabled;
-    background-color: common.$white;
-    box-shadow: inset 0 -3px common.$color-silver;
-    cursor: not-allowed;
-  }
-
-  &--reverse.af-btn--hasiconLeft,
-  &--reverse.af-btn--hasIconLeft {
-    @include hasIcon("left") {
-      padding-right: 1.2rem;
-    }
-  }
-
-  &--reverse.af-btn--hasiconRight,
-  &--reverse.af-btn--hasIconRight {
-    @include hasIcon("right") {
-      padding-left: 1.2rem;
-    }
+    --button-color-background-default: var(--color-red-1);
+    --button-color-background-hover: var(--color-red-2);
+    --button-color-border: var(--color-red-2);
   }
 
   &--small {
-    min-width: 3rem;
-    padding: 0.625rem 0.3125rem;
-  }
+    --button-padding-v: #{common.px-to-rem(8.5)};
 
-  &--circle {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    width: 2rem;
-    min-width: 0;
-    height: 2rem;
-    padding: 0;
-    border: 1px solid common.$white;
-    border-radius: 50%;
-    text-align: center;
-    color: common.$white;
-    background: common.$color-azur;
-
-    &:hover {
-      border-color: common.$brand-primary;
-      color: common.$brand-primary;
-      background-color: common.$white;
+    &.af-btn--secondary {
+      --button-padding-v: #{common.px-to-rem(8)};
     }
-
-    &:focus {
-      color: common.$white;
-      outline: none;
-
-      &:hover {
-        color: common.$brand-primary;
-      }
-    }
-  }
-
-  &--circle-small {
-    @extend .af-btn--circle;
-
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 0.625rem;
-    cursor: pointer;
-
-    .glyphicon {
-      width: 10px;
-    }
-
-    .af-more-help {
-      font-weight: 900;
-    }
-  }
-
-  &__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-  }
-
-  &--circle-reverse {
-    border-color: common.$brand-primary;
-    color: common.$brand-primary;
-    background: common.$white;
-
-    &:hover {
-      color: common.$white;
-      background: common.$brand-primary;
-    }
-
-    &:focus {
-      color: common.$brand-primary;
-      box-shadow: common.$btn-focus-box-shadow;
-      outline: none;
-
-      &:hover {
-        color: common.$white;
-      }
-    }
-  }
-
-  &--circle-menu {
-    @include common.media-breakpoint-down(sm) {
-      width: common.$menu-button-size;
-      height: common.$menu-button-size;
-      border-color: common.$white;
-      line-height: common.$menu-button-size;
-      color: common.$white;
-      background: transparent;
-
-      &:hover {
-        color: common.$brand-primary;
-        background: common.$white;
-      }
-    }
-  }
-
-  &--disabled {
-    color: common.$color-btn-disabled;
-    background-color: common.$color-mercury;
-    box-shadow: inset 0 -3px common.$color-silver;
-    cursor: not-allowed;
-
-    &:hover,
-    &:focus {
-      border-color: transparent;
-      color: common.$color-btn-disabled;
-      background-color: common.$color-mercury;
-      box-shadow: inset 0 -3px common.$color-silver;
-    }
-  }
-
-  &--table-sorting {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    padding: 0.881em 1rem;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 200;
-    text-align: inherit;
-    color: white;
-    box-shadow: inherit;
-    cursor: pointer;
-
-    &:focus,
-    &:hover {
-      box-shadow: none;
-    }
-
-    &:hover {
-      background-color: common.$color-table-sorting;
-    }
-
-    &--active {
-      background: $active-sort-table-th;
-
-      &:focus {
-        background-color: $active-sort-table-th;
-      }
-    }
-  }
-
-  .af-badge {
-    margin-left: 2rem;
   }
 }
