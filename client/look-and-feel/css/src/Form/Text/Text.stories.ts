@@ -54,12 +54,22 @@ export const TextWithKnowMore: StoryObj = {
   },
 };
 
+export const TextWithModify: StoryObj = {
+  name: "Text with modify",
+  render,
+  args: {
+    description: "Description",
+    sideButtonLabel: "Modifier",
+  },
+};
+
 export const TextWithFull: StoryObj = {
   name: "Text Full",
   render,
   args: {
     description: "Description",
     buttonLabel: "En savoir plus",
+    sideButtonLabel: "Modifier",
     error: "Error Message",
   },
 };

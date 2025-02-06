@@ -1,0 +1,15 @@
+import { Meta, Canvas, Controls } from "@storybook/addon-docs";
+import * as FooterStories from "./Footer.stories";
+import "./Footer.stories.css";
+
+<Meta of={FooterStories} />
+
+## Footer
+
+<Canvas
+  of={FooterStories.Footer}
+  layout="padded"
+  className="canvas-mdx-footer"
+/>
+
+<Controls of={FooterStories.Footer} />

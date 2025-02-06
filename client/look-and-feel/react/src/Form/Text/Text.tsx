@@ -23,6 +23,8 @@ type Props = ComponentPropsWithRef<"input"> & {
   label?: string;
   buttonLabel?: string;
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
+  sideButtonLabel?: string;
+  onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Text = forwardRef<HTMLInputElement, Props>(
@@ -38,6 +40,8 @@ const Text = forwardRef<HTMLInputElement, Props>(
       buttonLabel,
       onButtonClick,
       required,
+      sideButtonLabel,
+      onSideButtonClick,
       ...otherProps
     },
     inputRef,
@@ -60,14 +64,25 @@ const Text = forwardRef<HTMLInputElement, Props>(
       <div className="af-form__input-container">
         {(label || description || buttonLabel) && (
           <div className="af-form__label-container">
-            <label
-              htmlFor={inputId}
-              id={idLabel}
-              aria-describedby={idDescription}
-              className="af-form__input-label"
-            >
-              {label} {required && <span aria-hidden="true"> *</span>}
-            </label>
+            <div className="af-form__label-header">
+              <label
+                htmlFor={inputId}
+                id={idLabel}
+                aria-describedby={idDescription}
+                className="af-form__input-label"
+              >
+                {label} {required && <span aria-hidden="true"> *</span>}
+              </label>
+              {sideButtonLabel && (
+                <Button
+                  className="af-form__input-modify"
+                  variant={Variants.ghost}
+                  onClick={onSideButtonClick}
+                >
+                  {sideButtonLabel}
+                </Button>
+              )}
+            </div>
             {description && (
               <span id={idDescription} className="af-form__input-description">
                 {description}
