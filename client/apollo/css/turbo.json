@@ -6,15 +6,9 @@
     "tasks": {
         "lint": {
             "dependsOn": [
-                "eslint",
-                "stylelint",
-                "prettier",
-                "check-types"
+                "stylelint"
             ]
         },
-        "stylelint": {},
-        "eslint": {},
-        "prettier": {},
-        "check-types": {}
+        "stylelint": {}
     }
 }

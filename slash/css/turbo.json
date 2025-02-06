@@ -6,11 +6,9 @@
     "tasks": {
         "lint": {
             "dependsOn": [
-                "stylelint",
-                "prettier"
+                "stylelint"
             ]
         },
-        "stylelint": {},
-        "prettier": {}
+        "stylelint": {}
     }
 }

@@ -18,13 +18,20 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "predev": "rimraf dist",
-    "dev": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --env development --config ../../config/postcss.config.js",
-    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production",
+    "postbuild": "copyfiles --up 1 src/**/*.{scss,css} dist/",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
-    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
-    "prettier": "prettier \"src/**/*\" --check",
-    "prettier:fix": "prettier \"src/**/*\" --write"
+    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
+  },
+  "dependencies": {
+    "rc-slider": "^11.1.7"
+  },
+  "devDependencies": {
+    "@axa-fr/postcss-config-design-system": "*",
+    "@axa-fr/prettier-config-design-system": "*",
+    "@axa-fr/stylelint-config-design-system": "*",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^6.0.1"
   },
   "peerDependencies": {
     "@material-symbols/svg-400": ">= 0.19.0"
@@ -59,13 +66,13 @@
     ]
   },
   "lint-staged": {
-    "*.(ts|tsx)": "tsc-files --noEmit",
     "*.(scss|css)": "stylelint --fix"
+  },
+  "prettier": "@axa-fr/prettier-config-design-system",
+  "stylelint": {
+    "extends": "@axa-fr/stylelint-config-design-system"
   },
   "volta": {
     "extends": "../../package.json"
-  },
-  "dependencies": {
-    "rc-slider": "^11.1.7"
   }
 }

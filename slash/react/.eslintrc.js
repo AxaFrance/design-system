@@ -1,1 +1,3 @@
-module.exports = require("../../config/eslint.config");
+module.exports = {
+  extends: "@axa-fr/eslint-config-design-system",
+};
