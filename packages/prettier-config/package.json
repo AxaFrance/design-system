@@ -1,0 +1,25 @@
+{
+    "name": "@axa-fr/prettier-config-design-system",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Configuration prettier",
+    "exports": {
+      ".": "./prettier.config.js"
+    },
+    "files": [
+      "prettier.config.js"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/AxaFrance/design-system.git"
+    },
+    "author": {
+      "name": "AxaFrance"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/AxaFrance/design-system/issues"
+    },
+    "homepage": "https://github.com/AxaFrance/design-system#readme"
+  }
+  

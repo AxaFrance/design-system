@@ -1,0 +1,19 @@
+{
+  "name": "@axa-fr/eslint-config-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Package pour centraliser les configurations eslint",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": {
+    "name": "AxaFrance"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme"
+}
