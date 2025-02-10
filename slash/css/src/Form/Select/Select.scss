@@ -1,7 +1,6 @@
 @use "../../common/common" as common;
 @use "../core/FormCore";
 @use "../../common/grid";
-@use "../../common/reboot";
 
 @mixin _set-message-type($color) {
   .af-form__input-text {
