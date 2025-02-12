@@ -36,6 +36,7 @@
 
   &__input-select {
     min-height: unset !important;
+    padding: 0.75rem 1rem;
     font-size: 1.125rem;
     color: var(--color-gray-700);
 
@@ -45,7 +46,6 @@
     }
 
     &-container {
-      padding: 0.75rem 1rem;
       border: 1px solid var(--color-gray-700);
       border-radius: var(--default-border-radius);
       color: var(--color-gray-700);
