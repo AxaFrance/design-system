@@ -150,6 +150,7 @@
       & svg {
         background-color: var(--color-white);
         clip-path: inset(0.22rem round 2px);
+        -webkit-clip-path: inset(0.22rem round 2px);
       }
 
       & .af-checkbox__checked,
