@@ -11,6 +11,7 @@ module.exports = {
     "at-rule-empty-line-before": null,
     "scss/operator-no-newline-after": null,
     "color-function-notation": ["legacy"],
+    "property-no-vendor-prefix": null,
 
     "selector-class-pattern": [
       // official bem regex
