@@ -1,10 +1,15 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@fontsource/source-sans-pro";
+import "@fontsource/source-sans-pro/700.css";
 
 export { Action } from "./Action/Action";
 export { Alert } from "./Alert/Alert";
 export { Badge } from "./Badge/Badge";
 export { Button } from "./Button/Button";
+export type {
+  Variant as ButtonVariant,
+  Size as ButtonSize,
+} from "./Button/Button";
 export {
   Checkbox,
   CheckboxInput,
