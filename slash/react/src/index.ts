@@ -1,6 +1,8 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.scss";
-import "@fontsource/source-sans-pro";
+import "@fontsource/source-sans-pro/400.css";
+import "@fontsource/source-sans-pro/600.css";
+import "@fontsource/source-sans-pro/700.css";
 
 export { Action } from "./Action/Action";
 export { Alert } from "./Alert/Alert";
