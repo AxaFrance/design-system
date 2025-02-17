@@ -24,6 +24,13 @@ module.exports = {
       },
     ],
 
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        ignorePseudoClasses: ["open"],
+      },
+    ],
+
     "font-family-no-missing-generic-family-keyword": [
       true,
       {
