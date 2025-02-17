@@ -8,8 +8,11 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --env development_client --config ../../../config/postcss.config.js",
-    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production_client --config ../../../config/postcss.config.js",
+    "start": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --config postcss.dev.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --config postcss.prod.config.js",
+    "postbuild": "npm run copy:scss && npm run copy:assets",
+    "copy:scss": "copyfiles -u 1 src/**/*.scss dist",
+    "copy:assets": "copyfiles -u 3 ../../../common/**/* dist",
     "start:storybook": "storybook dev -p 6008",
     "build:storybook": "storybook build",
     "build-storybook": "storybook build",
@@ -24,6 +27,13 @@
   },
   "dependencies": {
     "rc-slider": "^11.1.7"
+  },
+  "devDependencies": {
+    "@axa-fr/eslint-config-design-system": "*",
+    "@axa-fr/postcss-config-design-system": "*",
+    "@axa-fr/prettier-config-design-system": "*",
+    "@axa-fr/stylelint-config-design-system": "*",
+    "copyfiles": "^2.4.1"
   },
   "peerDependencies": {
     "@material-symbols/svg-400": ">= 0.19.0"
@@ -63,6 +73,7 @@
     "*.(scss|css)": "stylelint --fix",
     "*.mdx": "prettier --write"
   },
+  "prettier": "@axa-fr/prettier-config-design-system",
   "volta": {
     "extends": "../../../package.json"
   }

@@ -1,0 +1,19 @@
+{
+  "name": "@axa-fr/stylelint-config-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Package pour centraliser les configurations des linter et postcss",
+  "main": "stylelint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": {
+    "name": "AxaFrance"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme"
+}

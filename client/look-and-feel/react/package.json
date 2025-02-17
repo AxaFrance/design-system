@@ -65,6 +65,11 @@
     "rc-slider": "^11.1.7",
     "react-select": "^5.9.0"
   },
+  "devDependencies": {
+    "@axa-fr/eslint-config-design-system": "*",
+    "@axa-fr/prettier-config-design-system": "*"
+  },
+  "prettier": "@axa-fr/prettier-config-design-system",
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
     "*.(ts|tsx)": "tsc-files --noEmit",
