@@ -150,8 +150,8 @@
 
       & svg {
         background-color: var(--color-white);
-        clip-path: circle(0.72rem at 50% 50%);
         -webkit-clip-path: circle(0.72rem at 50% 50%);
+        clip-path: circle(0.72rem at 50% 50%);
       }
 
       & .af-radio__checked,
