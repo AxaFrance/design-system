@@ -1,0 +1,27 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as NestedQuestionStories from "./NestedQuestion.stories";
+
+<Meta of={NestedQuestionStories} />
+
+# NestedQuestion
+
+The `NestedQuestion` component is a form component that allows the user to add some nested input bloc under an input.
+
+For example, if the reply of a question inside your form should show another set of questions, you should use the `NestedQuestion` component.
+
+To use the NestedQuestion import it like that:
+
+```tsx
+import { NestedQuestion } from "@axa-fr/design-system-slash-react";
+
+const MyComponent = () => (
+  <NestedQuestion>
+    <p>Whatever you want here</p>
+  </NestedQuestion>
+);
+```
+
+## Playground
+
+<Canvas of={NestedQuestionStories.Playground} />
+<Controls of={NestedQuestionStories.Playground} />
