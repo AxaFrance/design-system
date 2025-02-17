@@ -1,4 +1,5 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
+import "@axa-fr/design-system-slash-css/dist/common/tokens.scss";
 import "@fontsource/source-sans-pro";
 
 export { Action } from "./Action/Action";
@@ -32,6 +33,7 @@ export { Select, SelectBase, SelectInput } from "./Form/Select";
 export { Slider, SliderInput } from "./Form/Slider";
 export { Text, TextInput } from "./Form/Text";
 export { Textarea, TextareaInput } from "./Form/Textarea";
+export { NestedQuestion } from "./Form/NestedQuestion/NestedQuestion";
 export { Footer } from "./Layout/Footer";
 export {
   Header,
