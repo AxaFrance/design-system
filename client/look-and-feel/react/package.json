@@ -58,8 +58,7 @@
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",
     "dompurify": "^3.1.5",
-    "rc-slider": "^11.1.7",
-    "react-select": "^5.9.0"
+    "rc-slider": "^11.1.7"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
