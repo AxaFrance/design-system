@@ -1,0 +1,151 @@
+:root {
+  // font family
+  --font-family-base: "Source Sans Pro", arial, sans-serif;
+  // font size
+  --font-size-12: calc(12rem / 16);
+  --font-size-13: calc(13rem / 16);
+  --font-size-14: calc(14rem / 16);
+  --font-size-15: calc(15rem / 16);
+  --font-size-16: calc(16rem / 16);
+  --font-size-18: calc(18rem / 16);
+  --font-size-20: calc(20rem / 16);
+  --font-size-22: calc(22rem / 16);
+  --font-size-24: calc(24rem / 16);
+  // line height
+  --font-line-height-16: calc(16rem / 16);
+  --font-line-height-20: calc(20rem / 16);
+  --font-line-height-22: calc(22rem / 16);
+  --font-line-height-24: calc(24rem / 16);
+  --font-line-height-26: calc(26rem / 16);
+  --font-line-height-28: calc(28rem / 16);
+  // font weight
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+.af-typography--h1 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-22);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-26);
+}
+
+.af-typography--h2 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-28);
+}
+
+.af-typography--h3 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-24);
+}
+
+.af-typography--h4 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-22);
+}
+
+.af-typography--text {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--text-static {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--label-restitution {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-15);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--value-restitution {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-15);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--button {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--link {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--tag {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-16);
+}
+
+.af-typography--form-error {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-16);
+}
+
+.af-typography--app-name {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-24);
+}
+
+.af-typography--app-subtitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-24);
+}
+
+.af-typography--user {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-20);
+}
+
+.af-typography--copyright {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-16);
+}
+
+.af-typography--step-train {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-22);
+}
