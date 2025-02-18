@@ -1,47 +1,29 @@
-import logo from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
-import "@axa-fr/design-system-slash-css/dist/Layout/Footer/Footer.scss";
-import { PropsWithChildren, forwardRef } from "react";
+import logoAxa from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
+import classNames from "classnames";
+import { forwardRef, type ComponentProps } from "react";
+import { Grid } from "../../Grid/Grid";
 
-type FooterProps = {
-  href?: string;
-  title?: string;
-  alt?: string;
-  icon?: string;
-  className?: string;
+import "@axa-fr/design-system-slash-css/dist/Layout/Footer/Footer.scss";
+
+type FooterProps = Omit<ComponentProps<"footer">, "children"> & {
+  version?: string;
 };
 
-export const Footer = forwardRef<
-  HTMLDivElement,
-  PropsWithChildren<FooterProps>
->(
-  (
-    {
-      className = "af-footer",
-      href = "https://www.axa.fr/",
-      title = "Site Axa",
-      icon = logo,
-      alt = "Logo Axa",
-      children = `© ${new Date().getFullYear()} AXA Tous droits réservés`,
-      ...props
-    },
-    ref,
-  ) => (
-    <footer ref={ref} className={className} {...props}>
-      <div className="container-fluid container">
-        {Boolean(icon) && (
-          <a
-            className="af-logo"
-            href={href}
-            title={title}
-            target="blank"
-            rel="noopener noreferrer"
-          >
-            <img className="af-logo__brand" src={icon} alt={alt} />
-          </a>
-        )}
-        <div className="af-footer-content">{children}</div>
-      </div>
-    </footer>
+const copyright = `© ${new Date().getFullYear()} AXA Tous droits réservés`;
+
+export const Footer = forwardRef<HTMLElement, FooterProps>(
+  ({ className, version, ...props }, ref) => (
+    <Grid
+      component="footer"
+      className={classNames("af-footer", className)}
+      {...props}
+      ref={ref}
+    >
+      {/* eslint-disable-next-line jsx-a11y/alt-text */}
+      <img className="af-footer__logo" src={logoAxa} aria-hidden />
+      <p className="af-footer__copyright">{copyright}</p>
+      {version && <p className="af-footer__version">Version: {version}</p>}
+    </Grid>
   ),
 );
 Footer.displayName = "Footer";
