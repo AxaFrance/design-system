@@ -1,0 +1,74 @@
+import { Canvas, Controls, Markdown, Meta } from "@storybook/addon-docs";
+import * as PopoverStories from "./Popover.stories";
+
+<Meta of={PopoverStories} name="Docs" />
+
+# Popover
+
+A popover is a element that appears on top of the content when the user clicks
+or hovers over another element.
+
+To use the popover, import it like that:
+
+```tsx title="test.js"
+import { Popover } from "@axa-fr/design-system-slash-react";
+
+const MyComponent = () => (
+  <Popover
+    placement="top"
+    mode="hover"
+    popoverElement={
+      <>
+        <h1>Content of the popover</h1>
+        <p>Text of the modal element</p>
+      </>
+    }
+  >
+    <strong>Example</strong>
+  </Popover>
+);
+```
+
+## Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>placement</td>
+      <td>Placement of the popover</td>
+      <td>top</td>
+      <td>
+        List of options is available on the [FloatingUI
+        docs](https://floating-ui.com/docs/getting-started)
+      </td>
+    </tr>
+    <tr>
+      <td>mode</td>
+      <td>Trigger mode</td>
+      <td>click</td>
+      <td>
+        Either <code>click</code> or <code>hover</code>
+      </td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td>Content of the popover</td>
+      <td></td>
+      <td>React element to be displayed on trigger</td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <td>Element that triggers</td>
+      <td></td>
+      <td>React element that triggers the popover</td>
+    </tr>
+  </tbody>
+</table>

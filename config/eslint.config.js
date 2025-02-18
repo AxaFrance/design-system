@@ -30,7 +30,7 @@ module.exports = {
     "import/prefer-default-export": "off",
     "import/no-default-export": "error",
     "import/extensions": [
-      "error",
+      "off",
       "ignorePackages",
       {
         ts: "never",
@@ -40,7 +40,7 @@ module.exports = {
     ],
     "import/no-unresolved": [
       "error",
-      { ignore: ["@axa-fr\\/design-system-css(.*)\\.(scss|css|svg)"] },
+      { ignore: ["@axa-fr\\/design-system-(.*)-css/(.*)\\.(scss|css|svg)"] },
     ],
 
     // eslint-plugin-react https://github.com/jsx-eslint/eslint-plugin-react

@@ -1,9 +1,8 @@
 export { Header } from "./Header";
-export { Infos } from "./Infos/Infos";
-export { Name } from "./Name/Name";
 export { HeaderTitle } from "./HeaderTitle/HeaderTitle";
-export { ToggleButton } from "./ToggleButton/ToggleButton";
-export { User } from "./User/User";
+export { Infos } from "./Infos/Infos";
+export { MenuTitleWrapper } from "./MenuTitleWrapper/MenuTitleWrapper";
+export { Name } from "./Name/Name";
 export {
   NavBar,
   NavBarBase,
@@ -11,3 +10,5 @@ export {
   NavBarItemBase,
   NavBarItemLink,
 } from "./NavBar";
+export { ToggleButton } from "./ToggleButton/ToggleButton";
+export { User } from "./User/User";
