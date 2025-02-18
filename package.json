@@ -94,7 +94,7 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^9.5.2",
     "postcss-scss": "^4.0.9",
-    "prettier": "^3.3.3",
+    "prettier": "^3.5.1",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
