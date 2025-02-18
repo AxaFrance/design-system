@@ -1,6 +1,6 @@
-import { HTMLAttributes, useCallback, useId } from "react";
-import classNames from "classnames";
 import "@axa-fr/design-system-look-and-feel-css/dist/Stepper/Stepper.scss";
+import classNames from "classnames";
+import { HTMLAttributes, useCallback, useId } from "react";
 
 const INITIAL_STEPPER_PROGRESS = 10;
 const MAX_STEPPER_PROGRESS = 100;
@@ -46,14 +46,16 @@ export const Stepper = ({
 
   return (
     <div className="af-stepper-client" {...props}>
-      {isTitleVisible && currentTitle && (
-        <h2 className="af-stepper-client__title" aria-describedby={stepperId}>
-          {currentTitle}
-        </h2>
-      )}
-      {isSubtitleVisible && currentSubtitle && (
-        <p className="af-stepper-client__subtitle">{currentSubtitle}</p>
-      )}
+      <div className="af-stepper-client__header">
+        {isTitleVisible && currentTitle && (
+          <h2 className="af-stepper-client__title" aria-describedby={stepperId}>
+            {currentTitle}
+          </h2>
+        )}
+        {isSubtitleVisible && currentSubtitle && (
+          <p className="af-stepper-client__subtitle">{currentSubtitle}</p>
+        )}
+      </div>
       <div
         id={stepperId}
         role="group"

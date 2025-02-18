@@ -12,8 +12,10 @@ export const Stepper: StoryObj = {
     const stepper = document.createElement("div");
     stepper.innerHTML = `
     <div class="af-stepper-client">
-      <h2 class="af-stepper-client__title" aria-describedby=":r4:">Step 1</h2>
-      <p class="af-stepper-client__subtitle">Step subtitle</p>
+      <div class="af-stepper-client__header">
+        <h2 class="af-stepper-client__title" aria-describedby=":r4:">Step 1</h2>
+        <p class="af-stepper-client__subtitle">Step subtitle</p>
+      </div>
       <div
         id=":r4:"
         role="group"
