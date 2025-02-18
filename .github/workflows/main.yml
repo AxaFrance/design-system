@@ -26,7 +26,7 @@ jobs:
       - run: npm run test
       - name: SonarCloud Scan
         if: github.event.pull_request.head.repo.full_name == github.repository
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
