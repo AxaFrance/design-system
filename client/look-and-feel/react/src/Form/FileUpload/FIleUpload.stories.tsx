@@ -9,16 +9,13 @@ export default meta;
 
 type Story = StoryObj<typeof FileUpload>;
 
+const render = ({ ...args }: React.ComponentProps<typeof FileUpload>) => (
+  <FileUpload {...args} />
+);
+
 export const FileUploadStory: Story = {
   name: "FileUpload",
-  render: ({ onChange, onView, onDelete, ...args }) => (
-    <FileUpload
-      onChange={onChange}
-      onView={onView}
-      onDelete={onDelete}
-      {...args}
-    />
-  ),
+  render,
   args: {
     id: "file-input",
     className: "",
@@ -64,4 +61,10 @@ export const FileUploadStory: Story = {
     onView: { action: "onView" },
     onDelete: { action: "onDelete" },
   },
+};
+
+export const FileUploadWithPaddingAndWithoutDescription: Story = {
+  name: "FileUpload without drag&drop description and with padding",
+  render,
+  args: { buttonLabel: "Importer fichier", isWithPadding: true, files: [] },
 };
