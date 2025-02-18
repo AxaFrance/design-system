@@ -41,9 +41,11 @@ jobs:
       - run: npm run package:check
       - run: npm ci
       - run: npm run build:look-and-feel
-      - run: npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
+      - run:
+          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
           client/look-and-feel/css -w client/look-and-feel/react
-      - name: Set to react package the @axa-fr/design-system-look-and-feel-css
+      - name:
+          Set to react package the @axa-fr/design-system-look-and-feel-css
           dependency version
         run: |
           cd client/look-and-feel/react
@@ -59,8 +61,9 @@ jobs:
       - name: create artifact folder
         run: mkdir -p artifact/css & mkdir -p artifact/react
       - name: move storybooks to artifact folders
-        run: cp -R client/look-and-feel/css/storybook-static/* artifact/css & cp -R
-          client/look-and-feel/react/storybook-static/* artifact/react
+        run:
+          cp -R apps/look-and-feel-stories-css/storybook-static/* artifact/css &
+          cp -R apps/look-and-feel-stories/storybook-static/* artifact/react
       - uses: actions/upload-artifact@v4
         with:
           name: storybooks
@@ -89,7 +92,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./react
-          destination_dir: look-and-feel/react/${{ needs.build.outputs.version }}
+          destination_dir:
+            look-and-feel/react/${{ needs.build.outputs.version }}
       - name: Upload the latest css storybook
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
