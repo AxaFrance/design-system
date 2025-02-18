@@ -62,8 +62,8 @@ jobs:
         run: mkdir -p artifact/css & mkdir -p artifact/react
       - name: move storybooks to artifact folders
         run:
-          cp -R slash/css/storybook-static/* artifact/css & cp -R
-          slash/react/storybook-static/* artifact/react
+          cp -R apps/slash-stories-css/storybook-static/* artifact/css & cp -R
+          apps/slash-stories/storybook-static/* artifact/react
       - uses: actions/upload-artifact@v4
         with:
           name: storybooks

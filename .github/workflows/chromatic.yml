@@ -13,40 +13,40 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - name: Install dependencies
         run: npm ci
-      - name: Build css packages
-        run: npm run build -w slash/css &&  npm run build -w client/look-and-feel/css
+      - name: Build packages
+        run: npm run build
       - uses: chromaui/action@latest
         name: Run Chromatic for design-system-slash-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_REACT }}
           zip: true
-          buildScriptName: "build:storybook"
-          workingDir: "slash/react"
+          buildScriptName: "build"
+          workingDir: "apps/slash-stories"
           onlyChanged: true
       - uses: chromaui/action@latest
         name: Run Chromatic for design-system-slash-css
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_CSS }}
           zip: true
-          buildScriptName: "build:storybook"
-          workingDir: "slash/css"
+          buildScriptName: "build"
+          workingDir: "apps/slash-stories-css"
           onlyChanged: true
       - uses: chromaui/action@latest
         name: Run Chromatic for design-system-lookandfeel-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
           zip: true
-          buildScriptName: "build:storybook"
-          workingDir: "client/look-and-feel/react"
+          buildScriptName: "build"
+          workingDir: "apps/look-and-feel-stories"
           onlyChanged: true
       - uses: chromaui/action@latest
         name: Run Chromatic for design-system-lookandfeel-css
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_CSS }}
           zip: true
-          buildScriptName: "build:storybook"
-          workingDir: "client/look-and-feel/css"
+          buildScriptName: "build"
+          workingDir: "apps/look-and-feel-stories-css"
           onlyChanged: true
