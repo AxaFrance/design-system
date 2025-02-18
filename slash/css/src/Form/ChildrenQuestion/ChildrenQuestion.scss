@@ -1,0 +1,22 @@
+@use "../../common/common" as common;
+
+.af-form__children-question {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid common.$color-gray-1;
+  border-radius: 4px;
+  background-color: common.$white;
+
+  &-arrow {
+    position: absolute;
+    top: -0.75rem;
+    left: 4.5rem;
+    width: 1.3256rem;
+    height: 1.3256rem;
+    border-top: 1px solid common.$color-gray-1;
+    border-left: 1px solid common.$color-gray-1;
+    background-color: common.$white;
+    transform: rotate(45deg);
+  }
+}
