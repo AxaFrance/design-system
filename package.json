@@ -2,20 +2,22 @@
   "name": "@axa-fr/design-system",
   "version": "0.1.0",
   "description": "",
+  "packageManager": "npm@11.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AxaFrance/design-system.git"
   },
   "scripts": {
-    "start": "concurrently \"npm run start:*\"",
-    "start:slash": "concurrently \"npm run start -w=slash/css\" \"npm run start:storybook -w=slash/css\" \"npm run start:storybook -w=slash/react\" -c auto -n css,css:storybook,react:storybook",
-    "start:look-and-feel": "concurrently \"npm run start -w=client/look-and-feel/css\" \"npm run start:storybook -w=client/look-and-feel/css\" \"npm run start:storybook -w=client/look-and-feel/react\" -c auto -n css,css:storybook,react:storybook",
-    "build": "concurrently \"npm run build:*\"",
-    "build:slash": "npm run build --workspace=slash && npm run build:storybook --workspace=slash",
-    "build:look-and-feel": "npm run build --workspace=client/look-and-feel && npm run build:storybook --workspace=client/look-and-feel",
-    "lint": "concurrently \"npm run lint:*\"",
-    "lint:slash": "concurrently \"npm:eslint --workspace=slash\" \"npm:stylelint -w=slash/css\" \"npm:prettier --workspace=slash\" \"npm:tsc --workspace=slash\" -c auto -n eslint,stylelint,prettier,tsc",
-    "lint:look-and-feel": "concurrently \"npm:eslint --workspace=client/look-and-feel\" \"npm:stylelint -w=client/look-and-feel/css\" \"npm:prettier --workspace=client/look-and-feel\" \"npm:tsc --workspace=client/look-and-feel\" -c auto -n eslint,stylelint,prettier,tsc",
+    "dev": "turbo dev --filter=!./samples/vite",
+    "dev:look-and-feel": "turbo dev --filter=@axa-fr/stories-look-and-feel-css --filter=@axa-fr/stories-look-and-feel",
+    "dev:slash": "turbo dev --filter=@axa-fr/slash-stories-css --filter=@axa-fr/slash-stories",
+    "start:look-and-feel": "turbo build --filter=./client/look-and-feel/*",
+    "build": "turbo build --filter=!./samples/vite",
+    "build:slash": "turbo build --filter=./apps/slash-stories --filter=./apps/slash-stories-css",
+    "build:look-and-feel": "turbo build --filter=./apps/look-and-feel-stories --filter=./apps/look-and-feel-stories-css",
+    "lint": "turbo lint",
+    "lint:slash": "turbo lint --filter=./slash/*",
+    "lint:look-and-feel": "turbo lint --filter=./client/look-and-feel/*",
     "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky",
     "test": "vitest --coverage"
@@ -31,7 +33,8 @@
     "slash/react",
     "client/look-and-feel/css",
     "client/look-and-feel/react",
-    "samples/vite"
+    "samples/vite",
+    "apps/*"
   ],
   "devDependencies": {
     "@chromatic-com/storybook": "^2.0.2",
@@ -63,7 +66,7 @@
     "@types/jest": "^29.5.12",
     "@types/jest-axe": "^3.5.9",
     "@types/node": "^22.10.6",
-    "@types/react": "^18.3.2",
+    "@types/react": "18.3.18",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
     "@vitejs/plugin-react": "^4.3.2",
@@ -71,7 +74,6 @@
     "@vitest/ui": "^2.1.2",
     "browserslist": "^4.23.3",
     "chromatic": "^11.12.0",
-    "concurrently": "^8.2.2",
     "copyfiles": "^2.4.1",
     "cssnano": "^7.0.3",
     "eslint": "^8.57.0",
@@ -106,6 +108,7 @@
     "stylelint-config-standard": "^36.0.0",
     "stylelint-prettier": "^5.0.0",
     "tsc-files": "^1.1.4",
+    "turbo": "^2.4.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.8",
     "vitest": "^2.0.5"
