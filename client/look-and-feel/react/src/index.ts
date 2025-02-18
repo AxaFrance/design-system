@@ -22,6 +22,8 @@ export { DebugGrid } from "./Grid/DebugGrid";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";
 export { Header } from "./Layout/Header";
+export { NavBar } from "./Layout/Header/NavBar/NavBar";
+export { PreviousLink } from "./Layout/Header/PreviousLink";
 export { Link } from "./Link";
 export { List } from "./List";
 export { ClickItem, ClickList, createClickItemParent } from "./List/ClickList";
