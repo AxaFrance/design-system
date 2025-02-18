@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as HelpButtonStories from "./HelpButton.stories";
+
+<Meta of={HelpButtonStories} />
+
+# HelpButton
+
+The `HelpButton` component is the easiest way to create tooltips in the slash design-system.
+It wraps around the more customisable `Popover` component with defaults styles. By default the element to be hovered/clicked is a blue circle button with a cursive `i` inside.
+
+## Playground
+
+<Canvas of={HelpButtonStories.Default} />
+<Controls of={HelpButtonStories.Default} />
+
+## Usage
+
+```tsx title="test.js"
+import { HelpButton } from "@axa-fr/design-system-slash-react";
+
+const MyComponent = () => (
+  <HelpButton mode="hover">Content of the tooltip</HelpButton>
+);
+```
+
+### Mode
+
+There are 2 modes available for the HelpButton component
+
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>Modes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>hover</td>
+    </tr>
+    <tr>
+      <td>click</td>
+    </tr>
+  </tbody>
+</table>
+
+## Customize
+
+If you need rich content inside the tooltip, it is possible to pass HTML as children of the component.
+You can also replace the blue circle with custom HTML by changing the `helpButtonContent` prop.
+
+<Canvas of={HelpButtonStories.WithHtml} sourceState="shown" />

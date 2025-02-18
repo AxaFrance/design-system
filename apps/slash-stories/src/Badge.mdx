@@ -1,0 +1,44 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as BadgeStories from "./Badge.stories.tsx";
+
+<Meta of={BadgeStories} />
+
+## Badge
+
+### Import
+
+```tsx title="test.js"
+import { Badge } from "@axa-fr/design-system-slash-react/";
+```
+
+### Use
+
+```tsx title="test.js"
+export const SimpleBadge = () => (
+  <Badge classModifier="success">Lorem ipsum</Badge>
+);
+```
+
+### With Icon
+
+```tsx title="test.js"
+export const WithIconBadge = () => (
+  <Badge classModifier="error">
+    <i className="glyphicon glyphicon-bell" />
+  </Badge>
+);
+```
+
+## Badge with modifiers
+
+<Canvas of={BadgeStories.MultiExamples} />
+
+## Sample Badge
+
+<Canvas of={BadgeStories.Default} />
+<Controls of={BadgeStories.Default} />
+
+## Badge with icon
+
+<Canvas of={BadgeStories.BadgeIconStory} />
+<Controls of={BadgeStories.BadgeIconStory} />
