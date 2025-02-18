@@ -46,7 +46,7 @@ export const Stepper = ({
 
   return (
     <div className="af-stepper-client" {...props}>
-      <div className="af-stepper-client__header">
+      <div>
         {isTitleVisible && currentTitle && (
           <h2 className="af-stepper-client__title" aria-describedby={stepperId}>
             {currentTitle}
