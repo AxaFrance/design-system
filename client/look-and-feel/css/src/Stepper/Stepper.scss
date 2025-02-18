@@ -1,10 +1,8 @@
-@use "../common/common.scss" as common;
-
 .af-stepper-client {
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: common.rem(16);
+  gap: calc(16 / var(--font-size-base) * 1rem);
   background-color: transparent;
 
   &__title {
