@@ -27,14 +27,13 @@ export const SelectStory: Story = {
     </div>
   ),
   args: {
-    className: "",
     options,
     label: "Label",
     disabled: false,
     required: false,
     placeholder: "Placeholder",
-    noOptionsMessage: "Pas d'option",
     errorLabel: "",
+    value: "",
   },
   argTypes: {
     onChange: { action: "onChange" },
