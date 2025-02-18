@@ -1,0 +1,107 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as NumberStories from "./Number.stories";
+import * as NumberInputStories from "./NumberInput.stories";
+
+# Number Field
+
+The Number field component exposes a native HTML number input. Therefore, it accepts a specific range of characters :
+
+- number [0-9]
+- "e" for exposant
+- "," and "." as sperator
+- negative value with "-"
+
+1. [Number](#number)
+2. [NumberInput](#numberinput)
+   1. [NumberInput Required](#numberinput-required)
+
+<Meta of={NumberStories} />
+
+## Number
+
+### Import
+
+```javascript
+import { Number } from "@axa-fr/design-system";
+```
+
+or
+
+```javascript
+import { Number } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const numberInput = () => (
+  <form className="af-form" name="myform">
+    <Number
+      id="uniqueid"
+      name="numberName"
+      value={2.9}
+      placeholder="0.0"
+      onChange={(e) => {
+        console.log(e);
+      }}
+    />
+    <HelpMessage message="Enter the place name, ex : Webcenter" />
+  </form>
+);
+export default numberInput;
+```
+
+<Canvas of={NumberStories.NumberStory} />
+
+<Controls of={NumberStories.NumberStory} />
+
+## NumberInput
+
+### Import
+
+```javascript
+import { NumberInput } from "@axa-fr/design-system";
+```
+
+or
+
+```javascript
+import { NumberInput } from "@axa-fr/design-system/client";
+```
+
+### Use
+
+```javascript
+const NumberInputReturn = () => (
+  <div>
+    <form className="af-form" name="myform">
+      <NumberInput
+        id="uniqueid"
+        value={10}
+        label="Place name"
+        name="placeName"
+        onChange={(e) => {
+          console.log(e);
+        }}
+        messageType={MessageTypes.error}
+        classNameContainerLabel="col-md-2"
+        classNameContainerInput="col-md-10"
+        helpMessage="Enter the place name, ex : Webcenter"
+      >
+        <Help mode={PopoverModes.click} placement={PopoverPlacements.right}>
+          Lorem ipsum dolor sit amet
+        </Help>
+      </NumberInput>
+    </form>
+  </div>
+);
+export default NumberInputReturn;
+```
+
+<Canvas of={NumberInputStories.NumberInputStory} />
+
+### NumberInput Required
+
+The component can be required. In that case, the label will be followed by a red asterisk. In order to make the component required, set the `required` prop to `true`.
+
+Alternatively you can to add to the `classModifier` the value `required`. This behaviour exists to keep backward compatibility but might disapear in the future.

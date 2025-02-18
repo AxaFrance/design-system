@@ -23,7 +23,7 @@ export {
   MessageTypes,
 } from "./Form/core";
 export { Date, DateInput } from "./Form/Date";
-export { File, FileInput, FileTable } from "./Form/File";
+export { File, FileInput, FileTable, type FilePreview } from "./Form/File";
 export { MultiSelect, MultiSelectInput } from "./Form/MultiSelect";
 export { Number, NumberInput } from "./Form/Number";
 export { Pass, PassInput } from "./Form/Pass";
@@ -37,6 +37,7 @@ export {
   Header,
   HeaderTitle,
   Infos,
+  MenuTitleWrapper,
   Name,
   NavBar,
   NavBarBase,
@@ -46,6 +47,7 @@ export {
   ToggleButton,
   User,
 } from "./Layout/Header";
+export { Link, type LinkProps } from "./Link/Link";
 export {
   BooleanModal,
   Modal,
@@ -70,7 +72,6 @@ export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Tabs";
 export { Title } from "./Title/Title";
 export { getComponentClassName } from "./utilities";
-export { Link, type LinkProps } from "./Link/Link";
 
 export * from "./Accordion";
 export * from "./Popover";
