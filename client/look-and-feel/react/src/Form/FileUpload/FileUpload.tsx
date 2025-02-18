@@ -32,8 +32,8 @@ type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   dropzoneDescription?: string;
   instructions?: string;
   required?: boolean;
-  globalError: string;
-  errors: Array<{
+  globalError?: string;
+  errors?: Array<{
     id?: string | undefined;
     message: string;
   }>;
@@ -43,8 +43,9 @@ type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
     size: number;
     isLoading: boolean;
   }>;
-  accept: string;
+  accept?: string;
   isMobile?: boolean;
+  isWithPadding?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onDrop?: (event: React.DragEvent<HTMLDivElement>) => void;
   onView?: (id: string) => void;
@@ -62,6 +63,7 @@ const FileUpload = ({
   errors,
   globalError,
   isMobile,
+  isWithPadding = false,
   onView,
   onDelete,
   ...otherProps
@@ -90,7 +92,7 @@ const FileUpload = ({
         className={classNames(
           "af-form__file-input",
           globalError && "af-form__file-input--error",
-          (isMobile || !dropzoneDescription) && "is-mobile",
+          (isMobile || (!isWithPadding && !dropzoneDescription)) && "is-mobile",
         )}
       >
         <input
@@ -122,11 +124,11 @@ const FileUpload = ({
           {files.map(({ id: fileId, name, size, isLoading }) => {
             const effectiveSize = getReadableFileSizeString(size);
 
-            const isInError = errors.some(
-              (fileError) => fileError.id === fileId,
-            );
+            const isInError = errors
+              ? errors.some((fileError) => fileError.id === fileId)
+              : false;
 
-            const errorMessage = errors.find(
+            const errorMessage = errors?.find(
               (fileError) => fileError.id === fileId,
             )?.message;
 
