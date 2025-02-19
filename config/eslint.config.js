@@ -113,7 +113,11 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["**/*.stories.ts?(x)", "**/vitest.config.ts"],
+      files: [
+        "**/*.stories.ts?(x)",
+        "**/vitest.config.ts",
+        "**/.storybook/*.ts",
+      ],
       rules: {
         "import/no-default-export": "off",
       },
