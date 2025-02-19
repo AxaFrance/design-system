@@ -45,7 +45,7 @@ type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   }>;
   accept?: string;
   isMobile?: boolean;
-  isWithPadding?: boolean;
+  withPadding?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onDrop?: (event: React.DragEvent<HTMLDivElement>) => void;
   onView?: (id: string) => void;
@@ -63,7 +63,7 @@ const FileUpload = ({
   errors,
   globalError,
   isMobile,
-  isWithPadding = false,
+  withPadding = false,
   onView,
   onDelete,
   ...otherProps
@@ -92,7 +92,7 @@ const FileUpload = ({
         className={classNames(
           "af-form__file-input",
           globalError && "af-form__file-input--error",
-          (isMobile || (!isWithPadding && !dropzoneDescription)) && "is-mobile",
+          (isMobile || (!withPadding && !dropzoneDescription)) && "is-mobile",
         )}
       >
         <input

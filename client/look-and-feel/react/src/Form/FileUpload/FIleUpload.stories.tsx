@@ -66,5 +66,5 @@ export const FileUploadStory: Story = {
 export const FileUploadWithPaddingAndWithoutDescription: Story = {
   name: "FileUpload without drag&drop description and with padding",
   render,
-  args: { buttonLabel: "Importer fichier", isWithPadding: true, files: [] },
+  args: { buttonLabel: "Importer fichier", withPadding: true, files: [] },
 };
