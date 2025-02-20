@@ -1,0 +1,136 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as TypographyStories from "./Typography.stories";
+
+<Meta of={TypographyStories} />
+
+## Typography
+
+### Import
+
+```tsx
+import { Typography } from "@axa-fr/design-system-slash-react";
+```
+
+### Use
+
+#### Typography Example:
+
+```tsx
+export const TypographyExample = () => (
+  <Typography variant="h1">Content H1</Typography>
+);
+```
+
+#### Playground:
+
+<Canvas of={TypographyStories.TypographyStory} />
+<Controls of={TypographyStories.TypographyStory} />
+
+## Customize root element of Typography
+
+The `component` prop overrides the root element, which is by default an `p` tag, and all associated props.
+
+```tsx
+import { Typography } from "@axa-fr/design-system-slash-react";
+
+export const Main = () => (
+  <Typography component="main" varaint="text">
+    Content
+  </Typography>
+);
+```
+
+<Canvas of={TypographyStories.CustomElement} sourceState="shown" />
+
+```tsx
+import { Typography } from "@axa-fr/design-system-slash-react";
+import { TitleComponent } from "./TitleComponent";
+
+export const Main = () => (
+  <Typography component={TitleComponent} variant="h1">
+    Title
+  </Typography>
+);
+```
+
+## Typography variants
+
+### Title
+
+#### H1
+
+<Canvas of={TypographyStories.H1} sourceState="shown" />
+
+#### H2
+
+<Canvas of={TypographyStories.H2} sourceState="shown" />
+
+#### H3
+
+<Canvas of={TypographyStories.H3} sourceState="shown" />
+
+#### H4
+
+<Canvas of={TypographyStories.H4} sourceState="shown" />
+
+### Text & Label
+
+#### text
+
+<Canvas of={TypographyStories.Text} sourceState="shown" />
+
+#### label
+
+<Canvas of={TypographyStories.Label} sourceState="shown" />
+
+#### text static
+
+<Canvas of={TypographyStories.TextStatic} sourceState="shown" />
+
+#### label restitution
+
+<Canvas of={TypographyStories.LabelRestitution} sourceState="shown" />
+
+#### value restitution
+
+<Canvas of={TypographyStories.ValueRestitution} sourceState="shown" />
+
+### Button & Link
+
+#### button (CTA)
+
+<Canvas of={TypographyStories.Button} sourceState="shown" />
+
+#### link
+
+<Canvas of={TypographyStories.Link} sourceState="shown" />
+
+### Other items
+
+#### tag
+
+<Canvas of={TypographyStories.Tag} sourceState="shown" />
+
+#### format error form
+
+<Canvas of={TypographyStories.FormError} sourceState="shown" />
+
+#### application name
+
+<Canvas of={TypographyStories.AppName} sourceState="shown" />
+
+#### application subtitle
+
+<Canvas of={TypographyStories.AppSubtitle} sourceState="shown" />
+
+#### user
+
+<Canvas of={TypographyStories.User} sourceState="shown" />
+
+#### copyright
+
+<Canvas of={TypographyStories.Copyright} sourceState="shown" />
+
+#### step train
+
+<Canvas of={TypographyStories.StepTrain} sourceState="shown" />
