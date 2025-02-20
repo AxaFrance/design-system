@@ -67,7 +67,7 @@
     "@types/jest-axe": "^3.5.9",
     "@types/node": "^22.10.6",
     "@types/react": "18.3.18",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
     "@typescript-eslint/parser": "^8.17.0",
     "@vitejs/plugin-react": "^4.3.2",
     "@vitest/coverage-v8": "^2.0.5",
