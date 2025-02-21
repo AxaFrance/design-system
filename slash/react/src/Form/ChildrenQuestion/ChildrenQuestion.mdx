@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ChildrenQuestionStories from "./ChildrenQuestion.stories";
+
+<Meta of={ChildrenQuestionStories} name="ChildrenQuestion" />
+
+# ChildrenQuestion
+
+The `ChildrenQuestion` component is a form component that allows the user to add some children input bloc under an input.
+
+To use the ChildrenQuestion import it like that:
+
+```tsx
+import { ChildrenQuestion } from "@axa-fr/design-system-slash-react";
+
+const MyComponent = () => (
+  <ChildrenQuestion content={<p>Whatever you want here</p>} />
+);
+```
+
+## Playground
+
+<Canvas of={ChildrenQuestionStories.Playground} />
+<Controls of={ChildrenQuestionStories.Playground} />
