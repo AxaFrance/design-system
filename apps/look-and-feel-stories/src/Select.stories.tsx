@@ -2,12 +2,6 @@ import { Select } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
-const options = [
-  { value: "fun", label: "For fun" },
-  { value: "work", label: "For work" },
-  { value: "drink", label: "For drink" },
-];
-
 const meta: Meta<typeof Select> = {
   component: Select,
   title: "Components/Form/Input/Select",
@@ -23,18 +17,20 @@ export const SelectStory: Story = {
   tags: ["Form", "Input"],
   render: ({ onChange, ...args }) => (
     <div style={{ width: 300 }}>
-      <Select onChange={onChange} {...args} />
+      <Select onChange={onChange} {...args}>
+        <option value="fun">For fun</option>
+        <option value="work">For work</option>
+        <option value="drink">For drink</option>
+      </Select>
     </div>
   ),
   args: {
-    className: "",
-    options,
     label: "Label",
     disabled: false,
     required: false,
     placeholder: "Placeholder",
-    noOptionsMessage: "Pas d'option",
     errorLabel: "",
+    value: "",
   },
   argTypes: {
     onChange: { action: "onChange" },
