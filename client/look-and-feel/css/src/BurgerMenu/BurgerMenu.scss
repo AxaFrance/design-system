@@ -1,0 +1,46 @@
+@use "../common/common" as common;
+
+.af-burger-menu.af-card {
+  position: absolute;
+  z-index: 300;
+  top: 0;
+  right: 0;
+  width: 100%;
+  min-width: 312px;
+  border-radius: 0;
+  @media (width >= #{common.$breakpoint-md}) {
+    top: 96px;
+    right: 16px;
+    width: 312px;
+    border-radius: 0.5rem;
+  }
+
+  .af-btn-client {
+    width: 100%;
+  }
+
+  ~ * {
+    opacity: 0.4;
+    background: var(--color-gray-900);
+  }
+}
+
+.af-list-close {
+  display: flex;
+  padding: 1rem 1rem 0;
+  justify-content: flex-end;
+}
+
+.icon-close {
+  fill: var(--color-axa);
+}
+
+.icon-container {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-gray-300);
+}

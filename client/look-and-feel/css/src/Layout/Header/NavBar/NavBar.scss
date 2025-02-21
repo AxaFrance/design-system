@@ -19,17 +19,17 @@
     min-width: 8.4rem;
     height: 100%;
     padding: 1.625rem 1.5rem;
+    align-content: center;
     font-family: var(--font-family-base);
     font-size: 1.125rem;
     font-weight: 400;
     line-height: 1.4rem;
-    text-align: center;
     text-decoration: none;
     color: var(--color-gray-900);
 
     &:focus,
     &--active {
-      border-bottom: 4px solid var(--color-axa);
+      border-bottom: 4px solid var(--color-red);
       font-weight: 600;
       line-height: 1.6rem;
       text-decoration: none;

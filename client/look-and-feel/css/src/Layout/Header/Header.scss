@@ -50,6 +50,21 @@
 }
 
 @media only screen and (width >= #{common.$breakpoint-md}) {
+  .af-header {
+    &.active::after {
+      position: fixed;
+      z-index: 99;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin-top: 1px;
+      opacity: 0.48;
+      background-color: rgba(51, 51, 51, 100%);
+      pointer-events: none;
+      content: "";
+    }
+  }
+
   .af-header-container {
     width: auto;
     height: 80px;
@@ -81,5 +96,16 @@
   .af-header-right-item {
     margin: 0;
     gap: var(--spacing-u2);
+  }
+}
+
+.af-header-text {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 25px;
+  @media screen and (width >= #{common.$breakpoint-md}) {
+    font-size: 1.5rem;
+    line-height: 30px;
   }
 }
