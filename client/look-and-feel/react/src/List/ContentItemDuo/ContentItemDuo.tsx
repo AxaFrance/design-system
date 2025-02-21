@@ -1,13 +1,13 @@
 import checkIcon from "@material-symbols/svg-400/outlined/check.svg";
 import closeIcon from "@material-symbols/svg-400/outlined/close.svg";
-import { useMemo } from "react";
+import { useMemo, type ReactNode } from "react";
+import { Button, Svg } from "../..";
 import { Variants } from "../../Button/Button";
 import { getComponentClassName } from "../../utilities";
-import { Button, Svg } from "../..";
 
 type ContentItemDuoProps = {
   label: string;
-  value: string;
+  value: ReactNode;
   isVertical?: boolean;
   className?: string;
   classModifier?: string;
@@ -56,7 +56,11 @@ export const ContentItemDuo = ({
         </div>
       )}
       <p className="af-content-item-duo__label">{label}</p>
-      <p className="af-content-item-duo__value">{value}</p>
+      {typeof value === "string" ? (
+        <p className="af-content-item-duo__value">{value}</p>
+      ) : (
+        <div className="af-content-item-duo__value">{value}</div>
+      )}
       {buttonText && (
         <div className="af-content-item-duo__button">
           <Button variant={Variants.ghost} onClick={onButtonClick}>
