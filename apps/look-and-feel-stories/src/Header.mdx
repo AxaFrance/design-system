@@ -28,54 +28,26 @@ const HeaderWithNavBar = () => <Header links={links} />;
 ### Use Header with Navigation Bar and right item
 
 ```tsx
-const HeaderWithNavBarAndRightItem = () => (
-  <Header
-    links={links}
-    rightItem={[
-      <Button
-        key="Banking Space Button"
-        iconLeft={<Svg src={lock} fill="#00008f" />}
-        variant={ButtonVariants.secondary}
-      >
-        Espace Banque
-      </Button>,
-      <Button
-        key="Profile Button"
-        iconLeft={<Svg src={person} fill="#00008f" />}
-        variant={ButtonVariants.ghost}
-      >
-        Mon Profil
-      </Button>,
-    ]}
-  />
+const HeaderWithNavBarAndRightItemTitle = () => (
+  <Header links={links} rightItem="AXA Banque" />
 );
 ```
 
 ### Use Header with Navigation Bar, right item and previous link
 
 ```tsx
-const HeaderWithLinksAndRightItemAndHomeLink = () =>
-<Header
+const HeaderWithLinksAndRightItemAndButton = () => (
+  <Header
     links={links}
-    rightItem={
-    [
-        <Button
-            key="Banking Space Button"
-            iconLeft={<Svg src={lock} fill="#00008f" />}
-            variant={ButtonVariants.secondary}
-        >
-            Espace Banque
-        </Button>,
-        <Button
-            key="Profile Button"
-            iconLeft={<Svg src={person} fill="#00008f" />}
-            variant={ButtonVariants.ghost}
-        >
-            Mon Profil
-        </Button>,
-    ]
-    previousLink={previousLink}
-}/>;
+    rightItem={[
+      {
+        label: "AXA Banque",
+        onClick: () => console.log("click"),
+        icon: <Svg src={error} />,
+      },
+    ]}
+  />
+);
 ```
 
 ## Playground
@@ -92,14 +64,18 @@ const HeaderWithLinksAndRightItemAndHomeLink = () =>
 
 <Controls of={HeaderClientStories.HeaderWithNavBar} />
 
-### Header with Navigation Bar and right item
+### Header with Navigation Bar and right item title
 
-<Canvas of={HeaderClientStories.HeaderWithNavBarAndRightItem} />
+<Canvas of={HeaderClientStories.HeaderWithNavBarAndRightItemTitle} />
 
-<Controls of={HeaderClientStories.HeaderWithNavBarAndRightItem} />
+<Controls of={HeaderClientStories.HeaderWithNavBarAndRightItemTitle} />
 
-### Header with Navigation Bar, right item and previous link
+### Header with Navigation Bar, right item button
 
-<Canvas of={HeaderClientStories.HeaderWithLinksAndRightItemAndPreviousLink} />
+<Canvas
+  of={HeaderClientStories.HeaderWithLinksAndRightItemAndButtonAndButtonBurger}
+/>
 
-<Controls of={HeaderClientStories.HeaderWithLinksAndRightItemAndPreviousLink} />
+<Controls
+  of={HeaderClientStories.HeaderWithLinksAndRightItemAndButtonAndButtonBurger}
+/>
