@@ -9,9 +9,8 @@
   },
   "scripts": {
     "dev": "turbo dev --filter=!./samples/vite",
-    "dev:look-and-feel": "turbo dev --filter=@axa-fr/stories-look-and-feel-css --filter=@axa-fr/stories-look-and-feel",
-    "dev:slash": "turbo dev --filter=@axa-fr/slash-stories-css --filter=@axa-fr/slash-stories",
-    "start:look-and-feel": "turbo build --filter=./client/look-and-feel/*",
+    "dev:look-and-feel": "turbo dev --filter=./client/look-and-feel/* --filter=@axa-fr/look-and-feel-stories-css --filter=@axa-fr/look-and-feel-stories",
+    "dev:slash": "turbo dev --filter=./slash/* --filter=@axa-fr/slash-stories-css --filter=@axa-fr/slash-stories",
     "build": "turbo build --filter=!./samples/vite",
     "build:slash": "turbo build --filter=./apps/slash-stories --filter=./apps/slash-stories-css",
     "build:look-and-feel": "turbo build --filter=./apps/look-and-feel-stories --filter=./apps/look-and-feel-stories-css",
