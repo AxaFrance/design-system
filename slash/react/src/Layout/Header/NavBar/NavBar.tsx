@@ -9,6 +9,13 @@ import React, {
 import { getPosition } from "./NavBar.helpers";
 import { NavBarBase } from "./NavBarBase";
 
+type ChildrenProps = {
+  classModifier?: string;
+  tabIndex?: number;
+  hasFocus?: boolean;
+  [key: string]: unknown;
+};
+
 type Props = {
   id?: string;
   toggleMenuId?: string;
@@ -21,11 +28,11 @@ type Props = {
 const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
   const [isMenuFocused, setIsMenuFocused] = useState(false);
   const [position, setPosition] = useState(positionInit);
-  const validChildren = useMemo<ReactElement[]>(
+  const validChildren = useMemo<ReactElement<ChildrenProps>[]>(
     () =>
       (
         React.Children.map(
-          children,
+          children as ReactElement<ChildrenProps>[],
           (child) => isValidElement(child) && child,
         ) ?? []
       ).filter((c) => Boolean(c)),
@@ -58,7 +65,7 @@ const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
         return React.cloneElement(child, {
           key: `NavBarItem`,
           classModifier: [
-            child.props.classModifier,
+            (child.props as { classModifier?: string }).classModifier,
             isCurrent ? "active" : undefined,
           ]
             .filter((c) => Boolean(c))
