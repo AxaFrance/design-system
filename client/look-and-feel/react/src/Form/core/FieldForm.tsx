@@ -148,7 +148,7 @@ export const eventWrapper = ({ wrapper, props }: EventWrapperProps) => ({
 });
 
 type AddPropsClone = Omit<RenderChildrenProps, "children"> & {
-  child: ReactElement;
+  child: ReactElement<Record<string, unknown>>;
   classModifier: string;
   name: string;
   getMessageClassModifierFn?: typeof FormClassManager.getMessageClassModifier;
@@ -176,8 +176,7 @@ export const addPropsClone = ({
     classModifier,
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const type: any = { ...rest };
+  const type: { displayName?: string } = { ...rest };
   const displayName = type?.displayName ?? name;
 
   switch (displayName) {
@@ -219,12 +218,13 @@ export const renderedChildren = ({
     }
 
     const props = {
-      ...child.props,
+      ...(child as ReactElement<Record<string, unknown>>).props,
     };
 
-    if (child.props.children) {
+    if ((child as ReactElement<Record<string, unknown>>).props.children) {
       const subChildren = renderedChildren({
-        children: child.props.children,
+        children: (child as ReactElement<Record<string, unknown>>).props
+          .children as ReactNode,
         wrapper,
         message,
         messageType,
@@ -235,18 +235,21 @@ export const renderedChildren = ({
       }
     }
 
-    return cloneElement(child, {
-      ...props,
-      ...addPropsClone({
-        ...child.type,
-        name: child.type.name,
-        message,
-        messageType,
-        classModifier: props.classModifier,
-        wrapper,
-        child,
-      }),
-    });
+    return cloneElement<Record<string, unknown>>(
+      child as ReactElement<Record<string, unknown>>,
+      {
+        ...props,
+        ...addPropsClone({
+          ...child.type,
+          name: child.type.name,
+          message,
+          messageType,
+          classModifier: props.classModifier as string,
+          wrapper,
+          child: child as ReactElement<Record<string, unknown>>,
+        }),
+      },
+    );
   });
 
 export const FieldForm = ({

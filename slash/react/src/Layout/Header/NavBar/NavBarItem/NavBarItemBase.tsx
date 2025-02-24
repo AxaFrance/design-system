@@ -10,7 +10,7 @@ import { getComponentClassName } from "../../../../utilities";
 import { handleLinkFocus } from "./NavBarItemBase.helpers";
 
 type Props = HTMLAttributes<HTMLLIElement> & {
-  actionElt: ReactElement;
+  actionElt: ReactElement<HTMLAttributes<HTMLElement>>;
   handleKeys: (event: KeyboardEvent<HTMLLIElement>) => void;
   hasFocus?: boolean;
   isMenuOpen?: boolean;

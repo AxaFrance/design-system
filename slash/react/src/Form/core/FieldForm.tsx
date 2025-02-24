@@ -1,11 +1,12 @@
 import {
-  BaseSyntheticEvent,
+  type BaseSyntheticEvent,
   Children,
   cloneElement,
-  Dispatch,
+  type Dispatch,
   isValidElement,
-  ReactNode,
-  SetStateAction,
+  type ReactElement,
+  type ReactNode,
+  type SetStateAction,
   useEffect,
   useRef,
   useState,
@@ -147,7 +148,7 @@ export const eventWrapper = ({ wrapper, props }: EventWrapperProps) => ({
 });
 
 type AddPropsClone = Omit<RenderChildrenProps, "children"> & {
-  child: JSX.Element;
+  child: ReactElement<Record<string, unknown>>;
   classModifier: string;
   name: string;
   getMessageClassModifierFn?: typeof FormClassManager.getMessageClassModifier;
@@ -174,7 +175,8 @@ export const addPropsClone = ({
     classModifier,
   );
 
-  const displayName = child.type.displayName ?? name;
+  const displayName =
+    (child.type as { displayName?: string }).displayName ?? name;
 
   switch (displayName) {
     case "HelpMessage":
@@ -215,12 +217,13 @@ export const renderedChildren = ({
     }
 
     const props = {
-      ...child.props,
+      ...(child as ReactElement<Record<string, unknown>>).props,
     };
 
-    if (child.props.children) {
+    if ((child as ReactElement<Record<string, unknown>>).props.children) {
       const subChildren = renderedChildren({
-        children: child.props.children,
+        children: (child as ReactElement<Record<string, unknown>>).props
+          .children as ReactNode,
         wrapper,
         message,
         messageType,
@@ -231,18 +234,21 @@ export const renderedChildren = ({
       }
     }
 
-    return cloneElement(child, {
-      ...props,
-      ...addPropsClone({
-        ...child.type,
-        name: child.type.name,
-        message,
-        messageType,
-        classModifier: props.classModifier,
-        wrapper,
-        child,
-      }),
-    });
+    return cloneElement<Record<string, unknown>>(
+      child as ReactElement<Record<string, unknown>>,
+      {
+        ...props,
+        ...addPropsClone({
+          ...child.type,
+          name: child.type.name,
+          message,
+          messageType,
+          classModifier: props.classModifier as string,
+          wrapper,
+          child: child as ReactElement<Record<string, unknown>>,
+        }),
+      },
+    );
   });
 
 export const FieldForm = ({
