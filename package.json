@@ -33,6 +33,7 @@
     "slash/react",
     "client/look-and-feel/css",
     "client/look-and-feel/react",
+    "packages/*",
     "samples/vite",
     "apps/*"
   ],

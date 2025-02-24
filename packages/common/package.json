@@ -1,0 +1,9 @@
+{
+  "name": "@axa-fr/common-design-system",
+  "version": "0.1.0",
+  "description": "Expose common assets throught a npm workspace",
+  "files": [
+    "assets",
+    "glyphicons"
+  ]
+}
