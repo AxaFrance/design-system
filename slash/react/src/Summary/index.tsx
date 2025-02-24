@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Alert } from "../Alert/Alert";
+import { generateId } from "../utilities/helpers/generateId";
 
 type SummaryProps = Omit<ComponentPropsWithoutRef<typeof Alert>, "title"> & {
   title?: string;
@@ -28,7 +29,10 @@ export const Summary = ({
     >
       <ul className="af-summary__message-list">
         {messages.map((message) => (
-          <li className="af-summary__message-item" key={`message_${message}`}>
+          <li
+            className="af-summary__message-item"
+            key={`message_${generateId({ message })}`}
+          >
             {message}
           </li>
         ))}
