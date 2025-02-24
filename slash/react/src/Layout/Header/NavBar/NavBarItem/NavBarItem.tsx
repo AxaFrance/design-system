@@ -10,12 +10,19 @@ import { NavBarItemBase } from "./NavBarItemBase";
 
 const defaultClassName = "af-nav__item";
 
+type ChildrenProps = {
+  classModifier?: string;
+  tabIndex?: number;
+  hasFocus?: boolean;
+  [key: string]: unknown;
+};
+
 type Props = Omit<
   ComponentProps<typeof NavBarItemBase>,
   "handleKeys" | "isMenuOpen" | "position"
 > & {
   ariaLabel?: string;
-  children?: ReactElement | ReactElement[];
+  children?: ReactElement<ChildrenProps> | ReactElement<ChildrenProps>[];
 };
 
 const NavBarItem = ({
@@ -84,7 +91,7 @@ const NavBarItem = ({
   );
 
   const renderChild = useCallback(
-    (child: ReactElement, childIndex: number) =>
+    (child: ReactElement<ChildrenProps>, childIndex: number) =>
       React.cloneElement(child, {
         classModifier:
           childIndex === position && isMenuOpen ? " active" : undefined,

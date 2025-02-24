@@ -1,13 +1,18 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/Header.scss";
 import logo from "@axa-fr/design-system-look-and-feel-css/dist/common/assets/logo-axa.svg";
-import { ComponentPropsWithoutRef, useCallback, useState } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  useCallback,
+  useState,
+} from "react";
 import { NavBar } from "./NavBar";
 import { PreviousLink } from "./PreviousLink/PreviousLink";
 
 type HeaderProps = {
   defaultActiveLink?: number;
-  previousLink?: JSX.Element;
-  rightItem?: JSX.Element[];
+  previousLink?: ReactNode;
+  rightItem?: ReactNode[];
 } & ComponentPropsWithoutRef<"header">;
 
 export const Header = ({

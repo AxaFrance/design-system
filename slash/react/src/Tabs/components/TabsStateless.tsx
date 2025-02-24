@@ -1,7 +1,14 @@
 /* eslint-disable react/no-array-index-key */
-import React, { Children, ReactNode, isValidElement } from "react";
+import {
+  Children,
+  type ReactNode,
+  isValidElement,
+  type ReactElement,
+  type MouseEvent,
+} from "react";
 import { getComponentClassName } from "../..";
 import { Pane } from "./Pane";
+import type { TabProps } from "./Tab";
 import { Title } from "./Title";
 
 export interface TabsStatelessProps {
@@ -12,7 +19,7 @@ export interface TabsStatelessProps {
 }
 
 export interface TabsStatelessHandlers {
-  onChange: (event: React.MouseEvent<HTMLButtonElement>, index: string) => void;
+  onChange: (event: MouseEvent<HTMLButtonElement>, index: string) => void;
 }
 
 type Props = TabsStatelessProps & TabsStatelessHandlers;
@@ -36,10 +43,12 @@ const TabsStateless = ({
                 active={activeIndex === index.toString()}
                 onChange={onChange}
                 id={`${index}`}
-                classModifier={child.props.classModifier}
+                classModifier={
+                  (child as ReactElement<TabProps>).props.classModifier
+                }
                 key={`title-${index}`}
               >
-                {child.props.title}
+                {(child as ReactElement<TabProps>).props.title}
               </Title>
             ),
         )}
@@ -53,7 +62,7 @@ const TabsStateless = ({
                 active={activeIndex === index.toString()}
                 key={`pane-${index}`}
               >
-                {child.props.children}
+                {(child as ReactElement<TabProps>).props.children}
               </Pane>
             ),
         )}
