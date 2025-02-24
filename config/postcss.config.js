@@ -33,13 +33,13 @@ module.exports = ({ ...ctx }) => {
           },
         });
 
-        cpSync(`${relativePath}common/glyphicons/`, "dist/common/glyphicons/", {
-          recursive: true,
-        });
-
-        cpSync(`${relativePath}common/assets/`, "dist/common/assets/", {
-          recursive: true,
-        });
+        cpSync(
+          `${relativePath}packages/common/assets/`,
+          "dist/common/assets/",
+          {
+            recursive: true,
+          },
+        );
 
         return {
           postcssPlugin: "Copy file",
