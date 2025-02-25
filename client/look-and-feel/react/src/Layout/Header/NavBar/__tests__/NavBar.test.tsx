@@ -8,9 +8,13 @@ describe("NavBar component", () => {
     activeLink: 0,
     setActiveLink: vi.fn(),
     links: [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
+      { label: "Home", href: "/", type: <a href="/">test</a> },
+      { label: "About", href: "/about", type: <a href="/about">about</a> },
+      {
+        label: "Contact",
+        href: "/contact",
+        type: <a href="/contact">contact</a>,
+      },
     ],
   };
 

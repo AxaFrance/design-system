@@ -30,10 +30,12 @@ export const HeaderWithNavBar: StoryObj<typeof Header> = {
         {
           label: "MES CONTRATS",
           href: "/mes-contrats",
+          type: <a href="/mes-contrats">MES CONTRATS</a>,
         },
         {
           label: "MES AVANTAGES",
           href: "/mes-avantages",
+          type: <a href="/mes-avantages">MES AVANTAGES</a>,
         },
       ]}
     />
@@ -49,6 +51,7 @@ export const HeaderWithNavBarAndRightItemTitle: StoryObj<typeof Header> = {
         {
           label: "MES CONTRATS",
           href: "/mes-contrats",
+          type: <a href="/mes-contrats">MES CONTRATS</a>,
         },
       ]}
     />
@@ -69,16 +72,19 @@ export const HeaderWithLinksAndRightItemAndButtonAndButtonBurger: StoryObj<
         {
           label: "MES CONTRATS",
           href: "/mes-contrats",
+          type: <a href="/mes-contrats">MES CONTRATS</a>,
         },
       ]}
       burgerMenuItems={[
         {
           label: "MES AVANTAGES",
           href: "/mes-avantages",
+          type: <a href="/mes-avantages">MES AVANTAGES</a>,
         },
         {
           label: "MES DOCUMENTS",
           href: "/mes-documents",
+          type: <a href="/mes-documents">MES DOCUMENTS</a>,
         },
       ]}
     >
