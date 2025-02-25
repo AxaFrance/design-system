@@ -1,6 +1,6 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import close from "@material-symbols/svg-400/outlined/close-fill.svg";
-import { ClickItem } from "../List/ClickList";
+import { ClickItem, ClickList } from "../List/ClickList";
 import "@axa-fr/design-system-look-and-feel-css/src/BurgerMenu/BurgerMenu.scss";
 import { BREAKPOINT } from "../utilities/constants";
 import { Svg } from "../Svg";
@@ -15,6 +15,11 @@ export type TBurgerMenuPops = {
     target?: string;
     isDisabled?: boolean;
   }[];
+  links?: {
+    label: string;
+    href: string;
+    type: ReactElement;
+  }[];
   className?: string;
   handleClose: () => void;
 };
@@ -23,6 +28,7 @@ export const BurgerMenu = ({
   className,
   children,
   handleClose,
+  links,
 }: TBurgerMenuPops) => {
   const [screenSize, setScreenWidth] = useState<number>(window.innerWidth);
   useEffect(() => {
@@ -58,13 +64,22 @@ export const BurgerMenu = ({
             <li key={child.label} className="af-list__item">
               <ClickItem
                 key={child.label}
-                icon={child.icon as ReactNode}
+                icon={child.icon}
                 classModifier={child.classModifier}
                 href={child.href}
                 target={child.target}
                 isDisabled={child.isDisabled}
               >
                 <div>{child.label}</div>
+              </ClickItem>
+            </li>
+          );
+        })}
+        {links?.map((link) => {
+          return (
+            <li key={link.label} className="af-list__item">
+              <ClickItem key={link.label} href={link.href}>
+                <div>{link.label}</div>
               </ClickItem>
             </li>
           );

@@ -81,11 +81,8 @@ export const Header = ({
         {isActiveMenu && (
           <BurgerMenu
             handleClose={() => setisActiveMenu(false)}
-            items={
-              screenSize <= BREAKPOINT.MD
-                ? links?.concat(burgerMenuItems || []) || []
-                : burgerMenuItems || []
-            }
+            items={screenSize > BREAKPOINT.MD ? burgerMenuItems || [] : []}
+            links={screenSize <= BREAKPOINT.MD ? links : []}
           >
             {children}
           </BurgerMenu>

@@ -1,11 +1,18 @@
-import React, { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import {
+  ComponentPropsWithoutRef,
+  PropsWithChildren,
+  ReactElement,
+} from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/NavBar/NavBar.css";
-import { TBurgerMenuPops } from "../../../BurgerMenu/BurgerMenu";
 
 export type NavBarProps = {
   activeLink?: number;
-  setActiveLink: React.Dispatch<React.SetStateAction<number | undefined>>;
-  links?: TBurgerMenuPops["items"];
+  setActiveLink: (index: number) => void;
+  links: {
+    label: string;
+    href: string;
+    type: ReactElement;
+  }[];
 } & ComponentPropsWithoutRef<"nav">;
 
 const NavBar = ({
@@ -15,19 +22,18 @@ const NavBar = ({
   ...otherProps
 }: PropsWithChildren<NavBarProps>) => {
   return (
-    <nav role="navigation" aria-label="Menu principal" {...otherProps}>
-      <ul className="af-navbar-container" role="menubar">
+    <nav aria-label="Menu principal" {...otherProps}>
+      <ul className="af-navbar-container">
         {links?.map((link, index) => (
-          <li className="af-navbar-item" role="none" key={Math.random()}>
-            <a
+          <li className="af-navbar-item" role="none" key={link?.label}>
+            <link.type.type
               className={`af-navbar-item__link ${index === activeLink ? "af-navbar-item__link--active" : ""}`.trim()}
               onClick={() => setActiveLink(index)}
               onFocus={() => setActiveLink(index)}
-              role="menuitem"
               href={link?.href}
             >
               {link?.label}
-            </a>
+            </link.type.type>
           </li>
         ))}
       </ul>
