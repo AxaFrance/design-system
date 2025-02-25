@@ -1,5 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
+
 import {
   FieldInput,
   HelpMessage,
@@ -8,6 +9,7 @@ import {
 } from "../core";
 import { CustomFile, File } from "./File";
 import { FileTable } from "./FileTable";
+import { FileActions } from "./constants";
 
 type FieldProps = ComponentPropsWithoutRef<typeof LegacyField>;
 type FileProps = ComponentPropsWithoutRef<typeof File>;
@@ -49,6 +51,7 @@ const FileInput = ({
       values: newValues,
       name,
       id: selectInputId,
+      fileAction: FileActions.delete,
     });
   };
   const inputUseId = useId();
