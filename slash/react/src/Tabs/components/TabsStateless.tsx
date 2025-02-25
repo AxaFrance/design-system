@@ -1,7 +1,13 @@
 /* eslint-disable react/no-array-index-key */
-import React, { Children, ReactNode, isValidElement } from "react";
+import React, {
+  Children,
+  ReactNode,
+  isValidElement,
+  type ReactElement,
+} from "react";
 import { getComponentClassName } from "../..";
 import { Pane } from "./Pane";
+import type { TabProps } from "./Tab";
 import { Title } from "./Title";
 
 export interface TabsStatelessProps {
@@ -36,10 +42,12 @@ const TabsStateless = ({
                 active={activeIndex === index.toString()}
                 onChange={onChange}
                 id={`${index}`}
-                classModifier={child.props.classModifier}
+                classModifier={
+                  (child as ReactElement<TabProps>).props.classModifier
+                }
                 key={`title-${index}`}
               >
-                {child.props.title}
+                {(child as ReactElement<TabProps>).props.title}
               </Title>
             ),
         )}
@@ -53,7 +61,7 @@ const TabsStateless = ({
                 active={activeIndex === index.toString()}
                 key={`pane-${index}`}
               >
-                {child.props.children}
+                {(child as ReactElement<TabProps>).props.children}
               </Pane>
             ),
         )}

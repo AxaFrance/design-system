@@ -1,4 +1,5 @@
 import closeSmall from "@material-symbols/svg-400/outlined/close.svg";
+import { JSX } from "react";
 import { ButtonClient, Variants } from "../../Button/Button";
 import { Svg } from "../../Svg";
 import type { TitleLevel } from "../../Title";

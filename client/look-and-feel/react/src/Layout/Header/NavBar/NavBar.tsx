@@ -4,6 +4,7 @@ import React, {
   PropsWithChildren,
   useMemo,
   type ReactElement,
+  type HTMLAttributes,
 } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/NavBar/NavBar.scss";
 
@@ -34,13 +35,16 @@ const NavBar = ({
       <ul className="af-navbar-container" role="menubar">
         {React.Children.map(validChildren, (child, index) => (
           <li className="af-navbar-item" role="none">
-            {React.cloneElement(child, {
-              className:
-                `af-navbar-item__link ${index === activeLink ? "af-navbar-item__link--active" : ""}`.trim(),
-              onClick: () => setActiveLink(index),
-              onFocus: () => setActiveLink(index),
-              role: "menuitem",
-            })}
+            {React.cloneElement<HTMLAttributes<HTMLElement>>(
+              child as ReactElement<HTMLAttributes<HTMLElement>>,
+              {
+                className:
+                  `af-navbar-item__link ${index === activeLink ? "af-navbar-item__link--active" : ""}`.trim(),
+                onClick: () => setActiveLink(index),
+                onFocus: () => setActiveLink(index),
+                role: "menuitem",
+              },
+            )}
           </li>
         ))}
       </ul>
