@@ -11,7 +11,7 @@ export enum Variants {
   ghost = "ghost",
 }
 
-type ButtonProps = {
+export type ButtonProps = {
   variant?: Variants;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;

@@ -1,0 +1,61 @@
+import * as BurgerMenuStories from "./BurgerMenu.stories";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as BurgerMenu from "./BurgerMenu";
+
+<Meta of={BurgerMenuStories} name="BurgerMenu" />
+
+# Burger-Menu
+
+## How to use
+
+To use the BurgerMenu component import it like that:
+
+```tsx
+import { BurgerMenu } from "@axa-fr/react-toolkit-burger-menu";
+import error from "@material-symbols/svg-400/outlined/error.svg";
+import { Svg } from "./Svg";
+
+<BurgerMenu
+  items={[
+    {
+      label: "test",
+      isDisabled: false,
+      icon: <Svg src={error} />,
+    },
+    {
+      label: "test",
+      isDisabled: false,
+      icon: <Svg src={error} />,
+    },
+  ]}
+/>;
+```
+
+<Canvas of={BurgerMenuStories.Default} />
+<Controls of={BurgerMenuStories.Default} />
+
+```tsx
+import { BurgerMenu } from "@axa-fr/react-toolkit-burger-menu";
+import error from "@material-symbols/svg-400/outlined/error.svg";
+import { Svg } from "./Svg";
+
+<BurgerMenu
+  items={[
+    {
+      label: "test",
+      isDisabled: false,
+      icon: <Svg src={error} />,
+    },
+    {
+      label: "test",
+      isDisabled: false,
+      icon: <Svg src={error} />,
+    },
+  ]}
+>
+  {children}
+</BurgerMenu>;
+```
+
+<Canvas of={BurgerMenuStories.WithLastButton} />
+<Controls of={BurgerMenuStories.WithLastButton} />
