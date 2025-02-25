@@ -19,7 +19,7 @@ const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
   ) => (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
     <dialog
-      aria-describedby={title}
+      aria-label={title}
       className={["af-modal", className].filter(Boolean).join(" ")}
       onClick={onOutsideTap}
       ref={ref}
