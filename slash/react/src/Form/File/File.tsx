@@ -7,6 +7,7 @@ import {
 import { useId } from "react";
 import { getComponentClassName } from "../../utilities";
 import { Button } from "../../Button/Button";
+import { FileActions } from "./constants";
 
 type Dropzone = DropzoneInputProps & DropzoneOptions;
 type Props = Omit<Dropzone, "onDrop" | "onChange"> & {
@@ -25,6 +26,7 @@ export type CustomFile<T = FilePreview> = {
 type onChangeProps = {
   id?: string;
   name?: string;
+  fileAction?: FileActions;
   values: CustomFile[];
   errors?: CustomFile<FileRejection>[];
 };
@@ -88,6 +90,7 @@ const File = ({
       values,
       errors,
       name,
+      fileAction: "add",
       id,
     };
 

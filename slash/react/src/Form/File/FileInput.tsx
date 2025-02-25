@@ -1,5 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
+
 import {
   FieldInput,
   HelpMessage,
@@ -49,6 +50,7 @@ const FileInput = ({
       values: newValues,
       name,
       id: selectInputId,
+      fileAction: "delete",
     });
   };
   const inputUseId = useId();

@@ -8,6 +8,7 @@ expect.extend(toHaveNoViolations);
 afterEach(() => {
   cleanup();
 });
+global.URL.createObjectURL = vi.fn(() => "mockedObjectURL");
 
 vi.mock("@tanem/svg-injector", () => ({
   SVGInjector: vi.fn(),
