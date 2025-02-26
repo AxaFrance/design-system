@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
       globals: true,
       environment: "jsdom",
       setupFiles: "./vitest.setup.ts",
-      name: "slash",
+      name: "look-and-feel",
       css: false,
       poolOptions: {
         forks: {
@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
         provider: "v8",
         include: ["src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
         exclude: [
-          "**/*.{stories,test,spec,types}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
+          "**/*.{stories,test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
           "**/*.d.ts",
           "**/vitest.setup.ts",
           "**/index.{ts,tsx}",
