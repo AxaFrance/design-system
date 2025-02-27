@@ -2,9 +2,16 @@
   "name": "@axa-fr/design-system-slash-css",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "sass": "dist/slash.scss",
+  "style": "dist/slash.css",
+  "exports": {
+    "./logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./dist/*": "./dist/*"
+  },
   "files": [
-    "dist"
+    "dist",
+    "files"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
