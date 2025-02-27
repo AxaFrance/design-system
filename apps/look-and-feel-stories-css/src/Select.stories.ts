@@ -1,4 +1,3 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/common/icons.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/Select/Select.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 
