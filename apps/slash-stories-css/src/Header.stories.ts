@@ -1,4 +1,4 @@
-import logo from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
+import logo from "@axa-fr/design-system-slash-css/logo-axa.svg";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Header.scss";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Infos/Infos.scss";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Logo/Logo.scss";

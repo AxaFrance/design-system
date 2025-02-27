@@ -1,4 +1,4 @@
-import logo from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
+import logo from "@axa-fr/design-system-slash-css/logo-axa.svg";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { Header, Infos, Name } from "@axa-fr/design-system-slash-react";

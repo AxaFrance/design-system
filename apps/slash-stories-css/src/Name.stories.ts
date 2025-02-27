@@ -1,6 +1,5 @@
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/Logo/Logo.scss";
+import logo from "@axa-fr/design-system-slash-css/logo-axa.svg";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Name/Name.scss";
-import logo from "@axa-fr/design-system-slash-css/dist/common/assets/logo-axa.svg";
 import type { Meta, StoryObj } from "@storybook/html";
 
 const meta: Meta = {
