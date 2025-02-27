@@ -1,5 +1,4 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Button/Button.scss";
-import "@axa-fr/design-system-look-and-feel-css/dist/common/icons.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/FileUpload/FileUpload.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 
