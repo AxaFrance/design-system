@@ -16,8 +16,8 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "predev": "rimraf dist",
-    "dev": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --env development_agent --config ../../config/postcss.config.js",
-    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production_agent --config ../../config/postcss.config.js",
+    "dev": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --watch --env development --config ../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
     "prettier": "prettier \"src/**/*\" --check",
