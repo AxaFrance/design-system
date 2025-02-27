@@ -1,5 +1,5 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/Header.scss";
-import logo from "@axa-fr/design-system-look-and-feel-css/dist/common/assets/logo-axa.svg";
+import logo from "@axa-fr/design-system-look-and-feel-css/logo-axa.svg";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
