@@ -2,9 +2,16 @@
   "name": "@axa-fr/design-system-look-and-feel-css",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "sass": "dist/look-and-feel.scss",
+  "style": "dist/look-and-feel.css",
+  "exports": {
+    "./logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./dist/*": "./dist/*"
+  },
   "files": [
-    "dist"
+    "dist",
+    "files"
   ],
   "scripts": {
     "predev": "rimraf dist",
