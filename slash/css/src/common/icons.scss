@@ -2,16 +2,12 @@
   font-family: icons;
   font-style: normal;
   font-weight: 400;
-  src: url("@axa-fr/design-system-slash-css/dist/common/glyphicons/icons.eot");
+  src: url("../common/glyphicons/icons.eot");
   src:
-    url("@axa-fr/design-system-slash-css/dist/common/glyphicons/icons.eot?#iefix")
-      format("embedded-opentype"),
-    url("@axa-fr/design-system-slash-css/dist/common/glyphicons/icons.woff")
-      format("woff"),
-    url("@axa-fr/design-system-slash-css/dist/common/glyphicons/icons.ttf")
-      format("truetype"),
-    url("@axa-fr/design-system-slash-css/dist/common/glyphicons/icons.svg#icons")
-      format("svg");
+    url("../common/glyphicons/icons.eot?#iefix") format("embedded-opentype"),
+    url("../common/glyphicons/icons.woff") format("woff"),
+    url("../common/glyphicons/icons.ttf") format("truetype"),
+    url("../common/glyphicons/icons.svg#icons") format("svg");
 }
 
 .glyphicon {

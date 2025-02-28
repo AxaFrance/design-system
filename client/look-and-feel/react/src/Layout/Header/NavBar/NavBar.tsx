@@ -1,15 +1,20 @@
-import React, {
-  ComponentPropsWithoutRef,
+import {
+  type ComponentPropsWithoutRef,
   isValidElement,
-  PropsWithChildren,
+  type PropsWithChildren,
   useMemo,
   type ReactElement,
+  type HTMLAttributes,
+  type Dispatch,
+  type SetStateAction,
+  Children,
+  cloneElement,
 } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/NavBar/NavBar.scss";
 
 type NavBarProps = {
   activeLink?: number;
-  setActiveLink: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setActiveLink: Dispatch<SetStateAction<number | undefined>>;
 } & ComponentPropsWithoutRef<"nav">;
 
 const NavBar = ({
@@ -21,10 +26,7 @@ const NavBar = ({
   const validChildren = useMemo<ReactElement[]>(
     () =>
       (
-        React.Children.map(
-          children,
-          (child) => isValidElement(child) && child,
-        ) ?? []
+        Children.map(children, (child) => isValidElement(child) && child) ?? []
       ).filter((c) => Boolean(c)),
     [children],
   );
@@ -32,15 +34,18 @@ const NavBar = ({
   return (
     <nav role="navigation" aria-label="Menu principal" {...otherProps}>
       <ul className="af-navbar-container" role="menubar">
-        {React.Children.map(validChildren, (child, index) => (
+        {Children.map(validChildren, (child, index) => (
           <li className="af-navbar-item" role="none">
-            {React.cloneElement(child, {
-              className:
-                `af-navbar-item__link ${index === activeLink ? "af-navbar-item__link--active" : ""}`.trim(),
-              onClick: () => setActiveLink(index),
-              onFocus: () => setActiveLink(index),
-              role: "menuitem",
-            })}
+            {cloneElement<HTMLAttributes<HTMLElement>>(
+              child as ReactElement<HTMLAttributes<HTMLElement>>,
+              {
+                className:
+                  `af-navbar-item__link ${index === activeLink ? "af-navbar-item__link--active" : ""}`.trim(),
+                onClick: () => setActiveLink(index),
+                onFocus: () => setActiveLink(index),
+                role: "menuitem",
+              },
+            )}
           </li>
         ))}
       </ul>

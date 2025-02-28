@@ -1,15 +1,16 @@
 import closeSmall from "@material-symbols/svg-400/outlined/close.svg";
+import type { HTMLAttributes, JSX, MouseEvent, KeyboardEvent } from "react";
 import { ButtonClient, Variants } from "../../Button/Button";
 import { Svg } from "../../Svg";
 import type { TitleLevel } from "../../Title";
 
-export type ModalCoreHeaderProps = React.HTMLAttributes<HTMLDivElement> & {
+export type ModalCoreHeaderProps = HTMLAttributes<HTMLDivElement> & {
   className?: string;
   title: string;
   subtitle?: string;
   iconTitle?: string;
   levelTitle?: TitleLevel;
-  onCancel: (event: React.MouseEvent | React.KeyboardEvent) => void;
+  onCancel: (event: MouseEvent | KeyboardEvent) => void;
   closeButtonAriaLabel?: string;
 };
 

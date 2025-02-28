@@ -1,4 +1,10 @@
-import { cloneElement, isValidElement, ReactNode } from "react";
+import {
+  cloneElement,
+  type HTMLAttributes,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 type Props = {
   children: ReactNode;
@@ -7,10 +13,13 @@ type Props = {
 
 const ToggleButton = ({ children, idControl }: Props) =>
   isValidElement(children) &&
-  cloneElement(children, {
-    ...children.props,
-    "aria-controls": idControl,
-    "aria-haspopup": true,
-  });
+  cloneElement<HTMLAttributes<HTMLElement>>(
+    children as ReactElement<HTMLAttributes<HTMLElement>>,
+    {
+      ...(children as ReactElement<HTMLAttributes<HTMLElement>>).props,
+      "aria-controls": idControl,
+      "aria-haspopup": true,
+    },
+  );
 
 export { ToggleButton };
