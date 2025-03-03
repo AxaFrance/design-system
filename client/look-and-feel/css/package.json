@@ -60,8 +60,7 @@
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
     "*.(ts|tsx)": "tsc-files --noEmit",
-    "*.(scss|css)": "stylelint --fix",
-    "*.mdx": "prettier --write"
+    "*.(scss|css)": "stylelint --fix"
   },
   "volta": {
     "extends": "../../../package.json"
