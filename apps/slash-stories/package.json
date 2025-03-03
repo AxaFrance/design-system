@@ -33,5 +33,10 @@
     "storybook": "^8.6.3",
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": "eslint --fix",
+    "*.(ts|tsx)": "tsc-files --noEmit",
+    "*.mdx": "prettier --write"
   }
 }
