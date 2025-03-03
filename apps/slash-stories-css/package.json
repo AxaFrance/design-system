@@ -20,6 +20,7 @@
     "@chromatic-com/storybook": "^3.2.4",
     "@storybook/addon-essentials": "^8.5.5",
     "@storybook/addon-interactions": "^8.5.5",
+    "@storybook/addon-viewport": "^8.5.5",
     "@storybook/blocks": "^8.5.5",
     "@storybook/html": "^8.5.5",
     "@storybook/html-vite": "^8.5.5",
