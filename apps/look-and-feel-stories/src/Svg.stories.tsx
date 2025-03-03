@@ -4,7 +4,7 @@ import headphonesIcons from "@material-symbols/svg-400/outlined/headphones.svg";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
 import type { Meta, StoryObj } from "@storybook/react";
-import "./Svg.stories.css";
+import "./Svg.stories.css?inline";
 
 const meta: Meta = {
   title: "Components/Svg",

@@ -6,7 +6,7 @@ import {
 } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import "./SkeletonList-demo.scss";
+import "./SkeletonList.stories.scss?inline";
 
 const meta: Meta<typeof SkeletonList> = {
   title: "Components/SkeletonList",
