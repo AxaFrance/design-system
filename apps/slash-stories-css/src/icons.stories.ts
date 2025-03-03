@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import type { Meta, StoryObj } from "@storybook/html";
-import "./icons.stories.css";
+import "./icons.stories.css?inline";
 
 const meta: Meta = {
   title: "icons",

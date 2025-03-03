@@ -1,6 +1,6 @@
 import { HelpButton } from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
-import "./HelpButton-demo.scss";
+import "./HelpButton.stories.scss?inline";
 
 const meta: Meta<typeof HelpButton> = {
   title: "Components/HelpButton",
