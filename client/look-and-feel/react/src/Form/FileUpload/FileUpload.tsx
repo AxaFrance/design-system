@@ -10,7 +10,6 @@ import classNames from "classnames";
 import { Svg } from "../../Svg";
 import { Loader } from "../../Loader";
 import { Button } from "../..";
-import { Variants } from "../../Button/Button";
 import { InputError } from "../InputError";
 
 function getReadableFileSizeString(fileSizeInBytes: number) {
@@ -110,7 +109,7 @@ const FileUpload = ({
           </div>
         )}
         <Button
-          variant={Variants.tertiary}
+          variant="tertiary"
           onClick={() => document.getElementById(id)?.click()}
           iconLeft={<Svg src={plus} className="af-form__file-input-icon" />}
         >

@@ -1,6 +1,6 @@
 import closeSmall from "@material-symbols/svg-400/outlined/close.svg";
 import type { HTMLAttributes, JSX, MouseEvent, KeyboardEvent } from "react";
-import { ButtonClient, Variants } from "../../Button/Button";
+import { Button } from "../../Button";
 import { Svg } from "../../Svg";
 import type { TitleLevel } from "../../Title";
 
@@ -30,8 +30,8 @@ export const ModalCoreHeader = ({
       className={["af-modal__header", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <ButtonClient
-        variant={Variants.ghost}
+      <Button
+        variant="ghost"
         iconLeft={
           <Svg
             src={closeSmall}

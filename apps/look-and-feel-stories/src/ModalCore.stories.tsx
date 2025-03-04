@@ -1,6 +1,5 @@
 import {
   Button,
-  ButtonVariants,
   ModalCore,
   ModalCoreBody,
   ModalCoreFooter,
@@ -70,7 +69,7 @@ export const DefaultModalStory: TDefaultModalStory = {
           </ModalCoreBody>
           <ModalCoreFooter>
             <Button
-              variant={ButtonVariants.secondary}
+              variant="secondary"
               onClick={() => {
                 args.onCancel();
                 ref.current?.close();
@@ -80,7 +79,7 @@ export const DefaultModalStory: TDefaultModalStory = {
             </Button>
 
             <Button
-              variant={ButtonVariants.primary}
+              variant="primary"
               onClick={() => {
                 args.onSubmit();
                 ref.current?.close();

@@ -1,0 +1,108 @@
+name: Publish Apollo prerelease
+
+on:
+  push:
+    branches:
+      - "releases-apollo/*"
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build:
+    if: github.repository_owner == 'AxaFrance'
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.gitversion.outputs.fullSemVer }}
+      isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "*" # Use the LTS Node.js version
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.0.0
+        with:
+          versionSpec: "5.x"
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          useConfigFile: true
+          configFilePath: "GitVersion-apollo.yml"
+      - run: npm run package:check
+      - run: npm ci
+      - run: npm run build:apollo
+      - run:
+          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
+          client/apollo/css -w client/apollo/react
+      - name:
+          Set to react package the @axa-fr/design-system-apollo-css
+          dependency version
+        run: |
+          cd client/apollo/react
+          jq '.peerDependencies["@axa-fr/design-system-apollo-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
+      - run: |
+          if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
+            npm publish -w client/apollo/css -w client/apollo/react --access public --tag latest;
+          else
+            npm publish -w client/apollo/css -w client/apollo/react --access public --tag next;
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: create artifact folder
+        run: mkdir -p artifact/css & mkdir -p artifact/react
+      - name: move storybooks to artifact folders
+        run:
+          cp -R apps/apollo-stories-css/storybook-static/* artifact/css &
+          cp -R apps/apollo-stories/storybook-static/* artifact/react
+      - uses: actions/upload-artifact@v4
+        with:
+          name: storybooks
+          path: |
+            artifact
+          retention-days: 2
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.isStableRelease == 'true'
+    runs-on: ubuntu-latest
+    name: Deploy new version of storybook to gh-pages
+    steps:
+      - name: Download storybooks
+        uses: actions/download-artifact@v4
+        with:
+          name: storybooks
+      - name: Upload the latest react storybook
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./react
+          destination_dir: apollo/react/latest
+      - name: Upload the react storybook to its version folder
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./react
+          destination_dir:
+            apollo/react/${{ needs.build.outputs.version }}
+      - name: Upload the latest css storybook
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./css
+          destination_dir: apollo/css/latest
+      - name: Upload the css to its version folder
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./css
+          destination_dir: apollo/css/${{ needs.build.outputs.version }}

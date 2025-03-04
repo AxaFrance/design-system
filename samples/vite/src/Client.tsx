@@ -1,6 +1,5 @@
 import {
-  Button as ButtonClient,
-  ButtonVariants as ButtonClientVariants,
+  Button,
   Svg,
   TextInput,
 } from "@axa-fr/design-system-look-and-feel-react";
@@ -22,13 +21,13 @@ const Client = () => (
     </article>
 
     <article>
-      <ButtonClient
+      <Button
         id="button"
-        variant={ButtonClientVariants.secondary}
+        variant="secondary"
         onClick={() => console.log("click")}
       >
         Button <Svg src={acUnit} />
-      </ButtonClient>
+      </Button>
     </article>
   </section>
 );
