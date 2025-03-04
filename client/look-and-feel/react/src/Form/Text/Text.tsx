@@ -9,7 +9,6 @@ import {
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 
 import { Button } from "../..";
-import { Variants } from "../../Button/Button";
 import { Svg } from "../../Svg";
 import { getComponentClassName } from "../../utilities";
 import { InputError } from "../InputError";
@@ -76,7 +75,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
               {sideButtonLabel && (
                 <Button
                   className="af-form__input-modify"
-                  variant={Variants.ghost}
+                  variant="ghost"
                   onClick={onSideButtonClick}
                 >
                   {sideButtonLabel}
@@ -91,7 +90,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
             {buttonLabel && (
               <Button
                 className="af-form__input-more"
-                variant={Variants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={infoIcon} />}
                 onClick={onButtonClick}
               >

@@ -16,6 +16,8 @@
   "dependencies": {
     "@axa-fr/design-system-look-and-feel-css": "*",
     "@axa-fr/design-system-look-and-feel-react": "*",
+    "@axa-fr/design-system-common-client-css": "*",
+    "@axa-fr/design-system-common-client-react": "*",
     "@material-symbols/svg-400": "^0.28.1"
   },
   "devDependencies": {

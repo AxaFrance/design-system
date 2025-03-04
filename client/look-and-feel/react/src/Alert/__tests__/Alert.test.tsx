@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Alert, alertTypes } from "../Alert";
 import { Link } from "../../Link/Link";
-import { ButtonClient, Variants } from "../../Button/Button";
+import { Button } from "../../Button";
 
 const MoreDetails = () => (
   <Link openInNewTab href="https://fakelink.com">
@@ -11,13 +11,13 @@ const MoreDetails = () => (
 
 describe("Alert", () => {
   it.each`
-    type                      | title         | children       | action                                                                | icon                     | iconSize     | expectLink | expectButton
-    ${undefined}              | ${undefined}  | ${undefined}   | ${undefined}                                                          | ${"wb_incandescent.svg"} | ${undefined} | ${false}   | ${false}
-    ${alertTypes.information} | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                                                  | ${"wb_incandescent.svg"} | ${undefined} | ${true}    | ${false}
-    ${alertTypes.error}       | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                                                  | ${"emergency_home.svg"}  | ${undefined} | ${true}    | ${false}
-    ${alertTypes.neutral}     | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                                                  | ${"error.svg"}           | ${undefined} | ${true}    | ${false}
-    ${alertTypes.validation}  | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                                                  | ${"check_circle.svg"}    | ${undefined} | ${true}    | ${false}
-    ${alertTypes.warning}     | ${"my title"} | ${"some text"} | ${(<ButtonClient variant={Variants.ghost}>Actualiser</ButtonClient>)} | ${"error.svg"}           | ${undefined} | ${false}   | ${true}
+    type                      | title         | children       | action                                           | icon                     | iconSize     | expectLink | expectButton
+    ${undefined}              | ${undefined}  | ${undefined}   | ${undefined}                                     | ${"wb_incandescent.svg"} | ${undefined} | ${false}   | ${false}
+    ${alertTypes.information} | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"wb_incandescent.svg"} | ${undefined} | ${true}    | ${false}
+    ${alertTypes.error}       | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"emergency_home.svg"}  | ${undefined} | ${true}    | ${false}
+    ${alertTypes.neutral}     | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"error.svg"}           | ${undefined} | ${true}    | ${false}
+    ${alertTypes.validation}  | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"check_circle.svg"}    | ${undefined} | ${true}    | ${false}
+    ${alertTypes.warning}     | ${"my title"} | ${"some text"} | ${(<Button variant="ghost">Actualiser</Button>)} | ${"error.svg"}           | ${undefined} | ${false}   | ${true}
   `(
     "Should render correctly with type: $type, title: $title, children: $children, icon: $icon, action: $action, iconSize: $iconSize",
     ({

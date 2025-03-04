@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import { ModalCore, type ModalCoreProps } from "./ModalCore";
-import { ButtonClient, Variants as ButtonVariants } from "../Button/Button";
+import { Button } from "../Button";
 import {
   ModalCoreHeader,
   type ModalCoreHeaderProps,
@@ -55,22 +55,22 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
       <ModalCoreBody>{children}</ModalCoreBody>
       <ModalCoreFooter>
         {onCancel && cancelTitle && (
-          <ButtonClient
-            variant={ButtonVariants.secondary}
+          <Button
+            variant="secondary"
             onClick={onCancel}
             disabled={cancelDisabled}
           >
             {cancelTitle}
-          </ButtonClient>
+          </Button>
         )}
         {onSubmit && submitTitle && (
-          <ButtonClient
-            variant={ButtonVariants.primary}
+          <Button
+            variant="primary"
             onClick={onSubmit}
             disabled={submitDisabled}
           >
             {submitTitle}
-          </ButtonClient>
+          </Button>
         )}
       </ModalCoreFooter>
     </ModalCore>

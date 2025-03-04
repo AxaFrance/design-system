@@ -7,15 +7,10 @@ import * as ButtonStories from "./Button.stories";
 
 To use the button import it like that:
 
-```tsx title="test.js"
-import {
-  ButtonClient,
-  Variants,
-} from "@axa-fr/design-system-look-and-feel-react";
+```tsx
+import { Button } from "@axa-fr/design-system-look-and-feel-react";
 
-const MyComponent = () => (
-  <ButtonClient variant={Variants.secondary}>My button</ButtonClient>
-);
+const MyComponent = () => <Button variant="secondary">My button</Button>;
 ```
 
 ## Playground
@@ -26,18 +21,15 @@ const MyComponent = () => (
 
 ## Variants
 
-Use the `variant` prop to change the look of the button. [See the examples](#examples-of-class-modifiers).
+Use the `variant` prop to change the look of the button. [See the examples](#all-variants).
 
 You can also add your own modifier, and the output will be a custom class called `af-btn-client--<yourModifier>` that you can target in your css
 The rest of the props (eg: `type`, `title`) will be passed down to the actual `button` HTML element.
 
-## Examples of class modifiers
+## All variants
 
-<Canvas of={ButtonStories.MultiExamples} layout="fullscreen" />
+<Canvas of={ButtonStories.All} layout="fullscreen" />
 
 ## With icons
 
 To add an icon you need to add the prop, either `iconLeft` or `iconRight` whether you want the icon on the left of or on the right.
-
-<Canvas of={ButtonStories.WithIconLeft} />
-<Canvas of={ButtonStories.WithIconRight} />

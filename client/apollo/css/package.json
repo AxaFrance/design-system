@@ -1,0 +1,66 @@
+{
+  "name": "@axa-fr/design-system-apollo-css",
+  "version": "0.1.0",
+  "description": "",
+  "sass": "dist/apollo.scss",
+  "style": "dist/apollo.css",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "predev": "rimraf dist",
+    "prebuild": "rimraf dist",
+    "dev": "postcss \"src/**/*.{scss,css}\" --base src --dir dist --ext css --verbose --watch --env development --config ../../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.{scss,css}\" --base src --dir dist --ext css --verbose --env production --config ../../../config/postcss.config.js",
+    "eslint": "eslint src --ext js,jsx,ts,tsx",
+    "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
+    "stylelint": "stylelint \"src/**/*.{scss,css}\"",
+    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
+    "prettier": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --check --ignore-unknown",
+    "prettier:fix": "prettier \"src/**/*.!(js|jsx|ts|tsx|scss|css)\" --write --ignore-unknown"
+  },
+  "dependencies": {
+    "@axa-fr/design-system-common-client-css": "*"
+  },
+  "peerDependencies": {
+    "@material-symbols/svg-400": ">= 0.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@material-symbols/svg-400": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": {
+    "name": "AxaFrance"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": "eslint --fix",
+    "*.(ts|tsx)": "tsc-files --noEmit",
+    "*.(scss|css)": "stylelint --fix",
+    "*.mdx": "prettier --write"
+  },
+  "volta": {
+    "extends": "../../../package.json"
+  }
+}
