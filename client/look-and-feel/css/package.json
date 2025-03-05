@@ -7,7 +7,10 @@
   "exports": {
     "./logo-axa.svg": "./files/assets/logo-axa.svg",
     "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
-    "./dist/*": "./dist/*"
+    "./dist/*": {
+      "development": "./src/*",
+      "default": "./dist/*"
+    }
   },
   "files": [
     "dist",
