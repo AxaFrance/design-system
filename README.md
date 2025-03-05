@@ -63,12 +63,21 @@ retrouver ces deux implémentations dans les dossiers `/slash/css` et
 
 ## Démarrer le projet
 
-La commande `npm start` démarrent automatiquement les différentes étapes
+Pour démarrer toutes les parties du projet, il faudra lancer la commande `npm run dev`.
+
+Pour démarrer la partie slash du projet, il faudra lancer la commande `npm run dev:slash`.
+
+Pour démarrer la partie look&feel du projet, il faudra lancer la commande `npm run dev:look-and-feel`.
+
+Ces commandes démarrent automatiquement les différentes étapes
 nécessaire aux développement du projet, notamment le build CSS et le storybook
 react.
 
 La commande `npm run build` permet de générer un build qui vous permettra de
 tester votre nouveau composant.
+
+Et pour build une partie spécifique du projet vous pouvez lancer `npm run build:(partie)`
+(`npm run build:slash` ou `npm run build:look-and-feel`).
 
 ## Utilisation des icones
 
