@@ -1,10 +1,10 @@
 .af-input-error {
   display: flex;
-  align-items: center;
   gap: 0.25rem;
 
   &__icon {
     width: 1rem;
+    flex-shrink: 0;
     color: var(--color-red-700);
     fill: var(--color-red-700);
   }
