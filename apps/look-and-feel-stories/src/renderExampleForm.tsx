@@ -1,6 +1,5 @@
 import {
   Button,
-  ButtonVariants,
   CheckboxSelect,
   DebugGrid,
   RadioSelect,
@@ -114,8 +113,8 @@ export const render = () => (
           ))}
         </div>
         <div className="form__actions subgrid">
-          <Button variant={ButtonVariants.secondary}>Précédent</Button>
-          <Button variant={ButtonVariants.primary}>Valider</Button>
+          <Button variant="secondary">Précédent</Button>
+          <Button variant="primary">Valider</Button>
         </div>
       </form>
     </main>

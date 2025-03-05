@@ -1,9 +1,4 @@
-import {
-  Alert,
-  Button,
-  ButtonVariants,
-  Link,
-} from "@axa-fr/design-system-look-and-feel-react";
+import { Alert, Button, Link } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 
 const MODIFIERS = ["information", "neutral", "error", "validation", "warning"];
@@ -43,7 +38,7 @@ export const WithButtonAction: StoryObj<typeof Alert> = {
     type: "information",
     children:
       "Vestibulum nunc neque, sodales non luctus in, dictum vitae nisl. Curabitur vitae massa non nisl lacinia tempus. Pellentesque id nulla tortor.",
-    action: <Button variant={ButtonVariants.ghost}>Actualiser</Button>,
+    action: <Button variant="ghost">Actualiser</Button>,
     iconSize: 24,
   },
 };

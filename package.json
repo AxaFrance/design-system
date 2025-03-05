@@ -11,12 +11,15 @@
     "dev": "turbo dev --filter=!./samples/vite",
     "dev:look-and-feel": "turbo dev --filter=./client/look-and-feel/* --filter=@axa-fr/look-and-feel-stories-css --filter=@axa-fr/look-and-feel-stories",
     "dev:slash": "turbo dev --filter=./slash/* --filter=@axa-fr/slash-stories-css --filter=@axa-fr/slash-stories",
+    "dev:apollo": "turbo dev --filter=@axa-fr/apollo-stories-css --filter=@axa-fr/apollo-stories",
     "build": "turbo build --filter=!./samples/vite",
     "build:slash": "turbo build --filter=./apps/slash-stories --filter=./apps/slash-stories-css",
     "build:look-and-feel": "turbo build --filter=./apps/look-and-feel-stories --filter=./apps/look-and-feel-stories-css",
+    "build:apollo": "turbo build --filter=./apps/apollo-stories --filter=./apps/apollo-stories-css",
     "lint": "turbo lint",
     "lint:slash": "turbo lint --filter=./slash/*",
     "lint:look-and-feel": "turbo lint --filter=./client/look-and-feel/*",
+    "lint:apollo": "turbo lint --filter=./client/apollo/*",
     "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky",
     "test": "vitest --coverage"
@@ -28,12 +31,15 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "workspaces": [
+    "packages/*",
     "slash/css",
     "slash/react",
     "client/look-and-feel/css",
     "client/look-and-feel/react",
-    "samples/vite",
-    "apps/*"
+    "client/apollo/css",
+    "client/apollo/react",
+    "apps/*",
+    "samples/vite"
   ],
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",

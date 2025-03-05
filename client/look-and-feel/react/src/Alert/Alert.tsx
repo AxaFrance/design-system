@@ -10,7 +10,7 @@ import {
   ReactElement,
   useMemo,
 } from "react";
-import { ButtonClient } from "../Button/Button";
+import { Button } from "../Button";
 import { Link } from "../Link/Link";
 import { Svg } from "../Svg";
 
@@ -29,7 +29,7 @@ export type AlertType = keyof typeof alertTypes;
 type AlertProps = {
   type: AlertType;
   title?: string;
-  action?: ReactElement<typeof Link | typeof ButtonClient>;
+  action?: ReactElement<typeof Link | typeof Button>;
   iconSize?: number;
   heading?: Headings;
 } & ComponentPropsWithoutRef<"div">;
