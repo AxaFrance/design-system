@@ -22,20 +22,14 @@ const ButtonBlock = ({
       .join(" ")}
   >
     <h2 className="af-title">{variant}</h2>
-    <Button variant={variant as ButtonVariants}>{variant}</Button>
-    <Button variant={variant as ButtonVariants} disabled>
+    <Button variant={variant}>{variant}</Button>
+    <Button variant={variant} disabled>
       {variant}
     </Button>
-    <Button
-      variant={variant as ButtonVariants}
-      iconLeft={<Svg src={arrowBack} />}
-    >
+    <Button variant={variant} iconLeft={<Svg src={arrowBack} />}>
       {variant}
     </Button>
-    <Button
-      variant={variant as ButtonVariants}
-      iconRight={<Svg src={arrowFront} />}
-    >
+    <Button variant={variant} iconRight={<Svg src={arrowFront} />}>
       {variant}
     </Button>
   </div>
