@@ -4,6 +4,12 @@
   "description": "",
   "sass": "dist/apollo.scss",
   "style": "dist/apollo.css",
+  "exports": {
+    "./dist/*": {
+      "development": "./src/*",
+      "default": "./dist/*"
+    }
+  },
   "files": [
     "dist"
   ],

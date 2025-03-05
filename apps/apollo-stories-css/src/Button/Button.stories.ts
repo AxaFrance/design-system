@@ -1,4 +1,3 @@
-/* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from "@storybook/html";
 import {
   render,

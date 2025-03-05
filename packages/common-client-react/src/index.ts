@@ -1,4 +1,5 @@
-export { Button, buttonVariants, type ButtonVariants } from "./Button/Button";
+export { Button, buttonVariants } from "./Button/Button";
+export type { ButtonVariants } from "./Button/Button";
 export {
   render as renderButton,
   renderAll as renderButtonAll,

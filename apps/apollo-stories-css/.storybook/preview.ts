@@ -1,5 +1,5 @@
-import "@axa-fr/design-system-apollo-css/dist/common/tokens.css";
-import "@axa-fr/design-system-apollo-css/dist/apollo.css";
+import "@axa-fr/design-system-apollo-css/dist/common/tokens.scss";
+import "@axa-fr/design-system-apollo-css/dist/apollo.scss";
 
 import type { Preview } from "@storybook/html";
 

@@ -11,7 +11,7 @@
     "dev": "turbo dev --filter=!./samples/vite",
     "dev:look-and-feel": "turbo dev --filter=./client/look-and-feel/* --filter=@axa-fr/look-and-feel-stories-css --filter=@axa-fr/look-and-feel-stories",
     "dev:slash": "turbo dev --filter=./slash/* --filter=@axa-fr/slash-stories-css --filter=@axa-fr/slash-stories",
-    "dev:apollo": "turbo dev --filter=./client/apollo/* --filter=@axa-fr/apollo-stories-css --filter=@axa-fr/apollo-stories",
+    "dev:apollo": "turbo dev --filter=@axa-fr/apollo-stories-css --filter=@axa-fr/apollo-stories",
     "build": "turbo build --filter=!./samples/vite",
     "build:slash": "turbo build --filter=./apps/slash-stories --filter=./apps/slash-stories-css",
     "build:look-and-feel": "turbo build --filter=./apps/look-and-feel-stories --filter=./apps/look-and-feel-stories-css",
@@ -31,15 +31,15 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "workspaces": [
+    "packages/*",
     "slash/css",
     "slash/react",
     "client/look-and-feel/css",
     "client/look-and-feel/react",
     "client/apollo/css",
     "client/apollo/react",
-    "samples/vite",
     "apps/*",
-    "packages/*"
+    "samples/vite"
   ],
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
