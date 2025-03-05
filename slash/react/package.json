@@ -6,12 +6,22 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "development": {
+        "import": "./src/index.ts"
+      },
+      "default": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
     },
     "./utilities": {
-      "import": "./dist/utilities.js",
-      "types": "./dist/utilities.d.ts"
+      "development": {
+        "import": "./src/utilities.ts"
+      },
+      "default": {
+        "import": "./dist/utilities.js",
+        "types": "./dist/utilities.d.ts"
+      }
     }
   },
   "files": [
