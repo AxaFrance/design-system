@@ -2,11 +2,21 @@
   "name": "@axa-fr/design-system-common-client-react",
   "version": "0.1.0",
   "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "development": {
+        "import": "./src/index.ts"
+      },
+      "default": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    }
   },
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

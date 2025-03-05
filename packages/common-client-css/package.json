@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "description": "Expose common component throught a npm workspace",
   "exports": {
-    "./*": "./dist/*"
+    "./*": {
+      "development": "./src/*",
+      "default": "./dist/*"
+    }
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "postcss \"src/**/*.{scss,css}\" --base src --dir dist --ext css --verbose --watch --env development_client-common --config ../../config/postcss.config.js",
-    "build": "postcss \"src/**/*.{scss,css}\" --base src --dir dist --ext css --verbose --env development_client-common --config ../../config/postcss.config.js",
+    "start": "postcss \"src/**/*.{scss,css}\" --base src --dir dist --ext css --verbose --watch --env development --config ../../config/postcss.config.js",
+    "build": "postcss \"src/**/*.{scss,css}\" --base src --dir dist --ext css --verbose --env production --config ../../config/postcss.config.js",
     "postbuild": "copyfiles --up 1 \"src/**/*.ts\" ./dist/",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
