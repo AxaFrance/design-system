@@ -1,0 +1,11 @@
+mode: ContinuousDeployment
+tag-prefix: "apollo/"
+next-version: 1.0.0
+commit-message-incrementing: Disabled
+branches:
+  release:
+    tag: RC
+    regex: ^releases?-apollo[/-](?<BranchName>.+)
+    commit-message-incrementing: Disabled
+    source-branches:
+      - main
