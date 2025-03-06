@@ -25,11 +25,12 @@ export default meta;
 
 type StoryProps = Omit<
   React.ComponentProps<typeof Button>,
-  "children" | "variant" | "disabled" | "iconLeft" | "iconRight"
+  "children" | "variant" | "disabled" | "loading" | "iconLeft" | "iconRight"
 > & {
   children: string;
   variant: ButtonVariants;
   disabled: boolean;
+  loading: boolean;
   iconLeft: ReactNode;
   iconRight: ReactNode;
 };
@@ -71,6 +72,12 @@ export const Playground: Story = {
     iconRight: {
       control: { type: "text" },
     },
+    disabled: {
+      control: { type: "boolean" },
+    },
+    loading: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -79,6 +86,7 @@ export const Business: StoryObj<typeof Button> = {
   args: {
     children: "Button Business",
     variant: ButtonVariants.business,
+    disabled: false,
   },
 };
 
@@ -87,6 +95,7 @@ export const Secondary: StoryObj<typeof Button> = {
   args: {
     children: "Button Secondary",
     variant: ButtonVariants.secondary,
+    disabled: false,
   },
 };
 
@@ -95,6 +104,7 @@ export const SecondaryError: StoryObj<typeof Button> = {
   args: {
     children: "Button Secondary Error",
     variant: ButtonVariants.secondaryError,
+    disabled: false,
   },
 };
 
@@ -103,6 +113,7 @@ export const Tertiary: StoryObj<typeof Button> = {
   args: {
     children: "Button Tertiary",
     variant: ButtonVariants.tertiary,
+    disabled: false,
   },
 };
 
@@ -111,6 +122,7 @@ export const Ghost: StoryObj<typeof Button> = {
   args: {
     children: "Button Ghost",
     variant: ButtonVariants.ghost,
+    disabled: false,
   },
 };
 
@@ -175,6 +187,13 @@ export const MultiExamples: StoryObj<typeof Button> = {
         >
           With icon MULTI
         </Button>
+        <Button
+          variant={ButtonVariants.primary}
+          iconLeft={<Svg src={accountBalance} />}
+          loading
+        >
+          Button Primary Loading
+        </Button>
       </div>
     );
   },
@@ -185,6 +204,7 @@ export const WithIconRight: StoryObj<typeof Button> = {
   args: {
     children: "With icon",
     iconRight: <Svg src={heartBroken} />,
+    disabled: false,
   },
 };
 
@@ -193,5 +213,6 @@ export const WithIconLeft: StoryObj<typeof Button> = {
   args: {
     children: "With icon",
     iconLeft: <Svg src={heartBroken} />,
+    disabled: false,
   },
 };
