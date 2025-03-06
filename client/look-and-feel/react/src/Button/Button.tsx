@@ -1,6 +1,7 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Button/Button.scss";
 import classNames from "classnames";
 import { ComponentPropsWithoutRef, PropsWithChildren, ReactNode } from "react";
+import { Loader } from "../Loader";
 
 export enum Variants {
   primary = "primary",
@@ -15,6 +16,7 @@ type ButtonProps = {
   variant?: Variants;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
+  loading?: boolean;
 } & ComponentPropsWithoutRef<"button">;
 
 export const ButtonClient = ({
@@ -24,6 +26,7 @@ export const ButtonClient = ({
   variant,
   iconLeft,
   iconRight,
+  loading,
   ...args
 }: PropsWithChildren<ButtonProps>) => {
   return (
@@ -33,13 +36,14 @@ export const ButtonClient = ({
         variant && `af-btn-client--${variant.toString()}`,
         className,
       )}
-      disabled={disabled}
+      disabled={disabled || loading}
       type="button"
       {...args}
     >
       {iconLeft}
       {children}
       {iconRight}
+      {loading && <Loader size={24} border={3} variant="gray" />}
     </button>
   );
 };
