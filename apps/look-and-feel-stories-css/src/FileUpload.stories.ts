@@ -33,6 +33,9 @@ export const Default: StoryObj = {
    </div>
    <small class="af-form__file-input-help">2 fichiers max. / pdf, png, jpg, jpeg, gif / 19 Mo par fichier</small>
    <div class="custom-table-file af-file-table">
+      <div className="af-form__group--label af-form__files-list-label">
+         ${args.filesListLabel}
+      </div>
       <ul class="af-form__file-list">
          <li class="af-form__file-line">
             <div class="af-form__file-line-container">
@@ -136,6 +139,7 @@ export const Default: StoryObj = {
     label: "Label",
     buttonLabel: "Importer fichier",
     dropZoneDescription: "Glissez/déposez vos fichiers",
+    filesListLabel: "Vos fichiers",
     required: true,
   },
   argTypes: {

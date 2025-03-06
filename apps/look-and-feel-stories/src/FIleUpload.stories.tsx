@@ -20,6 +20,7 @@ export const FileUploadStory: Story = {
     id: "file-input",
     className: "",
     label: "Label",
+    filesListLabel: "Vos fichiers",
     files: [
       {
         id: "1",
