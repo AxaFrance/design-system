@@ -1,0 +1,20 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "extends": [
+        "//"
+    ],
+    "tasks": {
+        "lint": {
+            "dependsOn": [
+                "eslint",
+                "stylelint",
+                "prettier",
+                "check-types"
+            ]
+        },
+        "stylelint": {},
+        "eslint": {},
+        "prettier": {},
+        "check-types": {}
+    }
+}

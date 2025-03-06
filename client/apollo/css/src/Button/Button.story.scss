@@ -1,0 +1,52 @@
+@use "../common/breakpoints" as breakpoints;
+
+.af-btn-client-demo {
+  display: grid;
+  width: 100%;
+  gap: 2rem;
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &-variant {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__bloc {
+    display: flex;
+    padding: 1rem;
+    border-radius: var(--radius-32);
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 0 0 2px var(--axa-blue-120, var(--color-axa)) inset;
+
+    &:first-child {
+      border-radius: var(--radius-32) 0 0 var(--radius-32);
+    }
+
+    &:last-child {
+      border-radius: 0 var(--radius-32) var(--radius-32) 0;
+    }
+
+    > button {
+      width: fit-content;
+      text-transform: capitalize;
+    }
+
+    &--blue {
+      background-color: var(--axa-blue-120, var(--color-axa));
+
+      .af-title {
+        color: var(--white, var(--color-white));
+      }
+    }
+  }
+
+  .af-title {
+    font-family: var(--font-family-publico);
+    text-transform: capitalize;
+  }
+}
