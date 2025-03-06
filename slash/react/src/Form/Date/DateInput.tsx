@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
+import { ComponentPropsWithoutRef, ReactNode, useId, forwardRef, Ref } from "react";
 import {
   FieldInput,
   HelpMessage,
@@ -14,7 +14,7 @@ type Props = Omit<ComponentPropsWithoutRef<typeof Date>, "placeholderText"> &
     children?: ReactNode;
   };
 
-const DateInput = ({
+const DateInput = forwardRef(({
   classModifier = "",
   message,
   children,
@@ -30,7 +30,7 @@ const DateInput = ({
   disabled = false,
   required,
   ...otherProps
-}: Props) => {
+}: Props, ref: Ref<HTMLInputElement>) => {
   const inputUseId = useId();
   const inputId = id ?? inputUseId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
@@ -61,6 +61,7 @@ const DateInput = ({
           classModifier={inputClassModifier}
           disabled={disabled}
           required={required}
+          ref={ref}
           {...otherProps}
         />
         {children}
@@ -68,6 +69,6 @@ const DateInput = ({
       <HelpMessage message={helpMessage} isVisible={!message} />
     </LegacyField>
   );
-};
+});
 
 export { DateInput };
