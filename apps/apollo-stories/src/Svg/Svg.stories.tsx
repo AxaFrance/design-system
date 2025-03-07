@@ -5,7 +5,7 @@ import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import "@axa-fr/design-system-apollo-css/dist/Svg/Svg.story.scss";
+import "./Svg.story.scss";
 
 const meta: Meta = {
   title: "Components/Svg",

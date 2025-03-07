@@ -5,11 +5,11 @@ import {
   Button,
   buttonVariants,
   type ButtonVariants,
-  renderButton,
-  renderButtonAll,
 } from "@axa-fr/design-system-apollo-react";
 
-import "@axa-fr/design-system-apollo-css/dist/Button/Button.story.scss";
+import { renderButton, renderButtonAll } from "./render";
+
+import "./Button.story.scss";
 
 const meta: Meta<typeof Button> = {
   component: Button,

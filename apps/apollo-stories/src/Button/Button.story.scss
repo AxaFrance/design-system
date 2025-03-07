@@ -1,11 +1,9 @@
-@use "../common/breakpoints" as breakpoints;
-
 .af-btn-client-demo {
   display: grid;
   width: 100%;
   gap: 2rem;
 
-  @media (width > #{breakpoints.$breakpoint-md}) {
+  @media (width > 1024px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
