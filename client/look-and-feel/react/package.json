@@ -64,6 +64,7 @@
     }
   },
   "dependencies": {
+    "@axa-fr/design-system-apollo-react": "*",
     "@fontsource/source-sans-pro": "^5.0.8",
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",

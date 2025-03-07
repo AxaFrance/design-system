@@ -33,10 +33,10 @@
   "workspaces": [
     "slash/css",
     "slash/react",
-    "client/look-and-feel/css",
-    "client/look-and-feel/react",
     "client/apollo/css",
     "client/apollo/react",
+    "client/look-and-feel/css",
+    "client/look-and-feel/react",
     "samples/vite",
     "apps/*"
   ],

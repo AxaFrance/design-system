@@ -1,7 +1,8 @@
 import {
   Button,
-  ButtonVariants,
   Svg,
+  type ButtonVariants,
+  buttonVariants,
 } from "@axa-fr/design-system-look-and-feel-react";
 import accountBalance from "@material-symbols/svg-400/outlined/account_balance.svg";
 import arrowBack from "@material-symbols/svg-400/outlined/arrow_back.svg";
@@ -63,7 +64,7 @@ export const Playground: Story = {
   },
   argTypes: {
     variant: {
-      options: Object.values(ButtonVariants),
+      options: Object.values(buttonVariants),
       control: { type: "multi-select" },
     },
     iconLeft: {
@@ -85,7 +86,7 @@ export const Business: StoryObj<typeof Button> = {
   name: "Button business",
   args: {
     children: "Button Business",
-    variant: ButtonVariants.business,
+    variant: buttonVariants["primary-business"],
     disabled: false,
   },
 };
@@ -94,16 +95,8 @@ export const Secondary: StoryObj<typeof Button> = {
   name: "Button secondary",
   args: {
     children: "Button Secondary",
-    variant: ButtonVariants.secondary,
+    variant: buttonVariants.secondary,
     disabled: false,
-  },
-};
-
-export const SecondaryError: StoryObj<typeof Button> = {
-  name: "Button secondary error",
-  args: {
-    children: "Button Secondary Error",
-    variant: ButtonVariants.secondaryError,
     disabled: false,
   },
 };
@@ -112,7 +105,7 @@ export const Tertiary: StoryObj<typeof Button> = {
   name: "Button tertiary",
   args: {
     children: "Button Tertiary",
-    variant: ButtonVariants.tertiary,
+    variant: buttonVariants.tertiary,
     disabled: false,
   },
 };
@@ -121,7 +114,7 @@ export const Ghost: StoryObj<typeof Button> = {
   name: "Button ghost",
   args: {
     children: "Button Ghost",
-    variant: ButtonVariants.ghost,
+    variant: buttonVariants.ghost,
     disabled: false,
   },
 };
@@ -142,46 +135,43 @@ export const MultiExamples: StoryObj<typeof Button> = {
       >
         <Button>Button Default</Button>
         <Button disabled>Button Disabled</Button>
-        <Button variant={ButtonVariants.business}>Button Business</Button>
-        <Button variant={ButtonVariants.business} disabled>
+        <Button variant={buttonVariants["primary-business"]}>
+          Button Business
+        </Button>
+        <Button variant={buttonVariants["primary-business"]} disabled>
           Button Business Disabled
         </Button>
-        <Button variant={ButtonVariants.secondary}>Button Secondary</Button>
-        <Button variant={ButtonVariants.secondary} disabled>
+        <Button variant={buttonVariants.secondary}>Button Secondary</Button>
+        <Button variant={buttonVariants.secondary} disabled>
           Button Secondary Disabled
         </Button>
-        <Button variant={ButtonVariants.secondaryError}>
-          Button Secondary Error
-        </Button>
-        <Button variant={ButtonVariants.secondaryError} disabled>
-          Button Secondary Error Disabled
-        </Button>
-        <Button variant={ButtonVariants.tertiary}>Button Tertiary</Button>
-        <Button variant={ButtonVariants.tertiary} disabled>
+
+        <Button variant={buttonVariants.tertiary}>Button Tertiary</Button>
+        <Button variant={buttonVariants.tertiary} disabled>
           Button Tertiary Disabled
         </Button>
-        <Button variant={ButtonVariants.ghost}>Button Ghost</Button>
+        <Button variant={buttonVariants.ghost}>Button Ghost</Button>
         <Button iconRight={<Svg src={arrowBack} />}>test</Button>
         <Button
-          variant={ButtonVariants.secondary}
+          variant={buttonVariants.secondary}
           iconRight={<Svg src={code} />}
         >
           With icon
         </Button>
         <Button
-          variant={ButtonVariants.tertiary}
+          variant={buttonVariants.tertiary}
           iconLeft={<Svg src={fireExtinguisher} />}
         >
           With icon
         </Button>
         <Button
-          variant={ButtonVariants.business}
+          variant={buttonVariants["primary-business"]}
           iconRight={<Svg src={biotech} />}
         >
           With icon
         </Button>
         <Button
-          variant={ButtonVariants.ghost}
+          variant={buttonVariants.ghost}
           iconLeft={<Svg src={accountBalance} />}
           iconRight={<Svg src={heartBroken} />}
         >

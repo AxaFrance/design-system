@@ -13,6 +13,15 @@
         "import": "./dist/index.js",
         "types": "./dist/index.d.ts"
       }
+    },
+    "./lf": {
+      "development": {
+        "import": "./src/indexLF.ts"
+      },
+      "default": {
+        "import": "./dist/indexLF.js",
+        "types": "./dist/indexLF.d.ts"
+      }
     }
   },
   "files": [
@@ -54,6 +63,7 @@
   },
   "dependencies": {
     "@axa-fr/design-system-apollo-css": "*",
+    "@axa-fr/design-system-look-and-feel-css": "*",
     "@fontsource/source-sans-pro": "^5.0.8",
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",
