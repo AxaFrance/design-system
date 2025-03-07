@@ -2,8 +2,8 @@ import arrowBack from "@material-symbols/svg-400/outlined/arrow_back.svg";
 import arrowFront from "@material-symbols/svg-400/outlined/arrow_forward.svg";
 
 import { type Args } from "storybook/internal/types";
-import { Button, buttonVariants, type ButtonVariants } from ".";
-import { Svg } from "../Svg";
+import { Button, buttonVariants, type ButtonVariants } from "./Button";
+import { Svg } from "../Svg/Svg";
 
 const ButtonBlock = ({
   variant,

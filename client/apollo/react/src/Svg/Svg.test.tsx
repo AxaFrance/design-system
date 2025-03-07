@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { Svg } from ".";
+import { Svg } from "./Svg";
 
 const mocks = vi.hoisted(() => {
   return {
