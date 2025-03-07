@@ -18,9 +18,9 @@ function getReadableFileSizeString(fileSizeInBytes: number) {
   let fileSizeInBytesCopy = fileSizeInBytes;
   const byteUnits = [" Ko", " Mo", " Go"];
   do {
-    fileSizeInBytesCopy /= 1024;
+    fileSizeInBytesCopy /= 1000;
     i += 1;
-  } while (fileSizeInBytesCopy > 1024);
+  } while (fileSizeInBytesCopy > 1000);
 
   return Math.max(fileSizeInBytesCopy, 0.1).toFixed(1) + byteUnits[i];
 }
@@ -31,13 +31,14 @@ type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   buttonLabel?: string;
   dropzoneDescription?: string;
   instructions?: string;
+  filesListLabel?: string;
   required?: boolean;
   globalError?: string;
   errors?: Array<{
     id?: string | undefined;
     message: string;
   }>;
-  files: Array<{
+  files?: Array<{
     id: string;
     name: string;
     size: number;
@@ -58,6 +59,7 @@ const FileUpload = ({
   buttonLabel,
   instructions,
   dropzoneDescription,
+  filesListLabel,
   required,
   files,
   errors,
@@ -118,80 +120,89 @@ const FileUpload = ({
         </Button>
       </div>
       {globalError && <InputError id={idError} message={globalError} />}
-      <small className="af-form__file-input-help">{instructions}</small>
+      {instructions && (
+        <small className="af-form__file-input-help">{instructions}</small>
+      )}
       <div className="custom-table-file af-file-table">
+        {filesListLabel && (
+          <div className="af-form__group--label af-form__files-list-label">
+            {filesListLabel}
+          </div>
+        )}
         <ul className="af-form__file-list">
-          {files.map(({ id: fileId, name, size, isLoading }) => {
-            const effectiveSize = getReadableFileSizeString(size);
+          {files &&
+            files.length !== 0 &&
+            files.map(({ id: fileId, name, size, isLoading }) => {
+              const effectiveSize = getReadableFileSizeString(size);
 
-            const isInError = errors
-              ? errors.some((fileError) => fileError.id === fileId)
-              : false;
+              const isInError = errors
+                ? errors.some((fileError) => fileError.id === fileId)
+                : false;
 
-            const errorMessage = errors?.find(
-              (fileError) => fileError.id === fileId,
-            )?.message;
+              const errorMessage = errors?.find(
+                (fileError) => fileError.id === fileId,
+              )?.message;
 
-            return (
-              <li key={fileId} className="af-form__file-line">
-                <div
-                  className={`af-form__file-line-container ${isInError ? "af-form__file-line-container--error" : ""}`}
-                >
-                  <div className="af-form__file-title">
-                    {getIcon(isInError, isLoading)}
-                    <div>
-                      <span className="af-form__file-name">{name}</span>
-                      <span className="af-form__file-size">
-                        {effectiveSize}
-                      </span>
+              return (
+                <li key={fileId} className="af-form__file-line">
+                  <div
+                    className={`af-form__file-line-container ${isInError ? "af-form__file-line-container--error" : ""}`}
+                  >
+                    <div className="af-form__file-title">
+                      {getIcon(isInError, isLoading)}
+                      <div>
+                        <span className="af-form__file-name">{name}</span>
+                        <span className="af-form__file-size">
+                          {effectiveSize}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="af-form__file-actions">
+                      {onView && (
+                        <Svg
+                          tabIndex={0}
+                          role="button"
+                          aria-label="Visualiser"
+                          onClick={() => onView(fileId)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              onView(fileId);
+                            }
+                          }}
+                          className="af-form__file-actions-icon"
+                          src={visibility}
+                        />
+                      )}
+                      {onDelete && (
+                        <Svg
+                          tabIndex={0}
+                          role="button"
+                          aria-label="Supprimer"
+                          onClick={() => onDelete(fileId)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              onDelete(fileId);
+                            }
+                          }}
+                          className="af-form__file-actions-icon"
+                          src={close}
+                        />
+                      )}
                     </div>
                   </div>
-                  <div className="af-form__file-actions">
-                    {onView && (
+                  {isInError && (
+                    <small className="af-form__file-error">
                       <Svg
-                        tabIndex={0}
-                        role="button"
-                        aria-label="Visualiser"
-                        onClick={() => onView(fileId)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            onView(fileId);
-                          }
-                        }}
-                        className="af-form__file-actions-icon"
-                        src={visibility}
+                        src={errorO}
+                        className="af-form__file-error-icon"
+                        width={18}
                       />
-                    )}
-                    {onDelete && (
-                      <Svg
-                        tabIndex={0}
-                        role="button"
-                        aria-label="Supprimer"
-                        onClick={() => onDelete(fileId)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            onDelete(fileId);
-                          }
-                        }}
-                        className="af-form__file-actions-icon"
-                        src={close}
-                      />
-                    )}
-                  </div>
-                </div>
-                {isInError && (
-                  <small className="af-form__file-error">
-                    <Svg
-                      src={errorO}
-                      className="af-form__file-error-icon"
-                      width={18}
-                    />
-                    {errorMessage}
-                  </small>
-                )}
-              </li>
-            );
-          })}
+                      {errorMessage}
+                    </small>
+                  )}
+                </li>
+              );
+            })}
         </ul>
       </div>
     </div>
