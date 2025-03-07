@@ -13,6 +13,7 @@ import { Variants } from "../../Button/Button";
 import { Svg } from "../../Svg";
 import { getComponentClassName } from "../../utilities";
 import { InputError } from "../InputError";
+import { getFieldContainerClassName } from "../core/getFieldContainerClassName";
 
 type Props = ComponentPropsWithRef<"input"> & {
   unit?: React.ReactNode;
@@ -51,6 +52,11 @@ const Text = forwardRef<HTMLInputElement, Props>(
       className,
       classModifier +
         (error || otherProps["aria-errormessage"] ? " error" : ""),
+    );
+
+    const fieldContainerClassName = getFieldContainerClassName(
+      "af-form__input-variant",
+      otherProps.value,
     );
 
     let inputId = useId();
@@ -101,7 +107,7 @@ const Text = forwardRef<HTMLInputElement, Props>(
           </div>
         )}
 
-        <div className="af-form__input-variant">
+        <div className={fieldContainerClassName}>
           <input
             id={inputId}
             className={componentClassName}

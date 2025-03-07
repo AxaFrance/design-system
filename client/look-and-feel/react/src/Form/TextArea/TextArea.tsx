@@ -9,6 +9,7 @@ import { getComponentClassName } from "../core";
 import { Button, Svg } from "../..";
 import { Variants } from "../../Button/Button";
 import { InputError } from "../InputError";
+import { getFieldContainerClassName } from "../core/getFieldContainerClassName";
 
 type Props = ComponentPropsWithRef<"textarea"> & {
   classModifier?: string;
@@ -37,7 +38,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
     inputRef,
   ) => {
     const componentClassName = getComponentClassName(
-      "af-form__input-textarea",
+      getFieldContainerClassName("af-form__input-textarea", otherProps.value),
       className,
       classModifier,
     );

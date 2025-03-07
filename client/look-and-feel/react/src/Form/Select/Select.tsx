@@ -2,6 +2,7 @@ import "@axa-fr/design-system-look-and-feel-css/dist/Form/Select/Select.scss";
 import { ComponentPropsWithRef, forwardRef, useId } from "react";
 import classNames from "classnames";
 import { InputError } from "../InputError";
+import { getFieldContainerClassName } from "../core/getFieldContainerClassName";
 
 type Props = ComponentPropsWithRef<"select"> & {
   id?: string;
@@ -21,7 +22,7 @@ const Select = forwardRef<HTMLSelectElement, Props>(
 
     const isShowingPlaceholder = otherProps.value === "";
     const classname = classNames(
-      "af-form__select-input",
+      getFieldContainerClassName("af-form__select-input", otherProps.value),
       errorLabel && "af-form__select-input--error",
       isShowingPlaceholder && "af-form__select-input-placeholder",
     );
