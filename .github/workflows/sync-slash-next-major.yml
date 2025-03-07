@@ -1,0 +1,43 @@
+name: Sync Slash Next Major
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  NEXT_MAJOR_BRANCH: slash-releases/2.0.0
+
+jobs:
+  sync-slash-next-major:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Checkout ${{ env.NEXT_MAJOR_BRANCH }}
+        run: git checkout -b ${{ env.NEXT_MAJOR_BRANCH }} origin/${{ env.NEXT_MAJOR_BRANCH }}
+
+      - name: Rebase main on ${{ env.NEXT_MAJOR_BRANCH }}
+        id: rebase
+        run: |
+          git rebase main || { echo "::error::The automatic rebase failed, please manually rebase the main branch into the ${{ env.NEXT_MAJOR_BRANCH }} branch."; exit 1; }
+
+      - name: Push changes
+        run: |
+          git push origin ${{ env.NEXT_MAJOR_BRANCH }} --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
