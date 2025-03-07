@@ -29,12 +29,22 @@ const Infos = ({ infos, className, classModifier }: InfosProps) => {
     <div className={componentClassName}>
       <i className="glyphicon glyphicon-info-sign" />
       <dl className={`${defaultClassName}__list`}>
-        {infos.map((info) => (
-          <Fragment key={`info-${generateId(info)}`}>
-            <dt className={`${defaultClassName}__word`}>{info.word}</dt>
-            <dd className={`${defaultClassName}__def`}>{info.definition}</dd>
-          </Fragment>
-        ))}
+        {infos.map((info) => {
+          const idTerm = info.id ?? `info-${generateId(info)}`;
+          return (
+            <Fragment key={idTerm}>
+              <dt id={idTerm} className={`${defaultClassName}__word`}>
+                {info.word}
+              </dt>
+              <dd
+                className={`${defaultClassName}__def`}
+                aria-labelledby={idTerm}
+              >
+                {info.definition}
+              </dd>
+            </Fragment>
+          );
+        })}
       </dl>
     </div>
   );
