@@ -1,9 +1,4 @@
-import {
-  Button,
-  ButtonVariants,
-  Header,
-  Svg,
-} from "@axa-fr/design-system-look-and-feel-react";
+import { Button, Header, Svg } from "@axa-fr/design-system-look-and-feel-react";
 import lock from "@material-symbols/svg-400/outlined/lock-fill.svg";
 import person from "@material-symbols/svg-400/outlined/person-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -86,14 +81,14 @@ export const HeaderWithNavBarAndRightItem: StoryObj<typeof Header> = {
       <Button
         key="Banking Space Button"
         iconLeft={<Svg src={lock} fill="#00008f" />}
-        variant={ButtonVariants.secondary}
+        variant="secondary"
       >
         Espace Banque
       </Button>,
       <Button
         key="Profile Button"
         iconLeft={<Svg src={person} fill="#00008f" />}
-        variant={ButtonVariants.ghost}
+        variant="ghost"
       >
         Mon Profil
       </Button>,
@@ -140,14 +135,14 @@ export const HeaderWithLinksAndRightItemAndPreviousLink: StoryObj<
       <Button
         key="Banking Space Button"
         iconLeft={<Svg src={lock} fill="#00008f" />}
-        variant={ButtonVariants.secondary}
+        variant="secondary"
       >
         Espace Banque
       </Button>,
       <Button
         key="Profile Button"
         iconLeft={<Svg src={person} fill="#00008f" />}
-        variant={ButtonVariants.ghost}
+        variant="ghost"
       >
         Mon Profil
       </Button>,
@@ -199,14 +194,14 @@ export const HeaderWithLinksAndRightItemAndPreviousLinkAndActiveLink: StoryObj<
       <Button
         key="Banking Space Button"
         iconLeft={<Svg src={lock} fill="#00008f" />}
-        variant={ButtonVariants.secondary}
+        variant="secondary"
       >
         Espace Banque
       </Button>,
       <Button
         key="Profile Button"
         iconLeft={<Svg src={person} fill="#00008f" />}
-        variant={ButtonVariants.ghost}
+        variant="ghost"
       >
         Mon Profil
       </Button>,

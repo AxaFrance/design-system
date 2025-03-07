@@ -5,10 +5,7 @@ export { Accordion } from "./Accordion";
 export { AccordionCore } from "./AccordionCore";
 export { Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
-export {
-  ButtonClient as Button,
-  Variants as ButtonVariants,
-} from "./Button/Button";
+export { Button, buttonVariants, type ButtonVariants } from "./Button/Button";
 export { Card } from "./Card";
 export { Divider } from "./Divider";
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox";

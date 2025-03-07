@@ -1,5 +1,3 @@
-import "@axa-fr/design-system-apollo-css/dist/Button/Button.scss";
-
 import type {
   ComponentPropsWithoutRef,
   PropsWithChildren,
@@ -33,11 +31,7 @@ export const Button = ({
   ...args
 }: PropsWithChildren<ButtonProps>) => (
   <button
-    className={[
-      "af-btn-client",
-      variant && `af-btn-client--${variant}`,
-      className,
-    ]
+    className={["af-btn-client", `af-btn-client--${variant}`, className]
       .filter(Boolean)
       .join(" ")}
     type="button"

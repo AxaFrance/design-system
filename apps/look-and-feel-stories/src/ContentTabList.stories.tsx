@@ -1,6 +1,5 @@
 import {
   Button,
-  ButtonVariants,
   ContentTabList,
   Svg,
 } from "@axa-fr/design-system-look-and-feel-react";
@@ -38,7 +37,7 @@ export const ContentTabListWithButtons: StoryObj<
             id: "download_button",
             component: (
               <Button
-                variant={ButtonVariants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={download} />}
                 onClick={fn()}
               >
@@ -57,7 +56,7 @@ export const ContentTabListWithButtons: StoryObj<
             id: "download_button",
             component: (
               <Button
-                variant={ButtonVariants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={download} />}
                 onClick={fn()}
               >
@@ -69,7 +68,7 @@ export const ContentTabListWithButtons: StoryObj<
             id: "display_button",
             component: (
               <Button
-                variant={ButtonVariants.ghost}
+                variant="ghost"
                 iconLeft={<Svg src={visibility} />}
                 onClick={fn()}
               >

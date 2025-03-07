@@ -2,7 +2,6 @@ import checkIcon from "@material-symbols/svg-400/outlined/check.svg";
 import closeIcon from "@material-symbols/svg-400/outlined/close.svg";
 import { useMemo, type ReactNode } from "react";
 import { Button, Svg } from "../..";
-import { Variants } from "../../Button/Button";
 import { getComponentClassName } from "../../utilities";
 
 type ContentItemDuoProps = {
@@ -63,7 +62,7 @@ export const ContentItemDuo = ({
       )}
       {buttonText && (
         <div className="af-content-item-duo__button">
-          <Button variant={Variants.ghost} onClick={onButtonClick}>
+          <Button variant="ghost" onClick={onButtonClick}>
             {buttonText}
           </Button>
         </div>

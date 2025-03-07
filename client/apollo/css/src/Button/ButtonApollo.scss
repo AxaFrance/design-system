@@ -2,6 +2,8 @@
 
 @use "../common/breakpoints" as breakpoints;
 
+@use "./ButtonCommon";
+
 .af-btn-client {
   --button-bg-color-default: var(--axa-blue-100);
   --button-text-color-default: var(--white);
@@ -11,25 +13,6 @@
     calc(16 / var(--font-size-base) * 1rem);
   --button-line-height: calc(24 / var(--font-size-base) * 1rem);
   --button-font-size: calc(16 / var(--font-size-base) * 1rem);
-
-  display: flex;
-  padding: var(--button-padding);
-  border: 0;
-  border-radius: var(--button-radius);
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  font-family: var(--font-family-base);
-  font-size: var(--button-font-size);
-  font-weight: 600;
-  line-height: var(--button-line-height);
-  color: var(--button-text-color-default);
-  background-color: var(--button-bg-color-default);
-  transition-duration: var(--transition-duration);
-  transition-property: width, height, border, color, background-color, outline,
-    box-shadow;
-  transition-timing-function: linear;
-  user-select: none;
 
   @media (width > #{breakpoints.$breakpoint-lg}) {
     --button-padding: calc(12 / var(--font-size-base) * 1rem)
@@ -49,9 +32,6 @@
   &:focus-visible,
   &:focus {
     --button-outline-color: var(--axa-blue-65);
-
-    outline: 2px solid var(--button-outline-color);
-    outline-offset: 3px;
   }
 
   &:disabled,
@@ -59,13 +39,6 @@
     --button-bg-color-default: var(--neutral-5);
     --button-text-color-default: var(--neutral-50);
     --button-shadow-color: var(--neutral-50);
-
-    pointer-events: none;
-  }
-
-  & > svg {
-    aspect-ratio: 1;
-    fill: currentcolor;
   }
 
   &--primary-business {
@@ -105,8 +78,6 @@
     --button-text-color-default: var(--axa-blue-100);
     --button-padding: 0;
 
-    gap: calc(4 / var(--font-size-base) * 1rem);
-
     &:active {
       --button-text-color-default: var(--axa-blue-80);
     }
@@ -116,8 +87,6 @@
     &:focus-visible {
       --button-text-color-default: var(--axa-blue-120);
       --button-bg-color-default: transparent;
-
-      text-decoration: underline;
     }
 
     &:disabled,
@@ -129,8 +98,6 @@
   &--secondary {
     --button-bg-color-default: var(--white);
     --button-text-color-default: var(--axa-blue-100);
-
-    box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
 
     &:active {
       --button-bg-color-default: var(--axa-blue-80);
@@ -151,8 +118,6 @@
     --button-bg-color-default: var(--axa-blue-100);
     --button-text-color-default: var(--white);
     --button-shadow-color: var(--white);
-
-    box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
 
     &:active {
       --button-bg-color-default: var(--neutral-5);
