@@ -18,7 +18,9 @@ export const SelectStory: Story = {
   render: ({ onChange, ...args }) => (
     <div style={{ width: 300 }}>
       <Select onChange={onChange} {...args}>
-        <option value="fun">For fun</option>
+        <option value="fun">
+          For funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+        </option>
         <option value="work">For work</option>
         <option value="drink">For drink</option>
       </Select>
