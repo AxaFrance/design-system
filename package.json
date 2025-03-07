@@ -15,7 +15,7 @@
     "build": "turbo build --filter=!./samples/vite",
     "build:slash": "turbo build --filter=./apps/slash-stories --filter=./apps/slash-stories-css",
     "build:look-and-feel": "turbo build --filter=./apps/look-and-feel-stories --filter=./apps/look-and-feel-stories-css",
-    "build:apollo": "turbo build --filter=./apps/apollo-stories --filter=./apps/apollo-stories-css",
+    "build:apollo": "turbo build --filter=./apps/apollo-stories",
     "lint": "turbo lint",
     "lint:slash": "turbo lint --filter=./slash/*",
     "lint:look-and-feel": "turbo lint --filter=./client/look-and-feel/*",
