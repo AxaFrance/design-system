@@ -146,5 +146,9 @@
       color: var(--color-btn-disabled-text);
       background-color: var(--color-gray-300);
     }
+
+    & > [aria-live] {
+      margin: unset;
+    }
   }
 }
