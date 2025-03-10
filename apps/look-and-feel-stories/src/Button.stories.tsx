@@ -97,7 +97,6 @@ export const Secondary: StoryObj<typeof Button> = {
     children: "Button Secondary",
     variant: buttonVariants.secondary,
     disabled: false,
-    disabled: false,
   },
 };
 
@@ -178,7 +177,7 @@ export const MultiExamples: StoryObj<typeof Button> = {
           With icon MULTI
         </Button>
         <Button
-          variant={ButtonVariants.primary}
+          variant="primary"
           iconLeft={<Svg src={accountBalance} />}
           loading
         >

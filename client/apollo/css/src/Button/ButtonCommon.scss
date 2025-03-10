@@ -31,6 +31,10 @@
   &:disabled,
   &[aria-disabled="true"] {
     pointer-events: none;
+
+    & > [aria-live] {
+      margin: unset;
+    }
   }
 
   & > svg {

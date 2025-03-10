@@ -7,9 +7,7 @@ import error from "@material-symbols/svg-400/outlined/error-fill.svg";
 import errorO from "@material-symbols/svg-400/outlined/error.svg";
 import plus from "@material-symbols/svg-400/outlined/add_circle-fill.svg";
 import classNames from "classnames";
-import { Svg } from "../../Svg";
-import { Loader } from "../../Loader";
-import { Button } from "../..";
+import { Loader, Svg, Button } from "@axa-fr/design-system-apollo-react/lf";
 import { InputError } from "../InputError";
 
 function getReadableFileSizeString(fileSizeInBytes: number) {

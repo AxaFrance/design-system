@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
+import userEvent from "@testing-library/user-event";
 import { Button, buttonVariants, type ButtonVariants } from "./ButtonCommon";
 
 describe("Button component", () => {
@@ -50,5 +51,25 @@ describe("Button component", () => {
     );
     const button = screen.getByTestId("custom-button");
     expect(button).toBeInTheDocument();
+  });
+
+  it("Should disable the button when disabled", () => {
+    render(<Button disabled>Disabled</Button>);
+    const button = screen.getByText("Disabled");
+    expect(button).toBeDisabled();
+  });
+
+  it("Should disable the button and show loader when loading", () => {
+    render(<Button loading>Loading</Button>);
+    const button = screen.getByText("Loading");
+    expect(button).toBeDisabled();
+    expect(screen.getByLabelText("Chargement en cours")).toBeInTheDocument();
+  });
+
+  it("Should calls onClick handler when clicked", async () => {
+    const handleClick = vi.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    await userEvent.click(screen.getByText("Click me"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });

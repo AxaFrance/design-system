@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Button/Button.scss";
+import "@axa-fr/design-system-apollo-css/dist/Button/ButtonLF.scss";
 import logo from "@axa-fr/design-system-look-and-feel-css/logo-axa.svg";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/Header.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/NavBar/NavBar.scss";

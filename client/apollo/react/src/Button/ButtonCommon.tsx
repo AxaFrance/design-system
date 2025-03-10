@@ -4,6 +4,8 @@ import type {
   ReactNode,
 } from "react";
 
+import { Loader } from "../Loader/Loader";
+
 export const buttonVariants = {
   primary: "primary",
   "primary-business": "primary-business",
@@ -20,6 +22,7 @@ type ButtonProps = {
   variant?: ButtonVariants;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
+  loading?: boolean;
 } & ComponentPropsWithoutRef<"button">;
 
 export const Button = ({
@@ -28,17 +31,21 @@ export const Button = ({
   variant = "primary",
   iconLeft,
   iconRight,
+  disabled,
+  loading,
   ...args
 }: PropsWithChildren<ButtonProps>) => (
   <button
     className={["af-btn-client", `af-btn-client--${variant}`, className]
       .filter(Boolean)
       .join(" ")}
+    disabled={disabled || loading}
     type="button"
     {...args}
   >
     {iconLeft}
     {children}
     {iconRight}
+    {loading && <Loader size={24} border={3} variant="gray" />}
   </button>
 );

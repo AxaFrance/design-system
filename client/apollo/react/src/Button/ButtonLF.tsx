@@ -1,3 +1,3 @@
 import "@axa-fr/design-system-apollo-css/dist/Button/ButtonLF.scss";
 
-export { Button } from "./ButtonCommon";
+export { Button, buttonVariants, type ButtonVariants } from "./ButtonCommon";
