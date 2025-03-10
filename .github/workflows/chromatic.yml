@@ -50,3 +50,11 @@ jobs:
           buildScriptName: "build"
           workingDir: "apps/look-and-feel-stories-css"
           onlyChanged: true
+      - uses: chromaui/action@latest
+        name: Run Chromatic for design-system-apollo-react
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
+          zip: true
+          buildScriptName: "build"
+          workingDir: "apps/apollo-stories"
+          onlyChanged: true
