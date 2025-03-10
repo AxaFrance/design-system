@@ -10,10 +10,8 @@
     "src/**/*.stories.tsx",
     "src/**/*.stories.ts"
   ],
-  "include": [
-    "src/**/*",
-  ],
+  "include": ["src/**/*"],
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": "./src"
   }
 }
