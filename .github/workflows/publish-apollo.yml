@@ -51,7 +51,7 @@ jobs:
           cd client/apollo/react
           jq '.peerDependencies["@axa-fr/design-system-apollo-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
       - name: fix package.json
-        run: node scripts/fix-package.js apollo
+        run: node scripts/pre-publish.js apollo
       - run: |
           if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
             npm publish -w client/apollo/css -w client/apollo/react --access public --tag latest;
