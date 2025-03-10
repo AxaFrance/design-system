@@ -50,6 +50,8 @@ jobs:
         run: |
           cd slash/react
           jq '.peerDependencies["@axa-fr/design-system-slash-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
+      - name: fix package.json
+        run: node scripts/fix-package.js slash
       - run: |
           if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
             npm publish -w slash/css -w slash/react --access public --tag latest;
