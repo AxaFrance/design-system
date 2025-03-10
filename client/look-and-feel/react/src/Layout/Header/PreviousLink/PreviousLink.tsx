@@ -1,22 +1,13 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/PreviousLink/PreviousLink.scss";
 import arrowBack from "@material-symbols/svg-400/outlined/arrow_back.svg";
 import React, {
-  ComponentPropsWithoutRef,
   isValidElement,
   PropsWithChildren,
   ReactElement,
   useMemo,
 } from "react";
 import { Svg } from "../../../Svg";
-
-type ChildrenProps = PropsWithChildren<{
-  className?: string;
-  onClick?: () => void;
-}>;
-
-type PreviousLinkProps = {
-  handleClick: () => void;
-} & ComponentPropsWithoutRef<"div">;
+import { ChildrenProps, PreviousLinkProps } from "./types";
 
 const PreviousLink = ({
   handleClick,

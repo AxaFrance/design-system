@@ -1,56 +1,44 @@
-import {
-  type ComponentPropsWithoutRef,
-  isValidElement,
-  type PropsWithChildren,
-  useMemo,
-  type ReactElement,
-  type HTMLAttributes,
-  type Dispatch,
-  type SetStateAction,
-  Children,
-  cloneElement,
-} from "react";
+import { useCallback, type PropsWithChildren } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/NavBar/NavBar.scss";
+import classNames from "classnames";
+import { NavBarProps } from "./types";
 
-type NavBarProps = {
-  activeLink?: number;
-  setActiveLink: Dispatch<SetStateAction<number | undefined>>;
-} & ComponentPropsWithoutRef<"nav">;
-
-const NavBar = ({
+export const NavBar = ({
   activeLink,
-  children,
+  links,
   setActiveLink,
   ...otherProps
 }: PropsWithChildren<NavBarProps>) => {
-  const validChildren = useMemo<ReactElement[]>(
-    () =>
-      (
-        Children.map(children, (child) => isValidElement(child) && child) ?? []
-      ).filter((c) => Boolean(c)),
-    [children],
+  const handleEvent = useCallback(
+    (index: number) => () => setActiveLink(index),
+    [setActiveLink],
   );
+
+  if (!links || links.length === 0) {
+    return null;
+  }
 
   return (
     <nav role="navigation" aria-label="Menu principal" {...otherProps}>
       <ul className="af-navbar-container" role="menubar">
-        {Children.map(validChildren, (child, index) => (
-          <li className="af-navbar-item" role="none">
-            {cloneElement<HTMLAttributes<HTMLElement>>(
-              child as ReactElement<HTMLAttributes<HTMLElement>>,
-              {
-                className:
-                  `af-navbar-item__link ${index === activeLink ? "af-navbar-item__link--active" : ""}`.trim(),
-                onClick: () => setActiveLink(index),
-                onFocus: () => setActiveLink(index),
-                role: "menuitem",
-              },
-            )}
-          </li>
-        ))}
+        {links?.map(
+          ({ props: { children, id, ...otherLinkProps }, Wrapper }, index) => (
+            <li key={id} className="af-navbar-item" role="none">
+              <Wrapper
+                {...otherLinkProps}
+                className={classNames("af-navbar-item__link", {
+                  "af-navbar-item__link--active": index === activeLink,
+                })}
+                role="menuitem"
+                onClick={handleEvent(index)}
+                onFocus={handleEvent(index)}
+              >
+                {children}
+              </Wrapper>
+            </li>
+          ),
+        )}
       </ul>
     </nav>
   );
 };
-
-export { NavBar };
