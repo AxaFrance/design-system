@@ -51,7 +51,7 @@ jobs:
           cd client/look-and-feel/react
           jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
       - name: fix package.json
-        run: node scripts/fix-package.js look-and-feel
+        run: node scripts/pre-publish look-and-feel
       - run: |
           if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
             npm publish -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag latest;
