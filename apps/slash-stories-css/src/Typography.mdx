@@ -1,0 +1,232 @@
+import { Meta, Canvas, Controls } from "@storybook/addon-docs";
+import * as TypographyStories from "./Typography.stories";
+
+<Meta of={TypographyStories} />
+
+## Typography
+
+### Prerequisite
+
+To use the typography, you must install the font "Source Sans Pro" in your project.
+
+#### Install
+
+```bash
+npm install @fontsource/source-sans-pro
+```
+
+#### Use
+
+```js
+import "@fontsource/source-sans-pro/400.css";
+import "@fontsource/source-sans-pro/600.css";
+import "@fontsource/source-sans-pro/700.css";
+```
+
+### Import
+
+#### Typography only
+
+```js
+import "@axa-fr/design-system-slash-react/dist/Typography/Typography.scss"; // or
+import "@axa-fr/design-system-slash-react/dist/Typography/Typography.css";
+```
+
+#### Global
+
+```js
+import "@axa-fr/design-system-slash-react/dist/slash.scss"; // or
+import "@axa-fr/design-system-slash-react/dist/slash.css";
+```
+
+### Use
+
+```html
+<h1 class="af-typography--h1">Title</h1>
+<p class="af-typography--text">Content</p>
+```
+
+## Playground
+
+<Canvas of={TypographyStories.Typography} />
+<Controls of={TypographyStories.Typography} />
+
+## Fonts style
+
+> All font styles look the same whether on desktop or tablet.
+
+**font-family:** Source sans pro
+
+### Title
+
+#### H1
+
+- **class:** af-typography--h1
+- **font-size:** 22px
+- **line-height:** 26px
+- **font-weight:** semibold
+- **use case:** blue banner "page title"
+
+<Canvas of={TypographyStories.H1} sourceState="shown" />
+
+#### H2
+
+- **class:** af-typography--h2
+- **font-size:** 24px
+- **line-height:** 28px
+- **font-weight:** semibold
+- **use case:** title H2, title switch block
+
+<Canvas of={TypographyStories.H2} sourceState="shown" />
+
+#### H3
+
+- **class:** af-typography--h3
+- **font-size:** 20px
+- **line-height:** 24px
+- **font-weight:** semibold
+- **use case:** title H3
+
+<Canvas of={TypographyStories.H3} sourceState="shown" />
+
+#### H4
+
+- **class:** af-typography--h4
+- **font-size:** 18px
+- **line-height:** 22px
+- **font-weight:** semibold
+- **use case:** title H4
+
+<Canvas of={TypographyStories.H4} sourceState="shown" />
+
+### Text & Label
+
+#### text
+
+- **class:** af-typography--text
+- **font-size:** 16px
+- **line-height:** 20px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.Text} sourceState="shown" />
+
+#### label
+
+- **class:** af-typography--label
+- **font-size:** 16px
+- **line-height:** 20px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.Label} sourceState="shown" />
+
+#### text static
+
+- **class:** af-typography--text-static
+- **font-size:** 16px
+- **line-height:** 20px
+- **font-weight:** bold
+
+<Canvas of={TypographyStories.TextStatic} sourceState="shown" />
+
+#### label restitution
+
+- **class:** af-typography--label-restitution
+- **font-size:** 15px
+- **line-height:** 20px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.LabelRestitution} sourceState="shown" />
+
+#### value restitution
+
+- **class:** af-typography--value-restitution
+- **font-size:** 15px
+- **line-height:** 20px
+- **font-weight:** bold
+
+<Canvas of={TypographyStories.ValueRestitution} sourceState="shown" />
+
+### Button & Link
+
+#### button (CTA)
+
+- **class:** af-typography--button
+- **font-size:** 16px
+- **line-height:** 20px
+- **font-weight:** bold
+
+<Canvas of={TypographyStories.Button} sourceState="shown" />
+
+#### link
+
+- **class:** af-typography--link
+- **font-size:** 16px
+- **line-height:** 20px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.Link} sourceState="shown" />
+
+### Other items
+
+#### tag
+
+- **class:** af-typography--tag
+- **font-size:** 12px
+- **line-height:** 16px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.Tag} sourceState="shown" />
+
+#### format error form
+
+- **class:** af-typography--form-error
+- **font-size:** 13px
+- **line-height:** 16px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.FormError} sourceState="shown" />
+
+#### application name
+
+- **class:** af-typography--app-name
+- **font-size:** 20px
+- **line-height:** 24px
+- **font-weight:** bold
+
+<Canvas of={TypographyStories.AppName} sourceState="shown" />
+
+#### application subtitle
+
+- **class:** af-typography--app-subtitle
+- **font-size:** 20px
+- **line-height:** 24px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.AppSubtitle} sourceState="shown" />
+
+#### user
+
+- **class:** af-typography--user
+- **font-size:** 16px
+- **line-height:** 20px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.User} sourceState="shown" />
+
+#### copyright
+
+- **class:** af-typography--copyright
+- **font-size:** 16px
+- **line-height:** 20px
+- **font-weight:** regular
+
+<Canvas of={TypographyStories.Copyright} sourceState="shown" />
+
+#### step train
+
+- **class:** af-typography--step-train
+- **font-size:** 18px
+- **line-height:** 22px
+- **font-weight:** bold
+
+<Canvas of={TypographyStories.StepTrain} sourceState="shown" />
