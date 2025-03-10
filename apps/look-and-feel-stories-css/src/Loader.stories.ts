@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Loader/Loader.scss";
+import "@axa-fr/design-system-apollo-css/dist/Loader/Loader.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 
 const meta: Meta = {

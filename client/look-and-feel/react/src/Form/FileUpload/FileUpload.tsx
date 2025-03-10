@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { ComponentPropsWithRef, useId } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/FileUpload/FileUpload.scss";
 import visibility from "@material-symbols/svg-400/outlined/visibility-fill.svg";
@@ -7,10 +8,7 @@ import error from "@material-symbols/svg-400/outlined/error-fill.svg";
 import errorO from "@material-symbols/svg-400/outlined/error.svg";
 import plus from "@material-symbols/svg-400/outlined/add_circle-fill.svg";
 import classNames from "classnames";
-import { Svg } from "../../Svg";
-import { Loader } from "../../Loader";
-import { Button } from "../..";
-import { Variants } from "../../Button/Button";
+import { Loader, Svg, Button } from "@axa-fr/design-system-apollo-react/lf";
 import { InputError } from "../InputError";
 
 function getReadableFileSizeString(fileSizeInBytes: number) {
@@ -112,7 +110,7 @@ const FileUpload = ({
           </div>
         )}
         <Button
-          variant={Variants.tertiary}
+          variant="tertiary"
           onClick={() => document.getElementById(id)?.click()}
           iconLeft={<Svg src={plus} className="af-form__file-input-icon" />}
         >
