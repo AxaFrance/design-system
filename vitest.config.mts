@@ -4,7 +4,7 @@ import { defineConfig } from "vitest/config";
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  const env = loadEnv(mode, process.cwd(), "");
 
   return {
     test: {
@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => {
         provider: "v8",
         include: [
           "client/look-and-feel/react/src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
+          "client/apollo/react/src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
           "slash/react/src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
         ],
         exclude: [
@@ -30,5 +31,5 @@ export default defineConfig(({ mode }) => {
         ],
       },
     },
-  }
+  };
 });
