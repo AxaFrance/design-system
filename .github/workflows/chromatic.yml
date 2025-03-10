@@ -53,7 +53,7 @@ jobs:
       - uses: chromaui/action@latest
         name: Run Chromatic for design-system-apollo-react
         with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_APOLLO_REACT }}
           zip: true
           buildScriptName: "build"
           workingDir: "apps/apollo-stories"
