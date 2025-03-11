@@ -69,6 +69,10 @@
     "classnames": "^2.5.1",
     "dompurify": "^3.1.5"
   },
+  "devDependencies": {
+    "@axa-fr/design-system-apollo-css": "*",
+    "@axa-fr/design-system-look-and-feel-css": "*"
+  },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
     "*.(ts|tsx)": "tsc-files --noEmit",
