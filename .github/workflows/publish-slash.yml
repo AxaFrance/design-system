@@ -44,12 +44,6 @@ jobs:
       - run:
           npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w slash/css
           -w slash/react
-      - name:
-          Set to react package the @axa-fr/design-system-slash-css dependency
-          version
-        run: |
-          cd slash/react
-          jq '.peerDependencies["@axa-fr/design-system-slash-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
       - name: fix package.json
         run: node scripts/pre-publish.js slash
       - run: |

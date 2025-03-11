@@ -58,42 +58,16 @@ jobs:
           client/apollo/css -w client/apollo/react -w
           client/look-and-feel/css -w client/look-and-feel/react
 
-      - name:
-          Set to react package the @axa-fr/design-system-apollo-css
-          dependency version
+      - name: Update package.json
         run: |
-          cd client/apollo/react
-          jq '.peerDependencies["@axa-fr/design-system-apollo-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
-      - name:
-          Set to react package the @axa-fr/design-system-look-and-feel-css
-          dependency version
-        run: |
-          cd client/look-and-feel/react
-          jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
-      
+          node scripts/pre-publish.js client
 
-      - name: fix package.json
-        run: |
-          echo "Fixing package.json apollo"
-          node scripts/pre-publish.js apollo
-          echo "Fixing package.json look-and-feel"
-          node scripts/pre-publish look-and-feel
-
-      - name: Publish apollo packages
+      - name: Publish packages
         run: |
           if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
-            npm publish -w client/apollo/css -w client/apollo/react --access public --tag latest;
+            npm publish -w client/apollo/css -w client/apollo/react -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag latest;
           else
-            npm publish -w client/apollo/css -w client/apollo/react --access public --tag next;
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Publish look-and-feel packages
-        run: |
-          if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
-            npm publish -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag latest;
-          else
-            npm publish -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag next;
+            npm publish -w client/apollo/css -w client/apollo/react -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag next;
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
