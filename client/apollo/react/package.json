@@ -67,8 +67,7 @@
     "@fontsource/source-sans-pro": "^5.0.8",
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",
-    "dompurify": "^3.1.5",
-    "rc-slider": "^11.1.7"
+    "dompurify": "^3.1.5"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",

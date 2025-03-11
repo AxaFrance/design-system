@@ -64,5 +64,8 @@
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "dependencies": {
+    "rc-slider": "^11.1.7"
   }
 }
