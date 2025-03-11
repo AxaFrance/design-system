@@ -1,11 +1,11 @@
 mode: ContinuousDeployment
-tag-prefix: "look-and-feel/"
+tag-prefix: "client/"
 next-version: 1.0.0
 commit-message-incrementing: Disabled
 branches:
   release:
     tag: RC
-    regex: ^releases?-look-and-feel[/-](?<BranchName>.+)
+    regex: ^releases?-client[/-](?<BranchName>.+)
     commit-message-incrementing: Disabled
     source-branches:
       - main
