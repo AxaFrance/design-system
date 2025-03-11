@@ -1,0 +1,158 @@
+@use "../common/breakpoints" as breakpoints;
+
+@use "./ButtonCommon";
+
+.af-btn-client {
+  --button-bg-color-default: var(--color-axa);
+  --button-text-color-default: var(--color-white);
+  --button-radius: var(--radius-8);
+  --button-shadow-color: var(--color-axa);
+  --button-padding: calc(16 / var(--font-size-base) * 1rem)
+    calc(61.5 / var(--font-size-base) * 1rem);
+  --button-line-height: calc(20 / var(--font-size-base) * 1rem);
+  --button-font-size: calc(16 / var(--font-size-base) * 1rem);
+
+  @media (width > #{breakpoints.$breakpoint-lg}) {
+    --button-line-height: calc(22.5 / var(--font-size-base) * 1rem);
+    --button-font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+
+  &:hover {
+    --button-bg-color-default: var(--color-blue-1);
+  }
+
+  &:active,
+  &:focus,
+  &:focus-visible {
+    --button-bg-color-default: var(--color-btn-light);
+  }
+
+  &:focus,
+  &:focus-visible {
+    --button-outline-color: var(--color-blue-3);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    --button-bg-color-default: var(--color-gray-300);
+    --button-text-color-default: var(--color-gray-500);
+    --button-shadow-color: var(--color-gray-500);
+  }
+
+  &--primary-business {
+    --button-bg-color-default: var(--color-btn-business);
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color-default: var(--color-btn-business-light);
+    }
+
+    &:hover {
+      --button-bg-color-default: var(--color-btn-business-dark);
+    }
+  }
+
+  &--primary-inverse {
+    --button-text-color-default: var(--color-axa);
+    --button-bg-color-default: var(--color-white);
+
+    &:active {
+      --button-bg-color-default: var(--color-white);
+      --button-text-color-default: var(--color-btn-business-light);
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color-default: var(--color-white);
+      --button-text-color-default: var(--color-blue-1);
+    }
+  }
+
+  &--ghost {
+    --button-text-color-default: var(--color-axa);
+    --button-bg-color-default: transparent;
+    --button-padding: 0;
+
+    @media (width > #{breakpoints.$breakpoint-lg}) {
+      --button-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+
+    &:active {
+      --button-text-color-default: var(--color-btn-light);
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-text-color-default: var(--color-blue-1);
+      --button-bg-color-default: transparent;
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      --button-bg-color-default: transparent;
+    }
+  }
+
+  &--secondary {
+    --button-bg-color-default: var(--color-white);
+    --button-text-color-default: var(--color-axa);
+    --button-shadow-color: var(--color-axa);
+
+    box-shadow: 0 0 0 1px var(--button-shadow-color) inset;
+
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:active {
+      --button-bg-color-default: var(--color-white);
+      --button-text-color-default: var(--color-blue-1);
+
+      box-shadow: 0 0 0 2px var(--color-blue-1) inset;
+    }
+
+    &:active {
+      --button-bg-color-default: var(--color-blue-2);
+    }
+  }
+
+  &--secondary-inverse {
+    --button-bg-color-default: var(--color-axa);
+    --button-text-color-default: var(--color-white);
+    --button-shadow-color: var(--color-white);
+
+    box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
+
+    &:active {
+      --button-bg-color-default: var(--color-gray-200);
+      --button-text-color-default: var(--color-btn-light);
+      --button-shadow-color: var(--color-gray-200);
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color-default: var(--color-gray-400);
+      --button-text-color-default: var(--color-blue-1);
+      --button-shadow-color: var(--color-gray-400);
+    }
+  }
+
+  &--tertiary {
+    --button-bg-color-default: var(--color-btn-tertiary-bg);
+    --button-text-color-default: var(--color-axa);
+
+    &:hover {
+      --button-bg-color-default: var(--color-btn-tertiary-bg-darker);
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+      --button-bg-color-default: var(--color-btn-tertiary-bg-lighter);
+      --button-text-color-default: var(--color-axa);
+    }
+  }
+}

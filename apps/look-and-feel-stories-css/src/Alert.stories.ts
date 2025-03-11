@@ -1,5 +1,5 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Alert/Alert.scss";
-import "@axa-fr/design-system-look-and-feel-css/dist/Button/Button.scss";
+import "@axa-fr/design-system-apollo-css/dist/Button/ButtonLF.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Link/Link.scss";
 import type { Args, Meta, StoryObj } from "@storybook/html";
 

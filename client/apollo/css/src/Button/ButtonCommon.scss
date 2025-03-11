@@ -1,0 +1,62 @@
+/* Apollo first and mobile first approch */
+
+@use "../common/breakpoints" as breakpoints;
+
+.af-btn-client {
+  display: flex;
+  padding: var(--button-padding);
+  border: 0;
+  border-radius: var(--button-radius);
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-family-base);
+  font-size: var(--button-font-size);
+  font-weight: 600;
+  line-height: var(--button-line-height);
+  color: var(--button-text-color-default);
+  background-color: var(--button-bg-color-default);
+  transition-duration: var(--transition-duration);
+  transition-property: width, height, border, color, background-color, outline,
+    box-shadow;
+  transition-timing-function: linear;
+  user-select: none;
+
+  &:focus-visible,
+  &:focus {
+    outline: 2px solid var(--button-outline-color);
+    outline-offset: 3px;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    pointer-events: none;
+
+    & > [aria-live] {
+      margin: unset;
+    }
+  }
+
+  & > svg {
+    aspect-ratio: 1;
+    fill: currentcolor;
+  }
+
+  &--ghost {
+    gap: calc(4 / var(--font-size-base) * 1rem);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+
+  &--secondary {
+    box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
+  }
+
+  &--secondary-inverse {
+    box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
+  }
+}

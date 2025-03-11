@@ -21,6 +21,10 @@
     border: 2px solid var(--color-red-700);
   }
 
+  &:not(:empty, :hover, :focus, :active) {
+    border: 1px solid var(--color-axa);
+  }
+
   &:enabled {
     &:focus,
     &:active {

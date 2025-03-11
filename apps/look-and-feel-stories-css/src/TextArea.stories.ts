@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Button/Button.scss";
+import "@axa-fr/design-system-apollo-css/dist/Button/ButtonLF.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/InputError/InputError.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/TextArea/TextArea.scss";
 import type { Args, Meta, StoryObj } from "@storybook/html";

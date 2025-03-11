@@ -137,5 +137,11 @@
       border: 1px solid var(--color-red-700);
       box-shadow: 0 0 0 1px var(--color-red-700) inset;
     }
+
+    &:has(input:not([value=""], [class*="--error"])) {
+      &:not(:hover, :focus, :active) {
+        border: 1px solid var(--color-axa);
+      }
+    }
   }
 }

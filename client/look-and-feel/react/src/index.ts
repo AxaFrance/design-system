@@ -5,10 +5,7 @@ export { Accordion } from "./Accordion";
 export { AccordionCore } from "./AccordionCore";
 export { Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
-export {
-  ButtonClient as Button,
-  Variants as ButtonVariants,
-} from "./Button/Button";
+export { Button, buttonVariants, type ButtonVariants } from "./Button/Button";
 export { Card } from "./Card";
 export { Divider } from "./Divider";
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox";
@@ -30,7 +27,7 @@ export { ClickItem, ClickList, createClickItemParent } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabItem, ContentTabList } from "./List/ContentTabList";
-export { Loader } from "./Loader";
+export { Loader } from "./Loader/Loader";
 export {
   Modal,
   ModalCore,

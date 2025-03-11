@@ -10,13 +10,16 @@
   "scripts": {
     "dev": "turbo dev --filter=./apps/*",
     "dev:look-and-feel": "turbo dev --filter=@axa-fr/look-and-feel-stories-css --filter=@axa-fr/look-and-feel-stories",
+    "dev:apollo": "turbo dev --filter=@axa-fr/apollo-stories",
     "dev:slash": "turbo dev --filter=@axa-fr/slash-stories-css --filter=@axa-fr/slash-stories",
     "build": "turbo build --filter=!./samples/vite",
     "build:slash": "turbo build --filter=./apps/slash-stories --filter=./apps/slash-stories-css",
     "build:look-and-feel": "turbo build --filter=./apps/look-and-feel-stories --filter=./apps/look-and-feel-stories-css",
+    "build:apollo": "turbo build --filter=./apps/apollo-stories",
     "lint": "turbo lint",
     "lint:slash": "turbo lint --filter=./slash/*",
     "lint:look-and-feel": "turbo lint --filter=./client/look-and-feel/*",
+    "lint:apollo": "turbo lint --filter=./client/apollo/*",
     "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky",
     "test": "vitest --coverage"
@@ -30,6 +33,8 @@
   "workspaces": [
     "slash/css",
     "slash/react",
+    "client/apollo/css",
+    "client/apollo/react",
     "client/look-and-feel/css",
     "client/look-and-feel/react",
     "samples/vite",
@@ -45,6 +50,7 @@
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.25.0",
     "browserslist": "^4.23.3",
+    "commander": "^13.1.0",
     "copyfiles": "^2.4.1",
     "cssnano": "^7.0.3",
     "eslint": "^8.57.0",

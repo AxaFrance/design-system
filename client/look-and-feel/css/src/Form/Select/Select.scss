@@ -16,8 +16,11 @@
     width: 100%;
     margin-bottom: 0.5rem;
     padding: 1rem;
+    padding-right: 3rem;
     border: 1px solid var(--color-gray);
     border-radius: var(--default-border-radius);
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: var(--color-gray-900);
     background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
       no-repeat right 1rem center / 1.5rem 1.5rem;
@@ -73,6 +76,10 @@
         border-color: var(--color-red-700);
         box-shadow: 0 0 0 1px var(--color-red-700) inset;
       }
+    }
+
+    &:not(&--error):has(option:checked:not([value=""])) {
+      border: 1px solid var(--color-axa);
     }
   }
 }
