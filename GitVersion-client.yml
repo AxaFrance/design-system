@@ -3,6 +3,9 @@ tag-prefix: "client/"
 next-version: 1.0.0
 commit-message-incrementing: Disabled
 branches:
+  main:
+    tag: 'alpha'
+    mode: ContinuousDeployment
   release:
     tag: RC
     regex: ^releases?-client[/-](?<BranchName>.+)

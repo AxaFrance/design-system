@@ -7,8 +7,7 @@ const projectRoot = resolve(__dirname, '..');
 
 const dsPackages = {
   slash: resolve(projectRoot, 'slash'),
-  apollo: resolve(projectRoot, 'client/apollo'),
-  "look-and-feel": resolve(projectRoot, 'client/look-and-feel'),
+  client: resolve(projectRoot, 'client'),
 }
 
 let dsName = '';
@@ -21,7 +20,11 @@ cli
   })
   .parse(process.argv);
 
-['css', 'react'].forEach((packageType) => {
+const packages = dsName === 'client'
+  ? ['apollo/css', 'apollo/react', 'look-and-feel/css', 'look-and-feel/react']
+  : ['css', 'react'];
+
+packages.forEach((packageType) => {
   const packageJsonPath = resolve(dsPackages[dsName], packageType, 'package.json');
   const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
 
@@ -36,6 +39,11 @@ cli
   })
 
   packageJson.exports = packageExports;
+
+  if (packageType.includes('react')) {
+    const cssPackage = packageJson.name.replace('-react', '-css');
+    packageJson.peerDependencies[cssPackage] = packageJson.version;
+  }
 
   writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), { encoding: 'utf-8' });
 });
