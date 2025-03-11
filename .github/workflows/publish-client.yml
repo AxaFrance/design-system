@@ -1,9 +1,9 @@
-name: Publish look and feel prerelease
+name: Publish Client
 
 on:
   push:
     branches:
-      - "releases-look-and-feel/*"
+      - "releases-client/*"
       - main
   workflow_dispatch:
 
@@ -19,40 +19,77 @@ jobs:
       version: ${{ steps.gitversion.outputs.fullSemVer }}
       isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "*" # Use the LTS Node.js version
           cache: "npm"
           registry-url: "https://registry.npmjs.org"
+
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v3.0.0
         with:
           versionSpec: "5.x"
+
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v3.0.0
         with:
           useConfigFile: true
-          configFilePath: "GitVersion-look-and-feel.yml"
-      - run: npm run package:check
-      - run: npm ci
-      - run: npm run build:look-and-feel
+          configFilePath: "GitVersion-client.yml"
+
+      - name: Check package
+        run: npm run package:check
+      - name: Install package
+        run: npm ci
+
+      - name: build
+        run: |
+          npm run build:apollo
+          npm run build:look-and-feel
+
       - run:
           npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
+          client/apollo/css -w client/apollo/react -w
           client/look-and-feel/css -w client/look-and-feel/react
+
+      - name:
+          Set to react package the @axa-fr/design-system-apollo-css
+          dependency version
+        run: |
+          cd client/apollo/react
+          jq '.peerDependencies["@axa-fr/design-system-apollo-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
       - name:
           Set to react package the @axa-fr/design-system-look-and-feel-css
           dependency version
         run: |
           cd client/look-and-feel/react
           jq '.peerDependencies["@axa-fr/design-system-look-and-feel-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' package.json > temp.json && mv temp.json package.json
+      
+
       - name: fix package.json
-        run: node scripts/pre-publish look-and-feel
-      - run: |
+        run: |
+          echo "Fixing package.json apollo"
+          node scripts/pre-publish.js apollo
+          echo "Fixing package.json look-and-feel"
+          node scripts/pre-publish look-and-feel
+
+      - name: Publish apollo packages
+        run: |
+          if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
+            npm publish -w client/apollo/css -w client/apollo/react --access public --tag latest;
+          else
+            npm publish -w client/apollo/css -w client/apollo/react --access public --tag next;
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish look-and-feel packages
+        run: |
           if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
             npm publish -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag latest;
           else
@@ -60,12 +97,17 @@ jobs:
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: create artifact folder
-        run: mkdir -p artifact/css & mkdir -p artifact/react
+        run: |
+          mkdir -p artifact/apollo/react
+          mkdir -p artifact/look-and-feel/css
+          mkdir -p artifact/look-and-feel/react
       - name: move storybooks to artifact folders
-        run:
-          cp -R apps/look-and-feel-stories-css/storybook-static/* artifact/css &
-          cp -R apps/look-and-feel-stories/storybook-static/* artifact/react
+        run: |
+          cp -R apps/apollo-stories/storybook-static/* artifact/apollo/react
+          cp -R apps/look-and-feel-stories-css/storybook-static/* artifact/look-and-feel/css
+          cp -R apps/look-and-feel-stories/storybook-static/* artifact/look-and-feel/react
       - uses: actions/upload-artifact@v4
         with:
           name: storybooks
@@ -83,28 +125,47 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: storybooks
-      - name: Upload the latest react storybook
+
+      - name: Upload the latest apollo react storybook
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./react
+          publish_dir: ./apollo/react
+          destination_dir: apollo/react/latest
+
+      - name: Upload the apollo react storybook to its version folder
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apollo/react
+          destination_dir:
+            apollo/react/${{ needs.build.outputs.version }}
+
+      - name: Upload the latest look-and-feel react storybook
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./look-and-feel/react
           destination_dir: look-and-feel/react/latest
-      - name: Upload the react storybook to its version folder
+
+      - name: Upload the look-and-feel react storybook to its version folder
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./react
+          publish_dir: ./look-and-feel/react
           destination_dir:
             look-and-feel/react/${{ needs.build.outputs.version }}
-      - name: Upload the latest css storybook
+
+      - name: Upload the latest look-and-feel css storybook
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./css
+          publish_dir: ./look-and-feel/css
           destination_dir: look-and-feel/css/latest
-      - name: Upload the css to its version folder
+
+      - name: Upload the look-and-feel css to its version folder
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./css
+          publish_dir: ./look-and-feel/css
           destination_dir: look-and-feel/css/${{ needs.build.outputs.version }}
