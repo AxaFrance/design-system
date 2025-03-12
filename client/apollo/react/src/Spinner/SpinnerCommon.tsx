@@ -36,9 +36,7 @@ const Spinner = ({
         "--spinner-size": size,
       } as React.CSSProperties
     }
-  >
-    <div className="af-spinner__container-spin" aria-hidden="true" />
-  </div>
+  />
 );
 
 Spinner.displayName = "Spinner";
