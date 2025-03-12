@@ -6,6 +6,8 @@ export const spinnerVariants = {
 
 export type SpinnerVariants = keyof typeof spinnerVariants;
 
+const DEFAULT_CLASSNAME = "af-spinner";
+
 type SpinnerProps = {
   size?: 24 | 32 | 40;
   variant?: SpinnerVariants;
@@ -23,9 +25,9 @@ const Spinner = ({
     aria-label={text}
     aria-live="assertive"
     className={[
-      "af-spinner__container",
-      `af-spinner__container--${variant}`,
-      `af-spinner__container--${size}`,
+      DEFAULT_CLASSNAME,
+      `${DEFAULT_CLASSNAME}--${variant}`,
+      `${DEFAULT_CLASSNAME}--${size}`,
     ]
       .filter(Boolean)
       .join(" ")}

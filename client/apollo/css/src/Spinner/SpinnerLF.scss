@@ -1,6 +1,6 @@
 @use "./SpinnerCommon";
 
-.af-spinner__container {
+.af-spinner {
   --spinner-border-color: color-mix(in srgb, var(--color-axa), transparent 80%);
   --spinner-border-top-color: var(--color-axa);
 

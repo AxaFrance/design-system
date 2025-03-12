@@ -12,7 +12,7 @@ describe("Spinner Component", () => {
   it("should have a default variant if none is provided", () => {
     render(<Spinner />);
     const spinnerElement = screen.getByRole("alert");
-    expect(spinnerElement).toHaveClass("af-spinner__container--blue");
+    expect(spinnerElement).toHaveClass("af-spinner--blue");
   });
 
   it.each(Object.values(spinnerVariants))(
@@ -20,7 +20,7 @@ describe("Spinner Component", () => {
     (variant) => {
       render(<Spinner variant={variant} />);
       const spinnerElement = screen.getByRole("alert");
-      expect(spinnerElement).toHaveClass(`af-spinner__container--${variant}`);
+      expect(spinnerElement).toHaveClass(`af-spinner--${variant}`);
     },
   );
 });
