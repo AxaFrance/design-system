@@ -1,9 +1,10 @@
 @use "../common/common" as common;
 
 .af-slash-link {
-  font-family: common.$font-family-sans-serif;
-  font-size: common.px-to-rem(16);
-  line-height: common.px-to-rem(20);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-link-font-size);
+  font-weight: var(--typography-link-font-weight);
+  line-height: var(--typography-link-line-height);
   text-align: start;
   text-decoration: underline;
   color: common.$color-azur;
