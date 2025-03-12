@@ -1,0 +1,32 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as SpinnerStories from "./Spinner.stories";
+
+<Meta of={SpinnerStories} name="Spinner" />
+
+# Spinner
+
+To use the spinner import it like that:
+
+```tsx title="test.js"
+import { Spinner } from "@axa-fr/design-system-look-and-feel-react";
+
+const MyComponent = () => (
+  <Spinner size={60} border={5} variant="blue" text="Chargement en cours" />
+);
+```
+
+## Playground
+
+<Canvas of={SpinnerStories.SpinnerStory} />
+
+<Controls of={SpinnerStories.SpinnerStory} />
+
+## Variants
+
+Use the `variant` prop to change the look of the spinner. The available variants are `"blue"` (default), `"gray"` and `"white"`. [See the examples](#examples-of-variants).
+
+## Examples of variants
+
+<Canvas of={SpinnerStories.MultiExamples} layout="fullscreen" />
+
+For more information regarding the use of this component, you can refer to [the documentation and guidelines](https://zeroheight.com/54c5bd254/v/latest/p/892d26-spinner/b/44fc87) written by our UX and UI designers.

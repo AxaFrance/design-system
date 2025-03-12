@@ -4,7 +4,7 @@ import type {
   ReactNode,
 } from "react";
 
-import { Loader } from "../Loader/Loader";
+import { Spinner } from "../Spinner/SpinnerCommon";
 
 export const buttonVariants = {
   primary: "primary",
@@ -46,6 +46,6 @@ export const Button = ({
     {iconLeft}
     {children}
     {iconRight}
-    {loading && <Loader size={24} border={3} variant="gray" />}
+    {loading && <Spinner size={24} variant="gray" />}
   </button>
 );

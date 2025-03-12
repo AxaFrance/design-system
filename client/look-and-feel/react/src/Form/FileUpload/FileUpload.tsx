@@ -8,7 +8,7 @@ import error from "@material-symbols/svg-400/outlined/error-fill.svg";
 import errorO from "@material-symbols/svg-400/outlined/error.svg";
 import plus from "@material-symbols/svg-400/outlined/add_circle-fill.svg";
 import classNames from "classnames";
-import { Loader, Svg, Button } from "@axa-fr/design-system-apollo-react/lf";
+import { Spinner, Svg, Button } from "@axa-fr/design-system-apollo-react/lf";
 import { InputError } from "../InputError";
 
 function getReadableFileSizeString(fileSizeInBytes: number) {
@@ -76,7 +76,7 @@ const FileUpload = ({
       );
     }
     if (isLoading) {
-      return <Loader size={18} border={2} />;
+      return <Spinner size={24} />;
     }
     return (
       <Svg src={check} className="af-form__file-title-container-icon-success" />
