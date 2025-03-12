@@ -34,6 +34,8 @@ const PreviousLink = ({
     [children],
   );
 
+  if (validChildren.length === 0) return null;
+
   return (
     <div className="af-header-previous-link-container" {...otherProps}>
       {React.Children.map(validChildren, (child) =>
@@ -42,7 +44,7 @@ const PreviousLink = ({
           {
             children: (
               <>
-                <Svg src={arrowBack} />
+                <Svg src={arrowBack} aria-hidden />
                 {(child as ReactElement<ChildrenProps>).props.children}
               </>
             ),
