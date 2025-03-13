@@ -1,0 +1,101 @@
+:root {
+  /* FONT PRIMITIVES **********************************************************/
+  // font family
+  --font-family-base: "Source Sans Pro", arial, sans-serif;
+  // font size
+  --font-size-12: calc(12rem / 16);
+  --font-size-13: calc(13rem / 16);
+  --font-size-14: calc(14rem / 16);
+  --font-size-15: calc(15rem / 16);
+  --font-size-16: calc(16rem / 16);
+  --font-size-18: calc(18rem / 16);
+  --font-size-20: calc(20rem / 16);
+  --font-size-22: calc(22rem / 16);
+  --font-size-24: calc(24rem / 16);
+  // line height
+  --font-line-height-16: calc(16rem / 16);
+  --font-line-height-20: calc(20rem / 16);
+  --font-line-height-22: calc(22rem / 16);
+  --font-line-height-24: calc(24rem / 16);
+  --font-line-height-26: calc(26rem / 16);
+  --font-line-height-28: calc(28rem / 16);
+  // font weight
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* FONT STYLES **************************************************************/
+  --typography-font-family: var(--font-family-base);
+  // h1
+  --typography-h1-font-size: var(--font-size-22);
+  --typography-h1-font-weight: var(--font-weight-semibold);
+  --typography-h1-line-height: var(--font-line-height-26);
+  // h2
+  --typography-h2-font-size: var(--font-size-24);
+  --typography-h2-font-weight: var(--font-weight-semibold);
+  --typography-h2-line-height: var(--font-line-height-28);
+  // h3
+  --typography-h3-font-size: var(--font-size-20);
+  --typography-h3-font-weight: var(--font-weight-semibold);
+  --typography-h3-line-height: var(--font-line-height-24);
+  // h4
+  --typography-h4-font-size: var(--font-size-18);
+  --typography-h4-font-weight: var(--font-weight-semibold);
+  --typography-h4-line-height: var(--font-line-height-22);
+  // text
+  --typography-text-font-size: var(--font-size-16);
+  --typography-text-font-weight: var(--font-weight-regular);
+  --typography-text-line-height: var(--font-line-height-20);
+  // label
+  --typography-label-font-size: var(--font-size-16);
+  --typography-label-font-weight: var(--font-weight-regular);
+  --typography-label-line-height: var(--font-line-height-20);
+  // text-static
+  --typography-text-static-font-size: var(--font-size-16);
+  --typography-text-static-font-weight: var(--font-weight-bold);
+  --typography-text-static-line-height: var(--font-line-height-20);
+  // label-restitution
+  --typography-label-restitution-font-size: var(--font-size-15);
+  --typography-label-restitution-font-weight: var(--font-weight-regular);
+  --typography-label-restitution-line-height: var(--font-line-height-20);
+  // value-restitution
+  --typography-value-restitution-font-size: var(--font-size-15);
+  --typography-value-restitution-font-weight: var(--font-weight-bold);
+  --typography-value-restitution-line-height: var(--font-line-height-20);
+  // button
+  --typography-button-font-size: var(--font-size-16);
+  --typography-button-font-weight: var(--font-weight-bold);
+  --typography-button-line-height: var(--font-line-height-20);
+  // link
+  --typography-link-font-size: var(--font-size-16);
+  --typography-link-font-weight: var(--font-weight-regular);
+  --typography-link-line-height: var(--font-line-height-20);
+  // tag
+  --typography-tag-font-size: var(--font-size-12);
+  --typography-tag-font-weight: var(--font-weight-regular);
+  --typography-tag-line-height: var(--font-line-height-16);
+  // form-error
+  --typography-form-error-font-size: var(--font-size-13);
+  --typography-form-error-font-weight: var(--font-weight-regular);
+  --typography-form-error-line-height: var(--font-line-height-16);
+  // app-name
+  --typography-app-name-font-size: var(--font-size-20);
+  --typography-app-name-font-weight: var(--font-weight-bold);
+  --typography-app-name-line-height: var(--font-line-height-24);
+  // app-subtitle
+  --typography-app-subtitle-font-size: var(--font-size-20);
+  --typography-app-subtitle-font-weight: var(--font-weight-regular);
+  --typography-app-subtitle-line-height: var(--font-line-height-24);
+  // user
+  --typography-user-font-size: var(--font-size-16);
+  --typography-user-font-weight: var(--font-weight-regular);
+  --typography-user-line-height: var(--font-line-height-20);
+  // copyright
+  --typography-copyright-font-size: var(--font-size-14);
+  --typography-copyright-font-weight: var(--font-weight-regular);
+  --typography-copyright-line-height: var(--font-line-height-16);
+  // step-train
+  --typography-step-train-font-size: var(--font-size-18);
+  --typography-step-train-font-weight: var(--font-weight-bold);
+  --typography-step-train-line-height: var(--font-line-height-22);
+}
