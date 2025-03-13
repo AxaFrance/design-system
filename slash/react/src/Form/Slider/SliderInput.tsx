@@ -23,7 +23,12 @@ const SliderInput = ({
   ...sliderProps
 }: Props) => {
   const generatedId = useId();
-  const newId = useMemo(() => id ?? generatedId, [generatedId, id]);
+  const newId = useMemo(() => {
+    if (id) {
+      return id;
+    }
+    return generatedId;
+  }, [generatedId, id]);
 
   return (
     <Field
