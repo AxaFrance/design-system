@@ -1,6 +1,6 @@
 import { DebugGrid } from "@axa-fr/design-system-look-and-feel-react";
-import { Card } from "./Grid/components/Card";
-import { Offsets } from "./Grid/components/Offsets";
+import { Card } from "./components/Card";
+import { Offsets } from "./components/Offsets";
 
 export const render = () => (
   <>

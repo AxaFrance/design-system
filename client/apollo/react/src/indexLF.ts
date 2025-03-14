@@ -1,4 +1,5 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
+import "@axa-fr/design-system-apollo-css/dist/Grid/grid.scss";
 import "@fontsource/source-sans-pro";
 
 export { Button, buttonVariants, type ButtonVariants } from "./Button/ButtonLF";
@@ -8,3 +9,5 @@ export {
   spinnerVariants,
   type SpinnerVariants,
 } from "./Spinner/SpinnerLF";
+
+export { DebugGrid } from "./Grid/DebugGrid";
