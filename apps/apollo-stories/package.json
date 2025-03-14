@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@axa-fr/design-system-apollo-react": "*",
+    "@axa-fr/design-system-apollo-css": "*",
     "@material-symbols/svg-400": "^0.28.1"
   },
   "devDependencies": {

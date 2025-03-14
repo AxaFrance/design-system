@@ -1,0 +1,139 @@
+@use "../breakpoints.scss" as common;
+
+#storybook-root:has(> .grid) {
+  background: hsla(0deg, 0%, 79%, 15.9%);
+}
+
+.box {
+  background-color: white;
+  outline: hsla(0deg, 0%, 0%, 20%) solid 1px;
+}
+
+.box-card {
+  padding: 1rem;
+  outline: hsla(0deg, 0%, 0%, 20%) solid 1px;
+
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 4;
+  }
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 3;
+  }
+}
+
+.box-example-1 {
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 8;
+  }
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 9;
+  }
+}
+
+.box-example-2 {
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 4;
+  }
+
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 3;
+  }
+}
+
+.box-half {
+  height: 100px;
+
+  @media (width > #{common.$breakpoint-md}) {
+    --cols: 4;
+
+    &:last-child {
+      --cols: 12;
+    }
+  }
+
+  @media (width > #{common.$breakpoint-lg}) {
+    --cols: 6;
+
+    &:last-child {
+      --cols: 6;
+    }
+  }
+}
+
+.box-custom {
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "content1 content2"
+    "footer footer";
+
+  h2 {
+    grid-area: title;
+  }
+
+  .box {
+    padding: 1rem;
+  }
+
+  .box-content1 {
+    grid-area: content1;
+  }
+
+  .box-content2 {
+    grid-area: content2;
+  }
+
+  footer {
+    grid-area: footer;
+    place-content: center;
+    text-align: center;
+  }
+}
+
+.box-offset {
+  position: relative;
+  display: none;
+  height: 50px;
+  place-content: center;
+  font-size: 0.7rem;
+  text-align: center;
+  color: var(--color-primary);
+
+  &::before,
+  &::after {
+    display: block;
+  }
+}
+
+@mixin generateStyleBox($max-offset) {
+  @for $i from 1 through $max-offset {
+    $max-cols: $max-offset - $i + 1;
+
+    @for $j from 1 through $max-cols {
+      .box-offset-#{$i}-#{$j} {
+        --start: #{$i};
+        --cols: #{$j};
+
+        display: block;
+
+        &::before {
+          content: "--start:#{$i};";
+        }
+
+        &::after {
+          content: "--cols:#{$j};";
+        }
+      }
+    }
+  }
+}
+
+@include generateStyleBox(4);
+
+@media (width > #{common.$breakpoint-sm}) {
+  @include generateStyleBox(8);
+}
+
+@media (width > #{common.$breakpoint-md}) {
+  @include generateStyleBox(12);
+}
