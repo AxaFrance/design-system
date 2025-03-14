@@ -7,7 +7,6 @@
 @use "Divider/Divider";
 @use "Layout/Footer/Footer";
 @use "Stepper/Stepper";
-@use "Layout/Header/Header";
 @use "Form/Radio/Radio";
 @use "Tabs/Tabs";
 @use "Form/Checkbox/Checkbox";
@@ -28,6 +27,8 @@
 @use "Tag/Tag";
 @use "Form/InputError/InputError";
 @use "IconBg/IconBg";
+@use "Layout/Header/BurgerMenu/BurgerMenu";
+@use "Layout/Header/Header";
 @use "Layout/Header/NavBar/NavBar";
 @use "Layout/Header/PreviousLink/PreviousLink";
 @use "Title/Title";

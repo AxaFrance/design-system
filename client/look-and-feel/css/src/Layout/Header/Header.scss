@@ -2,84 +2,92 @@
 
 .af-header {
   position: sticky;
-  z-index: 100;
+  z-index: 2;
   top: 0;
   background-color: var(--color-white);
-}
 
-.af-header-container {
-  display: flex;
-  width: 100%;
-  height: 72px;
-  padding: 0 1rem;
-  border-top: 2px solid var(--color-axa);
-  border-bottom: 1px solid var(--color-gray-300);
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  font-family: var(--font-family-sans-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-axa);
-
-  & .af-btn-client {
-    min-width: initial;
-
-    & > svg {
-      display: none;
-    }
-  }
-}
-
-.af-logo {
-  width: 40px;
-  height: 40px;
-  align-self: center;
-}
-
-.af-header-left-item > nav {
-  display: none;
-}
-
-.af-header-right-item {
-  display: flex;
-  margin: 0 var(--spacing-u1);
-  flex-direction: row;
-  align-items: center;
-  gap: var(--spacing-u1);
-}
-
-@media only screen and (width >= #{common.$breakpoint-md}) {
-  .af-header-container {
+  & > .af-header-container {
+    display: flex;
     width: auto;
-    height: 80px;
+    height: common.rem(80);
     padding: 0 3.75rem;
     border-top: 2px solid var(--color-axa);
-
-    & .af-btn-client > svg {
-      display: block;
-    }
-  }
-
-  .af-logo {
-    width: 56px;
-    height: 56px;
-  }
-
-  .af-header-left-item {
-    display: flex;
-    height: 5rem;
+    border-bottom: 1px solid var(--color-gray-300);
     flex-direction: row;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: space-between;
+    font-family: var(--font-family-sans-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-axa);
 
-    & > nav {
-      display: block;
+    @include common.media-breakpoint-down(md) {
+      width: 100%;
+      height: 72px;
+      padding: 0 1rem;
+    }
+
+    & > .af-header-left-item {
+      display: flex;
+      height: 5rem;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+
+      & > .af-logo {
+        width: 56px;
+        height: 56px;
+
+        @include common.media-breakpoint-down(md) {
+          width: 40px;
+          height: 40px;
+          align-self: center;
+        }
+      }
+
+      & > nav {
+        display: block;
+      }
+
+      @include common.media-breakpoint-down(md) {
+        & > nav {
+          display: none;
+        }
+      }
+    }
+
+    & > .af-header-right-item {
+      display: flex;
+      margin: 0;
+      flex-direction: row;
+      gap: var(--spacing-u2);
+
+      @include common.media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+
+    & > .af-btn-client {
+      display: none;
+
+      @include common.media-breakpoint-down(md) {
+        display: block;
+      }
     }
   }
+}
 
-  .af-header-right-item {
-    margin: 0;
-    gap: var(--spacing-u2);
+.af-header-overlay {
+  display: none;
+
+  @include common.media-breakpoint-down(md) {
+    &.open {
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+      display: block;
+      opacity: 0.5;
+      background: var(--color-gray-900);
+    }
   }
 }
