@@ -27,7 +27,11 @@ export { ClickItem, ClickList, createClickItemParent } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabItem, ContentTabList } from "./List/ContentTabList";
-export { Loader } from "./Loader/Loader";
+export {
+  Spinner,
+  type SpinnerVariants,
+  spinnerVariants,
+} from "./Spinner/Spinner";
 export {
   Modal,
   ModalCore,

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { Button, buttonVariants, type ButtonVariants } from "./ButtonCommon";
+import { Button, buttonVariants, type ButtonVariants } from "../ButtonCommon";
 
 describe("Button component", () => {
   it.each(Object.keys(buttonVariants))(
