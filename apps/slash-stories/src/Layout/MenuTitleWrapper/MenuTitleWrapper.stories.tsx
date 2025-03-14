@@ -2,12 +2,11 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import {
   MenuTitleWrapper,
-  NavBar,
   NavBarItem,
 } from "@axa-fr/design-system-slash-react";
 
-const meta: Meta<typeof NavBar> = {
-  component: NavBar,
+const meta: Meta<typeof MenuTitleWrapper> = {
+  component: MenuTitleWrapper,
   title: "Components/Header/MenuTitleWrapper",
 };
 

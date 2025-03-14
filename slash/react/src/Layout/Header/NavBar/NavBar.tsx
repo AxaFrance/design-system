@@ -73,6 +73,7 @@ const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
           tabIndex: isCurrent ? 0 : -1,
           index,
           hasFocus: isMenuFocused && isCurrent,
+          onClick: () => setPosition(index),
         });
       })}
     </NavBarBase>
