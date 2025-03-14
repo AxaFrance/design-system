@@ -14,7 +14,8 @@
     "chromatic": "npx chromatic"
   },
   "dependencies": {
-    "@axa-fr/design-system-look-and-feel-css": "*"
+    "@axa-fr/design-system-look-and-feel-css": "*",
+    "@axa-fr/design-system-apollo-css": "*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.5",

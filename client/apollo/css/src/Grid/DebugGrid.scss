@@ -1,4 +1,4 @@
-@use "../common/common.scss" as common;
+@use "../common/breakpoints.scss" as breakpoints;
 
 .af-checkbox-select--debuggrid label:has(> [name="debuggrid"]) {
   position: fixed;
@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   height: auto;
-  background-color: common.$color-white;
+  background-color: var(--white);
 }
 
 .debug-grid {
@@ -53,7 +53,7 @@
       }
     }
 
-    @media (width > #{common.$breakpoint-sm}) {
+    @media (width > #{breakpoints.$breakpoint-sm}) {
       --name: "medium: 668px to 1023px";
       --color-bg-cols: hsl(233.57deg, 51.85%, 89.41%);
 
@@ -62,7 +62,7 @@
       }
     }
 
-    @media (width > #{common.$breakpoint-md}) {
+    @media (width > #{breakpoints.$breakpoint-md}) {
       --name: "large: 1024px to 1279px";
       --color-bg-cols: hsl(180deg, 53.09%, 84.12%);
 
@@ -71,12 +71,12 @@
       }
     }
 
-    @media (width > #{common.$breakpoint-lg}) {
+    @media (width > #{breakpoints.$breakpoint-lg}) {
       --name: "extra large: 1280px to 1599px";
       --color-bg-cols: hsl(120deg, 52.5%, 84.31%);
     }
 
-    @media (width > #{common.$breakpoint-xl}) {
+    @media (width > #{breakpoints.$breakpoint-xl}) {
       --name: "extra large: 1600px to infinity";
       --color-bg-cols: hsl(357.39deg, 100%, 90.98%);
     }

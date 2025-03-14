@@ -1,17 +1,17 @@
-@use "../common/common.scss" as common;
+@use "../common/breakpoints.scss" as breakpoints;
 
-/* GRID SYSTEM DESIGN SYSTEM AXA FRANCE (Look & Feel)****************
+/* GRID SYSTEM DESIGN SYSTEM AXA FRANCE (Look & Feel et Apollo) ****************
 
 See the documentation : https://zeroheight.com/54c5bd254/v/latest/p/48d0d1-grille
 
 Its MOBILE FIRST approach, so the defauts values target the mobile.
 
-@media (width > #{common.$breakpoint-sm}) { >>>>> more than  667px
-@media (width > #{common.$breakpoint-md}) { >>>>> more than 1023px
-@media (width > #{common.$breakpoint-lg}) { >>>>> more than 1279px
-@media (width > #{common.$breakpoint-xl}) { >>>>> more than 1599px
+@media (width > #{breakpoints.$breakpoint-sm}) { >>>>> more than  667px
+@media (width > #{breakpoints.$breakpoint-md}) { >>>>> more than 1023px
+@media (width > #{breakpoints.$breakpoint-lg}) { >>>>> more than 1279px
+@media (width > #{breakpoints.$breakpoint-xl}) { >>>>> more than 1599px
 
-********************************************************************* */
+******************************************************************************* */
 
 .grid {
   --col-gap: calc(8 / var(--font-size-base) * 1rem);
@@ -25,23 +25,23 @@ Its MOBILE FIRST approach, so the defauts values target the mobile.
   grid-template-columns: repeat(var(--cols), 1fr);
   gap: var(--row-gap) var(--col-gap);
 
-  @media (width > #{common.$breakpoint-sm}) {
+  @media (width > #{breakpoints.$breakpoint-sm}) {
     --cols: 8;
     --col-gap: calc(16 / var(--font-size-base) * 1rem);
     --margin-inline: calc(60 / var(--font-size-base) * 1rem);
   }
 
-  @media (width > #{common.$breakpoint-md}) {
+  @media (width > #{breakpoints.$breakpoint-md}) {
     --col-gap: calc(24 / var(--font-size-base) * 1rem);
     --margin-inline: calc(80 / var(--font-size-base) * 1rem);
     --cols: 12;
   }
 
-  @media (width > #{common.$breakpoint-lg}) {
+  @media (width > #{breakpoints.$breakpoint-lg}) {
     --margin-inline: calc(120 / var(--font-size-base) * 1rem);
   }
 
-  @media (width > #{common.$breakpoint-xl}) {
+  @media (width > #{breakpoints.$breakpoint-xl}) {
     --margin-inline: auto;
 
     max-width: 1320px;
