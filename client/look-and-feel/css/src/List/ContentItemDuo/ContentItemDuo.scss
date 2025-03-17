@@ -166,3 +166,9 @@
     }
   }
 }
+
+@media (width >= #{common.$breakpoint-lg}) {
+  .af-content-item-duo__label {
+    max-width: common.rem(230);
+  }
+}
