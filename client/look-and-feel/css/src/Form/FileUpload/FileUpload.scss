@@ -169,12 +169,6 @@
       justify-content: center;
       gap: 1rem;
       cursor: pointer;
-
-      &-icon {
-        path {
-          fill: var(--color-gray-700);
-        }
-      }
     }
   }
 }
