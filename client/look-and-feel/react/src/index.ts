@@ -11,6 +11,7 @@ export { Divider } from "./Divider";
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox";
 export { FileUpload } from "./Form/FileUpload";
 export { InputError } from "./Form/InputError";
+export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { Radio, RadioSelect } from "./Form/Radio";
 export { Select } from "./Form/Select";
 export { Text as TextInput } from "./Form/Text";

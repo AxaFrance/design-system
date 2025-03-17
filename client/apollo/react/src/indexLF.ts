@@ -11,3 +11,4 @@ export {
 } from "./Spinner/SpinnerLF";
 
 export { DebugGrid } from "./Grid/DebugGrid";
+export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
