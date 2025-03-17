@@ -17,7 +17,6 @@ export const ItemMessage = ({
     <Svg
       src={type === "error" ? errorIcon : successIcon}
       className="af-item-message__icon"
-      fill="currentColor"
     />
     <span id={id} aria-live="assertive" className="af-item-message__message">
       {message}
