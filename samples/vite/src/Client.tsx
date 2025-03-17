@@ -1,6 +1,6 @@
 import {
   Button as ButtonClient,
-  ButtonVariants as ButtonClientVariants,
+  buttonVariants as ButtonClientVariants,
   Svg,
   TextInput,
 } from "@axa-fr/design-system-look-and-feel-react";

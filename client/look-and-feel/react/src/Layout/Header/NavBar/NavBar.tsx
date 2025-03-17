@@ -11,6 +11,7 @@ import {
   cloneElement,
 } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/NavBar/NavBar.scss";
+import classNames from "classnames";
 
 type NavBarProps = {
   activeLink?: number;
@@ -21,7 +22,7 @@ const NavBar = ({
   activeLink,
   children,
   setActiveLink,
-  ...otherProps
+  ...props
 }: PropsWithChildren<NavBarProps>) => {
   const validChildren = useMemo<ReactElement[]>(
     () =>
@@ -31,16 +32,19 @@ const NavBar = ({
     [children],
   );
 
+  if (validChildren.length === 0) return null;
+
   return (
-    <nav role="navigation" aria-label="Menu principal" {...otherProps}>
+    <nav role="navigation" aria-label="Menu principal" {...props}>
       <ul className="af-navbar-container" role="menubar">
         {Children.map(validChildren, (child, index) => (
           <li className="af-navbar-item" role="none">
             {cloneElement<HTMLAttributes<HTMLElement>>(
               child as ReactElement<HTMLAttributes<HTMLElement>>,
               {
-                className:
-                  `af-navbar-item__link ${index === activeLink ? "af-navbar-item__link--active" : ""}`.trim(),
+                className: classNames("af-navbar-item__link", {
+                  "af-navbar-item__link--active": index === activeLink,
+                }),
                 onClick: () => setActiveLink(index),
                 onFocus: () => setActiveLink(index),
                 role: "menuitem",

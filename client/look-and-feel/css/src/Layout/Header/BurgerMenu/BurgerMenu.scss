@@ -1,0 +1,48 @@
+@use "../../../common/common" as common;
+
+.af-burger-menu.af-card {
+  display: none;
+
+  @include common.media-breakpoint-down(md) {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    border-radius: 0 0 common.rem(8) common.rem(8);
+    list-style-type: none;
+
+    & > ul {
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .af-list__item {
+      padding: 0;
+
+      .af-click-item {
+        gap: common.rem(16);
+        box-shadow: none;
+
+        & > svg {
+          fill: var(--color-axa);
+        }
+
+        &__label {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: common.rem(16);
+          font-size: common.rem(16);
+          font-weight: 400;
+
+          & > svg {
+            fill: var(--color-axa);
+          }
+        }
+      }
+    }
+
+    &.open {
+      display: block;
+    }
+  }
+}

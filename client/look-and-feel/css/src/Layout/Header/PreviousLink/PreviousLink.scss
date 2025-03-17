@@ -6,6 +6,10 @@
   align-items: center;
   gap: 0.25rem;
 
+  @include common.media-breakpoint-up(md) {
+    padding: 1.5rem 0 0 7.5rem;
+  }
+
   .af-btn-client--header-previous-link {
     font-size: common.rem(16);
     font-weight: 400;
@@ -15,14 +19,8 @@
     svg {
       fill: var(--color-gray-700);
     }
-  }
-}
 
-@media only screen and (width >= #{common.$breakpoint-md}) {
-  .af-header-previous-link-container {
-    padding: 1.5rem 0 0 7.5rem;
-
-    .af-btn-client--header-previous-link {
+    @include common.media-breakpoint-up(md) {
       font-size: common.rem(18);
       line-height: common.rem(22.5);
     }

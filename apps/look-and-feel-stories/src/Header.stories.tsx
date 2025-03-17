@@ -1,4 +1,7 @@
 import { Button, Header, Svg } from "@axa-fr/design-system-look-and-feel-react";
+import contractEdit from "@material-symbols/svg-400/outlined/contract_edit.svg";
+import workspacePremium from "@material-symbols/svg-400/outlined/workspace_premium.svg";
+import textSnippet from "@material-symbols/svg-400/outlined/text_snippet-fill.svg";
 import lock from "@material-symbols/svg-400/outlined/lock-fill.svg";
 import person from "@material-symbols/svg-400/outlined/person-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -21,28 +24,16 @@ export const HeaderWithNavBar: StoryObj<typeof Header> = {
   name: "Header with navigation bar",
   render: () => (
     <Header>
-      <a
-        key="MES CONTRATS link"
-        className="af-navbar-item__link"
-        href="/mes-contrats"
-        target="_"
-      >
+      <a key="MES CONTRATS link" href="/mes-contrats" target="_">
+        <Svg src={contractEdit} aria-hidden />
         MES CONTRATS
       </a>
-      <a
-        key="MES AVANTAGES link"
-        className="af-navbar-item__link"
-        href="/mes-avantages"
-        target="_"
-      >
+      <a key="MES AVANTAGES link" href="/mes-avantages" target="_">
+        <Svg src={workspacePremium} aria-hidden />
         MES AVANTAGES
       </a>
-      <a
-        key="MES DOCUMENTS link"
-        className="af-navbar-item__link"
-        href="/mes-documents"
-        target="_"
-      >
+      <a key="MES DOCUMENTS link" href="/mes-documents" target="_">
+        <Svg src={textSnippet} aria-hidden />
         MES DOCUMENTS
       </a>
     </Header>
@@ -53,25 +44,16 @@ export const HeaderWithNavBarAndRightItem: StoryObj<typeof Header> = {
   name: "Header with navigation bar and right item",
   render: ({ rightItem }) => (
     <Header rightItem={rightItem}>
-      <a
-        key="MES CONTRATS link"
-        className="af-navbar-item__link"
-        href="/mes-contrats"
-      >
+      <a key="MES CONTRATS link" href="/mes-contrats" target="_">
+        <Svg src={contractEdit} aria-hidden />
         MES CONTRATS
       </a>
-      <a
-        key="MES AVANTAGES link"
-        className="af-navbar-item__link"
-        href="/mes-avantages"
-      >
+      <a key="MES AVANTAGES link" href="/mes-avantages" target="_">
+        <Svg src={workspacePremium} aria-hidden />
         MES AVANTAGES
       </a>
-      <a
-        key="MES DOCUMENTS link"
-        className="af-navbar-item__link"
-        href="/mes-documents"
-      >
+      <a key="MES DOCUMENTS link" href="/mes-documents" target="_">
+        <Svg src={textSnippet} aria-hidden />
         MES DOCUMENTS
       </a>
     </Header>
@@ -102,25 +84,16 @@ export const HeaderWithLinksAndRightItemAndPreviousLink: StoryObj<
   name: "Header with links, right item and Previous link",
   render: ({ previousLink, rightItem }) => (
     <Header previousLink={previousLink} rightItem={rightItem}>
-      <a
-        key="MES CONTRATS link"
-        className="af-navbar-item__link"
-        href="/mes-contrats"
-      >
+      <a key="MES CONTRATS link" href="/mes-contrats" target="_">
+        <Svg src={contractEdit} aria-hidden />
         MES CONTRATS
       </a>
-      <a
-        key="MES AVANTAGES link"
-        className="af-navbar-item__link"
-        href="/mes-avantages"
-      >
+      <a key="MES AVANTAGES link" href="/mes-avantages" target="_">
+        <Svg src={workspacePremium} aria-hidden />
         MES AVANTAGES
       </a>
-      <a
-        key="MES DOCUMENTS link"
-        className="af-navbar-item__link"
-        href="/mes-documents"
-      >
+      <a key="MES DOCUMENTS link" href="/mes-documents" target="_">
+        <Svg src={textSnippet} aria-hidden />
         MES DOCUMENTS
       </a>
     </Header>
@@ -160,25 +133,16 @@ export const HeaderWithLinksAndRightItemAndPreviousLinkAndActiveLink: StoryObj<
       previousLink={previousLink}
       rightItem={rightItem}
     >
-      <a
-        key="MES CONTRATS link"
-        className="af-navbar-item__link"
-        href="/mes-contrats"
-      >
+      <a key="MES CONTRATS link" href="/mes-contrats" target="_">
+        <Svg src={contractEdit} aria-hidden />
         MES CONTRATS
       </a>
-      <a
-        key="MES AVANTAGES link"
-        className="af-navbar-item__link"
-        href="/mes-avantages"
-      >
+      <a key="MES AVANTAGES link" href="/mes-avantages" target="_">
+        <Svg src={workspacePremium} aria-hidden />
         MES AVANTAGES
       </a>
-      <a
-        key="MES DOCUMENTS link"
-        className="af-navbar-item__link"
-        href="/mes-documents"
-      >
+      <a key="MES DOCUMENTS link" href="/mes-documents" target="_">
+        <Svg src={textSnippet} aria-hidden />
         MES DOCUMENTS
       </a>
     </Header>
