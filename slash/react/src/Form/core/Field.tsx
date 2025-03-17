@@ -45,7 +45,7 @@ export const Field = ({
   roleContainer,
   ariaLabelContainer,
   isLabelContainerLinkedToInput = true,
-  renderInput: Element,
+  renderInput,
 }: InputProps & {
   renderInput: (props: { id: string; classModifier: string }) => ReactNode;
 }) => {
@@ -92,7 +92,7 @@ export const Field = ({
       </div>
       <div className={classNameContainerInput}>
         <div className={fieldContainerClassName}>
-          <Element id={inputId} classModifier={inputClassModifier} />
+          {renderInput({ id: inputId, classModifier: inputClassModifier })}
           {children}
         </div>
         {forceDisplayMessage ? (
