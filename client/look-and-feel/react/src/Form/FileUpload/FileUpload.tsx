@@ -156,33 +156,19 @@ const FileUpload = ({
                     </div>
                     <div className="af-form__file-actions">
                       {onView && (
-                        <Svg
-                          tabIndex={0}
-                          role="button"
+                        <Button
                           aria-label="Visualiser"
                           onClick={() => onView(fileId)}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              onView(fileId);
-                            }
-                          }}
-                          className="af-form__file-actions-icon"
-                          src={visibility}
+                          variant="ghost"
+                          iconLeft={<Svg src={visibility} />}
                         />
                       )}
                       {onDelete && (
-                        <Svg
-                          tabIndex={0}
-                          role="button"
+                        <Button
                           aria-label="Supprimer"
                           onClick={() => onDelete(fileId)}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              onDelete(fileId);
-                            }
-                          }}
-                          className="af-form__file-actions-icon"
-                          src={close}
+                          variant="ghost"
+                          iconLeft={<Svg src={close} />}
                         />
                       )}
                     </div>
