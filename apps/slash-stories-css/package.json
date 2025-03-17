@@ -33,6 +33,9 @@
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.36.0"
+  },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
     "*.(ts|tsx)": "tsc-files --noEmit",
