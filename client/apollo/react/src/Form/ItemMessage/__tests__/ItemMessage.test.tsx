@@ -10,15 +10,19 @@ describe("ItemMessageCommon", () => {
   });
 
   it("renders the component with error type", () => {
-    render(<ItemMessage message={message} type="error" />);
-    expect(screen.getByText("Default message")).toHaveClass(
+    const { container } = render(
+      <ItemMessage message={message} type="error" />,
+    );
+    expect(container.querySelector(".af-item-message")).toHaveClass(
       "af-item-message--error",
     );
   });
 
   it("renders the component with success type", () => {
-    render(<ItemMessage message={message} type="success" />);
-    expect(screen.getByText("Default message")).toHaveClass(
+    const { container } = render(
+      <ItemMessage message={message} type="success" />,
+    );
+    expect(container.querySelector(".af-item-message")).toHaveClass(
       "af-item-message--success",
     );
   });
