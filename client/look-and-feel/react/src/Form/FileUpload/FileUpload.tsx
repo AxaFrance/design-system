@@ -121,16 +121,15 @@ const FileUpload = ({
       {instructions && (
         <small className="af-form__file-input-help">{instructions}</small>
       )}
-      <div className="custom-table-file af-file-table">
-        {filesListLabel && (
-          <div className="af-form__group--label af-form__files-list-label">
-            {filesListLabel}
-          </div>
-        )}
-        <ul className="af-form__file-list">
-          {files &&
-            files.length !== 0 &&
-            files.map(({ id: fileId, name, size, isLoading }) => {
+      {files && files.length !== 0 && (
+        <div className="custom-table-file af-file-table">
+          {filesListLabel && (
+            <div className="af-form__group--label af-form__files-list-label">
+              {filesListLabel}
+            </div>
+          )}
+          <ul className="af-form__file-list">
+            {files.map(({ id: fileId, name, size, isLoading }) => {
               const effectiveSize = getReadableFileSizeString(size);
 
               const isInError = errors
@@ -201,8 +200,9 @@ const FileUpload = ({
                 </li>
               );
             })}
-        </ul>
-      </div>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
