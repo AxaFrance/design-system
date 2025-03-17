@@ -3,11 +3,11 @@ import {
   Title,
   TitleSize,
 } from "@axa-fr/design-system-look-and-feel-react";
-import { Contacts } from "./Grid/components/Contacts";
-import { MainTitle } from "./Grid/components/MainTitle";
-import { MyFooter } from "./Grid/components/MyFooter";
-import { MyHeader } from "./Grid/components/MyHeader";
-import { MyList } from "./Grid/components/MyList";
+import { Contacts } from "./components/Contacts";
+import { MainTitle } from "./components/MainTitle";
+import { MyFooter } from "./components/MyFooter";
+import { MyHeader } from "./components/MyHeader";
+import { MyList } from "./components/MyList";
 
 export const render = () => (
   <>

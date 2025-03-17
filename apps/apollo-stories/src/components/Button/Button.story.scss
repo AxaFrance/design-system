@@ -1,9 +1,11 @@
+@use "../../fondations/breakpoints.scss" as breakpoints;
+
 .af-btn-client-demo {
   display: grid;
   width: 100%;
   gap: 2rem;
 
-  @media (width > 1024px) {
+  @media (width > #{breakpoints.$breakpoint-md}) {
     grid-template-columns: repeat(2, 1fr);
   }
 

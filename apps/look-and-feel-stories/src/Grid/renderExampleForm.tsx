@@ -8,8 +8,8 @@ import {
   Title,
 } from "@axa-fr/design-system-look-and-feel-react";
 import home from "@material-symbols/svg-400/outlined/home.svg";
-import { MyFooter } from "./Grid/components/MyFooter";
-import { MyHeader } from "./Grid/components/MyHeader";
+import { MyFooter } from "./components/MyFooter";
+import { MyHeader } from "./components/MyHeader";
 
 function capitalizeFirstLetter(val: string) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);

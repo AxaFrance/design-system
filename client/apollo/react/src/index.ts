@@ -1,4 +1,5 @@
 import "@axa-fr/design-system-apollo-css/dist/common/tokens.scss";
+import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.scss";
 import "@fontsource/source-sans-pro";
 
 export {
@@ -12,3 +13,5 @@ export {
   spinnerVariants,
   type SpinnerVariants,
 } from "./Spinner/SpinnerApollo";
+
+export { DebugGrid } from "./Grid/DebugGrid";
