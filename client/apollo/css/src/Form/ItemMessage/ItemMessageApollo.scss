@@ -1,0 +1,16 @@
+@use "../../common/breakpoints" as breakpoints;
+
+@use "./ItemMessageCommon";
+
+.af-item-message {
+  --item-message-color: var(--red-alert-100);
+  --item-message-icon-size: calc(20 / var(--font-size-base) * 1rem);
+
+  &--success {
+    --item-message-color: var(--green-100);
+  }
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --item-message-icon-size: calc(24 / var(--font-size-base) * 1rem);
+  }
+}

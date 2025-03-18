@@ -15,3 +15,4 @@ export {
 } from "./Spinner/SpinnerApollo";
 
 export { DebugGrid } from "./Grid/DebugGrid";
+export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";

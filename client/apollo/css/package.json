@@ -16,7 +16,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production",
-    "postbuild": "copyfiles --up 1 src/**/*.{scss,css} dist/",
+    "postbuild": "copyfiles --up 1 \"src/**/*.{scss,css}\" dist",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
   },
