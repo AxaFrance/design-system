@@ -68,12 +68,14 @@ export const Header = ({
       ).filter(Boolean);
     const validLinks = mapValidElements(children);
 
-    if (!rightItem || !isValidElement(rightItem)) {
-      return validLinks;
+    if (!rightItem) {
+      return [...validLinks];
     }
+
     if (Array.isArray(rightItem)) {
       return [...validLinks, ...mapValidElements(rightItem)];
     }
+
     return [...validLinks, rightItem];
   }, [children, rightItem]);
 
