@@ -20,5 +20,8 @@
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "dependencies": {
     "prettier": "^3.3.3"
+  },
+  "volta": {
+    "extends": "../../package.json"
   }
 }

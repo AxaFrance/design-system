@@ -41,7 +41,6 @@ const commonArgs = {
 export const MultiSelectStory: Story = {
   name: "MultiSelect",
   render: ({ values, onChange = () => {}, ...args }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [newValues, setNewValues] = useState(values);
 
     return (
@@ -69,7 +68,6 @@ export const MultiSelectStory: Story = {
 export const MultiSelectOneValueStory: Story = {
   name: "MultiSelect with one value",
   render: ({ value, onChange = () => {}, ...args }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [newValue, setNewValue] = useState(value);
 
     return (
@@ -99,7 +97,6 @@ export const MultiSelectInputStory: StoryObj<
 > = {
   name: "MultiSelectInput",
   render: ({ values, onChange = () => {}, ...args }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [newValues, setNewValues] = useState(values);
 
     return (

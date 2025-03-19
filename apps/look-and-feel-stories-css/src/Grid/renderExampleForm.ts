@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import logo from "@axa-fr/design-system-look-and-feel-css/logo-axa.svg";
 import { div, form, grid, p, subgrid } from "../utils";
 import { renderDebugGrid } from "./renderDebugGrid";
