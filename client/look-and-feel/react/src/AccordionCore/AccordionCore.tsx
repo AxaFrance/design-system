@@ -44,7 +44,6 @@ export const AccordionCore = ({
 
   return (
     <details className={componentClassName} open={isOpen} {...detailsProps}>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
       <summary
         className="af-accordion__summary"
         onClick={handleToggle}
