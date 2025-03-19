@@ -70,7 +70,7 @@ const Agent = () => {
 
       <article>
         <Title heading="h3">Popover</Title>
-        <Popover mode="hover" popoverElement={"hello friends"}>
+        <Popover mode="hover" popoverElement="hello friends">
           <p
             style={{
               padding: "1rem",
