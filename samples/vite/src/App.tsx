@@ -5,6 +5,7 @@ import Agent from "./Agent";
 import "./App.css";
 import Client from "./Client";
 import "./Reset.css";
+
 const App = () => (
   <>
     <Header
@@ -14,7 +15,7 @@ const App = () => (
       <NavLink to="/agent">AGENT</NavLink>,
     </Header>
     <Routes>
-      <Route index element={<Navigate to={"/client"} />} />
+      <Route index element={<Navigate to="/client" />} />
       <Route path="/client" element={<Client />} />
       <Route path="/agent" element={<Agent />} />
     </Routes>
