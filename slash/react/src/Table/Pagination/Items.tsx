@@ -52,23 +52,20 @@ const Items = ({
             </label>
           </div>
           <div className="col col-sm-10 col-md-10 col-lg-10 col-xl-10">
-            <div className="af-form__select">
-              <Select
-                className="af-form__input-select"
-                id={newId}
-                value={numberItems}
-                mode="base"
-                options={items.map((item) => ({
-                  label: item.toString(),
-                  value: item.toString(),
-                }))}
-                onChange={(e) => {
-                  e.preventDefault();
-                  onChange({ value: Number(e.target.value) });
-                }}
-              />
-              <span className="af-form__input-cmplt">{elementsLabel}</span>
-            </div>
+            <Select
+              id={newId}
+              value={numberItems}
+              mode="base"
+              options={items.map((item) => ({
+                label: item.toString(),
+                value: item.toString(),
+              }))}
+              onChange={(e) => {
+                e.preventDefault();
+                onChange({ value: Number(e.target.value) });
+              }}
+            />
+            <span className="af-form__input-cmplt">{elementsLabel}</span>
           </div>
         </div>
       </form>
