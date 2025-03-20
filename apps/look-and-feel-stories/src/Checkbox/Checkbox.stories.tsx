@@ -1,9 +1,9 @@
-import { Checkbox } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
+import { Checkbox } from "@axa-fr/design-system-look-and-feel-react";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Checkbox",
+  title: "Components/Form/Checkbox/Checkbox",
   component: Checkbox,
   argTypes: {},
 };
@@ -11,31 +11,22 @@ const meta: Meta = {
 export default meta;
 
 export const CheckboxStory: StoryObj<ComponentProps<typeof Checkbox>> = {
-  name: "Basic",
+  name: "Checkbox",
 
   render: ({ ...args }) => <Checkbox {...args} />,
   args: {
-    label:
-      "J'accepte de fournir à AXA mes coordonnées ainsi que les données  relatives à mon projet et ma situation. Ces dernières seront transmises à mon conseiller AXA qui pourra  me contacter pour m'accompagner.",
     name: "option1",
     value: "option1",
+    checked: true,
   },
   argTypes: {
-    label: {
-      control: { type: "text" },
-    },
     name: {
       control: { type: "text" },
     },
     value: {
       control: { type: "text" },
     },
-    errorMessage: {
-      control: { type: "text" },
-    },
-    disabled: {
-      control: { type: "boolean" },
-    },
+
     checked: {
       control: { type: "boolean" },
     },
