@@ -3,23 +3,29 @@ import successIcon from "@material-symbols/svg-400/outlined/check_circle-fill.sv
 import { Svg } from "../../Svg/Svg";
 
 type ItemMessageProps = {
-  message: string;
+  message?: string;
   id?: string;
-  type?: "error" | "success";
+  messageType?: "error" | "success";
 };
 
 export const ItemMessage = ({
   message,
   id,
-  type = "error",
-}: ItemMessageProps) => (
-  <div className={`af-item-message af-item-message--${type}`}>
-    <Svg
-      src={type === "error" ? errorIcon : successIcon}
-      className="af-item-message__icon"
-    />
-    <span id={id} aria-live="assertive" className="af-item-message__message">
-      {message}
-    </span>
-  </div>
-);
+  messageType = "error",
+}: ItemMessageProps) => {
+  if (!message) {
+    return null;
+  }
+
+  return (
+    <div className={`af-item-message af-item-message--${messageType}`}>
+      <Svg
+        src={messageType === "error" ? errorIcon : successIcon}
+        className="af-item-message__icon"
+      />
+      <span id={id} aria-live="assertive" className="af-item-message__message">
+        {message}
+      </span>
+    </div>
+  );
+};

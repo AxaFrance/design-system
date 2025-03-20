@@ -44,6 +44,7 @@
 
   &--ghost {
     gap: calc(4 / var(--font-size-base) * 1rem);
+    line-height: 1.25em;
 
     &:hover,
     &:focus,

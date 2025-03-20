@@ -1,0 +1,59 @@
+@use "../../common/breakpoints" as breakpoints;
+
+.af-item-label {
+  display: grid;
+  grid-template-areas:
+    "label sidebutton"
+    "description sidebutton"
+    "more more";
+  grid-template-columns: 1fr auto;
+  place-items: end start;
+  row-gap: calc(2 / var(--font-size-base) * 1rem);
+
+  &:has(> .af-item-label__description) {
+    row-gap: calc(4 / var(--font-size-base) * 1rem);
+  }
+
+  &:has(> .af-item-label__sidebutton) {
+    column-gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  > label {
+    grid-area: label;
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-weight: 600;
+    line-height: calc(20 / var(--font-size-base) * 1rem);
+    color: var(--color-gray-900);
+
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      font-size: calc(18 / var(--font-size-base) * 1rem);
+      line-height: calc(24 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &__sidebutton {
+    grid-area: sidebutton;
+    place-self: center end;
+
+    &:has(+ .af-item-label__description) {
+      align-self: end;
+    }
+  }
+
+  &__more {
+    grid-area: more;
+  }
+
+  &__description {
+    grid-area: description;
+    font-size: calc(14 / var(--font-size-base) * 1rem);
+    font-weight: 400;
+    line-height: 1.25em;
+    color: var(--label-description-color);
+
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      font-size: calc(16 / var(--font-size-base) * 1rem);
+      line-height: calc(20 / var(--font-size-base) * 1rem);
+    }
+  }
+}
