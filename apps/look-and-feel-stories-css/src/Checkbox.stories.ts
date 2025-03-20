@@ -1,4 +1,3 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Form/Checkbox/Checkbox.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 import { render, renderBasic } from "./CheckBoxRender";
 
