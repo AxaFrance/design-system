@@ -1,5 +1,4 @@
-@use "../../common/common" as common;
-
+@use "../common/common" as common;
 @use "./CheckboxCommon";
 
 .af-checkbox {
@@ -169,8 +168,7 @@
     cursor: default;
 
     .af-checkbox__icons {
-      border: var(--color-btn-disabled-text);
-      background-color: var(--color-btn-disabled-text);
+      background-color: var(--color-blue-2);
     }
 
     & .af-checkbox__content > svg,
@@ -178,11 +176,6 @@
     & .af-checkbox__unchecked {
       color: var(--color-btn-disabled-text);
       fill: var(--color-btn-disabled-text);
-    }
-
-    & .af-checkbox__checked,
-    & .af-checkbox__unchecked {
-      fill: var(--color-white);
     }
   }
 

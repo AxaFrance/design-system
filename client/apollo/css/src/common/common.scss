@@ -1,0 +1,110 @@
+@forward "mixins";
+
+$font-family-sans-serif: "Source Sans Pro", arial, sans-serif !default;
+$font-family-serif: georgia, times, "Times New Roman", serif !default;
+$font-family-base: $font-family-sans-serif !default;
+$font-family-publico-bold: "Publico Headline Bold" !default;
+$font-family-publico: "Publico Headline" !default;
+// colors
+
+$color-axa: #00008f !default;
+$color-white: #fff !default;
+$color-black: #000 !default;
+$color-red: #ff1721 !default;
+$color-gray: #5f5f5f !default;
+$color-red-700: #c91432 !default;
+$color-blue-1: #000072 !default;
+$color-blue-2: #f8f8ff !default;
+$color-blue-3: #36f !default;
+$color-btn-light: #3333a5 !default;
+$color-btn-business: #c94e14 !default;
+$color-btn-business-dark: #a8391c !default;
+$color-btn-business-light: #df7e65 !default;
+$color-btn-disabled-text: #999 !default;
+$color-btn-error-text: #a11028 !default;
+$color-btn-error-bg: #fff3f5 !default;
+$color-btn-tertiary-bg: #eef !default;
+$color-btn-tertiary-bg-darker: #e4e4ff !default;
+$color-btn-tertiary-bg-lighter: #f8f8ff !default;
+$color-oceanBlue: #4976ba !default;
+$color-gray-1: #ccc !default;
+$color-gray-200: #f3f3f3;
+$color-gray-300: #e9ecf2;
+$color-gray-400: #e5e5e5;
+$color-gray-500: #999;
+$color-gray-700: #5f5f5f;
+$color-gray-900: #333 !default;
+$color-green-600: #118635 !default;
+$color-border: #f3f3f3 !default;
+$color-focus: #36f !default;
+
+// others
+
+$default-border-radius: 4px !default;
+$radius-8: 8px !default;
+$radius-100: 100% !default;
+
+$transition-duration: 0.2s !default;
+
+// spacing
+
+$sizing-u0: 0 !default;
+$sizing-u05: 0.4rem !default;
+$sizing-u1: 0.8rem !default;
+$sizing-u2: 1.6rem !default;
+$sizing-u3: 2.4rem !default;
+$sizing-u4: 3.2rem !default;
+$sizing-u5: 4rem !default;
+$sizing-u6: 4.8rem !default;
+$sizing-u7: 5.6rem !default;
+$sizing-u8: 6.4rem !default;
+$sizing-u9: 7.2rem !default;
+$sizing-u10: 8rem !default;
+$spacing-u0: 0 !default;
+$spacing-u05: 0.4rem !default;
+$spacing-u1: 0.8rem !default;
+$spacing-u2: 1.6rem !default;
+$spacing-u3: 2.4rem !default;
+$spacing-u4: 3.2rem !default;
+$spacing-u5: 4rem !default;
+$spacing-u6: 4.8rem !default;
+$spacing-u7: 5.6rem !default;
+$spacing-u8: 6.4rem !default;
+$spacing-u9: 7.2rem !default;
+$spacing-u10: 8rem !default;
+$spacing-u11: 8.8rem !default;
+$spacing-u12: 9.6rem !default;
+$spacing-u13: 10.4rem !default;
+$spacing-u14: 11.2rem !default;
+$spacing-u15: 12rem !default;
+$spacing-u16: 12.8rem !default;
+$spacing-u17: 13.6rem !default;
+$spacing-u18: 14.4rem !default;
+$spacing-u19: 15.2rem !default;
+$spacing-u20: 16rem !default;
+$screen-size-668: s !default;
+$screen-size-1024: m !default;
+$screen-size-1200: oldl !default;
+$screen-size-1280: l !default;
+$screen-size-1540: oldxl !default;
+$screen-size-1600: xl !default;
+$screen-size-s: 668px !default;
+$screen-size-m: 1024px !default;
+$screen-size-l: 1280px !default;
+$screen-size-xl: 1600px !default;
+$screen-size-oldl: 1200px !default;
+$screen-size-oldxl: 1540px !default;
+
+$error-custom-border: #d18e8e !default;
+$error-custom-bg: #ffbfbf !default;
+
+$color-alertDanger-colorBorder: #c8b282 !default;
+$color-alertDanger-bgColor: #f1d596 !default;
+
+// breakpoints
+
+$breakpoint-xs: 0 !default;
+$breakpoint-sm: 667px !default;
+$breakpoint-md: 1023px !default;
+$breakpoint-lg: 1279px !default;
+$breakpoint-xl: 1599px !default;

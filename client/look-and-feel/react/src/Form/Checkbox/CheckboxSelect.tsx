@@ -1,6 +1,5 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/Checkbox/Checkbox.scss";
-import checkBoxIcon from "@material-symbols/svg-400/outlined/check_box-fill.svg";
-import checkBoxOutlineBlankIcon from "@material-symbols/svg-400/outlined/check_box_outline_blank.svg";
+import checkBoxIcon from "@material-symbols/svg-400/outlined/check.svg";
 import errorOutline from "@material-symbols/svg-400/outlined/error.svg";
 import React, { ComponentPropsWithRef, type ReactNode, useId } from "react";
 import { Svg } from "../../Svg";
@@ -65,10 +64,6 @@ export const CheckboxSelect = ({
                 aria-invalid={Boolean(errorMessage) && !inputProps.disabled}
               />
               <div className="af-checkbox__icons">
-                <Svg
-                  src={checkBoxOutlineBlankIcon}
-                  className="af-checkbox__unchecked"
-                />
                 <Svg src={checkBoxIcon} className="af-checkbox__checked" />
               </div>
               <div className="af-checkbox__content">
