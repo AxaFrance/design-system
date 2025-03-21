@@ -1,2 +1,2 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-unresolved */
 export { Checkbox } from "@axa-fr/design-system-apollo-react/lf";
