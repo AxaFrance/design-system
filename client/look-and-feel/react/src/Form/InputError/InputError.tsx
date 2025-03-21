@@ -7,6 +7,9 @@ type InputErrorProps = {
   id?: string;
 };
 
+/**
+ * @deprecated Use ItemMessage instead
+ */
 export const InputError = ({ message, id }: InputErrorProps) => (
   <div className="af-input-error">
     <Svg src={errorIcon} className="af-input-error__icon" />

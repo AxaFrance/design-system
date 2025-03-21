@@ -1,0 +1,32 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ItemLabelStories from "./ItemLabel.stories";
+
+<Meta of={ItemLabelStories} name="ItemLabel" />
+
+# ItemLabel
+
+To use the ItemLabel import it like that:
+
+```tsx
+import { ItemLabel } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <ItemLabel
+    label="Label Text"
+    description="Description Text"
+    required
+    inputId="input-id"
+    idLabel="label-id"
+    sideButtonLabel="Side Button"
+    onSideButtonClick={handleClickSideButton}
+    buttonLabel="ButtonLabel"
+    onButtonClick={handleClickButton}
+  />
+);
+```
+
+## Default
+
+<Canvas of={ItemLabelStories.Default} />
+
+<Controls of={ItemLabelStories.Default} />

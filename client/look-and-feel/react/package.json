@@ -53,7 +53,6 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "peerDependencies": {
-    "@axa-fr/design-system-apollo-react": "*",
     "@axa-fr/design-system-look-and-feel-css": "*",
     "@axa-fr/design-system-apollo-react": "*",
     "@material-symbols/svg-400": ">= 0.19.0",

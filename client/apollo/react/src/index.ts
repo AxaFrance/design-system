@@ -1,4 +1,5 @@
 import "@axa-fr/design-system-apollo-css/dist/common/tokens.scss";
+import "@axa-fr/design-system-apollo-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.scss";
 import "@fontsource/source-sans-pro";
 
@@ -16,3 +17,4 @@ export {
 
 export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
+export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
