@@ -101,6 +101,13 @@ describe("Modal", () => {
     expectModalClosed();
   });
 
+  it("Should have an aria-label", () => {
+    const ariaLabelValue = "My Aria Label Value";
+    render(<ModalDemo {...defaultProps} aria-label={ariaLabelValue} />);
+    const dialog = getDialog();
+    expect(dialog).toHaveAttribute("aria-label", ariaLabelValue);
+  });
+
   it("Should close modal when click outside", async () => {
     render(<ModalDemo {...defaultProps} />);
     const dialog = getDialog();
