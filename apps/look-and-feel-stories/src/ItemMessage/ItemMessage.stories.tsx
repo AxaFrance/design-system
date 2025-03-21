@@ -16,6 +16,6 @@ export const Error: StoryObj<typeof ItemMessage> = {
 export const Success: StoryObj<typeof ItemMessage> = {
   args: {
     message: "Success Message",
-    type: "success",
+    messageType: "success",
   },
 };

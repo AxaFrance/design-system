@@ -18,14 +18,19 @@ export const ItemMessage = ({
   }
 
   return (
-    <div className={`af-item-message af-item-message--${messageType}`}>
+    <small
+      className={`af-item-message af-item-message--${messageType}`}
+      role={messageType === "error" ? "alert" : undefined}
+      aria-live="assertive"
+    >
       <Svg
         src={messageType === "error" ? errorIcon : successIcon}
         className="af-item-message__icon"
+        aria-hidden="true"
       />
-      <span id={id} aria-live="assertive" className="af-item-message__message">
+      <span id={id} className="af-item-message__message">
         {message}
       </span>
-    </div>
+    </small>
   );
 };

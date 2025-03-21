@@ -37,7 +37,11 @@ export const ItemLabel = ({
 
   return (
     <div className="af-item-label">
-      <label htmlFor={inputId} id={idLabel} aria-describedby={idDescription}>
+      <label
+        htmlFor={inputId}
+        id={idLabel}
+        aria-describedby={description ? idDescription : undefined}
+      >
         {label} {required && <span aria-hidden="true"> *</span>}
       </label>
 
@@ -61,7 +65,7 @@ export const ItemLabel = ({
         <ButtonComponent
           className="af-item-label__more"
           variant="ghost"
-          iconLeft={<Svg src={infoIcon} />}
+          iconLeft={<Svg src={infoIcon} aria-hidden="true" />}
           onClick={onButtonClick}
         >
           {buttonLabel}
