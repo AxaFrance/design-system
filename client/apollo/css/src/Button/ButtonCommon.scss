@@ -17,8 +17,8 @@
   color: var(--button-text-color-default);
   background-color: var(--button-bg-color-default);
   transition-duration: var(--transition-duration);
-  transition-property: width, height, border, color, background-color, outline,
-    box-shadow;
+  transition-property:
+    width, height, border, color, background-color, outline, box-shadow;
   transition-timing-function: linear;
   user-select: none;
 

@@ -106,9 +106,9 @@
 
     &:not(
         :has(
-            .af-content-item-mono__text-container
-              .af-content-item-mono__secondary-text
-          )
+          .af-content-item-mono__text-container
+            .af-content-item-mono__secondary-text
+        )
       ):has(
         .af-content-item-mono__text-container
           .af-content-item-mono__tertiary-text
@@ -170,9 +170,9 @@
 
       &:not(
           :has(
-              .af-content-item-mono__text-container
-                .af-content-item-mono__secondary-text
-            )
+            .af-content-item-mono__text-container
+              .af-content-item-mono__secondary-text
+          )
         ):has(
           .af-content-item-mono__text-container
             .af-content-item-mono__tertiary-text
