@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-extraneous-dependencies */
 import { ComponentPropsWithRef, useId } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/FileUpload/FileUpload.scss";
 import visibility from "@material-symbols/svg-400/outlined/visibility-fill.svg";

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 import { Button, Header, Svg } from "@axa-fr/design-system-look-and-feel-react";
 import lock from "@material-symbols/svg-400/outlined/lock-fill.svg";
 import person from "@material-symbols/svg-400/outlined/person-fill.svg";

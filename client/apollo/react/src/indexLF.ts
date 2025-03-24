@@ -12,3 +12,4 @@ export {
 
 export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
+export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";

@@ -11,7 +11,7 @@ describe("ItemMessageCommon", () => {
 
   it("renders the component with error type", () => {
     const { container } = render(
-      <ItemMessage message={message} type="error" />,
+      <ItemMessage message={message} messageType="error" />,
     );
     expect(container.querySelector(".af-item-message")).toHaveClass(
       "af-item-message--error",
@@ -20,7 +20,7 @@ describe("ItemMessageCommon", () => {
 
   it("renders the component with success type", () => {
     const { container } = render(
-      <ItemMessage message={message} type="success" />,
+      <ItemMessage message={message} messageType="success" />,
     );
     expect(container.querySelector(".af-item-message")).toHaveClass(
       "af-item-message--success",

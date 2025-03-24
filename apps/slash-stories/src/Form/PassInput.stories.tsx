@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { MessageTypes, PassInput } from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
