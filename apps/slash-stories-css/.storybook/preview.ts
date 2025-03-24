@@ -1,6 +1,5 @@
-/* eslint-disable import/no-default-export */
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
-import "@axa-fr/design-system-slash-css/dist/common/tokens.scss";
+import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
 import type { Preview } from "@storybook/html";
 
 const preview: Preview = {
