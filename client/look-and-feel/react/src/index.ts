@@ -15,7 +15,7 @@ export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioSelect } from "./Form/Radio";
 export { Select } from "./Form/Select";
-export { Text as TextInput } from "./Form/Text";
+export { TextInput } from "./Form/Text/Text";
 export { TextArea } from "./Form/TextArea";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { IconBg } from "./IconBg";

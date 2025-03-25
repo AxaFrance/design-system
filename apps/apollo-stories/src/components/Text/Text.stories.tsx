@@ -1,4 +1,4 @@
-import { Svg, TextInput } from "@axa-fr/design-system-look-and-feel-react";
+import { Svg, TextInput } from "@axa-fr/design-system-apollo-react";
 import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -35,9 +35,30 @@ const render = ({
   <TextInput onChange={onChange} {...args} />
 );
 
-export const TextStory: Story = {
-  name: "Text",
+export const TextPlaceholderStory: Story = {
+  name: "Text placeholder",
   render,
+  args: {
+    value: "",
+    placeholder: "Type your name",
+  },
+};
+
+export const TextStory: Story = {
+  name: "Text filled",
+  render,
+};
+
+export const TextDisabledStory: Story = {
+  name: "Text disabled",
+  render,
+  args: {
+    label: "Input disabled",
+    description: "Description",
+    unit: <div>test</div>,
+    disabled: true,
+    helper: "Do you need help?",
+  },
 };
 
 export const TextWithDescriptionStory: Story = {
@@ -61,6 +82,15 @@ export const TextOnErrorStory: Story = {
     "aria-errormessage": {
       control: { type: "text" },
     },
+  },
+};
+
+export const TextOnSuccessStory: Story = {
+  name: "Text on success",
+  render,
+  args: {
+    description: "Description",
+    success: "Success Message",
   },
 };
 
@@ -97,7 +127,7 @@ export const TextWithSideButtonAndDescription: Story = {
   },
 };
 
-export const TextWithFull: StoryObj = {
+export const TextWithFull: Story = {
   name: "Text Full",
   render,
   args: {

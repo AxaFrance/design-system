@@ -1,5 +1,4 @@
 @use "../../common/common" as common;
-@use "../Text/Text";
 
 .af-form__input-textarea {
   width: 100%;
@@ -18,10 +17,11 @@
   }
 
   &--error {
-    border: 2px solid var(--color-red-700);
+    border: 1px solid var(--color-red-700);
+    box-shadow: 0 0 0 1px var(--color-red-700) inset;
   }
 
-  &:not(:empty, :hover, :focus, :active) {
+  &:not(:empty, :hover, :focus, :active, [class*="--error"]) {
     border: 1px solid var(--color-axa);
   }
 
@@ -34,7 +34,8 @@
   }
 
   &:not(:disabled, :focus, :active, &--error):hover {
-    border: 2px solid var(--color-axa);
+    border: 1px solid var(--color-axa);
+    box-shadow: 0 0 0 1px var(--color-axa) inset;
     outline: none;
   }
 }
