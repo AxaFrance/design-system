@@ -18,3 +18,4 @@ export {
 export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
+export { Checkbox } from "./Checkbox/CheckboxApollo";

@@ -1,9 +1,9 @@
-import { Checkbox } from "@axa-fr/design-system-look-and-feel-react";
+import { Checkbox } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Checkbox",
+  title: "Components/Checkbox",
   component: Checkbox,
   argTypes: {},
 };
@@ -11,7 +11,7 @@ const meta: Meta = {
 export default meta;
 
 export const CheckboxStory: StoryObj<ComponentProps<typeof Checkbox>> = {
-  name: "Basic",
+  name: "Checkbox",
 
   render: ({ ...args }) => <Checkbox {...args} />,
   args: {
