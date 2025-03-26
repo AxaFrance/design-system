@@ -6,16 +6,16 @@
     <title>@storybook/core - Storybook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-
+    
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    
     <style>
       @font-face {
         font-family: 'Nunito Sans';
         font-style: normal;
         font-weight: 400;
         font-display: swap;
-        src: url('sb-common-assetsunito-sans-regular.woff2') format('woff2');
+        src: url('./sb-common-assets/nunito-sans-regular.woff2') format('woff2');
       }
 
       @font-face {
@@ -23,7 +23,7 @@
         font-style: italic;
         font-weight: 400;
         font-display: swap;
-        src: url('sb-common-assetsunito-sans-italic.woff2') format('woff2');
+        src: url('./sb-common-assets/nunito-sans-italic.woff2') format('woff2');
       }
 
       @font-face {
@@ -31,7 +31,7 @@
         font-style: normal;
         font-weight: 700;
         font-display: swap;
-        src: url('sb-common-assetsunito-sans-bold.woff2') format('woff2');
+        src: url('./sb-common-assets/nunito-sans-bold.woff2') format('woff2');
       }
 
       @font-face {
@@ -39,43 +39,43 @@
         font-style: italic;
         font-weight: 700;
         font-display: swap;
-        src: url('sb-common-assetsunito-sans-bold-italic.woff2') format('woff2');
+        src: url('./sb-common-assets/nunito-sans-bold-italic.woff2') format('woff2');
       }
     </style>
 
-    <link href="sb-manageruntime.js" rel="modulepreload" />
+    <link href="./sb-manager/runtime.js" rel="modulepreload" />
 
-
-    <link href="sb-addonstorybook-core-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsnboarding-1/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-controls-2/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-actions-3/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-docs-4/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-backgrounds-5/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-viewport-6/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-toolbars-7/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-measure-8/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsssentials-outline-9/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonshromatic-com-storybook-10/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonsnteractions-11/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addons11y-12/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonshitespace-html-13/manager-bundle.js" rel="modulepreload" />
-
-    <link href="sb-addonstorybook-14/manager-bundle.js" rel="modulepreload" />
-
+    
+    <link href="./sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/onboarding-1/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-controls-2/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-actions-3/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-docs-4/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-backgrounds-5/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-viewport-6/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-toolbars-7/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-measure-8/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-outline-9/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/chromatic-com-storybook-10/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/interactions-11/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/a11y-12/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/whitespace-html-13/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/storybook-14/manager-bundle.js" rel="modulepreload" />
+       
 
     <style>
       #storybook-root[hidden] {
@@ -83,46 +83,46 @@
       }
     </style>
 
-
+    
   </head>
   <body>
     <div id="root"></div>
 
-
+    
     <script>
-
-
+      
+        
           window['FEATURES'] = {
   "argTypeTargetsV7": true,
   "legacyDecoratorFileOrder": false,
   "disallowImplicitActionsInRenderV8": true
 };
-
-
-
+        
+      
+        
           window['REFS'] = {};
-
-
-
+        
+      
+        
           window['LOGLEVEL'] = "info";
-
-
-
+        
+      
+        
           window['DOCS_OPTIONS'] = {
   "defaultName": "Docs",
   "autodocs": "tag"
 };
-
-
-
+        
+      
+        
           window['CONFIG_TYPE'] = "PRODUCTION";
-
-
-
-
-
-
-
+        
+      
+        
+      
+        
+      
+        
           window['TAGS_OPTIONS'] = {
   "dev-only": {
     "excludeFromDocsStories": true
@@ -135,58 +135,58 @@
     "excludeFromDocsStories": true
   }
 };
-
-
-
+        
+      
+        
           window['STORYBOOK_RENDERER'] = "react";
-
-
-
+        
+      
+        
           window['STORYBOOK_BUILDER'] = "@storybook/builder-vite";
-
-
-
+        
+      
+        
           window['STORYBOOK_FRAMEWORK'] = "C:\\Users\\B489ZD\\dev\\@axa-fr\\design-system\\node_modules\\@storybook\\react-vite";
-
-
+        
+      
     </script>
-
+    
 
     <script type="module">
       import './sb-manager/globals-runtime.js';
-
-
+      
+      
         import './sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js';
-
+      
         import './sb-addons/onboarding-1/manager-bundle.js';
-
+      
         import './sb-addons/essentials-controls-2/manager-bundle.js';
-
+      
         import './sb-addons/essentials-actions-3/manager-bundle.js';
-
+      
         import './sb-addons/essentials-docs-4/manager-bundle.js';
-
+      
         import './sb-addons/essentials-backgrounds-5/manager-bundle.js';
-
+      
         import './sb-addons/essentials-viewport-6/manager-bundle.js';
-
+      
         import './sb-addons/essentials-toolbars-7/manager-bundle.js';
-
+      
         import './sb-addons/essentials-measure-8/manager-bundle.js';
-
+      
         import './sb-addons/essentials-outline-9/manager-bundle.js';
-
+      
         import './sb-addons/chromatic-com-storybook-10/manager-bundle.js';
-
+      
         import './sb-addons/interactions-11/manager-bundle.js';
-
+      
         import './sb-addons/a11y-12/manager-bundle.js';
-
+      
         import './sb-addons/whitespace-html-13/manager-bundle.js';
-
+      
         import './sb-addons/storybook-14/manager-bundle.js';
-
-
+      
+      
       import './sb-manager/runtime.js';
     </script>
   </body>
