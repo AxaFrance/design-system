@@ -27,6 +27,10 @@ type Props = Omit<RcSliderProps, "marks" | "onChange" | "onChangeComplete"> & {
   }) => void;
 };
 
+/*
+ * @deprecated Son usage n'est pas recommandé d'un point de vue UX. Recommander l'utilisation d'un composant [input text]
+ */
+
 const Slider = ({
   options,
   value,

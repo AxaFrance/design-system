@@ -5,7 +5,7 @@ import {
   useId,
 } from "react";
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
-import { getComponentClassName } from "../core";
+import { getComponentClassName } from "../../utilities";
 import { Button, Svg } from "../..";
 import { InputError } from "../InputError";
 

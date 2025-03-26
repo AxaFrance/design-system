@@ -30,28 +30,30 @@
   --axa-blue-100: hsl(240deg, 100%, 28%);
   --axa-blue-100-20: hsl(from var(--axa-blue-100) h s l / 20%);
   --axa-blue-100-40: hsl(from var(--axa-blue-100) h s l / 40%);
-  --axa-blue-20: hsl(240deg, 33%, 88%);
-  --axa-blue-4: hsl(240deg, 33%, 96%);
+  --axa-blue-20: hsl(240deg, 40%, 86%);
+  --axa-blue-4: hsl(240deg, 43%, 97%);
   --axa-blue-65: hsl(240deg, 33%, 53%);
   --axa-blue-8: hsl(240deg, 33%, 91%);
-  --axa-blue-80: hsl(240deg, 67%, 40%);
+  --axa-blue-80: hsl(240deg, 53%, 42%);
   --axa-blue-120: hsl(240deg, 100%, 22%);
 
   /* red */
 
-  --axa-red-100: hsl(357deg, 100%, 54%);
-  --axa-red-4: hsl(357deg, 100%, 97%);
+  --axa-red-100: hsl(357deg, 100%, 55%);
+  --axa-red-4: hsl(0deg, 100%, 98%);
   --axa-red-digital-100: hsl(357deg, 100%, 63%);
   --red-alert-100: hsl(0deg, 100%, 45%);
   --red-alert-80: hsl(0deg, 100%, 56%);
 
   /* orange */
-  --warning-100: hsl(20deg, 70%, 45%);
-  --warning-120: hsl(20deg, 80%, 35%);
+
+  --warning-100: hsl(19deg, 82%, 43%);
+  --warning-120: hsl(19deg, 82%, 35%);
   --warning-4: hsl(20deg, 80%, 98%);
-  --warning-80: hsl(20deg, 70%, 60%);
+  --warning-80: hsl(19deg, 63%, 55%);
 
   /* gray */
+
   --dark: hsl(from var(--black) h s 7%);
   --neutral-100: hsl(from var(--black) h s 20%);
   --neutral-80: hsl(from var(--black) h s 36%);
@@ -63,7 +65,7 @@
 
   /* green */
   --green-100: hsl(138deg, 68%, 30%);
-  --aqua-green-12: hsl(150deg, 80%, 96%);
+  --aqua-green-12: hsl(146deg, 41%, 97%);
 
   /* *************************************************************************/
 

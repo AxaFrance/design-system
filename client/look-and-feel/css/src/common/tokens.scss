@@ -21,7 +21,7 @@
   --color-blue-3: #{common.$color-blue-3};
   --color-ocean-blue: #{common.$color-oceanBlue};
   --color-btn-light: #{common.$color-btn-light};
-  --color-focus: #{common.$color-focus};
+  --color-focus: #{common.$color-focus}; // prefer use --color-blue-3
   --color-btn-tertiary-bg: #{common.$color-btn-tertiary-bg};
   --color-btn-tertiary-bg-darker: #{common.$color-btn-tertiary-bg-darker};
   --color-btn-tertiary-bg-lighter: #{common.$color-btn-tertiary-bg-lighter};
@@ -51,7 +51,7 @@
   --color-gray-700: #{common.$color-gray-700};
   --color-gray-900: #{common.$color-gray-900};
   --color-btn-disabled-text: #{common.$color-btn-disabled-text};
-  --color-border: #{common.$color-border};
+  --color-border: #{common.$color-border}; // prefer use --color-gray-200
 
   /* green */
   --color-green-600: #{common.$color-green-600};

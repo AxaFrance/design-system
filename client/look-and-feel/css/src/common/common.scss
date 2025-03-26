@@ -38,8 +38,8 @@ $color-gray-500: #999;
 $color-gray-700: #5f5f5f;
 $color-gray-900: #333 !default;
 $color-green-600: #118635 !default;
-$color-border: #f3f3f3 !default;
-$color-focus: #36f !default;
+$color-border: #f3f3f3 !default; // prefer use $color-gray-200
+$color-focus: #36f !default; // prefer use $color-blue-3
 
 // others
 
