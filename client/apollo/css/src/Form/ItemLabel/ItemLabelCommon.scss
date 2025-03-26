@@ -2,6 +2,7 @@
 
 .af-item-label {
   display: grid;
+  width: 100%;
   grid-template-areas:
     "label sidebutton"
     "description sidebutton"
