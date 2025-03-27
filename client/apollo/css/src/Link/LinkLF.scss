@@ -1,0 +1,22 @@
+@use "../common/breakpoints" as breakpoints;
+
+@use "./LinkCommon";
+
+.af-link {
+  --link-font-weight: 400;
+  --button-text-color-default: var(--color-axa);
+  --underline-offset: none;
+
+  &:active,
+  &:focus {
+    --button-text-color-1: var(--color-blue-1);
+  }
+
+  &:focus-visible {
+    --button-text-color-2: var(--color-blue-3);
+  }
+
+  &:hover {
+    --button-text-color-1: var(--color-blue-1);
+  }
+}
