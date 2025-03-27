@@ -1,0 +1,19 @@
+.af-tag {
+  display: inline-flex;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--tag-border-color);
+  border-radius: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-family: var(--font-family-base);
+  color: var(--tag-text-color);
+  background-color: var(--tag-bg-color);
+  cursor: default;
+
+  span {
+    font-size: var(--tag-font-size);
+    font-weight: 600;
+    line-height: var(--tag-line-height);
+  }
+}

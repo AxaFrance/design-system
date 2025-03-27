@@ -1,3 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Tag/Tag.scss";
+/* eslint-disable import/no-extraneous-dependencies */
+export { Tag, tagVariants } from "@axa-fr/design-system-apollo-react/lf";
 
-export { Tag } from "./Tag";
+export type { TagVariants } from "@axa-fr/design-system-apollo-react/lf";

@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as TagStories from "./Tag.stories";
+
+<Meta of={TagStories} name="Tag" />
+
+# Tag
+
+To use the tag import it like that:
+
+```tsx
+import { Tag } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <Tag variant="info">My tag</Tag>
+    <Tag variant="success">My tag</Tag>
+  </>
+);
+```
+
+## Playground
+
+<Canvas of={TagStories.Playground}></Canvas>
+
+<Controls of={TagStories.Playground} />
+
+## Variants
+
+Use the `variant` prop to change the look of the tag. [See the examples](#all-variants).
+
+You can also add your own modifier, and the output will be a custom class called `af-tag--<yourModifier>` that you can target in your css
+The rest of the props (eg: `className`) will be passed down to the actual `div` HTML element.
+
+## All variants
+
+<Canvas of={TagStories.All} layout="fullscreen" />
+./Tag.stories
