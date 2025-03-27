@@ -8,6 +8,7 @@ export {
   buttonVariants,
   type ButtonVariants,
 } from "./Button/ButtonApollo";
+export { Link } from "./Link/LinkApollo";
 export { Svg } from "./Svg/Svg";
 export {
   Spinner,
