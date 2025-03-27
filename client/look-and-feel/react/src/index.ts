@@ -52,5 +52,5 @@ export { SkeletonList } from "./SkeletonList/SkeletonList";
 export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
-export { Tag } from "./Tag";
+export { Tag, tagVariants, type TagVariants } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
