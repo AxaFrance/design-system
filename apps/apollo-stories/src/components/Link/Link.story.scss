@@ -1,0 +1,49 @@
+@use "../../fondations/breakpoints.scss" as breakpoints;
+
+.af-link-demo {
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+  color: var(--axa-blue-100);
+  fill: var(--axa-blue-100);
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    aspect-ratio: 1;
+  }
+
+  &--openInNewTab {
+    font-weight: 600;
+  }
+
+  &:has(svg) {
+    text-decoration: none;
+  }
+
+  &:active,
+  &:focus {
+    color: var(--axa-blue-120);
+    fill: var(--axa-blue-120);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-blue-3);
+    outline-offset: 3px;
+  }
+
+  &:hover {
+    color: var(--axa-blue-120);
+    fill: var(--axa-blue-120);
+
+    &:has(svg) {
+      text-decoration: none;
+    }
+  }
+}

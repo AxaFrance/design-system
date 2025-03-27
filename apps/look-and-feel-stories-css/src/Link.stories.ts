@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Link/Link.scss";
+import "@axa-fr/design-system-apollo-css/dist/Link/LinkLF.scss";
 import type { Args, Meta, StoryObj } from "@storybook/html";
 
 const meta: Meta = {
