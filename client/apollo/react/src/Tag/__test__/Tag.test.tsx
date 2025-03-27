@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Tag } from "../Tag";
+import { Tag } from "../TagCommon";
 
 describe("Tag", () => {
   it("should render children correctly", () => {
