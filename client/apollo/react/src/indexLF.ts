@@ -10,7 +10,7 @@ export {
   spinnerVariants,
   type SpinnerVariants,
 } from "./Spinner/SpinnerLF";
-
+export { Tag, type TagVariants, tagVariants } from "./Tag/TagLF";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";

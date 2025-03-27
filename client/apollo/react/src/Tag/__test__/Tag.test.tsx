@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Tag } from "../Tag";
+import { Tag, TagVariants } from "../TagCommon";
 
 describe("Tag", () => {
   it("should render children correctly", () => {
@@ -13,14 +13,14 @@ describe("Tag", () => {
     expect(tagSpan.parentElement).toHaveClass("af-tag");
   });
 
-  it("should have custom classModifier", () => {
+  it("should have specified variant", () => {
     const children = "Sample Tag";
-    const classModifier = "modifier";
+    const variant: TagVariants = "warning";
 
-    render(<Tag classModifier={classModifier}>{children}</Tag>);
+    render(<Tag variant={variant}>{children}</Tag>);
 
     expect(screen.getByText(children).parentElement).toHaveClass(
-      `af-tag af-tag--${classModifier}`,
+      `af-tag af-tag--${variant}`,
     );
   });
 });

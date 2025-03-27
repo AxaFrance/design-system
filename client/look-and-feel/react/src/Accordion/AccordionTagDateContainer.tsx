@@ -27,7 +27,7 @@ export const AccordionTagDateContainer = ({
     <div className="af-accordion__tag-date-container">
       {tagLabel && (
         <div className="af-accordion__tag-container">
-          <Tag classModifier="warning" {...tagProps}>
+          <Tag variant="warning" {...tagProps}>
             {tagLabel}
           </Tag>
         </div>

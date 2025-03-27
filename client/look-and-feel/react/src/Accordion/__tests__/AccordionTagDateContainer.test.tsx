@@ -23,7 +23,9 @@ describe("AccordionTagDateContainer", () => {
 
   it("should pass tagProps to Tag", () => {
     const tag = "tag";
-    const tagProps = { classModifier: "success" };
+    const tagProps: React.ComponentProps<
+      typeof AccordionTagDateContainer
+    >["tagProps"] = { variant: "success" };
 
     render(<AccordionTagDateContainer tagLabel={tag} tagProps={tagProps} />);
 

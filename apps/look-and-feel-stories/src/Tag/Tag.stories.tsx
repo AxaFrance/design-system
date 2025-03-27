@@ -1,25 +1,27 @@
 import { Tag } from "@axa-fr/design-system-look-and-feel-react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { renderTagAll } from "./render";
+
+import "./Tag.story.scss";
 
 const meta: Meta<typeof Tag> = {
   title: "Components/Tag",
   component: Tag,
+  args: {
+    children: "Texte",
+  },
 };
 
 export default meta;
 
-export const Default: StoryObj<typeof Tag> = {
+type Story = StoryObj<typeof Tag>;
+
+export const Default: Story = {
   name: "Tag",
   render: (args) => <Tag {...args} />,
-  args: {
-    children: "Texte",
-    classModifier: "",
-  },
-  argTypes: {
-    classModifier: {
-      options: ["", "success", "error", "warning", "info"],
-      control: { type: "select" },
-      defaultValue: "",
-    },
-  },
+};
+
+export const All: Story = {
+  name: "Tag All Variants",
+  render: renderTagAll,
 };

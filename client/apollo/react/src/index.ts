@@ -15,7 +15,7 @@ export {
   spinnerVariants,
   type SpinnerVariants,
 } from "./Spinner/SpinnerApollo";
-
+export { Tag, type TagVariants, tagVariants } from "./Tag/TagApollo";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";

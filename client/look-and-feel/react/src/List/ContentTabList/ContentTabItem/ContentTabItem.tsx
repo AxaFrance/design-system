@@ -20,7 +20,7 @@ export const ContentTabItem = ({
       {Boolean(value) && (Boolean(tag) || Boolean(date)) && (
         <div className="af-list-item__additional-data-container">
           {Boolean(tag) && (
-            <Tag classModifier="warning" {...tagProps}>
+            <Tag variant="warning" {...tagProps}>
               {tag}
             </Tag>
           )}
@@ -36,7 +36,7 @@ export const ContentTabItem = ({
       {!value && isMobile && (Boolean(tag) || Boolean(date)) && (
         <div className="af-list-item__additional-data-container">
           {Boolean(tag) && (
-            <Tag classModifier="warning" {...tagProps}>
+            <Tag variant="warning" {...tagProps}>
               {tag}
             </Tag>
           )}
@@ -52,7 +52,7 @@ export const ContentTabItem = ({
         {!value && (Boolean(tag) || Boolean(date)) && !isMobile && (
           <div className="af-list-item__additional-data-container">
             {Boolean(tag) && (
-              <Tag classModifier="warning" {...tagProps}>
+              <Tag variant="warning" {...tagProps}>
                 {tag}
               </Tag>
             )}
