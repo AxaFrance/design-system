@@ -1,0 +1,33 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as TagStories from "./Tag.stories";
+
+<Meta of={TagStories} name="Tag" />
+
+# Tag
+
+To use the tag import it like that:
+
+```tsx
+import { Tag } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <Tag variant="info">My tag</Tag>
+    <Tag variant="success">My tag</Tag>
+  </>
+);
+```
+
+## Playground
+
+<Canvas of={TagStories.Playground}></Canvas>
+
+<Controls of={TagStories.Playground} />
+
+## Variants
+
+Use the `variant` prop to change the look of the tag. [See the examples](#all-variants).
+
+## All variants
+
+<Canvas of={TagStories.All} layout="fullscreen" />
