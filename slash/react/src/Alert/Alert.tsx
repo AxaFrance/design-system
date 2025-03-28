@@ -36,6 +36,7 @@ export const Alert = ({
       <div className="af-alert__title">
         <div className="af-alert__title-icon">
           <i
+            role="presentation"
             className={
               icon || TypeIcons[classModifier as keyof typeof TypeIcons]
             }
