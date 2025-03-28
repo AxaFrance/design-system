@@ -16,5 +16,5 @@ export const SectionRestitutionTitle = ({
     classModifier,
     "af-restitution__content-title",
   );
-  return <div className={componentClassName}>{title}</div>;
+  return <h4 className={componentClassName}>{title}</h4>;
 };
