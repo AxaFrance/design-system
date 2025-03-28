@@ -1,8 +1,8 @@
 ---
-name: Accessibility issue
-about: Suggest an accessibility issue for this project
+name: Slash Accessibility report
+about: Create an accessibility report to help us improve Slash Design System
 title: "[a11y] "
-labels: accessibility
+labels: ['bug', 'accessibility', 'agent-slash']
 assignees: ''
 
 ---
