@@ -1,8 +1,8 @@
-import "@axa-fr/design-system-slash-css/dist/Badge/Badge.scss";
+import "@axa-fr/design-system-slash-css/dist/Tag/Tag.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 
 const meta: Meta = {
-  title: "Components/Badge",
+  title: "Components/Tag",
   parameters: {
     layout: "centered",
   },
@@ -10,10 +10,20 @@ const meta: Meta = {
 
 export default meta;
 
-const MODIFIERS = ["success", "info", "danger", "error"];
+const MODIFIERS = [
+  "success",
+  "info",
+  "danger",
+  "error",
+  "warning",
+  "axa",
+  "black",
+  "purple",
+  "gray",
+];
 
 export const Default: StoryObj = {
-  name: "Badge",
+  name: "Tag",
   render: (args) => {
     const badge = document.createElement("span");
 
@@ -22,8 +32,8 @@ export const Default: StoryObj = {
     badge.innerHTML = args.children;
 
     badge.className += [
-      "af-badge",
-      args.classModifier ? `af-badge--${args.classModifier}` : "",
+      "af-tag",
+      args.classModifier ? `af-tag--${args.classModifier}` : "",
     ].join(" ");
 
     return badge;
@@ -43,7 +53,7 @@ export const Default: StoryObj = {
 };
 
 export const BadgeIconStory: StoryObj = {
-  name: "Badge with icon",
+  name: "Tag with icon",
   render: (args) => {
     const badge = document.createElement("span");
 
@@ -52,8 +62,8 @@ export const BadgeIconStory: StoryObj = {
     badge.innerHTML = args.children;
 
     badge.className += [
-      "af-badge",
-      args.classModifier ? `af-badge--${args.classModifier}` : "",
+      "af-tag",
+      args.classModifier ? `af-tag--${args.classModifier}` : "",
     ].join(" ");
 
     return badge;
