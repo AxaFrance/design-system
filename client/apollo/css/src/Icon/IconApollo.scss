@@ -1,0 +1,17 @@
+@use "./IconCommon";
+
+.af-icon {
+  --icon-border-radius: var(--radius-44);
+
+  &--secondary {
+    &.af-icon--background {
+      --icon-background-color: var(--axa-blue-4);
+    }
+  }
+
+  &--tertiary {
+    &.af-icon--background {
+      --icon-background-color: var(--axa-blue-4);
+    }
+  }
+}

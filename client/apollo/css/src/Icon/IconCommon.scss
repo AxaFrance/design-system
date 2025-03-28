@@ -1,0 +1,73 @@
+.af-icon {
+  display: grid;
+  width: fit-content;
+  padding: var(--icon-padding);
+  border: var(--icon-border);
+  border-radius: var(--icon-border-radius);
+  background-color: var(--icon-background-color);
+
+  --icon-background-color: transparent;
+
+  svg {
+    width: var(--icon-width);
+    height: var(--icon-height);
+    fill: var(--icon-fill);
+  }
+
+  &--background {
+    --icon-padding: var(--spacing-12);
+  }
+
+  &--large {
+    svg {
+      --icon-width: var(--size-40);
+      --icon-height: var(--size-40);
+    }
+  }
+
+  &--medium {
+    svg {
+      --icon-width: var(--size-32);
+      --icon-height: var(--size-32);
+    }
+  }
+
+  &--small {
+    svg {
+      --icon-width: var(--size-24);
+      --icon-height: var(--size-24);
+    }
+  }
+
+  &--extra-small {
+    svg {
+      --icon-width: var(--size-16);
+      --icon-height: var(--size-16);
+    }
+
+    &.af-icon--background {
+      --icon-padding: var(--spacing-8);
+    }
+  }
+
+  &--primary {
+    --icon-fill: var(--axa-blue-100);
+
+    &.af-icon--background {
+      --icon-fill: var(--white);
+      --icon-background-color: var(--axa-blue-100);
+    }
+  }
+
+  &--secondary {
+    --icon-fill: var(--white);
+
+    &.af-icon--background {
+      --icon-fill: var(--axa-blue-100);
+    }
+  }
+
+  &--tertiary {
+    --icon-fill: var(--neutral-50);
+  }
+}
