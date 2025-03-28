@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Divider } from "../Divider";
+import { Divider } from "../DividerCommon";
 
 describe("Divider component", () => {
   it("should render with default class name", () => {
