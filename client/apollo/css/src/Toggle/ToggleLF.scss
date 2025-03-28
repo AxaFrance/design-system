@@ -1,0 +1,41 @@
+@use "./ToggleCommon";
+
+.af-toggle {
+  --toggle-bg-color: var(--blue-200);
+  --toggle-border-color: var(--gray-700);
+  --toggle-padding: 4px;
+  --toggle-width: 52px;
+
+  // &--selected {
+  //   --toggle-bg-color: var(--axa-blue-800);
+  //   --toggle-border-color: unset;
+
+  //   &__handle {
+  //     --toggle-handle-color: white;
+  //     --toggle-handle-size: 24px;
+  //   }
+  // }
+
+  // &--disabled {
+  //   --toggle-bg-color: var(--white);
+  //   --toggle-border-color: var(--gray-400);
+
+  //   &__handle {
+  //     --toggle-handle-color: var(--gray-400);
+  //   }
+  // }
+
+  // &--disabled-selected {
+  //   --toggle-bg-color: var(--gray-400);
+  //   --toggle-border-color: unset;
+
+  //   &__handle {
+  //     --toggle-handle-size: 24px;
+  //   }
+  // }
+
+  // &__handle {
+  //   --toggle-handle-color: var(--gray-700);
+  //   --toggle-handle-size: 16px;
+  // }
+}

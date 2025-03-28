@@ -1,0 +1,23 @@
+.af-toggle {
+  display: flex;
+  width: var(--toggle-width);
+  padding: var(--toggle-padding);
+  border: 1px solid var(--toggle-border-color);
+  border-radius: 32px;
+  flex-direction: row;
+  background-color: var(--toggle-bg-color);
+
+  &__handle {
+    width: var(--toggle-handle-size);
+    height: var(--toggle-handle-size);
+    border-radius: 50%;
+    background-color: var(--toggle-handle-color);
+    transform: translateX(var(--toggle-handle-position));
+    transition: 200ms;
+  }
+
+  input[type="checkbox"] {
+    width: 0;
+    visibility: hidden;
+  }
+}

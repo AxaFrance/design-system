@@ -1,0 +1,34 @@
+@use "./ToggleCommon";
+
+.af-toggle {
+  --toggle-bg-color: var(--neutral-50);
+  --toggle-border-color: var(--neutral-50);
+  --toggle-padding: 2px;
+  --toggle-width: 42px;
+  --toggle-handle-color: var(--white);
+  --toggle-handle-size: 20px;
+  --toggle-handle-position: 0;
+
+  &:has(:checked) {
+    --toggle-bg-color: var(--axa-blue-100);
+    --toggle-border-color: unset;
+
+    .af-toggle__handle {
+      --toggle-handle-position: calc(
+        var(--toggle-width) - calc(var(--toggle-padding) * 2) - var(
+            --toggle-handle-size
+          )
+      );
+    }
+  }
+
+  //   &--disabled {
+  //     --toggle-bg-color: var(--neutral-25);
+  //     --toggle-border-color: var(--neutral-25);
+  //   }
+
+  //   &--disabled-selected {
+  //     --toggle-bg-color: var(--neutral-25);
+  //     --toggle-border-color: unset;
+  //   }
+}

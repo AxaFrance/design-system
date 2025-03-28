@@ -36,6 +36,8 @@
   --axa-blue-8: hsl(240deg, 33%, 91%);
   --axa-blue-80: hsl(240deg, 53%, 42%);
   --axa-blue-120: hsl(240deg, 100%, 22%);
+  --blue-200: hsl(240deg, 100%, 97%);
+  --blue-800: hsl(240deg, 100%, 28%);
 
   /* red */
 
@@ -62,6 +64,8 @@
   --neutral-25: hsl(from var(--black) h s 80%);
   --neutral-14: hsl(from var(--black) h s 90%);
   --neutral-5: hsl(from var(--black) h s 96%);
+  --gray-400: hsl(0deg, 0%, 90%);
+  --gray-700: hsl(0deg, 0%, 37%);
 
   /* green */
   --green-100: hsl(138deg, 68%, 30%);
