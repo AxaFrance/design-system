@@ -8,6 +8,7 @@ type FooterProps = {
   alt?: string;
   icon?: string;
   className?: string;
+  version?: string;
 };
 
 export const Footer = forwardRef<
@@ -21,6 +22,7 @@ export const Footer = forwardRef<
       title = "Site Axa",
       icon = logo,
       alt = "Logo Axa",
+      version,
       children = `© ${new Date().getFullYear()} AXA Tous droits réservés`,
       ...props
     },
@@ -40,6 +42,9 @@ export const Footer = forwardRef<
           </a>
         )}
         <div className="af-footer-content">{children}</div>
+        {version && (
+          <span className="af-footer-version">Version {version}</span>
+        )}
       </div>
     </footer>
   ),
