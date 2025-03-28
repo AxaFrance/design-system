@@ -1,10 +1,6 @@
 import classNames from "classnames";
 
 const getLastClassName = (defaultClassName: string) => {
-  if (!defaultClassName) {
-    return null;
-  }
-
   return defaultClassName.split(" ").filter(Boolean).at(-1);
 };
 
