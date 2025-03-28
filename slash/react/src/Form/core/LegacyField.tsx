@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { useId, type ComponentPropsWithoutRef, type ReactNode } from "react";
 import { getComponentClassName } from "../../utilities";
 import { FieldError } from "./FieldError";
 import { FieldForm } from "./FieldForm";
@@ -18,6 +18,7 @@ type FieldProps = Omit<
   isVisible?: boolean;
   roleContainer?: string;
   ariaLabelContainer?: string;
+  errorDescription?: string;
   isLabelContainerLinkedToInput?: boolean;
 };
 
@@ -35,8 +36,11 @@ export const LegacyField = ({
   isVisible = true,
   roleContainer,
   ariaLabelContainer,
+  errorDescription,
   isLabelContainerLinkedToInput = true,
 }: FieldProps) => {
+  const errorUseId = useId();
+  const errorId = errorDescription ?? errorUseId;
   if (!isVisible) {
     return null;
   }
@@ -52,6 +56,7 @@ export const LegacyField = ({
       className={componentClassName}
       role={roleContainer}
       aria-label={ariaLabelContainer}
+      aria-describedby={errorId}
     >
       <div className={classNameContainerLabel}>
         <label
@@ -74,7 +79,11 @@ export const LegacyField = ({
         forceDisplayMessage={forceDisplayMessage}
       >
         {children}
-        <FieldError message={message} messageType={messageType} />
+        <FieldError
+          message={message}
+          messageType={messageType}
+          errorId={errorId}
+        />
       </FieldForm>
     </div>
   );
