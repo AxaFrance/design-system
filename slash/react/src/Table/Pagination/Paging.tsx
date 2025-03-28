@@ -75,6 +75,7 @@ const Paging = ({
           numberPages={numberPages}
           previousLabel={previousLabel}
           nextLabel={nextLabel}
+          elementsLabel={elementsLabel}
           ofLabel={ofLabel}
           mode={mode}
         />
