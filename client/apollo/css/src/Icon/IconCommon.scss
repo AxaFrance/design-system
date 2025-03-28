@@ -14,60 +14,43 @@
     fill: var(--icon-fill);
   }
 
-  &--background {
-    --icon-padding: var(--spacing-12);
-  }
-
   &--large {
     svg {
-      --icon-width: var(--size-40);
-      --icon-height: var(--size-40);
+      --icon-width: calc(40 / var(--font-size-base) * 1rem);
+      --icon-height: calc(40 / var(--font-size-base) * 1rem);
+    }
+
+    &.af-icon--background {
+      --icon-padding: calc(12 / var(--font-size-base) * 1rem);
     }
   }
 
   &--medium {
     svg {
-      --icon-width: var(--size-32);
-      --icon-height: var(--size-32);
+      --icon-width: calc(32 / var(--font-size-base) * 1rem);
+      --icon-height: calc(32 / var(--font-size-base) * 1rem);
+    }
+
+    &.af-icon--background {
+      --icon-padding: calc(12 / var(--font-size-base) * 1rem);
     }
   }
 
   &--small {
     svg {
-      --icon-width: var(--size-24);
-      --icon-height: var(--size-24);
+      --icon-width: calc(24 / var(--font-size-base) * 1rem);
+      --icon-height: calc(24 / var(--font-size-base) * 1rem);
     }
   }
 
   &--extra-small {
     svg {
-      --icon-width: var(--size-16);
-      --icon-height: var(--size-16);
+      --icon-width: calc(16 / var(--font-size-base) * 1rem);
+      --icon-height: calc(16 / var(--font-size-base) * 1rem);
     }
 
     &.af-icon--background {
-      --icon-padding: var(--spacing-8);
+      --icon-padding: calc(8 / var(--font-size-base) * 1rem);
     }
-  }
-
-  &--primary {
-    --icon-fill: var(--axa-blue-100);
-
-    &.af-icon--background {
-      --icon-fill: var(--white);
-      --icon-background-color: var(--axa-blue-100);
-    }
-  }
-
-  &--secondary {
-    --icon-fill: var(--white);
-
-    &.af-icon--background {
-      --icon-fill: var(--axa-blue-100);
-    }
-  }
-
-  &--tertiary {
-    --icon-fill: var(--neutral-50);
   }
 }

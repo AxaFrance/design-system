@@ -3,45 +3,7 @@
 .af-icon {
   --icon-border-radius: calc(12 / var(--font-size-base) * 1rem);
 
-  &--large {
-    svg {
-      --icon-width: calc(40 / var(--font-size-base) * 1rem);
-      --icon-height: calc(40 / var(--font-size-base) * 1rem);
-    }
-
-    &.af-icon--background {
-      --icon-padding: calc(12 / var(--font-size-base) * 1rem);
-    }
-  }
-
-  &--medium {
-    svg {
-      --icon-width: calc(32 / var(--font-size-base) * 1rem);
-      --icon-height: calc(32 / var(--font-size-base) * 1rem);
-    }
-
-    &.af-icon--background {
-      --icon-padding: calc(12 / var(--font-size-base) * 1rem);
-    }
-  }
-
   &--small {
-    svg {
-      --icon-width: calc(24 / var(--font-size-base) * 1rem);
-      --icon-height: calc(24 / var(--font-size-base) * 1rem);
-    }
-
-    &.af-icon--background {
-      --icon-padding: calc(8 / var(--font-size-base) * 1rem);
-    }
-  }
-
-  &--extra-small {
-    svg {
-      --icon-width: calc(16 / var(--font-size-base) * 1rem);
-      --icon-height: calc(16 / var(--font-size-base) * 1rem);
-    }
-
     &.af-icon--background {
       --icon-padding: calc(8 / var(--font-size-base) * 1rem);
     }

@@ -9,19 +9,19 @@ export const iconVariants = {
 } as const;
 export type IconVariants = keyof typeof iconVariants;
 
-export const sizeVariants = {
+export const iconSizeVariants = {
   L: "large",
   M: "medium",
   S: "small",
   XS: "extra-small",
 } as const;
+export type IconSizeVariants = keyof typeof iconSizeVariants;
 
 export type IconProps = {
   icon: string;
   variant?: IconVariants;
-  size?: "L" | "M" | "S" | "XS";
+  size?: IconSizeVariants;
   background?: boolean;
-  className?: string;
 };
 
 export const Icon = ({
@@ -29,15 +29,14 @@ export const Icon = ({
   variant = "primary",
   size = "S",
   background = false,
-  className,
 }: IconProps) => {
   const componentClassName = useMemo(() => {
-    let newClassModifier = `${variant} ${sizeVariants[size]}`;
+    let newClassModifier = `${variant} ${iconSizeVariants[size]}`;
 
     if (background) newClassModifier += " background";
 
-    return getComponentClassName("af-icon", className, newClassModifier);
-  }, [variant, className, background, size]);
+    return getComponentClassName("af-icon", "", newClassModifier);
+  }, [variant, background, size]);
 
   return (
     <div data-testid="iconContainer" className={componentClassName}>

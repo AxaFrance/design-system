@@ -14,4 +14,10 @@ export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { TextInput } from "./Form/TextInput/TextInputLF";
-export { Icon, iconVariants, type IconVariants } from "./Icon/IconLF";
+export {
+  Icon,
+  iconVariants,
+  type IconVariants,
+  iconSizeVariants,
+  type IconSizeVariants,
+} from "./Icon/IconLF";
