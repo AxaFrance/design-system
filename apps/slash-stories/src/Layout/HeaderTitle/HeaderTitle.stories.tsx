@@ -1,4 +1,7 @@
-import { Action, HeaderTitle } from "@axa-fr/design-system-slash-react";
+import { Action, HeaderTitle, Svg } from "@axa-fr/design-system-slash-react";
+import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
+import mailIcon from "@material-symbols/svg-400/outlined/mail.svg";
+import saveIcon from "@material-symbols/svg-400/outlined/save.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
@@ -30,13 +33,18 @@ export default meta;
 const actions = [
   {
     id: "001",
-    icon: "floppy-disk",
-    title: "Enregistrer",
+    icon: deleteIcon,
+    title: "Supprimer",
   },
   {
     id: "002",
-    icon: "print",
-    title: "Imprimer",
+    icon: mailIcon,
+    title: "Envoyer",
+  },
+  {
+    id: "003",
+    icon: saveIcon,
+    title: "Enregistrer",
   },
 ];
 
@@ -46,11 +54,16 @@ export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
   args: {
     children: (
       <div className="af-title-bar__actions">
-        <a className="af-title-bar__link" href="#lien" title="lien titlebar">
-          lien titlebar
-        </a>
         {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
-          <Action key={id} icon={icon} title={title} onClick={() => {}} />
+          <a
+            key={id}
+            href="/#"
+            role="button"
+            title={title}
+            className="btn af-btn--circle"
+          >
+            <Svg src={icon} />
+          </a>
         ))}
       </div>
     ),
