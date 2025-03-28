@@ -19,6 +19,7 @@ const Paging = ({
   classModifier,
   currentPage = 1,
   displayLabel,
+  selectAriaLabel,
   elementsLabel,
   id,
   mode,
@@ -64,6 +65,7 @@ const Paging = ({
           numberItems={numberItems}
           id={id}
           displayLabel={displayLabel}
+          selectAriaLabel={selectAriaLabel}
           elementsLabel={elementsLabel}
           items={items}
         />
