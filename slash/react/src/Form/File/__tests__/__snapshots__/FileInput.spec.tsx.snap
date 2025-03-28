@@ -31,6 +31,8 @@ exports[`<FileInput> > renders FileInput correctly 1`] = `
           >
             <input
               accept="image/jpeg, image/png, application/*"
+              aria-describedby=":r1:"
+              aria-invalid="false"
               autocomplete="off"
               id="id"
               multiple=""

@@ -15,6 +15,7 @@ import {
 } from "../core";
 
 import { Number } from "./Number";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type Props = ComponentPropsWithoutRef<typeof LegacyField> &
   ComponentPropsWithRef<typeof Number> & {
@@ -40,6 +41,7 @@ export const NumberInput = ({
   ...otherProps
 }: Props) => {
   const inputUseId = useId();
+  const errorUseId = useId();
   const inputId = id ?? inputUseId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
@@ -47,6 +49,7 @@ export const NumberInput = ({
     Boolean(children),
     required,
   );
+  const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
   return (
     <LegacyField
       label={label}
@@ -59,6 +62,7 @@ export const NumberInput = ({
       classModifier={inputFieldClassModifier}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
+      errorId={errorUseId}
     >
       <FieldInput
         className="af-form__text"
@@ -68,6 +72,8 @@ export const NumberInput = ({
           id={inputId}
           classModifier={inputClassModifier}
           disabled={disabled}
+          aria-describedby={errorUseId}
+          aria-invalid={isInvalid}
           {...otherProps}
         />
         {children}

@@ -26,6 +26,7 @@ type InputProps = {
   required?: boolean;
   disabled?: boolean;
   helpMessage?: ReactNode;
+  errorId?: string;
 };
 
 export const Field = ({
@@ -45,13 +46,13 @@ export const Field = ({
   roleContainer,
   ariaLabelContainer,
   isLabelContainerLinkedToInput = true,
+  errorId,
   renderInput,
 }: InputProps & {
   renderInput: (props: { id: string; classModifier: string }) => ReactNode;
 }) => {
   const inputUseId = useId();
   const inputId = id ?? inputUseId;
-
   const actualRequired = required || classModifier.includes("required");
 
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
@@ -92,11 +93,18 @@ export const Field = ({
       </div>
       <div className={classNameContainerInput}>
         <div className={fieldContainerClassName}>
-          {renderInput({ id: inputId, classModifier: inputClassModifier })}
+          {renderInput({
+            id: inputId,
+            classModifier: inputClassModifier,
+          })}
           {children}
         </div>
         {forceDisplayMessage ? (
-          <FieldError message={message} messageType={messageType} />
+          <FieldError
+            message={message}
+            messageType={messageType}
+            errorId={errorId}
+          />
         ) : (
           <HelpMessage message={helpMessage} />
         )}
