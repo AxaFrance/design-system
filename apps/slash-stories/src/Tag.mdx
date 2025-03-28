@@ -1,0 +1,48 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as TagStories from "./Tag.stories.tsx";
+
+<Meta of={TagStories} />
+
+## Tag
+
+### Info
+
+The Tag component is used to display a tag with a text or an icon. The component Badge was deprecated in favor of Tag.
+
+You can use `af-badge` but it will be replaced by `af-tag` which takes precedence. `af-badge` is deprecated and will be removed in the next major version.
+
+### Import
+
+```tsx title="test.js"
+import { Tag } from "@axa-fr/design-system-slash-react";
+```
+
+### Use
+
+```tsx title="test.js"
+export const SimpleTag = () => <Tag classModifier="success">Lorem ipsum</Tag>;
+```
+
+### With Icon
+
+```tsx title="test.js"
+export const WithIconTag = () => (
+  <Tag classModifier="error">
+    <i className="glyphicon glyphicon-bell" />
+  </Tag>
+);
+```
+
+## Tag with modifiers
+
+<Canvas of={TagStories.MultiExamples} />
+
+## Sample Tag
+
+<Canvas of={TagStories.Default} />
+<Controls of={TagStories.Default} />
+
+## Tag with icon
+
+<Canvas of={TagStories.TagIconStory} />
+<Controls of={TagStories.TagIconStory} />

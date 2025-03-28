@@ -1,0 +1,41 @@
+@use "sass:color";
+@use "sass:list";
+@use "../common/common" as common;
+
+$types: (
+  default var(--axablue80),
+  information var(--cyan40),
+  success var(--green40),
+  warning var(--orange40),
+  danger var(--orange40),
+  error var(--red30),
+  dark var(--gray80),
+  gray var(--gray50),
+  purple var(--purpletarif40)
+);
+
+.af-badge,
+.af-tag {
+  display: flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: common.$white;
+
+  @each $type in $types {
+    &--#{list.nth($type, 1)} {
+      background-color: list.nth($type, 2);
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.65;
+  }
+
+  & > * {
+    vertical-align: middle;
+  }
+}

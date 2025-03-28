@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { HeaderTitle } from "./HeaderTitle";
-import { Badge } from "../../../Badge/Badge";
+import { Tag } from "../../../Tag/Tag";
 
 describe("HeaderTitle", () => {
   test("should render title and subtitle", async () => {
@@ -34,7 +34,7 @@ describe("HeaderTitle", () => {
   test("should render children", async () => {
     const { container } = render(
       <HeaderTitle title="Title">
-        <Badge classModifier="success"> Lorem ipsum </Badge>
+        <Tag classModifier="success"> Lorem ipsum </Tag>
       </HeaderTitle>,
     );
     expect(await axe(container)).toHaveNoViolations();
