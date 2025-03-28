@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { MouseEvent } from "react";
 
 type LiProps = {
@@ -22,12 +21,9 @@ const Li = ({ isVisible, active, value, ...props }: LiProps) => {
     return null;
   }
   return (
-    <li
-      className={classNames("af-pager__item", {
-        "af-pager__item--active": active,
-      })}
-    >
+    <li className="af-pager__item">
       <a
+        aria-current={active ? "page" : undefined}
         className="af-pager__item-link"
         href="/#"
         onClick={onClick({ ...props, value })}
