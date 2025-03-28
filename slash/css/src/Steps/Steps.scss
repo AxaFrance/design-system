@@ -26,7 +26,10 @@ $steps-color-active: common.$color-axa;
     list-style: none;
 
     &-step {
+      position: relative;
       display: inline-flex;
+      padding: 0 1.6rem 0 5.6rem;
+      flex-grow: 1;
       font-size: $font-size-step;
       color: $steps-color;
       counter-increment: stepper-counter;
@@ -72,6 +75,8 @@ $steps-color-active: common.$color-axa;
       }
 
       &::after {
+        position: absolute;
+        right: 1.6rem;
         font-family: icons;
         content: "\EA12";
       }
