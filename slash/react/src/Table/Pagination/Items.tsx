@@ -21,6 +21,10 @@ export type Props = {
    * Number of items displayed per page
    */
   numberItems?: number;
+  /**
+   * Aria label for the the per-page select
+   */
+  selectAriaLabel?: string;
   onChange: (e: { value: number }) => void;
 };
 
@@ -30,6 +34,7 @@ const Items = ({
   onChange,
   displayLabel = "Afficher",
   elementsLabel = "éléments",
+  selectAriaLabel = "Afficher la liste permettant de sélectionner la page du tableau",
   id,
   items = [5, 10, 25, 50, 100],
   numberItems = 10,
@@ -56,6 +61,7 @@ const Items = ({
                 <select
                   id={newId}
                   className="af-form__input-select"
+                  aria-label={selectAriaLabel}
                   value={numberItems}
                   onChange={(e) => {
                     e.preventDefault();
