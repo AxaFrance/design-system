@@ -25,7 +25,11 @@ $steps-color-active: common.$color-axa;
     list-style: none;
 
     &-step {
+      position: relative;
       display: inline-flex;
+      padding: 0 1rem 0 calc((16 + 40) / 16 * 1rem);
+      flex-grow: 1;
+      justify-content: center;
       font-size: $font-size-step;
       color: $steps-color;
       counter-increment: stepper-counter;
@@ -36,7 +40,7 @@ $steps-color-active: common.$color-axa;
       }
 
       &__number {
-        margin-right: 0.6rem;
+        margin-right: 0.75rem;
         font-size: $font-size-step-number;
         font-weight: 600;
         color: $steps-color;
@@ -71,6 +75,10 @@ $steps-color-active: common.$color-axa;
       }
 
       &::after {
+        position: absolute;
+        right: 1rem;
+        width: calc(24 / 16 * 1rem);
+        margin-left: 1rem;
         font-family: icons;
         content: "\EA12";
       }

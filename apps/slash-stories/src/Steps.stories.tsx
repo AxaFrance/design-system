@@ -69,13 +69,10 @@ export const NewStepsStory: Story = {
           href="#/"
           onClick={withPreventDefaultClick(onClick)}
         >
-          <span className="af-steps-list-step__number">
-            <i className="glyphicon glyphicon-ok" />
-          </span>
           <span className="af-steps-list-step__title">Custom</span>
         </a>
       </StepBase>
-      <Step id="id5" number="5" title="Final step" mode="disabled" />
+      <Step id="id5" title="Final step" mode="disabled" />
     </Steps>
   ),
   args: {
