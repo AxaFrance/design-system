@@ -55,29 +55,23 @@ export const ContentTitle: StoryObj<typeof Title> = {
   },
 };
 
-export const ContentTitleWithLink: StoryObj<typeof Title> = {
-  name: "Content Title With Button",
+export const ContentTitleWithButton: StoryObj<typeof Title> = {
   render: (args) => {
     return (
       <Title
         heading={args.heading}
-        classModifier="content"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+        content={<Button>Bouton</Button>}
+        variant={args.variant}
       >
-        Content Title
-        <Button> Click Me </Button>
+        {args.children}
       </Title>
     );
   },
   args: {
     children: "Content Title",
-    classModifier: "content",
+    classModifier: "",
     className: "",
     heading: "h2",
+    variant: "content-left",
   },
 };

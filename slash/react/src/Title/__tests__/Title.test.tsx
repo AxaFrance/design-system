@@ -20,7 +20,7 @@ describe("Title", () => {
     // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).toHaveClass("af-title", {
+    ).toHaveClass("af-title af-title--content-left", {
       exact: true,
     });
   });
@@ -83,5 +83,21 @@ describe("Title", () => {
 
     // Assert
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should be wrapped in a container when using content-right variant", async () => {
+    // Act
+    render(
+      <Title heading="h3" variant="content-right">
+        A title
+      </Title>,
+    );
+
+    // Assert
+    const container = screen.getByRole("heading", {
+      name: /A title/,
+      level: 3,
+    }).parentElement as HTMLElement;
+    expect(container.getAttribute("class")).toEqual("af-title-container");
   });
 });
