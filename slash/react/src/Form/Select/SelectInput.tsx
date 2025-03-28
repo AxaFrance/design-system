@@ -1,6 +1,7 @@
 import {
   ComponentProps,
   forwardRef,
+  OptionHTMLAttributes,
   PropsWithChildren,
   ReactNode,
   useId,
@@ -15,8 +16,9 @@ import {
 import { Select } from "./Select";
 
 type Props = ComponentProps<typeof LegacyField> &
-  ComponentProps<typeof Select> & {
+  Omit<ComponentProps<typeof Select>, "children"> & {
     helpMessage?: ReactNode;
+    options: OptionHTMLAttributes<HTMLOptionElement>[];
   };
 
 const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(

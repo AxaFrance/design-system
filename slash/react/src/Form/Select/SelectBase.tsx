@@ -7,7 +7,7 @@ import {
 import { getComponentClassName } from "../../utilities";
 
 type Props = ComponentPropsWithoutRef<"select"> & {
-  options: OptionHTMLAttributes<HTMLOptionElement>[];
+  options?: OptionHTMLAttributes<HTMLOptionElement>[];
   classModifier?: string;
 };
 
@@ -16,7 +16,15 @@ type Props = ComponentPropsWithoutRef<"select"> & {
  */
 const SelectBase = forwardRef<HTMLSelectElement, Props>(
   (
-    { options, id, className, classModifier, required, ...otherProps },
+    {
+      options,
+      id,
+      className,
+      classModifier,
+      required,
+      children,
+      ...otherProps
+    },
     inputRef,
   ) => {
     const componentClassName = getComponentClassName(
@@ -33,11 +41,12 @@ const SelectBase = forwardRef<HTMLSelectElement, Props>(
           ref={inputRef}
           required={classModifier?.includes("required") || required}
         >
-          {options.map(({ label, ...opt }) => (
-            <option key={opt.value?.toString()} {...opt}>
-              {label}
-            </option>
-          ))}
+          {children ??
+            options?.map(({ label, ...opt }) => (
+              <option key={opt.value?.toString()} {...opt}>
+                {label}
+              </option>
+            ))}
         </select>
         <span aria-controls={id} className="glyphicon glyphicon-menu-down" />
       </div>
