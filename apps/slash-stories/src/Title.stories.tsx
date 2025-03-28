@@ -1,5 +1,6 @@
-import { Button, Title } from "@axa-fr/design-system-slash-react";
+import { Button, Link, Title } from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
+import { ReactElement } from "react";
 
 const meta: Meta<typeof Title> = {
   title: "Components/Title",
@@ -8,6 +9,7 @@ const meta: Meta<typeof Title> = {
 export default meta;
 
 const MODIFIERS = ["", "content"];
+const CONTENTS = ["Button", "Link", "None"];
 
 type StoryProps = Omit<
   React.ComponentProps<typeof Title>,
@@ -17,6 +19,20 @@ type StoryProps = Omit<
   classModifier: string;
 };
 type Story = StoryObj<StoryProps>;
+
+const getContent = (content?: string) => {
+  switch (content) {
+    case "Link": {
+      return (<Link href="/">Click me</Link>) as ReactElement;
+    }
+    case "Button": {
+      return (<Button>Click me</Button>) as ReactElement;
+    }
+    default: {
+      return undefined;
+    }
+  }
+};
 
 export const Template: Story = {
   name: "Title",
@@ -39,45 +55,37 @@ export const Template: Story = {
   },
 };
 
-export const DefaultTitle: StoryObj<typeof Title> = {
-  args: {
-    children: "Default Title",
-    heading: "h2",
-  },
-};
-
-export const ContentTitle: StoryObj<typeof Title> = {
-  args: {
-    children: "Content Title",
-    classModifier: "content",
-    className: "",
-    heading: "h2",
-  },
-};
-
-export const ContentTitleWithLink: StoryObj<typeof Title> = {
-  name: "Content Title With Button",
-  render: (args) => {
+export const TitleWithContent: StoryObj<
+  Omit<StoryProps, "contentLeft" | "contentRight"> & {
+    contentLeft?: string;
+    contentRight?: string;
+  }
+> = {
+  render: ({ children, contentLeft, contentRight, heading }) => {
     return (
       <Title
-        heading={args.heading}
-        classModifier="content"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+        heading={heading}
+        contentLeft={getContent(contentLeft)}
+        contentRight={getContent(contentRight)}
       >
-        Content Title
-        <Button> Click Me </Button>
+        {children}
       </Title>
     );
   },
   args: {
-    children: "Content Title",
-    classModifier: "content",
-    className: "",
+    children: "Title with content",
     heading: "h2",
+    contentLeft: "Button",
+    contentRight: "Link",
+  },
+  argTypes: {
+    contentLeft: {
+      options: CONTENTS,
+      control: { type: "select" },
+    },
+    contentRight: {
+      options: CONTENTS,
+      control: { type: "select" },
+    },
   },
 };

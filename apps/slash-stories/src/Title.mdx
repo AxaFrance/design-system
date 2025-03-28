@@ -17,6 +17,26 @@ export const MyComponent = () => (
 );
 ```
 
+The title can also contain any React component. Simply pass it into :
+
+- the `contentLeft` prop if you want it to be displayed between the title and the separator.
+- the `contentRight` prop if you want it to be displayed after the separator.
+
+```tsx title="content.js"
+import { Title } from "@axa-fr/design-system-slash-react";
+
+export const MyComponent = () => (
+  <Title
+    classModifier="af-title"
+    className=""
+    contentLeft={<Button>Left button</Button>}
+    contentRight={<Button>Right button</Button>}
+  >
+    Title with content
+  </Title>
+);
+```
+
 ## Playground
 
 <Canvas of={TitleStories.Template}></Canvas>

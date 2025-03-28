@@ -1,5 +1,10 @@
 import "@axa-fr/design-system-slash-css/dist/Title/Title.scss";
-import { ComponentPropsWithRef, PropsWithChildren, forwardRef } from "react";
+import {
+  ComponentPropsWithRef,
+  PropsWithChildren,
+  ReactElement,
+  forwardRef,
+} from "react";
 
 import { getComponentClassName } from "../utilities";
 
@@ -8,7 +13,11 @@ type Headings = "h2" | "h3" | "h4";
 type TitleProps = ComponentPropsWithRef<"h2"> & {
   classModifier?: string;
   heading?: Headings;
+  contentLeft?: ReactElement;
+  contentRight?: ReactElement;
 };
+
+const baseClass = "af-title";
 
 export const Title = forwardRef<
   HTMLHeadingElement,
@@ -20,6 +29,8 @@ export const Title = forwardRef<
       classModifier,
       children,
       heading: Heading = "h2",
+      contentLeft,
+      contentRight,
       ...otherProps
     },
     ref,
@@ -27,13 +38,19 @@ export const Title = forwardRef<
     const componentClassName = getComponentClassName(
       className,
       classModifier,
-      "af-title",
+      baseClass,
     );
 
     return (
-      <Heading ref={ref} className={componentClassName} {...otherProps}>
-        {children}
-      </Heading>
+      <div className={`${baseClass}--container`}>
+        <Heading ref={ref} className={componentClassName} {...otherProps}>
+          {children}
+          {contentLeft}
+        </Heading>
+        {contentRight ? (
+          <div className="content-right">{contentRight}</div>
+        ) : null}
+      </div>
     );
   },
 );
