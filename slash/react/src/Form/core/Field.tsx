@@ -98,7 +98,7 @@ export const Field = ({
         {forceDisplayMessage ? (
           <FieldError message={message} messageType={messageType} />
         ) : (
-          <HelpMessage message={helpMessage} />
+          <HelpMessage message={helpMessage} ariaDescribedBy={inputId} />
         )}
       </div>
     </div>

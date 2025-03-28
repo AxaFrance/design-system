@@ -91,7 +91,11 @@ const FileInput = ({
         />
         {children}
       </FieldInput>
-      <HelpMessage message={helpMessage} isVisible={!message} />
+      <HelpMessage
+        message={helpMessage}
+        isVisible={!message}
+        ariaDescribedBy={inputId}
+      />
       <FileTable
         errors={errors}
         values={values}

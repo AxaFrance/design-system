@@ -332,6 +332,7 @@ exports[`renders MultiSelectInput correctly 1`] = `
         </div>
       </div>
       <small
+        aria-describedby="multiselectid"
         class="af-form__help"
       >
         Enter the place type

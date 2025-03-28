@@ -95,7 +95,11 @@ const PassInput = ({
           }
         />
         {children}
-        <HelpMessage message={helpMessage} isVisible={!message} />
+        <HelpMessage
+          message={helpMessage}
+          isVisible={!message}
+          ariaDescribedBy={inputId}
+        />
       </FieldInput>
     </LegacyField>
   );

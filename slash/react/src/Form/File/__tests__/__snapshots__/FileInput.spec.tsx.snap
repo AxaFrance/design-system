@@ -55,6 +55,7 @@ exports[`<FileInput> > renders FileInput correctly 1`] = `
         </div>
       </div>
       <small
+        aria-describedby="id"
         class="af-form__help"
       />
       <div

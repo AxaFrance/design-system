@@ -66,7 +66,11 @@ const MultiSelectInput = ({
         />
         {children}
       </FieldInput>
-      <HelpMessage message={helpMessage} isVisible={!message} />
+      <HelpMessage
+        message={helpMessage}
+        isVisible={!message}
+        ariaDescribedBy={inputId}
+      />
     </LegacyField>
   );
 };

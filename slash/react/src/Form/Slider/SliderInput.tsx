@@ -45,7 +45,11 @@ const SliderInput = ({
     >
       <Slider {...sliderProps} id={id} classModifier={classModifier} />
       {children}
-      <HelpMessage message={helpMessage} isVisible={!message} />
+      <HelpMessage
+        message={helpMessage}
+        isVisible={!message}
+        ariaDescribedBy={newId}
+      />
     </LegacyField>
   );
 };
