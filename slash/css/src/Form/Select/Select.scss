@@ -103,7 +103,7 @@
     }
 
     &:focus {
-      border-color: common.$color-axa;
+      outline: solid 1px common.$color-axa;
     }
 
     &--hasinfobulle {
