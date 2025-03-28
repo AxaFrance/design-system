@@ -16,7 +16,7 @@ export const Action = forwardRef<HTMLAnchorElement, ActionCoreProps>(
     );
     return (
       <a {...otherProps} className={componentClassName} ref={ref}>
-        <i className={`glyphicon glyphicon-${icon}`} />
+        <i role="img" className={`glyphicon glyphicon-${icon}`} />
       </a>
     );
   },
