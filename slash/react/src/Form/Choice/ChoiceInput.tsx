@@ -1,6 +1,7 @@
-import { forwardRef, type ComponentProps } from "react";
+import { forwardRef, useId, type ComponentProps } from "react";
 import { LegacyField, useInputClassModifier, useOptionsWithId } from "../core";
 import { Choice } from "./Choice";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type Props = ComponentProps<typeof Choice> &
   Omit<ComponentProps<typeof LegacyField>, "children">;
@@ -30,6 +31,7 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
     },
     inputRef,
   ) => {
+    const errorUseId = useId();
     const newOptions = useOptionsWithId(
       options.map((o) => ({ ...o, value: `${o.value}` })),
       id,
@@ -48,6 +50,7 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
       ...o,
       value: o.value === "true",
     }));
+    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
     return (
       <LegacyField
         label={label}
@@ -60,6 +63,7 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
         classModifier={inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
+        errorId={errorUseId}
       >
         <Choice
           {...otherProps}
@@ -69,6 +73,8 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
           options={options ? choiceOptions : undefined}
           required={required}
           disabled={disabled}
+          aria-describedby={errorUseId}
+          aria-invalid={isInvalid}
         />
       </LegacyField>
     );

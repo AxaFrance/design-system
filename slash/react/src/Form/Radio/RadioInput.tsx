@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, forwardRef } from "react";
+import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
 import {
   LegacyField,
   getFirstId,
@@ -6,6 +6,7 @@ import {
   useOptionsWithId,
 } from "../core";
 import { Radio, RadioModes } from "./Radio";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type RadioInputProps = ComponentPropsWithoutRef<typeof LegacyField> &
   ComponentPropsWithoutRef<typeof Radio>;
@@ -37,6 +38,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
     }`;
     const newOptions = useOptionsWithId(options);
     const firstId = getFirstId(newOptions);
+    const errorUseId = useId();
 
     const { inputClassModifier, inputFieldClassModifier } =
       useInputClassModifier(
@@ -45,6 +47,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         Boolean(children),
         required,
       );
+    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
 
     return (
       <LegacyField
@@ -61,6 +64,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         roleContainer="radiogroup"
         ariaLabelContainer={ariaLabelContainer ?? label?.toString()}
         isLabelContainerLinkedToInput={false}
+        errorId={errorUseId}
       >
         <Radio
           options={newOptions}
@@ -69,6 +73,8 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
           ref={inputRef}
           disabled={disabled}
           required={required || classModifier?.includes("required")}
+          aria-describedby={errorUseId}
+          aria-invalid={isInvalid}
           {...radioProps}
         />
         {children}

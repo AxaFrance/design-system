@@ -10,6 +10,7 @@ import {
 } from "../core";
 
 import { Textarea } from "./Textarea";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type Props = ComponentProps<typeof LegacyField> &
   ComponentProps<typeof Textarea> & {
@@ -41,6 +42,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
   ) => {
     const rowModifier = `${classModifier} label-top`;
     const inputUseId = useId();
+    const errorUseId = useId();
     const inputId = id ?? inputUseId;
     const { inputClassModifier, inputFieldClassModifier } =
       useInputClassModifier(
@@ -49,6 +51,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
         Boolean(children),
         required,
       );
+    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
 
     return (
       <LegacyField
@@ -62,6 +65,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
         classModifier={inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
+        errorId={errorUseId}
       >
         <FieldInput
           className="af-form__textarea"
@@ -75,6 +79,8 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
             classModifier={inputClassModifier}
             disabled={disabled}
             ref={inputRef}
+            aria-describedby={errorUseId}
+            aria-invalid={isInvalid}
           />
           {children}
         </FieldInput>

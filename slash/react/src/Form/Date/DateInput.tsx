@@ -6,6 +6,7 @@ import {
   useInputClassModifier,
 } from "../core";
 import { Date } from "./Date";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type Props = Omit<ComponentPropsWithoutRef<typeof Date>, "placeholderText"> &
   ComponentPropsWithoutRef<typeof LegacyField> & {
@@ -36,6 +37,7 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
     ref,
   ) => {
     const inputUseId = useId();
+    const errorUseId = useId();
     const inputId = id ?? inputUseId;
     const { inputClassModifier, inputFieldClassModifier } =
       useInputClassModifier(
@@ -44,6 +46,7 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
         Boolean(children),
         required,
       );
+    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
     return (
       <LegacyField
         label={label}
@@ -56,6 +59,7 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
         classModifier={inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
+        errorId={errorUseId}
       >
         <FieldInput
           className="af-form__date"
@@ -67,6 +71,8 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
             disabled={disabled}
             required={required}
             ref={ref}
+            aria-describedby={errorUseId}
+            aria-invalid={isInvalid}
             {...otherProps}
           />
           {children}

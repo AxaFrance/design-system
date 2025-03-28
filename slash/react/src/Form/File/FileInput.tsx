@@ -9,6 +9,7 @@ import {
 } from "../core";
 import { CustomFile, File } from "./File";
 import { FileTable } from "./FileTable";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type FieldProps = ComponentPropsWithoutRef<typeof LegacyField>;
 type FileProps = ComponentPropsWithoutRef<typeof File>;
@@ -54,6 +55,7 @@ const FileInput = ({
     });
   };
   const inputUseId = useId();
+  const errorUseId = useId();
   const inputId = id ?? inputUseId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
@@ -62,6 +64,7 @@ const FileInput = ({
     required,
   );
   const rowModifier = `${inputFieldClassModifier} label-top`;
+  const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
   return (
     <LegacyField
       label={label}
@@ -74,6 +77,7 @@ const FileInput = ({
       classModifier={rowModifier}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
+      errorId={errorUseId}
     >
       <FieldInput
         className="af-form__file"
@@ -87,6 +91,8 @@ const FileInput = ({
           classModifier={inputClassModifier}
           label={fileLabel}
           required={required || classModifier?.includes("required")}
+          aria-describedby={errorUseId}
+          aria-invalid={isInvalid}
           {...otherFileProps}
         />
         {children}

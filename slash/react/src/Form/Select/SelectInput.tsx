@@ -13,6 +13,7 @@ import {
   useInputClassModifier,
 } from "../core";
 import { Select } from "./Select";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type Props = ComponentProps<typeof LegacyField> &
   ComponentProps<typeof Select> & {
@@ -41,6 +42,7 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
     inputRef,
   ) => {
     const generatedId = useId();
+    const errorUseId = useId();
     const inputId = id ?? generatedId;
     const { inputClassModifier, inputFieldClassModifier } =
       useInputClassModifier(
@@ -49,6 +51,7 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
         Boolean(children),
         required,
       );
+    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
     return (
       <LegacyField
         label={label}
@@ -61,6 +64,7 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
         classModifier={inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
+        errorId={errorUseId}
       >
         <FieldInput
           className="af-form__select"
@@ -72,6 +76,8 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
             classModifier={inputClassModifier}
             ref={inputRef}
             required={required}
+            aria-describedby={errorUseId}
+            aria-invalid={isInvalid}
             {...otherSelectProps}
           />
           {children}

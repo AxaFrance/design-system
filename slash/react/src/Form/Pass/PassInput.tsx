@@ -6,6 +6,7 @@ import {
   useInputClassModifier,
 } from "../core";
 import { Pass } from "./Pass";
+import { useAriaInvalid } from "../core/useAriaInvalid";
 
 const strengthList: Record<number, string> = {
   0: "bad",
@@ -59,6 +60,7 @@ const PassInput = ({
 
   const [type, setType] = useState<PassProps["type"]>("password");
   const inputId = useId();
+  const errorUseId = useId();
   const finalId = id ?? inputId;
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifierStrength,
@@ -66,6 +68,7 @@ const PassInput = ({
     Boolean(children),
     required,
   );
+  const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
 
   return (
     <LegacyField
@@ -79,6 +82,7 @@ const PassInput = ({
       classModifier={`${classModifierStrength} ${inputFieldClassModifier}`}
       classNameContainerLabel={classNameContainerLabel}
       classNameContainerInput={classNameContainerInput}
+      errorId={errorUseId}
     >
       <FieldInput
         className="af-form__pass-container"
@@ -90,6 +94,8 @@ const PassInput = ({
           id={inputId}
           disabled={disabled}
           classModifier={inputClassModifier}
+          aria-describedby={errorUseId}
+          aria-invalid={isInvalid}
           onToggleType={() =>
             setType(type === "password" ? "text" : "password")
           }
