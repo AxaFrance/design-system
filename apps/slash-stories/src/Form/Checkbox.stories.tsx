@@ -16,9 +16,7 @@ const meta: Meta = {
   component: CheckboxInput,
   argTypes: {
     onChange: { action: "onChange" },
-    messageType: {
-      control: { type: "select", options: messageTypes },
-    },
+    messageType: { control: { type: "select", options: messageTypes } },
     mode: {
       control: { type: "select", options: Object.values(CheckboxModes) },
     },
@@ -43,10 +41,7 @@ const options = [
   { label: "Disabled", value: "1", disabled: true, id: "uniqueId1" },
   { label: "Unchecked", value: "2", id: "uniqueId2" },
   { label: "Checked", value: "3" },
-  {
-    label: <Badge classModifier="success">A JSX element</Badge>,
-    value: "4",
-  },
+  { label: <Badge classModifier="success">A JSX element</Badge>, value: "4" },
 ];
 const values = ["1", "3"];
 
@@ -83,15 +78,54 @@ export const CheckboxInputStory: Story = {
     name: "placeType",
   },
   argTypes: {
-    classModifier: {
-      options: modifiers,
-      control: { type: "inline-check" },
-    },
+    classModifier: { options: modifiers, control: { type: "inline-check" } },
     mode: {
       options: Object.values(CheckboxModes),
       control: { type: "select", options: Object.values(CheckboxModes) },
     },
     onChange: { action: "onChange" },
+  },
+  parameters: {
+    controls: {
+      include: [
+        "label",
+        "classModifier",
+        "mode",
+        "message",
+        "messageType",
+        "forceDisplayMessage",
+        "onChange",
+        "required",
+      ],
+    },
+  },
+};
+
+export const CheckboxInputErrorStory: Story = {
+  name: "CheckboxInputError",
+  render: ({ classModifier, ...args }) => (
+    <form className="af-form" name="myform">
+      <CheckboxInput
+        {...args}
+        values={[]}
+        options={options}
+        classModifier={(classModifier ?? []).join(" ")}
+        isVisible
+        classNameContainerLabel="col-md-2"
+        classNameContainerInput="col-md-10"
+      />
+    </form>
+  ),
+  args: {
+    label: "Place type",
+    required: true,
+    classModifier: [],
+    mode: CheckboxModes.default,
+    message: "Error message",
+    messageType: MessageTypes.error,
+    forceDisplayMessage: true,
+    id: "inputuniqueid",
+    name: "placeType",
   },
   parameters: {
     controls: {
@@ -124,18 +158,9 @@ export const CheckboxItemToggleStory: StoryObj<{
       className="af-form__checkbox-toggle"
     />
   ),
-  args: {
-    isChecked: true,
-    disabled: false,
-  },
-  argTypes: {
-    onChange: { action: "onChange" },
-  },
-  parameters: {
-    controls: {
-      include: ["isChecked", "disabled", "onChange"],
-    },
-  },
+  args: { isChecked: true, disabled: false },
+  argTypes: { onChange: { action: "onChange" } },
+  parameters: { controls: { include: ["isChecked", "disabled", "onChange"] } },
 };
 
 export const CheckboxItemStory: StoryObj<typeof CheckboxItem> = {
@@ -149,15 +174,9 @@ export const CheckboxItemStory: StoryObj<typeof CheckboxItem> = {
       defaultChecked={isChecked}
     />
   ),
-  args: {
-    label: "web center forever",
-    isChecked: true,
-    disabled: false,
-  },
+  args: { label: "web center forever", isChecked: true, disabled: false },
   parameters: {
-    controls: {
-      include: ["isChecked", "disabled", "label", "onChange"],
-    },
+    controls: { include: ["isChecked", "disabled", "label", "onChange"] },
   },
 };
 
@@ -173,12 +192,6 @@ export const CheckboxStory: StoryObj<typeof Checkbox> = {
       placeholder="Paris"
     />
   ),
-  args: {
-    mode: CheckboxModes.default,
-  },
-  parameters: {
-    controls: {
-      include: ["mode"],
-    },
-  },
+  args: { mode: CheckboxModes.default },
+  parameters: { controls: { include: ["mode"] } },
 };

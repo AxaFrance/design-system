@@ -1,6 +1,6 @@
 import { ComponentProps, forwardRef } from "react";
 
-import { LegacyField, useOptionsWithId } from "../core";
+import { LegacyField, MessageTypes, useOptionsWithId } from "../core";
 import { Checkbox } from "./Checkbox";
 import { CheckboxModes } from "./CheckboxModes";
 
@@ -53,7 +53,11 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
         <Checkbox
           mode={mode}
           options={newOptions}
-          classModifier={classModifier}
+          classModifier={
+            message && messageType === MessageTypes.error && forceDisplayMessage
+              ? `${classModifier} error`
+              : classModifier
+          }
           ref={inputRef}
           {...checkboxProps}
         />
