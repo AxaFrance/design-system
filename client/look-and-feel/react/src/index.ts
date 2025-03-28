@@ -7,7 +7,7 @@ export { Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
 export { Button, buttonVariants, type ButtonVariants } from "./Button/Button";
 export { Card } from "./Card";
-export { Divider } from "./Divider";
+export { Divider } from "./Divider/Divider";
 export { Checkbox, CheckboxSelect } from "./Form/Checkbox";
 export { FileUpload } from "./Form/FileUpload";
 export { InputError } from "./Form/InputError";
