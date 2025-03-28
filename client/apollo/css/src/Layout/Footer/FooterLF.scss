@@ -1,0 +1,13 @@
+@use "../../common/breakpoints" as breakpoints;
+
+@use "./FooterCommon";
+
+.af-footer {
+  --footer-bg-color: var(--color-ocean-blue);
+  --footer-spacing-u1: var(--spacing-u1);
+  --footer-spacing-u2: var(--spacing-u2);
+  --footer-spacing-u3: var(--spacing-u3);
+  --footer-spacing-u4: var(--spacing-u4);
+  --footer-color-white: var(--white);
+  --footer-color-blue-1: var(--color-blue-1);
+}

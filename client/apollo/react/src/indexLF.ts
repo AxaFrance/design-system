@@ -14,3 +14,4 @@ export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { TextInput } from "./Form/TextInput/TextInputLF";
+export { Footer } from "./Layout/Footer/FooterLF";

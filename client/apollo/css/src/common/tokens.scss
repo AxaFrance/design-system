@@ -1,3 +1,5 @@
+@use "./common" as common;
+
 /* stylelint-disable color-function-notation */
 :root {
   /* *************************************************************************/
@@ -31,6 +33,7 @@
   --axa-blue-100-20: hsl(from var(--axa-blue-100) h s l / 20%);
   --axa-blue-100-40: hsl(from var(--axa-blue-100) h s l / 40%);
   --axa-blue-20: hsl(240deg, 40%, 86%);
+  --color-blue-1: #{common.$color-blue-1};
   --axa-blue-4: hsl(240deg, 43%, 97%);
   --axa-blue-65: hsl(240deg, 33%, 53%);
   --axa-blue-8: hsl(240deg, 33%, 91%);
@@ -76,6 +79,11 @@
   /* *************************************************************************/
 
   /* SPACING                                                                 */
+
+  --spacing-u1: #{common.$spacing-u1};
+  --spacing-u2: #{common.$spacing-u2};
+  --spacing-u3: #{common.$spacing-u3};
+  --spacing-u4: #{common.$spacing-u4};
 
   /* *************************************************************************/
 
