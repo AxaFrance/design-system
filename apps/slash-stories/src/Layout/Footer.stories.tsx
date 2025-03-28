@@ -23,7 +23,7 @@ export const FooterStory: Story = {
 export const FooterCoreStory: Story = {
   name: "Core with HTML children",
   render: () => (
-    <Footer>
+    <Footer version="1.12.2">
       <a href="https://www.axa.fr/" target="blank">
         <strong>@ {new Date().getFullYear()} AXA</strong>
       </a>
