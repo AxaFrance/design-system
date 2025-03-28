@@ -12,7 +12,7 @@ describe("TabsClient", () => {
         ]}
         direction={Direction.center}
         preSelectedTabIndex={0}
-      ></TabsClient>,
+      />,
     );
 
   test("renders all tabs and their contents", () => {
@@ -115,7 +115,7 @@ describe("TabsClient", () => {
 
   test("renders component with 0 tabs", () => {
     const { getByRole } = render(
-      <TabsClient items={[]} preSelectedTabIndex={0}></TabsClient>,
+      <TabsClient items={[]} preSelectedTabIndex={0} />,
     );
     expect(getByRole("tablist").children.length).toBe(0);
   });
