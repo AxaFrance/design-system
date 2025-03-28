@@ -77,6 +77,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             id={inputId}
             className={componentClassName}
             type="text"
+            required={required}
             ref={inputRef}
             aria-labelledby={idLabel}
             aria-errormessage={ariaErrormessage ?? idMessage}
