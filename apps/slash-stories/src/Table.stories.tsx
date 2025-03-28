@@ -44,7 +44,14 @@ export const Simple: StoryObj<typeof Table> = {
 
 export const WithPagination: StoryObj<typeof Paging> = {
   name: "Table with pagination",
-  render: ({ currentPage, numberItems, numberPages, mode, ...args }) => (
+  render: ({
+    currentPage,
+    numberItems,
+    numberPages,
+    mode,
+    elementsLabel,
+    ...args
+  }) => (
     <>
       <Table>
         <Table.THead>
@@ -74,6 +81,7 @@ export const WithPagination: StoryObj<typeof Paging> = {
         numberItems={numberItems}
         numberPages={numberPages}
         mode={mode}
+        elementsLabel={elementsLabel}
         {...args}
       />
     </>
@@ -83,6 +91,7 @@ export const WithPagination: StoryObj<typeof Paging> = {
     numberItems: 10,
     numberPages: 10,
     mode: "default",
+    elementsLabel: "éléments",
     items: [5, 10, 50, 100],
   },
   argTypes: {
@@ -90,6 +99,7 @@ export const WithPagination: StoryObj<typeof Paging> = {
     numberItems: { control: { type: "number" } },
     numberPages: { control: { type: "number" } },
     mode: { options: ["default", "light"], control: { type: "radio" } },
+    elementsLabel: { control: { type: "text" } },
     onChange: { table: { disable: true } },
   },
 };

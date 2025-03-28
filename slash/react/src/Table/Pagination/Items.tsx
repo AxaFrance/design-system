@@ -56,6 +56,7 @@ const Items = ({
                 <select
                   id={newId}
                   className="af-form__input-select"
+                  aria-label={`Nombre de ${elementsLabel} à afficher`}
                   value={numberItems}
                   onChange={(e) => {
                     e.preventDefault();
