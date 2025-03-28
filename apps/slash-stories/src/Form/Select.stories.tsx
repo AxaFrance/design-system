@@ -24,7 +24,9 @@ type Story = StoryObj<StoryProps>;
 export const SelectStory: Story = {
   name: "Select",
   tags: ["Form", "Input"],
-  render: ({ onChange, ...args }) => <Select onChange={onChange} {...args} />,
+  render: ({ onChange, ...args }: ComponentProps<typeof Select>) => (
+    <Select onChange={onChange} {...args} />
+  ),
   args: {
     mode: "default",
     className: "",
@@ -42,5 +44,31 @@ export const SelectStory: Story = {
         options: ["default", "base"],
       },
     },
+  },
+};
+
+export const SelectStoryWithChildren: Story = {
+  ...SelectStory,
+  name: "Select With Children",
+  render: ({ onChange, ...args }: ComponentProps<typeof Select>) => (
+    <Select onChange={onChange} {...args}>
+      <optgroup label="Groupe 1">
+        <option>Option 1</option>
+        <option>Option 2</option>
+      </optgroup>
+      <optgroup label="Groupe 2">
+        <option>Option 3</option>
+        <option>Option 4</option>
+      </optgroup>
+    </Select>
+  ),
+  args: {
+    mode: "default",
+    className: "",
+    placeholder: "- Select -",
+    name: "name",
+    id: "nameid",
+    disabled: false,
+    required: false,
   },
 };
