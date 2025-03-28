@@ -19,6 +19,7 @@ type InputProps = {
   isVisible?: boolean;
   roleContainer?: string;
   ariaLabelContainer?: string;
+  errorDescription?: string;
   isLabelContainerLinkedToInput?: boolean;
   forceDisplayMessage?: boolean;
   message?: string;
@@ -44,13 +45,16 @@ export const Field = ({
   isVisible = true,
   roleContainer,
   ariaLabelContainer,
+  errorDescription,
   isLabelContainerLinkedToInput = true,
   renderInput,
 }: InputProps & {
   renderInput: (props: { id: string; classModifier: string }) => ReactNode;
 }) => {
   const inputUseId = useId();
+  const errorUseId = useId();
   const inputId = id ?? inputUseId;
+  const errorId = errorDescription ?? errorUseId;
 
   const actualRequired = required || classModifier.includes("required");
 
@@ -79,6 +83,7 @@ export const Field = ({
       })}
       role={roleContainer}
       aria-label={ariaLabelContainer}
+      aria-describedby={errorId}
     >
       <div className={classNameContainerLabel}>
         <label
@@ -96,7 +101,11 @@ export const Field = ({
           {children}
         </div>
         {forceDisplayMessage ? (
-          <FieldError message={message} messageType={messageType} />
+          <FieldError
+            message={message}
+            messageType={messageType}
+            errorId={errorId}
+          />
         ) : (
           <HelpMessage message={helpMessage} />
         )}
