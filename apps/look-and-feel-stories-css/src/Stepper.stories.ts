@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Stepper/Stepper.scss";
+import "@axa-fr/design-system-apollo-css/dist/Stepper/StepperLF.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 
 const meta: Meta = {
