@@ -4,11 +4,12 @@ type LiProps = {
   isVisible?: boolean;
   active?: boolean;
   value: number;
+  pageLinkLabel: string;
   onChange: (e: { value: number }) => void;
 };
 
 const onClick =
-  ({ onChange, value }: LiProps) =>
+  ({ onChange, value }: Pick<LiProps, "onChange" | "value">) =>
   (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     onChange({
@@ -16,7 +17,7 @@ const onClick =
     });
   };
 
-const Li = ({ isVisible, active, value, ...props }: LiProps) => {
+const Li = ({ isVisible, active, value, pageLinkLabel, onChange }: LiProps) => {
   if (!isVisible) {
     return null;
   }
@@ -26,7 +27,8 @@ const Li = ({ isVisible, active, value, ...props }: LiProps) => {
         aria-current={active ? "page" : undefined}
         className="af-pager__item-link"
         href="/#"
-        onClick={onClick({ ...props, value })}
+        aria-label={`Page ${value} des ${pageLinkLabel}`}
+        onClick={onClick({ onChange, value })}
       >
         <span>{value}</span>
       </a>
