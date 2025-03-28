@@ -23,7 +23,7 @@ export { Footer } from "./Layout/Footer/Footer";
 export { BurgerMenu, Header, NavBar, PreviousLink } from "./Layout/Header";
 export { Link } from "./Link";
 export { List } from "./List";
-export { ClickItem, ClickList, createClickItemParent } from "./List/ClickList";
+export { ClickItem, createClickItemParent } from "./List/ClickList";
 export { ContentItemDuo } from "./List/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabItem, ContentTabList } from "./List/ContentTabList";

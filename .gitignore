@@ -4,6 +4,7 @@ dist/
 *.DS_Store
 **/react/coverage
 .idea
+*.iml
 
 *storybook.log
 coverage/

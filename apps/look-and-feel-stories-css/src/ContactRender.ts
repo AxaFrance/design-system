@@ -1,4 +1,4 @@
-export type TClickList = {
+export type TCcontact = {
   items: {
     icon?: string;
     label: string;
@@ -10,7 +10,7 @@ export type TClickList = {
   cardClassModifier?: string;
 };
 
-export const render = ({ items, cardClassModifier }: TClickList) => {
+export const render = ({ items, cardClassModifier }: TCcontact) => {
   const list = document.createElement("section");
 
   list.className = "af-card af-card--list af-card--click-list";
