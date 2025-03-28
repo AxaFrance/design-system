@@ -1,0 +1,176 @@
+/* Apollo first and mobile first approch */
+
+@use "../../common/breakpoints" as breakpoints;
+
+.af-footer {
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-transform: uppercase;
+  color: var(--footer-color-white);
+  background-color: var(--footer-bg-color);
+
+  &__menuLinks {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    transition:
+      background 0ms,
+      padding 0ms;
+
+    &--display {
+      height: auto;
+      padding: 0 2rem;
+      transition:
+        background 250ms,
+        padding 125ms;
+    }
+  }
+
+  &__iconTrigger {
+    align-self: center;
+    justify-content: center;
+    transform: rotate3d(var(--footer-rotate-x, 0), 0, 0, 180deg) !important;
+    transition: transform 250ms ease-in-out !important;
+
+    &--display {
+      --footer-rotate-x: 1;
+    }
+  }
+
+  &__linkItem {
+    display: block;
+    padding: 1.2rem var(--footer-spacing-u3);
+    text-decoration: none;
+    color: var(--footer-color-white);
+
+    &:hover {
+      color: var(--footer-color-blue-1);
+    }
+  }
+
+  &__footerMenuIcons {
+    display: flex;
+    padding: var(--footer-spacing-u2) var(--footer-spacing-u1);
+    border: 1px solid rgba(255, 255, 255, 20%);
+    border-width: 1px 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--footer-spacing-u3);
+  }
+
+  &__menuIconLinks {
+    align-self: center;
+    color: var(--footer-color-white);
+    fill: var(--footer-color-white);
+
+    &:hover {
+      color: var(--footer-color-blue-1);
+      fill: var(--footer-color-blue-1);
+    }
+  }
+
+  &__menuAboutTrigger {
+    all: unset;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--footer-spacing-u2) var(--footer-spacing-u4);
+    justify-content: space-between;
+  }
+
+  &__menuAboutTriggerText {
+    font-weight: bold;
+    color: var(--footer-color-white);
+  }
+
+  &__footerBottom {
+    padding: var(--footer-spacing-u1);
+  }
+
+  &__textCopyright {
+    font-size: 0.875rem;
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+    align-self: center;
+    fill: var(--footer-color-white);
+  }
+}
+
+@media only screen and (width >=#{breakpoints.$breakpoint-md}) {
+  .af-footer {
+    &__menuLinks {
+      display: flex;
+      height: auto;
+      padding: 1.2rem 0;
+      flex-direction: row;
+      justify-content: space-between;
+      background: transparent;
+
+      & :first-child {
+        border-left: unset;
+      }
+    }
+
+    &__linkItem {
+      padding: 0 var(--footer-spacing-u2);
+      border-left: 1px solid rgba(255, 255, 255, 20%);
+      align-self: center;
+      color: var(--footer-color-white);
+    }
+
+    &__footerMenuIcons {
+      padding: var(--footer-spacing-u2) var(--footer-spacing-u4)
+        var(--footer-spacing-u2) var(--footer-spacing-u1);
+      border: none;
+      gap: var(--footer-spacing-u2);
+    }
+
+    &__footerTop {
+      display: flex;
+      width: 100%;
+      max-width: 128rem;
+      margin: 0 auto;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__menuTop {
+      display: flex;
+      padding: var(--footer-spacing-u1);
+      flex-direction: row;
+      justify-content: space-between;
+      text-decoration: none;
+    }
+
+    &__menuAboutTrigger {
+      display: none;
+      padding: var(--footer-spacing-u2) var(--footer-spacing-u2)
+        var(--footer-spacing-u2) var(--footer-spacing-u4);
+    }
+
+    &__footerBottom {
+      padding: 0;
+      border-top: 1px solid rgba(255, 255, 255, 20%);
+      text-align: right;
+    }
+
+    &__footerBottomWidth {
+      width: 100%;
+      max-width: 128rem;
+      margin: 0 auto;
+    }
+
+    &__textCopyright {
+      display: flex;
+      padding: var(--footer-spacing-u1) var(--footer-spacing-u4)
+        var(--footer-spacing-u1) 0;
+      justify-content: flex-end;
+    }
+  }
+}
