@@ -1,16 +1,2 @@
-import { useMemo } from "react";
-import { getComponentClassName } from "../utilities";
-
-type DividerProps = {
-  className?: string;
-  classModifier?: string;
-};
-
-export const Divider = ({ className, classModifier }: DividerProps) => {
-  const componentClassName = useMemo(
-    () => getComponentClassName("af-divider", className, classModifier),
-    [className, classModifier],
-  );
-
-  return <hr className={componentClassName} />;
-};
+/* eslint-disable import/no-extraneous-dependencies */
+export { Divider } from "@axa-fr/design-system-apollo-react/lf";

@@ -19,3 +19,4 @@ export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { TextInput } from "./Form/TextInput/TextInputApollo";
+export { Divider } from "./Divider/DividerApollo";
