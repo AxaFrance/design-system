@@ -44,47 +44,38 @@
   }
 
   &__actions {
+    display: flex;
+
+    .btn {
+      fill: common.$white;
+      transition: fill 0.3s;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      &:hover {
+        fill: common.$brand-primary;
+      }
+
+      svg {
+        width: 1rem;
+      }
+    }
+
     .af-btn--circle {
       margin-left: 1rem;
       vertical-align: middle;
+
+      .injected-svg {
+        color: common.$white;
+      }
 
       &:focus {
         color: common.$white;
         box-shadow: 0 0 6px common.$white;
       }
     }
-  }
-
-  &__link {
-    text-decoration: underline;
-    color: common.$white;
-
-    &:hover {
-      opacity: 0.65;
-      color: common.$white;
-    }
-
-    &:focus {
-      text-shadow: 0 0 5px common.$white;
-      color: common.$white;
-    }
-  }
-
-  &__mobile-menu {
-    display: inline-block;
-    margin-right: 1rem;
-    padding: 0;
-    background-color: transparent;
-    background-image: none;
-
-    .glyphicon {
-      width: 17px;
-      fill: common.$white;
-    }
-  }
-
-  &__icon {
-    font-size: 1em;
   }
 }
 
