@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Apollo Bug report
+about: Create a report to help us improve Apollo Design System
 title: ''
-labels: 'bug'
+labels: ['bug', 'Apollo AXA.fr']
 assignees: ''
 
 ---
