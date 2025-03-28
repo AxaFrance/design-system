@@ -4,7 +4,7 @@ import {
   iconVariants,
 } from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
-import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
+import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 
 const meta: Meta<typeof Icon> = {
   component: Icon,
@@ -20,8 +20,6 @@ export const Default: Story = {
   render: ({ ...args }) => <Icon {...args} />,
   args: {
     icon: bank,
-    variant: "primary",
-    size: "S",
     background: false,
   },
   argTypes: {
@@ -30,7 +28,7 @@ export const Default: Story = {
       control: { type: "select" },
     },
     size: {
-      options: Object.values(iconSizeVariants),
+      options: Object.keys(iconSizeVariants),
       control: { type: "select" },
     },
   },

@@ -20,8 +20,6 @@ export const Default: Story = {
   render: ({ ...args }) => <Icon {...args} />,
   args: {
     icon: bank,
-    variant: "primary",
-    size: "S",
     background: false,
   },
   argTypes: {
@@ -30,7 +28,7 @@ export const Default: Story = {
       control: { type: "select" },
     },
     size: {
-      options: Object.values(iconSizeVariants),
+      options: Object.keys(iconSizeVariants),
       control: { type: "select" },
     },
   },
