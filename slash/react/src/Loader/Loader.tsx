@@ -3,6 +3,7 @@ import React from "react";
 import { getComponentClassName } from "../utilities";
 
 type LoaderMode = "none" | "get" | "post" | "delete" | "update" | "error";
+type Variant = "blue" | "white";
 
 const getText = (index: LoaderMode) => {
   switch (index) {
@@ -27,6 +28,7 @@ type LoaderProps = {
   text?: string;
   children: React.ReactNode;
   classModifier?: string;
+  variant?: Variant;
 };
 
 export const Loader = ({
@@ -35,12 +37,14 @@ export const Loader = ({
   children,
   classModifier,
   mode = "none",
+  variant = "blue",
 }: LoaderProps) => {
   const componentClassName = getComponentClassName(
     className,
     classModifier,
     "af-loader",
   );
+
   const message = text || getText(mode);
   const isLoaderVisible = mode !== "none";
   const isLoaderInError = mode === "error";
@@ -57,8 +61,12 @@ export const Loader = ({
             aria-busy={!isLoaderInError}
             aria-label={message}
           >
-            {!isLoaderInError && <div className="af-spinner__animation" />}
             <div className="af-spinner__caption">{message}</div>
+            {!isLoaderInError && (
+              <div
+                className={`af-loader-circle af-loader-circle--${variant}`}
+              />
+            )}
           </div>
         </div>
       )}
