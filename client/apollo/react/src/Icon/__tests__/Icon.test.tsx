@@ -14,11 +14,7 @@ describe("Icon component", () => {
     "should render correctly with variant %s",
     (variant) => {
       render(
-        <Icon
-          aria-label="test"
-          icon={bank}
-          variant={variant as IconVariants}
-        />,
+        <Icon aria-label="test" src={bank} variant={variant as IconVariants} />,
       );
       const container = screen.getByLabelText("test").parentElement;
       expect(container).toHaveClass(`af-icon--${variant}`);
@@ -32,7 +28,7 @@ describe("Icon component", () => {
       render(
         <Icon
           aria-label="test"
-          icon={bank}
+          src={bank}
           variant="primary"
           size={size as IconSizeVariants}
         />,
@@ -46,7 +42,7 @@ describe("Icon component", () => {
 
   it("should render with background", () => {
     render(
-      <Icon aria-label="test" icon={bank} variant="primary" hasBackground />,
+      <Icon aria-label="test" src={bank} variant="primary" hasBackground />,
     );
     const container = screen.getByLabelText("test").parentElement;
     expect(container).toHaveClass("af-icon--has-background");

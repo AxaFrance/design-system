@@ -19,7 +19,7 @@ export const Default: Story = {
   name: "Icon",
   render: ({ ...args }) => <Icon {...args} />,
   args: {
-    icon: bank,
+    src: bank,
     hasBackground: false,
   },
   argTypes: {

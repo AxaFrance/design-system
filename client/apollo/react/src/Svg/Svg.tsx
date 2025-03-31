@@ -16,6 +16,9 @@ const cloneAttributes = (
   });
 };
 
+/**
+ * @deprecated Use Icon instead
+ */
 export const Svg = ({
   src,
   alt,
