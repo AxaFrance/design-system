@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { SVGProps, useMemo } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 import { Svg } from "../Svg/Svg";
 
@@ -17,30 +17,35 @@ export const iconSizeVariants = {
 } as const;
 export type IconSizeVariants = keyof typeof iconSizeVariants;
 
-export type IconProps = {
+export type IconProps = SVGProps<SVGSVGElement | null> & {
   icon: string;
   variant?: IconVariants;
   size?: IconSizeVariants;
-  background?: boolean;
+  hasBackground?: boolean;
 };
 
 export const Icon = ({
   icon,
   variant = "primary",
   size = "S",
-  background = false,
+  hasBackground = false,
+  ...props
 }: IconProps) => {
   const componentClassName = useMemo(() => {
-    let newClassModifier = `${variant} ${iconSizeVariants[size]}`;
-
-    if (background) newClassModifier += " background";
+    const newClassModifier = [
+      variant,
+      iconSizeVariants[size],
+      hasBackground && "has-background",
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     return getComponentClassName("af-icon", "", newClassModifier);
-  }, [variant, background, size]);
+  }, [variant, hasBackground, size]);
 
   return (
-    <div data-testid="iconContainer" className={componentClassName}>
-      <Svg src={icon} />
+    <div className={componentClassName}>
+      <Svg src={icon} {...props} />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 @use "./IconCommon";
 
 .af-icon {
-  --icon-border-radius: calc(12 / var(--font-size-base) * 1rem);
+  --icon-border-radius: var(--radius-12);
 
   &--small {
-    &.af-icon--background {
+    &.af-icon--has-background {
       --icon-padding: calc(8 / var(--font-size-base) * 1rem);
     }
   }
@@ -12,7 +12,7 @@
   &--primary {
     --icon-fill: var(--color-axa);
 
-    &.af-icon--background {
+    &.af-icon--has-background {
       --icon-fill: var(--color-white);
       --icon-background-color: var(--color-axa);
     }
@@ -21,7 +21,7 @@
   &--secondary {
     --icon-fill: var(--color-white);
 
-    &.af-icon--background {
+    &.af-icon--has-background {
       --icon-fill: var(--color-axa);
       --icon-background-color: var(--color-white);
       --icon-border: 1px solid var(--color-gray-300);
@@ -31,7 +31,7 @@
   &--tertiary {
     --icon-fill: var(--color-gray-500);
 
-    &.af-icon--background {
+    &.af-icon--has-background {
       --icon-background-color: var(--color-gray-200);
     }
   }
