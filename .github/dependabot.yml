@@ -10,3 +10,9 @@ updates:
     target-branch: "main"
     ignore:
       - dependency-name: "*storybook*" # ignore all storybook packages
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "gh-actions"      
