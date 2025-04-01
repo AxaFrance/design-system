@@ -16,7 +16,7 @@ import {
 import { Select } from "./Select";
 
 type Props = ComponentProps<typeof LegacyField> &
-  Omit<ComponentProps<typeof Select>, "children"> & {
+  ComponentProps<typeof Select> & {
     helpMessage?: ReactNode;
     options: OptionHTMLAttributes<HTMLOptionElement>[];
   };

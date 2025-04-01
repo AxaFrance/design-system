@@ -120,14 +120,14 @@ describe("Select", () => {
 
       // Assert
       const selectInput = screen.getByRole("combobox");
-      const selectDefault = screen.queryByRole("option", {
+      const selectDefault = screen.getByRole("option", {
         name: /- select -/i,
       });
       const selectFun = screen.queryByRole("option", { name: /for fun/i });
       const selectWork = screen.queryByRole("option", { name: /for work/i });
       const selectDrink = screen.queryByRole("option", { name: /for drink/i });
       const selectEat = screen.getByRole("option", { name: /for eat/i });
-      const selectGood = screen.queryByRole("option", { name: /for good/i });
+      const selectGood = screen.getByRole("option", { name: /for good/i });
 
       expect(selectInput).toHaveClass("af-form__input-select");
       expect(selectDefault).toBeVisible();

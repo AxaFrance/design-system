@@ -7,6 +7,20 @@ import {
 import { getComponentClassName } from "../../utilities";
 
 type Props = ComponentPropsWithoutRef<"select"> & {
+  /**
+   * @deprecated Use `children` instead
+   * Instead of
+   * ```jsx
+   * <SelectBase options={[{ value: "1", label: "Option 1" }]} />
+   * ```
+   * you can now do something like :
+   * ```jsx
+   * <SelectBase>
+   *   <option value="1">Option 1</option>
+   * </SelectBase>
+   * ```
+   * It allows you to use the `optgroup` tag for example.
+   */
   options?: OptionHTMLAttributes<HTMLOptionElement>[];
   classModifier?: string;
 };

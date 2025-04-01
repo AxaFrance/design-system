@@ -13,7 +13,20 @@ type Props = ComponentPropsWithRef<typeof SelectBase> & {
   forceDisplayPlaceholder?: boolean;
   placeholder?: string;
 };
-
+/**
+ * @deprecated Use `SelectDefault` instead
+ * Instead of
+ * ```jsx
+ * <SelectDefaultWithOptions options={[{ value: "1", label: "Option 1" }]} />
+ * ```
+ * you can now do something like :
+ * ```jsx
+ * <SelectDefault>
+ *   <option value="1">Option 1</option>
+ * </SelectDefault>
+ * ```
+ * It allows you to use the `optgroup` tag for example.
+ */
 export const SelectDefaultWithOptions = forwardRef<HTMLSelectElement, Props>(
   (
     {
