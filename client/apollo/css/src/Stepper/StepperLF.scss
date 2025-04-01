@@ -3,21 +3,15 @@
 .af-stepper-client {
   &__title {
     font-family: var(--font-family-publico-bold);
-    color: var(--color-gray-900);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0%;
+    line-height: 125%;
+    color: var(--color-axa);
   }
 
   &__subtitle {
-    --font-family: var(--font-family-sans-serif);
-    --subtitle-color: var(--color-gray-700);
-  }
-
-  &__progressbar {
-    --border-radius: var(--default-border-radius);
-    --progressbar-background-color: var(--color-gray-400);
-  }
-
-  &__progress {
-    border-radius: var(--default-border-radius);
-    background-color: var(--color-axa);
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
   }
 }

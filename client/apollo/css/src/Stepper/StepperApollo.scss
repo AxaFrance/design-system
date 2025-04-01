@@ -1,23 +1,22 @@
 @use "./StepperCommon";
 
 .af-stepper-client {
+  &__header {
+    flex-direction: column-reverse;
+  }
+
   &__title {
-    font-family: var(--font-family-publico-bold);
-    color: var(--color-gray-900);
+    vertical-align: middle;
+    font-family: var(--font-family-publico);
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 0%;
+    line-height: 48px;
+    color: var(--axa-blue-100);
   }
 
   &__subtitle {
-    font-family: var(--font-family-sans-serif);
-    color: var(--color-gray-700);
-  }
-
-  &__progressbar {
-    border-radius: var(--default-border-radius);
-    background-color: var(--color-gray-400);
-  }
-
-  &__progress {
-    border-radius: var(--default-border-radius);
-    background-color: var(--color-axa);
+    font-size: 1.125rem;
+    color: var(--axa-blue-100);
   }
 }

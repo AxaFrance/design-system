@@ -1,1 +1,15 @@
 @use "./ProgressBarCommon";
+
+.af {
+  &__progressbar {
+    background-color: var(--neutral-14);
+
+    --progress-radius: 0;
+  }
+
+  &__progress {
+    background-color: var(--axa-blue-100);
+
+    --progress-radius: 0;
+  }
+}
