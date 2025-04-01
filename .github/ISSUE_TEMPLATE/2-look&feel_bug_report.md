@@ -2,7 +2,7 @@
 name: Look&Feel Bug report
 about: Create a report to help us improve Look&Feel Design System
 title: ''
-labels: ['bug', 'look\'n feel (Espace Client)']
+labels: ['bug', "look'n feel (Espace Client)"]
 assignees: ''
 
 ---

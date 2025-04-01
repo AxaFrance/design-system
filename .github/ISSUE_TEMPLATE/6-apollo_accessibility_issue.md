@@ -1,5 +1,5 @@
 ---
-name: Apollo Bug report
+name: Apollo Accessibility report
 about: Create an accessibility report to help us improve Apollo Design System
 title: "[a11y] "
 labels: ['bug', 'accessibility', 'Apollo AXA.fr']

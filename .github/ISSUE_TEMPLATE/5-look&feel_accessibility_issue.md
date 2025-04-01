@@ -1,8 +1,8 @@
 ---
-name: Look&Feel Bug report
+name: Look&Feel Accessibility report
 about: Create an accessibility report to help us improve Look&Feel Design System
 title: "[a11y] "
-labels: ['bug', 'accessibility', 'look\'n feel (Espace Client)']
+labels: ['bug', 'accessibility', "look'n feel (Espace Client)"]
 assignees: ''
 
 ---
