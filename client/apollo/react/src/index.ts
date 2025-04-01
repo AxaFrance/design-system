@@ -26,3 +26,4 @@ export {
   iconSizeVariants,
   type IconSizeVariants,
 } from "./Icon/IconApollo";
+export { Divider } from "./Divider/DividerApollo";

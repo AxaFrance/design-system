@@ -21,3 +21,4 @@ export {
   iconSizeVariants,
   type IconSizeVariants,
 } from "./Icon/IconLF";
+export { Divider } from "./Divider/DividerLF";

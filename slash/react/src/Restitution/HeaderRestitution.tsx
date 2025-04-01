@@ -24,12 +24,12 @@ export const HeaderRestitution = ({
   return (
     <header className={componentClassName}>
       <div className="af-restitution__header-left">
-        <div className="af-restitution__title">
+        <h3 className="af-restitution__title">
           <span className="af-restitution__title-main">{title}</span>
           {subtitle ? (
             <span className="af-restitution__title-subtitle">{subtitle}</span>
           ) : null}
-        </div>
+        </h3>
       </div>
       {rightTitle ? (
         <div className="af-restitution__header-right">

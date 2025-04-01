@@ -3,7 +3,7 @@
 
 .af-title-bar {
   margin-bottom: 2rem;
-  padding: 0.66rem 0;
+  padding: 1rem 0;
   overflow: auto;
   color: common.$white;
   background: common.$brand-primary;
@@ -40,13 +40,37 @@
 
   &__subtitle {
     margin-left: 0.25rem;
-    color: common.$color-tarif-table-header-selected;
+    font-weight: 400;
+    color: common.$color-blue-subtitle;
   }
 
   &__actions {
+    display: flex;
+
+    .btn {
+      fill: common.$white;
+      transition: fill 0.3s;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      &:hover {
+        fill: common.$brand-primary;
+      }
+
+      svg {
+        width: 1rem;
+      }
+    }
+
     .af-btn--circle {
       margin-left: 1rem;
       vertical-align: middle;
+
+      .injected-svg {
+        color: common.$white;
+      }
 
       &:focus {
         color: common.$white;
@@ -54,44 +78,10 @@
       }
     }
   }
-
-  &__link {
-    text-decoration: underline;
-    color: common.$white;
-
-    &:hover {
-      opacity: 0.65;
-      color: common.$white;
-    }
-
-    &:focus {
-      text-shadow: 0 0 5px common.$white;
-      color: common.$white;
-    }
-  }
-
-  &__mobile-menu {
-    display: inline-block;
-    margin-right: 1rem;
-    padding: 0;
-    background-color: transparent;
-    background-image: none;
-
-    .glyphicon {
-      width: 17px;
-      fill: common.$white;
-    }
-  }
-
-  &__icon {
-    font-size: 1em;
-  }
 }
 
 @include common.media-breakpoint-up(sm) {
   .af-title-bar {
-    padding: 0.7em 0;
-
     &__wrapper {
       display: flex;
       width: 100%;
@@ -108,15 +98,13 @@
 
 @include common.media-breakpoint-up(md) {
   .af-title-bar {
-    padding: 0.66rem 0;
-
     &__wrapper {
       width: list.nth(list.nth(common.$container-max-widths, 4), 2);
       max-width: 100%;
     }
 
     &__title {
-      font-size: 1.25rem;
+      font-size: 1.375rem;
     }
   }
 }
