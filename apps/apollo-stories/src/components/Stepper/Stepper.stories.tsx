@@ -46,5 +46,7 @@ export const Playground: Story = {
     currentStepProgress: 50,
     isTitleVisible: true,
     isSubtitleVisible: true,
+    helper: "Sauf mention du contraire, tous les champs sont obligatoires.",
+    message: "Titre du message",
   },
 };

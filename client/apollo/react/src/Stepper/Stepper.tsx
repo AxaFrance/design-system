@@ -10,6 +10,8 @@ export type StepperProps = {
   nbSteps: 2 | 3 | 4 | 5 | 6;
   isTitleVisible?: boolean;
   isSubtitleVisible?: boolean;
+  helper?: string;
+  message?: string;
   ProgressBarGroupComponent: ComponentType<
     Omit<ProgressBarGroupProps, "ProgressBarComponent">
   >;
@@ -25,6 +27,8 @@ export const Stepper = ({
   isSubtitleVisible = true,
   className,
   ProgressBarGroupComponent,
+  helper,
+  message,
   ...props
 }: StepperProps) => {
   const stepperId = useId();
@@ -48,10 +52,12 @@ export const Stepper = ({
         nbSteps={nbSteps}
         currentStepProgress={currentStepProgress}
       />
-      <span className="af-stepper-client__helper">
-        Sauf mention du contraire, tous les champs sont obligatoires.
-      </span>
-      <ItemMessage message="My message" messageType="success" />
+      {Boolean(helper) && (
+        <span className="af-stepper-client__helper">{helper}</span>
+      )}
+      {Boolean(message) && (
+        <ItemMessage message={message} messageType="success" />
+      )}
     </div>
   );
 };
