@@ -106,6 +106,38 @@ Use the `classModifier` prop to change the look of the button.
 <Canvas of={ButtonStories.MultiExamples} layout="fullscreen" />
 ````
 
+### Depreciate component or prop
+
+To indicate that a component or a prop is now deprecated, you should first add a `@deprecated` comment above the element like this:
+
+```tsx
+/** @deprecated Use `NonDeprecatedComponent` instead. */
+const DeprecatedComponent = () => <p>deprecated component</p>
+
+type NonDeprecatedComponentProps = 
+  | { 
+      /** @deprecated Use `children` prop instead. */
+      text: string; 
+    } 
+  | { children: string };
+
+const NonDeprecatedComponent = ({children, text}: NonDeprecatedComponentProps) => <p>{children ?? text}</p>
+```
+
+Additionally, it is important to indicate in the MDX file that the component or the prop is deprecated. This warns that it might be removed in a future release.
+
+Example in the MDX file :
+
+```markdown
+# DeprecatedComponent
+
+> **Warning:** This component is deprecated. Please use `NonDeprecatedComponent` instead.
+
+# NonDeprecatedComponent
+
+> **Warning:** The `text` prop is deprecated. Please use `children` prop instead.
+```
+
 ### Accessibility
 
 Every component should tested for accessibility.
