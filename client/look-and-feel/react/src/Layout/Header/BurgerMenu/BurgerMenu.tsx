@@ -9,9 +9,9 @@ import {
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Header/BurgerMenu/BurgerMenu.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Card/Card.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/List/List.scss";
-import "@axa-fr/design-system-look-and-feel-css/dist/List/ClickList/ClickList.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/List/ClickItem/ClickItem.scss";
 import classNames from "classnames";
-import { ClickItem, createClickItemParent } from "../../../List/ClickList";
+import { ClickItem, createClickItemParent } from "../../../List/ClickItem";
 
 type BurgerMenuProps = {
   isOpen: boolean;

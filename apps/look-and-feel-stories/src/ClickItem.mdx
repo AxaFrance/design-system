@@ -1,0 +1,115 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ClickItemStories from "./ClickItem.stories";
+
+<Meta of={ClickItemStories} name="ClickItem" />
+
+# ClickItem
+
+> **Warning:** The ClickList component has been replaced by using directly the ClickItem component. See [this example](#use-a-list-of-items).
+
+## Import
+
+```tsx
+import { ClickItem } from "@axa-fr/design-system-look-and-feel-react";
+```
+
+## Use
+
+### Use with icons
+
+```tsx
+const MyComponentWithIcons = () => (
+  <ClickItem
+    icon={<Svg src={error} />}
+    actionIcon={<Svg src={openInNew} aria-hidden />}
+    classModifier="small"
+  >
+    Texte principal
+  </ClickItem>
+);
+```
+
+<Canvas of={ClickItemStories.ClickItemWithIcons} />
+
+<Controls of={ClickItemStories.ClickItemWithIcons} />
+
+### Use without left icon
+
+```tsx
+const MyComponentWithoutIcon = () => (
+  <ClickItem>
+    <h3 className="af-click-item__title">Fiche Orias précontractuelle</h3>
+    <p className="af-click-item__subtitle">30 novembre 2021</p>
+    <p className="af-click-item__secondary">Signé électroniquement</p>
+  </ClickItem>
+);
+```
+
+<Canvas of={ClickItemStories.ClickItemWithoutIcon} />
+
+<Controls of={ClickItemStories.ClickItemWithoutIcon} />
+
+### Use with link and without left icon
+
+You can override the default parent component by passing a `parentClickComponent` prop to the item.
+
+A function named `createClickItemParent` is provided to create a parent component with the desired props easier.
+
+```tsx
+const MyComponentWithoutIcon = () => (
+  <ClickItem
+    parentClickComponent={createClickItemParent("a", {
+      href: "https://github.com/AxaFrance/design-system",
+      target: "_blank",
+      rel: "noreferrer",
+    })}
+  >
+    <h3 className="af-list-item-content-label__title">
+      Fiche Orias précontractuelle
+    </h3>
+    <p className="af-list-item-content-label__subtitle">30 novembre 2021</p>
+    <p className="af-list-item-content-label__secondary">
+      Signé électroniquement
+    </p>
+  </ClickItem>
+);
+```
+
+<Canvas of={ClickItemStories.ClickItemLinkWithoutIcon} />
+
+<Controls of={ClickItemStories.ClickItemLinkWithoutIcon} />
+
+### Use a list of items
+
+```tsx
+const MyComponentWithClickItemList = () => (
+  <List classModifier="click-list">
+    <ClickItem
+      id="1"
+      icon={<Svg src={error} aria-hidden />}
+      actionIcon={<Svg src={openInNew} aria-hidden />}
+      classModifier="small"
+    >
+      Texte principal
+    </ClickItem>
+    <ClickItem
+      id="2"
+      icon={<Svg src={error} aria-hidden />}
+      actionIcon={<Svg src={openInNew} aria-hidden />}
+      classModifier="small"
+      disabled
+    >
+      Texte principal
+    </ClickItem>
+    <ClickItem id="3">
+      <h3 className="af-click-item__title">Fiche Orias précontractuelle</h3>
+      <p className="af-click-item__subtitle">30 novembre 2021</p>
+      <p className="af-click-item__secondary">Signé électroniquement</p>
+    </ClickItem>
+  </List>
+);
+```
+
+<Canvas of={ClickItemStories.ClickItemList} />
+
+<Controls of={ClickItemStories.ClickItemList} />
