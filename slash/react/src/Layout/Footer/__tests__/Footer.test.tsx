@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Footer } from "../Footer";
 
 describe("Footer component", () => {
@@ -56,5 +57,11 @@ describe("Footer component", () => {
         `© ${new Date().getFullYear()} AXA Tous droits réservés`,
       ),
     ).toBeInTheDocument();
+  });
+
+  it("should not have an accessibility violation", async () => {
+    const { container } = render(<Footer />);
+
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
