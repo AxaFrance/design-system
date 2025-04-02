@@ -8,6 +8,9 @@ type IconBgProps = {
   children: ReactNode;
 };
 
+/**
+ * @deprecated Use Icon instead
+ */
 export const IconBg = ({
   children,
   className,

@@ -1,0 +1,60 @@
+.af-icon {
+  display: grid;
+  width: fit-content;
+  padding: var(--icon-padding);
+  border-radius: var(--icon-border-radius);
+  background-color: var(--icon-background-color);
+  outline-color: var(--icon-outline-color);
+
+  --icon-background-color: transparent;
+  --icon-size: calc(24 / var(--font-size-base) * 1rem);
+
+  svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    fill: var(--icon-fill);
+  }
+
+  &--large {
+    svg {
+      --icon-size: calc(40 / var(--font-size-base) * 1rem);
+    }
+
+    &.af-icon--has-background {
+      --icon-padding: calc(12 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &--medium {
+    svg {
+      --icon-size: calc(32 / var(--font-size-base) * 1rem);
+    }
+
+    &.af-icon--has-background {
+      --icon-padding: calc(12 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &--small {
+    svg {
+      --icon-width: calc(24 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &--extra-small {
+    svg {
+      --icon-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+
+    &.af-icon--has-background {
+      --icon-padding: calc(8 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &--secondary {
+    &.af-icon--has-background {
+      outline-style: solid;
+      outline-width: 1px;
+    }
+  }
+}
