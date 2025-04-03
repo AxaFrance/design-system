@@ -91,55 +91,36 @@ jobs:
 
   deploy:
     needs: build
-    if: needs.build.outputs.isStableRelease == 'true'
     runs-on: ubuntu-latest
     name: Deploy new version of storybook to gh-pages
+    strategy:
+      matrix:
+        storybook:
+          - name: apollo react
+            publish_dir: ./apollo/react
+            destination_dir: apollo/react
+          - name: look-and-feel react
+            publish_dir: ./look-and-feel/react
+            destination_dir: look-and-feel/react
+          - name: look-and-feel css
+            publish_dir: ./look-and-feel/css
+            destination_dir: look-and-feel/css
+        version:
+          - next
+          - latest
+          - ${{ needs.build.outputs.version }}
+
     steps:
       - name: Download storybooks
+        if: needs.build.outputs.isStableRelease == 'true' || matrix.version == 'next'
         uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
         with:
           name: storybooks
 
-      - name: Upload the latest apollo react storybook
+      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ matrix.version }}
+        if: needs.build.outputs.isStableRelease == 'true' || matrix.version == 'next'
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apollo/react
-          destination_dir: apollo/react/latest
-
-      - name: Upload the apollo react storybook to its version folder
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apollo/react
-          destination_dir:
-            apollo/react/${{ needs.build.outputs.version }}
-
-      - name: Upload the latest look-and-feel react storybook
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./look-and-feel/react
-          destination_dir: look-and-feel/react/latest
-
-      - name: Upload the look-and-feel react storybook to its version folder
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./look-and-feel/react
-          destination_dir:
-            look-and-feel/react/${{ needs.build.outputs.version }}
-
-      - name: Upload the latest look-and-feel css storybook
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./look-and-feel/css
-          destination_dir: look-and-feel/css/latest
-
-      - name: Upload the look-and-feel css to its version folder
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./look-and-feel/css
-          destination_dir: look-and-feel/css/${{ needs.build.outputs.version }}
+          publish_dir: ${{ matrix.storybook.publish_dir }}
+          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ matrix.version }}
