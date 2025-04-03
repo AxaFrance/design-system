@@ -1,0 +1,50 @@
+@use "../common/breakpoints" as breakpoints;
+@use "./StepperCommon";
+
+.af-stepper {
+  --stepper-gap: calc(8 / var(--font-size-base) * 1rem);
+
+  &__header {
+    --stepper-header-flex-direction: column;
+  }
+
+  &__title {
+    --title-font-family: var(--font-family-publico);
+    --title-font-size: calc(24 / var(--font-size-base) * 1rem);
+    --title-font-weight: 700;
+    --title-line-height: calc(30 / var(--font-size-base) * 1rem);
+    --title-color: var(--color-axa);
+  }
+
+  &__subtitle {
+    --subtitle-font-family: var(--font-family-sans-serif);
+    --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --subtitle-color: var(--color-gray-700);
+  }
+
+  &__helper {
+    --helper-font-family: var(--font-family-sans-serif);
+    --helper-font-size: calc(14 / var(--font-size-base) * 1rem);
+    --helper-color: var(--color-gray-32);
+  }
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --stepper-gap: calc(16 / var(--font-size-base) * 1rem);
+
+    &__title {
+      --title-font-size: calc(32 / var(--font-size-base) * 1rem);
+      --title-line-height: calc(40 / var(--font-size-base) * 1rem);
+    }
+
+    &__subtitle {
+      --subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+      --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
+    }
+
+    &__helper {
+      --helper-font-family: var(--font-family-sans-serif);
+      --helper-font-size: calc(16 / var(--font-size-base) * 1rem);
+      --helper-color: var(--color-gray-32);
+    }
+  }
+}

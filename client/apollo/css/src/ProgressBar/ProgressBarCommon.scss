@@ -1,0 +1,16 @@
+.af-progressbar {
+  width: 100%;
+  height: calc(6 / var(--font-size-base) * 1rem);
+  border-radius: var(--progress-radius);
+  overflow: hidden;
+  background-color: var(--progressbar-background-color);
+
+  &__progress {
+    height: calc(6 / var(--font-size-base) * 1rem);
+    text-align: left;
+    background-color: var(--progress-background-color);
+    transition:
+      0.75s ease-out,
+      background-color 0.75s;
+  }
+}

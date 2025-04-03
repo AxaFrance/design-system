@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Stepper/Stepper.scss";
+import "@axa-fr/design-system-apollo-css/dist/Stepper/StepperLF.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 
 const meta: Meta = {
@@ -11,10 +11,10 @@ export const Stepper: StoryObj = {
   render: () => {
     const stepper = document.createElement("div");
     stepper.innerHTML = `
-    <div class="af-stepper-client">
+    <div class="af-stepper">
       <div>
-        <h2 class="af-stepper-client__title" aria-describedby=":r4:">Step 1</h2>
-        <p class="af-stepper-client__subtitle">Step subtitle</p>
+        <h2 class="af-stepper__title" aria-describedby=":r4:">Step 1</h2>
+        <p class="af-stepper__subtitle">Step subtitle</p>
       </div>
       <div
         id=":r4:"

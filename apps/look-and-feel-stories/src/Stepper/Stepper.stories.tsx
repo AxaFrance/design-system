@@ -12,23 +12,7 @@ const meta: Meta<typeof Stepper> = {
 
 export default meta;
 
-type StoryProps = Omit<
-  ComponentProps<typeof Stepper>,
-  | "currentStep"
-  | "currentStepProgress"
-  | "isTitleVisible"
-  | "isSubtitleVisible"
-  | "currentTitle"
-  | "nbSteps"
-> & {
-  currentStep: number;
-  currentSubtitle: string;
-  currentStepProgress: number;
-  isTitleVisible: boolean;
-  isSubtitleVisible: boolean;
-  currentTitle: string;
-  nbSteps: 2 | 3 | 4 | 5 | 6;
-};
+type StoryProps = ComponentProps<typeof Stepper>;
 type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
@@ -39,12 +23,11 @@ export const Playground: Story = {
     </div>
   ),
   args: {
-    nbSteps: 3,
-    currentTitle: "Step title",
+    currentTitle: "Titre étape",
     currentStep: 2,
-    currentSubtitle: "Step subtitle",
+    currentSubtitle: "Étape X sur X",
     currentStepProgress: 50,
-    isTitleVisible: true,
-    isSubtitleVisible: true,
+    message: "Titre message",
+    helper: "Sauf mention du contraire, tous les champs sont obligatoires.",
   },
 };
