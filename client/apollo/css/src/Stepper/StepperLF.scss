@@ -1,0 +1,21 @@
+@use "./StepperCommon";
+
+.af-stepper-client {
+  &__title {
+    font-family: var(--font-family-publico-bold);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0%;
+    line-height: 125%;
+    color: var(--color-axa);
+  }
+
+  &__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
+  }
+
+  &__helper {
+    color: var(--color-gray-32);
+  }
+}
