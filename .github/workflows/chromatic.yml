@@ -18,7 +18,7 @@ jobs:
         run: npm ci
       - name: Build packages
         run: npm run build
-      - uses: chromaui/action@latest
+      - uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11.27.0
         name: Run Chromatic for design-system-slash-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_REACT }}
@@ -26,7 +26,7 @@ jobs:
           buildScriptName: "build"
           workingDir: "apps/slash-stories"
           onlyChanged: true
-      - uses: chromaui/action@latest
+      - uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11.27.0
         name: Run Chromatic for design-system-slash-css
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_CSS }}
@@ -34,7 +34,7 @@ jobs:
           buildScriptName: "build"
           workingDir: "apps/slash-stories-css"
           onlyChanged: true
-      - uses: chromaui/action@latest
+      - uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11.27.0
         name: Run Chromatic for design-system-lookandfeel-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
@@ -42,7 +42,7 @@ jobs:
           buildScriptName: "build"
           workingDir: "apps/look-and-feel-stories"
           onlyChanged: true
-      - uses: chromaui/action@latest
+      - uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11.27.0
         name: Run Chromatic for design-system-lookandfeel-css
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_CSS }}
@@ -50,7 +50,7 @@ jobs:
           buildScriptName: "build"
           workingDir: "apps/look-and-feel-stories-css"
           onlyChanged: true
-      - uses: chromaui/action@latest
+      - uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11.27.0
         name: Run Chromatic for design-system-apollo-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_APOLLO_REACT }}
