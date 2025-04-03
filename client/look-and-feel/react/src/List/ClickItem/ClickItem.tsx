@@ -1,7 +1,7 @@
 import chevron from "@material-symbols/svg-400/outlined/chevron_right.svg";
 import { useMemo } from "react";
-import { Svg } from "../../../Svg";
-import { getComponentClassName } from "../../../utilities";
+import { Svg } from "../../Svg";
+import { getComponentClassName } from "../../utilities";
 import type { TClickItem } from "./types";
 
 export const ClickItem = ({

@@ -1,5 +1,5 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Card/Card.scss";
-import "@axa-fr/design-system-look-and-feel-css/dist/List/ClickList/ClickList.scss";
+import "@axa-fr/design-system-look-and-feel-css/dist/List/ClickItem/ClickItem.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/List/ContentItemMono/ContentItemMono.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/List/List.scss";
 import type { Meta, StoryObj } from "@storybook/html";
