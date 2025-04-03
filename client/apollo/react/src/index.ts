@@ -27,3 +27,4 @@ export {
   type IconSizeVariants,
 } from "./Icon/IconApollo";
 export { Divider } from "./Divider/DividerApollo";
+export { Toggle, type ToggleProps } from "./Toggle/ToggleApollo";
