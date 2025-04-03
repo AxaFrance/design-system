@@ -23,12 +23,12 @@ export const renderLink = ({
   ...args
 }: Args) => (
   <Link
-    href={href}
     openInNewTab={openInNewTab}
     leftIcon={leftIcon}
     rightIcon={rightIcon}
     className={className}
     classModifier={classModifier}
     {...args}
+    href={href}
   />
 );

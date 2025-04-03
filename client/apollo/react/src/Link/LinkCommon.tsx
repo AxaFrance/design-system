@@ -8,7 +8,17 @@ import {
 import { Svg } from "../Svg/Svg";
 import { getComponentClassName } from "../utilities/helpers/getComponentClassName";
 
+export const linkVariants = {
+  underline: "underline",
+  arrow: "arrow",
+  "underline-inverse": "underline-inverse",
+  "arrow-inverse": "arrow-inverse",
+} as const;
+
+export type LinkVariants = keyof typeof linkVariants;
+
 type LinkProps = {
+  variant?: LinkVariants;
   openInNewTab?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
@@ -18,6 +28,7 @@ type LinkProps = {
 
 export const Link = ({
   href,
+  variant = "underline",
   openInNewTab = false,
   leftIcon,
   rightIcon,
@@ -36,9 +47,9 @@ export const Link = ({
       getComponentClassName(
         "af-link",
         className,
-        `${classModifier}${!className && openInNewTab ? " openInNewTab" : ""}`,
+        `${classModifier}${!className && openInNewTab ? " openInNewTab" : ""} ${variant}`,
       ),
-    [classModifier, className, openInNewTab],
+    [classModifier, className, openInNewTab, variant],
   );
 
   return (
