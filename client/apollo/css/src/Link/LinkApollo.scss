@@ -5,7 +5,71 @@
 .af-link {
   --link-font-weight: 600;
   --button-text-color-default: var(--axa-blue-100);
-  --underline-offset: 0.5rem;
+  --underline-offset: 25%;
+  --link-font-size: 14;
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --link-font-size: 16;
+  }
+
+  &--underline {
+    --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
+    }
+
+    &:hover {
+      --button-text-color-1: var(--axa-blue-120);
+    }
+
+    &:active,
+    &:focus {
+      --button-text-color-2: var(--axa-blue-80);
+    }
+  }
+
+  &--arrow {
+    --link-line-height-1: 125%;
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      --link-line-height-1: calc(var(24) / var(--font-size-base) * 1rem);
+    }
+
+    &:hover {
+      --button-text-color-1: var(--axa-blue-120);
+      --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
+      @media (width > #{breakpoints.$breakpoint-md}) {
+        --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
+      }
+    }
+
+    &:active,
+    &:focus {
+      --button-text-color-2: var(--axa-blue-80);
+      --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
+      @media (width > #{breakpoints.$breakpoint-md}) {
+        --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
+      }
+    }
+  }
+
+  &--underline-inverse {
+    --button-text-color-inverse: var(--white);
+    --link-line-height-1: 125%;
+
+    &:hover {
+      --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
+      @media (width > #{breakpoints.$breakpoint-md}) {
+        --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
+      }
+    }
+
+    &:active,
+    &:focus {
+      --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
+      @media (width > #{breakpoints.$breakpoint-md}) {
+        --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
+      }
+    }
+  }
 
   &:active,
   &:focus {
