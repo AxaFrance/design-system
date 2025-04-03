@@ -1,0 +1,1 @@
+import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{r as m}from"./index-DuZrfDUH.js";import{g as n}from"./constants-CfWbtzFy.js";const x=({children:o,className:a,classModifier:s="",...e})=>{const r=m.useMemo(()=>n("af-tag",a,s),[a,s]);return t.jsx("div",{className:r,...e,children:t.jsx("span",{className:"af-tag__label",children:o})})};export{x as T};
