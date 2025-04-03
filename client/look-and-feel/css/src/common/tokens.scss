@@ -19,6 +19,8 @@
   --color-blue-1: #{common.$color-blue-1};
   --color-blue-2: #{common.$color-blue-2};
   --color-blue-3: #{common.$color-blue-3};
+  --color-blue-200: #{common.$color-blue-200};
+  --color-blue-800: #{common.$color-blue-800};
   --color-ocean-blue: #{common.$color-oceanBlue};
   --color-btn-light: #{common.$color-btn-light};
   --color-focus: #{common.$color-focus}; // prefer use --color-blue-3
@@ -115,6 +117,7 @@
   --default-border-radius: #{common.$default-border-radius};
   --radius-8: #{common.$radius-8};
   --radius-12: #{common.$radius-12};
+  --radius-32: #{common.$radius-32};
   --radius-100: #{common.$radius-100};
 
   /* ANIMATIONS *******************************************************************/
