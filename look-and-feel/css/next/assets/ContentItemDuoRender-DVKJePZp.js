@@ -1,0 +1,12 @@
+const l=t=>{const n=document.createElement("div"),i=structuredClone(t.classModifier);if(t.isVertical&&i.push("vertical"),n.classList.add("af-content-item-duo",...i.filter(Boolean).map(e=>`af-content-item-duo--${e}`)),t.isShowingDoneIcon){const e=document.createElement("div");e.className="af-content-item-duo__icon af-content-item-duo__icon--done",e.innerHTML=`
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_21132_3825" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                <rect width="24" height="24" fill="#D9D9D9"/>
+            </mask>
+            <g mask="url(#mask0_21132_3825)">
+                <path d="M9.44999 18.1893L3.51074 12.25L4.93924 10.8218L9.44999 15.3325L19.0357 5.74677L20.4642 7.17502L9.44999 18.1893Z"/>
+            </g>
+        </svg>`,n.appendChild(e)}if(t.isShowingCloseIcon){const e=document.createElement("div");e.className="af-content-item-duo__icon af-content-item-duo__icon--close",e.innerHTML=`
+        <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.72494 15.1642L0.335693 13.7749L6.11069 7.99994L0.335693 2.22494L1.72494 0.835693L7.49994 6.61069L13.2749 0.835693L14.6642 2.22494L8.88919 7.99994L14.6642 13.7749L13.2749 15.1642L7.49994 9.38919L1.72494 15.1642Z" fill="#C91432"/>
+        </svg>`,n.appendChild(e)}const o=document.createElement("p");o.className="af-content-item-duo__label",o.textContent=t.label,n.appendChild(o);const a=document.createElement("p");if(a.className="af-content-item-duo__value",a.textContent=t.value,n.appendChild(a),t.buttonText){const e=document.createElement("div");e.className="af-content-item-duo__button";const c=document.createElement("button");c.className="af-btn-client af-btn-client--ghost",c.textContent=t.buttonText,e.appendChild(c),n.appendChild(e)}return n},s=({classModifier:t,...n})=>{const i=document.createElement("section");i.className=`af-card ${["list","extra-padding",...t].filter(Boolean).map(a=>` af-card--${a}`).join("")}`;const o=document.createElement("ul");return o.className="af-list",n.items.forEach(a=>{const e=document.createElement("li");e.className="af-list__item";const c=structuredClone(a);n.isItemsLarge&&(c.classModifier=["large"]),e.appendChild(l(c)),o.appendChild(e)}),i.appendChild(o),i};export{s as a,l as c};
