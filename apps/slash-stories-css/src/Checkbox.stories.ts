@@ -3,7 +3,7 @@ import "@axa-fr/design-system-slash-css/dist/Form/Checkbox/Checkbox.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Checkbox",
+  title: "Components/Form/Input/CheckboxCommon",
 };
 
 export default meta;
@@ -51,7 +51,7 @@ export const Default: StoryObj<{ label: string }> = {
     return container;
   },
   args: {
-    label: "Classic Checkbox",
+    label: "Classic CheckboxCommon",
   },
   argTypes: {},
 };

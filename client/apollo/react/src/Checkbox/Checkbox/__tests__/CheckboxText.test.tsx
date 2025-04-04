@@ -4,9 +4,9 @@ import checkBoxIcon from "@material-symbols/svg-400/outlined/check_small.svg";
 import userEvent from "@testing-library/user-event";
 import { CheckboxCommon } from "../CheckboxCommon";
 
-describe("Checkbox Component", () => {
-  it("should render the Checkbox component with label", () => {
-    render(<CheckboxCommon checkBoxIcon={checkBoxIcon} label="AXA fr" />);
+describe("CheckboxCommon Component", () => {
+  it("should render the CheckboxCommon component with label", () => {
+    render(<CheckboxCommon checkBoxIcon={checkBoxIcon} />);
     const checkbox = screen.getByRole("checkbox");
     const label = screen.getByText("AXA fr");
     expect(checkbox).toBeInTheDocument();
@@ -14,7 +14,7 @@ describe("Checkbox Component", () => {
   });
 
   it("should checked", async () => {
-    render(<CheckboxCommon checkBoxIcon={checkBoxIcon} label="AXA fr" />);
+    render(<CheckboxCommon checkBoxIcon={checkBoxIcon} />);
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
     await userEvent.click(checkbox);
@@ -27,7 +27,6 @@ describe("Checkbox Component", () => {
     render(
       <CheckboxCommon
         checkBoxIcon={checkBoxIcon}
-        label="AXA fr"
         errorMessage="this field is required"
       />,
     );

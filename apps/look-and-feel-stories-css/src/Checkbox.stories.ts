@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import { render, renderBasic } from "./CheckBoxRender";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Checkbox",
+  title: "Components/Form/Input/CheckboxCommon",
 };
 
 export default meta;

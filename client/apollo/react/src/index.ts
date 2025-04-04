@@ -19,4 +19,6 @@ export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { TextInput } from "./Form/TextInput/TextInputApollo";
-export { Checkbox } from "./Checkbox/CheckboxApollo";
+export { Checkbox } from "./Checkbox/Checkbox/CheckboxApollo";
+export { CheckboxText } from "./Checkbox/CheckboxText/CheckboxTextApollo";
+export { CheckboxCard } from "./Checkbox/CheckboxCard/CheckboxCardApollo";

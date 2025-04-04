@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
 const meta: Meta = {
-  title: "Components/Form/Input/Checkbox/Select",
+  title: "Components/Form/Input/CheckboxCommon/Select",
   component: CheckboxSelect,
   argTypes: {},
 };

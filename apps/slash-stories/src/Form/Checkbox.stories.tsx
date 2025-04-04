@@ -12,7 +12,7 @@ import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 const messageTypes = Object.values(MessageTypes);
 
 const meta: Meta = {
-  title: "Components/Form/Input/Checkbox",
+  title: "Components/Form/Input/CheckboxCommon",
   component: CheckboxInput,
   argTypes: {
     onChange: { action: "onChange" },
