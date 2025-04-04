@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import { Svg } from "../Svg/Svg";
-import { getComponentClassName } from "../utilities/helpers/getComponentClassName";
+import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export const linkVariants = {
   underline: "underline",

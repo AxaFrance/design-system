@@ -23,14 +23,14 @@
 
     &:active,
     &:focus {
-      --button-text-color-2: var(--axa-blue-80);
+      --button-color-outline: var(--axa-blue-80);
     }
   }
 
   &--arrow {
-    --link-line-height-1: 125%;
+    --link-line-height: 125%;
     @media (width > #{breakpoints.$breakpoint-md}) {
-      --link-line-height-1: calc(var(24) / var(--font-size-base) * 1rem);
+      --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
     }
 
     &:hover {
@@ -43,7 +43,7 @@
 
     &:active,
     &:focus {
-      --button-text-color-2: var(--axa-blue-80);
+      --button-color-outline: var(--axa-blue-80);
       --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
       @media (width > #{breakpoints.$breakpoint-md}) {
         --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
@@ -53,15 +53,9 @@
 
   &--underline-inverse {
     --button-text-color-inverse: var(--white);
-    --link-line-height-1: 125%;
+    --link-line-height: 125%;
 
-    &:hover {
-      --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
-      @media (width > #{breakpoints.$breakpoint-md}) {
-        --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
-      }
-    }
-
+    &:hover,
     &:active,
     &:focus {
       --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
@@ -71,16 +65,13 @@
     }
   }
 
+  &:hover,
   &:active,
   &:focus {
     --button-text-color-1: var(--axa-blue-120);
   }
 
   &:focus-visible {
-    --button-text-color-2: var(--axa-blue-3);
-  }
-
-  &:hover {
-    --button-text-color-1: var(--axa-blue-120);
+    --button-color-outline: var(--axa-blue-3);
   }
 }

@@ -6,7 +6,6 @@
   height: fit-content;
   align-items: center;
   gap: 0.25rem;
-  font-family: var(--font-family-base);
   font-size: calc(var(--link-font-size) / var(--font-size-base) * 1rem);
   font-weight: var(--link-font-weight);
   text-decoration: underline;
@@ -33,12 +32,12 @@
 
     &:active,
     &:focus {
-      color: var(--button-text-color-2);
+      color: var(--button-color-outline);
     }
   }
 
   &--arrow {
-    line-height: var(--link-line-height-1);
+    line-height: var(--link-line-height);
     text-decoration: none;
 
     &:hover {
@@ -51,20 +50,16 @@
     &:focus {
       line-height: calc(var(--link-line-height) / var(--font-size-base) * 1rem);
       text-decoration: underline;
-      color: var(--button-text-color-2);
+      color: var(--button-color-outline);
     }
   }
 
   &--underline-inverse {
-    line-height: var(--link-line-height-1);
+    line-height: var(--link-line-height);
     text-decoration: none;
     color: var(--button-text-color-inverse);
 
-    &:hover {
-      line-height: calc(var(--link-line-height) / var(--font-size-base) * 1rem);
-      text-decoration: underline;
-    }
-
+    &:hover,
     &:active,
     &:focus {
       line-height: calc(var(--link-line-height) / var(--font-size-base) * 1rem);
@@ -76,17 +71,14 @@
     text-decoration: none;
   }
 
+  &:hover,
   &:active,
   &:focus {
     fill: var(--button-text-color-1);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--button-text-color-2);
+    outline: 2px solid var(--button-color-outline);
     outline-offset: 3px;
-  }
-
-  &:hover {
-    fill: var(--button-text-color-1);
   }
 }
