@@ -1,6 +1,7 @@
 import {
   ComponentProps,
   forwardRef,
+  OptionHTMLAttributes,
   PropsWithChildren,
   ReactNode,
   useId,
@@ -18,6 +19,7 @@ import { useAriaInvalid } from "../core/useAriaInvalid";
 type Props = ComponentProps<typeof LegacyField> &
   ComponentProps<typeof Select> & {
     helpMessage?: ReactNode;
+    options: OptionHTMLAttributes<HTMLOptionElement>[];
   };
 
 const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
