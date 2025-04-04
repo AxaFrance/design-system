@@ -28,6 +28,8 @@ type StoryProps = Omit<
   isSubtitleVisible: boolean;
   currentTitle: string;
   nbSteps: 2 | 3 | 4 | 5 | 6;
+  message: "Titre message";
+  helper: "Sauf mention du contraire, tous les champs sont obligatoires.";
 };
 type Story = StoryObj<StoryProps>;
 
@@ -39,12 +41,13 @@ export const Playground: Story = {
     </div>
   ),
   args: {
-    nbSteps: 3,
     currentTitle: "Step title",
     currentStep: 2,
     currentSubtitle: "Step subtitle",
     currentStepProgress: 50,
     isTitleVisible: true,
     isSubtitleVisible: true,
+    message: "Titre message",
+    helper: "Sauf mention du contraire, tous les champs sont obligatoires.",
   },
 };

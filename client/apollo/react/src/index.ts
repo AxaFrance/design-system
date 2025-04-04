@@ -27,3 +27,6 @@ export {
   type IconSizeVariants,
 } from "./Icon/IconApollo";
 export { Divider } from "./Divider/DividerApollo";
+export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
+export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
+export { Stepper } from "./Stepper/StepperApollo";
