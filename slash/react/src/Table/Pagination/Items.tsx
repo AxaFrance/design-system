@@ -11,9 +11,13 @@ export type Props = {
    */
   displayLabel?: string;
   /**
-   * Text displayed after the per-page select
+   * Text displayed after the per-page select and used in page selection links label
    */
   elementsLabel?: string;
+  /**
+   * Assoaciated label with the per-page select
+   */
+  selectPageSizeLabel?: string;
   /**
    * Possible values for the number of items displayed per page
    */
@@ -31,6 +35,7 @@ const Items = ({
   onChange,
   displayLabel = "Afficher",
   elementsLabel = "éléments",
+  selectPageSizeLabel = "Nombre d'éléments à afficher",
   id,
   items = [5, 10, 25, 50, 100],
   numberItems = 10,
@@ -55,6 +60,7 @@ const Items = ({
             <Select
               id={newId}
               value={numberItems}
+              aria-label={selectPageSizeLabel}
               mode="base"
               options={items.map((item) => ({
                 label: item.toString(),
