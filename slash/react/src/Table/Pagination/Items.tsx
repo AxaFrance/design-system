@@ -22,6 +22,10 @@ export type Props = {
    * Number of items displayed per page
    */
   numberItems?: number;
+  /**
+   * Aria label for the the per-page select
+   */
+  selectAriaLabel?: string;
   onChange: (e: { value: number }) => void;
 };
 
@@ -31,6 +35,7 @@ const Items = ({
   onChange,
   displayLabel = "Afficher",
   elementsLabel = "éléments",
+  selectAriaLabel = "Modifier le nombre d'éléments à afficher dans le tableau",
   id,
   items = [5, 10, 25, 50, 100],
   numberItems = 10,
@@ -64,6 +69,7 @@ const Items = ({
                 e.preventDefault();
                 onChange({ value: Number(e.target.value) });
               }}
+              aria-label={selectAriaLabel}
             />
             <span className="af-form__input-cmplt">{elementsLabel}</span>
           </div>
