@@ -1,0 +1,46 @@
+@use "../common/breakpoints" as breakpoints;
+@use "./TagCommon";
+
+.af-tag {
+  span {
+    --tag-font-size: 1rem;
+    --tag-line-height: 1.25rem;
+  }
+
+  &--info {
+    --tag-bg-color: var(--axa-blue-4);
+    --tag-text-color: var(--axa-blue-100);
+    --tag-border-color: var(--axa-blue-100);
+  }
+
+  &--success {
+    --tag-bg-color: var(--green-12);
+    --tag-text-color: var(--green-100);
+    --tag-border-color: var(--green-100);
+  }
+
+  &--error {
+    --tag-bg-color: var(--axa-red-4);
+    --tag-text-color: var(--axa-red-100);
+    --tag-border-color: var(--axa-red-100);
+  }
+
+  &--neutral {
+    --tag-bg-color: var(--neutral-5);
+    --tag-text-color: var(--neutral-80);
+    --tag-border-color: var(--neutral-80);
+  }
+
+  &--warning {
+    --tag-bg-color: var(--axa-red-4);
+    --tag-text-color: var(--warning-100);
+    --tag-border-color: var(--warning-100);
+  }
+
+  @media (width <=  #{breakpoints.$breakpoint-sm}) {
+    span {
+      --tag-font-size: 0.875rem;
+      --tag-line-height: 1.094rem;
+    }
+  }
+}
