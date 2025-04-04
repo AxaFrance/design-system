@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ToggleStories from "./Toggle.stories";
+
+<Meta of={ToggleStories} name="Toggle" />
+
+# Toggle
+
+To use the toggle import it like that:
+
+```tsx
+import { Toggle } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <Toggle selected={false} handleChange={setSelected} />
+    <Toggle selected={true} disabled={true} />
+  </>
+);
+```
+
+## Playground
+
+<Canvas of={ToggleStories.Playground}></Canvas>
+
+<Controls of={ToggleStories.Playground} />
