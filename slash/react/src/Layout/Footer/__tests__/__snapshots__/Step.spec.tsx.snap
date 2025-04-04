@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Footer> > renders Footer correctly 1`] = `
+<DocumentFragment>
+  <footer
+    class="af-footer"
+  >
+    <div
+      class="container-fluid container"
+    >
+      <a
+        class="af-logo"
+        href="https://www.axa.fr/"
+        rel="noopener noreferrer"
+        target="blank"
+        title="Site Axa"
+      >
+        <img
+          alt="Logo Axa"
+          class="af-logo__brand"
+          src="/@fs/C:/Users/B208KY/Desktop/VSTS/design-system/slash/css/files/assets/logo-axa.svg"
+        />
+      </a>
+      <div
+        class="af-footer-content"
+      >
+        © 2025 AXA Tous droits réservés
+      </div>
+      <span
+        class="af-footer-version"
+      >
+        Version 1.38.0
+      </span>
+    </div>
+  </footer>
+</DocumentFragment>
+`;
