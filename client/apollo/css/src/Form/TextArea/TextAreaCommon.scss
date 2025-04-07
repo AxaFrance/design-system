@@ -1,0 +1,50 @@
+@use "../../common/breakpoints" as breakpoints;
+@use "../../common/tokens";
+
+.af-form__input-textarea {
+  width: 100%;
+  height: calc(148 / var(--font-size-base) * 1rem);
+  padding: 1rem 2.5rem 1rem 1rem;
+  border: 1px solid var(--input-text-area-border-color);
+  border-radius: var(--input-text-area-border-radius);
+  font: var(--font-family-base);
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  line-height: calc(20 / var(--font-size-base) * 1rem);
+  color: var(--axa-gray-36);
+  background-color: var(--white);
+  box-shadow: 0 0 0 1px var(--white);
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    width: var(--size-384);
+    height: var(--size-148);
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    line-height: calc(24 / var(--font-size-base) * 1rem);
+  }
+
+  &--error {
+    border: 2px solid var(--input-text-area-border-color);
+    outline: none;
+  }
+
+  &:enabled,
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 1px var(--white);
+    outline: none;
+  }
+
+  &:disabled {
+    border: 1px solid var(--axa-gray-60);
+    background: var(--axa-gray-96);
+  }
+
+  &:not(:disabled, &--error):focus {
+    border: 2px solid var(--axa-blue-100);
+    box-shadow: 0 0 0 1px var(--axa-blue-100);
+  }
+
+  &:not(:disabled, &--error):hover {
+    border: 2px solid var(--axa-blue-100);
+    box-shadow: 0 0 0 1px var(--axa-blue-100);
+  }
+}

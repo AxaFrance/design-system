@@ -13,6 +13,7 @@ export {
 export { DebugGrid } from "./Grid/DebugGrid";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
+export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { TextInput } from "./Form/TextInput/TextInputLF";
 export {
   Icon,
