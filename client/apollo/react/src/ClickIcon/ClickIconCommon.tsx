@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from "react";
-import { Icon } from "..";
+import { Icon } from "../Icon/IconCommon";
 
 export const clickIconVariants = {
   default: "default",
@@ -18,6 +18,7 @@ export type ClickIconProps = ComponentPropsWithRef<"button"> & {
 export const ClickIcon = ({
   src,
   variant = "default",
+  disabled,
   className,
   ...props
 }: ClickIconProps) => {
@@ -27,6 +28,7 @@ export const ClickIcon = ({
       className={["af-click-icon", `af-click-icon--${variant}`, className]
         .filter(Boolean)
         .join(" ")}
+      disabled={disabled || variant === "disabled"}
       {...props}
     >
       <Icon src={src} />
