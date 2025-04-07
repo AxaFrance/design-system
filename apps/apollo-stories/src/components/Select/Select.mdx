@@ -1,0 +1,36 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as SelectStories from "./Select.stories";
+
+<Meta of={SelectStories} name="Select" />
+
+# Select
+
+To use Select import it like this:
+
+```tsx
+import { Select } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => <Select label="label">
+```
+
+## Type
+
+Use the `type` prop to change the type of the select. The available variants are `default`, `error` and `disabled`.
+
+## Select
+
+<Canvas of={SelectStories.SelectStory} />
+
+<Controls of={SelectStories.SelectStory} />
+
+## Error Message
+
+<Canvas of={SelectStories.SelectErrorStory} />
+
+<Controls of={SelectStories.SelectErrorStory} />
+
+## Disabled
+
+<Canvas of={SelectStories.SelectDisabledStory} />
+
+<Controls of={SelectStories.SelectDisabledStory} />

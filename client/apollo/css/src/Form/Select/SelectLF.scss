@@ -1,0 +1,43 @@
+@use "./SelectCommon";
+
+.af-form__select {
+  &-input {
+    --dropdown-placeholder-color-default: var(--gray-700);
+    --dropdown-border-color-default: var(--gray-700);
+    --dropdown-width: 428px;
+    --dropdown-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
+      no-repeat right 1rem center / 1.5rem 1.5rem;
+
+    &:open {
+      --dropdown-background-open: url("@material-symbols/svg-400/outlined/arrow_drop_up.svg");
+    }
+
+    &:disabled {
+      border: 1px solid var(--gray-400);
+      background-color: var(--gray-400);
+
+      --dropdown-bg-color-disabled: var(--gray-500);
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      --dropdown-border-size: 1px;
+    }
+
+    &--error {
+      --dropdown-border-color-error: var(--axa-red-700);
+
+      &:focus-visible {
+        --dropdown-box-shadow-color-error: var(--axa-red-700);
+
+        outline: none;
+      }
+
+      &:not(:disabled):hover,
+      &:not(:disabled):active {
+        border-color: var(--axa-red-700);
+        box-shadow: 0 0 0 1px var(--axa-red-700) inset;
+      }
+    }
+  }
+}
