@@ -1,0 +1,15 @@
+@use "TextAreaCommon";
+
+.af-form__input-textarea {
+  --input-text-area-border-radius: var(--radius-8);
+  --input-text-area-border-size: 1px;
+  --input-text-area-border-color: var(--axa-blue-53);
+
+  &--error {
+    --input-text-area-border-color: var(--axa-red-100);
+  }
+
+  &:disabled {
+    --input-text-area-border-color: var(--axa-gray-90);
+  }
+}

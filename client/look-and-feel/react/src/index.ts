@@ -21,7 +21,7 @@ export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioSelect } from "./Form/Radio";
 export { Select } from "./Form/Select";
 export { TextInput } from "./Form/Text/Text";
-export { TextArea } from "./Form/TextArea";
+export { TextArea } from "./Form/TextArea/TextArea";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";
