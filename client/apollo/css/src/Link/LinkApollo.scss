@@ -4,11 +4,27 @@
 
 .af-link {
   --link-font-weight: 600;
-  --button-text-color-default: var(--axa-blue-100);
+  --link-text-color-default: var(--axa-blue-100);
   --underline-offset: 25%;
   --link-font-size: 14;
   @media (width > #{breakpoints.$breakpoint-md}) {
     --link-font-size: 16;
+  }
+
+  &--default {
+    --link-line-height: 125%;
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
+    }
+
+    &:hover {
+      --link-text-color-1: var(--axa-blue-120);
+    }
+
+    &:active,
+    &:focus {
+      --link-color-outline: var(--axa-blue-80);
+    }
   }
 
   &--underline {
@@ -18,41 +34,17 @@
     }
 
     &:hover {
-      --button-text-color-1: var(--axa-blue-120);
+      --link-text-color-1: var(--axa-blue-120);
     }
 
     &:active,
     &:focus {
-      --button-color-outline: var(--axa-blue-80);
+      --link-color-outline: var(--axa-blue-80);
     }
   }
 
-  &--arrow {
-    --link-line-height: 125%;
-    @media (width > #{breakpoints.$breakpoint-md}) {
-      --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
-    }
-
-    &:hover {
-      --button-text-color-1: var(--axa-blue-120);
-      --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
-      @media (width > #{breakpoints.$breakpoint-md}) {
-        --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
-      }
-    }
-
-    &:active,
-    &:focus {
-      --button-color-outline: var(--axa-blue-80);
-      --link-line-height: calc(var(20) / var(--font-size-base) * 1rem);
-      @media (width > #{breakpoints.$breakpoint-md}) {
-        --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
-      }
-    }
-  }
-
-  &--underline-inverse {
-    --button-text-color-inverse: var(--white);
+  &--inverse {
+    --link-text-color-inverse: var(--white);
     --link-line-height: 125%;
 
     &:hover,
@@ -63,15 +55,5 @@
         --link-line-height: calc(var(24) / var(--font-size-base) * 1rem);
       }
     }
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    --button-text-color-1: var(--axa-blue-120);
-  }
-
-  &:focus-visible {
-    --button-color-outline: var(--axa-blue-3);
   }
 }

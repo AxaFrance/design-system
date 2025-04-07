@@ -3,7 +3,7 @@ import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.scss";
 import "@fontsource/source-sans-pro";
 
 export { Button, buttonVariants, type ButtonVariants } from "./Button/ButtonLF";
-export { Link } from "./Link/LinkLF";
+export { Link, linkVariants, type LinkVariants } from "./Link/LinkLF";
 export { Svg } from "./Svg/Svg";
 export {
   Spinner,

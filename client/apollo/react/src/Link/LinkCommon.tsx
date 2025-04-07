@@ -9,10 +9,9 @@ import { Svg } from "../Svg/Svg";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export const linkVariants = {
+  default: "default",
   underline: "underline",
-  arrow: "arrow",
-  "underline-inverse": "underline-inverse",
-  "arrow-inverse": "arrow-inverse",
+  inverse: "inverse",
 } as const;
 
 export type LinkVariants = keyof typeof linkVariants;

@@ -4,43 +4,41 @@
 
 .af-link {
   --link-font-weight: 400;
-  --button-text-color-default: var(--color-axa);
+  --link-text-color-default: var(--color-axa);
   --underline-offset: 0%;
   --link-font-size: 16;
   @media (width > #{breakpoints.$breakpoint-md}) {
     --link-font-size: 18;
   }
 
+  &--default {
+    --link-line-height: 125%;
+
+    &:hover {
+      --link-text-color-1: var(--color-blue-1);
+    }
+
+    &:active,
+    &:focus {
+      --link-color-outline: var(--color-btn-light);
+    }
+  }
+
   &--underline {
     --link-line-height: 125%;
 
     &:hover {
-      --button-text-color-1: var(--axa-blue-120);
+      --link-text-color-1: var(--color-blue-1);
     }
 
     &:active,
     &:focus {
-      --button-color-outline: var(--axa-blue-80);
+      --link-color-outline: var(--color-btn-light);
     }
   }
 
-  &--arrow {
-    --link-line-height: 125%;
-
-    &:hover {
-      --button-text-color-1: var(--axa-blue-120);
-      --link-line-height: 125%;
-    }
-
-    &:active,
-    &:focus {
-      --button-color-outline: var(--axa-blue-80);
-      --link-line-height: 125%;
-    }
-  }
-
-  &--underline-inverse {
-    --button-text-color-inverse: var(--white);
+  &--inverse {
+    --link-text-color-inverse: var(--color-white);
     --link-line-height: 125%;
 
     &:hover,
@@ -48,15 +46,5 @@
     &:focus {
       --link-line-height: 125%;
     }
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    --button-text-color-1: var(--axa-blue-120);
-  }
-
-  &:focus-visible {
-    --button-color-outline: var(--color-blue-3);
   }
 }
