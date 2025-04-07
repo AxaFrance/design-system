@@ -1,0 +1,27 @@
+.af-click-icon {
+  display: grid;
+  width: fit-content;
+  padding: calc(8 / var(--font-size-base) * 1rem);
+  border: none;
+  border-radius: 100vmax;
+  background-color: var(--click-icon-background-color);
+  outline: 2px solid transparent;
+  outline: var(--click-icon-outline-color) solid 2px;
+  outline-offset: 2px;
+  transition-duration: var(--transition-duration);
+  transition-property: color, background-color, outline;
+  transition-timing-function: linear;
+  cursor: pointer;
+
+  --click-icon-outline-color: transparent;
+
+  svg {
+    fill: var(--click-icon-svg-fill);
+  }
+
+  &--disabled,
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

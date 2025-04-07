@@ -22,3 +22,8 @@ export {
   type IconSizeVariants,
 } from "./Icon/IconLF";
 export { Divider } from "./Divider/DividerLF";
+export {
+  ClickIcon,
+  clickIconVariants,
+  type ClickIconVariants,
+} from "./ClickIcon/ClickIconLF";
