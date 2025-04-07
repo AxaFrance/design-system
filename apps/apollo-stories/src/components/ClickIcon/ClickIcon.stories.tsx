@@ -3,7 +3,7 @@ import {
   ClickIcon,
   clickIconVariants,
 } from "@axa-fr/design-system-apollo-react";
-import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
+import bank from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 
 const meta: Meta<typeof ClickIcon> = {
   component: ClickIcon,

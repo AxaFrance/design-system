@@ -6,7 +6,7 @@
 
   &--hover,
   &:hover {
-    --click-icon-background-color: var(--color-btn-tertiary-bg-darke);
+    --click-icon-background-color: var(--color-btn-tertiary-bg-darker);
     --click-icon-svg-fill: var(--color-axa);
   }
 
@@ -24,6 +24,6 @@
 
   &:focus,
   &:focus-visible {
-    --click-icon-outline-color: var(--color-axa);
+    --click-icon-outline-color: var(--color-focus);
   }
 }
