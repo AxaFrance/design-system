@@ -1,0 +1,34 @@
+@use "./ToggleCommon";
+
+.af-toggle {
+  --toggle-bg-color: var(--neutral-50);
+  --toggle-border-color: var(--neutral-50);
+  --toggle-focus-outline-color: var(--axa-blue-100);
+  --toggle-border-size: 1px;
+  --toggle-border-radius: var(--radius-100);
+  --toggle-padding: 2px;
+  --toggle-width: 42px;
+  --toggle-height: 24px;
+  --toggle-handle-color: var(--white);
+  --toggle-handle-size: 20px;
+  --toggle-handle-scale: 1;
+  --toggle-handle-position: 0;
+
+  &:has(:checked) {
+    --toggle-bg-color: var(--axa-blue-100);
+    --toggle-border-color: var(--axa-blue-100);
+
+    .af-toggle__handle {
+      --toggle-handle-position: calc(
+        var(--toggle-width) - var(--toggle-handle-size) - calc(
+            var(--toggle-padding) * 2
+          ) - var(--toggle-border-size)
+      );
+    }
+  }
+
+  &:has(:disabled) {
+    --toggle-bg-color: var(--neutral-25);
+    --toggle-border-color: var(--neutral-25);
+  }
+}
