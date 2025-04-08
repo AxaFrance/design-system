@@ -16,6 +16,7 @@ export const ClickItem = ({
     </button>
   ),
   isDisabled = false,
+  disabled = isDisabled,
   className,
   classModifier = "",
   actionIcon = <Svg src={chevron} aria-hidden />,
@@ -26,16 +27,15 @@ export const ClickItem = ({
       getComponentClassName(
         "af-click-item",
         className,
-        `${classModifier}${isDisabled ? " disabled" : ""}`,
+        `${classModifier}${disabled ? " disabled" : ""}`,
       ),
-    [className, classModifier, isDisabled],
+    [className, classModifier, disabled],
   );
 
   return (
     <ClickComponent
       className={componentClassName}
-      disabled={isDisabled}
-      aria-disabled={isDisabled}
+      disabled={disabled}
       {...otherProps}
     >
       <div className="af-click-item__content">
