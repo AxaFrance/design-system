@@ -27,3 +27,8 @@ export {
   type IconSizeVariants,
 } from "./Icon/IconApollo";
 export { Divider } from "./Divider/DividerApollo";
+export {
+  ClickIcon,
+  clickIconVariants,
+  type ClickIconVariants,
+} from "./ClickIcon/ClickIconApollo";
