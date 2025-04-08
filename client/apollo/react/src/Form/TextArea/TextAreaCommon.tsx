@@ -77,7 +77,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           {...otherProps}
         />
         {helper && <span className="af-form__input-helper">{helper}</span>}
-        {error && <ItemMessage id={idError} message={error} />}
+        <ItemMessage id={idError} message={error} />
       </div>
     );
   },

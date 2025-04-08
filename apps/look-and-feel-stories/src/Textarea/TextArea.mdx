@@ -1,0 +1,31 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as TextAreaStories from "./TextArea.stories";
+
+<Meta of={TextAreaStories} name="TextArea" />
+
+# TextArea
+
+To use the TextArea import it like that:
+
+```tsx
+import { TextArea } from "@axa-fr/design-system-look-and-feel-react";
+
+const MyComponent = () => (
+  <TextArea
+    id={inputId}
+    className={componentClassName}
+    ref={inputRef}
+    s
+    aria-errormessage={idError}
+    aria-invalid={Boolean(error)}
+  />
+);
+```
+
+## Default
+
+<Canvas of={TextAreaStories.TextAreaStory} />
+
+## Playground
+
+<Controls of={TextAreaStories.TextAreaStory} />
