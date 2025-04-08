@@ -22,3 +22,6 @@ export {
   type IconSizeVariants,
 } from "./Icon/IconLF";
 export { Divider } from "./Divider/DividerLF";
+export { ProgressBar } from "./ProgressBar/ProgressBarLF";
+export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
+export { Stepper } from "./Stepper/StepperLF";

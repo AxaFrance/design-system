@@ -49,8 +49,10 @@ export type {
 export { Pagination } from "./Pagination/Pagination";
 export { Skeleton } from "./Skeleton/Skeleton";
 export { SkeletonList } from "./SkeletonList/SkeletonList";
-export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
 export { Tag } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
+export { ProgressBar } from "./ProgressBar/ProgressBar";
+export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroup";
+export { Stepper } from "./Stepper/Stepper";
