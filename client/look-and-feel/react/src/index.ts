@@ -21,7 +21,7 @@ export { DebugGrid } from "./Grid/DebugGrid";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";
 export { BurgerMenu, Header, NavBar, PreviousLink } from "./Layout/Header";
-export { Link } from "./Link";
+export { Link } from "./Link/Link";
 export { List } from "./List";
 export { ClickItem, createClickItemParent } from "./List/ClickItem";
 export { ContentItemDuo } from "./List/ContentItemDuo";
