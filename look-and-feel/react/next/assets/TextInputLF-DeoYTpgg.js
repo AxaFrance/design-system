@@ -1,0 +1,1 @@
+import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{T as m}from"./BasePictureLF-BtFgcJX6.js";import{I as o}from"./ItemLabelLF-BF60hAtd.js";import{I as s}from"./ItemMessageCommon-gYIE2t_0.js";const I=t=>e.jsx(m,{...t,ItemLabelComponent:o,ItemMessageComponent:s});export{I as T};
