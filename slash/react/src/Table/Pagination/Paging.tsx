@@ -20,6 +20,7 @@ const Paging = ({
   currentPage = 1,
   displayLabel,
   elementsLabel,
+  selectPageSizeLabel,
   id,
   mode,
   nextLabel,
@@ -65,6 +66,7 @@ const Paging = ({
           id={id}
           displayLabel={displayLabel}
           elementsLabel={elementsLabel}
+          selectPageSizeLabel={selectPageSizeLabel}
           items={items}
         />
       </div>
@@ -75,6 +77,7 @@ const Paging = ({
           numberPages={numberPages}
           previousLabel={previousLabel}
           nextLabel={nextLabel}
+          elementsLabel={elementsLabel}
           ofLabel={ofLabel}
           mode={mode}
         />
