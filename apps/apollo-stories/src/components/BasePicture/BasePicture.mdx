@@ -1,0 +1,30 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as BasePictureStories from "./BasePicture.stories";
+
+<Meta of={BasePictureStories} name="BasePicture" />
+
+# BasePicture
+
+### Import
+
+```tsx
+import { BasePicture } from "@axa-fr/design-system-apollo-react";
+```
+
+### Use
+
+```tsx
+export const BasePictureComponent = () => (
+  <div>
+  <BasePicture />
+  <div>
+);
+```
+
+## Playground
+
+### Default BasePicture
+
+<Canvas of={BasePictureStories.Default} />
+
+<Controls of={BasePictureStories.Default} />
