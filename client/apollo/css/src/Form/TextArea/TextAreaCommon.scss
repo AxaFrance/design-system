@@ -34,17 +34,17 @@
   }
 
   &:disabled {
-    border: 1px solid var(--axa-gray-60);
-    background: var(--axa-gray-96);
+    border: 1px solid var(--input-text-area-border-color);
+    background: var(--input-text-area-background);
   }
 
   &:not(:disabled, &--error):focus {
-    border: 2px solid var(--axa-blue-100);
-    box-shadow: 0 0 0 1px var(--axa-blue-100);
+    border: 2px solid var(--input-text-area-border-color);
+    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
   }
 
   &:not(:disabled, &--error):hover {
-    border: 2px solid var(--axa-blue-100);
-    box-shadow: 0 0 0 1px var(--axa-blue-100);
+    border: 2px solid var(--input-text-area-border-color);
+    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
   }
 }
