@@ -4,19 +4,16 @@
   --click-icon-background-color: var(--color-btn-tertiary-bg);
   --click-icon-svg-fill: var(--color-axa);
 
-  &--hover,
   &:hover {
     --click-icon-background-color: var(--color-btn-tertiary-bg-darker);
     --click-icon-svg-fill: var(--color-axa);
   }
 
-  &--active,
   &:active {
     --click-icon-background-color: var(--color-btn-tertiary-bg-lighter);
     --click-icon-svg-fill: var(--color-axa);
   }
 
-  &--disabled,
   &:disabled {
     --click-icon-background-color: var(--color-gray-200);
     --click-icon-svg-fill: var(--color-gray-500);

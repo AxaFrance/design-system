@@ -1,13 +1,18 @@
 import { Meta, StoryObj } from "@storybook/react";
-import {
-  ClickIcon,
-  clickIconVariants,
-} from "@axa-fr/design-system-apollo-react";
-import bank from "@material-symbols/svg-400/rounded/visibility-fill.svg";
+import { ClickIcon } from "@axa-fr/design-system-apollo-react";
+import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 
 const meta: Meta<typeof ClickIcon> = {
   component: ClickIcon,
   title: "Components/ClickIcon",
+  argTypes: {
+    onClick: { action: "onClick" },
+    "aria-label": {
+      control: "text",
+      description: "The aria-label attribute for accessibility.",
+      defaultValue: "Click icon",
+    },
+  },
 };
 
 export default meta;
@@ -18,16 +23,6 @@ export const Default: Story = {
   name: "ClickIcon",
   render: ({ ...args }) => <ClickIcon {...args} />,
   args: {
-    src: bank,
-    onClick: () => {
-      // eslint-disable-next-line no-alert
-      alert("ClickIcon clicked");
-    },
-  },
-  argTypes: {
-    variant: {
-      options: Object.values(clickIconVariants),
-      control: { type: "select" },
-    },
+    src: visibility,
   },
 };

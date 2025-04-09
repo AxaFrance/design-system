@@ -7,21 +7,17 @@
   background-color: var(--click-icon-background-color);
   cursor: pointer;
 
-  --click-icon-outline-color: transparent;
-
   svg {
     fill: var(--click-icon-svg-fill);
   }
 
-  &--disabled,
   &:disabled {
-    cursor: not-allowed;
     pointer-events: none;
   }
 
   &:focus-visible,
   &:focus {
-    outline: 2px solid var(--click-icon-outline-color);
+    outline: 2px solid var(--click-icon-outline-color, transparent);
     outline-offset: 2px;
   }
 }
