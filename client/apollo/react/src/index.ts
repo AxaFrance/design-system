@@ -25,6 +25,7 @@ export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { Select } from "./Form/Select/SelectApollo";
 export { TextArea } from "./Form/TextArea/TextAreaApollo";
+export { Radio } from "./Form/Radio/RadioApollo";
 export { TextInput } from "./Form/TextInput/TextInputApollo";
 export { DebugGrid } from "./Grid/DebugGridApollo";
 export { Heading, type HeadingLevel } from "./Heading/HeadingApollo";
