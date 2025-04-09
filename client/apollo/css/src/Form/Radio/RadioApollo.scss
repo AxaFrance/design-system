@@ -1,0 +1,14 @@
+@use "../../common/breakpoints.scss" as breakpoints;
+
+@use "RadioCommon";
+
+.af-radio {
+  & label input[type="radio"] {
+    & ~ .af-radio__icons {
+      & .af-radio__unchecked {
+        color: var(--axa-blue-65);
+        fill: var(--axa-blue-65);
+      }
+    }
+  }
+}

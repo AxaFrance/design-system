@@ -1,0 +1,27 @@
+@use "../../common/breakpoints.scss" as breakpoints;
+
+@use "RadioCommon";
+
+.af-radio {
+  &[aria-invalid="true"] {
+    *:not(.af-radio__content *) {
+      color: var(--red-alert-100);
+      fill: var(--red-alert-100);
+    }
+  }
+
+  &-select[aria-invalid="true"] label {
+    --box-shadow-color: var(--red-alert-100);
+
+    box-shadow: 0 0 0 2px var(--box-shadow-color) inset;
+  }
+
+  & label input[type="radio"] {
+    & ~ .af-radio__icons {
+      & .af-radio__unchecked {
+        color: var(--gray-light-600);
+        fill: var(--gray-light-600);
+      }
+    }
+  }
+}
