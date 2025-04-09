@@ -16,6 +16,7 @@ export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { Select } from "./Form/Select/SelectLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
+export { Radio } from "./Form/Radio/RadioLF";
 export { TextInput } from "./Form/TextInput/TextInputLF";
 export {
   Icon,

@@ -21,6 +21,7 @@ export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { TextArea } from "./Form/TextArea/TextAreaApollo";
 export { Select } from "./Form/Select/SelectApollo";
+export { Radio } from "./Form/Radio/RadioApollo";
 export { TextInput } from "./Form/TextInput/TextInputApollo";
 export {
   Icon,
