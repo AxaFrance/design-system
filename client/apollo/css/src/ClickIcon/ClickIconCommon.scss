@@ -1,14 +1,20 @@
 .af-click-icon {
   display: grid;
   width: fit-content;
-  padding: calc(8 / var(--font-size-base) * 1rem);
+  padding: 0;
   border: 0;
   border-radius: 100vmax;
-  background-color: var(--click-icon-background-color);
+  background-color: transparent;
   cursor: pointer;
 
   svg {
     fill: var(--click-icon-svg-fill);
+  }
+
+  & > div {
+    padding: calc(8 / var(--font-size-base) * 1rem);
+    border-radius: 100vmax;
+    background-color: var(--click-icon-background-color);
   }
 
   &:disabled {

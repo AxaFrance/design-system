@@ -13,7 +13,7 @@ export const ClickIcon = ({ src, className, ...props }: ClickIconProps) => {
       className={["af-click-icon", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <Icon src={src} />
+      <Icon src={src} variant="secondary" hasBackground />
     </button>
   );
 };

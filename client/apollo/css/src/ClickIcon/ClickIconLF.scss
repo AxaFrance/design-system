@@ -2,16 +2,13 @@
 
 .af-click-icon {
   --click-icon-background-color: var(--color-btn-tertiary-bg);
-  --click-icon-svg-fill: var(--color-axa);
 
   &:hover {
     --click-icon-background-color: var(--color-btn-tertiary-bg-darker);
-    --click-icon-svg-fill: var(--color-axa);
   }
 
   &:active {
     --click-icon-background-color: var(--color-btn-tertiary-bg-lighter);
-    --click-icon-svg-fill: var(--color-axa);
   }
 
   &:disabled {
