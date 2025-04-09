@@ -14,11 +14,10 @@
     --input-text-area-background: var(--axa-gray-96);
   }
 
-  &:not(:disabled, &--error):focus {
-    --input-text-area-border-color: var(--axa-blue-100);
-  }
-
-  &:not(:disabled, &--error):hover {
-    --input-text-area-border-color: var(--axa-blue-100);
+  &:not(:disabled, &--error) {
+    &:focus,
+    &:hover {
+      --input-text-area-border-color: var(--axa-blue-100);
+    }
   }
 }

@@ -15,8 +15,7 @@
   box-shadow: 0 0 0 1px var(--white);
 
   @media (width > #{breakpoints.$breakpoint-md}) {
-    width: var(--size-384);
-    height: var(--size-148);
+    width: 100%;
     font-size: calc(18 / var(--font-size-base) * 1rem);
     line-height: calc(24 / var(--font-size-base) * 1rem);
   }
@@ -38,13 +37,11 @@
     background: var(--input-text-area-background);
   }
 
-  &:not(:disabled, &--error):focus {
-    border: 2px solid var(--input-text-area-border-color);
-    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
-  }
-
-  &:not(:disabled, &--error):hover {
-    border: 2px solid var(--input-text-area-border-color);
-    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+  &:not(:disabled, &--error) {
+    &:focus,
+    &:hover {
+      border: 2px solid var(--input-text-area-border-color);
+      box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+    }
   }
 }
