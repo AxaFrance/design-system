@@ -22,6 +22,7 @@
 
   &--error {
     border: 2px solid var(--input-text-area-border-color);
+    box-shadow: 1px solid var(--input-text-area-border-color);
     outline: none;
   }
 
