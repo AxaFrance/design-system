@@ -1,4 +1,5 @@
 @use "../../common/common" as common;
+@use "../../common/tokens.css";
 
 .af-form {
   padding: 1rem;
@@ -17,10 +18,11 @@
 
   &__group-label {
     margin: 0;
+    font-size: 1rem;
     font-weight: normal;
 
     &--required::after {
-      color: common.$color-red-error;
+      color: var(--error-color);
       content: " *";
     }
   }
@@ -40,11 +42,11 @@
     }
 
     &--error {
-      color: common.$color-red-axa;
+      color: var(--error-color);
     }
 
     &--warning {
-      color: common.$color-orange-dark;
+      color: var(--warning-color);
     }
   }
 
@@ -53,7 +55,7 @@
     bottom: -20px;
     display: block;
     font-size: 0.8125em;
-    color: common.$color-gray;
+    color: var(--help-color);
   }
 
   &__input-cmplt {

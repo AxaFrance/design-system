@@ -8,14 +8,27 @@ import {
   useInputClassModifier,
 } from ".";
 import { getComponentClassName } from "../../utilities";
+import { useAriaInvalid } from "./useAriaInvalid";
 
 type InputProps = {
+  /**
+   * The label of the input element.
+   */
   label: ReactNode;
   children?: ReactNode;
+  /**
+   * The id of the input element. If not provided, a unique id will be generated.
+   */
   id?: string;
   classModifier?: string;
   classNameContainerLabel?: string;
   classNameContainerInput?: string;
+  /**
+   * Setting this to false will disable the rendering of the component
+   * @default true
+   * @deprecated You should handle the visibility of the component in your code
+   * instead of using this prop. This prop will be removed in a future version.
+   */
   isVisible?: boolean;
   roleContainer?: string;
   ariaLabelContainer?: string;
@@ -26,8 +39,41 @@ type InputProps = {
   required?: boolean;
   disabled?: boolean;
   helpMessage?: ReactNode;
-  errorId?: string;
+  /**
+   * Sets the position of the label relative to the input.
+   * Top will put the label at the top of the input group. This is useful for textarea for example.
+   * Center will put the label in the center of the input group, and is used for single line inputs in order to align the label and the input box.
+   * @default "center"
+   *
+   */
+  labelPosition?: "top" | "center";
+  /**
+   * suffix appended to the className of the div wrapping the input
+   * @deprecated We should rationalize the CSS for the components to avoid having to use different sufixes
+   * but it would be a breaking change to do so, so we keep it for now
+   * @example "textarea" will result in
+   * ```html
+   * <div class="af-form__textarea">
+   *  // ... input
+   * </div>
+   * ```
+   * @default "text"
+   */
+  classNameSuffix?: string;
+  renderInput: (
+    props: {
+      id: string;
+      classModifier: string;
+      errorId?: string;
+      ariaInvalid?: boolean;
+    } & Record<string, unknown>,
+  ) => ReactNode;
 };
+
+export type ConsumerFieldProps = Omit<
+  InputProps,
+  "renderInput" | "classNameSuffix"
+>;
 
 export const Field = ({
   classNameContainerInput = "col-md-10",
@@ -46,14 +92,17 @@ export const Field = ({
   roleContainer,
   ariaLabelContainer,
   isLabelContainerLinkedToInput = true,
-  errorId,
-  renderInput,
-}: InputProps & {
-  renderInput: (props: { id: string; classModifier: string }) => ReactNode;
-}) => {
+  labelPosition = "center",
+  classNameSuffix = "text",
+  renderInput: Input,
+  ...otherProps
+}: InputProps) => {
   const inputUseId = useId();
   const inputId = id ?? inputUseId;
   const actualRequired = required || classModifier.includes("required");
+  const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
+  const errorId =
+    forceDisplayMessage || helpMessage ? `${inputId}-error` : undefined;
 
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
@@ -62,41 +111,55 @@ export const Field = ({
     actualRequired,
   );
 
+  const labelId = useId();
+
   if (!isVisible) {
     return null;
   }
 
+  const isGroup = roleContainer === "radiogroup" || roleContainer === "group";
+  const LabelElement = isGroup ? "div" : "label";
+
+  const modifiers = forceDisplayMessage
+    ? `${inputFieldClassModifier} ${FormClassManager.getModifier(messageType)}`
+    : inputFieldClassModifier;
   const fieldContainerClassName = getComponentClassName(
-    "af-form__text",
-    forceDisplayMessage
-      ? `${inputFieldClassModifier} ${FormClassManager.getModifier(messageType)}`
-      : inputFieldClassModifier,
+    `af-form__${classNameSuffix}`,
+    modifiers,
   );
 
   return (
     <div
       className={classNames("row af-form__group", {
         "af-form__group--required": actualRequired,
+        "af-form__group--label-top": labelPosition === "top",
       })}
       role={roleContainer}
       aria-label={ariaLabelContainer}
+      aria-labelledby={isGroup ? labelId : undefined}
     >
       <div className={classNameContainerLabel}>
-        <label
+        <LabelElement
           className={classNames("af-form__group-label", {
             "af-form__group-label--required": actualRequired,
           })}
           htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
+          id={labelId}
         >
           {label}
-        </label>
+        </LabelElement>
       </div>
+
       <div className={classNameContainerInput}>
         <div className={fieldContainerClassName}>
-          {renderInput({
-            id: inputId,
-            classModifier: inputClassModifier,
-          })}
+          <Input
+            id={inputId}
+            classModifier={`${inputClassModifier} ${modifiers}`}
+            errorId={errorId}
+            ariaInvalid={isInvalid}
+            disabled={disabled}
+            {...otherProps}
+          />
           {children}
         </div>
         {forceDisplayMessage ? (
@@ -106,7 +169,7 @@ export const Field = ({
             errorId={errorId}
           />
         ) : (
-          <HelpMessage message={helpMessage} />
+          <HelpMessage message={helpMessage} id={errorId} />
         )}
       </div>
     </div>

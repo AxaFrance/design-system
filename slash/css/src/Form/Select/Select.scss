@@ -1,4 +1,6 @@
+@use "../../common/tokens.css";
 @use "../../common/common" as common;
+
 @use "../core/FormCore";
 @use "../../common/grid";
 @use "../../common/reboot";
@@ -22,8 +24,8 @@
     &-container {
       position: relative;
       display: inline-block;
-      border: 1px solid common.$color-silver;
-      background: common.$white;
+      border: 1px solid var(--input-border-color);
+      background: var(--white);
 
       .glyphicon-menu-down {
         position: absolute;
@@ -43,7 +45,7 @@
 
       &::after {
         font-family: common.$font-family-icon;
-        color: common.$color-malachite;
+        color: var(--valid-color);
         content: "\EABA";
       }
 
@@ -77,15 +79,15 @@
     }
 
     &--error {
-      @include _set-message-type(common.$color-red-axa);
+      @include _set-message-type(var(--error-color));
 
       select {
-        color: common.$color-red-axa;
+        color: var(--error-color);
       }
     }
 
     &--warning {
-      @include _set-message-type(common.$color-orange-dark);
+      @include _set-message-type(var(--warning-color));
     }
   }
 
@@ -103,7 +105,7 @@
     }
 
     &:focus {
-      outline: solid 1px common.$color-axa;
+      outline: solid 1px var(--brand-primary);
     }
 
     &--hasinfobulle {

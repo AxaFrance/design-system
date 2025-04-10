@@ -1,22 +1,22 @@
 import bestPractices from "eslint-config-airbnb-base/rules/best-practices";
 import errors from "eslint-config-airbnb-base/rules/errors";
-import node from "eslint-config-airbnb-base/rules/node";
-import style from "eslint-config-airbnb-base/rules/style";
-import variables from "eslint-config-airbnb-base/rules/variables";
 import es6 from "eslint-config-airbnb-base/rules/es6";
 import imports from "eslint-config-airbnb-base/rules/imports";
+import node from "eslint-config-airbnb-base/rules/node";
 import strict from "eslint-config-airbnb-base/rules/strict";
+import style from "eslint-config-airbnb-base/rules/style";
+import variables from "eslint-config-airbnb-base/rules/variables";
 import react from "eslint-config-airbnb/rules/react";
 import reactA11y from "eslint-config-airbnb/rules/react-a11y";
 import reactHooks from "eslint-config-airbnb/rules/react-hooks";
 import importPlugin from "eslint-plugin-import";
-import reactPlugin from "eslint-plugin-react";
 import reactA11yPlugin from "eslint-plugin-jsx-a11y";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import storybookPlugin from "eslint-plugin-storybook";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
-import tsEslint from "typescript-eslint";
 import globals from "globals";
+import tsEslint from "typescript-eslint";
 
 export default [
   {

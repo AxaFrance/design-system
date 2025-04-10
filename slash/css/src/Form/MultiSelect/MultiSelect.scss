@@ -1,7 +1,7 @@
-@use "../../common/common" as common;
 @use "../core/FormCore";
 @use "../../common/grid";
 @use "../../common/reboot";
+@use "../../common/tokens.css";
 
 .react-select > div:nth-of-type(2) {
   z-index: 2;
@@ -10,13 +10,13 @@
 .af-form__select {
   &--error {
     .react-select > div {
-      border-color: common.$color-red-axa;
+      border-color: var(--error-color);
     }
   }
 
   &--warning {
     .react-select > div {
-      border-color: common.$color-orange-dark;
+      border-color: var(--warning-color);
     }
   }
 }

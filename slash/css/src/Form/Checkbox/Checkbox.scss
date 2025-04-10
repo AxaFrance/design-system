@@ -2,7 +2,7 @@
 @use "../core/FormCore";
 @use "../../common/grid";
 @use "../../common/reboot";
-
+@use "../../common/tokens.css";
 /* stylelint-disable no-descending-specificity */
 .af-form {
   &__checkbox,
@@ -16,11 +16,11 @@
 
     &--error {
       .af-form__label {
-        color: common.$color-red-axa;
+        color: var(--error-color);
       }
 
       .af-form__indicator {
-        border-color: common.$color-red-axa;
+        border-color: var(--error-color);
       }
     }
 
@@ -96,8 +96,8 @@
       padding: 0.5rem 2rem;
       border: common.$color-gray;
       font-weight: normal;
-      background: common.$color-mercury;
-      box-shadow: inset 0 -2px 0 0 common.$color-scorpion;
+      background: var(--gray20);
+      box-shadow: inset 0 -2px 0 0 var(--gray50);
       cursor: pointer;
     }
 
@@ -114,18 +114,14 @@
       opacity: 0;
 
       &:checked + .af-form__label {
-        color: common.$white;
-        background-color: common.$color-azur;
-        box-shadow: inset 0 -2px 0 0 common.$color-axa;
+        color: var(--white);
+        background-color: var(--brand-primary);
+        box-shadow: inset 0 -2px 0 0 var(--axablue90);
 
         .af-form__indicator {
-          border: 1px solid common.$color-silver;
-          color: common.$color-mine-shaft;
-          background: common.$white;
-
-          .glyphicon-ok {
-            color: common.$color-azur;
-          }
+          border: 1px solid var(--brand-primary);
+          color: var(--brand-primary);
+          background: var(--white);
         }
       }
 
@@ -134,38 +130,62 @@
         background-color: common.$color-axa;
         box-shadow: 0 0 5px common.$color-axa;
       }
-    }
 
-    &--disabled {
-      .af-form__label {
-        opacity: 0.6;
-        box-shadow: inset 0 -2px 0 0 common.$color-silver;
+      &:disabled + .af-form__label {
+        background-color: var(--gray20);
+        box-shadow: inset 0 -2px 0 0 var(--disabled-color);
         cursor: not-allowed;
+
+        .af-form__description {
+          color: var(--disabled-color);
+        }
+
+        .af-form__indicator {
+          border: 1px solid var(--gray50);
+          color: var(--gray50);
+          background: var(--white);
+        }
       }
 
-      .af-form__description {
-        opacity: 0.4;
-      }
-    }
+      &[aria-invalid="true"] + .af-form__label {
+        color: var(--error-color);
+        background-color: var(--red10);
+        box-shadow: inset 0 -2px 0 0 var(--error-color);
 
-    &--error {
-      .af-form__label {
-        color: common.$color-red-axa;
-        background: common.$error-custom-bg;
-        box-shadow: inset 0 -2px 0 0 common.$color-red-error;
+        .af-form__indicator {
+          border-color: var(--error-color);
+
+          .glyphicon-ok {
+            color: var(--error-color);
+          }
+        }
       }
 
-      .af-form__indicator {
-        border-color: common.$color-red-axa;
+      &[aria-invalid="true"]:disabled + .af-form__label {
+        background-color: var(--gray20);
+        box-shadow: inset 0 -2px 0 0 var(--error-color);
+        cursor: not-allowed;
+
+        .af-form__description {
+          color: var(--disabled-color);
+        }
+
+        .af-form__indicator {
+          border-color: var(--disabled-color);
+
+          .glyphicon-ok {
+            color: var(--disabled-color);
+          }
+        }
       }
     }
 
     &:hover {
       .af-form__label {
-        border-color: common.$color-axa;
-        color: common.$white;
-        background-color: common.$color-azur;
-        box-shadow: inset 0 -2px 0 0 common.$color-axa;
+        border-color: var(--brand-primary);
+        color: var(--white);
+        background-color: var(--brand-primary);
+        box-shadow: inset 0 -2px 0 0 var(--axablue90);
       }
     }
   }
@@ -231,7 +251,7 @@
 
     &--error {
       .af-form__label {
-        background-color: common.$color-red-error;
+        background-color: var(--error-color);
       }
     }
 
