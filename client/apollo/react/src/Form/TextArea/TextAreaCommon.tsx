@@ -1,5 +1,7 @@
 import {
+  type ComponentProps,
   ComponentPropsWithRef,
+  type ComponentType,
   forwardRef,
   MouseEventHandler,
   useId,
@@ -16,7 +18,11 @@ type Props = ComponentPropsWithRef<"textarea"> & {
   helper?: string;
   error?: string;
   description?: string;
-  label?: string;
+  label: ComponentProps<typeof ItemLabel>["label"];
+  ItemLabelComponent: ComponentType<
+    Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
+  >;
+  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   buttonLabel?: string;
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 } & Partial<ComponentPropsWithRef<typeof ItemMessage>>;
@@ -52,22 +58,18 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
 
     return (
       <div className="af-form__input-container">
-        {label && (
-          <div className="af-form__label-container">
-            <ItemLabel
-              label={label}
-              description={description}
-              buttonLabel={buttonLabel}
-              onButtonClick={onButtonClick}
-              sideButtonLabel={sideButtonLabel}
-              onSideButtonClick={onSideButtonClick}
-              required={required}
-              inputId={inputId}
-              idLabel={idLabel}
-              ButtonComponent={Button}
-            />
-          </div>
-        )}
+        <ItemLabel
+          label={label}
+          description={description}
+          buttonLabel={buttonLabel}
+          onButtonClick={onButtonClick}
+          sideButtonLabel={sideButtonLabel}
+          onSideButtonClick={onSideButtonClick}
+          required={required}
+          inputId={inputId}
+          idLabel={idLabel}
+          ButtonComponent={Button}
+        />
         <textarea
           id={inputId}
           className={componentClassName}
