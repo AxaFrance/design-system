@@ -1,0 +1,61 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as AlertStories from "./Alert.stories.tsx";
+
+<Meta of={AlertStories} />
+
+## Alert
+
+Alert component is **deprecated** and will be removed in the next major version. Please use the Message component instead.
+
+More info here : [Message documentation](https://axafrance.github.io/design-system/apollo/?path=/story/components-message--playground)
+
+### Import
+
+```tsx
+import { Alert } from "@axa-fr/design-system-look-and-feel-react/";
+```
+
+### Use
+
+```tsx
+export const AlertComponent = () => (
+  <Alert type="information" title="My alert title">
+    My alert content
+  </Alert>
+);
+```
+
+### Types
+
+There are 5 types available for the Alert component :
+
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>Types</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>information</td>
+    </tr>
+    <tr>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <td>warning</td>
+    </tr>
+    <tr>
+      <td>validation</td>
+    </tr>
+    <tr>
+      <td>error</td>
+    </tr>
+  </tbody>
+</table>
+
+## Playground
+
+<Canvas of={AlertStories.Default} />
+
+<Controls of={AlertStories.Default} />
