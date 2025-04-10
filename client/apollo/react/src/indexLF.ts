@@ -36,3 +36,4 @@ export {
 export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export { Stepper } from "./Stepper/StepperLF";
+export { DateInput } from "./Form/DateInput/DateInputLF";

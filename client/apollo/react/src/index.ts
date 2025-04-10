@@ -33,7 +33,6 @@ export { Divider } from "./Divider/DividerApollo";
 export { ClickIcon } from "./ClickIcon/ClickIconApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
 export { BasePicture } from "./BasePicture/BasePictureApollo";
-
 export {
   Message,
   messageVariants,
@@ -42,3 +41,4 @@ export {
 export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export { Stepper } from "./Stepper/StepperApollo";
+export { DateInput } from "./Form/DateInput/DateInputApollo";
