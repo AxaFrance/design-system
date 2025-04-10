@@ -1,5 +1,3 @@
-import radioIcon from "@material-symbols/svg-400/outlined/radio_button_checked.svg";
-
 import React, {
   ReactNode,
   forwardRef,
@@ -7,39 +5,22 @@ import React, {
   type ComponentType,
   type ComponentProps,
 } from "react";
-import { Icon } from "../../Icon/IconCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
 type RadioProps = {
   label: string | ReactNode;
   errorMessage?: string;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
-  svgIconUncheckedSrc: string;
-  onMouseEnterProps?: () => void;
-  onMouseLeaveProps?: () => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  (
-    {
-      label,
-      errorMessage,
-      ItemMessageComponent,
-      IconComponent,
-      svgIconUncheckedSrc,
-      onMouseEnterProps,
-      onMouseLeaveProps,
-      ...inputProps
-    },
-    ref,
-  ) => {
+  ({ label, errorMessage, ItemMessageComponent, ...inputProps }, ref) => {
     let inputId = useId();
     inputId = inputProps.id || inputId;
     const idError = useId();
 
     return (
-      <div onMouseEnter={onMouseEnterProps} onMouseLeave={onMouseLeaveProps}>
+      <div>
         <div
           className="af-radio"
           role="radiogroup"
@@ -49,11 +30,10 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
           <label key={inputProps.name} htmlFor={inputId}>
             <input ref={ref} {...inputProps} type="radio" id={inputId} />
             <div className="af-radio__icons">
-              <IconComponent
-                src={svgIconUncheckedSrc}
-                className="af-radio__unchecked"
-              />
-              <IconComponent src={radioIcon} className="af-radio__checked" />
+              <div className="af-radio__unchecked" />
+              <div className="af-radio__checked">
+                <div className="af-radio__checked-inner" />
+              </div>
             </div>
             {label}
           </label>

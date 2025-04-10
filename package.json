@@ -44,7 +44,6 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
-    "@material-symbols/svg-200": "^0.28.2",
     "@material-symbols/svg-400": "^0.28.2",
     "@material-symbols/svg-700": "^0.28.2",
     "@types/node": "^22.13.5",

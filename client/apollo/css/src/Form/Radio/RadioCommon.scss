@@ -89,7 +89,7 @@
   & label {
     display: flex;
     margin: 0;
-    border-radius: var(--radis-4);
+    border-radius: var(--radius-4);
     align-items: flex-start;
     gap: 0.75rem;
     cursor: pointer;
@@ -102,13 +102,6 @@
     box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
 
     --box-shadow-color: var(--gray);
-  }
-
-  &[aria-invalid="true"] {
-    *:not(.af-radio__content *) {
-      color: var(--red-alert-100);
-      fill: var(--red-alert-100);
-    }
   }
 
   &-select--horizontal label {
@@ -142,22 +135,27 @@
     position: absolute;
     margin-right: 0.5rem;
     opacity: 0;
+    cursor: pointer;
 
     & ~ .af-radio__icons {
       display: flex;
       align-items: center;
 
-      & svg {
-        background-color: var(--white);
-        -webkit-clip-path: circle(0.72rem at 50% 50%);
-        clip-path: circle(0.72rem at 50% 50%);
-      }
-
       & .af-radio__checked,
       & .af-radio__unchecked {
-        width: 1.75rem;
-        height: 1.75rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: solid;
+        border-radius: 1rem;
         align-items: center;
+      }
+
+      & .af-radio__checked-inner {
+        width: calc(12 / var(--font-size-base) * 1rem);
+        height: calc(12 / var(--font-size-base) * 1rem);
+        border: solid 1px;
+        border-radius: 1rem;
+        background-color: var(--color-axa-apollo);
       }
 
       & .af-radio__checked {
@@ -173,13 +171,36 @@
 
   & label:has(input[type="radio"]:checked) {
     & .af-radio__checked {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--color-axa-apollo);
       fill: var(--color-axa-apollo);
     }
 
     & .af-radio__unchecked {
       display: none;
+    }
+  }
+
+  &[aria-invalid="true"] {
+    *:not(.af-radio__content *) {
+      color: var(--red-alert-100);
+      fill: var(--red-alert-100);
+    }
+
+    & label {
+      & input[type="radio"] ~ .af-radio__icons {
+        & .af-radio__checked,
+        & .af-radio__unchecked {
+          color: var(--red-alert-100);
+          fill: var(--red-alert-100);
+        }
+
+        & .af-radio__checked-inner {
+          background-color: var(--red-alert-100);
+        }
+      }
     }
   }
 
@@ -192,11 +213,22 @@
   & label:has(input[type="radio"]:disabled) {
     cursor: default;
 
-    & .af-radio__content > svg,
-    & .af-radio__checked,
-    & .af-radio__unchecked {
-      color: var(--gray-light-500);
-      fill: var(--gray-light-500);
+    & input {
+      cursor: default;
+    }
+
+    & .af-radio__icons {
+      & .af-radio__checked,
+      & .af-radio__unchecked {
+        color: var(--gray-light-500);
+        fill: var(--gray-light-500);
+      }
+
+      & .af-radio__checked-inner {
+        color: var(--gray-light-500);
+        background-color: var(--gray-light-500);
+        fill: var(--gray-light-500);
+      }
     }
   }
 
