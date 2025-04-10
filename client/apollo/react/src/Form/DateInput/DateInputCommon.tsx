@@ -18,6 +18,7 @@ type DateInputProps = ComponentPropsWithRef<"input"> & {
   error?: string;
   success?: string;
   label: ComponentProps<typeof ItemLabel>["label"];
+  hideDatePicker?: boolean;
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
@@ -31,6 +32,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       classModifier = "",
       value,
       defaultValue,
+      placeholder = "JJ/MM/AAAA",
       helper,
       error,
       success,
@@ -42,6 +44,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       ItemMessageComponent,
       required,
       "aria-errormessage": ariaErrormessage,
+      hideDatePicker = true,
       ...otherProps
     },
     inputRef,
@@ -74,7 +77,8 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           <input
             id={inputId}
             className={componentClassName}
-            type="date"
+            type={hideDatePicker ? "text" : "date"}
+            placeholder={placeholder}
             ref={inputRef}
             defaultValue={formatDateInputValue(defaultValue)}
             value={formatDateInputValue(value)}

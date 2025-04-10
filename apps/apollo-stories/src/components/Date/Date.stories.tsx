@@ -14,7 +14,6 @@ const meta: Meta<typeof DateInput> = {
     description: "Decription",
     buttonLabel: "En savoir plus",
     helper: "Informations complémentaires",
-    value: "2025-01-01",
   },
 };
 
@@ -30,9 +29,42 @@ const render = ({
   <DateInput onChange={onChange} {...args} />
 );
 
-export const DateInputStory: Story = {
+export const DateInputDefaultStory: Story = {
   name: "Date",
   render,
+};
+
+export const DateInputDefaultWithDatePickerStory: Story = {
+  name: "Date with date picker",
+  render,
+  args: {
+    hideDatePicker: false,
+  },
+};
+
+export const DateInputFilledStory: Story = {
+  name: "Date filled",
+  render,
+  args: {
+    value: "12/01/2025",
+  },
+};
+
+export const DateInputFilledWithDatePickerStory: Story = {
+  name: "Date filled with date picker",
+  render,
+  args: {
+    value: "2025-01-12",
+    hideDatePicker: false,
+  },
+};
+
+export const DateInputDisabledStory: Story = {
+  name: "Date disabled",
+  render,
+  args: {
+    disabled: true,
+  },
 };
 
 export const DateInputErrorStory: Story = {
@@ -42,7 +74,7 @@ export const DateInputErrorStory: Story = {
     classModifier: "error",
     error: "Titre du message",
     "aria-errormessage": undefined,
-    value: "2080-01-01",
+    value: "01/01/2080",
   },
   argTypes: {
     "aria-errormessage": {
@@ -51,19 +83,19 @@ export const DateInputErrorStory: Story = {
   },
 };
 
-export const DateInputSuccessStory: Story = {
-  name: "Date on success",
+export const DateInputErrorWithDatePickerStory: Story = {
+  name: "Date on error with date picker",
   render,
   args: {
-    classModifier: "success",
-    success: "Titre du message",
+    classModifier: "error",
+    error: "Titre du message",
+    "aria-errormessage": undefined,
+    value: "2080-01-01",
+    hideDatePicker: false,
   },
-};
-
-export const DateInputDisabledStory: Story = {
-  name: "Date disabled",
-  render,
-  args: {
-    disabled: true,
+  argTypes: {
+    "aria-errormessage": {
+      control: { type: "date" },
+    },
   },
 };
