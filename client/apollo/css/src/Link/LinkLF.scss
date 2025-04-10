@@ -7,6 +7,7 @@
   --link-text-color-default: var(--color-axa);
   --underline-offset: 0%;
   --link-font-size: 16;
+
   @media (width > #{breakpoints.$breakpoint-md}) {
     --link-font-size: 18;
   }
@@ -15,7 +16,7 @@
     --link-line-height: 125%;
 
     &:hover {
-      --link-text-color-1: var(--color-blue-1);
+      --link-text-color: var(--color-blue-1);
     }
 
     &:active,
@@ -28,7 +29,7 @@
     --link-line-height: 125%;
 
     &:hover {
-      --link-text-color-1: var(--color-blue-1);
+      --link-text-color: var(--color-blue-1);
     }
 
     &:active,

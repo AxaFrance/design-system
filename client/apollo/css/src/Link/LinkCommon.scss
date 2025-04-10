@@ -30,7 +30,7 @@
 
     &:hover {
       text-decoration: underline;
-      color: var(--link-text-color-1);
+      color: var(--link-text-color);
     }
 
     &:active,
@@ -44,7 +44,7 @@
     line-height: var(--link-line-height);
 
     &:hover {
-      color: var(--link-text-color-1);
+      color: var(--link-text-color);
     }
 
     &:active,
@@ -69,7 +69,7 @@
   &:hover,
   &:active,
   &:focus {
-    fill: var(--link-text-color-1);
+    fill: var(--link-text-color);
   }
 
   &:focus-visible {

@@ -30,3 +30,9 @@ export {
 export { Divider } from "./Divider/DividerApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
 export { BasePicture } from "./BasePicture/BasePictureApollo";
+
+export {
+  Message,
+  messageVariants,
+  type MessageVariants,
+} from "./Message/MessageApollo";

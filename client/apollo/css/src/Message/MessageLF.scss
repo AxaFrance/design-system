@@ -1,0 +1,28 @@
+@use "./MessageCommon";
+
+.af-message {
+  --message-theme-color: var(--color-axa);
+  --message-bg-color: var(--color-white);
+  --message-border-color: var(--message-theme-color);
+  --message-icon-color: var(--message-theme-color);
+  --message-title-color: var(--message-theme-color);
+  --message-border-radius: var(--radius-12);
+  --message-content-color: var(--color-gray-900);
+  --message-content-font-size: calc(18 / var(--font-size-base) * 1rem);
+
+  &--error {
+    --message-theme-color: var(--color-red-700);
+  }
+
+  &--neutral {
+    --message-theme-color: var(--color-gray);
+  }
+
+  &--warning {
+    --message-theme-color: var(--color-btn-business);
+  }
+
+  &--validation {
+    --message-theme-color: var(--color-green-600);
+  }
+}
