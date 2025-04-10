@@ -25,3 +25,4 @@ export {
 export { Divider } from "./Divider/DividerLF";
 export { Toggle } from "./Toggle/ToggleLF";
 export { BasePicture } from "./BasePicture/BasePictureLF";
+export { DateInput } from "./Form/DateInput/DateInputLF";
