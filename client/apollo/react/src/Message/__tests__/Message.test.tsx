@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Message, messageVariants } from "../MessageCommon";
 import { Link } from "../../Link/LinkCommon";
 import { Button } from "../../Button/ButtonCommon";
@@ -9,29 +10,27 @@ const MoreDetails = () => (
   </Link>
 );
 
+const defaultProps = {
+  variant: messageVariants.information,
+  title: "my title",
+  iconSize: 24,
+  children: "some text",
+};
+
 describe("Message", () => {
   it.each`
-    variant                        | title         | children       | action                                           | icon                     | iconSize     | expectLink | expectButton
-    ${undefined}                   | ${undefined}  | ${undefined}   | ${undefined}                                     | ${"wb_incandescent.svg"} | ${undefined} | ${false}   | ${false}
-    ${messageVariants.information} | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"wb_incandescent.svg"} | ${undefined} | ${true}    | ${false}
-    ${messageVariants.error}       | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"emergency_home.svg"}  | ${undefined} | ${true}    | ${false}
-    ${messageVariants.neutral}     | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"error.svg"}           | ${undefined} | ${true}    | ${false}
-    ${messageVariants.validation}  | ${"my title"} | ${"some text"} | ${(<MoreDetails />)}                             | ${"check_circle.svg"}    | ${undefined} | ${true}    | ${false}
-    ${messageVariants.warning}     | ${"my title"} | ${"some text"} | ${(<Button variant="ghost">Actualiser</Button>)} | ${"error.svg"}           | ${undefined} | ${false}   | ${true}
+    variant                        | title                 | children                 | icon
+    ${undefined}                   | ${undefined}          | ${undefined}             | ${"wb_incandescent.svg"}
+    ${messageVariants.information} | ${defaultProps.title} | ${defaultProps.children} | ${"wb_incandescent.svg"}
+    ${messageVariants.error}       | ${defaultProps.title} | ${defaultProps.children} | ${"emergency_home.svg"}
+    ${messageVariants.neutral}     | ${defaultProps.title} | ${defaultProps.children} | ${"error.svg"}
+    ${messageVariants.validation}  | ${defaultProps.title} | ${defaultProps.children} | ${"check_circle.svg"}
+    ${messageVariants.warning}     | ${defaultProps.title} | ${defaultProps.children} | ${"error.svg"}
   `(
-    "Should render correctly with type: $type, title: $title, children: $children, icon: $icon, action: $action, iconSize: $iconSize",
-    ({
-      variant,
-      title,
-      children,
-      action,
-      icon,
-      iconSize,
-      expectLink,
-      expectButton,
-    }) => {
+    "Should render correctly with variant: $variant, title: $title, children: $children, icon: $icon",
+    ({ variant, title, children, icon }) => {
       const { container } = render(
-        <Message {...{ variant, title, action, iconSize }}>{children}</Message>,
+        <Message {...{ variant, title }}>{children}</Message>,
       );
 
       if (title) {
@@ -46,20 +45,35 @@ describe("Message", () => {
         `af-message--${variant || messageVariants.information}`,
       );
 
-      if (expectLink && action) {
-        expect(screen.getByRole("link")).toHaveAttribute(
-          "href",
-          "https://fakelink.com",
-        );
-      }
-
-      if (expectButton && action) {
-        expect(
-          screen.getByRole("button", { name: /Actualiser/ }),
-        ).toBeInTheDocument();
-      }
-
       expect(container.querySelector(`[data-src$="${icon}"]`)).toBeDefined();
     },
   );
+
+  it("should render correctly with Button", () => {
+    render(
+      <Message
+        {...defaultProps}
+        action={<Button variant="ghost">Actualiser</Button>}
+      />,
+    );
+    expect(
+      screen.getByRole("button", { name: /Actualiser/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("should render correctly with Link", () => {
+    render(<Message {...defaultProps} action={<MoreDetails />} />);
+    expect(screen.getByRole("link")).toHaveAttribute(
+      "href",
+      "https://fakelink.com",
+    );
+  });
+
+  describe("A11Y", () => {
+    it("shouldn't have an accessibility violation <Message />", async () => {
+      const { container } = render(<Message {...defaultProps} />);
+
+      expect(await axe(container)).toHaveNoViolations();
+    });
+  });
 });
