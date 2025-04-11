@@ -1,0 +1,31 @@
+@use "CheckboxCommon";
+
+.af-checkbox {
+  & input[type="checkbox"] {
+    & ~ .af-checkbox__icons {
+      --border-radius: 6px;
+      --border: 1px solid var(--axa-blue-65);
+
+      &:hover {
+        --border: 2px solid var(--axa-blue-100);
+      }
+    }
+  }
+
+  & input[type="checkbox"][aria-invalid="true"] {
+    .af-checkbox__icons {
+      --border: 1px solid var(--red-alert-100);
+    }
+  }
+
+  & input[type="checkbox"]:checked {
+    ~ .af-checkbox__icons {
+      --border: 1px solid var(--axa-blue-100);
+      --background-color: var(--axa-blue-100);
+
+      & .af-checkbox__checked {
+        --check-fill: var(--white);
+      }
+    }
+  }
+}

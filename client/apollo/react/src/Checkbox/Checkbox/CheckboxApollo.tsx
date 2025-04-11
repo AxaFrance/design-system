@@ -1,3 +1,4 @@
+import "@axa-fr/design-system-apollo-css/dist/Checkbox/Checkbox/CheckboxApollo.scss";
 import checkBoxIcon from "@material-symbols/svg-400/outlined/check_small.svg";
 import { CheckboxCommon, CheckboxProps } from "./CheckboxCommon";
 

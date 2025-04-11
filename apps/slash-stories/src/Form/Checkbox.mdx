@@ -1,13 +1,13 @@
 import { Canvas, Controls, Description, Meta } from "@storybook/blocks";
-import * as Stories from "./CheckboxCommon.stories";
+import * as Stories from "./Checkbox.stories";
 
 <Meta of={Stories} />
 
-# CheckboxCommon
+# Checkbox
 
 1. [CheckboxItem](#checkboxitem)
-2. [CheckboxCommon](#checkbox)
-3. [CheckboxCommon](#checkboxinput)
+2. [Checkbox](#checkbox)
+3. [CheckboxInput](#checkboxinput)
 
 ## CheckboxItem
 
@@ -30,7 +30,7 @@ If you need a look that resembles an iPhone toggle, you can use the `af-form__ch
 <Canvas of={Stories.CheckboxItemToggleStory} />
 <Controls of={Stories.CheckboxItemToggleStory} />
 
-## CheckboxCommon
+## Checkbox
 
 Displays a list of checkbox items. It has several modes you can choose from. See the [modes](#modes) section for more details.
 The default mode is `"default"`.
@@ -38,10 +38,7 @@ The default mode is `"default"`.
 ### Import
 
 ```javascript
-import {
-  CheckboxCommon,
-  CheckboxModes,
-} from "@axa-fr/design-system-slash-react";
+import { Checkbox, CheckboxModes } from "@axa-fr/design-system-slash-react";
 ```
 
 ### Modes
@@ -49,7 +46,7 @@ import {
 <Canvas of={Stories.CheckboxStory} />
 <Controls of={Stories.CheckboxStory} />
 
-## CheckboxCommon
+## CheckboxInput
 
 Displays a list of checkbox items with a global label. It has several modes you can choose from. You can see the different [modes in action in the playground section](#checkboxinput-playground).
 
@@ -57,7 +54,7 @@ Displays a list of checkbox items with a global label. It has several modes you 
 
 ```javascript
 import {
-  CheckboxCommon,
+  CheckboxInput,
   CheckboxModes,
 } from "@axa-fr/react-toolkit-form-input-checkbox";
 ```
@@ -70,7 +67,7 @@ Alternatively you can to add to the `classModifier` the value `required`. This b
 
 ### Modifiers
 
-There are 2 modifiers available for the CheckboxCommon component :
+There are 2 modifiers available for the CheckboxInput component :
 
 <table>
   <tr>
@@ -90,7 +87,7 @@ There are 2 modifiers available for the CheckboxCommon component :
   </tr>
 </table>
 
-### CheckboxCommon playground
+### CheckboxInput playground
 
 <Canvas of={Stories.CheckboxInputStory} />
 <Controls of={Stories.CheckboxInputStory} />

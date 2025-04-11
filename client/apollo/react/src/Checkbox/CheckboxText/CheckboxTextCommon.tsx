@@ -4,7 +4,6 @@ import React, {
   type ComponentType,
   type ComponentProps,
 } from "react";
-import classNames from "classnames";
 import { CheckboxProps } from "../Checkbox/CheckboxCommon";
 import { ItemMessage } from "../../Form/ItemMessage/ItemMessageCommon";
 
@@ -37,22 +36,20 @@ const CheckboxTextCommon = ({
   inputId = inputProps.id || inputId;
 
   return (
-    <div>
-      <div className={classNames("af-checkbox")}>
-        <label key={inputProps.name} htmlFor={inputId}>
-          <CheckboxComponent
-            inputProps={inputProps}
-            inputId={inputId}
-            idError={idError}
-            errorMessage={errorMessage}
-          />
-          {label}
-        </label>
-      </div>
-      {errorMessage && <ItemMessageComponent message={errorMessage} />}
+    <div className="af-checkbox-text">
+      <label key={inputProps.name} htmlFor={inputId}>
+        <CheckboxComponent
+          inputProps={inputProps}
+          inputId={inputId}
+          idError={idError}
+          errorMessage={errorMessage}
+        />
+        <span>{label}</span>
+      </label>
+      <ItemMessageComponent message={errorMessage} />
     </div>
   );
 };
 
-CheckboxTextCommon.displayName = "Checkbox";
+CheckboxTextCommon.displayName = "CheckboxTextCommon";
 export { CheckboxTextCommon };

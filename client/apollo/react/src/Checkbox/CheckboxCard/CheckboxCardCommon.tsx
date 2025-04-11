@@ -36,7 +36,7 @@ export type CheckboxCardCommonProps = CheckboxCardProps &
   CheckboxComponent &
   ItemMessageComponent;
 
-export const CheckboxCardCommon = ({
+const CheckboxCardCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -92,7 +92,9 @@ export const CheckboxCardCommon = ({
           ),
         )}
       </div>
-      {errorMessage && <ItemMessageComponent message={errorMessage} />}
+      <ItemMessageComponent message={errorMessage} />
     </div>
   );
 };
+CheckboxCardCommon.displayName = "CheckboxCardCommon";
+export { CheckboxCardCommon };

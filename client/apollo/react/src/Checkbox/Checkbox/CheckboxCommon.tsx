@@ -23,7 +23,7 @@ const CheckboxCommon = ({
   onChange,
 }: CheckboxCommonProps) => {
   return (
-    <>
+    <span className="af-checkbox">
       <input
         {...inputProps}
         type="checkbox"
@@ -33,10 +33,10 @@ const CheckboxCommon = ({
         disabled={false}
         onChange={onChange}
       />
-      <div className="af-checkbox__icons">
+      <span className="af-checkbox__icons">
         <Svg src={checkBoxIcon} className="af-checkbox__checked" />
-      </div>
-    </>
+      </span>
+    </span>
   );
 };
 

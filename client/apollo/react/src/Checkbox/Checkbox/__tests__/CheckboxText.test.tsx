@@ -8,9 +8,7 @@ describe("CheckboxCommon Component", () => {
   it("should render the CheckboxCommon component with label", () => {
     render(<CheckboxCommon checkBoxIcon={checkBoxIcon} />);
     const checkbox = screen.getByRole("checkbox");
-    const label = screen.getByText("AXA fr");
     expect(checkbox).toBeInTheDocument();
-    expect(label).toBeInTheDocument();
   });
 
   it("should checked", async () => {

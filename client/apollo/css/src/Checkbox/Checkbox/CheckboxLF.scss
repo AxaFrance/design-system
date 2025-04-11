@@ -1,0 +1,35 @@
+@use "CheckboxCommon";
+
+.af-checkbox {
+  & input[type="checkbox"] {
+    & ~ .af-checkbox__icons {
+      --border-radius: 4px;
+      --border: 2px solid var(--color-gray-700);
+
+      &:hover {
+        --border: 3px solid var(--color-axa);
+      }
+    }
+  }
+
+  & input[type="checkbox"][aria-invalid="true"] {
+    .af-checkbox__icons {
+      --border: 2px solid var(--color-red-700);
+    }
+  }
+
+  & input[type="checkbox"]:checked {
+    ~ .af-checkbox__icons {
+      --border: 1px solid var(--color-axa);
+      --background-color: var(--color-axa);
+
+      & .af-checkbox__checked {
+        --check-fill: var(--color-white);
+      }
+    }
+  }
+
+  & input[type="checkbox"]:focus-visible ~ .af-checkbox__icons {
+    --outline: 2px solid var(--color-blue-3);
+  }
+}

@@ -1,0 +1,12 @@
+@use "CheckboxCardCommon";
+
+.af-checkbox-card {
+  & ~ &__error {
+    --error-box-color: var(--red-alert-100);
+
+    & > svg {
+      --error-box-color: var(--red-alert-100);
+      --error-box-fill: var(--red-alert-100);
+    }
+  }
+}

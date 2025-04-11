@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Checkbox/CheckboxApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Checkbox/CheckboxText/CheckboxTextApollo.scss";
 import { CheckboxTextCommon, CheckboxTextProps } from "./CheckboxTextCommon";
 import { Checkbox } from "../Checkbox/CheckboxApollo";
 import { ItemMessage } from "../../Form/ItemMessage/ItemMessageApollo";

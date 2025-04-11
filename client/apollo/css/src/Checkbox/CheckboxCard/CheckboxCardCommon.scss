@@ -1,8 +1,6 @@
 @use "../../common/common" as common;
 
-@use "./CheckboxCommon";
-
-.af-checkbox {
+.af-checkbox-card {
   &__container {
     display: flex;
     flex-direction: column;
@@ -113,45 +111,6 @@
     }
   }
 
-  & label {
-    --border-radius: var(--default-border-radius);
-  }
-
-  & label input[type="checkbox"] {
-    & ~ .af-checkbox__icons {
-      --border-radius: 4px;
-      --border: 2px solid var(--color-gray-700);
-
-      &:hover {
-        --border: 3px solid var(--color-axa);
-      }
-    }
-  }
-
-  & label:has(input[type="checkbox"][aria-invalid="true"]) {
-    .af-checkbox__icons {
-      --border: 2px solid var(--color-red-700);
-    }
-  }
-
-  & label:has(input[type="checkbox"]:checked) {
-    .af-checkbox__icons {
-      --border: 1px solid var(--color-axa);
-    }
-
-    & .af-checkbox__checked {
-      --check-fill: var(--color-white);
-    }
-  }
-
-  & label input[type="checkbox"]:checked ~ .af-checkbox__icons {
-    --background-color: var(--color-axa);
-  }
-
-  & label input[type="checkbox"]:focus-visible ~ .af-checkbox__icons {
-    --outline: 2px solid var(--color-blue-3);
-  }
-
   &-select.subgrid label {
     width: inherit;
   }
@@ -163,27 +122,6 @@
   &-select label:has(input[type="checkbox"]:checked) {
     background-color: var(--color-blue-2);
     box-shadow: 0 0 0 2px var(--color-axa) inset;
-  }
-
-  & label:has(input[type="checkbox"]:disabled) {
-    cursor: default;
-
-    .af-checkbox__icons {
-      border: var(--color-btn-disabled-text);
-      background-color: var(--color-btn-disabled-text);
-    }
-
-    & .af-checkbox__content > svg,
-    & .af-checkbox__checked,
-    & .af-checkbox__unchecked {
-      color: var(--color-btn-disabled-text);
-      fill: var(--color-btn-disabled-text);
-    }
-
-    & .af-checkbox__checked,
-    & .af-checkbox__unchecked {
-      fill: var(--color-white);
-    }
   }
 
   &-select label:has(input[type="checkbox"]:disabled) {
@@ -198,13 +136,6 @@
     --box-shadow-color: #{var(--color-red-700)};
 
     box-shadow: 0 0 0 2px var(--box-shadow-color) inset;
-  }
-
-  & label:hover:not(:has(input[type="checkbox"]:disabled)) {
-    & .af-checkbox__unchecked {
-      color: var(--color-axa);
-      fill: var(--color-axa);
-    }
   }
 
   &-select label:hover:not(:has(input[type="checkbox"]:disabled)) {

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
 const meta: Meta = {
-  title: "Components/CheckboxCommon",
+  title: "Components/Checkbox/Checkbox",
   component: Checkbox,
   argTypes: {},
 };
@@ -15,15 +15,12 @@ export const CheckboxStory: StoryObj<ComponentProps<typeof Checkbox>> = {
 
   render: ({ ...args }) => <Checkbox {...args} />,
   args: {
-    label:
-      "J'accepte de fournir à AXA mes coordonnées ainsi que les données  relatives à mon projet et ma situation. Ces dernières seront transmises à mon conseiller AXA qui pourra  me contacter pour m'accompagner.",
     name: "option1",
     value: "option1",
+    checked: true,
+    errorMessage: "",
   },
   argTypes: {
-    label: {
-      control: { type: "text" },
-    },
     name: {
       control: { type: "text" },
     },
