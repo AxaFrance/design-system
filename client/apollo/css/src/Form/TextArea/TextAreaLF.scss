@@ -1,0 +1,25 @@
+@use "TextAreaCommon";
+
+.af-form__input-textarea {
+  --input-text-area-height: 142px;
+  --input-text-area-border-radius: var(--default-border-radius);
+  --input-text-area-border-color: var(--color-gray-700);
+  --input-text-area-background: var(--color-white);
+  --input-text-area-color: var(--color-gray);
+
+  &--error {
+    --input-text-area-border-color: var(--color-red-700);
+  }
+
+  &:disabled {
+    --input-text-area-border-color: var(--color-gray-400);
+    --input-text-area-background: var(--color-gray-200);
+  }
+
+  &:not(:disabled, &--error) {
+    &:focus,
+    &:hover {
+      --input-text-area-border-color: var(--color-axa);
+    }
+  }
+}
