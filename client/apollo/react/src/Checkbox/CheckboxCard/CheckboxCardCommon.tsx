@@ -49,25 +49,27 @@ const CheckboxCardCommon = ({
   type = "vertical",
 }: CheckboxCardCommonProps) => {
   const componentClassName = getComponentClassName(
-    "af-checkbox__container",
+    "af-checkbox-card__container",
     className,
   );
   const checkboxGroupClassName = getComponentClassName(
-    `af-checkbox af-checkbox-select af-checkbox-select--${type}`,
+    `af-checkbox-card af-checkbox-card-select af-checkbox-card-select--${type}`,
     className,
   );
   const optionId = useId();
   return (
     <div className={componentClassName}>
-      <div className="af-checkbox__label-container">
+      <div className="af-checkbox-card__label-container">
         {labelGroup && (
-          <span className="af-checkbox__label" id={optionId}>
+          <span className="af-checkbox-card__label" id={optionId}>
             {labelGroup}
             {isRequired && <span aria-hidden="true">&nbsp;*</span>}
           </span>
         )}
         {descriptionGroup && (
-          <span className="af-checkbox__description">{descriptionGroup}</span>
+          <span className="af-checkbox-card__description">
+            {descriptionGroup}
+          </span>
         )}
       </div>
       <div role="group" className={checkboxGroupClassName}>
@@ -80,9 +82,9 @@ const CheckboxCardCommon = ({
                 aria-invalid={Boolean(errorMessage)}
                 onChange={onChange}
               />
-              <div className="af-checkbox__content">
+              <div className="af-checkbox-card__content">
                 {icon}
-                <div className="af-checkbox__content-description">
+                <div className="af-checkbox-card__content-description">
                   <span>{label}</span>
                   {description && <span>{description}</span>}
                   {subtitle && <span>{subtitle}</span>}

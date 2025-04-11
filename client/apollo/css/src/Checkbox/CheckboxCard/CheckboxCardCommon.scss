@@ -31,6 +31,12 @@
     }
   }
 
+  & label {
+    display: flex;
+    border: 1px solid;
+    border-radius: 6px;
+  }
+
   &__content {
     display: flex;
     width: 100%;
@@ -72,7 +78,7 @@
   }
 
   &-select--horizontal &__content {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.5rem;
   }
 
@@ -116,17 +122,15 @@
   }
 
   &-select label:has(input[type="checkbox"]) {
-    background-color: var(--color-white);
+    border: 1px;
   }
 
   &-select label:has(input[type="checkbox"]:checked) {
-    background-color: var(--color-blue-2);
     box-shadow: 0 0 0 2px var(--color-axa) inset;
   }
 
   &-select label:has(input[type="checkbox"]:disabled) {
     color: var(--color-btn-disabled-text);
-    background-color: var(--color-gray-200);
     box-shadow: 0 0 0 1px var(--box-shadow-color) inset;
 
     --box-shadow-color: #{var(--color-gray-400)};
