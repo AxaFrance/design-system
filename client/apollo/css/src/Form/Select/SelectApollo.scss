@@ -1,14 +1,15 @@
 @use "./SelectCommon";
 
 .af-form__select {
+  --select-border-color: var(--axa-blue-100);
+
   &-label {
-    --dropdown-placeholder-color-default: var(--neutral-80);
+    --select-placeholder-color: var(--neutral-80);
   }
 
   &-input {
-    --dropdown-border-color-default: var(--axa-blue-65);
-    --dropdown-width: 368px;
-    --dropdown-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg")
+    --select-border-color: var(--axa-blue-65);
+    --select-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg")
       no-repeat right 1rem center / 1.5rem 1.5rem;
 
     &:open {
@@ -16,12 +17,12 @@
     }
 
     &:disabled {
-      --dropdown-bg-color-disabled: var(--gray-400);
+      --select-bg-color-disabled: var(--gray-400);
     }
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      --dropdown-border-size: 2px;
+      --select-border-size: 2px;
     }
 
     &--error {
