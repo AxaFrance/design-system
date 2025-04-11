@@ -19,10 +19,10 @@ type Props = ComponentPropsWithRef<"textarea"> & {
   error?: string;
   description?: string;
   label: ComponentProps<typeof ItemLabel>["label"];
-  ItemLabelComponent: ComponentType<
+  ItemLabelComponent?: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent?: ComponentType<ComponentProps<typeof ItemMessage>>;
   buttonLabel?: string;
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 } & Partial<ComponentPropsWithRef<typeof ItemMessage>>;
