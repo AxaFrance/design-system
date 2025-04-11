@@ -13,7 +13,7 @@ export default meta;
 
 export const CheckboxCardStory: StoryObj<ComponentProps<typeof CheckboxCard>> =
   {
-    name: "Select",
+    name: "CheckboxCard",
     render: ({ ...args }) => <CheckboxCard {...args} />,
     args: {
       type: "vertical",
@@ -62,7 +62,7 @@ export const CheckboxCardStory: StoryObj<ComponentProps<typeof CheckboxCard>> =
 export const CheckboxSelectWithLabel: StoryObj<
   ComponentProps<typeof CheckboxCard>
 > = {
-  name: "CheckboxCard",
+  name: "CheckboxCardWithLabel",
   render: ({ ...args }) => <CheckboxCard {...args} />,
   args: {
     type: "vertical",

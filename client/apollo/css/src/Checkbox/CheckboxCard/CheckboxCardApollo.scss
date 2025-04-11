@@ -1,12 +1,60 @@
+@use "../../common/common" as common;
 @use "CheckboxCardCommon";
 
 .af-checkbox-card {
+  &__label-container {
+    --font-size-base: 16px;
+  }
+
+  &__label {
+    --checkbox-card-color: var(--color-gray-900);
+  }
+
+  &__description {
+    --checkbox-card-color: var(--color-gray-700);
+  }
+
+  & label {
+    --checkbox-card-border: 1px solid;
+    --checkbox-card-border-radius: 6px;
+  }
+
+  &__content {
+    & > svg {
+      --checkbox-card-color: var(--color-axa);
+      --checkbox-card-fill: var(--color-axa);
+    }
+
+    & &-description {
+      & > span:first-child {
+        --checkbox-card-color: var(--color-gray-900);
+      }
+
+      & > span:not(:first-child) {
+        --checkbox-card-color: var(--color-gray-700);
+      }
+    }
+  }
+
   & ~ &__error {
-    --error-box-color: var(--red-alert-100);
+    --error-box-color: var(--color-red-700);
 
     & > svg {
-      --error-box-color: var(--red-alert-100);
-      --error-box-fill: var(--red-alert-100);
+      --error-box-color: var(--color-red-700);
+      --error-box-fill: var(--color-red-700);
     }
+  }
+
+  &-select label {
+    height: 6.4rem;
+    padding: 1rem;
+    align-items: center;
+
+    --checkbox-card-box-shadow-color: var(--color-gray);
+  }
+
+  &-select {
+    --checkbox-card-font-family: var(--font-family-base);
+    --checkbox-card-color: var(--color-gray-700);
   }
 }
