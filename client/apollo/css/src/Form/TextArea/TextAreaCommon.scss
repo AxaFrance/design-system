@@ -1,5 +1,4 @@
 @use "../../common/breakpoints" as breakpoints;
-@use "../../common/tokens";
 
 .af-form__input-textarea {
   width: 100%;
@@ -10,9 +9,9 @@
   font: var(--font-family-base);
   font-size: calc(16 / var(--font-size-base) * 1rem);
   line-height: calc(20 / var(--font-size-base) * 1rem);
-  color: var(--axa-gray-36);
-  background-color: var(--white);
-  box-shadow: 0 0 0 1px var(--white);
+  color: var(--input-text-area-color);
+  background-color: var(--input-text-area-background);
+  box-shadow: 0 0 0 1px var(--input-text-area-background);
 
   @media (width > #{breakpoints.$breakpoint-md}) {
     width: 100%;
@@ -21,7 +20,7 @@
   }
 
   &--error {
-    border: 2px solid var(--input-text-area-border-color);
+    border: 1px solid var(--input-text-area-border-color);
     box-shadow: 1px solid var(--input-text-area-border-color);
     outline: none;
   }
@@ -36,12 +35,13 @@
   &:disabled {
     border: 1px solid var(--input-text-area-border-color);
     background: var(--input-text-area-background);
+    pointer-events: none;
   }
 
   &:not(:disabled, &--error) {
     &:focus,
     &:hover {
-      border: 2px solid var(--input-text-area-border-color);
+      border: 1px solid var(--input-text-area-border-color);
       box-shadow: 0 0 0 1px var(--input-text-area-border-color);
     }
   }
