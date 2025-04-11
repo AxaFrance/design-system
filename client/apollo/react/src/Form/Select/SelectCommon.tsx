@@ -1,12 +1,12 @@
 import {
   type ComponentProps,
-  ComponentPropsWithRef,
+  type ComponentPropsWithRef,
+  type ComponentType,
   forwardRef,
   useId,
 } from "react";
 import classNames from "classnames";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
-import { Button } from "../../Button/ButtonCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
 type SelectProps = ComponentPropsWithRef<"select"> & {
@@ -20,6 +20,10 @@ type SelectProps = ComponentPropsWithRef<"select"> & {
   buttonLabel?: string;
   description?: string;
   helper?: string;
+  ItemLabelComponent: ComponentType<
+    Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
+  >;
+  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
@@ -32,17 +36,20 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       placeholder,
       children,
       helper,
+      success,
       description,
       buttonLabel,
       onButtonClick,
       sideButtonLabel,
       onSideButtonClick,
+      ItemLabelComponent,
+      ItemMessageComponent,
       ...otherProps
     },
     inputRef,
   ) => {
     const idLabel = useId();
-    const idError = useId();
+    const idMessage = useId();
     let inputId = useId();
     inputId = id || inputId;
 
@@ -55,7 +62,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
     return (
       <div>
-        <ItemLabel
+        <ItemLabelComponent
           label={label}
           description={description}
           buttonLabel={buttonLabel}
@@ -65,7 +72,6 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           required={required}
           inputId={inputId}
           idLabel={idLabel}
-          ButtonComponent={Button}
         />
         <select
           className={classname}
@@ -82,7 +88,11 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
         </select>
         {helper && <span className="af-form__input-helper">{helper}</span>}
 
-        {error && <ItemMessage id={idError} message={error} />}
+        <ItemMessageComponent
+          id={idMessage}
+          message={error || success}
+          messageType={error ? "error" : "success"}
+        />
       </div>
     );
   },
