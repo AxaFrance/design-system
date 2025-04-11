@@ -16,11 +16,21 @@ const listClassModifier = (classModifier?: string) => {
   return classModifier.split(" ");
 };
 
+/**
+ * Generates a component class name string based on provided class names and modifiers.
+ *
+ * @param {string} [className] - The base class name.
+ * @param {string} [classModifier] - A space-separated string of class modifiers.
+ * @param {string} [defaultClassName] - The default class name to use if className is not provided.
+ * @param {string} [additionalClassName] - Additional class names to append.
+ * @returns {string} The generated class name string.
+ */
 export const getComponentClassName = (
   className?: string,
   classModifier?: string,
   defaultClassName?: string,
-) => {
+  additionalClassName?: string,
+): string => {
   const classNameToUse = className || defaultClassName;
 
   // Fail fast, when no className or defaultClassName we don't want to loop on modifier
@@ -37,5 +47,5 @@ export const getComponentClassName = (
       return `${classWithoutModifier}--${it}`;
     });
 
-  return classNames(classNameToUse, modifiersObject);
+  return classNames(classNameToUse, additionalClassName, modifiersObject);
 };

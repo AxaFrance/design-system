@@ -3,18 +3,27 @@
 @use "../common/common" as common;
 
 $types: (
-  success common.$color-malachite,
-  info common.$color-blue-alert,
-  danger common.$color-orange,
-  error common.$color-pink
+  success #0c7d3b,
+  info #3871b5,
+  warning #bc4c2d,
+  danger #bc4c2d,
+  error #c7102e,
+  axa #00008f,
+  black #333,
+  gray #999,
+  purple #633a96
 );
 
-.af-badge {
-  display: inline-block;
-  padding: 0.2rem 0.7rem;
-  border-radius: 16px;
+.af-tag {
+  display: flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
   line-height: 1.25rem;
   color: common.$white;
+
   @each $type in $types {
     &--#{list.nth($type, 1)} {
       background-color: list.nth($type, 2);
