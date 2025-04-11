@@ -8,7 +8,7 @@ import * as MessageStories from "./Message.stories";
 To use the message import it like that:
 
 ```tsx
-import { Message } from "@axa-fr/design-system-apollo-react";
+import { Message } from "@axa-fr/design-system-apollo-react/lf";
 
 const MyComponent = () => (
   <>
@@ -16,6 +16,17 @@ const MyComponent = () => (
     <Message variant="error">My error message</Message>
   </>
 );
+```
+
+## Title
+
+The title of the message is set by the `title` prop.
+You can set the title level with `heading` prop : "h2" | "h3" | "h4" | "h5" | "h6", the default is "h4".
+
+```tsx
+<Message title="My title" heading="h2">
+  My message
+</Message>
 ```
 
 ## Playground
