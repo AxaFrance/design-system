@@ -1,6 +1,8 @@
 @use "./ClickIconCommon";
 
 .af-click-icon {
+  --click-icon-background-color: var(--axa-blue-4);
+
   &:hover {
     --click-icon-background-color: var(--axa-blue-120);
     --click-icon-svg-fill: var(--white);

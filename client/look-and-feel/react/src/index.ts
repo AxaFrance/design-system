@@ -54,3 +54,11 @@ export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
 export { Tag } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
+export { ClickIcon } from "./ClickIcon/ClickIcon";
+export {
+  Icon,
+  iconVariants,
+  type IconVariants,
+  iconSizeVariants,
+  type IconSizeVariants,
+} from "./Icon/Icon";

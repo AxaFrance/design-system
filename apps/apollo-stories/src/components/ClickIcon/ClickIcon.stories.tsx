@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ClickIcon } from "@axa-fr/design-system-apollo-react";
+import { ClickIcon, iconVariants } from "@axa-fr/design-system-apollo-react";
 import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 
 const meta: Meta<typeof ClickIcon> = {
@@ -11,6 +11,10 @@ const meta: Meta<typeof ClickIcon> = {
       control: "text",
       description: "The aria-label attribute for accessibility.",
       defaultValue: "Click icon",
+    },
+    iconVariant: {
+      options: Object.values(iconVariants),
+      control: { type: "select" },
     },
   },
 };
