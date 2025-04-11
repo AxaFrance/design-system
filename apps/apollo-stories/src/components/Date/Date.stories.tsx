@@ -46,7 +46,7 @@ export const DateInputFilledStory: Story = {
   name: "Date filled",
   render,
   args: {
-    value: "12/01/2025",
+    value: new Date("01/01/2025"),
   },
 };
 
@@ -54,7 +54,7 @@ export const DateInputFilledWithDatePickerStory: Story = {
   name: "Date filled with date picker",
   render,
   args: {
-    value: "2025-01-12",
+    value: new Date("01/01/2025"),
     hideDatePicker: false,
   },
 };
@@ -74,7 +74,7 @@ export const DateInputErrorStory: Story = {
     classModifier: "error",
     error: "Titre du message",
     "aria-errormessage": undefined,
-    value: "01/01/2080",
+    value: new Date("01/01/2080"),
   },
   argTypes: {
     "aria-errormessage": {
