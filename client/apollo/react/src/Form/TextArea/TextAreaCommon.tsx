@@ -7,7 +7,6 @@ import {
   useId,
 } from "react";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { Button } from "../../Button/ButtonCommon";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
@@ -19,10 +18,10 @@ type Props = ComponentPropsWithRef<"textarea"> & {
   error?: string;
   description?: string;
   label: ComponentProps<typeof ItemLabel>["label"];
-  ItemLabelComponent?: ComponentType<
+  ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
-  ItemMessageComponent?: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   buttonLabel?: string;
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 } & Partial<ComponentPropsWithRef<typeof ItemMessage>>;
@@ -40,6 +39,8 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
       onButtonClick,
       required,
       sideButtonLabel,
+      ItemLabelComponent,
+      ItemMessageComponent,
       onSideButtonClick,
       ...otherProps
     },
@@ -58,7 +59,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
 
     return (
       <div className="af-form__input-container">
-        <ItemLabel
+        <ItemLabelComponent
           label={label}
           description={description}
           buttonLabel={buttonLabel}
@@ -68,7 +69,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           required={required}
           inputId={inputId}
           idLabel={idLabel}
-          ButtonComponent={Button}
         />
         <textarea
           id={inputId}
@@ -79,7 +79,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           {...otherProps}
         />
         {helper && <span className="af-form__input-helper">{helper}</span>}
-        <ItemMessage id={idError} message={error} />
+        <ItemMessageComponent id={idError} message={error} />
       </div>
     );
   },

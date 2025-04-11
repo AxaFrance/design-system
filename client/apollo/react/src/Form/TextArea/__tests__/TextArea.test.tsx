@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { TextArea } from "../TextAreaCommon";
+import { TextArea } from "../TextAreaLF";
 
 describe("<TextArea />", () => {
   test("should render component with default props", () => {
@@ -11,6 +11,7 @@ describe("<TextArea />", () => {
         description="Description"
         helper="Helper"
         buttonLabel="Button label"
+        onChange={() => {}}
         error="Error message"
         sideButtonLabel="button"
       />,
