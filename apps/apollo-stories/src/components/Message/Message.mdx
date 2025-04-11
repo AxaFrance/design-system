@@ -18,6 +18,17 @@ const MyComponent = () => (
 );
 ```
 
+## Title
+
+The title of the message is set by the `title` prop.
+You can set the title level with `heading` prop : "h2" | "h3" | "h4" | "h5" | "h6", the default is "h4".
+
+```tsx
+<Message title="My title" heading="h2">
+  My message
+</Message>
+```
+
 ## Playground
 
 <Canvas of={MessageStories.Playground}></Canvas>
