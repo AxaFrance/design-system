@@ -1,5 +1,5 @@
-import { DateInput } from "@axa-fr/design-system-apollo-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import { DateInput } from "@axa-fr/design-system-look-and-feel-react";
+import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof DateInput> = {
   component: DateInput,
@@ -30,9 +30,6 @@ const render = ({
 export const DateInputDefaultStory: Story = {
   name: "Date",
   render,
-  args: {
-    value: undefined,
-  },
 };
 
 export const DateInputDefaultWithDatePickerStory: Story = {
@@ -40,7 +37,6 @@ export const DateInputDefaultWithDatePickerStory: Story = {
   render,
   args: {
     hideDatePicker: false,
-    value: undefined,
   },
 };
 
@@ -48,7 +44,7 @@ export const DateInputFilledStory: Story = {
   name: "Date filled",
   render,
   args: {
-    value: new Date("2000-09-12"),
+    value: new Date("2025-01-01"),
   },
 };
 
@@ -56,8 +52,16 @@ export const DateInputFilledWithDatePickerStory: Story = {
   name: "Date filled with date picker",
   render,
   args: {
-    value: new Date("2000-09-12"),
+    value: new Date("2025-01-01"),
     hideDatePicker: false,
+  },
+};
+
+export const DateInputDisabledStory: Story = {
+  name: "Date disabled",
+  render,
+  args: {
+    disabled: true,
   },
 };
 
@@ -68,7 +72,7 @@ export const DateInputErrorStory: Story = {
     classModifier: "error",
     error: "Titre du message",
     "aria-errormessage": undefined,
-    value: new Date("2067-09-12"),
+    value: new Date("2080-01-01"),
   },
   argTypes: {
     "aria-errormessage": {
@@ -84,21 +88,12 @@ export const DateInputErrorWithDatePickerStory: Story = {
     classModifier: "error",
     error: "Titre du message",
     "aria-errormessage": undefined,
-    value: new Date("2067-09-12"),
+    value: new Date("2080-01-01"),
     hideDatePicker: false,
   },
   argTypes: {
     "aria-errormessage": {
       control: { type: "date" },
     },
-  },
-};
-
-export const DateInputDisabledStory: Story = {
-  name: "Date disabled",
-  render,
-  args: {
-    disabled: true,
-    value: new Date("2000-09-12"),
   },
 };

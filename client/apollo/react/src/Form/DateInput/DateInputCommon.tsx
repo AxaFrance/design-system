@@ -8,9 +8,9 @@ import {
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { formatDateInputValue } from "../../utilities/helpers/date";
+import { Date } from "./Date";
 
-type DateInputProps = ComponentPropsWithRef<"input"> & {
+type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   classModifier?: string;
   defaultValue?: Date | string;
   value?: Date | string;
@@ -30,8 +30,6 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     {
       className,
       classModifier = "",
-      value,
-      defaultValue,
       placeholder = "JJ/MM/AAAA",
       helper,
       error,
@@ -74,14 +72,12 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
         />
 
         <div className="af-form__input-variant">
-          <input
+          <Date
             id={inputId}
             className={componentClassName}
-            type={hideDatePicker ? "text" : "date"}
-            placeholder={placeholder}
+            placeholder={placeholder || ""}
+            hideDatePicker={hideDatePicker}
             ref={inputRef}
-            defaultValue={formatDateInputValue(defaultValue)}
-            value={formatDateInputValue(value)}
             aria-labelledby={idLabel}
             aria-errormessage={ariaErrormessage ?? idMessage}
             aria-invalid={Boolean(error || ariaErrormessage)}
