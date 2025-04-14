@@ -5,6 +5,11 @@ export { Accordion } from "./Accordion";
 export { AccordionCore } from "./AccordionCore";
 export { Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
+export {
+  Message,
+  messageVariants,
+  type MessageVariants,
+} from "./Message/Message";
 export { Button, buttonVariants, type ButtonVariants } from "./Button/Button";
 export { Card } from "./Card";
 export { Divider } from "./Divider/Divider";
@@ -16,12 +21,12 @@ export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioSelect } from "./Form/Radio";
 export { Select } from "./Form/Select";
 export { TextInput } from "./Form/Text/Text";
-export { TextArea } from "./Form/TextArea";
+export { TextArea } from "./Form/TextArea/TextArea";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";
 export { BurgerMenu, Header, NavBar, PreviousLink } from "./Layout/Header";
-export { Link } from "./Link";
+export { Link } from "./Link/Link";
 export { List } from "./List";
 export { ClickItem, createClickItemParent } from "./List/ClickItem";
 export { ContentItemDuo } from "./List/ContentItemDuo";
@@ -52,7 +57,7 @@ export { SkeletonList } from "./SkeletonList/SkeletonList";
 export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
-export { Tag } from "./Tag";
+export { Tag, tagVariants, type TagVariants } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
 export { ClickIcon } from "./ClickIcon/ClickIcon";
 export {
@@ -62,3 +67,5 @@ export {
   iconSizeVariants,
   type IconSizeVariants,
 } from "./Icon/Icon";
+export { Toggle } from "./Toggle";
+export { BasePicture } from "./BasePicture/BasePicture";

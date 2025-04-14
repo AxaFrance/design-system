@@ -1,0 +1,48 @@
+@use "../../common/breakpoints" as breakpoints;
+
+.af-form__input-textarea {
+  width: 100%;
+  height: calc(--input-text-area-height / var(--font-size-base) * 1rem);
+  padding: 16px;
+  border: 1px solid var(--input-text-area-border-color);
+  border-radius: var(--input-text-area-border-radius);
+  font: var(--font-family-base);
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  line-height: calc(20 / var(--font-size-base) * 1rem);
+  color: var(--input-text-area-color);
+  background-color: var(--input-text-area-background);
+  box-shadow: 0 0 0 1px var(--input-text-area-background);
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    width: 100%;
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    line-height: calc(24 / var(--font-size-base) * 1rem);
+  }
+
+  &--error {
+    border: 1px solid var(--input-text-area-border-color);
+    box-shadow: 1px solid var(--input-text-area-border-color);
+    outline: none;
+  }
+
+  &:enabled,
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 1px var(--white);
+    outline: none;
+  }
+
+  &:disabled {
+    border: 1px solid var(--input-text-area-border-color);
+    background: var(--input-text-area-background);
+    pointer-events: none;
+  }
+
+  &:not(:disabled, &--error) {
+    &:focus,
+    &:hover {
+      border: 1px solid var(--input-text-area-border-color);
+      box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+    }
+  }
+}

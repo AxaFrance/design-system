@@ -15,10 +15,13 @@ $color-white: #fff !default;
 $color-black: #000 !default;
 $color-red: #ff1721 !default;
 $color-gray: #5f5f5f !default;
+$color-red-600: #d4435b !default;
 $color-red-700: #c91432 !default;
 $color-blue-1: #000072 !default;
 $color-blue-2: #f8f8ff !default;
 $color-blue-3: #36f !default;
+$color-blue-200: #eef !default;
+$color-blue-800: #00008f !default; // prefer use $color-axa
 $color-btn-light: #3333a5 !default;
 $color-btn-business: #c94e14 !default;
 $color-btn-business-dark: #a8391c !default;
@@ -46,6 +49,7 @@ $color-focus: #36f !default; // prefer use $color-blue-3
 $default-border-radius: 4px !default;
 $radius-8: 8px !default;
 $radius-12: 12px;
+$radius-32: 32px;
 $radius-100: 100% !default;
 
 $transition-duration: 0.2s !default;
@@ -104,6 +108,7 @@ $error-custom-bg: #ffbfbf !default;
 
 $color-alertDanger-colorBorder: #c8b282 !default;
 $color-alertDanger-bgColor: #f1d596 !default;
+$color-orange-700: #c94e14 !default;
 
 // Grid breakpoints
 

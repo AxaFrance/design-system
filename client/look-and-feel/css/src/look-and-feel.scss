@@ -1,6 +1,7 @@
 @use "common/tokens";
 @use "Accordion/Accordion";
 @use "AccordionCore/AccordionCore";
+@use "Alert/Alert";
 @use "Card/Card";
 @use "Divider/Divider";
 @use "Layout/Footer/Footer";
@@ -9,11 +10,8 @@
 @use "Tabs/Tabs";
 @use "Form/Checkbox/Checkbox";
 @use "Form/Select/Select";
-@use "Form/TextArea/TextArea";
 @use "Form/FileUpload/FileUpload";
 @use "Modal/Modal";
-@use "Alert/Alert";
-@use "Link/Link";
 @use "Pagination/Pagination";
 @use "Pagination/PaginationDesktop";
 @use "Pagination/PaginationMobile";

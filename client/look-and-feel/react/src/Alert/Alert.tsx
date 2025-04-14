@@ -43,6 +43,9 @@ const getIconFromType = (type: AlertType) =>
     [alertTypes.information]: wbIncandescentOutlined,
   })[type] || wbIncandescentOutlined;
 
+/**
+ * @deprecated Use Message instead
+ */
 export const Alert = ({
   type = alertTypes.information,
   title,

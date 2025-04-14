@@ -8,6 +8,9 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    assetsInlineLimit: 0,
+  },
   test: {
     globals: true,
     environment: "jsdom",

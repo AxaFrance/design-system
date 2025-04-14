@@ -21,9 +21,7 @@
     --button-bg-color-default: var(--color-blue-1);
   }
 
-  &:active,
-  &:focus,
-  &:focus-visible {
+  &:active {
     --button-bg-color-default: var(--color-btn-light);
   }
 
@@ -42,14 +40,12 @@
   &--primary-business {
     --button-bg-color-default: var(--color-btn-business);
 
-    &:active,
-    &:focus,
-    &:focus-visible {
-      --button-bg-color-default: var(--color-btn-business-light);
-    }
-
     &:hover {
       --button-bg-color-default: var(--color-btn-business-dark);
+    }
+
+    &:active {
+      --button-bg-color-default: var(--color-btn-business-light);
     }
   }
 
@@ -148,8 +144,6 @@
       --button-bg-color-default: var(--color-btn-tertiary-bg-darker);
     }
 
-    &:focus,
-    &:focus-visible,
     &:active {
       --button-bg-color-default: var(--color-btn-tertiary-bg-lighter);
       --button-text-color-default: var(--color-axa);

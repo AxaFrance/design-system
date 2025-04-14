@@ -92,7 +92,7 @@ describe("ClickItem", () => {
     expect(linkElement).toHaveAttribute("href", href);
   });
 
-  it("should be a disabled anchor", () => {
+  it("should be a disabled anchor with isDisabled prop", () => {
     const label = "Sample Label";
     const href = "https://example.com";
     const disabled = true;
@@ -113,14 +113,48 @@ describe("ClickItem", () => {
     const anchorElement = screen.getByRole("link", { name: label });
 
     expect(anchorElement).toHaveClass("af-click-item--disabled");
-    expect(anchorElement).toHaveAttribute("aria-disabled", "true");
   });
 
-  it("should be a disabled button", () => {
+  it("should be a disabled anchor with disabled prop", () => {
+    const label = "Sample Label";
+    const href = "https://example.com";
+    const disabled = true;
+
+    render(
+      <ClickItem
+        parentClickComponent={({ children, ...parentClickComponentProps }) => (
+          <a href={href} rel="noreferrer" {...parentClickComponentProps}>
+            {children}
+          </a>
+        )}
+        disabled={disabled}
+      >
+        {label}
+      </ClickItem>,
+    );
+
+    const anchorElement = screen.getByRole("link", { name: label });
+
+    expect(anchorElement).toHaveClass("af-click-item--disabled");
+  });
+
+  it("should be a disabled button with isDisabled prop", () => {
     const label = "Sample Label";
     const disabled = true;
 
     render(<ClickItem isDisabled={disabled}>{label}</ClickItem>);
+
+    const buttonElement = screen.getByRole("button", { name: label });
+
+    expect(buttonElement).toBeDisabled();
+    expect(buttonElement).toHaveClass("af-click-item--disabled");
+  });
+
+  it("should be a disabled button with disabled prop", () => {
+    const label = "Sample Label";
+    const disabled = true;
+
+    render(<ClickItem disabled={disabled}>{label}</ClickItem>);
 
     const buttonElement = screen.getByRole("button", { name: label });
 

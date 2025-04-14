@@ -19,6 +19,8 @@
   --color-blue-1: #{common.$color-blue-1};
   --color-blue-2: #{common.$color-blue-2};
   --color-blue-3: #{common.$color-blue-3};
+  --color-blue-200: #{common.$color-blue-200};
+  --color-blue-800: #{common.$color-blue-800};
   --color-ocean-blue: #{common.$color-oceanBlue};
   --color-btn-light: #{common.$color-btn-light};
   --color-focus: #{common.$color-focus}; // prefer use --color-blue-3
@@ -28,6 +30,7 @@
 
   /* red */
   --color-red: #{common.$color-red};
+  --color-red-600: #{common.$color-red-600};
   --color-red-700: #{common.$color-red-700};
   --color-btn-error-text: #{common.$color-btn-error-text};
   --color-btn-error-bg: #{common.$color-btn-error-bg};
@@ -40,6 +43,7 @@
   --color-btn-business: #{common.$color-btn-business};
   --color-btn-business-dark: #{common.$color-btn-business-dark};
   --color-btn-business-light: #{common.$color-btn-business-light};
+  --color-orange-700: #{common.$color-orange-700};
 
   /* gray */
   --color-gray: #{common.$color-gray};
@@ -115,6 +119,7 @@
   --default-border-radius: #{common.$default-border-radius};
   --radius-8: #{common.$radius-8};
   --radius-12: #{common.$radius-12};
+  --radius-32: #{common.$radius-32};
   --radius-100: #{common.$radius-100};
 
   /* ANIMATIONS *******************************************************************/
