@@ -1,4 +1,3 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Choice/Choice.scss";
 import { forwardRef, useId, type ComponentProps } from "react";
 import { Radio } from "../Radio";
 import { useOptionsWithId, type Option } from "../core";
@@ -8,10 +7,11 @@ const defaultOptions = [
   { label: "Non", value: false },
 ];
 
-type Props = Omit<ComponentProps<typeof Radio>, "options"> & {
+type Props = Omit<ComponentProps<typeof Radio>, "options" | "value"> & {
   id: string;
   name?: string;
   options?: Array<Omit<Option, "value"> & { value: boolean }>;
+  value?: boolean | string;
 };
 
 const Choice = forwardRef<HTMLInputElement, Props>(

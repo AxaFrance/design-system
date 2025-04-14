@@ -5,6 +5,7 @@ import {
 } from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
+import { useState } from "react";
 
 const meta: Meta<typeof RadioInput> = {
   component: RadioInput,
@@ -19,12 +20,24 @@ type Story = StoryObj<typeof RadioInput>;
 
 export const RadioInputStory: Story = {
   name: "RadioInput",
-  render: ({ ...args }) => <RadioInput {...args} />,
+  render: ({ value, ...args }) => {
+    const [newValue, setValue] = useState(value);
+    return (
+      <RadioInput
+        {...args}
+        value={newValue}
+        onChange={(e) => {
+          setValue(e.target.value);
+          args.onChange?.(e);
+        }}
+      />
+    );
+  },
   args: {
     label: "Where are you ?",
     required: true,
     mode: RadioModes.classic,
-    value: "",
+    value: "paris",
     classModifier: "",
     isChecked: false,
     readOnly: false,

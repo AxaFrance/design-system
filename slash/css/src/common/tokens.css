@@ -57,6 +57,8 @@
   --black: hsl(0deg, 0%, 0%); /* #000000 */
   --white: hsl(0deg, 0%, 100%); /* #FFFFFF */
   --azur: hsl(239deg, 60%, 47%); /* #3032c1 */
+
+  /* SEMANTIC TOKENS **********************************************************/
   --text-color: var(--gray80);
   --disabled-color: var(--gray40);
   --error-color: var(--red30);
@@ -64,7 +66,7 @@
   --brand-primary: var(--axablue80);
   --warning-color: var(--orange40);
   --help-color: var(--gray60);
-  --valid-color: var(--green40);
+  --valid-element-color: var(--green40);
   --inactive-button-background: var(--gray30);
   --inactive-button-border-color: var(--gray50);
   --active-button-border-color: var(--axablue90);
