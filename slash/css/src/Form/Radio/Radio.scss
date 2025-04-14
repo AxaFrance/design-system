@@ -6,106 +6,118 @@
 .af-form {
   &__radio {
     position: relative;
-    display: block;
+    display: flex;
     border-bottom: 1px solid common.$color-silver;
+  }
+
+  &__radio,
+  &__radio-inline {
     align-items: center;
+
+    --radio-color: var(--disabled-color);
+    --label-color: var(--text-color);
+
+    color: var(--label-color);
 
     &:nth-last-child(1) {
       border-bottom: 0;
+    }
+
+    &:hover,
+    &:focus-within {
+      --radio-color: var(--brand-primary);
+      --label-color: var(--brand-primary);
+    }
+
+    &:has(.af-form__input-radio:checked) {
+      --radio-color: var(--brand-primary);
+      --label-color: var(--brand-primary);
+    }
+
+    &:has(.af-form__input-radio[aria-invalid="true"]) {
+      --radio-color: var(--error-color);
+      --label-color: var(--error-color);
+    }
+
+    &:has(.af-form__input-radio:disabled) {
+      --radio-color: var(--disabled-color);
+      --label-color: var(--disabled-color);
+
+      cursor: not-allowed;
+    }
+
+    .af-form__input-radio[aria-invalid="true"]:checked {
+      background-color: var(--radio-color);
+    }
+
+    .af-form__input-radio {
+      display: grid;
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--radio-color);
+      border-radius: 50%;
+      place-content: center;
+      cursor: pointer;
+      appearance: none;
+
+      &:checked::before {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--radio-color);
+        transition: 120ms transform ease-in-out;
+        content: "";
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+
+        & + .af-form__label {
+          cursor: not-allowed;
+        }
+      }
     }
   }
 
   &__radio-inline {
     position: relative;
-    display: inline-flex;
+    display: flex;
     margin-right: 1rem;
     align-items: center;
 
     .af-form__label {
       padding: 0;
     }
+
+    .af-form__description {
+      padding-left: 0.5rem;
+    }
   }
 
-  &__radio,
-  &__radio-inline {
-    &--error {
-      .af-form__label {
-        color: common.$color-red-axa;
+  .af-form__text:has(.af-form__input-radio-inline) {
+    display: flex;
+  }
 
-        &::before {
-          border-color: common.$color-red-axa;
-        }
-      }
-    }
-
+  &__text {
     &--warning {
-      .af-form__label {
-        color: common.$color-orange-dark;
+      .af-form__radio,
+      .af-form__radio-inline,
+      .af-form__radio:has(.af-form__input-radio:checked),
+      .af-form__radio-inline:has(.af-form__input-radio:checked) {
+        --radio-color: var(--warning-color);
+        --label-color: var(--warning-color);
 
-        &::before {
-          border-color: common.$color-orange-dark;
-        }
-      }
-    }
-
-    &--disabled {
-      .af-form__label {
-        opacity: 0.4;
-        cursor: not-allowed;
-      }
-    }
-
-    .af-form__label {
-      &::before {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        display: block;
-        width: 1.25rem;
-        height: 1.25rem;
-        margin-right: 0.5em;
-        border: 1px solid common.$color-silver;
-        border-radius: 100%;
-        background: common.$white;
-        transform: translate(0, -50%);
-        content: "";
-      }
-
-      &::after {
-        position: absolute;
-        top: 50%;
-        left: 3px;
-        display: none;
-        width: 0.9rem;
-        height: 0.9rem;
-        margin-right: 0.5em;
-        border-radius: 100%;
-        background: common.$color-azur;
-        transform: translate(0, -50%);
-        content: "";
-      }
-    }
-
-    .af-form__input-radio {
-      position: absolute;
-      opacity: 0;
-
-      &:checked + .af-form__label {
-        &::after {
-          display: block;
-        }
-      }
-
-      &:focus + .af-form__label {
-        color: common.$color-axa;
-
-        &::before {
-          border-color: common.$color-axa;
+        .af-form__input-radio:checked {
+          background-color: var(--warning-color);
         }
       }
     }
   }
 
+  /**
+    * This is the "button" variant of the radio inputs.
+    */
   &__radio-custom {
     position: relative;
     display: inline-flex;
@@ -114,12 +126,16 @@
     text-align: center;
 
     .af-form__label {
+      --background-color: var(--inactive-button-background);
+      --border-color: var(--inactive-button-border-color);
+      --label-color: var(--text-color);
+
       margin: 0;
       padding: 0.6rem 2rem;
-      border: common.$color-gray;
       font-weight: normal;
-      background: common.$color-mercury;
-      box-shadow: inset 0 -2px 0 0 common.$color-scorpion;
+      color: var(--label-color);
+      background: var(--background-color);
+      box-shadow: inset 0 -2px 0 0 var(--border-color);
       cursor: pointer;
     }
 
@@ -128,20 +144,20 @@
     }
 
     .af-form__input-radio {
-      position: absolute;
-      opacity: 0;
+      appearance: none;
 
-      &:checked + .af-form__label {
-        color: common.$white;
-        background-color: common.$color-azur;
-        box-shadow: inset 0 -2px 0 0 common.$color-axa;
-      }
-
+      &:checked + .af-form__label,
       &:focus + .af-form__label {
-        color: common.$white;
-        background-color: common.$color-azur;
-        box-shadow: 0 0 5px common.$color-axa;
+        --background-color: var(--brand-primary);
+        --border-color: var(--active-button-border-color);
+        --label-color: var(--white);
       }
+    }
+
+    .af-form__label:hover:hover {
+      --background-color: var(--brand-primary);
+      --border-color: var(--active-button-border-color);
+      --label-color: var(--white);
     }
 
     &--disabled {
@@ -158,10 +174,9 @@
 
     &--error {
       .af-form__label {
-        border: 1px solid common.$error-custom-border;
-        color: common.$color-red-axa;
-        background: common.$error-custom-bg;
-        box-shadow: inset 0 -2px 0 0 common.$color-red-axa;
+        --label-color: var(--error-color);
+        --background-color: var(--error-button-background);
+        --border-color: var(--error-color);
       }
     }
 
@@ -171,15 +186,6 @@
         color: common.$color-orange-dark;
         background: common.$color-alertDanger-bgColor;
         box-shadow: inset 0 -2px 0 0 common.$color-orange-dark;
-      }
-    }
-
-    &:hover {
-      .af-form__label {
-        border-color: common.$color-axa;
-        color: common.$white;
-        background-color: common.$color-azur;
-        box-shadow: inset 0 -2px 0 0 common.$color-axa;
       }
     }
   }

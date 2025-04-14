@@ -7,7 +7,12 @@ import {
 } from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import {
+  ComponentPropsWithoutRef,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from "react";
 
 const messageTypes = Object.values(MessageTypes);
 
@@ -149,15 +154,25 @@ export const CheckboxItemToggleStory: StoryObj<{
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }> = {
   name: "CheckboxItem Toggle",
-  render: (args) => (
-    <CheckboxItem
-      {...args}
-      name="placeType"
-      id="uniqueid"
-      value="toto"
-      className="af-form__checkbox-toggle"
-    />
-  ),
+  render: (args) => {
+    const [state, setState] = useState<boolean>(args.isChecked);
+
+    useEffect(() => {
+      setState(args.isChecked);
+    }, [args.isChecked]);
+
+    return (
+      <CheckboxItem
+        {...args}
+        name="placeType"
+        id="uniqueid"
+        value="toto"
+        className="af-form__checkbox-toggle"
+        isChecked={state}
+        onChange={(e) => setState(e.target.checked)}
+      />
+    );
+  },
   args: { isChecked: true, disabled: false },
   argTypes: { onChange: { action: "onChange" } },
   parameters: { controls: { include: ["isChecked", "disabled", "onChange"] } },

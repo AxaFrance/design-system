@@ -4,40 +4,41 @@
 
 .af-form {
   &__input-textarea {
-    padding: 0.7rem 1.2rem;
-    border: 1px solid common.$color-silver;
+    --text-color: var(--color-text);
+    --border-color: var(--input-border-color);
+
+    padding: 1rem;
+    border: 1px solid var(--border-color);
     font-family: common.$font-family-base;
     font-size: 1em;
-
-    &:focus {
-      border-color: common.$color-axa;
-      color: common.$color-axa;
-    }
+    color: var(--text-color);
 
     &--hasinfobulle {
       margin-right: 1rem;
     }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      --text-color: var(--color-text);
+      --border-color: var(--input-border-color);
+    }
+
+    &[aria-invalid="true"] {
+      --text-color: var(--error-color);
+      --border-color: var(--error-color);
+    }
+
+    &:focus {
+      --border-color: var(--brand-primary);
+      --text-color: var(--color-text);
+    }
   }
 
-  &__textarea {
-    &--disabled {
-      .af-form__input-textarea {
-        cursor: not-allowed;
-      }
-    }
-
-    &--error {
-      .af-form__input-textarea {
-        border: 1px solid common.$color-red-axa;
-        color: common.$color-red-axa;
-      }
-    }
-
-    &--warning {
-      .af-form__input-textarea {
-        border: 1px solid common.$color-orange-dark;
-        color: common.$color-orange-dark;
-      }
+  &__textarea--warning {
+    .af-form__input-textarea {
+      border: 1px solid var(--warning-color);
+      color: var(--warning-color);
     }
   }
 }

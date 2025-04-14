@@ -49,7 +49,13 @@ const CheckboxItem = forwardRef<HTMLInputElement, Props>(
         />
         <label className="af-form__label" htmlFor={newId}>
           <span className="af-form__indicator">
-            <i className="glyphicon glyphicon-ok" />
+            <svg
+              className="ok-icon"
+              role="presentation"
+              viewBox="0 -960 960 960"
+            >
+              <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
+            </svg>
           </span>
           <span className="af-form__description">{newLabel}</span>
         </label>
