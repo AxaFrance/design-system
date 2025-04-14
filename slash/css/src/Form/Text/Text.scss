@@ -2,14 +2,35 @@
 
 .af-form {
   &__input-text {
+    --color: var(--text-color);
+    --border-color: var(--input-border-color);
+    --background-color: var(--white);
+
     padding: 0.625rem 1.25rem;
-    border: 1px solid common.$color-silver;
+    border: 1px solid var(--border-color);
     font-size: 1em;
     line-height: 20px;
+    color: var(--color);
+    background-color: var(--background-color);
+
+    &:disabled {
+      --color: var(--disabled-color);
+      --border-color: var(--disabled-color);
+      --background-color: var(--gray10);
+
+      cursor: not-allowed;
+    }
+
+    &[aria-invalid="true"] {
+      --color: var(--error-color);
+      --border-color: var(--error-color);
+    }
 
     &:focus {
-      border-color: common.$color-axa;
-      color: common.$color-axa;
+      --color: var(--active-button-border-color);
+      --border-color: var(--active-button-border-color);
+
+      outline: 2px solid var(--border-color);
     }
 
     &--hasinfobulle {
@@ -18,12 +39,6 @@
   }
 
   &__text {
-    &--disabled {
-      .af-form__input-text {
-        cursor: not-allowed;
-      }
-    }
-
     &--success,
     &--valid {
       .af-form__input-text {
@@ -34,7 +49,7 @@
         position: relative;
         top: 5px;
         font-family: common.$font-family-icon;
-        color: common.$color-malachite;
+        color: var(--valid-color);
         content: "\EABA";
       }
 
@@ -55,21 +70,21 @@
       }
     }
 
-    &--error {
-      padding: 0;
+    // &--error {
+    //   padding: 0;
 
-      .af-form__input-text {
-        border: 1px solid common.$color-red-axa;
-        color: common.$color-red-axa;
-      }
-    }
+    //   .af-form__input-text {
+    //     border: 1px solid common.$color-red-axa;
+    //     color: common.$color-red-axa;
+    //   }
+    // }
 
     &--warning {
       padding: 0;
 
       .af-form__input-text {
-        border: 1px solid common.$color-orange-dark;
-        color: common.$color-orange-dark;
+        border: 1px solid var(--warning-color);
+        color: var(--warning-color);
       }
     }
 
