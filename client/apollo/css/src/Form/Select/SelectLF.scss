@@ -1,59 +1,57 @@
 @use "./SelectCommon";
 
-.af-form__select {
-  &-input {
-    --select-placeholder-color-default: var(--color-gray-700);
-    --select-border-radius: var(--default-border-radius);
-    --select-border-color-default: var(--color-gray-700);
-    --select-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
-      no-repeat right 1rem center / 1.5rem 1.5rem;
+.af-form__select-input {
+  --select-placeholder-color-default: var(--color-gray-700);
+  --select-border-radius: var(--default-border-radius);
+  --select-border-color-default: var(--color-gray-700);
+  --select-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
+    no-repeat right 1rem center / 1.5rem 1.5rem;
+}
 
-    &:open {
-      --select-background-open: url("@material-symbols/svg-400/outlined/arrow_drop_up.svg");
-    }
+.af-form__select-input:open {
+  --select-background-open: url("@material-symbols/svg-400/outlined/arrow_drop_up.svg");
+}
 
-    option {
-      --select-option-color: var(--color-black);
+.af-form__select-input option {
+  --select-option-color: var(--color-black);
+}
 
-      &:disabled {
-        --select-option-disabled-color: var(--color-gray-500);
-      }
-    }
+.af-form__select-input option:disabled {
+  --select-option-disabled-color: var(--color-gray-500);
+}
 
-    &:focus-visible {
-      --select-focus-border-color: var(--color-axa);
-    }
+.af-form__select-input:focus-visible {
+  --select-focus-border-color: var(--color-axa);
+}
 
-    &:disabled {
-      --select-bg-color-disabled: var(--color-gray-500);
-      --select-border-color-disabled: var(--color-gray-400);
-    }
+.af-form__select-input:disabled {
+  --select-bg-color-disabled: var(--color-gray-500);
+  --select-border-color-disabled: var(--color-gray-400);
+}
 
-    &-placeholder {
-      --select-placeholder-color-default: var(--color-gray-700);
-    }
+.af-form__select-input-placeholder {
+  --select-placeholder-color-default: var(--color-gray-700);
+}
 
-    &:not(:disabled):hover,
-    &:not(:disabled):active {
-      --select-hover-border-radius: 1px;
-      --select-hover-border-color: var(--color-axa);
-      --select-hover-box-shadow: var(--color-axa);
-    }
+.af-form__select-input:not(:disabled):hover,
+.af-form__select-input:not(:disabled):active {
+  --select-hover-border-radius: 1px;
+  --select-hover-border-color: var(--color-axa);
+  --select-hover-box-shadow: var(--color-axa);
+}
 
-    &--error {
-      --select-border-color-error: var(--color-red);
+.af-form__select-input--error {
+  --select-border-color-error: var(--color-red);
+}
 
-      &:focus-visible {
-        --select-box-shadow-color-error: var(--color-red);
+.af-form__select-input--error:focus-visible {
+  --select-box-shadow-color-error: var(--color-red);
 
-        outline: none;
-      }
+  outline: none;
+}
 
-      &:not(:disabled):hover,
-      &:not(:disabled):active {
-        border-color: var(--color-red);
-        box-shadow: 0 0 0 1px var(--color-red) inset;
-      }
-    }
-  }
+.af-form__select-input--error:not(:disabled):hover,
+.af-form__select-input--error:not(:disabled):active {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 1px var(--color-red) inset;
 }
