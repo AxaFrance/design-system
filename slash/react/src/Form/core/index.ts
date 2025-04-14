@@ -1,13 +1,14 @@
 import { ReactNode } from "react";
 
+export { LegacyField } from "./Deprecated/Field";
+export { FieldForm } from "./Deprecated/FieldForm";
+export { FieldInput } from "./Deprecated/FieldInput";
 export { Field } from "./Field";
+export type { ConsumerFieldProps } from "./Field";
 export { FieldError } from "./FieldError";
-export { FieldForm } from "./FieldForm";
-export { FieldInput } from "./FieldInput";
 export { FormClassManager } from "./FormClassManager";
 export { HelpMessage } from "./HelpMessage";
 export { InputList } from "./InputList";
-export { LegacyField } from "./LegacyField";
 export { MessageTypes } from "./MessageTypes";
 
 export { getFirstId } from "./getFirstId";

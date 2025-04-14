@@ -168,6 +168,7 @@ exports[`renders MultiSelectInput correctly 1`] = `
       <label
         class="af-form__group-label"
         for="multiselectid"
+        id=":r2:"
       >
         Place type *
       </label>
@@ -259,7 +260,6 @@ exports[`renders MultiSelectInput correctly 1`] = `
                 <input
                   aria-activedescendant=""
                   aria-autocomplete="list"
-                  aria-errormessage=":r2:"
                   aria-expanded="false"
                   aria-haspopup="true"
                   aria-invalid="false"
@@ -335,6 +335,7 @@ exports[`renders MultiSelectInput correctly 1`] = `
       </div>
       <small
         class="af-form__help"
+        id="multiselectid-description"
       >
         Enter the place type
       </small>

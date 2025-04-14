@@ -10,6 +10,35 @@ import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { FileRejection } from "react-dropzone";
 
+const values = [
+  {
+    id: "000003",
+    file: {
+      name: "error-file.jpg",
+      size: 100,
+      preview: "https://via.placeholder.com/150Cx50",
+      type: "image",
+    } as FilePreview,
+  },
+  {
+    id: "000004",
+    file: {
+      name: "fichier.png",
+      size: 100,
+      preview: "https://via.placeholder.com/150Cx50",
+      type: "image",
+    } as FilePreview,
+  },
+  {
+    id: "000005",
+    file: {
+      name: "fichier.csv",
+      preview: "https://via.placeholder.com/150Cx50",
+      size: 100,
+    } as FilePreview,
+  },
+];
+
 const meta: Meta<typeof FileInput> = {
   component: FileInput,
   title: "Components/Form/Input/File",
@@ -41,6 +70,7 @@ export const FileInputStory: Story = {
     isVisible: true,
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
+    values,
   },
 };
 
@@ -81,35 +111,6 @@ const errors = [
     },
   },
 ] as FileRejection[];
-
-const values = [
-  {
-    id: "000003",
-    file: {
-      name: "error-file.jpg",
-      size: 100,
-      preview: "https://via.placeholder.com/150Cx50",
-      type: "image",
-    } as FilePreview,
-  },
-  {
-    id: "000004",
-    file: {
-      name: "fichier.png",
-      size: 100,
-      preview: "https://via.placeholder.com/150Cx50",
-      type: "image",
-    } as FilePreview,
-  },
-  {
-    id: "000005",
-    file: {
-      name: "fichier.csv",
-      preview: "https://via.placeholder.com/150Cx50",
-      size: 100,
-    } as FilePreview,
-  },
-];
 
 export const FileWithValuesStory: Story = {
   name: "File with values",

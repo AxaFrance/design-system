@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { ChoiceInput } from "../ChoiceInput";
 
@@ -11,9 +11,16 @@ describe("ChoiceInput", () => {
     expect(screen.getByText("ChoiceInput label")).toHaveClass(
       "af-form__group-label",
     );
-    const labelChoiceInput = screen.getByLabelText("ChoiceInput label");
-    expect(labelChoiceInput).toBeChecked();
-    expect(labelChoiceInput).toHaveClass("af-form__input-radio");
+    const group = screen.getByRole("radiogroup", {
+      name: /choiceinput label/i,
+    });
+
+    const oui = within(group).getByRole("radio", { name: "Oui" });
+    const non = within(group).getByRole("radio", { name: /non/i });
+    expect(oui).toBeChecked();
+    expect(oui).toHaveClass("af-form__input-radio");
+    expect(non).not.toBeChecked();
+    expect(non).toHaveClass("af-form__input-radio");
   });
 
   it("shouldn't print help message on force display message", () => {
@@ -40,7 +47,7 @@ describe("ChoiceInput", () => {
         label="ChoiceInput label"
         classNameContainerLabel="labelClassName"
         classNameContainerInput="InputClassName"
-        value="Hello World"
+        value="true"
         id="choix"
       />,
     );
@@ -50,7 +57,9 @@ describe("ChoiceInput", () => {
       "labelClassName",
     );
     expect(
-      screen.getByLabelText("ChoiceInput label").parentElement?.parentElement,
+      screen.getByRole("radio", {
+        name: /oui/i,
+      }).parentElement?.parentElement?.parentElement,
     ).toHaveClass("InputClassName");
   });
 

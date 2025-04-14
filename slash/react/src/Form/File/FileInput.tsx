@@ -1,21 +1,14 @@
 import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
 
-import {
-  FieldInput,
-  HelpMessage,
-  LegacyField,
-  useInputClassModifier,
-} from "../core";
+import { type ConsumerFieldProps, Field } from "../core";
 import { CustomFile, File } from "./File";
 import { FileTable } from "./FileTable";
-import { useAriaInvalid } from "../core/useAriaInvalid";
 
-type FieldProps = ComponentPropsWithoutRef<typeof LegacyField>;
 type FileProps = ComponentPropsWithoutRef<typeof File>;
 type FileTableProps = ComponentPropsWithoutRef<typeof FileTable>;
 
-type Props = FieldProps &
+type Props = ConsumerFieldProps &
   FileProps &
   Pick<FileTableProps, "values" | "errors"> & {
     fileLabel?: string;
@@ -23,24 +16,14 @@ type Props = FieldProps &
   };
 const FileInput = ({
   values = [],
+  id,
   name = "",
   onChange,
-  classModifier = "",
-  message,
   children,
-  helpMessage,
-  id = "",
-  forceDisplayMessage,
-  messageType,
-  classNameContainerLabel,
-  classNameContainerInput,
   label,
-  isVisible,
-  className,
   errors,
   fileLabel,
-  disabled = false,
-  required,
+  classModifier,
   ...otherFileProps
 }: Props) => {
   const onDeleteClick = (selectedId: string, selectInputId: string) => {
@@ -54,57 +37,45 @@ const FileInput = ({
       fileAction: "delete",
     });
   };
-  const inputUseId = useId();
-  const errorUseId = useId();
-  const inputId = id ?? inputUseId;
-  const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
-    classModifier,
-    disabled,
-    Boolean(children),
-    required,
-  );
-  const rowModifier = `${inputFieldClassModifier} label-top`;
-  const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
+  const generatedId = useId();
+  const actualId = id ?? generatedId;
   return (
-    <LegacyField
+    <Field
       label={label}
-      id={inputId}
-      message={message}
-      messageType={messageType}
-      isVisible={isVisible}
-      forceDisplayMessage={forceDisplayMessage}
-      className={className}
-      classModifier={rowModifier}
-      classNameContainerLabel={classNameContainerLabel}
-      classNameContainerInput={classNameContainerInput}
-      errorId={errorUseId}
-    >
-      <FieldInput
-        className="af-form__file"
-        classModifier={inputFieldClassModifier}
-      >
-        <File
-          id={inputId}
-          name={name}
-          onChange={onChange}
-          disabled={disabled}
-          classModifier={inputClassModifier}
-          label={fileLabel}
-          required={required || classModifier?.includes("required")}
-          aria-describedby={errorUseId}
-          aria-invalid={isInvalid}
-          {...otherFileProps}
+      labelPosition="top"
+      id={actualId}
+      classNameSuffix="file"
+      {...otherFileProps}
+      renderInput={({
+        classModifier: inputClassModifiers,
+        id: inputId,
+        ariaInvalid,
+        errorId,
+        ...inputProps
+      }) => (
+        <>
+          <File
+            id={inputId}
+            name={name}
+            onChange={onChange}
+            classModifier={inputClassModifiers}
+            label={fileLabel}
+            aria-describedby={errorId}
+            aria-invalid={ariaInvalid}
+            {...inputProps}
+          />
+          {children}
+        </>
+      )}
+      appendChildren={
+        <FileTable
+          errors={errors}
+          values={values}
+          onClick={(selectedId) => onDeleteClick(selectedId, actualId)}
+          classModifier={classModifier}
         />
-        {children}
-      </FieldInput>
-      <HelpMessage message={helpMessage} isVisible={!message} />
-      <FileTable
-        errors={errors}
-        values={values}
-        onClick={(selectedId) => onDeleteClick(selectedId, inputId)}
-        classModifier={classModifier}
-      />
-    </LegacyField>
+      }
+    />
   );
 };
 

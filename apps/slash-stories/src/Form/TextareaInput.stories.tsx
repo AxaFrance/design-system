@@ -21,7 +21,7 @@ export const TextareaInputStory: Story = {
   args: {
     label: "Comment",
     name: "comment",
-    id: "commentid",
+    id: "TextareaInputId",
     value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     required: true,
     rows: 6,

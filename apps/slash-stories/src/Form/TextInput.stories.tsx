@@ -29,7 +29,6 @@ export const TextInputStory: Story = {
     disabled: false,
     autoFocus: false,
     message: "message",
-
     className: "",
     type: "text",
     label: "Your name",

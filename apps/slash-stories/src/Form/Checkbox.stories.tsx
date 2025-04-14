@@ -14,7 +14,14 @@ import {
   useState,
 } from "react";
 
-const messageTypes = Object.values(MessageTypes);
+const messageTypes = [...Object.values(MessageTypes), ""];
+
+const modes = [
+  CheckboxModes.classic.toString(),
+  CheckboxModes.default.toString(),
+  CheckboxModes.inline.toString(),
+  CheckboxModes.toggle.toString(),
+];
 
 const meta: Meta = {
   title: "Components/Form/Input/Checkbox",
@@ -23,7 +30,10 @@ const meta: Meta = {
     onChange: { action: "onChange" },
     messageType: { control: { type: "select", options: messageTypes } },
     mode: {
-      control: { type: "select", options: Object.values(CheckboxModes) },
+      control: {
+        type: "radio",
+        options: modes,
+      },
     },
   },
   args: { onChange: fn() },
@@ -85,8 +95,12 @@ export const CheckboxInputStory: Story = {
   argTypes: {
     classModifier: { options: modifiers, control: { type: "inline-check" } },
     mode: {
-      options: Object.values(CheckboxModes),
-      control: { type: "select", options: Object.values(CheckboxModes) },
+      options: modes,
+      control: { type: "radio", options: modes },
+    },
+    messageType: {
+      options: messageTypes,
+      control: { type: "select", options: messageTypes },
     },
     onChange: { action: "onChange" },
   },
@@ -112,7 +126,7 @@ export const CheckboxInputErrorStory: Story = {
     <form className="af-form" name="myform">
       <CheckboxInput
         {...args}
-        values={[]}
+        values={values}
         options={options}
         classModifier={(classModifier ?? []).join(" ")}
         isVisible
@@ -131,6 +145,21 @@ export const CheckboxInputErrorStory: Story = {
     forceDisplayMessage: true,
     id: "inputuniqueid",
     name: "placeType",
+  },
+  argTypes: {
+    messageType: {
+      options: messageTypes,
+      control: {
+        type: "select",
+        options: messageTypes,
+        labels: {
+          "": "(none)",
+        },
+      },
+    },
+    mode: {
+      control: { type: "select", options: Object.values(CheckboxModes) },
+    },
   },
   parameters: {
     controls: {

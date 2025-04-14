@@ -78,7 +78,7 @@ describe("Slider", () => {
     // Assert
     const labelSliderInput =
       screen.getByText("labelSliderInput").parentElement?.parentElement;
-    expect(labelSliderInput).toHaveClass("classname-slider", {
+    expect(labelSliderInput).toHaveClass("row classname-slider", {
       exact: true,
     });
   });
