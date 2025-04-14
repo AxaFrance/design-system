@@ -1,0 +1,32 @@
+.icon-list {
+  > ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 1rem;
+
+    > li {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto;
+      width: 10rem;
+      height: 10rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 5px 0 rgba(250, 250, 250, 50%);
+      align-items: center;
+      justify-items: center;
+
+      > .glyphicon {
+        font-size: 6rem;
+      }
+
+      > .icon-list__icon-name {
+        font-size: 1.1rem;
+        text-align: center;
+      }
+    }
+  }
+}
