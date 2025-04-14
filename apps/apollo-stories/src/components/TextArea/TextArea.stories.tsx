@@ -1,14 +1,15 @@
-import { TextArea } from "@axa-fr/design-system-look-and-feel-react";
+import { TextArea } from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
 const meta: Meta<typeof TextArea> = {
   component: TextArea,
   title: "Components/Form/Input/TextArea",
   args: {
-    value: "Lorem ipsum",
+    value: "Placeholder",
     label: "Label",
     placeholder: "Placeholder",
-    helper: "Informations complémentaires",
+    helper: "1800 caractères maximum.",
     name: "name",
     id: "nameid",
     disabled: false,
@@ -45,6 +46,14 @@ export const TextAreaWithDescriptionStory: Story = {
   },
 };
 
+export const TextAreaWithButton: Story = {
+  name: "TextArea with button",
+  render,
+  args: {
+    buttonLabel: "En savoir plus",
+  },
+};
+
 export const TextAreaOnErrorStory: Story = {
   name: "TextArea on error",
   render,
@@ -55,10 +64,11 @@ export const TextAreaOnErrorStory: Story = {
   },
 };
 
-export const TextAreaWithButton: Story = {
-  name: "TextArea with button",
+export const TextAreaDisabled: Story = {
+  name: "TextArea disabled",
   render,
   args: {
     buttonLabel: "En savoir plus",
+    disabled: true,
   },
 };
