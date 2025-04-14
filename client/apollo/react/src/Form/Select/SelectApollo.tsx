@@ -4,7 +4,7 @@ import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
 import { Select as SelectCommon } from "./SelectCommon";
 
-export const TextInput = (
+export const Select = (
   props: Omit<
     ComponentProps<typeof SelectCommon>,
     "ItemLabelComponent" | "ItemMessageComponent"

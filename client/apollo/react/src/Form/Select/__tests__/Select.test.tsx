@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { expect, it } from "vitest";
 import { Select } from "../SelectCommon";
+import { ItemLabel } from "../../ItemLabel/ItemLabelLF";
+import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 
 const selectLabel = "Label";
 const errorMessage = "Titre du Message";
@@ -10,26 +11,26 @@ const helperText = "Information complémentaires";
 const placeholderText = "EX: ABCD";
 
 describe("Select", () => {
-  it("Should render", () => {
-    render(<Select label={selectLabel} />);
-  });
-
-  it("renders select with options", async () => {
+  it("renders select with options", () => {
     render(
-      <Select label="Label">
+      <Select
+        label={selectLabel}
+        ItemLabelComponent={ItemLabel}
+        ItemMessageComponent={ItemMessage}
+      >
         <option value="fun">For fun</option>
         <option value="work">For work</option>
         <option value="drink">For drink</option>
       </Select>,
     );
 
-    const selectElment = screen.getByRole("combobox", { name: /label/i });
-    expect(selectElment).toBeInTheDocument();
-    await userEvent.click(selectElment);
-    const optionElement = await screen.findByRole("option", {
-      name: /For fun/i,
-    });
-    expect(optionElement).toBeInTheDocument();
+    const selectOptionElement = screen.getByLabelText(/label/i);
+    userEvent.selectOptions(selectOptionElement, "fun");
+    const options = screen.queryAllByText(/for/i);
+    const selectedOption = options.find(
+      (option) => (option as HTMLOptionElement).selected,
+    );
+    expect(selectedOption).toHaveTextContent("For fun");
   });
 
   it("renders select with many properties", () => {
@@ -40,40 +41,58 @@ describe("Select", () => {
         helper={helperText}
         placeholder={placeholderText}
         required
+        ItemLabelComponent={ItemLabel}
+        ItemMessageComponent={ItemMessage}
       />,
     );
 
     expect(screen.getByText(errorMessage)).toBeInTheDocument();
     expect(screen.getByText(helperText)).toBeInTheDocument();
-    expect(screen.getByText(helperText)).toBeInTheDocument();
-
-    const placeholderElement = screen.getByRole("option", {
-      name: new RegExp(placeholderText, "i"),
-    });
+    const placeholderElement = screen.getByText(placeholderText);
     expect(placeholderElement).toBeInTheDocument();
-    expect(placeholderElement).toBeDisabled();
+    expect((placeholderElement as HTMLOptionElement).disabled).toBe(true);
   });
 
-  it("shouldn't have an accessibility violation <TextArea />", async () => {
-    const { container } = render(<Select label={selectLabel} />);
+  it("shouldn't have an accessibility violation", async () => {
+    const { container } = render(
+      <Select
+        label={selectLabel}
+        ItemLabelComponent={ItemLabel}
+        ItemMessageComponent={ItemMessage}
+      />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it("applies error styles and displays error message when 'error' prop is passed", () => {
-    render(<Select label={selectLabel} error={errorMessage} />);
-    const selectElement = screen.getByRole("combobox", { name: /label/i });
+    render(
+      <Select
+        label={selectLabel}
+        error={errorMessage}
+        ItemLabelComponent={ItemLabel}
+        ItemMessageComponent={ItemMessage}
+      />,
+    );
+
+    const selectElement = screen.getByLabelText(/label/i);
     expect(selectElement).toHaveClass("af-form__select-input--error");
-    const errorMsg = screen.getByText(errorMessage);
-    expect(errorMsg).toBeInTheDocument();
+    const errorMessageElement = screen.getByText(errorMessage);
+    expect(errorMessageElement).toBeInTheDocument();
   });
 
   it("applies disabled styles when select is disabled", () => {
     render(
-      <Select label={selectLabel} disabled>
+      <Select
+        label={selectLabel}
+        disabled
+        ItemLabelComponent={ItemLabel}
+        ItemMessageComponent={ItemMessage}
+      >
         <option value="fun">fun</option>
       </Select>,
     );
-    const selectElement = screen.getByRole("combobox", { name: /label/i });
+
+    const selectElement = screen.getByLabelText(/label/i);
     expect(selectElement).toBeDisabled();
     expect(selectElement).toHaveClass("af-form__select-input");
   });
