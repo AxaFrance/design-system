@@ -1,0 +1,29 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as HeadingStories from "./Heading.stories";
+
+<Meta of={HeadingStories} name="Heading" />
+
+# Heading
+
+To use the heading import it like that:
+
+```tsx
+import { Heading } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <Heading>Titre de la page</Heading>
+    <Heading firstSubtitle="Sous titre" level={3}>
+      Titre de la page
+    </Heading>
+  </>
+);
+```
+
+## Playground
+
+The heading accepts all icon props (the `iconProps` props key) except for the `src` and all tag props (the `tagProps` props key) except for the `children`.
+
+<Canvas of={HeadingStories.Playground} />
+
+<Controls of={HeadingStories.Playground} />
