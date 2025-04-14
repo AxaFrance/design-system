@@ -1,8 +1,8 @@
-import checkCircleOutline from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
+import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
-import infoIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
-import wbIncandescentOutlined from "@material-symbols/svg-400/outlined/emoji_objects-fill.svg";
+import neutralIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
+import infoIcon from "@material-symbols/svg-400/outlined/emoji_objects-fill.svg";
 import {
   type ComponentPropsWithoutRef,
   type PropsWithChildren,
@@ -36,12 +36,12 @@ export type MessageProps = {
 
 const getIconFromType = (variant: MessageVariants) =>
   ({
-    [messageVariants.validation]: checkCircleOutline,
+    [messageVariants.validation]: validationIcon,
     [messageVariants.error]: errorIcon,
-    [messageVariants.neutral]: infoIcon,
+    [messageVariants.neutral]: neutralIcon,
     [messageVariants.warning]: warningIcon,
-    [messageVariants.information]: wbIncandescentOutlined,
-  })[variant] || wbIncandescentOutlined;
+    [messageVariants.information]: infoIcon,
+  })[variant] || infoIcon;
 
 export const Message = ({
   variant = messageVariants.information,
@@ -66,7 +66,7 @@ export const Message = ({
         width={iconSize}
         height={iconSize}
         className="af-message__icon"
-        aria-hidden
+        role="presentation"
       />
       <div className="af-message__content">
         {title && <Heading className="af-message__title">{title}</Heading>}

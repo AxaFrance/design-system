@@ -20,18 +20,16 @@ const defaultProps = {
 describe("Message", () => {
   it.each`
     variant                        | title                 | children                 | icon
-    ${undefined}                   | ${undefined}          | ${undefined}             | ${"wb_incandescent.svg"}
-    ${messageVariants.information} | ${defaultProps.title} | ${defaultProps.children} | ${"wb_incandescent.svg"}
-    ${messageVariants.error}       | ${defaultProps.title} | ${defaultProps.children} | ${"emergency_home.svg"}
-    ${messageVariants.neutral}     | ${defaultProps.title} | ${defaultProps.children} | ${"error.svg"}
-    ${messageVariants.validation}  | ${defaultProps.title} | ${defaultProps.children} | ${"check_circle.svg"}
-    ${messageVariants.warning}     | ${defaultProps.title} | ${defaultProps.children} | ${"error.svg"}
+    ${undefined}                   | ${undefined}          | ${undefined}             | ${"emoji_objects-fill.svg"}
+    ${messageVariants.information} | ${defaultProps.title} | ${defaultProps.children} | ${"emoji_objects-fill.svg"}
+    ${messageVariants.error}       | ${defaultProps.title} | ${defaultProps.children} | ${"error-fill.svg"}
+    ${messageVariants.neutral}     | ${defaultProps.title} | ${defaultProps.children} | ${"info-fill.svg"}
+    ${messageVariants.validation}  | ${defaultProps.title} | ${defaultProps.children} | ${"check_circle-fill.svg"}
+    ${messageVariants.warning}     | ${defaultProps.title} | ${defaultProps.children} | ${"warning-fill.svg"}
   `(
     "Should render correctly with variant: $variant, title: $title, children: $children, icon: $icon",
     ({ variant, title, children, icon }) => {
-      const { container } = render(
-        <Message {...{ variant, title }}>{children}</Message>,
-      );
+      render(<Message {...{ variant, title }}>{children}</Message>);
 
       if (title) {
         expect(screen.getByText(RegExp(title))).toBeDefined();
@@ -45,7 +43,10 @@ describe("Message", () => {
         `af-message--${variant || messageVariants.information}`,
       );
 
-      expect(container.querySelector(`[data-src$="${icon}"]`)).toBeDefined();
+      expect(screen.getByRole("presentation")).toHaveAttribute(
+        "data-src",
+        expect.stringContaining(icon),
+      );
     },
   );
 
