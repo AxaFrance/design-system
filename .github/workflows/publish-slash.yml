@@ -76,9 +76,7 @@ jobs:
       - name: create artifact folder
         run: mkdir -p artifact/css & mkdir -p artifact/react
       - name: move storybooks to artifact folders
-        run:
-          cp -R apps/slash-stories-css/storybook-static/* artifact/css & cp -R
-          apps/slash-stories/storybook-static/* artifact/react
+        run: cp -R apps/slash-stories/storybook-static/* artifact/react
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: storybooks
@@ -89,16 +87,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy new version of storybook to gh-pages
+    name: Deploy storybook
     strategy:
       matrix:
-        storybook:
-          - name: slash react
-            publish_dir: ./react
-            destination_dir: slash/react
-          - name: slash css
-            publish_dir: ./css
-            destination_dir: slash/css
         version:
           - next
           - latest
@@ -112,10 +103,10 @@ jobs:
         with:
           name: storybooks
 
-      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ matrix.version }}
+      - name: Upload the slash react storybook version ${{ matrix.version }}
         if: needs.build.outputs.isStableRelease == 'true' || matrix.version == 'next'
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ matrix.storybook.publish_dir }}
-          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ matrix.version }}
+          publish_dir: ./react
+          destination_dir: slash/react/${{ matrix.version }}
