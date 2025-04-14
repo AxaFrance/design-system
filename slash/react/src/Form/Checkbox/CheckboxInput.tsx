@@ -1,72 +1,46 @@
-import { ComponentProps, forwardRef, useId } from "react";
+import { ComponentProps, forwardRef } from "react";
 
-import { LegacyField, MessageTypes, useOptionsWithId } from "../core";
+import { type ConsumerFieldProps, Field, useOptionsWithId } from "../core";
 import { Checkbox } from "./Checkbox";
 import { CheckboxModes } from "./CheckboxModes";
-import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type Props = Omit<
-  ComponentProps<typeof Checkbox> & ComponentProps<typeof LegacyField>,
+  ComponentProps<typeof Checkbox> & ConsumerFieldProps,
   "children" | "placeholder"
 >;
 
 const CheckboxInput = forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      mode,
-      messageType,
-      message,
-      classModifier,
-      options,
-      classNameContainerLabel,
-      classNameContainerInput,
-      label,
-      isVisible,
-      className,
-      forceDisplayMessage,
-      required,
-      ...checkboxProps
-    },
-    inputRef,
-  ) => {
-    let rowModifier = classModifier;
-    if (mode === CheckboxModes.classic) {
-      rowModifier += " label-top";
-    }
-    if (required) {
-      rowModifier += " required";
-    }
-    const errorUseId = useId();
+  ({ label, mode = "default", options, ...otherProps }, inputRef) => {
     const newOptions = useOptionsWithId(options);
-    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
     return (
-      <LegacyField
+      <Field
         label={label}
-        id={newOptions[0].id}
-        message={message}
-        messageType={messageType}
-        isVisible={isVisible}
-        forceDisplayMessage={forceDisplayMessage}
-        className={className}
-        classModifier={rowModifier}
-        classNameContainerLabel={classNameContainerLabel}
-        classNameContainerInput={classNameContainerInput}
-        errorId={errorUseId}
-      >
-        <Checkbox
-          mode={mode}
-          options={newOptions}
-          classModifier={
-            message && messageType === MessageTypes.error && forceDisplayMessage
-              ? `${classModifier} error`
-              : classModifier
-          }
-          ref={inputRef}
-          aria-describedby={errorUseId}
-          aria-invalid={isInvalid}
-          {...checkboxProps}
-        />
-      </LegacyField>
+        labelPosition={mode === CheckboxModes.classic ? "top" : "center"}
+        roleContainer="group"
+        {...otherProps}
+        renderInput={({
+          classModifier,
+          id,
+          ariaInvalid,
+          errorId,
+          ...props
+        }) => {
+          return (
+            <Checkbox
+              id={id}
+              mode={mode}
+              options={newOptions}
+              classModifier={
+                ariaInvalid ? `${classModifier} error` : classModifier
+              }
+              ref={inputRef}
+              aria-describedby={errorId}
+              aria-invalid={ariaInvalid}
+              {...props}
+            />
+          );
+        }}
+      />
     );
   },
 );
