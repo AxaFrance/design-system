@@ -49,7 +49,7 @@
         position: relative;
         top: 5px;
         font-family: common.$font-family-icon;
-        color: var(--valid-color);
+        color: var(--valid-element-color);
         content: "\EABA";
       }
 
@@ -69,15 +69,6 @@
         fill: common.$color-btn-success;
       }
     }
-
-    // &--error {
-    //   padding: 0;
-
-    //   .af-form__input-text {
-    //     border: 1px solid common.$color-red-axa;
-    //     color: common.$color-red-axa;
-    //   }
-    // }
 
     &--warning {
       padding: 0;
