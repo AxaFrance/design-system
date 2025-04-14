@@ -1,4 +1,3 @@
-@use "../../common/common" as common;
 @use "../core/FormCore";
 @use "../../common/grid";
 
@@ -6,6 +5,20 @@
 .af-form {
   &__checkbox,
   &__checkbox-inline {
+    .af-form__indicator {
+      display: flex;
+      width: 1rem;
+      height: 1rem;
+      border: 1px solid var(--input-border-color);
+      background-color: var(--white);
+      fill: none;
+
+      .ok-icon {
+        display: none;
+        fill: var(--white);
+      }
+    }
+
     &--disabled {
       .af-form__label {
         opacity: 0.4;
@@ -15,21 +28,32 @@
 
     &--error {
       .af-form__label {
-        color: common.$color-red-axa;
+        color: var(--error-color);
       }
 
       .af-form__indicator {
-        border-color: common.$color-red-axa;
+        border-color: var(--error-color);
+      }
+
+      .af-form__input-checkbox:checked + .af-form__label {
+        .af-form__indicator {
+          border-color: var(--error-color);
+          background-color: var(--error-color);
+        }
+
+        .ok-icon {
+          display: block;
+        }
       }
     }
 
     &--warning {
       .af-form__label {
-        color: common.$color-orange-dark;
+        color: var(--warning-color);
       }
 
       .af-form__indicator {
-        border-color: common.$color-orange-dark;
+        border-color: var(--warning-color);
       }
     }
   }
@@ -40,18 +64,24 @@
 
     &:checked + .af-form__label {
       .af-form__indicator {
-        border-color: common.$color-azur;
-        color: common.$white;
-        background-color: common.$color-azur;
+        border-color: var(--button-primary-default);
+        color: var(--white);
+        background-color: var(--button-primary-default);
 
-        .glyphicon-ok {
+        .ok-icon {
           display: block;
         }
       }
     }
 
-    &:focus + .af-form__label {
-      color: common.$color-azur;
+    &:focus {
+      & + .af-form__label {
+        color: var(--brand-primary);
+
+        .af-form__indicator {
+          border-color: var(--brand-primary);
+        }
+      }
     }
   }
 
@@ -61,7 +91,7 @@
   &__checkbox {
     position: relative;
     display: block;
-    border-bottom: 1px solid common.$color-silver;
+    border-bottom: 1px solid var(--disabled-color);
     align-items: center;
 
     &:nth-last-child(1) {
@@ -82,8 +112,7 @@
   }
 
   /* Custom */
-  &__checkbox-custom,
-  &__checkbox-toggle {
+  &__checkbox-custom {
     position: relative;
     display: inline-flex;
     margin: 0 0.3rem 0.3rem 0;
@@ -93,15 +122,23 @@
     .af-form__label {
       margin: 0;
       padding: 0.5rem 2rem;
-      border: common.$color-gray;
       font-weight: normal;
-      background: common.$color-mercury;
-      box-shadow: inset 0 -2px 0 0 common.$color-scorpion;
+      background: var(--gray20);
+      box-shadow: inset 0 -2px 0 0 var(--gray50);
       cursor: pointer;
     }
 
     .af-form__indicator {
       left: 1rem;
+      display: flex;
+      width: 1rem;
+      height: 1rem;
+      border: 1px solid var(--input-border-color);
+      background-color: var(--white);
+
+      .ok-icon {
+        display: none;
+      }
     }
 
     .af-form__description {
@@ -113,58 +150,90 @@
       opacity: 0;
 
       &:checked + .af-form__label {
-        color: common.$white;
-        background-color: common.$color-azur;
-        box-shadow: inset 0 -2px 0 0 common.$color-axa;
+        color: var(--white);
+        background-color: var(--brand-primary);
+        box-shadow: inset 0 -2px 0 0 var(--axablue90);
 
         .af-form__indicator {
-          border: 1px solid common.$color-silver;
-          color: common.$color-mine-shaft;
-          background: common.$white;
+          border-color: var(--brand-primary);
+          background: var(--white);
 
-          .glyphicon-ok {
-            color: common.$color-azur;
+          .ok-icon {
+            fill: var(--brand-primary);
           }
         }
       }
 
       &:focus + .af-form__label {
-        color: common.$white;
-        background-color: common.$color-axa;
-        box-shadow: 0 0 5px common.$color-axa;
+        color: var(--white);
+        background-color: var(--brand-primary);
+        box-shadow: 0 0 5px var(--brand-primary);
       }
-    }
 
-    &--disabled {
-      .af-form__label {
-        opacity: 0.6;
-        box-shadow: inset 0 -2px 0 0 common.$color-silver;
+      &:disabled + .af-form__label {
+        background-color: var(--gray20);
+        box-shadow: inset 0 -2px 0 0 var(--disabled-color);
         cursor: not-allowed;
+
+        .af-form__description {
+          color: var(--disabled-color);
+        }
+
+        .af-form__indicator {
+          border: 1px solid var(--gray50);
+          background: var(--white);
+
+          .ok-icon {
+            fill: var(--gray50);
+          }
+        }
       }
 
-      .af-form__description {
-        opacity: 0.4;
-      }
-    }
+      &[aria-invalid="true"] + .af-form__label {
+        color: var(--error-color);
+        background-color: var(--red10);
+        box-shadow: inset 0 -2px 0 0 var(--error-color);
 
-    &--error {
-      .af-form__label {
-        color: common.$color-red-error;
-        background: common.$error-custom-bg;
-        box-shadow: inset 0 -2px 0 0 common.$color-red-error;
+        .af-form__indicator {
+          border-color: var(--error-color);
+
+          .ok-icon {
+            fill: var(--error-color);
+          }
+        }
       }
 
-      .af-form__indicator {
-        border-color: common.$color-red-error;
+      &[aria-invalid="true"]:focus + .af-form__label {
+        box-shadow: none;
+        outline: 2px solid var(--button-primary-default);
+        outline-offset: 0;
+      }
+
+      &[aria-invalid="true"]:disabled + .af-form__label {
+        background-color: var(--gray20);
+        box-shadow: inset 0 -2px 0 0 var(--error-color);
+        cursor: not-allowed;
+
+        .af-form__description {
+          color: var(--disabled-color);
+        }
+
+        .af-form__indicator {
+          border-color: var(--disabled-color);
+
+          .ok-icon {
+            color: var(--disabled-color);
+          }
+        }
       }
     }
 
     &:hover {
       .af-form__label {
-        border-color: common.$color-axa;
-        color: common.$white;
-        background-color: common.$color-azur;
-        box-shadow: inset 0 -2px 0 0 common.$color-axa;
+        border-color: var(--brand-primary);
+        color: var(--white);
+        background-color: var(--brand-primary);
+        box-shadow: inset 0 -2px 0 0 var(--axablue90);
       }
     }
   }
@@ -172,22 +241,34 @@
   /* Toggle */
 
   &__checkbox-toggle {
+    position: relative;
+    display: inline-flex;
+
     .af-form__label {
-      padding: 1rem 1.6rem;
+      width: 48px;
+      height: 24px;
+      padding: 0;
       border: none;
       border-radius: 50px;
-      box-shadow: none;
+      background-color: var(--input-border-color);
     }
 
     .af-form__indicator {
-      position: absolute;
-      top: 50%;
-      left: 5px;
-      padding: 0.7rem;
+      width: 20px;
+      height: 20px;
+      margin: 0 2px;
       border: 0;
       border-radius: 100%;
-      transform: translate(0, -50%);
+      background-color: var(--white);
       transition: 0.4s;
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+
+      .ok-icon {
+        display: none;
+      }
     }
 
     .af-form__description {
@@ -196,55 +277,79 @@
 
     .af-form__input-checkbox {
       &:checked + .af-form__label {
-        border: none;
-        color: common.$white;
-        background-color: common.$color-green-4;
-        box-shadow: none;
+        color: var(--white);
+        background-color: var(--button-primary-default);
 
         .af-form__indicator {
-          color: common.$color-mine-shaft;
-          background: common.$white;
-          transform: translate(17px, -50%);
+          color: var(--text-color);
+          background: var(--white);
+          transform: translateX(24px);
 
-          .glyphicon-ok {
-            display: none;
-            color: common.$color-azur;
+          .ok-icon {
+            position: absolute;
+            left: -22px;
+            display: block;
+            width: 18px;
+            height: 100%;
+            animation: show-ok-icon 0.4s linear;
+            fill: var(--white);
+
+            @media (prefers-reduced-motion: reduce) {
+              animation: none;
+            }
           }
         }
       }
 
       &:focus + .af-form__label {
-        border: none;
-        color: common.$white;
-        background-color: common.$color-axa;
-        box-shadow: none;
+        outline: 3px solid var(--button-primary-default);
+        outline-offset: -1px;
+      }
+
+      &:disabled + .af-form__label {
+        background-color: var(--disabled-color);
+        cursor: not-allowed;
+
+        .af-form__indicator {
+          background-color: var(--inactive-button-border-color);
+
+          .ok-icon {
+            display: none;
+          }
+        }
       }
     }
 
     &:hover {
       .af-form__label {
-        border: none;
-        box-shadow: none;
+        outline: 3px solid var(--button-primary-default);
+        outline-offset: -1px;
+      }
+
+      .af-form__input-checkbox:disabled + .af-form__label {
+        outline: none;
       }
     }
 
     &--error {
       .af-form__label {
-        background-color: common.$color-red-error;
+        background-color: var(--error-color);
       }
     }
+  }
+}
 
-    &--warning {
-      .af-form__label {
-        background-color: common.$color-orange-dark;
-      }
-    }
+@keyframes show-ok-icon {
+  0% {
+    opacity: 0;
+  }
 
-    &--disabled:hover {
-      .af-form__label {
-        background-color: common.$color-gray-3;
-      }
-    }
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 /* stylelint-enable no-descending-specificity */
