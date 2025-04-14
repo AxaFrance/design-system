@@ -19,6 +19,8 @@ describe("<TextArea />", () => {
     const textLabel = screen.getByText("Label");
     const textAreDescritpion = screen.getByText("Description");
     const textArea = screen.getByText("Lorem Ipsum");
+    const input = screen.getByRole("textbox");
+    expect(input).toBeInTheDocument();
     expect(textLabel).toBeInTheDocument();
     expect(textAreDescritpion).toBeInTheDocument();
     expect(textArea).toBeInTheDocument();
