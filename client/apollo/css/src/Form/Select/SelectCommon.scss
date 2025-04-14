@@ -4,7 +4,7 @@
     margin-bottom: calc(8 / var(--font-size-base) * 1rem);
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 600;
-    color: var(--select-placeholder-color-default);
+    color: var(--select-placeholder-color);
   }
 
   &-input {
@@ -12,22 +12,20 @@
     width: 100%;
     margin: calc(10 / var(--font-size-base) * 1rem) 0;
     padding: calc(21 / var(--font-size-base) * 1rem);
-    border: 1px solid var(--select-border-color-default);
+    border: 1px solid var(--select-border-color);
     border-radius: var(--select-border-radius);
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--select-placeholder-color-default);
+    color: var(--select-color);
     background: var(--select-background);
     background-color: white;
     background-position-x: calc(100% - 1rem);
+    box-shadow: var(--select-box-shadow);
     appearance: none;
 
     option {
-      color: var(--select-option-color);
-
-      &:disabled {
-        border: 1px solid var(--select-option-disabled-color);
-      }
+      border: 1px solid var(--select-border-color);
+      color: var(--select-color);
     }
 
     &:open {
@@ -35,39 +33,36 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 1px var(--select-focus-border-color) inset;
+      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
       outline: none;
       outline-offset: 3px;
     }
 
     &:disabled {
-      border: 1px solid var(--select-border-color-disabled);
-      color: var(--select-bg-color-disabled);
+      border: 1px solid var(--select-border-color);
+      color: var(--select-color);
       cursor: not-allowed;
     }
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      border: var(--select-hover-border-radius) solid
-        var(--select-hover-border-color);
-      box-shadow: 0 0 0 1px var(--select-hover-box-shadow) inset;
+      border: var(--select-border-radius) solid var(--select-border-color);
+      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
     }
 
     &-placeholder {
-      color: var(--select-placeholder-color-default);
+      color: var(--select-color);
     }
 
     &--error {
-      border: 2px solid var(--select-border-color-error);
-
-      &:focus-visible {
-        box-shadow: 0 0 0 1px var(--select-box-shadow-color-error) inset;
-      }
+      border: 2px solid var(--select-border-color);
+      border-color: var(--select-border-color);
+      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
 
       &:not(:disabled):hover,
       &:not(:disabled):active {
-        border-color: var(--select-border-color-error);
-        box-shadow: 0 0 0 1px var(--select-box-shadow-color-error) inset;
+        border-color: var(--select-border-color);
+        box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
       }
     }
   }

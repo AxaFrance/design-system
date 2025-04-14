@@ -53,11 +53,9 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     let inputId = useId();
     inputId = id || inputId;
 
-    const isShowingPlaceholder = otherProps.value === "";
     const classname = classNames(
       "af-form__select-input",
       error && "af-form__select-input--error",
-      isShowingPlaceholder && "af-form__select-input-placeholder",
     );
 
     return (
