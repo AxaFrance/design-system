@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { type ComponentPropsWithoutRef, type ReactNode } from "react";
-import { getComponentClassName } from "../../utilities";
-import { FieldError } from "./FieldError";
+import { getComponentClassName } from "../../../utilities";
+import { FieldError } from "../FieldError";
+import { MessageTypes } from "../MessageTypes";
 import { FieldForm } from "./FieldForm";
-import { MessageTypes } from "./MessageTypes";
 
 type FieldProps = Omit<
   ComponentPropsWithoutRef<typeof FieldForm>,
@@ -22,6 +22,10 @@ type FieldProps = Omit<
   errorId?: string;
 };
 
+/**
+ * @deprecated This component is deprecated and will be removed in future versions. Use components with labels instead, such as `TextInput`
+ * or `SelectInput`.
+ */
 export const LegacyField = ({
   id = "",
   message = "",
