@@ -1,84 +1,38 @@
-import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
-import {
-  LegacyField,
-  getFirstId,
-  useInputClassModifier,
-  useOptionsWithId,
-} from "../core";
+import { ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ConsumerFieldProps, Field, useOptionsWithId } from "../core";
 import { Radio, RadioModes } from "./Radio";
-import { useAriaInvalid } from "../core/useAriaInvalid";
 
-type RadioInputProps = ComponentPropsWithoutRef<typeof LegacyField> &
+type RadioInputProps = ConsumerFieldProps &
   ComponentPropsWithoutRef<typeof Radio>;
 
 const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
-  (
-    {
-      mode,
-      messageType,
-      message,
-      className,
-      classModifier = "",
-      isVisible,
-      options,
-      classNameContainerLabel,
-      classNameContainerInput,
-      label,
-      forceDisplayMessage,
-      children,
-      required,
-      disabled = false,
-      ariaLabelContainer,
-      ...radioProps
-    },
-    inputRef,
-  ) => {
-    const rowModifier = `${classModifier ?? ""}${
-      mode === RadioModes.classic ? " label-top " : ""
-    }`;
+  ({ label, mode, options, ...props }, inputRef) => {
+    const labelPosition = mode === RadioModes.classic ? "top" : "center";
     const newOptions = useOptionsWithId(options);
-    const firstId = getFirstId(newOptions);
-    const errorUseId = useId();
-
-    const { inputClassModifier, inputFieldClassModifier } =
-      useInputClassModifier(
-        classModifier,
-        disabled,
-        Boolean(children),
-        required,
-      );
-    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
 
     return (
-      <LegacyField
+      <Field
         label={label}
-        id={firstId}
-        message={message}
-        messageType={messageType}
-        isVisible={isVisible}
-        forceDisplayMessage={forceDisplayMessage}
-        className={className}
-        classModifier={rowModifier + inputFieldClassModifier}
-        classNameContainerLabel={classNameContainerLabel}
-        classNameContainerInput={classNameContainerInput}
+        labelPosition={labelPosition}
         roleContainer="radiogroup"
-        ariaLabelContainer={ariaLabelContainer ?? label?.toString()}
-        isLabelContainerLinkedToInput={false}
-        errorId={errorUseId}
-      >
-        <Radio
-          options={newOptions}
-          mode={mode}
-          classModifier={inputClassModifier}
-          ref={inputRef}
-          disabled={disabled}
-          required={required || classModifier?.includes("required")}
-          aria-describedby={errorUseId}
-          aria-invalid={isInvalid}
-          {...radioProps}
-        />
-        {children}
-      </LegacyField>
+        {...props}
+        renderInput={({
+          classModifier,
+          ariaInvalid,
+          errorId,
+          ...radioProps
+        }) => (
+          <Radio
+            options={newOptions}
+            mode={mode}
+            classModifier={classModifier}
+            ref={inputRef}
+            aria-describedby={errorId}
+            aria-invalid={ariaInvalid}
+            {...radioProps}
+          />
+        )}
+      />
     );
   },
 );

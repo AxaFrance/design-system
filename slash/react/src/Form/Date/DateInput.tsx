@@ -1,84 +1,33 @@
-import { ComponentPropsWithoutRef, forwardRef, ReactNode, useId } from "react";
-import {
-  FieldInput,
-  HelpMessage,
-  LegacyField,
-  useInputClassModifier,
-} from "../core";
+import { ComponentProps, forwardRef, ReactNode } from "react";
+import { ConsumerFieldProps, Field } from "../core";
 import { Date } from "./Date";
-import { useAriaInvalid } from "../core/useAriaInvalid";
 
-type Props = Omit<ComponentPropsWithoutRef<typeof Date>, "placeholderText"> &
-  ComponentPropsWithoutRef<typeof LegacyField> & {
-    placeholder?: string;
-    helpMessage?: ReactNode;
-    children?: ReactNode;
-  };
+type Props = Omit<
+  ConsumerFieldProps &
+    ComponentProps<typeof Date> & {
+      helpMessage?: ReactNode;
+    },
+  "renderInput"
+>;
 
 const DateInput = forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      classModifier = "",
-      message,
-      children,
-      helpMessage,
-      id,
-      classNameContainerLabel,
-      classNameContainerInput,
-      label,
-      messageType,
-      isVisible,
-      forceDisplayMessage,
-      className,
-      disabled = false,
-      required,
-      ...otherProps
-    },
-    ref,
-  ) => {
-    const inputUseId = useId();
-    const errorUseId = useId();
-    const inputId = id ?? inputUseId;
-    const { inputClassModifier, inputFieldClassModifier } =
-      useInputClassModifier(
-        classModifier,
-        disabled,
-        Boolean(children),
-        required,
-      );
-    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
+  ({ children, ...otherProps }, inputRef) => {
     return (
-      <LegacyField
-        label={label}
-        id={inputId}
-        message={message}
-        messageType={messageType}
-        isVisible={isVisible}
-        forceDisplayMessage={forceDisplayMessage}
-        className={className}
-        classModifier={inputFieldClassModifier}
-        classNameContainerLabel={classNameContainerLabel}
-        classNameContainerInput={classNameContainerInput}
-        errorId={errorUseId}
-      >
-        <FieldInput
-          className="af-form__date"
-          classModifier={inputFieldClassModifier}
-        >
+      <Field
+        {...otherProps}
+        renderInput={({ id, classModifier, ariaInvalid, errorId }) => (
           <Date
-            id={inputId}
-            classModifier={inputClassModifier}
-            disabled={disabled}
-            required={required}
-            ref={ref}
-            aria-describedby={errorUseId}
-            aria-invalid={isInvalid}
+            id={id}
+            classModifier={classModifier}
+            ref={inputRef}
+            aria-describedby={errorId}
+            aria-invalid={ariaInvalid}
             {...otherProps}
           />
-          {children}
-        </FieldInput>
-        <HelpMessage message={helpMessage} isVisible={!message} />
-      </LegacyField>
+        )}
+      >
+        {children}
+      </Field>
     );
   },
 );

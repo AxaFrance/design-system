@@ -8,13 +8,16 @@ const getInputClassModifier = (modifier: string, children: ReactNode) =>
   children ? `${modifier} hasinfobulle` : modifier;
 
 const getModifier = (messageType: string | undefined) => {
-  let modifier = "error";
+  let modifier = "";
   switch (messageType) {
     case MessageTypes.success:
       modifier = "success";
       break;
     case MessageTypes.warning:
       modifier = "warning";
+      break;
+    case MessageTypes.error:
+      modifier = "error";
       break;
     default:
       break;
