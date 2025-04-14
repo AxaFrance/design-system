@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Form/Radio/Radio.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/Radio/RadioLF.scss";
 import type { Meta, StoryObj } from "@storybook/html";
 import { render, renderBasic } from "./RadioRender";
 
