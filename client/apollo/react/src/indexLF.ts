@@ -36,3 +36,4 @@ export {
 export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export { Stepper } from "./Stepper/StepperLF";
+export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
