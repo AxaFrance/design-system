@@ -13,16 +13,19 @@ jobs:
     if: github.repository_owner == 'AxaFrance'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Use Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Node.js
+        uses: ./.github/action/setup-node
         with:
-          node-version: "*" # Use the LTS Node.js version
-          cache: "npm"
-      - run: npm run package:check
-      - run: npm ci
-      - run: npm run build
+          check-package: true
+
+      - name: Build packages
+        run: npm run build
+
       - run: npm run test
+
       - name: SonarCloud Scan
         if: github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/main'
         uses: SonarSource/sonarqube-scan-action@aa494459d7c39c106cc77b166de8b4250a32bb97 # v5.1.0
@@ -36,17 +39,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
 
-      - name: Use Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: "*" # Use the LTS Node.js version
-          cache: "npm"
-      - run: npm ci
+      - name: Setup Node.js
+        uses: ./.github/action/setup-node
 
       # https://commitlint.js.org/guides/ci-setup.html#github-actions
       - name: Validate PR commits with commitlint

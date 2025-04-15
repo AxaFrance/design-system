@@ -1,0 +1,21 @@
+name: git-version
+description: git-version
+
+inputs:
+  configFilePath:
+    description: Path to the git-version config file
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@441c43ddefe9c8f5b8e8cee0257bcf06d518d2d3 # v3.2.0
+      with:
+        versionSpec: "5.x"
+
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@441c43ddefe9c8f5b8e8cee0257bcf06d518d2d3 # v3.2.0
+      with:
+        useConfigFile: true
+        configFilePath: ${{ inputs.node-configFilePath }}
