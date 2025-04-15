@@ -33,9 +33,9 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
-      outline: none;
-      outline-offset: 3px;
+      box-shadow: 0 0 0 2px var(--select-box-shadow) inset;
+      outline: 2px;
+      outline-offset: 2px;
     }
 
     &:disabled {
