@@ -13,7 +13,7 @@ export const formatDateInputValue = (
     if (format === "text") {
       const day = String(value.getDate()).padStart(2, "0");
       const month = String(value.getMonth() + 1).padStart(2, "0");
-      const year = value.getFullYear();
+      const year = String(value.getFullYear()).padStart(4, "0");
       return `${day}/${month}/${year}`;
     }
   }

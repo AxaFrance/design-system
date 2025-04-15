@@ -11,9 +11,8 @@
     --input-border-color: var(--color-gray-700);
     --input-border-radius: var(--default-border-radius);
     --input-bg-color: var(--color-white);
-    --input-text-color: var(--color-gray-900);
-    --input-text-icon-color: var(--color-gray-900);
-    --input-text-placeholder-color: var(--color-gray-700);
+    --input-date-color: var(--color-gray-900);
+    --input-date-placeholder-color: var(--color-gray-700);
 
     &:has(> input:not([value=""])) {
       --input-border-color: var(--color-axa);
@@ -21,7 +20,7 @@
 
     &:has(> input:is(:hover, :focus, :active)) {
       --input-border-color: var(--color-axa);
-      --input-text-placeholder-color: var(--color-gray-900);
+      --input-date-placeholder-color: var(--color-gray-900);
     }
 
     &:has(> input[class*="--error"]) {
@@ -31,9 +30,8 @@
     &:has(> input:disabled),
     &:has(> input:disabled):is(:hover, :focus, :active) {
       --input-border-color: var(--color-gray-400);
-      --input-text-color: var(--color-gray-500);
+      --input-date-color: var(--color-gray-500);
       --input-bg-color: var(--color-gray-200);
-      --input-text-icon-color: var(--color-gray-500);
 
       + .af-form__input-helper {
         --input-helper-color: var(--color-gray-500);

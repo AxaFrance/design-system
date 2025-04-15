@@ -8,7 +8,7 @@ type DateProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   placeholder: string;
 };
 
-const Date = forwardRef<HTMLInputElement, DateProps>(
+const DateBase = forwardRef<HTMLInputElement, DateProps>(
   (
     {
       className,
@@ -35,6 +35,6 @@ const Date = forwardRef<HTMLInputElement, DateProps>(
   },
 );
 
-Date.displayName = "Date";
+DateBase.displayName = "Date";
 
-export { Date };
+export { DateBase };

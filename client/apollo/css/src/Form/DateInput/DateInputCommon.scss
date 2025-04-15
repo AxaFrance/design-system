@@ -16,7 +16,7 @@
     border-radius: var(--input-border-radius);
     grid-template-columns: auto min-content;
     align-items: center;
-    color: var(--input-text-color);
+    color: var(--input-date-color);
     background-color: var(--input-bg-color);
 
     &:has(> input ~ *) {
@@ -28,16 +28,11 @@
       font-size: calc(16 / var(--font-size-base) * 1rem);
       font-weight: 600;
       line-height: 1.25em;
-      color: var(--input-text-color);
+      color: var(--input-date-color);
 
       &::placeholder {
         font-weight: 400;
-        color: var(--input-text-placeholder-color);
-      }
-
-      & ~ * {
-        color: var(--input-text-icon-color);
-        fill: var(--input-text-icon-color);
+        color: var(--input-date-placeholder-color);
       }
 
       @media (width > #{breakpoints.$breakpoint-md}) {
@@ -45,7 +40,7 @@
       }
     }
 
-    &:has(> input:is(:hover, :focus, :active)) {
+    &:is(:hover, :focus, :active) {
       box-shadow: 0 0 0 1px var(--input-border-color) inset;
     }
 

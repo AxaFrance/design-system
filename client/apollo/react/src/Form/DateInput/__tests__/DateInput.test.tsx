@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { DateInput } from "../DateInputApollo";
 
 describe("<DateInput />", () => {
@@ -55,5 +56,12 @@ describe("<DateInput />", () => {
     const dateInput = screen.getByLabelText(/test/);
     expect(dateInput).toBeInTheDocument();
     expect(dateInput).toHaveValue("01/01/2025");
+  });
+});
+
+describe("A11Y", () => {
+  it("should'nt have an accessibility violation <DateInput />", async () => {
+    const { container } = render(<DateInput label="test" />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

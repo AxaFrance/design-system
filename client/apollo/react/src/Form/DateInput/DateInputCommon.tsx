@@ -8,7 +8,7 @@ import {
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { Date } from "./Date";
+import { DateBase } from "./DateBase";
 
 type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   classModifier?: string;
@@ -49,12 +49,12 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   ) => {
     const componentClassName = getComponentClassName(
       "af-form__input-date",
-      className || "",
+      className ?? "",
       classModifier + (error || ariaErrormessage ? " error" : ""),
     );
 
     let inputId = useId();
-    inputId = otherProps.id || inputId;
+    inputId = otherProps.id ?? inputId;
     const idMessage = useId();
     const idHelp = useId();
     const idLabel = useId();
@@ -72,7 +72,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
         />
 
         <div className="af-form__input-variant">
-          <Date
+          <DateBase
             id={inputId}
             className={componentClassName}
             placeholder={placeholder || ""}
@@ -80,7 +80,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             ref={inputRef}
             aria-labelledby={idLabel}
             aria-errormessage={ariaErrormessage ?? idMessage}
-            aria-invalid={Boolean(error || ariaErrormessage)}
+            aria-invalid={Boolean(error ?? ariaErrormessage)}
             aria-describedby={idHelp}
             required={required}
             {...otherProps}
@@ -95,7 +95,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
 
         <ItemMessageComponent
           id={idMessage}
-          message={error || success}
+          message={error ?? success}
           messageType={error ? "error" : "success"}
         />
       </div>
