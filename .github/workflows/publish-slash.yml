@@ -25,20 +25,21 @@ jobs:
       isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
     steps:
       - name: Setup Node.js
-        uses: .github/action/setup
+        uses: ./.github/action/setup
         with:
           fetch-depth: 0
 
       - name: Determine Version
         id: gitversion
-        uses: .github/action/git-version
+        uses: ./.github/action/git-version
         with:
           configFilePath: "GitVersion-slash.yml"
 
       - name: Build packages
         run: npm run build:slash
 
-      - run:
+      - name: Npm version
+        run:
           npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w slash/css
           -w slash/react
 
@@ -55,23 +56,23 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: create artifact folder
-        run: mkdir -p artifact/css & mkdir -p artifact/react
-      - name: move storybooks to artifact folders
-        run: cp -R apps/slash-stories/storybook-static/* artifact/react
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - name: Create artifact folders
+        uses: .github/action/create-storybook-artifact
         with:
-          name: storybooks
-          path: |
-            artifact
-          retention-days: 2
+          artifact-name: storybooks
+          folders: |
+            slash/react
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy storybook
+    name: Deploy new version of storybook to gh-pages
     strategy:
       matrix:
+        storybook:
+          - name: slash react
+            publish_dir: ./slash/react
+            destination_dir: slash/react
         version:
           - next
           - latest
@@ -85,10 +86,10 @@ jobs:
         with:
           name: storybooks
 
-      - name: Upload the slash react storybook version ${{ matrix.version }}
+      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ matrix.version }}
         if: needs.build.outputs.isStableRelease == 'true' || matrix.version == 'next'
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./react
-          destination_dir: slash/react/${{ matrix.version }}
+          publish_dir: ${{ matrix.storybook.publish_dir }}
+          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ matrix.version }}
