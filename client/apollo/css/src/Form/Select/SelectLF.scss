@@ -1,0 +1,59 @@
+@use "./SelectCommon";
+
+.af-form__select {
+  &-input {
+    --select-placeholder-color: var(--color-gray-700);
+    --select-border-radius: var(--default-border-radius);
+    --select-border-color: var(--color-gray-700);
+    --select-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
+      no-repeat right 1rem center / 1.5rem 1.5rem;
+
+    &:open {
+      --select-background-open: url("@material-symbols/svg-400/outlined/arrow_drop_up.svg");
+    }
+
+    option {
+      --select-option-color: var(--color-black);
+
+      &:disabled {
+        --select-option-disabled-color: var(--color-gray-500);
+      }
+    }
+
+    &:focus-visible {
+      --select-border-color: var(--color-axa);
+    }
+
+    &:disabled {
+      --select-bg-color-disabled: var(--color-gray-500);
+      --select-border-color: var(--color-gray-400);
+    }
+
+    &-placeholder {
+      --select-placeholder-color: var(--color-gray-700);
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      --select-border-radius: 1px;
+      --select-border-color: var(--color-axa);
+      --select-box-shadow: var(--color-axa);
+    }
+
+    &--error {
+      --select-border-color: var(--color-red);
+
+      &:focus-visible {
+        --select-box-shadow: var(--color-red);
+
+        outline: none;
+      }
+
+      &:not(:disabled):hover,
+      &:not(:disabled):active {
+        --select-border-color: var(--color-red);
+        --select-box-shadow: 0 0 0 1px var(--color-red) inset;
+      }
+    }
+  }
+}

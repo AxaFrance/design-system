@@ -1,0 +1,69 @@
+.af-form__select {
+  &-label {
+    display: inline-block;
+    margin-bottom: calc(8 / var(--font-size-base) * 1rem);
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-weight: 600;
+    color: var(--select-placeholder-color);
+  }
+
+  &-input {
+    display: block;
+    width: 100%;
+    margin: calc(10 / var(--font-size-base) * 1rem) 0;
+    padding: calc(21 / var(--font-size-base) * 1rem);
+    border: 1px solid var(--select-border-color);
+    border-radius: var(--select-border-radius);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--select-color);
+    background: var(--select-background);
+    background-color: white;
+    background-position-x: calc(100% - 1rem);
+    box-shadow: var(--select-box-shadow);
+    appearance: none;
+
+    option {
+      border: 1px solid var(--select-border-color);
+      color: var(--select-color);
+    }
+
+    &:open {
+      background-image: var(--select-background-open);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--select-box-shadow) inset;
+      outline: 2px;
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      border: 1px solid var(--select-border-color);
+      color: var(--select-color);
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      border: var(--select-border-radius) solid var(--select-border-color);
+      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
+    }
+
+    &-placeholder {
+      color: var(--select-color);
+    }
+
+    &--error {
+      border: 2px solid var(--select-border-color);
+      border-color: var(--select-border-color);
+      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
+
+      &:not(:disabled):hover,
+      &:not(:disabled):active {
+        border-color: var(--select-border-color);
+        box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
+      }
+    }
+  }
+}
