@@ -1,0 +1,28 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ClickIconStories from "./ClickIcon.stories";
+
+<Meta of={ClickIconStories} name="ClickIcon" />
+
+# ClickIcon
+
+### Import
+
+```tsx
+import { ClickIcon } from "@axa-fr/design-system-apollo-react";
+```
+
+### Use
+
+```tsx
+import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
+
+export const ClickIconComponent = () => (
+  <ClickIcon src={bank} onClick={() => alert("clicked")} />
+);
+```
+
+## Playground
+
+<Canvas of={ClickIconStories.Default} />
+
+<Controls of={ClickIconStories.Default} />

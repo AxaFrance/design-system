@@ -24,6 +24,7 @@ export {
   type IconSizeVariants,
 } from "./Icon/IconLF";
 export { Divider } from "./Divider/DividerLF";
+export { ClickIcon } from "./ClickIcon/ClickIconLF";
 export { Toggle } from "./Toggle/ToggleLF";
 export { BasePicture } from "./BasePicture/BasePictureLF";
 export {

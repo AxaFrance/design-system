@@ -5,7 +5,7 @@ import { Svg } from "../Svg/Svg";
 export const iconVariants = {
   primary: "primary",
   secondary: "secondary",
-  tertiary: "tertiary",
+  disabled: "disabled",
 } as const;
 export type IconVariants = keyof typeof iconVariants;
 

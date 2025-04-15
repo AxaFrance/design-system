@@ -28,11 +28,11 @@
     }
   }
 
-  &--tertiary {
+  &--disabled {
     --icon-fill: var(--neutral-50);
 
     &.af-icon--has-background {
-      --icon-background-color: var(--axa-blue-4);
+      --icon-background-color: var(--neutral-5);
     }
   }
 }

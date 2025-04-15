@@ -1,0 +1,23 @@
+@use "./ClickIconCommon";
+
+.af-click-icon {
+  --click-icon-background-color: var(--color-btn-tertiary-bg);
+
+  &:hover {
+    --click-icon-background-color: var(--color-btn-tertiary-bg-darker);
+  }
+
+  &:active {
+    --click-icon-background-color: var(--color-btn-tertiary-bg-lighter);
+  }
+
+  &:disabled {
+    --click-icon-background-color: var(--color-gray-200);
+    --click-icon-svg-fill: var(--color-gray-500);
+  }
+
+  &:focus,
+  &:focus-visible {
+    --click-icon-outline-color: var(--color-focus);
+  }
+}
