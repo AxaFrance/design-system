@@ -21,13 +21,13 @@ jobs:
       isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
     steps:
       - name: Setup Node.js
-        uses: .github/action/setup
+        uses: ./.github/action/setup
         with:
           fetch-depth: 0
 
       - name: Determine Version
         id: gitversion
-        uses: .github/action/git-version
+        uses: ./.github/action/git-version
         with:
           configFilePath: "GitVersion-client.yml"
 
@@ -36,7 +36,8 @@ jobs:
           npm run build:apollo
           npm run build:look-and-feel
 
-      - run:
+      - name: Npm version
+        run:
           npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
           client/apollo/css -w client/apollo/react -w
           client/look-and-feel/css -w client/look-and-feel/react
@@ -55,7 +56,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: create artifact folder
+      - name: Create artifact folders
         run: |
           mkdir -p artifact/apollo/react
           mkdir -p artifact/look-and-feel/react
@@ -65,10 +66,10 @@ jobs:
           cp -R apps/look-and-feel-stories/storybook-static/* artifact/look-and-feel/react
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: storybooks
-          path: |
-            artifact
-          retention-days: 2
+          artifact-name: storybooks
+          folders: |
+            apollo/react
+            look-and-feel/react
 
   deploy:
     needs: build
