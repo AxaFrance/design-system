@@ -82,6 +82,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             aria-errormessage={ariaErrormessage ?? idMessage}
             aria-invalid={Boolean(error || ariaErrormessage)}
             aria-describedby={idHelp}
+            required={required}
             {...otherProps}
           />
         </div>
