@@ -36,15 +36,11 @@ export const NewStepsDesign: StoryObj = {
             </li>
             <li class="af-steps-list-step" title="Un titre">
                 <a class="af-steps-list-step__label" href="#/">
-                    <span class="af-steps-list-step__number">
-                        <i class="glyphicon glyphicon-ok"></i>
-                    </span>
                     <span class="af-steps-list-step__title">Custom</span>
                 </a>
             </li>
             <li class="disabled af-steps-list-step number" title="Final step">
                 <div class="af-steps-list-step__label">
-                    <div class="af-steps-list-step__number">5</div>
                     <div class="af-steps-list-step__title">Final step</div>
                 </div>
             </li>
