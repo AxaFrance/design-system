@@ -1,5 +1,4 @@
 import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
-import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
 import "@axa-fr/design-system-slash-css/dist/Form/Text/Text.scss";
 import type { Meta, StoryObj } from "@storybook/html";

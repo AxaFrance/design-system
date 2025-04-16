@@ -1,3 +1,4 @@
+import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
 import "@fontsource/source-sans-pro";
