@@ -39,3 +39,9 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageApollo";
+
+export {
+  CardMessage,
+  cardMessageVariants,
+  type CardMessageVariants,
+} from "./CardMessage/CardMessageApollo";

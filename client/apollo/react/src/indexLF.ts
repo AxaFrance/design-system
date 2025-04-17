@@ -33,3 +33,9 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageLF";
+
+export {
+  CardMessage,
+  cardMessageVariants,
+  type CardMessageVariants,
+} from "./CardMessage/CardMessageLF";

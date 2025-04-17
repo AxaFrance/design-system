@@ -1,0 +1,42 @@
+@use "./CardMessageCommon";
+@use "../common/breakpoints" as breakpoints;
+
+.af-card-message {
+  position: relative;
+
+  --card-message-padding: calc(12 / var(--font-size-base) * 1rem);
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--default-border-radius);
+    height: 100%;
+    background-color: var(--card-message-lf-border-color);
+    content: "";
+  }
+
+  &--info {
+    --card-message-background-color: var(--color-blue-200);
+    --card-message-text-color: var(--color-axa);
+    --card-message-lf-border-color: var(--color-axa);
+  }
+
+  &--warning {
+    --card-message-background-color: var(--axa-red-4);
+    --card-message-text-color: var(--color-btn-business-dark);
+    --card-message-lf-border-color: var(--color-btn-business-dark);
+  }
+
+  &--error {
+    --card-message-background-color: var(--color-btn-error-bg);
+    --card-message-text-color: var(--color-btn-error-text);
+    --card-message-lf-border-color: var(--color-btn-error-text);
+  }
+
+  &--neutral {
+    --card-message-background-color: var(--color-gray-200);
+    --card-message-text-color: var(--color-gray-900);
+    --card-message-lf-border-color: var(--color-gray-900);
+  }
+}

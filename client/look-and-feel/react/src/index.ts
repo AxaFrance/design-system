@@ -69,3 +69,8 @@ export {
 } from "./Icon/Icon";
 export { Toggle } from "./Toggle";
 export { BasePicture } from "./BasePicture/BasePicture";
+export {
+  CardMessage,
+  cardMessageVariants,
+  type CardMessageVariants,
+} from "./CardMessage/CardMessage";
