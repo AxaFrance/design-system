@@ -3,5 +3,6 @@
 @use "./ItemLabelCommon";
 
 .af-item-label {
+  --label-color: var(--neutral-100);
   --label-description-color: var(--neutral-80);
 }
