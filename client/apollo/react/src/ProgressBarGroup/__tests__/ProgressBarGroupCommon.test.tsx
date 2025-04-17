@@ -11,7 +11,9 @@ describe("ProgressBarGroup Component", () => {
         ProgressBarComponent={ProgressBar}
       />,
     );
-    const progressBars = screen.getAllByRole("progressbar");
+    const progressBars = screen.getAllByRole("progressbar", {
+      hidden: true,
+    });
     expect(progressBars).toHaveLength(5);
   });
 
@@ -25,7 +27,9 @@ describe("ProgressBarGroup Component", () => {
       />,
     );
 
-    const progressBars = screen.getAllByRole("progressbar");
+    const progressBars = screen.getAllByRole("progressbar", {
+      hidden: true,
+    });
     expect(progressBars[0]).toHaveAttribute("aria-valuenow", "100"); // Step 1 completed
     expect(progressBars[1]).toHaveAttribute("aria-valuenow", "100"); // Step 2 completed
     expect(progressBars[2]).toHaveAttribute("aria-valuenow", "50"); // Step 3 in progress
@@ -42,7 +46,9 @@ describe("ProgressBarGroup Component", () => {
       />,
     );
 
-    const progressBars = screen.getAllByRole("progressbar");
+    const progressBars = screen.getAllByRole("progressbar", {
+      hidden: true,
+    });
     expect(progressBars[0]).toHaveAttribute("aria-valuenow", "100"); // Step 1 completed
     expect(progressBars[1]).toHaveAttribute("aria-valuenow", "10"); // Step 2 default progress
     expect(progressBars[2]).toHaveAttribute("aria-valuenow", "0"); // Step 3 not started

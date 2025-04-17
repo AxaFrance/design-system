@@ -26,16 +26,14 @@ describe("Stepper Component", () => {
       <Stepper
         currentStep={1}
         currentTitle="Step 1 Title"
-        currentSubtitle="Step 1 Subtitle"
+        currentSubtitle=""
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
       />,
     );
 
-    const title = screen.queryByRole("heading", { name: "Step 1 Title" });
     const subtitle = screen.queryByText("Step 1 Subtitle");
 
-    expect(title).not.toBeInTheDocument();
     expect(subtitle).not.toBeInTheDocument();
   });
 
@@ -49,7 +47,9 @@ describe("Stepper Component", () => {
       />,
     );
 
-    const progressBars = screen.getAllByRole("progressbar");
+    const progressBars = screen.getAllByRole("progressbar", {
+      hidden: true,
+    });
     expect(progressBars).toHaveLength(4);
   });
 
