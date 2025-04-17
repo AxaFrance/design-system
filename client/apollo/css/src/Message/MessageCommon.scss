@@ -17,6 +17,9 @@
   &__title {
     margin: 0;
     padding-bottom: 0.25rem;
+    font-size: calc(
+      var(--message-title-font-size) / var(--font-size-base) * 1rem
+    );
     font-weight: 600;
     line-height: 1.5rem;
     color: var(--message-title-color);
@@ -24,7 +27,9 @@
 
   &__content {
     width: 100%;
-    font-size: var(--message-content-font-size);
+    font-size: calc(
+      var(--message-content-font-size) / var(--font-size-base) * 1rem
+    );
     font-weight: 400;
     line-height: calc(22.5 / var(--font-size-base) * 1rem);
     color: var(--message-content-color);
