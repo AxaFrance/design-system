@@ -58,7 +58,6 @@ export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
 export { Tag, tagVariants, type TagVariants } from "./Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
-<<<<<<< HEAD
 export { ClickIcon } from "./ClickIcon/ClickIcon";
 export {
   Icon,
@@ -69,8 +68,6 @@ export {
 } from "./Icon/Icon";
 export { Toggle } from "./Toggle";
 export { BasePicture } from "./BasePicture/BasePicture";
-=======
 export { ProgressBar } from "./ProgressBar/ProgressBar";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroup";
 export { Stepper } from "./Stepper/Stepper";
->>>>>>> 90887462 (feat(apollo,look&feel): progressbar, progressbargroup, stepper)
