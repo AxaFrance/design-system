@@ -8,7 +8,7 @@ import {
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { DateBase } from "./DateBase";
+import { formatDateInputValue } from "./DateInput.helper";
 
 type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   classModifier?: string;
@@ -18,7 +18,7 @@ type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   error?: string;
   success?: string;
   label: ComponentProps<typeof ItemLabel>["label"];
-  hideDatePicker?: boolean;
+  type?: "text" | "date";
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
@@ -30,6 +30,8 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     {
       className,
       classModifier = "",
+      defaultValue,
+      value,
       placeholder = "JJ/MM/AAAA",
       helper,
       error,
@@ -42,7 +44,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       ItemMessageComponent,
       required,
       "aria-errormessage": ariaErrormessage,
-      hideDatePicker = true,
+      type = "text",
       ...otherProps
     },
     inputRef,
@@ -70,20 +72,21 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           inputId={inputId}
           idLabel={idLabel}
         />
-        <DateBase
+        <input
+          {...otherProps}
           id={inputId}
           className={componentClassName}
+          type={type}
           placeholder={placeholder || ""}
-          hideDatePicker={hideDatePicker}
           ref={inputRef}
+          defaultValue={formatDateInputValue(type, defaultValue)}
+          value={formatDateInputValue(type, value)}
           aria-labelledby={idLabel}
           aria-errormessage={ariaErrormessage ?? idMessage}
           aria-invalid={Boolean(error ?? ariaErrormessage)}
           aria-describedby={idHelp}
           required={required}
-          {...otherProps}
         />
-
         {helper && (
           <span id={idHelp} className="af-form__input-helper">
             {helper}

@@ -36,7 +36,7 @@ export const DateInputDefaultWithDatePickerStory: Story = {
   name: "Date with date picker",
   render,
   args: {
-    hideDatePicker: false,
+    type: "date",
   },
 };
 
@@ -53,7 +53,7 @@ export const DateInputFilledWithDatePickerStory: Story = {
   render,
   args: {
     value: new Date("2025-01-01"),
-    hideDatePicker: false,
+    type: "date",
   },
 };
 
@@ -89,7 +89,7 @@ export const DateInputErrorWithDatePickerStory: Story = {
     error: "Titre du message",
     "aria-errormessage": undefined,
     value: new Date("2080-01-01"),
-    hideDatePicker: false,
+    type: "date",
   },
   argTypes: {
     "aria-errormessage": {

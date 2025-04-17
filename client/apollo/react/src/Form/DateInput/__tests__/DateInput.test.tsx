@@ -40,11 +40,7 @@ describe("<DateInput />", () => {
 
   it("renders with a date picker and value is a Date object", () => {
     render(
-      <DateInput
-        label="test"
-        hideDatePicker={false}
-        value={new Date("2025-01-01")}
-      />,
+      <DateInput label="test" type="date" value={new Date("2025-01-01")} />,
     );
     const dateInput = screen.getByLabelText(/test/);
     expect(dateInput).toBeInTheDocument();
@@ -60,7 +56,7 @@ describe("<DateInput />", () => {
 });
 
 describe("A11Y", () => {
-  it("should'nt have an accessibility violation <DateInput />", async () => {
+  it("shouldn't have an accessibility violation <DateInput />", async () => {
     const { container } = render(<DateInput label="test" />);
     expect(await axe(container)).toHaveNoViolations();
   });
