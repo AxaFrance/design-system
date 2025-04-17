@@ -5,8 +5,10 @@ unique pour utiliser le design system AXA France au sein de vos projets.
 
 Il propose d'utiliser les deux designs systems principaux :
 
+- **Apollo** pour le <abbr title="Business to client">B2C</abbr>, les
+  applications exposées aux prospect (AXA.Fr)
 - **Look & Feel** pour le <abbr title="Business to client">B2C</abbr>, les
-  applications exposées aux clients
+    applications exposées aux clients (Espace client)
 - **Slash** pour le <abbr title="Business to business">B2B</abbr>, les
   applications internes
 
@@ -21,9 +23,9 @@ Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers
 ### <abbr title="Business to business">B2B</abbr> - Slash
 
 [![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-react/latest?label=slash-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-react)](https://www.npmjs.com/@axa-fr/design-system-slash-react)
-[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-css/latest?label=slash-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-react)](https://www.npmjs.com/@axa-fr/design-system-slash-css)\
-[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-react/next?label=slash-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-react)](https://www.npmjs.com/@axa-fr/design-system-slash-react)
-[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-css/next?label=slash-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-react)](https://www.npmjs.com/@axa-fr/design-system-slash-css)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-css/latest?label=slash-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-css)](https://www.npmjs.com/@axa-fr/design-system-slash-css)\
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-react/next?label=slash-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-react)](https://www.npmjs.com/package/@axa-fr/design-system-slash-react/v/next)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-css/next?label=slash-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-css)](https://www.npmjs.com/package/@axa-fr/design-system-slash-css/v/next)
 
 **Documentation**
 
@@ -44,15 +46,57 @@ npm install @axa-fr/design-system-slash-react@latest @axa-fr/design-system-slash
 npm install @axa-fr/design-system-slash-react@next @axa-fr/design-system-slash-css@next
 ```
 
+### <abbr title="Business to client">B2C</abbr> - Apollo
 
-### Client
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-react/latest?label=apollo-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-apollo-react)](https://www.npmjs.com/@axa-fr/design-system-apollo-react)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-css/latest?label=apollo-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-apollo-css)](https://www.npmjs.com/@axa-fr/design-system-apollo-css)\
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-react/next?label=apollo-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-apollo-react)](https://www.npmjs.com/package/@axa-fr/design-system-apollo-react/v/next)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-css/next?label=apollo-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-apollo-css)](https://www.npmjs.com/package/@axa-fr/design-system-apollo-css/v/next)
 
-| name                                                                          | Storybook                                                                                                                                                                                                                                                                                                                                           | npm latest                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | npm next                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Documentation UI et UX                                                                                                                                                                                                                                                                                                                            |
-|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **@axa-fr/design-system-look-and-feel-css**                                   | [![Storybook](https://img.shields.io/badge/Storybook-look--and--feel--css-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/look-and-feel/css/latest/)                                                                                                                                                              | [![Lien vers npm](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-css)                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-look_and_feel-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c) [![Figma](https://img.shields.io/badge/Figma-look_and_feel-F24E1E?logo=figma)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1) |
-| **@axa-fr/design-system-look-and-feel-react**                                 | [![Storybook](https://img.shields.io/badge/Storybook-look--and--feel--react-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/look-and-feel/react/latest/)                                                                                                                                                          | [![Lien vers npm](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-react)                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-look_and_feel-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c) [![Figma](https://img.shields.io/badge/Figma-look_and_feel-F24E1E?logo=figma)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1) |
-| **@axa-fr/design-system-apollo-css**                                          |                                                                                                                                                                                                                                                                                                                                                     | [![Lien vers npm](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-css)](https://www.npmjs.com/@axa-fr/design-system-apollo-css)                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-apollo-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c) [![Figma](https://img.shields.io/badge/Figma-apollo-F24E1E?logo=figma)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1)               |
-| **@axa-fr/design-system-apollo-react**                                        | [![Storybook](https://img.shields.io/badge/Storybook-apollo--react-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/apollo/react/latest/)                                                                                                                                                                          | [![Lien vers npm](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-react)](https://www.npmjs.com/@axa-fr/design-system-apollo-react)                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-apollo-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c) [![Figma](https://img.shields.io/badge/Figma-apollo-F24E1E?logo=figma)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1)               |
+**Documentation**
+
+[![Storybook](https://img.shields.io/badge/Storybook-apollo--latest-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/apollo/react/latest/)
+[![Storybook](https://img.shields.io/badge/Storybook-apollo--next-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/apollo/react/next/)\
+[![ZeroHeight](https://img.shields.io/badge/ZeroHeight-apollo-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c)
+[![Figma](https://img.shields.io/badge/Figma-apollo-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1)
+
+**Installation latest**
+
+```bash
+npm install @axa-fr/design-system-apollo-react@latest @axa-fr/design-system-apollo-css@latest
+```
+**Installation next**
+
+
+```bash
+npm install @axa-fr/design-system-apollo-react@next @axa-fr/design-system-apollo-css@next
+```
+
+### <abbr title="Business to client">B2C</abbr> - Look and feel
+
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react/latest?label=apollo-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-react)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css/latest?label=apollo-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-css)\
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react/next?label=apollo-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/package/@axa-fr/design-system-look-and-feel-react/v/next)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css/next?label=apollo-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/package/@axa-fr/design-system-look-and-feel-css/v/next)
+
+**Documentation**
+
+[![Storybook](https://img.shields.io/badge/Storybook-look--and--feel--latest-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/look-and-feel/react/latest/)
+[![Storybook](https://img.shields.io/badge/Storybook-look--and--feel--next-FF4785?logo=storybook&logoColor=white)](https://axafrance.github.io/design-system/look-and-feel/react/next/)\
+[![ZeroHeight](https://img.shields.io/badge/ZeroHeight-look_and_feel-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c)
+[![Figma](https://img.shields.io/badge/Figma-look_and_feel-F24E1E?logo=figma)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1)
+
+**Installation latest**
+
+```bash
+npm install @axa-fr/design-system-look-and-feel-react@latest @axa-fr/design-system-look-and-feel-css@latest
+```
+**Installation next**
+
+
+```bash
+npm install @axa-fr/design-system-look-and-feel-react@next @axa-fr/design-system-look-and-feel-css@next
+```
 
 ## Build status
 
