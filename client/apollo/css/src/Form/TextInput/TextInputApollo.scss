@@ -15,7 +15,8 @@
     --input-text-icon-color: var(--axa-blue-100);
 
     &:has(> input:not([value=""])) {
-      --input-border-color: var(--axa-blue-65);
+      --input-border-color: var(--axa-blue-100);
+      --input-text-color: var(--axa-blue-100);
     }
 
     &:has(> input:is(:hover, :focus, :active)) {
