@@ -70,22 +70,19 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           inputId={inputId}
           idLabel={idLabel}
         />
-
-        <div className="af-form__input-variant">
-          <DateBase
-            id={inputId}
-            className={componentClassName}
-            placeholder={placeholder || ""}
-            hideDatePicker={hideDatePicker}
-            ref={inputRef}
-            aria-labelledby={idLabel}
-            aria-errormessage={ariaErrormessage ?? idMessage}
-            aria-invalid={Boolean(error ?? ariaErrormessage)}
-            aria-describedby={idHelp}
-            required={required}
-            {...otherProps}
-          />
-        </div>
+        <DateBase
+          id={inputId}
+          className={componentClassName}
+          placeholder={placeholder || ""}
+          hideDatePicker={hideDatePicker}
+          ref={inputRef}
+          aria-labelledby={idLabel}
+          aria-errormessage={ariaErrormessage ?? idMessage}
+          aria-invalid={Boolean(error ?? ariaErrormessage)}
+          aria-describedby={idHelp}
+          required={required}
+          {...otherProps}
+        />
 
         {helper && (
           <span id={idHelp} className="af-form__input-helper">

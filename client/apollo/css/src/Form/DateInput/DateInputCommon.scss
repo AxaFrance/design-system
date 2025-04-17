@@ -8,50 +8,41 @@
     row-gap: calc(8 / var(--font-size-base) * 1rem);
   }
 
-  &__input-variant {
-    display: grid;
+  &__input-date {
+    all: unset;
     width: 100%;
     padding: calc(16 / var(--font-size-base) * 1rem);
     border: 1px solid var(--input-border-color);
     border-radius: var(--input-border-radius);
-    grid-template-columns: auto min-content;
-    align-items: center;
+    font: var(--font-family-base);
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-weight: 600;
+    line-height: 1.25em;
+    text-transform: uppercase;
     color: var(--input-date-color);
     background-color: var(--input-bg-color);
 
-    &:has(> input ~ *) {
-      column-gap: calc(8 / var(--font-size-base) * 1rem);
+    &::placeholder {
+      font-weight: 400;
+      color: var(--input-date-placeholder-color);
     }
 
-    > input {
-      all: unset;
-      font-size: calc(16 / var(--font-size-base) * 1rem);
-      font-weight: 600;
-      line-height: 1.25em;
-      color: var(--input-date-color);
-
-      &::placeholder {
-        font-weight: 400;
-        color: var(--input-date-placeholder-color);
-      }
-
-      @media (width > #{breakpoints.$breakpoint-md}) {
-        font-size: calc(18 / var(--font-size-base) * 1rem);
-      }
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      font-size: calc(18 / var(--font-size-base) * 1rem);
     }
 
     &:is(:hover, :focus, :active) {
       box-shadow: 0 0 0 1px var(--input-border-color) inset;
     }
 
-    &:has(> input:disabled),
-    &:has(> input:disabled):is(:hover, :focus, :active) {
+    &:disabled,
+    &:disabled:is(:hover, :focus, :active) {
       box-shadow: unset;
       cursor: not-allowed;
+    }
 
-      & > input ~ * {
-        cursor: not-allowed;
-      }
+    &:valid:not([class*="--error"]) {
+      color: var(--input-date-placeholder-color-filled);
     }
   }
 

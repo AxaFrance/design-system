@@ -7,26 +7,23 @@
     --input-helper-color: var(--neutral-80);
   }
 
-  &__input-variant {
+  &__input-date {
     --input-border-color: var(--axa-blue-65);
     --input-border-radius: var(--radius-8);
     --input-bg-color: var(--white);
     --input-date-color: var(--neutral-80);
+    --input-date-placeholder-color-filled: var(--axa-blue-100);
 
-    &:has(> input:not([value=""])) {
-      --input-border-color: var(--axa-blue-65);
-    }
-
-    &:has(> input:is(:hover, :focus, :active)) {
+    &:is(:hover, :focus, :active) {
       --input-border-color: var(--axa-blue-100);
     }
 
-    &:has(> input[class*="--error"]) {
+    &[class*="--error"] {
       --input-border-color: var(--red-alert-100);
     }
 
-    &:has(> input:disabled),
-    &:has(> input:disabled):is(:hover, :focus, :active) {
+    &:disabled,
+    &:disabled:is(:hover, :focus, :active) {
       --input-border-color: var(--neutral-50);
       --input-date-color: var(--neutral-50);
       --input-bg-color: var(--neutral-5);
