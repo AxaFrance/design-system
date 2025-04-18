@@ -7,17 +7,17 @@ jobs:
     name: Run Chromatic
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
-        with:
-          node-version: 22
-      - name: Install dependencies
-        run: npm ci
+
+      - name: Setup Node.js
+        uses: ./.github/action/setup-node
+
       - name: Build packages
         run: npm run build
+
       - uses: chromaui/action@649b4fd73c3f7cd7a65bd0b9f131349335ec661b # v11.28.0
         name: Run Chromatic for design-system-slash-react
         with:
