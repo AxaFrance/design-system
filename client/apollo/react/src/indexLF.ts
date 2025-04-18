@@ -37,3 +37,6 @@ export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export { Stepper } from "./Stepper/StepperLF";
 export { DateInput } from "./Form/DateInput/DateInputLF";
+export { Checkbox } from "./Form/checkbox/checkbox/CheckboxLf";
+export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextLF";
+export { CheckboxCard } from "./Form/checkbox/checkboxCard/CheckboxCardLF";

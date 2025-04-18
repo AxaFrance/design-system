@@ -42,3 +42,6 @@ export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export { Stepper } from "./Stepper/StepperApollo";
 export { DateInput } from "./Form/DateInput/DateInputApollo";
+export { Checkbox } from "./Form/checkbox/checkbox/CheckboxApollo";
+export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextApollo";
+export { CheckboxCard } from "./Form/checkbox/checkboxCard/CheckboxCardApollo";

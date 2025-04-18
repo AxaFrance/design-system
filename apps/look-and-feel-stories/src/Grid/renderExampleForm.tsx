@@ -1,6 +1,6 @@
 import {
   Button,
-  CheckboxSelect,
+  CheckboxCard,
   DebugGrid,
   RadioSelect,
   Svg,
@@ -65,7 +65,7 @@ export const render = () => (
             ]}
             name="radio-name"
           />
-          <CheckboxSelect
+          <CheckboxCard
             className="subgrid"
             type="horizontal"
             labelGroup="Titre"
