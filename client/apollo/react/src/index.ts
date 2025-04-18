@@ -38,6 +38,9 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageApollo";
+
+export { Accordion } from "./Accordion/AccordionApollo";
+export { AccordionCore } from "./AccordionCore/AccordionCoreApollo";
 export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export { Stepper } from "./Stepper/StepperApollo";

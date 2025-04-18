@@ -33,6 +33,9 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageLF";
+
+export { Accordion } from "./Accordion/AccordionLF";
+export { AccordionCore } from "./AccordionCore/AccordionCoreLF";
 export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export { Stepper } from "./Stepper/StepperLF";
