@@ -69,6 +69,11 @@ export {
 } from "./Icon/Icon";
 export { Toggle } from "./Toggle";
 export { BasePicture } from "./BasePicture/BasePicture";
+export {
+  CardMessage,
+  cardMessageVariants,
+  type CardMessageVariants,
+} from "./CardMessage/CardMessage";
 export { ProgressBar } from "./ProgressBar/ProgressBar";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroup";
 export { Stepper } from "./Stepper/Stepper";
