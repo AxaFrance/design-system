@@ -53,15 +53,6 @@
     "tsc-files": "^1.1.4",
     "turbo": "^2.4.4"
   },
-  "overrides": {
-    "eslint-config-airbnb": {
-      "eslint-plugin-react-hooks": "^5.2.0",
-      "eslint": "^9.22.0"
-    },
-    "eslint-config-airbnb-base": {
-      "eslint": "^9.22.0"
-    }
-  },
   "lint-staged": {
     "{package,package-lock}.json": "npm run package:check"
   },

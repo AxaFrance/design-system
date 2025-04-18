@@ -20,7 +20,9 @@ const calculateStrength = (score?: string | null) => {
   if (score === null || score === undefined) {
     return null;
   }
-  let strength = Number(score) ?? 0;
+
+  const scoreToNumber = Number(score);
+  let strength = Number.isNaN(scoreToNumber) ? 0 : scoreToNumber;
   if (strength > 4) {
     strength = 4;
   }
