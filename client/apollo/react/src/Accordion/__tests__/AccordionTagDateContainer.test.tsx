@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { AccordionTagDateContainer } from "../AccordionTagDateContainer";
+import { AccordionTagDateContainer } from "../AccordionTagDateContainerCommon";
 
 describe("AccordionTagDateContainer", () => {
   it("renders correctly", () => {

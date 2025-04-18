@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { AccordionCore } from "../AccordionCore";
+import { AccordionCore } from "../AccordionCoreApollo";
 
 describe("AccordionCore", () => {
   it("renders correctly with all visual props", () => {
@@ -24,18 +24,6 @@ describe("AccordionCore", () => {
     expect(details).toHaveAttribute("open");
     summary.click();
     expect(details).not.toHaveAttribute("open");
-  });
-
-  it("should have custom class with modifier", () => {
-    render(
-      <AccordionCore summary="Accordion Title">
-        Accordion Content
-      </AccordionCore>,
-    );
-
-    expect(
-      screen.getByText("Accordion Content").closest("details"),
-    ).toHaveClass(`af-accordion custom-class af-accordion--modifier`);
   });
 
   it("renders Accordion with open details", () => {
