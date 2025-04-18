@@ -1,0 +1,18 @@
+@use "./ProgressBarCommon";
+
+.af-progressbar {
+  --progressbar-background-color: var(--neutral-14);
+  --progress-radius: 0;
+
+  &:first-child:has(+ .af-progressbar) {
+    --progress-radius: var(--radius-6) 0 0 var(--radius-6);
+  }
+
+  & + .af-progressbar:last-child {
+    --progress-radius: 0 var(--radius-6) var(--radius-6) 0;
+  }
+
+  &__progress {
+    --progress-background-color: var(--axa-blue-100);
+  }
+}

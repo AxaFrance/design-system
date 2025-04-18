@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ProgressBarStories from "./ProgressBar.stories";
+
+<Meta of={ProgressBarStories} name="ProgressBar Client" />
+
+# ProgressBar
+
+To use the header import it like that:
+
+```tsx title="test.js"
+import { ProgressBar } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => <ProgressBar />;
+```
+
+## Playground
+
+<Canvas of={ProgressBarStories.Playground} />
+
+<Controls of={ProgressBarStories.Playground} />
