@@ -33,9 +33,9 @@ export { Divider } from "./Divider/DividerApollo";
 export { ClickIcon } from "./ClickIcon/ClickIconApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
 export { BasePicture } from "./BasePicture/BasePictureApollo";
-
 export {
   Message,
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageApollo";
+export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoApollo";

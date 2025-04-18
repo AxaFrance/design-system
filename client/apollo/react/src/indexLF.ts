@@ -33,3 +33,4 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageLF";
+export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
