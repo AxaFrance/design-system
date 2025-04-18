@@ -1,11 +1,12 @@
-import { useMemo, type ComponentProps, type ReactNode } from "react";
-import { AccordionCore } from "../AccordionCore/AccordionCore";
 import {
-  BREAKPOINT,
-  getComponentClassName,
-  useIsSmallScreen,
-} from "../utilities";
-import { AccordionTagDateContainer } from "./AccordionTagDateContainer";
+  type ComponentProps,
+  type ComponentType,
+  type ReactNode,
+  useMemo,
+} from "react";
+import { AccordionCore } from "../AccordionCore/AccordionCoreCommon";
+import { getComponentClassName } from "../utilities/getComponentClassName";
+import { AccordionTagDateContainer } from "./AccordionTagDateContainerCommon";
 
 type AccordionProps = {
   title: string;
@@ -13,6 +14,9 @@ type AccordionProps = {
   icon?: ReactNode;
   value?: string;
   isTitleFirst?: boolean;
+  AccordionCoreComponent: ComponentType<
+    Omit<ComponentProps<typeof AccordionCore>, "ClickIconComponent">
+  >;
 } & ComponentProps<typeof AccordionTagDateContainer> &
   Partial<ComponentProps<typeof AccordionCore>>;
 
@@ -27,9 +31,10 @@ export const Accordion = ({
   dateProps,
   value,
   isTitleFirst = true,
+  AccordionCoreComponent,
   ...accordionCoreProps
 }: AccordionProps) => {
-  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
+  const isMobile = true;
   const isShowingIcon = Boolean(icon && isTitleFirst);
   const summaryClassName = useMemo(
     () =>
@@ -41,7 +46,7 @@ export const Accordion = ({
   );
 
   return (
-    <AccordionCore
+    <AccordionCoreComponent
       summary={
         <>
           {isShowingIcon && isMobile && (
@@ -77,6 +82,6 @@ export const Accordion = ({
       {...accordionCoreProps}
     >
       {children}
-    </AccordionCore>
+    </AccordionCoreComponent>
   );
 };

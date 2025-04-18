@@ -1,0 +1,53 @@
+@use "../common/breakpoints" as breakpoints;
+
+.af-accordion {
+  &__summary {
+    display: grid;
+    padding: 1rem;
+    grid-template-areas: "summary arrow";
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 2.5rem;
+    font-size: var(--accordion-title-font-size);
+    font-weight: 600;
+    line-height: var(--accordion-title-line-height);
+    color: var(--accordion-title-text-color);
+    cursor: pointer;
+
+    p {
+      margin: 0;
+    }
+
+    &:first-child {
+      grid-area: summary;
+    }
+  }
+
+  &[open] > .af-accordion__summary {
+    border-bottom: 1px solid var(--color-gray-300);
+  }
+
+  &__content {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: var(--color-gray-700);
+  }
+}
+
+@media (width <= #{breakpoints.$breakpoint-sm}) {
+  .af-accordion {
+    &__summary {
+      row-gap: 0.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+    }
+
+    &__content {
+      font-size: 0.875rem;
+      line-height: 1.1rem;
+    }
+  }
+}

@@ -3,6 +3,8 @@ import "@axa-fr/design-system-apollo-css/dist/common/tokens.scss";
 import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.scss";
 import "@fontsource/source-sans-pro";
 
+export { Accordion } from "./Accordion/AccordionApollo";
+export { AccordionCore } from "./AccordionCore/AccordionCoreApollo";
 export { BasePicture } from "./BasePicture/BasePictureApollo";
 export {
   Button,

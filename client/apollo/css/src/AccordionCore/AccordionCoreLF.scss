@@ -1,0 +1,9 @@
+@use "./AccordionCoreCommon";
+
+.af-accordion {
+  &__summary {
+    --accordion-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --accordion-title-line-height: calc(var(--tag-font-size) * 1.25);
+    --accordion-title-text-color: var(--neutral-100);
+  }
+}
