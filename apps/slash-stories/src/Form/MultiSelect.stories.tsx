@@ -34,7 +34,6 @@ const commonArgs = {
   options,
   disabled: false,
   required: true,
-  className: "",
   placeholder: "Select",
 };
 
