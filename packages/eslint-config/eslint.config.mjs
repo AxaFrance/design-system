@@ -77,6 +77,7 @@ export default [
         },
       ],
       "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
+      "no-implicit-coercion": ["error", { boolean: true }],
 
       // eslint-plugin-import https://github.com/import-js/eslint-plugin-import
       "import/prefer-default-export": "off",

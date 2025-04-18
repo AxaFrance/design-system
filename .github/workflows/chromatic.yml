@@ -27,15 +27,7 @@ jobs:
           workingDir: "apps/slash-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
-      - uses: chromaui/action@649b4fd73c3f7cd7a65bd0b9f131349335ec661b # v11.28.0
-        name: Run Chromatic for design-system-slash-css
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_CSS }}
-          zip: true
-          buildScriptName: "build"
-          workingDir: "apps/slash-stories-css"
-          onlyChanged: true
-          skip: "@(renovate/**|dependabot/**)"
+
       - uses: chromaui/action@649b4fd73c3f7cd7a65bd0b9f131349335ec661b # v11.28.0
         name: Run Chromatic for design-system-lookandfeel-react
         with:

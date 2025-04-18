@@ -1,0 +1,44 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as IconsStories from "./Icons.stories.tsx";
+
+<Meta of={IconsStories} />
+
+# Icons
+
+## Icon Recommended
+
+The design system recommends using icons from the [Material Symbols](https://fonts.google.com/icons) library as a priority. These icons are available via the [`@material-symbols/svg-400`](https://www.npmjs.com/package/@material-symbols/svg-400) package. They provide extensive functional coverage and a modern style aligned with current standards.
+
+```bash
+npm install @material-symbols/svg-400
+```
+
+### Example of Using Material Icons
+
+```tsx
+import home from "@material-symbols/svg-400/outlined/home.svg";
+import { Svg } from "@axa-fr/design-system-slash-react";
+
+export const Example = () => <Svg src={home} />;
+```
+
+## Glyphicons (Deprecated)
+
+Historically, the design system used Glyphicons. These icons are still available for backward compatibility but are now considered **deprecated**. It is strongly recommended to migrate to Material icons for new developments.
+
+### Example of Using Glyphicons (Deprecated)
+
+```tsx
+import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
+
+export const Example = () => <span className="glyphicon glyphicon-home" />;
+```
+
+<Canvas of={IconsStories.Glyphicon} />
+<Controls of={IconsStories.Glyphicon} />
+
+> **Note:** Glyphicons will no longer receive updates and may be removed in a future major release.
+
+### All Glyphicons
+
+<Canvas of={IconsStories.AllIcons} />

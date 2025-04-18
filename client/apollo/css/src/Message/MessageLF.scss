@@ -1,14 +1,22 @@
+@use "../common/breakpoints" as breakpoints;
 @use "./MessageCommon";
 
 .af-message {
   --message-theme-color: var(--color-axa);
   --message-bg-color: var(--color-white);
   --message-border-color: var(--message-theme-color);
+  --message-border-radius: var(--radius-12);
   --message-icon-color: var(--message-theme-color);
   --message-title-color: var(--message-theme-color);
-  --message-border-radius: var(--radius-12);
+  --message-title-font-size: 16;
   --message-content-color: var(--color-gray-900);
-  --message-content-font-size: calc(18 / var(--font-size-base) * 1rem);
+  --message-content-font-size: 16;
+  --message-action-padding-top: 12;
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --message-content-font-size: 18;
+    --message-title-font-size: 18;
+  }
 
   &--error {
     --message-theme-color: var(--color-red-700);

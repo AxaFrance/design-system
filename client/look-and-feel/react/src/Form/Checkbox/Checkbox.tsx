@@ -27,7 +27,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               type="checkbox"
               id={inputId}
               aria-errormessage={idError}
-              aria-invalid={!!errorMessage}
+              aria-invalid={Boolean(errorMessage)}
             />
             <div className="af-checkbox__icons">
               <Svg

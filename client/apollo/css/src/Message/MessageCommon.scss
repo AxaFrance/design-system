@@ -3,28 +3,33 @@
   padding: calc(16 / var(--font-size-base) * 1rem);
   border: 1px solid var(--message-border-color);
   border-radius: var(--message-border-radius);
-  flex: 1 1 0;
+  gap: calc(16 / var(--font-size-base) * 1rem);
   background-color: var(--message-bg-color);
 
   &__icon {
     aspect-ratio: 1;
-    margin-right: calc(16 / var(--font-size-base) * 1rem);
-    flex-shrink: 0;
     color: var(--message-icon-color);
     fill: var(--message-icon-color);
   }
 
   &__title {
     margin: 0;
-    padding-bottom: 0.25rem;
+    font-size: calc(
+      var(--message-title-font-size) / var(--font-size-base) * 1rem
+    );
     font-weight: 600;
     line-height: 1.5rem;
     color: var(--message-title-color);
   }
 
   &__content {
+    display: flex;
     width: 100%;
-    font-size: var(--message-content-font-size);
+    flex-direction: column;
+    row-gap: calc(4 / var(--font-size-base) * 1rem);
+    font-size: calc(
+      var(--message-content-font-size) / var(--font-size-base) * 1rem
+    );
     font-weight: 400;
     line-height: calc(22.5 / var(--font-size-base) * 1rem);
     color: var(--message-content-color);
@@ -32,6 +37,9 @@
 
   &__action {
     display: flex;
+    padding-top: calc(
+      var(--message-action-padding-top) / var(--font-size-base) * 1rem
+    );
     justify-content: end;
     text-align: right;
   }

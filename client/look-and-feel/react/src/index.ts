@@ -54,7 +54,6 @@ export type {
 export { Pagination } from "./Pagination/Pagination";
 export { Skeleton } from "./Skeleton/Skeleton";
 export { SkeletonList } from "./SkeletonList/SkeletonList";
-export { Stepper } from "./Stepper/Stepper";
 export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
 export { Tag, tagVariants, type TagVariants } from "./Tag";
@@ -74,3 +73,6 @@ export {
   cardMessageVariants,
   type CardMessageVariants,
 } from "./CardMessage/CardMessage";
+export { ProgressBar } from "./ProgressBar/ProgressBar";
+export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroup";
+export { Stepper } from "./Stepper/Stepper";
