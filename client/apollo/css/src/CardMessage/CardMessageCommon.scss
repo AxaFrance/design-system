@@ -14,6 +14,17 @@
   color: var(--card-message-text-color);
   background-color: var(--card-message-background-color);
 
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--card-message-border-width, 0);
+    height: 100%;
+    border-radius: var(--card-message-border-border-radius, 0 0 0 0);
+    background-color: var(--card-message-border-color);
+    content: "";
+  }
+
   &--title,
   &--text {
     font-size: var(--card-font-size);

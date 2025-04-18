@@ -15,7 +15,7 @@ type Story = StoryObj<typeof CardMessage>;
 
 export const Default: Story = {
   name: "CardMessage",
-  render: ({ ...args }) => <CardMessage aria-label="toto" {...args} />,
+  render: ({ ...args }) => <CardMessage {...args} />,
   args: {
     title: "Title",
     text: "This is a message",
