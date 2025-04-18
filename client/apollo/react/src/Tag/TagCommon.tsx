@@ -11,7 +11,7 @@ export const tagVariants = {
 
 export type TagVariants = keyof typeof tagVariants;
 
-type TagProps = ComponentProps<"div"> & {
+export type TagProps = ComponentProps<"div"> & {
   variant?: TagVariants;
 };
 
