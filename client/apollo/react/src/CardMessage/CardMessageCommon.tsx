@@ -23,13 +23,7 @@ export const CardMessage = ({
   ...props
 }: CardMessageProps) => {
   const componentClassName = useMemo(() => {
-    const newClassModifier = [variant].filter(Boolean).join(" ");
-
-    return getComponentClassName(
-      "af-card-message",
-      className,
-      newClassModifier,
-    );
+    return getComponentClassName("af-card-message", className, variant);
   }, [className, variant]);
 
   return (

@@ -16,6 +16,7 @@
     --click-icon-svg-fill: var(--color-gray-500);
   }
 
+  &:focus,
   &:focus-visible {
     --click-icon-outline-color: var(--color-focus);
   }
