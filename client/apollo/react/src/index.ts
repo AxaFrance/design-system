@@ -38,13 +38,14 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageApollo";
-
 export {
   CardMessage,
   cardMessageVariants,
   type CardMessageVariants,
 } from "./CardMessage/CardMessageApollo";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoApollo";
+export { Accordion } from "./Accordion/AccordionApollo";
+export { AccordionCore } from "./AccordionCore/AccordionCoreApollo";
 export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export { Stepper } from "./Stepper/StepperApollo";

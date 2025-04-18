@@ -40,6 +40,9 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageLF";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
+
+export { Accordion } from "./Accordion/AccordionLF";
+export { AccordionCore } from "./AccordionCore/AccordionCoreLF";
 export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export { Stepper } from "./Stepper/StepperLF";
