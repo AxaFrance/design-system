@@ -1,5 +1,6 @@
 .af-tag {
   display: inline-flex;
+  width: fit-content;
   padding: calc(2 / var(--font-size-base) * 1rem)
     calc(8 / var(--font-size-base) * 1rem);
   border: 1px solid var(--tag-border-color);
