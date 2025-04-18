@@ -30,7 +30,7 @@ export { BurgerMenu, Header, NavBar, PreviousLink } from "./Layout/Header";
 export { Link } from "./Link/Link";
 export { List } from "./List";
 export { ClickItem, createClickItemParent } from "./List/ClickItem";
-export { ContentItemDuo } from "./List/ContentItemDuo";
+export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuo";
 export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabItem, ContentTabList } from "./List/ContentTabList";
 export {

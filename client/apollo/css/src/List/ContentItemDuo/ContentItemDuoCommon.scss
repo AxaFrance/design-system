@@ -1,0 +1,101 @@
+.af-content-item-duo {
+  display: grid;
+  width: 100%;
+  grid-template:
+    "icon label value"
+    "icon label button";
+  grid-template-columns: auto 1fr 1fr;
+  row-gap: 0.5rem;
+
+  &__label,
+  &__value {
+    margin: 0;
+    font-family: var(--font-family-base);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    overflow-wrap: break-word;
+  }
+
+  &__label {
+    margin-right: 1rem;
+    grid-area: label;
+    font-weight: 400;
+    color: var(--content-duo-label-color);
+  }
+
+  &__value {
+    grid-area: value;
+    font-weight: 600;
+    text-align: end;
+    color: var(--content-duo-label-color);
+  }
+
+  &__button {
+    grid-area: button;
+    justify-self: end;
+  }
+
+  &--large {
+    :not(:has(.af-content-item-duo__button)) {
+      row-gap: 0;
+    }
+
+    row-gap: 0.75rem;
+
+    .af-content-item-duo {
+      &__icon {
+        margin-top: 0.25rem;
+      }
+
+      &__label,
+      &__value {
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+      }
+
+      &__label {
+        margin-right: 2.5rem;
+      }
+
+      &__value {
+        text-align: start;
+      }
+
+      &__button {
+        justify-self: start;
+      }
+    }
+  }
+
+  &--vertical {
+    grid-template:
+      "icon label button"
+      ". value value";
+    grid-template-columns: auto 1fr auto;
+    gap: 0.375rem 0.75rem;
+
+    .af-content-item-duo {
+      &__icon {
+        margin-top: 0.125rem;
+        margin-right: 0;
+      }
+
+      &__label,
+      &__value {
+        margin-right: 0;
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+        text-align: start;
+      }
+
+      &__value {
+        margin: 0;
+      }
+
+      &__button {
+        margin-left: 0;
+        justify-self: end;
+      }
+    }
+  }
+}

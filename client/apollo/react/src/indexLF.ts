@@ -39,6 +39,7 @@ export {
   cardMessageVariants,
   type CardMessageVariants,
 } from "./CardMessage/CardMessageLF";
+export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
 export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export { Stepper } from "./Stepper/StepperLF";

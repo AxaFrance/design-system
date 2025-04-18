@@ -44,6 +44,7 @@ export {
   cardMessageVariants,
   type CardMessageVariants,
 } from "./CardMessage/CardMessageApollo";
+export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoApollo";
 export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export { Stepper } from "./Stepper/StepperApollo";
