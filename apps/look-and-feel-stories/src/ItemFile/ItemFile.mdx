@@ -1,0 +1,32 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ItemFileStories from "./ItemFile.stories";
+
+<Meta of={ItemFileStories} name="ItemMessage" />
+
+# ItemMessage
+
+To use the spinner import it like that:
+
+```tsx
+import { ItemFile } from "@axa-fr/design-system-look-and-feel-react";
+//or
+import { ItemFile } from "@axa-fr/design-system-apollo-react/lf";
+
+const MyComponent = () => <ItemFile message="My message" />;
+```
+
+## Type
+
+Use the `type` prop to change the type of the item message. The available variants are `error` (default) or `success`.
+
+## Error Message
+
+<Canvas of={ItemFileStories.Error} />
+
+<Controls of={ItemFileStories.Error} />
+
+## Success Message
+
+<Canvas of={ItemMessageStories.Success} />
+
+<Controls of={ItemMessageStories.Success} />
