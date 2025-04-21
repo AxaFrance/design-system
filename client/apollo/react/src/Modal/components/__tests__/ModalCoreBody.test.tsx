@@ -1,6 +1,14 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { ModalCoreBody } from "../ModalCoreBody";
+import type { HasScrollState } from "../../../utilities/hook/useHasScroll";
+
+vi.mock("../../../utilities/hook/useHasScroll.ts", () => ({
+  useHasScroll: vi.fn().mockReturnValue({
+    vertical: false,
+    horizontal: false,
+  } satisfies HasScrollState),
+}));
 
 describe("ModalCoreBody component", () => {
   it("renders children correctly", () => {
@@ -15,7 +23,7 @@ describe("ModalCoreBody component", () => {
     expect(container.firstChild).toHaveClass("af-modal__body custom-class");
   });
 
-  it("passes other props to the section element", () => {
+  it("passes other props to the main element", () => {
     const { container } = render(
       <ModalCoreBody id="test-id">Test Content</ModalCoreBody>,
     );

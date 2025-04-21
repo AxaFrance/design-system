@@ -55,3 +55,10 @@ export { Checkbox } from "./Form/checkbox/checkbox/CheckboxLf";
 export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextLF";
 export { CheckboxCard } from "./Form/checkbox/checkboxCard/CheckboxCardLF";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
+export {
+  Modal,
+  ModalCore,
+  ModalCoreBody,
+  ModalCoreFooter,
+  ModalCoreHeader,
+} from "./Modal/ModalLF";
