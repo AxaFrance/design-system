@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ContentItemDuoStories from "./ContentItemDuo.stories";
+
+<Meta of={ContentItemDuoStories} name="ContentItemDuo" />
+
+# ContentItemDuo
+
+1. [Import](#import)
+2. [Default ContentItemDuo](#default-contentitemduo)
+3. [Large ContentItemDuo](#large-contentitemduo)
+4. [Vertical ContentItemDuo](#vertical-contentitemduo)
+
+## Import
+
+```tsx
+import { ContentItemDuo } from "@axa-fr/design-system-apollo-react";
+```
+
+## Uses
+
+### Default Content Item Duo
+
+<Canvas of={ContentItemDuoStories.ContentDuoItemDefault} />
+
+<Controls of={ContentItemDuoStories.ContentDuoItemDefault} />
+
+### Large Content Item Duo
+
+<Canvas of={ContentItemDuoStories.ContentDuoItemLarge} />
+
+<Controls of={ContentItemDuoStories.ContentDuoItemLarge} />
+
+### Content Duo Item Vertical
+
+<Canvas of={ContentItemDuoStories.ContentDuoItemVertical} />
+
+<Controls of={ContentItemDuoStories.ContentDuoItemVertical} />
