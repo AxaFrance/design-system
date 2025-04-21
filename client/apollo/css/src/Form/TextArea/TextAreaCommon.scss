@@ -2,7 +2,7 @@
 
 .af-form__input-textarea {
   width: 100%;
-  height: calc(--input-text-area-height / var(--font-size-base) * 1rem);
+  height: calc(var(--input-text-area-height) / var(--font-size-base) * 1rem);
   padding: 16px;
   border: 1px solid var(--input-text-area-border-color);
   border-radius: var(--input-text-area-border-radius);
