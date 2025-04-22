@@ -1,54 +1,58 @@
 import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
-import deleteFilledIcon from "@material-symbols/svg-400/outlined/delete-fill.svg";
+// import deleteFilledIcon from "@material-symbols/svg-400/outlined/delete-fill.svg";
 import visibilityIcon from "@material-symbols/svg-400/outlined/visibility-fill.svg";
 import {
+  type ComponentProps,
   type ComponentPropsWithoutRef,
+  type ComponentType,
   type PropsWithChildren,
-  type ReactElement,
   useId,
   useMemo,
 } from "react";
 
-import { ItemMessage } from "src/Form/ItemMessage/ItemMessageApollo";
-import { Button } from "../../Button/ButtonCommon";
-import { Link } from "../../Link/LinkCommon";
+import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import { Spinner } from "../../Spinner/SpinnerCommon";
 import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import { Icon } from "../../Icon/IconCommon";
-import { Spinner } from "../../Spinner/SpinnerCommon";
-
-type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
 
 export const itemFileVariants = {
   validation: "validation",
   error: "error",
-  loading: "spinner",
 } as const;
 
-export type ItemFileVariants = keyof typeof itemFileVariants;
+type ItemFileVariants = keyof typeof itemFileVariants;
 
-export type ItemFileProps = {
-  error: string;
-  variant: ItemFileVariants;
+type ItemFileProps = {
+  error?: string;
+  loading?: string;
+  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemIconComponent: ComponentType<ComponentProps<typeof Icon>>;
+  ItemClickIconComponent: ComponentType<ComponentProps<typeof ClickIcon>>;
+  ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
+  variant?: ItemFileVariants;
   title?: string;
-  action?: ReactElement<typeof Link | typeof Button>;
-  iconSize?: number;
-  heading?: Headings;
+  subTitle?: string;
 } & ComponentPropsWithoutRef<"div">;
 
 const getIconFromType = (variant: ItemFileVariants) =>
   ({
     [itemFileVariants.validation]: validationIcon,
     [itemFileVariants.error]: errorIcon,
-    [itemFileVariants.loading]: <Spinner />,
-  })[variant] || <Spinner />;
+  })[variant];
 
-export const ItemFile = ({
+const ItemFile = ({
   variant = itemFileVariants.validation,
   className,
   error,
+  loading,
   title,
+  subTitle,
+  ItemSpinnerComponent,
+  ItemClickIconComponent,
+  ItemIconComponent,
+  ItemMessageComponent,
 }: PropsWithChildren<ItemFileProps>) => {
   const icon = useMemo(() => getIconFromType(variant), [variant]);
   const idError = useId();
@@ -61,15 +65,24 @@ export const ItemFile = ({
       role="alert"
     >
       <div className="af-icon__content">
-        <Icon src={icon} variant="primary" size="S" />
+        {loading ? (
+          <ItemSpinnerComponent />
+        ) : (
+          <ItemIconComponent variant="primary" size="S" src={icon} />
+        )}
       </div>
-      <div className="af-message__content">IMG_879687880.jpg 12 Mo</div>
+
+      <div className="af-message__content">{title}</div>
+      <div className="af-message__content">{subTitle}</div>
 
       <div className="af-click-icon__content">
-        <ClickIcon src={visibilityIcon} />
-        <ClickIcon src={deleteIcon} />
+        <ItemClickIconComponent src={visibilityIcon} />
+        <ItemClickIconComponent src={deleteIcon} />
       </div>
-      <ItemMessage id={idError} message={error} />
+      <ItemMessageComponent id={idError} message={error} />
     </div>
   );
 };
+ItemFile.displayName = "ItemFile";
+
+export { ItemFile };
