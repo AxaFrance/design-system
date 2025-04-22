@@ -9,13 +9,12 @@ export default meta;
 
 export const Error: StoryObj<typeof ItemFile> = {
   args: {
-    message: "Error Message",
+    error: "Error Message",
   },
 };
 
 export const Success: StoryObj<typeof ItemFile> = {
   args: {
-    message: "yo",
-    messageType: "success",
+    error: "yo",
   },
 };
