@@ -18,7 +18,7 @@ jobs:
         run: npm ci
       - name: Build packages
         run: npm run build
-      - uses: chromaui/action@649b4fd73c3f7cd7a65bd0b9f131349335ec661b # v11.28.0
+      - uses: chromaui/action@e8cc4c31775280b175a3c440076c00d19a9014d7 # v11.28.2
         name: Run Chromatic for design-system-slash-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_REACT }}
@@ -28,7 +28,7 @@ jobs:
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
 
-      - uses: chromaui/action@649b4fd73c3f7cd7a65bd0b9f131349335ec661b # v11.28.0
+      - uses: chromaui/action@e8cc4c31775280b175a3c440076c00d19a9014d7 # v11.28.2
         name: Run Chromatic for design-system-lookandfeel-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
@@ -37,7 +37,7 @@ jobs:
           workingDir: "apps/look-and-feel-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
-      - uses: chromaui/action@649b4fd73c3f7cd7a65bd0b9f131349335ec661b # v11.28.0
+      - uses: chromaui/action@e8cc4c31775280b175a3c440076c00d19a9014d7 # v11.28.2
         name: Run Chromatic for design-system-apollo-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_APOLLO_REACT }}
