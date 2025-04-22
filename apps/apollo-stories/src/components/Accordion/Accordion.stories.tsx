@@ -1,7 +1,11 @@
-import { Accordion, Svg } from "@axa-fr/design-system-apollo-react";
-import callIcon from "@material-symbols/svg-400/outlined/call-fill.svg";
+import {
+  Accordion,
+  accordionVariants,
+  AccordionVariants,
+} from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
+import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
@@ -11,10 +15,10 @@ const meta: Meta<typeof Accordion> = {
 export default meta;
 
 const defaultArgs = {
-  isTitleFirst: true,
-  icon: <Svg src={callIcon} />,
+  variant: "primary" as AccordionVariants,
+  icon: bank,
   title: "Titre onglet",
-  subtitle: "Titre onglet",
+  subtitle: "Sous-titre onglet",
   tagLabel: "En attente",
   dateLabel: "01/01/2021",
   dateProps: { dateTime: "2021-01-01" },
@@ -32,6 +36,10 @@ export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
   args: defaultArgs,
   argTypes: {
     dateLabel: { control: "text" },
+    variant: {
+      options: Object.values(accordionVariants),
+      control: { type: "select" },
+    },
   },
 };
 

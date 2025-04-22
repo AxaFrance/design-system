@@ -1,8 +1,12 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
 import "@fontsource/source-sans-pro";
 
-export { Accordion } from "./Accordion";
-export { AccordionCore } from "./AccordionCore";
+export {
+  Accordion,
+  type AccordionVariants,
+  accordionVariants,
+} from "./Accordion/Accordion";
+export { AccordionCore } from "./AccordionCore/AccordionCore";
 export { /** @deprecated Use `Message` instead. */ Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
 export {
