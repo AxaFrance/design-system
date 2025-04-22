@@ -44,7 +44,11 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageApollo";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoApollo";
-export { Accordion } from "./Accordion/AccordionApollo";
+export {
+  Accordion,
+  type AccordionVariants,
+  accordionVariants,
+} from "./Accordion/AccordionApollo";
 export { AccordionCore } from "./AccordionCore/AccordionCoreApollo";
 export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
