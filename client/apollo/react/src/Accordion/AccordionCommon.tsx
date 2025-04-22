@@ -1,84 +1,83 @@
-import {
-  type ComponentProps,
-  type ComponentType,
-  type ReactNode,
-  useMemo,
-} from "react";
+import { type ComponentProps, type ComponentType, useMemo } from "react";
 import { AccordionCore } from "../AccordionCore/AccordionCoreCommon";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 import { AccordionTagDateContainer } from "./AccordionTagDateContainerCommon";
+import { Icon } from "../Icon/IconCommon";
+
+export const accordionVariants = {
+  primary: "primary",
+  secondary: "secondary",
+  inverse: "inverse",
+  message_bar_info: "message_bar_info",
+  message_bar_warning: "message_bar_warning",
+} as const;
+
+export type AccordionVariants = keyof typeof accordionVariants;
 
 type AccordionProps = {
+  variant?: AccordionVariants;
   title: string;
   subtitle?: string;
-  icon?: ReactNode;
+  icon?: string;
   value?: string;
   isTitleFirst?: boolean;
   AccordionCoreComponent: ComponentType<
     Omit<ComponentProps<typeof AccordionCore>, "ClickIconComponent">
   >;
-} & ComponentProps<typeof AccordionTagDateContainer> &
+  AccordionTagDateContainerComponent: ComponentType<
+    Omit<ComponentProps<typeof AccordionTagDateContainer>, "TagComponent">
+  >;
+  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
+} & Omit<ComponentProps<typeof AccordionTagDateContainer>, "TagComponent"> &
   Partial<ComponentProps<typeof AccordionCore>>;
 
 export const Accordion = ({
-  title,
+  variant = accordionVariants.primary,
   children,
   icon,
+  title,
   subtitle,
   tagLabel,
   tagProps,
   dateLabel,
   dateProps,
   value,
-  isTitleFirst = true,
   AccordionCoreComponent,
+  AccordionTagDateContainerComponent,
+  IconComponent,
   ...accordionCoreProps
 }: AccordionProps) => {
-  const isMobile = true;
-  const isShowingIcon = Boolean(icon && isTitleFirst);
-  const summaryClassName = useMemo(
-    () =>
-      getComponentClassName(
-        "af-accordion__summary",
-        isTitleFirst ? "title-first" : "",
-      ),
-    [isTitleFirst],
+  const componentClassName = useMemo(
+    () => getComponentClassName("af-accordion__summary", variant),
+    [variant],
   );
 
   return (
     <AccordionCoreComponent
       summary={
         <>
-          {isShowingIcon && isMobile && (
-            <div className="af-accordion__icon">{icon}</div>
-          )}
-          {!isTitleFirst && (
-            <AccordionTagDateContainer
-              tagLabel={tagLabel}
-              dateLabel={dateLabel}
-              tagProps={tagProps}
-              dateProps={dateProps}
+          {icon && (
+            <IconComponent
+              src={icon}
+              variant="primary"
+              size="S"
+              className="af-accordion__icon"
             />
           )}
           <div className="af-accordion__title-container">
-            {isShowingIcon && !isMobile && (
-              <div className="af-accordion__icon">{icon}</div>
-            )}
-            <p className="af-accordion__title">{title}</p>
+            {title && <p className="af-accordion__title">{title}</p>}
             {subtitle && <p className="af-accordion__subtitle">{subtitle}</p>}
           </div>
-          {isTitleFirst && (
-            <AccordionTagDateContainer
-              tagLabel={tagLabel}
-              dateLabel={dateLabel}
-              tagProps={tagProps}
-              dateProps={dateProps}
-            />
-          )}
+          <AccordionTagDateContainerComponent
+            tagLabel={tagLabel}
+            dateLabel={dateLabel}
+            tagProps={tagProps}
+            dateProps={dateProps}
+          />
           {value && <p className="af-accordion__value">{value}</p>}
         </>
       }
-      summaryProps={{ className: summaryClassName }}
+      summaryProps={{ className: componentClassName }}
       {...accordionCoreProps}
     >
       {children}

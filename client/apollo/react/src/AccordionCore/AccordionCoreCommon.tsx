@@ -9,6 +9,7 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import keyboardUp from "@material-symbols/svg-700/rounded/keyboard_arrow_up-fill.svg";
 import { ClickIcon } from "../ClickIcon/ClickIconCommon";
+import { getComponentClassName } from "../utilities/getComponentClassName";
 
 type AccordionProps = {
   summary: ReactNode;
@@ -22,12 +23,18 @@ type AccordionProps = {
 export const AccordionCore = ({
   summary,
   children,
+  className,
   summaryProps,
   isOpen,
   onClick,
   ClickIconComponent,
   ...detailsProps
 }: AccordionProps) => {
+  const componentClassName = getComponentClassName(
+    "af-accordion__summary",
+    className,
+  );
+
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handleToggle = useCallback(
@@ -40,12 +47,11 @@ export const AccordionCore = ({
     [onClick],
   );
 
-  const handleCollapse = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleCollapse = useCallback(() => {
     if (detailsRef.current) {
       detailsRef.current.open = !detailsRef.current.open;
     }
-  };
+  }, []);
 
   return (
     <details
@@ -55,14 +61,18 @@ export const AccordionCore = ({
       {...detailsProps}
     >
       <summary
-        className="af-accordion__summary"
+        className={componentClassName}
         onClick={handleToggle}
         role="button"
         tabIndex={0}
         {...summaryProps}
       >
         {summary}
-        <ClickIconComponent src={keyboardUp} onClick={handleCollapse} />
+        <ClickIconComponent
+          src={keyboardUp}
+          onClick={handleCollapse}
+          className="af-accordion__arrow"
+        />
       </summary>
       <div className="af-accordion__content">{children}</div>
     </details>
