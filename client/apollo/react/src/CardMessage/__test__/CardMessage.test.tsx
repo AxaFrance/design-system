@@ -21,4 +21,12 @@ describe("CardMessage component", () => {
       expect(container).toHaveClass(`af-card-message--${variant}`);
     },
   );
+
+  it('Should render correctly with title "Test title"', () => {
+    render(
+      <CardMessage title="Test title" text="This is a test" variant="info" />,
+    );
+    expect(screen.getByText("Test title")).toBeInTheDocument();
+    expect(screen.getByText("This is a test")).toBeInTheDocument();
+  });
 });

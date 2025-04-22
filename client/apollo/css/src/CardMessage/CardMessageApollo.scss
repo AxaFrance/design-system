@@ -1,8 +1,6 @@
 @use "./CardMessageCommon";
 
 .af-card-message {
-  position: relative;
-
   --card-message-padding: var(--spacing-8) var(--spacing-16);
   --card-message-border-radius: var(--radius-8);
 

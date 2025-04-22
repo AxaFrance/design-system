@@ -2,8 +2,6 @@
 @use "../common/breakpoints" as breakpoints;
 
 .af-card-message {
-  position: relative;
-
   --card-message-padding: calc(12 / var(--font-size-base) * 1rem);
   --card-message-border-width: var(--default-border-radius);
 
