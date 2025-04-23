@@ -1,4 +1,6 @@
 .af-toggle {
+  cursor: pointer;
+
   &__root {
     position: relative;
     display: flex;
@@ -16,8 +18,8 @@
     outline-offset: 2px;
   }
 
-  &:has(:hover, :active) {
-    cursor: pointer;
+  &:has(:disabled) {
+    cursor: unset;
   }
 
   &__handle {
