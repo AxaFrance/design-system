@@ -5,8 +5,6 @@
   border: 0;
   border-radius: 100vmax;
   background-color: var(--click-icon-background-color);
-  outline: 2px solid var(--click-icon-outline-color, transparent);
-  outline-offset: 2px;
   cursor: pointer;
 
   svg {
@@ -15,5 +13,10 @@
 
   &:disabled {
     pointer-events: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--click-icon-outline-color, transparent);
+    outline-offset: 2px;
   }
 }
