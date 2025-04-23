@@ -1,0 +1,28 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as TimelineVerticalStories from "./TimelineVertical.stories";
+
+<Meta of={TimelineVerticalStories} name="TimelineVertical" />
+
+# TimelineVertical
+
+To use the timeline vertical import it like that:
+
+```tsx
+import { TimelineVertical } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <TimelineVertical
+      description="Vous allez recevoir un e-mail d'accès à Sécur'AXA, un espace où transmettre vos documents confidentiels dont vos documents médicaux."
+      tag="Étape 1"
+      title="Envoi de documents via Sécur'AXA"
+    />
+  </>
+);
+```
+
+## Playground
+
+<Canvas of={TimelineVerticalStories.Playground} />
+
+<Controls of={TimelineVerticalStories.Playground} />

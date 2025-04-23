@@ -48,3 +48,4 @@ export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export { Stepper } from "./Stepper/StepperApollo";
 export { DateInput } from "./Form/DateInput/DateInputApollo";
+export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
