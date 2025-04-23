@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "turbo dev --filter=./apps/*",
     "dev:look-and-feel": "turbo dev --filter=./apps/look-and-feel-stories",
-    "dev:apollo": "turbo dev -filter=./apps/apollo-stories",
+    "dev:apollo": "turbo dev --filter=./apps/apollo-stories",
     "dev:slash": "turbo dev --filter=./apps/slash-stories",
     "build": "turbo build --filter=!./samples/vite",
     "build:slash": "turbo build --filter=./apps/slash-stories",
