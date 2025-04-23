@@ -16,8 +16,14 @@
     --click-icon-svg-fill: var(--color-gray-500);
   }
 
-  &:focus,
+  &:focus {
+    outline: none;
+  }
+
   &:focus-visible {
     --click-icon-outline-color: var(--color-focus);
+
+    outline: 2px solid var(--click-icon-outline-color);
+    outline-offset: 2px;
   }
 }
