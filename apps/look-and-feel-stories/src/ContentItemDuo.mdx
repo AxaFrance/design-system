@@ -13,7 +13,15 @@ import * as ContentItemDuoStories from "./ContentItemDuo.stories";
 ## Import
 
 ```tsx
-import { ContentItemDuo } from "@axa-fr/design-system-apollo-react/lf";
+import { ContentItemDuo } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <ContentItemDuo label="Libelle" value="Reponse">
+      My message
+    </ContentItemDuo>
+  </>
+);
 ```
 
 ## Uses

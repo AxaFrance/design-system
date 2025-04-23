@@ -46,7 +46,7 @@
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      border: var(--select-border-radius) solid var(--select-border-color);
+      border: 2px solid var(--select-border-color);
       box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
     }
 
