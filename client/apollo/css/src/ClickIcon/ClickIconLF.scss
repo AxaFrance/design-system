@@ -1,8 +1,6 @@
 @use "./ClickIconCommon";
 
 .af-click-icon {
-  outline: none;
-
   --click-icon-background-color: var(--color-btn-tertiary-bg);
 
   &:hover {
