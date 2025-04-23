@@ -57,7 +57,7 @@ export { Skeleton } from "./Skeleton/Skeleton";
 export { SkeletonList } from "./SkeletonList/SkeletonList";
 export { Svg } from "./Svg";
 export { TabsClient as Tabs, Direction as TabsDirection } from "./Tabs/Tabs";
-export { Tag, tagVariants, type TagVariants } from "./Tag";
+export { Tag, tagVariants, type TagVariants } from "./Tag/Tag";
 export { Title, TitleSize, type TitleLevel } from "./Title";
 export { ClickIcon } from "./ClickIcon/ClickIcon";
 export {
@@ -67,7 +67,7 @@ export {
   iconSizeVariants,
   type IconSizeVariants,
 } from "./Icon/Icon";
-export { Toggle } from "./Toggle";
+export { Toggle } from "./Toggle/Toggle";
 export { BasePicture } from "./BasePicture/BasePicture";
 export {
   CardMessage,
