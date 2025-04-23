@@ -1,7 +1,9 @@
+import check from "@material-symbols/svg-700/sharp/check.svg";
 import { ComponentPropsWithoutRef, ReactNode, forwardRef, useId } from "react";
 import { getOptionClassName } from "../core";
 
 import "@axa-fr/design-system-slash-css/dist/Form/Checkbox/Checkbox.scss";
+import { Svg } from "../../Svg";
 
 type Props = Omit<ComponentPropsWithoutRef<"input">, "type"> & {
   classModifier?: string;
@@ -49,7 +51,7 @@ const CheckboxItem = forwardRef<HTMLInputElement, Props>(
         />
         <label className="af-form__label" htmlFor={newId}>
           <span className="af-form__indicator">
-            <i className="glyphicon glyphicon-ok" />
+            <Svg role="presentation" className="ok-icon" src={check} />
           </span>
           <span className="af-form__description">{newLabel}</span>
         </label>
