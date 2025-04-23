@@ -38,7 +38,7 @@
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      --select-border-radius: 2px;
+      --select-border-radius: var(--radius-4);
       --select-border-color: var(--axa-blue-100);
       --select-box-shadow: var(--axa-blue-100);
     }

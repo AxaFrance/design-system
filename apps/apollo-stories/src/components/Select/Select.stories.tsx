@@ -7,11 +7,14 @@ const meta: Meta<typeof Select> = {
   title: "Components/Form/Select/Select",
   args: {
     value: "Lorem ipsum",
+    description: "Description",
     label: "Label",
     disabled: false,
-    required: false,
+    required: true,
     placeholder: "Placeholder",
+    buttonLabel: "En savoir plus",
     errorLabel: "",
+    helper: "Information complémentaires",
   },
   argTypes: {
     onChange: { action: "onChange" },
