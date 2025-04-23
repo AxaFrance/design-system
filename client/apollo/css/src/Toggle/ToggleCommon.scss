@@ -11,7 +11,7 @@
     background-color: var(--toggle-bg-color);
   }
 
-  &:has(:focus-within, :focus-visible, :focus, :active) &__root {
+  &:has(:focus-visible) &__root {
     outline: 2px solid var(--toggle-focus-outline-color);
     outline-offset: 2px;
   }
