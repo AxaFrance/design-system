@@ -1,6 +1,6 @@
-import { ContentItemDuo } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
+import { ContentItemDuo } from "@axa-fr/design-system-apollo-react";
 
 const meta: Meta<typeof ContentItemDuo> = {
   title: "Components/List/ContentItemDuo",
@@ -25,7 +25,7 @@ const verticalArgs = {
   classModifier: [],
 };
 
-export const ContentDuoItemDefault: StoryObj<
+export const ContentItemDuoDefault: StoryObj<
   Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
     classModifier: string[];
   }
@@ -39,7 +39,7 @@ export const ContentDuoItemDefault: StoryObj<
   },
 };
 
-export const ContentDuoItemLarge: StoryObj<
+export const ContentItemDuoLarge: StoryObj<
   Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
     classModifier: string[];
   }
@@ -53,7 +53,7 @@ export const ContentDuoItemLarge: StoryObj<
   },
 };
 
-export const ContentDuoItemVertical: StoryObj<
+export const ContentItemDuoVertical: StoryObj<
   Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
     classModifier: string[];
   }

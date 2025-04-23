@@ -12,6 +12,7 @@ const meta: Meta<typeof Select> = {
     required: false,
     placeholder: "Placeholder",
     errorLabel: "",
+    helper: "Information complémentaires",
   },
   argTypes: {
     onChange: { action: "onChange" },

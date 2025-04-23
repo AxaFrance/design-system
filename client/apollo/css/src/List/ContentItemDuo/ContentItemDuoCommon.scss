@@ -5,7 +5,8 @@
     "icon label value"
     "icon label button";
   grid-template-columns: auto 1fr 1fr;
-  row-gap: 0.5rem;
+  row-gap: calc(0.5 / var(--font-size-base) * 1rem);
+  color: var(--content-duo-label-color);
 
   &__label,
   &__value {
@@ -20,14 +21,12 @@
     margin-right: 1rem;
     grid-area: label;
     font-weight: 400;
-    color: var(--content-duo-label-color);
   }
 
   &__value {
     grid-area: value;
     font-weight: 600;
     text-align: end;
-    color: var(--content-duo-label-color);
   }
 
   &__button {
