@@ -63,7 +63,7 @@
     }
   },
   "dependencies": {
-    "@floating-ui/react": "^0.27.2",
+    "@floating-ui/react": "^0.27.8",
     "@fontsource/source-sans-pro": "^5.2.5",
     "@tanem/svg-injector": "^10.1.68",
     "classnames": "^2.5.1",
