@@ -1,6 +1,6 @@
+import logo from "@axa-fr/design-system-look-and-feel-css/logo-axa.svg";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import logo from "@axa-fr/design-system-look-and-feel-css/logo-axa.svg";
 import { BasePicture } from "../BasePictureCommon";
 
 describe("BasePicture component", () => {
@@ -23,8 +23,8 @@ describe("BasePicture component", () => {
   });
 
   it("should render with set src", () => {
-    render(<BasePicture src="http://fake.no" />);
+    render(<BasePicture src="https://www.axa.fr/" />);
     const imgElement = screen.getByRole("presentation");
-    expect(imgElement).toHaveAttribute("src", "http://fake.no");
+    expect(imgElement).toHaveAttribute("src", "https://www.axa.fr/");
   });
 });
