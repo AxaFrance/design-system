@@ -93,15 +93,6 @@
       --checkbox-card-align-items: center;
 
       .af-checkbox-card-content {
-        .af-checkbox-card-icon {
-          --checkbox-card-icon-lenght: 40px;
-          --checkbox-card-icon-color: var(--axa-blue-100);
-
-          @media (width < #{breakpoints.$breakpoint-sm}) {
-            --checkbox-card-icon-lenght: 32px;
-          }
-        }
-
         .af-checkbox-card-content-description {
           & > span:first-child {
             --checkbox-card-label-text-color: var(--axa-blue-100);

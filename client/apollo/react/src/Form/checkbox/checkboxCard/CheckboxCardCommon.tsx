@@ -1,4 +1,5 @@
 import React, {
+  type ComponentProps,
   ComponentPropsWithRef,
   type ComponentType,
   type ReactNode,
@@ -6,10 +7,16 @@ import React, {
 } from "react";
 import { CheckboxProps } from "../checkbox/CheckboxCommon";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
-import { Svg } from "../../../Svg/Svg";
+import { Icon } from "../../../Icon/IconCommon";
+import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
+import { BREAKPOINT } from "../../../utilities/constants";
 
 type CheckboxComponent = {
   CheckboxComponent: ComponentType<CheckboxProps>;
+};
+
+type IconComponent = {
+  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
 };
 
 export type CheckboxCardProps = ComponentPropsWithRef<"input"> & {
@@ -27,13 +34,16 @@ export type CheckboxCardProps = ComponentPropsWithRef<"input"> & {
   onChange?: React.ChangeEventHandler;
 };
 
-export type CheckboxCardCommonProps = CheckboxCardProps & CheckboxComponent;
+export type CheckboxCardCommonProps = CheckboxCardProps &
+  CheckboxComponent &
+  IconComponent;
 
 const CheckboxCardCommon = ({
   className,
   labelGroup,
   descriptionGroup,
   CheckboxComponent,
+  IconComponent,
   isRequired,
   options,
   onChange,
@@ -50,13 +60,16 @@ const CheckboxCardCommon = ({
   const optionId = useId();
   const errorId = useId();
 
+  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
+  const size = isMobile ? "M" : "L";
+
   return (
     <div className={componentClassName}>
       <div className="af-checkbox-card__label-container">
         {labelGroup && (
           <span className="af-checkbox-card__label" id={optionId}>
             {labelGroup}
-            {isRequired && <span aria-hidden="true">&nbsp;*</span>}
+            {isRequired && <span aria-hidden>&nbsp;*</span>}
           </span>
         )}
         {descriptionGroup && (
@@ -82,13 +95,7 @@ const CheckboxCardCommon = ({
                 {...inputProps}
               />
               <div className="af-checkbox-card-content">
-                {icon && (
-                  <Svg
-                    src={icon}
-                    className="af-checkbox-card-icon"
-                    aria-hidden
-                  />
-                )}
+                {icon && <IconComponent src={icon} size={size} />}
                 <div className="af-checkbox-card-content-description">
                   <span>{label}</span>
                   {description && <span>{description}</span>}

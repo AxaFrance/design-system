@@ -91,11 +91,6 @@
       --checkbox-card-border-radius: calc(6 / var(--font-size-base) * 1rem);
 
       .af-checkbox-card-content {
-        .af-checkbox-card-icon {
-          --checkbox-card-icon-lenght: 32px;
-          --checkbox-card-icon-color: var(--color-axa);
-        }
-
         .af-checkbox-card-content-description {
           & > span:first-child {
             --checkbox-card-label-text-color: var(--color-black);

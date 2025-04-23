@@ -142,13 +142,6 @@
         align-items: center;
         gap: calc(4 / var(--font-size-base) * 1rem);
 
-        .af-checkbox-card-icon {
-          width: var(--checkbox-card-icon-lenght);
-          height: var(--checkbox-card-icon-lenght);
-          color: var(--checkbox-card-icon-color);
-          fill: currentcolor;
-        }
-
         .af-checkbox-card-content-description {
           display: flex;
           justify-content: center;
