@@ -6,6 +6,14 @@ inputs:
     description: Path to the git-version config file
     required: true
 
+outputs:
+  fullSemVer:
+    description: The full semantic version
+    value: ${{ steps.gitversion.outputs.fullSemVer }}
+  preReleaseTag:
+    description: The pre-release tag
+    value: ${{ steps.gitversion.outputs.preReleaseTag }}
+
 runs:
   using: composite
   steps:
@@ -15,6 +23,7 @@ runs:
         versionSpec: "5.x"
 
     - name: Determine Version
+      id: gitversion
       uses: gittools/actions/gitversion/execute@441c43ddefe9c8f5b8e8cee0257bcf06d518d2d3 # v3.2.0
       with:
         useConfigFile: true
