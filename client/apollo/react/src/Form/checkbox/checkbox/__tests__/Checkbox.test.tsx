@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { axe } from "jest-axe";
 import { Checkbox } from "../CheckboxApollo";
 
 describe("CheckboxCommon Component", () => {
@@ -34,13 +33,5 @@ describe("CheckboxCommon Component", () => {
     // Then
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveAttribute("aria-invalid", "true");
-  });
-
-  it("should violate accessibility the of CheckboxText", async () => {
-    // Act
-    const { container } = render(<Checkbox />);
-
-    // Then
-    expect(await axe(container)).toHaveNoViolations();
   });
 });

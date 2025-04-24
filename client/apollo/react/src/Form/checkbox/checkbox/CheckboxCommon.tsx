@@ -22,7 +22,6 @@ const CheckboxCommon = ({
     <input
       {...inputProps}
       type="checkbox"
-      aria-label="checkbox input"
       aria-errormessage={errorId}
       aria-invalid={hasError}
       disabled={false}
