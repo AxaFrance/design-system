@@ -18,4 +18,4 @@ runs:
       uses: gittools/actions/gitversion/execute@441c43ddefe9c8f5b8e8cee0257bcf06d518d2d3 # v3.2.0
       with:
         useConfigFile: true
-        configFilePath: ${{ inputs.node-configFilePath }}
+        configFilePath: ${{ inputs.configFilePath }}
