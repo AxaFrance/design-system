@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
-type SelectProps = ComponentPropsWithRef<"select"> & {
+type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
   classModifier?: string;
   label?: ComponentProps<typeof ItemLabel>["label"];
@@ -25,7 +25,7 @@ type SelectProps = ComponentPropsWithRef<"select"> & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
-const Select = forwardRef<HTMLSelectElement, SelectProps>(
+const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
   (
     {
       id,
@@ -53,8 +53,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     inputId = id || inputId;
 
     const classname = classNames(
-      "af-form__select-input",
-      error && "af-form__select-input--error",
+      "af-form__dropdown-input",
+      error && "af-form__dropdown-input--error",
     );
 
     return (
@@ -95,6 +95,6 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
   },
 );
 
-Select.displayName = "Select";
+Dropdown.displayName = "Dropdown";
 
-export { Select };
+export { Dropdown };

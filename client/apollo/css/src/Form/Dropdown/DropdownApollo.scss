@@ -1,0 +1,65 @@
+@use "./DropdownCommon";
+
+.af-form__dropdown {
+  &-label {
+    --dropdown-placeholder-color: var(--neutral-80);
+  }
+
+  &-input {
+    --dropdown-border-color: var(--axa-blue-65);
+    --dropdown-border-radius: var(--radius-4);
+    --dropdown-background: url
+      ("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg") no-repeat
+      right 1rem center / 1.5rem 1.5rem;
+
+    &:open {
+      background-image: url("@material-symbols/svg-400/outlined/keyboard_arrow_up.svg");
+    }
+
+    &:focus-visible {
+      --dropdown-border-color: var(--axa-blue-100);
+      --dropdown-box-shadow: var(--axa-blue-100);
+    }
+
+    option {
+      --dropdown-option-color: var(--neutral-100);
+
+      &:disabled {
+        --dropdown-option-disabled-color: var(--neutral-50);
+      }
+    }
+
+    &:disabled {
+      --dropdown-bg-color-disabled: var(--neutral-5);
+      --dropdown-border-color: var(--neutral-50);
+      --dropdown-border-radius: var(--radius-4);
+    }
+
+    &-placeholder {
+      --dropdown-placeholder-color: var(--neutral-80);
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      --dropdown-border-radius: var(--radius-4);
+      --dropdown-border-color: var(--axa-blue-100);
+      --dropdown-box-shadow: var(--axa-blue-100);
+    }
+
+    &--error {
+      --dropdown-border-color: var(--red-alert-100);
+      --dropdown-box-shadow: var(--red-alert-100);
+
+      &:focus-visible {
+        --dropdown-box-shadow-color: var(--red-alert-100);
+      }
+    }
+
+    &--error:not(:disabled):hover,
+    &--error:not(:disabled):active {
+      --dropdown-border-radius: var(--radius-4);
+      --dropdown-border-color: var(--red-alert-100);
+      --dropdown-box-shadow: var(--red-alert-100);
+    }
+  }
+}

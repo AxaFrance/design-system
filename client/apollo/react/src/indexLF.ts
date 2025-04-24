@@ -14,7 +14,7 @@ export { Tag, type TagVariants, tagVariants } from "./Tag/TagLF";
 export { DebugGrid } from "./Grid/DebugGridLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
-export { Select } from "./Form/Select/SelectLF";
+export { Dropdown } from "./Form/Dropdown/DropdownLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { TextInput } from "./Form/TextInput/TextInputLF";
 export {

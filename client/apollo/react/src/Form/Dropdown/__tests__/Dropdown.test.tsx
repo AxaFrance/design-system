@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { Select } from "../SelectCommon";
+import { Dropdown } from "../DropdownCommon";
 import { ItemLabel } from "../../ItemLabel/ItemLabelLF";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 
@@ -13,7 +13,7 @@ const placeholderText = "EX: ABCD";
 describe("Select", () => {
   it("renders select with options", () => {
     render(
-      <Select
+      <Dropdown
         label={selectLabel}
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
@@ -21,7 +21,7 @@ describe("Select", () => {
         <option value="fun">For fun</option>
         <option value="work">For work</option>
         <option value="drink">For drink</option>
-      </Select>,
+      </Dropdown>,
     );
 
     const selectOptionElement = screen.getByLabelText(/label/i);
@@ -35,7 +35,7 @@ describe("Select", () => {
 
   it("renders select with many properties", () => {
     render(
-      <Select
+      <Dropdown
         label={selectLabel}
         error={errorMessage}
         helper={helperText}
@@ -55,7 +55,7 @@ describe("Select", () => {
 
   it("shouldn't have an accessibility violation", async () => {
     const { container } = render(
-      <Select
+      <Dropdown
         label={selectLabel}
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
@@ -66,7 +66,7 @@ describe("Select", () => {
 
   it("applies error styles and displays error message when 'error' prop is passed", () => {
     render(
-      <Select
+      <Dropdown
         label={selectLabel}
         error={errorMessage}
         ItemLabelComponent={ItemLabel}
@@ -75,25 +75,25 @@ describe("Select", () => {
     );
 
     const selectElement = screen.getByLabelText(/label/i);
-    expect(selectElement).toHaveClass("af-form__select-input--error");
+    expect(selectElement).toHaveClass("af-form__dropdown-input--error");
     const errorMessageElement = screen.getByText(errorMessage);
     expect(errorMessageElement).toBeInTheDocument();
   });
 
   it("applies disabled styles when select is disabled", () => {
     render(
-      <Select
+      <Dropdown
         label={selectLabel}
         disabled
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
       >
         <option value="fun">fun</option>
-      </Select>,
+      </Dropdown>,
     );
 
     const selectElement = screen.getByLabelText(/label/i);
     expect(selectElement).toBeDisabled();
-    expect(selectElement).toHaveClass("af-form__select-input");
+    expect(selectElement).toHaveClass("af-form__dropdown-input");
   });
 });
