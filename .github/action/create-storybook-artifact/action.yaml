@@ -15,7 +15,8 @@ runs:
     - name: Create artifact folders and move storybooks
       shell: bash
       run: |
-        for folder in ${{ inputs.folders }}; do
+        IFS=$'\n' read -r -d '' -a folders <<< "${{ inputs.folders }}"
+        for folder in "${folders[@]}"; do
           app="apps/${folder%%/*}-stories-${folder#*/}/storybook-static/*"
           app=$(echo "$app" | sed 's/-react//')
           artifact="artifact/$folder"
