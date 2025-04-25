@@ -1,2 +1,3 @@
 export { Checkbox } from "./Checkbox";
-export { CheckboxSelect } from "./CheckboxSelect";
+export { CheckboxText } from "./CheckboxText";
+export { CheckboxCard } from "./CheckboxCard";

@@ -1,0 +1,27 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as CheckboxStories from "./Checkbox.stories";
+
+<Meta of={CheckboxStories} />
+
+# Checkbox components
+
+## Checkbox
+
+### How to use
+
+To use the `Checkbox`component import it like this:
+
+```tsx
+import { Checkbox } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <Checkbox
+    name="name"
+    value="value"
+    label="J'accepte de fournir à AXA mes coordonnées ainsi que les données  relatives à mon projet et ma situation. Ces dernières seront transmises à mon conseiller AXA qui pourra  me contacter pour m'accompagner."
+  />
+);
+```
+
+<Canvas of={CheckboxStories.CheckboxStory} />
+<Controls of={CheckboxStories.CheckboxStory} />
