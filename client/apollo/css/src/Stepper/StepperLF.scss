@@ -2,7 +2,7 @@
 @use "./StepperCommon";
 
 .af-stepper {
-  --stepper-gap: calc(8 / var(--font-size-base) * 1rem);
+  --stepper-gap: calc(12 / var(--font-size-base) * 1rem);
 
   &__header {
     --stepper-header-flex-direction: column;
