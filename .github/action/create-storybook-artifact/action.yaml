@@ -20,8 +20,8 @@ runs:
           app="apps/${folder%%/*}-stories-${folder#*/}/storybook-static/*"
           app=$(echo "$app" | sed 's/-react//')
           artifact="artifact/$folder"
-          mkdir -p "$artifact"
-          cp -R "$app" "$artifact"
+          mkdir -p $artifact
+          cp -R $app $artifact
         done
 
     - name: Upload ${{ inputs.artifact-name }} artifacts
