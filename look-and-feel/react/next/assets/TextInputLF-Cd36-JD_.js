@@ -1,1 +1,0 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{T as m,I as o}from"./CheckboxCardLF-DN1vzkut.js";import{I as s}from"./ItemLabelLF-BCSuxFaz.js";const r=t=>e.jsx(m,{...t,ItemLabelComponent:s,ItemMessageComponent:o});export{r as T};
