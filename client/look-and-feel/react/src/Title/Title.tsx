@@ -20,6 +20,9 @@ type TitleProps = {
   level?: TitleLevel;
 };
 
+/**
+ * @deprecated Use Heading instead
+ */
 export const Title = ({
   children: title,
   className,
