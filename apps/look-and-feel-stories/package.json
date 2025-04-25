@@ -35,7 +35,7 @@
     "chromatic": "^11.26.1",
     "globals": "^16.0.0",
     "storybook": "^8.6.3",
-    "typescript": "~5.7.2",
+    "typescript": "~5.8.3",
     "vite": "^6.3.3"
   },
   "optionalDependencies": {
