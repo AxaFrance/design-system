@@ -63,9 +63,7 @@ jobs:
         uses: ./.github/action/create-storybook-artifact
         with:
           artifact-name: client-storybooks
-          folders: |
-            apollo/react
-            look-and-feel/react
+          folders: "apollo/react,look-and-feel/react"
 
   publish-slash:
     if: github.repository_owner == 'AxaFrance' && !startsWith(github.ref, 'refs/heads/releases-client/')
@@ -113,8 +111,7 @@ jobs:
         uses: ./.github/action/create-storybook-artifact
         with:
           artifact-name: slash-storybooks
-          folders: |
-            slash/react
+          folders: "slash/react"
 
   deploy-storybooks:
     needs:
