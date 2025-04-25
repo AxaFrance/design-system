@@ -1,4 +1,7 @@
-import { ContentItemDuo } from "@axa-fr/design-system-look-and-feel-react";
+import {
+  ContentItemDuo,
+  List,
+} from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
@@ -14,6 +17,7 @@ const defaultArgs = {
   label: "Libellé",
   value: "Réponse",
   buttonText: "En savoir plus",
+  classModifier: [],
 };
 
 const verticalArgs = {
@@ -67,6 +71,86 @@ export const ContentItemDuoVertical: StoryObj<
       options: ["large"],
       control: { type: "multi-select" },
       defaultValue: [],
+    },
+  },
+};
+
+export const DefaultContentItemDuoList: StoryObj<
+  {
+    items: Array<
+      Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
+        id: string;
+        classModifier: string[];
+      }
+    >;
+  } & Omit<ComponentProps<typeof List>, "classModifier"> & {
+      classModifier: string[];
+    }
+> = {
+  name: "Default ContentItemDuo List",
+  render: ({ classModifier, items }) => (
+    <List classModifier={classModifier.join(" ")}>
+      {items.map(({ classModifier: itemClassModifier, ...itemArgs }) => (
+        <ContentItemDuo
+          key={itemArgs.id}
+          classModifier={itemClassModifier.join(" ")}
+          {...itemArgs}
+        />
+      ))}
+    </List>
+  ),
+  args: {
+    items: Array.from({ length: 3 }, (_, i) => ({
+      id: i.toString(),
+      ...defaultArgs,
+    })),
+    classModifier: ["extra-padding"],
+  },
+  argTypes: {
+    classModifier: {
+      options: ["extra-padding", "large"],
+      control: { type: "multi-select" },
+      defaultValue: ["extra-padding"],
+    },
+  },
+};
+
+export const VerticalContentItemDuoList: StoryObj<
+  {
+    items: Array<
+      Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
+        id: string;
+        classModifier: string[];
+      }
+    >;
+  } & Omit<ComponentProps<typeof List>, "classModifier"> & {
+      classModifier: string[];
+    }
+> = {
+  name: "Vertical ContentItemDuo List",
+  render: ({ classModifier, items }) => (
+    <List classModifier={classModifier.join(" ")}>
+      {items.map(({ classModifier: itemClassModifier, ...itemArgs }) => (
+        <ContentItemDuo
+          key={itemArgs.id}
+          classModifier={itemClassModifier.join(" ")}
+          {...itemArgs}
+        />
+      ))}
+    </List>
+  ),
+  args: {
+    items: Array.from({ length: 3 }, (_, i) => ({
+      id: i.toString(),
+      ...verticalArgs,
+    })),
+    classModifier: ["extra-padding"],
+  },
+  argTypes: {
+    classModifier: {
+      options: ["extra-padding", "large"],
+      control: { type: "multi-select" },
+      defaultValue: ["extra-padding"],
     },
   },
 };
