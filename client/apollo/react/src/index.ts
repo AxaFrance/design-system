@@ -54,3 +54,4 @@ export { Heading, type HeadingLevel } from "./Heading/HeadingApollo";
 export { Checkbox } from "./Form/checkbox/checkbox/CheckboxApollo";
 export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextApollo";
 export { CheckboxCard } from "./Form/checkbox/checkboxCard/CheckboxCardApollo";
+export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";

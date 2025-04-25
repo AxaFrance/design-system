@@ -49,3 +49,4 @@ export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
 export { Checkbox } from "./Form/checkbox/checkbox/CheckboxLf";
 export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextLF";
 export { CheckboxCard } from "./Form/checkbox/checkboxCard/CheckboxCardLF";
+export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
