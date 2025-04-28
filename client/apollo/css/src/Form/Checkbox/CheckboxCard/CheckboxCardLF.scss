@@ -66,6 +66,10 @@
       --checkbox-card-align-items: flex-start;
       --checkbox-card-justify-content: flex-start;
 
+      .af-checkbox {
+        position: absolute;
+      }
+
       .af-checkbox-card-content {
         --checkbox-card-flex-direction: column;
         --checkbox-card-margin-left: calc(2 / var(--font-size-base) * 1rem);
