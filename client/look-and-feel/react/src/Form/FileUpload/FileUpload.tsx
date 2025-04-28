@@ -1,15 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { ComponentPropsWithRef, useId } from "react";
+import {
+  Button,
+  ItemMessage,
+  Spinner,
+  Svg,
+} from "@axa-fr/design-system-apollo-react/lf";
 import "@axa-fr/design-system-look-and-feel-css/dist/Form/FileUpload/FileUpload.scss";
-import visibility from "@material-symbols/svg-400/outlined/visibility-fill.svg";
-import close from "@material-symbols/svg-400/outlined/close-fill.svg";
-import check from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
-import error from "@material-symbols/svg-400/outlined/error-fill.svg";
-import errorO from "@material-symbols/svg-400/outlined/error.svg";
 import plus from "@material-symbols/svg-400/outlined/add_circle-fill.svg";
+import check from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
+import close from "@material-symbols/svg-400/outlined/close-fill.svg";
+import error from "@material-symbols/svg-400/outlined/error-fill.svg";
+import visibility from "@material-symbols/svg-400/outlined/visibility-fill.svg";
 import classNames from "classnames";
-import { Spinner, Svg, Button } from "@axa-fr/design-system-apollo-react/lf";
-import { InputError } from "../InputError";
+import { ComponentPropsWithRef, useId } from "react";
 
 function getReadableFileSizeString(fileSizeInBytes: number) {
   let i = -1;
@@ -88,39 +91,41 @@ const FileUpload = ({
       <label className="af-form__group--label" htmlFor={id}>
         {label} {required ? "*" : ""}
       </label>
-      <div
-        className={classNames(
-          "af-form__file-input",
-          globalError && "af-form__file-input--error",
-          (isMobile || (!withPadding && !dropzoneDescription)) && "is-mobile",
-        )}
-      >
-        <input
-          type="file"
-          name="file-input"
-          id={id}
-          aria-errormessage={idError}
-          aria-invalid={Boolean(globalError)}
-          {...otherProps}
-        />
-        {dropzoneDescription && (
-          <div className="af-form__file-input-dropdown-text">
-            <p>{dropzoneDescription}</p>
-            <p>ou</p>
-          </div>
-        )}
-        <Button
-          variant="tertiary"
-          onClick={() => document.getElementById(id)?.click()}
-          iconLeft={<Svg src={plus} className="af-form__file-input-icon" />}
+      <div className="af-form__file-input-container">
+        <div
+          className={classNames(
+            "af-form__file-input",
+            globalError && "af-form__file-input--error",
+            (isMobile || (!withPadding && !dropzoneDescription)) && "is-mobile",
+          )}
         >
-          {buttonLabel}
-        </Button>
+          <input
+            type="file"
+            name="file-input"
+            id={id}
+            aria-errormessage={idError}
+            aria-invalid={Boolean(globalError)}
+            {...otherProps}
+          />
+          {dropzoneDescription && (
+            <div className="af-form__file-input-dropdown-text">
+              <p>{dropzoneDescription}</p>
+              <p>ou</p>
+            </div>
+          )}
+          <Button
+            variant="tertiary"
+            onClick={() => document.getElementById(id)?.click()}
+            iconLeft={<Svg src={plus} className="af-form__file-input-icon" />}
+          >
+            {buttonLabel}
+          </Button>
+        </div>
+        {globalError && <ItemMessage id={idError} message={globalError} />}
+        {instructions && (
+          <small className="af-form__file-input-help">{instructions}</small>
+        )}
       </div>
-      {globalError && <InputError id={idError} message={globalError} />}
-      {instructions && (
-        <small className="af-form__file-input-help">{instructions}</small>
-      )}
       {files && files.length !== 0 && (
         <div className="custom-table-file af-file-table">
           {filesListLabel && (
@@ -173,16 +178,7 @@ const FileUpload = ({
                       )}
                     </div>
                   </div>
-                  {isInError && (
-                    <small className="af-form__file-error">
-                      <Svg
-                        src={errorO}
-                        className="af-form__file-error-icon"
-                        width={18}
-                      />
-                      {errorMessage}
-                    </small>
-                  )}
+                  {isInError && <ItemMessage message={errorMessage} />}
                 </li>
               );
             })}
