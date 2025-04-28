@@ -24,6 +24,14 @@
     box-shadow: var(--dropdown-box-shadow);
     appearance: none;
 
+    @media (width <= 768px) {
+      background-color: violet;
+    }
+
+    @media (width <= 480px) {
+      background-color: violet;
+    }
+
     option {
       border: 1px solid var(--dropdown-border-color);
       color: var(--dropdown-color);
