@@ -13,7 +13,7 @@ export {
 export { Button, buttonVariants, type ButtonVariants } from "./Button/Button";
 export { Card } from "./Card";
 export { Divider } from "./Divider/Divider";
-export { Checkbox, CheckboxSelect } from "./Form/Checkbox";
+export { Checkbox, CheckboxText, CheckboxCard } from "./Form/Checkbox";
 export { FileUpload } from "./Form/FileUpload";
 export { InputError } from "./Form/InputError";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
@@ -83,3 +83,4 @@ export {
   itemTabBarVariants,
   type ItemTabBarVariants,
 } from "./ItemTabBar/ItemTabBar";
+export { Heading, type HeadingLevel } from "./Heading/Heading";

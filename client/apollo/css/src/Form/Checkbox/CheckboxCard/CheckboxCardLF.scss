@@ -1,0 +1,114 @@
+@use "CheckboxCardCommon";
+
+.af-checkbox-card {
+  &__label-container {
+    --font-size-base: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  &__label {
+    --checkbox-card-color: var(--color-gray-900);
+  }
+
+  &__description {
+    --checkbox-card-color: var(--color-gray-700);
+  }
+
+  &__content {
+    & > svg {
+      --checkbox-card-color: var(--color-axa);
+      --checkbox-card-fill: var(--color-axa);
+    }
+
+    &-description {
+      & > span:first-child {
+        --checkbox-card-color: var(--color-gray-900);
+      }
+
+      & > span:not(:first-child) {
+        --checkbox-card-color: var(--color-gray-700);
+      }
+    }
+  }
+
+  & ~ &__error {
+    --error-box-color: var(--color-red-700);
+
+    & > svg {
+      --error-box-color: var(--color-red-700);
+      --error-box-fill: var(--color-red-700);
+    }
+  }
+
+  &-group--vertical {
+    --checkbox-card-flex-direction: column;
+
+    .af-checkbox-card-label {
+      --checkbox-card-flex-direction: row;
+      --checkbox-card-align-items: center;
+
+      .af-checkbox-card-content {
+        --checkbox-card-flex-direction: row;
+        --checkbox-card-margin-left: calc(12 / var(--font-size-base) * 1rem);
+
+        .af-checkbox-card-content-description {
+          --checkbox-card-flex-direction: column;
+          --checkbox-card-align-item: flex-start;
+        }
+      }
+    }
+  }
+
+  &-group--horizontal {
+    --checkbox-card-flex-direction: row;
+
+    .af-checkbox-card-label {
+      --checkbox-card-flex-direction: row;
+      --checkbox-card-align-items: flex-start;
+      --checkbox-card-justify-content: flex-start;
+
+      .af-checkbox-card-content {
+        --checkbox-card-flex-direction: column;
+        --checkbox-card-margin-left: calc(2 / var(--font-size-base) * 1rem);
+
+        .af-checkbox-card-content-description {
+          --checkbox-card-flex-direction: column;
+          --checkbox-card-align-item: center;
+        }
+      }
+    }
+  }
+
+  &-group--vertical,
+  &-group--horizontal {
+    .af-checkbox-card-label[aria-invalid="true"] {
+      --checkbox-card-background-color: var(--color-white);
+      --checkbox-card-border: 2px var(--color-red-700);
+      --checkbox-card-shadow-color: var(--color-red-700);
+    }
+
+    .af-checkbox-card-label {
+      --checkbox-card-border: 2px var(--color-gray-700);
+      --checkbox-card-border-radius: calc(6 / var(--font-size-base) * 1rem);
+
+      .af-checkbox-card-content {
+        .af-checkbox-card-content-description {
+          & > span:first-child {
+            --checkbox-card-label-text-color: var(--color-black);
+          }
+        }
+      }
+
+      &:hover {
+        --checkbox-card-border: 2px var(--color-axa);
+        --checkbox-card-shadow-color: var(--color-axa);
+        --checkbox-card-background-color: var(--color-white);
+      }
+    }
+
+    .af-checkbox-card-label:has(input:checked) {
+      --checkbox-card-border: 2px var(--color-axa);
+      --checkbox-card-shadow-color: var(--color-axa);
+      --checkbox-card-background-color: var(--color-blue-2);
+    }
+  }
+}
