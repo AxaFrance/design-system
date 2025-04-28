@@ -1,7 +1,19 @@
-@use "../../common/breakpoints" as breakpoints;
+.af-item-message {
+  top: 93px;
+  left: 60px;
+  width: 545px;
+  height: 75px;
+  padding: 16px;
+  border: 1px solid var(--item-file-border-color);
+  border-radius: var(--item-file-border-radius);
+  justify-content: center;
+  gap: 12px;
 
-.af_item_layout {
+  &:open {
+    background-image: var(--item-file-background);
+  }
 
+  &--error {
+    border: 1px solid var(--item-file-border-color);
+  }
 }
-
-
