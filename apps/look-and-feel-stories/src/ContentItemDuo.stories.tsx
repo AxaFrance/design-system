@@ -9,14 +9,13 @@ const meta: Meta<typeof ContentItemDuo> = {
   title: "Components/List/ContentItemDuo",
   component: ContentItemDuo,
 };
+
 export default meta;
 
 const defaultArgs = {
   isVertical: false,
   label: "Libellé",
   value: "Réponse",
-  isShowingDoneIcon: true,
-  isShowingCloseIcon: false,
   buttonText: "En savoir plus",
   classModifier: [],
 };
@@ -26,13 +25,11 @@ const verticalArgs = {
   label:
     "Le choc de véhicules terrestres à moteur, (voiture, trottinette à moteur…) ou la chute d’appareils aériens (avions, hélicoptères…) avec un propriétaire du véhicule adverse identifié ?",
   value: "Les incendies, explosions, implosions, fumée et foudre",
-  isShowingDoneIcon: true,
-  isShowingCloseIcon: false,
   buttonText: "En savoir plus",
   classModifier: [],
 };
 
-export const Default: StoryObj<
+export const ContentItemDuoDefault: StoryObj<
   Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
     classModifier: string[];
   }
@@ -40,17 +37,27 @@ export const Default: StoryObj<
   render: ({ classModifier, ...args }) => (
     <ContentItemDuo classModifier={classModifier.join(" ")} {...args} />
   ),
-  args: defaultArgs,
-  argTypes: {
-    classModifier: {
-      options: ["large"],
-      control: { type: "multi-select" },
-      defaultValue: [],
-    },
+  args: {
+    ...defaultArgs,
+    classModifier: ["small"],
   },
 };
 
-export const Vertical: StoryObj<
+export const ContentItemDuoLarge: StoryObj<
+  Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
+    classModifier: string[];
+  }
+> = {
+  render: ({ classModifier, ...args }) => (
+    <ContentItemDuo classModifier={classModifier.join(" ")} {...args} />
+  ),
+  args: {
+    ...defaultArgs,
+    classModifier: ["large"],
+  },
+};
+
+export const ContentItemDuoVertical: StoryObj<
   Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
     classModifier: string[];
   }

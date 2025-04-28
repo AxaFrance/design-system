@@ -1,0 +1,152 @@
+@use "../../common/breakpoints" as breakpoints;
+
+.af-content-item-duo {
+  display: grid;
+  width: 100%;
+  grid-template:
+    "icon label value"
+    "icon label button";
+  grid-template-columns: auto 1fr 1fr;
+  row-gap: calc(8 / var(--font-size-base) * 1rem);
+
+  &__label,
+  &__value {
+    margin: 0;
+    font-family: var(--font-family-base);
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+    line-height: 125%;
+    overflow-wrap: break-word;
+  }
+
+  &__label {
+    margin-right: calc(16 / var(--font-size-base) * 1rem);
+    grid-area: label;
+    font-weight: 400;
+    color: var(--content-duo-label-color);
+  }
+
+  &__value {
+    grid-area: value;
+    font-weight: 600;
+    text-align: end;
+    color: var(--content-duo-value-color);
+  }
+
+  &__button {
+    grid-area: button;
+    justify-self: end;
+  }
+
+  &--large {
+    :not(:has(.af-content-item-duo__button)) {
+      row-gap: 0;
+    }
+
+    row-gap: calc(12 / var(--font-size-base) * 1rem);
+
+    .af-content-item-duo {
+      &__icon {
+        margin-top: calc(4 / var(--font-size-base) * 1rem);
+      }
+
+      &__label,
+      &__value {
+        font-size: calc(16 / var(--font-size-base) * 1rem);
+        line-height: 125%;
+      }
+
+      &__label {
+        margin-right: calc(40 / var(--font-size-base) * 1rem);
+      }
+
+      &__value {
+        text-align: start;
+      }
+
+      &__button {
+        justify-self: start;
+      }
+    }
+  }
+
+  &--vertical {
+    grid-template:
+      "icon label button"
+      ". value value";
+    grid-template-columns: auto 1fr auto;
+    gap: calc(6 / var(--font-size-base) * 1rem)
+      calc(12 / var(--font-size-base) * 1rem);
+
+    .af-content-item-duo {
+      &__icon {
+        margin-top: calc(2 / var(--font-size-base) * 1rem);
+        margin-right: 0;
+      }
+
+      &__label,
+      &__value {
+        margin-right: 0;
+        font-size: calc(18 / var(--font-size-base) * 1rem);
+        line-height: 125%;
+        text-align: start;
+      }
+
+      &__value {
+        margin: 0;
+      }
+
+      &__button {
+        margin-left: 0;
+        justify-self: end;
+      }
+    }
+  }
+}
+
+@media (width <= #{breakpoints.$breakpoint-sm}) {
+  .af-content-item-duo {
+    &--large {
+      row-gap: calc(8 / var(--font-size-base) * 1rem);
+
+      .af-content-item-duo {
+        &__label,
+        &__value {
+          font-size: calc(16 / var(--font-size-base) * 1rem);
+          line-height: 125%;
+        }
+
+        &__label {
+          margin-right: calc(1 / var(--font-size-base) * 1rem);
+        }
+
+        &__value {
+          text-align: end;
+        }
+
+        &__button {
+          margin-left: 0;
+          justify-self: end;
+        }
+      }
+    }
+
+    &--vertical {
+      row-gap: calc(6 / var(--font-size-base) * 1rem);
+
+      .af-content-item-duo {
+        &__label,
+        &__value {
+          font-size: calc(16 / var(--font-size-base) * 1rem);
+          line-height: 125%;
+          text-align: start;
+        }
+      }
+    }
+  }
+}
+
+@media (width >= #{breakpoints.$breakpoint-lg}) {
+  .af-content-item-duo__label {
+    max-width: calc(3680 / var(--font-size-base) * 1rem);
+  }
+}
