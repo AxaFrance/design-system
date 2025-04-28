@@ -1,1 +1,19 @@
 @use "./ItemFileCommon";
+
+.af-item-message {
+  --item-file-border-radius: var(--default-border-radius);
+  --item-file-border-color: var(--color-gray-700);
+  --item-file-title-color: var(--color-gray-900);
+  --item-file-subtitle-color: var(--color-gray-700);
+  --item-file-icon-color: var(--green-100);
+  --item-file-bg-color: var(--white);
+
+  &--error {
+    --item-file-border-color: var(--color-red-700);
+    --item-file-icon-color: var(--color-red-700);
+  }
+
+  &:open {
+    --item-file-background: url("@material-symbols/svg-400/outlined/visibility-fill.svg");
+  }
+}

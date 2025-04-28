@@ -1,8 +1,8 @@
-import { ItemFile } from "@axa-fr/design-system-apollo-react";
+import { ItemFile } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ItemFile> = {
-  title: "Components/Form/ItemFile",
+  title: "Components/ItemFile",
   component: ItemFile,
 };
 export default meta;

@@ -1,28 +1,30 @@
 import { ItemFile } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
-import React from "react";
+
+type Story = StoryObj<typeof ItemFile>;
 
 const meta: Meta<typeof ItemFile> = {
-  title: "Components/Form/ItemFile",
+  title: "Components/ItemFile",
   component: ItemFile,
-};
-export default meta;
-const render = ({
-  onChange,
-  ...args
-}: React.ComponentProps<typeof ItemFile>) => (
-  <ItemFile onChange={onChange} {...args} />
-);
-
-export const Error: StoryObj<typeof ItemFile> = {
-  render,
   args: {
-    error: "Error Message",
+    loading: false,
+    valid: false,
+    title: "",
+    subTitle: "",
+  },
+  argTypes: {
+    loading: { control: "boolean" },
+    valid: { control: "boolean" },
+    title: { control: "string" },
+    subTitle: { control: "string" },
   },
 };
+export default meta;
 
-export const Success: StoryObj<typeof ItemFile> = {
+export const ItemFileStory: Story = {
+  name: "ItemFile",
   args: {
-    error: "Success Message",
+    title: "IMG1404704650",
+    subTitle: "12Mob",
   },
 };

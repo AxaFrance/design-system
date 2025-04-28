@@ -13,7 +13,7 @@ import {
 } from "react";
 
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
-import { Spinner } from "../../Spinner/SpinnerCommon";
+import { Spinner, spinnerVariants } from "../../Spinner/SpinnerCommon";
 import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import { Icon } from "../../Icon/IconCommon";
 
@@ -25,15 +25,16 @@ export const itemFileVariants = {
 type ItemFileVariants = keyof typeof itemFileVariants;
 
 type ItemFileProps = {
+  valid: boolean;
   error?: string;
-  loading?: string;
+  loading: boolean;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   ItemIconComponent: ComponentType<ComponentProps<typeof Icon>>;
   ItemClickIconComponent: ComponentType<ComponentProps<typeof ClickIcon>>;
   ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
   variant?: ItemFileVariants;
-  title?: string;
-  subTitle?: string;
+  title: string;
+  subTitle: string;
 } & ComponentPropsWithoutRef<"div">;
 
 const getIconFromType = (variant: ItemFileVariants) =>
@@ -42,9 +43,10 @@ const getIconFromType = (variant: ItemFileVariants) =>
     [itemFileVariants.error]: errorIcon,
   })[variant];
 
-const ItemFile = ({
+export const ItemFile = ({
   variant = itemFileVariants.validation,
   className,
+  valid,
   error,
   loading,
   title,
@@ -59,30 +61,34 @@ const ItemFile = ({
 
   return (
     <div
-      className={["af-message", `af-message--${variant}`, className]
+      className={["af-item-message", `af-item-message--${variant}`, className]
         .filter(Boolean)
         .join(" ")}
       role="alert"
     >
       <div className="af-icon__content">
         {loading ? (
-          <ItemSpinnerComponent />
+          <ItemSpinnerComponent size={24} variant={spinnerVariants.gray} />
         ) : (
           <ItemIconComponent variant="primary" size="S" src={icon} />
         )}
       </div>
-
-      <div className="af-message__content">{title}</div>
-      <div className="af-message__content">{subTitle}</div>
+      <div className="af-message__content">
+        <div>{title}</div>
+        <div>{subTitle}</div>
+      </div>
 
       <div className="af-click-icon__content">
-        <ItemClickIconComponent src={visibilityIcon} />
-        <ItemClickIconComponent src={deleteIcon} />
+        {valid ? (
+          <>
+            <ItemClickIconComponent src={visibilityIcon} />
+            <ItemClickIconComponent src={deleteIcon} />
+          </>
+        ) : (
+          <ItemClickIconComponent src={deleteIcon} />
+        )}
       </div>
       <ItemMessageComponent id={idError} message={error} />
     </div>
   );
 };
-ItemFile.displayName = "ItemFile";
-
-export { ItemFile };
