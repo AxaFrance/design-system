@@ -1,0 +1,27 @@
+@use "./ItemTabBarCommon";
+@use "../common/breakpoints" as breakpoints;
+
+.af-item-tab-bar {
+  --item-tab-bar-font-color: var(--axa-blue-100);
+  --item-tab-bar-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --item-tab-bar-vertical-padding: 10px;
+  --item-tab-bar-horizontal-padding: 8px;
+  --item-tab-bar-border-color: var(--axa-blue-20);
+
+  &--tabBar[aria-selected="true"] {
+    --item-tab-bar-border-color: var(--axa-blue-100);
+  }
+
+  &--header[aria-selected="true"] {
+    --item-tab-bar-border-color: var(--axa-red-digital-100);
+  }
+
+  &:focus-visible {
+    --item-tab-bar-outline-color: var(--axa-blue-100);
+  }
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --item-tab-bar-vertical-padding: 16px;
+    --item-tab-bar-horizontal-padding: 16px;
+  }
+}
