@@ -52,11 +52,7 @@ export const ContentItemDuo = ({
       )}
       {buttonText && (
         <div className="af-content-item-duo__button">
-          <ButtonComponent
-            variant="ghost"
-            onClick={onButtonClick}
-            className="af-item-label__sidebutton"
-          >
+          <ButtonComponent variant="ghost" onClick={onButtonClick}>
             {buttonText}
           </ButtonComponent>
         </div>
