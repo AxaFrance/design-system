@@ -89,7 +89,6 @@
         font-size: calc(18 / var(--font-size-base) * 1rem);
         line-height: 125%;
         text-align: start;
-        background-color: violet;
       }
 
       &__value {
@@ -117,7 +116,7 @@
         }
 
         &__label {
-          margin-right: 1rem;
+          margin-right: calc(1 / var(--font-size-base) * 1rem);
         }
 
         &__value {
@@ -132,7 +131,6 @@
     }
 
     &--vertical {
-      row-gap: 0.375rem;
       row-gap: calc(6 / var(--font-size-base) * 1rem);
 
       .af-content-item-duo {
@@ -149,6 +147,6 @@
 
 @media (width >= #{breakpoints.$breakpoint-lg}) {
   .af-content-item-duo__label {
-    max-width: common.rem(230);
+    max-width: calc(3680 / var(--font-size-base) * 1rem);
   }
 }

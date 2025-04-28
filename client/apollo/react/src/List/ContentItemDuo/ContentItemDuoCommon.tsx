@@ -1,5 +1,5 @@
 import { type ReactNode, useMemo } from "react";
-import { Button } from "../..";
+import { Button } from "../../Button/ButtonCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 
 type ContentItemDuoProps = {
