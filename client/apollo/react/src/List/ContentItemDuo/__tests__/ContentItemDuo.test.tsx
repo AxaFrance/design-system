@@ -2,6 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { ContentItemDuo } from "../ContentItemDuoCommon";
+import { Button } from "../../../Button/ButtonCommon";
 
 describe("ContentItemDuo", () => {
   const ContentItemDuoLabel = "Label";
@@ -12,6 +13,7 @@ describe("ContentItemDuo", () => {
       <ContentItemDuo
         label={ContentItemDuoLabel}
         value={ContentItemDuoValue}
+        ButtonComponent={Button}
       />,
     );
     expect(screen.getByText(ContentItemDuoLabel)).toBeInTheDocument();
@@ -27,6 +29,7 @@ describe("ContentItemDuo", () => {
         value={ContentItemDuoValue}
         buttonText={buttonText}
         onButtonClick={onButtonClick}
+        ButtonComponent={Button}
       />,
     );
     const buttonElement = screen.getByText(buttonText);
@@ -43,6 +46,7 @@ describe("ContentItemDuo", () => {
         label={ContentItemDuoLabel}
         value={ContentItemDuoValue}
         isVertical
+        ButtonComponent={Button}
       />,
     );
     const ContentItemDuoVertical = screen.getByText(ContentItemDuoLabel);
@@ -56,6 +60,7 @@ describe("ContentItemDuo", () => {
       <ContentItemDuo
         label={ContentItemDuoLabel}
         value={ContentItemDuoValue}
+        ButtonComponent={Button}
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
