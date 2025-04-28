@@ -1,0 +1,22 @@
+@use "../../../common/breakpoints" as breakpoints;
+
+.af-checkbox-text {
+  & label {
+    display: flex;
+    margin: 0;
+    align-items: flex-start;
+    gap: calc(12 / var(--font-size-base) * 1rem);
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-weight: 400;
+    color: var(--checkbox-text-label-color);
+    cursor: pointer;
+
+    @media (width < #{breakpoints.$breakpoint-sm}) {
+      font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  & .af-checkbox-text__error {
+    margin-left: calc(36 / var(--font-size-base) * 1rem);
+  }
+}

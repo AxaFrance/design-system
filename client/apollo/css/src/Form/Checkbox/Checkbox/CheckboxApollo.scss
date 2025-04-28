@@ -1,0 +1,35 @@
+@use "CheckboxCommon";
+
+.af-checkbox {
+  &__icons {
+    --checkbox-border-radius: calc(6 / var(--font-size-base) * 1rem);
+    --checkbox-border: 1px var(--axa-blue-65);
+  }
+
+  input[type="checkbox"][aria-invalid="true"] {
+    ~ .af-checkbox__icons {
+      --checkbox-border: 1px var(--red-alert-100);
+      --checkbox-box-shadow-color: var(--red-alert-100);
+      --checkbox-background-color: var(--white);
+    }
+  }
+
+  input[type="checkbox"]:hover {
+    ~ .af-checkbox__icons {
+      --checkbox-border: 1px var(--axa-blue-100);
+      --checkbox-box-shadow-color: var(--axa-blue-100);
+    }
+  }
+
+  input[type="checkbox"]:checked {
+    ~ .af-checkbox__icons {
+      --checkbox-border: 1px var(--axa-blue-100);
+      --checkbox-box-shadow-color: var(--axa-blue-100);
+      --checkbox-background-color: var(--axa-blue-100);
+
+      & .af-checkbox__checked {
+        --checkbox-check-fill: var(--white);
+      }
+    }
+  }
+}
