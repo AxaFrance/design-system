@@ -23,9 +23,7 @@ export const ItemTabBar = forwardRef<HTMLButtonElement, ItemTabBarProps>(
       type="button"
       role="tab"
       aria-selected={isActive}
-      className={["af-item-tab-bar", `af-item-tab-bar--${variant}`, className]
-        .filter(Boolean)
-        .join(" ")}
+      className={`af-item-tab-bar af-item-tab-bar--${variant} ${className}`}
       {...props}
     >
       {icon}
