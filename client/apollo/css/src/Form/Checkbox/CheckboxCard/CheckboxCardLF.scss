@@ -39,7 +39,7 @@
     }
   }
 
-  &-group--vertical {
+  &-group--horizontal {
     --checkbox-card-flex-direction: column;
 
     .af-checkbox-card-label {
@@ -58,7 +58,7 @@
     }
   }
 
-  &-group--horizontal {
+  &-group--vertical {
     --checkbox-card-flex-direction: row;
 
     .af-checkbox-card-label {
