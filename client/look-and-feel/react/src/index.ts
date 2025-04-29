@@ -78,4 +78,9 @@ export { ProgressBar } from "./ProgressBar/ProgressBar";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroup";
 export { Stepper } from "./Stepper/Stepper";
 export { TimelineVertical } from "./TimelineVertical/TimelineVertical";
+export {
+  ItemTabBar,
+  itemTabBarVariants,
+  type ItemTabBarVariants,
+} from "./ItemTabBar/ItemTabBar";
 export { Heading, type HeadingLevel } from "./Heading/Heading";

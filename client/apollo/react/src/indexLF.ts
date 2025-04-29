@@ -45,6 +45,11 @@ export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export { Stepper } from "./Stepper/StepperLF";
 export { DateInput } from "./Form/DateInput/DateInputLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
+export {
+  ItemTabBar,
+  itemTabBarVariants,
+  type ItemTabBarVariants,
+} from "./ItemTabBar/ItemTabBarLF";
 export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
 export { Checkbox } from "./Form/checkbox/checkbox/CheckboxLf";
 export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextLF";

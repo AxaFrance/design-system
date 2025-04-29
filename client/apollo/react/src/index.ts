@@ -50,6 +50,11 @@ export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export { Stepper } from "./Stepper/StepperApollo";
 export { DateInput } from "./Form/DateInput/DateInputApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
+export {
+  ItemTabBar,
+  itemTabBarVariants,
+  type ItemTabBarVariants,
+} from "./ItemTabBar/ItemTabBarApollo";
 export { Heading, type HeadingLevel } from "./Heading/HeadingApollo";
 export { Checkbox } from "./Form/checkbox/checkbox/CheckboxApollo";
 export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextApollo";
