@@ -5,11 +5,11 @@ import React, {
   type ReactNode,
   useId,
 } from "react";
-import { CheckboxProps } from "../checkbox/CheckboxCommon";
-import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { Icon } from "../../../Icon/IconCommon";
-import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
 import { BREAKPOINT } from "../../../utilities/constants";
+import { getComponentClassName } from "../../../utilities/getComponentClassName";
+import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
+import { CheckboxProps } from "../checkbox/CheckboxCommon";
 
 type CheckboxComponent = {
   CheckboxComponent: ComponentType<CheckboxProps>;
@@ -78,7 +78,7 @@ const CheckboxCardCommon = ({
           </span>
         )}
       </div>
-      <div role="group" className={checkboxGroupClassName}>
+      <fieldset className={checkboxGroupClassName}>
         {options.map(
           ({ label, description, subtitle, icon, hasError, ...inputProps }) => (
             <label
@@ -105,9 +105,10 @@ const CheckboxCardCommon = ({
             </label>
           ),
         )}
-      </div>
+      </fieldset>
     </div>
   );
 };
+
 CheckboxCardCommon.displayName = "CheckboxCardCommon";
 export { CheckboxCardCommon };

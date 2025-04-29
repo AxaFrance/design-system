@@ -23,3 +23,10 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
