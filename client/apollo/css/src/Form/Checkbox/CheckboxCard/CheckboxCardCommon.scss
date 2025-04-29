@@ -121,12 +121,6 @@
     font-weight: 400;
     line-height: calc(20 / var(--font-size-base) * 1rem);
 
-    .af-checkbox-card-label[aria-invalid="true"] {
-      border: solid var(--checkbox-card-border);
-      background-color: var(--checkbox-card-background-color);
-      box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
-    }
-
     .af-checkbox-card-label {
       display: flex;
       padding: 1rem;
@@ -177,12 +171,18 @@
         background-color: var(--checkbox-card-background-color);
         box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
       }
-    }
 
-    .af-checkbox-card-label:has(input:checked) {
-      border: solid var(--checkbox-card-border);
-      background-color: var(--checkbox-card-background-color);
-      box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+      &:has(input[aria-invalid="true"]) {
+        border: solid var(--checkbox-card-border);
+        background-color: var(--checkbox-card-background-color);
+        box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+      }
+
+      &:has(input:checked) {
+        border: solid var(--checkbox-card-border);
+        background-color: var(--checkbox-card-background-color);
+        box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+      }
     }
   }
 }
