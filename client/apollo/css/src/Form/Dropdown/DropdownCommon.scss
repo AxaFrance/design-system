@@ -2,7 +2,7 @@
   &-label {
     display: inline-block;
     margin-bottom: calc(8 / var(--font-size-base) * 1rem);
-    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-size: var(--dropdown-font-size);
     font-weight: 600;
     color: var(--dropdown-placeholder-color);
   }
@@ -23,14 +23,6 @@
     background-position-x: calc(100% - 1rem);
     box-shadow: var(--dropdown-box-shadow);
     appearance: none;
-
-    @media (width <= 768px) {
-      background-color: violet;
-    }
-
-    @media (width <= 480px) {
-      background-color: violet;
-    }
 
     option {
       border: 1px solid var(--dropdown-border-color);
