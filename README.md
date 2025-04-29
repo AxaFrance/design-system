@@ -39,8 +39,8 @@ Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers
 ```bash
 npm install @axa-fr/design-system-slash-react@latest @axa-fr/design-system-slash-css@latest
 ```
-**Installation next**
 
+**Installation next**
 
 ```bash
 npm install @axa-fr/design-system-slash-react@next @axa-fr/design-system-slash-css@next
@@ -65,8 +65,8 @@ npm install @axa-fr/design-system-slash-react@next @axa-fr/design-system-slash-c
 ```bash
 npm install @axa-fr/design-system-apollo-react@latest @axa-fr/design-system-apollo-css@latest
 ```
-**Installation next**
 
+**Installation next**
 
 ```bash
 npm install @axa-fr/design-system-apollo-react@next @axa-fr/design-system-apollo-css@next
@@ -74,10 +74,10 @@ npm install @axa-fr/design-system-apollo-react@next @axa-fr/design-system-apollo
 
 ### <abbr title="Business to client">B2C</abbr> - Look and feel
 
-[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react/latest?label=apollo-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-react)
-[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css/latest?label=apollo-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-css)\
-[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react/next?label=apollo-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/package/@axa-fr/design-system-look-and-feel-react/v/next)
-[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css/next?label=apollo-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/package/@axa-fr/design-system-look-and-feel-css/v/next)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react/latest?label=look-and-feel-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-react)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css/latest?label=look-and-feel-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-css)\
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react/next?label=look-and-feel-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/package/@axa-fr/design-system-look-and-feel-react/v/next)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css/next?label=look-and-feel-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/package/@axa-fr/design-system-look-and-feel-css/v/next)
 
 **Documentation**
 
@@ -91,8 +91,8 @@ npm install @axa-fr/design-system-apollo-react@next @axa-fr/design-system-apollo
 ```bash
 npm install @axa-fr/design-system-look-and-feel-react@latest @axa-fr/design-system-look-and-feel-css@latest
 ```
-**Installation next**
 
+**Installation next**
 
 ```bash
 npm install @axa-fr/design-system-look-and-feel-react@next @axa-fr/design-system-look-and-feel-css@next
@@ -100,7 +100,7 @@ npm install @axa-fr/design-system-look-and-feel-react@next @axa-fr/design-system
 
 ## Build status
 
-#### Sonarcloud Quality metrics
+### Sonarcloud Quality metrics
 
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
