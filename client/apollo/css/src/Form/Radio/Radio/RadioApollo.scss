@@ -1,0 +1,23 @@
+@use "RadioCommon";
+
+.af-radio {
+  --radio-border: 1px var(--axa-blue-65);
+
+  &__icons {
+    --radio-width: 12px;
+    --radio-background-color: var(--axa-blue-100);
+  }
+
+  &[aria-invalid="true"] {
+    --radio-border: 2px var(--red-alert-100);
+    --radio-background-color: var(--white);
+  }
+
+  &:hover {
+    --radio-border: 2px var(--axa-blue-100);
+  }
+
+  &:has(> input[type="radio"]:checked) {
+    --radio-border: 2px var(--axa-blue-100);
+  }
+}

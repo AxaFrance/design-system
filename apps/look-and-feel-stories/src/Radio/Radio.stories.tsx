@@ -15,26 +15,15 @@ export const RadioStory: StoryObj<ComponentProps<typeof Radio>> = {
 
   render: ({ ...args }) => <Radio {...args} />,
   args: {
-    label:
-      "J'accepte de fournir à AXA mes coordonnées ainsi que les données  relatives à mon projet et ma situation. Ces dernières seront transmises à mon conseiller AXA qui pourra  me contacter pour m'accompagner.",
     name: "option1",
     value: "option1",
   },
   argTypes: {
-    label: {
-      control: { type: "text" },
-    },
     name: {
       control: { type: "text" },
     },
     value: {
       control: { type: "text" },
-    },
-    errorMessage: {
-      control: { type: "text" },
-    },
-    disabled: {
-      control: { type: "boolean" },
     },
     checked: {
       control: { type: "boolean" },

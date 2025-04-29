@@ -7,7 +7,6 @@
 @use "./Form/TextInput/TextInputApollo";
 @use "./Form/TextArea/TextAreaApollo";
 @use "./Form/Select/SelectApollo";
-@use "./Form/Radio/RadioApollo";
 @use "./Icon/IconApollo";
 @use "./Divider/DividerApollo";
 @use "./ClickIcon/ClickIconApollo";
@@ -29,3 +28,5 @@
 @use "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
 @use "./Form/Checkbox/CheckboxCard/CheckboxCardApollo";
 @use "./ContentItemMono/ContentItemMonoApollo";
+@use "./Form/Radio/Radio/RadioApollo";
+@use "./Form/Radio/RadioCard/RadioCardApollo";
