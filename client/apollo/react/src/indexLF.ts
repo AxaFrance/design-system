@@ -42,7 +42,7 @@ export {
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLf";
 export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardLF";
-export { CheckboxText } from "./Form/Checkbox/checkboxText/CheckboxTextLF";
+export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
 export { DateInput } from "./Form/DateInput/DateInputLF";
 export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
 export {

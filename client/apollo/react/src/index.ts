@@ -47,7 +47,7 @@ export {
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardApollo";
-export { CheckboxText } from "./Form/Checkbox/checkboxText/CheckboxTextApollo";
+export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
 export { DateInput } from "./Form/DateInput/DateInputApollo";
 export { Heading, type HeadingLevel } from "./Heading/HeadingApollo";
 export {
