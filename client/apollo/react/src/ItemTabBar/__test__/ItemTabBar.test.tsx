@@ -19,7 +19,9 @@ describe("ItemTabBar component", () => {
         />,
       );
       const container = screen.getByLabelText("test");
-      expect(container.classList).toContain(`af-item-tab-bar--${variant}`);
+      expect(container).toHaveClass(
+        `af-item-tab-bar af-item-tab-bar--${variant}`,
+      );
     },
   );
 
