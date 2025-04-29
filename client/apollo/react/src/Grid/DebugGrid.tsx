@@ -1,5 +1,6 @@
 import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.scss";
 import { useState } from "react";
+import { CheckboxCard } from "..";
 
 export const DebugGrid = ({
   cols = 12,
@@ -13,19 +14,17 @@ export const DebugGrid = ({
   const handleChecked = () => setChecked(!checked);
   return (
     <>
-      <div className="af-checkbox af-checkbox-select af-checkbox-select--debuggrid">
-        <label htmlFor="debuggrid">
-          <input
-            type="checkbox"
-            className="af-checkbox af-checkbox-select af-checkbox-select--debuggrid"
-            name="debuggrid"
-            checked={checked}
-            onClick={handleChecked}
-            id="debuggrid"
-          />
-          Grid
-        </label>
-      </div>
+      <CheckboxCard
+        type="vertical"
+        options={[
+          {
+            name: "debuggrid",
+            label: "Grid",
+            checked,
+            onClick: handleChecked,
+          },
+        ]}
+      />
 
       <div className="debug-grid">
         <div className="grid">
