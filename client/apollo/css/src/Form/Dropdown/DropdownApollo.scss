@@ -1,8 +1,10 @@
 @use "./DropdownCommon";
+@use "../../common/breakpoints" as breakpoints;
 
 .af-form__dropdown {
   &-label {
     --dropdown-placeholder-color: var(--neutral-80);
+    --dropdown-font-size: calc(18 / var(--font-size-base) * 1rem);
   }
 
   &-input {
@@ -60,6 +62,18 @@
       --dropdown-border-radius: var(--radius-4);
       --dropdown-border-color: var(--red-alert-100);
       --dropdown-box-shadow: var(--red-alert-100);
+    }
+  }
+}
+
+@media (width <= #{breakpoints.$breakpoint-sm}) {
+  .af-form__dropdown {
+    &-label {
+      --dropdown-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+
+    &-input {
+      --dropdown-font-size: calc(16 / var(--font-size-base) * 1rem);
     }
   }
 }
