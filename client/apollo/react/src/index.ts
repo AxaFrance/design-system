@@ -45,7 +45,7 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageApollo";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";
-export { Checkbox } from "./Form/Checkbox/checkbox/CheckboxApollo";
+export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxCard } from "./Form/Checkbox/checkboxCard/CheckboxCardApollo";
 export { CheckboxText } from "./Form/Checkbox/checkboxText/CheckboxTextApollo";
 export { DateInput } from "./Form/DateInput/DateInputApollo";

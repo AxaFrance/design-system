@@ -9,7 +9,7 @@ import { Icon } from "../../../Icon/IconCommon";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
-import { CheckboxProps } from "../checkbox/CheckboxCommon";
+import { CheckboxProps } from "../Checkbox/CheckboxCommon";
 
 type CheckboxComponent = {
   CheckboxComponent: ComponentType<CheckboxProps>;

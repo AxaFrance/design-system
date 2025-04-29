@@ -40,7 +40,7 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageLF";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
-export { Checkbox } from "./Form/Checkbox/checkbox/CheckboxLf";
+export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLf";
 export { CheckboxCard } from "./Form/Checkbox/checkboxCard/CheckboxCardLF";
 export { CheckboxText } from "./Form/Checkbox/checkboxText/CheckboxTextLF";
 export { DateInput } from "./Form/DateInput/DateInputLF";
