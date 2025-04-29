@@ -1,0 +1,45 @@
+.af-radio {
+  display: flex;
+  width: 24px;
+  aspect-ratio: 1;
+  border: solid var(--radio-border);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  gap: calc(12 / var(--font-size-base) * 1rem);
+
+  &__icons {
+    display: none;
+    width: var(--radio-width);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--radio-background-color);
+  }
+
+  &[aria-invalid="true"] {
+    border: solid var(--radio-border);
+    background-color: var(--radio-background-color);
+  }
+
+  &:hover {
+    border: solid var(--radio-border);
+    box-shadow: var(--radio-box-shadow-color);
+  }
+
+  &:has(> input[type="radio"]:checked) {
+    border: solid var(--radio-border);
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    width: calc(24 / var(--font-size-base) * 1rem);
+    height: calc(24 / var(--font-size-base) * 1rem);
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked ~ .af-radio__icons {
+      display: block;
+    }
+  }
+}
