@@ -31,8 +31,11 @@ export const SelectStory: Story = {
     disabled: false,
     required: false,
     placeholder: "Placeholder",
-    errorLabel: "",
+    error: "",
     value: "",
+    description: "Description Text",
+    sideButtonLabel: "Side Button",
+    buttonLabel: "ButtonLabel",
   },
   argTypes: {
     onChange: { action: "onChange" },
