@@ -79,7 +79,7 @@ const CheckboxCardCommon = ({
           </span>
         )}
       </div>
-      <div role="group" className={checkboxGroupClassName}>
+      <fieldset className={checkboxGroupClassName}>
         {options.map(
           ({ label, description, subtitle, icon, hasError, ...inputProps }) => (
             <label
@@ -106,9 +106,11 @@ const CheckboxCardCommon = ({
             </label>
           ),
         )}
-      </div>
+      </fieldset>
     </div>
   );
 };
+
 CheckboxCardCommon.displayName = "CheckboxCardCommon";
 export { CheckboxCardCommon };
+
