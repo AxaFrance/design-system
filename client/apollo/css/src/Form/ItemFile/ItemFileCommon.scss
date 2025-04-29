@@ -1,13 +1,46 @@
-.af-item-message {
-  top: 93px;
-  left: 60px;
+.af-item-file {
+  display: flex;
   width: 545px;
   height: 75px;
   padding: 16px;
   border: 1px solid var(--item-file-border-color);
   border-radius: var(--item-file-border-radius);
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
+
+  .af-item-file-title {
+    font: var(--font-family-base);
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-weight: 400;
+    line-height: 125%;
+    color: var(--item-file-title);
+  }
+
+  .af-item-file-subtitle {
+    font: var(--font-family-base);
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-weight: 400;
+    line-height: 125%;
+    color: var(--item-file-subtitle);
+  }
+
+  .af-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--item-file-icon-color);
+
+    &--svg {
+      color: var(--item-file-icon-color);
+    }
+  }
+
+  .af-click-icon__content {
+    display: flex;
+    align-items: end;
+    gap: 12px;
+  }
 
   &:open {
     background-image: var(--item-file-background);

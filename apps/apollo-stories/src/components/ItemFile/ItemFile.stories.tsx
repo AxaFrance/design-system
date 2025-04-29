@@ -4,13 +4,13 @@ import { Meta, StoryObj } from "@storybook/react";
 type Story = StoryObj<typeof ItemFile>;
 
 const meta: Meta<typeof ItemFile> = {
-  title: "Components/ItemFile",
+  title: "Components/Form/ItemFile",
   component: ItemFile,
   args: {
     loading: false,
     valid: false,
-    title: "",
-    subTitle: "",
+    title: "Title",
+    subTitle: "Subtitle",
   },
   argTypes: {
     loading: { control: "boolean" },
@@ -24,7 +24,10 @@ export default meta;
 export const ItemFileStory: Story = {
   name: "ItemFile",
   args: {
+    error: true,
+    loading: true,
+    valid: false,
     title: "IMG1404704650",
-    subTitle: "12Mob",
+    subTitle: "12 Mob",
   },
 };

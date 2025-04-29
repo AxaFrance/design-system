@@ -61,25 +61,25 @@ export const ItemFile = ({
 
   return (
     <div
-      className={["af-item-message", `af-item-message--${variant}`, className]
+      className={["af-item-file", `af-item-file--${variant}`, className]
         .filter(Boolean)
         .join(" ")}
       role="alert"
     >
-      <div className="af-icon__content">
+      <div className="af-icon">
         {loading ? (
           <ItemSpinnerComponent size={24} variant={spinnerVariants.gray} />
         ) : (
           <ItemIconComponent variant="primary" size="S" src={icon} />
         )}
-      </div>
-      <div className="af-message__content">
-        <div>{title}</div>
-        <div>{subTitle}</div>
+        <div>
+          <div className="af-item-file-title">{title} IMG_879687880.jpg</div>
+          <div className="af-item-file-subtitle">{subTitle} 0.12 Mo</div>
+        </div>
       </div>
 
       <div className="af-click-icon__content">
-        {valid ? (
+        {!valid ? (
           <>
             <ItemClickIconComponent src={visibilityIcon} />
             <ItemClickIconComponent src={deleteIcon} />

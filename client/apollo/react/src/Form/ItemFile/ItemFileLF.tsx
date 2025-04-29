@@ -11,5 +11,9 @@ export const ItemFile = () => (
     ItemIconComponent={Icon}
     ItemClickIconComponent={ClickIcon}
     ItemSpinnerComponent={Spinner}
+    loading={false}
+    subTitle=""
+    title=""
+    valid={false}
   />
 );
