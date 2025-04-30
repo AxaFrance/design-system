@@ -11,7 +11,7 @@ export {
   type SpinnerVariants,
 } from "./Spinner/SpinnerLF";
 export { Tag, type TagVariants, tagVariants } from "./Tag/TagLF";
-export { DebugGrid } from "./Grid/DebugGrid";
+export { DebugGrid } from "./Grid/DebugGridLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { Select } from "./Form/Select/SelectLF";
