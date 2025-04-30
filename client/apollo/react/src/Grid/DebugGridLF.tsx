@@ -1,6 +1,7 @@
 import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.scss";
 import { useState } from "react";
-import { CheckboxCard } from "..";
+import { CheckboxCard } from "../Form/checkbox/checkboxCard/CheckboxCardLF";
+import { DebugGridCommon } from "./DebugGridCommon";
 
 export const DebugGrid = ({
   cols = 12,
@@ -26,13 +27,7 @@ export const DebugGrid = ({
         ]}
       />
 
-      <div className="debug-grid">
-        <div className="grid">
-          {[...Array(cols).keys()].map((col: number) => (
-            <div key={col} className="cols" />
-          ))}
-        </div>
-      </div>
+      <DebugGridCommon cols={cols} />
     </>
   );
 };
