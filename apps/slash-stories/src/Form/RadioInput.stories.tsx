@@ -15,24 +15,29 @@ const meta: Meta<typeof RadioInput> = {
 
 export default meta;
 
+const modifiers = ["required", "disabled"];
+
 type Story = StoryObj<typeof RadioInput>;
 
 export const RadioInputStory: Story = {
   name: "RadioInput",
-  render: ({ ...args }) => <RadioInput {...args} />,
+  render: ({ ...args }) => (
+    <form className="af-form" name="myform">
+      <RadioInput {...args} />
+    </form>
+  ),
   args: {
     label: "Where are you ?",
     required: true,
     mode: RadioModes.classic,
     value: "",
     classModifier: "",
-    isChecked: false,
     readOnly: false,
     disabled: false,
     name: "placeName",
-    forceDisplayMessage: true,
+    forceDisplayMessage: false,
     messageType: MessageTypes.error,
-    message: "",
+    message: "Error message",
     options: [
       { label: "Paris", value: "paris" },
       { label: "Lille", value: "lille" },
@@ -41,8 +46,12 @@ export const RadioInputStory: Story = {
   },
   argTypes: {
     onChange: { action: "onChange" },
+    classModifier: {
+      options: modifiers,
+      control: { type: "inline-check" },
+    },
     mode: {
-      options: [RadioModes.classic, RadioModes.default, RadioModes.inline],
+      options: Object.values(RadioModes),
       control: { type: "inline-radio" },
     },
     value: {
@@ -51,6 +60,10 @@ export const RadioInputStory: Story = {
         empty: "",
       },
       control: { type: "inline-radio" },
+    },
+    messageType: {
+      control: "inline-radio",
+      options: Object.values(MessageTypes),
     },
   },
 };
