@@ -9,7 +9,7 @@ import { Svg } from "../../Svg/Svg";
 import { Button } from "../../Button/ButtonCommon";
 
 type ItemLabelProps = {
-  label: string;
+  label?: string;
   description?: string;
   required?: boolean;
   inputId: string;
@@ -34,16 +34,20 @@ export const ItemLabel = ({
   ButtonComponent,
 }: ItemLabelProps) => {
   const idDescription = useId();
-
+  if (!label && !description && !buttonLabel && !sideButtonLabel) {
+    return null;
+  }
   return (
     <div className="af-item-label">
-      <label
-        htmlFor={inputId}
-        id={idLabel}
-        aria-describedby={description ? idDescription : undefined}
-      >
-        {label} {required && <span aria-hidden="true"> *</span>}
-      </label>
+      {label && (
+        <label
+          htmlFor={inputId}
+          id={idLabel}
+          aria-describedby={description ? idDescription : undefined}
+        >
+          {label} {required && <span aria-hidden="true"> *</span>}
+        </label>
+      )}
 
       {sideButtonLabel && (
         <ButtonComponent

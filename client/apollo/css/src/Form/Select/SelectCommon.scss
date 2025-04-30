@@ -1,3 +1,5 @@
+@use "../../common/breakpoints" as breakpoints;
+
 .af-form__select {
   &-label {
     display: inline-block;
@@ -11,9 +13,13 @@
     display: block;
     width: 100%;
     margin: calc(10 / var(--font-size-base) * 1rem) 0;
-    padding: calc(21 / var(--font-size-base) * 1rem);
+    padding: calc(16 / var(--font-size-base) * 1rem);
+    padding-right: calc(16 / var(--font-size-base) * 3rem);
     border: 1px solid var(--select-border-color);
     border-radius: var(--select-border-radius);
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-weight: 600;
+    line-height: 1.25em;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: var(--select-color);
@@ -33,9 +39,9 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px var(--select-box-shadow) inset;
-      outline: 2px;
-      outline-offset: 2px;
+      box-shadow: 0 0 0 1px var(--select-border-color) inset;
+      outline: 2px solid var(--select-outline-color);
+      outline-offset: 3px;
     }
 
     &:disabled {
@@ -46,8 +52,12 @@
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      border: var(--select-border-radius) solid var(--select-border-color);
-      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
+      border: 1px solid var(--select-border-color);
+      box-shadow: 0 0 0 1px var(--select-border-color) inset;
+    }
+
+    &:has(option[value=""]:checked) {
+      font-weight: 400;
     }
 
     &-placeholder {
@@ -55,15 +65,11 @@
     }
 
     &--error {
-      border: 2px solid var(--select-border-color);
-      border-color: var(--select-border-color);
-      box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
+      border: 1px solid var(--select-border-color);
+    }
 
-      &:not(:disabled):hover,
-      &:not(:disabled):active {
-        border-color: var(--select-border-color);
-        box-shadow: 0 0 0 1px var(--select-box-shadow) inset;
-      }
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      font-size: calc(18 / var(--font-size-base) * 1rem);
     }
   }
 }
