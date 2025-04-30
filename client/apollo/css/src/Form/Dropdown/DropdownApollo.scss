@@ -50,10 +50,12 @@
 
     &--error {
       --dropdown-border-color: var(--red-alert-100);
-      --dropdown-box-shadow: var(--red-alert-100);
 
       &:focus-visible {
-        --dropdown-box-shadow-color: var(--red-alert-100);
+        --dropdown-border-color: var(--red-alert-100);
+        --dropdown-box-shadow: var(--red-alert-100);
+
+        outline: none;
       }
     }
 
