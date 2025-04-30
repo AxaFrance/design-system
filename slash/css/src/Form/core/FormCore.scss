@@ -25,6 +25,35 @@
     }
   }
 
+  &__fieldset {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  &__legend {
+    position: absolute !important;
+    margin: 0;
+    padding: 0 15px;
+    font-size: 1rem;
+    font-weight: normal;
+
+    &--required::after {
+      color: common.$color-red-error;
+      content: " *";
+    }
+
+    @include common.media-breakpoint-up(md) {
+      fieldset:not(.af-form__fieldset--label-top) & {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  &__placeholder {
+    height: 1.5rem;
+  }
+
   &__message {
     position: absolute;
     display: flex;

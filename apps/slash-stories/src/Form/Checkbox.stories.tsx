@@ -16,7 +16,10 @@ const meta: Meta = {
   component: CheckboxInput,
   argTypes: {
     onChange: { action: "onChange" },
-    messageType: { control: { type: "select", options: messageTypes } },
+    messageType: {
+      options: messageTypes,
+      control: "inline-radio",
+    },
     mode: {
       control: { type: "select", options: Object.values(CheckboxModes) },
     },
@@ -126,6 +129,13 @@ export const CheckboxInputErrorStory: Story = {
     forceDisplayMessage: true,
     id: "inputuniqueid",
     name: "placeType",
+  },
+  argTypes: {
+    classModifier: { options: modifiers, control: { type: "inline-check" } },
+    mode: {
+      options: Object.values(CheckboxModes),
+      control: { type: "inline-radio" },
+    },
   },
   parameters: {
     controls: {

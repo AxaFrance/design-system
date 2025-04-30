@@ -8,6 +8,7 @@ export { FormClassManager } from "./FormClassManager";
 export { HelpMessage } from "./HelpMessage";
 export { InputList } from "./InputList";
 export { LegacyField } from "./LegacyField";
+export { SemanticField } from "./SemanticField";
 export { MessageTypes } from "./MessageTypes";
 
 export { getFirstId } from "./getFirstId";

@@ -37,7 +37,7 @@ export const RadioStory: StoryObj<RadioProps> = {
   argTypes: {
     onChange: { action: "onChange" },
     mode: {
-      options: [RadioModes.classic, RadioModes.default, RadioModes.inline],
+      options: Object.values(RadioModes),
       control: { type: "inline-radio" },
     },
     value: {

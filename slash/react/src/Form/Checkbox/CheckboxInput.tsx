@@ -1,12 +1,16 @@
 import { ComponentProps, forwardRef, useId } from "react";
-
-import { LegacyField, MessageTypes, useOptionsWithId } from "../core";
+import {
+  MessageTypes,
+  useInputClassModifier,
+  useOptionsWithId,
+  SemanticField,
+} from "../core";
 import { Checkbox } from "./Checkbox";
 import { CheckboxModes } from "./CheckboxModes";
 import { useAriaInvalid } from "../core/useAriaInvalid";
 
 type Props = Omit<
-  ComponentProps<typeof Checkbox> & ComponentProps<typeof LegacyField>,
+  ComponentProps<typeof Checkbox> & ComponentProps<typeof SemanticField>,
   "children" | "placeholder"
 >;
 
@@ -16,7 +20,7 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
       mode,
       messageType,
       message,
-      classModifier,
+      classModifier = "",
       options,
       classNameContainerLabel,
       classNameContainerInput,
@@ -25,30 +29,34 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
       className,
       forceDisplayMessage,
       required,
+      disabled = false,
       ...checkboxProps
     },
     inputRef,
   ) => {
-    let rowModifier = classModifier;
-    if (mode === CheckboxModes.classic) {
-      rowModifier += " label-top";
-    }
-    if (required) {
-      rowModifier += " required";
-    }
+    const rowModifier = `${classModifier ?? ""}${
+      mode === CheckboxModes.classic ? " label-top " : ""
+    }`;
+
+    const { inputFieldClassModifier } = useInputClassModifier(
+      classModifier,
+      disabled,
+      false,
+      required,
+    );
     const errorUseId = useId();
     const newOptions = useOptionsWithId(options);
     const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
+
     return (
-      <LegacyField
+      <SemanticField
         label={label}
-        id={newOptions[0].id}
         message={message}
         messageType={messageType}
         isVisible={isVisible}
         forceDisplayMessage={forceDisplayMessage}
         className={className}
-        classModifier={rowModifier}
+        classModifier={rowModifier + inputFieldClassModifier}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
         errorId={errorUseId}
@@ -66,7 +74,7 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
           aria-invalid={isInvalid}
           {...checkboxProps}
         />
-      </LegacyField>
+      </SemanticField>
     );
   },
 );
