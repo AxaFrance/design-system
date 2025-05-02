@@ -29,7 +29,6 @@
     &:disabled {
       --dropdown-bg-color-disabled: var(--color-gray-200);
       --dropdown-border-color: var(--color-gray-400);
-      --dropdown-border-radius: var(--default-border-radius);
     }
 
     &-placeholder {
@@ -38,7 +37,6 @@
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      --dropdown-border-radius: var(--default-border-radius);
       --dropdown-border-color: var(--color-axa);
       --dropdown-box-shadow: var(--color-axa);
     }

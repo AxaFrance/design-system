@@ -10,10 +10,10 @@
   &-input {
     display: block;
     width: 100%;
-    height: calc(56 / var(--font-size-base) * 1rem);
+    height: 56px;
     margin: calc(10 / var(--font-size-base) * 1rem) 0;
     padding: calc(16 / var(--font-size-base) * 1rem);
-    border: 1px solid var(--dropdown-border-color);
+    border: 1px solid var(--dropdown-border-color); // Default border applied once
     border-radius: var(--dropdown-border-radius);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -25,8 +25,7 @@
     appearance: none;
 
     option {
-      border: 1px solid var(--dropdown-border-color);
-      color: var(--dropdown-color);
+      color: var(--dropdown-option-color);
     }
 
     &:open {
@@ -34,14 +33,12 @@
     }
 
     &:focus-visible {
-      border-color: var(--dropdown-border-color);
       box-shadow: 0 0 0 2px var(--dropdown-box-shadow) inset;
       outline: 2px;
       outline-offset: 2px;
     }
 
     &:disabled {
-      border: 1px solid var(--dropdown-border-color);
       background-color: var(--dropdown-bg-color-disabled);
       cursor: not-allowed;
     }
@@ -52,17 +49,15 @@
     }
 
     &-placeholder {
-      color: var(--dropdown-color);
+      color: var(--dropdown-placeholder-color);
     }
 
     &--error {
       border: 2px solid var(--dropdown-border-color);
-      border-color: var(--dropdown-border-color);
       box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
 
       &:not(:disabled):hover,
       &:not(:disabled):active {
-        border-color: var(--dropdown-border-color);
         box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
       }
     }

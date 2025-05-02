@@ -2,68 +2,60 @@
 @use "../../common/breakpoints" as breakpoints;
 
 .af-form__dropdown {
-  &-label {
-    --dropdown-placeholder-color: var(--neutral-80);
-    --dropdown-font-size: calc(18 / var(--font-size-base) * 1rem);
-  }
-
   &-input {
-    --dropdown-border-color: var(--axa-blue-65);
-    --dropdown-border-radius: var(--radius-4);
-    --dropdown-background: url
-      ("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg") no-repeat
-      right 1rem center / 1.5rem 1.5rem;
+    --dropdown-placeholder-color: var(--color-gray-700);
+    --dropdown-border-radius: var(--default-border-radius);
+    --dropdown-border-color: var(--color-gray-700);
+    --dropdown-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
+      no-repeat right 1rem center / 1.5rem 1.5rem;
 
     &:open {
-      background-image: url("@material-symbols/svg-400/outlined/keyboard_arrow_up.svg");
-    }
-
-    &:focus-visible {
-      --dropdown-border-color: var(--axa-blue-100);
-      --dropdown-box-shadow: var(--axa-blue-100);
+      --dropdown-background-open: url("@material-symbols/svg-400/outlined/arrow_drop_up.svg");
     }
 
     option {
-      --dropdown-option-color: var(--neutral-100);
+      --dropdown-option-color: var(--color-black);
 
       &:disabled {
-        --dropdown-option-disabled-color: var(--neutral-50);
+        --dropdown-option-disabled-color: var(--color-gray-500);
       }
     }
 
+    &:focus-visible {
+      --dropdown-border-color: var(--color-axa);
+      --dropdown-box-shadow: var(--color-axa);
+    }
+
     &:disabled {
-      --dropdown-bg-color-disabled: var(--neutral-5);
-      --dropdown-border-color: var(--neutral-50);
-      --dropdown-border-radius: var(--radius-4);
+      --dropdown-bg-color-disabled: var(--color-gray-200);
+      --dropdown-border-color: var(--color-gray-400);
     }
 
     &-placeholder {
-      --dropdown-placeholder-color: var(--neutral-80);
+      --dropdown-placeholder-color: var(--color-gray-700);
     }
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      --dropdown-border-radius: var(--radius-4);
-      --dropdown-border-color: var(--axa-blue-100);
-      --dropdown-box-shadow: var(--axa-blue-100);
+      --dropdown-border-color: var(--color-axa);
+      --dropdown-box-shadow: var(--color-axa);
     }
 
     &--error {
-      --dropdown-border-color: var(--red-alert-100);
+      --dropdown-border-color: var(--color-red);
 
       &:focus-visible {
-        --dropdown-border-color: var(--red-alert-100);
-        --dropdown-box-shadow: var(--red-alert-100);
+        --dropdown-border-color: var(--color-red);
+        --dropdown-box-shadow: var(--color-red);
 
         outline: none;
       }
-    }
 
-    &--error:not(:disabled):hover,
-    &--error:not(:disabled):active {
-      --dropdown-border-radius: var(--radius-4);
-      --dropdown-border-color: var(--red-alert-100);
-      --dropdown-box-shadow: var(--red-alert-100);
+      &:not(:disabled):hover,
+      &:not(:disabled):active {
+        --dropdown-border-color: var(--color-red);
+        --dropdown-box-shadow: 0 0 0 1px var(--color-red) inset;
+      }
     }
   }
 }
