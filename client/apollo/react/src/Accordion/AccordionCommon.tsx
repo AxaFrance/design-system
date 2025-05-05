@@ -8,8 +8,8 @@ export const accordionVariants = {
   primary: "primary",
   secondary: "secondary",
   inverse: "inverse",
-  message_bar_info: "message_bar_info",
-  message_bar_warning: "message_bar_warning",
+  "message-bar-info": "message-bar-info",
+  "message-bar-warning": "message-bar-warning",
 } as const;
 
 export type AccordionVariants = keyof typeof accordionVariants;
@@ -19,8 +19,8 @@ type AccordionProps = {
   title: string;
   subtitle?: string;
   icon?: string;
-  value?: string;
-  isTitleFirst?: boolean;
+  info1: string;
+  info2: string;
   AccordionCoreComponent: ComponentType<
     Omit<ComponentProps<typeof AccordionCore>, "ClickIconComponent">
   >;
@@ -33,6 +33,7 @@ type AccordionProps = {
 
 export const Accordion = ({
   variant = accordionVariants.primary,
+  className,
   children,
   icon,
   title,
@@ -41,19 +42,21 @@ export const Accordion = ({
   tagProps,
   dateLabel,
   dateProps,
-  value,
+  info1,
+  info2,
   AccordionCoreComponent,
   AccordionTagDateContainerComponent,
   IconComponent,
   ...accordionCoreProps
 }: AccordionProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName("af-accordion__summary", variant),
-    [variant],
+    () => getComponentClassName("af-accordion", className, variant),
+    [className, variant],
   );
 
   return (
     <AccordionCoreComponent
+      className={componentClassName}
       summary={
         <>
           {icon && (
@@ -74,10 +77,11 @@ export const Accordion = ({
             tagProps={tagProps}
             dateProps={dateProps}
           />
-          {value && <p className="af-accordion__value">{value}</p>}
+          {info1 && <p className="af-accordion__info1">{info1}</p>}
+          {info2 && <p className="af-accordion__info2">{info2}</p>}
         </>
       }
-      summaryProps={{ className: componentClassName }}
+      // summaryProps={{ className: componentClassName }}
       {...accordionCoreProps}
     >
       {children}

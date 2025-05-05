@@ -1,6 +1,9 @@
 @use "../common/breakpoints" as breakpoints;
 
 .af-accordion {
+  font-size: var(--accordion-title-font-size);
+  color: var(--accordion-title-text-color);
+
   &__summary {
     display: grid;
     padding: 1rem;
@@ -8,10 +11,8 @@
     grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: 2.5rem;
-    font-size: var(--accordion-title-font-size);
     font-weight: 600;
     line-height: var(--accordion-title-line-height);
-    color: var(--accordion-title-text-color);
     cursor: pointer;
 
     p {
