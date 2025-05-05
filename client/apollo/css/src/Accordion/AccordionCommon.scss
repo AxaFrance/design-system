@@ -1,21 +1,31 @@
 @use "../common/breakpoints" as breakpoints;
 
 .af-accordion {
-  --summary-areas: "title-container tag-date-container value arrow";
-  --summary-columns: auto 1fr repeat(2, auto);
+  --summary-areas: "icon title-container tag-container info1 info2 arrow";
+  --summary-columns: min-content max-content max-content 1fr max-content
+    max-content;
   --title-container-areas: "title" "subtitle";
-  --title-container-columns: min-content 1fr;
+  --title-container-columns: 1fr;
+
+  border-radius: var(--accordion-border-radius);
+  font-size: var(--accordion-font-size);
+  line-height: var(--accordion-line-height);
+  color: var(--accordion-text-color);
+  background-color: var(--accordion-bg-color);
 
   &__summary {
     grid-template-areas: var(--summary-areas);
     grid-template-columns: var(--summary-columns);
 
     .af-accordion {
+      &__icon {
+        grid-area: icon;
+      }
+
       &__title-container {
         display: grid;
         grid-area: title-container;
         grid-template: var(--title-container-areas);
-        grid-template-columns: var(--title-container-columns);
         gap: 0.125rem 1rem;
 
         .af-accordion {
@@ -29,6 +39,139 @@
             font-weight: 400;
             line-height: 1.25rem;
             color: var(--color-gray-700);
+          }
+        }
+      }
+
+      &__tag-container {
+        grid-area: tag-container;
+      }
+
+      &__date {
+        grid-area: date-container;
+      }
+
+      &__info1 {
+        grid-area: info1;
+        color: var(--accordion-info1-text-color);
+      }
+
+      &__info2 {
+        grid-area: info2;
+        color: var(--accordion-info2-text-color);
+      }
+    }
+  }
+
+  &--primary {
+    --summary-areas: "icon title-container tag-container info1 info2 arrow";
+    --summary-columns: min-content max-content max-content 1fr max-content
+      max-content;
+
+    .af-accordion__summary {
+      .af-accordion {
+        &__date {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &--secondary {
+    --summary-areas: "tag-container date-container title-container info2 arrow";
+    --summary-columns: max-content min-content 1fr max-content max-content;
+    --title-container-columns: max-content;
+
+    .af-accordion__summary {
+      .af-accordion {
+        &__icon {
+          display: none;
+        }
+
+        &__info1 {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &--inverse {
+    --summary-areas: "title-container arrow";
+    --summary-columns: 1fr min-content;
+    --title-container-areas: "title";
+    --title-container-columns: max-content;
+
+    .af-accordion__summary {
+      .af-accordion {
+        &__icon,
+        &__tag-container,
+        &__date,
+        &__info1,
+        &__info2 {
+          display: none;
+        }
+
+        &__title-container {
+          .af-accordion {
+            &__subtitle {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--message-bar-info {
+    --summary-areas: "icon title-container arrow";
+    --summary-columns: min-content 1fr min-content;
+    --title-container-areas: "title";
+    --title-container-columns: max-content;
+
+    .af-accordion__summary {
+      .af-accordion {
+        &__tag-container,
+        &__date,
+        &__info1,
+        &__info2 {
+          display: none;
+        }
+
+        &__title-container {
+          .af-accordion {
+            &__subtitle {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--message-bar-warning {
+    --summary-areas: "icon title-container arrow";
+    --summary-columns: min-content 1fr min-content;
+    --title-container-areas: "title";
+    --title-container-columns: max-content;
+
+    .af-accordion__summary {
+      .af-icon {
+        --icon-fill: var(--accordion-icon-color);
+      }
+
+      .af-accordion {
+        &__tag-container,
+        &__date,
+        &__info1,
+        &__info2 {
+          display: none;
+        }
+
+        &__title-container {
+          .af-accordion {
+            &__subtitle {
+              display: none;
+            }
           }
         }
       }

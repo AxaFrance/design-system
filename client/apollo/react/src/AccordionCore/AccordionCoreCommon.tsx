@@ -30,10 +30,7 @@ export const AccordionCore = ({
   ClickIconComponent,
   ...detailsProps
 }: AccordionProps) => {
-  const componentClassName = getComponentClassName(
-    "af-accordion__summary",
-    className,
-  );
+  const componentClassName = getComponentClassName("af-accordion", className);
 
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
@@ -55,13 +52,13 @@ export const AccordionCore = ({
 
   return (
     <details
-      className="af-accordion"
+      className={componentClassName}
       ref={detailsRef}
       open={isOpen}
       {...detailsProps}
     >
       <summary
-        className={componentClassName}
+        className="af-accordion__summary"
         onClick={handleToggle}
         role="button"
         tabIndex={0}
