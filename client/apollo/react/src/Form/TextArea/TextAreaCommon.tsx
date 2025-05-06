@@ -10,21 +10,24 @@ import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
-type Props = ComponentPropsWithRef<"textarea"> & {
-  classModifier?: string;
-  sideButtonLabel: string;
-  onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  helper?: string;
-  error?: string;
-  description?: string;
-  label: ComponentProps<typeof ItemLabel>["label"];
-  ItemLabelComponent: ComponentType<
-    Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
-  >;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-  buttonLabel?: string;
-  onButtonClick?: MouseEventHandler<HTMLButtonElement>;
-} & Partial<ComponentPropsWithRef<typeof ItemMessage>>;
+type Props = ComponentPropsWithRef<"textarea"> &
+  Pick<
+    ComponentProps<typeof ItemLabel>,
+    | "label"
+    | "description"
+    | "buttonLabel"
+    | "sideButtonLabel"
+    | "onSideButtonClick"
+  > & {
+    classModifier?: string;
+    helper?: string;
+    error?: string;
+    ItemLabelComponent: ComponentType<
+      Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
+    >;
+    ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+    onButtonClick?: MouseEventHandler<HTMLButtonElement>;
+  } & Partial<ComponentPropsWithRef<typeof ItemMessage>>;
 
 const TextArea = forwardRef<HTMLTextAreaElement, Props>(
   (
