@@ -31,7 +31,6 @@ export { Link } from "./Link/Link";
 export { List } from "./List";
 export { ClickItem, createClickItemParent } from "./List/ClickItem";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuo";
-export { ContentItemMono, ContentItemMonoSize } from "./List/ContentItemMono";
 export { ContentTabItem, ContentTabList } from "./List/ContentTabList";
 export {
   Spinner,
@@ -84,3 +83,4 @@ export {
   type ItemTabBarVariants,
 } from "./ItemTabBar/ItemTabBar";
 export { Heading, type HeadingLevel } from "./Heading/Heading";
+export { ContentItemMono } from "./ContentItemMono/ContentItemMono";

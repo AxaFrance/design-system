@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ContentItemMonoStories from "./ContentItemMono.stories";
+
+<Meta of={ContentItemMonoStories} name="Content Item Mono" />
+
+# ContentItemMono
+
+To use the header import it like that:
+
+```tsx title="test.js"
+import { ContentItemMono } from "@axa-fr/@axa-fr/design-system-look-and-feel-react";
+
+const MyComponent = () => <ContentItemMono />;
+```
+
+## Playground
+
+<Canvas of={ContentItemMonoStories.Playground} />
+
+<Controls of={ContentItemMonoStories.Playground} />
