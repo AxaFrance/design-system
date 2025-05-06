@@ -59,19 +59,20 @@ export const CheckboxCardCommon = ({
           </legend>
         )}
       </div>
-      <div className={checkboxGroupClassName}>
+      <ul className={checkboxGroupClassName}>
         {options.map((inputProps) => (
-          <CheckboxCardItem
-            key={`checkbox-card-item_${generateId(inputProps)}`}
-            size={size}
-            errorId={errorId}
-            onChange={onChange}
-            CheckboxComponent={CheckboxComponent}
-            IconComponent={IconComponent}
-            {...inputProps}
-          />
+          <li key={`checkbox-card-item_${generateId(inputProps)}`}>
+            <CheckboxCardItem
+              size={size}
+              errorId={errorId}
+              onChange={onChange}
+              CheckboxComponent={CheckboxComponent}
+              IconComponent={IconComponent}
+              {...inputProps}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </fieldset>
   );
 };

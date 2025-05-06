@@ -40,6 +40,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: calc(20 / var(--font-size-base) * 1rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
     &--horizontal {
       flex-direction: var(--checkbox-card-flex-direction);
@@ -88,50 +91,50 @@
       box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
     }
 
-    .af-checkbox-card-label {
-      display: flex;
-      padding: 1rem;
-      border: solid var(--checkbox-card-border);
-      border-radius: var(--checkbox-card-border-radius);
-      flex: 1;
-      align-self: stretch;
-      gap: calc(12 / var(--font-size-base) * 1rem);
-      cursor: pointer;
-
-      .af-checkbox-card-content {
+      .af-checkbox-card-label {
         display: flex;
-        align-items: center;
-        gap: calc(4 / var(--font-size-base) * 1rem);
+        padding: 1rem;
+        border: solid var(--checkbox-card-border);
+        border-radius: var(--checkbox-card-border-radius);
+        flex: 1;
+        align-self: stretch;
+        gap: calc(12 / var(--font-size-base) * 1rem);
+        cursor: pointer;
 
-        .af-checkbox-card-content-description {
+        .af-checkbox-card-content {
           display: flex;
-          justify-content: center;
-          font-size: 1rem;
-          line-height: calc(20 / var(--font-size-base) * 1rem);
+          align-items: center;
+          gap: calc(4 / var(--font-size-base) * 1rem);
 
-          & > span:first-child {
-            font-size: calc(18 / var(--font-size-base) * 1rem);
-            font-weight: 400;
-            color: var(--checkbox-card-label-text-color);
+          .af-checkbox-card-content-description {
+            display: flex;
+            justify-content: center;
+            font-size: 1rem;
+            line-height: calc(20 / var(--font-size-base) * 1rem);
 
-            @media (width < #{breakpoints.$breakpoint-sm}) {
+            & > span:first-child {
+              font-size: calc(18 / var(--font-size-base) * 1rem);
+              font-weight: 400;
+              color: var(--checkbox-card-label-text-color);
+
+              @media (width < #{breakpoints.$breakpoint-sm}) {
+                font-size: calc(16 / var(--font-size-base) * 1rem);
+                font-weight: 400;
+              }
+            }
+
+            & > span:not(:first-child) {
               font-size: calc(16 / var(--font-size-base) * 1rem);
               font-weight: 400;
-            }
-          }
+              color: var(--checkbox-card-label-text-color);
 
-          & > span:not(:first-child) {
-            font-size: calc(16 / var(--font-size-base) * 1rem);
-            font-weight: 400;
-            color: var(--checkbox-card-label-text-color);
-
-            @media (width < #{breakpoints.$breakpoint-sm}) {
-              font-size: calc(14 / var(--font-size-base) * 1rem);
-              font-weight: 400;
+              @media (width < #{breakpoints.$breakpoint-sm}) {
+                font-size: calc(14 / var(--font-size-base) * 1rem);
+                font-weight: 400;
+              }
             }
           }
         }
-      }
 
       &:has(input:checked) {
         border: solid var(--checkbox-card-border);
