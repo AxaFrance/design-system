@@ -2,7 +2,7 @@ import { ItemFile } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ItemFile> = {
-  title: "Components/ItemFile",
+  title: "Components/Itemfile",
   component: ItemFile,
 };
 export default meta;

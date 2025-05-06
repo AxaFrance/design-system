@@ -29,11 +29,11 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--item-file-icon-color);
+    fill: var(--item-file-icon-color);
+  }
 
-    &--svg {
-      color: var(--item-file-icon-color);
-    }
+  .af-icon div svg {
+    fill: var(--item-file-icon-color);
   }
 
   .af-click-icon__content {
@@ -48,5 +48,9 @@
 
   &--error {
     border: 1px solid var(--item-file-border-color);
+  }
+
+  .af-spinner af-spinner--blue af-spinner--24 {
+    fill: var(--axa-blue-100);
   }
 }
