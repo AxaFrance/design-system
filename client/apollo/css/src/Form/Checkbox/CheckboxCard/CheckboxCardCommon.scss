@@ -13,13 +13,14 @@
     row-gap: calc(4 / var(--font-size-base) * 1rem);
   }
 
-  &__label {
+  &__legend {
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 600;
     color: var(--checkbox-card-color);
   }
 
   &__description {
+    margin: 0;
     font-size: calc(16 / var(--font-size-base) * 1rem);
     font-weight: 400;
     line-height: calc(16 / var(--font-size-base) * 1rem);

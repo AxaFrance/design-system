@@ -45,21 +45,21 @@ export const CheckboxCardCommon = ({
   const size = isMobile ? "M" : "L";
 
   return (
-    <div className={componentClassName}>
+    <fieldset className={componentClassName}>
       <div className="af-checkbox-card__label-container">
         {labelGroup && (
-          <span className="af-checkbox-card__label">
+          <legend className="af-checkbox-card__legend">
             {labelGroup}
             {isRequired && <span aria-hidden>&nbsp;*</span>}
-          </span>
-        )}
-        {descriptionGroup && (
-          <span className="af-checkbox-card__description">
-            {descriptionGroup}
-          </span>
+            {descriptionGroup && (
+              <p className="af-checkbox-card__description">
+                {descriptionGroup}
+              </p>
+            )}
+          </legend>
         )}
       </div>
-      <fieldset className={checkboxGroupClassName}>
+      <div className={checkboxGroupClassName}>
         {options.map((inputProps) => (
           <CheckboxCardItem
             key={`checkbox-card-item_${generateId(inputProps)}`}
@@ -71,8 +71,8 @@ export const CheckboxCardCommon = ({
             {...inputProps}
           />
         ))}
-      </fieldset>
-    </div>
+      </div>
+    </fieldset>
   );
 };
 
