@@ -1,5 +1,5 @@
-import type { ComponentProps, ComponentType } from "react";
-import type { Icon } from "../../../indexLF";
+import type { ComponentType } from "react";
+import type { IconProps } from "../../../Icon/IconCommon";
 import type { CheckboxProps } from "../Checkbox/CheckboxCommon";
 
 export type CheckboxComponent = {
@@ -7,5 +7,5 @@ export type CheckboxComponent = {
 };
 
 export type IconComponent = {
-  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
+  IconComponent: ComponentType<IconProps>;
 };
