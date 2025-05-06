@@ -9,6 +9,7 @@
 
   &__icon {
     width: var(--item-message-icon-size);
+    flex-shrink: 0;
     color: var(--item-message-color);
     fill: currentcolor;
   }
