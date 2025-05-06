@@ -71,118 +71,124 @@
     }
   }
 
-  &-group--vertical {
-    flex-direction: var(--checkbox-card-flex-direction);
+  &-group {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
-    .af-checkbox-card-label {
+    &--vertical {
       flex-direction: var(--checkbox-card-flex-direction);
-      align-items: var(--checkbox-card-align-items);
 
-      .af-checkbox-card-content {
+      .af-checkbox-card-label {
         flex-direction: var(--checkbox-card-flex-direction);
+        align-items: var(--checkbox-card-align-items);
 
-        .af-checkbox-card-content-description {
+        .af-checkbox-card-content {
           flex-direction: var(--checkbox-card-flex-direction);
-          align-items: var(--checkbox-card-align-item);
-          text-align: left;
+
+          .af-checkbox-card-content-description {
+            flex-direction: var(--checkbox-card-flex-direction);
+            align-items: var(--checkbox-card-align-item);
+            text-align: left;
+          }
         }
       }
     }
-  }
 
-  &-group--horizontal {
-    flex-direction: var(--checkbox-card-flex-direction);
-
-    .af-checkbox-card-label {
+    &--horizontal {
       flex-direction: var(--checkbox-card-flex-direction);
-      align-items: var(--checkbox-card-align-items);
-      justify-content: var(--checkbox-card-justify-content);
 
-      .af-checkbox-card-content {
-        width: 100%;
-        flex: 1;
+      .af-checkbox-card-label {
         flex-direction: var(--checkbox-card-flex-direction);
+        align-items: var(--checkbox-card-align-items);
+        justify-content: var(--checkbox-card-justify-content);
 
-        .af-checkbox-card-content-description {
+        .af-checkbox-card-content {
+          width: 100%;
+          flex: 1;
           flex-direction: var(--checkbox-card-flex-direction);
-          align-items: var(--checkbox-card-align-item);
-          text-align: center;
+
+          .af-checkbox-card-content-description {
+            flex-direction: var(--checkbox-card-flex-direction);
+            align-items: var(--checkbox-card-align-item);
+            text-align: center;
+          }
         }
       }
     }
-  }
 
-  &-group--vertical,
-  &-group--horizontal {
-    display: flex;
-    align-items: stretch;
-    gap: 1rem;
-    font-family: var(--checkbox-card-font-family);
-    font-style: normal;
-    font-weight: 400;
-    line-height: calc(20 / var(--font-size-base) * 1rem);
-
-    .af-checkbox-card-label {
+    &--vertical,
+    &--horizontal {
       display: flex;
-      padding: 1rem;
-      border: solid var(--checkbox-card-border);
-      border-radius: var(--checkbox-card-border-radius);
-      flex: 1;
-      align-self: stretch;
-      gap: calc(12 / var(--font-size-base) * 1rem);
-      cursor: pointer;
+      align-items: stretch;
+      gap: 1rem;
+      font-family: var(--checkbox-card-font-family);
+      font-style: normal;
+      font-weight: 400;
+      line-height: calc(20 / var(--font-size-base) * 1rem);
 
-      .af-checkbox-card-content {
+      .af-checkbox-card-label {
         display: flex;
-        align-items: center;
-        gap: calc(4 / var(--font-size-base) * 1rem);
+        padding: 1rem;
+        border: solid var(--checkbox-card-border);
+        border-radius: var(--checkbox-card-border-radius);
+        flex: 1;
+        align-self: stretch;
+        gap: calc(12 / var(--font-size-base) * 1rem);
+        cursor: pointer;
 
-        .af-checkbox-card-content-description {
+        .af-checkbox-card-content {
           display: flex;
-          justify-content: center;
-          font-size: 1rem;
-          line-height: calc(20 / var(--font-size-base) * 1rem);
+          align-items: center;
+          gap: calc(4 / var(--font-size-base) * 1rem);
 
-          & > span:first-child {
-            font-size: calc(18 / var(--font-size-base) * 1rem);
-            font-weight: 400;
-            color: var(--checkbox-card-label-text-color);
+          .af-checkbox-card-content-description {
+            display: flex;
+            justify-content: center;
+            font-size: 1rem;
+            line-height: calc(20 / var(--font-size-base) * 1rem);
 
-            @media (width < #{breakpoints.$breakpoint-sm}) {
+            & > span:first-child {
+              font-size: calc(18 / var(--font-size-base) * 1rem);
+              font-weight: 400;
+              color: var(--checkbox-card-label-text-color);
+
+              @media (width < #{breakpoints.$breakpoint-sm}) {
+                font-size: calc(16 / var(--font-size-base) * 1rem);
+                font-weight: 400;
+              }
+            }
+
+            & > span:not(:first-child) {
               font-size: calc(16 / var(--font-size-base) * 1rem);
               font-weight: 400;
-            }
-          }
+              color: var(--checkbox-card-label-text-color);
 
-          & > span:not(:first-child) {
-            font-size: calc(16 / var(--font-size-base) * 1rem);
-            font-weight: 400;
-            color: var(--checkbox-card-label-text-color);
-
-            @media (width < #{breakpoints.$breakpoint-sm}) {
-              font-size: calc(14 / var(--font-size-base) * 1rem);
-              font-weight: 400;
+              @media (width < #{breakpoints.$breakpoint-sm}) {
+                font-size: calc(14 / var(--font-size-base) * 1rem);
+                font-weight: 400;
+              }
             }
           }
         }
-      }
 
-      &:hover {
-        border: solid var(--checkbox-card-border);
-        background-color: var(--checkbox-card-background-color);
-        box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
-      }
+        &:hover {
+          border: solid var(--checkbox-card-border);
+          background-color: var(--checkbox-card-background-color);
+          box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+        }
 
-      &:has(input[aria-invalid="true"]) {
-        border: solid var(--checkbox-card-border);
-        background-color: var(--checkbox-card-background-color);
-        box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
-      }
+        &:has(input[aria-invalid="true"]) {
+          border: solid var(--checkbox-card-border);
+          background-color: var(--checkbox-card-background-color);
+          box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+        }
 
-      &:has(input:checked) {
-        border: solid var(--checkbox-card-border);
-        background-color: var(--checkbox-card-background-color);
-        box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+        &:has(input:checked) {
+          border: solid var(--checkbox-card-border);
+          background-color: var(--checkbox-card-background-color);
+          box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+        }
       }
     }
   }
