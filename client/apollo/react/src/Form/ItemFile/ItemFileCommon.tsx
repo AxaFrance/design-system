@@ -1,7 +1,6 @@
 import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
-// import deleteFilledIcon from "@material-symbols/svg-400/outlined/delete-fill.svg";
 import visibilityIcon from "@material-symbols/svg-400/outlined/visibility-fill.svg";
 import {
   type ComponentProps,
@@ -18,15 +17,16 @@ import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import { Icon } from "../../Icon/IconCommon";
 
 export const itemFileVariants = {
-  validation: "validation",
+  success: "success",
   error: "error",
+  loading: "loading",
 } as const;
 
 type ItemFileVariants = keyof typeof itemFileVariants;
 
 type ItemFileProps = {
-  valid: boolean;
-  error?: string;
+  success: boolean;
+  error: string;
   loading: boolean;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   ItemIconComponent: ComponentType<ComponentProps<typeof Icon>>;
@@ -39,14 +39,15 @@ type ItemFileProps = {
 
 const getIconFromType = (variant: ItemFileVariants) =>
   ({
-    [itemFileVariants.validation]: validationIcon,
+    [itemFileVariants.success]: validationIcon,
     [itemFileVariants.error]: errorIcon,
+    [itemFileVariants.loading]: errorIcon,
   })[variant];
 
 export const ItemFile = ({
-  variant = itemFileVariants.validation,
+  variant = itemFileVariants.success,
   className,
-  valid,
+  success,
   error,
   loading,
   title,
@@ -68,9 +69,14 @@ export const ItemFile = ({
     >
       <div className="af-icon">
         {loading ? (
-          <ItemSpinnerComponent size={24} variant={spinnerVariants.gray} />
+          <ItemIconComponent
+            variant="primary"
+            className="item-file-icon"
+            size="S"
+            src={icon}
+          />
         ) : (
-          <ItemIconComponent variant="primary" size="S" src={icon} />
+          <ItemSpinnerComponent size={24} variant={spinnerVariants.blue} />
         )}
         <div>
           <div className="af-item-file-title">{title} IMG_879687880.jpg</div>
@@ -79,7 +85,7 @@ export const ItemFile = ({
       </div>
 
       <div className="af-click-icon__content">
-        {!valid ? (
+        {success ? (
           <>
             <ItemClickIconComponent src={visibilityIcon} />
             <ItemClickIconComponent src={deleteIcon} />
