@@ -17,8 +17,16 @@
     --item-file-icon-color: var(--green-100);
   }
 
+  .af-icon div svg {
+    --item-file-icon-color: var(--color-green-600);
+  }
+
   &:open {
     --item-file-background: url("@material-symbols/svg-400/outlined/visibility-fill.svg");
+  }
+
+  .af-spinner af-spinner--blue af-spinner--24 {
+    --item-file-spinner-color: var($color-gray-700);
   }
 
   .af-item-file-title {
