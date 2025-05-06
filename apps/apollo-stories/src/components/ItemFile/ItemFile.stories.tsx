@@ -24,7 +24,7 @@ export default meta;
 export const ItemFileStory: Story = {
   name: "ItemFile",
   args: {
-    error: true,
+    error: false,
     loading: true,
     valid: false,
     title: "IMG1404704650",
