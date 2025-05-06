@@ -14,7 +14,7 @@
     --item-file-icon-color: var(--axa-red-100);
   }
 
-  &--valid {
+  .af-icon div svg {
     --item-file-icon-color: var(--green-100);
   }
 
@@ -28,5 +28,9 @@
 
   .af-item-file-subtitle {
     --item-file-subtitle: var(--neutral-80);
+  }
+
+  .af-spinner af-spinner--blue af-spinner--24 {
+    --item-file-spinner-color: var(--axa-blue-100);
   }
 }
