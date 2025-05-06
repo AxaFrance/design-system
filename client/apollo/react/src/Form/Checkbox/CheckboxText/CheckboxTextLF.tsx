@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-apollo-css/dist/Form/Checkbox/CheckboxText/CheckboxTextLF.scss";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
-import { Checkbox } from "../Checkbox/CheckboxLf";
+import { Checkbox } from "../Checkbox/CheckboxLF";
 import { CheckboxTextCommon, CheckboxTextProps } from "./CheckboxTextCommon";
 
 export const CheckboxText = (props: CheckboxTextProps) => (
