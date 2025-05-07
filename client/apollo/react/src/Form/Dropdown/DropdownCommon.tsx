@@ -12,8 +12,7 @@ import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
   classModifier?: string;
-  label: ComponentProps<typeof ItemLabel>["label"];
-  errorLabel?: string;
+  label?: ComponentProps<typeof ItemLabel>["label"];
   error?: string;
   success?: string;
   placeholder?: string;

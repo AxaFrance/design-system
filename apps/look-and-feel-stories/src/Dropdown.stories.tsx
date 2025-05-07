@@ -13,7 +13,7 @@ const meta: Meta<typeof Dropdown> = {
     required: true,
     placeholder: "Placeholder",
     buttonLabel: "En savoir plus",
-    errorLabel: "",
+    error: "",
     helper: "Information complémentaires",
   },
   argTypes: {

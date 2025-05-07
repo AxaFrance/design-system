@@ -3,9 +3,9 @@
 
 .af-form__dropdown {
   &-input {
-    --dropdown-placeholder-color: var(--color-gray-700);
-    --dropdown-border-radius: var(--default-border-radius);
-    --dropdown-border-color: var(--color-gray-700);
+    --dropdown-placeholder-color: var(--neutral-80);
+    --dropdown-border-radius: var(--radius-4);
+    --dropdown-border-color: var(--axa-blue-65);
     --dropdown-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
       no-repeat right 1rem center / 1.5rem 1.5rem;
 
@@ -22,8 +22,8 @@
     }
 
     &:focus-visible {
-      --dropdown-border-color: var(--color-axa);
-      --dropdown-box-shadow: var(--color-axa);
+      --dropdown-border-color: var(--axa-blue-65);
+      --dropdown-box-shadow: var(--axa-blue-65);
     }
 
     &:disabled {
@@ -37,8 +37,8 @@
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      --dropdown-border-color: var(--color-axa);
-      --dropdown-box-shadow: var(--color-axa);
+      --dropdown-border-color: var(--axa-blue-65);
+      --dropdown-box-shadow: var(--axa-blue-65);
     }
 
     &--error {
@@ -56,18 +56,6 @@
         --dropdown-border-color: var(--color-red);
         --dropdown-box-shadow: 0 0 0 1px var(--color-red) inset;
       }
-    }
-  }
-}
-
-@media (width <= #{breakpoints.$breakpoint-sm}) {
-  .af-form__dropdown {
-    &-label {
-      --dropdown-font-size: calc(16 / var(--font-size-base) * 1rem);
-    }
-
-    &-input {
-      --dropdown-font-size: calc(16 / var(--font-size-base) * 1rem);
     }
   }
 }
