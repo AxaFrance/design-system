@@ -1,4 +1,10 @@
-import { ItemFile } from "@axa-fr/design-system-apollo-react";
+import {
+  ClickIcon,
+  Icon,
+  ItemFile,
+  ItemMessage,
+  Spinner,
+} from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 
 type Story = StoryObj<typeof ItemFile>;
@@ -6,28 +12,39 @@ type Story = StoryObj<typeof ItemFile>;
 const meta: Meta<typeof ItemFile> = {
   title: "Components/Form/ItemFile",
   component: ItemFile,
-  args: {
-    loading: false,
-    valid: false,
-    title: "Title",
-    subTitle: "Subtitle",
-  },
-  argTypes: {
-    loading: { control: "boolean" },
-    valid: { control: "boolean" },
-    title: { control: "string" },
-    subTitle: { control: "string" },
-  },
 };
 export default meta;
 
-export const ItemFileStory: Story = {
-  name: "ItemFile",
+export const Default: Story = {
   args: {
-    error: false,
-    loading: true,
-    valid: false,
-    title: "IMG1404704650",
-    subTitle: "12 Mob",
+    state: "success",
+    title: "IMG_879687880.jpg",
+    subTitle: "0.12 Mo",
+    errorMessage: "Titre du message",
+    ItemIconComponent: Icon,
+    ItemSpinnerComponent: Spinner,
+    ItemClickIconComponent: ClickIcon,
+    ItemMessageComponent: ItemMessage,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    state: "loading",
+    title: "IMG_879687880.jpg",
+    subTitle: "0.12 Mo",
+    ItemIconComponent: Icon,
+    ItemSpinnerComponent: Spinner,
+    ItemClickIconComponent: ClickIcon,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    state: "error",
+    title: "IMG_879687880.jpg",
+    subTitle: "0.12 Mo",
+    ItemIconComponent: Icon,
+    ItemClickIconComponent: ClickIcon,
   },
 };

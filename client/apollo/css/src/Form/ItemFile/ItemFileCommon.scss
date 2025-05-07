@@ -48,6 +48,7 @@
 
   &--error {
     border: 1px solid var(--item-file-border-color);
+    fill: var(--item-file-icon-color);
   }
 
   .af-spinner af-spinner--blue af-spinner--24 {
