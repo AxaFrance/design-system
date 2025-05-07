@@ -1,6 +1,6 @@
 .af-timeline-vertical {
   display: grid;
-  padding: calc(24 / var(--font-size-base) * 1rem);
+  padding: var(--timeline-vertical-padding);
   border: 1px solid var(--timeline-vertical-border-color);
   border-radius: var(--radius-8);
   row-gap: calc(16 / var(--font-size-base) * 1rem);

@@ -2,6 +2,7 @@
 @use "./TimelineVerticalCommon";
 
 .af-timeline-vertical {
+  --timeline-vertical-padding: calc(24 / var(--font-size-base) * 1rem);
   --timeline-vertical-title-color: var(--neutral-100);
   --timeline-vertical-title-font-size: calc(16 / var(--font-size-base) * 1rem);
   --timeline-vertical-description-color: var(--neutral-80);
