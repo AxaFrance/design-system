@@ -13,7 +13,7 @@
     height: 56px;
     margin: calc(10 / var(--font-size-base) * 1rem) 0;
     padding: calc(16 / var(--font-size-base) * 1rem);
-    border: 1px solid var(--dropdown-border-color); // Default border applied once
+    border: 1px solid var(--dropdown-border-color);
     border-radius: var(--dropdown-border-radius);
     text-overflow: ellipsis;
     white-space: nowrap;

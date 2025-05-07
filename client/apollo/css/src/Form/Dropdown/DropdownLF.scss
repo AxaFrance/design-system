@@ -59,15 +59,3 @@
     }
   }
 }
-
-@media (width <= #{breakpoints.$breakpoint-sm}) {
-  .af-form__dropdown {
-    &-label {
-      --dropdown-font-size: calc(16 / var(--font-size-base) * 1rem);
-    }
-
-    &-input {
-      --dropdown-font-size: calc(16 / var(--font-size-base) * 1rem);
-    }
-  }
-}
