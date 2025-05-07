@@ -35,7 +35,7 @@ type ItemFileProps = {
 } & ComponentPropsWithoutRef<"div">;
 
 export const ItemFile = ({
-  state = "success",
+  state,
   title,
   subTitle,
   errorMessage,

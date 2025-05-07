@@ -11,9 +11,10 @@ export const ItemFile = () => (
     ItemIconComponent={Icon}
     ItemClickIconComponent={ClickIcon}
     ItemSpinnerComponent={Spinner}
-    loading={false}
     subTitle=""
     title=""
-    valid={false}
+    state="success"
   />
 );
+
+ItemFile.displayName = "ItemFile";
