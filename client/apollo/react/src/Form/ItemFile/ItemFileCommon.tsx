@@ -1,6 +1,5 @@
 import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
-import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import visibilityIcon from "@material-symbols/svg-400/outlined/visibility-fill.svg";
 
 import {
@@ -10,8 +9,9 @@ import {
   useId,
 } from "react";
 
+import classNames from "classnames";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
-import { Spinner, spinnerVariants } from "../../Spinner/SpinnerCommon";
+import { Spinner } from "../../Spinner/SpinnerCommon";
 import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import { Icon } from "../../Icon/IconCommon";
 
@@ -23,70 +23,87 @@ export const itemFileStates = {
 
 type ItemFileState = keyof typeof itemFileStates;
 
-type ItemFileProps = {
+export type ItemFileCommonProps = {
   state: ItemFileState;
   title: string;
+  helper: string;
   subTitle: string;
   errorMessage?: string;
+  icon?: string;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   ItemIconComponent: ComponentType<ComponentProps<typeof Icon>>;
   ItemClickIconComponent: ComponentType<ComponentProps<typeof ClickIcon>>;
   ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
 } & ComponentPropsWithoutRef<"div">;
 
-export const ItemFile = ({
+export const ItemFileCommon = ({
   state,
+  helper,
   title,
   subTitle,
   errorMessage,
+  icon,
   ItemSpinnerComponent,
   ItemClickIconComponent,
   ItemIconComponent,
   ItemMessageComponent,
-}: ItemFileProps) => {
-  const idError = useId();
+}: ItemFileCommonProps) => {
+  const idHelp = useId();
+  const idMessage = useId();
+
+  const classname = classNames(
+    "af-item-file",
+    errorMessage && "af-item-file--error",
+  );
 
   const getIconByState = () => {
     if (state === "loading") {
-      return <ItemSpinnerComponent size={24} variant={spinnerVariants.blue} />;
+      return (
+        <div className="af-item-file--spinner">
+          <ItemSpinnerComponent size={24} />
+        </div>
+      );
     }
 
     const iconSrc = state === "success" ? validationIcon : errorIcon;
+    const classNameByState =
+      state === "success" ? "af-icon__success" : "af-icon__error";
 
     return (
-      <ItemIconComponent
-        variant="primary"
-        className="item-file-icon"
-        size="S"
-        src={iconSrc}
-      />
+      <ItemIconComponent className={classNameByState} size="S" src={iconSrc} />
     );
   };
 
   return (
-    <div className="af-item-file" role="alert">
-      <div className="af-icon">
-        {getIconByState()}
+    <div>
+      <div className={classname} role="alert">
+        <div className="af-icon">
+          {getIconByState()}
 
-        <div>
-          <div className="af-item-file-title">{title}</div>
-          <div className="af-item-file-subtitle">{subTitle}</div>
+          <div>
+            <div className="af-item-file-title">{title}</div>
+            <div className="af-item-file-subtitle">{subTitle}</div>
+          </div>
         </div>
-      </div>
 
-      <div className="af-click-icon__content">
-        {state === "success" ? (
-          <>
-            <ItemClickIconComponent src={visibilityIcon} />
-            <ItemClickIconComponent src={deleteIcon} />
-          </>
-        ) : (
-          <ItemClickIconComponent src={deleteIcon} />
+        <div className="af-click-icon__content">
+          {state === "success" ? (
+            <>
+              <ItemClickIconComponent src={visibilityIcon} />
+              <ItemClickIconComponent src={icon} />
+            </>
+          ) : (
+            <ItemClickIconComponent src={icon} />
+          )}
+        </div>
+        {helper && (
+          <span id={idHelp} className="af-form__input-helper">
+            {helper}
+          </span>
         )}
       </div>
-
-      {state === "error" && (
-        <ItemMessageComponent id={idError} message={errorMessage} />
+      {errorMessage && (
+        <ItemMessageComponent id={idMessage} message={errorMessage} />
       )}
     </div>
   );

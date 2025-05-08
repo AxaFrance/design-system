@@ -1,19 +1,22 @@
 import "@axa-fr/design-system-apollo-css/dist/Form/ItemFile/ItemFileLF.scss";
-import { ItemFile as ItemFileCommon } from "./ItemFileCommon";
+import deleteIconFilled from "@material-symbols/svg-400/outlined/delete-fill.svg";
+import { ItemFileCommon } from "./ItemFileCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageLF";
 import { Icon } from "../../Icon/IconLF";
 import { ClickIcon } from "../../ClickIcon/ClickIconLF";
 import { Spinner } from "../../Spinner/SpinnerLF";
+import type { ItemFileProps } from "./types";
 
-export const ItemFile = () => (
+export { itemFileStates } from "./ItemFileCommon";
+
+export const ItemFile = (props: ItemFileProps) => (
   <ItemFileCommon
     ItemMessageComponent={ItemMessage}
     ItemIconComponent={Icon}
     ItemClickIconComponent={ClickIcon}
     ItemSpinnerComponent={Spinner}
-    subTitle=""
-    title=""
-    state="success"
+    icon={deleteIconFilled}
+    {...props}
   />
 );
 

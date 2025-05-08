@@ -10,30 +10,25 @@
 
   &--error {
     --item-file-border-color: var(--color-red-700);
-    --item-file-icon-color: var(--color-red-700);
   }
 
-  &--valid {
-    --item-file-icon-color: var(--green-100);
-  }
-
-  .af-icon div svg {
+  .af-icon__success {
     --item-file-icon-color: var(--color-green-600);
   }
 
-  &:open {
-    --item-file-background: url("@material-symbols/svg-400/outlined/visibility-fill.svg");
+  .af-icon__error {
+    --item-file-icon-color: var(--color-red-700);
   }
 
-  .af-spinner af-spinner--blue af-spinner--24 {
-    --item-file-spinner-color: var($color-gray-700);
+  .af-item-file--spinner {
+    --item-file-spinner-color: var(--color-gray-700);
   }
 
   .af-item-file-title {
     --item-file-title: var(--neutral-80);
   }
 
-  .af-item-file-subtitle {
+  .af-item-file-subtitle div {
     --item-file-subtitle: var(--color-gray-700);
   }
 }
