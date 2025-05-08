@@ -1,5 +1,4 @@
 @use "./DropdownCommon";
-@use "../../common/breakpoints" as breakpoints;
 
 .af-form__dropdown {
   &-input {
@@ -14,47 +13,47 @@
     }
 
     option {
-      --dropdown-option-color: var(--color-black);
+      --dropdown-option-color: var(--neutral-100);
 
       &:disabled {
-        --dropdown-option-disabled-color: var(--color-gray-500);
+        --dropdown-option-disabled-color: var(--neutral-50);
       }
     }
 
     &:focus-visible {
-      --dropdown-border-color: var(--axa-blue-65);
-      --dropdown-box-shadow: var(--axa-blue-65);
+      --dropdown-border-color: var(--axa-blue-100);
+      --dropdown-box-shadow: var(--axa-blue-100);
     }
 
     &:disabled {
-      --dropdown-bg-color-disabled: var(--color-gray-200);
-      --dropdown-border-color: var(--color-gray-400);
+      --dropdown-bg-color-disabled: var(--neutral-50);
+      --dropdown-border-color: var(--neutral-50);
     }
 
     &-placeholder {
-      --dropdown-placeholder-color: var(--color-gray-700);
+      --dropdown-placeholder-color: var(--neutral-80);
     }
 
     &:not(:disabled):hover,
     &:not(:disabled):active {
-      --dropdown-border-color: var(--axa-blue-65);
-      --dropdown-box-shadow: var(--axa-blue-65);
+      --dropdown-border-color: var(--axa-blue-100);
+      --dropdown-box-shadow: var(--axa-blue-100);
     }
 
     &--error {
-      --dropdown-border-color: var(--color-red);
+      --dropdown-border-color: var(--red-alert-100);
 
       &:focus-visible {
-        --dropdown-border-color: var(--color-red);
-        --dropdown-box-shadow: var(--color-red);
+        --dropdown-border-color: var(--red-alert-100);
+        --dropdown-box-shadow: var(--red-alert-100);
 
         outline: none;
       }
 
       &:not(:disabled):hover,
       &:not(:disabled):active {
-        --dropdown-border-color: var(--color-red);
-        --dropdown-box-shadow: 0 0 0 1px var(--color-red) inset;
+        --dropdown-border-color: var(--red-alert-100);
+        --dropdown-box-shadow: 0 0 0 1px var(--red-alert-100) inset;
       }
     }
   }
