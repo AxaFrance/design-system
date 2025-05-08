@@ -11,15 +11,14 @@
 
   &--error {
     --item-file-border-color: var(--axa-red-100);
-    --item-file-icon-color: var(--axa-red-100);
   }
 
-  .af-icon div svg {
+  .af-icon__success {
     --item-file-icon-color: var(--green-100);
   }
 
-  &:open {
-    --item-file-background: url("@material-symbols/svg-400/outlined/delete-fill.svg");
+  .af-icon__error {
+    --item-file-icon-color: var(--red-alert-100);
   }
 
   .af-item-file-title {
@@ -30,7 +29,7 @@
     --item-file-subtitle: var(--neutral-80);
   }
 
-  .af-spinner af-spinner--blue af-spinner--24 {
-    --item-file-spinner-color: var(--axa-blue-100);
+  .af-item-file--spinner div {
+    --item-file-spinner-color: var(--neutral-100);
   }
 }
