@@ -60,3 +60,10 @@ export { Checkbox } from "./Form/checkbox/checkbox/CheckboxApollo";
 export { CheckboxText } from "./Form/checkbox/checkboxText/CheckboxTextApollo";
 export { CheckboxCard } from "./Form/checkbox/checkboxCard/CheckboxCardApollo";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";
+export {
+  Modal,
+  ModalCore,
+  ModalCoreBody,
+  ModalCoreFooter,
+  ModalCoreHeader,
+} from "./Modal/ModalApollo";
