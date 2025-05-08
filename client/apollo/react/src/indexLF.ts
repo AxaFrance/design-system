@@ -17,6 +17,7 @@ export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
 export { InputDate } from "./Form/InputDate/InputDateLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
+export { ItemFile, itemFileStates } from "./Form/ItemFile/ItemFileLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { Select } from "./Form/Select/SelectLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
