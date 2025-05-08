@@ -70,7 +70,7 @@
     }
   }
 
-  &-group--vertical {
+  &-group--horizontal {
     flex-direction: var(--checkbox-card-flex-direction);
 
     .af-checkbox-card-label {
@@ -89,7 +89,7 @@
     }
   }
 
-  &-group--horizontal {
+  &-group--vertical {
     flex-direction: var(--checkbox-card-flex-direction);
 
     .af-checkbox-card-label {

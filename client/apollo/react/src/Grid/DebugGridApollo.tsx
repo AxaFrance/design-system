@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.scss";
 import { useState } from "react";
-import { CheckboxCard } from "../Form/checkbox/checkboxCard/CheckboxCardApollo";
+import { CheckboxCard } from "../Form/Checkbox/CheckboxCard/CheckboxCardApollo";
 import { DebugGridCommon } from "./DebugGridCommon";
 
 export const DebugGrid = ({

@@ -1,11 +1,11 @@
 import React, {
   ReactNode,
   useId,
-  type ComponentType,
   type ComponentProps,
+  type ComponentType,
 } from "react";
-import { CheckboxProps } from "../checkbox/CheckboxCommon";
 import { ItemMessage } from "../../ItemMessage/ItemMessageCommon";
+import { CheckboxProps } from "../Checkbox/CheckboxCommon";
 
 type CheckboxComponent = {
   CheckboxComponent: ComponentType<CheckboxProps>;

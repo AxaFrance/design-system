@@ -5,11 +5,11 @@ import React, {
   type ReactNode,
   useId,
 } from "react";
-import { CheckboxProps } from "../checkbox/CheckboxCommon";
-import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { Icon } from "../../../Icon/IconCommon";
-import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
 import { BREAKPOINT } from "../../../utilities/constants";
+import { getComponentClassName } from "../../../utilities/getComponentClassName";
+import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
+import { CheckboxProps } from "../Checkbox/CheckboxCommon";
 
 type CheckboxComponent = {
   CheckboxComponent: ComponentType<CheckboxProps>;
@@ -54,8 +54,9 @@ const CheckboxCardCommon = ({
     className,
   );
   const checkboxGroupClassName = getComponentClassName(
-    `af-checkbox-card-group--${type}`,
+    "af-checkbox-card-group",
     className,
+    type,
   );
   const optionId = useId();
   const errorId = useId();
