@@ -1,13 +1,13 @@
 .af-item-file {
   display: flex;
-  width: 545px;
-  height: 75px;
-  padding: 16px;
+  width: 30%;
+  margin-bottom: calc(10 / var(--font-size-base) * 1rem);
+  padding: calc(16 / var(--font-size-base) * 1rem);
   border: 1px solid var(--item-file-border-color);
   border-radius: var(--item-file-border-radius);
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: calc(12 / var(--font-size-base) * 1rem);
 
   .af-item-file-title {
     font: var(--font-family-base);
@@ -28,30 +28,35 @@
   .af-icon {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  &--error {
+    border: 1px solid var(--item-file-border-color);
+  }
+
+  .af-icon__success {
     fill: var(--item-file-icon-color);
   }
 
-  .af-icon div svg {
+  .af-icon__error {
     fill: var(--item-file-icon-color);
+  }
+
+  .af-item-file--spinner div {
+    border-top: var(--item-file-spinner-color) 2px solid;
   }
 
   .af-click-icon__content {
     display: flex;
     align-items: end;
-    gap: 12px;
+    gap: calc(12 / var(--font-size-base) * 1rem);
   }
 
-  &:open {
-    background-image: var(--item-file-background);
-  }
-
-  &--error {
-    border: 1px solid var(--item-file-border-color);
-    fill: var(--item-file-icon-color);
-  }
-
-  .af-spinner af-spinner--blue af-spinner--24 {
-    fill: var(--axa-blue-100);
+  .af-item-message af-item-message--error {
+    display: flex;
+    margin-top: calc(10 / var(--font-size-base) * 1rem);
+    align-items: center;
+    gap: calc(8 / var(--font-size-base) * 1rem);
   }
 }
