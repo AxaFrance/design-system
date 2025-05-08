@@ -21,6 +21,7 @@ export {
   InputDate as DateInput,
 } from "./Form/InputDate/InputDateLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
+export { ItemFile, itemFileStates } from "./Form/ItemFile/ItemFileLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { Select } from "./Form/Select/SelectLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
