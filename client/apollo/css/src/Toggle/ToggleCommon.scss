@@ -1,9 +1,10 @@
 .af-toggle {
+  position: relative;
   cursor: pointer;
 
   &__root {
-    position: relative;
     display: flex;
+    box-sizing: content-box;
     width: var(--toggle-width);
     height: var(--toggle-height);
     padding: var(--toggle-padding);
@@ -36,6 +37,7 @@
     position: absolute;
     width: 1px;
     height: 1px;
-    clip: rect(0, 0, 0, 0);
+    outline: none;
+    clip-path: rect(0, 0, 0, 0);
   }
 }
