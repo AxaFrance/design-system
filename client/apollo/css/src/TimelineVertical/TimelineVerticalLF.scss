@@ -2,6 +2,7 @@
 @use "./TimelineVerticalCommon";
 
 .af-timeline-vertical {
+  --timeline-vertical-padding: calc(16 / var(--font-size-base) * 1rem);
   --timeline-vertical-title-color: var(--color-gray-900);
   --timeline-vertical-title-font-size: calc(16 / var(--font-size-base) * 1rem);
   --timeline-vertical-description-color: var(--color-gray-700);
@@ -12,6 +13,7 @@
   --timeline-vertical-border-color: var(--color-blue-400);
 
   @media (width >  #{breakpoints.$breakpoint-md}) {
+    --timeline-vertical-padding: calc(24 / var(--font-size-base) * 1rem);
     --timeline-vertical-title-font-size: calc(
       18 / var(--font-size-base) * 1rem
     );
