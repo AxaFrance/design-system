@@ -1,8 +1,10 @@
 import { Fragment, ReactNode } from "react";
+import infoIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
 import { getComponentClassName } from "../../../utilities";
 import { generateId } from "../../../utilities/helpers/generateId";
 
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Infos/Infos.scss";
+import { Svg } from "../../../Svg";
 
 const defaultClassName = "af-contrat";
 
@@ -27,7 +29,8 @@ const Infos = ({ infos, className, classModifier }: InfosProps) => {
 
   return (
     <div className={componentClassName}>
-      <i className="glyphicon glyphicon-info-sign" />
+      <Svg className="af-contrat__icon" src={infoIcon} aria-hidden="true" />
+
       <dl className={`${defaultClassName}__list`}>
         {infos.map((info) => {
           const idTerm = info.id ?? `info-${generateId(info)}`;
