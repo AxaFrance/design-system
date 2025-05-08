@@ -1,11 +1,13 @@
-import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
+import { describe, expect, it } from "vitest";
+import * as useIsSmallScreen from "../../../../utilities/hook/useIsSmallScreen";
 import { CheckboxCard } from "../CheckboxCardApollo";
+import * as CheckboxCardItem from "../CheckboxCardItem";
 
-describe("CheckboxText Component", () => {
+describe("CheckboxCard", () => {
   const args = {
     labelGroup: "Quelle ville ?",
     descriptionGroup: "Choisissez une ville",
@@ -52,4 +54,28 @@ describe("CheckboxText Component", () => {
     // Then
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it.each`
+    isSmallScreen | expectedSize
+    ${true}       | ${"M"}
+    ${false}      | ${"L"}
+  `(
+    "should give the size $expectedSize to CheckboxCardItem when useIsSmallScreen returns $isSmallScreen",
+    ({ isSmallScreen, expectedSize }) => {
+      vi.spyOn(useIsSmallScreen, "useIsSmallScreen").mockReturnValue(
+        isSmallScreen,
+      );
+      const CheckboxCardItemMock = vi.spyOn(
+        CheckboxCardItem,
+        "CheckboxCardItem",
+      );
+
+      render(<CheckboxCard type="vertical" {...args} />);
+
+      expect(CheckboxCardItemMock).toHaveBeenCalledWith(
+        expect.objectContaining({ size: expectedSize }),
+        undefined,
+      );
+    },
+  );
 });
