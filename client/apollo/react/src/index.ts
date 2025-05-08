@@ -19,7 +19,7 @@ export { Tag, type TagVariants, tagVariants } from "./Tag/TagApollo";
 export { DebugGrid } from "./Grid/DebugGridApollo";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
-export { ItemFile } from "./Form/ItemFile/ItemFileApollo";
+export { ItemFile, itemFileStates } from "./Form/ItemFile/ItemFileApollo";
 export { TextArea } from "./Form/TextArea/TextAreaApollo";
 export { Select } from "./Form/Select/SelectApollo";
 export { TextInput } from "./Form/TextInput/TextInputApollo";
