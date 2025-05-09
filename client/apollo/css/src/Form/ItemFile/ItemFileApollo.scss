@@ -5,28 +5,19 @@
   --item-file-border-color: var(--axa-blue-100);
   --item-file-title-color: var(--neutral-100);
   --item-file-subtitle-color: var(--neutral-80);
-  --item-file-icon-color: var(--green-100);
+  --icon-fill: var(--green-100);
   --item-file-bg-color: var(--white);
-  --item-file-background: url("@material-symbols/svg-400/outlined/delete-fill.svg");
 
   &--error {
     --item-file-border-color: var(--axa-red-100);
   }
 
   .af-icon__success {
-    --item-file-icon-color: var(--green-100);
+    --icon-fill: var(--green-100);
   }
 
   .af-icon__error {
-    --item-file-icon-color: var(--red-alert-100);
-  }
-
-  .af-item-file-title {
-    --item-file-title: var(--neutral-100);
-  }
-
-  .af-item-file-subtitle {
-    --item-file-subtitle: var(--neutral-80);
+    --icon-fill: var(--red-alert-100);
   }
 
   .af-item-file--spinner div {

@@ -29,7 +29,7 @@ export type ItemFileCommonProps = {
   helper: string;
   subTitle: string;
   errorMessage?: string;
-  icon?: string;
+  deleteIcon: string;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   ItemIconComponent: ComponentType<ComponentProps<typeof Icon>>;
   ItemClickIconComponent: ComponentType<ComponentProps<typeof ClickIcon>>;
@@ -42,7 +42,7 @@ export const ItemFileCommon = ({
   title,
   subTitle,
   errorMessage,
-  icon,
+  deleteIcon,
   ItemSpinnerComponent,
   ItemClickIconComponent,
   ItemIconComponent,
@@ -65,12 +65,12 @@ export const ItemFileCommon = ({
       );
     }
 
-    const iconSrc = state === "success" ? validationIcon : errorIcon;
-    const classNameByState =
-      state === "success" ? "af-icon__success" : "af-icon__error";
-
     return (
-      <ItemIconComponent className={classNameByState} size="S" src={iconSrc} />
+      <ItemIconComponent
+        className={`af-icon__${state}`}
+        size="S"
+        src={state === "success" ? validationIcon : errorIcon}
+      />
     );
   };
 
@@ -90,10 +90,10 @@ export const ItemFileCommon = ({
           {state === "success" ? (
             <>
               <ItemClickIconComponent src={visibilityIcon} />
-              <ItemClickIconComponent src={icon} />
+              <ItemClickIconComponent src={deleteIcon} />
             </>
           ) : (
-            <ItemClickIconComponent src={icon} />
+            <ItemClickIconComponent src={deleteIcon} />
           )}
         </div>
         {helper && (
