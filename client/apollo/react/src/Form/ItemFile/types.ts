@@ -6,4 +6,5 @@ export type ItemFileProps = Omit<
   | "ItemIconComponent"
   | "ItemClickIconComponent"
   | "ItemSpinnerComponent"
+  | "deleteIcon"
 >;
