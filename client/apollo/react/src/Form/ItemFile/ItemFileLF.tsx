@@ -15,7 +15,7 @@ export const ItemFile = (props: ItemFileProps) => (
     ItemIconComponent={Icon}
     ItemClickIconComponent={ClickIcon}
     ItemSpinnerComponent={Spinner}
-    icon={deleteIconFilled}
+    deleteIcon={deleteIconFilled}
     {...props}
   />
 );
