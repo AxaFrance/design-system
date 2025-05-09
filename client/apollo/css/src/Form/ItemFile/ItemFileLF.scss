@@ -5,30 +5,21 @@
   --item-file-border-color: var(--color-gray-700);
   --item-file-title-color: var(--color-gray-900);
   --item-file-subtitle-color: var(--color-gray-700);
-  --item-file-icon-color: var(--green-100);
-  --item-file-bg-color: var(--white);
+  --icon-fill: var(--green-100);
 
   &--error {
     --item-file-border-color: var(--color-red-700);
   }
 
   .af-icon__success {
-    --item-file-icon-color: var(--color-green-600);
+    --icon-fill: var(--color-green-600);
   }
 
   .af-icon__error {
-    --item-file-icon-color: var(--color-red-700);
+    --icon-fill: var(--color-red-700);
   }
 
   .af-item-file--spinner {
     --item-file-spinner-color: var(--color-gray-700);
-  }
-
-  .af-item-file-title {
-    --item-file-title: var(--neutral-80);
-  }
-
-  .af-item-file-subtitle div {
-    --item-file-subtitle: var(--color-gray-700);
   }
 }
