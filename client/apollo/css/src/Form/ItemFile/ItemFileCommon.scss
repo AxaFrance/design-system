@@ -1,6 +1,6 @@
 .af-item-file {
   display: flex;
-  width: 30%;
+  width: fit-content;
   margin-bottom: calc(10 / var(--font-size-base) * 1rem);
   padding: calc(16 / var(--font-size-base) * 1rem);
   border: 1px solid var(--item-file-border-color);
@@ -14,7 +14,7 @@
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 400;
     line-height: 125%;
-    color: var(--item-file-title);
+    color: var(--item-file-title-color);
   }
 
   .af-item-file-subtitle {
@@ -22,7 +22,7 @@
     font-size: calc(16 / var(--font-size-base) * 1rem);
     font-weight: 400;
     line-height: 125%;
-    color: var(--item-file-subtitle);
+    color: var(--item-file-subtitle-color);
   }
 
   .af-icon {
@@ -36,11 +36,11 @@
   }
 
   .af-icon__success {
-    fill: var(--item-file-icon-color);
+    fill: var(--icon-fill);
   }
 
   .af-icon__error {
-    fill: var(--item-file-icon-color);
+    fill: var(--icon-fill);
   }
 
   .af-item-file--spinner div {
