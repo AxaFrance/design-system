@@ -12,8 +12,8 @@ import {
 import classNames from "classnames";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { Spinner } from "../../Spinner/SpinnerCommon";
-import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
-import { Icon } from "../../Icon/IconCommon";
+import type { ClickIconProps } from "../../ClickIcon/ClickIconCommon";
+import type { IconProps } from "../../Icon/IconCommon";
 
 export const itemFileStates = {
   success: "success",
@@ -31,9 +31,11 @@ export type ItemFileCommonProps = {
   errorMessage?: string;
   deleteIcon: string;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-  ItemIconComponent: ComponentType<ComponentProps<typeof Icon>>;
-  ItemClickIconComponent: ComponentType<ComponentProps<typeof ClickIcon>>;
+  ItemIconComponent: ComponentType<IconProps>;
+  ItemClickIconComponent: ComponentType<ClickIconProps>;
   ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
+  deleteIconProps?: Partial<ClickIconProps>;
+  visiibilityIconProps?: Partial<ClickIconProps>;
 } & ComponentPropsWithoutRef<"div">;
 
 export const ItemFileCommon = ({
@@ -47,6 +49,8 @@ export const ItemFileCommon = ({
   ItemClickIconComponent,
   ItemIconComponent,
   ItemMessageComponent,
+  deleteIconProps = {},
+  visiibilityIconProps = {},
 }: ItemFileCommonProps) => {
   const idHelp = useId();
   const idMessage = useId();
@@ -89,11 +93,14 @@ export const ItemFileCommon = ({
         <div className="af-click-icon__content">
           {state === "success" ? (
             <>
-              <ItemClickIconComponent src={visibilityIcon} />
-              <ItemClickIconComponent src={deleteIcon} />
+              <ItemClickIconComponent
+                src={visibilityIcon}
+                {...visiibilityIconProps}
+              />
+              <ItemClickIconComponent src={deleteIcon} {...deleteIconProps} />
             </>
           ) : (
-            <ItemClickIconComponent src={deleteIcon} />
+            <ItemClickIconComponent src={deleteIcon} {...deleteIconProps} />
           )}
         </div>
         {helper && (
