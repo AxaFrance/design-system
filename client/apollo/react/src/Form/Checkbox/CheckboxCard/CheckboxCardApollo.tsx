@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-apollo-css/dist/Form/Checkbox/CheckboxCard/CheckboxCardApollo.scss";
-import { CheckboxCardCommon, CheckboxCardProps } from "./CheckboxCardCommon";
-import { Checkbox } from "../checkbox/CheckboxApollo";
 import { Icon } from "../../../Icon/IconApollo";
+import { Checkbox } from "../Checkbox/CheckboxApollo";
+import { CheckboxCardCommon, CheckboxCardProps } from "./CheckboxCardCommon";
 
 export const CheckboxCard = (props: CheckboxCardProps) => (
   <CheckboxCardCommon
