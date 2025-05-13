@@ -7,14 +7,15 @@
   --button-text-color-default: var(--color-white);
   --button-radius: var(--radius-8);
   --button-shadow-color: var(--color-axa);
-  --button-padding: calc(16 / var(--font-size-base) * 1rem)
-    calc(61.5 / var(--font-size-base) * 1rem);
+  --button-padding: calc(16 / var(--font-size-base) * 1rem);
   --button-line-height: calc(20 / var(--font-size-base) * 1rem);
   --button-font-size: calc(16 / var(--font-size-base) * 1rem);
 
   @media (width > #{breakpoints.$breakpoint-lg}) {
     --button-line-height: calc(22.5 / var(--font-size-base) * 1rem);
     --button-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --button-padding: calc(16 / var(--font-size-base) * 1rem)
+      calc(24 / var(--font-size-base) * 1rem);
   }
 
   &:hover {
