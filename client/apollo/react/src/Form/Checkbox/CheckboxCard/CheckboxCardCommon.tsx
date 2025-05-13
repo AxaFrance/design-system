@@ -1,7 +1,6 @@
 import React, { ComponentPropsWithRef, useId } from "react";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
-import { generateId } from "../../../utilities/helpers/generateId";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
 import { CheckboxCardItem, type TCheckboxCardItem } from "./CheckboxCardItem";
 import type { CheckboxComponent, IconComponent } from "./types";
@@ -61,7 +60,7 @@ export const CheckboxCardCommon = ({
       </div>
       <ul className={checkboxGroupClassName}>
         {options.map((inputProps) => (
-          <li key={`checkbox-card-item_${generateId(inputProps)}`}>
+          <li key={crypto.randomUUID()}>
             <CheckboxCardItem
               size={size}
               errorId={errorId}
