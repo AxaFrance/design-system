@@ -3,20 +3,20 @@ import { axe } from "jest-axe";
 import { DateInput } from "../DateInputApollo";
 
 describe("<DateInput />", () => {
+  const testDate = new Date("2025-01-01");
   it("renders the DateInput component with label only", () => {
     render(<DateInput label="Test Label" />);
     expect(screen.getByText("Test Label")).toBeInTheDocument();
   });
 
-  it("renders fully", () => {
+  it("renders all props", () => {
     render(
       <DateInput
         id="id"
         label="test"
         name="name"
-        placeholder="placeholder"
         error="error"
-        value="01/01/2025"
+        value={testDate}
         onChange={() => {}}
         required
         description="description"
@@ -28,30 +28,34 @@ describe("<DateInput />", () => {
     const dateInput = screen.getByLabelText(/test/);
     expect(dateInput).toBeInTheDocument();
     expect(dateInput).toHaveAccessibleDescription("helper");
-    expect(dateInput).toHaveProperty("placeholder", "placeholder");
     expect(dateInput).toHaveAccessibleErrorMessage("error");
-    expect(dateInput).toHaveValue("01/01/2025");
+    expect(dateInput).toHaveValue("2025-01-01");
     expect(dateInput).toHaveClass("af-form__input-date");
     expect(dateInput).toHaveAttribute("name", "name");
-    expect(dateInput).toHaveAttribute("type", "text");
+    expect(dateInput).toHaveAttribute("type", "date");
     expect(dateInput).toBeRequired();
     expect(dateInput).toHaveAttribute("id", "id");
   });
 
-  it("renders with a date picker and value is a Date object", () => {
-    render(
-      <DateInput label="test" type="date" value={new Date("2025-01-01")} />,
-    );
+  it("handles a Date object as value correctly", () => {
+    render(<DateInput label="test" value={testDate} />);
     const dateInput = screen.getByLabelText(/test/);
     expect(dateInput).toBeInTheDocument();
     expect(dateInput).toHaveValue("2025-01-01");
   });
 
-  it("renders without a date picker and value is a Date object", () => {
-    render(<DateInput label="test" value={new Date("2025-01-01")} />);
+  it("handles a string in YYYY-MM-DD format as value correctly", () => {
+    render(<DateInput label="test" value="2025-01-01" />);
     const dateInput = screen.getByLabelText(/test/);
     expect(dateInput).toBeInTheDocument();
-    expect(dateInput).toHaveValue("01/01/2025");
+    expect(dateInput).toHaveValue("2025-01-01");
+  });
+
+  it("displays an empty value when no value is provided", () => {
+    render(<DateInput label="test" />);
+    const dateInput = screen.getByLabelText(/test/);
+    expect(dateInput).toBeInTheDocument();
+    expect(dateInput).toHaveValue("");
   });
 });
 

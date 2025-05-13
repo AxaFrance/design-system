@@ -18,7 +18,6 @@ type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   error?: string;
   success?: string;
   label: ComponentProps<typeof ItemLabel>["label"];
-  type?: "text" | "date";
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
@@ -32,7 +31,6 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       classModifier = "",
       defaultValue,
       value,
-      placeholder = "JJ/MM/AAAA",
       helper,
       error,
       success,
@@ -44,7 +42,6 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       ItemMessageComponent,
       required,
       "aria-errormessage": ariaErrormessage,
-      type = "text",
       ...otherProps
     },
     inputRef,
@@ -76,11 +73,10 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           {...otherProps}
           id={inputId}
           className={componentClassName}
-          type={type}
-          placeholder={placeholder || ""}
+          type="date"
           ref={inputRef}
-          defaultValue={formatDateInputValue(type, defaultValue)}
-          value={formatDateInputValue(type, value)}
+          defaultValue={formatDateInputValue(defaultValue)}
+          value={formatDateInputValue(value)}
           aria-labelledby={idLabel}
           aria-errormessage={ariaErrormessage ?? idMessage}
           aria-invalid={Boolean(error ?? ariaErrormessage)}

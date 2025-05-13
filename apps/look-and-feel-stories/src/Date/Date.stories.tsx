@@ -32,28 +32,11 @@ export const DateInputDefaultStory: Story = {
   render,
 };
 
-export const DateInputDefaultWithDatePickerStory: Story = {
-  name: "Date with date picker",
-  render,
-  args: {
-    type: "date",
-  },
-};
-
 export const DateInputFilledStory: Story = {
   name: "Date filled",
   render,
   args: {
     value: new Date("2025-01-01"),
-  },
-};
-
-export const DateInputFilledWithDatePickerStory: Story = {
-  name: "Date filled with date picker",
-  render,
-  args: {
-    value: new Date("2025-01-01"),
-    type: "date",
   },
 };
 
@@ -73,23 +56,6 @@ export const DateInputErrorStory: Story = {
     error: "Titre du message",
     "aria-errormessage": undefined,
     value: new Date("2080-01-01"),
-  },
-  argTypes: {
-    "aria-errormessage": {
-      control: { type: "date" },
-    },
-  },
-};
-
-export const DateInputErrorWithDatePickerStory: Story = {
-  name: "Date on error with date picker",
-  render,
-  args: {
-    classModifier: "error",
-    error: "Titre du message",
-    "aria-errormessage": undefined,
-    value: new Date("2080-01-01"),
-    type: "date",
   },
   argTypes: {
     "aria-errormessage": {
