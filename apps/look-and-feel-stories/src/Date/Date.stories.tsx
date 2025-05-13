@@ -45,6 +45,15 @@ export const DateInputDisabledStory: Story = {
   render,
   args: {
     disabled: true,
+    value: new Date("2000-01-01"),
+  },
+};
+
+export const DateInputDisabledEmptyStory: Story = {
+  name: "Date disabled empty",
+  render,
+  args: {
+    disabled: true,
   },
 };
 
@@ -56,6 +65,22 @@ export const DateInputErrorStory: Story = {
     error: "Titre du message",
     "aria-errormessage": undefined,
     value: new Date("2080-01-01"),
+  },
+  argTypes: {
+    "aria-errormessage": {
+      control: { type: "date" },
+    },
+  },
+};
+
+export const DateInputErrorEmptyStory: Story = {
+  name: "Date on error empty",
+  render,
+  args: {
+    classModifier: "error",
+    error: "Titre du message",
+    "aria-errormessage": undefined,
+    value: undefined,
   },
   argTypes: {
     "aria-errormessage": {

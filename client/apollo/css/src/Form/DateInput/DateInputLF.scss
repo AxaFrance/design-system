@@ -13,7 +13,7 @@
     --input-bg-color: var(--color-white);
     --input-date-color: var(--color-gray-900);
     --input-date-placeholder-color: var(--color-gray-700);
-    --input-date-placeholder-color-filled: var(--color-axa);
+    --input-date-placeholder-color-filled: var(--color-gray-900);
 
     &:is(:hover, :focus, :active) {
       --input-border-color: var(--color-axa);
