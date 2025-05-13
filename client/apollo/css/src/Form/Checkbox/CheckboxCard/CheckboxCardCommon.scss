@@ -66,7 +66,13 @@
     &--vertical {
       flex-direction: var(--checkbox-card-flex-direction);
 
+      > * {
+        flex-basis: 0;
+        flex-grow: 1;
+      }
+
       .af-checkbox-card-label {
+        height: 100%;
         flex-direction: var(--checkbox-card-flex-direction);
         align-items: var(--checkbox-card-align-items);
         justify-content: var(--checkbox-card-justify-content);
