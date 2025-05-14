@@ -1,14 +1,27 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useRef } from "react";
-import { Modal, type ModalProps } from "..";
+import { Modal, type ModalProps } from "../ModalApollo";
+import type { HasScrollState } from "../../utilities/hook/useHasScroll";
 
-const defaultProps = {
+vi.mock("../../utilities/hook/useHasScroll.ts", () => ({
+  useHasScroll: vi.fn().mockReturnValue({
+    vertical: false,
+    horizontal: false,
+  } satisfies HasScrollState),
+}));
+
+const onCancelMock = vi.fn();
+const onSubmitMock = vi.fn();
+const onCloseMock = vi.fn();
+
+const defaultProps: ModalProps = {
   title: "Modal Title",
   children: "My content modal",
   open: true,
-  onCancel: vi.fn(),
-  onSubmit: vi.fn(),
+  onCancel: onCancelMock,
+  onSubmit: onSubmitMock,
+  onClose: onCloseMock,
 };
 
 const ModalDemo = (props: ModalProps) => {
@@ -39,8 +52,9 @@ const expectModalClosed = async () => {
 
 describe("Modal", () => {
   beforeEach(() => {
-    defaultProps.onCancel.mockReset();
-    defaultProps.onSubmit.mockReset();
+    onCancelMock.mockReset();
+    onSubmitMock.mockReset();
+    onCloseMock.mockReset();
   });
 
   it.each`
@@ -62,7 +76,14 @@ describe("Modal", () => {
     ${"Annuler"}
     ${undefined}
   `("Should have cancel button when cancelTitle : $name", ({ name }) => {
-    render(<ModalDemo {...defaultProps} cancelTitle={name} />);
+    render(
+      <ModalDemo
+        {...defaultProps}
+        secondaryButtonProps={{
+          children: name,
+        }}
+      />,
+    );
     const button = screen.queryByRole("button", {
       name: "Annuler",
     });
@@ -79,7 +100,9 @@ describe("Modal", () => {
     ${"Valider"}
     ${undefined}
   `("Should have submit button when submitTitle : $name", ({ name }) => {
-    render(<ModalDemo {...defaultProps} submitTitle={name} />);
+    render(
+      <ModalDemo {...defaultProps} primaryButtonProps={{ children: name }} />,
+    );
     const button = screen.queryByRole("button", {
       name: "Valider",
     });
