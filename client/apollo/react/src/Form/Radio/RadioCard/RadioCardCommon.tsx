@@ -1,4 +1,9 @@
-import React, { type ComponentProps, type ComponentType, useId } from "react";
+import React, {
+  type ComponentProps,
+  ComponentPropsWithRef,
+  type ComponentType,
+  useId,
+} from "react";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { Icon } from "../../../Icon/IconCommon";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
@@ -13,7 +18,7 @@ type IconComponent = {
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
 };
 
-export type RadioCardProps = Omit<ComponentProps<"input">, "onChange"> & {
+export type RadioCardProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
@@ -25,11 +30,8 @@ export type RadioCardProps = Omit<ComponentProps<"input">, "onChange"> & {
     description?: string;
     hasError?: boolean;
     icon?: string;
-  } & Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "disabled" | "onChange"
-  >)[];
-  onChange?: (value: number) => void;
+  } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">)[];
+  onChange?: React.ChangeEventHandler;
 };
 
 export type RadioCardCommonProps = RadioCardProps &
@@ -44,9 +46,8 @@ const RadioCardCommon = ({
   IconComponent,
   isRequired,
   options,
-  value,
-  onChange,
   type = "vertical",
+  name,
 }: RadioCardCommonProps) => {
   const componentClassName = getComponentClassName(
     "af-radio-card__container",
@@ -85,16 +86,15 @@ const RadioCardCommon = ({
             <label
               key={label}
               aria-invalid={hasError}
-              htmlFor={`id-${inputProps.name}-${index}`}
+              htmlFor={`id-${name ?? inputProps.name}-${index}`}
               className="af-radio-card-label"
             >
               <RadioComponent
-                id={`id-${inputProps.name}-${index}`}
+                id={`id-${name ?? inputProps.name}-${index}`}
                 errorId={errorId}
                 hasError={hasError}
-                checked={value === index}
-                onChange={() => onChange?.(index)}
                 {...inputProps}
+                name={name ?? inputProps.name}
               />
               <div className="af-radio-card-content">
                 {icon && <IconComponent src={icon} size={size} />}
