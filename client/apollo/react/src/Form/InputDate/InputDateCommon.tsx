@@ -8,9 +8,9 @@ import {
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { formatDateInputValue } from "./DateInput.helper";
+import { formatInputDateValue } from "./InputDate.helper";
 
-type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
+type InputDateProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   classModifier?: string;
   defaultValue?: Date | string;
   value?: Date | string;
@@ -24,7 +24,7 @@ type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
-const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
+const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
   (
     {
       className,
@@ -75,8 +75,8 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           className={componentClassName}
           type="date"
           ref={inputRef}
-          defaultValue={formatDateInputValue(defaultValue)}
-          value={formatDateInputValue(value)}
+          defaultValue={formatInputDateValue(defaultValue)}
+          value={formatInputDateValue(value)}
           aria-labelledby={idLabel}
           aria-errormessage={ariaErrormessage ?? idMessage}
           aria-invalid={Boolean(error ?? ariaErrormessage)}
@@ -99,6 +99,6 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   },
 );
 
-DateInput.displayName = "DateInput";
+InputDate.displayName = "InputDate";
 
-export { DateInput };
+export { InputDate };

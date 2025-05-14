@@ -15,7 +15,6 @@ export { Divider } from "./Divider/DividerLF";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
 export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
-export { DateInput } from "./Form/DateInput/DateInputLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { Select } from "./Form/Select/SelectLF";
@@ -52,5 +51,6 @@ export {
 export { Stepper } from "./Stepper/StepperLF";
 export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
+export { InputDate } from "./Form/InputDate/InputDateLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";

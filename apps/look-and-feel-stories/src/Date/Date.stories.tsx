@@ -1,9 +1,9 @@
-import { DateInput } from "@axa-fr/design-system-look-and-feel-react";
+import { InputDate } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof DateInput> = {
-  component: DateInput,
-  title: "Components/Form/Input/DateInput",
+const meta: Meta<typeof InputDate> = {
+  component: InputDate,
+  title: "Components/Form/Input/InputDate",
   argTypes: { onChange: { action: "onChange" } },
   args: {
     name: "brithDate",
@@ -18,21 +18,21 @@ const meta: Meta<typeof DateInput> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DateInput>;
+type Story = StoryObj<typeof InputDate>;
 
 const render = ({
   onChange,
   ...args
-}: React.ComponentProps<typeof DateInput>) => (
-  <DateInput onChange={onChange} {...args} />
+}: React.ComponentProps<typeof InputDate>) => (
+  <InputDate onChange={onChange} {...args} />
 );
 
-export const DateInputDefaultStory: Story = {
+export const InputDateDefaultStory: Story = {
   name: "Date",
   render,
 };
 
-export const DateInputFilledStory: Story = {
+export const InputDateFilledStory: Story = {
   name: "Date filled",
   render,
   args: {
@@ -40,7 +40,7 @@ export const DateInputFilledStory: Story = {
   },
 };
 
-export const DateInputDisabledStory: Story = {
+export const InputDateDisabledStory: Story = {
   name: "Date disabled",
   render,
   args: {
@@ -49,7 +49,7 @@ export const DateInputDisabledStory: Story = {
   },
 };
 
-export const DateInputDisabledEmptyStory: Story = {
+export const InputDateDisabledEmptyStory: Story = {
   name: "Date disabled empty",
   render,
   args: {
@@ -57,7 +57,7 @@ export const DateInputDisabledEmptyStory: Story = {
   },
 };
 
-export const DateInputErrorStory: Story = {
+export const InputDateErrorStory: Story = {
   name: "Date on error",
   render,
   args: {
@@ -73,7 +73,7 @@ export const DateInputErrorStory: Story = {
   },
 };
 
-export const DateInputErrorEmptyStory: Story = {
+export const InputDateErrorEmptyStory: Story = {
   name: "Date on error empty",
   render,
   args: {
