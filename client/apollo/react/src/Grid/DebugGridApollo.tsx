@@ -16,7 +16,7 @@ export const DebugGrid = ({
   return (
     <>
       <CheckboxCard
-        type="vertical"
+        type="horizontal"
         options={[
           {
             name: "debuggrid",
