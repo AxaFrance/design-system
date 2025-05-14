@@ -38,10 +38,17 @@
     pointer-events: none;
   }
 
+  &:focus,
+  &:hover {
+    border: 1px solid var(--input-text-area-border-color);
+    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+  }
+
   &:not(:disabled, &--error) {
-    &:focus,
-    &:hover {
-      border: 1px solid var(--input-text-area-border-color);
+    &:not(:placeholder-shown) {
+      font-size: var(--input-text-area-font-size);
+      font-weight: var(--input-text-area-font-weight);
+      color: var(--input-text-area-font-color);
       box-shadow: 0 0 0 1px var(--input-text-area-border-color);
     }
   }

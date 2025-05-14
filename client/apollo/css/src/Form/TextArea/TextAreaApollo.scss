@@ -18,8 +18,12 @@
 
   &:not(:disabled, &--error) {
     &:focus,
-    &:hover {
+    &:hover,
+    &:not(:placeholder-shown) {
       --input-text-area-border-color: var(--axa-blue-100);
+      --input-text-area-font-color: var(--axa-blue-100);
+      --input-text-area-font-size: 18px;
+      --input-text-area-font-weight: 600;
     }
   }
 }

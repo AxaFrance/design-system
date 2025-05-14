@@ -37,6 +37,15 @@ export const TextAreaStory: Story = {
   name: "TextArea",
   render,
 };
+export const TextAreaWithLabelStory: Story = {
+  name: "TextArea with label",
+  render,
+  args: {
+    label: "Label",
+    description: "Description",
+    buttonLabel: "En savoir plus",
+  },
+};
 
 export const TextAreaWithDescriptionStory: Story = {
   name: "TextArea with description",
