@@ -1,7 +1,7 @@
 import { RadioCard } from "@axa-fr/design-system-look-and-feel-react";
 import home from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
 
 const meta: Meta = {
   title: "Components/Form/Input/Radio/Select",
@@ -36,19 +36,13 @@ const storyOptions = [
 export const RadioCardStory: StoryObj<ComponentProps<typeof RadioCard>> = {
   name: "Select",
   render: ({ ...args }) => {
-    const [selectedOption, setSelectedOption] = useState(0);
-    return (
-      <RadioCard
-        {...args}
-        value={selectedOption}
-        onChange={setSelectedOption}
-      />
-    );
+    return <RadioCard {...args} />;
   },
   args: {
     type: "vertical",
     "aria-label": "Quelle ville ?",
     options: storyOptions,
+    name: "cities",
   },
   argTypes: {
     type: {
@@ -62,19 +56,13 @@ export const RadioCardStory: StoryObj<ComponentProps<typeof RadioCard>> = {
 export const RadioCardWithLabel: StoryObj<ComponentProps<typeof RadioCard>> = {
   name: "SelectWithLabel",
   render: ({ ...args }) => {
-    const [selectedOption, setSelectedOption] = useState(0);
-    return (
-      <RadioCard
-        {...args}
-        value={selectedOption}
-        onChange={setSelectedOption}
-      />
-    );
+    return <RadioCard {...args} />;
   },
   args: {
     type: "vertical",
     isRequired: true,
     options: storyOptions,
+    name: "cities",
   },
   argTypes: {
     type: {
