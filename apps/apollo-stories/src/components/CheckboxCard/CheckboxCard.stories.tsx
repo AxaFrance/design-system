@@ -1,7 +1,7 @@
 import { CheckboxCard } from "@axa-fr/design-system-apollo-react";
+import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
-import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 
 const meta: Meta = {
   title: "Components/Form/Checkbox/CheckboxCard",
@@ -32,6 +32,7 @@ export const CheckboxCardStory: StoryObj<ComponentProps<typeof CheckboxCard>> =
           description: "Capitale de la Belgique",
           name: "bruxelles",
           value: "bruxelles",
+          hasError: true,
           icon: homeIcons,
         },
         {
