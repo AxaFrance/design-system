@@ -48,6 +48,7 @@ const RadioCardCommon = ({
   options,
   type = "vertical",
   name,
+  onChange,
 }: RadioCardCommonProps) => {
   const componentClassName = getComponentClassName(
     "af-radio-card__container",
@@ -95,6 +96,7 @@ const RadioCardCommon = ({
                 hasError={hasError}
                 {...inputProps}
                 name={name ?? inputProps.name}
+                onChange={onChange}
               />
               <div className="af-radio-card-content">
                 {icon && <IconComponent src={icon} size={size} />}
