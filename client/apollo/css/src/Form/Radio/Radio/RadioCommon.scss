@@ -1,6 +1,6 @@
 .af-radio {
   display: flex;
-  width: 24px;
+  width: calc(24 / var(--font-size-base) * 1rem);
   aspect-ratio: 1;
   border: solid var(--radio-border);
   border-radius: 50%;

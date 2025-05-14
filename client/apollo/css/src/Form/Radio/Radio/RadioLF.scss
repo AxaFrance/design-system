@@ -20,5 +20,9 @@
 
   &:has(> input[type="radio"]:checked) {
     --radio-border: 2px var(--color-axa);
+
+    &:hover {
+      --radio-box-shadow-color: 0 0 0 0;
+    }
   }
 }
