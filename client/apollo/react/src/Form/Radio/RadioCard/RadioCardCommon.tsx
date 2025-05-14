@@ -53,8 +53,9 @@ const RadioCardCommon = ({
     className,
   );
   const RadioGroupClassName = getComponentClassName(
-    `af-radio-card-group--${type}`,
+    "af-radio-card-group",
     className,
+    type,
   );
   const optionId = useId();
   const errorId = useId();
@@ -75,7 +76,7 @@ const RadioCardCommon = ({
           <span className="af-radio-card__description">{descriptionGroup}</span>
         )}
       </div>
-      <div role="group" className={RadioGroupClassName}>
+      <fieldset className={RadioGroupClassName}>
         {options.map(
           (
             { label, description, subtitle, icon, hasError, ...inputProps },
@@ -106,7 +107,7 @@ const RadioCardCommon = ({
             </label>
           ),
         )}
-      </div>
+      </fieldset>
     </div>
   );
 };

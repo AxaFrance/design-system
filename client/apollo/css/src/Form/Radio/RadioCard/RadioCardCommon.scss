@@ -70,6 +70,10 @@
     }
   }
 
+  &-group {
+    border: none;
+  }
+
   &-group--vertical {
     flex-direction: var(--radio-card-flex-direction);
 

@@ -101,18 +101,23 @@
         }
       }
 
-      .af-radio-card-content {
-        .af-radio-card-content-description {
-          & > span:first-child {
-            --radio-card-label-text-color: var(--color-black);
-          }
-        }
+      .af-radio-card-content
+        .af-radio-card-content-description
+        > span:first-child {
+        --radio-card-label-text-color: var(--color-black);
       }
 
       &:has(input:checked) {
         --radio-card-border: 2px var(--color-axa);
         --radio-card-shadow-color: var(--color-axa);
         --radio-card-background-color: var(--color-blue-2);
+
+        &:hover {
+          & > span:first-child {
+            --radio-border: 1px var(--color-axa);
+            --radio-box-shadow: var(--color-axa);
+          }
+        }
       }
     }
   }
