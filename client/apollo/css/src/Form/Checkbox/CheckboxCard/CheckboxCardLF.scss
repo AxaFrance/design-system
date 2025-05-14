@@ -13,32 +13,6 @@
     --checkbox-card-color: var(--color-gray-700);
   }
 
-  &__content {
-    & > svg {
-      --checkbox-card-color: var(--color-axa);
-      --checkbox-card-fill: var(--color-axa);
-    }
-
-    &-description {
-      & > span:first-child {
-        --checkbox-card-color: var(--color-gray-900);
-      }
-
-      & > span:not(:first-child) {
-        --checkbox-card-color: var(--color-gray-700);
-      }
-    }
-  }
-
-  & ~ &__error {
-    --error-box-color: var(--color-red-700);
-
-    & > svg {
-      --error-box-color: var(--color-red-700);
-      --error-box-fill: var(--color-red-700);
-    }
-  }
-
   &-group {
     &--horizontal {
       --checkbox-card-flex-direction: column;

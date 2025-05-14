@@ -31,45 +31,6 @@
     }
   }
 
-  &__content {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-
-    & > svg {
-      width: calc(28 / var(--font-size-base) * 1rem);
-      height: calc(28 / var(--font-size-base) * 1rem);
-      color: var(--checkbox-card-color);
-      fill: var(--checkbox-card-fill);
-    }
-
-    &-description {
-      display: flex;
-      flex-direction: column;
-      gap: calc(4 / var(--font-size-base) * 1rem);
-      line-height: calc(20 / var(--font-size-base) * 1rem);
-
-      & > span:first-child {
-        line-height: calc(24 / var(--font-size-base) * 1rem);
-        color: var(--checkbox-card-color);
-      }
-
-      & > span:not(:first-child) {
-        color: var(--checkbox-card-color);
-      }
-    }
-  }
-
-  & ~ &__error {
-    border: solid var(--color-red-700);
-
-    & > svg {
-      border: solid var(--color-red-700);
-    }
-  }
-
   &-group {
     display: flex;
     align-items: stretch;
