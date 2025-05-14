@@ -16,10 +16,24 @@
     --input-text-area-background: var(--color-gray-200);
   }
 
+  &:focus,
+  &:hover {
+    --input-text-area-border-color: var(--color-axa);
+  }
+
   &:not(:disabled, &--error) {
     &:focus,
-    &:hover {
+    &:hover,
+    &:not(:placeholder-shown) {
+      --input-text-area-font-size: 18px;
+      --input-text-area-font-weight: 600;
       --input-text-area-border-color: var(--color-axa);
+    }
+  }
+
+  &:not(:placeholder-shown) {
+    &:focus {
+      --input-text-area-box-shadow: none;
     }
   }
 }

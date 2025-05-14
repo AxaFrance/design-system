@@ -16,14 +16,24 @@
     --input-text-area-background: var(--neutral-5);
   }
 
+  &:focus,
+  &:hover {
+    --input-text-area-border-color: var(--axa-blue-100);
+  }
+
   &:not(:disabled, &--error) {
     &:focus,
     &:hover,
     &:not(:placeholder-shown) {
-      --input-text-area-border-color: var(--axa-blue-100);
       --input-text-area-font-color: var(--axa-blue-100);
       --input-text-area-font-size: 18px;
       --input-text-area-font-weight: 600;
+    }
+  }
+
+  &:not(:placeholder-shown) {
+    &:not(:focus, :active) {
+      --input-text-area-box-shadow: var(--axa-blue-100);
     }
   }
 }

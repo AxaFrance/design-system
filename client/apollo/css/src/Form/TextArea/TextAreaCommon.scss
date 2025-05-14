@@ -45,11 +45,18 @@
   }
 
   &:not(:disabled, &--error) {
-    &:not(:placeholder-shown) {
+    &:focus,
+    &:hover,
+    &:not(:placeholder-shown, :focus) {
       font-size: var(--input-text-area-font-size);
       font-weight: var(--input-text-area-font-weight);
       color: var(--input-text-area-font-color);
-      box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+    }
+  }
+
+  &:not(:placeholder-shown) {
+    &:not(:focus) {
+      box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
     }
   }
 }

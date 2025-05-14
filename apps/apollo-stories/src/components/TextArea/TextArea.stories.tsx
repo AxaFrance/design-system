@@ -6,7 +6,7 @@ const meta: Meta<typeof TextArea> = {
   component: TextArea,
   title: "Components/Form/Input/TextArea",
   args: {
-    value: "Placeholder",
+    value: "",
     label: "Label",
     placeholder: "Placeholder",
     helper: "1800 caractères maximum.",
