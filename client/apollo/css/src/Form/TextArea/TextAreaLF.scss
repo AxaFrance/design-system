@@ -16,9 +16,15 @@
     --input-text-area-background: var(--color-gray-200);
   }
 
-  &:focus,
-  &:hover {
+  &:not(.af-form__input-textarea--error):hover,
+  &:not(.af-form__input-textarea--error):focus {
+    --input-text-area-border-size: 2px;
     --input-text-area-border-color: var(--color-axa);
+  }
+
+  &--error:hover,
+  &--error:focus {
+    border: 2px solid var(--color-red-700);
   }
 
   &:not(:disabled, &--error) {

@@ -38,9 +38,10 @@
     pointer-events: none;
   }
 
-  &:focus,
-  &:hover {
-    border: 1px solid var(--input-text-area-border-color);
+  &:not(.af-form__input-textarea--error):focus,
+  &:not(.af-form__input-textarea--error):hover {
+    border: var(--input-text-area-border-size) solid
+      var(--input-text-area-border-color);
     box-shadow: 0 0 0 1px var(--input-text-area-border-color);
   }
 
