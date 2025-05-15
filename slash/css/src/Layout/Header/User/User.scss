@@ -5,7 +5,6 @@
   order: 2;
   font-weight: 600;
   text-align: left;
-  text-decoration: underline;
   color: common.$color-axa;
 
   &__name {
@@ -15,6 +14,10 @@
   &__profile {
     display: inline;
     margin-left: 0.3em;
+  }
+
+  &__link {
+    text-decoration: underline;
   }
 }
 
