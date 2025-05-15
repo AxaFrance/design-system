@@ -9,14 +9,26 @@
     "more more";
   grid-template-columns: 1fr auto;
   place-items: end start;
-  row-gap: calc(2 / var(--font-size-base) * 1rem);
-
-  &:has(> .af-item-label__description) {
-    row-gap: calc(4 / var(--font-size-base) * 1rem);
-  }
+  row-gap: calc(4 / var(--font-size-base) * 1rem);
 
   &:has(> .af-item-label__sidebutton) {
     column-gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  &:not(:has(> .af-item-label__description), * ~ .af-item-label__more) {
+    grid-template-areas: "label sidebutton";
+  }
+
+  &:not(:has(> .af-item-label__more)):has(* ~ .af-item-label__description) {
+    grid-template-areas:
+      "label sidebutton"
+      "description sidebutton";
+  }
+
+  &:not(:has(> .af-item-label__description)):has(* ~ .af-item-label__more) {
+    grid-template-areas:
+      "label sidebutton"
+      "more more";
   }
 
   > label {
