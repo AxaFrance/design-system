@@ -13,106 +13,80 @@
     --checkbox-card-color: var(--color-gray-700);
   }
 
-  &__content {
-    & > svg {
-      --checkbox-card-color: var(--color-axa);
-      --checkbox-card-fill: var(--color-axa);
-    }
+  &-group {
+    &--horizontal {
+      --checkbox-card-flex-direction: column;
 
-    &-description {
-      & > span:first-child {
-        --checkbox-card-color: var(--color-gray-900);
-      }
-
-      & > span:not(:first-child) {
-        --checkbox-card-color: var(--color-gray-700);
-      }
-    }
-  }
-
-  & ~ &__error {
-    --error-box-color: var(--color-red-700);
-
-    & > svg {
-      --error-box-color: var(--color-red-700);
-      --error-box-fill: var(--color-red-700);
-    }
-  }
-
-  &-group--horizontal {
-    --checkbox-card-flex-direction: column;
-
-    .af-checkbox-card-label {
-      --checkbox-card-flex-direction: row;
-      --checkbox-card-align-items: center;
-
-      .af-checkbox-card-content {
+      .af-checkbox-card-label {
         --checkbox-card-flex-direction: row;
-        --checkbox-card-margin-left: calc(12 / var(--font-size-base) * 1rem);
+        --checkbox-card-align-items: center;
 
-        .af-checkbox-card-content-description {
-          --checkbox-card-flex-direction: column;
-          --checkbox-card-align-item: flex-start;
+        .af-checkbox-card-content {
+          --checkbox-card-flex-direction: row;
+          --checkbox-card-margin-left: calc(12 / var(--font-size-base) * 1rem);
+
+          .af-checkbox-card-content-description {
+            --checkbox-card-flex-direction: column;
+            --checkbox-card-align-item: flex-start;
+          }
         }
       }
     }
-  }
 
-  &-group--vertical {
-    --checkbox-card-flex-direction: row;
-
-    .af-checkbox-card-label {
+    &--vertical {
       --checkbox-card-flex-direction: row;
-      --checkbox-card-align-items: flex-start;
-      --checkbox-card-justify-content: flex-start;
 
-      .af-checkbox {
-        position: absolute;
-      }
+      .af-checkbox-card-label {
+        --checkbox-card-flex-direction: row;
+        --checkbox-card-align-items: flex-start;
+        --checkbox-card-justify-content: flex-start;
 
-      .af-checkbox-card-content {
-        --checkbox-card-flex-direction: column;
-        --checkbox-card-margin-left: calc(2 / var(--font-size-base) * 1rem);
+        .af-checkbox {
+          position: absolute;
+        }
 
-        .af-checkbox-card-content-description {
+        .af-checkbox-card-content {
           --checkbox-card-flex-direction: column;
-          --checkbox-card-align-item: center;
+          --checkbox-card-margin-left: calc(2 / var(--font-size-base) * 1rem);
+
+          .af-checkbox-card-content-description {
+            --checkbox-card-flex-direction: column;
+            --checkbox-card-align-item: center;
+          }
         }
       }
     }
-  }
 
-  &-group--vertical,
-  &-group--horizontal {
     .af-checkbox-card-label[aria-invalid="true"] {
       --checkbox-card-background-color: var(--color-white);
-      --checkbox-card-border: 2px var(--color-red-700);
+      --checkbox-card-border: 1px var(--color-red-700);
       --checkbox-card-shadow-color: var(--color-red-700);
     }
 
     .af-checkbox-card-label {
-      --checkbox-card-border: 2px var(--color-gray-700);
+      --checkbox-card-border: 1px var(--color-gray-700);
       --checkbox-card-border-radius: calc(6 / var(--font-size-base) * 1rem);
 
-      .af-checkbox-card-content {
-        .af-checkbox-card-content-description {
-          & > span:first-child {
-            --checkbox-card-label-text-color: var(--color-black);
-          }
+      .af-checkbox-card-content-description > span {
+        &:first-child {
+          --checkbox-card-label-text-color: var(--color-gray-900);
+        }
+
+        &:not(:first-child) {
+          --checkbox-card-label-text-color: var(--color-gray-700);
         }
       }
 
-      &:hover {
-        --checkbox-card-border: 2px var(--color-axa);
+      &:has(input:checked) {
+        --checkbox-card-border: 1px var(--color-axa);
         --checkbox-card-shadow-color: var(--color-axa);
-        --checkbox-card-background-color: var(--color-white);
+        --checkbox-card-background-color: var(--color-blue-2);
       }
-    }
 
-    .af-checkbox-card-label:has(input:checked) {
-      --checkbox-card-border: 2px var(--color-axa);
-      --checkbox-card-shadow-color: var(--color-axa);
-      --checkbox-card-background-color: var(--color-blue-2);
+      &:not([aria-invalid="true"]):hover {
+        --checkbox-card-border: 1px var(--color-axa);
+        --checkbox-card-shadow-color: var(--color-axa);
+      }
     }
   }
 }

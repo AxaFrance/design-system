@@ -14,13 +14,6 @@
     }
   }
 
-  input[type="checkbox"]:hover {
-    ~ .af-checkbox__icons {
-      --checkbox-border: 2px var(--color-axa);
-      --checkbox-box-shadow-color: var(--color-axa);
-    }
-  }
-
   input[type="checkbox"]:checked {
     ~ .af-checkbox__icons {
       --checkbox-border: 2px var(--color-axa);
@@ -30,6 +23,13 @@
       & .af-checkbox__checked {
         --checkbox-check-fill: var(--color-white);
       }
+    }
+  }
+
+  input[type="checkbox"]:not([aria-invalid="true"]):hover {
+    ~ .af-checkbox__icons {
+      --checkbox-border: 2px var(--color-axa);
+      --checkbox-box-shadow-color: var(--color-axa);
     }
   }
 }
