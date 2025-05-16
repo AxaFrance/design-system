@@ -25,6 +25,10 @@
     outline: none;
   }
 
+  &:not(:placeholder-shown, :focus) {
+    box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
+  }
+
   &:enabled,
   &:focus,
   &:active {
@@ -52,12 +56,6 @@
       font-size: var(--input-text-area-font-size);
       font-weight: var(--input-text-area-font-weight);
       color: var(--input-text-area-font-color);
-    }
-  }
-
-  &:not(:placeholder-shown) {
-    &:not(:focus) {
-      box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
     }
   }
 }
