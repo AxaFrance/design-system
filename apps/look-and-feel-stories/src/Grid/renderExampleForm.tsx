@@ -2,8 +2,7 @@ import {
   Button,
   CheckboxCard,
   DebugGrid,
-  RadioSelect,
-  Svg,
+  RadioCard,
   TextInput,
   Title,
 } from "@axa-fr/design-system-look-and-feel-react";
@@ -49,18 +48,17 @@ export const render = () => (
           <p>Les mentions avec * sont obligatoires</p>
         </div>
         <div className="form__fields subgrid">
-          <RadioSelect
+          <RadioCard
             className="subgrid"
-            label="Genre"
             type="horizontal"
             options={[
-              { label: "Homme", value: "H", icon: <Svg src={home} /> },
-              { label: "Femme", value: "F", icon: <Svg src={home} /> },
-              { label: "Les deux", value: "HF", icon: <Svg src={home} /> },
+              { label: "Homme", value: "H", icon: home },
+              { label: "Femme", value: "F", icon: home },
+              { label: "Les deux", value: "HF", icon: home },
               {
                 label: "Ne se prononce pas",
                 value: "N",
-                icon: <Svg src={home} />,
+                icon: home,
               },
             ]}
             name="radio-name"
@@ -74,33 +72,33 @@ export const render = () => (
                 label: "Développeur",
                 value: "H",
                 name: "Développeur",
-                icon: <Svg src={home} />,
+                icon: home,
               },
-              { label: "BA", value: "F", name: "BA", icon: <Svg src={home} /> },
+              { label: "BA", value: "F", name: "BA", icon: home },
               {
                 label: "EM",
                 value: "HF",
                 name: "EM",
-                icon: <Svg src={home} />,
+                icon: home,
               },
-              { label: "PO", value: "A", name: "PO", icon: <Svg src={home} /> },
+              { label: "PO", value: "A", name: "PO", icon: home },
               {
                 label: "DBA",
                 value: "Au",
                 name: "DBA",
-                icon: <Svg src={home} />,
+                icon: home,
               },
               {
                 label: "Scrum Master",
                 value: "P",
                 name: "Scrum Master",
-                icon: <Svg src={home} />,
+                icon: home,
               },
               {
                 label: "Ne se prononce pas",
                 value: "N",
                 name: "Ne se prononce pas",
-                icon: <Svg src={home} />,
+                icon: home,
               },
             ]}
           />
