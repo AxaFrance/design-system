@@ -1,17 +1,17 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/DateInput/DateInputApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/InputDate/InputDateApollo.scss";
 import { forwardRef, type ComponentProps } from "react";
 import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
-import { DateInput as DateInputCommon } from "./DateInputCommon";
+import { InputDate as InputDateCommon } from "./InputDateCommon";
 
-export const DateInput = forwardRef<
+export const InputDate = forwardRef<
   HTMLInputElement,
   Omit<
-    ComponentProps<typeof DateInputCommon>,
+    ComponentProps<typeof InputDateCommon>,
     "ItemLabelComponent" | "ItemMessageComponent"
   >
 >((props, ref) => (
-  <DateInputCommon
+  <InputDateCommon
     {...props}
     ref={ref}
     ItemLabelComponent={ItemLabel}
@@ -19,4 +19,4 @@ export const DateInput = forwardRef<
   />
 ));
 
-DateInput.displayName = "DateInput";
+InputDate.displayName = "InputDate";

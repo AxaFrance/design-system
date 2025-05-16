@@ -1,9 +1,9 @@
-import { DateInput } from "@axa-fr/design-system-look-and-feel-react";
+import { InputDate } from "@axa-fr/design-system-look-and-feel-react";
 import { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof DateInput> = {
-  component: DateInput,
-  title: "Components/Form/Input/DateInput",
+const meta: Meta<typeof InputDate> = {
+  component: InputDate,
+  title: "Components/Form/Input/InputDate",
   argTypes: { onChange: { action: "onChange" } },
   args: {
     name: "brithDate",
@@ -18,29 +18,21 @@ const meta: Meta<typeof DateInput> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DateInput>;
+type Story = StoryObj<typeof InputDate>;
 
 const render = ({
   onChange,
   ...args
-}: React.ComponentProps<typeof DateInput>) => (
-  <DateInput onChange={onChange} {...args} />
+}: React.ComponentProps<typeof InputDate>) => (
+  <InputDate onChange={onChange} {...args} />
 );
 
-export const DateInputDefaultStory: Story = {
+export const InputDateDefaultStory: Story = {
   name: "Date",
   render,
 };
 
-export const DateInputDefaultWithDatePickerStory: Story = {
-  name: "Date with date picker",
-  render,
-  args: {
-    type: "date",
-  },
-};
-
-export const DateInputFilledStory: Story = {
+export const InputDateFilledStory: Story = {
   name: "Date filled",
   render,
   args: {
@@ -48,24 +40,24 @@ export const DateInputFilledStory: Story = {
   },
 };
 
-export const DateInputFilledWithDatePickerStory: Story = {
-  name: "Date filled with date picker",
+export const InputDateDisabledStory: Story = {
+  name: "Date disabled",
   render,
   args: {
-    value: new Date("2025-01-01"),
-    type: "date",
+    disabled: true,
+    value: new Date("2000-01-01"),
   },
 };
 
-export const DateInputDisabledStory: Story = {
-  name: "Date disabled",
+export const InputDateDisabledEmptyStory: Story = {
+  name: "Date disabled empty",
   render,
   args: {
     disabled: true,
   },
 };
 
-export const DateInputErrorStory: Story = {
+export const InputDateErrorStory: Story = {
   name: "Date on error",
   render,
   args: {
@@ -81,15 +73,14 @@ export const DateInputErrorStory: Story = {
   },
 };
 
-export const DateInputErrorWithDatePickerStory: Story = {
-  name: "Date on error with date picker",
+export const InputDateErrorEmptyStory: Story = {
+  name: "Date on error empty",
   render,
   args: {
     classModifier: "error",
     error: "Titre du message",
     "aria-errormessage": undefined,
-    value: new Date("2080-01-01"),
-    type: "date",
+    value: undefined,
   },
   argTypes: {
     "aria-errormessage": {

@@ -20,7 +20,6 @@ export { Divider } from "./Divider/DividerApollo";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardApollo";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
-export { DateInput } from "./Form/DateInput/DateInputApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { Select } from "./Form/Select/SelectApollo";
@@ -57,5 +56,6 @@ export {
 export { Stepper } from "./Stepper/StepperApollo";
 export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagApollo";
+export { InputDate } from "./Form/InputDate/InputDateApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
