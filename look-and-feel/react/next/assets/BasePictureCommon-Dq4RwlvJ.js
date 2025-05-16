@@ -1,1 +1,0 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{r as m}from"./index-DuZrfDUH.js";import{l as a}from"./logo-axa-Cqr9fAkX.js";import{g as p}from"./ToggleCommon-BVEN6qws.js";const l=({className:o,src:s,...r})=>{const t=m.useMemo(()=>p("af-basepicture",o),[o]);return e.jsx("img",{className:t,alt:"",src:s||a,...r})};export{l as B};
