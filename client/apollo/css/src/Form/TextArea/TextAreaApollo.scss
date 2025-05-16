@@ -17,7 +17,7 @@
 
   &--error:hover,
   &--error:focus {
-    border: 2px solid var(--axa-red-100);
+    --input-text-area-border-color: var(--axa-red-100);
   }
 
   &:disabled {

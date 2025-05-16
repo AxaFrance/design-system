@@ -24,7 +24,7 @@
 
   &--error:hover,
   &--error:focus {
-    border: 2px solid var(--color-red-700);
+    --input-text-area-border-color: var(--color-red-700);
   }
 
   &:not(:disabled, &--error) {
