@@ -1,6 +1,6 @@
 .af-item-file {
   display: flex;
-  width: fit-content;
+  width: 100%;
   margin-bottom: calc(10 / var(--font-size-base) * 1rem);
   padding: calc(16 / var(--font-size-base) * 1rem);
   border: 1px solid var(--item-file-border-color);
@@ -8,20 +8,17 @@
   align-items: center;
   justify-content: space-between;
   gap: calc(12 / var(--font-size-base) * 1rem);
+  font: var(--font-family-base);
+  font-weight: 400;
+  line-height: 125%;
 
   .af-item-file-title {
-    font: var(--font-family-base);
     font-size: calc(18 / var(--font-size-base) * 1rem);
-    font-weight: 400;
-    line-height: 125%;
     color: var(--item-file-title-color);
   }
 
   .af-item-file-subtitle {
-    font: var(--font-family-base);
     font-size: calc(16 / var(--font-size-base) * 1rem);
-    font-weight: 400;
-    line-height: 125%;
     color: var(--item-file-subtitle-color);
   }
 
@@ -29,10 +26,6 @@
     display: flex;
     align-items: center;
     gap: calc(12 / var(--font-size-base) * 1rem);
-  }
-
-  &--error {
-    border: 1px solid var(--item-file-border-color);
   }
 
   .af-icon__success {
@@ -53,7 +46,7 @@
     gap: calc(12 / var(--font-size-base) * 1rem);
   }
 
-  .af-item-message af-item-message--error {
+  .af-item-message .af-item-message--error {
     display: flex;
     margin-top: calc(10 / var(--font-size-base) * 1rem);
     align-items: center;
