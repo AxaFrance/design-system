@@ -46,7 +46,7 @@
     gap: calc(12 / var(--font-size-base) * 1rem);
   }
 
-  .af-item-message .af-item-message--error {
+  .af-item-file__message af-item-message--error {
     display: flex;
     margin-top: calc(10 / var(--font-size-base) * 1rem);
     align-items: center;
