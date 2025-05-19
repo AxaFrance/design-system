@@ -1,44 +1,24 @@
-import React, {
-  type ComponentProps,
-  ComponentPropsWithRef,
-  type ComponentType,
-  type ReactNode,
-  useId,
-} from "react";
-import { Icon } from "../../../Icon/IconCommon";
+import React, { ComponentPropsWithRef, useId } from "react";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
-import { CheckboxProps } from "../Checkbox/CheckboxCommon";
-
-type CheckboxComponent = {
-  CheckboxComponent: ComponentType<CheckboxProps>;
-};
-
-type IconComponent = {
-  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
-};
+import { CheckboxCardItem, type TCheckboxCardItem } from "./CheckboxCardItem";
+import type { CheckboxComponent, IconComponent } from "./types";
 
 export type CheckboxCardProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
   isRequired?: boolean;
-  options: ({
-    label: ReactNode;
-    subtitle?: ReactNode;
-    description?: ReactNode;
-    hasError?: boolean;
-    icon?: string;
-  } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">)[];
+  options: TCheckboxCardItem[];
   onChange?: React.ChangeEventHandler;
 };
 
-export type CheckboxCardCommonProps = CheckboxCardProps &
+type CheckboxCardCommonProps = CheckboxCardProps &
   CheckboxComponent &
   IconComponent;
 
-const CheckboxCardCommon = ({
+export const CheckboxCardCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -58,57 +38,42 @@ const CheckboxCardCommon = ({
     className,
     type,
   );
-  const optionId = useId();
   const errorId = useId();
 
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
   const size = isMobile ? "M" : "L";
 
   return (
-    <div className={componentClassName}>
+    <fieldset className={componentClassName}>
       <div className="af-checkbox-card__label-container">
         {labelGroup && (
-          <span className="af-checkbox-card__label" id={optionId}>
+          <legend className="af-checkbox-card__legend">
             {labelGroup}
             {isRequired && <span aria-hidden>&nbsp;*</span>}
-          </span>
-        )}
-        {descriptionGroup && (
-          <span className="af-checkbox-card__description">
-            {descriptionGroup}
-          </span>
-        )}
-      </div>
-      <div role="group" className={checkboxGroupClassName}>
-        {options.map(
-          ({ label, description, subtitle, icon, hasError, ...inputProps }) => (
-            <label
-              key={inputProps.name}
-              aria-invalid={hasError}
-              htmlFor={`id-${inputProps.name}`}
-              className="af-checkbox-card-label"
-            >
-              <CheckboxComponent
-                id={`id-${inputProps.name}`}
-                errorId={errorId}
-                hasError={hasError}
-                onChange={onChange}
-                {...inputProps}
-              />
-              <div className="af-checkbox-card-content">
-                {icon && <IconComponent src={icon} size={size} />}
-                <div className="af-checkbox-card-content-description">
-                  <span>{label}</span>
-                  {description && <span>{description}</span>}
-                  {subtitle && <span>{subtitle}</span>}
-                </div>
-              </div>
-            </label>
-          ),
+            {descriptionGroup && (
+              <p className="af-checkbox-card__description">
+                {descriptionGroup}
+              </p>
+            )}
+          </legend>
         )}
       </div>
-    </div>
+      <ul className={checkboxGroupClassName}>
+        {options.map((inputProps) => (
+          <li key={crypto.randomUUID()}>
+            <CheckboxCardItem
+              size={size}
+              errorId={errorId}
+              onChange={onChange}
+              CheckboxComponent={CheckboxComponent}
+              IconComponent={IconComponent}
+              {...inputProps}
+            />
+          </li>
+        ))}
+      </ul>
+    </fieldset>
   );
 };
+
 CheckboxCardCommon.displayName = "CheckboxCardCommon";
-export { CheckboxCardCommon };
