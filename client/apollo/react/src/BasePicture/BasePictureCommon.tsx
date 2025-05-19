@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import logo from "@axa-fr/design-system-look-and-feel-css/logo-axa.svg";
+import logo from "@axa-fr/design-system-apollo-css/logo-axa.svg";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export const BasePicture = ({

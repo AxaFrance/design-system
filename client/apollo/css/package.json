@@ -5,6 +5,7 @@
   "sass": "dist/apollo.scss",
   "style": "dist/apollo.css",
   "exports": {
+    "./logo-axa.svg": "./files/assets/logo-axa.svg",
     "./dist/*": {
       "development": "./src/*",
       "default": "./dist/*"
