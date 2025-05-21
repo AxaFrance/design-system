@@ -1,11 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import type { PropsWithChildren } from "react";
 import { Link } from "../Link";
 
 describe("Link component", () => {
   it("should renders correctly", () => {
-    render(<Link href="/">Test Link</Link>);
+    render(
+      <Link component="a" href="/">
+        Test Link
+      </Link>,
+    );
 
     const link = screen.getByRole("link", { name: "Test Link" });
     expect(link).toHaveAttribute("href", "/");
@@ -14,7 +17,7 @@ describe("Link component", () => {
 
   it("should render set ref props correctly if target _blank", () => {
     render(
-      <Link href="/" target="_blank">
+      <Link component="a" href="/" target="_blank">
         Test Link
       </Link>,
     );
@@ -25,7 +28,7 @@ describe("Link component", () => {
 
   it("should render leftIcon correctly", () => {
     render(
-      <Link href="/" leftIcon={<span>Left Icon</span>}>
+      <Link component="a" href="/" leftIcon={<span>Left Icon</span>}>
         Test Link
       </Link>,
     );
@@ -36,7 +39,7 @@ describe("Link component", () => {
 
   it("should render rightIcon correctly", () => {
     render(
-      <Link href="/" rightIcon={<span>Right Icon</span>}>
+      <Link component="a" href="/" rightIcon={<span>Right Icon</span>}>
         Test Link
       </Link>,
     );
@@ -52,18 +55,13 @@ describe("Link component", () => {
       </Link>,
     );
 
-    const link = screen.getByRole("link", { name: "Test Link" });
+    const link = screen.getByRole("button", { name: "Test Link" });
     expect(link).toHaveAttribute("aria-disabled", "true");
   });
 
   it("should render correclty with component prop", () => {
-    const FakeRouterLink = ({
-      children,
-      to,
-    }: PropsWithChildren<{ to: string }>) => <a href={to}>{children}</a>;
-
     render(
-      <Link component={FakeRouterLink} to="/contact">
+      <Link component="a" href="/contact">
         Test Link
       </Link>,
     );

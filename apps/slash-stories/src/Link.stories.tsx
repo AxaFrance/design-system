@@ -4,13 +4,13 @@ import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-const CssIcons: Record<string, string> = {
+const CssIcons = {
   "(none)": "none",
   "/public/save.svg": saveIcons,
   "/public/edit.svg": editIcons,
-};
+} as const;
 
-const meta: Meta<LinkProps<"a">> = {
+const meta: Meta<LinkProps> = {
   title: "Components/Link",
   component: Link,
   args: {
@@ -20,10 +20,19 @@ const meta: Meta<LinkProps<"a">> = {
 
 export default meta;
 
-export const LinkStory: StoryObj<typeof Link> = {
+type AnchorStoryType = {
+  leftIcon: keyof typeof CssIcons;
+  rightIcon: keyof typeof CssIcons;
+  disabled: boolean;
+  children: string;
+  href: string;
+  className: string;
+};
+
+export const LinkAsAnchorStory: StoryObj<AnchorStoryType> = {
   name: "Link",
   render: ({ rightIcon, leftIcon, ...args }) => {
-    const getIcon = (type: string) => {
+    const getIcon = (type: keyof typeof CssIcons) => {
       if (type === "/public/save.svg") {
         return <Svg src={saveIcons} />;
       }
@@ -39,6 +48,7 @@ export const LinkStory: StoryObj<typeof Link> = {
     return (
       <Link
         {...args}
+        component="a"
         target="_blank"
         leftIcon={leftIconProps}
         rightIcon={rightIconProps}
@@ -62,11 +72,6 @@ export const LinkStory: StoryObj<typeof Link> = {
       control: { type: "select" },
     },
     className: {
-      table: {
-        disable: true,
-      },
-    },
-    component: {
       table: {
         disable: true,
       },
