@@ -22,7 +22,10 @@ can remove the following line from your project:
 - import '@axa-fr/react-toolkit-core/dist/assets/fonts/icons/af-icons.css';
 ```
 
-For retrieving the design system sass variables (for colours, etc.), we use to import a scss file into the scss file inside the projet. The import has to be changed in order to still get those variables.
+For retrieving the design system sass variables (for colours, etc.), we use to
+import a scss file into the scss file inside the projet. The import has to be
+changed in order to still get those variables.
+
 ```diff
 - @import '@axa-fr/react-toolkit-core/dist/assets/scss/core.scss';
 + @import '@axa-fr/design-system-slash-css/dist/common/common.scss';
@@ -39,11 +42,12 @@ If you are using vite, it will automatically pickup on sass being present.
 
 ### SVG
 
-The import of the axa logo has to be changed as well. The logo is now in the `@axa-fr/design-system-slash-css` package.
+The import of the axa logo has to be changed as well. The logo is now in the
+`@axa-fr/design-system-slash-css` package.
 
 ```diff
 - @import logo from '@axa-fr/react-toolkit-core/dist/assets/logo-axa.svg';
-+ import logo from '@axa-fr/design-system-slash-css/dist/common/logo-axa.svg';
++ import logo from '@axa-fr/design-system-slash-css/logo-axa.svg';
 ```
 
 ## Visual changes
@@ -131,7 +135,9 @@ and `placement` props intead of enums just like `Popover`.
 
 ### 🧹 Accordion
 
-The `CollapseCard` component has been simplified. Before you needed to use the `Header` and `Body` components, but now you can use the `CollapseCard` component directly.
+The `CollapseCard` component has been simplified. Before you needed to use the
+`Header` and `Body` components, but now you can use the `CollapseCard` component
+directly.
 
 ```diff
 - <CollapseCard>
@@ -149,7 +155,9 @@ The `CollapseCard` component has been simplified. Before you needed to use the `
 
 ### 🧹 Footer
 
-The `Footer` component has been simplified. Before you needed to use the `copyright` property to pass a content, but now you can directly put that content as child of the component.
+The `Footer` component has been simplified. Before you needed to use the
+`copyright` property to pass a content, but now you can directly put that
+content as child of the component.
 
 ```diff
 - <Footer copyright="© 2024 Tous droits réservés — v1.0.0" />
@@ -158,10 +166,15 @@ The `Footer` component has been simplified. Before you needed to use the `copyri
 
 ### 🧹 Action
 
-The `Action` component has had a change in the `role` of the element. Before, if you didn't pass any `role` to the component, the default role was `button`. Now, if you don't pass any `role` to the component, the default role won't be `button` anymore. The element is an a element, so the default role is `link` if you pass an `href` attribute.
-If you don't pass that attribute, you can pass `link` to the `role` property.
+The `Action` component has had a change in the `role` of the element. Before, if
+you didn't pass any `role` to the component, the default role was `button`. Now,
+if you don't pass any `role` to the component, the default role won't be
+`button` anymore. The element is an a element, so the default role is `link` if
+you pass an `href` attribute. If you don't pass that attribute, you can pass
+`link` to the `role` property.
 
-Note as well that the `ActionCore` component has been removed. Use the `Action` component instead.
+Note as well that the `ActionCore` component has been removed. Use the `Action`
+component instead.
 
 ```diff
 - <ActionCore

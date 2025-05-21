@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { PropsWithChildren } from "react";
 import { describe, expect, it } from "vitest";
-import type { PropsWithChildren } from "react";
 import { Link } from "../Link";
 
 describe("Link component", () => {
@@ -63,9 +63,9 @@ describe("Link component", () => {
     }: PropsWithChildren<{ to: string }>) => <a href={to}>{children}</a>;
 
     render(
-      <Link component={FakeRouterLink} to="/contact">
-        Test Link
-      </Link>,
+      <Link
+        render={() => <FakeRouterLink to="/contact">Test Link</FakeRouterLink>}
+      />,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
