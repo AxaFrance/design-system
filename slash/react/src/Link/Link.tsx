@@ -1,52 +1,17 @@
-import classnames from "classnames";
-import {
-  type ComponentProps,
-  type ElementType,
-  type ForwardedRef,
-  forwardRef,
-  type PropsWithChildren,
-  type ReactNode,
-} from "react";
-
 import "@axa-fr/design-system-slash-css/dist/Link/Link.scss";
+import { forwardRef } from "react";
+import { CustomLink, type CustomLinkProps } from "./CustomLink";
+import { LinkAnchor, type LinkComponentProps } from "./LinkAnchor";
 
-export type LinkProps<C extends ElementType> = {
-  component?: C;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-  className?: string;
-  disabled?: boolean;
-} & ComponentProps<C>;
+export type LinkProps = LinkComponentProps | CustomLinkProps;
 
-export const Link = forwardRef(
-  <C extends ElementType = "a">(
-    {
-      className,
-      component: Component = "a",
-      leftIcon,
-      rightIcon,
-      target,
-      rel,
-      disabled,
-      children,
-      ...props
-    }: PropsWithChildren<LinkProps<C>>,
-    ref: ForwardedRef<HTMLAnchorElement>,
-  ) => {
-    return (
-      <Component
-        className={classnames("af-slash-link", className)}
-        target={target}
-        rel={target === "_blank" ? "noopener noreferrer" : rel}
-        aria-disabled={disabled ?? props["aria-disabled"]}
-        {...props}
-        ref={ref}
-      >
-        {leftIcon}
-        {children}
-        {rightIcon}
-      </Component>
-    );
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  (props: LinkProps, ref) => {
+    if ("render" in props) {
+      return <CustomLink {...props} />;
+    }
+
+    return <LinkAnchor {...props} ref={ref} />;
   },
 );
 

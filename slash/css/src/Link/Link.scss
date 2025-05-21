@@ -11,6 +11,10 @@
   background-color: transparent;
   cursor: pointer;
 
+  // Reset appearance for buttons
+  border: none;
+  padding: 0;
+
   &:has(svg) {
     & > svg {
       width: common.px-to-rem(15);
