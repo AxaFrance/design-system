@@ -15,7 +15,7 @@ export { Divider } from "./Divider/DividerLF";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
 export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
-export { DateInput } from "./Form/DateInput/DateInputLF";
+export { InputDate } from "./Form/InputDate/InputDateLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { Select } from "./Form/Select/SelectLF";

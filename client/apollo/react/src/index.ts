@@ -20,7 +20,7 @@ export { Divider } from "./Divider/DividerApollo";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardApollo";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
-export { DateInput } from "./Form/DateInput/DateInputApollo";
+export { InputDate } from "./Form/InputDate/InputDateApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { Select } from "./Form/Select/SelectApollo";
