@@ -1,2 +1,2 @@
 export { Radio } from "./Radio";
-export { RadioSelect } from "./RadioSelect";
+export { RadioCard } from "./RadioCard";
