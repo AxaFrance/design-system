@@ -1,0 +1,25 @@
+@use "./ItemFileCommon";
+
+.af-item-file {
+  --item-file-border-radius: var(--default-border-radius);
+  --item-file-border-color: var(--color-gray-700);
+  --item-file-title-color: var(--color-gray-900);
+  --item-file-subtitle-color: var(--color-gray-700);
+  --icon-fill: var(--green-100);
+
+  &--error {
+    --item-file-border-color: var(--color-red-700);
+  }
+
+  .af-icon__success {
+    --icon-fill: var(--color-green-600);
+  }
+
+  .af-icon__error {
+    --icon-fill: var(--color-red-700);
+  }
+
+  .af-item-file--spinner {
+    --item-file-spinner-color: var(--color-gray-700);
+  }
+}
