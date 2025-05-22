@@ -5,7 +5,10 @@
   "sass": "dist/apollo.scss",
   "style": "dist/apollo.css",
   "exports": {
-    "./logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./logo-axa.svg": {
+      "development": "./files/assets/logo-axa.svg",
+      "default": "./dist/assets/logo-axa.svg"
+    },
     "./dist/*": {
       "development": "./src/*",
       "default": "./dist/*"
@@ -17,7 +20,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production",
-    "postbuild": "copyfiles --up 1 \"src/**/*.{scss,css}\" dist",
+    "postbuild": "copyfiles --up 1 \"src/**/*.{scss,css}\" files/**/*.svg dist",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
   },
