@@ -11,15 +11,33 @@
     --input-text-area-border-color: var(--axa-red-100);
   }
 
+  &:not(:placeholder-shown, :focus, :active) {
+    --input-text-area-box-shadow: var(--axa-blue-100);
+  }
+
+  &--error:hover,
+  &--error:focus {
+    --input-text-area-border-color: var(--axa-red-100);
+  }
+
   &:disabled {
     --input-text-area-border-color: var(--neutral-14);
     --input-text-area-background: var(--neutral-5);
   }
 
+  &:not(.af-form__input-textarea--error):focus,
+  &:not(.af-form__input-textarea--error):hover {
+    --input-text-area-border-size: 1px;
+    --input-text-area-border-color: var(--axa-blue-100);
+  }
+
   &:not(:disabled, &--error) {
     &:focus,
-    &:hover {
-      --input-text-area-border-color: var(--axa-blue-100);
+    &:hover,
+    &:not(:placeholder-shown) {
+      --input-text-area-font-color: var(--axa-blue-100);
+      --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
+      --input-text-area-font-weight: 600;
     }
   }
 }
