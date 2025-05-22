@@ -8,9 +8,9 @@ import {
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { formatDateInputValue } from "./DateInput.helper";
+import { formatInputDateValue } from "./InputDate.helper";
 
-type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
+type InputDateProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   classModifier?: string;
   defaultValue?: Date | string;
   value?: Date | string;
@@ -18,24 +18,19 @@ type DateInputProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   error?: string;
   success?: string;
   label: ComponentProps<typeof ItemLabel>["label"];
-  type?: "text" | "date";
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
-/**
- * @deprecated Use InputDate instead
- */
-const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
+const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
   (
     {
       className,
       classModifier = "",
       defaultValue,
       value,
-      placeholder = "JJ/MM/AAAA",
       helper,
       error,
       success,
@@ -47,13 +42,12 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       ItemMessageComponent,
       required,
       "aria-errormessage": ariaErrormessage,
-      type = "text",
       ...otherProps
     },
     inputRef,
   ) => {
     const componentClassName = getComponentClassName(
-      "af-form__date-input",
+      "af-form__input-date",
       className ?? "",
       classModifier + (error || ariaErrormessage ? " error" : ""),
     );
@@ -79,11 +73,10 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           {...otherProps}
           id={inputId}
           className={componentClassName}
-          type={type}
-          placeholder={placeholder || ""}
+          type="date"
           ref={inputRef}
-          defaultValue={formatDateInputValue(type, defaultValue)}
-          value={formatDateInputValue(type, value)}
+          defaultValue={formatInputDateValue(defaultValue)}
+          value={formatInputDateValue(value)}
           aria-labelledby={idLabel}
           aria-errormessage={ariaErrormessage ?? idMessage}
           aria-invalid={Boolean(error ?? ariaErrormessage)}
@@ -106,6 +99,6 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   },
 );
 
-DateInput.displayName = "DateInput";
+InputDate.displayName = "InputDate";
 
-export { DateInput };
+export { InputDate };

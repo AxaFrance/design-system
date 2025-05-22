@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as DateInputStories from "./Date.stories";
+
+<Meta of={DateInputStories} name="DateInput" />
+
+# DateInput
+
+DateInput component is **deprecated** and will be removed in the next major version. Please use the InputDate component instead.
+
+To use the DateInput import it like that:
+
+```tsx
+import { DateInput } from "@axa-fr/design-system-look-and-feel-react";
+
+const MyComponent = () => <DateInput />;
+```
+
+## Default
+
+<Canvas of={DateInputStories.DateInputDefaultStory} />
+
+## Playground
+
+<Controls of={DateInputStories.DateInputDefaultStory} />
