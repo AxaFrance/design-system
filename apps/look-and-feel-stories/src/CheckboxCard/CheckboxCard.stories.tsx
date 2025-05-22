@@ -1,7 +1,7 @@
 import { CheckboxCard } from "@axa-fr/design-system-look-and-feel-react";
+import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
-import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 
 const meta: Meta = {
   title: "Components/Form/Checkbox/CheckboxCard",
@@ -66,6 +66,7 @@ export const CheckboxCardWithLabel: StoryObj<
     labelGroup: "Quelle ville ?",
     descriptionGroup: "Choisissez une ville",
     isRequired: true,
+    error: "",
     options: [
       {
         label: "Paris",
