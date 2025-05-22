@@ -32,6 +32,12 @@
     }
   }
 
+  &__choices {
+    display: flex;
+    flex-direction: column;
+    row-gap: calc(8 / var(--font-size-base) * 1rem);
+  }
+
   &-group {
     display: flex;
     margin: 0;
@@ -142,6 +148,11 @@
         }
       }
 
+      &:hover {
+        border: solid var(--checkbox-card-border);
+        box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
+      }
+
       &:has(input:checked) {
         border: solid var(--checkbox-card-border);
         background-color: var(--checkbox-card-background-color);
@@ -150,11 +161,6 @@
         .af-checkbox-card-content-description > span:first-child {
           font-weight: 600;
         }
-      }
-
-      &:not([aria-invalid="true"]):hover {
-        border: solid var(--checkbox-card-border);
-        box-shadow: 0 0 0 1px var(--checkbox-card-shadow-color) inset;
       }
     }
   }

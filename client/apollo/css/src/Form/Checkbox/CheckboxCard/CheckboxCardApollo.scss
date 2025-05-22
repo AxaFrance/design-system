@@ -80,6 +80,16 @@
         }
       }
 
+      &:hover {
+        --checkbox-card-border: 1px var(--axa-blue-100);
+        --checkbox-card-shadow-color: var(--axa-blue-100);
+        --checkbox-card-background-color: var(--white);
+
+        .af-checkbox-card-content-description > span:first-child {
+          --checkbox-card-label-text-color: var(--axa-blue-100);
+        }
+      }
+
       &:has(input:checked) {
         --checkbox-card-border: 1px var(--axa-blue-100);
         --checkbox-card-shadow-color: var(--axa-blue-100);
@@ -88,11 +98,6 @@
         .af-checkbox-card-content-description > span:first-child {
           --checkbox-card-label-text-color: var(--axa-blue-100);
         }
-      }
-
-      &:not([aria-invalid="true"]):hover {
-        --checkbox-card-border: 1px var(--axa-blue-100);
-        --checkbox-card-shadow-color: var(--axa-blue-100);
       }
     }
   }

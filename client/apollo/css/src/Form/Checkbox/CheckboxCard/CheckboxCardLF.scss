@@ -77,15 +77,15 @@
         }
       }
 
+      &:hover {
+        --checkbox-card-border: 1px var(--color-axa);
+        --checkbox-card-shadow-color: var(--color-axa);
+      }
+
       &:has(input:checked) {
         --checkbox-card-border: 1px var(--color-axa);
         --checkbox-card-shadow-color: var(--color-axa);
         --checkbox-card-background-color: var(--color-blue-2);
-      }
-
-      &:not([aria-invalid="true"]):hover {
-        --checkbox-card-border: 1px var(--color-axa);
-        --checkbox-card-shadow-color: var(--color-axa);
       }
     }
   }
