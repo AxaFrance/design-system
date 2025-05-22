@@ -1,14 +1,13 @@
 import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
 import {
-  LegacyField,
-  getFirstId,
   useInputClassModifier,
   useOptionsWithId,
+  SemanticField,
 } from "../core";
 import { Radio, RadioModes } from "./Radio";
 import { useAriaInvalid } from "../core/useAriaInvalid";
 
-type RadioInputProps = ComponentPropsWithoutRef<typeof LegacyField> &
+type RadioInputProps = ComponentPropsWithoutRef<typeof SemanticField> &
   ComponentPropsWithoutRef<typeof Radio>;
 
 const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
@@ -36,23 +35,21 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
     const rowModifier = `${classModifier ?? ""}${
       mode === RadioModes.classic ? " label-top " : ""
     }`;
-    const newOptions = useOptionsWithId(options);
-    const firstId = getFirstId(newOptions);
-    const errorUseId = useId();
 
-    const { inputClassModifier, inputFieldClassModifier } =
+    const { inputFieldClassModifier, inputClassModifier } =
       useInputClassModifier(
         classModifier,
         disabled,
         Boolean(children),
         required,
       );
+    const errorUseId = useId();
+    const newOptions = useOptionsWithId(options);
     const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
 
     return (
-      <LegacyField
+      <SemanticField
         label={label}
-        id={firstId}
         message={message}
         messageType={messageType}
         isVisible={isVisible}
@@ -63,7 +60,6 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         classNameContainerInput={classNameContainerInput}
         roleContainer="radiogroup"
         ariaLabelContainer={ariaLabelContainer ?? label?.toString()}
-        isLabelContainerLinkedToInput={false}
         errorId={errorUseId}
       >
         <Radio
@@ -78,7 +74,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
           {...radioProps}
         />
         {children}
-      </LegacyField>
+      </SemanticField>
     );
   },
 );
