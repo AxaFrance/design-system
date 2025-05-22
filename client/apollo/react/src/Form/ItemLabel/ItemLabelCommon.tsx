@@ -44,6 +44,7 @@ export const ItemLabel = ({
           htmlFor={inputId}
           id={idLabel}
           aria-describedby={description ? idDescription : undefined}
+          className="af-item-label__label"
         >
           {label} {required && <span aria-hidden="true"> *</span>}
         </label>

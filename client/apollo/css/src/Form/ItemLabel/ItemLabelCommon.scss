@@ -31,7 +31,7 @@
       "more more";
   }
 
-  > label {
+  &__label {
     grid-area: label;
     font-size: calc(16 / var(--font-size-base) * 1rem);
     font-weight: 600;
