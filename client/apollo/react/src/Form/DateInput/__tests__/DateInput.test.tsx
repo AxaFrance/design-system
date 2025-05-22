@@ -31,7 +31,7 @@ describe("<DateInput />", () => {
     expect(dateInput).toHaveProperty("placeholder", "placeholder");
     expect(dateInput).toHaveAccessibleErrorMessage("error");
     expect(dateInput).toHaveValue("01/01/2025");
-    expect(dateInput).toHaveClass("af-form__input-date");
+    expect(dateInput).toHaveClass("af-form__date-input");
     expect(dateInput).toHaveAttribute("name", "name");
     expect(dateInput).toHaveAttribute("type", "text");
     expect(dateInput).toBeRequired();

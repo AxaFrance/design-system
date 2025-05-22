@@ -7,12 +7,12 @@
     --input-helper-color: var(--neutral-80);
   }
 
-  &__input-date {
+  &__date-input {
     --input-border-color: var(--axa-blue-65);
     --input-border-radius: var(--radius-8);
     --input-bg-color: var(--white);
-    --input-date-color: var(--neutral-80);
-    --input-date-placeholder-color-filled: var(--axa-blue-100);
+    --date-input-color: var(--neutral-80);
+    --date-input-placeholder-color-filled: var(--axa-blue-100);
 
     &:is(:hover, :focus, :active) {
       --input-border-color: var(--axa-blue-100);
@@ -25,7 +25,7 @@
     &:disabled,
     &:disabled:is(:hover, :focus, :active) {
       --input-border-color: var(--neutral-50);
-      --input-date-color: var(--neutral-50);
+      --date-input-color: var(--neutral-50);
       --input-bg-color: var(--neutral-5);
 
       + .af-form__input-helper {

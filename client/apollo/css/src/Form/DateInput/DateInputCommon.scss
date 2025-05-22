@@ -8,7 +8,7 @@
     row-gap: calc(8 / var(--font-size-base) * 1rem);
   }
 
-  &__input-date {
+  &__date-input {
     all: unset;
     box-sizing: border-box;
     width: 100%;
@@ -20,12 +20,12 @@
     font-weight: 600;
     line-height: 1.25em;
     text-transform: uppercase;
-    color: var(--input-date-color);
+    color: var(--date-input-color);
     background-color: var(--input-bg-color);
 
     &::placeholder {
       font-weight: 400;
-      color: var(--input-date-placeholder-color);
+      color: var(--date-input-placeholder-color);
     }
 
     @media (width > #{breakpoints.$breakpoint-md}) {
@@ -43,7 +43,7 @@
     }
 
     &:valid:not([class*="--error"]) {
-      color: var(--input-date-placeholder-color-filled);
+      color: var(--date-input-placeholder-color-filled);
     }
   }
 
