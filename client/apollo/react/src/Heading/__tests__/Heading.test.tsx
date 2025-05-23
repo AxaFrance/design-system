@@ -6,8 +6,8 @@ import { Tag } from "../../Tag/TagCommon";
 import { HeadingLevel } from "../types";
 
 describe("Heading", () => {
-  it("should render correctly h1 by default", () => {
-    render(
+  it("should render correctly h1 by default wrapped with a header element", () => {
+    const { container } = render(
       <HeadingCommon
         firstSubtitle="firstSubtitle"
         secondSubtitle="secondSubtitle"
@@ -16,6 +16,30 @@ describe("Heading", () => {
       </HeadingCommon>,
     );
 
+    const wrapper = container.getElementsByClassName("af-heading");
+    expect(wrapper).toHaveLength(1);
+    expect(wrapper[0].tagName).toStrictEqual("HEADER");
+    expect(
+      screen.getByRole("heading", { name: "Title", level: 1 }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("firstSubtitle")).toBeInTheDocument();
+    expect(screen.getByText("secondSubtitle")).toBeInTheDocument();
+  });
+
+  it("should render correctly by wrapping with a section element", () => {
+    const { container } = render(
+      <HeadingCommon
+        firstSubtitle="firstSubtitle"
+        secondSubtitle="secondSubtitle"
+        as="section"
+      >
+        Title
+      </HeadingCommon>,
+    );
+
+    const wrapper = container.getElementsByClassName("af-heading");
+    expect(wrapper).toHaveLength(1);
+    expect(wrapper[0].tagName).toStrictEqual("SECTION");
     expect(
       screen.getByRole("heading", { name: "Title", level: 1 }),
     ).toBeInTheDocument();
