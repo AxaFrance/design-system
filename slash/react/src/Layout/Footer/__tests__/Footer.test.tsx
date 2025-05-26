@@ -19,6 +19,9 @@ describe("Footer component", () => {
         `© ${new Date().getFullYear()} AXA Tous droits réservés`,
       ),
     ).toBeInTheDocument();
+
+    const version = screen.queryByText("Version");
+    expect(version).not.toBeInTheDocument();
   });
 
   it("should render children", () => {
@@ -42,6 +45,7 @@ describe("Footer component", () => {
         href="/new-route"
         alt="new-alt"
         title="new-title"
+        version="1.8.0"
       />,
     );
 
@@ -57,6 +61,7 @@ describe("Footer component", () => {
         `© ${new Date().getFullYear()} AXA Tous droits réservés`,
       ),
     ).toBeInTheDocument();
+    expect(screen.getByText("Version 1.8.0")).toBeInTheDocument();
   });
 
   it("should not have an accessibility violation", async () => {
