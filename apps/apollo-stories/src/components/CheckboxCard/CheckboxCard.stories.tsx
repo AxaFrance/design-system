@@ -66,6 +66,7 @@ export const CheckboxSelectWithLabel: StoryObj<
     labelGroup: "Quelle ville ?",
     descriptionGroup: "Choisissez une ville",
     isRequired: true,
+    error: "",
     options: [
       {
         label: "Paris",

@@ -1,7 +1,13 @@
-import React, { ComponentPropsWithRef, useId } from "react";
+import React, {
+  ComponentPropsWithRef,
+  useId,
+  type ComponentProps,
+  type ComponentType,
+} from "react";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
+import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { CheckboxCardItem, type TCheckboxCardItem } from "./CheckboxCardItem";
 import type { CheckboxComponent, IconComponent } from "./types";
 
@@ -12,11 +18,14 @@ export type CheckboxCardProps = ComponentPropsWithRef<"input"> & {
   isRequired?: boolean;
   options: TCheckboxCardItem[];
   onChange?: React.ChangeEventHandler;
+  error?: string;
 };
 
 type CheckboxCardCommonProps = CheckboxCardProps &
   CheckboxComponent &
-  IconComponent;
+  IconComponent & {
+    ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  };
 
 export const CheckboxCardCommon = ({
   className,
@@ -28,6 +37,8 @@ export const CheckboxCardCommon = ({
   options,
   onChange,
   type = "vertical",
+  error,
+  ItemMessageComponent,
 }: CheckboxCardCommonProps) => {
   const componentClassName = getComponentClassName(
     "af-checkbox-card__container",
@@ -58,20 +69,30 @@ export const CheckboxCardCommon = ({
           </legend>
         )}
       </div>
-      <ul className={checkboxGroupClassName}>
-        {options.map((inputProps) => (
-          <li key={crypto.randomUUID()}>
-            <CheckboxCardItem
-              size={size}
-              errorId={errorId}
-              onChange={onChange}
-              CheckboxComponent={CheckboxComponent}
-              IconComponent={IconComponent}
-              {...inputProps}
-            />
-          </li>
-        ))}
-      </ul>
+      <div className="af-checkbox-card__choices">
+        <ul className={checkboxGroupClassName}>
+          {options.map(({ hasError, ...inputProps }) => (
+            <li key={crypto.randomUUID()}>
+              <CheckboxCardItem
+                size={size}
+                errorId={errorId}
+                onChange={onChange}
+                CheckboxComponent={CheckboxComponent}
+                IconComponent={IconComponent}
+                hasError={Boolean(error) || hasError}
+                {...inputProps}
+              />
+            </li>
+          ))}
+        </ul>
+        {error && (
+          <ItemMessageComponent
+            id={errorId}
+            message={error}
+            messageType="error"
+          />
+        )}
+      </div>
     </fieldset>
   );
 };

@@ -55,6 +55,14 @@ describe("CheckboxCard", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
+  it("should display error message when error prop is provided", () => {
+    render(
+      <CheckboxCard type="vertical" {...args} error="Erreur obligatoire" />,
+    );
+
+    expect(screen.getByText("Erreur obligatoire")).toBeInTheDocument();
+  });
+
   it.each`
     isSmallScreen | expectedSize
     ${true}       | ${"M"}
