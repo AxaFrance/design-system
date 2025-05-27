@@ -1,18 +1,19 @@
-import React, { type ReactNode } from "react";
 import classNames from "classnames";
-import { HeadingWithSubheadings } from "./HeadingWithSubheadings";
+import type { HTMLElementType, PropsWithChildren, ReactNode } from "react";
 import { Icon, IconProps } from "../Icon/IconCommon";
 import { TagProps } from "../Tag/TagCommon";
+import { HeadingWithSubheadings } from "./HeadingWithSubheadings";
 import { HeadingLevel } from "./types";
 
-export type HeadingCommonProps = React.PropsWithChildren<{
+export type HeadingCommonProps = PropsWithChildren<{
   level?: HeadingLevel;
   icon?: string;
   iconProps?: Omit<IconProps, "src">;
-  tag?: React.ReactNode;
+  tag?: ReactNode;
   firstSubtitle?: ReactNode;
   secondSubtitle?: ReactNode;
   className?: string;
+  as?: HTMLElementType;
 }>;
 
 export const DEFAULT_TAG_PROPS: TagProps = {
@@ -28,8 +29,9 @@ export const HeadingCommon = ({
   icon,
   iconProps = {},
   tag,
+  as: Header = "header",
 }: HeadingCommonProps) => (
-  <header className={classNames("af-heading", className)}>
+  <Header className={classNames("af-heading", className)}>
     {tag && level < 3 && <div className="af-heading__label">{tag}</div>}
     {icon && level === 1 && (
       <Icon
@@ -47,5 +49,5 @@ export const HeadingCommon = ({
       titleComponent={`h${level}`}
       secondSubtitle={secondSubtitle}
     />
-  </header>
+  </Header>
 );

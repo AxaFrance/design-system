@@ -18,7 +18,7 @@ export const buttonVariants = {
 
 export type ButtonVariants = keyof typeof buttonVariants;
 
-type ButtonProps = {
+export type ButtonProps = {
   variant?: ButtonVariants;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
