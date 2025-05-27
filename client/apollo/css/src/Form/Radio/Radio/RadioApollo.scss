@@ -4,7 +4,7 @@
   --radio-border: 1px var(--axa-blue-65);
 
   &__icons {
-    --radio-width: 12px;
+    --radio-width: calc(12 / var(--font-size-base) * 1rem);
     --radio-background-color: var(--axa-blue-100);
   }
 
