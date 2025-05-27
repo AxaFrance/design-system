@@ -1,53 +1,66 @@
 import classnames from "classnames";
-import {
-  type ComponentProps,
-  type ElementType,
-  type ForwardedRef,
-  forwardRef,
-  type PropsWithChildren,
-  type ReactNode,
-} from "react";
+import { type ReactNode } from "react";
 
 import "@axa-fr/design-system-slash-css/dist/Link/Link.scss";
 
-export type LinkProps<C extends ElementType> = {
-  component?: C;
+type BaseProps = {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
   disabled?: boolean;
-} & ComponentProps<C>;
+};
 
-export const Link = forwardRef(
-  <C extends ElementType = "a">(
-    {
-      className,
-      component: Component = "a",
-      leftIcon,
-      rightIcon,
-      target,
-      rel,
-      disabled,
-      children,
-      ...props
-    }: PropsWithChildren<LinkProps<C>>,
-    ref: ForwardedRef<HTMLAnchorElement>,
-  ) => {
+export type LinkProps = BaseProps &
+  (
+    | (React.ButtonHTMLAttributes<HTMLButtonElement> & {
+        component: "button";
+      })
+    | (React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+        component?: "a";
+      })
+  );
+
+export const Link = ({
+  className,
+  component,
+  leftIcon,
+  rightIcon,
+  disabled,
+  children,
+  "aria-disabled": ariaDisabled,
+  ...props
+}: LinkProps) => {
+  const finalClassName = classnames("af-slash-link", className);
+  if (component === "a") {
+    const { target, rel, ...restProps } =
+      props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
     return (
-      <Component
-        className={classnames("af-slash-link", className)}
-        target={target}
+      <a
+        className={finalClassName}
         rel={target === "_blank" ? "noopener noreferrer" : rel}
-        aria-disabled={disabled ?? props["aria-disabled"]}
-        {...props}
-        ref={ref}
+        {...restProps}
       >
         {leftIcon}
         {children}
         {rightIcon}
-      </Component>
+      </a>
     );
-  },
-);
+  }
+
+  const restProps = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+  return (
+    <button
+      className={finalClassName}
+      type="button"
+      aria-disabled={disabled ?? ariaDisabled}
+      {...restProps}
+    >
+      {leftIcon}
+      {children}
+      {rightIcon}
+    </button>
+  );
+};
 
 Link.displayName = "Link";
