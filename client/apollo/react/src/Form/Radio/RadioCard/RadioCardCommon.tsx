@@ -3,6 +3,7 @@ import React, {
   ComponentPropsWithRef,
   type ComponentType,
   useId,
+  type ReactNode,
 } from "react";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { Icon } from "../../../Icon/IconCommon";
@@ -25,9 +26,9 @@ export type RadioCardProps = ComponentPropsWithRef<"input"> & {
   isRequired?: boolean;
   value?: number;
   options: ({
-    label: string;
-    subtitle?: string;
-    description?: string;
+    label: ReactNode;
+    subtitle?: ReactNode;
+    description?: ReactNode;
     hasError?: boolean;
     icon?: string;
   } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">)[];
@@ -85,7 +86,7 @@ const RadioCardCommon = ({
             index,
           ) => (
             <label
-              key={label}
+              key={`${name ?? inputProps.name}`}
               aria-invalid={hasError}
               htmlFor={`id-${name ?? inputProps.name}-${index}`}
               className="af-radio-card-label"
