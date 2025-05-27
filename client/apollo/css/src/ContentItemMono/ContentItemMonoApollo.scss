@@ -36,7 +36,7 @@
   }
 
   &.large .text-content .title {
-    --title-font-family: var(--font-family-publico);
+    --title-font-family: var(--font-family-publico-headline);
     --title-font-weight: 300;
     --title-font-size: calc(22 / var(--font-size-base) * 1rem);
     --title-line-height: calc(28 / var(--font-size-base) * 1rem);
