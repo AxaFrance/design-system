@@ -7,17 +7,17 @@
     --input-helper-color: var(--color-gray-700);
   }
 
-  &__input-date {
+  &__date-input {
     --input-border-color: var(--color-gray-700);
     --input-border-radius: var(--default-border-radius);
     --input-bg-color: var(--color-white);
-    --input-date-color: var(--color-gray-900);
-    --input-date-placeholder-color: var(--color-gray-700);
-    --input-date-placeholder-color-filled: var(--color-axa);
+    --date-input-color: var(--color-gray-900);
+    --date-input-placeholder-color: var(--color-gray-700);
+    --date-input-placeholder-color-filled: var(--color-axa);
 
     &:is(:hover, :focus, :active) {
       --input-border-color: var(--color-axa);
-      --input-date-placeholder-color: var(--color-gray-900);
+      --date-input-placeholder-color: var(--color-gray-900);
     }
 
     &[class*="--error"] {
@@ -27,7 +27,7 @@
     &:disabled,
     &:disabled:is(:hover, :focus, :active) {
       --input-border-color: var(--color-gray-400);
-      --input-date-color: var(--color-gray-500);
+      --date-input-color: var(--color-gray-500);
       --input-bg-color: var(--color-gray-200);
 
       + .af-form__input-helper {
