@@ -23,7 +23,8 @@
   }
 
   &__subtitle {
-    display: block;
+    margin: 0;
+    padding: 0;
     font-size: var(--heading-subtitle-font-size);
     font-weight: 400;
     line-height: 125%;
