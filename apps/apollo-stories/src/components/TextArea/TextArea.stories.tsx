@@ -6,7 +6,7 @@ const meta: Meta<typeof TextArea> = {
   component: TextArea,
   title: "Components/Form/Input/TextArea",
   args: {
-    value: "Placeholder",
+    value: "",
     label: "Label",
     placeholder: "Placeholder",
     helper: "1800 caractères maximum.",
@@ -36,6 +36,15 @@ const render = ({
 export const TextAreaStory: Story = {
   name: "TextArea",
   render,
+};
+export const TextAreaWithLabelStory: Story = {
+  name: "TextArea with label",
+  render,
+  args: {
+    label: "Label",
+    description: "Description",
+    buttonLabel: "En savoir plus",
+  },
 };
 
 export const TextAreaWithDescriptionStory: Story = {

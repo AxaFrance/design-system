@@ -32,17 +32,35 @@
     outline: none;
   }
 
+  &--error:hover,
+  &--error:focus {
+    border: 2px solid var(--input-text-area-border-color);
+  }
+
   &:disabled {
     border: 1px solid var(--input-text-area-border-color);
     background: var(--input-text-area-background);
     pointer-events: none;
   }
 
+  &:not(:placeholder-shown, :focus) {
+    box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
+  }
+
+  &:not(.af-form__input-textarea--error):focus,
+  &:not(.af-form__input-textarea--error):hover {
+    border: var(--input-text-area-border-size) solid
+      var(--input-text-area-border-color);
+    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+  }
+
   &:not(:disabled, &--error) {
     &:focus,
-    &:hover {
-      border: 1px solid var(--input-text-area-border-color);
-      box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+    &:hover,
+    &:not(:placeholder-shown, :focus) {
+      font-size: var(--input-text-area-font-size);
+      font-weight: var(--input-text-area-font-weight);
+      color: var(--input-text-area-font-color);
     }
   }
 }
