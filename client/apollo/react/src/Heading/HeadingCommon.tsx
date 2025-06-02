@@ -1,19 +1,20 @@
-import React, { type ReactNode } from "react";
 import classNames from "classnames";
+import type { JSX, PropsWithChildren, ReactNode } from "react";
+import { Icon, type IconProps } from "../Icon/IconCommon";
+import { type TagProps } from "../Tag/TagCommon";
 import { HeadingWithSubheadings } from "./HeadingWithSubheadings";
-import { Icon, IconProps } from "../Icon/IconCommon";
-import { TagProps } from "../Tag/TagCommon";
-import { HeadingLevel } from "./types";
+import { type HeadingLevel } from "./types";
 
-export type HeadingCommonProps = React.PropsWithChildren<{
+export type HeadingCommonProps = PropsWithChildren<{
   level?: HeadingLevel;
   icon?: string;
   iconProps?: Omit<IconProps, "src">;
-  tag?: React.ReactNode;
+  tag?: ReactNode;
   firstSubtitle?: ReactNode;
   secondSubtitle?: ReactNode;
   className?: string;
-}>;
+}> &
+  JSX.IntrinsicElements["div"];
 
 export const DEFAULT_TAG_PROPS: TagProps = {
   variant: "neutral",
@@ -28,8 +29,9 @@ export const HeadingCommon = ({
   icon,
   iconProps = {},
   tag,
+  ...props
 }: HeadingCommonProps) => (
-  <header className={classNames("af-heading", className)}>
+  <div className={classNames("af-heading", className)} {...props}>
     {tag && level < 3 && <div className="af-heading__label">{tag}</div>}
     {icon && level === 1 && (
       <Icon
@@ -47,5 +49,5 @@ export const HeadingCommon = ({
       titleComponent={`h${level}`}
       secondSubtitle={secondSubtitle}
     />
-  </header>
+  </div>
 );
