@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { HeadingLevel } from "./types";
+import type { HeadingLevel } from "./types";
 
 type HeadingTextProps = {
   title: ReactNode;
@@ -14,13 +14,11 @@ export const HeadingWithSubheadings = ({
   secondSubtitle,
   titleComponent: TitleComponent = "h1",
 }: HeadingTextProps) => (
-  <div className="af-heading__title-container">
+  <hgroup className="af-heading__title-container">
     <TitleComponent className="af-heading__title">{title}</TitleComponent>
-    {firstSubtitle && (
-      <span className="af-heading__subtitle">{firstSubtitle}</span>
-    )}
+    {firstSubtitle && <p className="af-heading__subtitle">{firstSubtitle}</p>}
     {TitleComponent === "h1" && secondSubtitle && (
-      <span className="af-heading__subtitle">{secondSubtitle}</span>
+      <p className="af-heading__subtitle">{secondSubtitle}</p>
     )}
-  </div>
+  </hgroup>
 );
