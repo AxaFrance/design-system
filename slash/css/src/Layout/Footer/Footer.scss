@@ -18,8 +18,13 @@ $logo-size: 22px;
     }
   }
 
-  &-content {
+  &-content,
+  &-version {
     font-weight: 600;
     color: common.$color-axa;
+  }
+
+  &-version {
+    margin-left: auto;
   }
 }
