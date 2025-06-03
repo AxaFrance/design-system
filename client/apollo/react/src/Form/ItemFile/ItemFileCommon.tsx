@@ -109,10 +109,7 @@ export const ItemFileCommon = ({
           </span>
         )}
       </div>
-      <div className="af-item-file__message" />
-      {errorMessage && (
-        <ItemMessageComponent id={idMessage} message={errorMessage} />
-      )}
+      <ItemMessageComponent id={idMessage} message={errorMessage} />
     </div>
   );
 };
