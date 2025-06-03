@@ -4,51 +4,44 @@
 $active-sort-table-th: common.$color-table-sorting !default;
 
 @mixin hasIcon($direction) {
+  display: flex;
+  align-items: center;
+
   @if $direction == "left" {
-    padding-left: 3rem;
-    @content;
-
-    .glyphicon {
-      left: 1rem;
+    & :first-child {
+      margin-right: 1rem;
     }
+    @content;
   } @else {
-    padding-right: 3rem;
-    @content;
+    flex-direction: row-reverse;
 
-    .glyphicon {
-      right: 1rem;
-      left: unset;
+    & :first-child {
+      margin-left: 1rem;
     }
+    @content;
   }
 }
 
 .af-btn {
   position: relative;
-  min-width: 10rem;
-  padding: 0.8rem 1.2rem;
+  height: 3rem;
+  padding: 0.75rem 1rem;
   border: 0;
   border-radius: 0;
   font-family: common.$font-family-base;
   font-size: 1rem;
-  font-weight: 400;
-  color: common.$table-inverse-color;
-  background-color: common.$color-azur;
-  box-shadow: inset 0 -3px common.$color-axa;
+  font-weight: 700;
+  line-height: 1rem;
+  color: var(--white);
+  background-color: var(--axablue80);
+  box-shadow: inset 0 -3px var(--axablue100);
   transition: all 0.2s linear;
   cursor: pointer;
 
-  .glyphicon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 17px;
-    transform: translate(-50%, -50%);
-  }
-
   &:hover,
   &:focus {
-    color: common.$white;
-    background-color: common.$color-axa;
+    color: var(--white);
+    background-color: var(--axablue100);
   }
 
   &:focus {
@@ -81,49 +74,46 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--success {
-    background-color: common.$color-btn-success;
-    box-shadow: inset 0 -3px common.$color-btn-success-dark;
+    background-color: var(--green40);
+    box-shadow: inset 0 -2px var(--green50);
 
     &:hover {
-      background-color: common.$color-btn-success;
-      box-shadow: inset 0 -3px common.$color-btn-success;
+      background-color: var(--green50);
+      box-shadow: none;
     }
 
     &:focus {
-      background-color: common.$color-btn-success;
-      box-shadow: 0 0 3px 3px common.$color-btn-success-focused;
+      background-color: var(--green50);
     }
   }
 
   &--danger {
-    background-color: common.$color-btn-danger;
-    box-shadow: inset 0 -3px common.$color-btn-danger-dark;
+    background-color: var(--red30);
+    box-shadow: inset 0 -2px var(--red40);
 
     &:hover {
-      background-color: common.$color-btn-danger;
-      box-shadow: inset 0 -3px common.$color-btn-danger;
+      background-color: var(--red40);
+      box-shadow: none;
     }
 
     &:focus {
-      background-color: common.$color-btn-danger;
-      box-shadow: 0 0 3px 3px common.$color-btn-danger-focused;
+      background-color: var(--red40);
     }
   }
 
   &--reverse {
-    padding: 0.625rem 0.3125rem 0.8125rem;
-    border: 2px solid common.$color-azur;
+    border: 2px solid var(--axablue80);
     border-bottom: none;
-    color: common.$color-azur;
-    background-color: common.$table-inverse-color;
-    box-shadow: inset 0 -3px common.$color-azur;
+    color: var(--axablue80);
+    background-color: var(--white);
+    box-shadow: inset 0 -3px var(--axablue80);
 
     &:hover,
     &:focus {
-      border-color: common.$color-axa;
+      border-color: var(--axablue100);
       color: common.$white;
-      background-color: common.$color-axa;
-      box-shadow: inset 0 -3px common.$color-axa;
+      background-color: var(--axablue100);
+      box-shadow: inset 0 -3px var(--axablue100);
     }
 
     &:focus {
@@ -132,11 +122,11 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--reverse.af-btn--disabled {
-    border-color: common.$color-silver;
+    border-color: var(--gray40);
     border-bottom: none;
-    color: common.$color-btn-disabled;
-    background-color: common.$white;
-    box-shadow: inset 0 -3px common.$color-silver;
+    color: var(--gray40);
+    background-color: var(--white);
+    box-shadow: inset 0 -3px var(--gray40);
     cursor: not-allowed;
   }
 
@@ -155,8 +145,8 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--small {
-    min-width: 3rem;
-    padding: 0.625rem 0.3125rem;
+    height: 2.5rem;
+    padding: 0.75rem 1rem;
   }
 
   &--circle {
@@ -251,17 +241,16 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--disabled {
-    color: common.$color-btn-disabled;
-    background-color: common.$color-mercury;
-    box-shadow: inset 0 -3px common.$color-silver;
+    color: var(--gray40);
+    background-color: var(--white);
+    box-shadow: inset 0 -3px var(--gray40);
     cursor: not-allowed;
 
     &:hover,
     &:focus {
-      border-color: transparent;
-      color: common.$color-btn-disabled;
-      background-color: common.$color-mercury;
-      box-shadow: inset 0 -3px common.$color-silver;
+      color: var(--gray40);
+      background-color: var(--white);
+      box-shadow: inset 0 -3px var(--gray40);
     }
   }
 
