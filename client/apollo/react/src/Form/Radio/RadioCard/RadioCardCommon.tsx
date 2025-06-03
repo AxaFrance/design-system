@@ -8,6 +8,7 @@ import React, {
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { Icon } from "../../../Icon/IconCommon";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
+import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { RadioProps } from "../Radio/RadioCommon";
 
@@ -33,11 +34,14 @@ export type RadioCardProps = ComponentPropsWithRef<"input"> & {
     icon?: string;
   } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">)[];
   onChange?: React.ChangeEventHandler;
+  error?: string;
 };
 
 export type RadioCardCommonProps = RadioCardProps &
   RadioComponent &
-  IconComponent;
+  IconComponent & {
+    ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  };
 
 const RadioCardCommon = ({
   className,
@@ -48,8 +52,10 @@ const RadioCardCommon = ({
   isRequired,
   options,
   type = "vertical",
+  error,
   name,
   onChange,
+  ItemMessageComponent,
 }: RadioCardCommonProps) => {
   const componentClassName = getComponentClassName(
     "af-radio-card__container",
@@ -60,26 +66,28 @@ const RadioCardCommon = ({
     className,
     type,
   );
-  const optionId = useId();
+
   const errorId = useId();
 
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
   const size = isMobile ? "M" : "L";
 
   return (
-    <div className={componentClassName}>
+    <fieldset className={componentClassName}>
       <div className="af-radio-card__label-container">
-        {labelGroup && (
-          <span className="af-radio-card__label" id={optionId}>
-            {labelGroup}
-            {isRequired && <span aria-hidden>&nbsp;*</span>}
-          </span>
-        )}
-        {descriptionGroup && (
-          <span className="af-radio-card__description">{descriptionGroup}</span>
-        )}
+        <legend>
+          {labelGroup && (
+            <span className="af-radio-card__label">
+              {labelGroup}
+              {isRequired && <span aria-hidden>&nbsp;*</span>}
+            </span>
+          )}
+          {descriptionGroup && (
+            <p className="af-radio-card__description">{descriptionGroup}</p>
+          )}
+        </legend>
       </div>
-      <fieldset className={RadioGroupClassName}>
+      <div className={RadioGroupClassName}>
         {options.map(
           (
             { label, description, subtitle, icon, hasError, ...inputProps },
@@ -87,14 +95,14 @@ const RadioCardCommon = ({
           ) => (
             <label
               key={`${name ?? inputProps.name}`}
-              aria-invalid={hasError}
+              aria-invalid={Boolean(error) || hasError}
               htmlFor={`id-${name ?? inputProps.name}-${index}`}
               className="af-radio-card-label"
             >
               <RadioComponent
                 id={`id-${name ?? inputProps.name}-${index}`}
                 errorId={errorId}
-                hasError={hasError}
+                hasError={Boolean(error) || hasError}
                 {...inputProps}
                 name={name ?? inputProps.name}
                 onChange={onChange}
@@ -110,8 +118,15 @@ const RadioCardCommon = ({
             </label>
           ),
         )}
-      </fieldset>
-    </div>
+      </div>
+      {error && (
+        <ItemMessageComponent
+          id={errorId}
+          message={error}
+          messageType="error"
+        />
+      )}
+    </fieldset>
   );
 };
 RadioCardCommon.displayName = "RadioCardCommon";

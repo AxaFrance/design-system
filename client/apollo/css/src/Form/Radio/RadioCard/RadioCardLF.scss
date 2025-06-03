@@ -40,6 +40,30 @@
   }
 
   &-group--vertical {
+    --radio-card-flex-direction: row;
+
+    .af-radio-card-label {
+      --radio-card-flex-direction: row;
+      --radio-card-align-items: flex-start;
+      --radio-card-justify-content: flex-start;
+
+      .af-radio {
+        position: absolute;
+      }
+
+      .af-radio-card-content {
+        --radio-card-flex-direction: column;
+        --radio-card-margin-left: calc(12 / var(--font-size-base) * 1rem);
+
+        .af-radio-card-content-description {
+          --radio-card-flex-direction: column;
+          --radio-card-align-item: center;
+        }
+      }
+    }
+  }
+
+  &-group--horizontal {
     --radio-card-flex-direction: column;
 
     .af-radio-card-label {
@@ -48,31 +72,11 @@
 
       .af-radio-card-content {
         --radio-card-flex-direction: row;
-        --radio-card-margin-left: calc(12 / var(--font-size-base) * 1rem);
-
-        .af-radio-card-content-description {
-          --radio-card-flex-direction: column;
-          --radio-card-align-item: flex-start;
-        }
-      }
-    }
-  }
-
-  &-group--horizontal {
-    --radio-card-flex-direction: row;
-
-    .af-radio-card-label {
-      --radio-card-flex-direction: row;
-      --radio-card-align-items: flex-start;
-      --radio-card-justify-content: flex-start;
-
-      .af-radio-card-content {
-        --radio-card-flex-direction: column;
         --radio-card-margin-left: calc(2 / var(--font-size-base) * 1rem);
 
         .af-radio-card-content-description {
           --radio-card-flex-direction: column;
-          --radio-card-align-item: center;
+          --radio-card-align-item: flex-start;
         }
       }
     }

@@ -20,6 +20,7 @@
   }
 
   &__description {
+    margin: 0;
     font-size: calc(16 / var(--font-size-base) * 1rem);
     font-weight: 400;
     line-height: calc(16 / var(--font-size-base) * 1rem);
@@ -77,17 +78,25 @@
   &-group--vertical {
     flex-direction: var(--radio-card-flex-direction);
 
+    > * {
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+
     .af-radio-card-label {
       flex-direction: var(--radio-card-flex-direction);
       align-items: var(--radio-card-align-items);
+      justify-content: var(--checkbox-card-justify-content);
 
       .af-radio-card-content {
+        width: 100%;
+        flex: 1;
         flex-direction: var(--radio-card-flex-direction);
 
         .af-radio-card-content-description {
           flex-direction: var(--radio-card-flex-direction);
           align-items: var(--radio-card-align-item);
-          text-align: left;
+          text-align: center;
         }
       }
     }
