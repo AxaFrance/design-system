@@ -119,13 +119,7 @@ const RadioCardCommon = ({
           ),
         )}
       </div>
-      {error && (
-        <ItemMessageComponent
-          id={errorId}
-          message={error}
-          messageType="error"
-        />
-      )}
+      <ItemMessageComponent id={errorId} message={error} messageType="error" />
     </fieldset>
   );
 };
