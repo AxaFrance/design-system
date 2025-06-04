@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
-  title: "Components/Form/Input/TextInput",
+  title: "Components/Form/Input/InputText",
   args: {
     value: "John Doe",
     label: "Label",
@@ -36,24 +36,32 @@ const render = ({
   <TextInput onChange={onChange} {...args} />
 );
 
-export const TextPlaceholderStory: Story = {
-  name: "Text placeholder",
+export const InputTextPlaceholderStory: Story = {
+  name: "Placeholder",
   render,
   args: {
     value: "",
   },
 };
 
-export const TextStory: Story = {
-  name: "Text filled",
+export const InputTextStory: Story = {
+  name: "Filled",
   render,
 };
 
-export const TextDisabledStory: Story = {
-  name: "Text disabled",
+export const InputTextRequiredStory: Story = {
+  name: "Required",
   render,
   args: {
-    label: "Input disabled",
+    required: true,
+  },
+};
+
+export const InputTextDisabledStory: Story = {
+  name: "Disabled",
+  render,
+  args: {
+    label: "InputText disabled",
     description: "Description",
     unit: <div>test</div>,
     disabled: true,
@@ -61,16 +69,16 @@ export const TextDisabledStory: Story = {
   },
 };
 
-export const TextWithDescriptionStory: Story = {
-  name: "Text with description",
+export const InputTextWithDescriptionStory: Story = {
+  name: "With description",
   render,
   args: {
     description: "Description",
   },
 };
 
-export const TextOnErrorStory: Story = {
-  name: "Text on error",
+export const InputTextOnErrorStory: Story = {
+  name: "On error",
   render,
   args: {
     classModifier: "error",
@@ -85,8 +93,8 @@ export const TextOnErrorStory: Story = {
   },
 };
 
-export const TextOnSuccessStory: Story = {
-  name: "Text on success",
+export const InputTextOnSuccessStory: Story = {
+  name: "On success",
   render,
   args: {
     description: "Description",
@@ -94,32 +102,32 @@ export const TextOnSuccessStory: Story = {
   },
 };
 
-export const TextWithButton: Story = {
-  name: "Text with button",
+export const InputTextWithButton: Story = {
+  name: "With button",
   render,
   args: {
     buttonLabel: "En savoir plus",
   },
 };
 
-export const TextWithUnit: Story = {
-  name: "Text with unit",
+export const InputTextWithUnit: Story = {
+  name: "With unit",
   render,
   args: {
     unit: <div>test</div>,
   },
 };
 
-export const TextWithSideButton: Story = {
-  name: "Text with side button",
+export const InputTextWithSideButton: Story = {
+  name: "With side button",
   render,
   args: {
     sideButtonLabel: "Modifier",
   },
 };
 
-export const TextWithSideButtonAndDescription: Story = {
-  name: "Text with side button and description",
+export const InputTextWithSideButtonAndDescription: Story = {
+  name: "With side button and description",
   render,
   args: {
     sideButtonLabel: "Modifier",
@@ -127,8 +135,8 @@ export const TextWithSideButtonAndDescription: Story = {
   },
 };
 
-export const TextWithFull: Story = {
-  name: "Text Full",
+export const InputTextWithFull: Story = {
+  name: "Full",
   render,
   args: {
     unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,

@@ -22,7 +22,7 @@ export { Select } from "./Form/Select/SelectLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { Radio } from "./Form/Radio/Radio/RadioLF";
 export { RadioCard } from "./Form/Radio/RadioCard/RadioCardLF";
-export { TextInput } from "./Form/TextInput/TextInputLF";
+export { InputText as TextInput } from "./Form/InputText/InputTextLF";
 export { DebugGrid } from "./Grid/DebugGridLF";
 export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
 export {
