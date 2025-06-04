@@ -1,0 +1,40 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as InputTextStories from "./InputText.stories";
+import { Message } from "@axa-fr/design-system-apollo-react/lf";
+
+<Meta of={InputTextStories} name="InputText" />
+
+# TextInput
+
+<Message title="Deprecated" variant="warning">
+  This component will be renamed to InputText in next version.
+</Message>
+
+To use the TextInput import it like that:
+
+```tsx
+import { TextInput } from "@axa-fr/design-system-apollo-react/lf";
+// or
+import { TextInput } from "@axa-fr/design-system-look-and-feel-react";
+
+const MyComponent = () => (
+  <>
+    <TextInput
+      value="John Doe"
+      label="Label"
+      placeholder="Placeholder"
+      helper="Informations complémentaires"
+      name="name"
+      id="nameid"
+      required
+      buttonLabel="my btn"
+    />
+  </>
+);
+```
+
+## Placeholder
+
+<Canvas of={InputTextStories.InputTextPlaceholderStory}></Canvas>
+
+<Controls of={InputTextStories.InputTextPlaceholderStory} />

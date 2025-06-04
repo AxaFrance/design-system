@@ -10,7 +10,7 @@ import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
-type TextInputProps = ComponentPropsWithRef<"input"> & {
+type InputTextProps = ComponentPropsWithRef<"input"> & {
   unit?: React.ReactNode;
   classModifier?: string;
   helper?: string;
@@ -23,7 +23,7 @@ type TextInputProps = ComponentPropsWithRef<"input"> & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+const InputText = forwardRef<HTMLInputElement, InputTextProps>(
   (
     {
       unit,
@@ -104,6 +104,6 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   },
 );
 
-TextInput.displayName = "TextInput";
+InputText.displayName = "InputText";
 
-export { TextInput };
+export { InputText };

@@ -20,7 +20,7 @@ export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioCard } from "./Form/Radio";
 export { Select } from "./Form/Select/Select";
-export { TextInput } from "./Form/Text/Text";
+export { TextInput } from "./Form/InputText/InputText";
 export { TextArea } from "./Form/TextArea/TextArea";
 export { InputDate } from "./Form/InputDate/InputDate";
 export { DebugGrid } from "./Grid/DebugGrid";

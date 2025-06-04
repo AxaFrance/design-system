@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { TextInput } from "../TextInputLF";
+import { InputText } from "../InputTextLF";
 
-describe("<TextInput />", () => {
+describe("<InputText />", () => {
   describe("render", () => {
     it("renders correctly label only", () => {
-      render(<TextInput label="foo" />);
+      render(<InputText label="foo" />);
 
       const textinput = screen.getByLabelText("foo");
       expect(textinput).toBeInTheDocument();
@@ -13,7 +13,7 @@ describe("<TextInput />", () => {
 
     it("renders correctly full", () => {
       render(
-        <TextInput
+        <InputText
           id="id"
           label="foo"
           name="name"
@@ -47,8 +47,8 @@ describe("<TextInput />", () => {
   });
 
   describe("A11Y", () => {
-    it("shouldn't have an accessibility violation <TextInput />", async () => {
-      const { container } = render(<TextInput label="foo" />);
+    it("shouldn't have an accessibility violation <InputText />", async () => {
+      const { container } = render(<InputText label="foo" />);
 
       expect(await axe(container)).toHaveNoViolations();
     });
