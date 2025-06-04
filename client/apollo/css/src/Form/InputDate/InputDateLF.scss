@@ -1,0 +1,36 @@
+@use "../../common/breakpoints" as breakpoints;
+
+@use "./InputDateCommon";
+
+.af-form {
+  &__input-helper {
+    --input-date-helper-color: var(--color-gray-700);
+  }
+
+  &__input-date {
+    --input-date-border-color: var(--color-gray-700);
+    --input-date-border-radius: var(--default-border-radius);
+    --input-date-bg-color: var(--color-white);
+    --input-date-color: var(--color-gray-900);
+    --input-date-placeholder-color-filled: var(--color-gray-900);
+
+    &:is(:hover, :focus, :active) {
+      --input-date-border-color: var(--color-axa);
+    }
+
+    &[class*="--error"] {
+      --input-date-border-color: var(--color-red-700);
+    }
+
+    &:disabled,
+    &:disabled:is(:hover, :focus, :active) {
+      --input-date-border-color: var(--color-gray-400);
+      --input-date-color: var(--color-gray-500);
+      --input-date-bg-color: var(--color-gray-200);
+
+      + .af-form__input-helper {
+        --input-date-helper-color: var(--color-gray-500);
+      }
+    }
+  }
+}

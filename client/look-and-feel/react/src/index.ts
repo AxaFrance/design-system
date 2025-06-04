@@ -22,7 +22,7 @@ export { Radio, RadioSelect } from "./Form/Radio";
 export { Select } from "./Form/Select/Select";
 export { TextInput } from "./Form/Text/Text";
 export { TextArea } from "./Form/TextArea/TextArea";
-export { DateInput } from "./Form/Date/Date";
+export { InputDate } from "./Form/InputDate/InputDate";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";
