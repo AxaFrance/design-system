@@ -73,6 +73,15 @@
 
   &-group {
     border: none;
+
+    --radio-card-flex-wrap: var(--radio-card-flex-wrap, nowrap);
+
+    flex-wrap: var(--radio-card-flex-wrap);
+
+    .af-radio-card-label {
+      width: var(--radio-card-width, auto);
+      min-width: var(--radio-card-min-width, auto);
+    }
   }
 
   &-group--vertical {
