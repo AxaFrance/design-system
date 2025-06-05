@@ -15,14 +15,20 @@ export { Divider } from "./Divider/DividerLF";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
 export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
-export { InputDate } from "./Form/InputDate/InputDateLF";
+export {
+  InputDate,
+  InputDate as DateInput,
+} from "./Form/InputDate/InputDateLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { Select } from "./Form/Select/SelectLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { Radio } from "./Form/Radio/Radio/RadioLF";
 export { RadioCard } from "./Form/Radio/RadioCard/RadioCardLF";
-export { InputText as TextInput } from "./Form/InputText/InputTextLF";
+export {
+  InputText,
+  InputText as TextInput,
+} from "./Form/InputText/InputTextLF";
 export { DebugGrid } from "./Grid/DebugGridLF";
 export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
 export {
