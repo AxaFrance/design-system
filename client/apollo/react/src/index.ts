@@ -23,7 +23,6 @@ export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
 export { InputDate } from "./Form/InputDate/InputDateApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
-export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { ItemFile, itemFileStates } from "./Form/ItemFile/ItemFileApollo";
 export { Select } from "./Form/Select/SelectApollo";
 export { TextArea } from "./Form/TextArea/TextAreaApollo";
