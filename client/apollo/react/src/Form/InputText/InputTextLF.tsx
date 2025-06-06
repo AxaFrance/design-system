@@ -1,17 +1,17 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/TextInput/TextInputLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/InputText/InputTextLF.scss";
 import { forwardRef, type ComponentProps } from "react";
 import { ItemLabel } from "../ItemLabel/ItemLabelLF";
 import { ItemMessage } from "../ItemMessage/ItemMessageLF";
-import { TextInput as TextInputCommon } from "./TextInputCommon";
+import { InputText as InputTextCommon } from "./InputTextCommon";
 
-export const TextInput = forwardRef<
+export const InputText = forwardRef<
   HTMLInputElement,
   Omit<
-    ComponentProps<typeof TextInputCommon>,
+    ComponentProps<typeof InputTextCommon>,
     "ItemLabelComponent" | "ItemMessageComponent"
   >
 >((props, ref) => (
-  <TextInputCommon
+  <InputTextCommon
     {...props}
     ref={ref}
     ItemLabelComponent={ItemLabel}
@@ -19,4 +19,4 @@ export const TextInput = forwardRef<
   />
 ));
 
-TextInput.displayName = "TextInput";
+InputText.displayName = "InputText";

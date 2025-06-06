@@ -1,6 +1,6 @@
 @use "../../common/breakpoints" as breakpoints;
 
-@use "./TextInputCommon";
+@use "./InputTextCommon";
 
 .af-form {
   &__input-helper {
@@ -14,6 +14,7 @@
     --input-text-color: var(--color-gray-900);
     --input-text-icon-color: var(--color-gray-900);
     --input-text-placeholder-color: var(--color-gray-700);
+    --input-text-outline-color: var(--color-blue-3);
 
     &:has(> input:not([value=""])) {
       --input-border-color: var(--color-axa);
