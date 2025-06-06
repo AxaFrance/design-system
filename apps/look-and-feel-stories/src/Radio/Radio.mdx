@@ -1,0 +1,21 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as RadioStories from "./Radio.stories";
+
+<Meta of={RadioStories} />
+
+# Radio components
+
+## Radio
+
+### How to use
+
+To use the `Radio`component import it like this:
+
+```tsx
+import { Radio } from "@axa-fr/design-system-look-and-feel-react";
+
+const MyComponent = () => <Radio name="name" value="value" />;
+```
+
+<Canvas of={RadioStories.RadioStory} />
+<Controls of={RadioStories.RadioStory} />

@@ -18,7 +18,7 @@ export { FileUpload } from "./Form/FileUpload";
 export { InputError } from "./Form/InputError";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
-export { Radio, RadioSelect } from "./Form/Radio";
+export { Radio, RadioCard } from "./Form/Radio";
 export { Select } from "./Form/Select/Select";
 export { TextInput } from "./Form/Text/Text";
 export { TextArea } from "./Form/TextArea/TextArea";
