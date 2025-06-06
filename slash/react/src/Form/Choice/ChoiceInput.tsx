@@ -7,14 +7,15 @@ type Props = ComponentProps<typeof Choice> &
   Omit<ComponentProps<typeof LegacyField>, "children">;
 
 const defaultOptions = [
-  { label: "Oui", value: true, id: "radioItemTrue" },
-  { label: "Non", value: false, id: "radioItemFalse" },
+  { label: "Oui", value: true },
+  { label: "Non", value: false },
 ];
 
 const ChoiceInput = forwardRef<HTMLInputElement, Props>(
   (
     {
       id,
+      name,
       messageType,
       message,
       className,
@@ -33,8 +34,10 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
   ) => {
     const errorUseId = useId();
     const newOptions = useOptionsWithId(
-      options.map((o) => ({ ...o, value: `${o.value}` })),
-      id,
+      options.map((o) => ({
+        ...o,
+        value: `${o.value}`,
+      })),
     );
 
     const { inputClassModifier, inputFieldClassModifier } =
@@ -68,6 +71,7 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
         <Choice
           {...otherProps}
           id={id}
+          name={name}
           ref={inputRef}
           classModifier={inputClassModifier}
           options={options ? choiceOptions : undefined}
