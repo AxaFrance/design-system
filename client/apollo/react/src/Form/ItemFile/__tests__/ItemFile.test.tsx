@@ -1,7 +1,7 @@
 import { describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { ItemFile, itemFileStates } from "../ItemFileLF";
+import { ItemFile, itemFileVariants } from "../ItemFileLF";
 
 describe("<ItemFile />", () => {
   test("should render component when loading", () => {
@@ -9,7 +9,7 @@ describe("<ItemFile />", () => {
       <ItemFile
         title="IMG_879687880"
         subTitle="0.12"
-        state={itemFileStates.loading}
+        state={itemFileVariants.loading}
         helper="helper"
       />,
     );
@@ -29,7 +29,7 @@ describe("<ItemFile />", () => {
       <ItemFile
         title="IMG_879687880"
         subTitle="0.12"
-        state={itemFileStates.error}
+        state={itemFileVariants.error}
         errorMessage="Titre du message"
         helper="Helper"
       />,
@@ -45,7 +45,7 @@ describe("<ItemFile />", () => {
       <ItemFile
         title="IMG_879687880"
         subTitle="0.12"
-        state={itemFileStates.success}
+        state={itemFileVariants.success}
         helper="helper"
       />,
     );
@@ -56,12 +56,12 @@ describe("<ItemFile />", () => {
   it("shouldn't have an accessibility violation", async () => {
     const { container } = render(
       <ItemFile
-        state={itemFileStates.success}
+        state={itemFileVariants.success}
         subTitle="0.12"
         title="IMG_879687880"
         helper="helper"
         deleteIconProps={{ "aria-label": "delete" }}
-        visiibilityIconProps={{ "aria-label": "visibility" }}
+        visibilityIconProps={{ "aria-label": "visibility" }}
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
