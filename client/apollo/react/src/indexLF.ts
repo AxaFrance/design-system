@@ -20,6 +20,7 @@ export {
   /** @deprecated Use `InputDate` instead. */
   InputDate as DateInput,
 } from "./Form/InputDate/InputDateLF";
+export { InputPhone } from "./Form/InputPhone/InputPhoneLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { Select } from "./Form/Select/SelectLF";
@@ -33,6 +34,7 @@ export {
 } from "./Form/InputText/InputTextLF";
 export { DebugGrid } from "./Grid/DebugGridLF";
 export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
+export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomLF";
 export {
   Icon,
   iconSizeVariants,
