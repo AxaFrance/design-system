@@ -13,6 +13,7 @@ import {
   Name,
   Paging,
   Popover,
+  SelectBase,
   SliderInput,
   Svg,
   THead,
@@ -255,6 +256,11 @@ const Agent = () => {
         >
           Title with content
         </Title>
+      </article>
+
+      <article>
+        <Title heading="h3">Deprecated stuff</Title>
+        <SelectBase />
       </article>
     </section>
   );
