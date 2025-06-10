@@ -3,12 +3,13 @@ import { forwardRef, type ComponentProps } from "react";
 import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
 import { Select as SelectCommon } from "./SelectCommon";
+import { SelectAtom } from "../SelectAtom/SelectAtomApollo";
 
 export const Select = forwardRef<
   HTMLSelectElement,
   Omit<
     ComponentProps<typeof SelectCommon>,
-    "ItemLabelComponent" | "ItemMessageComponent"
+    "ItemLabelComponent" | "ItemMessageComponent" | "SelectAtomComponent"
   >
 >((props, ref) => (
   <SelectCommon
@@ -16,6 +17,7 @@ export const Select = forwardRef<
     ref={ref}
     ItemLabelComponent={ItemLabel}
     ItemMessageComponent={ItemMessage}
+    SelectAtomComponent={SelectAtom}
   />
 ));
 

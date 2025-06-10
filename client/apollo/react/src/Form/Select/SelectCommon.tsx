@@ -8,6 +8,7 @@ import {
 import classNames from "classnames";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import { SelectAtom } from "../SelectAtom/SelectAtomCommon";
 
 type SelectProps = ComponentPropsWithRef<"select"> & {
   id?: string;
@@ -23,6 +24,7 @@ type SelectProps = ComponentPropsWithRef<"select"> & {
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  SelectAtomComponent: ComponentType<ComponentProps<typeof SelectAtom>>;
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
@@ -43,6 +45,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onSideButtonClick,
       ItemLabelComponent,
       ItemMessageComponent,
+      SelectAtomComponent,
       ...otherProps
     },
     inputRef,
@@ -70,19 +73,15 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           inputId={inputId}
           idLabel={idLabel}
         />
-        <select
+        <SelectAtomComponent
           className={classname}
           {...otherProps}
           ref={inputRef}
           id={inputId}
+          placeholder={placeholder}
         >
-          {Boolean(placeholder) && (
-            <option disabled value="">
-              {placeholder}
-            </option>
-          )}
           {children}
-        </select>
+        </SelectAtomComponent>
         {helper && <span className="af-form__input-helper">{helper}</span>}
 
         <ItemMessageComponent

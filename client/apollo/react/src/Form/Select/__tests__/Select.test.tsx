@@ -4,6 +4,7 @@ import { axe } from "jest-axe";
 import { Select } from "../SelectCommon";
 import { ItemLabel } from "../../ItemLabel/ItemLabelLF";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
+import { SelectAtom } from "../../SelectAtom/SelectAtomLF";
 
 const selectLabel = "Label";
 const errorMessage = "Titre du Message";
@@ -17,6 +18,7 @@ describe("Select", () => {
         label={selectLabel}
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
+        SelectAtomComponent={SelectAtom}
       >
         <option value="fun">For fun</option>
         <option value="work">For work</option>
@@ -43,6 +45,7 @@ describe("Select", () => {
         required
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
+        SelectAtomComponent={SelectAtom}
       />,
     );
 
@@ -59,6 +62,7 @@ describe("Select", () => {
         label={selectLabel}
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
+        SelectAtomComponent={SelectAtom}
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
@@ -71,6 +75,7 @@ describe("Select", () => {
         error={errorMessage}
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
+        SelectAtomComponent={SelectAtom}
       />,
     );
 
@@ -87,6 +92,7 @@ describe("Select", () => {
         disabled
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
+        SelectAtomComponent={SelectAtom}
       >
         <option value="fun">fun</option>
       </Select>,
