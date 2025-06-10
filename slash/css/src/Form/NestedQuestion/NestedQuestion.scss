@@ -4,7 +4,7 @@
   position: relative;
   margin-bottom: 2rem;
   padding: 1.5rem 1.25rem;
-  border: 1px solid var(--border-default-question);
+  border: 1px solid var(--gray40);
   border-radius: 4px;
   background-color: common.$white;
 
@@ -14,8 +14,8 @@
     left: 4.5rem;
     width: 1.3256rem;
     height: 1.3256rem;
-    border-top: 1px solid var(--border-default-question);
-    border-left: 1px solid var(--border-default-question);
+    border-top: 1px solid var(--gray40);
+    border-left: 1px solid var(--gray40);
     background-color: common.$white;
     transform: rotate(45deg);
   }
