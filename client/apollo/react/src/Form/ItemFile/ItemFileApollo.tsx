@@ -7,7 +7,7 @@ import { Icon } from "../../Icon/IconApollo";
 import { ClickIcon } from "../../ClickIcon/ClickIconApollo";
 import { Spinner } from "../../Spinner/SpinnerApollo";
 
-export { itemFileStates } from "./ItemFileCommon";
+export { itemFileVariants } from "./ItemFileCommon";
 
 export const ItemFile = (props: ItemFileProps) => (
   <ItemFileCommon

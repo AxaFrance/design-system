@@ -2,7 +2,7 @@ import {
   ClickIcon,
   Icon,
   ItemFile,
-  itemFileStates,
+  itemFileVariants,
   ItemMessage,
   Spinner,
 } from "@axa-fr/design-system-apollo-react";
@@ -15,7 +15,7 @@ const meta: Meta<typeof ItemFile> = {
   component: ItemFile,
   argTypes: {
     state: {
-      options: Object.values(itemFileStates),
+      options: Object.values(itemFileVariants),
       control: { type: "select" },
     },
   },
