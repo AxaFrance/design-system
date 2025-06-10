@@ -9,6 +9,7 @@ import {
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 
 type InputTextProps = ComponentPropsWithRef<"input"> & {
   unit?: React.ReactNode;
@@ -21,31 +22,30 @@ type InputTextProps = ComponentPropsWithRef<"input"> & {
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  InputTextAtomComponent: ComponentType<ComponentProps<typeof InputTextAtom>>;
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
 const InputText = forwardRef<HTMLInputElement, InputTextProps>(
-  (
-    {
-      unit,
-      className,
-      classModifier = "",
-      helper,
-      error,
-      success,
-      label,
-      description,
-      buttonLabel,
-      onButtonClick,
-      required,
-      sideButtonLabel,
-      onSideButtonClick,
-      ItemLabelComponent,
-      ItemMessageComponent,
-      "aria-errormessage": ariaErrormessage,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
+  ({
+    unit,
+    className,
+    classModifier = "",
+    helper,
+    error,
+    success,
+    label,
+    description,
+    buttonLabel,
+    onButtonClick,
+    required,
+    sideButtonLabel,
+    onSideButtonClick,
+    ItemLabelComponent,
+    ItemMessageComponent,
+    InputTextAtomComponent,
+    "aria-errormessage": ariaErrormessage,
+    ...otherProps
+  }) => {
     const componentClassName = getComponentClassName(
       "af-form__input-text",
       className,
@@ -72,21 +72,16 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           idLabel={idLabel}
         />
 
-        <div className="af-form__input-variant">
-          <input
-            id={inputId}
-            className={componentClassName}
-            type="text"
-            required={required}
-            ref={inputRef}
-            aria-labelledby={idLabel}
-            aria-errormessage={ariaErrormessage ?? idMessage}
-            aria-invalid={Boolean(error || ariaErrormessage)}
-            aria-describedby={idHelp}
-            {...otherProps}
-          />
-          {unit}
-        </div>
+        <InputTextAtomComponent
+          unit={unit}
+          className={componentClassName}
+          error={error}
+          required={required}
+          idMessage={idMessage}
+          idHelp={idHelp}
+          idLabel={idLabel}
+          {...otherProps}
+        />
 
         {helper && (
           <span id={idHelp} className="af-form__input-helper">
