@@ -19,7 +19,7 @@ export { InputError } from "./Form/InputError";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioCard } from "./Form/Radio";
-export { ItemFile, itemFileStates } from "./Form/ItemFile/ItemFile";
+export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFile";
 export { Select } from "./Form/Select/Select";
 export { TextInput, TextInput as InputText } from "./Form/InputText/InputText";
 export { TextArea } from "./Form/TextArea/TextArea";
@@ -30,7 +30,6 @@ export { Footer } from "./Layout/Footer/Footer";
 export { BurgerMenu, Header, NavBar, PreviousLink } from "./Layout/Header";
 export { Link } from "./Link/Link";
 export { List } from "./List";
-export { ClickItem, createClickItemParent } from "./List/ClickItem";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuo";
 export { ContentTabItem, ContentTabList } from "./List/ContentTabList";
 export {
