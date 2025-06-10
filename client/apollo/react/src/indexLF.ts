@@ -17,6 +17,7 @@ export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
 export {
   InputDate,
+  /** @deprecated Use `InputDate` instead. */
   InputDate as DateInput,
 } from "./Form/InputDate/InputDateLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
@@ -27,6 +28,7 @@ export { Radio } from "./Form/Radio/Radio/RadioLF";
 export { RadioCard } from "./Form/Radio/RadioCard/RadioCardLF";
 export {
   InputText,
+  /** @deprecated Use `InputText` instead. */
   InputText as TextInput,
 } from "./Form/InputText/InputTextLF";
 export { DebugGrid } from "./Grid/DebugGridLF";
