@@ -7,7 +7,7 @@ import { ClickIcon } from "../../ClickIcon/ClickIconLF";
 import { Spinner } from "../../Spinner/SpinnerLF";
 import type { ItemFileProps } from "./types";
 
-export { itemFileStates } from "./ItemFileCommon";
+export { itemFileVariants } from "./ItemFileCommon";
 
 export const ItemFile = (props: ItemFileProps) => (
   <ItemFileCommon

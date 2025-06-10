@@ -15,13 +15,13 @@ import { Spinner } from "../../Spinner/SpinnerCommon";
 import type { ClickIconProps } from "../../ClickIcon/ClickIconCommon";
 import type { IconProps } from "../../Icon/IconCommon";
 
-export const itemFileStates = {
+export const itemFileVariants = {
   success: "success",
   error: "error",
   loading: "loading",
 } as const;
 
-type ItemFileState = keyof typeof itemFileStates;
+type ItemFileState = keyof typeof itemFileVariants;
 
 export type ItemFileCommonProps = {
   state: ItemFileState;
@@ -35,7 +35,7 @@ export type ItemFileCommonProps = {
   ItemClickIconComponent: ComponentType<ClickIconProps>;
   ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
   deleteIconProps?: Partial<ClickIconProps>;
-  visiibilityIconProps?: Partial<ClickIconProps>;
+  visibilityIconProps?: Partial<ClickIconProps>;
 } & ComponentPropsWithoutRef<"div">;
 
 export const ItemFileCommon = ({
@@ -50,7 +50,7 @@ export const ItemFileCommon = ({
   ItemIconComponent,
   ItemMessageComponent,
   deleteIconProps = {},
-  visiibilityIconProps = {},
+  visibilityIconProps = {},
 }: ItemFileCommonProps) => {
   const idHelp = useId();
   const idMessage = useId();
@@ -95,7 +95,7 @@ export const ItemFileCommon = ({
             <>
               <ItemClickIconComponent
                 src={visibilityIcon}
-                {...visiibilityIconProps}
+                {...visibilityIconProps}
               />
               <ItemClickIconComponent src={deleteIcon} {...deleteIconProps} />
             </>
