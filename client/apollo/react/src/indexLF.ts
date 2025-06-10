@@ -24,6 +24,7 @@ export {
   /** @deprecated Use `InputDate` instead. */
   InputDate as DateInput,
 } from "./Form/InputDate/InputDateLF";
+export { InputPhone } from "./Form/InputPhone/InputPhoneLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
@@ -36,6 +37,7 @@ export {
 } from "./Form/InputText/InputTextLF";
 export { DebugGrid } from "./Grid/DebugGridLF";
 export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
+export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomLF";
 export {
   Icon,
   iconSizeVariants,
@@ -67,4 +69,5 @@ export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
+export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { Dropdown } from "./Form/Dropdown/DropdownLF";
