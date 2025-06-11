@@ -77,8 +77,6 @@ next to the title.
 
 ```jsx
 <Title
-  classModifier="af-title"
-  className=""
   contentLeft={<Button>Left button</Button>}
   contentRight={<Link href="/">Click me</Link>}
 >
@@ -236,7 +234,5 @@ Here are the deprecations in this release:
 - The `options` prop of the `Select` component is now deprecated. Use the
   `children` prop instead to pass options.
 - `SelectBase` is now deprecated. Use the `Select` component instead.
-- `SelectDefautWithOptions` is now deprecated. Use the `SelectDefault` component
-  with `children` instead.
 - `Table.Header` is now deprecated. Use `Table.THead` instead.
 - `Table.Body` is now deprecated. Use `Table.TBody` instead.
