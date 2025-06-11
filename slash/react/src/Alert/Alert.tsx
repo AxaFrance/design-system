@@ -15,7 +15,7 @@ export type AlertCoreComponentProps = {
   onClose?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   classModifier?: "error" | "danger" | "info" | "success";
-  ariaLabel?: string;
+  closeButtonAriaLabel?: string;
 };
 
 export const Alert = ({
@@ -25,7 +25,7 @@ export const Alert = ({
   title,
   children,
   classModifier = "error",
-  ariaLabel = "close",
+  closeButtonAriaLabel = "close",
 }: PropsWithChildren<AlertCoreComponentProps>) => {
   const componentClassName = getComponentClassName(
     className,
@@ -50,7 +50,7 @@ export const Alert = ({
             type="button"
             className="af-alert__title-icon-close"
             onClick={onClose}
-            aria-label={ariaLabel}
+            aria-label={closeButtonAriaLabel}
           >
             <i className="glyphicon glyphicon-close" />
           </button>

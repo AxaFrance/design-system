@@ -16,6 +16,7 @@ export default meta;
 export const Default: StoryObj<typeof Alert> = {
   args: {
     title: "Attention: Ceci est une alerte",
+    closeButtonAriaLabel: "close",
   },
   argTypes: {
     classModifier: {
@@ -30,6 +31,7 @@ export const DangerAlert: StoryObj<typeof Alert> = {
     classModifier: "danger",
     title: "Attention: des informations sont manquantes",
     icon: "glyphicon glyphicon-alert",
+    closeButtonAriaLabel: "close",
   },
 };
 
@@ -38,6 +40,7 @@ export const InfoAlert: StoryObj<typeof Alert> = {
     classModifier: "info",
     title: "Attention: des informations sont manquantes",
     icon: "glyphicon glyphicon-info-sign",
+    closeButtonAriaLabel: "close",
   },
 };
 
@@ -46,7 +49,7 @@ export const SuccessAlert: StoryObj<typeof Alert> = {
     classModifier: "success",
     title: "Succès: votre demande a bien été enregistrée.",
     icon: "glyphicon glyphicon-ok",
-    ariaLabel: "close alert",
+    closeButtonAriaLabel: "close alert",
   },
 };
 
@@ -55,6 +58,7 @@ export const ErrorAlert: StoryObj<typeof Alert> = {
     classModifier: "error",
     title: "Erreur dans les champs suivants :",
     icon: "glyphicon glyphicon-minus-sign",
+    closeButtonAriaLabel: "close",
     children: (
       <ul>
         <li>Le nom est obligatoire</li>
