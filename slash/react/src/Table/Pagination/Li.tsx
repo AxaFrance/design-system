@@ -24,10 +24,11 @@ const Li = ({ isVisible, active, value, ...props }: LiProps) => {
   return (
     <li
       className={classNames("af-pager__item", {
-        "af-pager__item--active": active,
+        "af-pager__item": active,
       })}
     >
       <a
+        aria-current={active ? "step" : undefined}
         className="af-pager__item-link"
         href="/#"
         onClick={onClick({ ...props, value })}
