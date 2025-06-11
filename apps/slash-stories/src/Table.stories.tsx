@@ -84,6 +84,7 @@ export const WithPagination: StoryObj<typeof Paging> = {
     numberPages: 10,
     mode: "default",
     items: [5, 10, 50, 100],
+    selectAriaLabel: "Select",
   },
   argTypes: {
     currentPage: { control: { type: "number" } },
