@@ -29,6 +29,24 @@ Example usage:
 />
 ```
 
+When using a custom link component, eslint might screen this error : 
+
+> The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.mdeslintjsx-a11y/anchor-is-valid
+
+If you want to disable this error, you can add this to your eslint configuration:
+
+```js
+rules: {
+  'jsx-a11y/anchor-is-valid': [
+    'error',
+    {
+      components: ['Link'],
+      specialLink: ['render'],
+    },
+  ],
+},
+```
+
 ### CSS Tokens
 
 The design-system's colors are now available as CSS tokens. This allows for
