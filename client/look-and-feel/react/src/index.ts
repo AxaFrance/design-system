@@ -58,7 +58,14 @@ export {
   ModalCoreBody,
   ModalCoreFooter,
   ModalCoreHeader,
-} from "./Modal/Modal";
+} from "./Modal";
+export type {
+  ModalCoreBodyProps,
+  ModalCoreFooterProps,
+  ModalCoreHeaderProps,
+  ModalCoreProps,
+  ModalProps,
+} from "./Modal";
 export { Pagination } from "./Pagination/Pagination";
 export { Skeleton } from "./Skeleton/Skeleton";
 export { SkeletonList } from "./SkeletonList/SkeletonList";
