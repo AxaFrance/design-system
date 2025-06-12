@@ -12,6 +12,7 @@ export type ModalCoreProps = React.DetailedHTMLProps<
   ref?: React.Ref<HTMLDialogElement>;
 };
 
+/** @deprecated Use ModalCore from \@axa-fr/design-system-apollo-react/lf instead */
 const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
   (
     { className, title = "", onOutsideTap, children, ...props }: ModalCoreProps,
