@@ -14,6 +14,7 @@ export type ModalCoreHeaderProps = HTMLAttributes<HTMLDivElement> & {
   closeButtonAriaLabel?: string;
 };
 
+/** @deprecated Use ModalCoreHeader from \@axa-fr/design-system-apollo-react/lf instead */
 export const ModalCoreHeader = ({
   className,
   title,
