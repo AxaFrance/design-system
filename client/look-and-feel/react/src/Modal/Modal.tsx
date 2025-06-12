@@ -17,6 +17,7 @@ export type ModalProps = Omit<ModalCoreProps, "onOutsideTap" | "title"> &
     cancelDisabled?: boolean;
   };
 
+/** @deprecated Use Modal from \@axa-fr/design-system-apollo-react/lf instead */
 const Modal = forwardRef<HTMLDialogElement, ModalProps>(
   (
     {
