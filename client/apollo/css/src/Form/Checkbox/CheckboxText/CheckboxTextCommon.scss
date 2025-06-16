@@ -1,13 +1,26 @@
 @use "../../../common/breakpoints" as breakpoints;
 
 .af-checkbox-text {
-  & label {
+  display: grid;
+  grid-template-areas:
+    "icon label"
+    "icon message";
+  grid-template-columns: min-content 1fr;
+  column-gap: calc(8 / var(--font-size-base) * 1rem);
+
+  &:has(> .af-item-message) {
+    row-gap: calc(8 / var(--font-size-base) * 1rem);
+  }
+
+  label {
     display: flex;
     margin: 0;
+    grid-area: label;
     align-items: flex-start;
-    gap: calc(12 / var(--font-size-base) * 1rem);
+    gap: calc(8 / var(--font-size-base) * 1rem);
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 400;
+    line-height: 1.25;
     color: var(--checkbox-text-label-color);
     cursor: pointer;
 
@@ -16,7 +29,12 @@
     }
   }
 
-  & .af-checkbox-text__error {
-    margin-left: calc(36 / var(--font-size-base) * 1rem);
+  .af-checkbox {
+    width: fit-content;
+    grid-area: icon;
+  }
+
+  .af-item-message {
+    grid-area: message;
   }
 }

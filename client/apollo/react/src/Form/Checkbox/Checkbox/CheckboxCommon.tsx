@@ -12,6 +12,7 @@ export type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">;
 
 export type CheckboxCommonProps = CheckboxProps & CheckboxIcon;
+
 const CheckboxCommon = ({
   errorId,
   checkBoxIcon,
@@ -26,9 +27,7 @@ const CheckboxCommon = ({
       aria-invalid={hasError}
       disabled={false}
     />
-    <span className="af-checkbox__icons">
-      <Svg src={checkBoxIcon} className="af-checkbox__checked" aria-hidden />
-    </span>
+    <Svg src={checkBoxIcon} aria-hidden />
   </span>
 );
 
