@@ -7,20 +7,20 @@
     gap: 1rem;
   }
 
-  &__label-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: calc(4 / var(--font-size-base) * 1rem);
-  }
-
   &__legend {
+    display: grid;
+    margin-block-end: calc(4 / var(--font-size-base) * 1rem);
+    row-gap: calc(4 / var(--font-size-base) * 1rem);
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 600;
     color: var(--card-checkbox-color);
+
+    & > p {
+      margin: 0;
+    }
   }
 
   &__description {
-    margin: 0;
     font-size: calc(16 / var(--font-size-base) * 1rem);
     font-weight: 400;
     line-height: calc(16 / var(--font-size-base) * 1rem);
