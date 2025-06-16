@@ -3,7 +3,7 @@ import "@fontsource/source-sans-pro";
 
 export { Accordion } from "./Accordion";
 export { AccordionCore } from "./AccordionCore";
-export { Alert } from "./Alert/Alert";
+export { /** @deprecated Use `Message` instead. */ Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
 export {
   Message,
@@ -13,16 +13,28 @@ export {
 export { Button, buttonVariants, type ButtonVariants } from "./Button/Button";
 export { Card } from "./Card";
 export { Divider } from "./Divider/Divider";
-export { Checkbox, CheckboxText, CheckboxCard } from "./Form/Checkbox";
+export {
+  Checkbox,
+  CheckboxText,
+  CardCheckbox,
+  /** @deprecated Use `CardCheckbox` instead. */
+  CardCheckbox as CheckboxCard,
+} from "./Form/Checkbox";
 export { FileUpload } from "./Form/FileUpload";
 export { InputError } from "./Form/InputError";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioCard } from "./Form/Radio";
 export { Select } from "./Form/Select/Select";
-export { TextInput, TextInput as InputText } from "./Form/InputText/InputText";
+export {
+  TextInput,
+  /** @deprecated Use `TextInput` instead. */ TextInput as InputText,
+} from "./Form/InputText/InputText";
 export { TextArea } from "./Form/TextArea/TextArea";
-export { InputDate, InputDate as DateInput } from "./Form/InputDate/InputDate";
+export {
+  InputDate,
+  /** @deprecated Use `InputDate` instead. */ InputDate as DateInput,
+} from "./Form/InputDate/InputDate";
 export { DebugGrid } from "./Grid/DebugGrid";
 export { IconBg } from "./IconBg";
 export { Footer } from "./Layout/Footer/Footer";

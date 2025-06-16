@@ -1,6 +1,6 @@
 @use "../common/breakpoints.scss" as breakpoints;
 
-.af-checkbox-card__container:has(label [name="debuggrid"]) {
+.af-card-checkbox__container:has(label [name="debuggrid"]) {
   position: fixed;
   z-index: 2;
   bottom: 0;
