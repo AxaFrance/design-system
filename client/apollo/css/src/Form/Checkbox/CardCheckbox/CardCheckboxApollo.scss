@@ -8,6 +8,10 @@
 
   &__legend {
     --card-checkbox-color: var(--neutral-100);
+
+    [aria-hidden] {
+      display: none;
+    }
   }
 
   &__description {
