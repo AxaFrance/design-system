@@ -1,18 +1,26 @@
 .af-checkbox {
-  &__icons {
-    display: flex;
-    min-width: calc(24 / var(--font-size-base) * 1rem);
-    max-width: calc(24 / var(--font-size-base) * 1rem);
-    height: calc(24 / var(--font-size-base) * 1rem);
-    border: solid var(--checkbox-border);
-    border-radius: var(--checkbox-border-radius);
-    align-items: center;
-    gap: calc(12 / var(--font-size-base) * 1rem);
-    background-color: var(--checkbox-background-color);
+  position: relative;
+  display: flex;
+  width: calc(24 / var(--font-size-base) * 1rem);
+  height: calc(24 / var(--font-size-base) * 1rem);
+  border: var(--checkbox-border-width, 1px) solid var(--checkbox-border-color);
+  border-radius: var(--checkbox-border-radius);
+  align-items: center;
+  background-color: var(--checkbox-background-color);
 
-    .af-checkbox__checked {
-      display: none;
-    }
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    fill: var(--checkbox-check-fill);
+  }
+
+  &:hover,
+  &:focus-within,
+  &:has(:checked) {
+    outline: 1px solid var(--checkbox-outline-color);
   }
 
   input[type="checkbox"] {
@@ -21,24 +29,9 @@
     height: calc(24 / var(--font-size-base) * 1rem);
     margin: 0;
     opacity: 0;
-    cursor: pointer;
 
-    &:checked {
-      ~ .af-checkbox__icons {
-        box-shadow: 0 0 0 1px var(--checkbox-box-shadow-color) inset;
-
-        & .af-checkbox__checked {
-          display: block;
-          fill: var(--checkbox-check-fill);
-        }
-      }
-    }
-
-    &:hover {
-      ~ .af-checkbox__icons {
-        border: solid var(--checkbox-border);
-        box-shadow: 0 0 0 1px var(--checkbox-box-shadow-color) inset;
-      }
+    &:checked + svg {
+      display: block;
     }
   }
 }

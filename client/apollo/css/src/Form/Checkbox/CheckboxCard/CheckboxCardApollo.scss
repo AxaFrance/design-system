@@ -56,9 +56,10 @@
     }
 
     .af-checkbox-card-label {
-      --checkbox-card-border: 1px var(--axa-blue-65);
+      --checkbox-card-border-color: var(--axa-blue-65);
       --checkbox-card-border-radius: calc(8 / var(--font-size-base) * 1rem);
       --checkbox-card-align-items: center;
+      --checkbox-card-outline-color: var(--checkbox-card-border-color);
 
       .af-checkbox-card-content .af-checkbox-card-content-description > span {
         &:first-child {
@@ -72,8 +73,7 @@
 
       &[aria-invalid="true"] {
         --checkbox-card-background-color: var(--axa-red-4);
-        --checkbox-card-border: 1px var(--red-alert-100);
-        --checkbox-card-shadow-color: var(--red-alert-100);
+        --checkbox-card-border-color: var(--red-alert-100);
 
         .af-checkbox-card-content-description > span:first-child {
           --checkbox-card-label-text-color: var(--neutral-80);
@@ -81,8 +81,7 @@
       }
 
       &:hover {
-        --checkbox-card-border: 1px var(--axa-blue-100);
-        --checkbox-card-shadow-color: var(--axa-blue-100);
+        --checkbox-card-border-color: var(--axa-blue-100);
         --checkbox-card-background-color: var(--white);
 
         .af-checkbox-card-content-description > span:first-child {
@@ -91,8 +90,7 @@
       }
 
       &:has(input:checked) {
-        --checkbox-card-border: 1px var(--axa-blue-100);
-        --checkbox-card-shadow-color: var(--axa-blue-100);
+        --checkbox-card-border-color: var(--axa-blue-100);
         --checkbox-card-background-color: var(--axa-blue-4);
 
         .af-checkbox-card-content-description > span:first-child {

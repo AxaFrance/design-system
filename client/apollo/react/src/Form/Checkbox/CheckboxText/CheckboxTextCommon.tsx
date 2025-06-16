@@ -1,5 +1,5 @@
 import React, {
-  ReactNode,
+  type ReactNode,
   useId,
   type ComponentProps,
   type ComponentType,
@@ -37,18 +37,18 @@ const CheckboxTextCommon = ({
 
   return (
     <div className="af-checkbox-text">
+      <CheckboxComponent
+        id={inputId}
+        errorId={errorId}
+        hasError={Boolean(errorMessage)}
+        {...inputProps}
+      />
+
       <label key={inputProps.name} htmlFor={inputId}>
-        <CheckboxComponent
-          id={inputId}
-          errorId={errorId}
-          hasError={Boolean(errorMessage)}
-          {...inputProps}
-        />
         <span>{label}</span>
       </label>
-      <div className="af-checkbox-text__error">
-        <ItemMessageComponent message={errorMessage} />
-      </div>
+
+      <ItemMessageComponent message={errorMessage} />
     </div>
   );
 };
