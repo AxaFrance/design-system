@@ -1,6 +1,16 @@
 import { useId } from "react";
-import ReactSelect, { GroupBase, Options, type MultiValue } from "react-select";
-import ReactSelectAsync, { AsyncProps } from "react-select/async";
+import Select, {
+  type GroupBase,
+  type Options,
+  type SingleValue,
+  type MultiValue,
+} from "react-select";
+import AsyncSelect, { AsyncProps } from "react-select/async";
+import { ValueContainer } from "./ValueContainer";
+import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.scss";
+import { formatOptionLabel } from "./FormatOptionLabel";
+import { useMultiSelectStyle } from "./useMultiSelectStyle";
+import { noOptionsMessage } from "./NoOptionsMessage";
 
 type Option = { value: string; label: string };
 type Props = Omit<
@@ -11,6 +21,8 @@ type Props = Omit<
   values?: string[] | null;
   value?: string;
   disabled?: boolean;
+  selectedLimit?: number;
+  selectedLimitLabel?: string;
 };
 type onChangeProps = {
   id: string;
@@ -28,16 +40,22 @@ const MultiSelect = ({
   value,
   onChange,
   onBlur,
-  placeholder = "Select",
+  placeholder = "- Sélectionner -",
   className = "react-select",
   disabled,
   loadingMessage = () => "Chargement...",
+  isMulti,
+  selectedLimit,
+  selectedLimitLabel,
   ...otherProps
 }: Props) => {
+  const { styles } = useMultiSelectStyle();
   const generatedId = useId();
   const inputId = id || generatedId;
 
-  const handleOnChange = (newValue: MultiValue<Option> | Option) => {
+  const handleOnChange = (
+    newValue: SingleValue<Option> | MultiValue<Option>,
+  ) => {
     if (!onChange) return;
 
     let onChangeProps: onChangeProps = {
@@ -71,6 +89,13 @@ const MultiSelect = ({
     options,
     valueKey: "value",
     labelKey: "label",
+    styles,
+    isMulti,
+    noOptionsMessage,
+    isClearable: true,
+    hideSelectedOptions: false,
+    components: { ValueContainer },
+    closeMenuOnSelect: !values,
     ...otherProps,
   };
 
@@ -79,16 +104,23 @@ const MultiSelect = ({
       values.includes(opt.value),
     );
 
+    const commonValuesProps = {
+      ...commonProps,
+      value: newValues,
+      formatOptionLabel,
+      selectedLimit,
+      selectedLimitLabel,
+    };
+
     return loadOptions ? (
-      <ReactSelectAsync
-        {...commonProps}
-        isMulti
-        value={newValues}
+      <AsyncSelect
+        {...commonValuesProps}
         loadOptions={loadOptions}
         loadingMessage={loadingMessage}
+        isMulti
       />
     ) : (
-      <ReactSelect {...commonProps} isMulti value={newValues} />
+      <Select {...commonValuesProps} isMulti />
     );
   }
   const newValue = (options as Options<Option>).find((o) => o.value === value);
@@ -100,14 +132,14 @@ const MultiSelect = ({
   };
 
   return loadOptions ? (
-    <ReactSelectAsync
+    <AsyncSelect
       {...commonValueProps}
       loadOptions={loadOptions}
       loadingMessage={loadingMessage}
     />
   ) : (
-    <ReactSelect {...commonValueProps} />
+    <Select {...commonValueProps} />
   );
 };
 
-export { MultiSelect };
+export { MultiSelect, type Option };
