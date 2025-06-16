@@ -1,6 +1,6 @@
 @use "../../../common/breakpoints" as breakpoints;
 
-.af-checkbox-card {
+.af-card-checkbox {
   &__container {
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@
   &__legend {
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 600;
-    color: var(--checkbox-card-color);
+    color: var(--card-checkbox-color);
   }
 
   &__description {
@@ -24,7 +24,7 @@
     font-size: calc(16 / var(--font-size-base) * 1rem);
     font-weight: 400;
     line-height: calc(16 / var(--font-size-base) * 1rem);
-    color: var(--checkbox-card-color);
+    color: var(--card-checkbox-color);
 
     @media (width > #{breakpoints.$breakpoint-sm}) {
       font-size: calc(18 / var(--font-size-base) * 1rem);
@@ -44,25 +44,25 @@
     padding: 0;
     align-items: stretch;
     gap: 1rem;
-    font-family: var(--checkbox-card-font-family);
+    font-family: var(--card-checkbox-font-family);
     font-style: normal;
     font-weight: 400;
     line-height: calc(20 / var(--font-size-base) * 1rem);
     list-style: none;
 
     &--horizontal {
-      flex-direction: var(--checkbox-card-flex-direction);
+      flex-direction: var(--card-checkbox-flex-direction);
 
-      .af-checkbox-card-label {
-        flex-direction: var(--checkbox-card-flex-direction);
-        align-items: var(--checkbox-card-align-items);
+      .af-card-checkbox-label {
+        flex-direction: var(--card-checkbox-flex-direction);
+        align-items: var(--card-checkbox-align-items);
 
-        .af-checkbox-card-content {
-          flex-direction: var(--checkbox-card-flex-direction);
+        .af-card-checkbox-content {
+          flex-direction: var(--card-checkbox-flex-direction);
 
-          .af-checkbox-card-content-description {
-            flex-direction: var(--checkbox-card-flex-direction);
-            align-items: var(--checkbox-card-align-item);
+          .af-card-checkbox-content-description {
+            flex-direction: var(--card-checkbox-flex-direction);
+            align-items: var(--card-checkbox-align-item);
             text-align: left;
           }
         }
@@ -70,49 +70,49 @@
     }
 
     &--vertical {
-      flex-direction: var(--checkbox-card-flex-direction);
+      flex-direction: var(--card-checkbox-flex-direction);
 
       > * {
         flex-basis: 0;
         flex-grow: 1;
       }
 
-      .af-checkbox-card-label {
+      .af-card-checkbox-label {
         height: 100%;
-        flex-direction: var(--checkbox-card-flex-direction);
-        align-items: var(--checkbox-card-align-items);
-        justify-content: var(--checkbox-card-justify-content);
+        flex-direction: var(--card-checkbox-flex-direction);
+        align-items: var(--card-checkbox-align-items);
+        justify-content: var(--card-checkbox-justify-content);
 
-        .af-checkbox-card-content {
+        .af-card-checkbox-content {
           width: 100%;
           flex: 1;
-          flex-direction: var(--checkbox-card-flex-direction);
+          flex-direction: var(--card-checkbox-flex-direction);
 
-          .af-checkbox-card-content-description {
-            flex-direction: var(--checkbox-card-flex-direction);
-            align-items: var(--checkbox-card-align-item);
+          .af-card-checkbox-content-description {
+            flex-direction: var(--card-checkbox-flex-direction);
+            align-items: var(--card-checkbox-align-item);
             text-align: center;
           }
         }
       }
     }
 
-    .af-checkbox-card-label {
+    .af-card-checkbox-label {
       display: flex;
       padding: 1rem;
-      border: 1px solid var(--checkbox-card-border-color);
-      border-radius: var(--checkbox-card-border-radius);
+      border: 1px solid var(--card-checkbox-border-color);
+      border-radius: var(--card-checkbox-border-radius);
       flex: 1;
       align-self: stretch;
       gap: calc(12 / var(--font-size-base) * 1rem);
       cursor: pointer;
 
-      .af-checkbox-card-content {
+      .af-card-checkbox-content {
         display: flex;
         align-items: center;
         gap: calc(4 / var(--font-size-base) * 1rem);
 
-        .af-checkbox-card-content-description {
+        .af-card-checkbox-content-description {
           display: flex;
           justify-content: center;
           font-size: 1rem;
@@ -121,7 +121,7 @@
           & > span:first-child {
             font-size: calc(18 / var(--font-size-base) * 1rem);
             font-weight: 400;
-            color: var(--checkbox-card-label-text-color);
+            color: var(--card-checkbox-label-text-color);
 
             @media (width < #{breakpoints.$breakpoint-sm}) {
               font-size: calc(16 / var(--font-size-base) * 1rem);
@@ -132,7 +132,7 @@
           & > span:not(:first-child) {
             font-size: calc(16 / var(--font-size-base) * 1rem);
             font-weight: 400;
-            color: var(--checkbox-card-label-text-color);
+            color: var(--card-checkbox-label-text-color);
 
             @media (width < #{breakpoints.$breakpoint-sm}) {
               font-size: calc(14 / var(--font-size-base) * 1rem);
@@ -147,11 +147,11 @@
       &:focus-within,
       &:has(input:checked),
       [aria-invalid="true"] {
-        outline: 1px solid var(--checkbox-card-outline-color);
+        outline: 1px solid var(--card-checkbox-outline-color);
       }
 
       &:has(input:checked) {
-        .af-checkbox-card-content-description > span:first-child {
+        .af-card-checkbox-content-description > span:first-child {
           font-weight: 600;
         }
       }
