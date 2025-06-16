@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
-import { CheckboxCardItem } from "../CheckboxCardItem";
+import { CardCheckboxItem } from "../CardCheckboxItem";
 
 const CheckboxComponentMock = vi.fn((props) => (
   <input type="checkbox" {...props} />
@@ -15,10 +15,10 @@ vi.mock("react", async () => {
   };
 });
 
-describe("CheckboxCardItem", () => {
+describe("CardCheckboxItem", () => {
   it("renders the label and description", () => {
     render(
-      <CheckboxCardItem
+      <CardCheckboxItem
         CheckboxComponent={CheckboxComponentMock}
         IconComponent={IconComponentMock}
         id="test-checkbox"
@@ -54,7 +54,7 @@ describe("CheckboxCardItem", () => {
 
   it("generates an id when no one is given", () => {
     render(
-      <CheckboxCardItem
+      <CardCheckboxItem
         CheckboxComponent={CheckboxComponentMock}
         IconComponent={IconComponentMock}
         label="Test Label"

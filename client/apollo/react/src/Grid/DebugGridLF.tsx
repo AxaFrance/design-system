@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.scss";
 import { useState } from "react";
-import { CheckboxCard } from "../Form/Checkbox/CheckboxCard/CheckboxCardLF";
+import { CardCheckbox } from "../Form/Checkbox/CardCheckbox/CardCheckboxLF";
 import { DebugGridCommon } from "./DebugGridCommon";
 
 export const DebugGrid = ({
@@ -13,9 +13,10 @@ export const DebugGrid = ({
   const [checked, setChecked] = useState(isCheckedByDefault);
 
   const handleChecked = () => setChecked(!checked);
+
   return (
     <>
-      <CheckboxCard
+      <CardCheckbox
         type="horizontal"
         options={[
           {

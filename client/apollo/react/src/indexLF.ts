@@ -13,7 +13,11 @@ export { ClickIcon } from "./ClickIcon/ClickIconLF";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
 export { Divider } from "./Divider/DividerLF";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
-export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardLF";
+export {
+  CardCheckbox,
+  /** @deprecated Use `CardCheckbox` instead. */
+  CardCheckbox as CheckboxCard,
+} from "./Form/Checkbox/CardCheckbox/CardCheckboxLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
 export {
   InputDate,

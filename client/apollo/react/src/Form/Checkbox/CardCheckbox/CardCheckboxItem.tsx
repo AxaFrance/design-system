@@ -1,7 +1,7 @@
 import { useId, type ReactNode } from "react";
 import type { CheckboxComponent, IconComponent } from "./types";
 
-export type TCheckboxCardItem = {
+export type TCardCheckboxItem = {
   label: ReactNode;
   subtitle?: ReactNode;
   description?: ReactNode;
@@ -9,14 +9,14 @@ export type TCheckboxCardItem = {
   icon?: string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled" | "size">;
 
-type CheckboxCardItemProps = {
+type CardCheckboxItemProps = {
   size: "M" | "L";
   errorId: string;
-} & TCheckboxCardItem &
+} & TCardCheckboxItem &
   CheckboxComponent &
   IconComponent;
 
-export const CheckboxCardItem = ({
+export const CardCheckboxItem = ({
   CheckboxComponent,
   IconComponent,
   id,
@@ -28,14 +28,14 @@ export const CheckboxCardItem = ({
   hasError,
   size,
   ...inputProps
-}: CheckboxCardItemProps) => {
+}: CardCheckboxItemProps) => {
   let inputId = useId();
   inputId = id ?? inputId;
 
   return (
     <label
       htmlFor={inputId}
-      className="af-checkbox-card-label"
+      className="af-card-checkbox-label"
       aria-invalid={hasError}
     >
       <CheckboxComponent
@@ -44,9 +44,9 @@ export const CheckboxCardItem = ({
         hasError={hasError}
         {...inputProps}
       />
-      <div className="af-checkbox-card-content">
+      <div className="af-card-checkbox-content">
         {icon && <IconComponent src={icon} size={size} />}
-        <div className="af-checkbox-card-content-description">
+        <div className="af-card-checkbox-content-description">
           <span>{label}</span>
           {description && <span>{description}</span>}
           {subtitle && <span>{subtitle}</span>}

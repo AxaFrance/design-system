@@ -1,20 +1,20 @@
-import { CheckboxCard } from "@axa-fr/design-system-look-and-feel-react";
+import { CardCheckbox } from "@axa-fr/design-system-apollo-react";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
 const meta: Meta = {
-  title: "Components/Form/Checkbox/CheckboxCard",
-  component: CheckboxCard,
+  title: "Components/Form/Checkbox/CardCheckbox",
+  component: CardCheckbox,
   argTypes: {},
 };
 
 export default meta;
 
-export const CheckboxCardStory: StoryObj<ComponentProps<typeof CheckboxCard>> =
+export const CardCheckboxStory: StoryObj<ComponentProps<typeof CardCheckbox>> =
   {
-    name: "CheckboxCard",
-    render: ({ ...args }) => <CheckboxCard {...args} />,
+    name: "CardCheckbox",
+    render: ({ ...args }) => <CardCheckbox {...args} />,
     args: {
       type: "vertical",
       isRequired: true,
@@ -56,11 +56,11 @@ export const CheckboxCardStory: StoryObj<ComponentProps<typeof CheckboxCard>> =
     },
   };
 
-export const CheckboxCardWithLabel: StoryObj<
-  ComponentProps<typeof CheckboxCard>
+export const CheckboxSelectWithLabel: StoryObj<
+  ComponentProps<typeof CardCheckbox>
 > = {
-  name: "CheckboxCardWithLabel",
-  render: ({ ...args }) => <CheckboxCard {...args} />,
+  name: "CardCheckboxWithLabel",
+  render: ({ ...args }) => <CardCheckbox {...args} />,
   args: {
     type: "vertical",
     labelGroup: "Quelle ville ?",

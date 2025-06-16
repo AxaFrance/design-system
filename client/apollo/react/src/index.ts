@@ -18,7 +18,11 @@ export { ClickIcon } from "./ClickIcon/ClickIconApollo";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";
 export { Divider } from "./Divider/DividerApollo";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
-export { CheckboxCard } from "./Form/Checkbox/CheckboxCard/CheckboxCardApollo";
+export {
+  CardCheckbox,
+  /** @deprecated Use `CardCheckbox` instead. */
+  CardCheckbox as CheckboxCard,
+} from "./Form/Checkbox/CardCheckbox/CardCheckboxApollo";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
 export { InputDate } from "./Form/InputDate/InputDateApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";

@@ -8,26 +8,26 @@ import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
-import { CheckboxCardItem, type TCheckboxCardItem } from "./CheckboxCardItem";
+import { CardCheckboxItem, type TCardCheckboxItem } from "./CardCheckboxItem";
 import type { CheckboxComponent, IconComponent } from "./types";
 
-export type CheckboxCardProps = ComponentPropsWithRef<"input"> & {
+export type CardCheckboxProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
   isRequired?: boolean;
-  options: TCheckboxCardItem[];
+  options: TCardCheckboxItem[];
   onChange?: React.ChangeEventHandler;
   error?: string;
 };
 
-type CheckboxCardCommonProps = CheckboxCardProps &
+type CardCheckboxCommonProps = CardCheckboxProps &
   CheckboxComponent &
   IconComponent & {
     ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   };
 
-export const CheckboxCardCommon = ({
+export const CardCheckboxCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -39,13 +39,13 @@ export const CheckboxCardCommon = ({
   type = "vertical",
   error,
   ItemMessageComponent,
-}: CheckboxCardCommonProps) => {
+}: CardCheckboxCommonProps) => {
   const componentClassName = getComponentClassName(
-    "af-checkbox-card__container",
+    "af-card-checkbox__container",
     className,
   );
   const checkboxGroupClassName = getComponentClassName(
-    "af-checkbox-card-group",
+    "af-card-checkbox-group",
     className,
     type,
   );
@@ -56,24 +56,24 @@ export const CheckboxCardCommon = ({
 
   return (
     <fieldset className={componentClassName}>
-      <div className="af-checkbox-card__label-container">
+      <div className="af-card-checkbox__label-container">
         {labelGroup && (
-          <legend className="af-checkbox-card__legend">
+          <div className="af-card-checkbox__legend">
             {labelGroup}
             {isRequired && <span aria-hidden>&nbsp;*</span>}
             {descriptionGroup && (
-              <p className="af-checkbox-card__description">
+              <p className="af-card-checkbox__description">
                 {descriptionGroup}
               </p>
             )}
-          </legend>
+          </div>
         )}
       </div>
-      <div className="af-checkbox-card__choices">
+      <div className="af-card-checkbox__choices">
         <ul className={checkboxGroupClassName}>
           {options.map(({ hasError, ...inputProps }) => (
             <li key={crypto.randomUUID()}>
-              <CheckboxCardItem
+              <CardCheckboxItem
                 size={size}
                 errorId={errorId}
                 onChange={onChange}
@@ -97,4 +97,4 @@ export const CheckboxCardCommon = ({
   );
 };
 
-CheckboxCardCommon.displayName = "CheckboxCardCommon";
+CardCheckboxCommon.displayName = "CardCheckboxCommon";
