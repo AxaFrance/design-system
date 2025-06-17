@@ -62,7 +62,7 @@
 
     &:active {
       --button-bg-color-default: var(--color-white);
-      --button-text-color-default: var(--color-btn-business-light);
+      --button-text-color-default: var(--color-blue-80);
     }
   }
 
@@ -115,7 +115,7 @@
   }
 
   &--secondary-inverse {
-    --button-bg-color-default: var(--color-axa);
+    --button-bg-color-default: transparent;
     --button-text-color-default: var(--color-white);
     --button-shadow-color: var(--color-white);
 
