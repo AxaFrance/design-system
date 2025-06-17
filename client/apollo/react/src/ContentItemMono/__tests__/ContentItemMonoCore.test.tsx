@@ -24,9 +24,6 @@ describe("ContentItemMonoCore Component", () => {
 
     // Vérifie que le sous-titre secondaire est affiché
     expect(screen.getByText("Secondary Subtitle")).toBeInTheDocument();
-
-    // Vérifie que le composant gauche par défaut est rendu
-    expect(screen.getByText("", { selector: ".stick" })).toBeInTheDocument();
   });
 
   it("renders with a custom size", () => {

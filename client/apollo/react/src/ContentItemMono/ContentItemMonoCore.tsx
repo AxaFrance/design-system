@@ -17,7 +17,7 @@ export const ContentItemMonoCore = ({
 }: ContentItemCoreProps) => {
   return (
     <div data-testid="container" className={`af-content-item-mono ${size}`}>
-      {leftComponent ?? <div className="stick" />}
+      {leftComponent}
       <div className="text-content">
         <span className="title">{title}</span>
         {primarySubtitle && (
