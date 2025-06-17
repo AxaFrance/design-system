@@ -38,21 +38,21 @@
     --dropdown-border-color: var(--axa-blue-100);
     --dropdown-box-shadow: var(--axa-blue-100);
   }
-}
 
-.af-form__dropdown-input--error {
-  --dropdown-border-color: var(--axa-red-100);
-
-  &:focus-visible {
+  &--error {
     --dropdown-border-color: var(--axa-red-100);
-    --dropdown-box-shadow: var(--axa-red-100);
 
-    outline: none;
-  }
+    &:focus-visible {
+      --dropdown-border-color: var(--axa-red-100);
+      --dropdown-box-shadow: var(--axa-red-100);
 
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
-    --dropdown-border-color: var(--axa-red-100);
-    --dropdown-box-shadow: 0 0 0 1px var(--axa-red-100) inset;
+      outline: none;
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      --dropdown-border-color: var(--axa-red-100);
+      --dropdown-box-shadow: 0 0 0 1px var(--axa-red-100) inset;
+    }
   }
 }

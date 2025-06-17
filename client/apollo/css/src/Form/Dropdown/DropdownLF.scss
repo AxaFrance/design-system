@@ -38,21 +38,21 @@
     --dropdown-border-color: var(--color-axa);
     --dropdown-box-shadow: var(--color-axa);
   }
-}
 
-.af-form__dropdown-input--error {
-  --dropdown-border-color: var(--color-red-700);
-
-  &:focus-visible {
+  &--error {
     --dropdown-border-color: var(--color-red-700);
-    --dropdown-box-shadow: var(--color-red-700);
 
-    outline: none;
-  }
+    &:focus-visible {
+      --dropdown-border-color: var(--color-red-700);
+      --dropdown-box-shadow: var(--color-red-700);
 
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
-    --dropdown-border-color: var(--color-red-700);
-    --dropdown-box-shadow: 0 0 0 1px var(--color-red-700) inset;
+      outline: none;
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      --dropdown-border-color: var(--color-red-700);
+      --dropdown-box-shadow: 0 0 0 1px var(--color-red-700) inset;
+    }
   }
 }
