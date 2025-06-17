@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { ContentItemDuo } from "../ContentItemDuoCommon";
-import { Button } from "../../../Button/ButtonCommon";
+import { Button } from "../../../Button/ButtonApollo";
 
 describe("ContentItemDuo", () => {
   const ContentItemDuoLabel = "Label";

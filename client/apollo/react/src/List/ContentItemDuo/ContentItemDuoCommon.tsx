@@ -1,10 +1,5 @@
-import {
-  type ComponentProps,
-  type ComponentType,
-  type ReactNode,
-  useMemo,
-} from "react";
-import { Button } from "../../Button/ButtonCommon";
+import { type ComponentType, type ReactNode, useMemo } from "react";
+import type { ButtonProps } from "../../Button/ButtonCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 
 type ContentItemDuoProps = {
@@ -15,7 +10,7 @@ type ContentItemDuoProps = {
   classModifier?: string;
   buttonText?: string;
   onButtonClick?: () => void;
-  ButtonComponent: ComponentType<ComponentProps<typeof Button>>;
+  ButtonComponent: ComponentType<ButtonProps>;
 };
 
 export const ContentItemDuo = ({
