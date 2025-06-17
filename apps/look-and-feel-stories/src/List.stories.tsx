@@ -26,9 +26,12 @@ export const Default: StoryObj<
   ),
   args: {
     children: [
-      <ContentItemMono key={0} secondaryText="nom.prénom@mail.fr">
-        Prénom NOM
-      </ContentItemMono>,
+      <ContentItemMono
+        key={0}
+        title="Prénom NOM"
+        subtitle="nom.prénom@mail.fr"
+        type="stick"
+      />,
       <ClickItem key={1} icon={<Svg src={publishedWithChangesIcon} />}>
         Modifier le profil
       </ClickItem>,
