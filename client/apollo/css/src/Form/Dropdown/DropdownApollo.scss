@@ -4,12 +4,11 @@
   --dropdown-placeholder-color: var(--neutral-80);
   --dropdown-border-radius: var(--radius-4);
   --dropdown-border-color: var(--axa-blue-65);
-  --dropdown-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
+  --dropdown-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg")
     no-repeat right 1rem center / 1.5rem 1.5rem;
 
   &:open {
-    --dropdown-background: url("@material-symbols/svg-400/outlined/arrow_drop_up.svg")
-      no-repeat right 1rem center / 1.5rem 1.5rem;
+    --dropdown-background-open: url("@material-symbols/svg-400/outlined/keyboard_arrow_up.svg");
   }
 
   option {
@@ -26,7 +25,7 @@
   }
 
   &:disabled {
-    --dropdown-bg-color-disabled: var(--neutral-50);
+    --dropdown-bg-color-disabled: var(--neutral-5);
     --dropdown-border-color: var(--neutral-50);
   }
 
@@ -42,18 +41,18 @@
 }
 
 .af-form__dropdown-input--error {
-  --dropdown-border-color: var(--red-alert-100);
+  --dropdown-border-color: var(--axa-red-100);
 
   &:focus-visible {
-    --dropdown-border-color: var(--red-alert-100);
-    --dropdown-box-shadow: var(--red-alert-100);
+    --dropdown-border-color: var(--axa-red-100);
+    --dropdown-box-shadow: var(--axa-red-100);
 
     outline: none;
   }
 
   &:not(:disabled):hover,
   &:not(:disabled):active {
-    --dropdown-border-color: var(--red-alert-100);
-    --dropdown-box-shadow: 0 0 0 1px var(--red-alert-100) inset;
+    --dropdown-border-color: var(--axa-red-100);
+    --dropdown-box-shadow: 0 0 0 1px var(--axa-red-100) inset;
   }
 }

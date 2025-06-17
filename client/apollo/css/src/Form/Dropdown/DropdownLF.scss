@@ -15,7 +15,7 @@
     --dropdown-option-color: var(--color-black);
 
     &:disabled {
-      --dropdown-option-disabled-color: var(--color-gray-500);
+      --dropdown-option-disabled-color: var(--color-gray-400);
     }
   }
 
@@ -41,18 +41,18 @@
 }
 
 .af-form__dropdown-input--error {
-  --dropdown-border-color: var(--color-red);
+  --dropdown-border-color: var(--color-red-700);
 
   &:focus-visible {
-    --dropdown-border-color: var(--color-red);
-    --dropdown-box-shadow: var(--color-red);
+    --dropdown-border-color: var(--color-red-700);
+    --dropdown-box-shadow: var(--color-red-700);
 
     outline: none;
   }
 
   &:not(:disabled):hover,
   &:not(:disabled):active {
-    --dropdown-border-color: var(--color-red);
-    --dropdown-box-shadow: 0 0 0 1px var(--color-red) inset;
+    --dropdown-border-color: var(--color-red-700);
+    --dropdown-box-shadow: 0 0 0 1px var(--color-red-700) inset;
   }
 }
