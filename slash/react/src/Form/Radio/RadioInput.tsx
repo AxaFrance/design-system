@@ -32,7 +32,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
     },
     inputRef,
   ) => {
-    const rowModifier = `${classModifier ?? ""}${
+    const rowModifier = `${classModifier}${
       mode === RadioModes.classic ? " label-top " : ""
     }`;
 
