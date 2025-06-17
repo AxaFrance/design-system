@@ -5,12 +5,13 @@ import neutralIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
 import infoIcon from "@material-symbols/svg-400/outlined/emoji_objects-fill.svg";
 import {
   type ComponentPropsWithoutRef,
+  ComponentType,
   type PropsWithChildren,
   type ReactElement,
   useMemo,
 } from "react";
 
-import { Button } from "../Button/ButtonCommon";
+import type { ButtonProps } from "../Button/ButtonCommon";
 import { Link } from "../Link/LinkCommon";
 import { Svg } from "../Svg/Svg";
 
@@ -29,7 +30,7 @@ export type MessageVariants = keyof typeof messageVariants;
 export type MessageProps = {
   variant: MessageVariants;
   title?: string;
-  action?: ReactElement<typeof Link | typeof Button>;
+  action?: ReactElement<typeof Link | ComponentType<ButtonProps>>;
   iconSize?: number;
   heading?: Headings;
 } & ComponentPropsWithoutRef<"div">;

@@ -1,12 +1,7 @@
-import {
-  useId,
-  type ComponentProps,
-  type ComponentType,
-  type MouseEventHandler,
-} from "react";
+import { useId, type ComponentType, type MouseEventHandler } from "react";
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 import { Svg } from "../../Svg/Svg";
-import { Button } from "../../Button/ButtonCommon";
+import type { ButtonProps } from "../../Button/ButtonCommon";
 
 type ItemLabelProps = {
   label?: string;
@@ -18,7 +13,7 @@ type ItemLabelProps = {
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
   buttonLabel?: string;
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  ButtonComponent: ComponentType<ComponentProps<typeof Button>>;
+  ButtonComponent: ComponentType<ButtonProps>;
 };
 
 export const ItemLabel = ({

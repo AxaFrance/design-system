@@ -1,5 +1,7 @@
 import type {
+  ComponentProps,
   ComponentPropsWithoutRef,
+  ComponentType,
   PropsWithChildren,
   ReactNode,
 } from "react";
@@ -18,14 +20,18 @@ export const buttonVariants = {
 
 export type ButtonVariants = keyof typeof buttonVariants;
 
-type ButtonProps = {
+export type ButtonProps = {
   variant?: ButtonVariants;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   loading?: boolean;
 } & ComponentPropsWithoutRef<"button">;
 
-export const Button = ({
+type ButtonPropsWithSpinner = ButtonProps & {
+  SpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
+};
+
+export const ButtonCommon = ({
   children,
   className,
   variant = "primary",
@@ -33,8 +39,9 @@ export const Button = ({
   iconRight,
   disabled,
   loading,
+  SpinnerComponent,
   ...args
-}: PropsWithChildren<ButtonProps>) => (
+}: PropsWithChildren<ButtonPropsWithSpinner>) => (
   <button
     className={["af-btn-client", `af-btn-client--${variant}`, className]
       .filter(Boolean)
@@ -46,6 +53,6 @@ export const Button = ({
     {iconLeft}
     {children}
     {iconRight}
-    {loading && <Spinner size={24} variant="gray" />}
+    {(disabled || loading) && <SpinnerComponent size={24} variant="gray" />}
   </button>
 );

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { ItemLabel } from "../ItemLabelCommon";
-import { Button } from "../../../Button/ButtonCommon";
+import { Button } from "../../../Button/ButtonApollo";
 
 const handleClickSideButton = vi.fn();
 const handleClickButton = vi.fn();

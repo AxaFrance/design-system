@@ -2,7 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { Message, messageVariants } from "../MessageCommon";
 import { Link } from "../../Link/LinkCommon";
-import { Button } from "../../Button/ButtonCommon";
+import { ButtonCommon as Button } from "../../Button/ButtonCommon";
+import { Spinner } from "../../Spinner/SpinnerApollo";
 
 const MoreDetails = () => (
   <Link openInNewTab href="https://fakelink.com">
@@ -54,7 +55,11 @@ describe("Message", () => {
     render(
       <Message
         {...defaultProps}
-        action={<Button variant="ghost">Actualiser</Button>}
+        action={
+          <Button variant="ghost" SpinnerComponent={Spinner}>
+            Actualiser
+          </Button>
+        }
       />,
     );
     expect(
