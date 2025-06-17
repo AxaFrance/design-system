@@ -11,7 +11,7 @@ const meta: Meta<typeof Select> = {
     disabled: false,
     required: false,
     placeholder: "Placeholder",
-    errorLabel: "",
+    error: "",
   },
   argTypes: {
     onChange: { action: "onChange" },

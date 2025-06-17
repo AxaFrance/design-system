@@ -5,7 +5,7 @@ import {
   Button,
   buttonVariants,
   type ButtonVariants,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/design-system-look-and-feel-react";
 
 import { renderButton, renderButtonAll } from "./render";
 

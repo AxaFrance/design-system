@@ -6,7 +6,7 @@ import {
 } from "@axa-fr/design-system-look-and-feel-react";
 import error from "@material-symbols/svg-400/outlined/error-fill.svg";
 import openInNew from "@material-symbols/svg-400/outlined/open_in_new.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Args, Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ClickItem> = {
   title: "Components/List/ClickItem",
@@ -19,7 +19,7 @@ export default meta;
 
 export const ClickItemWithIcons: StoryObj<typeof ClickItem> = {
   name: "ClickItem with icon",
-  render: (args) => <ClickItem {...args} />,
+  render: (args: Args) => <ClickItem {...args} />,
   args: {
     icon: <Svg src={error} aria-hidden />,
     children: "Texte principal",
@@ -37,7 +37,7 @@ export const ClickItemWithIcons: StoryObj<typeof ClickItem> = {
 
 export const ClickItemWithoutIcon: StoryObj<typeof ClickItem> = {
   name: "ClickItem without icon",
-  render: (args) => <ClickItem {...args} />,
+  render: (args: Args) => <ClickItem {...args} />,
   args: {
     children: (
       <>
@@ -59,7 +59,7 @@ export const ClickItemWithoutIcon: StoryObj<typeof ClickItem> = {
 
 export const ClickItemLinkWithoutIcon: StoryObj<typeof ClickItem> = {
   name: "ClickItem link without icon",
-  render: (args) => <ClickItem {...args} />,
+  render: (args: Args) => <ClickItem {...args} />,
   args: {
     children: (
       <>
@@ -86,9 +86,9 @@ export const ClickItemLinkWithoutIcon: StoryObj<typeof ClickItem> = {
 
 export const ClickItemList: StoryObj<typeof ClickItem> = {
   name: "ClickItem list",
-  render: ({ items }) => (
+  render: ({ items }: Args) => (
     <List classModifier="click-list">
-      {items.map((props) => (
+      {items.map((props: Args) => (
         <ClickItem key={props.id} {...props} />
       ))}
     </List>

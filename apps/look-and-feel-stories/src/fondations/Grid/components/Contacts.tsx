@@ -11,9 +11,12 @@ import mailIcon from "@material-symbols/svg-400/outlined/mail-fill.svg";
 export const Contacts = () =>
   [...Array(6).keys()].map((_, index) => (
     <List classModifier="first-separator-full-width" key="John Doe-agent">
-      <ContentItemMono secondaryText="agent général" tertiaryText="Doe">
-        John Doe
-      </ContentItemMono>
+      <ContentItemMono
+        type="picture"
+        picture="https://i.pinimg.com/originals/c4/28/f1/c428f1822d619e3ce4ad0ef7fa30d009.jpg"
+        title="Texte principale"
+        subtitle="Texte secondaire"
+      />
       {index % 3 === 0 && (
         <ClickItem
           icon={<Svg src={callIcon} aria-hidden />}

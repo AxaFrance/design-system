@@ -6,7 +6,7 @@ import {
   buttonVariants,
   type ButtonVariants,
   Svg,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/design-system-look-and-feel-react";
 
 const ButtonBlock = ({
   variant,

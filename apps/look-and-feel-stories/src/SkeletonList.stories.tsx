@@ -84,9 +84,11 @@ const Render = ({
         />
       </List>
       <List classModifier="extra-padding">
-        <ContentItemMono secondaryText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum neque aspernatur ullam officia deserunt temporibus sapiente nam reiciendis iste fugiat harum exercitationem placeat, explicabo aperiam ab nemo aliquam eaque ipsa!">
-          Commentaire
-        </ContentItemMono>
+        <ContentItemMono
+          title="Commentaire"
+          type="stick"
+          subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum neque aspernatur ullam officia deserunt temporibus sapiente nam reiciendis iste fugiat harum exercitationem placeat, explicabo aperiam ab nemo aliquam eaque ipsa!"
+        />
       </List>
     </SkeletonList>
   );
