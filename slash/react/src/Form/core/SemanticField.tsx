@@ -59,7 +59,6 @@ export const SemanticField = ({
           {
             "af-form__legend--required": classModifier.includes("required"),
           },
-          classNameContainerLabel,
           "af-form__legend",
         )}
       >
