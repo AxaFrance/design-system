@@ -34,7 +34,7 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
     },
     inputRef,
   ) => {
-    const rowModifier = `${classModifier ?? ""}${
+    const rowModifier = `${classModifier}${
       mode === CheckboxModes.classic ? " label-top " : ""
     }`;
 
