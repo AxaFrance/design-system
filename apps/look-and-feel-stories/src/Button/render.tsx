@@ -45,11 +45,11 @@ export const renderButtonAll = (args: Args) => (
   <div className="af-btn-client-demo">
     {Object.values(buttonVariants).map((variant) => (
       <div key={variant} className="af-btn-client-demo-variant">
-        {/inverse/.test(variant) ? (
-          <ButtonBlock variant={variant} modifier="blue" {...args} />
-        ) : (
-          <ButtonBlock variant={variant} {...args} />
-        )}
+        <ButtonBlock
+          variant={variant}
+          modifier={/inverse/.test(variant) ? "blue" : undefined}
+          {...args}
+        />
       </div>
     ))}
   </div>
