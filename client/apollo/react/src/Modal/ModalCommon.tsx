@@ -35,8 +35,6 @@ export const ModalCommon = forwardRef<HTMLDialogElement, ModalCommonProps>(
       children,
       headingComponent,
       headingProps,
-      title,
-      className,
       closeButtonAriaLabel,
       onClose,
       iconComponent,
@@ -52,31 +50,23 @@ export const ModalCommon = forwardRef<HTMLDialogElement, ModalCommonProps>(
     },
     ref,
   ) => (
-    <ModalCore
-      className={className}
-      onClose={onClose}
-      title={title}
-      ref={ref}
-      {...props}
-    >
+    <ModalCore onClose={onClose} ref={ref} {...props}>
       <ModalCoreHeaderCommon
         headingComponent={headingComponent}
         headingProps={headingProps}
         iconComponent={iconComponent}
         iconProps={iconProps}
-        onClose={onClose as VoidFunction}
+        onClose={onClose}
         closeButtonAriaLabel={closeButtonAriaLabel}
         {...modalCoreHeaderProps}
       />
       <ModalCoreBody {...modalCoreBodyProps}>{children}</ModalCoreBody>
       <ModalCoreFooterCommon
-        {...{
-          ...modalCoreFooterProps,
-          buttonComponent,
-          primaryButtonProps,
-          secondaryButtonProps,
-          tertiaryButtonProps,
-        }}
+        buttonComponent={buttonComponent}
+        primaryButtonProps={primaryButtonProps}
+        secondaryButtonProps={secondaryButtonProps}
+        tertiaryButtonProps={tertiaryButtonProps}
+        {...modalCoreFooterProps}
       />
     </ModalCore>
   ),

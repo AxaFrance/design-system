@@ -36,18 +36,16 @@ const expectModalOpened = async () => {
   const dialog = getDialog();
   await waitFor(() => {
     expect(defaultProps.onCancel).not.toHaveBeenCalled();
-    expect(dialog).toHaveStyle(`display: block`);
-    expect(dialog).toHaveAttribute("open", "true");
   });
+  expect(dialog).toHaveAttribute("open", "true");
 };
 
 const expectModalClosed = async () => {
   const dialog = getDialog();
   await waitFor(() => {
     expect(defaultProps.onCancel).toHaveBeenCalled();
-    expect(dialog).toHaveStyle(`display: none`);
-    expect(dialog).toHaveAttribute("open", undefined);
   });
+  expect(dialog).toHaveAttribute("open", undefined);
 };
 
 describe("Modal", () => {

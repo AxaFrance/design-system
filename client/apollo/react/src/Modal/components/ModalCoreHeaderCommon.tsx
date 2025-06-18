@@ -1,17 +1,17 @@
 import close from "@material-symbols/svg-400/rounded/close.svg";
-import type { ComponentType, JSX } from "react";
+import type { ComponentPropsWithoutRef, ComponentType } from "react";
 import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import type { HeadingProps } from "../../Heading/types";
 import type { IconProps } from "../../Icon/IconCommon";
 
-export type ModalCoreHeaderContainerProps = JSX.IntrinsicElements["header"];
+export type ModalCoreHeaderContainerProps = ComponentPropsWithoutRef<"header">;
 
 export type ModalCoreHeaderCommonProps = ModalCoreHeaderContainerProps & {
   headingComponent: ComponentType<HeadingProps>;
   headingProps: HeadingProps;
   iconComponent?: ComponentType<IconProps>;
   iconProps?: IconProps;
-  onClose: VoidFunction;
+  onClose?: VoidFunction;
   closeButtonAriaLabel?: string;
 };
 

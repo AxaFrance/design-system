@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useHasScroll } from "../../utilities/hook/useHasScroll";
 
-export type ModalCoreBodyProps = React.JSX.IntrinsicElements["main"];
+export type ModalCoreBodyProps = React.ComponentPropsWithoutRef<"main">;
 
 export const ModalCoreBody = ({
   children,

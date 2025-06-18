@@ -1,11 +1,11 @@
-import { forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 export type ModalCoreProps = Omit<
-  React.JSX.IntrinsicElements["dialog"],
-  "title"
+  ComponentPropsWithRef<"dialog">,
+  "title" | "onClose"
 > &
-  Required<Pick<React.JSX.IntrinsicElements["dialog"], "title">> & {
-    ref?: React.Ref<HTMLDialogElement>;
+  Required<Pick<ComponentPropsWithRef<"dialog">, "title">> & {
+    onClose?: VoidFunction;
   };
 
 const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
