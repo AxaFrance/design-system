@@ -26,16 +26,16 @@ export const ModalCoreHeaderCommon = ({
   ...props
 }: ModalCoreHeaderCommonProps) => (
   <header
-    className={["af-modal__header", className].filter(Boolean).join(" ")}
+    className={["af-apollo-modal__header", className].filter(Boolean).join(" ")}
     {...props}
   >
     <ClickIcon
-      className="af-modal__header-close-btn"
+      className="af-apollo-modal__header-close-btn"
       src={close}
       onClick={onClose}
       aria-label={closeButtonAriaLabel}
     />
-    <div className="af-modal__header-title">
+    <div className="af-apollo-modal__header-title">
       {IconComponent && iconProps && <IconComponent size="M" {...iconProps} />}
       <HeadingComponent level={2} {...headingProps} />
     </div>

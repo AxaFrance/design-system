@@ -13,7 +13,7 @@ const renderFooterButtons = (
           key={variant}
           variant={variant}
           {...props}
-          className={[props?.className, "af-modal__footer-button"]
+          className={[props?.className, "af-apollo-modal__footer-button"]
             .filter(Boolean)
             .join(" ")}
         />
@@ -39,7 +39,9 @@ export const ModalCoreFooterCommon = ({
 }: ModalCoreFooterCommonProps) =>
   (primaryButtonProps || secondaryButtonProps || tertiaryButtonProps) && (
     <footer
-      className={["af-modal__footer", className].filter(Boolean).join(" ")}
+      className={["af-apollo-modal__footer", className]
+        .filter(Boolean)
+        .join(" ")}
       {...rest}
     >
       {renderFooterButtons(ButtonComponent, [

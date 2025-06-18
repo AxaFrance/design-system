@@ -20,7 +20,9 @@ describe("ModalCoreBody component", () => {
     const { container } = render(
       <ModalCoreBody className="custom-class">Test Content</ModalCoreBody>,
     );
-    expect(container.firstChild).toHaveClass("af-modal__body custom-class");
+    expect(container.firstChild).toHaveClass(
+      "af-apollo-modal__body custom-class",
+    );
   });
 
   it("passes other props to the main element", () => {
