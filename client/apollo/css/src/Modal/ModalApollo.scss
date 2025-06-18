@@ -18,6 +18,10 @@
   --modal-footer-horizontal-padding: var(--modal-default-padding);
   --modal-footer-gap: calc(16 / var(--font-size-base) * 1rem);
 
+  &__body:not(:has(~ .af-modal__footer)) {
+    --modal-body-padding-bottom: var(--modal-default-padding);
+  }
+
   :has(.af-modal__body-vertical-scroll) {
     --modal-footer-border-top: 1px solid var(--axa-blue-20);
     --modal-footer-vertical-padding: calc(12 / var(--font-size-base) * 1rem);

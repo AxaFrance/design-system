@@ -2,8 +2,8 @@ import "./Modal.story.scss";
 
 import {
   Button,
-  ModalCore,
   ModalCoreBody,
+  ModalCore as ModalCoreComponent,
   ModalCoreFooter,
   ModalCoreHeader,
 } from "@axa-fr/design-system-apollo-react";
@@ -12,14 +12,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { useRef } from "react";
 
-const disableFromArgTable = {
-  table: {
-    disable: true,
-  },
-};
 const meta: Meta<
   React.ComponentType<
-    React.ComponentProps<typeof ModalCore> & {
+    React.ComponentProps<typeof ModalCoreComponent> & {
       body?: boolean;
       footer?: boolean;
       header?: boolean;
@@ -27,7 +22,7 @@ const meta: Meta<
   >
 > = {
   title: "Components/Modal/ModalCore",
-  component: ModalCore,
+  component: ModalCoreComponent,
   parameters: {
     layout: "fullscreen",
   },
@@ -36,41 +31,31 @@ const meta: Meta<
     onCancel: fn(),
     onClose: fn(),
   },
-  argTypes: {
-    body: disableFromArgTable,
-    footer: disableFromArgTable,
-    header: disableFromArgTable,
-  },
 };
 export default meta;
 
 type TModalCoreStory = StoryObj<typeof meta>;
 
-export const DefaultModalCore: TModalCoreStory = {
+export const ModalCore: TModalCoreStory = {
   decorators: [
-    (Story, { args: { body, footer, header, ...args } }) => {
+    (Story, { args }) => {
       const ref = useRef<HTMLDialogElement>(null);
       const onClose: React.ReactEventHandler<HTMLDialogElement> = (e) => {
         ref.current?.close();
         args.onClose?.(e);
       };
-
       const children = (
         <>
-          {header && (
-            <ModalCoreHeader
-              headingProps={{ children: args.title }}
-              iconProps={{ src: bank }}
-              onClose={onClose as VoidFunction}
-            />
-          )}
-          {body && <ModalCoreBody>{args.children}</ModalCoreBody>}
-          {footer && (
-            <ModalCoreFooter
-              primaryButtonProps={{ children: "Valider" }}
-              secondaryButtonProps={{ children: "Annuler" }}
-            />
-          )}
+          <ModalCoreHeader
+            headingProps={{ children: args.title }}
+            iconProps={{ src: bank }}
+            onClose={onClose as VoidFunction}
+          />
+          <ModalCoreBody>{args.children}</ModalCoreBody>
+          <ModalCoreFooter
+            primaryButtonProps={{ children: "Valider" }}
+            secondaryButtonProps={{ children: "Annuler" }}
+          />
         </>
       );
 
@@ -127,38 +112,5 @@ export const DefaultModalCore: TModalCoreStory = {
         </p>
       </>
     ),
-    header: true,
-    body: true,
-    footer: true,
-  },
-};
-
-export const ModalCoreBodyStory: TModalCoreStory = {
-  ...DefaultModalCore,
-  name: "Modal Core Body",
-  args: {
-    ...DefaultModalCore.args,
-    header: false,
-    footer: false,
-  },
-};
-
-export const ModalCoreFooterStory: TModalCoreStory = {
-  ...DefaultModalCore,
-  name: "Modal Core Footer",
-  args: {
-    ...DefaultModalCore.args,
-    header: false,
-    footer: false,
-  },
-};
-
-export const ModalCoreHeaderStory: TModalCoreStory = {
-  ...DefaultModalCore,
-  name: "Modal Core Header",
-  args: {
-    ...DefaultModalCore.args,
-    header: false,
-    footer: false,
   },
 };

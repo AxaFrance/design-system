@@ -10,5 +10,3 @@ export const ModalCoreHeader = (args: ModalCoreHeaderProps) => (
     {...args}
   />
 );
-
-export type { ModalCoreHeaderProps };
