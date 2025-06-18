@@ -54,9 +54,7 @@ export const getContentItemCoreProps = ({
       title,
       primarySubtitle: subtitle1,
       subtitle: subtitle2,
-      leftComponent: icon ? (
-        <IconComponent data-testid="icon" src={icon} />
-      ) : null,
+      leftComponent: icon && <IconComponent data-testid="icon" src={icon} />,
     };
   }
 
