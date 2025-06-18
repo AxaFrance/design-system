@@ -14,8 +14,8 @@ export const ModalCoreBody = ({
   return (
     <main
       className={[
-        "af-modal__body",
-        hasVerticalScroll ? "af-modal__body-vertical-scroll" : undefined,
+        "af-apollo-modal__body",
+        hasVerticalScroll ? "af-apollo-modal__body-vertical-scroll" : undefined,
         className,
       ]
         .filter(Boolean)
