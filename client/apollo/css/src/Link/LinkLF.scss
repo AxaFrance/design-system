@@ -6,7 +6,7 @@
   --link-font-weight: 400;
   --link-text-color-default: var(--color-axa);
   --underline-offset: 0%;
-  --link-font-size: 16;
+  --link-font-size: 14;
 
   @media (width > #{breakpoints.$breakpoint-md}) {
     --link-font-size: 18;
