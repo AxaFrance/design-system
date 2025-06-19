@@ -18,6 +18,7 @@ export const ClickIcon = ({
   <button
     type="button"
     className={["af-click-icon", className].filter(Boolean).join(" ")}
+    disabled={iconVariant === "disabled"}
     {...props}
   >
     <Icon src={src} variant={iconVariant} className={iconClassName} />
