@@ -55,6 +55,13 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageLF";
+export {
+  Modal,
+  ModalCore,
+  ModalCoreBody,
+  ModalCoreFooter,
+  ModalCoreHeader,
+} from "./Modal/ModalLF";
 export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export {

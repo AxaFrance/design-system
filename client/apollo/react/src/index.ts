@@ -52,6 +52,13 @@ export {
   messageVariants,
   type MessageVariants,
 } from "./Message/MessageApollo";
+export {
+  Modal,
+  ModalCore,
+  ModalCoreBody,
+  ModalCoreFooter,
+  ModalCoreHeader,
+} from "./Modal/ModalApollo";
 export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export {
