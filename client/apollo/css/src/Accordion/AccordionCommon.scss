@@ -31,14 +31,18 @@
         .af-accordion {
           &__title {
             grid-area: title;
+            font-size: var(--accordion-font-size);
+            font-weight: 600;
+            line-height: var(--accordion-line-height);
+            color: var(--accordion-title-text-color);
           }
 
           &__subtitle {
             grid-area: subtitle;
-            font-size: 1rem;
+            font-size: var(--accordion-subtitle-font-size);
             font-weight: 400;
-            line-height: 1.25rem;
-            color: var(--color-gray-700);
+            line-height: var(--accordion-line-height);
+            color: var(--accordion-subtitle-text-color);
           }
         }
       }
@@ -65,8 +69,7 @@
 
   &--primary {
     --summary-areas: "icon title-container tag-container info1 info2 arrow";
-    --summary-columns: min-content max-content max-content 1fr max-content
-      max-content;
+    --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
 
     .af-accordion__summary {
       .af-accordion {
@@ -74,6 +77,12 @@
           display: none;
         }
       }
+    }
+
+    @media (width < #{breakpoints.$breakpoint-md}) {
+      --summary-areas: "icon title-container arrow" ". tag-container ."
+        ". info1 ." ". info2 .";
+      --summary-columns: min-content 1fr min-content;
     }
   }
 
@@ -93,88 +102,11 @@
         }
       }
     }
-  }
 
-  &--inverse {
-    --summary-areas: "title-container arrow";
-    --summary-columns: 1fr min-content;
-    --title-container-areas: "title";
-    --title-container-columns: max-content;
-
-    .af-accordion__summary {
-      .af-accordion {
-        &__icon,
-        &__tag-container,
-        &__date,
-        &__info1,
-        &__info2 {
-          display: none;
-        }
-
-        &__title-container {
-          .af-accordion {
-            &__subtitle {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &--message-bar-info {
-    --summary-areas: "icon title-container arrow";
-    --summary-columns: min-content 1fr min-content;
-    --title-container-areas: "title";
-    --title-container-columns: max-content;
-
-    .af-accordion__summary {
-      .af-accordion {
-        &__tag-container,
-        &__date,
-        &__info1,
-        &__info2 {
-          display: none;
-        }
-
-        &__title-container {
-          .af-accordion {
-            &__subtitle {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &--message-bar-warning {
-    --summary-areas: "icon title-container arrow";
-    --summary-columns: min-content 1fr min-content;
-    --title-container-areas: "title";
-    --title-container-columns: max-content;
-
-    .af-accordion__summary {
-      .af-icon {
-        --icon-fill: var(--accordion-icon-color);
-      }
-
-      .af-accordion {
-        &__tag-container,
-        &__date,
-        &__info1,
-        &__info2 {
-          display: none;
-        }
-
-        &__title-container {
-          .af-accordion {
-            &__subtitle {
-              display: none;
-            }
-          }
-        }
-      }
+    @media (width < #{breakpoints.$breakpoint-md}) {
+      --summary-areas: "tag-container arrow" "date-container ."
+        "title-container ." "info2 .";
+      --summary-columns: 1fr max-content;
     }
   }
 }

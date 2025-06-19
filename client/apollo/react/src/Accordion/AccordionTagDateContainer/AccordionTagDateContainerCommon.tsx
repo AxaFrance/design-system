@@ -1,5 +1,5 @@
 import { type ComponentProps, ComponentType, useMemo } from "react";
-import { Tag } from "../Tag/TagCommon";
+import { Tag } from "../../Tag/TagCommon";
 
 type AccordionTagDateContainerProps = {
   dateLabel?: string;

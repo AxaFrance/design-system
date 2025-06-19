@@ -3,29 +3,14 @@
 .af-accordion {
   --accordion-info1-text-color: var(--neutral-80);
   --accordion-info2-text-color: var(--green-100);
+  --accordion-title-text-color: var(--axa-blue-100);
 
-  &--inverse {
-    --accordion-bg-color: var(--axa-blue-100);
+  &--primary {
+    --accordion-title-text-color: var(--axa-blue-100);
+    --accordion-subtitle-text-color: var(--neutral-80);
     --accordion-text-color: var(--white);
     --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
     --accordion-line-height: calc(var(--tag-font-size) * 1.25);
-    --accordion-border-radius: var(--radius-20);
-  }
-
-  &--message-bar-info {
-    --accordion-bg-color: var(--axa-blue-4);
-    --accordion-text-color: var(--axa-blue-100);
-    --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
-    --accordion-line-height: calc(var(--tag-font-size) * 1.25);
-    --accordion-border-radius: var(--radius-20);
-  }
-
-  &--message-bar-warning {
-    --accordion-bg-color: var(--axa-red-4);
-    --accordion-text-color: var(--red-alert-100);
-    --accordion-icon-color: var(--red-alert-100);
-    --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
-    --accordion-line-height: calc(var(--tag-font-size) * 1.25);
-    --accordion-border-radius: var(--radius-20);
   }
 }

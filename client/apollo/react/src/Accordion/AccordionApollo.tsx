@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 import { AccordionCore } from "../AccordionCore/AccordionCoreApollo";
-import { AccordionTagDateContainer } from "./AccordionTagDateContainerApollo";
+import { AccordionTagDateContainer } from "./AccordionTagDateContainer/AccordionTagDateContainerApollo";
 import { Icon } from "../Icon/IconApollo";
 import { Accordion as AccordionCommon } from "./AccordionCommon";
 import "@axa-fr/design-system-apollo-css/dist/Accordion/AccordionApollo.scss";

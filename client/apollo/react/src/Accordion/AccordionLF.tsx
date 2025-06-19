@@ -1,9 +1,9 @@
-import "@axa-fr/design-system-apollo-css/dist/Accordion/AccordionLF.scss";
 import type { ComponentProps } from "react";
 import { AccordionCore } from "../AccordionCore/AccordionCoreLF";
-import { AccordionTagDateContainer } from "./AccordionTagDateContainerLF";
+import { AccordionTagDateContainer } from "./AccordionTagDateContainer/AccordionTagDateContainerLF";
 import { Accordion as AccordionCommon } from "./AccordionCommon";
 import { Icon } from "../Icon/IconCommon";
+import "@axa-fr/design-system-apollo-css/dist/Accordion/AccordionLF.scss";
 
 export const Accordion = (
   props: Omit<

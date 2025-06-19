@@ -43,18 +43,3 @@ export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
     },
   },
 };
-
-// export const AccordionWithCardStory: StoryObj<
-//   ComponentProps<typeof Accordion>
-// > = {
-//   name: "Accordion With Card",
-//   render: (args) => (
-//     <Card classModifier="large accordion">
-//       <Accordion {...args} />
-//     </Card>
-//   ),
-//   args: defaultArgs,
-//   argTypes: {
-//     dateLabel: { control: "text" },
-//   },
-// };
