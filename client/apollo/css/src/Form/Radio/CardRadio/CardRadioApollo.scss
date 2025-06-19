@@ -1,32 +1,32 @@
 @use "CardRadioCommon";
 @use "../../../common/breakpoints" as breakpoints;
 
-.af-radio-card {
+.af-card-radio {
   &__label-container {
     --font-size-base: calc(16 / var(--font-size-base) * 1rem);
   }
 
   &__label {
-    --radio-card-color: var(--neutral-100);
+    --card-radio-color: var(--neutral-100);
   }
 
   &__description {
-    --radio-card-color: var(--neutral-80);
+    --card-radio-color: var(--neutral-80);
   }
 
   &__content {
     & > svg {
-      --radio-card-color: var(--color-axa);
-      --radio-card-fill: var(--color-axa);
+      --card-radio-color: var(--color-axa);
+      --card-radio-fill: var(--color-axa);
     }
 
     &-description {
       & > span:first-child {
-        --radio-card-color: var(--neutral-100);
+        --card-radio-color: var(--neutral-100);
       }
 
       & > span:not(:first-child) {
-        --radio-card-color: var(--neutral-80);
+        --card-radio-color: var(--neutral-80);
       }
     }
   }
@@ -40,36 +40,36 @@
   }
 
   &-group--vertical {
-    --radio-card-flex-direction: row;
+    --card-radio-flex-direction: row;
 
-    .af-radio-card-label {
-      --radio-card-flex-direction: column-reverse;
+    .af-card-radio-label {
+      --card-radio-flex-direction: column-reverse;
 
-      .af-radio-card-content {
-        --radio-card-flex-direction: column;
-        --radio-card-margin-left: calc(12 / var(--font-size-base) * 1rem);
+      .af-card-radio-content {
+        --card-radio-flex-direction: column;
+        --card-radio-margin-left: calc(12 / var(--font-size-base) * 1rem);
 
-        .af-radio-card-content-description {
-          --radio-card-flex-direction: column;
-          --radio-card-align-item: center;
+        .af-card-radio-content-description {
+          --card-radio-flex-direction: column;
+          --card-radio-align-item: center;
         }
       }
     }
   }
 
   &-group--horizontal {
-    --radio-card-flex-direction: column;
+    --card-radio-flex-direction: column;
 
-    .af-radio-card-label {
-      --radio-card-flex-direction: row;
+    .af-card-radio-label {
+      --card-radio-flex-direction: row;
 
-      .af-radio-card-content {
-        --radio-card-flex-direction: row;
-        --radio-card-margin-left: calc(2 / var(--font-size-base) * 1rem);
+      .af-card-radio-content {
+        --card-radio-flex-direction: row;
+        --card-radio-margin-left: calc(2 / var(--font-size-base) * 1rem);
 
-        .af-radio-card-content-description {
-          --radio-card-flex-direction: column;
-          --radio-card-align-item: flex-start;
+        .af-card-radio-content-description {
+          --card-radio-flex-direction: column;
+          --card-radio-align-item: flex-start;
         }
       }
     }
@@ -77,21 +77,21 @@
 
   &-group--vertical,
   &-group--horizontal {
-    .af-radio-card-label {
-      --radio-card-border: 1px var(--axa-blue-65);
-      --radio-card-border-radius: calc(8 / var(--font-size-base) * 1rem);
-      --radio-card-align-items: center;
+    .af-card-radio-label {
+      --card-radio-border: 1px var(--axa-blue-65);
+      --card-radio-border-radius: calc(8 / var(--font-size-base) * 1rem);
+      --card-radio-align-items: center;
 
       &[aria-invalid="true"] {
-        --radio-card-background-color: var(--axa-red-4);
-        --radio-card-border: 1px var(--red-alert-100);
-        --radio-card-shadow-color: var(--red-alert-100);
+        --card-radio-background-color: var(--axa-red-4);
+        --card-radio-border: 1px var(--red-alert-100);
+        --card-radio-shadow-color: var(--red-alert-100);
       }
 
       &:hover {
-        --radio-card-border: 1px var(--axa-blue-100);
-        --radio-card-shadow-color: var(--axa-blue-100);
-        --radio-card-background-color: var(--white);
+        --card-radio-border: 1px var(--axa-blue-100);
+        --card-radio-shadow-color: var(--axa-blue-100);
+        --card-radio-background-color: var(--white);
 
         & > span:first-child {
           --radio-border: 1px var(--axa-blue-100);
@@ -99,18 +99,18 @@
         }
       }
 
-      .af-radio-card-content {
-        .af-radio-card-content-description {
+      .af-card-radio-content {
+        .af-card-radio-content-description {
           & > span:first-child {
-            --radio-card-label-text-color: var(--axa-blue-100);
+            --card-radio-label-text-color: var(--axa-blue-100);
           }
         }
       }
 
       &:has(input:checked) {
-        --radio-card-border: 1px var(--axa-blue-100);
-        --radio-card-shadow-color: var(--axa-blue-100);
-        --radio-card-background-color: var(--axa-blue-4);
+        --card-radio-border: 1px var(--axa-blue-100);
+        --card-radio-shadow-color: var(--axa-blue-100);
+        --card-radio-background-color: var(--axa-blue-4);
       }
     }
   }

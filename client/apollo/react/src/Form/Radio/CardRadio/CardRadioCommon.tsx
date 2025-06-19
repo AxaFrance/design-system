@@ -58,11 +58,11 @@ const CardRadioCommon = ({
   ItemMessageComponent,
 }: CardRadioCommonProps) => {
   const componentClassName = getComponentClassName(
-    "af-radio-card__container",
+    "af-card-radio__container",
     className,
   );
   const RadioGroupClassName = getComponentClassName(
-    "af-radio-card-group",
+    "af-card-radio-group",
     className,
     type,
   );
@@ -74,16 +74,16 @@ const CardRadioCommon = ({
 
   return (
     <fieldset className={componentClassName}>
-      <div className="af-radio-card__label-container">
+      <div className="af-card-radio__label-container">
         <legend>
           {labelGroup && (
-            <span className="af-radio-card__label">
+            <span className="af-card-radio__label">
               {labelGroup}
               {isRequired && <span aria-hidden>&nbsp;*</span>}
             </span>
           )}
           {descriptionGroup && (
-            <p className="af-radio-card__description">{descriptionGroup}</p>
+            <p className="af-card-radio__description">{descriptionGroup}</p>
           )}
         </legend>
       </div>
@@ -97,7 +97,7 @@ const CardRadioCommon = ({
               key={`${name ?? inputProps.name}`}
               aria-invalid={Boolean(error) || hasError}
               htmlFor={`id-${name ?? inputProps.name}-${index}`}
-              className="af-radio-card-label"
+              className="af-card-radio-label"
             >
               <RadioComponent
                 id={`id-${name ?? inputProps.name}-${index}`}
@@ -107,9 +107,9 @@ const CardRadioCommon = ({
                 name={name ?? inputProps.name}
                 onChange={onChange}
               />
-              <div className="af-radio-card-content">
+              <div className="af-card-radio-content">
                 {icon && <IconComponent src={icon} size={size} />}
-                <div className="af-radio-card-content-description">
+                <div className="af-card-radio-content-description">
                   <span>{label}</span>
                   {description && <span>{description}</span>}
                   {subtitle && <span>{subtitle}</span>}
