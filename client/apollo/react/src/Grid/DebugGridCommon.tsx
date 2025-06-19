@@ -36,7 +36,7 @@ export const DebugGridCommon = <P = object,>({
         ]}
       />
 
-      <div className="debug-grid">
+      <div className="debug-grid" role="presentation">
         <div className="grid">
           {[...Array(cols).keys()].map((col: number) => (
             <div key={col} className="cols" />
