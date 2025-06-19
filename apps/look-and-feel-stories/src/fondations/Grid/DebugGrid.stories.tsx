@@ -12,7 +12,7 @@ export default meta;
 export const Default: StoryObj = {
   render: () => (
     <div style={{ height: "100svh", display: "block" }}>
-      <DebugGrid<{ forceVisible?: boolean }> isCheckedByDefaul forceVisible />
+      <DebugGrid<{ forceVisible?: boolean }> isCheckedByDefault forceVisible />
     </div>
   ),
 };
