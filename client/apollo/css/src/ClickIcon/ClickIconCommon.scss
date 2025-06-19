@@ -7,7 +7,7 @@
   background-color: var(--click-icon-background-color);
   cursor: pointer;
 
-  svg {
+  .af-icon svg {
     fill: var(--click-icon-svg-fill, var(--icon-fill));
   }
 
