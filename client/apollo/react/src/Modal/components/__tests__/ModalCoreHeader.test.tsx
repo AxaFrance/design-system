@@ -1,11 +1,9 @@
+import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
-import {
-  ModalCoreHeader,
-  type ModalCoreHeaderProps,
-} from "../ModalCoreHeaderApollo";
+import type { ModalCoreHeaderProps } from "../../types";
+import { ModalCoreHeader } from "../ModalCoreHeaderApollo";
 
 const title = "ModalCoreHeader Title";
 const defaultProps: ModalCoreHeaderProps = {
