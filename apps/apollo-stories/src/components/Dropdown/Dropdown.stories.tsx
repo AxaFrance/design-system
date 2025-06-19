@@ -1,17 +1,20 @@
-import { Select } from "@axa-fr/design-system-apollo-react";
+import { Dropdown } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
-const meta: Meta<typeof Select> = {
-  component: Select,
-  title: "Components/Form/Select/Select",
+const meta: Meta<typeof Dropdown> = {
+  component: Dropdown,
+  title: "Components/Form/Dropdown/Dropdown",
   args: {
     value: "Lorem ipsum",
+    description: "Description",
     label: "Label",
     disabled: false,
-    required: false,
+    required: true,
     placeholder: "Placeholder",
+    buttonLabel: "En savoir plus",
     error: "",
+    helper: "Information complémentaires",
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -20,26 +23,26 @@ const meta: Meta<typeof Select> = {
 
 export default meta;
 
-type StoryProps = ComponentProps<typeof Select>;
+type StoryProps = ComponentProps<typeof Dropdown>;
 type Story = StoryObj<StoryProps>;
 
 const render = ({ onChange, ...args }: StoryProps) => (
   <div style={{ width: 300 }}>
-    <Select onChange={onChange} {...args}>
+    <Dropdown onChange={onChange} {...args}>
       <option value="fun">For fun</option>
       <option value="work">For work</option>
       <option value="drink">For drink</option>
-    </Select>
+    </Dropdown>
   </div>
 );
 
-export const SelectStory: Story = {
-  name: "Select",
+export const DropdownStory: Story = {
+  name: "Dropdown",
   render,
 };
 
-export const SelectErrorStory: Story = {
-  name: "Select with Error",
+export const DropdownErrorStory: Story = {
+  name: "Dropdown with Error",
   render,
   args: {
     error: "Titre du Message",
@@ -51,8 +54,8 @@ export const SelectErrorStory: Story = {
   },
 };
 
-export const SelectDisabledStory: Story = {
-  name: "Select disabled",
+export const DropdownDisabledStory: Story = {
+  name: "Dropdown disabled",
   render,
   args: {
     label: "Label",
