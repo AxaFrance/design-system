@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CardCheckbox } from "../Form/Checkbox/CardCheckbox/CardCheckboxLF";
 import { DebugGridCommon } from "./DebugGridCommon";
 
@@ -14,10 +13,6 @@ export const DebugGrid = <P = object,>({
   isCheckedByDefault = false,
   ...props
 }: DebugGridProps<P>) => {
-  const [checked, setChecked] = useState(isCheckedByDefault);
-
-  const handleChecked = () => setChecked(!checked);
-
   const forceVisible =
     (props as { forceVisible?: boolean })?.forceVisible || false;
   if (process.env.NODE_ENV === "production" && !forceVisible) {
@@ -32,8 +27,7 @@ export const DebugGrid = <P = object,>({
           {
             name: "debuggrid",
             label: "Grid",
-            checked,
-            onClick: handleChecked,
+            defaultChecked: isCheckedByDefault,
           },
         ]}
       />
