@@ -74,19 +74,18 @@ const CardRadioCommon = ({
 
   return (
     <fieldset className={componentClassName}>
-      <div className="af-card-radio__label-container">
-        <legend>
-          {labelGroup && (
-            <span className="af-card-radio__label">
-              {labelGroup}
-              {isRequired && <span aria-hidden>&nbsp;*</span>}
-            </span>
-          )}
+      {labelGroup && (
+        <legend className="af-card-radio__legend">
+          <p>
+            {labelGroup}
+            {isRequired && <span aria-hidden>&nbsp;*</span>}
+          </p>
+
           {descriptionGroup && (
             <p className="af-card-radio__description">{descriptionGroup}</p>
           )}
         </legend>
-      </div>
+      )}
       <div className={RadioGroupClassName}>
         {options.map(
           (
