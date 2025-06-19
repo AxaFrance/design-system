@@ -19,5 +19,3 @@ export const ItemFile = (props: ItemFileProps) => (
     {...props}
   />
 );
-
-ItemFile.displayName = "ItemFile";
