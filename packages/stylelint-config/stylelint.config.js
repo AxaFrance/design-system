@@ -10,7 +10,7 @@ module.exports = {
     "import-notation": "string",
     "at-rule-empty-line-before": null,
     "scss/operator-no-newline-after": null,
-    "color-function-notation": ["legacy", { ignore: ["with-var-inside"] }],
+    "color-function-notation": ["legacy"],
     "property-no-vendor-prefix": null,
 
     "selector-class-pattern": [
