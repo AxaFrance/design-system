@@ -103,3 +103,4 @@ export {
 } from "./ItemTabBar/ItemTabBar";
 export { Heading, type HeadingLevel } from "./Heading/Heading";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMono";
+export { ClickItem, createClickItemParent } from "./List/ClickItem";
