@@ -9,8 +9,6 @@ export {
   accordionVariants,
 } from "./Accordion/AccordionApollo";
 export { AccordionCore } from "./AccordionCore/AccordionCoreApollo";
-export { Accordion } from "./Accordion/AccordionApollo";
-export { AccordionCore } from "./AccordionCore/AccordionCoreApollo";
 export { BasePicture } from "./BasePicture/BasePictureApollo";
 export {
   Button,
