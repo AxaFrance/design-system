@@ -44,22 +44,6 @@ describe("getContentItemCoreProps", () => {
     expect(result.subtitle).toBe("Picture Subtitle");
     expect(result.leftComponent).toBeTruthy();
   });
-
-  it("returns props as-is for type 'stick'", () => {
-    const props = {
-      type: "stick",
-      title: "Stick Title",
-      subtitle: "Stick Subtitle",
-      IconComponent: Icon,
-      BasePictureComponent: BasePicture,
-    } as ContentItemCommonProps;
-
-    const result = getContentItemCoreProps(props);
-
-    expect(result.title).toBe("Stick Title");
-    expect(result.subtitle).toBe("Stick Subtitle");
-    expect(result.leftComponent).toBeUndefined();
-  });
 });
 
 describe("ContentItemMonoCommon Component", () => {

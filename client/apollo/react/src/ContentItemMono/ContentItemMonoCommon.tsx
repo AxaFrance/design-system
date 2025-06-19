@@ -54,7 +54,7 @@ export const getContentItemCoreProps = ({
       title,
       primarySubtitle: subtitle1,
       subtitle: subtitle2,
-      leftComponent: <IconComponent data-testid="icon" src={icon} />,
+      leftComponent: icon && <IconComponent data-testid="icon" src={icon} />,
     };
   }
 
@@ -70,7 +70,10 @@ export const getContentItemCoreProps = ({
     };
   }
 
-  return props;
+  return {
+    ...props,
+    leftComponent: <div className="stick" />,
+  };
 };
 
 export const ContentItemMonoCommon = (props: ContentItemCommonProps) => {
