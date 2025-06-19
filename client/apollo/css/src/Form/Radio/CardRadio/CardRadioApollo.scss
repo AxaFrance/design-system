@@ -1,4 +1,5 @@
-@use "RadioCardCommon";
+@use "CardRadioCommon";
+@use "../../../common/breakpoints" as breakpoints;
 
 .af-radio-card {
   &__label-container {
@@ -6,11 +7,11 @@
   }
 
   &__label {
-    --radio-card-color: var(--color-gray-900);
+    --radio-card-color: var(--neutral-100);
   }
 
   &__description {
-    --radio-card-color: var(--color-gray-700);
+    --radio-card-color: var(--neutral-80);
   }
 
   &__content {
@@ -21,11 +22,11 @@
 
     &-description {
       & > span:first-child {
-        --radio-card-color: var(--color-gray-900);
+        --radio-card-color: var(--neutral-100);
       }
 
       & > span:not(:first-child) {
-        --radio-card-color: var(--color-gray-700);
+        --radio-card-color: var(--neutral-80);
       }
     }
   }
@@ -35,7 +36,6 @@
 
     & > svg {
       --error-box-color: var(--color-red-700);
-      --error-box-fill: var(--color-red-700);
     }
   }
 
@@ -43,13 +43,7 @@
     --radio-card-flex-direction: row;
 
     .af-radio-card-label {
-      --radio-card-flex-direction: row;
-      --radio-card-align-items: flex-start;
-      --radio-card-justify-content: flex-start;
-
-      .af-radio {
-        position: absolute;
-      }
+      --radio-card-flex-direction: column-reverse;
 
       .af-radio-card-content {
         --radio-card-flex-direction: column;
@@ -68,7 +62,6 @@
 
     .af-radio-card-label {
       --radio-card-flex-direction: row;
-      --radio-card-align-items: center;
 
       .af-radio-card-content {
         --radio-card-flex-direction: row;
@@ -85,43 +78,39 @@
   &-group--vertical,
   &-group--horizontal {
     .af-radio-card-label {
-      --radio-card-border: 2px var(--color-gray-700);
-      --radio-card-border-radius: calc(6 / var(--font-size-base) * 1rem);
+      --radio-card-border: 1px var(--axa-blue-65);
+      --radio-card-border-radius: calc(8 / var(--font-size-base) * 1rem);
+      --radio-card-align-items: center;
 
       &[aria-invalid="true"] {
-        --radio-card-background-color: var(--color-white);
-        --radio-card-border: 2px var(--color-red-700);
-        --radio-card-shadow-color: var(--color-red-700);
+        --radio-card-background-color: var(--axa-red-4);
+        --radio-card-border: 1px var(--red-alert-100);
+        --radio-card-shadow-color: var(--red-alert-100);
       }
 
       &:hover {
-        --radio-card-border: 2px var(--color-axa);
-        --radio-card-shadow-color: var(--color-axa);
-        --radio-card-background-color: var(--color-white);
+        --radio-card-border: 1px var(--axa-blue-100);
+        --radio-card-shadow-color: var(--axa-blue-100);
+        --radio-card-background-color: var(--white);
 
         & > span:first-child {
-          --radio-border: 2px var(--color-axa);
-          --radio-box-shadow: var(--color-axa);
+          --radio-border: 1px var(--axa-blue-100);
+          --radio-box-shadow: var(--axa-blue-100);
         }
       }
 
-      .af-radio-card-content
-        .af-radio-card-content-description
-        > span:first-child {
-        --radio-card-label-text-color: var(--color-black);
+      .af-radio-card-content {
+        .af-radio-card-content-description {
+          & > span:first-child {
+            --radio-card-label-text-color: var(--axa-blue-100);
+          }
+        }
       }
 
       &:has(input:checked) {
-        --radio-card-border: 2px var(--color-axa);
-        --radio-card-shadow-color: var(--color-axa);
-        --radio-card-background-color: var(--color-blue-2);
-
-        &:hover {
-          & > span:first-child {
-            --radio-border: 1px var(--color-axa);
-            --radio-box-shadow: var(--color-axa);
-          }
-        }
+        --radio-card-border: 1px var(--axa-blue-100);
+        --radio-card-shadow-color: var(--axa-blue-100);
+        --radio-card-background-color: var(--axa-blue-4);
       }
     }
   }

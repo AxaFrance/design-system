@@ -1,2 +1,2 @@
 export { Radio } from "./Radio";
-export { RadioCard } from "./RadioCard";
+export { CardRadio } from "./CardRadio";

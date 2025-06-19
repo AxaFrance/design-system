@@ -1,11 +1,11 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/Radio/RadioCard/RadioCardLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/Radio/CardRadio/CardRadioLF.scss";
 import { Icon } from "../../../Icon/IconLF";
-import { RadioCardCommon, RadioCardProps } from "./RadioCardCommon";
+import { CardRadioCommon, CardRadioProps } from "./CardRadioCommon";
 import { Radio } from "../Radio/RadioLF";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 
-export const RadioCard = (props: RadioCardProps) => (
-  <RadioCardCommon
+export const CardRadio = (props: CardRadioProps) => (
+  <CardRadioCommon
     {...props}
     IconComponent={Icon}
     RadioComponent={Radio}
@@ -13,4 +13,4 @@ export const RadioCard = (props: RadioCardProps) => (
   />
 );
 
-RadioCard.displayName = "RadioCard";
+CardRadio.displayName = "CardRadio";

@@ -1,17 +1,30 @@
-import { RadioCard } from "@axa-fr/design-system-apollo-react";
+import { CardRadio } from "@axa-fr/design-system-look-and-feel-react";
 import home from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
-const meta: Meta = {
-  title: "Components/Form/Radio/RadioCard",
-  component: RadioCard,
+type CardRadioOption = {
+  label: string;
+  description?: string;
+  subtitle?: string;
+  value: string;
+  hasError?: boolean;
+};
+
+type StoryProps = ComponentProps<typeof CardRadio> & {
+  includeIcons?: boolean;
+  options: CardRadioOption[];
+};
+
+const meta: Meta<StoryProps> = {
+  title: "Components/Form/Radio/CardRadio",
+  component: CardRadio,
   argTypes: {},
 };
 
 export default meta;
 
-const baseOptions = [
+const defaultOptions: CardRadioOption[] = [
   {
     label: "Paris",
     description: "Capitale de la France",
@@ -30,26 +43,21 @@ const baseOptions = [
   },
 ];
 
-type StoryProps = ComponentProps<typeof RadioCard> & {
-  includeIcons?: boolean;
-  options?: typeof baseOptions;
-};
-
-export const RadioCardStory: StoryObj<StoryProps> = {
+export const CardRadioStory: StoryObj<StoryProps> = {
   name: "Select",
-  render: ({ includeIcons = true, options = baseOptions, ...args }) => {
-    const mappedOptions = options.map((option) => ({
+  render: ({ includeIcons = true, options = defaultOptions, ...args }) => {
+    const finalOptions = options.map((option) => ({
       ...option,
       ...(includeIcons && { icon: home }),
     }));
-    return <RadioCard {...args} options={mappedOptions} />;
+    return <CardRadio {...args} options={finalOptions} />;
   },
   args: {
     type: "vertical",
     "aria-label": "Quelle ville ?",
+    options: defaultOptions,
     name: "cities",
     includeIcons: true,
-    options: baseOptions,
   },
   argTypes: {
     type: {
@@ -58,7 +66,7 @@ export const RadioCardStory: StoryObj<StoryProps> = {
     },
     includeIcons: {
       control: { type: "boolean" },
-      description: "Toggle icon visibility",
+      description: "Toggle icons visibility",
     },
     options: {
       control: { type: "object" },
@@ -68,23 +76,24 @@ export const RadioCardStory: StoryObj<StoryProps> = {
   },
 };
 
-export const RadioCardWithLabel: StoryObj<StoryProps> = {
+export const CardRadioWithLabel: StoryObj<StoryProps> = {
   name: "SelectWithLabel",
-  render: ({ includeIcons = true, options = baseOptions, ...args }) => {
-    const mappedOptions = options.map((option) => ({
+  render: ({ includeIcons = true, options = defaultOptions, ...args }) => {
+    const finalOptions = options.map((option) => ({
       ...option,
       ...(includeIcons && { icon: home }),
     }));
-    return <RadioCard {...args} options={mappedOptions} />;
+    return <CardRadio {...args} options={finalOptions} />;
   },
   args: {
     type: "vertical",
     isRequired: true,
+    options: defaultOptions,
     name: "cities",
     includeIcons: true,
-    options: baseOptions,
-    labelGroup: "Choose your city",
-    descriptionGroup: "Select the city where you want to live",
+    labelGroup: "Choisissez une ville",
+    descriptionGroup:
+      "Sélectionnez la ville de votre choix parmi les options suivantes",
   },
   argTypes: {
     type: {
@@ -93,7 +102,7 @@ export const RadioCardWithLabel: StoryObj<StoryProps> = {
     },
     includeIcons: {
       control: { type: "boolean" },
-      description: "Toggle icon visibility",
+      description: "Toggle icons visibility",
     },
     options: {
       control: { type: "object" },

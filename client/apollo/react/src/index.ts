@@ -30,7 +30,7 @@ export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { Select } from "./Form/Select/SelectApollo";
 export { TextArea } from "./Form/TextArea/TextAreaApollo";
 export { Radio } from "./Form/Radio/Radio/RadioApollo";
-export { RadioCard } from "./Form/Radio/RadioCard/RadioCardApollo";
+export { CardRadio } from "./Form/Radio/CardRadio/CardRadioApollo";
 export { InputText } from "./Form/InputText/InputTextApollo";
 export { DebugGrid } from "./Grid/DebugGridApollo";
 export { Heading, type HeadingLevel } from "./Heading/HeadingApollo";

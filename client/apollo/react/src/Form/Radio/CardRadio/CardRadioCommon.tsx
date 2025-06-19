@@ -20,7 +20,7 @@ type IconComponent = {
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
 };
 
-export type RadioCardProps = ComponentPropsWithRef<"input"> & {
+export type CardRadioProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
@@ -37,13 +37,13 @@ export type RadioCardProps = ComponentPropsWithRef<"input"> & {
   error?: string;
 };
 
-export type RadioCardCommonProps = RadioCardProps &
+export type CardRadioCommonProps = CardRadioProps &
   RadioComponent &
   IconComponent & {
     ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   };
 
-const RadioCardCommon = ({
+const CardRadioCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -56,7 +56,7 @@ const RadioCardCommon = ({
   name,
   onChange,
   ItemMessageComponent,
-}: RadioCardCommonProps) => {
+}: CardRadioCommonProps) => {
   const componentClassName = getComponentClassName(
     "af-radio-card__container",
     className,
@@ -123,5 +123,5 @@ const RadioCardCommon = ({
     </fieldset>
   );
 };
-RadioCardCommon.displayName = "RadioCardCommon";
-export { RadioCardCommon };
+CardRadioCommon.displayName = "CardRadioCommon";
+export { CardRadioCommon };

@@ -2,7 +2,7 @@ import {
   Button,
   CheckboxCard,
   DebugGrid,
-  RadioCard,
+  CardRadio,
   TextInput,
   Title,
 } from "@axa-fr/design-system-look-and-feel-react";
@@ -48,7 +48,7 @@ export const render = () => (
           <p>Les mentions avec * sont obligatoires</p>
         </div>
         <div className="form__fields subgrid">
-          <RadioCard
+          <CardRadio
             className="subgrid"
             type="horizontal"
             options={[

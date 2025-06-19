@@ -29,7 +29,7 @@ export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { Select } from "./Form/Select/SelectLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { Radio } from "./Form/Radio/Radio/RadioLF";
-export { RadioCard } from "./Form/Radio/RadioCard/RadioCardLF";
+export { CardRadio } from "./Form/Radio/CardRadio/CardRadioLF";
 export {
   InputText,
   /** @deprecated Use `InputText` instead. */
