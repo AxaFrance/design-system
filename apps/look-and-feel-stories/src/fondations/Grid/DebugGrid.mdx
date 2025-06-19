@@ -5,9 +5,12 @@ import * as DebugGridStories from "./DebugGrid.stories.tsx";
 
 ## DebugGrid
 
-Le composant DebuGrid permettant de visualiser les grilles du Design System est disponible (Il complète l'outil du navigateur).
+The DebugGrid component allows you to visualize the Design System grids (it complements the browser tool).
 
-Ce composant reprend les codes couleurs utilisés sur les maquettes et affiche les breakpoints en fonction de la taille de l'écran.
+This component uses the color codes from the mockups and displays the breakpoints according to the screen size.
+
+> **Info**
+> The DebugGrid component automatically hides itself in production mode.
 
 <Canvas of={DebugGridStories.Default} />
 <Controls of={DebugGridStories.Default} />
