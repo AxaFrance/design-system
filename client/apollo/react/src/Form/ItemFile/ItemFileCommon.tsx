@@ -63,9 +63,7 @@ export const ItemFileCommon = ({
   const getIconByState = () => {
     if (state === "loading") {
       return (
-        <div className="af-item-file--spinner">
-          <ItemSpinnerComponent size={24} />
-        </div>
+        <ItemSpinnerComponent size={24} classModifier="af-item-file--spinner" />
       );
     }
 
