@@ -25,7 +25,10 @@ export { InputError } from "./Form/InputError";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioCard } from "./Form/Radio";
-export { Dropdown } from "./Form/Dropdown/Dropdown";
+export {
+  Dropdown,
+  /** @deprecated Use `Dropdown` instead. */ Dropdown as Select,
+} from "./Form/Dropdown/Dropdown";
 export {
   TextInput,
   /** @deprecated Use `TextInput` instead. */ TextInput as InputText,
