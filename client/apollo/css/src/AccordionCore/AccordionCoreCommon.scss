@@ -10,7 +10,7 @@
     grid-template-areas: "summary arrow";
     grid-template-columns: 1fr auto;
     align-items: center;
-    column-gap: 2.5rem;
+    column-gap: 16px;
     font-weight: 600;
     line-height: var(--accordion-title-line-height);
     cursor: pointer;
@@ -44,7 +44,7 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.25rem;
-    color: var(--color-gray-700);
+    color: var(--neutral-100);
   }
 }
 

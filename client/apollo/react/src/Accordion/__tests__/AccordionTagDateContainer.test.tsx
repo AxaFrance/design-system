@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { AccordionTagDateContainer } from "../AccordionTagDateContainerLF";
+import { describe, expect, it } from "vitest";
+import { axe } from "jest-axe";
+import { AccordionTagDateContainer } from "../AccordionTagDateContainer/AccordionTagDateContainerApollo";
 
 describe("AccordionTagDateContainer", () => {
   it("renders correctly", () => {
@@ -37,5 +39,15 @@ describe("AccordionTagDateContainer", () => {
   it("should return null if no tag or date", () => {
     const { container } = render(<AccordionTagDateContainer />);
     expect(container).toBeEmptyDOMElement();
+  });
+});
+
+describe("A11Y", () => {
+  it("shouldn't have an accessibility violation <AccordionTagDateContainer />", async () => {
+    const { container } = render(
+      <AccordionTagDateContainer tagLabel="tag" dateLabel="01/01/2021" />,
+    );
+
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

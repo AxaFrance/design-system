@@ -1,8 +1,8 @@
 import type { ComponentProps } from "react";
-import { Tag } from "../Tag/TagLF";
+import { Tag } from "../../Tag/TagApollo";
 import { AccordionTagDateContainer as AccordionTagDateContainerCommon } from "./AccordionTagDateContainerCommon";
 
-import "@axa-fr/design-system-apollo-css/dist/AccordionCore/AccordionCoreLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/AccordionCore/AccordionCoreApollo.scss";
 
 export const AccordionTagDateContainer = (
   props: Omit<

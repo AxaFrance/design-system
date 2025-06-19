@@ -1,15 +1,12 @@
 import { type ComponentProps, type ComponentType, useMemo } from "react";
 import { AccordionCore } from "../AccordionCore/AccordionCoreCommon";
 import { getComponentClassName } from "../utilities/getComponentClassName";
-import { AccordionTagDateContainer } from "./AccordionTagDateContainerCommon";
+import { AccordionTagDateContainer } from "./AccordionTagDateContainer/AccordionTagDateContainerCommon";
 import { Icon } from "../Icon/IconCommon";
 
 export const accordionVariants = {
   primary: "primary",
   secondary: "secondary",
-  inverse: "inverse",
-  "message-bar-info": "message-bar-info",
-  "message-bar-warning": "message-bar-warning",
 } as const;
 
 export type AccordionVariants = keyof typeof accordionVariants;
@@ -61,6 +58,7 @@ export const Accordion = ({
         <>
           {icon && (
             <IconComponent
+              data-testid="icon"
               src={icon}
               variant="primary"
               size="S"
