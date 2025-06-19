@@ -91,17 +91,13 @@ export const ItemFileCommon = ({
         </div>
 
         <div className="af-click-icon__content">
-          {state === "success" ? (
-            <>
-              <ItemClickIconComponent
-                src={visibilityIcon}
-                {...visibilityIconProps}
-              />
-              <ItemClickIconComponent src={deleteIcon} {...deleteIconProps} />
-            </>
-          ) : (
-            <ItemClickIconComponent src={deleteIcon} {...deleteIconProps} />
+          {state === "success" && (
+            <ItemClickIconComponent
+              src={visibilityIcon}
+              {...visibilityIconProps}
+            />
           )}
+          <ItemClickIconComponent src={deleteIcon} {...deleteIconProps} />
         </div>
         {helper && (
           <span id={idHelp} className="af-form__input-helper">
