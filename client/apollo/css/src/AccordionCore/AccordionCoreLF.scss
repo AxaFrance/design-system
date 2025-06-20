@@ -4,4 +4,10 @@
   &__summary {
     --accordion-title-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
+
+  &[open] {
+    > .af-accordion__summary {
+      --accordion-open-border-color: var(--color-blue-400);
+    }
+  }
 }

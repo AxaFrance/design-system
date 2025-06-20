@@ -31,7 +31,7 @@
 
   &[open] {
     > .af-accordion__summary {
-      border-bottom: 1px solid var(--color-gray-300);
+      border-bottom: 1px solid var(--accordion-open-border-color);
     }
 
     > .af-accordion__summary > .af-accordion__arrow {
