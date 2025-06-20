@@ -146,27 +146,22 @@
     .af-card-radio-label {
       display: flex;
       padding: 1rem;
-      border: solid var(--card-radio-border);
+      border: 1px solid var(--card-radio-border-color);
       border-radius: var(--card-radio-border-radius);
       flex: 1;
       align-self: stretch;
       gap: calc(12 / var(--font-size-base) * 1rem);
+      background-color: var(--card-radio-background-color);
       cursor: pointer;
 
-      &[aria-invalid="true"] {
-        border: solid var(--card-radio-border);
-        background-color: var(--card-radio-background-color);
-        box-shadow: 0 0 0 1px var(--card-radio-shadow-color) inset;
-      }
-
-      &:hover {
-        border: solid var(--card-radio-border);
-        background-color: var(--card-radio-background-color);
-        box-shadow: 0 0 0 1px var(--card-radio-shadow-color) inset;
+      &:hover,
+      &:focus-visible,
+      &:focus-within,
+      &:has(input:checked) {
+        outline: 1px solid var(--card-radio-outline-color);
 
         & > span:first-child {
-          border: solid var(--radio-border);
-          box-shadow: 0 0 0 1px var(--radio-box-shadow) inset;
+          outline: 1px solid var(--radio-outline-color);
         }
       }
 
@@ -203,12 +198,6 @@
             }
           }
         }
-      }
-
-      &:has(input:checked) {
-        border: solid var(--card-radio-border);
-        background-color: var(--card-radio-background-color);
-        box-shadow: 0 0 0 1px var(--card-radio-shadow-color) inset;
       }
     }
   }

@@ -85,23 +85,28 @@
   &-group--vertical,
   &-group--horizontal {
     .af-card-radio-label {
-      --card-radio-border: 2px var(--color-gray-700);
+      --card-radio-border-color: var(--color-gray-700);
+      --card-radio-outline-color: var(--card-radio-border-color);
       --card-radio-border-radius: calc(6 / var(--font-size-base) * 1rem);
+      --card-radio-background-color: var(--color-white);
 
-      &[aria-invalid="true"] {
-        --card-radio-background-color: var(--color-white);
-        --card-radio-border: 2px var(--color-red-700);
-        --card-radio-shadow-color: var(--color-red-700);
+      &:hover,
+      &:focus-visible,
+      &:focus-within {
+        --card-radio-border-color: var(--color-axa);
       }
 
       &:hover {
-        --card-radio-border: 2px var(--color-axa);
-        --card-radio-shadow-color: var(--color-axa);
-        --card-radio-background-color: var(--color-white);
+        & > span:first-child {
+          --radio-border-color: var(--color-axa);
+        }
+      }
+
+      &:has([aria-invalid="true"]) {
+        --card-radio-border-color: var(--color-red-700);
 
         & > span:first-child {
-          --radio-border: 2px var(--color-axa);
-          --radio-box-shadow: var(--color-axa);
+          --radio-border-color: var(--color-red-700);
         }
       }
 
@@ -112,14 +117,14 @@
       }
 
       &:has(input:checked) {
-        --card-radio-border: 2px var(--color-axa);
-        --card-radio-shadow-color: var(--color-axa);
+        --card-radio-border-color: var(--color-axa);
         --card-radio-background-color: var(--color-blue-2);
 
-        &:hover {
+        &:has([aria-invalid="true"]) {
+          --card-radio-border-color: var(--color-red-700);
+
           & > span:first-child {
-            --radio-border: 1px var(--color-axa);
-            --radio-box-shadow: var(--color-axa);
+            --radio-border-color: var(--color-red-700);
           }
         }
       }

@@ -12,10 +12,6 @@
     --checkbox-border-color: var(--axa-blue-100);
   }
 
-  &:has(:checked) {
-    --checkbox-background-color: var(--axa-blue-100);
-  }
-
   &:has([aria-invalid="true"]) {
     --checkbox-border-color: var(--red-alert-100);
   }

@@ -82,25 +82,32 @@
   &-group--vertical,
   &-group--horizontal {
     .af-card-radio-label {
-      --card-radio-border: 1px var(--axa-blue-65);
+      --card-radio-border-color: var(--axa-blue-65);
+      --card-radio-background-color: var(--white);
+      --card-radio-outline-color: var(--card-radio-border-color);
       --card-radio-border-radius: calc(8 / var(--font-size-base) * 1rem);
       --card-radio-align-items: center;
 
-      &[aria-invalid="true"] {
-        --card-radio-background-color: var(--axa-red-4);
-        --card-radio-border: 1px var(--red-alert-100);
-        --card-radio-shadow-color: var(--red-alert-100);
-      }
-
       &:hover {
-        --card-radio-border: 1px var(--axa-blue-100);
-        --card-radio-shadow-color: var(--axa-blue-100);
-        --card-radio-background-color: var(--white);
+        --card-radio-border-color: var(--axa-blue-100);
 
         & > span:first-child {
-          --radio-border: 1px var(--axa-blue-100);
-          --radio-box-shadow: var(--axa-blue-100);
+          --radio-border-color: var(--axa-blue-100);
         }
+      }
+
+      &:has([aria-invalid="true"]) {
+        --card-radio-background-color: var(--axa-red-4);
+        --card-radio-border-color: var(--red-alert-100);
+
+        & > span:first-child {
+          --radio-border-color: var(--red-alert-100);
+        }
+      }
+
+      &:has(input:checked) {
+        --card-radio-border-color: var(--axa-blue-100);
+        --card-radio-background-color: var(--axa-blue-4);
       }
 
       .af-card-radio-content {
@@ -109,12 +116,6 @@
             --card-radio-label-text-color: var(--axa-blue-100);
           }
         }
-      }
-
-      &:has(input:checked) {
-        --card-radio-border: 1px var(--axa-blue-100);
-        --card-radio-shadow-color: var(--axa-blue-100);
-        --card-radio-background-color: var(--axa-blue-4);
       }
     }
   }
