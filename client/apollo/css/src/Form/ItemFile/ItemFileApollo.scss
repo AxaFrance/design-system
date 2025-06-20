@@ -7,6 +7,10 @@
   --item-file-subtitle-color: var(--neutral-80);
   --icon-fill: var(--green-100);
   --item-file-bg-color: var(--white);
+  --item-file-gap: calc(8 / var(--font-size-base) * 1rem);
+  --item-file-body-padding-vertical: calc(16 / var(--font-size-base) * 1rem);
+  --item-file-body-padding-horizontal: calc(16 / var(--font-size-base) * 1rem);
+  --item-file-action-buttons-gap: calc(24 / var(--font-size-base) * 1rem);
 
   &--error {
     --item-file-border-color: var(--axa-red-100);
@@ -20,7 +24,7 @@
     --icon-fill: var(--red-alert-100);
   }
 
-  .af-item-file--spinner div {
+  .af-item-file__spinner div {
     --item-file-spinner-color: var(--neutral-100);
   }
 }
