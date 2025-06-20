@@ -10,7 +10,6 @@ describe("<ItemFile />", () => {
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.loading}
-        helper="helper"
       />,
     );
     const itemFileTitle = screen.getByText("IMG_879687880");
@@ -31,7 +30,6 @@ describe("<ItemFile />", () => {
         subTitle="0.12"
         state={itemFileVariants.error}
         errorMessage="Titre du message"
-        helper="Helper"
       />,
     );
 
@@ -46,7 +44,6 @@ describe("<ItemFile />", () => {
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.success}
-        helper="helper"
       />,
     );
 
@@ -59,9 +56,8 @@ describe("<ItemFile />", () => {
         state={itemFileVariants.success}
         subTitle="0.12"
         title="IMG_879687880"
-        helper="helper"
-        deleteIconProps={{ "aria-label": "delete" }}
         visibilityIconProps={{ "aria-label": "visibility" }}
+        deleteIconProps={{ "aria-label": "delete" }}
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
