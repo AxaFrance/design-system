@@ -46,7 +46,7 @@ export const SuccessAlert: StoryObj<typeof Alert> = {
     classModifier: "success",
     title: "Succès: votre demande a bien été enregistrée.",
     icon: "glyphicon glyphicon-ok",
-    ariaLabel: "Tata",
+    ariaLabel: "close alert",
   },
 };
 
