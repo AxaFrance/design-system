@@ -25,7 +25,6 @@ type ItemFileState = keyof typeof itemFileVariants;
 export type ItemFileCommonProps = {
   state: ItemFileState;
   title: string;
-  helper: string;
   subTitle: string;
   errorMessage?: string;
   deleteIcon: string;
@@ -34,11 +33,11 @@ export type ItemFileCommonProps = {
   ItemIconComponent: ComponentType<IconProps>;
   ItemClickIconComponent: ComponentType<ClickIconProps>;
   ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
-} & ComponentPropsWithoutRef<"div">;
+} & Omit<ComponentPropsWithoutRef<"section">, "children">;
 
 export const ItemFileCommon = ({
+  className,
   state,
-  helper,
   title,
   subTitle,
   errorMessage,
@@ -48,43 +47,36 @@ export const ItemFileCommon = ({
   ItemClickIconComponent,
   ItemIconComponent,
   ItemMessageComponent,
+  ...props
 }: ItemFileCommonProps) => {
-  const idHelp = useId();
   const idMessage = useId();
 
   const classname = classNames(
     "af-item-file",
     errorMessage && "af-item-file--error",
+    className,
   );
 
   return (
-    <section className={classname} role="alert" aria-describedby={idHelp}>
-      <div className="af-item-file__header">
+    <section className={classname} {...props}>
+      <main className="af-item-file__body">
         <ItemStateIcon
           state={state}
           ItemIconComponent={ItemIconComponent}
           ItemSpinnerComponent={ItemSpinnerComponent}
         />
-
-        <div>
-          <h1 className="af-item-file__title">{title}</h1>
-          <p className="af-item-file__subtitle">{subTitle}</p>
+        <p className="af-item-file__title">{title}</p>
+        <p className="af-item-file__subtitle">{subTitle}</p>
+        <div className="af-item-file__actions" aria-label="File actions">
+          {state === "success" && (
+            <ItemClickIconComponent src={visibilityIcon} />
+          )}
+          <ItemClickIconComponent src={deleteIcon} />
         </div>
-      </div>
-
-      <div className="af-item-file__actions" aria-label="File actions">
-        {state === "success" && <ItemClickIconComponent src={visibilityIcon} />}
-        <ItemClickIconComponent src={deleteIcon} />
-      </div>
-
-      {helper && (
-        <span id={idHelp} className="af-form__input-helper">
-          {helper}
-        </span>
-      )}
+      </main>
       <ItemMessageComponent
         id={idMessage}
-        message={errorMessage || success}
+        message={errorMessage ?? success}
         messageType={errorMessage ? "error" : "success"}
       />
     </section>

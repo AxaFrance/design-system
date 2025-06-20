@@ -1,31 +1,50 @@
-.af-item-file {
-  display: flex;
-  width: 100%;
-  margin-bottom: calc(10 / var(--font-size-base) * 1rem);
-  padding: calc(16 / var(--font-size-base) * 1rem);
-  border: 1px solid var(--item-file-border-color);
-  border-radius: var(--item-file-border-radius);
-  align-items: center;
-  justify-content: space-between;
-  gap: calc(12 / var(--font-size-base) * 1rem);
-  font: var(--font-family-base);
-  font-weight: 400;
-  line-height: 125%;
+@use "../../common/breakpoints" as breakpoints;
 
-  .af-item-file__title {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
+.af-item-file {
+  --af-item-file-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --af-item-file-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--item-file-gap);
+
+  &__body {
+    display: grid;
+    padding: var(--item-file-body-padding-vertical)
+      var(--item-file-body-padding-horizontal);
+    border: 1px solid var(--item-file-border-color);
+    border-radius: var(--item-file-border-radius);
+    grid-template-areas:
+      "icon title actions"
+      "icon subtitle actions";
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-content: start;
+    gap: 0 calc(12 / var(--font-size-base) * 1rem);
+    font: var(--font-family-base);
+    font-weight: 400;
+    line-height: 125%;
+  }
+
+  &__spinner,
+  .af-icon:first-of-type {
+    grid-area: icon;
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    grid-area: title;
+    font-size: var(--af-item-file-title-font-size);
     color: var(--item-file-title-color);
   }
 
-  .af-item-file__subtitle {
-    font-size: calc(16 / var(--font-size-base) * 1rem);
+  &__subtitle {
+    margin: 0;
+    padding: 0;
+    grid-area: subtitle;
+    font-size: var(--af-item-file-subtitle-font-size);
     color: var(--item-file-subtitle-color);
-  }
-
-  .af-item-file__header {
-    display: flex;
-    align-items: center;
-    gap: calc(12 / var(--font-size-base) * 1rem);
   }
 
   .af-icon__success {
@@ -36,20 +55,19 @@
     fill: var(--icon-fill);
   }
 
-  .af-item-file--spinner div {
+  &__spinner div {
     border-top: var(--item-file-spinner-color) 2px solid;
   }
 
-  .af-item-file__actions {
+  &__actions {
     display: flex;
+    grid-area: actions;
     align-items: end;
-    gap: calc(12 / var(--font-size-base) * 1rem);
+    gap: var(--item-file-action-buttons-gap);
   }
 
-  .af-item-file__message {
-    display: flex;
-    margin-top: calc(10 / var(--font-size-base) * 1rem);
-    align-items: center;
-    gap: calc(8 / var(--font-size-base) * 1rem);
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --af-item-file-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --af-item-file-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
 }
