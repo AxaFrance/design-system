@@ -25,6 +25,7 @@ export { InputError } from "./Form/InputError";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { Radio, RadioCard } from "./Form/Radio";
+export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFile";
 export {
   Dropdown,
   /** @deprecated Use `Dropdown` instead. */ Dropdown as Select,
@@ -44,7 +45,6 @@ export { Footer } from "./Layout/Footer/Footer";
 export { BurgerMenu, Header, NavBar, PreviousLink } from "./Layout/Header";
 export { Link } from "./Link/Link";
 export { List } from "./List";
-export { ClickItem, createClickItemParent } from "./List/ClickItem";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuo";
 export { ContentTabItem, ContentTabList } from "./List/ContentTabList";
 export {
@@ -99,3 +99,4 @@ export {
 } from "./ItemTabBar/ItemTabBar";
 export { Heading, type HeadingLevel } from "./Heading/Heading";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMono";
+export { ClickItem, createClickItemParent } from "./List/ClickItem";
