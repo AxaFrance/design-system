@@ -1,34 +1,13 @@
-import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.scss";
-import { useState } from "react";
 import { CardCheckbox } from "../Form/Checkbox/CardCheckbox/CardCheckboxLF";
-import { DebugGridCommon } from "./DebugGridCommon";
+import { DebugGridCommon, type DebugGridCommonProps } from "./DebugGridCommon";
 
-export const DebugGrid = ({
-  cols = 12,
-  isCheckedByDefault = false,
-}: {
-  cols?: number;
-  isCheckedByDefault?: boolean;
-}) => {
-  const [checked, setChecked] = useState(isCheckedByDefault);
+type DebugGridProps<P = object> = Omit<DebugGridCommonProps<P>, "CardCheckbox">;
 
-  const handleChecked = () => setChecked(!checked);
-
+export const DebugGrid = <P = object,>({ ...props }: DebugGridProps<P>) => {
   return (
-    <>
-      <CardCheckbox
-        type="horizontal"
-        options={[
-          {
-            name: "debuggrid",
-            label: "Grid",
-            checked,
-            onClick: handleChecked,
-          },
-        ]}
-      />
-
-      <DebugGridCommon cols={cols} />
-    </>
+    <DebugGridCommon
+      {...props}
+      CardCheckbox={CardCheckbox as DebugGridCommonProps<P>["CardCheckbox"]}
+    />
   );
 };
