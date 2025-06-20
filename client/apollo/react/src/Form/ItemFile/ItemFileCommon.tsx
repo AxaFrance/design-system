@@ -1,5 +1,3 @@
-import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
-import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import visibilityIcon from "@material-symbols/svg-400/outlined/visibility-fill.svg";
 
 import {
@@ -10,6 +8,7 @@ import {
 } from "react";
 
 import classNames from "classnames";
+import { ItemStateIcon } from "./ItemStateIcon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { Spinner } from "../../Spinner/SpinnerCommon";
 import type { ClickIconProps } from "../../ClickIcon/ClickIconCommon";
@@ -30,12 +29,11 @@ export type ItemFileCommonProps = {
   subTitle: string;
   errorMessage?: string;
   deleteIcon: string;
+  success?: string;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   ItemIconComponent: ComponentType<IconProps>;
   ItemClickIconComponent: ComponentType<ClickIconProps>;
   ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
-  deleteIconProps?: Partial<ClickIconProps>;
-  visibilityIconProps?: Partial<ClickIconProps>;
 } & ComponentPropsWithoutRef<"div">;
 
 export const ItemFileCommon = ({
@@ -45,12 +43,11 @@ export const ItemFileCommon = ({
   subTitle,
   errorMessage,
   deleteIcon,
+  success,
   ItemSpinnerComponent,
   ItemClickIconComponent,
   ItemIconComponent,
   ItemMessageComponent,
-  deleteIconProps = {},
-  visibilityIconProps = {},
 }: ItemFileCommonProps) => {
   const idHelp = useId();
   const idMessage = useId();
@@ -60,50 +57,36 @@ export const ItemFileCommon = ({
     errorMessage && "af-item-file--error",
   );
 
-  const getIconByState = () => {
-    if (state === "loading") {
-      return (
-        <ItemSpinnerComponent size={24} classModifier="af-item-file--spinner" />
-      );
-    }
-
-    return (
-      <ItemIconComponent
-        className={`af-icon__${state}`}
-        size="S"
-        src={state === "success" ? validationIcon : errorIcon}
-      />
-    );
-  };
-
   return (
-    <div>
-      <div className={classname} role="alert">
-        <div className="af-icon">
-          {getIconByState()}
+    <section className={classname} role="alert" aria-describedby={idHelp}>
+      <div className="af-item-file__header">
+        <ItemStateIcon
+          state={state}
+          ItemIconComponent={ItemIconComponent}
+          ItemSpinnerComponent={ItemSpinnerComponent}
+        />
 
-          <div>
-            <div className="af-item-file-title">{title}</div>
-            <div className="af-item-file-subtitle">{subTitle}</div>
-          </div>
+        <div>
+          <h1 className="af-item-file__title">{title}</h1>
+          <p className="af-item-file__subtitle">{subTitle}</p>
         </div>
-
-        <div className="af-click-icon__content">
-          {state === "success" && (
-            <ItemClickIconComponent
-              src={visibilityIcon}
-              {...visibilityIconProps}
-            />
-          )}
-          <ItemClickIconComponent src={deleteIcon} {...deleteIconProps} />
-        </div>
-        {helper && (
-          <span id={idHelp} className="af-form__input-helper">
-            {helper}
-          </span>
-        )}
       </div>
-      <ItemMessageComponent id={idMessage} message={errorMessage} />
-    </div>
+
+      <div className="af-item-file__actions" aria-label="File actions">
+        {state === "success" && <ItemClickIconComponent src={visibilityIcon} />}
+        <ItemClickIconComponent src={deleteIcon} />
+      </div>
+
+      {helper && (
+        <span id={idHelp} className="af-form__input-helper">
+          {helper}
+        </span>
+      )}
+      <ItemMessageComponent
+        id={idMessage}
+        message={errorMessage || success}
+        messageType={errorMessage ? "error" : "success"}
+      />
+    </section>
   );
 };
