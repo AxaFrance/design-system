@@ -1,8 +1,8 @@
 @use "./AccordionCommon";
 
 .af-accordion {
-  --accordion-info1-text-color: var(--neutral-80);
-  --accordion-info2-text-color: var(--green-100);
+  --accordion-info1-text-color: var(--color-gray-700);
+  --accordion-info2-text-color: var(--color-green-600);
   --accordion-title-text-color: var(--axa-blue-100);
 
   &--primary {
