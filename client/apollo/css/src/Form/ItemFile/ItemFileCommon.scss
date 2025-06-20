@@ -12,17 +12,17 @@
   font-weight: 400;
   line-height: 125%;
 
-  .af-item-file-title {
+  .af-item-file__title {
     font-size: calc(18 / var(--font-size-base) * 1rem);
     color: var(--item-file-title-color);
   }
 
-  .af-item-file-subtitle {
+  .af-item-file__subtitle {
     font-size: calc(16 / var(--font-size-base) * 1rem);
     color: var(--item-file-subtitle-color);
   }
 
-  .af-icon {
+  .af-item-file__header {
     display: flex;
     align-items: center;
     gap: calc(12 / var(--font-size-base) * 1rem);
@@ -40,7 +40,7 @@
     border-top: var(--item-file-spinner-color) 2px solid;
   }
 
-  .af-click-icon__content {
+  .af-item-file__actions {
     display: flex;
     align-items: end;
     gap: calc(12 / var(--font-size-base) * 1rem);
