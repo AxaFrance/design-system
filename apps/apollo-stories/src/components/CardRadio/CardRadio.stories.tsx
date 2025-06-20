@@ -1,11 +1,11 @@
-import { RadioCard } from "@axa-fr/design-system-apollo-react";
+import { CardRadio } from "@axa-fr/design-system-apollo-react";
 import home from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
 const meta: Meta = {
-  title: "Components/Form/Radio/RadioCard",
-  component: RadioCard,
+  title: "Components/Form/Radio/CardRadio",
+  component: CardRadio,
   argTypes: {},
 };
 
@@ -30,19 +30,19 @@ const baseOptions = [
   },
 ];
 
-type StoryProps = ComponentProps<typeof RadioCard> & {
+type StoryProps = ComponentProps<typeof CardRadio> & {
   includeIcons?: boolean;
   options?: typeof baseOptions;
 };
 
-export const RadioCardStory: StoryObj<StoryProps> = {
-  name: "Select",
+export const CardRadioStory: StoryObj<StoryProps> = {
+  name: "CardRadio",
   render: ({ includeIcons = true, options = baseOptions, ...args }) => {
     const mappedOptions = options.map((option) => ({
       ...option,
       ...(includeIcons && { icon: home }),
     }));
-    return <RadioCard {...args} options={mappedOptions} />;
+    return <CardRadio {...args} options={mappedOptions} />;
   },
   args: {
     type: "vertical",
@@ -68,14 +68,14 @@ export const RadioCardStory: StoryObj<StoryProps> = {
   },
 };
 
-export const RadioCardWithLabel: StoryObj<StoryProps> = {
-  name: "SelectWithLabel",
+export const CardRadioWithLabel: StoryObj<StoryProps> = {
+  name: "CardRadioWithLabel",
   render: ({ includeIcons = true, options = baseOptions, ...args }) => {
     const mappedOptions = options.map((option) => ({
       ...option,
       ...(includeIcons && { icon: home }),
     }));
-    return <RadioCard {...args} options={mappedOptions} />;
+    return <CardRadio {...args} options={mappedOptions} />;
   },
   args: {
     type: "vertical",

@@ -2,7 +2,7 @@
   display: flex;
   width: calc(24 / var(--font-size-base) * 1rem);
   aspect-ratio: 1;
-  border: solid var(--radio-border);
+  border: var(--radio-border-width, 1px) solid var(--radio-border-color);
   border-radius: 50%;
   align-items: center;
   justify-content: center;
@@ -16,18 +16,10 @@
     background-color: var(--radio-background-color);
   }
 
-  &[aria-invalid="true"] {
-    border: solid var(--radio-border);
-    background-color: var(--radio-background-color);
-  }
-
-  &:hover {
-    border: solid var(--radio-border);
-    box-shadow: var(--radio-box-shadow-color);
-  }
-
-  &:has(> input[type="radio"]:checked) {
-    border: solid var(--radio-border);
+  &:hover,
+  &:focus-within,
+  &:has(:checked) {
+    outline: 1px solid var(--radio-outline-color);
   }
 
   input[type="radio"] {

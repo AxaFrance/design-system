@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import { axe } from "jest-axe";
-import { RadioCard } from "../RadioCardApollo";
+import { CardRadio } from "../CardRadioApollo";
 
 describe("Radio card Component", () => {
   const args = {
@@ -20,7 +20,7 @@ describe("Radio card Component", () => {
 
   it("should render the Radio card component with label", () => {
     // Act
-    render(<RadioCard type="vertical" {...args} />);
+    render(<CardRadio type="vertical" {...args} />);
 
     // Then
     expect(screen.getByRole("radio")).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe("Radio card Component", () => {
 
   it("calls the onChange handler when clicked", () => {
     const handleChange = vi.fn();
-    render(<RadioCard type="vertical" {...args} onChange={handleChange} />);
+    render(<CardRadio type="vertical" {...args} onChange={handleChange} />);
 
     const radioInput = screen.getByRole("radio");
     radioInput.click();
@@ -39,7 +39,7 @@ describe("Radio card Component", () => {
 
   it("should violate accessibility the of radio card", async () => {
     // Act
-    const { container } = render(<RadioCard type="vertical" {...args} />);
+    const { container } = render(<CardRadio type="vertical" {...args} />);
 
     // Then
     expect(await axe(container)).toHaveNoViolations();

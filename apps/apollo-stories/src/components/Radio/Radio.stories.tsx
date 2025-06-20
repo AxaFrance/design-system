@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
 const meta: Meta = {
-  title: "Components/Form/Radio/RadioButton",
+  title: "Components/Form/Radio/Radio",
   component: Radio,
   argTypes: {},
 };
@@ -11,7 +11,7 @@ const meta: Meta = {
 export default meta;
 
 export const RadioStory: StoryObj<ComponentProps<typeof Radio>> = {
-  name: "Basic",
+  name: "Radio",
 
   render: ({ ...args }) => <Radio {...args} />,
   args: {
@@ -29,5 +29,7 @@ export const RadioStory: StoryObj<ComponentProps<typeof Radio>> = {
       control: { type: "boolean" },
     },
     onChange: { action: "onChange" },
+    hasError: { type: "boolean" },
+    errorId: { type: "string" },
   },
 };

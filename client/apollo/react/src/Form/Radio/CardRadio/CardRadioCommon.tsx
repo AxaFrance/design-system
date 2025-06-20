@@ -20,7 +20,7 @@ type IconComponent = {
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
 };
 
-export type RadioCardProps = ComponentPropsWithRef<"input"> & {
+export type CardRadioProps = ComponentPropsWithRef<"input"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
@@ -37,13 +37,13 @@ export type RadioCardProps = ComponentPropsWithRef<"input"> & {
   error?: string;
 };
 
-export type RadioCardCommonProps = RadioCardProps &
+export type CardRadioCommonProps = CardRadioProps &
   RadioComponent &
   IconComponent & {
     ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   };
 
-const RadioCardCommon = ({
+const CardRadioCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -56,13 +56,13 @@ const RadioCardCommon = ({
   name,
   onChange,
   ItemMessageComponent,
-}: RadioCardCommonProps) => {
+}: CardRadioCommonProps) => {
   const componentClassName = getComponentClassName(
-    "af-radio-card__container",
+    "af-card-radio__container",
     className,
   );
   const RadioGroupClassName = getComponentClassName(
-    "af-radio-card-group",
+    "af-card-radio-group",
     className,
     type,
   );
@@ -74,19 +74,18 @@ const RadioCardCommon = ({
 
   return (
     <fieldset className={componentClassName}>
-      <div className="af-radio-card__label-container">
-        <legend>
-          {labelGroup && (
-            <span className="af-radio-card__label">
-              {labelGroup}
-              {isRequired && <span aria-hidden>&nbsp;*</span>}
-            </span>
-          )}
+      {labelGroup && (
+        <legend className="af-card-radio__legend">
+          <p>
+            {labelGroup}
+            {isRequired && <span aria-hidden>&nbsp;*</span>}
+          </p>
+
           {descriptionGroup && (
-            <p className="af-radio-card__description">{descriptionGroup}</p>
+            <p className="af-card-radio__description">{descriptionGroup}</p>
           )}
         </legend>
-      </div>
+      )}
       <div className={RadioGroupClassName}>
         {options.map(
           (
@@ -97,7 +96,7 @@ const RadioCardCommon = ({
               key={`${name ?? inputProps.name}`}
               aria-invalid={Boolean(error) || hasError}
               htmlFor={`id-${name ?? inputProps.name}-${index}`}
-              className="af-radio-card-label"
+              className="af-card-radio-label"
             >
               <RadioComponent
                 id={`id-${name ?? inputProps.name}-${index}`}
@@ -107,9 +106,9 @@ const RadioCardCommon = ({
                 name={name ?? inputProps.name}
                 onChange={onChange}
               />
-              <div className="af-radio-card-content">
+              <div className="af-card-radio-content">
                 {icon && <IconComponent src={icon} size={size} />}
-                <div className="af-radio-card-content-description">
+                <div className="af-card-radio-content-description">
                   <span>{label}</span>
                   {description && <span>{description}</span>}
                   {subtitle && <span>{subtitle}</span>}
@@ -123,5 +122,5 @@ const RadioCardCommon = ({
     </fieldset>
   );
 };
-RadioCardCommon.displayName = "RadioCardCommon";
-export { RadioCardCommon };
+CardRadioCommon.displayName = "CardRadioCommon";
+export { CardRadioCommon };
