@@ -94,4 +94,27 @@ describe("Stepper Component", () => {
     const progressBarGroup = screen.getByRole("group");
     expect(progressBarGroup).toHaveClass("custom-class");
   });
+
+  it.each([
+    [1, "H1"],
+    [2, "H2"],
+    [3, "H3"],
+  ])(
+    "should render the title as a %s according to titleLevel prop",
+    (level, tag) => {
+      render(
+        <Stepper
+          currentStep={1}
+          currentTitle={`Step Title ${tag}`}
+          nbSteps={4}
+          ProgressBarGroupComponent={ProgressBarGroup}
+          titleLevel={level as 1 | 2 | 3}
+        />,
+      );
+      const heading = screen.getByRole("heading", {
+        name: `Step Title ${tag}`,
+      });
+      expect(heading.tagName).toStrictEqual(tag);
+    },
+  );
 });
