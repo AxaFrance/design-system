@@ -31,18 +31,25 @@ export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
     placeholder: "Paris",
     messageType: MessageTypes.error,
     forceDisplayMessage: false,
+    classNameContainerInput: "col-md-10",
+    classNameContainerLabel: "col-md-2",
     message: "",
     id: "uniqueid",
     classModifier: [],
     isVisible: true,
     readOnly: false,
     disabled: false,
+    value: undefined,
   },
   argTypes: {
     onChange: { action: "onChange" },
     classModifier: {
       options: ["disabled", "required"],
       control: { type: "inline-check" },
+    },
+    value: {
+      options: [undefined, true, false],
+      control: { type: "inline-radio" },
     },
   },
 };

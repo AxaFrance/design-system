@@ -11,9 +11,9 @@ import {
   useRef,
   useState,
 } from "react";
-import { getComponentClassName } from "../../utilities";
-import { FormClassManager } from "./FormClassManager";
-import { MessageTypes } from "./MessageTypes";
+import { getComponentClassName } from "../../../utilities";
+import { FormClassManager } from "../FormClassManager";
+import { MessageTypes } from "../MessageTypes";
 
 const defaultClassName = "md-10";
 
@@ -251,6 +251,11 @@ export const renderedChildren = ({
     );
   });
 
+/**
+ * @deprecated This component is deprecated and will be removed in future versions.
+ * This was an internal component used to manage the state of the form fields.
+ * It is not recommended to use it directly in your code as it is not a public API.
+ */
 export const FieldForm = ({
   children,
   message = "",
