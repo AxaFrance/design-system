@@ -1,0 +1,38 @@
+@use "../../common/breakpoints" as breakpoints;
+
+@use "InputTextAtomCommon";
+
+.af-form__input-variant {
+  --input-border-color: var(--axa-blue-65);
+  --input-border-radius: var(--radius-8);
+  --input-bg-color: var(--white);
+  --input-text-color: var(--neutral-80);
+  --input-text-icon-color: var(--axa-blue-100);
+  --input-text-outline-color: var(--axa-blue-65);
+
+  &:has(> input:not([value=""])) {
+    --input-border-color: var(--axa-blue-100);
+    --input-text-color: var(--axa-blue-100);
+  }
+
+  &:has(> input:is(:hover, :focus, :active)) {
+    --input-border-color: var(--axa-blue-100);
+    --input-text-placeholder-color: var(--neutral-80);
+  }
+
+  &:has(> input[class*="--error"]) {
+    --input-border-color: var(--red-alert-100);
+  }
+
+  &:has(> input:disabled),
+  &:has(> input:disabled):is(:hover, :focus, :active) {
+    --input-border-color: var(--neutral-50);
+    --input-text-color: var(--neutral-50);
+    --input-bg-color: var(--neutral-5);
+    --input-text-icon-color: var(--neutral-50);
+
+    + .af-form__input-helper {
+      --input-helper-color: var(--neutral-50);
+    }
+  }
+}
