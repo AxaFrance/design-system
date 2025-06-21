@@ -1,18 +1,20 @@
-import { useMemo, type ComponentProps } from "react";
-import { Tag } from "../Tag/Tag";
+import { type ComponentProps, ComponentType, useMemo } from "react";
+import { Tag } from "../../Tag/TagCommon";
 
 type AccordionTagDateContainerProps = {
-  tagLabel?: string;
-  tagProps?: ComponentProps<typeof Tag>;
   dateLabel?: string;
   dateProps?: ComponentProps<"time">;
+  tagLabel?: string;
+  tagProps?: ComponentProps<typeof Tag>;
+  TagComponent: ComponentType<ComponentProps<typeof Tag>>;
 };
 
 export const AccordionTagDateContainer = ({
-  tagLabel,
-  tagProps,
   dateLabel,
   dateProps,
+  tagLabel,
+  tagProps,
+  TagComponent,
 }: AccordionTagDateContainerProps) => {
   const isShowing = useMemo(
     () => Boolean(tagLabel) || Boolean(dateLabel),
@@ -24,12 +26,12 @@ export const AccordionTagDateContainer = ({
   }
 
   return (
-    <div className="af-accordion__tag-date-container">
+    <>
       {tagLabel && (
         <div className="af-accordion__tag-container">
-          <Tag variant="warning" {...tagProps}>
+          <TagComponent variant="warning" {...tagProps}>
             {tagLabel}
-          </Tag>
+          </TagComponent>
         </div>
       )}
       {dateLabel && (
@@ -37,6 +39,6 @@ export const AccordionTagDateContainer = ({
           {dateLabel}
         </time>
       )}
-    </div>
+    </>
   );
 };
