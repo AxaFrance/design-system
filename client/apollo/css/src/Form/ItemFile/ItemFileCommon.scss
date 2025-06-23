@@ -47,12 +47,14 @@
     color: var(--item-file-subtitle-color);
   }
 
-  .af-icon__success {
-    fill: var(--icon-fill);
-  }
+  .af-icon {
+    &__success {
+      fill: var(--icon-fill);
+    }
 
-  .af-icon__error {
-    fill: var(--icon-fill);
+    &__error {
+      fill: var(--icon-fill);
+    }
   }
 
   &__spinner div {
