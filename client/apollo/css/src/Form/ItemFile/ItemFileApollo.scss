@@ -16,15 +16,17 @@
     --item-file-border-color: var(--axa-red-100);
   }
 
-  .af-icon__success {
-    --icon-fill: var(--green-100);
+  .af-icon {
+    &__success {
+      --icon-fill: var(--green-100);
+    }
+
+    &__error {
+      --icon-fill: var(--red-alert-100);
+    }
   }
 
-  .af-icon__error {
-    --icon-fill: var(--red-alert-100);
-  }
-
-  .af-item-file__spinner div {
+  &__spinner div {
     --item-file-spinner-color: var(--neutral-100);
   }
 }
