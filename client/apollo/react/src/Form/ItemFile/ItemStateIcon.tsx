@@ -18,23 +18,15 @@ const ItemStateIcon: React.FC<ItemStateIconProps> = ({
   state,
   ItemIconComponent,
   ItemSpinnerComponent,
-  ...props
-}) => {
-  if (state === "loading") {
-    return (
-      <div className="af-item-file__spinner">
-        <ItemSpinnerComponent size={24} {...props} />
-      </div>
-    );
-  }
-
-  return (
+}) =>
+  state === "loading" ? (
+    <ItemSpinnerComponent size={24} className="af-item-file__spinner" />
+  ) : (
     <ItemIconComponent
       className={classNames("af-icon", `af-icon__${state}`)}
       size="S"
       src={state === "success" ? validationIcon : errorIcon}
     />
   );
-};
 
 export { ItemStateIcon };
