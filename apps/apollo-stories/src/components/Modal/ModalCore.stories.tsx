@@ -40,9 +40,9 @@ export const ModalCore: TModalCoreStory = {
   decorators: [
     (Story, { args }) => {
       const ref = useRef<HTMLDialogElement>(null);
-      const onClose: React.ReactEventHandler<HTMLDialogElement> = (e) => {
+      const onClose = () => {
         ref.current?.close();
-        args.onClose?.(e);
+        args.onClose?.();
       };
       const children = (
         <>

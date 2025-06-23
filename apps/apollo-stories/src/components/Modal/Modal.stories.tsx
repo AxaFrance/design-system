@@ -67,8 +67,8 @@ export const Playground: ModalStory = {
     (Story, { args: { secondaryButtonProps = {}, ...args } }) => {
       const ref = useRef<HTMLDialogElement>(null);
 
-      const onClose: React.ReactEventHandler<HTMLDialogElement> = (e) => {
-        args.onClose?.(e);
+      const onClose = () => {
+        args.onClose?.();
         ref.current?.close();
       };
 
