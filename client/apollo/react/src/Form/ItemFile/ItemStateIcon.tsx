@@ -18,11 +18,12 @@ const ItemStateIcon: React.FC<ItemStateIconProps> = ({
   state,
   ItemIconComponent,
   ItemSpinnerComponent,
+  ...props
 }) => {
   if (state === "loading") {
     return (
       <div className="af-item-file__spinner">
-        <ItemSpinnerComponent size={24} />
+        <ItemSpinnerComponent size={24} {...props} />
       </div>
     );
   }
