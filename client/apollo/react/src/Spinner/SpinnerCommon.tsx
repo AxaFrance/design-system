@@ -21,9 +21,11 @@ const Spinner = ({
   variant = "blue",
   text = "Chargement en cours",
   className,
+  ...props
 }: SpinnerProps) => (
   <div
     role="alert"
+    {...props}
     aria-busy
     aria-label={text}
     aria-live="assertive"
