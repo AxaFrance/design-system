@@ -199,10 +199,10 @@ inputs are marked invalid with the `aria-invalid` attribute.
 - `User` component inside the `Header` now have the correct color as blue axa.
   Also the user is not underlined if it is not a link.
 - Aria-label for the close button in the Alert component is now customizable via
-  `ariaLabel` property.
+  `closeButtonAriaLabel` property.
 
 ```jsx
-<Alert title="my alert" ariaLabel="Close this alert" classModifier="error">
+<Alert title="my alert" closeButtonAriaLabel="Close this alert" classModifier="error">
   <ul>
     <li>The last name is required</li>
     <li>The first name is required</li>
