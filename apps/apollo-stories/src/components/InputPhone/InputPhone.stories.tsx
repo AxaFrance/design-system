@@ -15,6 +15,7 @@ const meta: Meta<typeof InputPhone> = {
     placeholder: "07 89 10 11 12",
     disabled: false,
     required: true,
+    mask: undefined,
     showSelect: false,
     className: "",
     type: "text",

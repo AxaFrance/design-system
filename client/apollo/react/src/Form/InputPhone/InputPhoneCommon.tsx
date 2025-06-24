@@ -25,6 +25,7 @@ type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   countryCodeOptions?: OptionType[];
   onChangeSelect?: (value: SingleValue<OptionType>) => void;
   onChangeInput?: (value: string) => void;
+  mask?: (value: string) => string;
   label: ComponentProps<typeof ItemLabel>["label"];
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
@@ -79,16 +80,26 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     const idHelp = useId();
 
     const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-      let numericValue = e.target.value.replace(/[^0-9]/g, "");
-      numericValue = numericValue.slice(0, 10);
-      let formattedValue = "";
-      for (let i = 0; i < numericValue.length; i += 2) {
-        formattedValue += numericValue.slice(i, i + 2);
-        if (i + 2 < numericValue.length) {
-          formattedValue += " ";
-        }
-      }
-      onChangeInput?.(formattedValue);
+      const {
+        mask = (value: string) => {
+          let numericValue = value.replace(/[^0-9]/g, "");
+          numericValue = numericValue.slice(0, 10);
+          let formattedValue = "";
+          for (let i = 0; i < numericValue.length; i += 2) {
+            formattedValue += numericValue.slice(i, i + 2);
+            if (i + 2 < numericValue.length) {
+              formattedValue += " ";
+            }
+          }
+          return formattedValue;
+        },
+      } = otherProps as { mask?: (value: string) => string };
+
+      const input = e.target;
+      const rawValue = input.value;
+      const maskedValue = mask(rawValue);
+
+      onChangeInput?.(maskedValue);
     };
 
     return (
