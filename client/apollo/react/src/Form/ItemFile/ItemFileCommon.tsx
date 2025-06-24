@@ -1,6 +1,5 @@
 import {
   ReactNode,
-  useId,
   type ComponentProps,
   type ComponentPropsWithoutRef,
   type ComponentType,
@@ -47,8 +46,6 @@ export const ItemFileCommon = ({
   ItemMessageComponent,
   ...props
 }: ItemFileCommonProps) => {
-  const idMessage = useId();
-
   const classname = classNames(
     "af-item-file",
     errorMessage && "af-item-file--error",
@@ -59,6 +56,7 @@ export const ItemFileCommon = ({
     <section className={classname} {...props}>
       <main className="af-item-file__body">
         <ItemStateIcon
+          aria-label="File actions"
           state={state}
           ItemIconComponent={ItemIconComponent}
           ItemSpinnerComponent={ItemSpinnerComponent}
@@ -71,7 +69,7 @@ export const ItemFileCommon = ({
         </div>
       </main>
       <ItemMessageComponent
-        id={idMessage}
+        aria-label="Error message"
         message={errorMessage ?? success}
         messageType={errorMessage ? "error" : "success"}
       />

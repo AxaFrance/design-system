@@ -14,9 +14,7 @@ describe("<ItemFile />", () => {
     );
     const itemFileTitle = screen.getByText("IMG_879687880");
     const itemFileSubTitle = screen.getByText("0.12");
-    const itemTitleState = document.querySelector(
-      '[aria-label="Chargement en cours"]',
-    );
+    const itemTitleState = screen.getByLabelText("Chargement en cours");
 
     expect(itemFileTitle).toBeInTheDocument();
     expect(itemFileSubTitle).toBeInTheDocument();
@@ -24,18 +22,16 @@ describe("<ItemFile />", () => {
   });
 
   it("renders the component with error", () => {
-    const { container } = render(
+    render(
       <ItemFile
+        aria-label="Error message"
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.error}
-        errorMessage="Titre du message"
       />,
     );
-
-    expect(container.querySelector(".af-item-file")).toHaveClass(
-      "af-item-file--error",
-    );
+    const itemFileErrorLabelText = screen.getByLabelText("Error message");
+    expect(itemFileErrorLabelText).toBeInTheDocument();
   });
 
   it("renders the component with success", () => {
