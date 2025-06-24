@@ -7,6 +7,7 @@ import { Message } from "./Messages/Message";
 export { Action } from "./Action/Action";
 export { Badge } from "./Badge/Badge";
 export { Button } from "./Button/Button";
+export { Card } from "./Card/Card";
 export {
   Checkbox,
   CheckboxInput,

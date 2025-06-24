@@ -1,0 +1,44 @@
+import { Controls, Canvas, Meta } from "@storybook/blocks";
+import * as CardStories from "./Card.stories.tsx";
+
+<Meta of={CardStories} />
+
+## Card
+
+### Import
+
+```tsx title="test.js"
+import { Card } from "@axa-fr/design-system-slash-react";
+```
+
+### Use
+
+#### Card Button Default
+
+<Canvas of={CardStories.Default} />
+<Controls of={CardStories.Default} />
+
+```tsx title="test.js"
+import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
+
+const MyCard = () => (
+  <Card id="id" onClick={() => action()} iconSrc={villaIcon}>
+    Contenu
+  </Card>
+);
+```
+
+#### Card Button vertical without icon
+
+<Canvas of={CardStories.VerticalWithoutIcon} />
+<Controls of={CardStories.VerticalWithoutIcon} />
+
+#### Card Button horizontal
+
+<Canvas of={CardStories.Horizontal} />
+<Controls of={CardStories.Horizontal} />
+
+#### Card Button horizontal without icon
+
+<Canvas of={CardStories.HorizontalWithoutIcon} />
+<Controls of={CardStories.HorizontalWithoutIcon} />
