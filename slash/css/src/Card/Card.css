@@ -1,0 +1,81 @@
+.af-card {
+  --card-background-color: var(--white);
+  --card-border-color: transparent;
+  --card-border-radius: 4px;
+  --card-box-shadow-color: hsla(230deg, 60%, 16%, 8%);
+  --card-text-color: var(--gray80);
+  --card-icon-color: var(--axablue80);
+  --card-vertical-padding: 1.5rem;
+  --card-lateral-padding: 1rem;
+
+  display: flex;
+  min-width: 11.25rem;
+  padding: var(--card-vertical-padding) var(--card-lateral-padding);
+  border: 2px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  flex-flow: column nowrap;
+  align-items: center;
+  line-height: 1.25rem;
+  color: var(--card-text-color);
+  background-color: var(--card-background-color);
+  box-shadow: 0 0.25rem 0.5rem 0 var(--card-box-shadow-color);
+
+  &:not(:has(svg)) {
+    min-height: 5.75rem;
+    justify-content: center;
+  }
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+    fill: var(--card-icon-color);
+  }
+
+  &:hover,
+  &:focus {
+    --card-border-color: var(--axablue80);
+    --card-text-color: var(--gray80);
+    --card-icon-color: var(--axablue80);
+  }
+
+  &:focus {
+    --card-background-color: var(--axablue80);
+    --card-text-color: var(--white);
+    --card-icon-color: var(--white);
+  }
+
+  &:disabled {
+    --card-text-color: var(--gray40);
+    --card-icon-color: var(--gray40);
+
+    cursor: not-allowed;
+
+    &:hover {
+      --card-border-color: transparent;
+    }
+  }
+}
+
+.af-card--horizontal {
+  --card-lateral-padding: 1.5rem;
+
+  min-width: 47.75rem;
+  padding-right: 0;
+  flex-direction: row;
+
+  &:not(:has(svg)) {
+    min-height: unset;
+    justify-content: flex-start;
+  }
+
+  svg {
+    margin-bottom: auto;
+    padding-right: 1rem;
+  }
+}
+
+.af-card--error {
+  --card-text-color: var(--red30);
+  --card-icon-color: var(--red30);
+}

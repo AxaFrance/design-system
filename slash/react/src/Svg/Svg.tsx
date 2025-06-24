@@ -78,5 +78,5 @@ export const Svg = ({
     ) : null;
   }
 
-  return <svg ref={rootRef} data-src={src} {...props} />;
+  return <svg ref={rootRef} data-src={src} role="presentation" {...props} />;
 };
