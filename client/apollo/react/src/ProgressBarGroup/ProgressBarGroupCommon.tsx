@@ -8,7 +8,7 @@ const MAX_STEPPER_PROGRESS = 100;
 export type ProgressBarGroupProps = {
   currentStepProgress?: number;
   currentStep: number;
-  nbSteps?: 3 | 4 | 5 | 6 | 7 | 8;
+  nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   label?: string;
   className?: string;
   ProgressBarComponent: ComponentType<ComponentProps<typeof ProgressBar>>;
