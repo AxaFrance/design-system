@@ -1,0 +1,102 @@
+:root {
+  --slash-card-default-background-color: var(--white);
+  --slash-card-default-border-radius: 4px;
+  --slash-card-default-box-shadow-color: hsla(230deg, 60%, 16%, 8%);
+  --slash-card-default-text-color: var(--gray80);
+  --slash-card-default-icon-color: var(--axablue80);
+  --slash-card-selected-text-color: var(--white);
+  --slash-card-selected-icon-color: var(--white);
+  --slash-card-error-text-color: var(--red30);
+  --slash-card-error-icon-color: var(--red30);
+  --slash-card-disabled-text-color: var(--gray40);
+  --slash-card-disabled-icon-color: var(--gray40);
+  --slash-card-text-color: var(--slash-card-default-text-color);
+  --slash-card-icon-color: var(--slash-card-default-icon-color);
+  --slash-card-vertical-padding-vertical: 1.5rem;
+  --slash-card-vertical-padding-lateral: 1rem;
+  --slash-card-hover-border-color: var(--axablue80);
+}
+
+.af-card {
+  padding: var(--slash-card-vertical-padding-vertical)
+    var(--slash-card-vertical-padding-lateral);
+  border: none;
+  border-radius: var(--slash-card-default-border-radius);
+  color: var(--slash-card-text-color);
+  background-color: var(--slash-card-default-background-color);
+  box-shadow: 0 0.25rem 0.5rem 0 var(--slash-card-default-box-shadow-color);
+
+  & > .content {
+    display: flex;
+    min-width: 9.25rem;
+    flex-flow: column nowrap;
+    align-items: center;
+    line-height: 1.25rem;
+
+    &:not(:has(svg)) {
+      min-height: 5.75rem;
+      justify-content: center;
+    }
+
+    svg {
+      margin-bottom: 1.5rem;
+      fill: var(--slash-card-icon-color);
+    }
+  }
+
+  &--horizontal {
+    --slash-card-vertical-padding-lateral: 1.5rem;
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    .content {
+      width: 43.5625rem;
+      padding-right: 0;
+      flex-direction: row;
+
+      &:not(:has(svg)) {
+        min-height: unset;
+        justify-content: flex-start;
+      }
+
+      svg {
+        margin-bottom: auto;
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  > *:last-child {
+    margin-block-end: 0;
+  }
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--slash-card-hover-border-color);
+  }
+
+  &:focus {
+    background-color: var(--axablue80);
+
+    --slash-card-text-color: var(--slash-card-selected-text-color);
+    --slash-card-icon-color: var(--slash-card-selected-icon-color);
+  }
+
+  &--error {
+    --slash-card-text-color: var(--slash-card-error-text-color);
+    --slash-card-icon-color: var(--slash-card-error-icon-color);
+  }
+
+  &[disabled] {
+    --slash-card-text-color: var(--slash-card-disabled-text-color);
+    --slash-card-icon-color: var(--slash-card-disabled-icon-color);
+
+    cursor: not-allowed;
+  }
+
+  &--error,
+  &[disabled] {
+    &:hover {
+      border: none;
+    }
+  }
+}
