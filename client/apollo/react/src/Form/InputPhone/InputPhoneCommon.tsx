@@ -53,7 +53,7 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       required,
       sideButtonLabel,
       onSideButtonClick,
-      countryCodeOptions,
+      countryCodeOptions = [],
       onChangeSelect,
       onChangeInput,
       ItemLabelComponent,
@@ -65,8 +65,6 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     },
     inputRef,
   ) => {
-    const options = countryCodeOptions ?? [];
-
     const componentClassName = getComponentClassName(
       "af-form__input-phone",
       className,
@@ -120,7 +118,7 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           {showSelect && (
             <div className="af-form__country-code-wrapper">
               <CountryCodeSelect
-                options={options}
+                options={countryCodeOptions}
                 defaultCountry={defaultCountry}
                 onChangeSelect={onChangeSelect}
                 IconComponent={IconComponent}
