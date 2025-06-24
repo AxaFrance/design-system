@@ -1,9 +1,9 @@
-import { RadioCard } from "@axa-fr/design-system-look-and-feel-react";
+import { CardRadio } from "@axa-fr/design-system-apollo-react/lf";
 import home from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
-type RadioCardOption = {
+type CardRadioOption = {
   label: string;
   description?: string;
   subtitle?: string;
@@ -11,20 +11,20 @@ type RadioCardOption = {
   hasError?: boolean;
 };
 
-type StoryProps = ComponentProps<typeof RadioCard> & {
+type StoryProps = ComponentProps<typeof CardRadio> & {
   includeIcons?: boolean;
-  options: RadioCardOption[];
+  options: CardRadioOption[];
 };
 
 const meta: Meta<StoryProps> = {
-  title: "Components/Form/Input/Radio/Select",
-  component: RadioCard,
+  title: "Components/Form/Radio/CardRadio",
+  component: CardRadio,
   argTypes: {},
 };
 
 export default meta;
 
-const defaultOptions: RadioCardOption[] = [
+const defaultOptions: CardRadioOption[] = [
   {
     label: "Paris",
     description: "Capitale de la France",
@@ -43,14 +43,14 @@ const defaultOptions: RadioCardOption[] = [
   },
 ];
 
-export const RadioCardStory: StoryObj<StoryProps> = {
+export const CardRadioStory: StoryObj<StoryProps> = {
   name: "Select",
   render: ({ includeIcons = true, options = defaultOptions, ...args }) => {
     const finalOptions = options.map((option) => ({
       ...option,
       ...(includeIcons && { icon: home }),
     }));
-    return <RadioCard {...args} options={finalOptions} />;
+    return <CardRadio {...args} options={finalOptions} />;
   },
   args: {
     type: "vertical",
@@ -76,14 +76,14 @@ export const RadioCardStory: StoryObj<StoryProps> = {
   },
 };
 
-export const RadioCardWithLabel: StoryObj<StoryProps> = {
+export const CardRadioWithLabel: StoryObj<StoryProps> = {
   name: "SelectWithLabel",
   render: ({ includeIcons = true, options = defaultOptions, ...args }) => {
     const finalOptions = options.map((option) => ({
       ...option,
       ...(includeIcons && { icon: home }),
     }));
-    return <RadioCard {...args} options={finalOptions} />;
+    return <CardRadio {...args} options={finalOptions} />;
   },
   args: {
     type: "vertical",

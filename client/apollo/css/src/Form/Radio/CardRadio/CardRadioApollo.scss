@@ -1,0 +1,122 @@
+@use "CardRadioCommon";
+@use "../../../common/breakpoints" as breakpoints;
+
+.af-card-radio {
+  &__label-container {
+    --font-size-base: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  &__legend {
+    --card-radio-color: var(--neutral-100);
+
+    [aria-hidden] {
+      display: none;
+    }
+  }
+
+  &__description {
+    --card-radio-color: var(--neutral-80);
+  }
+
+  &__content {
+    & > svg {
+      --card-radio-color: var(--color-axa);
+      --card-radio-fill: var(--color-axa);
+    }
+
+    &-description {
+      & > span:first-child {
+        --card-radio-color: var(--neutral-100);
+      }
+
+      & > span:not(:first-child) {
+        --card-radio-color: var(--neutral-80);
+      }
+    }
+  }
+
+  & ~ &__error {
+    --error-box-color: var(--color-red-700);
+
+    & > svg {
+      --error-box-color: var(--color-red-700);
+    }
+  }
+
+  &-group--vertical {
+    --card-radio-flex-direction: row;
+
+    .af-card-radio-label {
+      --card-radio-flex-direction: column-reverse;
+
+      .af-card-radio-content {
+        --card-radio-flex-direction: column;
+        --card-radio-margin-left: calc(12 / var(--font-size-base) * 1rem);
+
+        .af-card-radio-content-description {
+          --card-radio-flex-direction: column;
+          --card-radio-align-item: center;
+        }
+      }
+    }
+  }
+
+  &-group--horizontal {
+    --card-radio-flex-direction: column;
+
+    .af-card-radio-label {
+      --card-radio-flex-direction: row;
+
+      .af-card-radio-content {
+        --card-radio-flex-direction: row;
+        --card-radio-margin-left: calc(2 / var(--font-size-base) * 1rem);
+
+        .af-card-radio-content-description {
+          --card-radio-flex-direction: column;
+          --card-radio-align-item: flex-start;
+        }
+      }
+    }
+  }
+
+  &-group--vertical,
+  &-group--horizontal {
+    .af-card-radio-label {
+      --card-radio-border-color: var(--axa-blue-65);
+      --card-radio-background-color: var(--white);
+      --card-radio-outline-color: var(--card-radio-border-color);
+      --card-radio-border-radius: calc(8 / var(--font-size-base) * 1rem);
+      --card-radio-align-items: center;
+
+      &:hover {
+        --card-radio-border-color: var(--axa-blue-100);
+
+        & > span:first-child {
+          --radio-border-color: var(--axa-blue-100);
+        }
+      }
+
+      &:has([aria-invalid="true"]) {
+        --card-radio-background-color: var(--axa-red-4);
+        --card-radio-border-color: var(--red-alert-100);
+
+        & > span:first-child {
+          --radio-border-color: var(--red-alert-100);
+        }
+      }
+
+      &:has(input:checked) {
+        --card-radio-border-color: var(--axa-blue-100);
+        --card-radio-background-color: var(--axa-blue-4);
+      }
+
+      .af-card-radio-content {
+        .af-card-radio-content-description {
+          & > span:first-child {
+            --card-radio-label-text-color: var(--axa-blue-100);
+          }
+        }
+      }
+    }
+  }
+}

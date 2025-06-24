@@ -1,2 +1,2 @@
 /* eslint-disable import/no-extraneous-dependencies */
-export { RadioCard } from "@axa-fr/design-system-apollo-react/lf";
+export { CardRadio as RadioCard } from "@axa-fr/design-system-apollo-react/lf";

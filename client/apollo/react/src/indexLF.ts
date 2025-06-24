@@ -28,7 +28,7 @@ export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { Radio } from "./Form/Radio/Radio/RadioLF";
-export { RadioCard } from "./Form/Radio/RadioCard/RadioCardLF";
+export { CardRadio } from "./Form/Radio/CardRadio/CardRadioLF";
 export {
   InputText,
   /** @deprecated Use `InputText` instead. */

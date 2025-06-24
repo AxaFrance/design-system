@@ -1,30 +1,30 @@
 @use "../../../common/breakpoints" as breakpoints;
 
-.af-radio-card {
+.af-card-radio {
   &__container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  &__label-container {
-    display: flex;
-    flex-direction: column;
+  &__legend {
+    display: grid;
+    margin-block-end: calc(4 / var(--font-size-base) * 1rem);
     row-gap: calc(4 / var(--font-size-base) * 1rem);
-  }
-
-  &__label {
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 600;
-    color: var(--radio-card-color);
+    color: var(--card-radio-color);
+
+    & > p {
+      margin: 0;
+    }
   }
 
   &__description {
-    margin: 0;
     font-size: calc(16 / var(--font-size-base) * 1rem);
     font-weight: 400;
     line-height: calc(16 / var(--font-size-base) * 1rem);
-    color: var(--radio-card-color);
+    color: var(--card-radio-color);
 
     @media (width > #{breakpoints.$breakpoint-sm}) {
       font-size: calc(18 / var(--font-size-base) * 1rem);
@@ -42,8 +42,8 @@
     & > svg {
       width: calc(28 / var(--font-size-base) * 1rem);
       height: calc(28 / var(--font-size-base) * 1rem);
-      color: var(--radio-card-color);
-      fill: var(--radio-card-fill);
+      color: var(--card-radio-color);
+      fill: var(--card-radio-fill);
     }
 
     &-description {
@@ -54,11 +54,11 @@
 
       & > span:first-child {
         line-height: calc(24 / var(--font-size-base) * 1rem);
-        color: var(--radio-card-color);
+        color: var(--card-radio-color);
       }
 
       & > span:not(:first-child) {
-        color: var(--radio-card-color);
+        color: var(--card-radio-color);
       }
     }
   }
@@ -74,37 +74,37 @@
   &-group {
     border: none;
 
-    --radio-card-flex-wrap: var(--radio-card-flex-wrap, nowrap);
+    --card-radio-flex-wrap: var(--card-radio-flex-wrap, nowrap);
 
-    flex-wrap: var(--radio-card-flex-wrap);
+    flex-wrap: var(--card-radio-flex-wrap);
 
-    .af-radio-card-label {
-      width: var(--radio-card-width, auto);
-      min-width: var(--radio-card-min-width, auto);
+    .af-card-radio-label {
+      width: var(--card-radio-width, auto);
+      min-width: var(--card-radio-min-width, auto);
     }
   }
 
   &-group--vertical {
-    flex-direction: var(--radio-card-flex-direction);
+    flex-direction: var(--card-radio-flex-direction);
 
     > * {
       flex-basis: 0;
       flex-grow: 1;
     }
 
-    .af-radio-card-label {
-      flex-direction: var(--radio-card-flex-direction);
-      align-items: var(--radio-card-align-items);
+    .af-card-radio-label {
+      flex-direction: var(--card-radio-flex-direction);
+      align-items: var(--card-radio-align-items);
       justify-content: var(--checkbox-card-justify-content);
 
-      .af-radio-card-content {
+      .af-card-radio-content {
         width: 100%;
         flex: 1;
-        flex-direction: var(--radio-card-flex-direction);
+        flex-direction: var(--card-radio-flex-direction);
 
-        .af-radio-card-content-description {
-          flex-direction: var(--radio-card-flex-direction);
-          align-items: var(--radio-card-align-item);
+        .af-card-radio-content-description {
+          flex-direction: var(--card-radio-flex-direction);
+          align-items: var(--card-radio-align-item);
           text-align: center;
         }
       }
@@ -112,21 +112,21 @@
   }
 
   &-group--horizontal {
-    flex-direction: var(--radio-card-flex-direction);
+    flex-direction: var(--card-radio-flex-direction);
 
-    .af-radio-card-label {
-      flex-direction: var(--radio-card-flex-direction);
-      align-items: var(--radio-card-align-items);
-      justify-content: var(--radio-card-justify-content);
+    .af-card-radio-label {
+      flex-direction: var(--card-radio-flex-direction);
+      align-items: var(--card-radio-align-items);
+      justify-content: var(--card-radio-justify-content);
 
-      .af-radio-card-content {
+      .af-card-radio-content {
         width: 100%;
         flex: 1;
-        flex-direction: var(--radio-card-flex-direction);
+        flex-direction: var(--card-radio-flex-direction);
 
-        .af-radio-card-content-description {
-          flex-direction: var(--radio-card-flex-direction);
-          align-items: var(--radio-card-align-item);
+        .af-card-radio-content-description {
+          flex-direction: var(--card-radio-flex-direction);
+          align-items: var(--card-radio-align-item);
           text-align: center;
         }
       }
@@ -138,44 +138,39 @@
     display: flex;
     align-items: stretch;
     gap: 1rem;
-    font-family: var(--radio-card-font-family);
+    font-family: var(--card-radio-font-family);
     font-style: normal;
     font-weight: 400;
     line-height: calc(20 / var(--font-size-base) * 1rem);
 
-    .af-radio-card-label {
+    .af-card-radio-label {
       display: flex;
       padding: 1rem;
-      border: solid var(--radio-card-border);
-      border-radius: var(--radio-card-border-radius);
+      border: 1px solid var(--card-radio-border-color);
+      border-radius: var(--card-radio-border-radius);
       flex: 1;
       align-self: stretch;
       gap: calc(12 / var(--font-size-base) * 1rem);
+      background-color: var(--card-radio-background-color);
       cursor: pointer;
 
-      &[aria-invalid="true"] {
-        border: solid var(--radio-card-border);
-        background-color: var(--radio-card-background-color);
-        box-shadow: 0 0 0 1px var(--radio-card-shadow-color) inset;
-      }
-
-      &:hover {
-        border: solid var(--radio-card-border);
-        background-color: var(--radio-card-background-color);
-        box-shadow: 0 0 0 1px var(--radio-card-shadow-color) inset;
+      &:hover,
+      &:focus-visible,
+      &:focus-within,
+      &:has(input:checked) {
+        outline: 1px solid var(--card-radio-outline-color);
 
         & > span:first-child {
-          border: solid var(--radio-border);
-          box-shadow: 0 0 0 1px var(--radio-box-shadow) inset;
+          outline: 1px solid var(--radio-outline-color);
         }
       }
 
-      .af-radio-card-content {
+      .af-card-radio-content {
         display: flex;
         align-items: center;
         gap: calc(4 / var(--font-size-base) * 1rem);
 
-        .af-radio-card-content-description {
+        .af-card-radio-content-description {
           display: flex;
           justify-content: center;
           font-size: 1rem;
@@ -184,7 +179,7 @@
           & > span:first-child {
             font-size: calc(18 / var(--font-size-base) * 1rem);
             font-weight: 400;
-            color: var(--radio-card-label-text-color);
+            color: var(--card-radio-label-text-color);
 
             @media (width < #{breakpoints.$breakpoint-sm}) {
               font-size: calc(16 / var(--font-size-base) * 1rem);
@@ -195,7 +190,7 @@
           & > span:not(:first-child) {
             font-size: calc(16 / var(--font-size-base) * 1rem);
             font-weight: 400;
-            color: var(--radio-card-label-text-color);
+            color: var(--card-radio-label-text-color);
 
             @media (width < #{breakpoints.$breakpoint-sm}) {
               font-size: calc(14 / var(--font-size-base) * 1rem);
@@ -203,12 +198,6 @@
             }
           }
         }
-      }
-
-      &:has(input:checked) {
-        border: solid var(--radio-card-border);
-        background-color: var(--radio-card-background-color);
-        box-shadow: 0 0 0 1px var(--radio-card-shadow-color) inset;
       }
     }
   }
