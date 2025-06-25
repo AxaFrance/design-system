@@ -56,7 +56,6 @@ export const ItemFileCommon = ({
     <section className={classname} {...props}>
       <main className="af-item-file__body">
         <ItemStateIcon
-          aria-label="File actions"
           state={state}
           ItemIconComponent={ItemIconComponent}
           ItemSpinnerComponent={ItemSpinnerComponent}
@@ -69,7 +68,6 @@ export const ItemFileCommon = ({
         </div>
       </main>
       <ItemMessageComponent
-        aria-label="Error message"
         message={errorMessage ?? success}
         messageType={errorMessage ? "error" : "success"}
       />

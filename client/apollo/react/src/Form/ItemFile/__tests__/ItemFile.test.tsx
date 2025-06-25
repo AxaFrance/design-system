@@ -24,13 +24,13 @@ describe("<ItemFile />", () => {
   it("renders the component with error", () => {
     render(
       <ItemFile
-        aria-label="Error message"
+        errorMessage="my error message"
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.error}
       />,
     );
-    const itemFileErrorLabelText = screen.getByLabelText("Error message");
+    const itemFileErrorLabelText = screen.getByText("my error message");
     expect(itemFileErrorLabelText).toBeInTheDocument();
   });
 
