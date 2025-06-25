@@ -2,6 +2,8 @@ import { Action, HeaderTitle, Svg } from "@axa-fr/design-system-slash-react";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import mailIcon from "@material-symbols/svg-400/outlined/mail.svg";
 import saveIcon from "@material-symbols/svg-400/outlined/save.svg";
+import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
+import chevronLeftIcon from "@material-symbols/svg-400/outlined/chevron_left.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
@@ -48,10 +50,60 @@ const actions = [
   },
 ];
 
+const leftActions = [
+  {
+    id: "001",
+    icon: homeIcon,
+    title: "Accueil",
+  },
+  {
+    id: "002",
+    icon: chevronLeftIcon,
+    title: "Retour",
+  },
+];
+
 export const DefaultTitle: StoryObj<typeof HeaderTitle> = {};
 
 export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
   args: {
+    children: (
+      <div className="af-title-bar__actions">
+        {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
+          <a
+            key={id}
+            href="/#"
+            role="button"
+            title={title}
+            className="btn af-btn--circle"
+          >
+            <Svg src={icon} />
+          </a>
+        ))}
+      </div>
+    ),
+  },
+};
+
+export const ComplexTitleWithLeftSection: StoryObj<typeof HeaderTitle> = {
+  args: {
+    leftSection: (
+      <div className="af-title-bar__actions">
+        {leftActions.map(
+          ({ icon, id, title }: ComponentProps<typeof Action>) => (
+            <a
+              key={id}
+              href="/#"
+              role="button"
+              title={title}
+              className="btn  af-btn--circle"
+            >
+              <Svg src={icon} />
+            </a>
+          ),
+        )}
+      </div>
+    ),
     children: (
       <div className="af-title-bar__actions">
         {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
