@@ -1,15 +1,13 @@
 import {
   type ComponentProps,
-  type ComponentType,
   type MouseEvent,
   type ReactNode,
   useCallback,
   useRef,
 } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import keyboardUp from "@material-symbols/svg-700/rounded/keyboard_arrow_up-fill.svg";
-import { ClickIcon } from "../ClickIcon/ClickIconCommon";
+import keyboardUp from "@material-symbols/svg-400/rounded/keyboard_arrow_up-fill.svg";
 import { getComponentClassName } from "../utilities/getComponentClassName";
+import { Svg } from "../Svg/Svg";
 
 type AccordionProps = {
   summary: ReactNode;
@@ -17,7 +15,6 @@ type AccordionProps = {
   isOpen?: boolean;
   summaryProps?: ComponentProps<"summary">;
   onClick?: (event: MouseEvent<HTMLDetailsElement>) => void;
-  ClickIconComponent: ComponentType<ComponentProps<typeof ClickIcon>>;
 } & Partial<ComponentProps<"details">>;
 
 export const AccordionCore = ({
@@ -27,7 +24,6 @@ export const AccordionCore = ({
   summaryProps,
   isOpen,
   onClick,
-  ClickIconComponent,
   ...detailsProps
 }: AccordionProps) => {
   const componentClassName = getComponentClassName("af-accordion", className);
@@ -44,12 +40,6 @@ export const AccordionCore = ({
     [onClick],
   );
 
-  const handleCollapse = useCallback(() => {
-    if (detailsRef.current) {
-      detailsRef.current.open = !detailsRef.current.open;
-    }
-  }, []);
-
   return (
     <details
       className={componentClassName}
@@ -58,20 +48,22 @@ export const AccordionCore = ({
       {...detailsProps}
     >
       <summary
-        className="af-accordion__summary"
         onClick={handleToggle}
         role="button"
         tabIndex={0}
         {...summaryProps}
+        className={["af-accordion__summary", summaryProps?.className]
+          .filter(Boolean)
+          .join(" ")}
       >
         {summary}
-        <ClickIconComponent
-          src={keyboardUp}
-          onClick={handleCollapse}
-          className="af-accordion__arrow"
-        />
+        <div className={["af-accordion__arrow", "af-click-icon"].join(" ")}>
+          <div className="af-icon af-icon--primary">
+            <Svg src={keyboardUp} role="presentation" />
+          </div>
+        </div>
       </summary>
-      <div className="af-accordion__content">{children}</div>
+      {children}
     </details>
   );
 };

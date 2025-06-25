@@ -24,9 +24,9 @@ const defaultArgs = {
   dateProps: { dateTime: "2021-01-01" },
   info1: "Lorem ipsum dolor sit amet",
   info2: "+ 686,00 €",
-  children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et tempor blandit. 
-              Nulla vitae eros a odio pretium gravida. Sed eget tortor nec massa lobortis bibendum. Morbi eget 
-              ligula porttitor, euismod odio vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.`,
+  children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et tempor blandit.
+              Nulla vitae eros a odio pretium gravida. Sed eget tortor nec massa lobortis bibendum. Morbi eget
+              ligula porttitor, euismod odio vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nis0`,
   isOpen: undefined,
   onClick: undefined,
 };

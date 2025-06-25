@@ -4,39 +4,38 @@ import { axe } from "jest-axe";
 import { AccordionTagDateContainer } from "../AccordionTagDateContainer/AccordionTagDateContainerApollo";
 
 describe("AccordionTagDateContainer", () => {
-  it("renders correctly", () => {
-    const dateLabel = "01/01/2021";
-    const dateTime = "2021-01-01";
-    const tagLabel = "tag";
-
+  it("should renders", () => {
     render(
       <AccordionTagDateContainer
-        tagLabel={tagLabel}
-        dateLabel={dateLabel}
-        dateProps={{ dateTime }}
+        tagLabel="tag label"
+        dateLabel="01/01/2022"
+        dateProps={{ dateTime: "2022-01-01" }}
       />,
     );
 
-    expect(screen.getByText(tagLabel).parentElement).toHaveClass(
+    expect(screen.getByText("tag label").parentElement).toHaveClass(
       "af-tag af-tag--warning",
     );
-    expect(screen.getByText(dateLabel)).toHaveProperty("dateTime", dateTime);
-  });
-
-  it("should pass tagProps to Tag", () => {
-    const tag = "tag";
-    const tagProps: React.ComponentProps<
-      typeof AccordionTagDateContainer
-    >["tagProps"] = { variant: "success" };
-
-    render(<AccordionTagDateContainer tagLabel={tag} tagProps={tagProps} />);
-
-    expect(screen.getByText(tag).parentElement).toHaveClass(
-      "af-tag af-tag--success",
+    expect(screen.getByText("01/01/2022")).toHaveProperty(
+      "dateTime",
+      "2022-01-01",
     );
   });
 
-  it("should return null if no tag or date", () => {
+  it("should pass tagProps to Tag component", () => {
+    render(
+      <AccordionTagDateContainer
+        tagLabel="tag"
+        tagProps={{ variant: "warning" }}
+      />,
+    );
+
+    expect(screen.getByText("tag").parentElement).toHaveClass(
+      "af-tag af-tag--warning",
+    );
+  });
+
+  it("should render nothing if no tag or date", () => {
     const { container } = render(<AccordionTagDateContainer />);
     expect(container).toBeEmptyDOMElement();
   });

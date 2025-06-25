@@ -2,7 +2,6 @@
 
 .af-accordion {
   font-size: var(--accordion-title-font-size);
-  color: var(--accordion-title-text-color);
 
   &__summary {
     display: grid;
@@ -27,6 +26,9 @@
   .af-accordion__arrow {
     grid-area: arrow;
     transition: transform 0.2s ease-in-out;
+    @media (prefers-reduced-motion: reduce) {
+      transition-delay: 0s;
+    }
   }
 
   &[open] {
@@ -37,14 +39,6 @@
     > .af-accordion__summary > .af-accordion__arrow {
       transform: rotate(180deg);
     }
-  }
-
-  &__content {
-    padding: 1rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.25rem;
-    color: var(--neutral-100);
   }
 }
 
