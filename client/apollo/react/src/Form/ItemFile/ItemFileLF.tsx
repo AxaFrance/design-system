@@ -11,16 +11,16 @@ import type { ItemFileProps } from "./types";
 export { itemFileVariants } from "./ItemFileCommon";
 
 export const ItemFile = ({
-  deleteIconProps = {},
-  visibilityIconProps = {},
+  onDeleteClick = {},
+  onVisibilityClick = {},
   ...props
 }: ItemFileProps) => (
   <ItemFileCommon
     ItemMessageComponent={ItemMessage}
     ItemIconComponent={Icon}
     ItemSpinnerComponent={Spinner}
-    deleteIcon={<ClickIcon src={deleteIconFilled} {...deleteIconProps} />}
-    visibilityIcon={<ClickIcon src={visibilityIcon} {...visibilityIconProps} />}
+    deleteIcon={<ClickIcon src={deleteIconFilled} {...onDeleteClick} />}
+    visibilityIcon={<ClickIcon src={visibilityIcon} {...onVisibilityClick} />}
     {...props}
   />
 );
