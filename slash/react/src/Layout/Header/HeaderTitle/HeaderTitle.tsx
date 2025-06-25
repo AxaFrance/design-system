@@ -13,6 +13,7 @@ type Props = {
   classModifier?: string;
   className?: string;
   isSticky?: boolean;
+  leftSection?: ReactNode;
   subtitle?: string;
   title: string;
   toggleMenu?: () => void;
@@ -23,6 +24,7 @@ const HeaderTitle = ({
   classModifier,
   className,
   isSticky = true,
+  leftSection,
   subtitle,
   title,
   toggleMenu,
@@ -48,12 +50,17 @@ const HeaderTitle = ({
             </ToggleButton>
           </div>
         )}
-        <h1 className={`${defaultClassName}__title`}>
-          {title}
-          {subtitle && (
-            <span className={`${defaultClassName}__subtitle`}>{subtitle}</span>
-          )}
-        </h1>
+        <div className={`${defaultClassName}__leftSection`}>
+          {leftSection}
+          <h1 className={`${defaultClassName}__title`}>
+            {title}
+            {subtitle && (
+              <span className={`${defaultClassName}__subtitle`}>
+                {subtitle}
+              </span>
+            )}
+          </h1>
+        </div>
         {children}
       </div>
     </div>
