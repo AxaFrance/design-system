@@ -2,11 +2,11 @@ import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
 import "@fontsource/source-sans-pro";
 
 export {
-  Accordion,
-  type AccordionVariants,
-  accordionVariants,
-} from "./Accordion/Accordion";
-export { AccordionCore } from "./AccordionCore/AccordionCore";
+  /** @deprecated Use `Accordion` from apollo/lf package instead. */ Accordion,
+} from "./Accordion";
+export {
+  /** @deprecated Use `AccordionCore` from apollo/lf package instead. */ AccordionCore,
+} from "./AccordionCore";
 export { /** @deprecated Use `Message` instead. */ Alert } from "./Alert/Alert";
 export type { AlertType } from "./Alert/Alert";
 export {

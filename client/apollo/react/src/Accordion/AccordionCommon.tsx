@@ -58,17 +58,15 @@ export const Accordion = ({
         <>
           {icon && (
             <IconComponent
-              data-testid="icon"
+              role="presentation"
               src={icon}
               variant="primary"
               size="S"
               className="af-accordion__icon"
             />
           )}
-          <div className="af-accordion__title-container">
-            {title && <p className="af-accordion__title">{title}</p>}
-            {subtitle && <p className="af-accordion__subtitle">{subtitle}</p>}
-          </div>
+          {title && <p className="af-accordion__title">{title}</p>}
+          {subtitle && <p className="af-accordion__subtitle">{subtitle}</p>}
           <AccordionTagDateContainerComponent
             tagLabel={tagLabel}
             dateLabel={dateLabel}
@@ -79,7 +77,6 @@ export const Accordion = ({
           {info2 && <p className="af-accordion__info2">{info2}</p>}
         </>
       }
-      // summaryProps={{ className: componentClassName }}
       {...accordionCoreProps}
     >
       {children}

@@ -2,14 +2,14 @@ import {
   Accordion,
   accordionVariants,
   AccordionVariants,
-} from "@axa-fr/design-system-look-and-feel-react";
+} from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
-  title: "Components/Accordion",
+  title: "Components/Accordion (LF)",
 };
 
 export default meta;

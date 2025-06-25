@@ -4,13 +4,8 @@
   --accordion-info1-text-color: var(--color-gray-700);
   --accordion-info2-text-color: var(--color-green-600);
   --accordion-title-text-color: var(--axa-blue-100);
-
-  &--primary {
-    --accordion-title-text-color: var(--axa-blue-100);
-    --accordion-subtitle-text-color: var(--neutral-80);
-    --accordion-text-color: var(--white);
-    --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
-    --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
-    --accordion-line-height: calc(var(--tag-font-size) * 1.25);
-  }
+  --accordion-subtitle-text-color: var(--neutral-80);
+  --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --accordion-line-height: calc(var(--tag-font-size) * 1.25);
 }

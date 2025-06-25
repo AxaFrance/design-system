@@ -1,23 +1,23 @@
 import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as AccordionCoreStories from "./AccordionCore.stories";
 
-<Meta of={AccordionCoreStories} name="AccordionCore" />
+<Meta of={AccordionCoreStories} name="AccordionCore (LF)" />
 
 # AccordionCore
 
 ## Import
 
 ```tsx
-import { AccordionCore } from "@axa-fr/design-system-look-and-feel-react";
+import { AccordionCore } from "@axa-fr/design-system-apollo-react/lf";
 ```
 
 ## Uses
 
-You can force to open or close the accordion with the `isOpen` prop. (if no `onClick` prop is given, the component will use the `isOpen` prop as a default value)
+The `Accordion` component displays content in a collapsible panel with a customizable summary section. It supports icons, titles, subtitles, tags, dates, and additional info fields.
 
 When the user clicks on the summary to open or close the accordion you can use the `onClick` function prop to do something at that moment. (you will get the native event as `onClick` parameter)
 
-You can change the `className` or add a `classModifier` if you want to custom the component.
+You can also add/change the props of the `Tag` component inside of the `Accordion`.
 
 ### AccordionCore
 
@@ -35,50 +35,3 @@ export const AccordionCoreComponent = () => (
 <Canvas of={AccordionCoreStories.AccordionCoreStory} />
 
 <Controls of={AccordionCoreStories.AccordionCoreStory} />
-
-### AccordionCore with custom styled title
-
-With that example you can see the surface that you can style in the title part. (you can also override the AccordionCore style to remove the gap between the title and the arrow to style more width)
-
-```tsx
-export const AccordionCoreWithCustomStyledTitleComponent = () => (
-  <AccordionCore
-    title=(
-      <div
-        style={{
-          backgroundColor: "red",
-          paddingBottom: "32px",
-        }}
-      />)
-  >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
-    tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
-    massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
-    vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.
-  </AccordionCore>
-);
-```
-
-<Canvas of={AccordionCoreStories.AccordionCoreWithCustomStyledSummaryStory} />
-
-<Controls of={AccordionCoreStories.AccordionCoreWithCustomStyledSummaryStory} />
-
-### AccordionCore with Card
-
-```tsx
-export const AccordionCoreWithCardComponent = () => (
-  <Card classModifier="large accordion">
-    <AccordionCore title="Titre onglet">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna
-      et tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget
-      tortor nec massa lobortis bibendum. Morbi eget ligula porttitor, euismod
-      odio vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis
-      nisl.
-    </AccordionCore>
-  </Card>
-);
-```
-
-<Canvas of={AccordionCoreStories.AccordionCoreWithCardStory} />
-
-<Controls of={AccordionCoreStories.AccordionCoreWithCardStory} />
