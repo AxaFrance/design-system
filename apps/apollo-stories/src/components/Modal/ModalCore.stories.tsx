@@ -12,15 +12,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { useRef } from "react";
 
-const meta: Meta<
-  React.ComponentType<
-    React.ComponentProps<typeof ModalCoreComponent> & {
-      body?: boolean;
-      footer?: boolean;
-      header?: boolean;
-    }
-  >
-> = {
+const meta: Meta<typeof ModalCoreComponent> = {
   title: "Components/Modal/ModalCore",
   component: ModalCoreComponent,
   parameters: {
