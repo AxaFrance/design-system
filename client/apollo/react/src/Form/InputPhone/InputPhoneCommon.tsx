@@ -77,6 +77,15 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     const idLabel = useId();
     const idHelp = useId();
 
+    /**
+     * Gère le changement de valeur du champ numéro de téléphone.
+     * - Récupère une fonction de masquage (mask) depuis les props ou utilise une version par défaut.
+     * - La fonction de masquage par défaut :
+     *   - Ne garde que les chiffres (supprime tout le reste).
+     *   - Limite à 10 chiffres.
+     *   - Formate par groupes de 2 chiffres séparés par un espace (ex: 06 12 34 56 78).
+     * - Applique le masquage à la valeur saisie et transmet le résultat via onChangeInput.
+     */
     const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
       const {
         mask = (value: string) => {
