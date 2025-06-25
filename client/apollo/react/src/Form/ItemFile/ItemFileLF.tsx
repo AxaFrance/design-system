@@ -19,8 +19,20 @@ export const ItemFile = ({
     ItemMessageComponent={ItemMessage}
     ItemIconComponent={Icon}
     ItemSpinnerComponent={Spinner}
-    deleteIcon={<ClickIcon src={deleteIconFilled} {...onDeleteClick} />}
-    visibilityIcon={<ClickIcon src={visibilityIcon} {...onVisibilityClick} />}
+    deleteIcon={
+      <ClickIcon
+        src={deleteIconFilled}
+        aria-label="Delete file"
+        onClick={onDeleteClick}
+      />
+    }
+    visibilityIcon={
+      <ClickIcon
+        src={visibilityIcon}
+        aria-label="Toggle file visibility"
+        onClick={onVisibilityClick}
+      />
+    }
     {...props}
   />
 );
