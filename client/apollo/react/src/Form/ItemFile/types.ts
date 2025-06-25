@@ -10,6 +10,6 @@ export type ItemFileProps = Omit<
   | "deleteIcon"
   | "visibilityIcon"
 > & {
-  deleteIconProps?: Partial<ClickIconProps>;
-  visibilityIconProps?: Partial<ClickIconProps>;
+  onDeleteClick?: Partial<ClickIconProps>;
+  onVisibilityClick?: Partial<ClickIconProps>;
 };
