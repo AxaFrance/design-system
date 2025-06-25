@@ -36,7 +36,7 @@ export default meta;
 type Story = StoryObj<typeof InputPhone>;
 
 export const InputPhonePlaceholderStory: Story = {
-  name: "Text placeholder",
+  name: "InputPhone without select",
   render: ({ onChange, ...args }) => {
     const [value, setValue] = useState("");
     return (
@@ -47,5 +47,23 @@ export const InputPhonePlaceholderStory: Story = {
         {...args}
       />
     );
+  },
+};
+
+export const InputPhoneWithSelectStory: Story = {
+  name: "InputPhone with select",
+  render: ({ onChange, ...args }) => {
+    const [value, setValue] = useState("");
+    return (
+      <InputPhone
+        onChange={onChange}
+        value={value}
+        onChangeInput={setValue}
+        {...args}
+      />
+    );
+  },
+  args: {
+    showSelect: true,
   },
 };
