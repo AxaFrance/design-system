@@ -1,4 +1,4 @@
-import type { ClickIconProps } from "../../ClickIcon/ClickIconCommon";
+import { type MouseEvent } from "react";
 import type { ItemFileCommonProps } from "./ItemFileCommon";
 
 export type ItemFileProps = Omit<
@@ -10,6 +10,6 @@ export type ItemFileProps = Omit<
   | "deleteIcon"
   | "visibilityIcon"
 > & {
-  onDeleteClick?: Partial<ClickIconProps>;
-  onVisibilityClick?: Partial<ClickIconProps>;
+  onDeleteClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onVisibilityClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };

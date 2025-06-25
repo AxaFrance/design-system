@@ -11,8 +11,8 @@ import type { ItemFileProps } from "./types";
 export { itemFileVariants } from "./ItemFileCommon";
 
 export const ItemFile = ({
-  onDeleteClick = {},
-  onVisibilityClick = {},
+  onDeleteClick,
+  onVisibilityClick,
   ...props
 }: ItemFileProps) => (
   <ItemFileCommon

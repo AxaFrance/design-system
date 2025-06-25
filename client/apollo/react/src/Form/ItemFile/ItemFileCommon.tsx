@@ -62,7 +62,7 @@ export const ItemFileCommon = ({
         />
         <p className="af-item-file__title">{title}</p>
         <p className="af-item-file__subtitle">{subTitle}</p>
-        <div className="af-item-file__actions" aria-label="File actions">
+        <div aria-label="button" className="af-item-file__actions">
           {state === "success" && visibilityIcon}
           {deleteIcon}
         </div>

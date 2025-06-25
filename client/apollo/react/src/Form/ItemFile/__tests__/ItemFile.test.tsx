@@ -1,7 +1,8 @@
 import { describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { ItemFile, itemFileVariants } from "../ItemFileLF";
+import { ItemFile } from "../ItemFileApollo";
+import { itemFileVariants } from "../ItemFileCommon";
 
 describe("<ItemFile />", () => {
   test("should render component when loading", () => {
@@ -52,8 +53,6 @@ describe("<ItemFile />", () => {
         state={itemFileVariants.success}
         subTitle="0.12"
         title="IMG_879687880"
-        visibilityIconProps={{ "aria-label": "visibility" }}
-        deleteIconProps={{ "aria-label": "delete" }}
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
