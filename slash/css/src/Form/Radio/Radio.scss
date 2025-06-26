@@ -4,6 +4,33 @@
 
 /* stylelint-disable no-descending-specificity */
 .af-form {
+  /* &__radio-container {
+    .af-form__radio-card {
+      flex-flow: wrap column;
+
+      min-width: 180px;
+      min-height: 120px;
+      padding: 1rem;
+      border-radius: 4px;
+      align-items: center;
+      box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
+
+      & > input[type="radio"] {
+        margin-bottom: 1rem;
+      }
+
+      & label > span {
+        padding-left: 0;
+      } 
+
+      &:has(> input[type="radio"]:checked) {
+        border: 2px solid common.$color-azur;
+      }
+
+      
+    }
+  } */
+
   &__radio {
     position: relative;
     display: block;

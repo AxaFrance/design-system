@@ -25,12 +25,8 @@ export const Card = ({
 
   return (
     <button type="button" className={componentClassName} {...otherProps}>
-      <div className="content">
-        {icon && (
-          <Svg width="48" height="48" src={icon} role="img" alt="Icon" />
-        )}
-        {children}
-      </div>
+      {icon && <Svg width="48" height="48" src={icon} role="img" alt="Icon" />}
+      {children}
     </button>
   );
 };

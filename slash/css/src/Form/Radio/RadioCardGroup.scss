@@ -1,0 +1,92 @@
+.af-form {
+  &__radio-card-group {
+    display: grid;
+    grid-template-columns: repeat(
+      var(--form-radio-card-columns),
+      minmax(180px, 1fr)
+    );
+    grid-template-rows: minmax(120px, 1fr);
+    grid-gap: 25px;
+
+    &--horizontal {
+      display: flex;
+      flex-flow: column nowrap;
+
+      .af-card {
+        input[type="radio"] {
+          margin-right: 1.5rem;
+          margin-bottom: 0 !important;
+        }
+      }
+    }
+
+    .af-card {
+      --color-radio-input-border: var(--color-radio-border-default);
+
+      cursor: pointer;
+
+      input[type="radio"] {
+        display: grid;
+        width: 1.1875rem;
+        height: 1.1875rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--color-radio-input-border);
+        border-radius: 50%;
+        place-content: center;
+        transform: translateY(-0.075em);
+        cursor: pointer;
+        appearance: none;
+
+        &:checked {
+          --color-radio-input-border: var(--color-radio-border-hover);
+        }
+
+        &:disabled {
+          --color-radio-input-border: var(--slash-card-disabled-text-color);
+
+          cursor: not-allowed;
+        }
+
+        &::before {
+          width: 0.6875rem;
+          height: 0.6875rem;
+          border-radius: 50%;
+          box-shadow: inset 1em 1em var(--color-radio-border-hover);
+          transform: scale(0);
+          transition: 120ms transform ease-in-out;
+          content: "";
+        }
+
+        &:checked::before {
+          transform: scale(1);
+        }
+      }
+
+      &:hover {
+        --color-radio-input-border: var(--color-radio-border-hover);
+      }
+
+      &:has(input[type="radio"]:checked) {
+        border: 2px solid var(--color-radio-border-selected);
+
+        --slash-card-text-color: var(--slash-card-default-text-color);
+        --slash-card-icon-color: var(--slash-card-default-icon-color);
+      }
+
+      &:has(input[type="radio"]:disabled) {
+        --slash-card-text-color: var(--slash-card-disabled-text-color);
+        --slash-card-icon-color: var(--slash-card-disabled-icon-color);
+
+        border: none;
+        cursor: not-allowed;
+      }
+
+      &--error {
+        /* stylelint-disable-next-line no-descending-specificity */
+        input[type="radio"] {
+          --color-radio-input-border: var(--slash-card-error-text-color);
+        }
+      }
+    }
+  }
+}
