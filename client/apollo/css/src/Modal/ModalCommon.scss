@@ -1,7 +1,7 @@
 @use "../common/breakpoints" as breakpoints;
 
 .af-apollo-modal {
-  --transition-duration: 0.7s;
+  --modal-transition-duration: 0.2s;
   --modal-max-height: calc(100% - 5rem);
   --modal-footer-border-top: none;
 
@@ -28,7 +28,7 @@
     transform,
     overlay allow-discrete,
     display allow-discrete;
-  transition-duration: var(--transition-duration);
+  transition-duration: var(--modal-transition-duration);
   transition-timing-function: ease-out;
 
   &::backdrop {
@@ -38,7 +38,7 @@
       display allow-discrete,
       overlay allow-discrete,
       opacity;
-    transition-duration: var(--transition-duration);
+    transition-duration: var(--modal-transition-duration);
     transition-timing-function: ease-in-out;
   }
 
