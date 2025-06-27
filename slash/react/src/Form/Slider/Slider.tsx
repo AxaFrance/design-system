@@ -27,6 +27,9 @@ type Props = Omit<RcSliderProps, "marks" | "onChange" | "onChangeComplete"> & {
   }) => void;
 };
 
+/**
+ * @deprecated Slider is deprecated and will be removed in a future major release.
+ */
 const Slider = ({
   options,
   value,

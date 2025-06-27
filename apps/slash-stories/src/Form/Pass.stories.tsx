@@ -14,7 +14,7 @@ export const PassStory: StoryObj<typeof Pass> = {
   args: {
     classModifier: "bad",
     name: "password",
-    id: "uniqueid",
+    id: "id1",
     type: "password",
     value: "",
     readOnly: false,

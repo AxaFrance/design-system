@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { getComponentClassName } from "../../utilities";
+import { getComponentClassName } from "../../../utilities";
 
 type FieldProps = {
   isVisible?: boolean;
@@ -8,6 +8,10 @@ type FieldProps = {
   children?: ReactNode;
 };
 
+/**
+ * @deprecated This component is deprecated and will be removed in future versions.
+ * This was an internal component and it is not recommended to use it directly in your code as it is not a public API.
+ */
 export const FieldInput = ({
   children,
   className = "",

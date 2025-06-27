@@ -1,84 +1,34 @@
 import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
-import {
-  ComponentPropsWithoutRef,
-  ComponentPropsWithRef,
-  ReactNode,
-  useId,
-} from "react";
-import {
-  FieldInput,
-  HelpMessage,
-  LegacyField,
-  useInputClassModifier,
-} from "../core";
+import { ComponentPropsWithRef } from "react";
+import { type ConsumerFieldProps, Field } from "../core";
 
 import { Number } from "./Number";
-import { useAriaInvalid } from "../core/useAriaInvalid";
 
-type Props = ComponentPropsWithoutRef<typeof LegacyField> &
-  ComponentPropsWithRef<typeof Number> & {
-    helpMessage?: ReactNode;
-    children?: ReactNode;
-  };
+type Props = ConsumerFieldProps & ComponentPropsWithRef<typeof Number>;
 
-export const NumberInput = ({
-  message,
-  children,
-  helpMessage,
-  id,
-  label,
-  classNameContainerLabel,
-  classNameContainerInput,
-  forceDisplayMessage,
-  messageType,
-  isVisible,
-  className,
-  disabled = false,
-  classModifier = "",
-  required,
-  ...otherProps
-}: Props) => {
-  const inputUseId = useId();
-  const errorUseId = useId();
-  const inputId = id ?? inputUseId;
-  const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
-    classModifier,
-    disabled,
-    Boolean(children),
-    required,
-  );
-  const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
+export const NumberInput = ({ children, ...props }: Props) => {
   return (
-    <LegacyField
-      label={label}
-      id={inputId}
-      message={message}
-      messageType={messageType}
-      isVisible={isVisible}
-      forceDisplayMessage={forceDisplayMessage}
-      className={className}
-      classModifier={inputFieldClassModifier}
-      classNameContainerLabel={classNameContainerLabel}
-      classNameContainerInput={classNameContainerInput}
-      errorId={errorUseId}
-    >
-      <FieldInput
-        className="af-form__text"
-        classModifier={inputFieldClassModifier}
-      >
+    <Field
+      {...props}
+      renderInput={({
+        id,
+        classModifier,
+        ariaInvalid,
+        errorId,
+        ...inputProps
+      }) => (
         <Number
-          id={inputId}
-          classModifier={inputClassModifier}
-          disabled={disabled}
-          aria-describedby={errorUseId}
-          aria-invalid={isInvalid}
-          {...otherProps}
+          id={id}
+          classModifier={classModifier}
+          aria-describedby={errorId}
+          aria-invalid={ariaInvalid}
+          {...inputProps}
         />
-        {children}
-      </FieldInput>
-      <HelpMessage message={helpMessage} isVisible={!message} />
-    </LegacyField>
+      )}
+    >
+      {children}
+    </Field>
   );
 };
