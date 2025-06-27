@@ -5,8 +5,8 @@
   margin-bottom: 2rem;
   padding: 1rem 0;
   overflow: auto;
-  color: common.$white;
-  background: common.$brand-primary;
+  color: var(--white);
+  background: var(--axablue80);
 
   &--sticky {
     position: sticky;
@@ -31,32 +31,38 @@
     }
   }
 
+  &__leftSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   &__title {
     display: inline-block;
     margin: 0;
     font-weight: 600;
-    color: common.$white;
+    color: var(--white);
   }
 
   &__subtitle {
     margin-left: 0.25rem;
     font-weight: 400;
-    color: common.$color-blue-subtitle;
+    color: var(--bluesubtitle);
   }
 
   &__actions {
     display: flex;
 
     .btn {
-      fill: common.$white;
-      transition: fill 0.3s;
       display: flex;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
+      transition: fill 0.3s;
+      fill: var(--white);
 
       &:hover {
-        fill: common.$brand-primary;
+        fill: var(--axablue80);
       }
 
       svg {
@@ -69,12 +75,12 @@
       vertical-align: middle;
 
       .injected-svg {
-        color: common.$white;
+        color: var(--white);
       }
 
       &:focus {
-        color: common.$white;
-        box-shadow: 0 0 6px common.$white;
+        color: var(--white);
+        box-shadow: 0 0 6px var(--white);
       }
     }
   }
