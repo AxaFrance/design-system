@@ -10,6 +10,12 @@
   background-color: var(--color-ocean-blue);
 
   &__menuLinks {
+    li {
+      all: unset;
+    }
+
+    all: unset;
+    display: block;
     height: 0;
     padding: 0;
     overflow: hidden;
@@ -51,12 +57,23 @@
 
   &__footerMenuIcons {
     display: flex;
-    padding: var(--spacing-u2) var(--spacing-u1);
-    border: 1px solid rgba(255, 255, 255, 20%);
-    border-width: 1px 0;
-    flex-direction: row;
-    justify-content: center;
-    gap: var(--spacing-u3);
+
+    ul,
+    li {
+      all: unset;
+    }
+
+    ul {
+      display: flex;
+      width: 100%;
+      padding: var(--spacing-u2) var(--spacing-u1);
+      border: 1px solid rgba(255, 255, 255, 20%);
+      border-width: 1px 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-u3);
+    }
   }
 
   &__menuIconLinks {
@@ -110,8 +127,10 @@
       justify-content: space-between;
       background: transparent;
 
-      & :first-child {
-        border-left: unset;
+      li:first-child {
+        a {
+          border-left: unset;
+        }
       }
     }
 
@@ -123,10 +142,12 @@
     }
 
     &__footerMenuIcons {
-      padding: var(--spacing-u2) var(--spacing-u4) var(--spacing-u2)
-        var(--spacing-u1);
-      border: none;
-      gap: var(--spacing-u2);
+      ul {
+        padding: var(--spacing-u2) var(--spacing-u4) var(--spacing-u2)
+          var(--spacing-u1);
+        border: none;
+        gap: var(--spacing-u2);
+      }
     }
 
     &__footerTop {

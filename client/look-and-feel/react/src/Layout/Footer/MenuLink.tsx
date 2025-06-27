@@ -19,24 +19,25 @@ export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
     return null;
   }
   return (
-    <div
+    <ul
       className={classNames(
         "af-footer__menuLinks",
         isAboutOpen && "af-footer__menuLinks--display",
       )}
     >
       {links.map((menuItem) => (
-        <a
-          key={menuItem.text}
-          className="af-footer__linkItem"
-          href={menuItem.link}
-          target={menuItem.openInCurrentTab ? "_top" : "_blank"}
-          rel="noreferrer"
-          tabIndex={isSmallScreen && !isAboutOpen ? -1 : undefined}
-        >
-          {menuItem.text}
-        </a>
+        <li key={menuItem.text}>
+          <a
+            className="af-footer__linkItem"
+            href={menuItem.link}
+            target={menuItem.openInCurrentTab ? "_top" : "_blank"}
+            rel="noreferrer"
+            tabIndex={isSmallScreen && !isAboutOpen ? -1 : undefined}
+          >
+            {menuItem.text}
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
