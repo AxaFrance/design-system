@@ -1,0 +1,44 @@
+@use "../../common/breakpoints" as breakpoints;
+
+@use "./InputPhoneCommon";
+
+.af-form__input-phone-helper {
+  --input-helper-color: var(--neutral-80);
+}
+
+.country-code-select {
+  &__control {
+    --select-border-color: var(--axa-blue-65);
+    --select-border-radius: var(--radius-8);
+    --select-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg?fill=currentColor")
+      no-repeat right 1.5rem center / 1.5rem 1.5rem;
+
+    &:focus-visible {
+      --select-border-color: var(--axa-blue-100);
+    }
+
+    &:disabled {
+      --select-bg-color-disabled: var(--neutral-50);
+      --select-border-color: var(--neutral-50);
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      --select-border-radius: 8px;
+      --select-border-color: var(--axa-blue-100);
+      --select-box-shadow: var(--axa-blue-100);
+    }
+  }
+
+  &__option {
+    --select-option-color: var(--neutral-100);
+
+    &:disabled {
+      --select-option-disabled-color: var(--neutral-50);
+    }
+  }
+
+  &__placeholder {
+    --select-placeholder-color: var(--neutral-80);
+  }
+}
