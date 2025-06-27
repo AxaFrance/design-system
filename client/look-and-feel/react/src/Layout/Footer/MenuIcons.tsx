@@ -15,18 +15,21 @@ export const MenuIcons = ({ socialMedias }: MenuIconsProps) => {
   }
   return (
     <nav role="navigation" className="af-footer__footerMenuIcons">
-      {socialMedias.map((socialItem) => (
-        <a
-          aria-label={`social media ${socialItem.icon}`}
-          className="af-footer__menuIconLinks"
-          key={socialItem.icon}
-          href={socialItem.link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <DynamicIcon iconName={socialItem.icon} />
-        </a>
-      ))}
+      <ul>
+        {socialMedias.map((socialItem) => (
+          <li key={socialItem.icon}>
+            <a
+              aria-label={`social media ${socialItem.icon}`}
+              className="af-footer__menuIconLinks"
+              href={socialItem.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <DynamicIcon iconName={socialItem.icon} />
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };
