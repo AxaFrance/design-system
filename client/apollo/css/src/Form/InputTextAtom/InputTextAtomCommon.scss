@@ -4,7 +4,7 @@
   display: grid;
   width: 100%;
   padding: calc(16 / var(--font-size-base) * 1rem);
-  border: 1px solid var(--input-border-color);
+  border: 2px solid var(--input-border-color);
   border-radius: var(--input-border-radius);
   grid-template-columns: auto min-content;
   align-items: center;
@@ -13,11 +13,6 @@
 
   &:has(> input ~ *) {
     column-gap: calc(8 / var(--font-size-base) * 1rem);
-  }
-
-  &:has(> input:focus-visible) {
-    outline: 2px solid var(--input-text-outline-color);
-    outline-offset: 3px;
   }
 
   > input {
@@ -43,7 +38,7 @@
   }
 
   &:has(> input:is(:hover, :focus, :active)) {
-    box-shadow: 0 0 0 1px var(--input-border-color) inset;
+    box-shadow: 0 0 0 3px var(--input-border-color) inset;
   }
 
   &:has(> input:disabled),
