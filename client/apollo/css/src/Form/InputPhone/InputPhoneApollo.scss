@@ -2,7 +2,7 @@
 
 @use "./InputPhoneCommon";
 
-.af-form__input-helper {
+.af-form__input-phone-helper {
   --input-helper-color: var(--neutral-80);
 }
 
@@ -10,8 +10,8 @@
   &__control {
     --select-border-color: var(--axa-blue-65);
     --select-border-radius: var(--radius-8);
-    --select-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg")
-      no-repeat right 0.5rem center / 1.5rem 1.5rem;
+    --select-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg?fill=currentColor")
+      no-repeat right 1.5rem center / 1.5rem 1.5rem;
 
     &:focus-visible {
       --select-border-color: var(--axa-blue-100);
