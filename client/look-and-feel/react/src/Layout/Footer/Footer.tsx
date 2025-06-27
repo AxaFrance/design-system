@@ -27,9 +27,13 @@ export const Footer: FC<Props> = ({
     setIsAboutOpen((isOpen) => !isOpen);
   }, []);
   return (
-    <footer id={id} className="af-footer">
+    <footer role="contentinfo" id={id} className="af-footer">
       <div className="af-footer__footerTop">
-        <nav className="af-footer__menuTop" aria-label={expandLinkText}>
+        <nav
+          role="navigation"
+          className="af-footer__menuTop"
+          aria-label={expandLinkText}
+        >
           <button
             type="button"
             onClick={handleClick}
