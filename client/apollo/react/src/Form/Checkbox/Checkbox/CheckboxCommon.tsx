@@ -20,6 +20,7 @@ const CheckboxCommon = ({
   ...inputProps
 }: CheckboxCommonProps) => (
   <span className="af-checkbox">
+    <Svg src={checkBoxIcon} aria-hidden />
     <input
       {...inputProps}
       type="checkbox"
@@ -27,7 +28,6 @@ const CheckboxCommon = ({
       aria-invalid={hasError}
       disabled={false}
     />
-    <Svg src={checkBoxIcon} aria-hidden />
   </span>
 );
 
