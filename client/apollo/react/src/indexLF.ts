@@ -17,6 +17,13 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageLF";
 export { ClickIcon } from "./ClickIcon/ClickIconLF";
+export {
+  ClickItem,
+  clickItemStates,
+  clickItemVariants,
+  type ClickItemStates,
+  type ClickItemVariants,
+} from "./List/ClickItem/ClickItemLF";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
 export { Divider } from "./Divider/DividerLF";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";

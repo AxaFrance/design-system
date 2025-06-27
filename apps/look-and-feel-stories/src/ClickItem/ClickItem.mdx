@@ -1,0 +1,45 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ClickItemStories from "./ClickItem.stories";
+
+<Meta of={ClickItemStories} name="ClickItem" />
+
+## Import
+
+```tsx
+import { ClickItem } from "@axa-fr/design-system-apollo-react/lf";
+
+const MyComponent = () => (
+  <>
+    <ClickItem
+      icon="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='48'%20height='48'%20viewBox='0%20-960%20960%20960'%3e%3cpath%20d='M180-120q-23%200-41.5-18T120-180v-600q0-23%2018.5-41.5T180-840h600q24%200%2042%2018.5t18%2041.5v54H538q-58%200-96%2038t-38%2095v227q0%2057%2038%2095t96%2038h302v53q0%2024-18%2042t-42%2018H180Zm358-173q-34%200-54-20t-20-53v-227q0-34%2020-53.5t54-19.5h269q34%200%2054%2019.5t20%2053.5v227q0%2033-20%2053t-54%2020H538Zm114-123q25%200%2044.5-19.5T716-481q0-25-19.5-44T652-544q-25%200-44.5%2019T588-481q0%2026%2019.5%2045.5T652-416Z'/%3e%3c/svg%3e"
+      state="default"
+      style="small"
+      title="Titre"
+    />
+  </>
+);
+```
+
+### Large
+
+<Canvas of={ClickItemStories.ClickItemLargeStory} />
+
+<Controls of={ClickItemStories.ClickItemLargeStory} />
+
+### Medium
+
+<Canvas of={ClickItemStories.ClickItemMediumStory} />
+
+<Controls of={ClickItemStories.ClickItemMediumStory} />
+
+### Small
+
+<Canvas of={ClickItemStories.ClickItemSmallStory} />
+
+<Controls of={ClickItemStories.ClickItemSmallStory} />
+
+### Agent
+
+<Canvas of={ClickItemStories.ClickItemAgentStory} />
+
+<Controls of={ClickItemStories.ClickItemAgentStory} />

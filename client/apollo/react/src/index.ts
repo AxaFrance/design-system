@@ -21,6 +21,13 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageApollo";
 export { ClickIcon } from "./ClickIcon/ClickIconApollo";
+export {
+  ClickItem,
+  clickItemStates,
+  clickItemVariants,
+  type ClickItemStates,
+  type ClickItemVariants,
+} from "./List/ClickItem/ClickItemApollo";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";
 export { Divider } from "./Divider/DividerApollo";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";

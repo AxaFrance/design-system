@@ -1,0 +1,14 @@
+@use "./ClickItemCommon";
+
+.af-apollo-click-item {
+  --click-item-title-color: var(--color-axa);
+  --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+  --click-item-title-border-color: var(--color-axa);
+  --click-item-subtitle-color: var(--color-gray);
+  --click-item-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+  --click-item-secondary-color: var(--color-gray);
+  --click-item-secondary-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --click-item-tertiary-color: var(--color-gray);
+  --click-item-tertiary-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --click-item-disabled-color: var(--color-gray-500);
+}
