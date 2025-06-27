@@ -1,0 +1,75 @@
+@use "../../common/breakpoints" as breakpoints;
+
+.af-item-file {
+  --af-item-file-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --af-item-file-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--item-file-gap);
+
+  &__body {
+    display: grid;
+    padding: var(--item-file-body-padding-vertical)
+      var(--item-file-body-padding-horizontal);
+    border: 1px solid var(--item-file-border-color);
+    border-radius: var(--item-file-border-radius);
+    grid-template-areas:
+      "icon title actions"
+      "icon subtitle actions";
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-content: start;
+    gap: 0 calc(12 / var(--font-size-base) * 1rem);
+    font: var(--font-family-base);
+    font-weight: 400;
+    line-height: 125%;
+  }
+
+  &__spinner,
+  .af-icon:first-of-type {
+    grid-area: icon;
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    grid-area: title;
+    font-size: var(--af-item-file-title-font-size);
+    color: var(--item-file-title-color);
+  }
+
+  &__subtitle {
+    margin: 0;
+    padding: 0;
+    grid-area: subtitle;
+    font-size: var(--af-item-file-subtitle-font-size);
+    color: var(--item-file-subtitle-color);
+  }
+
+  .af-icon {
+    &__success {
+      fill: var(--icon-fill);
+    }
+
+    &__error {
+      fill: var(--icon-fill);
+    }
+  }
+
+  &__spinner div {
+    border-top: var(--item-file-spinner-color) 2px solid;
+  }
+
+  &__actions {
+    display: flex;
+    grid-area: actions;
+    align-items: end;
+    gap: var(--item-file-action-buttons-gap);
+  }
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --af-item-file-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --af-item-file-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+}

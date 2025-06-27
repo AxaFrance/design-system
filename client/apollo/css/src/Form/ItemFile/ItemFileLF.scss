@@ -1,0 +1,38 @@
+@use "../../common/breakpoints" as breakpoints;
+@use "./ItemFileCommon";
+
+.af-item-file {
+  --item-file-border-radius: var(--default-border-radius);
+  --item-file-border-color: var(--color-gray-700);
+  --item-file-title-color: var(--color-gray-900);
+  --item-file-subtitle-color: var(--color-gray-700);
+  --icon-fill: var(--green-100);
+  --item-file-gap: calc(16 / var(--font-size-base) * 1rem);
+  --item-file-body-padding-vertical: calc(16 / var(--font-size-base) * 1rem);
+  --item-file-body-padding-horizontal: calc(16 / var(--font-size-base) * 1rem);
+  --item-file-action-buttons-gap: calc(16 / var(--font-size-base) * 1rem);
+
+  &--error {
+    --item-file-border-color: var(--color-red-700);
+  }
+
+  .af-icon {
+    &__success {
+      --icon-fill: var(--color-green-600);
+    }
+
+    &__error {
+      --icon-fill: var(--color-red-700);
+    }
+  }
+
+  &__spinner {
+    --item-file-spinner-color: var(--color-gray-700);
+  }
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --item-file-body-padding-horizontal: calc(
+      24 / var(--font-size-base) * 1rem
+    );
+  }
+}
