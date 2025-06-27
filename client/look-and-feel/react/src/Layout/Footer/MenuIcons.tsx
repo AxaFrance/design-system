@@ -14,7 +14,7 @@ export const MenuIcons = ({ socialMedias }: MenuIconsProps) => {
     return null;
   }
   return (
-    <nav className="af-footer__footerMenuIcons">
+    <nav role="navigation" className="af-footer__footerMenuIcons">
       {socialMedias.map((socialItem) => (
         <a
           aria-label={`social media ${socialItem.icon}`}
