@@ -1,4 +1,3 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Footer/Footer.scss";
 import expandMore from "@material-symbols/svg-400/outlined/keyboard_arrow_down.svg";
 import classNames from "classnames";
