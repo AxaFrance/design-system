@@ -9,6 +9,10 @@ html {
   line-height: 1.15;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+
+  &:has(dialog[open]) {
+    overflow: hidden;
+  }
 }
 
 article,
