@@ -29,9 +29,10 @@
     height: calc(24 / var(--font-size-base) * 1rem);
     margin: 0;
     opacity: 0;
+    cursor: pointer;
+  }
 
-    &:checked + svg {
-      display: block;
-    }
+  svg:has(+ input[type="checkbox"]:checked) {
+    display: block;
   }
 }
