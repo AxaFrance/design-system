@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { axe } from "jest-axe";
-import { AccordionTagDateContainer } from "../AccordionTagDateContainer/AccordionTagDateContainerApollo";
+import { AccordionTagDateContainer } from "../AccordionTagDateContainerApollo";
 
 describe("AccordionTagDateContainer", () => {
   it("should renders", () => {

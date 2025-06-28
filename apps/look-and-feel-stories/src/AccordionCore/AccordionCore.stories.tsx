@@ -4,7 +4,7 @@ import type { ComponentProps } from "react";
 
 const meta: Meta<typeof AccordionCore> = {
   component: AccordionCore,
-  title: "Components/AccordionCore (LF)",
+  title: "Components/AccordionCore",
 };
 
 export default meta;

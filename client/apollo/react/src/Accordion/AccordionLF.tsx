@@ -1,18 +1,10 @@
-import type { ComponentProps } from "react";
 import { AccordionCore } from "../AccordionCore/AccordionCoreLF";
 import { AccordionTagDateContainer } from "./AccordionTagDateContainer/AccordionTagDateContainerLF";
-import { Accordion as AccordionCommon } from "./AccordionCommon";
+import { AccordionCommon, type AccordionProps } from "./AccordionCommon";
 import { Icon } from "../Icon/IconCommon";
 import "@axa-fr/design-system-apollo-css/dist/Accordion/AccordionLF.scss";
 
-export const Accordion = (
-  props: Omit<
-    ComponentProps<typeof AccordionCommon>,
-    | "AccordionCoreComponent"
-    | "AccordionTagDateContainerComponent"
-    | "IconComponent"
-  >,
-) => (
+export const Accordion = (props: AccordionProps) => (
   <AccordionCommon
     {...props}
     AccordionCoreComponent={AccordionCore}

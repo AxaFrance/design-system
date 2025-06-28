@@ -1,7 +1,10 @@
 import { type ComponentProps, type ComponentType, useMemo } from "react";
 import { AccordionCore } from "../AccordionCore/AccordionCoreCommon";
 import { getComponentClassName } from "../utilities/getComponentClassName";
-import { AccordionTagDateContainer } from "./AccordionTagDateContainer/AccordionTagDateContainerCommon";
+import {
+  AccordionTagDateContainerCommon,
+  type AccordionTagDateContainerProps,
+} from "./AccordionTagDateContainer/AccordionTagDateContainerCommon";
 import { Icon } from "../Icon/IconCommon";
 
 export const accordionVariants = {
@@ -11,24 +14,25 @@ export const accordionVariants = {
 
 export type AccordionVariants = keyof typeof accordionVariants;
 
-type AccordionProps = {
+export type AccordionProps = {
   variant?: AccordionVariants;
   title: string;
   subtitle?: string;
   icon?: string;
   info1: string;
   info2: string;
-  AccordionCoreComponent: ComponentType<
-    Omit<ComponentProps<typeof AccordionCore>, "ClickIconComponent">
-  >;
-  AccordionTagDateContainerComponent: ComponentType<
-    Omit<ComponentProps<typeof AccordionTagDateContainer>, "TagComponent">
-  >;
-  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
-} & Omit<ComponentProps<typeof AccordionTagDateContainer>, "TagComponent"> &
+} & AccordionTagDateContainerProps &
   Partial<ComponentProps<typeof AccordionCore>>;
 
-export const Accordion = ({
+type AccordionCommonProps = AccordionProps & {
+  AccordionCoreComponent: ComponentType<ComponentProps<typeof AccordionCore>>;
+  AccordionTagDateContainerComponent: ComponentType<
+    Omit<ComponentProps<typeof AccordionTagDateContainerCommon>, "TagComponent">
+  >;
+  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
+};
+
+export const AccordionCommon = ({
   variant = accordionVariants.primary,
   className,
   children,
@@ -45,7 +49,7 @@ export const Accordion = ({
   AccordionTagDateContainerComponent,
   IconComponent,
   ...accordionCoreProps
-}: AccordionProps) => {
+}: AccordionCommonProps) => {
   const componentClassName = useMemo(
     () => getComponentClassName("af-accordion", className, variant),
     [className, variant],

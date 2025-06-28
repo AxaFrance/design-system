@@ -2,6 +2,7 @@ import {
   Accordion,
   accordionVariants,
   AccordionVariants,
+  TagVariants,
 } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
@@ -20,6 +21,9 @@ const defaultArgs = {
   title: "Titre onglet",
   subtitle: "Sous-titre onglet",
   tagLabel: "En attente",
+  tagProps: {
+    variant: "warning" as TagVariants,
+  },
   dateLabel: "01/01/2021",
   dateProps: { dateTime: "2021-01-01" },
   info1: "Lorem ipsum dolor sit amet",
