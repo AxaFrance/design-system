@@ -2,7 +2,7 @@
 
 .af-accordion {
   &__summary {
-    --accordion-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
 
   &[open] {

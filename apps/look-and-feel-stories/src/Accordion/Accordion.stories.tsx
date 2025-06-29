@@ -10,7 +10,7 @@ import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
-  title: "Components/Accordion (LF)",
+  title: "Components/Accordion",
 };
 
 export default meta;

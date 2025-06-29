@@ -1,15 +1,6 @@
 @use "../common/breakpoints" as breakpoints;
 
 .af-accordion {
-  --summary-areas: "icon title tag-container info1 info2 arrow"
-    "icon subtitle tag-container info1 info2 arrow";
-  --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
-
-  border-radius: var(--accordion-border-radius);
-  font-size: var(--accordion-font-size);
-  line-height: var(--accordion-line-height);
-  background-color: var(--accordion-bg-color);
-
   &__summary {
     grid-template-areas: var(--summary-areas);
     grid-template-columns: var(--summary-columns);

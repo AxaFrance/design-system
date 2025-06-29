@@ -1,15 +1,15 @@
 @use "../common/breakpoints" as breakpoints;
 
 .af-accordion {
-  font-size: var(--accordion-title-font-size);
+  --summary-areas: "summary arrow";
+  --summary-columns: 1fr auto;
 
   &__summary {
     display: grid;
     padding: 1rem;
-    grid-template-areas: "summary arrow";
-    grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: 16px;
+    font-size: var(--accordion-font-size);
     font-weight: 600;
     line-height: var(--accordion-title-line-height);
     cursor: pointer;
@@ -38,22 +38,6 @@
 
     > .af-accordion__summary > .af-accordion__arrow {
       transform: rotate(180deg);
-    }
-  }
-}
-
-@media (width <= #{breakpoints.$breakpoint-sm}) {
-  .af-accordion {
-    &__summary {
-      row-gap: 0.25rem;
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.25rem;
-    }
-
-    &__content {
-      font-size: 0.875rem;
-      line-height: 1.1rem;
     }
   }
 }

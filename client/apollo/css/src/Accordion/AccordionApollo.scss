@@ -8,4 +8,12 @@
   --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
   --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
   --accordion-line-height: 1.25;
+
+  &--primary {
+    --accordion-title-text-color: var(--axa-blue-100);
+  }
+
+  &--secondary {
+    --accordion-title-text-color: var(--neutral-100);
+  }
 }

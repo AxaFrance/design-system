@@ -1,4 +1,4 @@
-import { AccordionCore } from "@axa-fr/design-system-apollo-react";
+import { AccordionCore } from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
