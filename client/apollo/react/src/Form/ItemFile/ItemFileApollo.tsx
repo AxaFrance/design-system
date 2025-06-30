@@ -13,6 +13,7 @@ export { itemFileVariants } from "./ItemFileCommon";
 export const ItemFile = ({
   onDeleteClick,
   onVisibilityClick,
+  ariaLabel,
   ...props
 }: ItemFileProps) => (
   <ItemFileCommon
@@ -22,15 +23,15 @@ export const ItemFile = ({
     deleteIcon={
       <ClickIcon
         src={deleteIcon}
-        aria-label="Delete file"
         onClick={onDeleteClick}
+        aria-label={ariaLabel}
       />
     }
     visibilityIcon={
       <ClickIcon
         src={visibilityIcon}
-        aria-label="Toggle file visibility"
         onClick={onVisibilityClick}
+        aria-label={ariaLabel}
       />
     }
     {...props}

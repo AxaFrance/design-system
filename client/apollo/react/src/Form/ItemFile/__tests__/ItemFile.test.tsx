@@ -53,6 +53,7 @@ describe("<ItemFile />", () => {
         state={itemFileVariants.success}
         subTitle="0.12"
         title="IMG_879687880"
+        ariaLabel="Item file success"
       />,
     );
     expect(await axe(container)).toHaveNoViolations();

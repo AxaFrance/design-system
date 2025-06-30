@@ -21,6 +21,7 @@ type ItemFileState = keyof typeof itemFileVariants;
 
 export type ItemFileCommonProps = {
   state: ItemFileState;
+  ariaLabel?: string;
   title: string;
   subTitle: string;
   errorMessage?: string;
@@ -35,6 +36,7 @@ export type ItemFileCommonProps = {
 export const ItemFileCommon = ({
   className,
   state,
+  ariaLabel,
   title,
   subTitle,
   errorMessage,
@@ -54,7 +56,7 @@ export const ItemFileCommon = ({
 
   return (
     <section className={classname} {...props}>
-      <main className="af-item-file__body">
+      <div className="af-item-file__body">
         <ItemStateIcon
           state={state}
           ItemIconComponent={ItemIconComponent}
@@ -62,11 +64,11 @@ export const ItemFileCommon = ({
         />
         <p className="af-item-file__title">{title}</p>
         <p className="af-item-file__subtitle">{subTitle}</p>
-        <div aria-label="button" className="af-item-file__actions">
+        <div className="af-item-file__actions" aria-label={ariaLabel}>
           {state === "success" && visibilityIcon}
           {deleteIcon}
         </div>
-      </main>
+      </div>
       <ItemMessageComponent
         message={errorMessage ?? success}
         messageType={errorMessage ? "error" : "success"}
