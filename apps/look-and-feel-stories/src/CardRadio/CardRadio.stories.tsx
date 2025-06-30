@@ -8,7 +8,6 @@ type CardRadioOption = {
   description?: string;
   subtitle?: string;
   value: string;
-  hasError?: boolean;
 };
 
 type StoryProps = ComponentProps<typeof CardRadio> & {
@@ -35,7 +34,6 @@ const defaultOptions: CardRadioOption[] = [
     label: "Bruxelles",
     description: "Capitale de la Belgique",
     value: "bruxelles",
-    hasError: true,
   },
   {
     label: "Lille",

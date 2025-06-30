@@ -22,7 +22,6 @@ const baseOptions = [
     label: "Bruxelles",
     description: "Capitale de la Belgique",
     value: "bruxelles",
-    hasError: true,
   },
   {
     label: "Lille",

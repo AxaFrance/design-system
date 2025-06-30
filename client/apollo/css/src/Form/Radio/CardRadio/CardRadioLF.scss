@@ -102,14 +102,6 @@
         }
       }
 
-      &:has([aria-invalid="true"]) {
-        --card-radio-border-color: var(--color-red-700);
-
-        & > span:first-child {
-          --radio-border-color: var(--color-red-700);
-        }
-      }
-
       .af-card-radio-content
         .af-card-radio-content-description
         > span:first-child {
@@ -119,14 +111,24 @@
       &:has(input:checked) {
         --card-radio-border-color: var(--color-axa);
         --card-radio-background-color: var(--color-blue-2);
+      }
+    }
+  }
 
-        &:has([aria-invalid="true"]) {
-          --card-radio-border-color: var(--color-red-700);
+  /* stylelint-disable-next-line no-descending-specificity */
+  &__container[aria-invalid="true"] .af-card-radio-label {
+    --card-radio-border-color: var(--color-red-700);
 
-          & > span:first-child {
-            --radio-border-color: var(--color-red-700);
-          }
-        }
+    /* stylelint-disable-next-line no-descending-specificity */
+    & > span:first-child {
+      --radio-border-color: var(--color-red-700);
+    }
+
+    &:has(input:checked) {
+      --card-radio-border-color: var(--color-red-700);
+
+      & > span:first-child {
+        --radio-border-color: var(--color-red-700);
       }
     }
   }

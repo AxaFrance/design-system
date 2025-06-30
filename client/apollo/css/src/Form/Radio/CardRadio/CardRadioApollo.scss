@@ -96,15 +96,6 @@
         }
       }
 
-      &:has([aria-invalid="true"]) {
-        --card-radio-background-color: var(--axa-red-4);
-        --card-radio-border-color: var(--red-alert-100);
-
-        & > span:first-child {
-          --radio-border-color: var(--red-alert-100);
-        }
-      }
-
       &:has(input:checked) {
         --card-radio-border-color: var(--axa-blue-100);
         --card-radio-background-color: var(--axa-blue-4);
@@ -117,6 +108,17 @@
           }
         }
       }
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &__container[aria-invalid="true"] .af-card-radio-label {
+    --card-radio-background-color: var(--axa-red-4);
+    --card-radio-border-color: var(--red-alert-100);
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    & > span:first-child {
+      --radio-border-color: var(--red-alert-100);
     }
   }
 }
