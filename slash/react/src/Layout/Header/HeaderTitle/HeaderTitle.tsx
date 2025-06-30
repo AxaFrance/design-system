@@ -14,6 +14,7 @@ type Props = {
   className?: string;
   isSticky?: boolean;
   contentLeft?: ReactNode;
+  contentRight?: ReactNode;
   subtitle?: string;
   title: string;
   toggleMenu?: () => void;
@@ -25,6 +26,7 @@ const HeaderTitle = ({
   className,
   isSticky = true,
   contentLeft,
+  contentRight,
   subtitle,
   title,
   toggleMenu,
@@ -60,8 +62,13 @@ const HeaderTitle = ({
               </span>
             )}
           </h1>
+          {children}
         </div>
-        {children}
+        {contentRight && (
+          <div className={`${defaultClassName}__rightSection`}>
+            {contentRight}
+          </div>
+        )}
       </div>
     </div>
   );

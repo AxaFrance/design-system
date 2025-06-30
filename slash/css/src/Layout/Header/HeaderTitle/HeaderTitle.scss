@@ -37,6 +37,11 @@
     gap: 1rem;
   }
 
+  &__rightSection {
+    display: flex;
+    align-items: center;
+  }
+
   &__title {
     display: inline-block;
     margin: 0;
