@@ -1,7 +1,6 @@
 @use "./DropdownCommon";
 
 .af-form__dropdown-input {
-  --dropdown-placeholder-color: var(--color-gray-700);
   --dropdown-border-radius: var(--default-border-radius);
   --dropdown-border-color: var(--color-gray-700);
   --dropdown-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
@@ -15,7 +14,7 @@
     --dropdown-option-color: var(--color-black);
 
     &:disabled {
-      --dropdown-option-disabled-color: var(--color-gray-400);
+      --dropdown-option-disabled-color: var(--color-gray-700);
     }
   }
 
@@ -27,10 +26,6 @@
   &:disabled {
     --dropdown-bg-color-disabled: var(--color-gray-200);
     --dropdown-border-color: var(--color-gray-400);
-  }
-
-  &-placeholder {
-    --dropdown-placeholder-color: var(--color-gray-700);
   }
 
   &:not(:disabled):hover,
