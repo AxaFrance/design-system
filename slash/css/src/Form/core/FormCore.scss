@@ -1,8 +1,8 @@
 @use "../../common/common" as common;
 
-$legend-flex-width: calc(100% / 6);
-
 .af-form {
+  --w-6th: calc(100% / 6);
+
   padding: 1rem;
   background: common.$color-wild-sand;
 
@@ -31,10 +31,9 @@ $legend-flex-width: calc(100% / 6);
     display: flex;
     margin: 0 -0.9rem 3rem;
     flex-direction: column;
+
     @include common.media-breakpoint-up(md) {
-      & {
-        flex-direction: row;
-      }
+      flex-direction: row;
     }
   }
 
@@ -57,12 +56,11 @@ $legend-flex-width: calc(100% / 6);
       fieldset:not(.af-form__fieldset--label-top) & {
         margin: auto 0;
       }
+
       @include common.media-breakpoint-up(md) {
-        & {
-          width: auto;
-          max-width: $legend-flex-width;
-          flex: 0 0 $legend-flex-width;
-        }
+        width: auto;
+        max-width: var(--w-6th);
+        flex: 0 0 var(--w-6th);
       }
     }
   }
