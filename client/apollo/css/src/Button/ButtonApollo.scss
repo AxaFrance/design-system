@@ -5,8 +5,8 @@
 @use "./ButtonCommon";
 
 .af-btn-client {
-  --button-bg-color-default: var(--axa-blue-100);
-  --button-text-color-default: var(--white);
+  --button-bg-color: var(--axa-blue-100);
+  --button-text-color: var(--white);
   --button-radius: var(--radius-32);
   --button-shadow-color: var(--axa-blue-100);
   --button-padding: calc(12 / var(--font-size-base) * 1rem)
@@ -20,11 +20,11 @@
   }
 
   &:hover {
-    --button-bg-color-default: var(--axa-blue-120);
+    --button-bg-color: var(--axa-blue-120);
   }
 
   &:active {
-    --button-bg-color-default: var(--axa-blue-80);
+    --button-bg-color: var(--axa-blue-80);
   }
 
   &:focus-visible,
@@ -34,118 +34,118 @@
 
   &:disabled,
   &[aria-disabled="true"] {
-    --button-bg-color-default: var(--neutral-5);
-    --button-text-color-default: var(--neutral-50);
+    --button-bg-color: var(--neutral-5);
+    --button-text-color: var(--neutral-50);
     --button-shadow-color: var(--neutral-50);
   }
 
   &--primary-business {
-    --button-bg-color-default: var(--warning-100);
-    --button-text-color-default: var(--white);
+    --button-bg-color: var(--warning-100);
+    --button-text-color: var(--white);
 
     &:hover,
     &:focus,
     &:focus-visible {
-      --button-bg-color-default: var(--warning-120);
+      --button-bg-color: var(--warning-120);
     }
 
     &:active {
-      --button-bg-color-default: var(--warning-80);
+      --button-bg-color: var(--warning-80);
     }
   }
 
   &--primary-inverse {
-    --button-bg-color-default: var(--white);
-    --button-text-color-default: var(--axa-blue-100);
+    --button-bg-color: var(--white);
+    --button-text-color: var(--axa-blue-100);
 
     &:hover,
     &:focus,
     &:focus-visible {
-      --button-bg-color-default: var(--neutral-14);
-      --button-text-color-default: var(--axa-blue-120);
+      --button-bg-color: var(--neutral-14);
+      --button-text-color: var(--axa-blue-120);
     }
 
     &:active {
-      --button-bg-color-default: var(--neutral-5);
-      --button-text-color-default: var(--axa-blue-80);
+      --button-bg-color: var(--neutral-5);
+      --button-text-color: var(--axa-blue-80);
     }
   }
 
   &--ghost {
-    --button-bg-color-default: transparent;
-    --button-text-color-default: var(--axa-blue-100);
+    --button-bg-color: transparent;
+    --button-text-color: var(--axa-blue-100);
     --button-padding: 0;
 
     &:hover,
     &:focus,
     &:focus-visible {
-      --button-text-color-default: var(--axa-blue-120);
-      --button-bg-color-default: transparent;
+      --button-text-color: var(--axa-blue-120);
+      --button-bg-color: transparent;
     }
 
     &:active {
-      --button-text-color-default: var(--axa-blue-80);
+      --button-text-color: var(--axa-blue-80);
     }
 
     &:disabled,
     &[aria-disabled="true"] {
-      --button-bg-color-default: transparent;
+      --button-bg-color: transparent;
     }
   }
 
   &--secondary {
-    --button-bg-color-default: var(--white);
-    --button-text-color-default: var(--axa-blue-100);
+    --button-bg-color: var(--white);
+    --button-text-color: var(--axa-blue-100);
 
     &:hover,
     &:focus,
     &:focus-visible {
-      --button-bg-color-default: var(--axa-blue-120);
-      --button-text-color-default: var(--white);
+      --button-bg-color: var(--axa-blue-120);
+      --button-text-color: var(--white);
       --button-shadow-color: var(--axa-blue-120);
     }
 
     &:active {
-      --button-bg-color-default: var(--axa-blue-80);
-      --button-text-color-default: var(--white);
+      --button-bg-color: var(--axa-blue-80);
+      --button-text-color: var(--white);
       --button-shadow-color: var(--axa-blue-80);
     }
   }
 
   &--secondary-inverse {
-    --button-bg-color-default: transparent;
-    --button-text-color-default: var(--white);
+    --button-bg-color: transparent;
+    --button-text-color: var(--white);
     --button-shadow-color: var(--white);
 
     &:hover,
     &:focus,
     &:focus-visible {
-      --button-bg-color-default: var(--neutral-14);
-      --button-text-color-default: var(--axa-blue-120);
+      --button-bg-color: var(--neutral-14);
+      --button-text-color: var(--axa-blue-120);
       --button-shadow-color: var(--neutral-14);
     }
 
     &:active {
-      --button-bg-color-default: var(--neutral-5);
-      --button-text-color-default: var(--axa-blue-80);
+      --button-bg-color: var(--neutral-5);
+      --button-text-color: var(--axa-blue-80);
       --button-shadow-color: var(--neutral-5);
     }
   }
 
   &--tertiary {
-    --button-bg-color-default: var(--axa-blue-8);
-    --button-text-color-default: var(--axa-blue-100);
+    --button-bg-color: var(--axa-blue-8);
+    --button-text-color: var(--axa-blue-100);
 
     &:hover,
     &:focus,
     &:focus-visible {
-      --button-bg-color-default: var(--axa-blue-120);
-      --button-text-color-default: var(--white);
+      --button-bg-color: var(--axa-blue-120);
+      --button-text-color: var(--white);
     }
 
     &:active {
-      --button-bg-color-default: var(--axa-blue-80);
-      --button-text-color-default: var(--white);
+      --button-bg-color: var(--axa-blue-80);
+      --button-text-color: var(--white);
     }
   }
 }
