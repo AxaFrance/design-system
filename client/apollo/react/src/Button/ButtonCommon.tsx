@@ -27,7 +27,7 @@ export type ButtonProps = {
   loading?: boolean;
 } & ComponentPropsWithoutRef<"button">;
 
-type ButtonPropsWithSpinner = ButtonProps & {
+type ButtonCommonProps = ButtonProps & {
   SpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
 };
 
@@ -41,7 +41,7 @@ export const ButtonCommon = ({
   loading,
   SpinnerComponent,
   ...args
-}: PropsWithChildren<ButtonPropsWithSpinner>) => (
+}: PropsWithChildren<ButtonCommonProps>) => (
   <button
     className={["af-btn-client", `af-btn-client--${variant}`, className]
       .filter(Boolean)

@@ -12,11 +12,11 @@
   font-size: var(--button-font-size);
   font-weight: 600;
   line-height: var(--button-line-height);
-  color: var(--button-text-color-default);
-  background-color: var(--button-bg-color-default);
+  color: var(--button-text-color);
+  background-color: var(--button-bg-color);
   transition-duration: var(--transition-duration, 150ms);
   transition-property:
-    width, height, border, color, background-color, outline, box-shadow;
+    width, height, border, color, background-color, box-shadow;
   transition-timing-function: linear;
   user-select: none;
 
