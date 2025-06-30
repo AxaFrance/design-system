@@ -11,10 +11,11 @@ import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import { Icon } from "../../Icon/IconCommon";
-import { OptionType } from "./InputPhone.types";
+import { type OptionType } from "./InputPhone.types";
 import { CountryCodeSelect } from "./CountryCodeSelect";
+import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
 
-type InputPhoneProps = ComponentPropsWithRef<"input"> & {
+export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
   helper?: string;
   error?: string;
@@ -27,15 +28,18 @@ type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   onChangeInput?: (value: string) => void;
   mask?: (value: string) => string;
   label: ComponentProps<typeof ItemLabel>["label"];
+} & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
+
+type InputPhoneCommonProps = InputPhoneProps & {
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   InputTextComponent: ComponentType<ComponentProps<typeof InputTextAtom>>;
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
-} & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
+};
 
-const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
+const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
   (
     {
       className,
@@ -87,20 +91,7 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
      * - Applique le masquage à la valeur saisie et transmet le résultat via onChangeInput.
      */
     const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const {
-        mask = (value: string) => {
-          let numericValue = value.replace(/[^0-9]/g, "");
-          numericValue = numericValue.slice(0, 10);
-          let formattedValue = "";
-          for (let i = 0; i < numericValue.length; i += 2) {
-            formattedValue += numericValue.slice(i, i + 2);
-            if (i + 2 < numericValue.length) {
-              formattedValue += " ";
-            }
-          }
-          return formattedValue;
-        },
-      } = otherProps as { mask?: (value: string) => string };
+      const { mask = maskFrenchPhoneNumber } = otherProps;
 
       const input = e.target;
       const rawValue = input.value;
@@ -150,6 +141,7 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             idMessage={idMessage}
             idHelp={idHelp}
             id={inputId}
+            {...otherProps}
           />
         </div>
 
@@ -168,6 +160,6 @@ const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     );
   },
 );
-InputPhone.displayName = "InputPhone";
+InputPhoneCommon.displayName = "InputPhone";
 
-export { InputPhone };
+export { InputPhoneCommon };

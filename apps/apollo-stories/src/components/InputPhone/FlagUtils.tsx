@@ -1,4 +1,4 @@
-import { OptionType } from "@axa-fr/design-system-apollo-react";
+import { type OptionType } from "@axa-fr/design-system-apollo-react";
 import Algeria from "./flags/Algeria.svg";
 import France from "./flags/France.svg";
 import Bahamas from "./flags/Bahamas.svg";
