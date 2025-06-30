@@ -34,10 +34,6 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
     },
     inputRef,
   ) => {
-    const rowModifier = `${classModifier}${
-      mode === CheckboxModes.classic ? " label-top " : ""
-    }`;
-
     const { inputFieldClassModifier } = useInputClassModifier(
       classModifier,
       disabled,
@@ -56,7 +52,7 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
         isVisible={isVisible}
         forceDisplayMessage={forceDisplayMessage}
         className={className}
-        classModifier={rowModifier + inputFieldClassModifier}
+        classModifier={`${inputFieldClassModifier}${mode === CheckboxModes.classic ? " label-top" : ""}`}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
         errorId={errorUseId}

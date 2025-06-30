@@ -32,10 +32,6 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
     },
     inputRef,
   ) => {
-    const rowModifier = `${classModifier}${
-      mode === RadioModes.classic ? " label-top " : ""
-    }`;
-
     const { inputFieldClassModifier, inputClassModifier } =
       useInputClassModifier(
         classModifier,
@@ -55,7 +51,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         isVisible={isVisible}
         forceDisplayMessage={forceDisplayMessage}
         className={className}
-        classModifier={rowModifier + inputFieldClassModifier}
+        classModifier={`${inputFieldClassModifier}${mode === RadioModes.classic ? " label-top" : ""}`}
         classNameContainerLabel={classNameContainerLabel}
         classNameContainerInput={classNameContainerInput}
         roleContainer="radiogroup"

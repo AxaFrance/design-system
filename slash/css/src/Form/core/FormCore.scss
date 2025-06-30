@@ -1,5 +1,7 @@
 @use "../../common/common" as common;
 
+$legend-flex-width: calc(100% / 6);
+
 .af-form {
   padding: 1rem;
   background: common.$color-wild-sand;
@@ -26,33 +28,43 @@
   }
 
   &__fieldset {
-    position: relative;
-    margin-bottom: 3rem;
-  }
-
-  &__legend {
-    position: absolute;
-    width: 100%;
-    margin: 0;
-    padding: 0 0.9rem;
-    font-size: 1rem;
-    font-weight: normal;
-
-    &--required::after {
-      color: common.$color-red-error;
-      content: " *";
-    }
-
+    display: flex;
+    margin: 0 -0.9rem 3rem;
+    flex-direction: column;
     @include common.media-breakpoint-up(md) {
-      fieldset:not(.af-form__fieldset--label-top) & {
-        top: 50%;
-        transform: translateY(-50%);
+      & {
+        flex-direction: row;
       }
     }
   }
 
-  &__placeholder {
-    height: 1.5rem;
+  &__legend {
+    display: contents;
+
+    &-label {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0 0.9rem;
+      font-size: 1rem;
+      font-weight: normal;
+
+      .af-form__fieldset--required &::after {
+        color: common.$color-red-error;
+        content: " *";
+      }
+
+      fieldset:not(.af-form__fieldset--label-top) & {
+        margin: auto 0;
+      }
+      @include common.media-breakpoint-up(md) {
+        & {
+          width: auto;
+          max-width: $legend-flex-width;
+          flex: 0 0 $legend-flex-width;
+        }
+      }
+    }
   }
 
   &__message {

@@ -31,7 +31,7 @@ export const SemanticField = ({
   forceDisplayMessage,
   classModifier = "",
   className,
-  classNameContainerLabel = "col-md-2",
+  classNameContainerLabel = "",
   classNameContainerInput = "col-md-10",
   isVisible = true,
   roleContainer,
@@ -45,7 +45,7 @@ export const SemanticField = ({
   const componentClassName = getComponentClassName(
     className,
     classModifier,
-    "row af-form__fieldset",
+    "af-form__fieldset",
   );
 
   return (
@@ -54,19 +54,16 @@ export const SemanticField = ({
       role={roleContainer}
       aria-label={ariaLabelContainer}
     >
-      <legend
-        className={classNames(
-          {
-            "af-form__legend--required": classModifier.includes("required"),
-          },
-          "af-form__legend",
-        )}
-      >
-        {label}
+      <legend className="af-form__legend">
+        <span
+          className={classNames(
+            classNameContainerLabel,
+            "af-form__legend-label",
+          )}
+        >
+          {label}
+        </span>
       </legend>
-      <div
-        className={classNames(classNameContainerLabel, "af-form__placeholder")}
-      />
       <FieldForm
         className={classNameContainerInput}
         message={message}

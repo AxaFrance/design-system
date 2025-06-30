@@ -15,7 +15,7 @@ const meta: Meta<typeof RadioInput> = {
 
 export default meta;
 
-const modifiers = ["required", "disabled"];
+const classModifierOptions = ["required", "disabled"];
 
 type Story = StoryObj<typeof RadioInput>;
 
@@ -47,8 +47,8 @@ export const RadioInputStory: Story = {
   argTypes: {
     onChange: { action: "onChange" },
     classModifier: {
-      options: modifiers,
-      control: { type: "inline-check" },
+      options: classModifierOptions,
+      control: { type: "inline-check", separator: " " },
     },
     mode: {
       options: Object.values(RadioModes),
