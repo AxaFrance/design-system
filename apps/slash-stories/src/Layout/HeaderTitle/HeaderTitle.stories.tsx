@@ -85,9 +85,9 @@ export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
   },
 };
 
-export const ComplexTitleWithLeftSection: StoryObj<typeof HeaderTitle> = {
+export const ComplexTitleWithContentLeft: StoryObj<typeof HeaderTitle> = {
   args: {
-    leftSection: (
+    contentLeft: (
       <div className="af-title-bar__actions">
         {leftActions.map(
           ({ icon, id, title }: ComponentProps<typeof Action>) => (

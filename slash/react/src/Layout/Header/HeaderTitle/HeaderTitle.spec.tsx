@@ -16,22 +16,19 @@ describe("HeaderTitle", () => {
 
   test("should render leftSection", async () => {
     const { container } = render(
-      <HeaderTitle
-        title="Title"
-        leftSection={<span data-testid="left-section">Left</span>}
-      />,
+      <HeaderTitle title="Title" contentLeft={<span>Left</span>} />,
     );
     expect(await axe(container)).toHaveNoViolations();
-    expect(screen.getByTestId("left-section")).toHaveTextContent("Left");
+    expect(screen.getByText("Left")).toBeInTheDocument();
   });
 
   test("should render children", async () => {
     const { container } = render(
       <HeaderTitle title="Title">
-        <div data-testid="child">Child content</div>
+        <div>Child content</div>
       </HeaderTitle>,
     );
     expect(await axe(container)).toHaveNoViolations();
-    expect(screen.getByTestId("child")).toHaveTextContent("Child content");
+    expect(screen.getByText("Child content")).toBeInTheDocument();
   });
 });

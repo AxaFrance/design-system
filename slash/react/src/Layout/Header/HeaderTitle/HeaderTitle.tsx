@@ -13,7 +13,7 @@ type Props = {
   classModifier?: string;
   className?: string;
   isSticky?: boolean;
-  leftSection?: ReactNode;
+  contentLeft?: ReactNode;
   subtitle?: string;
   title: string;
   toggleMenu?: () => void;
@@ -24,7 +24,7 @@ const HeaderTitle = ({
   classModifier,
   className,
   isSticky = true,
-  leftSection,
+  contentLeft,
   subtitle,
   title,
   toggleMenu,
@@ -51,7 +51,7 @@ const HeaderTitle = ({
           </div>
         )}
         <div className={`${defaultClassName}__leftSection`}>
-          {leftSection}
+          {contentLeft}
           <h1 className={`${defaultClassName}__title`}>
             {title}
             {subtitle && (
