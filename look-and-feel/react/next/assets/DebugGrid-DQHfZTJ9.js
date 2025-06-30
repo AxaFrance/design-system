@@ -1,0 +1,10 @@
+import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as r}from"./index-BJaai1kI.js";import{M as i,C as m,a as c}from"./index-D-HOWnTk.js";import{D as p,a as n}from"./DebugGrid.stories-B1-rxyyx.js";import"./index-DuZrfDUH.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-DHxb4JH5.js";import"./index-BsNqBstw.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";import"./DropdownCommon-A_ctlsuA.js";import"./constants-CIOWrZ2e.js";import"./DebugGridLF-C7TzOcNM.js";function s(e){const t={blockquote:"blockquote",h2:"h2",p:"p",strong:"strong",...r(),...e.components};return o.jsxs(o.Fragment,{children:[o.jsx(i,{of:p}),`
+`,o.jsx(t.h2,{id:"debuggrid",children:"DebugGrid"}),`
+`,o.jsx(t.p,{children:"The DebugGrid component allows you to visualize the Design System grids (it complements the browser tool)."}),`
+`,o.jsx(t.p,{children:"This component uses the color codes from the mockups and displays the breakpoints according to the screen size."}),`
+`,o.jsxs(t.blockquote,{children:[`
+`,o.jsxs(t.p,{children:[o.jsx(t.strong,{children:"Info"}),`
+The DebugGrid component automatically hides itself in production mode.`]}),`
+`]}),`
+`,o.jsx(m,{of:n}),`
+`,o.jsx(c,{of:n})]})}function k(e={}){const{wrapper:t}={...r(),...e.components};return t?o.jsx(t,{...e,children:o.jsx(s,{...e})}):s(e)}export{k as default};
