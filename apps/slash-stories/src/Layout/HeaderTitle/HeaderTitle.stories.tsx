@@ -1,4 +1,9 @@
-import { Action, HeaderTitle, Svg } from "@axa-fr/design-system-slash-react";
+import {
+  Action,
+  Badge,
+  HeaderTitle,
+  Svg,
+} from "@axa-fr/design-system-slash-react";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import mailIcon from "@material-symbols/svg-400/outlined/mail.svg";
 import saveIcon from "@material-symbols/svg-400/outlined/save.svg";
@@ -67,7 +72,7 @@ export const DefaultTitle: StoryObj<typeof HeaderTitle> = {};
 
 export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
   args: {
-    children: (
+    contentRight: (
       <div className="af-title-bar__actions">
         {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
           <a
@@ -85,39 +90,41 @@ export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
   },
 };
 
-export const ComplexTitleWithContentLeft: StoryObj<typeof HeaderTitle> = {
-  args: {
-    contentLeft: (
-      <div className="af-title-bar__actions">
-        {leftActions.map(
-          ({ icon, id, title }: ComponentProps<typeof Action>) => (
+export const ComplexTitleWithContentAndChildren: StoryObj<typeof HeaderTitle> =
+  {
+    args: {
+      contentLeft: (
+        <div className="af-title-bar__actions">
+          {leftActions.map(
+            ({ icon, id, title }: ComponentProps<typeof Action>) => (
+              <a
+                key={id}
+                href="/#"
+                role="button"
+                title={title}
+                className="btn  af-btn--circle"
+              >
+                <Svg src={icon} />
+              </a>
+            ),
+          )}
+        </div>
+      ),
+      children: <Badge classModifier="success"> Statut OK </Badge>,
+      contentRight: (
+        <div className="af-title-bar__actions">
+          {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
             <a
               key={id}
               href="/#"
               role="button"
               title={title}
-              className="btn  af-btn--circle"
+              className="btn af-btn--circle"
             >
               <Svg src={icon} />
             </a>
-          ),
-        )}
-      </div>
-    ),
-    children: (
-      <div className="af-title-bar__actions">
-        {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
-          <a
-            key={id}
-            href="/#"
-            role="button"
-            title={title}
-            className="btn af-btn--circle"
-          >
-            <Svg src={icon} />
-          </a>
-        ))}
-      </div>
-    ),
-  },
-};
+          ))}
+        </div>
+      ),
+    },
+  };

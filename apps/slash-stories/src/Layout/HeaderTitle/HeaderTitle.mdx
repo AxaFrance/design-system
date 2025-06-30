@@ -39,9 +39,10 @@ export default TitleComponent;
 <Canvas of={HeaderTitleStories.ComplexTitle} />
 <Controls of={HeaderTitleStories.ComplexTitle} />
 
-### Complex Title with ContentLeft
+### Complex Title with Content and Children
 
-When you need to add an action to the title to handle a back button for example, you can use the `contentLeft` property. The property accepts a ReactNode to give you the flexibility to add any content you want.
+When you need to handle a navigation action , a back button for example, you can use the `contentLeft` property. For other others actions you should put them the right side of the title bar with the `contentRight` property. Passing children allows you to add additional content after the title and subtitle.
+The properties accepts a ReactNode to give you the flexibility to add any content you want.
 
-<Canvas of={HeaderTitleStories.ComplexTitleWithContentLeft} />
-<Controls of={HeaderTitleStories.ComplexTitleWithContentLeft} />
+<Canvas of={HeaderTitleStories.ComplexTitleWithContentAndChildren} />
+<Controls of={HeaderTitleStories.ComplexTitleWithContentAndChildren} />

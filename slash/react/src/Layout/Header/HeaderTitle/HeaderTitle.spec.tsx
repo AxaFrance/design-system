@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { HeaderTitle } from "./HeaderTitle";
+import { Badge } from "../../../Badge/Badge";
 
 describe("HeaderTitle", () => {
   test("should render title and subtitle", async () => {
@@ -14,7 +15,7 @@ describe("HeaderTitle", () => {
     expect(screen.getByText("Subtitle")).toBeInTheDocument();
   });
 
-  test("should render leftSection", async () => {
+  test("should render contentLeft", async () => {
     const { container } = render(
       <HeaderTitle title="Title" contentLeft={<span>Left</span>} />,
     );
@@ -22,13 +23,21 @@ describe("HeaderTitle", () => {
     expect(screen.getByText("Left")).toBeInTheDocument();
   });
 
+  test("should render contentRight", async () => {
+    const { container } = render(
+      <HeaderTitle title="Title" contentRight={<span>Right</span>} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+    expect(screen.getByText("Right")).toBeInTheDocument();
+  });
+
   test("should render children", async () => {
     const { container } = render(
       <HeaderTitle title="Title">
-        <div>Child content</div>
+        <Badge classModifier="success"> Lorem ipsum </Badge>
       </HeaderTitle>,
     );
     expect(await axe(container)).toHaveNoViolations();
-    expect(screen.getByText("Child content")).toBeInTheDocument();
+    expect(screen.getByText("Lorem ipsum")).toBeInTheDocument();
   });
 });
