@@ -15,12 +15,12 @@ import type {
   TCardRadioItemOption,
 } from "./types";
 
-export type CardRadioProps = ComponentPropsWithRef<"input"> & {
+export type CardRadioProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
   isRequired?: boolean;
-  value?: number;
+  value?: number | string;
   options: TCardRadioItemOption[];
   onChange?: React.ChangeEventHandler;
   error?: string;
@@ -43,6 +43,7 @@ const CardRadioCommon = ({
   type = "vertical",
   error,
   name,
+  value,
   onChange,
   ItemMessageComponent,
 }: CardRadioCommonProps) => {
@@ -90,6 +91,11 @@ const CardRadioCommon = ({
             size={size}
             RadioComponent={RadioComponent}
             IconComponent={IconComponent}
+            checked={
+              value !== undefined
+                ? value === cardRadioItemProps.value
+                : undefined
+            }
             {...cardRadioItemProps}
           />
         ))}

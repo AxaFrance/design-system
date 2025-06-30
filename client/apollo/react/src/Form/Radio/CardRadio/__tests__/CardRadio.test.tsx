@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
+import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
+import { describe, expect, it } from "vitest";
 import { CardRadio } from "../CardRadioApollo";
 
 describe("Radio card Component", () => {
@@ -35,6 +35,35 @@ describe("Radio card Component", () => {
     radioInput.click();
 
     expect(handleChange).toHaveBeenCalledTimes(1);
+  });
+
+  it("should force the checked state of the radio card", () => {
+    // Arrange
+    render(
+      <CardRadio
+        type="vertical"
+        name="cities"
+        options={[
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Lyon",
+            value: "lyon",
+          },
+        ]}
+        value="paris"
+      />,
+    );
+
+    // Act
+    const parisRadio = screen.getByLabelText("Paris");
+    const lyonRadio = screen.getByLabelText("Lyon");
+
+    // Then
+    expect(parisRadio).toBeChecked();
+    expect(lyonRadio).not.toBeChecked();
   });
 
   it("should violate accessibility the of radio card", async () => {

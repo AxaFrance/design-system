@@ -64,6 +64,10 @@ export const CardRadioStory: StoryObj<StoryProps> = {
       description: "Radio card options",
     },
     onChange: { action: "onChange" },
+    value: {
+      control: { type: "select" },
+      options: baseOptions.map((option) => option.value),
+    },
   },
 };
 
@@ -99,5 +103,9 @@ export const CardRadioWithLabel: StoryObj<StoryProps> = {
       description: "Radio card options",
     },
     onChange: { action: "onChange" },
+    value: {
+      control: { type: "select" },
+      options: baseOptions.map((option) => option.value),
+    },
   },
 };
