@@ -56,4 +56,14 @@
   --bluesubtitle: hsl(237deg, 100%, 88%);
   --black: hsl(0deg, 0%, 0%);
   --white: hsl(0deg, 0%, 100%);
+
+  /********* Alias Token *********/
+  --color-border-default: var(--gray40);
+  --color-border-hover: var(--axablue80);
+  --color-border-selected: var(--axablue80);
+
+  /********* Component specific Token *********/
+  --color-radio-border-default: var(--color-border-default);
+  --color-radio-border-hover: var(--color-border-hover);
+  --color-radio-border-selected: var(--color-border-selected);
 }
