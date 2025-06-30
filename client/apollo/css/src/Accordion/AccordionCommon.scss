@@ -1,6 +1,6 @@
 @use "../common/breakpoints" as breakpoints;
 
-.af-accordion {
+.af-apollo-accordion {
   &__summary {
     grid-template-areas: var(--summary-areas);
     grid-template-columns: var(--summary-columns);
@@ -52,7 +52,7 @@
       "icon subtitle tag-container info1 info2 arrow";
     --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
 
-    .af-accordion__summary .af-accordion__date {
+    .af-apollo-accordion__summary .af-accordion__date {
       display: none;
     }
 
@@ -68,7 +68,7 @@
       "tag-container date-container subtitle info2 arrow";
     --summary-columns: max-content min-content 1fr max-content max-content;
 
-    .af-accordion__summary .af-accordion {
+    .af-apollo-accordion__summary .af-accordion {
       &__icon {
         display: none;
       }

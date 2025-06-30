@@ -1,6 +1,6 @@
 @use "../common/breakpoints" as breakpoints;
 
-.af-accordion {
+.af-apollo-accordion {
   --summary-areas: "summary arrow";
   --summary-columns: 1fr auto;
 
@@ -32,11 +32,11 @@
   }
 
   &[open] {
-    > .af-accordion__summary {
+    > .af-apollo-accordion__summary {
       border-bottom: 1px solid var(--accordion-open-border-color);
     }
 
-    > .af-accordion__summary > .af-accordion__arrow {
+    > .af-apollo-accordion__summary > .af-accordion__arrow {
       transform: rotate(180deg);
     }
   }

@@ -12,7 +12,7 @@ describe("AccordionCore", () => {
     expect(screen.getByText(title)).toBeInTheDocument();
     expect(screen.getByText(children)).toBeInTheDocument();
     expect(screen.getByText("Content").closest("details")).toHaveClass(
-      "af-accordion",
+      "af-apollo-accordion",
     );
 
     // test that the accordion is closed by default

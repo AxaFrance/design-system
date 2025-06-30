@@ -1,12 +1,12 @@
 @use "./AccordionCoreCommon";
 
-.af-accordion {
+.af-apollo-accordion {
   &__summary {
     --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
 
   &[open] {
-    > .af-accordion__summary {
+    > .af-apollo-accordion__summary {
       --accordion-open-border-color: var(--color-blue-400);
     }
   }

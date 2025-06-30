@@ -26,7 +26,10 @@ export const AccordionCore = ({
   onClick,
   ...detailsProps
 }: AccordionProps) => {
-  const componentClassName = getComponentClassName("af-accordion", className);
+  const componentClassName = getComponentClassName(
+    "af-apollo-accordion",
+    className,
+  );
 
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
@@ -52,7 +55,7 @@ export const AccordionCore = ({
         role="button"
         tabIndex={0}
         {...summaryProps}
-        className={["af-accordion__summary", summaryProps?.className]
+        className={["af-apollo-accordion__summary", summaryProps?.className]
           .filter(Boolean)
           .join(" ")}
       >

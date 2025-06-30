@@ -51,7 +51,7 @@ export const AccordionCommon = ({
   ...accordionCoreProps
 }: AccordionCommonProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName("af-accordion", className, variant),
+    () => getComponentClassName("af-apollo-accordion", className, variant),
     [className, variant],
   );
 
