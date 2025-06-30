@@ -60,6 +60,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
       countryCodeOptions = [],
       onChangeSelect,
       onChangeInput,
+      mask = maskFrenchPhoneNumber,
       ItemLabelComponent,
       ItemMessageComponent,
       InputTextComponent,
@@ -91,8 +92,6 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
      * - Applique le masquage à la valeur saisie et transmet le résultat via onChangeInput.
      */
     const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { mask = maskFrenchPhoneNumber } = otherProps;
-
       const input = e.target;
       const rawValue = input.value;
       const maskedValue = mask(rawValue);
