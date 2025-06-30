@@ -10,12 +10,13 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import menu from "@material-symbols/svg-400/outlined/menu.svg";
 import { NavBar } from "./NavBar";
 import { PreviousLink } from "./PreviousLink/PreviousLink";
-import { Button, IconBg, Svg } from "../..";
+import { Button, IconBg, Modal, Svg } from "../..";
 import { BurgerMenu } from "./BurgerMenu";
 import { BREAKPOINT } from "../../utilities";
 
@@ -37,10 +38,11 @@ export const Header = ({
   const [activeLink, setActiveLink] = useState<number | undefined>(
     defaultActiveLink,
   );
+  const ref = useRef<HTMLDialogElement>(null);
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const toggleMenu = () => {
+    ref.current?.showModal();
+  };
 
   const resetActiveLink = useCallback(
     () => setActiveLink(defaultActiveLink),
@@ -49,15 +51,15 @@ export const Header = ({
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > BREAKPOINT.MD && isOpen) {
-        setIsOpen(false);
+      if (window.innerWidth > BREAKPOINT.MD && ref.current?.open) {
+        ref.current?.close();
       }
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [isOpen]);
+  }, [ref.current?.open]);
 
   const burgerMenuItems = useMemo<ReactElement[]>(() => {
     const mapValidElements = (
@@ -92,7 +94,7 @@ export const Header = ({
           {rightItem && <div className="af-header-right-item">{rightItem}</div>}
           {burgerMenuItems && burgerMenuItems.length > 0 && (
             <Button
-              aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-label="Ouvrir le menu"
               onClick={toggleMenu}
               variant="ghost"
             >
@@ -102,17 +104,25 @@ export const Header = ({
             </Button>
           )}
         </div>
-        <BurgerMenu
-          isOpen={isOpen}
-          items={burgerMenuItems}
-          setActiveLink={setActiveLink}
-          setIsOpen={setIsOpen}
-        />
       </header>
       <PreviousLink handleClick={resetActiveLink}>{previousLink}</PreviousLink>
-      {burgerMenuItems && burgerMenuItems.length > 0 && (
-        <div className={`af-header-overlay ${isOpen ? "open" : ""}`} />
-      )}
+      <Modal
+        ref={ref}
+        onClose={() => {
+          ref.current?.close();
+        }}
+        onCancel={() => {
+          ref.current?.close();
+        }}
+        title="Menu principal"
+        role="dialog"
+      >
+        <BurgerMenu
+          refModal={ref}
+          items={burgerMenuItems}
+          setActiveLink={setActiveLink}
+        />
+      </Modal>
     </>
   );
 };

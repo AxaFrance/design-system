@@ -77,17 +77,9 @@
   }
 }
 
-.af-header-overlay {
-  display: none;
-
-  @include common.media-breakpoint-down(md) {
-    &.open {
-      position: fixed;
-      z-index: 1;
-      inset: 0;
-      display: block;
-      opacity: 0.5;
-      background: var(--color-gray-900);
-    }
-  }
+.af-header + dialog {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
 }

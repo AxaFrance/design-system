@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { Header } from "../Header";
@@ -16,6 +16,17 @@ describe("Header Component", () => {
     </button>
   );
   const previousLink = <a href="/">Retour à l&apos;accueil</a>;
+
+  beforeAll(() => {
+    HTMLDialogElement.prototype.show = vi.fn();
+    HTMLDialogElement.prototype.showModal = function () {
+      this.open = true;
+    };
+    HTMLDialogElement.prototype.close = function (returnValue: string) {
+      this.open = false;
+      this.returnValue = returnValue;
+    };
+  });
 
   beforeEach(() => {
     Object.defineProperty(window, "innerWidth", {
@@ -49,9 +60,9 @@ describe("Header Component", () => {
   });
 
   it("should hide burger menu on window resize above the breakpoint", async () => {
-    render(<Header rightItem={rightItem}>{children}</Header>);
-
     global.innerWidth = BREAKPOINT.MD - 1;
+
+    render(<Header rightItem={rightItem}>{children}</Header>);
 
     const burgerButton = screen.getByRole("button", {
       name: /Ouvrir le menu/i,
@@ -59,6 +70,17 @@ describe("Header Component", () => {
 
     await userEvent.click(burgerButton);
 
-    expect(burgerButton).toHaveAttribute("aria-label", "Fermer le menu");
+    await waitFor(() => {
+      const modalEl = screen.getByRole("dialog");
+      expect(modalEl).toHaveAttribute("open");
+    });
+
+    global.innerWidth = BREAKPOINT.MD + 1;
+    fireEvent(window, new Event("resize"));
+
+    await waitFor(() => {
+      const modalEl = screen.getByRole("dialog", { hidden: true });
+      expect(modalEl).not.toHaveAttribute("open");
+    });
   });
 });
