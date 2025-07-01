@@ -29,8 +29,13 @@ describe("<ItemFile />", () => {
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.error}
+        ariaLabel="Item File error"
       />,
     );
+    const itemFileClickIcon = screen.getAllByRole("button", {
+      name: "Item File error",
+    });
+    expect(itemFileClickIcon[0]).toBeInTheDocument();
     const itemFileErrorLabelText = screen.getByText("my error message");
     expect(itemFileErrorLabelText).toBeInTheDocument();
   });
@@ -41,9 +46,13 @@ describe("<ItemFile />", () => {
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.success}
+        ariaLabel="Item file success"
       />,
     );
-
+    const itemFileClickIcon = screen.getAllByRole("button", {
+      name: "Item file success",
+    });
+    expect(itemFileClickIcon[0]).toBeInTheDocument();
     expect(container.querySelector("svg")).toHaveClass("af-icon__success");
   });
 
