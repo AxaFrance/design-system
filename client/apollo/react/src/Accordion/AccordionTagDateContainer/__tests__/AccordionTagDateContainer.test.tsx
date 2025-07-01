@@ -22,16 +22,24 @@ describe("AccordionTagDateContainer", () => {
     );
   });
 
-  it("should pass tagProps to Tag component", () => {
+  it("should render Tag component with warning variant if no tagProps", () => {
+    render(<AccordionTagDateContainer tagLabel="tag" />);
+
+    expect(screen.getByText("tag").parentElement).toHaveClass(
+      "af-tag af-tag--warning",
+    );
+  });
+
+  it("should render Tag component with info variant", () => {
     render(
       <AccordionTagDateContainer
         tagLabel="tag"
-        tagProps={{ variant: "warning" }}
+        tagProps={{ variant: "info" }}
       />,
     );
 
     expect(screen.getByText("tag").parentElement).toHaveClass(
-      "af-tag af-tag--warning",
+      "af-tag af-tag--info",
     );
   });
 

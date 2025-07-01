@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
+import userEvent from "@testing-library/user-event";
 import { AccordionCore } from "../AccordionCoreApollo";
 
 describe("AccordionCore", () => {
@@ -73,6 +74,65 @@ describe("AccordionCore", () => {
     );
 
     expect(screen.getByText("Custom Title")).toHaveClass("custom-title");
+  });
+
+  it("should open accordion on keyboard Enter", async () => {
+    render(
+      <div data-testid="main-content">
+        <AccordionCore summary="Accordion Title">
+          This is a Content
+        </AccordionCore>
+        ,
+      </div>,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ) as any;
+    const allEvents = [
+      "click",
+      "keyPress",
+      "keyup",
+      "mousedown",
+      "mouseup",
+      "mousemove",
+      "touchstart",
+      "touchend",
+      "input",
+      "change",
+      "submit",
+      "focus",
+      "blur",
+      "keypress",
+    ];
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const main = screen.getByText("Accordion Title") as any;
+    console.log("xxx");
+    function captureAllEvents() {
+      allEvents.forEach((eventType) => {
+        main.addEventListener(
+          eventType,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          function (event: any) {
+            console.log(
+              "Event triggered on:",
+              event.target.tagName,
+              "id:",
+              event.target.id,
+              "class:",
+              event.target.className,
+            );
+            console.log("Key pressed:", event.code);
+          },
+          true, // capture phase
+        );
+      });
+    }
+
+    captureAllEvents();
+    await userEvent.tab();
+    await userEvent.keyboard("{Enter}");
+    const details = screen.getByText("This is a Conntent").closest("details");
+
+    expect(details).toHaveAttribute("open");
   });
 
   it("shouldn't have an accessibility violation", async () => {

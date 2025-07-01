@@ -6,7 +6,6 @@ import {
   useRef,
 } from "react";
 import keyboardUp from "@material-symbols/svg-400/rounded/keyboard_arrow_up-fill.svg";
-import { getComponentClassName } from "../utilities/getComponentClassName";
 import { Svg } from "../Svg/Svg";
 
 type AccordionProps = {
@@ -22,15 +21,10 @@ export const AccordionCore = ({
   children,
   className,
   summaryProps,
-  isOpen,
+  isOpen = false,
   onClick,
   ...detailsProps
 }: AccordionProps) => {
-  const componentClassName = getComponentClassName(
-    "af-apollo-accordion",
-    className,
-  );
-
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handleToggle = useCallback(
@@ -45,7 +39,7 @@ export const AccordionCore = ({
 
   return (
     <details
-      className={componentClassName}
+      className={["af-apollo-accordion", className].filter(Boolean).join(" ")}
       ref={detailsRef}
       open={isOpen}
       {...detailsProps}

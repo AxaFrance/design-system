@@ -17,7 +17,7 @@ export const AccordionTagDateContainerCommon = ({
   dateLabel,
   dateProps,
   tagLabel,
-  tagProps,
+  tagProps = { variant: "warning" },
   TagComponent,
 }: AccordionTagDateContainerCommonProps) => {
   const isShowing = useMemo(
@@ -33,9 +33,7 @@ export const AccordionTagDateContainerCommon = ({
     <>
       {tagLabel && (
         <div className="af-accordion__tag-container">
-          <TagComponent variant="warning" {...tagProps}>
-            {tagLabel}
-          </TagComponent>
+          <TagComponent {...tagProps}>{tagLabel}</TagComponent>
         </div>
       )}
       {dateLabel && (
