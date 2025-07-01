@@ -1,11 +1,13 @@
 @use "../common/breakpoints" as breakpoints;
 
 .af-apollo-accordion {
+  --spacing-summary: calc(16 / var(--font-size-base) * 1rem);
   --summary-areas: "summary arrow";
   --summary-columns: 1fr auto;
 
   &__summary {
     display: grid;
+    padding: var(--spacing-summary);
     align-items: center;
     column-gap: 16px;
     font-size: var(--accordion-font-size);
