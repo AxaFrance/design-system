@@ -14,22 +14,20 @@ import classNames from "classnames";
 import { ClickItem, createClickItemParent } from "../../../List/ClickItem";
 
 type BurgerMenuProps = {
-  isOpen: boolean;
+  refModal: React.RefObject<HTMLDialogElement | null>;
   items: ReactElement[];
   setActiveLink: Dispatch<SetStateAction<number | undefined>>;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
 } & ComponentPropsWithoutRef<"nav">;
 
 const BurgerMenu = ({
-  isOpen,
   items,
   setActiveLink,
-  setIsOpen,
+  refModal,
   ...props
 }: BurgerMenuProps) => {
   const handleOnClick = (index: number) => () => {
     setActiveLink(index);
-    setIsOpen(false);
+    refModal.current?.close();
   };
 
   if (items.length === 0) return null;
@@ -38,9 +36,9 @@ const BurgerMenu = ({
     <nav
       role="navigation"
       aria-label="Menu principal mobile"
-      aria-hidden={!isOpen}
+      aria-hidden={!refModal.current?.open}
       className={classNames("af-card", "af-card--list", "af-burger-menu", {
-        open: isOpen,
+        open: refModal.current?.open,
       })}
       {...props}
     >
