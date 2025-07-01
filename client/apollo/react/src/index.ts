@@ -33,6 +33,7 @@ export { CardRadio } from "./Form/Radio/CardRadio/CardRadioApollo";
 export { InputText } from "./Form/InputText/InputTextApollo";
 export { DebugGrid } from "./Grid/DebugGridApollo";
 export { Heading, type HeadingLevel } from "./Heading/HeadingApollo";
+export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomApollo";
 export {
   Icon,
   iconSizeVariants,
@@ -64,4 +65,6 @@ export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
+export { InputPhone } from "./Form/InputPhone/InputPhoneApollo";
+export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { Dropdown } from "./Form/Dropdown/DropdownApollo";

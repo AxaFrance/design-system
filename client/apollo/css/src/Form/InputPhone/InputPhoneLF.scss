@@ -1,0 +1,44 @@
+@use "../../common/breakpoints" as breakpoints;
+
+@use "./InputPhoneCommon";
+
+.af-form__input-phone-helper {
+  --input-helper-color: var(--color-gray-700);
+}
+
+.country-code-select {
+  &__control {
+    --select-border-color: var(--color-gray-700);
+    --select-border-radius: var(--default-border-radius);
+    --select-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
+      no-repeat right 1rem center / 1.5rem 1.5rem;
+
+    &:focus-visible {
+      --select-border-color: var(--color-axa);
+    }
+
+    &:disabled {
+      --select-bg-color-disabled: var(--color-gray-500);
+      --select-border-color: var(--color-gray-500);
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      --select-border-radius: 8px;
+      --select-border-color: var(--color-axa);
+      --select-box-shadow: var(--color-axa);
+    }
+  }
+
+  &__option {
+    --select-option-color: var(--color-gray-900);
+
+    &:disabled {
+      --select-option-disabled-color: var(--color-gray-500);
+    }
+  }
+
+  &__placeholder {
+    --select-placeholder-color: var(--color-gray-700);
+  }
+}
