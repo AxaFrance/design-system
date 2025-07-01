@@ -1,1 +1,0 @@
-import{r as e}from"./index-DuZrfDUH.js";const c=r=>{const t=e.useCallback(s=>(window.addEventListener("resize",s),()=>{window.removeEventListener("resize",s)}),[]),n=e.useCallback(()=>window.innerWidth<=r,[r]),a=e.useCallback(()=>!1,[]);return e.useSyncExternalStore(t,n,a)};export{c as u};
