@@ -126,6 +126,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
             </div>
           )}
           <InputTextComponent
+            {...otherProps}
             className={componentClassName}
             ref={inputRef}
             error={error}
@@ -140,7 +141,6 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
             idMessage={idMessage}
             idHelp={idHelp}
             id={inputId}
-            {...otherProps}
           />
         </div>
 
