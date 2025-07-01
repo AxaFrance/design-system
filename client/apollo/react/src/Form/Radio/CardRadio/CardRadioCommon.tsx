@@ -84,7 +84,7 @@ const CardRadioCommon = ({
       <div className={RadioGroupClassName}>
         {options.map((cardRadioItemProps) => (
           <CardRadioItem
-            key={crypto.randomUUID()}
+            key={`${name}-${crypto.randomUUID()}`}
             name={name}
             onChange={onChange}
             size={size}
