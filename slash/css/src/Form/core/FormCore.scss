@@ -1,8 +1,6 @@
 @use "../../common/common" as common;
 
 .af-form {
-  --w-6th: calc(100% / 6);
-
   padding: 1rem;
   background: common.$color-wild-sand;
 
@@ -59,8 +57,8 @@
 
       @include common.media-breakpoint-up(md) {
         width: auto;
-        max-width: var(--w-6th);
-        flex: 0 0 var(--w-6th);
+        max-width: calc(100% / 6);
+        flex: 0 0 calc(100% / 6);
       }
     }
   }
