@@ -1,7 +1,10 @@
 import "@axa-fr/design-system-apollo-css/dist/AccordionCore/AccordionCoreLF.scss";
-import type { ComponentProps } from "react";
-import { AccordionCore as AccordionCoreCommon } from "./AccordionCoreCommon";
+import {
+  AccordionCoreCommon,
+  type AccordionProps,
+} from "./AccordionCoreCommon";
+import { Icon } from "../Icon/IconLF";
 
-export const AccordionCore = (
-  props: ComponentProps<typeof AccordionCoreCommon>,
-) => <AccordionCoreCommon {...props} />;
+export const AccordionCore = (props: AccordionProps) => (
+  <AccordionCoreCommon IconComponent={Icon} {...props} />
+);

@@ -1,14 +1,15 @@
 import {
   type ComponentProps,
+  ComponentType,
   type MouseEvent,
   type ReactNode,
   useCallback,
   useRef,
 } from "react";
 import keyboardUp from "@material-symbols/svg-400/rounded/keyboard_arrow_up-fill.svg";
-import { Svg } from "../Svg/Svg";
+import { Icon } from "../Icon/IconCommon";
 
-type AccordionProps = {
+export type AccordionProps = {
   summary: ReactNode;
   children: ReactNode;
   isOpen?: boolean;
@@ -16,15 +17,20 @@ type AccordionProps = {
   onClick?: (event: MouseEvent<HTMLDetailsElement>) => void;
 } & Partial<ComponentProps<"details">>;
 
-export const AccordionCore = ({
+export type AccordionPropsCommonProps = AccordionProps & {
+  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
+};
+
+export const AccordionCoreCommon = ({
   summary,
   children,
   className,
   summaryProps,
   isOpen = false,
+  IconComponent,
   onClick,
   ...detailsProps
-}: AccordionProps) => {
+}: AccordionPropsCommonProps) => {
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handleToggle = useCallback(
@@ -55,9 +61,7 @@ export const AccordionCore = ({
       >
         {summary}
         <div className={["af-accordion__arrow", "af-click-icon"].join(" ")}>
-          <div className="af-icon af-icon--primary">
-            <Svg src={keyboardUp} role="presentation" />
-          </div>
+          <IconComponent src={keyboardUp} role="presentation" />
         </div>
       </summary>
       {children}
