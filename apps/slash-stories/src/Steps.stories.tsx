@@ -9,7 +9,7 @@ type StoryProps = React.ComponentProps<typeof Steps> & {
 
 const meta: Meta<StoryProps> = {
   component: Steps,
-  title: "Components/Steps",
+  title: "Components/Steps/Step",
   args: {
     mode: "link",
     onClick: fn(),

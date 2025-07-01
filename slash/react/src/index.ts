@@ -70,7 +70,7 @@ export {
   SectionRestitutionRow,
   SectionRestitutionTitle,
 } from "./Restitution";
-export { Step, StepBase, Steps } from "./Steps";
+export { Step, StepBase, Steps, VerticalStep } from "./Steps";
 export { Summary } from "./Summary";
 export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Tabs";

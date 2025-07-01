@@ -1,0 +1,78 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/blocks';
+ 
+import * as VerticalStepStories from './VerticalStep.stories';
+ 
+<Meta of={VerticalStepStories} />
+ 
+# VerticalStep
+ 
+The `VerticalStep` component allows you to create a step in a vertical stepper. It is designed to be used in forms or processes where you need to guide the user through multiple steps, each with its own content and actions.
+
+## Import
+
+```tsx
+import { VerticalStep } from '@axa-fr/design-system-slash-react';
+```
+
+## Usage
+
+```tsx
+export const Component = () => {
+  const [configurationStepMode, setConfigurationStepMode] = useState('locked');
+
+  return (
+    <VerticalStep
+      title="Configuration"
+      id="configurationStepTitle"
+      stepMode={configurationStepMode}
+      onEdit={() => setConfigurationStepMode('edited')}
+      form={
+        <form>
+          <fieldset>
+            <legend className={globalCss.cacherLegende}>Formulaire Configuration</legend>
+            <TextInput
+              id="dateEffet"
+              name="dateEffet"
+              label="Date d'effet"
+              classModifier="required"
+              value={dateEffetFormatFr}
+              helpMessage="jj/mm/aaaa"
+            />
+            <BoutonConfirmation id="validation-configuration" titre="Valider" actionAuClique={submit} />
+          </fieldset>
+        </form>
+      }
+      restitution={<p>Restitution</p>}
+    />
+  );
+};
+```
+
+## VerticalStep
+
+<Canvas of={VerticalStepStories.VerticalStepLockedStory} />
+
+## Multiple VerticalSteps
+
+<Canvas of={VerticalStepStories.ManyVerticalStep} />
+
+## Arguments
+
+
+The `title` property corresponds to the step's title.
+
+The `id` property is the id of this title, allowing for redirections.
+
+The `stepMode` property specifies the current mode of the step, with three possible options: `locked`, `edited`, or `validated`. This is a state to be defined within the component.
+
+The `editButtonLabel` property is the label of the Modify button, which is displayed when the step is in `validated` mode. It defaults to "Modifier".
+
+The `editButtonAriaLabel` property is the aria-label of the Modify button, which is used for accessibility purposes. It defaults to "Modifier l'étape XXX" where XXX is the `title` property.
+
+The `onEdit` property is the function called when the Modify button is clicked. It can be used to change the step's mode, but also to trigger other functions.
+
+The `form` property is a form to display within the step. It is a `ReactNode` allowing you to specify a complex HTML structure.
+
+The `restitution` property is the content to display when the step is validated. It is a `ReactNode` allowing you to specify a complex HTML structure.
+
+<ArgTypes story={VerticalStepStories.VerticalStepLockedStory} />
