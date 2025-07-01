@@ -7,7 +7,7 @@
     "icon label value"
     "icon label button";
   grid-template-columns: auto 1fr 1fr;
-  row-gap: calc(16 / var(--font-size-base) * 1rem);
+  row-gap: calc(8 / var(--font-size-base) * 1rem);
 
   &__label,
   &__value {
