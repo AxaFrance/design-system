@@ -1,13 +1,9 @@
-import React, {
-  type ComponentProps,
-  ComponentPropsWithRef,
-  type ComponentType,
-  useId,
-} from "react";
+import { type ComponentProps, type ComponentType, useId } from "react";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
+import type { RadioCommon } from "../Radio/RadioCommon";
 import { CardRadioItem } from "./CardRadioItem";
 import type {
   IconComponent,
@@ -15,14 +11,16 @@ import type {
   TCardRadioItemOption,
 } from "./types";
 
-export type CardRadioProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
+export type CardRadioProps = Omit<
+  ComponentProps<typeof RadioCommon>,
+  "size"
+> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
   isRequired?: boolean;
   value?: number | string;
   options: TCardRadioItemOption[];
-  onChange?: React.ChangeEventHandler;
   error?: string;
 };
 
@@ -46,6 +44,7 @@ const CardRadioCommon = ({
   value,
   onChange,
   ItemMessageComponent,
+  ...inputProps
 }: CardRadioCommonProps) => {
   const componentClassName = getComponentClassName(
     "af-card-radio__container",
@@ -96,6 +95,7 @@ const CardRadioCommon = ({
                 ? value === cardRadioItemProps.value
                 : undefined
             }
+            {...inputProps}
             {...cardRadioItemProps}
           />
         ))}
