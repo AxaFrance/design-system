@@ -18,8 +18,8 @@ const cases = [
   ["01@23#45$67%89", "01 23 45 67 89"],
 ];
 
-describe.each(cases)("maskFrenchPhoneNumber('%s')", (input, expectedOutput) => {
-  it(`devrait retourner "${expectedOutput}"`, () => {
+cases.forEach(([input, expectedOutput]) => {
+  it(`maskFrenchPhoneNumber('${input}') devrait retourner "${expectedOutput}"`, () => {
     expect(maskFrenchPhoneNumber(input)).toBe(expectedOutput);
   });
 });
