@@ -3,6 +3,12 @@ import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
 import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.scss";
 import "@fontsource/source-sans-pro";
 
+export {
+  Accordion,
+  type AccordionVariants,
+  accordionVariants,
+} from "./Accordion/AccordionLF";
+export { AccordionCore } from "./AccordionCore/AccordionCoreLF";
 export { BasePicture } from "./BasePicture/BasePictureLF";
 export { Button, buttonVariants, type ButtonVariants } from "./Button/ButtonLF";
 export {

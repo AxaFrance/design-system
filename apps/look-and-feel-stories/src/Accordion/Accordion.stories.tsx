@@ -1,11 +1,12 @@
 import {
   Accordion,
-  Card,
-  Svg,
-} from "@axa-fr/design-system-look-and-feel-react";
-import callIcon from "@material-symbols/svg-400/outlined/call-fill.svg";
+  accordionVariants,
+  AccordionVariants,
+  TagVariants,
+} from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
+import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
@@ -15,14 +16,18 @@ const meta: Meta<typeof Accordion> = {
 export default meta;
 
 const defaultArgs = {
-  isTitleFirst: true,
-  icon: <Svg src={callIcon} />,
+  variant: "primary" as AccordionVariants,
+  icon: bank,
   title: "Titre onglet",
-  subtitle: "Titre onglet",
+  subtitle: "Sous-titre onglet",
   tagLabel: "En attente",
+  tagProps: {
+    variant: "warning" as TagVariants,
+  },
   dateLabel: "01/01/2021",
   dateProps: { dateTime: "2021-01-01" },
-  value: "+ 686,00 €",
+  info1: "Lorem ipsum dolor sit amet",
+  info2: "+ 686,00 €",
   children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et tempor blandit. 
               Nulla vitae eros a odio pretium gravida. Sed eget tortor nec massa lobortis bibendum. Morbi eget 
               ligula porttitor, euismod odio vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.`,
@@ -36,20 +41,9 @@ export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
   args: defaultArgs,
   argTypes: {
     dateLabel: { control: "text" },
-  },
-};
-
-export const AccordionWithCardStory: StoryObj<
-  ComponentProps<typeof Accordion>
-> = {
-  name: "Accordion With Card",
-  render: (args) => (
-    <Card classModifier="large accordion">
-      <Accordion {...args} />
-    </Card>
-  ),
-  args: defaultArgs,
-  argTypes: {
-    dateLabel: { control: "text" },
+    variant: {
+      options: Object.values(accordionVariants),
+      control: { type: "select" },
+    },
   },
 };

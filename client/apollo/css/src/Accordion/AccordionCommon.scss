@@ -1,0 +1,87 @@
+@use "../common/breakpoints" as breakpoints;
+
+.af-apollo-accordion {
+  &__summary {
+    grid-template-areas: var(--summary-areas);
+    grid-template-columns: var(--summary-columns);
+    align-items: center;
+
+    .af-icon:first-child {
+      grid-area: icon;
+    }
+
+    .af-accordion {
+      &__title {
+        grid-area: title;
+        font-size: var(--accordion-font-size);
+        font-weight: 600;
+        line-height: var(--accordion-line-height);
+        color: var(--accordion-title-text-color);
+      }
+
+      &__subtitle {
+        grid-area: subtitle;
+        font-size: var(--accordion-subtitle-font-size);
+        font-weight: 400;
+        line-height: var(--accordion-line-height);
+        color: var(--accordion-subtitle-text-color);
+      }
+
+      &__tag-container {
+        grid-area: tag-container;
+      }
+
+      &__date {
+        grid-area: date-container;
+      }
+
+      &__info1 {
+        grid-area: info1;
+        color: var(--accordion-info1-text-color);
+      }
+
+      &__info2 {
+        grid-area: info2;
+        color: var(--accordion-info2-text-color);
+      }
+    }
+  }
+
+  &--primary {
+    --summary-areas: "icon title tag-container info1 info2 arrow"
+      "icon subtitle tag-container info1 info2 arrow";
+    --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
+
+    .af-apollo-accordion__summary .af-accordion__date {
+      display: none;
+    }
+
+    @media (width < #{breakpoints.$breakpoint-md}) {
+      --summary-areas: "icon title arrow" "icon subtitle arrow"
+        "icon tag-container arrow" "icon info1 arrow" "icon info2 arrow";
+      --summary-columns: min-content 1fr min-content;
+    }
+  }
+
+  &--secondary {
+    --summary-areas: "tag-container date-container title info2 arrow"
+      "tag-container date-container subtitle info2 arrow";
+    --summary-columns: max-content min-content 1fr max-content max-content;
+
+    .af-apollo-accordion__summary .af-accordion {
+      &__icon {
+        display: none;
+      }
+
+      &__info1 {
+        display: none;
+      }
+    }
+
+    @media (width < #{breakpoints.$breakpoint-md}) {
+      --summary-areas: "tag-container arrow" "date-container arrow"
+        "title arrow" "subtitle arrow" "info2 arrow";
+      --summary-columns: 1fr max-content;
+    }
+  }
+}

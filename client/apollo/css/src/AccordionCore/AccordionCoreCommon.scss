@@ -1,0 +1,44 @@
+@use "../common/breakpoints" as breakpoints;
+
+.af-apollo-accordion {
+  --spacing-summary: calc(16 / var(--font-size-base) * 1rem);
+  --summary-areas: "summary arrow";
+  --summary-columns: 1fr auto;
+
+  &__summary {
+    display: grid;
+    padding: var(--spacing-summary);
+    align-items: center;
+    column-gap: 16px;
+    font-size: var(--accordion-font-size);
+    font-weight: 600;
+    line-height: var(--accordion-title-line-height);
+    cursor: pointer;
+
+    p {
+      margin: 0;
+    }
+
+    &:first-child {
+      grid-area: summary;
+    }
+  }
+
+  .af-accordion__arrow {
+    grid-area: arrow;
+    transition: transform 0.2s ease-in-out;
+    @media (prefers-reduced-motion: reduce) {
+      transition-delay: 0s;
+    }
+  }
+
+  &[open] {
+    > .af-apollo-accordion__summary {
+      border-bottom: 1px solid var(--accordion-open-border-color);
+    }
+
+    > .af-apollo-accordion__summary > .af-accordion__arrow {
+      transform: rotate(180deg);
+    }
+  }
+}

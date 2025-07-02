@@ -1,0 +1,46 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as AccordionStories from "./Accordion.stories";
+
+<Meta of={AccordionStories} name="Accordion" />
+
+# Accordion
+
+## Import
+
+```tsx
+import { Accordion } from "@axa-fr/design-system-apollo-react/lf";
+```
+
+## Uses
+
+The `Accordion` component displays content in a collapsible panel with a customizable summary section. It supports icons, titles, subtitles, tags, dates, and additional info fields.
+
+When the user clicks on the summary to open or close the accordion you can use the `onClick` function prop to do something at that moment. (you will get the native event as `onClick` parameter)
+
+You can also add/change the props of the `Tag` component inside of the `Accordion`.
+
+### Accordion
+
+```tsx
+import callIcon from "@material-symbols/svg-400/outlined/call-fill.svg";
+
+export const AccordionComponent = () => (
+  <Accordion
+    icon={<Svg src={callIcon} />}
+    title="Titre onglet"
+    subtitle="Titre onglet"
+    tag="En attente"
+    date="01/01/2021"
+    info="+ 686,00 €"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
+    tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
+    massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
+    vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.
+  </Accordion>
+);
+```
+
+<Canvas of={AccordionStories.AccordionStory} />
+
+<Controls of={AccordionStories.AccordionStory} />
