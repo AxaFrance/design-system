@@ -42,7 +42,7 @@
       row-gap: 0;
     }
 
-    row-gap: calc(12 / var(--font-size-base) * 1rem);
+    row-gap: calc(8 / var(--font-size-base) * 1rem);
 
     .af-content-item-duo {
       &__icon {
@@ -74,7 +74,7 @@
       "icon label button"
       ". value value";
     grid-template-columns: auto 1fr auto;
-    gap: calc(6 / var(--font-size-base) * 1rem)
+    gap: calc(8 / var(--font-size-base) * 1rem)
       calc(12 / var(--font-size-base) * 1rem);
 
     .af-content-item-duo {
