@@ -34,7 +34,7 @@ describe("Accordion", () => {
 
   it("does not render icon or subtitle if not provided", () => {
     render(<Accordion title="Title Only" info1="Info1" info2="Info2" />);
-    expect(screen.queryByTestId("icon")).not.toBeInTheDocument();
+    expect(screen.queryAllByRole("presentation").length).toBe(1);
     expect(screen.queryByText("Test Subtitle")).not.toBeInTheDocument();
   });
 

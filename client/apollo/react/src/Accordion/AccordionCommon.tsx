@@ -1,11 +1,11 @@
 import { type ComponentProps, type ComponentType, useMemo } from "react";
-import { AccordionCore } from "../AccordionCore/AccordionCoreCommon";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 import {
   AccordionTagDateContainerCommon,
   type AccordionTagDateContainerProps,
 } from "./AccordionTagDateContainer/AccordionTagDateContainerCommon";
 import { Icon } from "../Icon/IconCommon";
+import { type AccordionCoreProps } from "../AccordionCore/AccordionCoreCommon";
 
 export const accordionVariants = {
   primary: "primary",
@@ -22,10 +22,10 @@ export type AccordionProps = {
   info1: string;
   info2: string;
 } & AccordionTagDateContainerProps &
-  Partial<ComponentProps<typeof AccordionCore>>;
+  Partial<AccordionCoreProps>;
 
 type AccordionCommonProps = AccordionProps & {
-  AccordionCoreComponent: ComponentType<ComponentProps<typeof AccordionCore>>;
+  AccordionCoreComponent: ComponentType<AccordionCoreProps>;
   AccordionTagDateContainerComponent: ComponentType<
     Omit<ComponentProps<typeof AccordionTagDateContainerCommon>, "TagComponent">
   >;

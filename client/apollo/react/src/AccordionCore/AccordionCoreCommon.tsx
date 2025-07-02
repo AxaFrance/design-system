@@ -4,12 +4,11 @@ import {
   type MouseEvent,
   type ReactNode,
   useCallback,
-  useRef,
 } from "react";
 import keyboardUp from "@material-symbols/svg-400/rounded/keyboard_arrow_up-fill.svg";
 import { Icon } from "../Icon/IconCommon";
 
-export type AccordionProps = {
+export type AccordionCoreProps = {
   summary: ReactNode;
   children: ReactNode;
   isOpen?: boolean;
@@ -17,7 +16,7 @@ export type AccordionProps = {
   onClick?: (event: MouseEvent<HTMLDetailsElement>) => void;
 } & Partial<ComponentProps<"details">>;
 
-export type AccordionPropsCommonProps = AccordionProps & {
+export type AccordionPropsCommonProps = AccordionCoreProps & {
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
 };
 
@@ -31,8 +30,6 @@ export const AccordionCoreCommon = ({
   onClick,
   ...detailsProps
 }: AccordionPropsCommonProps) => {
-  const detailsRef = useRef<HTMLDetailsElement>(null);
-
   const handleToggle = useCallback(
     (event: MouseEvent<HTMLDetailsElement>) => {
       if (onClick) {
@@ -46,7 +43,6 @@ export const AccordionCoreCommon = ({
   return (
     <details
       className={["af-apollo-accordion", className].filter(Boolean).join(" ")}
-      ref={detailsRef}
       open={isOpen}
       {...detailsProps}
     >
