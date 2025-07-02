@@ -1,55 +1,8 @@
-import { Controls, Canvas, Meta } from "@storybook/blocks";
-import * as AlertStories from "./Alert.stories.tsx";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
 
-<Meta of={AlertStories} />
+<Meta title="Components/Alert" />
 
 ## Alert
 
-### Import
-
-```tsx title="test.js"
-import { Alert } from "@axa-fr/design-system-slash-react/";
-```
-
-### Use
-
-```tsx title="test.js"
-export const AlertComponent = () => (
-  <Alert classModifier="danger" title="Warning: information is missing" />
-);
-```
-
-The property `closeButtonAriaLabel` allows projects to change the aria-label of the close button, making it more accessible.
-
-### Modifiers
-
-There are 4 modifiers available for the Alert component, `error` modifier is the default one :
-
-<table style={{ width: "100%" }}>
-  <thead>
-    <tr>
-      <th>Modifiers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>danger</td>
-    </tr>
-    <tr>
-      <td>info</td>
-    </tr>
-    <tr>
-      <td>error</td>
-    </tr>
-    <tr>
-      <td>success</td>
-    </tr>
-  </tbody>
-</table>
-
-## Playground
-
-<Canvas of={AlertStories.Default} />
-
-<Controls of={AlertStories.Default} />
-./Alert.stories.js./Alert.stories.js
+The `Alert` has been renamed to `Message` to align the naming between UX components and our implementation.
+See the [Message documentation](?path=/docs/components-message--docs) for more details.

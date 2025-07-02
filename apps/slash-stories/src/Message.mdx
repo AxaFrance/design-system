@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as MessageStories from "./Message.stories.tsx";
+
+<Meta of={MessageStories} />
+
+## Message
+
+### Import
+
+```tsx title="App.tsx"
+import { Message } from "@axa-fr/design-system-slash-react/";
+```
+
+### Use
+
+```tsx title="App.tsx"
+export const MessageComponent = () => (
+  <Message classModifier="danger" title="Warning: information is missing" />
+);
+```
+
+The property `closeButtonAriaLabel` allows projects to change the aria-label of the close button, making it more accessible.
+
+### Modifiers
+
+There are 4 modifiers available for the Alert component, `error` modifier is the default one :
+
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>Modifiers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>danger</td>
+    </tr>
+    <tr>
+      <td>info</td>
+    </tr>
+    <tr>
+      <td>error</td>
+    </tr>
+    <tr>
+      <td>success</td>
+    </tr>
+  </tbody>
+</table>
+
+## Playground
+
+<Canvas of={MessageStories.Default} />
+
+<Controls of={MessageStories.Default} />
