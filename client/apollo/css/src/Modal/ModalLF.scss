@@ -1,0 +1,48 @@
+/* stylelint-disable color-function-notation */
+@use "../common/breakpoints" as breakpoints;
+@use "./ModalCommon";
+
+.af-apollo-modal {
+  --modal-bg-color: var(--color-white);
+  --modal-text-color: var(--color-gray-900);
+  --modal-text-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --modal-overlay-color: hsl(from var(--color-gray-900) h s l / 48%);
+  --modal-border-radius: var(--radius-8);
+  --modal-default-padding: calc(16 / var(--font-size-base) * 1rem);
+  --modal-header-gap: calc(24 / var(--font-size-base) * 1rem);
+  --modal-header-bottom-padding: var(--modal-default-padding);
+  --modal-header-border-bottom: 1px solid var(--color-blue-400);
+  --modal-body-padding-top: calc(24 / var(--font-size-base) * 1rem);
+  --modal-body-padding-bottom: var(--modal-default-padding);
+  --modal-body-gap: calc(32 / var(--font-size-base) * 1rem);
+  --modal-footer-vertical-padding: var(--modal-default-padding);
+  --modal-footer-horizontal-padding: var(--modal-default-padding);
+  --modal-footer-gap: var(--modal-default-padding);
+
+  &__body:not(:has(~ .af-apollo-modal__footer)) {
+    --modal-body-padding-bottom: var(--modal-default-padding);
+  }
+
+  :has(.af-apollo-modal__body-vertical-scroll) {
+    --modal-footer-border-top: 1px solid var(--color-blue-400);
+    --modal-footer-vertical-padding: calc(12 / var(--font-size-base) * 1rem);
+    --modal-footer-horizontal-padding: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --modal-default-padding: calc(24 / var(--font-size-base) * 1rem);
+    --modal-text-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --modal-footer-vertical-padding: var(--modal-default-padding);
+    --modal-footer-horizontal-padding: var(--modal-default-padding);
+    --modal-body-gap: calc(40 / var(--font-size-base) * 1rem);
+    --modal-body-padding-bottom: calc(16 / var(--font-size-base) * 1rem);
+
+    :has(.af-apollo-modal__body-vertical-scroll) {
+      --modal-footer-border-top: none;
+      --modal-footer-vertical-padding: calc(16 / var(--font-size-base) * 1rem);
+      --modal-footer-horizontal-padding: calc(
+        16 / var(--font-size-base) * 1rem
+      );
+    }
+  }
+}

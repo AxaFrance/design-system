@@ -1,5 +1,6 @@
 export type ModalCoreFooterProps = React.HTMLAttributes<HTMLDivElement>;
 
+/** @deprecated Use ModalCoreFooter from \@axa-fr/design-system-apollo-react/lf instead */
 export const ModalCoreFooter = ({
   className,
   ...rest
