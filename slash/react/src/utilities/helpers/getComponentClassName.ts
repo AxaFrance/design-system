@@ -39,3 +39,31 @@ export const getComponentClassName = (
 
   return classNames(classNameToUse, modifiersObject);
 };
+
+type getComponentClassNameWithUserClassnameParams = {
+  userClassName?: string;
+  classModifier?: string;
+  componentClassName: string;
+};
+
+export const getComponentClassNameWithUserClassname = ({
+  componentClassName,
+  userClassName,
+  classModifier,
+}: getComponentClassNameWithUserClassnameParams) => {
+  // Fail fast, when no className or componentClassName we don't want to loop on modifier
+  if (!componentClassName) {
+    return "";
+  }
+
+  const classWithoutModifier = getLastClassName(componentClassName);
+  const modifiers = listClassModifier(classModifier);
+
+  const modifiersObject = modifiers
+    .filter((it) => /\S/.test(it))
+    .map((it) => {
+      return `${classWithoutModifier}--${it}`;
+    });
+
+  return classNames(componentClassName, modifiersObject, userClassName);
+};
