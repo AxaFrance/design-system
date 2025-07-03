@@ -29,7 +29,7 @@ describe("<ItemFile />", () => {
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.error}
-        ariaLabel="Item File error"
+        ariaLabelDelete="Item File error"
       />,
     );
     const itemFileClickIcon = screen.getAllByRole("button", {
@@ -46,13 +46,18 @@ describe("<ItemFile />", () => {
         title="IMG_879687880"
         subTitle="0.12"
         state={itemFileVariants.success}
-        ariaLabel="Item file success"
+        ariaLabelVisibility="Observer le fichier"
+        ariaLabelDelete="Suppression du fichier"
       />,
     );
-    const itemFileClickIcon = screen.getAllByRole("button", {
-      name: "Item file success",
+    const itemFileVisibility = screen.getAllByRole("button", {
+      name: "Observer le fichier",
     });
-    expect(itemFileClickIcon[0]).toBeInTheDocument();
+    const itemFileDelete = screen.getAllByRole("button", {
+      name: "Suppression du fichier",
+    });
+    expect(itemFileVisibility[0]).toBeInTheDocument();
+    expect(itemFileDelete[0]).toBeInTheDocument();
     expect(container.querySelector("svg")).toHaveClass("af-icon__success");
   });
 
@@ -62,7 +67,8 @@ describe("<ItemFile />", () => {
         state={itemFileVariants.success}
         subTitle="0.12"
         title="IMG_879687880"
-        ariaLabel="Item file success"
+        ariaLabelVisibility="Observer le fichier"
+        ariaLabelDelete="Suppression du fichier"
       />,
     );
     expect(await axe(container)).toHaveNoViolations();

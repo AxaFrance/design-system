@@ -13,7 +13,9 @@ export { itemFileVariants } from "./ItemFileCommon";
 export const ItemFile = ({
   onDeleteClick,
   onVisibilityClick,
-  ariaLabel,
+  ariaLabelVisibility,
+  ariaLabelDelete,
+  filename,
   ...props
 }: ItemFileProps) => (
   <ItemFileCommon
@@ -24,14 +26,14 @@ export const ItemFile = ({
       <ClickIcon
         src={deleteIcon}
         onClick={onDeleteClick}
-        aria-label={ariaLabel}
+        aria-label={ariaLabelDelete || `Suppression du fichier ${filename}`}
       />
     }
     visibilityIcon={
       <ClickIcon
         src={visibilityIcon}
         onClick={onVisibilityClick}
-        aria-label={ariaLabel}
+        aria-label={ariaLabelVisibility || `Observer le fichier ${filename}`}
       />
     }
     {...props}

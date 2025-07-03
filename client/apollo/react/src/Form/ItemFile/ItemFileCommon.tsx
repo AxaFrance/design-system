@@ -21,7 +21,9 @@ type ItemFileState = keyof typeof itemFileVariants;
 
 export type ItemFileCommonProps = {
   state: ItemFileState;
-  ariaLabel?: string;
+  ariaLabelVisibility?: string;
+  ariaLabelDelete?: string;
+  filename?: string;
   title: string;
   subTitle: string;
   errorMessage?: string;
