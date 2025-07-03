@@ -34,7 +34,6 @@ export { InputDate } from "./Form/InputDate/InputDateApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileApollo";
-export { Dropdown } from "./Form/Dropdown/DropdownApollo";
 export { TextArea } from "./Form/TextArea/TextAreaApollo";
 export { Radio } from "./Form/Radio/Radio/RadioApollo";
 export { CardRadio } from "./Form/Radio/CardRadio/CardRadioApollo";

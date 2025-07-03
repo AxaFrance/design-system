@@ -61,6 +61,27 @@ describe("<ItemFile />", () => {
     expect(container.querySelector("svg")).toHaveClass("af-icon__success");
   });
 
+  it("renders the component with success with default aria-label and filename", () => {
+    const currentFileName = "ItemFile.test.tsx";
+    const { container } = render(
+      <ItemFile
+        title="IMG_879687880"
+        subTitle="0.12"
+        state={itemFileVariants.success}
+        filename={currentFileName}
+      />,
+    );
+    const itemFileVisibility = screen.getAllByRole("button", {
+      name: `Observer le fichier ${currentFileName}`,
+    });
+    const itemFileDelete = screen.getAllByRole("button", {
+      name: `Suppression du fichier ${currentFileName}`,
+    });
+    expect(itemFileVisibility[0]).toBeInTheDocument();
+    expect(itemFileDelete[0]).toBeInTheDocument();
+    expect(container.querySelector("svg")).toHaveClass("af-icon__success");
+  });
+
   it("shouldn't have an accessibility violation", async () => {
     const { container } = render(
       <ItemFile
