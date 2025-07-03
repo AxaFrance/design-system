@@ -27,6 +27,47 @@ const TitleComponent = () => (
 export default TitleComponent;
 ```
 
+If you need to have a navbar with anchors, you can use the `anchorNavBarItems` property. The `HeaderTitle` component will then show the `AnchorNavBar` component with the items you provide. You should update the `isActive` property of the items when the user clicks on them to highlight the active item. The `onClick` function will be called when the item is clicked, allowing you to handle navigation or other actions.
+The `anchorNavBarItems` property is an array of objects with the following structure:
+
+```tsx
+interface AnchorNavBarItem {
+  name: string; // The name of the item
+  isActive?: boolean; // Optional, if true, the item will be highlighted as active
+  onClick?: () => void; // Optional, if provided, will be called when the item is clicked
+  link?: string; // The link to navigate to
+  externalLink?: boolean; // Optional, if true, an icon will be displayed to indicate that the link is external
+  render?: (props: any) => React.ReactNode; // Optional, if provided, will render the item using the provided function
+}
+```
+
+## Use
+
+```tsx
+const TitleComponent = () => (
+  <HeaderTitle
+    isSticky
+    title="Toolkit Axa"
+    subtitle="Info complémentaire"
+    toggleMenu={() => {}}
+    anchorNavBarItems={[
+      { name: "Home", link: "#home" },
+      { name: "About", link: "#about" },
+      { name: "Services", link: "/services", externalLink: true },
+      {
+        name: "Contact",
+        render: (props) => (
+          <a {...props} href="#contact">
+            Contact
+          </a>
+        ),
+      },
+    ]}
+  />
+);
+export default TitleComponent;
+```
+
 ## Stories
 
 ### Default Title
@@ -46,3 +87,8 @@ The properties accepts a ReactNode to give you the flexibility to add any conten
 
 <Canvas of={HeaderTitleStories.ComplexTitleWithContentAndChildren} />
 <Controls of={HeaderTitleStories.ComplexTitleWithContentAndChildren} />
+
+### Title with AnchorNavBar
+
+<Canvas of={HeaderTitleStories.HeaderTitleWithAnchorNavBar} />
+<Controls of={HeaderTitleStories.HeaderTitleWithAnchorNavBar} />

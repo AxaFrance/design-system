@@ -11,7 +11,7 @@ import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import chevronLeftIcon from "@material-symbols/svg-400/outlined/chevron_left.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { ComponentProps } from "react";
+import { ComponentProps, useState } from "react";
 
 const MODIFIERS = ["sticky", "fixed"];
 
@@ -128,3 +128,36 @@ export const ComplexTitleWithContentAndChildren: StoryObj<typeof HeaderTitle> =
       ),
     },
   };
+
+export const HeaderTitleWithAnchorNavBar: StoryObj<typeof HeaderTitle> = {
+  render: ({ anchorNavBarItems, ...args }) => {
+    const [activeItem, setActiveItem] = useState("Accueil");
+
+    return (
+      <HeaderTitle
+        {...args}
+        anchorNavBarItems={anchorNavBarItems?.map((item) => ({
+          ...item,
+          isActive: item.name === activeItem,
+          onClick: () => setActiveItem(item.name),
+        }))}
+      />
+    );
+  },
+  args: {
+    anchorNavBarItems: [
+      { name: "Accueil", link: "#accueil", isActive: true },
+      { name: "À Propos", link: "#apropos" },
+      { name: "Services", link: "/services", externalLink: true },
+      { name: "Contact", link: "#contact" },
+      {
+        name: "Exemple de lien personnalisé",
+        render: ({ className }: { className: string }) => (
+          <a href="#exemple" className={className}>
+            Exemple de lien personnalisé
+          </a>
+        ),
+      },
+    ],
+  },
+};
