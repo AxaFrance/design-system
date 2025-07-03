@@ -1,9 +1,38 @@
 {
-  "[mdx]": {
-    "editor.wordWrap": "on"
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
-  }
+	"[mdx]": {
+		"editor.wordWrap": "on"
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.stylelint": "explicit"
+	},
+	"github.copilot.chat.commitMessageGeneration.instructions": [
+		{
+			"text": "Use the Conventional Commits format: <type>[scope]: <description>."
+		},
+		{ "text": "Allowed types: feat, fix, chore, docs, refactor, test." },
+		{
+			"text": "The scope must be one of: slash, look&feel, apollo, design-system."
+		},
+		{
+			"text": "If the commit affects two or more design systems, separate scopes with a comma, e.g., fix(look&feel,apollo): ..."
+		},
+		{ "text": "For general project changes, use the design-system scope." },
+		{
+			"text": "The scopes deps, deps-dev, and release are reserved and must NOT be used."
+		},
+		{ "text": "Use imperative mood: 'Add feature' not 'Added feature'." },
+		{ "text": "Keep subject line under 70 characters if possible." },
+		{
+			"text": "For breaking changes, add a ! after the scope (feat(slash)!: ...) and include a BREAKING CHANGE: section in the footer describing the breaking change."
+		},
+		{ "text": "Do not add a body or footer unless necessary." },
+		{ "text": "Valid examples:" },
+		{ "text": "  feat(slash): add new component" },
+		{ "text": "  fix(look&feel,apollo): fix styles and icons" },
+		{ "text": "  chore(design-system): update dependencies" },
+		{
+			"text": "  feat(slash)!: remove classModifiers with a footer BREAKING CHANGE: ..."
+		}
+	]
 }
