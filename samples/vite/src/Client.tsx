@@ -1,9 +1,10 @@
 import {
   Button as ButtonClient,
   buttonVariants as ButtonClientVariants,
+  RadioCard,
+  Select,
   Svg,
   TextInput,
-  Select,
 } from "@axa-fr/design-system-look-and-feel-react";
 import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
 
@@ -11,7 +12,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
   exampleTextInput: string;
-  exampleSelect: string;
+  exampleSelectInput: string;
+  exampleRadioInput: string;
 };
 
 const Client = () => {
@@ -22,7 +24,8 @@ const Client = () => {
   } = useForm<Inputs>({
     defaultValues: {
       exampleTextInput: "",
-      exampleSelect: "",
+      exampleSelectInput: "",
+      exampleRadioInput: "",
     },
   });
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
@@ -47,11 +50,11 @@ const Client = () => {
         <article>
           <Select
             label="Name"
-            {...register("exampleSelect", {
+            {...register("exampleSelectInput", {
               required: "This field is required",
             })}
             description="Description"
-            error={errors.exampleSelect?.message}
+            error={errors.exampleSelectInput?.message}
           >
             <option disabled value="">
               Select a country
@@ -60,6 +63,30 @@ const Client = () => {
             <option value="ES">Espagne</option>
             <option value="JP">Japon</option>
           </Select>
+        </article>
+
+        <article>
+          <RadioCard
+            type="vertical"
+            isRequired
+            options={[
+              {
+                label: "Option 1",
+                value: "option1",
+                description: "Description for option 1",
+              },
+              {
+                label: "Option 2",
+                value: "option2",
+                description: "Description for option 2",
+              },
+            ]}
+            labelGroup="Card Radio Group"
+            {...register("exampleRadioInput", {
+              required: "This field is required",
+            })}
+            error={errors.exampleRadioInput?.message}
+          />
         </article>
 
         <article>

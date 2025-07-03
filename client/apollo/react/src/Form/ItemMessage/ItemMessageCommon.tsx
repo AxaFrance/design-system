@@ -1,5 +1,5 @@
-import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import successIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
+import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import { Svg } from "../../Svg/Svg";
 
 type ItemMessageProps = {
@@ -19,6 +19,7 @@ export const ItemMessage = ({
 
   return (
     <small
+      id={id}
       className={`af-item-message af-item-message--${messageType}`}
       role={messageType === "error" ? "alert" : undefined}
       aria-live="assertive"
@@ -28,9 +29,7 @@ export const ItemMessage = ({
         className="af-item-message__icon"
         aria-hidden="true"
       />
-      <span id={id} className="af-item-message__message">
-        {message}
-      </span>
+      <span className="af-item-message__message">{message}</span>
     </small>
   );
 };
