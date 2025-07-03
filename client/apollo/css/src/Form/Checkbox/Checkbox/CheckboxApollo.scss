@@ -17,7 +17,7 @@
     --checkbox-background-color: var(--axa-blue-100);
   }
 
-  &:has([aria-invalid="true"]) {
+  &:not(:has(:checked)):has([aria-invalid="true"]) {
     --checkbox-border-color: var(--red-alert-100);
   }
 }
