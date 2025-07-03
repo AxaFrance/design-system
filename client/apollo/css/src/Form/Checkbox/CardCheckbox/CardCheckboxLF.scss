@@ -28,6 +28,7 @@
           .af-card-checkbox-content-description {
             --card-checkbox-flex-direction: column;
             --card-checkbox-align-item: flex-start;
+            --card-checkbox-description-gap: 4;
           }
         }
       }
@@ -61,6 +62,7 @@
       --card-checkbox-border-color: var(--color-gray-700);
       --card-checkbox-border-radius: calc(6 / var(--font-size-base) * 1rem);
       --card-checkbox-outline-color: var(--card-checkbox-border-color);
+      --card-checkbox-background-color: var(--color-white);
 
       .af-card-checkbox-content-description > span {
         &:first-child {

@@ -32,15 +32,14 @@ export const CardCheckboxStory: StoryObj<ComponentProps<typeof CardCheckbox>> =
           description: "Capitale de la Belgique",
           name: "bruxelles",
           value: "bruxelles",
-          hasError: true,
           icon: homeIcons,
         },
         {
           label: "Lille",
+          description: "Capitale du Nord",
           name: "lille",
           value: "lille",
           icon: homeIcons,
-          checked: true,
         },
       ],
     },
@@ -56,7 +55,7 @@ export const CardCheckboxStory: StoryObj<ComponentProps<typeof CardCheckbox>> =
     },
   };
 
-export const CheckboxSelectWithLabel: StoryObj<
+export const CardCheckboxWithLabel: StoryObj<
   ComponentProps<typeof CardCheckbox>
 > = {
   name: "CardCheckboxWithLabel",
@@ -81,15 +80,63 @@ export const CheckboxSelectWithLabel: StoryObj<
         description: "Capitale de la Belgique",
         name: "bruxelles",
         value: "bruxelles",
+        icon: homeIcons,
+      },
+      {
+        label: "Lille",
+        description: "Capitale du Nord",
+        name: "lille",
+        value: "lille",
+        icon: homeIcons,
+      },
+    ],
+  },
+  argTypes: {
+    type: {
+      control: { type: "inline-radio" },
+      options: ["vertical", "horizontal"],
+    },
+    options: {
+      control: { type: "object" },
+    },
+    onChange: { action: "onChange" },
+  },
+};
+
+export const CardCheckboxWithError: StoryObj<
+  ComponentProps<typeof CardCheckbox>
+> = {
+  name: "CardCheckboxWithError",
+  render: ({ ...args }) => <CardCheckbox {...args} />,
+  args: {
+    type: "vertical",
+    labelGroup: "Quelle ville ?",
+    descriptionGroup: "Choisissez une ville",
+    isRequired: true,
+    error: "There is an error",
+    options: [
+      {
+        label: "Paris",
+        description: "Capitale de la France",
+        subtitle: "Nord",
+        name: "paris",
+        value: "paris",
+        icon: homeIcons,
+      },
+      {
+        label: "Bruxelles",
+        description: "Capitale de la Belgique",
+        name: "bruxelles",
+        value: "bruxelles",
         hasError: true,
         icon: homeIcons,
       },
       {
         label: "Lille",
+        description: "Capitale du Nord",
         name: "lille",
         value: "lille",
         icon: homeIcons,
-        checked: true,
       },
     ],
   },

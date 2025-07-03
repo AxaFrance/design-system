@@ -56,6 +56,7 @@
       .af-card-checkbox-label {
         flex-direction: var(--card-checkbox-flex-direction);
         align-items: var(--card-checkbox-align-items);
+        gap: calc(16 / var(--font-size-base) * 1rem);
 
         .af-card-checkbox-content {
           flex-direction: var(--card-checkbox-flex-direction);
@@ -63,6 +64,7 @@
           .af-card-checkbox-content-description {
             flex-direction: var(--card-checkbox-flex-direction);
             align-items: var(--card-checkbox-align-item);
+            gap: calc(4 / var(--font-size-base) * 1rem);
             text-align: left;
           }
         }
@@ -82,6 +84,8 @@
         flex-direction: var(--card-checkbox-flex-direction);
         align-items: var(--card-checkbox-align-items);
         justify-content: var(--card-checkbox-justify-content);
+        gap: calc(12 / var(--font-size-base) * 1rem);
+        background-color: var(--card-checkbox-background-color);
 
         .af-card-checkbox-content {
           width: 100%;
@@ -91,6 +95,10 @@
           .af-card-checkbox-content-description {
             flex-direction: var(--card-checkbox-flex-direction);
             align-items: var(--card-checkbox-align-item);
+            gap: calc(
+              var(--card-checkbox-description-gap, 8) / var(--font-size-base) *
+                1rem
+            );
             text-align: center;
           }
         }
@@ -104,13 +112,12 @@
       border-radius: var(--card-checkbox-border-radius);
       flex: 1;
       align-self: stretch;
-      gap: calc(12 / var(--font-size-base) * 1rem);
       cursor: pointer;
 
       .af-card-checkbox-content {
         display: flex;
         align-items: center;
-        gap: calc(4 / var(--font-size-base) * 1rem);
+        gap: calc(8 / var(--font-size-base) * 1rem);
 
         .af-card-checkbox-content-description {
           display: flex;
@@ -147,7 +154,7 @@
       &:focus-within,
       &:has(input:checked),
       [aria-invalid="true"] {
-        outline: 1px solid var(--card-checkbox-outline-color);
+        outline: 2px solid var(--card-checkbox-outline-color);
       }
 
       &:has(input:checked) {
