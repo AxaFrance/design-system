@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/HeaderTitle/HeaderTitle.scss";
 
+import classNames from "classnames";
 import { getComponentClassName } from "../../../utilities";
 import { ToggleButton } from "../ToggleButton/ToggleButton";
 import { Action } from "../../../Action/Action";
 import { getClassModifier } from "./HeaderTitle.helpers";
+import { AnchorNavBar, AnchorNavBarItem } from "../AnchorNavBar/AnchorNavBar";
 
 const defaultClassName = "af-title-bar";
 
@@ -18,6 +20,7 @@ type Props = {
   subtitle?: string;
   title: string;
   toggleMenu?: () => void;
+  anchorNavBarItems?: AnchorNavBarItem[];
 };
 
 const HeaderTitle = ({
@@ -30,14 +33,23 @@ const HeaderTitle = ({
   subtitle,
   title,
   toggleMenu,
+  anchorNavBarItems,
 }: Props) => {
   const componentClassName = getComponentClassName(
     className,
     getClassModifier(classModifier, isSticky),
     defaultClassName,
   );
+
+  const isAnchorNavBarPresent =
+    anchorNavBarItems && anchorNavBarItems.length > 0;
+
   return (
-    <div className={componentClassName}>
+    <div
+      className={classNames(componentClassName, {
+        [`${defaultClassName}__shadow`]: isAnchorNavBarPresent,
+      })}
+    >
       <div className={`container ${defaultClassName}__wrapper`}>
         {Boolean(toggleMenu) && (
           <div className="burger-container">
@@ -70,6 +82,10 @@ const HeaderTitle = ({
           </div>
         )}
       </div>
+
+      {isAnchorNavBarPresent ? (
+        <AnchorNavBar items={anchorNavBarItems} />
+      ) : null}
     </div>
   );
 };
