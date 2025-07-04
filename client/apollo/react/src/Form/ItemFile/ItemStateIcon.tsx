@@ -5,7 +5,7 @@ import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 import type { IconProps } from "../../Icon/IconCommon";
 import { Spinner } from "../../Spinner/SpinnerCommon";
-import { ItemFileState } from "./ItemFileCommon";
+import type { ItemFileState } from "./ItemFileCommon";
 
 interface ItemStateIconProps {
   state: ItemFileState;

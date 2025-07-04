@@ -1,11 +1,4 @@
-import {
-  ClickIcon,
-  Icon,
-  ItemFile,
-  itemFileVariants,
-  ItemMessage,
-  Spinner,
-} from "@axa-fr/design-system-apollo-react";
+import { ItemFile, itemFileVariants } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 
 type Story = StoryObj<typeof ItemFile>;
@@ -27,10 +20,6 @@ export const Default: Story = {
     state: "success",
     title: "IMG_879687880.jpg",
     subTitle: "0.12 Mo",
-    ItemIconComponent: Icon,
-    ItemSpinnerComponent: Spinner,
-    ItemClickIconComponent: ClickIcon,
-    ItemMessageComponent: ItemMessage,
   },
 };
 
@@ -39,9 +28,6 @@ export const Loading: Story = {
     state: "loading",
     title: "IMG_879687880.jpg",
     subTitle: "0.12 Mo",
-    ItemIconComponent: Icon,
-    ItemSpinnerComponent: Spinner,
-    ItemClickIconComponent: ClickIcon,
   },
 };
 
