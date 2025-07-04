@@ -1,8 +1,8 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
-import { Alert } from "../Alert/Alert";
+import { ReactNode } from "react";
+import { Message, type MessageProps } from "../Messages/Message";
 import { generateId } from "../utilities/helpers/generateId";
 
-type SummaryProps = Omit<ComponentPropsWithoutRef<typeof Alert>, "title"> & {
+type SummaryProps = Omit<MessageProps, "title"> & {
   title?: string;
   messages?: ReactNode[];
   isVisible?: boolean;
@@ -20,11 +20,13 @@ export const Summary = ({
     return null;
   }
 
+  const variant = classModifier === "danger" ? "warning" : classModifier;
+
   return (
-    <Alert
+    <Message
       icon="glyphicon glyphicon-warning-sign"
       title={title}
-      classModifier={classModifier}
+      variant={variant}
       {...args}
     >
       <ul className="af-summary__message-list">
@@ -37,6 +39,6 @@ export const Summary = ({
           </li>
         ))}
       </ul>
-    </Alert>
+    </Message>
   );
 };

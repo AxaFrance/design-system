@@ -2,9 +2,9 @@ import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
 import "@fontsource/source-sans-pro";
+import { Message } from "./Messages/Message";
 
 export { Action } from "./Action/Action";
-export { Alert } from "./Alert/Alert";
 export { Badge } from "./Badge/Badge";
 export { Button } from "./Button/Button";
 export {
@@ -76,9 +76,17 @@ export { Tabs } from "./Tabs/Tabs";
 export { Title } from "./Title/Title";
 export { getComponentClassName } from "./utilities";
 
+/**
+ * @deprecated `Alert` has been renamed `Message` in order to comply with UX naming of components. Use `Message` instead.
+ * @see {@link Message}
+ */
+const Alert = Message;
+
 export * from "./Accordion";
+export { type MessageProps, type MessageVariants } from "./Messages/Message";
 export * from "./Popover";
 export * from "./Table";
+export { Alert, Message };
 
 export { HelpButton } from "./HelpButton";
 export { Loader } from "./Loader/Loader";

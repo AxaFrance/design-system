@@ -2,12 +2,12 @@ import logoAxa from "@axa-fr/design-system-slash-css/logo-axa.svg";
 
 import {
   Action,
-  Alert,
   Button,
   CheckboxInput,
   FileInput,
   Infos,
   Link,
+  Message,
   MessageTypes,
   MultiSelectInput,
   Name,
@@ -234,10 +234,10 @@ const Agent = () => {
         <User name="Jean Agent [AGA]" />
       </article>
       <article>
-        <Alert
+        <Message
           title="my alert"
-          ariaLabel="Close this alert"
-          classModifier="error"
+          closeButtonAriaLabel="Close this alert"
+          variant="error"
         >
           <ul>
             <li>Le nom est obligatoire</li>
@@ -245,7 +245,7 @@ const Agent = () => {
             <li>L&apos;email est obligatoire</li>
             <li>Le format de date est invalide</li>
           </ul>
-        </Alert>
+        </Message>
       </article>
 
       <article>
