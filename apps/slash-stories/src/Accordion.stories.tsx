@@ -71,3 +71,44 @@ export const Light: StoryObj<typeof Accordion> = {
     classModifier: "light",
   },
 };
+
+export const White: StoryObj<typeof Accordion> = {
+  name: "White accordion",
+  render: ({ ...args }) => (
+    <Accordion {...args}>
+      <CollapseCard id="w1" title="Titre onglet 1">
+        This is the content of the first white accordion item.
+      </CollapseCard>
+      <CollapseCard id="w2" title="Titre onglet 2">
+        Erat sed option lorem vero at sit id. Sea aliquyam dolore no ipsum
+        dolore feugiat suscipit ipsum sit aliquyam stet iriure diam eu dolor
+        gubergren magna. Kasd ea et assum. Et sanctus dolor. Amet consequat amet
+        option stet magna nonumy magna nonumy in ut no nibh. Voluptua labore
+        kasd ipsum diam nulla et dolor ea nibh. Et dolore velit. Facilisi
+        invidunt sed nonumy sea et commodo sit. Amet clita amet aliquam
+        consequat dolor eu ipsum eu adipiscing sadipscing tempor consectetuer
+        iriure. Dolores assum feugiat tempor. Nulla magna ipsum amet possim
+        iusto facer at justo. Facilisis sadipscing labore ea ipsum elit diam eos
+        duo. Ipsum sit ut et eum et sanctus vero veniam magna assum gubergren.
+        Magna qui blandit aliquyam amet erat. Clita tation duo consetetur dolor
+        qui magna consequat quod magna ut diam erat vero facilisi erat rebum
+        duis diam. Luptatum sed eu nonummy ut lorem augue ipsum magna lorem nisl
+        dolore. Ea ut nulla et sed volutpat kasd qui lorem justo erat lorem eos
+        erat. Euismod est ut stet elit dolores labore at. Gubergren enim sanctus
+        dolore ut erat dolore nihil eirmod clita ipsum. Erat vero erat. Ipsum
+        sit dolor dolore magna molestie sed diam sit ipsum kasd dolor elit et
+        dolor consectetuer elit. Ipsum amet sanctus dolor nulla eos qui.
+        Consetetur dolores illum nulla doming. Invidunt justo diam. No nulla
+        elitr takimata facilisis ea erat labore ut te rebum et no lorem duo
+        tempor diam clita. Sit luptatum volutpat. Clita clita at nonumy accusam
+        amet aliquyam. Erat voluptua eu kasd voluptua magna vero. Invidunt et
+        sit eirmod at eirmod sed takimata nulla sadipscing sadipscing lorem
+        kasd.
+      </CollapseCard>
+    </Accordion>
+  ),
+  args: {
+    onlyOne: false,
+    classModifier: "white",
+  },
+};
