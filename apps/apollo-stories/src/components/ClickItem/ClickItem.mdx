@@ -1,0 +1,48 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ClickItemStories from "./ClickItem.stories";
+
+<Meta of={ClickItemStories} name="ClickItem" />
+
+## Import
+
+```tsx
+import { ClickItem } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <ClickItem title="Libelle">My message</ClickItem>
+  </>
+);
+```
+
+## Playground
+
+<Canvas of={ClickItemStories.ClickItemDefault} />
+
+<Controls of={ClickItemStories.ClickItemDefault} />
+
+## ClickItem Variants
+
+### Large
+
+<Canvas of={ClickItemStories.ClickItemLargeStory} />
+
+<Controls of={ClickItemStories.ClickItemLargeStory} />
+
+### Medium
+
+<Canvas of={ClickItemStories.ClickItemMediumStory} />
+
+<Controls of={ClickItemStories.ClickItemMediumStory} />
+
+### Small
+
+<Canvas of={ClickItemStories.ClickItemSmallStory} />
+
+<Controls of={ClickItemStories.ClickItemSmallStory} />
+
+### Agent
+
+<Canvas of={ClickItemStories.ClickItemAgentStory} />
+
+<Controls of={ClickItemStories.ClickItemAgentStory} />
