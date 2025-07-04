@@ -42,8 +42,6 @@
       row-gap: 0;
     }
 
-    row-gap: calc(12 / var(--font-size-base) * 1rem);
-
     .af-content-item-duo {
       &__icon {
         margin-top: calc(4 / var(--font-size-base) * 1rem);
@@ -51,7 +49,7 @@
 
       &__label,
       &__value {
-        font-size: calc(16 / var(--font-size-base) * 1rem);
+        font-size: calc(18 / var(--font-size-base) * 1rem);
         line-height: 125%;
       }
 
@@ -74,7 +72,7 @@
       "icon label button"
       ". value value";
     grid-template-columns: auto 1fr auto;
-    gap: calc(6 / var(--font-size-base) * 1rem)
+    gap: calc(8 / var(--font-size-base) * 1rem)
       calc(12 / var(--font-size-base) * 1rem);
 
     .af-content-item-duo {
@@ -106,8 +104,6 @@
 @media (width <= #{breakpoints.$breakpoint-sm}) {
   .af-content-item-duo {
     &--large {
-      row-gap: calc(8 / var(--font-size-base) * 1rem);
-
       .af-content-item-duo {
         &__label,
         &__value {
