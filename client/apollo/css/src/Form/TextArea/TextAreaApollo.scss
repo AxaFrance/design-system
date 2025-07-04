@@ -13,6 +13,7 @@
 
   &:not(:placeholder-shown, :focus, :active) {
     --input-text-area-box-shadow: var(--axa-blue-100);
+    --input-text-area-font-color: var(--axa-blue-100);
   }
 
   &--error:hover,
@@ -26,9 +27,10 @@
   }
 
   &:not(.af-form__input-textarea--error):focus,
-  &:not(.af-form__input-textarea--error):hover {
-    --input-text-area-border-size: 1px;
+  &:not(.af-form__input-textarea--error, :disabled):hover {
+    --input-text-area-border-size: 2px;
     --input-text-area-border-color: var(--axa-blue-100);
+    --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
 
   &:not(:disabled, &--error) {
@@ -37,7 +39,7 @@
     &:not(:placeholder-shown) {
       --input-text-area-font-color: var(--axa-blue-100);
       --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
-      --input-text-area-font-weight: 600;
+      --input-text-area-font-weight: 400;
     }
   }
 }
