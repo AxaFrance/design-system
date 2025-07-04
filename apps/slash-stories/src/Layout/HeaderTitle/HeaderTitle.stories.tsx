@@ -128,3 +128,22 @@ export const ComplexTitleWithContentAndChildren: StoryObj<typeof HeaderTitle> =
       ),
     },
   };
+
+export const HeaderTitleWithAnchorNavBar: StoryObj<typeof HeaderTitle> = {
+  args: {
+    anchorNavBarItems: [
+      { name: "Accueil", link: "#accueil" },
+      { name: "À Propos", link: "#apropos" },
+      { name: "Services", link: "/services", externalLink: true },
+      { name: "Contact", link: "#contact" },
+      {
+        name: "Exemple de lien personnalisé",
+        render: ({ className }: { className: string }) => (
+          <a href="#exemple" className={className}>
+            Exemple de lien personnalisé
+          </a>
+        ),
+      },
+    ],
+  },
+};

@@ -3,10 +3,18 @@
 
 .af-title-bar {
   margin-bottom: 2rem;
-  padding: 1rem 0;
+  padding-top: 1rem;
   overflow: auto;
   color: var(--white);
   background: var(--axablue80);
+
+  &__wrapper {
+    padding-bottom: 1rem;
+  }
+
+  &__shadow {
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 5%);
+  }
 
   &--sticky {
     position: sticky;
@@ -92,14 +100,12 @@
 }
 
 @include common.media-breakpoint-up(sm) {
-  .af-title-bar {
-    &__wrapper {
-      display: flex;
-      width: 100%;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
+  .af-title-bar__wrapper {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .burger-container {
