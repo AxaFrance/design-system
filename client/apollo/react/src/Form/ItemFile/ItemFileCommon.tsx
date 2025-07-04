@@ -17,7 +17,7 @@ export const itemFileVariants = {
   loading: "loading",
 } as const;
 
-type ItemFileState = keyof typeof itemFileVariants;
+export type ItemFileState = keyof typeof itemFileVariants;
 
 export type ItemFileCommonProps = {
   state: ItemFileState;
