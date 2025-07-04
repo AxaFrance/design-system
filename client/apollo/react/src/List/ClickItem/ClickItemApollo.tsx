@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-apollo-css/dist/List/ClickItem/ClickItemApollo.scss";
 import { ClickItemCommon } from "./ClickItemCommon";
-import { ClickItemProps } from "./types";
+import type { ClickItemProps } from "./types";
 import { ClickItemContent } from "./components/ClickItemContentApollo";
 import { ClickItemSuffix } from "./components/ClickItemSuffixAppollo";
 import { ClickItemPrefix } from "./components/ClickItemPrefixApollo";
