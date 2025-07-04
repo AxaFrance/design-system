@@ -29,6 +29,7 @@ export {
   type ClickItemVariants,
 } from "./List/ClickItem/ClickItemApollo";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";
+export { DataAgent } from "./DataAgent/DataAgentApollo";
 export { Divider } from "./Divider/DividerApollo";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
 export {

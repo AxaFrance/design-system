@@ -1,0 +1,28 @@
+.af-apollo-data-agent {
+  display: flex;
+  border: 1px solid var(--data-agent-border-color);
+  border-radius: var(--data-agent-border-radius);
+  flex-direction: column;
+  gap: calc(12 / var(--font-size-base) * 1rem);
+
+  &__intro {
+    display: flex;
+    padding: calc(16 / var(--font-size-base) * 1rem);
+    flex-direction: column;
+    gap: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  &__texte-orias {
+    padding: 0 calc(16 / var(--font-size-base) * 1rem);
+    font-size: var(--data-agent-orias-font-size);
+    font-weight: 400;
+    line-height: 125%;
+    color: var(--data-agent-orias-font-color);
+  }
+}
