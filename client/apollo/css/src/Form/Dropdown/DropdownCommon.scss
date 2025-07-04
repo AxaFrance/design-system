@@ -1,11 +1,17 @@
+@use "../../common/breakpoints" as breakpoints;
+
 .af-form__dropdown-input {
   display: block;
   width: 100%;
   height: 56px;
-  margin: calc(10 / var(--font-size-base) * 1rem) 0;
-  padding: calc(16 / var(--font-size-base) * 1rem);
+  margin: calc(8 / var(--font-size-base) * 1rem) 0;
+  padding: calc(
+      var(--dropdown-padding-top-bottom) / var(--font-size-base) * 1rem
+    )
+    calc(var(--dropdown-padding-left-right) / var(--font-size-base) * 1rem);
   border: 1px solid var(--dropdown-border-color);
   border-radius: var(--dropdown-border-radius);
+  font-size: var(--font-family-sans-serif);
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--dropdown-color);

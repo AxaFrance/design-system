@@ -5,6 +5,9 @@
   --dropdown-border-color: var(--axa-blue-65);
   --dropdown-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg")
     no-repeat right 1rem center / 1.5rem 1.5rem;
+  --dropdown-color: var(--axa-blue-100);
+  --dropdown-padding-top-bottom: 16;
+  --dropdown-padding-left-right: 16;
 
   &:open {
     --dropdown-background-open: url("@material-symbols/svg-400/outlined/keyboard_arrow_up.svg");
@@ -14,7 +17,7 @@
     --dropdown-option-color: var(--neutral-100);
 
     &:disabled {
-      --dropdown-option-disabled-color: var(--neutral-50);
+      --dropdown-option-disabled-color: var(--neutral-80);
     }
   }
 
