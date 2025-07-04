@@ -42,8 +42,6 @@
       row-gap: 0;
     }
 
-    row-gap: calc(8 / var(--font-size-base) * 1rem);
-
     .af-content-item-duo {
       &__icon {
         margin-top: calc(4 / var(--font-size-base) * 1rem);
@@ -106,8 +104,6 @@
 @media (width <= #{breakpoints.$breakpoint-sm}) {
   .af-content-item-duo {
     &--large {
-      row-gap: calc(8 / var(--font-size-base) * 1rem);
-
       .af-content-item-duo {
         &__label,
         &__value {
