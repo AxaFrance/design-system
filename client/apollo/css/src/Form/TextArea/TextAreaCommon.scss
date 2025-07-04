@@ -1,22 +1,27 @@
 @use "../../common/breakpoints" as breakpoints;
 
 .af-form__input-textarea {
-  width: 100%;
+  width: calc(384 / var(--font-size-base) * 1rem);
   height: calc(var(--input-text-area-height) / var(--font-size-base) * 1rem);
+  min-height: calc(56 / var(--font-size-base) * 1rem);
   padding: 16px;
   border: 1px solid var(--input-text-area-border-color);
   border-radius: var(--input-text-area-border-radius);
   font: var(--font-family-base);
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-size: calc(18 / var(--font-size-base) * 1rem);
   line-height: calc(20 / var(--font-size-base) * 1rem);
   color: var(--input-text-area-color);
   background-color: var(--input-text-area-background);
   box-shadow: 0 0 0 1px var(--input-text-area-background);
+  resize: vertical;
 
   @media (width > #{breakpoints.$breakpoint-md}) {
-    width: 100%;
-    font-size: calc(18 / var(--font-size-base) * 1rem);
-    line-height: calc(24 / var(--font-size-base) * 1rem);
+    width: calc(384 / var(--font-size-base) * 1rem);
+    line-height: 125%;
+
+    &:hover {
+      font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
   }
 
   &--error {
@@ -40,7 +45,6 @@
   &:disabled {
     border: 1px solid var(--input-text-area-border-color);
     background: var(--input-text-area-background);
-    pointer-events: none;
   }
 
   &:not(:placeholder-shown, :focus) {
@@ -48,7 +52,7 @@
   }
 
   &:not(.af-form__input-textarea--error):focus,
-  &:not(.af-form__input-textarea--error):hover {
+  &:not(.af-form__input-textarea--error, :disabled):hover {
     border: var(--input-text-area-border-size) solid
       var(--input-text-area-border-color);
     box-shadow: 0 0 0 1px var(--input-text-area-border-color);
@@ -58,7 +62,8 @@
     &:focus,
     &:hover,
     &:not(:placeholder-shown, :focus) {
-      font-size: var(--input-text-area-font-size);
+      font-size: calc(18 / var(--font-size-base) * 1rem);
+      //font-size: var(--input-text-area-font-size);
       font-weight: var(--input-text-area-font-weight);
       color: var(--input-text-area-font-color);
     }
