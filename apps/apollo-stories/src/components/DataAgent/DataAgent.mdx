@@ -1,0 +1,22 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as DataAgentStories from "./DataAgent.stories";
+
+<Meta of={DataAgentStories} name="DataAgent" />
+
+# ItemFile
+
+To use the DataAgent import it like that:
+
+```tsx
+import { DataAgent } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <DataAgent title="Title" subTitle="Subtitle" state="success" />
+);
+```
+
+## Default
+
+<Canvas of={DataAgentStories.Default} />
+
+<Controls of={DataAgentStories.Default} />
