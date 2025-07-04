@@ -36,6 +36,7 @@ export const ClickItemDefault: StoryObj<ComponentProps<typeof ClickItem>> = {
     },
     state: "default" as ClickItemStates,
     variant: "large" as ClickItemVariants,
+    ariaLabelForActionIcon: "Aller à la page de détails",
   },
   argTypes: {
     state: {
@@ -64,6 +65,7 @@ export const ClickItemLargeStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     },
     state: "default" as ClickItemStates,
     variant: "large",
+    ariaLabelForActionIcon: "Aller à la page de détails",
   },
   argTypes: {
     state: {
@@ -87,6 +89,7 @@ export const ClickItemMediumStory: StoryObj<ComponentProps<typeof ClickItem>> =
       },
       state: "default" as ClickItemStates,
       variant: "medium" as ClickItemVariants,
+      ariaLabelForActionIcon: "Aller à la page de détails",
     },
     argTypes: {
       state: {
@@ -125,6 +128,7 @@ export const ClickItemAgentStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     subtitle: "Sous-titre",
     state: "default" as ClickItemStates,
     variant: "agent" as ClickItemVariants,
+    ariaLabelForActionIcon: "Aller à la page de détails",
   },
   argTypes: {
     state: {

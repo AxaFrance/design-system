@@ -28,6 +28,7 @@ export const ClickItemCommon = ({
   tagProps,
   basePictureProps,
   onClick,
+  ariaLabelForActionIcon,
   ClickItemContentComponent,
   ClickItemSuffixComponent,
   ClickItemPrefixComponent,
@@ -69,6 +70,7 @@ export const ClickItemCommon = ({
           variant={variant}
           state={state}
           onClick={onClick}
+          ariaLabelForActionIcon={ariaLabelForActionIcon}
         />
       </div>
     </div>

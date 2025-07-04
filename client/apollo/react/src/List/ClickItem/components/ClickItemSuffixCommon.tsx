@@ -8,6 +8,7 @@ import type { ClickIconProps } from "../../../ClickIcon/ClickIconCommon";
 export type ClickItemSuffixProps = {
   state: ClickItemStates;
   variant: ClickItemVariants;
+  ariaLabelForActionIcon?: string;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
@@ -22,6 +23,7 @@ export const ClickItemSuffixCommon = ({
   state,
   variant,
   trailingClickIcon,
+  ariaLabelForActionIcon,
   onClick,
   IconComponent,
   SpinnerComponent,
@@ -33,16 +35,28 @@ export const ClickItemSuffixCommon = ({
     ) : (
       <ClickIconComponent
         src={trailingClickIcon}
+        aria-label={ariaLabelForActionIcon}
         disabled={state === "disabled"}
         onClick={onClick}
       />
     );
   }
   if (variant === "small") {
-    return <IconComponent src={keyboardArrowRight} />;
+    return (
+      <IconComponent
+        src={keyboardArrowRight}
+        aria-label={ariaLabelForActionIcon}
+      />
+    );
   }
   if (variant === "agent") {
-    return <ClickIconComponent src={trailingClickIcon} onClick={onClick} />;
+    return (
+      <ClickIconComponent
+        src={trailingClickIcon}
+        aria-label={ariaLabelForActionIcon}
+        onClick={onClick}
+      />
+    );
   }
   return null;
 };
