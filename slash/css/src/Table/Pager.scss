@@ -13,12 +13,13 @@
   }
 
   &__item {
-    border-radius: common.px-to-rem(25);
     font-size: 0.9375rem;
 
-    &--active {
+    &-link[aria-current="page"] {
       min-width: 1.9rem;
       height: 1.9rem;
+      border-radius: common.px-to-rem(25);
+      justify-content: center;
       text-align: center;
       color: common.$white;
       background: common.$color-axa;
