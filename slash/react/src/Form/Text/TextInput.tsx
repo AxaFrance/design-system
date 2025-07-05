@@ -1,39 +1,24 @@
-import { ComponentProps, forwardRef, ReactNode, useId } from "react";
-import { Field } from "../core";
+import { ComponentProps, forwardRef } from "react";
+import { ConsumerFieldProps, Field } from "../core";
 import { Text } from "./Text";
-import { useAriaInvalid } from "../core/useAriaInvalid";
 
-export type TextInputProps = Omit<
-  ComponentProps<typeof Field> &
-    ComponentProps<typeof Text> & {
-      helpMessage?: ReactNode;
-    },
-  "renderInput"
->;
+export type TextInputProps = ConsumerFieldProps & ComponentProps<typeof Text>;
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  (
-    { children, message, forceDisplayMessage, messageType, ...props },
-    inputRef,
-  ) => {
-    const errorUseId = useId();
-    const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
+  ({ children, ...props }, inputRef) => {
     return (
       <Field
         {...props}
-        renderInput={({ id, classModifier }) => (
+        renderInput={({ id, classModifier, ariaInvalid, errorId }) => (
           <Text
             id={id}
             classModifier={classModifier}
             ref={inputRef}
-            aria-describedby={errorUseId}
-            aria-invalid={isInvalid}
+            aria-describedby={errorId}
+            aria-invalid={ariaInvalid}
             {...props}
           />
         )}
-        errorId={errorUseId}
-        forceDisplayMessage={forceDisplayMessage}
-        message={message}
       >
         {children}
       </Field>

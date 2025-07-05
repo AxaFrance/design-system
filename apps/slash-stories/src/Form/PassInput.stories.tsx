@@ -47,7 +47,7 @@ export const PassInputStory: StoryObj<typeof PassInput> = {
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
     name: "password",
-    id: "uniqueid",
+    id: "pass-id",
   },
   argTypes: {
     messageType: {

@@ -1,12 +1,6 @@
-import { ComponentProps, ReactNode, useId, useState } from "react";
-import {
-  FieldInput,
-  HelpMessage,
-  LegacyField,
-  useInputClassModifier,
-} from "../core";
+import { ComponentProps, ReactNode, useState } from "react";
+import { ConsumerFieldProps, Field } from "../core";
 import { Pass } from "./Pass";
-import { useAriaInvalid } from "../core/useAriaInvalid";
 
 const strengthList: Record<number, string> = {
   0: "bad",
@@ -33,79 +27,44 @@ const calculateStrength = (score?: string | null) => {
 };
 
 type PassProps = ComponentProps<typeof Pass>;
-type Props = ComponentProps<typeof LegacyField> &
+type Props = ConsumerFieldProps &
   Omit<PassProps, "onToggleType" | "type"> & {
     helpMessage?: ReactNode;
     score?: string;
   };
 
 const PassInput = ({
-  message,
   children,
-  helpMessage,
-  id,
-  disabled = false,
-  label,
-  messageType,
-  isVisible,
-  forceDisplayMessage,
-  className,
-  classModifier,
-  classNameContainerLabel,
-  classNameContainerInput,
   score,
-  required,
-  ...passProps
+  classModifier,
+  disabled,
+  ...props
 }: Props) => {
   const strength = calculateStrength(score);
-  const classModifierStrength = [classModifier ?? "", strength ?? ""].join(" ");
 
   const [type, setType] = useState<PassProps["type"]>("password");
-  const inputId = useId();
-  const errorUseId = useId();
-  const finalId = id ?? inputId;
-  const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
-    classModifierStrength,
-    disabled,
-    Boolean(children),
-    required,
-  );
-  const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
 
   return (
-    <LegacyField
-      label={label}
-      message={message}
-      messageType={messageType}
-      isVisible={isVisible}
-      forceDisplayMessage={forceDisplayMessage}
-      className={className}
-      id={finalId}
-      classModifier={`${classModifierStrength} ${inputFieldClassModifier}`}
-      classNameContainerLabel={classNameContainerLabel}
-      classNameContainerInput={classNameContainerInput}
-      errorId={errorUseId}
-    >
-      <FieldInput
-        className="af-form__pass-container"
-        classModifier={inputFieldClassModifier}
-      >
+    <Field
+      {...props}
+      classModifier={classModifier}
+      renderInput={({ id, classModifier: modifier, ariaInvalid, errorId }) => (
         <Pass
-          {...passProps}
+          {...props}
           type={type}
-          id={inputId}
+          id={id}
           disabled={disabled}
-          classModifier={inputClassModifier}
-          aria-describedby={errorUseId}
-          aria-invalid={isInvalid}
+          classModifier={`${modifier} ${strength}`}
+          aria-describedby={errorId}
+          aria-invalid={ariaInvalid}
           onToggleType={() =>
             setType(type === "password" ? "text" : "password")
           }
         />
-        {children}
-        <HelpMessage message={helpMessage} isVisible={!message} />
-      </FieldInput>
-    </LegacyField>
+      )}
+    >
+      {children}
+    </Field>
   );
 };
 

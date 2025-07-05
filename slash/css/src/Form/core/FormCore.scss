@@ -17,10 +17,11 @@
 
   &__group-label {
     margin: 0;
+    font-size: 1rem;
     font-weight: normal;
 
     &--required::after {
-      color: common.$color-red-error;
+      color: var(--error-color);
       content: " *";
     }
   }
@@ -40,11 +41,11 @@
     }
 
     &--error {
-      color: common.$color-red-axa;
+      color: var(--error-color);
     }
 
     &--warning {
-      color: common.$color-orange-dark;
+      color: var(--warning-color);
     }
   }
 
@@ -53,7 +54,7 @@
     bottom: -20px;
     display: block;
     font-size: 0.8125em;
-    color: common.$color-gray;
+    color: var(--help-color);
   }
 
   &__input-cmplt {
@@ -83,27 +84,6 @@
     align-items: center;
     font-weight: normal;
     cursor: pointer;
-  }
-
-  &__indicator {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 1rem;
-    height: 1rem;
-    border: 1px solid common.$color-silver;
-    background: common.$white;
-    transform: translate(0, -50%);
-
-    .glyphicon-ok {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      display: none;
-      width: 10px;
-      font-size: 0.625rem;
-      font-weight: 100;
-    }
   }
 
   &__description {

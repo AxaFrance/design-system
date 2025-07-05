@@ -35,7 +35,7 @@ export const TextareaStory: Story = {
     value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     placeholder: "Your comment",
     name: "comment",
-    id: "commentid",
+    id: "TextareaStoryId",
     readOnly: false,
     disabled: false,
     tabIndex: 0,

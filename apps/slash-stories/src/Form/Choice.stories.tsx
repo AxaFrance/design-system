@@ -31,12 +31,17 @@ export const ChoiceStory: StoryObj<ChoiceProps> = {
     classModifier: [],
     readOnly: false,
     disabled: false,
+    value: false,
   },
   argTypes: {
     onChange: { action: "onChange" },
     classModifier: {
       options: ["disabled", "required"],
       control: { type: "inline-check" },
+    },
+    value: {
+      options: [undefined, true, false],
+      control: { type: "inline-radio" },
     },
   },
 };
