@@ -7,9 +7,9 @@ import {
 } from "react";
 
 import { getComponentClassName } from "../../utilities/getComponentClassName";
+import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
-import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 
 type InputTextProps = ComponentPropsWithRef<"input"> & {
   unit?: React.ReactNode;
@@ -26,26 +26,29 @@ type InputTextProps = ComponentPropsWithRef<"input"> & {
 } & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
 
 const InputText = forwardRef<HTMLInputElement, InputTextProps>(
-  ({
-    unit,
-    className,
-    classModifier = "",
-    helper,
-    error,
-    success,
-    label,
-    description,
-    buttonLabel,
-    onButtonClick,
-    required,
-    sideButtonLabel,
-    onSideButtonClick,
-    ItemLabelComponent,
-    ItemMessageComponent,
-    InputTextAtomComponent,
-    "aria-errormessage": ariaErrormessage,
-    ...otherProps
-  }) => {
+  (
+    {
+      unit,
+      className,
+      classModifier = "",
+      helper,
+      error,
+      success,
+      label,
+      description,
+      buttonLabel,
+      onButtonClick,
+      required,
+      sideButtonLabel,
+      onSideButtonClick,
+      ItemLabelComponent,
+      ItemMessageComponent,
+      InputTextAtomComponent,
+      "aria-errormessage": ariaErrormessage,
+      ...otherProps
+    },
+    inputRef,
+  ) => {
     const componentClassName = getComponentClassName(
       "af-form__input-text",
       className,
@@ -73,6 +76,7 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
         />
 
         <InputTextAtomComponent
+          ref={inputRef}
           unit={unit}
           className={componentClassName}
           error={error}
