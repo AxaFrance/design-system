@@ -1,8 +1,9 @@
-import React, { forwardRef, type ReactNode, type Ref } from "react";
+import React, { forwardRef, type ReactNode } from "react";
 import { Button, Modal, getComponentClassName } from "..";
 import { Body } from "./components/Body";
 import { Footer } from "./components/Footer";
 import { Header, type HeaderProps } from "./components/Header";
+import { ModalProps } from "./Modal";
 
 const defaultClassName = "af-modal";
 
@@ -10,18 +11,42 @@ export type BooleanModalProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,
   HTMLDialogElement
 > &
-  HeaderProps & {
+  Omit<HeaderProps, "children" | "onCancel" | "title"> &
+  Pick<ModalProps, "size"> & {
+    /**
+     * Title of the modal, displayed in the header.
+     * Also used as the `aria-label` of the <dialog> element for accessibility.
+     */
+    title: string;
+    /**
+     * Callback function called when the modal is submitted.
+     * @param event The event that triggered the submission, can be a mouse click or a keyboard event.
+     * @returns void
+     */
     onSubmit: (event: React.MouseEvent | React.KeyboardEvent) => void;
+    /**
+     * Callback function called when the modal is cancelled.
+     * @param event The event that triggered the cancellation, can be a mouse click or a keyboard event.
+     * @returns void
+     */
     onCancel: (event: React.MouseEvent | React.KeyboardEvent) => void;
     id: string;
     children: ReactNode;
+    /**
+     * Text content of the submit button.
+     */
     submitTitle?: string;
+    /**
+     * Text content of the cancel button.
+     */
     cancelTitle?: string;
     className?: string;
+    /**
+     * @deprecated Use `size` prop instead.
+     * Class modifier for the modal. Can be used to apply custom styles.
+     */
     classModifier?: string;
-    ref?: Ref<HTMLDialogElement>;
   };
-
 const BooleanModal = forwardRef<HTMLDialogElement, BooleanModalProps>(
   (
     {
@@ -62,7 +87,9 @@ const BooleanModal = forwardRef<HTMLDialogElement, BooleanModalProps>(
           <Button classModifier="reverse" onClick={onCancel}>
             {cancelTitle}
           </Button>
-          <Button onClick={onSubmit}>{submitTitle}</Button>
+          <Button onClick={onSubmit} classModifier="success">
+            {submitTitle}
+          </Button>
         </Footer>
       </Modal>
     );

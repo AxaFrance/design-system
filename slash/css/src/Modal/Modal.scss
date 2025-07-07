@@ -1,35 +1,41 @@
 @use "../common/common" as common;
-@use "../common/grid";
 
 .af-modal {
+  min-width: calc(460rem / 16);
   padding: 0;
-  border: 1px solid #333;
-  animation: appeardialog 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+  border: 1px solid var(--gray40);
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
 
   &::backdrop {
-    background: rgba(common.$color-azur, 0.62);
-    animation: fademodal 0.1s linear;
+    background: color-mix(in srgb, var(--black) 80%, transparent);
   }
 
   &--lg {
-    max-width: common.px-to-rem(800);
+    max-width: calc(800rem / 16);
   }
 
   &--sm {
-    max-width: common.px-to-rem(300);
+    max-width: calc(300rem / 16);
   }
 
   &__content {
     background-clip: padding-box;
-    background-color: common.$white;
+    background-color: var(--white);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__header {
     display: flex;
-    padding: common.px-to-rem(15);
-    border-bottom: 1px solid common.$gray-lighter;
+    padding: 0;
+    padding: calc(12rem / 16) 1rem calc(12rem / 16) calc(24rem / 16);
+    border-bottom: 1px solid var(--gray20);
     align-items: center;
     justify-content: space-between;
+    font-size: calc(22rem / 16);
+    font-weight: bold;
 
     &-title {
       margin-bottom: 0;
@@ -37,54 +43,46 @@
     }
 
     &-close-btn {
-      padding: 0.5rem;
+      height: 2rem;
+      padding: 0 calc(2rem / 16);
       border: none;
       font-size: 1rem;
       line-height: 1rem;
       background: none;
-      box-shadow: none;
 
-      &:hover {
-        background-color: common.$gray-lighter;
-      }
-
-      .glyphicon-close {
-        width: common.px-to-rem(17);
+      svg {
+        width: calc(28rem / 16);
+        height: calc(28rem / 16);
       }
     }
   }
 
   &__body {
     position: relative;
-    padding: common.px-to-rem(15);
+    padding: calc(12rem / 16) calc(24rem / 16) 0;
     flex: 1 1 auto;
     -webkit-box-flex: 1;
   }
 
   &__footer {
     display: flex;
-    padding: common.px-to-rem(15);
-    border-top: 1px solid common.$gray-lighter;
+    padding: calc(20rem / 16) calc(24rem / 16) calc(28rem / 16);
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
 
-    & > .af-btn:not(:last-child) {
-      margin-right: 0.25rem;
-    }
-
-    & > .af-btn:not(:first-child) {
-      margin-left: 0.25rem;
+    & > .af-btn:last-child {
+      margin-left: auto;
     }
   }
 }
 
 @include common.media-breakpoint-up(sm) {
   .af-modal {
-    max-width: common.px-to-rem(500);
-    margin: common.px-to-rem(30) auto;
+    max-width: calc(500rem / 16);
+    margin: calc(30rem / 16) auto;
 
     &--sm {
-      max-width: common.px-to-rem(300);
+      max-width: calc(300rem / 16);
     }
   }
 }
@@ -92,30 +90,8 @@
 @include common.media-breakpoint-up(lg) {
   .af-modal {
     &--lg {
-      max-width: common.px-to-rem(800);
-      margin: common.px-to-rem(30) auto;
+      max-width: calc(800rem / 16);
+      margin: calc(30rem / 16) auto;
     }
-  }
-}
-
-@keyframes appeardialog {
-  0% {
-    top: -100%;
-    opacity: 0;
-  }
-
-  100% {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes fademodal {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
   }
 }
