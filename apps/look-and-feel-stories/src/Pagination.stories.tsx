@@ -1,5 +1,5 @@
 import { Pagination } from "@axa-fr/design-system-look-and-feel-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Pagination> = {
   component: Pagination,

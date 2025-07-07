@@ -1,6 +1,6 @@
 import { Step, StepBase, Steps } from "@axa-fr/design-system-slash-react";
-import { Meta, type StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { Meta, type StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 
 type StoryProps = React.ComponentProps<typeof Steps> & {
   onClick: (e: React.MouseEvent) => void;

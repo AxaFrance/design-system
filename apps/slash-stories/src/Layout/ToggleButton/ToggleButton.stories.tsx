@@ -1,5 +1,5 @@
 import { Action, ToggleButton } from "@axa-fr/design-system-slash-react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 
 const meta: Meta<typeof ToggleButton> = {

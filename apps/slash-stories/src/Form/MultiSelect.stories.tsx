@@ -3,8 +3,8 @@ import {
   MultiSelect,
   MultiSelectInput,
 } from "@axa-fr/design-system-slash-react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { useState, type ComponentPropsWithoutRef } from "react";
 
 const meta: Meta = {

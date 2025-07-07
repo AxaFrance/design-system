@@ -1,5 +1,5 @@
 import { Button, Link, Title } from "@axa-fr/design-system-slash-react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ReactElement } from "react";
 
 const meta: Meta<typeof Title> = {

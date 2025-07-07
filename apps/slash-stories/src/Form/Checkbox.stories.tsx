@@ -5,8 +5,8 @@ import {
   CheckboxModes,
   MessageTypes,
 } from "@axa-fr/design-system-slash-react";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
 const messageTypes = Object.values(MessageTypes);

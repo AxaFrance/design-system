@@ -4,7 +4,7 @@ import {
   List,
   SkeletonList,
 } from "@axa-fr/design-system-look-and-feel-react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentPropsWithoutRef, useEffect, useState } from "react";
 import "./SkeletonList.stories.scss?inline";
 

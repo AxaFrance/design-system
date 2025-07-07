@@ -2,7 +2,7 @@ import {
   ItemTabBar,
   itemTabBarVariants,
 } from "@axa-fr/design-system-apollo-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ItemTabBar> = {
   component: ItemTabBar,

@@ -1,6 +1,6 @@
 import { IconBg, Svg } from "@axa-fr/design-system-look-and-feel-react";
 import article from "@material-symbols/svg-400/outlined/article-fill.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof IconBg> = {
   title: "Components/IconBg",

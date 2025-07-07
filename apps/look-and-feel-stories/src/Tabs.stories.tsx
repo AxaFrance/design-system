@@ -5,7 +5,7 @@ import {
 } from "@axa-fr/design-system-look-and-feel-react";
 import bluetoothAudio from "@material-symbols/svg-400/outlined/bluetooth_searching.svg";
 import accessTime from "@material-symbols/svg-400/outlined/schedule.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ReactNode } from "react";
 
 const meta: Meta<typeof Tabs> = {

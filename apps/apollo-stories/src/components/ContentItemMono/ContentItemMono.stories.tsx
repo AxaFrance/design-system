@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ContentItemMono } from "@axa-fr/design-system-apollo-react";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 import { ComponentProps } from "react";

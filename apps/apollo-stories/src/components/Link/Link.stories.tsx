@@ -1,7 +1,7 @@
 import { Link, Svg, linkVariants } from "@axa-fr/design-system-apollo-react";
 import arrowLeftAlt from "@material-symbols/svg-400/outlined/arrow_left_alt.svg";
 import personFill from "@material-symbols/svg-400/rounded/person-fill.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Link> = {
   title: "Components/Link",

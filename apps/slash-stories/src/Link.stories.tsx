@@ -1,8 +1,8 @@
 import { Link, Svg, type LinkProps } from "@axa-fr/design-system-slash-react";
 import editIcons from "@material-symbols/svg-400/outlined/edit.svg";
 import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 
 const CssIcons = {
   "(none)": "none",

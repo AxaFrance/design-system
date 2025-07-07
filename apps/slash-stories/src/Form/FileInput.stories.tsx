@@ -6,8 +6,8 @@ import {
   HelpMessage,
   MessageTypes,
 } from "@axa-fr/design-system-slash-react";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { FileRejection } from "react-dropzone";
 
 const meta: Meta<typeof FileInput> = {

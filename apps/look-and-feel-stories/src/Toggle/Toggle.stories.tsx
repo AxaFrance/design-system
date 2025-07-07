@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toggle } from "@axa-fr/design-system-look-and-feel-react";
 
 const meta: Meta<typeof Toggle> = {

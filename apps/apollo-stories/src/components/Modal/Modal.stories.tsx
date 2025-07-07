@@ -3,8 +3,8 @@ import "./Modal.story.scss";
 import { Button, Modal } from "@axa-fr/design-system-apollo-react";
 import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
 import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { ComponentPropsWithRef, useLayoutEffect, useRef } from "react";
 
 const meta: Meta<typeof Modal> = {

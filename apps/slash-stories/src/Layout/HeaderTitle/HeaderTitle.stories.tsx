@@ -9,8 +9,8 @@ import mailIcon from "@material-symbols/svg-400/outlined/mail.svg";
 import saveIcon from "@material-symbols/svg-400/outlined/save.svg";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import chevronLeftIcon from "@material-symbols/svg-400/outlined/chevron_left.svg";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { ComponentProps } from "react";
 
 const MODIFIERS = ["sticky", "fixed"];

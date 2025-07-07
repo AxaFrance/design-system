@@ -1,5 +1,5 @@
 import { NavBar } from "@axa-fr/design-system-look-and-feel-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type React from "react";
 
 const meta: Meta<typeof NavBar> = {

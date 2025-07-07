@@ -1,5 +1,5 @@
 import { Card } from "@axa-fr/design-system-look-and-feel-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const MODIFIERS = [" ", "elevation-2"];
 const CUSTOM_CHILDREN = (

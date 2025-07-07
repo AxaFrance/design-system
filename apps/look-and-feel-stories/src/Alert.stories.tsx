@@ -1,5 +1,5 @@
 import { Alert, Button, Link } from "@axa-fr/design-system-look-and-feel-react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const MODIFIERS = ["information", "neutral", "error", "validation", "warning"];
 

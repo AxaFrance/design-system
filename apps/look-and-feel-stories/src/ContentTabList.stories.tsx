@@ -5,8 +5,8 @@ import {
 } from "@axa-fr/design-system-look-and-feel-react";
 import download from "@material-symbols/svg-400/rounded/download_2-fill.svg";
 import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import type { ComponentProps } from "react";
 
 const meta: Meta<typeof ContentTabList> = {

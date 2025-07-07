@@ -1,5 +1,5 @@
 import { Radio } from "@axa-fr/design-system-apollo-react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 
 const meta: Meta = {

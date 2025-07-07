@@ -1,5 +1,5 @@
 import { Spinner } from "@axa-fr/design-system-apollo-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { render, renderAll } from "./render";
 import "./Spinner.story.scss";
 

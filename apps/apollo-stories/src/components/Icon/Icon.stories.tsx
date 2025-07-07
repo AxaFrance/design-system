@@ -3,7 +3,7 @@ import {
   iconSizeVariants,
   iconVariants,
 } from "@axa-fr/design-system-apollo-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 
 const meta: Meta<typeof Icon> = {

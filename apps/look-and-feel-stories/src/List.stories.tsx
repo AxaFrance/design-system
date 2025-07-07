@@ -6,7 +6,7 @@ import {
 } from "@axa-fr/design-system-look-and-feel-react";
 import trashIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import publishedWithChangesIcon from "@material-symbols/svg-400/outlined/published_with_changes-fill.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 
 const meta: Meta<typeof List> = {

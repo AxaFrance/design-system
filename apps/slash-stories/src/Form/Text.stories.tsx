@@ -1,6 +1,6 @@
 import { Text } from "@axa-fr/design-system-slash-react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { inputTypes } from "./inputTypes";
 
 const MODIFIERS = ["", "required", "disabled"];

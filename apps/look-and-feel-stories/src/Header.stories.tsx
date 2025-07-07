@@ -4,7 +4,7 @@ import workspacePremium from "@material-symbols/svg-400/outlined/workspace_premi
 import textSnippet from "@material-symbols/svg-400/outlined/text_snippet-fill.svg";
 import lock from "@material-symbols/svg-400/outlined/lock-fill.svg";
 import person from "@material-symbols/svg-400/outlined/person-fill.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Header> = {
   component: Header,

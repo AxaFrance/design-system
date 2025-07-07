@@ -3,7 +3,7 @@ import {
   CheckboxItem,
   CollapseCard,
 } from "@axa-fr/design-system-slash-react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",

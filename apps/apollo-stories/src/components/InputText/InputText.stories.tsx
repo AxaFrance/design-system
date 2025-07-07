@@ -1,6 +1,6 @@
 import { Svg, InputText } from "@axa-fr/design-system-apollo-react";
 import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof InputText> = {
   component: InputText,

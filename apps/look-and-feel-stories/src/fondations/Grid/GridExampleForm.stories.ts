@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Grid/Grid-demo-example-form.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/look-and-feel.scss";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { render } from "./renderExampleForm";
 

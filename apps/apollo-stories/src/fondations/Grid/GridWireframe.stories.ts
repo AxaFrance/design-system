@@ -1,5 +1,5 @@
 import "./Grid-demo-wireframe.story.scss";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { render } from "./renderWireframe";
 

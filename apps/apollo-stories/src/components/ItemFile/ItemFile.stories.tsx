@@ -1,5 +1,5 @@
 import { ItemFile, itemFileVariants } from "@axa-fr/design-system-apollo-react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 type Story = StoryObj<typeof ItemFile>;
 

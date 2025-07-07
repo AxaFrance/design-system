@@ -4,7 +4,7 @@ import {
   AccordionVariants,
   TagVariants,
 } from "@axa-fr/design-system-apollo-react/lf";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 

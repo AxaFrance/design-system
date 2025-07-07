@@ -1,6 +1,6 @@
 import { ChoiceInput, MessageTypes } from "@axa-fr/design-system-slash-react";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { ComponentPropsWithRef } from "react";
 
 const meta: Meta<typeof ChoiceInput> = {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputPhone } from "@axa-fr/design-system-apollo-react";
 import { useState } from "react";
 import { flagsList } from "./FlagUtils.tsx";

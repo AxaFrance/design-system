@@ -1,5 +1,5 @@
 import { Tag } from "@axa-fr/design-system-look-and-feel-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { renderTagAll } from "./render";
 
 import "./Tag.story.scss";

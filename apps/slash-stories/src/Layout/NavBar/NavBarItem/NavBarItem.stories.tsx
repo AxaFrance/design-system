@@ -1,5 +1,5 @@
 import { NavBarItem } from "@axa-fr/design-system-slash-react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof NavBarItem> = {
   title: "Components/NavBar/NavBarItem",

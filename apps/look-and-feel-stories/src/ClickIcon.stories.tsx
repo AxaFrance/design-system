@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ClickIcon, iconVariants } from "@axa-fr/design-system-apollo-react/lf";
 import article from "@material-symbols/svg-400/rounded/article-fill.svg";
 

@@ -1,6 +1,6 @@
 import { Svg, TextInput } from "@axa-fr/design-system-look-and-feel-react";
 import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
