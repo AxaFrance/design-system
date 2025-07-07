@@ -123,13 +123,5 @@
     & > span:first-child {
       --radio-border-color: var(--color-red-700);
     }
-
-    &:has(input:checked) {
-      --card-radio-border-color: var(--color-red-700);
-
-      & > span:first-child {
-        --radio-border-color: var(--color-red-700);
-      }
-    }
   }
 }
