@@ -15,7 +15,7 @@
     --radio-border-color: var(--axa-blue-100);
   }
 
-  &[aria-invalid="true"] {
+  &:has([aria-invalid="true"]) {
     --radio-border-color: var(--red-alert-100);
   }
 }

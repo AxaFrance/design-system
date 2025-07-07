@@ -112,6 +112,8 @@
       border-radius: var(--card-checkbox-border-radius);
       flex: 1;
       align-self: stretch;
+      outline: var(--card-checkbox-outline-width, 0) solid
+        var(--card-checkbox-outline-color);
       cursor: pointer;
 
       .af-card-checkbox-content {
@@ -152,9 +154,17 @@
       &:hover,
       &:focus-visible,
       &:focus-within,
-      &:has(input:checked),
-      [aria-invalid="true"] {
-        outline: 2px solid var(--card-checkbox-outline-color);
+      &:has([aria-invalid="true"]),
+      &:has(input:checked) {
+        --card-checkbox-outline-width: 1px;
+      }
+
+      &:not(:has(:checked)):has([aria-invalid="true"]) {
+        &:hover,
+        &:focus-visible,
+        &:focus-within {
+          --card-checkbox-outline-width: 2px;
+        }
       }
 
       &:has(input:checked) {

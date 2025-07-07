@@ -18,7 +18,8 @@
 
   &:hover,
   &:focus-within,
-  &:has(:checked) {
+  &:has(:checked),
+  &:has([aria-invalid="true"]) {
     outline: 1px solid var(--radio-outline-color);
   }
 

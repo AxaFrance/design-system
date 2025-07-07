@@ -152,13 +152,16 @@
       align-self: stretch;
       gap: calc(12 / var(--font-size-base) * 1rem);
       background-color: var(--card-radio-background-color);
+      outline: var(--card-radio-outline-width, 0) solid
+        var(--card-radio-outline-color);
       cursor: pointer;
 
       &:hover,
       &:focus-visible,
       &:focus-within,
-      &:has(input:checked) {
-        outline: 1px solid var(--card-radio-outline-color);
+      &:has(input:checked),
+      &:has(input[aria-invalid="true"]) {
+        --card-radio-outline-width: 1px;
 
         & > span:first-child {
           outline: 1px solid var(--radio-outline-color);
@@ -199,6 +202,17 @@
           }
         }
       }
+    }
+  }
+
+  &__container[aria-invalid="true"]
+    .af-card-radio-label:not(:has(input:checked)) {
+    --card-radio-outline-width: 1px;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --card-radio-outline-width: 2px;
     }
   }
 }

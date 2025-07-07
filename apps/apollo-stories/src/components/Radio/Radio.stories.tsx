@@ -29,7 +29,6 @@ export const RadioStory: StoryObj<ComponentProps<typeof Radio>> = {
       control: { type: "boolean" },
     },
     onChange: { action: "onChange" },
-    hasError: { type: "boolean" },
-    errorId: { type: "string" },
+    "aria-invalid": { type: "boolean" },
   },
 };
