@@ -1,6 +1,7 @@
 import "@axa-fr/design-system-slash-css/dist/Modal/Modal.scss";
 import {
   BooleanModal,
+  Button,
   Modal,
   ModalBody,
   ModalFooter,
@@ -9,7 +10,7 @@ import {
 } from "@axa-fr/design-system-slash-react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { useRef, type ReactElement, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 const MODIFIERS = [
   { label: "Default", value: "" },
@@ -27,7 +28,37 @@ const meta: Meta<typeof Modal> = {
     onSubmit: fn(),
     onCancel: fn(),
     onOutsideTap: fn(),
-    onClose: fn(),
+  },
+  argTypes: {
+    size: {
+      control: {
+        type: "radio",
+        labels: { lg: "Large (lg)", sm: "Small (sm)", "": "Default" },
+      },
+      options: MODIFIERS.map((m) => m.value),
+    },
+    classModifier: {
+      options: MODIFIERS.map((m) => m.value),
+      control: {
+        type: "radio",
+        labels: { "": "Default", lg: "Large (lg)", sm: "Small (sm)" },
+      },
+    },
+    onClose: {
+      table: {
+        disable: true,
+      },
+    },
+    open: {
+      table: {
+        disable: true,
+      },
+    },
+    ref: {
+      table: {
+        disable: true,
+      },
+    },
   },
 };
 export default meta;
@@ -38,8 +69,6 @@ type DefaultModalStoryProps = Omit<
 > & {
   children: string;
   bodyContent: string;
-  cancelButtonText: string;
-  saveButtonText: string;
   onSubmit: () => void;
   onCancel: () => void;
   onOutsideTap: () => void;
@@ -48,9 +77,7 @@ type TDefaultModalStory = StoryObj<DefaultModalStoryProps>;
 
 export const DefaultModalStory: TDefaultModalStory = {
   name: "Default Modal",
-  render: ({ bodyContent, cancelButtonText, saveButtonText, ...args }) => {
-    const selectClassModifier =
-      MODIFIERS.find((m) => m.label === args.classModifier) ?? MODIFIERS[0];
+  render: ({ bodyContent, ...args }) => {
     const ref = useRef<HTMLDialogElement>(null);
     return (
       <>
@@ -59,7 +86,6 @@ export const DefaultModalStory: TDefaultModalStory = {
         </button>
         <Modal
           {...args}
-          classModifier={selectClassModifier.value}
           ref={ref}
           onClose={() => ref.current?.close()}
           onOutsideTap={() => {
@@ -78,28 +104,28 @@ export const DefaultModalStory: TDefaultModalStory = {
             <p>{bodyContent}</p>
           </ModalBody>
           <ModalFooter>
-            {selectClassModifier.value !== "sm" && (
-              <button
-                className="btn af-btn af-btn--reverse"
+            {args.size !== "sm" && (
+              <Button
+                classModifier="reverse"
                 type="button"
                 onClick={() => {
                   args.onCancel();
                   ref.current?.close();
                 }}
               >
-                {cancelButtonText}
-              </button>
+                Cancel
+              </Button>
             )}
-            <button
-              className="btn af-btn"
+            <Button
+              classModifier="success"
               type="button"
               onClick={() => {
                 args.onSubmit();
                 ref.current?.close();
               }}
             >
-              {saveButtonText}
-            </button>
+              Save
+            </Button>
           </ModalFooter>
         </Modal>
       </>
@@ -110,15 +136,7 @@ export const DefaultModalStory: TDefaultModalStory = {
     title: "Modal title",
     bodyContent:
       'Voici une version avec un header classique Modal.Header. Un classModifier "lg" a été mis pour montrer une version plus large d\'une modale. Il est existe également un modifier "sm", pour les modales plus petites. Mais il est possible d\'ajouter son propre modifier pour personnaliser selon ses besoins avec un peu de CSS.',
-    cancelButtonText: "Annuler",
-    saveButtonText: "Valider",
-    classModifier: MODIFIERS[0].label,
-  },
-  argTypes: {
-    classModifier: {
-      options: MODIFIERS.map((m) => m.label),
-      control: { type: "radio" },
-    },
+    size: undefined,
   },
 };
 
@@ -137,23 +155,15 @@ type TCustomTitleModalStory = StoryObj<CustomTitleModalStoryProps>;
 export const CustomTitleModalStory: TCustomTitleModalStory = {
   name: "Custom Title Modal",
   render: ({ bodyContent, cancelButtonText, saveButtonText, ...args }) => {
-    const selectClassModifier =
-      MODIFIERS.find((m) => m.label === args.classModifier) ?? MODIFIERS[0];
-
     return (
       <div>
-        <Modal
-          {...args}
-          title={undefined}
-          classModifier={selectClassModifier.value}
-          onOutsideTap={() => {}}
-        >
+        <Modal {...args} title={undefined} onOutsideTap={() => {}}>
           <ModalHeaderBase id="headerId">{args.title}</ModalHeaderBase>
           <ModalBody>
             <p>{bodyContent}</p>
           </ModalBody>
           <ModalFooter>
-            {selectClassModifier.value !== "sm" && (
+            {args.size !== "sm" && (
               <button className="btn af-btn af-btn--reverse" type="button">
                 {cancelButtonText}
               </button>
@@ -188,18 +198,13 @@ export const CustomTitleModalStory: TCustomTitleModalStory = {
   },
 };
 
-type BooleanModalStoryProps = React.ComponentProps<typeof BooleanModal> & {
-  bodyContent: ReactElement;
-  cancelButtonText: string;
-  saveButtonText: string;
-};
+type BooleanModalStoryProps = React.ComponentProps<typeof BooleanModal>;
+
 type TBooleanModalStory = StoryObj<BooleanModalStoryProps>;
 
 export const BooleanModalStory: TBooleanModalStory = {
   name: "Boolean Modal",
-  render: ({ classModifier, ...args }) => {
-    const selectClassModifier =
-      MODIFIERS.find((m) => m.label === classModifier) ?? MODIFIERS[0];
+  render: ({ ...args }) => {
     const ref = useRef<HTMLDialogElement>(null);
     return (
       <>
@@ -207,7 +212,6 @@ export const BooleanModalStory: TBooleanModalStory = {
           Open modal
         </button>
         <BooleanModal
-          classModifier={selectClassModifier.value}
           ref={ref}
           {...args}
           onCancel={() => {
@@ -217,7 +221,7 @@ export const BooleanModalStory: TBooleanModalStory = {
             ref.current?.close();
           }}
         >
-          {args.bodyContent}
+          {args.children}
         </BooleanModal>
       </>
     );
@@ -225,7 +229,7 @@ export const BooleanModalStory: TBooleanModalStory = {
   args: {
     open: false,
     title: "Boolean Modal title",
-    bodyContent: (
+    children: (
       <p>
         Reprehenderit sit quis aute nisi consequat consequat mollit. Commodo in
         aliquip consectetur nulla sit anim. Pariatur minim commodo enim ea eu
@@ -235,14 +239,8 @@ export const BooleanModalStory: TBooleanModalStory = {
         Aute ut mollit amet.
       </p>
     ),
-    cancelTitle: "Annuler",
-    submitTitle: "Valider",
-    classModifier: MODIFIERS[0].label,
-  },
-  argTypes: {
-    classModifier: {
-      options: MODIFIERS.map((m) => m.label),
-      control: { type: "radio" },
-    },
+    cancelTitle: "Cancel",
+    submitTitle: "Submit",
+    size: undefined,
   },
 };

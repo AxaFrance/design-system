@@ -5,9 +5,15 @@ import * as ModalStories from "./Modal.stories";
 
 # Modal
 
-1. [Default Modal](#default-modal)
-2. [Custom Title Modal](#custom-title-modal)
-3. [Boolean Modal](#boolean-modal)
+## Components
+
+Modals are built of composable components:
+
+- `Modal`: The main component that wraps the modal.
+- `ModalHeader`: A component for the header of the modal, which includes a title and a close button.
+- `ModalHeaderBase`: A component for a custom header, allowing full control over the content.
+- `ModalBody`: A component for the body of the modal, where you can place your content.
+- `ModalFooter`: A component for the footer of the modal, typically containing action buttons.
 
 The default modal is the component to use if you want to fully configure your
 modal.
@@ -16,15 +22,32 @@ With the `HeaderBase` you can configure the header of the modal. With the `Body`
 you can configure the body of the modal. And with the `Footer` you can configure
 the footer of the modal.
 
+## Programmatically opening and closing the Modal
+
 You need to pass a `ref` to the `BooleanModal` component in order to call the
 `showModal` function when you want to open the modal and the `close` function
 for closing it.
 
-## Default Modal
+## Sizes
+
+Using the property `size` you can set the size of the modal. The available sizes are:
+
+- `sm`: Small modal
+- `lg`: Large modal
+
+By default, the modal will be rendered with a medium size.
+
+| Size    | Width |
+| ------- | ----- |
+| sm      | 300px |
+| lg      | 800px |
+| default | 460px |
+
+## Basic Usage
 
 Example of usage of Modal component :
 
-```javascript
+```tsx
 import { useRef } from "react";
 
 export const YourComponent = () => {
@@ -33,7 +56,7 @@ export const YourComponent = () => {
   return (
     <>
       <button type="button" onClick={() => ref.current?.showModal()}>
-        Ouvrir la modal
+        Open modal
       </button>
 
       <Modal onOutsideTap={() => ref.current?.close()} ref={ref}>
@@ -73,7 +96,7 @@ export const YourComponent = () => {
 
 Example of usage of Modal component with custom title:
 
-```javascript
+```tsx
 import { useRef } from "react";
 
 export const YourComponent = () => {
@@ -125,6 +148,11 @@ export const YourComponent = () => {
 <Controls of={ModalStories.CustomTitleModalStory} />
 
 ## Boolean Modal
+
+The `BooleanModal` component is a specialized modal that provides a simple yes/no
+interaction pattern. It is designed to be used when you need a confirmation dialog or a simple decision-making modal.
+
+You don't need to compose the `BooleanModal` with `ModalHeader`, `ModalBody`, and `ModalFooter` components. Instead, you can pass the content directly as children.
 
 Example of usage of BooleanModal component :
 

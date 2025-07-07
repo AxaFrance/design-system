@@ -2,6 +2,7 @@ import logoAxa from "@axa-fr/design-system-slash-css/logo-axa.svg";
 
 import {
   Action,
+  BooleanModal,
   Button,
   CheckboxInput,
   FileInput,
@@ -25,26 +26,23 @@ import {
   User,
 } from "@axa-fr/design-system-slash-react";
 import openInNew from "@material-symbols/svg-400/outlined/open_in_new.svg";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Agent = () => {
   const [sliderValue, setSliderValue] = useState(50);
-
+  const modalRef = useRef<HTMLDialogElement>(null);
   return (
     <section className="design-section">
       <header>
         <Title heading="h2">Agent</Title>
       </header>
-
       <article>
         <Title heading="h3">Action</Title>
         <Action icon="plus" onClick={() => console.log("hello")} />
       </article>
-
       <article>
         <Button>Button</Button>
       </article>
-
       <article style={{ margin: "unset" }}>
         <Title heading="h3">Table component</Title>
 
@@ -79,7 +77,6 @@ const Agent = () => {
           items={[5, 15, 50, 100]}
         />
       </article>
-
       <article>
         <Title heading="h3">Popover</Title>
         <Popover mode="hover" popoverElement="hello friends">
@@ -94,7 +91,6 @@ const Agent = () => {
           </p>
         </Popover>
       </article>
-
       <form className="af-form">
         <article>
           <Title heading="h3">Slider</Title>
@@ -181,7 +177,6 @@ const Agent = () => {
           />
         </article>
       </form>
-
       <article>
         <Title heading="h3">Link component</Title>
         <Link
@@ -207,7 +202,6 @@ const Agent = () => {
           Display an alert
         </Link>
       </article>
-
       <article>
         <Title heading="h3">Infos component</Title>
         <Infos
@@ -219,7 +213,6 @@ const Agent = () => {
           ]}
         />
       </article>
-
       <article>
         <Title heading="h3">Name component</Title>
         <Name
@@ -228,7 +221,6 @@ const Agent = () => {
           subtitle="Subtitle of the app"
         />
       </article>
-
       <article>
         <Title heading="h3">User component</Title>
         <User name="Jean Agent [AGA]" />
@@ -247,7 +239,6 @@ const Agent = () => {
           </ul>
         </Message>
       </article>
-
       <article>
         <Title
           heading="h3"
@@ -257,11 +248,29 @@ const Agent = () => {
           Title with content
         </Title>
       </article>
-
       <article>
         <Title heading="h3">Deprecated stuff</Title>
         <SelectBase />
       </article>
+      <BooleanModal
+        ref={modalRef}
+        id="boolean-modal"
+        title="Boolean Modal title"
+        onCancel={() => modalRef.current?.close()}
+        onSubmit={() => modalRef.current?.close()}
+        cancelTitle="Annuler"
+        submitTitle="Valider"
+        size="lg"
+      >
+        <p>
+          Reprehenderit sit quis aute nisi consequat consequat mollit. Commodo
+          in aliquip consectetur nulla sit anim. Pariatur minim commodo enim ea
+          eu laborum culpa laboris. Labore labore irure ipsum consequat enim
+          officia anim ipsum aliqua excepteur qui sint. Duis sint do culpa
+          adipisicing dolor adipisicing ea dolore aute nisi quis ullamco aliquip
+          occaecat. Aute ut mollit amet.
+        </p>
+      </BooleanModal>
     </section>
   );
 };

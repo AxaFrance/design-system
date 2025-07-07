@@ -5,11 +5,25 @@ export type ModalProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,
   HTMLDialogElement
 > & {
-  className?: string;
-  title?: string;
-  onOutsideTap: (event: React.MouseEvent | React.KeyboardEvent) => void;
+  size?: "lg" | "sm";
+  /**
+   * The content of the modal.
+   */
   children: ReactNode;
+  onOutsideTap: (event: React.MouseEvent | React.KeyboardEvent) => void;
+  /**
+   * `aria-label` of the modal, used for accessibility.
+   */
+  title?: string;
+  className?: string;
+  /**
+   * @deprecated Use `size` prop instead.
+   * Class modifier for the modal. Can be used to apply custom styles.
+   */
   classModifier?: string;
+  /**
+   * Size of the modal. Overrides classModifier if set
+   */
   ref?: React.Ref<HTMLDialogElement>;
 };
 
@@ -21,13 +35,25 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
       onOutsideTap,
       children,
       classModifier,
+      size,
       ...props
     }: ModalProps,
     ref,
   ) => {
+    // If size is set to 'lg' or 'sm', use it as the classModifier, otherwise use the provided classModifier
+    let effectiveClassModifier: string | undefined;
+    if (size) {
+      if (classModifier && classModifier !== "lg" && classModifier !== "sm") {
+        effectiveClassModifier = `${size} ${classModifier}`;
+      } else {
+        effectiveClassModifier = size;
+      }
+    } else {
+      effectiveClassModifier = classModifier;
+    }
     const componentClassName = getComponentClassName(
       className,
-      classModifier,
+      effectiveClassModifier,
       "af-modal",
     );
 
