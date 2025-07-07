@@ -30,6 +30,10 @@
     outline: none;
   }
 
+  &--error:hover {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+
   &:enabled,
   &:focus,
   &:active {
@@ -47,8 +51,16 @@
     background: var(--input-text-area-background);
   }
 
-  &:not(:placeholder-shown, :focus) {
+  &:not(:placeholder-shown, :focus, :disabled) {
     box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
+  }
+
+  &:disabled:hover {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+
+  &:disabled:not(:placeholder-shown) {
+    border: 1px solid var(--input-text-area-border-color);
   }
 
   &:not(.af-form__input-textarea--error):focus,
@@ -63,7 +75,6 @@
     &:hover,
     &:not(:placeholder-shown, :focus) {
       font-size: calc(18 / var(--font-size-base) * 1rem);
-      //font-size: var(--input-text-area-font-size);
       font-weight: var(--input-text-area-font-weight);
       color: var(--input-text-area-font-color);
     }

@@ -26,6 +26,10 @@
     --input-text-area-background: var(--neutral-5);
   }
 
+  &:disabled:not(:placeholder-shown) {
+    --input-text-area-border-color: var(--neutral-14);
+  }
+
   &:not(.af-form__input-textarea--error):focus,
   &:not(.af-form__input-textarea--error, :disabled):hover {
     --input-text-area-border-size: 2px;
@@ -34,12 +38,10 @@
   }
 
   &:not(:disabled, &--error) {
-    &:focus,
-    &:hover,
     &:not(:placeholder-shown) {
       --input-text-area-font-color: var(--axa-blue-100);
       --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
-      --input-text-area-font-weight: 400;
+      --input-text-area-font-weight: 600;
     }
   }
 }
