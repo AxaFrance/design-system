@@ -76,6 +76,7 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
         />
 
         <InputTextAtomComponent
+          id={inputId}
           ref={inputRef}
           unit={unit}
           className={componentClassName}
