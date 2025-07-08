@@ -1,7 +1,7 @@
 @use "../../common/breakpoints" as breakpoints;
 
 .af-form__input-textarea {
-  width: calc(384 / var(--font-size-base) * 1rem);
+  width: calc(--input-text-area-max-width / var(--font-size-base) * 1rem);
   height: calc(var(--input-text-area-height) / var(--font-size-base) * 1rem);
   min-height: calc(56 / var(--font-size-base) * 1rem);
   padding: 16px;
@@ -15,13 +15,11 @@
   box-shadow: 0 0 0 1px var(--input-text-area-background);
   resize: vertical;
 
-  @media (width > #{breakpoints.$breakpoint-md}) {
-    width: calc(384 / var(--font-size-base) * 1rem);
+  @media (width < #{breakpoints.$breakpoint-md}) {
+    width: calc(--input-text-area-max-width / var(--font-size-base) * 1rem);
+    font-size: calc(16 / var(--font-size-base) * 1rem);
     line-height: 125%;
-
-    &:hover {
-      font-size: calc(16 / var(--font-size-base) * 1rem);
-    }
+    box-shadow: none;
   }
 
   &--error {

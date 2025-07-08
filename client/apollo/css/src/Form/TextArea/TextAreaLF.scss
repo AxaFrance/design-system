@@ -1,6 +1,7 @@
 @use "TextAreaCommon";
 
 .af-form__input-textarea {
+  --input-text-area-max-width: 384px;
   --input-text-area-height: 142px;
   --input-text-area-border-radius: var(--default-border-radius);
   --input-text-area-border-color: var(--color-gray-700);
