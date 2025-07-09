@@ -20,10 +20,10 @@ export const ContentItemMonoCore = ({
       {leftComponent}
       <div className="text-content">
         <span className="title">{title}</span>
-        {primarySubtitle && (
+        {primarySubtitle ? (
           <span className="subtitle-primary">{primarySubtitle}</span>
-        )}
-        {subtitle && <span className="subtitle">{subtitle}</span>}
+        ) : null}
+        {subtitle ? <span className="subtitle">{subtitle}</span> : null}
       </div>
     </div>
   );

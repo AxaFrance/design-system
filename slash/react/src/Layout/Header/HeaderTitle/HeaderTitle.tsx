@@ -68,19 +68,19 @@ const HeaderTitle = ({
           {contentLeft}
           <h1 className={`${defaultClassName}__title`}>
             {title}
-            {subtitle && (
+            {subtitle ? (
               <span className={`${defaultClassName}__subtitle`}>
                 {subtitle}
               </span>
-            )}
+            ) : null}
           </h1>
           {children}
         </div>
-        {contentRight && (
+        {contentRight ? (
           <div className={`${defaultClassName}__rightSection`}>
             {contentRight}
           </div>
-        )}
+        ) : null}
       </div>
 
       {isAnchorNavBarPresent ? (

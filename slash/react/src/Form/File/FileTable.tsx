@@ -28,8 +28,8 @@ const FileTable = ({
   );
   return (
     <div className={componentClassName}>
-      {errors && errors.length > 0 && <FileErrors errors={errors} />}
-      {values && values.length > 0 && (
+      {errors && errors.length > 0 ? <FileErrors errors={errors} /> : null}
+      {values && values.length > 0 ? (
         <ul className="af-form__file-list">
           {values.map(({ file, id }) => (
             <FileLine
@@ -41,7 +41,7 @@ const FileTable = ({
             />
           ))}
         </ul>
-      )}
+      ) : null}
     </div>
   );
 };

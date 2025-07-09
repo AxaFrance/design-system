@@ -81,11 +81,11 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           aria-invalid={Boolean(error)}
           {...otherProps}
         />
-        {helper && (
+        {helper ? (
           <span id={idHelp} className="af-form__input-helper">
             {helper}
           </span>
-        )}
+        ) : null}
         <ItemMessageComponent id={idError} message={error} />
       </div>
     );

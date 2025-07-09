@@ -55,8 +55,9 @@ export const Link = ({
     <a className={componentClassName} href={href} {...newTabProps} {...props}>
       {leftIcon}
       {children}
-      {(openInNewTab || Boolean(rightIcon)) &&
-        (rightIcon ?? <Svg src={openInNew} />)}
+      {openInNewTab || Boolean(rightIcon)
+        ? (rightIcon ?? <Svg src={openInNew} />)
+        : null}
     </a>
   );
 };

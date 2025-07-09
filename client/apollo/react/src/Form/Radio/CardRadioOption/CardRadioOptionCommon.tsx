@@ -52,7 +52,7 @@ export const CardRadioOptionCommon = forwardRef<
         .filter(Boolean)
         .join(" ")}
     >
-      {icon && <IconComponent src={icon} role="presentation" />}
+      {icon ? <IconComponent src={icon} role="presentation" /> : null}
       <div className="af-card-radio-option__content">
         <p className="af-card-radio-option__label">{label}</p>
         {Boolean(description) && (

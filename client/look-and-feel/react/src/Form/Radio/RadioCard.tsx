@@ -59,18 +59,18 @@ export const RadioCard = ({
       aria-invalid={Boolean(error)}
       aria-errormessage={error ? errorId : undefined}
     >
-      {labelGroup && (
+      {labelGroup ? (
         <legend className="af-card-radio__legend">
           <p>
             {labelGroup}
-            {isRequired && <span aria-hidden>&nbsp;*</span>}
+            {isRequired ? <span aria-hidden>&nbsp;*</span> : null}
           </p>
 
-          {descriptionGroup && (
+          {descriptionGroup ? (
             <p className="af-card-radio__description">{descriptionGroup}</p>
-          )}
+          ) : null}
         </legend>
-      )}
+      ) : null}
       <div className={RadioGroupClassName}>
         {options.map((cardRadioItemProps) => (
           <CardRadioItem

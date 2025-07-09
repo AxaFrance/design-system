@@ -58,7 +58,7 @@ export const AnimatedPopover = ({
         {target}
       </div>
 
-      {isOpen && (
+      {isOpen ? (
         <div
           ref={setPopperElement as any}
           onMouseEnter={onMouseEnter}
@@ -70,7 +70,7 @@ export const AnimatedPopover = ({
           <div>{children}</div>
           <FloatingArrow ref={arrowRef} context={context} fill="white" />
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

@@ -113,7 +113,7 @@ const NavBarItem = ({
       actionElt={actionElt}
       {...otherProps}
     >
-      {children && (
+      {children ? (
         <>
           <i
             key={`icon${tabIndex}`}
@@ -128,7 +128,7 @@ const NavBarItem = ({
             {React.Children.map(children, renderChild)}
           </ul>
         </>
-      )}
+      ) : null}
     </NavBarItemBase>
   );
 };

@@ -50,12 +50,12 @@ export const DataAgentCommon = ({
     <>
       <section className="af-data-agent__intro">
         <ContentItemMonoComponent {...agentProps} type="picture" />
-        {agentContractProps && (
+        {agentContractProps ? (
           <ContentItemMonoComponent {...agentContractProps} type="stick" />
-        )}
+        ) : null}
       </section>
       <DividerComponent />
-      {contents && contents?.length > 0 && (
+      {contents && contents?.length > 0 ? (
         <section className="af-data-agent__info-content">
           {contents.map((content: ContentMonoItemIconProps) => (
             <Fragment key={`content--${crypto.randomUUID()}`}>
@@ -64,8 +64,8 @@ export const DataAgentCommon = ({
             </Fragment>
           ))}
         </section>
-      )}
-      {clickContents && clickContents?.length > 0 && (
+      ) : null}
+      {clickContents && clickContents?.length > 0 ? (
         <section className="af-data-agent__info-click-content">
           {clickContents.map((clickContent: ClickItemProps) => (
             <Fragment key={`clickContent--${crypto.randomUUID()}`}>
@@ -74,7 +74,7 @@ export const DataAgentCommon = ({
             </Fragment>
           ))}
         </section>
-      )}
+      ) : null}
       {Boolean(texteOrias) && (
         <p className="af-data-agent__text-orias">{texteOrias}</p>
       )}

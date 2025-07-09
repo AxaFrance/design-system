@@ -92,11 +92,11 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           {...otherProps}
         />
 
-        {helper && (
+        {helper ? (
           <span id={idHelp} className="af-form__input-helper">
             {helper}
           </span>
-        )}
+        ) : null}
 
         <ItemMessageComponent
           id={idMessage}

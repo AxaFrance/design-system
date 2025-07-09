@@ -16,9 +16,11 @@ export const HeadingWithSubheadings = ({
 }: HeadingTextProps) => (
   <hgroup className="af-heading__title-container">
     <TitleComponent className="af-heading__title">{title}</TitleComponent>
-    {firstSubtitle && <p className="af-heading__subtitle">{firstSubtitle}</p>}
-    {TitleComponent === "h1" && secondSubtitle && (
+    {firstSubtitle ? (
+      <p className="af-heading__subtitle">{firstSubtitle}</p>
+    ) : null}
+    {TitleComponent === "h1" && secondSubtitle ? (
       <p className="af-heading__subtitle">{secondSubtitle}</p>
-    )}
+    ) : null}
   </hgroup>
 );

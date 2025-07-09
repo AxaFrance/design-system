@@ -39,7 +39,7 @@ export const ClickItem = ({
       {...otherProps}
     >
       <div className="af-click-item__content">
-        {icon && <div className="af-click-item__icon">{icon}</div>}
+        {icon ? <div className="af-click-item__icon">{icon}</div> : null}
         <div className="af-click-item__label">{children}</div>
       </div>
       <div className="af-click-item__action">{actionIcon}</div>

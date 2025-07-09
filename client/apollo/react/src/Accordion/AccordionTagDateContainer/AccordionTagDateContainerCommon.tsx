@@ -31,18 +31,18 @@ export const AccordionTagDateContainerCommon = ({
 
   return (
     <>
-      {tagLabel && (
+      {tagLabel ? (
         <div className="af-accordion__tag-container">
           <TagComponent variant="warning" {...tagProps}>
             {tagLabel}
           </TagComponent>
         </div>
-      )}
-      {dateLabel && (
+      ) : null}
+      {dateLabel ? (
         <time className="af-accordion__date" {...dateProps}>
           {dateLabel}
         </time>
-      )}
+      ) : null}
     </>
   );
 };

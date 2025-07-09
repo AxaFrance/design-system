@@ -117,7 +117,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
         />
 
         <div className="af-form__input-phone-fields">
-          {showSelect && (
+          {showSelect ? (
             <div className="af-form__country-code-wrapper">
               <CountryCodeSelect
                 options={countryCodeOptions}
@@ -127,7 +127,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
                 disabled={disabled}
               />
             </div>
-          )}
+          ) : null}
           <InputTextComponent
             {...otherProps}
             className={componentClassName}
@@ -148,11 +148,11 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
           />
         </div>
 
-        {helper && (
+        {helper ? (
           <span id={idHelp} className="af-form__input-phone-helper">
             {helper}
           </span>
-        )}
+        ) : null}
 
         <ItemMessageComponent
           id={idMessage}

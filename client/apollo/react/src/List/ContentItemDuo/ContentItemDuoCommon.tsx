@@ -45,13 +45,13 @@ export const ContentItemDuo = ({
       ) : (
         <div className="af-content-item-duo__value">{value}</div>
       )}
-      {buttonText && (
+      {buttonText ? (
         <div className="af-content-item-duo__button">
           <ButtonComponent variant="ghost" onClick={onButtonClick}>
             {buttonText}
           </ButtonComponent>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

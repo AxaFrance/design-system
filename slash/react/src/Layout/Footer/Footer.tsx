@@ -42,9 +42,9 @@ export const Footer = forwardRef<
           </a>
         )}
         <div className="af-footer-content">{children}</div>
-        {version && (
+        {version ? (
           <span className="af-footer-version">Version {version}</span>
-        )}
+        ) : null}
       </div>
     </footer>
   ),

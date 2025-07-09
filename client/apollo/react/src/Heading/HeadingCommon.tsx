@@ -32,8 +32,8 @@ export const HeadingCommon = ({
   ...props
 }: HeadingCommonProps) => (
   <div className={classNames("af-heading", className)} {...props}>
-    {tag && level < 3 && <div className="af-heading__label">{tag}</div>}
-    {icon && level === 1 && (
+    {tag && level < 3 ? <div className="af-heading__label">{tag}</div> : null}
+    {icon && level === 1 ? (
       <Icon
         src={icon}
         size="L"
@@ -42,7 +42,7 @@ export const HeadingCommon = ({
         {...iconProps}
         className={classNames("af-heading__icon", iconProps.className)}
       />
-    )}
+    ) : null}
     <HeadingWithSubheadings
       title={title}
       firstSubtitle={firstSubtitle}

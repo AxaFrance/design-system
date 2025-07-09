@@ -33,7 +33,7 @@ export const ContentTabItem = ({
           <span className="af-list-item-label__subtitle">{subtitle}</span>
         )}
       </div>
-      {!value && isMobile && (Boolean(tag) || Boolean(date)) && (
+      {!value && isMobile && (Boolean(tag) || Boolean(date)) ? (
         <div className="af-list-item__additional-data-container">
           {Boolean(tag) && (
             <Tag variant="warning" {...tagProps}>
@@ -42,7 +42,7 @@ export const ContentTabItem = ({
           )}
           {Boolean(date) && <span className="af-list-item__date">{date}</span>}
         </div>
-      )}
+      ) : null}
     </div>
     {(actions.length > 0 ||
       Boolean(tag) ||
