@@ -103,7 +103,11 @@ const PassInput = ({
           }
         />
         {children}
-        <HelpMessage message={helpMessage} isVisible={!message} />
+        <HelpMessage
+          message={helpMessage}
+          isVisible={!message}
+          id={errorUseId}
+        />
       </FieldInput>
     </LegacyField>
   );

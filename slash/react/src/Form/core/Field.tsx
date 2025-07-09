@@ -106,7 +106,7 @@ export const Field = ({
             errorId={errorId}
           />
         ) : (
-          <HelpMessage message={helpMessage} />
+          <HelpMessage message={helpMessage} id={inputId} />
         )}
       </div>
     </div>
