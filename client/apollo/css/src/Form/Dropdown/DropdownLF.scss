@@ -3,13 +3,13 @@
 .af-form__dropdown-input {
   --dropdown-border-radius: var(--default-border-radius);
   --dropdown-border-color: var(--color-gray-700);
-  --dropdown-background: url("@material-symbols/svg-400/outlined/arrow_drop_down.svg")
+  --dropdown-background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%2300008F'/></svg>")
     no-repeat right 1rem center / 1.5rem 1.5rem;
   --dropdown-padding-left-right: 16;
   --dropdown-padding-top-bottom: 12;
 
   &:open {
-    --dropdown-background-open: url("@material-symbols/svg-400/outlined/arrow_drop_up.svg");
+    --dropdown-background-open: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,30 36,30 24,14' fill='%2300008F'/></svg>");
   }
 
   option {
