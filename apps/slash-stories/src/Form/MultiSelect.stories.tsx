@@ -35,7 +35,7 @@ const commonArgs = {
   disabled: false,
   required: true,
   className: "",
-  placeholder: "Select",
+  placeholder: "- Sélectionner -",
 };
 
 export const MultiSelectStory: Story = {
@@ -59,6 +59,7 @@ export const MultiSelectStory: Story = {
   args: {
     ...commonArgs,
     values: selectedValues,
+    menuPortalTarget: document.body,
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -85,7 +86,8 @@ export const MultiSelectOneValueStory: Story = {
   },
   args: {
     ...commonArgs,
-    value: selectedValues[0],
+    value: "",
+    menuPortalTarget: document.body,
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -125,6 +127,9 @@ export const MultiSelectInputStory: StoryObj<
     classModifier: "",
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
+    selectedLimit: 3,
+    selectedLimitLabel: "",
+    menuPortalTarget: document.body,
   },
   argTypes: {
     onChange: { action: "onChange" },
