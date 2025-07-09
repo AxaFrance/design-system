@@ -9,6 +9,7 @@ import {
   type TagVariants,
 } from "@axa-fr/design-system-apollo-react";
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
+import { action } from "@storybook/addon-actions";
 
 const meta: Meta<typeof ClickItem> = {
   title: "Components/List/ClickItem",
@@ -37,6 +38,7 @@ export const ClickItemDefault: StoryObj<ComponentProps<typeof ClickItem>> = {
     state: "default" as ClickItemStates,
     variant: "large" as ClickItemVariants,
     ariaLabelForActionIcon: "Aller à la page de détails",
+    onClick: action("ClickItem has been clicked"),
   },
   argTypes: {
     state: {
@@ -63,9 +65,10 @@ export const ClickItemLargeStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     tagProps: {
       variant: "info" as TagVariants,
     },
-    state: "default" as ClickItemStates,
+    state: "loading",
     variant: "large",
     ariaLabelForActionIcon: "Aller à la page de détails",
+    onClick: action("ClickItem has been clicked"),
   },
   argTypes: {
     state: {
@@ -90,6 +93,7 @@ export const ClickItemMediumStory: StoryObj<ComponentProps<typeof ClickItem>> =
       state: "default" as ClickItemStates,
       variant: "medium" as ClickItemVariants,
       ariaLabelForActionIcon: "Aller à la page de détails",
+      onClick: action("ClickItem has been clicked"),
     },
     argTypes: {
       state: {
@@ -107,6 +111,7 @@ export const ClickItemSmallStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     title: "Titre",
     state: "default" as ClickItemStates,
     variant: "small" as ClickItemVariants,
+    onClick: action("ClickItem has been clicked"),
   },
   argTypes: {
     state: {
@@ -129,6 +134,7 @@ export const ClickItemAgentStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     state: "default" as ClickItemStates,
     variant: "agent" as ClickItemVariants,
     ariaLabelForActionIcon: "Aller à la page de détails",
+    onClick: action("ClickItem has been clicked"),
   },
   argTypes: {
     state: {

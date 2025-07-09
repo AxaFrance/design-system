@@ -1,8 +1,11 @@
 .af-apollo-click-item {
   display: flex;
+  width: 100%;
+  border: none;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: calc(12 / var(--font-size-base) * 1rem);
+  background: none;
   cursor: pointer;
   user-select: none;
 
@@ -15,6 +18,8 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     gap: calc(2 / var(--font-size-base) * 1rem);
   }
 
