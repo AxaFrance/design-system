@@ -22,7 +22,7 @@
     "postcss": "^8.4.44",
     "postcss-cli": "^11.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-normalize": "^10.0.1",
+    "postcss-normalize": "^13.0.1",
     "postcss-preset-env": "^9.5.2",
     "postcss-scss": "^4.0.9"
   },
