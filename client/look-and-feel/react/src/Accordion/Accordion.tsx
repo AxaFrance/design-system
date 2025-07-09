@@ -44,9 +44,9 @@ export const Accordion = ({
     <AccordionCore
       summary={
         <>
-          {isShowingIcon && isMobile && (
+          {isShowingIcon && isMobile ? (
             <div className="af-accordion__icon">{icon}</div>
-          )}
+          ) : null}
           {!isTitleFirst && (
             <AccordionTagDateContainer
               tagLabel={tagLabel}
@@ -56,21 +56,23 @@ export const Accordion = ({
             />
           )}
           <div className="af-accordion__title-container">
-            {isShowingIcon && !isMobile && (
+            {isShowingIcon && !isMobile ? (
               <div className="af-accordion__icon">{icon}</div>
-            )}
+            ) : null}
             <p className="af-accordion__title">{title}</p>
-            {subtitle && <p className="af-accordion__subtitle">{subtitle}</p>}
+            {subtitle ? (
+              <p className="af-accordion__subtitle">{subtitle}</p>
+            ) : null}
           </div>
-          {isTitleFirst && (
+          {isTitleFirst ? (
             <AccordionTagDateContainer
               tagLabel={tagLabel}
               dateLabel={dateLabel}
               tagProps={tagProps}
               dateProps={dateProps}
             />
-          )}
-          {value && <p className="af-accordion__value">{value}</p>}
+          ) : null}
+          {value ? <p className="af-accordion__value">{value}</p> : null}
         </>
       }
       summaryProps={{ className: summaryClassName }}

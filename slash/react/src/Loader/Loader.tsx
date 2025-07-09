@@ -48,7 +48,7 @@ export const Loader = ({
   return (
     <div className={componentClassName}>
       {children}
-      {isLoaderVisible && (
+      {isLoaderVisible ? (
         <div className={`${componentClassName} af-loader-on`}>
           <div
             className="af-spinner"
@@ -61,7 +61,7 @@ export const Loader = ({
             <div className="af-spinner__caption">{message}</div>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

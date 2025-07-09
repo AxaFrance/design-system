@@ -19,12 +19,12 @@ export const TitleWithSubtitles = ({
   return (
     <>
       <HLevel className="af-title__title">{title}</HLevel>
-      {firstSubtitle && (
+      {firstSubtitle ? (
         <span className="af-title__subtitle">{firstSubtitle}</span>
-      )}
-      {secondSubtitle && (
+      ) : null}
+      {secondSubtitle ? (
         <span className="af-title__subtitle">{secondSubtitle}</span>
-      )}
+      ) : null}
     </>
   );
 };

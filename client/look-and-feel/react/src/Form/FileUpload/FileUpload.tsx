@@ -107,12 +107,12 @@ const FileUpload = ({
             aria-invalid={Boolean(globalError)}
             {...otherProps}
           />
-          {dropzoneDescription && (
+          {dropzoneDescription ? (
             <div className="af-form__file-input-dropdown-text">
               <p>{dropzoneDescription}</p>
               <p>ou</p>
             </div>
-          )}
+          ) : null}
           <Button
             variant="tertiary"
             onClick={() => document.getElementById(id)?.click()}
@@ -121,18 +121,20 @@ const FileUpload = ({
             {buttonLabel}
           </Button>
         </div>
-        {globalError && <ItemMessage id={idError} message={globalError} />}
-        {instructions && (
+        {globalError ? (
+          <ItemMessage id={idError} message={globalError} />
+        ) : null}
+        {instructions ? (
           <small className="af-form__file-input-help">{instructions}</small>
-        )}
+        ) : null}
       </div>
-      {files && files.length !== 0 && (
+      {files && files.length !== 0 ? (
         <div className="custom-table-file af-file-table">
-          {filesListLabel && (
+          {filesListLabel ? (
             <div className="af-form__group--label af-form__files-list-label">
               {filesListLabel}
             </div>
-          )}
+          ) : null}
           <ul className="af-form__file-list">
             {files.map(({ id: fileId, name, size, isLoading }) => {
               const effectiveSize = getReadableFileSizeString(size);
@@ -160,31 +162,31 @@ const FileUpload = ({
                       </div>
                     </div>
                     <div className="af-form__file-actions">
-                      {onView && (
+                      {onView ? (
                         <Button
                           aria-label="Visualiser"
                           onClick={() => onView(fileId)}
                           variant="ghost"
                           iconLeft={<Svg src={visibility} />}
                         />
-                      )}
-                      {onDelete && (
+                      ) : null}
+                      {onDelete ? (
                         <Button
                           aria-label="Supprimer"
                           onClick={() => onDelete(fileId)}
                           variant="ghost"
                           iconLeft={<Svg src={close} />}
                         />
-                      )}
+                      ) : null}
                     </div>
                   </div>
-                  {isInError && <ItemMessage message={errorMessage} />}
+                  {isInError ? <ItemMessage message={errorMessage} /> : null}
                 </li>
               );
             })}
           </ul>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

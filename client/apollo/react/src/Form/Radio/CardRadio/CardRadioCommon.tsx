@@ -84,15 +84,15 @@ export const CardRadioCommon = ({
         <p className="af-card-radio__label">
           {label}
           {labelGroup}
-          {(required || isRequired) && <span aria-hidden>*</span>}
+          {required || isRequired ? <span aria-hidden>*</span> : null}
         </p>
 
-        {(description || descriptionGroup) && (
+        {description || descriptionGroup ? (
           <p className="af-card-radio__description">
             {description}
             {descriptionGroup}
           </p>
-        )}
+        ) : null}
       </legend>
       <div
         className={[

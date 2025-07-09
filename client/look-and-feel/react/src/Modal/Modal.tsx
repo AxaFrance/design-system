@@ -55,7 +55,7 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
       />
       <ModalCoreBody>{children}</ModalCoreBody>
       <ModalCoreFooter>
-        {onCancel && cancelTitle && (
+        {cancelTitle ? (
           <Button
             variant="secondary"
             onClick={onCancel}
@@ -63,8 +63,8 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
           >
             {cancelTitle}
           </Button>
-        )}
-        {onSubmit && submitTitle && (
+        ) : null}
+        {onSubmit && submitTitle ? (
           <Button
             variant="primary"
             onClick={onSubmit}
@@ -72,7 +72,7 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
           >
             {submitTitle}
           </Button>
-        )}
+        ) : null}
       </ModalCoreFooter>
     </ModalCore>
   ),

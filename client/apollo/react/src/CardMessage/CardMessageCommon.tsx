@@ -28,7 +28,7 @@ export const CardMessage = ({
 
   return (
     <div {...props} className={componentClassName}>
-      {title && <span className="af-card-message--title">{title}</span>}
+      {title ? <span className="af-card-message--title">{title}</span> : null}
       <span className="af-card-message--text">{text}</span>
     </div>
   );

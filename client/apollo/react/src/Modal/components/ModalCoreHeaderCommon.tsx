@@ -36,7 +36,9 @@ export const ModalCoreHeaderCommon = ({
       aria-label={closeButtonAriaLabel}
     />
     <div className="af-apollo-modal__header-title">
-      {IconComponent && iconProps && <IconComponent size="M" {...iconProps} />}
+      {IconComponent && iconProps ? (
+        <IconComponent size="M" {...iconProps} />
+      ) : null}
       <HeadingComponent level={2} {...headingProps} />
     </div>
   </header>

@@ -57,17 +57,17 @@ export const CardCheckboxCommon = ({
 
   return (
     <fieldset className={componentClassName}>
-      {labelGroup && (
+      {labelGroup ? (
         <legend className="af-card-checkbox__legend">
           <p>
             {labelGroup}
-            {isRequired && <span aria-hidden>&nbsp;*</span>}
+            {isRequired ? <span aria-hidden>&nbsp;*</span> : null}
           </p>
-          {descriptionGroup && (
+          {descriptionGroup ? (
             <p className="af-card-checkbox__description">{descriptionGroup}</p>
-          )}
+          ) : null}
         </legend>
-      )}
+      ) : null}
       <div className="af-card-checkbox__choices">
         <ul className={checkboxGroupClassName}>
           {options.map(({ hasError, ...optionProps }) => (
