@@ -2,10 +2,13 @@ import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
 import "@fontsource/source-sans-pro";
+import { Tag } from "./Tag/Tag";
 
 export { Action } from "./Action/Action";
 export { Alert } from "./Alert/Alert";
-export { Badge } from "./Badge/Badge";
+/** @deprecated Use `Tag` instead. */
+const Badge = Tag;
+export { Badge, Tag };
 export { Button } from "./Button/Button";
 export {
   Checkbox,
