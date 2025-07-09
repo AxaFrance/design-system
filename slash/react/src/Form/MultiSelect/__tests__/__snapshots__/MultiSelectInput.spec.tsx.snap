@@ -335,6 +335,7 @@ exports[`renders MultiSelectInput correctly 1`] = `
       </div>
       <small
         class="af-form__help"
+        id=":r2:"
       >
         Enter the place type
       </small>

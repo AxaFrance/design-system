@@ -58,6 +58,7 @@ exports[`<FileInput> > renders FileInput correctly 1`] = `
       </div>
       <small
         class="af-form__help"
+        id=":r1:"
       />
       <div
         class="custom-table-file af-file-table"

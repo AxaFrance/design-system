@@ -97,7 +97,7 @@ const FileInput = ({
         />
         {children}
       </FieldInput>
-      <HelpMessage message={helpMessage} isVisible={!message} />
+      <HelpMessage message={helpMessage} isVisible={!message} id={errorUseId} />
       <FileTable
         errors={errors}
         values={values}
