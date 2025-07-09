@@ -28,18 +28,20 @@ export const ClickItemContentCommon = ({
       <p className="af-apollo-click-item__title">
         <span>{title}</span>
       </p>
-      {subtitle && <p className="af-apollo-click-item__subtitle">{subtitle}</p>}
-      {textSecondary && (
+      {subtitle ? (
+        <p className="af-apollo-click-item__subtitle">{subtitle}</p>
+      ) : null}
+      {textSecondary ? (
         <p className="af-apollo-click-item__secondary">{textSecondary}</p>
-      )}
-      {textTertiary && (
+      ) : null}
+      {textTertiary ? (
         <p className="af-apollo-click-item__tertiary">{textTertiary}</p>
-      )}
-      {tagLabel && (
+      ) : null}
+      {tagLabel ? (
         <div className="af-apollo-click-item__tag-container">
           <TagComponent {...tagProps}>{tagLabel}</TagComponent>
         </div>
-      )}
+      ) : null}
     </>
   );
 };

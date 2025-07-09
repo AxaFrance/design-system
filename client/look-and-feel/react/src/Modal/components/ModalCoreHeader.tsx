@@ -45,18 +45,18 @@ export const ModalCoreHeader = ({
         onClick={onCancel}
       />
       <div className="af-modal__header-title">
-        {iconTitle && (
+        {iconTitle ? (
           <Svg
             src={iconTitle}
             width={32}
             height={32}
             role="graphics-document"
           />
-        )}
+        ) : null}
         <HLevel className="af-modal__header-title-heading">{title}</HLevel>
-        {subtitle && (
+        {subtitle ? (
           <span className="af-modal__header-title-subtitle">{subtitle}</span>
-        )}
+        ) : null}
       </div>
     </header>
   );

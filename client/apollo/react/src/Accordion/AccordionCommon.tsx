@@ -60,7 +60,7 @@ export const AccordionCommon = ({
       className={componentClassName}
       summary={
         <>
-          {icon && (
+          {icon ? (
             <IconComponent
               role="presentation"
               src={icon}
@@ -68,17 +68,19 @@ export const AccordionCommon = ({
               size="S"
               className="af-accordion__icon"
             />
-          )}
-          {title && <p className="af-accordion__title">{title}</p>}
-          {subtitle && <p className="af-accordion__subtitle">{subtitle}</p>}
+          ) : null}
+          {title ? <p className="af-accordion__title">{title}</p> : null}
+          {subtitle ? (
+            <p className="af-accordion__subtitle">{subtitle}</p>
+          ) : null}
           <AccordionTagDateContainerComponent
             tagLabel={tagLabel}
             dateLabel={dateLabel}
             tagProps={tagProps}
             dateProps={dateProps}
           />
-          {info1 && <p className="af-accordion__info1">{info1}</p>}
-          {info2 && <p className="af-accordion__info2">{info2}</p>}
+          {info1 ? <p className="af-accordion__info1">{info1}</p> : null}
+          {info2 ? <p className="af-accordion__info2">{info2}</p> : null}
         </>
       }
       {...accordionCoreProps}
