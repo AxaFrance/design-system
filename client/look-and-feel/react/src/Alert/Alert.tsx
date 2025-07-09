@@ -66,9 +66,9 @@ export const Alert = ({
         aria-hidden
       />
       <div className="af-alert-client__content">
-        {title && <Heading className="af-alert__title">{title}</Heading>}
+        {title ? <Heading className="af-alert__title">{title}</Heading> : null}
         {children}
-        {action && <div className="af-alert__action">{action}</div>}
+        {action ? <div className="af-alert__action">{action}</div> : null}
       </div>
     </div>
   );
