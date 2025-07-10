@@ -5,101 +5,90 @@
     font-size: var(--input-text-area-font-size);
   }
 
-  @media (width < #{breakpoints.$breakpoint-md}) {
-    .af-item-label .af-item-label__label {
-      font-size: var(--input-text-area-font-size);
-    }
-  }
-}
-
-.af-form__input-textarea {
-  width: 100%;
-  height: calc(var(--input-text-area-height) / var(--font-size-base) * 1rem);
-  min-height: calc(56 / var(--font-size-base) * 1rem);
-  padding: 16px;
-  border: 1px solid var(--input-text-area-border-color);
-  border-radius: var(--input-text-area-border-radius);
-  font: var(--font-family-base);
-  font-size: var(--input-text-area-font-size);
-  line-height: calc(20 / var(--font-size-base) * 1rem);
-  color: var(--input-text-area-color);
-  background-color: var(--input-text-area-background);
-  box-shadow: 0 0 0 1px var(--input-text-area-background);
-  resize: vertical;
-
-  @media (width < #{breakpoints.$breakpoint-sm}) {
-    line-height: 125%;
-    box-shadow: none;
-
-    &:focus {
-      font-size: var(--input-text-area-font-size);
-    }
-  }
-
-  &--error,
-  :not(:placeholder-shown),
-  :focus {
-    font-size: var(--input-text-area-font-size);
-    font-weight: var(--input-text-area-font-weight);
-    color: var(--input-text-area-font-color);
-    box-shadow: 1px solid var(--input-text-area-border-color);
-    outline: none;
-  }
-
-  &--error:hover {
-    font-size: var(--input-text-area-font-size);
-  }
-
-  &:enabled,
-  &:focus,
-  &:active {
-    box-shadow: 0 0 0 1px var(--white);
-    outline: none;
-  }
-
-  &--error:hover,
-  &--error:focus {
-    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
-  }
-
-  &:disabled {
+  .af-form__input-textarea {
+    width: 100%;
+    min-height: calc(56 / var(--font-size-base) * 1rem);
+    padding: 16px;
     border: 1px solid var(--input-text-area-border-color);
-    background: var(--input-text-area-background);
-  }
+    border-radius: var(--input-text-area-border-radius);
+    font: var(--font-family-base);
+    font-size: var(--input-text-area-font-size);
+    line-height: calc(20 / var(--font-size-base) * 1rem);
+    color: var(--input-text-area-color);
+    background-color: var(--input-text-area-background);
+    box-shadow: 0 0 0 1px var(--input-text-area-background);
+    resize: vertical;
 
-  &:not(
-      :placeholder-shown,
-      :focus,
-      :disabled,
-      .af-form__input-textarea--error
-    ) {
-    box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
-  }
+    @media (width < #{breakpoints.$breakpoint-sm}) {
+      line-height: 125%;
+      box-shadow: none;
 
-  &:disabled:not(:placeholder-shown) {
-    border: 1px solid var(--input-text-area-border-color);
-  }
-
-  &:not(.af-form__input-textarea--error):focus,
-  &:not(.af-form__input-textarea--error, :disabled):hover {
-    border: var(--input-text-area-border-size) solid
-      var(--input-text-area-border-color);
-    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
-  }
-
-  @media (width < #{breakpoints.$breakpoint-md}) {
-    &:not(.af-form__input-textarea--error):focus,
-    &:not(.af-form__input-textarea--error, :disabled):hover {
-      font-size: calc(16 / var(--font-size-base) * 1rem);
+      &:focus {
+        font-size: var(--input-text-area-font-size);
+      }
     }
-  }
 
-  &:not(:disabled, &--error) {
-    &:focus,
-    &:hover,
-    &:not(:placeholder-shown, :focus) {
+    &--error,
+    :not(:placeholder-shown),
+    :focus,
+    :hover {
       font-weight: var(--input-text-area-font-weight);
       color: var(--input-text-area-font-color);
+      box-shadow: 1px solid var(--input-text-area-box-shadow-color);
+      outline: none;
+    }
+
+    &:enabled,
+    &:focus,
+    &:active {
+      box-shadow: 0 0 0 1px var(--white);
+      outline: none;
+    }
+
+    &--error:hover,
+    &--error:focus {
+      box-shadow: 0 0 0 1px var(--input-text-area-box-shadow-color);
+    }
+
+    &:disabled {
+      border: 1px solid var(--input-text-area-border-color);
+      background: var(--input-text-area-background);
+    }
+
+    &:not(
+        :placeholder-shown,
+        :focus,
+        :disabled,
+        .af-form__input-textarea--error
+      ) {
+      box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
+    }
+
+    &:disabled:not(:placeholder-shown) {
+      border: 1px solid var(--input-text-area-border-color);
+    }
+
+    &:not(.af-form__input-textarea--error):focus,
+    &:not(.af-form__input-textarea--error, :disabled):hover {
+      border: var(--input-text-area-border-size) solid
+        var(--input-text-area-border-color);
+      box-shadow: 0 0 0 1px var(--input-text-area-border-color);
+    }
+
+    @media (width < #{breakpoints.$breakpoint-md}) {
+      &:not(.af-form__input-textarea--error):focus,
+      &:not(.af-form__input-textarea--error, :disabled):hover {
+        font-size: var(--input-text-area-font-size);
+      }
+    }
+
+    &:not(:disabled, &--error) {
+      &:focus,
+      &:hover,
+      &:not(:placeholder-shown, :focus) {
+        font-weight: var(--input-text-area-font-weight);
+        color: var(--input-text-area-font-color);
+      }
     }
   }
 }

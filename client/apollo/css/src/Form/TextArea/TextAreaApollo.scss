@@ -12,8 +12,19 @@
 
     :focus,
     :hover,
+    :placeholder-shown {
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+
+    :hover,
     :placeholder-shown,
     &:not(:disabled, &--error) {
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+
+    &--error,
+    :focus,
+    :hover {
       --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
     }
   }
@@ -22,7 +33,6 @@
 .af-form__input-textarea {
   --input-text-area-border-radius: var(--radius-8);
   --input-text-area-border-color: var(--axa-blue-65);
-  --input-text-area-height: 148px;
   --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
   --input-text-area-background: var(--white);
   --input-text-area-color: var(--neutral-80);
@@ -31,25 +41,25 @@
     --input-text-area-border-color: var(--axa-red-100);
   }
 
+  &--error:hover {
+    //--input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --input-text-area-box-shadow-color: var(--axa-red-100);
+  }
+
+  &--error:focus {
+    --input-text-area-box-shadow-color: var(--axa-red-100);
+  }
+
   &:not(:placeholder-shown, :focus, :active) {
     --input-text-area-box-shadow: var(--axa-blue-100);
     --input-text-area-font-color: var(--axa-blue-100);
   }
 
-  &--error,
   :not(:placeholder-shown),
   :focus {
     --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
     --input-text-area-font-weight: 400;
-    --input-text-area-font-color: var(--axa-blue-100);
-  }
-
-  &--error:hover {
-    --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
-  }
-
-  &--error:focus {
-    --input-text-area-border-color: var(--axa-red-100);
+    --input-text-area-box-shadow-color: var(--axa-blue-100);
   }
 
   &:disabled {
@@ -69,7 +79,7 @@
 
   &:not(:disabled, &--error) {
     &:not(:placeholder-shown) {
-      --input-text-area-font-color: var(--axa-blue-100) c;
+      --input-text-area-font-color: var(--axa-blue-100);
       --input-text-area-font-weight: 600;
     }
   }
