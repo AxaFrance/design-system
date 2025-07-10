@@ -23,6 +23,8 @@
       line-height: 125%;
       box-shadow: none;
 
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+
       &:focus {
         font-size: var(--input-text-area-font-size);
       }
@@ -73,13 +75,6 @@
       border: var(--input-text-area-border-size) solid
         var(--input-text-area-border-color);
       box-shadow: 0 0 0 1px var(--input-text-area-border-color);
-    }
-
-    @media (width < #{breakpoints.$breakpoint-md}) {
-      &:not(.af-form__input-textarea--error):focus,
-      &:not(.af-form__input-textarea--error, :disabled):hover {
-        font-size: var(--input-text-area-font-size);
-      }
     }
 
     &:not(:disabled, &--error) {

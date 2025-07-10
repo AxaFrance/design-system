@@ -23,10 +23,7 @@
     --input-text-area-border-color: var(--color-red-700);
   }
 
-  &--error:hover {
-    --input-text-area-box-shadow-color: var(--color-red-700);
-  }
-
+  &--error:hover,
   &--error:focus {
     --input-text-area-box-shadow-color: var(--color-red-700);
   }
@@ -44,7 +41,6 @@
 
   &:not(:disabled, &--error) {
     &:not(:placeholder-shown) {
-      --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
       --input-text-area-font-weight: 600;
       --input-text-area-border-color: var(--color-axa);
     }
@@ -54,9 +50,5 @@
     &:focus {
       --input-text-area-box-shadow: none;
     }
-  }
-
-  @media (width < #{breakpoints.$breakpoint-md}) {
-    --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
 }
