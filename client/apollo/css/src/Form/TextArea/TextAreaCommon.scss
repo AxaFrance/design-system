@@ -20,6 +20,7 @@
   border: 1px solid var(--input-text-area-border-color);
   border-radius: var(--input-text-area-border-radius);
   font: var(--font-family-base);
+  font-size: var(--input-text-area-font-size);
   line-height: calc(20 / var(--font-size-base) * 1rem);
   color: var(--input-text-area-color);
   background-color: var(--input-text-area-background);
@@ -38,7 +39,6 @@
   &--error,
   :not(:placeholder-shown),
   :focus {
-    border: 1px solid var(--input-text-area-border-color);
     font-size: var(--input-text-area-font-size);
     font-weight: var(--input-text-area-font-weight);
     color: var(--input-text-area-font-color);
@@ -59,7 +59,7 @@
 
   &--error:hover,
   &--error:focus {
-    border: 2px solid var(--input-text-area-border-color);
+    box-shadow: 0 0 0 1px var(--input-text-area-border-color);
   }
 
   &:disabled {
@@ -84,7 +84,6 @@
   &:not(.af-form__input-textarea--error, :disabled):hover {
     border: var(--input-text-area-border-size) solid
       var(--input-text-area-border-color);
-    font-size: 16px;
     box-shadow: 0 0 0 1px var(--input-text-area-border-color);
   }
 
