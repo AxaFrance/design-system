@@ -1,0 +1,59 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/blocks';
+ 
+import * as CardDataStories from './CardData.stories';
+ 
+<Meta of={CardDataStories} />
+ 
+# CardData
+ 
+The component `CardData` is used to display a card with a title, an icon, and content. It can also include a subtitle and additional content on the right side of the header.
+
+## Import
+
+```tsx
+import { CardData } from "@axa-fr/design-system-slash-react";
+```
+
+## Utilisation
+
+```tsx
+import Svg from "@/assets/ton_svg.svg";
+
+export const Component = () => (
+  <CardData title="Titre de la carte" icon={Svg}>
+    <p>Contenu de la carte</p>
+  </CardData>
+);
+```
+
+### CardData
+
+<Canvas of={CardDataStories.CardDataPrimary} />
+
+### CardData with subTitle
+
+<Canvas of={CardDataStories.CardDataPrimaryAvecSousTitre} />
+
+### CardData with contentRight
+
+<Canvas of={CardDataStories.CardDataWithContentRight} />
+
+## Arguments
+
+The `title` property corresponds to the main title of the card.
+
+The `subTitle` property allows you to add a subtitle just below the title.
+
+The `description` property allows you to add a description below the title and subtitle.
+
+The `icon` property allows you to specify the icon to display. You can put the string value of the svg.
+
+The `contentFitAllSize` property allows you to specify whether the content should take up all available space and have no margin around it. By default, this property is set to `false`.
+
+The `variant` property allows you to change the background color of the icon. Variants are `error`, `warning`, `information`, `success`, `default`, `dark`, `gray`, and `purple`.
+
+The `contentRight` property allows you to add content to the right of the header.
+
+The `withDivider` property allows you to add a divider below the header. By default, this property is set to `true`.
+
+<ArgTypes story={CardDataStories.CardDataPrimaryAvecSousTitre} />
