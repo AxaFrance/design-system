@@ -1,8 +1,20 @@
+@use "../../common/breakpoints" as breakpoints;
 @use "TextAreaCommon";
 
+.af-form__input-container {
+  .af-item-label .af-item-label__label {
+    --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+
+  @media (width < #{breakpoints.$breakpoint-sm}) {
+    .af-item-label .af-item-label__label {
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+}
+
 .af-form__input-textarea {
-  --input-text-area-max-width: 384px;
-  --input-text-area-height: 142px;
+  --input-text-area-height: calc(142 / var(--font-size-base) * 1rem);
   --input-text-area-border-radius: var(--default-border-radius);
   --input-text-area-border-color: var(--color-gray-700);
   --input-text-area-background: var(--color-white);
@@ -40,5 +52,9 @@
     &:focus {
       --input-text-area-box-shadow: none;
     }
+  }
+
+  @media (width < #{breakpoints.$breakpoint-md}) {
+    --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
 }
