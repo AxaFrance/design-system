@@ -17,23 +17,20 @@ Use the following format for commit messages:
 - refactor
 - test
 
-### Allowed Scopes
-
-- slash: for any change in the Slash design system (`slash/` folder or its stories in `apps/slash-stories/`)
-- look&feel: for any change in the Look & Feel design system (`look-and-feel/` folder or its stories in `apps/look-and-feel-stories/`)
-- apollo: for any change in the Apollo design system (`apollo/` folder or its stories in `apps/apollo-stories/`)
-- design-system: for global or cross-cutting changes, or changes affecting multiple design systems
-
-> **Note:** The scopes `deps`, `deps-dev`, and `release` are reserved and must NOT be used.
-
 ## Scope Selection Rules (apply in this order)
 
-- **1.** If a file in the apollo folder ends with `Common`, use both `apollo` and `look&feel` as scopes, even if the name does not contain `LF`.
-- **2.** If a file name contains `LF`, use only `look&feel` as scope, even if it is in the apollo folder (except for files ending with `Common`, which must use both `apollo` and `look&feel`).
-- **3.** If a file name contains `Apollo`, use only `apollo` as scope, even if it is in another folder (except for files ending with `Common`).
-- **4.** For all other files, use the scope corresponding to their design system folder (`slash`, `look&feel`, `apollo`) or `design-system` for global changes.
+Follow these rules in order, from top to bottom, to determine the correct scope(s) for your commit message:
 
-When generating a commit message, always analyze all staged or changed files. For each file, determine its relevant scope(s) according to the rules above. The final commit message MUST include the union of all relevant scopes, separated by a comma and sorted alphabetically. Example: `feat(look&feel,apollo): ...` if both a look&feel and an apollo file are staged.
+1. If a file in the apollo folder ends with `Common`, use both `apollo` and `look&feel` as scopes, even if the name does not contain `LF`.
+2. If a file name contains `LF`, use only the `look&feel` scope, even if the file is in the apollo folder (except for files ending with `Common`, which must use both `apollo` and `look&feel`).
+3. If a file name contains `Apollo`, use only the `apollo` scope, even if the file is in another folder (except for files ending with `Common`).
+4. For all other files:
+   - Use the `slash` scope for any change in the Slash design system (`slash/` or `apps/slash-stories/`).
+   - Use the `look&feel` scope for any change in the Look & Feel design system (`look-and-feel/` or `apps/look-and-feel-stories/`).
+   - Use the `apollo` scope for any change in the Apollo design system (`apollo/` or `apps/apollo-stories/`).
+   - Use the `design-system` scope for global, cross-cutting, or multi-design-system changes.
+5. The scopes `deps`, `deps-dev`, and `release` are reserved and MUST NOT be used.
+6. For each commit, analyze all staged or changed files. The commit message MUST include the union of all relevant scopes, separated by a comma and sorted alphabetically. Example: `feat(look&feel,apollo): ...` if both a look&feel and an apollo file are staged together.
 
 ## Guidelines
 
@@ -49,7 +46,7 @@ fix(look&feel,apollo): fix styles and icons
 chore(design-system): update dependencies
 ```
 
-### Special Cases
+### Examples for Special Cases
 
 ```text
 ComponentLF.tsx in apollo: feat(look&feel): ...
