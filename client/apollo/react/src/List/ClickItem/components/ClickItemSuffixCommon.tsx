@@ -27,13 +27,19 @@ export const ClickItemSuffixCommon = ({
       <SpinnerComponent size={32} />
     ) : (
       <div className="af-click-icon">
-        <IconComponent src={trailingClickIcon} role="presentation" />
+        <IconComponent
+          src={trailingClickIcon}
+          role="presentation"
+          variant={state === "disabled" ? "disabled" : "primary"}
+        />
       </div>
     );
   }
+
   if (variant === "small") {
     return <IconComponent src={keyboardArrowRight} role="presentation" />;
   }
+
   if (variant === "agent") {
     return (
       <div className="af-click-icon">

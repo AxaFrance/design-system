@@ -3,7 +3,7 @@
   width: 100%;
   border: none;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   gap: calc(12 / var(--font-size-base) * 1rem);
   background: none;
   cursor: pointer;
@@ -36,7 +36,7 @@
   }
 
   &__secondary {
-    font-size: var(--click-item-secondary-color);
+    font-size: var(--click-item-secondary-font-size);
     font-weight: 400;
     color: var(--click-item-secondary-color);
   }
@@ -53,8 +53,12 @@
 
   &--small {
     .af-apollo-click-item {
-      &__title span:hover {
-        border-bottom: 1px var(--click-item-title-border-color) solid;
+      &__title {
+        font-weight: var(--click-item-small-title-font-weight);
+
+        span:hover {
+          border-bottom: 1px var(--click-item-title-border-color) solid;
+        }
       }
 
       &__subtitle,
@@ -88,6 +92,8 @@
 
   &--large.af-apollo-click-item--disabled,
   &--medium.af-apollo-click-item--disabled {
+    pointer-events: none;
+
     .af-apollo-click-item {
       &__title,
       &__subtitle,

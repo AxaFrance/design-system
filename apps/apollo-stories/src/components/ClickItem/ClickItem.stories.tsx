@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import type { ComponentProps } from "react";
 import {
   ClickItem,
@@ -9,7 +10,6 @@ import {
   type TagVariants,
 } from "@axa-fr/design-system-apollo-react";
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
-import { action } from "@storybook/addon-actions";
 
 const meta: Meta<typeof ClickItem> = {
   title: "Components/List/ClickItem",
@@ -113,12 +113,6 @@ export const ClickItemSmallStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     variant: "small" as ClickItemVariants,
     onClick: action("ClickItem has been clicked"),
   },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
-  },
 };
 
 export const ClickItemAgentStory: StoryObj<ComponentProps<typeof ClickItem>> = {
@@ -135,11 +129,5 @@ export const ClickItemAgentStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     variant: "agent" as ClickItemVariants,
     ariaLabelForActionIcon: "Aller à la page de détails",
     onClick: action("ClickItem has been clicked"),
-  },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
   },
 };

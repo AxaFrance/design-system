@@ -34,17 +34,15 @@ export const ClickItemCommon = ({
   ClickItemSuffixComponent,
   ClickItemPrefixComponent,
 }: ClickItemPropsCommon) => {
-  const isClickable = state !== "loading" && variant !== "medium";
-
-  const clickableProps = isClickable && {
+  const clickableProps = onClick && {
     "aria-label": ariaLabelForActionIcon,
     onClick,
-    disabled: state === "disabled",
+    disabled: state === "disabled" || state === "loading",
   };
 
   return (
     <ClickItemWrapper
-      isClickable={isClickable}
+      isClickable={Boolean(onClick)}
       className={[
         "af-apollo-click-item",
         `af-apollo-click-item--${variant}`,
