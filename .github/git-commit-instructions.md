@@ -19,35 +19,40 @@ Use the following format for commit messages:
 
 ### Allowed Scopes
 
-- slash: commits related to the Slash design system (UI kit, components, styles, etc. in the `slash/` folder)
-- look&feel: commits related to the Look & Feel design system (UI kit, components, styles, etc. in the `look-and-feel/` folder)
-- apollo: commits related to the Apollo design system (UI kit, components, styles, etc. in the `apollo/` folder)
-- design-system: commits that affect the overall monorepo, shared tooling, documentation, or general project configuration (not specific to a single design system)
-
-If the commit affects two or more design systems, separate scopes with a comma, e.g.:
-
-```text
-fix(look&feel,apollo): fix styles and icons
-```
-
-For general project changes, use the `design-system` scope.
+- slash: for any change in the Slash design system (`slash/` folder or its stories in `apps/slash-stories/`)
+- look&feel: for any change in the Look & Feel design system (`look-and-feel/` folder or its stories in `apps/look-and-feel-stories/`)
+- apollo: for any change in the Apollo design system (`apollo/` folder or its stories in `apps/apollo-stories/`)
+- design-system: for global or cross-cutting changes, or changes affecting multiple design systems
 
 > **Note:** The scopes `deps`, `deps-dev`, and `release` are reserved and must NOT be used.
 
-### Guidelines
+## Scope Selection Rules (apply in this order)
+
+- **1.** If a file in the apollo folder ends with `Common`, use both `apollo` and `look&feel` as scopes, even if the name does not contain `LF`.
+- **2.** If a file name contains `LF`, use only `look&feel` as scope, even if it is in the apollo folder (except for files ending with `Common`, which must use both `apollo` and `look&feel`).
+- **3.** If a file name contains `Apollo`, use only `apollo` as scope, even if it is in another folder (except for files ending with `Common`).
+- **4.** For all other files, use the scope corresponding to their design system folder (`slash`, `look&feel`, `apollo`) or `design-system` for global changes.
+
+When generating a commit message, always analyze all staged or changed files. For each file, determine its relevant scope(s) according to the rules above. The final commit message MUST include the union of all relevant scopes, separated by a comma and sorted alphabetically. Example: `feat(look&feel,apollo): ...` if both a look&feel and an apollo file are staged.
+
+## Guidelines
 
 - Use imperative mood: "Add feature" not "Added feature".
 - Keep subject line under 70 characters if possible.
-- For breaking changes, add a `!` after the scope (e.g., `feat(slash)!: ...`) and include a `BREAKING CHANGE:` section in the footer describing the breaking change.
 - Do not add a body or footer unless necessary.
 
-### Valid Examples
+## Valid Examples
 
 ```text
 feat(slash): add new component
 fix(look&feel,apollo): fix styles and icons
 chore(design-system): update dependencies
-feat(slash)!: remove classModifiers
+```
 
-BREAKING CHANGE: classModifiers prop has been removed from all components.
+### Special Cases
+
+```text
+ComponentLF.tsx in apollo: feat(look&feel): ...
+ComponentCommon.tsx in apollo: feat(look&feel,apollo): ...
+ComponentApollo.tsx and ComponentLF.tsx: feat(look&feel,apollo): ...
 ```
