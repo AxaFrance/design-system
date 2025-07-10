@@ -22,30 +22,27 @@ export const ClickItemSuffixCommon = ({
   IconComponent,
   SpinnerComponent,
 }: ClickItemSuffixCommonProps) => {
-  if (variant === "large") {
-    return state === "loading" ? (
-      <SpinnerComponent size={32} />
-    ) : (
-      <div className="af-click-icon">
-        <IconComponent
-          src={trailingClickIcon}
-          role="presentation"
-          variant={state === "disabled" ? "disabled" : "primary"}
-        />
-      </div>
-    );
+  if (variant === "large" && state === "loading") {
+    return <SpinnerComponent size={32} />;
   }
 
   if (variant === "small") {
     return <IconComponent src={keyboardArrowRight} role="presentation" />;
   }
 
-  if (variant === "agent") {
+  if (variant === "large" || variant === "agent") {
     return (
       <div className="af-click-icon">
-        <IconComponent src={trailingClickIcon} role="presentation" />
+        <IconComponent
+          src={trailingClickIcon}
+          role="presentation"
+          variant={
+            variant === "large" && state === "disabled" ? "disabled" : "primary"
+          }
+        />
       </div>
     );
   }
+
   return null;
 };
