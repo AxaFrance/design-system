@@ -100,7 +100,14 @@ import { Table } from "@axa-fr/design-system-slash-react";
 const MyPaginatedTable = () => (
   <>
     <Table>{/* Table content */}</Table>
-    <Paging currentPage={3} numberItems={10} numberPages={9} mode="default" />
+    <Paging
+      currentPage={3}
+      numberItems={10}
+      numberPages={9}
+      mode="default"
+      elementsLabel="éléments"
+      selectPageSizeLabel="Nombre d'éléments à afficher"
+    />
   </>
 );
 ```
