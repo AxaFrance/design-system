@@ -11,6 +11,7 @@
   &:focus-within,
   &:has(:checked) {
     --checkbox-border-color: var(--axa-blue-100);
+    --checkbox-outline-width: 1px;
   }
 
   &:has(:checked) {
@@ -19,5 +20,11 @@
 
   &:not(:has(:checked)):has([aria-invalid="true"]) {
     --checkbox-border-color: var(--red-alert-100);
+    --checkbox-outline-width: 1px;
+
+    &:hover,
+    &:focus-within {
+      --checkbox-outline-width: 2px;
+    }
   }
 }
