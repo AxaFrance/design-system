@@ -48,7 +48,8 @@ $color-focus: #36f !default; // prefer use $color-blue-3
 
 // others
 
-$default-border-radius: 4px !default;
+$radius-4: 4px !default;
+$default-border-radius: $radius-4 !default;
 $radius-8: 8px !default;
 $radius-12: 12px;
 $radius-32: 32px;

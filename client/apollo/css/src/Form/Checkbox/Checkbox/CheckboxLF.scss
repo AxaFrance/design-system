@@ -6,12 +6,13 @@
   --checkbox-outline-color: var(--checkbox-border-color);
   --checkbox-check-fill: var(--color-white);
   --checkbox-background-color: var(--color-white);
-  --checkbox-border-width: 2px;
+  --checkbox-outline-width: 1px;
 
   &:hover,
   &:focus-within,
   &:has(:checked) {
     --checkbox-border-color: var(--color-axa);
+    --checkbox-outline-width: 2px;
   }
 
   &:has(:checked) {

@@ -104,6 +104,5 @@ const CardRadioCommon = ({
     </fieldset>
   );
 };
-
 CardRadioCommon.displayName = "CardRadioCommon";
 export { CardRadioCommon };

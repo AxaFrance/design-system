@@ -60,9 +60,10 @@
 
     .af-card-checkbox-label {
       --card-checkbox-border-color: var(--color-gray-700);
-      --card-checkbox-border-radius: calc(6 / var(--font-size-base) * 1rem);
+      --card-checkbox-border-radius: var(--radius-4);
       --card-checkbox-outline-color: var(--card-checkbox-border-color);
       --card-checkbox-background-color: var(--color-white);
+      --card-checkbox-content-gap: 4;
 
       .af-card-checkbox-content-description > span {
         &:first-child {
