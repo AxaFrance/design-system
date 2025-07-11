@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { expect, it } from "vitest";
 import { axe } from "jest-axe";
+import userEvent from "@testing-library/user-event";
 import { ClickItem } from "../ClickItemApollo";
 
 describe("ClickItem Component", () => {
@@ -21,21 +22,25 @@ describe("ClickItem Component", () => {
       state: "default",
       tagVariant: "info",
       expectedTagClass: "af-tag af-tag--info",
+      noOfClick: 1,
     },
     {
       state: "default",
       tagVariant: "warning",
       expectedTagClass: "af-tag af-tag--warning",
+      noOfClick: 1,
     },
     {
       state: "disabled",
       tagVariant: "info",
       expectedTagClass: "af-tag af-tag--neutral",
+      noOfClick: 0,
     },
     {
       state: "disabled",
       tagVariant: "warning",
       expectedTagClass: "af-tag af-tag--neutral",
+      noOfClick: 0,
     },
   ];
 
@@ -61,12 +66,14 @@ describe("ClickItem Component", () => {
 
     it.each(stateAndTagTestCases)(
       "renders ClickItem variant: Large with state $state and tag variant $tagVariant",
-      ({ state, tagVariant, expectedTagClass }) => {
+      async ({ state, tagVariant, expectedTagClass, noOfClick }) => {
+        const handleClick = vi.fn();
         const { container } = render(
           <ClickItem
             {...defaultProps}
             state={state}
             tagProps={{ variant: tagVariant }}
+            onClick={handleClick}
           />,
         );
 
@@ -79,12 +86,16 @@ describe("ClickItem Component", () => {
         expect(screen.getByText("Texte Tag").parentElement).toHaveClass(
           expectedTagClass,
         );
+        await userEvent.click(screen.getByText("Titre"));
+        expect(handleClick).toHaveBeenCalledTimes(noOfClick);
       },
     );
 
-    it("renders ClickItem component with state loading", () => {
+    it("renders ClickItem component with state loading", async () => {
+      const handleClick = vi.fn();
+
       const { container } = render(
-        <ClickItem {...defaultProps} state="loading" />,
+        <ClickItem {...defaultProps} state="loading" onClick={handleClick} />,
       );
 
       expect(container.firstChild).toHaveClass("af-apollo-click-item");
@@ -95,11 +106,32 @@ describe("ClickItem Component", () => {
         "af-tag af-tag--info",
       );
       expect(screen.getByLabelText("Chargement en cours")).toBeInTheDocument();
+      await userEvent.click(screen.getByText("Titre"));
+      expect(handleClick).toHaveBeenCalledTimes(0);
     });
 
-    it("shouldn't have an accessibility violation", async () => {
+    it("shouldn't have an accessibility violation when enabled", async () => {
       const { container } = render(
-        <ClickItem {...defaultProps} variant="large" />,
+        <ClickItem {...defaultProps} variant="large" onClick={vi.fn()} />,
+      );
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it("shouldn't have an accessibility violation when disabled", async () => {
+      const { container } = render(
+        <ClickItem
+          {...defaultProps}
+          variant="large"
+          state="disabled"
+          onClick={vi.fn()}
+        />,
+      );
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it("shouldn't have an accessibility violation when use as display", async () => {
+      const { container } = render(
+        <ClickItem {...defaultProps} variant="large" state="disabled" />,
       );
       expect(await axe(container)).toHaveNoViolations();
     });
@@ -146,9 +178,21 @@ describe("ClickItem Component", () => {
       },
     );
 
-    it("shouldn't have an accessibility violation", async () => {
+    it("shouldn't have an accessibility violation when enabled", async () => {
       const { container } = render(
-        <ClickItem {...defaultProps} variant="medium" />,
+        <ClickItem {...defaultProps} variant="medium" onClick={vi.fn()} />,
+      );
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it("shouldn't have an accessibility violation when disabled", async () => {
+      const { container } = render(
+        <ClickItem
+          {...defaultProps}
+          variant="medium"
+          state="disabled"
+          onClick={vi.fn()}
+        />,
       );
       expect(await axe(container)).toHaveNoViolations();
     });

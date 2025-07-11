@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import type { ComponentProps } from "react";
 import {
   ClickItem,
@@ -37,6 +38,7 @@ export const ClickItemDefault: StoryObj<ComponentProps<typeof ClickItem>> = {
     state: "default" as ClickItemStates,
     variant: "large" as ClickItemVariants,
     ariaLabelForActionIcon: "Aller à la page de détails",
+    onClick: action("ClickItem has been clicked"),
   },
   argTypes: {
     state: {
@@ -63,9 +65,10 @@ export const ClickItemLargeStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     tagProps: {
       variant: "info" as TagVariants,
     },
-    state: "default" as ClickItemStates,
+    state: "loading",
     variant: "large",
     ariaLabelForActionIcon: "Aller à la page de détails",
+    onClick: action("ClickItem has been clicked"),
   },
   argTypes: {
     state: {
@@ -90,6 +93,7 @@ export const ClickItemMediumStory: StoryObj<ComponentProps<typeof ClickItem>> =
       state: "default" as ClickItemStates,
       variant: "medium" as ClickItemVariants,
       ariaLabelForActionIcon: "Aller à la page de détails",
+      onClick: action("ClickItem has been clicked"),
     },
     argTypes: {
       state: {
@@ -107,12 +111,7 @@ export const ClickItemSmallStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     title: "Titre",
     state: "default" as ClickItemStates,
     variant: "small" as ClickItemVariants,
-  },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
+    onClick: action("ClickItem has been clicked"),
   },
 };
 
@@ -129,11 +128,6 @@ export const ClickItemAgentStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     state: "default" as ClickItemStates,
     variant: "agent" as ClickItemVariants,
     ariaLabelForActionIcon: "Aller à la page de détails",
-  },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
+    onClick: action("ClickItem has been clicked"),
   },
 };
