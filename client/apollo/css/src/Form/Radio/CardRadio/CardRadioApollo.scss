@@ -129,15 +129,13 @@
       --radio-outline-width: 1px;
     }
 
-    .af-card-radio-content {
-      .af-card-radio-content-description {
-        & > span:first-child {
-          --card-radio-title-text-color: var(--neutral-80);
-        }
+    .af-card-radio-content .af-card-radio-content-description {
+      & > span:first-child {
+        --card-radio-title-text-color: var(--neutral-80);
+      }
 
-        & > span:not(:first-child) {
-          --card-radio-subtitle-text-color: var(--neutral-80);
-        }
+      & > span:not(:first-child) {
+        --card-radio-subtitle-text-color: var(--neutral-80);
       }
     }
   }
