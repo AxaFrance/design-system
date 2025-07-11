@@ -4,7 +4,6 @@
   min-width: calc(460rem / 16);
   padding: 0;
   border: 1px solid var(--gray40);
-  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
 
   &::backdrop {
     background: color-mix(in srgb, var(--black) 80%, transparent);
@@ -31,7 +30,7 @@
     display: flex;
     padding: 0;
     padding: calc(12rem / 16) 1rem calc(12rem / 16) calc(24rem / 16);
-    border-bottom: 1px solid var(--gray20);
+    border-bottom: 1px solid var(--gray40);
     align-items: center;
     justify-content: space-between;
     font-size: calc(22rem / 16);
@@ -66,7 +65,7 @@
 
   &__footer {
     display: flex;
-    padding: calc(20rem / 16) calc(24rem / 16) calc(28rem / 16);
+    padding: calc(16rem / 16) calc(24rem / 16) calc(24rem / 16);
     align-items: center;
     justify-content: space-between;
 
