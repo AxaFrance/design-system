@@ -8,7 +8,7 @@
   .af-form__input-textarea {
     width: 100%;
     min-height: calc(56 / var(--font-size-base) * 1rem);
-    padding: 16px;
+    padding: calc(16 / var(--font-size-base) * 1rem);
     border: 1px solid var(--input-text-area-border-color);
     border-radius: var(--input-text-area-border-radius);
     font: var(--font-family-base);
