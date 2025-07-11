@@ -91,8 +91,10 @@ export const Header = ({
               {children}
             </NavBar>
           </div>
-          {rightItem && <div className="af-header-right-item">{rightItem}</div>}
-          {burgerMenuItems && burgerMenuItems.length > 0 && (
+          {rightItem ? (
+            <div className="af-header-right-item">{rightItem}</div>
+          ) : null}
+          {burgerMenuItems && burgerMenuItems.length > 0 ? (
             <Button
               aria-label="Ouvrir le menu"
               onClick={toggleMenu}
@@ -102,7 +104,7 @@ export const Header = ({
                 <Svg src={menu} aria-hidden="true" />
               </IconBg>
             </Button>
-          )}
+          ) : null}
         </div>
       </header>
       <PreviousLink handleClick={resetActiveLink}>{previousLink}</PreviousLink>
