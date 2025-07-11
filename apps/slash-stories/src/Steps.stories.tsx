@@ -80,3 +80,47 @@ export const NewStepsStory: Story = {
     className: "",
   },
 };
+
+export const StepsValidated: Story = {
+  render: ({ classModifier, className, mode, onClick }: StoryProps) => (
+    <Steps classModifier={classModifier} className={className}>
+      <Step
+        id="id1"
+        href="/etape1"
+        onClick={onClick}
+        number="1"
+        mode={mode}
+        title="Previous step"
+      />
+      <Step
+        id="id2"
+        href="/etape2"
+        number="2"
+        onClick={onClick}
+        title="Previous step"
+        mode="link"
+      />
+      <Step
+        id="id3"
+        href="/etape3"
+        number="3"
+        onClick={onClick}
+        title="Previous step"
+        mode="link"
+      />
+      <Step
+        id="id3"
+        href="/etape3"
+        number="3"
+        onClick={onClick}
+        title="Previous step"
+        mode="link"
+      />
+      <Step id="id5" title="Final step" mode="active" />
+    </Steps>
+  ),
+  args: {
+    classModifier: "",
+    className: "",
+  },
+};
