@@ -25,6 +25,7 @@ export {
   type ClickItemVariants,
 } from "./List/ClickItem/ClickItemLF";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
+export { DataAgent } from "./DataAgent/DataAgentLF";
 export { Divider } from "./Divider/DividerLF";
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
 export {
