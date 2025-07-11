@@ -21,7 +21,7 @@ const Steps = ({
 
   return (
     <div className={componentClassName}>
-      <ol className="af-steps-list">{children}</ol>
+      <ul className="af-steps-list">{children}</ul>
     </div>
   );
 };
