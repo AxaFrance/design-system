@@ -11,10 +11,6 @@
     --input-text-area-border-color: var(--axa-red-100);
   }
 
-  &:not(:placeholder-shown, :focus, :active) {
-    --input-text-area-box-shadow: var(--axa-blue-100);
-  }
-
   &--error:hover,
   &--error:focus {
     --input-text-area-border-color: var(--axa-red-100);
