@@ -3,11 +3,12 @@
 .af-radio {
   --radio-border-color: var(--color-gray-700);
   --radio-outline-color: var(--radio-border-color);
-  --radio-border-width: 2px;
+  --radio-outline-width: 1px;
+  --radio-background-color: var(--color-white);
 
   &__icons {
-    --radio-width: calc(12 / var(--font-size-base) * 1rem);
-    --radio-background-color: var(--color-axa);
+    --radio-width: calc(10 / var(--font-size-base) * 1rem);
+    --radio-icon-background-color: var(--color-axa);
   }
 
   &:hover,
@@ -16,7 +17,16 @@
     --radio-border-color: var(--color-axa);
   }
 
-  &:has([aria-invalid="true"]) {
+  &:hover,
+  &:focus-within {
+    --radio-outline-width: 2px;
+  }
+
+  &:has(:checked) {
+    --radio-outline-width: 1px;
+  }
+
+  &:not(:has(:checked)):has([aria-invalid="true"]) {
     --radio-border-color: var(--color-red-700);
   }
 }

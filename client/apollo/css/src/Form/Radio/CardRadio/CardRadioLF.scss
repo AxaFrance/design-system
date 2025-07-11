@@ -119,9 +119,20 @@
   &__container[aria-invalid="true"] .af-card-radio-label {
     --card-radio-border-color: var(--color-red-700);
 
+    &:hover,
+    &:focus-within,
+    &:focus {
+      --card-radio-outline-width: 2px;
+
+      & > span:first-child {
+        --radio-outline-width: 2px;
+      }
+    }
+
     /* stylelint-disable-next-line no-descending-specificity */
     & > span:first-child {
       --radio-border-color: var(--color-red-700);
+      --radio-outline-width: 1px;
     }
   }
 }

@@ -64,7 +64,6 @@
           .af-card-checkbox-content-description {
             flex-direction: var(--card-checkbox-flex-direction);
             align-items: var(--card-checkbox-align-item);
-            gap: calc(4 / var(--font-size-base) * 1rem);
             text-align: left;
           }
         }
@@ -95,10 +94,6 @@
           .af-card-checkbox-content-description {
             flex-direction: var(--card-checkbox-flex-direction);
             align-items: var(--card-checkbox-align-item);
-            gap: calc(
-              var(--card-checkbox-description-gap, 8) / var(--font-size-base) *
-                1rem
-            );
             text-align: center;
           }
         }
@@ -106,14 +101,24 @@
     }
 
     .af-card-checkbox-label {
+      --card-checkbox-border-width: 1px;
+
       display: flex;
       padding: 1rem;
-      border: 1px solid var(--card-checkbox-border-color);
+      border: var(--card-checkbox-border-width) solid
+        var(--card-checkbox-border-color);
       border-radius: var(--card-checkbox-border-radius);
       flex: 1;
       align-self: stretch;
-      outline: var(--card-checkbox-outline-width, 0) solid
+      outline: var(--card-checkbox-outline-width) solid
         var(--card-checkbox-outline-color);
+      outline-offset: calc(
+        -1 *
+          calc(
+            var(--card-checkbox-border-width) +
+              var(--card-checkbox-outline-width)
+          )
+      );
       cursor: pointer;
 
       .af-card-checkbox-content {
@@ -124,6 +129,10 @@
         .af-card-checkbox-content-description {
           display: flex;
           justify-content: center;
+          gap: calc(
+            var(--card-checkbox-content-description-gap, 4) /
+              var(--font-size-base) * 1rem
+          );
           font-size: 1rem;
           line-height: calc(20 / var(--font-size-base) * 1rem);
 

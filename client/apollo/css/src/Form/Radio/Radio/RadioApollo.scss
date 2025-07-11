@@ -3,19 +3,27 @@
 .af-radio {
   --radio-border-color: var(--axa-blue-65);
   --radio-outline-color: var(--radio-border-color);
+  --radio-background-color: var(--white);
 
   &__icons {
     --radio-width: calc(12 / var(--font-size-base) * 1rem);
-    --radio-background-color: var(--axa-blue-100);
+    --radio-icon-background-color: var(--axa-blue-100);
   }
 
   &:hover,
   &:focus-within,
   &:has(:checked) {
     --radio-border-color: var(--axa-blue-100);
+    --radio-outline-width: 1px;
   }
 
-  &:has([aria-invalid="true"]) {
+  &:not(:has(:checked)):has([aria-invalid="true"]) {
     --radio-border-color: var(--red-alert-100);
+    --radio-outline-width: 1px;
+
+    &:hover,
+    &:focus-within {
+      --radio-outline-width: 2px;
+    }
   }
 }

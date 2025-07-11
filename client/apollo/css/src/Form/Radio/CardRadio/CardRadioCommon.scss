@@ -49,7 +49,6 @@
     &-description {
       display: flex;
       flex-direction: column;
-      gap: calc(4 / var(--font-size-base) * 1rem);
       line-height: calc(20 / var(--font-size-base) * 1rem);
 
       & > span:first-child {
@@ -144,9 +143,12 @@
     line-height: calc(20 / var(--font-size-base) * 1rem);
 
     .af-card-radio-label {
+      --card-radio-border-width: 1px;
+
       display: flex;
       padding: 1rem;
-      border: 1px solid var(--card-radio-border-color);
+      border: var(--card-radio-border-width) solid
+        var(--card-radio-border-color);
       border-radius: var(--card-radio-border-radius);
       flex: 1;
       align-self: stretch;
@@ -154,6 +156,10 @@
       background-color: var(--card-radio-background-color);
       outline: var(--card-radio-outline-width, 0) solid
         var(--card-radio-outline-color);
+      outline-offset: calc(
+        -1 *
+          calc(var(--card-radio-border-width) + var(--card-radio-outline-width))
+      );
       cursor: pointer;
 
       &:hover,
@@ -162,10 +168,6 @@
       &:has(input:checked),
       &:has(input[aria-invalid="true"]) {
         --card-radio-outline-width: 1px;
-
-        & > span:first-child {
-          outline: 1px solid var(--radio-outline-color);
-        }
       }
 
       .af-card-radio-content {
@@ -176,13 +178,17 @@
         .af-card-radio-content-description {
           display: flex;
           justify-content: center;
+          gap: calc(
+            var(--card-radio-content-description-gap, 4) /
+              var(--font-size-base) * 1rem
+          );
           font-size: 1rem;
           line-height: calc(20 / var(--font-size-base) * 1rem);
 
           & > span:first-child {
             font-size: calc(18 / var(--font-size-base) * 1rem);
             font-weight: 400;
-            color: var(--card-radio-label-text-color);
+            color: var(--card-radio-title-text-color);
 
             @media (width < #{breakpoints.$breakpoint-sm}) {
               font-size: calc(16 / var(--font-size-base) * 1rem);
@@ -193,7 +199,7 @@
           & > span:not(:first-child) {
             font-size: calc(16 / var(--font-size-base) * 1rem);
             font-weight: 400;
-            color: var(--card-radio-label-text-color);
+            color: var(--card-radio-subtitle-text-color);
 
             @media (width < #{breakpoints.$breakpoint-sm}) {
               font-size: calc(14 / var(--font-size-base) * 1rem);
@@ -211,7 +217,8 @@
 
     &:hover,
     &:focus-visible,
-    &:focus-within {
+    &:focus-within,
+    &:focus {
       --card-radio-outline-width: 2px;
     }
   }

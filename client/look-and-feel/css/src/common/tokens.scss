@@ -120,7 +120,8 @@
 
   /* BORDERS *******************************************************************/
 
-  --default-border-radius: #{common.$default-border-radius};
+  --radius-4: #{common.$radius-4}; // prefer use this token instead of default-border-radius
+  --default-border-radius: var(--radius-4);
   --radius-8: #{common.$radius-8};
   --radius-12: #{common.$radius-12};
   --radius-32: #{common.$radius-32};
