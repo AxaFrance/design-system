@@ -7,7 +7,7 @@ import type {
   ContentMonoItemPictureProps,
   ContentMonoItemStickProps,
 } from "../../ContentItemMono/ContentItemMonoCommon";
-import { ClickItemProps } from "../../List/ClickItem/types";
+import type { ClickItemProps } from "../../List/ClickItem/types";
 
 type Max3<T> = [T] | [T, T] | [T, T, T];
 

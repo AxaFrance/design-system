@@ -56,7 +56,7 @@ export const DataAgentCommon = ({
       </section>
       <DividerComponent />
       {contents && contents?.length > 0 && (
-        <section className="af-apollo-data-agent__info">
+        <section className="af-apollo-data-agent__info-content">
           {contents.map((content: ContentMonoItemIconProps) => (
             <Fragment key={`content--${crypto.randomUUID()}`}>
               <ContentItemMonoComponent {...content} type="icon" />
@@ -66,7 +66,7 @@ export const DataAgentCommon = ({
         </section>
       )}
       {clickContents && clickContents?.length > 0 && (
-        <section className="af-apollo-data-agent__info">
+        <section className="af-apollo-data-agent__info-click-content">
           {clickContents.map((clickContent: ClickItemProps) => (
             <Fragment key={`clickContent--${crypto.randomUUID()}`}>
               <ClickItemComponent {...clickContent} variant="small" />
@@ -76,7 +76,7 @@ export const DataAgentCommon = ({
         </section>
       )}
       {Boolean(texteOrias) && (
-        <p className="af-apollo-data-agent__texte-orias">{texteOrias}</p>
+        <p className="af-apollo-data-agent__text-orias">{texteOrias}</p>
       )}
     </>
   );

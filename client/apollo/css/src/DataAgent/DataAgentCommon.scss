@@ -12,17 +12,19 @@
     gap: calc(16 / var(--font-size-base) * 1rem);
   }
 
-  &__info {
+  &__info-content,
+  &__info-click-content {
     display: flex;
     flex-direction: column;
     gap: calc(12 / var(--font-size-base) * 1rem);
   }
 
-  &__texte-orias {
+  &__text-orias {
+    margin: 0 0 calc(16 / var(--font-size-base) * 1rem);
     padding: 0 calc(16 / var(--font-size-base) * 1rem);
-    font-size: var(--data-agent-orias-font-size);
+    font-size: var(--data-agent-text-orias-font-size);
     font-weight: 400;
     line-height: 125%;
-    color: var(--data-agent-orias-font-color);
+    color: var(--data-agent-text-orias-font-color);
   }
 }
