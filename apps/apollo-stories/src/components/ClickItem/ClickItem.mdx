@@ -11,7 +11,7 @@ import callIcon from "@material-symbols/svg-400/outlined/call-fill.svg";
 
 const MyComponent = () => (
   <>
-    <ClickItem icon={callIcon} state="default" style="small" title="Titre" />
+    <ClickItem icon={callIcon} state="default" variant="small" title="Titre" />
   </>
 );
 ```
@@ -20,7 +20,7 @@ const MyComponent = () => (
 
 The Click Item component is an interactive element designed to trigger an action when selected. It can be used alone or integrated into lists, menus, or tables to enable fast and intuitive interactions.
 
-The component comes in four variants: large, medium, small, and agent. The entire element is clickable.
+The component comes in four variants: large, medium, small, and agent and the entire element is clickable.
 
 If it's used within a parent component that already handles click events (i.e., the parent itself has an `onClick` handler), you **shouldn't provide an `onClick` function as a prop to this component**.
 In such cases, the component will automatically behave as a **display-only element**, allowing the parent to manage all click interactions.

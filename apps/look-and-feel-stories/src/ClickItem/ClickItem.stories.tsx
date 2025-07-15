@@ -18,64 +18,51 @@ const meta: Meta<typeof ClickItem> = {
 
 export default meta;
 
+const baseArgs = {
+  icon: accountBalanceWallet,
+  title: "Titre",
+  subtitle: "Sous-titre",
+  tagLabel: "Texte",
+  tagProps: { variant: "info" as TagVariants },
+  state: "default" as ClickItemStates,
+  ariaLabelForActionIcon: "Aller à la page de détails",
+  onClick: action("ClickItem has been clicked"),
+};
+
+const defaultArgTypes = {
+  state: {
+    options: Object.values(clickItemStates),
+    control: { type: "select" },
+  },
+  variant: {
+    options: Object.values(clickItemVariants),
+    control: { type: "select" },
+  },
+};
+
 export const ClickItemDefault: StoryObj<ComponentProps<typeof ClickItem>> = {
   name: "ClickItem",
   render: ({ ...args }) => <ClickItem {...args} />,
   args: {
-    icon: accountBalanceWallet,
-    basePictureProps: {
-      src: "https://picsum.photos/48",
-      alt: "random image",
-    },
-    title: "Titre",
-    subtitle: "Sous-titre",
+    ...baseArgs,
+    basePictureProps: { src: "https://picsum.photos/48", alt: "random image" },
     textSecondary: "Texte secondaire",
     textTertiary: "Texte tertiaire",
-    tagLabel: "Texte",
-    tagProps: {
-      variant: "info" as TagVariants,
-    },
-    state: "default" as ClickItemStates,
     variant: "large" as ClickItemVariants,
-    ariaLabelForActionIcon: "Aller à la page de détails",
-    onClick: action("ClickItem has been clicked"),
   },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
-    variant: {
-      options: Object.values(clickItemVariants),
-      control: { type: "select" },
-    },
-  },
+  argTypes: defaultArgTypes,
 };
 
 export const ClickItemLargeStory: StoryObj<ComponentProps<typeof ClickItem>> = {
   name: "ClickItem Large",
   render: ({ ...args }) => <ClickItem {...args} />,
   args: {
-    icon: accountBalanceWallet,
-    title: "Titre",
-    subtitle: "Sous-titre",
+    ...baseArgs,
     textSecondary: "Texte secondaire",
     textTertiary: "Texte tertiaire",
-    tagLabel: "Texte",
-    tagProps: {
-      variant: "info" as TagVariants,
-    },
-    state: "default" as ClickItemStates,
     variant: "large",
-    ariaLabelForActionIcon: "Aller à la page de détails",
-    onClick: action("ClickItem has been clicked"),
   },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
-  },
+  argTypes: defaultArgTypes,
 };
 
 export const ClickItemMediumStory: StoryObj<ComponentProps<typeof ClickItem>> =
@@ -83,24 +70,10 @@ export const ClickItemMediumStory: StoryObj<ComponentProps<typeof ClickItem>> =
     name: "ClickItem Medium",
     render: ({ ...args }) => <ClickItem {...args} />,
     args: {
-      icon: accountBalanceWallet,
-      title: "Titre",
-      subtitle: "Sous-titre",
-      tagLabel: "Texte",
-      tagProps: {
-        variant: "info" as TagVariants,
-      },
-      state: "default" as ClickItemStates,
-      variant: "medium" as ClickItemVariants,
-      ariaLabelForActionIcon: "Aller à la page de détails",
-      onClick: action("ClickItem has been clicked"),
+      ...baseArgs,
+      variant: "medium",
     },
-    argTypes: {
-      state: {
-        options: Object.values(clickItemStates),
-        control: { type: "select" },
-      },
-    },
+    argTypes: { state: defaultArgTypes.state },
   };
 
 export const ClickItemSmallStory: StoryObj<ComponentProps<typeof ClickItem>> = {
@@ -112,12 +85,7 @@ export const ClickItemSmallStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     state: "default" as ClickItemStates,
     variant: "small" as ClickItemVariants,
   },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
-  },
+  argTypes: { state: defaultArgTypes.state },
 };
 
 export const ClickItemAgentStory: StoryObj<ComponentProps<typeof ClickItem>> = {
@@ -135,10 +103,5 @@ export const ClickItemAgentStory: StoryObj<ComponentProps<typeof ClickItem>> = {
     ariaLabelForActionIcon: "Aller à la page de détails",
     onClick: action("ClickItem has been clicked"),
   },
-  argTypes: {
-    state: {
-      options: Object.values(clickItemStates),
-      control: { type: "select" },
-    },
-  },
+  argTypes: { state: defaultArgTypes.state },
 };

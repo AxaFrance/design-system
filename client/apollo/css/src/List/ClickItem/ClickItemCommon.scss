@@ -24,27 +24,35 @@
   }
 
   &__title {
+    font-family: var(--font-family-base);
     font-size: var(--click-item-title-font-size);
-    font-weight: 600;
+    font-weight: var(--click-item-title-font-weight);
+    line-height: 125%;
     color: var(--click-item-title-color);
   }
 
   &__subtitle {
+    font-family: var(--font-family-base);
     font-size: var(--click-item-subtitle-font-size);
     font-weight: 400;
+    line-height: 125%;
     color: var(--click-item-subtitle-color);
   }
 
   &__secondary {
-    font-size: var(--click-item-secondary-font-size);
+    font-family: var(--font-family-base);
+    font-size: var(--click-item-text-secondary-font-size);
     font-weight: 400;
-    color: var(--click-item-secondary-color);
+    line-height: 125%;
+    color: var(--click-item-text-secondary-color);
   }
 
   &__tertiary {
-    font-size: var(--click-item-tertiary-font-size);
+    font-family: var(--font-family-base);
+    font-size: var(--click-item-text-tertiary-font-size);
     font-weight: 400;
-    color: var(--click-item-tertiary-color);
+    line-height: 125%;
+    color: var(--click-item-text-tertiary-color);
   }
 
   &__tag-container {
@@ -54,8 +62,6 @@
   &--small {
     .af-apollo-click-item {
       &__title {
-        font-weight: var(--click-item-small-title-font-weight);
-
         span:hover {
           border-bottom: 1px var(--click-item-title-border-color) solid;
         }
@@ -92,8 +98,6 @@
 
   &--large.af-apollo-click-item--disabled,
   &--medium.af-apollo-click-item--disabled {
-    pointer-events: none;
-
     .af-apollo-click-item {
       &__title,
       &__subtitle,
@@ -101,6 +105,10 @@
       &__tertiary {
         color: var(--neutral-80);
       }
+    }
+
+    .af-click-icon {
+      pointer-events: none;
     }
   }
 }

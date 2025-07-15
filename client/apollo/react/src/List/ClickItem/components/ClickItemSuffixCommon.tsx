@@ -30,19 +30,15 @@ export const ClickItemSuffixCommon = ({
     return <IconComponent src={keyboardArrowRight} role="presentation" />;
   }
 
-  if (variant === "large" || variant === "agent") {
-    return (
-      <div className="af-click-icon">
-        <IconComponent
-          src={trailingClickIcon}
-          role="presentation"
-          variant={
-            variant === "large" && state === "disabled" ? "disabled" : "primary"
-          }
-        />
-      </div>
-    );
-  }
-
-  return null;
+  return (
+    <div className="af-click-icon">
+      <IconComponent
+        src={trailingClickIcon}
+        role="presentation"
+        variant={
+          variant === "large" && state === "disabled" ? "disabled" : "primary"
+        }
+      />
+    </div>
+  );
 };

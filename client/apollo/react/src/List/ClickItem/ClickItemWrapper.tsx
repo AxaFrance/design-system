@@ -1,10 +1,14 @@
 import { HTMLAttributes } from "react";
 
+type ClickItemWrapperProps = HTMLAttributes<HTMLElement> & {
+  isClickable?: boolean;
+};
+
 export const ClickItemWrapper = ({
   isClickable = true,
   children,
   ...props
-}: HTMLAttributes<HTMLElement> & { isClickable?: boolean }) => {
+}: ClickItemWrapperProps) => {
   if (isClickable) {
     return (
       <button type="button" {...props}>
