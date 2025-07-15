@@ -1,4 +1,4 @@
-import { DataAgentCommon, DataAgentProps } from "./DataAgentCommon";
+import { DataAgentCommon, type DataAgentProps } from "./DataAgentCommon";
 import { ClickItem } from "../List/ClickItem/ClickItemApollo";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoApollo";
 import { Divider } from "../Divider/DividerApollo";

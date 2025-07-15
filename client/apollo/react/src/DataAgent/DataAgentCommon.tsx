@@ -15,7 +15,6 @@ type Max3<T> = [T] | [T, T] | [T, T, T];
 
 export type DataAgentProps = {
   className?: string;
-  classModifier?: string;
   agentProps: ContentMonoItemPictureProps;
   agentContractProps?: ContentMonoItemStickProps;
   contents?: Max3<ContentMonoItemIconProps>;
@@ -31,7 +30,6 @@ type DataAgentCommonProps = DataAgentProps & {
 
 export const DataAgentCommon = ({
   className,
-  classModifier,
   agentProps,
   agentContractProps,
   contents,
@@ -42,64 +40,59 @@ export const DataAgentCommon = ({
   ClickItemComponent,
 }: DataAgentCommonProps) => {
   const componentClassName = useMemo(
-    () =>
-      getComponentClassName("af-apollo-data-agent", className, classModifier),
-    [className, classModifier],
+    () => getComponentClassName("af-apollo-data-agent", className),
+    [className],
   );
 
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
 
-  const renderForDefaultLayout = () => {
-    return (
-      <>
-        <section className="af-apollo-data-agent__intro">
-          <ContentItemMonoComponent {...agentProps} type="picture" />
-          {agentContractProps && (
-            <ContentItemMonoComponent {...agentContractProps} type="stick" />
-          )}
-        </section>
-        <DividerComponent />
-        {contents && contents?.length > 0 && (
-          <section className="af-apollo-data-agent__info">
-            {contents.map((content: ContentMonoItemIconProps) => (
-              <Fragment key={`content--${crypto.randomUUID()}`}>
-                <ContentItemMonoComponent {...content} type="icon" />
-                <DividerComponent className="af-apollo-data-agent__line" />
-              </Fragment>
-            ))}
-          </section>
-        )}
-        {clickContents && clickContents?.length > 0 && (
-          <section className="af-apollo-data-agent__info">
-            {clickContents.map((clickContent: ClickItemProps) => (
-              <Fragment key={`clickContent--${crypto.randomUUID()}`}>
-                <ClickItemComponent {...clickContent} variant="small" />
-                <DividerComponent className="af-apollo-data-agent__line" />
-              </Fragment>
-            ))}
-          </section>
-        )}
-        {texteOrias ? (
-          <p className="af-apollo-data-agent__texte-orias">{texteOrias}</p>
-        ) : null}
-      </>
-    );
-  };
-
-  const renderForMobileLayout = () => {
-    return (
+  const renderForDefaultLayout = () => (
+    <>
       <section className="af-apollo-data-agent__intro">
-        <ClickItemComponent
-          {...agentProps}
-          basePictureProps={{
-            src: agentProps.picture,
-            alt: agentProps.title,
-          }}
-          variant="agent"
-        />
+        <ContentItemMonoComponent {...agentProps} type="picture" />
+        {agentContractProps && (
+          <ContentItemMonoComponent {...agentContractProps} type="stick" />
+        )}
       </section>
-    );
-  };
+      <DividerComponent />
+      {contents && contents?.length > 0 && (
+        <section className="af-apollo-data-agent__info">
+          {contents.map((content: ContentMonoItemIconProps) => (
+            <Fragment key={`content--${crypto.randomUUID()}`}>
+              <ContentItemMonoComponent {...content} type="icon" />
+              <DividerComponent className="af-apollo-data-agent__line" />
+            </Fragment>
+          ))}
+        </section>
+      )}
+      {clickContents && clickContents?.length > 0 && (
+        <section className="af-apollo-data-agent__info">
+          {clickContents.map((clickContent: ClickItemProps) => (
+            <Fragment key={`clickContent--${crypto.randomUUID()}`}>
+              <ClickItemComponent {...clickContent} variant="small" />
+              <DividerComponent className="af-apollo-data-agent__line" />
+            </Fragment>
+          ))}
+        </section>
+      )}
+      {Boolean(texteOrias) && (
+        <p className="af-apollo-data-agent__texte-orias">{texteOrias}</p>
+      )}
+    </>
+  );
+
+  const renderForMobileLayout = () => (
+    <section className="af-apollo-data-agent__intro">
+      <ClickItemComponent
+        {...agentProps}
+        basePictureProps={{
+          src: agentProps.picture,
+          alt: agentProps.title,
+        }}
+        variant="agent"
+      />
+    </section>
+  );
 
   return (
     <section className={componentClassName}>
