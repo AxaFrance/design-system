@@ -8,8 +8,7 @@ import type {
   ContentMonoItemStickProps,
 } from "../../ContentItemMono/ContentItemMonoCommon";
 import type { ClickItemProps } from "../../List/ClickItem/types";
-
-type Max3<T> = [T] | [T, T] | [T, T, T];
+import type { TupleMax3 } from "../DataAgentCommon";
 
 describe("DataAgentCommon", () => {
   const agentProps: ContentMonoItemPictureProps = {
@@ -37,7 +36,7 @@ describe("DataAgentCommon", () => {
     ).toBeInTheDocument();
   };
 
-  const contents: Max3<ContentMonoItemIconProps> = [
+  const contents: TupleMax3<ContentMonoItemIconProps> = [
     {
       type: "icon",
       icon: "accountBalance",
@@ -70,7 +69,7 @@ describe("DataAgentCommon", () => {
     ).toBeInTheDocument();
   };
 
-  const clickContents: Max3<ClickItemProps> = [
+  const clickContents: TupleMax3<ClickItemProps> = [
     {
       variant: "small",
       icon: "accountBalance",

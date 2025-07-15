@@ -11,14 +11,14 @@ import type {
 } from "../ContentItemMono/ContentItemMonoCommon";
 import type { ClickItemProps } from "../List/ClickItem/types";
 
-type Max3<T> = [T] | [T, T] | [T, T, T];
+export type TupleMax3<T> = [T] | [T, T] | [T, T, T];
 
 export type DataAgentProps = {
   className?: string;
   agentProps: ContentMonoItemPictureProps;
   agentContractProps?: ContentMonoItemStickProps;
-  contents?: Max3<ContentMonoItemIconProps>;
-  clickContents?: Max3<ClickItemProps>;
+  contents?: TupleMax3<ContentMonoItemIconProps>;
+  clickContents?: TupleMax3<ClickItemProps>;
   texteOrias?: string;
 };
 
@@ -40,7 +40,7 @@ export const DataAgentCommon = ({
   ClickItemComponent,
 }: DataAgentCommonProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName("af-apollo-data-agent", className),
+    () => getComponentClassName("af-data-agent", className),
     [className],
   );
 
@@ -48,7 +48,7 @@ export const DataAgentCommon = ({
 
   const renderForDefaultLayout = () => (
     <>
-      <section className="af-apollo-data-agent__intro">
+      <section className="af-data-agent__intro">
         <ContentItemMonoComponent {...agentProps} type="picture" />
         {agentContractProps && (
           <ContentItemMonoComponent {...agentContractProps} type="stick" />
@@ -56,33 +56,33 @@ export const DataAgentCommon = ({
       </section>
       <DividerComponent />
       {contents && contents?.length > 0 && (
-        <section className="af-apollo-data-agent__info-content">
+        <section className="af-data-agent__info-content">
           {contents.map((content: ContentMonoItemIconProps) => (
             <Fragment key={`content--${crypto.randomUUID()}`}>
               <ContentItemMonoComponent {...content} type="icon" />
-              <DividerComponent className="af-apollo-data-agent__line" />
+              <DividerComponent className="af-data-agent__line" />
             </Fragment>
           ))}
         </section>
       )}
       {clickContents && clickContents?.length > 0 && (
-        <section className="af-apollo-data-agent__info-click-content">
+        <section className="af-data-agent__info-click-content">
           {clickContents.map((clickContent: ClickItemProps) => (
             <Fragment key={`clickContent--${crypto.randomUUID()}`}>
               <ClickItemComponent {...clickContent} variant="small" />
-              <DividerComponent className="af-apollo-data-agent__line" />
+              <DividerComponent className="af-data-agent__line" />
             </Fragment>
           ))}
         </section>
       )}
       {Boolean(texteOrias) && (
-        <p className="af-apollo-data-agent__text-orias">{texteOrias}</p>
+        <p className="af-data-agent__text-orias">{texteOrias}</p>
       )}
     </>
   );
 
   const renderForMobileLayout = () => (
-    <section className="af-apollo-data-agent__intro">
+    <section className="af-data-agent__intro">
       <ClickItemComponent
         {...agentProps}
         basePictureProps={{

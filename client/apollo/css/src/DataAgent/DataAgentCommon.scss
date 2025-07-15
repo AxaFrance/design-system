@@ -1,7 +1,7 @@
-.af-apollo-data-agent {
+.af-data-agent {
   display: flex;
   border: 1px solid var(--data-agent-border-color);
-  border-radius: var(--data-agent-border-radius);
+  border-radius: var(--radius-8);
   flex-direction: column;
   gap: calc(12 / var(--font-size-base) * 1rem);
 
@@ -17,6 +17,12 @@
     display: flex;
     flex-direction: column;
     gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  &__info-click-content {
+    .af-apollo-data-agent__line:last-of-type {
+      display: none;
+    }
   }
 
   &__text-orias {

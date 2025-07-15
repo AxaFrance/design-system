@@ -1,20 +1,12 @@
 @use "./DataAgentCommon";
 
-.af-apollo-data-agent {
-  --data-agent-border-radius: var(--radius-8);
+.af-data-agent {
   --data-agent-border-color: var(--color-blue-400);
   --data-agent-text-orias-font-color: var(--color-gray-700);
   --data-agent-text-orias-font-size: calc(16 / var(--font-size-base) * 1rem);
 
-  &__info-content {
-    padding: 0 calc(16 / var(--font-size-base) * 1rem);
-  }
-
+  &__info-content,
   &__info-click-content {
     padding: 0 calc(16 / var(--font-size-base) * 1rem);
-
-    .af-apollo-data-agent__line:last-of-type {
-      display: none;
-    }
   }
 }
