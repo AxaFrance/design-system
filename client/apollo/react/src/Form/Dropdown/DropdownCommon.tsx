@@ -47,7 +47,6 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
     },
     inputRef,
   ) => {
-    const idLabel = useId();
     const idMessage = useId();
     let inputId = useId();
     inputId = id || inputId;
@@ -68,7 +67,6 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
           onSideButtonClick={onSideButtonClick}
           required={required}
           inputId={inputId}
-          idLabel={idLabel}
         />
         <select
           className={classname}

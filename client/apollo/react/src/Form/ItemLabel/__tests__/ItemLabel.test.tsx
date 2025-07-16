@@ -13,7 +13,6 @@ const defaultProps = {
   buttonLabel: "ButtonLabel",
   required: false,
   inputId: "input-id",
-  idLabel: "label-id",
   idDescription: "description-id",
   sideButtonLabel: "Side Button",
   onSideButtonClick: handleClickSideButton,
@@ -32,7 +31,6 @@ describe("ItemLabelCommon", () => {
 
     vi.clearAllMocks();
 
-    expect(labelElement).toHaveAttribute("id", "label-id");
     expect(labelElement).toHaveAttribute("for", "input-id");
     expect(descriptionElement).toHaveAttribute("id");
     expect(sideButton).toBeInTheDocument();
