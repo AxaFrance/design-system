@@ -57,6 +57,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
 
     let inputId = useId();
     inputId = otherProps.id || inputId;
+    const idHelp = useId();
     const idError = useId();
 
     return (
@@ -75,11 +76,16 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           id={inputId}
           className={componentClassName}
           ref={inputRef}
-          aria-errormessage={idError}
+          aria-errormessage={error ? idError : undefined}
+          aria-describedby={helper ? idHelp : undefined}
           aria-invalid={Boolean(error)}
           {...otherProps}
         />
-        {helper && <span className="af-form__input-helper">{helper}</span>}
+        {helper && (
+          <span id={idHelp} className="af-form__input-helper">
+            {helper}
+          </span>
+        )}
         <ItemMessageComponent id={idError} message={error} />
       </div>
     );
