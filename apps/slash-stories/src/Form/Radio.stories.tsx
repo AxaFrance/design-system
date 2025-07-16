@@ -1,7 +1,8 @@
 import { Radio, RadioModes } from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, useState } from "react";
+import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
 
 const meta: Meta<typeof Radio> = {
   component: Radio,
@@ -17,11 +18,25 @@ type RadioProps = Omit<ComponentPropsWithRef<typeof Radio>, "classModifier"> & {
 };
 export const RadioStory: StoryObj<RadioProps> = {
   name: "Radio",
-  render: ({ classModifier, ...args }) => (
-    <Radio classModifier={classModifier?.join(" ")} {...args} />
-  ),
+  render: ({ classModifier, value: initValue, onChange, ...args }) => {
+    const [value, setValue] = useState(initValue);
+    return (
+      <Radio
+        {...args}
+        classModifier={classModifier?.join(" ")}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          if (onChange) {
+            onChange(e);
+          }
+        }}
+      />
+    );
+  },
   args: {
     mode: RadioModes.classic,
+    orientation: undefined,
     value: "",
     classModifier: [],
     isChecked: false,
@@ -29,15 +44,19 @@ export const RadioStory: StoryObj<RadioProps> = {
     disabled: false,
     name: "placeName",
     options: [
-      { label: "Paris", value: "paris" },
-      { label: "Lille", value: "lille" },
-      { label: "Madrid", value: "madrid" },
+      { label: "Paris", value: "paris", icon: villaIcon },
+      { label: "Lille", value: "lille", icon: villaIcon },
+      { label: "Madrid", value: "madrid", icon: villaIcon, disabled: true },
     ],
   },
   argTypes: {
     onChange: { action: "onChange" },
     mode: {
-      options: [RadioModes.classic, RadioModes.default, RadioModes.inline],
+      options: Object.values(RadioModes),
+      control: { type: "inline-radio" },
+    },
+    orientation: {
+      options: ["horizontal", "vertical"],
       control: { type: "inline-radio" },
     },
     value: {
@@ -48,7 +67,7 @@ export const RadioStory: StoryObj<RadioProps> = {
       control: { type: "inline-radio" },
     },
     classModifier: {
-      options: ["disabled", "required"],
+      options: ["disabled", "required", "error"],
       control: { type: "inline-check" },
     },
   },

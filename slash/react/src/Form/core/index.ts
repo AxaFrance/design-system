@@ -20,9 +20,11 @@ export type Option = {
   id?: string;
   icon?: ReactNode;
   label: ReactNode;
+  /**
+   * @deprecated Ne semble pas utilisé
+   */
   description?: ReactNode;
   value: string;
-  disabled?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 type BaseFormEvent = {
