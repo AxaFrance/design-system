@@ -1,14 +1,18 @@
-import { useId, type ComponentType, type MouseEventHandler } from "react";
+import {
+  useId,
+  type ComponentType,
+  type MouseEventHandler,
+  type ReactNode,
+} from "react";
 import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 import { Svg } from "../../Svg/Svg";
 import type { ButtonProps } from "../../Button/ButtonCommon";
 
 type ItemLabelProps = {
-  label?: string;
+  label?: ReactNode;
   description?: string;
   required?: boolean;
   inputId: string;
-  idLabel: string;
   sideButtonLabel?: string;
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
   buttonLabel?: string;
@@ -21,7 +25,6 @@ export const ItemLabel = ({
   description,
   required,
   inputId,
-  idLabel,
   sideButtonLabel,
   onSideButtonClick,
   buttonLabel,
@@ -37,11 +40,10 @@ export const ItemLabel = ({
       {label && (
         <label
           htmlFor={inputId}
-          id={idLabel}
           aria-describedby={description ? idDescription : undefined}
           className="af-item-label__label"
         >
-          {label} {required && <span aria-hidden="true"> *</span>}
+          {label} {required && <span aria-hidden> *</span>}
         </label>
       )}
 
