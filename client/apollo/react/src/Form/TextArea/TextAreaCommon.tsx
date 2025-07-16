@@ -58,7 +58,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
     let inputId = useId();
     inputId = otherProps.id || inputId;
     const idError = useId();
-    const idLabel = useId();
 
     return (
       <div className="af-form__input-container">
@@ -71,7 +70,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           onSideButtonClick={onSideButtonClick}
           required={required}
           inputId={inputId}
-          idLabel={idLabel}
         />
         <textarea
           id={inputId}

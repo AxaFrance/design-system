@@ -1,4 +1,5 @@
 import {
+  type ChangeEvent,
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
@@ -79,7 +80,6 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
     let inputId = useId();
     inputId = otherProps.id || inputId;
     const idMessage = useId();
-    const idLabel = useId();
     const idHelp = useId();
 
     /**
@@ -91,7 +91,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
      *   - Formate par groupes de 2 chiffres séparés par un espace (ex: 06 12 34 56 78).
      * - Applique le masquage à la valeur saisie et transmet le résultat via onChangeInput.
      */
-    const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeNumber = (e: ChangeEvent<HTMLInputElement>) => {
       const input = e.target;
       const rawValue = input.value;
       const maskedValue = mask(rawValue);
@@ -110,7 +110,6 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
           onSideButtonClick={onSideButtonClick}
           required={required}
           inputId={inputId}
-          idLabel={idLabel}
         />
 
         <div className="af-form__input-phone-fields">
@@ -137,7 +136,6 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
             value={otherProps.value}
             onChange={handleChangeNumber}
             disabled={disabled}
-            idLabel={idLabel}
             idMessage={idMessage}
             idHelp={idHelp}
             id={inputId}
