@@ -1,3 +1,5 @@
+@use "../common/breakpoints" as breakpoints;
+
 .af-data-agent {
   display: flex;
   padding-bottom: calc(16 / var(--font-size-base) * 1rem);
@@ -38,5 +40,15 @@
     font-weight: 400;
     line-height: 125%;
     color: var(--data-agent-text-orias-font-color);
+  }
+}
+
+@media (width < #{breakpoints.$breakpoint-sm}) {
+  .af-data-agent {
+    padding-bottom: 0;
+
+    &__intro {
+      padding: calc(16 / var(--font-size-base) * 1rem);
+    }
   }
 }
