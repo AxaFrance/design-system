@@ -82,6 +82,10 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
     const idMessage = useId();
     const idHelp = useId();
 
+    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
+      Boolean,
+    ) as string[];
+
     /**
      * Gère le changement de valeur du champ numéro de téléphone.
      * - Récupère une fonction de masquage (mask) depuis les props ou utilise une version par défaut.
@@ -136,8 +140,10 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
             value={otherProps.value}
             onChange={handleChangeNumber}
             disabled={disabled}
-            idMessage={idMessage}
-            idHelp={idHelp}
+            idMessage={error ? idMessage : undefined}
+            idHelp={
+              ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+            }
             id={inputId}
           />
         </div>
