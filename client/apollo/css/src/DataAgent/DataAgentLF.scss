@@ -5,8 +5,8 @@
   --data-agent-text-orias-font-color: var(--color-gray-700);
   --data-agent-text-orias-font-size: calc(16 / var(--font-size-base) * 1rem);
 
-  &__info-content,
-  &__info-click-content {
-    padding: 0 calc(16 / var(--font-size-base) * 1rem);
+  &__info-content {
+    padding: calc(12 / var(--font-size-base) * 1rem)
+      calc(16 / var(--font-size-base) * 1rem) 0;
   }
 }

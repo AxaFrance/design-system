@@ -1,13 +1,15 @@
 .af-data-agent {
   display: flex;
+  padding-bottom: calc(16 / var(--font-size-base) * 1rem);
   border: 1px solid var(--data-agent-border-color);
   border-radius: var(--radius-8);
   flex-direction: column;
-  gap: calc(12 / var(--font-size-base) * 1rem);
 
   &__intro {
     display: flex;
-    padding: calc(16 / var(--font-size-base) * 1rem);
+    padding: calc(16 / var(--font-size-base) * 1rem)
+      calc(16 / var(--font-size-base) * 1rem)
+      calc(28 / var(--font-size-base) * 1rem);
     flex-direction: column;
     gap: calc(16 / var(--font-size-base) * 1rem);
   }
@@ -20,14 +22,18 @@
   }
 
   &__info-click-content {
-    .af-apollo-data-agent__line:last-of-type {
+    padding: calc(12 / var(--font-size-base) * 1rem)
+      calc(16 / var(--font-size-base) * 1rem) 0;
+
+    .af-data-agent__line:last-of-type {
       display: none;
     }
   }
 
   &__text-orias {
-    margin: 0 0 calc(16 / var(--font-size-base) * 1rem);
-    padding: 0 calc(16 / var(--font-size-base) * 1rem);
+    margin: 0;
+    padding: calc(16 / var(--font-size-base) * 1rem)
+      calc(16 / var(--font-size-base) * 1rem) 0;
     font-size: var(--data-agent-text-orias-font-size);
     font-weight: 400;
     line-height: 125%;
