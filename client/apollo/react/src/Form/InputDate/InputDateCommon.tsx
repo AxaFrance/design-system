@@ -64,6 +64,10 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
     const idMessage = useId();
     const idHelp = useId();
 
+    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
+      Boolean,
+    ) as string[];
+
     return (
       <div className="af-form__input-container">
         <ItemLabelComponent
@@ -82,9 +86,13 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
           ref={inputRef}
           defaultValue={formatInputDateValue(defaultValue)}
           value={formatInputDateValue(value)}
-          aria-errormessage={ariaErrormessage ?? idMessage}
+          aria-errormessage={
+            ariaErrormessage ?? (error ? idMessage : undefined)
+          }
           aria-invalid={Boolean(error ?? ariaErrormessage)}
-          aria-describedby={idHelp}
+          aria-describedby={
+            ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+          }
           required={required}
           min={formatInputDateValue(min)}
           max={formatInputDateValue(max)}
@@ -97,7 +105,7 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
 
         <ItemMessageComponent
           id={idMessage}
-          message={error ?? success}
+          message={error || success}
           messageType={error ? "error" : "success"}
         />
       </div>

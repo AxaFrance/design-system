@@ -61,6 +61,10 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
     const idMessage = useId();
     const idHelp = useId();
 
+    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
+      Boolean,
+    ) as string[];
+
     return (
       <div className="af-form__input-container">
         <ItemLabelComponent
@@ -81,8 +85,10 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           className={componentClassName}
           error={error}
           required={required}
-          idMessage={idMessage}
-          idHelp={idHelp}
+          idMessage={error ? idMessage : undefined}
+          idHelp={
+            ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+          }
           {...otherProps}
         />
 
