@@ -3,7 +3,7 @@ import { axe } from "jest-axe";
 import { TextArea } from "../TextAreaLF";
 
 describe("<TextArea />", () => {
-  test("should render component with default props", () => {
+  it("should render component with default props", () => {
     render(
       <TextArea
         label="Label"
@@ -26,10 +26,42 @@ describe("<TextArea />", () => {
     expect(textArea).toBeInTheDocument();
   });
 
-  it("shouldn't have an accessibility violation <TextArea />", async () => {
-    const { container } = render(
-      <TextArea label="Label" sideButtonLabel="button" />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
+  describe("A11Y", () => {
+    it("shouldn't have an accessibility violation <TextArea />", async () => {
+      const { container } = render(
+        <TextArea label="Label" helper="Help text" />,
+      );
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it("should set aria-describedby when helper is present", () => {
+      render(<TextArea label="Label" helper="Help text" />);
+
+      const input = screen.getByRole("textbox");
+      const helper = screen.getByText("Help text");
+      expect(input).toHaveAttribute("aria-describedby");
+      expect(input.getAttribute("aria-describedby")).toStrictEqual(
+        helper.getAttribute("id"),
+      );
+    });
+
+    it("should set aria-errormessage when error is present", () => {
+      render(<TextArea label="Label" error="Error message" />);
+
+      const input = screen.getByRole("textbox");
+      const error = screen.getByText("Error message");
+      expect(input).toHaveAttribute("aria-errormessage");
+      expect(input.getAttribute("aria-errormessage")).toStrictEqual(
+        error.parentElement!.getAttribute("id"),
+      );
+    });
+
+    it("should not set aria-describedby or aria-errormessage when no helper, success, or error", () => {
+      render(<TextArea label="Label" />);
+
+      const input = screen.getByRole("textbox");
+      expect(input).not.toHaveAttribute("aria-describedby");
+      expect(input).not.toHaveAttribute("aria-errormessage");
+    });
   });
 });
