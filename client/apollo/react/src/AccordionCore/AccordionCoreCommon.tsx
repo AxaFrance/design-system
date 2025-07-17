@@ -5,7 +5,7 @@ import {
   type ReactNode,
   useCallback,
 } from "react";
-import keyboardUp from "@material-symbols/svg-400/rounded/keyboard_arrow_up-fill.svg";
+import keyboardDown from "@material-symbols/svg-400/rounded/keyboard_arrow_down-fill.svg";
 import { Icon } from "../Icon/IconCommon";
 
 export type AccordionCoreProps = {
@@ -57,7 +57,7 @@ export const AccordionCoreCommon = ({
       >
         {summary}
         <div className={["af-accordion__arrow", "af-click-icon"].join(" ")}>
-          <IconComponent src={keyboardUp} role="presentation" />
+          <IconComponent src={keyboardDown} role="presentation" />
         </div>
       </summary>
       {children}
