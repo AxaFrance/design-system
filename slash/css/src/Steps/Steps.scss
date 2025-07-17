@@ -1,62 +1,56 @@
 @use "sass:math";
 @use "../common/common" as common;
 
-// Wizard Steps
-// --------------------------------------------------
-$steps-bg: common.$gray-lighter;
-$steps-bg-active: common.$white;
 $font-size-step: common.$font-size-base;
 $font-size-step-number: common.$font-size-base + 0.2rem;
-$steps-color: common.$color-texte;
-$steps-color-active: common.$color-axa;
 
 .af-steps-new {
+  --steps-color-active: var(--axablue80);
+  --steps-color: var(--gray80);
+
   margin-bottom: 2rem;
-  background: common.$white;
+  background: var(--white);
 
   .af-steps-list {
     display: flex;
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid $steps-bg;
+    border-bottom: 1px solid var(--gray40);
     justify-content: space-around;
-    line-height: 3rem;
+    line-height: 1.75rem;
     counter-reset: stepper-counter;
     list-style: none;
 
     &-step {
       position: relative;
       display: inline-flex;
-      padding: 0 1rem 0 calc((16 + 40) / 16 * 1rem);
+      padding: calc(10 / 16 * 1rem) 1rem calc(10 / 16 * 1rem)
+        calc((16 + 40) / 16 * 1rem);
       flex-grow: 1;
+      align-items: center;
       justify-content: center;
       font-size: $font-size-step;
-      color: $steps-color;
+      color: var(--steps-color);
       counter-increment: stepper-counter;
 
       &__label {
         display: inline-flex;
-        padding-right: 2rem;
+        padding-right: 1rem;
       }
 
       &__number {
         margin-right: 0.75rem;
         font-size: $font-size-step-number;
         font-weight: 600;
-        color: $steps-color;
-
-        .glyphicon {
-          width: 17px;
-          font-size: 1.5rem;
-        }
+        color: var(--steps-color);
       }
 
       &__title {
         font-weight: 600;
-        color: $steps-color;
+        color: var(--steps-color);
 
         &:hover {
-          color: $steps-color-active;
+          color: var(--gray80);
         }
       }
 
@@ -70,64 +64,79 @@ $steps-color-active: common.$color-axa;
         margin-right: 0.8rem;
         font-size: $font-size-step-number;
         font-weight: 600;
-        color: $steps-color;
+        color: var(--steps-color);
         content: counter(stepper-counter);
       }
 
-      &::after {
+      & svg:first-child {
+        display: none;
+      }
+
+      & svg:last-child {
         position: absolute;
-        right: 1rem;
-        width: calc(24 / 16 * 1rem);
-        margin-left: 1rem;
-        font-family: icons;
-        content: "\EA12";
+        right: calc(12 / 16 * 1rem);
       }
 
       &.on {
-        color: $steps-color-active;
+        color: var(--steps-color-active);
 
         &::before,
         * {
-          color: $steps-color-active;
+          color: var(--steps-color-active);
         }
       }
 
       &.past {
-        color: common.$color-pager-link;
+        color: var(--gray80);
 
         &::before {
-          color: common.$color-pager-link;
+          color: var(--gray80);
         }
 
         &:hover {
-          color: $steps-color-active;
+          color: var(--steps-color-active);
         }
       }
 
       &.disabled {
-        color: common.$color-gray-1;
+        color: var(--gray40);
 
         &::before {
-          color: common.$color-gray-1;
+          color: var(--gray40);
         }
 
         & .af-steps-list-step__number,
         & .af-steps-list-step__title {
-          color: common.$color-gray-1;
+          color: var(--gray40);
         }
       }
 
       &:last-child {
-        &.on::before {
-          color: common.$color-btn-success;
+        &.on {
+          & .af-steps-list-step__title {
+            color: var(--green40);
+          }
+
+          &::before {
+            color: var(--green40);
+          }
+        }
+
+        & svg:first-child {
+          display: block;
+          margin-right: 0.8rem;
+          fill: var(--green40);
+        }
+
+        & svg:last-child {
+          display: none;
+        }
+
+        &.disabled svg:first-child {
+          fill: var(--gray40);
         }
 
         &::before {
-          font-family: icons;
-          content: "\EABA";
-        }
-
-        &::after {
           content: none;
         }
 
@@ -163,10 +172,6 @@ $steps-color-active: common.$color-axa;
           z-index: 2;
           left: 2rem;
           margin-right: 1rem;
-
-          .glyphicon {
-            font-size: 1.2rem;
-          }
         }
 
         &.on {
@@ -176,10 +181,6 @@ $steps-color-active: common.$color-axa;
 
           .af-steps-list-step__number {
             margin-right: 0.5rem;
-
-            .glyphicon {
-              font-size: 1.2rem;
-            }
           }
         }
       }
