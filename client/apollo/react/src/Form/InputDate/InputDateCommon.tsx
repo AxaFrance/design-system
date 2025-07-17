@@ -10,10 +10,15 @@ import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { formatInputDateValue } from "./InputDate.helper";
 
-type InputDateProps = Omit<ComponentPropsWithRef<"input">, "value"> & {
+type InputDateProps = Omit<
+  ComponentPropsWithRef<"input">,
+  "value" | "min" | "max"
+> & {
   classModifier?: string;
   defaultValue?: Date | string;
   value?: Date | string;
+  min?: Date | string;
+  max?: Date | string;
   helper?: string;
   error?: string;
   success?: string;
@@ -42,6 +47,8 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
       ItemMessageComponent,
       required,
       "aria-errormessage": ariaErrormessage,
+      min,
+      max,
       ...otherProps
     },
     inputRef,
@@ -82,6 +89,8 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
           aria-invalid={Boolean(error ?? ariaErrormessage)}
           aria-describedby={idHelp}
           required={required}
+          min={formatInputDateValue(min)}
+          max={formatInputDateValue(max)}
         />
         {helper && (
           <span id={idHelp} className="af-form__input-helper">
