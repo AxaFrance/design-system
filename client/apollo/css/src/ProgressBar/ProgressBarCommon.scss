@@ -13,4 +13,17 @@
       0.75s ease-out,
       background-color 0.75s;
   }
+
+  &__text {
+    margin-top: 4px;
+    color: black;
+  }
+
+  &__step-indicator {
+    position: absolute;
+    display: flex;
+    margin-top: 4px;
+    flex-direction: column;
+    color: black;
+  }
 }
