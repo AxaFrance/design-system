@@ -16,13 +16,13 @@
   flex-flow: column nowrap;
   align-items: center;
   line-height: 1.25rem;
+  text-align: center;
   color: var(--card-text-color);
   background-color: var(--card-background-color);
   box-shadow: 0 0.25rem 0.5rem 0 var(--card-box-shadow-color);
 
   &:not(:has(svg)) {
     min-height: 5.75rem;
-    justify-content: center;
   }
 
   svg {
@@ -60,12 +60,13 @@
 .af-card--horizontal {
   --card-lateral-padding: 1.5rem;
 
-  min-width: 47.75rem;
+  min-width: 20rem;
+  min-height: 6rem;
   padding-right: 0;
   flex-direction: row;
 
   &:not(:has(svg)) {
-    min-height: unset;
+    min-width: 11.25rem;
     justify-content: flex-start;
   }
 

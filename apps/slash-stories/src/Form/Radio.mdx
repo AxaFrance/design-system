@@ -30,8 +30,40 @@ This is the complete input component. It contains the main label and the list of
 
 ## Modes
 
-The Radio component has 3 modes: `default`, `classic` and `inline`.
+The Radio component has 4 modes: `default`, `classic` `card` and `inline`.
 You can see them in action in the stories above.
+
+## Orientation (Radio Card only)
+
+When `card` mode is selected, 2 orientations are available :
+
+- `vertical`, options are vertical cards - _default value_
+- `horizontal`, options are horizontal cards
+
+## Customize width and height (Radio Card only)
+
+Radio cards can have specific size depending on their content or what's expected in your prototype. You can customize `width`and `height`by your own.
+
+You need to set values on CSS properties `--width-radio-card` and/or `--height-radio-card`
+
+```css
+.custom-size-card {
+  --width-radio-card: 15rem;
+  --height-radio-card: 95px;
+}
+```
+
+```tsx
+const options = [
+  { label: "Paris", value: "paris", icon: villaIcon },
+  { label: "Lille", value: "lille", icon: villaIcon },
+  { label: "Madrid", value: "madrid", icon: villaIcon },
+];
+
+const MyRadioCard = () => (
+  <Radio mode="card" className="custom-size-card" options={options} />
+);
+```
 
 ## Required
 

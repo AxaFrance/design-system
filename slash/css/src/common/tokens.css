@@ -72,4 +72,9 @@
   --active-button-border-color: var(--axablue90);
   --error-button-background: var(--red10);
   --button-primary-default: var(--azur);
+
+  /********* Alias Token *********/
+  --color-border-default: transparent;
+  --color-border-hover: var(--axablue80);
+  --color-border-selected: var(--axablue80);
 }
