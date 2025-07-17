@@ -3,6 +3,7 @@ import {
   type ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
+  type ReactNode,
   useId,
 } from "react";
 
@@ -12,7 +13,7 @@ import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
 type InputTextProps = ComponentPropsWithRef<"input"> & {
-  unit?: React.ReactNode;
+  unit?: ReactNode;
   classModifier?: string;
   helper?: string;
   error?: string;
@@ -59,7 +60,10 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
     inputId = otherProps.id || inputId;
     const idMessage = useId();
     const idHelp = useId();
-    const idLabel = useId();
+
+    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
+      Boolean,
+    ) as string[];
 
     return (
       <div className="af-form__input-container">
@@ -72,7 +76,6 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           onSideButtonClick={onSideButtonClick}
           required={required}
           inputId={inputId}
-          idLabel={idLabel}
         />
 
         <InputTextAtomComponent
@@ -82,9 +85,10 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           className={componentClassName}
           error={error}
           required={required}
-          idMessage={idMessage}
-          idHelp={idHelp}
-          idLabel={idLabel}
+          idMessage={error ? idMessage : undefined}
+          idHelp={
+            ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+          }
           {...otherProps}
         />
 
