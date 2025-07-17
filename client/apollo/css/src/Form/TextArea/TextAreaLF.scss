@@ -1,7 +1,19 @@
+@use "../../common/breakpoints" as breakpoints;
 @use "TextAreaCommon";
 
+.af-form__input-container {
+  .af-item-label .af-item-label__label {
+    --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+
+  @media (width < #{breakpoints.$breakpoint-sm}) {
+    .af-item-label .af-item-label__label {
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+}
+
 .af-form__input-textarea {
-  --input-text-area-height: 142px;
   --input-text-area-border-radius: var(--default-border-radius);
   --input-text-area-border-color: var(--color-gray-700);
   --input-text-area-background: var(--color-white);
@@ -11,27 +23,24 @@
     --input-text-area-border-color: var(--color-red-700);
   }
 
+  &--error:hover,
+  &--error:focus {
+    --input-text-area-box-shadow-color: var(--color-red-700);
+  }
+
   &:disabled {
     --input-text-area-border-color: var(--color-gray-400);
     --input-text-area-background: var(--color-gray-200);
   }
 
-  &:not(.af-form__input-textarea--error):hover,
+  &:not(.af-form__input-textarea--error, :disabled):hover,
   &:not(.af-form__input-textarea--error):focus {
     --input-text-area-border-size: 2px;
     --input-text-area-border-color: var(--color-axa);
   }
 
-  &--error:hover,
-  &--error:focus {
-    --input-text-area-border-color: var(--color-red-700);
-  }
-
   &:not(:disabled, &--error) {
-    &:focus,
-    &:hover,
     &:not(:placeholder-shown) {
-      --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
       --input-text-area-font-weight: 600;
       --input-text-area-border-color: var(--color-axa);
     }

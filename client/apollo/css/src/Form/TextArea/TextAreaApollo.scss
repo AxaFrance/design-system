@@ -1,9 +1,29 @@
+@use "../../common/breakpoints" as breakpoints;
 @use "TextAreaCommon";
 
+.af-form__input-container {
+  .af-item-label .af-item-label__label {
+    --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+  @media (width < #{breakpoints.$breakpoint-sm}) {
+    .af-item-label .af-item-label__label {
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+
+    :focus,
+    :hover,
+    :placeholder-shown,
+    &:not(:disabled, &--error),
+    &--error {
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+}
+
 .af-form__input-textarea {
+  --input-text-area-box-shadow: var(--axa-blue-100);
   --input-text-area-border-radius: var(--radius-8);
   --input-text-area-border-color: var(--axa-blue-65);
-  --input-text-area-height: 148px;
   --input-text-area-background: var(--white);
   --input-text-area-color: var(--neutral-80);
 
@@ -13,7 +33,17 @@
 
   &--error:hover,
   &--error:focus {
-    --input-text-area-border-color: var(--axa-red-100);
+    --input-text-area-box-shadow-color: var(--axa-red-100);
+  }
+
+  &:not(:placeholder-shown, :focus, :active) {
+    --input-text-area-font-color: var(--axa-blue-100);
+  }
+
+  :not(:placeholder-shown),
+  :focus {
+    --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --input-text-area-font-weight: 400;
   }
 
   &:disabled {
@@ -21,19 +51,28 @@
     --input-text-area-background: var(--neutral-5);
   }
 
+  &:disabled:not(:placeholder-shown) {
+    --input-text-area-border-color: var(--neutral-14);
+  }
+
   &:not(.af-form__input-textarea--error):focus,
-  &:not(.af-form__input-textarea--error):hover {
-    --input-text-area-border-size: 1px;
+  &:not(.af-form__input-textarea--error, :disabled):hover {
+    --input-text-area-border-size: 2px;
     --input-text-area-border-color: var(--axa-blue-100);
   }
 
   &:not(:disabled, &--error) {
-    &:focus,
-    &:hover,
     &:not(:placeholder-shown) {
       --input-text-area-font-color: var(--axa-blue-100);
-      --input-text-area-font-size: calc(18 / var(--font-size-base) * 1rem);
       --input-text-area-font-weight: 600;
+    }
+  }
+
+  @media (width < #{breakpoints.$breakpoint-sm}) {
+    --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
+
+    &:not(.af-form__input-textarea--error):focus {
+      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
     }
   }
 }
