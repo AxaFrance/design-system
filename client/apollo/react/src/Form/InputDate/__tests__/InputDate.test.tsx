@@ -57,6 +57,36 @@ describe("<InputDate />", () => {
     expect(inputDate).toBeInTheDocument();
     expect(inputDate).toHaveValue("");
   });
+
+  it("handles min and max as Date objects", () => {
+    render(
+      <InputDate
+        label="test"
+        min={new Date("2024-01-01")}
+        max={new Date("2025-01-01")}
+      />,
+    );
+
+    const inputDate = screen.getByLabelText(/test/);
+    expect(inputDate).toHaveAttribute("min", "2024-01-01");
+    expect(inputDate).toHaveAttribute("max", "2025-01-01");
+  });
+
+  it("handles min and max as string values", () => {
+    render(<InputDate label="test" min="2024-01-01" max="2025-01-01" />);
+
+    const inputDate = screen.getByLabelText(/test/);
+    expect(inputDate).toHaveAttribute("min", "2024-01-01");
+    expect(inputDate).toHaveAttribute("max", "2025-01-01");
+  });
+
+  it("does not set min and max attributes if not provided", () => {
+    render(<InputDate label="test" />);
+
+    const inputDate = screen.getByLabelText(/test/);
+    expect(inputDate).not.toHaveAttribute("min");
+    expect(inputDate).not.toHaveAttribute("max");
+  });
 });
 
 describe("A11Y", () => {
