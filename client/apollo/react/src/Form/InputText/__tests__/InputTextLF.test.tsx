@@ -52,5 +52,49 @@ describe("<InputText />", () => {
 
       expect(await axe(container)).toHaveNoViolations();
     });
+
+    it("should set aria-describedby when helper is present", () => {
+      render(<InputText label="foo" helper="Help text" />);
+
+      const input = screen.getByLabelText("foo");
+      const helper = screen.getByText("Help text");
+      expect(input).toHaveAttribute("aria-describedby");
+      expect(input.getAttribute("aria-describedby")).toStrictEqual(
+        helper.getAttribute("id"),
+      );
+    });
+
+    it("should set aria-describedby with two ids when helper and success are present", () => {
+      render(
+        <InputText label="foo" helper="Help text" success="Success message" />,
+      );
+
+      const input = screen.getByLabelText("foo");
+      const helper = screen.getByText("Help text");
+      const success = screen.getByText("Success message");
+      expect(input).toHaveAttribute("aria-describedby");
+      expect(input.getAttribute("aria-describedby")).toStrictEqual(
+        `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
+      );
+    });
+
+    it("should set aria-errormessage when error is present", () => {
+      render(<InputText label="foo" error="Error message" />);
+
+      const input = screen.getByLabelText("foo");
+      const error = screen.getByText("Error message");
+      expect(input).toHaveAttribute("aria-errormessage");
+      expect(input.getAttribute("aria-errormessage")).toStrictEqual(
+        error.parentElement!.getAttribute("id"),
+      );
+    });
+
+    it("should not set aria-describedby or aria-errormessage when no helper, success, or error", () => {
+      render(<InputText label="foo" />);
+
+      const input = screen.getByLabelText("foo");
+      expect(input).not.toHaveAttribute("aria-describedby");
+      expect(input).not.toHaveAttribute("aria-errormessage");
+    });
   });
 });

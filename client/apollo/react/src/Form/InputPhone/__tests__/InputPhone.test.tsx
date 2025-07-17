@@ -95,4 +95,98 @@ describe("<InputPhone />", () => {
       screen.queryByLabelText("Select country code"),
     ).not.toBeInTheDocument();
   });
+
+  describe("A11Y", () => {
+    it("should set aria-describedby when helper is present", () => {
+      render(
+        <InputPhoneCommon
+          label="Phone Number"
+          helper="Help text"
+          ItemLabelComponent={ItemLabel}
+          ItemMessageComponent={ItemMessage}
+          InputTextComponent={InputTextAtom}
+          IconComponent={Icon}
+        />,
+      );
+
+      const input = screen.getByLabelText("Phone Number");
+      const helper = screen.getByText("Help text");
+      expect(input).toHaveAttribute("aria-describedby");
+      expect(input.getAttribute("aria-describedby")).toStrictEqual(
+        helper.getAttribute("id"),
+      );
+    });
+
+    it("should set aria-describedby with two ids when helper and success are present", () => {
+      render(
+        <InputPhoneCommon
+          label="Phone Number"
+          helper="Help text"
+          success="Success message"
+          ItemLabelComponent={ItemLabel}
+          ItemMessageComponent={ItemMessage}
+          InputTextComponent={InputTextAtom}
+          IconComponent={Icon}
+        />,
+      );
+
+      const input = screen.getByLabelText("Phone Number");
+      const helper = screen.getByText("Help text");
+      const success = screen.getByText("Success message");
+      expect(input).toHaveAttribute("aria-describedby");
+      expect(input.getAttribute("aria-describedby")).toStrictEqual(
+        `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
+      );
+    });
+
+    it("should set aria-errormessage when error is present", () => {
+      render(
+        <InputPhoneCommon
+          label="Phone Number"
+          error="Error message"
+          ItemLabelComponent={ItemLabel}
+          ItemMessageComponent={ItemMessage}
+          InputTextComponent={InputTextAtom}
+          IconComponent={Icon}
+        />,
+      );
+
+      const input = screen.getByLabelText("Phone Number");
+      const error = screen.getByText("Error message");
+      expect(input).toHaveAttribute("aria-errormessage");
+      expect(input.getAttribute("aria-errormessage")).toStrictEqual(
+        error.parentElement!.getAttribute("id"),
+      );
+    });
+
+    it("should not set aria-describedby or aria-errormessage when no helper, success, or error", () => {
+      render(
+        <InputPhoneCommon
+          label="Phone Number"
+          ItemLabelComponent={ItemLabel}
+          ItemMessageComponent={ItemMessage}
+          InputTextComponent={InputTextAtom}
+          IconComponent={Icon}
+        />,
+      );
+
+      const input = screen.getByLabelText("Phone Number");
+      expect(input).not.toHaveAttribute("aria-describedby");
+      expect(input).not.toHaveAttribute("aria-errormessage");
+    });
+
+    it("shouldn't have an accessibility violation <InputPhone />", async () => {
+      const { container } = render(
+        <InputPhoneCommon
+          label="Phone Number"
+          helper="Help text"
+          ItemLabelComponent={ItemLabel}
+          ItemMessageComponent={ItemMessage}
+          InputTextComponent={InputTextAtom}
+          IconComponent={Icon}
+        />,
+      );
+      expect(await axe(container)).toHaveNoViolations();
+    });
+  });
 });
