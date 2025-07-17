@@ -6,11 +6,11 @@
   grid-template-columns: 0.0625rem 3.5rem 1fr;
 
   &::before {
-    content: "";
-    background: var(--gray40);
-    margin-left: 1.375rem;
     width: 0.0625rem;
+    margin-left: 1.375rem;
     grid-area: separation;
+    background: var(--gray40);
+    content: "";
   }
 
   &:last-child:not(.af-vertical-step--edition)::before {
@@ -36,18 +36,18 @@
   }
 
   > section {
-    grid-area: content;
-    margin-left: 3.5rem;
     margin-bottom: 2.5rem;
+    margin-left: 3.5rem;
+    grid-area: content;
   }
 
   .af-vertical-step-icon {
+    display: flex;
     width: 2.75rem;
     height: 2.75rem;
-    border-radius: 50%;
     margin-bottom: 1rem;
+    border-radius: 50%;
     grid-area: icon;
-    display: flex;
     align-items: center;
     justify-content: center;
 
@@ -71,26 +71,15 @@
   }
 
   .af-vertical-step-title {
-    align-self: center;
-    grid-area: title;
     margin-top: 0;
     margin-bottom: 1rem;
+    grid-area: title;
+    align-self: center;
 
     .af-vertical-step-title-button {
       border: 0;
-      background: none;
-      color: var(--axablue80);
       font-size: 1rem;
-      text-decoration: underline;
-      margin-left: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-
-      &:hover,
-      &:focus {
-        text-decoration: none;
-      }
+      background: none;
 
       &:focus {
         outline: 2px solid var(--axablue80);

@@ -59,18 +59,20 @@ export const VerticalStep = ({
       <Title
         className={classNames("af-title", `${defaultClassName}-title`)}
         id={id}
+        contentLeft={
+          isStepValidated ? (
+            <Button
+              aria-label={editButtonAriaLabel}
+              onClick={onEdit}
+              className="af-vertical-step-title-button"
+            >
+              <Svg role="presentation" src={edit} />
+              {editButtonLabel}
+            </Button>
+          ) : undefined
+        }
       >
         {title}
-        {isStepValidated ? (
-          <Button
-            aria-label={editButtonAriaLabel}
-            onClick={onEdit}
-            className="af-vertical-step-title-button"
-          >
-            <Svg role="presentation" src={edit} />
-            {editButtonLabel}
-          </Button>
-        ) : null}
       </Title>
 
       {isStepInEdition ? <section>{form}</section> : null}
