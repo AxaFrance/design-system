@@ -87,11 +87,58 @@ describe("<InputDate />", () => {
     expect(inputDate).not.toHaveAttribute("min");
     expect(inputDate).not.toHaveAttribute("max");
   });
-});
 
-describe("A11Y", () => {
-  it("shouldn't have an accessibility violation <InputDate />", async () => {
-    const { container } = render(<InputDate label="test" />);
-    expect(await axe(container)).toHaveNoViolations();
+  describe("A11Y", () => {
+    it("shouldn't have an accessibility violation <InputDate />", async () => {
+      const { container } = render(<InputDate label="test" />);
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it("should set aria-describedby when helper is present", () => {
+      render(<InputDate label="test" helper="help text" />);
+
+      const input = screen.getByLabelText(/test/);
+      expect(input).toHaveAttribute("aria-describedby");
+
+      const helper = screen.getByText("help text");
+      expect(input.getAttribute("aria-describedby")).toStrictEqual(
+        helper.getAttribute("id"),
+      );
+    });
+
+    it("should set aria-describedby with two ids when helper and success are present", () => {
+      render(
+        <InputDate label="test" helper="help text" success="success message" />,
+      );
+
+      const input = screen.getByLabelText(/test/);
+      expect(input).toHaveAttribute("aria-describedby");
+
+      const helper = screen.getByText("help text");
+      const success = screen.getByText("success message");
+      const inputDescribedby = input.getAttribute("aria-describedby");
+      expect(inputDescribedby).toStrictEqual(
+        `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
+      );
+    });
+
+    it("should set aria-errormessage when error is present", () => {
+      render(<InputDate label="test" error="error message" />);
+
+      const input = screen.getByLabelText(/test/);
+      expect(input).toHaveAttribute("aria-errormessage");
+
+      const error = screen.getByText("error message");
+      expect(input.getAttribute("aria-errormessage")).toStrictEqual(
+        error.parentElement!.getAttribute("id"),
+      );
+    });
+
+    it("should not set aria-describedby or aria-errormessage when no helper, success, or error", () => {
+      render(<InputDate label="test" />);
+      const input = screen.getByLabelText(/test/);
+      expect(input).not.toHaveAttribute("aria-describedby");
+      expect(input).not.toHaveAttribute("aria-errormessage");
+    });
   });
 });
