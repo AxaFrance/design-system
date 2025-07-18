@@ -1,6 +1,7 @@
 import {
   Button as ButtonClient,
   buttonVariants as ButtonClientVariants,
+  CardCheckbox,
   RadioCard,
   Select,
   Svg,
@@ -14,6 +15,7 @@ type Inputs = {
   exampleTextInput: string;
   exampleSelectInput: string;
   exampleRadioInput: string;
+  exampleCheckboxInput: string[];
 };
 
 const Client = () => {
@@ -26,9 +28,11 @@ const Client = () => {
       exampleTextInput: "",
       exampleSelectInput: "",
       exampleRadioInput: "",
+      exampleCheckboxInput: [],
     },
   });
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <section className="design-section">
@@ -67,8 +71,10 @@ const Client = () => {
 
         <article>
           <RadioCard
+            labelGroup="Card Radio Group"
             type="vertical"
             isRequired
+            error={errors.exampleRadioInput?.message}
             options={[
               {
                 label: "Option 1",
@@ -81,11 +87,33 @@ const Client = () => {
                 description: "Description for option 2",
               },
             ]}
-            labelGroup="Card Radio Group"
             {...register("exampleRadioInput", {
               required: "This field is required",
             })}
-            error={errors.exampleRadioInput?.message}
+          />
+        </article>
+
+        <article>
+          <CardCheckbox
+            labelGroup="Card Checkbox Group"
+            type="vertical"
+            isRequired
+            error={errors.exampleCheckboxInput?.message}
+            options={[
+              {
+                label: "Checkbox 1",
+                value: "checkbox1",
+                description: "Description for checkbox 1",
+              },
+              {
+                label: "Checkbox 2",
+                value: "checkbox2",
+                description: "Description for checkbox 2",
+              },
+            ]}
+            {...register("exampleCheckboxInput", {
+              required: "This field is required",
+            })}
           />
         </article>
 
