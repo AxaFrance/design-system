@@ -67,6 +67,20 @@ describe("TextInput", () => {
     ).toHaveClass("InputClassName");
   });
 
+  it("should render element right to input", () => {
+    // Act
+    render(
+      <TextInput
+        label="TextInput label"
+        value="Hello World"
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
+
   it("shouldn't have an accessibility violation <TextInput/>", async () => {
     // Act
     const { container } = render(

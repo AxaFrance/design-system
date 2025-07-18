@@ -76,4 +76,18 @@ describe("NumberInput", () => {
     // Assert
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("should display element right to input", async () => {
+    // Act
+    render(
+      <NumberInput
+        label="NumberInput label"
+        value="47965"
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
 });

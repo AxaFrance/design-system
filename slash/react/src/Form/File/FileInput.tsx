@@ -8,18 +8,21 @@ import { FileTable } from "./FileTable";
 type FileProps = ComponentPropsWithoutRef<typeof File>;
 type FileTableProps = ComponentPropsWithoutRef<typeof FileTable>;
 
-type Props = ConsumerFieldProps &
-  FileProps &
-  Pick<FileTableProps, "values" | "errors"> & {
-    fileLabel?: string;
-    helpMessage?: ReactNode;
-  };
+type Props = Omit<
+  ConsumerFieldProps &
+    FileProps &
+    Pick<FileTableProps, "values" | "errors"> & {
+      fileLabel?: string;
+      helpMessage?: ReactNode;
+    },
+  "children"
+>;
 const FileInput = ({
   values = [],
   id,
   name = "",
   onChange,
-  children,
+  rightElement,
   label,
   errors,
   fileLabel,
@@ -64,7 +67,7 @@ const FileInput = ({
             aria-invalid={ariaInvalid}
             {...inputProps}
           />
-          {children}
+          {rightElement}
         </>
       )}
       appendChildren={

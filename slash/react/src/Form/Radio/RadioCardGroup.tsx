@@ -19,6 +19,7 @@ export const RadioCardGroup = ({
   options,
   className,
   value,
+  name,
   orientation = "vertical",
   disabled = false,
   error = false,
@@ -40,14 +41,14 @@ export const RadioCardGroup = ({
     >
       {options.map(
         ({
-          name,
+          name: optionName,
           icon,
           label,
           disabled: optionDisabled,
           value: optionValue,
           ...otherOptionProps
         }: Option) => {
-          const newName = name ?? idGenerated;
+          const newName = name || optionName || idGenerated;
           const allClassNames = classNames([
             DEFAULT_CLASSNAME,
             orientation === "horizontal" && `${DEFAULT_CLASSNAME}--horizontal`,

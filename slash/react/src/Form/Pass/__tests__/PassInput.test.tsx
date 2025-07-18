@@ -62,4 +62,18 @@ describe("PassInput", () => {
       "labelClassName",
     );
   });
+
+  it("should render element right to input", () => {
+    // Act
+    render(
+      <PassInput
+        label="PassInput label"
+        value="secret"
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
 });

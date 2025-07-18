@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
+import { useRef } from "react";
 import { DateInput } from "../DateInput";
 
 describe("DateInput", () => {
@@ -34,6 +35,22 @@ describe("DateInput", () => {
     expect(screen.getByText("Hello message")).toBeInTheDocument();
   });
 
+  it("should render correctly DateInput by passing a ref", () => {
+    // Act
+    const TestWrapper = () => {
+      const ref = useRef<HTMLInputElement>(null);
+      return <DateInput label="BirthDate" ref={ref} />;
+    };
+    const { container } = render(<TestWrapper />);
+
+    // Assert
+    const inputElement = screen.getByLabelText("BirthDate");
+    expect(inputElement).toBeInTheDocument();
+
+    const ref = container.querySelector("input");
+    expect(ref).toBe(inputElement);
+  });
+
   it("should print help message", () => {
     // Act
     render(
@@ -66,6 +83,20 @@ describe("DateInput", () => {
     expect(
       screen.getByLabelText("DateInput label").parentElement?.parentElement,
     ).toHaveClass("InputClassName");
+  });
+
+  it("should render element right to input", () => {
+    // Act
+    render(
+      <DateInput
+        label="DateInput label"
+        value={fakeDate}
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
   });
 
   it("shouldn't have an accessibility violation <DateInput/>", async () => {

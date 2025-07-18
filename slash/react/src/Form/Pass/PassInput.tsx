@@ -27,14 +27,17 @@ const calculateStrength = (score?: string | null) => {
 };
 
 type PassProps = ComponentProps<typeof Pass>;
-type Props = ConsumerFieldProps &
-  Omit<PassProps, "onToggleType" | "type"> & {
-    helpMessage?: ReactNode;
-    score?: string;
-  };
+type Props = Omit<
+  ConsumerFieldProps &
+    PassProps & {
+      helpMessage?: ReactNode;
+      score?: string;
+    },
+  "onToggleType" | "type" | "children"
+>;
 
 const PassInput = ({
-  children,
+  rightElement,
   score,
   classModifier,
   disabled,
@@ -49,22 +52,23 @@ const PassInput = ({
       {...props}
       classModifier={classModifier}
       renderInput={({ id, classModifier: modifier, ariaInvalid, errorId }) => (
-        <Pass
-          {...props}
-          type={type}
-          id={id}
-          disabled={disabled}
-          classModifier={`${modifier} ${strength}`}
-          aria-describedby={errorId}
-          aria-invalid={ariaInvalid}
-          onToggleType={() =>
-            setType(type === "password" ? "text" : "password")
-          }
-        />
+        <>
+          <Pass
+            {...props}
+            type={type}
+            id={id}
+            disabled={disabled}
+            classModifier={`${modifier} ${strength}`}
+            aria-describedby={errorId}
+            aria-invalid={ariaInvalid}
+            onToggleType={() =>
+              setType(type === "password" ? "text" : "password")
+            }
+          />
+          {rightElement}
+        </>
       )}
-    >
-      {children}
-    </Field>
+    />
   );
 };
 
