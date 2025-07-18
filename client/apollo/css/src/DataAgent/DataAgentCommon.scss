@@ -1,0 +1,56 @@
+@use "../common/breakpoints" as breakpoints;
+
+.af-data-agent {
+  display: flex;
+  padding-bottom: calc(16 / var(--font-size-base) * 1rem);
+  border: 1px solid var(--data-agent-border-color);
+  border-radius: var(--radius-8);
+  flex-direction: column;
+
+  &__intro {
+    display: flex;
+    padding: var(--data-agent-intro-padding);
+    flex-direction: column;
+    gap: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  &__info-content,
+  &__info-click-content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  &__info-content {
+    padding: var(--data-agent-intro-content-padding);
+  }
+
+  &__info-click-content {
+    padding: calc(12 / var(--font-size-base) * 1rem)
+      calc(16 / var(--font-size-base) * 1rem) 0;
+
+    .af-data-agent__line:last-of-type {
+      display: none;
+    }
+  }
+
+  &__text-orias {
+    margin: 0;
+    padding: calc(16 / var(--font-size-base) * 1rem)
+      calc(16 / var(--font-size-base) * 1rem) 0;
+    font-size: var(--data-agent-text-orias-font-size);
+    font-weight: 400;
+    line-height: 125%;
+    color: var(--data-agent-text-orias-font-color);
+  }
+}
+
+@media (width < #{breakpoints.$breakpoint-sm}) {
+  .af-data-agent {
+    padding-bottom: 0;
+
+    &__intro {
+      padding: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+}
