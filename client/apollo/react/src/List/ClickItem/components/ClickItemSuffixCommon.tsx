@@ -30,14 +30,17 @@ export const ClickItemSuffixCommon = ({
     return <IconComponent src={keyboardArrowRight} role="presentation" />;
   }
 
+  const isDisabled = variant === "large" && state === "disabled";
   return (
-    <div className="af-click-icon">
+    <div
+      className={["af-click-icon", isDisabled && "af-click-icon--disabled"]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <IconComponent
         src={trailingClickIcon}
         role="presentation"
-        variant={
-          variant === "large" && state === "disabled" ? "disabled" : "primary"
-        }
+        variant={isDisabled ? "disabled" : "primary"}
       />
     </div>
   );

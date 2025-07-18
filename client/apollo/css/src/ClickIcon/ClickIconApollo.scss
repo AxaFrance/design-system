@@ -13,6 +13,7 @@
     --click-icon-svg-fill: var(--white);
   }
 
+  &--disabled,
   &:disabled {
     --click-icon-background-color: var(--neutral-5);
     --click-icon-svg-fill: var(--neutral-50);

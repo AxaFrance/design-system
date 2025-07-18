@@ -97,6 +97,8 @@
 
   &--large.af-apollo-click-item--disabled,
   &--medium.af-apollo-click-item--disabled {
+    cursor: default;
+
     .af-apollo-click-item {
       &__title,
       &__subtitle,
@@ -104,10 +106,6 @@
       &__tertiary {
         color: var(--neutral-80);
       }
-    }
-
-    .af-click-icon {
-      pointer-events: none;
     }
   }
 }

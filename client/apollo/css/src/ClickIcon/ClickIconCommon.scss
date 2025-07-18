@@ -11,6 +11,7 @@
     fill: var(--click-icon-svg-fill, var(--icon-fill));
   }
 
+  &--disabled,
   &:disabled {
     pointer-events: none;
   }
