@@ -51,6 +51,7 @@ const FileInput = ({
         id: inputId,
         ariaInvalid,
         errorId,
+        children: childrenField,
         ...inputProps
       }) => (
         <>
@@ -64,7 +65,7 @@ const FileInput = ({
             aria-invalid={ariaInvalid}
             {...inputProps}
           />
-          {children}
+          {childrenField}
         </>
       )}
       appendChildren={
@@ -75,7 +76,9 @@ const FileInput = ({
           classModifier={classModifier}
         />
       }
-    />
+    >
+      {children}
+    </Field>
   );
 };
 

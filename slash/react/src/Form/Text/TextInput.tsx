@@ -9,15 +9,24 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <Field
         {...props}
-        renderInput={({ id, classModifier, ariaInvalid, errorId }) => (
-          <Text
-            id={id}
-            classModifier={classModifier}
-            ref={inputRef}
-            aria-describedby={errorId}
-            aria-invalid={ariaInvalid}
-            {...props}
-          />
+        renderInput={({
+          id,
+          classModifier,
+          ariaInvalid,
+          errorId,
+          children: childrenField,
+        }) => (
+          <>
+            <Text
+              id={id}
+              classModifier={classModifier}
+              ref={inputRef}
+              aria-describedby={errorId}
+              aria-invalid={ariaInvalid}
+              {...props}
+            />
+            {childrenField}
+          </>
         )}
       >
         {children}

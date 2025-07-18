@@ -48,19 +48,28 @@ const PassInput = ({
     <Field
       {...props}
       classModifier={classModifier}
-      renderInput={({ id, classModifier: modifier, ariaInvalid, errorId }) => (
-        <Pass
-          {...props}
-          type={type}
-          id={id}
-          disabled={disabled}
-          classModifier={`${modifier} ${strength}`}
-          aria-describedby={errorId}
-          aria-invalid={ariaInvalid}
-          onToggleType={() =>
-            setType(type === "password" ? "text" : "password")
-          }
-        />
+      renderInput={({
+        id,
+        classModifier: modifier,
+        ariaInvalid,
+        errorId,
+        children: childrenField,
+      }) => (
+        <>
+          <Pass
+            {...props}
+            type={type}
+            id={id}
+            disabled={disabled}
+            classModifier={`${modifier} ${strength}`}
+            aria-describedby={errorId}
+            aria-invalid={ariaInvalid}
+            onToggleType={() =>
+              setType(type === "password" ? "text" : "password")
+            }
+          />
+          {childrenField}
+        </>
       )}
     >
       {children}

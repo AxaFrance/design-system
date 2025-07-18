@@ -12,14 +12,22 @@ const SliderInput = ({ children, name, options, label, ...props }: Props) => {
     <Field
       label={label}
       {...props}
-      renderInput={({ id, classModifier, ...sliderProps }) => (
-        <Slider
-          id={id}
-          classModifier={classModifier}
-          name={name}
-          options={options}
-          {...sliderProps}
-        />
+      renderInput={({
+        id,
+        classModifier,
+        children: childrenField,
+        ...sliderProps
+      }) => (
+        <>
+          <Slider
+            id={id}
+            classModifier={classModifier}
+            name={name}
+            options={options}
+            {...sliderProps}
+          />
+          {childrenField}
+        </>
       )}
     >
       {children}

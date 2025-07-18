@@ -76,4 +76,16 @@ describe("NumberInput", () => {
     // Assert
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("should display children", async () => {
+    // Act
+    render(
+      <NumberInput label="NumberInput label" value="47965">
+        Content
+      </NumberInput>,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
 });
