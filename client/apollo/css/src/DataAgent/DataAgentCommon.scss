@@ -9,9 +9,7 @@
 
   &__intro {
     display: flex;
-    padding: calc(16 / var(--font-size-base) * 1rem)
-      calc(16 / var(--font-size-base) * 1rem)
-      calc(28 / var(--font-size-base) * 1rem);
+    padding: var(--data-agent-intro-padding);
     flex-direction: column;
     gap: calc(16 / var(--font-size-base) * 1rem);
   }
@@ -21,6 +19,10 @@
     display: flex;
     flex-direction: column;
     gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  &__info-content {
+    padding: var(--data-agent-intro-content-padding);
   }
 
   &__info-click-content {
