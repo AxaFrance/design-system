@@ -34,18 +34,18 @@ export const ItemLabel = ({
   }
   return (
     <div className="af-item-label">
-      {label && (
+      {label ? (
         <label
           htmlFor={inputId}
           id={idLabel}
           aria-describedby={description ? idDescription : undefined}
           className="af-item-label__label"
         >
-          {label} {required && <span aria-hidden="true"> *</span>}
+          {label} {required ? <span aria-hidden="true"> *</span> : null}
         </label>
-      )}
+      ) : null}
 
-      {sideButtonLabel && (
+      {sideButtonLabel ? (
         <ButtonComponent
           variant="ghost"
           onClick={onSideButtonClick}
@@ -53,15 +53,15 @@ export const ItemLabel = ({
         >
           {sideButtonLabel}
         </ButtonComponent>
-      )}
+      ) : null}
 
-      {description && (
+      {description ? (
         <span id={idDescription} className="af-item-label__description">
           {description}
         </span>
-      )}
+      ) : null}
 
-      {buttonLabel && (
+      {buttonLabel ? (
         <ButtonComponent
           className="af-item-label__more"
           variant="ghost"
@@ -70,7 +70,7 @@ export const ItemLabel = ({
         >
           {buttonLabel}
         </ButtonComponent>
-      )}
+      ) : null}
     </div>
   );
 };

@@ -81,6 +81,10 @@ export default [
         },
       ],
       "react/require-default-props": "off",
+      "react/jsx-no-leaked-render": [
+        "error",
+        { validStrategies: ["ternary", "coerce"] },
+      ],
 
       // typescript-eslint/typescript-eslint https://github.com/typescript-eslint/typescript-eslint
       // Add TypeScript specific rules (and turn off ESLint equivalents)
