@@ -1,7 +1,7 @@
 import "@axa-fr/design-system-look-and-feel-css/dist/Layout/Footer/Footer.scss";
 import expandMore from "@material-symbols/svg-400/outlined/keyboard_arrow_down.svg";
 import classNames from "classnames";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useId, useState } from "react";
 import { MenuIcons, SocialMedia } from "./MenuIcons";
 import { Link, MenuLink } from "./MenuLink";
 import { Svg } from "../../Svg";
@@ -25,6 +25,7 @@ export const Footer: FC<Props> = ({
   const handleClick = useCallback(() => {
     setIsAboutOpen((isOpen) => !isOpen);
   }, []);
+  const navLinkControlId = useId();
   return (
     <footer role="contentinfo" id={id} className="af-footer">
       <div className="af-footer__footerTop">
@@ -37,6 +38,8 @@ export const Footer: FC<Props> = ({
             type="button"
             onClick={handleClick}
             className="af-footer__menuAboutTrigger"
+            aria-expanded={isAboutOpen}
+            aria-controls={navLinkControlId}
           >
             <span className="af-footer__menuAboutTriggerText">
               {expandLinkText}
@@ -50,7 +53,11 @@ export const Footer: FC<Props> = ({
               )}
             />
           </button>
-          <MenuLink links={links} isAboutOpen={isAboutOpen} />
+          <MenuLink
+            links={links}
+            isAboutOpen={isAboutOpen}
+            idMenuLink={navLinkControlId}
+          />
         </nav>
         <MenuIcons socialMedias={socialMedias} />
       </div>

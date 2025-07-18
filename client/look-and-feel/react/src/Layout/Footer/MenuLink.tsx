@@ -10,9 +10,14 @@ export type Link = {
 type MenuLinkProps = {
   links: Link[];
   isAboutOpen?: boolean;
+  idMenuLink?: string;
 };
 
-export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
+export const MenuLink = ({
+  links,
+  isAboutOpen = false,
+  idMenuLink,
+}: MenuLinkProps) => {
   const isSmallScreen = useIsSmallScreen(BREAKPOINT.MD);
 
   if (links.length === 0) {
@@ -24,6 +29,7 @@ export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
         "af-footer__menuLinks",
         isAboutOpen && "af-footer__menuLinks--display",
       )}
+      id={idMenuLink}
     >
       {links.map((menuItem) => (
         <li key={menuItem.text}>
