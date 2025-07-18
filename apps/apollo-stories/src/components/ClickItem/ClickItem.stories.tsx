@@ -21,9 +21,6 @@ export default meta;
 const baseArgs = {
   icon: accountBalance,
   title: "Titre",
-  subtitle: "Sous-titre",
-  tagLabel: "Texte",
-  tagProps: { variant: "info" as TagVariants },
   state: "default" as ClickItemStates,
   ariaLabelForActionIcon: "Aller à la page de détails",
   onClick: action("ClickItem has been clicked"),
@@ -45,6 +42,9 @@ export const ClickItemDefault: StoryObj<ComponentProps<typeof ClickItem>> = {
   render: ({ ...args }) => <ClickItem {...args} />,
   args: {
     ...baseArgs,
+    subtitle: "Sous-titre",
+    tagLabel: "Texte",
+    tagProps: { variant: "info" as TagVariants },
     basePictureProps: { src: "https://picsum.photos/48", alt: "random image" },
     textSecondary: "Texte secondaire",
     textTertiary: "Texte tertiaire",
@@ -58,6 +58,9 @@ export const ClickItemLargeStory: StoryObj<ComponentProps<typeof ClickItem>> = {
   render: ({ ...args }) => <ClickItem {...args} />,
   args: {
     ...baseArgs,
+    subtitle: "Sous-titre",
+    tagLabel: "Texte",
+    tagProps: { variant: "info" as TagVariants },
     textSecondary: "Texte secondaire",
     textTertiary: "Texte tertiaire",
     variant: "large",
@@ -71,6 +74,9 @@ export const ClickItemMediumStory: StoryObj<ComponentProps<typeof ClickItem>> =
     render: ({ ...args }) => <ClickItem {...args} />,
     args: {
       ...baseArgs,
+      subtitle: "Sous-titre",
+      tagLabel: "Texte",
+      tagProps: { variant: "info" as TagVariants },
       variant: "medium",
     },
     argTypes: { state: defaultArgTypes.state },
@@ -80,9 +86,7 @@ export const ClickItemSmallStory: StoryObj<ComponentProps<typeof ClickItem>> = {
   name: "ClickItem Small",
   render: ({ ...args }) => <ClickItem {...args} />,
   args: {
-    icon: accountBalance,
-    title: "Titre",
-    state: "default" as ClickItemStates,
+    ...baseArgs,
     variant: "small" as ClickItemVariants,
   },
   argTypes: { state: defaultArgTypes.state },
