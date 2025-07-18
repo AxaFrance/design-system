@@ -2,7 +2,7 @@ import "@axa-fr/design-system-apollo-css/dist/List/ClickItem/ClickItemApollo.scs
 import { ClickItemCommon } from "./ClickItemCommon";
 import type { ClickItemProps } from "./types";
 import { ClickItemContent } from "./components/ClickItemContentApollo";
-import { ClickItemSuffix } from "./components/ClickItemSuffixAppollo";
+import { ClickItemSuffix } from "./components/ClickItemSuffixApollo";
 import { ClickItemPrefix } from "./components/ClickItemPrefixApollo";
 
 export const ClickItem = (props: ClickItemProps) => (

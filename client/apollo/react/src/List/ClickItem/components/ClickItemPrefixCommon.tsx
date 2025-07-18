@@ -23,20 +23,21 @@ export const ClickItemPrefixCommon = ({
   IconComponent,
   BasePictureComponent,
 }: ClickItemPrefixCommonProps) => {
+  if (!(Boolean(basePictureProps) && variant === "agent") && !icon) {
+    return null;
+  }
+
   if (Boolean(basePictureProps) && variant === "agent") {
     return <BasePictureComponent {...basePictureProps} />;
   }
 
-  if (icon) {
-    return (
-      <IconComponent
-        role="presentation"
-        src={icon}
-        variant={
-          state === "disabled" && variant !== "small" ? "disabled" : "primary"
-        }
-      />
-    );
-  }
-  return null;
+  return (
+    <IconComponent
+      role="presentation"
+      src={icon ?? ""}
+      variant={
+        state === "disabled" && variant !== "small" ? "disabled" : "primary"
+      }
+    />
+  );
 };

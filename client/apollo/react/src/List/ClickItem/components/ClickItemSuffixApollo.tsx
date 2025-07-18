@@ -1,7 +1,6 @@
 import arrowForward from "@material-symbols/svg-400/rounded/arrow_forward-fill.svg";
 import { Icon } from "../../../Icon/IconApollo";
 import { Spinner } from "../../../Spinner/SpinnerApollo";
-import { ClickIcon } from "../../../ClickIcon/ClickIconApollo";
 import {
   ClickItemSuffixCommon,
   type ClickItemSuffixProps,
@@ -12,7 +11,6 @@ export const ClickItemSuffix = (props: ClickItemSuffixProps) => (
     trailingClickIcon={arrowForward}
     IconComponent={Icon}
     SpinnerComponent={Spinner}
-    ClickIconComponent={ClickIcon}
     {...props}
   />
 );
