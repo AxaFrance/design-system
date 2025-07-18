@@ -1,9 +1,4 @@
-import React, {
-  ComponentPropsWithRef,
-  useId,
-  type ComponentProps,
-  type ComponentType,
-} from "react";
+import React, { useId, type ComponentProps, type ComponentType } from "react";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
@@ -11,7 +6,10 @@ import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { CardCheckboxItem, type TCardCheckboxItem } from "./CardCheckboxItem";
 import type { CheckboxComponent, IconComponent } from "./types";
 
-export type CardCheckboxProps = ComponentPropsWithRef<"input"> & {
+export type CardCheckboxProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "disabled" | "size"
+> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
@@ -39,6 +37,7 @@ export const CardCheckboxCommon = ({
   type = "vertical",
   error,
   ItemMessageComponent,
+  ...inputProps
 }: CardCheckboxCommonProps) => {
   const componentClassName = getComponentClassName(
     "af-card-checkbox__container",
@@ -69,7 +68,7 @@ export const CardCheckboxCommon = ({
       )}
       <div className="af-card-checkbox__choices">
         <ul className={checkboxGroupClassName}>
-          {options.map(({ hasError, ...inputProps }) => (
+          {options.map(({ hasError, ...optionProps }) => (
             <li key={crypto.randomUUID()}>
               <CardCheckboxItem
                 size={size}
@@ -79,6 +78,7 @@ export const CardCheckboxCommon = ({
                 IconComponent={IconComponent}
                 hasError={Boolean(error) || hasError}
                 {...inputProps}
+                {...optionProps}
               />
             </li>
           ))}
