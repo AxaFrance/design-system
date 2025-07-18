@@ -5,6 +5,7 @@
   flex-direction: row;
   align-items: center;
   gap: calc(12 / var(--font-size-base) * 1rem);
+  font-family: var(--font-family-base);
   background: none;
   cursor: pointer;
   user-select: none;
@@ -24,7 +25,6 @@
   }
 
   &__title {
-    font-family: var(--font-family-base);
     font-size: var(--click-item-title-font-size);
     font-weight: var(--click-item-title-font-weight);
     line-height: 125%;
@@ -32,7 +32,6 @@
   }
 
   &__subtitle {
-    font-family: var(--font-family-base);
     font-size: var(--click-item-subtitle-font-size);
     font-weight: 400;
     line-height: 125%;
@@ -40,7 +39,6 @@
   }
 
   &__secondary {
-    font-family: var(--font-family-base);
     font-size: var(--click-item-text-secondary-font-size);
     font-weight: 400;
     line-height: 125%;
@@ -48,7 +46,6 @@
   }
 
   &__tertiary {
-    font-family: var(--font-family-base);
     font-size: var(--click-item-text-tertiary-font-size);
     font-weight: 400;
     line-height: 125%;
@@ -77,6 +74,8 @@
   }
 
   &--medium {
+    align-items: flex-start;
+
     .af-apollo-click-item {
       &__secondary,
       &__tertiary,
