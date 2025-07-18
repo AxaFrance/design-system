@@ -16,14 +16,23 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
         labelPosition="top"
         classNameSuffix="textarea"
         {...props}
-        renderInput={({ id, ariaInvalid, errorId, ...inputProps }) => (
-          <Textarea
-            id={id}
-            ref={inputRef}
-            aria-describedby={errorId}
-            aria-invalid={ariaInvalid}
-            {...inputProps}
-          />
+        renderInput={({
+          id,
+          ariaInvalid,
+          errorId,
+          children: childrenField,
+          ...inputProps
+        }) => (
+          <>
+            <Textarea
+              id={id}
+              ref={inputRef}
+              aria-describedby={errorId}
+              aria-invalid={ariaInvalid}
+              {...inputProps}
+            />
+            {childrenField}
+          </>
         )}
       >
         {children}

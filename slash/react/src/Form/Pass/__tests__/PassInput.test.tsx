@@ -62,4 +62,16 @@ describe("PassInput", () => {
       "labelClassName",
     );
   });
+
+  it("should render children", () => {
+    // Act
+    render(
+      <PassInput label="PassInput label" value="secret">
+        Content
+      </PassInput>,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
 });

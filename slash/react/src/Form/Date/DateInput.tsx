@@ -15,15 +15,24 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
     return (
       <Field
         {...otherProps}
-        renderInput={({ id, classModifier, ariaInvalid, errorId }) => (
-          <Date
-            id={id}
-            classModifier={classModifier}
-            ref={inputRef}
-            aria-describedby={errorId}
-            aria-invalid={ariaInvalid}
-            {...otherProps}
-          />
+        renderInput={({
+          id,
+          classModifier,
+          ariaInvalid,
+          errorId,
+          children: childrenField,
+        }) => (
+          <>
+            <Date
+              id={id}
+              classModifier={classModifier}
+              ref={inputRef}
+              aria-describedby={errorId}
+              aria-invalid={ariaInvalid}
+              {...otherProps}
+            />
+            {childrenField}
+          </>
         )}
       >
         {children}

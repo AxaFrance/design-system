@@ -52,7 +52,6 @@ const Radio = forwardRef<HTMLInputElement, Props>(
   ) => {
     const classNameMode = getClassNameMode(otherProps.mode ?? "default");
 
-    // ICI - le if qui permet de rendre un autre composant
     if (otherProps.mode === "card") {
       return (
         <RadioCardGroup

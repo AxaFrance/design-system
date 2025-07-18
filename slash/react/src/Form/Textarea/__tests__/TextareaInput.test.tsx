@@ -45,6 +45,18 @@ describe("TextareaInput", () => {
     );
   });
 
+  it("should render children", () => {
+    // Act
+    render(
+      <TextareaInput id="textareainput-id" label="TextareaInput label">
+        Content
+      </TextareaInput>,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
+
   it("shouldn't have an accessibility violation <TextareaInput/>", async () => {
     // Act
     const { container } = render(

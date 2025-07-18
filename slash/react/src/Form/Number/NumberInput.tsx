@@ -17,15 +17,19 @@ export const NumberInput = ({ children, ...props }: Props) => {
         classModifier,
         ariaInvalid,
         errorId,
+        children: childrenField,
         ...inputProps
       }) => (
-        <Number
-          id={id}
-          classModifier={classModifier}
-          aria-describedby={errorId}
-          aria-invalid={ariaInvalid}
-          {...inputProps}
-        />
+        <>
+          <Number
+            id={id}
+            classModifier={classModifier}
+            aria-describedby={errorId}
+            aria-invalid={ariaInvalid}
+            {...inputProps}
+          />
+          {childrenField}
+        </>
       )}
     >
       {children}
