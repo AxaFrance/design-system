@@ -57,7 +57,7 @@ const CardRadioCommon = ({
   );
 
   const cardRadioId = useId();
-  const errorId = `${cardRadioId}-error`;
+  const errorId = `${cardRadioId}:error`;
 
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
   const size: ComponentProps<typeof CardRadioItem>["size"] = isMobile
