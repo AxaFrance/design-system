@@ -56,7 +56,8 @@ const CardRadioCommon = ({
     type,
   );
 
-  const errorId = useId();
+  const cardRadioId = useId();
+  const errorId = `${cardRadioId}-error`;
 
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
   const size: ComponentProps<typeof CardRadioItem>["size"] = isMobile
@@ -84,7 +85,7 @@ const CardRadioCommon = ({
       <div className={RadioGroupClassName}>
         {options.map((cardRadioItemProps) => (
           <CardRadioItem
-            key={`${name}-${crypto.randomUUID()}`}
+            key={`${name ?? cardRadioId}-${cardRadioItemProps.label}`}
             name={name}
             onChange={onChange}
             size={size}
