@@ -6,10 +6,7 @@ import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { CardCheckboxItem, type TCardCheckboxItem } from "./CardCheckboxItem";
 import type { CheckboxComponent, IconComponent } from "./types";
 
-export type CardCheckboxProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "disabled" | "size"
-> & {
+export type CardCheckboxProps = Partial<TCardCheckboxItem> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
@@ -71,13 +68,13 @@ export const CardCheckboxCommon = ({
           {options.map(({ hasError, ...optionProps }) => (
             <li key={crypto.randomUUID()}>
               <CardCheckboxItem
+                {...inputProps}
                 size={size}
                 errorId={errorId}
                 onChange={onChange}
                 CheckboxComponent={CheckboxComponent}
                 IconComponent={IconComponent}
                 hasError={Boolean(error) || hasError}
-                {...inputProps}
                 {...optionProps}
               />
             </li>
