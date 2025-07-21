@@ -5,6 +5,11 @@
     grid-template-areas: var(--summary-areas);
     grid-template-columns: var(--summary-columns);
     align-items: center;
+    gap: var(--accordion-row-gap) var(--accordion-column-gap);
+
+    @media (width < #{breakpoints.$breakpoint-md}) {
+      gap: var(--accordion-gap) var(--accordion-column-gap);
+    }
 
     .af-icon:first-child {
       grid-area: icon;
@@ -64,6 +69,8 @@
   }
 
   &--secondary {
+    color: var(--accordion-date-text-color);
+
     --summary-areas: "tag-container date-container title info2 arrow"
       "tag-container date-container subtitle info2 arrow";
     --summary-columns: max-content min-content 1fr max-content max-content;

@@ -1,4 +1,5 @@
 @use "./AccordionCommon";
+@use "../common/breakpoints" as breakpoints;
 
 .af-apollo-accordion {
   --accordion-info1-text-color: var(--neutral-80);
@@ -8,12 +9,20 @@
   --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
   --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
   --accordion-line-height: 1.25;
+  --accordion-row-gap: calc(2 / var(--font-size-base) * 1rem);
+  --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
+
+  @media (width < #{breakpoints.$breakpoint-md}) {
+    --accordion-gap: calc(4 / var(--font-size-base) * 1rem);
+    --accordion-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  }
 
   &--primary {
     --accordion-title-text-color: var(--axa-blue-100);
   }
 
   &--secondary {
+    --accordion-date-text-color: var(--neutral-80);
     --accordion-title-text-color: var(--neutral-100);
   }
 }

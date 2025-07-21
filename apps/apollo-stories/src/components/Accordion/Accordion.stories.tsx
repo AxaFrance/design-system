@@ -66,8 +66,24 @@ const defaultArgs = {
   onClick: undefined,
 };
 
-export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
+export const AccordionStorySecondary: StoryObj<
+  ComponentProps<typeof Accordion>
+> = {
   name: "Accordion",
+  render: (args) => <Accordion {...args} />,
+  args: defaultArgs,
+  argTypes: {
+    dateLabel: { control: "text" },
+    variant: {
+      options: Object.values(accordionVariants),
+      control: { type: "select" },
+      value: accordionVariants.secondary,
+    },
+  },
+};
+
+export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
+  name: "Accordion Secondary",
   render: (args) => <Accordion {...args} />,
   args: defaultArgs,
   argTypes: {
