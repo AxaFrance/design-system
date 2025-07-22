@@ -3,7 +3,7 @@ import {
   accordionVariants,
   AccordionVariants,
   TagVariants,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
@@ -66,9 +66,7 @@ const defaultArgs = {
   onClick: undefined,
 };
 
-export const AccordionStorySecondary: StoryObj<
-  ComponentProps<typeof Accordion>
-> = {
+export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
   name: "Accordion",
   render: (args) => <Accordion {...args} />,
   args: defaultArgs,
@@ -76,13 +74,15 @@ export const AccordionStorySecondary: StoryObj<
     dateLabel: { control: "text" },
     variant: {
       options: Object.values(accordionVariants),
-      control: { type: "select" },
       value: accordionVariants.secondary,
+      control: { type: "select" },
     },
   },
 };
 
-export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
+export const AccordionStorySecondary: StoryObj<
+  ComponentProps<typeof Accordion>
+> = {
   name: "Accordion Secondary",
   render: (args) => <Accordion {...args} />,
   args: defaultArgs,
@@ -91,6 +91,7 @@ export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
     variant: {
       options: Object.values(accordionVariants),
       control: { type: "select" },
+      value: { secondary: accordionVariants.secondary },
     },
   },
 };

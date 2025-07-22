@@ -9,12 +9,10 @@
   --accordion-font-size: calc(16 / var(--font-size-base) * 1rem);
   --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
   --accordion-line-height: 1.25;
-  --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
-  --accordion-row-gap: calc(2 / var(--font-size-base) * 1rem);
+  --accordion-gap: calc(4 / var(--font-size-base) * 1rem);
 
-  @media (width < #{breakpoints.$breakpoint-md}) {
-    --accordion-gap: calc(4 / var(--font-size-base) * 1rem);
-    --accordion-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
   }
 
   &--primary {
