@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/Form/Radio/RadioCardGroup.css";
 
-import { PropsWithChildren, useId, useRef } from "react";
+import { ComponentProps, useId, useRef } from "react";
 import classNames from "classnames";
 import type { Option } from "../core";
 import { Svg } from "../../Svg";
@@ -8,21 +8,21 @@ import { Svg } from "../../Svg";
 const DEFAULT_CLASSNAME = "af-card";
 const DEFAULT_CONTAINER_CLASSNAME = "af-form__radio-card-group";
 
-type Props = PropsWithChildren & {
+type Props = ComponentProps<"input"> & {
   options: Option[];
   orientation?: "horizontal" | "vertical";
   error?: boolean;
-  disabled?: boolean;
-  className?: string;
 };
 
 export const RadioCardGroup = ({
   children,
   options,
   className,
+  value,
   orientation = "vertical",
   disabled = false,
   error = false,
+  ...otherProps
 }: Props) => {
   const idGenerated = useId();
   const radioGroupRef = useRef<HTMLDivElement>(null);
@@ -44,7 +44,7 @@ export const RadioCardGroup = ({
           icon,
           label,
           disabled: optionDisabled,
-          checked,
+          value: optionValue,
           ...otherOptionProps
         }: Option) => {
           const newName = name ?? idGenerated;
@@ -56,12 +56,14 @@ export const RadioCardGroup = ({
 
           const isDisabled = disabled || optionDisabled;
           return (
-            <label key={otherOptionProps.value} className={allClassNames}>
+            <label key={optionValue} className={allClassNames}>
               <input
+                {...otherProps}
                 type="radio"
                 name={newName}
                 disabled={isDisabled}
-                checked={isDisabled ? false : checked}
+                checked={isDisabled ? false : optionValue === value}
+                value={optionValue}
                 {...otherOptionProps}
               />
               {typeof icon === "string" ? <Svg src={icon} /> : icon}

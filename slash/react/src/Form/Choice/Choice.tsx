@@ -12,6 +12,7 @@ type Props = Omit<ComponentProps<typeof Radio>, "options" | "value"> & {
   name?: string;
   options?: Array<Omit<Option, "value"> & { value: boolean }>;
   value?: boolean | string;
+  classModifier?: string;
 };
 
 const Choice = forwardRef<HTMLInputElement, Props>(
@@ -30,6 +31,7 @@ const Choice = forwardRef<HTMLInputElement, Props>(
     return (
       <Radio
         {...otherProps}
+        mode="default"
         ref={inputRef}
         name={name ?? `choice_${generatedId}`}
         value={value?.toString()}
