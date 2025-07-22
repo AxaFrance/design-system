@@ -1,17 +1,17 @@
-import { Button } from "@axa-fr/design-system-slash-react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
+import arrowForwardIcons from "@material-symbols/svg-400/outlined/arrow_forward.svg";
+import arrowBackIcons from "@material-symbols/svg-400/outlined/arrow_back.svg";
+import { Button, Svg } from "@axa-fr/design-system-slash-react";
+import type { ComponentProps } from "react";
 
-const MODIFIERS = [
-  "success",
-  "info",
-  "danger",
-  "reverse",
-  "disabled",
-  "small",
-  "hasiconLeft",
-  "hasiconRight",
-];
+const CssIcons: Record<string, string> = {
+  "(none)": "none",
+  "/public/arrow_back.svg": arrowBackIcons,
+  "/public/arrow_forward.svg": arrowForwardIcons,
+  "glyphicon arrow-left": "arrow-left",
+  "glyphicon arrow-right": "arrow-right",
+};
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -19,137 +19,175 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: "centered",
   },
-  args: { onClick: fn() },
+  tags: ["!autodocs", "!dev"],
+  args: {
+    onClick: fn(),
+    children: "Button",
+    variant: "primary",
+    small: false,
+    disabled: false,
+    leftIcon: "(none)",
+    rightIcon: "(none)",
+  },
+  argTypes: {
+    onClick: {
+      table: {
+        disable: true,
+      },
+    },
+    variant: {
+      options: [
+        "primary",
+        "secondary",
+        "validated",
+        "danger",
+        "ghost",
+        "ghost-reverse",
+      ],
+      control: {
+        type: "select",
+      },
+    },
+    leftIcon: {
+      options: Object.keys(CssIcons),
+      control: { type: "select" },
+    },
+    rightIcon: {
+      options: Object.keys(CssIcons),
+      control: { type: "select" },
+    },
+  },
 };
 
 export default meta;
 
 type StoryProps = Omit<
-  React.ComponentProps<typeof Button>,
-  "classModifier" | "children"
+  ComponentProps<typeof Button>,
+  "leftIcon" | "rightIcon"
 > & {
-  children: string;
-  classModifier: string[];
-  className: string;
+  leftIcon: string;
+  rightIcon: string;
 };
 type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
-  name: "Button",
-  render: ({ children: text, classModifier, onClick, ...args }) => (
-    <Button classModifier={classModifier.join(" ")} onClick={onClick} {...args}>
-      {text}
-    </Button>
-  ),
-  args: {
-    children: "Button",
-    classModifier: [] as string[],
-    className: "",
-  },
-  argTypes: {
-    classModifier: {
-      options: MODIFIERS,
-      control: { type: "multi-select" },
-    },
-  },
-};
+  tags: ["dev"],
+  render: ({ leftIcon, rightIcon, ...props }) => {
+    const getIcon = (type: string) => {
+      switch (type) {
+        case "/public/arrow_forward.svg":
+        case "/public/arrow_back.svg":
+          return <Svg src={CssIcons[type]} />;
+        case "glyphicon arrow-left":
+        case "glyphicon arrow-right":
+          return <i className={`glyphicon glyphicon-${CssIcons[type]}`} />;
+        default:
+          return undefined;
+      }
+    };
 
-export const MultiExamples: StoryObj<typeof Button> = {
-  name: "Button with modifiers",
-  render: ({ onClick }) => {
+    const leftIconProps = getIcon(leftIcon);
+    const rightIconProps = getIcon(rightIcon);
+
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          padding: "2rem",
-          flexWrap: "wrap",
-          gap: "2rem",
-        }}
-      >
-        <Button classModifier="reverse" onClick={onClick}>
-          Button Reverse
-        </Button>
-        <Button classModifier="success" onClick={onClick}>
-          Button Success
-        </Button>
-        <Button classModifier="danger" onClick={onClick}>
-          Button Danger
-        </Button>
-        <Button classModifier="small" onClick={onClick}>
-          Button Small
-        </Button>
-        <Button classModifier="disabled" onClick={onClick}>
-          Button disabled
-        </Button>
-      </div>
+      <Button leftIcon={leftIconProps} rightIcon={rightIconProps} {...props} />
     );
   },
 };
 
-export const Reverse: StoryObj<typeof Button> = {
-  name: "Button reverse",
+export const Primary: Story = {
+  name: "Button Primary",
+  render: Playground.render,
   args: {
-    children: "Button Reverse",
-    classModifier: "reverse",
+    children: "Button Primary",
+    onClick: undefined,
+    variant: undefined,
   },
 };
 
-export const Success: StoryObj<typeof Button> = {
-  name: "Button success",
+export const Secondary: Story = {
+  name: "Button Secondary",
+  render: Playground.render,
   args: {
-    children: "Button success",
-    classModifier: "success",
+    ...Primary.args,
+    children: "Button Secondary",
+    variant: "secondary",
   },
 };
 
-export const Danger: StoryObj<typeof Button> = {
+export const Validated: Story = {
+  name: "Button Validated",
+  render: Playground.render,
+  args: {
+    ...Primary.args,
+    children: "Button Validated",
+    variant: "validated",
+  },
+};
+
+export const Danger: Story = {
   name: "Button danger",
+  render: Playground.render,
   args: {
+    ...Primary.args,
     children: "Button Danger",
-    classModifier: "danger",
+    variant: "danger",
   },
 };
 
-export const WithIconRight: StoryObj<typeof Button> = {
-  name: "Button with right icon",
+export const Ghost: Story = {
+  name: "Button ghost",
+  render: Playground.render,
   args: {
-    children: (
-      <>
-        <span className="glyphicon glyphicon-arrow-right" />
-        <span className="af-btn__text">With icon</span>
-      </>
-    ),
-    classModifier: "hasiconRight",
+    ...Primary.args,
+    children: "Button ghost",
+    variant: "ghost",
   },
 };
 
-export const WithIconLeft: StoryObj<typeof Button> = {
-  name: "Button with left icon",
+export const GhostReverse: Story = {
+  name: "Button ghost-reverse",
+  render: Playground.render,
+  decorators: [
+    (Story) => (
+      <div style={{ backgroundColor: "var(--axablue90)", padding: "1rem" }}>
+        <Story />
+      </div>
+    ),
+  ],
   args: {
-    children: (
-      <>
-        <span className="glyphicon glyphicon-arrow-left" />
-        <span className="af-btn__text">With icon</span>
-      </>
-    ),
-    classModifier: "hasiconLeft",
+    ...Primary.args,
+    children: "Button ghost-reverse",
+    variant: "ghost-reverse",
   },
 };
 
-export const Small: StoryObj<typeof Button> = {
+export const WithIconRight: Story = {
+  name: "Button with right svg icon",
+  render: Playground.render,
+  args: {
+    ...Primary.args,
+    children: "With right svg icon",
+    rightIcon: "/public/arrow_forward.svg",
+  },
+};
+
+export const WithIconLeft: Story = {
+  name: "Button with left glyphicon icon",
+  render: Playground.render,
+  args: {
+    ...Primary.args,
+    children: "With left glyphicon icon",
+    leftIcon: "glyphicon arrow-left",
+  },
+};
+
+export const Small: Story = {
   name: "Button small",
+  render: Playground.render,
   args: {
+    ...Primary.args,
     children: "Button Small",
-    classModifier: "small",
-  },
-};
-
-export const Circle: StoryObj<typeof Button> = {
-  name: "Button circle",
-  args: {
-    classModifier: "circle",
-    title: "Save",
-    children: <span className="glyphicon glyphicon-floppy-disk" />,
+    small: true,
   },
 };
