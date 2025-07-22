@@ -7,6 +7,7 @@ import {
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
+import { action } from "@storybook/addon-actions";
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
@@ -63,7 +64,7 @@ const defaultArgs = {
     </>
   ),
   isOpen: undefined,
-  onClick: undefined,
+  onClick: action("Accordion has been clicked"),
 };
 
 export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
@@ -72,11 +73,6 @@ export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
   args: defaultArgs,
   argTypes: {
     dateLabel: { control: "text" },
-    variant: {
-      options: Object.values(accordionVariants),
-      value: accordionVariants.secondary,
-      control: { type: "select" },
-    },
   },
 };
 
