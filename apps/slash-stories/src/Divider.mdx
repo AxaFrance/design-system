@@ -1,0 +1,42 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as DividerStories from "./Divider.stories";
+
+<Meta of={DividerStories} />
+
+# Divider
+
+The `Divider` component is the easiest way to create dividers in the slash design-system.
+By default, it renders a horizontal line that can be used to separate content. It can also be styled as a vertical divider.
+
+## Playground
+
+<Canvas of={DividerStories.Default} />
+<Controls of={DividerStories.Default} />
+
+## Usage
+
+```tsx title="test.js"
+import { Divider } from "@axa-fr/design-system-slash-react";
+
+const MyComponent = () => <Divider mode="horizontal" />;
+```
+
+### Mode
+
+There are 2 modes available for the Divider component
+
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>Modes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>horizontal</td>
+    </tr>
+    <tr>
+      <td>vertical</td>
+    </tr>
+  </tbody>
+</table>

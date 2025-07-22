@@ -1,0 +1,15 @@
+.af-divider {
+  display: block;
+  margin: 0;
+  border-color: var(--gray40);
+}
+
+.af-divider--vertical {
+  height: inherit;
+  border-left: none;
+}
+
+.af-divider--horizontal {
+  width: 100%;
+  border-bottom: none;
+}
