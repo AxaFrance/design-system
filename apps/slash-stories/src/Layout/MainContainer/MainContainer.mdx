@@ -1,0 +1,42 @@
+import { Controls, Canvas, Meta } from "@storybook/addon-docs";
+import * as MainContainerStories from "./MainContainer.stories";
+
+<Meta of={MainContainerStories} />
+
+# MainContainer
+
+The `MainContainer` component is used to wrap content and provide consistent spacing and alignment across different screen sizes. It ensures that the content is centered and has appropriate margins and background color.
+You can use it to wrap all your application main content.
+
+The breakpoints are as follows :
+
+| Breakpoint                          | margin (left and right) | comment             |
+| ----------------------------------- | ----------------------- | ------------------- |
+| Portrait Tablet (772px to 1015px)   | 30px                    |                     |
+| Landscape Tablet (1016px to 1271px) | 40px                    |                     |
+| S Desktop (1272px to 1431px)        | 56px                    | 150% - Laptop       |
+| M Desktop (1432px to 1671px)        | 56px                    | 125% - Laptop       |
+| L Desktop (1672px to 1911px)        | 56px                    | 100% - Laptop       |
+| XL Desktop (1912 to ∞ px)           | 56px                    | 100% - Large screen |
+
+## Import
+
+```tsx
+import { MainContainer } from "@axa-fr/design-system-slash-react";
+```
+
+## Use
+
+```tsx
+export const MyComponent = () => (
+  <MainContainer>
+    <p>Hello World</p>
+  </MainContainer>
+);
+```
+
+## Playground
+
+<Canvas of={MainContainerStories.MainContainerStory} />
+
+<Controls of={MainContainerStories.MainContainerStory} />

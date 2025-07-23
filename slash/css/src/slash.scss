@@ -1,4 +1,5 @@
 @use "common/tokens";
+@use "common/breakpoints";
 @use "./Button/Button";
 @use "./Divider/Divider";
 @use "./Form/Checkbox/Checkbox";
@@ -29,6 +30,7 @@
 @use "./Layout/Header/AnchorNavBar/AnchorNavBar";
 @use "./Layout/Header/HeaderTitle/HeaderTitle";
 @use "./Layout/Header/User/User";
+@use "./Layout/MainContainer/MainContainer";
 @use "./Steps/Steps";
 @use "./Steps/VerticalStep.css";
 @use "./Form/File/File";

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/Header.scss";
+import classNames from "classnames";
 import { getComponentClassName } from "../../utilities";
 
 const defaultClassName = "af-header";
@@ -18,12 +19,10 @@ const Header = ({ classModifier, className, children }: Props) => {
   );
 
   return (
-    <div className={componentClassName}>
-      <div className={`container ${defaultClassName}__wrapper`}>
-        <header className={`${defaultClassName}__content`} role="banner">
-          {children}
-        </header>
-      </div>
+    <div className={classNames("af-container", componentClassName)}>
+      <header className={`${defaultClassName}__content`} role="banner">
+        {children}
+      </header>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import logo from "@axa-fr/design-system-slash-css/logo-axa.svg";
-import "@axa-fr/design-system-slash-css/dist/Layout/Footer/Footer.scss";
+import "@axa-fr/design-system-slash-css/dist/Layout/Footer/Footer.css";
+import "@axa-fr/design-system-slash-css/dist/common/breakpoints.css";
 import { PropsWithChildren, forwardRef } from "react";
+import classNames from "classnames";
 
 type FooterProps = {
   href?: string;
@@ -28,24 +30,26 @@ export const Footer = forwardRef<
     },
     ref,
   ) => (
-    <footer ref={ref} className={className} {...props}>
-      <div className="container-fluid container">
-        {Boolean(icon) && (
-          <a
-            className="af-logo"
-            href={href}
-            title={title}
-            target="blank"
-            rel="noopener noreferrer"
-          >
-            <img className="af-logo__brand" src={icon} alt={alt} />
-          </a>
-        )}
-        <div className="af-footer-content">{children}</div>
-        {version ? (
-          <span className="af-footer-version">Version {version}</span>
-        ) : null}
-      </div>
+    <footer
+      ref={ref}
+      className={classNames("af-container", className)}
+      {...props}
+    >
+      {Boolean(icon) && (
+        <a
+          className="af-logo"
+          href={href}
+          title={title}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img className="af-logo__brand" src={icon} alt={alt} />
+        </a>
+      )}
+      <div className="af-footer-content">{children}</div>
+      {version ? (
+        <span className="af-footer-version">Version {version}</span>
+      ) : null}
     </footer>
   ),
 );

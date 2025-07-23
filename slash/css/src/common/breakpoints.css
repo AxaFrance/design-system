@@ -1,0 +1,22 @@
+:root {
+  --breakpoint-tablet-portrait: 772px;
+  --breakpoint-tablet-landscape: 1016px;
+  --breakpoint-desktop-s: 1272px;
+  --breakpoint-desktop-m: 1432px;
+  --breakpoint-desktop-l: 1672px;
+  --breakpoint-desktop-xl: 1912px;
+}
+
+.af-container {
+  --container-padding: 0 calc(30rem / 16);
+
+  padding: var(--container-padding);
+
+  @media (1016px <= width <= 1271px) {
+    --container-padding: 0 calc(40rem / 16);
+  }
+
+  @media (width >= 1272px) {
+    --container-padding: 0 calc(56rem / 16);
+  }
+}
