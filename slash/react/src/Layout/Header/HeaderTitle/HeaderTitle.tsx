@@ -45,12 +45,12 @@ const HeaderTitle = ({
     anchorNavBarItems && anchorNavBarItems.length > 0;
 
   return (
-    <div
-      className={classNames(componentClassName, {
-        [`${defaultClassName}__shadow`]: isAnchorNavBarPresent,
-      })}
-    >
-      <div className={`container ${defaultClassName}__wrapper`}>
+    <>
+      <div
+        className={classNames("af-container", componentClassName, {
+          [`${defaultClassName}__shadow`]: isAnchorNavBarPresent,
+        })}
+      >
         {Boolean(toggleMenu) && (
           <div className="burger-container">
             <ToggleButton idControl="mainmenu">
@@ -86,7 +86,7 @@ const HeaderTitle = ({
       {isAnchorNavBarPresent ? (
         <AnchorNavBar items={anchorNavBarItems} />
       ) : null}
-    </div>
+    </>
   );
 };
 

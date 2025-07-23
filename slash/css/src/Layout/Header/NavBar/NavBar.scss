@@ -24,7 +24,7 @@
   position: relative;
   z-index: 18;
   max-width: 320px;
-  background: common.$gray-lighter;
+  background: var(--gray10);
 
   &.af-drawer {
     position: fixed;
@@ -33,7 +33,7 @@
     bottom: 0;
     min-width: 320px;
     overflow: auto;
-    background: common.$white;
+    background: var(--white);
     -webkit-overflow-scrolling: touch;
   }
 
@@ -43,7 +43,7 @@
     text-align: left;
 
     &:focus {
-      box-shadow: 0 0 5px common.$color-axa;
+      box-shadow: 0 0 5px var(--axablue80);
       outline: none;
     }
 
@@ -97,12 +97,12 @@
     &--active,
     &:hover {
       > .af-nav__link {
-        color: common.$white;
-        background-color: common.$color-axa;
+        color: var(--white);
+        background-color: var(--axablue80);
       }
 
       .glyphicon-arrow-xs-down {
-        color: common.$white;
+        color: var(--white);
       }
     }
 
@@ -116,7 +116,7 @@
 
   &__aside-header {
     display: flex;
-    border-bottom: 2px solid common.$gray-light;
+    border-bottom: 2px solid var(--gray60);
     align-items: center;
   }
 
@@ -129,7 +129,7 @@
   &__aside-close {
     border: none;
     font-size: 3em;
-    color: common.$gray-light;
+    color: var(--gray60);
     background: inherit;
     cursor: pointer;
 
@@ -139,25 +139,12 @@
   }
 }
 
-@include common.media-breakpoint-up(sm) {
-  .af-nav {
-    &__wrapper {
-      width: 100%;
-    }
-  }
-}
-
 @include common.media-breakpoint-up(md) {
   .af-nav {
     max-width: inherit;
 
     &-container {
-      background-color: common.$color-wild-sand;
-    }
-
-    &__wrapper {
-      width: list.nth(list.nth(common.$container-max-widths, 4), 2);
-      max-width: 100%;
+      background-color: var(--gray10);
     }
 
     &.af-drawer {
@@ -182,8 +169,8 @@
       &--children {
         position: absolute;
         display: none;
-        background: common.$white;
-        box-shadow: 0 3px 5px common.$color-gray;
+        background: var(--white);
+        box-shadow: 0 3px 5px var(--gray40);
 
         .af-nav__link {
           padding-left: 1.1rem;

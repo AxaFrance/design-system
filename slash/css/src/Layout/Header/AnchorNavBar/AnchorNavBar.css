@@ -1,6 +1,5 @@
 :root {
   --anchor-navbar-border-bottom-color: var(--white);
-  --anchor-navbar-list-margins: 112px;
 }
 
 .af-anchor-navbar {
@@ -9,7 +8,7 @@
 
   ul {
     display: flex;
-    max-width: calc(100% - var(--anchor-navbar-list-margins));
+    width: 100%;
     margin: auto;
     padding: 0;
     align-items: center;
@@ -45,17 +44,5 @@
         fill: var(--black);
       }
     }
-  }
-}
-
-@media (0 <= width <= 1015px) {
-  :root {
-    --anchor-navbar-list-margins: 60px;
-  }
-}
-
-@media (1016px <= width <= 1271px) {
-  :root {
-    --anchor-navbar-list-margins: 80px;
   }
 }

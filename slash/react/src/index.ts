@@ -52,6 +52,7 @@ export {
   ToggleButton,
   User,
 } from "./Layout/Header";
+export { MainContainer } from "./Layout/MainContainer/MainContainer";
 export { Link, type LinkProps } from "./Link/Link";
 export {
   BooleanModal,

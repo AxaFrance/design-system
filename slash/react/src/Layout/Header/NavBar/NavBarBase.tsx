@@ -1,4 +1,5 @@
 import { FocusEvent, MouseEvent, ReactNode } from "react";
+import classNames from "classnames";
 import { getComponentClassName } from "../../../utilities";
 
 const defaultClassName = "af-nav-container";
@@ -37,7 +38,7 @@ const NavBarBase = ({
   );
 
   return (
-    <div className={componentClassName}>
+    <div className={classNames("af-container", componentClassName)}>
       <button
         aria-controls={id}
         aria-haspopup="true"
@@ -52,41 +53,39 @@ const NavBarBase = ({
         role="navigation"
         aria-label="Menu principal"
       >
-        <div className="container af-nav__wrapper">
-          <div className="af-nav__aside-header">
-            <h4 className="af-nav__aside-title">Menu</h4>
-            <button
-              aria-controls={id}
-              aria-haspopup="true"
-              onClick={onClick}
-              type="button"
-              className="af-nav__aside-close"
-              id={`close-${toggleMenuId}`}
-              aria-label="Close Menu"
-            >
-              ×
-            </button>
-          </div>
-          <ul
-            onKeyDown={(e) => {
-              e.preventDefault();
-              handleKeys(e.key);
-            }}
-            onFocus={(e) => {
-              onFocus({ e });
-            }}
-            onBlur={(e) => {
-              onBlur({ e });
-            }}
-            className={`af-nav__list ${
-              isMenuFocused ? "af-nav__list--focused" : ""
-            }`}
-            role="menubar"
-            id={id}
+        <div className="af-nav__aside-header">
+          <h4 className="af-nav__aside-title">Menu</h4>
+          <button
+            aria-controls={id}
+            aria-haspopup="true"
+            onClick={onClick}
+            type="button"
+            className="af-nav__aside-close"
+            id={`close-${toggleMenuId}`}
+            aria-label="Close Menu"
           >
-            {children}
-          </ul>
+            ×
+          </button>
         </div>
+        <ul
+          onKeyDown={(e) => {
+            e.preventDefault();
+            handleKeys(e.key);
+          }}
+          onFocus={(e) => {
+            onFocus({ e });
+          }}
+          onBlur={(e) => {
+            onBlur({ e });
+          }}
+          className={`af-nav__list ${
+            isMenuFocused ? "af-nav__list--focused" : ""
+          }`}
+          role="menubar"
+          id={id}
+        >
+          {children}
+        </ul>
       </nav>
     </div>
   );

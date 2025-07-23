@@ -6,6 +6,7 @@ import { Link } from "../../../Link/Link";
 import { linkClassName } from "../../../Link/linkClassName";
 
 import "@axa-fr/design-system-slash-css/dist/Layout/Header/AnchorNavBar/AnchorNavBar.css";
+import "@axa-fr/design-system-slash-css/dist/common/breakpoints.css";
 
 const defaultClassName = "af-anchor-navbar";
 
@@ -24,7 +25,7 @@ export type AnchorNavBarProps = {
 
 export const AnchorNavBar = ({ items }: AnchorNavBarProps) => {
   return (
-    <nav className={defaultClassName}>
+    <nav className={classNames("af-container", defaultClassName)}>
       <ul>
         {items.map((item) => {
           if (item.render) {
