@@ -81,7 +81,9 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
           )}
           {children}
         </select>
-        {helper && <span className="af-form__input-helper">{helper}</span>}
+        {helper ? (
+          <span className="af-form__input-helper">{helper}</span>
+        ) : null}
 
         <ItemMessageComponent
           id={idMessage}

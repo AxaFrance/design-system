@@ -28,11 +28,13 @@ export const CardRadioItem = ({
   <label className="af-card-radio-label">
     <RadioComponent {...inputProps} />
     <div className="af-card-radio-content">
-      {icon && <IconComponent src={icon} size={size} role="presentation" />}
+      {icon ? (
+        <IconComponent src={icon} size={size} role="presentation" />
+      ) : null}
       <div className="af-card-radio-content-description">
         <span>{label}</span>
-        {description && <span>{description}</span>}
-        {subtitle && <span>{subtitle}</span>}
+        {description ? <span>{description}</span> : null}
+        {subtitle ? <span>{subtitle}</span> : null}
       </div>
     </div>
   </label>

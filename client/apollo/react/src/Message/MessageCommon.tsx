@@ -70,9 +70,11 @@ export const Message = ({
         role="presentation"
       />
       <div className="af-message__content">
-        {title && <Heading className="af-message__title">{title}</Heading>}
+        {title ? (
+          <Heading className="af-message__title">{title}</Heading>
+        ) : null}
         {children}
-        {action && <div className="af-message__action">{action}</div>}
+        {action ? <div className="af-message__action">{action}</div> : null}
       </div>
     </div>
   );

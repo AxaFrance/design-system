@@ -10,11 +10,11 @@ export const Heading = ({ tag, tagProps = {}, ...props }: HeadingProps) => (
   <HeadingCommon
     {...props}
     tag={
-      tag && (
+      tag ? (
         <Tag {...DEFAULT_TAG_PROPS} {...tagProps}>
           {tag}
         </Tag>
-      )
+      ) : null
     }
   />
 );

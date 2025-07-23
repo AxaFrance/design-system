@@ -53,6 +53,6 @@ export const ButtonCommon = ({
     {iconLeft}
     {children}
     {iconRight}
-    {(disabled || loading) && <SpinnerComponent size={24} variant="gray" />}
+    {disabled || loading ? <SpinnerComponent size={24} variant="gray" /> : null}
   </button>
 );

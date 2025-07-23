@@ -97,11 +97,11 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
           min={formatInputDateValue(min)}
           max={formatInputDateValue(max)}
         />
-        {helper && (
+        {helper ? (
           <span id={idHelp} className="af-form__input-helper">
             {helper}
           </span>
-        )}
+        ) : null}
 
         <ItemMessageComponent
           id={idMessage}

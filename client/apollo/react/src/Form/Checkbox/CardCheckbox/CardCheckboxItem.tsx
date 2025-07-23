@@ -45,11 +45,11 @@ export const CardCheckboxItem = ({
         {...inputProps}
       />
       <div className="af-card-checkbox-content">
-        {icon && <IconComponent src={icon} size={size} />}
+        {icon ? <IconComponent src={icon} size={size} /> : null}
         <div className="af-card-checkbox-content-description">
           <span>{label}</span>
-          {description && <span>{description}</span>}
-          {subtitle && <span>{subtitle}</span>}
+          {description ? <span>{description}</span> : null}
+          {subtitle ? <span>{subtitle}</span> : null}
         </div>
       </div>
     </label>
