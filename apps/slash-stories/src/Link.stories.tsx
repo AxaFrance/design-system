@@ -27,11 +27,12 @@ type AnchorStoryType = {
   children: string;
   href: string;
   className: string;
+  variant?: "default" | "reverse";
 };
 
 export const LinkAsAnchorStory: StoryObj<AnchorStoryType> = {
   name: "Link",
-  render: ({ rightIcon, leftIcon, ...args }) => {
+  render: ({ rightIcon, leftIcon, variant, ...args }) => {
     const getIcon = (type: keyof typeof CssIcons) => {
       if (type === "/public/save.svg") {
         return <Svg src={saveIcons} />;
@@ -45,13 +46,25 @@ export const LinkAsAnchorStory: StoryObj<AnchorStoryType> = {
     const leftIconProps = getIcon(leftIcon);
     const rightIconProps = getIcon(rightIcon);
 
+    const backgroundColor = variant === "reverse" ? "#00008f" : "#ffffff";
+
     return (
-      <Link
-        {...args}
-        target="_blank"
-        leftIcon={leftIconProps}
-        rightIcon={rightIconProps}
-      />
+      <div
+        style={{
+          maxWidth: "150px",
+          height: "50px",
+          padding: "10px",
+          backgroundColor,
+        }}
+      >
+        <Link
+          {...args}
+          target="_blank"
+          leftIcon={leftIconProps}
+          rightIcon={rightIconProps}
+          variant={variant}
+        />
+      </div>
     );
   },
   args: {
@@ -60,6 +73,7 @@ export const LinkAsAnchorStory: StoryObj<AnchorStoryType> = {
     leftIcon: "(none)",
     rightIcon: "(none)",
     disabled: false,
+    variant: "default",
   },
   argTypes: {
     leftIcon: {
@@ -74,6 +88,11 @@ export const LinkAsAnchorStory: StoryObj<AnchorStoryType> = {
       table: {
         disable: true,
       },
+    },
+    variant: {
+      options: ["default", "reverse"],
+      control: { type: "radio" },
+      description: "Use 'reverse' to change the color of the link",
     },
   },
 };

@@ -77,4 +77,7 @@
   --color-border-default: transparent;
   --color-border-hover: var(--axablue80);
   --color-border-selected: var(--axablue80);
+
+  /********* Front Size *********/
+  --font-size-base: 16;
 }

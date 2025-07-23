@@ -56,6 +56,18 @@ describe("Link component", () => {
     expect(link).toHaveAttribute("aria-disabled", "true");
   });
 
+  it("should render variant reserve correctly", () => {
+    render(
+      <Link href="/" variant="reverse">
+        Test Link
+      </Link>,
+    );
+
+    const link = screen.getByRole("link", { name: "Test Link" });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveClass("af-slash-link--reverse");
+  });
+
   it("should render correclty with component prop", () => {
     const FakeRouterLink = ({
       children,
