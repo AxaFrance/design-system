@@ -16,18 +16,14 @@ const meta: Meta<typeof Accordion> = {
 
 export default meta;
 
-const defaultArgs = {
+const commonArgs = {
   variant: "primary" as AccordionVariants,
-  icon: bank,
   title: "Titre onglet",
   subtitle: "Sous-titre onglet",
   tagLabel: "En attente",
   tagProps: {
     variant: "warning" as TagVariants,
   },
-  dateLabel: "01/01/2021",
-  dateProps: { dateTime: "2021-01-01" },
-  info1: "Lorem ipsum dolor sit amet",
   info2: "+ 686,00 €",
   children: (
     <>
@@ -67,31 +63,55 @@ const defaultArgs = {
   onClick: action("Accordion has been clicked"),
 };
 
-export const AccordionStorySecondary: StoryObj<
+export const AccordionDefaultStory: StoryObj<ComponentProps<typeof Accordion>> =
+  {
+    name: "Accordion",
+    render: (args) => <Accordion {...args} />,
+    args: {
+      ...commonArgs,
+      icon: bank,
+      dateLabel: "01/01/2021",
+      dateProps: { dateTime: "2021-01-01" },
+      info1: "Lorem ipsum dolor sit amet",
+    },
+    argTypes: {
+      dateLabel: { control: "text" },
+      variant: {
+        options: Object.values(accordionVariants),
+        control: { type: "select" },
+        value: accordionVariants.secondary,
+      },
+    },
+  };
+
+export const AccordionPrimaryStory: StoryObj<ComponentProps<typeof Accordion>> =
+  {
+    name: "Accordion Primary",
+    render: (args) => <Accordion {...args} />,
+    args: {
+      ...commonArgs,
+      icon: bank,
+      info1: "Lorem ipsum dolor sit amet",
+    },
+    argTypes: {
+      dateLabel: { control: "text" },
+      variant: { control: "text" },
+    },
+  };
+
+export const AccordionSecondaryStory: StoryObj<
   ComponentProps<typeof Accordion>
 > = {
-  name: "Accordion",
-  render: (args) => <Accordion {...args} />,
-  args: defaultArgs,
-  argTypes: {
-    dateLabel: { control: "text" },
-    variant: {
-      options: Object.values(accordionVariants),
-      control: { type: "select" },
-      value: accordionVariants.secondary,
-    },
-  },
-};
-
-export const AccordionStory: StoryObj<ComponentProps<typeof Accordion>> = {
   name: "Accordion Secondary",
   render: (args) => <Accordion {...args} />,
-  args: defaultArgs,
+  args: {
+    ...commonArgs,
+    variant: "secondary" as AccordionVariants,
+    dateLabel: "01/01/2021",
+    dateProps: { dateTime: "2021-01-01" },
+  },
   argTypes: {
     dateLabel: { control: "text" },
-    variant: {
-      options: Object.values(accordionVariants),
-      control: { type: "select" },
-    },
+    variant: { control: "text" },
   },
 };
