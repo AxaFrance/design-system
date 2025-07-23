@@ -14,23 +14,19 @@ export enum RadioModes {
   card = "card",
 }
 
-type Props = Omit<
-  ComponentPropsWithRef<typeof RadioItem>,
-  "id" | "label" | "className"
-> & {
+type Props = {
   options: Option[];
 } & (
-    | {
-        mode?: "classic" | "default" | "inline";
-      }
-    | {
-        mode: "card";
-        className?: string;
-        orientation?: ComponentPropsWithoutRef<
-          typeof RadioCardGroup
-        >["orientation"];
-      }
-  );
+  | (Omit<
+      ComponentPropsWithRef<typeof RadioItem>,
+      "id" | "label" | "className"
+    > & {
+      mode?: "classic" | "default" | "inline";
+    })
+  | (ComponentPropsWithoutRef<typeof RadioCardGroup> & {
+      mode: "card";
+    })
+);
 
 const getClassNameMode = (mode: Props["mode"]) => {
   switch (mode) {
@@ -46,29 +42,22 @@ const getClassNameMode = (mode: Props["mode"]) => {
 };
 
 const Radio = forwardRef<HTMLInputElement, Props>(
-  (
-    { classModifier, options, value = "", children, disabled, ...otherProps },
-    inputRef,
-  ) => {
-    const classNameMode = getClassNameMode(otherProps.mode ?? "default");
+  ({ options, value = "", children, disabled, ...otherProps }, inputRef) => {
+    const { mode, ...onlyNecessaryProps } = otherProps;
+    const classNameMode = getClassNameMode(mode ?? "default");
 
-    // ICI - le if qui permet de rendre un autre composant
-    if (otherProps.mode === "card") {
+    if (mode === "card") {
       return (
         <RadioCardGroup
-          className={otherProps.className}
+          {...onlyNecessaryProps}
           options={options}
-          error={classModifier === "error"}
           disabled={disabled}
-          orientation={otherProps.orientation}
+          value={value}
         >
           {children}
         </RadioCardGroup>
       );
     }
-
-    const onlyNecessaryProps = { ...otherProps };
-    delete onlyNecessaryProps.mode;
 
     return options.map((option: Option) => (
       <RadioItem
@@ -77,7 +66,6 @@ const Radio = forwardRef<HTMLInputElement, Props>(
         isChecked={option.value === value}
         disabled={option.disabled || disabled}
         className={classNameMode}
-        classModifier={classModifier}
         ref={inputRef}
         {...option}
       >

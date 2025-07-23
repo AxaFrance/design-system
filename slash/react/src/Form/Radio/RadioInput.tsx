@@ -6,7 +6,7 @@ type RadioInputProps = ConsumerFieldProps &
   ComponentPropsWithoutRef<typeof Radio>;
 
 const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
-  ({ label, mode, options, ...props }, inputRef) => {
+  ({ label, mode = "default", options, ...props }, inputRef) => {
     const labelPosition = mode === RadioModes.classic ? "top" : "center";
     const newOptions = useOptionsWithId(options);
 
@@ -14,7 +14,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
       <Field
         label={label}
         labelPosition={labelPosition}
-        roleContainer="radiogroup"
+        roleContainer={mode !== "card" ? "radiogroup" : undefined}
         {...props}
         renderInput={({
           classModifier,

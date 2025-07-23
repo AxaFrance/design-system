@@ -55,7 +55,12 @@ export const RadioInputStory: Story = {
   argTypes: {
     onChange: { action: "onChange" },
     mode: {
-      options: [RadioModes.classic, RadioModes.default, RadioModes.inline],
+      options: [
+        RadioModes.classic,
+        RadioModes.default,
+        RadioModes.inline,
+        RadioModes.card,
+      ],
       control: { type: "inline-radio" },
     },
     value: {
