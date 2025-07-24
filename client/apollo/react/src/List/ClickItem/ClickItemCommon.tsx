@@ -1,4 +1,5 @@
 import type { ClickItemPropsCommon } from "./types";
+import { ClickItemWrapper } from "./ClickItemWrapper";
 
 export const clickItemVariants = {
   small: "small",
@@ -33,8 +34,15 @@ export const ClickItemCommon = ({
   ClickItemSuffixComponent,
   ClickItemPrefixComponent,
 }: ClickItemPropsCommon) => {
+  const clickableProps = onClick && {
+    "aria-label": ariaLabelForActionIcon,
+    onClick,
+    disabled: state === "disabled" || state === "loading",
+  };
+
   return (
-    <div
+    <ClickItemWrapper
+      isClickable={Boolean(onClick)}
       className={[
         "af-apollo-click-item",
         `af-apollo-click-item--${variant}`,
@@ -43,6 +51,7 @@ export const ClickItemCommon = ({
       ]
         .filter(Boolean)
         .join(" ")}
+      {...clickableProps}
     >
       <div className="af-apollo-click-item__leading">
         <ClickItemPrefixComponent
@@ -66,13 +75,8 @@ export const ClickItemCommon = ({
         />
       </div>
       <div className="af-apollo-click-item__trailing">
-        <ClickItemSuffixComponent
-          variant={variant}
-          state={state}
-          onClick={onClick}
-          ariaLabelForActionIcon={ariaLabelForActionIcon}
-        />
+        <ClickItemSuffixComponent variant={variant} state={state} />
       </div>
-    </div>
+    </ClickItemWrapper>
   );
 };

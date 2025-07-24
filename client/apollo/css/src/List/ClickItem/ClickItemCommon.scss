@@ -1,8 +1,12 @@
 .af-apollo-click-item {
   display: flex;
+  width: 100%;
+  border: none;
   flex-direction: row;
   align-items: center;
   gap: calc(12 / var(--font-size-base) * 1rem);
+  font-family: var(--font-family-base);
+  background: none;
   cursor: pointer;
   user-select: none;
 
@@ -15,31 +19,37 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     gap: calc(2 / var(--font-size-base) * 1rem);
   }
 
   &__title {
     font-size: var(--click-item-title-font-size);
-    font-weight: 600;
+    font-weight: var(--click-item-title-font-weight);
+    line-height: 125%;
     color: var(--click-item-title-color);
   }
 
   &__subtitle {
     font-size: var(--click-item-subtitle-font-size);
     font-weight: 400;
+    line-height: 125%;
     color: var(--click-item-subtitle-color);
   }
 
   &__secondary {
-    font-size: var(--click-item-secondary-color);
+    font-size: var(--click-item-text-secondary-font-size);
     font-weight: 400;
-    color: var(--click-item-secondary-color);
+    line-height: 125%;
+    color: var(--click-item-text-secondary-color);
   }
 
   &__tertiary {
-    font-size: var(--click-item-tertiary-font-size);
+    font-size: var(--click-item-text-tertiary-font-size);
     font-weight: 400;
-    color: var(--click-item-tertiary-color);
+    line-height: 125%;
+    color: var(--click-item-text-tertiary-color);
   }
 
   &__tag-container {
@@ -48,8 +58,10 @@
 
   &--small {
     .af-apollo-click-item {
-      &__title span:hover {
-        border-bottom: 1px var(--click-item-title-border-color) solid;
+      &__title {
+        span:hover {
+          border-bottom: 1px var(--click-item-title-border-color) solid;
+        }
       }
 
       &__subtitle,
@@ -62,6 +74,8 @@
   }
 
   &--medium {
+    align-items: flex-start;
+
     .af-apollo-click-item {
       &__secondary,
       &__tertiary,
@@ -83,6 +97,8 @@
 
   &--large.af-apollo-click-item--disabled,
   &--medium.af-apollo-click-item--disabled {
+    cursor: default;
+
     .af-apollo-click-item {
       &__title,
       &__subtitle,

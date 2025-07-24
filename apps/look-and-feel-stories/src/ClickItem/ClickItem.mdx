@@ -7,18 +7,23 @@ import * as ClickItemStories from "./ClickItem.stories";
 
 ```tsx
 import { ClickItem } from "@axa-fr/design-system-apollo-react/lf";
+import callIcon from "@material-symbols/svg-400/outlined/call-fill.svg";
 
 const MyComponent = () => (
   <>
-    <ClickItem
-      icon="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='48'%20height='48'%20viewBox='0%20-960%20960%20960'%3e%3cpath%20d='M180-120q-23%200-41.5-18T120-180v-600q0-23%2018.5-41.5T180-840h600q24%200%2042%2018.5t18%2041.5v54H538q-58%200-96%2038t-38%2095v227q0%2057%2038%2095t96%2038h302v53q0%2024-18%2042t-42%2018H180Zm358-173q-34%200-54-20t-20-53v-227q0-34%2020-53.5t54-19.5h269q34%200%2054%2019.5t20%2053.5v227q0%2033-20%2053t-54%2020H538Zm114-123q25%200%2044.5-19.5T716-481q0-25-19.5-44T652-544q-25%200-44.5%2019T588-481q0%2026%2019.5%2045.5T652-416Z'/%3e%3c/svg%3e"
-      state="default"
-      style="small"
-      title="Titre"
-    />
+    <ClickItem icon={callIcon} state="default" variant="small" title="Titre" />
   </>
 );
 ```
+
+### Uses
+
+The Click Item component is an interactive element designed to trigger an action when selected. It can be used alone or integrated into lists, menus, or tables to enable fast and intuitive interactions.
+
+The component comes in four variants: large, medium, small, and agent. The entire element is clickable.
+
+If it's used within a parent component that already handles click events (i.e., the parent itself has an `onClick` handler), you **shouldn't provide an `onClick` function as a prop to this component**.
+In such cases, the component will automatically behave as a **display-only element**, allowing the parent to manage all click interactions.
 
 ### Large
 

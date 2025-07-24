@@ -1,14 +1,65 @@
+@use "../../common/breakpoints" as breakpoints;
 @use "./ClickItemCommon";
 
 .af-apollo-click-item {
   --click-item-title-color: var(--color-axa);
-  --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
   --click-item-title-border-color: var(--color-axa);
   --click-item-subtitle-color: var(--color-gray);
-  --click-item-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
-  --click-item-secondary-color: var(--color-gray);
-  --click-item-secondary-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --click-item-tertiary-color: var(--color-gray);
-  --click-item-tertiary-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --click-item-disabled-color: var(--color-gray-500);
+  --click-item-text-secondary-color: var(--color-gray);
+  --click-item-text-tertiary-color: var(--color-gray);
+  --click-item-text-disabled-color: var(--color-gray-500);
+  --click-item-title-font-weight: 600;
+
+  &--large {
+    --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --click-item-text-secondary-font-size: calc(
+      14 / var(--font-size-base) * 1rem
+    );
+    --click-item-text-tertiary-font-size: calc(
+      14 / var(--font-size-base) * 1rem
+    );
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+      --click-item-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+      --click-item-text-secondary-font-size: calc(
+        16 / var(--font-size-base) * 1rem
+      );
+      --click-item-text-tertiary-font-size: calc(
+        16 / var(--font-size-base) * 1rem
+      );
+    }
+  }
+
+  &--medium {
+    --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --click-item-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+      --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &--small {
+    --click-item-title-font-size: calc(14 / var(--font-size-base) * 1rem);
+    --click-item-title-color: var(--color-gray-900);
+    --click-item-title-font-weight: 400;
+
+    &:hover {
+      --click-item-title-color: var(--color-axa);
+    }
+
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &--agent {
+    --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --click-item-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+      --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
 }
