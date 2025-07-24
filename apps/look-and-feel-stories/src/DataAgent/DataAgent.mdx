@@ -1,0 +1,76 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as DataAgentStories from "./DataAgent.stories";
+
+<Meta of={DataAgentStories} name="DataAgent" />
+
+# ItemFile
+
+To use the DataAgent import it like that:
+
+```tsx
+import { DataAgent } from "@axa-fr/design-system-apollo-react/lf";
+import accountBalanceWallet from "@material-symbols/svg-400/rounded/account_balance_wallet-fill.svg";
+
+const MyComponent = () => (
+  <DataAgent
+    agentContractProps={{
+      subtitle: "Assurance Vie, Auto, Habitation, Complémentaire santé",
+      title: "Contrat rattaché",
+      type: "stick",
+    }}
+    agentProps={{
+      picture: "https://dummyimage.com/48/48/fff&text=A",
+      subtitle: "AXA Assurance & Banque",
+      title: "Michel Lhote",
+      type: "picture",
+    }}
+    clickContents={[
+      {
+        icon: accountBalanceWallet,
+        onClick: () => {},
+        title: "Envoyer un message",
+        variant: "small",
+      },
+      {
+        icon: accountBalanceWallet,
+        onClick: () => {},
+        title: "Envoyer un message à l’agent",
+        variant: "small",
+      },
+      {
+        icon: accountBalanceWallet,
+        onClick: () => {},
+        title: "Accéder à plus d’informations",
+        variant: "small",
+      },
+    ]}
+    contents={[
+      {
+        icon: accountBalanceWallet,
+        subtitle1: "01 23 34 45 67",
+        title: "",
+        type: "icon",
+      },
+      {
+        icon: accountBalanceWallet,
+        subtitle1: "01 23 34 45 67",
+        title: "",
+        type: "icon",
+      },
+      {
+        icon: accountBalanceWallet,
+        subtitle1: "01 23 34 45 67",
+        title: "",
+        type: "icon",
+      },
+    ]}
+    texteOrias="N° Orias (orias.fr) : 10057601 - 10057601"
+  />
+);
+```
+
+## Default
+
+<Canvas of={DataAgentStories.Default} />
+
+<Controls of={DataAgentStories.Default} />

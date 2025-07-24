@@ -1,0 +1,19 @@
+@use "./DataAgentCommon";
+
+.af-data-agent {
+  --data-agent-border-color: var(--axa-blue-20);
+  --data-agent-text-orias-font-color: var(--neutral-80);
+  --data-agent-text-orias-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --data-agent-intro-padding: calc(16 / var(--font-size-base) * 1rem)
+    calc(16 / var(--font-size-base) * 1rem)
+    calc(28 / var(--font-size-base) * 1rem);
+  --data-agent-intro-content-padding: calc(12 / var(--font-size-base) * 1rem)
+    calc(16 / var(--font-size-base) * 1rem)
+    calc(16 / var(--font-size-base) * 1rem);
+
+  &__info-content {
+    .af-data-agent__line:last-of-type {
+      display: none;
+    }
+  }
+}
