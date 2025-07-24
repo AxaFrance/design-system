@@ -1,6 +1,22 @@
 @use "sass:list";
 @use "../../../common/common" as common;
 
+.af-nav--sticky {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  background: common.$gray-lighter;
+  width: 100%;
+}
+
+.af-nav__wrapper {
+  background: inherit;
+}
+
+.af-nav__list {
+  background: inherit;
+}
+
 .af-menu-open {
   overflow-y: hidden;
 }
@@ -32,6 +48,7 @@
     top: 0;
     bottom: 0;
     min-width: 320px;
+    width: auto;
     overflow: auto;
     background: common.$white;
     -webkit-overflow-scrolling: touch;
@@ -151,13 +168,16 @@
   .af-nav {
     max-width: inherit;
 
-    &-container {
-      background-color: common.$color-wild-sand;
+    &.af-nav--sticky {
+      position: fixed !important;
+      z-index: 18 !important;
+      top: 0 !important;
+      background: common.$color-wild-sand !important;
     }
 
-    &__wrapper {
-      width: list.nth(list.nth(common.$container-max-widths, 4), 2);
-      max-width: 100%;
+    &.af-nav--sticky:not(.af-drawer) {
+      position: fixed;
+      background: common.$color-wild-sand;
     }
 
     &.af-drawer {
@@ -170,6 +190,15 @@
       &.left {
         transform: none;
       }
+    }
+
+    &-container {
+      background-color: common.$color-wild-sand;
+    }
+
+    &__wrapper {
+      width: list.nth(list.nth(common.$container-max-widths, 4), 2);
+      max-width: 100%;
     }
 
     &__link {

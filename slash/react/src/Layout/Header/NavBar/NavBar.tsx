@@ -22,10 +22,18 @@ type Props = {
   positionInit?: number;
   className?: string;
   isVisible: boolean;
+  isSticky?: boolean;
   children: ReactNode;
   onClick: (event: React.MouseEvent) => void;
 };
-const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
+
+const NavBar = ({
+  positionInit = 0,
+  children,
+  isSticky = false,
+  className,
+  ...otherProps
+}: Props) => {
   const [isMenuFocused, setIsMenuFocused] = useState(false);
   const [position, setPosition] = useState(positionInit);
   const validChildren = useMemo<ReactElement<ChildrenProps>[]>(
@@ -55,6 +63,9 @@ const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
   return (
     <NavBarBase
       {...otherProps}
+      className={className}
+      navClassName={isSticky ? "af-nav--sticky" : ""}
+      isSticky={isSticky}
       onFocus={() => setIsMenuFocused(true)}
       onBlur={() => setIsMenuFocused(false)}
       handleKeys={handleKeys}
