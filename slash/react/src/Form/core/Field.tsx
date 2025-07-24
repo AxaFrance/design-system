@@ -15,7 +15,6 @@ type InputProps = {
    * The label of the input element.
    */
   label: ReactNode;
-  children?: ReactNode;
   /**
    * The id of the input element. If not provided, a unique id will be generated.
    */
@@ -86,8 +85,13 @@ type InputProps = {
 
 export type ConsumerFieldProps = Omit<
   InputProps,
-  "renderInput" | "classNameSuffix"
->;
+  "renderInput" | "classNameSuffix" | "children"
+> & {
+  /**
+   * Element appended right to the input
+   */
+  rightElement?: ReactNode;
+};
 
 export const Field = ({
   classNameContainerInput = "col-md-10",
@@ -99,7 +103,6 @@ export const Field = ({
   messageType,
   required,
   classModifier = "",
-  children,
   disabled = false,
   helpMessage,
   id,
@@ -123,7 +126,7 @@ export const Field = ({
   const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
     classModifier,
     disabled,
-    Boolean(children),
+    false,
     actualRequired,
   );
 
@@ -179,7 +182,6 @@ export const Field = ({
             errorId,
             disabled,
             ariaInvalid: isInvalid,
-            children,
             ...otherProps,
           })}
         </div>

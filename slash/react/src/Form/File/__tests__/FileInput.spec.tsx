@@ -1,23 +1,9 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { MessageTypes } from "../../core";
 import { FilePreview } from "../File";
 import { FileInput } from "../FileInput";
-
-describe("<FileInput>", () => {
-  it("renders FileInput correctly", () => {
-    const { asFragment } = render(
-      <FileInput
-        label="File *"
-        id="id"
-        name="file"
-        onChange={() => {}}
-        accept="image/jpeg, image/png, application/*"
-      />,
-    );
-    expect(asFragment()).toMatchSnapshot();
-  });
-});
 
 const values = [
   {
@@ -58,9 +44,7 @@ describe("<FileInput>", () => {
       );
     });
   });
-});
 
-describe("<FileInput>", () => {
   it("renders FileInput correctly and handles add file action", async () => {
     const handleChange = vi.fn();
     const user = userEvent.setup();
@@ -92,5 +76,38 @@ describe("<FileInput>", () => {
         }),
       );
     });
+  });
+
+  it("should render element right to input", () => {
+    // Act
+    render(
+      <FileInput
+        label="File *"
+        id="id"
+        name="file"
+        onChange={() => {}}
+        accept="image/jpeg, image/png, application/*"
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
+
+  it("shouldn't have an accessibility violation", async () => {
+    // Act
+    const { container } = render(
+      <FileInput
+        label="File *"
+        id="id"
+        name="file"
+        onChange={() => {}}
+        accept="image/jpeg, image/png, application/*"
+      />,
+    );
+
+    // Assert
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

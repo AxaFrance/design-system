@@ -7,27 +7,28 @@ type Props = Omit<
     ComponentProps<typeof Date> & {
       helpMessage?: ReactNode;
     },
-  "renderInput"
+  "renderInput" | "children"
 >;
 
 const DateInput = forwardRef<HTMLInputElement, Props>(
-  ({ children, ...otherProps }, inputRef) => {
+  ({ rightElement, ...otherProps }, inputRef) => {
     return (
       <Field
         {...otherProps}
         renderInput={({ id, classModifier, ariaInvalid, errorId }) => (
-          <Date
-            id={id}
-            classModifier={classModifier}
-            ref={inputRef}
-            aria-describedby={errorId}
-            aria-invalid={ariaInvalid}
-            {...otherProps}
-          />
+          <>
+            <Date
+              id={id}
+              classModifier={classModifier}
+              ref={inputRef}
+              aria-describedby={errorId}
+              aria-invalid={ariaInvalid}
+              {...otherProps}
+            />
+            {rightElement}
+          </>
         )}
-      >
-        {children}
-      </Field>
+      />
     );
   },
 );

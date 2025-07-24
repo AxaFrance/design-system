@@ -122,6 +122,23 @@ describe("Slider", () => {
     expect(labelSliderInput).not.toBeInTheDocument();
   });
 
+  it("should render element right to input", () => {
+    // Act
+    render(
+      <SliderInput
+        id="Slider-id"
+        label="labelSliderInput"
+        className="classname-slider"
+        name="name-slider-input"
+        options={options}
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
+
   it("shouldn't have an accesibility violation <SliderInput />", async () => {
     // Act
     const { container } = render(

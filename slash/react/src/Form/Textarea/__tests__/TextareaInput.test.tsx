@@ -33,16 +33,26 @@ describe("TextareaInput", () => {
 
   it("should have label text", () => {
     // Act
-    render(
-      <TextareaInput id="textareainput-id" label="TextareaInput label">
-        A textarea input
-      </TextareaInput>,
-    );
+    render(<TextareaInput id="textareainput-id" label="TextareaInput label" />);
 
     // Assert
     expect(screen.getByText("TextareaInput label")).toHaveClass(
       "af-form__group-label",
     );
+  });
+
+  it("should render element right to input", () => {
+    // Act
+    render(
+      <TextareaInput
+        id="textareainput-id"
+        label="TextareaInput label"
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
   });
 
   it("shouldn't have an accessibility violation <TextareaInput/>", async () => {
