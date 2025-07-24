@@ -1,6 +1,7 @@
 .af-apollo-click-item {
   display: flex;
   width: 100%;
+  padding: 0;
   border: none;
   flex-direction: row;
   align-items: center;
@@ -58,17 +59,20 @@
 
   &--small {
     .af-apollo-click-item {
-      &__title {
-        span:hover {
-          border-bottom: 1px var(--click-item-title-border-color) solid;
-        }
-      }
-
       &__subtitle,
       &__secondary,
       &__tertiary,
       &__tag-container {
         display: none;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      .af-apollo-click-item__title {
+        text-decoration: underline solid var(--click-item-title-border-color)
+          1px;
+        text-underline-offset: 25%;
       }
     }
   }
