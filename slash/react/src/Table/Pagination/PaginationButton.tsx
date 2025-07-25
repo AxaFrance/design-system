@@ -6,6 +6,7 @@ type PaginationButtonProps = {
   children?: ReactNode;
   value: number;
   onChange: (e: { value: number }) => void;
+  ariaLabel: string;
 };
 
 const PaginationButton = ({
@@ -14,6 +15,7 @@ const PaginationButton = ({
   children,
   value,
   onChange,
+  ariaLabel,
 }: PaginationButtonProps) => {
   if (!isVisible) {
     return null;
@@ -25,6 +27,7 @@ const PaginationButton = ({
           className="af-pager__item-link"
           href="/#"
           role="button"
+          aria-label={ariaLabel}
           onClick={(e) => {
             e.preventDefault();
             onChange({ value });
