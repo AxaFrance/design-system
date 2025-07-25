@@ -42,4 +42,17 @@ describe("ProgressBar Component", () => {
     const progressBar = screen.getByRole("progressbar");
     expect(progressBar).not.toHaveAttribute("aria-hidden", "true");
   });
+
+  describe("ProgressBar - percentage display", () => {
+    it("displays the percentage in all cases", () => {
+      render(<ProgressBar value={45} stepNumber={2} totalSteps={3} />);
+      expect(screen.getByText("Progression 45%")).toBeInTheDocument();
+
+      render(<ProgressBar value={100} stepNumber={1} totalSteps={3} />);
+      expect(screen.getByText("Progression 100%")).toBeInTheDocument();
+
+      render(<ProgressBar value={0} stepNumber={3} totalSteps={3} />);
+      expect(screen.getByText("Progression 0%")).toBeInTheDocument();
+    });
+  });
 });
