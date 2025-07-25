@@ -13,7 +13,7 @@
     font-family: var(--font-family-base);
 
     @media (width > #{breakpoints.$breakpoint-md}) {
-      gap: var(--accordion-row-gap) var(--accordion-column-gap);
+      --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
     }
 
     .af-icon:first-child {
@@ -23,7 +23,7 @@
     .af-accordion {
       &__title {
         grid-area: title;
-        font-size: var(--accordion-font-size);
+        font-size: var(--accordion-title-font-size);
         font-weight: 600;
         line-height: var(--accordion-line-height);
         color: var(--accordion-title-text-color);
@@ -43,15 +43,19 @@
 
       &__date {
         grid-area: date-container;
+        font-size: var(--accordion-info1-font-size-secondary);
       }
 
       &__info1 {
         grid-area: info1;
+        font-size: var(--accordion-info1-font-size);
         color: var(--accordion-info1-text-color);
       }
 
       &__info2 {
         grid-area: info2;
+        align-items: center;
+        font-size: var(--accordion-info2-font-size);
         color: var(--accordion-info2-text-color);
       }
     }
@@ -70,6 +74,7 @@
       --summary-areas: "icon title tag-container info1 info2 arrow"
         "icon subtitle tag-container info1 info2 arrow";
       --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
+      --accordion-info1-font-size: calc(16 / var(--font-size-base) * 1rem);
     }
   }
 
@@ -88,12 +93,18 @@
       &__info1 {
         display: none;
       }
+
+      &__date {
+        font-size: var(--accordion-info1-font-size-secondary);
+      }
     }
 
     @media (width > #{breakpoints.$breakpoint-md}) {
       --summary-areas: "tag-container date-container title info2 arrow"
         "tag-container date-container subtitle info2 arrow";
       --summary-columns: max-content min-content 1fr max-content max-content;
+
+      font-size: var(--accordion-info1-font-size-secondary);
     }
   }
 }
