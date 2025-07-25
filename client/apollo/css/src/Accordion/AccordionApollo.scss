@@ -18,6 +18,17 @@
     --accordion-info1-font-size: calc(16 / var(--font-size-base) * 1rem);
   }
 
+  .af-accordion__date {
+    --accordion-secondary-date-font-size: calc(
+      16 / var(--font-size-base) * 1rem
+    );
+    @media (width > #{breakpoints.$breakpoint-md}) {
+      --accordion-secondary-date-font-size: calc(
+        16 / var(--font-size-base) * 1rem
+      );
+    }
+  }
+
   &--primary {
     --accordion-title-text-color: var(--axa-blue-100);
   }
@@ -28,6 +39,9 @@
 
     @media (width > #{breakpoints.$breakpoint-md}) {
       --accordion-info1-font-size-secondary: calc(
+        16 / var(--font-size-base) * 1rem
+      );
+      --accordion-secondary-date-font-size: calc(
         16 / var(--font-size-base) * 1rem
       );
     }

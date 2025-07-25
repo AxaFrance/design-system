@@ -43,7 +43,11 @@
 
       &__date {
         grid-area: date-container;
-        font-size: var(--accordion-info1-font-size-secondary);
+        font-size: var(--accordion-secondary-date-font-size);
+
+        @media (width > #{breakpoints.$breakpoint-md}) {
+          font-size: var(--accordion-secondary-date-font-size);
+        }
       }
 
       &__info1 {
@@ -65,6 +69,7 @@
     --summary-areas: "icon title arrow" "icon subtitle arrow"
       "icon tag-container arrow" "icon info1 arrow" "icon info2 arrow";
     --summary-columns: min-content 1fr min-content;
+    --accordion-info1-font-size: calc(14 / var(--font-size-base) * 1rem);
 
     .af-apollo-accordion__summary .af-accordion__date {
       display: none;
@@ -93,18 +98,12 @@
       &__info1 {
         display: none;
       }
-
-      &__date {
-        font-size: var(--accordion-info1-font-size-secondary);
-      }
     }
 
     @media (width > #{breakpoints.$breakpoint-md}) {
       --summary-areas: "tag-container date-container title info2 arrow"
         "tag-container date-container subtitle info2 arrow";
       --summary-columns: max-content min-content 1fr max-content max-content;
-
-      font-size: var(--accordion-info1-font-size-secondary);
     }
   }
 }
