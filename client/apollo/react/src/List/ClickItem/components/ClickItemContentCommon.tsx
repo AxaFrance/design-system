@@ -25,9 +25,7 @@ export const ClickItemContentCommon = ({
 }: ClickItemContentCommonProps) => {
   return (
     <>
-      <p className="af-apollo-click-item__title">
-        <span>{title}</span>
-      </p>
+      <p className="af-apollo-click-item__title">{title}</p>
       {subtitle && <p className="af-apollo-click-item__subtitle">{subtitle}</p>}
       {textSecondary && (
         <p className="af-apollo-click-item__secondary">{textSecondary}</p>
