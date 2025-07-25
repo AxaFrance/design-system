@@ -1,1 +1,0 @@
-import{c as n}from"./DropdownCommon-pMLVdlvv.js";const c=t=>t.split(" ").filter(Boolean).at(-1),m=t=>t?t.split(" "):[],l=(t,s,e)=>{if(!t)return"";const o=c(t),i=m(e).filter(r=>/\S/.test(r)).map(r=>`${o}--${r}`);return n(t,s,i)};export{l as g};
