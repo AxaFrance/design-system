@@ -46,7 +46,15 @@ type InputProps = {
    * @default "center"
    *
    */
-  labelPosition?: "top" | "center";
+
+  /**
+   * Sets the position of the label relative to the input.
+   * - "above" places the label above the input.
+   * - "top" places the label at the top of the input group (useful for textareas).
+   * - "center" aligns the label and input horizontally (default for single-line inputs).
+   * @default "center"
+   */
+  labelPosition?: "above" | "top" | "center";
   /**
    * suffix appended to the className of the div wrapping the input
    * @deprecated We should rationalize the CSS for the components to avoid having to use different sufixes
@@ -157,46 +165,85 @@ export const Field = ({
       className={classNames("row", groupClassName, {
         "af-form__group--required": actualRequired,
         "af-form__group--label-top": labelPosition === "top",
+        "af-form__group--label-above": labelPosition === "above",
       })}
       role={roleContainer}
       aria-label={ariaLabelContainer}
       aria-labelledby={isGroup ? labelId : undefined}
     >
-      <div className={classNameContainerLabel}>
-        <LabelElement
-          className={classNames("af-form__group-label", {
-            "af-form__group-label--required": actualRequired,
-          })}
-          htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
-          id={labelId}
-        >
-          {label}
-        </LabelElement>
-      </div>
-
-      <div className={classNameContainerInput}>
-        <div className={fieldContainerClassName}>
-          {renderInput({
-            classModifier: `${inputClassModifier} ${modifiers}`,
-            id: inputId,
-            errorId,
-            disabled,
-            ariaInvalid: isInvalid,
-            ...otherProps,
-          })}
-        </div>
-        {forceDisplayMessage ? (
-          <FieldError
-            message={message}
-            messageType={messageType}
-            errorId={errorId}
-          />
-        ) : (
-          <HelpMessage message={helpMessage} id={errorId} />
-        )}
-
-        {appendChildren}
-      </div>
+      {labelPosition === "above" ? (
+        <>
+          <div className="af-form__label-above">
+            <LabelElement
+              className={classNames("af-form__group-label", {
+                "af-form__group-label--required": actualRequired,
+              })}
+              htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
+              id={labelId}
+            >
+              {label}
+            </LabelElement>
+          </div>
+          <div className={classNameContainerInput}>
+            <div className={fieldContainerClassName}>
+              {renderInput({
+                classModifier: `${inputClassModifier} ${modifiers}`,
+                id: inputId,
+                errorId,
+                disabled,
+                ariaInvalid: isInvalid,
+                ...otherProps,
+              })}
+            </div>
+            {forceDisplayMessage ? (
+              <FieldError
+                message={message}
+                messageType={messageType}
+                errorId={errorId}
+              />
+            ) : (
+              <HelpMessage message={helpMessage} id={errorId} />
+            )}
+            {appendChildren}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={classNameContainerLabel}>
+            <LabelElement
+              className={classNames("af-form__group-label", {
+                "af-form__group-label--required": actualRequired,
+              })}
+              htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
+              id={labelId}
+            >
+              {label}
+            </LabelElement>
+          </div>
+          <div className={classNameContainerInput}>
+            <div className={fieldContainerClassName}>
+              {renderInput({
+                classModifier: `${inputClassModifier} ${modifiers}`,
+                id: inputId,
+                errorId,
+                disabled,
+                ariaInvalid: isInvalid,
+                ...otherProps,
+              })}
+            </div>
+            {forceDisplayMessage ? (
+              <FieldError
+                message={message}
+                messageType={messageType}
+                errorId={errorId}
+              />
+            ) : (
+              <HelpMessage message={helpMessage} id={errorId} />
+            )}
+            {appendChildren}
+          </div>
+        </>
+      )}
     </div>
   );
 };

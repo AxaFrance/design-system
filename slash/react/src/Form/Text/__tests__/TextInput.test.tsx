@@ -90,4 +90,112 @@ describe("TextInput", () => {
     // Assert
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("should apply correct classes for labelPosition='above'", () => {
+    // Act
+    render(
+      <TextInput
+        label="TextInput label"
+        value="Hello World"
+        labelPosition="above"
+        classModifier="required"
+      />,
+    );
+
+    // Assert
+    const formGroup =
+      screen.getByText("TextInput label").parentElement?.parentElement;
+    expect(formGroup).toHaveClass("af-form__group--label-above");
+    expect(screen.getByText("TextInput label")).toHaveClass(
+      "af-form__label-above",
+    );
+    expect(screen.getByLabelText("TextInput label").parentElement).toHaveClass(
+      "af-form__input-container",
+    );
+    expect(screen.getByText("TextInput label")).toHaveClass(
+      "af-form__group-label--required",
+    );
+  });
+
+  it("should display label above input with labelPosition='above'", () => {
+    // Act
+    render(
+      <TextInput
+        label="TextInput label"
+        value="Hello World"
+        labelPosition="above"
+      />,
+    );
+
+    // Assert
+    const label = screen.getByText("TextInput label");
+    const input = screen.getByLabelText("TextInput label");
+    expect(label.parentElement?.parentElement).toHaveClass(
+      "af-form__group--label-above",
+    );
+    expect(input.parentElement).toHaveClass("af-form__input-container");
+  });
+
+  it("should display required asterisk with labelPosition='above'", () => {
+    // Act
+    render(
+      <TextInput
+        label="TextInput label"
+        value="Hello World"
+        labelPosition="above"
+        classModifier="required"
+      />,
+    );
+
+    // Assert
+    const label = screen.getByText("TextInput label");
+    expect(label).toHaveClass("af-form__group-label--required");
+    expect(label).toHaveTextContent("TextInput label *");
+  });
+
+  it("should render help message with labelPosition='above'", () => {
+    // Act
+    render(
+      <TextInput
+        label="TextInput label"
+        value="Hello World"
+        labelPosition="above"
+        helpMessage="Aide à la saisie"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText("Aide à la saisie")).toBeInTheDocument();
+    expect(screen.getByText("Aide à la saisie")).toHaveClass("af-form__help");
+  });
+
+  it("should render right element with labelPosition='above'", () => {
+    // Act
+    render(
+      <TextInput
+        label="TextInput label"
+        value="Hello World"
+        labelPosition="above"
+        rightElement="Content"
+      />,
+    );
+
+    // Assert
+    expect(screen.getByText(/content/i)).toBeInTheDocument();
+  });
+
+  it("shouldn't have accessibility violations with labelPosition='above'", async () => {
+    // Act
+    const { container } = render(
+      <TextInput
+        label="TextInput label"
+        value="Hello World"
+        labelPosition="above"
+        classModifier="required"
+      />,
+    );
+
+    // Assert
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });

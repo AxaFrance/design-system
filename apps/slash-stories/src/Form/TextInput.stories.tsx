@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { MessageTypes, TextInput } from "@axa-fr/design-system-slash-react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
@@ -6,7 +7,18 @@ import { inputTypes } from "./inputTypes";
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
   title: "Components/Form/Input/Text",
-  argTypes: { onChange: { action: "onChange" } },
+  argTypes: {
+    onChange: { action: "onChange" },
+    labelPosition: {
+      control: { type: "select" },
+      options: ["center", "top", "above"],
+      description: "Sets the position of the label relative to the input.",
+    },
+    type: {
+      control: { type: "select" },
+      options: inputTypes,
+    },
+  },
   args: { onChange: fn() },
 };
 
@@ -38,12 +50,7 @@ export const TextInputStory: Story = {
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
     "aria-disabled": false,
-  },
-  argTypes: {
-    type: {
-      options: inputTypes,
-      control: { type: "select" },
-    },
+    labelPosition: "center",
   },
 };
 
@@ -71,12 +78,7 @@ export const TextInputErrorStory: Story = {
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
     "aria-disabled": false,
-  },
-  argTypes: {
-    type: {
-      options: inputTypes,
-      control: { type: "select" },
-    },
+    labelPosition: "center",
   },
 };
 
@@ -104,12 +106,7 @@ export const TextInputSuccessStory: Story = {
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
     "aria-disabled": false,
-  },
-  argTypes: {
-    type: {
-      options: inputTypes,
-      control: { type: "select" },
-    },
+    labelPosition: "center",
   },
 };
 
@@ -138,11 +135,31 @@ export const TextInputRichLabelStory: Story = {
     helpMessage: "Aide à la saisie",
     forceDisplayMessage: false,
     messageType: MessageTypes.error,
+    labelPosition: "center",
   },
-  argTypes: {
-    type: {
-      options: inputTypes,
-      control: { type: "select" },
-    },
+};
+
+export const TextInputLabelAboveStory: Story = {
+  name: "TextInputLabelAbove",
+  render: ({ onChange, ...args }) => (
+    <TextInput onChange={onChange} {...args} />
+  ),
+  args: {
+    classModifier: "required",
+    value: "John Doe",
+    placeholder: "Your name",
+    name: "name",
+    id: "nameid",
+    readOnly: false,
+    disabled: false,
+    autoFocus: false,
+    message: "The field is required",
+    className: "",
+    type: "text",
+    label: "Your name",
+    helpMessage: "Aide à la saisie",
+    forceDisplayMessage: false,
+    messageType: MessageTypes.error,
+    labelPosition: "above",
   },
 };

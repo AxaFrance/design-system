@@ -13,6 +13,19 @@
     &--label-top {
       align-items: flex-start;
     }
+
+    &--label-above {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      & .col-md-2,
+      & .col-md-10 {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+      }
+    }
   }
 
   &__group-label {
@@ -24,6 +37,24 @@
       color: var(--error-color);
       content: " *";
     }
+  }
+
+  &__label-above {
+    width: 100%;
+    padding: 0;
+  }
+
+  &__label {
+    display: flex;
+    margin: 0;
+    padding: 1rem 0;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  &__input-container {
+    width: 100%;
   }
 
   &__message {
@@ -74,16 +105,6 @@
 
   &__input-inline {
     margin-right: 1rem;
-  }
-
-  /* Commons styles ****************************************************************/
-  &__label {
-    display: flex;
-    margin: 0;
-    padding: 1rem 0;
-    align-items: center;
-    font-weight: normal;
-    cursor: pointer;
   }
 
   &__description {
