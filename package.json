@@ -59,8 +59,5 @@
   "volta": {
     "node": "22.13.0",
     "npm": "11.0.0"
-  },
-  "dependencies": {
-    "@axa-fr/design-system-slash-react": "^0.1.0"
   }
 }
