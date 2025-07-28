@@ -1,4 +1,9 @@
-import React, { useId, type ComponentProps, type ComponentType } from "react";
+import {
+  useId,
+  type ChangeEventHandler,
+  type ComponentProps,
+  type ComponentType,
+} from "react";
 import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
@@ -12,7 +17,7 @@ export type CardCheckboxProps = Partial<TCardCheckboxItem> & {
   descriptionGroup?: string;
   isRequired?: boolean;
   options: TCardCheckboxItem[];
-  onChange?: React.ChangeEventHandler;
+  onChange?: ChangeEventHandler;
   error?: string;
 };
 
