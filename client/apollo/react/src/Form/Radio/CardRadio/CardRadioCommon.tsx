@@ -3,7 +3,7 @@ import { BREAKPOINT } from "../../../utilities/constants";
 import { getComponentClassName } from "../../../utilities/getComponentClassName";
 import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
-import type { RadioCommon } from "../Radio/RadioCommon";
+import type { Radio } from "../Radio/RadioCommon";
 import { CardRadioItem } from "./CardRadioItem";
 import type {
   IconComponent,
@@ -11,10 +11,7 @@ import type {
   TCardRadioItemOption,
 } from "./types";
 
-export type CardRadioProps = Omit<
-  ComponentProps<typeof RadioCommon>,
-  "size"
-> & {
+export type CardRadioProps = Omit<ComponentProps<typeof Radio>, "size"> & {
   type: "vertical" | "horizontal";
   labelGroup?: string;
   descriptionGroup?: string;
@@ -91,6 +88,7 @@ const CardRadioCommon = ({
             size={size}
             RadioComponent={RadioComponent}
             IconComponent={IconComponent}
+            isInvalid={Boolean(error)}
             checked={
               value !== undefined
                 ? value === cardRadioItemProps.value

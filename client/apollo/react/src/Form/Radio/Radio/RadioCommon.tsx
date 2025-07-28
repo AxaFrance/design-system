@@ -1,17 +1,20 @@
-import React, { forwardRef } from "react";
+import { forwardRef, type ComponentProps } from "react";
 
-export type RadioProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "disabled"
->;
+export type RadioProps = Omit<ComponentProps<"input">, "disabled" | "type"> & {
+  isInvalid?: boolean;
+};
 
-export const RadioCommon = forwardRef<HTMLInputElement, RadioProps>(
-  (inputProps, ref) => (
-    <span className="af-radio">
-      <input {...inputProps} type="radio" ref={ref} />
-      <span className="af-radio__icons" />
-    </span>
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  ({ className, isInvalid, ...props }, ref) => (
+    <input
+      {...props}
+      className={["af-radio", isInvalid && "af-radio--invalid", className]
+        .filter(Boolean)
+        .join(" ")}
+      type="radio"
+      ref={ref}
+    />
   ),
 );
 
-RadioCommon.displayName = "RadioCommon";
+Radio.displayName = "Radio";

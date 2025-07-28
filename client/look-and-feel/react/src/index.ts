@@ -28,7 +28,10 @@ export { FileUpload } from "./Form/FileUpload";
 export { InputError } from "./Form/InputError";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
-export { Radio, RadioCard } from "./Form/Radio";
+export {
+  /** @deprecated Use `Radio` from apollo/lf package instead. */ Radio,
+  /** @deprecated Use `RadioCard` from apollo/lf package instead. */ RadioCard,
+} from "./Form/Radio";
 export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFile";
 export {
   Dropdown,

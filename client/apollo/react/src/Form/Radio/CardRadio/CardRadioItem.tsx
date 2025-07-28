@@ -1,17 +1,14 @@
 import { type ComponentProps, type ComponentType } from "react";
 import type { Icon as IconCommon } from "../../../Icon/IconCommon";
-import type { RadioCommon } from "../Radio/RadioCommon";
+import type { Radio } from "../Radio/RadioCommon";
 
-export type TCardRadioItemProps = Omit<
-  ComponentProps<typeof RadioCommon>,
-  "size"
-> & {
+export type TCardRadioItemProps = Omit<ComponentProps<typeof Radio>, "size"> & {
   label: string;
   description?: string;
   subtitle?: string;
   icon?: ComponentProps<typeof IconCommon>["src"];
   size: ComponentProps<typeof IconCommon>["size"];
-  RadioComponent: ComponentType<ComponentProps<typeof RadioCommon>>;
+  RadioComponent: ComponentType<ComponentProps<typeof Radio>>;
   IconComponent: ComponentType<ComponentProps<typeof IconCommon>>;
 };
 

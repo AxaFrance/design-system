@@ -1,38 +1,28 @@
 .af-radio {
   --radio-border-width: 1px;
+  --radio-ckecked-color: transparent;
+  --radio-ckecked-width: calc(12 / var(--font-size-base) * 1rem);
+  --radio-background-color: var(--white);
 
   display: flex;
   width: calc(24 / var(--font-size-base) * 1rem);
-  aspect-ratio: 1;
-  border: var(--radio-border-width) solid var(--radio-border-color);
+  height: calc(24 / var(--font-size-base) * 1rem);
+  margin: 0;
+  padding: 0;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-  gap: calc(12 / var(--font-size-base) * 1rem);
   background-color: var(--radio-background-color);
-  outline: var(--radio-outline-width) solid var(--radio-outline-color);
-  outline-offset: calc(
-    -1 * calc(var(--radio-border-width) + var(--radio-outline-width))
-  );
+  outline: var(--radio-border-width) solid var(--radio-border-color);
+  outline-offset: calc(-1 * var(--radio-border-width));
+  cursor: pointer;
+  appearance: unset;
 
-  &__icons {
-    display: none;
-    width: var(--radio-width);
-    aspect-ratio: 1;
+  &::after {
+    width: var(--radio-ckecked-width);
+    height: var(--radio-ckecked-width);
     border-radius: 50%;
-    background-color: var(--radio-icon-background-color);
-  }
-
-  input[type="radio"] {
-    position: absolute;
-    width: calc(24 / var(--font-size-base) * 1rem);
-    height: calc(24 / var(--font-size-base) * 1rem);
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-
-    &:checked ~ .af-radio__icons {
-      display: block;
-    }
+    background-color: var(--radio-ckecked-color);
+    content: "";
   }
 }
