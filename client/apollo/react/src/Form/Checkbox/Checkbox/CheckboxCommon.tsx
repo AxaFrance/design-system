@@ -1,13 +1,13 @@
-import React, { forwardRef } from "react";
+import { forwardRef, type InputHTMLAttributes } from "react";
 import { Svg } from "../../../Svg/Svg";
 
-export type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
+export type CheckboxProps = {
   errorId?: string;
   hasError?: boolean;
   className?: string;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "disabled">;
 
-export type CheckboxCommonProps = CheckboxProps & {
+type CheckboxCommonProps = CheckboxProps & {
   checkBoxIcon: string;
 };
 
