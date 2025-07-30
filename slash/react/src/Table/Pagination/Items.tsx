@@ -11,7 +11,7 @@ export type Props = {
    */
   displayLabel?: string;
   /**
-   * Text displayed after the per-page select
+   * Text displayed after the per-page select and used in page selection links label
    */
   elementsLabel?: string;
   /**
