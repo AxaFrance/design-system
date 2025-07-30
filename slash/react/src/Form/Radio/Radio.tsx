@@ -19,7 +19,7 @@ type Props = {
 } & (
   | (Omit<
       ComponentPropsWithRef<typeof RadioItem>,
-      "id" | "label" | "className"
+      "id" | "label" | "className" | "children"
     > & {
       mode?: "classic" | "default" | "inline";
     })
@@ -42,7 +42,7 @@ const getClassNameMode = (mode: Props["mode"]) => {
 };
 
 const Radio = forwardRef<HTMLInputElement, Props>(
-  ({ options, value = "", children, disabled, ...otherProps }, inputRef) => {
+  ({ options, value = "", disabled, ...otherProps }, inputRef) => {
     const { mode, ...onlyNecessaryProps } = otherProps;
     const classNameMode = getClassNameMode(mode ?? "default");
 
@@ -53,9 +53,7 @@ const Radio = forwardRef<HTMLInputElement, Props>(
           options={options}
           disabled={disabled}
           value={value}
-        >
-          {children}
-        </RadioCardGroup>
+        />
       );
     }
 
