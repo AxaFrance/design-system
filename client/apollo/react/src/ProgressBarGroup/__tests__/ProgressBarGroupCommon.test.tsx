@@ -83,4 +83,30 @@ describe("ProgressBarGroup Component", () => {
     const group = screen.getByRole("group");
     expect(group).toHaveClass("custom-class");
   });
+
+  describe("ProgressBarGroup - step number display", () => {
+    it("displays the step number when totalSteps > 1", () => {
+      render(
+        <ProgressBarGroup
+          currentStep={2}
+          nbSteps={3}
+          ProgressBarComponent={ProgressBar}
+        />,
+      );
+      expect(screen.getByText("Étape 1 sur 3")).toBeInTheDocument();
+      expect(screen.getByText("Étape 2 sur 3")).toBeInTheDocument();
+      expect(screen.getByText("Étape 3 sur 3")).toBeInTheDocument();
+    });
+
+    it("does not display step numbers when totalSteps = 1", () => {
+      render(
+        <ProgressBarGroup
+          currentStep={1}
+          nbSteps={1}
+          ProgressBarComponent={ProgressBar}
+        />,
+      );
+      expect(screen.queryByText(/^Étape/)).not.toBeInTheDocument();
+    });
+  });
 });
