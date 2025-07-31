@@ -1,14 +1,13 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/Radio/CardRadio/CardRadioApollo.scss";
-import { Icon } from "../../../Icon/IconApollo";
+import { CardRadioOption } from "../CardRadioOption/CardRadioOptionApollo";
 import { CardRadioCommon, type CardRadioProps } from "./CardRadioCommon";
-import { Radio } from "../Radio/RadioApollo";
 import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
+
+import "@axa-fr/design-system-apollo-css/dist/Form/Radio/CardRadio/CardRadioApollo.scss";
 
 export const CardRadio = (props: CardRadioProps) => (
   <CardRadioCommon
     {...props}
-    IconComponent={Icon}
-    RadioComponent={Radio}
+    CardRadioOptionComponent={CardRadioOption}
     ItemMessageComponent={ItemMessage}
   />
 );

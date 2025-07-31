@@ -1,9 +1,10 @@
 import successIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
+import type { ReactNode } from "react";
 import { Svg } from "../../Svg/Svg";
 
 type ItemMessageProps = {
-  message?: string;
+  message?: ReactNode;
   id?: string;
   messageType?: "error" | "success";
 };
