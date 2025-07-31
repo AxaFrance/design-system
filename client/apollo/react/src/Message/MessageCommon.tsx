@@ -1,8 +1,8 @@
 import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
-import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
-import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
-import neutralIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
 import infoIcon from "@material-symbols/svg-400/outlined/emoji_objects-fill.svg";
+import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
+import neutralIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
+import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
 import {
   type ComponentPropsWithoutRef,
   ComponentType,
@@ -55,12 +55,18 @@ export const Message = ({
 }: PropsWithChildren<MessageProps>) => {
   const icon = useMemo(() => getIconFromType(variant), [variant]);
 
+  const role = (
+    [messageVariants.error, messageVariants.warning] as MessageVariants[]
+  ).includes(variant)
+    ? "alert"
+    : "status";
+
   return (
-    <div
+    <section
       className={["af-message", `af-message--${variant}`, className]
         .filter(Boolean)
         .join(" ")}
-      role="alert"
+      role={role}
     >
       <Svg
         src={icon}
@@ -74,6 +80,6 @@ export const Message = ({
         {children}
         {action && <div className="af-message__action">{action}</div>}
       </div>
-    </div>
+    </section>
   );
 };
