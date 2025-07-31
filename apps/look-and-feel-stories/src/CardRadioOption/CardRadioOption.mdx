@@ -1,0 +1,30 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as CardRadioOptionStories from "./CardRadioOption.stories";
+
+<Meta of={CardRadioOptionStories} name="CardRadioOption" />
+
+# CardRadioOption components
+
+## How to use
+
+To use the `CardRadioOption`component import it like this:
+
+```tsx
+import { CardRadioOption } from "@axa-fr/design-system-apollo-react/lf";
+
+const MyComponent = () => (
+  <CardRadioOption
+    label="Titre"
+    description="Sous-titre 1"
+    subtitle="Sous-titre 2"
+    icon={icon}
+    name="foo"
+    value="bar"
+  />
+);
+```
+
+## Playground
+
+<Canvas of={CardRadioOptionStories.CardRadioOptionStory} />
+<Controls of={CardRadioOptionStories.CardRadioOptionStory} />

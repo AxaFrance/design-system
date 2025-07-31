@@ -1,0 +1,75 @@
+@use "../../../common/breakpoints";
+
+.af-card-radio-option {
+  --radio-option-border-width: 1px;
+  --radio-option-background-color: var(--white);
+
+  position: relative;
+  display: flex;
+  padding: 1rem;
+  border-radius: calc(8 / var(--font-size-base) * 1rem);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--radio-option-gap);
+  text-align: center;
+  background-color: var(--radio-option-background-color);
+  outline: var(--radio-option-border-width) solid
+    var(--radio-option-border-color);
+  outline-offset: calc(-1 * var(--radio-option-border-width));
+  cursor: pointer;
+
+  &:hover {
+    --radio-option-border-width: 2px;
+    --radio-option-border-color: var(--axa-blue-100);
+  }
+
+  &__label {
+    margin: 0;
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-weight: 400;
+    color: var(--radio-option-color-title);
+
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      font-size: calc(18 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &:has(input:checked) {
+    --radio-option-border-width: 2px;
+
+    & .af-card-radio-option__label {
+      font-weight: 600;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--radio-option-gap);
+    text-align: center;
+  }
+
+  &__description,
+  &__subtitle {
+    margin: 0;
+    font-size: calc(14 / var(--font-size-base) * 1rem);
+    font-weight: 400;
+    color: var(--radio-option-color-subtitle);
+
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      font-size: 1rem;
+    }
+  }
+
+  &--horizontal {
+    flex-direction: row;
+
+    & .af-radio {
+      order: -1;
+    }
+  }
+}

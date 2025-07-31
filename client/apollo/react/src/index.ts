@@ -44,6 +44,7 @@ export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
 export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileApollo";
 export { TextArea } from "./Form/TextArea/TextAreaApollo";
 export { Radio } from "./Form/Radio/Radio/RadioApollo";
+export { CardRadioOption } from "./Form/Radio/CardRadioOption/CardRadioOptionApollo";
 export { CardRadio } from "./Form/Radio/CardRadio/CardRadioApollo";
 export { InputText } from "./Form/InputText/InputTextApollo";
 export { DebugGrid } from "./Grid/DebugGridApollo";

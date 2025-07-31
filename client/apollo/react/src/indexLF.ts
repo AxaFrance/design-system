@@ -45,6 +45,7 @@ export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileLF";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
 export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { Radio } from "./Form/Radio/Radio/RadioLF";
+export { CardRadioOption } from "./Form/Radio/CardRadioOption/CardRadioOptionLF";
 export { CardRadio } from "./Form/Radio/CardRadio/CardRadioLF";
 export {
   InputText,
