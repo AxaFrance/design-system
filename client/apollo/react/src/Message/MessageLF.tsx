@@ -2,7 +2,8 @@ import "@axa-fr/design-system-apollo-css/dist/Message/MessageLF.scss";
 import { Icon } from "../indexLF";
 import { MessageCommon, type MessageProps } from "./MessageCommon";
 
-export { messageVariants, type MessageVariants } from "./MessageCommon";
+export { messageVariants } from "./constants";
+export type { MessageVariants } from "./types";
 
 export const Message = (props: MessageProps) => (
   <MessageCommon {...props} IconComponent={Icon} />

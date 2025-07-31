@@ -1,31 +1,18 @@
-import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
-import infoIcon from "@material-symbols/svg-400/outlined/emoji_objects-fill.svg";
-import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
-import neutralIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
-import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
 import {
   type ComponentPropsWithoutRef,
   ComponentType,
   type ReactElement,
   type ReactNode,
-  useMemo,
 } from "react";
 import type { ButtonProps } from "../Button/ButtonCommon";
 import type { Icon } from "../Icon/IconCommon";
 import { Link } from "../Link/LinkCommon";
 import { getComponentClassName } from "../utilities/getComponentClassName";
+import { messageVariants } from "./constants";
+import { getAriaRole, getIconFromVariant } from "./Message.helpers";
+import type { MessageVariants } from "./types";
 
 type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
-
-export const messageVariants = {
-  validation: "validation",
-  error: "error",
-  warning: "warning",
-  information: "information",
-  neutral: "neutral",
-} as const;
-
-export type MessageVariants = keyof typeof messageVariants;
 
 export type MessageProps = {
   /** Message variant (validation, error, warning, information, neutral) */
@@ -46,15 +33,6 @@ type MessagePropsWithComponents = MessageProps & {
   IconComponent: typeof Icon;
 };
 
-const getIconFromType = (variant: MessageVariants) =>
-  ({
-    [messageVariants.validation]: validationIcon,
-    [messageVariants.error]: errorIcon,
-    [messageVariants.neutral]: neutralIcon,
-    [messageVariants.warning]: warningIcon,
-    [messageVariants.information]: infoIcon,
-  })[variant] || infoIcon;
-
 export const MessageCommon = ({
   variant = messageVariants.information,
   className,
@@ -65,13 +43,8 @@ export const MessageCommon = ({
   heading: Heading = "h4",
   IconComponent,
 }: MessagePropsWithComponents) => {
-  const icon = useMemo(() => getIconFromType(variant), [variant]);
-
-  const role = (
-    [messageVariants.error, messageVariants.warning] as MessageVariants[]
-  ).includes(variant)
-    ? "alert"
-    : "status";
+  const icon = getIconFromVariant(variant);
+  const role = getAriaRole(variant);
 
   return (
     <section
