@@ -1,94 +1,109 @@
-import { type ComponentProps, type ComponentType, useId } from "react";
-import { BREAKPOINT } from "../../../utilities/constants";
-import { getComponentClassName } from "../../../utilities/getComponentClassName";
-import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
+import {
+  type ComponentProps,
+  type ComponentType,
+  type PropsWithChildren,
+  type ReactNode,
+  useId,
+} from "react";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
-import type { Radio } from "../Radio/RadioCommon";
-import { CardRadioItem } from "./CardRadioItem";
-import type {
-  IconComponent,
-  RadioComponent,
-  TCardRadioItemOption,
-} from "./types";
+import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
 
-export type CardRadioProps = Omit<ComponentProps<typeof Radio>, "size"> & {
-  type: "vertical" | "horizontal";
+type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
+
+export type CardRadioProps = Omit<
+  CardRadioOptionProps,
+  | "value"
+  | "label"
+  | "type"
+  | "isInvalid"
+  | "icon"
+  | "description"
+  | "subtitle"
+  | "children"
+> & {
+  type?: "vertical" | "horizontal";
+  /**
+   * @deprecated Use `label` instead.
+   */
   labelGroup?: string;
+  /**
+   * @deprecated Use `description` instead.
+   */
   descriptionGroup?: string;
+  label: ReactNode;
+  description?: ReactNode;
+  /**
+   * @deprecated Use `required` instead.
+   */
   isRequired?: boolean;
+  /**
+   * @deprecated This prop is deprecated. To check an option, use the `checked` property in each item of the `options` array.
+   */
   value?: number | string;
-  options: TCardRadioItemOption[];
-  error?: string;
+  options: RadioOption[];
+  error?: ReactNode;
+} & PropsWithChildren;
+
+export type CardRadioCommonProps = CardRadioProps & {
+  CardRadioOptionComponent: ComponentType<CardRadioOptionProps>;
+  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-export type CardRadioCommonProps = CardRadioProps &
-  RadioComponent &
-  IconComponent & {
-    ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-  };
-
-const CardRadioCommon = ({
+export const CardRadioCommon = ({
   className,
   labelGroup,
   descriptionGroup,
-  RadioComponent,
-  IconComponent,
+  label,
+  description,
   isRequired,
+  required,
   options,
   type = "vertical",
   error,
   name,
   value,
-  onChange,
+  id,
+  CardRadioOptionComponent,
   ItemMessageComponent,
   ...inputProps
 }: CardRadioCommonProps) => {
-  const componentClassName = getComponentClassName(
-    "af-card-radio__container",
-    className,
-  );
-  const RadioGroupClassName = getComponentClassName(
-    "af-card-radio-group",
-    className,
-    type,
-  );
-
-  const cardRadioId = useId();
-  const errorId = `${cardRadioId}:error`;
-
-  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
-  const size: ComponentProps<typeof CardRadioItem>["size"] = isMobile
-    ? "M"
-    : "L";
+  const generatedId = useId();
+  const cardRadioId = id ?? generatedId;
+  const errorId = `${cardRadioId}-error`;
 
   return (
     <fieldset
-      className={componentClassName}
-      aria-invalid={Boolean(error)}
+      className={["af-card-radio", className].filter(Boolean).join(" ")}
+      role="radiogroup"
+      aria-required={required ? true : undefined}
+      aria-invalid={error ? true : undefined}
       aria-errormessage={error ? errorId : undefined}
+      id={cardRadioId}
     >
-      {labelGroup && (
-        <legend className="af-card-radio__legend">
-          <p>
-            {labelGroup}
-            {isRequired && <span aria-hidden>&nbsp;*</span>}
-          </p>
+      <legend className="af-card-radio__legend">
+        <p className="af-card-radio__label">
+          {label}
+          {labelGroup}
+          {(required || isRequired) && <span aria-hidden>*</span>}
+        </p>
 
-          {descriptionGroup && (
-            <p className="af-card-radio__description">{descriptionGroup}</p>
-          )}
-        </legend>
-      )}
-      <div className={RadioGroupClassName}>
+        {(description || descriptionGroup) && (
+          <p className="af-card-radio__description">
+            {description}
+            {descriptionGroup}
+          </p>
+        )}
+      </legend>
+      <div
+        className={[
+          "af-card-radio__options",
+          `af-card-radio__options--${type}`,
+        ].join(" ")}
+      >
         {options.map((cardRadioItemProps) => (
-          <CardRadioItem
+          <CardRadioOptionComponent
             key={`${name ?? cardRadioId}-${cardRadioItemProps.label}`}
-            name={name}
-            onChange={onChange}
-            size={size}
-            RadioComponent={RadioComponent}
-            IconComponent={IconComponent}
-            isInvalid={Boolean(error)}
+            id={`${cardRadioId}-${cardRadioItemProps.value}`}
             checked={
               value !== undefined
                 ? value === cardRadioItemProps.value
@@ -96,6 +111,9 @@ const CardRadioCommon = ({
             }
             {...inputProps}
             {...cardRadioItemProps}
+            type={type}
+            isInvalid={Boolean(error)}
+            name={name}
           />
         ))}
       </div>
@@ -103,5 +121,5 @@ const CardRadioCommon = ({
     </fieldset>
   );
 };
+
 CardRadioCommon.displayName = "CardRadioCommon";
-export { CardRadioCommon };
