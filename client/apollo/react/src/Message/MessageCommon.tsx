@@ -8,8 +8,8 @@ import type { ButtonProps } from "../Button/ButtonCommon";
 import type { Icon } from "../Icon/IconCommon";
 import { Link } from "../Link/LinkCommon";
 import { getComponentClassName } from "../utilities/getComponentClassName";
-import { messageVariants } from "./constants";
-import { getAriaRole, getIconFromVariant } from "./Message.helpers";
+import { iconByVariant, messageVariants } from "./constants";
+import { getAriaRole } from "./Message.helpers";
 import type { MessageVariants } from "./types";
 
 type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
@@ -43,7 +43,6 @@ export const MessageCommon = ({
   heading: Heading = "h4",
   IconComponent,
 }: MessagePropsWithComponents) => {
-  const icon = getIconFromVariant(variant);
   const role = getAriaRole(variant);
 
   return (
@@ -52,7 +51,7 @@ export const MessageCommon = ({
       role={role}
     >
       <IconComponent
-        src={icon}
+        src={iconByVariant[variant]}
         width={iconSize}
         height={iconSize}
         className="af-message__icon"

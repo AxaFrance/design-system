@@ -1,12 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { vi } from "vitest";
 import { ButtonCommon as Button } from "../../Button/ButtonCommon";
 import { Icon } from "../../Icon/IconCommon";
 import { Link } from "../../Link/LinkCommon";
 import { Spinner } from "../../Spinner/SpinnerApollo";
 import { messageVariants } from "../constants";
-import * as MessageHelpers from "../Message.helpers";
 import { MessageCommon, type MessageProps } from "../MessageCommon";
 
 const MoreDetails = () => (
@@ -26,33 +24,36 @@ describe("MessageCommon", () => {
   const renderMessageCommon = (props: Partial<MessageProps> = {}) =>
     render(<MessageCommon {...defaultProps} {...props} IconComponent={Icon} />);
 
-  const mockHelpers = () => {
-    const getAriaRoleMock = vi
-      .spyOn(MessageHelpers, "getAriaRole")
-      .mockReturnValue("status");
-    const getIconFromVariantMock = vi
-      .spyOn(MessageHelpers, "getIconFromVariant")
-      .mockReturnValue("mock-icon.svg");
+  it.each`
+    variant                        | role        | title                 | children                 | icon
+    ${undefined}                   | ${"status"} | ${undefined}          | ${undefined}             | ${"emoji_objects-fill.svg"}
+    ${messageVariants.information} | ${"status"} | ${defaultProps.title} | ${defaultProps.children} | ${"emoji_objects-fill.svg"}
+    ${messageVariants.error}       | ${"alert"}  | ${defaultProps.title} | ${defaultProps.children} | ${"error-fill.svg"}
+    ${messageVariants.warning}     | ${"alert"}  | ${defaultProps.title} | ${defaultProps.children} | ${"warning-fill.svg"}
+    ${messageVariants.neutral}     | ${"status"} | ${defaultProps.title} | ${defaultProps.children} | ${"info-fill.svg"}
+    ${messageVariants.validation}  | ${"status"} | ${defaultProps.title} | ${defaultProps.children} | ${"check_circle-fill.svg"}
+  `(
+    "Should render correctly with variant: $variant, role: $role, title: $title, children: $children, icon: $icon",
+    ({ variant, role, title, children, icon }) => {
+      renderMessageCommon({ variant, title, children });
 
-    return { getAriaRoleMock, getIconFromVariantMock };
-  };
+      const component = within(screen.getByRole(role));
 
-  it("should render with the mocked role and icon", () => {
-    const { getAriaRoleMock, getIconFromVariantMock } = mockHelpers();
-    const variant = messageVariants.error;
-    renderMessageCommon({ variant });
+      if (title) {
+        expect(component.getByText(RegExp(title))).toBeDefined();
+      }
 
-    expect(getAriaRoleMock).toHaveBeenCalledWith(variant);
-    expect(getIconFromVariantMock).toHaveBeenCalledWith(variant);
-    expect(screen.getByRole("status")).toBeInTheDocument();
-    expect(screen.getByRole("presentation")).toHaveAttribute(
-      "data-src",
-      expect.stringContaining("mock-icon.svg"),
-    );
+      if (children) {
+        expect(component.getByText(RegExp(children))).toBeDefined();
+      }
 
-    getAriaRoleMock.mockRestore();
-    getIconFromVariantMock.mockRestore();
-  });
+      expect(component.getByRole("presentation")).toHaveAttribute(
+        "data-src",
+
+        expect.stringContaining(icon),
+      );
+    },
+  );
 
   it("should render correctly with Button", () => {
     renderMessageCommon({
