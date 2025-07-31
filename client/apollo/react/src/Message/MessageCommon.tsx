@@ -1,8 +1,8 @@
-import {
-  type ComponentPropsWithoutRef,
+import type {
+  ComponentPropsWithoutRef,
   ComponentType,
-  type ReactElement,
-  type ReactNode,
+  ReactElement,
+  ReactNode,
 } from "react";
 import type { ButtonProps } from "../Button/ButtonCommon";
 import type { Icon } from "../Icon/IconCommon";
