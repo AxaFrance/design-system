@@ -7,6 +7,7 @@ import {
   type ComponentPropsWithoutRef,
   ComponentType,
   type ReactElement,
+  type ReactNode,
   useMemo,
 } from "react";
 import type { ButtonProps } from "../Button/ButtonCommon";
@@ -27,10 +28,17 @@ export const messageVariants = {
 export type MessageVariants = keyof typeof messageVariants;
 
 export type MessageProps = {
+  /** Message variant (validation, error, warning, information, neutral) */
   variant: MessageVariants;
+  /** Title displayed in the message */
   title?: string;
+  /** Main content of the message */
+  children?: ReactNode;
+  /** Action (link or button) displayed on the right side of the message */
   action?: ReactElement<typeof Link | ComponentType<ButtonProps>>;
+  /** Icon size in pixels */
   iconSize?: number;
+  /** HTML heading level used for the title */
   heading?: Headings;
 } & ComponentPropsWithoutRef<"div">;
 
