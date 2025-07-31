@@ -1,50 +1,39 @@
-import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
-import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
-import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
-import neutralIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
-import infoIcon from "@material-symbols/svg-400/outlined/emoji_objects-fill.svg";
-import {
-  type ComponentPropsWithoutRef,
+import type {
+  ComponentPropsWithoutRef,
   ComponentType,
-  type PropsWithChildren,
-  type ReactElement,
-  useMemo,
+  ReactElement,
+  ReactNode,
 } from "react";
-
 import type { ButtonProps } from "../Button/ButtonCommon";
+import type { Icon } from "../Icon/IconCommon";
 import { Link } from "../Link/LinkCommon";
-import { Svg } from "../Svg/Svg";
+import { getComponentClassName } from "../utilities/getComponentClassName";
+import { iconByVariant, messageVariants } from "./constants";
+import { getAriaRole } from "./Message.helpers";
+import type { MessageVariants } from "./types";
 
 type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
 
-export const messageVariants = {
-  validation: "validation",
-  error: "error",
-  warning: "warning",
-  information: "information",
-  neutral: "neutral",
-} as const;
-
-export type MessageVariants = keyof typeof messageVariants;
-
 export type MessageProps = {
+  /** Message variant (validation, error, warning, information, neutral) */
   variant: MessageVariants;
+  /** Title displayed in the message */
   title?: string;
+  /** Main content of the message */
+  children?: ReactNode;
+  /** Action (link or button) displayed on the right side of the message */
   action?: ReactElement<typeof Link | ComponentType<ButtonProps>>;
+  /** Icon size in pixels */
   iconSize?: number;
+  /** HTML heading level used for the title */
   heading?: Headings;
 } & ComponentPropsWithoutRef<"div">;
 
-const getIconFromType = (variant: MessageVariants) =>
-  ({
-    [messageVariants.validation]: validationIcon,
-    [messageVariants.error]: errorIcon,
-    [messageVariants.neutral]: neutralIcon,
-    [messageVariants.warning]: warningIcon,
-    [messageVariants.information]: infoIcon,
-  })[variant] || infoIcon;
+type MessagePropsWithComponents = MessageProps & {
+  IconComponent: typeof Icon;
+};
 
-export const Message = ({
+export const MessageCommon = ({
   variant = messageVariants.information,
   className,
   title,
@@ -52,18 +41,17 @@ export const Message = ({
   action,
   iconSize = 24,
   heading: Heading = "h4",
-}: PropsWithChildren<MessageProps>) => {
-  const icon = useMemo(() => getIconFromType(variant), [variant]);
+  IconComponent,
+}: MessagePropsWithComponents) => {
+  const role = getAriaRole(variant);
 
   return (
-    <div
-      className={["af-message", `af-message--${variant}`, className]
-        .filter(Boolean)
-        .join(" ")}
-      role="alert"
+    <section
+      className={getComponentClassName("af-message", className, variant)}
+      role={role}
     >
-      <Svg
-        src={icon}
+      <IconComponent
+        src={iconByVariant[variant]}
         width={iconSize}
         height={iconSize}
         className="af-message__icon"
@@ -74,6 +62,6 @@ export const Message = ({
         {children}
         {action && <div className="af-message__action">{action}</div>}
       </div>
-    </div>
+    </section>
   );
 };
