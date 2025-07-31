@@ -34,9 +34,10 @@
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--dropdown-box-shadow) inset;
-    outline: 2px;
-    outline-offset: 2px;
+    font-weight: 600;
+    box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
+    outline: 1px;
+    outline-offset: 1px;
   }
 
   &:disabled {
