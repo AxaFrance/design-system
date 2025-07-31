@@ -23,8 +23,8 @@ const defaultProps = {
   children: "some text",
 };
 
-const renderMessageCommon = (props: MessageProps) =>
-  render(<MessageCommon {...props} IconComponent={Icon} />);
+const renderMessageCommon = (props: Partial<MessageProps> = {}) =>
+  render(<MessageCommon {...defaultProps} {...props} IconComponent={Icon} />);
 
 describe("MessageCommon", () => {
   it.each`
@@ -63,7 +63,6 @@ describe("MessageCommon", () => {
 
   it("should render correctly with Button", () => {
     renderMessageCommon({
-      ...defaultProps,
       action: (
         <Button variant="ghost" SpinnerComponent={Spinner}>
           Actualiser
@@ -78,7 +77,6 @@ describe("MessageCommon", () => {
 
   it("should render correctly with Link", () => {
     renderMessageCommon({
-      ...defaultProps,
       action: <MoreDetails />,
     });
 
@@ -88,11 +86,17 @@ describe("MessageCommon", () => {
     );
   });
 
+  it("should render with the given className", () => {
+    renderMessageCommon({ className: "my-custom-class" });
+
+    expect(screen.getByRole("status")).toHaveClass(
+      "af-message af-message--information my-custom-class",
+    );
+  });
+
   describe("A11Y", () => {
     it("shouldn't have an accessibility violation <Message />", async () => {
-      const { container } = renderMessageCommon({
-        ...defaultProps,
-      });
+      const { container } = renderMessageCommon();
 
       expect(await axe(container)).toHaveNoViolations();
     });

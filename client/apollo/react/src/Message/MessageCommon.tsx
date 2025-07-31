@@ -12,6 +12,7 @@ import {
 import type { ButtonProps } from "../Button/ButtonCommon";
 import type { Icon } from "../Icon/IconCommon";
 import { Link } from "../Link/LinkCommon";
+import { getComponentClassName } from "../utilities/getComponentClassName";
 
 type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -66,9 +67,7 @@ export const MessageCommon = ({
 
   return (
     <section
-      className={["af-message", `af-message--${variant}`, className]
-        .filter(Boolean)
-        .join(" ")}
+      className={getComponentClassName("af-message", className, variant)}
       role={role}
     >
       <IconComponent
