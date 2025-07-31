@@ -27,7 +27,7 @@ export type MessageProps = {
   iconSize?: number;
   /** HTML heading level used for the title */
   heading?: Headings;
-} & ComponentPropsWithoutRef<"div">;
+} & ComponentPropsWithoutRef<"section">;
 
 type MessagePropsWithComponents = MessageProps & {
   IconComponent: typeof Icon;
@@ -42,6 +42,7 @@ export const MessageCommon = ({
   iconSize = 24,
   heading: Heading = "h4",
   IconComponent,
+  ...sectionProps
 }: MessagePropsWithComponents) => {
   const role = getAriaRole(variant);
 
@@ -49,6 +50,7 @@ export const MessageCommon = ({
     <section
       className={getComponentClassName("af-message", className, variant)}
       role={role}
+      {...sectionProps}
     >
       <IconComponent
         src={iconByVariant[variant]}
