@@ -6,14 +6,12 @@ import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
 import {
   type ComponentPropsWithoutRef,
   ComponentType,
-  type PropsWithChildren,
   type ReactElement,
   useMemo,
 } from "react";
-
 import type { ButtonProps } from "../Button/ButtonCommon";
+import type { Icon } from "../Icon/IconCommon";
 import { Link } from "../Link/LinkCommon";
-import { Svg } from "../Svg/Svg";
 
 type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -35,6 +33,10 @@ export type MessageProps = {
   heading?: Headings;
 } & ComponentPropsWithoutRef<"div">;
 
+type MessagePropsWithComponents = MessageProps & {
+  IconComponent: typeof Icon;
+};
+
 const getIconFromType = (variant: MessageVariants) =>
   ({
     [messageVariants.validation]: validationIcon,
@@ -44,7 +46,7 @@ const getIconFromType = (variant: MessageVariants) =>
     [messageVariants.information]: infoIcon,
   })[variant] || infoIcon;
 
-export const Message = ({
+export const MessageCommon = ({
   variant = messageVariants.information,
   className,
   title,
@@ -52,7 +54,8 @@ export const Message = ({
   action,
   iconSize = 24,
   heading: Heading = "h4",
-}: PropsWithChildren<MessageProps>) => {
+  IconComponent,
+}: MessagePropsWithComponents) => {
   const icon = useMemo(() => getIconFromType(variant), [variant]);
 
   const role = (
@@ -68,7 +71,7 @@ export const Message = ({
         .join(" ")}
       role={role}
     >
-      <Svg
+      <IconComponent
         src={icon}
         width={iconSize}
         height={iconSize}
