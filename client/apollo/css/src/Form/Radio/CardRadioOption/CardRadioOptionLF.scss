@@ -1,0 +1,41 @@
+@use "CardRadioOptionCommon";
+@use "../../../common/breakpoints";
+
+.af-card-radio-option {
+  --radio-option-border-color: var(--color-gray-700);
+  --radio-option-color-title: var(--color-gray-900);
+  --radio-option-color-subtitle: var(--color-gray-700);
+  --radio-option-gap: calc(8 / var(--font-size-base) * 1rem);
+
+  &:hover {
+    --radio-option-border-color: var(--color-axa);
+  }
+
+  &:not(&--horizontal) .af-radio {
+    position: absolute;
+    top: calc(12 / var(--font-size-base) * 1rem);
+    left: calc(12 / var(--font-size-base) * 1rem);
+
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      top: calc(16 / var(--font-size-base) * 1rem);
+      left: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  & .af-card-radio-option__content {
+    --radio-option-gap: calc(4 / var(--font-size-base) * 1rem);
+  }
+
+  &--horizontal {
+    column-gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
+  &--invalid:not(:has(input:checked)) {
+    --radio-option-border-color: var(--color-red-700);
+  }
+
+  &:has(input:checked) {
+    --radio-option-background-color: var(--color-blue-2);
+    --radio-option-border-color: var(--color-axa);
+  }
+}
