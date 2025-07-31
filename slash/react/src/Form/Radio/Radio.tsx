@@ -6,6 +6,7 @@ import {
 import type { Option } from "../core";
 import { RadioItem } from "./RadioItem";
 import { RadioCardGroup } from "./RadioCardGroup";
+import { useClassNameMode } from "./useClassNameMode";
 
 export enum RadioModes {
   classic = "classic",
@@ -28,23 +29,10 @@ type Props = {
     })
 );
 
-const getClassNameMode = (mode: Props["mode"]) => {
-  switch (mode) {
-    case RadioModes.classic:
-      return "af-form__radio";
-    case RadioModes.inline:
-      return "af-form__radio-inline";
-    case RadioModes.card:
-      return "af-form__radio-card";
-    default:
-      return "af-form__radio-custom";
-  }
-};
-
 const Radio = forwardRef<HTMLInputElement, Props>(
   ({ options, value = "", disabled, ...otherProps }, inputRef) => {
     const { mode, ...onlyNecessaryProps } = otherProps;
-    const classNameMode = getClassNameMode(mode ?? "default");
+    const { className: classNameMode } = useClassNameMode(mode ?? "default");
 
     if (mode === "card") {
       return (
@@ -66,9 +54,7 @@ const Radio = forwardRef<HTMLInputElement, Props>(
         className={classNameMode}
         ref={inputRef}
         {...option}
-      >
-        {children}
-      </RadioItem>
+      />
     ));
   },
 );

@@ -12,7 +12,6 @@ describe("RadioInput", () => {
     // Act
     render(
       <RadioInput
-        name="languages"
         mode="card"
         label="Languages"
         options={languageOptions}
