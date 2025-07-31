@@ -1,144 +1,103 @@
 import { CardRadio } from "@axa-fr/design-system-apollo-react/lf";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps, useEffect, useRef } from "react";
+import { ComponentProps } from "react";
 
 const optionsDefault = [
   {
-    label: "Titre",
-    description: "Sous-titre 1",
-    subtitle: "Sous-titre 2",
-    name: "paris",
-    value: "paris",
+    label: "option 1",
+    description: "description 1",
+    subtitle: "subtitle 1",
+    value: "1",
     icon: homeIcon,
   },
   {
-    label: "Titre",
-    description: "Sous-titre 1",
-    subtitle: "Sous-titre 2",
-    name: "bruxelles",
-    value: "bruxelles",
+    label: "option 2",
+    description: "description 2",
+    subtitle: "subtitle 2",
+    value: "2",
     icon: homeIcon,
   },
   {
-    label: "Titre",
-    description: "Sous-titre 1",
-    subtitle: "Sous-titre 2",
-    name: "lille",
-    value: "lille",
+    label: "option 3",
+    description: "description 3",
+    subtitle: "subtitle 3",
+    value: "3",
     icon: homeIcon,
   },
 ];
 
-const argsDefault = {
-  type: "vertical",
-  "aria-label": "Quelle ville ?",
-  name: "cities",
-  includeIcons: true,
-  options: optionsDefault,
-} as const;
-
-const argTypesDefault = {
-  type: {
-    control: { type: "inline-radio" },
-    options: ["vertical", "horizontal"],
-  },
-  includeIcons: {
-    control: { type: "boolean" },
-    description: "Toggle icon visibility",
-  },
-  options: {
-    control: { type: "object" },
-    description: "Radio card options",
-  },
-  onChange: { action: "onChange" },
-  value: {
-    control: { type: "select" },
-    options: optionsDefault.map((option) => option.value),
-  },
-} as const;
-
 const meta: Meta = {
   title: "Components/Form/Radio/CardRadio",
   component: CardRadio,
-  argTypes: argTypesDefault,
-  args: argsDefault,
+  argTypes: {
+    type: {
+      control: { type: "inline-radio" },
+      options: ["vertical", "horizontal"],
+      table: {
+        defaultValue: { summary: "vertical" },
+        type: { summary: '"vertical" | "horizontal"' },
+      },
+    },
+    label: {
+      control: "text",
+    },
+    description: {
+      control: "text",
+    },
+    options: {
+      control: { type: "object" },
+      description: "Radio card options",
+    },
+    required: {
+      control: "boolean",
+    },
+    error: {
+      control: "text",
+    },
+    labelGroup: {
+      table: {
+        disable: true,
+      },
+    },
+    descriptionGroup: {
+      table: {
+        disable: true,
+      },
+    },
+    isRequired: {
+      table: {
+        disable: true,
+      },
+    },
+    value: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    type: "vertical",
+    label: "Label",
+    description: "Description",
+    name: "name",
+    options: optionsDefault,
+    required: false,
+    error: "",
+  },
 };
 
 export default meta;
 
-const render = ({ options, ...args }: ComponentProps<typeof CardRadio>) => {
-  const ref = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    ref?.current?.focus?.();
-  }, []);
-
-  const mappedOptionsWithFocus = [
-    { ...options[0], ref },
-    options[1],
-    options[2],
-  ];
-
-  return <CardRadio {...args} options={mappedOptionsWithFocus} />;
-};
-
 export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
-  name: "CardRadio",
-};
-
-export const CardRadioWithIcon: StoryObj<ComponentProps<typeof CardRadio>> = {
-  name: "CardRadio Without Icon",
-  args: {
-    ...argsDefault,
-    options: optionsDefault.map((option) => ({ ...option, icon: undefined })),
-  },
-};
-
-export const CardRadioFocus: StoryObj<ComponentProps<typeof CardRadio>> = {
-  name: "CardRadio Focus",
-  render,
-};
-
-export const CardRadioChecked: StoryObj<ComponentProps<typeof CardRadio>> = {
-  name: "CardRadio Checked",
-  args: {
-    ...argsDefault,
-    options: optionsDefault.map((option) => ({
-      ...option,
-      checked: true,
-    })),
-  },
-};
-
-export const CardRadioWithLabel: StoryObj<ComponentProps<typeof CardRadio>> = {
-  name: "CardRadio With Label",
-  render,
-  args: {
-    ...argsDefault,
-    labelGroup: "Label du groupe",
-    descriptionGroup: "Description du groupe",
-  },
-};
-
-export const CardRadioWithError: StoryObj<ComponentProps<typeof CardRadio>> = {
-  name: "CardRadio With Error",
-  args: {
-    ...argsDefault,
-    labelGroup: "Label du groupe",
-    descriptionGroup: "Description du groupe",
-    error: "There is an error",
-  },
-};
-
-export const CardRadioWithErrorFocus: StoryObj<
-  ComponentProps<typeof CardRadio>
-> = {
-  name: "CardRadio With Error Focus",
-  args: {
-    ...argsDefault,
-    labelGroup: "Label du groupe",
-    descriptionGroup: "Description du groupe",
-    error: "There is an error",
-  },
+  name: "Playground",
+  render: ({ description, error, name, type, ...args }) => (
+    <CardRadio
+      {...args}
+      description={description !== "" ? description : undefined}
+      error={error !== "" ? error : undefined}
+      name={name !== "" ? name : undefined}
+      type={type === "horizontal" ? type : undefined}
+    />
+  ),
 };
