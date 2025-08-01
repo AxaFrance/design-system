@@ -3,6 +3,7 @@ import {
   ComponentPropsWithRef,
   PropsWithChildren,
   ReactElement,
+  ReactNode,
   forwardRef,
 } from "react";
 
@@ -14,7 +15,7 @@ type TitleProps = ComponentPropsWithRef<"h2"> & {
   classModifier?: string;
   heading?: Headings;
   contentLeft?: ReactElement;
-  contentRight?: ReactElement;
+  contentRight?: ReactNode;
 };
 
 const baseClass = "af-title";

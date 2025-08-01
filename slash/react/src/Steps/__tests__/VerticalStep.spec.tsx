@@ -101,6 +101,23 @@ describe("VerticalStep", () => {
     expect(screen.queryByText("Restitution")).not.toBeInTheDocument();
   });
 
+  it("should show contentRight", () => {
+    render(
+      <VerticalStep
+        title="title"
+        id="id"
+        stepMode="validated"
+        onEdit={setStepMode}
+        form={<p>Formulaire</p>}
+        restitution={<p>Restitution</p>}
+        contentRight="Contenu à droite"
+      />,
+    );
+
+    expect(screen.queryByText("Restitution")).toBeInTheDocument();
+    expect(screen.queryByText("Contenu à droite")).toBeInTheDocument();
+  });
+
   it("ne doit pas avoir de violations d’accessibilité (axe)", async () => {
     const { container } = render(VerticalStepComponent("validated"));
     const results = await axe(container);
