@@ -66,6 +66,19 @@ export const VerticalStepValidatedWithRestitutionStory: Story = {
   },
 };
 
+export const VerticalStepValidatedWithContentRightStory: Story = {
+  name: "Test composant VerticalStep validé avec contenu à droite",
+  args: {
+    title: "Configuration",
+    id: "configuration",
+    stepMode: "validated",
+    contentRight: "Contenu à droite",
+    onEdit: () => {},
+    form: <h3>Formulaire de l'étape configuration</h3>,
+    restitution: <h3>Resitution de l'étape configuration</h3>,
+  },
+};
+
 type FullStory = StoryObj<typeof VerticalStep>;
 export const ManyVerticalStep: FullStory = {
   name: "Test composant avec plusieurs VerticalStep",
@@ -73,6 +86,7 @@ export const ManyVerticalStep: FullStory = {
     <>
       <VerticalStep {...VerticalStepValidatedWithoutRestitutionStory.args} />
       <VerticalStep {...VerticalStepValidatedWithRestitutionStory.args} />
+      <VerticalStep {...VerticalStepValidatedWithContentRightStory.args} />
       <VerticalStep {...VerticalStepEditedStory.args} />
       <VerticalStep {...VerticalStepLockedStory.args} />
     </>
