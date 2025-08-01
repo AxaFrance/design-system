@@ -11,25 +11,27 @@ The `VerticalStep` component allows you to create a step in a vertical stepper. 
 ## Import
 
 ```tsx
-import { VerticalStep } from '@axa-fr/design-system-slash-react';
+import { VerticalStep } from "@axa-fr/design-system-slash-react";
 ```
 
 ## Usage
 
 ```tsx
 export const Component = () => {
-  const [configurationStepMode, setConfigurationStepMode] = useState('locked');
+  const [configurationStepMode, setConfigurationStepMode] = useState("locked");
 
   return (
     <VerticalStep
       title="Configuration"
       id="configurationStepTitle"
       stepMode={configurationStepMode}
-      onEdit={() => setConfigurationStepMode('edited')}
+      onEdit={() => setConfigurationStepMode("edited")}
       form={
         <form>
           <fieldset>
-            <legend className={globalCss.cacherLegende}>Formulaire Configuration</legend>
+            <legend className={globalCss.cacherLegende}>
+              Formulaire Configuration
+            </legend>
             <TextInput
               id="dateEffet"
               name="dateEffet"
@@ -38,7 +40,11 @@ export const Component = () => {
               value={dateEffetFormatFr}
               helpMessage="jj/mm/aaaa"
             />
-            <BoutonConfirmation id="validation-configuration" titre="Valider" actionAuClique={submit} />
+            <BoutonConfirmation
+              id="validation-configuration"
+              titre="Valider"
+              actionAuClique={submit}
+            />
           </fieldset>
         </form>
       }
@@ -58,7 +64,6 @@ export const Component = () => {
 
 ## Arguments
 
-
 The `title` property corresponds to the step's title.
 
 The `id` property is the id of this title, allowing for redirections.
@@ -74,5 +79,7 @@ The `onEdit` property is the function called when the Modify button is clicked. 
 The `form` property is a form to display within the step. It is a `ReactNode` allowing you to specify a complex HTML structure.
 
 The `restitution` property is the content to display when the step is validated. It is a `ReactNode` allowing you to specify a complex HTML structure.
+
+The `contentRight` property is the content to display on the right side of the step title. It is `string` only.
 
 <ArgTypes story={VerticalStepStories.VerticalStepLockedStory} />

@@ -20,6 +20,7 @@ type Props = {
   editButtonLabel?: string;
   editButtonAriaLabel?: string;
   showRestitution?: boolean;
+  contentRight?: string;
 };
 
 const defaultClassName = "af-vertical-step";
@@ -34,6 +35,7 @@ export const VerticalStep = ({
   form,
   restitution,
   showRestitution = true,
+  contentRight,
 }: Props) => {
   const isStepInEdition = stepMode === "edited";
   const isStepValidated = stepMode === "validated";
@@ -57,7 +59,6 @@ export const VerticalStep = ({
         {isStepInEdition ? <Svg role="presentation" src={edit} /> : null}
       </div>
       <Title
-        className={classNames("af-title", `${defaultClassName}-title`)}
         id={id}
         contentLeft={
           isStepValidated ? (
@@ -71,6 +72,7 @@ export const VerticalStep = ({
             </Button>
           ) : undefined
         }
+        contentRight={<span>{contentRight}</span>}
       >
         {title}
       </Title>
