@@ -45,7 +45,7 @@
     display: flex;
     width: 2.75rem;
     height: 2.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     border-radius: 50%;
     grid-area: icon;
     align-items: center;
@@ -70,33 +70,30 @@
     background-color: var(--axablue80);
   }
 
-  .af-vertical-step-title {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    grid-area: title;
-    align-self: center;
+  .af-vertical-step-title-button {
+    border: 0;
+    font-size: 1rem;
+    background: none;
 
-    .af-vertical-step-title-button {
-      border: 0;
-      font-size: 1rem;
-      background: none;
+    &:focus {
+      outline: 2px solid var(--axablue80);
+    }
 
-      &:focus {
-        outline: 2px solid var(--axablue80);
-      }
-
-      svg {
-        width: 1rem;
-        height: 1rem;
-        margin-right: 0.25rem;
-        margin-left: 0;
-        fill: var(--axablue80);
-      }
+    svg {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.25rem;
+      margin-left: 0;
+      fill: var(--axablue80);
     }
   }
 
   /* Style for submit button inside form */
   button[type="submit"] {
     margin-left: 17%;
+  }
+
+  .content-right {
+    font-weight: 700;
   }
 }
