@@ -72,4 +72,12 @@
       order: -1;
     }
   }
+
+  & .af-icon {
+    --icon-size: var(--icon-size-medium);
+
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      --icon-size: var(--icon-size-large);
+    }
+  }
 }
