@@ -1,48 +1,67 @@
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
-import { CardRadio } from "../CardRadioApollo";
+import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
+import { CardRadioOption } from "../../CardRadioOption/CardRadioOptionApollo";
+import { CardRadioCommon, type CardRadioProps } from "../CardRadioCommon";
 
 describe("Radio card Component", () => {
-  const args = {
-    options: [
-      {
-        label: "Paris",
-        description: "Capitale de la France",
-        subtitle: "Nord",
-        name: "paris",
-        value: "paris",
-        icon: homeIcons,
-      },
-    ],
-  };
+  const radioOptions = [
+    {
+      label: "Paris",
+      description: "Capital of France",
+      subtitle: "North",
+      value: "paris",
+      icon: homeIcons,
+    },
+    {
+      label: "Lyon",
+      description: "Capital of gastronomy",
+      subtitle: "South",
+      value: "lyon",
+      icon: homeIcons,
+    },
+  ];
+  const CardRadio = (props: CardRadioProps) => (
+    <CardRadioCommon
+      {...props}
+      CardRadioOptionComponent={CardRadioOption}
+      ItemMessageComponent={ItemMessage}
+    />
+  );
 
   it("should render the Radio card component with label", () => {
-    // Act
-    render(<CardRadio type="vertical" {...args} />);
+    render(<CardRadio options={radioOptions} label="Choose a city" />);
 
-    // Then
-    expect(screen.getByRole("radio")).toBeInTheDocument();
-    expect(screen.getByText("Paris")).toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: /Paris/ })).toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: /Lyon/ })).toBeInTheDocument();
   });
 
-  it("calls the onChange handler when clicked", () => {
+  it("should call the onChange handler when clicked", async () => {
     const handleChange = vi.fn();
-    render(<CardRadio type="vertical" {...args} onChange={handleChange} />);
+    render(
+      <CardRadio
+        options={radioOptions}
+        label="Choose a city"
+        onChange={handleChange}
+      />,
+    );
+    const user = userEvent.setup();
 
-    const radioInput = screen.getByRole("radio");
-    radioInput.click();
+    const radioInput = screen.getByRole("radio", { name: /Paris/ });
+    await user.click(radioInput);
 
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
   it("should force the checked state of the radio card", () => {
-    // Arrange
     render(
       <CardRadio
         type="vertical"
         name="cities"
+        label="Choose a city"
         options={[
           {
             label: "Paris",
@@ -54,23 +73,60 @@ describe("Radio card Component", () => {
           },
         ]}
         value="paris"
+        onChange={vi.fn()}
       />,
     );
 
-    // Act
-    const parisRadio = screen.getByLabelText("Paris");
-    const lyonRadio = screen.getByLabelText("Lyon");
+    const parisRadio = screen.getByRole("radio", { name: /Paris/ });
+    const lyonRadio = screen.getByRole("radio", { name: /Lyon/ });
 
-    // Then
     expect(parisRadio).toBeChecked();
     expect(lyonRadio).not.toBeChecked();
   });
 
-  it("should violate accessibility the of radio card", async () => {
-    // Act
-    const { container } = render(<CardRadio type="vertical" {...args} />);
+  it("should not violate accessibility of the radio card", async () => {
+    const { container } = render(
+      <CardRadio options={radioOptions} label="Choose a city" />,
+    );
 
-    // Then
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should display error message when error prop is provided", () => {
+    render(
+      <CardRadio
+        options={radioOptions}
+        label="Choose a city"
+        error="This field is required"
+      />,
+    );
+
+    const radiogroup = screen.getByRole("radiogroup", {
+      name: "Choose a city",
+    });
+    expect(radiogroup).toHaveAccessibleErrorMessage("This field is required");
+    expect(radiogroup).not.toBeValid();
+  });
+
+  it("should display description and label when provided", () => {
+    render(
+      <CardRadio
+        options={radioOptions}
+        label="Choose a city"
+        description="Select your favorite city"
+      />,
+    );
+    expect(screen.getByText("Select your favorite city")).toBeInTheDocument();
+    expect(screen.getByText("Choose a city")).toBeInTheDocument();
+  });
+
+  it("should display asterisk when required is true", () => {
+    render(<CardRadio options={radioOptions} label="Choose a city" required />);
+    const radiogroup = screen.getByRole("radiogroup", {
+      name: /Choose a city/,
+    });
+
+    expect(radiogroup).toContainHTML("*");
+    expect(radiogroup).toBeRequired();
   });
 });

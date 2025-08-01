@@ -1,6 +1,6 @@
 import type { ComponentProps, ComponentType } from "react";
-import type { Icon } from "../../../indexLF";
-import type { RadioProps } from "../Radio/RadioCommon";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Icon, Radio } from "@axa-fr/design-system-apollo-react/lf";
 import type { TCardRadioItemProps } from "./CardRadioItem";
 
 export type TCardRadioItemOption = Omit<
@@ -9,7 +9,7 @@ export type TCardRadioItemOption = Omit<
 >;
 
 export type RadioComponent = {
-  RadioComponent: ComponentType<RadioProps>;
+  RadioComponent: ComponentType<ComponentProps<typeof Radio>>;
 };
 
 export type IconComponent = {

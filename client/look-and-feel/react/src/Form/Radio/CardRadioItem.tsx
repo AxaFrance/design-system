@@ -1,15 +1,13 @@
-import { type ComponentProps, type ComponentType } from "react";
-import type { Icon as IconCommon } from "../../../Icon/IconCommon";
-import type { Radio } from "../Radio/RadioCommon";
+import { type ComponentProps } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Icon, Radio } from "@axa-fr/design-system-apollo-react/lf";
 
 export type TCardRadioItemProps = Omit<ComponentProps<typeof Radio>, "size"> & {
   label: string;
   description?: string;
   subtitle?: string;
-  icon?: ComponentProps<typeof IconCommon>["src"];
-  size: ComponentProps<typeof IconCommon>["size"];
-  RadioComponent: ComponentType<ComponentProps<typeof Radio>>;
-  IconComponent: ComponentType<ComponentProps<typeof IconCommon>>;
+  icon?: ComponentProps<typeof Icon>["src"];
+  size: ComponentProps<typeof Icon>["size"];
 };
 
 export const CardRadioItem = ({
@@ -18,14 +16,12 @@ export const CardRadioItem = ({
   subtitle,
   icon,
   size,
-  RadioComponent,
-  IconComponent,
   ...inputProps
 }: TCardRadioItemProps) => (
   <label className="af-card-radio-label">
-    <RadioComponent {...inputProps} />
+    <Radio {...inputProps} />
     <div className="af-card-radio-content">
-      {icon && <IconComponent src={icon} size={size} role="presentation" />}
+      {icon && <Icon src={icon} size={size} role="presentation" />}
       <div className="af-card-radio-content-description">
         <span>{label}</span>
         {description && <span>{description}</span>}
