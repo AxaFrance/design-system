@@ -1,0 +1,316 @@
+@use "../../common/common" as breakpoints;
+
+.af-card-radio {
+  &__label-container {
+    --font-size-base: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__legend {
+    --card-radio-color: var(--color-gray-900);
+
+    display: grid;
+    margin-block-end: calc(4 / var(--font-size-base) * 1rem);
+    row-gap: calc(4 / var(--font-size-base) * 1rem);
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-weight: 600;
+    color: var(--card-radio-color);
+
+    & > p {
+      margin: 0;
+    }
+  }
+
+  &__description {
+    --card-radio-color: var(--color-gray-700);
+
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-weight: 400;
+    line-height: calc(16 / var(--font-size-base) * 1rem);
+    color: var(--card-radio-color);
+
+    @media (width > #{breakpoints.$breakpoint-sm}) {
+      font-size: calc(18 / var(--font-size-base) * 1rem);
+      line-height: calc(18 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  &__content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    & > svg {
+      --card-radio-color: var(--color-axa);
+      --card-radio-fill: var(--color-axa);
+
+      width: calc(28 / var(--font-size-base) * 1rem);
+      height: calc(28 / var(--font-size-base) * 1rem);
+      color: var(--card-radio-color);
+      fill: var(--card-radio-fill);
+    }
+
+    &-description {
+      display: flex;
+      flex-direction: column;
+      line-height: calc(20 / var(--font-size-base) * 1rem);
+
+      & > span:first-child {
+        --card-radio-color: var(--color-gray-900);
+
+        line-height: calc(24 / var(--font-size-base) * 1rem);
+        color: var(--card-radio-color);
+      }
+
+      & > span:not(:first-child) {
+        --card-radio-color: var(--color-gray-700);
+
+        color: var(--card-radio-color);
+      }
+    }
+  }
+
+  & ~ &__error {
+    --error-box-color: var(--color-red-700);
+
+    border: solid var(--color-red-700);
+
+    & > svg {
+      --error-box-color: var(--color-red-700);
+      --error-box-fill: var(--color-red-700);
+
+      border: solid var(--color-red-700);
+    }
+  }
+
+  &-group {
+    border: none;
+
+    --card-radio-flex-wrap: var(--card-radio-flex-wrap, nowrap);
+
+    flex-wrap: var(--card-radio-flex-wrap);
+
+    .af-card-radio-label {
+      width: var(--card-radio-width, auto);
+      min-width: var(--card-radio-min-width, auto);
+    }
+  }
+
+  &-group--vertical {
+    --card-radio-flex-direction: row;
+
+    flex-direction: var(--card-radio-flex-direction);
+
+    > * {
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+
+    .af-card-radio-label {
+      --card-radio-flex-direction: row;
+      --card-radio-align-items: flex-start;
+      --card-radio-justify-content: flex-start;
+
+      flex-direction: var(--card-radio-flex-direction);
+      align-items: var(--card-radio-align-items);
+      justify-content: var(--checkbox-card-justify-content);
+
+      .af-radio {
+        position: absolute;
+      }
+
+      .af-card-radio-content {
+        --card-radio-flex-direction: column;
+        --card-radio-margin-left: calc(12 / var(--font-size-base) * 1rem);
+
+        width: 100%;
+        flex: 1;
+        flex-direction: var(--card-radio-flex-direction);
+
+        .af-card-radio-content-description {
+          --card-radio-flex-direction: column;
+          --card-radio-align-item: center;
+
+          flex-direction: var(--card-radio-flex-direction);
+          align-items: var(--card-radio-align-item);
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &-group--horizontal {
+    --card-radio-flex-direction: column;
+
+    flex-direction: var(--card-radio-flex-direction);
+
+    .af-card-radio-label {
+      --card-radio-flex-direction: row;
+      --card-radio-align-items: center;
+
+      flex-direction: var(--card-radio-flex-direction);
+      align-items: var(--card-radio-align-items);
+      justify-content: var(--card-radio-justify-content);
+
+      .af-card-radio-content {
+        --card-radio-flex-direction: row;
+        --card-radio-margin-left: calc(2 / var(--font-size-base) * 1rem);
+
+        width: 100%;
+        flex: 1;
+        flex-direction: var(--card-radio-flex-direction);
+
+        .af-card-radio-content-description {
+          --card-radio-flex-direction: column;
+          --card-radio-align-item: flex-start;
+
+          flex-direction: var(--card-radio-flex-direction);
+          align-items: var(--card-radio-align-item);
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &-group--vertical,
+  &-group--horizontal {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+    font-family: var(--card-radio-font-family);
+    font-style: normal;
+    font-weight: 400;
+    line-height: calc(20 / var(--font-size-base) * 1rem);
+
+    .af-card-radio-label {
+      --card-radio-border-color: var(--color-gray-700);
+      --card-radio-outline-color: var(--card-radio-border-color);
+      --card-radio-border-radius: calc(6 / var(--font-size-base) * 1rem);
+      --card-radio-background-color: var(--color-white);
+      --card-radio-border-width: 1px;
+
+      display: flex;
+      padding: 1rem;
+      border: var(--card-radio-border-width) solid
+        var(--card-radio-border-color);
+      border-radius: var(--card-radio-border-radius);
+      flex: 1;
+      align-self: stretch;
+      gap: calc(12 / var(--font-size-base) * 1rem);
+      background-color: var(--card-radio-background-color);
+      outline: var(--card-radio-outline-width, 0) solid
+        var(--card-radio-outline-color);
+      outline-offset: calc(
+        -1 *
+          calc(var(--card-radio-border-width) + var(--card-radio-outline-width))
+      );
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible,
+      &:focus-within {
+        --card-radio-border-color: var(--color-axa);
+      }
+
+      &:hover {
+        & > span:first-child {
+          --radio-border-color: var(--color-axa);
+        }
+      }
+
+      &:hover,
+      &:focus-visible,
+      &:focus-within,
+      &:has(input:checked),
+      &:has(input[aria-invalid="true"]) {
+        --card-radio-outline-width: 1px;
+      }
+
+      .af-card-radio-content {
+        display: flex;
+        align-items: center;
+        gap: calc(4 / var(--font-size-base) * 1rem);
+
+        .af-card-radio-content-description {
+          display: flex;
+          justify-content: center;
+          gap: calc(
+            var(--card-radio-content-description-gap, 4) /
+              var(--font-size-base) * 1rem
+          );
+          font-size: 1rem;
+          line-height: calc(20 / var(--font-size-base) * 1rem);
+
+          & > span:first-child {
+            --card-radio-label-text-color: var(--color-black);
+
+            font-size: calc(18 / var(--font-size-base) * 1rem);
+            font-weight: 400;
+            color: var(--card-radio-title-text-color);
+
+            @media (width < #{breakpoints.$breakpoint-sm}) {
+              font-size: calc(16 / var(--font-size-base) * 1rem);
+              font-weight: 400;
+            }
+          }
+
+          & > span:not(:first-child) {
+            font-size: calc(16 / var(--font-size-base) * 1rem);
+            font-weight: 400;
+            color: var(--card-radio-subtitle-text-color);
+
+            @media (width < #{breakpoints.$breakpoint-sm}) {
+              font-size: calc(14 / var(--font-size-base) * 1rem);
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+      &:has(input:checked) {
+        --card-radio-border-color: var(--color-axa);
+        --card-radio-background-color: var(--color-blue-2);
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &__container[aria-invalid="true"] .af-card-radio-label {
+    --card-radio-border-color: var(--color-red-700);
+
+    &:hover,
+    &:focus-within,
+    &:focus {
+      --card-radio-outline-width: 2px;
+
+      & > span:first-child {
+        --radio-outline-width: 2px;
+      }
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    & > span:first-child {
+      --radio-border-color: var(--color-red-700);
+      --radio-outline-width: 1px;
+    }
+  }
+
+  &__container[aria-invalid="true"]
+    .af-card-radio-label:not(:has(input:checked)) {
+    --card-radio-outline-width: 1px;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within,
+    &:focus {
+      --card-radio-outline-width: 2px;
+    }
+  }
+}
