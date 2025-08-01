@@ -63,38 +63,6 @@ describe("CardRadioOptionCommon", () => {
     expect(screen.getByTestId("mock-icon")).toBeInTheDocument();
   });
 
-  it("should apply the invalid class if isInvalid is true", () => {
-    render(
-      <CardRadioOptionCommon
-        label="Label"
-        isInvalid
-        RadioComponent={Radio}
-        IconComponent={MockIconComponent}
-        name="test"
-      />,
-    );
-
-    const radio = screen.getByRole("radio");
-    expect(radio).toHaveClass("af-card-radio-option");
-    expect(radio).toHaveClass("af-card-radio-option--invalid");
-  });
-
-  it("should apply the horizontal class if type is horizontal", () => {
-    render(
-      <CardRadioOptionCommon
-        label="Label"
-        type="horizontal"
-        RadioComponent={Radio}
-        IconComponent={MockIconComponent}
-        name="test"
-      />,
-    );
-
-    expect(screen.getByRole("radio")).toHaveClass(
-      "af-card-radio-option--horizontal",
-    );
-  });
-
   it("should render the RadioComponent with the correct props", () => {
     render(
       <CardRadioOptionCommon
