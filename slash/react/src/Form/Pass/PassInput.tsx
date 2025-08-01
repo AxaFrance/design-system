@@ -1,4 +1,4 @@
-import { ComponentProps, ReactNode, useState } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { ConsumerFieldProps, Field } from "../core";
 import { Pass } from "./Pass";
 
@@ -33,7 +33,7 @@ type Props = Omit<
       helpMessage?: ReactNode;
       score?: string;
     },
-  "onToggleType" | "type" | "children"
+  "onToggleType" | "children"
 >;
 
 const PassInput = ({
@@ -45,8 +45,6 @@ const PassInput = ({
 }: Props) => {
   const strength = calculateStrength(score);
 
-  const [type, setType] = useState<PassProps["type"]>("password");
-
   return (
     <Field
       {...props}
@@ -55,15 +53,12 @@ const PassInput = ({
         <>
           <Pass
             {...props}
-            type={type}
             id={id}
             disabled={disabled}
             classModifier={`${modifier} ${strength}`}
             aria-describedby={errorId}
             aria-invalid={ariaInvalid}
-            onToggleType={() =>
-              setType(type === "password" ? "text" : "password")
-            }
+            onToggleType={() => {}}
           />
           {rightElement}
         </>
