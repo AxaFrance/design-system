@@ -71,7 +71,7 @@
   --inactive-button-border-color: var(--gray50);
   --active-button-border-color: var(--axablue90);
   --error-button-background: var(--red10);
-  --button-primary-default: var(--azur);
+  --button-primary-default: var(--brand-primary);
 
   /********* Alias Token *********/
   --color-border-default: transparent;
