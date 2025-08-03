@@ -3,18 +3,32 @@
 
 /* stylelint-disable no-descending-specificity */
 .af-form {
+  &__checkbox-container {
+    display: flex;
+
+    &:has(.af-form__checkbox) {
+      flex-direction: column;
+    }
+  }
+
   &__checkbox,
-  &__checkbox-inline {
+  &__checkbox-inline,
+  &__checkbox-custom,
+  &__checkbox-toggle {
     .af-form__indicator {
       display: flex;
       width: 1rem;
       height: 1rem;
       border: 1px solid var(--input-border-color);
+      align-items: center;
+      justify-content: center;
       background-color: var(--white);
       fill: none;
 
       .ok-icon {
         display: none;
+        width: 0.8rem;
+        height: 0.8rem;
         fill: var(--white);
       }
     }
@@ -35,11 +49,9 @@
         border-color: var(--error-color);
       }
 
-      .af-form__input-checkbox:checked + .af-form__label {
-        .af-form__indicator {
-          border-color: var(--error-color);
-          background-color: var(--error-color);
-        }
+      .af-form__input-checkbox:checked + .af-form__label .af-form__indicator {
+        border-color: var(--error-color);
+        background-color: var(--error-color);
 
         .ok-icon {
           display: block;
@@ -62,40 +74,33 @@
     position: absolute;
     opacity: 0;
 
-    &:checked + .af-form__label {
-      .af-form__indicator {
-        border-color: var(--button-primary-default);
-        color: var(--white);
-        background-color: var(--button-primary-default);
+    &:checked + .af-form__label .af-form__indicator {
+      border-color: var(--button-primary-default);
+      background-color: var(--button-primary-default);
 
-        .ok-icon {
-          display: block;
-        }
+      .ok-icon {
+        display: block;
       }
     }
 
-    &:focus {
-      & + .af-form__label {
-        color: var(--brand-primary);
+    &:focus + .af-form__label {
+      color: var(--brand-primary);
 
-        .af-form__indicator {
-          border-color: var(--brand-primary);
-        }
+      .af-form__indicator {
+        border-color: var(--brand-primary);
       }
     }
   }
 
-  /* Déclinaisons des checkbox ****************************************************/
-
   /* Classic */
   &__checkbox {
     position: relative;
-    display: block;
+    display: flex;
     border-bottom: 1px solid var(--disabled-color);
     align-items: center;
 
-    &:nth-last-child(1) {
-      border-bottom: 0;
+    &:last-child {
+      border-bottom: none;
     }
   }
 
@@ -129,26 +134,16 @@
     }
 
     .af-form__indicator {
-      left: 1rem;
-      display: flex;
-      width: 1rem;
-      height: 1rem;
+      margin-left: 0.5rem;
       border: 1px solid var(--input-border-color);
       background-color: var(--white);
-
-      .ok-icon {
-        display: none;
-      }
     }
 
     .af-form__description {
-      padding-left: 0.5em;
+      padding-left: 0.5rem;
     }
 
     .af-form__input-checkbox {
-      position: absolute;
-      opacity: 0;
-
       &:checked + .af-form__label {
         color: var(--white);
         background-color: var(--brand-primary);
@@ -159,6 +154,7 @@
           background: var(--white);
 
           .ok-icon {
+            display: block;
             fill: var(--brand-primary);
           }
         }
@@ -222,45 +218,51 @@
           border-color: var(--disabled-color);
 
           .ok-icon {
-            color: var(--disabled-color);
+            fill: var(--disabled-color);
           }
         }
       }
     }
 
-    &:hover {
-      .af-form__label {
-        border-color: var(--brand-primary);
-        color: var(--white);
-        background-color: var(--brand-primary);
-        box-shadow: inset 0 -2px 0 0 var(--axablue90);
-      }
+    &:hover .af-form__label {
+      border-color: var(--brand-primary);
+      color: var(--white);
+      background-color: var(--brand-primary);
+      box-shadow: inset 0 -2px 0 0 var(--axablue90);
     }
   }
 
   /* Toggle */
-
   &__checkbox-toggle {
     position: relative;
     display: inline-flex;
+    align-items: center;
 
     .af-form__label {
       width: 48px;
       height: 24px;
+      margin: 0 0.2rem;
       padding: 0;
       border: none;
       border-radius: 50px;
       background-color: var(--input-border-color);
+      cursor: pointer;
+
+      & .ok-icon {
+        width: 2rem;
+        height: 2rem;
+        transform: translateX(-22px);
+      }
     }
 
     .af-form__indicator {
       width: 20px;
       height: 20px;
-      margin: 0 2px;
-      border: 0;
-      border-radius: 100%;
+      margin: 2px;
+      border: none;
+      border-radius: 50%;
       background-color: var(--white);
-      transition: 0.4s;
+      transition: transform 0.4s ease;
 
       @media (prefers-reduced-motion: reduce) {
         transition: none;
@@ -277,33 +279,17 @@
 
     .af-form__input-checkbox {
       &:checked + .af-form__label {
-        color: var(--white);
         background-color: var(--button-primary-default);
 
         .af-form__indicator {
-          color: var(--text-color);
-          background: var(--white);
+          background-color: var(--white);
           transform: translateX(24px);
-
-          .ok-icon {
-            position: absolute;
-            left: -22px;
-            display: block;
-            width: 18px;
-            height: 100%;
-            animation: show-ok-icon 0.4s linear;
-            fill: var(--white);
-
-            @media (prefers-reduced-motion: reduce) {
-              animation: none;
-            }
-          }
         }
       }
 
       &:focus + .af-form__label {
         outline: 3px solid var(--button-primary-default);
-        outline-offset: -1px;
+        outline-offset: 2px;
       }
 
       &:disabled + .af-form__label {
@@ -312,44 +298,20 @@
 
         .af-form__indicator {
           background-color: var(--inactive-button-border-color);
+        }
 
-          .ok-icon {
-            display: none;
-          }
+        .ok-icon {
+          display: none;
         }
       }
     }
 
-    &:hover {
-      .af-form__label {
-        outline: 3px solid var(--button-primary-default);
-        outline-offset: -1px;
-      }
-
-      .af-form__input-checkbox:disabled + .af-form__label {
-        outline: none;
-      }
+    &--error .af-form__label {
+      background-color: var(--error-color);
     }
 
-    &--error {
-      .af-form__label {
-        background-color: var(--error-color);
-      }
+    &:hover .af-form__input-checkbox:disabled + .af-form__label {
+      outline: none;
     }
   }
 }
-
-@keyframes show-ok-icon {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-/* stylelint-enable no-descending-specificity */
