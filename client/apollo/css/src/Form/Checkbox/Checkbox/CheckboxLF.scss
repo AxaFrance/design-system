@@ -1,25 +1,29 @@
 @use "CheckboxCommon";
 
 .af-checkbox {
+  --checkbox-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23fff' viewBox='0 -960 960 960'%3E%3Cpath d='m378-332 363-363q9.27-9 21.64-9 12.36 0 21.36 9.05 9 9.06 9 21.5 0 12.45-9 21.45L399-267q-9 9-21 9t-21-9L175-449q-9-9.07-8.5-21.53.5-12.47 9.55-21.47 9.06-9 21.5-9 12.45 0 21.45 9l159 160Z'/%3E%3C/svg%3E");
   --checkbox-border-radius: calc(4 / var(--font-size-base) * 1rem);
-  --checkbox-border-color: var(--color-gray-500);
-  --checkbox-outline-color: var(--checkbox-border-color);
-  --checkbox-check-fill: var(--color-white);
   --checkbox-background-color: var(--color-white);
-  --checkbox-outline-width: 1px;
+  --checkbox-border-color: var(--color-gray-500);
 
   &:hover,
   &:focus-within,
-  &:has(:checked) {
+  &:checked {
     --checkbox-border-color: var(--color-axa);
-    --checkbox-outline-width: 2px;
+    --checkbox-border-width: 3px;
   }
 
-  &:has(:checked) {
+  &:checked {
     --checkbox-background-color: var(--color-axa);
   }
 
-  &:not(:has(:checked)):has([aria-invalid="true"]) {
+  &[aria-invalid="true"]:not(:checked) {
     --checkbox-border-color: var(--color-red-700);
+    --checkbox-border-width: 2px;
+
+    &:hover,
+    &:focus-within {
+      --checkbox-border-width: 3px;
+    }
   }
 }

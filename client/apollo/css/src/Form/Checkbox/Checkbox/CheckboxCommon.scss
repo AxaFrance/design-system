@@ -1,38 +1,17 @@
 .af-checkbox {
   --checkbox-border-width: 1px;
 
-  position: relative;
-  display: flex;
   width: calc(24 / var(--font-size-base) * 1rem);
   height: calc(24 / var(--font-size-base) * 1rem);
-  border: var(--checkbox-border-width) solid var(--checkbox-border-color);
   border-radius: var(--checkbox-border-radius);
   align-items: center;
   background-color: var(--checkbox-background-color);
-  outline: var(--checkbox-outline-width) solid var(--checkbox-outline-color);
-  outline-offset: calc(
-    -1 * calc(var(--checkbox-border-width) + var(--checkbox-outline-width))
-  );
+  outline: var(--checkbox-border-width) solid var(--checkbox-border-color);
+  outline-offset: calc(-1 * var(--checkbox-border-width));
+  cursor: pointer;
+  appearance: unset;
 
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: none;
-    transform: translate(-50%, -50%);
-    fill: var(--checkbox-check-fill);
-  }
-
-  input[type="checkbox"] {
-    position: absolute;
-    width: calc(24 / var(--font-size-base) * 1rem);
-    height: calc(24 / var(--font-size-base) * 1rem);
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
-
-  svg:has(+ input[type="checkbox"]:checked) {
-    display: block;
+  &:checked {
+    background-image: var(--checkbox-background-image);
   }
 }
