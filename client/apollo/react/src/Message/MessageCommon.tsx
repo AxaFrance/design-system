@@ -7,7 +7,6 @@ import type {
 import type { ButtonProps } from "../Button/ButtonCommon";
 import type { Icon } from "../Icon/IconCommon";
 import { Link } from "../Link/LinkCommon";
-import { getComponentClassName } from "../utilities/getComponentClassName";
 import { iconByVariant, messageVariants } from "./constants";
 import { getAriaRole } from "./Message.helpers";
 import type { MessageVariants } from "./types";
@@ -33,6 +32,8 @@ type MessagePropsWithComponents = MessageProps & {
   IconComponent: typeof Icon;
 };
 
+const defaultClassName = "af-message";
+
 export const MessageCommon = ({
   variant = messageVariants.information,
   className,
@@ -48,7 +49,13 @@ export const MessageCommon = ({
 
   return (
     <section
-      className={getComponentClassName("af-message", className, variant)}
+      className={[
+        defaultClassName,
+        variant && `${defaultClassName}--${variant}`,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       role={role}
       {...sectionProps}
     >
