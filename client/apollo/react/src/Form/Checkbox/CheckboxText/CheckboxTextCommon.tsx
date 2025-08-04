@@ -6,7 +6,7 @@ import React, {
   forwardRef,
 } from "react";
 import { ItemMessage } from "../../ItemMessage/ItemMessageCommon";
-import { CheckboxCommon } from "../Checkbox/CheckboxCommon";
+import { Checkbox } from "../Checkbox/CheckboxCommon";
 
 export type CheckboxTextProps = {
   label: string | ReactNode;
@@ -15,7 +15,7 @@ export type CheckboxTextProps = {
 
 export type CheckboxTextCommonProps = CheckboxTextProps & {
   CheckboxComponent: ComponentType<
-    Omit<ComponentProps<typeof CheckboxCommon>, "checkBoxIcon">
+    Omit<ComponentProps<typeof Checkbox>, "checkBoxIcon">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };

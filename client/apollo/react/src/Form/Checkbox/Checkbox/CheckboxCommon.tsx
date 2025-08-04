@@ -1,31 +1,23 @@
-import { forwardRef, type InputHTMLAttributes } from "react";
-import { Svg } from "../../../Svg/Svg";
+import { type ComponentProps, forwardRef } from "react";
 
 export type CheckboxProps = {
+  /** @deprecated Use `aria-errormessage` instead */
   errorId?: string;
+  /** @deprecated Use `aria-invalid` instead */
   hasError?: boolean;
-  className?: string;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, "disabled">;
+} & Omit<ComponentProps<"input">, "disabled" | "type">;
 
-type CheckboxCommonProps = CheckboxProps & {
-  checkBoxIcon: string;
-};
-
-const CheckboxCommon = forwardRef<HTMLInputElement, CheckboxCommonProps>(
-  ({ errorId, checkBoxIcon, hasError, ...inputProps }, ref) => (
-    <span className="af-checkbox">
-      <Svg src={checkBoxIcon} aria-hidden />
-      <input
-        {...inputProps}
-        ref={ref}
-        type="checkbox"
-        aria-errormessage={errorId}
-        aria-invalid={hasError}
-        disabled={false}
-      />
-    </span>
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  ({ errorId, hasError, className, ...inputProps }, ref) => (
+    <input
+      aria-errormessage={errorId}
+      aria-invalid={hasError}
+      {...inputProps}
+      className={["af-checkbox", className].filter(Boolean).join(" ")}
+      ref={ref}
+      type="checkbox"
+    />
   ),
 );
 
-CheckboxCommon.displayName = "CheckboxCommon";
-export { CheckboxCommon };
+Checkbox.displayName = "Checkbox";
