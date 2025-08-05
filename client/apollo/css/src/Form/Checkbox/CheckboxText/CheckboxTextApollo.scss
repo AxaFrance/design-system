@@ -1,7 +1,5 @@
 @use "CheckboxTextCommon";
 
 .af-checkbox-text {
-  & label {
-    --checkbox-text-label-color: var(--black);
-  }
+  --checkbox-text-label-color: var(--black);
 }

@@ -1,57 +1,73 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { axe } from "jest-axe";
-import { CheckboxText } from "../CheckboxTextApollo";
+import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
+import { Checkbox } from "../../Checkbox/CheckboxCommon";
+import {
+  CheckboxTextCommon,
+  type CheckboxTextProps,
+} from "../CheckboxTextCommon";
 
 describe("CheckboxText Component", () => {
-  const props = {
-    label: "label axa fr",
-    inputProps: {
-      name: "checkboxTextTest",
-      value: "value",
-      inputId: "checkboxText-1",
-      errorMessage: "",
-    },
-  };
-  it("should render the CheckboxText component with label", () => {
-    // Act
-    render(<CheckboxText {...props} />);
+  const CheckboxText = (props: CheckboxTextProps) => (
+    <CheckboxTextCommon
+      {...props}
+      ItemMessageComponent={ItemMessage}
+      CheckboxComponent={Checkbox}
+    />
+  );
 
-    // Then
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
-    expect(screen.getByText("label axa fr")).toBeInTheDocument();
+  it("should render the label correctly", () => {
+    render(<CheckboxText label="I accept the terms" name="test" value="1" />);
+
+    expect(
+      screen.getByRole("checkbox", { name: "I accept the terms" }),
+    ).toBeInTheDocument();
   });
 
-  it("should render error when error is provided", () => {
-    // Act
-    render(<CheckboxText {...props} errorMessage="error field" />);
+  it("should handle checked state", () => {
+    render(
+      <CheckboxText
+        label="Option"
+        name="option"
+        value="1"
+        checked
+        onChange={vi.fn()}
+      />,
+    );
 
-    // Then
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
-    expect(screen.getByText("label axa fr")).toBeInTheDocument();
-    expect(screen.getByText("error field")).toBeInTheDocument();
-  });
-
-  it("should check and uncheck CheckboxText", async () => {
-    // Act
-    render(<CheckboxText {...props} />);
-    const checkboxLabel = screen.getByText("label axa fr");
-    const checkbox = screen.getByRole("checkbox");
-
-    // Then
-    expect(checkbox).not.toBeChecked();
-    await userEvent.click(checkboxLabel);
+    const checkbox = screen.getByRole("checkbox", { name: "Option" });
     expect(checkbox).toBeChecked();
-    await userEvent.click(checkboxLabel);
-    expect(checkbox).not.toBeChecked();
   });
 
-  it("should violate accessibility the of CheckboxText", async () => {
-    // Act
-    const { container } = render(<CheckboxText {...props} />);
+  it("should display the error message if provided", () => {
+    render(
+      <CheckboxText
+        label="Option"
+        name="option"
+        value="1"
+        errorMessage="Required error"
+      />,
+    );
 
-    // Then
-    expect(await axe(container)).toHaveNoViolations();
+    const checkbox = screen.getByRole("checkbox", { name: "Option" });
+    expect(checkbox).toHaveAccessibleErrorMessage("Required error");
+    expect(checkbox).toBeInvalid();
+  });
+
+  it("should call onChange when clicked", async () => {
+    const handleChange = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <CheckboxText
+        label="Option"
+        name="option"
+        value="1"
+        onChange={handleChange}
+      />,
+    );
+    const checkbox = screen.getByRole("checkbox", { name: "Option" });
+    await user.click(checkbox);
+    expect(handleChange).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,13 +1,11 @@
 import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as CheckboxTextStories from "./CheckboxText.stories";
 
-<Meta of={CheckboxTextStories} />
+<Meta of={CheckboxTextStories} name="CheckboxText" />
 
 # CheckboxText components
 
-## CheckboxText
-
-### How to use
+## How to use
 
 To use the `CheckboxText`component import it like this:
 
@@ -23,8 +21,7 @@ const MyComponent = () => (
 );
 ```
 
-<Canvas of={CheckboxTextStories.CheckboxTextStory} />
-<Controls of={CheckboxTextStories.CheckboxTextStory} />
+## Playground
 
-<Canvas of={CheckboxTextStories.CheckboxTextWithErrorStory} />
-<Controls of={CheckboxTextStories.CheckboxTextWithErrorStory} />
+<Canvas of={CheckboxTextStories.CheckboxTextStory} sourceState="shown" />
+<Controls of={CheckboxTextStories.CheckboxTextStory} />
