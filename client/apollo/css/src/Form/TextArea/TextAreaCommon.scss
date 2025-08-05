@@ -1,89 +1,27 @@
 @use "../../common/breakpoints" as breakpoints;
 
-.af-form__input-container {
-  .af-item-label .af-item-label__label {
-    font-size: var(--input-text-area-font-size);
+.af-form__input-textarea {
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
   }
 
-  .af-form__input-textarea {
-    width: 100%;
-    min-height: calc(56 / var(--font-size-base) * 1rem);
-    padding: calc(16 / var(--font-size-base) * 1rem);
-    border: 1px solid var(--input-text-area-border-color);
-    border-radius: var(--input-text-area-border-radius);
-    font: var(--font-family-base);
-    font-size: var(--input-text-area-font-size);
-    line-height: calc(20 / var(--font-size-base) * 1rem);
-    color: var(--input-text-area-color);
-    background-color: var(--input-text-area-background);
-    box-shadow: 0 0 0 1px var(--input-text-area-background);
-    resize: vertical;
+  width: 100%;
+  min-height: calc(56 / var(--font-size-base) * 1rem);
+  padding: calc(16 / var(--font-size-base) * 1rem);
+  border: none;
+  border-radius: var(--input-textarea-border-radius);
+  font: var(--font-family-base);
+  font-size: var(--input-textarea-font-size);
+  font-weight: 600;
+  line-height: 125%;
+  color: var(--input-textarea-color);
+  background-color: var(--input-textarea-background-color);
+  box-shadow: 0 0 0 var(--input-textarea-box-shadow-size)
+    var(--input-textarea-box-shadow-color);
+  outline: none;
 
-    @media (width < #{breakpoints.$breakpoint-sm}) {
-      line-height: 125%;
-      box-shadow: none;
-
-      --input-text-area-font-size: calc(16 / var(--font-size-base) * 1rem);
-
-      &:focus {
-        font-size: var(--input-text-area-font-size);
-      }
-    }
-
-    &--error,
-    :not(:placeholder-shown),
-    :focus,
-    :hover {
-      font-weight: var(--input-text-area-font-weight);
-      color: var(--input-text-area-font-color);
-      box-shadow: 1px solid var(--input-text-area-box-shadow-color);
-      outline: none;
-    }
-
-    &:enabled,
-    &:focus,
-    &:active {
-      box-shadow: 0 0 0 1px var(--white);
-      outline: none;
-    }
-
-    &--error:hover,
-    &--error:focus {
-      box-shadow: 0 0 0 1px var(--input-text-area-box-shadow-color);
-    }
-
-    &:disabled {
-      border: 1px solid var(--input-text-area-border-color);
-      background: var(--input-text-area-background);
-    }
-
-    &:not(
-        :placeholder-shown,
-        :focus,
-        :disabled,
-        .af-form__input-textarea--error
-      ) {
-      box-shadow: 0 0 0 1px var(--input-text-area-box-shadow);
-    }
-
-    &:disabled:not(:placeholder-shown) {
-      border: 1px solid var(--input-text-area-border-color);
-    }
-
-    &:not(.af-form__input-textarea--error):focus,
-    &:not(.af-form__input-textarea--error, :disabled):hover {
-      border: var(--input-text-area-border-size) solid
-        var(--input-text-area-border-color);
-      box-shadow: 0 0 0 1px var(--input-text-area-border-color);
-    }
-
-    &:not(:disabled, &--error) {
-      &:focus,
-      &:hover,
-      &:not(:placeholder-shown, :focus) {
-        font-weight: var(--input-text-area-font-weight);
-        color: var(--input-text-area-font-color);
-      }
-    }
+  &::placeholder {
+    font-weight: 400;
+    color: var(--input-textarea-placeholder-color);
   }
 }
