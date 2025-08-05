@@ -1,0 +1,36 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ItemProgressBarStories from "./ItemProgressBar.stories";
+
+<Meta of={ItemProgressBarStories} />
+
+# ItemProgressBar
+
+The `ItemProgressBar` component displays a visual indicator of progress. It is based on the native HTML `<progress>` element and can be customized using standard props.
+
+By default, the maximum value (`max` prop) is set to `100`, allowing you to manage the `value` prop as a percentage.
+
+## Usage
+
+```tsx title="Example usage"
+import { ItemProgressBar } from "@axa-fr/design-system-apollo-react/lf";
+
+const MyComponent = () => <ItemProgressBar value={70} />;
+```
+
+## Playground
+
+<Canvas of={ItemProgressBarStories.Playground} sourceState="shown" />
+
+<Controls of={ItemProgressBarStories.Playground} />
+
+## Accessibility: Indicating Current Progress
+
+To indicate that the progress bar represents the current step or element, you can use the `aria-current` prop:
+
+```tsx title="Current ItemProgressBar"
+<ItemProgressBar value={70} aria-current="step">
+  Step 2 in progress
+</ItemProgressBar>
+```
+
+This improves accessibility by signaling to assistive technologies that this progress bar is the current item.

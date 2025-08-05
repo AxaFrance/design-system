@@ -1,6 +1,6 @@
-@use "./ProgressBarCommon";
+@use "./ItemProgressBarCommon";
 
-.af-progress-bar {
+.af-item-progress-bar {
   --progress-bar-radius: 0;
   --progress-bar-background-color: var(--neutral-14);
   --progress-bar-appearance: var(--axa-blue-100);
