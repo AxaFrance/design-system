@@ -4,11 +4,11 @@ import {
   type HTMLAttributes,
   useId,
 } from "react";
-import { ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
 import {
   ItemMessage,
-  ItemMessageProps,
+  type ItemMessageProps,
 } from "../Form/ItemMessage/ItemMessageCommon";
+import { ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
 
 export type StepperProps = {
   currentStepProgress?: number;
@@ -21,7 +21,7 @@ export type StepperProps = {
   messageType?: ItemMessageProps["messageType"];
   titleLevel?: 1 | 2 | 3;
   ProgressBarGroupComponent: ComponentType<
-    Omit<ProgressBarGroupProps, "ProgressBarComponent">
+    Omit<ProgressBarGroupProps, "ItemProgressBarComponent">
   >;
 } & Omit<HTMLAttributes<HTMLDivElement>, "role">;
 

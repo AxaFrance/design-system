@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { type ComponentProps, type ComponentType, useId } from "react";
-import { ProgressBar } from "../ProgressBar/ProgressBarCommon";
+import { ItemProgressBar } from "../ItemProgressBar/ItemProgressBarCommon";
 
 const INITIAL_STEPPER_PROGRESS = 10;
 const MAX_STEPPER_PROGRESS = 100;
@@ -11,7 +11,9 @@ export type ProgressBarGroupProps = {
   nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   label?: string;
   className?: string;
-  ProgressBarComponent: ComponentType<ComponentProps<typeof ProgressBar>>;
+  ItemProgressBarComponent: ComponentType<
+    ComponentProps<typeof ItemProgressBar>
+  >;
 };
 
 export const ProgressBarGroup = ({
@@ -20,7 +22,7 @@ export const ProgressBarGroup = ({
   currentStep,
   label,
   className,
-  ProgressBarComponent,
+  ItemProgressBarComponent,
 }: ProgressBarGroupProps) => {
   const stepperId = useId();
 
@@ -42,7 +44,7 @@ export const ProgressBarGroup = ({
       className={classNames("af-progress-bar-group", className)}
     >
       {[...Array(nbSteps).keys()].map((index) => (
-        <ProgressBarComponent
+        <ItemProgressBarComponent
           key={`${stepperId}-${index}`}
           value={getCurrentProgress(index)}
           aria-current={index === currentStep}
