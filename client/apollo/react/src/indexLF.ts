@@ -34,6 +34,7 @@ export {
   CardCheckbox as CheckboxCard,
 } from "./Form/Checkbox/CardCheckbox/CardCheckboxLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
+export { CardCheckboxOption } from "./Form/Checkbox/CardCheckboxOption/CardCheckboxOptionLF";
 export {
   InputDate,
   /** @deprecated Use `InputDate` instead. */
