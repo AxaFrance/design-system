@@ -3,6 +3,7 @@
 
   width: calc(24 / var(--font-size-base) * 1rem);
   height: calc(24 / var(--font-size-base) * 1rem);
+  margin: 0;
   border-radius: var(--checkbox-border-radius);
   align-items: center;
   background-color: var(--checkbox-background-color);

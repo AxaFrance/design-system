@@ -3,7 +3,7 @@ import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import type { ReactNode } from "react";
 import { Svg } from "../../Svg/Svg";
 
-type ItemMessageProps = {
+export type ItemMessageProps = {
   message?: ReactNode;
   id?: string;
   messageType?: "error" | "success";
