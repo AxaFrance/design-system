@@ -8,6 +8,29 @@ const meta: Meta<typeof ProgressBar> = {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    value: {
+      control: {
+        type: "number",
+      },
+    },
+    max: {
+      control: {
+        type: "number",
+      },
+    },
+  },
+  args: {
+    value: 70,
+    max: 100,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ minWidth: "70vw" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -16,12 +39,5 @@ type StoryProps = ComponentProps<typeof ProgressBar>;
 type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
-  render: (props) => (
-    <div style={{ minWidth: "70vw" }}>
-      <ProgressBar {...props} />
-    </div>
-  ),
-  args: {
-    value: 90,
-  },
+  name: "Playground",
 };

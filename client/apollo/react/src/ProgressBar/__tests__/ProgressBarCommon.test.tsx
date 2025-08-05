@@ -2,44 +2,23 @@ import { render, screen } from "@testing-library/react";
 import { ProgressBar } from "../ProgressBarCommon";
 
 describe("ProgressBar Component", () => {
-  it("renders with default props", () => {
-    render(<ProgressBar value={100} />);
-    const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toBeInTheDocument();
-    expect(progressBar).toHaveAttribute("aria-valuemin", "0");
-    expect(progressBar).toHaveAttribute("aria-valuemax", "100");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "100");
-    expect(progressBar).toHaveAttribute("aria-label", "Progression : 100%");
-  });
-
-  it("renders with a custom value", () => {
+  it("renders progress bar correctly", () => {
     render(<ProgressBar value={50} />);
     const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "50");
-    expect(progressBar).toHaveAttribute("aria-label", "Progression : 50%");
+    expect(progressBar).toBeInTheDocument();
+    expect(progressBar).toHaveAttribute("max", "100");
+    expect(progressBar).toHaveValue(50);
   });
 
-  it("clamps value to the minimum", () => {
-    render(<ProgressBar value={-50} />);
+  it("applies custom className", () => {
+    render(<ProgressBar className="custom-class" />);
     const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "0");
+    expect(progressBar).toHaveClass("af-progress-bar custom-class");
   });
 
-  it("clamps value to the maximum", () => {
-    render(<ProgressBar value={150} />);
+  it("overrides default max value", () => {
+    render(<ProgressBar max={1} />);
     const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "100");
-  });
-
-  it("applies the active state correctly", () => {
-    render(<ProgressBar active value={30} />);
-    const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-current", "true");
-  });
-
-  it("does not hide the progress bar when active is true", () => {
-    render(<ProgressBar active value={30} />);
-    const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).not.toHaveAttribute("aria-hidden", "true");
+    expect(progressBar).toHaveAttribute("max", "1");
   });
 });
