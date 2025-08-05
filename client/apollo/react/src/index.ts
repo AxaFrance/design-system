@@ -38,6 +38,7 @@ export {
   CardCheckbox as CheckboxCard,
 } from "./Form/Checkbox/CardCheckbox/CardCheckboxApollo";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
+export { CardCheckboxOption } from "./Form/Checkbox/CardCheckboxOption/CardCheckboxOptionApollo";
 export { InputDate } from "./Form/InputDate/InputDateApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
