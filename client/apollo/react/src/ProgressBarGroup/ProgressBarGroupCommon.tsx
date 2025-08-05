@@ -45,7 +45,7 @@ export const ProgressBarGroup = ({
         <ProgressBarComponent
           key={`${stepperId}-${index}`}
           value={getCurrentProgress(index)}
-          active={index === currentStep}
+          aria-current={index === currentStep}
         />
       ))}
     </div>

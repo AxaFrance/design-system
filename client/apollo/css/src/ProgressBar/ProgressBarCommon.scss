@@ -1,16 +1,23 @@
-.af-progressbar {
+.af-progress-bar {
   width: 100%;
   height: calc(6 / var(--font-size-base) * 1rem);
-  border-radius: var(--progress-radius);
-  overflow: hidden;
-  background-color: var(--progressbar-background-color);
+  border: none;
+  border-radius: var(--progress-bar-radius);
+  background-color: var(--progress-bar-background-color);
+  appearance: var(--progress-bar-appearance);
 
-  &__progress {
-    height: calc(6 / var(--font-size-base) * 1rem);
-    text-align: left;
-    background-color: var(--progress-background-color);
-    transition:
-      0.75s ease-out,
-      background-color 0.75s;
+  // For WebKit browsers
+  &::-webkit-progress-bar {
+    background-color: var(--progress-bar-background-color);
+  }
+
+  // For WebKit browsers
+  &::-webkit-progress-value {
+    background-color: var(--progress-bar-appearance);
+  }
+
+  // For Firefox
+  &::-moz-progress-bar {
+    background-color: var(--progress-bar-appearance);
   }
 }
