@@ -68,6 +68,10 @@
   &--horizontal {
     flex-direction: row;
 
+    & .af-card-radio-option__content {
+      align-items: flex-start;
+    }
+
     & .af-radio {
       order: -1;
     }
