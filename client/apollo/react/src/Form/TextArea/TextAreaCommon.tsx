@@ -6,7 +6,6 @@ import {
   MouseEventHandler,
   useId,
 } from "react";
-import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
 
@@ -19,6 +18,7 @@ type Props = ComponentPropsWithRef<"textarea"> &
     | "sideButtonLabel"
     | "onSideButtonClick"
   > & {
+    /** @deprecated Use `className` instead */
     classModifier?: string;
     helper?: string;
     error?: string;
@@ -29,9 +29,10 @@ type Props = ComponentPropsWithRef<"textarea"> &
     onButtonClick?: MouseEventHandler<HTMLButtonElement>;
   } & Partial<ComponentPropsWithRef<typeof ItemMessage>>;
 
-const TextArea = forwardRef<HTMLTextAreaElement, Props>(
+export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
   (
     {
+      id,
       className,
       classModifier = "",
       label,
@@ -45,23 +46,18 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
       ItemLabelComponent,
       ItemMessageComponent,
       onSideButtonClick,
-      ...otherProps
+      placeholder = " ",
+      ...inputProps
     },
     inputRef,
   ) => {
-    const componentClassName = getComponentClassName(
-      "af-form__input-textarea",
-      className,
-      classModifier,
-    );
-
-    let inputId = useId();
-    inputId = otherProps.id || inputId;
-    const idHelp = useId();
-    const idError = useId();
+    const generatedId = useId();
+    const inputId = id ?? generatedId;
+    const helperId = `${inputId}--helper`;
+    const errorId = `${inputId}--error`;
 
     return (
-      <div className="af-form__input-container">
+      <div className={`af-form__input-container ${className}`}>
         <ItemLabelComponent
           label={label}
           description={description}
@@ -74,23 +70,24 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
         />
         <textarea
           id={inputId}
-          className={componentClassName}
+          className="af-form__input-textarea"
           ref={inputRef}
-          aria-errormessage={error ? idError : undefined}
-          aria-describedby={helper ? idHelp : undefined}
-          aria-invalid={Boolean(error)}
-          {...otherProps}
+          aria-errormessage={error ? errorId : undefined}
+          aria-describedby={helper ? helperId : undefined}
+          required={required}
+          aria-invalid={Boolean(error) || classModifier.includes("error")}
+          placeholder={placeholder}
+          {...inputProps}
         />
         {helper ? (
-          <span id={idHelp} className="af-form__input-helper">
+          <span id={helperId} className="af-form__input-helper">
             {helper}
           </span>
         ) : null}
-        <ItemMessageComponent id={idError} message={error} />
+        <ItemMessageComponent id={errorId} message={error} />
       </div>
     );
   },
 );
-TextArea.displayName = "TextArea";
 
-export { TextArea };
+TextArea.displayName = "TextArea";
