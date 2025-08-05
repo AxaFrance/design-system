@@ -1,0 +1,65 @@
+@use "sass:color";
+@use "sass:list";
+@use "../common/common" as common;
+
+.helper {
+  position: relative;
+  width: 21.625rem;
+  padding: 1.25rem;
+}
+
+.item {
+  font-family: "Source Sans Pro", sans-serif;
+  color: var(--grey80) &__to-do {
+    fill: var(--axablue80);
+  }
+
+  &__wip {
+    fill: var(--axablue80);
+  }
+
+  &__validation {
+    margin: 0;
+    color: var(--green40);
+    fill: var(--green40);
+  }
+}
+
+.helper::before {
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  background:
+    repeating-linear-gradient(
+        to right,
+        #9747ff 0 0.625rem,
+        transparent 0.625rem 1rem
+      )
+      top,
+    repeating-linear-gradient(
+        to right,
+        #9747ff 0 0.625rem,
+        transparent 0.625rem 1rem
+      )
+      bottom,
+    repeating-linear-gradient(
+        to bottom,
+        #9747ff 0 0.625rem,
+        transparent 0.625rem 1rem
+      )
+      left,
+    repeating-linear-gradient(
+        to bottom,
+        #9747ff 0 0.625rem,
+        transparent 0.625rem 1rem
+      )
+      right;
+  background-repeat: no-repeat;
+  background-size:
+    100% 0.1rem,
+    100% 0.1rem,
+    0.1rem 100%,
+    0.1rem 100%;
+  pointer-events: none;
+  content: "";
+}
