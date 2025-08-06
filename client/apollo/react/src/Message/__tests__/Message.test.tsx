@@ -40,10 +40,6 @@ describe("Message", () => {
         expect(screen.getByText(RegExp(children))).toBeDefined();
       }
 
-      expect(screen.getByRole("alert")).toHaveClass(
-        `af-message--${variant || messageVariants.information}`,
-      );
-
       expect(screen.getByRole("presentation")).toHaveAttribute(
         "data-src",
         expect.stringContaining(icon),
@@ -73,6 +69,38 @@ describe("Message", () => {
       "href",
       "https://fakelink.com",
     );
+  });
+
+  describe("Accessibility roles", () => {
+    it.each`
+      variant                        | expectedRole
+      ${undefined}                   | ${"status"}
+      ${messageVariants.information} | ${"status"}
+      ${messageVariants.validation}  | ${"status"}
+      ${messageVariants.neutral}     | ${"status"}
+      ${messageVariants.error}       | ${"alert"}
+      ${messageVariants.warning}     | ${"alert"}
+    `(
+      'should assign role="$expectedRole" by default for variant: $variant',
+      ({ variant, expectedRole }) => {
+        render(<Message variant={variant}>{`Test ${variant}`}</Message>);
+        const messageDiv = screen.getByRole(expectedRole);
+        expect(messageDiv).toBeInTheDocument();
+        expect(messageDiv).toHaveClass(
+          `af-message--${variant || messageVariants.information}`,
+        );
+      },
+    );
+
+    it("should use the explicitly passed role over the default", () => {
+      render(
+        <Message variant="error" role="status">
+          Error message with custom role
+        </Message>,
+      );
+      const messageDiv = screen.getByRole("status");
+      expect(messageDiv).toBeInTheDocument();
+    });
   });
 
   describe("A11Y", () => {
