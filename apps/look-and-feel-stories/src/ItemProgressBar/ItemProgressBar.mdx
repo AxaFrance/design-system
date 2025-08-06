@@ -26,12 +26,10 @@ const MyComponent = () => <ItemProgressBar value={0.7} />;
 
 ## Accessibility: Indicating Current Progress
 
-To indicate that the progress bar represents the current step or element, you can use the `aria-current` prop:
+For accessibility, always use the `label` prop to provide a descriptive label for the progress bar. This ensures that assistive technologies can correctly announce the purpose and current state of the progress bar.
 
-```tsx title="Current ItemProgressBar"
-<ItemProgressBar value={0.7} aria-current="step">
-  Step 2 in progress
-</ItemProgressBar>
+```tsx title="Accessible ItemProgressBar"
+<ItemProgressBar value={0.7} label="Loading something..." />
 ```
 
-This improves accessibility by signaling to assistive technologies that this progress bar is the current item.
+This approach improves accessibility by associating a visible and programmatic label with the progress bar.
