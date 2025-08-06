@@ -109,6 +109,7 @@ export const CardRadioCommon = ({
                 ? value === cardRadioItemProps.value
                 : undefined
             }
+            required={required}
             {...inputProps}
             {...cardRadioItemProps}
             type={type}
