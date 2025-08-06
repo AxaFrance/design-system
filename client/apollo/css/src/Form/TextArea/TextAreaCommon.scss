@@ -1,4 +1,4 @@
-@use "../../common/breakpoints" as breakpoints;
+@use "../../common/breakpoints";
 
 .af-form__input-textarea {
   @media (width > #{breakpoints.$breakpoint-md}) {

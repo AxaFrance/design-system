@@ -23,5 +23,5 @@ const meta: Meta<typeof TextArea> = {
 export default meta;
 
 export const TextAreaStory: StoryObj<typeof TextArea> = {
-  name: "TextArea",
+  name: "Playground",
 };
