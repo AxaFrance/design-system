@@ -14,10 +14,12 @@
   // For WebKit browsers
   &::-webkit-progress-value {
     background-color: var(--progress-bar-appearance);
+    transition: width 0.75s ease;
   }
 
   // For Firefox
   &::-moz-progress-bar {
     background-color: var(--progress-bar-appearance);
+    // transition doesn't work in Firefox for native progress bars
   }
 }
