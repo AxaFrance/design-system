@@ -7,14 +7,15 @@ import * as ItemProgressBarStories from "./ItemProgressBar.stories";
 
 The `ItemProgressBar` component displays a visual indicator of progress. It is based on the native HTML `<progress>` element and can be customized using standard props.
 
-By default, the maximum value (`max` prop) is set to `100`, allowing you to manage the `value` prop as a percentage.
+By default, the maximum value (`max` prop) is set to `1`, which means the `value` prop should be between 0 and 1 (for example, 0.7 for 70%).
+You can override the `max` prop if you want to use a different scale (for example, `max=100` for percentage values).
 
 ## Usage
 
 ```tsx title="Example usage"
 import { ItemProgressBar } from "@axa-fr/design-system-apollo-react";
 
-const MyComponent = () => <ItemProgressBar value={70} />;
+const MyComponent = () => <ItemProgressBar value={0.7} />;
 ```
 
 ## Playground
@@ -28,7 +29,7 @@ const MyComponent = () => <ItemProgressBar value={70} />;
 To indicate that the progress bar represents the current step or element, you can use the `aria-current` prop:
 
 ```tsx title="Current ItemProgressBar"
-<ItemProgressBar value={70} aria-current="step">
+<ItemProgressBar value={0.7} aria-current="step">
   Step 2 in progress
 </ItemProgressBar>
 ```
