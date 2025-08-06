@@ -47,6 +47,7 @@ export const ProgressBarGroup = ({
         <ItemProgressBarComponent
           key={`${stepperId}-${index}`}
           value={getCurrentProgress(index)}
+          max={MAX_STEPPER_PROGRESS}
           aria-current={index === currentStep}
         />
       ))}
