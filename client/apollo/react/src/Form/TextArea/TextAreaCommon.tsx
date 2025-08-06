@@ -53,11 +53,15 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
   ) => {
     const generatedId = useId();
     const inputId = id ?? generatedId;
-    const helperId = `${inputId}--helper`;
-    const errorId = `${inputId}--error`;
+    const helperId = `${inputId}-helper`;
+    const errorId = `${inputId}-error`;
 
     return (
-      <div className={`af-form__input-container ${className}`}>
+      <div
+        className={["af-form__input-container", className]
+          .filter(Boolean)
+          .join(" ")}
+      >
         <ItemLabelComponent
           label={label}
           description={description}
@@ -75,7 +79,9 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           aria-errormessage={error ? errorId : undefined}
           aria-describedby={helper ? helperId : undefined}
           required={required}
-          aria-invalid={Boolean(error) || classModifier.includes("error")}
+          aria-invalid={
+            Boolean(error) || classModifier.includes("error") ? true : undefined
+          }
           placeholder={placeholder}
           {...inputProps}
         />
