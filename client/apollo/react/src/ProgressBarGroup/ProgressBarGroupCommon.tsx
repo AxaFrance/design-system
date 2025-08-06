@@ -48,7 +48,7 @@ export const ProgressBarGroup = ({
           key={`${stepperId}-${index}`}
           value={getCurrentProgress(index)}
           max={MAX_STEPPER_PROGRESS}
-          aria-current={index === currentStep}
+          aria-current={index === currentStep ? true : undefined}
         />
       ))}
     </div>

@@ -77,4 +77,19 @@ describe("ProgressBarGroup Component", () => {
     const group = screen.getByRole("group");
     expect(group).toHaveClass("custom-class");
   });
+
+  it("applies aria-current only to the current step", () => {
+    render(
+      <ProgressBarGroup
+        currentStep={1}
+        nbSteps={3}
+        ItemProgressBarComponent={ItemProgressBar}
+      />,
+    );
+
+    const progressBars = screen.getAllByRole("progressbar");
+    expect(progressBars[0]).not.toHaveAttribute("aria-current");
+    expect(progressBars[1]).toHaveAttribute("aria-current", "true");
+    expect(progressBars[2]).not.toHaveAttribute("aria-current");
+  });
 });
