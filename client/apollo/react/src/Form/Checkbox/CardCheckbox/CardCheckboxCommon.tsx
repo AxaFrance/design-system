@@ -1,97 +1,130 @@
 import {
   useId,
-  type ChangeEventHandler,
-  type ComponentProps,
   type ComponentType,
+  type ReactNode,
+  useRef,
+  type ChangeEvent,
 } from "react";
-import { BREAKPOINT } from "../../../utilities/constants";
-import { getComponentClassName } from "../../../utilities/getComponentClassName";
-import { useIsSmallScreen } from "../../../utilities/hook/useIsSmallScreen";
-import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
-import { CardCheckboxItem, type TCardCheckboxItem } from "./CardCheckboxItem";
-import type { CheckboxComponent, IconComponent } from "./types";
+import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
+import type { CardCheckboxOptionProps } from "../CardCheckboxOption/CardCheckboxOptionCommon";
 
-export type CardCheckboxProps = Partial<TCardCheckboxItem> & {
-  type: "vertical" | "horizontal";
+type CheckboxOption = Omit<CardCheckboxOptionProps, "name" | "type">;
+
+export type CardCheckboxProps = Omit<
+  CardCheckboxOptionProps,
+  "value" | "label" | "type" | "icon" | "description" | "subtitle" | "children"
+> & {
+  type?: "vertical" | "horizontal";
+  /**
+   * @deprecated Use `label` instead.
+   */
   labelGroup?: string;
+  /**
+   * @deprecated Use `description` instead.
+   */
   descriptionGroup?: string;
+  label: ReactNode;
+  description?: ReactNode;
+  /**
+   * @deprecated Use `required` instead.
+   */
   isRequired?: boolean;
-  options: TCardCheckboxItem[];
-  onChange?: ChangeEventHandler;
+  options: CheckboxOption[];
   error?: string;
 };
 
-type CardCheckboxCommonProps = CardCheckboxProps &
-  CheckboxComponent &
-  IconComponent & {
-    ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-  };
+type CardCheckboxCommonProps = CardCheckboxProps & {
+  CardCheckboxItemComponent: ComponentType<CardCheckboxOptionProps>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
+};
 
 export const CardCheckboxCommon = ({
   className,
   labelGroup,
   descriptionGroup,
-  CheckboxComponent,
-  IconComponent,
+  label,
+  description,
   isRequired,
+  required,
   options,
-  onChange,
   type = "vertical",
   error,
+  name,
+  id,
+  onChange = () => {},
+  CardCheckboxItemComponent,
   ItemMessageComponent,
   ...inputProps
 }: CardCheckboxCommonProps) => {
-  const componentClassName = getComponentClassName(
-    "af-card-checkbox__container",
-    className,
-  );
-  const checkboxGroupClassName = getComponentClassName(
-    "af-card-checkbox-group",
-    className,
-    type,
-  );
-  const errorId = useId();
+  const generatedId = useId();
+  const cardCheckboxId = id || generatedId;
+  const errorId = `${cardCheckboxId}-error`;
 
-  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
-  const size = isMobile ? "M" : "L";
+  const cardCheckboxOptionsRef = useRef<HTMLDivElement>(null);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const cardCheckboxOptionsEl = cardCheckboxOptionsRef.current;
+
+    if (cardCheckboxOptionsEl && required) {
+      const nbCheckedElements = cardCheckboxOptionsEl.querySelectorAll(
+        "input[type='checkbox']:checked",
+      ).length;
+
+      cardCheckboxOptionsEl
+        .querySelectorAll("input[type='checkbox']")
+        .forEach((el) => {
+          if (nbCheckedElements < 1 && !event.target.checked) {
+            el.setAttribute("required", "true");
+          } else {
+            el.removeAttribute("required");
+          }
+        });
+    }
+
+    onChange(event);
+  };
 
   return (
-    <fieldset className={componentClassName}>
-      {labelGroup ? (
-        <legend className="af-card-checkbox__legend">
-          <p>
-            {labelGroup}
-            {isRequired ? <span aria-hidden>&nbsp;*</span> : null}
+    <fieldset
+      className={["af-card-checkbox", className].filter(Boolean).join(" ")}
+      id={cardCheckboxId}
+    >
+      <legend className="af-card-checkbox__legend">
+        <p className="af-card-checkbox__label">
+          {label}
+          {labelGroup}
+          {required || isRequired ? <span aria-hidden>*</span> : null}
+        </p>
+        {description || descriptionGroup ? (
+          <p className="af-card-checkbox__description">
+            {description}
+            {descriptionGroup}
           </p>
-          {descriptionGroup ? (
-            <p className="af-card-checkbox__description">{descriptionGroup}</p>
-          ) : null}
-        </legend>
-      ) : null}
-      <div className="af-card-checkbox__choices">
-        <ul className={checkboxGroupClassName}>
-          {options.map(({ hasError, ...optionProps }) => (
-            <li key={crypto.randomUUID()}>
-              <CardCheckboxItem
-                {...inputProps}
-                size={size}
-                errorId={errorId}
-                onChange={onChange}
-                CheckboxComponent={CheckboxComponent}
-                IconComponent={IconComponent}
-                hasError={Boolean(error) || hasError}
-                {...optionProps}
-              />
-            </li>
-          ))}
-        </ul>
-
-        <ItemMessageComponent
-          id={errorId}
-          message={error}
-          messageType="error"
-        />
+        ) : null}
+      </legend>
+      <div
+        className={[
+          "af-card-checkbox__options",
+          `af-card-checkbox__options--${type}`,
+        ].join(" ")}
+        ref={cardCheckboxOptionsRef}
+      >
+        {options.map((cardCheckboxItemProps) => (
+          <CardCheckboxItemComponent
+            key={`${name ?? cardCheckboxId}-${cardCheckboxItemProps.label}`}
+            id={`${cardCheckboxId}-${cardCheckboxItemProps.value}`}
+            required={required}
+            onChange={handleChange}
+            {...inputProps}
+            {...cardCheckboxItemProps}
+            type={type}
+            aria-invalid={error ? true : undefined}
+            aria-errormessage={error ? errorId : undefined}
+            name={name}
+          />
+        ))}
       </div>
+      <ItemMessageComponent id={errorId} message={error} messageType="error" />
     </fieldset>
   );
 };
