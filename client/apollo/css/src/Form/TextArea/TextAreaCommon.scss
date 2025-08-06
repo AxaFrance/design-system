@@ -1,10 +1,6 @@
 @use "../../common/breakpoints";
 
 .af-form__input-textarea {
-  @media (width > #{breakpoints.$breakpoint-md}) {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
-  }
-
   width: 100%;
   min-height: calc(56 / var(--font-size-base) * 1rem);
   padding: calc(16 / var(--font-size-base) * 1rem);
@@ -19,6 +15,10 @@
   box-shadow: 0 0 0 var(--input-textarea-box-shadow-size)
     var(--input-textarea-box-shadow-color);
   outline: none;
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
 
   &::placeholder {
     font-weight: 400;
