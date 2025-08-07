@@ -1,19 +1,20 @@
 import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.scss";
-import type { ComponentProps, ComponentType } from "react";
-import type { CardCheckboxCommon } from "../Form/Checkbox/CardCheckbox/CardCheckboxCommon";
+import type { ComponentType } from "react";
+import type { CardCheckboxOptionProps } from "../Form/Checkbox/CardCheckboxOption/CardCheckboxOptionCommon";
 
-export type DebugGridCommonProps<P = object> = P & {
+export type DebugGridProps<P = object> = P & {
   cols?: number;
   isCheckedByDefault?: boolean;
-  CardCheckbox: ComponentType<
-    Partial<ComponentProps<typeof CardCheckboxCommon>>
-  >;
+};
+
+export type DebugGridCommonProps<P = object> = DebugGridProps<P> & {
+  CardCheckboxOption: ComponentType<CardCheckboxOptionProps>;
 };
 
 export const DebugGridCommon = <P = object,>({
   cols = 12,
   isCheckedByDefault = false,
-  CardCheckbox,
+  CardCheckboxOption,
   ...props
 }: DebugGridCommonProps<P>) => {
   // The forceVisible prop is a hidden prop to force the component's visibility when building the storybook
@@ -25,15 +26,11 @@ export const DebugGridCommon = <P = object,>({
 
   return (
     <>
-      <CardCheckbox
+      <CardCheckboxOption
         type="horizontal"
-        options={[
-          {
-            name: "debuggrid",
-            label: "Grid",
-            defaultChecked: isCheckedByDefault,
-          },
-        ]}
+        name="debuggrid"
+        label="Grid"
+        defaultChecked={isCheckedByDefault}
       />
 
       <div className="debug-grid" role="presentation">

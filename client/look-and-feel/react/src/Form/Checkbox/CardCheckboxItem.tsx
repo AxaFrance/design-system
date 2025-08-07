@@ -1,5 +1,6 @@
-import { useId, type ReactNode } from "react";
-import type { CheckboxComponent, IconComponent } from "./types";
+import { useId, type ReactNode, type ComponentProps } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Icon, Checkbox } from "@axa-fr/design-system-apollo-react/lf";
 
 export type TCardCheckboxItem = {
   label: ReactNode;
@@ -7,18 +8,14 @@ export type TCardCheckboxItem = {
   description?: ReactNode;
   hasError?: boolean;
   icon?: string;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled" | "size">;
+} & Omit<ComponentProps<typeof Checkbox>, "disabled" | "size">;
 
-type CardCheckboxItemProps = {
+type CardCheckboxItemProps = TCardCheckboxItem & {
   size: "M" | "L";
   errorId: string;
-} & TCardCheckboxItem &
-  CheckboxComponent &
-  IconComponent;
+};
 
 export const CardCheckboxItem = ({
-  CheckboxComponent,
-  IconComponent,
   id,
   label,
   description,
@@ -38,14 +35,14 @@ export const CardCheckboxItem = ({
       className="af-card-checkbox-label"
       aria-invalid={hasError}
     >
-      <CheckboxComponent
+      <Checkbox
         id={inputId}
         errorId={errorId}
         hasError={hasError}
         {...inputProps}
       />
       <div className="af-card-checkbox-content">
-        {icon ? <IconComponent src={icon} size={size} /> : null}
+        {icon ? <Icon src={icon} size={size} /> : null}
         <div className="af-card-checkbox-content-description">
           <span>{label}</span>
           {description ? <span>{description}</span> : null}
