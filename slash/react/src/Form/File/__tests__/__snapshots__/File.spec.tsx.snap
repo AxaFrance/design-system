@@ -25,13 +25,13 @@ exports[`<File.File> > renders File.File correctly 1`] = `
       </div>
     </div>
     <button
-      class="af-btn af-btn--file af-btn--hasIconLeft"
+      class="af-btn af-btn--file"
       type="button"
     >
       <i
         class="glyphicon glyphicon-open"
       />
-       File *
+      File *
     </button>
   </div>
 </DocumentFragment>
