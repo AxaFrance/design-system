@@ -1,13 +1,6 @@
-import { CardCheckbox } from "../Form/Checkbox/CardCheckbox/CardCheckboxLF";
-import { DebugGridCommon, type DebugGridCommonProps } from "./DebugGridCommon";
-
-type DebugGridProps<P = object> = Omit<DebugGridCommonProps<P>, "CardCheckbox">;
+import { CardCheckboxOption } from "../Form/Checkbox/CardCheckboxOption/CardCheckboxOptionLF";
+import { DebugGridCommon, type DebugGridProps } from "./DebugGridCommon";
 
 export const DebugGrid = <P = object,>({ ...props }: DebugGridProps<P>) => {
-  return (
-    <DebugGridCommon
-      {...props}
-      CardCheckbox={CardCheckbox as DebugGridCommonProps<P>["CardCheckbox"]}
-    />
-  );
+  return <DebugGridCommon {...props} CardCheckboxOption={CardCheckboxOption} />;
 };
