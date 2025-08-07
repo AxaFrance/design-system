@@ -33,7 +33,25 @@ export type MessageProps = {
   action?: ReactElement<typeof Link | ComponentType<ButtonProps>>;
   iconSize?: number;
   heading?: Headings;
+  role?: string;
 } & ComponentPropsWithoutRef<"div">;
+
+const getDefaultRole = (variant: MessageVariants): string | undefined => {
+  if (
+    variant === messageVariants.error ||
+    variant === messageVariants.warning
+  ) {
+    return "alert";
+  }
+  if (
+    variant === messageVariants.information ||
+    variant === messageVariants.validation ||
+    variant === messageVariants.neutral
+  ) {
+    return "status";
+  }
+  return undefined;
+};
 
 const getIconFromType = (variant: MessageVariants) =>
   ({
@@ -52,15 +70,18 @@ export const Message = ({
   action,
   iconSize = 24,
   heading: Heading = "h4",
+  role,
 }: PropsWithChildren<MessageProps>) => {
   const icon = useMemo(() => getIconFromType(variant), [variant]);
+
+  const roleToUse = role ?? getDefaultRole(variant);
 
   return (
     <div
       className={["af-message", `af-message--${variant}`, className]
         .filter(Boolean)
         .join(" ")}
-      role="alert"
+      role={roleToUse}
     >
       <Svg
         src={icon}
