@@ -1,13 +1,26 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { CardCheckbox } from "../../Form/Checkbox/CardCheckbox/CardCheckboxApollo";
-import { DebugGridCommon, type DebugGridCommonProps } from "../DebugGridCommon";
+import {
+  CardCheckboxOptionCommon,
+  type CardCheckboxOptionProps,
+} from "../../Form/Checkbox/CardCheckboxOption/CardCheckboxOptionCommon";
+import { Checkbox } from "../../Form/Checkbox/Checkbox/CheckboxCommon";
+import { Icon } from "../../Icon/IconCommon";
+import { DebugGridCommon } from "../DebugGridCommon";
+
+const CardCheckboxOption = (props: CardCheckboxOptionProps) => (
+  <CardCheckboxOptionCommon
+    {...props}
+    CheckboxComponent={Checkbox}
+    IconComponent={Icon}
+  />
+);
 
 describe("DebugGridCommon", () => {
   it("should render CardCheckbox checked when isCheckedByDefault is true", () => {
     render(
       <DebugGridCommon
-        CardCheckbox={CardCheckbox as DebugGridCommonProps["CardCheckbox"]}
+        CardCheckboxOption={CardCheckboxOption}
         isCheckedByDefault
       />,
     );
@@ -17,11 +30,7 @@ describe("DebugGridCommon", () => {
   });
 
   it("should render CardCheckbox unchecked by default", () => {
-    render(
-      <DebugGridCommon
-        CardCheckbox={CardCheckbox as DebugGridCommonProps["CardCheckbox"]}
-      />,
-    );
+    render(<DebugGridCommon CardCheckboxOption={CardCheckboxOption} />);
     const cardCheckbox = screen.getByRole("checkbox");
     expect(cardCheckbox).toBeInTheDocument();
     expect(cardCheckbox).not.toBeChecked();
@@ -30,11 +39,7 @@ describe("DebugGridCommon", () => {
   it("should not render DebugGrid in production without forceVisible", () => {
     const originalEnv = process.env.NODE_ENV;
     process.env.NODE_ENV = "production";
-    render(
-      <DebugGridCommon
-        CardCheckbox={CardCheckbox as DebugGridCommonProps["CardCheckbox"]}
-      />,
-    );
+    render(<DebugGridCommon CardCheckboxOption={CardCheckboxOption} />);
     const cardCheckbox = screen.queryByRole("checkbox");
     expect(cardCheckbox).not.toBeInTheDocument();
     process.env.NODE_ENV = originalEnv;
@@ -45,7 +50,7 @@ describe("DebugGridCommon", () => {
     process.env.NODE_ENV = "production";
     render(
       <DebugGridCommon<{ forceVisible?: boolean }>
-        CardCheckbox={CardCheckbox as DebugGridCommonProps["CardCheckbox"]}
+        CardCheckboxOption={CardCheckboxOption}
         forceVisible
       />,
     );
@@ -57,10 +62,7 @@ describe("DebugGridCommon", () => {
 
   it("should render the correct number of columns when cols prop is set", () => {
     render(
-      <DebugGridCommon
-        CardCheckbox={CardCheckbox as DebugGridCommonProps["CardCheckbox"]}
-        cols={5}
-      />,
+      <DebugGridCommon CardCheckboxOption={CardCheckboxOption} cols={5} />,
     );
     const grid = screen.getByRole("presentation");
     const cols = grid.querySelectorAll(".cols");
