@@ -22,11 +22,14 @@
 
   &:focus-visible {
     --dropdown-border-color: var(--color-axa);
+    --dropdown-box-shadow: var(--color-axa);
   }
 
   &:disabled {
     --dropdown-bg-color-disabled: var(--color-gray-200);
     --dropdown-border-color: var(--color-gray-400);
+    --dropdown-background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%23999999'/></svg>")
+      no-repeat right 1rem center / 1.5rem 1.5rem;
   }
 
   &:not(:disabled):hover,
