@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { ItemProgressBar } from "../../ItemProgressBar/ItemProgressBarCommon";
 import { ProgressBarGroup } from "../ProgressBarGroupCommon";
-import { ProgressBar } from "../../ProgressBar/ProgressBarCommon";
 
 describe("ProgressBarGroup Component", () => {
   it("renders the correct number of steps", () => {
@@ -8,12 +8,10 @@ describe("ProgressBarGroup Component", () => {
       <ProgressBarGroup
         currentStep={2}
         nbSteps={5}
-        ProgressBarComponent={ProgressBar}
+        ItemProgressBarComponent={ItemProgressBar}
       />,
     );
-    const progressBars = screen.getAllByRole("progressbar", {
-      hidden: true,
-    });
+    const progressBars = screen.getAllByRole("progressbar");
     expect(progressBars).toHaveLength(5);
   });
 
@@ -23,17 +21,15 @@ describe("ProgressBarGroup Component", () => {
         currentStep={2}
         currentStepProgress={50}
         nbSteps={4}
-        ProgressBarComponent={ProgressBar}
+        ItemProgressBarComponent={ItemProgressBar}
       />,
     );
 
-    const progressBars = screen.getAllByRole("progressbar", {
-      hidden: true,
-    });
-    expect(progressBars[0]).toHaveAttribute("aria-valuenow", "100"); // Step 1 completed
-    expect(progressBars[1]).toHaveAttribute("aria-valuenow", "100"); // Step 2 completed
-    expect(progressBars[2]).toHaveAttribute("aria-valuenow", "50"); // Step 3 in progress
-    expect(progressBars[3]).toHaveAttribute("aria-valuenow", "0"); // Step 4 not started
+    const progressBars = screen.getAllByRole("progressbar");
+    expect(progressBars[0]).toHaveValue(100); // Step 1 completed
+    expect(progressBars[1]).toHaveValue(100); // Step 2 completed
+    expect(progressBars[2]).toHaveValue(50); // Step 3 in progress
+    expect(progressBars[3]).toHaveValue(0); // Step 4 not started
   });
 
   it("uses default progress for the current step when currentStepProgress is 0", () => {
@@ -42,16 +38,14 @@ describe("ProgressBarGroup Component", () => {
         currentStep={1}
         currentStepProgress={0}
         nbSteps={3}
-        ProgressBarComponent={ProgressBar}
+        ItemProgressBarComponent={ItemProgressBar}
       />,
     );
 
-    const progressBars = screen.getAllByRole("progressbar", {
-      hidden: true,
-    });
-    expect(progressBars[0]).toHaveAttribute("aria-valuenow", "100"); // Step 1 completed
-    expect(progressBars[1]).toHaveAttribute("aria-valuenow", "10"); // Step 2 default progress
-    expect(progressBars[2]).toHaveAttribute("aria-valuenow", "0"); // Step 3 not started
+    const progressBars = screen.getAllByRole("progressbar");
+    expect(progressBars[0]).toHaveValue(100); // Step 1 completed
+    expect(progressBars[1]).toHaveValue(10); // Step 2 default progress
+    expect(progressBars[2]).toHaveValue(0); // Step 3 not started
   });
 
   it("renders with a custom label", () => {
@@ -60,7 +54,7 @@ describe("ProgressBarGroup Component", () => {
         currentStep={1}
         label="Custom Progress Bar Group"
         nbSteps={3}
-        ProgressBarComponent={ProgressBar}
+        ItemProgressBarComponent={ItemProgressBar}
       />,
     );
 
@@ -76,11 +70,26 @@ describe("ProgressBarGroup Component", () => {
         currentStep={1}
         className="custom-class"
         nbSteps={3}
-        ProgressBarComponent={ProgressBar}
+        ItemProgressBarComponent={ItemProgressBar}
       />,
     );
 
     const group = screen.getByRole("group");
     expect(group).toHaveClass("custom-class");
+  });
+
+  it("applies aria-current only to the current step", () => {
+    render(
+      <ProgressBarGroup
+        currentStep={1}
+        nbSteps={3}
+        ItemProgressBarComponent={ItemProgressBar}
+      />,
+    );
+
+    const progressBars = screen.getAllByRole("progressbar");
+    expect(progressBars[0]).not.toHaveAttribute("aria-current");
+    expect(progressBars[1]).toHaveAttribute("aria-current", "true");
+    expect(progressBars[2]).not.toHaveAttribute("aria-current");
   });
 });
