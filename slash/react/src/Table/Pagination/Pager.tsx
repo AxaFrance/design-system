@@ -35,6 +35,10 @@ export type PagerComponentProps = Pick<
    */
   nextLabel?: string;
   /**
+   * Label for page links and select
+   */
+  elementsLabel?: string;
+  /**
    * Label for text betweeen current page a total number of pages. Only used in "light" mode
    * @default "sur"
    */
@@ -50,6 +54,7 @@ const Pager = ({
   mode = "default",
   previousLabel = "« Précédent",
   nextLabel = "Suivant »",
+  elementsLabel = "éléments",
   ofLabel = "sur",
 }: PagerComponentProps) => {
   const hasNext = currentPage < numberPages;
@@ -70,6 +75,7 @@ const Pager = ({
             value={currentPage - 1}
             active={hasPrevious}
             isVisible
+            ariaLabel={`Page précédente des ${elementsLabel}`}
           >
             <i
               className="glyphicon glyphicon-chevron-left"
@@ -84,6 +90,7 @@ const Pager = ({
             value={currentPage + 1}
             active={hasNext}
             isVisible
+            ariaLabel={`Page suivante des ${elementsLabel}`}
           >
             <i
               className="glyphicon glyphicon-chevron-right"
@@ -103,6 +110,7 @@ const Pager = ({
           value={currentPage - 1}
           active={hasPrevious}
           isVisible
+          ariaLabel={`Page précédente des ${elementsLabel}`}
         >
           {previousLabel}
         </PaginationButton>
@@ -111,29 +119,34 @@ const Pager = ({
           onChange={onChange}
           value={1}
           isVisible={numberPages > 1 && currentPage > 1}
+          pageLinkLabel={elementsLabel}
         />
         <LiPoint isVisible={currentPage > 3}>...</LiPoint>
         <Li
           onChange={onChange}
           value={currentPage - 1}
           isVisible={numberPages > 2 && currentPage > 2}
+          pageLinkLabel={elementsLabel}
         />
         <Li
           onChange={onChange}
           value={currentPage}
           active
           isVisible={numberPages > 0}
+          pageLinkLabel={elementsLabel}
         />
         <Li
           onChange={onChange}
           value={currentPage + 1}
           isVisible={currentPage < numberPages - 1}
+          pageLinkLabel={elementsLabel}
         />
         <LiPoint isVisible={currentPage < numberPages - 2}>...</LiPoint>
         <Li
           onChange={onChange}
           value={numberPages}
           isVisible={currentPage < numberPages}
+          pageLinkLabel={elementsLabel}
         />
 
         <PaginationButton
@@ -141,6 +154,7 @@ const Pager = ({
           value={currentPage + 1}
           active={hasNext}
           isVisible
+          ariaLabel={`Page suivante des ${elementsLabel}`}
         >
           {nextLabel}
         </PaginationButton>
