@@ -1,0 +1,8 @@
+:root {
+  --breakpoint-tablet-portrait: 772px;
+  --breakpoint-tablet-landscape: 1016px;
+  --breakpoint-desktop-s: 1272px;
+  --breakpoint-desktop-m: 1432px;
+  --breakpoint-desktop-l: 1672px;
+  --breakpoint-desktop-xl: 1912px;
+}
