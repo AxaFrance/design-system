@@ -57,7 +57,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
     );
 
     return (
-      <div className="af-form__input-container">
+      <div className="af-form__dropdown-container">
         <ItemLabelComponent
           label={label}
           description={description}
