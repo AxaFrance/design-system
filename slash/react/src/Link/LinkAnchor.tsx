@@ -1,12 +1,14 @@
 import classnames from "classnames";
-import { ComponentPropsWithRef, forwardRef, type ReactNode } from "react";
+import { ComponentPropsWithRef, forwardRef, ReactElement } from "react";
 import { linkClassName } from "./linkClassName";
+import { Svg } from "../Svg";
 
 type AnchorLinkProps = {
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
+  leftIcon?: ReactElement<typeof Svg>;
+  rightIcon?: ReactElement<typeof Svg>;
   className?: string;
   disabled?: boolean;
+  variant?: "default" | "reverse";
 };
 
 type LinkComponentProps = ComponentPropsWithRef<"a"> & AnchorLinkProps;
@@ -21,11 +23,14 @@ const LinkAnchor = forwardRef<HTMLAnchorElement, LinkComponentProps>(
       children,
       rightIcon,
       disabled,
+      variant,
       ...restProps
     }: LinkComponentProps,
     ref,
   ) => {
-    const finalClassName = classnames(linkClassName, className);
+    const finalClassName = classnames(linkClassName, className, {
+      [`${linkClassName}--reverse`]: variant === "reverse",
+    });
 
     return (
       <a
