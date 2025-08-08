@@ -3,23 +3,22 @@
 .af-contrat {
   position: relative;
   display: flex;
-  padding: 0.4rem 0.3rem 0.4rem 3rem;
+  width: fit-content;
+  padding: calc(12 / 16 * 1rem) 1rem;
   border: 1px solid common.$gray-lighter;
   border-radius: 25px;
   order: 3;
   align-items: center;
   justify-content: space-between;
-  font-size: 1em;
+  gap: calc(10 / 16 * 1rem);
+  font-size: calc(14 / 16 * 1rem);
+  line-height: 20px;
   color: common.$color-text-contract;
 
-  .glyphicon-info-sign {
-    position: absolute;
-    top: 50%;
-    left: 0.7rem;
-    width: 21px;
-    font-size: 1.25rem;
-    color: common.$color-gray-contract;
-    transform: translate(0, -50%);
+  .af-contrat__icon {
+    width: calc(24 / 16 * 1rem);
+    height: calc(24 / 16 * 1rem);
+    fill: common.$color-gray-contract;
   }
 
   &__list {
@@ -29,11 +28,12 @@
   &__word {
     display: inline-block;
     margin-right: 0.2rem;
+    font-weight: 700;
   }
 
   &__def {
     display: inline-block;
-    margin: 0 0.5rem 0 0;
+    margin: 0 calc(12 / 16 * 1rem) 0 0;
   }
 }
 
