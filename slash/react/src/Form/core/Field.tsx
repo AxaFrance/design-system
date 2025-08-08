@@ -1,16 +1,10 @@
 import classNames from "classnames";
-import { type ReactNode, useId } from "react";
-import {
-  FieldError,
-  FormClassManager,
-  HelpMessage,
-  MessageTypes,
-  useInputClassModifier,
-} from ".";
-import { getComponentClassName } from "../../utilities";
+import { type ReactNode } from "react";
+import { FieldError, HelpMessage, MessageTypes } from ".";
 import { useAriaInvalid } from "./useAriaInvalid";
+import { useFieldClass, useFieldId } from "./useField";
 
-type InputProps = {
+export type InputProps = {
   /**
    * The label of the input element.
    */
@@ -32,7 +26,6 @@ type InputProps = {
   isVisible?: boolean;
   roleContainer?: string;
   ariaLabelContainer?: string;
-  isLabelContainerLinkedToInput?: boolean;
   forceDisplayMessage?: boolean;
   message?: string;
   messageType?: MessageTypes;
@@ -109,69 +102,62 @@ export const Field = ({
   isVisible = true,
   roleContainer,
   ariaLabelContainer,
-  isLabelContainerLinkedToInput = true,
   labelPosition = "center",
   classNameSuffix = "text",
   renderInput,
   appendChildren,
   ...otherProps
 }: InputProps) => {
-  const inputUseId = useId();
-  const inputId = id ?? inputUseId;
-  const actualRequired = required || classModifier.includes("required");
+  const { errorId, inputId, labelId } = useFieldId({
+    id,
+    forceDisplayMessage,
+    helpMessage,
+  });
   const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
-  const errorId =
-    forceDisplayMessage || helpMessage ? `${inputId}-description` : undefined;
+  const actualRequired = required || classModifier.includes("required");
 
-  const { inputClassModifier, inputFieldClassModifier } = useInputClassModifier(
-    classModifier,
+  const {
+    groupClassName,
+    inputClassModifier,
+    fieldContainerClassName,
+    modifiers,
+  } = useFieldClass({
     disabled,
-    false,
     actualRequired,
-  );
-
-  const labelId = useId();
+    forceDisplayMessage,
+    message,
+    messageType,
+    classNameSuffix,
+  });
 
   if (!isVisible) {
     return null;
   }
 
-  const isGroup = roleContainer === "radiogroup" || roleContainer === "group";
-  const LabelElement = isGroup ? "div" : "label";
-
-  const modifiers = forceDisplayMessage
-    ? `${inputFieldClassModifier} ${FormClassManager.getModifier(messageType)}`
-    : inputFieldClassModifier;
-  const fieldContainerClassName = getComponentClassName(
-    `af-form__${classNameSuffix}`,
-    modifiers,
-  );
-  const groupClassName = getComponentClassName(
-    className,
-    classModifier,
-    "af-form__group",
-  );
-
   return (
     <div
-      className={classNames("row", groupClassName, {
-        "af-form__group--required": actualRequired,
-        "af-form__group--label-top": labelPosition === "top",
-      })}
+      className={classNames(
+        "row",
+        groupClassName,
+        {
+          "af-form__group--required": actualRequired,
+          "af-form__group--label-top": labelPosition === "top",
+        },
+        className,
+      )}
       role={roleContainer}
       aria-label={ariaLabelContainer}
-      aria-labelledby={isGroup ? labelId : undefined}
     >
       <div className={classNameContainerLabel}>
-        <LabelElement
+        <label
           className={classNames("af-form__group-label", {
             "af-form__group-label--required": actualRequired,
           })}
-          htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
+          htmlFor={inputId}
           id={labelId}
         >
           {label}
-        </LabelElement>
+        </label>
       </div>
 
       <div className={classNameContainerInput}>
