@@ -3,36 +3,39 @@ import { Svg } from "@axa-fr/design-system-slash-react";
 import checkSvg from "@material-symbols/svg-400/outlined/check.svg";
 import toDoSvg from "@material-symbols/svg-400/outlined/circle.svg";
 import wipSvg from "@material-symbols/svg-400/outlined/circle-fill.svg";
-
 import "@axa-fr/design-system-slash-css/dist/ItemFormHelper/ItemFormHelper.scss";
 
-interface Helper {
-  id: number;
-  itemSrc?: string;
-  name: string;
-  state: string;
+interface ItemFormHelperProps {
+  variant: "to-do" | "wip" | "validation";
+  label?: string;
 }
 
-export const ItemFormHelper: React.FC = () => {
-  const helpers: Helper[] = [
-    { id: 1, name: "à compléter", itemSrc: toDoSvg, state: "to-do" },
-    { id: 2, name: "en cours", itemSrc: wipSvg, state: "wip" },
-    { id: 3, name: "validé", itemSrc: checkSvg, state: "validation" },
-  ];
+const variants = {
+  "to-do": {
+    icon: toDoSvg,
+    defaultLabel: "à compléter",
+  },
+  wip: {
+    icon: wipSvg,
+    defaultLabel: "en cours",
+  },
+  validation: {
+    icon: checkSvg,
+    defaultLabel: "validé",
+  },
+};
+
+export const ItemFormHelper: React.FC<ItemFormHelperProps> = ({
+  variant,
+  label,
+}) => {
+  const { icon, defaultLabel } = variants[variant];
+  const displayLabel = label || defaultLabel;
 
   return (
-    <div className="helper">
-      {helpers.map((helper) => (
-        <p className={`item__${helper.state}`} key={helper.id}>
-          <Svg
-            src={helper.itemSrc}
-            width={12}
-            height={12}
-            style={{ marginRight: 8 }}
-          />
-          {helper.name}
-        </p>
-      ))}
+    <div className={`item__${variant}`}>
+      <Svg src={icon} width={12} height={12} style={{ marginRight: 8 }} />
+      <span>{displayLabel}</span>
     </div>
   );
 };
