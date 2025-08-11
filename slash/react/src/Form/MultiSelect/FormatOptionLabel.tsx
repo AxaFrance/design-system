@@ -20,9 +20,9 @@ const formatOptionLabel = (
     <div className="react-select__multi-option-label">
       <div className="checkbox-indicator">
         <span
-          className={classNames("indicator", isChecked && "checkbox-checked")}
+          className={classNames("indicator", { "checkbox-checked": isChecked })}
         >
-          {isChecked && <Svg src={checkIcon} />}
+          {isChecked ? <Svg src={checkIcon} /> : null}
         </span>
       </div>
       {data.label}
