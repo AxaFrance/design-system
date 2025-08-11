@@ -30,6 +30,9 @@
   &:disabled {
     --dropdown-bg-color-disabled: var(--neutral-5);
     --dropdown-border-color: var(--neutral-50);
+    --dropdown-background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%23999999' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>")
+      no-repeat right 1rem center / 1.5rem 1.5rem;
+    --dropdown-color: var(--neutral-50);
   }
 
   &:not(:disabled):hover,
