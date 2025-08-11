@@ -1,0 +1,1 @@
+import{j as p}from"./index-C1mcBe1y.js";import{r as s}from"./index-DbaA8R3S.js";import{g as u}from"./constants-Bi61W5S5.js";const j=({children:r,className:o,classModifier:e,onClick:t,...m})=>{const n=s.useMemo(()=>u("af-card",o,e),[o,e]),a=s.useMemo(()=>t?"button":"section",[t]);return p.jsx(a,{className:n,...t?{type:"button",onClick:t}:{},...m,children:r})};export{j as C};
