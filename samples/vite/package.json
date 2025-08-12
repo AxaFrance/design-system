@@ -27,7 +27,7 @@
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.9.0",
-    "typescript": "^5.7.3",
+    "typescript": "^5.9.2",
     "vite": "^6.3.3"
   },
   "lint-staged": {
