@@ -32,7 +32,7 @@
     "@storybook/test": "^8.6.3",
     "@vitejs/plugin-react": "^4.3.4",
     "@whitespace/storybook-addon-html": "^6.1.1",
-    "globals": "^16.0.0",
+    "globals": "^16.3.0",
     "storybook": "^8.5.5",
     "typescript": "~5.7.2",
     "vite": "^6.3.3"
