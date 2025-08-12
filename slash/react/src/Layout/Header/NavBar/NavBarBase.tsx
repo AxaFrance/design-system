@@ -10,6 +10,8 @@ type Props = {
   isMenuFocused?: boolean;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
+  isSticky?: boolean;
+  navClassName?: string;
   classModifier?: string;
   handleKeys: (key: string) => void;
   onFocus: (action: { e: FocusEvent<HTMLUListElement> }) => void;
@@ -24,6 +26,8 @@ const NavBarBase = ({
   toggleMenuId = "togglemenu",
   isMenuFocused,
   className,
+  navClassName,
+  isSticky,
   classModifier,
   handleKeys,
   onFocus,
@@ -48,7 +52,7 @@ const NavBarBase = ({
         aria-label="Open Menu"
       />
       <nav
-        className={`af-nav af-drawer left ${isVisible ? "show" : ""}`}
+        className={`af-nav ${isSticky ? "" : "af-drawer"} left ${isVisible ? "show" : ""} ${navClassName || ""}`}
         role="navigation"
         aria-label="Menu principal"
       >
@@ -78,9 +82,7 @@ const NavBarBase = ({
             onBlur={(e) => {
               onBlur({ e });
             }}
-            className={`af-nav__list ${
-              isMenuFocused ? "af-nav__list--focused" : ""
-            }`}
+            className={`af-nav__list ${isMenuFocused ? "af-nav__list--focused" : ""}`}
             role="menubar"
             id={id}
           >
