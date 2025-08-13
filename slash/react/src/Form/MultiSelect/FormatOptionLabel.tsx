@@ -1,8 +1,8 @@
-import classNames from "classnames";
 import checkIcon from "@material-symbols/svg-700/outlined/check.svg";
+import classNames from "classnames";
 import { type FormatOptionLabelMeta } from "react-select";
-import { Option } from "./MultiSelect";
 import { Svg } from "../..";
+import { Option } from "./MultiSelect";
 
 const formatOptionLabel = (
   data: Option,
@@ -22,7 +22,7 @@ const formatOptionLabel = (
         <span
           className={classNames("indicator", isChecked && "checkbox-checked")}
         >
-          {isChecked && <Svg src={checkIcon} />}
+          {isChecked ? <Svg src={checkIcon} /> : null}
         </span>
       </div>
       {data.label}
