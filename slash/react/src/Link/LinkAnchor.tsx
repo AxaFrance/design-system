@@ -33,6 +33,7 @@ const LinkAnchor = forwardRef<HTMLAnchorElement, LinkComponentProps>(
         rel={target === "_blank" ? "noopener noreferrer" : rel}
         aria-disabled={disabled ?? restProps["aria-disabled"]}
         ref={ref}
+        target={target}
         {...restProps}
       >
         {leftIcon}
