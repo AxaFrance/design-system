@@ -6,7 +6,8 @@
     "tasks": {
         "dev": {
             "with": [
-                "@axa-fr/design-system-slash-css#dev"
+                "@axa-fr/design-system-slash-css#dev",
+                "@axa-fr/design-system-slash-react#dev"
             ],
             "persistent": true,
             "cache": false

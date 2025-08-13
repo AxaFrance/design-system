@@ -63,6 +63,7 @@
   --disabled-color: var(--gray40);
   --error-color: var(--red30);
   --input-border-color: var(--gray50);
+  --active-input-border-color: var(--axablue80);
   --brand-primary: var(--axablue80);
   --warning-color: var(--orange40);
   --help-color: var(--gray60);

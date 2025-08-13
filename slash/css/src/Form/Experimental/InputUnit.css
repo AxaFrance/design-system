@@ -1,0 +1,7 @@
+.af-input__unit {
+  margin-left: 8px;
+  grid-area: unit;
+  font-size: 0.875rem;
+  line-height: 16px;
+  color: var(--text-color);
+}
