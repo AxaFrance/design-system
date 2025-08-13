@@ -1,0 +1,21 @@
+.af-input__helper-text {
+  display: flex;
+  margin-top: 8px;
+  grid-area: helper-message;
+  align-items: center;
+  font-size: calc(13rem / 16);
+  line-height: 16px;
+  color: var(--help-color);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    fill: currentcolor;
+  }
+}
+
+.af-input__helper-text--error {
+  grid-area: error-message;
+  color: var(--error-color);
+}
