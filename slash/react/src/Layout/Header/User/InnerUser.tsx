@@ -5,6 +5,7 @@ const InnerUser = ({ name, profile }: { name: string; profile?: string }) => (
     </span>
     {profile ? (
       <span key="2" className="af-info-user__profile">
+        {" "}
         [{profile}]
       </span>
     ) : null}
