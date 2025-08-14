@@ -1,0 +1,72 @@
+.af-slash-link {
+  --link-color: var(--axablue90);
+
+  padding: 0;
+
+  /* Reset appearance for buttons */
+  border: none;
+  font-family: "Source Sans Pro", arial, sans-serif;
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-weight: initial;
+  line-height: calc(20 / var(--font-size-base) * 1rem);
+  text-align: start;
+  text-decoration: underline;
+  color: var(--link-color);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.af-slash-link--reverse {
+  --link-color: var(--white);
+}
+
+.af-slash-link:has(svg) > svg {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--link-color);
+}
+
+.af-slash-link:has(svg)[aria-disabled="true"] > svg {
+  fill: var(--gray40);
+}
+
+.af-slash-link:has(svg) > svg:first-child {
+  margin-right: calc(4 / var(--font-size-base) * 1rem);
+}
+
+.af-slash-link:has(svg) > svg:last-child {
+  margin-left: calc(4 / var(--font-size-base) * 1rem);
+}
+
+.af-slash-link:has(.glyphicon) > .glyphicon {
+  vertical-align: middle;
+  font-size: calc(14 / var(--font-size-base) * 1rem);
+  line-height: calc(14 / var(--font-size-base) * 1rem);
+}
+
+.af-slash-link:has(.glyphicon) > .glyphicon:first-child {
+  margin-right: calc(4 / var(--font-size-base) * 1rem);
+}
+
+.af-slash-link:has(.glyphicon) > .glyphicon:last-child {
+  margin-left: calc(4 / var(--font-size-base) * 1rem);
+}
+
+.af-slash-link:focus,
+.af-slash-link:focus-visible,
+.af-slash-link:focus-within {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.af-slash-link:hover {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+.af-slash-link[aria-disabled="true"] {
+  text-decoration: underline;
+  color: var(--gray40);
+  cursor: not-allowed;
+  pointer-events: none;
+}

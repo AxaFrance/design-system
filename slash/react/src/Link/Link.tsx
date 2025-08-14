@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Link/Link.scss";
+import "@axa-fr/design-system-slash-css/dist/Link/Link.css";
 import { forwardRef } from "react";
 import { CustomLink, type CustomLinkProps } from "./CustomLink";
 import { LinkAnchor, type LinkComponentProps } from "./LinkAnchor";
