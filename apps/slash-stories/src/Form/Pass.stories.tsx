@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-
 import { Pass } from "@axa-fr/design-system-slash-react";
 import { fn } from "@storybook/test";
 
@@ -15,7 +14,6 @@ export const PassStory: StoryObj<typeof Pass> = {
     classModifier: "bad",
     name: "password",
     id: "id1",
-    type: "password",
     value: "",
     readOnly: false,
     disabled: false,
