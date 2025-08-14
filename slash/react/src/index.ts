@@ -1,12 +1,15 @@
+import { Message } from "./Messages/Message";
+
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
 import "@fontsource/source-sans-pro";
-import { Message } from "./Messages/Message";
+import "@fontsource/source-sans-pro/700.css";
 
 export { Action } from "./Action/Action";
 export { Badge } from "./Badge/Badge";
 export { Button } from "./Button/Button";
+export type { ButtonVariant } from "./Button/Button";
 export { Card } from "./Card/Card";
 export { Divider } from "./Divider/Divider";
 export {
