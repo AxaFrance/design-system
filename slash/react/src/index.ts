@@ -93,3 +93,6 @@ export { Alert, Message };
 
 export { HelpButton } from "./HelpButton";
 export { Loader } from "./Loader/Loader";
+
+export { CardData } from "./CardData/CardData";
+export type { CardDataVariant } from "./CardData/CardData";
