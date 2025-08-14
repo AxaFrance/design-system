@@ -1,0 +1,37 @@
+.af-info-user {
+  margin-bottom: 1rem;
+  order: 2;
+  font-weight: 600;
+  text-align: right;
+
+  &__profile {
+    margin-left: 0.3em;
+  }
+
+  &__name,
+  &__profile {
+    display: block;
+  }
+
+  &__link {
+    text-decoration: underline;
+  }
+}
+
+@media (width >= 768px) {
+  .af-info-user {
+    margin: 0;
+    flex-basis: initial;
+    order: 3;
+    align-self: initial;
+    text-align: left;
+
+    &__name {
+      display: inline;
+    }
+
+    &__profile {
+      display: inline;
+    }
+  }
+}
