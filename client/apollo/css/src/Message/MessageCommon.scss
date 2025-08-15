@@ -8,8 +8,8 @@
 
   &__icon {
     aspect-ratio: 1;
-    color: var(--message-icon-color);
-    fill: var(--message-icon-color);
+
+    --icon-fill: var(--message-icon-color);
   }
 
   &__title {
