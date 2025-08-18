@@ -10,7 +10,7 @@ it("should render Pager correctly with a select having the right aria label", ()
         currentPage={3}
         numberItems={10}
         displayLabel="Affichage"
-        selectAriaLabel="Affichage"
+        selectPageSizeLabel="Affichage"
         numberPages={9}
         mode="default"
       />

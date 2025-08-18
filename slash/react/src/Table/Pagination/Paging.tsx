@@ -12,6 +12,7 @@ type OnChangeItems = ComponentPropsWithoutRef<typeof Items>["onChange"];
 type OnChangePager = (e: { numberItems: number; page: number }) => void;
 export type Props = Omit<PagingComponentProps, "onChange"> & {
   onChange?: OnChangePager;
+  selectPageSizeLabel?: string;
 };
 
 const Paging = ({
@@ -19,7 +20,6 @@ const Paging = ({
   classModifier,
   currentPage = 1,
   displayLabel,
-  selectAriaLabel,
   elementsLabel,
   selectPageSizeLabel,
   id,
@@ -66,9 +66,8 @@ const Paging = ({
           numberItems={numberItems}
           id={id}
           displayLabel={displayLabel}
-          selectAriaLabel={selectAriaLabel}
+          selectAriaLabel={selectPageSizeLabel}
           elementsLabel={elementsLabel}
-          selectPageSizeLabel={selectPageSizeLabel}
           items={items}
         />
       </div>
