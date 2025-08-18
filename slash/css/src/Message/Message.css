@@ -18,7 +18,7 @@
 }
 
 .af-alert--success {
-  --alert-sidebar-color: var(--green40);
+  --alert-sidebar-color: var(--green30);
   --alert-background-color: var(--green10);
   --alert-border-color: var(--green20);
 }

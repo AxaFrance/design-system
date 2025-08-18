@@ -74,16 +74,16 @@ $active-sort-table-th: common.$color-table-sorting !default;
   }
 
   &--success {
-    background-color: var(--green40);
-    box-shadow: inset 0 -2px var(--green50);
+    background-color: var(--green30);
+    box-shadow: inset 0 -2px var(--green40);
 
     &:hover {
-      background-color: var(--green50);
+      background-color: var(--green40);
       box-shadow: none;
     }
 
     &:focus {
-      background-color: var(--green50);
+      background-color: var(--green40);
     }
   }
 

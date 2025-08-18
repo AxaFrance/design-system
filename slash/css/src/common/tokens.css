@@ -36,8 +36,8 @@
   --greentarif40: hsl(193deg, 68%, 26%); /* #155D70 */
   --green10: hsl(132deg, 100%, 99%); /* #FAFFFB */
   --green20: hsl(145deg, 23%, 61%); /* #85B398 */
-  --green40: hsl(145deg, 82%, 27%); /* #0C7D3B */
-  --green50: hsl(144deg, 80%, 16%); /* #084922 */
+  --green30: hsl(145deg, 82%, 27%); /* #0C7D3B */
+  --green40: hsl(144deg, 80%, 16%); /* #084922 */
   --red10: hsl(348deg, 100%, 99%); /* #FFFAFB */
   --red20: hsl(350deg, 35%, 80%); /* #DEBBC1 */
   --red30: hsl(350deg, 85%, 42%); /* #C7102E */
@@ -66,7 +66,7 @@
   --brand-primary: var(--axablue80);
   --warning-color: var(--orange40);
   --help-color: var(--gray60);
-  --valid-element-color: var(--green40);
+  --valid-element-color: var(--green30);
   --inactive-button-background: var(--gray30);
   --inactive-button-border-color: var(--gray50);
   --active-button-border-color: var(--axablue90);
