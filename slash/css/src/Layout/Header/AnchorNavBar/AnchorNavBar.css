@@ -5,6 +5,7 @@
 .af-anchor-navbar {
   width: 100%;
   background-color: var(--white);
+  box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 5%);
 
   ul {
     display: flex;
