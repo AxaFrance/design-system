@@ -99,9 +99,10 @@ exports[`<Paging> > renders Paging with specific labels correctly 1`] = `
             </a>
           </li>
           <li
-            class="af-pager__item af-pager__item--active"
+            class="af-pager__item"
           >
             <a
+              aria-current="page"
               aria-label="Page 2 des sinistres"
               class="af-pager__item-link"
               href="/#"
