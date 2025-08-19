@@ -114,18 +114,18 @@ $font-size-step-number: common.$font-size-base + 0.2rem;
       &:last-child {
         &.on {
           & .af-steps-list-step__title {
-            color: var(--green40);
+            color: var(--green30);
           }
 
           &::before {
-            color: var(--green40);
+            color: var(--green30);
           }
         }
 
         & svg:first-child {
           display: block;
           margin-right: 0.8rem;
-          fill: var(--green40);
+          fill: var(--green30);
         }
 
         & svg:last-child {
