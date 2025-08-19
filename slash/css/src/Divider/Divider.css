@@ -1,15 +1,14 @@
 .af-divider {
-  display: block;
   margin: 0;
-  border-color: var(--gray40);
+  border: 0;
 }
 
 .af-divider--vertical {
   height: inherit;
-  border-left: none;
+  border-left: 1px solid var(--gray40);
 }
 
 .af-divider--horizontal {
   width: 100%;
-  border-bottom: none;
+  border-top: 1px solid var(--gray40);
 }
