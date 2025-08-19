@@ -1,4 +1,3 @@
-import "@axa-fr/design-system-slash-css/dist/Modal/Modal.scss";
 import {
   BooleanModal,
   Button,
