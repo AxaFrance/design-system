@@ -5,8 +5,11 @@
 $types: (
   default var(--axablue80),
   information var(--cyan40),
+  // deprecated
+  info var(--cyan40),
   success var(--green40),
   warning var(--orange40),
+  // deprecated
   danger var(--orange40),
   error var(--red30),
   dark var(--gray80),

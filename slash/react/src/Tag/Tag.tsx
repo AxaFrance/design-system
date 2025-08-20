@@ -15,7 +15,7 @@ type TagModifier =
 /**
  * @deprecated instead use warning
  */
-type TagModifierDecrepated = "danger";
+type TagModifierDecrepated = "danger" | "info";
 
 type TagProps = ComponentPropsWithRef<"span"> & {
   classModifier?: `${TagModifier | TagModifierDecrepated}` | string;
@@ -33,7 +33,7 @@ type TagProps = ComponentPropsWithRef<"span"> & {
  * @param {object} props - The properties object.
  * @param {React.ReactNode} props.children - The content to be displayed inside the tag.
  * @param {string} [props.className] - Additional class names to apply to the tag.
- * @param {string} [props.classModifier] - Modifier class to apply specific styles. Note: "danger" is deprecated, use "warning" instead.
+ * @param {string} [props.classModifier] - Modifier class to apply specific styles. Note: "danger" is deprecated, use "warning" instead. "info" is deprecated, use "information" instead
  * @param {boolean} [props.disabled] - If true, the tag will be disabled.
  * @param {React.Ref<HTMLSpanElement>} ref - The ref to the span element.
  * @returns {JSX.Element} The rendered Tag component.
