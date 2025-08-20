@@ -1,9 +1,9 @@
-import { Fragment, ReactNode } from "react";
 import infoIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
+import { Fragment, ReactNode } from "react";
 import { getComponentClassName } from "../../../utilities";
 import { generateId } from "../../../utilities/helpers/generateId";
 
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/Infos/Infos.scss";
+import "@axa-fr/design-system-slash-css/dist/Layout/Header/Infos/Infos.css";
 import { Svg } from "../../../Svg";
 
 const defaultClassName = "af-contrat";
