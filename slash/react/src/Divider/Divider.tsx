@@ -1,20 +1,25 @@
 import classnames from "classnames";
 
 import "@axa-fr/design-system-slash-css/dist/Divider/Divider.css";
+import { ComponentProps } from "react";
 
-type DividerProps = {
+type DividerProps = ComponentProps<"hr"> & {
   mode?: "horizontal" | "vertical";
-  classModifier?: string;
 };
 
 export const Divider = ({
   mode = "horizontal",
-  classModifier,
+  className,
+  ...props
 }: DividerProps) => {
-  const componentClassName = classnames("af-divider", classModifier, {
-    "af-divider--horizontal": mode === "horizontal",
-    "af-divider--vertical": mode === "vertical",
-  });
+  const componentClassName = classnames(
+    "af-divider",
+    {
+      "af-divider--horizontal": mode === "horizontal",
+      "af-divider--vertical": mode === "vertical",
+    },
+    className,
+  );
 
-  return <hr className={componentClassName} />;
+  return <hr className={componentClassName} {...props} />;
 };
