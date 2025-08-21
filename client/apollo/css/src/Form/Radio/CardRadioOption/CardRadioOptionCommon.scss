@@ -19,7 +19,9 @@
   outline-offset: calc(-1 * var(--radio-option-border-width));
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
     --radio-option-border-width: 2px;
     --radio-option-border-color: var(--axa-blue-100);
   }
@@ -37,6 +39,12 @@
 
   &:has(input:checked) {
     --radio-option-border-width: 2px;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --radio-option-border-width: 3px;
+    }
 
     & .af-card-radio-option__label {
       font-weight: 600;
