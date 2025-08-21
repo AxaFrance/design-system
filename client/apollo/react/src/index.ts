@@ -92,3 +92,4 @@ export { Toggle } from "./Toggle/ToggleApollo";
 export { InputPhone } from "./Form/InputPhone/InputPhoneApollo";
 export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { Dropdown } from "./Form/Dropdown/DropdownApollo";
+export { Footer, type FooterProps } from "./Layout/Footer/FooterApollo";

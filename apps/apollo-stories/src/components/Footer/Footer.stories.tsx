@@ -1,4 +1,4 @@
-import { Footer } from "@axa-fr/design-system-look-and-feel-react";
+import { Footer } from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Footer> = {
