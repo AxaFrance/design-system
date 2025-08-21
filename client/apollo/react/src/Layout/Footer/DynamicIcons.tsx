@@ -1,8 +1,9 @@
-import facebook from "../../assets/svg/facebook.svg";
-import linkedin from "../../assets/svg/linkedin.svg";
-import twitterx from "../../assets/svg/twitterx.svg";
-import youtube from "../../assets/svg/youtube.svg";
-import { Svg } from "../../Svg";
+import facebook from "@axa-fr/design-system-apollo-css/facebook.svg";
+import linkedin from "@axa-fr/design-system-apollo-css/linkedin.svg";
+import twitterx from "@axa-fr/design-system-apollo-css/twitterx.svg";
+import youtube from "@axa-fr/design-system-apollo-css/youtube.svg";
+
+import { Svg } from "../../Svg/Svg";
 
 export const DynamicIcon = ({
   iconName,

@@ -1,12 +1,12 @@
-@use "../../common/common" as common;
+@use "../../common/breakpoints" as breakpoints;
 
 .af-footer {
   z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  color: var(--color-white);
-  background-color: var(--color-ocean-blue);
+  color: var(--footer-color);
+  background-color: var(--footer-bg-color);
 
   &__menuLinks {
     li {
@@ -20,14 +20,14 @@
     overflow: hidden;
     background: transparent;
     transition:
-      background 0ms,
+      background-color 0ms,
       padding 0ms;
 
     &--display {
       height: auto;
       padding: 0 2rem;
       transition:
-        background 250ms,
+        background-color 250ms,
         padding 125ms;
     }
   }
@@ -35,8 +35,8 @@
   &__iconTrigger {
     align-self: center;
     justify-content: center;
-    transform: rotate3d(var(--rotate-x, 0), 0, 0, 180deg) !important;
-    transition: transform 250ms ease-in-out !important;
+    transform: rotate3d(var(--rotate-x, 0), 0, 0, 180deg);
+    transition: transform 250ms ease-in-out;
 
     &--display {
       --rotate-x: 1;
@@ -45,12 +45,13 @@
 
   &__linkItem {
     display: block;
-    padding: 1.2rem var(--spacing-u3);
+    padding: calc(20 / var(--font-size-base) * 1rem)
+      calc(38 / var(--font-size-base) * 1rem);
     text-decoration: none;
-    color: var(--color-white);
+    color: var(--footer-color);
 
     &:hover {
-      color: var(--color-blue-1);
+      text-decoration: underline;
     }
   }
 
@@ -65,25 +66,21 @@
     ul {
       display: flex;
       width: 100%;
-      padding: var(--spacing-u2) var(--spacing-u1);
+      padding: calc(26 / var(--font-size-base) * 1rem)
+        calc(13 / var(--font-size-base) * 1rem);
       border: 1px solid rgba(255, 255, 255, 20%);
       border-width: 1px 0;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: var(--spacing-u3);
+      gap: calc(38 / var(--font-size-base) * 1rem);
     }
   }
 
   &__menuIconLinks {
     align-self: center;
-    color: var(--color-white);
-    fill: var(--color-white);
-
-    &:hover {
-      color: var(--color-blue-1);
-      fill: var(--color-blue-1);
-    }
+    color: var(--footer-color);
+    fill: currentcolor;
   }
 
   &__menuAboutTrigger {
@@ -91,17 +88,18 @@
     display: flex;
     box-sizing: border-box;
     width: 100%;
-    padding: var(--spacing-u2) var(--spacing-u4);
+    padding: calc(26 / var(--font-size-base) * 1rem)
+      calc(52 / var(--font-size-base) * 1rem);
     justify-content: space-between;
   }
 
   &__menuAboutTriggerText {
     font-weight: bold;
-    color: var(--color-white);
+    color: var(--footer-color);
   }
 
   &__footerBottom {
-    padding: var(--spacing-u1);
+    padding: calc(13 / var(--font-size-base) * 1rem);
   }
 
   &__textCopyright {
@@ -109,14 +107,14 @@
   }
 
   &__icon {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     align-self: center;
-    fill: var(--color-white);
+    fill: var(--footer-color);
   }
 }
 
-@media only screen and (width >= #{common.$screen-size-m}) {
+@media (width > #{breakpoints.$breakpoint-md}) {
   .af-footer {
     &__menuLinks {
       display: flex;
@@ -134,18 +132,19 @@
     }
 
     &__linkItem {
-      padding: 0 var(--spacing-u2);
+      padding: 0 calc(26 / var(--font-size-base) * 1rem);
       border-left: 1px solid rgba(255, 255, 255, 20%);
       align-self: center;
-      color: var(--color-white);
     }
 
     &__footerMenuIcons {
       ul {
-        padding: var(--spacing-u2) var(--spacing-u4) var(--spacing-u2)
-          var(--spacing-u1);
+        padding: calc(26 / var(--font-size-base) * 1rem)
+          calc(52 / var(--font-size-base) * 1rem)
+          calc(26 / var(--font-size-base) * 1rem)
+          calc(13 / var(--font-size-base) * 1rem);
         border: none;
-        gap: var(--spacing-u2);
+        gap: calc(26 / var(--font-size-base) * 1rem);
       }
     }
 
@@ -160,7 +159,7 @@
 
     &__menuTop {
       display: flex;
-      padding: var(--spacing-u1);
+      padding: calc(13 / var(--font-size-base) * 1rem);
       flex-direction: row;
       justify-content: space-between;
       text-decoration: none;
@@ -168,8 +167,10 @@
 
     &__menuAboutTrigger {
       display: none;
-      padding: var(--spacing-u2) var(--spacing-u2) var(--spacing-u2)
-        var(--spacing-u4);
+      padding: calc(26 / var(--font-size-base) * 1rem)
+        calc(26 / var(--font-size-base) * 1rem)
+        calc(26 / var(--font-size-base) * 1rem)
+        calc(52 / var(--font-size-base) * 1rem);
     }
 
     &__footerBottom {
@@ -186,7 +187,9 @@
 
     &__textCopyright {
       display: flex;
-      padding: var(--spacing-u1) var(--spacing-u4) var(--spacing-u1) 0;
+      padding: calc(13 / var(--font-size-base) * 1rem)
+        calc(52 / var(--font-size-base) * 1rem)
+        calc(13 / var(--font-size-base) * 1rem) 0;
       justify-content: flex-end;
     }
   }

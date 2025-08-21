@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { BREAKPOINT, useIsSmallScreen } from "../../utilities";
+import { useIsSmallScreen } from "../../utilities/hook/useIsSmallScreen";
+import { BREAKPOINT } from "../../utilities/constants";
 
 export type Link = {
   link: string;

@@ -96,3 +96,4 @@ export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
 export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { Dropdown } from "./Form/Dropdown/DropdownLF";
+export { Footer, type FooterProps } from "./Layout/Footer/FooterLF";
