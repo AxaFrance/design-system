@@ -1,8 +1,8 @@
-import { ComponentProps, ComponentType } from "react";
+import type { ComponentProps, ComponentType } from "react";
 import { Icon } from "../Icon/IconCommon";
-import { BasePicture } from "../BasePicture/BasePictureCommon";
+import { BasePicture } from "../BasePicture/BasePicture";
 import {
-  ContentItemCoreProps,
+  type ContentItemCoreProps,
   ContentItemMonoCore,
 } from "./ContentItemMonoCore";
 
@@ -37,12 +37,10 @@ export type ContentItemProps =
 
 export type ContentItemCommonProps = ContentItemProps & {
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
-  BasePictureComponent: ComponentType<ComponentProps<typeof BasePicture>>;
 };
 
 export const getContentItemCoreProps = ({
   IconComponent,
-  BasePictureComponent,
   type,
   ...props
 }: ContentItemCommonProps): ContentItemCoreProps => {
@@ -62,7 +60,7 @@ export const getContentItemCoreProps = ({
     return {
       ...props,
       leftComponent: (
-        <BasePictureComponent
+        <BasePicture
           src={(props as ContentMonoItemPictureProps).picture}
           alt={props.title}
         />

@@ -9,7 +9,7 @@ export {
   accordionVariants,
 } from "./Accordion/AccordionLF";
 export { AccordionCore } from "./AccordionCore/AccordionCoreLF";
-export { BasePicture } from "./BasePicture/BasePictureLF";
+export { BasePicture } from "./BasePicture/BasePicture";
 export { Button, buttonVariants, type ButtonVariants } from "./Button/ButtonLF";
 export {
   CardMessage,
