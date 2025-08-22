@@ -8,7 +8,7 @@ const MAX_STEPPER_PROGRESS = 100;
 export type ProgressBarGroupProps = {
   currentStepProgress?: number;
   currentStep: number;
-  nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  nbSteps?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   label?: string;
   className?: string;
   ProgressBarComponent: ComponentType<ComponentProps<typeof ProgressBar>>;
@@ -46,6 +46,8 @@ export const ProgressBarGroup = ({
           key={`${stepperId}-${index}`}
           value={getCurrentProgress(index)}
           active={index === currentStep}
+          stepNumber={index + 1}
+          totalSteps={nbSteps}
         />
       ))}
     </div>
