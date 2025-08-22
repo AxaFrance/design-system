@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
 import { axe } from "jest-axe";
 import { Radio } from "../Radio";
@@ -24,17 +24,9 @@ const options: Option[] = [
 
 describe("Radio mode card", () => {
   it("should render 3 radio cards", () => {
-    render(
-      <Radio mode="card" options={options}>
-        Test
-      </Radio>,
-    );
+    render(<Radio mode="card" options={options} name="myRadio" />);
 
-    const radioGroup = screen.getByRole("radiogroup");
-    expect(radioGroup).toBeInTheDocument();
-    expect(radioGroup).toHaveClass("af-form__radio-card-group");
-
-    const radioCards = within(radioGroup).getAllByRole("radio");
+    const radioCards = screen.getAllByRole("radio");
     expect(radioCards).toHaveLength(3);
   });
 
@@ -53,9 +45,9 @@ describe("Radio mode card", () => {
     render(<Radio mode="card" orientation="horizontal" options={options} />);
 
     // Assert
-    expect(screen.getByRole("radiogroup")).toHaveClass(
-      "af-form__radio-card-group--horizontal",
-    );
+    expect(
+      document.querySelector(".af-form__radio-card-group--horizontal"),
+    ).toBeInTheDocument();
   });
 
   it("should have custom class", () => {
@@ -63,7 +55,7 @@ describe("Radio mode card", () => {
     render(<Radio mode="card" options={options} className="custom-class" />);
 
     // Assert
-    expect(screen.getByRole("radiogroup")).toHaveClass("custom-class");
+    expect(document.querySelector(".custom-class")).toBeInTheDocument();
   });
 
   it("shouldn't have an accessibility violation", async () => {

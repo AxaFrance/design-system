@@ -12,7 +12,6 @@ describe("RadioInput", () => {
     // Act
     render(
       <RadioInput
-        name="languages"
         mode="card"
         label="Languages"
         options={languageOptions}
@@ -21,7 +20,7 @@ describe("RadioInput", () => {
     );
 
     // Assert
-    expect(screen.getByRole("radiogroup")).toBeInTheDocument();
+    expect(screen.getByRole("radiogroup")).toHaveAccessibleName(/Languages/i);
     expect(screen.getByText("Test")).toBeInTheDocument();
   });
 });
