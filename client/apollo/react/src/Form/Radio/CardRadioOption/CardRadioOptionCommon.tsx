@@ -5,18 +5,28 @@ import {
   type ReactNode,
 } from "react";
 import type { Icon as IconCommon } from "../../../Icon/IconCommon";
+import { BasePicture } from "../../../BasePicture/BasePicture";
 import type { Radio } from "../Radio/RadioCommon";
 
-export type CardRadioOptionProps = Omit<
-  ComponentProps<typeof Radio>,
-  "size"
-> & {
+type BaseCardRadioOptionProps = Omit<ComponentProps<typeof Radio>, "size"> & {
   label: ReactNode;
-  type?: "vertical" | "horizontal";
   description?: ReactNode;
   subtitle?: ReactNode;
-  icon?: ComponentProps<typeof IconCommon>["src"];
 };
+
+export type CardRadioOptionProps =
+  | (BaseCardRadioOptionProps & {
+      type?: "vertical" | "horizontal";
+      icon?: ComponentProps<typeof IconCommon>["src"];
+      src?: undefined;
+      basePictureProps?: undefined;
+    })
+  | (BaseCardRadioOptionProps & {
+      type: "horizontal";
+      src?: ComponentProps<typeof BasePicture>["src"];
+      basePictureProps?: Omit<ComponentProps<typeof BasePicture>, "src">;
+      icon?: undefined;
+    });
 
 export type CardRadioOptionCommonProps = CardRadioOptionProps & {
   RadioComponent: ComponentType<ComponentProps<typeof Radio>>;
@@ -30,10 +40,12 @@ export const CardRadioOptionCommon = forwardRef<
   (
     {
       label,
-      type = "vertical",
+      type,
       description,
       subtitle,
       icon,
+      src,
+      basePictureProps,
       isInvalid,
       className,
       RadioComponent,
@@ -53,6 +65,9 @@ export const CardRadioOptionCommon = forwardRef<
         .join(" ")}
     >
       {icon ? <IconComponent src={icon} role="presentation" /> : null}
+      {type === "horizontal" && src ? (
+        <BasePicture src={src} {...basePictureProps} />
+      ) : null}
       <div className="af-card-radio-option__content">
         <p className="af-card-radio-option__label">{label}</p>
         {Boolean(description) && (

@@ -17,6 +17,8 @@ export type CardRadioProps = Omit<
   | "type"
   | "isInvalid"
   | "icon"
+  | "src"
+  | "basePictureProps"
   | "description"
   | "subtitle"
   | "children"
@@ -111,8 +113,8 @@ export const CardRadioCommon = ({
             }
             required={required}
             {...inputProps}
-            {...cardRadioItemProps}
-            type={type}
+            {...(cardRadioItemProps as CardRadioOptionProps)}
+            type={type as "horizontal"}
             isInvalid={Boolean(error)}
             name={name}
           />

@@ -10,7 +10,11 @@ const ICONS: Record<string, string | undefined> = {
   none: undefined,
 };
 
-const meta: Meta = {
+const meta: Meta<
+  ComponentProps<typeof CardRadioOption> & {
+    iconVariant: "icon" | "base picture";
+  }
+> = {
   title: "Components/Form/Radio/CardRadioOption",
   component: CardRadioOption,
   parameters: {
@@ -30,9 +34,18 @@ const meta: Meta = {
     subtitle: {
       control: "text",
     },
+    iconVariant: {
+      control: { type: "inline-radio" },
+      options: ["icon", "base picture"],
+      if: { arg: "type", eq: "horizontal" },
+    },
     icon: {
       control: "select",
       options: Object.keys(ICONS),
+      if: { arg: "iconVariant", eq: "icon" },
+    },
+    src: {
+      if: { arg: "iconVariant", eq: "base picture" },
     },
   },
   args: {
@@ -43,7 +56,9 @@ const meta: Meta = {
     name: "foo",
     value: "bar",
     isInvalid: false,
+    iconVariant: "icon",
     icon: "accountBalanceIcon",
+    src: "https://picsum.photos/48",
   },
 };
 
@@ -54,17 +69,17 @@ export const CardRadioOptionStory: StoryObj<
 > = {
   name: "Playground",
   render: ({
-    icon = "none",
+    icon,
     type,
     description,
     subtitle,
     name,
     value,
     ...args
-  }) => (
+  }: ComponentProps<typeof CardRadioOption>) => (
     <CardRadioOption
       {...args}
-      icon={ICONS[icon]}
+      icon={ICONS[icon ?? "none"]}
       type={type === "horizontal" ? type : undefined}
       value={value !== "" ? value : undefined}
       name={name !== "" ? name : undefined}
