@@ -63,6 +63,24 @@ describe("CardRadioOptionCommon", () => {
     expect(screen.getByTestId("mock-icon")).toBeInTheDocument();
   });
 
+  it("should render the image if src is provided", () => {
+    render(
+      <CardRadioOptionCommon
+        label="Label"
+        type="horizontal"
+        src="image-src"
+        basePictureProps={{ alt: "Test Image" }}
+        RadioComponent={Radio}
+        IconComponent={MockIconComponent}
+        name="test"
+      />,
+    );
+
+    const img = screen.getByAltText("Test Image");
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("src", "image-src");
+  });
+
   it("should render the RadioComponent with the correct props", () => {
     render(
       <CardRadioOptionCommon

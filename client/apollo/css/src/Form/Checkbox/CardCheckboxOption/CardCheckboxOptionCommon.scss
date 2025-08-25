@@ -19,7 +19,9 @@
   outline-offset: calc(-1 * var(--checkbox-option-border-width));
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
     --checkbox-option-border-width: 2px;
     --checkbox-option-border-color: var(--axa-blue-100);
   }
@@ -37,6 +39,12 @@
 
   &:has(input:checked) {
     --checkbox-option-border-width: 2px;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --checkbox-option-border-width: 3px;
+    }
 
     & .af-card-checkbox-option__label {
       font-weight: 600;

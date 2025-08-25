@@ -6,7 +6,6 @@ import {
   getContentItemCoreProps,
 } from "../ContentItemMonoCommon";
 import { Icon } from "../../Icon/IconCommon";
-import { BasePicture } from "../../BasePicture/BasePictureCommon";
 
 describe("getContentItemCoreProps", () => {
   it("returns correct props for type 'icon'", () => {
@@ -17,7 +16,6 @@ describe("getContentItemCoreProps", () => {
       subtitle1: "Primary Subtitle",
       subtitle2: "Secondary Subtitle",
       IconComponent: Icon,
-      BasePictureComponent: BasePicture,
     } as ContentItemCommonProps;
 
     const result = getContentItemCoreProps(props);
@@ -35,7 +33,6 @@ describe("getContentItemCoreProps", () => {
       title: "Picture Title",
       subtitle: "Picture Subtitle",
       IconComponent: Icon,
-      BasePictureComponent: BasePicture,
     } as ContentItemCommonProps;
 
     const result = getContentItemCoreProps(props);
@@ -56,7 +53,6 @@ describe("ContentItemMonoCommon Component", () => {
         subtitle1="Primary Subtitle"
         subtitle2="Secondary Subtitle"
         IconComponent={Icon}
-        BasePictureComponent={BasePicture}
       />,
     );
 
@@ -77,7 +73,6 @@ describe("ContentItemMonoCommon Component", () => {
         title="Picture Title"
         subtitle="Picture Subtitle"
         IconComponent={Icon}
-        BasePictureComponent={BasePicture}
       />,
     );
 
@@ -94,7 +89,6 @@ describe("ContentItemMonoCommon Component", () => {
         title="Stick Title"
         subtitle="Stick Subtitle"
         IconComponent={Icon}
-        BasePictureComponent={BasePicture}
       />,
     );
 
