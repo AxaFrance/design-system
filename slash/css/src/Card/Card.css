@@ -15,6 +15,7 @@
   border-radius: var(--card-border-radius);
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: center;
   line-height: 1.25rem;
   text-align: center;
   color: var(--card-text-color);
@@ -64,10 +65,10 @@
   min-height: 6rem;
   padding-right: 0;
   flex-direction: row;
+  justify-content: flex-start;
 
   &:not(:has(svg)) {
     min-width: 11.25rem;
-    justify-content: flex-start;
   }
 
   svg {
