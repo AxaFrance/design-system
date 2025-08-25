@@ -30,4 +30,7 @@ export const Playground: Story = {
     message: "Titre message",
     helper: "Sauf mention du contraire, tous les champs sont obligatoires.",
   },
+  argTypes: {
+    messageType: { control: 'select', options: ['error', 'success'] },
+  }
 };

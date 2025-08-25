@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Stepper } from "../StepperCommon";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
+import { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
 
 describe("Stepper Component", () => {
   it("renders the title and subtitle when visible", () => {
@@ -67,19 +68,30 @@ describe("Stepper Component", () => {
     expect(helper).toBeInTheDocument();
   });
 
-  it("renders the message when provided", () => {
-    render(
-      <Stepper
-        currentStep={1}
-        message="This is a success message"
-        nbSteps={4}
-        ProgressBarGroupComponent={ProgressBarGroup}
-      />,
-    );
+  it.each([
+    ["success", "This is a success message", null],
+    ["error", "This is an error message", "alert"],
+  ])(
+    "renders a %s message when message provided with %s message type",
+    (messageType, messageText, expectedRole) => {
+      render(
+        <Stepper
+          currentStep={1}
+          message={messageText}
+          nbSteps={4}
+          ProgressBarGroupComponent={ProgressBarGroup}
+          messageType={messageType as ItemMessageProps["messageType"]}
+        />,
+      );
 
-    const message = screen.getByText("This is a success message");
-    expect(message).toBeInTheDocument();
-  });
+      const message = screen.getByText(messageText);
+      expect(message.parentElement?.classList).toContain(
+        `af-item-message--${messageType}`,
+      );
+      expect(message.parentElement?.role).toBe(expectedRole);
+      expect(message).toBeInTheDocument();
+    },
+  );
 
   it("applies additional className to the ProgressBarGroupComponent", () => {
     render(
