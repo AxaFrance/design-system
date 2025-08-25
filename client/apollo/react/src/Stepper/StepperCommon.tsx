@@ -5,7 +5,10 @@ import {
   useId,
 } from "react";
 import { ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
-import { ItemMessage } from "../Form/ItemMessage/ItemMessageCommon";
+import {
+  ItemMessage,
+  ItemMessageProps,
+} from "../Form/ItemMessage/ItemMessageCommon";
 
 export type StepperProps = {
   currentStepProgress?: number;
@@ -15,6 +18,7 @@ export type StepperProps = {
   nbSteps?: 3 | 4 | 5 | 6 | 7 | 8;
   helper?: string;
   message?: string;
+  messageType?: ItemMessageProps["messageType"];
   titleLevel?: 1 | 2 | 3;
   ProgressBarGroupComponent: ComponentType<
     Omit<ProgressBarGroupProps, "ProgressBarComponent">
@@ -31,6 +35,7 @@ export const Stepper = ({
   ProgressBarGroupComponent,
   helper,
   message,
+  messageType = "success",
   titleLevel = 2,
   ...props
 }: StepperProps) => {
@@ -57,7 +62,7 @@ export const Stepper = ({
         currentStepProgress={currentStepProgress}
       />
       {Boolean(helper) && <span className="af-stepper__helper">{helper}</span>}
-      <ItemMessage message={message} messageType="success" />
+      <ItemMessage message={message} messageType={messageType} />
     </div>
   );
 };
