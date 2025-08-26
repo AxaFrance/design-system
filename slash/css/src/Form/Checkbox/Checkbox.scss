@@ -114,6 +114,10 @@
     .af-form__label {
       padding: 0;
     }
+
+    .af-form__description {
+      padding-left: calc(8rem / 16);
+    }
   }
 
   /* Custom */
@@ -134,9 +138,12 @@
     }
 
     .af-form__indicator {
+      width: 20px;
+      height: 20px;
       margin-left: 0.5rem;
       border: 1px solid var(--input-border-color);
       background-color: var(--white);
+      fill: #3032c1;
     }
 
     .af-form__description {
@@ -155,7 +162,10 @@
 
           .ok-icon {
             display: block;
+            width: 29px;
+            height: 29px;
             fill: var(--brand-primary);
+            stroke-width: 10px;
           }
         }
       }
