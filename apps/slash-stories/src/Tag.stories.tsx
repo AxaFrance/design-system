@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/react";
 import { Tag } from "@axa-fr/design-system-slash-react";
+import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Tag> = {
   title: "Components/Tag",
@@ -18,7 +18,7 @@ export const Default: StoryObj<typeof Tag> = {
     disabled: false,
   },
   argTypes: {
-    classModifier: {
+    variant: {
       options: [
         "success",
         "information",
@@ -42,11 +42,11 @@ export const TagIconStory: StoryObj<typeof Tag> = {
         <i className="glyphicon glyphicon-bell" /> success
       </>
     ),
-    classModifier: "success",
+    variant: "success",
     disabled: false,
   },
   argTypes: {
-    classModifier: {
+    variant: {
       options: [
         "success",
         "information",
@@ -87,25 +87,25 @@ export const MultiExamples: StoryObj<typeof Tag> = {
           }}
         >
           <Tag disabled={args.disabled}>Tag Default</Tag>
-          <Tag disabled={args.disabled} classModifier="success">
+          <Tag disabled={args.disabled} variant="success">
             Tag Success
           </Tag>
-          <Tag disabled={args.disabled} classModifier="warning">
+          <Tag disabled={args.disabled} variant="warning">
             Tag Warning
           </Tag>
-          <Tag disabled={args.disabled} classModifier="information">
+          <Tag disabled={args.disabled} variant="information">
             Tag Info
           </Tag>
-          <Tag disabled={args.disabled} classModifier="error">
+          <Tag disabled={args.disabled} variant="error">
             Tag Error
           </Tag>
-          <Tag disabled={args.disabled} classModifier="dark">
+          <Tag disabled={args.disabled} variant="dark">
             Tag Black
           </Tag>
-          <Tag disabled={args.disabled} classModifier="purple">
+          <Tag disabled={args.disabled} variant="purple">
             Tag Purple
           </Tag>
-          <Tag disabled={args.disabled} classModifier="gray">
+          <Tag disabled={args.disabled} variant="gray">
             Tag Gray
           </Tag>
         </div>
@@ -123,31 +123,31 @@ export const MultiExamples: StoryObj<typeof Tag> = {
             <i className="glyphicon glyphicon-bell" />
             Tag default
           </Tag>
-          <Tag disabled={args.disabled} classModifier="success">
+          <Tag disabled={args.disabled} variant="success">
             <i className="glyphicon glyphicon-bell" />
             Tag Success
           </Tag>
-          <Tag disabled={args.disabled} classModifier="warning">
+          <Tag disabled={args.disabled} variant="warning">
             <i className="glyphicon glyphicon-bell" />
             Tag Warning
           </Tag>
-          <Tag disabled={args.disabled} classModifier="information">
+          <Tag disabled={args.disabled} variant="information">
             <i className="glyphicon glyphicon-bell" />
             Tag Information
           </Tag>
-          <Tag disabled={args.disabled} classModifier="error">
+          <Tag disabled={args.disabled} variant="error">
             <i className="glyphicon glyphicon-bell" />
             Tag Error
           </Tag>
-          <Tag disabled={args.disabled} classModifier="dark">
+          <Tag disabled={args.disabled} variant="dark">
             <i className="glyphicon glyphicon-bell" />
             Tag Dark
           </Tag>
-          <Tag disabled={args.disabled} classModifier="purple">
+          <Tag disabled={args.disabled} variant="purple">
             <i className="glyphicon glyphicon-bell" />
             Tag Purple
           </Tag>
-          <Tag disabled={args.disabled} classModifier="gray">
+          <Tag disabled={args.disabled} variant="gray">
             <i className="glyphicon glyphicon-bell" />
             Tag Gray
           </Tag>

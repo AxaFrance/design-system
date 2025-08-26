@@ -3,18 +3,18 @@
 @use "../common/common" as common;
 
 $types: (
-  default var(--axablue80),
-  information var(--cyan40),
+  "default" var(--axablue80),
+  "information" var(--cyan40),
   // deprecated
-  info var(--cyan40),
-  success var(--green40),
-  warning var(--orange40),
+  "info" var(--cyan40),
+  "success" var(--green40),
+  "warning" var(--orange40),
   // deprecated
-  danger var(--orange40),
-  error var(--red30),
-  dark var(--gray80),
-  gray var(--gray50),
-  purple var(--purpletarif40)
+  "danger" var(--orange40),
+  "error" var(--red30),
+  "dark" var(--gray80),
+  "gray" var(--gray50),
+  "purple" var(--purpletarif40)
 );
 
 .af-badge,
