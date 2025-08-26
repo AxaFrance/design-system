@@ -23,12 +23,7 @@ export const Summary = ({
   const variant = classModifier === "danger" ? "warning" : classModifier;
 
   return (
-    <Message
-      icon="glyphicon glyphicon-warning-sign"
-      title={title}
-      variant={variant}
-      {...args}
-    >
+    <Message title={title} variant={variant} {...args}>
       <ul className="af-summary__message-list">
         {messages.map((message) => (
           <li
