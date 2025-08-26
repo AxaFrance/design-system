@@ -17,7 +17,6 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
         label={label}
         labelPosition={mode === CheckboxModes.classic ? "top" : "center"}
         roleContainer="group"
-        classNameSuffix="checkbox-container"
         {...otherProps}
         renderInput={({
           classModifier,
