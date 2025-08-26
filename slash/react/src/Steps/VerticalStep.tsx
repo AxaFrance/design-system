@@ -1,10 +1,10 @@
+import check from "@material-symbols/svg-400/sharp/check.svg";
+import edit from "@material-symbols/svg-400/sharp/edit-fill.svg";
+import lock from "@material-symbols/svg-400/sharp/lock-fill.svg";
 import classNames from "classnames";
 import { ReactNode } from "react";
-import edit from "@material-symbols/svg-400/sharp/edit-fill.svg";
-import check from "@material-symbols/svg-400/sharp/check.svg";
-import lock from "@material-symbols/svg-400/sharp/lock-fill.svg";
-import { Title } from "../Title/Title";
 import { Svg } from "../Svg";
+import { Title } from "../Title/Title";
 import type { VerticalStepMode } from "./types";
 
 import "@axa-fr/design-system-slash-css/dist/Steps/VerticalStep.css";
@@ -96,9 +96,9 @@ export const VerticalStep = ({
             <Button
               aria-label={editButtonAriaLabel}
               onClick={onEdit}
-              className="af-vertical-step-title-button"
+              variant="ghost"
+              leftIcon={<Svg role="presentation" src={edit} />}
             >
-              <Svg role="presentation" src={edit} />
               {editButtonLabel}
             </Button>
           ) : undefined
