@@ -2,7 +2,7 @@
   --card-background-color: var(--white);
   --card-border-color: transparent;
   --card-border-radius: 4px;
-  --card-box-shadow-color: hsla(230deg, 60%, 16%, 8%);
+  --card-box-shadow-color: rgba(0, 0, 0, 18%);
   --card-text-color: var(--gray80);
   --card-icon-color: var(--axablue80);
   --card-vertical-padding: 1.5rem;
@@ -20,7 +20,7 @@
   text-align: center;
   color: var(--card-text-color);
   background-color: var(--card-background-color);
-  box-shadow: 0 0.25rem 0.5rem 0 var(--card-box-shadow-color);
+  box-shadow: 0 0 0.5625rem 0 var(--card-box-shadow-color);
 
   &:not(:has(svg)) {
     min-height: 5.75rem;
@@ -33,17 +33,18 @@
     fill: var(--card-icon-color);
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     --card-border-color: var(--axablue80);
     --card-text-color: var(--gray80);
     --card-icon-color: var(--axablue80);
   }
 
   &:focus {
-    --card-background-color: var(--axablue80);
-    --card-text-color: var(--white);
-    --card-icon-color: var(--white);
+    --card-text-color: var(--gray80);
+    --card-icon-color: var(--axablue80);
+
+    outline: calc(2rem / 16) solid var(--axablue80);
+    outline-offset: calc(2rem / 16);
   }
 
   &:disabled {
