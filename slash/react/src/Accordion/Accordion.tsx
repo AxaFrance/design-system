@@ -36,6 +36,7 @@ const Accordion = ({
           {...child.props}
           name={onlyOne ? id : undefined}
           key={child.props.id}
+          type={classModifier}
         >
           {child.props.children}
         </CollapseCard>
