@@ -112,4 +112,55 @@ describe("Accordion", () => {
       }
     });
   });
+
+  describe("action", () => {
+    const action1 = vi.fn();
+    const action2 = vi.fn();
+    const actions = [
+      {
+        key: "action-1",
+        label: "Action 1",
+        onClick: action1,
+      },
+      {
+        key: "action-2",
+        label: "Action 2",
+        onClick: action2,
+      },
+    ] as const;
+    test("renders action buttons", () => {
+      render(
+        <Accordion>
+          <CollapseCard id="1" title="My title" actions={actions}>
+            My collapse content
+          </CollapseCard>
+          <CollapseCard id="2" title="My second title">
+            My second collapse content
+          </CollapseCard>
+        </Accordion>,
+      );
+
+      expect(screen.getByRole("button", { name: /action 1/i })).toBeVisible();
+      expect(screen.getByRole("button", { name: /action 2/i })).toBeVisible();
+    });
+
+    test("action is clickable", async () => {
+      render(
+        <Accordion>
+          <CollapseCard id="1" title="My title" actions={actions}>
+            My collapse content
+          </CollapseCard>
+          <CollapseCard id="2" title="My second title">
+            My second collapse content
+          </CollapseCard>
+        </Accordion>,
+      );
+
+      await userEvent.click(screen.getByRole("button", { name: /action 1/i }));
+      expect(action1).toHaveBeenCalled();
+
+      await userEvent.click(screen.getByRole("button", { name: /action 2/i }));
+      expect(action2).toHaveBeenCalled();
+    });
+  });
 });
