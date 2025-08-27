@@ -1,5 +1,7 @@
 import React from "react";
+import { Button } from "../Button/Button";
 import { getComponentClassName } from "../utilities";
+import type { AccordionActions } from "./types";
 
 const defaultClassName = "af-accordion__item-header";
 
@@ -14,9 +16,18 @@ export type HeaderProps = {
   className?: string;
   classModifier?: string;
   id?: string;
+  actions?: AccordionActions;
+  type?: string;
 };
 
-const Header = ({ children, className, classModifier, id }: HeaderProps) => {
+const Header = ({
+  children,
+  className,
+  classModifier,
+  id,
+  actions,
+  type,
+}: HeaderProps) => {
   const componentClassName = getComponentClassName(
     className,
     classModifier,
@@ -25,8 +36,31 @@ const Header = ({ children, className, classModifier, id }: HeaderProps) => {
 
   return (
     <summary className={componentClassName} id={id}>
-      <h3 className="af-accordion__item-title">{children}</h3>
-      <span className="glyphicon glyphicon-menu-down" />
+      <div className="af-accordion__header-left">
+        <h3 className="af-accordion__item-title">{children}</h3>
+      </div>
+      <div className="af-accordion__header-right">
+        {actions
+          ? actions
+              .filter((action): action is NonNullable<typeof action> =>
+                Boolean(action),
+              )
+              .map(({ key, label, onClick }) => (
+                <Button
+                  key={key}
+                  onClick={onClick}
+                  variant={
+                    ["white", "light"].includes(type ?? "")
+                      ? "ghost"
+                      : "ghost-reverse"
+                  }
+                >
+                  {label}
+                </Button>
+              ))
+          : null}
+        <span className="glyphicon glyphicon-menu-down" />
+      </div>
     </summary>
   );
 };

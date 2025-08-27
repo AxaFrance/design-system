@@ -45,6 +45,12 @@ $minHeight: 3rem;
       transform: rotate(180deg);
     }
   }
+
+  &__header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
 }
 
 .af-accordion--light {
