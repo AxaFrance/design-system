@@ -39,7 +39,7 @@ export const Default: StoryObj<typeof Accordion> = {
           industry.
         </p>
       </CollapseCard>
-      <CollapseCard title="About insurance" id="t2" open className="maClasse">
+      <CollapseCard title="About insurance" id="t2" open>
         Insurance is a means of protection from financial loss. It is a form of
         risk management, primarily used to hedge against the risk of a
         contingent or uncertain loss.
@@ -49,7 +49,6 @@ export const Default: StoryObj<typeof Accordion> = {
         title="With actions"
         id="t3"
         open
-        className="maClasse"
         actions={[
           {
             key: "edit",
@@ -92,7 +91,6 @@ export const Light: StoryObj<typeof Accordion> = {
         title="With actions"
         id="t3"
         open
-        className="maClasse"
         actions={[
           {
             key: "edit",
@@ -156,7 +154,6 @@ export const White: StoryObj<typeof Accordion> = {
         title="With actions"
         id="t3"
         open
-        className="maClasse"
         actions={[
           {
             key: "edit",
