@@ -44,6 +44,29 @@ export const Default: StoryObj<typeof Accordion> = {
         risk management, primarily used to hedge against the risk of a
         contingent or uncertain loss.
       </CollapseCard>
+
+      <CollapseCard
+        title="With actions"
+        id="t3"
+        open
+        className="maClasse"
+        actions={[
+          {
+            key: "edit",
+            label: "Edit",
+            onClick: () => console.log("Edit clicked"),
+          },
+          {
+            key: "delete",
+            label: "Delete",
+            onClick: () => console.log("Delete clicked"),
+          },
+        ]}
+      >
+        Insurance is a means of protection from financial loss. It is a form of
+        risk management, primarily used to hedge against the risk of a
+        contingent or uncertain loss.
+      </CollapseCard>
     </Accordion>
   ),
   args: {
@@ -63,6 +86,29 @@ export const Light: StoryObj<typeof Accordion> = {
         recusandae dolore est sunt ducimus tenetur sapiente accusamus, nihil
         ullam, nulla illo asperiores soluta officia rerum, provident voluptate
         nesciunt quos.
+      </CollapseCard>
+
+      <CollapseCard
+        title="With actions"
+        id="t3"
+        open
+        className="maClasse"
+        actions={[
+          {
+            key: "edit",
+            label: "Edit",
+            onClick: () => console.log("Edit clicked"),
+          },
+          {
+            key: "delete",
+            label: "Delete",
+            onClick: () => console.log("Delete clicked"),
+          },
+        ]}
+      >
+        Insurance is a means of protection from financial loss. It is a form of
+        risk management, primarily used to hedge against the risk of a
+        contingent or uncertain loss.
       </CollapseCard>
     </Accordion>
   ),
@@ -104,6 +150,29 @@ export const White: StoryObj<typeof Accordion> = {
         amet aliquyam. Erat voluptua eu kasd voluptua magna vero. Invidunt et
         sit eirmod at eirmod sed takimata nulla sadipscing sadipscing lorem
         kasd.
+      </CollapseCard>
+
+      <CollapseCard
+        title="With actions"
+        id="t3"
+        open
+        className="maClasse"
+        actions={[
+          {
+            key: "edit",
+            label: "Edit",
+            onClick: () => console.log("Edit clicked"),
+          },
+          {
+            key: "delete",
+            label: "Delete",
+            onClick: () => console.log("Delete clicked"),
+          },
+        ]}
+      >
+        Insurance is a means of protection from financial loss. It is a form of
+        risk management, primarily used to hedge against the risk of a
+        contingent or uncertain loss.
       </CollapseCard>
     </Accordion>
   ),
