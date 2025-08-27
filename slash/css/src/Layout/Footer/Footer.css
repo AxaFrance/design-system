@@ -2,6 +2,7 @@
   --logo-size: 22px;
 
   display: flex;
+  margin-top: calc(72rem / 16);
   padding: 0.5rem 0;
   align-items: center;
   font-size: 0.6875rem;
