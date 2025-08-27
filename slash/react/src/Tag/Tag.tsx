@@ -10,7 +10,8 @@ export type TagVariants =
   | "default"
   | "dark"
   | "purple"
-  | "gray";
+  | "gray"
+  | "white";
 
 type TagProps = ComponentPropsWithRef<"span"> & {
   /**
@@ -56,8 +57,6 @@ export const Tag = forwardRef<HTMLSpanElement, PropsWithChildren<TagProps>>(
       classModifier: actualModifier,
       componentClassName: "af-badge",
     });
-
-    console.log({ badgeClassName, componentClassName });
 
     return (
       <span

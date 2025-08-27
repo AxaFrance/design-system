@@ -1,4 +1,5 @@
-import { Tag } from "@axa-fr/design-system-slash-react";
+import { Svg, Tag } from "@axa-fr/design-system-slash-react";
+import iconBell from "@material-symbols/svg-400/outlined/notifications-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Tag> = {
@@ -6,17 +7,15 @@ const meta: Meta<typeof Tag> = {
   component: Tag,
   parameters: {
     layout: "centered",
+    backgrounds: {
+      default: "light",
+      values: [
+        { name: "light", value: "#ffffff" },
+        { name: "blue", value: "#00008f" },
+      ],
+    },
   },
-};
-export default meta;
-
-export const Default: StoryObj<typeof Tag> = {
-  name: "Tag",
-  args: {
-    children: "Lorem ipsum",
-    classModifier: "success",
-    disabled: false,
-  },
+  globals: {},
   argTypes: {
     variant: {
       options: [
@@ -28,12 +27,38 @@ export const Default: StoryObj<typeof Tag> = {
         "dark",
         "purple",
         "gray",
+        "white",
       ],
       control: { type: "select" },
       defaultValue: "success",
     },
   },
 };
+export default meta;
+
+export const Default: StoryObj<typeof Tag> = {
+  name: "Tag",
+  args: {
+    children: "Lorem ipsum",
+    variant: "success",
+    disabled: false,
+  },
+};
+
+export const WhiteTagOnDarkBackground: StoryObj<typeof Tag> = {
+  name: "White Tag on dark background",
+  args: {
+    children: "Lorem ipsum",
+    variant: "white",
+    disabled: false,
+  },
+  parameters: {
+    backgrounds: {
+      default: "blue",
+    },
+  },
+};
+
 export const TagIconStory: StoryObj<typeof Tag> = {
   name: "Tag with Icon",
   args: {
@@ -44,22 +69,6 @@ export const TagIconStory: StoryObj<typeof Tag> = {
     ),
     variant: "success",
     disabled: false,
-  },
-  argTypes: {
-    variant: {
-      options: [
-        "success",
-        "information",
-        "warning",
-        "error",
-        "default",
-        "dark",
-        "purple",
-        "gray",
-      ],
-      control: { type: "select" },
-      defaultValue: "error",
-    },
   },
 };
 
@@ -108,6 +117,9 @@ export const MultiExamples: StoryObj<typeof Tag> = {
           <Tag disabled={args.disabled} variant="gray">
             Tag Gray
           </Tag>
+          <Tag disabled={args.disabled} variant="white">
+            Tag White
+          </Tag>
         </div>
         <div
           style={{
@@ -116,11 +128,11 @@ export const MultiExamples: StoryObj<typeof Tag> = {
             alignItems: "center",
             padding: "2rem",
             flexWrap: "wrap",
-            gap: "5rem",
+            gap: "2rem",
           }}
         >
           <Tag disabled={args.disabled}>
-            <i className="glyphicon glyphicon-bell" />
+            <Svg src={iconBell} />
             Tag default
           </Tag>
           <Tag disabled={args.disabled} variant="success">
@@ -150,6 +162,10 @@ export const MultiExamples: StoryObj<typeof Tag> = {
           <Tag disabled={args.disabled} variant="gray">
             <i className="glyphicon glyphicon-bell" />
             Tag Gray
+          </Tag>
+          <Tag disabled={args.disabled} variant="white">
+            <i className="glyphicon glyphicon-bell" />
+            Tag White
           </Tag>
         </div>
       </div>
