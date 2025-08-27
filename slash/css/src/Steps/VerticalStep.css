@@ -70,26 +70,8 @@
     background-color: var(--axablue80);
   }
 
-  .af-vertical-step-title-button {
-    border: 0;
-    font-size: 1rem;
-    background: none;
-
-    &:focus {
-      outline: 2px solid var(--axablue80);
-    }
-
-    svg {
-      width: 1rem;
-      height: 1rem;
-      margin-right: 0.25rem;
-      margin-left: 0;
-      fill: var(--axablue80);
-    }
-  }
-
   /* Style for submit button inside form */
-  button[type="submit"] {
+  & > section > button[type="submit"] {
     margin-left: 17%;
   }
 
