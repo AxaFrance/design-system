@@ -12,3 +12,4 @@ export {
 } from "./NavBar";
 export { ToggleButton } from "./ToggleButton/ToggleButton";
 export { User } from "./User/User";
+export type { AnchorNavBarItem } from "./AnchorNavBar/AnchorNavBar";

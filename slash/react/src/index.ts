@@ -56,6 +56,7 @@ export {
   NavBarItemLink,
   ToggleButton,
   User,
+  type AnchorNavBarItem,
 } from "./Layout/Header";
 export { MainContainer } from "./Layout/MainContainer/MainContainer";
 export { Link, type LinkProps } from "./Link/Link";
