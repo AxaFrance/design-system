@@ -1,8 +1,10 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
+
 import "@fontsource/source-sans-pro";
 import "@fontsource/source-sans-pro/700.css";
+
 import { Message } from "./Messages/Message";
 import { Tag } from "./Tag/Tag";
 

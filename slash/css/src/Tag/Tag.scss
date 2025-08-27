@@ -34,11 +34,22 @@ $types: (
     }
   }
 
+  &--white {
+    color: var(--brand-primary);
+    background-color: var(--white);
+  }
+
   &[disabled] {
     opacity: 0.65;
   }
 
   & > * {
     vertical-align: middle;
+  }
+
+  svg {
+    width: 14px;
+    vertical-align: sub;
+    fill: currentcolor;
   }
 }
