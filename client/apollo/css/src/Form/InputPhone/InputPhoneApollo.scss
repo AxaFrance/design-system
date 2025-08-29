@@ -13,18 +13,12 @@
     --select-background: url("@material-symbols/svg-400/outlined/keyboard_arrow_down.svg?fill=currentColor")
       no-repeat right 1.5rem center / 1.5rem 1.5rem;
 
-    &:focus-visible {
-      --select-border-color: var(--axa-blue-100);
-    }
-
     &:disabled {
       --select-bg-color-disabled: var(--neutral-50);
       --select-border-color: var(--neutral-50);
     }
 
-    &:not(:disabled):hover,
-    &:not(:disabled):active {
-      --select-border-radius: 8px;
+    &:not(:disabled):is(:hover, :focus-within, :active) {
       --select-border-color: var(--axa-blue-100);
       --select-box-shadow: var(--axa-blue-100);
     }

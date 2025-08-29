@@ -29,7 +29,7 @@
 .af-form__country-code-wrapper .country-code-select__control {
   display: block;
   width: 7.4rem;
-  padding: calc(10 / var(--font-size-base) * 1rem) 0;
+  padding: calc(11 / var(--font-size-base) * 1rem) 0;
   border: 1px solid var(--select-border-color);
   border-radius: var(--select-border-radius);
   font-size: calc(16 / var(--font-size-base) * 1rem);
@@ -60,8 +60,7 @@
     cursor: not-allowed;
   }
 
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
+  &:not(:disabled):is(:hover, :active, :focus-within) {
     border: 1px solid var(--select-border-color);
     box-shadow: 0 0 0 1px var(--select-border-color) inset;
   }
