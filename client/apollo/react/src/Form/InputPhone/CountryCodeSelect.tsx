@@ -36,6 +36,10 @@ const CountryCodeSelect = ({
       ...provided,
       display: "none",
     }),
+    SingleValue: (provided: Record<string, unknown>) => ({
+      ...provided,
+      color: "inherit",
+    }),
   };
 
   const formatOptionLabel = ({ flag, code }: OptionType) => (
