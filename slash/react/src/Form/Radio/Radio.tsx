@@ -4,8 +4,8 @@ import {
   forwardRef,
 } from "react";
 import type { Option } from "../core";
-import { RadioItem } from "./RadioItem";
 import { RadioCardGroup } from "./RadioCardGroup";
+import { RadioItem } from "./RadioItem";
 
 export enum RadioModes {
   classic = "classic",
@@ -59,19 +59,23 @@ const Radio = forwardRef<HTMLInputElement, Props>(
       );
     }
 
-    return options.map((option: Option) => (
-      <RadioItem
-        {...onlyNecessaryProps}
-        key={option.value}
-        isChecked={option.value === value}
-        disabled={option.disabled || disabled}
-        className={classNameMode}
-        ref={inputRef}
-        {...option}
-      >
-        {children}
-      </RadioItem>
-    ));
+    return (
+      <div className="af-form__radio-group">
+        {options.map((option: Option) => (
+          <RadioItem
+            {...onlyNecessaryProps}
+            key={option.value}
+            isChecked={option.value === value}
+            disabled={option.disabled || disabled}
+            className={classNameMode}
+            ref={inputRef}
+            {...option}
+          >
+            {children}
+          </RadioItem>
+        ))}
+      </div>
+    );
   },
 );
 

@@ -33,11 +33,11 @@ type Props = Omit<
       helpMessage?: ReactNode;
       score?: string;
     },
-  "onToggleType" | "type" | "children"
+  "onToggleType" | "type"
 >;
 
 const PassInput = ({
-  rightElement,
+  children,
   score,
   classModifier,
   disabled,
@@ -65,7 +65,7 @@ const PassInput = ({
               setType(type === "password" ? "text" : "password")
             }
           />
-          {rightElement}
+          {children}
         </>
       )}
     />

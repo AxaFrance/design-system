@@ -16,8 +16,9 @@ describe("RadioInput", () => {
         mode="card"
         label="Languages"
         options={languageOptions}
-        rightElement="Test"
-      />,
+      >
+        Test
+      </RadioInput>,
     );
 
     // Assert

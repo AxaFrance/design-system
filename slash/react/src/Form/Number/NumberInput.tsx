@@ -6,12 +6,9 @@ import { type ConsumerFieldProps, Field } from "../core";
 
 import { Number } from "./Number";
 
-type Props = Omit<
-  ConsumerFieldProps & ComponentPropsWithRef<typeof Number>,
-  "children"
->;
+type Props = ConsumerFieldProps & ComponentPropsWithRef<typeof Number>;
 
-export const NumberInput = ({ rightElement, ...props }: Props) => {
+export const NumberInput = ({ children, ...props }: Props) => {
   return (
     <Field
       {...props}
@@ -30,7 +27,7 @@ export const NumberInput = ({ rightElement, ...props }: Props) => {
             aria-invalid={ariaInvalid}
             {...inputProps}
           />
-          {rightElement}
+          {children}
         </>
       )}
     />

@@ -2,16 +2,13 @@ import { ComponentProps, forwardRef, ReactNode } from "react";
 import { ConsumerFieldProps, Field } from "../core";
 import { Date } from "./Date";
 
-type Props = Omit<
-  ConsumerFieldProps &
-    ComponentProps<typeof Date> & {
-      helpMessage?: ReactNode;
-    },
-  "renderInput" | "children"
->;
+type Props = ConsumerFieldProps &
+  ComponentProps<typeof Date> & {
+    helpMessage?: ReactNode;
+  };
 
 const DateInput = forwardRef<HTMLInputElement, Props>(
-  ({ rightElement, ...otherProps }, inputRef) => {
+  ({ children, ...otherProps }, inputRef) => {
     return (
       <Field
         {...otherProps}
@@ -25,7 +22,7 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
               aria-invalid={ariaInvalid}
               {...otherProps}
             />
-            {rightElement}
+            {children}
           </>
         )}
       />

@@ -2,13 +2,11 @@ import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { type ConsumerFieldProps, Field, useOptionsWithId } from "../core";
 import { Radio, RadioModes } from "./Radio";
 
-type RadioInputProps = Omit<
-  ConsumerFieldProps & ComponentPropsWithoutRef<typeof Radio>,
-  "children"
->;
+type RadioInputProps = ConsumerFieldProps &
+  ComponentPropsWithoutRef<typeof Radio>;
 
 const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
-  ({ label, mode = "default", options, rightElement, ...props }, inputRef) => {
+  ({ label, mode = "default", options, children, ...props }, inputRef) => {
     const labelPosition = mode === RadioModes.classic ? "top" : "center";
     const newOptions = useOptionsWithId(options);
 
@@ -34,7 +32,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
               aria-invalid={ariaInvalid}
               {...radioProps}
             />
-            {rightElement}
+            {children}
           </>
         )}
       />
