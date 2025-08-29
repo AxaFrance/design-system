@@ -22,11 +22,12 @@ $minHeight: 3rem;
     margin-bottom: 1px;
   }
 
-  .glyphicon {
-    width: 17px;
+  svg {
+    width: 2rem;
+    height: 2rem;
     order: 2;
-    font-size: 14px;
     transition: transform 0.5s;
+    fill: currentcolor;
   }
 
   &__item-title {
@@ -41,7 +42,7 @@ $minHeight: 3rem;
   }
 
   &__details[open] {
-    .glyphicon-menu-down {
+    svg {
       transform: rotate(180deg);
     }
   }
@@ -86,7 +87,7 @@ $minHeight: 3rem;
       content: "";
     }
 
-    .glyphicon {
+    svg {
       order: 0;
     }
   }
