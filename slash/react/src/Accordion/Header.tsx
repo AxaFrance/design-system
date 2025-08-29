@@ -1,5 +1,7 @@
 import React from "react";
+import arrow from "@material-symbols/svg-400/rounded/keyboard_arrow_down.svg";
 import { Button } from "../Button/Button";
+import { Svg } from "../Svg/Svg";
 import { getComponentClassName } from "../utilities";
 import type { AccordionActions } from "./types";
 
@@ -59,7 +61,7 @@ const Header = ({
                 </Button>
               ))
           : null}
-        <span className="glyphicon glyphicon-menu-down" />
+        <Svg src={arrow} />
       </div>
     </summary>
   );
