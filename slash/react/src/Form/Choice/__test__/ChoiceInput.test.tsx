@@ -57,7 +57,6 @@ describe("ChoiceInput", () => {
       "labelClassName",
     );
 
-    screen.logTestingPlaygroundURL();
     expect(
       screen.getByRole("radio", {
         name: /oui/i,
