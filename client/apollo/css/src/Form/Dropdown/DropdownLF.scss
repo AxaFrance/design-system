@@ -3,10 +3,12 @@
 .af-form__dropdown-input {
   --dropdown-border-radius: var(--default-border-radius);
   --dropdown-border-color: var(--color-gray-700);
+  --dropdown-color: var(--color-gray-700);
   --dropdown-background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%2300008F'/></svg>")
     no-repeat right 1rem center / 1.5rem 1.5rem;
   --dropdown-padding-left-right: 16;
   --dropdown-padding-top-bottom: 12;
+  --dropdown-box-shadow: var(--color-axa);
 
   &:open {
     --dropdown-background-open: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,30 36,30 24,14' fill='%2300008F'/></svg>");
@@ -22,7 +24,6 @@
 
   &:focus-visible {
     --dropdown-border-color: var(--color-axa);
-    --dropdown-box-shadow: var(--color-axa);
   }
 
   &:disabled {
@@ -35,15 +36,14 @@
   &:not(:disabled):hover,
   &:not(:disabled):active {
     --dropdown-border-color: var(--color-axa);
-    --dropdown-box-shadow: var(--color-axa);
   }
 
   &--error {
     --dropdown-border-color: var(--color-red-700);
+    --dropdown-box-shadow: var(--color-red-700);
 
     &:focus-visible {
       --dropdown-border-color: var(--color-red-700);
-      --dropdown-box-shadow: var(--color-red-700);
 
       outline: none;
     }
@@ -51,7 +51,6 @@
     &:not(:disabled):hover,
     &:not(:disabled):active {
       --dropdown-border-color: var(--color-red-700);
-      --dropdown-box-shadow: 0 0 0 1px var(--color-red-700) inset;
     }
   }
 }
