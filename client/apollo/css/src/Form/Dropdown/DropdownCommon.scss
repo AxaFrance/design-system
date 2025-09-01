@@ -34,7 +34,6 @@
   }
 
   &:focus-visible {
-    font-weight: 600;
     box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
     outline: 1px;
     outline-offset: 1px;
@@ -49,6 +48,16 @@
   &:not(:disabled):active {
     box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
   }
+
+  &:not(:has(option[value=""]:checked)) {
+    font-weight: 600;
+    box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
+    outline: 1px;
+    outline-offset: 1px;
+  }
+
+  /* &:focus-visible:not(:has(option[value=""]:checked)) {
+  } */
 }
 
 .af-form__dropdown-input--error {

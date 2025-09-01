@@ -1,12 +1,12 @@
 import { Dropdown } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps } from "react";
+import { ComponentProps, useState } from "react";
 
 const meta: Meta<typeof Dropdown> = {
   component: Dropdown,
   title: "Components/Form/Dropdown/Dropdown",
   args: {
-    value: "Lorem ipsum",
+    value: "",
     description: "Description",
     label: "Label",
     disabled: false,
@@ -16,9 +16,6 @@ const meta: Meta<typeof Dropdown> = {
     error: "",
     helper: "Information complémentaires",
   },
-  argTypes: {
-    onChange: { action: "onChange" },
-  },
 };
 
 export default meta;
@@ -26,15 +23,23 @@ export default meta;
 type StoryProps = ComponentProps<typeof Dropdown>;
 type Story = StoryObj<StoryProps>;
 
-const render = ({ onChange, ...args }: StoryProps) => (
-  <div style={{ width: 300 }}>
-    <Dropdown onChange={onChange} {...args}>
-      <option value="fun">For fun</option>
-      <option value="work">For work</option>
-      <option value="drink">For drink</option>
-    </Dropdown>
-  </div>
-);
+const render = (args: StoryProps) => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <div style={{ width: 300 }}>
+      <Dropdown onChange={handleChange} {...args} value={value}>
+        <option value="fun">For fun</option>
+        <option value="work">For work</option>
+        <option value="drink">For drink</option>
+      </Dropdown>
+    </div>
+  );
+};
 
 export const DropdownStory: Story = {
   name: "Dropdown",
