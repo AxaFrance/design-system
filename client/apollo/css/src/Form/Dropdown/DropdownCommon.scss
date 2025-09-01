@@ -1,24 +1,27 @@
 @use "../../common/breakpoints" as breakpoints;
 
 .af-form__dropdown-input {
+  --dropdown-box-shadow-width: 1px;
+
   display: block;
   width: 100%;
-  height: 56px;
   margin: calc(8 / var(--font-size-base) * 1rem) 0;
-  padding: calc(
-      var(--dropdown-padding-top-bottom) / var(--font-size-base) * 1rem
-    )
-    calc(var(--dropdown-padding-left-right) / var(--font-size-base) * 1rem);
-  border: 1px solid var(--dropdown-border-color);
+  padding: 1rem;
+  border: none;
   border-radius: var(--dropdown-border-radius);
-  font-size: var(--font-family-sans-serif);
+  font-family: var(--font-family-sans-serif);
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-weight: 600;
+  line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--dropdown-color);
-  background: var(--dropdown-background);
-  background-color: white;
+  background: var(--dropdown-background-color) var(--dropdown-background-image)
+    no-repeat right 1rem center / 1.5rem 1.5rem;
   background-position-x: calc(100% - 1rem);
-  box-shadow: var(--dropdown-box-shadow);
+  box-shadow: 0 0 0 var(--dropdown-box-shadow-width)
+    var(--dropdown-box-shadow-color) inset;
+  outline: none;
   appearance: none;
 
   option {
@@ -29,44 +32,29 @@
     }
   }
 
-  &:open {
-    background-image: var(--dropdown-background-open);
-  }
-
-  &:focus-visible {
-    box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
-    outline: 1px;
-    outline-offset: 1px;
-  }
-
   &:disabled {
-    background-color: var(--dropdown-bg-color-disabled);
     cursor: not-allowed;
   }
 
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
-    box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
+  &:is(:focus-visible, :hover, :active) {
+    --dropdown-box-shadow-width: 2px;
   }
 
-  &:not(:has(option[value=""]:checked)) {
-    font-weight: 600;
-    box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
-    outline: 1px;
-    outline-offset: 1px;
+  &:has(option[value=""]:checked) {
+    font-weight: 400;
   }
 
-  /* &:focus-visible:not(:has(option[value=""]:checked)) {
-  } */
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    line-height: 1.25;
+  }
 }
 
 .af-form__dropdown-input--error {
-  border: 2px solid var(--dropdown-border-color);
-  box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
+  --dropdown-box-shadow-width: 2px;
 
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
-    box-shadow: 0 0 0 1px var(--dropdown-box-shadow) inset;
+  &:is(:focus-visible, :hover, :active, :has(option[value=""]:not(:checked))) {
+    --dropdown-box-shadow-width: 3px;
   }
 }
 
