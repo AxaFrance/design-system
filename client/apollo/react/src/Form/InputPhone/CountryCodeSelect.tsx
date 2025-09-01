@@ -36,7 +36,7 @@ const CountryCodeSelect = ({
       ...provided,
       display: "none",
     }),
-    SingleValue: (provided: Record<string, unknown>) => ({
+    singleValue: (provided: Record<string, unknown>) => ({
       ...provided,
       color: "inherit",
     }),
