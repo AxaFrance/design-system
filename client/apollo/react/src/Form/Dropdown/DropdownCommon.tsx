@@ -74,11 +74,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
           ref={inputRef}
           id={inputId}
         >
-          {Boolean(placeholder) && (
-            <option disabled value="">
-              {placeholder}
-            </option>
-          )}
+          {Boolean(placeholder) && <option value="">{placeholder}</option>}
           {children}
         </select>
         {helper ? (
