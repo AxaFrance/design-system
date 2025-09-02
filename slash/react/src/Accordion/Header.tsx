@@ -1,5 +1,6 @@
 import React from "react";
 import arrow from "@material-symbols/svg-400/rounded/keyboard_arrow_down.svg";
+import { Title } from "../Title/Title";
 import { Button } from "../Button/Button";
 import { Svg } from "../Svg/Svg";
 import { getComponentClassName } from "../utilities";
@@ -38,33 +39,57 @@ const Header = ({
 
   return (
     <summary className={componentClassName} id={id}>
-      <div className="af-accordion__header-left">
-        <h3 className="af-accordion__item-title">{children}</h3>
-      </div>
-      <div className="af-accordion__header-right">
-        {actions
-          ? actions
-              .filter((action): action is NonNullable<typeof action> =>
-                Boolean(action),
-              )
-              .map(({ key, label, leftIcon, rightIcon, onClick }) => (
-                <Button
-                  key={key}
-                  onClick={onClick}
-                  leftIcon={leftIcon ? <Svg src={leftIcon} /> : undefined}
-                  rightIcon={rightIcon ? <Svg src={rightIcon} /> : undefined}
-                  variant={
-                    ["white", "light"].includes(type ?? "")
-                      ? "ghost"
-                      : "ghost-reverse"
-                  }
-                >
-                  {label}
-                </Button>
-              ))
-          : null}
-        <Svg src={arrow} className="af-accordion__item-header-icon" />
-      </div>
+      {type === "light" ? (
+        <Title heading="h3">
+          <Svg src={arrow} className="af-accordion__item-header-icon" />
+          {children}
+          {actions
+            ? actions
+                .filter((action): action is NonNullable<typeof action> =>
+                  Boolean(action),
+                )
+                .map(({ key, label, leftIcon, rightIcon, onClick }) => (
+                  <Button
+                    key={key}
+                    onClick={onClick}
+                    leftIcon={leftIcon ? <Svg src={leftIcon} /> : undefined}
+                    rightIcon={rightIcon ? <Svg src={rightIcon} /> : undefined}
+                    variant="ghost"
+                  >
+                    {label}
+                  </Button>
+                ))
+            : null}
+        </Title>
+      ) : (
+        <>
+          <div className="af-accordion__header-left">
+            <h3 className="af-accordion__item-title">{children}</h3>
+          </div>
+          <div className="af-accordion__header-right">
+            {actions
+              ? actions
+                  .filter((action): action is NonNullable<typeof action> =>
+                    Boolean(action),
+                  )
+                  .map(({ key, label, leftIcon, rightIcon, onClick }) => (
+                    <Button
+                      key={key}
+                      onClick={onClick}
+                      leftIcon={leftIcon ? <Svg src={leftIcon} /> : undefined}
+                      rightIcon={
+                        rightIcon ? <Svg src={rightIcon} /> : undefined
+                      }
+                      variant={type === "white" ? "ghost" : "ghost-reverse"}
+                    >
+                      {label}
+                    </Button>
+                  ))
+              : null}
+            <Svg src={arrow} className="af-accordion__item-header-icon" />
+          </div>
+        </>
+      )}
     </summary>
   );
 };

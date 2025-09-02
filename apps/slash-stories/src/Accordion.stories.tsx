@@ -12,6 +12,22 @@ const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
   component: Accordion,
 };
+
+const actions = [
+  {
+    key: "edit",
+    label: "Edit",
+    leftIcon: edit,
+    onClick: () => console.log("Edit clicked"),
+  },
+  {
+    key: "delete",
+    label: "Delete",
+    rightIcon: trash,
+    onClick: () => console.log("Delete clicked"),
+  },
+];
+
 export default meta;
 
 export const Default: StoryObj<typeof Accordion> = {
@@ -48,25 +64,7 @@ export const Default: StoryObj<typeof Accordion> = {
         contingent or uncertain loss.
       </CollapseCard>
 
-      <CollapseCard
-        title="With actions"
-        id="t3"
-        open
-        actions={[
-          {
-            key: "edit",
-            label: "Edit",
-            leftIcon: edit,
-            onClick: () => console.log("Edit clicked"),
-          },
-          {
-            key: "delete",
-            label: "Delete",
-            rightIcon: trash,
-            onClick: () => console.log("Delete clicked"),
-          },
-        ]}
-      >
+      <CollapseCard title="With actions" id="t3" open actions={actions}>
         Insurance is a means of protection from financial loss. It is a form of
         risk management, primarily used to hedge against the risk of a
         contingent or uncertain loss.
@@ -92,23 +90,7 @@ export const Light: StoryObj<typeof Accordion> = {
         nesciunt quos.
       </CollapseCard>
 
-      <CollapseCard
-        title="With actions"
-        id="t3"
-        open
-        actions={[
-          {
-            key: "edit",
-            label: "Edit",
-            onClick: () => console.log("Edit clicked"),
-          },
-          {
-            key: "delete",
-            label: "Delete",
-            onClick: () => console.log("Delete clicked"),
-          },
-        ]}
-      >
+      <CollapseCard title="With actions" id="t3" open actions={actions}>
         Insurance is a means of protection from financial loss. It is a form of
         risk management, primarily used to hedge against the risk of a
         contingent or uncertain loss.
@@ -155,23 +137,7 @@ export const White: StoryObj<typeof Accordion> = {
         kasd.
       </CollapseCard>
 
-      <CollapseCard
-        title="With actions"
-        id="t3"
-        open
-        actions={[
-          {
-            key: "edit",
-            label: "Edit",
-            onClick: () => console.log("Edit clicked"),
-          },
-          {
-            key: "delete",
-            label: "Delete",
-            onClick: () => console.log("Delete clicked"),
-          },
-        ]}
-      >
+      <CollapseCard title="With actions" id="t3" open actions={actions}>
         Insurance is a means of protection from financial loss. It is a form of
         risk management, primarily used to hedge against the risk of a
         contingent or uncertain loss.
