@@ -1,6 +1,21 @@
 import { Dropdown } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
+
+const options = [
+  {
+    label: "For fun",
+    value: "fun",
+  },
+  {
+    label: "For work",
+    value: "work",
+  },
+  {
+    label: "For drink",
+    value: "drink",
+  },
+];
 
 const meta: Meta<typeof Dropdown> = {
   component: Dropdown,
@@ -16,6 +31,13 @@ const meta: Meta<typeof Dropdown> = {
     error: "",
     helper: "Information complémentaires",
   },
+  argTypes: {
+    onChange: { action: "onChange" },
+    value: {
+      control: { type: "select" },
+      options: ["", ...options.map((option) => option.value)],
+    },
+  },
 };
 
 export default meta;
@@ -23,23 +45,17 @@ export default meta;
 type StoryProps = ComponentProps<typeof Dropdown>;
 type Story = StoryObj<StoryProps>;
 
-const render = (args: StoryProps) => {
-  const [value, setValue] = useState("");
-
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(event.target.value);
-  };
-
-  return (
-    <div style={{ width: 300 }}>
-      <Dropdown onChange={handleChange} {...args} value={value}>
-        <option value="fun">For fun</option>
-        <option value="work">For work</option>
-        <option value="drink">For drink</option>
-      </Dropdown>
-    </div>
-  );
-};
+const render = (args: StoryProps) => (
+  <div style={{ width: 300 }}>
+    <Dropdown {...args}>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </Dropdown>
+  </div>
+);
 
 export const DropdownStory: Story = {
   name: "Dropdown",
