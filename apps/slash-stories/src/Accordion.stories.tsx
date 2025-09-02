@@ -1,3 +1,6 @@
+import edit from "@material-symbols/svg-400/rounded/edit.svg";
+import trash from "@material-symbols/svg-400/rounded/delete.svg";
+
 import {
   Accordion,
   CheckboxItem,
@@ -53,11 +56,13 @@ export const Default: StoryObj<typeof Accordion> = {
           {
             key: "edit",
             label: "Edit",
+            leftIcon: edit,
             onClick: () => console.log("Edit clicked"),
           },
           {
             key: "delete",
             label: "Delete",
+            rightIcon: trash,
             onClick: () => console.log("Delete clicked"),
           },
         ]}
