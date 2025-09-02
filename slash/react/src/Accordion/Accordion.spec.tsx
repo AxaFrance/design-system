@@ -163,4 +163,22 @@ describe("Accordion", () => {
       expect(action2).toHaveBeenCalled();
     });
   });
+  describe("light mode", () => {
+    test("the light mode should display the correct elements", () => {
+      render(
+        <Accordion classModifier="lighter">
+          <CollapseCard id="1" title="My title" open>
+            My collapse content
+          </CollapseCard>
+          <CollapseCard id="2" title="My second title" open>
+            My second collapse content
+          </CollapseCard>
+        </Accordion>,
+      );
+      expect(screen.getByText("My collapse content")).toBeVisible();
+      expect(screen.getByText("My title")).toBeVisible();
+      expect(screen.getByText("My second collapse content")).toBeVisible();
+      expect(screen.getByText("My second title")).toBeVisible();
+    });
+  });
 });
