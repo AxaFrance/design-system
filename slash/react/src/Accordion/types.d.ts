@@ -3,9 +3,11 @@ export type TDefaultProps = {
   className: string;
 };
 
-type AccordionAction = {
+export type AccordionAction = {
   key: string;
   label: string;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
   onClick: () => void;
 };
 

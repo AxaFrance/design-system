@@ -47,10 +47,12 @@ const Header = ({
               .filter((action): action is NonNullable<typeof action> =>
                 Boolean(action),
               )
-              .map(({ key, label, onClick }) => (
+              .map(({ key, label, leftIcon, rightIcon, onClick }) => (
                 <Button
                   key={key}
                   onClick={onClick}
+                  leftIcon={leftIcon ? <Svg src={leftIcon} /> : undefined}
+                  rightIcon={rightIcon ? <Svg src={rightIcon} /> : undefined}
                   variant={
                     ["white", "light"].includes(type ?? "")
                       ? "ghost"
@@ -61,7 +63,7 @@ const Header = ({
                 </Button>
               ))
           : null}
-        <Svg src={arrow} />
+        <Svg src={arrow} className="af-accordion__item-header-icon" />
       </div>
     </summary>
   );
