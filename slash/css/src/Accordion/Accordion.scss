@@ -16,18 +16,18 @@ $minHeight: 3rem;
     background-color: var(--axablue80);
     cursor: pointer;
     list-style-type: none;
+
+    &-icon {
+      width: 2rem;
+      height: 2rem;
+      order: 2;
+      transition: transform 0.5s;
+      fill: currentcolor;
+    }
   }
 
   &__details {
     margin-bottom: 1px;
-  }
-
-  svg {
-    width: 2rem;
-    height: 2rem;
-    order: 2;
-    transition: transform 0.5s;
-    fill: currentcolor;
   }
 
   &__item-title {
@@ -41,10 +41,8 @@ $minHeight: 3rem;
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
   }
 
-  &__details[open] {
-    svg {
-      transform: rotate(180deg);
-    }
+  &__details[open] &__item-header-icon {
+    transform: rotate(180deg);
   }
 
   &__header-right {
@@ -85,10 +83,6 @@ $minHeight: 3rem;
       height: 1px;
       background-color: #ccc;
       content: "";
-    }
-
-    svg {
-      order: 0;
     }
   }
 }
