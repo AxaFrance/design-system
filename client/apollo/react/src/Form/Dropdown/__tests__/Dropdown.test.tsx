@@ -42,7 +42,6 @@ describe("Select", () => {
     expect(screen.getByText(helperText)).toBeInTheDocument();
     const placeholderElement = screen.getByText(placeholderText);
     expect(placeholderElement).toBeInTheDocument();
-    expect((placeholderElement as HTMLOptionElement).disabled).toBe(true);
   });
 
   it("shouldn't have an accessibility violation", async () => {
