@@ -13,7 +13,7 @@ const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
     <dialog
       aria-modal
-      aria-labelledby={props["aria-labelledby"] ?? props.title}
+      aria-label={props["aria-label"] ?? props.title}
       className={["af-modal", className].filter(Boolean).join(" ")}
       onClick={props.onClose}
       ref={ref}
