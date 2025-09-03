@@ -13,7 +13,7 @@ describe("ModalCoreFooter", () => {
 
   it("should render with default class", () => {
     render(<ModalCoreFooter primaryButtonProps={{ children: "Primary" }} />);
-    expect(getFooter()).toHaveClass("af-apollo-modal__footer");
+    expect(getFooter()).toHaveClass("af-modal__footer");
   });
 
   it("should render with additional class", () => {
@@ -23,7 +23,7 @@ describe("ModalCoreFooter", () => {
         primaryButtonProps={{ children: "Primary" }}
       />,
     );
-    expect(getFooter()).toHaveClass("af-apollo-modal__footer custom-class");
+    expect(getFooter()).toHaveClass("af-modal__footer custom-class");
   });
 
   it("should render with primary and secondary buttons", () => {
@@ -47,6 +47,6 @@ describe("ModalCoreFooter", () => {
         primaryButtonProps={{ children: "Primary" }}
       />,
     );
-    expect(getFooter()).toHaveClass("af-apollo-modal__footer");
+    expect(getFooter()).toHaveClass("af-modal__footer");
   });
 });

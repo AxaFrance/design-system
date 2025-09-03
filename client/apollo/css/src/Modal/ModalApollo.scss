@@ -1,7 +1,7 @@
 @use "../common/breakpoints" as breakpoints;
 @use "./ModalCommon";
 
-.af-apollo-modal {
+.af-modal {
   --modal-bg-color: var(--white);
   --modal-text-color: var(--neutral-100);
   --modal-text-font-size: calc(16 / var(--font-size-base) * 1rem);
@@ -18,11 +18,11 @@
   --modal-footer-horizontal-padding: var(--modal-default-padding);
   --modal-footer-gap: calc(16 / var(--font-size-base) * 1rem);
 
-  &__body:not(:has(~ .af-apollo-modal__footer)) {
+  &__body:not(:has(~ .af-modal__footer)) {
     --modal-body-padding-bottom: var(--modal-default-padding);
   }
 
-  :has(.af-apollo-modal__body-vertical-scroll) {
+  :has(.af-modal__body-vertical-scroll) {
     --modal-footer-border-top: 1px solid var(--axa-blue-20);
     --modal-footer-vertical-padding: calc(12 / var(--font-size-base) * 1rem);
     --modal-footer-horizontal-padding: calc(16 / var(--font-size-base) * 1rem);
@@ -33,7 +33,7 @@
     --modal-default-padding: calc(32 / var(--font-size-base) * 1rem);
     --modal-body-padding-bottom: calc(16 / var(--font-size-base) * 1rem);
 
-    :has(.af-apollo-modal__body-vertical-scroll) {
+    :has(.af-modal__body-vertical-scroll) {
       --modal-footer-vertical-padding: calc(16 / var(--font-size-base) * 1rem);
       --modal-footer-horizontal-padding: var(--modal-default-padding);
       --modal-footer-border-top: none;
