@@ -1,20 +1,26 @@
 @use "../../common/breakpoints";
 
-.af-form__input-textarea {
+.af-form__textarea {
+  --textarea-box-shadow-width: 1px;
+
   width: 100%;
-  min-height: calc(56 / var(--font-size-base) * 1rem);
   padding: calc(16 / var(--font-size-base) * 1rem);
   border: none;
-  border-radius: var(--input-textarea-border-radius);
-  font: var(--font-family-base);
-  font-size: var(--input-textarea-font-size);
+  border-radius: var(--textarea-border-radius);
+  font-size: calc(16 / var(--font-size-base) * 1rem);
   font-weight: 600;
   line-height: 125%;
-  color: var(--input-textarea-color);
-  background-color: var(--input-textarea-background-color);
-  box-shadow: 0 0 0 var(--input-textarea-box-shadow-size)
-    var(--input-textarea-box-shadow-color);
+  color: var(--textarea-color);
+  background-color: var(--textarea-background-color);
+  box-shadow: 0 0 0 var(--textarea-box-shadow-width)
+    var(--textarea-box-shadow-color) inset;
   outline: none;
+
+  &:is(:focus-visible, :hover, :active, :focus, [aria-invalid="true"]):not(
+      :disabled
+    ) {
+    --textarea-box-shadow-width: 2px;
+  }
 
   @media (width > #{breakpoints.$breakpoint-md}) {
     font-size: calc(18 / var(--font-size-base) * 1rem);
@@ -22,6 +28,6 @@
 
   &::placeholder {
     font-weight: 400;
-    color: var(--input-textarea-placeholder-color);
+    color: var(--textarea-placeholder-color);
   }
 }

@@ -1,44 +1,29 @@
 @use "../../common/breakpoints";
 @use "TextAreaCommon";
 
-.af-form__input-textarea {
-  --input-textarea-border-radius: var(--radius-8);
-  --input-textarea-box-shadow-color: var(--axa-blue-65);
-  --input-textarea-placeholder-color: var(--neutral-80);
-  --input-textarea-background-color: var(--white);
-  --input-textarea-color: var(--axa-blue-100);
-  --input-textarea-box-shadow-size: 1px;
+.af-form__textarea {
+  --textarea-border-radius: var(--radius-8);
+  --textarea-placeholder-color: var(--neutral-80);
+  --textarea-background-color: var(--white);
+  --textarea-color: var(--axa-blue-100);
+  --textarea-box-shadow-color: var(--axa-blue-65);
 
-  &:hover,
-  &:focus,
-  &:not(:placeholder-shown) {
-    --input-textarea-box-shadow-color: var(--axa-blue-100);
-    --input-textarea-box-shadow-size: 2px;
-  }
-
-  &[aria-invalid="true"] {
-    --input-textarea-box-shadow-color: var(--red-alert-100);
-    --input-textarea-box-shadow-size: 2px;
-
-    &:hover,
-    &:focus {
-      --input-textarea-box-shadow-size: 3px;
-    }
+  &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
+    --textarea-box-shadow-color: var(--axa-blue-100);
   }
 
   &:disabled {
-    --input-textarea-background-color: var(--neutral-5);
-    --input-textarea-box-shadow-color: var(--neutral-50);
-    --input-textarea-placeholder-color: var(--neutral-50);
-    --input-textarea-color: var(--neutral-80);
-    --input-textarea-box-shadow-size: 1px;
-
-    &:hover {
-      --input-textarea-box-shadow-size: 1px;
-    }
+    --textarea-background-color: var(--neutral-5);
+    --textarea-box-shadow-color: var(--neutral-50);
+    --textarea-placeholder-color: var(--neutral-50);
+    --textarea-color: var(--neutral-80);
   }
 
-  &:not(:placeholder-shown):hover {
-    --input-textarea-box-shadow-size: 3px;
+  &[aria-invalid="true"] {
+    --textarea-box-shadow-color: var(--red-alert-100);
+
+    &:is(:focus-visible, :hover, :active, :focus) {
+      --textarea-box-shadow-width: 3px;
+    }
   }
 }
