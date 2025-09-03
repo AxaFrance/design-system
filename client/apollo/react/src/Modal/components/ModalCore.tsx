@@ -12,15 +12,16 @@ const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
   ({ className, children, ...props }: ModalCoreProps, ref) => (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
     <dialog
-      aria-label={props["aria-label"] ?? props.title}
-      className={["af-apollo-modal", className].filter(Boolean).join(" ")}
+      aria-modal
+      aria-labelledby={props["aria-labelledby"] ?? props.title}
+      className={["af-modal", className].filter(Boolean).join(" ")}
       onClick={props.onClose}
       ref={ref}
       {...props}
     >
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
       <section
-        className="af-apollo-modal__content"
+        className="af-modal__content"
         onClick={(e) => e.stopPropagation()}
       >
         {children}

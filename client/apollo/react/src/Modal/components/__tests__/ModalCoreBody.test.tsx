@@ -20,9 +20,7 @@ describe("ModalCoreBody component", () => {
     render(
       <ModalCoreBody className="custom-class">Test Content</ModalCoreBody>,
     );
-    expect(screen.getByRole("main")).toHaveClass(
-      "af-apollo-modal__body custom-class",
-    );
+    expect(screen.getByRole("main")).toHaveClass("af-modal__body custom-class");
   });
 
   it("passes other props to the main element", () => {
