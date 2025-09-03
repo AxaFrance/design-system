@@ -54,7 +54,6 @@ export {
   type IconSizeVariants,
   type IconVariants,
 } from "./Icon/IconApollo";
-export { ItemProgressBar } from "./ItemProgressBar/ItemProgressBarApollo";
 export {
   ItemTabBar,
   itemTabBarVariants,
@@ -82,6 +81,7 @@ export {
   ModalCoreFooter,
   ModalCoreHeader,
 } from "./Modal/ModalApollo";
+export { ProgressBar } from "./ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupApollo";
 export {
   Spinner,

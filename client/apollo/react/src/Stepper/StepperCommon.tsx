@@ -21,7 +21,7 @@ export type StepperProps = {
   messageType?: ItemMessageProps["messageType"];
   titleLevel?: 1 | 2 | 3;
   ProgressBarGroupComponent: ComponentType<
-    Omit<ProgressBarGroupProps, "ItemProgressBarComponent">
+    Omit<ProgressBarGroupProps, "ProgressBarComponent">
   >;
 } & Omit<HTMLAttributes<HTMLDivElement>, "role">;
 

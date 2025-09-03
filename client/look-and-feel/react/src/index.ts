@@ -95,8 +95,8 @@ export type {
 } from "./Modal";
 export { Pagination } from "./Pagination/Pagination";
 export {
-  /** @deprecated Use `ItemProgressBar` from apollo/lf package instead. */ ItemProgressBar,
-} from "./ItemProgressBar/ItemProgressBar";
+  /** @deprecated Use `ProgressBar` from apollo/lf package instead. */ ProgressBar,
+} from "./ProgressBar/ProgressBar";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroup";
 export { Skeleton } from "./Skeleton/Skeleton";
 export { SkeletonList } from "./SkeletonList/SkeletonList";

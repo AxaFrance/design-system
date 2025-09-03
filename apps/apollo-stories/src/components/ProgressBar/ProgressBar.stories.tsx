@@ -1,10 +1,10 @@
-import { ItemProgressBar } from "@axa-fr/design-system-apollo-react";
+import { ProgressBar } from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
-const meta: Meta<typeof ItemProgressBar> = {
-  component: ItemProgressBar,
-  title: "Components/ItemProgressBar",
+const meta: Meta<typeof ProgressBar> = {
+  component: ProgressBar,
+  title: "Components/ProgressBar",
   parameters: {
     layout: "centered",
   },
@@ -37,7 +37,7 @@ const meta: Meta<typeof ItemProgressBar> = {
 
 export default meta;
 
-type StoryProps = ComponentProps<typeof ItemProgressBar>;
+type StoryProps = ComponentProps<typeof ProgressBar>;
 type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {

@@ -58,7 +58,6 @@ export {
   type IconSizeVariants,
   type IconVariants,
 } from "./Icon/IconLF";
-export { ItemProgressBar } from "./ItemProgressBar/ItemProgressBarLF";
 export {
   ItemTabBar,
   itemTabBarVariants,
@@ -86,6 +85,7 @@ export {
   ModalCoreFooter,
   ModalCoreHeader,
 } from "./Modal/ModalLF";
+export { ProgressBar } from "./ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./ProgressBarGroup/ProgressBarGroupLF";
 export {
   Spinner,

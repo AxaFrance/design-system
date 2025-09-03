@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ItemProgressBar } from "../../ItemProgressBar/ItemProgressBarCommon";
+import { ProgressBar } from "../../ProgressBar/ProgressBarCommon";
 import { ProgressBarGroup } from "../ProgressBarGroupCommon";
 
 describe("ProgressBarGroup Component", () => {
@@ -8,7 +8,7 @@ describe("ProgressBarGroup Component", () => {
       <ProgressBarGroup
         currentStep={2}
         nbSteps={5}
-        ItemProgressBarComponent={ItemProgressBar}
+        ProgressBarComponent={ProgressBar}
       />,
     );
     const progressBars = screen.getAllByRole("progressbar");
@@ -21,7 +21,7 @@ describe("ProgressBarGroup Component", () => {
         currentStep={2}
         currentStepProgress={50}
         nbSteps={4}
-        ItemProgressBarComponent={ItemProgressBar}
+        ProgressBarComponent={ProgressBar}
       />,
     );
 
@@ -38,7 +38,7 @@ describe("ProgressBarGroup Component", () => {
         currentStep={1}
         currentStepProgress={0}
         nbSteps={3}
-        ItemProgressBarComponent={ItemProgressBar}
+        ProgressBarComponent={ProgressBar}
       />,
     );
 
@@ -54,7 +54,7 @@ describe("ProgressBarGroup Component", () => {
         currentStep={1}
         label="Custom Progress Bar Group"
         nbSteps={3}
-        ItemProgressBarComponent={ItemProgressBar}
+        ProgressBarComponent={ProgressBar}
       />,
     );
 
@@ -70,7 +70,7 @@ describe("ProgressBarGroup Component", () => {
         currentStep={1}
         className="custom-class"
         nbSteps={3}
-        ItemProgressBarComponent={ItemProgressBar}
+        ProgressBarComponent={ProgressBar}
       />,
     );
 
@@ -83,7 +83,7 @@ describe("ProgressBarGroup Component", () => {
       <ProgressBarGroup
         currentStep={1}
         nbSteps={3}
-        ItemProgressBarComponent={ItemProgressBar}
+        ProgressBarComponent={ProgressBar}
       />,
     );
 

@@ -1,34 +1,32 @@
 import { useId, type ComponentProps, type ReactNode } from "react";
 
-type ItemProgressBarProps = ComponentProps<"progress"> & {
+type ProgressBarProps = ComponentProps<"progress"> & {
   label?: ReactNode;
 };
 
-export const ItemProgressBar = ({
+export const ProgressBar = ({
   id,
   label,
   className,
   ...props
-}: ItemProgressBarProps) => {
+}: ProgressBarProps) => {
   let inputId = useId();
   inputId = id || inputId;
 
   return (
     <>
       {Boolean(label) && (
-        <label className="af-item-progress-bar__label" htmlFor={inputId}>
+        <label className="af-progress-bar__label" htmlFor={inputId}>
           {label}
         </label>
       )}
       <progress
         id={inputId}
-        className={["af-item-progress-bar", className]
-          .filter(Boolean)
-          .join(" ")}
+        className={["af-progress-bar", className].filter(Boolean).join(" ")}
         {...props}
       />
     </>
   );
 };
 
-ItemProgressBar.displayName = "ItemProgressBar";
+ProgressBar.displayName = "ProgressBar";

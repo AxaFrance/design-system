@@ -1,11 +1,11 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs";
-import * as ItemProgressBarStories from "./ItemProgressBar.stories";
+import * as ProgressBarStories from "./ProgressBar.stories";
 
-<Meta of={ItemProgressBarStories} />
+<Meta of={ProgressBarStories} />
 
-# ItemProgressBar
+# ProgressBar
 
-The `ItemProgressBar` component displays a visual indicator of progress. It is based on the native HTML `<progress>` element and can be customized using standard props.
+The `ProgressBar` component displays a visual indicator of progress. It is based on the native HTML `<progress>` element and can be customized using standard props.
 
 By default, the maximum value (`max` prop) is set to `1`, which means the `value` prop should be between 0 and 1 (for example, 0.7 for 70%).
 You can override the `max` prop if you want to use a different scale (for example, `max=100` for percentage values).
@@ -13,23 +13,23 @@ You can override the `max` prop if you want to use a different scale (for exampl
 ## Usage
 
 ```tsx title="Example usage"
-import { ItemProgressBar } from "@axa-fr/design-system-apollo-react";
+import { ProgressBar } from "@axa-fr/design-system-apollo-react/lf";
 
-const MyComponent = () => <ItemProgressBar value={0.7} />;
+const MyComponent = () => <ProgressBar value={0.7} />;
 ```
 
 ## Playground
 
-<Canvas of={ItemProgressBarStories.Playground} sourceState="shown" />
+<Canvas of={ProgressBarStories.Playground} sourceState="shown" />
 
-<Controls of={ItemProgressBarStories.Playground} />
+<Controls of={ProgressBarStories.Playground} />
 
 ## Accessibility: Indicating Current Progress
 
 For accessibility, always use the `label` prop to provide a descriptive label for the progress bar. This ensures that assistive technologies can correctly announce the purpose and current state of the progress bar.
 
-```tsx title="Accessible ItemProgressBar"
-<ItemProgressBar value={0.7} label="Loading something..." />
+```tsx title="Accessible ProgressBar"
+<ProgressBar value={0.7} label="Loading something..." />
 ```
 
 This approach improves accessibility by associating a visible and programmatic label with the progress bar.
