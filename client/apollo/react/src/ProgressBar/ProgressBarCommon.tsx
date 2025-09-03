@@ -1,30 +1,32 @@
-const MAX_STEPPER_PROGRESS = 100;
+import { useId, type ComponentProps, type ReactNode } from "react";
 
-export type ProgressBarProps = {
-  value: number;
-  active?: boolean;
+type ProgressBarProps = ComponentProps<"progress"> & {
+  label?: ReactNode;
 };
 
 export const ProgressBar = ({
-  value = MAX_STEPPER_PROGRESS,
-  active = true,
+  id,
+  label,
+  className,
+  ...props
 }: ProgressBarProps) => {
-  const clampedValue = Math.max(0, Math.min(value, MAX_STEPPER_PROGRESS));
+  let inputId = useId();
+  inputId = id || inputId;
+
   return (
-    <div
-      role="progressbar"
-      className="af-progressbar"
-      aria-valuemin={0}
-      aria-valuemax={MAX_STEPPER_PROGRESS}
-      aria-valuenow={clampedValue}
-      aria-current={active}
-      aria-hidden={!active}
-      aria-label={`Progression : ${clampedValue}%`}
-    >
-      <div
-        className="af-progressbar__progress"
-        style={{ width: `${clampedValue}%` }}
+    <>
+      {Boolean(label) && (
+        <label className="af-progress-bar__label" htmlFor={inputId}>
+          {label}
+        </label>
+      )}
+      <progress
+        id={inputId}
+        className={["af-progress-bar", className].filter(Boolean).join(" ")}
+        {...props}
       />
-    </div>
+    </>
   );
 };
+
+ProgressBar.displayName = "ProgressBar";

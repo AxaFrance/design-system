@@ -1,12 +1,12 @@
+import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
-import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.scss";
 import "@fontsource/source-sans-pro";
 
 export {
   Accordion,
-  type AccordionVariants,
   accordionVariants,
+  type AccordionVariants,
 } from "./Accordion/AccordionLF";
 export { AccordionCore } from "./AccordionCore/AccordionCoreLF";
 export { BasePicture } from "./BasePicture/BasePicture";
@@ -17,45 +17,40 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageLF";
 export { ClickIcon } from "./ClickIcon/ClickIconLF";
-export {
-  ClickItem,
-  clickItemStates,
-  clickItemVariants,
-  type ClickItemStates,
-  type ClickItemVariants,
-} from "./List/ClickItem/ClickItemLF";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
 export { DataAgent } from "./DataAgent/DataAgentLF";
 export { Divider } from "./Divider/DividerLF";
-export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
 export {
   CardCheckbox,
   /** @deprecated Use `CardCheckbox` instead. */
   CardCheckbox as CheckboxCard,
 } from "./Form/Checkbox/CardCheckbox/CardCheckboxLF";
-export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
 export { CardCheckboxOption } from "./Form/Checkbox/CardCheckboxOption/CardCheckboxOptionLF";
+export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
+export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
+export { Dropdown } from "./Form/Dropdown/DropdownLF";
 export {
-  InputDate,
   /** @deprecated Use `InputDate` instead. */
   InputDate as DateInput,
+  InputDate,
 } from "./Form/InputDate/InputDateLF";
+export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { InputPhone } from "./Form/InputPhone/InputPhoneLF";
-export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
-export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileLF";
-export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
-export { TextArea } from "./Form/TextArea/TextAreaLF";
-export { Radio } from "./Form/Radio/Radio/RadioLF";
-export { CardRadioOption } from "./Form/Radio/CardRadioOption/CardRadioOptionLF";
-export { CardRadio } from "./Form/Radio/CardRadio/CardRadioLF";
 export {
   InputText,
   /** @deprecated Use `InputText` instead. */
   InputText as TextInput,
 } from "./Form/InputText/InputTextLF";
+export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomLF";
+export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileLF";
+export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
+export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
+export { CardRadio } from "./Form/Radio/CardRadio/CardRadioLF";
+export { CardRadioOption } from "./Form/Radio/CardRadioOption/CardRadioOptionLF";
+export { Radio } from "./Form/Radio/Radio/RadioLF";
+export { TextArea } from "./Form/TextArea/TextAreaLF";
 export { DebugGrid } from "./Grid/DebugGridLF";
 export { Heading, type HeadingLevel } from "./Heading/HeadingLF";
-export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomLF";
 export {
   Icon,
   iconSizeVariants,
@@ -68,7 +63,15 @@ export {
   itemTabBarVariants,
   type ItemTabBarVariants,
 } from "./ItemTabBar/ItemTabBarLF";
+export { Footer, type FooterProps } from "./Layout/Footer/FooterLF";
 export { Link, linkVariants, type LinkVariants } from "./Link/LinkLF";
+export {
+  ClickItem,
+  clickItemStates,
+  clickItemVariants,
+  type ClickItemStates,
+  type ClickItemVariants,
+} from "./List/ClickItem/ClickItemLF";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
 export {
   Message,
@@ -94,6 +97,3 @@ export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
-export { type OptionType } from "./Form/InputPhone/InputPhone.types";
-export { Dropdown } from "./Form/Dropdown/DropdownLF";
-export { Footer, type FooterProps } from "./Layout/Footer/FooterLF";

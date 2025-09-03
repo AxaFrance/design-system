@@ -1,45 +1,41 @@
 import { render, screen } from "@testing-library/react";
 import { ProgressBar } from "../ProgressBarCommon";
 
+const label = "Label progress";
+const id = "progress-bar-test-id";
+
 describe("ProgressBar Component", () => {
-  it("renders with default props", () => {
-    render(<ProgressBar value={100} />);
-    const progressBar = screen.getByRole("progressbar");
+  it("renders progress bar correctly", () => {
+    render(<ProgressBar value={50} max={100} label={label} />);
+
+    const progressBar = screen.getByRole("progressbar", {
+      name: label,
+    });
     expect(progressBar).toBeInTheDocument();
-    expect(progressBar).toHaveAttribute("aria-valuemin", "0");
-    expect(progressBar).toHaveAttribute("aria-valuemax", "100");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "100");
-    expect(progressBar).toHaveAttribute("aria-label", "Progression : 100%");
+    expect(progressBar).toHaveValue(50);
+    expect(progressBar).toHaveAttribute("max", "100");
   });
 
-  it("renders with a custom value", () => {
-    render(<ProgressBar value={50} />);
+  it("applies custom className", () => {
+    render(<ProgressBar className="custom-class" />);
+
     const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "50");
-    expect(progressBar).toHaveAttribute("aria-label", "Progression : 50%");
+    expect(progressBar).toHaveClass("af-progress-bar custom-class");
   });
 
-  it("clamps value to the minimum", () => {
-    render(<ProgressBar value={-50} />);
-    const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "0");
+  it("applies and links label correctly with custom id", () => {
+    const customId = "custom-progress-id";
+    render(<ProgressBar id={customId} label={label} />);
+
+    const progressBar = screen.getByRole("progressbar", {
+      name: label,
+    });
+    expect(progressBar).toHaveAttribute("id", customId);
   });
 
-  it("clamps value to the maximum", () => {
-    render(<ProgressBar value={150} />);
-    const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-valuenow", "100");
-  });
+  it("doesn't render a label element if no label prop is provided", () => {
+    const { container } = render(<ProgressBar id={id} />);
 
-  it("applies the active state correctly", () => {
-    render(<ProgressBar active value={30} />);
-    const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveAttribute("aria-current", "true");
-  });
-
-  it("does not hide the progress bar when active is true", () => {
-    render(<ProgressBar active value={30} />);
-    const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).not.toHaveAttribute("aria-hidden", "true");
+    expect(container.querySelector(`label[for=${id}]`)).not.toBeInTheDocument();
   });
 });
