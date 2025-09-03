@@ -74,7 +74,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
         />
         <textarea
           id={inputId}
-          className="af-form__input-textarea"
+          className="af-form__textarea"
           ref={inputRef}
           aria-errormessage={error ? errorId : undefined}
           aria-describedby={helper ? helperId : undefined}
