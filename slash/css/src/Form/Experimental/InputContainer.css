@@ -1,0 +1,24 @@
+.af-input__container {
+  display: grid;
+  width: fit-content;
+  margin-bottom: 3rem;
+  grid-template-areas:
+    "label input unit"
+    ". helper-message helper-message"
+    ". error-message error-message";
+  grid-template-columns: 280px auto auto;
+  align-items: center;
+
+  --label-margin-bottom: 0;
+}
+
+.af-input__container--vertical {
+  --label-margin-bottom: 8px;
+
+  grid-template-areas:
+    "label label"
+    "input unit"
+    "helper-message helper-message"
+    "error-message error-message";
+  grid-template-columns: 1fr auto;
+}
