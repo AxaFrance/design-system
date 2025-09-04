@@ -20,7 +20,7 @@ export type HeaderProps = {
   classModifier?: string;
   id?: string;
   actions?: AccordionActions;
-  type?: string;
+  variant?: string;
 };
 
 const Header = ({
@@ -29,7 +29,7 @@ const Header = ({
   classModifier,
   id,
   actions,
-  type,
+  variant,
 }: HeaderProps) => {
   const componentClassName = getComponentClassName(
     className,
@@ -39,7 +39,7 @@ const Header = ({
 
   return (
     <summary className={componentClassName} id={id}>
-      {type === "light" ? (
+      {variant === "light" ? (
         <Title heading="h3">
           <Svg src={arrow} className="af-accordion__item-header-icon" />
           {children}
@@ -80,7 +80,7 @@ const Header = ({
                       rightIcon={
                         rightIcon ? <Svg src={rightIcon} /> : undefined
                       }
-                      variant={type === "white" ? "ghost" : "ghost-reverse"}
+                      variant={variant === "white" ? "ghost" : "ghost-reverse"}
                     >
                       {label}
                     </Button>
