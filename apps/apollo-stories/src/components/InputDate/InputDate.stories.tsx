@@ -4,15 +4,22 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof InputDate> = {
   component: InputDate,
   title: "Components/Form/Input/InputDate",
-  argTypes: { onChange: { action: "onChange" } },
+  argTypes: {
+    onChange: { action: "onChange" },
+    value: { control: { type: "text" } },
+    hidePicker: {
+      control: { type: "boolean" },
+    },
+  },
   args: {
-    name: "brithDate",
+    name: "birthDate",
     id: "uniqueId",
     label: "Date de naissance",
     required: true,
-    description: "Decription",
+    description: "Description",
     buttonLabel: "En savoir plus",
     helper: "Informations complémentaires",
+    hidePicker: false,
   },
 };
 
