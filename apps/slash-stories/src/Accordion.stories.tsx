@@ -72,6 +72,7 @@ export const Default: StoryObj<typeof Accordion> = {
     </Accordion>
   ),
   args: {
+    variant: "userClassName",
     onlyOne: false,
   },
 };
@@ -99,7 +100,7 @@ export const Light: StoryObj<typeof Accordion> = {
   ),
   args: {
     onlyOne: false,
-    classModifier: "light",
+    variant: "light",
   },
 };
 
@@ -146,6 +147,6 @@ export const White: StoryObj<typeof Accordion> = {
   ),
   args: {
     onlyOne: false,
-    classModifier: "white",
+    variant: "white",
   },
 };

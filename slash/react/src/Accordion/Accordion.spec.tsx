@@ -173,7 +173,7 @@ describe("Accordion", () => {
   describe("light mode", () => {
     test("the light mode should display the correct elements", () => {
       render(
-        <Accordion classModifier="light">
+        <Accordion variant="light">
           <CollapseCard id="1" title="My title" open actions={actions}>
             My collapse content
           </CollapseCard>
@@ -194,7 +194,7 @@ describe("Accordion", () => {
   describe("A11Y", () => {
     it("shouldn't have an accessibility violation <ClickIcon />", async () => {
       const { container } = render(
-        <Accordion classModifier="light">
+        <Accordion variant="light">
           <CollapseCard id="1" title="My title" open>
             My collapse content
           </CollapseCard>

@@ -14,7 +14,7 @@ export type CollapseProps = {
   className?: string;
   classModifier?: string;
   actions?: AccordionActions;
-  type?: string;
+  variant?: string;
 };
 
 export const CollapseCard = ({
@@ -27,7 +27,7 @@ export const CollapseCard = ({
   className,
   classModifier = "",
   actions,
-  type,
+  variant,
 }: CollapseProps) => {
   const headerId = id;
 
@@ -47,7 +47,7 @@ export const CollapseCard = ({
       className={componentClassName}
       onToggle={onToggle}
     >
-      <Header id={headerId} actions={actions} type={type}>
+      <Header id={headerId} actions={actions} variant={variant}>
         {title}
       </Header>
       <Body>{children}</Body>
