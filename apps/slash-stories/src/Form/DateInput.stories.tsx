@@ -4,7 +4,7 @@ import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
 
 const commonProps = {
-  name: "brithDate",
+  name: "birthDate",
   id: "uniqueid",
   value: new Date("01/01/2024"),
 };

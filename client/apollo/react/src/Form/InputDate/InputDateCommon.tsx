@@ -3,6 +3,7 @@ import {
   ComponentPropsWithRef,
   ComponentType,
   forwardRef,
+  useEffect,
   useId,
 } from "react";
 import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
@@ -22,6 +23,7 @@ type InputDateProps = Omit<
   helper?: string;
   error?: string;
   success?: string;
+  hidePicker?: boolean;
   label: ComponentProps<typeof ItemLabel>["label"];
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
@@ -49,6 +51,7 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
       "aria-errormessage": ariaErrormessage,
       min,
       max,
+      hidePicker,
       ...otherProps
     },
     inputRef,
@@ -56,7 +59,7 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
     const componentClassName = getComponentClassName(
       "af-form__input-date",
       className ?? "",
-      classModifier + (error || ariaErrormessage ? " error" : ""),
+      `${classModifier}${hidePicker ? " no-picker" : ""}`,
     );
 
     let inputId = useId();
@@ -67,6 +70,28 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
     const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
       Boolean,
     ) as string[];
+
+    /* Stop keydown (space and enter) and click events for Firefox when picker is disabled */
+    useEffect(() => {
+      function handleKeydown(event: KeyboardEvent) {
+        if (hidePicker && (event.keyCode === 13 || event.keyCode === 32)) {
+          event.preventDefault();
+        }
+      }
+      function handleClick(event: MouseEvent) {
+        if (hidePicker) {
+          event.preventDefault();
+        }
+      }
+
+      window.addEventListener("keydown", handleKeydown);
+      window.addEventListener("click", handleClick);
+
+      return () => {
+        window.removeEventListener("keydown", handleKeydown);
+        window.removeEventListener("click", handleClick);
+      };
+    }, [hidePicker]);
 
     return (
       <div className="af-form__input-container">

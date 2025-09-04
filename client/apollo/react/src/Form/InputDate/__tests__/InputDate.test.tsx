@@ -141,4 +141,16 @@ describe("<InputDate />", () => {
       expect(input).not.toHaveAttribute("aria-errormessage");
     });
   });
+
+  it("adds the af-form__input-date--no-picker class when hidePicker is true", () => {
+    render(<InputDate label="Date de naissance" hidePicker />);
+    const inputDate = screen.getByLabelText(/Date de naissance/);
+    expect(inputDate).toHaveClass("af-form__input-date--no-picker");
+  });
+
+  it("does not add the af-form__input-date--no-picker class when hidePicker is not defined", () => {
+    render(<InputDate label="Date de naissance" />);
+    const inputDate = screen.getByLabelText(/Date de naissance/);
+    expect(inputDate).not.toHaveClass("af-form__input-date--no-picker");
+  });
 });
