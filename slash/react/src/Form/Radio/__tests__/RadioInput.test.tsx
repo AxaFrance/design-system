@@ -13,7 +13,7 @@ describe("RadioInput", () => {
     render(
       <RadioInput
         name="languages"
-        mode="card"
+        mode="cardRadio"
         label="Languages"
         options={languageOptions}
       >

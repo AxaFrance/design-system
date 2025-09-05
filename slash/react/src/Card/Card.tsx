@@ -13,6 +13,7 @@ type CardProps = ComponentProps<"button"> & {
    *  import villaIcon from "@material-symbols/svg-400/outlined/villa.svg"; */
   iconSrc?: string;
   error?: boolean;
+  active?: boolean;
 };
 
 export const Card = ({
@@ -21,12 +22,14 @@ export const Card = ({
   iconSrc,
   orientation = "vertical",
   error = false,
+  active = false,
   ...otherProps
 }: CardProps) => (
   <button
     type="button"
     className={classNames(
       DEFAULT_CLASS_NAME,
+      active && `${DEFAULT_CLASS_NAME}--active`,
       error && `${DEFAULT_CLASS_NAME}--error`,
       orientation === "horizontal" && `${DEFAULT_CLASS_NAME}--${orientation}`,
       className,

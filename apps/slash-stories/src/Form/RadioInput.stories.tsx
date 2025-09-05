@@ -35,7 +35,7 @@ const meta: Meta<typeof RadioInput> = {
         RadioModes.classic,
         RadioModes.default,
         RadioModes.inline,
-        RadioModes.card,
+        RadioModes.cardRadio,
       ],
       control: { type: "inline-radio" },
     },

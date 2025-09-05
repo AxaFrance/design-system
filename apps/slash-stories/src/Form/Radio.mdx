@@ -30,12 +30,12 @@ This is the complete input component. It contains the main label and the list of
 
 ## Modes
 
-The Radio component has 4 modes: `default`, `classic` `card` and `inline`.
+The Radio component has 4 modes: `default`, `classic` `cardRadio` and `inline`.
 You can see them in action in the stories above.
 
 ## Orientation (Radio Card only)
 
-When `card` mode is selected, 2 orientations are available :
+When `cardRadio` mode is selected, 2 orientations are available :
 
 - `vertical`, options are vertical cards - _default value_
 - `horizontal`, options are horizontal cards
@@ -61,7 +61,7 @@ const options = [
 ];
 
 const MyRadioCard = () => (
-  <Radio mode="card" className="custom-size-card" options={options} />
+  <Radio mode="cardRadio" className="custom-size-card" options={options} />
 );
 ```
 
