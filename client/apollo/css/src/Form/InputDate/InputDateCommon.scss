@@ -59,10 +59,8 @@
       outline-width: var(--input-date-box-shadow-width);
     }
 
-    &[class*="no-picker"] {
-      &::-webkit-calendar-picker-indicator {
-        display: none;
-      }
+    &[class*="no-picker"]::-webkit-calendar-picker-indicator {
+      display: none;
     }
 
     @media (width > #{breakpoints.$breakpoint-md}) {
