@@ -11,7 +11,7 @@ export enum RadioModes {
   classic = "classic",
   default = "default",
   inline = "inline",
-  card = "card",
+  cardRadio = "cardRadio",
 }
 
 type Props = {
@@ -24,7 +24,7 @@ type Props = {
       mode?: "classic" | "default" | "inline";
     })
   | (ComponentPropsWithoutRef<typeof RadioCardGroup> & {
-      mode: "card";
+      mode: "cardRadio";
     })
 );
 
@@ -34,7 +34,7 @@ const getClassNameMode = (mode: Props["mode"]) => {
       return "af-form__radio";
     case RadioModes.inline:
       return "af-form__radio-inline";
-    case RadioModes.card:
+    case RadioModes.cardRadio:
       return "af-form__radio-card";
     default:
       return "af-form__radio-custom";
@@ -46,7 +46,7 @@ const Radio = forwardRef<HTMLInputElement, Props>(
     const { mode, ...onlyNecessaryProps } = otherProps;
     const classNameMode = getClassNameMode(mode ?? "default");
 
-    if (mode === "card") {
+    if (mode === "cardRadio") {
       return (
         <RadioCardGroup
           {...onlyNecessaryProps}
