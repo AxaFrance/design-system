@@ -2,6 +2,7 @@ import type { DetailsHTMLAttributes, ReactNode } from "react";
 import { Body } from "./Body";
 import { Header } from "./Header";
 import { getComponentClassName } from "../utilities";
+import type { AccordionActions } from "./types";
 
 export type CollapseProps = {
   id: string;
@@ -12,6 +13,8 @@ export type CollapseProps = {
   onToggle?: DetailsHTMLAttributes<HTMLDetailsElement>["onToggle"];
   className?: string;
   classModifier?: string;
+  actions?: AccordionActions;
+  variant?: string;
 };
 
 export const CollapseCard = ({
@@ -23,6 +26,8 @@ export const CollapseCard = ({
   onToggle,
   className,
   classModifier = "",
+  actions,
+  variant,
 }: CollapseProps) => {
   const headerId = id;
 
@@ -42,7 +47,9 @@ export const CollapseCard = ({
       className={componentClassName}
       onToggle={onToggle}
     >
-      <Header id={headerId}>{title}</Header>
+      <Header id={headerId} actions={actions} variant={variant}>
+        {title}
+      </Header>
       <Body>{children}</Body>
     </details>
   );

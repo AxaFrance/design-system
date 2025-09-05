@@ -1,3 +1,6 @@
+import edit from "@material-symbols/svg-400/rounded/edit.svg";
+import trash from "@material-symbols/svg-400/rounded/delete.svg";
+
 import {
   Accordion,
   CheckboxItem,
@@ -9,6 +12,22 @@ const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
   component: Accordion,
 };
+
+const actions = [
+  {
+    key: "edit",
+    label: "Edit",
+    leftIcon: edit,
+    onClick: () => console.log("Edit clicked"),
+  },
+  {
+    key: "delete",
+    label: "Delete",
+    rightIcon: trash,
+    onClick: () => console.log("Delete clicked"),
+  },
+];
+
 export default meta;
 
 export const Default: StoryObj<typeof Accordion> = {
@@ -39,7 +58,13 @@ export const Default: StoryObj<typeof Accordion> = {
           industry.
         </p>
       </CollapseCard>
-      <CollapseCard title="About insurance" id="t2" open className="maClasse">
+      <CollapseCard title="About insurance" id="t2" open>
+        Insurance is a means of protection from financial loss. It is a form of
+        risk management, primarily used to hedge against the risk of a
+        contingent or uncertain loss.
+      </CollapseCard>
+
+      <CollapseCard title="With actions" id="t3" open actions={actions}>
         Insurance is a means of protection from financial loss. It is a form of
         risk management, primarily used to hedge against the risk of a
         contingent or uncertain loss.
@@ -47,6 +72,7 @@ export const Default: StoryObj<typeof Accordion> = {
     </Accordion>
   ),
   args: {
+    variant: "userClassName",
     onlyOne: false,
   },
 };
@@ -64,11 +90,17 @@ export const Light: StoryObj<typeof Accordion> = {
         ullam, nulla illo asperiores soluta officia rerum, provident voluptate
         nesciunt quos.
       </CollapseCard>
+
+      <CollapseCard title="With actions" id="t3" open actions={actions}>
+        Insurance is a means of protection from financial loss. It is a form of
+        risk management, primarily used to hedge against the risk of a
+        contingent or uncertain loss.
+      </CollapseCard>
     </Accordion>
   ),
   args: {
     onlyOne: false,
-    classModifier: "light",
+    variant: "light",
   },
 };
 
@@ -105,10 +137,16 @@ export const White: StoryObj<typeof Accordion> = {
         sit eirmod at eirmod sed takimata nulla sadipscing sadipscing lorem
         kasd.
       </CollapseCard>
+
+      <CollapseCard title="With actions" id="t3" open actions={actions}>
+        Insurance is a means of protection from financial loss. It is a form of
+        risk management, primarily used to hedge against the risk of a
+        contingent or uncertain loss.
+      </CollapseCard>
     </Accordion>
   ),
   args: {
     onlyOne: false,
-    classModifier: "white",
+    variant: "white",
   },
 };

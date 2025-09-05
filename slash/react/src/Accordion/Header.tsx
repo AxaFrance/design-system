@@ -1,5 +1,10 @@
 import React from "react";
+import arrow from "@material-symbols/svg-400/rounded/keyboard_arrow_down.svg";
+import { Title } from "../Title/Title";
+import { Button } from "../Button/Button";
+import { Svg } from "../Svg/Svg";
 import { getComponentClassName } from "../utilities";
+import type { AccordionActions } from "./types";
 
 const defaultClassName = "af-accordion__item-header";
 
@@ -14,9 +19,18 @@ export type HeaderProps = {
   className?: string;
   classModifier?: string;
   id?: string;
+  actions?: AccordionActions;
+  variant?: string;
 };
 
-const Header = ({ children, className, classModifier, id }: HeaderProps) => {
+const Header = ({
+  children,
+  className,
+  classModifier,
+  id,
+  actions,
+  variant,
+}: HeaderProps) => {
   const componentClassName = getComponentClassName(
     className,
     classModifier,
@@ -25,8 +39,57 @@ const Header = ({ children, className, classModifier, id }: HeaderProps) => {
 
   return (
     <summary className={componentClassName} id={id}>
-      <h3 className="af-accordion__item-title">{children}</h3>
-      <span className="glyphicon glyphicon-menu-down" />
+      {variant === "light" ? (
+        <Title heading="h3">
+          <Svg src={arrow} className="af-accordion__item-header-icon" />
+          {children}
+          {actions
+            ? actions
+                .filter((action): action is NonNullable<typeof action> =>
+                  Boolean(action),
+                )
+                .map(({ key, label, leftIcon, rightIcon, onClick }) => (
+                  <Button
+                    key={key}
+                    onClick={onClick}
+                    leftIcon={leftIcon ? <Svg src={leftIcon} /> : undefined}
+                    rightIcon={rightIcon ? <Svg src={rightIcon} /> : undefined}
+                    variant="ghost"
+                  >
+                    {label}
+                  </Button>
+                ))
+            : null}
+        </Title>
+      ) : (
+        <>
+          <div className="af-accordion__header-left">
+            <h3 className="af-accordion__item-title">{children}</h3>
+          </div>
+          <div className="af-accordion__header-right">
+            {actions
+              ? actions
+                  .filter((action): action is NonNullable<typeof action> =>
+                    Boolean(action),
+                  )
+                  .map(({ key, label, leftIcon, rightIcon, onClick }) => (
+                    <Button
+                      key={key}
+                      onClick={onClick}
+                      leftIcon={leftIcon ? <Svg src={leftIcon} /> : undefined}
+                      rightIcon={
+                        rightIcon ? <Svg src={rightIcon} /> : undefined
+                      }
+                      variant={variant === "white" ? "ghost" : "ghost-reverse"}
+                    >
+                      {label}
+                    </Button>
+                  ))
+              : null}
+            <Svg src={arrow} className="af-accordion__item-header-icon" />
+          </div>
+        </>
+      )}
     </summary>
   );
 };
