@@ -1,0 +1,17 @@
+import{j as e}from"./index-C1mcBe1y.js";import{useMDXComponents as o}from"./index-G7nTXt62.js";import{M as a,C as i,a as m}from"./index-DirArT67.js";import{C as d,D as s}from"./CardMessage.stories-CDtDxHI6.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-BOKuxaB8.js";import"./index-DbaA8R3S.js";import"./iframe-DLrOzqR9.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";import"./ToggleCommon-BKp69tZF.js";function t(n){const r={code:"code",h1:"h1",h2:"h2",h3:"h3",pre:"pre",...o(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(a,{of:d,name:"CardMessage"}),`
+`,e.jsx(r.h1,{id:"cardmessage",children:"CardMessage"}),`
+`,e.jsx(r.h3,{id:"import",children:"Import"}),`
+`,e.jsx(r.pre,{children:e.jsx(r.code,{className:"language-tsx",children:`import { CardMessage } from "@axa-fr/design-system-apollo-react";
+`})}),`
+`,e.jsx(r.h3,{id:"use",children:"Use"}),`
+`,e.jsx(r.pre,{children:e.jsx(r.code,{className:"language-tsx",children:`export const CardMessageComponent = () => (\r
+  <CardMessage\r
+    title="This is a title"\r
+    text="I am the text of the card message"\r
+    variant="info"\r
+  />\r
+);
+`})}),`
+`,e.jsx(r.h2,{id:"playground",children:"Playground"}),`
+`,e.jsx(i,{of:s}),`
+`,e.jsx(m,{of:s})]})}function D(n={}){const{wrapper:r}={...o(),...n.components};return r?e.jsx(r,{...n,children:e.jsx(t,{...n})}):t(n)}export{D as default};
