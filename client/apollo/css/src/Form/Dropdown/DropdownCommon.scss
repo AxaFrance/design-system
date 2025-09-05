@@ -5,7 +5,6 @@
 
   display: block;
   width: 100%;
-  margin: calc(8 / var(--font-size-base) * 1rem) 0;
   padding: 1rem;
   border: none;
   border-radius: var(--dropdown-border-radius);
@@ -53,7 +52,7 @@
 .af-form__dropdown-input--error {
   --dropdown-box-shadow-width: 2px;
 
-  &:is(:focus-visible, :hover, :active, :has(option[value=""]:not(:checked))) {
+  &:is(:focus-visible, :hover, :active) {
     --dropdown-box-shadow-width: 3px;
   }
 }

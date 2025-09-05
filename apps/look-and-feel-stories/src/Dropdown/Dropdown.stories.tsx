@@ -58,30 +58,6 @@ const render = (args: StoryProps) => (
 );
 
 export const DropdownStory: Story = {
-  name: "Dropdown",
+  name: "Playground",
   render,
-};
-
-export const DropdownErrorStory: Story = {
-  name: "Dropdown with Error",
-  render,
-  args: {
-    error: "Titre du Message",
-  },
-  argTypes: {
-    "aria-errormessage": {
-      control: { type: "select" },
-    },
-  },
-};
-
-export const DropdownDisabledStory: Story = {
-  name: "Dropdown disabled",
-  render,
-  args: {
-    label: "Label",
-    description: "Description",
-    disabled: true,
-    helper: "Information complémentaire",
-  },
 };
