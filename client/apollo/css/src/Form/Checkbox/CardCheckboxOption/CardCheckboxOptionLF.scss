@@ -8,7 +8,9 @@
   --checkbox-option-gap: calc(8 / var(--font-size-base) * 1rem);
   --checkbox-option-border-radius: var(--radius-4);
 
-  &:hover {
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
     --checkbox-option-border-color: var(--color-axa);
   }
 
