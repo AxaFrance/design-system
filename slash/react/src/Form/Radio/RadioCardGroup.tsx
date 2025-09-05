@@ -8,14 +8,13 @@ import { Svg } from "../../Svg";
 const DEFAULT_CLASSNAME = "af-card";
 const DEFAULT_CONTAINER_CLASSNAME = "af-form__radio-card-group";
 
-type Props = ComponentProps<"input"> & {
+type Props = Omit<ComponentProps<"input">, "children"> & {
   options: Option[];
   orientation?: "horizontal" | "vertical";
   error?: boolean;
 };
 
 export const RadioCardGroup = ({
-  children,
   options,
   className,
   value,
@@ -31,7 +30,6 @@ export const RadioCardGroup = ({
   return (
     <div
       ref={radioGroupRef}
-      role="radiogroup"
       className={classNames([
         DEFAULT_CONTAINER_CLASSNAME,
         className,
@@ -73,7 +71,6 @@ export const RadioCardGroup = ({
           );
         },
       )}
-      {children}
     </div>
   );
 };
