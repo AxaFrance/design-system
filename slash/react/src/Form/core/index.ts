@@ -4,6 +4,7 @@ export { LegacyField } from "./Deprecated/Field";
 export { FieldForm } from "./Deprecated/FieldForm";
 export { FieldInput } from "./Deprecated/FieldInput";
 export { Field } from "./Field";
+export { Fieldset } from "./Fielset";
 export type { ConsumerFieldProps } from "./Field";
 export { FieldError } from "./FieldError";
 export { FormClassManager } from "./FormClassManager";
