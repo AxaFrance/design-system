@@ -8,7 +8,9 @@
   --radio-option-gap: calc(8 / var(--font-size-base) * 1rem);
   --radio-option-border-radius: var(--radius-4);
 
-  &:hover {
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
     --radio-option-border-color: var(--color-axa);
   }
 
