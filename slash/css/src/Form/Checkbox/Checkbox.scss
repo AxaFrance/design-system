@@ -5,6 +5,7 @@
 .af-form {
   &__checkbox-container {
     display: flex;
+    flex-flow: row wrap;
 
     &:has(.af-form__checkbox) {
       flex-direction: column;
