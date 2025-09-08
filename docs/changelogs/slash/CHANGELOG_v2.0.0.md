@@ -57,6 +57,17 @@ You can find the style of each variant on the storybook and a deeper
 documentation for the migration of the button component
 [here](./MIGRATION-GUIDE-FROM-V1.md)
 
+### Content on HeaderTitle
+
+The `HeaderTitle` component now has a `contentLeft` property that allows you to
+add content to the left side of the title which wasn't possible before. We used
+to be able to add content at the right with the `children` property, we now
+support two different solutions. The `children` property is still available and
+add content at the right side of the title. To add content at the far right of
+the title bar, you can use the `contentRight` property.
+
+![HeaderTitle component example](./images/headerTitle_component_v2.0.0.png)
+
 ### Rename color tokens
 
 In order to match the exact token name of the UX designers, we have renamed two
@@ -194,18 +205,18 @@ The `Divider` component is a simple horizontal line that can be used to separate
 content within a layout. You can use the `mode` property to control its
 orientation (e.g., `horizontal`, `vertical`).
 
-### Container component
+### MainContainer component
 
-The `Container` component is a layout component that provides a responsive
+The `MainContainer` component is a layout component that provides a responsive
 container. It can be used to wrap content, apply consistent margins and set
 correct background color so that you don't have to repeat these styles in your
-different projects. To use it, import the `Container` component and wrap your
+different projects. To use it, import the `MainContainer` component and wrap your
 content with it. The component sets a `main` html element.
 
 ```tsx
-<Container>
+<MainContainer>
   <p>Your application's main content goes here</p>
-</Container>
+</MainContainer>
 ```
 
 ### Tag component
@@ -266,17 +277,6 @@ export const Component = () => (
 
 ## Improvements
 
-### Content on HeaderTitle
-
-The `HeaderTitle` component now has a contentLeft property that allows you to
-add content to the left side of the title which wasn't possible before. We used
-to be able to add content at the right with the `children` property, we now
-support two different solutions. The `children` property is still available and
-add content at the right side of the title. To add content at the far right of
-the title bar, you can use the `contentRight` property.
-
-![HeaderTitle component example](./images/headerTitle_component_v2.0.0.png)
-
 ### Accordion
 
 The `Accordion` now has three `variants`: `default`, `white` and `light`. You can use the `variant` property to set the desired variant instead of the `classModifier`. The `default` variant has the AXA blue background, the `white` variant has a white background and the `light` variant has no background.
@@ -302,11 +302,11 @@ const actions = [
 ];
 ```
 
-### Radio has a new card mode
+### Radio has a new cardRadio mode
 
 The `Radio` component now has a new card mode that allows you to display radio
 buttons as cards. To enable this mode, use the `mode` property with the value
-`card`. You can then use the `orientation` property to control the layout of the
+`cardRadio`. You can then use the `orientation` property to control the layout of the
 cards (horizontal or vertical).
 
 ```tsx
@@ -316,7 +316,7 @@ const options = [
   { label: "Madrid", value: "madrid", icon: villaIcon },
 ];
 
-const MyRadioCard = () => <Radio mode="card" options={options} />;
+const MyRadioCard = () => <Radio mode="cardRadio" options={options} />;
 ```
 
 ![Radio card component example](./images/radio_card_v2.0.0.png)
