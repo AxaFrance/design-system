@@ -1,5 +1,6 @@
 .af-form__radio-card-group {
   display: inline-flex;
+  margin-right: 1rem;
   grid-gap: 25px;
   flex-flow: row wrap;
 

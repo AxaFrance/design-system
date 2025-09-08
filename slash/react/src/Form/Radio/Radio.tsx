@@ -3,6 +3,7 @@ import {
   ComponentPropsWithRef,
   forwardRef,
 } from "react";
+import classNames from "classnames";
 import type { Option } from "../core";
 import { RadioCardGroup } from "./RadioCardGroup";
 import { RadioItem } from "./RadioItem";
@@ -60,7 +61,11 @@ const Radio = forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <div className="af-form__radio-group">
+      <div
+        className={classNames("af-form__radio-group", [
+          { "af-form__radio-group-classic": mode === RadioModes.classic },
+        ])}
+      >
         {options.map((option: Option) => (
           <RadioItem
             {...onlyNecessaryProps}
