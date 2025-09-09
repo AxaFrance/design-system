@@ -4,7 +4,7 @@ import { Title } from "../Title/Title";
 import { Button } from "../Button/Button";
 import { Svg } from "../Svg/Svg";
 import { getComponentClassName } from "../utilities";
-import type { AccordionActions } from "./types";
+import type { AccordionActions, AccordionVariant } from "./types";
 
 const defaultClassName = "af-accordion__item-header";
 
@@ -20,7 +20,7 @@ export type HeaderProps = {
   classModifier?: string;
   id?: string;
   actions?: AccordionActions;
-  variant?: string;
+  variant?: AccordionVariant;
 };
 
 const Header = ({

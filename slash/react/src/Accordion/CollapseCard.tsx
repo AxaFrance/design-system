@@ -2,7 +2,7 @@ import type { DetailsHTMLAttributes, ReactNode } from "react";
 import { Body } from "./Body";
 import { Header } from "./Header";
 import { getComponentClassName } from "../utilities";
-import type { AccordionActions } from "./types";
+import type { AccordionActions, AccordionVariant } from "./types";
 
 export type CollapseProps = {
   id: string;
@@ -14,7 +14,7 @@ export type CollapseProps = {
   className?: string;
   classModifier?: string;
   actions?: AccordionActions;
-  variant?: string;
+  variant?: AccordionVariant;
 };
 
 export const CollapseCard = ({
