@@ -19,3 +19,10 @@ export const Success: StoryObj<typeof ItemMessage> = {
     messageType: "success",
   },
 };
+
+export const Warning: StoryObj<typeof ItemMessage> = {
+  args: {
+    message: "Warning Message",
+    messageType: "warning",
+  },
+};

@@ -1,12 +1,13 @@
 import successIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
+import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
 import type { ReactNode } from "react";
 import { Svg } from "../../Svg/Svg";
 
 export type ItemMessageProps = {
   message?: ReactNode;
   id?: string;
-  messageType?: "error" | "success";
+  messageType?: "error" | "success" | "warning";
 };
 
 export const ItemMessage = ({
@@ -18,15 +19,22 @@ export const ItemMessage = ({
     return null;
   }
 
+  const getIcon = () => {
+    if (messageType === "success") return successIcon;
+    if (messageType === "warning") return warningIcon;
+
+    return errorIcon;
+  };
+
   return (
     <small
       id={id}
       className={`af-item-message af-item-message--${messageType}`}
-      role={messageType === "error" ? "alert" : undefined}
+      role={messageType === "success" ? undefined : "alert"}
       aria-live="assertive"
     >
       <Svg
-        src={messageType === "error" ? errorIcon : successIcon}
+        src={getIcon()}
         className="af-item-message__icon"
         aria-hidden="true"
       />

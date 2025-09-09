@@ -10,6 +10,10 @@
     --item-message-color: var(--green-100);
   }
 
+  &--warning {
+    --item-message-color: var(--warning-100);
+  }
+
   @media (width > #{breakpoints.$breakpoint-md}) {
     --item-message-icon-size: calc(24 / var(--font-size-base) * 1rem);
   }
