@@ -72,7 +72,7 @@ export const Default: StoryObj<typeof Accordion> = {
     </Accordion>
   ),
   args: {
-    variant: "userClassName",
+    variant: "default",
     onlyOne: false,
   },
 };

@@ -277,11 +277,30 @@ the title bar, you can use the `contentRight` property.
 
 ![HeaderTitle component example](./images/headerTitle_component_v2.0.0.png)
 
-### Accordion white variant
+### Accordion
 
-The `Accordion` has now a new `white` variant that allows you to use the
-component with a white background. To do so use the `classModifier` property
-with the value `white`.
+The `Accordion` now has three `variants`: `default`, `white` and `light`. You can use the `variant` property to set the desired variant instead of the `classModifier`. The `default` variant has the AXA blue background, the `white` variant has a white background and the `light` variant has no background.
+The `Accordion` also has an `actions` property that allows you to add actions to the header of each `CollapseCard`. Each action should have a `key`, `label`, and `onClick` function. You can also add a `leftIcon` or `rightIcon` to display an icon alongside the action label. You can have a maximum of two actions per `CollapseCard`.
+
+```tsx
+import edit from "@material-symbols/svg-400/rounded/edit.svg";
+import trash from "@material-symbols/svg-400/rounded/delete.svg";
+
+const actions = [
+  {
+    key: "edit",
+    label: "Edit",
+    leftIcon: edit,
+    onClick: () => console.log("Edit clicked"),
+  },
+  {
+    key: "delete",
+    label: "Delete",
+    rightIcon: trash,
+    onClick: () => console.log("Delete clicked"),
+  },
+];
+```
 
 ### Radio has a new card mode
 
@@ -348,3 +367,4 @@ property has the value `éléments`.
 - `Badge` component is deprecated in favor of the new `Tag` component.
 - For the `Badge` component, `classModifier` `danger` and `info` are deprecated
   in favor of `warning` and `information`, respectively.
+- For the `Accordion` component, `classModifier` is deprecated in favor of `variant`.
