@@ -14,11 +14,14 @@
   }
 
   &__label {
-    display: inline-flex;
-    gap: calc(4 / var(--font-size-base) * 1rem);
+    display: inline;
     font-size: calc(18 / var(--font-size-base) * 1rem);
     font-weight: 600;
     color: var(--card-radio-color);
+
+    span {
+      margin-left: calc(4 / var(--font-size-base) * 1rem);
+    }
   }
 
   &__description {
