@@ -13,6 +13,7 @@ const classModifiers: ComponentProps<typeof Tag>["classModifier"][] = [
   "purple",
   "gray",
   "danger",
+  "white",
   "custom-class",
 ];
 
@@ -25,6 +26,7 @@ const variants: TagVariants[] = [
   "dark",
   "purple",
   "gray",
+  "white",
 ];
 describe("Tag component", () => {
   describe("classModifier backward compatibility", () => {

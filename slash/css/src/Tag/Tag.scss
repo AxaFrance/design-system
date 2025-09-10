@@ -7,7 +7,7 @@ $types: (
   "information" var(--cyan40),
   // deprecated
   "info" var(--cyan40),
-  "success" var(--green40),
+  "success" var(--green30),
   "warning" var(--orange40),
   // deprecated
   "danger" var(--orange40),
@@ -24,7 +24,7 @@ $types: (
   border-radius: 1rem;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.25rem;
   color: common.$white;
 
