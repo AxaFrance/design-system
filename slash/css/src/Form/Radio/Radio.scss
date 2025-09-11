@@ -192,6 +192,7 @@
 .af-form__radio-group {
   display: flex;
   margin-right: 1rem;
+  flex-flow: row wrap;
 }
 
 .af-form__radio-group-classic {
