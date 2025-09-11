@@ -88,6 +88,12 @@
   --card-icon-color: var(--white);
   --card-background-color: var(--axablue80);
 
+  &:focus {
+    --card-text-color: var(--white);
+    --card-icon-color: var(--white);
+    --card-background-color: var(--axablue80);
+  }
+
   &:hover {
     --card-text-color: var(--gray80);
     --card-icon-color: var(--axablue80);
