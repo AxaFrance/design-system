@@ -4,6 +4,7 @@ import {
   ContentItemDuoActionProps,
 } from "./ContentItemDuoActionCommon";
 import { Button } from "../Button/ButtonLF";
+import { ContentItemMono } from "../ContentItemMono/ContentItemMonoLF";
 
 export const ContentItemDuoAction = (props: ContentItemDuoActionProps) => {
     const editButton = (
@@ -19,11 +20,14 @@ export const ContentItemDuoAction = (props: ContentItemDuoActionProps) => {
         >Supprimer</Button>
     );
 
+    const contentItemMono = <ContentItemMono {...props.contentItemMonoProps} />;
+
     return (
         <ContentItemDuoActionCommon
             {...props}
             editButton={editButton}
             deleteButton={deleteButton}
+            contentItemMono={contentItemMono}
         />
     );
 };
