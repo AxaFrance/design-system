@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
-import { ContentItemCommonProps, ContentItemMonoCommon } from "../ContentItemMono/ContentItemMonoCommon";
+import { ContentItemCommonProps, ContentItemMonoCommon, ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
 import { Toggle, ToggleProps } from "../Toggle/ToggleCommon";
 import { Icon } from "../Icon/IconCommon";
 
@@ -11,21 +11,23 @@ export type ContentItemDuoActionCommonProps = {
     className?: string;
     editButton?: React.ReactNode;
     deleteButton?: React.ReactNode;
+    contentItemMono: React.ReactNode;
 };
 
-export type ContentItemDuoActionProps = Omit<ContentItemDuoActionCommonProps, "editButton" | "deleteButton"> & {
+export type ContentItemDuoActionProps = Omit<ContentItemDuoActionCommonProps, "editButton" | "deleteButton" | "contentItemMono"> & {
     onEditButtonClick?: () => void;
     onDeleteButtonClick?: () => void;
+    contentItemMonoProps: ContentItemProps;
 };
 
-export const ContentItemDuoActionCommon = ({ className, contentItemProps, mode, toggleProps, editButton, deleteButton }: ContentItemDuoActionCommonProps) => {
+export const ContentItemDuoActionCommon = ({ className, contentItemProps, mode, toggleProps, editButton, deleteButton, contentItemMono}: ContentItemDuoActionCommonProps) => {
     const componentClassName = useMemo(
         () => getComponentClassName("af-content-item-duo-action", className),
         [className],
     );
 
     return <div className={componentClassName}>
-        <ContentItemMonoCommon {...contentItemProps} IconComponent={Icon} />
+        {contentItemMono}
         {mode === "toggle" ? (
             <Toggle {...toggleProps} />
         ) : (
