@@ -14,11 +14,13 @@
     --input-date-bg-color: var(--white);
     --input-date-indicator-bg-color: var(--white);
 
-    &:valid {
-      --input-date-color: var(--axa-blue-100);
+    &[value]:not([value=""], [aria-invalid="true"]),
+    &:is(:focus-visible, :hover, :active, :focus-within) {
+      --input-date-box-shadow-color: var(--axa-blue-100);
     }
 
-    &:is(:focus-visible, :hover, :active, :focus-within) {
+    &[value]:not([aria-invalid="true"], [value=""]) {
+      --input-date-color: var(--axa-blue-100);
       --input-date-box-shadow-color: var(--axa-blue-100);
     }
 
