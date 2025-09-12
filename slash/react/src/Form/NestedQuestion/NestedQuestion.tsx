@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/NestedQuestion/NestedQuestion.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/NestedQuestion/NestedQuestion.css";
 import { PropsWithChildren } from "react";
 import { getComponentClassName } from "../../utilities";
 

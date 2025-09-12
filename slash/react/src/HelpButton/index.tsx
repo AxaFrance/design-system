@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Action/Action.scss";
+import "@axa-fr/design-system-slash-css/dist/Action/Action.css";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Popover } from "../Popover";
 import { getComponentClassName } from "../utilities";

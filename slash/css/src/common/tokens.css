@@ -78,6 +78,20 @@
   --color-border-hover: var(--axablue80);
   --color-border-selected: var(--axablue80);
 
-  /********* Front Size *********/
+  /********* Font Size *********/
   --font-size-base: 16;
+
+  /* *************************************************************************/
+
+  /* BREAKPOINTS                                                             */
+
+  /* *************************************************************************/
+
+  @custom-media --small screen and (width >= 0);
+  @custom-media --tablet-portrait screen and (width >= 576px);
+  @custom-media --tablet-landscape screen and (width >= 772px);
+  @custom-media --desktop-small screen and (width >= 1016px);
+  @custom-media --desktop-medium screen and (width >= 1272px);
+  @custom-media --desktop-large screen and (width >= 1432px);
+  @custom-media --desktop-xl screen and (width >= 1432px);
 }

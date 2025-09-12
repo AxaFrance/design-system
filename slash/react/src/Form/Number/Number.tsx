@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Text/Text.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Text/Text.css";
 import { ComponentPropsWithRef, forwardRef, useId } from "react";
 import { getComponentClassName } from "../../utilities";
 
