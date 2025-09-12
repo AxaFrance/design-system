@@ -1,5 +1,12 @@
 .af-progress-bar-group {
   display: flex;
+  margin: 0;
+  padding: 0;
   align-items: flex-end;
   gap: calc(8 / var(--font-size-base) * 1rem);
+  list-style-type: none;
+
+  &__item {
+    flex: 1;
+  }
 }

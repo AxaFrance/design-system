@@ -1,67 +1,58 @@
 import { render, screen } from "@testing-library/react";
+import { vi } from "vitest";
 import { ProgressBar } from "../../ProgressBar/ProgressBarCommon";
 import { ProgressBarGroup } from "../ProgressBarGroupCommon";
+import * as ProgressBarGroupModule from "../useSequentialProgress";
 
 describe("ProgressBarGroup Component", () => {
   it("renders the correct number of steps", () => {
     render(
       <ProgressBarGroup
         currentStep={2}
-        nbSteps={5}
+        stepsCount={5}
         ProgressBarComponent={ProgressBar}
       />,
     );
-    const progressBars = screen.getAllByRole("progressbar");
-    expect(progressBars).toHaveLength(5);
+    const list = screen.getByRole("list");
+    expect(list.children).toHaveLength(5);
   });
 
-  it("applies the correct progress values for each step", () => {
-    render(
-      <ProgressBarGroup
-        currentStep={2}
-        currentStepProgress={50}
-        nbSteps={4}
-        ProgressBarComponent={ProgressBar}
-      />,
-    );
-
-    const progressBars = screen.getAllByRole("progressbar");
-    expect(progressBars[0]).toHaveValue(100); // Step 1 completed
-    expect(progressBars[1]).toHaveValue(100); // Step 2 completed
-    expect(progressBars[2]).toHaveValue(50); // Step 3 in progress
-    expect(progressBars[3]).toHaveValue(0); // Step 4 not started
-  });
-
-  it("uses default progress for the current step when currentStepProgress is 0", () => {
+  it("renders all ProgressBar with aria-hidden", () => {
     render(
       <ProgressBarGroup
         currentStep={1}
-        currentStepProgress={0}
-        nbSteps={3}
+        stepsCount={3}
         ProgressBarComponent={ProgressBar}
       />,
     );
-
-    const progressBars = screen.getAllByRole("progressbar");
-    expect(progressBars[0]).toHaveValue(100); // Step 1 completed
-    expect(progressBars[1]).toHaveValue(10); // Step 2 default progress
-    expect(progressBars[2]).toHaveValue(0); // Step 3 not started
+    const list = screen.getByRole("list");
+    for (const li of Array.from(list.children)) {
+      const progressBar = li.children[0];
+      expect(progressBar).toHaveAttribute("aria-hidden");
+    }
   });
 
-  it("renders with a custom label", () => {
+  it("passes correct values from useSequentialProgress to each ProgressBar", () => {
+    const mockValues = [0.5, 0.25, 0];
+    vi.spyOn(ProgressBarGroupModule, "useSequentialProgress").mockReturnValue(
+      mockValues,
+    );
+
     render(
       <ProgressBarGroup
         currentStep={1}
-        label="Custom Progress Bar Group"
-        nbSteps={3}
+        currentStepProgress={25}
+        stepsCount={3}
         ProgressBarComponent={ProgressBar}
       />,
     );
 
-    const group = screen.getByRole("group", {
-      name: "Custom Progress Bar Group",
+    const list = screen.getByRole("list");
+    Array.from(list.children).forEach((li, i) => {
+      const progressBar = li.querySelector(".af-progress-bar");
+      expect(progressBar).toHaveAttribute("value", mockValues[i].toString());
     });
-    expect(group).toBeInTheDocument();
+    vi.restoreAllMocks();
   });
 
   it("applies custom className", () => {
@@ -69,27 +60,12 @@ describe("ProgressBarGroup Component", () => {
       <ProgressBarGroup
         currentStep={1}
         className="custom-class"
-        nbSteps={3}
+        stepsCount={3}
         ProgressBarComponent={ProgressBar}
       />,
     );
 
-    const group = screen.getByRole("group");
-    expect(group).toHaveClass("custom-class");
-  });
-
-  it("applies aria-current only to the current step", () => {
-    render(
-      <ProgressBarGroup
-        currentStep={1}
-        nbSteps={3}
-        ProgressBarComponent={ProgressBar}
-      />,
-    );
-
-    const progressBars = screen.getAllByRole("progressbar");
-    expect(progressBars[0]).not.toHaveAttribute("aria-current");
-    expect(progressBars[1]).toHaveAttribute("aria-current", "true");
-    expect(progressBars[2]).not.toHaveAttribute("aria-current");
+    const list = screen.getByRole("list");
+    expect(list).toHaveClass("af-progress-bar-group custom-class");
   });
 });

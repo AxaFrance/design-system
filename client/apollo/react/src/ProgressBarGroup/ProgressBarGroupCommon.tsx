@@ -1,54 +1,50 @@
 import classNames from "classnames";
 import { type ComponentProps, type ComponentType, useId } from "react";
 import { ProgressBar } from "../ProgressBar/ProgressBarCommon";
-
-const INITIAL_STEPPER_PROGRESS = 10;
-const MAX_STEPPER_PROGRESS = 100;
+import { useSequentialProgress } from "./useSequentialProgress";
 
 export type ProgressBarGroupProps = {
   currentStepProgress?: number;
   currentStep: number;
+  /**
+   * @deprecated Use `stepsCount` instead.
+   */
   nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
-  label?: string;
+  stepsCount?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  max?: number;
   className?: string;
   ProgressBarComponent: ComponentType<ComponentProps<typeof ProgressBar>>;
-};
+} & Omit<ComponentProps<"ol">, "children" | "className">;
 
 export const ProgressBarGroup = ({
-  currentStepProgress = INITIAL_STEPPER_PROGRESS,
+  currentStepProgress = 0,
+  max = 100,
   nbSteps = 4,
+  stepsCount = nbSteps,
   currentStep,
-  label,
   className,
   ProgressBarComponent,
+  ...props
 }: ProgressBarGroupProps) => {
   const stepperId = useId();
-
-  const getCurrentProgress = (index: number) => {
-    if (index < currentStep) {
-      return MAX_STEPPER_PROGRESS;
-    }
-    if (index === currentStep) {
-      return currentStepProgress || INITIAL_STEPPER_PROGRESS;
-    }
-    return 0;
-  };
+  const progressValues = useSequentialProgress(
+    currentStepProgress / max,
+    currentStep,
+    stepsCount,
+  );
 
   return (
-    <div
-      id={stepperId}
-      role="group"
-      aria-label={label}
-      className={classNames("af-progress-bar-group", className)}
-    >
-      {[...Array(nbSteps).keys()].map((index) => (
-        <ProgressBarComponent
-          key={`${stepperId}-${index}`}
-          value={getCurrentProgress(index)}
-          max={MAX_STEPPER_PROGRESS}
-          aria-current={index === currentStep ? true : undefined}
-        />
+    <ol className={classNames("af-progress-bar-group", className)} {...props}>
+      {progressValues.map((value, index) => (
+        <li
+          // The index is safe here as the list of progress bars is static and never changes
+          // eslint-disable-next-line react/no-array-index-key
+          key={`af-progress-bar-group__item--${stepperId}-${index}`}
+          className="af-progress-bar-group__item"
+        >
+          <ProgressBarComponent value={value} aria-hidden />
+        </li>
       ))}
-    </div>
+    </ol>
   );
 };
