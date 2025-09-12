@@ -1,0 +1,56 @@
+name: Publish Storybook - slash
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  deploy-storybooks-slash:
+    runs-on: ubuntu-latest
+    name: Deploy new version of storybook to gh-pages - slash
+    strategy:
+      matrix:
+        storybook:
+          - name: slash react
+            destination_dir: slash/react
+            artifact-name: slash-storybooks
+            version: ${{ needs.slash.outputs.version }}
+            isStable: ${{ needs.slash.outputs.isStableRelease }}
+      max-parallel: 1
+
+    steps:
+      - name: Download storybooks
+        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
+        with:
+          name: ${{ matrix.storybook.artifact-name }}
+
+      - name: Upload the ${{ matrix.storybook.name }} storybook version next
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./${{ matrix.storybook.destination_dir }}
+          destination_dir: ${{ matrix.storybook.destination_dir }}/next
+
+      - name: Upload the ${{ matrix.storybook.name }} storybook version latest
+        if: matrix.storybook.isStable == 'true'
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./${{ matrix.storybook.destination_dir }}
+          destination_dir: ${{ matrix.storybook.destination_dir }}/latest
+
+      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ matrix.storybook.version }}
+        if: matrix.storybook.isStable == 'true'
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./${{ matrix.storybook.destination_dir }}
+          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ matrix.storybook.version }}
+
+  
