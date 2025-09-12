@@ -1,3 +1,14 @@
 .af-content-item-duo-action {
-  //todo
+  display: flex;
+  flex-direction: row;
+  .af-content-item-mono {
+    flex-grow: 1;
+  }
+  .af-toggle {
+    display: flex;
+    align-items: center;
+  }
+  .af-action-edit-buttons-container {
+    display: flex;
+  }
 }
