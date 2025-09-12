@@ -2,8 +2,7 @@ import { forwardRef, type ComponentProps } from "react";
 import { Field, type ConsumerFieldProps } from "../core";
 import { Choice } from "./Choice";
 
-type Props = ComponentProps<typeof Choice> &
-  Omit<ConsumerFieldProps, "children">;
+type Props = ComponentProps<typeof Choice> & ConsumerFieldProps;
 
 const defaultOptions = [
   { label: "Oui", value: true },
@@ -11,7 +10,7 @@ const defaultOptions = [
 ];
 
 const ChoiceInput = forwardRef<HTMLInputElement, Props>(
-  ({ label, options = defaultOptions, ...otherProps }, inputRef) => {
+  ({ label, options = defaultOptions, children, ...otherProps }, inputRef) => {
     return (
       <Field
         label={label}
@@ -24,15 +23,18 @@ const ChoiceInput = forwardRef<HTMLInputElement, Props>(
           ariaInvalid,
           ...props
         }) => (
-          <Choice
-            id={id}
-            ref={inputRef}
-            classModifier={classModifier}
-            aria-describedby={errorId}
-            aria-invalid={ariaInvalid}
-            options={options}
-            {...props}
-          />
+          <>
+            <Choice
+              id={id}
+              ref={inputRef}
+              classModifier={classModifier}
+              aria-describedby={errorId}
+              aria-invalid={ariaInvalid}
+              options={options}
+              {...props}
+            />
+            {children}
+          </>
         )}
       />
     );

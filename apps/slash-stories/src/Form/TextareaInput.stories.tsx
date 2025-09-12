@@ -1,4 +1,8 @@
-import { MessageTypes, TextareaInput } from "@axa-fr/design-system-slash-react";
+import {
+  HelpButton,
+  MessageTypes,
+  TextareaInput,
+} from "@axa-fr/design-system-slash-react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
@@ -6,19 +10,8 @@ const meta: Meta<typeof TextareaInput> = {
   component: TextareaInput,
   title: "Components/Form/Input/Textarea",
   argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
-
-type Story = StoryObj<React.ComponentProps<typeof TextareaInput>>;
-
-export const TextareaInputStory: Story = {
-  name: "TextareaInput",
-  render: ({ onChange, ...args }) => (
-    <TextareaInput onChange={onChange} {...args} />
-  ),
   args: {
+    onChange: fn(),
     label: "Comment",
     name: "comment",
     id: "TextareaInputId",
@@ -38,7 +31,26 @@ export const TextareaInputStory: Story = {
     className: "",
     tabIndex: 0,
     autoFocus: true,
-    classNameContainerLabel: "col-md-2",
-    classNameContainerInput: "col-md-10",
   },
+};
+
+export default meta;
+
+type Story = StoryObj<React.ComponentProps<typeof TextareaInput>>;
+
+export const TextareaInputStory: Story = {
+  name: "TextareaInput",
+  render: ({ onChange, ...args }) => (
+    <TextareaInput onChange={onChange} {...args} />
+  ),
+  args: {},
+};
+
+export const TextAreaInputWithChildren: Story = {
+  name: "TextareaInput with help button",
+  render: ({ onChange, ...args }) => (
+    <TextareaInput onChange={onChange} {...args}>
+      <HelpButton mode="hover">Help</HelpButton>
+    </TextareaInput>
+  ),
 };

@@ -59,7 +59,7 @@ const CheckboxInner = forwardRef<HTMLInputElement, Props>(
       onChange({ values: newValues, target: { value, checked }, id, name });
     };
     return (
-      <>
+      <div className="af-form__checkbox-container">
         {options.map((option) => {
           const isChecked = values ? values.indexOf(option.value) >= 0 : false;
 
@@ -79,7 +79,7 @@ const CheckboxInner = forwardRef<HTMLInputElement, Props>(
             </CheckboxItem>
           );
         })}
-      </>
+      </div>
     );
   },
 );

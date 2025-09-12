@@ -26,6 +26,11 @@
     }
   }
 
+  &__text {
+    display: flex;
+    align-items: center;
+  }
+
   &__message {
     position: absolute;
     display: flex;

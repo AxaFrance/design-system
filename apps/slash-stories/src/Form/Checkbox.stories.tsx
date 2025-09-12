@@ -3,6 +3,7 @@ import {
   CheckboxInput,
   CheckboxItem,
   CheckboxModes,
+  HelpButton,
   MessageTypes,
 } from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
@@ -175,6 +176,26 @@ export const CheckboxInputErrorStory: Story = {
       ],
     },
   },
+};
+
+export const CheckboxInputWithChildren: Story = {
+  name: "CheckboxInput with help button",
+  render: (args) => {
+    return (
+      <CheckboxInput {...args} name="placeType" id="uniqueid" value="toto">
+        <HelpButton mode="hover">help</HelpButton>
+      </CheckboxInput>
+    );
+  },
+  args: {
+    label: "Place type",
+    required: true,
+    mode: CheckboxModes.default,
+    id: "inputuniqueid",
+    name: "placeType",
+    options,
+  },
+  parameters: { controls: { include: ["isChecked", "disabled", "onChange"] } },
 };
 
 export const CheckboxItemToggleStory: StoryObj<{

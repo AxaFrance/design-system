@@ -2,7 +2,7 @@ import "@axa-fr/design-system-slash-css/dist/Accordion/Accordion.scss";
 import React, { useId } from "react";
 import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
 import { CollapseCard, CollapseProps } from "./CollapseCard";
-import { TDefaultProps } from "./types";
+import { AccordionVariant, TDefaultProps } from "./types";
 
 const defaultClassName = "af-accordion";
 
@@ -11,7 +11,7 @@ export type EnhancedProps = Partial<TDefaultProps> & {
   className?: string;
   /** @deprecated Use `variant` instead. */
   classModifier?: string;
-  variant?: string;
+  variant?: AccordionVariant;
   children:
     | React.ReactElement<CollapseProps>[]
     | React.ReactElement<CollapseProps>;
@@ -20,14 +20,14 @@ export type EnhancedProps = Partial<TDefaultProps> & {
 const Accordion = ({
   className,
   classModifier,
-  variant,
+  variant = "default",
   children,
   onlyOne = false,
 }: EnhancedProps) => {
   const componentClassName = getComponentClassNameWithUserClassname({
     componentClassName: defaultClassName,
     userClassName: className,
-    classModifier: classModifier || variant || "",
+    classModifier: classModifier || (variant !== "default" && variant) || "",
   });
 
   const id = useId();

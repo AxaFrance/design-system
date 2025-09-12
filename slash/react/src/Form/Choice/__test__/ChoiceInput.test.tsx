@@ -56,10 +56,11 @@ describe("ChoiceInput", () => {
     expect(screen.getByText("ChoiceInput label").parentElement).toHaveClass(
       "labelClassName",
     );
+
     expect(
       screen.getByRole("radio", {
         name: /oui/i,
-      }).parentElement?.parentElement?.parentElement,
+      }).parentElement?.parentElement?.parentElement?.parentElement,
     ).toHaveClass("InputClassName");
   });
 

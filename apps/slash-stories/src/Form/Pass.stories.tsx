@@ -3,14 +3,9 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Pass } from "@axa-fr/design-system-slash-react";
 import { fn } from "@storybook/test";
 
-export default {
+const meta: Meta<typeof Pass> = {
   title: "Components/Form/Input/Pass",
   component: Pass,
-} as Meta;
-
-export const PassStory: StoryObj<typeof Pass> = {
-  render: (args) => <Pass {...args} />,
-  name: "Pass",
   args: {
     classModifier: "bad",
     name: "password",
@@ -35,4 +30,11 @@ export const PassStory: StoryObj<typeof Pass> = {
       defaultValue: "bad",
     },
   },
+};
+
+export default meta;
+
+export const PassStory: StoryObj<typeof Pass> = {
+  render: (args) => <Pass {...args} />,
+  name: "Pass",
 };

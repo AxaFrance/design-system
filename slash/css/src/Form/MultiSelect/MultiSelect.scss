@@ -8,6 +8,9 @@
 .af-form__select {
   --select-border-color: transparent;
 
+  display: flex;
+  align-items: center;
+
   .react-select > div {
     border-color: var(--select-border-color);
   }
@@ -23,8 +26,8 @@
 
 .react-select {
   .multi-value-limit {
-    border-radius: 0.25rem;
     margin: 0.125rem;
+    border-radius: 0.25rem;
   }
 }
 
@@ -40,13 +43,13 @@
     justify-content: center;
 
     .indicator {
+      display: flex;
       width: 1rem;
       height: 1rem;
       border: 1px solid var(--gray40);
-      background: var(--white);
-      display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      background: var(--white);
     }
 
     .checkbox-checked {

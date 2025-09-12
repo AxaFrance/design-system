@@ -1,4 +1,5 @@
 import {
+  HelpButton,
   MessageTypes,
   MultiSelect,
   MultiSelectInput,
@@ -126,6 +127,46 @@ export const MultiSelectInputStory: StoryObj<
     classModifier: "",
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
+    selectedLimit: 3,
+    selectedLimitLabel: "",
+    menuPortalTarget: document.body,
+  },
+  argTypes: {
+    onChange: { action: "onChange" },
+  },
+};
+
+export const MultiSelectInputWithChildrenStory: StoryObj<
+  ComponentPropsWithoutRef<typeof MultiSelectInput>
+> = {
+  name: "MultiSelectInput with help button",
+  render: ({ values, onChange = () => {}, ...args }) => {
+    const [newValues, setNewValues] = useState(values);
+
+    return (
+      <form className="af-form" name="myform">
+        <MultiSelectInput
+          values={newValues}
+          onChange={(data) => {
+            setNewValues(data.values);
+            onChange(data);
+          }}
+          {...args}
+        >
+          <HelpButton mode="hover">Help</HelpButton>
+        </MultiSelectInput>
+      </form>
+    );
+  },
+  args: {
+    ...commonArgs,
+    values: selectedValues,
+    id: "uniqueid",
+    label: "Place type",
+    helpMessage: "Enter the place type",
+    message: "",
+    isVisible: true,
+    classModifier: "",
     selectedLimit: 3,
     selectedLimitLabel: "",
     menuPortalTarget: document.body,

@@ -106,7 +106,7 @@ export const DefaultModalStory: TDefaultModalStory = {
           <ModalFooter>
             {args.size !== "sm" && (
               <Button
-                classModifier="reverse"
+                variant="secondary"
                 type="button"
                 onClick={() => {
                   args.onCancel();
@@ -117,7 +117,7 @@ export const DefaultModalStory: TDefaultModalStory = {
               </Button>
             )}
             <Button
-              classModifier="success"
+              variant="validated"
               type="button"
               onClick={() => {
                 args.onSubmit();

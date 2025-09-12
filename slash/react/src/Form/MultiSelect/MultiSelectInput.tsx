@@ -6,7 +6,7 @@ import { MultiSelect } from "./MultiSelect";
 
 type Props = ConsumerFieldProps & ComponentProps<typeof MultiSelect>;
 
-const MultiSelectInput = ({ label, ...multiSelectProps }: Props) => {
+const MultiSelectInput = ({ label, children, ...multiSelectProps }: Props) => {
   return (
     <Field
       label={label}
@@ -14,12 +14,15 @@ const MultiSelectInput = ({ label, ...multiSelectProps }: Props) => {
       classNameSuffix="select"
       renderInput={({ id, ariaInvalid, errorId, ...props }) => {
         return (
-          <MultiSelect
-            id={id}
-            aria-invalid={ariaInvalid}
-            aria-describedby={errorId}
-            {...props}
-          />
+          <>
+            <MultiSelect
+              id={id}
+              aria-invalid={ariaInvalid}
+              aria-describedby={errorId}
+              {...props}
+            />
+            {children}
+          </>
         );
       }}
     />

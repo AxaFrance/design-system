@@ -90,7 +90,7 @@ export type ConsumerFieldProps = Omit<
   /**
    * Element appended right to the input
    */
-  rightElement?: ReactNode;
+  children?: ReactNode;
 };
 
 export const Field = ({

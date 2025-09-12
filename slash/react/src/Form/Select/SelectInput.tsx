@@ -14,7 +14,7 @@ type Props = ConsumerFieldProps &
   };
 
 const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
-  ({ label, options, ...props }, inputRef) => {
+  ({ label, options, children, ...props }, inputRef) => {
     return (
       <Field
         label={label}
@@ -27,15 +27,18 @@ const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
           errorId,
           ...otherSelectProps
         }) => (
-          <Select
-            id={id}
-            ref={inputRef}
-            classModifier={classModifier}
-            aria-describedby={errorId}
-            aria-invalid={ariaInvalid}
-            options={options}
-            {...otherSelectProps}
-          />
+          <>
+            <Select
+              id={id}
+              ref={inputRef}
+              classModifier={classModifier}
+              aria-describedby={errorId}
+              aria-invalid={ariaInvalid}
+              options={options}
+              {...otherSelectProps}
+            />
+            {children}
+          </>
         )}
       />
     );

@@ -1,4 +1,8 @@
-import { MessageTypes, TextInput } from "@axa-fr/design-system-slash-react";
+import {
+  HelpButton,
+  MessageTypes,
+  TextInput,
+} from "@axa-fr/design-system-slash-react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { inputTypes } from "./inputTypes";
@@ -144,5 +148,28 @@ export const TextInputRichLabelStory: Story = {
       options: inputTypes,
       control: { type: "select" },
     },
+  },
+};
+
+export const TextInputWithAppendChildren: Story = {
+  name: "TextInput with help button",
+  render: ({ onChange, ...args }) => (
+    <TextInput onChange={onChange} {...args}>
+      <HelpButton mode="hover">asdasd</HelpButton>
+    </TextInput>
+  ),
+  args: {
+    required: true,
+    value: "John Doe",
+    placeholder: "Your name",
+    name: "name",
+    id: "nameid",
+    readOnly: false,
+    disabled: false,
+    autoFocus: false,
+    className: "",
+    type: "text",
+    helpMessage: "Aide à la saisie",
+    label: "Your name",
   },
 };

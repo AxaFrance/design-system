@@ -3,15 +3,16 @@ import {
   ComponentPropsWithRef,
   forwardRef,
 } from "react";
+import classNames from "classnames";
 import type { Option } from "../core";
-import { RadioItem } from "./RadioItem";
 import { RadioCardGroup } from "./RadioCardGroup";
+import { RadioItem } from "./RadioItem";
 
 export enum RadioModes {
   classic = "classic",
   default = "default",
   inline = "inline",
-  card = "card",
+  cardRadio = "cardRadio",
 }
 
 type Props = {
@@ -24,7 +25,7 @@ type Props = {
       mode?: "classic" | "default" | "inline";
     })
   | (ComponentPropsWithoutRef<typeof RadioCardGroup> & {
-      mode: "card";
+      mode: "cardRadio";
     })
 );
 
@@ -34,7 +35,7 @@ const getClassNameMode = (mode: Props["mode"]) => {
       return "af-form__radio";
     case RadioModes.inline:
       return "af-form__radio-inline";
-    case RadioModes.card:
+    case RadioModes.cardRadio:
       return "af-form__radio-card";
     default:
       return "af-form__radio-custom";
@@ -46,7 +47,7 @@ const Radio = forwardRef<HTMLInputElement, Props>(
     const { mode, ...onlyNecessaryProps } = otherProps;
     const classNameMode = getClassNameMode(mode ?? "default");
 
-    if (mode === "card") {
+    if (mode === "cardRadio") {
       return (
         <RadioCardGroup
           {...onlyNecessaryProps}
@@ -59,19 +60,27 @@ const Radio = forwardRef<HTMLInputElement, Props>(
       );
     }
 
-    return options.map((option: Option) => (
-      <RadioItem
-        {...onlyNecessaryProps}
-        key={option.value}
-        isChecked={option.value === value}
-        disabled={option.disabled || disabled}
-        className={classNameMode}
-        ref={inputRef}
-        {...option}
+    return (
+      <div
+        className={classNames("af-form__radio-group", [
+          { "af-form__radio-group-classic": mode === RadioModes.classic },
+        ])}
       >
-        {children}
-      </RadioItem>
-    ));
+        {options.map((option: Option) => (
+          <RadioItem
+            {...onlyNecessaryProps}
+            key={option.value}
+            isChecked={option.value === value}
+            disabled={option.disabled || disabled}
+            className={classNameMode}
+            ref={inputRef}
+            {...option}
+          >
+            {children}
+          </RadioItem>
+        ))}
+      </div>
+    );
   },
 );
 

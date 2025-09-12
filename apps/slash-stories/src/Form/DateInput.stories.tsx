@@ -1,4 +1,8 @@
-import { DateInput, MessageTypes } from "@axa-fr/design-system-slash-react";
+import {
+  DateInput,
+  HelpButton,
+  MessageTypes,
+} from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
@@ -40,16 +44,35 @@ export const DateInputStory: Story = {
     classModifier: "",
     className: "",
     disabled: false,
-    classNameContainerLabel: "col-md-2",
-    classNameContainerInput: "col-md-10",
   },
 };
 
 export const DateInputRequiredStory: Story = {
   name: "Required Date with label",
   tags: ["Form", "Input"],
-  render: ({ onChange, ...args }) => (
-    <DateInput onChange={onChange} {...args} />
+  render: ({ ...args }) => <DateInput {...args} />,
+  args: {
+    required: true,
+    ...commonProps,
+    isVisible: true,
+    label: "Birth date",
+    helpMessage: "jj/mm/aaaa",
+    messageType: MessageTypes.success,
+    message: "",
+    forceDisplayMessage: false,
+    id: "dateId",
+    className: "",
+    disabled: false,
+  },
+};
+
+export const DateInputWithChildrenStory: Story = {
+  name: "DateInput with help button",
+  tags: ["Form", "Input"],
+  render: ({ ...args }) => (
+    <DateInput {...args}>
+      <HelpButton mode="hover">Help</HelpButton>
+    </DateInput>
   ),
   args: {
     required: true,

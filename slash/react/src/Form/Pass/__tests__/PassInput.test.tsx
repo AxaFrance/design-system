@@ -66,11 +66,9 @@ describe("PassInput", () => {
   it("should render element right to input", () => {
     // Act
     render(
-      <PassInput
-        label="PassInput label"
-        value="secret"
-        rightElement="Content"
-      />,
+      <PassInput label="PassInput label" value="secret">
+        Content
+      </PassInput>,
     );
 
     // Assert

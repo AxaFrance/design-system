@@ -1,11 +1,37 @@
+import { Svg, Tag } from "@axa-fr/design-system-slash-react";
+import iconBell from "@material-symbols/svg-400/outlined/notifications-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
-import { Tag } from "@axa-fr/design-system-slash-react";
 
 const meta: Meta<typeof Tag> = {
   title: "Components/Tag",
   component: Tag,
   parameters: {
     layout: "centered",
+    backgrounds: {
+      default: "light",
+      values: [
+        { name: "light", value: "#ffffff" },
+        { name: "blue", value: "#00008f" },
+      ],
+    },
+  },
+  globals: {},
+  argTypes: {
+    variant: {
+      options: [
+        "success",
+        "information",
+        "warning",
+        "error",
+        "default",
+        "dark",
+        "purple",
+        "gray",
+        "white",
+      ],
+      control: { type: "select" },
+      defaultValue: "success",
+    },
   },
 };
 export default meta;
@@ -14,26 +40,25 @@ export const Default: StoryObj<typeof Tag> = {
   name: "Tag",
   args: {
     children: "Lorem ipsum",
-    classModifier: "success",
+    variant: "success",
     disabled: false,
   },
-  argTypes: {
-    classModifier: {
-      options: [
-        "success",
-        "information",
-        "warning",
-        "error",
-        "default",
-        "dark",
-        "purple",
-        "gray",
-      ],
-      control: { type: "select" },
-      defaultValue: "success",
+};
+
+export const WhiteTagOnDarkBackground: StoryObj<typeof Tag> = {
+  name: "White Tag on dark background",
+  args: {
+    children: "Lorem ipsum",
+    variant: "white",
+    disabled: false,
+  },
+  parameters: {
+    backgrounds: {
+      default: "blue",
     },
   },
 };
+
 export const TagIconStory: StoryObj<typeof Tag> = {
   name: "Tag with Icon",
   args: {
@@ -42,24 +67,8 @@ export const TagIconStory: StoryObj<typeof Tag> = {
         <i className="glyphicon glyphicon-bell" /> success
       </>
     ),
-    classModifier: "success",
+    variant: "success",
     disabled: false,
-  },
-  argTypes: {
-    classModifier: {
-      options: [
-        "success",
-        "information",
-        "warning",
-        "error",
-        "default",
-        "dark",
-        "purple",
-        "gray",
-      ],
-      control: { type: "select" },
-      defaultValue: "error",
-    },
   },
 };
 
@@ -87,26 +96,29 @@ export const MultiExamples: StoryObj<typeof Tag> = {
           }}
         >
           <Tag disabled={args.disabled}>Tag Default</Tag>
-          <Tag disabled={args.disabled} classModifier="success">
+          <Tag disabled={args.disabled} variant="success">
             Tag Success
           </Tag>
-          <Tag disabled={args.disabled} classModifier="warning">
+          <Tag disabled={args.disabled} variant="warning">
             Tag Warning
           </Tag>
-          <Tag disabled={args.disabled} classModifier="information">
+          <Tag disabled={args.disabled} variant="information">
             Tag Info
           </Tag>
-          <Tag disabled={args.disabled} classModifier="error">
+          <Tag disabled={args.disabled} variant="error">
             Tag Error
           </Tag>
-          <Tag disabled={args.disabled} classModifier="dark">
+          <Tag disabled={args.disabled} variant="dark">
             Tag Black
           </Tag>
-          <Tag disabled={args.disabled} classModifier="purple">
+          <Tag disabled={args.disabled} variant="purple">
             Tag Purple
           </Tag>
-          <Tag disabled={args.disabled} classModifier="gray">
+          <Tag disabled={args.disabled} variant="gray">
             Tag Gray
+          </Tag>
+          <Tag disabled={args.disabled} variant="white">
+            Tag White
           </Tag>
         </div>
         <div
@@ -116,40 +128,44 @@ export const MultiExamples: StoryObj<typeof Tag> = {
             alignItems: "center",
             padding: "2rem",
             flexWrap: "wrap",
-            gap: "5rem",
+            gap: "2rem",
           }}
         >
           <Tag disabled={args.disabled}>
-            <i className="glyphicon glyphicon-bell" />
+            <Svg src={iconBell} />
             Tag default
           </Tag>
-          <Tag disabled={args.disabled} classModifier="success">
+          <Tag disabled={args.disabled} variant="success">
             <i className="glyphicon glyphicon-bell" />
             Tag Success
           </Tag>
-          <Tag disabled={args.disabled} classModifier="warning">
+          <Tag disabled={args.disabled} variant="warning">
             <i className="glyphicon glyphicon-bell" />
             Tag Warning
           </Tag>
-          <Tag disabled={args.disabled} classModifier="information">
+          <Tag disabled={args.disabled} variant="information">
             <i className="glyphicon glyphicon-bell" />
             Tag Information
           </Tag>
-          <Tag disabled={args.disabled} classModifier="error">
+          <Tag disabled={args.disabled} variant="error">
             <i className="glyphicon glyphicon-bell" />
             Tag Error
           </Tag>
-          <Tag disabled={args.disabled} classModifier="dark">
+          <Tag disabled={args.disabled} variant="dark">
             <i className="glyphicon glyphicon-bell" />
             Tag Dark
           </Tag>
-          <Tag disabled={args.disabled} classModifier="purple">
+          <Tag disabled={args.disabled} variant="purple">
             <i className="glyphicon glyphicon-bell" />
             Tag Purple
           </Tag>
-          <Tag disabled={args.disabled} classModifier="gray">
+          <Tag disabled={args.disabled} variant="gray">
             <i className="glyphicon glyphicon-bell" />
             Tag Gray
+          </Tag>
+          <Tag disabled={args.disabled} variant="white">
+            <i className="glyphicon glyphicon-bell" />
+            Tag White
           </Tag>
         </div>
       </div>

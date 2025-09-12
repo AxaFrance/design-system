@@ -6,13 +6,10 @@ import { type ConsumerFieldProps, Field } from "../core";
 
 import { Textarea } from "./Textarea";
 
-type Props = Omit<
-  ConsumerFieldProps & ComponentProps<typeof Textarea>,
-  "children"
->;
+type Props = ConsumerFieldProps & ComponentProps<typeof Textarea>;
 
 const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
-  ({ label, rightElement, ...props }, inputRef) => {
+  ({ label, children, ...props }, inputRef) => {
     return (
       <Field
         label={label}
@@ -28,7 +25,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, Props>(
               aria-invalid={ariaInvalid}
               {...inputProps}
             />
-            {rightElement}
+            {children}
           </>
         )}
       />

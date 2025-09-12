@@ -80,11 +80,9 @@ describe("NumberInput", () => {
   it("should display element right to input", async () => {
     // Act
     render(
-      <NumberInput
-        label="NumberInput label"
-        value="47965"
-        rightElement="Content"
-      />,
+      <NumberInput label="NumberInput label" value="47965">
+        Content
+      </NumberInput>,
     );
 
     // Assert

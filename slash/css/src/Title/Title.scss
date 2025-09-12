@@ -60,7 +60,7 @@ h4.af-title {
     }
   }
 
-  :first-child {
+  > :first-child {
     margin-left: 1.5rem;
   }
 }

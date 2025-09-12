@@ -88,11 +88,9 @@ describe("DateInput", () => {
   it("should render element right to input", () => {
     // Act
     render(
-      <DateInput
-        label="DateInput label"
-        value={fakeDate}
-        rightElement="Content"
-      />,
+      <DateInput label="DateInput label" value={fakeDate}>
+        Content
+      </DateInput>,
     );
 
     // Assert

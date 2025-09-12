@@ -2,21 +2,12 @@ import { type ComponentProps } from "react";
 import { ConsumerFieldProps, Field } from "../core";
 import { Slider } from "./Slider";
 
-type Props = Omit<
-  ConsumerFieldProps & ComponentProps<typeof Slider>,
-  "children"
->;
+type Props = ConsumerFieldProps & ComponentProps<typeof Slider>;
 
 /**
  * @deprecated This component is deprecated and will be removed in a future major release.
  */
-const SliderInput = ({
-  rightElement,
-  name,
-  options,
-  label,
-  ...props
-}: Props) => {
+const SliderInput = ({ children, name, options, label, ...props }: Props) => {
   return (
     <Field
       label={label}
@@ -30,7 +21,7 @@ const SliderInput = ({
             options={options}
             {...sliderProps}
           />
-          {rightElement}
+          {children}
         </>
       )}
     />

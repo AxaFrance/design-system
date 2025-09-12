@@ -6,18 +6,17 @@ import { CheckboxModes } from "./CheckboxModes";
 
 type Props = Omit<
   ComponentProps<typeof Checkbox> & ConsumerFieldProps,
-  "children" | "placeholder"
+  "placeholder"
 >;
 
 const CheckboxInput = forwardRef<HTMLInputElement, Props>(
-  ({ label, mode = "default", options, ...otherProps }, inputRef) => {
+  ({ label, mode = "default", options, children, ...otherProps }, inputRef) => {
     const newOptions = useOptionsWithId(options);
     return (
       <Field
         label={label}
         labelPosition={mode === CheckboxModes.classic ? "top" : "center"}
         roleContainer="group"
-        classNameSuffix="checkbox-container"
         {...otherProps}
         renderInput={({
           classModifier,
@@ -27,18 +26,21 @@ const CheckboxInput = forwardRef<HTMLInputElement, Props>(
           ...props
         }) => {
           return (
-            <Checkbox
-              id={id}
-              mode={mode}
-              options={newOptions}
-              classModifier={
-                ariaInvalid ? `${classModifier} error` : classModifier
-              }
-              ref={inputRef}
-              aria-describedby={errorId}
-              aria-invalid={ariaInvalid}
-              {...props}
-            />
+            <>
+              <Checkbox
+                id={id}
+                mode={mode}
+                options={newOptions}
+                classModifier={
+                  ariaInvalid ? `${classModifier} error` : classModifier
+                }
+                ref={inputRef}
+                aria-describedby={errorId}
+                aria-invalid={ariaInvalid}
+                {...props}
+              />
+              {children}
+            </>
           );
         }}
       />
