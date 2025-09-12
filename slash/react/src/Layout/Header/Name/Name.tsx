@@ -1,6 +1,6 @@
+import "@axa-fr/design-system-slash-css/dist/Layout/Header/Logo/Logo.css";
+import "@axa-fr/design-system-slash-css/dist/Layout/Header/Name/Name.css";
 import { MouseEvent } from "react";
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/Name/Name.scss";
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/Logo/Logo.scss";
 import { getComponentClassName } from "../../../utilities";
 
 const defaultClassName = "af-header__name";

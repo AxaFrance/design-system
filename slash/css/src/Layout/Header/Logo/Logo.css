@@ -1,0 +1,41 @@
+.af-logo {
+  --logo-red: #ff1721;
+  --logo-size: 55px;
+  --switch-size: 14px;
+
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: none;
+}
+
+.af-logo:hover,
+.af-logo:visited,
+.af-logo:link,
+.af-logo:active {
+  text-decoration: none;
+}
+
+.af-logo-name,
+.af-logo-headline {
+  vertical-align: bottom;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.af-logo-name {
+  font-weight: 700;
+}
+
+.af-logo-switch {
+  width: var(--switch-size);
+  height: var(--switch-size);
+  margin: 0 2px;
+  vertical-align: bottom;
+  fill: var(--logo-red);
+}
+
+.af-logo__brand {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  margin-right: 0.5rem;
+}
