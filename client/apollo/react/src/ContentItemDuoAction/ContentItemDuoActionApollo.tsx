@@ -1,35 +1,44 @@
 import "@axa-fr/design-system-apollo-css/dist/ContentItemDuoAction/ContentItemDuoActionCommon.scss";
 import {
+  ActionMode,
   ContentItemDuoActionCommon,
   ContentItemDuoActionProps,
 } from "./ContentItemDuoActionCommon";
-import { Button } from "../Button/ButtonApollo";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoApollo";
+import { Toggle } from "../Toggle/ToggleApollo";
+import { Button } from "../Button/ButtonApollo";
 
 export const ContentItemDuoAction = ({
-  onDeleteButtonClick,
   onEditButtonClick,
+  onDeleteButtonClick,
   contentItemProps,
+  toggleProps,
+  mode,
   ...props
 }: ContentItemDuoActionProps) => {
-  const editButton = (
-    <Button onClick={() => onEditButtonClick?.()} variant="ghost">
-      Modifier
-    </Button>
-  );
-  const deleteButton = (
-    <Button onClick={() => onDeleteButtonClick?.()} variant="ghost">
-      Supprimer
-    </Button>
-  );
-  console.log({ ...contentItemProps });
+  const createAction = () => {
+    if (mode === ActionMode.edit) {
+      return (
+        <div className="grid">
+          <Button onClick={() => onEditButtonClick?.()} variant="ghost">
+            Modifier
+          </Button>
+          <Button onClick={() => onDeleteButtonClick?.()} variant="ghost">
+            Supprimer
+          </Button>
+        </div>
+      );
+    }
+    return <Toggle {...toggleProps} />;
+  };
+
   const contentItemMono = <ContentItemMono {...contentItemProps} />;
+
   return (
     <ContentItemDuoActionCommon
       {...props}
-      editButton={editButton}
-      deleteButton={deleteButton}
       contentItemMono={contentItemMono}
+      action={createAction()}
     />
   );
 };
