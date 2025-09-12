@@ -6,7 +6,7 @@ import { Td } from "./Td";
 import { Th } from "./Th";
 import { Tr } from "./Tr";
 
-import "@axa-fr/design-system-slash-css/dist/Table/Table.scss";
+import "@axa-fr/design-system-slash-css/dist/Table/Table.css";
 
 type TableProps = ComponentPropsWithoutRef<"table"> & {
   classModifier?: string;

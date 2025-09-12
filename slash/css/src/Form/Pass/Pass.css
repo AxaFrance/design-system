@@ -1,0 +1,85 @@
+.af-form__pass {
+  position: relative;
+  display: inline-block;
+}
+
+.af-form__pass .af-form__input-text {
+  padding-right: 3rem;
+}
+
+.af-form__pass--hasinfobulle {
+  margin-right: 1rem;
+}
+
+.af-form__pass .af-form__help {
+  display: flex;
+  min-height: 1.6em;
+  margin: 0.2rem 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+}
+
+.af-form__pass-btn {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  display: flex;
+  padding: 0.45rem 0.4rem;
+  border: none;
+  font-size: 1.3em;
+  color: gray;
+  background: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+.af-form__pass-btn:hover {
+  border-radius: 100%;
+  background: var(--gray30);
+}
+
+.af-form__pass-btn:focus {
+  outline: 0;
+}
+
+.af-form__pass-btn .glyphicon {
+  width: 22px;
+}
+
+.af-form__pass-strength {
+  width: 0;
+  height: 3px;
+  background: transparent;
+  transition: all 300ms ease-in-out;
+}
+
+.af-form__pass--bad .af-form__pass-strength {
+  width: 20%;
+  background: red;
+}
+
+.af-form__pass--okay .af-form__pass-strength {
+  width: 40%;
+  background: orange;
+}
+
+.af-form__pass--good .af-form__pass-strength {
+  width: 60%;
+  background: green;
+}
+
+.af-form__pass--verygood .af-form__pass-strength {
+  width: 80%;
+  background: blue;
+}
+
+.af-form__pass--excellent .af-form__pass-strength {
+  width: 100%;
+  background: purple;
+}
+
+.af-form__pass-container .af-popover__container {
+  display: inline-block;
+}

@@ -7,10 +7,7 @@
   "exports": {
     "./logo-axa.svg": "./files/assets/logo-axa.svg",
     "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
-    "./dist/*": {
-      "development": "./src/*",
-      "default": "./dist/*"
-    }
+    "./dist/*": "./dist/*"
   },
   "files": [
     "dist",
@@ -18,19 +15,25 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production",
-    "postbuild": "copyfiles --up 1 \"src/**/*.{scss,css}\" dist",
-    "stylelint": "stylelint \"src/**/*.{scss,css}\"",
-    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
+    "build": "postcss \"src/**/*.css\" --base src --dir dist --ext css --verbose --env production",
+    "dev": "postcss \"src/**/*.css\" --base src --dir dist --ext css --watch --verbose",
+    "postbuild": "copyfiles --up 1 \"src/**/*.{scss}\" dist",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "stylelint:fix": "stylelint \"src/**/*.css\" --fix"
   },
   "dependencies": {
-    "rc-slider": "^11.1.7"
+    "rc-slider": "^11.1.9"
   },
   "devDependencies": {
     "@axa-fr/postcss-config-design-system": "*",
     "@axa-fr/prettier-config-design-system": "*",
     "@axa-fr/stylelint-config-design-system": "*",
+    "@csstools/postcss-global-data": "^3.1.0",
+    "@csstools/postcss-sass": "^5.1.1",
     "copyfiles": "^2.4.1",
+    "postcss-custom-media": "^10.0.8",
+    "postcss-import": "^16.1.1",
+    "postcss-preset-env": "^9.6.0",
     "rimraf": "^6.0.1"
   },
   "peerDependencies": {

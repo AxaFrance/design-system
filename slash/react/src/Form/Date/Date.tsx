@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Date/Date.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Date/Date.css";
 import { ComponentPropsWithRef, forwardRef } from "react";
 import { getComponentClassName } from "../../utilities";
 import { formatDateInputValue } from "../../utilities/helpers/date";

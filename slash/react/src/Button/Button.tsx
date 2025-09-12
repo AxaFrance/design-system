@@ -1,10 +1,10 @@
+import classNames from "classnames";
 import {
   ComponentPropsWithoutRef,
   forwardRef,
   PropsWithChildren,
   ReactNode,
 } from "react";
-import classNames from "classnames";
 
 import "@axa-fr/design-system-slash-css/dist/Button/Button.css";
 
