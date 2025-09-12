@@ -39,15 +39,15 @@ export const Stepper = ({
   titleLevel = 2,
   ...props
 }: StepperProps) => {
-  const stepperId = useId();
+  const titleId = useId();
   const Title = `h${titleLevel}` as ElementType<
     HTMLAttributes<HTMLHeadingElement>
   >;
 
   return (
-    <div className="af-stepper" {...props}>
+    <div className="af-stepper" {...props} tabIndex={undefined}>
       <div className="af-stepper__header">
-        <Title className="af-stepper__title" aria-describedby={stepperId}>
+        <Title id={titleId} className="af-stepper__title">
           {currentTitle}
         </Title>
         {Boolean(currentSubtitle) && (
@@ -55,11 +55,11 @@ export const Stepper = ({
         )}
       </div>
       <ProgressBarGroupComponent
-        label={currentTitle}
         className={className}
         currentStep={currentStep}
-        nbSteps={nbSteps}
+        stepsCount={nbSteps}
         currentStepProgress={currentStepProgress}
+        aria-labelledby={titleId}
       />
       {Boolean(helper) && <span className="af-stepper__helper">{helper}</span>}
       <ItemMessage message={message} messageType={messageType} />
