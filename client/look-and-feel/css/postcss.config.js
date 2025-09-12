@@ -1,1 +1,1 @@
-module.exports = require("@axa-fr/postcss-config-design-system");
+module.exports = require("@axa-fr/postcss-config-design-system").sassConfig;

@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Action/Action.scss";
+import "@axa-fr/design-system-slash-css/dist/Action/Action.css";
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { getComponentClassName } from "../utilities";
 

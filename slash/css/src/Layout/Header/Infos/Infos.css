@@ -38,7 +38,7 @@
   margin-right: 0;
 }
 
-@media (width >= 768px) {
+@media (--tablet-landscape) {
   .af-contrat {
     margin: 0;
     order: 2;

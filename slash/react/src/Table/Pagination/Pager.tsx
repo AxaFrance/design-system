@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Table/Pager.scss";
+import "@axa-fr/design-system-slash-css/dist/Table/Pager.css";
 import { ComponentPropsWithoutRef } from "react";
 import { getComponentClassName } from "../..";
 import { Li } from "./Li";

@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Accordion/Accordion.scss";
+import "@axa-fr/design-system-slash-css/dist/Accordion/Accordion.css";
 import React, { useId } from "react";
 import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
 import { CollapseCard, CollapseProps } from "./CollapseCard";

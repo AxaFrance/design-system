@@ -2,7 +2,7 @@ import check from "@material-symbols/svg-700/sharp/check.svg";
 import { ComponentPropsWithoutRef, ReactNode, forwardRef, useId } from "react";
 import { getOptionClassName } from "../core";
 
-import "@axa-fr/design-system-slash-css/dist/Form/Checkbox/Checkbox.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Checkbox/Checkbox.css";
 import { Svg } from "../../Svg";
 
 type Props = Omit<ComponentPropsWithoutRef<"input">, "type"> & {
