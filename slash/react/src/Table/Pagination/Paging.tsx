@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Table/Paging.scss";
+import "@axa-fr/design-system-slash-css/dist/Table/Paging.css";
 import { ComponentPropsWithoutRef, useCallback } from "react";
 import { getComponentClassName } from "../..";
 import { Items } from "./Items";

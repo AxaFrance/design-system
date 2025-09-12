@@ -1,6 +1,6 @@
+import "@axa-fr/design-system-slash-css/dist/Tag/Tag.css";
 import { ComponentPropsWithRef, PropsWithChildren, forwardRef } from "react";
 import { getComponentClassName } from "../utilities";
-import "@axa-fr/design-system-slash-css/dist/Tag/Tag.scss";
 
 type TagModifier =
   | "success"

@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/File/File.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/File/File.css";
 import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
 
 import { type ConsumerFieldProps, Field } from "../core";

@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.css";
 
 import { type ComponentProps } from "react";
 import { ConsumerFieldProps, Field } from "../core";
