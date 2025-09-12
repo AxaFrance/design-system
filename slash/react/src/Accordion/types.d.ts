@@ -12,3 +12,5 @@ export type AccordionAction = {
 };
 
 export type AccordionActions = readonly [AccordionAction, AccordionAction?];
+
+export type AccordionVariant = "white" | "light" | "default";

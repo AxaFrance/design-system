@@ -188,4 +188,14 @@
     }
   }
 }
+
+.af-form__radio-group {
+  display: flex;
+  margin-right: 1rem;
+}
+
+.af-form__radio-group-classic {
+  display: block;
+  flex-grow: 1;
+}
 /* stylelint-enable no-descending-specificity */

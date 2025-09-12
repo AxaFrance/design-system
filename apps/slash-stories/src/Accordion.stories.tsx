@@ -1,5 +1,5 @@
-import edit from "@material-symbols/svg-400/rounded/edit.svg";
 import trash from "@material-symbols/svg-400/rounded/delete.svg";
+import edit from "@material-symbols/svg-400/rounded/edit.svg";
 
 import {
   Accordion,
@@ -72,7 +72,7 @@ export const Default: StoryObj<typeof Accordion> = {
     </Accordion>
   ),
   args: {
-    variant: "userClassName",
+    variant: "default",
     onlyOne: false,
   },
 };

@@ -28,3 +28,30 @@ article {
   border: 1px solid var(--color-red);
   padding: var(--spacing-u1);
 }
+
+#header {
+  height: 5rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.navigationLink {
+  padding: 0 3rem;
+  border-right: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #00008f;
+}
+
+.navigationLink:hover {
+  color: #000072;
+  background-color: #f8f8ff;
+}
+
+#backlink {
+  color: #00008f;
+  font-size: 1.5rem;
+  padding-left: 4rem;
+}

@@ -1,19 +1,11 @@
-import { MessageTypes, SelectInput } from "@axa-fr/design-system-slash-react";
+import {
+  HelpButton,
+  MessageTypes,
+  SelectInput,
+} from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
-
-const meta: Meta<typeof SelectInput> = {
-  component: SelectInput,
-  title: "Components/Form/Input/Select",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
-
-type StoryProps = ComponentProps<typeof SelectInput>;
-type Story = StoryObj<StoryProps>;
 
 const options = [
   { value: "fun", label: "For fun" },
@@ -21,8 +13,38 @@ const options = [
   { value: "drink", label: "For drink" },
 ];
 
+const meta: Meta<typeof SelectInput> = {
+  component: SelectInput,
+  title: "Components/Form/Input/Select",
+  argTypes: { onChange: { action: "onChange" } },
+  args: {
+    label: "Place type",
+    mode: "default",
+    helpMessage: "Enter the place type",
+    required: false,
+    disabled: false,
+    isVisible: true,
+    classModifier: "",
+    className: "",
+    placeholder: "- Select -",
+    messageType: undefined,
+    forceDisplayMessage: false,
+    classNameContainerLabel: "col-md-2",
+    classNameContainerInput: "col-md-10",
+    forceDisplayPlaceholder: false,
+    name: "placeName",
+    options,
+    onChange: fn(),
+  },
+};
+
+export default meta;
+
+type StoryProps = ComponentProps<typeof SelectInput>;
+type Story = StoryObj<StoryProps>;
+
 export const SelectInputStory: Story = {
-  name: "Select with label",
+  name: "SelectInput with label",
   tags: ["Form", "Input"],
   render: ({ onChange, ...args }) => (
     <SelectInput onChange={onChange} {...args} />
@@ -58,11 +80,6 @@ export const SelectInputStory: Story = {
     },
     name: { table: { disable: true } },
     id: { table: { disable: true } },
-    setStateMemoryFn: { table: { disable: true } },
-    onChangeByStateFn: { table: { disable: true } },
-    initialState: { table: { disable: true } },
-    setStateOnFocusFn: { table: { disable: true } },
-    setStateOnBlurFn: { table: { disable: true } },
     roleContainer: { table: { disable: true } },
     ariaLabelContainer: { table: { disable: true } },
     isLabelContainerLinkedToInput: { table: { disable: true } },
@@ -70,7 +87,7 @@ export const SelectInputStory: Story = {
 };
 
 export const SelectWithStatus: StoryObj<ComponentProps<typeof SelectInput>> = {
-  name: "Select with statuses",
+  name: "SelectInput with statuses",
   tags: ["Form", "Input"],
   render: ({ onChange }) => (
     <>
@@ -123,4 +140,13 @@ export const SelectWithStatus: StoryObj<ComponentProps<typeof SelectInput>> = {
   argTypes: {
     onChange: { action: "onChange" },
   },
+};
+
+export const SelectWithChildren: Story = {
+  name: "SelectInput with children",
+  render: ({ ...args }) => (
+    <SelectInput {...args}>
+      <HelpButton mode="hover">Help</HelpButton>
+    </SelectInput>
+  ),
 };

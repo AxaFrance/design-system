@@ -44,11 +44,9 @@ describe("TextareaInput", () => {
   it("should render element right to input", () => {
     // Act
     render(
-      <TextareaInput
-        id="textareainput-id"
-        label="TextareaInput label"
-        rightElement="Content"
-      />,
+      <TextareaInput id="textareainput-id" label="TextareaInput label">
+        Content
+      </TextareaInput>,
     );
 
     // Assert

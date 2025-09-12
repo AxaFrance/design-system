@@ -1,10 +1,10 @@
-import React from "react";
 import arrow from "@material-symbols/svg-400/rounded/keyboard_arrow_down.svg";
-import { Title } from "../Title/Title";
+import React from "react";
 import { Button } from "../Button/Button";
 import { Svg } from "../Svg/Svg";
+import { Title } from "../Title/Title";
 import { getComponentClassName } from "../utilities";
-import type { AccordionActions } from "./types";
+import type { AccordionActions, AccordionVariant } from "./types";
 
 const defaultClassName = "af-accordion__item-header";
 
@@ -20,7 +20,7 @@ export type HeaderProps = {
   classModifier?: string;
   id?: string;
   actions?: AccordionActions;
-  variant?: string;
+  variant?: AccordionVariant;
 };
 
 const Header = ({

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import { Button, VerticalStep } from "@axa-fr/design-system-slash-react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Components/Steps/VerticalStep",
@@ -16,8 +16,8 @@ export const VerticalStepLockedStory: Story = {
     id: "configuration",
     stepMode: "locked",
     onEdit: () => {},
-    form: <h3>Formulaire de l'étape configuration</h3>,
-    restitution: <h3>Resitution de l'étape configuration</h3>,
+    form: <h3>Formulaire de l&apos;étape configuration</h3>,
+    restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
 };
 
@@ -30,14 +30,14 @@ export const VerticalStepEditedStory: Story = {
     onEdit: () => {},
     form: (
       <section>
-        <h3>Formulaire de l'étape configuration</h3>
+        <h3>Formulaire de l&apos;étape configuration</h3>
 
-        <Button type="submit" classModifier="success">
-          Valider l'étape
+        <Button type="submit" variant="validated">
+          Valider l&apos;étape
         </Button>
       </section>
     ),
-    restitution: <h3>Resitution de l'étape configuration</h3>,
+    restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
 };
 
@@ -48,8 +48,8 @@ export const VerticalStepValidatedWithoutRestitutionStory: Story = {
     id: "configuration",
     stepMode: "validated",
     onEdit: () => {},
-    form: <h3>Formulaire de l'étape configuration</h3>,
-    restitution: <h3>Resitution de l'étape configuration</h3>,
+    form: <h3>Formulaire de l&apos;étape configuration</h3>,
+    restitution: <h3>Resitution de l&apos;étape configuration</h3>,
     showRestitution: false,
   },
 };
@@ -61,8 +61,8 @@ export const VerticalStepValidatedWithRestitutionStory: Story = {
     id: "configuration",
     stepMode: "validated",
     onEdit: () => {},
-    form: <h3>Formulaire de l'étape configuration</h3>,
-    restitution: <h3>Resitution de l'étape configuration</h3>,
+    form: <h3>Formulaire de l&apos;étape configuration</h3>,
+    restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
 };
 
@@ -74,8 +74,8 @@ export const VerticalStepValidatedWithContentRightStory: Story = {
     stepMode: "validated",
     contentRight: "Contenu à droite",
     onEdit: () => {},
-    form: <h3>Formulaire de l'étape configuration</h3>,
-    restitution: <h3>Resitution de l'étape configuration</h3>,
+    form: <h3>Formulaire de l&apos;étape configuration</h3>,
+    restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
 };
 

@@ -87,8 +87,9 @@ describe("<FileInput>", () => {
         name="file"
         onChange={() => {}}
         accept="image/jpeg, image/png, application/*"
-        rightElement="Content"
-      />,
+      >
+        Content
+      </FileInput>,
     );
 
     // Assert
