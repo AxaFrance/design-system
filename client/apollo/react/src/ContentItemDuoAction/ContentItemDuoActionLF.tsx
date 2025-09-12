@@ -6,28 +6,31 @@ import {
 import { Button } from "../Button/ButtonLF";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoLF";
 
-export const ContentItemDuoAction = (props: ContentItemDuoActionProps) => {
-    const editButton = (
-        <Button
-            onClick={() => props.onEditButtonClick?.()}
-            variant="ghost"
-        >Modifier</Button>
-    );
-    const deleteButton = (
-        <Button
-            onClick={() => props.onDeleteButtonClick?.()}
-            variant="ghost"
-        >Supprimer</Button>
-    );
+export const ContentItemDuoAction = ({
+  onEditButtonClick,
+  onDeleteButtonClick,
+  contentItemProps,
+  ...props
+}: ContentItemDuoActionProps) => {
+  const editButton = (
+    <Button onClick={() => onEditButtonClick?.()} variant="ghost">
+      Modifier
+    </Button>
+  );
+  const deleteButton = (
+    <Button onClick={() => onDeleteButtonClick?.()} variant="ghost">
+      Supprimer
+    </Button>
+  );
 
-    const contentItemMono = <ContentItemMono {...props.contentItemMonoProps} />;
+  const contentItemMono = <ContentItemMono {...contentItemProps} />;
 
-    return (
-        <ContentItemDuoActionCommon
-            {...props}
-            editButton={editButton}
-            deleteButton={deleteButton}
-            contentItemMono={contentItemMono}
-        />
-    );
+  return (
+    <ContentItemDuoActionCommon
+      {...props}
+      editButton={editButton}
+      deleteButton={deleteButton}
+      contentItemMono={contentItemMono}
+    />
+  );
 };
