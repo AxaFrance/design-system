@@ -19,7 +19,7 @@ export const ContentItemDuoAction = ({
   const createAction = () => {
     if (mode === ActionMode.edit) {
       return (
-        <div className="grid">
+        <div className="af-action-edit-buttons-container">
           <Button onClick={() => onEditButtonClick?.()} variant="ghost">
             Modifier
           </Button>
