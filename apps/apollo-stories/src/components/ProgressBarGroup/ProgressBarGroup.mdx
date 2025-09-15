@@ -1,20 +1,34 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs";
 import * as ProgressBarGroupStories from "./ProgressBarGroup.stories";
 
-<Meta of={ProgressBarGroupStories} name="ProgressBar Client" />
+<Meta of={ProgressBarGroupStories} />
 
 # ProgressBarGroup
 
-To use the header import it like that:
+A multi-step progress indicator for wizards, forms, or any process with several steps.
 
-```tsx title="test.js"
+## Usage
+
+```tsx
 import { ProgressBarGroup } from "@axa-fr/design-system-apollo-react";
 
-const MyComponent = () => <ProgressBarGroup />;
+<ProgressBarGroup
+  currentStep={1} // Index of the current step (0-based)
+  currentStepProgress={50} // Progress of the current step (0-100)
+  stepsCount={4} // Total number of steps
+/>;
 ```
 
-## Playground
+## Props
 
-<Canvas of={ProgressBarGroupStories.Playground} />
+- `currentStep` (number): Index of the current step (0-based, required)
+- `currentStepProgress` (number): Progress of the current step (0-100, default: 0)
+- `stepsCount` (number): Total number of steps (required)
+- `max` (number): Maximum value for progress (default: 100)
+- `className` (string): Custom class for the group
+
+## Example
+
+<Canvas of={ProgressBarGroupStories.Playground} sourceState="shown" />
 
 <Controls of={ProgressBarGroupStories.Playground} />
