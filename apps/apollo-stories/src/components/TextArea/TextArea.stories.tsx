@@ -1,4 +1,7 @@
-import { TextArea } from "@axa-fr/design-system-apollo-react";
+import {
+  TextArea,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof TextArea> = {
@@ -17,6 +20,10 @@ const meta: Meta<typeof TextArea> = {
     sideButtonLabel: { control: { type: "text" } },
     onButtonClick: { action: "button clicked" },
     onSideButtonClick: { action: "side button clicked" },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
   args: {
     value: "",
@@ -30,6 +37,7 @@ const meta: Meta<typeof TextArea> = {
     required: true,
     disabled: false,
     error: "",
+    message: "",
   },
 };
 
