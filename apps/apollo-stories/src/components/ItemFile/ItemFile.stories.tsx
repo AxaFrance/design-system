@@ -1,4 +1,8 @@
-import { ItemFile, itemFileVariants } from "@axa-fr/design-system-apollo-react";
+import {
+  ItemFile,
+  itemFileVariants,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 
 type Story = StoryObj<typeof ItemFile>;
@@ -11,31 +15,21 @@ const meta: Meta<typeof ItemFile> = {
       options: Object.values(itemFileVariants),
       control: { type: "select" },
     },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
 };
 export default meta;
 
-export const Default: Story = {
+export const Playground: Story = {
   args: {
     state: "success",
     title: "IMG_879687880.jpg",
     subTitle: "0.12 Mo",
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    state: "loading",
-    title: "IMG_879687880.jpg",
-    subTitle: "0.12 Mo",
-  },
-};
-
-export const Error: Story = {
-  args: {
-    state: "error",
-    title: "IMG_879687880.jpg",
-    subTitle: "0.12 Mo",
-    errorMessage: "Titre du message",
+    errorMessage: "",
+    message: "",
+    messageType: undefined,
   },
 };

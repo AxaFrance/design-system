@@ -8,7 +8,10 @@ import {
 import classNames from "classnames";
 import type { IconProps } from "../../Icon/IconCommon";
 import { Spinner } from "../../Spinner/SpinnerCommon";
-import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../ItemMessage/ItemMessageCommon";
 import { ItemStateIcon } from "./ItemStateIcon";
 
 export const itemFileVariants = {
@@ -19,21 +22,31 @@ export const itemFileVariants = {
 
 export type ItemFileState = keyof typeof itemFileVariants;
 
-export type ItemFileCommonProps = {
+export type ItemFileProps = {
   state: ItemFileState;
   ariaLabelVisibility?: string;
   ariaLabelDelete?: string;
   filename?: string;
   title: string;
   subTitle: string;
-  errorMessage?: string;
   deleteIcon: ReactNode;
   visibilityIcon?: ReactNode;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
+  errorMessage?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   success?: string;
+} & Omit<ComponentPropsWithoutRef<"section">, "children"> &
+  Partial<ItemMessageProps>;
+
+export type ItemFileCommonProps = ItemFileProps & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   ItemIconComponent: ComponentType<IconProps>;
   ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
-} & Omit<ComponentPropsWithoutRef<"section">, "children">;
+};
 
 export const ItemFileCommon = ({
   className,
@@ -44,14 +57,19 @@ export const ItemFileCommon = ({
   deleteIcon,
   visibilityIcon,
   success,
+  message,
+  messageType,
   ItemSpinnerComponent,
   ItemIconComponent,
   ItemMessageComponent,
   ...props
 }: ItemFileCommonProps) => {
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(errorMessage);
+
   const classname = classNames(
     "af-item-file",
-    errorMessage && "af-item-file--error",
+    hasError && "af-item-file--error",
     className,
   );
 
@@ -71,8 +89,8 @@ export const ItemFileCommon = ({
         </div>
       </div>
       <ItemMessageComponent
-        message={errorMessage ?? success}
-        messageType={errorMessage ? "error" : "success"}
+        message={message || errorMessage || success}
+        messageType={messageType || (errorMessage ? "error" : "success")}
       />
     </section>
   );
