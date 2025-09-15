@@ -1,4 +1,7 @@
-import { InputDate } from "@axa-fr/design-system-apollo-react";
+import {
+  InputDate,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof InputDate> = {
@@ -10,6 +13,10 @@ const meta: Meta<typeof InputDate> = {
     hidePicker: {
       control: { type: "boolean" },
     },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
   args: {
     name: "birthDate",
@@ -20,6 +27,7 @@ const meta: Meta<typeof InputDate> = {
     buttonLabel: "En savoir plus",
     helper: "Informations complémentaires",
     hidePicker: false,
+    message: "",
   },
 };
 
