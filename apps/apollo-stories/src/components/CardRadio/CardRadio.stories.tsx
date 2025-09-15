@@ -1,4 +1,7 @@
-import { CardRadio } from "@axa-fr/design-system-apollo-react";
+import {
+  CardRadio,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
@@ -75,6 +78,10 @@ const meta: Meta = {
         disable: true,
       },
     },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
   args: {
     type: "vertical",
@@ -84,6 +91,7 @@ const meta: Meta = {
     options: optionsDefault,
     required: false,
     error: "",
+    message: "",
   },
 };
 
@@ -93,11 +101,11 @@ export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
   name: "Playground",
   render: ({ description, error, name, type, ...args }) => (
     <CardRadio
-      {...args}
       description={description !== "" ? description : undefined}
       error={error !== "" ? error : undefined}
       name={name !== "" ? name : undefined}
       type={type === "horizontal" ? type : undefined}
+      {...args}
     />
   ),
 };

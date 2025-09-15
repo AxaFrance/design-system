@@ -4,7 +4,7 @@ import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 
 import "@axa-fr/design-system-apollo-css/dist/Form/Radio/CardRadio/CardRadioLF.scss";
 
-export const CardRadio = (props: CardRadioProps) => (
+const CardRadio = (props: CardRadioProps) => (
   <CardRadioCommon
     {...props}
     CardRadioOptionComponent={CardRadioOption}
@@ -13,3 +13,5 @@ export const CardRadio = (props: CardRadioProps) => (
 );
 
 CardRadio.displayName = "CardRadio";
+
+export { CardRadio };
