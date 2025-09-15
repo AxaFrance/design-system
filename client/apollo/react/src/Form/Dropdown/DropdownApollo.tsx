@@ -1,15 +1,9 @@
 import "@axa-fr/design-system-apollo-css/dist/Form/Dropdown/DropdownApollo.scss";
-import type { ComponentProps } from "react";
 import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
-import { Dropdown as DropdownCommon } from "./DropdownCommon";
+import { DropdownCommon, type DropdownProps } from "./DropdownCommon";
 
-export const Dropdown = (
-  props: Omit<
-    ComponentProps<typeof DropdownCommon>,
-    "ItemLabelComponent" | "ItemMessageComponent"
-  >,
-) => (
+export const Dropdown = (props: DropdownProps) => (
   <DropdownCommon
     {...props}
     ItemLabelComponent={ItemLabel}

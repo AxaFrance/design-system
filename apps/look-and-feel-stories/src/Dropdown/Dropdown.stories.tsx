@@ -1,4 +1,7 @@
-import { Dropdown } from "@axa-fr/design-system-look-and-feel-react";
+import {
+  Dropdown,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
@@ -30,12 +33,17 @@ const meta: Meta<typeof Dropdown> = {
     buttonLabel: "En savoir plus",
     error: "",
     helper: "Information complémentaires",
+    message: "",
   },
   argTypes: {
     onChange: { action: "onChange" },
     value: {
       control: { type: "select" },
       options: ["", ...options.map((option) => option.value)],
+    },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
     },
   },
 };
