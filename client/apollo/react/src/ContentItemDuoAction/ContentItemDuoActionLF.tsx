@@ -1,24 +1,26 @@
 import "@axa-fr/design-system-apollo-css/dist/ContentItemDuoAction/ContentItemDuoActionCommon.scss";
 import "@axa-fr/design-system-apollo-css/dist/ContentItemMono/ContentItemMonoLF.scss";
 import {
-  ActionMode,
   ContentItemDuoActionCommon,
   ContentItemDuoActionProps,
+  EditProps,
 } from "./ContentItemDuoActionCommon";
 import { Button } from "../Button/ButtonLF";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoLF";
 import { Toggle } from "../Toggle/ToggleLF";
 
 export const ContentItemDuoAction = ({
-  onEditButtonClick,
-  onDeleteButtonClick,
+  editProps,
   contentItemProps,
   toggleProps,
   mode,
   ...props
 }: ContentItemDuoActionProps) => {
-  const createAction = () => {
-    if (mode === ActionMode.edit) {
+  const createAction = ({
+    onEditButtonClick,
+    onDeleteButtonClick,
+  }: EditProps) => {
+    if (mode === "edit") {
       return (
         <div className="af-action-edit-buttons-container">
           <Button onClick={() => onEditButtonClick?.()} variant="ghost">
@@ -39,7 +41,7 @@ export const ContentItemDuoAction = ({
     <ContentItemDuoActionCommon
       {...props}
       contentItemMono={contentItemMono}
-      action={createAction()}
+      action={createAction({ ...editProps })}
     />
   );
 };

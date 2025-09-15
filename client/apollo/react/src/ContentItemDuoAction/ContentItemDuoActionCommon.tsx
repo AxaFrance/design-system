@@ -3,14 +3,16 @@ import { getComponentClassName } from "../utilities/getComponentClassName";
 import { ToggleProps } from "../Toggle/ToggleCommon";
 import { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
 
-export enum ActionMode {
-  edit = "edit",
-  toggle = "toggle",
-}
+export type ActionMode = "edit" | "toggle";
 export type ContentItemDuoActionCommonProps = {
   className?: string;
   action?: React.ReactNode;
   contentItemMono: React.ReactNode;
+};
+
+export type EditProps = {
+  onEditButtonClick?: () => void;
+  onDeleteButtonClick?: () => void;
 };
 
 export type ContentItemDuoActionProps = Omit<
@@ -20,8 +22,7 @@ export type ContentItemDuoActionProps = Omit<
   mode: ActionMode;
   contentItemProps: ContentItemProps;
   toggleProps?: ToggleProps;
-  onEditButtonClick?: () => void;
-  onDeleteButtonClick?: () => void;
+  editProps?: EditProps;
 };
 
 export const ContentItemDuoActionCommon = ({
