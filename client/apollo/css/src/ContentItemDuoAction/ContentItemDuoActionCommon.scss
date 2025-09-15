@@ -3,20 +3,26 @@
 .af-content-item-duo-action {
   display: flex;
   flex-direction: row;
+
   .af-content-item-mono {
     flex-grow: 1;
   }
+
   .af-toggle {
     display: flex;
     align-items: center;
   }
+
   .af-action-edit-buttons-container {
     display: flex;
     flex-direction: column;
     row-gap: calc(16 / var(--font-size-base) * 1rem);
+
     @media (width > #{common.$breakpoint-sm}) {
       flex-direction: row;
-      gap: calc(24 / var(--font-size-base) * 1rem);--cols: 6;
+      gap: calc(24 / var(--font-size-base) * 1rem);
+
+      --cols: 6;
     }
   }
 }
