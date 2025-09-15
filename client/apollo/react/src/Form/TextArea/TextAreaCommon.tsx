@@ -6,39 +6,42 @@ import {
   MouseEventHandler,
   useId,
 } from "react";
-import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
-import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import {
+  ItemLabelCommon,
+  type ItemLabelProps,
+} from "../ItemLabel/ItemLabelCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../ItemMessage/ItemMessageCommon";
 
-type Props = ComponentPropsWithRef<"textarea"> &
-  Pick<
-    ComponentProps<typeof ItemLabel>,
-    | "label"
-    | "description"
-    | "buttonLabel"
-    | "sideButtonLabel"
-    | "onSideButtonClick"
-  > & {
-    /** @deprecated Use `className` instead */
-    classModifier?: string;
-    helper?: string;
-    error?: string;
-    ItemLabelComponent: ComponentType<
-      Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
-    >;
-    ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-    onButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  } & Partial<ComponentPropsWithRef<typeof ItemMessage>>;
+export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
+  helper?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
+  error?: string;
+  onButtonClick?: MouseEventHandler<HTMLButtonElement>;
+} & Partial<ItemMessageProps & ItemLabelProps>;
 
-export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
+type TextAreaCommonProps = TextAreaProps & {
+  ItemLabelComponent: ComponentType<
+    Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
+  >;
+  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+};
+
+const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
   (
     {
       id,
       className,
-      classModifier = "",
       label,
       description,
       helper,
       error,
+      message,
+      messageType,
       buttonLabel,
       onButtonClick,
       required,
@@ -54,7 +57,10 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
     const generatedId = useId();
     const inputId = id ?? generatedId;
     const helperId = `${inputId}-helper`;
-    const errorId = `${inputId}-error`;
+    const messageId = `${inputId}-error`;
+
+    const hasError =
+      (Boolean(message) && messageType === "error") || Boolean(error);
 
     return (
       <div
@@ -72,28 +78,35 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           required={required}
           inputId={inputId}
         />
+
         <textarea
           id={inputId}
           className="af-form__textarea"
           ref={inputRef}
-          aria-errormessage={error ? errorId : undefined}
+          aria-errormessage={hasError ? messageId : undefined}
           aria-describedby={helper ? helperId : undefined}
           required={required}
-          aria-invalid={
-            Boolean(error) || classModifier.includes("error") ? true : undefined
-          }
+          aria-invalid={hasError || undefined}
           placeholder={placeholder}
           {...inputProps}
         />
+
         {helper ? (
           <span id={helperId} className="af-form__input-helper">
             {helper}
           </span>
         ) : null}
-        <ItemMessageComponent id={errorId} message={error} />
+
+        <ItemMessageComponent
+          id={messageId}
+          message={message || error}
+          messageType={messageType}
+        />
       </div>
     );
   },
 );
 
-TextArea.displayName = "TextArea";
+TextAreaCommon.displayName = "TextArea";
+
+export { TextAreaCommon };
