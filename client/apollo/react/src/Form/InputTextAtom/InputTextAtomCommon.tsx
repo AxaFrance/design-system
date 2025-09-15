@@ -23,9 +23,10 @@ const InputTextAtom = forwardRef<HTMLInputElement, InputTextAtomProps>(
       classModifier = "",
       error,
       required,
-      "aria-errormessage": ariaErrormessage,
       idMessage,
       idHelp,
+      "aria-errormessage": ariaErrormessage,
+      type = "text",
       ...otherProps
     },
     inputRef,
@@ -44,7 +45,7 @@ const InputTextAtom = forwardRef<HTMLInputElement, InputTextAtomProps>(
         <input
           id={inputId}
           className={componentClassName}
-          type={otherProps.type || "text"}
+          type={type}
           required={required}
           ref={inputRef}
           aria-errormessage={ariaErrormessage ?? idMessage}

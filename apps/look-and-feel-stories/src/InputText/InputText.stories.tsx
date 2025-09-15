@@ -1,4 +1,8 @@
-import { Svg, TextInput } from "@axa-fr/design-system-look-and-feel-react";
+import {
+  Svg,
+  TextInput,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react/lf";
 import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -14,14 +18,19 @@ const meta: Meta<typeof TextInput> = {
     id: "nameid",
     disabled: false,
     required: false,
-    className: "",
-    type: "text",
+    unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,
+    description: "Description",
     buttonLabel: "En savoir plus",
-    description: "My description",
-    unit: undefined,
+    sideButtonLabel: "Modifier",
+    error: "Error Message",
+    message: "",
   },
   argTypes: {
     onChange: { action: "onChange" },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
 };
 
@@ -36,114 +45,7 @@ const render = ({
   <TextInput onChange={onChange} {...args} />
 );
 
-export const InputTextPlaceholderStory: Story = {
-  name: "Placeholder",
+export const InputTextPlaygroundStory: Story = {
+  name: "Playground",
   render,
-  args: {
-    value: "",
-  },
-};
-
-export const InputTextStory: Story = {
-  name: "Filled",
-  render,
-};
-
-export const InputTextRequiredStory: Story = {
-  name: "Required",
-  render,
-  args: {
-    required: true,
-  },
-};
-
-export const InputTextDisabledStory: Story = {
-  name: "Disabled",
-  render,
-  args: {
-    label: "InputText disabled",
-    description: "Description",
-    unit: <div>test</div>,
-    disabled: true,
-    helper: "Do you need help?",
-  },
-};
-
-export const InputTextWithDescriptionStory: Story = {
-  name: "With description",
-  render,
-  args: {
-    description: "Description",
-  },
-};
-
-export const InputTextOnErrorStory: Story = {
-  name: "On error",
-  render,
-  args: {
-    classModifier: "error",
-    description: "Description",
-    error: "Error Message",
-    "aria-errormessage": "Error Message",
-  },
-  argTypes: {
-    "aria-errormessage": {
-      control: { type: "text" },
-    },
-  },
-};
-
-export const InputTextOnSuccessStory: Story = {
-  name: "On success",
-  render,
-  args: {
-    description: "Description",
-    success: "Success Message",
-  },
-};
-
-export const InputTextWithButton: Story = {
-  name: "With button",
-  render,
-  args: {
-    buttonLabel: "En savoir plus",
-  },
-};
-
-export const InputTextWithUnit: Story = {
-  name: "With unit",
-  render,
-  args: {
-    unit: <div>test</div>,
-  },
-};
-
-export const InputTextWithSideButton: Story = {
-  name: "With side button",
-  render,
-  args: {
-    sideButtonLabel: "Modifier",
-  },
-};
-
-export const InputTextWithSideButtonAndDescription: Story = {
-  name: "With side button and description",
-  render,
-  args: {
-    sideButtonLabel: "Modifier",
-    description: "Description",
-  },
-};
-
-export const InputTextWithFull: Story = {
-  name: "Full",
-  render,
-  args: {
-    unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,
-    classModifier: "error",
-    description: "Description",
-    buttonLabel: "En savoir plus",
-    sideButtonLabel: "Modifier",
-    error: "Error Message",
-  },
 };
