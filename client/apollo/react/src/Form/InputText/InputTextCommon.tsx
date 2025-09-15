@@ -6,27 +6,39 @@ import {
   type ReactNode,
   useId,
 } from "react";
-
-import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
-import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
-import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import {
+  ItemLabelCommon,
+  type ItemLabelProps,
+} from "../ItemLabel/ItemLabelCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../ItemMessage/ItemMessageCommon";
 
-type InputTextProps = ComponentPropsWithRef<"input"> & {
+export type InputTextProps = ComponentPropsWithRef<"input"> & {
   unit?: ReactNode;
   classModifier?: string;
   helper?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   error?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   success?: string;
-  label: ComponentProps<typeof ItemLabel>["label"];
+} & Partial<ItemLabelProps & ItemMessageProps>;
+
+type InputTextCommonProps = InputTextProps & {
   ItemLabelComponent: ComponentType<
-    Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
+    Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   InputTextAtomComponent: ComponentType<ComponentProps<typeof InputTextAtom>>;
-} & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
+};
 
-const InputText = forwardRef<HTMLInputElement, InputTextProps>(
+const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
   (
     {
       unit,
@@ -35,6 +47,8 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
       helper,
       error,
       success,
+      message,
+      messageType,
       label,
       description,
       buttonLabel,
@@ -45,17 +59,10 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
       ItemLabelComponent,
       ItemMessageComponent,
       InputTextAtomComponent,
-      "aria-errormessage": ariaErrormessage,
       ...otherProps
     },
     inputRef,
   ) => {
-    const componentClassName = getComponentClassName(
-      "af-form__input-text",
-      className,
-      classModifier + (error || ariaErrormessage ? " error" : ""),
-    );
-
     let inputId = useId();
     inputId = otherProps.id || inputId;
     const idMessage = useId();
@@ -82,10 +89,15 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           id={inputId}
           ref={inputRef}
           unit={unit}
-          className={componentClassName}
-          error={error}
+          className={className}
+          classModifier={classModifier}
+          error={
+            (message && messageType === "error") || Boolean(error)
+              ? messageType || error
+              : undefined
+          }
           required={required}
-          idMessage={error ? idMessage : undefined}
+          idMessage={message || error ? idMessage : undefined}
           idHelp={
             ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
           }
@@ -100,14 +112,14 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
 
         <ItemMessageComponent
           id={idMessage}
-          message={error || success}
-          messageType={error ? "error" : "success"}
+          message={message || error || success}
+          messageType={messageType || (error ? "error" : "success")}
         />
       </div>
     );
   },
 );
 
-InputText.displayName = "InputText";
+InputTextCommon.displayName = "InputText";
 
-export { InputText };
+export { InputTextCommon };
