@@ -6,12 +6,18 @@ import {
   useEffect,
   useId,
 } from "react";
-import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
-import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import {
+  ItemLabelCommon,
+  type ItemLabelProps,
+} from "../ItemLabel/ItemLabelCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../ItemMessage/ItemMessageCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { formatInputDateValue } from "./InputDate.helper";
 
-type InputDateProps = Omit<
+export type InputDateProps = Omit<
   ComponentPropsWithRef<"input">,
   "value" | "min" | "max"
 > & {
@@ -21,17 +27,26 @@ type InputDateProps = Omit<
   min?: Date | string;
   max?: Date | string;
   helper?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   error?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   success?: string;
   hidePicker?: boolean;
-  label: ComponentProps<typeof ItemLabel>["label"];
+  label: ItemLabelProps["label"];
+} & Partial<ItemLabelProps & ItemMessageProps>;
+
+type InputDateCommonProps = InputDateProps & {
   ItemLabelComponent: ComponentType<
-    Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
+    Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-} & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
+};
 
-const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
+const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
   (
     {
       className,
@@ -41,6 +56,8 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
       helper,
       error,
       success,
+      message,
+      messageType,
       label,
       description,
       buttonLabel,
@@ -48,7 +65,6 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
       ItemLabelComponent,
       ItemMessageComponent,
       required,
-      "aria-errormessage": ariaErrormessage,
       min,
       max,
       hidePicker,
@@ -93,6 +109,9 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
       };
     }, [hidePicker]);
 
+    const hasError =
+      (Boolean(message) && messageType === "error") || Boolean(error);
+
     return (
       <div className="af-form__input-container">
         <ItemLabelComponent
@@ -111,10 +130,8 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
           ref={inputRef}
           defaultValue={formatInputDateValue(defaultValue)}
           value={formatInputDateValue(value)}
-          aria-errormessage={
-            ariaErrormessage ?? (error ? idMessage : undefined)
-          }
-          aria-invalid={Boolean(error ?? ariaErrormessage)}
+          aria-errormessage={hasError ? idMessage : undefined}
+          aria-invalid={hasError || undefined}
           aria-describedby={
             ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
           }
@@ -130,14 +147,14 @@ const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
 
         <ItemMessageComponent
           id={idMessage}
-          message={error || success}
-          messageType={error ? "error" : "success"}
+          message={message || error || success}
+          messageType={messageType || (error ? "error" : "success")}
         />
       </div>
     );
   },
 );
 
-InputDate.displayName = "InputDate";
+InputDateCommon.displayName = "InputDate";
 
-export { InputDate };
+export { InputDateCommon };
