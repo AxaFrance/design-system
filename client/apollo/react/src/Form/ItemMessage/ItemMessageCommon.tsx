@@ -4,10 +4,18 @@ import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
 import type { ReactNode } from "react";
 import { Svg } from "../../Svg/Svg";
 
+export const itemMessageVariants = {
+  error: "error",
+  success: "success",
+  warning: "warning",
+} as const;
+
+export type ItemMessageVariants = keyof typeof itemMessageVariants;
+
 export type ItemMessageProps = {
   message?: ReactNode;
   id?: string;
-  messageType?: "error" | "success" | "warning";
+  messageType?: ItemMessageVariants;
 };
 
 export const ItemMessage = ({

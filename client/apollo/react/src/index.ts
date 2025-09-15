@@ -40,7 +40,11 @@ export { InputText } from "./Form/InputText/InputTextApollo";
 export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomApollo";
 export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
-export { ItemMessage } from "./Form/ItemMessage/ItemMessageApollo";
+export {
+  ItemMessage,
+  itemMessageVariants,
+  type ItemMessageVariants,
+} from "./Form/ItemMessage/ItemMessageApollo";
 export { CardRadio } from "./Form/Radio/CardRadio/CardRadioApollo";
 export { CardRadioOption } from "./Form/Radio/CardRadioOption/CardRadioOptionApollo";
 export { Radio } from "./Form/Radio/Radio/RadioApollo";
