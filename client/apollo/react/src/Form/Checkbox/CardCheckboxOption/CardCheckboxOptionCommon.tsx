@@ -15,7 +15,7 @@ export type CardCheckboxOptionCommonProps = CardCheckboxOptionProps & {
   IconComponent: ComponentType<IconProps>;
 };
 
-export const CardCheckboxOptionCommon = forwardRef<
+const CardCheckboxOptionCommon = forwardRef<
   HTMLInputElement,
   CardCheckboxOptionCommonProps
 >(
@@ -32,33 +32,31 @@ export const CardCheckboxOptionCommon = forwardRef<
       ...inputProps
     },
     ref,
-  ) => {
-    return (
-      <label
-        className={[
-          "af-card-checkbox-option",
-          type === "horizontal" && "af-card-checkbox-option--horizontal",
-          className,
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        {icon ? <IconComponent src={icon} role="presentation" /> : null}
-        <div className="af-card-checkbox-option__content">
-          <p className="af-card-checkbox-option__label">{label}</p>
-          {Boolean(description) && (
-            <p className="af-card-checkbox-option__description">
-              {description}
-            </p>
-          )}
-          {Boolean(subtitle) && (
-            <p className="af-card-checkbox-option__subtitle">{subtitle}</p>
-          )}
-        </div>
-        <CheckboxComponent {...inputProps} ref={ref} />
-      </label>
-    );
-  },
+  ) => (
+    <label
+      className={[
+        "af-card-checkbox-option",
+        type === "horizontal" && "af-card-checkbox-option--horizontal",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {icon ? <IconComponent src={icon} role="presentation" /> : null}
+      <div className="af-card-checkbox-option__content">
+        <p className="af-card-checkbox-option__label">{label}</p>
+        {Boolean(description) && (
+          <p className="af-card-checkbox-option__description">{description}</p>
+        )}
+        {Boolean(subtitle) && (
+          <p className="af-card-checkbox-option__subtitle">{subtitle}</p>
+        )}
+      </div>
+      <CheckboxComponent {...inputProps} ref={ref} />
+    </label>
+  ),
 );
 
 CardCheckboxOptionCommon.displayName = "CardCheckboxOptionCommon";
+
+export { CardCheckboxOptionCommon };
