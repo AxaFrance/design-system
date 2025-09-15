@@ -1,4 +1,7 @@
-import { CheckboxText } from "@axa-fr/design-system-apollo-react";
+import {
+  CheckboxText,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
@@ -31,12 +34,17 @@ const meta: Meta = {
         disable: true,
       },
     },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
   args: {
     label:
       "J'accepte de fournir à AXA mes coordonnées ainsi que les données relatives à mon projet et ma situation. Ces dernières seront transmises à mon conseiller AXA qui pourra  me contacter pour m'accompagner.",
     name: "option1",
     value: "option1",
+    message: "",
   },
 };
 
