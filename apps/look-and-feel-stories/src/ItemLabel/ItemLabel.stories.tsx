@@ -1,4 +1,4 @@
-import { ItemLabel } from "@axa-fr/design-system-look-and-feel-react";
+import { ItemLabel } from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ItemLabel> = {
@@ -18,7 +18,6 @@ export const Default: StoryObj<typeof ItemLabel> = {
     description: "Description Text",
     required: false,
     inputId: "input-id",
-    idLabel: "label-id",
     sideButtonLabel: "Side Button",
     buttonLabel: "ButtonLabel",
   },
