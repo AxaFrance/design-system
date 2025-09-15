@@ -2,9 +2,12 @@ import { forwardRef } from "react";
 import "@axa-fr/design-system-apollo-css/dist/Form/Checkbox/CheckboxText/CheckboxTextLF.scss";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { Checkbox } from "../Checkbox/CheckboxLF";
-import { CheckboxTextCommon, CheckboxTextProps } from "./CheckboxTextCommon";
+import {
+  CheckboxTextCommon,
+  type CheckboxTextProps,
+} from "./CheckboxTextCommon";
 
-export const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
+const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
   (props, ref) => (
     <CheckboxTextCommon
       {...props}
@@ -16,3 +19,5 @@ export const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
 );
 
 CheckboxText.displayName = "CheckboxText";
+
+export { CheckboxText };

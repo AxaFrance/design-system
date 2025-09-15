@@ -7,7 +7,7 @@ import {
   type CheckboxTextProps,
 } from "./CheckboxTextCommon";
 
-export const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
+const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
   (props, ref) => (
     <CheckboxTextCommon
       {...props}
@@ -19,3 +19,5 @@ export const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
 );
 
 CheckboxText.displayName = "CheckboxText";
+
+export { CheckboxText };
