@@ -6,26 +6,41 @@ import {
   useId,
 } from "react";
 import classNames from "classnames";
-import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
-import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import {
+  ItemLabelCommon,
+  type ItemLabelProps,
+} from "../ItemLabel/ItemLabelCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../ItemMessage/ItemMessageCommon";
 
-type DropdownProps = ComponentPropsWithRef<"select"> & {
+export type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
   classModifier?: string;
-  label?: ComponentProps<typeof ItemLabel>["label"];
+  label?: ItemLabelProps["label"];
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   error?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   success?: string;
   placeholder?: string;
   buttonLabel?: string;
   description?: string;
   helper?: string;
+} & Partial<ItemLabelProps & ItemMessageProps>;
+
+type DropdownCommonProps = DropdownProps & {
   ItemLabelComponent: ComponentType<
-    Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
+    Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
-} & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
+};
 
-const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
+const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
   (
     {
       id,
@@ -36,6 +51,8 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
       children,
       helper,
       success,
+      message,
+      messageType,
       description,
       buttonLabel,
       onButtonClick,
@@ -51,9 +68,12 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
     let inputId = useId();
     inputId = id || inputId;
 
+    const hasError =
+      (Boolean(message) && messageType === "error") || Boolean(error);
+
     const classname = classNames(
       "af-form__dropdown-input",
-      error && "af-form__dropdown-input--error",
+      hasError && "af-form__dropdown-input--error",
     );
 
     return (
@@ -83,14 +103,14 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 
         <ItemMessageComponent
           id={idMessage}
-          message={error || success}
-          messageType={error ? "error" : "success"}
+          message={message || error || success}
+          messageType={messageType || (error ? "error" : "success")}
         />
       </div>
     );
   },
 );
 
-Dropdown.displayName = "Dropdown";
+DropdownCommon.displayName = "Dropdown";
 
-export { Dropdown };
+export { DropdownCommon };
