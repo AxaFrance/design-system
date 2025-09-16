@@ -54,7 +54,7 @@ type InputPhoneCommonProps = InputPhoneProps & {
 const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
   (
     {
-      className = "af-form__input-phone",
+      className,
       classModifier = "",
       helper,
       error,
@@ -140,7 +140,9 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
           ) : null}
           <InputTextComponent
             {...otherProps}
-            className={className}
+            className={["af-form__input-phone", className]
+              .filter(Boolean)
+              .join(" ")}
             classModifier={classModifier}
             ref={inputRef}
             error={hasError ? messageType || error : undefined}
