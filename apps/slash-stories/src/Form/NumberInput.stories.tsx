@@ -1,18 +1,11 @@
-import { MessageTypes, NumberInput } from "@axa-fr/design-system-slash-react";
+import {
+  HelpButton,
+  MessageTypes,
+  NumberInput,
+} from "@axa-fr/design-system-slash-react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 
 const MODIFIERS = ["", "required", "disabled"];
-
-const meta: Meta<typeof NumberInput> = {
-  component: NumberInput,
-  title: "Components/Form/Input/Number",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
-
 type StoryProps = Omit<
   React.ComponentProps<typeof NumberInput>,
   "classModifier"
@@ -21,15 +14,9 @@ type StoryProps = Omit<
 };
 type Story = StoryObj<StoryProps>;
 
-export const NumberInputStory: Story = {
-  name: "NumberInput",
-  render: ({ classModifier, onChange, ...args }) => (
-    <NumberInput
-      classModifier={classModifier.join(" ")}
-      onChange={onChange}
-      {...args}
-    />
-  ),
+const meta: Meta<StoryProps> = {
+  component: NumberInput,
+  title: "Components/Form/Input/Number",
   args: {
     required: true,
     classModifier: [] as string[],
@@ -56,4 +43,23 @@ export const NumberInputStory: Story = {
       control: { type: "inline-check" },
     },
   },
+};
+
+export default meta;
+
+export const NumberInputStory: Story = {
+  name: "NumberInput",
+  render: ({ classModifier, ...args }) => (
+    <NumberInput classModifier={classModifier.join(" ")} {...args} />
+  ),
+};
+
+export const NumberInputWithChildrenStory: Story = {
+  name: "NumberInput with help button",
+  render: ({ classModifier, ...args }) => (
+    // Add a button as children to the NumberInput
+    <NumberInput classModifier={classModifier.join(" ")} {...args}>
+      <HelpButton mode="hover">Help</HelpButton>
+    </NumberInput>
+  ),
 };

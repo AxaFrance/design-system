@@ -1,15 +1,14 @@
 import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
 import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
-import "@fontsource/source-sans-pro";
+
+import "@fontsource/source-sans-pro/400.css";
 import "@fontsource/source-sans-pro/700.css";
+
 import { Message } from "./Messages/Message";
 import { Tag } from "./Tag/Tag";
 
 export { Action } from "./Action/Action";
-/** @deprecated Use `Tag` instead. */
-const Badge = Tag;
-export { Badge, Tag };
 export { Button } from "./Button/Button";
 export type { ButtonVariant } from "./Button/Button";
 export { Card } from "./Card/Card";
@@ -84,6 +83,12 @@ export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Tabs";
 export { Title } from "./Title/Title";
 export { getComponentClassName } from "./utilities";
+
+/** @deprecated Use `Tag` instead. */
+const Badge = Tag;
+
+export type { TagVariants } from "./Tag/Tag";
+export { Badge, Tag };
 
 /**
  * @deprecated `Alert` has been renamed `Message` in order to comply with UX naming of components. Use `Message` instead.

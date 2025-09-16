@@ -99,15 +99,15 @@ export const Default: Story = {
   },
 };
 
-export const DangerAlert: Story = {
+export const WarningMessage: Story = {
   args: {
-    variant: "danger",
+    variant: "warning",
     title: "Attention: des informations sont manquantes",
     closeButtonAriaLabel: "close",
   },
 };
 
-export const InfoAlert: Story = {
+export const InfoMessage: Story = {
   args: {
     variant: "info",
     title: "Attention: des informations sont manquantes",
@@ -115,7 +115,7 @@ export const InfoAlert: Story = {
   },
 };
 
-export const SuccessAlert: Story = {
+export const SuccessMessage: Story = {
   args: {
     variant: "success",
     title: "Succès: votre demande a bien été enregistrée.",
@@ -123,7 +123,7 @@ export const SuccessAlert: Story = {
   },
 };
 
-export const ErrorAlert: Story = {
+export const ErrorMessage: Story = {
   args: {
     variant: "error",
     title: "Erreur dans les champs suivants :",

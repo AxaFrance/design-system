@@ -9,7 +9,7 @@ const meta: Meta<typeof Card> = {
   parameters: {
     layout: "centered",
   },
-  args: { onClick: fn(), disabled: false },
+  args: { onClick: fn(), disabled: false, error: false, active: false },
   argTypes: {
     orientation: {
       table: {

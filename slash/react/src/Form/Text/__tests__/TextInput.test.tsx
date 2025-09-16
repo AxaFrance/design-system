@@ -70,11 +70,9 @@ describe("TextInput", () => {
   it("should render element right to input", () => {
     // Act
     render(
-      <TextInput
-        label="TextInput label"
-        value="Hello World"
-        rightElement="Content"
-      />,
+      <TextInput label="TextInput label" value="Hello World">
+        Content
+      </TextInput>,
     );
 
     // Assert

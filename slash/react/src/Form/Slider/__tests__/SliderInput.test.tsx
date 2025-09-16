@@ -131,8 +131,9 @@ describe("Slider", () => {
         className="classname-slider"
         name="name-slider-input"
         options={options}
-        rightElement="Content"
-      />,
+      >
+        Content
+      </SliderInput>,
     );
 
     // Assert

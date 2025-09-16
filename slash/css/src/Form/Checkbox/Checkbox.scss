@@ -5,6 +5,7 @@
 .af-form {
   &__checkbox-container {
     display: flex;
+    flex-flow: row wrap;
 
     &:has(.af-form__checkbox) {
       flex-direction: column;
@@ -84,11 +85,8 @@
     }
 
     &:focus + .af-form__label {
-      color: var(--brand-primary);
-
-      .af-form__indicator {
-        border-color: var(--brand-primary);
-      }
+      outline: 2px solid var(--button-primary-default);
+      outline-offset: 2px;
     }
   }
 
@@ -114,6 +112,10 @@
     .af-form__label {
       padding: 0;
     }
+
+    .af-form__description {
+      padding-left: calc(8rem / 16);
+    }
   }
 
   /* Custom */
@@ -134,9 +136,12 @@
     }
 
     .af-form__indicator {
+      width: 20px;
+      height: 20px;
       margin-left: 0.5rem;
       border: 1px solid var(--input-border-color);
       background-color: var(--white);
+      fill: var(--button-primary-default);
     }
 
     .af-form__description {
@@ -146,24 +151,26 @@
     .af-form__input-checkbox {
       &:checked + .af-form__label {
         color: var(--white);
-        background-color: var(--brand-primary);
+        background-color: var(--button-primary-default);
         box-shadow: inset 0 -2px 0 0 var(--axablue90);
 
         .af-form__indicator {
-          border-color: var(--brand-primary);
+          border-color: var(--button-primary-default);
           background: var(--white);
 
           .ok-icon {
             display: block;
-            fill: var(--brand-primary);
+            width: 29px;
+            height: 29px;
+            fill: var(--button-primary-default);
+            stroke-width: 10px;
           }
         }
       }
 
       &:focus + .af-form__label {
-        color: var(--white);
-        background-color: var(--brand-primary);
-        box-shadow: 0 0 5px var(--brand-primary);
+        outline: 2px solid var(--button-primary-default);
+        outline-offset: 2px;
       }
 
       &:disabled + .af-form__label {
@@ -200,9 +207,8 @@
       }
 
       &[aria-invalid="true"]:focus + .af-form__label {
-        box-shadow: none;
         outline: 2px solid var(--button-primary-default);
-        outline-offset: 0;
+        outline-offset: 2px;
       }
 
       &[aria-invalid="true"]:disabled + .af-form__label {
@@ -225,9 +231,9 @@
     }
 
     &:hover .af-form__label {
-      border-color: var(--brand-primary);
+      border-color: var(--button-primary-default);
       color: var(--white);
-      background-color: var(--brand-primary);
+      background-color: var(--button-primary-default);
       box-shadow: inset 0 -2px 0 0 var(--axablue90);
     }
   }

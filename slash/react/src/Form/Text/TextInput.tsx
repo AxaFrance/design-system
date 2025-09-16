@@ -2,13 +2,10 @@ import { ComponentProps, forwardRef } from "react";
 import { ConsumerFieldProps, Field } from "../core";
 import { Text } from "./Text";
 
-export type TextInputProps = Omit<
-  ConsumerFieldProps & ComponentProps<typeof Text>,
-  "children"
->;
+export type TextInputProps = ConsumerFieldProps & ComponentProps<typeof Text>;
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ rightElement, ...props }, inputRef) => {
+  ({ children, ...props }, inputRef) => {
     return (
       <Field
         {...props}
@@ -22,7 +19,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               aria-invalid={ariaInvalid}
               {...props}
             />
-            {rightElement}
+            {children}
           </>
         )}
       />
