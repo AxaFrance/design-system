@@ -21,7 +21,14 @@ export type EditProps = {
   onDeleteButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export type ContentItemDuoActionProps = ContentItemDuoActionCommonProps & {};
+export type ContentItemDuoActionProps = Omit<
+  ContentItemDuoActionCommonProps,
+  "ToggleComponent" | "ContentItemMonoComponent" | "ButtonComponent"
+> & {
+  contentItemProps: ContentItemProps;
+  toggleProps?: ToggleProps;
+  editProps?: EditProps;
+};
 
 export const ContentItemDuoActionCommon = ({
   className,
