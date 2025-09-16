@@ -15,7 +15,6 @@ describe("ContentItemDuoAction Component", () => {
           subtitle2: "Secondary Subtitle",
           icon: "test-icon.svg",
         }}
-        toggleProps={{ checked: false }}
       />,
     );
 

@@ -17,7 +17,6 @@ describe("ContentItemDuoActionCommon Component", () => {
           subtitle2: "Secondary Subtitle",
           icon: "test-icon.svg",
         }}
-        toggleProps={{ checked: false }}
         ButtonComponent={Button}
         ContentItemMonoComponent={ContentItemMono}
         ToggleComponent={Toggle}
