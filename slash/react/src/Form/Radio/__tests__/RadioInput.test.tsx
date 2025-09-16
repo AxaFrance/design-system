@@ -21,7 +21,7 @@ describe("RadioInput", () => {
     );
 
     // Assert
-    expect(screen.getByRole("radiogroup")).toBeInTheDocument();
+    expect(screen.getByRole("radiogroup")).toHaveAccessibleName(/Languages/i);
     expect(screen.getByText("Test")).toBeInTheDocument();
   });
 });
