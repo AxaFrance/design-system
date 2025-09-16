@@ -1,12 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import { ContentItemDuoAction } from "../ContentItemDuoActionLF";
+import { ContentItemDuoActionCommon } from "../ContentItemDuoActionCommon";
+import { Button } from "../../Button/ButtonApollo";
+import { ContentItemMono } from "../../ContentItemMono/ContentItemMonoApollo";
+import { Toggle } from "../../Toggle/ToggleApollo";
 
 describe("ContentItemDuoAction Component", () => {
   it("renders correctly for mode 'toggle'", async () => {
     render(
-      <ContentItemDuoAction
+      <ContentItemDuoActionCommon
         mode="toggle"
         contentItemProps={{
           type: "icon",
@@ -16,6 +19,9 @@ describe("ContentItemDuoAction Component", () => {
           icon: "test-icon.svg",
         }}
         toggleProps={{ checked: false }}
+        ButtonComponent={Button}
+        ContentItemMonoComponent={ContentItemMono}
+        ToggleComponent={Toggle}
       />,
     );
 
@@ -34,7 +40,7 @@ describe("ContentItemDuoAction Component", () => {
     const handleDeleteClick = vi.fn();
     const handleEditClick = vi.fn();
     render(
-      <ContentItemDuoAction
+      <ContentItemDuoActionCommon
         mode="edit"
         contentItemProps={{
           type: "icon",
@@ -47,6 +53,9 @@ describe("ContentItemDuoAction Component", () => {
           onDeleteButtonClick: handleDeleteClick,
           onEditButtonClick: handleEditClick,
         }}
+        ButtonComponent={Button}
+        ContentItemMonoComponent={ContentItemMono}
+        ToggleComponent={Toggle}
       />,
     );
 
