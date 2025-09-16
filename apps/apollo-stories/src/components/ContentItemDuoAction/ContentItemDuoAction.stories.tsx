@@ -6,6 +6,15 @@ import { ComponentProps } from "react";
 const meta: Meta<typeof ContentItemDuoAction> = {
   component: ContentItemDuoAction,
   title: "Components/ContentItemDuoAction",
+  args: {
+    contentItemProps: {
+      type: "icon",
+      icon: bank,
+      title: "Texte principale",
+      subtitle1: "Texte secondaire",
+      subtitle2: "Texte tertiare",
+    },
+  },
 };
 
 export default meta;
@@ -18,16 +27,6 @@ export const Playground: Story = {
   render: (props: ContentItemDuoActionProps) => (
     <ContentItemDuoAction {...props} />
   ),
-  args: {
-    mode: "toggle",
-    contentItemProps: {
-      type: "icon",
-      icon: bank,
-      title: "Texte principale",
-      subtitle1: "Texte secondaire",
-      subtitle2: "Texte tertiare",
-    },
-  },
 };
 
 export const PictureLStory: Story = {
@@ -35,16 +34,10 @@ export const PictureLStory: Story = {
   render: (props: ContentItemDuoActionProps) => (
     <ContentItemDuoAction {...props} />
   ),
-  args: {
-    mode: "edit",
-    onEditButtonClick: () => console.log("Edit button clicked"),
-    onDeleteButtonClick: () => console.log("Delete button clicked"),
-    contentItemProps: {
-      type: "icon",
-      icon: bank,
-      title: "Texte principale",
-      subtitle1: "Texte secondaire",
-      subtitle2: "Texte tertiare",
+  argTypes: {
+    editProps: {
+      onEditButtonClick: { action: "onEditButtonClick" },
+      onDeleteButtonClick: { action: "onDeleteButtonClick" },
     },
   },
 };
