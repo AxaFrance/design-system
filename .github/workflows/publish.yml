@@ -124,8 +124,8 @@ jobs:
           - name: slash react
             destination_dir: slash/react
             artifact-name: slash-storybooks
-            version: ${{ needs.slash.outputs.version }}
-            isStable: ${{ needs.slash.outputs.isStableRelease }}
+            version: ${{ needs.publish-slash.outputs.version }}
+            isStable: ${{ needs.publish-slash.outputs.isStableRelease }}
       max-parallel: 1
 
     steps:
@@ -168,13 +168,13 @@ jobs:
           - name: apollo react
             destination_dir: apollo/react
             artifact-name: client-storybooks
-            version: ${{ needs.client.outputs.version }}
-            isStable: ${{ needs.client.outputs.isStableRelease }}
+            version: ${{ needs.publish-client.outputs.version }}
+            isStable: ${{ needs.publish-client.outputs.isStableRelease }}
           - name: look-and-feel react
             destination_dir: look-and-feel/react
             artifact-name: client-storybooks
-            version: ${{ needs.client.outputs.version }}
-            isStable: ${{ needs.client.outputs.isStableRelease }}
+            version: ${{ needs.publish-client.outputs.version }}
+            isStable: ${{ needs.publish-client.outputs.isStableRelease }}
       max-parallel: 1
 
     steps:
