@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { InputDate } from "../InputDateApollo";
 
@@ -152,5 +153,46 @@ describe("<InputDate />", () => {
     render(<InputDate label="Date de naissance" />);
     const inputDate = screen.getByLabelText(/Date de naissance/);
     expect(inputDate).not.toHaveClass("af-form__input-date--no-picker");
+  });
+
+  describe("blocks space keydown and click events when hidePicker is true", () => {
+    const originalPreventDefault = Event.prototype.preventDefault;
+    const preventDefaultMock = vi.fn();
+
+    beforeAll(() => {
+      Event.prototype.preventDefault = preventDefaultMock;
+    });
+
+    afterAll(() => {
+      Event.prototype.preventDefault = originalPreventDefault;
+    });
+
+    beforeEach(() => {
+      preventDefaultMock.mockReset();
+    });
+
+    it.each([
+      vi.fn(),
+      null,
+      undefined,
+      {} as React.RefObject<HTMLInputElement>,
+    ])("prevents click events when hidePicker is true", async (ref) => {
+      render(<InputDate label="Date de naissance" hidePicker ref={ref} />);
+      const inputDate = screen.getByLabelText(/Date de naissance/);
+
+      await userEvent.click(inputDate);
+      expect(preventDefaultMock).toHaveBeenCalledTimes(1);
+    });
+
+    it("prevents space keydown events when hidePicker is true", async () => {
+      render(<InputDate label="Date de naissance" hidePicker />);
+      const inputDate = screen.getByLabelText(/Date de naissance/);
+
+      await userEvent.clear(inputDate);
+      expect(inputDate).toHaveFocus();
+      expect(preventDefaultMock).not.toHaveBeenCalled();
+      await userEvent.keyboard(" ");
+      expect(preventDefaultMock).toHaveBeenCalledTimes(1);
+    });
   });
 });

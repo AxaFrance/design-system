@@ -1,11 +1,14 @@
 import {
-  ComponentProps,
-  ComponentPropsWithRef,
-  ComponentType,
+  type ComponentProps,
+  type ComponentPropsWithRef,
+  type ComponentType,
   forwardRef,
+  RefCallback,
   useEffect,
   useId,
+  useRef,
 } from "react";
+import { getComponentClassName } from "../../utilities/getComponentClassName";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -14,7 +17,6 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import { getComponentClassName } from "../../utilities/getComponentClassName";
 import { formatInputDateValue } from "./InputDate.helper";
 
 export type InputDateProps = Omit<
@@ -70,7 +72,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       hidePicker,
       ...otherProps
     },
-    inputRef,
+    ref,
   ) => {
     const componentClassName = getComponentClassName(
       "af-form__input-date",
@@ -82,20 +84,39 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     inputId = otherProps.id ?? inputId;
     const idMessage = useId();
     const idHelp = useId();
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const refCallback: RefCallback<HTMLInputElement> = (inputElement) => {
+      inputRef.current = inputElement;
+      if (typeof ref === "function") {
+        ref(inputElement);
+        return;
+      }
+      if (ref) {
+        // eslint-disable-next-line no-param-reassign
+        ref.current = inputElement;
+      }
+    };
 
     const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
       Boolean,
     ) as string[];
 
-    /* Stop keydown (space and enter) and click events for Firefox when picker is disabled */
+    /* Stop space keydown, enter keydown for non webkit browsers and click events targeting the input element when picker is disabled */
     useEffect(() => {
       function handleKeydown(event: KeyboardEvent) {
-        if (hidePicker && (event.keyCode === 13 || event.keyCode === 32)) {
+        if (
+          hidePicker &&
+          (event.keyCode === 32 ||
+            (event.keyCode === 13 &&
+              !window.navigator?.userAgent?.includes("WebKit"))) &&
+          event.target === inputRef.current
+        ) {
           event.preventDefault();
         }
       }
       function handleClick(event: MouseEvent) {
-        if (hidePicker) {
+        if (hidePicker && event.target === inputRef.current) {
           event.preventDefault();
         }
       }
@@ -107,7 +128,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
         window.removeEventListener("keydown", handleKeydown);
         window.removeEventListener("click", handleClick);
       };
-    }, [hidePicker]);
+    }, [hidePicker, inputRef]);
 
     const hasError =
       (Boolean(message) && messageType === "error") || Boolean(error);
@@ -127,7 +148,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
           id={inputId}
           className={componentClassName}
           type="date"
-          ref={inputRef}
+          ref={refCallback}
           defaultValue={formatInputDateValue(defaultValue)}
           value={formatInputDateValue(value)}
           aria-errormessage={hasError ? idMessage : undefined}
