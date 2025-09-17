@@ -9,11 +9,11 @@ import { Button } from "../Button/ButtonApollo";
 
 export const ContentItemDuoAction = ({
   ...props
-}: ContentItemDuoActionProps) => {
+}: ContentItemDuoActionProps) => (
   <ContentItemDuoActionCommon
     {...props}
     ButtonComponent={Button}
     ContentItemMonoComponent={ContentItemMono}
     ToggleComponent={Toggle}
-  />;
-};
+  />
+);

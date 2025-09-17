@@ -10,11 +10,11 @@ import { Toggle } from "../Toggle/ToggleLF";
 
 export const ContentItemDuoAction = ({
   ...props
-}: ContentItemDuoActionProps) => {
+}: ContentItemDuoActionProps) => (
   <ContentItemDuoActionCommon
     {...props}
     ButtonComponent={Button}
     ContentItemMonoComponent={ContentItemMono}
     ToggleComponent={Toggle}
-  />;
-};
+  />
+);
