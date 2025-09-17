@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Steps/Steps.scss";
+import "@axa-fr/design-system-slash-css/dist/Steps/Steps.css";
 
 export { Step } from "./Step";
 export { StepBase } from "./StepBase";

@@ -1,16 +1,16 @@
+import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.css";
 import { useId } from "react";
 import Select, {
   type GroupBase,
+  type MultiValue,
   type Options,
   type SingleValue,
-  type MultiValue,
 } from "react-select";
 import AsyncSelect, { AsyncProps } from "react-select/async";
-import { ValueContainer } from "./ValueContainer";
-import "@axa-fr/design-system-slash-css/dist/Form/MultiSelect/MultiSelect.scss";
 import { formatOptionLabel } from "./FormatOptionLabel";
-import { useMultiSelectStyle } from "./useMultiSelectStyle";
 import { noOptionsMessage } from "./NoOptionsMessage";
+import { useMultiSelectStyle } from "./useMultiSelectStyle";
+import { ValueContainer } from "./ValueContainer";
 
 type Option = { value: string; label: string };
 type Props = Omit<

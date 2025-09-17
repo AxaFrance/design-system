@@ -1,4 +1,3 @@
-import "@axa-fr/design-system-slash-css/dist/Restitution/Restitution.scss";
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import { getComponentClassName } from "../utilities";
 
