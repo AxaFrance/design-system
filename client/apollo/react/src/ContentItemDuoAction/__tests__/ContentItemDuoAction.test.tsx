@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { ContentItemDuoAction as ContentItemDuoActionApollo } from "../ContentItemDuoActionApollo";
 import { ContentItemDuoAction as ContentItemDuoActionLF } from "../ContentItemDuoActionLF";
+import { Button } from "../../Button/ButtonApollo";
 
 const variants = [
   { name: "Apollo", Component: ContentItemDuoActionApollo },
@@ -12,16 +13,20 @@ const variants = [
 describe.each(variants)(
   "ContentItemDuoAction %s Component",
   ({ Component }) => {
-    it("renders correctly for mode 'toggle'", async () => {
+    it("renders correctly for state 'toggle'", async () => {
+      const handleOnClick = vi.fn();
       render(
         <Component
-          mode="toggle"
+          state="toggle"
           contentItemProps={{
             type: "icon",
             title: "Icon Title",
             subtitle1: "Primary Subtitle",
             subtitle2: "Secondary Subtitle",
             icon: "test-icon.svg",
+          }}
+          toggleProps={{
+            onClick: handleOnClick,
           }}
         />,
       );
@@ -37,12 +42,12 @@ describe.each(variants)(
       expect(toggle).not.toBeChecked();
     });
 
-    it("renders correctly for mode 'edit'", async () => {
+    it("renders correctly for state 'edit'", async () => {
       const handleDeleteClick = vi.fn();
       const handleEditClick = vi.fn();
       render(
         <Component
-          mode="edit"
+          state="edit"
           contentItemProps={{
             type: "icon",
             title: "Icon Title",
@@ -50,10 +55,24 @@ describe.each(variants)(
             subtitle2: "Secondary Subtitle",
             icon: "test-icon.svg",
           }}
-          editProps={{
-            onDeleteButtonClick: handleDeleteClick,
-            onEditButtonClick: handleEditClick,
-          }}
+          buttons={
+            <>
+              <Button
+                variant="ghost"
+                icon-right="arrow-right"
+                onClick={handleEditClick}
+              >
+                Modifier
+              </Button>
+              <Button
+                variant="ghost"
+                icon-right="arrow-right"
+                onClick={handleDeleteClick}
+              >
+                Supprimer
+              </Button>
+            </>
+          }
         />,
       );
 

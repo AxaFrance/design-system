@@ -1,71 +1,70 @@
-import { ComponentType, MouseEventHandler, useMemo } from "react";
+import { ComponentType, ReactElement, useMemo } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 import { ToggleProps } from "../Toggle/ToggleCommon";
 import { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
 import { ButtonProps } from "../Button/ButtonCommon";
 
-export type ActionMode = "edit" | "toggle";
-export type ContentItemDuoActionCommonProps = {
+export const actionStates = {
+  edit: "edit",
+  toggle: "toggle",
+} as const;
+export type ActionStates = keyof typeof actionStates;
+
+export type ContentItemDuoActionToggleProps = {
   className?: string;
-  mode: ActionMode;
-  ButtonComponent: ComponentType<ButtonProps>;
-  editProps?: EditProps;
+  state: "toggle";
   ContentItemMonoComponent: ComponentType<ContentItemProps>;
   contentItemProps: ContentItemProps;
   ToggleComponent: ComponentType<ToggleProps>;
-  toggleProps?: ToggleProps;
+  toggleProps: ToggleProps;
 };
 
-export type EditProps = {
-  onEditButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  onDeleteButtonClick?: MouseEventHandler<HTMLButtonElement>;
-};
-
-export type ContentItemDuoActionProps = Omit<
-  ContentItemDuoActionCommonProps,
-  "ToggleComponent" | "ContentItemMonoComponent" | "ButtonComponent"
-> & {
+export type ContentItemDuoActionButtonsProps = {
+  className?: string;
+  state: "edit";
+  ContentItemMonoComponent: ComponentType<ContentItemProps>;
   contentItemProps: ContentItemProps;
-  toggleProps?: ToggleProps;
-  editProps?: EditProps;
+  buttons: ReactElement<ComponentType<ButtonProps>>;
 };
+
+export type ContentItemDuoActionProps =
+  | Omit<
+      ContentItemDuoActionToggleProps,
+      "ToggleComponent" | "ContentItemMonoComponent"
+    >
+  | Omit<ContentItemDuoActionButtonsProps, "ContentItemMonoComponent">;
+
+export type ContentItemDuoActionCommonProps =
+  | ContentItemDuoActionToggleProps
+  | ContentItemDuoActionButtonsProps;
 
 export const ContentItemDuoActionCommon = ({
   className,
-  mode,
-  ToggleComponent,
-  toggleProps,
-  ButtonComponent,
-  editProps,
+  state,
   ContentItemMonoComponent,
   contentItemProps,
-}: ContentItemDuoActionCommonProps) => {
+  ToggleComponent,
+  ...props
+}: ContentItemDuoActionCommonProps & {
+  ToggleComponent?: ComponentType<ToggleProps>;
+}) => {
   const componentClassName = useMemo(
     () => getComponentClassName("af-content-item-duo-action", className),
     [className],
   );
-  const createAction = ({
-    onEditButtonClick,
-    onDeleteButtonClick,
-  }: EditProps) => {
-    if (mode === "edit") {
-      return (
-        <div className="af-action-edit-buttons-container">
-          <ButtonComponent onClick={onEditButtonClick} variant="ghost">
-            Modifier
-          </ButtonComponent>
-          <ButtonComponent onClick={onDeleteButtonClick} variant="ghost">
-            Supprimer
-          </ButtonComponent>
-        </div>
-      );
-    }
-    return <ToggleComponent {...toggleProps} />;
-  };
+
   return (
     <div className={componentClassName}>
       <ContentItemMonoComponent {...contentItemProps} />
-      {createAction({ ...editProps })}
+      {state === "edit" ? (
+        <div className="af-action-edit-buttons-container">
+          {(props as ContentItemDuoActionButtonsProps).buttons}
+        </div>
+      ) : (
+        <ToggleComponent
+          {...(props as ContentItemDuoActionToggleProps).toggleProps}
+        />
+      )}
     </div>
   );
 };

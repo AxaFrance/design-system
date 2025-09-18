@@ -5,14 +5,14 @@ import {
 } from "./ContentItemDuoActionCommon";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoApollo";
 import { Toggle } from "../Toggle/ToggleApollo";
-import { Button } from "../Button/ButtonApollo";
+
+export { actionStates, type ActionStates } from "./ContentItemDuoActionCommon";
 
 export const ContentItemDuoAction = ({
   ...props
 }: ContentItemDuoActionProps) => (
   <ContentItemDuoActionCommon
     {...props}
-    ButtonComponent={Button}
     ContentItemMonoComponent={ContentItemMono}
     ToggleComponent={Toggle}
   />

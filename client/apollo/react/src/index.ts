@@ -69,7 +69,11 @@ export {
   type ClickItemVariants,
 } from "./List/ClickItem/ClickItemApollo";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoApollo";
-export { ContentItemDuoAction } from "./ContentItemDuoAction/ContentItemDuoActionApollo";
+export {
+  actionStates,
+  type ActionStates,
+  ContentItemDuoAction,
+} from "./ContentItemDuoAction/ContentItemDuoActionApollo";
 export {
   Message,
   messageVariants,

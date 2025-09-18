@@ -4,16 +4,16 @@ import {
   ContentItemDuoActionCommon,
   ContentItemDuoActionProps,
 } from "./ContentItemDuoActionCommon";
-import { Button } from "../Button/ButtonLF";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoLF";
 import { Toggle } from "../Toggle/ToggleLF";
+
+export { actionStates, type ActionStates } from "./ContentItemDuoActionCommon";
 
 export const ContentItemDuoAction = ({
   ...props
 }: ContentItemDuoActionProps) => (
   <ContentItemDuoActionCommon
     {...props}
-    ButtonComponent={Button}
     ContentItemMonoComponent={ContentItemMono}
     ToggleComponent={Toggle}
   />

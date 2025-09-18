@@ -73,7 +73,11 @@ export {
   type ClickItemVariants,
 } from "./List/ClickItem/ClickItemLF";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
-export { ContentItemDuoAction } from "./ContentItemDuoAction/ContentItemDuoActionLF";
+export {
+  actionStates,
+  type ActionStates,
+  ContentItemDuoAction,
+} from "./ContentItemDuoAction/ContentItemDuoActionLF";
 export {
   Message,
   messageVariants,
