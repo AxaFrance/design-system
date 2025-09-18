@@ -3,9 +3,9 @@ import {
   type ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
-  RefCallback,
   useEffect,
   useId,
+  useImperativeHandle,
   useRef,
 } from "react";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
@@ -86,17 +86,10 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     const idHelp = useId();
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const refCallback: RefCallback<HTMLInputElement> = (inputElement) => {
-      inputRef.current = inputElement;
-      if (typeof ref === "function") {
-        ref(inputElement);
-        return;
-      }
-      if (ref) {
-        // eslint-disable-next-line no-param-reassign
-        ref.current = inputElement;
-      }
-    };
+    useImperativeHandle<typeof inputRef.current, typeof inputRef.current>(
+      ref,
+      () => inputRef.current,
+    );
 
     const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
       Boolean,
@@ -128,7 +121,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
         window.removeEventListener("keydown", handleKeydown);
         window.removeEventListener("click", handleClick);
       };
-    }, [hidePicker, inputRef]);
+    }, [hidePicker]);
 
     const hasError =
       (Boolean(message) && messageType === "error") || Boolean(error);
@@ -148,7 +141,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
           id={inputId}
           className={componentClassName}
           type="date"
-          ref={refCallback}
+          ref={inputRef}
           defaultValue={formatInputDateValue(defaultValue)}
           value={formatInputDateValue(value)}
           aria-errormessage={hasError ? idMessage : undefined}
