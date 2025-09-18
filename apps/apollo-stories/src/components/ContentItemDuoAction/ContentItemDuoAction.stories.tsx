@@ -15,6 +15,12 @@ const meta: Meta<typeof ContentItemDuoAction> = {
       subtitle1: "Texte secondaire",
       subtitle2: "Texte tertiare",
     },
+    buttons: (
+      <>
+        <Button variant="ghost">Modifier</Button>
+        <Button variant="ghost">Supprimer</Button>
+      </>
+    ),
   },
 };
 
@@ -33,12 +39,6 @@ export const Playground: Story = {
       options: ["edit", "toggle"],
       control: { type: "select" },
     },
-    buttons: (
-      <>
-        <Button variant="ghost">Modifier</Button>
-        <Button variant="ghost">Supprimer</Button>
-      </>
-    ),
     toggleProps: {
       control: { type: "object" },
     },
