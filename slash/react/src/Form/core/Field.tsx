@@ -93,6 +93,10 @@ export type ConsumerFieldProps = Omit<
   children?: ReactNode;
 };
 
+function isIdDefined(id: string | undefined): id is string {
+  return typeof id === "string" && id.length > 0;
+}
+
 export const Field = ({
   classNameContainerInput = "col-md-10",
   classNameContainerLabel = "col-md-2",
@@ -117,7 +121,7 @@ export const Field = ({
   ...otherProps
 }: InputProps) => {
   const inputUseId = useId();
-  const inputId = id ?? inputUseId;
+  const inputId = isIdDefined(id) ? id : inputUseId;
   const actualRequired = required || classModifier.includes("required");
   const isInvalid = useAriaInvalid(message, forceDisplayMessage, messageType);
   const errorId =

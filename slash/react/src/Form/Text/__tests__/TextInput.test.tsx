@@ -88,4 +88,10 @@ describe("TextInput", () => {
     // Assert
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it.each(["", undefined])("should generate an ID if no id is passed", (id) => {
+    render(<TextInput label="My Input" defaultValue="Hello World" id={id} />);
+
+    expect(screen.getByLabelText("My Input").id).toBeDefined();
+  });
 });

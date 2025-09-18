@@ -51,10 +51,16 @@ const PassInput = ({
     <Field
       {...props}
       classModifier={classModifier}
-      renderInput={({ id, classModifier: modifier, ariaInvalid, errorId }) => (
+      renderInput={({
+        id,
+        classModifier: modifier,
+        ariaInvalid,
+        errorId,
+        ...inputProps
+      }) => (
         <>
           <Pass
-            {...props}
+            {...inputProps}
             type={type}
             id={id}
             disabled={disabled}

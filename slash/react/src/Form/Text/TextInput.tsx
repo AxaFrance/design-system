@@ -9,15 +9,22 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <Field
         {...props}
-        renderInput={({ id, classModifier, ariaInvalid, errorId }) => (
+        renderInput={({
+          id,
+          classModifier,
+          ariaInvalid,
+          errorId,
+          ...textProps
+        }) => (
           <>
+            {JSON.stringify({ id })}
             <Text
               id={id}
               classModifier={classModifier}
               ref={inputRef}
               aria-describedby={errorId}
               aria-invalid={ariaInvalid}
-              {...props}
+              {...textProps}
             />
             {children}
           </>

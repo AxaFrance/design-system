@@ -106,4 +106,10 @@ describe("DateInput", () => {
     // Assert
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it.each(["", undefined])("should generate an ID if no id is passed", (id) => {
+    render(<DateInput label="My Input" defaultValue="Hello World" id={id} />);
+
+    expect(screen.getByLabelText("My Input").id).toBeDefined();
+  });
 });
