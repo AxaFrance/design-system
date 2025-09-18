@@ -2,6 +2,15 @@
 
 This documentation explains the process to release the design system.
 
+We have two themes right now that can be released independently:
+- `slash` design system
+- `client` design system
+
+In order to do that, we use git tags and branches. We also use Github Actions to automate the release process.
+For each design system, we have a specific prefix for the tags:
+- `slash/` for the `slash` design system
+- `client/` for the `client` design system
+
 ## Create a release candidate
 
 First of all, before releasing a new version, you need to create a release candidate. A RC is not stable yet but can be tested by the users.
@@ -9,7 +18,7 @@ First of all, before releasing a new version, you need to create a release candi
 To create a release candidate, you need to create a new branch from the `main` branch. The branch name should be `releases-DESIGN_SYSTEM/X.Y.Z` where `DESIGN_SYSTEM` is the design system you want to release and `X.Y.Z` is the version number you want.
 
 If you want to make a release `1.0.0` for the `slash` design system, you should create a branch named `releases-slash/1.0.0`.
-If you want to make a release `1.0.0` for the `look and feel` design system, you should create a branch named `releases-look-and-feel/1.0.0`.
+If you want to make a release `1.0.0` for the `client` design system, you should create a branch named `releases-client/1.0.0`.
 
 ```bash
 git switch main

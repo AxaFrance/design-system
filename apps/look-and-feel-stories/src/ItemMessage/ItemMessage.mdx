@@ -8,25 +8,20 @@ import * as ItemMessageStories from "./ItemMessage.stories";
 To use the spinner import it like that:
 
 ```tsx
-import { ItemMessage } from "@axa-fr/design-system-look-and-feel-react";
-//or
 import { ItemMessage } from "@axa-fr/design-system-apollo-react/lf";
+
+//or
+import { ItemMessage } from "@axa-fr/design-system-look-and-feel-react";
 
 const MyComponent = () => <ItemMessage type="success" message="My message" />;
 ```
 
 ## Type
 
-Use the `type` prop to change the type of the item message. The available variants are `error` (default) or `success`.
+Use the `type` prop to change the type of the item message. The available variants are `error` (default), `success` or `warning`.
 
-## Error Message
+## Playground Message
 
-<Canvas of={ItemMessageStories.Error} />
+<Canvas of={ItemMessageStories.Playground} />
 
-<Controls of={ItemMessageStories.Error} />
-
-## Success Message
-
-<Canvas of={ItemMessageStories.Success} />
-
-<Controls of={ItemMessageStories.Success} />
+<Controls of={ItemMessageStories.Playground} />

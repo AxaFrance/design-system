@@ -82,3 +82,27 @@
   --card-text-color: var(--red30);
   --card-icon-color: var(--red30);
 }
+
+.af-card--active {
+  --card-text-color: var(--white);
+  --card-icon-color: var(--white);
+  --card-background-color: var(--axablue80);
+
+  &:focus {
+    --card-text-color: var(--white);
+    --card-icon-color: var(--white);
+    --card-background-color: var(--axablue80);
+  }
+
+  &:hover {
+    --card-text-color: var(--gray80);
+    --card-icon-color: var(--axablue80);
+    --card-background-color: var(--white);
+  }
+
+  &:disabled:hover {
+    --card-text-color: var(--gray40);
+    --card-icon-color: var(--gray40);
+    --card-background-color: var(--axablue80);
+  }
+}

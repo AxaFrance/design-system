@@ -1,15 +1,18 @@
 @use "../../common/breakpoints" as breakpoints;
 
 .af-form__input-variant {
+  --input-box-shadow-width: 1px;
+
   display: grid;
   width: 100%;
   padding: calc(16 / var(--font-size-base) * 1rem);
-  border: 2px solid var(--input-border-color);
   border-radius: var(--input-border-radius);
   grid-template-columns: auto min-content;
   align-items: center;
   color: var(--input-text-color);
   background-color: var(--input-bg-color);
+  box-shadow: 0 0 0 var(--input-box-shadow-width) var(--input-border-color)
+    inset;
 
   &:has(> input ~ *) {
     column-gap: calc(8 / var(--font-size-base) * 1rem);
@@ -37,17 +40,28 @@
     }
   }
 
-  &:has(> input:is(:hover, :focus, :active)) {
-    box-shadow: 0 0 0 1px var(--input-border-color) inset;
-  }
-
   &:has(> input:disabled),
   &:has(> input:disabled):is(:hover, :focus, :active) {
-    box-shadow: unset;
     cursor: not-allowed;
 
     & > input ~ * {
       cursor: not-allowed;
     }
+  }
+
+  &:has(
+      > input:is(:hover, :focus, :active, [class*="--error"]):not(:disabled)
+    ) {
+    --input-box-shadow-width: 2px;
+  }
+
+  &:has(
+      > input[class*="--error"]:not(:disabled):is(
+          :hover,
+          :focus-visible,
+          :active
+        )
+    ) {
+    --input-box-shadow-width: 3px;
   }
 }

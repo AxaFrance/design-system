@@ -1,21 +1,23 @@
-import { ItemMessage } from "@axa-fr/design-system-apollo-react";
+import {
+  ItemMessage,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ItemMessage> = {
   title: "Components/Form/ItemMessage",
   component: ItemMessage,
+  argTypes: {
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
+  },
 };
 export default meta;
 
-export const Error: StoryObj<typeof ItemMessage> = {
+export const Playground: StoryObj<typeof ItemMessage> = {
   args: {
-    message: "Error Message",
-  },
-};
-
-export const Success: StoryObj<typeof ItemMessage> = {
-  args: {
-    message: "Success Message",
-    messageType: "success",
+    message: "Message",
   },
 };

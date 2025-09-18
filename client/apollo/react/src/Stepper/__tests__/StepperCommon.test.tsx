@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { Stepper } from "../StepperCommon";
-import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
 import { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
+import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
+import { Stepper } from "../StepperCommon";
 
 describe("Stepper Component", () => {
   it("renders the title and subtitle when visible", () => {
@@ -103,7 +103,7 @@ describe("Stepper Component", () => {
       />,
     );
 
-    const progressBarGroup = screen.getByRole("group");
+    const progressBarGroup = screen.getByRole("list");
     expect(progressBarGroup).toHaveClass("custom-class");
   });
 

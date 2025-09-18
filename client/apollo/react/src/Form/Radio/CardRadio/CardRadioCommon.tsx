@@ -5,8 +5,11 @@ import {
   type ReactNode,
   useId,
 } from "react";
-import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../../ItemMessage/ItemMessageCommon";
 
 type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
 
@@ -43,15 +46,19 @@ export type CardRadioProps = Omit<
    */
   value?: number | string;
   options: RadioOption[];
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   error?: ReactNode;
-} & PropsWithChildren;
+} & PropsWithChildren &
+  Partial<ItemMessageProps>;
 
 export type CardRadioCommonProps = CardRadioProps & {
   CardRadioOptionComponent: ComponentType<CardRadioOptionProps>;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-export const CardRadioCommon = ({
+const CardRadioCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -62,6 +69,8 @@ export const CardRadioCommon = ({
   options,
   type = "vertical",
   error,
+  message,
+  messageType,
   name,
   value,
   id,
@@ -71,15 +80,18 @@ export const CardRadioCommon = ({
 }: CardRadioCommonProps) => {
   const generatedId = useId();
   const cardRadioId = id ?? generatedId;
-  const errorId = `${cardRadioId}-error`;
+  const messageId = `${cardRadioId}-error`;
+
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(error);
 
   return (
     <fieldset
       className={["af-card-radio", className].filter(Boolean).join(" ")}
       role="radiogroup"
-      aria-required={required ? true : undefined}
-      aria-invalid={error ? true : undefined}
-      aria-errormessage={error ? errorId : undefined}
+      aria-required={Boolean(required) || undefined}
+      aria-invalid={hasError || undefined}
+      aria-errormessage={hasError ? messageId : undefined}
       id={cardRadioId}
     >
       <legend className="af-card-radio__legend">
@@ -115,14 +127,20 @@ export const CardRadioCommon = ({
             {...inputProps}
             {...(cardRadioItemProps as CardRadioOptionProps)}
             type={type as "horizontal"}
-            isInvalid={Boolean(error)}
+            isInvalid={hasError}
             name={name}
           />
         ))}
       </div>
-      <ItemMessageComponent id={errorId} message={error} messageType="error" />
+      <ItemMessageComponent
+        id={messageId}
+        message={message || error}
+        messageType={messageType}
+      />
     </fieldset>
   );
 };
 
 CardRadioCommon.displayName = "CardRadioCommon";
+
+export { CardRadioCommon };

@@ -25,7 +25,7 @@ const options: Option[] = [
 describe("Radio mode card", () => {
   it("should render 3 radio cards", () => {
     render(
-      <Radio mode="card" options={options}>
+      <Radio mode="cardRadio" options={options}>
         Test
       </Radio>,
     );
@@ -40,7 +40,7 @@ describe("Radio mode card", () => {
 
   it("should have default class on each card", () => {
     // Act
-    render(<Radio mode="card" options={options} />);
+    render(<Radio mode="cardRadio" options={options} />);
 
     // Assert
     options.forEach((option) => {
@@ -50,7 +50,9 @@ describe("Radio mode card", () => {
 
   it("should have modifier class on horizontal orentation", () => {
     // Act
-    render(<Radio mode="card" orientation="horizontal" options={options} />);
+    render(
+      <Radio mode="cardRadio" orientation="horizontal" options={options} />,
+    );
 
     // Assert
     expect(screen.getByRole("radiogroup")).toHaveClass(
@@ -60,7 +62,9 @@ describe("Radio mode card", () => {
 
   it("should have custom class", () => {
     // Act
-    render(<Radio mode="card" options={options} className="custom-class" />);
+    render(
+      <Radio mode="cardRadio" options={options} className="custom-class" />,
+    );
 
     // Assert
     expect(screen.getByRole("radiogroup")).toHaveClass("custom-class");
@@ -68,7 +72,7 @@ describe("Radio mode card", () => {
 
   it("shouldn't have an accessibility violation", async () => {
     // Act
-    const { container } = render(<Radio mode="card" options={options} />);
+    const { container } = render(<Radio mode="cardRadio" options={options} />);
 
     // Assert
     expect(await axe(container)).toHaveNoViolations();

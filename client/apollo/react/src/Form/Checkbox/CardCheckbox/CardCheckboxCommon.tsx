@@ -30,8 +30,11 @@ export type CardCheckboxProps = Omit<
    */
   isRequired?: boolean;
   options: CheckboxOption[];
+  /**
+   * @deprecated  Use `message` and messageType instead.
+   */
   error?: string;
-};
+} & Partial<ItemMessageProps>;
 
 type CardCheckboxCommonProps = CardCheckboxProps & {
   CardCheckboxItemComponent: ComponentType<CardCheckboxOptionProps>;
@@ -54,11 +57,13 @@ export const CardCheckboxCommon = ({
   onChange = () => {},
   CardCheckboxItemComponent,
   ItemMessageComponent,
+  message,
+  messageType,
   ...inputProps
 }: CardCheckboxCommonProps) => {
   const generatedId = useId();
   const cardCheckboxId = id || generatedId;
-  const errorId = `${cardCheckboxId}-error`;
+  const messageId = `${cardCheckboxId}-error`;
 
   const cardCheckboxOptionsRef = useRef<HTMLDivElement>(null);
 
@@ -83,6 +88,9 @@ export const CardCheckboxCommon = ({
 
     onChange(event);
   };
+
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(error);
 
   return (
     <fieldset
@@ -118,13 +126,17 @@ export const CardCheckboxCommon = ({
             {...inputProps}
             {...cardCheckboxItemProps}
             type={type}
-            aria-invalid={error ? true : undefined}
-            aria-errormessage={error ? errorId : undefined}
+            aria-invalid={hasError || undefined}
+            aria-errormessage={hasError ? messageId : undefined}
             name={name}
           />
         ))}
       </div>
-      <ItemMessageComponent id={errorId} message={error} messageType="error" />
+      <ItemMessageComponent
+        id={messageId}
+        message={message || error}
+        messageType={messageType || "error"}
+      />
     </fieldset>
   );
 };

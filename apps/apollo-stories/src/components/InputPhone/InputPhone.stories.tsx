@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { InputPhone } from "@axa-fr/design-system-apollo-react";
+import {
+  InputPhone,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react";
 import { useState } from "react";
 import { flagsList } from "./FlagUtils.tsx";
 
@@ -23,11 +26,15 @@ const meta: Meta<typeof InputPhone> = {
     sideButtonLabel: "Modifier",
     description: "Description",
     pattern: "[0-9]{10}",
-    classModifier: "error",
     error: "Titre du Message",
+    message: "Message",
   },
   argTypes: {
     onChange: { action: "onChange" },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
 };
 

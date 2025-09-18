@@ -18,7 +18,6 @@ export const Default: StoryObj<typeof ItemLabel> = {
     description: "Description Text",
     required: false,
     inputId: "input-id",
-    idLabel: "label-id",
     sideButtonLabel: "Side Button",
     buttonLabel: "ButtonLabel",
   },

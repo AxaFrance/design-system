@@ -1,16 +1,11 @@
-import { ChoiceInput, MessageTypes } from "@axa-fr/design-system-slash-react";
+import {
+  ChoiceInput,
+  HelpButton,
+  MessageTypes,
+} from "@axa-fr/design-system-slash-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentPropsWithRef } from "react";
-
-const meta: Meta<typeof ChoiceInput> = {
-  component: ChoiceInput,
-  title: "Components/Form/Input/Choice",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
 
 type ChoiceInputProps = Omit<
   ComponentPropsWithRef<typeof ChoiceInput>,
@@ -19,11 +14,9 @@ type ChoiceInputProps = Omit<
   classModifier?: string[];
 };
 
-export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
-  name: "ChoiceInput",
-  render: ({ classModifier, ...args }) => (
-    <ChoiceInput classModifier={classModifier?.join(" ")} {...args} />
-  ),
+const meta: Meta<ChoiceInputProps> = {
+  component: ChoiceInput,
+  title: "Components/Form/Input/Choice",
   args: {
     name: "placeName",
     required: true,
@@ -36,6 +29,7 @@ export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
     message: "",
     id: "uniqueid",
     classModifier: [],
+    onChange: fn(),
     isVisible: true,
     readOnly: false,
     disabled: false,
@@ -52,4 +46,22 @@ export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
       control: { type: "inline-radio" },
     },
   },
+};
+
+export default meta;
+
+export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
+  name: "ChoiceInput",
+  render: ({ classModifier, ...args }) => (
+    <ChoiceInput classModifier={classModifier?.join(" ")} {...args} />
+  ),
+};
+
+export const ChoiceInputWithChildrenStory: StoryObj<ChoiceInputProps> = {
+  name: "ChoiceInput with help button",
+  render: ({ classModifier, ...args }) => (
+    <ChoiceInput classModifier={classModifier?.join(" ")} {...args}>
+      <HelpButton mode="hover">Help</HelpButton>
+    </ChoiceInput>
+  ),
 };

@@ -11,10 +11,6 @@
   --input-text-placeholder-color: var(--color-gray-700);
   --input-text-outline-color: var(--color-blue-3);
 
-  &:has(> input:not([value=""])) {
-    --input-border-color: var(--color-axa);
-  }
-
   &:has(> input:is(:hover, :focus, :active)) {
     --input-border-color: var(--color-axa);
     --input-text-placeholder-color: var(--color-gray-900);
@@ -34,5 +30,9 @@
     + .af-form__input-helper {
       --input-helper-color: var(--color-gray-500);
     }
+  }
+
+  &:has(> input[value]:not([value=""], [class*="--error"], :disabled)) {
+    --input-border-color: var(--color-axa);
   }
 }

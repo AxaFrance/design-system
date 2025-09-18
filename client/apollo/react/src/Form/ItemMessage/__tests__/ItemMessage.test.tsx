@@ -26,4 +26,13 @@ describe("ItemMessageCommon", () => {
       "af-item-message--success",
     );
   });
+
+  it("renders the component with warning type", () => {
+    const { container } = render(
+      <ItemMessage message={message} messageType="warning" />,
+    );
+    expect(container.querySelector(".af-item-message")).toHaveClass(
+      "af-item-message--warning",
+    );
+  });
 });

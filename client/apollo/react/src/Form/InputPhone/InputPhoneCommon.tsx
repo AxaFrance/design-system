@@ -7,9 +7,14 @@ import {
   useId,
 } from "react";
 import { SingleValue } from "react-select";
-import { ItemLabel } from "../ItemLabel/ItemLabelCommon";
-import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { ItemMessage } from "../ItemMessage/ItemMessageCommon";
+import {
+  ItemLabelCommon,
+  type ItemLabelProps,
+} from "../ItemLabel/ItemLabelCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../ItemMessage/ItemMessageCommon";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import { Icon } from "../../Icon/IconCommon";
 import { type OptionType } from "./InputPhone.types";
@@ -19,7 +24,13 @@ import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
 export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
   helper?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   error?: string;
+  /**
+   * @deprecated Use `message` and messageType instead.
+   */
   success?: string;
   defaultCountry?: string;
   showSelect?: boolean;
@@ -28,12 +39,12 @@ export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   onChangeSelect?: (value: SingleValue<OptionType>) => void;
   onChangeInput?: (value: string) => void;
   mask?: (value: string) => string;
-  label: ComponentProps<typeof ItemLabel>["label"];
-} & Partial<ComponentPropsWithRef<typeof ItemLabel>>;
+  label: ItemLabelProps["label"];
+} & Partial<ItemLabelProps & ItemMessageProps>;
 
 type InputPhoneCommonProps = InputPhoneProps & {
   ItemLabelComponent: ComponentType<
-    Omit<ComponentProps<typeof ItemLabel>, "ButtonComponent">
+    Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
   InputTextComponent: ComponentType<ComponentProps<typeof InputTextAtom>>;
@@ -48,6 +59,8 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
       helper,
       error,
       success,
+      message,
+      messageType,
       defaultCountry,
       showSelect,
       disabled,
@@ -71,12 +84,6 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
     },
     inputRef,
   ) => {
-    const componentClassName = getComponentClassName(
-      "af-form__input-phone",
-      className,
-      classModifier + (error || ariaErrormessage ? " error" : ""),
-    );
-
     let inputId = useId();
     inputId = otherProps.id || inputId;
     const idMessage = useId();
@@ -85,6 +92,9 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
     const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
       Boolean,
     ) as string[];
+
+    const hasError =
+      (Boolean(message) && messageType === "error") || Boolean(error);
 
     /**
      * Gère le changement de valeur du champ numéro de téléphone.
@@ -130,9 +140,12 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
           ) : null}
           <InputTextComponent
             {...otherProps}
-            className={componentClassName}
+            className={["af-form__input-phone", className]
+              .filter(Boolean)
+              .join(" ")}
+            classModifier={classModifier}
             ref={inputRef}
-            error={error}
+            error={hasError ? messageType || error : undefined}
             type="tel"
             required={required}
             placeholder={otherProps.placeholder}
@@ -140,7 +153,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
             value={otherProps.value}
             onChange={handleChangeNumber}
             disabled={disabled}
-            idMessage={error ? idMessage : undefined}
+            idMessage={hasError ? idMessage : undefined}
             idHelp={
               ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
             }
@@ -156,8 +169,8 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
 
         <ItemMessageComponent
           id={idMessage}
-          message={error || success}
-          messageType={error ? "error" : "success"}
+          message={message || error || success}
+          messageType={messageType || (error ? "error" : "success")}
         />
       </div>
     );

@@ -44,7 +44,11 @@ export {
 export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomLF";
 export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
-export { ItemMessage } from "./Form/ItemMessage/ItemMessageLF";
+export {
+  ItemMessage,
+  itemMessageVariants,
+  type ItemMessageVariants,
+} from "./Form/ItemMessage/ItemMessageLF";
 export { CardRadio } from "./Form/Radio/CardRadio/CardRadioLF";
 export { CardRadioOption } from "./Form/Radio/CardRadioOption/CardRadioOptionLF";
 export { Radio } from "./Form/Radio/Radio/RadioLF";

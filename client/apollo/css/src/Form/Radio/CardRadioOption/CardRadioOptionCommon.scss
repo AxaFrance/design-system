@@ -23,7 +23,6 @@
   &:focus-visible,
   &:focus-within {
     --radio-option-border-width: 2px;
-    --radio-option-border-color: var(--axa-blue-100);
   }
 
   &__label {
@@ -37,17 +36,18 @@
     }
   }
 
-  &:has(input:checked) {
+  &:has(input:checked) .af-card-radio-option__label {
+    font-weight: 600;
+  }
+
+  &:has(input:checked),
+  &--invalid:not(:has(input:checked)) {
     --radio-option-border-width: 2px;
 
     &:hover,
     &:focus-visible,
     &:focus-within {
       --radio-option-border-width: 3px;
-    }
-
-    & .af-card-radio-option__label {
-      font-weight: 600;
     }
   }
 

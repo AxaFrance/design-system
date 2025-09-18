@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { ItemLabel } from "../ItemLabelCommon";
+import { ItemLabelCommon } from "../ItemLabelCommon";
 import { Button } from "../../../Button/ButtonApollo";
 
 const handleClickSideButton = vi.fn();
@@ -22,7 +22,7 @@ const defaultProps = {
 
 describe("ItemLabelCommon", () => {
   it("renders ItemLabel", async () => {
-    render(<ItemLabel {...defaultProps} />);
+    render(<ItemLabelCommon {...defaultProps} />);
 
     const labelElement = screen.getByText(/Label Text/i);
     const descriptionElement = screen.getByText(/Description Text/i);
@@ -43,14 +43,14 @@ describe("ItemLabelCommon", () => {
   });
 
   it("renders the required indicator", () => {
-    render(<ItemLabel {...defaultProps} required />);
+    render(<ItemLabelCommon {...defaultProps} required />);
     const requiredElement = screen.getByText(/\*/i);
     expect(requiredElement).toBeInTheDocument();
   });
 
   it("renders without content part", () => {
     render(
-      <ItemLabel
+      <ItemLabelCommon
         {...defaultProps}
         description={undefined}
         sideButtonLabel={undefined}

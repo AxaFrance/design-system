@@ -8,7 +8,7 @@ import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 import { Svg } from "../../Svg/Svg";
 import type { ButtonProps } from "../../Button/ButtonCommon";
 
-type ItemLabelProps = {
+export type ItemLabelProps = {
   label?: ReactNode;
   description?: string;
   required?: boolean;
@@ -17,10 +17,13 @@ type ItemLabelProps = {
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
   buttonLabel?: string;
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export type ItemLabelCommonProps = ItemLabelProps & {
   ButtonComponent: ComponentType<ButtonProps>;
 };
 
-export const ItemLabel = ({
+export const ItemLabelCommon = ({
   label,
   description,
   required,
@@ -30,7 +33,7 @@ export const ItemLabel = ({
   buttonLabel,
   onButtonClick,
   ButtonComponent,
-}: ItemLabelProps) => {
+}: ItemLabelCommonProps) => {
   const idDescription = useId();
   if (!label && !description && !buttonLabel && !sideButtonLabel) {
     return null;

@@ -1,4 +1,7 @@
-import { CardCheckbox } from "@axa-fr/design-system-apollo-react/lf";
+import {
+  CardCheckbox,
+  itemMessageVariants,
+} from "@axa-fr/design-system-apollo-react/lf";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
@@ -75,6 +78,10 @@ const meta: Meta = {
         disable: true,
       },
     },
+    messageType: {
+      options: Object.values(itemMessageVariants),
+      control: { type: "select" },
+    },
   },
   args: {
     type: "vertical",
@@ -84,6 +91,7 @@ const meta: Meta = {
     options: optionsDefault,
     required: false,
     error: "",
+    message: "",
   },
 };
 

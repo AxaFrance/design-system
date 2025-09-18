@@ -10,31 +10,33 @@ import { Message } from "@axa-fr/design-system-apollo-react/lf";
   This component will be renamed to InputText in next version.
 </Message>
 
-To use the TextInput import it like that:
+To use the InputText (old TextInput) import it like that:
 
 ```tsx
+import { InputText } from "@axa-fr/design-system-apollo-react/lf";
+
+// or 'deprecated' path
 import { TextInput } from "@axa-fr/design-system-apollo-react/lf";
-// or
+
+// or 'deprecated' path
 import { TextInput } from "@axa-fr/design-system-look-and-feel-react";
 
 const MyComponent = () => (
-  <>
-    <TextInput
-      value="John Doe"
-      label="Label"
-      placeholder="Placeholder"
-      helper="Informations complémentaires"
-      name="name"
-      id="nameid"
-      required
-      buttonLabel="my btn"
-    />
-  </>
+  <InputText
+    value="John Doe"
+    label="Label"
+    placeholder="Placeholder"
+    helper="Informations complémentaires"
+    name="name"
+    id="nameid"
+    required
+    buttonLabel="my btn"
+  />
 );
 ```
 
 ## Placeholder
 
-<Canvas of={InputTextStories.InputTextPlaceholderStory}></Canvas>
+<Canvas of={InputTextStories.InputTextPlaygroundStory}></Canvas>
 
-<Controls of={InputTextStories.InputTextPlaceholderStory} />
+<Controls of={InputTextStories.InputTextPlaygroundStory} />
