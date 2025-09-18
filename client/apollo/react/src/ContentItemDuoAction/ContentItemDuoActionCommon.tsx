@@ -4,11 +4,10 @@ import { ToggleProps } from "../Toggle/ToggleCommon";
 import { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
 import { ButtonProps } from "../Button/ButtonCommon";
 
-export const actionStates = {
-  edit: "edit",
-  toggle: "toggle",
-} as const;
-export type ActionStates = keyof typeof actionStates;
+export enum ActionStates {
+  edit = "edit",
+  toggle = "toggle",
+}
 
 export type ContentItemDuoActionToggleProps = {
   className?: string;

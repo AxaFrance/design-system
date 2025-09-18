@@ -74,7 +74,6 @@ export {
 } from "./List/ClickItem/ClickItemLF";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
 export {
-  actionStates,
   type ActionStates,
   ContentItemDuoAction,
 } from "./ContentItemDuoAction/ContentItemDuoActionLF";
