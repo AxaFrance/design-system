@@ -12,7 +12,13 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
     return (
       <Field
         {...otherProps}
-        renderInput={({ id, classModifier, ariaInvalid, errorId }) => (
+        renderInput={({
+          id,
+          classModifier,
+          ariaInvalid,
+          errorId,
+          ...props
+        }) => (
           <>
             <Date
               id={id}
@@ -20,7 +26,7 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
               ref={inputRef}
               aria-describedby={errorId}
               aria-invalid={ariaInvalid}
-              {...otherProps}
+              {...props}
             />
             {children}
           </>

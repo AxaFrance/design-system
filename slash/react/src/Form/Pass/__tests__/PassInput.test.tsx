@@ -74,4 +74,10 @@ describe("PassInput", () => {
     // Assert
     expect(screen.getByText(/content/i)).toBeInTheDocument();
   });
+
+  it.each(["", undefined])("should generate an ID if no id is passed", (id) => {
+    render(<PassInput label="My Input" defaultValue="Hello World" id={id} />);
+
+    expect(screen.getByLabelText("My Input").id).toBeDefined();
+  });
 });
