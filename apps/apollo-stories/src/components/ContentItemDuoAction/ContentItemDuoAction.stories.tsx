@@ -39,6 +39,8 @@ export const Playground: Story = {
         <Button variant="ghost">Supprimer</Button>
       </>
     ),
-    toggleProps: onclick,
+    toggleProps: {
+      control: { type: "object" },
+    },
   },
 };
