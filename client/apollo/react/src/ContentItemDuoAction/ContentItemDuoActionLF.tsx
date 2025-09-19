@@ -2,7 +2,7 @@ import "@axa-fr/design-system-apollo-css/dist/ContentItemDuoAction/ContentItemDu
 import "@axa-fr/design-system-apollo-css/dist/ContentItemMono/ContentItemMonoLF.scss";
 import {
   ContentItemDuoActionCommon,
-  ContentItemDuoActionProps,
+  type ContentItemDuoActionProps,
 } from "./ContentItemDuoActionCommon";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoLF";
 import { Toggle } from "../Toggle/ToggleLF";

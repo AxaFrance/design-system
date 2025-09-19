@@ -1,8 +1,8 @@
-import { forwardRef, useId } from "react";
+import { forwardRef, InputHTMLAttributes, useId } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export type ToggleProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
+  InputHTMLAttributes<HTMLInputElement>,
   "style" | "type"
 >;
 

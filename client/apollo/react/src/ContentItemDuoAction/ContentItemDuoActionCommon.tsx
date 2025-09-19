@@ -1,13 +1,13 @@
-import { ComponentType, ReactElement, useMemo } from "react";
+import { type ComponentType, type ReactElement } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
-import { ToggleProps } from "../Toggle/ToggleCommon";
-import { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
-import { ButtonProps } from "../Button/ButtonCommon";
+import type { ToggleProps } from "../Toggle/ToggleCommon";
+import type { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
+import type { ButtonProps } from "../Button/ButtonCommon";
 
-export enum ActionStates {
-  edit = "edit",
-  toggle = "toggle",
-}
+export const ActionStates = {
+  edit: "edit",
+  toggle: "toggle",
+} as const;
 
 export type ContentItemDuoActionToggleProps = {
   className?: string;
@@ -47,9 +47,9 @@ export const ContentItemDuoActionCommon = ({
 }: ContentItemDuoActionCommonProps & {
   ToggleComponent?: ComponentType<ToggleProps>;
 }) => {
-  const componentClassName = useMemo(
-    () => getComponentClassName("af-content-item-duo-action", className),
-    [className],
+  const componentClassName = getComponentClassName(
+    "af-content-item-duo-action",
+    className,
   );
 
   return (
