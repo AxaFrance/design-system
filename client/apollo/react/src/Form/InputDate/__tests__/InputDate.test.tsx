@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { InputDate } from "../InputDateApollo";
 
@@ -152,5 +153,137 @@ describe("<InputDate />", () => {
     render(<InputDate label="Date de naissance" />);
     const inputDate = screen.getByLabelText(/Date de naissance/);
     expect(inputDate).not.toHaveClass("af-form__input-date--no-picker");
+  });
+
+  describe("date picker visibility management", () => {
+    const originalPreventDefault = Event.prototype.preventDefault;
+    const originalWindowNavigator = global.window.navigator;
+    const preventDefaultMock = vi.fn();
+    const keypressOptions = {
+      space: {
+        keyCode: 32,
+        code: "Space",
+      },
+      enter: {
+        keyCode: 13,
+        code: "Enter",
+      },
+    };
+
+    beforeAll(() => {
+      Event.prototype.preventDefault = preventDefaultMock;
+    });
+
+    afterAll(() => {
+      Event.prototype.preventDefault = originalPreventDefault;
+    });
+
+    beforeEach(() => {
+      preventDefaultMock.mockReset();
+    });
+
+    const mockUserAgent = (agent: string) => {
+      global.window.navigator = {
+        ...originalWindowNavigator,
+        userAgent: agent,
+      };
+    };
+    const restoreUserAgent = () => {
+      global.window.navigator = originalWindowNavigator;
+    };
+
+    it.each([
+      vi.fn(),
+      null,
+      undefined,
+      {} as React.RefObject<HTMLInputElement>,
+    ])("prevents click events when hidePicker is true", async (ref) => {
+      render(<InputDate label="Date de naissance" hidePicker ref={ref} />);
+      const inputDate = screen.getByLabelText(/Date de naissance/);
+
+      await userEvent.click(inputDate);
+      expect(preventDefaultMock.mock.contexts).toHaveLength(1);
+      expect(preventDefaultMock.mock.contexts[0]).toMatchObject<
+        Partial<MouseEvent>
+      >({
+        type: "click",
+      });
+      expect(preventDefaultMock).toHaveBeenCalledTimes(1);
+    });
+
+    it("prevents space keypress events when hidePicker is true", async () => {
+      render(<InputDate label="Date de naissance" hidePicker />);
+      const inputDate = screen.getByLabelText(/Date de naissance/);
+
+      await userEvent.clear(inputDate);
+      expect(inputDate).toHaveFocus();
+      fireEvent.keyDown(inputDate, keypressOptions.space);
+      expect(preventDefaultMock).toHaveBeenCalledTimes(1);
+      expect(preventDefaultMock.mock.contexts).toHaveLength(1);
+      expect(preventDefaultMock.mock.contexts[0]).toMatchObject<
+        Partial<KeyboardEvent>
+      >({
+        type: "keydown",
+        ...keypressOptions.space,
+      });
+    });
+
+    it("does not prevent enter keypress events when hidePicker is true on webkit agent", async () => {
+      render(<InputDate label="Date de naissance" hidePicker />);
+      const inputDate = screen.getByLabelText(/Date de naissance/);
+      // Mock a WebKit user agent
+      mockUserAgent("WebKit");
+
+      await userEvent.clear(inputDate);
+      expect(inputDate).toHaveFocus();
+      fireEvent.keyDown(inputDate, keypressOptions.enter);
+      expect(preventDefaultMock).not.toHaveBeenCalled();
+
+      // Restore the original user agent
+      restoreUserAgent();
+    });
+
+    it("prevents enter keypress events when hidePicker is true on a non webkit agent", async () => {
+      render(<InputDate label="Date de naissance" hidePicker />);
+      const inputDate = screen.getByLabelText(/Date de naissance/);
+      // Mock a non WebKit user agent
+      mockUserAgent("Firefox");
+
+      await userEvent.clear(inputDate);
+      expect(inputDate).toHaveFocus();
+      fireEvent.keyDown(inputDate, keypressOptions.enter);
+      expect(preventDefaultMock.mock.contexts).toHaveLength(1);
+      expect(preventDefaultMock.mock.contexts[0]).toMatchObject<
+        Partial<KeyboardEvent>
+      >({
+        type: "keydown",
+        ...keypressOptions.enter,
+      });
+
+      // Restore the original user agent
+      restoreUserAgent();
+    });
+
+    it("does not prevent space and enter keypress and click when hidePicker is true on non a webkit agent but the event target is a different element", async () => {
+      render(
+        <>
+          <input type="date" aria-label="different input date" />
+          <InputDate label="Date de naissance" hidePicker />
+        </>,
+      );
+      const differentInputDate = screen.getByLabelText(/different input date/);
+      // Mock a non-WebKit user agent
+      mockUserAgent("Firefox");
+
+      await userEvent.clear(differentInputDate);
+      expect(differentInputDate).toHaveFocus();
+      fireEvent.keyDown(differentInputDate, keypressOptions.space);
+      fireEvent.keyDown(differentInputDate, keypressOptions.enter);
+      await userEvent.click(differentInputDate);
+      expect(preventDefaultMock).not.toHaveBeenCalled();
+
+      // Restore the original user agent
+      restoreUserAgent();
+    });
   });
 });

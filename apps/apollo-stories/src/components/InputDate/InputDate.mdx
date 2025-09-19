@@ -1,0 +1,38 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as InputDateStories from "./InputDate.stories";
+
+<Meta of={InputDateStories} name="InputDate" />
+
+# InputDate
+
+To use the InputDate import it like that:
+
+```tsx
+import { InputDate } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <>
+    <InputDate
+      buttonLabel="En savoir plus"
+      description="Description"
+      helper="Informations complémentaires"
+      id="uniqueId"
+      label="Date de naissance"
+      message=""
+      name="birthDate"
+      onChange={() => {}}
+      hidePicker={false}
+      required
+    />
+  </>
+);
+```
+
+**(Important) Note:** the `hidePicker={true}` prop both visually hides and functionnaly disables the date picker on browsers supporting WebKit without impacting accessibility.
+For browsers _**not supporting WebKit**_ (such as Firefox), the date picker _**is still visually visible**_ but the functionnality is disabled (we use a JavaScript trick to achieve that). _**Be aware that there might be some accessibility issues**_ (specifically with form submissions on Enter key press).
+
+## Playground
+
+<Canvas of={InputDateStories.InputDateDefaultStory} />
+
+<Controls of={InputDateStories.InputDateDefaultStory} />
