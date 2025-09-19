@@ -55,15 +55,15 @@ export const ContentItemDuoActionCommon = ({
   return (
     <div className={componentClassName}>
       <ContentItemMonoComponent {...contentItemProps} />
-      {state === "edit" ? (
-        <div className="af-action-edit-buttons-container">
-          {(props as ContentItemDuoActionButtonsProps).buttons}
-        </div>
-      ) : (
-        <ToggleComponent
-          {...(props as ContentItemDuoActionToggleProps).toggleProps}
-        />
-      )}
+      <div className="af-action-container">
+        {state === "edit" ? (
+          (props as ContentItemDuoActionButtonsProps).buttons
+        ) : (
+          <ToggleComponent
+            {...(props as ContentItemDuoActionToggleProps).toggleProps}
+          />
+        )}
+      </div>
     </div>
   );
 };

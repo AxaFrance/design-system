@@ -8,21 +8,18 @@
     flex-grow: 1;
   }
 
-  .af-toggle {
+  .af-action-container {
     display: flex;
     align-items: center;
-  }
-
-  .af-action-edit-buttons-container {
-    display: flex;
+    justify-content: center;
     flex-direction: column;
     row-gap: calc(16 / var(--font-size-base) * 1rem);
+    margin-left: calc(12 / var(--font-size-base) * 1rem);
 
     @media (width > #{common.$breakpoint-sm}) {
       flex-direction: row;
-      gap: calc(24 / var(--font-size-base) * 1rem);
-
-      --cols: 6;
+      column-gap: calc(24 / var(--font-size-base) * 1rem);
+        margin-left: calc(8 / var(--font-size-base) * 1rem);
     }
   }
 }
