@@ -11,15 +11,15 @@
   .af-action-container {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    row-gap: calc(16 / var(--font-size-base) * 1rem);
+    justify-content: center;
     margin-left: calc(12 / var(--font-size-base) * 1rem);
+    row-gap: calc(16 / var(--font-size-base) * 1rem);
 
     @media (width > #{common.$breakpoint-sm}) {
       flex-direction: row;
+      margin-left: calc(8 / var(--font-size-base) * 1rem);
       column-gap: calc(24 / var(--font-size-base) * 1rem);
-        margin-left: calc(8 / var(--font-size-base) * 1rem);
     }
   }
 }
