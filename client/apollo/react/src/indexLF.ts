@@ -78,6 +78,10 @@ export {
 } from "./List/ClickItem/ClickItemLF";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
 export {
+  type ContentItemDuoActionState,
+  ContentItemDuoAction,
+} from "./ContentItemDuoAction/ContentItemDuoActionLF";
+export {
   Message,
   messageVariants,
   type MessageVariants,
