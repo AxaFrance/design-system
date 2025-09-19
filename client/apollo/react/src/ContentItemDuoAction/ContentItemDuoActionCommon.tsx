@@ -4,7 +4,7 @@ import type { ToggleProps } from "../Toggle/ToggleCommon";
 import type { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
 import type { ButtonProps } from "../Button/ButtonCommon";
 
-export const ActionStates = {
+export const ContentItemDuoActionState = {
   edit: "edit",
   toggle: "toggle",
 } as const;

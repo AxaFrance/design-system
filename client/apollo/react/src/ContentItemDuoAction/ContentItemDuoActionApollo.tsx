@@ -6,7 +6,7 @@ import {
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoApollo";
 import { Toggle } from "../Toggle/ToggleApollo";
 
-export { type ActionStates } from "./ContentItemDuoActionCommon";
+export { type ContentItemDuoActionState } from "./ContentItemDuoActionCommon";
 
 export const ContentItemDuoAction = ({
   ...props

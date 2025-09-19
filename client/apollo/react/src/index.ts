@@ -74,7 +74,7 @@ export {
 } from "./List/ClickItem/ClickItemApollo";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoApollo";
 export {
-  type ActionStates,
+  type ContentItemDuoActionState,
   ContentItemDuoAction,
 } from "./ContentItemDuoAction/ContentItemDuoActionApollo";
 export {
