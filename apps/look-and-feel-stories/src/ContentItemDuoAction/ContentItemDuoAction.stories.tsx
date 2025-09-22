@@ -12,7 +12,10 @@ const meta: Meta<typeof ContentItemDuoAction> = {
   args: {
     contentItemProps: {
       type: "icon",
-      icon: bank,
+      iconProps: {
+        hasBackground: true,
+        src: bank,
+      },
       title: "Texte principale",
       subtitle1: "Texte secondaire",
       subtitle2: "Texte tertiare",
