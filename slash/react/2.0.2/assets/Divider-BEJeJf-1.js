@@ -1,0 +1,1 @@
+import{j as s}from"./jsx-runtime-D_zvdyIk.js";import{c as t}from"./CardData-Eef1XmUi.js";const c=({mode:r="horizontal",className:a,...i})=>{const o=t("af-divider",{"af-divider--horizontal":r==="horizontal","af-divider--vertical":r==="vertical"},a);return s.jsx("hr",{className:o,...i})};export{c as D};
