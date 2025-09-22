@@ -17,7 +17,6 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           ...textProps
         }) => (
           <>
-            {JSON.stringify({ id })}
             <Text
               id={id}
               classModifier={classModifier}
