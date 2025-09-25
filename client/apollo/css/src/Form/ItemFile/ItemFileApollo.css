@@ -1,4 +1,4 @@
-@use "./ItemFileCommon";
+@import "./ItemFileCommon.css";
 
 .af-item-file {
   --item-file-border-radius: var(--radius-8);
@@ -12,21 +12,19 @@
   --item-file-body-padding-horizontal: calc(16 / var(--font-size-base) * 1rem);
   --item-file-action-buttons-gap: calc(24 / var(--font-size-base) * 1rem);
 
-  &--error {
-    --item-file-border-color: var(--axa-red-100);
+  .af-icon__success {
+    --icon-fill: var(--green-100);
   }
 
-  .af-icon {
-    &__success {
-      --icon-fill: var(--green-100);
-    }
-
-    &__error {
-      --icon-fill: var(--red-alert-100);
-    }
+  .af-icon__error {
+    --icon-fill: var(--red-alert-100);
   }
+}
 
-  &__spinner div {
-    --item-file-spinner-color: var(--neutral-100);
-  }
+.af-item-file--error {
+  --item-file-border-color: var(--axa-red-100);
+}
+
+.af-item-file__spinner div {
+  --item-file-spinner-color: var(--neutral-100);
 }
