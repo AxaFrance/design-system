@@ -1,8 +1,7 @@
-@use "../../common/breakpoints";
-@use "TextAreaCommon";
+@import "./TextAreaCommon.css";
 
 .af-form__textarea {
-  --textarea-border-radius: var(--default-border-radius);
+  --textarea-border-radius: var(--radius-4);
   --textarea-placeholder-color: var(--color-gray-700);
   --textarea-background-color: var(--color-white);
   --textarea-color: var(--color-gray-900);
