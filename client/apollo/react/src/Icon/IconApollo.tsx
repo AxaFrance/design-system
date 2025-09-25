@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Icon/IconApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Icon/IconApollo.css";
 
 export {
   Icon,
