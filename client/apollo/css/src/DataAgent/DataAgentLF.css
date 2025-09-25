@@ -1,0 +1,10 @@
+@import "./DataAgentCommon.css";
+
+.af-data-agent {
+  --data-agent-border-color: var(--color-blue-400);
+  --data-agent-text-orias-font-color: var(--color-gray-700);
+  --data-agent-text-orias-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --data-agent-intro-padding: calc(16 / var(--font-size-base) * 1rem);
+  --data-agent-intro-content-padding: calc(12 / var(--font-size-base) * 1rem)
+    calc(16 / var(--font-size-base) * 1rem) 0;
+}
