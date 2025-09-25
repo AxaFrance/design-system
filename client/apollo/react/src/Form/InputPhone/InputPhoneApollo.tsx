@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/InputPhone/InputPhoneApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/InputPhone/InputPhoneApollo.css";
 import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
 import { InputPhoneCommon, type InputPhoneProps } from "./InputPhoneCommon";
