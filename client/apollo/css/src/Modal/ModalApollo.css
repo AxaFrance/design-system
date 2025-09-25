@@ -1,5 +1,4 @@
-@use "../common/breakpoints" as breakpoints;
-@use "./ModalCommon";
+@import "./ModalCommon.css";
 
 .af-modal {
   --modal-bg-color: var(--white);
@@ -18,17 +17,13 @@
   --modal-footer-horizontal-padding: var(--modal-default-padding);
   --modal-footer-gap: calc(16 / var(--font-size-base) * 1rem);
 
-  &__body:not(:has(~ .af-modal__footer)) {
-    --modal-body-padding-bottom: var(--modal-default-padding);
-  }
-
   :has(.af-modal__body-vertical-scroll) {
     --modal-footer-border-top: 1px solid var(--axa-blue-20);
     --modal-footer-vertical-padding: calc(12 / var(--font-size-base) * 1rem);
     --modal-footer-horizontal-padding: calc(16 / var(--font-size-base) * 1rem);
   }
 
-  @media (width > #{breakpoints.$breakpoint-md}) {
+  @media (--desktop-small) {
     --modal-header-gap: calc(24 / var(--font-size-base) * 1rem);
     --modal-default-padding: calc(32 / var(--font-size-base) * 1rem);
     --modal-body-padding-bottom: calc(16 / var(--font-size-base) * 1rem);
@@ -39,4 +34,8 @@
       --modal-footer-border-top: none;
     }
   }
+}
+
+.af-modal__body:not(:has(~ .af-modal__footer)) {
+  --modal-body-padding-bottom: var(--modal-default-padding);
 }
