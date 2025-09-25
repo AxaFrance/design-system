@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/AccordionCore/AccordionCoreLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/AccordionCore/AccordionCoreLF.css";
 import {
   AccordionCoreCommon,
   type AccordionCoreProps,
