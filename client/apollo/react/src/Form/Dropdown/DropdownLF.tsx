@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/Dropdown/DropdownLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/Dropdown/DropdownLF.css";
 import { ItemLabel } from "../ItemLabel/ItemLabelLF";
 import { ItemMessage } from "../ItemMessage/ItemMessageLF";
 import { DropdownCommon, type DropdownProps } from "./DropdownCommon";
