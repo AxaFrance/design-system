@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/InputDate/InputDateApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/InputDate/InputDateApollo.css";
 import { forwardRef } from "react";
 import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
