@@ -1,6 +1,4 @@
-@use "../../common/breakpoints" as breakpoints;
-
-@use "./ItemLabelCommon";
+@import "./ItemLabelCommon.css";
 
 .af-item-label {
   --label-color: var(--neutral-100);
