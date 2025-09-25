@@ -1,4 +1,4 @@
-@use "./DropdownCommon";
+@import "./DropdownCommon.css";
 
 .af-form__dropdown-input {
   --dropdown-border-radius: var(--radius-8);
@@ -33,12 +33,12 @@
   &:has(option[value=""]:checked) {
     --dropdown-color: var(--neutral-80);
   }
+}
 
-  &--error {
+.af-form__dropdown-input--error {
+  --dropdown-box-shadow-color: var(--axa-red-100);
+
+  &:is(:focus-visible, :hover, :active) {
     --dropdown-box-shadow-color: var(--axa-red-100);
-
-    &:is(:focus-visible, :hover, :active) {
-      --dropdown-box-shadow-color: var(--axa-red-100);
-    }
   }
 }
