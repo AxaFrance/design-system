@@ -1,7 +1,7 @@
-import "@axa-fr/design-system-apollo-css/dist/Stepper/StepperLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Stepper/StepperLF.css";
 import { ProgressBarGroup } from "../ProgressBarGroup/ProgressBarGroupLF";
-import { Stepper as StepperCommon, StepperProps } from "./StepperCommon";
+import { StepperCommon, type StepperProps } from "./StepperCommon";
 
-export const Stepper = (
-  props: Omit<StepperProps, "ProgressBarGroupComponent">,
-) => <StepperCommon {...props} ProgressBarGroupComponent={ProgressBarGroup} />;
+export const Stepper = (props: StepperProps) => (
+  <StepperCommon {...props} ProgressBarGroupComponent={ProgressBarGroup} />
+);

@@ -8,7 +8,7 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../Form/ItemMessage/ItemMessageCommon";
-import { ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
+import { type ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
 
 export type StepperProps = {
   currentStepProgress?: number;
@@ -20,12 +20,13 @@ export type StepperProps = {
   message?: string;
   messageType?: ItemMessageProps["messageType"];
   titleLevel?: 1 | 2 | 3;
-  ProgressBarGroupComponent: ComponentType<
-    Omit<ProgressBarGroupProps, "ProgressBarComponent">
-  >;
 } & Omit<HTMLAttributes<HTMLDivElement>, "role">;
 
-export const Stepper = ({
+export type StepperCommonProps = StepperProps & {
+  ProgressBarGroupComponent: ComponentType<ProgressBarGroupProps>;
+};
+
+export const StepperCommon = ({
   currentStepProgress,
   currentTitle,
   nbSteps,
@@ -38,7 +39,7 @@ export const Stepper = ({
   messageType = "success",
   titleLevel = 2,
   ...props
-}: StepperProps) => {
+}: StepperCommonProps) => {
   const titleId = useId();
   const Title = `h${titleLevel}` as ElementType<
     HTMLAttributes<HTMLHeadingElement>

@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
-import { Stepper } from "../StepperCommon";
+import { StepperCommon } from "../StepperCommon";
 
-describe("Stepper Component", () => {
+describe("StepperCommon Component", () => {
   it("renders the title and subtitle when visible", () => {
     render(
-      <Stepper
+      <StepperCommon
         currentStep={1}
         currentTitle="Step 1 Title"
         currentSubtitle="Step 1 Subtitle"
@@ -24,7 +24,7 @@ describe("Stepper Component", () => {
 
   it("hides the title and subtitle when visibility is disabled", () => {
     render(
-      <Stepper
+      <StepperCommon
         currentStep={1}
         currentTitle="Step 1 Title"
         currentSubtitle=""
@@ -40,7 +40,7 @@ describe("Stepper Component", () => {
 
   it("renders the ProgressBarGroupComponent with correct props", () => {
     render(
-      <Stepper
+      <StepperCommon
         currentStep={2}
         currentStepProgress={50}
         nbSteps={4}
@@ -56,7 +56,7 @@ describe("Stepper Component", () => {
 
   it("renders the helper text when provided", () => {
     render(
-      <Stepper
+      <StepperCommon
         currentStep={1}
         helper="This is a helper text"
         nbSteps={4}
@@ -75,7 +75,7 @@ describe("Stepper Component", () => {
     "renders a %s message when message provided with %s message type",
     (messageType, messageText, expectedRole) => {
       render(
-        <Stepper
+        <StepperCommon
           currentStep={1}
           message={messageText}
           nbSteps={4}
@@ -95,7 +95,7 @@ describe("Stepper Component", () => {
 
   it("applies additional className to the ProgressBarGroupComponent", () => {
     render(
-      <Stepper
+      <StepperCommon
         currentStep={1}
         className="custom-class"
         nbSteps={4}
@@ -115,7 +115,7 @@ describe("Stepper Component", () => {
     "should render the title as a %s according to titleLevel prop",
     (level, tag) => {
       render(
-        <Stepper
+        <StepperCommon
           currentStep={1}
           currentTitle={`Step Title ${tag}`}
           nbSteps={4}
