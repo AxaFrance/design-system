@@ -3,7 +3,7 @@ import { ClickItem } from "../List/ClickItem/ClickItemApollo";
 import { ContentItemMono } from "../ContentItemMono/ContentItemMonoApollo";
 import { Divider } from "../Divider/DividerApollo";
 
-import "@axa-fr/design-system-apollo-css/dist/DataAgent/DataAgentApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/DataAgent/DataAgentApollo.css";
 
 export const DataAgent = (props: DataAgentProps) => (
   <DataAgentCommon
