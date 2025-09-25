@@ -1,5 +1,3 @@
-@use "../common/breakpoints" as breakpoints;
-
 .af-modal {
   --modal-transition-duration: 0.2s;
   --modal-max-height: calc(100% - 5rem);
@@ -62,64 +60,7 @@
     }
   }
 
-  &__content {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    flex: 1;
-    overflow-y: hidden;
-  }
-
-  &__header {
-    display: grid;
-    padding: var(--modal-default-padding);
-    padding-block-end: var(--modal-header-bottom-padding);
-    border-bottom: var(--modal-header-border-bottom);
-    grid-template-areas: "headertitle closebtn";
-    grid-template-columns: 1fr auto;
-    gap: var(--modal-header-gap);
-    background-color: var(--modal-bg-color);
-
-    &-close-btn {
-      grid-area: closebtn;
-      place-self: start end;
-    }
-
-    &-title {
-      display: grid;
-      grid-area: headertitle;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      justify-self: start;
-      gap: calc(16 / var(--font-size-base) * 1rem);
-    }
-  }
-
-  &__body {
-    display: flex;
-    padding: var(--modal-default-padding) var(--modal-body-padding-top)
-      var(--modal-body-padding-bottom);
-    flex-direction: column;
-    gap: var(--modal-default-padding);
-    overflow-y: auto;
-    font-size: var(--modal-text-font-size);
-    line-height: 125%;
-  }
-
-  &__footer {
-    display: flex;
-    padding: var(--modal-footer-vertical-padding)
-      var(--modal-footer-horizontal-padding);
-    border-block-start: var(--modal-footer-border-top);
-    justify-content: end;
-    gap: var(--modal-footer-gap);
-    background-color: var(--modal-bg-color);
-
-    &-button {
-      flex: 1;
-    }
-  }
-
-  @media (width > #{breakpoints.$breakpoint-md}) {
+  @media (--desktop-small) {
     max-width: revert;
     margin: revert;
     border-radius: var(--modal-border-radius);
@@ -129,10 +70,67 @@
     &[open] {
       transform: unset;
     }
+  }
+}
 
-    &__footer-button {
-      min-width: 180px;
-      flex-grow: inherit;
-    }
+&__content {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.af-modal__header {
+  display: grid;
+  padding: var(--modal-default-padding);
+  padding-block-end: var(--modal-header-bottom-padding);
+  border-bottom: var(--modal-header-border-bottom);
+  grid-template-areas: "headertitle closebtn";
+  grid-template-columns: 1fr auto;
+  gap: var(--modal-header-gap);
+  background-color: var(--modal-bg-color);
+}
+
+.af-modal__header-close-btn {
+  grid-area: closebtn;
+  place-self: start end;
+}
+
+.af-modal__header-title {
+  display: grid;
+  grid-area: headertitle;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-self: start;
+  gap: calc(16 / var(--font-size-base) * 1rem);
+}
+
+.af-modal__body {
+  display: flex;
+  padding: var(--modal-default-padding) var(--modal-body-padding-top)
+    var(--modal-body-padding-bottom);
+  flex-direction: column;
+  gap: var(--modal-default-padding);
+  overflow-y: auto;
+  font-size: var(--modal-text-font-size);
+  line-height: 125%;
+}
+
+.af-modal__footer {
+  display: flex;
+  padding: var(--modal-footer-vertical-padding)
+    var(--modal-footer-horizontal-padding);
+  border-block-start: var(--modal-footer-border-top);
+  justify-content: end;
+  gap: var(--modal-footer-gap);
+  background-color: var(--modal-bg-color);
+}
+
+.af-modal__footer-button {
+  flex: 1;
+
+  @media (--desktop-small) {
+    min-width: 180px;
+    flex-grow: inherit;
   }
 }
