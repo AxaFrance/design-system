@@ -1,4 +1,4 @@
-@use "CheckboxTextCommon";
+@import "./CheckboxTextCommon.css";
 
 .af-checkbox-text {
   --checkbox-text-label-color: var(--black);
