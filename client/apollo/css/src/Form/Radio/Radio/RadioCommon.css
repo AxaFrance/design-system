@@ -23,6 +23,7 @@
     width: var(--radio-ckecked-width);
     height: var(--radio-ckecked-width);
     border-radius: 50%;
+    flex-shrink: 0;
     background-color: var(--radio-ckecked-color);
     content: "";
   }
