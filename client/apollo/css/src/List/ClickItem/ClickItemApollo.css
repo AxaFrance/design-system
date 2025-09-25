@@ -1,0 +1,55 @@
+@import "./ClickItemCommon.css";
+
+.af-apollo-click-item {
+  --click-item-title-color: var(--axa-blue-100);
+  --click-item-title-border-color: var(--axa-blue-100);
+  --click-item-subtitle-color: var(--neutral-80);
+  --click-item-text-secondary-color: var(--neutral-80);
+  --click-item-text-tertiary-color: var(--neutral-80);
+  --click-item-text-disabled-color: var(--neutral-80);
+  --click-item-title-font-weight: 600;
+}
+
+.af-apollo-click-item--large {
+  --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --click-item-text-secondary-font-size: calc(
+    14 / var(--font-size-base) * 1rem
+  );
+  --click-item-text-tertiary-font-size: calc(14 / var(--font-size-base) * 1rem);
+
+  @media (--desktop-small) {
+    --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --click-item-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --click-item-text-secondary-font-size: calc(
+      16 / var(--font-size-base) * 1rem
+    );
+  }
+}
+
+.af-apollo-click-item--medium {
+  --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --click-item-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+
+  @media (--desktop-small) {
+    --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-apollo-click-item--small {
+  --click-item-title-font-size: calc(14 / var(--font-size-base) * 1rem);
+
+  @media (--desktop-small) {
+    --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-apollo-click-item--agent {
+  --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
+  --click-item-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+
+  @media (--desktop-small) {
+    --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+}
