@@ -1,5 +1,4 @@
-@use "../common/breakpoints" as breakpoints;
-@use "./TimelineVerticalCommon";
+@import "./TimelineVerticalCommon.css";
 
 .af-timeline-vertical {
   --timeline-vertical-padding: calc(16 / var(--font-size-base) * 1rem);
@@ -12,7 +11,7 @@
   --timeline-vertical-bg-color: var(--color-white);
   --timeline-vertical-border-color: var(--color-blue-400);
 
-  @media (width >  #{breakpoints.$breakpoint-md}) {
+  @media (--desktop-small) {
     --timeline-vertical-padding: calc(24 / var(--font-size-base) * 1rem);
     --timeline-vertical-title-font-size: calc(
       18 / var(--font-size-base) * 1rem
