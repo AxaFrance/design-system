@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import "@axa-fr/design-system-apollo-css/dist/Form/Checkbox/CheckboxText/CheckboxTextApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/Checkbox/CheckboxText/CheckboxTextApollo.css";
 import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
 import { Checkbox } from "../Checkbox/CheckboxApollo";
 import {
@@ -7,7 +7,7 @@ import {
   type CheckboxTextProps,
 } from "./CheckboxTextCommon";
 
-const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
+export const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
   (props, ref) => (
     <CheckboxTextCommon
       {...props}
@@ -19,5 +19,3 @@ const CheckboxText = forwardRef<HTMLInputElement, CheckboxTextProps>(
 );
 
 CheckboxText.displayName = "CheckboxText";
-
-export { CheckboxText };
