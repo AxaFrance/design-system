@@ -1,5 +1,4 @@
-@use "CardCheckboxOptionCommon";
-@use "../../../common/breakpoints";
+@import "./CardCheckboxOptionCommon.css";
 
 .af-card-checkbox-option {
   --checkbox-option-border-color: var(--color-gray-700);
@@ -14,12 +13,12 @@
     --checkbox-option-border-color: var(--color-axa);
   }
 
-  &:not(&--horizontal) .af-checkbox {
+  &:not(.af-card-checkbox-option--horizontal) .af-checkbox {
     position: absolute;
     top: calc(12 / var(--font-size-base) * 1rem);
     left: calc(12 / var(--font-size-base) * 1rem);
 
-    @media (width > #{breakpoints.$breakpoint-sm}) {
+    @media (--desktop-small) {
       top: calc(16 / var(--font-size-base) * 1rem);
       left: calc(16 / var(--font-size-base) * 1rem);
     }
@@ -27,10 +26,6 @@
 
   & .af-card-checkbox-option__content {
     --checkbox-option-gap: calc(4 / var(--font-size-base) * 1rem);
-  }
-
-  &--horizontal {
-    column-gap: calc(12 / var(--font-size-base) * 1rem);
   }
 
   &:has(input:checked) {
@@ -41,4 +36,8 @@
   &:has(input[aria-invalid="true"]):not(:has(input:checked)) {
     --checkbox-option-border-color: var(--color-red-700);
   }
+}
+
+.af-card-checkbox-option--horizontal {
+  column-gap: calc(12 / var(--font-size-base) * 1rem);
 }

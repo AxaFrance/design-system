@@ -1,4 +1,4 @@
-@use "CardCheckboxOptionCommon";
+@import "./CardCheckboxOptionCommon.css";
 
 .af-card-checkbox-option {
   --checkbox-option-border-color: var(--axa-blue-65);
@@ -13,22 +13,6 @@
     --checkbox-option-border-color: var(--axa-blue-100);
   }
 
-  &--horizontal {
-    --checkbox-option-gap: calc(8 / var(--font-size-base) * 1rem);
-
-    & .af-card-checkbox-option__content {
-      --checkbox-option-gap: calc(4 / var(--font-size-base) * 1rem);
-    }
-
-    & .af-checkbox {
-      margin-right: calc(8 / var(--font-size-base) * 1rem);
-    }
-  }
-
-  &:not(&--horizontal) .af-checkbox {
-    margin-top: calc(8 / var(--font-size-base) * 1rem);
-  }
-
   &:has(input:checked) {
     --checkbox-option-background-color: var(--axa-blue-4);
     --checkbox-option-border-color: var(--axa-blue-100);
@@ -39,4 +23,21 @@
     --checkbox-option-background-color: var(--axa-red-4);
     --checkbox-option-color-title: var(--neutral-80);
   }
+}
+
+.af-card-checkbox-option--horizontal {
+  --checkbox-option-gap: calc(8 / var(--font-size-base) * 1rem);
+
+  & .af-card-checkbox-option__content {
+    --checkbox-option-gap: calc(4 / var(--font-size-base) * 1rem);
+  }
+
+  & .af-checkbox {
+    margin-right: calc(8 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-card-checkbox-option:not(.af-card-checkbox-option--horizontal)
+  .af-checkbox {
+  margin-top: calc(8 / var(--font-size-base) * 1rem);
 }
