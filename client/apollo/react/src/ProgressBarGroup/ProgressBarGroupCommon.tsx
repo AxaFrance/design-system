@@ -13,10 +13,13 @@ export type ProgressBarGroupProps = {
   stepsCount?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   max?: number;
   className?: string;
-  ProgressBarComponent: ComponentType<ComponentProps<typeof ProgressBar>>;
 } & Omit<ComponentProps<"ol">, "children" | "className">;
 
-export const ProgressBarGroup = ({
+type ProgressBarGroupCommonProps = ProgressBarGroupProps & {
+  ProgressBarComponent: ComponentType<ComponentProps<typeof ProgressBar>>;
+};
+
+export const ProgressBarGroupCommon = ({
   currentStepProgress = 0,
   max = 100,
   nbSteps = 4,
@@ -25,7 +28,7 @@ export const ProgressBarGroup = ({
   className,
   ProgressBarComponent,
   ...props
-}: ProgressBarGroupProps) => {
+}: ProgressBarGroupCommonProps) => {
   const stepperId = useId();
   const progressValues = useSequentialProgress(
     currentStepProgress / max,

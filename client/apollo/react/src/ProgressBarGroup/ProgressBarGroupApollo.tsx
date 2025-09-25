@@ -1,10 +1,10 @@
-import "@axa-fr/design-system-apollo-css/dist/ProgressBarGroup/ProgressBarGroupApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/ProgressBarGroup/ProgressBarGroupApollo.css";
 import { ProgressBar } from "../ProgressBar/ProgressBarApollo";
 import {
-  ProgressBarGroup as ProgressBarGroupCommon,
+  ProgressBarGroupCommon,
   ProgressBarGroupProps,
 } from "./ProgressBarGroupCommon";
 
-export const ProgressBarGroup = (
-  props: Omit<ProgressBarGroupProps, "ProgressBarComponent">,
-) => <ProgressBarGroupCommon {...props} ProgressBarComponent={ProgressBar} />;
+export const ProgressBarGroup = (props: ProgressBarGroupProps) => (
+  <ProgressBarGroupCommon {...props} ProgressBarComponent={ProgressBar} />
+);
