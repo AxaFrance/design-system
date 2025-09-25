@@ -1,9 +1,8 @@
-@use "../common/breakpoints" as breakpoints;
-@use "./ContentItemMonoCommon";
+@import "./ContentItemMonoCommon.css";
 
 .af-content-item-mono {
   .stick {
-    --stick-background-color: var(--axa-blue-100);
+    --stick-background-color: var(--color-axa);
   }
 
   .text-content {
@@ -11,21 +10,21 @@
       --title-font-family: var(--font-family-sans-serif);
       --title-font-size: calc(16 / var(--font-size-base) * 1rem);
       --title-font-weight: 600;
-      --title-color: var(--neutral-100);
+      --title-color: var(--color-gray-900);
       --title-line-height: calc(20 / var(--font-size-base) * 1rem);
     }
 
     .subtitle-primary {
       --subtitle-primary-font-family: var(--font-family-sans-serif);
       --subtitle-primary-font-size: calc(16 / var(--font-size-base) * 1rem);
-      --subtitle-primary-color: var(--neutral-100);
+      --subtitle-primary-color: var(--color-gray-900);
       --subtitle-primary-line-height: calc(20 / var(--font-size-base) * 1rem);
     }
 
     .subtitle {
       --subtitle-font-family: var(--font-family-sans-serif);
       --subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
-      --subtitle-color: var(--neutral-80);
+      --subtitle-color: var(--color-gray);
       --subtitle-line-height: calc(18 / var(--font-size-base) * 1rem);
     }
   }
@@ -35,14 +34,21 @@
     --title-line-height: calc(18 / var(--font-size-base) * 1rem);
   }
 
-  &.large .text-content .title {
-    --title-font-family: var(--font-family-publico-headline);
-    --title-font-weight: 300;
-    --title-font-size: calc(22 / var(--font-size-base) * 1rem);
-    --title-line-height: calc(28 / var(--font-size-base) * 1rem);
+  &.large .text-content {
+    .title {
+      --title-font-family: var(--font-family-publico);
+      --title-font-weight: 700;
+      --title-font-size: calc(20 / var(--font-size-base) * 1rem);
+      --title-line-height: calc(25 / var(--font-size-base) * 1rem);
+    }
+
+    .subtitle {
+      --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+      --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
+    }
   }
 
-  @media (width > #{breakpoints.$breakpoint-md}) {
+  @media (--desktop-small) {
     .text-content {
       .title {
         --title-font-size: calc(18 / var(--font-size-base) * 1rem);
@@ -65,9 +71,16 @@
       --title-line-height: calc(20 / var(--font-size-base) * 1rem);
     }
 
-    &.large .text-content .title {
-      --title-font-size: calc(28 / var(--font-size-base) * 1rem);
-      --title-line-height: calc(35 / var(--font-size-base) * 1rem);
+    &.large .text-content {
+      .title {
+        --title-font-size: calc(24 / var(--font-size-base) * 1rem);
+        --title-line-height: calc(30 / var(--font-size-base) * 1rem);
+      }
+
+      .subtitle {
+        --subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+        --subtitle-line-height: calc(23 / var(--font-size-base) * 1rem);
+      }
     }
   }
 }

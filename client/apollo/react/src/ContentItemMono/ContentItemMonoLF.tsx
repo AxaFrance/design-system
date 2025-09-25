@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/ContentItemMono/ContentItemMonoLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/ContentItemMono/ContentItemMonoLF.css";
 import { Icon } from "../Icon/IconLF";
 import {
   ContentItemMonoCommon,
