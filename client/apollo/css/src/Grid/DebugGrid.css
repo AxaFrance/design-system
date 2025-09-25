@@ -1,5 +1,3 @@
-@use "../common/breakpoints.scss" as breakpoints;
-
 .af-card-checkbox-option:has([name="debuggrid"]) {
   position: fixed;
   z-index: 2;
@@ -18,7 +16,7 @@
   mix-blend-mode: multiply;
 
   .grid {
-    --name: "small: 0 to 667px";
+    --name: "mobile: 0 to 667px";
     --color-bg-cols: hsl(280.71deg, 51.85%, 89.41%);
 
     position: relative;
@@ -52,8 +50,8 @@
       }
     }
 
-    @media (width > #{breakpoints.$breakpoint-sm}) {
-      --name: "medium: 668px to 1023px";
+    @media (--tablet) {
+      --name: "tablet: 668px to 1023px";
       --color-bg-cols: hsl(233.57deg, 51.85%, 89.41%);
 
       .cols:nth-child(-n + 8) {
@@ -61,8 +59,8 @@
       }
     }
 
-    @media (width > #{breakpoints.$breakpoint-md}) {
-      --name: "large: 1024px to 1279px";
+    @media (--desktop-small) {
+      --name: "desktop-small: 1024px to 1279px";
       --color-bg-cols: hsl(180deg, 53.09%, 84.12%);
 
       .cols:nth-child(-n + 12) {
@@ -70,13 +68,13 @@
       }
     }
 
-    @media (width > #{breakpoints.$breakpoint-lg}) {
-      --name: "extra large: 1280px to 1599px";
+    @media (--desktop-medium) {
+      --name: "desktop-medium: 1280px to 1599px";
       --color-bg-cols: hsl(120deg, 52.5%, 84.31%);
     }
 
-    @media (width > #{breakpoints.$breakpoint-xl}) {
-      --name: "extra large: 1600px to infinity";
+    @media (--desktop-large) {
+      --name: "desktop-large: 1600px to infinity";
       --color-bg-cols: hsl(357.39deg, 100%, 90.98%);
     }
   }
