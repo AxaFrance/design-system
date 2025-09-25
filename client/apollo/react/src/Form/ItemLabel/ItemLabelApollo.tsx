@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/ItemLabel/ItemLabelApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/ItemLabel/ItemLabelApollo.css";
 import { Button } from "../../Button/ButtonApollo";
 import { ItemLabelCommon, type ItemLabelProps } from "./ItemLabelCommon";
 
