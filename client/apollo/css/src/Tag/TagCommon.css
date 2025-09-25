@@ -11,10 +11,10 @@
   color: var(--tag-text-color);
   background-color: var(--tag-bg-color);
   cursor: default;
+}
 
-  &__label {
-    font-size: var(--tag-font-size);
-    font-weight: 600;
-    line-height: var(--tag-line-height);
-  }
+.af-tag__label {
+  font-size: var(--tag-font-size);
+  font-weight: 600;
+  line-height: var(--tag-line-height);
 }
