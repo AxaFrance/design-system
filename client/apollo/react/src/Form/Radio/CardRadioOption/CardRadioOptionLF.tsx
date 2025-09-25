@@ -5,7 +5,7 @@ import {
   type CardRadioOptionProps,
 } from "./CardRadioOptionCommon";
 
-import "@axa-fr/design-system-apollo-css/dist/Form/Radio/CardRadioOption/CardRadioOptionLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/Radio/CardRadioOption/CardRadioOptionLF.css";
 
 export const CardRadioOption = (props: CardRadioOptionProps) => (
   <CardRadioOptionCommon

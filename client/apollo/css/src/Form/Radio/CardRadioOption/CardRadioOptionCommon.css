@@ -1,0 +1,103 @@
+.af-card-radio-option {
+  --radio-option-border-width: 1px;
+  --radio-option-background-color: var(--white);
+
+  position: relative;
+  display: flex;
+  padding: 1rem;
+  border-radius: var(--radio-option-border-radius);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--radio-option-gap);
+  text-align: center;
+  background-color: var(--radio-option-background-color);
+  outline: var(--radio-option-border-width) solid
+    var(--radio-option-border-color);
+  outline-offset: calc(-1 * var(--radio-option-border-width));
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
+    --radio-option-border-width: 2px;
+  }
+
+  &:has(input:checked) {
+    --radio-option-border-width: 2px;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --radio-option-border-width: 3px;
+    }
+  }
+
+  & .af-icon {
+    --icon-size: var(--icon-size-medium);
+
+    @media (--desktop-small) {
+      --icon-size: var(--icon-size-large);
+    }
+  }
+}
+
+.af-card-radio-option__label {
+  margin: 0;
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-weight: 400;
+  color: var(--radio-option-color-title);
+
+  @media (--desktop-small) {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-card-radio-option:has(input:checked) .af-card-radio-option__label {
+  font-weight: 600;
+}
+
+.af-card-radio-option--invalid:not(:has(input:checked)) {
+  --radio-option-border-width: 2px;
+
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
+    --radio-option-border-width: 3px;
+  }
+}
+
+.af-card-radio-option__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--radio-option-gap);
+  text-align: center;
+}
+
+.af-card-radio-option__description,
+.af-card-radio-option__subtitle {
+  margin: 0;
+  font-size: calc(14 / var(--font-size-base) * 1rem);
+  font-weight: 400;
+  color: var(--radio-option-color-subtitle);
+
+  @media (--desktop-small) {
+    font-size: 1rem;
+  }
+}
+
+.af-card-radio-option--horizontal {
+  flex-direction: row;
+
+  & .af-card-radio-option__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  & .af-radio {
+    order: -1;
+  }
+}
