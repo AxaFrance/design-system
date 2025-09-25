@@ -1,4 +1,4 @@
-@use "./FooterCommon";
+@import "./FooterCommon.css";
 
 .af-footer {
   --footer-bg-color: var(--axa-blue-100);
