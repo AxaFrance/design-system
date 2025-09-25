@@ -1,0 +1,43 @@
+@import "./TagCommon.css";
+
+.af-tag {
+  --tag-border-radius: var(--radius-4);
+}
+
+.af-tag__label {
+  --tag-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --tag-line-height: calc(var(--tag-font-size) * 1.25);
+  @media (--desktop-small) {
+    --tag-font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-tag--info {
+  --tag-bg-color: var(--axa-blue-4);
+  --tag-text-color: var(--axa-blue-100);
+  --tag-border-color: var(--axa-blue-100);
+}
+
+.af-tag--success {
+  --tag-bg-color: var(--green-12);
+  --tag-text-color: var(--green-100);
+  --tag-border-color: var(--green-100);
+}
+
+.af-tag--error {
+  --tag-bg-color: var(--axa-red-4);
+  --tag-text-color: var(--axa-red-100);
+  --tag-border-color: var(--axa-red-100);
+}
+
+.af-tag--neutral {
+  --tag-bg-color: var(--neutral-5);
+  --tag-text-color: var(--neutral-80);
+  --tag-border-color: var(--neutral-80);
+}
+
+.af-tag--warning {
+  --tag-bg-color: var(--axa-red-4);
+  --tag-text-color: var(--warning-100);
+  --tag-border-color: var(--warning-100);
+}
