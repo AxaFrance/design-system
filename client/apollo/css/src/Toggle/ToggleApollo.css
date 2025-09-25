@@ -1,4 +1,4 @@
-@use "./ToggleCommon";
+@import "./ToggleCommon.css";
 
 .af-toggle {
   --toggle-bg-color: var(--neutral-50);

@@ -1,4 +1,4 @@
-@use "./ToggleCommon";
+@import "./ToggleCommon.css";
 
 .af-toggle {
   --toggle-bg-color: var(--color-blue-200);
@@ -8,12 +8,12 @@
   --toggle-border-size: 2px;
   --toggle-padding: 4px;
   --toggle-width: calc(
-    var(--toggle-handle-size) * var(--toggle-handle-enlarge-scale) *
-      2 - var(--toggle-padding) - var(--toggle-border-size) * 2
+    var(--toggle-handle-size) * var(--toggle-handle-enlarge-scale) * 2 -
+      var(--toggle-padding) - var(--toggle-border-size) * 2
   );
   --toggle-height: calc(
-    var(--toggle-handle-size) *
-      var(--toggle-handle-enlarge-scale) - var(--toggle-border-size) * 2
+    var(--toggle-handle-size) * var(--toggle-handle-enlarge-scale) -
+      var(--toggle-border-size) * 2
   );
   --toggle-handle-color: var(--color-gray-700);
   --toggle-handle-size: 16px;
@@ -29,9 +29,8 @@
       --toggle-handle-scale: var(--toggle-handle-enlarge-scale);
       --toggle-handle-color: var(--color-white);
       --toggle-handle-position: calc(
-        var(--toggle-width) - var(--toggle-handle-size) - var(
-            --toggle-border-size
-          )
+        var(--toggle-width) - var(--toggle-handle-size) -
+          var(--toggle-border-size)
       );
     }
   }
