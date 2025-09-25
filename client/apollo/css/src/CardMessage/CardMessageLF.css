@@ -1,0 +1,30 @@
+@import "./CardMessageCommon.css";
+
+.af-card-message {
+  --card-message-padding: calc(12 / var(--font-size-base) * 1rem);
+  --card-message-border-radius: var(--radius-4);
+}
+
+.af-card-message--info {
+  --card-message-background-color: var(--color-blue-200);
+  --card-message-text-color: var(--color-axa);
+  --card-message-border-color: var(--color-axa);
+}
+
+.af-card-message--warning {
+  --card-message-background-color: var(--color-orange-100);
+  --card-message-text-color: var(--color-btn-business-dark);
+  --card-message-border-color: var(--color-btn-business-dark);
+}
+
+.af-card-message--error {
+  --card-message-background-color: var(--color-btn-error-bg);
+  --card-message-text-color: var(--color-btn-error-text);
+  --card-message-border-color: var(--color-btn-error-text);
+}
+
+.af-card-message--neutral {
+  --card-message-background-color: var(--color-gray-200);
+  --card-message-text-color: var(--color-gray-900);
+  --card-message-border-color: var(--color-gray-900);
+}
