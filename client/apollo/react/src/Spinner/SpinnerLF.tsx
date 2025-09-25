@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Spinner/SpinnerLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Spinner/SpinnerLF.css";
 
 export {
   Spinner,
