@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/ItemTabBar/ItemTabBarLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/ItemTabBar/ItemTabBarLF.css";
 
 export {
   ItemTabBar,
