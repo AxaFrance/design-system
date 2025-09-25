@@ -2,7 +2,7 @@ import { type ComponentType, type ReactNode, useMemo } from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 
-type ContentItemDuoProps = {
+export type ContentItemDuoProps = {
   label: string;
   value: ReactNode;
   isVertical?: boolean;
@@ -10,10 +10,13 @@ type ContentItemDuoProps = {
   classModifier?: string;
   buttonText?: string;
   onButtonClick?: () => void;
+};
+
+type ContentItemDuoCommonProps = ContentItemDuoProps & {
   ButtonComponent: ComponentType<ButtonProps>;
 };
 
-export const ContentItemDuo = ({
+export const ContentItemDuoCommon = ({
   label,
   value,
   isVertical = false,
@@ -22,7 +25,7 @@ export const ContentItemDuo = ({
   buttonText,
   onButtonClick,
   ButtonComponent,
-}: ContentItemDuoProps) => {
+}: ContentItemDuoCommonProps) => {
   const componentClassName = useMemo(() => {
     const classModifiers = [classModifier];
 
