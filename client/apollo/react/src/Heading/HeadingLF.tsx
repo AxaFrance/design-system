@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Heading/HeadingLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Heading/HeadingLF.css";
 
 import { DEFAULT_TAG_PROPS, HeadingCommon } from "./HeadingCommon";
 import { Tag } from "../Tag/TagLF";
