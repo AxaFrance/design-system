@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/List/ClickItem/ClickItemApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/List/ClickItem/ClickItemApollo.css";
 import { ClickItemCommon } from "./ClickItemCommon";
 import type { ClickItemProps } from "./types";
 import { ClickItemContent } from "./components/ClickItemContentApollo";
