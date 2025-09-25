@@ -1,15 +1,13 @@
-@use "../common/breakpoints.scss" as breakpoints;
-
 /* GRID SYSTEM DESIGN SYSTEM AXA FRANCE (Look & Feel et Apollo) ****************
 
 See the documentation : https://zeroheight.com/54c5bd254/v/latest/p/48d0d1-grille
 
 Its MOBILE FIRST approach, so the defauts values target the mobile.
 
-@media (width > #{breakpoints.$breakpoint-sm}) { >>>>> more than  667px
-@media (width > #{breakpoints.$breakpoint-md}) { >>>>> more than 1023px
-@media (width > #{breakpoints.$breakpoint-lg}) { >>>>> more than 1279px
-@media (width > #{breakpoints.$breakpoint-xl}) { >>>>> more than 1599px
+@media (--tablet) { >>>>> more than  667px
+@media (--desktop-small) { >>>>> more than 1023px
+@media (--desktop-medium) { >>>>> more than 1279px
+@media (--desktop-large) { >>>>> more than 1599px
 
 ******************************************************************************* */
 
@@ -25,23 +23,23 @@ Its MOBILE FIRST approach, so the defauts values target the mobile.
   grid-template-columns: repeat(var(--cols), 1fr);
   gap: var(--row-gap) var(--col-gap);
 
-  @media (width > #{breakpoints.$breakpoint-sm}) {
+  @media (--tablet) {
     --cols: 8;
     --col-gap: calc(16 / var(--font-size-base) * 1rem);
     --margin-inline: calc(60 / var(--font-size-base) * 1rem);
   }
 
-  @media (width > #{breakpoints.$breakpoint-md}) {
+  @media (--desktop-small) {
     --col-gap: calc(24 / var(--font-size-base) * 1rem);
     --margin-inline: calc(80 / var(--font-size-base) * 1rem);
     --cols: 12;
   }
 
-  @media (width > #{breakpoints.$breakpoint-lg}) {
+  @media (--desktop-medium) {
     --margin-inline: calc(120 / var(--font-size-base) * 1rem);
   }
 
-  @media (width > #{breakpoints.$breakpoint-xl}) {
+  @media (--desktop-large) {
     --margin-inline: auto;
 
     max-width: 1320px;
