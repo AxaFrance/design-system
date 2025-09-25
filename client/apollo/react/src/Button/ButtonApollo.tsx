@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Button/ButtonApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Button/ButtonApollo.css";
 import { Spinner } from "../Spinner/SpinnerApollo";
 import { ButtonCommon, type ButtonProps } from "./ButtonCommon";
 
