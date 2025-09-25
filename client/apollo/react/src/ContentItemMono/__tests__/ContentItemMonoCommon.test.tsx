@@ -25,6 +25,25 @@ describe("getContentItemCoreProps", () => {
     expect(result.subtitle).toBe("Secondary Subtitle");
     expect(result.leftComponent).toBeTruthy();
   });
+  it("returns correct props for type 'icon' using iconProps", () => {
+    const props = {
+      type: "icon",
+      iconProps: {
+        src: "test-icon.svg",
+      },
+      title: "Icon Title",
+      subtitle1: "Primary Subtitle",
+      subtitle2: "Secondary Subtitle",
+      IconComponent: Icon,
+    } as ContentItemCommonProps;
+
+    const result = getContentItemCoreProps(props);
+
+    expect(result.title).toBe("Icon Title");
+    expect(result.primarySubtitle).toBe("Primary Subtitle");
+    expect(result.subtitle).toBe("Secondary Subtitle");
+    expect(result.leftComponent).toBeTruthy();
+  });
 
   it("returns correct props for type 'picture'", () => {
     const props = {
@@ -49,6 +68,27 @@ describe("ContentItemMonoCommon Component", () => {
       <ContentItemMonoCommon
         type="icon"
         icon="test-icon.svg"
+        title="Icon Title"
+        subtitle1="Primary Subtitle"
+        subtitle2="Secondary Subtitle"
+        IconComponent={Icon}
+      />,
+    );
+
+    expect(screen.getByText("Icon Title")).toBeInTheDocument();
+    expect(screen.getByText("Primary Subtitle")).toBeInTheDocument();
+    expect(screen.getByText("Secondary Subtitle")).toBeInTheDocument();
+    expect(screen.getByTestId("icon")).toHaveAttribute(
+      "data-src",
+      "test-icon.svg",
+    );
+  });
+
+  it("renders correctly for type 'icon' using inconProps", () => {
+    render(
+      <ContentItemMonoCommon
+        type="icon"
+        iconProps={{ src: "test-icon.svg", hasBackground: true }}
         title="Icon Title"
         subtitle1="Primary Subtitle"
         subtitle2="Secondary Subtitle"

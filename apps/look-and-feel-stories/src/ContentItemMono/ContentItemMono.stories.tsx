@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ContentItemMono } from "@axa-fr/design-system-look-and-feel-react";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 import { ComponentProps } from "react";
+import { ContentItemMono } from "@axa-fr/design-system-apollo-react/lf";
 
 const meta: Meta<typeof ContentItemMono> = {
   component: ContentItemMono,
@@ -48,6 +48,25 @@ export const IconStory: Story = {
     title: "Texte principale",
     subtitle1: "Texte secondaire",
     subtitle2: "Texte tertiare",
+  },
+};
+
+export const IconPropsStory: Story = {
+  name: "IconProps",
+  render: (props: ContentItemProps) => <ContentItemMono {...props} />,
+  args: {
+    type: "icon",
+    title: "Texte principale",
+    subtitle1: "Texte secondaire",
+    subtitle2: "Texte tertiare",
+    iconProps: {
+      src: bank,
+      variant: "primary",
+      size: "L",
+    },
+  },
+  argTypes: {
+    iconProps: { control: "object" },
   },
 };
 

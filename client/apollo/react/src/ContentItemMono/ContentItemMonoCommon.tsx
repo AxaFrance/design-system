@@ -1,5 +1,5 @@
 import type { ComponentProps, ComponentType } from "react";
-import { Icon } from "../Icon/IconCommon";
+import { Icon, IconProps } from "../Icon/IconCommon";
 import { BasePicture } from "../BasePicture/BasePicture";
 import {
   type ContentItemCoreProps,
@@ -18,7 +18,11 @@ export type ContentMonoItemPictureProps = {
 
 export type ContentMonoItemIconProps = {
   type: "icon";
-  icon: string;
+  /**
+   * @deprecated Use `iconProps` instead.
+   */
+  icon?: string;
+  iconProps?: IconProps;
   title: string;
   subtitle1?: string;
   subtitle2?: string;
@@ -45,14 +49,16 @@ export const getContentItemCoreProps = ({
   ...props
 }: ContentItemCommonProps): ContentItemCoreProps => {
   if (type === "icon") {
-    const { icon, title, subtitle1, subtitle2 } =
+    const { icon, iconProps, title, subtitle1, subtitle2 } =
       props as ContentMonoItemIconProps;
 
     return {
       title,
       primarySubtitle: subtitle1,
       subtitle: subtitle2,
-      leftComponent: icon && <IconComponent data-testid="icon" src={icon} />,
+      leftComponent:
+        (iconProps && <IconComponent data-testid="icon" {...iconProps} />) ||
+        (icon && <IconComponent data-testid="icon" src={icon} />),
     };
   }
 

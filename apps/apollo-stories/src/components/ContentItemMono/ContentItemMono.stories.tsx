@@ -51,6 +51,21 @@ export const IconStory: Story = {
   },
 };
 
+export const IconPropsStory: Story = {
+  name: "IconProps",
+  render: (props: ContentItemProps) => <ContentItemMono {...props} />,
+  args: {
+    type: "icon",
+    iconProps: {
+      src: bank,
+      hasBackground: true,
+    },
+    title: "Texte principale",
+    subtitle1: "Texte secondaire",
+    subtitle2: "Texte tertiare",
+  },
+};
+
 export const StickStory: Story = {
   name: "Stick",
   render: (props: ContentItemProps) => <ContentItemMono {...props} />,
