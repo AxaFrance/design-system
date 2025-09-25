@@ -1,4 +1,4 @@
-@use "./ProgressBarGroupCommon";
+@import "./ProgressBarGroupCommon.css";
 
 .af-progress-bar-group {
   border-radius: calc(6 / var(--font-size-base) * 1rem);

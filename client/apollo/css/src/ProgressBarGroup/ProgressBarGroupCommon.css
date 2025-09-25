@@ -5,8 +5,8 @@
   align-items: flex-end;
   gap: calc(8 / var(--font-size-base) * 1rem);
   list-style-type: none;
+}
 
-  &__item {
-    flex: 1;
-  }
+.af-progress-bar-group__item {
+  flex: 1;
 }

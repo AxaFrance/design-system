@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import { ProgressBar } from "../../ProgressBar/ProgressBarCommon";
-import { ProgressBarGroup } from "../ProgressBarGroupCommon";
+import { ProgressBarGroupCommon } from "../ProgressBarGroupCommon";
 import * as ProgressBarGroupModule from "../useSequentialProgress";
 
 describe("ProgressBarGroup Component", () => {
   it("renders the correct number of steps", () => {
     render(
-      <ProgressBarGroup
+      <ProgressBarGroupCommon
         currentStep={2}
         stepsCount={5}
         ProgressBarComponent={ProgressBar}
@@ -19,7 +19,7 @@ describe("ProgressBarGroup Component", () => {
 
   it("renders all ProgressBar with aria-hidden", () => {
     render(
-      <ProgressBarGroup
+      <ProgressBarGroupCommon
         currentStep={1}
         stepsCount={3}
         ProgressBarComponent={ProgressBar}
@@ -39,7 +39,7 @@ describe("ProgressBarGroup Component", () => {
     );
 
     render(
-      <ProgressBarGroup
+      <ProgressBarGroupCommon
         currentStep={1}
         currentStepProgress={25}
         stepsCount={3}
@@ -57,7 +57,7 @@ describe("ProgressBarGroup Component", () => {
 
   it("applies custom className", () => {
     render(
-      <ProgressBarGroup
+      <ProgressBarGroupCommon
         currentStep={1}
         className="custom-class"
         stepsCount={3}
