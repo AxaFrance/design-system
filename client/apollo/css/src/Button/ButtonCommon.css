@@ -1,5 +1,3 @@
-@use "../common/breakpoints" as breakpoints;
-
 .af-btn-client {
   display: flex;
   padding: var(--button-padding);
@@ -42,23 +40,23 @@
     aspect-ratio: 1;
     fill: currentcolor;
   }
+}
 
-  &--ghost {
-    gap: calc(4 / var(--font-size-base) * 1rem);
-    line-height: 1.25em;
+.af-btn-client--ghost {
+  gap: calc(4 / var(--font-size-base) * 1rem);
+  line-height: 1.25em;
 
-    &:hover,
-    &:focus,
-    &:focus-visible {
-      text-decoration: underline;
-    }
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    text-decoration: underline;
   }
+}
 
-  &--secondary {
-    box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
-  }
+.af-btn-client--secondary {
+  box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
+}
 
-  &--secondary-inverse {
-    box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
-  }
+.af-btn-client--secondary-inverse {
+  box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
 }
