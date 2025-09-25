@@ -21,8 +21,8 @@
     "build": "postcss \"src/**/*{Apollo,LF,Grid,DebugGrid,All}.css\" \"src/common/{tokens,tokensLF,reboot}.css\"  \"src/*.css\" --base src --dir dist --verbose --env production",
     "dev": "npm run build -- --watch",
     "copyfiles": "copyfiles --up 1 \"src/**/*.scss\" files/**/*.svg dist",
-    "stylelint": "stylelint \"src/**/*.{scss,css}\"",
-    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
+    "stylelint": "stylelint \"src/**/*.{scss,css}\" --ignore-pattern \"src/common/tokens*.css\"",
+    "stylelint:fix": "npm run stylelint -- --fix"
   },
   "peerDependencies": {
     "@material-symbols/svg-400": ">= 0.19.0"
@@ -67,7 +67,7 @@
     ]
   },
   "lint-staged": {
-    "*.(scss|css)": "stylelint --fix"
+    "*.(scss|css)": "npm run stylelint -- --fix"
   },
   "prettier": "@axa-fr/prettier-config-design-system",
   "stylelint": {

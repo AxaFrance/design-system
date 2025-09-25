@@ -1,0 +1,110 @@
+{
+  "font": {
+    "family": {
+      "sans-serif": { "value": "'Source Sans Pro', Arial, sans-serif" },
+      "serif": { "value": "Georgia, times, 'Times New Roman', serif" },
+      "base": { "value": "{font.family.sans-serif}" },
+      "publico-bold": { "value": "Publico Headline Bold" },
+      "publico-headline": { "value": "Publico Headline" },
+      "publico": { "value": "Publico" }
+    },
+    "size": {
+      "base": { "value": "16" }
+    }
+  },
+  "color": {
+    "primitive": {
+      "black": { "value": "hsl(0deg, 0%, 0%)" },
+      "white": { "value": "hsl(0deg, 0%, 100%)" },
+      "color-axa": { "value": "#00008f" },
+      "color-white": { "value": "#fff" },
+      "color-black": { "value": "#000" },
+      "color-red": { "value": "#ff1721" },
+      "color-gray": { "value": "#5f5f5f" },
+      "color-red-600": { "value": "#d4435b" },
+      "color-red-700": { "value": "#c91432" },
+      "color-blue-1": { "value": "#000072" },
+      "color-blue-2": { "value": "#f8f8ff" },
+      "color-blue-3": { "value": "#36f" },
+      "color-blue-200": { "value": "#eef" },
+      "color-blue-400": { "value": "#cccce9" },
+      "color-blue-80": { "value": "#3333a5" },
+      "color-blue-800": { "value": "#00008f" },
+      "color-btn-light": { "value": "#3333a5" },
+      "color-btn-business": { "value": "#c94e14" },
+      "color-btn-business-dark": { "value": "#a8391c" },
+      "color-btn-business-light": { "value": "#df7e65" },
+      "color-btn-disabled-text": { "value": "#999" },
+      "color-btn-error-text": { "value": "#a11028" },
+      "color-btn-error-bg": { "value": "#fff3f5" },
+      "color-btn-tertiary-bg": { "value": "#eef" },
+      "color-btn-tertiary-bg-darker": { "value": "#e4e4ff" },
+      "color-btn-tertiary-bg-lighter": { "value": "#f8f8ff" },
+      "color-ocean-blue": { "value": "#4976ba" },
+      "color-gray-1": { "value": "#ccc" },
+      "color-gray-32": { "value": "#5c5c5c" },
+      "color-gray-200": { "value": "#f3f3f3" },
+      "color-gray-300": { "value": "#e9ecf2" },
+      "color-gray-400": { "value": "#e5e5e5" },
+      "color-gray-500": { "value": "#999" },
+      "color-gray-700": { "value": "#5f5f5f" },
+      "color-gray-900": { "value": "#333" },
+      "color-green-600": { "value": "#118635" },
+      "error-custom-border": { "value": "#d18e8e" },
+      "error-custom-bg": { "value": "#ffbfbf" },
+      "color-alert-danger-color-border": { "value": "#c8b282" },
+      "color-alert-danger-bg-color": { "value": "#f1d596" },
+      "color-orange-100": { "value": "#fff8f3" },
+      "color-orange-700": { "value": "#c94e14" }
+    }
+  },
+  "responsive": {
+    "viewport": {
+      "mobile": { "value": "0" },
+      "tablet": { "value": "667px" },
+      "desktop-small": { "value": "1023px" },
+      "desktop-medium": { "value": "1279px" },
+      "desktop-large": { "value": "1599px" }
+    },
+    "custom-media": {
+      "mobile": {
+        "value": "--mobile screen and (width > {responsive.viewport.mobile})"
+      },
+      "tablet": {
+        "value": "--tablet screen and (width > {responsive.viewport.tablet})"
+      },
+      "desktop-small": {
+        "value": "--desktop-small screen and (width > {responsive.viewport.desktop-small})"
+      },
+      "desktop-medium": {
+        "value": "--desktop-medium screen and (width > {responsive.viewport.desktop-medium})"
+      },
+      "desktop-large": {
+        "value": "--desktop-large screen and (width > {responsive.viewport.desktop-large})"
+      }
+    }
+  },
+  "size": {
+    "size-16": { "value": "16px" },
+    "size-24": { "value": "24px" },
+    "size-32": { "value": "32px" },
+    "size-40": { "value": "40px" },
+    "spacing-8": { "value": "8px" },
+    "spacing-10": { "value": "10px" },
+    "spacing-12": { "value": "12px" },
+    "spacing-16": { "value": "16px" }
+  },
+  "radius": {
+    "radius-4": { "value": "4px" },
+    "radius-6": { "value": "6px" },
+    "radius-8": { "value": "8px" },
+    "radius-12": { "value": "12px" },
+    "radius-16": { "value": "16px" },
+    "radius-20": { "value": "20px" },
+    "radius-32": { "value": "32px" },
+    "radius-100": { "value": "100vmax" }
+  },
+  "animation": {
+    "transition-duration": { "value": "0.2s" }
+  }
+}
