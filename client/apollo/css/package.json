@@ -2,7 +2,6 @@
   "name": "@axa-fr/design-system-apollo-css",
   "version": "0.1.0",
   "description": "",
-  "sass": "dist/apollo.scss",
   "style": "dist/apollo.css",
   "exports": {
     "./*": {
