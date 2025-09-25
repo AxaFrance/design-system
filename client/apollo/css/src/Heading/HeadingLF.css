@@ -1,5 +1,4 @@
-@use "../common/breakpoints";
-@use "./HeadingCommon";
+@import "./HeadingCommon.css";
 
 .af-heading {
   --heading-grid-column: 1;
@@ -27,11 +26,11 @@
     --heading-title-font-family: var(--font-family-base);
   }
 
-  &:has(&__icon) {
+  &:has(.af-heading__icon) {
     --heading-grid-column: 2;
   }
 
-  @media (width > #{breakpoints.$breakpoint-md}) {
+  @media (--desktop-small) {
     --heading-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
 
     h1 {
