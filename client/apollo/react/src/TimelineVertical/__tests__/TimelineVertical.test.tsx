@@ -1,52 +1,54 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { TimelineVertical } from "../TimelineVerticalCommon";
+import { TimelineVerticalCommon } from "../TimelineVerticalCommon";
 import { Tag } from "../../Tag/TagCommon";
 
-describe("TimelineVertical", () => {
+describe("TimelineVerticalCommon", () => {
   it("should render correctly", () => {
-    const description = "Sample TimelineVertical description";
+    const description = "Sample TimelineVerticalCommon description";
     const tag = "Sample tag";
-    const title = "Sample TimelineVertical title";
+    const title = "Sample TimelineVerticalCommon title";
 
     render(
-      <TimelineVertical tag={<Tag>{tag}</Tag>} title={title}>
+      <TimelineVerticalCommon tag={<Tag>{tag}</Tag>} title={title}>
         {description}
-      </TimelineVertical>,
+      </TimelineVerticalCommon>,
     );
 
-    const timelineVerticalTag = screen.getByText(tag);
-    const timelineVerticalTitle = screen.getByText(title);
-    const timelineVerticalDescription = screen.getByText(description);
-    expect(timelineVerticalTag).toBeInTheDocument();
-    expect(timelineVerticalTitle).toBeInTheDocument();
-    expect(timelineVerticalTitle).toHaveClass("af-timeline-vertical__title");
-    expect(timelineVerticalDescription).toBeInTheDocument();
-    expect(timelineVerticalDescription).toHaveClass(
+    const timelineVerticalCommonTag = screen.getByText(tag);
+    const timelineVerticalCommonTitle = screen.getByText(title);
+    const timelineVerticalCommonDescription = screen.getByText(description);
+    expect(timelineVerticalCommonTag).toBeInTheDocument();
+    expect(timelineVerticalCommonTitle).toBeInTheDocument();
+    expect(timelineVerticalCommonTitle).toHaveClass(
+      "af-timeline-vertical__title",
+    );
+    expect(timelineVerticalCommonDescription).toBeInTheDocument();
+    expect(timelineVerticalCommonDescription).toHaveClass(
       "af-timeline-vertical__description",
     );
-    expect(timelineVerticalDescription.parentElement).toHaveClass(
+    expect(timelineVerticalCommonDescription.parentElement).toHaveClass(
       "af-timeline-vertical",
     );
   });
 
   it("should have custom class name", () => {
-    const description = "Sample TimelineVertical description";
+    const description = "Sample TimelineVerticalCommon description";
     const customClassName = "custom-class";
 
     render(
-      <TimelineVertical
+      <TimelineVerticalCommon
         tag={<Tag> Sample tag</Tag>}
-        title="Sample TimelineVertical title"
+        title="Sample TimelineVerticalCommon title"
         className={customClassName}
       >
         {description}
-      </TimelineVertical>,
+      </TimelineVerticalCommon>,
     );
 
-    const timelineVerticalDescription = screen.getByText(description);
-    expect(timelineVerticalDescription).toBeInTheDocument();
-    expect(timelineVerticalDescription.parentElement).toHaveClass(
+    const timelineVerticalCommonDescription = screen.getByText(description);
+    expect(timelineVerticalCommonDescription).toBeInTheDocument();
+    expect(timelineVerticalCommonDescription.parentElement).toHaveClass(
       customClassName,
     );
   });
@@ -54,7 +56,7 @@ describe("TimelineVertical", () => {
   describe("A11Y", () => {
     it("shouldn't have an accessibility violation", async () => {
       const { container } = render(
-        <TimelineVertical tag={<Tag>tag</Tag>} title="title" />,
+        <TimelineVerticalCommon tag={<Tag>tag</Tag>} title="title" />,
       );
 
       expect(await axe(container)).toHaveNoViolations();
