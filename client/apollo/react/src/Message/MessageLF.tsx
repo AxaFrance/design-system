@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Message/MessageLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Message/MessageLF.css";
 import { Icon } from "../indexLF";
 import { MessageCommon, type MessageProps } from "./MessageCommon";
 
