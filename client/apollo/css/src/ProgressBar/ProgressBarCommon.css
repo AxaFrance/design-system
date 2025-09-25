@@ -7,30 +7,31 @@
   background-color: var(--progress-bar-background-color);
   appearance: var(--progress-bar-appearance);
 
-  // For WebKit browsers
+  /* For WebKit browsers */
   &::-webkit-progress-bar {
     background-color: var(--progress-bar-background-color);
   }
 
-  // For WebKit browsers
+  /* For WebKit browsers */
   &::-webkit-progress-value {
     background-color: var(--progress-bar-appearance);
     transition: width 0.75s ease;
   }
 
-  // For Firefox
+  /* For Firefox */
   &::-moz-progress-bar {
     background-color: var(--progress-bar-appearance);
-    // transition doesn't work in Firefox for native progress bars
-  }
 
-  &__label {
-    display: block;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    user-select: none;
+    /* transition doesn't work in Firefox for native progress bars */
   }
+}
+
+.af-progress-bar__label {
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  user-select: none;
 }
