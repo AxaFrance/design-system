@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/InputText/InputTextLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/InputText/InputTextLF.css";
 import { forwardRef } from "react";
 import { ItemLabel } from "../ItemLabel/ItemLabelLF";
 import { ItemMessage } from "../ItemMessage/ItemMessageLF";
