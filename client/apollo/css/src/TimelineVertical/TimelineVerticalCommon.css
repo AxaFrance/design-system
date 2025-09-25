@@ -1,0 +1,29 @@
+.af-timeline-vertical {
+  display: grid;
+  padding: var(--timeline-vertical-padding);
+  border: 1px solid var(--timeline-vertical-border-color);
+  border-radius: var(--radius-8);
+  row-gap: calc(16 / var(--font-size-base) * 1rem);
+  background-color: var(--timeline-vertical-bg-color);
+}
+
+.af-timeline-vertical__header {
+  display: grid;
+  row-gap: inherit;
+}
+
+.af-timeline-vertical__title {
+  margin: 0;
+  font-size: var(--timeline-vertical-title-font-size);
+  font-weight: 600;
+  line-height: 125%;
+  color: var(--timeline-vertical-title-color);
+}
+
+.af-timeline-vertical__description {
+  margin: 0;
+  font-size: var(--timeline-vertical-description-font-size);
+  font-weight: 400;
+  line-height: 125%;
+  color: var(--timeline-vertical-description-color);
+}
