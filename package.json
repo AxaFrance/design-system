@@ -12,7 +12,7 @@
     "dev:look-and-feel": "turbo dev --filter=./apps/look-and-feel-stories",
     "dev:apollo": "turbo dev --filter=./apps/apollo-stories",
     "dev:slash": "turbo dev --filter=./apps/slash-stories",
-    "build": "turbo build --filter=!./samples/vite",
+    "build": "turbo build --concurrency=1 --filter=!./samples/vite",
     "build:slash": "turbo build --filter=./apps/slash-stories",
     "build:look-and-feel": "turbo build --filter=./apps/look-and-feel-stories",
     "build:apollo": "turbo build --filter=./apps/apollo-stories",
