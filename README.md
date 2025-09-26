@@ -8,7 +8,7 @@ Il propose d'utiliser les deux designs systems principaux :
 - **Apollo** pour le <abbr title="Business to client">B2C</abbr>, les
   applications exposées aux prospect (AXA.Fr)
 - **Look & Feel** pour le <abbr title="Business to client">B2C</abbr>, les
-    applications exposées aux clients (Espace client)
+  applications exposées aux clients (Espace client)
 - **Slash** pour le <abbr title="Business to business">B2B</abbr>, les
   applications internes
 
@@ -161,22 +161,35 @@ vos propres svg fonctionnera.
 Exemple :
 
 ```tsx
-import home from "@material-symbols/svg-400/outlined/home.svg";
-import { Svg } from "@axa-fr/design-system-slash-react";
+import home from '@material-symbols/svg-400/outlined/home.svg';
+import { Svg } from '@axa-fr/design-system-slash-react';
 
 const App = () => {
-    return (
-        <Svg src={home} />
-    )
-}
+  return <Svg src={home} />;
+};
 ```
 
-## Utilisation des CSS variables (dispo uniquement pour L&F)
+## Utilisation des CSS variables (dispo uniquement pour L&F et Apollo)
 
 Il suffit d'importer le fichier des tokens dans votre application.
 
-Exemple :
+Pour Look & Feel (Espace client) (ancienne version):
 
 ```typescript
-import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
+import '@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss';
+```
+
+Pour Apollo (Axa.fr):
+
+```typescript
+import '@axa-fr/design-system-apollo-css/dist/common/tokens.css';
+```
+
+Look & Feel (Espace client) (nouvelle version):
+
+> Attention : dans cette version des tokens non cibles ont été supprimés, il est
+> donc possible que votre application soit impactée.
+
+```typescript
+import '@axa-fr/design-system-apollo-css/dist/common/tokensLF.css';
 ```
