@@ -11,7 +11,6 @@ const DEFAULT_CONTAINER_CLASSNAME = "af-form__radio-card-group";
 type Props = ComponentProps<"input"> & {
   options: Option[];
   orientation?: "horizontal" | "vertical";
-  error?: boolean;
 };
 
 export const RadioCardGroup = ({
@@ -22,7 +21,7 @@ export const RadioCardGroup = ({
   name,
   orientation = "vertical",
   disabled = false,
-  error = false,
+  "aria-invalid": ariaInvalid,
   ...otherProps
 }: Props) => {
   const idGenerated = useId();
@@ -52,7 +51,7 @@ export const RadioCardGroup = ({
           const allClassNames = classNames([
             DEFAULT_CLASSNAME,
             orientation === "horizontal" && `${DEFAULT_CLASSNAME}--horizontal`,
-            error && `${DEFAULT_CLASSNAME}--error`,
+            ariaInvalid && `${DEFAULT_CLASSNAME}--error`,
           ]);
 
           const isDisabled = disabled || optionDisabled;
