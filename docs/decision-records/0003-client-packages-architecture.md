@@ -13,7 +13,7 @@ create a new package for each theme. The architecture looks like this
 
 ```
 client
-├───look-and-feel
+├───look-and-feel [old L&F version]
 │   ├───css
 │   │   └───src
 │   │       └───Button
@@ -22,20 +22,20 @@ client
 │       └───src
 │           └───Button
 │                  Button.tsx
-├───apollo
+├───apollo [Apollo and new L&F version]
 │   ├───css
 │   │   └───src
 │   │       └───Button
-│   │              Button.scss
+│   │              ButtonApollo.css
+│   │              ButtonCommon.css
+│   │              ButtonLF.css
 │   └───react
 │       └───src
 │           └───Button
-│                  Button.tsx
-└───common
-        └───src
-            └───Button
-                    Button.scss
-                    Button.tsx
+│                  ButtonApollo.tsx
+│                  ButtonCommon.tsx
+│                  ButtonLF.tsx
+
 ```
 
 In the common folder, code that can be shared between the two themes will be
