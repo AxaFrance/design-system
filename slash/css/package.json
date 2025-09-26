@@ -17,9 +17,7 @@
     "files"
   ],
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "postcss \"src/**/*.scss\" --base src --dir dist --ext css --verbose --env production",
-    "postbuild": "copyfiles --up 1 \"src/**/*.{scss,css}\" dist",
+    "build": "rslib build",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
   },
@@ -30,8 +28,8 @@
     "@axa-fr/postcss-config-design-system": "*",
     "@axa-fr/prettier-config-design-system": "*",
     "@axa-fr/stylelint-config-design-system": "*",
-    "copyfiles": "^2.4.1",
-    "rimraf": "^6.0.1"
+    "@rsbuild/plugin-sass": "^1.4.0",
+    "@rslib/core": "^0.13.3"
   },
   "peerDependencies": {
     "@material-symbols/svg-400": ">= 0.19.0"
