@@ -1,0 +1,38 @@
+@import "./IconCommon.css";
+
+.af-icon {
+  --icon-border-radius: var(--radius-100);
+}
+
+.af-icon--small {
+  &.af-icon--has-background {
+    --icon-padding: calc(12 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-icon--primary {
+  --icon-fill: var(--axa-blue-100);
+
+  &.af-icon--has-background {
+    --icon-fill: var(--white);
+    --icon-background-color: var(--axa-blue-100);
+  }
+}
+
+.af-icon--secondary {
+  --icon-fill: var(--white);
+
+  &.af-icon--has-background {
+    --icon-fill: var(--axa-blue-100);
+    --icon-background-color: var(--axa-blue-4);
+    --icon-outline-color: var(--axa-blue-4);
+  }
+}
+
+.af-icon--disabled {
+  --icon-fill: var(--neutral-50);
+
+  &.af-icon--has-background {
+    --icon-background-color: var(--neutral-5);
+  }
+}

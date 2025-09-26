@@ -1,6 +1,6 @@
-import "@axa-fr/design-system-apollo-css/dist/TimelineVertical/TimelineVerticalLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/TimelineVertical/TimelineVerticalLF.css";
 
-import { TimelineVertical as TimelineVerticalCommon } from "./TimelineVerticalCommon";
+import { TimelineVerticalCommon } from "./TimelineVerticalCommon";
 import { Tag } from "../Tag/TagLF";
 import type { TimelineVerticalProps } from "./types";
 

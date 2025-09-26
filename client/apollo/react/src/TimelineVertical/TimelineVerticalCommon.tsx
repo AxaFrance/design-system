@@ -7,7 +7,7 @@ export type TimelineVerticalProps = PropsWithChildren<{
   className?: string;
 }>;
 
-export const TimelineVertical = ({
+export const TimelineVerticalCommon = ({
   title,
   children,
   tag,

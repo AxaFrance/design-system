@@ -1,8 +1,0 @@
-@use "../../common/breakpoints" as breakpoints;
-
-@use "./ItemLabelCommon";
-
-.af-item-label {
-  --label-color: var(--color-gray-900);
-  --label-description-color: var(--color-gray-700);
-}

@@ -1,0 +1,32 @@
+@import "./ItemTabBarCommon.css";
+
+.af-item-tab-bar {
+  --item-tab-bar-font-color: var(--color-gray-900);
+  --item-tab-bar-font-size: calc(18 / var(--font-size-base) * 1rem);
+  --item-tab-bar-border-color: var(--color-blue-400);
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    --item-tab-bar-outline-color: var(--color-blue-3);
+
+    outline: 2px solid var(--item-tab-bar-outline-color);
+    outline-offset: 2px;
+  }
+
+  @media (--desktop-small) {
+    --item-tab-bar-font-size: calc(20 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-item-tab-bar--tabBar[aria-selected="true"] {
+  --item-tab-bar-font-color: var(--color-axa);
+  --item-tab-bar-border-color: var(--color-axa);
+}
+
+.af-item-tab-bar--header[aria-selected="true"] {
+  --item-tab-bar-font-color: var(--color-axa);
+  --item-tab-bar-border-color: var(--color-red);
+}

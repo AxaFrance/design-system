@@ -1,0 +1,29 @@
+@import "./CheckboxCommon.css";
+
+.af-checkbox {
+  --checkbox-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23fff' viewBox='0 -960 960 960'%3E%3Cpath d='m400-402 250-250q9-9 21-9t21 9q9 9 9 21t-9 21L421-339q-9 9-21 9t-21-9L268-450q-9-9-9-21t9-21q9-9 21-9t21 9l90 90Z'/%3E%3C/svg%3E");
+  --checkbox-border-radius: calc(6 / var(--font-size-base) * 1rem);
+  --checkbox-background-color: var(--white);
+  --checkbox-border-color: var(--axa-blue-65);
+
+  &:hover,
+  &:focus-within,
+  &:checked {
+    --checkbox-border-color: var(--axa-blue-100);
+    --checkbox-border-width: 2px;
+  }
+
+  &:checked {
+    --checkbox-background-color: var(--axa-blue-100);
+  }
+
+  &[aria-invalid="true"]:not(:checked) {
+    --checkbox-border-color: var(--red-alert-100);
+    --checkbox-border-width: 2px;
+
+    &:hover,
+    &:focus-within {
+      --checkbox-border-width: 3px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import "./StepperCommon.css";
+
+.af-stepper {
+  --stepper-gap: calc(12 / var(--font-size-base) * 1rem);
+}
+
+.af-stepper__header {
+  --stepper-header-flex-direction: column;
+}
+
+.af-stepper__title {
+  --title-font-family: var(--font-family-publico);
+  --title-font-size: calc(24 / var(--font-size-base) * 1rem);
+  --title-font-weight: 700;
+  --title-line-height: calc(30 / var(--font-size-base) * 1rem);
+  --title-color: var(--color-axa);
+}
+
+.af-stepper__subtitle {
+  --subtitle-font-family: var(--font-family-sans-serif);
+  --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --subtitle-color: var(--color-gray-700);
+}
+
+.af-stepper__helper {
+  --helper-font-family: var(--font-family-sans-serif);
+  --helper-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --helper-color: var(--color-gray-32);
+}
+
+@media (--desktop-small) {
+  .af-stepper {
+    --stepper-gap: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  .af-stepper__title {
+    --title-font-size: calc(32 / var(--font-size-base) * 1rem);
+    --title-line-height: calc(40 / var(--font-size-base) * 1rem);
+  }
+
+  .af-stepper__subtitle {
+    --subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
+  }
+
+  .af-stepper__helper {
+    --helper-font-family: var(--font-family-sans-serif);
+    --helper-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --helper-color: var(--color-gray-32);
+  }
+}

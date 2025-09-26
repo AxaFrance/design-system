@@ -1,0 +1,35 @@
+@import "./MessageCommon.css";
+
+.af-message {
+  --message-theme-color: var(--color-axa);
+  --message-bg-color: var(--color-white);
+  --message-border-color: var(--message-theme-color);
+  --message-border-radius: var(--radius-12);
+  --message-icon-color: var(--message-theme-color);
+  --message-title-color: var(--message-theme-color);
+  --message-title-font-size: 16;
+  --message-content-color: var(--color-gray-900);
+  --message-content-font-size: 16;
+  --message-action-padding-top: 12;
+
+  @media (--desktop-small) {
+    --message-content-font-size: 18;
+    --message-title-font-size: 18;
+  }
+}
+
+.af-message--error {
+  --message-theme-color: var(--color-red-700);
+}
+
+.af-message--neutral {
+  --message-theme-color: var(--color-gray);
+}
+
+.af-message--warning {
+  --message-theme-color: var(--color-btn-business);
+}
+
+.af-message--validation {
+  --message-theme-color: var(--color-green-600);
+}

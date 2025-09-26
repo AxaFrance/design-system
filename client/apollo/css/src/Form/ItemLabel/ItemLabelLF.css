@@ -1,0 +1,6 @@
+@import "./ItemLabelCommon.css";
+
+.af-item-label {
+  --label-color: var(--color-gray-900);
+  --label-description-color: var(--color-gray-700);
+}

@@ -4,7 +4,7 @@ import {
   type AccordionTagDateContainerProps,
 } from "./AccordionTagDateContainerCommon";
 
-import "@axa-fr/design-system-apollo-css/dist/AccordionCore/AccordionCoreApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/AccordionCore/AccordionCoreApollo.css";
 
 export const AccordionTagDateContainer = (
   props: AccordionTagDateContainerProps,

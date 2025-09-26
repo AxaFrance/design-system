@@ -1,0 +1,30 @@
+@import "./ToggleCommon.css";
+
+.af-toggle {
+  --toggle-bg-color: var(--neutral-50);
+  --toggle-border-color: unset;
+  --toggle-focus-outline-color: var(--axa-blue-100);
+  --toggle-border-size: 0;
+  --toggle-border-radius: var(--radius-100);
+  --toggle-padding: 2px;
+  --toggle-width: calc(var(--toggle-handle-size) * 2 - var(--toggle-padding));
+  --toggle-height: var(--toggle-handle-size);
+  --toggle-handle-color: var(--white);
+  --toggle-handle-size: 20px;
+  --toggle-handle-scale: 1;
+  --toggle-handle-position: 0;
+
+  &:has(:checked) {
+    --toggle-bg-color: var(--axa-blue-100);
+
+    .af-toggle__handle {
+      --toggle-handle-position: calc(
+        var(--toggle-handle-size) - var(--toggle-padding)
+      );
+    }
+  }
+
+  &:has(:disabled) {
+    --toggle-bg-color: var(--neutral-25);
+  }
+}

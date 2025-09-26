@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Modal/ModalApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Modal/ModalApollo.css";
 
 import { forwardRef } from "react";
 import { Button } from "../Button/ButtonApollo";

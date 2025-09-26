@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.scss";
+import "@axa-fr/design-system-apollo-css/dist/Grid/DebugGrid.css";
 import type { ComponentType } from "react";
 import type { CardCheckboxOptionProps } from "../Form/Checkbox/CardCheckboxOption/CardCheckboxOptionCommon";
 

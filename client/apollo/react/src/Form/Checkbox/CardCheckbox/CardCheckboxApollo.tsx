@@ -5,7 +5,7 @@ import {
   type CardCheckboxProps,
 } from "./CardCheckboxCommon";
 
-import "@axa-fr/design-system-apollo-css/dist/Form/Checkbox/CardCheckbox/CardCheckboxApollo.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/Checkbox/CardCheckbox/CardCheckboxApollo.css";
 
 export const CardCheckbox = (props: CardCheckboxProps) => (
   <CardCheckboxCommon

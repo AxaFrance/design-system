@@ -1,0 +1,48 @@
+@import "./AccordionCommon.css";
+
+.af-apollo-accordion {
+  --accordion-info1-text-color: var(--neutral-80);
+  --accordion-info2-text-color: var(--green-100);
+  --accordion-title-text-color: var(--axa-blue-100);
+  --accordion-subtitle-text-color: var(--neutral-80);
+  --accordion-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --accordion-info2-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --accordion-info1-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --accordion-line-height: 1.25;
+  --accordion-column-gap: calc(12 / var(--font-size-base) * 1rem);
+
+  @media (--desktop-small) {
+    --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
+    --accordion-info1-font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  .af-accordion__date {
+    --accordion-secondary-date-font-size: calc(
+      16 / var(--font-size-base) * 1rem
+    );
+    @media (--desktop-small) {
+      --accordion-secondary-date-font-size: calc(
+        16 / var(--font-size-base) * 1rem
+      );
+    }
+  }
+}
+
+.af-apollo-accordion--primary {
+  --accordion-title-text-color: var(--axa-blue-100);
+}
+
+.af-apollo-accordion--secondary {
+  --accordion-date-text-color: var(--neutral-80);
+  --accordion-title-text-color: var(--neutral-100);
+
+  @media (--desktop-small) {
+    --accordion-info1-font-size-secondary: calc(
+      16 / var(--font-size-base) * 1rem
+    );
+    --accordion-secondary-date-font-size: calc(
+      16 / var(--font-size-base) * 1rem
+    );
+  }
+}

@@ -1,32 +1,32 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { ContentItemDuo } from "../ContentItemDuoCommon";
+import { ContentItemDuoCommon } from "../ContentItemDuoCommon";
 import { Button } from "../../../Button/ButtonApollo";
 
-describe("ContentItemDuo", () => {
-  const ContentItemDuoLabel = "Label";
-  const ContentItemDuoValue = "Value";
+describe("ContentItemDuoCommon", () => {
+  const ContentItemDuoCommonLabel = "Label";
+  const ContentItemDuoCommonValue = "Value";
 
   it("should render label and value correctly", () => {
     render(
-      <ContentItemDuo
-        label={ContentItemDuoLabel}
-        value={ContentItemDuoValue}
+      <ContentItemDuoCommon
+        label={ContentItemDuoCommonLabel}
+        value={ContentItemDuoCommonValue}
         ButtonComponent={Button}
       />,
     );
-    expect(screen.getByText(ContentItemDuoLabel)).toBeInTheDocument();
-    expect(screen.getByText(ContentItemDuoValue)).toBeInTheDocument();
+    expect(screen.getByText(ContentItemDuoCommonLabel)).toBeInTheDocument();
+    expect(screen.getByText(ContentItemDuoCommonValue)).toBeInTheDocument();
   });
 
   it("should render button with correct text and call onClick handler", async () => {
     const buttonText = "En savoir plus";
     const onButtonClick = vi.fn();
     render(
-      <ContentItemDuo
-        label={ContentItemDuoLabel}
-        value={ContentItemDuoValue}
+      <ContentItemDuoCommon
+        label={ContentItemDuoCommonLabel}
+        value={ContentItemDuoCommonValue}
         buttonText={buttonText}
         onButtonClick={onButtonClick}
         ButtonComponent={Button}
@@ -42,24 +42,26 @@ describe("ContentItemDuo", () => {
 
   it("should render vertical layout when isVertical prop is true", () => {
     render(
-      <ContentItemDuo
-        label={ContentItemDuoLabel}
-        value={ContentItemDuoValue}
+      <ContentItemDuoCommon
+        label={ContentItemDuoCommonLabel}
+        value={ContentItemDuoCommonValue}
         isVertical
         ButtonComponent={Button}
       />,
     );
-    const ContentItemDuoVertical = screen.getByText(ContentItemDuoLabel);
-    expect(ContentItemDuoVertical.parentElement).toHaveClass(
+    const ContentItemDuoCommonVertical = screen.getByText(
+      ContentItemDuoCommonLabel,
+    );
+    expect(ContentItemDuoCommonVertical.parentElement).toHaveClass(
       "af-content-item-duo--vertical",
     );
   });
 
   it("shouldn't have an accessibility violation", async () => {
     const { container } = render(
-      <ContentItemDuo
-        label={ContentItemDuoLabel}
-        value={ContentItemDuoValue}
+      <ContentItemDuoCommon
+        label={ContentItemDuoCommonLabel}
+        value={ContentItemDuoCommonValue}
         ButtonComponent={Button}
       />,
     );

@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/ItemFile/ItemFileLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/Form/ItemFile/ItemFileLF.css";
 import deleteIconFilled from "@material-symbols/svg-400/outlined/delete-fill.svg";
 import visibilityIcon from "@material-symbols/svg-400/outlined/visibility-fill.svg";
 import { ClickIcon } from "../../ClickIcon/ClickIconLF";

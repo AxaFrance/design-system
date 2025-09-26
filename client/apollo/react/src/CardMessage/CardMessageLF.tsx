@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-apollo-css/dist/CardMessage/CardMessageLF.scss";
+import "@axa-fr/design-system-apollo-css/dist/CardMessage/CardMessageLF.css";
 
 export {
   CardMessage,

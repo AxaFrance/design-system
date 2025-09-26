@@ -1,0 +1,101 @@
+.af-apollo-accordion__summary {
+  --accordion-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  --accordion-gap: calc(4 / var(--font-size-base) * 1rem);
+  --accordion-row-gap: calc(2 / var(--font-size-base) * 1rem);
+
+  grid-template-areas: var(--summary-areas);
+  grid-template-columns: var(--summary-columns);
+  align-items: center;
+  gap: var(--accordion-gap) var(--accordion-column-gap);
+  font-family: var(--font-family-base);
+
+  @media (--desktop-small) {
+    --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  .af-icon:first-child {
+    grid-area: icon;
+  }
+
+  .af-accordion__title {
+    grid-area: title;
+    font-size: var(--accordion-title-font-size);
+    font-weight: 600;
+    line-height: var(--accordion-line-height);
+    color: var(--accordion-title-text-color);
+  }
+
+  .af-accordion__subtitle {
+    grid-area: subtitle;
+    font-size: var(--accordion-subtitle-font-size);
+    font-weight: 400;
+    line-height: var(--accordion-line-height);
+    color: var(--accordion-subtitle-text-color);
+  }
+
+  .af-accordion__tag-container {
+    grid-area: tag-container;
+  }
+
+  .af-accordion__date {
+    grid-area: date-container;
+    font-size: var(--accordion-secondary-date-font-size);
+
+    @media (--desktop-small) {
+      font-size: var(--accordion-secondary-date-font-size);
+    }
+  }
+
+  .af-accordion__info1 {
+    grid-area: info1;
+    font-size: var(--accordion-info1-font-size);
+    color: var(--accordion-info1-text-color);
+  }
+
+  .af-accordion__info2 {
+    grid-area: info2;
+    align-items: center;
+    font-size: var(--accordion-info2-font-size);
+    color: var(--accordion-info2-text-color);
+  }
+}
+
+.af-apollo-accordion--primary {
+  --summary-areas: "icon title arrow" "icon subtitle arrow"
+    "icon tag-container arrow" "icon info1 arrow" "icon info2 arrow";
+  --summary-columns: min-content 1fr min-content;
+  --accordion-info1-font-size: calc(14 / var(--font-size-base) * 1rem);
+
+  .af-apollo-accordion__summary .af-accordion__date {
+    display: none;
+  }
+
+  @media (--desktop-small) {
+    --summary-areas: "icon title tag-container info1 info2 arrow"
+      "icon subtitle tag-container info1 info2 arrow";
+    --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
+    --accordion-info1-font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-apollo-accordion--secondary {
+  --summary-areas: "tag-container arrow" "date-container arrow" "title arrow"
+    "subtitle arrow" "info2 arrow";
+  --summary-columns: 1fr max-content;
+
+  color: var(--accordion-date-text-color);
+
+  .af-apollo-accordion__summary .af-accordion__icon {
+    display: none;
+  }
+
+  .af-apollo-accordion__summary .af-accordion__info1 {
+    display: none;
+  }
+
+  @media (--desktop-small) {
+    --summary-areas: "tag-container date-container title info2 arrow"
+      "tag-container date-container subtitle info2 arrow";
+    --summary-columns: max-content min-content 1fr max-content max-content;
+  }
+}

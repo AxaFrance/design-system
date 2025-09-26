@@ -1,0 +1,28 @@
+@import "./TextAreaCommon.css";
+
+.af-form__textarea {
+  --textarea-border-radius: var(--radius-8);
+  --textarea-placeholder-color: var(--neutral-80);
+  --textarea-background-color: var(--white);
+  --textarea-color: var(--axa-blue-100);
+  --textarea-box-shadow-color: var(--axa-blue-65);
+
+  &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
+    --textarea-box-shadow-color: var(--axa-blue-100);
+  }
+
+  &:disabled {
+    --textarea-background-color: var(--neutral-5);
+    --textarea-box-shadow-color: var(--neutral-50);
+    --textarea-placeholder-color: var(--neutral-50);
+    --textarea-color: var(--neutral-80);
+  }
+
+  &[aria-invalid="true"] {
+    --textarea-box-shadow-color: var(--red-alert-100);
+
+    &:is(:focus-visible, :hover, :active, :focus) {
+      --textarea-box-shadow-width: 3px;
+    }
+  }
+}

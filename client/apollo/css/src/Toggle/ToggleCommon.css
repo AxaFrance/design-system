@@ -1,0 +1,43 @@
+.af-toggle {
+  position: relative;
+  cursor: pointer;
+
+  &:has(:disabled) {
+    cursor: unset;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    outline: none;
+    clip-path: rect(0, 0, 0, 0);
+  }
+}
+
+.af-toggle__root {
+  display: flex;
+  box-sizing: content-box;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  padding: var(--toggle-padding);
+  border: var(--toggle-border-size) solid var(--toggle-border-color);
+  border-radius: var(--toggle-border-radius);
+  align-items: center;
+  background-color: var(--toggle-bg-color);
+}
+
+.af-toggle:has(:focus-visible) .af-toggle__root {
+  outline: 2px solid var(--toggle-focus-outline-color);
+  outline-offset: 2px;
+}
+
+.af-toggle__handle {
+  width: var(--toggle-handle-size);
+  height: var(--toggle-handle-size);
+  border-radius: var(--radius-100);
+  background-color: var(--toggle-handle-color);
+  transform: translateX(var(--toggle-handle-position))
+    scale(var(--toggle-handle-scale));
+  transition: 200ms;
+}
