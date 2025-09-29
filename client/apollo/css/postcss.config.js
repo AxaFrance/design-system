@@ -2,24 +2,16 @@ const postcssPresetEnv = require("postcss-preset-env");
 const postcssGlobalData = require("@csstools/postcss-global-data");
 const postcssImport = require("postcss-import");
 const cssnano = require("cssnano");
-const postcssDesignTokens = require("@csstools/postcss-design-tokens");
 
 module.exports = ({ env }) => {
   const prod = env === "production";
-  const tokens = env === "tokens";
-
-  if (tokens) {
-    return {
-      plugins: [postcssDesignTokens()],
-    };
-  }
 
   return {
     plugins: [
       postcssImport(),
       /* nécessaire pour le remplacement des custom-medias */
       postcssGlobalData({
-        files: ["./src/common/tokens.css"],
+        files: ["./src/common/tokens.css", "./src/common/tokensLF.css"],
       }),
       postcssPresetEnv({
         stage: 3,
