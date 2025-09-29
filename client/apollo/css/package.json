@@ -14,10 +14,8 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "rimraf dist & npm run build:token:apollo & npm run build:token:look-and-feel & npm run copyfiles",
-    "build:token:apollo": "postcss  \"src/common/tokens.raw.css\" -o  \"src/common/tokens.css\" --verbose --env tokens",
-    "build:token:look-and-feel": "postcss  \"src/common/tokensLF.raw.css\" -o  \"src/common/tokensLF.css\" --verbose --env tokens",
-    "build": "postcss \"src/**/*{Apollo,LF,Grid,DebugGrid,All}.css\" \"src/common/{tokens,tokensLF,reboot}.css\"  \"src/*.css\" --base src --dir dist --verbose --env production",
+    "prebuild": "rimraf dist && npm run copyfiles",
+    "build": "postcss \"src/**/*{Apollo,LF,Grid,DebugGrid,All}.css\" \"src/common\"  \"src/*.css\" --base src --dir dist --verbose --env production",
     "dev": "npm run build -- --watch",
     "copyfiles": "copyfiles --up 1 \"src/**/*.scss\" files/**/*.svg dist",
     "stylelint": "stylelint \"src/**/*.{scss,css}\" --ignore-pattern \"src/common/tokens*.css\"",
@@ -35,7 +33,6 @@
     "@axa-fr/postcss-config-design-system": "*",
     "@axa-fr/prettier-config-design-system": "*",
     "@axa-fr/stylelint-config-design-system": "*",
-    "@csstools/postcss-design-tokens": "^4.0.5",
     "@csstools/postcss-global-data": "^3.1.0",
     "copyfiles": "^2.4.1",
     "postcss-import": "^16.1.1",
