@@ -69,5 +69,6 @@ export const Default: Story = {
       },
     ],
     texteOrias: "N° Orias (orias.fr) : 10057601 - 10057601",
+    isCompact: true,
   },
 };

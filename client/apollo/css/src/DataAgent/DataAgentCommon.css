@@ -43,10 +43,9 @@
   color: var(--data-agent-text-orias-font-color);
 }
 
-@media (--desktop-small) {
-  .af-data-agent {
-    padding-bottom: 0;
-  }
+/* Compact mode when there is only the intro */
+.af-data-agent:has(> .af-data-agent__intro:only-child) {
+  padding-bottom: 0;
 
   .af-data-agent__intro {
     padding: calc(16 / var(--font-size-base) * 1rem);
