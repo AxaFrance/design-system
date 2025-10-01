@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<ComponentProps<typeof Stepper>>;
 
 export const Playground: Story = {
-  name: "Stepper",
+  name: "Playground",
   render: (props) => (
     <div style={{ minWidth: "70vw" }}>
       <Stepper {...props} />
