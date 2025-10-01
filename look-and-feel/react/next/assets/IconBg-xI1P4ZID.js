@@ -1,1 +1,0 @@
-import{j as m}from"./index-C1mcBe1y.js";import{r as a}from"./index-DbaA8R3S.js";import{g as p}from"./constants-ByVNVY-H.js";const l=({children:s,className:o,classModifier:e,isDisabled:r=!1})=>{const n=a.useMemo(()=>{let t=e;return r&&(t+=" disabled"),p("af-icon-bg",o,t)},[e,r,o]);return m.jsx("div",{className:n,children:s})};export{l as I};
