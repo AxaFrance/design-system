@@ -21,7 +21,6 @@ export type DataAgentProps = {
   clickContents?: TupleMax3<ClickItemProps>;
   texteOrias?: string;
   isCompact?: boolean;
-  useIsSmallScreenFn?: typeof useIsSmallScreen;
 };
 
 type DataAgentCommonProps = DataAgentProps & {
@@ -41,14 +40,13 @@ export const DataAgentCommon = ({
   ContentItemMonoComponent,
   ClickItemComponent,
   isCompact = true,
-  useIsSmallScreenFn = useIsSmallScreen,
 }: DataAgentCommonProps) => {
   const componentClassName = useMemo(
     () => getComponentClassName("af-data-agent", className),
     [className],
   );
 
-  const isMobile = useIsSmallScreenFn(BREAKPOINT.SM);
+  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
 
   const renderForDefaultLayout = () => (
     <>

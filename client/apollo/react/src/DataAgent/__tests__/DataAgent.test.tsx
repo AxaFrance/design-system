@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, act } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { axe } from "jest-axe";
 import { DataAgent } from "../DataAgentApollo";
@@ -96,8 +96,6 @@ const verifyOriasText = () => {
 };
 
 describe("DataAgentCommon", () => {
-  const useIsSmallScreenMock = vi.fn().mockReturnValue(false);
-
   it("renders all sections with all props", () => {
     render(
       <DataAgent
@@ -106,7 +104,6 @@ describe("DataAgentCommon", () => {
         contents={contents}
         clickContents={clickContents}
         texteOrias={oriasText}
-        useIsSmallScreenFn={useIsSmallScreenMock}
       />,
     );
     verifyAgentProps();
@@ -117,59 +114,32 @@ describe("DataAgentCommon", () => {
   });
 
   it("renders intro section with agent only", () => {
-    render(
-      <DataAgent
-        agentProps={agentProps}
-        useIsSmallScreenFn={useIsSmallScreenMock}
-      />,
-    );
+    render(<DataAgent agentProps={agentProps} />);
     verifyAgentProps();
   });
 
   it("renders intro section with agent and contract", () => {
     render(
-      <DataAgent
-        agentProps={agentProps}
-        agentContractProps={contractProps}
-        useIsSmallScreenFn={useIsSmallScreenMock}
-      />,
+      <DataAgent agentProps={agentProps} agentContractProps={contractProps} />,
     );
     verifyAgentProps();
     verifyContractProps();
   });
 
   it("renders intro section with agent information", () => {
-    render(
-      <DataAgent
-        agentProps={agentProps}
-        contents={contents}
-        useIsSmallScreenFn={useIsSmallScreenMock}
-      />,
-    );
+    render(<DataAgent agentProps={agentProps} contents={contents} />);
     verifyAgentProps();
     verifyContentsProps();
   });
 
   it("renders intro section with agent information and action", () => {
-    render(
-      <DataAgent
-        agentProps={agentProps}
-        clickContents={clickContents}
-        useIsSmallScreenFn={useIsSmallScreenMock}
-      />,
-    );
+    render(<DataAgent agentProps={agentProps} clickContents={clickContents} />);
     verifyAgentProps();
     verifyClickContentsProps();
   });
 
   it("renders intro section with orias information", () => {
-    render(
-      <DataAgent
-        agentProps={agentProps}
-        texteOrias={oriasText}
-        useIsSmallScreenFn={useIsSmallScreenMock}
-      />,
-    );
+    render(<DataAgent agentProps={agentProps} texteOrias={oriasText} />);
     verifyAgentProps();
     verifyOriasText();
   });
@@ -182,7 +152,6 @@ describe("DataAgentCommon", () => {
         contents={contents}
         clickContents={clickContents}
         texteOrias={oriasText}
-        useIsSmallScreenFn={useIsSmallScreenMock}
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
@@ -190,9 +159,14 @@ describe("DataAgentCommon", () => {
 });
 
 describe("DataAgentCommon Mobile layout", () => {
-  const useIsSmallScreenMock = vi.fn().mockReturnValue(true);
-
   it("renders mobile layout when isCompact is true", () => {
+    act(() => {
+      window.innerHeight = 500;
+      window.innerWidth = 500;
+    });
+
+    fireEvent(window, new Event("resize"));
+
     render(
       <DataAgent
         agentProps={agentProps}
@@ -200,7 +174,6 @@ describe("DataAgentCommon Mobile layout", () => {
         contents={contents}
         clickContents={clickContents}
         texteOrias={oriasText}
-        useIsSmallScreenFn={useIsSmallScreenMock}
         isCompact
       />,
     );
@@ -229,6 +202,13 @@ describe("DataAgentCommon Mobile layout", () => {
   });
 
   it("renders default layout when isCompact is false", () => {
+    act(() => {
+      window.innerHeight = 500;
+      window.innerWidth = 500;
+    });
+
+    fireEvent(window, new Event("resize"));
+
     render(
       <DataAgent
         agentProps={agentProps}
@@ -236,7 +216,6 @@ describe("DataAgentCommon Mobile layout", () => {
         contents={contents}
         clickContents={clickContents}
         texteOrias={oriasText}
-        useIsSmallScreenFn={useIsSmallScreenMock}
         isCompact={false}
       />,
     );
