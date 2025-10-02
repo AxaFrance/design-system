@@ -13,11 +13,11 @@
     content: "";
   }
 
-  &:last-child:not(.af-vertical-step--edition)::before {
+  &:last-of-type:not(.af-vertical-step--edition)::before {
     background: none;
   }
 
-  &:last-child.af-vertical-step--edition {
+  &:last-of-type.af-vertical-step--edition {
     grid-template-areas:
       "separation icon title"
       "separation content content"
@@ -30,7 +30,7 @@
     }
   }
 
-  &:not(:last-child.af-vertical-step--edition)
+  &:not(:last-of-type.af-vertical-step--edition)
     .af-vertical-step-icon--lastIcon {
     display: none;
   }
