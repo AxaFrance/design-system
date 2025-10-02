@@ -24,12 +24,12 @@
   }
 
   &:has(input:checked) {
-    --radio-option-border-width: 2px;
+    --radio-option-border-width: 1px;
 
     &:hover,
     &:focus-visible,
     &:focus-within {
-      --radio-option-border-width: 3px;
+      --radio-option-border-width: 2px;
     }
   }
 
