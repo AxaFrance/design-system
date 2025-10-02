@@ -21,7 +21,6 @@
   &:has(input[aria-invalid="true"]):not(:has(input:checked)) {
     --checkbox-option-border-color: var(--red-alert-100);
     --checkbox-option-background-color: var(--axa-red-4);
-    --checkbox-option-color-title: var(--neutral-80);
   }
 }
 
