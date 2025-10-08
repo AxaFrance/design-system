@@ -16,6 +16,9 @@ const listClassModifier = (classModifier?: string) => {
   return classModifier.split(" ");
 };
 
+/**
+ * @deprecated This function is deprecated and will be removed in a future release. Use getClassName instead.
+ */
 export const getComponentClassName = (
   defaultClassName: string,
   className?: string,
