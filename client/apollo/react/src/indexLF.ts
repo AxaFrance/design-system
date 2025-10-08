@@ -105,3 +105,5 @@ export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
+
+export { clsx } from "./utilities/getClassName";
