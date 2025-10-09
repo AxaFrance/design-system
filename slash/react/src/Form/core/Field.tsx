@@ -104,7 +104,7 @@ export const Field = ({
   label,
   forceDisplayMessage,
   message,
-  messageType,
+  messageType = MessageTypes.error,
   required,
   classModifier = "",
   disabled = false,
@@ -163,8 +163,11 @@ export const Field = ({
         "af-form__group--label-top": labelPosition === "top",
       })}
       role={roleContainer}
+      aria-invalid={isGroup ? isInvalid : undefined}
+      aria-required={isGroup ? required : undefined}
       aria-label={ariaLabelContainer}
       aria-labelledby={isGroup ? labelId : undefined}
+      aria-errormessage={isGroup && isInvalid ? errorId : undefined}
     >
       <div className={classNameContainerLabel}>
         <LabelElement

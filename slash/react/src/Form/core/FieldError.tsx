@@ -24,7 +24,11 @@ export const FieldError = ({
     message && (
       <small className={className}>
         <span className="glyphicon glyphicon-exclamation-sign" />
-        <span id={errorId} className={`af-form__${messageType}-text`}>
+        <span
+          id={errorId}
+          role="alert"
+          className={`af-form__${messageType}-text`}
+        >
           {message}
         </span>
       </small>

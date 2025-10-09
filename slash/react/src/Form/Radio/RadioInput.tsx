@@ -14,26 +14,18 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
       <Field
         label={label}
         labelPosition={labelPosition}
-        roleContainer={mode !== "cardRadio" ? "radiogroup" : undefined}
+        roleContainer="radiogroup"
         {...props}
-        renderInput={({
-          classModifier,
-          ariaInvalid,
-          errorId,
-          ...radioProps
-        }) => (
-          <>
-            <Radio
-              options={newOptions}
-              mode={mode}
-              classModifier={classModifier}
-              ref={inputRef}
-              aria-describedby={errorId}
-              aria-invalid={ariaInvalid}
-              {...radioProps}
-            />
+        renderInput={({ classModifier, ...radioProps }) => (
+          <Radio
+            options={newOptions}
+            mode={mode}
+            classModifier={classModifier}
+            ref={inputRef}
+            {...radioProps}
+          >
             {children}
-          </>
+          </Radio>
         )}
       />
     );
