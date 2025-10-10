@@ -31,7 +31,9 @@
 }
 
 .af-item-label__label {
+  display: flex;
   grid-area: label;
+  gap: calc(4 / var(--font-size-base) * 1rem);
   font-size: calc(16 / var(--font-size-base) * 1rem);
   font-weight: 600;
   line-height: calc(20 / var(--font-size-base) * 1rem);

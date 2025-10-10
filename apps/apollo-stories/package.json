@@ -14,8 +14,8 @@
     "chromatic": "npx chromatic"
   },
   "dependencies": {
-    "@axa-fr/design-system-apollo-react": "*",
     "@axa-fr/design-system-apollo-css": "*",
+    "@axa-fr/design-system-apollo-react": "*",
     "@material-symbols/svg-400": "^0.31.2"
   },
   "devDependencies": {
@@ -33,6 +33,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@whitespace/storybook-addon-html": "^6.1.1",
     "globals": "^16.0.0",
+    "remark-gfm": "^4.0.1",
     "storybook": "^8.5.5",
     "typescript": "~5.7.2",
     "vite": "^6.3.3"
