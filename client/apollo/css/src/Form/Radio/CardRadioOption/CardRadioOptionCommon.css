@@ -4,7 +4,7 @@
 
   position: relative;
   display: flex;
-  padding: 1rem;
+  padding: calc(16 / var(--font-size-base) * 1rem);
   border-radius: var(--radio-option-border-radius);
   flex-direction: column;
   align-items: center;
