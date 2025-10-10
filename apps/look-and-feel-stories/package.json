@@ -34,6 +34,7 @@
     "@whitespace/storybook-addon-html": "^6.1.1",
     "chromatic": "^13.1.2",
     "globals": "^16.0.0",
+    "remark-gfm": "^4.0.1",
     "storybook": "^8.6.3",
     "typescript": "~5.7.2",
     "vite": "^6.3.3"
