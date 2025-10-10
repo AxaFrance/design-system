@@ -3,7 +3,7 @@
 
   display: block;
   width: 100%;
-  padding: 1rem;
+  padding: calc(16 / var(--font-size-base) * 1rem);
   border: none;
   border-radius: var(--dropdown-border-radius);
   font-family: var(--font-family-sans-serif);
