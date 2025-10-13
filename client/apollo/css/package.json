@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist && npm run copyfiles",
-    "build": "postcss \"src/**/*{Apollo,LF,Grid,DebugGrid,All}.css\" \"src/common\"  \"src/*.css\" --base src --dir dist --verbose --env production",
+    "build": "postcss \"src/**/*{Apollo,LF,Grid,DebugGrid,Svg,All}.css\" \"src/common\"  \"src/*.css\" --base src --dir dist --verbose --env production",
     "dev": "npm run build -- --watch",
     "copyfiles": "copyfiles --up 1 \"src/**/*.scss\" files/**/*.svg dist",
     "stylelint": "stylelint \"src/**/*.{scss,css}\" --ignore-pattern \"src/common/tokens*.css\"",

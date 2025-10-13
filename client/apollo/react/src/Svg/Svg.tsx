@@ -1,3 +1,4 @@
+import "@axa-fr/design-system-apollo-css/dist/Svg/Svg.css";
 import React, { type ComponentProps, type SVGAttributes } from "react";
 import { svgInjector } from "./svgInjector";
 
@@ -20,6 +21,7 @@ const cloneAttributes = (
  * @deprecated Use Icon instead
  */
 export const Svg = ({
+  className,
   src,
   alt,
   width = 24,
@@ -78,6 +80,7 @@ export const Svg = ({
   return (
     <svg
       ref={rootRef}
+      className={["af-svg", className].filter(Boolean).join(" ")}
       data-src={src}
       width={width}
       height={height}
