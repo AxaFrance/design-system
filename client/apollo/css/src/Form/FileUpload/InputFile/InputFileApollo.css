@@ -1,0 +1,27 @@
+@import "./InputFileCommon.css";
+
+.af-input-file__dropzone {
+  --input-file-dropzone-border-color: var(--axa-blue-100);
+  --input-file-dropzone-color: var(--axa-blue-100);
+  --input-file-dropzone-bg-color: var(--white);
+
+  &:hover,
+  &:has(input[type="file"]:focus) {
+    > span:is(.af-btn-client) {
+      --button-bg-color: var(--axa-blue-120);
+      --button-text-color: var(--white);
+    }
+  }
+
+  &:has(input[type="file"]:focus-visible) > span:is(.af-btn-client) {
+    --button-outline-color: var(--axa-blue-65);
+  }
+}
+
+.af-input-file__dropzone--error {
+  --input-file-dropzone-border-color: var(--red-alert-100);
+}
+
+.af-input-file__help {
+  --input-file-help-color: var(--neutral-80);
+}
