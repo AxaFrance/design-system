@@ -1,6 +1,6 @@
 import "@axa-fr/design-system-slash-css/dist/Form/Radio/RadioCardGroup.css";
 
-import { ComponentProps, useId, useRef } from "react";
+import { ComponentProps, useId } from "react";
 import classNames from "classnames";
 import type { Option } from "../core";
 import { Svg } from "../../Svg";
@@ -11,7 +11,6 @@ const DEFAULT_CONTAINER_CLASSNAME = "af-form__radio-card-group";
 type Props = ComponentProps<"input"> & {
   options: Option[];
   orientation?: "horizontal" | "vertical";
-  error?: boolean;
 };
 
 export const RadioCardGroup = ({
@@ -22,16 +21,13 @@ export const RadioCardGroup = ({
   name,
   orientation = "vertical",
   disabled = false,
-  error = false,
+  "aria-invalid": ariaInvalid,
   ...otherProps
 }: Props) => {
   const idGenerated = useId();
-  const radioGroupRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
-      ref={radioGroupRef}
-      role="radiogroup"
       className={classNames([
         DEFAULT_CONTAINER_CLASSNAME,
         className,
@@ -52,7 +48,7 @@ export const RadioCardGroup = ({
           const allClassNames = classNames([
             DEFAULT_CLASSNAME,
             orientation === "horizontal" && `${DEFAULT_CLASSNAME}--horizontal`,
-            error && `${DEFAULT_CLASSNAME}--error`,
+            ariaInvalid && `${DEFAULT_CLASSNAME}--error`,
           ]);
 
           const isDisabled = disabled || optionDisabled;
