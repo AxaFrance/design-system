@@ -1,6 +1,6 @@
-import { vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
+import { vi } from "vitest";
 import { Svg } from "../Svg";
 
 const mocks = vi.hoisted(() => {
@@ -24,6 +24,7 @@ describe("<Svg />", () => {
       const svg = screen.getByLabelText("test");
       expect(svg).toBeInTheDocument();
       expect(svg).toHaveAttribute("data-src", svgSrc);
+      expect(svg).toHaveClass("af-svg");
     });
 
     it("renders fallback when src not found", async () => {
