@@ -4,6 +4,7 @@
   height: calc(6 / var(--font-size-base) * 1rem);
   border: none;
   border-radius: var(--progress-bar-radius);
+  overflow: hidden;
   background-color: var(--progress-bar-background-color);
   appearance: var(--progress-bar-appearance);
 
