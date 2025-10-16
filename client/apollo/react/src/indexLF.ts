@@ -43,7 +43,6 @@ export {
   InputText as TextInput,
 } from "./Form/InputText/InputTextLF";
 export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomLF";
-export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileLF";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelLF";
 export {
   ItemMessage,
@@ -109,3 +108,7 @@ export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
 export { InputFile } from "./Form/FileUpload/InputFile/InputFileLF";
+export {
+  ItemFile,
+  itemFileVariants,
+} from "./Form/FileUpload/ItemFile/ItemFileLF";

@@ -2,9 +2,9 @@ import type { ComponentType, ComponentProps } from "react";
 
 import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
-import { getComponentClassName } from "../../utilities/getComponentClassName";
-import type { IconProps } from "../../Icon/IconCommon";
-import { Spinner } from "../../Spinner/SpinnerCommon";
+import { getComponentClassName } from "../../../utilities/getComponentClassName";
+import type { IconProps } from "../../../Icon/IconCommon";
+import { Spinner } from "../../../Spinner/SpinnerCommon";
 import type { ItemFileState } from "./ItemFileCommon";
 
 interface ItemStateIconProps {
