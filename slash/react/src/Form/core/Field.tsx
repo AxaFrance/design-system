@@ -104,7 +104,7 @@ export const Field = ({
   label,
   forceDisplayMessage,
   message,
-  messageType = MessageTypes.error,
+  messageType,
   required,
   classModifier = "",
   disabled = false,
