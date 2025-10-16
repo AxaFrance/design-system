@@ -9,7 +9,6 @@
 @import "./Form/ItemLabel/ItemLabelLF.css";
 @import "./Form/InputTextAtom/InputTextAtomLF.css";
 @import "./Form/InputText/InputTextLF.css";
-@import "./Form/ItemFile/ItemFileLF.css";
 @import "./Form/TextArea/TextAreaLF.css";
 @import "./Form/Dropdown/DropdownLF.css";
 @import "./Icon/IconLF.css";
@@ -46,3 +45,4 @@
 @import "./Layout/Footer/FooterLF.css";
 @import "./Svg/Svg.css";
 @import "./Form/FileUpload/InputFile/InputFileLF.css";
+@import "./Form/FileUpload/ItemFile/ItemFileLF.css";

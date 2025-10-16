@@ -1,12 +1,13 @@
-import "@axa-fr/design-system-apollo-css/dist/Form/ItemFile/ItemFileLF.css";
 import deleteIconFilled from "@material-symbols/svg-400/outlined/delete-fill.svg";
 import visibilityIcon from "@material-symbols/svg-400/outlined/visibility-fill.svg";
-import { ClickIcon } from "../../ClickIcon/ClickIconLF";
-import { Icon } from "../../Icon/IconLF";
-import { Spinner } from "../../Spinner/SpinnerLF";
-import { ItemMessage } from "../ItemMessage/ItemMessageLF";
+import { ClickIcon } from "../../../ClickIcon/ClickIconLF";
+import { Icon } from "../../../Icon/IconLF";
+import { Spinner } from "../../../Spinner/SpinnerLF";
+import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { ItemFileCommon } from "./ItemFileCommon";
 import type { ItemFileProps } from "./types";
+
+import "@axa-fr/design-system-apollo-css/dist/Form/FileUpload/ItemFile/ItemFileLF.css";
 
 export { itemFileVariants } from "./ItemFileCommon";
 

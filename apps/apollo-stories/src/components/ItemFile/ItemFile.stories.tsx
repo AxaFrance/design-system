@@ -8,7 +8,7 @@ import { Meta, StoryObj } from "@storybook/react";
 type Story = StoryObj<typeof ItemFile>;
 
 const meta: Meta<typeof ItemFile> = {
-  title: "Components/Form/ItemFile",
+  title: "Components/Form/FileUpload/ItemFile",
   component: ItemFile,
   argTypes: {
     state: {

@@ -6,12 +6,12 @@ import {
 } from "react";
 
 import classNames from "classnames";
-import type { IconProps } from "../../Icon/IconCommon";
-import { Spinner } from "../../Spinner/SpinnerCommon";
+import type { IconProps } from "../../../Icon/IconCommon";
+import { Spinner } from "../../../Spinner/SpinnerCommon";
 import {
   ItemMessage,
   type ItemMessageProps,
-} from "../ItemMessage/ItemMessageCommon";
+} from "../../ItemMessage/ItemMessageCommon";
 import { ItemStateIcon } from "./ItemStateIcon";
 
 export const itemFileVariants = {
