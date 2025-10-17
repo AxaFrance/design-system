@@ -1,17 +1,14 @@
 import {
-  ReactNode,
-  type ComponentProps,
   type ComponentPropsWithoutRef,
   type ComponentType,
+  type MouseEvent,
 } from "react";
 
 import classNames from "classnames";
+import type { ClickIconProps } from "../../../ClickIcon/ClickIconCommon";
 import type { IconProps } from "../../../Icon/IconCommon";
-import { Spinner } from "../../../Spinner/SpinnerCommon";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../../ItemMessage/ItemMessageCommon";
+import type { SpinnerProps } from "../../../Spinner/SpinnerCommon";
+import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 import { ItemStateIcon } from "./ItemStateIcon";
 
 export const itemFileVariants = {
@@ -28,9 +25,9 @@ export type ItemFileProps = {
   ariaLabelDelete?: string;
   filename?: string;
   title: string;
+  onDeleteClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onVisibilityClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   subTitle: string;
-  deleteIcon: ReactNode;
-  visibilityIcon?: ReactNode;
   /**
    * @deprecated Use `message` and messageType instead.
    */
@@ -43,25 +40,34 @@ export type ItemFileProps = {
   Partial<ItemMessageProps>;
 
 export type ItemFileCommonProps = ItemFileProps & {
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
   ItemIconComponent: ComponentType<IconProps>;
-  ItemSpinnerComponent: ComponentType<ComponentProps<typeof Spinner>>;
+  ItemSpinnerComponent: ComponentType<SpinnerProps>;
+  ClickIconComponent: ComponentType<ClickIconProps>;
+  deleteIcon: string;
+  visibilityIcon: string;
 };
 
 export const ItemFileCommon = ({
   className,
   state,
+  filename,
   title,
   subTitle,
   errorMessage,
-  deleteIcon,
-  visibilityIcon,
   success,
   message,
   messageType,
+  onDeleteClick,
+  onVisibilityClick,
+  ariaLabelDelete,
+  ariaLabelVisibility,
+  deleteIcon,
+  visibilityIcon,
   ItemSpinnerComponent,
   ItemIconComponent,
   ItemMessageComponent,
+  ClickIconComponent,
   ...props
 }: ItemFileCommonProps) => {
   const hasError =
@@ -84,8 +90,20 @@ export const ItemFileCommon = ({
         <p className="af-item-file__title">{title}</p>
         <p className="af-item-file__subtitle">{subTitle}</p>
         <div className="af-item-file__actions">
-          {state === "success" && visibilityIcon}
-          {deleteIcon}
+          {state === "success" && (
+            <ClickIconComponent
+              src={visibilityIcon}
+              onClick={onVisibilityClick}
+              aria-label={
+                ariaLabelVisibility || `Observer le fichier ${filename}`
+              }
+            />
+          )}
+          <ClickIconComponent
+            src={deleteIcon}
+            onClick={onDeleteClick}
+            aria-label={ariaLabelDelete || `Suppression du fichier ${filename}`}
+          />
         </div>
       </div>
       <ItemMessageComponent

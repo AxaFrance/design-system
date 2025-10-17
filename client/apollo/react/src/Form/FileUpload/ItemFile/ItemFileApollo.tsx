@@ -4,39 +4,20 @@ import { ClickIcon } from "../../../ClickIcon/ClickIconApollo";
 import { Icon } from "../../../Icon/IconApollo";
 import { Spinner } from "../../../Spinner/SpinnerApollo";
 import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
-import { ItemFileCommon } from "./ItemFileCommon";
-import type { ItemFileProps } from "./types";
+import { ItemFileCommon, type ItemFileProps } from "./ItemFileCommon";
 
 import "@axa-fr/design-system-apollo-css/dist/Form/FileUpload/ItemFile/ItemFileApollo.css";
 
 export { itemFileVariants } from "./ItemFileCommon";
 
-export const ItemFile = ({
-  onDeleteClick,
-  onVisibilityClick,
-  ariaLabelVisibility,
-  ariaLabelDelete,
-  filename,
-  ...props
-}: ItemFileProps) => (
+export const ItemFile = (props: ItemFileProps) => (
   <ItemFileCommon
     ItemMessageComponent={ItemMessage}
     ItemIconComponent={Icon}
     ItemSpinnerComponent={Spinner}
-    deleteIcon={
-      <ClickIcon
-        src={deleteIcon}
-        onClick={onDeleteClick}
-        aria-label={ariaLabelDelete || `Suppression du fichier ${filename}`}
-      />
-    }
-    visibilityIcon={
-      <ClickIcon
-        src={visibilityIcon}
-        onClick={onVisibilityClick}
-        aria-label={ariaLabelVisibility || `Observer le fichier ${filename}`}
-      />
-    }
+    ClickIconComponent={ClickIcon}
+    deleteIcon={deleteIcon}
+    visibilityIcon={visibilityIcon}
     {...props}
   />
 );
