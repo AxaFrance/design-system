@@ -1,0 +1,70 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as TabBarStories from "./TabBar.stories";
+
+<Meta of={TabBarStories} name="TabBar" />
+
+# TabBar
+
+## How to use
+
+To use the tabbar component import it like that:
+
+```tsx
+import { TabBar } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <TabBar
+    items={[
+      { title: "Tab 1", content: "Content 1" },
+      { title: "Tab 2", content: "Content 2" },
+      { title: "Tab 3", content: "Content 3" },
+    ]}
+  />
+);
+```
+
+You can define the default selected tab with the `preSelectedTabIndex` prop.
+
+```tsx
+import { TabBar } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <TabBar
+    items={[
+      { title: "Tab 1", content: "Content 1" },
+      { title: "Tab 2", content: "Content 2" },
+      { title: "Tab 3", content: "Content 3" },
+    ]}
+    preSelectedTabIndex={1}
+  />
+);
+```
+
+You can also customize the alignment of the tabs with the `direction` prop.
+
+```tsx
+import { TabBar, tabBarDirection } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <TabBar
+    items={[
+      { title: "Tab 1", content: "Content 1" },
+      { title: "Tab 2", content: "Content 2" },
+      { title: "Tab 3", content: "Content 3" },
+    ]}
+    direction={tabBarDirection.center}
+  />
+);
+```
+
+## With text content
+
+<Canvas of={TabBarStories.TabBarStory} />
+
+<Controls of={TabBarStories.TabBarStory} />
+
+## With ReactNode content
+
+<Canvas of={TabBarStories.TabBarWithReactNodeStory} />
+
+<Controls of={TabBarStories.TabBarWithReactNodeStory} />

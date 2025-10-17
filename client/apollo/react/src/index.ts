@@ -60,9 +60,14 @@ export {
 } from "./Icon/IconApollo";
 export {
   ItemTabBar,
-  itemTabBarVariants,
-  type ItemTabBarVariants,
+  type ItemTabBarProps,
 } from "./ItemTabBar/ItemTabBarApollo";
+export {
+  TabBar,
+  type TabBarProps,
+  tabBarDirection,
+  type TabBarDirection,
+} from "./TabBar/TabBarApollo";
 export { Footer, type FooterProps } from "./Layout/Footer/FooterApollo";
 export { Link, linkVariants, type LinkVariants } from "./Link/LinkApollo";
 export {

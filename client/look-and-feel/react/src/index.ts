@@ -59,11 +59,13 @@ export {
   type IconVariants,
 } from "./Icon/Icon";
 export { IconBg } from "./IconBg";
+export { ItemTabBar, type ItemTabBarProps } from "./ItemTabBar/ItemTabBar";
 export {
-  ItemTabBar,
-  itemTabBarVariants,
-  type ItemTabBarVariants,
-} from "./ItemTabBar/ItemTabBar";
+  TabBar,
+  type TabBarProps,
+  tabBarDirection,
+  type TabBarDirection,
+} from "./TabBar/TabBar";
 export { Footer } from "./Layout/Footer/Footer";
 export { BurgerMenu, Header, NavBar, PreviousLink } from "./Layout/Header";
 export { Link } from "./Link/Link";

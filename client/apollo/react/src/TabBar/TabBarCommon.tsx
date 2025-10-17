@@ -1,25 +1,44 @@
-import "@axa-fr/design-system-look-and-feel-css/dist/Tabs/Tabs.scss";
+import {
+  ComponentProps,
+  ComponentType,
+  ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import classNames from "classnames";
-import { ReactNode, useCallback, useRef, useState } from "react";
+import {
+  ItemTabBar,
+  type ItemTabBarProps,
+} from "../ItemTabBar/ItemTabBarCommon";
 
-export enum Direction {
-  center = "center",
-}
+export const tabBarDirection = {
+  center: "center",
+  left: "left",
+} as const;
 
-type TabsProps = {
-  items: { title: string; content: string | ReactNode; icon?: ReactNode }[];
+export type TabBarDirection = keyof typeof tabBarDirection;
+
+export type TabBarProps = {
+  items: ({
+    content: ReactNode;
+  } & Omit<ItemTabBarProps, "content">)[];
   preSelectedTabIndex?: number;
-  direction?: Direction;
+  direction?: TabBarDirection;
 };
 
-/**
- * @deprecated Use `TabBar` instead.
- * */
-export const TabsClient = ({
+type TabBarPropsCommon = TabBarProps & {
+  ItemTabBarComponent: ComponentType<ComponentProps<typeof ItemTabBar>>;
+};
+
+const CLASS_NAME = "af-tabbar";
+
+export const TabBarCommon = ({
   items,
   preSelectedTabIndex,
-  direction,
-}: TabsProps) => {
+  direction = "left",
+  ItemTabBarComponent,
+}: TabBarPropsCommon) => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(
     preSelectedTabIndex || 0,
   );
@@ -72,15 +91,14 @@ export const TabsClient = ({
   return (
     <div
       className={classNames(
-        "af-tabs-client",
-        direction === Direction.center ? `af-tabs-client--center` : "",
+        CLASS_NAME,
+        direction === tabBarDirection.center ? `${CLASS_NAME}--center` : "",
       )}
     >
       <div role="tablist" ref={tablistRef}>
-        {items.map((item, index) => (
-          <button
-            key={`tab-${item.title}`}
-            role="tab"
+        {items.map(({ title }, index) => (
+          <ItemTabBarComponent
+            key={`tab-${title}`}
             id={`tab-${index}`}
             aria-selected={isActive(index)}
             aria-controls={`tabpanel-${index}`}
@@ -89,12 +107,9 @@ export const TabsClient = ({
             ref={(element: HTMLButtonElement) => {
               buttonRefs.current[index] = element;
             }}
-            type="button"
             tabIndex={isActive(index) ? 0 : -1}
-          >
-            {item.icon}
-            <span>{item.title}</span>
-          </button>
+            title={title}
+          />
         ))}
       </div>
 

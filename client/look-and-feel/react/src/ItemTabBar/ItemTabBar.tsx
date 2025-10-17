@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 export {
   ItemTabBar,
-  itemTabBarVariants,
-  type ItemTabBarVariants,
+  type ItemTabBarProps,
 } from "@axa-fr/design-system-apollo-react/lf";

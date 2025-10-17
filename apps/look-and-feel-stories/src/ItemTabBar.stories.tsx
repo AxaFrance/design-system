@@ -1,7 +1,4 @@
-import {
-  ItemTabBar,
-  itemTabBarVariants,
-} from "@axa-fr/design-system-apollo-react/lf";
+import { ItemTabBar } from "@axa-fr/design-system-apollo-react/lf";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ItemTabBar> = {
@@ -21,10 +18,6 @@ export const Default: Story = {
     title: "Mes contrats",
   },
   argTypes: {
-    variant: {
-      options: Object.values(itemTabBarVariants),
-      control: { type: "select" },
-    },
     isActive: {
       control: { type: "boolean" },
     },

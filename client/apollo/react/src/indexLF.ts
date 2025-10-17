@@ -62,11 +62,13 @@ export {
   type IconSizeVariants,
   type IconVariants,
 } from "./Icon/IconLF";
+export { ItemTabBar, type ItemTabBarProps } from "./ItemTabBar/ItemTabBarLF";
 export {
-  ItemTabBar,
-  itemTabBarVariants,
-  type ItemTabBarVariants,
-} from "./ItemTabBar/ItemTabBarLF";
+  TabBar,
+  type TabBarProps,
+  tabBarDirection,
+  type TabBarDirection,
+} from "./TabBar/TabBarLF";
 export { Footer, type FooterProps } from "./Layout/Footer/FooterLF";
 export { Link, linkVariants, type LinkVariants } from "./Link/LinkLF";
 export {
