@@ -10,7 +10,7 @@ export type SpinnerVariants = keyof typeof spinnerVariants;
 
 const DEFAULT_CLASSNAME = "af-spinner";
 
-type SpinnerProps = {
+export type SpinnerProps = {
   size?: 24 | 32 | 40;
   variant?: SpinnerVariants;
   text?: string;
