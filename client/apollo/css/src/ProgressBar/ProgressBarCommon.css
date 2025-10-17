@@ -4,6 +4,7 @@
   height: calc(6 / var(--font-size-base) * 1rem);
   border: none;
   border-radius: var(--progress-bar-radius);
+  overflow: hidden;
   background-color: var(--progress-bar-background-color);
   appearance: var(--progress-bar-appearance);
 
@@ -14,12 +15,14 @@
 
   /* For WebKit browsers */
   &::-webkit-progress-value {
+    border-radius: var(--progress-bar-radius);
     background-color: var(--progress-bar-appearance);
     transition: width 0.75s ease;
   }
 
   /* For Firefox */
   &::-moz-progress-bar {
+    border-radius: var(--progress-bar-radius);
     background-color: var(--progress-bar-appearance);
 
     /* transition doesn't work in Firefox for native progress bars */
