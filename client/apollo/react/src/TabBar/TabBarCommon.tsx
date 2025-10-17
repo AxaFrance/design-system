@@ -1,6 +1,5 @@
 import {
   ComponentProps,
-  ComponentPropsWithoutRef,
   ComponentType,
   ReactNode,
   useCallback,
@@ -8,7 +7,10 @@ import {
   useState,
 } from "react";
 import classNames from "classnames";
-import { ItemTabBar } from "../ItemTabBar/ItemTabBarCommon";
+import {
+  ItemTabBar,
+  type ItemTabBarProps,
+} from "../ItemTabBar/ItemTabBarCommon";
 
 export const tabBarDirection = {
   center: "center",
@@ -18,9 +20,9 @@ export const tabBarDirection = {
 export type TabBarDirection = keyof typeof tabBarDirection;
 
 export type TabBarProps = {
-  items: (ComponentPropsWithoutRef<typeof ItemTabBar> & {
+  items: ({
     content: ReactNode;
-  })[];
+  } & Omit<ItemTabBarProps, "content">)[];
   preSelectedTabIndex?: number;
   direction?: TabBarDirection;
 };

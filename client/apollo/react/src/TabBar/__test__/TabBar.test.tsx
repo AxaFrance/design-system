@@ -15,12 +15,33 @@ const tabs = [
   { title: "Tab 3", content: "Content 3" },
 ];
 
+const tabs2 = [
+  { title: "Tab 1", content: <p>Content 1</p> },
+  { title: "Tab 2", content: <p>Content 2</p> },
+  { title: "Tab 3", content: <p>Content 3</p> },
+];
+
 describe("TabBar", () => {
   it("should render the component", () => {
     render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
     expect(screen.getByRole("tablist")).toBeInTheDocument();
     expect(screen.getAllByRole("tab")).toHaveLength(3);
     expect(screen.getByText("Content 1")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")[0]).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+  });
+
+  it("should render the component with content Element", () => {
+    render(<TabBar items={tabs2} ItemTabBarComponent={ItemTabBar} />);
+    expect(screen.getByRole("tablist")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")).toHaveLength(3);
+    expect(screen.getByText("Content 1")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")[0]).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
   });
 
   it("should render the component with the second tab pre-selected", () => {
