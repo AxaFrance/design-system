@@ -106,3 +106,5 @@ export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
+
+export { clsx } from "./utilities/getClassName";
