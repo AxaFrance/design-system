@@ -40,6 +40,23 @@ const MyComponent = () => (
 );
 ```
 
+You can also customize the alignment of the tabs with the `direction` prop.
+
+```tsx
+import { TabBar, tabBarDirection } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <TabBar
+    items={[
+      { title: "Tab 1", content: "Content 1" },
+      { title: "Tab 2", content: "Content 2" },
+      { title: "Tab 3", content: "Content 3" },
+    ]}
+    direction={tabBarDirection.center}
+  />
+);
+```
+
 ## With text content
 
 <Canvas of={TabBarStories.TabBarStory} />

@@ -1,8 +1,4 @@
-import {
-  TabBar,
-  tabBarDirection,
-  type TabBarProps,
-} from "@axa-fr/design-system-apollo-react";
+import { TabBar, tabBarDirection } from "@axa-fr/design-system-apollo-react";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
@@ -55,7 +51,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
             <h2>Titre 1</h2>
             <p>Content 1</p>
           </>
-        ) as TabBarProps["items"][0]["content"],
+        ),
       },
       {
         title: "ReactNode tab 2",
@@ -64,7 +60,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
             <h2>Titre 2</h2>
             <p>Content 2</p>
           </>
-        ) as TabBarProps["items"][0]["content"],
+        ),
       },
       {
         title: "ReactNode tab 3",
@@ -73,7 +69,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
             <h2>Titre 3</h2>
             <p>Content 3</p>
           </>
-        ) as TabBarProps["items"][0]["content"],
+        ),
       },
     ],
     direction: tabBarDirection.center,
