@@ -1,29 +1,14 @@
-import { ComponentPropsWithRef, forwardRef, ReactNode } from "react";
+import { ComponentPropsWithRef, forwardRef } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 
-export const itemTabBarVariants = {
-  tabBar: "tabBar",
-  header: "header",
-} as const;
-export type ItemTabBarVariants = keyof typeof itemTabBarVariants;
-
-type ItemTabBarProps = ComponentPropsWithRef<"button"> & {
-  variant?: ItemTabBarVariants;
+export type ItemTabBarProps = ComponentPropsWithRef<"button"> & {
   isActive?: boolean;
-  icon?: ReactNode;
   title: string;
 };
 
 export const ItemTabBar = forwardRef<HTMLButtonElement, ItemTabBarProps>(
-  (
-    { variant = "tabBar", isActive = false, icon, title, className, ...props },
-    ref,
-  ) => {
-    const classNames = getComponentClassName(
-      "af-item-tab-bar",
-      className,
-      variant,
-    );
+  ({ isActive = false, title, className, ...props }, ref) => {
+    const classNames = getComponentClassName("af-item-tab-bar", className);
 
     return (
       <button
@@ -34,7 +19,6 @@ export const ItemTabBar = forwardRef<HTMLButtonElement, ItemTabBarProps>(
         className={classNames}
         {...props}
       >
-        {icon}
         {title}
       </button>
     );
