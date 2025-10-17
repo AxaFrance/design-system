@@ -7,7 +7,7 @@ const cssnano = require("cssnano");
 module.exports = ({ env }) => {
   const prod = env === "production";
 
-  return  {
+  return {
     parser: "postcss-scss",
     plugins: [
       postcssSass,
@@ -18,5 +18,5 @@ module.exports = ({ env }) => {
       postcssNormalize,
       prod && cssnano,
     ],
-  }
+  };
 };

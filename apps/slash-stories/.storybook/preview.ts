@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
+import "@axa-fr/design-system-slash-css/dist/common/icons.css";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
 import "@fontsource/source-sans-pro";
 import type { Preview } from "@storybook/react";

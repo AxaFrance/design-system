@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Tag/Tag.scss";
+import "@axa-fr/design-system-slash-css/dist/Tag/Tag.css";
 import { ComponentPropsWithRef, PropsWithChildren, forwardRef } from "react";
 import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
 

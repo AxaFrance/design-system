@@ -1,12 +1,12 @@
+import "@axa-fr/design-system-slash-css/dist/Layout/Header/HeaderTitle/HeaderTitle.css";
 import { ReactNode } from "react";
-import "@axa-fr/design-system-slash-css/dist/Layout/Header/HeaderTitle/HeaderTitle.scss";
 
 import classNames from "classnames";
-import { getComponentClassName } from "../../../utilities";
-import { ToggleButton } from "../ToggleButton/ToggleButton";
 import { Action } from "../../../Action/Action";
-import { getClassModifier } from "./HeaderTitle.helpers";
+import { getComponentClassName } from "../../../utilities";
 import { AnchorNavBar, AnchorNavBarItem } from "../AnchorNavBar/AnchorNavBar";
+import { ToggleButton } from "../ToggleButton/ToggleButton";
+import { getClassModifier } from "./HeaderTitle.helpers";
 
 const defaultClassName = "af-title-bar";
 
