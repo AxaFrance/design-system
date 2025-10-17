@@ -1,12 +1,30 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { ContentItemDuoCommon } from "../ContentItemDuoCommon";
 import { Button } from "../../../Button/ButtonApollo";
+import { ContentItemDuoCommon } from "../ContentItemDuoCommon";
+
+const ContentItemDuoCommonLabel = "Label";
+const ContentItemDuoCommonValue = "Value";
 
 describe("ContentItemDuoCommon", () => {
-  const ContentItemDuoCommonLabel = "Label";
-  const ContentItemDuoCommonValue = "Value";
+  it("should apply containerProps to the parent div", () => {
+    render(
+      <ContentItemDuoCommon
+        label={ContentItemDuoCommonLabel}
+        value={ContentItemDuoCommonValue}
+        ButtonComponent={Button}
+        id="custom-id"
+        title="custom-title"
+        className="custom-class"
+      />,
+    );
+
+    const container = document.querySelector(".custom-class");
+    expect(container).toHaveAttribute("id", "custom-id");
+    expect(container).toHaveAttribute("title", "custom-title");
+    expect(container).toHaveClass("af-content-item-duo");
+  });
 
   it("should render label and value correctly", () => {
     render(

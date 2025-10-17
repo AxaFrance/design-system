@@ -1,4 +1,9 @@
-import { type ComponentType, type ReactNode, useMemo } from "react";
+import {
+  type ComponentProps,
+  type ComponentType,
+  type ReactNode,
+  useMemo,
+} from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 
@@ -10,7 +15,7 @@ export type ContentItemDuoProps = {
   classModifier?: string;
   buttonText?: string;
   onButtonClick?: () => void;
-};
+} & ComponentProps<"div">;
 
 type ContentItemDuoCommonProps = ContentItemDuoProps & {
   ButtonComponent: ComponentType<ButtonProps>;
@@ -25,6 +30,7 @@ export const ContentItemDuoCommon = ({
   buttonText,
   onButtonClick,
   ButtonComponent,
+  ...containerProps
 }: ContentItemDuoCommonProps) => {
   const componentClassName = useMemo(() => {
     const classModifiers = [classModifier];
@@ -41,7 +47,7 @@ export const ContentItemDuoCommon = ({
   }, [classModifier, className, isVertical]);
 
   return (
-    <div className={componentClassName}>
+    <div className={componentClassName} {...containerProps}>
       <p className="af-content-item-duo__label">{label}</p>
       {typeof value === "string" ? (
         <p className="af-content-item-duo__value">{value}</p>
