@@ -30,3 +30,33 @@ const MyComponent = () => (
 <Canvas of={ItemLabelStories.Default} />
 
 <Controls of={ItemLabelStories.Default} />
+
+```tsx
+import { ItemLabel } from "@axa-fr/design-system-apollo-react";
+
+const MyComponent = () => (
+  <ItemLabel
+    label="Label Text"
+    description={
+      <>
+        une description
+        <br />
+        sur 2 lignes
+      </>
+    }
+    required
+    inputId="input-id"
+    idLabel="label-id"
+    sideButtonLabel="Side Button"
+    onSideButtonClick={handleClickSideButton}
+    buttonLabel="ButtonLabel"
+    onButtonClick={handleClickButton}
+  />
+);
+```
+
+## DescriptionMultiline
+
+<Canvas of={ItemLabelStories.DescriptionMultiline} />
+
+<Controls of={ItemLabelStories.DescriptionMultiline} />

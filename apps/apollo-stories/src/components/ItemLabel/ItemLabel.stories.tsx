@@ -22,3 +22,20 @@ export const Default: StoryObj<typeof ItemLabel> = {
     buttonLabel: "ButtonLabel",
   },
 };
+
+export const DescriptionMultiline: StoryObj<typeof ItemLabel> = {
+  args: {
+    label: "Label Text",
+    description: (
+      <>
+        une description
+        <br />
+        sur 2 lignes
+      </>
+    ),
+    required: false,
+    inputId: "input-id",
+    sideButtonLabel: "Side Button",
+    buttonLabel: "ButtonLabel",
+  },
+};
