@@ -209,16 +209,16 @@
         }
 
         &:not(
-            :has(.af-accordion__icon),
-            :has(.af-accordion__tag-date-container)
-          ) {
+          :has(.af-accordion__icon),
+          :has(.af-accordion__tag-date-container)
+        ) {
           --summary-areas: "title-container arrow" "value arrow";
         }
 
         &:not(
-            :has(.af-accordion__tag-date-container),
-            :has(.af-accordion__value)
-          ) {
+          :has(.af-accordion__tag-date-container),
+          :has(.af-accordion__value)
+        ) {
           --summary-areas: "icon title-container arrow";
           --summary-columns: auto 1fr auto;
         }
@@ -228,10 +228,10 @@
         }
 
         &:not(
-            :has(.af-accordion__icon),
-            :has(.af-accordion__tag-date-container),
-            :has(.af-accordion__value)
-          ) {
+          :has(.af-accordion__icon),
+          :has(.af-accordion__tag-date-container),
+          :has(.af-accordion__value)
+        ) {
           --summary-areas: "title-container arrow";
           --summary-columns: 1fr auto;
         }
