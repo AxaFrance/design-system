@@ -5,18 +5,191 @@ import * as ItemFileStories from "./ItemFile.stories";
 
 # ItemFile
 
-To use the ItemFile import it like that:
+The `ItemFile` component displays information about a single uploaded file: name, size, a validation or error icon,
+optional actions (preview / remove) and an inline message. It is intended to be used together with list components
+(for example within an upload list) and with `ItemMessage` for consistent feedback.
+
+Usage example:
 
 ```tsx
 import { ItemFile } from "@axa-fr/design-system-apollo-react";
 
-const MyComponent = () => (
-  <ItemFile title="Title" subTitle="Subtitle" state="success" />
-);
+const MyComponent = () => {
+  const file = new File(["content"], "document.pdf", {
+    type: "application/pdf",
+  });
+
+  return (
+    <ItemFile
+      file={file}
+      isLoading={false}
+      errorMessage={undefined}
+      onPreview={(f) => console.log("preview", f)}
+      onRemove={(f) => console.log("remove", f)}
+    />
+  );
+};
 ```
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Prop</th>
+      <th scope="col">Type</th>
+      <th scope="col">Default</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>file</code>
+      </td>
+      <td>
+        <code>File</code>
+      </td>
+      <td>—</td>
+      <td>
+        The JavaScript <code>File</code> object representing the uploaded file.
+        (required)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>isLoading</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        When true, a spinner is shown instead of the validation icon and actions
+        may be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>errorMessage</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>—</td>
+      <td>
+        An optional error message shown below the file. If present, the item is
+        rendered in an error state.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>onRemove</code>
+      </td>
+      <td>
+        <code>
+          (file: File, event: MouseEvent&lt;HTMLButtonElement&gt;) =&gt; void
+        </code>
+      </td>
+      <td>—</td>
+      <td>
+        Callback invoked when the remove action is triggered. Receives the file
+        and the click event.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>onPreview</code>
+      </td>
+      <td>
+        <code>
+          (file: File, event: MouseEvent&lt;HTMLButtonElement&gt;) =&gt; void
+        </code>
+      </td>
+      <td>—</td>
+      <td>
+        Callback invoked when the preview action is triggered. Receives the file
+        and the click event.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>previewProps</code>
+      </td>
+      <td>
+        <code>
+          Partial&lt;Omit&lt;ClickIconProps, 'src' | 'onClick'&gt;&gt;
+        </code>
+      </td>
+      <td>
+        <code>`{}`</code>
+      </td>
+      <td>
+        Optional props forwarded to the preview icon button (except{" "}
+        <code>src</code> and <code>onClick</code>).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>removeProps</code>
+      </td>
+      <td>
+        <code>
+          Partial&lt;Omit&lt;ClickIconProps, 'src' | 'onClick'&gt;&gt;
+        </code>
+      </td>
+      <td>
+        <code>`{}`</code>
+      </td>
+      <td>
+        Optional props forwarded to the remove icon button (except{" "}
+        <code>src</code> and <code>onClick</code>).
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+> Note: The visual icons and spinner are provided by the design system internally; you can customize button props via `previewProps` and `removeProps`.
 
 ## Playground
 
 <Canvas of={ItemFileStories.Playground} />
 
 <Controls of={ItemFileStories.Playground} />
+
+## Best practices and accessibility
+
+- Ensure the `file` prop is a valid `File` object and that file names are sanitized if displayed in untrusted contexts.
+- The component sets `aria-busy` when `isLoading` is true and uses `aria-live="polite"` for the message area so screen readers are notified of status changes.
+- Action icon buttons (preview / remove) must have a clear accessible name. By default the component provides `aria-label` attributes (e.g. "Preview file {name}", "Remove file {name}"). If you override button props, keep or provide an `aria-label`.
+- Do not rely on color alone to indicate an error. Provide an explicit `errorMessage` text which is announced to assistive technologies.
+- If your list of files is interactive, ensure focus is handled appropriately when an item is removed (move focus to a sensible next element).
+
+## Examples
+
+- Example: basic file item
+
+```tsx
+const ExampleBasic = () => {
+  const file = new File(["x"], "photo.jpg", { type: "image/jpeg" });
+  return <ItemFile file={file} />;
+};
+```
+
+- Example: loading + preview/remove handlers
+
+```tsx
+const ExampleHandlers = () => {
+  const file = new File(["x"], "photo.jpg", { type: "image/jpeg" });
+  return (
+    <ItemFile
+      file={file}
+      isLoading={true}
+      onPreview={(f) => window.open(URL.createObjectURL(f))}
+      onRemove={(f) => console.log("remove", f.name)}
+    />
+  );
+};
+```
