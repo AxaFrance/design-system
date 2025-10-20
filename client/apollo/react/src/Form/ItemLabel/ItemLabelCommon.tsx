@@ -10,7 +10,7 @@ import type { ButtonProps } from "../../Button/ButtonCommon";
 
 export type ItemLabelProps = {
   label?: ReactNode;
-  description?: string;
+  description?: ReactNode;
   required?: boolean;
   inputId: string;
   sideButtonLabel?: string;

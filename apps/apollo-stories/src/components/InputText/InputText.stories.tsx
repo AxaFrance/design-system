@@ -19,7 +19,13 @@ const meta: Meta<typeof InputText> = {
     disabled: false,
     required: false,
     unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,
-    description: "Description",
+    description: (
+      <>
+        une description
+        <br />
+        sur 2 lignes
+      </>
+    ),
     buttonLabel: "En savoir plus",
     sideButtonLabel: "Modifier",
     error: "Error Message",
