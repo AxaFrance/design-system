@@ -1,115 +1,143 @@
+import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
+import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import {
   type ComponentPropsWithoutRef,
   type ComponentType,
   type MouseEvent,
 } from "react";
-
-import classNames from "classnames";
 import type { ClickIconProps } from "../../../ClickIcon/ClickIconCommon";
 import type { IconProps } from "../../../Icon/IconCommon";
 import type { SpinnerProps } from "../../../Spinner/SpinnerCommon";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
-import { ItemStateIcon } from "./ItemStateIcon";
-
-export const itemFileVariants = {
-  success: "success",
-  error: "error",
-  loading: "loading",
-} as const;
-
-export type ItemFileState = keyof typeof itemFileVariants;
 
 export type ItemFileProps = {
-  state: ItemFileState;
-  ariaLabelVisibility?: string;
-  ariaLabelDelete?: string;
-  filename?: string;
-  title: string;
-  onDeleteClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  onVisibilityClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  subTitle: string;
   /**
-   * @deprecated Use `message` and messageType instead.
+   * The JavaScript File object representing the uploaded file.
+   * (required)
+   */
+  file: File;
+  /**
+   * When true, a spinner is shown instead of the validation icon and actions
+   * may be disabled.
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
+   * An optional error message shown below the file. If present, the item is
+   * rendered in an error state.
    */
   errorMessage?: string;
   /**
-   * @deprecated Use `message` and messageType instead.
+   * Callback invoked when the remove action is triggered. Receives the file
+   * and the click event.
    */
-  success?: string;
-} & Omit<ComponentPropsWithoutRef<"section">, "children"> &
-  Partial<ItemMessageProps>;
+  onRemove?: (file: File, event: MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Callback invoked when the preview action is triggered. Receives the file
+   * and the click event.
+   */
+  onPreview?: (file: File, event: MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Optional props forwarded to the preview icon button (except `src` and
+   * `onClick`).
+   * @default {}
+   */
+  previewProps?: Partial<Omit<ClickIconProps, "src" | "onClick">>;
+  /**
+   * Optional props forwarded to the remove icon button (except `src` and
+   * `onClick`).
+   * @default {}
+   */
+  removeProps?: Partial<Omit<ClickIconProps, "src" | "onClick">>;
+} & Omit<ComponentPropsWithoutRef<"section">, "children">;
 
 export type ItemFileCommonProps = ItemFileProps & {
   ItemMessageComponent: ComponentType<ItemMessageProps>;
   ItemIconComponent: ComponentType<IconProps>;
   ItemSpinnerComponent: ComponentType<SpinnerProps>;
   ClickIconComponent: ComponentType<ClickIconProps>;
-  deleteIcon: string;
-  visibilityIcon: string;
+  removeIcon: string;
+  previewIcon: string;
+};
+
+const BASE_UNIT = 1000;
+const BYTE_UNITS = ["Ko", "Mo", "Go"];
+const getReadableFileSizeString = (fileSizeInBytes: number) => {
+  let i = -1;
+  let fileSizeInBytesCopy = fileSizeInBytes;
+  do {
+    fileSizeInBytesCopy /= BASE_UNIT;
+    i += 1;
+  } while (fileSizeInBytesCopy > BASE_UNIT);
+
+  return `${Math.max(fileSizeInBytesCopy, 0.1).toFixed(1)} ${BYTE_UNITS[i]}`;
 };
 
 export const ItemFileCommon = ({
-  className,
-  state,
-  filename,
-  title,
-  subTitle,
+  file,
+  isLoading,
   errorMessage,
-  success,
-  message,
-  messageType,
-  onDeleteClick,
-  onVisibilityClick,
-  ariaLabelDelete,
-  ariaLabelVisibility,
-  deleteIcon,
-  visibilityIcon,
+  className,
+  onRemove = () => {},
+  onPreview = () => {},
+  previewProps = {},
+  removeProps = {},
+  removeIcon,
+  previewIcon,
   ItemSpinnerComponent,
   ItemIconComponent,
   ItemMessageComponent,
   ClickIconComponent,
   ...props
 }: ItemFileCommonProps) => {
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(errorMessage);
+  const hasError = Boolean(errorMessage);
 
-  const classname = classNames(
-    "af-item-file",
-    hasError && "af-item-file--error",
-    className,
-  );
+  const handleClick =
+    (callback: (file: File, event: MouseEvent<HTMLButtonElement>) => void) =>
+    (e: MouseEvent<HTMLButtonElement>) => {
+      callback(file, e);
+    };
 
   return (
-    <section className={classname} {...props}>
+    <section
+      className={["af-item-file", hasError && "af-item-file--error", className]
+        .filter(Boolean)
+        .join(" ")}
+      aria-busy={isLoading ? true : undefined}
+      aria-live="polite"
+      {...props}
+    >
       <div className="af-item-file__body">
-        <ItemStateIcon
-          state={state}
-          ItemIconComponent={ItemIconComponent}
-          ItemSpinnerComponent={ItemSpinnerComponent}
-        />
-        <p className="af-item-file__title">{title}</p>
-        <p className="af-item-file__subtitle">{subTitle}</p>
+        {isLoading && !hasError ? (
+          <ItemSpinnerComponent size={24} />
+        ) : (
+          <ItemIconComponent
+            size="S"
+            src={hasError ? errorIcon : validationIcon}
+          />
+        )}
+        <p className="af-item-file__file-name">{file.name}</p>
+        <p className="af-item-file__file-size">
+          {getReadableFileSizeString(file.size)}
+        </p>
         <div className="af-item-file__actions">
-          {state === "success" && (
+          {!isLoading && !hasError && (
             <ClickIconComponent
-              src={visibilityIcon}
-              onClick={onVisibilityClick}
-              aria-label={
-                ariaLabelVisibility || `Observer le fichier ${filename}`
-              }
+              src={previewIcon}
+              onClick={handleClick(onPreview)}
+              aria-label={`Previsualiser le fichier ${file.name}`}
+              {...previewProps}
             />
           )}
           <ClickIconComponent
-            src={deleteIcon}
-            onClick={onDeleteClick}
-            aria-label={ariaLabelDelete || `Suppression du fichier ${filename}`}
+            src={removeIcon}
+            onClick={handleClick(onRemove)}
+            aria-label={`Suppression du fichier ${file.name}`}
+            {...removeProps}
           />
         </div>
       </div>
-      <ItemMessageComponent
-        message={message || errorMessage || success}
-        messageType={messageType || (errorMessage ? "error" : "success")}
-      />
+      <ItemMessageComponent message={errorMessage} />
     </section>
   );
 };
