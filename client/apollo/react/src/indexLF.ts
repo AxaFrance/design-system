@@ -108,7 +108,4 @@ export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
 export { InputFile } from "./Form/FileUpload/InputFile/InputFileLF";
-export {
-  ItemFile,
-  itemFileVariants,
-} from "./Form/FileUpload/ItemFile/ItemFileLF";
+export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileLF";

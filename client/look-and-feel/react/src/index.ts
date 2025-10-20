@@ -41,7 +41,7 @@ export {
   /** @deprecated Use `TextInput` instead. */ TextInput as InputText,
   TextInput,
 } from "./Form/InputText/InputText";
-export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFile";
+export { ItemFile } from "./Form/ItemFile/ItemFile";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabel";
 export { ItemMessage } from "./Form/ItemMessage/ItemMessage";
 export {

@@ -106,7 +106,4 @@ export { Tag, tagVariants, type TagVariants } from "./Tag/TagApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
 export { InputFile } from "./Form/FileUpload/InputFile/InputFileApollo";
-export {
-  ItemFile,
-  itemFileVariants,
-} from "./Form/FileUpload/ItemFile/ItemFileApollo";
+export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileApollo";

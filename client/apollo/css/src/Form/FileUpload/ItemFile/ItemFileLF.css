@@ -3,20 +3,15 @@
 .af-item-file {
   --item-file-border-radius: var(--radius-4);
   --item-file-border-color: var(--color-gray-700);
-  --item-file-title-color: var(--color-gray-900);
-  --item-file-subtitle-color: var(--color-gray-700);
-  --icon-fill: var(--green-100);
+  --item-file-file-name-color: var(--color-gray-900);
+  --item-file-file-size-color: var(--color-gray-700);
   --item-file-gap: calc(8 / var(--font-size-base) * 1rem);
   --item-file-body-padding-vertical: calc(16 / var(--font-size-base) * 1rem);
   --item-file-body-padding-horizontal: calc(16 / var(--font-size-base) * 1rem);
   --item-file-action-buttons-gap: calc(16 / var(--font-size-base) * 1rem);
 
-  .af-icon__success {
+  > .af-item-file__body > .af-icon {
     --icon-fill: var(--color-green-600);
-  }
-
-  .af-icon__error {
-    --icon-fill: var(--color-red-700);
   }
 
   @media (--desktop-small) {
@@ -28,8 +23,8 @@
 
 .af-item-file--error {
   --item-file-border-color: var(--color-red-700);
-}
 
-.af-item-file__spinner div {
-  --item-file-spinner-color: var(--color-gray-700);
+  > .af-item-file__body > .af-icon {
+    --icon-fill: var(--color-red-700);
+  }
 }

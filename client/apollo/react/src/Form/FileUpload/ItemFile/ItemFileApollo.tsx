@@ -8,16 +8,14 @@ import { ItemFileCommon, type ItemFileProps } from "./ItemFileCommon";
 
 import "@axa-fr/design-system-apollo-css/dist/Form/FileUpload/ItemFile/ItemFileApollo.css";
 
-export { itemFileVariants } from "./ItemFileCommon";
-
 export const ItemFile = (props: ItemFileProps) => (
   <ItemFileCommon
     ItemMessageComponent={ItemMessage}
     ItemIconComponent={Icon}
     ItemSpinnerComponent={Spinner}
     ClickIconComponent={ClickIcon}
-    deleteIcon={deleteIcon}
-    visibilityIcon={visibilityIcon}
+    removeIcon={deleteIcon}
+    previewIcon={visibilityIcon}
     {...props}
   />
 );
