@@ -22,7 +22,7 @@ exports[`<Paging> > renders Paging with specific labels correctly 1`] = `
             >
               <label
                 class="af-form__group-label"
-                for=":r0:"
+                for="_r_0_"
               >
                 Afficher
               </label>
@@ -36,7 +36,7 @@ exports[`<Paging> > renders Paging with specific labels correctly 1`] = `
                 <select
                   aria-label="Nombre de sinistres à afficher"
                   class="af-form__input-select"
-                  id=":r0:"
+                  id="_r_0_"
                 >
                   <option
                     value="5"
@@ -50,7 +50,7 @@ exports[`<Paging> > renders Paging with specific labels correctly 1`] = `
                   </option>
                 </select>
                 <span
-                  aria-controls=":r0:"
+                  aria-controls="_r_0_"
                   class="glyphicon glyphicon-menu-down"
                 />
               </div>
