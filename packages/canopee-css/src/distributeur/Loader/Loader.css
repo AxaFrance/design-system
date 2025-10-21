@@ -1,55 +1,59 @@
 @layer canopee {
-  .af-loader {
+  .af-spinner-loader {
+    --af-spinner-loader-size: 32px;
+    --af-spinner-loader-backdrop: transparent;
+    --af-spinner-loader-color: var(--gray50);
+
     position: relative;
-    min-height: 94px;
+    display: flex;
+    min-height: 120px;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: calc(16rem / 16);
+    background: var(--af-spinner-loader-backdrop);
   }
 
-  .af-loader-on {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(180, 180, 180, 75%);
+  .af-spinner-loader--fullscreen {
+    --af-spinner-loader-backdrop: color-mix(
+      in srgb,
+      var(--black) 80%,
+      transparent
+    );
+    --af-spinner-loader-size: 72px;
+
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    flex-direction: column-reverse;
   }
 
-  .af-spinner {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    left: 0;
-    display: block;
-    transform: translateY(-50%);
+  .af-spinner-loader--content {
+    --af-spinner-loader-size: 48px;
+
+    flex-direction: column-reverse;
   }
 
-  .af-spinner__caption {
+  .af-spinner-loader__icon {
+    width: var(--af-spinner-loader-size);
+    height: var(--af-spinner-loader-size);
+    order: 1;
+  }
+
+  .af-spinner-loader__text {
+    margin: 0;
+    font-size: calc(20rem / 16);
     text-align: center;
-    color: var(--gray80);
+    color: var(--af-spinner-loader-color);
   }
 
-  .af-spinner__animation {
-    width: 50px;
-    height: 50px;
-    margin: 10px auto;
-    background-color: var(--axablue80);
-    animation: rotateplane 1.1s infinite ease-in-out;
+  .af-spinner-loader--fullscreen .af-spinner-loader__text {
+    --af-spinner-loader-color: var(--white);
   }
+
   @media (prefers-reduced-motion: reduce) {
-    .af-spinner__animation {
-      animation: none;
-    }
-  }
-  @keyframes rotateplane {
-    0% {
-      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-    }
-
-    50% {
-      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    }
-
-    100% {
-      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    .af-spinner-loader__icon animateTransform {
+      display: none;
     }
   }
 }

@@ -1,68 +1,48 @@
 import "@axa-fr/canopee-css/distributeur/Loader/Loader.css";
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
+
 import { getClassName } from "../utilities/helpers/getClassName";
+import { ItemLoader, type ItemLoaderVariant } from "./ItemLoader";
 
-type LoaderMode = "none" | "get" | "post" | "delete" | "update" | "error";
+const SPINNER_CLASS_NAME = "af-spinner-loader";
 
-const getText = (index: LoaderMode) => {
-  switch (index) {
-    case "get":
-      return "Chargement en cours";
-    case "post":
-      return "Sauvegarde en cours";
-    case "delete":
-      return "Suppression en cours";
-    case "update":
-      return "Mise à jour en cours";
-    case "error":
-      return "Une erreur est survenue lors du chargement du composant";
-    default:
-      return "";
-  }
-};
-
-type LoaderProps = {
+export type LoaderProps = {
   className?: string;
-  mode: LoaderMode;
-  text?: string;
-  children: ReactNode;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
+  text: string;
+  variant?: ItemLoaderVariant;
+  children?: ReactNode;
 };
 
 export const Loader = ({
   className,
   text,
+  variant = "fullscreen",
   children,
-  classModifier,
-  mode = "none",
 }: LoaderProps) => {
-  const componentClassName = getClassName({
-    baseClassName: "af-loader",
-    modifiers: classModifier?.split(" "),
-    className,
-  });
-  const message = text || getText(mode);
-  const isLoaderVisible = mode !== "none";
-  const isLoaderInError = mode === "error";
-
-  return (
-    <div className={componentClassName}>
-      {children}
-      {isLoaderVisible ? (
-        <div className={`${componentClassName} af-loader-on`}>
-          <div
-            className="af-spinner"
-            role="alert"
-            aria-live="assertive"
-            aria-busy={!isLoaderInError}
-            aria-label={message}
-          >
-            {!isLoaderInError && <div className="af-spinner__animation" />}
-            <div className="af-spinner__caption">{message}</div>
-          </div>
-        </div>
-      ) : null}
-    </div>
+  const loader = (
+    <section
+      role="alert"
+      aria-live="assertive"
+      aria-busy="true"
+      className={getClassName({
+        baseClassName: SPINNER_CLASS_NAME,
+        modifiers: [variant !== "inline" && variant],
+        className,
+      })}
+    >
+      <ItemLoader variant={variant} />
+      <p className={`${SPINNER_CLASS_NAME}__text`}>{text}</p>
+    </section>
   );
+
+  if (variant === "fullscreen" && children) {
+    return (
+      <>
+        {children}
+        {loader}
+      </>
+    );
+  }
+
+  return loader;
 };

@@ -46,6 +46,7 @@ export const svgInjector = (
     ...options,
     beforeEach: (svg) => {
       DOMPurify.sanitize(svg, {
+        ADD_ATTR: ["to", "from"],
         USE_PROFILES: { svg: true, svgFilters: true },
         IN_PLACE: true,
       });
