@@ -5,54 +5,25 @@ import * as LoaderStories from "./Loader.stories";
 
 # Loader
 
-The loader is a component to disable part of your application to express an unspecified wait time or display the length of a process.
+The loader is a component to show a loading svg in your project.
+Three variants are available:
+
+- `default`: a oneline loader. This is the default variant.
+- `fullScreen`: a fullscreen loader
+- `content`: same as the fullScreen loader but with a smaller loader svg, to be used inside content areas.
 
 ```tsx
 import { Loader } from "@axa-fr/design-system-slash-react";
 
-const MyComponent = () => <Loader mode="get">My Content</Loader>;
+const MyComponent = () => (
+  <Loader variant="default" text="Recherche en cours" />
+);
 ```
+
+NB : Previously, the loader was used to wrap the content shown after loading. This is not the case anymore, you just need to use the loader component and to show/hide it depending on your loading state.
+The previous loader is still available to ease the migration, it has been tagged as deprecated and will be removed in next major release.
 
 ## Playground
 
 <Canvas of={LoaderStories.Default} />
 <Controls of={LoaderStories.Default} />
-
-## Modes
-
-The loader has 6 modes and a `none` mode to disable it. Each mode will display a different text, which can be overloaded via the `text` prop.
-
-<table>
-  <thead>
-    <tr>
-      <th>Mode</th>
-      <th>Text</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>none</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>get</td>
-      <td>Chargement en cours</td>
-    </tr>
-    <tr>
-      <td>post</td>
-      <td>Sauvegarde en cours</td>
-    </tr>
-    <tr>
-      <td>delete</td>
-      <td>Suppression en cours</td>
-    </tr>
-    <tr>
-      <td>update</td>
-      <td>Mise à jour en cours</td>
-    </tr>
-    <tr>
-      <td>error</td>
-      <td>Une erreur est survenue lors du chargement du composant</td>
-    </tr>
-  </tbody>
-</table>

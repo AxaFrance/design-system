@@ -1,67 +1,47 @@
-import "@axa-fr/design-system-slash-css/dist/Loader/Loader.scss";
-import React from "react";
-import { getComponentClassName } from "../utilities";
+import "@axa-fr/design-system-slash-css/dist/Loader/Loader.css";
+import classNames from "classnames";
+import { Spinner } from "../Spinner/Spinner";
 
-type LoaderMode = "none" | "get" | "post" | "delete" | "update" | "error";
+/**
+ * Available variants for the Loader component.
+ * - "inline": Standard loader display
+ * - "fullScreen": Loader that covers the entire screen
+ * - "content": Loader for content areas
+ */
+type LoaderVariant = "inline" | "fullScreen" | "content";
 
-const getText = (index: LoaderMode) => {
-  switch (index) {
-    case "get":
-      return "Chargement en cours";
-    case "post":
-      return "Sauvegarde en cours";
-    case "delete":
-      return "Suppression en cours";
-    case "update":
-      return "Mise à jour en cours";
-    case "error":
-      return "Une erreur est survenue lors du chargement du composant";
-    default:
-      return "";
-  }
-};
-
+/**
+ * Props for the Loader component.
+ */
 type LoaderProps = {
+  /** The text to display alongside the loading spinner. */
+  text: string;
+  /** The visual variant of the loader. @default "inline" */
+  variant?: LoaderVariant;
+  /** Additional CSS class names to apply to the loader container. */
   className?: string;
-  mode: LoaderMode;
-  text?: string;
-  children: React.ReactNode;
-  classModifier?: string;
 };
+
+const DEFAULT_CLASS_NAME = "af-loader";
 
 export const Loader = ({
   className,
   text,
-  children,
-  classModifier,
-  mode = "none",
+  variant = "inline",
 }: LoaderProps) => {
-  const componentClassName = getComponentClassName(
-    className,
-    classModifier,
-    "af-loader",
-  );
-  const message = text || getText(mode);
-  const isLoaderVisible = mode !== "none";
-  const isLoaderInError = mode === "error";
-
   return (
-    <div className={componentClassName}>
-      {children}
-      {isLoaderVisible ? (
-        <div className={`${componentClassName} af-loader-on`}>
-          <div
-            className="af-spinner"
-            role="alert"
-            aria-live="assertive"
-            aria-busy={!isLoaderInError}
-            aria-label={message}
-          >
-            {!isLoaderInError && <div className="af-spinner__animation" />}
-            <div className="af-spinner__caption">{message}</div>
-          </div>
-        </div>
-      ) : null}
-    </div>
+    <section
+      role="alert"
+      aria-live="assertive"
+      aria-busy="true"
+      className={classNames(
+        DEFAULT_CLASS_NAME,
+        variant !== "inline" && `${DEFAULT_CLASS_NAME}--${variant}`,
+        className,
+      )}
+    >
+      <Spinner />
+      <p>{text}</p>
+    </section>
   );
 };
