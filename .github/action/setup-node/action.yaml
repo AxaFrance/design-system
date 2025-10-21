@@ -9,12 +9,23 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Use Node.js
-      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+    - name: Get Node.js version from volta
+      shell: bash
+      run: echo "NODE_VERSION=$(jq -r .volta.node package.json)" >> $GITHUB_ENV
+    
+    - name: Get npm version from volta
+      shell: bash
+      run: echo "NPM_VERSION=$(jq -r .volta.npm package.json)" >> $GITHUB_ENV
+
+    - name: Setup Node.js
+      uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
       with:
-        node-version: "*" # Use the LTS Node.js version
-        cache: "npm"
-        registry-url: "https://registry.npmjs.org"
+        node-version: ${{ env.NODE_VERSION || 'lts/*' }}
+
+    - name: Setup npm version
+      if: ${{ env.NPM_VERSION }}
+      shell: bash
+      run: npm install -g npm@${{ env.NPM_VERSION }}
 
     - name: Check package
       if: inputs.check-package
