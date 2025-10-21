@@ -1,4 +1,4 @@
-@layer canopee, reset;
+@import "./common/layers.css";
 
 @import "./common/tokens.css";
 @import "./common/breakpoints.css";
@@ -39,5 +39,6 @@
 @import "./Link/Link.css";
 @import "./Popover/Popover.css";
 @import "./Loader/Loader.css";
+@import "./Loader/SquareLoader.css";
 @import "./CardData/CardData.css";
 @import "./MandatoryMention/MandatoryMention.css";
