@@ -109,3 +109,4 @@ export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
 export { InputFile } from "./Form/FileUpload/InputFile/InputFileLF";
 export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileLF";
+export { FileUpload } from "./Form/FileUpload/FileUpload/FileUploadLF";
