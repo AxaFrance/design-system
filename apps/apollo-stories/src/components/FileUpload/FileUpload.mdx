@@ -1,0 +1,89 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as FileUploadStories from "./FileUpload.stories";
+
+<Meta of={FileUploadStories} name="FileUpload" />
+
+# FileUpload
+
+The `FileUpload` component provides a dropzone and an accessible file input control similar to `InputFile`, and adds a dedicated area to display uploaded files. The uploaded files area is rendered by providing one or more `ItemFile` components as `children`, which gives full flexibility for preview/remove links and per-file error messages.
+
+Usage example:
+
+```tsx
+import { FileUpload, ItemFile } from "@axa-fr/design-system-apollo-react";
+
+const Example = () => (
+  <FileUpload
+    id="attachments"
+    label="Attach supporting documents"
+    description="Drop files here or use the button to select"
+    helper="Up to 2 files — pdf, png, jpg — 5 MB max each"
+    fileListLabel="Your uploaded files:"
+  >
+    <ItemFile
+      file={
+        new File([new Uint8Array(1024)], "example.jpg", { type: "image/jpg" })
+      }
+    />
+    <ItemFile
+      file={
+        new File([new Uint8Array(1024)], "contract.pdf", {
+          type: "application/pdf",
+        })
+      }
+      errorMessage="This file is larger than 5MB"
+    />
+  </FileUpload>
+);
+```
+
+### Props
+
+Note: `FileUpload` inherits all props from the `InputFile` component. The table below lists the props specific to `FileUpload` or commonly used with it — consult the `InputFile` documentation for the full set of inherited props.
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Prop</th>
+      <th scope="col">Type</th>
+      <th scope="col">Default</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>children</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>
+        One or more `ItemFile` elements representing uploaded files. Using
+        `children` allows flexible rendering of preview/remove links and
+        per-file error messages inside each `ItemFile`.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>fileListLabel</code>
+      </td>
+      <td>ReactNode</td>
+      <td>
+        <code>"Vos fichiers importés :"</code>
+      </td>
+      <td>
+        Label displayed above the uploaded files list. If no `children` are
+        provided, the list and label are not rendered.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+> Note: Most native `<input>` props are supported and forwarded to the internal `<input type="file">` (except `type`, which is forced to `file`).
+> The `className` and `style` props apply to the component container, not the native input element.
+
+## Playground
+
+<Canvas of={FileUploadStories.Playground} />
+
+<Controls of={FileUploadStories.Playground} />
