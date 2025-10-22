@@ -35,6 +35,7 @@ export {
   InputDate as DateInput,
   InputDate,
 } from "./Form/InputDate/InputDateLF";
+export { InputDateText } from "./Form/InputDateText/InputDateTextApollo";
 export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { InputPhone } from "./Form/InputPhone/InputPhoneLF";
 export {
