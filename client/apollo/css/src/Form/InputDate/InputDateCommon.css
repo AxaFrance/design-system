@@ -56,10 +56,6 @@
     outline-width: var(--input-date-box-shadow-width);
   }
 
-  &[class*="no-picker"]::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-
   @media (--desktop-small) {
     font-size: calc(18 / var(--font-size-base) * 1rem);
     line-height: 1.25;

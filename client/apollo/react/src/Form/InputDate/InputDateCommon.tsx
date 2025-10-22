@@ -3,10 +3,7 @@ import {
   type ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
-  useEffect,
   useId,
-  useImperativeHandle,
-  useRef,
 } from "react";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
 import {
@@ -37,6 +34,9 @@ export type InputDateProps = Omit<
    * @deprecated Use `message` and messageType instead.
    */
   success?: string;
+  /**
+   * @deprecated Use se the other composant `InputDateText` instead.
+   */
   hidePicker?: boolean;
   label: ItemLabelProps["label"];
 } & Partial<ItemLabelProps & ItemMessageProps>;
@@ -72,7 +72,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       hidePicker,
       ...otherProps
     },
-    ref,
+    inputRef,
   ) => {
     const componentClassName = getComponentClassName(
       "af-form__input-date",
@@ -84,44 +84,12 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     inputId = otherProps.id ?? inputId;
     const idMessage = useId();
     const idHelp = useId();
-    const inputRef = useRef<HTMLInputElement>(null);
 
-    useImperativeHandle<typeof inputRef.current, typeof inputRef.current>(
-      ref,
-      () => inputRef.current,
-    );
-
-    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
-      Boolean,
-    ) as string[];
-
-    /* Stop space keydown, enter keydown for non webkit browsers and click events targeting the input element when picker is disabled */
-    useEffect(() => {
-      function handleKeydown(event: KeyboardEvent) {
-        if (
-          hidePicker &&
-          (event.keyCode === 32 ||
-            (event.keyCode === 13 &&
-              !window.navigator?.userAgent?.includes("WebKit"))) &&
-          event.target === inputRef.current
-        ) {
-          event.preventDefault();
-        }
-      }
-      function handleClick(event: MouseEvent) {
-        if (hidePicker && event.target === inputRef.current) {
-          event.preventDefault();
-        }
-      }
-
-      window.addEventListener("keydown", handleKeydown);
-      window.addEventListener("click", handleClick);
-
-      return () => {
-        window.removeEventListener("keydown", handleKeydown);
-        window.removeEventListener("click", handleClick);
-      };
-    }, [hidePicker]);
+    const ariaDescribedby = [
+      helper && idHelp,
+      ((Boolean(message) && messageType === "success") || Boolean(success)) &&
+        idMessage,
+    ].filter(Boolean) as string[];
 
     const hasError =
       (Boolean(message) && messageType === "error") || Boolean(error);
