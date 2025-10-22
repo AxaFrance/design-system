@@ -107,3 +107,4 @@ export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
 export { InputFile } from "./Form/FileUpload/InputFile/InputFileApollo";
 export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileApollo";
+export { FileUpload } from "./Form/FileUpload/FileUpload/FileUploadApollo";
