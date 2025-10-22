@@ -1,0 +1,112 @@
+
+import { Canvas, Controls, Description, Meta } from "@storybook/blocks";
+import * as Stories from "./FormHelper.stories";
+
+<Meta of={Stories} />
+
+# FormHelper
+
+The `FormHelper` component displays one or more sections, each with an optional title and a list of steps. Each step is rendered using `ItemFormHelper`.
+
+## Import
+
+```javascript
+import { FormHelper } from "@axa-fr/design-system-slash-react";
+```
+
+## Usage: with title
+
+<Canvas of={Stories.WithTitle} />
+
+## Usage: without title
+
+<Canvas of={Stories.WithoutTitle} />
+
+## Example
+
+```jsx
+// One section with title
+<FormHelper
+    formTitle="Assistant de saisie"
+    sections={[
+      {
+        title: "Mon formulaire",
+        items: [
+          { label: "En cours", mode: "edited" },
+          { label: "A compléter", mode: "locked" },
+          { label: "Validé", mode: "validated" },
+          { label: "Désactivé", mode: "disabled" },
+        ]
+      }
+    ]}
+/>
+
+// Multiple sections
+<FormHelper
+    formTitle="Assistant de saisie"
+    sections={[
+      {
+          title: "Mon formulaire",
+          items: [
+            { label: "Configuration", mode: "validated" },
+            { label: "Souscription", mode: "validated" },
+            { label: "Payement", mode: "edited" },
+          ],
+        },
+        {
+          title: "Deuxième section avec ancres",
+          items: [
+            { label: "Préférences", mode: "locked", anchor: "preferences" },
+            { label: "Souscription", mode: "locked", anchor: "souscription" },
+            { label: "Retractation", mode: "locked", anchor: "retractation" },
+          ],
+        },
+      ]}
+/>
+
+// Section without title
+<FormHelper
+    formTitle="Assistant de saisie"
+    sections={[
+      {
+        items: [
+          { label: "En cours", mode: "edited" },
+          { label: "A compléter", mode: "locked" },
+          { label: "Validé", mode: "validated" },
+          { label: "Désactivé", mode: "disabled" },
+        ]
+      }
+    ]}
+/>
+```
+
+## Accessibility
+
+- The form title is rendered as an `<h2>` for better screen reader support.
+- The sections title are rendered as `<h3>` for better screen reader support.
+- The component uses semantic HTML (`<ul>`, `<li>`, `<h2>`, `<h3>`) for proper list and navigation structure.
+
+---
+
+## Properties
+
+### formTitle
+
+- **Type:** `string` (required)
+- **Description:** Title of the form, rendered as an `<h2>` for accessibility.
+
+### sections
+
+
+- **Type:** `Array<{ title?: string; items: Array<{ label: string; mode: string; ancre?: string }> }>` (required)
+
+- **Description:**
+  - Each section object can have:
+    - `title`: **string** (optional) — The section title, rendered as an `<h3>` above the list of steps.
+    - `items`: **Array** — The list of step objects for this section.
+      - Each item object can have:
+        - `label`: **string** — The label for the step, displayed in the list.
+        - `mode`: **string** — The visual state of the step (`locked`, `edited`, `validated`, etc.).
+        - `ancre`: **string** (optional) — If provided, the label is rendered as a link to the anchor.
+
+For more advanced usage, see the Storybook controls and playground below.
