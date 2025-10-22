@@ -1,0 +1,89 @@
+
+import { Canvas, Controls, Description, Meta } from "@storybook/blocks";
+import * as Stories from "./FormHelper.stories";
+
+<Meta of={Stories} />
+
+# FormHelper
+
+The `FormHelper` component displays one or more sections, each with an optional title and a list of steps. Each step is rendered using `ItemFormHelper`.
+
+## Import
+
+```javascript
+import { FormHelper } from "@axa-fr/design-system-slash-react";
+```
+
+## Usage: with title
+
+<Canvas of={Stories.WithTitle} />
+
+## Usage: without title
+
+<Canvas of={Stories.WithoutTitle} />
+
+## Example
+
+```jsx
+// One section with title
+<FormHelper
+	sections={[{
+	    titre: "Mon formulaire",
+		items: [
+			{ label: "En cours", mode: "edited" },
+			{ label: "A compléter", mode: "locked" },
+			{ label: "Validé", mode: "validated" },
+			{ label: "Désactivé", mode: "disabled" },
+		]
+	}]}
+/>
+
+// Multiple sections
+<FormHelper
+	sections={[
+        {
+          titre: "Mon formulaire",
+          items: [
+            { label: "Configuration", mode: "validated" },
+            { label: "Souscription", mode: "validated" },
+            { label: "Payement", mode: "edited" },
+          ],
+        },
+        {
+          titre: "Deuxième section",
+          items: [
+            { label: "Préférences", mode: "locked" },
+            { label: "Souscription", mode: "locked" },
+            { label: "Retractation", mode: "locked" },
+          ],
+        },
+      ]}
+/>
+
+// Section without title
+<FormHelper
+	sections={[{
+		items: [
+			{ label: "En cours", mode: "edited" },
+			{ label: "A compléter", mode: "locked" },
+			{ label: "Validé", mode: "validated" },
+			{ label: "Désactivé", mode: "disabled" },
+		]
+	}]}
+/>
+```
+
+## Accessibility
+
+- The title is rendered as an `<h3>` for better screen reader support.
+- The component uses semantic HTML (`<ul>`, `<li>`, `<h3>`) for proper list and navigation structure.
+
+---
+
+## Properties
+
+**sections**  
+Type: `Array<{ titre?: string; items: Array<{ label: string; mode: string; ancre?: string }> }>` (required)  
+An array of sections, each with an optional title and a list of step objects.
+
+For more advanced usage, see the Storybook controls and playground below.
