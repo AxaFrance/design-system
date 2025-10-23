@@ -1,5 +1,4 @@
 import { type ComponentProps } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Icon, Radio } from "@axa-fr/design-system-apollo-react/lf";
 
 export type TCardRadioItemProps = Omit<ComponentProps<typeof Radio>, "size"> & {

@@ -1,5 +1,4 @@
 import { useId, type ChangeEventHandler } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ItemMessage } from "@axa-fr/design-system-apollo-react/lf";
 import {
   BREAKPOINT,
