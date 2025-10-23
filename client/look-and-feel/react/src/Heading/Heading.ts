@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 export {
   Heading,
   type HeadingLevel,
