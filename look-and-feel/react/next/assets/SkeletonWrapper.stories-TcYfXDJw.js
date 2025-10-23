@@ -1,0 +1,6 @@
+import{j as e}from"./index-C1mcBe1y.js";import"./TimelineVerticalLF-9OIG-ar8.js";import"./ProgressBarCommon-_6RIV1Pi.js";import"./constants-B463cnah.js";import{r as n}from"./index-DbaA8R3S.js";import{S as p}from"./Skeleton-DIdUkNYt.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-BOKuxaB8.js";import"./visibility-fill-CUq5Rz3Z.js";const E={title:"Components/Skeleton",component:p},l=c=>{const[t,i]=n.useState(!0);return n.useEffect(()=>{const m=setInterval(()=>{i(d=>!d)},5e3);return()=>clearInterval(m)},[t]),e.jsx("div",{className:"skeleton-wrapper-demo",children:e.jsx(p,{...c,isLoading:t,children:e.jsxs("div",{className:"skeleton-wrapper-content",children:[e.jsx("p",{children:"Ceci est mon contenu à charger"}),e.jsx("p",{children:"Ceci est mon contenu à charger"}),e.jsx("p",{children:"mon contenu"})]})})})},r={args:{grid:[[8],[8],[5]]},render:l};var o,s,a;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  args: {
+    grid: [[8], [8], [5]]
+  },
+  render: RenderWrapper
+}`,...(a=(s=r.parameters)==null?void 0:s.docs)==null?void 0:a.source}}};const W=["WrapperMode"];export{r as WrapperMode,W as __namedExportsOrder,E as default};
