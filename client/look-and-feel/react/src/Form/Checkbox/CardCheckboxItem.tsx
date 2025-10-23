@@ -1,5 +1,4 @@
 import { useId, type ReactNode, type ComponentProps } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Icon, Checkbox } from "@axa-fr/design-system-apollo-react/lf";
 
 export type TCardCheckboxItem = {

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 export {
   ItemTabBar,
   type ItemTabBarProps,
