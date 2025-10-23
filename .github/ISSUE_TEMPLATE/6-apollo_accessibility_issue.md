@@ -2,7 +2,7 @@
 name: Apollo Accessibility report
 about: Create an accessibility report to help us improve Apollo Design System
 title: "[a11y] "
-labels: ['bug', 'accessibility', 'Apollo AXA.fr']
+labels: ['bug', 'accessibility', '[Prospect] (Apollo AXA.fr)']
 assignees: ''
 
 ---

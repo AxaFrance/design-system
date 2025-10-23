@@ -2,7 +2,7 @@
 name: Apollo Bug report
 about: Create a report to help us improve Apollo Design System
 title: ''
-labels: ['bug', 'Apollo AXA.fr']
+labels: ['bug', '[Prospect] (Apollo AXA.fr)']
 assignees: ''
 
 ---
