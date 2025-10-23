@@ -1,6 +1,5 @@
 .af-card-radio-option {
   --radio-option-border-width: 1px;
-  --radio-option-background-color: var(--white);
 
   position: relative;
   display: flex;

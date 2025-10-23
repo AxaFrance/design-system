@@ -1,6 +1,5 @@
 .af-card-checkbox-option {
   --checkbox-option-border-width: 1px;
-  --checkbox-option-background-color: var(--white);
 
   position: relative;
   display: flex;
