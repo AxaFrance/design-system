@@ -21,6 +21,10 @@
   line-height: var(--accordion-title-line-height);
   cursor: pointer;
 
+  &::-webkit-details-marker {
+    display: none;
+  }
+
   p {
     margin: 0;
   }
