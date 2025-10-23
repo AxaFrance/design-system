@@ -6,6 +6,7 @@
   --checkbox-option-color-subtitle: var(--color-gray-700);
   --checkbox-option-gap: calc(8 / var(--font-size-base) * 1rem);
   --checkbox-option-border-radius: var(--radius-4);
+  --checkbox-option-background-color: var(--color-white);
 
   &:hover,
   &:focus-visible,

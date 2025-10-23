@@ -6,6 +6,7 @@
   --radio-option-color-subtitle: var(--color-gray-700);
   --radio-option-gap: calc(8 / var(--font-size-base) * 1rem);
   --radio-option-border-radius: var(--radius-4);
+  --radio-option-background-color: var(--color-white);
 
   &:hover,
   &:focus-visible,
