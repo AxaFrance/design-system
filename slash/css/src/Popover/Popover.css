@@ -1,0 +1,40 @@
+.af-popover__wrapper {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: inherit;
+}
+
+.af-popover__wrapper--click {
+  cursor: pointer;
+}
+
+.af-popover__container {
+  display: inline-block;
+}
+
+.af-popover__container-pop {
+  position: relative;
+  z-index: 100;
+  width: calc(260rem / 16);
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  line-height: 1.125rem;
+  color: var(--azur);
+  background: var(--white);
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
+}
+
+.af-popover__container-pop .af-subtitle {
+  font-size: 2em;
+  color: var(--white);
+}
+
+.af-popover__container-pop .af-subtitle::after {
+  display: none;
+}
+
+.af-popover__container--small .af-btn--circle {
+  width: 2rem;
+  height: 2rem;
+}

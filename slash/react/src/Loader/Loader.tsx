@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Loader/Loader.scss";
+import "@axa-fr/design-system-slash-css/dist/Loader/Loader.css";
 import React from "react";
 import { getComponentClassName } from "../utilities";
 

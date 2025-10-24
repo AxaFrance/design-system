@@ -1,0 +1,193 @@
+.af-menu-open {
+  overflow-y: hidden;
+}
+
+.mask {
+  position: fixed;
+  z-index: 17;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 80%);
+}
+
+.mask.show {
+  display: block;
+}
+
+.af-nav {
+  position: relative;
+  z-index: 18;
+  max-width: 320px;
+  background: var(--gray10);
+}
+
+.af-nav.af-drawer {
+  position: fixed;
+  z-index: 1039;
+  top: 0;
+  bottom: 0;
+  min-width: 320px;
+  overflow: auto;
+  background: var(--white);
+  -webkit-overflow-scrolling: touch;
+}
+
+.af-nav__link {
+  display: block;
+  padding: 1rem;
+  text-align: left;
+}
+
+.af-nav__link:focus {
+  box-shadow: 0 0 5px var(--axablue80);
+  outline: none;
+}
+
+.af-nav__link a:hover {
+  text-decoration: none;
+}
+
+.af-nav__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  list-style: none;
+}
+
+.af-nav__list--children {
+  top: 100%;
+  min-width: 200px;
+  border-radius: 0 0 3px 3px;
+  font-size: 0.9em;
+}
+
+.af-nav__list--children .af-nav__link {
+  padding: 0.4rem 1.1rem 0.4rem 2rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.af-nav__item {
+  position: relative;
+  width: 100%;
+}
+
+.af-nav__item--haschild > .af-nav__link {
+  padding-right: 1.1rem;
+}
+
+.af-nav__item .glyphicon-arrow-xs-down {
+  position: absolute;
+  top: 50%;
+  right: 0.2rem;
+  display: none;
+  width: 17px;
+  transform: translate(0, -50%);
+}
+
+.af-nav__item--active > .af-nav__link,
+.af-nav__item:hover > .af-nav__link {
+  color: var(--white);
+  background-color: var(--axablue80);
+}
+
+.af-nav__item--active .glyphicon-arrow-xs-down,
+.af-nav__item:hover .glyphicon-arrow-xs-down {
+  color: var(--white);
+}
+
+.af-nav__item--open .af-nav__list--children,
+.af-nav__item:hover .af-nav__list--children {
+  display: block;
+}
+
+.af-nav__aside-header {
+  display: flex;
+  border-bottom: 2px solid var(--gray60);
+  align-items: center;
+}
+
+.af-nav__aside-title {
+  margin: 0;
+  padding: 10px 15px;
+  flex: 1;
+}
+
+.af-nav__aside-close {
+  border: none;
+  font-size: 3em;
+  color: var(--gray60);
+  background: inherit;
+  cursor: pointer;
+}
+
+.af-nav__aside-close:hover {
+  text-decoration: none;
+}
+
+@media (--tablet-landscape) {
+  .af-nav {
+    max-width: inherit;
+  }
+
+  .af-nav-container {
+    background-color: var(--gray10);
+  }
+
+  .af-nav.af-drawer {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    overflow: visible;
+    background: none;
+  }
+
+  .af-nav.af-drawer.left {
+    transform: none;
+  }
+
+  .af-nav__link {
+    text-align: center;
+  }
+
+  .af-nav__list {
+    flex-direction: row;
+  }
+
+  .af-nav__list--children {
+    position: absolute;
+    display: none;
+    background: var(--white);
+    box-shadow: 0 3px 5px var(--gray40);
+  }
+
+  .af-nav__list--children .af-nav__link {
+    padding-left: 1.1rem;
+  }
+
+  .af-nav__item {
+    width: inherit;
+  }
+
+  .af-nav__item--haschild > .af-nav__link {
+    padding-right: 2rem;
+  }
+
+  .af-nav__item .glyphicon-arrow-xs-down {
+    display: block;
+  }
+
+  .af-nav__aside-header {
+    display: none;
+  }
+
+  .mask.show {
+    display: none;
+  }
+}
