@@ -22,6 +22,9 @@ const cloneAttributes = (
   });
 };
 
+/**
+ * @deprecated Use `Svg` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export const Svg = ({
   src,
   alt,

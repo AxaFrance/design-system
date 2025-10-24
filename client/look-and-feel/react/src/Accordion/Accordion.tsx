@@ -16,6 +16,9 @@ type AccordionProps = {
 } & ComponentProps<typeof AccordionTagDateContainer> &
   Partial<ComponentProps<typeof AccordionCore>>;
 
+/**
+ * @deprecated Use `Accordion` from `@axa-fr/design-system-apollo-react/lf` package instead.
+ */
 export const Accordion = ({
   title,
   children,

@@ -21,6 +21,9 @@ export type CardRadioProps = Omit<ComponentProps<typeof Radio>, "size"> & {
   error?: string;
 };
 
+/**
+ * @deprecated Use `CardRadio` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export const RadioCard = ({
   className,
   labelGroup,
@@ -94,3 +97,8 @@ export const RadioCard = ({
 };
 
 RadioCard.displayName = "RadioCard";
+
+/**
+ * @deprecated Use `CardRadio` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
+export const CardRadio = RadioCard;

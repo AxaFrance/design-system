@@ -8,7 +8,7 @@ type InputErrorProps = {
 };
 
 /**
- * @deprecated Use ItemMessage instead
+ * @deprecated Use `ItemMessage` from `@axa-fr/design-system-apollo-react/lf` instead.
  */
 export const InputError = ({ message, id }: InputErrorProps) => (
   <div className="af-input-error">

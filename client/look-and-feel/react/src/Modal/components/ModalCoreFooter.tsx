@@ -1,6 +1,11 @@
+/**
+ * @deprecated Use `ModalCoreFooterProps` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export type ModalCoreFooterProps = React.HTMLAttributes<HTMLDivElement>;
 
-/** @deprecated Use ModalCoreFooter from \@axa-fr/design-system-apollo-react/lf instead */
+/**
+ * @deprecated Use `ModalCoreFooter` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export const ModalCoreFooter = ({
   className,
   ...rest
