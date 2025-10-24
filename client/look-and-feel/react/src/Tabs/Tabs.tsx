@@ -2,10 +2,16 @@ import "@axa-fr/design-system-look-and-feel-css/dist/Tabs/Tabs.scss";
 import classNames from "classnames";
 import { ReactNode, useCallback, useRef, useState } from "react";
 
+/**
+ * @deprecated Use `tabBarDirection` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export enum Direction {
   center = "center",
 }
 
+/**
+ * @deprecated Use `TabBarProps` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 type TabsProps = {
   items: { title: string; content: string | ReactNode; icon?: ReactNode }[];
   preSelectedTabIndex?: number;
@@ -13,8 +19,8 @@ type TabsProps = {
 };
 
 /**
- * @deprecated Use `TabBar` instead.
- * */
+ * @deprecated Use `TabBar` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export const TabsClient = ({
   items,
   preSelectedTabIndex,

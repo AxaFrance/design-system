@@ -19,6 +19,9 @@ export type CardCheckboxProps = Partial<TCardCheckboxItem> & {
   error?: string;
 };
 
+/**
+ * @deprecated Use `CardCheckbox` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export const CardCheckbox = ({
   className,
   labelGroup,
@@ -80,3 +83,8 @@ export const CardCheckbox = ({
 };
 
 CardCheckbox.displayName = "CardCheckbox";
+
+/**
+ * @deprecated Use `CardCheckbox` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
+export const CheckboxCard = CardCheckbox;

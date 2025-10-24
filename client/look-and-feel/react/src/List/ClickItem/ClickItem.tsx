@@ -4,6 +4,9 @@ import { Svg } from "../../Svg";
 import { getComponentClassName } from "../../utilities";
 import type { TClickItem } from "./types";
 
+/**
+ * @deprecated Use `ClickItem` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export const ClickItem = ({
   children,
   icon,

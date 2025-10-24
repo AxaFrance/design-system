@@ -1,6 +1,9 @@
 import { forwardRef, type ReactNode } from "react";
 import "@axa-fr/design-system-look-and-feel-css/dist/Modal/Modal.scss";
 
+/**
+ * @deprecated Use `ModalCoreProps` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export type ModalCoreProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,
   HTMLDialogElement
@@ -12,7 +15,9 @@ export type ModalCoreProps = React.DetailedHTMLProps<
   ref?: React.Ref<HTMLDialogElement>;
 };
 
-/** @deprecated Use ModalCore from \@axa-fr/design-system-apollo-react/lf instead */
+/**
+ * @deprecated Use `ModalCore` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
   (
     { className, title = "", onOutsideTap, children, ...props }: ModalCoreProps,

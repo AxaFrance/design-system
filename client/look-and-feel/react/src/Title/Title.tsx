@@ -21,7 +21,7 @@ type TitleProps = {
 };
 
 /**
- * @deprecated Use Heading instead
+ * @deprecated Use `Heading` from `@axa-fr/design-system-apollo-react/lf` instead.
  */
 export const Title = ({
   children: title,

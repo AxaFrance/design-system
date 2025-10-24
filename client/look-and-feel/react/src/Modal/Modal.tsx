@@ -8,6 +8,9 @@ import {
 import { ModalCoreBody } from "./components/ModalCoreBody";
 import { ModalCoreFooter } from "./components/ModalCoreFooter";
 
+/**
+ * @deprecated Use `ModalProps` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 export type ModalProps = Omit<ModalCoreProps, "onOutsideTap" | "title"> &
   ModalCoreHeaderProps & {
     onSubmit?: (event: React.MouseEvent | React.KeyboardEvent) => void;
@@ -17,7 +20,9 @@ export type ModalProps = Omit<ModalCoreProps, "onOutsideTap" | "title"> &
     cancelDisabled?: boolean;
   };
 
-/** @deprecated Use Modal from \@axa-fr/design-system-apollo-react/lf instead */
+/**
+ * @deprecated Use `Modal` from `@axa-fr/design-system-apollo-react/lf` instead.
+ */
 const Modal = forwardRef<HTMLDialogElement, ModalProps>(
   (
     {

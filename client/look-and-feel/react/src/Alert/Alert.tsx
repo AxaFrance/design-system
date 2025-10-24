@@ -44,7 +44,7 @@ const getIconFromType = (type: AlertType) =>
   })[type] || wbIncandescentOutlined;
 
 /**
- * @deprecated Use Message instead
+ * @deprecated Use `Message` from `@axa-fr/design-system-apollo-react/lf` instead.
  */
 export const Alert = ({
   type = alertTypes.information,

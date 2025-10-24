@@ -17,6 +17,9 @@ type AccordionProps = {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 } & Partial<ComponentProps<"details">>;
 
+/**
+ * @deprecated Use `AccordionCore` from `@axa-fr/design-system-apollo-react/lf` package instead.
+ */
 export const AccordionCore = ({
   summary,
   children,
