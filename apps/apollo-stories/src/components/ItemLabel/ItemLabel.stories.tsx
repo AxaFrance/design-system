@@ -5,37 +5,35 @@ const meta: Meta<typeof ItemLabel> = {
   title: "Components/Form/ItemLabel",
   component: ItemLabel,
   argTypes: {
-    onSideButtonClick: { action: "clicked on side button" },
-    onButtonClick: { action: "clicked on button" },
+    children: { control: "text" },
+    description: { control: "text" },
+    sideButtonLabel: { control: "text" },
+    moreButtonLabel: { control: "text" },
+    onSideButtonClick: {
+      action: "clicked on side button",
+      table: { disable: true },
+    },
+    onMoreButtonClick: {
+      action: "clicked on more button",
+      table: { disable: true },
+    },
     required: { control: "boolean" },
+    label: { table: { disable: true } },
+    inputId: { table: { disable: true } },
+    buttonLabel: { table: { disable: true } },
+    onButtonClick: { table: { disable: true } },
+    sideButtonProps: { table: { disable: true } },
+    moreButtonProps: { table: { disable: true } },
   },
 };
 export default meta;
 
-export const Default: StoryObj<typeof ItemLabel> = {
+export const Playground: StoryObj<typeof ItemLabel> = {
   args: {
-    label: "Label Text",
+    children: "Label Text",
     description: "Description Text",
     required: false,
-    inputId: "input-id",
     sideButtonLabel: "Side Button",
-    buttonLabel: "ButtonLabel",
-  },
-};
-
-export const DescriptionMultiline: StoryObj<typeof ItemLabel> = {
-  args: {
-    label: "Label Text",
-    description: (
-      <>
-        une description
-        <br />
-        sur 2 lignes
-      </>
-    ),
-    required: false,
-    inputId: "input-id",
-    sideButtonLabel: "Side Button",
-    buttonLabel: "ButtonLabel",
+    moreButtonLabel: "More Label",
   },
 };

@@ -1,0 +1,263 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as InputFileStories from "./InputFile.stories";
+
+<Meta of={InputFileStories} name="InputFile" />
+
+# InputFile
+
+The `InputFile` component provides a dropzone and an accessible file input control, featuring an enriched label, an action button and a status message (error/success). It is designed to integrate with the `ItemLabel` / `ItemMessage` components to deliver consistent labeling and user feedback.
+
+Usage example:
+
+```tsx
+import { InputFile } from "@axa-fr/design-system-apollo-react/lf";
+
+const MyComponent = () => (
+  <InputFile
+    id="invoice"
+    label="Upload a document"
+    description="Select a file or drop it in the area"
+    helper="Accepted formats: PDF, JPG - Max size 5MB"
+    dropzoneLabels={{
+      dropzone: "Drag & drop",
+      or: "or",
+      button: "Choose a file",
+    }}
+  />
+);
+```
+
+### Props
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Prop</th>
+      <th scope="col">Type</th>
+      <th scope="col">Default</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>label</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>Visible label text displayed for the control.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>description</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>
+        Descriptive text that complements the label (shown near the label).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>sideButtonLabel</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>Label for an optional side action button (e.g. "Browse").</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onSideButtonClick</code>
+      </td>
+      <td>
+        <code>(e: MouseEvent) =&gt; void</code>
+      </td>
+      <td>-</td>
+      <td>Click handler for the side button.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>moreButtonLabel</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>Label for the "more info" button (info).</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onMoreButtonClick</code>
+      </td>
+      <td>
+        <code>(e: MouseEvent) =&gt; void</code>
+      </td>
+      <td>-</td>
+      <td>Click handler for the info button.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>labelProps</code>
+      </td>
+      <td>Partial of ItemLabel props</td>
+      <td>-</td>
+      <td>
+        Additional options to customize the label appearance/behavior (size,
+        tone, helpers).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>helper</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>
+        Helper text displayed under the control. When present it is linked via{" "}
+        <code>aria-describedby</code>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>dropzoneLabels</code>
+      </td>
+      <td>
+        <code>
+          <pre>{`{
+  dropzone?,
+  or?,
+  button?
+}`}</pre>
+        </code>
+      </td>
+      <td>
+        <code>
+          <pre>{`{
+  "dropzone": "Glisser et déposer un fichier",
+  "or": "ou",
+  "button": "Importer fichier"
+}`}</pre>
+        </code>
+      </td>
+      <td>
+        Labels for the dropzone area. Each field is optional and will fall back
+        to the default when omitted.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>message</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>
+        Status message associated with the control (e.g. error or success
+        message).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>messageType</code>
+      </td>
+      <td>
+        <code>'error' / 'success' / 'info'</code>
+      </td>
+      <td>
+        <code>'error'</code>
+      </td>
+      <td>
+        Type of the displayed message (affects rendering and ARIA attributes).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>id</code>
+      </td>
+      <td>string</td>
+      <td>Automatically generated if missing</td>
+      <td>
+        The field id (used for <code>htmlFor</code>,{" "}
+        <code>aria-describedby</code>, <code>aria-errormessage</code>).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>required</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Indicates the field is required.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>accept</code>
+      </td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Values accepted by the input (e.g. <code>".pdf,image/*"</code>).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>multiple</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Allows selecting multiple files.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>disabled</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Disables the control.</td>
+    </tr>
+  </tbody>
+</table>
+
+> Note: Most native `<input>` props are supported and will be forwarded to the internal `input` element (except `type`, which is forced to `file`).
+
+> Note 2: The `className` and `style` props are NOT applied to the internal `<input type="file">` element; they are applied to the component's parent container so you can style the drop area, button, etc.
+
+## Playground
+
+<Canvas of={InputFileStories.Playground} />
+
+<Controls of={InputFileStories.Playground} />
+
+## Best practices and accessibility
+
+- Provide an explicit `id` (or use the generated one) so the `label` (`htmlFor`) correctly targets the file input.
+- When a `helper` or a `message` is present, they are linked via `aria-describedby` / `aria-errormessage`. Do not rely on color alone to indicate an error: provide explicit text.
+- If an error message is shown, `aria-invalid` is set on the input and `aria-errormessage` points to the message id.
+- Action buttons (side / more) must have an accessible name (visible text or `aria-label`) for voice command users.
+- The component ensures screen-reader-friendly labels and avoids adding static elements to the tab order unnecessarily.
+
+## Accessibility examples
+
+- Example with a programmatic error message and focus on the first invalid field:
+
+```tsx
+<InputFile
+  id="contract"
+  label="Upload the contract"
+  helper="PDF only"
+  message="The file is too large"
+  messageType="error"
+  required
+/>
+```
+
+- Example with a side button and additional ARIA attributes:
+
+```tsx
+<InputFile
+  id="proof"
+  label="Proof of address"
+  sideButtonLabel="Browse"
+  onSideButtonClick={() => {
+    /* open picker */
+  }}
+  sideButtonProps={{ "aria-label": "Browse files" }}
+/>
+```

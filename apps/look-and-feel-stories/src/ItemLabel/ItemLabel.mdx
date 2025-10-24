@@ -1,34 +1,159 @@
-import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import { Canvas, Controls, Meta, Markdown } from "@storybook/addon-docs";
 import * as ItemLabelStories from "./ItemLabel.stories";
 
 <Meta of={ItemLabelStories} name="ItemLabel" />
 
 # ItemLabel
 
-To use the ItemLabel import it like that:
+The ItemLabel component renders an accessible form label with optional description text and optional action buttons.
+It is designed to closely follow native `<label>` semantics so that it integrates naturally with form controls and assistive technologies.
+
+Example usage:
 
 ```tsx
-import { ItemLabel } from "@axa-fr/design-system-look-and-feel-react";
-//or
 import { ItemLabel } from "@axa-fr/design-system-apollo-react/lf";
 
 const MyComponent = () => (
-  <ItemLabel
-    label="Label Text"
-    description="Description Text"
-    required
-    inputId="input-id"
-    idLabel="label-id"
-    sideButtonLabel="Side Button"
-    onSideButtonClick={handleClickSideButton}
-    buttonLabel="ButtonLabel"
-    onButtonClick={handleClickButton}
-  />
+  <ItemLabel description="Description Text">Label Text</ItemLabel>
 );
 ```
 
-## Default
+### Props
 
-<Canvas of={ItemLabelStories.Default} />
+The ItemLabel inherits all native `<label>` props and in addition exposes the following component-specific props:
 
-<Controls of={ItemLabelStories.Default} />
+| Prop                         | Type                                                                      | Default | Description                                                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `children`                   | ReactNode                                                                 | -       | Label content (preferred over deprecated `label`).                                                                |
+| `label` (deprecated)         | ReactNode                                                                 | -       | Deprecated: use `children` instead.                                                                               |
+| `description`                | ReactNode                                                                 | -       | Additional descriptive text displayed below/next to the label.                                                    |
+| `required`                   | boolean                                                                   | false   | When true, shows a visual required indicator (asterisk).                                                          |
+| `htmlFor`                    | string                                                                    | -       | Native label attribute linking the label to a control's id. Inherited from native label props.                    |
+| `inputId` (deprecated)       | string                                                                    | -       | Deprecated: use `htmlFor` instead.                                                                                |
+| `sideButtonLabel`            | ReactNode                                                                 | -       | Label/content for the optional side action button.                                                                |
+| `onSideButtonClick`          | `MouseEventHandler<HTMLButtonElement>`                                    | -       | Click handler for the side button.                                                                                |
+| `sideButtonProps`            | `Partial<ButtonProps>` (omitted keys: children,onClick,variant,className) | -       | Additional props forwarded to the side button (use for ARIA attributes, keyboard handlers, etc.).                 |
+| `moreButtonLabel`            | ReactNode                                                                 | -       | Label/content for the optional more/info button (preferred over deprecated `buttonLabel`).                        |
+| `onMoreButtonClick`          | `MouseEventHandler<HTMLButtonElement>`                                    | -       | Click handler for the more/info button (preferred over deprecated `onButtonClick`).                               |
+| `moreButtonProps`            | `Partial<ButtonProps>` (omitted keys: children,onClick,variant,className) | -       | Additional props forwarded to the more/info button (use for ARIA attributes, aria-haspopup, aria-controls, etc.). |
+| `buttonLabel` (deprecated)   | ReactNode                                                                 | -       | Deprecated: use `moreButtonLabel` instead.                                                                        |
+| `onButtonClick` (deprecated) | `MouseEventHandler<HTMLButtonElement>`                                    | -       | Deprecated: use `onMoreButtonClick` instead.                                                                      |
+
+> Note: most native `<label>` attributes (for example `htmlFor`, `onClick`, etc.) are forwarded to the internal `<label>` element.\
+> However, `className` and `style` passed to `ItemLabel` are applied to the outer container `<div>` (the component wrapper), not to the inner `<label>`.
+> To target the inner label for styling, use the `.af-item-label__label` selector or a wrapper selector (for example `.af-item-label .af-item-label__label`).
+
+## Playground
+
+<Canvas of={ItemLabelStories.Playground} />
+
+<Controls of={ItemLabelStories.Playground} />
+
+## Using `sideButtonProps` and `moreButtonProps` (accessibility-focused examples)
+
+The `ItemLabel` supports optional action buttons next to the label: a side action (`sideButtonLabel` / `sideButtonProps`) and a more/info action (`moreButtonLabel` / `moreButtonProps`). Use the `*ButtonProps` objects to add accessibility attributes and keyboard behavior to these buttons.
+
+Best practices:
+
+- Ensure each button has an accessible name (prefer the visible label or an explicit `aria-label`).
+- If the button toggles a popup or menu, include `aria-haspopup` and maintain `aria-expanded` on the button.
+- Use `aria-controls` to point to the id of a controlled popup region.
+- Keep interactive behavior keyboard-friendly (`onKeyDown` handlers for Enter/Space if necessary).
+
+Examples
+
+- Simple side button with explicit aria-label
+
+```tsx
+<ItemLabel
+  htmlFor="file-input"
+  sideButtonLabel="Browse"
+  sideButtonProps={{ "aria-label": "Browse files" }}
+>
+  Upload file
+</ItemLabel>
+```
+
+- More button that toggles a help panel (aria-expanded + aria-controls)
+
+```tsx
+<ItemLabel
+  htmlFor="file-input"
+  moreButtonLabel="Help"
+  moreButtonProps={{
+    "aria-label": "More information about the file input",
+    "aria-haspopup": "dialog",
+    "aria-expanded": false,
+    "aria-controls": "file-input-help",
+  }}
+>
+  Upload file
+</ItemLabel>
+```
+
+- Example with keyboard handler on side button (in MDX examples this is illustrative):
+
+```tsx
+<ItemLabel
+  htmlFor="file-input"
+  sideButtonLabel="Browse"
+  sideButtonProps={{
+    "aria-label": "Browse files",
+    onKeyDown: (e) => {
+      // Activate on Enter or Space to match button semantics
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        // call whatever function opens the file picker
+      }
+    },
+  }}
+>
+  Upload file
+</ItemLabel>
+```
+
+Notes about `Button` accessibility
+
+- The ItemLabel forwards `sideButtonProps` and `moreButtonProps` to the underlying Button component. Use these props to supply ARIA attributes and event handlers.
+- Prefer visible button text as the accessible name. If you use an icon-only button, provide `aria-label` or `aria-labelledby` that contains the same text a sighted user would read.
+- Avoid using `tabIndex` to force focusability for non-interactive elements; buttons are focusable by default.
+
+## Migration guide — deprecated props
+
+The ItemLabel component has evolved to follow native HTML label semantics more closely. Some props were deprecated to encourage clearer, more standard usage. Below is a mapping of deprecated props and how to migrate.
+
+- `label` -> use `children` (pass the label text as children of `<ItemLabel>`)
+- `inputId` -> `htmlFor` (mirrors the native `label` attribute pointing to the input's id)
+- `buttonLabel` -> `moreButtonLabel`
+- `onButtonClick` -> `onMoreButtonClick`
+
+Why change?
+
+- Using `children` for the label content matches how a native `<label>` is used and avoids confusion between presentation vs content props.
+- `htmlFor` is the native attribute name and directly maps to the `for` attribute on a `<label>`, which is what assistive tech expects.
+- More explicit prop names (`moreButtonLabel`, `onMoreButtonClick`) clarify intent and reduce ambiguity.
+
+Migration examples
+
+- Before (deprecated)
+
+```tsx
+<ItemLabel
+  label="Email address"
+  inputId="email-input"
+  buttonLabel="Info"
+  onButtonClick={handleInfo}
+/>
+```
+
+- After (current)
+
+```tsx
+<ItemLabel
+  htmlFor="email-input"
+  moreButtonLabel="Info"
+  onMoreButtonClick={handleInfo}
+>
+  Email address
+</ItemLabel>
+```

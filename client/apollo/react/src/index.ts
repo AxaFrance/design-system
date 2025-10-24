@@ -38,7 +38,6 @@ export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { InputPhone } from "./Form/InputPhone/InputPhoneApollo";
 export { InputText } from "./Form/InputText/InputTextApollo";
 export { InputTextAtom } from "./Form/InputTextAtom/InputTextAtomApollo";
-export { ItemFile, itemFileVariants } from "./Form/ItemFile/ItemFileApollo";
 export { ItemLabel } from "./Form/ItemLabel/ItemLabelApollo";
 export {
   ItemMessage,
@@ -106,3 +105,6 @@ export { Svg } from "./Svg/Svg";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
+export { InputFile } from "./Form/FileUpload/InputFile/InputFileApollo";
+export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileApollo";
+export { FileUpload } from "./Form/FileUpload/FileUpload/FileUploadApollo";

@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import remarkGfm from "remark-gfm";
 
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -32,6 +33,17 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("@whitespace/storybook-addon-html"),
+    {
+      // eslint-disable-next-line storybook/no-uninstalled-addons
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    },
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),

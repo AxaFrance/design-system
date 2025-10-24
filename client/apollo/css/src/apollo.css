@@ -9,7 +9,6 @@
 @import "./Form/ItemLabel/ItemLabelApollo.css";
 @import "./Form/InputTextAtom/InputTextAtomApollo.css";
 @import "./Form/InputText/InputTextApollo.css";
-@import "./Form/ItemFile/ItemFileApollo.css";
 @import "./Form/TextArea/TextAreaApollo.css";
 @import "./Form/Dropdown/DropdownApollo.css";
 @import "./Icon/IconApollo.css";
@@ -45,3 +44,6 @@
 @import "./Modal/ModalApollo.css";
 @import "./Layout/Footer/FooterApollo.css";
 @import "./Svg/Svg.css";
+@import "./Form/FileUpload/InputFile/InputFileApollo.css";
+@import "./Form/FileUpload/ItemFile/ItemFileApollo.css";
+@import "./Form/FileUpload/FileUpload/FileUploadApollo.css";

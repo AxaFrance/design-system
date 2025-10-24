@@ -54,6 +54,9 @@ type Props = Omit<ComponentPropsWithRef<"input">, "required"> & {
   onDelete?: (id: string) => void;
 };
 
+/**
+ * @deprecated Use `FileUpload` from apollo/lf package instead.
+ */
 const FileUpload = ({
   id,
   label,
