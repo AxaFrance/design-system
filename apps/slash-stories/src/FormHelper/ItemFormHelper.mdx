@@ -1,0 +1,67 @@
+
+import { Canvas, Controls, Description, Meta } from "@storybook/blocks";
+import * as Stories from "./ItemFormHelper.stories";
+
+<Meta of={Stories} />
+
+# ItemFormHelper
+
+The `ItemFormHelper` component displays a single step in a form helper or stepper, with different visual states depending on its `mode` prop. It can optionally render as a link if the `ancre` prop is provided.
+
+## Import
+
+```javascript
+import { ItemFormHelper } from "@axa-fr/design-system-slash-react";
+```
+
+## Usage without anchor
+
+<Canvas of={Stories.Default} />
+
+## Usage with anchor
+
+If the `ancre` prop is provided, the label is rendered as a link to the corresponding anchor in the page.
+
+
+<Canvas of={Stories.Anchor} />
+
+## Modes
+
+The `mode` prop controls the visual state of the step:
+
+- `locked`: The step is locked and not accessible. The label is shown as plain text and styled as blocked.
+- `edited`: The step is currently being edited. The label is styled as active.
+- `validated`: The step is completed and validated. The label is styled as validated.
+- `disabled`: The step is disabled and not accessible.
+
+## Example
+
+```jsx
+<ItemFormHelper label="Locked" mode="locked" />
+<ItemFormHelper label="Edited" mode="edited" ancre="etape2" />
+<ItemFormHelper label="Validated" mode="validated" ancre="etape3" />
+<ItemFormHelper label="Disabled" mode="disabled" />
+```
+
+## Accessibility
+
+- The anchor (`<a>`) includes an `aria-label` for better screen reader support.
+- The component uses semantic HTML (`<li>`, `<a>`, `<span>`) for proper list and navigation structure.
+
+---
+
+## Properties
+
+**label**  
+Type: `string` (required)  
+The text displayed for the step. Identifies the step to the user.
+
+**mode**  
+Type: `string` (required)  
+Controls the visual state of the step. Possible values are `locked`, `edited`, `validated`, or `disabled`.
+
+**ancre**  
+Type: `string` (optional)  
+If provided, renders the label as a link to the specified anchor on the page.
+
+For more advanced usage, see the Storybook controls and playground below.
