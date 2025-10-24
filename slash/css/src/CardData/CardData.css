@@ -30,24 +30,24 @@
     display: flex;
     margin: 0;
     flex-direction: column;
-    line-height: 1.2rem;
     align-items: flex-start;
+    line-height: 1.2rem;
 
     &::after {
       content: none;
     }
 
     .af-card-data-header-subtitle {
+      margin-left: 0;
       font-size: 1rem;
       color: var(--gray60);
-      margin-left: 0;
     }
 
     .af-card-data-header-description {
+      margin-left: 0;
       padding-top: 4px;
       font-size: 1rem;
       font-weight: normal;
-      margin-left: 0;
     }
   }
 

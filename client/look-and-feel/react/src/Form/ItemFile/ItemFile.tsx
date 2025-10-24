@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 export {
   ItemFile,
   itemFileVariants,
