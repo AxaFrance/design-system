@@ -17,6 +17,7 @@ const listClassModifier = (classModifier?: string) => {
 };
 
 /**
+ * @deprecated This function is deprecated and will be removed in a future release. Use getClassName instead.
  * Generates a component class name string based on provided class names and modifiers.
  *
  * @param {string} [className] - The base class name.
@@ -54,6 +55,9 @@ type getComponentClassNameWithUserClassnameParams = {
   componentClassName: string;
 };
 
+/**
+ * @deprecated This function is deprecated and will be removed in a future release. Use getClassName instead.
+ */
 export const getComponentClassNameWithUserClassname = ({
   componentClassName,
   userClassName,
