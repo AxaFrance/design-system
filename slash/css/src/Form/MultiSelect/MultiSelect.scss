@@ -6,7 +6,7 @@
 }
 
 .af-form__select {
-  --select-border-color: transparent;
+  --select-border-color: var(--gray40);
 
   display: flex;
   align-items: center;
