@@ -71,7 +71,8 @@
   }
 
   /* Style for submit button inside form */
-  & > section > button[type="submit"] {
+  & button[type="submit"] {
+    /* TODO: replace this with 280px when label component will be done */
     margin-left: 17%;
   }
 
