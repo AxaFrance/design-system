@@ -1,1 +1,0 @@
-import{r as e}from"./index-DbaA8R3S.js";const c=s=>{const t=e.useCallback(r=>(window.addEventListener("resize",r),()=>{window.removeEventListener("resize",r)}),[]),n=e.useCallback(()=>window.innerWidth<=s,[s]),a=e.useCallback(()=>!1,[]);return e.useSyncExternalStore(t,n,a)},u={SM:667,MD:1023};export{u as B,c as u};
