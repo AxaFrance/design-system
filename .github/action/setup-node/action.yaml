@@ -20,6 +20,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
       with:
+        registry-url: "https://registry.npmjs.org"
         node-version: ${{ env.NODE_VERSION || 'lts/*' }}
 
     - name: Setup npm version
