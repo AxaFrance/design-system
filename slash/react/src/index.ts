@@ -78,6 +78,7 @@ export {
   SectionRestitutionTitle,
 } from "./Restitution";
 export { Step, StepBase, Steps, VerticalStep } from "./Steps";
+export type { VerticalStepMode } from "./Steps/types";
 export { Summary } from "./Summary";
 export { Svg } from "./Svg";
 export { Tabs } from "./Tabs/Tabs";
