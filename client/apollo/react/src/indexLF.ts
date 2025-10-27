@@ -1,6 +1,7 @@
 import "@axa-fr/design-system-apollo-css/dist/Grid/Grid.css";
-import "@axa-fr/design-system-look-and-feel-css/dist/common/reboot.scss";
-import "@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss";
+import "@axa-fr/design-system-apollo-css/dist/common/rebootLF.css";
+import "@axa-fr/design-system-apollo-css/dist/common/tokensLF.css";
+
 import "@fontsource/source-sans-pro";
 
 export {
