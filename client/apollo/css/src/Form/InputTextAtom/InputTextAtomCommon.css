@@ -48,18 +48,14 @@
   }
 
   &:has(
-      > input:is(:hover, :focus, :active, [class*="--error"]):not(:disabled)
-    ) {
+    > input:is(:hover, :focus, :active, [class*="--error"]):not(:disabled)
+  ) {
     --input-box-shadow-width: 2px;
   }
 
   &:has(
-      > input[class*="--error"]:not(:disabled):is(
-          :hover,
-          :focus-visible,
-          :active
-        )
-    ) {
+    > input[class*="--error"]:not(:disabled):is(:hover, :focus-visible, :active)
+  ) {
     --input-box-shadow-width: 3px;
   }
 }
