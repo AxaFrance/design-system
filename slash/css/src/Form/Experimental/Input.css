@@ -1,0 +1,41 @@
+.af-input__input {
+  --color: var(--text-color);
+  --border-color: var(--input-border-color);
+  --background-color: var(--white);
+
+  padding: 0 0 0 1rem;
+  border: 1px solid var(--border-color);
+  grid-area: input;
+  font-size: 1rem;
+  line-height: 40px;
+  color: var(--color);
+  background-color: var(--background-color);
+}
+
+.af-input__input[aria-invalid="true"] {
+  --color: var(--error-color);
+  --border-color: var(--error-color);
+  --background-color: var(--white);
+}
+
+.af-input__input:disabled {
+  --color: var(--disabled-color);
+  --border-color: var(--disabled-color);
+  --background-color: var(--gray10);
+
+  cursor: not-allowed;
+}
+
+.af-input__input:hover:not(:disabled),
+.af-input__input:active:not(:disabled) {
+  --border-color: var(--active-input-border-color);
+  --color: var(--active-button-border-color);
+}
+
+.af-input__input:focus:not(:disabled) {
+  outline: 2px solid var(--active-input-border-color);
+  outline-offset: 2px;
+
+  --border-color: var(--input-border-color);
+  --color: var(--active-button-border-color);
+}
