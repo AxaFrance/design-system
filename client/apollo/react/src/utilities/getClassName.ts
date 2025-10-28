@@ -4,19 +4,18 @@ type getClassNameParams = {
   className?: string;
 };
 
-
 /**
- * Génère une chaîne de classes CSS à partir d'un nom de base, de modificateurs optionnels et d'une classe additionnelle.
+ * Generates a CSS class string from a base class name, optional modifiers, and an additional class name.
  *
- * @param {Object} params - Les paramètres de la fonction.
- * @param {string} params.baseClassName - Le nom de classe de base (obligatoire).
- * @param {Array<string|boolean|undefined>} [params.modifiers] - Liste de modificateurs à ajouter sous la forme `${baseClassName}--{modificateur}`. Les valeurs falsy sont ignorées.
- * @param {string} [params.className] - Classe(s) additionnelle(s) à ajouter à la chaîne finale.
- * @returns {string} La chaîne de classes CSS concaténées, séparées par un espace.
+ * @param {string} params.baseClassName - The base class name (required).
+ * @param {Array<string|boolean|undefined>} [params.modifiers] - List of modifiers to append as `${baseClassName}--{modifier}`. Falsy values are ignored.
+ * @param {string} [params.className] - Additional class name(s) to append to the final string.
+ * @returns {string} The concatenated CSS class string, separated by spaces.
  *
  * @example
- * getClassName({ baseClassName: 'btn', modifiers: ['large', false, 'primary'], className: 'custom' })
- * // Retourne : 'btn btn--large btn--primary custom'
+ * const isLarge = false;
+ * getClassName({ baseClassName: 'af-button', modifiers: ['primary', isLarge && 'large'], className: 'custom-class' })
+ * // Returns: 'af-button af-button--primary custom-class'
  */
 export const getClassName = ({
   baseClassName,
