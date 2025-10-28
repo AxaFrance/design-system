@@ -33,6 +33,8 @@ export const SelectDefaultWithOptions = forwardRef<HTMLSelectElement, Props>(
       onChange,
       forceDisplayPlaceholder = false,
       value,
+      defaultValue,
+      required,
       placeholder = "- Select -",
       options,
       id,
@@ -43,12 +45,20 @@ export const SelectDefaultWithOptions = forwardRef<HTMLSelectElement, Props>(
     const [hasHandleChangeOnce, setHasHandleChangeOnce] = useState(false);
     const generatedId = useId();
     const inputId = id ?? generatedId;
+
     const newOptions = useMemo(
       () =>
-        hasHandleChangeOnce || otherProps.defaultValue !== undefined
+        (hasHandleChangeOnce || defaultValue || value) && required
           ? options
           : [{ value: "", label: placeholder }, ...options],
-      [hasHandleChangeOnce, options, otherProps.defaultValue, placeholder],
+      [
+        hasHandleChangeOnce,
+        options,
+        defaultValue,
+        value,
+        required,
+        placeholder,
+      ],
     );
 
     return (
@@ -56,6 +66,7 @@ export const SelectDefaultWithOptions = forwardRef<HTMLSelectElement, Props>(
         {...otherProps}
         id={inputId}
         value={value}
+        defaultValue={defaultValue}
         options={newOptions}
         onChange={(e) => {
           if (onChange) {
