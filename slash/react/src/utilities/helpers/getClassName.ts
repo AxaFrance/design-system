@@ -20,13 +20,17 @@ type getClassNameParams = {
 export const getClassName = ({
   baseClassName,
   modifiers = [],
-  className,
+  className = "",
 }: getClassNameParams) => {
   const parsedModifiers = modifiers
     .filter(Boolean)
     .map((modifier) => `${baseClassName}--${modifier}`);
 
-  return [baseClassName, ...parsedModifiers, className]
-    .filter(Boolean)
-    .join(" ");
+  const classList = [
+    baseClassName,
+    ...parsedModifiers,
+    ...className.split(" "),
+  ].filter(Boolean);
+
+  return Array.from(new Set(classList)).join(" ");
 };
