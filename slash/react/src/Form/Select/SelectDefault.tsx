@@ -16,6 +16,8 @@ const SelectDefault = forwardRef<HTMLSelectElement, Props>(
       onChange,
       forceDisplayPlaceholder = false,
       value,
+      defaultValue,
+      required,
       placeholder = "- Select -",
       id,
       children,
@@ -29,7 +31,7 @@ const SelectDefault = forwardRef<HTMLSelectElement, Props>(
 
     const childrenWithDefault = (
       <>
-        {!(hasHandleChangeOnce || otherProps.defaultValue !== undefined) && (
+        {(!required || !(hasHandleChangeOnce || defaultValue || value)) && (
           <option value="">{placeholder}</option>
         )}
         {children}
@@ -41,6 +43,8 @@ const SelectDefault = forwardRef<HTMLSelectElement, Props>(
         {...otherProps}
         id={inputId}
         value={value}
+        defaultValue={defaultValue}
+        required={required}
         onChange={(e) => {
           if (onChange) {
             onChange(e);

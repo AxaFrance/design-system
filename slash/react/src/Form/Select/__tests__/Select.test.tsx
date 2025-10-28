@@ -244,5 +244,92 @@ describe("Select", () => {
 
       expect(await axe(container)).toHaveNoViolations();
     });
+
+    it.each([
+      [false, "fun", undefined],
+      [false, "", undefined],
+      [false, undefined, "fun"],
+      [false, undefined, ""],
+      [true, undefined, undefined],
+    ])(
+      "should display placeholder at component render when required=%s, value=%s, defaultValue=%s",
+      async (required, value, defaultValue) => {
+        render(
+          <Select
+            mode="default"
+            onChange={() => {}}
+            value={value}
+            defaultValue={defaultValue}
+            placeholder="sélectionner une option"
+            required={required}
+          >
+            <option value="fun">for fun</option>
+            <option value="work">for work</option>
+            <option value="drink">for drink</option>
+          </Select>,
+        );
+
+        // Assert
+        const placeholder = screen.queryByRole("option", {
+          name: /sélectionner une option/i,
+        });
+
+        expect(placeholder).toBeInTheDocument();
+      },
+    );
+
+    it.each([
+      [true, "fun", undefined],
+      [true, undefined, "fun"],
+    ])(
+      "shouldn't display placeholder at component render when required=%s, value=%s, defaultValue=%s",
+      async (required, value, defaultValue) => {
+        render(
+          <Select
+            mode="default"
+            onChange={() => {}}
+            value={value}
+            defaultValue={defaultValue}
+            placeholder="sélectionner une option"
+            required={required}
+          >
+            <option value="fun">for fun</option>
+            <option value="work">for work</option>
+            <option value="drink">for drink</option>
+          </Select>,
+        );
+
+        // Assert
+        const placeholder = screen.queryByRole("option", {
+          name: /sélectionner une option/i,
+        });
+
+        expect(placeholder).not.toBeInTheDocument();
+      },
+    );
+
+    it("shouldn't display placeholder when value is required and modified", async () => {
+      render(
+        <Select
+          mode="default"
+          onChange={() => {}}
+          placeholder="sélectionner une option"
+          required
+        >
+          <option value="fun">for fun</option>
+          <option value="work">for work</option>
+          <option value="drink">for drink</option>
+        </Select>,
+      );
+
+      // Act
+      await userEvent.selectOptions(screen.getByRole("combobox"), "fun");
+
+      // Assert
+      const placeholder = screen.queryByRole("option", {
+        name: /sélectionner une option/i,
+      });
+      expect(placeholder).not.toBeInTheDocument();
+    });
   });
 });

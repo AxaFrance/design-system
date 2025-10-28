@@ -189,6 +189,7 @@ export const Field = ({
             errorId,
             disabled,
             ariaInvalid: isInvalid,
+            required,
             ...otherProps,
           })}
         </div>
