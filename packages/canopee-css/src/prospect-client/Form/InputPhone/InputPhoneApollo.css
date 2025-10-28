@@ -1,0 +1,40 @@
+@import "./InputPhoneCommon.css";
+
+.af-form__input-phone-helper {
+  --input-helper-color: var(--neutral-80);
+}
+
+.country-code-select__control {
+  --select-color: var(--neutral-80);
+  --select-border-color: var(--axa-blue-65);
+  --select-border-radius: var(--radius-8);
+  --select-control-background-url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%2300008F' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
+  --select-control-background: var(--select-control-background-url) no-repeat
+    right 1rem center / 1.5rem 1.5rem;
+
+  &:disabled {
+    --select-bg-color-disabled: var(--neutral-50);
+    --select-border-color: var(--neutral-50);
+  }
+
+  &:not(:disabled):is(:hover, :focus-within, :active) {
+    --select-border-color: var(--axa-blue-100);
+    --select-box-shadow: var(--axa-blue-100);
+  }
+}
+
+.country-code-select__control--menu-is-open {
+  --select-control-background-url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%2300008F' d='M240-376l240-240 240 240-43 43-197-197-197 197-43-43Z'/></svg>");
+}
+
+.country-code-select__option {
+  --select-option-color: var(--neutral-100);
+
+  &:disabled {
+    --select-option-disabled-color: var(--neutral-50);
+  }
+}
+
+.country-code-select__placeholder {
+  --select-placeholder-color: var(--neutral-80);
+}

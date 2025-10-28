@@ -1,0 +1,30 @@
+.af-radio {
+  --radio-border-width: 1px;
+  --radio-ckecked-color: transparent;
+  --radio-ckecked-width: calc(12 / var(--font-size-base) * 1rem);
+  --radio-background-color: var(--white);
+
+  display: flex;
+  width: calc(24 / var(--font-size-base) * 1rem);
+  height: calc(24 / var(--font-size-base) * 1rem);
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--radio-background-color);
+  outline: var(--radio-border-width) solid var(--radio-border-color);
+  outline-offset: calc(-1 * var(--radio-border-width));
+  cursor: pointer;
+  appearance: unset;
+
+  &::after {
+    width: var(--radio-ckecked-width);
+    height: var(--radio-ckecked-width);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: var(--radio-ckecked-color);
+    content: "";
+  }
+}

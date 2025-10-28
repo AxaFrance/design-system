@@ -1,0 +1,53 @@
+.af-data-agent {
+  display: flex;
+  padding-bottom: calc(16 / var(--font-size-base) * 1rem);
+  border: 1px solid var(--data-agent-border-color);
+  border-radius: var(--radius-8);
+  flex-direction: column;
+}
+
+.af-data-agent__intro {
+  display: flex;
+  padding: var(--data-agent-intro-padding);
+  flex-direction: column;
+  gap: calc(16 / var(--font-size-base) * 1rem);
+}
+
+.af-data-agent__info-content,
+.af-data-agent__info-click-content {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 / var(--font-size-base) * 1rem);
+}
+
+.af-data-agent__info-content {
+  padding: var(--data-agent-intro-content-padding);
+}
+
+.af-data-agent__info-click-content {
+  padding: calc(12 / var(--font-size-base) * 1rem)
+    calc(16 / var(--font-size-base) * 1rem) 0;
+
+  .af-data-agent__line:last-of-type {
+    display: none;
+  }
+}
+
+.af-data-agent__text-orias {
+  margin: 0;
+  padding: calc(16 / var(--font-size-base) * 1rem)
+    calc(16 / var(--font-size-base) * 1rem) 0;
+  font-size: var(--data-agent-text-orias-font-size);
+  font-weight: 400;
+  line-height: 125%;
+  color: var(--data-agent-text-orias-font-color);
+}
+
+/* Compact mode when there is only the intro */
+.af-data-agent:has(> .af-data-agent__intro:only-child) {
+  padding-bottom: 0;
+
+  .af-data-agent__intro {
+    padding: calc(16 / var(--font-size-base) * 1rem);
+  }
+}

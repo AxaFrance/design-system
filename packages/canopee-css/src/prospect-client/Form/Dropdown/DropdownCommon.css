@@ -1,0 +1,74 @@
+.af-form__dropdown-input {
+  --dropdown-box-shadow-width: 1px;
+
+  display: block;
+  width: 100%;
+  padding: calc(16 / var(--font-size-base) * 1rem);
+  border: none;
+  border-radius: var(--dropdown-border-radius);
+  font-family: var(--font-family-sans-serif);
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-weight: 600;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--dropdown-color);
+  background: var(--dropdown-background-color) var(--dropdown-background-image)
+    no-repeat right 1rem center / 1.5rem 1.5rem;
+  background-position-x: calc(100% - 1rem);
+  box-shadow: 0 0 0 var(--dropdown-box-shadow-width)
+    var(--dropdown-box-shadow-color) inset;
+  outline: none;
+  appearance: none;
+
+  option {
+    color: var(--dropdown-option-color);
+
+    &:disabled {
+      color: var(--dropdown-option-disabled-color);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:is(:focus-visible, :hover, :active) {
+    --dropdown-box-shadow-width: 2px;
+  }
+
+  &:has(option[value=""]:checked) {
+    font-weight: 400;
+  }
+
+  @media (--desktop-small) {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+    line-height: 1.25;
+  }
+}
+
+.af-form__dropdown-input--error {
+  --dropdown-box-shadow-width: 2px;
+
+  &:is(:focus-visible, :hover, :active) {
+    --dropdown-box-shadow-width: 3px;
+  }
+}
+
+.af-form__dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: calc(8 / var(--font-size-base) * 1rem);
+}
+
+.af-form__dropdown-container--input-helper {
+  font-size: calc(14 / var(--font-size-base) * 1rem);
+  font-weight: 400;
+  line-height: 1.25em;
+  color: var(--input-helper-color);
+
+  @media (--desktop-small) {
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+  }
+}

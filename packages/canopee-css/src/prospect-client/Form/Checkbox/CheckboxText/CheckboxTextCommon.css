@@ -1,0 +1,38 @@
+.af-checkbox-text {
+  display: grid;
+  grid-template-areas: "icon label";
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: calc(8 / var(--font-size-base) * 1rem);
+
+  &:has(> .af-item-message) {
+    grid-template-areas:
+      "icon label"
+      "icon message";
+  }
+
+  label {
+    display: contents;
+    cursor: pointer;
+  }
+
+  .af-checkbox {
+    grid-area: icon;
+  }
+
+  .af-item-message {
+    grid-area: message;
+  }
+}
+
+.af-checkbox-text__label-content {
+  grid-area: label;
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--checkbox-text-label-color);
+
+  @media (--desktop-small) {
+    font-size: calc(18 / var(--font-size-base) * 1rem);
+  }
+}
