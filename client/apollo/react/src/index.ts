@@ -34,7 +34,6 @@ export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
 export { Dropdown } from "./Form/Dropdown/DropdownApollo";
 export { InputDate } from "./Form/InputDate/InputDateApollo";
-export { InputDateText } from "./Form/InputDateText/InputDateTextApollo";
 export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { InputPhone } from "./Form/InputPhone/InputPhoneApollo";
 export { InputText } from "./Form/InputText/InputTextApollo";

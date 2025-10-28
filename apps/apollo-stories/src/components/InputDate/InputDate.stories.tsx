@@ -3,6 +3,7 @@ import {
   itemMessageVariants,
 } from "@axa-fr/design-system-apollo-react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 const meta: Meta<typeof InputDate> = {
   component: InputDate,
@@ -105,5 +106,25 @@ export const InputDateDisabledEmptyStory: Story = {
   args: {
     disabled: true,
     value: undefined,
+  },
+};
+
+const renderDateText = ({
+  ...args
+}: React.ComponentProps<typeof InputDate>) => {
+  const [state, setState] = useState(args.value);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState(e.target.value);
+  };
+
+  return <InputDate {...args} value={state} onChange={handleChange} />;
+};
+
+export const InputDateTextStory: Story = {
+  name: "InputDateText",
+  render: renderDateText,
+  args: {
+    hidePicker: true,
   },
 };

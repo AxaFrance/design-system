@@ -155,15 +155,27 @@ describe("<InputDate />", () => {
     });
   });
 
-  it("adds the af-form__input-date--no-picker class when hidePicker is true", () => {
-    render(<InputDate label="Date de naissance" hidePicker />);
-    const inputDate = screen.getByLabelText(/Date de naissance/);
-    expect(inputDate).toHaveClass("af-form__input-date--no-picker");
-  });
+  it("Should render the date text when hidePicker is true", () => {
+    render(
+      <InputDate
+        label="label date text"
+        hidePicker
+        helper="Help text"
+        message="Success message"
+        messageType="success"
+      />,
+    );
 
-  it("does not add the af-form__input-date--no-picker class when hidePicker is not defined", () => {
-    render(<InputDate label="Date de naissance" />);
-    const inputDate = screen.getByLabelText(/Date de naissance/);
-    expect(inputDate).not.toHaveClass("af-form__input-date--no-picker");
+    const input = screen.getByLabelText(/label date text/);
+    const helper = screen.getByText(/Help text/);
+    const success = screen.getByText(/Success message/);
+
+    expect(input).toHaveAttribute("type", "text");
+    expect(input).toHaveAttribute("pattern", "\\d{0,2}/?\\d{0,2}/?\\d{0,4}");
+    expect(input).toHaveAttribute("maxlength", "10");
+    expect(input).toHaveAttribute("inputMode", "numeric");
+    expect(input.getAttribute("aria-describedby")).toStrictEqual(
+      `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
+    );
   });
 });

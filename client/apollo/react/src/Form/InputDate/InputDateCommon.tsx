@@ -6,6 +6,8 @@ import {
   useId,
 } from "react";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
+import { InputDateAtom } from "./InputDateAtom";
+import { InputDateTextAtom } from "./InputDateTextAtom";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -14,7 +16,6 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import { formatInputDateValue } from "./InputDate.helper";
 
 export type InputDateProps = Omit<
   ComponentPropsWithRef<"input">,
@@ -34,12 +35,9 @@ export type InputDateProps = Omit<
    * @deprecated Use `message` and messageType instead.
    */
   success?: string;
-  /**
-   * @deprecated Use se the other composant `InputDateText` instead.
-   */
   hidePicker?: boolean;
   label: ItemLabelProps["label"];
-} & Partial<ItemLabelProps & ItemMessageProps>;
+} & Partial<Omit<ItemLabelProps, "onChange"> & ItemMessageProps>;
 
 type InputDateCommonProps = InputDateProps & {
   ItemLabelComponent: ComponentType<
@@ -53,8 +51,6 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     {
       className,
       classModifier = "",
-      defaultValue,
-      value,
       helper,
       error,
       success,
@@ -67,9 +63,9 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       ItemLabelComponent,
       ItemMessageComponent,
       required,
-      min,
-      max,
       hidePicker,
+      max,
+      min,
       ...otherProps
     },
     inputRef,
@@ -77,7 +73,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     const componentClassName = getComponentClassName(
       "af-form__input-date",
       className ?? "",
-      `${classModifier}${hidePicker ? " no-picker" : ""}`,
+      classModifier,
     );
 
     let inputId = useId();
@@ -85,14 +81,22 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     const idMessage = useId();
     const idHelp = useId();
 
-    const ariaDescribedby = [
+    const ariaDescribedbyIds = [
       helper && idHelp,
       ((Boolean(message) && messageType === "success") || Boolean(success)) &&
         idMessage,
     ].filter(Boolean) as string[];
 
+    const ariaDescribedby = ariaDescribedbyIds.length
+      ? ariaDescribedbyIds.join(" ")
+      : undefined;
+
     const hasError =
       (Boolean(message) && messageType === "error") || Boolean(error);
+
+    const ariaErrormessage = hasError ? idMessage : undefined;
+
+    const ariaInvalid = hasError || undefined;
 
     return (
       <div className="af-form__input-container">
@@ -104,23 +108,32 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
           required={required}
           inputId={inputId}
         />
-        <input
-          {...otherProps}
-          id={inputId}
-          className={componentClassName}
-          type="date"
-          ref={inputRef}
-          defaultValue={formatInputDateValue(defaultValue)}
-          value={formatInputDateValue(value)}
-          aria-errormessage={hasError ? idMessage : undefined}
-          aria-invalid={hasError || undefined}
-          aria-describedby={
-            ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
-          }
-          required={required}
-          min={formatInputDateValue(min)}
-          max={formatInputDateValue(max)}
-        />
+        {hidePicker ? (
+          <InputDateTextAtom
+            {...otherProps}
+            id={inputId}
+            className={componentClassName}
+            ref={inputRef}
+            aria-errormessage={ariaErrormessage}
+            aria-invalid={ariaInvalid}
+            aria-describedby={ariaDescribedby}
+            required={required}
+          />
+        ) : (
+          <InputDateAtom
+            {...otherProps}
+            id={inputId}
+            className={componentClassName}
+            ref={inputRef}
+            aria-errormessage={ariaErrormessage}
+            aria-invalid={ariaInvalid}
+            aria-describedby={ariaDescribedby}
+            required={required}
+            max={max}
+            min={min}
+          />
+        )}
+
         {helper ? (
           <span id={idHelp} className="af-form__input-helper">
             {helper}
