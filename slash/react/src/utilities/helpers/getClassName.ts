@@ -1,19 +1,19 @@
 type getClassNameParams = {
-  defaultClassName: string;
+  baseClassName: string;
   modifiers?: Array<string | boolean | undefined>;
   className?: string;
 };
 
 export const getClassName = ({
-  defaultClassName,
+  baseClassName,
   modifiers = [],
   className,
 }: getClassNameParams) => {
   const parsedModifiers = modifiers
     .filter(Boolean)
-    .map((modifier) => `${defaultClassName}--${modifier}`);
+    .map((modifier) => `${baseClassName}--${modifier}`);
 
-  return [defaultClassName, ...parsedModifiers, className]
+  return [baseClassName, ...parsedModifiers, className]
     .filter(Boolean)
     .join(" ");
 };

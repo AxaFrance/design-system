@@ -18,7 +18,7 @@ function Button({ className, variant = 'primary', isLarge = false, ...props }) {
   return (
     <button
       className={getClassName({
-        defaultClassName: "af-button",
+        baseClassName: "af-button",
         modifiers: [variant, isLarge && "large"],
         className,
       })}
@@ -32,7 +32,7 @@ function Button({ className, variant = 'primary', isLarge = false, ...props }) {
 function Field({className, required, ...props}) {
   return (
     <div className={getClassName({
-        defaultClassName: "af-field",
+        baseClassName: "af-field",
         modifiers: [required && "required"],
         className,
       })}

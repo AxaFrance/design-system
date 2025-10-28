@@ -3,13 +3,13 @@ import { getClassName } from "../getClassName";
 
 describe("getClassName", () => {
   it("returns only the component class name if no modifiers or custom class", () => {
-    expect(getClassName({ defaultClassName: "af-test" })).toBe("af-test");
+    expect(getClassName({ baseClassName: "af-test" })).toBe("af-test");
   });
 
   it("appends modifiers as BEM classes and ignores falsy values", () => {
     expect(
       getClassName({
-        defaultClassName: "af-test",
+        baseClassName: "af-test",
         modifiers: ["primary", false, undefined, "secondary"],
       }),
     ).toBe("af-test af-test--primary af-test--secondary");
@@ -18,7 +18,7 @@ describe("getClassName", () => {
   it("appends custom class name", () => {
     expect(
       getClassName({
-        defaultClassName: "af-test",
+        baseClassName: "af-test",
         className: "my-custom-class",
       }),
     ).toBe("af-test my-custom-class");
@@ -27,7 +27,7 @@ describe("getClassName", () => {
   it("appends both modifiers and custom class name", () => {
     expect(
       getClassName({
-        defaultClassName: "af-test",
+        baseClassName: "af-test",
         modifiers: ["primary"],
         className: "my-custom-class",
       }),
