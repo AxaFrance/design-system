@@ -1,7 +1,3 @@
-export const clsx = (...classNames: Array<string | boolean | undefined>) => {
-  return classNames.filter(Boolean).join(" ");
-};
-
 type getClassNameParams = {
   defaultClassName: string;
   modifiers?: Array<string | boolean | undefined>;
@@ -17,5 +13,7 @@ export const getClassName = ({
     .filter(Boolean)
     .map((modifier) => `${defaultClassName}--${modifier}`);
 
-  return clsx(defaultClassName, ...parsedModifiers, className);
+  return [defaultClassName, ...parsedModifiers, className]
+    .filter(Boolean)
+    .join(" ");
 };
