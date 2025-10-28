@@ -2,7 +2,7 @@
 
 ## Purpose
 
-All React components in the design system must have a `className` prop. This prop allows the developers to add one or more custom CSS classes to the parent element of the component.
+All React components in the design system must have a `className` prop. This prop allows the developers to add one or more custom CSS classes to the **parent element of the component**.
 
 ## Rules
 
@@ -25,6 +25,22 @@ function Button({ className, variant = 'primary', isLarge = false, ...props }) {
       {...props}
     />
   );
+}
+```
+
+```tsx
+function Field({className, required, ...props}) {
+  return (
+    <div className={getClassName({
+        defaultClassName: "af-field",
+        modifiers: [required && "required"],
+        className,
+      })}
+    >
+      <Label className="af-field__label" />
+      <Input className="af-field__input" />
+    </div>
+  )
 }
 ```
 
