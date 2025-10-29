@@ -27,4 +27,10 @@
     background-color: var(--radio-ckecked-color);
     content: "";
   }
+
+  &:hover,
+  &:focus-within,
+  &:checked {
+    --radio-border-width: 2px;
+  }
 }
