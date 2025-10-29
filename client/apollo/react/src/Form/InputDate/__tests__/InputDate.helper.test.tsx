@@ -1,11 +1,11 @@
 import {
   formatInputDateValue,
   formatDateTextValue,
-  isNotValidDay,
-  isNotValidDayDecimal,
-  isNotValidMillennium,
-  isNotValidMonth,
-  isNotValidMonthDecimal,
+  isValidDay,
+  isValidDayDecimal,
+  isValidMillennium,
+  isValidMonth,
+  isValidMonthDecimal,
   isValidDigit,
 } from "../InputDate.helper";
 
@@ -33,61 +33,61 @@ describe("formatInputDateValue", () => {
   });
 });
 
-describe("isNotValidDayDecimal", () => {
-  it("should return true for invalid first day digit", () => {
-    expect(isNotValidDayDecimal("4", 0)).toBe(true);
+describe("isValidDayDecimal", () => {
+  it("should return false for invalid first day digit", () => {
+    expect(isValidDayDecimal("4", 0)).toBe(false);
   });
 
-  it("should return false for valid first day digit", () => {
-    expect(isNotValidDayDecimal("3", 0)).toBe(false);
-  });
-});
-
-describe("isNotValidDay", () => {
-  it("should return true for invalid second day digit", () => {
-    expect(isNotValidDay(32, 1)).toBe(true);
-  });
-
-  it("should return false for valid second day digit", () => {
-    expect(isNotValidDay(25, 1)).toBe(false);
+  it("should return true for valid first day digit", () => {
+    expect(isValidDayDecimal("3", 0)).toBe(true);
   });
 });
 
-describe("isNotValidMonthDecimal", () => {
-  it("should return false for valid first month digit", () => {
-    expect(isNotValidMonthDecimal("1", 2)).toBe(false);
+describe("isValidDay", () => {
+  it("should return false for invalid second day digit", () => {
+    expect(isValidDay(32, 1)).toBe(false);
   });
 
-  it("should return false for valid first month digit", () => {
-    expect(isNotValidMonthDecimal("0", 2)).toBe(false);
-  });
-
-  it("should return true for invalid first month digit", () => {
-    expect(isNotValidMonthDecimal("2", 2)).toBe(true);
+  it("should return true for valid second day digit", () => {
+    expect(isValidDay(25, 1)).toBe(true);
   });
 });
 
-describe("isNotValidMonth", () => {
-  it("should return true for invalid second month digit", () => {
-    expect(isNotValidMonth(13, 3)).toBe(true);
+describe("isValidMonthDecimal", () => {
+  it("should return true for valid first month digit", () => {
+    expect(isValidMonthDecimal("1", 2)).toBe(true);
   });
 
-  it("should return true for invalid second month digit", () => {
-    expect(isNotValidMonth(0, 3)).toBe(true);
+  it("should return true for valid first month digit", () => {
+    expect(isValidMonthDecimal("0", 2)).toBe(true);
   });
 
-  it("should return false for valid second month digit", () => {
-    expect(isNotValidMonth(11, 3)).toBe(false);
+  it("should return false for invalid first month digit", () => {
+    expect(isValidMonthDecimal("2", 2)).toBe(false);
   });
 });
 
-describe("isNotValidMillennium", () => {
-  it("should return true for invalid millennium digit", () => {
-    expect(isNotValidMillennium("0", 4)).toBe(true);
+describe("isValidMonth", () => {
+  it("should return false for invalid second month digit", () => {
+    expect(isValidMonth(13, 3)).toBe(false);
   });
 
-  it("should return false for valid millennium digit", () => {
-    expect(isNotValidMillennium("2", 4)).toBe(false);
+  it("should return false for invalid second month digit", () => {
+    expect(isValidMonth(0, 3)).toBe(false);
+  });
+
+  it("should return true for valid second month digit", () => {
+    expect(isValidMonth(11, 3)).toBe(true);
+  });
+});
+
+describe("isValidMillennium", () => {
+  it("should return false for invalid millennium digit", () => {
+    expect(isValidMillennium("0", 4)).toBe(false);
+  });
+
+  it("should return true for valid millennium digit", () => {
+    expect(isValidMillennium("2", 4)).toBe(true);
   });
 });
 
