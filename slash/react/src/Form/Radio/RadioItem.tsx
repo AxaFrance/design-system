@@ -15,7 +15,6 @@ const RadioItem = forwardRef<HTMLInputElement, Props>(
       value = "",
       id,
       isChecked,
-      children,
       label,
       classModifier = "",
       className = "",
@@ -30,7 +29,6 @@ const RadioItem = forwardRef<HTMLInputElement, Props>(
       "af-form__radio",
       disabled,
     );
-    const newLabel = children || label;
     const generatedId = useId();
     const newId = id ?? generatedId;
 
@@ -47,7 +45,7 @@ const RadioItem = forwardRef<HTMLInputElement, Props>(
           disabled={disabled}
         />
         <label className="af-form__label" htmlFor={newId}>
-          <span className="af-form__description">{newLabel}</span>
+          <span className="af-form__description">{label}</span>
         </label>
       </div>
     );

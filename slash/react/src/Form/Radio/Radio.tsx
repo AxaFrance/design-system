@@ -61,25 +61,26 @@ const Radio = forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <div
-        className={classNames("af-form__radio-group", [
-          { "af-form__radio-group-classic": mode === RadioModes.classic },
-        ])}
-      >
-        {options.map((option: Option) => (
-          <RadioItem
-            {...onlyNecessaryProps}
-            key={option.value}
-            isChecked={option.value === value}
-            disabled={option.disabled || disabled}
-            className={classNameMode}
-            ref={inputRef}
-            {...option}
-          >
-            {children}
-          </RadioItem>
-        ))}
-      </div>
+      <>
+        <div
+          className={classNames("af-form__radio-group", [
+            { "af-form__radio-group-classic": mode === RadioModes.classic },
+          ])}
+        >
+          {options.map((option: Option) => (
+            <RadioItem
+              {...onlyNecessaryProps}
+              key={option.value}
+              isChecked={option.value === value}
+              disabled={option.disabled || disabled}
+              className={classNameMode}
+              ref={inputRef}
+              {...option}
+            />
+          ))}
+        </div>
+        {children}
+      </>
     );
   },
 );
