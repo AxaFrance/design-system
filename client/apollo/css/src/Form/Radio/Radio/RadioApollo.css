@@ -8,7 +8,6 @@
   &:focus-within,
   &:checked {
     --radio-border-color: var(--axa-blue-100);
-    --radio-border-width: 2px;
   }
 
   &:checked {
