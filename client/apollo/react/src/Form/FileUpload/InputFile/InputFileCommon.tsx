@@ -8,6 +8,7 @@ import {
 } from "react";
 import addCircleIcon from "@material-symbols/svg-400/rounded/add_circle-fill.svg";
 import { Svg } from "../../../Svg/Svg";
+import { getClassName } from "../../../utilities/getClassName";
 import { type ItemLabelProps } from "../../ItemLabel/ItemLabelCommon";
 import { type ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 
@@ -142,7 +143,10 @@ export const InputFileCommon = forwardRef<
 
     return (
       <div
-        className={["af-input-file", className].filter(Boolean).join(" ")}
+        className={getClassName({
+          baseClassName: "af-input-file",
+          className,
+        })}
         style={style}
       >
         <ItemLabelComponent
@@ -159,12 +163,10 @@ export const InputFileCommon = forwardRef<
         </ItemLabelComponent>
         <div className="af-input-file__container">
           <span
-            className={[
-              "af-input-file__dropzone",
-              hasError && "af-input-file__dropzone--error",
-            ]
-              .filter(Boolean)
-              .join(" ")}
+            className={getClassName({
+              baseClassName: "af-input-file__dropzone",
+              modifiers: [hasError && "error"],
+            })}
           >
             <input
               ref={ref}
@@ -182,7 +184,12 @@ export const InputFileCommon = forwardRef<
             />
             <span>{resolvedDropzoneLabels.dropzone}</span>
             <span>{resolvedDropzoneLabels.or}</span>
-            <span className="af-btn-client af-btn-client--tertiary">
+            <span
+              className={getClassName({
+                baseClassName: "af-btn-client",
+                modifiers: ["tertiary"],
+              })}
+            >
               <Svg src={addCircleIcon} role="presentation" />
               {resolvedDropzoneLabels.button}
             </span>

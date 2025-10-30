@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import { generateId } from "../../../utilities/generateId";
+import { getClassName } from "../../../utilities/getClassName";
 import type { InputFileProps } from "../InputFile/InputFileCommon";
 import type { ItemFileProps } from "../ItemFile/ItemFileCommon";
 
@@ -41,7 +42,10 @@ export const FileUploadCommon = forwardRef<
     return (
       <InputFileComponent
         {...props}
-        className={["af-file-upload", className].filter(Boolean).join(" ")}
+        className={getClassName({
+          baseClassName: "af-file-upload",
+          className,
+        })}
         ref={ref}
       >
         {children ? (
