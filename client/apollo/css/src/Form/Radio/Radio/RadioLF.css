@@ -21,6 +21,5 @@
   &:hover,
   &:focus-within {
     --radio-border-color: var(--color-red-700);
-    --radio-border-width: 3px;
   }
 }
