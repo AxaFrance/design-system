@@ -30,6 +30,13 @@ git switch -c nom-de-ma-branche
 
 3. **Soumettre une Pull Request :** Une fois que vous êtes satisfait de vos modifications, soumettez une pull request vers la branche principale du projet.
 
+## Gestion de la version de Node.js
+
+Ce projet utilise deux méthodes pour définir la version de Node.js :
+
+- **Le champ `engines.node` dans le `package.json`** définit la plage de versions de Node.js supportées par le projet (par exemple : ">=22.0.0 <23.0.0 || >=24.0.0 <25.0.0"). Cette plage permet d'avertir les utilisateurs si leur version de Node.js n'est pas compatible.
+- **Volta** (via le bloc `volta` dans le `package.json`) permet de verrouiller la version de Node.js et de npm utilisée en local pour garantir un environnement reproductible lors du développement. Volta installe automatiquement la version recommandée lors de l'utilisation de node ou de npm.
+
 ## Règles de Commit
 
 ### Convention de Commit
