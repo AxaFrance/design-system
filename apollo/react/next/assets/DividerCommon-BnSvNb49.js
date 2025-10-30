@@ -1,0 +1,1 @@
+import{j as s}from"./index-C-iqcyhV.js";import{r as e}from"./index-ZnYipkzV.js";import{g as m}from"./TimelineVerticalApollo-dzUCKhZ5.js";const i=({className:o,classModifier:r})=>{const t=e.useMemo(()=>m("af-divider",o,r),[o,r]);return s.jsx("hr",{className:t})};export{i as D};
