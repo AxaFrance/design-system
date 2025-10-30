@@ -9,24 +9,20 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Get Node.js version from volta
+    # Extracts the major version from the last version range in engines.node (e.g. >=22.0.0 <23.0.0 || >=24.0.0 <25.0.0 => 24)
+    # This allows the CI to always use the latest declared LTS without changing the workflow for each new LTS
+    - name: Get Node.js LTS major version from engines (last range)
       shell: bash
-      run: echo "NODE_VERSION=$(jq -r .volta.node package.json)" >> $GITHUB_ENV
-    
-    - name: Get npm version from volta
-      shell: bash
-      run: echo "NPM_VERSION=$(jq -r .volta.npm package.json)" >> $GITHUB_ENV
+      run: |
+        NODE_RANGE=$(jq -r .engines.node package.json | awk -F ' *\\|\\| *' '{print $NF}')
+        NODE_MAJOR=$(echo "$NODE_RANGE" | grep -oE '[0-9]+' | head -1)
+        echo "NODE_VERSION=$NODE_MAJOR" >> $GITHUB_ENV
 
     - name: Setup Node.js
       uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
       with:
         registry-url: "https://registry.npmjs.org"
         node-version: ${{ env.NODE_VERSION || 'lts/*' }}
-
-    - name: Setup npm version
-      if: ${{ env.NPM_VERSION }}
-      shell: bash
-      run: npm install -g npm@${{ env.NPM_VERSION }}
 
     - name: Check package
       if: inputs.check-package
