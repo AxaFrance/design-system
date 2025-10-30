@@ -8,6 +8,7 @@ import {
 import type { ClickIconProps } from "../../../ClickIcon/ClickIconCommon";
 import type { IconProps } from "../../../Icon/IconCommon";
 import type { SpinnerProps } from "../../../Spinner/SpinnerCommon";
+import { getClassName } from "../../../utilities/getClassName";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 
 export type ItemFileProps = {
@@ -100,9 +101,11 @@ export const ItemFileCommon = ({
 
   return (
     <section
-      className={["af-item-file", hasError && "af-item-file--error", className]
-        .filter(Boolean)
-        .join(" ")}
+      className={getClassName({
+        baseClassName: "af-item-file",
+        modifiers: [hasError && "error"],
+        className,
+      })}
       aria-busy={isLoading ? true : undefined}
       aria-live="polite"
       {...props}
