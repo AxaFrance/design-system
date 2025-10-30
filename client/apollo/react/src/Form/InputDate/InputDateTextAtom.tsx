@@ -7,11 +7,12 @@ export type InputDateTextAtomProps = Omit<
   "value"
 > & {
   value?: Date | string;
+  defaultValue?: Date | string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputDateTextAtom = forwardRef<HTMLInputElement, InputDateTextAtomProps>(
-  ({ onChange, value, ...otherProps }, inputRef) => {
+  ({ onChange, value, defaultValue, ...otherProps }, inputRef) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const formattedValue = formatDateTextValue(e.target.value);
 
@@ -29,6 +30,7 @@ const InputDateTextAtom = forwardRef<HTMLInputElement, InputDateTextAtomProps>(
         inputMode="numeric"
         onChange={handleChange}
         value={formatInputDateValue(value)}
+        defaultValue={formatInputDateValue(defaultValue)}
         {...otherProps}
       />
     );
