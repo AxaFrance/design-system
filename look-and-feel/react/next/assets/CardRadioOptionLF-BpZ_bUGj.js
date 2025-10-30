@@ -1,1 +1,0 @@
-import{j as a}from"./index-C-iqcyhV.js";import"./FileUploadLF-BPiIb4Kc.js";import{C as n,I as t,R as i}from"./FileUploadCommon-BIBtmlJc.js";const s=o=>a.jsx(n,{...o,RadioComponent:i,IconComponent:t});export{s as C};
