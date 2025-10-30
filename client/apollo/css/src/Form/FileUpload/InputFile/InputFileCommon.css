@@ -27,7 +27,7 @@
   flex-direction: column;
   align-items: center;
   align-self: stretch;
-  row-gap: calc(8 / var(--font-size-base) * 1rem);
+  row-gap: calc(4 / var(--font-size-base) * 1rem);
   color: var(--input-file-dropzone-color);
   background-color: var(--input-file-dropzone-bg-color);
   outline: var(--input-file-dropzone-border-width) dashed
@@ -71,6 +71,7 @@
     }
 
     > span:is(.af-btn-client) {
+      margin-top: calc(4 / var(--font-size-base) * 1rem);
       align-self: center;
     }
   }
