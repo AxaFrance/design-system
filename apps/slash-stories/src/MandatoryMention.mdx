@@ -1,0 +1,41 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as MandatoryMentionStories from "./MandatoryMention.stories.tsx";
+import { MandatoryMention } from "@axa-fr/design-system-slash-react";
+
+<Meta of={MandatoryMentionStories} />
+
+# MandatoryMention
+
+Mandatory Mention item is used to inform the user of the expected completion of a form: either all fields are required, or only some of them
+
+## Import
+
+```tsx
+import { MandatoryMention } from "@axa-fr/design-system-slash-react";
+```
+
+## Use
+
+```tsx
+import { MandatoryMention } from "@axa-fr/design-system-slash-react";
+
+function FormHeader() {
+  return (
+    <>
+      <MandatoryMention variant="one" />
+      <MandatoryMention variant="all" />
+    </>
+  );
+}
+```
+
+## Playground
+
+<Story of={MandatoryMentionStories.Default} />
+
+<Controls of={MandatoryMentionStories.Default} />
+
+### Variants
+
+- variant="one": Champs obligatoires \*
+- variant="all": Tous les champs sont obligatoires

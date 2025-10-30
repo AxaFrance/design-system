@@ -107,3 +107,5 @@ export { Loader } from "./Loader/Loader";
 
 export { CardData } from "./CardData/CardData";
 export type { CardDataVariant } from "./CardData/CardData";
+
+export { MandatoryMention } from "./MandatoryMention/MandatoryMention";
