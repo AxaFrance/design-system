@@ -1,12 +1,15 @@
 .af-item-tab-bar {
-  padding: var(--item-tab-bar-padding, 1rem);
+  padding: var(--item-tab-bar-padding, calc(16 / var(--font-size-base) * 1rem));
   border: none;
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-size: var(
+    --item-tab-bar-font-size,
+    calc(16 / var(--font-size-base) * 1rem)
+  );
   font-weight: var(--item-tab-bar-font-weight, 400);
   line-height: 125%;
   color: var(--item-tab-bar-font-color);
   background-color: transparent;
-  box-shadow: inset 0 var(--item-tab-bar-box-shadow-width, -1px) 0 0
+  box-shadow: inset 0 var(--item-tab-bar-box-shadow-width, 0) 0 0
     var(--item-tab-bar-box-shadow-color);
   outline: none;
 

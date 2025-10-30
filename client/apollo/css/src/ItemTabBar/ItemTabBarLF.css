@@ -4,6 +4,7 @@
   --item-tab-bar-font-color: var(--color-gray-900);
   --item-tab-bar-box-shadow-color: var(--color-blue-400);
   --item-tab-bar-outline-color: var(--color-axa);
+  --item-tab-bar-font-size: calc(18 / var(--font-size-base) * 1rem);
 
   &[aria-selected="true"] {
     --item-tab-bar-font-color: var(--color-axa);

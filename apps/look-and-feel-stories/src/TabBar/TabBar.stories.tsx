@@ -2,7 +2,7 @@ import {
   TabBar,
   tabBarDirection,
   TabBarProps,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 

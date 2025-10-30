@@ -5,7 +5,7 @@
   & > [role="tablist"] {
     display: flex;
     width: 100%;
-    box-shadow: inset 0 -2px 0 0 var(--tab-bar-box-shadow-color);
+    box-shadow: inset 0 -1px 0 0 var(--tabbar-box-shadow-color);
   }
 
   & > [role="tabpanel"][aria-hidden="true"] {
