@@ -34,3 +34,12 @@
     --radio-border-width: 2px;
   }
 }
+
+.af-radio--invalid:not(:checked) {
+  --radio-border-width: 2px;
+
+  &:hover,
+  &:focus-within {
+    --radio-border-width: 3px;
+  }
+}
