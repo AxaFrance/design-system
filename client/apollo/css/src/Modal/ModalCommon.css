@@ -73,7 +73,7 @@
   }
 }
 
-&__content {
+.af-modal__content {
   display: grid;
   grid-template-rows: auto 1fr auto;
   flex: 1;
