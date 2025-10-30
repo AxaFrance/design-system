@@ -48,9 +48,6 @@ packages.forEach((packageType) => {
   if (packageType === 'look-and-feel/react') {
     packageJson.peerDependencies['@axa-fr/design-system-apollo-react'] = packageJson.version;
   }
-  if (packageType === 'apollo/react') {
-    packageJson.peerDependencies['@axa-fr/design-system-look-and-feel-css'] = packageJson.version
-  }
 
   writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), { encoding: 'utf-8' });
 });
