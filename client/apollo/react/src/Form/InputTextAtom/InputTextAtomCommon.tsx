@@ -26,6 +26,7 @@ const InputTextAtom = forwardRef<HTMLInputElement, InputTextAtomProps>(
       idMessage,
       idHelp,
       "aria-errormessage": ariaErrormessage,
+      "aria-describedby": ariaDescribedby,
       type = "text",
       ...otherProps
     },
@@ -50,7 +51,7 @@ const InputTextAtom = forwardRef<HTMLInputElement, InputTextAtomProps>(
           ref={inputRef}
           aria-errormessage={ariaErrormessage ?? idMessage}
           aria-invalid={Boolean(error || ariaErrormessage)}
-          aria-describedby={idHelp}
+          aria-describedby={ariaDescribedby ?? idHelp}
           {...otherProps}
         />
         {unit}

@@ -1,10 +1,10 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { InputDate } from "../InputDateApollo";
 
 describe("<InputDate />", () => {
   const testDate = new Date("2025-01-01");
+
   it("renders the InputDate component with label only", () => {
     render(<InputDate label="Test Label" />);
     expect(screen.getByText("Test Label")).toBeInTheDocument();
@@ -16,7 +16,8 @@ describe("<InputDate />", () => {
         id="id"
         label="test"
         name="name"
-        error="error"
+        message="error"
+        messageType="error"
         value={testDate}
         onChange={() => {}}
         required
@@ -109,27 +110,38 @@ describe("<InputDate />", () => {
 
     it("should set aria-describedby with two ids when helper and success are present", () => {
       render(
-        <InputDate label="test" helper="help text" success="success message" />,
+        <InputDate
+          label="test"
+          helper="help text"
+          message="success message"
+          messageType="success"
+        />,
       );
 
       const input = screen.getByLabelText(/test/);
+
       expect(input).toHaveAttribute("aria-describedby");
 
       const helper = screen.getByText("help text");
       const success = screen.getByText("success message");
       const inputDescribedby = input.getAttribute("aria-describedby");
+
       expect(inputDescribedby).toStrictEqual(
         `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
       );
     });
 
     it("should set aria-errormessage when error is present", () => {
-      render(<InputDate label="test" error="error message" />);
+      render(
+        <InputDate label="test" message="error message" messageType="error" />,
+      );
 
       const input = screen.getByLabelText(/test/);
+
       expect(input).toHaveAttribute("aria-errormessage");
 
       const error = screen.getByText("error message");
+
       expect(input.getAttribute("aria-errormessage")).toStrictEqual(
         error.parentElement!.getAttribute("id"),
       );
@@ -143,147 +155,27 @@ describe("<InputDate />", () => {
     });
   });
 
-  it("adds the af-form__input-date--no-picker class when hidePicker is true", () => {
-    render(<InputDate label="Date de naissance" hidePicker />);
-    const inputDate = screen.getByLabelText(/Date de naissance/);
-    expect(inputDate).toHaveClass("af-form__input-date--no-picker");
-  });
+  it("Should render the date text when hidePicker is true", () => {
+    render(
+      <InputDate
+        label="label date text"
+        hidePicker
+        helper="Help text"
+        message="Success message"
+        messageType="success"
+      />,
+    );
 
-  it("does not add the af-form__input-date--no-picker class when hidePicker is not defined", () => {
-    render(<InputDate label="Date de naissance" />);
-    const inputDate = screen.getByLabelText(/Date de naissance/);
-    expect(inputDate).not.toHaveClass("af-form__input-date--no-picker");
-  });
+    const input = screen.getByLabelText(/label date text/);
+    const helper = screen.getByText(/Help text/);
+    const success = screen.getByText(/Success message/);
 
-  describe("date picker visibility management", () => {
-    const originalPreventDefault = Event.prototype.preventDefault;
-    const originalWindowNavigator = global.window.navigator;
-    const preventDefaultMock = vi.fn();
-    const keypressOptions = {
-      space: {
-        keyCode: 32,
-        code: "Space",
-      },
-      enter: {
-        keyCode: 13,
-        code: "Enter",
-      },
-    };
-
-    beforeAll(() => {
-      Event.prototype.preventDefault = preventDefaultMock;
-    });
-
-    afterAll(() => {
-      Event.prototype.preventDefault = originalPreventDefault;
-    });
-
-    beforeEach(() => {
-      preventDefaultMock.mockReset();
-    });
-
-    const mockUserAgent = (agent: string) => {
-      global.window.navigator = {
-        ...originalWindowNavigator,
-        userAgent: agent,
-      };
-    };
-    const restoreUserAgent = () => {
-      global.window.navigator = originalWindowNavigator;
-    };
-
-    it.each([
-      vi.fn(),
-      null,
-      undefined,
-      {} as React.RefObject<HTMLInputElement>,
-    ])("prevents click events when hidePicker is true", async (ref) => {
-      render(<InputDate label="Date de naissance" hidePicker ref={ref} />);
-      const inputDate = screen.getByLabelText(/Date de naissance/);
-
-      await userEvent.click(inputDate);
-      expect(preventDefaultMock.mock.contexts).toHaveLength(1);
-      expect(preventDefaultMock.mock.contexts[0]).toMatchObject<
-        Partial<MouseEvent>
-      >({
-        type: "click",
-      });
-      expect(preventDefaultMock).toHaveBeenCalledTimes(1);
-    });
-
-    it("prevents space keypress events when hidePicker is true", async () => {
-      render(<InputDate label="Date de naissance" hidePicker />);
-      const inputDate = screen.getByLabelText(/Date de naissance/);
-
-      await userEvent.clear(inputDate);
-      expect(inputDate).toHaveFocus();
-      fireEvent.keyDown(inputDate, keypressOptions.space);
-      expect(preventDefaultMock).toHaveBeenCalledTimes(1);
-      expect(preventDefaultMock.mock.contexts).toHaveLength(1);
-      expect(preventDefaultMock.mock.contexts[0]).toMatchObject<
-        Partial<KeyboardEvent>
-      >({
-        type: "keydown",
-        ...keypressOptions.space,
-      });
-    });
-
-    it("does not prevent enter keypress events when hidePicker is true on webkit agent", async () => {
-      render(<InputDate label="Date de naissance" hidePicker />);
-      const inputDate = screen.getByLabelText(/Date de naissance/);
-      // Mock a WebKit user agent
-      mockUserAgent("WebKit");
-
-      await userEvent.clear(inputDate);
-      expect(inputDate).toHaveFocus();
-      fireEvent.keyDown(inputDate, keypressOptions.enter);
-      expect(preventDefaultMock).not.toHaveBeenCalled();
-
-      // Restore the original user agent
-      restoreUserAgent();
-    });
-
-    it("prevents enter keypress events when hidePicker is true on a non webkit agent", async () => {
-      render(<InputDate label="Date de naissance" hidePicker />);
-      const inputDate = screen.getByLabelText(/Date de naissance/);
-      // Mock a non WebKit user agent
-      mockUserAgent("Firefox");
-
-      await userEvent.clear(inputDate);
-      expect(inputDate).toHaveFocus();
-      fireEvent.keyDown(inputDate, keypressOptions.enter);
-      expect(preventDefaultMock.mock.contexts).toHaveLength(1);
-      expect(preventDefaultMock.mock.contexts[0]).toMatchObject<
-        Partial<KeyboardEvent>
-      >({
-        type: "keydown",
-        ...keypressOptions.enter,
-      });
-
-      // Restore the original user agent
-      restoreUserAgent();
-    });
-
-    it("does not prevent space and enter keypress and click when hidePicker is true on non a webkit agent but the event target is a different element", async () => {
-      render(
-        <>
-          <input type="date" aria-label="different input date" />
-          <InputDate label="Date de naissance" hidePicker />
-        </>,
-      );
-      const differentInputDate = screen.getByLabelText(/different input date/);
-      // Mock a non-WebKit user agent
-      mockUserAgent("Firefox");
-
-      await userEvent.clear(differentInputDate);
-      expect(differentInputDate).toHaveFocus();
-      fireEvent.keyDown(differentInputDate, keypressOptions.space);
-      fireEvent.keyDown(differentInputDate, keypressOptions.enter);
-      await userEvent.click(differentInputDate);
-      expect(preventDefaultMock).not.toHaveBeenCalled();
-
-      // Restore the original user agent
-      restoreUserAgent();
-    });
+    expect(input).toHaveAttribute("type", "text");
+    expect(input).toHaveAttribute("pattern", "\\d{0,2}/?\\d{0,2}/?\\d{0,4}");
+    expect(input).toHaveAttribute("maxlength", "10");
+    expect(input).toHaveAttribute("inputMode", "numeric");
+    expect(input.getAttribute("aria-describedby")).toStrictEqual(
+      `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
+    );
   });
 });

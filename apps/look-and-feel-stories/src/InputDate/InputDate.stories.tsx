@@ -3,6 +3,7 @@ import {
   itemMessageVariants,
 } from "@axa-fr/design-system-apollo-react/lf";
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 const meta: Meta<typeof InputDate> = {
   component: InputDate,
@@ -101,5 +102,25 @@ export const InputDateErrorEmptyStory: Story = {
     "aria-errormessage": {
       control: { type: "date" },
     },
+  },
+};
+
+const renderDateText = ({
+  ...args
+}: React.ComponentProps<typeof InputDate>) => {
+  const [state, setState] = useState(args.value);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState(e.target.value);
+  };
+
+  return <InputDate {...args} value={state} onChange={handleChange} />;
+};
+
+export const InputDateTextStory: Story = {
+  name: "InputDateText",
+  render: renderDateText,
+  args: {
+    hidePicker: true,
   },
 };

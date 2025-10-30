@@ -3,12 +3,11 @@ import {
   type ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
-  useEffect,
   useId,
-  useImperativeHandle,
-  useRef,
 } from "react";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
+import { InputDateAtom } from "./InputDateAtom";
+import { InputDateTextAtom } from "./InputDateTextAtom";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -17,7 +16,6 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import { formatInputDateValue } from "./InputDate.helper";
 
 export type InputDateProps = Omit<
   ComponentPropsWithRef<"input">,
@@ -39,7 +37,7 @@ export type InputDateProps = Omit<
   success?: string;
   hidePicker?: boolean;
   label: ItemLabelProps["label"];
-} & Partial<ItemLabelProps & ItemMessageProps>;
+} & Partial<Omit<ItemLabelProps, "onChange"> & ItemMessageProps>;
 
 type InputDateCommonProps = InputDateProps & {
   ItemLabelComponent: ComponentType<
@@ -53,8 +51,6 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     {
       className,
       classModifier = "",
-      defaultValue,
-      value,
       helper,
       error,
       success,
@@ -67,64 +63,40 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       ItemLabelComponent,
       ItemMessageComponent,
       required,
-      min,
-      max,
       hidePicker,
+      max,
+      min,
       ...otherProps
     },
-    ref,
+    inputRef,
   ) => {
     const componentClassName = getComponentClassName(
       "af-form__input-date",
       className ?? "",
-      `${classModifier}${hidePicker ? " no-picker" : ""}`,
+      classModifier,
     );
 
     let inputId = useId();
     inputId = otherProps.id ?? inputId;
     const idMessage = useId();
     const idHelp = useId();
-    const inputRef = useRef<HTMLInputElement>(null);
 
-    useImperativeHandle<typeof inputRef.current, typeof inputRef.current>(
-      ref,
-      () => inputRef.current,
-    );
+    const ariaDescribedbyIds = [
+      helper && idHelp,
+      ((Boolean(message) && messageType === "success") || Boolean(success)) &&
+        idMessage,
+    ].filter(Boolean) as string[];
 
-    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
-      Boolean,
-    ) as string[];
-
-    /* Stop space keydown, enter keydown for non webkit browsers and click events targeting the input element when picker is disabled */
-    useEffect(() => {
-      function handleKeydown(event: KeyboardEvent) {
-        if (
-          hidePicker &&
-          (event.keyCode === 32 ||
-            (event.keyCode === 13 &&
-              !window.navigator?.userAgent?.includes("WebKit"))) &&
-          event.target === inputRef.current
-        ) {
-          event.preventDefault();
-        }
-      }
-      function handleClick(event: MouseEvent) {
-        if (hidePicker && event.target === inputRef.current) {
-          event.preventDefault();
-        }
-      }
-
-      window.addEventListener("keydown", handleKeydown);
-      window.addEventListener("click", handleClick);
-
-      return () => {
-        window.removeEventListener("keydown", handleKeydown);
-        window.removeEventListener("click", handleClick);
-      };
-    }, [hidePicker]);
+    const ariaDescribedby = ariaDescribedbyIds.length
+      ? ariaDescribedbyIds.join(" ")
+      : undefined;
 
     const hasError =
       (Boolean(message) && messageType === "error") || Boolean(error);
+
+    const ariaErrormessage = hasError ? idMessage : undefined;
+
+    const ariaInvalid = hasError || undefined;
 
     return (
       <div className="af-form__input-container">
@@ -136,23 +108,32 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
           required={required}
           inputId={inputId}
         />
-        <input
-          {...otherProps}
-          id={inputId}
-          className={componentClassName}
-          type="date"
-          ref={inputRef}
-          defaultValue={formatInputDateValue(defaultValue)}
-          value={formatInputDateValue(value)}
-          aria-errormessage={hasError ? idMessage : undefined}
-          aria-invalid={hasError || undefined}
-          aria-describedby={
-            ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
-          }
-          required={required}
-          min={formatInputDateValue(min)}
-          max={formatInputDateValue(max)}
-        />
+        {hidePicker ? (
+          <InputDateTextAtom
+            {...otherProps}
+            id={inputId}
+            className={componentClassName}
+            ref={inputRef}
+            aria-errormessage={ariaErrormessage}
+            aria-invalid={ariaInvalid}
+            aria-describedby={ariaDescribedby}
+            required={required}
+          />
+        ) : (
+          <InputDateAtom
+            {...otherProps}
+            id={inputId}
+            className={componentClassName}
+            ref={inputRef}
+            aria-errormessage={ariaErrormessage}
+            aria-invalid={ariaInvalid}
+            aria-describedby={ariaDescribedby}
+            required={required}
+            max={max}
+            min={min}
+          />
+        )}
+
         {helper ? (
           <span id={idHelp} className="af-form__input-helper">
             {helper}
