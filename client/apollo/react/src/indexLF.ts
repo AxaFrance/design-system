@@ -18,6 +18,10 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageLF";
 export { ClickIcon } from "./ClickIcon/ClickIconLF";
+export {
+  ContentItemDuoAction,
+  type ContentItemDuoActionState,
+} from "./ContentItemDuoAction/ContentItemDuoActionLF";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoLF";
 export { DataAgent } from "./DataAgent/DataAgentLF";
 export { Divider } from "./Divider/DividerLF";
@@ -30,6 +34,9 @@ export { CardCheckboxOption } from "./Form/Checkbox/CardCheckboxOption/CardCheck
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxLF";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextLF";
 export { Dropdown } from "./Form/Dropdown/DropdownLF";
+export { FileUpload } from "./Form/FileUpload/FileUpload/FileUploadLF";
+export { InputFile } from "./Form/FileUpload/InputFile/InputFileLF";
+export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileLF";
 export {
   /** @deprecated Use `InputDate` instead. */
   InputDate as DateInput,
@@ -63,12 +70,6 @@ export {
   type IconVariants,
 } from "./Icon/IconLF";
 export { ItemTabBar, type ItemTabBarProps } from "./ItemTabBar/ItemTabBarLF";
-export {
-  TabBar,
-  type TabBarProps,
-  tabBarDirection,
-  type TabBarDirection,
-} from "./TabBar/TabBarLF";
 export { Footer, type FooterProps } from "./Layout/Footer/FooterLF";
 export { Link, linkVariants, type LinkVariants } from "./Link/LinkLF";
 export {
@@ -79,10 +80,6 @@ export {
   type ClickItemVariants,
 } from "./List/ClickItem/ClickItemLF";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoLF";
-export {
-  type ContentItemDuoActionState,
-  ContentItemDuoAction,
-} from "./ContentItemDuoAction/ContentItemDuoActionLF";
 export {
   Message,
   messageVariants,
@@ -104,9 +101,12 @@ export {
 } from "./Spinner/SpinnerLF";
 export { Stepper } from "./Stepper/StepperLF";
 export { Svg } from "./Svg/Svg";
+export {
+  TabBar,
+  tabBarDirection,
+  type TabBarDirection,
+  type TabBarProps,
+} from "./TabBar/TabBarLF";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
-export { InputFile } from "./Form/FileUpload/InputFile/InputFileLF";
-export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileLF";
-export { FileUpload } from "./Form/FileUpload/FileUpload/FileUploadLF";

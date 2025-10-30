@@ -21,6 +21,10 @@ export {
   type CardMessageVariants,
 } from "./CardMessage/CardMessageApollo";
 export { ClickIcon } from "./ClickIcon/ClickIconApollo";
+export {
+  ContentItemDuoAction,
+  type ContentItemDuoActionState,
+} from "./ContentItemDuoAction/ContentItemDuoActionApollo";
 export { ContentItemMono } from "./ContentItemMono/ContentItemMonoApollo";
 export { DataAgent } from "./DataAgent/DataAgentApollo";
 export { Divider } from "./Divider/DividerApollo";
@@ -33,6 +37,9 @@ export { CardCheckboxOption } from "./Form/Checkbox/CardCheckboxOption/CardCheck
 export { Checkbox } from "./Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxText } from "./Form/Checkbox/CheckboxText/CheckboxTextApollo";
 export { Dropdown } from "./Form/Dropdown/DropdownApollo";
+export { FileUpload } from "./Form/FileUpload/FileUpload/FileUploadApollo";
+export { InputFile } from "./Form/FileUpload/InputFile/InputFileApollo";
+export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileApollo";
 export { InputDate } from "./Form/InputDate/InputDateApollo";
 export { type OptionType } from "./Form/InputPhone/InputPhone.types";
 export { InputPhone } from "./Form/InputPhone/InputPhoneApollo";
@@ -61,12 +68,6 @@ export {
   ItemTabBar,
   type ItemTabBarProps,
 } from "./ItemTabBar/ItemTabBarApollo";
-export {
-  TabBar,
-  type TabBarProps,
-  tabBarDirection,
-  type TabBarDirection,
-} from "./TabBar/TabBarApollo";
 export { Footer, type FooterProps } from "./Layout/Footer/FooterApollo";
 export { Link, linkVariants, type LinkVariants } from "./Link/LinkApollo";
 export {
@@ -77,10 +78,6 @@ export {
   type ClickItemVariants,
 } from "./List/ClickItem/ClickItemApollo";
 export { ContentItemDuo } from "./List/ContentItemDuo/ContentItemDuoApollo";
-export {
-  type ContentItemDuoActionState,
-  ContentItemDuoAction,
-} from "./ContentItemDuoAction/ContentItemDuoActionApollo";
 export {
   Message,
   messageVariants,
@@ -102,9 +99,12 @@ export {
 } from "./Spinner/SpinnerApollo";
 export { Stepper } from "./Stepper/StepperApollo";
 export { Svg } from "./Svg/Svg";
+export {
+  TabBar,
+  tabBarDirection,
+  type TabBarDirection,
+  type TabBarProps,
+} from "./TabBar/TabBarApollo";
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
-export { InputFile } from "./Form/FileUpload/InputFile/InputFileApollo";
-export { ItemFile } from "./Form/FileUpload/ItemFile/ItemFileApollo";
-export { FileUpload } from "./Form/FileUpload/FileUpload/FileUploadApollo";
