@@ -5,7 +5,7 @@ import { Card } from "./components/Card";
 export const render = () => (
   <>
     <DebugGrid isCheckedByDefault />
-    <main className="grid">
+    <main className="grid wireframe">
       <h1 className="box">Bonjour, Samuel G.</h1>
       <div className="box box-example-1 subgrid">
         <h2 className="box">Mes contrats</h2>
