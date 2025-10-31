@@ -75,23 +75,23 @@
   }
 }
 
-.af-apollo-click-item--medium {
-  align-items: flex-start;
-
-  .af-apollo-click-item {
-    &__secondary,
-    &__tertiary,
-    &__trailing {
-      display: none;
-    }
-  }
-}
-
 .af-apollo-click-item--agent {
   .af-apollo-click-item__secondary,
   .af-apollo-click-item__tertiary,
   .af-apollo-click-item__tag-container {
     display: none;
+  }
+}
+
+.af-apollo-click-item--medium {
+  align-items: flex-start;
+
+  .af-apollo-click-item {
+    .af-apollo-click-item__secondary,
+    .af-apollo-click-item__tertiary,
+    .af-apollo-click-item__trailing {
+      display: none;
+    }
   }
 }
 
