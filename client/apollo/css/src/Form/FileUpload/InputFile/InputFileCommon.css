@@ -5,7 +5,7 @@
   row-gap: calc(12 / var(--font-size-base) * 1rem);
 
   @media (--desktop-small) {
-    font-size: calc(16 / var(--font-size-base) * 1rem);
+    row-gap: calc(16 / var(--font-size-base) * 1rem);
   }
 }
 
