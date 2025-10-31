@@ -1,0 +1,47 @@
+main.example-form {
+  padding-block: 4rem;
+}
+
+.form {
+  --start: 1;
+
+  @media (width > 1023px) {
+    --start: 3;
+    --cols: 8;
+    --row-gap: calc(32 / var(--font-size-base) * 1rem);
+  }
+}
+
+.form__header {
+  --row-gap: calc(32 / var(--font-size-base) * 1rem);
+}
+
+.form__fields {
+  --row-gap: 2rem;
+
+  .af-card-radio,
+  .af-form__input-container {
+    --cols: 4;
+
+    @media (width > 667px) {
+      --cols: 8;
+    }
+
+    @media (width > 1023px) {
+      --cols: 5;
+    }
+  }
+}
+
+.form__actions {
+  > * {
+    --cols: 2;
+
+    @media (width > 667px) {
+      --cols: 4;
+    }
+    @media (width > 1023px) {
+      --cols: 3;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 @use "../breakpoints.scss" as common;
 
-#storybook-root:has(> .grid) {
+#storybook-root:has(> .grid.wireframe) {
   background: hsla(0deg, 0%, 79%, 15.9%);
 }
 
