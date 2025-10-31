@@ -32,7 +32,6 @@ type InputProps = {
   isVisible?: boolean;
   roleContainer?: string;
   ariaLabelContainer?: string;
-  isLabelContainerLinkedToInput?: boolean;
   forceDisplayMessage?: boolean;
   message?: string;
   messageType?: MessageTypes;
@@ -113,7 +112,6 @@ export const Field = ({
   isVisible = true,
   roleContainer,
   ariaLabelContainer,
-  isLabelContainerLinkedToInput = true,
   labelPosition = "center",
   classNameSuffix = "text",
   renderInput,
@@ -150,15 +148,11 @@ export const Field = ({
     `af-form__${classNameSuffix}`,
     modifiers,
   );
-  const groupClassName = getComponentClassName(
-    className,
-    classModifier,
-    "af-form__group",
-  );
+  const groupClassName = getComponentClassName("af-form__group", classModifier);
 
   return (
     <div
-      className={classNames("row", groupClassName, {
+      className={classNames(className, "row", groupClassName, {
         "af-form__group--required": actualRequired,
         "af-form__group--label-top": labelPosition === "top",
       })}
@@ -174,7 +168,7 @@ export const Field = ({
           className={classNames("af-form__group-label", {
             "af-form__group-label--required": actualRequired,
           })}
-          htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
+          htmlFor={!isGroup ? inputId : undefined}
           id={labelId}
         >
           {label}
