@@ -130,7 +130,7 @@ jobs:
 
     steps:
       - name: Download storybooks
-        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: ${{ matrix.storybook.artifact-name }}
 
@@ -179,7 +179,7 @@ jobs:
 
     steps:
       - name: Download storybooks
-        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: ${{ matrix.storybook.artifact-name }}
 
