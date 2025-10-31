@@ -1,0 +1,10 @@
+import{j as p}from"./index-C-iqcyhV.js";import{C as c,i as u}from"./TimelineVerticalApollo-CApLy8yH.js";import"./index-ZnYipkzV.js";import{h as o}from"./home-BuLaEOyh.js";const b=[{label:"option 1",description:"description 1",subtitle:"subtitle 1",value:"1",icon:o},{label:"option 2",description:"description 2",subtitle:"subtitle 2",value:"2",icon:o},{label:"option 3",description:"description 3",subtitle:"subtitle 3",value:"3",icon:o}],m={title:"Components/Form/Checkbox/CardCheckbox",component:c,argTypes:{type:{control:{type:"inline-radio"},options:["vertical","horizontal"],table:{defaultValue:{summary:"vertical"},type:{summary:'"vertical" | "horizontal"'}}},label:{control:"text"},description:{control:"text"},options:{control:{type:"object"},description:"Radio card options"},required:{control:"boolean"},error:{control:"text"},labelGroup:{table:{disable:!0}},descriptionGroup:{table:{disable:!0}},isRequired:{table:{disable:!0}},value:{table:{disable:!0}},messageType:{options:Object.values(u),control:{type:"select"}}},args:{type:"vertical",label:"Label",description:"Description",name:"name",options:b,required:!1,error:"",message:""}},e={name:"Playground",render:({description:t,error:r,name:i,type:n,...d})=>p.jsx(c,{...d,description:t!==""?t:void 0,error:r!==""?r:void 0,name:i!==""?i:void 0,type:n==="horizontal"?n:void 0})};var a,s,l;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  name: "Playground",
+  render: ({
+    description,
+    error,
+    name,
+    type,
+    ...args
+  }) => <CardCheckbox {...args} description={description !== "" ? description : undefined} error={error !== "" ? error : undefined} name={name !== "" ? name : undefined} type={type === "horizontal" ? type : undefined} />
+}`,...(l=(s=e.parameters)==null?void 0:s.docs)==null?void 0:l.source}}};const y=["CardCheckboxStory"],h=Object.freeze(Object.defineProperty({__proto__:null,CardCheckboxStory:e,__namedExportsOrder:y,default:m},Symbol.toStringTag,{value:"Module"}));export{h as C,e as a};
