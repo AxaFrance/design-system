@@ -1,5 +1,5 @@
 .af-footer {
-  --logo-size: 22px;
+  --footer-logo-size: 22px;
 
   display: flex;
   margin-top: calc(72rem / 16);
@@ -8,8 +8,8 @@
   font-size: 0.6875rem;
 
   .af-logo__brand {
-    width: var(--logo-size);
-    height: var(--logo-size);
+    width: var(--footer-logo-size);
+    height: var(--footer-logo-size);
     margin-right: 0.5rem;
   }
 

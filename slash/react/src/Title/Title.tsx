@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Title/Title.scss";
+import "@axa-fr/design-system-slash-css/dist/Title/Title.css";
 import {
   ComponentPropsWithRef,
   PropsWithChildren,

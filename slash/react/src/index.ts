@@ -1,6 +1,8 @@
-import "@axa-fr/design-system-slash-css/dist/common/icons.scss";
-import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
+import "@axa-fr/design-system-slash-css/dist/common/grid.css";
+import "@axa-fr/design-system-slash-css/dist/common/icons.css";
+import "@axa-fr/design-system-slash-css/dist/common/reboot.css";
 import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
+import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.css";
 
 import "@fontsource/source-sans-pro/400.css";
 import "@fontsource/source-sans-pro/700.css";

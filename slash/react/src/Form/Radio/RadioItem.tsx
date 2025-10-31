@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Radio/Radio.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Radio/Radio.css";
 import { ComponentPropsWithRef, forwardRef, ReactNode, useId } from "react";
 import { getOptionClassName } from "../core";
 

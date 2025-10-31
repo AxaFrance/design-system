@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Tabs/Tabs.scss";
+import "@axa-fr/design-system-slash-css/dist/Tabs/Tabs.css";
 import { ReactNode } from "react";
 
 export type TabProps = {

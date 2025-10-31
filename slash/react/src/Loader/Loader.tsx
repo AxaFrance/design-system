@@ -1,5 +1,5 @@
-import "@axa-fr/design-system-slash-css/dist/Loader/Loader.scss";
-import React from "react";
+import "@axa-fr/design-system-slash-css/dist/Loader/Loader.css";
+import { type ReactNode } from "react";
 import { getComponentClassName } from "../utilities";
 
 type LoaderMode = "none" | "get" | "post" | "delete" | "update" | "error";
@@ -25,7 +25,7 @@ type LoaderProps = {
   className?: string;
   mode: LoaderMode;
   text?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   classModifier?: string;
 };
 

@@ -1,6 +1,5 @@
-import "@axa-fr/design-system-slash-css/dist/common/grid.scss";
-import "@axa-fr/design-system-slash-css/dist/common/reboot.scss";
-import "@axa-fr/design-system-slash-css/dist/Form/core/FormCore.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Textarea/Textarea.css";
+
 import { ComponentProps, forwardRef } from "react";
 import { type ConsumerFieldProps, Field } from "../core";
 

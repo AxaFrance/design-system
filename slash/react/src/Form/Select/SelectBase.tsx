@@ -1,4 +1,4 @@
-import "@axa-fr/design-system-slash-css/dist/Form/Select/Select.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Select/Select.css";
 import {
   ComponentPropsWithoutRef,
   forwardRef,
