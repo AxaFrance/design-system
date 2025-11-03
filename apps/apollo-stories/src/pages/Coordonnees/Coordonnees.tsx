@@ -37,6 +37,8 @@ export const Coordonnees = () => {
   const refModal = useRef<HTMLDialogElement>(null);
 
   const handleOpenModal = () => refModal?.current?.showModal();
+  const handleCloseModal = () => refModal?.current?.close();
+
   return (
     <>
       <DebugGrid />
@@ -148,10 +150,10 @@ export const Coordonnees = () => {
 
             <Modal
               ref={refModal}
-              onClose={() => refModal.current?.close()}
+              onClose={handleCloseModal}
               primaryButtonProps={{
                 children: "Fermer",
-                onClick: () => refModal.current?.close(),
+                onClick: handleCloseModal,
               }}
               title="Où trouver votre numéro de contrat ?"
             >
@@ -183,7 +185,9 @@ export const Coordonnees = () => {
             />
           </div>
           <div className="form__actions subgrid">
-            <Button variant="primary">Suivant</Button>
+            <Button type="submit" variant="primary">
+              Suivant
+            </Button>
           </div>
         </form>
       </main>
