@@ -1,0 +1,50 @@
+main.exit-page {
+  --font-size-base: 16;
+
+  padding-block: calc(40 / var(--font-size-base) * 1rem);
+
+  @media (width > 1023px) {
+    padding-block: calc(48 / var(--font-size-base) * 1rem);
+  }
+
+  > section.subgrid {
+    row-gap: calc(40 / var(--font-size-base) * 1rem);
+
+    @media (width > 1023px) {
+      --start: 2;
+      --cols: 10;
+      --row-gap: calc(48 / var(--font-size-base) * 1rem);
+    }
+
+    > article {
+      row-gap: calc(16 / var(--font-size-base) * 1rem);
+
+      @media (width > 1023px) {
+        row-gap: calc(24 / var(--font-size-base) * 1rem);
+        --start: auto;
+        --cols: 6;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    > section {
+      @media (width > 1023px) {
+        --start: 7;
+        --cols: 4;
+      }
+    }
+  }
+
+  .page-actions {
+    > * {
+      --cols: 4;
+
+      @media (width > 1023px) {
+        --cols: 3;
+      }
+    }
+  }
+}

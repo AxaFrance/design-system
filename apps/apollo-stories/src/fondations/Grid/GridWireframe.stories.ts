@@ -11,5 +11,6 @@ const meta: Meta = {
 export default meta;
 
 export const Wireframe: StoryObj = {
+  name: "Example Grid with wireframes",
   render,
 };
