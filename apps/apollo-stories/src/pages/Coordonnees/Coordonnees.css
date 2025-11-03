@@ -1,5 +1,5 @@
 main.example-form {
-  padding-block: 4rem;
+  padding-block: calc(64 / var(--font-size-base) * 1rem);
 }
 
 .form {
