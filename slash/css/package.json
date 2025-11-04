@@ -7,6 +7,7 @@
   "exports": {
     "./logo-axa.svg": "./files/assets/logo-axa.svg",
     "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./spinner.svg": "./files/assets/spinner.svg",
     "./dist/*": {
       "development": "./src/*",
       "default": "./dist/*"

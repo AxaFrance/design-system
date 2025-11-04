@@ -105,6 +105,8 @@ export { Alert, Message };
 
 export { HelpButton } from "./HelpButton";
 export { Loader } from "./Loader/Loader";
+export { LoaderLegacy } from "./Loader/LoaderLegacy";
+export { Spinner } from "./Spinner/Spinner";
 
 export { CardData } from "./CardData/CardData";
 export type { CardDataVariant } from "./CardData/CardData";

@@ -1,0 +1,34 @@
+.af-loader {
+  display: flex;
+  gap: 1rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    order: 2;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--gray50);
+  }
+}
+
+.af-loader--fullScreen,
+.af-loader--content {
+  height: 100%;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.af-loader--fullScreen svg {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.af-loader--content svg {
+  width: 3rem;
+  height: 3rem;
+}
