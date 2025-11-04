@@ -8,6 +8,7 @@ import {
 } from "react";
 
 import { getComponentClassName } from "../utilities";
+import { Divider } from "../Divider/Divider";
 
 type Headings = "h2" | "h3" | "h4";
 
@@ -46,11 +47,16 @@ export const Title = forwardRef<
       <div className={`${baseClass}--container`}>
         <Heading ref={ref} className={componentClassName} {...otherProps}>
           {children}
-          {contentLeft}
         </Heading>
-        {contentRight ? (
-          <div className="content-right">{contentRight}</div>
-        ) : null}
+        <div className={`${baseClass}--content`}>
+          {contentLeft ? (
+            <div className="content-left">{contentLeft}</div>
+          ) : null}
+          <Divider mode="horizontal" />
+          {contentRight ? (
+            <div className="content-right">{contentRight}</div>
+          ) : null}
+        </div>
       </div>
     );
   },
