@@ -29,7 +29,7 @@ describe("AccordionCore", () => {
 
   it("renders Accordion with open details", () => {
     render(
-      <AccordionCore summary="Accordion Title" isOpen>
+      <AccordionCore summary="Accordion Title" open>
         This is a Content
       </AccordionCore>,
     );
@@ -40,7 +40,7 @@ describe("AccordionCore", () => {
 
   it("renders Accordion with close details", () => {
     render(
-      <AccordionCore summary="Title" isOpen={false}>
+      <AccordionCore summary="Title" open={false}>
         Content
       </AccordionCore>,
     );

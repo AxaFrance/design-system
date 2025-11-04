@@ -13,6 +13,9 @@ type SummaryOnClick = MouseEventHandler<HTMLElement>;
 
 export type AccordionCoreProps = {
   summary: ReactNode;
+  /**
+   * @deprecated use `open` instead
+   */
   isOpen?: boolean;
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: SummaryOnClick;
