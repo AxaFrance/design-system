@@ -1,5 +1,5 @@
-import { type ComponentProps, type ComponentType, useMemo } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import type { ComponentProps, ComponentType } from "react";
+import { getClassName } from "../utilities/getClassName";
 import {
   AccordionTagDateContainerCommon,
   type AccordionTagDateContainerProps,
@@ -49,43 +49,38 @@ export const AccordionCommon = ({
   AccordionTagDateContainerComponent,
   IconComponent,
   ...accordionCoreProps
-}: AccordionCommonProps) => {
-  const componentClassName = useMemo(
-    () => getComponentClassName("af-apollo-accordion", className, variant),
-    [className, variant],
-  );
-
-  return (
-    <AccordionCoreComponent
-      className={componentClassName}
-      summary={
-        <>
-          {icon ? (
-            <IconComponent
-              role="presentation"
-              src={icon}
-              variant="primary"
-              size="S"
-              className="af-accordion__icon"
-            />
-          ) : null}
-          {title ? <p className="af-accordion__title">{title}</p> : null}
-          {subtitle ? (
-            <p className="af-accordion__subtitle">{subtitle}</p>
-          ) : null}
-          <AccordionTagDateContainerComponent
-            tagLabel={tagLabel}
-            dateLabel={dateLabel}
-            tagProps={tagProps}
-            dateProps={dateProps}
+}: AccordionCommonProps) => (
+  <AccordionCoreComponent
+    className={getClassName({
+      baseClassName: "af-apollo-accordion",
+      modifiers: [variant],
+      className,
+    })}
+    summary={
+      <>
+        {icon ? (
+          <IconComponent
+            role="presentation"
+            src={icon}
+            variant="primary"
+            size="S"
+            className="af-accordion__icon"
           />
-          {info1 ? <p className="af-accordion__info1">{info1}</p> : null}
-          {info2 ? <p className="af-accordion__info2">{info2}</p> : null}
-        </>
-      }
-      {...accordionCoreProps}
-    >
-      {children}
-    </AccordionCoreComponent>
-  );
-};
+        ) : null}
+        {title ? <p className="af-accordion__title">{title}</p> : null}
+        {subtitle ? <p className="af-accordion__subtitle">{subtitle}</p> : null}
+        <AccordionTagDateContainerComponent
+          tagLabel={tagLabel}
+          dateLabel={dateLabel}
+          tagProps={tagProps}
+          dateProps={dateProps}
+        />
+        {info1 ? <p className="af-accordion__info1">{info1}</p> : null}
+        {info2 ? <p className="af-accordion__info2">{info2}</p> : null}
+      </>
+    }
+    {...accordionCoreProps}
+  >
+    {children}
+  </AccordionCoreComponent>
+);
