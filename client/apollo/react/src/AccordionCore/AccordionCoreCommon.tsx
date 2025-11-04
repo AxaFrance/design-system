@@ -1,23 +1,24 @@
 import {
   type ComponentProps,
-  ComponentType,
-  type MouseEvent,
+  type ComponentType,
+  type MouseEventHandler,
   type ReactNode,
   useCallback,
 } from "react";
 import keyboardDown from "@material-symbols/svg-400/rounded/keyboard_arrow_down-fill.svg";
-import { Icon } from "../Icon/IconCommon";
+import type { IconProps } from "../Icon/IconCommon";
+
+type SummaryOnClick = MouseEventHandler<HTMLElement>;
 
 export type AccordionCoreProps = {
   summary: ReactNode;
-  children: ReactNode;
   isOpen?: boolean;
-  summaryProps?: ComponentProps<"summary">;
-  onClick?: (event: MouseEvent<HTMLDetailsElement>) => void;
-} & Partial<ComponentProps<"details">>;
+  summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
+  onClick?: SummaryOnClick;
+} & ComponentProps<"details">;
 
 export type AccordionPropsCommonProps = AccordionCoreProps & {
-  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
+  IconComponent: ComponentType<IconProps>;
 };
 
 export const AccordionCoreCommon = ({
@@ -30,8 +31,8 @@ export const AccordionCoreCommon = ({
   onClick,
   ...detailsProps
 }: AccordionPropsCommonProps) => {
-  const handleToggle = useCallback(
-    (event: MouseEvent<HTMLDetailsElement>) => {
+  const handleSummaryClick = useCallback<SummaryOnClick>(
+    (event) => {
       if (onClick) {
         event.preventDefault();
         onClick(event);
@@ -47,7 +48,7 @@ export const AccordionCoreCommon = ({
       {...detailsProps}
     >
       <summary
-        onClick={handleToggle}
+        onClick={handleSummaryClick}
         tabIndex={0}
         {...summaryProps}
         className={["af-apollo-accordion__summary", summaryProps?.className]
