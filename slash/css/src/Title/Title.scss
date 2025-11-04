@@ -15,52 +15,47 @@ h4.af-title {
 
 .af-title {
   position: relative;
-  flex: 1;
   overflow: hidden;
   font-weight: 600;
   color: common.$color-texte;
 
-  &--container {
+  &--content {
     display: flex;
+    align-items: center;
+    gap: 1rem;
 
-    > * {
-      display: flex;
-      align-items: center;
+    > af-title {
+      flex: 0 0 auto;
     }
 
+    .content-left,
     .content-right {
-      margin-bottom: 0.5em;
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+
+      > .af-btn {
+        width: auto;
+      }
     }
   }
 
-  &::after {
-    z-index: 1;
-    width: 100%;
-    height: 1px;
-    margin: 0.5rem 1rem;
-    flex: 1;
-    background-color: common.$color-gray-1;
-    content: " ";
+  &--container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    > .af-title {
+      flex: 0 0 auto;
+    }
+
+    > .af-title--content {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
   }
 
   & + .af-title {
     margin-top: 0;
-  }
-
-  &--content {
-    margin: 2rem 0 3rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid common.$color-silver;
-    font-size: 1.75em;
-    font-weight: 600;
-    color: common.$color-mine-shaft;
-
-    &:nth-child(1) {
-      margin-top: 0;
-    }
-  }
-
-  > :first-child {
-    margin-left: 1.5rem;
   }
 }

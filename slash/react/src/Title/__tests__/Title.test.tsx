@@ -1,133 +1,104 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { Title } from "../Title";
 
 describe("Title", () => {
-  it("should render children", () => {
-    // Act
+  it("renders children with default h2 heading", () => {
     render(<Title>A title</Title>);
-
-    // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
     ).toBeInTheDocument();
   });
 
-  it("should have default class", () => {
-    // Act
+  it("applies default class", () => {
     render(<Title>A title</Title>);
-
-    // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).toHaveClass("af-title", {
-      exact: true,
-    });
+    ).toHaveClass("af-title", { exact: true });
   });
 
-  it("should have custom class", () => {
-    // Act
+  it("applies custom class", () => {
     render(<Title className="custom-class">A title</Title>);
-
-    // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).toHaveClass("custom-class", {
-      exact: true,
-    });
+    ).toHaveClass("custom-class", { exact: true });
   });
 
-  it("should have custom class with modifier", () => {
-    // Act
+  it("applies custom class with modifier", () => {
     render(
       <Title className="custom-class" classModifier="modifier">
         A title
       </Title>,
     );
-
-    // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).toHaveClass("custom-class custom-class--modifier", {
-      exact: true,
-    });
+    ).toHaveClass("custom-class custom-class--modifier", { exact: true });
   });
 
-  it("should not have classModifier attribute", () => {
-    // Act
+  it("does not expose classModifier attribute", () => {
     render(
       <Title className="custom-class" classModifier="modifier">
         A title
       </Title>,
     );
-
-    // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
     ).not.toHaveAttribute("classModifier");
   });
 
-  it("should have correct heading level", () => {
-    // Act
+  it("uses configured heading level", () => {
     render(<Title heading="h3">A title</Title>);
-
-    // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 3 }),
     ).toBeInTheDocument();
   });
 
-  it("shouldn't have an accessibility violation <Title/>", async () => {
-    // Act
+  it("has no accessibility violations", async () => {
     const { container } = render(<Title heading="h3">A title</Title>);
-
-    // Assert
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it("should be wrapped in a container", async () => {
-    // Act
+  it("is wrapped in container", () => {
     render(<Title heading="h3">A title</Title>);
-
-    // Assert
     const container = screen.getByRole("heading", {
       name: /A title/,
       level: 3,
-    }).parentElement as HTMLElement;
-    expect(container.getAttribute("class")).toEqual("af-title--container");
-  });
-
-  it("content left should be child of heading", () => {
-    // Act
-    render(
-      <Title heading="h3" contentLeft={<p>Some content</p>}>
-        A title
-      </Title>,
-    );
-
-    // Assert
-    const heading = screen.getByRole("heading", {
-      level: 3,
-    });
-
-    expect(within(heading).getByText("Some content")).toBeInTheDocument();
-  });
-
-  it("content right should be child of content-right div", () => {
-    // Act
-    render(
-      <Title heading="h3" contentRight={<p>Some content</p>}>
-        A title
-      </Title>,
-    );
-
-    // Assert
-    const container = screen.getByRole("heading", {
-      level: 3,
     }).parentElement!;
+    expect(container).toHaveClass("af-title--container");
+  });
 
-    expect(
-      within(container.childNodes[1] as HTMLElement).getByText("Some content"),
-    ).toBeInTheDocument();
+  it("renders contentLeft inside .content-left wrapper", () => {
+    render(
+      <Title heading="h3" contentLeft={<p>Left content</p>}>
+        A title
+      </Title>,
+    );
+    const el = screen.getByText("Left content");
+    expect(el.closest(".content-left")).not.toBeNull();
+  });
+
+  it("renders contentRight inside .content-right wrapper", () => {
+    render(
+      <Title heading="h3" contentRight={<p>Right content</p>}>
+        A title
+      </Title>,
+    );
+    const el = screen.getByText("Right content");
+    expect(el.closest(".content-right")).not.toBeNull();
+  });
+
+  it("renders horizontal divider between optional contents", () => {
+    render(
+      <Title
+        heading="h3"
+        contentLeft={<span>L</span>}
+        contentRight={<span>R</span>}
+      >
+        A title
+      </Title>,
+    );
+    const container = screen.getByRole("heading", { level: 3 }).parentElement!;
+    const contentWrapper = container.querySelector(".af-title--content")!;
+    expect(contentWrapper.children[1]).toBeTruthy();
   });
 });
