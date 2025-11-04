@@ -48,7 +48,6 @@ export const AccordionCoreCommon = ({
     >
       <summary
         onClick={handleToggle}
-        role="button"
         tabIndex={0}
         {...summaryProps}
         className={["af-apollo-accordion__summary", summaryProps?.className]
