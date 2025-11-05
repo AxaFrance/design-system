@@ -1,18 +1,16 @@
-import type { ComponentProps, ComponentType } from "react";
+import type { ComponentType } from "react";
 import { getClassName } from "../utilities/getClassName";
-import {
-  AccordionTagDateContainerCommon,
-  type AccordionTagDateContainerProps,
-} from "./AccordionTagDateContainer/AccordionTagDateContainerCommon";
-import { Icon } from "../Icon/IconCommon";
-import { type AccordionCoreProps } from "../AccordionCore/AccordionCoreCommon";
+import type { AccordionTagDateContainerProps } from "./AccordionTagDateContainer/AccordionTagDateContainerCommon";
+import type { IconProps } from "../Icon/IconCommon";
+import type { AccordionCoreProps } from "../AccordionCore/AccordionCoreCommon";
 
 export const accordionVariants = {
   primary: "primary",
   secondary: "secondary",
 } as const;
 
-export type AccordionVariants = keyof typeof accordionVariants;
+export type AccordionVariants =
+  (typeof accordionVariants)[keyof typeof accordionVariants];
 
 export type AccordionProps = {
   variant?: AccordionVariants;
@@ -27,9 +25,9 @@ export type AccordionProps = {
 type AccordionCommonProps = AccordionProps & {
   AccordionCoreComponent: ComponentType<AccordionCoreProps>;
   AccordionTagDateContainerComponent: ComponentType<
-    Omit<ComponentProps<typeof AccordionTagDateContainerCommon>, "TagComponent">
+    Omit<AccordionTagDateContainerProps, "TagComponent">
   >;
-  IconComponent: ComponentType<ComponentProps<typeof Icon>>;
+  IconComponent: ComponentType<IconProps>;
 };
 
 export const AccordionCommon = ({
