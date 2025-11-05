@@ -1,0 +1,74 @@
+.af-modal {
+  min-width: calc(460rem / 16);
+  padding: 0;
+  border: 1px solid var(--gray40);
+}
+
+.af-modal::backdrop {
+  background: color-mix(in srgb, var(--black) 80%, transparent);
+}
+
+.af-modal--lg {
+  max-width: calc(800rem / 16);
+}
+
+.af-modal--sm {
+  max-width: calc(300rem / 16);
+}
+
+.af-modal__content {
+  background-clip: padding-box;
+  background-color: var(--white);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.af-modal__header {
+  display: flex;
+  padding: 0;
+  padding: calc(12rem / 16) 1rem calc(12rem / 16) calc(24rem / 16);
+  border-bottom: 1px solid var(--gray40);
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(22rem / 16);
+  font-weight: bold;
+}
+
+.af-modal__header-title {
+  margin-bottom: 0;
+  font-weight: inherit;
+}
+
+.af-modal__header-close-btn {
+  height: 2rem;
+  padding: 0 calc(2rem / 16);
+  border: none;
+  font-size: 1rem;
+  line-height: 1rem;
+  background: none;
+
+  svg {
+    width: calc(28rem / 16);
+    height: calc(28rem / 16);
+  }
+}
+
+.af-modal__body {
+  position: relative;
+  padding: calc(12rem / 16) calc(24rem / 16) 0;
+  flex: 1 1 auto;
+  -webkit-box-flex: 1;
+}
+
+.af-modal__footer {
+  display: flex;
+  padding: calc(16rem / 16) calc(24rem / 16) calc(24rem / 16);
+  align-items: center;
+  justify-content: space-between;
+
+  > .af-btn:last-child {
+    margin-left: auto;
+  }
+}

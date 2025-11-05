@@ -1,8 +1,8 @@
-import React from "react";
 import { Placement } from "@floating-ui/react";
+import React from "react";
 import { AnimatedPopover } from "./AnimatedPopover";
 
-import "@axa-fr/design-system-slash-css/dist/Popover/Popover.scss";
+import "@axa-fr/design-system-slash-css/dist/Popover/Popover.css";
 
 const defaultClassName = "af-popover__container";
 

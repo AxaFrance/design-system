@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef, forwardRef } from "react";
 import { getComponentClassName } from "../../utilities";
 
-import "@axa-fr/design-system-slash-css/dist/Form/Pass/Pass.scss";
+import "@axa-fr/design-system-slash-css/dist/Form/Pass/Pass.css";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "type" | "role"> & {
   type?: "text" | "password";

@@ -4,6 +4,13 @@
         "//"
     ],
     "tasks": {
+        "dev": {
+            "with": [
+                "@axa-fr/design-system-slash-css#dev"
+            ],
+            "persistent": true,
+            "cache": false
+        },
         "lint": {
             "dependsOn": [
                 "eslint",

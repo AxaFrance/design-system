@@ -1,0 +1,27 @@
+.af-header__title {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.375em;
+  font-weight: 700;
+  line-height: 1em;
+  color: var(--brand-primary);
+}
+
+.af-header__subtitle {
+  display: block;
+  font-weight: 400;
+  line-height: 1em;
+}
+
+.af-header__name {
+  display: table;
+  flex-basis: 60%;
+  order: 1;
+  align-self: flex-start;
+}
+
+@media (--tablet-landscape) {
+  .af-header__name {
+    flex-basis: initial;
+  }
+}
