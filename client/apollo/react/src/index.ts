@@ -108,3 +108,8 @@ export {
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagApollo";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./Toggle/ToggleApollo";
+export { Pagination } from "./Pagination/PaginationApollo";
+export {
+  ItemPagination,
+  type ItemPaginationProps,
+} from "./Pagination/ItemPagination/ItemPaginationApollo";

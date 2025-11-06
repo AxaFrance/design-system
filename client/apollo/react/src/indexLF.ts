@@ -110,3 +110,8 @@ export {
 export { Tag, tagVariants, type TagVariants } from "./Tag/TagLF";
 export { TimelineVertical } from "./TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./Toggle/ToggleLF";
+export { Pagination } from "./Pagination/PaginationLF";
+export {
+  ItemPagination,
+  type ItemPaginationProps,
+} from "./Pagination/ItemPagination/ItemPaginationLF";
