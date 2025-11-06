@@ -1,10 +1,11 @@
 .af-modal {
   --modal-transition-duration: 0.2s;
-  --modal-max-height: calc(100% - 5rem);
+  --modal-max-height: calc(100vh - 5rem);
   --modal-footer-border-top: none;
 
   width: 100%;
   max-width: 100vw;
+  height: fit-content;
   max-height: var(--modal-max-height);
   margin: 0;
   margin-block-start: auto;
@@ -13,6 +14,7 @@
   border-radius: var(--modal-border-radius);
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  overflow: hidden;
   opacity: 0;
   color: var(--modal-text-color);
   background-color: var(--modal-bg-color);
@@ -64,6 +66,7 @@
     max-width: revert;
     margin: revert;
     border-radius: var(--modal-border-radius);
+    overflow: hidden;
     clip-path: rect(0 100% 100% 0 round var(--modal-border-radius));
     transform: unset;
 
@@ -75,8 +78,10 @@
 
 .af-modal__content {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  flex: 1;
+  min-height: 0;
+  max-height: var(--modal-max-height);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  flex: 0 1 auto;
   overflow-y: hidden;
 }
 
@@ -107,6 +112,7 @@
 
 .af-modal__body {
   display: flex;
+  min-height: 0;
   padding: var(--modal-default-padding) var(--modal-body-padding-top)
     var(--modal-body-padding-bottom);
   flex-direction: column;
