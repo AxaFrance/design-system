@@ -6,8 +6,6 @@ import {
   useId,
 } from "react";
 import { getComponentClassName } from "../../utilities/getComponentClassName";
-import { InputDateAtom } from "./InputDateAtom";
-import { InputDateTextAtom } from "./InputDateTextAtom";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -16,6 +14,8 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
+import { InputDateAtom } from "./InputDateAtom";
+import { InputDateTextAtom } from "./InputDateTextAtom";
 
 export type InputDateProps = Omit<
   ComponentPropsWithRef<"input">,
@@ -36,8 +36,18 @@ export type InputDateProps = Omit<
    */
   success?: string;
   hidePicker?: boolean;
-  label: ItemLabelProps["label"];
-} & Partial<Omit<ItemLabelProps, "onChange"> & ItemMessageProps>;
+  label: ItemLabelProps["children"];
+} & Partial<
+    Pick<
+      ItemLabelProps,
+      | "description"
+      | "buttonLabel"
+      | "moreButtonLabel"
+      | "onButtonClick"
+      | "onMoreButtonClick"
+    > &
+      ItemMessageProps
+  >;
 
 type InputDateCommonProps = InputDateProps & {
   ItemLabelComponent: ComponentType<
@@ -59,7 +69,9 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       label,
       description,
       buttonLabel,
+      moreButtonLabel,
       onButtonClick,
+      onMoreButtonClick,
       ItemLabelComponent,
       ItemMessageComponent,
       required,
@@ -101,13 +113,14 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     return (
       <div className="af-form__input-container">
         <ItemLabelComponent
-          label={label}
           description={description}
-          buttonLabel={buttonLabel}
-          onButtonClick={onButtonClick}
+          moreButtonLabel={buttonLabel || moreButtonLabel}
+          onMoreButtonClick={onButtonClick || onMoreButtonClick}
           required={required}
-          inputId={inputId}
-        />
+          htmlFor={inputId}
+        >
+          {label}
+        </ItemLabelComponent>
         {hidePicker ? (
           <InputDateTextAtom
             {...otherProps}

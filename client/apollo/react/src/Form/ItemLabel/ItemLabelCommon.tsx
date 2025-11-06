@@ -1,13 +1,13 @@
+import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 import {
   useId,
+  type ComponentProps,
   type ComponentType,
   type MouseEventHandler,
   type ReactNode,
-  type ComponentProps,
 } from "react";
-import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
-import { Svg } from "../../Svg/Svg";
 import type { ButtonProps } from "../../Button/ButtonCommon";
+import { Svg } from "../../Svg/Svg";
 
 export type ItemLabelProps = ComponentProps<"label"> & {
   /**
@@ -60,7 +60,7 @@ export type ItemLabelProps = ComponentProps<"label"> & {
 
   /**
    * Click handler for the info button
-   * @deprecated use `onInfoButtonClick` instead.
+   * @deprecated use `onMoreButtonClick` instead.
    */
   onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 
