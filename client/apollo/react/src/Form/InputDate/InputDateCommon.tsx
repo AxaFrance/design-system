@@ -5,7 +5,7 @@ import {
   forwardRef,
   useId,
 } from "react";
-import { getComponentClassName } from "../../utilities/getComponentClassName";
+import { getClassName } from "../../utilities/getClassName";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -82,11 +82,11 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     },
     inputRef,
   ) => {
-    const componentClassName = getComponentClassName(
-      "af-form__input-date",
-      className ?? "",
-      classModifier,
-    );
+    const componentClassName = getClassName({
+      baseClassName: "af-form__input-date",
+      modifiers: classModifier.split(" "),
+      className,
+    });
 
     let inputId = useId();
     inputId = otherProps.id ?? inputId;
