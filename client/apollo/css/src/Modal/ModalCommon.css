@@ -1,6 +1,6 @@
 .af-modal {
   --modal-transition-duration: 0.2s;
-  --modal-max-height: calc(100% - 5rem);
+  --modal-max-height: calc(100vh - 5rem);
   --modal-footer-border-top: none;
 
   width: 100%;
@@ -132,5 +132,17 @@
   @media (--desktop-small) {
     min-width: 180px;
     flex-grow: inherit;
+  }
+}
+
+@media (resolution >= 0.001dpcm) {
+  @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+    .af-modal {
+      --modal-max-height: calc(100dvh - 5rem);
+
+      height: var(--modal-max-height);
+      max-height: none;
+      transform: translateY(100dvh);
+    }
   }
 }
