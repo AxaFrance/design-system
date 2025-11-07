@@ -5,20 +5,12 @@ import { getClassName } from "../../utilities/getClassName";
 export const ELLIPSIS = "...";
 
 type ItemPaginationCustomProps = {
-  as?: string | ElementType;
   page: number | typeof ELLIPSIS;
   isCurrentPage: boolean;
 };
 
 export type ItemPaginationCommonProps<T extends ElementType> =
   PolymorphicComponent<T, ItemPaginationCustomProps>;
-
-const getComponent = ({
-  as,
-  page,
-  isCurrentPage,
-}: ItemPaginationCustomProps) =>
-  page === ELLIPSIS || isCurrentPage ? "span" : as || "a";
 
 export const ItemPaginationCommon = <T extends ElementType = "a">({
   as,
@@ -27,11 +19,10 @@ export const ItemPaginationCommon = <T extends ElementType = "a">({
   className,
   ...props
 }: ItemPaginationCommonProps<T>) => {
-  const Component = getComponent({ as, page, isCurrentPage });
+  const Component = page === ELLIPSIS || isCurrentPage ? "span" : as || "a";
 
   return (
     <Component
-      {...props}
       href={Component === "a" ? `/${page}` : undefined}
       type={Component === "button" ? "button" : undefined}
       aria-current={Component === "a" && isCurrentPage ? "page" : undefined}
@@ -40,6 +31,7 @@ export const ItemPaginationCommon = <T extends ElementType = "a">({
         className,
         modifiers: [isCurrentPage ? "current" : undefined],
       })}
+      {...props}
     >
       {page}
     </Component>

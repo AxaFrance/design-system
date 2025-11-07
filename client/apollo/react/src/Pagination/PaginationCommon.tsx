@@ -1,85 +1,29 @@
 import {
   ComponentProps,
   ComponentType,
-  ElementType,
   type ComponentPropsWithoutRef,
 } from "react";
 import chevronBackward from "@material-symbols/svg-400/rounded/chevron_backward.svg";
 import chevronForward from "@material-symbols/svg-400/rounded/chevron_forward.svg";
-import {
-  ItemPagination,
-  type ItemPaginationProps,
-} from "./ItemPagination/ItemPaginationApollo";
-
-import { ELLIPSIS } from "./ItemPagination/ItemPaginationCommon";
 import { getClassName } from "../utilities/getClassName";
-
 import { ClickIcon } from "../ClickIcon/ClickIconApollo";
-
-type getItemsProps = {
-  numberPages: number;
-  onChangePage: (page: number) => void;
-  currentPage: number;
-  asItem?: React.ElementType;
-};
-
-const MAX_PAGE = 7;
-
-const ellipsisItem: ItemPaginationProps<ElementType> = {
-  page: ELLIPSIS,
-  isCurrentPage: false,
-};
-
-export const getItems = ({
-  numberPages,
-  currentPage,
-  asItem,
-  onChangePage,
-}: getItemsProps) => {
-  const items = Array.from({ length: numberPages }, (_, index) => ({
-    page: index + 1,
-    isCurrentPage: index + 1 === currentPage,
-    as: asItem,
-    onClick: () => onChangePage(index + 1),
-  })) as ItemPaginationProps<ElementType>[];
-
-  if (numberPages > MAX_PAGE) {
-    if (currentPage && currentPage < MAX_PAGE - 1) {
-      return items.toSpliced(
-        MAX_PAGE - 1,
-        numberPages - 1,
-        ellipsisItem,
-        items[numberPages - 1],
-      );
-    }
-
-    if (currentPage && currentPage > numberPages - (MAX_PAGE - 2)) {
-      return [
-        items[0],
-        ellipsisItem,
-        ...items.toSpliced(0, numberPages - (MAX_PAGE - 1)),
-      ];
-    }
-
-    return [
-      items[0],
-      ellipsisItem,
-      ...items.toSpliced(0, currentPage - 2).toSpliced(3, numberPages - 1),
-      ellipsisItem,
-      items[numberPages - 1],
-    ];
-  }
-
-  return items;
-};
+import {
+  ItemPaginationCommon,
+  ELLIPSIS,
+} from "./ItemPagination/ItemPaginationCommon";
+import { getItems, type getItemsProps } from "./Pagination.helper";
 
 export type PaginationProps = getItemsProps &
   ComponentPropsWithoutRef<"nav"> & {
     hidePrevNext?: boolean;
+    prevButtonProps?: ComponentProps<typeof ClickIcon>;
+    nextButtonProps?: ComponentProps<typeof ClickIcon>;
   };
 
 type PaginationCommonProps = PaginationProps & {
-  ItemPaginationComponent: ComponentType<ComponentProps<typeof ItemPagination>>;
+  ItemPaginationComponent: ComponentType<
+    ComponentProps<typeof ItemPaginationCommon>
+  >;
 };
 
 export const PaginationCommon = ({
@@ -91,6 +35,8 @@ export const PaginationCommon = ({
   hidePrevNext = false,
   "aria-label": ariaLabel = "Pagination",
   ItemPaginationComponent,
+  prevButtonProps,
+  nextButtonProps,
 }: PaginationCommonProps) => {
   const items = getItems({
     numberPages,
@@ -108,13 +54,14 @@ export const PaginationCommon = ({
       })}
       aria-label={ariaLabel}
     >
-      <ul className="af-pagination-list">
+      <ol className="af-pagination-list">
         <li>
           <ClickIcon
             src={chevronBackward}
             onClick={() => onChangePage(currentPage - 1)}
             disabled={currentPage === 1}
             aria-label="Page précédente"
+            {...prevButtonProps}
           />
         </li>
         <li>
@@ -131,9 +78,10 @@ export const PaginationCommon = ({
             onClick={() => onChangePage(currentPage + 1)}
             disabled={currentPage === numberPages}
             aria-label="Page suivante"
+            {...nextButtonProps}
           />
         </li>
-      </ul>
+      </ol>
     </nav>
   );
 };
