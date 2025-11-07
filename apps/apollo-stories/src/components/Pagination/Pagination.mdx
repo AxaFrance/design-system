@@ -12,11 +12,13 @@ import { Pagination } from "@axa-fr/design-system-apollo-react";
 
 const MyStateFullPagination = ({
   numberPages,
-  currentPage: defaultPage,
+  currentPage: defaultCurrentPage,
   asItem,
   hidePrevNext,
 }: ComponentProps<typeof Pagination>) => {
-  const [currentPage, setCurrentPage] = useState<number>(defaultPage || 1);
+  const [currentPage, setCurrentPage] = useState<number>(
+    defaultCurrentPage || 1,
+  );
 
   const handleChange = (page: number) => {
     setCurrentPage(page);
