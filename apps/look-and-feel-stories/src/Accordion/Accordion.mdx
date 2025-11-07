@@ -61,6 +61,27 @@ export const AccordionComponent = () => (
 
 ### Accordion Primary plain
 
+```tsx
+import callIcon from "@material-symbols/svg-400/outlined/call-fill.svg";
+
+export const AccordionComponent = () => (
+  <Accordion
+    icon={<Svg src={callIcon} />}
+    title="Titre onglet"
+    subtitle="Titre onglet"
+    tag="En attente"
+    date="01/01/2021"
+    info="+ 686,00 €"
+    isPlain
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
+    tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
+    massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
+    vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.
+  </Accordion>
+);
+```
+
 <Canvas of={AccordionStories.AccordionPrimaryPlainStory} />
 
 <Controls of={AccordionStories.AccordionPrimaryPlainStory} />

@@ -121,9 +121,10 @@ export const AccordionPrimaryPlainStory: StoryObj<
   render: (args) => <Accordion {...args} />,
   args: {
     ...commonArgs,
-    variant: "primary plain" as AccordionVariants,
+    variant: "primary" as AccordionVariants,
     icon: bank,
     info1: "Lorem ipsum dolor sit amet",
+    isPlain: true,
   },
   argTypes: {
     dateLabel: { control: "text" },
@@ -138,9 +139,10 @@ export const AccordionSecondaryPlainStory: StoryObj<
   render: (args) => <Accordion {...args} />,
   args: {
     ...commonArgs,
-    variant: "secondary plain" as AccordionVariants,
+    variant: "secondary" as AccordionVariants,
     dateLabel: "01/01/2021",
     dateProps: { dateTime: "2021-01-01" },
+    isPlain: true,
   },
   argTypes: {
     dateLabel: { control: "text" },
