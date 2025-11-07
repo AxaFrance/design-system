@@ -7,6 +7,8 @@ import type { AccordionCoreProps } from "../AccordionCore/AccordionCoreCommon";
 export const accordionVariants = {
   primary: "primary",
   secondary: "secondary",
+  plainPrimary: "primary plain",
+  plainSecondary: "secondary plain",
 } as const;
 
 export type AccordionVariants =
@@ -52,7 +54,7 @@ export const AccordionCommon = ({
   <AccordionCoreComponent
     className={getClassName({
       baseClassName: "af-apollo-accordion",
-      modifiers: [variant],
+      modifiers: [...(variant?.split(" ") ?? [])],
       className,
     })}
     summary={
