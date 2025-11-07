@@ -32,6 +32,29 @@ describe("Accordion", () => {
     expect(screen.getByText("Accordion Content")).toBeInTheDocument();
   });
 
+  it("renders with isPlain prop correctly", () => {
+    render(
+      <Accordion
+        title="Plain Accordion"
+        subtitle="Plain Subtitle"
+        info1="Info 1"
+        info2="Info 2"
+        isPlain
+      >
+        <span>Plain Content</span>
+      </Accordion>,
+    );
+
+    expect(screen.getByText("Plain Accordion")).toBeInTheDocument();
+    expect(screen.getByText("Plain Subtitle")).toBeInTheDocument();
+    expect(screen.getByText("Info 1")).toBeInTheDocument();
+    expect(screen.getByText("Info 2")).toBeInTheDocument();
+    expect(screen.getByText("Plain Content")).toBeInTheDocument();
+    expect(screen.getByText("Plain Content").closest("details")).toHaveClass(
+      "af-apollo-accordion af-apollo-accordion--plain",
+    );
+  });
+
   it("does not render icon or subtitle if not provided", () => {
     render(<Accordion title="Title Only" info1="Info1" info2="Info2" />);
     expect(screen.queryAllByRole("presentation")).toHaveLength(1);
