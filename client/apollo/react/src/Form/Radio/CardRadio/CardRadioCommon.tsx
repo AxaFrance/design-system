@@ -70,7 +70,7 @@ const CardRadioCommon = ({
   type = "vertical",
   error,
   message,
-  messageType,
+  messageType = "error",
   name,
   value,
   id,
