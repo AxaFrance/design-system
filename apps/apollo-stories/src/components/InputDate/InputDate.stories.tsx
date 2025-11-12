@@ -25,7 +25,7 @@ const meta: Meta<typeof InputDate> = {
     label: "Date de naissance",
     required: true,
     description: "Description",
-    buttonLabel: "En savoir plus",
+    moreButtonLabel: "En savoir plus",
     helper: "Informations complémentaires",
     hidePicker: false,
     message: "",

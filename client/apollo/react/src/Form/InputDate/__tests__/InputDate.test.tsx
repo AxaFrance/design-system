@@ -22,7 +22,7 @@ describe("<InputDate />", () => {
         onChange={() => {}}
         required
         description="description"
-        buttonLabel="buttonLabel"
+        moreButtonLabel="moreButtonLabel"
         helper="helper"
       />,
     );
