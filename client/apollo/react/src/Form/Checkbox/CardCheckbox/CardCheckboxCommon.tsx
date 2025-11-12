@@ -58,7 +58,7 @@ export const CardCheckboxCommon = ({
   CardCheckboxItemComponent,
   ItemMessageComponent,
   message,
-  messageType,
+  messageType = "error",
   ...inputProps
 }: CardCheckboxCommonProps) => {
   const generatedId = useId();
@@ -135,7 +135,7 @@ export const CardCheckboxCommon = ({
       <ItemMessageComponent
         id={messageId}
         message={message || error}
-        messageType={messageType || "error"}
+        messageType={messageType}
       />
     </fieldset>
   );
