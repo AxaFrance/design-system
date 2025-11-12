@@ -34,7 +34,7 @@ const InputTextAtom = forwardRef<HTMLInputElement, InputTextAtomProps>(
   ) => {
     const componentClassName = getClassName({
       baseClassName: "af-form__input-text",
-      modifiers: [classModifier + (error || ariaErrormessage ? "error" : "")],
+      modifiers: [classModifier, error || ariaErrormessage ? "error" : ""],
       className,
     });
 
