@@ -102,7 +102,7 @@ describe("CardCheckbox", () => {
 
     expect(screen.getByText("Quelle ville ?")).toContainHTML("*");
     expect(screen.getByRole("checkbox", { name: /Paris/ })).toBeRequired();
-    expect(screen.getByRole("checkbox", { name: /Londre/ })).toBeRequired();
+    expect(screen.getByRole("checkbox", { name: /Londres/ })).toBeRequired();
   });
 
   it("should remove required when one of checkbox is checked", async () => {
@@ -112,12 +112,14 @@ describe("CardCheckbox", () => {
     await user.click(screen.getByRole("checkbox", { name: /Paris/ }));
 
     expect(screen.getByRole("checkbox", { name: /Paris/ })).not.toBeRequired();
-    expect(screen.getByRole("checkbox", { name: /Londre/ })).not.toBeRequired();
+    expect(
+      screen.getByRole("checkbox", { name: /Londres/ }),
+    ).not.toBeRequired();
 
     await user.click(screen.getByRole("checkbox", { name: /Paris/ }));
 
     expect(screen.getByRole("checkbox", { name: /Paris/ })).toBeRequired();
-    expect(screen.getByRole("checkbox", { name: /Londre/ })).toBeRequired();
+    expect(screen.getByRole("checkbox", { name: /Londres/ })).toBeRequired();
   });
 
   it("should not set checkboxes as required when required is false", async () => {
@@ -127,11 +129,26 @@ describe("CardCheckbox", () => {
     await user.click(screen.getByRole("checkbox", { name: /Paris/ }));
 
     expect(screen.getByRole("checkbox", { name: /Paris/ })).not.toBeRequired();
-    expect(screen.getByRole("checkbox", { name: /Londre/ })).not.toBeRequired();
+    expect(
+      screen.getByRole("checkbox", { name: /Londres/ }),
+    ).not.toBeRequired();
 
     await user.click(screen.getByRole("checkbox", { name: /Paris/ }));
 
     expect(screen.getByRole("checkbox", { name: /Paris/ })).not.toBeRequired();
-    expect(screen.getByRole("checkbox", { name: /Londre/ })).not.toBeRequired();
+    expect(
+      screen.getByRole("checkbox", { name: /Londres/ }),
+    ).not.toBeRequired();
+  });
+
+  it("should display message with error type by default", () => {
+    render(<CardCheckbox {...defaultArgs} message="Error message" />);
+
+    expect(
+      screen.getByRole("checkbox", { name: /Paris/ }),
+    ).toHaveAccessibleErrorMessage("Error message");
+    expect(
+      screen.getByRole("checkbox", { name: /Londres/ }),
+    ).toHaveAccessibleErrorMessage("Error message");
   });
 });

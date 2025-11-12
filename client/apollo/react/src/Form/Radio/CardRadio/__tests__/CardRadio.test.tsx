@@ -129,4 +129,20 @@ describe("Radio card Component", () => {
     expect(radiogroup).toContainHTML("*");
     expect(radiogroup).toBeRequired();
   });
+
+  it("should display message with error type by default", () => {
+    render(
+      <CardRadio
+        label="Choose a city"
+        options={radioOptions}
+        message="Error message"
+      />,
+    );
+    const radiogroup = screen.getByRole("radiogroup", {
+      name: "Choose a city",
+    });
+
+    expect(radiogroup).not.toBeValid();
+    expect(radiogroup).toHaveAccessibleErrorMessage("Error message");
+  });
 });
