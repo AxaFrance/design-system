@@ -1,0 +1,71 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as PaginationStories from "./Pagination.stories";
+
+<Meta of={PaginationStories} name="Pagination" />
+
+# Pagination
+
+To use the Pagination import it like that:
+
+```tsx
+import { Pagination } from "@axa-fr/design-system-apollo-react/lf";
+
+const MyStateFullPagination = ({
+  numberPages,
+  currentPage: defaultCurrentPage,
+  asItem,
+  hidePrevNext,
+}: ComponentProps<typeof Pagination>) => {
+  const [currentPage, setCurrentPage] = useState<number>(
+    defaultCurrentPage || 1,
+  );
+
+  const handleChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <Pagination
+      numberPages={numberPages}
+      onChangePage={handleChange}
+      currentPage={currentPage}
+      asItem={asItem}
+      hidePrevNext={hidePrevNext}
+    />
+  );
+};
+```
+
+## asItem
+
+If you want to use buttons or React Router Link components, you can do so by using the asItem prop.
+
+```tsx
+<Pagination
+  numberPages={10}
+  currentPage={1}
+  asItem={"button"}
+  onChangePage={(page) => console.log(page)}
+/>
+```
+
+## hidePrevNext
+
+By default, the "Previous" and "Next" buttons are displayed. If you want to hide them, use the hidePrevNext prop.
+
+> The "Previous" and "Next" buttons will always be displayed on mobile devices to ensure optimal navigation on small screens.
+
+```tsx
+<Pagination
+  numberPages={10}
+  currentPage={1}
+  onChangePage={(page) => console.log(page)}
+  hidePrevNext
+/>
+```
+
+## Playground
+
+<Canvas of={PaginationStories.Playground} />
+
+<Controls of={PaginationStories.Playground} />

@@ -1,0 +1,31 @@
+.af-pagination-list {
+  display: flex;
+  padding: calc(8 / var(--font-size-base) * 1rem);
+  border: 1px solid var(--pagination-list-border-color);
+  border-radius: 100vmax;
+  align-items: center;
+  gap: calc(16 / var(--font-size-base) * 1rem);
+  background-color: var(--pagination-list-background-color);
+  list-style: none;
+
+  > li:has(> .af-item-pagination) {
+    display: none;
+  }
+
+  @media (--desktop-small) {
+    > li:has(> .af-pagination-counter) {
+      display: none;
+    }
+
+    > li:has(> .af-item-pagination) {
+      display: list-item;
+    }
+
+    .af-pagination--hide-prev-next & {
+      > li:first-child,
+      > li:last-child {
+        display: none;
+      }
+    }
+  }
+}
