@@ -23,6 +23,7 @@ export type AccordionProps = {
   dateProps?: Omit<ComponentProps<"time">, "children">;
   tagLabel?: string;
   tagProps?: Omit<TagProps, "children">;
+  isPlain?: boolean;
 } & Omit<AccordionCoreProps, "summary">;
 
 type AccordionCommonProps = AccordionProps & {
@@ -47,12 +48,13 @@ export const AccordionCommon = ({
   AccordionCoreComponent,
   TagComponent,
   IconComponent,
+  isPlain,
   ...accordionCoreProps
 }: AccordionCommonProps) => (
   <AccordionCoreComponent
     className={getClassName({
       baseClassName: "af-apollo-accordion",
-      modifiers: [variant],
+      modifiers: [variant, isPlain && "plain"],
       className,
     })}
     summary={

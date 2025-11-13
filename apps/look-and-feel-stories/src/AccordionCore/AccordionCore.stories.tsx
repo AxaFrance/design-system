@@ -25,3 +25,11 @@ export const AccordionCoreStory: StoryObj<
   render: (args) => <AccordionCore {...args} />,
   args: defaultArgs,
 };
+
+export const AccordionCorePlainStory: StoryObj<
+  ComponentProps<typeof AccordionCore>
+> = {
+  name: "AccordionCore plain",
+  render: (args) => <AccordionCore {...args} />,
+  args: { ...defaultArgs, className: "af-apollo-accordion--plain" },
+};
