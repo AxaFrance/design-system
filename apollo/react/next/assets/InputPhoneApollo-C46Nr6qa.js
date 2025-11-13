@@ -1,1 +1,0 @@
-import{j as t}from"./index-C-iqcyhV.js";import{m as e,d as n,n as m,I as s,o as p}from"./TimelineVerticalApollo-BcCoB91w.js";const r=o=>t.jsx(e,{...o,ItemLabelComponent:p,ItemMessageComponent:s,InputTextComponent:m,IconComponent:n});export{r as I};
