@@ -54,7 +54,7 @@ export const AccordionCommon = ({
   <AccordionCoreComponent
     className={getClassName({
       baseClassName: "af-apollo-accordion",
-      modifiers: [variant, isPlain ? "plain" : undefined],
+      modifiers: [variant, isPlain && "plain"],
       className,
     })}
     summary={
