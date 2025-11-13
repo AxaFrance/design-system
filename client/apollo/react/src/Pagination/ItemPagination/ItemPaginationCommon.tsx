@@ -19,7 +19,7 @@ export const ItemPaginationCommon = <T extends ElementType = "a">({
   className,
   ...props
 }: ItemPaginationCommonProps<T>) => {
-  const Component = page === ELLIPSIS || isCurrentPage ? "span" : as || "a";
+  const Component = page === ELLIPSIS ? "span" : as || "a";
 
   return (
     <Component

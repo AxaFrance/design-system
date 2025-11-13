@@ -20,12 +20,12 @@ describe("ItemPaginationCommon", () => {
     expect(span).toHaveClass("af-item-pagination");
   });
 
-  it("renders a span for current page", () => {
+  it("renders a link for current page", () => {
     render(<ItemPaginationCommon page={3} isCurrentPage />);
-    const span = screen.getByText("3");
-    expect(span.tagName).toBe("SPAN");
-    expect(span).not.toHaveAttribute("href");
-    expect(span).toHaveClass("af-item-pagination af-item-pagination--current");
+    const a = screen.getByText("3");
+    expect(a.tagName).toBe("A");
+    expect(a).toHaveClass("af-item-pagination af-item-pagination--current");
+    expect(a).toHaveAttribute("aria-current", "page");
   });
 
   it("renders with custom 'as' prop", () => {
@@ -47,12 +47,5 @@ describe("ItemPaginationCommon", () => {
     const link = screen.getByText("5");
     expect(link).toHaveClass("af-item-pagination");
     expect(link).toHaveClass("custom");
-  });
-
-  it("sets aria-current when current page and anchor", () => {
-    render(<ItemPaginationCommon page={6} isCurrentPage as="a" />);
-    const span = screen.getByText("6");
-    expect(span.tagName).toBe("SPAN");
-    expect(span).not.toHaveAttribute("aria-current");
   });
 });
