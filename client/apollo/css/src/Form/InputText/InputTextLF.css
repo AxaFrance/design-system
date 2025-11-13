@@ -5,7 +5,7 @@
 }
 
 .af-form__input-container:has([class*="__sidebutton"]):has(:disabled)
-  .af-form__input-variant {
+  .af-form__input-atom-container {
   --input-border-color: var(--color-gray-400);
   --input-text-color: var(--color-gray-700);
   --input-bg-color: var(--color-gray-200);
