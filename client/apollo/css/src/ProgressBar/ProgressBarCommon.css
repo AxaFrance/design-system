@@ -38,3 +38,19 @@
   opacity: 0;
   user-select: none;
 }
+
+.af-progress-bar__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(8 / var(--font-size-base) * 1rem);
+
+  & > span {
+    width: 44px;
+    font: var(--font-family-base);
+    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-weight: 600;
+    line-height: 125%;
+    white-space: nowrap;
+  }
+}
