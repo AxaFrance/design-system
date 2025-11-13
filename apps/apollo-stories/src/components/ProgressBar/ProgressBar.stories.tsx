@@ -20,11 +20,17 @@ const meta: Meta<typeof ProgressBar> = {
         type: "number",
       },
     },
+    percentage: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
   args: {
     label: "Loading something...",
     value: 70,
     max: 100,
+    percentage: false,
   },
   decorators: [
     (Story) => (
