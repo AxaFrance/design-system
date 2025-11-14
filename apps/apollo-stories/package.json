@@ -35,7 +35,7 @@
     "globals": "^16.0.0",
     "remark-gfm": "^4.0.1",
     "storybook": "^8.5.5",
-    "typescript": "~5.7.2",
+    "typescript": "~5.9.3",
     "vite": "^6.3.3"
   },
   "optionalDependencies": {
