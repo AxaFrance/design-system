@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
 import { type ComponentProps, useRef } from "react";
 
 import {
@@ -7,14 +7,17 @@ import {
   CardRadio,
   InputText,
   InputDate,
-  Heading,
   Modal,
   Message,
   messageVariants,
   Stepper,
   CheckboxText,
   InputPhone,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/design-system-apollo-react/lf";
+
+import { MyFooter } from "../components/MyFooter";
+import { MyHeader } from "../components/MyHeader";
+
 import { flagsList } from "./FlagUtils";
 
 type CommonProps<
@@ -33,7 +36,7 @@ const commonProps = <
   ...rest,
 });
 
-export const Coordonnees = () => {
+export const Basic = () => {
   const refModal = useRef<HTMLDialogElement>(null);
 
   const handleOpenModal = () => refModal?.current?.showModal();
@@ -42,15 +45,15 @@ export const Coordonnees = () => {
   return (
     <>
       <DebugGrid isCheckedByDefault />
+      <MyHeader />
       <main className="grid example-form">
         <form className="form">
           <div className="form__header subgrid">
-            <Heading>Devis Habitation</Heading>
             <Stepper
               currentStep={0}
               currentStepProgress={100}
               currentSubtitle="Etape 1 sur 3"
-              currentTitle="Mes coordonnées"
+              currentTitle="Devis Habitation"
               nbSteps={3}
               helper="Sauf mention contraire, tous les champs sont obligatoires."
             />
@@ -191,6 +194,7 @@ export const Coordonnees = () => {
           </div>
         </form>
       </main>
+      <MyFooter />
     </>
   );
 };

@@ -12,7 +12,7 @@ import check from "@material-symbols/svg-400/rounded/check.svg";
 
 export const Sortie = () => (
   <>
-    <DebugGrid />
+    <DebugGrid isCheckedByDefault />
     <main className="grid exit-page">
       <section className="exit-page__content subgrid">
         <article className="subgrid">

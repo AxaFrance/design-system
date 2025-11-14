@@ -1,0 +1,44 @@
+@use "../../fondations/breakpoints.scss" as breakpoints;
+
+.af-btn-client-demo {
+  display: grid;
+  width: 100%;
+  gap: 2rem;
+
+  @media (width > #{breakpoints.$breakpoint-md}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &-variant {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  &__bloc {
+    display: flex;
+    padding: 1rem;
+    border-radius: var(--radius-16);
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 0 0 2px var(--axa-blue-120, var(--color-axa)) inset;
+
+    > button {
+      width: fit-content;
+      text-transform: capitalize;
+    }
+
+    &--blue {
+      background-color: var(--axa-blue-120, var(--color-axa));
+
+      .af-title {
+        color: var(--white, var(--color-white));
+      }
+    }
+  }
+
+  .af-title {
+    font-family: var(--font-family-publico-headline);
+    text-transform: capitalize;
+  }
+}

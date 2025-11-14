@@ -20,7 +20,15 @@ function getAbsolutePath(value: string): string {
 }
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: [
+    "../src/Getstarted.mdx",
+    "../src/fondations/**/*.mdx",
+    "../src/fondations/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../src/components/**/*.mdx",
+    "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../src/pages/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
+  staticDirs: ["../public"],
   addons: [
     getAbsolutePath("@storybook/addon-onboarding"),
     getAbsolutePath("@storybook/addon-essentials"),

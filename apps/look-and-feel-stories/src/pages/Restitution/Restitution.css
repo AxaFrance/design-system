@@ -1,0 +1,43 @@
+main.example-page {
+  padding-block: 4rem;
+  @media (width > 1023px) {
+    --row-gap: calc(64 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-left-part {
+  @media (width > 1279px) {
+    --cols: 9;
+    --row-gap: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  .af-list-part {
+    @media (width > 1023px) {
+      --row-gap: calc(32 / var(--font-size-base) * 1rem);
+    }
+  }
+}
+
+.af-right-part {
+  --row-gap: calc(16 / var(--font-size-base) * 1rem);
+
+  @media (width > 1279px) {
+    --cols: 3;
+  }
+
+  .af-contacts-part {
+    @media (width > 1023px) {
+      --row-gap: calc(32 / var(--font-size-base) * 1rem);
+    }
+
+    > .af-card {
+      @media (width > 667px) {
+        --cols: 4;
+      }
+
+      @media (width > 1279px) {
+        --cols: 3;
+      }
+    }
+  }
+}
