@@ -2,11 +2,12 @@
 
 .af-heading {
   --heading-grid-column: 1;
-  --heading-title-color: var(--axa-blue-100);
+  --heading-title-color: var(--gray80);
   --heading-subtitle-color: var(--neutral-100);
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
 
   h1 {
+    --heading-title-color: var(--color-blue-800);
     --heading-title-font-size: calc(32 / var(--font-size-base) * 1rem);
     --heading-title-line-height: calc(40 / var(--font-size-base) * 1rem);
     --heading-title-font-weight: 700;
@@ -14,15 +15,23 @@
   }
 
   h2 {
-    --heading-title-font-size: calc(28 / var(--font-size-base) * 1rem);
-    --heading-title-line-height: calc(36 / var(--font-size-base) * 1rem);
+    --heading-title-color: var(--color-blue-800);
+    --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
+    --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
     --heading-title-font-weight: 300;
     --heading-title-font-family: var(--font-family-publico);
   }
 
   h3 {
     --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
-    --heading-title-line-height: calc(32 / var(--font-size-base) * 1rem);
+    --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
+    --heading-title-font-weight: 600;
+    --heading-title-font-family: var(--font-family-base);
+  }
+
+  h4 {
+    --heading-title-font-size: calc(20 / var(--font-size-base) * 1rem);
+    --heading-title-line-height: calc(25 / var(--font-size-base) * 1rem);
     --heading-title-font-weight: 600;
     --heading-title-font-family: var(--font-family-base);
   }
@@ -36,17 +45,22 @@
 
     h1 {
       --heading-title-font-size: calc(48 / var(--font-size-base) * 1rem);
-      --heading-title-line-height: calc(56 / var(--font-size-base) * 1rem);
+      --heading-title-line-height: calc(60 / var(--font-size-base) * 1rem);
     }
 
     h2 {
       --heading-title-font-size: calc(40 / var(--font-size-base) * 1rem);
-      --heading-title-line-height: calc(48 / var(--font-size-base) * 1rem);
+      --heading-title-line-height: calc(50 / var(--font-size-base) * 1rem);
     }
 
     h3 {
       --heading-title-font-size: calc(32 / var(--font-size-base) * 1rem);
       --heading-title-line-height: calc(40 / var(--font-size-base) * 1rem);
+    }
+
+    h4 {
+      --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
+      --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
     }
   }
 }
