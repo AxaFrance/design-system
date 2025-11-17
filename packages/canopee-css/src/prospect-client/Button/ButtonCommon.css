@@ -1,0 +1,62 @@
+.af-btn-client {
+  display: flex;
+  padding: var(--button-padding);
+  border: 0;
+  border-radius: var(--button-radius);
+  align-items: center;
+  justify-content: center;
+  gap: calc(12 / var(--font-size-base) * 1rem);
+  font-family: var(--font-family-base);
+  font-size: var(--button-font-size);
+  font-weight: 600;
+  line-height: var(--button-line-height);
+  color: var(--button-text-color);
+  background-color: var(--button-bg-color);
+  transition-duration: var(--transition-duration, 150ms);
+  transition-property:
+    width, height, border, color, background-color, box-shadow;
+  transition-timing-function: linear;
+  user-select: none;
+
+  &:focus {
+    outline-color: transparent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--button-outline-color);
+    outline-offset: 3px;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    pointer-events: none;
+
+    & > [aria-live] {
+      margin: unset;
+    }
+  }
+
+  & > svg {
+    aspect-ratio: 1;
+    fill: currentcolor;
+  }
+}
+
+.af-btn-client--ghost {
+  gap: calc(4 / var(--font-size-base) * 1rem);
+  line-height: 1.25em;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}
+
+.af-btn-client--secondary {
+  box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
+}
+
+.af-btn-client--secondary-inverse {
+  box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
+}

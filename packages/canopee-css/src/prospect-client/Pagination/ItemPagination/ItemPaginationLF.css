@@ -1,0 +1,12 @@
+@import "./ItemPaginationCommon.css";
+
+.af-item-pagination {
+  --item-pagination-color: var(--color-blue-800);
+  --item-pagination-background-color: var(--color-white);
+  --item-pagination-outline-color: var(--color-blue-800);
+}
+
+.af-item-pagination--current {
+  --item-pagination-background-color: var(--color-blue-800);
+  --item-pagination-color: var(--color-white);
+}

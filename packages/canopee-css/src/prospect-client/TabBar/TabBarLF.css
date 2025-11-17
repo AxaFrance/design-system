@@ -1,0 +1,5 @@
+@import "./TabBarCommon.css";
+
+.af-tabbar {
+  --tabbar-box-shadow-color: var(--color-blue-400);
+}

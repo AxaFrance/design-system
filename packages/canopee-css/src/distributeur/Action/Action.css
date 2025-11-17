@@ -1,0 +1,44 @@
+.btn.af-btn--circle {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  text-align: center;
+  color: var(--white);
+  background: var(--azur);
+  cursor: pointer;
+}
+
+.btn.af-btn--circle:hover {
+  border-color: var(--axablue80);
+  color: var(--axablue80);
+  background-color: var(--white);
+}
+
+.btn.af-btn--circle:focus {
+  color: var(--white);
+  outline: none;
+}
+
+.btn.af-btn--circle:focus:hover {
+  color: var(--axablue80);
+}
+
+.btn.af-btn--circle .glyphicon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.af-more-help {
+  vertical-align: middle;
+  font-family: georgia, times, "Times New Roman", serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: bold;
+}

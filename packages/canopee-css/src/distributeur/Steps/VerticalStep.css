@@ -1,0 +1,82 @@
+.af-vertical-step {
+  display: grid;
+  grid-template-areas:
+    "separation icon title"
+    "separation content content";
+  grid-template-columns: 0.0625rem 3.5rem 1fr;
+
+  &::before {
+    width: 0.0625rem;
+    margin-left: 1.375rem;
+    grid-area: separation;
+    background: var(--gray40);
+    content: "";
+  }
+
+  &:last-of-type:not(.af-vertical-step--edition)::before {
+    background: none;
+  }
+
+  &:last-of-type.af-vertical-step--edition {
+    grid-template-areas:
+      "separation icon title"
+      "separation content content"
+      "lastIcon lastIcon lastIcon";
+    grid-template-columns: 0.0625rem 3.5rem 1fr;
+
+    .af-vertical-step-icon--lastIcon {
+      grid-area: lastIcon;
+      background-color: var(--gray40);
+    }
+  }
+
+  &:not(:last-of-type.af-vertical-step--edition)
+    .af-vertical-step-icon--lastIcon {
+    display: none;
+  }
+
+  > section {
+    margin-bottom: 2.5rem;
+    margin-left: 3.5rem;
+    grid-area: content;
+  }
+
+  .af-vertical-step-icon {
+    display: flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    grid-area: icon;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: var(--white);
+    }
+  }
+
+  .af-vertical-step-icon--validated {
+    background-color: var(--green30);
+  }
+
+  .af-vertical-step-icon--locked {
+    background-color: var(--gray40);
+  }
+
+  .af-vertical-step-icon--edited {
+    background-color: var(--axablue80);
+  }
+
+  /* Style for submit button inside form */
+  & button[type="submit"] {
+    /* TODO: replace this with 280px when label component will be done */
+    margin-left: 17%;
+  }
+
+  .content-right {
+    font-weight: 700;
+  }
+}

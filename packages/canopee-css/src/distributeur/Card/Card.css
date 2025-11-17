@@ -1,0 +1,108 @@
+.af-card {
+  --card-background-color: var(--white);
+  --card-border-color: transparent;
+  --card-border-radius: 4px;
+  --card-box-shadow-color: rgba(0, 0, 0, 18%);
+  --card-text-color: var(--gray80);
+  --card-icon-color: var(--axablue80);
+  --card-vertical-padding: 1.5rem;
+  --card-lateral-padding: 1rem;
+
+  display: flex;
+  min-width: 11.25rem;
+  padding: var(--card-vertical-padding) var(--card-lateral-padding);
+  border: 2px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.25rem;
+  text-align: center;
+  color: var(--card-text-color);
+  background-color: var(--card-background-color);
+  box-shadow: 0 0 0.5625rem 0 var(--card-box-shadow-color);
+
+  &:not(:has(svg)) {
+    min-height: 5.75rem;
+  }
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+    fill: var(--card-icon-color);
+  }
+
+  &:hover {
+    --card-border-color: var(--axablue80);
+    --card-text-color: var(--gray80);
+    --card-icon-color: var(--axablue80);
+  }
+
+  &:focus {
+    --card-text-color: var(--gray80);
+    --card-icon-color: var(--axablue80);
+
+    outline: calc(2rem / 16) solid var(--axablue80);
+    outline-offset: calc(2rem / 16);
+  }
+
+  &:disabled {
+    --card-text-color: var(--gray40);
+    --card-icon-color: var(--gray40);
+
+    cursor: not-allowed;
+
+    &:hover {
+      --card-border-color: transparent;
+    }
+  }
+}
+
+.af-card--horizontal {
+  --card-lateral-padding: 1.5rem;
+
+  min-width: 20rem;
+  min-height: 6rem;
+  padding-right: 0;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  &:not(:has(svg)) {
+    min-width: 11.25rem;
+  }
+
+  svg {
+    margin-bottom: auto;
+    padding-right: 1rem;
+  }
+}
+
+.af-card--error {
+  --card-text-color: var(--red30);
+  --card-icon-color: var(--red30);
+}
+
+.af-card--active {
+  --card-text-color: var(--white);
+  --card-icon-color: var(--white);
+  --card-background-color: var(--axablue80);
+
+  &:focus {
+    --card-text-color: var(--white);
+    --card-icon-color: var(--white);
+    --card-background-color: var(--axablue80);
+  }
+
+  &:hover {
+    --card-text-color: var(--gray80);
+    --card-icon-color: var(--axablue80);
+    --card-background-color: var(--white);
+  }
+
+  &:disabled:hover {
+    --card-text-color: var(--gray40);
+    --card-icon-color: var(--gray40);
+    --card-background-color: var(--axablue80);
+  }
+}

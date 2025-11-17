@@ -1,0 +1,79 @@
+{
+  "name": "@axa-fr/canopee-css",
+  "version": "0.0.0",
+  "description": "Package CSS - Design System Canopée",
+  "exports": {
+    "./logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./prospect/*": "./dist/prospect/*",
+    "./client/*": "./dist/client/*",
+    "./distributeur/*": "./dist/distributeur/*"
+  },
+  "files": [
+    "dist",
+    "files"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build:prospect": "postcss \"src/prospect-client/**/*{Apollo,Grid,DebugGrid,Svg,All,prospect}.css\" \"src/prospect-client/common\" --base src/prospect-client --dir dist/prospect --verbose --env prospect-production",
+    "build:client": "postcss \"src/prospect-client/**/*{LF,Grid,DebugGrid,Svg,All,client}.css\" \"src/prospect-client/common\" --base src/prospect-client --dir dist/client --verbose --env client-production",
+    "build:distributeur": "postcss \"src/distributeur/**/*.css\" --base src/distributeur --dir dist/distributeur --verbose --env distributeur-production",
+    "build": "npm run build:prospect && npm run build:client && npm run build:distributeur",
+    "dev:client": "npm run build:client -- --watch -- --env client",
+    "dev:prospect": "npm run build:prospect -- --watch -- --env prospect",
+    "dev:distributeur": "npm run build:distributeur -- --watch -- --env distributeur",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "stylelint:fix": "npm run stylelint -- --fix"
+  },
+  "dependencies": {
+    "rc-slider": "^11.1.7"
+  },
+  "peerDependencies": {
+    "@material-symbols/svg-400": ">= 0.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@material-symbols/svg-400": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@axa-fr/postcss-config-design-system": "*",
+    "@axa-fr/prettier-config-design-system": "*",
+    "@axa-fr/stylelint-config-design-system": "*",
+    "rimraf": "^6.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxaFrance/design-system.git"
+  },
+  "author": {
+    "name": "AxaFrance"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.css": "npm run stylelint -- --fix"
+  },
+  "prettier": "@axa-fr/prettier-config-design-system",
+  "stylelint": {
+    "extends": "@axa-fr/stylelint-config-design-system"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

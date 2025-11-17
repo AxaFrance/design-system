@@ -1,0 +1,36 @@
+.af-form__input-textarea {
+  --text-color: var(--color-text);
+  --border-color: var(--input-border-color);
+
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-family-base);
+  font-size: 1em;
+  color: var(--text-color);
+}
+
+.af-form__input-textarea--hasinfobulle {
+  margin-right: 1rem;
+}
+
+.af-form__input-textarea:disabled {
+  cursor: not-allowed;
+
+  --text-color: var(--color-text);
+  --border-color: var(--input-border-color);
+}
+
+.af-form__input-textarea[aria-invalid="true"] {
+  --text-color: var(--error-color);
+  --border-color: var(--error-color);
+}
+
+.af-form__input-textarea:focus {
+  --border-color: var(--active-button-border-color);
+  --text-color: var(--color-text);
+}
+
+.af-form__textarea--warning .af-form__input-textarea {
+  border: 1px solid var(--warning-color);
+  color: var(--warning-color);
+}

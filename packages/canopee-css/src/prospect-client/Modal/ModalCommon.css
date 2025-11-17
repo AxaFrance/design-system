@@ -1,0 +1,142 @@
+.af-modal {
+  --modal-transition-duration: 0.2s;
+  --modal-max-height: calc(100vh - 5rem);
+  --modal-footer-border-top: none;
+
+  width: 100%;
+  max-width: 100vw;
+  height: fit-content;
+  max-height: var(--modal-max-height);
+  margin: 0;
+  margin-block-start: auto;
+  padding: 0;
+  border: none;
+  border-radius: var(--modal-border-radius);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  overflow: hidden;
+  opacity: 0;
+  color: var(--modal-text-color);
+  background-color: var(--modal-bg-color);
+  clip-path: rect(
+    0 100% 100% 0 round var(--modal-border-radius) var(--modal-border-radius) 0
+      0
+  );
+  transform: translateY(100vh);
+  transition:
+    opacity,
+    transform,
+    overlay allow-discrete,
+    display allow-discrete;
+  transition-duration: var(--modal-transition-duration);
+  transition-timing-function: ease-out;
+
+  &::backdrop {
+    opacity: 0;
+    background: var(--modal-overlay-color);
+    transition:
+      display allow-discrete,
+      overlay allow-discrete,
+      opacity;
+    transition-duration: var(--modal-transition-duration);
+    transition-timing-function: ease-in-out;
+  }
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(100vh);
+    }
+
+    &::backdrop {
+      opacity: 0.4;
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+  }
+
+  @media (--desktop-small) {
+    max-width: revert;
+    margin: revert;
+    border-radius: var(--modal-border-radius);
+    overflow: hidden;
+    clip-path: rect(0 100% 100% 0 round var(--modal-border-radius));
+    transform: unset;
+
+    &[open] {
+      transform: unset;
+    }
+  }
+}
+
+.af-modal__content {
+  display: grid;
+  min-height: 0;
+  max-height: var(--modal-max-height);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  flex: 0 1 auto;
+  overflow-y: hidden;
+}
+
+.af-modal__header {
+  display: grid;
+  padding: var(--modal-default-padding);
+  padding-block-end: var(--modal-header-bottom-padding);
+  border-bottom: var(--modal-header-border-bottom);
+  grid-template-areas: "headertitle closebtn";
+  grid-template-columns: 1fr auto;
+  gap: var(--modal-header-gap);
+  background-color: var(--modal-bg-color);
+}
+
+.af-modal__header-close-btn {
+  grid-area: closebtn;
+  place-self: start end;
+}
+
+.af-modal__header-title {
+  display: grid;
+  grid-area: headertitle;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-self: start;
+  gap: calc(16 / var(--font-size-base) * 1rem);
+}
+
+.af-modal__body {
+  display: flex;
+  min-height: 0;
+  padding: var(--modal-default-padding) var(--modal-body-padding-top)
+    var(--modal-body-padding-bottom);
+  flex-direction: column;
+  gap: var(--modal-default-padding);
+  overflow-y: auto;
+  font-size: var(--modal-text-font-size);
+  line-height: 125%;
+}
+
+.af-modal__footer {
+  display: flex;
+  padding: var(--modal-footer-vertical-padding)
+    var(--modal-footer-horizontal-padding);
+  border-block-start: var(--modal-footer-border-top);
+  justify-content: end;
+  gap: var(--modal-footer-gap);
+  background-color: var(--modal-bg-color);
+}
+
+.af-modal__footer-button {
+  flex: 1;
+
+  @media (--desktop-small) {
+    min-width: 180px;
+    flex-grow: inherit;
+  }
+}

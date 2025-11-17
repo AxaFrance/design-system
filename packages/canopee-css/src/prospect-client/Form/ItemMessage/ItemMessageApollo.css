@@ -1,0 +1,20 @@
+@import "./ItemMessageCommon.css";
+
+.af-item-message {
+  --item-message-color: var(--red-alert-100);
+  --item-message-icon-size: calc(20 / var(--font-size-base) * 1rem);
+
+  font-size: clamp(14px, 1.4vw, 16px);
+
+  @media (--desktop-small) {
+    --item-message-icon-size: calc(24 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-item-message--success {
+  --item-message-color: var(--green-100);
+}
+
+.af-item-message--warning {
+  --item-message-color: var(--warning-100);
+}
