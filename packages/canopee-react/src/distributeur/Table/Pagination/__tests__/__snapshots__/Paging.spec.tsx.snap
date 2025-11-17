@@ -1,0 +1,167 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Paging> > renders Paging with specific labels correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="af-paging"
+  >
+    <div
+      class="af-paging__limit"
+    >
+      <div
+        class="af-paging__limit"
+      >
+        <form
+          class="af-paging__form"
+        >
+          <div
+            class="af-form__group"
+          >
+            <div
+              class="col col-sm-2 col-md-2 col-lg-2 col-xl-2"
+            >
+              <label
+                class="af-form__group-label"
+                for="_r_0_"
+              >
+                Afficher
+              </label>
+            </div>
+            <div
+              class="col col-sm-10 col-md-10 col-lg-10 col-xl-10"
+            >
+              <div
+                class="af-form__select-container"
+              >
+                <select
+                  aria-label="Nombre de sinistres à afficher"
+                  class="af-form__input-select"
+                  id="_r_0_"
+                >
+                  <option
+                    value="5"
+                  >
+                    5
+                  </option>
+                  <option
+                    value="10"
+                  >
+                    10
+                  </option>
+                </select>
+                <span
+                  aria-controls="_r_0_"
+                  class="glyphicon glyphicon-menu-down"
+                />
+              </div>
+              <span
+                class="af-form__input-cmplt"
+              >
+                sinistres
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      class="af-paging__pager"
+    >
+      <nav
+        class="af-pager"
+      >
+        <ul
+          class="af-pager__pagination"
+        >
+          <li
+            class="af-pager__item"
+          >
+            <a
+              aria-label="Page précédente des sinistres"
+              class="af-pager__item-link"
+              href="/#"
+              role="button"
+            >
+              « Précédent
+            </a>
+          </li>
+          <li
+            class="af-pager__item"
+          >
+            <a
+              aria-label="Page 1 des sinistres"
+              class="af-pager__item-link"
+              href="/#"
+            >
+              <span>
+                1
+              </span>
+            </a>
+          </li>
+          <li
+            class="af-pager__item"
+          >
+            <a
+              aria-current="page"
+              aria-label="Page 2 des sinistres"
+              class="af-pager__item-link"
+              href="/#"
+            >
+              <span>
+                2
+              </span>
+            </a>
+          </li>
+          <li
+            class="af-pager__item"
+          >
+            <a
+              aria-label="Page 3 des sinistres"
+              class="af-pager__item-link"
+              href="/#"
+            >
+              <span>
+                3
+              </span>
+            </a>
+          </li>
+          <li
+            class="af-pager__item af-pager__item--disabled"
+          >
+            <span
+              class="af-pager__item-link"
+            >
+              ...
+            </span>
+          </li>
+          <li
+            class="af-pager__item"
+          >
+            <a
+              aria-label="Page 10 des sinistres"
+              class="af-pager__item-link"
+              href="/#"
+            >
+              <span>
+                10
+              </span>
+            </a>
+          </li>
+          <li
+            class="af-pager__item"
+          >
+            <a
+              aria-label="Page suivante des sinistres"
+              class="af-pager__item-link"
+              href="/#"
+              role="button"
+            >
+              Suivant »
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</DocumentFragment>
+`;

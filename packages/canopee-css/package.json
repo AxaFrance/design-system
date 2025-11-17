@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Package CSS - Design System Canopée",
   "exports": {
-    "./logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./*.svg": "./files/assets/*.svg",
     "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
     "./prospect/*": "./dist/prospect/*",
     "./client/*": "./dist/client/*",

@@ -1,0 +1,3 @@
+import "@axa-fr/canopee-css/prospect/Form/Radio/Radio/RadioApollo.css";
+
+export { Radio } from "./RadioCommon";
