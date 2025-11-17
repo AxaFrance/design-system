@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ItemTabBarStories from "./ItemTabBar.stories";
+
+<Meta of={ItemTabBarStories} name="ItemTabBar" />
+
+# ItemTabBar
+
+### Import
+
+```tsx
+import { ItemTabBar } from "@axa-fr/design-system-apollo-react/lf";
+```
+
+### Use
+
+```tsx
+export const ItemTabBarComponent = () => <ItemTabBar title="This is a title" />;
+```
+
+## Playground
+
+<Canvas of={ItemTabBarStories.Default} />
+
+<Controls of={ItemTabBarStories.Default} />

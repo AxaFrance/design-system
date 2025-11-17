@@ -11,7 +11,7 @@ import {
 
 export const Situation = () => (
   <>
-    <DebugGrid />
+    <DebugGrid isCheckedByDefault />
     <main className="grid example-form">
       <form className="form">
         <div className="form__header subgrid">
