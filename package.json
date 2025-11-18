@@ -22,7 +22,7 @@
     "lint:apollo": "turbo lint --filter=./client/apollo/*",
     "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky",
-    "test": "vitest --coverage"
+    "test": "vitest"
   },
   "author": "AxaFrance",
   "license": "MIT",

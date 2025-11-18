@@ -1,4 +1,4 @@
-import logo from "@axa-fr/design-system-apollo-css/logo-axa.svg";
+import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { BasePicture } from "../BasePicture";

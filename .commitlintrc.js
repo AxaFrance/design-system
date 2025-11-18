@@ -1,7 +1,7 @@
 /** @type {import('@commitlint/types').UserConfig} */
 const config = {
-  extends: ["@commitlint/config-conventional"],
-  ignores: [commit => /release/.test(commit)],
+  extends: ['@commitlint/config-conventional'],
+  ignores: [(commit) => /release/.test(commit)],
   rules: {
     'scope-empty': [2, 'never'],
     'scope-enum': [
@@ -15,6 +15,7 @@ const config = {
         'deps',
         'deps-dev',
         'release',
+        'canopee',
       ],
     ],
   },
