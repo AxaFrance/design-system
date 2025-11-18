@@ -1,6 +1,1 @@
-@import "./PaginationCommon.css";
-
-.af-pagination-list {
-  --pagination-list-border-color: var(--color-gray-400);
-  --pagination-list-background-color: var(--color-white);
-}
+@import "@axa-fr/canopee-css/client/Pagination/PaginationLF.css";

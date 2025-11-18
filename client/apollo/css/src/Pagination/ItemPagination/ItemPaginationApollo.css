@@ -1,12 +1,1 @@
-@import "./ItemPaginationCommon.css";
-
-.af-item-pagination {
-  --item-pagination-color: var(--axa-blue-100);
-  --item-pagination-background-color: var(--white);
-  --item-pagination-outline-color: var(--axa-blue-100);
-}
-
-.af-item-pagination--current {
-  --item-pagination-background-color: var(--axa-blue-100);
-  --item-pagination-color: var(--white);
-}
+@import "@axa-fr/canopee-css/prospect/Pagination/ItemPagination/ItemPaginationApollo.css";

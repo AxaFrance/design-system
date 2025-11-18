@@ -1,6 +1,1 @@
-@import "./ProgressBarGroupCommon.css";
-
-.af-progress-bar-group {
-  border-radius: calc(6 / var(--font-size-base) * 1rem);
-  overflow: hidden;
-}
+@import "@axa-fr/canopee-css/prospect/ProgressBarGroup/ProgressBarGroupApollo.css";

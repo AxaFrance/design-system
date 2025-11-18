@@ -1,11 +1,1 @@
-@import "./FooterCommon.css";
-
-.af-footer {
-  --footer-bg-color: var(--color-ocean-blue);
-  --footer-color: var(--color-white);
-}
-
-.af-footer__linkItem:hover,
-.af-footer__menuIconLinks:hover {
-  --footer-color: var(--color-blue-1);
-}
+@import "@axa-fr/canopee-css/client/Layout/Footer/FooterLF.css";

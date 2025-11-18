@@ -1,17 +1,1 @@
-@import "./ItemTabBarCommon.css";
-
-.af-item-tab-bar {
-  --item-tab-bar-font-color: var(--axa-blue-100);
-  --item-tab-bar-padding: calc(10 / var(--font-size-base) * 1rem)
-    calc(8 / var(--font-size-base) * 1rem);
-  --item-tab-bar-box-shadow-color: var(--axa-blue-20);
-  --item-tab-bar-outline-color: var(--axa-blue-100);
-
-  &[aria-selected="true"] {
-    --item-tab-bar-box-shadow-color: var(--axa-blue-100);
-  }
-
-  @media (--desktop-small) {
-    --item-tab-bar-padding: calc(16 / var(--font-size-base) * 1rem);
-  }
-}
+@import "@axa-fr/canopee-css/prospect/ItemTabBar/ItemTabBarApollo.css";

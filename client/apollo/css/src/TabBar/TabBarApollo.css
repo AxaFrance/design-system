@@ -1,5 +1,1 @@
-@import "./TabBarCommon.css";
-
-.af-tabbar {
-  --tabbar-box-shadow-color: var(--axa-blue-20);
-}
+@import "@axa-fr/canopee-css/prospect/TabBar/TabBarApollo.css";

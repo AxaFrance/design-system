@@ -1,7 +1,1 @@
-@import "./ProgressBarCommon.css";
-
-.af-progress-bar {
-  --progress-bar-radius: var(--radius-4);
-  --progress-bar-background-color: var(--color-gray-400);
-  --progress-bar-appearance: var(--color-axa);
-}
+@import "@axa-fr/canopee-css/client/ProgressBar/ProgressBarLF.css";
