@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "description": "",
   "exports": {
+    "./*.svg": "./files/assets/*.svg",
+    "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
     "./dist/*": "./src/*"
   },
   "files": [
-    "src"
+    "src",
+    "files"
   ],
   "dependencies": {
     "@axa-fr/canopee-css": "*"
