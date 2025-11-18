@@ -56,7 +56,9 @@ export default [
       ],
       "import/no-unresolved": [
         "error",
-        { ignore: ["@axa-fr\\/design-system-"] },
+        {
+          ignore: ["@axa-fr\\/design-system-", "@axa-fr\\/canopee-"],
+        },
       ],
 
       // eslint-plugin-react https://github.com/jsx-eslint/eslint-plugin-react
