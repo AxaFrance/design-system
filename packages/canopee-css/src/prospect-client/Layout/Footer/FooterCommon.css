@@ -90,6 +90,7 @@
   padding: calc(26 / var(--font-size-base) * 1rem)
     calc(52 / var(--font-size-base) * 1rem);
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .af-footer__menuAboutTriggerText {

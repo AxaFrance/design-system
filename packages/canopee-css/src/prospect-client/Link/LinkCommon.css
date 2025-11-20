@@ -9,6 +9,7 @@
   text-decoration: underline;
   text-underline-offset: var(--underline-offset);
   color: var(--link-text-color-default);
+  cursor: pointer;
   fill: var(--link-text-color-default);
 
   svg {

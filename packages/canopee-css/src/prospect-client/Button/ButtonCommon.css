@@ -16,6 +16,7 @@
   transition-property:
     width, height, border, color, background-color, box-shadow;
   transition-timing-function: linear;
+  cursor: pointer;
   user-select: none;
 
   &:focus {

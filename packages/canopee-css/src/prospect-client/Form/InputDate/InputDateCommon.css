@@ -33,6 +33,8 @@
     font-weight: 600;
   }
 
+  cursor: text;
+
   &:disabled {
     cursor: not-allowed;
   }
