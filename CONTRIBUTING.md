@@ -45,7 +45,12 @@ Nous utilisons [Conventional Commits](https://www.conventionalcommits.org/) pour
 ````
 
 Voici les règles à suivre pour les scopes de commit :
-- Utilisez le scope correspondant au design system mis à jour par le commit. Les scopes disponibles sont :
+- Utilisez le scope correspondant au theme design system mis à jour par le commit. Les scopes disponibles sont :
+    - `prospect`
+    - `client`
+    - `distributeurs`
+- Si le commit est plus général aux themes du design system, utilisez le scope `canopee`.
+- Les anciens scope restes disponibles, mais sont déprécié dans leur utilisation.
     - `slash`
     - `look&feel`
     - `apollo`
@@ -56,8 +61,8 @@ Voici les règles à suivre pour les scopes de commit :
 Exemples de messages de commit valides :
 
 ```plaintext
-feat(slash): ajout d'un nouveau composant
-fix(look&feel,apollo): correction des styles et des icônes
+feat(canopee): ajout d'un nouveau composant xxx
+fix(prospect,client): correction des styles et des icônes
 chore(design-system): mise à jour des dépendances
 ```
 
