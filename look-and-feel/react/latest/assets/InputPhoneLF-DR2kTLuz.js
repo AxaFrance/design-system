@@ -1,0 +1,1 @@
+import{j as t}from"./index-C-iqcyhV.js";import{l as e,d as n,m,I as s,n as p}from"./ClickIconApollo-DU4NjRa6.js";const r=o=>t.jsx(e,{...o,ItemLabelComponent:p,ItemMessageComponent:s,InputTextComponent:m,IconComponent:n});export{r as I};
