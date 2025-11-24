@@ -5,11 +5,11 @@ unique pour utiliser le design system AXA France au sein de vos projets.
 
 Il propose d'utiliser les deux designs systems principaux :
 
-- **Apollo** pour le <abbr title="Business to client">B2C</abbr>, les
+- **Prospect (~~Apollo~~)** pour le <abbr title="Business to client">B2C</abbr>, les
   applications exposées aux prospect (AXA.Fr)
-- **Look & Feel** pour le <abbr title="Business to client">B2C</abbr>, les
+- **Client (~~Look & Feel~~)** pour le <abbr title="Business to client">B2C</abbr>, les
   applications exposées aux clients (Espace client)
-- **Slash** pour le <abbr title="Business to business">B2B</abbr>, les
+- **Collab-Distrib (~~Slash~~)** pour le <abbr title="Business to business">B2B</abbr>, les
   applications internes
 
 ## Migration depuis @axa-fr/react-toolkit
@@ -20,7 +20,23 @@ Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers
 
 ## Packages
 
-### <abbr title="Business to business">B2B</abbr> - Slash
+Pour tous les univers, les packages sont découpés en deux parties : la partie
+`-react` qui contient les composants React et la partie `-css` qui contient les
+fichiers CSS.
+
+**Installation latest**
+
+```bash
+npm install @axa-fr/canopee-react@latest @axa-fr/canopee-css@latest
+```
+
+**Installation next**
+
+```bash
+npm install @axa-fr/canopee-react@next @axa-fr/canopee-css@next
+```
+
+### <abbr title="Business to business">B2B</abbr> - Univers Collab-Distrib
 
 [![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-react/latest?label=slash-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-react)](https://www.npmjs.com/@axa-fr/design-system-slash-react)
 [![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-slash-css/latest?label=slash-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-slash-css)](https://www.npmjs.com/@axa-fr/design-system-slash-css)\
@@ -34,19 +50,19 @@ Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers
 [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-slash-00008F)](https://zeroheight.com/4b1e27a45/v/latest/p/36b4a2-slash-design-system-b-to-b)
 [![Figma](https://img.shields.io/badge/Figma-slash-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/design/reZserxMfytQ9M82bt20Bi/DS-Slash-V3)
 
-**Installation latest**
+Utilisation des nouveaux packages :
 
-```bash
-npm install @axa-fr/design-system-slash-react@latest @axa-fr/design-system-slash-css@latest
+```javascript
+import { Button } from '@axa-fr/canopee-react/distributeur';
 ```
 
-**Installation next**
+Only CSS :
 
-```bash
-npm install @axa-fr/design-system-slash-react@next @axa-fr/design-system-slash-css@next
+```css
+import '@axa-fr/canopee-css/distributeur/button.css';
 ```
 
-### <abbr title="Business to client">B2C</abbr> - Apollo
+### <abbr title="Business to client">B2C</abbr> - Univers Prospect
 
 [![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-react/latest?label=apollo-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-apollo-react)](https://www.npmjs.com/@axa-fr/design-system-apollo-react)
 [![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-apollo-css/latest?label=apollo-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-apollo-css)](https://www.npmjs.com/@axa-fr/design-system-apollo-css)\
@@ -60,19 +76,19 @@ npm install @axa-fr/design-system-slash-react@next @axa-fr/design-system-slash-c
 [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-apollo-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c)
 [![Figma](https://img.shields.io/badge/Figma-apollo-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1)
 
-**Installation latest**
+**Utilisation des nouveaux packages :**
 
-```bash
-npm install @axa-fr/design-system-apollo-react@latest @axa-fr/design-system-apollo-css@latest
+```javascript
+import { Button } from '@axa-fr/canopee-react/prospect';
 ```
 
-**Installation next**
+Only CSS :
 
-```bash
-npm install @axa-fr/design-system-apollo-react@next @axa-fr/design-system-apollo-css@next
+```css
+import '@axa-fr/canopee-css/client/buttonApollo.css';
 ```
 
-### <abbr title="Business to client">B2C</abbr> - Look and feel
+### <abbr title="Business to client">B2C</abbr> - Univers Client
 
 [![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-react/latest?label=look-and-feel-react&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-react)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-react)
 [![NPM Version (with dist tag)](https://img.shields.io/npm/v/%40axa-fr%2Fdesign-system-look-and-feel-css/latest?label=look-and-feel-css&link=https%3A%2F%2Fwww.npmjs.com%2F%40axa-fr%2Fdesign-system-look-and-feel-css)](https://www.npmjs.com/@axa-fr/design-system-look-and-feel-css)\
@@ -86,16 +102,16 @@ npm install @axa-fr/design-system-apollo-react@next @axa-fr/design-system-apollo
 [![ZeroHeight](https://img.shields.io/badge/ZeroHeight-look_and_feel-00008F)](https://zeroheight.com/49b6215d6/v/latest/p/923242-design-system-b2c)
 [![Figma](https://img.shields.io/badge/Figma-look_and_feel-F24E1E?logo=figma)](https://www.figma.com/design/vwprvN2ELfI50pjU6MK1Ea/Design-System-B2C?m=auto&node-id=0-1&t=gV40pT7eJgfBkhy5-1)
 
-**Installation latest**
+**Utilisation des nouveaux packages :**
 
-```bash
-npm install @axa-fr/design-system-look-and-feel-react@latest @axa-fr/design-system-look-and-feel-css@latest
+```javascript
+import { Button } from '@axa-fr/canopee-react/client';
 ```
 
-**Installation next**
+Only CSS :
 
-```bash
-npm install @axa-fr/design-system-look-and-feel-react@next @axa-fr/design-system-look-and-feel-css@next
+```css
+import '@axa-fr/canopee-css/client/buttonLF.css';
 ```
 
 ## Build status
@@ -110,13 +126,13 @@ npm install @axa-fr/design-system-look-and-feel-react@next @axa-fr/design-system
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AxaFrance_design-system&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=AxaFrance_design-system)
 
-### Composants Slash
+### Composants Collab-Distrib
 
 L'ensemble des composants Slash ont été migrés depuis l'ancien repository [Slash](https://github.com/AxaFrance/react-toolkit), nous vous invitons à migrer vos projets vers ce nouveau package. Vous pouvez consulter notre [guide de migration](./MIGRATION-GUIDE-TOOLKIT.md)
 
-### Composants Look & Feel et Apollo
+### Composants Client et Prospect
 
-Les composants Look & Feel et Apollo sont également utilisables pour vos projets client mais peuvent être amenés à évoluer.
+Les composants Client et Prospect sont également utilisables pour vos projets client mais peuvent être amenés à évoluer.
 Tous les composants n'ont pas encore été développés, si votre projet a besoin d'un composant non développé, nous vous invitons à créer un issue et à contribuer au Design System.
 
 Vous pouvez suivre son avancement à travers
@@ -130,26 +146,32 @@ est là pour vous aiguiller. Vous pouvez également consulter notre
 
 Le projet proposera d'utiliser des composants React ou juste la partie CSS avec
 l'implémentation HTML (ou autres frameworks que vous souhaitez). Vous pouvez
-retrouver ces deux implémentations dans les dossiers `/slash/css` et
-`/slash/react`.
+retrouver ces deux implémentations dans les dossiers :
+
+- `packages/canopee-css/src/distributeur`
+- `packages/canopee-css/src/prospect-client`
+- `packages/canopee-react/src/distributeur`
+- `packages/canopee-react/src/prospect-client`
 
 ## Démarrer le projet
 
 Pour démarrer toutes les parties du projet, il faudra lancer la commande `npm run dev`.
 
-Pour démarrer la partie slash du projet, il faudra lancer la commande `npm run dev:slash`.
+Pour démarrer la partie Collab-Distrib du projet, il faudra lancer la commande `npm run dev:distributeur`.
 
-Pour démarrer la partie look&feel du projet, il faudra lancer la commande `npm run dev:look-and-feel`.
+Pour démarrer la partie Client du projet, il faudra lancer la commande `npm run dev:client`.
+
+Pour démarrer la partie Prospect du projet, il faudra lancer la commande `npm run dev:prospect`.
 
 Ces commandes démarrent automatiquement les différentes étapes
-nécessaire aux développement du projet, notamment le build CSS et le storybook
+nécessaires au développement du projet, notamment le build CSS et le storybook
 react.
 
 La commande `npm run build` permet de générer un build qui vous permettra de
 tester votre nouveau composant.
 
-Et pour build une partie spécifique du projet vous pouvez lancer `npm run build:(partie)`
-(`npm run build:slash` ou `npm run build:look-and-feel`).
+Et pour build une partie spécifique du projet, vous pouvez lancer `npm run build:(partie)`
+(`npm run build:distributeur`, `npm run build:client` ou `npm run build:prospect`).
 
 ## Utilisation des icones
 
@@ -162,34 +184,31 @@ Exemple :
 
 ```tsx
 import home from '@material-symbols/svg-400/outlined/home.svg';
-import { Svg } from '@axa-fr/design-system-slash-react';
+import { Svg } from '@axa-fr/canopee-react/distributeur';
 
 const App = () => {
   return <Svg src={home} />;
 };
 ```
 
-## Utilisation des CSS variables (dispo uniquement pour L&F et Apollo)
+## Utilisation des CSS variables
 
 Il suffit d'importer le fichier des tokens dans votre application.
 
-Pour Look & Feel (Espace client) (ancienne version):
+Pour Univers Client :
 
 ```typescript
-import '@axa-fr/design-system-look-and-feel-css/dist/common/tokens.scss';
+import '@axa-fr/canopee-css/client/common/tokensLF.css';
 ```
 
-Pour Apollo (Axa.fr):
+Pour Univers Prospect :
 
 ```typescript
-import '@axa-fr/design-system-apollo-css/dist/common/tokens.css';
+import '@axa-fr/canopee-css/prospect/common/tokens.css';
 ```
 
-Look & Feel (Espace client) (nouvelle version):
-
-> Attention : dans cette version des tokens non cibles ont été supprimés, il est
-> donc possible que votre application soit impactée.
+Pour Univers Collab-Distrib :
 
 ```typescript
-import '@axa-fr/design-system-apollo-css/dist/common/tokensLF.css';
+import '@axa-fr/canopee-css/distributeur/common/tokens.css';
 ```
