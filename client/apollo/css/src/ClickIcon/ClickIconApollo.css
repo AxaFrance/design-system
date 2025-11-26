@@ -28,3 +28,17 @@
   --click-icon-background-color: var(--neutral-5);
   --click-icon-svg-fill: var(--neutral-50);
 }
+
+.af-click-icon--warning {
+  --click-icon-background-color: transparent;
+
+  &:hover {
+    --click-icon-background-color: transparent;
+    --click-icon-svg-fill: var(--red-alert-100);
+  }
+
+  &:active {
+    --click-icon-background-color: transparent;
+    --click-icon-svg-fill: var(--red-alert-100);
+  }
+}

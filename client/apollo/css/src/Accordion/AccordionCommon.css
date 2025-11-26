@@ -99,3 +99,29 @@
     --summary-columns: max-content min-content 1fr max-content max-content;
   }
 }
+
+.af-apollo-accordion--contextual-info,
+.af-apollo-accordion--contextual-warning {
+  --summary-areas: "icon title arrow";
+  --summary-columns: min-content 1fr min-content;
+
+  .af-apollo-accordion__summary .af-accordion__subtitle {
+    display: none;
+  }
+
+  .af-apollo-accordion__summary .af-accordion__tag-container {
+    display: none;
+  }
+
+  .af-apollo-accordion__summary .af-accordion__info1 {
+    display: none;
+  }
+
+  .af-apollo-accordion__summary .af-accordion__info2 {
+    display: none;
+  }
+
+  .af-apollo-accordion__summary .af-accordion__date {
+    display: none;
+  }
+}
