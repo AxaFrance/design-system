@@ -46,3 +46,7 @@
     );
   }
 }
+
+.af-apollo-accordion--contextual-warning {
+  --accordion-title-text-color: var(--red-alert-100);
+}

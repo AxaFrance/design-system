@@ -36,3 +36,12 @@
     --icon-background-color: var(--neutral-5);
   }
 }
+
+.af-icon--warning {
+  --icon-fill: var(--red-alert-100);
+
+  &.af-icon--has-background {
+    --icon-fill: var(--white);
+    --icon-background-color: var(--red-alert-100);
+  }
+}
