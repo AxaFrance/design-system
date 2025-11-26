@@ -6,7 +6,7 @@ import {
   useCallback,
 } from "react";
 import keyboardDown from "@material-symbols/svg-400/rounded/keyboard_arrow_down-fill.svg";
-import type { IconProps } from "../Icon/IconCommon";
+import type { IconProps, IconVariants } from "../Icon/IconCommon";
 import { getClassName } from "../utilities/getClassName";
 
 type SummaryOnClick = MouseEventHandler<HTMLElement>;
@@ -19,6 +19,7 @@ export type AccordionCoreProps = {
   isOpen?: boolean;
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: SummaryOnClick;
+  arrowIconVariant?: IconVariants;
 } & ComponentProps<"details">;
 
 export type AccordionPropsCommonProps = AccordionCoreProps & {
@@ -33,6 +34,7 @@ export const AccordionCoreCommon = ({
   isOpen = false,
   IconComponent,
   onClick,
+  arrowIconVariant,
   ...detailsProps
 }: AccordionPropsCommonProps) => {
   const handleSummaryClick = useCallback<SummaryOnClick>(
@@ -67,10 +69,19 @@ export const AccordionCoreCommon = ({
         <div
           className={getClassName({
             baseClassName: "af-accordion__arrow",
-            className: "af-click-icon",
+            className: [
+              "af-click-icon",
+              arrowIconVariant === "warning" && "af-click-icon--warning",
+            ]
+              .filter(Boolean)
+              .join(" "),
           })}
         >
-          <IconComponent src={keyboardDown} role="presentation" />
+          <IconComponent
+            src={keyboardDown}
+            role="presentation"
+            variant={arrowIconVariant}
+          />
         </div>
       </summary>
       {children}
