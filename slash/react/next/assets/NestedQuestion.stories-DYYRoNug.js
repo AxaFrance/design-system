@@ -1,9 +1,0 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{g as c,m}from"./CardData-B32OAxNP.js";import"./index-ZnYipkzV.js";import"./index-63p0MazF.js";const i=({children:s,className:d})=>{const n=c(d,"","af-form__nested-question");return e.jsxs("section",{className:n,children:[e.jsx("div",{className:`${n}-arrow`}),e.jsx("section",{children:s})]})},l={component:i,title:"Components/Form/NestedQuestion",args:{children:e.jsx(m,{label:"Champ texte"})}},t={name:"NestedQuestion",render:({children:s})=>e.jsx(i,{children:s}),args:{children:e.jsx(m,{label:"Champ texte"})}};var o,r,a;t.parameters={...t.parameters,docs:{...(o=t.parameters)==null?void 0:o.docs,source:{originalSource:`{
-  name: "NestedQuestion",
-  render: ({
-    children
-  }) => <NestedQuestion>{children}</NestedQuestion>,
-  args: {
-    children: <TextInput label="Champ texte" />
-  }
-}`,...(a=(r=t.parameters)==null?void 0:r.docs)==null?void 0:a.source}}};const p=["Playground"],h=Object.freeze(Object.defineProperty({__proto__:null,Playground:t,__namedExportsOrder:p,default:l},Symbol.toStringTag,{value:"Module"}));export{h as N,t as P};
