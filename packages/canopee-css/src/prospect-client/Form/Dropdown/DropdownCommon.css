@@ -19,6 +19,7 @@
   box-shadow: 0 0 0 var(--dropdown-box-shadow-width)
     var(--dropdown-box-shadow-color) inset;
   outline: none;
+  cursor: pointer;
   appearance: none;
 
   option {

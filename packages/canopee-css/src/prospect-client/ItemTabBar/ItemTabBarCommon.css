@@ -12,6 +12,7 @@
   box-shadow: inset 0 var(--item-tab-bar-box-shadow-width, 0) 0 0
     var(--item-tab-bar-box-shadow-color);
   outline: none;
+  cursor: pointer;
 
   &:hover,
   &[aria-selected="true"] {
