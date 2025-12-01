@@ -2,25 +2,15 @@
   "name": "@axa-fr/design-system-apollo-css",
   "version": "0.1.0",
   "description": "",
-  "style": "dist/apollo.css",
   "exports": {
-    "./*": {
-      "development": "./files/assets/*",
-      "default": "./dist/assets/*"
-    },
-    "./dist/*": "./dist/*"
+    "./*.svg": "./files/assets/*.svg",
+    "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./dist/*": "./src/*"
   },
   "files": [
-    "dist"
+    "src",
+    "files"
   ],
-  "scripts": {
-    "prebuild": "rimraf dist && npm run copyfiles",
-    "build": "postcss \"src/**/*{Apollo,LF,Grid,DebugGrid,Svg,All}.css\" \"src/common\"  \"src/*.css\" --base src --dir dist --verbose --env production",
-    "dev": "npm run build -- --watch",
-    "copyfiles": "copyfiles --up 1 \"src/**/*.scss\" files/**/*.svg dist",
-    "stylelint": "stylelint \"src/**/*.{scss,css}\" --ignore-pattern \"src/common/tokens*.css\"",
-    "stylelint:fix": "npm run stylelint -- --fix"
-  },
   "peerDependencies": {
     "@material-symbols/svg-400": ">= 0.19.0"
   },
@@ -29,12 +19,8 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@axa-fr/postcss-config-design-system": "*",
-    "@axa-fr/prettier-config-design-system": "*",
-    "@axa-fr/stylelint-config-design-system": "*",
-    "copyfiles": "^2.4.1",
-    "rimraf": "^6.0.1"
+  "dependencies": {
+    "@axa-fr/canopee-css": "*"
   },
   "repository": {
     "type": "git",
@@ -48,25 +34,6 @@
     "url": "https://github.com/AxaFrance/design-system/issues"
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "lint-staged": {
-    "*.(scss|css)": "npm run stylelint -- --fix"
-  },
-  "prettier": "@axa-fr/prettier-config-design-system",
-  "stylelint": {
-    "extends": "@axa-fr/stylelint-config-design-system"
-  },
   "volta": {
     "extends": "../../../package.json"
   }

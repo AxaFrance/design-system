@@ -1,5 +1,1 @@
-@import "./DividerCommon.css";
-
-.af-divider {
-  --divider-border-color: var(--axa-blue-20);
-}
+@import "@axa-fr/canopee-css/prospect/Divider/DividerApollo.css";

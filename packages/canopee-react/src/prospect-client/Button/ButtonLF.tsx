@@ -1,0 +1,13 @@
+import "@axa-fr/canopee-css/client/Button/ButtonLF.css";
+import { Spinner } from "../Spinner/SpinnerLF";
+import { ButtonCommon, type ButtonProps } from "./ButtonCommon";
+
+export {
+  buttonVariants,
+  type ButtonVariants,
+  type ButtonProps,
+} from "./ButtonCommon";
+
+export const Button = (props: ButtonProps) => (
+  <ButtonCommon {...props} SpinnerComponent={Spinner} />
+);

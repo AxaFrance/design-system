@@ -2,34 +2,17 @@
   "name": "@axa-fr/design-system-slash-css",
   "version": "0.1.0",
   "description": "",
-  "sass": "dist/slash.scss",
-  "style": "dist/slash.css",
   "exports": {
-    "./logo-axa.svg": "./files/assets/logo-axa.svg",
+    "./*.svg": "./files/assets/*.svg",
     "./dist/common/assets/logo-axa.svg": "./files/assets/logo-axa.svg",
-    "./dist/*": "./dist/*"
+    "./dist/*": "./src/*"
   },
   "files": [
-    "dist",
+    "src",
     "files"
   ],
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "postcss \"src/**/*.css\" --base src --dir dist --ext css --verbose --env production",
-    "dev": "postcss \"src/**/*.css\" --base src --dir dist --ext css --watch --verbose",
-    "postbuild": "copyfiles --up 1 \"src/**/*.{scss}\" dist",
-    "stylelint": "stylelint \"src/**/*.css\"",
-    "stylelint:fix": "stylelint \"src/**/*.css\" --fix"
-  },
   "dependencies": {
-    "rc-slider": "^11.1.9"
-  },
-  "devDependencies": {
-    "@axa-fr/postcss-config-design-system": "*",
-    "@axa-fr/prettier-config-design-system": "*",
-    "@axa-fr/stylelint-config-design-system": "*",
-    "copyfiles": "^2.4.1",
-    "rimraf": "^6.0.1"
+    "@axa-fr/canopee-css": "*"
   },
   "peerDependencies": {
     "@material-symbols/svg-400": ">= 0.19.0"
@@ -51,25 +34,6 @@
     "url": "https://github.com/AxaFrance/design-system/issues"
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "lint-staged": {
-    "*.(scss|css)": "stylelint --fix"
-  },
-  "prettier": "@axa-fr/prettier-config-design-system",
-  "stylelint": {
-    "extends": "@axa-fr/stylelint-config-design-system"
-  },
   "volta": {
     "extends": "../../package.json"
   }

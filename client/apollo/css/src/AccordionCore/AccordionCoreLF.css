@@ -1,5 +1,1 @@
-@import "./AccordionCoreCommon.css";
-
-.af-apollo-accordion {
-  --accordion-border-color: var(--color-blue-400);
-}
+@import "@axa-fr/canopee-css/client/AccordionCore/AccordionCoreLF.css";

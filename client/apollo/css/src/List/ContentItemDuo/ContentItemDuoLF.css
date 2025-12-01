@@ -1,9 +1,1 @@
-@import "./ContentItemDuoCommon.css";
-
-.af-content-item-duo__label {
-  --content-duo-label-color: var(--color-gray-700);
-}
-
-.af-content-item-duo__value {
-  --content-duo-value-color: var(--color-gray-900);
-}
+@import "@axa-fr/canopee-css/client/List/ContentItemDuo/ContentItemDuoLF.css";

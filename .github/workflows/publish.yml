@@ -3,8 +3,7 @@ name: Publish Packages
 on:
   push:
     branches:
-      - "releases-slash/*"
-      - "releases-client/*"
+      - "release/*"
       - main
   workflow_dispatch:
 
@@ -13,8 +12,8 @@ permissions:
   id-token: write
 
 jobs:
-  publish-client:
-    if: github.repository_owner == 'AxaFrance' && !startsWith(github.ref, 'refs/heads/releases-slash/')
+  publish:
+    if: github.repository_owner == 'AxaFrance'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.gitversion.outputs.fullSemVer }}
@@ -28,160 +27,81 @@ jobs:
       - name: Setup Node.js
         uses: ./.github/action/setup-node
 
-      - name: Determine Version
+      - name: Determine Canopee Version
         id: gitversion
         uses: ./.github/action/git-version
         with:
-          configFilePath: "GitVersion-client.yml"
+          configFilePath: "GitVersion.yml"
 
-      - name: Build packages
+      - name: Determine Old Package Version
+        id: oldpackageversion
         run: |
-          npm run build:apollo
-          npm run build:look-and-feel
+          SEMVER=$(echo "${{ steps.gitversion.outputs.fullSemVer }}" | grep -oE '^[0-9]+\.[0-9]+\.[0-9]+')
+          SEMVER_SUFFIX=$(echo "${{ steps.gitversion.outputs.fullSemVer }}" | sed -E 's/^[0-9]+\.[0-9]+\.[0-9]+//')
+          MAJOR=$(echo "$SEMVER" | cut -d. -f1)
+          MINOR=$(echo "$SEMVER" | cut -d. -f2)
+          PATCH=$(echo "$SEMVER" | cut -d. -f3)
+          echo "FULL_SEMVER_OLD_PACKAGE=$((MAJOR + 3)).${MINOR}.${PATCH}${SEMVER_SUFFIX}" >> $GITHUB_ENV
 
       - name: Npm version
-        run:
-          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w
-          client/apollo/css -w client/apollo/react -w
-          client/look-and-feel/css -w client/look-and-feel/react
-
-      - name: Update package.json
         run: |
-          node scripts/pre-publish.js client
+          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w packages/canopee-css -w packages/canopee-react
+          npm version "${{ env.FULL_SEMVER_OLD_PACKAGE }}" -w client/apollo/css -w client/apollo/css -w slash/css -w slash/css
 
-      - name: Publish packages
+      - name: Set to react package the @axa-fr/canopee-css dependency version
         run: |
-          if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
-            npm publish -w client/apollo/css -w client/apollo/react -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag latest;
-          else
-            npm publish -w client/apollo/css -w client/apollo/react -w client/look-and-feel/css -w client/look-and-feel/react --access public --tag next;
-          fi
+          jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' packages/canopee-react/package.json > temps.json && mv temps.json packages/canopee-react/package.json
+          jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' client/apollo/react/package.json > temps.json && mv temps.json client/apollo/react/package.json
+          jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' slash/react/package.json > temps.json && mv temps.json slash/react/package.json
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Publish latest packages
+        if: steps.gitversion.outputs.preReleaseTag == ''
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --access public --tag latest;
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish rc packages
+        if: contains(steps.gitversion.outputs.fullSemVer, 'RC')
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --access public --tag rc;
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish next packages
+        if: steps.gitversion.outputs.preReleaseTag != '' && !contains(steps.gitversion.outputs.fullSemVer, 'RC')
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --access public --tag next;
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create artifact folders
         uses: ./.github/action/create-storybook-artifact
         with:
-          artifact-name: client-storybooks
-          folders: "apollo/react,look-and-feel/react"
+          artifact-name: storybooks
+          folders: "apollo/react,look-and-feel/react,slash/react"
 
-  publish-slash:
-    if: github.repository_owner == 'AxaFrance' && !startsWith(github.ref, 'refs/heads/releases-client/')
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.gitversion.outputs.fullSemVer }}
-      isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: ./.github/action/setup-node
-
-      - name: Determine Version
-        id: gitversion
-        uses: ./.github/action/git-version
-        with:
-          configFilePath: "GitVersion-slash.yml"
-
-      - name: Build packages
-        run: npm run build:slash
-
-      - name: Npm version
-        run:
-          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w slash/css
-          -w slash/react
-
-      - name: Update package.json
-        run: node scripts/pre-publish.js slash
-
-      - name: Publish packages
-        run: |
-          if [ "${{ steps.gitversion.outputs.preReleaseTag }}" = "" ]; then
-            npm publish -w slash/css -w slash/react --access public --tag latest;
-          else
-            npm publish -w slash/css -w slash/react --access public --tag next;
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Create artifact folders
-        uses: ./.github/action/create-storybook-artifact
-        with:
-          artifact-name: slash-storybooks
-          folders: "slash/react"
-
-  deploy-storybooks-slash:
+  deploy-storybooks:
     needs:
-      - publish-slash
+      - publish
     runs-on: ubuntu-latest
-    name: Deploy new version of storybook to gh-pages - slash
+    name: Deploy new version of storybook to gh-pages
     strategy:
       matrix:
         storybook:
           - name: slash react
             destination_dir: slash/react
-            artifact-name: slash-storybooks
-            version: ${{ needs.publish-slash.outputs.version }}
-            isStable: ${{ needs.publish-slash.outputs.isStableRelease }}
-      max-parallel: 1
-
-    steps:
-      - name: Download storybooks
-        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
-        with:
-          name: ${{ matrix.storybook.artifact-name }}
-
-      - name: Upload the ${{ matrix.storybook.name }} storybook version next
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./${{ matrix.storybook.destination_dir }}
-          destination_dir: ${{ matrix.storybook.destination_dir }}/next
-
-      - name: Upload the ${{ matrix.storybook.name }} storybook version latest
-        if: matrix.storybook.isStable == 'true'
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./${{ matrix.storybook.destination_dir }}
-          destination_dir: ${{ matrix.storybook.destination_dir }}/latest
-
-      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ matrix.storybook.version }}
-        if: matrix.storybook.isStable == 'true'
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./${{ matrix.storybook.destination_dir }}
-          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ matrix.storybook.version }}
-
-  deploy-storybooks-client:
-    needs:
-      - publish-client
-    runs-on: ubuntu-latest
-    name: Deploy new version of storybook to gh-pages - client
-    strategy:
-      matrix:
-        storybook:
           - name: apollo react
             destination_dir: apollo/react
-            artifact-name: client-storybooks
-            version: ${{ needs.publish-client.outputs.version }}
-            isStable: ${{ needs.publish-client.outputs.isStableRelease }}
           - name: look-and-feel react
             destination_dir: look-and-feel/react
-            artifact-name: client-storybooks
-            version: ${{ needs.publish-client.outputs.version }}
-            isStable: ${{ needs.publish-client.outputs.isStableRelease }}
       max-parallel: 1
 
     steps:
       - name: Download storybooks
         uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
         with:
-          name: ${{ matrix.storybook.artifact-name }}
+          name: storybooks
 
       - name: Upload the ${{ matrix.storybook.name }} storybook version next
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
@@ -191,17 +111,17 @@ jobs:
           destination_dir: ${{ matrix.storybook.destination_dir }}/next
 
       - name: Upload the ${{ matrix.storybook.name }} storybook version latest
-        if: matrix.storybook.isStable == 'true'
+        if: needs.publish.outputs.isStableRelease == 'true'
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./${{ matrix.storybook.destination_dir }}
           destination_dir: ${{ matrix.storybook.destination_dir }}/latest
 
-      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ matrix.storybook.version }}
-        if: matrix.storybook.isStable == 'true'
+      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ needs.publish.outputs.version }}
+        if: needs.publish.outputs.isStableRelease == 'true'
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./${{ matrix.storybook.destination_dir }}
-          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ matrix.storybook.version }}
+          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ needs.publish.outputs.version }}

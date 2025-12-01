@@ -1,0 +1,44 @@
+@import "./CardRadioOptionCommon.css";
+
+.af-card-radio-option {
+  --radio-option-border-color: var(--color-gray-700);
+  --radio-option-color-title: var(--color-gray-900);
+  --radio-option-color-subtitle: var(--color-gray-700);
+  --radio-option-gap: calc(8 / var(--font-size-base) * 1rem);
+  --radio-option-border-radius: var(--radius-4);
+  --radio-option-background-color: var(--color-white);
+
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
+    --radio-option-border-color: var(--color-axa);
+  }
+
+  &:not(.af-card-radio-option--horizontal) .af-radio {
+    position: absolute;
+    top: calc(12 / var(--font-size-base) * 1rem);
+    left: calc(12 / var(--font-size-base) * 1rem);
+
+    @media (--desktop-small) {
+      top: calc(16 / var(--font-size-base) * 1rem);
+      left: calc(16 / var(--font-size-base) * 1rem);
+    }
+  }
+
+  & .af-card-radio-option__content {
+    --radio-option-gap: calc(4 / var(--font-size-base) * 1rem);
+  }
+
+  &:has(input:checked) {
+    --radio-option-background-color: var(--color-blue-2);
+    --radio-option-border-color: var(--color-axa);
+  }
+}
+
+.af-card-radio-option--horizontal {
+  column-gap: calc(12 / var(--font-size-base) * 1rem);
+}
+
+.af-card-radio-option--invalid:not(:has(input:checked)) {
+  --radio-option-border-color: var(--color-red-700);
+}

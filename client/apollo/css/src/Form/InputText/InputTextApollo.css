@@ -1,13 +1,1 @@
-@import "./InputTextCommon.css";
-
-.af-form__input-helper {
-  --input-helper-color: var(--neutral-80);
-}
-
-.af-form__input-container:has([class*="__sidebutton"]):has(:disabled)
-  .af-form__input-variant {
-  --input-border-color: var(--neutral-50);
-  --input-text-color: var(--neutral-80);
-  --input-bg-color: var(--neutral-5);
-  --input-text-icon-color: var(--neutral-80);
-}
+@import "@axa-fr/canopee-css/prospect/Form/InputText/InputTextApollo.css";

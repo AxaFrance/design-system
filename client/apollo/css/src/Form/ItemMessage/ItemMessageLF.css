@@ -1,14 +1,1 @@
-@import "./ItemMessageCommon.css";
-
-.af-item-message {
-  --item-message-color: var(--color-red-700);
-  --item-message-icon-size: calc(16 / var(--font-size-base) * 1rem);
-}
-
-.af-item-message--success {
-  --item-message-color: var(--color-green-600);
-}
-
-.af-item-message--warning {
-  --item-message-color: var(--color-orange-700);
-}
+@import "@axa-fr/canopee-css/client/Form/ItemMessage/ItemMessageLF.css";

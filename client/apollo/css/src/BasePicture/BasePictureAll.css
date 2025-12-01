@@ -1,5 +1,1 @@
-.af-basepicture {
-  width: calc(48 / var(--font-size-base) * 1rem);
-  height: calc(48 / var(--font-size-base) * 1rem);
-  border-radius: 100%;
-}
+@import "@axa-fr/canopee-css/prospect/BasePicture/BasePictureAll.css";

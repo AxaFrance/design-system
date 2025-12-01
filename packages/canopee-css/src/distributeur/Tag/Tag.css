@@ -1,0 +1,84 @@
+.af-badge,
+.af-tag {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--white);
+}
+
+.af-badge--default,
+.af-tag--default {
+  background-color: var(--axablue80);
+}
+
+.af-badge--information,
+.af-tag--information {
+  background-color: var(--cyan40);
+}
+
+.af-badge--info,
+.af-tag--info {
+  background-color: var(--cyan40);
+}
+
+.af-badge--success,
+.af-tag--success {
+  background-color: var(--green30);
+}
+
+.af-badge--warning,
+.af-tag--warning {
+  background-color: var(--orange40);
+}
+
+.af-badge--danger,
+.af-tag--danger {
+  background-color: var(--orange40);
+}
+
+.af-badge--error,
+.af-tag--error {
+  background-color: var(--red30);
+}
+
+.af-badge--dark,
+.af-tag--dark {
+  background-color: var(--gray80);
+}
+
+.af-badge--gray,
+.af-tag--gray {
+  background-color: var(--gray50);
+}
+
+.af-badge--purple,
+.af-tag--purple {
+  background-color: var(--purpletarif40);
+}
+
+.af-badge--white {
+  color: var(--brand-primary);
+  background-color: var(--white);
+}
+
+.af-badge[disabled],
+.af-tag[disabled] {
+  opacity: 0.65;
+}
+
+.af-badge > *,
+.af-tag > * {
+  vertical-align: middle;
+}
+
+.af-badge {
+  svg {
+    width: 14px;
+    vertical-align: sub;
+    fill: currentcolor;
+  }
+}

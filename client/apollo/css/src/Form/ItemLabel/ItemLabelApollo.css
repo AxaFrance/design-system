@@ -1,10 +1,1 @@
-@import "./ItemLabelCommon.css";
-
-.af-item-label {
-  --label-color: var(--neutral-100);
-  --label-description-color: var(--neutral-80);
-
-  > label > span[aria-hidden] {
-    display: none;
-  }
-}
+@import "@axa-fr/canopee-css/prospect/Form/ItemLabel/ItemLabelApollo.css";

@@ -1,0 +1,3 @@
+import "@axa-fr/canopee-css/client/Tag/TagLF.css";
+
+export { Tag, type TagVariants, tagVariants } from "./TagCommon";

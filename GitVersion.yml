@@ -1,0 +1,13 @@
+mode: ContinuousDeployment
+next-version: 1.0.0
+commit-message-incrementing: Disabled
+branches:
+  main:
+    tag: 'alpha'
+    mode: ContinuousDeployment
+  release:
+    tag: RC
+    regex: ^release[/-](?<BranchName>.+)
+    commit-message-incrementing: Disabled
+    source-branches:
+      - main

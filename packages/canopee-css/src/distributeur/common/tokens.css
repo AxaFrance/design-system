@@ -1,0 +1,97 @@
+:root {
+  /* COLORS *******************************************************************/
+  --axablue10: hsl(240deg, 40%, 98%); /* #F7F7FC */
+  --axablue20: hsl(240deg, 100%, 99%); /* #F8F8FF */
+  --axablue30: hsl(240deg, 100%, 97%); /* #EEEEFF */
+  --axablue40: hsl(240deg, 100%, 95%); /* #E4E4FF */
+  --axablue50: hsl(240deg, 39%, 64%); /* #8080C7 */
+  --axablue60: hsl(240deg, 39%, 53%); /* #5959B6 */
+  --axablue70: hsl(240deg, 53%, 42%); /* #3333A5 */
+  --axablue80: hsl(240deg, 100%, 28%); /* #00008F */
+  --axablue90: hsl(240deg, 100%, 22%); /* #000072 */
+  --axablue100: hsl(240deg, 100%, 18%); /* #00005B */
+  --cyan10: hsl(195deg, 67%, 98%); /* #F5FBFD */
+  --cyan20: hsl(212deg, 45%, 89%); /* #D5E1EF */
+  --cyan30: hsl(213deg, 46%, 73%); /* #9CB8DA */
+  --cyan40: hsl(213deg, 53%, 46%); /* #3871B5 */
+  --bluetarif10: hsl(225deg, 33%, 98%); /* #F7F8FB */
+  --bluetarif20: hsl(240deg, 33%, 93%); /* #E7E7F3 */
+  --bluetarif30: hsl(238deg, 32%, 81%); /* #BFC0DE */
+  --bluetarif40: hsl(238deg, 32%, 53%); /* #5F61AD */
+  --purplelighttarif10: hsl(270deg, 29%, 97%); /* #F8F6FA */
+  --purplelighttarif20: hsl(268deg, 29%, 91%); /* #E8E2EF */
+  --purplelighttarif30: hsl(268deg, 31%, 76%); /* #C1B0D5 */
+  --purplelighttarif40: hsl(267deg, 44%, 41%); /* #633A96 */
+  --purpletarif10: hsl(260deg, 20%, 97%); /* #F7F6F9 */
+  --purpletarif20: hsl(270deg, 20%, 90%); /* #E6E1EB */
+  --purpletarif30: hsl(273deg, 18%, 74%); /* #BDB0C8 */
+  --purpletarif40: hsl(272deg, 35%, 34%); /* #5A3976 */
+  --purpledarktarif10: hsl(300deg, 6%, 97%); /* #F7F6F7 */
+  --purpledarktarif20: hsl(285deg, 7%, 89%); /* #E3E0E4 */
+  --purpledarktarif30: hsl(273deg, 7%, 70%); /* #B3ADB8 */
+  --purpledarktarif40: hsl(274deg, 22%, 25%); /* #41314D */
+  --greentarif10: hsl(195deg, 22%, 96%); /* #F4F7F8 */
+  --greentarif20: hsl(193deg, 25%, 89%); /* #DCE7EA */
+  --greentarif30: hsl(193deg, 25%, 70%); /* #A1BEC6 */
+  --greentarif40: hsl(193deg, 68%, 26%); /* #155D70 */
+  --green10: hsl(132deg, 100%, 99%); /* #FAFFFB */
+  --green20: hsl(145deg, 23%, 61%); /* #85B398 */
+  --green30: hsl(145deg, 82%, 27%); /* #0C7D3B */
+  --green40: hsl(144deg, 80%, 16%); /* #084922 */
+  --red10: hsl(348deg, 100%, 99%); /* #FFFAFB */
+  --red20: hsl(350deg, 35%, 80%); /* #DEBBC1 */
+  --red30: hsl(350deg, 85%, 42%); /* #C7102E */
+  --red40: hsl(353deg, 85%, 23%); /* #6D0915 */
+  --orange10: hsl(0deg, 100%, 99%); /* #FFFBFB */
+  --orange20: hsl(7deg, 100%, 97%); /* #FFF1EF */
+  --orange30: hsl(13deg, 52%, 73%); /* #DEA696 */
+  --orange40: hsl(13deg, 61%, 46%); /* #BC4C2D */
+  --gray10: hsl(0deg, 0%, 96%); /* #F6F6F6 */
+  --gray20: hsl(0deg, 0%, 91%); /* #E9E9E9 */
+  --gray30: hsl(0deg, 0%, 90%); /* #E6E6E6 */
+  --gray40: hsl(0deg, 0%, 80%); /* #CCCCCC */
+  --gray50: hsl(0deg, 0%, 60%); /* #999999 */
+  --gray60: hsl(0deg, 0%, 40%); /* #666666 */
+  --gray80: hsl(0deg, 0%, 20%); /* #333333 */
+  --bluesubtitle: hsl(237deg, 100%, 88%); /* #C1C4FF */
+  --black: hsl(0deg, 0%, 0%); /* #000000 */
+  --white: hsl(0deg, 0%, 100%); /* #FFFFFF */
+  --azur: hsl(239deg, 60%, 47%); /* #3032c1 */
+
+  /* SEMANTIC TOKENS **********************************************************/
+  --text-color: var(--gray80);
+  --disabled-color: var(--gray40);
+  --error-color: var(--red30);
+  --input-border-color: var(--gray50);
+  --brand-primary: var(--axablue80);
+  --warning-color: var(--orange40);
+  --help-color: var(--gray60);
+  --valid-element-color: var(--green30);
+  --inactive-button-background: var(--gray30);
+  --inactive-button-border-color: var(--gray50);
+  --active-button-border-color: var(--axablue90);
+  --error-button-background: var(--red10);
+  --button-primary-default: var(--brand-primary);
+
+  /********* Alias Token *********/
+  --color-border-default: transparent;
+  --color-border-hover: var(--axablue80);
+  --color-border-selected: var(--axablue80);
+
+  /********* Font Size *********/
+  --font-size-base: 16;
+
+  /* *************************************************************************/
+
+  /* BREAKPOINTS                                                             */
+
+  /* *************************************************************************/
+
+  @custom-media --small screen and (width >= 0);
+  @custom-media --tablet-portrait screen and (width >= 576px);
+  @custom-media --tablet-landscape screen and (width >= 772px);
+  @custom-media --desktop-small screen and (width >= 1016px);
+  @custom-media --desktop-medium screen and (width >= 1272px);
+  @custom-media --desktop-large screen and (width >= 1432px);
+  @custom-media --desktop-xl screen and (width >= 1432px);
+}

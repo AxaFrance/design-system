@@ -1,0 +1,66 @@
+.af-table {
+  width: 100%;
+  margin-bottom: 2rem;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background: var(--white);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 20%);
+}
+
+.af-table__th {
+  position: relative;
+  height: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 200;
+  text-align: left;
+  color: var(--white);
+  background: var(--azur);
+}
+
+.af-table__cell {
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-right-color: var(--gray40);
+  font-size: 0.9375rem;
+  text-align: left;
+}
+
+.af-table__cell:nth-last-child(1) {
+  border-right: 0;
+}
+
+.af-table thead .af-table__th {
+  border: 1px solid var(--white);
+}
+
+.af-table tbody .af-table__tr:not(:last-child) .af-table__th {
+  border-bottom: 1px solid var(--white);
+}
+
+.af-table__th--sortable {
+  padding: 0;
+}
+
+.af-table__th .af-link {
+  color: var(--white);
+}
+
+.af-table__th .af-link:hover {
+  color: var(--white);
+}
+
+.af-table__th .glyphicon {
+  position: relative;
+  inset: 0;
+  font-size: 0.7rem;
+  transform: none;
+}
+
+.af-table__tr {
+  height: 100%;
+}
+
+.af-table__tr:nth-child(2n + 1) .af-table__cell {
+  background-color: var(--gray10);
+}

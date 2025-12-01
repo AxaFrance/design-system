@@ -1,0 +1,21 @@
+@import "./SpinnerCommon.css";
+
+.af-spinner {
+  --spinner-border-color: var(--axa-blue-100-20);
+  --spinner-border-top-color: var(--axa-blue-100);
+
+  width: calc(calc(var(--spinner-size) * 1px) - 8px);
+  height: calc(calc(var(--spinner-size) * 1px) - 8px);
+  border-left: calc(var(--spinner-border-size) * 1px) solid
+    var(--spinner-border-top-color);
+}
+
+.af-spinner--gray {
+  --spinner-border-color: var(--neutral-50-20);
+  --spinner-border-top-color: var(--neutral-100);
+}
+
+.af-spinner--white {
+  --spinner-border-color: var(--white-20);
+  --spinner-border-top-color: var(--white);
+}

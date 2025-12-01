@@ -1,5 +1,1 @@
-@import "./CheckboxTextCommon.css";
-
-.af-checkbox-text {
-  --checkbox-text-label-color: var(--black);
-}
+@import "@axa-fr/canopee-css/prospect/Form/Checkbox/CheckboxText/CheckboxTextApollo.css";

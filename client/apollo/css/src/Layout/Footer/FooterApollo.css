@@ -1,6 +1,1 @@
-@import "./FooterCommon.css";
-
-.af-footer {
-  --footer-bg-color: var(--axa-blue-100);
-  --footer-color: var(--white);
-}
+@import "@axa-fr/canopee-css/prospect/Layout/Footer/FooterApollo.css";
