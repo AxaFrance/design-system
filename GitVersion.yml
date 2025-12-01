@@ -7,7 +7,7 @@ branches:
     mode: ContinuousDeployment
   release:
     tag: RC
-    regex: ^releases[/-](?<BranchName>.+)
+    regex: ^release[/-](?<BranchName>.+)
     commit-message-incrementing: Disabled
     source-branches:
       - main
