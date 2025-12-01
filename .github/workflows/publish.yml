@@ -3,7 +3,6 @@ name: Publish Packages
 on:
   push:
     branches:
-      - "release/*"
       - main
   workflow_dispatch:
 
@@ -46,7 +45,7 @@ jobs:
       - name: Npm version
         run: |
           npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w packages/canopee-css -w packages/canopee-react
-          npm version "${{ env.FULL_SEMVER_OLD_PACKAGE }}" -w client/apollo/css -w client/apollo/css -w slash/css -w slash/css
+          npm version "${{ env.FULL_SEMVER_OLD_PACKAGE }}" -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react
 
       - name: Set to react package the @axa-fr/canopee-css dependency version
         run: |
