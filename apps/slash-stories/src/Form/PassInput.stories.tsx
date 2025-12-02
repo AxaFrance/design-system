@@ -2,7 +2,7 @@ import {
   HelpButton,
   MessageTypes,
   PassInput,
-} from "@axa-fr/design-system-slash-react";
+} from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import { NavBarItem } from "@axa-fr/design-system-slash-react";
+import { NavBarItem } from "@axa-fr/canopee-react/distributeur";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof NavBarItem> = {

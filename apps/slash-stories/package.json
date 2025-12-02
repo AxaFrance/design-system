@@ -14,7 +14,8 @@
     "chromatic": "npx chromatic"
   },
   "dependencies": {
-    "@axa-fr/design-system-slash-react": "*"
+    "@axa-fr/canopee-css": "*",
+    "@axa-fr/canopee-react": "*"
   },
   "devDependencies": {
     "@axa-fr/eslint-config-design-system": "*",

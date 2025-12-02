@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Pass } from "@axa-fr/design-system-slash-react";
+import { Pass } from "@axa-fr/canopee-react/distributeur";
 import { fn } from "@storybook/test";
 
 const meta: Meta<typeof Pass> = {

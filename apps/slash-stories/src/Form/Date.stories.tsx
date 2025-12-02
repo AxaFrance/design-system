@@ -1,4 +1,4 @@
-import { Date as DateComponent } from "@axa-fr/design-system-slash-react";
+import { Date as DateComponent } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 

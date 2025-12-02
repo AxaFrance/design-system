@@ -1,4 +1,4 @@
-import { Button, Link, Title } from "@axa-fr/design-system-slash-react";
+import { Button, Link, Title } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactElement } from "react";
 

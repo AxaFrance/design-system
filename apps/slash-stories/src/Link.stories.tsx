@@ -1,4 +1,4 @@
-import { Link, Svg, type LinkProps } from "@axa-fr/design-system-slash-react";
+import { Link, Svg, type LinkProps } from "@axa-fr/canopee-react/distributeur";
 import editIcons from "@material-symbols/svg-400/outlined/edit.svg";
 import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
 import { Meta, StoryObj } from "@storybook/react";

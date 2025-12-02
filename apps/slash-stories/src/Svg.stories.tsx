@@ -1,4 +1,4 @@
-import { Svg } from "@axa-fr/design-system-slash-react";
+import { Svg } from "@axa-fr/canopee-react/distributeur";
 import closeIcons from "@material-symbols/svg-400/outlined/close.svg";
 import headphonesIcons from "@material-symbols/svg-400/outlined/headphones.svg";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";

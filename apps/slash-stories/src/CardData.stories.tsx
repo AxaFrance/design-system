@@ -1,4 +1,4 @@
-import { Button, Table, CardData } from "@axa-fr/design-system-slash-react";
+import { Button, Table, CardData } from "@axa-fr/canopee-react/distributeur";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import bank from "@material-symbols/svg-400/rounded/account_balance-fill.svg";

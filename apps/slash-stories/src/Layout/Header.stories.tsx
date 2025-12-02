@@ -1,7 +1,7 @@
-import logo from "@axa-fr/design-system-slash-css/logo-axa.svg";
+import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Header, Infos, Name, User } from "@axa-fr/design-system-slash-react";
+import { Header, Infos, Name, User } from "@axa-fr/canopee-react/distributeur";
 
 const meta: Meta<typeof Header> = {
   component: Header,

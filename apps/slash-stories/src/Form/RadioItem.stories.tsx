@@ -1,4 +1,4 @@
-import { RadioItem } from "@axa-fr/design-system-slash-react";
+import { RadioItem } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentPropsWithRef } from "react";

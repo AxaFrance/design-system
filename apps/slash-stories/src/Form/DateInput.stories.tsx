@@ -2,7 +2,7 @@ import {
   DateInput,
   HelpButton,
   MessageTypes,
-} from "@axa-fr/design-system-slash-react";
+} from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentProps } from "react";

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Infos } from "@axa-fr/design-system-slash-react";
+import { Infos } from "@axa-fr/canopee-react/distributeur";
 
 const meta: Meta<typeof Infos> = {
   component: Infos,

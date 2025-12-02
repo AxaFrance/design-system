@@ -4,7 +4,7 @@ import {
   MessageTypes,
   TextInput,
   Title,
-} from "@axa-fr/design-system-slash-react";
+} from "@axa-fr/canopee-react/distributeur";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Loader> = {

@@ -1,4 +1,4 @@
-import { Message } from "@axa-fr/design-system-slash-react";
+import { Message } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { InputType } from "storybook/internal/types";
