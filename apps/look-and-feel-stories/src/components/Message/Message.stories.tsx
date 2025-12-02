@@ -4,7 +4,7 @@ import {
   Message,
   messageVariants,
   type MessageVariants,
-} from "@axa-fr/design-system-look-and-feel-react";
+} from "@axa-fr/canopee-react/client";
 
 import { renderMessage, renderMessageAll } from "./render";
 

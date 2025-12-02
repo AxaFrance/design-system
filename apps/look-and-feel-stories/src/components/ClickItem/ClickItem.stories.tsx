@@ -8,7 +8,7 @@ import {
   clickItemVariants,
   type ClickItemVariants,
   type TagVariants,
-} from "@axa-fr/design-system-apollo-react/lf";
+} from "@axa-fr/canopee-react/client";
 import accountBalanceWallet from "@material-symbols/svg-400/rounded/account_balance_wallet-fill.svg";
 
 const meta: Meta<typeof ClickItem> = {

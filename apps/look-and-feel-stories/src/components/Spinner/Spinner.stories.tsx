@@ -1,4 +1,4 @@
-import { Spinner } from "@axa-fr/design-system-look-and-feel-react";
+import { Spinner } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 import { render, renderAll } from "./render";
 import "./Spinner.story.scss";

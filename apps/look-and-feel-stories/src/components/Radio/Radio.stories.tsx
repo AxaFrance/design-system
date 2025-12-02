@@ -1,4 +1,4 @@
-import { Radio } from "@axa-fr/design-system-apollo-react/lf";
+import { Radio } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 

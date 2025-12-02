@@ -1,4 +1,4 @@
-import { ItemFile } from "@axa-fr/design-system-apollo-react/lf";
+import { ItemFile } from "@axa-fr/canopee-react/client";
 import { fn } from "@storybook/test";
 import { Meta, StoryObj } from "@storybook/react";
 

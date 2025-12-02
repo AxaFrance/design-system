@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TimelineVertical } from "@axa-fr/design-system-look-and-feel-react";
+import { TimelineVertical } from "@axa-fr/canopee-react/client";
 
 const meta: Meta<typeof TimelineVertical> = {
   component: TimelineVertical,

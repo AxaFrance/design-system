@@ -4,7 +4,7 @@ import {
   Link,
   Message,
   messageVariants,
-} from "@axa-fr/design-system-look-and-feel-react";
+} from "@axa-fr/canopee-react/client";
 
 export const renderMessageAll = () => (
   <div className="af-message-demo">

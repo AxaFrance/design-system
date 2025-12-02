@@ -1,4 +1,4 @@
-import { DebugGrid } from "@axa-fr/design-system-apollo-react/lf";
+import { DebugGrid } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 import "./Grid-demo-wireframe.story.scss";
 import { Card } from "./components/Card";

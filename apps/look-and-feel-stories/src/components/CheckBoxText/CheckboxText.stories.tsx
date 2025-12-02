@@ -1,7 +1,7 @@
 import {
   CheckboxText,
   itemMessageVariants,
-} from "@axa-fr/design-system-apollo-react/lf";
+} from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 

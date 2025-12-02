@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Checkbox } from "@axa-fr/design-system-look-and-feel-react";
+import { Checkbox } from "@axa-fr/canopee-react/client";
 import type { ComponentProps } from "react";
 
 const meta: Meta = {

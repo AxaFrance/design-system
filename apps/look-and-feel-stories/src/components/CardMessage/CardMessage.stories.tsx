@@ -1,7 +1,4 @@
-import {
-  CardMessage,
-  cardMessageVariants,
-} from "@axa-fr/design-system-apollo-react/lf";
+import { CardMessage, cardMessageVariants } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof CardMessage> = {

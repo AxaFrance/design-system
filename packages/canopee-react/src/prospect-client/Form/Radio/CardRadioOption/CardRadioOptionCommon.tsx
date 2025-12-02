@@ -14,19 +14,12 @@ type BaseCardRadioOptionProps = Omit<ComponentProps<typeof Radio>, "size"> & {
   subtitle?: ReactNode;
 };
 
-export type CardRadioOptionProps =
-  | (BaseCardRadioOptionProps & {
-      type?: "vertical" | "horizontal";
-      icon?: ComponentProps<typeof IconCommon>["src"];
-      src?: undefined;
-      basePictureProps?: undefined;
-    })
-  | (BaseCardRadioOptionProps & {
-      type: "horizontal";
-      src?: ComponentProps<typeof BasePicture>["src"];
-      basePictureProps?: Omit<ComponentProps<typeof BasePicture>, "src">;
-      icon?: undefined;
-    });
+export type CardRadioOptionProps = BaseCardRadioOptionProps & {
+  type?: "vertical" | "horizontal";
+  icon?: ComponentProps<typeof IconCommon>["src"];
+  src?: ComponentProps<typeof BasePicture>["src"];
+  basePictureProps?: Omit<ComponentProps<typeof BasePicture>, "src">;
+};
 
 export type CardRadioOptionCommonProps = CardRadioOptionProps & {
   RadioComponent: ComponentType<ComponentProps<typeof Radio>>;
