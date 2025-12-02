@@ -1,4 +1,4 @@
-export const formatInputDateValue = (value?: Date | string) =>
+export const formatInputDateValue = (value?: Date | string | number) =>
   value instanceof Date ? value.toISOString().split("T")[0] : value;
 
 export const isValidDayDecimal = (char: string, index: number): boolean =>
