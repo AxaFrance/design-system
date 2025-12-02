@@ -1,4 +1,4 @@
-import { Checkbox } from "@axa-fr/design-system-apollo-react";
+import { Checkbox } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 

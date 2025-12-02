@@ -4,7 +4,7 @@ import {
   Heading,
   DataAgent,
   Icon,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/canopee-react/prospect";
 
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
 import alternateEmail from "@material-symbols/svg-400/rounded/alternate_email-fill.svg";
@@ -12,7 +12,7 @@ import check from "@material-symbols/svg-400/rounded/check.svg";
 
 export const Sortie = () => (
   <>
-    <DebugGrid isCheckedByDefault />
+    <DebugGrid isCheckedByDefault forceVisible />
     <main className="grid exit-page">
       <section className="exit-page__content subgrid">
         <article className="subgrid">

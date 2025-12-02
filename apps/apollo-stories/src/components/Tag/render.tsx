@@ -1,5 +1,5 @@
 import { type Args } from "storybook/internal/types";
-import { Tag, tagVariants } from "@axa-fr/design-system-apollo-react";
+import { Tag, tagVariants } from "@axa-fr/canopee-react/prospect";
 
 export const renderTagAll = () => (
   <div className="af-tag-client-demo">

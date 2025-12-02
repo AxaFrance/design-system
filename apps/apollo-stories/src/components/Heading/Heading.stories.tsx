@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Heading, HeadingLevel } from "@axa-fr/design-system-apollo-react";
+import { Heading, HeadingLevel } from "@axa-fr/canopee-react/prospect";
 import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
 
 import "./Heading.story.scss";

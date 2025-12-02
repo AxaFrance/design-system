@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ClickIcon, iconVariants } from "@axa-fr/design-system-apollo-react";
+import { ClickIcon, iconVariants } from "@axa-fr/canopee-react/prospect";
 import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 
 const meta: Meta<typeof ClickIcon> = {

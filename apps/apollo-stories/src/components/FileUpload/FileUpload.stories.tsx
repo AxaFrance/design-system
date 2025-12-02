@@ -1,4 +1,4 @@
-import { FileUpload, ItemFile } from "@axa-fr/design-system-apollo-react";
+import { FileUpload, ItemFile } from "@axa-fr/canopee-react/prospect";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ReactNode } from "react";
 

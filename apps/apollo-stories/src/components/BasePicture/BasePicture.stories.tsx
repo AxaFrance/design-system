@@ -1,4 +1,4 @@
-import { BasePicture } from "@axa-fr/design-system-apollo-react";
+import { BasePicture } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof BasePicture> = {

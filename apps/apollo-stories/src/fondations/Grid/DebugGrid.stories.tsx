@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { DebugGrid } from "@axa-fr/design-system-apollo-react";
+import { DebugGrid } from "@axa-fr/canopee-react/prospect";
 
 const meta: Meta = {
   title: "Fondations/Grid System/DebugGrid",

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
-import { ContentItemDuo } from "@axa-fr/design-system-apollo-react";
+import { ContentItemDuo } from "@axa-fr/canopee-react/prospect";
 
 const meta: Meta<typeof ContentItemDuo> = {
   title: "Components/List/ContentItemDuo",
