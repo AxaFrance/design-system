@@ -1,4 +1,4 @@
-import { ProgressBarGroup } from "@axa-fr/design-system-apollo-react";
+import { ProgressBarGroup } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 

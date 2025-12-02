@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ContentItemMono } from "@axa-fr/design-system-apollo-react";
+import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 import { ComponentProps } from "react";
 

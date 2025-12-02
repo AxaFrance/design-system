@@ -1,4 +1,4 @@
-import { Link, Svg, linkVariants } from "@axa-fr/design-system-apollo-react";
+import { Link, Svg, linkVariants } from "@axa-fr/canopee-react/prospect";
 import arrowLeftAlt from "@material-symbols/svg-400/outlined/arrow_left_alt.svg";
 import personFill from "@material-symbols/svg-400/rounded/person-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";

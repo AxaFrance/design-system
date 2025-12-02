@@ -14,7 +14,7 @@ import {
   Stepper,
   CheckboxText,
   InputPhone,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/canopee-react/prospect";
 import { flagsList } from "./FlagUtils";
 
 type CommonProps<
@@ -41,7 +41,7 @@ export const Coordonnees = () => {
 
   return (
     <>
-      <DebugGrid isCheckedByDefault />
+      <DebugGrid isCheckedByDefault forceVisible />
       <main className="grid example-form">
         <form className="form">
           <div className="form__header subgrid">

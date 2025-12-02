@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Tag, tagVariants } from "@axa-fr/design-system-apollo-react";
+import { Tag, tagVariants } from "@axa-fr/canopee-react/prospect";
 
 import { renderTag, renderTagAll } from "./render";
 

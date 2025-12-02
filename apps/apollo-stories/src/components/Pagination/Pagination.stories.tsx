@@ -1,4 +1,4 @@
-import { Pagination } from "@axa-fr/design-system-apollo-react";
+import { Pagination } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
 import { type ComponentProps, useState } from "react";
 

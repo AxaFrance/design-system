@@ -7,11 +7,11 @@ import {
   messageVariants,
   Stepper,
   Link,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/canopee-react/prospect";
 
 export const Situation = () => (
   <>
-    <DebugGrid isCheckedByDefault />
+    <DebugGrid isCheckedByDefault forceVisible />
     <main className="grid example-form">
       <form className="form">
         <div className="form__header subgrid">

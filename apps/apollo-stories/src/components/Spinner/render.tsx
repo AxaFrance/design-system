@@ -5,7 +5,7 @@ import {
   Spinner,
   spinnerVariants,
   type SpinnerVariants,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/canopee-react/prospect";
 
 const SpinnerBlock = ({
   variant,

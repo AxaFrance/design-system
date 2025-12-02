@@ -4,7 +4,7 @@ import {
   Link,
   Message,
   messageVariants,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/canopee-react/prospect";
 
 export const renderMessageAll = () => (
   <div className="af-message-demo">

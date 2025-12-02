@@ -1,4 +1,4 @@
-import { TabBar, tabBarDirection } from "@axa-fr/design-system-apollo-react";
+import { TabBar, tabBarDirection } from "@axa-fr/canopee-react/prospect";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 

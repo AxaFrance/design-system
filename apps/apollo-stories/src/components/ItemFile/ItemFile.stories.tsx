@@ -1,8 +1,13 @@
 import { ItemFile } from "@axa-fr/design-system-apollo-react";
 import { fn } from "@storybook/test";
 import { Meta, StoryObj } from "@storybook/react";
+import { ComponentProps } from "react";
 
-type Story = StoryObj<Omit<typeof ItemFile, "file"> & { file: string }>;
+type Story = StoryObj<
+  Omit<ComponentProps<typeof ItemFile>, "file"> & {
+    file: string;
+  }
+>;
 
 const fileLists = [
   new File([new Uint8Array(1_496)], "Wallpaper.jpg", { type: "image/jpg" }),
@@ -12,7 +17,7 @@ const fileLists = [
   new File([new Uint8Array(5_741_256)], "Presentation.pptx", {
     type: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   }),
-];
+] satisfies ComponentProps<typeof ItemFile>["file"][];
 
 const meta: Meta<typeof ItemFile> = {
   title: "Components/Form/FileUpload/ItemFile",

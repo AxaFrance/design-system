@@ -1,4 +1,4 @@
-import { Svg } from "@axa-fr/design-system-apollo-react";
+import { Svg } from "@axa-fr/canopee-react/prospect";
 import closeIcons from "@material-symbols/svg-400/outlined/close.svg";
 import headphonesIcons from "@material-symbols/svg-400/outlined/headphones.svg";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";

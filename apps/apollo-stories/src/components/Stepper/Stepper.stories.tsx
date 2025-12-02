@@ -1,4 +1,4 @@
-import { Stepper } from "@axa-fr/design-system-apollo-react";
+import { Stepper } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 

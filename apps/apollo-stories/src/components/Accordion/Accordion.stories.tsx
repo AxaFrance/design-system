@@ -3,7 +3,7 @@ import {
   accordionVariants,
   type AccordionVariants,
   type TagVariants,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/canopee-react/prospect";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";

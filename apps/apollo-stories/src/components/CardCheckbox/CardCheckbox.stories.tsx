@@ -1,7 +1,7 @@
 import {
   CardCheckbox,
   itemMessageVariants,
-} from "@axa-fr/design-system-apollo-react";
+} from "@axa-fr/canopee-react/prospect";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";

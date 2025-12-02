@@ -1,4 +1,4 @@
-import { Heading } from "@axa-fr/design-system-apollo-react";
+import { Heading } from "@axa-fr/canopee-react/prospect";
 
 export const renderAllHeading = (
   args: React.ComponentProps<typeof Heading>,

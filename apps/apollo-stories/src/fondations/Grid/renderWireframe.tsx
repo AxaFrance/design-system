@@ -1,4 +1,4 @@
-import { DebugGrid } from "@axa-fr/design-system-apollo-react";
+import { DebugGrid } from "@axa-fr/canopee-react/prospect";
 import { Offsets } from "./components/Offsets";
 import { Card } from "./components/Card";
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toggle } from "@axa-fr/design-system-apollo-react";
+import { Toggle } from "@axa-fr/canopee-react/prospect";
 
 const meta: Meta<typeof Toggle> = {
   component: Toggle,
