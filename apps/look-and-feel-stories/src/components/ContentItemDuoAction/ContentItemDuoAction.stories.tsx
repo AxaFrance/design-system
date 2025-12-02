@@ -1,14 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
-import {
-  Button,
-  ContentItemDuoAction,
-} from "@axa-fr/design-system-apollo-react/lf";
+import { Button, ContentItemDuoAction } from "@axa-fr/canopee-react/client";
 import { ComponentProps } from "react";
 
 const meta: Meta<typeof ContentItemDuoAction> = {
   component: ContentItemDuoAction,
-  title: "Components/ContentItemDuoAction",
+  title: "Components/List/ContentItemDuoAction",
   args: {
     contentItemProps: {
       type: "icon",

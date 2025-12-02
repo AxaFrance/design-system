@@ -4,7 +4,7 @@ import {
   Spinner,
   spinnerVariants,
   type SpinnerVariants,
-} from "@axa-fr/design-system-look-and-feel-react";
+} from "@axa-fr/canopee-react/client";
 
 const SpinnerBlock = ({
   variant,

@@ -1,4 +1,4 @@
-import { Heading } from "@axa-fr/design-system-look-and-feel-react";
+import { Heading } from "@axa-fr/canopee-react/client";
 
 export const renderAllHeading = (
   args: React.ComponentProps<typeof Heading>,

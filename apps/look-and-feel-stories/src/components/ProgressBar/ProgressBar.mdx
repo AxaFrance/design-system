@@ -12,8 +12,8 @@ You can override the `max` prop if you want to use a different scale (for exampl
 
 ## Usage
 
-```tsx title="Example usage"
-import { ProgressBar } from "@axa-fr/design-system-apollo-react/lf";
+```tsx
+import { ProgressBar } from "@axa-fr/canopee-react/client";
 
 const MyComponent = () => <ProgressBar value={0.7} />;
 ```
@@ -28,7 +28,7 @@ const MyComponent = () => <ProgressBar value={0.7} />;
 
 For accessibility, always use the `label` prop to provide a descriptive label for the progress bar. This ensures that assistive technologies can correctly announce the purpose and current state of the progress bar.
 
-```tsx title="Accessible ProgressBar"
+```tsx
 <ProgressBar value={0.7} label="Loading something..." />
 ```
 

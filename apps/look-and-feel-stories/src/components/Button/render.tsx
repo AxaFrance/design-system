@@ -6,7 +6,7 @@ import {
   buttonVariants,
   type ButtonVariants,
   Svg,
-} from "@axa-fr/design-system-look-and-feel-react";
+} from "@axa-fr/canopee-react/client";
 
 const ButtonBlock = ({
   variant,

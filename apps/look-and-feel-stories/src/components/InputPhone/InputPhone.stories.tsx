@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  InputPhone,
-  itemMessageVariants,
-} from "@axa-fr/design-system-apollo-react/lf";
+import { InputPhone, itemMessageVariants } from "@axa-fr/canopee-react/client";
 import { useState } from "react";
 import { flagsList } from "./FlagUtils.tsx";
 

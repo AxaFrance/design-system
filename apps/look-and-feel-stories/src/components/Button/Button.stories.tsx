@@ -5,7 +5,7 @@ import {
   Button,
   buttonVariants,
   type ButtonVariants,
-} from "@axa-fr/design-system-look-and-feel-react";
+} from "@axa-fr/canopee-react/client";
 
 import { renderButton, renderButtonAll } from "./render";
 

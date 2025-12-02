@@ -1,4 +1,4 @@
-import { Link, Svg } from "@axa-fr/design-system-look-and-feel-react";
+import { Link, Svg } from "@axa-fr/canopee-react/client";
 import arrowLeftAlt from "@material-symbols/svg-400/outlined/arrow_left_alt.svg";
 import personFill from "@material-symbols/svg-400/rounded/person-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";

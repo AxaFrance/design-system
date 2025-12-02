@@ -1,8 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import {
-  Heading,
-  HeadingLevel,
-} from "@axa-fr/design-system-look-and-feel-react";
+import { Heading, HeadingLevel } from "@axa-fr/canopee-react/client";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 
 import "./Heading.story.scss";

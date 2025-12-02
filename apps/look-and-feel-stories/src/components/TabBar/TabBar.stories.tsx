@@ -1,8 +1,8 @@
 import {
   TabBar,
   tabBarDirection,
-  TabBarProps,
-} from "@axa-fr/design-system-apollo-react/lf";
+  type TabBarProps,
+} from "@axa-fr/canopee-react/client";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 

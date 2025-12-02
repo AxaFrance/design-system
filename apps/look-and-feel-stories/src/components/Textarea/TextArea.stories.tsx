@@ -1,7 +1,4 @@
-import {
-  TextArea,
-  itemMessageVariants,
-} from "@axa-fr/design-system-apollo-react/lf";
+import { TextArea, itemMessageVariants } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof TextArea> = {

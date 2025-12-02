@@ -1,4 +1,4 @@
-import { CardRadioOption } from "@axa-fr/design-system-apollo-react/lf";
+import { CardRadioOption } from "@axa-fr/canopee-react/client";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import accountBalanceIcon from "@material-symbols/svg-400/outlined/account_balance-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
@@ -80,7 +80,7 @@ export const CardRadioOptionStory: StoryObj<
     <CardRadioOption
       {...args}
       icon={ICONS[icon ?? "none"]}
-      type={type === "horizontal" ?? type}
+      type={type}
       value={value !== "" ? value : undefined}
       name={name !== "" ? name : undefined}
       description={description !== "" ? description : undefined}

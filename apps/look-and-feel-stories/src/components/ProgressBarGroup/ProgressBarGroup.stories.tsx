@@ -1,4 +1,4 @@
-import { ProgressBarGroup } from "@axa-fr/design-system-look-and-feel-react";
+import { ProgressBarGroup } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
@@ -27,6 +27,4 @@ export default meta;
 type StoryProps = ComponentProps<typeof ProgressBarGroup>;
 type Story = StoryObj<StoryProps>;
 
-export const Playground: Story = {
-  name: "Playground",
-};
+export const Playground: Story = {};

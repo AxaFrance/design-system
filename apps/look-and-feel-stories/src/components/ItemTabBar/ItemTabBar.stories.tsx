@@ -1,9 +1,9 @@
-import { ItemTabBar } from "@axa-fr/design-system-apollo-react/lf";
+import { ItemTabBar } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ItemTabBar> = {
   component: ItemTabBar,
-  title: "Components/ItemTabBar",
+  title: "Components/TabBar/ItemTabBar",
 };
 
 export default meta;

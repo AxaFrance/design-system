@@ -1,4 +1,4 @@
-import { Divider } from "@axa-fr/design-system-look-and-feel-react";
+import { Divider } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Divider> = {

@@ -1,7 +1,4 @@
-import {
-  Dropdown,
-  itemMessageVariants,
-} from "@axa-fr/design-system-apollo-react/lf";
+import { Dropdown, itemMessageVariants } from "@axa-fr/canopee-react/client";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
