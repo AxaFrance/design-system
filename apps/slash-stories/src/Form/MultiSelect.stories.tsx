@@ -3,7 +3,7 @@ import {
   MessageTypes,
   MultiSelect,
   MultiSelectInput,
-} from "@axa-fr/design-system-slash-react";
+} from "@axa-fr/canopee-react/distributeur";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { useState, type ComponentPropsWithoutRef } from "react";

@@ -1,4 +1,4 @@
-import { Button, MainContainer } from "@axa-fr/design-system-slash-react";
+import { Button, MainContainer } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof MainContainer> = {

@@ -1,4 +1,4 @@
-import { Svg, Tag } from "@axa-fr/design-system-slash-react";
+import { Svg, Tag } from "@axa-fr/canopee-react/distributeur";
 import iconBell from "@material-symbols/svg-400/outlined/notifications-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
 

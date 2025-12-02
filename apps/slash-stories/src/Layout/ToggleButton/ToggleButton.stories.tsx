@@ -1,4 +1,4 @@
-import { Action, ToggleButton } from "@axa-fr/design-system-slash-react";
+import { Action, ToggleButton } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 

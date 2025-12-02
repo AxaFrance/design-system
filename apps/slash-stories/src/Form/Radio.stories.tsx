@@ -1,4 +1,4 @@
-import { Radio, RadioModes } from "@axa-fr/design-system-slash-react";
+import { Radio, RadioModes } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { ComponentPropsWithRef, useState } from "react";

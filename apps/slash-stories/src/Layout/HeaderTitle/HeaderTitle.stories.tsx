@@ -3,7 +3,7 @@ import {
   Badge,
   HeaderTitle,
   Svg,
-} from "@axa-fr/design-system-slash-react";
+} from "@axa-fr/canopee-react/distributeur";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import mailIcon from "@material-symbols/svg-400/outlined/mail.svg";
 import saveIcon from "@material-symbols/svg-400/outlined/save.svg";

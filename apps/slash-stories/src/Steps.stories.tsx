@@ -1,4 +1,4 @@
-import { Step, StepBase, Steps } from "@axa-fr/design-system-slash-react";
+import { Step, StepBase, Steps } from "@axa-fr/canopee-react/distributeur";
 import { Meta, type StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 

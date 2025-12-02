@@ -1,5 +1,5 @@
-import logo from "@axa-fr/design-system-slash-css/logo-axa.svg";
-import { Name } from "@axa-fr/design-system-slash-react";
+import logo from "@axa-fr/canopee-css/logo-axa.svg";
+import { Name } from "@axa-fr/canopee-react/distributeur";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Name> = {

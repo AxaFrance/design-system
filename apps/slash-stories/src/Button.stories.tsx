@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import arrowForwardIcons from "@material-symbols/svg-400/outlined/arrow_forward.svg";
 import arrowBackIcons from "@material-symbols/svg-400/outlined/arrow_back.svg";
-import { Button, Svg } from "@axa-fr/design-system-slash-react";
+import { Button, Svg } from "@axa-fr/canopee-react/distributeur";
 import type { ComponentProps } from "react";
 
 const CssIcons: Record<string, string> = {
