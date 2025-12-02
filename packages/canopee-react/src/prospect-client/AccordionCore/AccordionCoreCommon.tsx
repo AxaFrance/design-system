@@ -71,7 +71,9 @@ export const AccordionCoreCommon = ({
             baseClassName: "af-accordion__arrow",
             className: [
               "af-click-icon",
-              arrowIconVariant === "warning" && "af-click-icon--warning",
+              arrowIconVariant &&
+                arrowIconVariant !== "primary" &&
+                `af-click-icon--${arrowIconVariant}`,
             ]
               .filter(Boolean)
               .join(" "),

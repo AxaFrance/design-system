@@ -101,9 +101,10 @@
 }
 
 .af-apollo-accordion--contextual-info,
-.af-apollo-accordion--contextual-warning {
-  --summary-areas: "icon title arrow";
-  --summary-columns: min-content 1fr min-content;
+.af-apollo-accordion--contextual-warning,
+.af-apollo-accordion--contextual-inverse {
+  border-radius: var(--accordion-border-radius);
+  background-color: var(--accordion-background-color);
 
   .af-apollo-accordion__summary .af-accordion__subtitle {
     display: none;
@@ -124,4 +125,17 @@
   .af-apollo-accordion__summary .af-accordion__date {
     display: none;
   }
+}
+
+.af-apollo-accordion--contextual-info,
+.af-apollo-accordion--contextual-warning {
+  --summary-areas: "icon title arrow";
+  --summary-columns: min-content 1fr min-content;
+}
+
+.af-apollo-accordion--contextual-inverse {
+  --summary-areas: "title arrow";
+  --summary-columns: 1fr min-content;
+
+  color: var(--accordion-title-text-color);
 }

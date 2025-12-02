@@ -173,3 +173,18 @@ export const AccordionContextualWarningStory: StoryObj<
     variant: "contextual-warning" as AccordionVariants,
   },
 };
+
+export const AccordionContextualInverseStory: StoryObj<
+  ComponentProps<typeof Accordion>
+> = {
+  name: "Accordion Contextual Inverse",
+  render: (args) => <Accordion {...args} />,
+  args: {
+    ...commonArgs,
+    variant: "contextual-inverse" as AccordionVariants,
+    subtitle: "",
+    tagLabel: "",
+    info1: "",
+    info2: "",
+  },
+};
