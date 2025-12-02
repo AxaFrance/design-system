@@ -114,8 +114,8 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       <div className="af-form__input-container">
         <ItemLabelComponent
           description={description}
-          moreButtonLabel={buttonLabel || moreButtonLabel}
-          onMoreButtonClick={onButtonClick || onMoreButtonClick}
+          moreButtonLabel={moreButtonLabel ?? buttonLabel}
+          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
           required={required}
           htmlFor={inputId}
         >
