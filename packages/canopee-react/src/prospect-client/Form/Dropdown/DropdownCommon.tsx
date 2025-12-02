@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import {
   type ComponentProps,
   type ComponentPropsWithRef,
@@ -5,7 +6,6 @@ import {
   forwardRef,
   useId,
 } from "react";
-import classNames from "classnames";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -18,7 +18,7 @@ import {
 export type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
   classModifier?: string;
-  label?: ItemLabelProps["label"];
+  label?: ItemLabelProps["children"];
   /**
    * @deprecated Use `message` and messageType instead.
    */
@@ -28,10 +28,18 @@ export type DropdownProps = ComponentPropsWithRef<"select"> & {
    */
   success?: string;
   placeholder?: string;
-  buttonLabel?: string;
   description?: string;
   helper?: string;
-} & Partial<ItemLabelProps & ItemMessageProps>;
+} & Pick<
+    ItemLabelProps,
+    | "buttonLabel"
+    | "moreButtonLabel"
+    | "onButtonClick"
+    | "onMoreButtonClick"
+    | "sideButtonLabel"
+    | "onSideButtonClick"
+  > &
+  Pick<ItemMessageProps, "message" | "messageType">;
 
 type DropdownCommonProps = DropdownProps & {
   ItemLabelComponent: ComponentType<
@@ -55,7 +63,9 @@ const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
       messageType,
       description,
       buttonLabel,
+      moreButtonLabel,
       onButtonClick,
+      onMoreButtonClick,
       sideButtonLabel,
       onSideButtonClick,
       ItemLabelComponent,
@@ -79,15 +89,16 @@ const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
     return (
       <div className="af-form__dropdown-container">
         <ItemLabelComponent
-          label={label}
           description={description}
-          buttonLabel={buttonLabel}
-          onButtonClick={onButtonClick}
+          moreButtonLabel={moreButtonLabel ?? buttonLabel}
+          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
           sideButtonLabel={sideButtonLabel}
           onSideButtonClick={onSideButtonClick}
           required={required}
-          inputId={inputId}
-        />
+          htmlFor={inputId}
+        >
+          {label}
+        </ItemLabelComponent>
         <select
           className={classname}
           {...otherProps}
