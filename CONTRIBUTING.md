@@ -48,7 +48,7 @@ Voici les règles à suivre pour les scopes de commit :
 - Utilisez le scope correspondant au theme design system mis à jour par le commit. Les scopes disponibles sont :
     - `prospect`
     - `client`
-    - `distributeurs`
+    - `distributeur`
 - Si le commit est plus général aux themes du design system, utilisez le scope `canopee`.
 - Les anciens scope restes disponibles, mais sont déprécié dans leur utilisation.
     - `slash`
