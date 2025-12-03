@@ -2,7 +2,7 @@
 
 .af-heading {
   --heading-grid-column: 1;
-  --heading-title-color: var(--gray80);
+  --heading-title-color: var(--color-gray-900);
   --heading-subtitle-color: var(--color-gray-900);
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
   --heading-title-font-weight: 700;
