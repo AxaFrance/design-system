@@ -19,6 +19,7 @@ import {
 export type InputTextProps = ComponentPropsWithRef<"input"> & {
   unit?: ReactNode;
   classModifier?: string;
+  label?: ItemLabelProps["children"];
   helper?: string;
   /**
    * @deprecated Use `message` and messageType instead.
@@ -28,7 +29,17 @@ export type InputTextProps = ComponentPropsWithRef<"input"> & {
    * @deprecated Use `message` and messageType instead.
    */
   success?: string;
-} & Partial<ItemLabelProps & ItemMessageProps>;
+} & Pick<
+    ItemLabelProps,
+    | "description"
+    | "moreButtonLabel"
+    | "buttonLabel"
+    | "onMoreButtonClick"
+    | "onButtonClick"
+    | "sideButtonLabel"
+    | "onSideButtonClick"
+  > &
+  Pick<ItemMessageProps, "message" | "messageType">;
 
 type InputTextCommonProps = InputTextProps & {
   ItemLabelComponent: ComponentType<
@@ -52,7 +63,9 @@ const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
       label,
       description,
       buttonLabel,
+      moreButtonLabel,
       onButtonClick,
+      onMoreButtonClick,
       required,
       sideButtonLabel,
       onSideButtonClick,
@@ -75,15 +88,16 @@ const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
     return (
       <div className="af-form__input-container">
         <ItemLabelComponent
-          label={label}
           description={description}
-          buttonLabel={buttonLabel}
-          onButtonClick={onButtonClick}
+          moreButtonLabel={moreButtonLabel ?? buttonLabel}
+          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
           sideButtonLabel={sideButtonLabel}
           onSideButtonClick={onSideButtonClick}
           required={required}
-          inputId={inputId}
-        />
+          htmlFor={inputId}
+        >
+          {label}
+        </ItemLabelComponent>
 
         <InputTextAtomComponent
           id={inputId}

@@ -14,7 +14,7 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import { InputDateAtom } from "./InputDateAtom";
+import { InputDateAtom, type InputDateAtomProps } from "./InputDateAtom";
 import { InputDateTextAtom } from "./InputDateTextAtom";
 
 export type InputDateProps = Omit<
@@ -24,8 +24,8 @@ export type InputDateProps = Omit<
   classModifier?: string;
   defaultValue?: Date | string;
   value?: Date | string;
-  min?: Date | string;
-  max?: Date | string;
+  min?: InputDateAtomProps["min"];
+  max?: InputDateAtomProps["max"];
   helper?: string;
   /**
    * @deprecated Use `message` and messageType instead.
@@ -114,8 +114,8 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       <div className="af-form__input-container">
         <ItemLabelComponent
           description={description}
-          moreButtonLabel={buttonLabel || moreButtonLabel}
-          onMoreButtonClick={onButtonClick || onMoreButtonClick}
+          moreButtonLabel={moreButtonLabel ?? buttonLabel}
+          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
           required={required}
           htmlFor={inputId}
         >

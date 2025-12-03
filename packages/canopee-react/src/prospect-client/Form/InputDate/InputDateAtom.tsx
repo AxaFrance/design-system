@@ -1,4 +1,8 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import {
+  type ComponentProps,
+  type ComponentPropsWithRef,
+  forwardRef,
+} from "react";
 import { formatInputDateValue } from "./InputDate.helper";
 
 export type InputDateAtomProps = Omit<
@@ -7,8 +11,8 @@ export type InputDateAtomProps = Omit<
 > & {
   defaultValue?: Date | string;
   value?: Date | string;
-  min?: Date | string;
-  max?: Date | string;
+  min?: ComponentProps<"input">["min"] | Date;
+  max?: ComponentProps<"input">["max"] | Date;
 };
 
 const InputDateAtom = forwardRef<HTMLInputElement, InputDateAtomProps>(

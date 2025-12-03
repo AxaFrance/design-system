@@ -7,6 +7,8 @@ import {
   useId,
 } from "react";
 import { SingleValue } from "react-select";
+import { Icon } from "../../Icon/IconCommon";
+import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -15,10 +17,8 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
-import { Icon } from "../../Icon/IconCommon";
-import { type OptionType } from "./InputPhone.types";
 import { CountryCodeSelect } from "./CountryCodeSelect";
+import { type OptionType } from "./InputPhone.types";
 import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
 
 export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
@@ -39,8 +39,18 @@ export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   onChangeSelect?: (value: SingleValue<OptionType>) => void;
   onChangeInput?: (value: string) => void;
   mask?: (value: string) => string;
-  label: ItemLabelProps["label"];
-} & Partial<ItemLabelProps & ItemMessageProps>;
+  label: ItemLabelProps["children"];
+} & Pick<
+    ItemLabelProps,
+    | "description"
+    | "moreButtonLabel"
+    | "buttonLabel"
+    | "onMoreButtonClick"
+    | "onButtonClick"
+    | "sideButtonLabel"
+    | "onSideButtonClick"
+  > &
+  Pick<ItemMessageProps, "message" | "messageType">;
 
 type InputPhoneCommonProps = InputPhoneProps & {
   ItemLabelComponent: ComponentType<
@@ -67,7 +77,9 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
       label,
       description,
       buttonLabel,
+      moreButtonLabel,
       onButtonClick,
+      onMoreButtonClick,
       required,
       sideButtonLabel,
       onSideButtonClick,
@@ -116,15 +128,16 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
     return (
       <div className="af-form__input-phone-container">
         <ItemLabelComponent
-          label={label}
           description={description}
-          buttonLabel={buttonLabel}
-          onButtonClick={onButtonClick}
+          moreButtonLabel={moreButtonLabel ?? buttonLabel}
+          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
           sideButtonLabel={sideButtonLabel}
           onSideButtonClick={onSideButtonClick}
           required={required}
-          inputId={inputId}
-        />
+          htmlFor={inputId}
+        >
+          {label}
+        </ItemLabelComponent>
 
         <div className="af-form__input-phone-fields">
           {showSelect ? (

@@ -3,7 +3,6 @@ import {
   ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
-  MouseEventHandler,
   useId,
 } from "react";
 import {
@@ -16,13 +15,23 @@ import {
 } from "../ItemMessage/ItemMessageCommon";
 
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
+  label?: ItemLabelProps["children"];
   helper?: string;
   /**
    * @deprecated Use `message` and messageType instead.
    */
   error?: string;
-  onButtonClick?: MouseEventHandler<HTMLButtonElement>;
-} & Partial<ItemMessageProps & ItemLabelProps>;
+} & Pick<
+    ItemLabelProps,
+    | "description"
+    | "moreButtonLabel"
+    | "buttonLabel"
+    | "onMoreButtonClick"
+    | "onButtonClick"
+    | "sideButtonLabel"
+    | "onSideButtonClick"
+  > &
+  Pick<ItemMessageProps, "message" | "messageType">;
 
 type TextAreaCommonProps = TextAreaProps & {
   ItemLabelComponent: ComponentType<
@@ -43,7 +52,9 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
       message,
       messageType,
       buttonLabel,
+      moreButtonLabel,
       onButtonClick,
+      onMoreButtonClick,
       required,
       sideButtonLabel,
       ItemLabelComponent,
@@ -69,15 +80,16 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
           .join(" ")}
       >
         <ItemLabelComponent
-          label={label}
           description={description}
-          buttonLabel={buttonLabel}
-          onButtonClick={onButtonClick}
+          moreButtonLabel={moreButtonLabel ?? buttonLabel}
+          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
           sideButtonLabel={sideButtonLabel}
           onSideButtonClick={onSideButtonClick}
           required={required}
-          inputId={inputId}
-        />
+          htmlFor={inputId}
+        >
+          {label}
+        </ItemLabelComponent>
 
         <textarea
           id={inputId}
