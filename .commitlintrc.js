@@ -12,7 +12,7 @@ const config = {
         'canopee',
         'prospect',
         'client',
-        'distributeurs',
+        'distributeur',
         'look&feel',
         'slash',
         'apollo',
