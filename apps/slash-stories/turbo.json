@@ -6,7 +6,8 @@
     "tasks": {
         "dev": {
             "with": [
-                "@axa-fr/design-system-slash-css#dev"
+                "@axa-fr/canopee-css#dev:distributeur",
+                "@axa-fr/canopee-react#dev"
             ],
             "persistent": true,
             "cache": false

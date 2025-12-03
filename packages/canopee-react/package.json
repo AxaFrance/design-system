@@ -21,6 +21,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
+    "dev": "tsc -p tsconfig.build.json --watch",
     "build": "tsc -p tsconfig.build.json",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
