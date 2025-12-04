@@ -137,3 +137,7 @@ export {
 } from "./prospect-client/Pagination/ItemPagination/ItemPaginationLF";
 export { Card, type CardProps } from "./prospect-client/Card/CardLF";
 export { List, type ListProps } from "./prospect-client/List/List/ListLF";
+export {
+  LevelSelector,
+  type LevelSelectorProps,
+} from "./prospect-client/LevelSelector/LevelSelectorLF";
