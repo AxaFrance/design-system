@@ -40,7 +40,7 @@ export const Playground: Story = {
   },
   argTypes: {
     level: {
-      options: [1, 2, 3] as HeadingLevel[],
+      options: [1, 2, 3, 4] as HeadingLevel[],
       control: "inline-radio",
     },
   },
