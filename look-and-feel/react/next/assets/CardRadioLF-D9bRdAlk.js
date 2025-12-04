@@ -1,1 +1,0 @@
-import{j as a}from"./index-C-iqcyhV.js";import{C as m}from"./CardRadioOptionLF-DyoimisU.js";import{a as s,I as t}from"./ClickIconApollo-DAzyCCdM.js";const n=o=>a.jsx(s,{...o,CardRadioOptionComponent:m,ItemMessageComponent:t});export{n as C};

@@ -1,0 +1,15 @@
+import{j as e}from"./index-C-iqcyhV.js";import"./Skeleton-DZnmYfar.js";import"./ClickIconApollo-7gnXkBZ1.js";import{r as d}from"./index-ZnYipkzV.js";import{C as g}from"./ContentItemMono-BHugyiFY.js";import{C as s}from"./ContentItemDuo-CrN3LqRb.js";import{L as r}from"./List-DnNtY6Oz.js";import{S as x}from"./Skeleton-DtQbSk1D.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-CLcWwD1i.js";import"./ContentItemMonoLF-BtMh5HB0.js";import"./ContentItemDuoLF-DUGVh6HI.js";import"./Card-TQS1Mewf.js";import"./getComponentClassName-Dkj93yjo.js";const f=({children:t,isLoading:l,lists:i=[],classModifierList:o})=>l?i.map(({lines:n=1,grid:m})=>e.jsx(r,{classModifier:o,children:[...Array(n).keys()].map(()=>e.jsx(x,{grid:m},crypto.randomUUID()))},crypto.randomUUID())):t,A={title:"Components/SkeletonList",component:f},j=({lists:t,...l})=>{const[i,o]=d.useState(!0);return d.useEffect(()=>{const n=setInterval(()=>{o(m=>!m)},5e3);return()=>clearInterval(n)},[i]),e.jsxs(f,{...l,lists:t,classModifierList:"skeleton-list-demo",isLoading:i,children:[e.jsxs(r,{classModifier:"extra-padding skeleton-list-demo",children:[e.jsx(s,{label:"Nom",value:"Doe",classModifier:"large"}),e.jsx(s,{label:"Prénom",value:"John",classModifier:"large"}),e.jsx(s,{label:"Adresse",value:"4 allée du Châteaux blanc",classModifier:"large"}),e.jsx(s,{label:"Ville",value:"Wasquehal",classModifier:"large"}),e.jsx(s,{label:"Code postal",value:"59290",classModifier:"large"}),e.jsx(s,{label:"Pays",value:"France",classModifier:"large"}),e.jsx(s,{label:"Date de naissance",value:"01/01/1970",classModifier:"large"}),e.jsx(s,{label:"Poste",value:"Développeur",classModifier:"large"}),e.jsx(s,{label:"Ancienneté",value:"10 ans",classModifier:"large"})]}),e.jsxs(r,{classModifier:"extra-padding skeleton-list-demo",children:[e.jsx(s,{label:"Infos complémentaires",value:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",classModifier:"large"}),e.jsx(s,{label:"Infos complémentaires",value:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",classModifier:"large"}),e.jsx(s,{label:"Infos complémentaires",value:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",classModifier:"large"})]}),e.jsx(r,{classModifier:"extra-padding",children:e.jsx(g,{title:"Commentaire",type:"stick",subtitle:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum neque aspernatur ullam officia deserunt temporibus sapiente nam reiciendis iste fugiat harum exercitationem placeat, explicabo aperiam ab nemo aliquam eaque ipsa!"})})]})},a={args:{lists:[{grid:[[3,9]],lines:10},{grid:[[3,9]],lines:3},{grid:[[6],[12],[12],[12]]}],isLoading:!0},render:j};var c,p,u;a.parameters={...a.parameters,docs:{...(c=a.parameters)==null?void 0:c.docs,source:{originalSource:`{
+  args: {
+    lists: [{
+      grid: [[3, 9]],
+      lines: 10
+    }, {
+      grid: [[3, 9]],
+      lines: 3
+    }, {
+      grid: [[6], [12], [12], [12]]
+    }],
+    isLoading: true
+  },
+  render: Render
+}`,...(u=(p=a.parameters)==null?void 0:p.docs)==null?void 0:u.source}}};const P=["Default"];export{a as Default,P as __namedExportsOrder,A as default};
