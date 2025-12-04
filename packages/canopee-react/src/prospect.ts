@@ -127,3 +127,7 @@ export {
   ItemPagination,
   type ItemPaginationProps,
 } from "./prospect-client/Pagination/ItemPagination/ItemPaginationApollo";
+export {
+  LevelSelector,
+  type LevelSelectorProps,
+} from "./prospect-client/LevelSelector/LevelSelectorAppolo";
