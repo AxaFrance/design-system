@@ -9,3 +9,4 @@ dist/
 *storybook.log
 coverage/
 .turbo
+mise.toml

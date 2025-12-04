@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as CardStories from "./Card.stories";
+
+<Meta of={CardStories} name="Card" />
+
+# Card
+
+The **Card** component is a simple wrapper that adds an **padding and a border**.  
+You can define the semantics you want using the `as` property.
+
+> Unlike the previous version of the Look&Feel package, this component does not have a `classModifier` property.
+> You can still redefine the value of the `className` property if needed.\*
+
+### Import
+
+```tsx
+import { Card, Heading } from "@axa-fr/canopee-react/client";
+```
+
+### Use
+
+```tsx
+export const CardComponent = () => (
+  <Card>
+    <Heading level={1} className="af-card__title">
+      My card title
+    </Heading>
+    <p>My card content</p>
+  </Card>
+);
+```
+
+```tsx
+export const CardComponent = () => (
+  <Card as="button" onClick={handleClick}>
+    <Heading level={1} className="af-card__title">
+      My card title
+    </Heading>
+    <p>My card content</p>
+  </Card>
+);
+```
+
+## Playground
+
+### Basic content
+
+<Canvas of={CardStories.Default} />
+
+<Controls of={CardStories.Default} />
+
+### Button card
+
+<Canvas of={CardStories.ButtonCard} />
+
+<Controls of={CardStories.ButtonCard} />
