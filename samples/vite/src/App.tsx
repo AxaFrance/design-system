@@ -1,4 +1,4 @@
-import axalogo from "@axa-fr/design-system-slash-css/logo-axa.svg";
+import axalogo from "@axa-fr/canopee-css/logo-axa.svg";
 import { Navigate, NavLink, Route, Routes } from "react-router";
 import Agent from "./Agent";
 import "./App.css";

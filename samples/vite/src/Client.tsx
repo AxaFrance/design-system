@@ -1,12 +1,11 @@
 import {
-  Button as ButtonClient,
-  buttonVariants as ButtonClientVariants,
+  Button,
   CardCheckbox,
-  RadioCard,
-  Select,
-  Svg,
-  TextInput,
-} from "@axa-fr/design-system-look-and-feel-react";
+  CardRadio,
+  Dropdown,
+  Icon,
+  InputText,
+} from "@axa-fr/canopee-react/client";
 import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -46,24 +45,26 @@ const Client = () => {
           </header>
           <p className="af-test-token-css">Test de token CSS</p>
           <article>
-            <TextInput
+            <InputText
               {...register("exampleTextInput", {
                 required: "This field is required",
               })}
               label="Name"
               description="Description"
-              error={errors.exampleTextInput?.message}
+              message={errors.exampleTextInput?.message}
+              messageType="error"
             />
           </article>
 
           <article>
-            <Select
+            <Dropdown
               label="Name"
               {...register("exampleSelectInput", {
                 required: "This field is required",
               })}
               description="Description"
-              error={errors.exampleSelectInput?.message}
+              message={errors.exampleSelectInput?.message}
+              messageType="error"
             >
               <option disabled value="">
                 Select a country
@@ -71,15 +72,16 @@ const Client = () => {
               <option value="FR">France</option>
               <option value="ES">Espagne</option>
               <option value="JP">Japon</option>
-            </Select>
+            </Dropdown>
           </article>
 
           <article>
-            <RadioCard
-              labelGroup="Card Radio Group"
+            <CardRadio
+              label="Card Radio Group"
               type="vertical"
-              isRequired
-              error={errors.exampleRadioInput?.message}
+              required
+              message={errors.exampleRadioInput?.message}
+              messageType="error"
               options={[
                 {
                   label: "Option 1",
@@ -100,10 +102,11 @@ const Client = () => {
 
           <article>
             <CardCheckbox
-              labelGroup="Card Checkbox Group"
+              label="Card Checkbox Group"
               type="vertical"
-              isRequired
-              error={errors.exampleCheckboxInput?.message}
+              required
+              message={errors.exampleCheckboxInput?.message}
+              messageType="error"
               options={[
                 {
                   label: "Checkbox 1",
@@ -123,14 +126,15 @@ const Client = () => {
           </article>
 
           <article>
-            <ButtonClient
+            <Button
               id="button"
-              variant={ButtonClientVariants.secondary}
+              variant="secondary"
               onClick={() => console.log("click")}
               type="submit"
+              iconRight={<Icon src={acUnit} />}
             >
-              Submit <Svg src={acUnit} />
-            </ButtonClient>
+              Submit
+            </Button>
           </article>
         </section>
       </form>

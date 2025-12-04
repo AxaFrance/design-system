@@ -1,4 +1,4 @@
-import logoAxa from "@axa-fr/design-system-slash-css/logo-axa.svg";
+import logoAxa from "@axa-fr/canopee-css/logo-axa.svg";
 
 import {
   Action,
@@ -26,7 +26,7 @@ import {
   Title,
   Tr,
   User,
-} from "@axa-fr/design-system-slash-react";
+} from "@axa-fr/canopee-react/distributeur";
 import openInNew from "@material-symbols/svg-400/outlined/open_in_new.svg";
 import { useRef, useState } from "react";
 import { NavLink } from "react-router";

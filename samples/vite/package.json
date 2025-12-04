@@ -11,7 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@axa-fr/canopee-react": "*",
+    "@axa-fr/canopee-css": "*",
+    "@axa-fr/design-system-apollo-react": "*",
+    "@axa-fr/design-system-apollo-css": "*",
     "@axa-fr/design-system-look-and-feel-react": "*",
+    "@axa-fr/design-system-look-and-feel-css": "*",
     "@axa-fr/design-system-slash-react": "*",
     "@axa-fr/design-system-slash-css": "*",
     "@material-symbols/svg-400": "^0.31.2",
