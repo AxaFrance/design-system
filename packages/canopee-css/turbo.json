@@ -4,6 +4,15 @@
         "//"
     ],
     "tasks": {
+        "dev:client": {
+            "cache": false
+        },
+        "dev:prospect": {
+            "cache": false
+        },
+        "dev:distributeur": {
+            "cache": false
+        },
         "lint": {
             "dependsOn": [
                 "stylelint"

@@ -4,6 +4,14 @@
         "//"
     ],
     "tasks": {
+        "dev": {
+            "with": [
+                "@axa-fr/canopee-css#dev:client",
+                "@axa-fr/canopee-react#dev"
+            ],
+            "persistent": true,
+            "cache": false
+        },
         "lint": {
             "dependsOn": [
                 "eslint",
