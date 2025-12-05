@@ -1,0 +1,7 @@
+@import "./CardCommon.css";
+
+.af-card {
+  --card-border-radius: var(--radius-8);
+  --card-background-color: var(--white);
+  --card-border-color: var(--neutral-14);
+}

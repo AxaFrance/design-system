@@ -1,0 +1,20 @@
+.af-card {
+  --card-border-width: 1px;
+
+  all: inherit;
+  padding: calc(16 / var(--font-size-base) * 1rem);
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-background-color);
+  outline: var(--card-border-width) solid var(--card-border-color);
+  outline-offset: calc(-1 * var(--card-border-width));
+
+  &:is(button) {
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --card-border-width: 2px;
+    }
+  }
+}

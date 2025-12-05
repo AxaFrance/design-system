@@ -135,3 +135,4 @@ export {
   ItemPagination,
   type ItemPaginationProps,
 } from "./prospect-client/Pagination/ItemPagination/ItemPaginationLF";
+export { Card, type CardProps } from "./prospect-client/Card/CardLF";
