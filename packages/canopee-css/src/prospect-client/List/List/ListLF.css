@@ -1,0 +1,5 @@
+@import "./ListCommon.css";
+
+ul.af-card {
+  --list-item-separator-bg-color: var(--color-gray-300);
+}

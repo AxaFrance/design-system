@@ -1,0 +1,32 @@
+ul.af-card {
+  list-style-type: none;
+
+  @media (--desktop-small) {
+    padding: calc(24 / var(--font-size-base) * 1rem);
+  }
+}
+
+ul.af-card > li {
+  --list-item-separator-padding: 0rem;
+
+  position: relative;
+  padding: 1rem 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &:not(:last-child)::after {
+    position: absolute;
+    bottom: 0;
+    left: var(--list-item-separator-padding);
+    width: calc(100% - (2 * var(--list-item-separator-padding)));
+    height: 1px;
+    background-color: var(--list-item-separator-bg-color);
+    content: "";
+  }
+}

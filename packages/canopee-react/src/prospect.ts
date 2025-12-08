@@ -128,3 +128,4 @@ export {
   type ItemPaginationProps,
 } from "./prospect-client/Pagination/ItemPagination/ItemPaginationApollo";
 export { Card, type CardProps } from "./prospect-client/Card/CardApollo";
+export { List, type ListProps } from "./prospect-client/List/List/ListApollo";
