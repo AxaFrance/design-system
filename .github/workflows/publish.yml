@@ -57,9 +57,7 @@ jobs:
         run: npm run build
 
       - name: Config npm
-        run: |
-          npm config set access=public
-          npm config set provenance=true
+        run: npm config set access=public
 
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
