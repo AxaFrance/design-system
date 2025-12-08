@@ -69,22 +69,17 @@ jobs:
           echo "=== Current npm config ==="
           npm config list
 
-      - name: Config npm
-        run: | 
-          npm config set access=public
-          npm config set provenance true
-
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag latest;
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag latest --provenance --access public;
 
       - name: Publish rc packages
         if: contains(steps.gitversion.outputs.fullSemVer, 'RC')
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag rc;
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag rc --provenance --access public;
 
       - name: Publish next packages
         if: steps.gitversion.outputs.preReleaseTag != '' && !contains(steps.gitversion.outputs.fullSemVer, 'RC')
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag next;
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag next --provenance --access public;
 
       - name: Create artifact folders
         uses: ./.github/action/create-storybook-artifact
