@@ -2,7 +2,7 @@
   "name": "@axa-fr/design-system",
   "version": "0.1.0",
   "description": "",
-  "packageManager": "npm@11.0.0",
+  "packageManager": "npm@11.6.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AxaFrance/design-system.git"
@@ -58,6 +58,6 @@
   },
   "volta": {
     "node": "22.21.0",
-    "npm": "11.0.0"
+    "npm": "11.6.4"
   }
 }

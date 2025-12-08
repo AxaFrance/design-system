@@ -56,35 +56,22 @@ jobs:
       - name: Build packages
         run: npm run build
 
-      - name: Configure npm for OIDC
+      - name: Config npm
         run: |
-          # Supprimer tous les .npmrc existants
-          rm -f ~/.npmrc || true
-          rm -f .npmrc || true
-          rm -f /home/runner/work/_temp/.npmrc || true
-
-          # Créer un nouveau .npmrc qui force l'authentification OIDC
-          cat > ~/.npmrc << EOF
-          registry=https://registry.npmjs.org/
-          access=public
-          provenance=true
-          EOF
-          
-          # Vérifier la configuration
-          echo "=== npm config ==="
-          npm config list
+          npm config set access=public
+          npm config set provenance=true
 
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag latest --provenance --access public;
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag latest;
 
       - name: Publish rc packages
         if: contains(steps.gitversion.outputs.fullSemVer, 'RC')
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag rc --provenance --access public;
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag rc;
 
       - name: Publish next packages
         if: steps.gitversion.outputs.preReleaseTag != '' && !contains(steps.gitversion.outputs.fullSemVer, 'RC')
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag next --provenance --access public;
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag next;
 
       - name: Create artifact folders
         uses: ./.github/action/create-storybook-artifact
