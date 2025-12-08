@@ -88,11 +88,14 @@ jobs:
       matrix:
         storybook:
           - name: slash react
-            destination_dir: slash/react
+            publish_dir: slash/react
+            destination_dir: distributeur/react
           - name: apollo react
-            destination_dir: apollo/react
+            publish_dir: apollo/react
+            destination_dir: prospect/react
           - name: look-and-feel react
-            destination_dir: look-and-feel/react
+            publish_dir: look-and-feel/react
+            destination_dir: client/react
       max-parallel: 1
 
     steps:
@@ -105,7 +108,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./${{ matrix.storybook.destination_dir }}
+          publish_dir: ./${{ matrix.storybook.publish_dir }}
           destination_dir: ${{ matrix.storybook.destination_dir }}/next
 
       - name: Upload the ${{ matrix.storybook.name }} storybook version latest
@@ -113,7 +116,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./${{ matrix.storybook.destination_dir }}
+          publish_dir: ./${{ matrix.storybook.publish_dir }}
           destination_dir: ${{ matrix.storybook.destination_dir }}/latest
 
       - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ needs.publish.outputs.version }}
@@ -121,5 +124,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./${{ matrix.storybook.destination_dir }}
+          publish_dir: ./${{ matrix.storybook.publish_dir }}
           destination_dir: ${{ matrix.storybook.destination_dir }}/${{ needs.publish.outputs.version }}
