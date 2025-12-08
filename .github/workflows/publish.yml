@@ -57,7 +57,9 @@ jobs:
         run: npm run build
 
       - name: Config npm
-        run: npm config set access=public
+        run: | 
+          npm config set access=public
+          npm config delete _authToken
 
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
