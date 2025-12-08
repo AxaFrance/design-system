@@ -56,17 +56,22 @@ jobs:
       - name: Build packages
         run: npm run build
 
-      - name: Clean npm auth config
+      - name: Configure npm for OIDC
         run: |
-          npm config delete //registry.npmjs.org/:_authToken --location=global || true
-          npm config delete //registry.npmjs.org/:_authToken --location=user || true
-          npm config delete //registry.npmjs.org/:_authToken --location=project || true
-          npm config delete _authToken --location=global || true
-          npm config delete _authToken --location=user || true
-          npm config delete _authToken --location=project || true
+          # Supprimer tous les .npmrc existants
           rm -f ~/.npmrc || true
           rm -f .npmrc || true
-          echo "=== Current npm config ==="
+          rm -f /home/runner/work/_temp/.npmrc || true
+
+          # Créer un nouveau .npmrc qui force l'authentification OIDC
+          cat > ~/.npmrc << EOF
+          registry=https://registry.npmjs.org/
+          access=public
+          provenance=true
+          EOF
+          
+          # Vérifier la configuration
+          echo "=== npm config ==="
           npm config list
 
       - name: Publish latest packages
