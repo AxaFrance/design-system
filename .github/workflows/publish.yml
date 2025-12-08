@@ -56,10 +56,23 @@ jobs:
       - name: Build packages
         run: npm run build
 
+      - name: Clean npm auth config
+        run: |
+          npm config delete //registry.npmjs.org/:_authToken --location=global || true
+          npm config delete //registry.npmjs.org/:_authToken --location=user || true
+          npm config delete //registry.npmjs.org/:_authToken --location=project || true
+          npm config delete _authToken --location=global || true
+          npm config delete _authToken --location=user || true
+          npm config delete _authToken --location=project || true
+          rm -f ~/.npmrc || true
+          rm -f .npmrc || true
+          echo "=== Current npm config ==="
+          npm config list
+
       - name: Config npm
         run: | 
           npm config set access=public
-          npm config delete _authToken
+          npm config set provenance true
 
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
