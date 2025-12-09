@@ -8,7 +8,7 @@ describe("List", () => {
 
     render(<List CardComponent={Card}>{children}</List>);
 
-    expect(screen.getByRole("list")).toHaveClass("af-list");
+    expect(screen.getByRole("list")).toHaveClass("af-card");
     expect(screen.getByText("Child 1")).toBeInTheDocument();
   });
 
@@ -16,8 +16,10 @@ describe("List", () => {
     const children = undefined;
 
     render(<List CardComponent={Card}>{children}</List>);
+    const list = screen.getByRole("list");
 
-    expect(screen.getByRole("list")).toHaveClass("af-list");
+    expect(list).toHaveClass("af-card");
+    expect(list.children.length).toEqual(0);
   });
 
   it("should render multiple children", () => {
