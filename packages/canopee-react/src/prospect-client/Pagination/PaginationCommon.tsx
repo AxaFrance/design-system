@@ -6,7 +6,7 @@ import {
 import chevronBackward from "@material-symbols/svg-400/rounded/chevron_backward.svg";
 import chevronForward from "@material-symbols/svg-400/rounded/chevron_forward.svg";
 import { getClassName } from "../utilities/getClassName";
-import { ClickIcon } from "../ClickIcon/ClickIconApollo";
+import { ClickIcon } from "../ClickIcon/ClickIconCommon";
 import {
   ItemPaginationCommon,
   ELLIPSIS,
