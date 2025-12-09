@@ -14,6 +14,7 @@ describe("ProgressBar Component", () => {
     expect(progressBar).toBeInTheDocument();
     expect(progressBar).toHaveValue(50);
     expect(progressBar).toHaveAttribute("max", "100");
+    expect(screen.queryByText("50 %")).toBeNull();
   });
 
   it("applies custom className", () => {
@@ -37,5 +38,11 @@ describe("ProgressBar Component", () => {
     const { container } = render(<ProgressBar id={id} />);
 
     expect(container.querySelector(`label[for=${id}]`)).not.toBeInTheDocument();
+  });
+
+  it("does render percentage if props percetage id provided", () => {
+    render(<ProgressBar id={id} value={50} max={100} showPercentage />);
+
+    expect(screen.getByText("50 %")).toBeInTheDocument();
   });
 });
