@@ -36,15 +36,3 @@
     --icon-background-color: var(--color-gray-200);
   }
 }
-
-.af-icon--info {
-  --icon-fill: var(--color-axa);
-}
-
-.af-icon--warning {
-  --icon-fill: var(--color-red-700);
-}
-
-.af-icon--inverse {
-  --icon-fill: var(--color-white);
-}

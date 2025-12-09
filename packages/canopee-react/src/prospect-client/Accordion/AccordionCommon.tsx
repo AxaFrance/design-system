@@ -7,9 +7,6 @@ import type { AccordionCoreProps } from "../AccordionCore/AccordionCoreCommon";
 export const accordionVariants = {
   primary: "primary",
   secondary: "secondary",
-  "contextual-info": "contextual-info",
-  "contextual-warning": "contextual-warning",
-  "contextual-inverse": "contextual-inverse",
 } as const;
 
 export type AccordionVariants =
@@ -33,13 +30,6 @@ type AccordionCommonProps = AccordionProps & {
   AccordionCoreComponent: ComponentType<AccordionCoreProps>;
   TagComponent: ComponentType<TagProps>;
   IconComponent: ComponentType<IconProps>;
-};
-
-const getIconVariant = (variant: AccordionVariants) => {
-  if (variant === "contextual-info") return "info";
-  if (variant === "contextual-warning") return "warning";
-  if (variant === "contextual-inverse") return "inverse";
-  return "primary";
 };
 
 export const AccordionCommon = ({
@@ -67,14 +57,13 @@ export const AccordionCommon = ({
       modifiers: [variant, isPlain && "plain"],
       className,
     })}
-    arrowIconVariant={getIconVariant(variant)}
     summary={
       <>
         {icon ? (
           <IconComponent
             role="presentation"
             src={icon}
-            variant={getIconVariant(variant)}
+            variant="primary"
             size="S"
             className="af-accordion__icon"
           />

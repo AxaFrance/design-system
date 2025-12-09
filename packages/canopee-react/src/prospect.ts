@@ -4,6 +4,11 @@ import "@axa-fr/canopee-css/prospect/Grid/Grid.css";
 import "@fontsource/source-sans-pro";
 
 export {
+  AccordionContextual,
+  accordionContextualVariants,
+  type AccordionContextualVariants,
+} from "./prospect-client/AccordionContextual/AccordionContextualApollo";
+export {
   Accordion,
   accordionVariants,
   type AccordionVariants,

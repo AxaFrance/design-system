@@ -65,18 +65,3 @@
     }
   }
 }
-
-.af-apollo-accordion--contextual-info {
-  --accordion-title-text-color: var(--color-axa);
-  --accordion-background-color: var(--color-blue-2);
-}
-
-.af-apollo-accordion--contextual-warning {
-  --accordion-title-text-color: var(--color-red-700);
-  --accordion-background-color: var(--color-btn-error-bg);
-}
-
-.af-apollo-accordion--contextual-inverse {
-  --accordion-title-text-color: var(--color-white);
-  --accordion-background-color: var(--color-axa);
-}

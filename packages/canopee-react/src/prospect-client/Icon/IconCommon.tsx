@@ -6,9 +6,6 @@ export const iconVariants = {
   primary: "primary",
   secondary: "secondary",
   disabled: "disabled",
-  info: "info",
-  warning: "warning",
-  inverse: "inverse",
 } as const;
 export type IconVariants = keyof typeof iconVariants;
 

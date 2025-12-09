@@ -36,11 +36,3 @@
     --icon-background-color: var(--neutral-5);
   }
 }
-
-.af-icon--info {
-  --icon-fill: var(--axa-blue-100);
-}
-
-.af-icon--warning {
-  --icon-fill: var(--red-alert-100);
-}
