@@ -1,4 +1,5 @@
 import { useId, type ComponentProps, type ReactNode } from "react";
+import { getClassName } from "../utilities/getClassName";
 
 type ProgressBarProps = ComponentProps<"progress"> & {
   label?: ReactNode;
@@ -15,6 +16,11 @@ export const ProgressBar = ({
   let inputId = useId();
   inputId = id || inputId;
 
+  const componentClassName = getClassName({
+    baseClassName: "af-progress-bar",
+    className,
+  });
+
   return (
     <>
       {Boolean(label) && (
@@ -22,10 +28,10 @@ export const ProgressBar = ({
           {label}
         </label>
       )}
-      <div className="af-progress-bar__container" tabIndex={-1}>
+      <div className={componentClassName} tabIndex={-1}>
         <progress
           id={inputId}
-          className={["af-progress-bar", className].filter(Boolean).join(" ")}
+          className="af-progress-bar__progress"
           {...props}
         />
         {Boolean(showPercentage) && (
