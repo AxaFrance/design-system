@@ -1,8 +1,9 @@
-import { Children, ComponentProps, ComponentType, isValidElement } from "react";
+import { Children, ComponentProps, ComponentType } from "react";
 import {
   CardCommon as Card,
   type CardCommonProps,
 } from "../../Card/CardCommon";
+import { generateId } from "../../utilities/generateId";
 
 export type ListProps = CardCommonProps<"ul">;
 
@@ -16,8 +17,8 @@ export const ListCommon = ({
   ...listProps
 }: ListPropsCommon) => (
   <CardComponent as="ul" {...listProps}>
-    {Children.toArray(children).map(
-      (child) => isValidElement(child) && <li key={child.key}>{child}</li>,
-    )}
+    {Children.toArray(children).map((child) => (
+      <li key={generateId(child as object)}>{child}</li>
+    ))}
   </CardComponent>
 );
