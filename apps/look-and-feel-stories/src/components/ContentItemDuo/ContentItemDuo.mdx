@@ -5,55 +5,125 @@ import * as ContentItemDuoStories from "./ContentItemDuo.stories";
 
 # ContentItemDuo
 
-1. [Import](#import)
-2. [Default ContentItemDuo](#default-contentitemduo)
-3. [Large ContentItemDuo](#large-contentitemduo)
-4. [Vertical ContentItemDuo](#vertical-contentitemduo)
-5. [Default ContentItemDuo List](#default-contentitemduo-list)
-6. [Vertical ContentItemDuo List](#vertical-contentitemduo-list)
+The `ContentItemDuo` component displays a label and a value, optionally with an action button. It supports horizontal and vertical layouts, and two sizes. Use it to present key-value pairs in a clear, accessible way.
 
-## Import
+> **Accessibility & Semantics**
+>
+> `ContentItemDuo` should be used inside a `<dl>` (description list) container to ensure semantically correct HTML structure. Each `ContentItemDuo` renders a `<dt>`/`<dd>` pair, making it suitable for lists of definitions or information.
+
+### Semantic usage example with List component
 
 ```tsx
-import { ContentItemDuo } from "@axa-fr/canopee-react/client";
+import { ContentItemDuo, List } from "@axa-fr/canopee-react/client";
 
-const MyComponent = () => (
-  <>
-    <ContentItemDuo label="Libelle" value="Reponse">
-      My message
-    </ContentItemDuo>
-  </>
+const ContentItemDuoList = () => (
+  <List as="dl">
+    <ContentItemDuo label="Name" value="John Doe" />
+    <ContentItemDuo label="Age" value="32 years" />
+    <ContentItemDuo
+      label="Status"
+      value="Active"
+      buttonText="Details"
+      onButtonClick={() => console.log("Clicked!")}
+    />
+  </List>
 );
 ```
 
-## Uses
+## Props
 
-### Default Content Item Duo
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Prop</th>
+      <th scope="col">Type</th>
+      <th scope="col">Default</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>label</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>Label displayed on the left (horizontal) or top (vertical).</td>
+    </tr>
+    <tr>
+      <td>
+        <code>value</code>
+      </td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>Value displayed on the right (horizontal) or bottom (vertical).</td>
+    </tr>
+    <tr>
+      <td>
+        <code>buttonText</code>
+      </td>
+      <td>string</td>
+      <td>-</td>
+      <td>Text for the optional action button.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onButtonClick</code>
+      </td>
+      <td>() =&gt; void</td>
+      <td>-</td>
+      <td>Handler called when the button is clicked.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>position</code>
+      </td>
+      <td>"horizontal" | "vertical"</td>
+      <td>"horizontal"</td>
+      <td>Layout direction.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>size</code>
+      </td>
+      <td>"small" | "large"</td>
+      <td>"large"</td>
+      <td>Component size.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>className</code>
+      </td>
+      <td>string</td>
+      <td>-</td>
+      <td>Custom CSS class for the container.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>...divProps</code>
+      </td>
+      <td>
+        All native <code>&lt;div&gt;</code> props
+      </td>
+      <td>-</td>
+      <td>Any other props are forwarded to the container.</td>
+    </tr>
+  </tbody>
+</table>
 
-<Canvas of={ContentItemDuoStories.ContentItemDuoDefault} />
+> Note: The button is only rendered if both `buttonText` and `onButtonClick` are provided.
 
-<Controls of={ContentItemDuoStories.ContentItemDuoDefault} />
+## Playground
 
-### Large Content Item Duo
+### Horizontal (Large)
 
-<Canvas of={ContentItemDuoStories.ContentItemDuoLarge} />
+<Canvas
+  of={ContentItemDuoStories.ContentItemDuoHorizontal}
+  sourceState="shown"
+/>
+<Controls of={ContentItemDuoStories.ContentItemDuoHorizontal} />
 
-<Controls of={ContentItemDuoStories.ContentItemDuoLarge} />
+### Vertical
 
-### Vertical Content Item Duo
-
-<Canvas of={ContentItemDuoStories.ContentItemDuoVertical} />
-
+<Canvas of={ContentItemDuoStories.ContentItemDuoVertical} sourceState="shown" />
 <Controls of={ContentItemDuoStories.ContentItemDuoVertical} />
-
-### Default ContentItemDuo List
-
-<Canvas of={ContentItemDuoStories.DefaultContentItemDuoList} />
-
-<Controls of={ContentItemDuoStories.DefaultContentItemDuoList} />
-
-### Vertical ContentItemDuo List
-
-<Canvas of={ContentItemDuoStories.VerticalContentItemDuoList} />
-
-<Controls of={ContentItemDuoStories.VerticalContentItemDuoList} />

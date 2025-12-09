@@ -5,69 +5,59 @@ import type { ComponentProps } from "react";
 const meta: Meta<typeof ContentItemDuo> = {
   title: "Components/List/ContentItemDuo",
   component: ContentItemDuo,
+  args: {
+    label: "Label",
+    value: "Value",
+    buttonText: "Learn more",
+  },
+  argTypes: {
+    className: { control: "text" },
+    position: {
+      options: ["horizontal", "vertical"],
+      control: {
+        type: "select",
+      },
+    },
+    size: {
+      options: ["small", "large"],
+      control: {
+        type: "select",
+      },
+    },
+    onButtonClick: { action: "onButtonClick" },
+  },
+  decorators: [
+    (Story) => (
+      <dl>
+        <Story />
+      </dl>
+    ),
+  ],
 };
 
 export default meta;
 
-const defaultArgs = {
-  isVertical: false,
-  label: "Libellé",
-  value: "Réponse",
-  buttonText: "En savoir plus",
-  classModifier: [],
-};
-
-const verticalArgs = {
-  isVertical: true,
-  label:
-    "Le choc de véhicules terrestres à moteur, (voiture, trottinette à moteur…) ou la chute d’appareils aériens (avions, hélicoptères…) avec un propriétaire du véhicule adverse identifié ?",
-  value: "Les incendies, explosions, implosions, fumée et foudre",
-  buttonText: "En savoir plus",
-  classModifier: [],
-};
-
-export const ContentItemDuoDefault: StoryObj<
-  Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
-    classModifier: string[];
-  }
+export const ContentItemDuoHorizontal: StoryObj<
+  ComponentProps<typeof ContentItemDuo>
 > = {
-  render: ({ classModifier, ...args }) => (
-    <ContentItemDuo classModifier={classModifier.join(" ")} {...args} />
-  ),
   args: {
-    ...defaultArgs,
-    classModifier: ["small"],
-  },
-};
-
-export const ContentItemDuoLarge: StoryObj<
-  Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
-    classModifier: string[];
-  }
-> = {
-  render: ({ classModifier, ...args }) => (
-    <ContentItemDuo classModifier={classModifier.join(" ")} {...args} />
-  ),
-  args: {
-    ...defaultArgs,
-    classModifier: ["large"],
+    position: "horizontal",
+    label: "Label",
+    value: "Value",
+    size: "large",
   },
 };
 
 export const ContentItemDuoVertical: StoryObj<
-  Omit<ComponentProps<typeof ContentItemDuo>, "classModifier"> & {
-    classModifier: string[];
-  }
+  ComponentProps<typeof ContentItemDuo>
 > = {
-  render: ({ classModifier, ...args }) => (
-    <ContentItemDuo classModifier={classModifier.join(" ")} {...args} />
-  ),
-  args: verticalArgs,
+  args: {
+    position: "vertical",
+    label:
+      "Collision of motor vehicles (car, electric scooter, etc.) or crash of aircraft (planes, helicopters, etc.) with an identified owner of the other vehicle?",
+    value: "Fires, explosions, implosions, smoke, and lightning",
+  },
   argTypes: {
-    classModifier: {
-      options: ["large"],
-      control: { type: "multi-select" },
-      defaultValue: [],
-    },
+    size: { control: false },
   },
 };
