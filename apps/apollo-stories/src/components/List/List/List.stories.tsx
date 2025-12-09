@@ -33,6 +33,9 @@ export const Default: StoryObj<typeof List> = {
         subtitle="Modifier le profil"
       />,
       <ClickItem key={2} icon={trashIcon} subtitle="Supprimer le profil" />,
+      null,
+      undefined,
+      25,
     ],
   },
 };

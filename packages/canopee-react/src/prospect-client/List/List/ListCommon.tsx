@@ -1,11 +1,4 @@
-import {
-  Children,
-  ComponentProps,
-  ComponentType,
-  ReactElement,
-  isValidElement,
-  useMemo,
-} from "react";
+import { Children, ComponentProps, ComponentType, isValidElement } from "react";
 import {
   CardCommon as Card,
   type CardCommonProps,
@@ -21,20 +14,10 @@ export const ListCommon = ({
   children,
   CardComponent,
   ...listProps
-}: ListPropsCommon) => {
-  const validChildren = useMemo<ReactElement[]>(
-    () =>
-      (
-        Children.map(children, (child) => isValidElement(child) && child) ?? []
-      ).filter(Boolean),
-    [children],
-  );
-
-  return (
-    <CardComponent as="ul" {...listProps}>
-      {Children.map(validChildren, (child) => (
-        <li key={child.key}>{child}</li>
-      ))}
-    </CardComponent>
-  );
-};
+}: ListPropsCommon) => (
+  <CardComponent as="ul" {...listProps}>
+    {Children.toArray(children).map(
+      (child) => isValidElement(child) && <li key={child.key}>{child}</li>,
+    )}
+  </CardComponent>
+);
