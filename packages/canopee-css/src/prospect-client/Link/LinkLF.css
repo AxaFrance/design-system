@@ -3,7 +3,7 @@
 .af-link {
   --link-font-weight: 400;
   --link-text-color-default: var(--color-axa);
-  --underline-offset: 0%;
+  --underline-offset: 10%;
   --link-font-size: 14;
 
   @media (--desktop-small) {
