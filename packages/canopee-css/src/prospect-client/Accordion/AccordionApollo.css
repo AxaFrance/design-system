@@ -46,3 +46,18 @@
     );
   }
 }
+
+.af-apollo-accordion--contextual-info {
+  --accordion-title-text-color: var(--axa-blue-100);
+  --accordion-background-color: var(--axa-blue-4);
+}
+
+.af-apollo-accordion--contextual-warning {
+  --accordion-title-text-color: var(--red-alert-100);
+  --accordion-background-color: var(--axa-red-4);
+}
+
+.af-apollo-accordion--contextual-inverse {
+  --accordion-title-text-color: var(--white);
+  --accordion-background-color: var(--axa-blue-100);
+}

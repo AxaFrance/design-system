@@ -103,8 +103,17 @@
 .af-apollo-accordion--contextual-info,
 .af-apollo-accordion--contextual-warning,
 .af-apollo-accordion--contextual-inverse {
-  border-radius: var(--accordion-border-radius);
+  border-radius: var(--radius-20);
   background-color: var(--accordion-background-color);
+
+  &.af-apollo-accordion[open] > .af-apollo-accordion__summary {
+    border-bottom: none;
+  }
+
+  &[open]::details-content {
+    display: grid;
+    padding: calc(16 / var(--font-size-base) * 1rem);
+  }
 
   .af-apollo-accordion__summary .af-accordion__subtitle {
     display: none;

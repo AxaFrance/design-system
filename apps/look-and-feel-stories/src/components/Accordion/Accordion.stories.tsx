@@ -149,3 +149,42 @@ export const AccordionSecondaryPlainStory: StoryObj<
     variant: { control: "text" },
   },
 };
+
+export const AccordionContextualInfoStory: StoryObj<
+  ComponentProps<typeof Accordion>
+> = {
+  name: "Accordion Contextual Info",
+  render: (args) => <Accordion {...args} />,
+  args: {
+    ...commonArgs,
+    icon: bank,
+    variant: "contextual-info" as AccordionVariants,
+  },
+};
+
+export const AccordionContextualWarningStory: StoryObj<
+  ComponentProps<typeof Accordion>
+> = {
+  name: "Accordion Contextual Warning",
+  render: (args) => <Accordion {...args} />,
+  args: {
+    ...commonArgs,
+    icon: bank,
+    variant: "contextual-warning" as AccordionVariants,
+  },
+};
+
+export const AccordionContextualInverseStory: StoryObj<
+  ComponentProps<typeof Accordion>
+> = {
+  name: "Accordion Contextual Inverse",
+  render: (args) => <Accordion {...args} />,
+  args: {
+    ...commonArgs,
+    variant: "contextual-inverse" as AccordionVariants,
+    subtitle: "",
+    tagLabel: "",
+    info1: "",
+    info2: "",
+  },
+};
