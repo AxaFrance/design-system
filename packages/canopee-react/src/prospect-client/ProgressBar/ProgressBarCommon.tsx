@@ -2,11 +2,13 @@ import { useId, type ComponentProps, type ReactNode } from "react";
 
 type ProgressBarProps = ComponentProps<"progress"> & {
   label?: ReactNode;
+  showPercentage?: boolean;
 };
 
 export const ProgressBar = ({
   id,
   label,
+  showPercentage = false,
   className,
   ...props
 }: ProgressBarProps) => {
@@ -20,11 +22,16 @@ export const ProgressBar = ({
           {label}
         </label>
       )}
-      <progress
-        id={inputId}
-        className={["af-progress-bar", className].filter(Boolean).join(" ")}
-        {...props}
-      />
+      <div className="af-progress-bar__container" tabIndex={-1}>
+        <progress
+          id={inputId}
+          className={["af-progress-bar", className].filter(Boolean).join(" ")}
+          {...props}
+        />
+        {Boolean(showPercentage) && (
+          <span aria-hidden="true">{props.value} %</span>
+        )}
+      </div>
     </>
   );
 };
