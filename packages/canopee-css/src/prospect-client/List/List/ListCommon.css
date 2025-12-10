@@ -1,4 +1,4 @@
-ul.af-card {
+:is(ol, ul).af-card {
   list-style-type: none;
 
   @media (--desktop-small) {
@@ -6,7 +6,7 @@ ul.af-card {
   }
 }
 
-ul.af-card > li {
+:is(ol, ul).af-card > li {
   --list-item-separator-padding: 0rem;
 
   position: relative;
