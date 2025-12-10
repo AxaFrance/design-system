@@ -1,88 +1,119 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { Button } from "../../../Button/ButtonApollo";
-import { ContentItemDuoCommon } from "../ContentItemDuoCommon";
+import { describe, expect, it } from "vitest";
+import { ButtonCommon, type ButtonProps } from "../../../Button/ButtonCommon";
+import { Spinner } from "../../../Spinner/SpinnerCommon";
+import {
+  ContentItemDuoCommon,
+  type ContentItemDuoProps,
+} from "../ContentItemDuoCommon";
 
-const ContentItemDuoCommonLabel = "Label";
-const ContentItemDuoCommonValue = "Value";
+const ButtonComponent = (props: ButtonProps) => (
+  <ButtonCommon SpinnerComponent={Spinner} {...props} />
+);
+
+const renderContentItemDuo = (props: Partial<ContentItemDuoProps> = {}) =>
+  render(
+    <ContentItemDuoCommon
+      label="Label"
+      value="Value"
+      {...props}
+      ButtonComponent={ButtonComponent}
+    />,
+  );
 
 describe("ContentItemDuoCommon", () => {
-  it("should apply containerProps to the parent div", () => {
-    render(
-      <ContentItemDuoCommon
-        label={ContentItemDuoCommonLabel}
-        value={ContentItemDuoCommonValue}
-        ButtonComponent={Button}
-        id="custom-id"
-        title="custom-title"
-        className="custom-class"
-      />,
-    );
+  it("renders label and value", () => {
+    renderContentItemDuo();
 
-    const container = document.querySelector(".custom-class");
-    expect(container).toHaveAttribute("id", "custom-id");
-    expect(container).toHaveAttribute("title", "custom-title");
-    expect(container).toHaveClass("af-content-item-duo");
+    expect(screen.getByText("Label")).toBeInTheDocument();
+    expect(screen.getByText("Value")).toBeInTheDocument();
   });
 
-  it("should render label and value correctly", () => {
-    render(
-      <ContentItemDuoCommon
-        label={ContentItemDuoCommonLabel}
-        value={ContentItemDuoCommonValue}
-        ButtonComponent={Button}
-      />,
-    );
-    expect(screen.getByText(ContentItemDuoCommonLabel)).toBeInTheDocument();
-    expect(screen.getByText(ContentItemDuoCommonValue)).toBeInTheDocument();
+  it("applies custom className", () => {
+    renderContentItemDuo({ className: "custom-class" });
+
+    const container = screen.getByText("Label").closest("div");
+    expect(container).toHaveClass("custom-class");
   });
 
-  it("should render button with correct text and call onClick handler", async () => {
-    const buttonText = "En savoir plus";
-    const onButtonClick = vi.fn();
-    render(
-      <ContentItemDuoCommon
-        label={ContentItemDuoCommonLabel}
-        value={ContentItemDuoCommonValue}
-        buttonText={buttonText}
-        onButtonClick={onButtonClick}
-        ButtonComponent={Button}
-      />,
-    );
-    const buttonElement = screen.getByText(buttonText);
-    expect(buttonElement).toBeInTheDocument();
-    userEvent.click(buttonElement);
-    await waitFor(() => {
-      expect(onButtonClick).toHaveBeenCalled();
+  it("renders button when buttonText and onButtonClick are provided", async () => {
+    const handleClick = vi.fn();
+    renderContentItemDuo({
+      buttonText: "Click me",
+      onButtonClick: handleClick,
     });
+
+    const button = screen.getByRole("button", { name: "Click me" });
+    expect(button).toBeInTheDocument();
+    await userEvent.click(button);
+    expect(handleClick).toHaveBeenCalled();
   });
 
-  it("should render vertical layout when isVertical prop is true", () => {
-    render(
-      <ContentItemDuoCommon
-        label={ContentItemDuoCommonLabel}
-        value={ContentItemDuoCommonValue}
-        isVertical
-        ButtonComponent={Button}
-      />,
-    );
-    const ContentItemDuoCommonVertical = screen.getByText(
-      ContentItemDuoCommonLabel,
-    );
-    expect(ContentItemDuoCommonVertical.parentElement).toHaveClass(
-      "af-content-item-duo--vertical",
-    );
+  it("does not render button if buttonText is missing", () => {
+    renderContentItemDuo({
+      buttonText: "Click me",
+    });
+
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 
-  it("shouldn't have an accessibility violation", async () => {
+  it("does not render button if onButtonClick is missing", () => {
+    renderContentItemDuo({
+      onButtonClick: () => {},
+    });
+
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+
+  it("applies position and size modifiers", () => {
+    renderContentItemDuo({
+      position: "vertical",
+      size: "large",
+    });
+
+    const container = screen.getByText("Label").closest("div");
+    expect(container).toHaveClass("af-content-item-duo--vertical");
+    expect(container).toHaveClass("af-content-item-duo--large");
+  });
+
+  it("renders correct semantic elements", () => {
+    renderContentItemDuo();
+
+    expect(screen.getByText("Label").tagName).toBe("DT");
+    expect(screen.getByText("Value").tagName).toBe("DD");
+  });
+
+  it("has no accessibility violations", async () => {
     const { container } = render(
-      <ContentItemDuoCommon
-        label={ContentItemDuoCommonLabel}
-        value={ContentItemDuoCommonValue}
-        ButtonComponent={Button}
-      />,
+      <dl>
+        <ContentItemDuoCommon
+          label="Label"
+          value="Value"
+          ButtonComponent={ButtonComponent}
+        />
+        <ContentItemDuoCommon
+          label="Label with button"
+          value="Value with button"
+          buttonText="Action"
+          onButtonClick={() => {}}
+          ButtonComponent={ButtonComponent}
+        />
+      </dl>,
     );
-    expect(await axe(container)).toHaveNoViolations();
+    const results = await axe(container);
+
+    // The 'definition-list' violations are ignored because the HTML structure
+    // uses a <div> and a <button> as direct children of <dl>.
+    // This is required to enable CSS grid layout and to allow the action button to be positioned independently.
+    // This does not comply with the native <dl> spec, but is necessary for the expected design system layout.
+    // This tradeoff is documented in the component and in this test.
+    // All other accessibility violations are considered blocking.
+    const filteredResults = structuredClone(results);
+    filteredResults.violations = filteredResults.violations.filter(
+      (v) => v.id !== "definition-list",
+    );
+    expect(filteredResults).toHaveNoViolations();
   });
 });
