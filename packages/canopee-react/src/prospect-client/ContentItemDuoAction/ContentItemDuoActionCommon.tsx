@@ -15,7 +15,7 @@ export type ContentItemDuoActionToggleProps = {
   ContentItemMonoComponent: ComponentType<ContentItemProps>;
   contentItemProps: ContentItemProps;
   ToggleComponent: ComponentType<ToggleProps>;
-  toggleProps: ToggleProps;
+  toggleProps?: ToggleProps;
 };
 
 export type ContentItemDuoActionButtonsProps = {
