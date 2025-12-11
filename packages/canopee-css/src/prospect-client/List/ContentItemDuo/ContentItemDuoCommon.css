@@ -13,7 +13,6 @@
 
   .af-content-item-duo__label {
     grid-area: label;
-    font-family: var(--content-item-duo-font-family);
     font-size: calc(
       var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
     );
@@ -25,7 +24,6 @@
   .af-content-item-duo__value {
     grid-area: value;
     justify-self: var(--content-item-duo-value-justify);
-    font-family: var(--content-item-duo-font-family);
     font-size: calc(
       var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
     );
