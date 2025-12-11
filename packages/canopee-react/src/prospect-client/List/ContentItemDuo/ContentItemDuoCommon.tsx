@@ -38,7 +38,7 @@ export const ContentItemDuoCommon = ({
   const componentClassName = getClassName({
     baseClassName: "af-content-item-duo",
     className,
-    modifiers: [position, size],
+    modifiers: [position, size === "small" && size],
   });
 
   return (

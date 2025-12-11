@@ -67,7 +67,29 @@ describe("ContentItemDuoCommon", () => {
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 
-  it("applies position and size modifiers", () => {
+  it("applies only position modifier on horizontal large", () => {
+    renderContentItemDuo({
+      position: "horizontal",
+      size: "large",
+    });
+
+    const container = screen.getByText("Label").closest("div");
+    expect(container).toHaveClass("af-content-item-duo--horizontal");
+    expect(container).not.toHaveClass("af-content-item-duo--large");
+  });
+
+  it("applies position and size modifiers on horizontal small", () => {
+    renderContentItemDuo({
+      position: "horizontal",
+      size: "small",
+    });
+
+    const container = screen.getByText("Label").closest("div");
+    expect(container).toHaveClass("af-content-item-duo--horizontal");
+    expect(container).toHaveClass("af-content-item-duo--small");
+  });
+
+  it("applies only position modifiers on vertical", () => {
     renderContentItemDuo({
       position: "vertical",
       size: "large",
@@ -75,7 +97,7 @@ describe("ContentItemDuoCommon", () => {
 
     const container = screen.getByText("Label").closest("div");
     expect(container).toHaveClass("af-content-item-duo--vertical");
-    expect(container).toHaveClass("af-content-item-duo--large");
+    expect(container).not.toHaveClass("af-content-item-duo--large");
   });
 
   it("renders correct semantic elements", () => {
