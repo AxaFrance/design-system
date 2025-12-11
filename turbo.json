@@ -21,6 +21,18 @@
             "persistent": true,
             "cache": false
         },
+        "dev:client": {
+            "persistent": true,
+            "cache": false
+        },
+        "dev:prospect": {
+            "persistent": true,
+            "cache": false
+        },
+        "dev:distributeur": {
+            "persistent": true,
+            "cache": false
+        },
         "lint": {
             "dependsOn": [
                 "^check-types"
