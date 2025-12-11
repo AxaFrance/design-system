@@ -37,7 +37,7 @@
     justify-self: var(--content-item-duo-button-justify);
   }
 
-  @media (--tablet) {
+  @media (--desktop-small) {
     --content-item-duo-column-gap: 40;
     --content-item-duo-text-font-size: 18;
   }
