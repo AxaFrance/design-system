@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
 const meta: Meta<typeof ContentItemDuo> = {
-  title: "Components/List/ContentItemDuo",
+  title: "Components/ContentItemDuo",
   component: ContentItemDuo,
   args: {
     label: "Label",
@@ -12,12 +12,14 @@ const meta: Meta<typeof ContentItemDuo> = {
   },
   argTypes: {
     className: { control: "text" },
+    classModifier: { control: "text" },
     position: {
       options: ["horizontal", "vertical"],
       control: {
         type: "select",
       },
     },
+    isVertical: { control: "boolean" },
     size: {
       options: ["small", "large"],
       control: {

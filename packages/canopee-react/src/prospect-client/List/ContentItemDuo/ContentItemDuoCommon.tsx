@@ -17,6 +17,10 @@ export type ContentItemDuoProps = {
   value: ReactNode;
   buttonText?: string;
   onButtonClick?: () => void;
+  /** @deprecated Use `position` instead */
+  isVertical?: boolean;
+  /** @deprecated Use `size` or `className` instead */
+  classModifier?: string;
 } & ContentItemDuoPositions &
   ComponentProps<"div">;
 
@@ -30,6 +34,8 @@ export const ContentItemDuoCommon = ({
   position = "horizontal",
   size = "large",
   className,
+  classModifier,
+  isVertical,
   buttonText,
   onButtonClick,
   ButtonComponent,
@@ -38,7 +44,11 @@ export const ContentItemDuoCommon = ({
   const componentClassName = getClassName({
     baseClassName: "af-content-item-duo",
     className,
-    modifiers: [position, size === "small" && size],
+    modifiers: [
+      isVertical ? "vertical" : position,
+      size === "small" && size,
+      classModifier,
+    ],
   });
 
   return (

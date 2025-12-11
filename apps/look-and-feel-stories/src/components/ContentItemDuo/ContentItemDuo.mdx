@@ -11,13 +11,13 @@ The `ContentItemDuo` component displays a label and a value, optionally with an 
 >
 > `ContentItemDuo` should be used inside a `<dl>` (description list) container to ensure semantically correct HTML structure. Each `ContentItemDuo` renders a `<dt>`/`<dd>` pair, making it suitable for lists of definitions or information.
 
-### Semantic usage example with List component
+### Semantic usage example
 
 ```tsx
-import { ContentItemDuo, List } from "@axa-fr/canopee-react/client";
+import { ContentItemDuo } from "@axa-fr/canopee-react/prospect";
 
 const ContentItemDuoList = () => (
-  <List as="dl">
+  <dl>
     <ContentItemDuo label="Name" value="John Doe" />
     <ContentItemDuo label="Age" value="32 years" />
     <ContentItemDuo
@@ -26,7 +26,7 @@ const ContentItemDuoList = () => (
       buttonText="Details"
       onButtonClick={() => console.log("Clicked!")}
     />
-  </List>
+  </dl>
 );
 ```
 
@@ -84,6 +84,16 @@ const ContentItemDuoList = () => (
     </tr>
     <tr>
       <td>
+        <code>isVertical</code>
+      </td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        <strong>DEPRECATED</strong> - Use <code>position</code> instead.
+      </td>
+    </tr>
+    <tr>
+      <td>
         <code>size</code>
       </td>
       <td>"small" | "large"</td>
@@ -97,6 +107,17 @@ const ContentItemDuoList = () => (
       <td>string</td>
       <td>-</td>
       <td>Custom CSS class for the container.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>classModifier</code>
+      </td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        <strong>DEPRECATED</strong> - Use <code>size</code> or{" "}
+        <code>className</code> instead.
+      </td>
     </tr>
     <tr>
       <td>

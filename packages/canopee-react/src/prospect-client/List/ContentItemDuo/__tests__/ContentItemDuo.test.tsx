@@ -31,11 +31,31 @@ describe("ContentItemDuoCommon", () => {
     expect(screen.getByText("Value")).toBeInTheDocument();
   });
 
+  it("applies vertical modifier when isVertical is true", () => {
+    renderContentItemDuo({ isVertical: true });
+    const container = screen.getByText("Label").closest("div");
+    expect(container).toHaveClass("af-content-item-duo--vertical");
+    expect(container).not.toHaveClass("af-content-item-duo--horizontal");
+  });
+
+  it("does not apply vertical modifier when isVertical is false", () => {
+    renderContentItemDuo({ isVertical: false });
+    const container = screen.getByText("Label").closest("div");
+    expect(container).toHaveClass("af-content-item-duo--horizontal");
+    expect(container).not.toHaveClass("af-content-item-duo--vertical");
+  });
+
   it("applies custom className", () => {
     renderContentItemDuo({ className: "custom-class" });
 
     const container = screen.getByText("Label").closest("div");
     expect(container).toHaveClass("custom-class");
+  });
+
+  it("applies custom classModifier", () => {
+    renderContentItemDuo({ classModifier: "custom-modifier" });
+    const container = screen.getByText("Label").closest("div");
+    expect(container).toHaveClass("af-content-item-duo--custom-modifier");
   });
 
   it("renders button when buttonText and onButtonClick are provided", async () => {
