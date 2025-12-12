@@ -1,4 +1,4 @@
-import { ContentItemDuo } from "@axa-fr/canopee-react/client";
+import { ContentItemDuo } from "@axa-fr/canopee-react/prospect";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
