@@ -1,1 +1,0 @@
-import{j as e}from"./index-C-iqcyhV.js";import{g as t}from"./ListLF-BJzeRucZ.js";const c=({as:s,children:a,className:o,...m})=>{const r=s||"div";return e.jsx(r,{className:t({baseClassName:"af-card",className:o}),...m,children:a})};export{c as C};
