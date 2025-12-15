@@ -5,7 +5,7 @@ import { ClickIcon } from "../ClickIcon/ClickIconCommon";
 import { CardCommon } from "../Card/CardCommon";
 
 export type LevelSelectorProps = {
-  title?: string;
+  title: string;
   description?: string;
   value?: number;
   stepsCount?: 1 | 2 | 3;

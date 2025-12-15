@@ -5,6 +5,7 @@ import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import { CardCommon } from "../../Card/CardCommon";
 
 const defaultProps = {
+  title: "Level Selector title",
   stepsCount: 3 as const,
   ClickIconComponent: ClickIcon,
   CardComponent: CardCommon,
@@ -16,8 +17,12 @@ describe("<LevelSelectorCommon />", () => {
       render(<LevelSelectorCommon {...defaultProps} />);
 
       expect(screen.getByRole("radiogroup")).toBeInTheDocument();
-      expect(screen.getByLabelText("Diminuer le niveau")).toBeInTheDocument();
-      expect(screen.getByLabelText("Augmenter le niveau")).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "Diminuer le niveau" }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "Augmenter le niveau" }),
+      ).toBeInTheDocument();
       expect(screen.getAllByRole("radio")).toHaveLength(3);
     });
 
@@ -143,9 +148,10 @@ describe("<LevelSelectorCommon />", () => {
 
       render(<LevelSelectorCommon {...props} />);
 
+      const element = screen.getByText(props.description);
       const radios = screen.getAllByRole("radio");
       radios.forEach((radio) => {
-        expect(radio).toHaveAttribute("aria-describedby");
+        expect(radio).toHaveAttribute("aria-describedby", element.id);
       });
 
       expect(screen.getByText("Select your level")).toHaveAttribute(
