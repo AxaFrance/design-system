@@ -1,0 +1,12 @@
+@import "./LevelSelectorCommon.css";
+
+.af-level-selector {
+  --level-font-family: var(--font-family-sans-serif);
+  --level-selector-color: var(--color-axa);
+  --level-selector-title-color: var(--color-gray-900);
+  --level-selector-outline-color: var(--color-blue-400);
+  --level-selector-description-font-size: calc(
+    16 / var(--font-size-base) * 1rem
+  );
+  --level-selector-description-color: var(--color-gray-700);
+}
