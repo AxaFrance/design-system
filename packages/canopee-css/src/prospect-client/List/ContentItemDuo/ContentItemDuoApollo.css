@@ -1,9 +1,6 @@
 @import "./ContentItemDuoCommon.css";
 
-.af-content-item-duo__label {
-  --content-duo-label-color: var(--neutral-80);
-}
-
-.af-content-item-duo__value {
-  --content-duo-value-color: var(--neutral-100);
+.af-content-item-duo {
+  --content-item-duo-label-color: var(--neutral-80);
+  --content-item-duo-value-color: var(--neutral-100);
 }
