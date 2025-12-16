@@ -107,6 +107,11 @@ export {
   type MessageVariants,
 } from "./prospect-client/Message/MessageLF";
 export {
+  MessageBar,
+  messageBarVariants,
+  type MessageBarVariants,
+} from "./prospect-client/MessageBar/MessageBarLF";
+export {
   Modal,
   ModalCore,
   ModalCoreBody,

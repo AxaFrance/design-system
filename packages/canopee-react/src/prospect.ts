@@ -99,6 +99,11 @@ export {
   type MessageVariants,
 } from "./prospect-client/Message/MessageApollo";
 export {
+  MessageBar,
+  messageBarVariants,
+  type MessageBarVariants,
+} from "./prospect-client/MessageBar/MessageBarApollo";
+export {
   Modal,
   ModalCore,
   ModalCoreBody,
