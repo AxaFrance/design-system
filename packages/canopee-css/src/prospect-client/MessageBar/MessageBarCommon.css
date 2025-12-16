@@ -1,0 +1,46 @@
+.af-message {
+  display: flex;
+  padding: calc(16 / var(--font-size-base) * 1rem);
+  border: 1px solid var(--message-border-color);
+  border-radius: var(--message-border-radius);
+  gap: calc(16 / var(--font-size-base) * 1rem);
+  background-color: var(--message-bg-color);
+}
+
+.af-message__icon {
+  aspect-ratio: 1;
+
+  --icon-fill: var(--message-icon-color);
+}
+
+.af-message__title {
+  margin: 0;
+  font-size: calc(
+    var(--message-title-font-size) / var(--font-size-base) * 1rem
+  );
+  font-weight: 600;
+  line-height: 1.5rem;
+  color: var(--message-title-color);
+}
+
+.af-message__content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  row-gap: calc(4 / var(--font-size-base) * 1rem);
+  font-size: calc(
+    var(--message-content-font-size) / var(--font-size-base) * 1rem
+  );
+  font-weight: 400;
+  line-height: calc(22.5 / var(--font-size-base) * 1rem);
+  color: var(--message-content-color);
+}
+
+.af-message__action {
+  display: flex;
+  padding-top: calc(
+    var(--message-action-padding-top) / var(--font-size-base) * 1rem
+  );
+  justify-content: end;
+  text-align: right;
+}

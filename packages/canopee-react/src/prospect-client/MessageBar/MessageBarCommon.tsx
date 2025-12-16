@@ -1,0 +1,78 @@
+import type {
+  ComponentPropsWithoutRef,
+  ComponentType,
+  ReactElement,
+  ReactNode,
+} from "react";
+import type { ButtonProps } from "../Button/ButtonCommon";
+import type { Icon } from "../Icon/IconCommon";
+import { Link } from "../Link/LinkCommon";
+import { iconByVariant, messageBarVariants } from "./constants";
+import { getAriaRole } from "./MessageBar.helpers";
+import type { MessageBarVariants } from "./types";
+
+type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
+
+export type MessageBarProps = {
+  /** Message variant (validation, error, warning, information, neutral) */
+  variant: MessageBarVariants;
+  /** Title displayed in the message */
+  title?: string;
+  /** Main content of the message */
+  children?: ReactNode;
+  /** Action (link or button) displayed on the right side of the message */
+  action?: ReactElement<typeof Link | ComponentType<ButtonProps>>;
+  /** Icon size in pixels */
+  iconSize?: number;
+  /** HTML heading level used for the title */
+  heading?: Headings;
+} & ComponentPropsWithoutRef<"section">;
+
+type MessageBarPropsWithComponents = MessageBarProps & {
+  IconComponent: typeof Icon;
+};
+
+const defaultClassName = "af-message";
+
+export const MessageBarCommon = ({
+  variant = messageBarVariants.information,
+  className,
+  title,
+  children,
+  action,
+  iconSize = 24,
+  heading: Heading = "h4",
+  IconComponent,
+  ...sectionProps
+}: MessageBarPropsWithComponents) => {
+  const role = getAriaRole(variant);
+
+  return (
+    <section
+      className={[
+        defaultClassName,
+        variant && `${defaultClassName}--${variant}`,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      role={role}
+      {...sectionProps}
+    >
+      <IconComponent
+        src={iconByVariant[variant]}
+        width={iconSize}
+        height={iconSize}
+        className="af-message__icon"
+        role="presentation"
+      />
+      <div className="af-message__content">
+        {title ? (
+          <Heading className="af-message__title">{title}</Heading>
+        ) : null}
+        {children}
+        {action ? <div className="af-message__action">{action}</div> : null}
+      </div>
+    </section>
+  );
+};
