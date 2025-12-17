@@ -1,6 +1,6 @@
 @import "./InputTextAtomCommon.css";
 
-.af-form__input-variant {
+.af-form__input-atom-container {
   --input-border-color: var(--color-gray-700);
   --input-border-radius: var(--radius-4);
   --input-bg-color: var(--color-white);
