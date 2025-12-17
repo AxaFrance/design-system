@@ -410,6 +410,7 @@
   border: 1px solid var(--input-border-color);
   background-color: var(--white);
   fill: none;
+  aspect-ratio: 1 / 1;
 }
 
 .af-form__checkbox .af-form__indicator .ok-icon,
