@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/distributeur/Form/Radio/RadioCardGroup.css";
 
-import { ComponentProps, useId } from "react";
+import { ComponentProps, ReactNode, useId } from "react";
 import classNames from "classnames";
 import type { Option } from "../core";
 import { Svg } from "../../Svg";
@@ -8,8 +8,10 @@ import { Svg } from "../../Svg";
 const DEFAULT_CLASSNAME = "af-card";
 const DEFAULT_CONTAINER_CLASSNAME = "af-form__radio-card-group";
 
+type RadioOptions = Option & { action?: ReactNode };
+
 type Props = ComponentProps<"input"> & {
-  options: Option[];
+  options: RadioOptions[];
   orientation?: "horizontal" | "vertical";
 };
 
@@ -42,8 +44,9 @@ export const RadioCardGroup = ({
           label,
           disabled: optionDisabled,
           value: optionValue,
+          action,
           ...otherOptionProps
-        }: Option) => {
+        }) => {
           const newName = name || optionName || idGenerated;
           const allClassNames = classNames([
             DEFAULT_CLASSNAME,
@@ -53,19 +56,22 @@ export const RadioCardGroup = ({
 
           const isDisabled = disabled || optionDisabled;
           return (
-            <label key={optionValue} className={allClassNames}>
-              <input
-                {...otherProps}
-                type="radio"
-                name={newName}
-                disabled={isDisabled}
-                checked={isDisabled ? false : optionValue === value}
-                value={optionValue}
-                {...otherOptionProps}
-              />
-              {typeof icon === "string" ? <Svg src={icon} /> : icon}
-              {label}
-            </label>
+            <div key={optionValue}>
+              <label key={optionValue} className={allClassNames}>
+                <input
+                  {...otherProps}
+                  type="radio"
+                  name={newName}
+                  disabled={isDisabled}
+                  checked={isDisabled ? false : optionValue === value}
+                  value={optionValue}
+                  {...otherOptionProps}
+                />
+                {typeof icon === "string" ? <Svg src={icon} /> : icon}
+                {label}
+              </label>
+              {action}
+            </div>
           );
         },
       )}
