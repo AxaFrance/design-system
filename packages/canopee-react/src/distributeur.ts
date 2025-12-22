@@ -114,10 +114,6 @@ export {
   type MessageProps,
   type MessageVariants,
 } from "./distributeur/Messages/Message";
-export {
-  type MessageBarProps,
-  type MessageBarVariants,
-} from "./distributeur/MessageBar/MessageBar";
 export * from "./distributeur/Popover";
 export * from "./distributeur/Table";
 export { Alert, Message };

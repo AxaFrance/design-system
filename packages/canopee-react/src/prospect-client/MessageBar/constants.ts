@@ -1,25 +1,9 @@
-import validationIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
-import infoIcon from "@material-symbols/svg-400/outlined/emoji_objects-fill.svg";
-import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
-import neutralIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
-import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
 import type { MessageBarVariants } from "./types";
 
 export const messageBarVariants: Record<
   MessageBarVariants,
   MessageBarVariants
 > = {
-  validation: "validation",
-  error: "error",
-  warning: "warning",
-  information: "information",
-  neutral: "neutral",
-};
-
-export const iconByVariant: Record<MessageBarVariants, string> = {
-  validation: validationIcon,
-  error: errorIcon,
-  neutral: neutralIcon,
-  warning: warningIcon,
-  information: infoIcon,
+  red: "red",
+  blue: "blue",
 };

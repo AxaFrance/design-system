@@ -1,6 +1,1 @@
-export type MessageBarVariants =
-  | "validation"
-  | "error"
-  | "warning"
-  | "information"
-  | "neutral";
+export type MessageBarVariants = "blue" | "red";
