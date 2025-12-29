@@ -11,6 +11,7 @@ const DateInput = forwardRef<HTMLInputElement, Props>(
   ({ children, ...otherProps }, inputRef) => {
     return (
       <Field
+        classNameSuffix="date"
         {...otherProps}
         renderInput={({
           id,
