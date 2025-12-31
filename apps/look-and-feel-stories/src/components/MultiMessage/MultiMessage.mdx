@@ -1,0 +1,57 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as MultiMessageStories from "./MultiMessage.stories";
+
+<Meta of={MultiMessageStories} name="MultiMessage" />
+
+# MultiMessage
+
+To use the multi-message import it like that:
+
+```tsx
+import { MultiMessage } from "@axa-fr/canopee-react/client";
+
+const MyComponent = () => {
+  const notifications = [
+    { key: "Notification 1", value: "First important message" },
+    { key: "Notification 2", value: "Second important message" },
+    { key: "Notification 3", value: "Third important message" },
+  ];
+
+  return <MultiMessage notifications={notifications} />;
+};
+```
+
+## Description
+
+The `MultiMessage` component allows you to display multiple notifications with navigation controls. When there's only one notification, it displays as a simple message without navigation controls. When there are multiple notifications, users can navigate between them using previous/next buttons and see their current position.
+
+## Heading
+
+You can set the title level with `heading` prop : "h2" | "h3" | "h4" | "h5" | "h6", the default is "h2".
+
+```tsx
+<MultiMessage notifications={notifications} heading="h3" />
+```
+
+## Customization
+
+You can customize the labels for accessibility:
+
+```tsx
+<MultiMessage
+  notifications={notifications}
+  previousLabel="Previous notification"
+  nextLabel="Next notification"
+  separatorText="of"
+/>
+```
+
+## Playground
+
+<Canvas of={MultiMessageStories.Playground}></Canvas>
+
+<Controls of={MultiMessageStories.Playground} />
+
+## Examples
+
+<Canvas of={MultiMessageStories.All} layout="fullscreen" />

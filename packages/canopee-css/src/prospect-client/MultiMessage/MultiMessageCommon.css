@@ -1,0 +1,35 @@
+.af-multimessage {
+  margin-block: calc(32 / var(--font-size-base) * 1rem);
+}
+
+.af-multimessage__wrapper {
+  position: relative;
+}
+
+.af-multimessage__message {
+  padding-bottom: calc(80 / var(--font-size-base) * 1rem);
+}
+
+.af-multimessage__controls {
+  position: absolute;
+  right: calc(16 / var(--font-size-base) * 1rem);
+  bottom: calc(16 / var(--font-size-base) * 1rem);
+  display: flex;
+  padding: calc(8 / var(--font-size-base) * 1rem);
+  border: 1px solid var(--multimessage-controls-border-color);
+  border-radius: 100vmax;
+  align-items: center;
+  gap: calc(16 / var(--font-size-base) * 1rem);
+  background-color: var(--multimessage-controls-bg-color);
+
+  @media (width < 768px) {
+    right: calc(8 / var(--font-size-base) * 1rem);
+    bottom: calc(8 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-multimessage__counter {
+  font-size: calc(16 / var(--font-size-base) * 1rem);
+  text-align: center;
+  color: var(--multimessage-counter-color);
+}
