@@ -1,0 +1,7 @@
+@import "./MultiMessageCommon.css";
+
+.af-multimessage {
+  --multimessage-controls-bg-color: var(--color-white);
+  --multimessage-controls-border-color: var(--color-gray-400);
+  --multimessage-counter-color: var(--color-gray-900);
+}
