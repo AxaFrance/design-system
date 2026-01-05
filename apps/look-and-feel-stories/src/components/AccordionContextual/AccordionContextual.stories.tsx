@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { AccordionContextual } from "@axa-fr/canopee-react/client";
 import { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
+import "./AccordionContextual.story.scss";
 
 const meta: Meta<typeof AccordionContextual> = {
   component: AccordionContextual,
@@ -11,7 +12,7 @@ const meta: Meta<typeof AccordionContextual> = {
 export default meta;
 
 const commonArgs = {
-  variant: "contextual-info",
+  variant: "info",
   title: "Titre onglet",
   children: (
     <>
@@ -53,11 +54,15 @@ export const AccordionContextualInfoStory: StoryObj<
   ComponentProps<typeof AccordionContextual>
 > = {
   name: "Accordion Contextual Info",
-  render: (args) => <AccordionContextual {...args} />,
+  render: (args) => (
+    <div className="af-apollo-accordion-contextual-info-demo-container">
+      <AccordionContextual {...args} />
+    </div>
+  ),
   args: {
     ...commonArgs,
     icon: bank,
-    variant: "contextual-info",
+    variant: "info",
   },
 };
 
@@ -65,11 +70,15 @@ export const AccordionContextualWarningStory: StoryObj<
   ComponentProps<typeof AccordionContextual>
 > = {
   name: "Accordion Contextual Warning",
-  render: (args) => <AccordionContextual {...args} />,
+  render: (args) => (
+    <div className="af-apollo-accordion-contextual-warning-demo-container">
+      <AccordionContextual {...args} />
+    </div>
+  ),
   args: {
     ...commonArgs,
     icon: bank,
-    variant: "contextual-warning",
+    variant: "warning",
   },
 };
 
@@ -77,9 +86,13 @@ export const AccordionContextualInverseStory: StoryObj<
   ComponentProps<typeof AccordionContextual>
 > = {
   name: "Accordion Contextual Inverse",
-  render: (args) => <AccordionContextual {...args} />,
+  render: (args) => (
+    <div className="af-apollo-accordion-contextual-inverse-demo-container">
+      <AccordionContextual {...args} />
+    </div>
+  ),
   args: {
     ...commonArgs,
-    variant: "contextual-inverse",
+    variant: "inverse",
   },
 };

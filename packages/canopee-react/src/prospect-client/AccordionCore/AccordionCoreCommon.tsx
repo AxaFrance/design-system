@@ -19,6 +19,8 @@ export type AccordionCoreProps = {
   isOpen?: boolean;
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: SummaryOnClick;
+  showArrowIconClass?: boolean;
+  arrowIconVariant?: IconProps["variant"];
 } & ComponentProps<"details">;
 
 export type AccordionPropsCommonProps = AccordionCoreProps & {
@@ -33,6 +35,8 @@ export const AccordionCoreCommon = ({
   isOpen = false,
   IconComponent,
   onClick,
+  showArrowIconClass = true,
+  arrowIconVariant,
   ...detailsProps
 }: AccordionPropsCommonProps) => {
   const handleSummaryClick = useCallback<SummaryOnClick>(
@@ -67,10 +71,14 @@ export const AccordionCoreCommon = ({
         <div
           className={getClassName({
             baseClassName: "af-accordion__arrow",
-            className: "af-click-icon",
+            className: showArrowIconClass ? "af-click-icon" : "",
           })}
         >
-          <IconComponent src={keyboardDown} role="presentation" />
+          <IconComponent
+            src={keyboardDown}
+            role="presentation"
+            variant={arrowIconVariant}
+          />
         </div>
       </summary>
       {children}

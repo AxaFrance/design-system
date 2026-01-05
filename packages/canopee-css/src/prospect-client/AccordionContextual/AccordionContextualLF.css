@@ -12,13 +12,17 @@
 }
 
 .af-apollo-accordion-contextual--info {
-  --accordion-title-text-color: var(--color-axa);
+  --accordion-contextual-title-text-color: var(--color-axa);
 }
 
 .af-apollo-accordion-contextual--warning {
-  --accordion-title-text-color: var(--color-red-700);
+  --accordion-contextual-title-text-color: var(--color-red-700);
 }
 
 .af-apollo-accordion-contextual--inverse {
-  --accordion-title-text-color: var(--color-white);
+  --accordion-contextual-title-text-color: var(--color-white);
+
+  & * {
+    color: var(--color-white);
+  }
 }

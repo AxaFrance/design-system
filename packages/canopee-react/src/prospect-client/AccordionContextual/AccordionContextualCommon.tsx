@@ -4,9 +4,9 @@ import type { IconProps } from "../Icon/IconCommon";
 import type { AccordionCoreProps } from "../AccordionCore/AccordionCoreCommon";
 
 export const accordionContextualVariants = {
-  "contextual-info": "info",
-  "contextual-warning": "warning",
-  "contextual-inverse": "inverse",
+  info: "info",
+  warning: "warning",
+  inverse: "inverse",
 } as const;
 
 export type AccordionContextualVariants =
@@ -24,14 +24,14 @@ type AccordionContextualCommonProps = AccordionContextualProps & {
 };
 
 const getIconVariant = (variant: AccordionContextualVariants) => {
-  if (variant === "info") return "info";
-  if (variant === "warning") return "warning";
-  if (variant === "inverse") return "inverse";
-  return "info";
+  if (variant === "info") return "primary";
+  if (variant === "warning") return "error";
+  if (variant === "inverse") return "secondary";
+  return undefined;
 };
 
 export const AccordionContextualCommon = ({
-  variant = accordionContextualVariants["contextual-info"],
+  variant = accordionContextualVariants.info,
   className,
   children,
   icon,
@@ -46,6 +46,8 @@ export const AccordionContextualCommon = ({
       modifiers: [variant],
       className,
     })}
+    showArrowIconClass={false}
+    arrowIconVariant={getIconVariant(variant)}
     summary={
       <>
         {icon ? (
