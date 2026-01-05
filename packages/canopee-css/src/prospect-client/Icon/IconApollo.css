@@ -36,3 +36,15 @@
     --icon-background-color: var(--neutral-5);
   }
 }
+
+.af-icon--success {
+  --icon-fill: var(--green-100);
+}
+
+.af-icon--error {
+  --icon-fill: var(--red-alert-100);
+}
+
+.af-icon--warning {
+  --icon-fill: var(--warning-100);
+}
