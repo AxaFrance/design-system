@@ -118,7 +118,44 @@ describe("VerticalStep", () => {
     expect(screen.queryByText("Contenu à droite")).toBeInTheDocument();
   });
 
-  it("ne doit pas avoir de violations d’accessibilité (axe)", async () => {
+  it("should not allow edit if readonly is true", async () => {
+    render(
+      <VerticalStep
+        title="title"
+        id="id"
+        stepMode="validated"
+        onEdit={setStepMode}
+        form={<p>Formulaire</p>}
+        restitution={<p>Restitution</p>}
+        contentRight="Contenu à droite"
+        readonly
+      />,
+    );
+
+    expect(
+      screen.queryByRole("button", { name: "Modifier l'étape title" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("should allow edit if readonly is false", async () => {
+    render(
+      <VerticalStep
+        title="title"
+        id="id"
+        stepMode="validated"
+        onEdit={setStepMode}
+        form={<p>Formulaire</p>}
+        restitution={<p>Restitution</p>}
+        contentRight="Contenu à droite"
+      />,
+    );
+
+    expect(
+      screen.queryByRole("button", { name: "Modifier l'étape title" }),
+    ).toBeInTheDocument();
+  });
+
+  it("ne doit pas avoir de violations d'accessibilité (axe)", async () => {
     const { container } = render(VerticalStepComponent("validated"));
     const results = await axe(container);
     expect(results).toHaveNoViolations();

@@ -2,7 +2,7 @@ import check from "@material-symbols/svg-400/sharp/check.svg";
 import edit from "@material-symbols/svg-400/sharp/edit-fill.svg";
 import lock from "@material-symbols/svg-400/sharp/lock-fill.svg";
 import classNames from "classnames";
-import { ReactNode } from "react";
+import { ReactNode, useId } from "react";
 import { Svg } from "../Svg";
 import { Title } from "../Title/Title";
 import type { VerticalStepMode } from "./types";
@@ -14,7 +14,7 @@ type Props = {
   /** The title of the step. */
   title: string;
   /** The id of the step, used for accessibility. It should be unique within the document. */
-  id: string;
+  id?: string;
   /** The mode of the step, can be "edited", "validated", or "locked". */
   stepMode: VerticalStepMode;
   /** The function to call when the edit button is clicked. */
@@ -33,26 +33,31 @@ type Props = {
   contentRight?: string;
   /** The aria-label for the additional content on the right side of the title. */
   contentRightAriaLabel?: string;
+  /** Add the section in read only mode by hiding edit button */
+  readonly?: boolean;
 };
 
 const defaultClassName = "af-vertical-step";
 
 export const VerticalStep = ({
   title,
-  id,
   stepMode,
   editButtonLabel = "Modifier",
   editButtonAriaLabel = `Modifier l'étape ${title}`,
   contentRightAriaLabel = `Contenu supplémentaire étape verticale ${title}`,
   onEdit,
+  id,
   form,
   restitution,
   showRestitution = true,
+  readonly = false,
   contentRight,
 }: Props) => {
   const isStepInEdition = stepMode === "edited";
   const isStepValidated = stepMode === "validated";
   const isStepLocked = stepMode === "locked";
+  const generatedId = useId();
+  const stepId = id ?? generatedId;
 
   return (
     <section
@@ -73,9 +78,9 @@ export const VerticalStep = ({
         {isStepInEdition ? <Svg role="presentation" src={edit} /> : null}
       </div>
       <Title
-        id={id}
+        id={stepId}
         contentLeft={
-          isStepValidated ? (
+          isStepValidated && !readonly ? (
             <Button
               aria-label={editButtonAriaLabel}
               onClick={onEdit}
