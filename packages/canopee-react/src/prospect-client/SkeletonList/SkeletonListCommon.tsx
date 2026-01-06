@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import type { ComponentType, PropsWithChildren } from "react";
 import type { SkeletonProps } from "../Skeleton/SkeletonCommon";
 import type { ListProps } from "../List/List/ListCommon";
@@ -7,7 +8,7 @@ export type SkeletonListProps = {
     lines?: number;
     grid: SkeletonProps["grid"];
   }[];
-  isLoading: boolean;
+  isLoading?: boolean;
   className?: string;
 } & PropsWithChildren;
 
@@ -25,10 +26,10 @@ export const SkeletonListCommon = ({
   SkeletonComponent,
 }: SkeletonListPropsCommon) =>
   isLoading
-    ? lists.map(({ lines = 1, grid }) => (
-        <ListComponent key={crypto.randomUUID()} className={className}>
-          {[...Array(lines).keys()].map(() => (
-            <SkeletonComponent key={crypto.randomUUID()} grid={grid} />
+    ? lists.map(({ lines = 1, grid }, linesIndex) => (
+        <ListComponent key={linesIndex} className={className}>
+          {[...Array(lines).keys()].map((_, lineIndex) => (
+            <SkeletonComponent key={lineIndex} grid={grid} />
           ))}
         </ListComponent>
       ))

@@ -20,8 +20,9 @@ describe("SkeletonList", () => {
 
     const skeletons = screen.getAllByRole("status");
     expect(skeletons.length).toEqual(10);
-    expect(skeletons[0]).toHaveAccessibleName();
+    expect(skeletons[0]).toHaveAccessibleName("Chargement");
     expect(skeletons[0]).toHaveClass("af-skeleton-container");
+    expect(screen.queryByText("Chargement terminé")).not.toBeInTheDocument();
   });
 
   it("should display component if not loading and not error", () => {
@@ -30,7 +31,8 @@ describe("SkeletonList", () => {
         <div>Chargement terminé</div>
       </SkeletonListCommon>,
     );
-
+    const skeletons = screen.queryAllByRole("status");
+    expect(skeletons.length).toEqual(0);
     expect(screen.getByText("Chargement terminé")).toBeInTheDocument();
   });
 });
