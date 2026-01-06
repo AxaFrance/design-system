@@ -19,7 +19,7 @@
     var(--message-title-font-size) / var(--font-size-base) * 1rem
   );
   font-weight: 600;
-  line-height: 1.5rem;
+  line-height: calc(24 / var(--font-size-base) * 1rem);
   color: var(--message-title-color);
 }
 
