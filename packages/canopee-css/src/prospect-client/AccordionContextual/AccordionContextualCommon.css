@@ -1,20 +1,19 @@
 .af-apollo-accordion-contextual .af-apollo-accordion__summary {
-  --accordion-column-gap: calc(12 / var(--font-size-base) * 1rem);
-  --accordion-gap: calc(4 / var(--font-size-base) * 1rem);
-  --accordion-row-gap: calc(2 / var(--font-size-base) * 1rem);
+  --accordion-contextual-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  --accordion-contextual-gap: calc(4 / var(--font-size-base) * 1rem);
+  --accordion-contextual-row-gap: calc(2 / var(--font-size-base) * 1rem);
   --spacing-summary-inline: calc(12 / var(--font-size-base) * 1rem);
-  --spacing-summary-block: calc(16 / var(--font-size-base) * 1rem);
 
   display: grid;
   padding: var(--spacing-summary-block) var(--spacing-summary-inline);
   grid-template-areas: var(--summary-areas);
   grid-template-columns: var(--summary-columns);
   align-items: center;
-  gap: var(--accordion-gap) var(--accordion-column-gap);
+  gap: var(--accordion-contextual-gap) var(--accordion-contextual-column-gap);
   font-family: var(--font-family-base);
 
   @media (--desktop-small) {
-    --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
+    --accordion-contextual-column-gap: calc(16 / var(--font-size-base) * 1rem);
   }
 
   .af-icon:first-child {
@@ -23,16 +22,16 @@
 
   .af-accordion__title {
     grid-area: title;
-    font-size: var(--accordion-title-font-size);
+    font-size: var(--accordion-contextual-title-font-size);
     font-weight: 600;
-    line-height: var(--accordion-line-height);
+    line-height: calc(20 / var(--font-size-base) * 1rem);
     color: var(--accordion-contextual-title-text-color);
   }
 }
 
 .af-apollo-accordion-contextual--info,
 .af-apollo-accordion-contextual--warning,
-.af-apollo-accordion-contextual--inverse {
+.af-apollo-accordion-contextual--reverse {
   --summary-areas: "icon title arrow";
   --summary-columns: min-content 1fr min-content;
 
@@ -48,5 +47,13 @@
   &[open]::details-content {
     display: grid;
     padding: calc(16 / var(--font-size-base) * 1rem);
+  }
+}
+
+.af-apollo-accordion-contextual--reverse {
+  --accordion-contextual-title-text-color: white;
+
+  & * {
+    color: white;
   }
 }

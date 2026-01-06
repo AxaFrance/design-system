@@ -1,13 +1,9 @@
 @import "./AccordionContextualCommon.css";
 
 .af-apollo-accordion {
-  --accordion-title-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --accordion-line-height: 1.25;
-  --accordion-column-gap: calc(12 / var(--font-size-base) * 1rem);
-
-  @media (--desktop-small) {
-    --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
-  }
+  --accordion-contextual-title-font-size: calc(
+    16 / var(--font-size-base) * 1rem
+  );
 }
 
 .af-apollo-accordion-contextual--info {
@@ -16,12 +12,4 @@
 
 .af-apollo-accordion-contextual--warning {
   --accordion-contextual-title-text-color: var(--red-alert-100);
-}
-
-.af-apollo-accordion-contextual--inverse {
-  --accordion-contextual-title-text-color: var(--white);
-
-  & * {
-    color: var(--white);
-  }
 }

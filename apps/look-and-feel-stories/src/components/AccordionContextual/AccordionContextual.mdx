@@ -23,7 +23,7 @@ When the user clicks on the summary to open or close the accordion you can use t
 import bankIcon from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 
 export const AccordionContextualComponent = () => (
-  <AccordionContextual icon={<Svg src={bankIcon} />} title="Titre onglet">
+  <AccordionContextual icon={bankIcon} title="Titre onglet">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
     tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
     massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
@@ -44,11 +44,11 @@ export const AccordionContextualComponent = () => (
 <Canvas of={AccordionContextualStories.AccordionContextualWarningStory} />
 <Controls of={AccordionContextualStories.AccordionContextualWarningStory} />
 
-### Accordion Contextual Inverse
+### Accordion Contextual Reverse
 
 ```tsx
 export const AccordionContextualComponent = () => (
-  <AccordionContextual variant="contextual-inverse" title="Titre onglet">
+  <AccordionContextual variant="reverse" title="Titre onglet">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
     tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
     massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
@@ -57,5 +57,5 @@ export const AccordionContextualComponent = () => (
 );
 ```
 
-<Canvas of={AccordionContextualStories.AccordionContextualInverseStory} />
-<Controls of={AccordionContextualStories.AccordionContextualInverseStory} />
+<Canvas of={AccordionContextualStories.AccordionContextualReverseStory} />
+<Controls of={AccordionContextualStories.AccordionContextualReverseStory} />

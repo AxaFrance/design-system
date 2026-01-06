@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { AccordionContextual } from "@axa-fr/canopee-react/prospect";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
-import "./AccordionContextual.story.scss";
 
 const meta: Meta<typeof AccordionContextual> = {
   component: AccordionContextual,
@@ -54,11 +53,7 @@ export const AccordionContextualInfoStory: StoryObj<
   ComponentProps<typeof AccordionContextual>
 > = {
   name: "Accordion Contextual Info",
-  render: (args) => (
-    <div className="af-apollo-accordion-contextual-info-demo-container">
-      <AccordionContextual {...args} />
-    </div>
-  ),
+  render: (args) => <AccordionContextual {...args} />,
   args: {
     ...commonArgs,
     icon: bank,
@@ -70,11 +65,7 @@ export const AccordionContextualWarningStory: StoryObj<
   ComponentProps<typeof AccordionContextual>
 > = {
   name: "Accordion Contextual Warning",
-  render: (args) => (
-    <div className="af-apollo-accordion-contextual-warning-demo-container">
-      <AccordionContextual {...args} />
-    </div>
-  ),
+  render: (args) => <AccordionContextual {...args} />,
   args: {
     ...commonArgs,
     icon: bank,
@@ -82,17 +73,22 @@ export const AccordionContextualWarningStory: StoryObj<
   },
 };
 
-export const AccordionContextualInverseStory: StoryObj<
+export const AccordionContextualReverseStory: StoryObj<
   ComponentProps<typeof AccordionContextual>
 > = {
-  name: "Accordion Contextual Inverse",
+  name: "Accordion Contextual Reverse",
   render: (args) => (
-    <div className="af-apollo-accordion-contextual-inverse-demo-container">
+    <div
+      style={{
+        backgroundColor: "var(--axa-blue-100, var(--color-axa-blue))",
+        padding: "0.5rem",
+      }}
+    >
       <AccordionContextual {...args} />
     </div>
   ),
   args: {
     ...commonArgs,
-    variant: "inverse",
+    variant: "reverse",
   },
 };
