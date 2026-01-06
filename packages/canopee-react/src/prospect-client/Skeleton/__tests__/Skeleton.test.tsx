@@ -17,7 +17,7 @@ describe("<Skeleton/>", () => {
     render(<Skeleton {...defaultProps} className="other" />);
     const skeleton = screen.getByRole("status");
     expect(skeleton).toHaveAccessibleName();
-    expect(skeleton).toHaveClass("other-container");
+    expect(skeleton).toHaveClass("other");
   });
 
   it.each`
@@ -32,7 +32,7 @@ describe("<Skeleton/>", () => {
       render(<Skeleton className="other" grid={grid} />);
       const skeleton = screen.getByRole("status");
       expect(skeleton).toHaveAccessibleName();
-      expect(skeleton).toHaveClass("other-container");
+      expect(skeleton).toHaveClass("other");
       expect(skeleton.children.length).toEqual(nbChild);
     },
   );

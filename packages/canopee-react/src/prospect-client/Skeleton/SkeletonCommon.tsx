@@ -1,5 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import type { ReactNode } from "react";
+import { getClassName } from "../utilities/getClassName";
+
+const CLASS_NAME = "af-skeleton";
 
 type isLoadingAndChildrenProps =
   | { children: ReactNode; isLoading: boolean }
@@ -8,18 +11,18 @@ type isLoadingAndChildrenProps =
 export type SkeletonProps = {
   className?: string;
   grid: number[][];
-  ariaBusy?: boolean;
-  ariaLabel?: string;
+  "aria-busy"?: boolean;
+  "aria-label"?: string;
   maxCols?: number;
   colGap?: number;
   rowGap?: number;
 } & isLoadingAndChildrenProps;
 
 export const Skeleton = ({
-  className = "af-skeleton",
+  className,
   grid = [],
-  ariaBusy = true,
-  ariaLabel = "Chargement",
+  "aria-busy": ariaBusy = true,
+  "aria-label": ariaLabel = "Chargement",
   maxCols = 12,
   colGap = 16,
   rowGap = 8,
@@ -28,10 +31,12 @@ export const Skeleton = ({
 }: SkeletonProps) =>
   isLoading ? (
     <div
-      className={`${className}-container`}
+      className={getClassName({
+        baseClassName: `${CLASS_NAME}-container`,
+        className,
+      })}
       aria-label={ariaLabel}
       role="status"
-      aria-live="polite"
       aria-busy={ariaBusy}
       style={
         {
@@ -46,7 +51,7 @@ export const Skeleton = ({
           <div
             key={`${indexRow}-${indexCol}`}
             style={{ "--col-size": colSize } as React.CSSProperties}
-            className={className}
+            className={CLASS_NAME}
           />
         )),
       )}
