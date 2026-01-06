@@ -1,0 +1,69 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as SkeletonListStories from "./SkeletonList.stories.tsx";
+
+<Meta of={SkeletonListStories} />
+
+## SkeletonList
+
+### Import
+
+```tsx
+import { SkeletonList } from "@axa-fr/canopee-react/client";
+```
+
+### Use
+
+```tsx
+const lists = [
+  { grid: [[3, 9]], lines: 10 },
+  { grid: [[3, 9]], lines: 3 },
+  { grid: [[6], [12], [12], [12]] },
+];
+const isLoading = true;
+
+<SkeletonList {...props} lists={lists} isLoading={isLoading}>
+  <List>
+    <ContentItemDuo label="Nom" value="Doe" size="large" />
+    <ContentItemDuo label="Prénom" value="John" size="large" />
+    <ContentItemDuo
+      label="Adresse"
+      value="4 allée du Châteaux blanc"
+      size="large"
+    />
+    <ContentItemDuo label="Ville" value="Wasquehal" size="large" />
+    <ContentItemDuo label="Code postal" value="59290" size="large" />
+    <ContentItemDuo label="Pays" value="France" size="large" />
+    <ContentItemDuo label="Date de naissance" value="01/01/1970" size="large" />
+    <ContentItemDuo label="Poste" value="Développeur" size="large" />
+    <ContentItemDuo label="Ancienneté" value="10 ans" size="large" />
+  </List>
+  <List>
+    <ContentItemDuo
+      label="Infos complémentaires"
+      value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      classModifier="large"
+    />
+    <ContentItemDuo
+      label="Infos complémentaires"
+      value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      classModifier="large"
+    />
+    <ContentItemDuo
+      label="Infos complémentaires"
+      value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      classModifier="large"
+    />
+  </List>
+  <List>
+    <ContentItemMono
+      title="Commentaire"
+      type="stick"
+      subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum neque aspernatur ullam officia deserunt temporibus sapiente nam reiciendis iste fugiat harum exercitationem placeat, explicabo aperiam ab nemo aliquam eaque ipsa!"
+    />
+  </List>
+</SkeletonList>;
+```
+
+<Canvas of={SkeletonListStories.Default} />
+
+<Controls of={SkeletonListStories.Default} />
