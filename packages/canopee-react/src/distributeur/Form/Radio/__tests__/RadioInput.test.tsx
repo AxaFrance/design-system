@@ -7,7 +7,11 @@ import { Option } from "../../core";
 const languageOptions = [
   { label: "French", value: "french" },
   { label: "English", value: "english" },
-  { label: "Spanish", value: "spanish" },
+  {
+    label: "Spanish",
+    value: "spanish",
+    action: <span>Modifier les informations</span>,
+  },
 ];
 
 describe("RadioInput", () => {
@@ -56,8 +60,10 @@ describe("RadioInput", () => {
       const radioGroup = screen.getByRole("radiogroup", { name: "Radio card" });
 
       const radioCards = within(radioGroup).getAllByRole("radio");
-      const radioGroupWrapper = radioCards[0].closest("div");
-      expect(radioGroupWrapper).toHaveClass("af-form__radio-card-group");
+      const radioGroupWrapper = radioCards[0].closest(
+        ".af-form__radio-card-group",
+      );
+      expect(radioGroupWrapper).toBeInTheDocument();
       expect(radioCards).toHaveLength(3);
     });
 
@@ -87,10 +93,10 @@ describe("RadioInput", () => {
       // Assert
       const radioGroup = screen.getByRole("radiogroup", { name: "Radio card" });
       const radioCards = within(radioGroup).getAllByRole("radio");
-      const radioGroupWrapper = radioCards[0].closest("div");
-      expect(radioGroupWrapper).toHaveClass(
-        "af-form__radio-card-group--horizontal",
+      const radioGroupWrapper = radioCards[0].closest(
+        ".af-form__radio-card-group--horizontal",
       );
+      expect(radioGroupWrapper).toBeInTheDocument();
     });
 
     it("should have custom class", () => {
@@ -127,6 +133,20 @@ describe("RadioInput", () => {
       expect(
         within(radioGroup).getByText("Child component"),
       ).toBeInTheDocument();
+    });
+
+    it("should have action element", () => {
+      // Act
+      render(
+        <RadioInput
+          mode="cardRadio"
+          options={languageOptions}
+          label="Radio card"
+        />,
+      );
+
+      // Assert
+      expect(screen.getByText("Modifier les informations")).toBeInTheDocument();
     });
 
     it("shouldn't have an accessibility violation", async () => {
