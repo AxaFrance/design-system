@@ -3,6 +3,7 @@
 @import "./Grid/Grid.css";
 @import "./Form/ItemMessage/ItemMessageApollo.css";
 @import "./Accordion/AccordionApollo.css";
+@import "./AccordionContextual/AccordionContextualApollo.css";
 @import "./Grid/DebugGrid.css";
 @import "./Button/ButtonApollo.css";
 @import "./Spinner/SpinnerApollo.css";

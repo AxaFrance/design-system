@@ -1,0 +1,20 @@
+@import "./AccordionContextualCommon.css";
+
+.af-apollo-accordion {
+  --accordion-contextual-title-font-size: calc(
+    16 / var(--font-size-base) * 1rem
+  );
+  @media (--desktop-small) {
+    --accordion-contextual-title-font-size: calc(
+      18 / var(--font-size-base) * 1rem
+    );
+  }
+}
+
+.af-apollo-accordion-contextual--info {
+  --accordion-contextual-title-text-color: var(--color-axa);
+}
+
+.af-apollo-accordion-contextual--warning {
+  --accordion-contextual-title-text-color: var(--color-red-700);
+}

@@ -1,0 +1,61 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as AccordionContextualStories from "./AccordionContextual.stories";
+
+<Meta of={AccordionContextualStories} name="AccordionContextual" />
+
+# AccordionContextual
+
+## Import
+
+```tsx
+import { AccordionContextual } from "@axa-fr/canopee-react/client";
+```
+
+## Uses
+
+The `AccordionContextual` component is a secondary interactive component that allows displaying or hiding additional content. It provides smooth navigation without overloading the page, by presenting non-essential information to the user journey.
+
+When the user clicks on the summary to open or close the accordion you can use the `onClick` function prop to do something at that moment. (you will get the native event as `onClick` parameter)
+
+### Accordion Contextual
+
+```tsx
+import bankIcon from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
+
+export const AccordionContextualComponent = () => (
+  <AccordionContextual icon={bankIcon} title="Titre onglet">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
+    tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
+    massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
+    vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.
+  </AccordionContextual>
+);
+```
+
+## Playground
+
+### Accordion Contextual Info
+
+<Canvas of={AccordionContextualStories.AccordionContextualInfoStory} />
+<Controls of={AccordionContextualStories.AccordionContextualInfoStory} />
+
+### Accordion Contextual Warning
+
+<Canvas of={AccordionContextualStories.AccordionContextualWarningStory} />
+<Controls of={AccordionContextualStories.AccordionContextualWarningStory} />
+
+### Accordion Contextual Reverse
+
+```tsx
+export const AccordionContextualComponent = () => (
+  <AccordionContextual variant="reverse" title="Titre onglet">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
+    tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
+    massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
+    vestibulum, porta massa. Aenean vel venenatis tellus, sed iaculis nisl.
+  </AccordionContextual>
+);
+```
+
+<Canvas of={AccordionContextualStories.AccordionContextualReverseStory} />
+<Controls of={AccordionContextualStories.AccordionContextualReverseStory} />
