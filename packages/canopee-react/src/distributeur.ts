@@ -95,7 +95,7 @@ export { Summary } from "./distributeur/Summary";
 export { Svg } from "./distributeur/Svg";
 export { Tabs } from "./distributeur/Tabs/Tabs";
 export { Title } from "./distributeur/Title/Title";
-export { getComponentClassName } from "./distributeur/utilities";
+export { getComponentClassName, getClassName } from "./distributeur/utilities";
 
 /** @deprecated Use `Tag` instead. */
 const Badge = Tag;

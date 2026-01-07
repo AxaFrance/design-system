@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import chevronSvg from "@material-symbols/svg-400/outlined/chevron_right.svg";
 import checkSvg from "@material-symbols/svg-400/outlined/check.svg";
-import { getComponentClassName, Svg } from "../../distributeur";
+import { getClassName, Svg } from "../../distributeur";
 
 type Props = {
   id: string;
@@ -11,11 +11,11 @@ type Props = {
   classModifier?: string;
 };
 const StepBase = ({ children, id, title, className, classModifier }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-steps-list-step",
+    modifiers: [classModifier],
     className,
-    classModifier,
-    "af-steps-list-step",
-  );
+  });
   return (
     <li key={id} className={componentClassName} title={title}>
       <Svg src={checkSvg} />

@@ -5,6 +5,7 @@ import { fn } from "@storybook/test";
 type StoryProps = React.ComponentProps<typeof Steps> & {
   onClick: (e: React.MouseEvent) => void;
   mode?: "link" | "active" | "disabled";
+  showLastStepCheck?: boolean;
 };
 
 const meta: Meta<StoryProps> = {
@@ -22,6 +23,7 @@ const meta: Meta<StoryProps> = {
         type: "select",
       },
     },
+    showLastStepCheck: { control: "boolean" },
   },
 };
 
@@ -38,8 +40,18 @@ type Story = StoryObj<StoryProps>;
 
 export const NewStepsStory: Story = {
   name: "New Design Steps",
-  render: ({ classModifier, className, mode, onClick }: StoryProps) => (
-    <Steps classModifier={classModifier} className={className}>
+  render: ({
+    classModifier,
+    className,
+    mode,
+    onClick,
+    showLastStepCheck,
+  }: StoryProps) => (
+    <Steps
+      classModifier={classModifier}
+      className={className}
+      showLastStepCheck={showLastStepCheck}
+    >
       <Step
         id="id1"
         href="/etape1"
@@ -78,6 +90,7 @@ export const NewStepsStory: Story = {
   args: {
     classModifier: "",
     className: "",
+    showLastStepCheck: true,
   },
 };
 

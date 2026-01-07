@@ -121,6 +121,11 @@
   fill: var(--green30);
 }
 
+/* Cacher le check du dernier step quand no-last-check est présent */
+.af-steps-new--no-last-check .af-steps-list-step:last-child svg:first-child {
+  display: none;
+}
+
 .af-steps-new .af-steps-list-step:last-child svg:last-child {
   display: none;
 }
