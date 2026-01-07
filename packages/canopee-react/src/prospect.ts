@@ -133,3 +133,11 @@ export {
   LevelSelector,
   type LevelSelectorProps,
 } from "./prospect-client/LevelSelector/LevelSelectorApollo";
+export {
+  Skeleton,
+  type SkeletonProps,
+} from "./prospect-client/Skeleton/SkeletonApollo";
+export {
+  SkeletonList,
+  type SkeletonListProps,
+} from "./prospect-client/SkeletonList/SkeletonListApollo";
