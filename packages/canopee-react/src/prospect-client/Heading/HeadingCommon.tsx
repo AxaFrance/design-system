@@ -3,7 +3,13 @@ import type { JSX, PropsWithChildren, ReactNode } from "react";
 import { Icon, type IconProps } from "../Icon/IconCommon";
 import { type TagProps } from "../Tag/TagCommon";
 import { HeadingWithSubheadings } from "./HeadingWithSubheadings";
-import { type HeadingLevel } from "./types";
+import {
+  type HeadingLevel,
+  headingLevelToIconSizeDesktop,
+  headingLevelToIconSizeMobile,
+} from "./types";
+import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
+import { BREAKPOINT } from "../utilities/constants";
 
 export type HeadingCommonProps = PropsWithChildren<{
   level?: HeadingLevel;
@@ -30,24 +36,31 @@ export const HeadingCommon = ({
   iconProps = {},
   tag,
   ...props
-}: HeadingCommonProps) => (
-  <div className={classNames("af-heading", className)} {...props}>
-    {tag && level < 3 ? <div className="af-heading__label">{tag}</div> : null}
-    {icon && level === 1 ? (
-      <Icon
-        src={icon}
-        size="L"
-        hasBackground
-        variant="secondary"
-        {...iconProps}
-        className={classNames("af-heading__icon", iconProps.className)}
+}: HeadingCommonProps) => {
+  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
+  return (
+    <div className={classNames("af-heading", className)} {...props}>
+      {tag && level < 3 ? <div className="af-heading__label">{tag}</div> : null}
+      {icon ? (
+        <Icon
+          src={icon}
+          size={
+            isMobile
+              ? headingLevelToIconSizeMobile[level]
+              : headingLevelToIconSizeDesktop[level]
+          }
+          hasBackground
+          variant="secondary"
+          {...iconProps}
+          className={classNames("af-heading__icon", iconProps.className)}
+        />
+      ) : null}
+      <HeadingWithSubheadings
+        title={title}
+        firstSubtitle={firstSubtitle}
+        titleComponent={`h${level}`}
+        secondSubtitle={secondSubtitle}
       />
-    ) : null}
-    <HeadingWithSubheadings
-      title={title}
-      firstSubtitle={firstSubtitle}
-      titleComponent={`h${level}`}
-      secondSubtitle={secondSubtitle}
-    />
-  </div>
-);
+    </div>
+  );
+};
