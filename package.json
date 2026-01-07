@@ -42,7 +42,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
+    "@commitlint/cli": "^20.3.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@material-symbols/svg-400": "^0.31.2",
     "@material-symbols/svg-700": "^0.40.2",
