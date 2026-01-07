@@ -39,7 +39,14 @@ export const HeadingCommon = ({
 }: HeadingCommonProps) => {
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
   return (
-    <div className={classNames("af-heading", className)} {...props}>
+    <div
+      className={classNames(
+        "af-heading",
+        `af-heading__level${level}`,
+        className,
+      )}
+      {...props}
+    >
       {tag && level < 3 ? <div className="af-heading__label">{tag}</div> : null}
       {icon ? (
         <Icon
