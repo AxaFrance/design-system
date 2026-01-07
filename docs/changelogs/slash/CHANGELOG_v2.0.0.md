@@ -1,5 +1,10 @@
 # Release Notes for Slash 2.0.0
 
+In order to facilitate the migration to version 2.0.x of the AXA Slash Design System, we have prepared this changelog that details the breaking changes, new features, improvements, and deprecations.
+In addition to this changelog, we have created a github Copilot prompt file that can be used to automate the migration process. You can find the prompt file [here](./prompts/GUIDE_MIGRATION_DESIGN_SYSTEM_V2.md). To use it, simply copy the content of the file inside the ./github/prompts directory of your project, then use the github Copilot chat agent mode to execute the prompt step by step. You can ask the chat : "Execute the migration for the AXA Slash Design System v2.0.0" for example.
+
+If you use this instruction, don't forget to look at the changes made by the Copilot and adapt them if necessary. Some changes may require manual intervention.
+
 ## Breaking Changes
 
 ### Button component

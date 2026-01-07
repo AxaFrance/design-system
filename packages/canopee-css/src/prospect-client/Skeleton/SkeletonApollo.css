@@ -1,0 +1,6 @@
+@import "./SkeletonCommon.css";
+
+.af-skeleton {
+  --skeleton-color-odd: var(--neutral-14);
+  --skeleton-color-even: var(--neutral-5);
+}

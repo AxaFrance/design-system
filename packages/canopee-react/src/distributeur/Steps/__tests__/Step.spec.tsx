@@ -69,3 +69,41 @@ describe("<Steps>", () => {
     expect(onClick).toHaveBeenCalled();
   });
 });
+
+describe("<Steps> showLastStepCheck", () => {
+  it("should apply 'no-last-check' class when showLastStepCheck is false", () => {
+    const { container } = render(
+      <Steps showLastStepCheck={false}>
+        <Step id="id1" title="Step 1" mode="link" />
+        <Step id="id2" title="Step 2" mode="active" />
+      </Steps>,
+    );
+
+    const stepsContainer = container.querySelector(".af-steps-new");
+    expect(stepsContainer).toHaveClass("af-steps-new--no-last-check");
+  });
+
+  it("should not apply 'no-last-check' class when showLastStepCheck is true", () => {
+    const { container } = render(
+      <Steps showLastStepCheck>
+        <Step id="id1" title="Step 1" mode="link" />
+        <Step id="id2" title="Step 2" mode="active" />
+      </Steps>,
+    );
+
+    const stepsContainer = container.querySelector(".af-steps-new");
+    expect(stepsContainer).not.toHaveClass("af-steps-new--no-last-check");
+  });
+
+  it("should not apply 'no-last-check' class by default", () => {
+    const { container } = render(
+      <Steps>
+        <Step id="id1" title="Step 1" mode="link" />
+        <Step id="id2" title="Step 2" mode="active" />
+      </Steps>,
+    );
+
+    const stepsContainer = container.querySelector(".af-steps-new");
+    expect(stepsContainer).not.toHaveClass("af-steps-new--no-last-check");
+  });
+});
