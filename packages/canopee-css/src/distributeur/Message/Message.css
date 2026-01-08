@@ -4,6 +4,7 @@
   --alert-border-color: var(--red20);
 
   display: flex;
+  margin-bottom: calc(48rem / 16);
   border: 1px solid var(--alert-border-color);
   flex-direction: row;
   gap: calc(20rem / 16);
