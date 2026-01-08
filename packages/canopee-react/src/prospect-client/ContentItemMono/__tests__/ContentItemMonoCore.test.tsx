@@ -87,4 +87,18 @@ describe("ContentItemMonoCore Component", () => {
       screen.queryByText("", { selector: ".stick" }),
     ).not.toBeInTheDocument();
   });
+
+  it("renders with a custom element using 'as' prop", () => {
+    render(<ContentItemMonoCore as="legend" title="Legend Title" />);
+
+    const container = screen.getByTestId("container");
+    expect(container.tagName).toBe("LEGEND");
+  });
+
+  it("renders as a div by default", () => {
+    render(<ContentItemMonoCore title="Div Title" />);
+
+    const container = screen.getByTestId("container");
+    expect(container.tagName).toBe("DIV");
+  });
 });

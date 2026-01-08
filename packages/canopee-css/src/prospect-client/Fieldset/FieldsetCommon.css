@@ -1,0 +1,21 @@
+.af-fieldset {
+  margin: 0;
+  border: none;
+
+  .af-fieldset__content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(16 / var(--font-size-base) * 1rem);
+  }
+
+  > legend.af-content-item-mono {
+    float: left;
+    width: 100%;
+    margin-bottom: calc(24 / var(--font-size-base) * 1rem);
+    padding: 0;
+
+    + .af-fieldset__content {
+      clear: both;
+    }
+  }
+}
