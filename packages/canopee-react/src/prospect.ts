@@ -146,3 +146,7 @@ export {
   SkeletonList,
   type SkeletonListProps,
 } from "./prospect-client/SkeletonList/SkeletonListApollo";
+export {
+  Fieldset,
+  type FieldsetProps,
+} from "./prospect-client/Fieldset/FieldsetApollo";

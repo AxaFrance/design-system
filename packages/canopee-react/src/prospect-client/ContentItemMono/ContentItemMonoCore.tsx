@@ -1,6 +1,9 @@
+import type { ElementType } from "react";
+
 export type ContentMonoItemSize = "medium" | "large";
 
-export type ContentItemCoreProps = {
+export type ContentItemCoreProps<T extends ElementType = "div"> = {
+  as?: T;
   size?: ContentMonoItemSize;
   title?: string;
   primarySubtitle?: string;
@@ -8,15 +11,21 @@ export type ContentItemCoreProps = {
   leftComponent?: React.ReactNode;
 };
 
-export const ContentItemMonoCore = ({
+export const ContentItemMonoCore = <T extends ElementType = "div">({
+  as,
   size = "medium",
   leftComponent,
   title,
   primarySubtitle,
   subtitle,
-}: ContentItemCoreProps) => {
+}: ContentItemCoreProps<T>) => {
+  const Component = as ?? "div";
+
   return (
-    <div data-testid="container" className={`af-content-item-mono ${size}`}>
+    <Component
+      data-testid="container"
+      className={`af-content-item-mono ${size}`}
+    >
       {leftComponent}
       <div className="text-content">
         <span className="title">{title}</span>
@@ -25,6 +34,6 @@ export const ContentItemMonoCore = ({
         ) : null}
         {subtitle ? <span className="subtitle">{subtitle}</span> : null}
       </div>
-    </div>
+    </Component>
   );
 };
