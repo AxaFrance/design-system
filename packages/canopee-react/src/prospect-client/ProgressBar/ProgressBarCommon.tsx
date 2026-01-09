@@ -28,7 +28,7 @@ export const ProgressBar = ({
           {label}
         </label>
       )}
-      <div className={componentClassName} tabIndex={-1}>
+      <div className={componentClassName}>
         <progress
           id={inputId}
           className="af-progress-bar__progress"
