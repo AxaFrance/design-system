@@ -25,7 +25,6 @@ export const VerticalStepEditedStory: Story = {
   name: "Test composant VerticalStep en édition",
   args: {
     title: "Configuration",
-    id: "configuration",
     stepMode: "edited",
     onEdit: () => {},
     form: (
@@ -76,6 +75,18 @@ export const VerticalStepValidatedWithContentRightStory: Story = {
     onEdit: () => {},
     form: <h3>Formulaire de l&apos;étape configuration</h3>,
     restitution: <h3>Resitution de l&apos;étape configuration</h3>,
+  },
+};
+
+export const VerticalStepValidatedReadOnlyStory = {
+  name: "Test composant VerticalStep validé en lecture seule",
+  args: {
+    title: "Configuration",
+    stepMode: "validated",
+    onEdit: () => {},
+    form: <h3>Formulaire de l&apos;étape configuration</h3>,
+    restitution: <h3>Resitution de l&apos;étape configuration</h3>,
+    readonly: true,
   },
 };
 
