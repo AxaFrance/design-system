@@ -2,9 +2,16 @@
 
 .af-heading {
   --heading-grid-column: 1;
+  --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
   --heading-title-color: var(--neutral-100);
   --heading-subtitle-color: var(--neutral-100);
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+
+  &.af-heading__level2,
+  &.af-heading__level3,
+  &.af-heading__level4 {
+    --heading-column-gap: calc(8 / var(--font-size-base) * 1rem);
+  }
 
   h1 {
     --heading-title-color: var(--axa-blue-100);
@@ -43,6 +50,11 @@
 
   @media (--desktop-small) {
     --heading-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+
+    &.af-heading__level2,
+    &.af-heading__level3 {
+      --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+    }
 
     h1 {
       --heading-title-font-size: calc(48 / var(--font-size-base) * 1rem);

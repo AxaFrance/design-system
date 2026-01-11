@@ -63,8 +63,28 @@ describe("Heading", () => {
     },
   );
 
+  it.each([1, 2, 3, 4] as HeadingLevel[])(
+    "should render icon when level is %i",
+    (level) => {
+      render(
+        <HeadingCommon
+          level={level}
+          icon={bank}
+          iconProps={{ "aria-label": "icon" }}
+        >
+          Title
+        </HeadingCommon>,
+      );
+
+      expect(
+        screen.getByRole("heading", { name: "Title", level }),
+      ).toBeInTheDocument();
+      expect(screen.getByLabelText("icon")).toBeInTheDocument();
+    },
+  );
+
   it.each([2, 3] as HeadingLevel[])(
-    "should not display icon and second subtitle when level is %i",
+    "should second subtitle when level is %i",
     (level) => {
       render(
         <HeadingCommon
@@ -83,7 +103,6 @@ describe("Heading", () => {
       ).toBeInTheDocument();
       expect(screen.getByText("firstSubtitle")).toBeInTheDocument();
       expect(screen.queryByText("secondSubtitle")).not.toBeInTheDocument();
-      expect(screen.queryByLabelText("icon")).not.toBeInTheDocument();
     },
   );
 
