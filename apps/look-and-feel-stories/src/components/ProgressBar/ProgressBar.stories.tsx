@@ -25,6 +25,7 @@ const meta: Meta<typeof ProgressBar> = {
     label: "Loading something...",
     value: 70,
     max: 100,
+    showPercentage: false,
   },
   decorators: [
     (Story) => (
