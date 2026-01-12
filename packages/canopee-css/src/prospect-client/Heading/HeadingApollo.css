@@ -2,14 +2,10 @@
 
 .af-heading {
   --heading-grid-column: 1;
-  --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  --heading-column-gap: calc(8 / var(--font-size-base) * 1rem);
   --heading-title-color: var(--neutral-100);
   --heading-subtitle-color: var(--neutral-100);
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
-
-  &:has(h2, h3, h4) {
-    --heading-column-gap: calc(8 / var(--font-size-base) * 1rem);
-  }
 
   h1 {
     --heading-title-color: var(--axa-blue-100);

@@ -3,6 +3,10 @@
   align-items: start;
   gap: calc(8 / var(--font-size-base) * 1rem) var(--heading-column-gap);
 
+  &:has(h1) {
+    --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  }
+
   &:has(.af-heading__icon) {
     grid-template-columns: auto 1fr;
   }
