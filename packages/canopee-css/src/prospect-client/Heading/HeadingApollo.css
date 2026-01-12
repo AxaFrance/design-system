@@ -7,9 +7,7 @@
   --heading-subtitle-color: var(--neutral-100);
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
 
-  &.af-heading__level2,
-  &.af-heading__level3,
-  &.af-heading__level4 {
+  &:has(h2, h3, h4) {
     --heading-column-gap: calc(8 / var(--font-size-base) * 1rem);
   }
 
@@ -51,8 +49,7 @@
   @media (--desktop-small) {
     --heading-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
 
-    &.af-heading__level2,
-    &.af-heading__level3 {
+    &:has(h2, h3) {
       --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
     }
 

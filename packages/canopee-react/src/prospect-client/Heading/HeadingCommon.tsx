@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import type { JSX, PropsWithChildren, ReactNode } from "react";
 import { Icon, type IconProps } from "../Icon/IconCommon";
 import { type TagProps } from "../Tag/TagCommon";
@@ -10,6 +9,7 @@ import {
 } from "./types";
 import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
 import { BREAKPOINT } from "../utilities/constants";
+import { getClassName } from "../utilities/getClassName";
 
 export type HeadingCommonProps = PropsWithChildren<{
   level?: HeadingLevel;
@@ -40,11 +40,10 @@ export const HeadingCommon = ({
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
   return (
     <div
-      className={classNames(
-        "af-heading",
-        `af-heading__level${level}`,
+      className={getClassName({
+        baseClassName: "af-heading",
         className,
-      )}
+      })}
       {...props}
     >
       {tag && level < 3 ? <div className="af-heading__label">{tag}</div> : null}
@@ -59,7 +58,10 @@ export const HeadingCommon = ({
           hasBackground
           variant="secondary"
           {...iconProps}
-          className={classNames("af-heading__icon", iconProps.className)}
+          className={getClassName({
+            baseClassName: "af-heading__icon",
+            className: iconProps.className,
+          })}
         />
       ) : null}
       <HeadingWithSubheadings
