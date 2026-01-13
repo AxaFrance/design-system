@@ -44,6 +44,10 @@
   @media (--desktop-small) {
     --heading-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
 
+    &:has(h3) {
+      --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+    }
+
     h1 {
       --heading-title-font-size: calc(48 / var(--font-size-base) * 1rem);
       --heading-title-line-height: calc(60 / var(--font-size-base) * 1rem);
