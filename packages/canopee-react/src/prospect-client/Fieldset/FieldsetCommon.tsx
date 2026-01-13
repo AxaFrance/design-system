@@ -1,4 +1,5 @@
 import type { ComponentProps, ComponentType, PropsWithChildren } from "react";
+import classNames from "classnames";
 import { CardCommon } from "../Card/CardCommon";
 import { Icon, type IconProps } from "../Icon/IconCommon";
 import { ContentItemMonoCore } from "../ContentItemMono/ContentItemMonoCore";
@@ -6,35 +7,30 @@ import { ContentItemMonoCore } from "../ContentItemMono/ContentItemMonoCore";
 export type FieldsetProps = PropsWithChildren<{
   title: string;
   iconProps?: IconProps;
-  /**
-   * @deprecated Use `iconProps` instead.
-   */
-  icon?: string;
   className?: string;
 }>;
 
 export type FieldsetCommonProps = FieldsetProps & {
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
+  CardComponent: ComponentType<ComponentProps<typeof CardCommon>>;
 };
 
 export const FieldsetCommon = ({
   children,
   title,
-  icon,
   iconProps,
   className,
   IconComponent,
+  CardComponent,
 }: FieldsetCommonProps) => {
-  const iconComponent =
-    (iconProps && (
-      <IconComponent data-testid="fieldset-icon" {...iconProps} />
-    )) ||
-    (icon && <IconComponent data-testid="fieldset-icon" src={icon} />);
+  const iconComponent = iconProps && (
+    <IconComponent aria-hidden="true" {...iconProps} />
+  );
 
   return (
-    <CardCommon
+    <CardComponent
       as="fieldset"
-      className={`af-fieldset${className ? ` ${className}` : ""}`}
+      className={classNames("af-fieldset", className)}
     >
       <ContentItemMonoCore
         as="legend"
@@ -42,6 +38,6 @@ export const FieldsetCommon = ({
         leftComponent={iconComponent}
       />
       <div className="af-fieldset__content">{children}</div>
-    </CardCommon>
+    </CardComponent>
   );
 };

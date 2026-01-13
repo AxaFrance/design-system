@@ -4,7 +4,7 @@ import { ContentItemMonoCore } from "../ContentItemMonoCore";
 
 describe("ContentItemMonoCore Component", () => {
   it("renders with default size and displays title, primarySubtitle, and subtitle", () => {
-    render(
+    const { container } = render(
       <ContentItemMonoCore
         title="Test Title"
         primarySubtitle="Primary Subtitle"
@@ -13,8 +13,8 @@ describe("ContentItemMonoCore Component", () => {
     );
 
     // Vérifie que le conteneur principal est rendu avec la classe par défaut
-    const container = screen.getByTestId("container");
-    expect(container).toHaveClass("af-content-item-mono medium");
+    const component = container.firstElementChild;
+    expect(component).toHaveClass("af-content-item-mono medium");
 
     // Vérifie que le titre est affiché
     expect(screen.getByText("Test Title")).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe("ContentItemMonoCore Component", () => {
   });
 
   it("renders with a custom size", () => {
-    render(
+    const { container } = render(
       <ContentItemMonoCore
         size="large"
         title="Custom Size Title"
@@ -37,8 +37,8 @@ describe("ContentItemMonoCore Component", () => {
     );
 
     // Vérifie que la classe de taille personnalisée est appliquée
-    const container = screen.getByTestId("container");
-    expect(container).toHaveClass("af-content-item-mono large");
+    const component = container.firstElementChild;
+    expect(component).toHaveClass("af-content-item-mono large");
   });
 
   it("renders without primarySubtitle when not provided", () => {
@@ -72,15 +72,15 @@ describe("ContentItemMonoCore Component", () => {
   });
 
   it("renders with a custom leftComponent", () => {
-    render(
+    const { container } = render(
       <ContentItemMonoCore
         title="Custom Left Component"
-        leftComponent={<div data-testid="custom-left">Custom Left</div>}
+        leftComponent={<div className="custom-left">Custom Left</div>}
       />,
     );
 
     // Vérifie que le composant gauche personnalisé est rendu
-    expect(screen.getByTestId("custom-left")).toBeInTheDocument();
+    expect(container.getElementsByClassName("custom-left").length).toBe(1);
 
     // Vérifie que le composant par défaut n'est pas rendu
     expect(
@@ -89,16 +89,18 @@ describe("ContentItemMonoCore Component", () => {
   });
 
   it("renders with a custom element using 'as' prop", () => {
-    render(<ContentItemMonoCore as="legend" title="Legend Title" />);
+    const { container } = render(
+      <ContentItemMonoCore as="legend" title="Legend Title" />,
+    );
 
-    const container = screen.getByTestId("container");
-    expect(container.tagName).toBe("LEGEND");
+    const component = container.firstElementChild;
+    expect(component?.tagName).toBe("LEGEND");
   });
 
   it("renders as a div by default", () => {
-    render(<ContentItemMonoCore title="Div Title" />);
+    const { container } = render(<ContentItemMonoCore title="Div Title" />);
 
-    const container = screen.getByTestId("container");
-    expect(container.tagName).toBe("DIV");
+    const component = container.firstElementChild;
+    expect(component?.tagName).toBe("DIV");
   });
 });

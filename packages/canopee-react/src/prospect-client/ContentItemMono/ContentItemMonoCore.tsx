@@ -30,10 +30,7 @@ export const ContentItemMonoCore = <T extends ElementType = "div">({
   const Component = as ?? "div";
 
   return (
-    <Component
-      data-testid="container"
-      className={`af-content-item-mono ${size}`}
-    >
+    <Component className={`af-content-item-mono ${size}`}>
       {leftComponent}
       <div className="text-content">
         {title ? <span className="title">{title}</span> : null}

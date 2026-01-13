@@ -41,19 +41,6 @@ export default meta;
 type Story = StoryObj<typeof Fieldset>;
 
 export const Default: Story = {
-  name: "Par défaut",
-  render: (args) => (
-    <Fieldset {...args}>
-      <InputText label="Prénom" name="firstname" />
-      <InputText label="Nom" name="lastname" />
-    </Fieldset>
-  ),
-  args: {
-    title: "Informations personnelles",
-  },
-};
-
-export const WithIcon: Story = {
   name: "Avec icône",
   render: (args) => (
     <Fieldset {...args}>

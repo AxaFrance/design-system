@@ -1,11 +1,16 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { FieldsetCommon } from "../FieldsetCommon";
 import { Icon } from "../../Icon/IconCommon";
+import { CardCommon } from "../../Card/CardCommon";
 
 describe("Fieldset", () => {
   it("should render with title", () => {
     render(
-      <FieldsetCommon title="Mon titre" IconComponent={Icon}>
+      <FieldsetCommon
+        title="Mon titre"
+        IconComponent={Icon}
+        CardComponent={CardCommon}
+      >
         <input type="text" />
       </FieldsetCommon>,
     );
@@ -15,7 +20,11 @@ describe("Fieldset", () => {
 
   it("should render as a fieldset element", () => {
     render(
-      <FieldsetCommon title="Mon titre" IconComponent={Icon}>
+      <FieldsetCommon
+        title="Mon titre"
+        IconComponent={Icon}
+        CardComponent={CardCommon}
+      >
         <input type="text" />
       </FieldsetCommon>,
     );
@@ -26,50 +35,40 @@ describe("Fieldset", () => {
     expect(fieldset).toHaveClass("af-fieldset");
   });
 
-  it("should render legend element", () => {
-    render(
-      <FieldsetCommon title="Mon titre" IconComponent={Icon}>
-        <input type="text" />
-      </FieldsetCommon>,
-    );
-
-    const legend = screen.getByTestId("container");
-    expect(legend.tagName).toBe("LEGEND");
-    expect(legend).toHaveClass("af-content-item-mono");
-  });
-
-  it("should render children", () => {
-    render(
-      <FieldsetCommon title="Mon titre" IconComponent={Icon}>
-        <input type="text" data-testid="test-input" />
-      </FieldsetCommon>,
-    );
-
-    expect(screen.getByTestId("test-input")).toBeInTheDocument();
-  });
-
-  it("should render icon when iconProps is provided", () => {
+  it("should render legend element with title and icon", () => {
     render(
       <FieldsetCommon
         title="Mon titre"
         iconProps={{ src: "icon.svg" }}
         IconComponent={Icon}
+        CardComponent={CardCommon}
       >
         <input type="text" />
       </FieldsetCommon>,
     );
 
-    expect(screen.getByTestId("fieldset-icon")).toBeInTheDocument();
+    const title = screen.getByText("Mon titre");
+    const legend = title.closest("legend");
+    expect(legend).toBeInTheDocument();
+    expect(legend).toHaveClass("af-content-item-mono");
+    expect(within(legend!).getByText("Mon titre")).toBeInTheDocument();
+    expect(legend?.getElementsByClassName("af-icon").length).toBe(1);
   });
 
-  it("should render icon when icon prop is provided (deprecated)", () => {
+  it("should render children", () => {
     render(
-      <FieldsetCommon title="Mon titre" icon="icon.svg" IconComponent={Icon}>
-        <input type="text" />
+      <FieldsetCommon
+        title="Mon titre"
+        IconComponent={Icon}
+        CardComponent={CardCommon}
+      >
+        <input type="text" placeholder="Saisir une valeur" />
       </FieldsetCommon>,
     );
 
-    expect(screen.getByTestId("fieldset-icon")).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Saisir une valeur"),
+    ).toBeInTheDocument();
   });
 
   it("should have custom class", () => {
@@ -78,6 +77,7 @@ describe("Fieldset", () => {
         title="Mon titre"
         className="custom-class"
         IconComponent={Icon}
+        CardComponent={CardCommon}
       >
         <input type="text" />
       </FieldsetCommon>,
