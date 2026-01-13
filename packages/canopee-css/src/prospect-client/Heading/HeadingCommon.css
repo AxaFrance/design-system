@@ -1,4 +1,6 @@
 .af-heading {
+  --heading-column-gap: calc(8 / var(--font-size-base) * 1rem);
+
   display: grid;
   align-items: start;
   gap: calc(8 / var(--font-size-base) * 1rem) var(--heading-column-gap);
@@ -46,4 +48,10 @@
 .af-heading__label {
   margin-block-end: calc(4 / var(--font-size-base) * 1rem);
   grid-column: span 3;
+}
+
+@media (--desktop-small) {
+  &:has(h2) {
+    --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  }
 }

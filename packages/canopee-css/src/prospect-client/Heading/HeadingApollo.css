@@ -2,7 +2,6 @@
 
 .af-heading {
   --heading-grid-column: 1;
-  --heading-column-gap: calc(8 / var(--font-size-base) * 1rem);
   --heading-title-color: var(--neutral-100);
   --heading-subtitle-color: var(--neutral-100);
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
@@ -45,7 +44,7 @@
   @media (--desktop-small) {
     --heading-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
 
-    &:has(h2, h3) {
+    &:has(h3) {
       --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
     }
 
