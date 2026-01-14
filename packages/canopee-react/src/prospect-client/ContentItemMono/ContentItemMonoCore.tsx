@@ -19,7 +19,7 @@ export const ContentItemMonoCore = ({
     <div data-testid="container" className={`af-content-item-mono ${size}`}>
       {leftComponent}
       <div className="text-content">
-        <span className="title">{title}</span>
+        {title ? <span className="title">{title}</span> : null}
         {primarySubtitle ? (
           <span className="subtitle-primary">{primarySubtitle}</span>
         ) : null}
