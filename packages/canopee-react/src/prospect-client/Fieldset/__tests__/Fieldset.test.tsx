@@ -52,7 +52,7 @@ describe("Fieldset", () => {
     expect(legend).toBeInTheDocument();
     expect(legend).toHaveClass("af-content-item-mono");
     expect(within(legend!).getByText("Mon titre")).toBeInTheDocument();
-    expect(legend?.getElementsByClassName("af-icon").length).toBe(1);
+    expect(legend?.getElementsByClassName("af-icon")).toHaveLength(1);
   });
 
   it("should render children", () => {

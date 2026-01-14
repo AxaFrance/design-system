@@ -1,8 +1,8 @@
 import type { ComponentProps, ComponentType, PropsWithChildren } from "react";
-import classNames from "classnames";
 import { CardCommon } from "../Card/CardCommon";
 import { Icon, type IconProps } from "../Icon/IconCommon";
 import { ContentItemMonoCore } from "../ContentItemMono/ContentItemMonoCore";
+import { getClassName } from "../utilities/getClassName";
 
 export type FieldsetProps = PropsWithChildren<{
   title: string;
@@ -30,7 +30,7 @@ export const FieldsetCommon = ({
   return (
     <CardComponent
       as="fieldset"
-      className={classNames("af-fieldset", className)}
+      className={getClassName({ baseClassName: "af-fieldset", className })}
     >
       <ContentItemMonoCore
         as="legend"
