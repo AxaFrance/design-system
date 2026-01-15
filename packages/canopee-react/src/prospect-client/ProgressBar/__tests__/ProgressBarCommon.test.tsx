@@ -18,10 +18,13 @@ describe("ProgressBar Component", () => {
   });
 
   it("applies custom className", () => {
-    render(<ProgressBar className="custom-class" />);
+    const { container } = render(<ProgressBar className="custom-class" />);
+
+    const parentDiv = container.querySelector(".af-progress-bar");
+    expect(parentDiv).toHaveClass("af-progress-bar custom-class");
 
     const progressBar = screen.getByRole("progressbar");
-    expect(progressBar).toHaveClass("af-progress-bar custom-class");
+    expect(progressBar).toHaveClass("af-progress-bar__progress");
   });
 
   it("applies and links label correctly with custom id", () => {

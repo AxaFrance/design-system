@@ -27,7 +27,7 @@ describe("ProgressBarGroup Component", () => {
     );
     const list = screen.getByRole("list");
     for (const li of Array.from(list.children)) {
-      const progressBar = li.children[0];
+      const progressBar = li.querySelector(".af-progress-bar__progress");
       expect(progressBar).toHaveAttribute("aria-hidden");
     }
   });
@@ -49,7 +49,7 @@ describe("ProgressBarGroup Component", () => {
 
     const list = screen.getByRole("list");
     Array.from(list.children).forEach((li, i) => {
-      const progressBar = li.querySelector(".af-progress-bar");
+      const progressBar = li.querySelector(".af-progress-bar__progress");
       expect(progressBar).toHaveAttribute("value", mockValues[i].toString());
     });
     vi.restoreAllMocks();
