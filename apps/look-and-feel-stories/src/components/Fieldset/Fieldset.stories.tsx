@@ -41,7 +41,7 @@ export default meta;
 type Story = StoryObj<typeof Fieldset>;
 
 export const Default: Story = {
-  name: "Par défaut",
+  name: "Default",
   render: (args) => (
     <Fieldset {...args}>
       <InputText label="Prénom" name="firstname" />
@@ -54,7 +54,7 @@ export const Default: Story = {
 };
 
 export const WithIcon: Story = {
-  name: "Avec icône",
+  name: "With icon",
   render: (args) => (
     <Fieldset {...args}>
       <InputText label="Prénom" name="firstname" />
@@ -71,7 +71,7 @@ export const WithIcon: Story = {
 };
 
 export const WithRadios: Story = {
-  name: "Avec boutons radio",
+  name: "With radios",
   render: (args) => (
     <Fieldset {...args}>
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -97,7 +97,7 @@ export const WithRadios: Story = {
 };
 
 export const WithCheckboxes: Story = {
-  name: "Avec cases à cocher",
+  name: "With checkboxes",
   render: (args) => (
     <Fieldset {...args}>
       <CheckboxText label="Newsletter" name="newsletter" value="newsletter" />
@@ -118,7 +118,7 @@ export const WithCheckboxes: Story = {
 };
 
 export const PaymentForm: Story = {
-  name: "Formulaire de paiement",
+  name: "Payment form",
   render: (args) => (
     <Fieldset {...args}>
       <InputText label="Numéro de carte" name="cardNumber" />
@@ -138,7 +138,7 @@ export const PaymentForm: Story = {
 };
 
 export const MultipleFieldsets: Story = {
-  name: "Plusieurs fieldsets",
+  name: "Multiple fieldsets",
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
       <Fieldset
@@ -179,7 +179,7 @@ export const MultipleFieldsets: Story = {
 };
 
 export const WithoutIcon: Story = {
-  name: "Sans icône",
+  name: "Without icon",
   render: (args) => (
     <Fieldset {...args}>
       <InputText label="Commentaire" name="comment" />
