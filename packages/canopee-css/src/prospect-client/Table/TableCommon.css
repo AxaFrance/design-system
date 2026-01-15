@@ -1,0 +1,30 @@
+.af-table {
+  all: unset;
+  display: table;
+  box-sizing: border-box;
+  width: 100%;
+  border: solid navy 1px;
+
+  .af-table__td {
+    padding: 3px;
+  }
+
+  .af-table__th {
+    padding-inline: 16px;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+
+    &.af-table__td--small {
+      padding: 12px;
+    }
+
+    &.af-table__th--large {
+      padding: 12px;
+    }
+
+    &.af-table__th--right {
+      text-align: right;
+    }
+  }
+}
