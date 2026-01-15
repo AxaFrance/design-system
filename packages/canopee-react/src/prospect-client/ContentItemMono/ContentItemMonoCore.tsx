@@ -1,21 +1,19 @@
+import { ReactNode } from "react";
+import { AtLeastOne } from "../utilities/types/AtLeastOne";
+
 export type ContentMonoItemSize = "medium" | "large";
 
-type AtLeastOne<T, K extends keyof T = keyof T> = Partial<T> &
-  { [P in K]: Required<Pick<T, P>> }[K];
-
-// shape of the text props (all optional by default)
 type TextFields = {
   title?: string;
   primarySubtitle?: string;
   subtitle?: string;
 };
 
-// concrete type: at least one of title | primarySubtitle | subtitle must be present
 type AtLeastOneText = AtLeastOne<TextFields>;
 
 export type ContentItemCoreProps = {
   size?: ContentMonoItemSize;
-  leftComponent?: React.ReactNode;
+  leftComponent?: ReactNode;
 } & AtLeastOneText;
 
 export const ContentItemMonoCore = ({

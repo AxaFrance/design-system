@@ -18,12 +18,12 @@ export type ContentMonoItemPictureProps = {
 
 export type ContentMonoItemIconProps = {
   type: "icon";
-  /**
-   * @deprecated Use `iconProps` instead.
-   */
   title?: string;
   subtitle1?: string;
   subtitle2?: string;
+  /**
+   * @deprecated Use `iconProps` instead.
+   */
   icon?: string;
   iconProps?: IconProps;
 };
