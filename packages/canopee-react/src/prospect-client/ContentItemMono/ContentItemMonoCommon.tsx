@@ -21,11 +21,11 @@ export type ContentMonoItemIconProps = {
   /**
    * @deprecated Use `iconProps` instead.
    */
-  icon?: string;
-  iconProps?: IconProps;
-  title: string;
+  title?: string;
   subtitle1?: string;
   subtitle2?: string;
+  icon?: string;
+  iconProps?: IconProps;
 };
 
 export type ContentMonoItemStickProps = {
@@ -59,7 +59,7 @@ export const getContentItemCoreProps = ({
       leftComponent:
         (iconProps && <IconComponent data-testid="icon" {...iconProps} />) ||
         (icon && <IconComponent data-testid="icon" src={icon} />),
-    };
+    } as ContentItemCoreProps;
   }
 
   if (type === "picture") {
@@ -71,13 +71,13 @@ export const getContentItemCoreProps = ({
           alt={props.title}
         />
       ),
-    };
+    } as ContentItemCoreProps;
   }
 
   return {
     ...props,
     leftComponent: <div className="stick" />,
-  };
+  } as ContentItemCoreProps;
 };
 
 export const ContentItemMonoCommon = (props: ContentItemCommonProps) => {
