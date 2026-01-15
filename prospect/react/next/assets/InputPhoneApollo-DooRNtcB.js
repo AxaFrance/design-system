@@ -1,1 +1,0 @@
-import{j as t}from"./index-C-iqcyhV.js";import{o as e,d as n,p as m,I as s,q as p}from"./SkeletonApollo-Cce1vNXK.js";const r=o=>t.jsx(e,{...o,ItemLabelComponent:p,ItemMessageComponent:s,InputTextComponent:m,IconComponent:n});export{r as I};
