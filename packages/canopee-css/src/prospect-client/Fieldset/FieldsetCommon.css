@@ -7,7 +7,7 @@
   gap: calc(24 / var(--font-size-base) * 1rem);
 
   > legend.af-content-item-mono {
-    padding: 0;
+    padding-top: calc(16 / var(--font-size-base) * 1rem);
   }
 
   .af-fieldset__content {
