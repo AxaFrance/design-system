@@ -32,19 +32,16 @@ export const Default: Story = {
         type: "icon",
         icon: accountBalance,
         subtitle1: "6 place du 14 juillet 28 240 Ivry la Bataille",
-        title: "",
       },
       {
         type: "icon",
         icon: accountBalance,
         subtitle1: "01 23 34 45 67",
-        title: "",
       },
       {
         type: "icon",
         icon: accountBalance,
         subtitle1: "Ouvert aujourd’hui de 09h00 à 13h00 et de 14h00 à 18h00",
-        title: "",
       },
     ],
     clickContents: [

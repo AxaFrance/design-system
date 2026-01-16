@@ -1,12 +1,20 @@
+import { ReactNode } from "react";
+import { AtLeastOne } from "../utilities/types/AtLeastOne";
+
 export type ContentMonoItemSize = "medium" | "large";
 
-export type ContentItemCoreProps = {
-  size?: ContentMonoItemSize;
+type TextFields = {
   title?: string;
   primarySubtitle?: string;
   subtitle?: string;
-  leftComponent?: React.ReactNode;
 };
+
+type AtLeastOneText = AtLeastOne<TextFields>;
+
+export type ContentItemCoreProps = {
+  size?: ContentMonoItemSize;
+  leftComponent?: ReactNode;
+} & AtLeastOneText;
 
 export const ContentItemMonoCore = ({
   size = "medium",
@@ -19,7 +27,7 @@ export const ContentItemMonoCore = ({
     <div data-testid="container" className={`af-content-item-mono ${size}`}>
       {leftComponent}
       <div className="text-content">
-        <span className="title">{title}</span>
+        {title ? <span className="title">{title}</span> : null}
         {primarySubtitle ? (
           <span className="subtitle-primary">{primarySubtitle}</span>
         ) : null}
