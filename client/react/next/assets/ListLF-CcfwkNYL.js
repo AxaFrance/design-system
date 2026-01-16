@@ -1,0 +1,1 @@
+import{j as o}from"./index-C-iqcyhV.js";import{s as n}from"./FieldsetLF-B6GomMyP.js";import{C as e}from"./CardCommon-DV2Nw_zR.js";import{r as i}from"./index-ZnYipkzV.js";const p=({children:r,CardComponent:t,as:m="ul",...a})=>o.jsx(t,{as:m,...a,children:i.Children.toArray(r).map(s=>o.jsx("li",{children:s},n(s)))}),c=r=>o.jsx(p,{...r,CardComponent:e});export{c as L};
