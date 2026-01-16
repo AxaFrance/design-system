@@ -154,3 +154,7 @@ export {
   SkeletonList,
   type SkeletonListProps,
 } from "./prospect-client/SkeletonList/SkeletonListLF";
+export {
+  Fieldset,
+  type FieldsetProps,
+} from "./prospect-client/Fieldset/FieldsetLF";

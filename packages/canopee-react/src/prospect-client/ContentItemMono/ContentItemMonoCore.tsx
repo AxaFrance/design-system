@@ -1,4 +1,6 @@
+import type { ElementType } from "react";
 import { ReactNode } from "react";
+
 import { AtLeastOne } from "../utilities/types/AtLeastOne";
 
 export type ContentMonoItemSize = "medium" | "large";
@@ -11,20 +13,24 @@ type TextFields = {
 
 type AtLeastOneText = AtLeastOne<TextFields>;
 
-export type ContentItemCoreProps = {
+export type ContentItemCoreProps<T extends ElementType = "div"> = {
+  as?: T;
   size?: ContentMonoItemSize;
   leftComponent?: ReactNode;
 } & AtLeastOneText;
 
-export const ContentItemMonoCore = ({
+export const ContentItemMonoCore = <T extends ElementType = "div">({
+  as,
   size = "medium",
   leftComponent,
   title,
   primarySubtitle,
   subtitle,
-}: ContentItemCoreProps) => {
+}: ContentItemCoreProps<T>) => {
+  const Component = as ?? "div";
+
   return (
-    <div data-testid="container" className={`af-content-item-mono ${size}`}>
+    <Component className={`af-content-item-mono ${size}`}>
       {leftComponent}
       <div className="text-content">
         {title ? <span className="title">{title}</span> : null}
@@ -33,6 +39,6 @@ export const ContentItemMonoCore = ({
         ) : null}
         {subtitle ? <span className="subtitle">{subtitle}</span> : null}
       </div>
-    </div>
+    </Component>
   );
 };
