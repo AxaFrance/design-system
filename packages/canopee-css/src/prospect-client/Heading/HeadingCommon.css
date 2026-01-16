@@ -18,6 +18,10 @@
   display: grid;
   grid-column: var(--heading-grid-column);
   row-gap: calc(4 / var(--font-size-base) * 1rem);
+
+  &:not(:has(.af-heading__subtitle)) {
+    align-self: center;
+  }
 }
 
 .af-heading__title {
@@ -51,7 +55,9 @@
 }
 
 @media (--desktop-small) {
-  &:has(h2) {
-    --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+  .af-heading {
+    &:has(h2) {
+      --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+    }
   }
 }
