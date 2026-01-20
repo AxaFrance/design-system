@@ -89,7 +89,14 @@ export {
   SectionRestitutionRow,
   SectionRestitutionTitle,
 } from "./distributeur/Restitution";
-export { Step, StepBase, Steps, VerticalStep } from "./distributeur/Steps";
+export {
+  Step,
+  StepBase,
+  Steps,
+  VerticalStep,
+  type StepLinkOnClickHandler,
+  type StepMode,
+} from "./distributeur/Steps";
 export type { VerticalStepMode } from "./distributeur/Steps/types";
 export { Summary } from "./distributeur/Summary";
 export { Svg } from "./distributeur/Svg";

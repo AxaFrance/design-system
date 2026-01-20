@@ -3,16 +3,18 @@ import { StepBase } from "./StepBase";
 
 type Props = ComponentPropsWithoutRef<typeof StepBase> & {
   number?: ReactNode;
+  stateLabel?: string;
 };
 const StepNoLink = ({
   number,
   title,
   className = "af-steps-list-step",
+  stateLabel,
   ...otherProps
 }: Props) => (
   <StepBase
     className={`${className} ${number ? "number" : ""}`}
-    title={title}
+    title={title + (stateLabel ? ` (${stateLabel})` : "")}
     {...otherProps}
   >
     <div className="af-steps-list-step__label">
