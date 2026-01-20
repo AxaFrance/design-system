@@ -1,1 +1,0 @@
-import{j as a}from"./index-C-iqcyhV.js";import{C as m}from"./CardRadioOptionApollo-wh0YLiJd.js";import{b as s,I as t}from"./FieldsetApollo-hGX-QcyY.js";const n=o=>a.jsx(s,{...o,CardRadioOptionComponent:m,ItemMessageComponent:t});export{n as C};
