@@ -1,7 +1,6 @@
 .af-title-bar {
   display: flex;
   width: 100%;
-  margin-bottom: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   flex-wrap: wrap;
@@ -9,10 +8,6 @@
   justify-content: space-between;
   color: var(--white);
   background: var(--axablue80);
-}
-
-.af-title-bar__withAnchorNavBar {
-  margin-bottom: 0;
 }
 
 .af-title-bar--sticky {
