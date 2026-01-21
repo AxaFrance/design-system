@@ -1,0 +1,8 @@
+@import "./TableCommon.css";
+
+.af-table {
+  --table-header-bg-gray: var(--color-gray-200);
+  --table-header-bg-blue: var(--color-btn-tertiary-bg-darker);
+  --table-body-bg-white: var(--color-white);
+  --table-body-bg-blue: var(--color-btn-tertiary-bg-lighter);
+}

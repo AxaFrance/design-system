@@ -1,32 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
 import { ComponentPropsWithRef } from "react";
+import unfoldMore from "@material-symbols/svg-400/rounded/unfold_more-fill.svg";
 import { getClassName } from "../utilities/getClassName";
+import { Icon } from "../Icon/IconCommon";
+import { Checkbox } from "../Form/Checkbox/Checkbox/CheckboxCommon";
 
-export const headerCellPositionVariants = {
-  left: "left",
-  center: "center",
-  right: "right",
-} as const;
-export type HeaderCellPositionVariants =
-  keyof typeof headerCellPositionVariants;
-
-export const headerCellSizeVariants = {
-  L: "large",
-  M: "medium",
-  S: "small",
-} as const;
-export type HeaderCellSizeVariants = keyof typeof headerCellSizeVariants;
+export type HeaderCellPositionVariants = "left" | "center" | "right";
 
 export type ThProps = ComponentPropsWithRef<"th"> & {
   position?: HeaderCellPositionVariants;
-  size?: HeaderCellSizeVariants;
+  checkboxPosition?: HeaderCellPositionVariants;
   onCheck?: Function;
   onSort?: Function;
 };
 
 export const Th = ({
   position = "left",
-  size = "M",
+  onCheck,
+  checkboxPosition = "left",
+  onSort,
   className,
   children,
   id,
@@ -35,14 +27,23 @@ export const Th = ({
   const componentClassName = getClassName({
     baseClassName: "af-table__th",
     className,
-    modifiers: [
-      headerCellPositionVariants[position],
-      headerCellSizeVariants[size],
-    ],
+    modifiers: [position, checkboxPosition && `checkbox-${checkboxPosition}`],
   });
   return (
     <th id={id} className={componentClassName} {...tableHeaderProps}>
-      {children}
+      <div className="af-table__th-wrapper">
+        {onCheck ? <Checkbox onChange={() => onCheck()} /> : null}
+        <span className="af-table__th-content">{children}</span>
+        {onSort ? (
+          <Icon
+            onClick={() => onSort()}
+            src={unfoldMore}
+            hasBackground={false}
+            size="S"
+            className="af-table__th-sort-icon"
+          />
+        ) : null}
+      </div>
     </th>
   );
 };

@@ -154,3 +154,5 @@ export {
   SkeletonList,
   type SkeletonListProps,
 } from "./prospect-client/SkeletonList/SkeletonListLF";
+
+export { Table, type TableProps } from "./prospect-client/Table/TableCommon";
