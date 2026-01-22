@@ -1,9 +1,13 @@
-import { Step, StepBase, Steps } from "@axa-fr/canopee-react/distributeur";
+import {
+  Step,
+  Steps,
+  type StepLinkOnClickHandler,
+} from "@axa-fr/canopee-react/distributeur";
 import { Meta, type StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 type StoryProps = React.ComponentProps<typeof Steps> & {
-  onClick: (e: React.MouseEvent) => void;
+  onClick: StepLinkOnClickHandler;
   mode?: "link" | "active" | "disabled";
 };
 
@@ -27,17 +31,10 @@ const meta: Meta<StoryProps> = {
 
 export default meta;
 
-const withPreventDefaultClick =
-  <T extends React.MouseEvent>(next?: (e: T) => void): ((e: T) => void) =>
-  (e: T) => {
-    e.preventDefault();
-    next?.(e);
-  };
-
 type Story = StoryObj<StoryProps>;
 
 export const NewStepsStory: Story = {
-  name: "New Design Steps",
+  name: "Horizontal Stepper",
   render: ({ classModifier, className, mode, onClick }: StoryProps) => (
     <Steps classModifier={classModifier} className={className}>
       <Step
@@ -46,14 +43,14 @@ export const NewStepsStory: Story = {
         onClick={onClick}
         number="1"
         mode={mode}
-        title="Previous step"
+        title="First Step"
       />
       <Step
         id="id2"
         href="/etape2"
         number="2"
         onClick={onClick}
-        title="Previous step"
+        title="Second step"
         mode="link"
       />
       <Step
@@ -63,15 +60,7 @@ export const NewStepsStory: Story = {
         title="Current step"
         mode="active"
       />
-      <StepBase id="idf4" title="Un titre">
-        <a
-          className="af-steps-list-step__label"
-          href="#/"
-          onClick={withPreventDefaultClick(onClick)}
-        >
-          <span className="af-steps-list-step__title">Custom</span>
-        </a>
-      </StepBase>
+      <Step id="idf4" title="Future Step" mode="disabled" />
       <Step id="id5" title="Final step" mode="disabled" />
     </Steps>
   ),
@@ -82,6 +71,7 @@ export const NewStepsStory: Story = {
 };
 
 export const StepsValidated: Story = {
+  name: "Final step is active",
   render: ({ classModifier, className, mode, onClick }: StoryProps) => (
     <Steps classModifier={classModifier} className={className}>
       <Step
