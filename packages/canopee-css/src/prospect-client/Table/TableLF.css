@@ -5,4 +5,5 @@
   --table-header-bg-blue: var(--color-btn-tertiary-bg-darker);
   --table-body-bg-white: var(--color-white);
   --table-body-bg-blue: var(--color-btn-tertiary-bg-lighter);
+  --table-tr-border-color: var(--color-gray-400);
 }

@@ -5,4 +5,5 @@
   --table-header-bg-blue: var(--axa-blue-8);
   --table-body-bg-white: var(--white);
   --table-body-bg-blue: var(--axa-blue-4);
+  --table-tr-border-color: var(--axa-blue-20);
 }

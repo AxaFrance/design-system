@@ -147,4 +147,4 @@ export {
   type SkeletonListProps,
 } from "./prospect-client/SkeletonList/SkeletonListApollo";
 
-export { Table, type TableProps } from "./prospect-client/Table/TableCommon";
+export { Table, type TableProps } from "./prospect-client/Table/TableApollo";

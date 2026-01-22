@@ -22,7 +22,7 @@ export const BasicTable: Story = {
           <Table.Th>Téléphone</Table.Th>
         </Table.Tr>
       </Table.THead>
-      <Table.TBody>
+      <Table.TBody color="alternate">
         <Table.Tr>
           <Table.Td>Dupont</Table.Td>
           <Table.Td>Jean</Table.Td>

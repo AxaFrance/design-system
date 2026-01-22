@@ -1,3 +1,3 @@
-import "@axa-fr/canopee-css/prospect/Table/TableLF.css";
+import "@axa-fr/canopee-css/client/Table/TableLF.css";
 
-export { Table } from "./TableCommon";
+export { Table, type TableProps } from "./TableCommon";

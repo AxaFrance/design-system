@@ -102,7 +102,7 @@
   }
 
   .af-table__tr {
-    border-bottom: 1px solid var(--axa-blue-20);
+    border-bottom: 1px solid var(--table-tr-border-color);
 
     .af-table__th,
     .af-table__td {
