@@ -82,4 +82,43 @@ The `restitution` property is the content to display when the step is validated.
 
 The `contentRight` property is the content to display on the right side of the step title. It is `string` only.
 
+The `stateLabels` property lets you customize the short label appended to the step's `aria-label` for each mode (validated / edited / locked). The component renders the section's `aria-label` as:
+
+```
+Étape verticale ${title} (${stateLabel})
+```
+
+Default labels (French):
+
+```html
+<section aria-label="Étape verticale Configuration (validée)"></section>
+<section
+  aria-label="Étape verticale Configuration (en cours de modification)"
+></section>
+<section aria-label="Étape verticale Configuration (verrouillée)"></section>
+```
+
+Custom labels (English):
+
+```tsx
+<VerticalStep
+  title="Configuration"
+  stateLabels={{
+    validatedState: "completed",
+    editState: "being edited",
+    lockedState: "locked",
+  }}
+/>
+```
+
+Renders as:
+
+```html
+<section aria-label="Étape verticale Configuration (completed)"></section>
+<section aria-label="Étape verticale Configuration (being edited)"></section>
+<section aria-label="Étape verticale Configuration (locked)"></section>
+```
+
+**Usage (TypeScript / TSX)**
+
 <ArgTypes story={VerticalStepStories.VerticalStepLockedStory} />
