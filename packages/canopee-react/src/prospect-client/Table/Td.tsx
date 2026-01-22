@@ -9,17 +9,20 @@ export const tdSizeVariants = {
   S: "small",
 } as const;
 export type TdSizeVariants = keyof typeof tdSizeVariants;
+export type CellColorVariant = "white" | "blue";
 
 export type TdProps = ComponentPropsWithRef<"td"> & {
   position?: CellContentPositionVariants;
   verticalAlign?: CellContentVerticalAlignVariants;
   size?: TdSizeVariants;
+  color?: CellColorVariant;
 };
 
 export const Td = ({
   position = "left",
   verticalAlign = "middle",
   size,
+  color, // couleur gardée ici aussi pour mettre en surbrillance une colonne en cas de check sur le th associé
   className,
   children,
   id,
@@ -28,7 +31,7 @@ export const Td = ({
   const componentClassName = getClassName({
     baseClassName: "af-table__td",
     className,
-    modifiers: [position, verticalAlign, size && tdSizeVariants[size]],
+    modifiers: [position, verticalAlign, size && tdSizeVariants[size], color],
   });
   return (
     <td id={id} className={componentClassName} {...tableCellProps}>

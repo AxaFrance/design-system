@@ -56,7 +56,7 @@ export const AlternateColorTable: Story = {
   name: "Tableau avec couleurs alternées",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead>
         <Table.Tr>
           <Table.Th>Produit</Table.Th>
           <Table.Th>Catégorie</Table.Th>
@@ -98,7 +98,7 @@ export const TableWithSortableHeaders: Story = {
   name: "Tableau avec en-têtes triables",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead color="gray">
         <Table.Tr>
           <Table.Th onSort={() => {}}>Nom</Table.Th>
           <Table.Th onSort={() => {}}>Âge</Table.Th>
@@ -140,12 +140,14 @@ export const TableWithCheckboxes: Story = {
   name: "Tableau avec cases à cocher",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead color="gray">
         <Table.Tr>
           <Table.Th onCheck={() => {}}>Sélection</Table.Th>
-          <Table.Th>Contrat</Table.Th>
-          <Table.Th>Client</Table.Th>
-          <Table.Th>Montant</Table.Th>
+          <Table.Th onCheck={() => {}} checkboxPosition="right">
+            Contrat
+          </Table.Th>
+          <Table.Th onCheck={() => {}} />
+          <Table.Th onCheck={() => {}} checkboxPosition="right" />
         </Table.Tr>
       </Table.THead>
       <Table.TBody>
@@ -182,7 +184,7 @@ export const TableWithTags: Story = {
   name: "Tableau avec tags et statuts",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead>
         <Table.Tr>
           <Table.Th>Référence</Table.Th>
           <Table.Th>Statut</Table.Th>
@@ -232,7 +234,7 @@ export const TableWithButtons: Story = {
   name: "Tableau avec actions (boutons)",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead color="gray">
         <Table.Tr>
           <Table.Th>Utilisateur</Table.Th>
           <Table.Th>Email</Table.Th>
@@ -241,7 +243,7 @@ export const TableWithButtons: Story = {
         </Table.Tr>
       </Table.THead>
       <Table.TBody>
-        <Table.Tr>
+        <Table.Tr size="L">
           <Table.Td>Jean Dupont</Table.Td>
           <Table.Td>jean.dupont@example.com</Table.Td>
           <Table.Td>Administrateur</Table.Td>
@@ -249,7 +251,7 @@ export const TableWithButtons: Story = {
             <Button variant="tertiary">Modifier</Button>
           </Table.Td>
         </Table.Tr>
-        <Table.Tr>
+        <Table.Tr size="L">
           <Table.Td>Marie Martin</Table.Td>
           <Table.Td>marie.martin@example.com</Table.Td>
           <Table.Td>Éditeur</Table.Td>
@@ -257,7 +259,7 @@ export const TableWithButtons: Story = {
             <Button variant="tertiary">Modifier</Button>
           </Table.Td>
         </Table.Tr>
-        <Table.Tr>
+        <Table.Tr size="L">
           <Table.Td>Pierre Bernard</Table.Td>
           <Table.Td>pierre.bernard@example.com</Table.Td>
           <Table.Td>Lecteur</Table.Td>
@@ -265,7 +267,7 @@ export const TableWithButtons: Story = {
             <Button variant="tertiary">Modifier</Button>
           </Table.Td>
         </Table.Tr>
-        <Table.Tr>
+        <Table.Tr size="L">
           <Table.Td>Sophie Dubois</Table.Td>
           <Table.Td>sophie.dubois@example.com</Table.Td>
           <Table.Td>Éditeur</Table.Td>
@@ -282,7 +284,7 @@ export const TableWithDifferentSizes: Story = {
   name: "Tableau avec tailles de lignes variées",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead>
         <Table.Tr>
           <Table.Th>Nom</Table.Th>
           <Table.Th>Description</Table.Th>
@@ -326,7 +328,7 @@ export const TableWithAlignments: Story = {
   name: "Tableau avec alignements différents",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead>
         <Table.Tr>
           <Table.Th>Article</Table.Th>
           <Table.Th>Quantité</Table.Th>
@@ -368,7 +370,7 @@ export const CompactTable: Story = {
   name: "Tableau compact (3 colonnes)",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead>
         <Table.Tr>
           <Table.Th>Nom</Table.Th>
           <Table.Th>Statut</Table.Th>
@@ -413,7 +415,7 @@ export const WideTable: Story = {
   name: "Tableau large (6 colonnes)",
   render: () => (
     <Table>
-      <Table.THead color="blue">
+      <Table.THead>
         <Table.Tr>
           <Table.Th>ID</Table.Th>
           <Table.Th>Nom</Table.Th>

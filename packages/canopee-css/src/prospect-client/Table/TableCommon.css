@@ -99,6 +99,10 @@
     &.af-table__td--large {
       height: 80px;
     }
+
+    &.af-table__td--blue {
+      background-color: var(--table-body-bg-blue);
+    }
   }
 
   .af-table__tr {
@@ -126,12 +130,12 @@
 
   .af-table__thead {
     &.af-table__thead--gray .af-table__th {
-      color: var(--neutral-100);
+      color: var(--table-header-text-color-gray);
       background-color: var(--table-header-bg-gray);
     }
 
     &.af-table__thead--blue .af-table__th {
-      color: var(--axa-blue-100);
+      color: var(--table-header-text-color-blue);
       background-color: var(--table-header-bg-blue);
     }
   }

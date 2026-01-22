@@ -14,7 +14,7 @@ export const BasicTable: Story = {
   name: "Tableau basique",
   render: () => (
     <Table>
-      <Table.THead color="gray">
+      <Table.THead>
         <Table.Tr>
           <Table.Th>Nom</Table.Th>
           <Table.Th>Prénom</Table.Th>
@@ -142,10 +142,12 @@ export const TableWithCheckboxes: Story = {
     <Table>
       <Table.THead color="gray">
         <Table.Tr>
+          <Table.Th onCheck={() => {}}>Sélection</Table.Th>
+          <Table.Th onCheck={() => {}} checkboxPosition="right">
+            Contrat
+          </Table.Th>
+          <Table.Th onCheck={() => {}} />
           <Table.Th onCheck={() => {}} checkboxPosition="right" />
-          <Table.Th>Contrat</Table.Th>
-          <Table.Th>Client</Table.Th>
-          <Table.Th>Montant</Table.Th>
         </Table.Tr>
       </Table.THead>
       <Table.TBody>
@@ -337,25 +339,25 @@ export const TableWithAlignments: Story = {
       <Table.TBody>
         <Table.Tr>
           <Table.Td>Ordinateur</Table.Td>
-          <Table.Td position="center">1</Table.Td>
+          <Table.Td>1</Table.Td>
           <Table.Td position="right">899,00 €</Table.Td>
           <Table.Td position="right">899,00 €</Table.Td>
         </Table.Tr>
         <Table.Tr>
           <Table.Td>Souris</Table.Td>
-          <Table.Td position="center">2</Table.Td>
+          <Table.Td>2</Table.Td>
           <Table.Td position="right">29,99 €</Table.Td>
           <Table.Td position="right">59,98 €</Table.Td>
         </Table.Tr>
         <Table.Tr>
           <Table.Td>Clavier</Table.Td>
-          <Table.Td position="center">1</Table.Td>
+          <Table.Td>1</Table.Td>
           <Table.Td position="right">89,00 €</Table.Td>
           <Table.Td position="right">89,00 €</Table.Td>
         </Table.Tr>
         <Table.Tr>
           <Table.Td>Câble HDMI</Table.Td>
-          <Table.Td position="center">3</Table.Td>
+          <Table.Td>3</Table.Td>
           <Table.Td position="right">15,99 €</Table.Td>
           <Table.Td position="right">47,97 €</Table.Td>
         </Table.Tr>
