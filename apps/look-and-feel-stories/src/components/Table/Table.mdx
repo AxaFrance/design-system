@@ -1,0 +1,95 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as TableStories from "./Table.stories";
+
+<Meta of={TableStories} name="Table" />
+
+# Table
+
+To use the table import it like that:
+
+```tsx
+import { Table } from "@axa-fr/canopee-react/client";
+
+const MyComponent = () => (
+  <Table>
+    <Table.THead color="gray">
+      <Table.Tr>
+        <Table.Th>Nom</Table.Th>
+        <Table.Th>Email</Table.Th>
+      </Table.Tr>
+    </Table.THead>
+    <Table.TBody color="alternate">
+      <Table.Tr>
+        <Table.Td>Jean Dupont</Table.Td>
+        <Table.Td>jean.dupont@example.com</Table.Td>
+      </Table.Tr>
+    </Table.TBody>
+  </Table>
+);
+```
+
+## Usage
+
+The Table component is a compound component with the following sub-components:
+
+- `Table.THead` - Table header with optional `color` prop ("gray")
+- `Table.TBody` - Table body with optional `color` prop ("alternate" for zebra stripes)
+- `Table.Tr` - Table row with optional `size` prop ("S", "M", "L")
+- `Table.Th` - Table header cell with optional `onSort`, `onCheck`, and `checkboxPosition` props for sortable and selectable tables
+- `Table.Td` - Table data cell with optional `position` prop ("left", "center", "right")
+
+## Examples
+
+### Basic Table
+
+<Canvas of={TableStories.BasicTable} />
+
+### Alternate Colors
+
+Use `color="alternate"` on `Table.TBody` to get zebra-striped rows.
+
+<Canvas of={TableStories.AlternateColorTable} />
+
+### Sortable Headers
+
+Add `onSort` prop to `Table.Th` to make columns sortable.
+
+<Canvas of={TableStories.TableWithSortableHeaders} />
+
+### Checkboxes
+
+Add `onCheck` prop to `Table.Th` to enable row selection. Use `checkboxPosition` to control checkbox placement.
+
+<Canvas of={TableStories.TableWithCheckboxes} />
+
+### With Tags
+
+Tables work great with other components like Tags for status indicators.
+
+<Canvas of={TableStories.TableWithTags} />
+
+### With Buttons
+
+Tables can include interactive elements like buttons for actions.
+
+<Canvas of={TableStories.TableWithButtons} />
+
+### Different Sizes
+
+Use the `size` prop on `Table.Tr` to control row height ("S", "M", "L").
+
+<Canvas of={TableStories.TableWithDifferentSizes} />
+
+### Text Alignment
+
+Use the `position` prop on `Table.Td` to align cell content ("left", "center", "right").
+
+<Canvas of={TableStories.TableWithAlignments} />
+
+### Compact Table
+
+<Canvas of={TableStories.CompactTable} />
+
+### Wide Table
+
+<Canvas of={TableStories.WideTable} />
