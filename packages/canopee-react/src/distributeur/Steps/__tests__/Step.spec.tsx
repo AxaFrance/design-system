@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Step, StepBase, Steps } from "..";
 
@@ -67,5 +67,72 @@ describe("<Steps>", () => {
     await userEvent.click(link);
 
     expect(onClick).toHaveBeenCalled();
+  });
+
+  describe("stateLabel", () => {
+    it("renders custom stateLabel on Step (link)", () => {
+      render(
+        <Steps>
+          <Step
+            id="id-s1"
+            href="/etape1"
+            onClick={vi.fn()}
+            number="1"
+            mode="link"
+            title="Previous step"
+            stateLabel="Completed"
+          />
+        </Steps>,
+      );
+
+      const listItem = screen.getByRole("listitem", {
+        name: "Previous step (Completed)",
+      });
+      expect(listItem).toBeInTheDocument();
+    });
+
+    it("renders custom stateLabel on StepBase", () => {
+      render(
+        <Steps>
+          <StepBase id="idf-test" title="Un titre" stateLabel="In progress">
+            <a
+              className="af-steps-list-step__label"
+              href="/#"
+              onClick={vi.fn()}
+            >
+              <span className="af-steps-list-step__number">1</span>
+              <span className="af-steps-list-step__title">Custom</span>
+            </a>
+          </StepBase>
+        </Steps>,
+      );
+
+      const listItem = screen.getByRole("listitem", {
+        name: "Un titre (In progress)",
+      });
+      expect(listItem).toBeInTheDocument();
+    });
+
+    it.each([
+      ["link", "Lien", "Lien (complété)"],
+      ["active", "Actif", "Actif (en cours)"],
+      ["disabled", "Désactivé", "Désactivé (à venir)"],
+    ] as const)(
+      "renders default stateLabel for mode=%s (title: %s)",
+      (mode, title, expectedName) => {
+        render(
+          <Steps>
+            <Step id={`def-${mode}`} number="1" mode={mode} title={title} />
+          </Steps>,
+        );
+
+        const li = screen.getByRole("listitem", { name: expectedName });
+        expect(li).toBeInTheDocument();
+
+        if (mode === "link") {
+          expect(within(li).getByRole("link")).toBeInTheDocument();
+        }
+      },
+    );
   });
 });

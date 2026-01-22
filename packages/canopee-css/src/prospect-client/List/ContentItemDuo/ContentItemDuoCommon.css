@@ -29,6 +29,7 @@
     );
     font-weight: 600;
     line-height: 125%;
+    word-break: break-word;
     color: var(--content-item-duo-value-color);
   }
 

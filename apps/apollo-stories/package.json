@@ -30,13 +30,12 @@
     "@storybook/react": "^8.6.3",
     "@storybook/react-vite": "^8.6.3",
     "@storybook/test": "^8.6.3",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^5.1.2",
     "@whitespace/storybook-addon-html": "^6.1.1",
     "globals": "^16.5.0",
     "remark-gfm": "^4.0.1",
     "storybook": "^8.5.5",
-    "typescript": "~5.9.3",
-    "vite": "^6.3.3"
+    "typescript": "~5.9.3"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.40.0"
