@@ -1,12 +1,13 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
-import { StepBase } from "./StepBase";
-import type { CustomClickEvent } from "./types";
+import { ReactNode } from "react";
+import { StepBase, type StepBaseProps } from "./StepBase";
+import type { StepLinkOnClickHandler } from "./types";
 
-type Props = ComponentPropsWithoutRef<typeof StepBase> & {
+export type StepLinkProps = StepBaseProps & {
   href: string;
   number?: ReactNode;
-  onClick?: (e: CustomClickEvent) => void;
+  onClick?: StepLinkOnClickHandler;
 };
+
 const StepLink = ({
   id,
   href,
@@ -15,7 +16,7 @@ const StepLink = ({
   className = "past af-steps-list-step",
   onClick,
   ...otherProps
-}: Props) => (
+}: StepLinkProps) => (
   <StepBase
     id={id}
     className={`${className} ${number ? "number" : ""}`}
@@ -26,8 +27,10 @@ const StepLink = ({
       className="af-steps-list-step__label"
       href={href}
       onClick={(e) => {
-        e.preventDefault();
-        onClick?.({ href, id, title, number });
+        if (onClick) {
+          e.preventDefault();
+          onClick?.({ href, id, title, number });
+        }
       }}
     >
       {Boolean(number) && (

@@ -7,4 +7,7 @@ export type CustomClickEvent = {
   title: string;
 };
 
+export type StepLinkOnClickHandler = (e: CustomClickEvent) => void;
+
+export type StepMode = "link" | "active" | "disabled";
 export type VerticalStepMode = "edited" | "locked" | "validated";

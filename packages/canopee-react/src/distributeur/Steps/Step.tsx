@@ -1,12 +1,13 @@
-import { ComponentPropsWithoutRef } from "react";
 import { StepCurrent } from "./StepCurrent";
 import { StepDisabled } from "./StepDisabled";
-import { StepLink } from "./StepLink";
+import { StepLink, type StepLinkProps } from "./StepLink";
+import { StepMode } from "./types";
 
-type Props = Omit<ComponentPropsWithoutRef<typeof StepLink>, "href"> & {
+type Props = Omit<StepLinkProps, "href"> & {
   href?: string;
-  mode?: "link" | "active" | "disabled";
+  mode?: StepMode;
 };
+
 const Step = ({
   number,
   id,
@@ -16,6 +17,7 @@ const Step = ({
   onClick,
   mode = "link",
   className,
+  stateLabel,
 }: Props) => {
   switch (mode) {
     case "link":
@@ -28,6 +30,7 @@ const Step = ({
           className={className}
           title={title}
           onClick={onClick}
+          stateLabel={stateLabel || "complété"}
         />
       );
     case "active":
@@ -38,6 +41,7 @@ const Step = ({
           classModifier={classModifier}
           className={className}
           number={number}
+          stateLabel={stateLabel || "en cours"}
         />
       );
     default:
@@ -48,6 +52,7 @@ const Step = ({
           classModifier={classModifier}
           className={className}
           number={number}
+          stateLabel={stateLabel || "à venir"}
         />
       );
   }

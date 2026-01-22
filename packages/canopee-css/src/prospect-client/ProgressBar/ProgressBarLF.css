@@ -1,7 +1,6 @@
 @import "./ProgressBarCommon.css";
 
-.af-progress-bar {
-  --progress-bar-radius: var(--radius-4);
+.af-progress-bar__progress {
   --progress-bar-background-color: var(--color-gray-400);
   --progress-bar-appearance: var(--color-axa);
 }
