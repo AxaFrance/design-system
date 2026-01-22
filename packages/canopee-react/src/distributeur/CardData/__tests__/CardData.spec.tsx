@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
 import bank from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
+import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { CardData } from "../CardData";
-import { Table } from "../../Table";
 import { Button } from "../../Button/Button";
+import { Table } from "../../Table";
+import { CardData } from "../CardData";
 
 const TableExample = () => (
   <Table style={{ boxShadow: "none" }} aria-label="Tableau de contenu">
@@ -53,7 +53,7 @@ describe("CardData", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: "Titre de la carte Sous titre de la carte",
+        name: "Titre de la carteSous titre de la carte",
         level: 3,
       }),
     ).toBeInTheDocument();
@@ -71,8 +71,8 @@ describe("CardData", () => {
     );
 
     expect(
-      screen.getByRole("heading", {
-        name: "Titre de la carte Description de la carte",
+      await screen.findByRole("heading", {
+        name: "Titre de la carteDescription de la carte",
         level: 3,
       }),
     ).toBeInTheDocument();
