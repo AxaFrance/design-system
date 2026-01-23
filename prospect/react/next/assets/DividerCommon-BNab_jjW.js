@@ -1,0 +1,1 @@
+import{j as s}from"./index-C-iqcyhV.js";import{r as e}from"./index-ZnYipkzV.js";import{j as m}from"./FieldsetApollo-Dfj4LJqj.js";const i=({className:o,classModifier:r})=>{const t=e.useMemo(()=>m("af-divider",o,r),[o,r]);return s.jsx("hr",{className:t})};export{i as D};
