@@ -70,7 +70,7 @@ Short description of the component.
 Short sample that users can copy and paste to import the component.
 
 ```tsx
-import { Button } from '@axa-fr/design-system-slash-react';
+import { Button } from '@axa-fr/canopee-react/distributeur';
 
 const MyComponent = () => (
   <Button classModifier="reverse" type="submit">

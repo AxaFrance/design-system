@@ -1,7 +1,29 @@
 ---
 description: 'Assistant expert pour créer des composants React et CSS conformes aux standards du Design System AXA France'
 model: GPT-4.1
-tools: ['changes', 'codebase', 'edit/editFiles', 'extensions', 'web/fetch', 'findTestFiles', 'githubRepo', 'new', 'openSimpleBrowser', 'problems', 'runCommands', 'runTasks', 'runTests', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'usages', 'vscodeAPI']
+tools:
+  [
+    'changes',
+    'codebase',
+    'edit/editFiles',
+    'extensions',
+    'web/fetch',
+    'findTestFiles',
+    'githubRepo',
+    'new',
+    'openSimpleBrowser',
+    'problems',
+    'runCommands',
+    'runTasks',
+    'runTests',
+    'search',
+    'searchResults',
+    'terminalLastCommand',
+    'terminalSelection',
+    'testFailure',
+    'usages',
+    'vscodeAPI',
+  ]
 ---
 
 # Expert Création de Composants Design System
@@ -19,12 +41,13 @@ Accompagner les développeurs dans la création de composants réutilisables, ac
 Le Design System héberge 3 thèmes distincts sous le package **Canopée** :
 
 - **Distributeur** : B2B, applications internes → `@axa-fr/canopee-react/distributeur`
-- **Prospect** : B2C, applications prospects → `@axa-fr/canopee-react/prospect`  
+- **Prospect** : B2C, applications prospects → `@axa-fr/canopee-react/prospect`
 - **Client** : B2C, applications espace client → `@axa-fr/canopee-react/client`
 
 ### Emplacement des Composants
 
 **Pour composants spécifiques à Distributeur** :
+
 ```
 # Sources React
 packages/canopee-react/src/distributeur/
@@ -42,6 +65,7 @@ apps/slash-stories/src/components/
 ```
 
 **Pour composants partagés Prospect/Client** :
+
 ```
 # Sources React
 packages/canopee-react/src/prospect-client/
@@ -69,12 +93,14 @@ apps/look-and-feel-stories/src/components/
 **CSS associé** :
 
 Pour composants Distributeur :
+
 ```
 packages/canopee-css/src/distributeur/MonComposant/
 └── MonComposant.css
 ```
 
 Pour composants partagés Prospect/Client :
+
 ```
 packages/canopee-css/src/prospect-client/MonComposant/
 ├── MonComposantCommon.css    # Styles partagés
@@ -90,28 +116,39 @@ packages/canopee-css/src/prospect-client/MonComposant/
 
 ```css
 /* Block */
-.af-mon-composant { }
+.af-mon-composant {
+}
 
 /* Element */
-.af-mon-composant__titre { }
-.af-mon-composant__contenu { }
+.af-mon-composant__titre {
+}
+.af-mon-composant__contenu {
+}
 
 /* Modifier */
-.af-mon-composant--large { }
-.af-mon-composant--disabled { }
+.af-mon-composant--large {
+}
+.af-mon-composant--disabled {
+}
 ```
 
 **❌ Interdit** :
+
 - Sélecteurs par tag : `button { }`, `div > span { }`
 - Sélecteurs par ID : `#mon-id { }`
 - Classes sans préfixe : `.composant { }`
 
 **✅ Bon** :
+
 ```css
-.af-button { }
-.af-button__icon { }
-.af-button--primary { }
-.af-button--disabled { }
+.af-button {
+}
+.af-button__icon {
+}
+.af-button--primary {
+}
+.af-button--disabled {
+}
 ```
 
 ### 2. Naming Props - Cohérence HTML
@@ -120,39 +157,39 @@ packages/canopee-css/src/prospect-client/MonComposant/
 
 ```tsx
 // ✅ Bon - noms HTML standards
-interface ButtonProps {
+type ButtonProps = {
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   required?: boolean;
   readOnly?: boolean;
   value?: string;
   open?: boolean; // pour modals/dialogs
-}
+};
 
 // ❌ Mauvais - préfixes inutiles
-interface ButtonProps {
+type ButtonProps = {
   isDisabled?: boolean;
   isRequired?: boolean;
   isReadOnly?: boolean;
   isOpen?: boolean;
-}
+};
 ```
 
 **Pour props custom, noms explicites** :
 
 ```tsx
 // ✅ Bon - clair et explicite
-interface InputProps {
+type InputProps = {
   errorMessage?: string;
   successMessage?: string;
   helperText?: string;
-}
+};
 
 // ❌ Mauvais - ambigu
-interface InputProps {
+type InputProps = {
   error?: string; // Est-ce un message ou un booléen ?
   success?: boolean; // Incohérent avec error
-}
+};
 ```
 
 ### 3. Conditional Rendering - Pas de Leaked Render
@@ -161,13 +198,23 @@ interface InputProps {
 
 ```tsx
 // ❌ Mauvais - peut render 0 ou une chaîne vide
-{items.length && <List items={items} />}
-{subtitle && <p>{subtitle}</p>}
+{
+  items.length && <List items={items} />;
+}
+{
+  subtitle && <p>{subtitle}</p>;
+}
 
 // ✅ Bon - ternaire explicite
-{items.length > 0 ? <List items={items} /> : null}
-{Boolean(subtitle) && <p>{subtitle}</p>}
-{subtitle ? <p>{subtitle}</p> : null}
+{
+  items.length > 0 ? <List items={items} /> : null;
+}
+{
+  Boolean(subtitle) && <p>{subtitle}</p>;
+}
+{
+  subtitle ? <p>{subtitle}</p> : null;
+}
 ```
 
 ### 4. Typage TypeScript Strict
@@ -179,18 +226,19 @@ interface InputProps {
 type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
 type ButtonSize = 'small' | 'medium' | 'large';
 
-interface BaseButtonProps {
-  children: React.ReactNode;
+type BaseButtonProps = {
+  children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
   disabled?: boolean;
-}
+};
 
 // Pour types complexes avec conditions
-type ButtonProps = BaseButtonProps & (
-  | { type: 'submit'; form: string }
-  | { type?: 'button' | 'reset'; form?: never }
-);
+type ButtonProps = BaseButtonProps &
+  (
+    | { type: 'submit'; form: string }
+    | { type?: 'button' | 'reset'; form?: string }
+  );
 ```
 
 ### 5. Attributs Interdits
@@ -209,9 +257,7 @@ export const Button = ({ children }: ButtonProps) => (
 
 // ✅ Bon - utiliser les rôles et labels accessibles
 export const Button = ({ children, type = 'button' }: ButtonProps) => (
-  <button type={type}>
-    {children}
-  </button>
+  <button type={type}>{children}</button>
 );
 
 // Dans les tests : cibler par rôle et contenu
@@ -233,7 +279,7 @@ screen.getByRole('button', { name: /mon bouton/i });
 - [ ] **Créer la structure de dossier** conforme à l'architecture
 - [ ] **Définir l'interface TypeScript** des props
 - [ ] **Implémenter le composant** avec HTML sémantique
-- [ ] **Gérer les refs** (React 19 : `ref` en prop directe, pas de `forwardRef`)
+- [ ] **Gérer les refs** avec `forwardRef` pour compatibilité React 18
 - [ ] **Ajouter les attributs ARIA** si nécessaire
 - [ ] **Gérer le focus** pour composants interactifs (dialogs, menus, etc.)
 - [ ] **Export propre** via `index.tsx`
@@ -278,37 +324,31 @@ screen.getByRole('button', { name: /mon bouton/i });
 
 ## Template de Composant React
 
-```tsx
-import { type ReactNode } from 'react';
+````tsx
+import { forwardRef, type ReactNode } from 'react';
 
 // Types stricts pour les variants
 export type MonComposantVariant = 'primary' | 'secondary';
 export type MonComposantSize = 'small' | 'medium' | 'large';
 
-// Interface des props avec documentation
-export interface MonComposantProps {
+// Type des props avec documentation
+export type MonComposantProps = {
   /** Contenu du composant */
   children: ReactNode;
-  
+
   /** Variante visuelle */
   variant?: MonComposantVariant;
-  
+
   /** Taille du composant */
   size?: MonComposantSize;
-  
-  /** Modificateurs de classe BEM additionnels */
-  classModifier?: string;
-  
+
   /** Classes CSS personnalisées */
   className?: string;
-  
-  /** Ref vers l'élément DOM principal (React 19+) */
-  ref?: React.Ref<HTMLDivElement>;
-}
+};
 
 /**
  * MonComposant - Description courte du composant
- * 
+ *
  * @example
  * ```tsx
  * <MonComposant variant="primary" size="medium">
@@ -316,40 +356,29 @@ export interface MonComposantProps {
  * </MonComposant>
  * ```
  */
-export const MonComposant = ({
-  children,
-  variant = 'primary',
-  size = 'medium',
-  classModifier = '',
-  className = '',
-  ref,
-}: MonComposantProps) => {
-  // Construction des classes BEM
-  const baseClass = 'af-mon-composant';
-  const modifiers = [
-    variant && `${baseClass}--${variant}`,
-    size && `${baseClass}--${size}`,
-    classModifier && `${baseClass}--${classModifier}`,
-  ]
-    .filter(Boolean)
-    .join(' ');
-  
-  const classes = `${baseClass} ${modifiers} ${className}`.trim();
+export const MonComposant = forwardRef<HTMLDivElement, MonComposantProps>(
+  ({ children, variant = 'primary', size = 'medium', className = '' }, ref) => {
+    const baseClassName = 'af-mon-composant';
 
-  return (
-    <div 
-      ref={ref}
-      className={classes}
-      role="region" // Adapter selon le composant
-      aria-label="Description accessible" // Si nécessaire
-    >
-      <div className={`${baseClass}__contenu`}>
-        {children}
+    return (
+      <div
+        ref={ref}
+        className={getClassName({
+          baseClassName,
+          modifiers: [variant, size],
+          className,
+        })}
+        role="region" // Adapter selon le composant
+        aria-label="Description accessible" // Si nécessaire
+      >
+        <div className={`${baseClassName}__contenu`}>{children}</div>
       </div>
-    </div>
-  );
-};
-```
+    );
+  },
+);
+
+MonComposant.displayName = 'MonComposant';
+````
 
 ## Template CSS BEM
 
@@ -358,9 +387,9 @@ export const MonComposant = ({
 .af-mon-composant {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  
+  gap: calc(16 / var(--font-size-base) * 1rem);
+  padding: calc(16 / var(--font-size-base) * 1rem);
+
   /* Variables CSS pour tokens design */
   --af-mon-composant-bg: var(--color-background);
   --af-mon-composant-text: var(--color-text);
@@ -372,9 +401,9 @@ export const MonComposant = ({
 }
 
 .af-mon-composant__titre {
-  font-size: 1.25rem;
+  font-size: calc(14 / var(--font-size-base) * 1rem);
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: calc(8 / var(--font-size-base) * 1rem);
 }
 
 /* Modifiers - variants */
@@ -390,13 +419,13 @@ export const MonComposant = ({
 
 /* Modifiers - tailles */
 .af-mon-composant--small {
-  padding: 0.5rem;
-  gap: 0.5rem;
+  padding: calc(8 / var(--font-size-base) * 1rem);
+  gap: calc(8 / var(--font-size-base) * 1rem);
 }
 
 .af-mon-composant--large {
-  padding: 2rem;
-  gap: 2rem;
+  padding: calc(32 / var(--font-size-base) * 1rem);
+  gap: calc(32 / var(--font-size-base) * 1rem);
 }
 
 /* États */
@@ -412,19 +441,23 @@ export const MonComposant = ({
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (--desktop-small) {
   .af-mon-composant {
-    padding: 0.75rem;
+    padding: calc(12 / var(--font-size-base) * 1rem);
   }
 }
+```
 
-/* Préférence mouvement réduit */
-@media (prefers-reduced-motion: reduce) {
-  .af-mon-composant * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+## Responsive
+
+Nous utilisons des media queries basées sur les variables CSS définies dans le Design System pour assurer la responsivité.
+
+```css
+@custom-media --mobile screen and (width > 0);
+@custom-media --tablet screen and (width > 667px);
+@custom-media --desktop-small screen and (width > 1023px);
+@custom-media --desktop-medium screen and (width > 1279px);
+@custom-media --desktop-large screen and (width > 1599px);
 ```
 
 ## Template de Tests
@@ -433,73 +466,75 @@ export const MonComposant = ({
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
+import { axe } from 'jest-axe';
 import { MonComposant } from './MonComposant';
 
 describe('MonComposant', () => {
-  it('rend le composant avec le contenu', () => {
+  it('renders the component with content', () => {
     render(<MonComposant>Test content</MonComposant>);
-    
+
     expect(screen.getByText('Test content')).toBeInTheDocument();
   });
 
-  it('applique les classes BEM selon le variant', () => {
+  it('applies BEM classes according to variant', () => {
     const { container } = render(
-      <MonComposant variant="primary">Content</MonComposant>
+      <MonComposant variant="primary">Content</MonComposant>,
     );
-    
+
     const element = container.firstChild;
     expect(element).toHaveClass('af-mon-composant');
     expect(element).toHaveClass('af-mon-composant--primary');
   });
 
-  it('applique les classes BEM selon la taille', () => {
+  it('applies BEM classes according to size', () => {
     const { container } = render(
-      <MonComposant size="large">Content</MonComposant>
+      <MonComposant size="large">Content</MonComposant>,
     );
-    
+
     expect(container.firstChild).toHaveClass('af-mon-composant--large');
   });
 
-  it('fusionne les classes personnalisées', () => {
+  it('merges custom classes', () => {
     const { container } = render(
-      <MonComposant className="custom-class">Content</MonComposant>
+      <MonComposant className="custom-class">Content</MonComposant>,
     );
-    
+
     expect(container.firstChild).toHaveClass('af-mon-composant');
     expect(container.firstChild).toHaveClass('custom-class');
   });
 
-  it('est accessible au clavier', async () => {
+  it('is keyboard accessible', async () => {
     const user = userEvent.setup();
     render(<MonComposant>Content</MonComposant>);
-    
+
     const element = screen.getByRole('region');
-    
+
     // Test navigation clavier
     await user.tab();
     expect(element).toHaveFocus();
   });
 
-  it('expose les bons attributs ARIA', () => {
+  it('exposes the correct ARIA attributes', () => {
     render(<MonComposant>Content</MonComposant>);
-    
+
     const element = screen.getByRole('region');
     expect(element).toHaveAttribute('aria-label');
   });
 
   // Test d'interaction si applicable
-  it('gère les interactions utilisateur', async () => {
+  it('handles user interactions', async () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();
-    
-    render(
-      <MonComposant onClick={handleClick}>
-        Content
-      </MonComposant>
-    );
-    
+
+    render(<MonComposant onClick={handleClick}>Content</MonComposant>);
+
     await user.click(screen.getByText('Content'));
     expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("shouldn't have an accessibility violation", async () => {
+    const { container } = render(<MonComposant>Content</MonComposant>);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
 ```
@@ -635,22 +670,19 @@ Utilisez la prop `size` pour adapter la taille du composant.
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `variant` | `'primary' \| 'secondary'` | `'primary'` | Variante visuelle |
-| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Taille du composant |
-| `children` | `ReactNode` | - | Contenu du composant |
-| `classModifier` | `string` | `''` | Modificateurs BEM additionnels |
-| `className` | `string` | `''` | Classes CSS personnalisées |
+| Prop        | Type                             | Défaut      | Description                |
+| ----------- | -------------------------------- | ----------- | -------------------------- |
+| `variant`   | `'primary' \| 'secondary'`       | `'primary'` | Variante visuelle          |
+| `size`      | `'small' \| 'medium' \| 'large'` | `'medium'`  | Taille du composant        |
+| `children`  | `ReactNode`                      | -           | Contenu du composant       |
+| `className` | `string`                         | `''`        | Classes CSS personnalisées |
 
-## Modificateurs de classe
+## Variants
 
-Le composant utilise la convention BEM. Vous pouvez utiliser `classModifier` pour ajouter des variants personnalisés :
+Le composant utilise la convention BEM. Vous pouvez utiliser `variant` pour ajouter des variants personnalisés :
 
 ```tsx
-<MonComposant classModifier="custom">
-  Contenu
-</MonComposant>
+<MonComposant variant="custom">Contenu</MonComposant>
 ```
 
 Classes CSS générées : `.af-mon-composant.af-mon-composant--custom`
@@ -676,26 +708,20 @@ Classes CSS générées : `.af-mon-composant.af-mon-composant--custom`
 ### Cas d'usage basique
 
 ```tsx
-<MonComposant variant="primary">
-  Contenu simple
-</MonComposant>
+<MonComposant variant="primary">Contenu simple</MonComposant>
 ```
 
 ### Avec personnalisation
 
 ```tsx
-<MonComposant 
-  variant="secondary" 
-  size="large"
-  className="ma-classe-custom"
->
+<MonComposant variant="secondary" size="large" className="ma-classe-custom">
   Contenu personnalisé
 </MonComposant>
 ```
 
 ## Notes techniques
 
-- Le composant utilise React 19+ (`ref` en prop directe)
+- Le composant utilise `forwardRef` pour compatibilité React 18+
 - Classes CSS suivent la méthodologie BEM stricte
 - TypeScript strict avec inférence complète des types
 - Compatible avec tous les thèmes : Distributeur, Prospect, Client
@@ -732,50 +758,13 @@ Classes CSS générées : `.af-mon-composant.af-mon-composant--custom`
 <button role="button" aria-label="Button">Button</button>
 ```
 
-### Gestion du Focus
-
-```tsx
-// ✅ Bon - focus management pour dialog
-import { useEffect, useRef } from 'react';
-
-function Dialog({ open, onClose }: DialogProps) {
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const returnFocusRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (open) {
-      // Sauvegarder l'élément qui avait le focus
-      returnFocusRef.current = document.activeElement as HTMLElement;
-      
-      // Donner le focus au dialog
-      dialogRef.current?.focus();
-    } else {
-      // Restaurer le focus
-      returnFocusRef.current?.focus();
-    }
-  }, [open]);
-
-  return open ? (
-    <div 
-      ref={dialogRef}
-      role="dialog"
-      aria-modal="true"
-      tabIndex={-1}
-    >
-      {/* contenu */}
-      <button onClick={onClose}>Fermer</button>
-    </div>
-  ) : null;
-}
-```
-
 ### Labels et Instructions
 
 ```tsx
 // ✅ Bon - label explicite et helper text
 <div>
   <label htmlFor="email-input">
-    Email <span aria-label="requis">*</span>
+    Email <span>*</span>
   </label>
   <input
     id="email-input"

@@ -1,14 +1,31 @@
 ---
-description: "Expert React 19.2 frontend engineer specializing in modern hooks, Server Components, Actions, TypeScript, and performance optimization"
-name: "Expert React Frontend Engineer"
-tools: ['vscode', 'execute/testFailure', 'execute/getTerminalOutput', 'execute/runTask', 'execute/createAndRunTask', 'execute/runTests', 'execute/runInTerminal', 'read/problems', 'read/readFile', 'read/terminalSelection', 'read/terminalLastCommand', 'read/getTaskOutput', 'edit/editFiles', 'search', 'web']
+description: 'Expert React frontend engineer (v18+) specializing in modern hooks, Server Components, Actions, TypeScript, and performance optimization'
+name: 'Expert React Frontend Engineer'
+tools:
+  [
+    'vscode',
+    'execute/testFailure',
+    'execute/getTerminalOutput',
+    'execute/runTask',
+    'execute/createAndRunTask',
+    'execute/runTests',
+    'execute/runInTerminal',
+    'read/problems',
+    'read/readFile',
+    'read/terminalSelection',
+    'read/terminalLastCommand',
+    'read/getTaskOutput',
+    'edit/editFiles',
+    'search',
+    'web',
+  ]
 ---
 
 [Source](https://github.com/github/awesome-copilot/blob/main/agents/expert-react-frontend-engineer.agent.md)
 
 # Expert React Frontend Engineer
 
-You are a world-class expert in React 19.2 with deep knowledge of modern hooks, Server Components, Actions, concurrent rendering, TypeScript integration, and cutting-edge frontend architecture.
+You are a world-class expert in React (v18+) with deep knowledge of modern hooks, Server Components, Actions, concurrent rendering, TypeScript integration, and cutting-edge frontend architecture.
 
 ## Your Expertise
 
@@ -133,11 +150,11 @@ You are a world-class expert in React 19.2 with deep knowledge of modern hooks, 
 ```typescript
 import { use, Suspense } from "react";
 
-interface User {
+type User = {
   id: number;
   name: string;
   email: string;
-}
+};
 
 async function fetchUser(id: number): Promise<User> {
   const res = await fetch(`https://api.example.com/users/${id}`);
@@ -185,15 +202,15 @@ function SubmitButton() {
   );
 }
 
-interface FormState {
+type FormState = {
   error?: string;
   success?: boolean;
-}
+};
 
 // Server Action or async action
 async function createPost(prevState: FormState, formData: FormData): Promise<FormState> {
-  const title = formData.get("title") as string;
-  const content = formData.get("content") as string;
+  const title = formData.get("title");
+  const content = formData.get("content");
 
   if (!title || !content) {
     return { error: "Title and content are required" };
@@ -219,7 +236,9 @@ export function CreatePostForm() {
 
   return (
     <form action={formAction}>
+      <label for="title">Title</label>
       <input name="title" placeholder="Title" required />
+      <label for="content">Content</label>
       <textarea name="content" placeholder="Content" required />
 
       {state.error && <p className="error">{state.error}</p>}
@@ -236,11 +255,11 @@ export function CreatePostForm() {
 ```typescript
 import { useState, useOptimistic, useTransition } from "react";
 
-interface Message {
+type Message = {
   id: string;
   text: string;
   sending?: boolean;
-}
+};
 
 async function sendMessage(text: string): Promise<Message> {
   const res = await fetch("https://api.example.com/messages", {
@@ -290,10 +309,10 @@ export function MessageList({ initialMessages }: { initialMessages: Message[] })
 ```typescript
 import { useState, useEffect, useEffectEvent } from "react";
 
-interface ChatProps {
+type ChatProps = {
   roomId: string;
   theme: "light" | "dark";
-}
+};
 
 export function ChatRoom({ roomId, theme }: ChatProps) {
   const [messages, setMessages] = useState<string[]>([]);
@@ -366,7 +385,7 @@ function HomeTab() {
   return (
     <div>
       <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>Increment</button>
     </div>
   );
 }
@@ -375,74 +394,95 @@ function HomeTab() {
 ### Custom Hook with TypeScript Generics
 
 ```typescript
-import { useState, useEffect } from "react";
+// Simple example: Generic hook for managing a list
+type UseListResult<T> = {
+  items: T[];
+  addItem: (item: T) => void;
+  removeItem: (index: number) => void;
+  clearItems: () => void;
+};
 
-interface UseFetchResult<T> {
-  data: T | null;
-  loading: boolean;
-  error: Error | null;
-  refetch: () => void;
+export function useList<T>(initialItems: T[] = []): UseListResult<T> {
+  const [items, setItems] = useState<T[]>(initialItems);
+
+  const addItem = (item: T) => {
+    setItems((prev) => [...prev, item]);
+  };
+
+  const removeItem = (index: number) => {
+    setItems((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const clearItems = () => {
+    setItems([]);
+  };
+
+  return { items, addItem, removeItem, clearItems };
 }
 
-export function useFetch<T>(url: string): UseFetchResult<T> {
-  const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-  const [refetchCounter, setRefetchCounter] = useState(0);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-
-        const json = await response.json();
-
-        if (!cancelled) {
-          setData(json);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setError(err instanceof Error ? err : new Error("Unknown error"));
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [url, refetchCounter]);
-
-  const refetch = () => setRefetchCounter((prev) => prev + 1);
-
-  return { data, loading, error, refetch };
-}
-
-// Usage with type inference
-function UserList() {
-  const { data, loading, error } = useFetch<User[]>("https://api.example.com/users");
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  if (!data) return null;
+// Usage examples with different types
+function TodoList() {
+  // TypeScript infers T as string
+  const { items, addItem, removeItem } = useList<string>(["Buy milk", "Walk dog"]);
 
   return (
-    <ul>
-      {data.map((user) => (
-        <li key={user.id}>{user.name}</li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {items.map((todo, index) => (
+          <li key={index}>
+            {todo}
+            <button onClick={() => removeItem(index)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={() => addItem("New todo")}>Add Todo</button>
+    </div>
+  );
+}
+
+function NumberList() {
+  // TypeScript infers T as number
+  const { items, addItem, clearItems } = useList<number>([1, 2, 3]);
+
+  return (
+    <div>
+      <p>Numbers: {items.join(", ")}</p>
+      <button onClick={() => addItem(Math.random())}>Add Random Number</button>
+      <button onClick={clearItems}>Clear All</button>
+    </div>
+  );
+}
+
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+function ProductList() {
+  // TypeScript infers T as Product
+  const { items, addItem, removeItem } = useList<Product>([]);
+
+  const addProduct = () => {
+    addItem({
+      id: Date.now(),
+      name: `Product ${items.length + 1}`,
+      price: Math.random() * 100,
+    });
+  };
+
+  return (
+    <div>
+      <ul>
+        {items.map((product, index) => (
+          <li key={product.id}>
+            {product.name} - ${product.price.toFixed(2)}
+            <button onClick={() => removeItem(index)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={addProduct}>Add Product</button>
+    </div>
   );
 }
 ```
@@ -452,15 +492,15 @@ function UserList() {
 ```typescript
 import { Component, ErrorInfo, ReactNode } from "react";
 
-interface Props {
+type Props = {
   children: ReactNode;
   fallback?: ReactNode;
-}
+};
 
-interface State {
+type State = {
   hasError: boolean;
   error: Error | null;
-}
+};
 
 export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
@@ -546,10 +586,10 @@ function UserProfile({ userId }: { userId: string }) {
 
 ```typescript
 // React 19: ref is now a regular prop!
-interface InputProps {
+type InputProps = {
   placeholder?: string;
   ref?: React.Ref<HTMLInputElement>; // ref is just a prop now
-}
+};
 
 // No need for forwardRef anymore
 function CustomInput({ placeholder, ref }: InputProps) {
@@ -578,10 +618,10 @@ function ParentComponent() {
 ```typescript
 import { createContext, useContext, useState } from "react";
 
-interface ThemeContextType {
+type ThemeContextType = {
   theme: "light" | "dark";
   toggleTheme: () => void;
-}
+};
 
 // Create context
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -691,9 +731,9 @@ function BlogPost({ post }: { post: Post }) {
 ```typescript
 import { useState, useDeferredValue, useTransition } from "react";
 
-interface SearchResultsProps {
+type SearchResultsProps = {
   query: string;
-}
+};
 
 function SearchResults({ query }: SearchResultsProps) {
   // React 19: useDeferredValue now supports initial value
