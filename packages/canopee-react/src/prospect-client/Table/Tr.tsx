@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 import { getClassName } from "../utilities/getClassName";
 
 export const rowSizeVariants = {
@@ -16,7 +16,6 @@ export const Tr = ({
   size = "S",
   className,
   children,
-  id,
   ...tableRowProps
 }: TrProps) => {
   const componentClassName = getClassName({
@@ -25,7 +24,7 @@ export const Tr = ({
     modifiers: [rowSizeVariants[size]],
   });
   return (
-    <tr id={id} className={componentClassName} {...tableRowProps}>
+    <tr className={componentClassName} {...tableRowProps}>
       {children}
     </tr>
   );
