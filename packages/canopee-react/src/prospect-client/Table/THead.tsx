@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 import { getClassName } from "../utilities/getClassName";
 
 export const headColorVariants = {
@@ -8,11 +8,11 @@ export const headColorVariants = {
 export type HeadColorVariants = keyof typeof headColorVariants;
 
 export type THeadProps = ComponentPropsWithRef<"thead"> & {
-  color?: HeadColorVariants;
+  variant?: HeadColorVariants;
 };
 
 export const THead = ({
-  color = "blue",
+  variant = "blue",
   className,
   children,
   ...tableHeadProps
@@ -20,7 +20,7 @@ export const THead = ({
   const componentClassName = getClassName({
     baseClassName: "af-table__thead",
     className,
-    modifiers: [headColorVariants[color]],
+    modifiers: [variant],
   });
   return (
     <thead className={componentClassName} {...tableHeadProps}>

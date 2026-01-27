@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-function-type */
-import { ComponentPropsWithRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 import unfoldMore from "@material-symbols/svg-400/rounded/unfold_more-fill.svg";
 import { getClassName } from "../utilities/getClassName";
 import { Icon } from "../Icon/IconCommon";
@@ -10,8 +9,8 @@ export type HeaderCellPositionVariants = "left" | "center" | "right";
 export type ThProps = ComponentPropsWithRef<"th"> & {
   position?: HeaderCellPositionVariants;
   checkboxPosition?: HeaderCellPositionVariants;
-  onCheck?: Function;
-  onSort?: Function;
+  onCheck?: () => void;
+  onSort?: () => void;
 };
 
 export const Th = ({
@@ -32,11 +31,11 @@ export const Th = ({
   return (
     <th id={id} className={componentClassName} {...tableHeaderProps}>
       <div className="af-table__th-wrapper">
-        {onCheck ? <Checkbox onChange={() => onCheck()} /> : null}
+        {onCheck ? <Checkbox onChange={onCheck} /> : null}
         <span className="af-table__th-content">{children}</span>
         {onSort ? (
           <Icon
-            onClick={() => onSort()}
+            onClick={onSort}
             src={unfoldMore}
             hasBackground={false}
             size="S"

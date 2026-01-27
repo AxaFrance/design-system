@@ -12,7 +12,7 @@ import { Table } from "@axa-fr/canopee-react/prospect";
 
 const MyComponent = () => (
   <Table>
-    <Table.THead color="blue">
+    <Table.THead variant="blue">
       <Table.Tr>
         <Table.Th>Nom</Table.Th>
         <Table.Th>Email</Table.Th>
@@ -32,11 +32,11 @@ const MyComponent = () => (
 
 The Table component is a compound component with the following sub-components:
 
-- `Table.THead` - Table header with optional `color` prop
-- `Table.TBody` - Table body with optional `color` prop
-- `Table.Tr` - Table row with optional `size` and color props
+- `Table.THead` - Table header with optional `variant` prop
+- `Table.TBody` - Table body with optional `variant` prop
+- `Table.Tr` - Table row with optional `size` and variant props
 - `Table.Th` - Table header cell with optional `onSort`, `onCheck`, `checkboxPosition` props
-- `Table.Td` - Table data cell with optional `position`, `verticalAlign`, `color` and `size` props
+- `Table.Td` - Table data cell with optional `position`, `verticalAlign`, `variant` and `size` props
 
 ## Examples
 
@@ -44,11 +44,11 @@ The Table component is a compound component with the following sub-components:
 
 <Canvas of={TableStories.BasicTable} />
 
-### Alternate Colors
+### Alternate Variants
 
-Use `color="alternate"` on `Table.TBody` to get zebra-striped rows.
+Use `variant="alternate"` on `Table.TBody` to get zebra-striped rows.
 
-<Canvas of={TableStories.AlternateColorTable} />
+<Canvas of={TableStories.AlternateVariantTable} />
 
 ### Sortable Headers
 

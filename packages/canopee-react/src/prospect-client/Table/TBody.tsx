@@ -9,11 +9,11 @@ export const bodyColorVariants = {
 export type BodyColorVariants = keyof typeof bodyColorVariants;
 
 export type TBodyProps = ComponentPropsWithRef<"tbody"> & {
-  color?: BodyColorVariants;
+  variant?: BodyColorVariants;
 };
 
 export const TBody = ({
-  color = "white",
+  variant = "white",
   className,
   children,
   ...tableBodyProps
@@ -21,7 +21,7 @@ export const TBody = ({
   const componentClassName = getClassName({
     baseClassName: "af-table__tbody",
     className,
-    modifiers: [bodyColorVariants[color]],
+    modifiers: [variant],
   });
   return (
     <tbody className={componentClassName} {...tableBodyProps}>
