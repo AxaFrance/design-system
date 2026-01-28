@@ -14,7 +14,9 @@ describe("ContentItemMonoCore Component", () => {
 
     // Vérifie que le conteneur principal est rendu avec la classe par défaut
     const component = container.firstElementChild;
-    expect(component).toHaveClass("af-content-item-mono medium");
+    expect(component).toHaveClass(
+      "af-content-item-mono af-content-item-mono--medium",
+    );
 
     // Vérifie que le titre est affiché
     expect(screen.getByText("Test Title")).toBeInTheDocument();
@@ -38,7 +40,9 @@ describe("ContentItemMonoCore Component", () => {
 
     // Vérifie que la classe de taille personnalisée est appliquée
     const component = container.firstElementChild;
-    expect(component).toHaveClass("af-content-item-mono large");
+    expect(component).toHaveClass(
+      "af-content-item-mono af-content-item-mono--large",
+    );
   });
 
   it("renders without primarySubtitle when not provided", () => {
