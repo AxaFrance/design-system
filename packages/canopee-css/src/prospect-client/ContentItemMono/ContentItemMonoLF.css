@@ -1,12 +1,12 @@
 @import "./ContentItemMonoCommon.css";
 
 .af-content-item-mono {
-  .stick {
+  .af-content-item-mono__stick {
     --stick-background-color: var(--color-axa);
   }
 
-  .text-content {
-    .title {
+  .af-content-item-mono__text-content {
+    .af-content-item-mono__title {
       --title-font-family: var(--font-family-sans-serif);
       --title-font-size: calc(16 / var(--font-size-base) * 1rem);
       --title-font-weight: 600;
@@ -14,14 +14,14 @@
       --title-line-height: calc(20 / var(--font-size-base) * 1rem);
     }
 
-    .subtitle-primary {
+    .af-content-item-mono__subtitle-primary {
       --subtitle-primary-font-family: var(--font-family-sans-serif);
       --subtitle-primary-font-size: calc(16 / var(--font-size-base) * 1rem);
       --subtitle-primary-color: var(--color-gray-900);
       --subtitle-primary-line-height: calc(20 / var(--font-size-base) * 1rem);
     }
 
-    .subtitle {
+    .af-content-item-mono__subtitle {
       --subtitle-font-family: var(--font-family-sans-serif);
       --subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
       --subtitle-color: var(--color-gray);
@@ -29,12 +29,14 @@
     }
   }
 
-  .stick + .text-content .title {
+  .af-content-item-mono__stick
+    + .af-content-item-mono__text-content
+    .af-content-item-mono__title {
     --title-font-size: calc(14 / var(--font-size-base) * 1rem);
     --title-line-height: calc(18 / var(--font-size-base) * 1rem);
   }
 
-  &.large .text-content {
+  &.af-content-item-mono--large .af-content-item-mono__text-content {
     .title {
       --title-font-family: var(--font-family-publico);
       --title-font-weight: 700;
@@ -42,42 +44,44 @@
       --title-line-height: calc(25 / var(--font-size-base) * 1rem);
     }
 
-    .subtitle {
+    .af-content-item-mono__subtitle {
       --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
       --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
     }
   }
 
   @media (--desktop-small) {
-    .text-content {
-      .title {
+    .af-content-item-mono__text-content {
+      .af-content-item-mono__title {
         --title-font-size: calc(18 / var(--font-size-base) * 1rem);
         --title-line-height: calc(23 / var(--font-size-base) * 1rem);
       }
 
-      .subtitle-primary {
+      .af-content-item-mono__subtitle-primary {
         --subtitle-primary-font-size: calc(18 / var(--font-size-base) * 1rem);
         --subtitle-primary-line-height: calc(23 / var(--font-size-base) * 1rem);
       }
 
-      .subtitle {
+      .af-content-item-mono__subtitle {
         --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
         --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
       }
     }
 
-    .stick + .text-content .title {
+    .af-content-item-mono__stick
+      + .af-content-item-mono__text-content
+      .af-content-item-mono__title {
       --title-font-size: calc(16 / var(--font-size-base) * 1rem);
       --title-line-height: calc(20 / var(--font-size-base) * 1rem);
     }
 
-    &.large .text-content {
+    &.af-content-item-mono--large .af-content-item-mono__text-content {
       .title {
         --title-font-size: calc(24 / var(--font-size-base) * 1rem);
         --title-line-height: calc(30 / var(--font-size-base) * 1rem);
       }
 
-      .subtitle {
+      .af-content-item-mono__subtitle {
         --subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
         --subtitle-line-height: calc(23 / var(--font-size-base) * 1rem);
       }
