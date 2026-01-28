@@ -147,6 +147,16 @@ export {
   type SkeletonListProps,
 } from "./prospect-client/SkeletonList/SkeletonListApollo";
 export {
+  Table,
+  type TableProps,
+  type HeadColorVariants,
+  type BodyColorVariants,
+  type RowSizeVariants,
+  headColorVariants,
+  bodyColorVariants,
+  rowSizeVariants,
+} from "./prospect-client/Table/TableApollo";
+export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetApollo";
