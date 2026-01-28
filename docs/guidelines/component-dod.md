@@ -10,8 +10,6 @@ A folder containing a single component should have the following structure:
 component-name/
   ├── __tests__/
   │   └── component-name.test.tsx
-  ├── component-name.stories.tsx
-  ├── component-name.mdx
   ├── component-name.tsx
   └── index.tsx
 ```
@@ -21,7 +19,7 @@ component-name/
 ### Multiple components
 
 If you need to expose multiple components from the same folder, like the
-`Accordion` and `CollapseCard` from _slash_, the name of the root folder is the
+`Accordion` and `CollapseCard`, the name of the root folder is the
 main component you're exposing. In this case, it's `Accordion`. You can use the
 following structure:
 
@@ -29,8 +27,6 @@ following structure:
 Accordion/
   ├── __tests__/
   │   └── Accordion.test.tsx
-  ├── Accordion.mdx
-  ├── Accordion.stories.tsx
   ├── Accordion.tsx
   ├── CollapseCard.tsx
   └── index.ts
@@ -39,8 +35,8 @@ Accordion/
 The barrel file `index.ts` should export the component(s) like this:
 
 ```typescript
-export { Accordion } from "./Accordion";
-export { CollapseCard } from "./CollapseCard";
+export { Accordion } from './Accordion';
+export { CollapseCard } from './CollapseCard';
 ```
 
 ## Tests
@@ -60,8 +56,8 @@ component.
 Here is an example of what a mdx file should might look like:
 
 ````mdx
-import { Canvas, Controls, Meta } from "@storybook/addon-docs";
-import * as ButtonStories from "./Button.stories";
+import { Canvas, Controls, Meta } from '@storybook/addon-docs';
+import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} name="Button" />
 
@@ -74,7 +70,7 @@ Short description of the component.
 Short sample that users can copy and paste to import the component.
 
 ```tsx
-import { Button } from "@axa-fr/design-system-slash-react";
+import { Button } from '@axa-fr/canopee-react/distributeur';
 
 const MyComponent = () => (
   <Button classModifier="reverse" type="submit">
@@ -112,16 +108,19 @@ To indicate that a component or a prop is now deprecated, you should first add a
 
 ```tsx
 /** @deprecated Use `NonDeprecatedComponent` instead. */
-const DeprecatedComponent = () => <p>deprecated component</p>
+const DeprecatedComponent = () => <p>deprecated component</p>;
 
-type NonDeprecatedComponentProps = 
-  | { 
+type NonDeprecatedComponentProps =
+  | {
       /** @deprecated Use `children` prop instead. */
-      text: string; 
-    } 
+      text: string;
+    }
   | { children: string };
 
-const NonDeprecatedComponent = ({children, text}: NonDeprecatedComponentProps) => <p>{children ?? text}</p>
+const NonDeprecatedComponent = ({
+  children,
+  text,
+}: NonDeprecatedComponentProps) => <p>{children ?? text}</p>;
 ```
 
 Additionally, it is important to indicate in the MDX file that the component or the prop is deprecated. This warns that it might be removed in a future release.
