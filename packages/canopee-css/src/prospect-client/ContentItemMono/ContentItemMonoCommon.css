@@ -3,19 +3,19 @@
   align-items: center;
   gap: calc(12 / var(--font-size-base) * 1rem);
 
-  .stick {
+  .af-content-item-mono__stick {
     width: calc(4 / var(--font-size-base) * 1rem);
     border-radius: 2px;
     align-self: stretch;
     background-color: var(--stick-background-color);
   }
 
-  .text-content {
+  .af-content-item-mono__text-content {
     display: flex;
     flex-direction: column;
     gap: calc(2 / var(--font-size-base) * 1rem);
 
-    .title {
+    .af-content-item-mono__title {
       font-family: var(--title-font-family);
       font-size: var(--title-font-size);
       font-weight: var(--title-font-weight);
@@ -23,7 +23,7 @@
       color: var(--title-color);
     }
 
-    .subtitle-primary {
+    .af-content-item-mono__subtitle-primary {
       font-family: var(--subtitle-primary-font-family);
       font-size: var(--subtitle-primary-font-size);
       font-weight: 400;
@@ -31,7 +31,7 @@
       color: var(--subtitle-primary-color);
     }
 
-    .subtitle {
+    .af-content-item-mono__subtitle {
       font-family: var(--subtitle-font-family);
       font-size: var(--subtitle-font-size);
       font-weight: 400;
