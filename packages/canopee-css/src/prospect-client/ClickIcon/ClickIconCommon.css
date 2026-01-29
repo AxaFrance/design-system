@@ -15,9 +15,21 @@
     pointer-events: none;
   }
 
+  &.af-click-icon--extra-small {
+    padding: calc(4 / var(--font-size-base) * 1rem);
+  }
+
   &:focus-visible {
     outline: 2px solid var(--click-icon-outline-color, transparent);
     outline-offset: 2px;
+  }
+
+  &.af-click-icon--without-background {
+    background-color: transparent;
+  }
+
+  &:active .af-click-icon--without-background {
+    --click-icon-svg-fill: var(--axa-blue-80);
   }
 }
 

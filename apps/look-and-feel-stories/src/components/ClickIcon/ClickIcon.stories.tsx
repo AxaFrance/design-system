@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ClickIcon, iconVariants } from "@axa-fr/canopee-react/client";
+import { ClickIcon } from "@axa-fr/canopee-react/client";
 import article from "@material-symbols/svg-400/rounded/article-fill.svg";
 
 const meta: Meta<typeof ClickIcon> = {
@@ -13,8 +13,15 @@ const meta: Meta<typeof ClickIcon> = {
       defaultValue: "Click icon",
     },
     iconVariant: {
-      options: Object.values(iconVariants),
+      options: ["primary", "disabled"],
       control: { type: "select" },
+    },
+    size: {
+      options: ["S", "XS"],
+      control: { type: "select" },
+    },
+    hasBackground: {
+      control: { type: "boolean" },
     },
   },
 };

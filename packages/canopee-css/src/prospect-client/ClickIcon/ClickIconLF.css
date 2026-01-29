@@ -5,10 +5,18 @@
 
   &:hover {
     --click-icon-background-color: var(--color-btn-tertiary-bg-darker);
+
+    &.af-click-icon--without-background {
+      --click-icon-svg-fill: var(--axa-blue-120);
+    }
   }
 
   &:active {
     --click-icon-background-color: var(--color-btn-tertiary-bg-lighter);
+
+    &.af-click-icon--without-background {
+      --click-icon-svg-fill: var(--axa-blue-120);
+    }
   }
 
   &:disabled {

@@ -21,4 +21,24 @@ describe("Icon component", () => {
       expect(await axe(container)).toHaveNoViolations();
     });
   });
+
+  it("renders correctly with type 'size'", () => {
+    render(<ClickIcon src={bank} aria-label="test" size="S" />);
+
+    // Vérifie que le composant par défaut est rendu
+    const size = screen.getByText("", {
+      selector: ".af-click-icon--small",
+    });
+    expect(size).toBeInTheDocument();
+  });
+
+  it("renders correctly with type 'has-background'", () => {
+    render(<ClickIcon src={bank} aria-label="test" hasBackground={false} />);
+
+    // Vérifie que le composant par défaut est rendu
+    const hasBackground = screen.getByText("", {
+      selector: ".af-click-icon--without-background",
+    });
+    expect(hasBackground).toBeInTheDocument();
+  });
 });
