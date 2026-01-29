@@ -46,11 +46,7 @@ const HeaderTitle = ({
 
   return (
     <>
-      <div
-        className={classNames("af-container", componentClassName, {
-          [`${defaultClassName}__withAnchorNavBar`]: isAnchorNavBarPresent,
-        })}
-      >
+      <div className={classNames("af-container", componentClassName)}>
         {Boolean(toggleMenu) && (
           <div className="burger-container">
             <ToggleButton idControl="mainmenu">

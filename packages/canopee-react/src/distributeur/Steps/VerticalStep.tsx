@@ -10,6 +10,12 @@ import type { VerticalStepMode } from "./types";
 import "@axa-fr/canopee-css/distributeur/Steps/VerticalStep.css";
 import { Button } from "../Button/Button";
 
+type StateLabelsProp = {
+  validatedState: string;
+  editState: string;
+  lockedState: string;
+};
+
 type Props = {
   /** The title of the step. */
   title: string;
@@ -35,9 +41,48 @@ type Props = {
   contentRightAriaLabel?: string;
   /** Add the section in read only mode by hiding edit button */
   readonly?: boolean;
+  /** Labels for different states for accessibility purposes
+   * @default
+   * {
+   * validatedState: "validée",
+   *  editState: "en cours de modification",
+   *  lockedState: "verrouillée",
+   * }
+   * @example
+   * ```json
+   * {
+   *  validatedState: "completed",
+   *  editState: "being edited",
+   *  lockedState: "locked",
+   * }
+   * ```
+   * will change the aria-labels of the step to "Étape verticale ${title} (completed)" when validated, "Étape verticale ${title} (being edited)" when in edition and "Étape verticale ${title} (locked)" when locked.
+   */
+  stateLabels?: StateLabelsProp;
 };
 
 const defaultClassName = "af-vertical-step";
+const defaultStateLabels = {
+  validatedState: "validée",
+  editState: "en cours de modification",
+  lockedState: "verrouillée",
+};
+
+const getStateLabel = (
+  stepMode: VerticalStepMode,
+  stateLabels: StateLabelsProp,
+) => {
+  switch (stepMode) {
+    case "validated":
+      return stateLabels.validatedState;
+    case "edited":
+      return stateLabels.editState;
+    case "locked":
+      return stateLabels.lockedState;
+    default:
+      return "";
+  }
+};
 
 export const VerticalStep = ({
   title,
@@ -52,6 +97,7 @@ export const VerticalStep = ({
   showRestitution = true,
   readonly = false,
   contentRight,
+  stateLabels = defaultStateLabels,
 }: Props) => {
   const isStepInEdition = stepMode === "edited";
   const isStepValidated = stepMode === "validated";
@@ -59,12 +105,13 @@ export const VerticalStep = ({
   const generatedId = useId();
   const stepId = id ?? generatedId;
 
+  const stateLabel = getStateLabel(stepMode, stateLabels);
   return (
     <section
       className={classNames(defaultClassName, {
         [`${defaultClassName}--edition`]: isStepInEdition,
       })}
-      aria-label={`Étape verticale ${title}`}
+      aria-label={`Étape verticale ${title} (${stateLabel})`}
     >
       <div
         className={classNames("af-vertical-step-icon", {
