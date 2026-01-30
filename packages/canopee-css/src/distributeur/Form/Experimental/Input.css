@@ -1,0 +1,43 @@
+.af-input__input {
+  --color: var(--text-color);
+  --border-color: var(--input-border-color);
+  --background-color: var(--white);
+
+  padding: 0 0 0 1rem;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  line-height: 40px;
+  color: var(--color);
+  background-color: var(--background-color);
+  outline: 1px solid transparent;
+}
+
+.af-input__input[aria-invalid="true"] {
+  --color: var(--error-color);
+  --border-color: var(--error-color);
+  --background-color: var(--white);
+}
+
+.af-input__input:disabled {
+  --color: var(--disabled-color);
+  --border-color: var(--disabled-color);
+  --background-color: var(--gray10);
+
+  cursor: not-allowed;
+}
+
+.af-input__input:hover:not(:disabled),
+.af-input__input:active:not(:disabled) {
+  --border-color: var(--color-border-selected);
+  --color: var(--active-button-border-color);
+
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+
+.af-input__input:focus:not(:disabled) {
+  outline: 2px solid var(--color-border-selected);
+  outline-offset: 2px;
+
+  --border-color: var(--input-border-color);
+  --color: var(--active-button-border-color);
+}
