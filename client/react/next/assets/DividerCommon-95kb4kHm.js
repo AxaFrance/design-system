@@ -1,1 +1,0 @@
-import{j as e}from"./index-C-iqcyhV.js";import{r as s}from"./index-ZnYipkzV.js";import{e as m}from"./FieldsetLF-CT0NIl8m.js";const i=({className:o,classModifier:r})=>{const t=s.useMemo(()=>m("af-divider",o,r),[o,r]);return e.jsx("hr",{className:t})};export{i as D};
