@@ -1,0 +1,43 @@
+.af-input__input {
+  --input-color: var(--text-color);
+  --input-border-color: var(--input-border-color);
+  --input-background-color: var(--white);
+
+  padding: 0 0 0 1rem;
+  border: 1px solid var(--input-border-color);
+  font-size: 1rem;
+  line-height: 2.5rem;
+  color: var(--input-color);
+  background-color: var(--input-background-color);
+  outline: 1px solid transparent;
+}
+
+.af-input__input[aria-invalid="true"] {
+  --input-color: var(--error-color);
+  --input-border-color: var(--error-color);
+  --input-background-color: var(--white);
+}
+
+.af-input__input:disabled {
+  --input-color: var(--disabled-color);
+  --input-border-color: var(--disabled-color);
+  --input-background-color: var(--gray10);
+
+  cursor: not-allowed;
+}
+
+.af-input__input:hover:not(:disabled),
+.af-input__input:active:not(:disabled) {
+  --input-border-color: var(--color-border-selected);
+  --input-color: var(--active-button-border-color);
+
+  box-shadow: 0 0 0 1px var(--input-border-color);
+}
+
+.af-input__input:focus:not(:disabled) {
+  outline: 2px solid var(--color-border-selected);
+  outline-offset: 2px;
+
+  --input-border-color: var(--input-border-color);
+  --input-color: var(--active-button-border-color);
+}

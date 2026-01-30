@@ -1,0 +1,93 @@
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Primary,
+  Subtitle,
+  Title,
+} from "@storybook/blocks";
+import * as Stories from "./Label.stories";
+
+<Meta of={Stories} title="Form/Experimental/Label" />
+
+<Title />
+
+## ⚠️ Experimental Component
+
+This component is **experimental** and may change in future releases. You can however use it in your projects, but be aware that the API might change.
+We welcome your feedback and contributions to improve this component.
+
+## Overview
+
+The `Label` component provides a styled form label with optional required field indicator. It extends the native HTML `<label>` element with consistent styling and accessibility features.
+
+This component is designed to be used within an `InputContainer` and automatically positions itself in the designated grid area.
+
+## Playground
+
+<Primary />
+<Controls />
+
+## Usage
+
+The `Label` component accepts all standard label attributes and automatically links to form controls via the `htmlFor` prop.
+
+```tsx
+import {
+  Input,
+  InputContainer,
+  Label,
+} from "@axa-fr/design-system-slash-react/experimental";
+
+const MyFormField = () => {
+  return (
+    <InputContainer>
+      <Label htmlFor="username">Username</Label>
+      <Input id="username" type="text" />
+    </InputContainer>
+  );
+};
+```
+
+## Features
+
+### Required Field Indicator
+
+Set the `required` prop to display an asterisk (\*) after the label text, indicating that the field is required.
+
+<Canvas of={Stories.RequiredStory} />
+
+**Note:** The required indicator is purely presentational. It does not enforce validation. You must still set the `required` attribute on the input element for validation.
+
+```tsx
+<Label htmlFor="email" required>
+  Email
+</Label>
+<Input id="email" type="email" required />
+```
+
+## Accessibility
+
+- Always use the `htmlFor` prop to associate the label with its input field
+- The `htmlFor` value should match the `id` of the corresponding input
+- Screen readers will announce the label text when the input receives focus
+- The required asterisk is marked with `aria-hidden` to avoid redundant announcements
+
+## Best Practices
+
+- Keep label text clear and concise
+- Use sentence case for label text (capitalize only the first word)
+- Place labels consistently (all above or all beside inputs)
+- For required fields, use both the visual indicator and the `required` attribute on the input
+- Consider providing help text for complex or ambiguous labels
+
+## Customization
+
+The component accepts all standard label props, including `className` for custom styling:
+
+```tsx
+<Label htmlFor="field" className="my-custom-label">
+  Custom Label
+</Label>
+```
