@@ -1,0 +1,26 @@
+.af-item-message {
+  --color: var(--help-color);
+
+  display: flex;
+  margin-top: 8px;
+  align-items: center;
+  gap: 4px;
+  font-size: calc(13rem / 16);
+  line-height: 16px;
+  color: var(--color);
+
+  .af-item-message__icon {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: baseline;
+    fill: var(--color);
+  }
+}
+
+.af-item-message--error {
+  --color: var(--error-color);
+}
+
+.af-item-message--success {
+  --color: var(--valid-element-color);
+}
