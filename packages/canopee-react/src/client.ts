@@ -155,6 +155,16 @@ export {
   type SkeletonListProps,
 } from "./prospect-client/SkeletonList/SkeletonListLF";
 export {
+  Table,
+  type TableProps,
+  type HeadColorVariants,
+  type BodyColorVariants,
+  type RowSizeVariants,
+  headColorVariants,
+  bodyColorVariants,
+  rowSizeVariants,
+} from "./prospect-client/Table/TableLF";
+export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetLF";
