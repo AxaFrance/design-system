@@ -22,23 +22,42 @@ describe("Icon component", () => {
     });
   });
 
-  it("renders correctly with type 'size'", () => {
+  it("renders correctly with type 'size' to 'default'", () => {
+    render(<ClickIcon src={bank} aria-label="test" />);
+
+    // Vérifie que le composant par défaut est rendu
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("af-click-icon--small");
+  });
+
+  it("renders correctly with type 'size' to 'S'", () => {
     render(<ClickIcon src={bank} aria-label="test" size="S" />);
 
     // Vérifie que le composant par défaut est rendu
-    const size = screen.getByText("", {
-      selector: ".af-click-icon--small",
-    });
-    expect(size).toBeInTheDocument();
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("af-click-icon--small");
   });
 
-  it("renders correctly with type 'has-background'", () => {
-    render(<ClickIcon src={bank} aria-label="test" variant="ghost" />);
+  it("renders correctly with type 'size' to 'XS'", () => {
+    render(<ClickIcon src={bank} aria-label="test" size="XS" />);
 
     // Vérifie que le composant par défaut est rendu
-    const hasBackground = screen.getByText("", {
-      selector: ".af-click-icon--ghost",
-    });
-    expect(hasBackground).toBeInTheDocument();
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("af-click-icon--extra-small");
+  });
+
+  it("renders correctly with variant 'default'", () => {
+    render(<ClickIcon src={bank} aria-label="test" />);
+
+    // Vérifie que le composant par défaut est rendu
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("af-click-icon--default");
+  });
+
+  it("renders correctly with variant 'ghost'", () => {
+    render(<ClickIcon src={bank} aria-label="test" variant="ghost" />);
+
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("af-click-icon--ghost");
   });
 });
