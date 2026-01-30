@@ -1,0 +1,116 @@
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Primary,
+  Subtitle,
+  Title,
+} from "@storybook/blocks";
+import * as Stories from "./ItemMessage.stories";
+
+<Meta of={Stories} title="Form/Experimental/ItemMessage" />
+
+<Title />
+
+## ⚠️ Experimental Component
+
+This component is **experimental** and may change in future releases. You can however use it in your projects, but be aware that the API might change.
+We welcome your feedback and contributions to improve this component.
+
+## Overview
+
+The `ItemMessage` component displays contextual messages for form fields, such as help text, validation errors, or success confirmations. It supports three variants: a neutral help message (default), an error message with an error icon, and a success message with a success icon.
+
+## Playground
+
+<Primary />
+<Controls />
+
+## Usage
+
+### Basic Help Message
+
+Use the `ItemMessage` component without a variant to display neutral help text:
+
+<Canvas of={Stories.ItemMessageHelpStory} />
+
+### Error Message
+
+Set `variant="error"` to display an error message with an error icon:
+
+<Canvas of={Stories.ItemMessageErrorStory} />
+
+### Success Message
+
+Set `variant="success"` to display a success message with a success icon:
+
+<Canvas of={Stories.ItemMessageSuccessStory} />
+
+### With Form Fields
+
+The `ItemMessage` component is typically used within an `InputContainer` alongside form fields. Use the `id` prop to link the message to the input via `aria-describedby`:
+
+```tsx
+import {
+  Input,
+  InputContainer,
+  ItemMessage,
+  Label,
+} from "@axa-fr/canopee-react/distributeur/experimental";
+
+const MyFormField = () => {
+  const [error, setError] = useState("");
+
+  return (
+    <InputContainer>
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" type="email" aria-describedby="email-message" />
+      <ItemMessage id="email-message" variant="error">
+        {error}
+      </ItemMessage>
+    </InputContainer>
+  );
+};
+```
+
+## Features
+
+- **Three Variants**: Neutral help text, error messages, and success messages
+- **Automatic Icons**: Error and success variants automatically display appropriate icons
+- **Flexible Content**: Accepts any React node as children
+- **Customizable**: Supports custom class names for additional styling
+- **Accessible**: Can be linked to form controls via the `id` prop for screen reader support
+
+## Accessibility
+
+- Use the `id` prop to create a unique identifier for the message
+- Link the message to form controls using `aria-describedby` on the input element
+- Error messages should be announced to screen readers when validation fails
+- Keep messages concise and clear to benefit all users
+- Ensure sufficient color contrast for different message variants
+
+## Best Practices
+
+- **Use variants appropriately**: Reserve error messages for validation failures, success messages for confirmations, and help messages for guidance
+- **Keep messages concise**: Short, clear messages are easier to understand
+- **Link to inputs**: Always use the `id` prop and `aria-describedby` to associate messages with their corresponding form fields
+- **Dynamic messages**: Update messages in response to user interaction (e.g., show error after blur or submit)
+- **Consistent placement**: Place messages below their associated form fields for predictable user experience
+
+## Customization
+
+You can customize the component's appearance using the `className` prop:
+
+```tsx
+<ItemMessage className="my-custom-class" variant="error">
+  Custom styled error message
+</ItemMessage>
+```
+
+The component uses the following CSS classes:
+
+- `af-item-message`: Base class for all variants
+- `af-item-message--error`: Applied when variant is "error"
+- `af-item-message--success`: Applied when variant is "success"
+- `af-item-message__icon`: Applied to the icon element

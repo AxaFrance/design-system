@@ -1,0 +1,84 @@
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Primary,
+  Subtitle,
+  Title,
+} from "@storybook/blocks";
+import * as Stories from "./InputUnit.stories";
+
+<Meta of={Stories} title="Form/Experimental/InputUnit" />
+
+<Title />
+
+## ⚠️ Experimental Component
+
+This component is **experimental** and may change in future releases. You can however use it in your projects, but be aware that the API might change.
+We welcome your feedback and contributions to improve this component.
+
+## Overview
+
+The `InputUnit` component displays a unit of measurement or suffix next to an input field. It's commonly used to show currency symbols, percentages, or other measurement units.
+
+This component is designed to be used within an `InputContainer` and automatically positions itself in the designated grid area.
+
+## Playground
+
+<Primary />
+<Controls />
+
+## Usage
+
+The `InputUnit` component accepts any React children, typically a string representing the unit.
+
+```tsx
+import {
+  Input,
+  InputContainer,
+  InputUnit,
+  Label,
+} from "@axa-fr/design-system-slash-react/experimental";
+
+const PriceField = () => {
+  return (
+    <InputContainer>
+      <Label htmlFor="price">Price</Label>
+      <Input id="price" type="number" />
+      <InputUnit>€</InputUnit>
+    </InputContainer>
+  );
+};
+```
+
+## Examples
+
+### Currency Symbol
+
+The most common use case is displaying currency symbols.
+
+<Canvas of={Stories.DefaultStory} />
+
+### Percentage
+
+Display percentage symbols for rate inputs.
+
+<Canvas of={Stories.PercentageStory} />
+
+### Text Unit
+
+You can also use longer text descriptions as units.
+
+<Canvas of={Stories.TextUnitStory} />
+
+## Best Practices
+
+- Keep unit text concise and clear
+- Use standard symbols when available (€, $, %, etc.)
+- Consider internationalization when displaying units
+- Use semantic HTML for complex units if needed
+
+## Accessibility
+
+The unit is displayed as a `<span>` element and is read by screen readers as part of the form field context. Ensure that the input label clearly indicates what the unit represents for better accessibility.

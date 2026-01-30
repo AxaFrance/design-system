@@ -6,10 +6,17 @@
 		"source.fixAll.eslint": "explicit",
 		"source.fixAll.stylelint": "explicit"
 	},
-	"stylelint.validate": ["css", "scss"],
+	"stylelint.validate": [
+		"css",
+		"scss"
+	],
 	"github.copilot.chat.commitMessageGeneration.instructions": [
 		{
 			"file": ".github/git-commit-instructions.md"
 		}
-	]
+	],
+	"search.exclude": {
+		"**/slash": true,
+		"**/client": true
+	}
 }
