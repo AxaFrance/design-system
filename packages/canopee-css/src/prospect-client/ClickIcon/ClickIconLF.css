@@ -6,16 +6,16 @@
   &:hover {
     --click-icon-background-color: var(--color-btn-tertiary-bg-darker);
 
-    &.af-click-icon--without-background {
-      --click-icon-svg-fill: var(--axa-blue-120);
+    &.af-click-icon--ghost {
+      --click-icon-svg-fill: var(--color-axa);
     }
   }
 
   &:active {
     --click-icon-background-color: var(--color-btn-tertiary-bg-lighter);
 
-    &.af-click-icon--without-background {
-      --click-icon-svg-fill: var(--axa-blue-120);
+    &.af-click-icon--ghost {
+      --click-icon-svg-fill: var(--color-blue-80);
     }
   }
 

@@ -33,11 +33,11 @@ describe("Icon component", () => {
   });
 
   it("renders correctly with type 'has-background'", () => {
-    render(<ClickIcon src={bank} aria-label="test" hasBackground={false} />);
+    render(<ClickIcon src={bank} aria-label="test" variant="ghost" />);
 
     // Vérifie que le composant par défaut est rendu
     const hasBackground = screen.getByText("", {
-      selector: ".af-click-icon--without-background",
+      selector: ".af-click-icon--ghost",
     });
     expect(hasBackground).toBeInTheDocument();
   });

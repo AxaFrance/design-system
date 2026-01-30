@@ -20,8 +20,9 @@ const meta: Meta<typeof ClickIcon> = {
       options: ["S", "XS"],
       control: { type: "select" },
     },
-    hasBackground: {
-      control: { type: "boolean" },
+    variant: {
+      options: ["default", "ghost"],
+      control: { type: "select" },
     },
   },
 };

@@ -7,7 +7,7 @@
     --click-icon-background-color: var(--axa-blue-120);
     --click-icon-svg-fill: var(--white);
 
-    &.af-click-icon--without-background {
+    &.af-click-icon--ghost {
       --click-icon-svg-fill: var(--axa-blue-120);
     }
   }
@@ -16,7 +16,7 @@
     --click-icon-background-color: var(--axa-blue-80);
     --click-icon-svg-fill: var(--white);
 
-    &.af-click-icon--without-background {
+    &.af-click-icon--ghost {
       --click-icon-svg-fill: var(--axa-blue-80);
     }
   }

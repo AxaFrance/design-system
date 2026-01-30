@@ -7,13 +7,15 @@ import {
 } from "../Icon/IconCommon";
 import { getClassName } from "../utilities/getClassName";
 
+export type ClickIconVariant = "default" | "ghost";
+
 export type ClickIconProps = ComponentPropsWithRef<"button"> & {
   src: string;
   className?: string;
   iconVariant?: IconVariants;
   iconClassName?: string;
   size?: IconSizeVariants;
-  hasBackground?: boolean;
+  variant?: ClickIconVariant;
 };
 
 export const ClickIcon = ({
@@ -22,12 +24,12 @@ export const ClickIcon = ({
   iconVariant = "primary",
   iconClassName,
   size = "S",
-  hasBackground = true,
+  variant = "default",
   ...props
 }: ClickIconProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-click-icon",
-    modifiers: [!hasBackground && "without-background", iconSizeVariants[size]],
+    modifiers: [variant, iconSizeVariants[size]],
     className,
   });
   return (

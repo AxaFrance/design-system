@@ -24,11 +24,11 @@
     outline-offset: 2px;
   }
 
-  &.af-click-icon--without-background {
+  &.af-click-icon--ghost {
     background-color: transparent;
   }
 
-  &:active .af-click-icon--without-background {
+  &:active .af-click-icon--ghost {
     --click-icon-svg-fill: var(--axa-blue-80);
   }
 }
