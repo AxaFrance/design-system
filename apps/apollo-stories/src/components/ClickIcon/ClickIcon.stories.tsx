@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ClickIcon, iconVariants } from "@axa-fr/canopee-react/prospect";
+import { ClickIcon } from "@axa-fr/canopee-react/prospect";
 import visibility from "@material-symbols/svg-400/rounded/visibility-fill.svg";
 
 const meta: Meta<typeof ClickIcon> = {
@@ -13,7 +13,15 @@ const meta: Meta<typeof ClickIcon> = {
       defaultValue: "Click icon",
     },
     iconVariant: {
-      options: Object.values(iconVariants),
+      options: ["primary", "disabled"],
+      control: { type: "select" },
+    },
+    size: {
+      options: ["S", "XS"],
+      control: { type: "select" },
+    },
+    variant: {
+      options: ["default", "ghost"],
       control: { type: "select" },
     },
   },
