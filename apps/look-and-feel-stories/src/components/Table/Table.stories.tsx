@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { useState } from "react";
 import {
   Table,
   Button,
@@ -145,267 +144,8 @@ export const AlternateVariantTable: Story = {
   ),
 };
 
-export const TableWithSortableHeaders: Story = {
-  name: "Tableau avec en-têtes triables",
-  args: {
-    theadVariant: "gray",
-    tbodyVariant: undefined,
-  },
-  argTypes: {
-    theadVariant: {
-      control: { type: "select" },
-      options: ["gray", "blue"],
-      description: "Variant de l'en-tête du tableau",
-    },
-    tbodyVariant: {
-      control: { type: "select" },
-      options: ["white", "blue", "alternate"],
-      description: "Variant du corps du tableau",
-    },
-  },
-  render: (args: TableStoryArgs) => {
-    const initialData = [
-      { nom: "Alice Dupont", age: 28, ville: "Paris", date: "15/01/2024" },
-      { nom: "Bob Martin", age: 34, ville: "Lyon", date: "22/03/2024" },
-      { nom: "Claire Petit", age: 25, ville: "Marseille", date: "10/06/2024" },
-      { nom: "David Bernard", age: 42, ville: "Toulouse", date: "05/09/2024" },
-    ];
-
-    const [data, setData] = useState(initialData);
-    const [sortConfig, setSortConfig] = useState<{
-      key: string;
-      direction: "asc" | "desc";
-    } | null>(null);
-
-    const handleSort = (key: string) => {
-      let direction: "asc" | "desc" = "asc";
-      if (
-        sortConfig &&
-        sortConfig.key === key &&
-        sortConfig.direction === "asc"
-      ) {
-        direction = "desc";
-      }
-
-      const sortedData = [...data].sort((a, b) => {
-        const aValue = a[key as keyof typeof a];
-        const bValue = b[key as keyof typeof b];
-
-        if (typeof aValue === "number" && typeof bValue === "number") {
-          return direction === "asc" ? aValue - bValue : bValue - aValue;
-        }
-
-        const aStr = String(aValue);
-        const bStr = String(bValue);
-        return direction === "asc"
-          ? aStr.localeCompare(bStr)
-          : bStr.localeCompare(aStr);
-      });
-
-      setData(sortedData);
-      setSortConfig({ key, direction });
-    };
-
-    return (
-      <Table>
-        <Table.THead variant="gray">
-          <Table.Tr>
-            <Table.Th
-              onSort={() => {
-                handleSort("nom");
-                action("onSort")("nom");
-              }}
-            >
-              Nom
-            </Table.Th>
-            <Table.Th
-              onSort={() => {
-                handleSort("age");
-                action("onSort")("age");
-              }}
-            >
-              Âge
-            </Table.Th>
-            <Table.Th
-              onSort={() => {
-                handleSort("ville");
-                action("onSort")("ville");
-              }}
-            >
-              Ville
-            </Table.Th>
-            <Table.Th>Date inscription</Table.Th>
-          </Table.Tr>
-        </Table.THead>
-        <Table.TBody variant={args.tbodyVariant}>
-          {data.map((row) => (
-            <Table.Tr key={row.nom}>
-              <Table.Td>{row.nom}</Table.Td>
-              <Table.Td>{row.age}</Table.Td>
-              <Table.Td>{row.ville}</Table.Td>
-              <Table.Td>{row.date}</Table.Td>
-            </Table.Tr>
-          ))}
-        </Table.TBody>
-      </Table>
-    );
-  },
-};
-
-export const TableWithCheckboxes: Story = {
-  name: "Tableau avec cases à cocher",
-  args: {
-    theadVariant: "gray",
-    tbodyVariant: undefined,
-  },
-  argTypes: {
-    theadVariant: {
-      control: { type: "select" },
-      options: ["gray", "blue"],
-      description: "Variant de l'en-tête du tableau",
-    },
-    tbodyVariant: {
-      control: { type: "select" },
-      options: ["white", "blue", "alternate"],
-      description: "Variant du corps du tableau",
-    },
-  },
-  render: (args: TableStoryArgs) => {
-    const initialData = [
-      {
-        reference: "CON-2024-001",
-        societe: "Société ABC",
-        contact: "Jean Dupont",
-        montant: "1 250,00 €",
-      },
-      {
-        reference: "CON-2024-002",
-        societe: "Entreprise XYZ",
-        contact: "Marie Martin",
-        montant: "2 500,00 €",
-      },
-      {
-        reference: "CON-2024-003",
-        societe: "Groupe DEF",
-        contact: "Pierre Bernard",
-        montant: "3 750,00 €",
-      },
-      {
-        reference: "CON-2024-004",
-        societe: "Industries GHI",
-        contact: "Sophie Dubois",
-        montant: "890,00 €",
-      },
-    ];
-
-    const [data, setData] = useState(initialData);
-    const [checkedColumns, setCheckedColumns] = useState<Set<number>>(
-      new Set(),
-    );
-    const [sortConfig, setSortConfig] = useState<{
-      key: string;
-      direction: "asc" | "desc";
-    } | null>(null);
-
-    const handleColumnCheck = (columnIndex: number) => {
-      setCheckedColumns((prev) => {
-        const newSet = new Set(prev);
-        if (newSet.has(columnIndex)) {
-          newSet.delete(columnIndex);
-        } else {
-          newSet.add(columnIndex);
-        }
-        return newSet;
-      });
-    };
-
-    const handleSort = (key: string) => {
-      let direction: "asc" | "desc" = "asc";
-      if (
-        sortConfig &&
-        sortConfig.key === key &&
-        sortConfig.direction === "asc"
-      ) {
-        direction = "desc";
-      }
-
-      const sortedData = [...data].sort((a, b) => {
-        const aValue = a[key as keyof typeof a];
-        const bValue = b[key as keyof typeof b];
-        const aStr = String(aValue);
-        const bStr = String(bValue);
-        return direction === "asc"
-          ? aStr.localeCompare(bStr)
-          : bStr.localeCompare(aStr);
-      });
-
-      setData(sortedData);
-      setSortConfig({ key, direction });
-    };
-
-    const getColumnVariant = (columnIndex: number) => {
-      return checkedColumns.has(columnIndex) ? "blue" : undefined;
-    };
-
-    return (
-      <Table>
-        <Table.THead variant={args.theadVariant}>
-          <Table.Tr>
-            <Table.Th
-              onCheck={() => {
-                handleColumnCheck(0);
-                action("onCheck")(0);
-              }}
-              onSort={() => {
-                handleSort("reference");
-                action("onSort")("reference");
-              }}
-            >
-              Sélection
-            </Table.Th>
-            <Table.Th
-              onCheck={() => {
-                handleColumnCheck(1);
-                action("onCheck")(1);
-              }}
-              checkboxPosition="right"
-            >
-              Contrat
-            </Table.Th>
-            <Table.Th
-              onCheck={() => {
-                handleColumnCheck(2);
-                action("onCheck")(2);
-              }}
-            />
-            <Table.Th
-              onCheck={() => {
-                handleColumnCheck(3);
-                action("onCheck")(3);
-              }}
-              checkboxPosition="right"
-            />
-          </Table.Tr>
-        </Table.THead>
-        <Table.TBody variant={args.tbodyVariant}>
-          {data.map((row) => (
-            <Table.Tr key={row.reference}>
-              <Table.Td variant={getColumnVariant(0)}>{row.reference}</Table.Td>
-              <Table.Td variant={getColumnVariant(1)}>{row.societe}</Table.Td>
-              <Table.Td variant={getColumnVariant(2)}>{row.contact}</Table.Td>
-              <Table.Td position="right" variant={getColumnVariant(3)}>
-                {row.montant}
-              </Table.Td>
-            </Table.Tr>
-          ))}
-        </Table.TBody>
-      </Table>
-    );
-  },
-};
-
 export const TableWithTags: Story = {
-  name: "Tableau avec tags et statuts",
+  name: "Tableau avec tags, statuts et tri",
   args: {
     theadVariant: "gray",
     tbodyVariant: "alternate",
@@ -426,10 +166,10 @@ export const TableWithTags: Story = {
     <Table>
       <Table.THead variant={args.theadVariant}>
         <Table.Tr>
-          <Table.Th>Référence</Table.Th>
-          <Table.Th>Statut</Table.Th>
-          <Table.Th>Client</Table.Th>
-          <Table.Th>Montant</Table.Th>
+          <Table.Th onSort={action("sort-reference")}>Référence</Table.Th>
+          <Table.Th onSort={action("sort-statut")}>Statut</Table.Th>
+          <Table.Th onSort={action("sort-client")}>Client</Table.Th>
+          <Table.Th onSort={action("sort-montant")}>Montant</Table.Th>
         </Table.Tr>
       </Table.THead>
       <Table.TBody variant={args.tbodyVariant}>
@@ -471,7 +211,7 @@ export const TableWithTags: Story = {
 };
 
 export const TableWithButtons: Story = {
-  name: "Tableau avec actions (boutons)",
+  name: "Tableau avec sélection et actions",
   args: {
     theadVariant: "gray",
     tbodyVariant: undefined,
@@ -498,9 +238,9 @@ export const TableWithButtons: Story = {
     <Table>
       <Table.THead variant={args.theadVariant}>
         <Table.Tr>
-          <Table.Th>Utilisateur</Table.Th>
-          <Table.Th>Email</Table.Th>
-          <Table.Th>Rôle</Table.Th>
+          <Table.Th onCheck={action("select-all")}>Utilisateur</Table.Th>
+          <Table.Th onSort={action("sort-email")}>Email</Table.Th>
+          <Table.Th onSort={action("sort-role")}>Rôle</Table.Th>
           <Table.Th>Actions</Table.Th>
         </Table.Tr>
       </Table.THead>
