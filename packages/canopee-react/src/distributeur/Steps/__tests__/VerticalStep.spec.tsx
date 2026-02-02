@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { vi } from "vitest";
 import { axe } from "jest-axe";
+import { vi } from "vitest";
 import { VerticalStep } from "../VerticalStep";
 import { VerticalStepMode } from "../types";
 
@@ -159,5 +159,49 @@ describe("VerticalStep", () => {
     const { container } = render(VerticalStepComponent("validated"));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
+  });
+
+  describe("aria-label", () => {
+    it.each`
+      stepMode       | expected
+      ${"edited"}    | ${"Étape verticale title (en cours de modification)"}
+      ${"locked"}    | ${"Étape verticale title (verrouillée)"}
+      ${"validated"} | ${"Étape verticale title (validée)"}
+    `(
+      "uses default stateLabels when not provided (mode: $stepMode)",
+      ({ stepMode, expected }) => {
+        render(VerticalStepComponent(stepMode));
+
+        expect(screen.getByLabelText(expected)).toBeInTheDocument();
+      },
+    );
+
+    it.each`
+      stepMode       | expected
+      ${"edited"}    | ${"Étape verticale title (being edited)"}
+      ${"locked"}    | ${"Étape verticale title (locked)"}
+      ${"validated"} | ${"Étape verticale title (completed)"}
+    `(
+      "uses custom stateLabels when provided (mode: $stepMode)",
+      ({ stepMode, expected }) => {
+        render(
+          <VerticalStep
+            title="title"
+            id="id"
+            stepMode={stepMode as VerticalStepMode}
+            onEdit={setStepMode}
+            form={<p>Formulaire</p>}
+            restitution={<p>Restitution</p>}
+            stateLabels={{
+              validatedState: "completed",
+              editState: "being edited",
+              lockedState: "locked",
+            }}
+          />,
+        );
+
+        expect(screen.getByLabelText(expected)).toBeInTheDocument();
+      },
+    );
   });
 });

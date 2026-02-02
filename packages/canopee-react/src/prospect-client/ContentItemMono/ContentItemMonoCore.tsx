@@ -2,6 +2,7 @@ import type { ElementType } from "react";
 import { ReactNode } from "react";
 
 import { AtLeastOne } from "../utilities/types/AtLeastOne";
+import { getClassName } from "../utilities/getClassName";
 
 export type ContentMonoItemSize = "medium" | "large";
 
@@ -29,15 +30,26 @@ export const ContentItemMonoCore = <T extends ElementType = "div">({
 }: ContentItemCoreProps<T>) => {
   const Component = as ?? "div";
 
+  const componentClassName = getClassName({
+    baseClassName: "af-content-item-mono",
+    modifiers: [size],
+  });
+
   return (
-    <Component className={`af-content-item-mono ${size}`}>
+    <Component className={componentClassName}>
       {leftComponent}
-      <div className="text-content">
-        {title ? <span className="title">{title}</span> : null}
-        {primarySubtitle ? (
-          <span className="subtitle-primary">{primarySubtitle}</span>
+      <div className="af-content-item-mono__text-content">
+        {title ? (
+          <span className="af-content-item-mono__title">{title}</span>
         ) : null}
-        {subtitle ? <span className="subtitle">{subtitle}</span> : null}
+        {primarySubtitle ? (
+          <span className="af-content-item-mono__subtitle-primary">
+            {primarySubtitle}
+          </span>
+        ) : null}
+        {subtitle ? (
+          <span className="af-content-item-mono__subtitle">{subtitle}</span>
+        ) : null}
       </div>
     </Component>
   );

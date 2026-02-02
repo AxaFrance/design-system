@@ -76,7 +76,7 @@ export const getContentItemCoreProps = ({
 
   return {
     ...props,
-    leftComponent: <div className="stick" />,
+    leftComponent: <div className="af-content-item-mono__stick" />,
   } as ContentItemCoreProps;
 };
 

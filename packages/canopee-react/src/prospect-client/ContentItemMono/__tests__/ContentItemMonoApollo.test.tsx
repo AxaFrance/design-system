@@ -63,7 +63,9 @@ describe("ContentItemMono Component", () => {
     expect(screen.getByText("Stick Subtitle")).toBeInTheDocument();
 
     // Vérifie que le composant par défaut est rendu
-    const stick = screen.getByText("", { selector: ".stick" });
+    const stick = screen.getByText("", {
+      selector: ".af-content-item-mono__stick",
+    });
     expect(stick).toBeInTheDocument();
   });
 });
