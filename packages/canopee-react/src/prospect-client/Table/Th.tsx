@@ -1,8 +1,8 @@
 import { type ComponentPropsWithRef } from "react";
 import unfoldMore from "@material-symbols/svg-400/rounded/unfold_more-fill.svg";
 import { getClassName } from "../utilities/getClassName";
-import { Icon } from "../Icon/IconCommon";
 import { Checkbox } from "../Form/Checkbox/Checkbox/CheckboxCommon";
+import { ClickIcon } from "../ClickIcon/ClickIconCommon";
 
 export type HeaderCellPositionVariants = "left" | "center" | "right";
 
@@ -34,11 +34,10 @@ export const Th = ({
         {onCheck ? <Checkbox onChange={onCheck} /> : null}
         <span className="af-table__th-content">{children}</span>
         {onSort ? (
-          <Icon
+          <ClickIcon
             onClick={onSort}
             src={unfoldMore}
-            hasBackground={false}
-            size="S"
+            variant="ghost"
             className="af-table__th-sort-icon"
           />
         ) : null}
