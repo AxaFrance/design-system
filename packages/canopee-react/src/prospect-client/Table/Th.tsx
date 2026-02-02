@@ -20,7 +20,6 @@ export const Th = ({
   onSort,
   className,
   children,
-  id,
   ...tableHeaderProps
 }: ThProps) => {
   const componentClassName = getClassName({
@@ -29,7 +28,7 @@ export const Th = ({
     modifiers: [position, checkboxPosition && `checkbox-${checkboxPosition}`],
   });
   return (
-    <th id={id} className={componentClassName} {...tableHeaderProps}>
+    <th className={componentClassName} {...tableHeaderProps}>
       <div className="af-table__th-wrapper">
         {onCheck ? <Checkbox onChange={onCheck} /> : null}
         <span className="af-table__th-content">{children}</span>

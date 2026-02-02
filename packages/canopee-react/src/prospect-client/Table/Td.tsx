@@ -25,7 +25,6 @@ export const Td = ({
   variant,
   className,
   children,
-  id,
   ...tableCellProps
 }: TdProps) => {
   const componentClassName = getClassName({
@@ -34,7 +33,7 @@ export const Td = ({
     modifiers: [position, verticalAlign, size && tdSizeVariants[size], variant],
   });
   return (
-    <td id={id} className={componentClassName} {...tableCellProps}>
+    <td className={componentClassName} {...tableCellProps}>
       {children}
     </td>
   );
