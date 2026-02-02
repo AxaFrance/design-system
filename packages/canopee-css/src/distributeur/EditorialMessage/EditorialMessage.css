@@ -1,0 +1,84 @@
+.af-editorial-message {
+  display: grid;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  grid-template: 1fr auto / auto 1fr;
+  grid-template-areas: "icon title" "icon content";
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  --text-color: var(--green30);
+  --background-color: var(--green10);
+  --border-color: var(--green20);
+}
+
+.af-editorial-message--information {
+  --text-color: var(--cyan40);
+  --background-color: var(--cyan10);
+  --border-color: var(--cyan30);
+}
+
+.af-editorial-message--promotion {
+  --text-color: var(--orange40);
+  --background-color: var(--orange10);
+  --border-color: var(--orange30);
+}
+
+.af-editorial-message__title {
+  margin-bottom: 0;
+  grid-area: title;
+  align-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.af-editorial-message__content {
+  grid-area: content;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.af-editorial-message__icon {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  grid-area: icon;
+  place-content: center center;
+  background-color: var(--text-color);
+
+  /* Represents the star-shaped background  */
+  clip-path: polygon(
+    100% 50%,
+    88.04% 62.36%,
+    90.45% 79.39%,
+    73.51% 82.36%,
+    65.45% 97.55%,
+    50% 90%,
+    34.55% 97.55%,
+    26.49% 82.36%,
+    9.55% 79.39%,
+    11.96% 62.36%,
+    0% 50%,
+    11.96% 37.64%,
+    9.55% 20.61%,
+    26.49% 17.64%,
+    34.55% 2.45%,
+    50% 10%,
+    65.45% 2.45%,
+    73.51% 17.64%,
+    90.45% 20.61%,
+    88.04% 37.64%
+  );
+  fill: white;
+
+  svg {
+    width: calc(12rem / 16);
+    height: calc(12rem / 16);
+    margin: auto;
+  }
+}
