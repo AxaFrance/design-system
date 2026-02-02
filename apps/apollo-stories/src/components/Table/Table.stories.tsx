@@ -8,9 +8,6 @@ import {
   type HeadColorVariants,
   type BodyColorVariants,
   type RowSizeVariants,
-  headColorVariants,
-  bodyColorVariants,
-  rowSizeVariants,
 } from "@axa-fr/canopee-react/prospect";
 
 interface TableStoryArgs {
@@ -41,12 +38,12 @@ export const BasicTable: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },
@@ -99,12 +96,12 @@ export const AlternateVariantTable: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },
@@ -157,12 +154,12 @@ export const TableWithSortableHeaders: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },
@@ -264,12 +261,12 @@ export const TableWithCheckboxes: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },
@@ -416,12 +413,12 @@ export const TableWithTags: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },
@@ -483,17 +480,17 @@ export const TableWithButtons: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
     rowSize: {
       control: { type: "select" },
-      options: Object.keys(rowSizeVariants),
+      options: ["S", "M", "L"],
       description: "Taille des lignes",
     },
   },
@@ -558,32 +555,32 @@ export const TableWithDifferentSizes: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
     row1Size: {
       control: { type: "select" },
-      options: Object.keys(rowSizeVariants),
+      options: ["S", "M", "L"],
       description: "Taille de la ligne 1",
     },
     row2Size: {
       control: { type: "select" },
-      options: Object.keys(rowSizeVariants),
+      options: ["S", "M", "L"],
       description: "Taille de la ligne 2",
     },
     row3Size: {
       control: { type: "select" },
-      options: Object.keys(rowSizeVariants),
+      options: ["S", "M", "L"],
       description: "Taille de la ligne 3",
     },
     row4Size: {
       control: { type: "select" },
-      options: Object.keys(rowSizeVariants),
+      options: ["S", "M", "L"],
       description: "Taille de la ligne 4",
     },
   },
@@ -638,12 +635,12 @@ export const TableWithAlignments: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },
@@ -696,12 +693,12 @@ export const CompactTable: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },
@@ -757,12 +754,12 @@ export const WideTable: Story = {
   argTypes: {
     theadVariant: {
       control: { type: "select" },
-      options: Object.keys(headColorVariants),
+      options: ["gray", "blue"],
       description: "Variant de l'en-tête du tableau",
     },
     tbodyVariant: {
       control: { type: "select" },
-      options: Object.keys(bodyColorVariants),
+      options: ["white", "blue", "alternate"],
       description: "Variant du corps du tableau",
     },
   },

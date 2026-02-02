@@ -1,11 +1,7 @@
 import { type ComponentPropsWithRef } from "react";
 import { getClassName } from "../utilities/getClassName";
 
-export const headColorVariants = {
-  gray: "gray",
-  blue: "blue",
-} as const;
-export type HeadColorVariants = keyof typeof headColorVariants;
+export type HeadColorVariants = "gray" | "blue";
 
 export type THeadProps = ComponentPropsWithRef<"thead"> & {
   variant?: HeadColorVariants;

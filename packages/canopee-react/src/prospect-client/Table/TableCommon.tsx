@@ -1,14 +1,12 @@
 import { type ComponentPropsWithRef } from "react";
 import { getClassName } from "../utilities/getClassName";
 import { Td } from "./Td";
-import { Tr, rowSizeVariants, type RowSizeVariants } from "./Tr";
+import { Tr, type RowSizeVariants } from "./Tr";
 import { Th } from "./Th";
-import { TBody, bodyColorVariants, type BodyColorVariants } from "./TBody";
-import { THead, headColorVariants, type HeadColorVariants } from "./THead";
+import { TBody, type BodyColorVariants } from "./TBody";
+import { THead, type HeadColorVariants } from "./THead";
 
 export type { HeadColorVariants, BodyColorVariants, RowSizeVariants };
-export { headColorVariants, bodyColorVariants, rowSizeVariants };
-
 export type TableProps = ComponentPropsWithRef<"table">;
 
 export const Table = ({ className, children, ...tableProps }: TableProps) => {

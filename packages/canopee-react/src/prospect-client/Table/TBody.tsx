@@ -1,12 +1,7 @@
 import { ComponentPropsWithRef } from "react";
 import { getClassName } from "../utilities/getClassName";
 
-export const bodyColorVariants = {
-  white: "white",
-  blue: "blue",
-  alternate: "alternate",
-} as const;
-export type BodyColorVariants = keyof typeof bodyColorVariants;
+export type BodyColorVariants = "white" | "blue" | "alternate";
 
 export type TBodyProps = ComponentPropsWithRef<"tbody"> & {
   variant?: BodyColorVariants;
