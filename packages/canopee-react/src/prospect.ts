@@ -157,3 +157,4 @@ export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetApollo";
+export { TableCard } from "./prospect-client/TableCard/TableCardApollo";

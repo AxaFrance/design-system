@@ -1,0 +1,9 @@
+@import "./TableCardCommon.css";
+
+.af-table-card {
+  --table-card-text-color: var(--color-gray-900);
+  --table-card-border: var(--color-gray-1);
+  --table-card-drow-border: var(--color-blue-400);
+  --table-card-drow-white-background: var(--color-white);
+  --table-card-drow-blue-background: var(--color-btn-tertiary-bg-lighter);
+}
