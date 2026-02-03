@@ -1,0 +1,333 @@
+@layer canopee-reset, base, override-2col, override-1col;
+
+/**
+ * Composant de restitution de données, permettant d'afficher des données structurées
+ * de manière claire et lisible.
+ *
+ * Le composant est composé de plusieurs sections, chacune pouvant contenir une ou plusieurs colonnes.
+ * Les sections sont séparées par des bordures, et les colonnes sont séparées par des bordures verticales.
+ *
+ * Le composant est responsive, et s'adapte à différentes tailles d'écran en modifiant la disposition des sections et des colonnes.
+ * Courage a celui qui devra modifier les comportements responsive, c'est un vrai casse-tête à maintenir et à faire évoluer 🙏
+ */
+
+@layer base {
+  .experimental-af-restitution {
+    container-name: restitution;
+    container-type: inline-size;
+    color: var(--text-color);
+    background: var(--white);
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 19%);
+
+    --restitution-title-font-size: 1.25rem;
+    --restitution-gap: 1.5rem;
+    --restitution-section-min-width: 280px;
+    --restitution-header-bg: var(--brand-primary);
+    --restitution-border: 1px solid var(--gray40);
+    --restitution-section-padding: var(--restitution-gap);
+  }
+
+  .experimental-af-restitution__header {
+    display: flex;
+    padding: 0.5rem var(--restitution-gap);
+    border-radius: 0.25rem 0.25rem 0 0;
+    align-items: baseline;
+    justify-content: space-between;
+    color: var(--white);
+    background: var(--restitution-header-bg);
+  }
+
+  .experimental-af-restitution__header-left {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .experimental-af-restitution__header-right {
+    font-size: 1rem;
+  }
+
+  .experimental-af-restitution__title {
+    margin-bottom: 0;
+    font-size: var(--restitution-title-font-size);
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .experimental-af-restitution__subtitle {
+    margin: 0;
+    margin-left: 8px;
+    font-size: var(--restitution-title-font-size);
+    font-weight: normal;
+    color: var(--bluesubtitle);
+  }
+
+  .experimental-af-restitution__row {
+    display: grid;
+    margin: 0 var(--restitution-gap);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(var(--restitution-section-min-width), 1fr)
+    );
+    grid-template-rows: auto auto;
+
+    /**
+      * On ajoute une bordure entre les sections, sauf pour la dernière ligne
+      * et la première ligne
+      */
+    &:not(:last-child) {
+      border-bottom: var(--restitution-border);
+    }
+
+    /**
+      * On met des marges entre les lignes, sauf pour la première ligne
+      */
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .experimental-af-restitution__section {
+    --col-span: 1;
+
+    display: grid;
+    padding: var(--restitution-section-padding);
+    padding-left: 0;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+    grid-column: span var(--col-span);
+    grid-row: span 2;
+  }
+
+  .experimental-af-restitution__row-content {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span var(--col-span);
+    grid-row: 2;
+  }
+
+  .experimental-af-restitution__section-title {
+    /* margin-top: var(--restitution-gap); */
+    margin-bottom: 0;
+    padding-bottom: var(--restitution-gap);
+    border-right: var(--restitution-border);
+    grid-column: 1 / -1;
+    font-size: var(--restitution-title-font-size);
+    font-weight: normal;
+    color: var(--brand-primary);
+  }
+
+  .experimental-af-restitution__column {
+    border-right: var(--restitution-border);
+  }
+
+  .experimental-af-restitution__section:last-child {
+    .experimental-af-restitution__section-title {
+      border-right: none;
+    }
+
+    .experimental-af-restitution__column:last-child {
+      border-right: none;
+    }
+  }
+
+  .experimental-af-restitution__listdef {
+    display: flex;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+    gap: 0 12px;
+  }
+
+  .experimental-af-restitution__listdef-item {
+    grid-column: 1;
+    flex-basis: calc(50% - 6px);
+    font-weight: normal !important;
+    text-align: right;
+  }
+
+  .experimental-af-restitution__listdef-value {
+    margin: 0;
+    grid-column: 2;
+    flex-basis: calc(50% - 6px);
+    font-weight: 700;
+
+    .experimental-af-restitution__listdef-value-list {
+      margin: 0;
+      padding-left: 1rem;
+    }
+  }
+
+  .experimental-af-restitution__section:has(
+    .experimental-af-restitution__column:nth-child(4)
+  ) {
+    --col-span: 4;
+  }
+
+  .experimental-af-restitution__section:has(
+      .experimental-af-restitution__column:nth-child(2)
+    ):not(:has(.experimental-af-restitution__column:nth-child(3))) {
+    --col-span: 2;
+  }
+
+  .experimental-af-restitution__section:has(
+      .experimental-af-restitution__column:nth-child(3)
+    ):not(:has(.experimental-af-restitution__column:nth-child(4))) {
+    --col-span: 3;
+  }
+}
+
+@layer override-2col {
+  @container restitution (width <= 1120px) {
+    .experimental-af-restitution__section {
+      border-right: none;
+    }
+
+    .experimental-af-restitution__row,
+    .experimental-af-restitution__row:has(
+      .experimental-af-restitution__column:nth-child(4)
+    ),
+    .experimental-af-restitution__row:not(
+      :has(.experimental-af-restitution__column:nth-child(3))
+    ) {
+      grid-template-columns: repeat(2, 1fr);
+
+      .experimental-af-restitution__content:has(
+        .experimental-af-restitution__column:nth-child(4)
+      ) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+      }
+    }
+
+    .experimental-af-restitution__row:has(
+      .experimental-af-restitution__column:nth-child(3)
+    ) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /** Cas 3 + 1 */
+    .experimental-af-restitution__section:has(
+        .experimental-af-restitution__column:nth-child(3)
+      ):not(:has(.experimental-af-restitution__column:nth-child(4))) {
+      --col-span: 3;
+
+      /* margin-bottom: var(--restitution-gap); */
+      border-bottom: var(--restitution-border);
+
+      .experimental-af-restitution__section-title {
+        border-right: none;
+      }
+
+      .experimental-af-restitution__column:last-child {
+        --restitution-border: none;
+      }
+    }
+
+    /** Cas 2+1+1 */
+    .experimental-af-restitution__section:not(
+        :has(.experimental-af-restitution__column:nth-of-type(2))
+      ):has(.experimental-af-restitution__column:only-of-type) {
+      --col-span: 3;
+    }
+
+    /** Cas 2+2 */
+    .experimental-af-restitution__section:has(
+        .experimental-af-restitution__column:nth-child(2)
+      ):not(
+        :has(.experimental-af-restitution__column:nth-child(3)),
+        :last-child
+      ) {
+      /* margin-bottom: var(--restitution-gap); */
+
+      /* padding-bottom: var(--restitution-gap); */
+      border-bottom: var(--restitution-border);
+
+      .experimental-af-restitution__section-title {
+        border-right: none;
+      }
+
+      .experimental-af-restitution__column:last-child {
+        border-right: none;
+      }
+    }
+
+    /** Cas n x 1 */
+    .experimental-af-restitution__row:not(
+      :has(.experimental-af-restitution__column:nth-child(2))
+    ) {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 0;
+
+      .experimental-af-restitution__section:has(
+        .experimental-af-restitution__column:only-of-type
+      ) {
+        --col-span: 1;
+
+        &:nth-of-type(2n) {
+          padding-right: 0;
+
+          .experimental-af-restitution__section-title,
+          .experimental-af-restitution__column {
+            border-right: none;
+          }
+        }
+      }
+    }
+
+    /** Cas n x 1, n > 2 */
+    .experimental-af-restitution__row:not(
+        .experimental-af-restitution__column:nth-child(2)
+      ):has(.experimental-af-restitution__section:nth-of-type(3)) {
+      .experimental-af-restitution__section:has(
+        .experimental-af-restitution__column:only-of-type
+      ) {
+        &:nth-of-type(2),
+        &:nth-of-type(1) {
+          border-bottom: var(--restitution-border);
+        }
+      }
+    }
+  }
+}
+
+@layer override-1col {
+  @container restitution (width <= 540px) {
+    .experimental-af-restitution__section-title {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border: none;
+    }
+
+    .experimental-af-restitution__section {
+      --col-span: 1;
+
+      padding-bottom: 0;
+    }
+
+    .experimental-af-restitution__row {
+      grid-template-columns: 1fr;
+      gap: 0;
+
+      --col-span: 1;
+    }
+
+    .experimental-af-restitution__section:not(:last-child) {
+      border-right: none;
+      border-bottom: var(--restitution-border);
+      flex-direction: column;
+    }
+
+    .experimental-af-restitution__content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .experimental-af-restitution__column {
+      padding: var(--restitution-gap) 0;
+      border: none;
+    }
+
+    .experimental-af-restitution__column:not(:last-child) {
+      border-bottom: var(--restitution-border);
+    }
+  }
+}

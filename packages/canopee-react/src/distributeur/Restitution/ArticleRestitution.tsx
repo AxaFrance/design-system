@@ -1,7 +1,10 @@
 import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type ArticleRestitutionProps = ComponentPropsWithoutRef<"article"> & {
+  /**
+   * @deprecated use `className` instead
+   */
   classModifier?: string;
 };
 
@@ -11,11 +14,11 @@ export const ArticleRestitution = ({
   classModifier,
   ...otherProps
 }: PropsWithChildren<ArticleRestitutionProps>) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-restitution",
     className,
-    classModifier,
-    "af-restitution",
-  );
+    modifiers: [classModifier],
+  });
   return (
     <article className={componentClassName} {...otherProps}>
       {children}
