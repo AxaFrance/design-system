@@ -4,20 +4,20 @@ import { DRow } from "./DRow";
 import { Dt } from "./Dt";
 import { Dd } from "./Dd";
 
-export type TableCardVariants = "white" | "blue" | "alternate";
+export type TableMobileCardVariants = "white" | "blue" | "alternate";
 
-export type TableCardProps = ComponentPropsWithRef<"dl"> & {
-  variant?: TableCardVariants;
+export type TableMobileCardProps = ComponentPropsWithRef<"dl"> & {
+  variant?: TableMobileCardVariants;
 };
 
-export const TableCard = ({
+export const TableMobileCard = ({
   className,
   children,
   variant = "alternate",
   ...tableCardProps
-}: TableCardProps) => {
+}: TableMobileCardProps) => {
   const componentClassName = getClassName({
-    baseClassName: "af-table-card",
+    baseClassName: "af-table-mobile-card",
     className,
     modifiers: [variant],
   });
@@ -29,6 +29,6 @@ export const TableCard = ({
   );
 };
 
-TableCard.DRow = DRow;
-TableCard.Dt = Dt;
-TableCard.Dd = Dd;
+TableMobileCard.DRow = DRow;
+TableMobileCard.Dt = Dt;
+TableMobileCard.Dd = Dd;

@@ -5,7 +5,7 @@ export type TrProps = ComponentPropsWithRef<"dt">;
 
 export const Dt = ({ className, children, ...DtProps }: TrProps) => {
   const componentClassName = getClassName({
-    baseClassName: "af-table-card__dt",
+    baseClassName: "af-table-mobile-card__dt",
     className,
   });
   return (

@@ -14,7 +14,7 @@ export const DRow = ({
   ...DRowProps
 }: TrProps) => {
   const componentClassName = getClassName({
-    baseClassName: "af-table-card__drow",
+    baseClassName: "af-table-mobile-card__drow",
     className,
     modifiers: [direction],
   });
