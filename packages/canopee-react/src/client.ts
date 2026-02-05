@@ -165,3 +165,7 @@ export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetLF";
+export {
+  TableMobileCard,
+  type TableMobileCardProps,
+} from "./prospect-client/TableMobileCard/TableMobileCardLF";

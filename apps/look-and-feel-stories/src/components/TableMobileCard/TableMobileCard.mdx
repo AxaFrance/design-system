@@ -1,0 +1,45 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as TableMobileCardStories from "./TableMobileCard.stories";
+
+<Meta of={TableMobileCardStories} name="Table Card" />
+
+# TableMobileCard
+
+> ⚠️ This component should not be used alone. It is the mobile version for a table.
+
+To use the table card import it like that:
+
+```tsx
+import { TableMobileCard } from "@axa-fr/canopee-react/client";
+
+const MyComponent = () => (
+  <TableMobileCard variant="alternate">
+    <TableMobileCard.DRow>
+      <TableMobileCard.Dt>Produit/Support</TableMobileCard.Dt>
+      <TableMobileCard.Dd>AB Sustainable Global Thematic A</TableMobileCard.Dd>
+    </TableMobileCard.DRow>
+    <TableMobileCard.DRow>
+      <TableMobileCard.Dt>Code Isin</TableMobileCard.Dt>
+      <TableMobileCard.Dd>LU0101010101</TableMobileCard.Dd>
+    </TableMobileCard.DRow>
+    <TableMobileCard.DRow>
+      <TableMobileCard.Dt>Status</TableMobileCard.Dt>
+      <TableMobileCard.Dd>Ouvert</TableMobileCard.Dd>
+    </TableMobileCard.DRow>
+  </TableMobileCard>
+);
+```
+
+## Usage
+
+The Table component is a compound component with the following sub-components:
+
+- `TableMobileCard.DRow` - TableMobileCard row wrapper with optional `direction` prop
+- `TableMobileCard.Dt` - Table row title
+- `TableMobileCard.Dd` - Table row description
+
+## Examples
+
+### Basic Table
+
+<Canvas of={TableMobileCardStories.BasicTableMobileCard} />
