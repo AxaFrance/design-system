@@ -7,6 +7,10 @@
   --table-header-bg-blue: var(--axa-blue-8);
   --table-tr-border-color: var(--axa-blue-20);
 
+  .af-table__tbody {
+    --table-body-text-color: var(--neutral-100);
+  }
+
   & .af-table__tbody--white .af-table__tr,
   & .af-table__td--white {
     --table-body-bg-color: var(--white);

@@ -333,64 +333,69 @@ export const TablePage = () => {
                 </Dropdown>
               </div>
 
-              <Table>
-                <Table.THead>
-                  <Table.Tr>
-                    <Table.Th
-                      onCheck={() => handleColumnCheck(0)}
-                      onSort={() => handleSort("reference")}
-                    >
-                      Référence
-                    </Table.Th>
-                    <Table.Th
-                      onCheck={() => handleColumnCheck(1)}
-                      onSort={() => handleSort("societe")}
-                    >
-                      Société
-                    </Table.Th>
-                    <Table.Th
-                      onCheck={() => handleColumnCheck(2)}
-                      onSort={() => handleSort("contact")}
-                    >
-                      Contact
-                    </Table.Th>
-                    <Table.Th
-                      onCheck={() => handleColumnCheck(3)}
-                      onSort={() => handleSort("montant")}
-                    >
-                      Montant
-                    </Table.Th>
-                    <Table.Th
-                      onCheck={() => handleColumnCheck(4)}
-                      onSort={() => handleSort("statut")}
-                    >
-                      Statut
-                    </Table.Th>
-                  </Table.Tr>
-                </Table.THead>
-
-                <Table.TBody variant="alternate">
-                  {currentData.map((row) => (
-                    <Table.Tr key={row.id} size="L">
-                      <Table.Td variant={getColumnVariant(0)}>
-                        {row.reference}
-                      </Table.Td>
-                      <Table.Td variant={getColumnVariant(1)}>
-                        {row.societe}
-                      </Table.Td>
-                      <Table.Td variant={getColumnVariant(2)}>
-                        {row.contact}
-                      </Table.Td>
-                      <Table.Td position="right" variant={getColumnVariant(3)}>
-                        {row.montant.toFixed(2)} €
-                      </Table.Td>
-                      <Table.Td variant={getColumnVariant(4)}>
-                        {getStatusTag(row.statut)}
-                      </Table.Td>
+              <div className="table-scroll">
+                <Table>
+                  <Table.THead>
+                    <Table.Tr>
+                      <Table.Th
+                        onCheck={() => handleColumnCheck(0)}
+                        onSort={() => handleSort("reference")}
+                      >
+                        Référence
+                      </Table.Th>
+                      <Table.Th
+                        onCheck={() => handleColumnCheck(1)}
+                        onSort={() => handleSort("societe")}
+                      >
+                        Société
+                      </Table.Th>
+                      <Table.Th
+                        onCheck={() => handleColumnCheck(2)}
+                        onSort={() => handleSort("contact")}
+                      >
+                        Contact
+                      </Table.Th>
+                      <Table.Th
+                        onCheck={() => handleColumnCheck(3)}
+                        onSort={() => handleSort("montant")}
+                      >
+                        Montant
+                      </Table.Th>
+                      <Table.Th
+                        onCheck={() => handleColumnCheck(4)}
+                        onSort={() => handleSort("statut")}
+                      >
+                        Statut
+                      </Table.Th>
                     </Table.Tr>
-                  ))}
-                </Table.TBody>
-              </Table>
+                  </Table.THead>
+
+                  <Table.TBody variant="alternate">
+                    {currentData.map((row) => (
+                      <Table.Tr key={row.id} size="M">
+                        <Table.Td variant={getColumnVariant(0)}>
+                          {row.reference}
+                        </Table.Td>
+                        <Table.Td variant={getColumnVariant(1)}>
+                          {row.societe}
+                        </Table.Td>
+                        <Table.Td variant={getColumnVariant(2)}>
+                          {row.contact}
+                        </Table.Td>
+                        <Table.Td
+                          position="right"
+                          variant={getColumnVariant(3)}
+                        >
+                          {row.montant.toFixed(2)} €
+                        </Table.Td>
+                        <Table.Td variant={getColumnVariant(4)}>
+                          {getStatusTag(row.statut)}
+                        </Table.Td>
+                      </Table.Tr>
+                    ))}
+                  </Table.TBody>
+                </Table>
+              </div>
 
               <Pagination
                 numberPages={totalPages}

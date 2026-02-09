@@ -7,6 +7,10 @@
   --table-header-bg-blue: var(--color-btn-tertiary-bg-darker);
   --table-tr-border-color: var(--color-gray-400);
 
+  .af-table__tbody {
+    --table-body-text-color: var(--color-gray-900);
+  }
+
   & .af-table__tbody--white .af-table__tr,
   & .af-table__td--white {
     --table-body-bg-color: var(--color-white);

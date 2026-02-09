@@ -1,3 +1,9 @@
+.table-scroll {
+  margin-inline: calc(-1 * var(--margin-inline));
+  padding-inline: var(--margin-inline);
+  overflow: auto hidden;
+}
+
 main.table-page {
   --font-size-base: 16;
 
