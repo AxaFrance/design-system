@@ -20,7 +20,7 @@ describe("TableMobileCard", () => {
     const dds = screen.getAllByRole("definition");
 
     expect(dt).toHaveClass("af-table-mobile-card__drow--row");
-    expect(dds.length).toEqual(2);
+    expect(dds).toHaveLength(2);
   });
 
   it("should render vertical row correctly", () => {

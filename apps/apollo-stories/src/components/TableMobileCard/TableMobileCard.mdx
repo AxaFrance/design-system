@@ -1,13 +1,13 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs";
 import * as TableMobileCardStories from "./TableMobileCard.stories";
 
-<Meta of={TableMobileCardStories} name="Table Card" />
+<Meta of={TableMobileCardStories} name="Table Mobile Card" />
 
 # TableMobileCard
 
 > ⚠️ This component should not be used alone. It is the mobile version for a table.
 
-To use the table card import it like that:
+To use the table mobile card import it like that:
 
 ```tsx
 import { TableMobileCard } from "@axa-fr/canopee-react/prospect";
@@ -32,7 +32,7 @@ const MyComponent = () => (
 
 ## Usage
 
-The Table component is a compound component with the following sub-components:
+The TableMobileCard component is a compound component with the following sub-components:
 
 - `TableMobileCard.DRow` - TableMobileCard row wrapper with optional `direction` prop
 - `TableMobileCard.Dt` - Table row title
@@ -43,3 +43,5 @@ The Table component is a compound component with the following sub-components:
 ### Basic Table
 
 <Canvas of={TableMobileCardStories.BasicTableMobileCard} />
+
+<Controls of={TableMobileCardStories.BasicTableMobileCard} />

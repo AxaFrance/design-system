@@ -11,7 +11,7 @@ export const DRow = ({
   className,
   children,
   direction = "row",
-  ...DRowProps
+  ...dRowProps
 }: TrProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-table-mobile-card__drow",
@@ -19,7 +19,7 @@ export const DRow = ({
     modifiers: [direction],
   });
   return (
-    <div className={componentClassName} {...DRowProps}>
+    <div className={componentClassName} {...dRowProps}>
       {children}
     </div>
   );

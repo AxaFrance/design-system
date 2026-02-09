@@ -60,7 +60,8 @@ export const BasicTableMobileCard: Story = {
         <TableMobileCard.Dd>
           <Button
             variant="ghost"
-            iconRight={<Icon src={download} onClick={action("download_1")} />}
+            iconRight={<Icon src={download} />}
+            onClick={action("download_1")}
           >
             Télécharger
           </Button>

@@ -3,13 +3,13 @@ import { getClassName } from "../utilities/getClassName";
 
 export type TrProps = ComponentPropsWithRef<"dd">;
 
-export const Dd = ({ className, children, ...DdProps }: TrProps) => {
+export const Dd = ({ className, children, ...ddProps }: TrProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-table-mobile-card__dd",
     className,
   });
   return (
-    <dd className={componentClassName} {...DdProps}>
+    <dd className={componentClassName} {...ddProps}>
       {children}
     </dd>
   );
