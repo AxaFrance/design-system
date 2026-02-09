@@ -1,13 +1,16 @@
+.table-scroll {
+  margin-inline: calc(-1 * var(--margin-inline));
+  padding-inline: var(--margin-inline);
+  overflow: auto hidden;
+}
+
 .af-table {
   all: unset;
   display: table;
   box-sizing: border-box;
   width: 100%;
   border-collapse: collapse;
-
-  /* Default: alternate colors reference body-bg colors */
-  --table-body-bg-alternate-even: var(--table-body-bg-blue);
-  --table-body-bg-alternate-odd: var(--table-body-bg-white);
+  line-height: calc(20 / var(--font-size-base) * 1rem);
 
   .af-table__th {
     padding: 0;
@@ -31,7 +34,6 @@
       align-items: center;
       font-size: calc(16 / var(--font-size-base) * 1rem);
       font-weight: 600;
-      line-height: calc(20 / var(--font-size-base) * 1rem);
       text-align: left;
     }
 
@@ -66,6 +68,8 @@
   .af-table__td {
     box-sizing: border-box;
     padding-inline: var(--spacing-16);
+    white-space: normal;
+    background-color: var(--table-body-bg-color);
 
     &.af-table__td--left {
       text-align: left;
@@ -89,41 +93,34 @@
     }
 
     &.af-table__td--small {
-      height: 40px;
+      padding-block: 10px;
     }
 
     &.af-table__td--medium {
-      height: 56px;
+      padding-block: 18px;
     }
 
     &.af-table__td--large {
-      height: 80px;
-    }
-
-    &.af-table__td--blue {
-      background-color: var(--table-body-bg-blue);
+      padding-block: 30px;
     }
   }
 
   .af-table__tr {
     border-bottom: 1px solid var(--table-tr-border-color);
 
-    .af-table__th,
     .af-table__td {
-      height: 40px;
+      padding-block: 10px;
     }
 
     &.af-table__tr--medium {
-      .af-table__th,
       .af-table__td {
-        height: 56px;
+        padding-block: 18px;
       }
     }
 
     &.af-table__tr--large {
-      .af-table__th,
       .af-table__td {
-        height: 80px;
+        padding-block: 30px;
       }
     }
   }
@@ -144,22 +141,8 @@
     font-weight: 600;
     color: var(--neutral-100);
 
-    &.af-table__tbody--white .af-table__tr {
-      background-color: var(--table-body-bg-white);
-    }
-
-    &.af-table__tbody--blue .af-table__tr {
-      background-color: var(--table-body-bg-blue);
-    }
-
-    &.af-table__tbody--alternate .af-table__tr {
-      &:nth-child(even) {
-        background-color: var(--table-body-bg-alternate-even);
-      }
-
-      &:nth-child(odd) {
-        background-color: var(--table-body-bg-alternate-odd);
-      }
+    &.af-table__tbody .af-table__tr {
+      background-color: var(--table-body-bg-color);
     }
   }
 }

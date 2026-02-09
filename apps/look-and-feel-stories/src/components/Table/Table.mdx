@@ -1,5 +1,5 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs";
-import * as TableStories from "./Table.stories";
+import * as TableStories from "./Table.stories.tsx";
 
 <Meta of={TableStories} name="Table" />
 
@@ -50,18 +50,6 @@ Use `variant="alternate"` on `Table.TBody` to get zebra-striped rows.
 
 <Canvas of={TableStories.AlternateVariantTable} />
 
-### Sortable Headers
-
-Add `onSort` prop to `Table.Th` to make columns sortable.
-
-<Canvas of={TableStories.TableWithSortableHeaders} />
-
-### Checkboxes
-
-Add `onCheck` prop to `Table.Th` to enable row selection. Use `checkboxPosition` to control checkbox placement.
-
-<Canvas of={TableStories.TableWithCheckboxes} />
-
 ### With Tags
 
 Tables work great with other components like Tags for status indicators.
@@ -89,7 +77,3 @@ Use the `position` prop on `Table.Td` to align cell content ("left", "center", "
 ### Compact Table
 
 <Canvas of={TableStories.CompactTable} />
-
-### Wide Table
-
-<Canvas of={TableStories.WideTable} />

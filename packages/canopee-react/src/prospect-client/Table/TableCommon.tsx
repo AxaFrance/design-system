@@ -15,9 +15,11 @@ export const Table = ({ className, children, ...tableProps }: TableProps) => {
     className,
   });
   return (
-    <table className={componentClassName} {...tableProps}>
-      {children}
-    </table>
+    <div className="table-scroll">
+      <table className={componentClassName} {...tableProps}>
+        {children}
+      </table>
+    </div>
   );
 };
 

@@ -215,7 +215,7 @@ export const TableWithButtons: Story = {
   args: {
     theadVariant: "gray",
     tbodyVariant: undefined,
-    rowSize: "L",
+    rowSize: "M",
   },
   argTypes: {
     theadVariant: {
@@ -479,74 +479,6 @@ export const CompactTable: Story = {
             <Tag variant="error">Annulé</Tag>
           </Table.Td>
           <Table.Td>05/01/2026</Table.Td>
-        </Table.Tr>
-      </Table.TBody>
-    </Table>
-  ),
-};
-
-export const WideTable: Story = {
-  name: "Tableau large (6 colonnes)",
-  args: {
-    theadVariant: "gray",
-    tbodyVariant: "alternate",
-  },
-  argTypes: {
-    theadVariant: {
-      control: { type: "select" },
-      options: ["gray", "blue"],
-      description: "Variant de l'en-tête du tableau",
-    },
-    tbodyVariant: {
-      control: { type: "select" },
-      options: ["white", "blue", "alternate"],
-      description: "Variant du corps du tableau",
-    },
-  },
-  render: (args: TableStoryArgs) => (
-    <Table>
-      <Table.THead variant={args.theadVariant}>
-        <Table.Tr>
-          <Table.Th>ID</Table.Th>
-          <Table.Th>Nom</Table.Th>
-          <Table.Th>Catégorie</Table.Th>
-          <Table.Th>Prix</Table.Th>
-          <Table.Th>Stock</Table.Th>
-          <Table.Th>Fournisseur</Table.Th>
-        </Table.Tr>
-      </Table.THead>
-      <Table.TBody variant={args.tbodyVariant}>
-        <Table.Tr>
-          <Table.Td>001</Table.Td>
-          <Table.Td>Clavier</Table.Td>
-          <Table.Td>Périphériques</Table.Td>
-          <Table.Td position="right">45,00 €</Table.Td>
-          <Table.Td>25</Table.Td>
-          <Table.Td>TechCorp</Table.Td>
-        </Table.Tr>
-        <Table.Tr>
-          <Table.Td>002</Table.Td>
-          <Table.Td>Souris</Table.Td>
-          <Table.Td>Périphériques</Table.Td>
-          <Table.Td position="right">30,00 €</Table.Td>
-          <Table.Td>40</Table.Td>
-          <Table.Td>TechCorp</Table.Td>
-        </Table.Tr>
-        <Table.Tr>
-          <Table.Td>003</Table.Td>
-          <Table.Td>Écran</Table.Td>
-          <Table.Td>Affichage</Table.Td>
-          <Table.Td position="right">250,00 €</Table.Td>
-          <Table.Td>12</Table.Td>
-          <Table.Td>ScreenPro</Table.Td>
-        </Table.Tr>
-        <Table.Tr>
-          <Table.Td>004</Table.Td>
-          <Table.Td>Casque</Table.Td>
-          <Table.Td>Audio</Table.Td>
-          <Table.Td position="right">80,00 €</Table.Td>
-          <Table.Td>18</Table.Td>
-          <Table.Td>SoundMax</Table.Td>
         </Table.Tr>
       </Table.TBody>
     </Table>
