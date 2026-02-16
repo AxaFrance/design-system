@@ -1,19 +1,19 @@
 import { Canvas, Controls, Meta } from "@storybook/blocks";
-import * as CardRadioStories from "./CardRadio.stories";
+import * as CardRadioGroupStories from "./CardRadioGroup.stories";
 
-<Meta of={CardRadioStories} name="CardRadio" />
+<Meta of={CardRadioGroupStories} name="CardRadioGroup" />
 
-# CardRadio components
+# CardRadioGroup components
 
 ## How to use
 
-To use the `CardRadio`component import it like this:
+To use the `CardRadioGroup`component import it like this:
 
 ```tsx
-import { CardRadio } from "@axa-fr/canopee-react/client";
+import { CardRadioGroup } from "@axa-fr/canopee-react/prospect";
 
 const MyComponent = () => (
-  <CardRadio
+  <CardRadioGroup
     type="vertical"
     name="city"
     label="Choisissez une ville"
@@ -44,8 +44,8 @@ const MyComponent = () => (
 
 ## Playground
 
-The CardRadio component has 2 modes: `vertical` (default) and `horizontal`.
+The CardRadioGroup component has 2 modes: `vertical` (default) and `horizontal`.
 You can see them in action in the stories below.
 
-<Canvas of={CardRadioStories.CardRadioStory} />
-<Controls of={CardRadioStories.CardRadioStory} />
+<Canvas of={CardRadioGroupStories.CardRadioStory} />
+<Controls of={CardRadioGroupStories.CardRadioStory} />

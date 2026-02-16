@@ -5,7 +5,10 @@ import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
 import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
 import { CardRadioOption } from "../../CardRadioOption/CardRadioOptionApollo";
-import { CardRadioCommon, type CardRadioProps } from "../CardRadioCommon";
+import {
+  CardRadioGroupCommon,
+  type CardRadioGroupProps,
+} from "../CardRadioGroupCommon";
 
 describe("Radio card Component", () => {
   const radioOptions = [
@@ -24,8 +27,8 @@ describe("Radio card Component", () => {
       icon: homeIcons,
     },
   ];
-  const CardRadio = (props: CardRadioProps) => (
-    <CardRadioCommon
+  const CardRadio = (props: CardRadioGroupProps) => (
+    <CardRadioGroupCommon
       {...props}
       CardRadioOptionComponent={CardRadioOption}
       ItemMessageComponent={ItemMessage}

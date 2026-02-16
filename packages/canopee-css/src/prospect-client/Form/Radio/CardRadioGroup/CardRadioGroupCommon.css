@@ -1,10 +1,10 @@
-.af-card-radio {
+.af-card-radio-group {
   display: flex;
   flex-direction: column;
   gap: var(--rem-8);
 }
 
-.af-card-radio__legend {
+.af-card-radio-group__legend {
   display: contents;
 
   & > p {
@@ -12,22 +12,22 @@
   }
 }
 
-.af-card-radio__label {
+.af-card-radio-group__label {
   display: inline;
   font-size: var(--rem-18);
   font-weight: 600;
-  color: var(--card-radio-color);
+  color: var(--card-radio-group-color);
 
   span {
     margin-left: var(--rem-4);
   }
 }
 
-.af-card-radio__description {
+.af-card-radio-group__description {
   font-size: var(--rem-16);
   font-weight: 400;
   line-height: var(--rem-16);
-  color: var(--card-radio-color);
+  color: var(--card-radio-group-color);
 
   @media (--desktop-small) {
     font-size: var(--rem-18);
@@ -35,7 +35,7 @@
   }
 }
 
-.af-card-radio__options {
+.af-card-radio-group__options {
   display: flex;
   gap: 1rem;
 
@@ -45,10 +45,10 @@
   }
 }
 
-.af-card-radio__options--vertical {
+.af-card-radio-group__options--vertical {
   flex-direction: row;
 }
 
-.af-card-radio__options--horizontal {
+.af-card-radio-group__options--horizontal {
   flex-direction: column;
 }

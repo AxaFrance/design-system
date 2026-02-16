@@ -1,4 +1,7 @@
-import { CardRadio, itemMessageVariants } from "@axa-fr/canopee-react/prospect";
+import {
+  CardRadioGroup,
+  itemMessageVariants,
+} from "@axa-fr/canopee-react/client";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
@@ -28,8 +31,8 @@ const optionsDefault = [
 ];
 
 const meta: Meta = {
-  title: "Components/Form/Radio/CardRadio",
-  component: CardRadio,
+  title: "Components/Form/Radio/CardRadioGroup",
+  component: CardRadioGroup,
   argTypes: {
     type: {
       control: { type: "inline-radio" },
@@ -94,10 +97,10 @@ const meta: Meta = {
 
 export default meta;
 
-export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
+export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadioGroup>> = {
   name: "Playground",
   render: ({ description, error, name, type, ...args }) => (
-    <CardRadio
+    <CardRadioGroup
       description={description !== "" ? description : undefined}
       error={error !== "" ? error : undefined}
       name={name !== "" ? name : undefined}

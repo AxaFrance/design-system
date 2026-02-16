@@ -5,15 +5,15 @@ import {
   type ReactNode,
   useId,
 } from "react";
-import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
 import {
   ItemMessage,
   type ItemMessageProps,
 } from "../../ItemMessage/ItemMessageCommon";
+import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
 
 type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
 
-export type CardRadioProps = Omit<
+export type CardRadioGroupProps = Omit<
   CardRadioOptionProps,
   | "value"
   | "label"
@@ -53,12 +53,12 @@ export type CardRadioProps = Omit<
 } & PropsWithChildren &
   Partial<ItemMessageProps>;
 
-export type CardRadioCommonProps = CardRadioProps & {
+export type CardRadioCommonProps = CardRadioGroupProps & {
   CardRadioOptionComponent: ComponentType<CardRadioOptionProps>;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-const CardRadioCommon = ({
+const CardRadioGroupCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -87,22 +87,22 @@ const CardRadioCommon = ({
 
   return (
     <fieldset
-      className={["af-card-radio", className].filter(Boolean).join(" ")}
+      className={["af-card-radio-group", className].filter(Boolean).join(" ")}
       role="radiogroup"
       aria-required={Boolean(required) || undefined}
       aria-invalid={hasError || undefined}
       aria-errormessage={hasError ? messageId : undefined}
       id={cardRadioId}
     >
-      <legend className="af-card-radio__legend">
-        <p className="af-card-radio__label">
+      <legend className="af-card-radio-group__legend">
+        <p className="af-card-radio-group__label">
           {label}
           {labelGroup}
           {required || isRequired ? <span aria-hidden>*</span> : null}
         </p>
 
         {description || descriptionGroup ? (
-          <p className="af-card-radio__description">
+          <p className="af-card-radio-group__description">
             {description}
             {descriptionGroup}
           </p>
@@ -110,8 +110,8 @@ const CardRadioCommon = ({
       </legend>
       <div
         className={[
-          "af-card-radio__options",
-          `af-card-radio__options--${type}`,
+          "af-card-radio-group__options",
+          `af-card-radio-group__options--${type}`,
         ].join(" ")}
       >
         {options.map((cardRadioItemProps) => (
@@ -141,6 +141,6 @@ const CardRadioCommon = ({
   );
 };
 
-CardRadioCommon.displayName = "CardRadioCommon";
+CardRadioGroupCommon.displayName = "CardRadioGroupCommon";
 
-export { CardRadioCommon };
+export { CardRadioGroupCommon };
