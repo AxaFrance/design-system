@@ -22,9 +22,9 @@
 }
 
 .af-item-file--error {
-  --item-file-border-color: var(--color-red-700);
+  --item-file-border-color: var(--red-alert-1200);
 
   > .af-item-file__body > .af-icon {
-    --icon-fill: var(--color-red-700);
+    --icon-fill: var(--red-alert-1200);
   }
 }

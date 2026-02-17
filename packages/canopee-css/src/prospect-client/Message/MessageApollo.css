@@ -20,8 +20,8 @@
 }
 
 .af-message--error {
-  --message-theme-color: var(--red-alert-100);
-  --message-bg-color: var(--axa-red-4);
+  --message-theme-color: var(--red-alert-1000);
+  --message-bg-color: var(--red-040);
 }
 
 .af-message--neutral {
@@ -31,7 +31,7 @@
 
 .af-message--warning {
   --message-theme-color: var(--warning-100);
-  --message-bg-color: var(--axa-red-4);
+  --message-bg-color: var(--red-040);
 }
 
 .af-message--validation {

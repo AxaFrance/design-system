@@ -17,9 +17,9 @@
 }
 
 .af-item-file--error {
-  --item-file-border-color: var(--axa-red-100);
+  --item-file-border-color: var(--red-alert-1000);
 
   > .af-item-file__body > .af-icon {
-    --icon-fill: var(--red-alert-100);
+    --icon-fill: var(--red-alert-1000);
   }
 }

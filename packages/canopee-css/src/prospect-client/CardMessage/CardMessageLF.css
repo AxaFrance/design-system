@@ -18,9 +18,9 @@
 }
 
 .af-card-message--error {
-  --card-message-background-color: var(--color-btn-error-bg);
-  --card-message-text-color: var(--color-btn-error-text);
-  --card-message-border-color: var(--color-btn-error-text);
+  --card-message-background-color: var(--red-040);
+  --card-message-text-color: var(--red-alert-1200);
+  --card-message-border-color: var(--red-alert-1200);
 }
 
 .af-card-message--neutral {

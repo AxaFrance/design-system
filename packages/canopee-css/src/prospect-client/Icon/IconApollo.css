@@ -42,7 +42,7 @@
 }
 
 .af-icon--error {
-  --icon-fill: var(--red-alert-100);
+  --icon-fill: var(--red-alert-1000);
 }
 
 .af-icon--warning {

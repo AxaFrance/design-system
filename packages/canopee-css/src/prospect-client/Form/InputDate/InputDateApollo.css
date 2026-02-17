@@ -22,7 +22,7 @@
   }
 
   &[aria-invalid="true"] {
-    --input-date-box-shadow-color: var(--red-alert-100);
+    --input-date-box-shadow-color: var(--red-alert-1000);
     --input-date-color: var(--neutral-80);
 
     &:is(:focus-visible, :hover, :active, :focus-within):not(:disabled) {

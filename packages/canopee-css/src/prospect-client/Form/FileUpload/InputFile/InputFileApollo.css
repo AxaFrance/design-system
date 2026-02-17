@@ -19,7 +19,7 @@
 }
 
 .af-input-file__dropzone--error {
-  --input-file-dropzone-border-color: var(--red-alert-100);
+  --input-file-dropzone-border-color: var(--red-alert-1000);
 }
 
 .af-input-file__help {

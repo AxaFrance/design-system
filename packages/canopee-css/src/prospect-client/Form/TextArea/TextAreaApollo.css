@@ -19,7 +19,7 @@
   }
 
   &[aria-invalid="true"] {
-    --textarea-box-shadow-color: var(--red-alert-100);
+    --textarea-box-shadow-color: var(--red-alert-1000);
 
     &:is(:focus-visible, :hover, :active, :focus) {
       --textarea-box-shadow-width: 3px;

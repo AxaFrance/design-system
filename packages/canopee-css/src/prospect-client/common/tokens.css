@@ -10,13 +10,6 @@
 
   /* PRIMITIVES **************************************************************/
 
-  /* red */
-  --axa-red-100: hsl(357deg, 100%, 55%);
-  --axa-red-4: hsl(0deg, 100%, 98%);
-  --axa-red-digital-100: hsl(357deg, 100%, 64%);
-  --red-alert-100: hsl(0deg, 100%, 45%);
-  --red-alert-80: hsl(0deg, 100%, 56%);
-
   /* orange */
 
   --warning-100: hsl(19deg, 82%, 43%);

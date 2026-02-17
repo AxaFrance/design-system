@@ -18,7 +18,7 @@
   }
 
   &[aria-invalid="true"]:not(:checked) {
-    --checkbox-border-color: var(--color-red-700);
+    --checkbox-border-color: var(--red-alert-1200);
     --checkbox-border-width: 2px;
 
     &:hover,
