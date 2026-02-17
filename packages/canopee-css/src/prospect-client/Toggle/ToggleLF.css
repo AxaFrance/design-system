@@ -27,7 +27,7 @@
 
     .af-toggle__handle {
       --toggle-handle-scale: var(--toggle-handle-enlarge-scale);
-      --toggle-handle-color: var(--color-white);
+      --toggle-handle-color: var(--white-1000);
       --toggle-handle-position: calc(
         var(--toggle-width) - var(--toggle-handle-size) -
           var(--toggle-border-size)
@@ -36,7 +36,7 @@
   }
 
   &:has(:disabled) {
-    --toggle-bg-color: var(--color-white);
+    --toggle-bg-color: var(--white-1000);
     --toggle-border-color: var(--color-gray-400);
     --toggle-handle-color: var(--color-gray-400);
   }

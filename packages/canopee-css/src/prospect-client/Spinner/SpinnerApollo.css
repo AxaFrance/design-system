@@ -16,6 +16,6 @@
 }
 
 .af-spinner--white {
-  --spinner-border-color: var(--white-20);
-  --spinner-border-top-color: var(--white);
+  --spinner-border-color: var(--white-1000-20);
+  --spinner-border-top-color: var(--white-1000);
 }

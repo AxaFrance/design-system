@@ -25,8 +25,8 @@
 .af-spinner--white {
   --spinner-border-color: color-mix(
     in srgb,
-    var(--color-white),
+    var(--white-1000),
     transparent 80%
   );
-  --spinner-border-top-color: var(--color-white);
+  --spinner-border-top-color: var(--white-1000);
 }

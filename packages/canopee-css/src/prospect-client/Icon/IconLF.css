@@ -14,17 +14,17 @@
   --icon-fill: var(--color-axa);
 
   &.af-icon--has-background {
-    --icon-fill: var(--color-white);
+    --icon-fill: var(--white-1000);
     --icon-background-color: var(--color-axa);
   }
 }
 
 .af-icon--secondary {
-  --icon-fill: var(--color-white);
+  --icon-fill: var(--white-1000);
 
   &.af-icon--has-background {
     --icon-fill: var(--color-axa);
-    --icon-background-color: var(--color-white);
+    --icon-background-color: var(--white-1000);
     --icon-outline-color: var(--color-gray-300);
   }
 }

@@ -2,7 +2,7 @@
 
 .af-message {
   --message-theme-color: var(--color-axa);
-  --message-bg-color: var(--color-white);
+  --message-bg-color: var(--white-1000);
   --message-border-color: var(--message-theme-color);
   --message-border-radius: var(--radius-12);
   --message-icon-color: var(--message-theme-color);

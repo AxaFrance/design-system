@@ -2,7 +2,7 @@
 
 .af-btn-client {
   --button-bg-color: var(--axa-blue-100);
-  --button-text-color: var(--white);
+  --button-text-color: var(--white-1000);
   --button-radius: var(--radius-32);
   --button-shadow-color: var(--axa-blue-100);
   --button-padding: calc(12 / var(--font-size-base) * 1rem)
@@ -38,7 +38,7 @@
 
 .af-btn-client--primary-business {
   --button-bg-color: var(--warning-100);
-  --button-text-color: var(--white);
+  --button-text-color: var(--white-1000);
 
   &:hover,
   &:focus,
@@ -52,7 +52,7 @@
 }
 
 .af-btn-client--primary-inverse {
-  --button-bg-color: var(--white);
+  --button-bg-color: var(--white-1000);
   --button-text-color: var(--axa-blue-100);
 
   &:hover,
@@ -91,28 +91,28 @@
 }
 
 .af-btn-client--secondary {
-  --button-bg-color: var(--white);
+  --button-bg-color: var(--white-1000);
   --button-text-color: var(--axa-blue-100);
 
   &:hover,
   &:focus,
   &:focus-visible {
     --button-bg-color: var(--axa-blue-120);
-    --button-text-color: var(--white);
+    --button-text-color: var(--white-1000);
     --button-shadow-color: var(--axa-blue-120);
   }
 
   &:active {
     --button-bg-color: var(--axa-blue-80);
-    --button-text-color: var(--white);
+    --button-text-color: var(--white-1000);
     --button-shadow-color: var(--axa-blue-80);
   }
 }
 
 .af-btn-client--secondary-inverse {
   --button-bg-color: transparent;
-  --button-text-color: var(--white);
-  --button-shadow-color: var(--white);
+  --button-text-color: var(--white-1000);
+  --button-shadow-color: var(--white-1000);
 
   &:hover,
   &:focus,
@@ -137,11 +137,11 @@
   &:focus,
   &:focus-visible {
     --button-bg-color: var(--axa-blue-120);
-    --button-text-color: var(--white);
+    --button-text-color: var(--white-1000);
   }
 
   &:active {
     --button-bg-color: var(--axa-blue-80);
-    --button-text-color: var(--white);
+    --button-text-color: var(--white-1000);
   }
 }

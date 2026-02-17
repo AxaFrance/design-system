@@ -8,7 +8,7 @@
   --timeline-vertical-description-font-size: calc(
     16 / var(--font-size-base) * 1rem
   );
-  --timeline-vertical-bg-color: var(--color-white);
+  --timeline-vertical-bg-color: var(--white-1000);
   --timeline-vertical-border-color: var(--color-blue-400);
 
   @media (--desktop-small) {

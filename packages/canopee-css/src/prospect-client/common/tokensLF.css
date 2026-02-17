@@ -9,9 +9,6 @@
 
   /* PRIMITIVES **************************************************************/
 
-  --color-white: hsl(0deg, 0%, 100%);
-  --color-black: hsl(0deg, 0%, 0%);
-
   /* blue */
   --color-axa: #00008f;
   --color-blue-1: #000072;

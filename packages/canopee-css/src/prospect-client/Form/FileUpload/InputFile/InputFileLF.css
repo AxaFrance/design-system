@@ -3,7 +3,7 @@
 .af-input-file__dropzone {
   --input-file-dropzone-border-color: var(--color-axa);
   --input-file-dropzone-color: var(--color-axa);
-  --input-file-dropzone-bg-color: var(--color-white);
+  --input-file-dropzone-bg-color: var(--white-1000);
 
   &:hover,
   &:has(input[type="file"]:focus) {

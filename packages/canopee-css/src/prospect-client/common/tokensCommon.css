@@ -1,3 +1,5 @@
+/* stylelint-disable color-function-notation */
+
 :root {
   /* *************************************************************************/
 
@@ -11,4 +13,28 @@
   --font-family-publico-headline: "Publico Headline";
   --font-family-publico: "Publico";
   --font-size-base: 16;
+
+  /* *******************************************************************************/
+
+  /* COLORS                                                                        */
+
+  /* *******************************************************************************/
+
+  /* BRAND PRIMITIVES **************************************************************/
+
+  /* ✅ brand colors */
+  --black: hsl(0deg, 0%, 0%);
+  --black-1000: hsl(0deg, 0%, 7%);
+  --white-1000: hsl(0deg, 0%, 100%);
+  --white-1000-20: hsl(from var(--white-1000) h s l / 20%);
+  --white-gray-1000: hsl(0deg, 0%, 98%);
+
+  /* ⛔ legacy names brand colors - DO NOT USE IF POSSIBLE */
+  --color-white: var(--white-1000);
+  --color-black: var(--black-1000);
+  --dark: var(--black-1000);
+  --white: var(--white-1000);
+  --white-20: var(--white-1000-20);
+
+  /* BRAND PRIMITIVES **************************************************************/
 }

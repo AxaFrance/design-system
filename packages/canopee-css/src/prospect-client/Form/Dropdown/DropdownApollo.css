@@ -3,7 +3,7 @@
 .af-form__dropdown-input {
   --dropdown-border-radius: var(--radius-8);
   --dropdown-color: var(--axa-blue-100);
-  --dropdown-background-color: var(--white);
+  --dropdown-background-color: var(--white-1000);
   --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%2300008F' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
   --dropdown-box-shadow-color: var(--axa-blue-100);
 

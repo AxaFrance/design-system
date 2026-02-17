@@ -2,7 +2,7 @@
   --radio-border-width: 1px;
   --radio-ckecked-color: transparent;
   --radio-ckecked-width: calc(12 / var(--font-size-base) * 1rem);
-  --radio-background-color: var(--white);
+  --radio-background-color: var(--white-1000);
 
   display: flex;
   width: calc(24 / var(--font-size-base) * 1rem);

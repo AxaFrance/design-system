@@ -5,7 +5,7 @@
 
   &:hover {
     --click-icon-background-color: var(--axa-blue-120);
-    --click-icon-svg-fill: var(--white);
+    --click-icon-svg-fill: var(--white-1000);
 
     &.af-click-icon--ghost {
       --click-icon-svg-fill: var(--axa-blue-120);
@@ -14,7 +14,7 @@
 
   &:active {
     --click-icon-background-color: var(--axa-blue-80);
-    --click-icon-svg-fill: var(--white);
+    --click-icon-svg-fill: var(--white-1000);
 
     &.af-click-icon--ghost {
       --click-icon-svg-fill: var(--axa-blue-80);

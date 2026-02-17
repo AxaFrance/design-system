@@ -2,11 +2,11 @@
 
 .af-item-pagination {
   --item-pagination-color: var(--axa-blue-100);
-  --item-pagination-background-color: var(--white);
+  --item-pagination-background-color: var(--white-1000);
   --item-pagination-outline-color: var(--axa-blue-100);
 }
 
 .af-item-pagination--current {
   --item-pagination-background-color: var(--axa-blue-100);
-  --item-pagination-color: var(--white);
+  --item-pagination-color: var(--white-1000);
 }

@@ -3,13 +3,13 @@
 .af-input-file__dropzone {
   --input-file-dropzone-border-color: var(--axa-blue-100);
   --input-file-dropzone-color: var(--axa-blue-100);
-  --input-file-dropzone-bg-color: var(--white);
+  --input-file-dropzone-bg-color: var(--white-1000);
 
   &:hover,
   &:has(input[type="file"]:focus) {
     > span:is(.af-btn-client) {
       --button-bg-color: var(--axa-blue-120);
-      --button-text-color: var(--white);
+      --button-text-color: var(--white-1000);
     }
   }
 

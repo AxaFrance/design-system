@@ -2,7 +2,7 @@
 
 .af-footer {
   --footer-bg-color: var(--color-ocean-blue);
-  --footer-color: var(--color-white);
+  --footer-color: var(--white-1000);
 }
 
 .af-footer__linkItem:hover,

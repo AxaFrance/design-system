@@ -1,7 +1,7 @@
 @import "./ModalCommon.css";
 
 .af-modal {
-  --modal-bg-color: var(--white);
+  --modal-bg-color: var(--white-1000);
   --modal-text-color: var(--neutral-100);
   --modal-text-font-size: calc(16 / var(--font-size-base) * 1rem);
   --modal-overlay-color: var(--axa-blue-100-40);

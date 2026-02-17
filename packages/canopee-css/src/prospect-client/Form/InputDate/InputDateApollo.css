@@ -8,8 +8,8 @@
   --input-date-box-shadow-color: var(--axa-blue-65);
   --input-date-border-radius: var(--radius-8);
   --input-date-color: var(--neutral-80);
-  --input-date-bg-color: var(--white);
-  --input-date-indicator-bg-color: var(--white);
+  --input-date-bg-color: var(--white-1000);
+  --input-date-indicator-bg-color: var(--white-1000);
 
   &[value]:not([value=""], [aria-invalid="true"]),
   &:is(:focus-visible, :hover, :active, :focus-within) {

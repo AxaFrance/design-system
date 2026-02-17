@@ -14,31 +14,31 @@
 }
 
 .af-tag--info {
-  --tag-bg-color: var(--color-white);
+  --tag-bg-color: var(--white-1000);
   --tag-text-color: var(--color-blue-800);
   --tag-border-color: var(--color-blue-800);
 }
 
 .af-tag--success {
-  --tag-bg-color: var(--color-white);
+  --tag-bg-color: var(--white-1000);
   --tag-text-color: var(--color-green-600);
   --tag-border-color: var(--color-green-600);
 }
 
 .af-tag--error {
-  --tag-bg-color: var(--color-white);
+  --tag-bg-color: var(--white-1000);
   --tag-text-color: var(--color-red-600);
   --tag-border-color: var(--color-red-600);
 }
 
 .af-tag--neutral {
-  --tag-bg-color: var(--color-white);
+  --tag-bg-color: var(--white-1000);
   --tag-text-color: var(--color-gray-700);
   --tag-border-color: var(--color-gray-700);
 }
 
 .af-tag--warning {
-  --tag-bg-color: var(--color-white);
+  --tag-bg-color: var(--white-1000);
   --tag-text-color: var(--color-orange-700);
   --tag-border-color: var(--color-orange-700);
 }

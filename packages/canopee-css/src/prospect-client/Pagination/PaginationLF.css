@@ -2,5 +2,5 @@
 
 .af-pagination-list {
   --pagination-list-border-color: var(--color-gray-400);
-  --pagination-list-background-color: var(--color-white);
+  --pagination-list-background-color: var(--white-1000);
 }

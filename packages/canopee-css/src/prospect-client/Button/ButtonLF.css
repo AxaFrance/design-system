@@ -2,7 +2,7 @@
 
 .af-btn-client {
   --button-bg-color: var(--color-axa);
-  --button-text-color: var(--color-white);
+  --button-text-color: var(--white-1000);
   --button-radius: var(--radius-8);
   --button-shadow-color: var(--color-axa);
   --button-padding: calc(16 / var(--font-size-base) * 1rem);
@@ -50,17 +50,17 @@
 
 .af-btn-client--primary-inverse {
   --button-text-color: var(--color-axa);
-  --button-bg-color: var(--color-white);
+  --button-bg-color: var(--white-1000);
 
   &:hover,
   &:focus,
   &:focus-visible {
-    --button-bg-color: var(--color-white);
+    --button-bg-color: var(--white-1000);
     --button-text-color: var(--color-blue-1);
   }
 
   &:active {
-    --button-bg-color: var(--color-white);
+    --button-bg-color: var(--white-1000);
     --button-text-color: var(--color-blue-80);
   }
 }
@@ -89,7 +89,7 @@
 }
 
 .af-btn-client--secondary {
-  --button-bg-color: var(--color-white);
+  --button-bg-color: var(--white-1000);
   --button-text-color: var(--color-axa);
   --button-shadow-color: var(--color-axa);
 
@@ -99,7 +99,7 @@
   &:focus,
   &:focus-visible,
   &:active {
-    --button-bg-color: var(--color-white);
+    --button-bg-color: var(--white-1000);
     --button-text-color: var(--color-blue-1);
 
     box-shadow: 0 0 0 2px var(--color-blue-1) inset;
@@ -112,8 +112,8 @@
 
 .af-btn-client--secondary-inverse {
   --button-bg-color: transparent;
-  --button-text-color: var(--color-white);
-  --button-shadow-color: var(--color-white);
+  --button-text-color: var(--white-1000);
+  --button-shadow-color: var(--white-1000);
 
   box-shadow: 0 0 0 2px var(--button-shadow-color) inset;
 
