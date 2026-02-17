@@ -43,7 +43,7 @@
 }
 
 .af-link--inverse {
-  --link-text-color-inverse: var(--white);
+  --link-text-color-inverse: var(--white-1000);
   --link-line-height: 125%;
 
   &:hover,

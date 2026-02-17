@@ -3,7 +3,7 @@
 .af-form__input-atom-container {
   --input-border-color: var(--color-gray-700);
   --input-border-radius: var(--radius-4);
-  --input-bg-color: var(--color-white);
+  --input-bg-color: var(--white-1000);
   --input-text-color: var(--color-gray-900);
   --input-text-icon-color: var(--color-gray-900);
   --input-text-placeholder-color: var(--color-gray-700);

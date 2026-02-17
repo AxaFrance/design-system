@@ -3,7 +3,7 @@
 .af-form__textarea {
   --textarea-border-radius: var(--radius-8);
   --textarea-placeholder-color: var(--neutral-80);
-  --textarea-background-color: var(--white);
+  --textarea-background-color: var(--white-1000);
   --textarea-color: var(--axa-blue-100);
   --textarea-box-shadow-color: var(--axa-blue-65);
 

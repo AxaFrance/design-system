@@ -4,7 +4,7 @@
   --dropdown-border-radius: var(--radius-4);
   --dropdown-border-color: var(--color-gray-700);
   --dropdown-color: var(--color-gray-900);
-  --dropdown-background-color: var(--color-white);
+  --dropdown-background-color: var(--white-1000);
   --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%2300008F'/></svg>");
   --dropdown-box-shadow-color: var(--color-axa);
 

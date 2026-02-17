@@ -10,11 +10,6 @@
 
   /* PRIMITIVES **************************************************************/
 
-  --black: hsl(0deg, 0%, 0%);
-  --black-20: hsl(from var(--black) h s l / 20%);
-  --white: hsl(0deg, 0%, 100%);
-  --white-20: hsl(from var(--white) h s l / 20%);
-
   /* blue */
 
   --axa-blue-100: hsl(240deg, 100%, 28%);
@@ -43,7 +38,7 @@
 
   /* gray */
 
-  --dark: hsl(from var(--black) h s 7%);
+  /* --dark: hsl(from var(--black) h s 7%); */
   --neutral-100: hsl(from var(--black) h s 20%);
   --neutral-80: hsl(from var(--black) h s 36%);
   --neutral-50: hsl(from var(--black) h s 60%);
