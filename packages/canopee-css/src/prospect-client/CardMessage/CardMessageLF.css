@@ -12,9 +12,9 @@
 }
 
 .af-card-message--warning {
-  --card-message-background-color: var(--color-orange-100);
-  --card-message-text-color: var(--color-btn-business-dark);
-  --card-message-border-color: var(--color-btn-business-dark);
+  --card-message-background-color: var(--orange-100);
+  --card-message-text-color: var(--orange-1050);
+  --card-message-border-color: var(--orange-1050);
 }
 
 .af-card-message--error {

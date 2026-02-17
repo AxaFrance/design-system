@@ -37,17 +37,17 @@
 }
 
 .af-btn-client--primary-business {
-  --button-bg-color: var(--warning-100);
+  --button-bg-color: var(--orange-1000);
   --button-text-color: var(--white-1000);
 
   &:hover,
   &:focus,
   &:focus-visible {
-    --button-bg-color: var(--warning-120);
+    --button-bg-color: var(--orange-1050);
   }
 
   &:active {
-    --button-bg-color: var(--warning-80);
+    --button-bg-color: var(--orange-800);
   }
 }
 

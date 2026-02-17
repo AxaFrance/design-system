@@ -16,5 +16,5 @@
 }
 
 .af-item-message--warning {
-  --item-message-color: var(--warning-100);
+  --item-message-color: var(--orange-1000);
 }

@@ -38,6 +38,6 @@
 
 .af-tag--warning {
   --tag-bg-color: var(--red-040);
-  --tag-text-color: var(--warning-100);
-  --tag-border-color: var(--warning-100);
+  --tag-text-color: var(--orange-1000);
+  --tag-border-color: var(--orange-1000);
 }

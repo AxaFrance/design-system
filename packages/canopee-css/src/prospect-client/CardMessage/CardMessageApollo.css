@@ -14,7 +14,7 @@
 .af-card-message--warning {
   --card-message-background-color: var(--red-040);
   --card-message-border-color: var(--red-040);
-  --card-message-text-color: var(--warning-100);
+  --card-message-text-color: var(--orange-1000);
 }
 
 .af-card-message--error {

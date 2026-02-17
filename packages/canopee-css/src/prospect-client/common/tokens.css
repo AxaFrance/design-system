@@ -10,13 +10,6 @@
 
   /* PRIMITIVES **************************************************************/
 
-  /* orange */
-
-  --warning-100: hsl(19deg, 82%, 43%);
-  --warning-120: hsl(19deg, 82%, 35%);
-  --warning-4: hsl(20deg, 80%, 98%);
-  --warning-80: hsl(19deg, 63%, 55%);
-
   /* gray */
 
   /* --dark: hsl(from var(--black) h s 7%); */
