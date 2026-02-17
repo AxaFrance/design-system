@@ -1,8 +1,8 @@
 @import "./ClickItemCommon.css";
 
 .af-apollo-click-item {
-  --click-item-title-color: var(--axa-blue-100);
-  --click-item-title-border-color: var(--axa-blue-100);
+  --click-item-title-color: var(--blue-1000);
+  --click-item-title-border-color: var(--blue-1000);
   --click-item-subtitle-color: var(--neutral-80);
   --click-item-text-secondary-color: var(--neutral-80);
   --click-item-text-tertiary-color: var(--neutral-80);

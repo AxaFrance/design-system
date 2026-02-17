@@ -9,7 +9,7 @@
   --heading-title-line-height: 125%;
 
   h1 {
-    --heading-title-color: var(--color-blue-800);
+    --heading-title-color: var(--blue-1000);
     --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
     --heading-title-font-family: var(--font-family-publico);
     --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);

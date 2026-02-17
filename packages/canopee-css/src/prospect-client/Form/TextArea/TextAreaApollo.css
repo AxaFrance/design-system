@@ -4,11 +4,11 @@
   --textarea-border-radius: var(--radius-8);
   --textarea-placeholder-color: var(--neutral-80);
   --textarea-background-color: var(--white-1000);
-  --textarea-color: var(--axa-blue-100);
-  --textarea-box-shadow-color: var(--axa-blue-65);
+  --textarea-color: var(--blue-1000);
+  --textarea-box-shadow-color: var(--blue-650);
 
   &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
-    --textarea-box-shadow-color: var(--axa-blue-100);
+    --textarea-box-shadow-color: var(--blue-1000);
   }
 
   &:disabled {

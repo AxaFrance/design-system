@@ -13,11 +13,11 @@
 
   &[value]:not([value=""], [aria-invalid="true"]),
   &:is(:focus-visible, :hover, :active, :focus-within) {
-    --input-date-box-shadow-color: var(--color-axa);
+    --input-date-box-shadow-color: var(--blue-1000);
   }
 
   &[value]:not([aria-invalid="true"], [value=""]) {
-    --input-date-color: var(--color-axa);
+    --input-date-color: var(--blue-1000);
   }
 
   &[aria-invalid="true"] {

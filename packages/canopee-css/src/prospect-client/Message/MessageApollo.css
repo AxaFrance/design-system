@@ -1,8 +1,8 @@
 @import "./MessageCommon.css";
 
 .af-message {
-  --message-theme-color: var(--axa-blue-100);
-  --message-bg-color: var(--axa-blue-4);
+  --message-theme-color: var(--blue-1000);
+  --message-bg-color: var(--blue-040);
   --message-icon-color: var(--message-theme-color);
   --message-title-color: var(--message-theme-color);
   --message-content-color: var(--message-theme-color);

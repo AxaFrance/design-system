@@ -1,8 +1,8 @@
 @import "./ClickItemCommon.css";
 
 .af-apollo-click-item {
-  --click-item-title-color: var(--color-axa);
-  --click-item-title-border-color: var(--color-axa);
+  --click-item-title-color: var(--blue-1000);
+  --click-item-title-border-color: var(--blue-1000);
   --click-item-subtitle-color: var(--color-gray);
   --click-item-text-secondary-color: var(--color-gray);
   --click-item-text-tertiary-color: var(--color-gray);
@@ -46,7 +46,7 @@
   --click-item-title-font-weight: 400;
 
   &:hover {
-    --click-item-title-color: var(--color-axa);
+    --click-item-title-color: var(--blue-1000);
   }
 
   @media (--desktop-small) {

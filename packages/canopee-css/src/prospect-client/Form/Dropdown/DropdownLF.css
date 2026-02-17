@@ -6,7 +6,7 @@
   --dropdown-color: var(--color-gray-900);
   --dropdown-background-color: var(--white-1000);
   --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%2300008F'/></svg>");
-  --dropdown-box-shadow-color: var(--color-axa);
+  --dropdown-box-shadow-color: var(--blue-1000);
 
   &:open {
     --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,30 36,30 24,14' fill='%2300008F'/></svg>");
@@ -21,7 +21,7 @@
   }
 
   &:is(:focus-visible, :hover, :active) {
-    --dropdown-box-shadow-color: var(--color-axa);
+    --dropdown-box-shadow-color: var(--blue-1000);
   }
 
   &:disabled {

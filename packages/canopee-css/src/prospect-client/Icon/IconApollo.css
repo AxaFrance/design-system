@@ -11,11 +11,11 @@
 }
 
 .af-icon--primary {
-  --icon-fill: var(--axa-blue-100);
+  --icon-fill: var(--blue-1000);
 
   &.af-icon--has-background {
     --icon-fill: var(--white-1000);
-    --icon-background-color: var(--axa-blue-100);
+    --icon-background-color: var(--blue-1000);
   }
 }
 
@@ -23,9 +23,9 @@
   --icon-fill: var(--white-1000);
 
   &.af-icon--has-background {
-    --icon-fill: var(--axa-blue-100);
-    --icon-background-color: var(--axa-blue-4);
-    --icon-outline-color: var(--axa-blue-4);
+    --icon-fill: var(--blue-1000);
+    --icon-background-color: var(--blue-040);
+    --icon-outline-color: var(--blue-040);
   }
 }
 

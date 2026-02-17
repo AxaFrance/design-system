@@ -11,7 +11,7 @@
   &:hover,
   &:focus-visible,
   &:focus-within {
-    --checkbox-option-border-color: var(--color-axa);
+    --checkbox-option-border-color: var(--blue-1000);
   }
 
   &:not(.af-card-checkbox-option--horizontal) .af-checkbox {
@@ -30,8 +30,8 @@
   }
 
   &:has(input:checked) {
-    --checkbox-option-background-color: var(--color-blue-2);
-    --checkbox-option-border-color: var(--color-axa);
+    --checkbox-option-background-color: var(--blue-040);
+    --checkbox-option-border-color: var(--blue-1000);
   }
 
   &:has(input[aria-invalid="true"]):not(:has(input:checked)) {

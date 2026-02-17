@@ -15,8 +15,8 @@
 
 .af-tag--info {
   --tag-bg-color: var(--white-1000);
-  --tag-text-color: var(--color-blue-800);
-  --tag-border-color: var(--color-blue-800);
+  --tag-text-color: var(--blue-1000);
+  --tag-border-color: var(--blue-1000);
 }
 
 .af-tag--success {

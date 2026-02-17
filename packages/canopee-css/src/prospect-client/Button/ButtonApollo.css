@@ -1,10 +1,10 @@
 @import "./ButtonCommon.css";
 
 .af-btn-client {
-  --button-bg-color: var(--axa-blue-100);
+  --button-bg-color: var(--blue-1000);
   --button-text-color: var(--white-1000);
   --button-radius: var(--radius-32);
-  --button-shadow-color: var(--axa-blue-100);
+  --button-shadow-color: var(--blue-1000);
   --button-padding: calc(12 / var(--font-size-base) * 1rem)
     calc(24 / var(--font-size-base) * 1rem);
   --button-line-height: calc(24 / var(--font-size-base) * 1rem);
@@ -16,16 +16,16 @@
   }
 
   &:hover {
-    --button-bg-color: var(--axa-blue-120);
+    --button-bg-color: var(--blue-1200);
   }
 
   &:active {
-    --button-bg-color: var(--axa-blue-80);
+    --button-bg-color: var(--blue-900);
   }
 
   &:focus-visible,
   &:focus {
-    --button-outline-color: var(--axa-blue-65);
+    --button-outline-color: var(--blue-650);
   }
 
   &:disabled,
@@ -53,35 +53,35 @@
 
 .af-btn-client--primary-inverse {
   --button-bg-color: var(--white-1000);
-  --button-text-color: var(--axa-blue-100);
+  --button-text-color: var(--blue-1000);
 
   &:hover,
   &:focus,
   &:focus-visible {
     --button-bg-color: var(--neutral-14);
-    --button-text-color: var(--axa-blue-120);
+    --button-text-color: var(--blue-1200);
   }
 
   &:active {
     --button-bg-color: var(--neutral-5);
-    --button-text-color: var(--axa-blue-80);
+    --button-text-color: var(--blue-900);
   }
 }
 
 .af-btn-client--ghost {
   --button-bg-color: transparent;
-  --button-text-color: var(--axa-blue-100);
+  --button-text-color: var(--blue-1000);
   --button-padding: 0;
 
   &:hover,
   &:focus,
   &:focus-visible {
-    --button-text-color: var(--axa-blue-120);
+    --button-text-color: var(--blue-1200);
     --button-bg-color: transparent;
   }
 
   &:active {
-    --button-text-color: var(--axa-blue-80);
+    --button-text-color: var(--blue-900);
   }
 
   &:disabled,
@@ -92,20 +92,20 @@
 
 .af-btn-client--secondary {
   --button-bg-color: var(--white-1000);
-  --button-text-color: var(--axa-blue-100);
+  --button-text-color: var(--blue-1000);
 
   &:hover,
   &:focus,
   &:focus-visible {
-    --button-bg-color: var(--axa-blue-120);
+    --button-bg-color: var(--blue-1200);
     --button-text-color: var(--white-1000);
-    --button-shadow-color: var(--axa-blue-120);
+    --button-shadow-color: var(--blue-1200);
   }
 
   &:active {
-    --button-bg-color: var(--axa-blue-80);
+    --button-bg-color: var(--blue-900);
     --button-text-color: var(--white-1000);
-    --button-shadow-color: var(--axa-blue-80);
+    --button-shadow-color: var(--blue-900);
   }
 }
 
@@ -118,30 +118,30 @@
   &:focus,
   &:focus-visible {
     --button-bg-color: var(--neutral-14);
-    --button-text-color: var(--axa-blue-120);
+    --button-text-color: var(--blue-1200);
     --button-shadow-color: var(--neutral-14);
   }
 
   &:active {
     --button-bg-color: var(--neutral-5);
-    --button-text-color: var(--axa-blue-80);
+    --button-text-color: var(--blue-900);
     --button-shadow-color: var(--neutral-5);
   }
 }
 
 .af-btn-client--tertiary {
-  --button-bg-color: var(--axa-blue-8);
-  --button-text-color: var(--axa-blue-100);
+  --button-bg-color: var(--blue-80);
+  --button-text-color: var(--blue-1000);
 
   &:hover,
   &:focus,
   &:focus-visible {
-    --button-bg-color: var(--axa-blue-120);
+    --button-bg-color: var(--blue-1200);
     --button-text-color: var(--white-1000);
   }
 
   &:active {
-    --button-bg-color: var(--axa-blue-80);
+    --button-bg-color: var(--blue-900);
     --button-text-color: var(--white-1000);
   }
 }

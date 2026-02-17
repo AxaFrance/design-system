@@ -13,9 +13,9 @@
 }
 
 .af-tag--info {
-  --tag-bg-color: var(--axa-blue-4);
-  --tag-text-color: var(--axa-blue-100);
-  --tag-border-color: var(--axa-blue-100);
+  --tag-bg-color: var(--blue-040);
+  --tag-text-color: var(--blue-1000);
+  --tag-border-color: var(--blue-1000);
 }
 
 .af-tag--success {

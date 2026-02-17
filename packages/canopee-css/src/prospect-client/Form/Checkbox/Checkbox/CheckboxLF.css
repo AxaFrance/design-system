@@ -9,12 +9,12 @@
   &:hover,
   &:focus-within,
   &:checked {
-    --checkbox-border-color: var(--color-axa);
+    --checkbox-border-color: var(--blue-1000);
     --checkbox-border-width: 3px;
   }
 
   &:checked {
-    --checkbox-background-color: var(--color-axa);
+    --checkbox-background-color: var(--blue-1000);
   }
 
   &[aria-invalid="true"]:not(:checked) {

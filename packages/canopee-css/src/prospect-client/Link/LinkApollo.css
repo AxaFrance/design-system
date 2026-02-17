@@ -2,7 +2,7 @@
 
 .af-link {
   --link-font-weight: 600;
-  --link-text-color-default: var(--axa-blue-100);
+  --link-text-color-default: var(--blue-1000);
   --underline-offset: 25%;
   --link-font-size: 14;
   @media (--desktop-small) {
@@ -17,12 +17,12 @@
   }
 
   &:hover {
-    --link-text-color: var(--axa-blue-120);
+    --link-text-color: var(--blue-1200);
   }
 
   &:active,
   &:focus {
-    --link-color-outline: var(--axa-blue-80);
+    --link-color-outline: var(--blue-900);
   }
 }
 
@@ -33,12 +33,12 @@
   }
 
   &:hover {
-    --link-text-color: var(--axa-blue-120);
+    --link-text-color: var(--blue-1200);
   }
 
   &:active,
   &:focus {
-    --link-color-outline: var(--axa-blue-80);
+    --link-color-outline: var(--blue-900);
   }
 }
 

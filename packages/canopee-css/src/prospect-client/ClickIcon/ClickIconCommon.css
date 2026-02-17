@@ -29,7 +29,7 @@
   }
 
   &:active .af-click-icon--ghost {
-    --click-icon-svg-fill: var(--axa-blue-80);
+    --click-icon-svg-fill: var(--blue-900);
   }
 }
 

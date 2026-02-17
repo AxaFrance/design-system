@@ -11,7 +11,7 @@
   &:hover,
   &:focus-visible,
   &:focus-within {
-    --radio-option-border-color: var(--color-axa);
+    --radio-option-border-color: var(--blue-1000);
   }
 
   &:not(.af-card-radio-option--horizontal) .af-radio {
@@ -30,8 +30,8 @@
   }
 
   &:has(input:checked) {
-    --radio-option-background-color: var(--color-blue-2);
-    --radio-option-border-color: var(--color-axa);
+    --radio-option-background-color: var(--blue-040);
+    --radio-option-border-color: var(--blue-1000);
   }
 }
 

@@ -14,14 +14,14 @@
   --title-font-size: calc(28 / var(--font-size-base) * 1rem);
   --title-font-weight: 300;
   --title-line-height: calc(36 / var(--font-size-base) * 1rem);
-  --title-color: var(--axa-blue-100);
+  --title-color: var(--blue-1000);
 }
 
 .af-stepper__subtitle {
   --subtitle-font-family: var(--font-family-sans-serif);
   --subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
   --subtitle-line-height: calc(18 / var(--font-size-base) * 1rem);
-  --subtitle-color: var(--axa-blue-100);
+  --subtitle-color: var(--blue-1000);
 }
 
 .af-stepper__helper {

@@ -1,11 +1,11 @@
 @import "./FooterCommon.css";
 
 .af-footer {
-  --footer-bg-color: var(--color-ocean-blue);
+  --footer-bg-color: var(--blue-550);
   --footer-color: var(--white-1000);
 }
 
 .af-footer__linkItem:hover,
 .af-footer__menuIconLinks:hover {
-  --footer-color: var(--color-blue-1);
+  --footer-color: var(--blue-1200);
 }

@@ -10,18 +10,6 @@
 
   /* PRIMITIVES **************************************************************/
 
-  /* blue */
-
-  --axa-blue-100: hsl(240deg, 100%, 28%);
-  --axa-blue-100-20: hsl(from var(--axa-blue-100) h s l / 20%);
-  --axa-blue-100-40: hsl(from var(--axa-blue-100) h s l / 40%);
-  --axa-blue-20: hsl(240deg, 40%, 86%);
-  --axa-blue-4: hsl(240deg, 43%, 97%);
-  --axa-blue-65: hsl(240deg, 33%, 53%);
-  --axa-blue-8: hsl(240deg, 38%, 94%);
-  --axa-blue-80: hsl(240deg, 53%, 42%);
-  --axa-blue-120: hsl(240deg, 100%, 22%);
-
   /* red */
   --axa-red-100: hsl(357deg, 100%, 55%);
   --axa-red-4: hsl(0deg, 100%, 98%);

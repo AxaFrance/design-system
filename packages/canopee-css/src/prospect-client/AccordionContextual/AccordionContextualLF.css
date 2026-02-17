@@ -12,7 +12,7 @@
 }
 
 .af-apollo-accordion-contextual--info {
-  --accordion-contextual-title-text-color: var(--color-axa);
+  --accordion-contextual-title-text-color: var(--blue-1000);
 }
 
 .af-apollo-accordion-contextual--warning {

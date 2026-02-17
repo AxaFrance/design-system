@@ -1,21 +1,21 @@
 @import "./ClickIconCommon.css";
 
 .af-click-icon {
-  --click-icon-background-color: var(--color-btn-tertiary-bg);
+  --click-icon-background-color: var(--blue-80);
 
   &:hover {
-    --click-icon-background-color: var(--color-btn-tertiary-bg-darker);
+    --click-icon-background-color: var(--blue-100);
 
     &.af-click-icon--ghost {
-      --click-icon-svg-fill: var(--color-axa);
+      --click-icon-svg-fill: var(--blue-1000);
     }
   }
 
   &:active {
-    --click-icon-background-color: var(--color-btn-tertiary-bg-lighter);
+    --click-icon-background-color: var(--blue-040);
 
     &.af-click-icon--ghost {
-      --click-icon-svg-fill: var(--color-blue-80);
+      --click-icon-svg-fill: var(--blue-800);
     }
   }
 
@@ -29,7 +29,7 @@
   }
 
   &:focus-visible {
-    --click-icon-outline-color: var(--color-blue-3);
+    --click-icon-outline-color: var(--blue-650);
 
     outline: 2px solid var(--click-icon-outline-color);
     outline-offset: 2px;

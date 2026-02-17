@@ -9,7 +9,7 @@
     16 / var(--font-size-base) * 1rem
   );
   --timeline-vertical-bg-color: var(--white-1000);
-  --timeline-vertical-border-color: var(--color-blue-400);
+  --timeline-vertical-border-color: var(--blue-200);
 
   @media (--desktop-small) {
     --timeline-vertical-padding: calc(24 / var(--font-size-base) * 1rem);

@@ -7,7 +7,7 @@
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
 
   h1 {
-    --heading-title-color: var(--axa-blue-100);
+    --heading-title-color: var(--blue-1000);
     --heading-title-font-size: calc(32 / var(--font-size-base) * 1rem);
     --heading-title-line-height: calc(40 / var(--font-size-base) * 1rem);
     --heading-title-font-weight: 700;
@@ -15,7 +15,7 @@
   }
 
   h2 {
-    --heading-title-color: var(--axa-blue-100);
+    --heading-title-color: var(--blue-1000);
     --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
     --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
     --heading-title-font-weight: 300;
@@ -23,7 +23,7 @@
   }
 
   h3 {
-    --heading-title-color: var(--axa-blue-100);
+    --heading-title-color: var(--blue-1000);
     --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
     --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
     --heading-title-font-weight: 600;

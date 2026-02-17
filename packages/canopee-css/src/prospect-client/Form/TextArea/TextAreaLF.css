@@ -8,7 +8,7 @@
   --textarea-box-shadow-color: var(--color-gray-700);
 
   &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
-    --textarea-box-shadow-color: var(--color-axa);
+    --textarea-box-shadow-color: var(--blue-1000);
   }
 
   &:disabled {

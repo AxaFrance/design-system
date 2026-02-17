@@ -4,7 +4,7 @@
   --modal-bg-color: var(--white-1000);
   --modal-text-color: var(--neutral-100);
   --modal-text-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --modal-overlay-color: var(--axa-blue-100-40);
+  --modal-overlay-color: var(--blue-1000-40);
   --modal-border-radius: var(--radius-16);
   --modal-default-padding: calc(24 / var(--font-size-base) * 1rem);
   --modal-header-gap: calc(16 / var(--font-size-base) * 1rem);
@@ -18,7 +18,7 @@
   --modal-footer-gap: calc(16 / var(--font-size-base) * 1rem);
 
   :has(.af-modal__body-vertical-scroll) {
-    --modal-footer-border-top: 1px solid var(--axa-blue-20);
+    --modal-footer-border-top: 1px solid var(--blue-200);
     --modal-footer-vertical-padding: calc(12 / var(--font-size-base) * 1rem);
     --modal-footer-horizontal-padding: calc(16 / var(--font-size-base) * 1rem);
   }
