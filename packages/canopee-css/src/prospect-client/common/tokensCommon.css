@@ -1,0 +1,14 @@
+:root {
+  /* *************************************************************************/
+
+  /* FONTS                                                                   */
+
+  /* *************************************************************************/
+  --font-family-sans-serif: "Source Sans Pro", arial, sans-serif;
+  --font-family-serif: georgia, times, "Times New Roman", serif;
+  --font-family-base: var(--font-family-sans-serif);
+  --font-family-publico-bold: "Publico Headline Bold";
+  --font-family-publico-headline: "Publico Headline";
+  --font-family-publico: "Publico";
+  --font-size-base: 16;
+}
