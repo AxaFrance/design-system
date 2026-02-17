@@ -1,14 +1,14 @@
 @import "./ItemTabBarCommon.css";
 
 .af-item-tab-bar {
-  --item-tab-bar-font-color: var(--axa-blue-100);
+  --item-tab-bar-font-color: var(--blue-1000);
   --item-tab-bar-padding: calc(10 / var(--font-size-base) * 1rem)
     calc(8 / var(--font-size-base) * 1rem);
-  --item-tab-bar-box-shadow-color: var(--axa-blue-20);
-  --item-tab-bar-outline-color: var(--axa-blue-100);
+  --item-tab-bar-box-shadow-color: var(--blue-200);
+  --item-tab-bar-outline-color: var(--blue-1000);
 
   &[aria-selected="true"] {
-    --item-tab-bar-box-shadow-color: var(--axa-blue-100);
+    --item-tab-bar-box-shadow-color: var(--blue-1000);
   }
 
   @media (--desktop-small) {

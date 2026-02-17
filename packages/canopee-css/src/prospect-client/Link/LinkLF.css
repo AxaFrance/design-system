@@ -2,7 +2,7 @@
 
 .af-link {
   --link-font-weight: 400;
-  --link-text-color-default: var(--color-axa);
+  --link-text-color-default: var(--blue-1000);
   --underline-offset: 10%;
   --link-font-size: 14;
 
@@ -15,12 +15,12 @@
   --link-line-height: 125%;
 
   &:hover {
-    --link-text-color: var(--color-blue-1);
+    --link-text-color: var(--blue-1200);
   }
 
   &:active,
   &:focus {
-    --link-color-outline: var(--color-btn-light);
+    --link-color-outline: var(--blue-800);
   }
 }
 
@@ -28,12 +28,12 @@
   --link-line-height: 125%;
 
   &:hover {
-    --link-text-color: var(--color-blue-1);
+    --link-text-color: var(--blue-1200);
   }
 
   &:active,
   &:focus {
-    --link-color-outline: var(--color-btn-light);
+    --link-color-outline: var(--blue-800);
   }
 }
 

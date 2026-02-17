@@ -22,14 +22,14 @@
 
   /* BRAND PRIMITIVES **************************************************************/
 
-  /* ✅ brand colors */
+  /* ✅ valid names colors */
   --black: hsl(0deg, 0%, 0%);
   --black-1000: hsl(0deg, 0%, 7%);
   --white-1000: hsl(0deg, 0%, 100%);
   --white-1000-20: hsl(from var(--white-1000) h s l / 20%);
   --white-gray-1000: hsl(0deg, 0%, 98%);
 
-  /* ⛔ legacy names brand colors - DO NOT USE IF POSSIBLE */
+  /* ⛔ legacy names colors - DO NOT USE */
   --color-white: var(--white-1000);
   --color-black: var(--black-1000);
   --dark: var(--black-1000);
@@ -37,4 +37,46 @@
   --white-20: var(--white-1000-20);
 
   /* BRAND PRIMITIVES **************************************************************/
+
+  /* BLUE PRIMITIVES **************************************************************/
+
+  /* ✅ valid names colors */
+  --blue-1200: hsl(240deg, 100%, 22%);
+  --blue-1000: hsl(240deg, 100%, 28%);
+  --blue-1000-20: hsl(from var(--blue-1000) h s l / 20%);
+  --blue-1000-40: hsl(from var(--blue-1000) h s l / 40%);
+  --blue-900: hsl(240deg, 71%, 35%);
+  --blue-800: hsl(240deg, 53%, 42%);
+  --blue-650: hsl(240deg, 39%, 53%);
+  --blue-550: hsl(240deg, 39%, 60%);
+  --blue-200: hsl(240deg, 40%, 86%);
+  --blue-100: hsl(240deg, 41%, 93%);
+  --blue-080: hsl(240deg, 38%, 94%);
+  --blue-040: hsl(240deg, 43%, 97%);
+
+  /* ⛔ legacy names colors - DO NOT USE */
+  --axa-blue-120: var(--blue-1200);
+  --color-blue-1: var(--blue-1200);
+  --axa-blue-100: var(--blue-1000);
+  --color-axa: var(--blue-1000);
+  --color-blue-800: var(--blue-1000);
+  --axa-blue-100-20: var(--blue-1000-20); /* pas utilisé */
+  --axa-blue-100-40: var(--blue-1000-40); /* pas utilisé */
+  --axa-blue-80: var(--blue-900);
+  --color-btn-light: var(--blue-800);
+  --color-blue-80: var(--blue-800);
+  --axa-blue-65: var(--blue-650);
+  --color-blue-3: var(--blue-650);
+  --color-ocean-blue: var(--blue-550);
+  --axa-blue-20: var(--blue-200);
+  --color-blue-400: var(--blue-200);
+  --color-btn-tertiary-bg-darker: var(--blue-100);
+  --color-blue-200: var(--blue-80);
+  --color-btn-tertiary-bg: var(--blue-80);
+  --axa-blue-8: var(--blue-080);
+  --axa-blue-4: var(--blue-040);
+  --color-blue-2: var(--blue-040);
+  --color-btn-tertiary-bg-lighter: var(--blue-040);
+
+  /* BLUE PRIMITIVES **************************************************************/
 }

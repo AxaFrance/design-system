@@ -9,7 +9,7 @@
     14 / var(--font-size-base) * 1rem
   );
   --timeline-vertical-bg-color: var(--white-1000);
-  --timeline-vertical-border-color: var(--axa-blue-20);
+  --timeline-vertical-border-color: var(--blue-200);
 
   @media (--desktop-small) {
     --timeline-vertical-title-font-size: calc(

@@ -18,8 +18,8 @@
   }
 
   &:not(:disabled):is(:hover, :focus-within, :active) {
-    --select-border-color: var(--color-axa);
-    --select-box-shadow: var(--color-axa);
+    --select-border-color: var(--blue-1000);
+    --select-box-shadow: var(--blue-1000);
   }
 }
 

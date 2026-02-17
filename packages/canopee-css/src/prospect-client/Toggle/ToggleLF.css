@@ -1,9 +1,9 @@
 @import "./ToggleCommon.css";
 
 .af-toggle {
-  --toggle-bg-color: var(--color-blue-200);
+  --toggle-bg-color: var(--blue-80);
   --toggle-border-color: var(--color-gray-700);
-  --toggle-focus-outline-color: var(--color-blue-800);
+  --toggle-focus-outline-color: var(--blue-1000);
   --toggle-border-radius: var(--radius-32);
   --toggle-border-size: 2px;
   --toggle-padding: 4px;
@@ -22,8 +22,8 @@
   --toggle-handle-enlarge-scale: 1.5;
 
   &:has(:checked) {
-    --toggle-bg-color: var(--color-blue-800);
-    --toggle-border-color: var(--color-blue-800);
+    --toggle-bg-color: var(--blue-1000);
+    --toggle-border-color: var(--blue-1000);
 
     .af-toggle__handle {
       --toggle-handle-scale: var(--toggle-handle-enlarge-scale);

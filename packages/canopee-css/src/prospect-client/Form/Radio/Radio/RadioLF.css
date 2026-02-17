@@ -7,11 +7,11 @@
   &:hover,
   &:focus-within,
   &:checked {
-    --radio-border-color: var(--color-axa);
+    --radio-border-color: var(--blue-1000);
   }
 
   &:checked {
-    --radio-ckecked-color: var(--color-axa);
+    --radio-ckecked-color: var(--blue-1000);
   }
 }
 

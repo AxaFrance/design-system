@@ -2,7 +2,7 @@
 
 .af-content-item-mono {
   .af-content-item-mono__stick {
-    --stick-background-color: var(--color-axa);
+    --stick-background-color: var(--blue-1000);
   }
 
   .af-content-item-mono__text-content {

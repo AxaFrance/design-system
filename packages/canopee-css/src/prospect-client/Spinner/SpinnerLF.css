@@ -1,8 +1,8 @@
 @import "./SpinnerCommon.css";
 
 .af-spinner {
-  --spinner-border-color: color-mix(in srgb, var(--color-axa), transparent 80%);
-  --spinner-border-top-color: var(--color-axa);
+  --spinner-border-color: color-mix(in srgb, var(--blue-1000), transparent 80%);
+  --spinner-border-top-color: var(--blue-1000);
 }
 
 .af-spinner--24 {

@@ -1,17 +1,17 @@
 @import "./RadioCommon.css";
 
 .af-radio {
-  --radio-border-color: var(--axa-blue-65);
+  --radio-border-color: var(--blue-650);
   --radio-background-color: var(--white-1000);
 
   &:hover,
   &:focus-within,
   &:checked {
-    --radio-border-color: var(--axa-blue-100);
+    --radio-border-color: var(--blue-1000);
   }
 
   &:checked {
-    --radio-ckecked-color: var(--axa-blue-100);
+    --radio-ckecked-color: var(--blue-1000);
   }
 }
 

@@ -1,6 +1,6 @@
 @import "./FooterCommon.css";
 
 .af-footer {
-  --footer-bg-color: var(--axa-blue-100);
+  --footer-bg-color: var(--blue-1000);
   --footer-color: var(--white-1000);
 }

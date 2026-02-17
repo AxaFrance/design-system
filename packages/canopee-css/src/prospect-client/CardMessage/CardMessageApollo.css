@@ -6,9 +6,9 @@
 }
 
 .af-card-message--info {
-  --card-message-background-color: var(--axa-blue-4);
-  --card-message-border-color: var(--axa-blue-4);
-  --card-message-text-color: var(--axa-blue-100);
+  --card-message-background-color: var(--blue-040);
+  --card-message-border-color: var(--blue-040);
+  --card-message-text-color: var(--blue-1000);
 }
 
 .af-card-message--warning {

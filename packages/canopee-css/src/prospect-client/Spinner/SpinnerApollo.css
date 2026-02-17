@@ -1,8 +1,8 @@
 @import "./SpinnerCommon.css";
 
 .af-spinner {
-  --spinner-border-color: var(--axa-blue-100-20);
-  --spinner-border-top-color: var(--axa-blue-100);
+  --spinner-border-color: var(--blue-1000-20);
+  --spinner-border-top-color: var(--blue-1000);
 
   width: calc(calc(var(--spinner-size) * 1px) - 8px);
   height: calc(calc(var(--spinner-size) * 1px) - 8px);

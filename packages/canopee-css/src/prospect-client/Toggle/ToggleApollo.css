@@ -3,7 +3,7 @@
 .af-toggle {
   --toggle-bg-color: var(--neutral-50);
   --toggle-border-color: unset;
-  --toggle-focus-outline-color: var(--axa-blue-100);
+  --toggle-focus-outline-color: var(--blue-1000);
   --toggle-border-size: 0;
   --toggle-border-radius: var(--radius-100);
   --toggle-padding: 2px;
@@ -15,7 +15,7 @@
   --toggle-handle-position: 0;
 
   &:has(:checked) {
-    --toggle-bg-color: var(--axa-blue-100);
+    --toggle-bg-color: var(--blue-1000);
 
     .af-toggle__handle {
       --toggle-handle-position: calc(

@@ -1,7 +1,7 @@
 @import "./MessageCommon.css";
 
 .af-message {
-  --message-theme-color: var(--color-axa);
+  --message-theme-color: var(--blue-1000);
   --message-bg-color: var(--white-1000);
   --message-border-color: var(--message-theme-color);
   --message-border-radius: var(--radius-12);

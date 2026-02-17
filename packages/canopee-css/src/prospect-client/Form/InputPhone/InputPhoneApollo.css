@@ -6,7 +6,7 @@
 
 .country-code-select__control {
   --select-color: var(--neutral-80);
-  --select-border-color: var(--axa-blue-65);
+  --select-border-color: var(--blue-650);
   --select-border-radius: var(--radius-8);
   --select-control-background-url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%2300008F' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
   --select-control-background: var(--select-control-background-url) no-repeat
@@ -18,8 +18,8 @@
   }
 
   &:not(:disabled):is(:hover, :focus-within, :active) {
-    --select-border-color: var(--axa-blue-100);
-    --select-box-shadow: var(--axa-blue-100);
+    --select-border-color: var(--blue-1000);
+    --select-box-shadow: var(--blue-1000);
   }
 }
 

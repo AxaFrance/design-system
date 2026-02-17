@@ -11,11 +11,11 @@
 }
 
 .af-icon--primary {
-  --icon-fill: var(--color-axa);
+  --icon-fill: var(--blue-1000);
 
   &.af-icon--has-background {
     --icon-fill: var(--white-1000);
-    --icon-background-color: var(--color-axa);
+    --icon-background-color: var(--blue-1000);
   }
 }
 
@@ -23,7 +23,7 @@
   --icon-fill: var(--white-1000);
 
   &.af-icon--has-background {
-    --icon-fill: var(--color-axa);
+    --icon-fill: var(--blue-1000);
     --icon-background-color: var(--white-1000);
     --icon-outline-color: var(--color-gray-300);
   }

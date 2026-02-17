@@ -1,15 +1,15 @@
 @import "./InputTextAtomCommon.css";
 
 .af-form__input-atom-container {
-  --input-border-color: var(--axa-blue-65);
+  --input-border-color: var(--blue-650);
   --input-border-radius: var(--radius-8);
   --input-bg-color: var(--white-1000);
   --input-text-color: var(--neutral-80);
-  --input-text-icon-color: var(--axa-blue-100);
-  --input-text-outline-color: var(--axa-blue-65);
+  --input-text-icon-color: var(--blue-1000);
+  --input-text-outline-color: var(--blue-650);
 
   &:has(> input:is(:hover, :focus, :active)) {
-    --input-border-color: var(--axa-blue-100);
+    --input-border-color: var(--blue-1000);
     --input-text-placeholder-color: var(--neutral-80);
   }
 
@@ -30,7 +30,7 @@
   }
 
   &:has(> input[value]:not([value=""], [class*="--error"], :disabled)) {
-    --input-border-color: var(--axa-blue-100);
-    --input-text-color: var(--axa-blue-100);
+    --input-border-color: var(--blue-1000);
+    --input-text-color: var(--blue-1000);
   }
 }

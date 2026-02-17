@@ -5,7 +5,7 @@
 }
 
 .af-form__input-date {
-  --input-date-box-shadow-color: var(--axa-blue-65);
+  --input-date-box-shadow-color: var(--blue-650);
   --input-date-border-radius: var(--radius-8);
   --input-date-color: var(--neutral-80);
   --input-date-bg-color: var(--white-1000);
@@ -13,12 +13,12 @@
 
   &[value]:not([value=""], [aria-invalid="true"]),
   &:is(:focus-visible, :hover, :active, :focus-within) {
-    --input-date-box-shadow-color: var(--axa-blue-100);
+    --input-date-box-shadow-color: var(--blue-1000);
   }
 
   &[value]:not([aria-invalid="true"], [value=""]) {
-    --input-date-color: var(--axa-blue-100);
-    --input-date-box-shadow-color: var(--axa-blue-100);
+    --input-date-color: var(--blue-1000);
+    --input-date-box-shadow-color: var(--blue-1000);
   }
 
   &[aria-invalid="true"] {

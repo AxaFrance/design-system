@@ -2,9 +2,9 @@
 
 .af-level-selector {
   --level-font-family: var(--font-family-sans-serif);
-  --level-selector-color: var(--axa-blue-100);
-  --level-selector-title-color: var(--axa-blue-100);
-  --level-selector-outline-color: var(--axa-blue-20);
+  --level-selector-color: var(--blue-1000);
+  --level-selector-title-color: var(--blue-1000);
+  --level-selector-outline-color: var(--blue-200);
   --level-selector-description-font-size: calc(
     14 / var(--font-size-base) * 1rem
   );
