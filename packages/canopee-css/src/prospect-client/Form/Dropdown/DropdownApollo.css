@@ -36,9 +36,9 @@
 }
 
 .af-form__dropdown-input--error {
-  --dropdown-box-shadow-color: var(--axa-red-100);
+  --dropdown-box-shadow-color: var(--red-alert-1000);
 
   &:is(:focus-visible, :hover, :active) {
-    --dropdown-box-shadow-color: var(--axa-red-100);
+    --dropdown-box-shadow-color: var(--red-alert-1000);
   }
 }

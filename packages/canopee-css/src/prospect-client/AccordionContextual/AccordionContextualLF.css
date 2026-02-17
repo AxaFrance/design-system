@@ -16,5 +16,5 @@
 }
 
 .af-apollo-accordion-contextual--warning {
-  --accordion-contextual-title-text-color: var(--color-red-700);
+  --accordion-contextual-title-text-color: var(--red-alert-1200);
 }

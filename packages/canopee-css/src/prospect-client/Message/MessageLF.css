@@ -19,7 +19,7 @@
 }
 
 .af-message--error {
-  --message-theme-color: var(--color-red-700);
+  --message-theme-color: var(--red-alert-1200);
 }
 
 .af-message--neutral {

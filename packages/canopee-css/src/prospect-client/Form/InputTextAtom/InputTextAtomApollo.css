@@ -14,7 +14,7 @@
   }
 
   &:has(> input[class*="--error"]) {
-    --input-border-color: var(--red-alert-100);
+    --input-border-color: var(--red-alert-1000);
   }
 
   &:has(> input:disabled),

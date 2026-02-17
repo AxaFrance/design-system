@@ -27,8 +27,8 @@
 
 .af-tag--error {
   --tag-bg-color: var(--white-1000);
-  --tag-text-color: var(--color-red-600);
-  --tag-border-color: var(--color-red-600);
+  --tag-text-color: var(--red-alert-1200);
+  --tag-border-color: var(--red-alert-1200);
 }
 
 .af-tag--neutral {

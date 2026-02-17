@@ -12,15 +12,15 @@
 }
 
 .af-card-message--warning {
-  --card-message-background-color: var(--axa-red-4);
-  --card-message-border-color: var(--axa-red-4);
+  --card-message-background-color: var(--red-040);
+  --card-message-border-color: var(--red-040);
   --card-message-text-color: var(--warning-100);
 }
 
 .af-card-message--error {
-  --card-message-background-color: var(--axa-red-4);
-  --card-message-border-color: var(--axa-red-4);
-  --card-message-text-color: var(--red-alert-100);
+  --card-message-background-color: var(--red-040);
+  --card-message-border-color: var(--red-040);
+  --card-message-text-color: var(--red-alert-1000);
 }
 
 .af-card-message--neutral {

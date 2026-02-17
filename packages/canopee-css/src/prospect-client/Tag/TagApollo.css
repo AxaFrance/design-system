@@ -25,9 +25,9 @@
 }
 
 .af-tag--error {
-  --tag-bg-color: var(--axa-red-4);
-  --tag-text-color: var(--axa-red-100);
-  --tag-border-color: var(--axa-red-100);
+  --tag-bg-color: var(--red-040);
+  --tag-text-color: var(--red-alert-1000);
+  --tag-border-color: var(--red-alert-1000);
 }
 
 .af-tag--neutral {
@@ -37,7 +37,7 @@
 }
 
 .af-tag--warning {
-  --tag-bg-color: var(--axa-red-4);
+  --tag-bg-color: var(--red-040);
   --tag-text-color: var(--warning-100);
   --tag-border-color: var(--warning-100);
 }

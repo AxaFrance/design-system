@@ -9,15 +9,6 @@
 
   /* PRIMITIVES **************************************************************/
 
-  /* red */
-  --color-red: #ff1721;
-  --color-red-600: #d4435b;
-  --color-red-700: #c91432;
-  --color-btn-error-text: #a11028;
-  --color-btn-error-bg: #fff3f5;
-  --error-custom-border: #d18e8e;
-  --error-custom-bg: #ffbfbf;
-
   /* orange */
   --color-alert-danger-color-border: #c8b282;
   --color-alert-danger-bg-color: #f1d596;

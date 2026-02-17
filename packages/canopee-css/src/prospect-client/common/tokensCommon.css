@@ -79,4 +79,22 @@
   --color-btn-tertiary-bg-lighter: var(--blue-040);
 
   /* BLUE PRIMITIVES **************************************************************/
+
+  /* RED PRIMITIVES **************************************************************/
+
+  /* ✅ valid names colors */
+  --red-040: hsl(17deg, 64%, 98%);
+  --red-alert-1000: hsl(0deg, 100%, 45%);
+  --red-alert-1200: hsl(0deg, 100%, 36%);
+
+  /* ⛔ legacy names colors - DO NOT USE */
+  --axa-red-4: var(--red-040);
+  --color-btn-error-bg: var(--red-040);
+  --red-alert-100: var(--red-alert-1000);
+  --axa-red-100: var(--red-alert-1000);
+  --color-red: var(--red-alert-1000); /* pas utilisé */
+  --color-red-700: var(--red-alert-1200);
+  --color-btn-error-text: var(--red-alert-1200);
+
+  /* RED PRIMITIVES **************************************************************/
 }
