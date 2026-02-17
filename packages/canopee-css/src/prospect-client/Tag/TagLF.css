@@ -39,6 +39,6 @@
 
 .af-tag--warning {
   --tag-bg-color: var(--white-1000);
-  --tag-text-color: var(--color-orange-700);
-  --tag-border-color: var(--color-orange-700);
+  --tag-text-color: var(--orange-1000);
+  --tag-border-color: var(--orange-1000);
 }

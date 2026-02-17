@@ -30,7 +30,7 @@
 }
 
 .af-message--warning {
-  --message-theme-color: var(--warning-100);
+  --message-theme-color: var(--orange-1000);
   --message-bg-color: var(--red-040);
 }
 

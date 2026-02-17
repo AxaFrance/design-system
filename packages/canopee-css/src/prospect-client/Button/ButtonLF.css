@@ -37,14 +37,14 @@
 }
 
 .af-btn-client--primary-business {
-  --button-bg-color: var(--color-btn-business);
+  --button-bg-color: var(--orange-1000);
 
   &:hover {
-    --button-bg-color: var(--color-btn-business-dark);
+    --button-bg-color: var(--orange-1050);
   }
 
   &:active {
-    --button-bg-color: var(--color-btn-business-light);
+    --button-bg-color: var(--orange-800);
   }
 }
 
