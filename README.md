@@ -198,7 +198,7 @@ Il suffit d'importer le fichier des tokens dans votre application.
 Pour Univers Client :
 
 ```typescript
-import '@axa-fr/canopee-css/client/common/tokensLF.css';
+import '@axa-fr/canopee-css/client/common/tokens.css';
 ```
 
 Pour Univers Prospect :
