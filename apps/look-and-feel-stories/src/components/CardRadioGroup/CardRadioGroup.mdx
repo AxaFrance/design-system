@@ -3,50 +3,164 @@ import * as CardRadioGroupStories from "./CardRadioGroup.stories";
 
 <Meta of={CardRadioGroupStories} name="CardRadioGroup" />
 
-# CardRadioGroup components
+# CardRadioGroup
 
-## How to use
+Accessible fieldset that groups CardRadioOption components with a label, optional description and validation/error messaging.
 
-To use the `CardRadioGroup`component import it like this:
+## Import
 
 ```tsx
 import { CardRadioGroup } from "@axa-fr/canopee-react/client";
-
-const MyComponent = () => (
-  <CardRadioGroup
-    cardStyle="vertical"
-    position="column"
-    name="city"
-    label="Choisissez une ville"
-    options={[
-      {
-        label: "Paris",
-        value: "paris",
-        icon: homeIcon,
-        description: "Capitale de la France",
-        subtitle: "Nord",
-      },
-      {
-        label: "Bruxelles",
-        value: "bruxelles",
-        icon: homeIcon,
-        description: "Capitale de la Belgique",
-      },
-      {
-        label: "Lille",
-        value: "lille",
-        icon: homeIcon,
-        checked: true,
-      },
-    ]}
-  />
-);
 ```
 
-## Playground
+## Props
 
-The CardRadioGroup component has 2 modes: `vertical` (default) and `horizontal`.
-You can see them in action in the stories below.
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>name</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>—</td>
+      <td>Form field name</td>
+    </tr>
+    <tr>
+      <td>
+        <code>label</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>—</td>
+      <td>Group legend</td>
+    </tr>
+    <tr>
+      <td>
+        <code>cardStyle</code>
+      </td>
+      <td>
+        <code>'vertical' | 'horizontal'</code>
+      </td>
+      <td>
+        <code>'vertical'</code>
+      </td>
+      <td>
+        Radio cards layout (corresponds to <code>CardRadioOption</code>{" "}
+        <code>position</code> prop)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>position</code>
+      </td>
+      <td>
+        <code>'line' | 'column'</code>
+      </td>
+      <td>
+        <code>'column'</code>
+      </td>
+      <td>Options container layout</td>
+    </tr>
+    <tr>
+      <td>
+        <code>options</code>
+      </td>
+      <td>
+        <code>CardRadioOptionProps[]</code>
+      </td>
+      <td>—</td>
+      <td>
+        Array of options — each item corresponds to the props of the{" "}
+        <code>CardRadioOption</code> component
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>required</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Adds <code>aria-required</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>message</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>—</td>
+      <td>
+        Error or help message displayed below the group (depends on the{" "}
+        <code>messageType</code>)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>className</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>—</td>
+      <td>Extra root class</td>
+    </tr>
+  </tbody>
+</table>
+
+## Accessibility
+
+- Renders a `<fieldset role="radiogroup">` with a `<legend>`.
+- Uses `aria-required`, `aria-invalid` and `aria-errormessage` when applicable.
+- Keyboard: Tab into group, navigate with arrow keys.
+
+## Example
+
+```tsx
+<CardRadioGroup
+  name="city"
+  label="Choose a city"
+  cardStyle="vertical"
+  position="column"
+  options={[
+    {
+      label: "Paris",
+      value: "paris",
+      icon: homeIcon,
+      description: "Capitale de la France",
+      subtitle: "Nord",
+    },
+    {
+      label: "Bruxelles",
+      value: "bruxelles",
+      icon: homeIcon,
+      description: "Capitale de la Belgique",
+    },
+    {
+      label: "Lille",
+      value: "lille",
+      icon: homeIcon,
+    },
+  ]}
+/>
+```
 
 <Canvas of={CardRadioGroupStories.CardRadioStory} />
 <Controls of={CardRadioGroupStories.CardRadioStory} />
