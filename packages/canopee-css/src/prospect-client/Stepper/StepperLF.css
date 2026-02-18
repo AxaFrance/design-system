@@ -19,13 +19,13 @@
 .af-stepper__subtitle {
   --subtitle-font-family: var(--font-family-sans-serif);
   --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --subtitle-color: var(--color-gray-700);
+  --subtitle-color: var(--gray-800);
 }
 
 .af-stepper__helper {
   --helper-font-family: var(--font-family-sans-serif);
   --helper-font-size: calc(14 / var(--font-size-base) * 1rem);
-  --helper-color: var(--color-gray-32);
+  --helper-color: var(--gray-800);
 }
 
 @media (--desktop-small) {
@@ -46,6 +46,6 @@
   .af-stepper__helper {
     --helper-font-family: var(--font-family-sans-serif);
     --helper-font-size: calc(16 / var(--font-size-base) * 1rem);
-    --helper-color: var(--color-gray-32);
+    --helper-color: var(--gray-800);
   }
 }

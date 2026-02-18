@@ -2,8 +2,8 @@
 
 .af-heading {
   --heading-grid-column: 1;
-  --heading-title-color: var(--neutral-100);
-  --heading-subtitle-color: var(--neutral-100);
+  --heading-title-color: var(--gray-1000);
+  --heading-subtitle-color: var(--gray-1000);
   --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
 
   h1 {

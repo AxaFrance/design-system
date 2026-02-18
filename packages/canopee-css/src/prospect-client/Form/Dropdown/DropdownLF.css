@@ -2,8 +2,8 @@
 
 .af-form__dropdown-input {
   --dropdown-border-radius: var(--radius-4);
-  --dropdown-border-color: var(--color-gray-700);
-  --dropdown-color: var(--color-gray-900);
+  --dropdown-border-color: var(--gray-800);
+  --dropdown-color: var(--gray-1000);
   --dropdown-background-color: var(--white-1000);
   --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%2300008F'/></svg>");
   --dropdown-box-shadow-color: var(--blue-1000);
@@ -13,10 +13,10 @@
   }
 
   option {
-    --dropdown-option-color: var(--color-gray-700);
+    --dropdown-option-color: var(--gray-800);
 
     &:disabled {
-      --dropdown-option-disabled-color: var(--color-gray-700);
+      --dropdown-option-disabled-color: var(--gray-800);
     }
   }
 
@@ -25,14 +25,14 @@
   }
 
   &:disabled {
-    --dropdown-background-color: var(--color-gray-200);
-    --dropdown-box-shadow-color: var(--color-gray-400);
+    --dropdown-background-color: var(--gray-050);
+    --dropdown-box-shadow-color: var(--gray-140);
     --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%23999999'/></svg>");
-    --dropdown-color: var(--color-gray-500);
+    --dropdown-color: var(--gray-500);
   }
 
   &:has(option[value=""]:checked) {
-    --dropdown-color: var(--color-gray-700);
+    --dropdown-color: var(--gray-800);
   }
 }
 

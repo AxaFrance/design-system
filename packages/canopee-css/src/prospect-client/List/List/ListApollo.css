@@ -1,5 +1,5 @@
 @import "./ListCommon.css";
 
 :is(ol, ul).af-card {
-  --list-item-separator-bg-color: var(--neutral-14);
+  --list-item-separator-bg-color: var(--gray-140);
 }

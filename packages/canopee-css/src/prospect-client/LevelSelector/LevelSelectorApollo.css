@@ -8,5 +8,5 @@
   --level-selector-description-font-size: calc(
     14 / var(--font-size-base) * 1rem
   );
-  --level-selector-description-color: var(--neutral-80);
+  --level-selector-description-color: var(--gray-800);
 }

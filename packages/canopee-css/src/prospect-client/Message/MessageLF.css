@@ -8,7 +8,7 @@
   --message-icon-color: var(--message-theme-color);
   --message-title-color: var(--message-theme-color);
   --message-title-font-size: 16;
-  --message-content-color: var(--color-gray-900);
+  --message-content-color: var(--gray-1000);
   --message-content-font-size: 16;
   --message-action-padding-top: 12;
 
@@ -23,7 +23,7 @@
 }
 
 .af-message--neutral {
-  --message-theme-color: var(--color-gray);
+  --message-theme-color: var(--gray-800);
 }
 
 .af-message--warning {
@@ -31,5 +31,5 @@
 }
 
 .af-message--validation {
-  --message-theme-color: var(--color-green-600);
+  --message-theme-color: var(--green-1000);
 }

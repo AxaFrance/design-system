@@ -1,6 +1,6 @@
 @import "./PaginationCommon.css";
 
 .af-pagination-list {
-  --pagination-list-border-color: var(--color-gray-400);
+  --pagination-list-border-color: var(--gray-140);
   --pagination-list-background-color: var(--white-1000);
 }

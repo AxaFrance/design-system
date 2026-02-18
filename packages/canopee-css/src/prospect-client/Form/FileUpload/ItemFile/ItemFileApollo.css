@@ -3,8 +3,8 @@
 .af-item-file {
   --item-file-border-radius: var(--radius-8);
   --item-file-border-color: var(--blue-1000);
-  --item-file-file-name-color: var(--neutral-100);
-  --item-file-file-size-color: var(--neutral-80);
+  --item-file-file-name-color: var(--gray-1000);
+  --item-file-file-size-color: var(--gray-800);
   --item-file-bg-color: var(--white-1000);
   --item-file-gap: calc(8 / var(--font-size-base) * 1rem);
   --item-file-body-padding-vertical: calc(16 / var(--font-size-base) * 1rem);
@@ -12,7 +12,7 @@
   --item-file-action-buttons-gap: calc(24 / var(--font-size-base) * 1rem);
 
   > .af-item-file__body > .af-icon {
-    --icon-fill: var(--green-100);
+    --icon-fill: var(--green-1000);
   }
 }
 

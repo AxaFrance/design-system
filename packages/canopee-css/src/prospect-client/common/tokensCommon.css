@@ -117,4 +117,50 @@
   --color-orange-100: var(--orange-100);
 
   /* ORANGE PRIMITIVES **************************************************************/
+
+  /* GRAY PRIMITIVES **************************************************************/
+
+  /* ✅ valid names colors */
+  --gray-1000: hsl(0deg, 0%, 20%);
+  --gray-1000-48: hsl(from var(--gray-1000) h s l / 48%);
+  --gray-800: hsl(0deg, 0%, 36%);
+  --gray-800-20: hsl(from var(--gray-800) h s l / 20%);
+  --gray-500: hsl(0deg, 0%, 60%);
+  --gray-500-20: hsl(from var(--gray-500) h s l / 20%);
+  --gray-250: hsl(0deg, 0%, 80%);
+  --gray-140: hsl(0deg, 0%, 89%);
+  --gray-050: hsl(0deg, 0%, 96%);
+
+  /* ⛔ legacy names colors - DO NOT USE */
+  --color-gray-900: var(--gray-1000);
+  --neutral-100: var(--gray-1000);
+  --neutral-80: var(--gray-800);
+  --color-gray-700: var(--gray-800);
+  --color-gray: var(--gray-800);
+  --color-gray-32: var(--gray-800);
+  --neutral-50: var(--gray-500);
+  --color-gray-500: var(--gray-500);
+  --color-btn-disabled-text: var(--gray-500);
+  --neutral-50-20: var(--gray-500-20);
+  --neutral-25: var(--gray-250);
+  --color-gray-1: var(--gray-250);
+  --neutral-14: var(--gray-140);
+  --color-gray-400: var(--gray-140);
+  --neutral-5: var(--gray-050);
+  --color-gray-200: var(--gray-050);
+
+  /* GRAY PRIMITIVES **************************************************************/
+
+  /* GREEN PRIMITIVES **************************************************************/
+
+  /* ✅ valid names colors */
+  --green-1000: hsl(138deg, 68%, 30%);
+  --green-040: hsl(135deg, 29%, 97%);
+
+  /* ⛔ legacy names colors - DO NOT USE */
+  --green-100: var(--green-1000);
+  --color-green-600: var(--green-1000);
+  --aqua-green-12: var(--green-040);
+
+  /* GREEN PRIMITIVES **************************************************************/
 }

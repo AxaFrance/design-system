@@ -1,13 +1,13 @@
 @import "./InputDateCommon.css";
 
 .af-form__input-helper {
-  --input-date-helper-color: var(--neutral-80);
+  --input-date-helper-color: var(--gray-800);
 }
 
 .af-form__input-date {
   --input-date-box-shadow-color: var(--blue-650);
   --input-date-border-radius: var(--radius-8);
-  --input-date-color: var(--neutral-80);
+  --input-date-color: var(--gray-800);
   --input-date-bg-color: var(--white-1000);
   --input-date-indicator-bg-color: var(--white-1000);
 
@@ -23,7 +23,7 @@
 
   &[aria-invalid="true"] {
     --input-date-box-shadow-color: var(--red-alert-1000);
-    --input-date-color: var(--neutral-80);
+    --input-date-color: var(--gray-800);
 
     &:is(:focus-visible, :hover, :active, :focus-within):not(:disabled) {
       --input-date-box-shadow-width: 3px;
@@ -31,8 +31,8 @@
   }
 
   &:disabled {
-    --input-date-box-shadow-color: var(--neutral-50);
-    --input-date-color: var(--neutral-50);
-    --input-date-bg-color: var(--neutral-5);
+    --input-date-box-shadow-color: var(--gray-500);
+    --input-date-color: var(--gray-500);
+    --input-date-bg-color: var(--gray-050);
   }
 }

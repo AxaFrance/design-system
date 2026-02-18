@@ -1,8 +1,8 @@
 @import "./ItemLabelCommon.css";
 
 .af-item-label {
-  --label-color: var(--neutral-100);
-  --label-description-color: var(--neutral-80);
+  --label-color: var(--gray-1000);
+  --label-description-color: var(--gray-800);
 
   > label > span[aria-hidden] {
     display: none;

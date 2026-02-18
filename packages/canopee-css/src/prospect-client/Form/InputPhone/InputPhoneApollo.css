@@ -1,11 +1,11 @@
 @import "./InputPhoneCommon.css";
 
 .af-form__input-phone-helper {
-  --input-helper-color: var(--neutral-80);
+  --input-helper-color: var(--gray-800);
 }
 
 .country-code-select__control {
-  --select-color: var(--neutral-80);
+  --select-color: var(--gray-800);
   --select-border-color: var(--blue-650);
   --select-border-radius: var(--radius-8);
   --select-control-background-url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%2300008F' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
@@ -13,8 +13,8 @@
     right 1rem center / 1.5rem 1.5rem;
 
   &:disabled {
-    --select-bg-color-disabled: var(--neutral-50);
-    --select-border-color: var(--neutral-50);
+    --select-bg-color-disabled: var(--gray-500);
+    --select-border-color: var(--gray-500);
   }
 
   &:not(:disabled):is(:hover, :focus-within, :active) {
@@ -28,13 +28,13 @@
 }
 
 .country-code-select__option {
-  --select-option-color: var(--neutral-100);
+  --select-option-color: var(--gray-1000);
 
   &:disabled {
-    --select-option-disabled-color: var(--neutral-50);
+    --select-option-disabled-color: var(--gray-500);
   }
 }
 
 .country-code-select__placeholder {
-  --select-placeholder-color: var(--neutral-80);
+  --select-placeholder-color: var(--gray-800);
 }

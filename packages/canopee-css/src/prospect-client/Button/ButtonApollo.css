@@ -30,9 +30,9 @@
 
   &:disabled,
   &[aria-disabled="true"] {
-    --button-bg-color: var(--neutral-5);
-    --button-text-color: var(--neutral-50);
-    --button-shadow-color: var(--neutral-50);
+    --button-bg-color: var(--gray-050);
+    --button-text-color: var(--gray-500);
+    --button-shadow-color: var(--gray-500);
   }
 }
 
@@ -58,12 +58,12 @@
   &:hover,
   &:focus,
   &:focus-visible {
-    --button-bg-color: var(--neutral-14);
+    --button-bg-color: var(--gray-140);
     --button-text-color: var(--blue-1200);
   }
 
   &:active {
-    --button-bg-color: var(--neutral-5);
+    --button-bg-color: var(--gray-050);
     --button-text-color: var(--blue-900);
   }
 }
@@ -117,15 +117,15 @@
   &:hover,
   &:focus,
   &:focus-visible {
-    --button-bg-color: var(--neutral-14);
+    --button-bg-color: var(--gray-140);
     --button-text-color: var(--blue-1200);
-    --button-shadow-color: var(--neutral-14);
+    --button-shadow-color: var(--gray-140);
   }
 
   &:active {
-    --button-bg-color: var(--neutral-5);
+    --button-bg-color: var(--gray-050);
     --button-text-color: var(--blue-900);
-    --button-shadow-color: var(--neutral-5);
+    --button-shadow-color: var(--gray-050);
   }
 }
 

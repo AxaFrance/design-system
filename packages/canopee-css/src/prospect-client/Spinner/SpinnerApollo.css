@@ -11,8 +11,8 @@
 }
 
 .af-spinner--gray {
-  --spinner-border-color: var(--neutral-50-20);
-  --spinner-border-top-color: var(--neutral-100);
+  --spinner-border-color: var(--gray-500-20);
+  --spinner-border-top-color: var(--gray-1000);
 }
 
 .af-spinner--white {

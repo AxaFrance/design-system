@@ -1,9 +1,9 @@
 @import "./CardCheckboxCommon.css";
 
 .af-card-checkbox__label {
-  --card-checkbox-color: var(--neutral-100);
+  --card-checkbox-color: var(--gray-1000);
 }
 
 .af-card-checkbox__description {
-  --card-checkbox-color: var(--neutral-80);
+  --card-checkbox-color: var(--gray-800);
 }

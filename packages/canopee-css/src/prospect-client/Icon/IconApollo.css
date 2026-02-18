@@ -30,15 +30,15 @@
 }
 
 .af-icon--disabled {
-  --icon-fill: var(--neutral-50);
+  --icon-fill: var(--gray-500);
 
   &.af-icon--has-background {
-    --icon-background-color: var(--neutral-5);
+    --icon-background-color: var(--gray-050);
   }
 }
 
 .af-icon--success {
-  --icon-fill: var(--green-100);
+  --icon-fill: var(--green-1000);
 }
 
 .af-icon--error {

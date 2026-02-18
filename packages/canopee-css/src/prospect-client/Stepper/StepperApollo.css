@@ -25,7 +25,7 @@
 }
 
 .af-stepper__helper {
-  --helper-color: var(--neutral-80);
+  --helper-color: var(--gray-800);
 }
 
 @media (--desktop-small) {

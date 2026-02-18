@@ -14,12 +14,8 @@
 }
 
 .af-spinner--gray {
-  --spinner-border-color: color-mix(
-    in srgb,
-    var(--color-gray),
-    transparent 80%
-  );
-  --spinner-border-top-color: var(--color-gray);
+  --spinner-border-color: color-mix(in srgb, var(--gray-800), transparent 80%);
+  --spinner-border-top-color: var(--gray-800);
 }
 
 .af-spinner--white {

@@ -1,10 +1,10 @@
 @import "./AccordionCommon.css";
 
 .af-apollo-accordion {
-  --accordion-info1-text-color: var(--neutral-80);
-  --accordion-info2-text-color: var(--green-100);
+  --accordion-info1-text-color: var(--gray-800);
+  --accordion-info2-text-color: var(--green-1000);
   --accordion-title-text-color: var(--blue-1000);
-  --accordion-subtitle-text-color: var(--neutral-80);
+  --accordion-subtitle-text-color: var(--gray-800);
   --accordion-title-font-size: calc(16 / var(--font-size-base) * 1rem);
   --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
   --accordion-info2-font-size: calc(16 / var(--font-size-base) * 1rem);
@@ -34,8 +34,8 @@
 }
 
 .af-apollo-accordion--secondary {
-  --accordion-date-text-color: var(--neutral-80);
-  --accordion-title-text-color: var(--neutral-100);
+  --accordion-date-text-color: var(--gray-800);
+  --accordion-title-text-color: var(--gray-1000);
 
   @media (--desktop-small) {
     --accordion-info1-font-size-secondary: calc(

@@ -1,7 +1,7 @@
 @import "./RadioCommon.css";
 
 .af-radio {
-  --radio-border-color: var(--color-gray-700);
+  --radio-border-color: var(--gray-800);
   --radio-ckecked-width: calc(10 / var(--font-size-base) * 1rem);
 
   &:hover,

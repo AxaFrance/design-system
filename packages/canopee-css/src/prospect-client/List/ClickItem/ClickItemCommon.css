@@ -103,6 +103,6 @@
   .af-apollo-click-item__subtitle,
   .af-apollo-click-item__secondary,
   .af-apollo-click-item__tertiary {
-    color: var(--neutral-80);
+    color: var(--gray-800);
   }
 }

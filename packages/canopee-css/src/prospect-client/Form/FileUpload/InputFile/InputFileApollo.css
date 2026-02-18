@@ -23,5 +23,5 @@
 }
 
 .af-input-file__help {
-  --input-file-help-color: var(--neutral-80);
+  --input-file-help-color: var(--gray-800);
 }

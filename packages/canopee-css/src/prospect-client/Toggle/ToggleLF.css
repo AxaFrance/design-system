@@ -2,7 +2,7 @@
 
 .af-toggle {
   --toggle-bg-color: var(--blue-80);
-  --toggle-border-color: var(--color-gray-700);
+  --toggle-border-color: var(--gray-800);
   --toggle-focus-outline-color: var(--blue-1000);
   --toggle-border-radius: var(--radius-32);
   --toggle-border-size: 2px;
@@ -15,7 +15,7 @@
     var(--toggle-handle-size) * var(--toggle-handle-enlarge-scale) -
       var(--toggle-border-size) * 2
   );
-  --toggle-handle-color: var(--color-gray-700);
+  --toggle-handle-color: var(--gray-800);
   --toggle-handle-size: 16px;
   --toggle-handle-position: var(--toggle-border-size);
   --toggle-handle-scale: 1;
@@ -37,12 +37,12 @@
 
   &:has(:disabled) {
     --toggle-bg-color: var(--white-1000);
-    --toggle-border-color: var(--color-gray-400);
-    --toggle-handle-color: var(--color-gray-400);
+    --toggle-border-color: var(--gray-140);
+    --toggle-handle-color: var(--gray-140);
   }
 
   &:has(:disabled:checked) {
-    --toggle-bg-color: var(--color-gray-400);
-    --toggle-border-color: var(--color-gray-400);
+    --toggle-bg-color: var(--gray-140);
+    --toggle-border-color: var(--gray-140);
   }
 }
