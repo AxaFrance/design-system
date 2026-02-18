@@ -11,7 +11,10 @@ import {
 } from "../../ItemMessage/ItemMessageCommon";
 import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
 
-type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
+type RadioOption = Omit<
+  CardRadioOptionProps,
+  "name" | "type" | "position" | "isInvalid"
+>;
 
 export type CardRadioGroupProps = Omit<
   CardRadioOptionProps,
@@ -126,7 +129,7 @@ const CardRadioGroupCommon = ({
             required={required}
             {...inputProps}
             {...(cardRadioItemProps as CardRadioOptionProps)}
-            type={type as "horizontal"}
+            position={type}
             isInvalid={hasError}
             name={name}
           />
