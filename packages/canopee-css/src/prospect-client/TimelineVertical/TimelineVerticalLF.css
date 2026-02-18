@@ -2,9 +2,9 @@
 
 .af-timeline-vertical {
   --timeline-vertical-padding: calc(16 / var(--font-size-base) * 1rem);
-  --timeline-vertical-title-color: var(--color-gray-900);
+  --timeline-vertical-title-color: var(--gray-1000);
   --timeline-vertical-title-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --timeline-vertical-description-color: var(--color-gray-700);
+  --timeline-vertical-description-color: var(--gray-800);
   --timeline-vertical-description-font-size: calc(
     16 / var(--font-size-base) * 1rem
   );

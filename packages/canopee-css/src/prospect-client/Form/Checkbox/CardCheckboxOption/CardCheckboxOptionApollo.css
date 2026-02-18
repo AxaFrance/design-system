@@ -3,7 +3,7 @@
 .af-card-checkbox-option {
   --checkbox-option-border-color: var(--blue-650);
   --checkbox-option-color-title: var(--blue-1000);
-  --checkbox-option-color-subtitle: var(--neutral-80);
+  --checkbox-option-color-subtitle: var(--gray-800);
   --checkbox-option-gap: calc(8 / var(--font-size-base) * 1rem);
   --checkbox-option-border-radius: var(--radius-8);
   --checkbox-option-background-color: var(--white-1000);

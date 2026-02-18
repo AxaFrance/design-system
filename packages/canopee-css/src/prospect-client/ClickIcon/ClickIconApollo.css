@@ -22,8 +22,8 @@
   }
 
   &:disabled {
-    --click-icon-background-color: var(--neutral-5);
-    --click-icon-svg-fill: var(--neutral-50);
+    --click-icon-background-color: var(--gray-050);
+    --click-icon-svg-fill: var(--gray-500);
   }
 
   &:focus-visible {
@@ -33,6 +33,6 @@
 
 /* Should be deleted, prefer use :disabled */
 .af-click-icon--disabled {
-  --click-icon-background-color: var(--neutral-5);
-  --click-icon-svg-fill: var(--neutral-50);
+  --click-icon-background-color: var(--gray-050);
+  --click-icon-svg-fill: var(--gray-500);
 }

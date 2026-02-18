@@ -1,6 +1,6 @@
 @import "./ProgressBarCommon.css";
 
 .af-progress-bar__progress {
-  --progress-bar-background-color: var(--neutral-14);
+  --progress-bar-background-color: var(--gray-140);
   --progress-bar-appearance: var(--blue-1000);
 }

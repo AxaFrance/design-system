@@ -3,5 +3,5 @@
 .af-card {
   --card-border-radius: var(--radius-8);
   --card-background-color: var(--white-1000);
-  --card-border-color: var(--neutral-14);
+  --card-border-color: var(--gray-140);
 }

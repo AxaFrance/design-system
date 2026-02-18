@@ -3,10 +3,10 @@
 .af-apollo-click-item {
   --click-item-title-color: var(--blue-1000);
   --click-item-title-border-color: var(--blue-1000);
-  --click-item-subtitle-color: var(--color-gray);
-  --click-item-text-secondary-color: var(--color-gray);
-  --click-item-text-tertiary-color: var(--color-gray);
-  --click-item-text-disabled-color: var(--color-gray-500);
+  --click-item-subtitle-color: var(--gray-800);
+  --click-item-text-secondary-color: var(--gray-800);
+  --click-item-text-tertiary-color: var(--gray-800);
+  --click-item-text-disabled-color: var(--gray-500);
   --click-item-title-font-weight: 600;
 }
 
@@ -42,7 +42,7 @@
 
 .af-apollo-click-item--small {
   --click-item-title-font-size: calc(14 / var(--font-size-base) * 1rem);
-  --click-item-title-color: var(--color-gray-900);
+  --click-item-title-color: var(--gray-1000);
   --click-item-title-font-weight: 400;
 
   &:hover {

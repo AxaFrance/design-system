@@ -12,7 +12,7 @@
 }
 
 .af-item-message--success {
-  --item-message-color: var(--green-100);
+  --item-message-color: var(--green-1000);
 }
 
 .af-item-message--warning {

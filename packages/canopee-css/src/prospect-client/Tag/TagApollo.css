@@ -20,8 +20,8 @@
 
 .af-tag--success {
   --tag-bg-color: var(--green-12);
-  --tag-text-color: var(--green-100);
-  --tag-border-color: var(--green-100);
+  --tag-text-color: var(--green-1000);
+  --tag-border-color: var(--green-1000);
 }
 
 .af-tag--error {
@@ -31,9 +31,9 @@
 }
 
 .af-tag--neutral {
-  --tag-bg-color: var(--neutral-5);
-  --tag-text-color: var(--neutral-80);
-  --tag-border-color: var(--neutral-80);
+  --tag-bg-color: var(--gray-050);
+  --tag-text-color: var(--gray-800);
+  --tag-border-color: var(--gray-800);
 }
 
 .af-tag--warning {

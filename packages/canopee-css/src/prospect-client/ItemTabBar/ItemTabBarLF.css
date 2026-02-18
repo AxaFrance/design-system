@@ -1,7 +1,7 @@
 @import "./ItemTabBarCommon.css";
 
 .af-item-tab-bar {
-  --item-tab-bar-font-color: var(--color-gray-900);
+  --item-tab-bar-font-color: var(--gray-1000);
   --item-tab-bar-box-shadow-color: var(--blue-200);
   --item-tab-bar-outline-color: var(--blue-1000);
   --item-tab-bar-font-size: calc(18 / var(--font-size-base) * 1rem);

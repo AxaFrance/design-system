@@ -24,7 +24,7 @@
 }
 
 .af-card-message--neutral {
-  --card-message-background-color: var(--color-gray-200);
-  --card-message-text-color: var(--color-gray-900);
-  --card-message-border-color: var(--color-gray-900);
+  --card-message-background-color: var(--gray-050);
+  --card-message-text-color: var(--gray-1000);
+  --card-message-border-color: var(--gray-1000);
 }

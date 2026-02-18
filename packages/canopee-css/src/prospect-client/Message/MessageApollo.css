@@ -25,8 +25,8 @@
 }
 
 .af-message--neutral {
-  --message-theme-color: var(--neutral-80);
-  --message-bg-color: var(--neutral-5);
+  --message-theme-color: var(--gray-800);
+  --message-bg-color: var(--gray-050);
 }
 
 .af-message--warning {
@@ -35,6 +35,6 @@
 }
 
 .af-message--validation {
-  --message-theme-color: var(--green-100);
-  --message-bg-color: var(--aqua-green-12);
+  --message-theme-color: var(--green-1000);
+  --message-bg-color: var(--green-040);
 }
