@@ -5,14 +5,13 @@
   --button-text-color: var(--white-1000);
   --button-radius: var(--radius-8);
   --button-shadow-color: var(--blue-1000);
-  --button-padding: calc(16 / var(--font-size-base) * 1rem);
-  --button-line-height: calc(24 / var(--font-size-base) * 1rem);
-  --button-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --button-padding: var(--rem-16);
+  --button-line-height: var(--rem-24);
+  --button-font-size: var(--rem-16);
 
   @media (--desktop-small) {
-    --button-font-size: calc(18 / var(--font-size-base) * 1rem);
-    --button-padding: calc(16 / var(--font-size-base) * 1rem)
-      calc(24 / var(--font-size-base) * 1rem);
+    --button-font-size: var(--rem-18);
+    --button-padding: var(--rem-16) var(--rem-24);
   }
 
   &:hover {
@@ -69,7 +68,7 @@
   --button-text-color: var(--blue-1000);
   --button-bg-color: transparent;
   --button-padding: 0;
-  --button-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --button-font-size: var(--rem-16);
 
   &:hover,
   &:focus,

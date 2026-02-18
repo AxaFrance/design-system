@@ -1,8 +1,8 @@
 .af-apollo-accordion-contextual .af-apollo-accordion__summary {
-  --accordion-contextual-column-gap: calc(16 / var(--font-size-base) * 1rem);
-  --accordion-contextual-gap: calc(4 / var(--font-size-base) * 1rem);
-  --accordion-contextual-row-gap: calc(2 / var(--font-size-base) * 1rem);
-  --spacing-summary-inline: calc(12 / var(--font-size-base) * 1rem);
+  --accordion-contextual-column-gap: var(--rem-16);
+  --accordion-contextual-gap: var(--rem-4);
+  --accordion-contextual-row-gap: var(--rem-2);
+  --spacing-summary-inline: var(--rem-12);
 
   display: grid;
   padding: var(--spacing-summary-block) var(--spacing-summary-inline);
@@ -20,7 +20,7 @@
     grid-area: title;
     font-size: var(--accordion-contextual-title-font-size);
     font-weight: 600;
-    line-height: calc(20 / var(--font-size-base) * 1rem);
+    line-height: var(--rem-20);
     color: var(--accordion-contextual-title-text-color);
   }
 }
@@ -42,7 +42,7 @@
 
   &[open]::details-content {
     display: grid;
-    padding: calc(16 / var(--font-size-base) * 1rem);
+    padding: var(--rem-16);
   }
 }
 

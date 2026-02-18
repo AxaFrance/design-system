@@ -107,7 +107,7 @@
   grid-template-columns: auto 1fr;
   align-items: center;
   justify-self: start;
-  gap: calc(16 / var(--font-size-base) * 1rem);
+  gap: var(--rem-16);
 }
 
 .af-modal__body {

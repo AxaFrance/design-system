@@ -2,10 +2,10 @@
   --textarea-box-shadow-width: 1px;
 
   width: 100%;
-  padding: calc(16 / var(--font-size-base) * 1rem);
+  padding: var(--rem-16);
   border: none;
   border-radius: var(--textarea-border-radius);
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-16);
   font-weight: 600;
   line-height: 125%;
   color: var(--textarea-color);
@@ -21,7 +21,7 @@
   }
 
   @media (--desktop-small) {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-18);
   }
 
   &::placeholder {

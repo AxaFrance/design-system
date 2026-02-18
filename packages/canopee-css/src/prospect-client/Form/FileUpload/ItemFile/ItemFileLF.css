@@ -5,10 +5,10 @@
   --item-file-border-color: var(--gray-800);
   --item-file-file-name-color: var(--gray-1000);
   --item-file-file-size-color: var(--gray-800);
-  --item-file-gap: calc(8 / var(--font-size-base) * 1rem);
-  --item-file-body-padding-vertical: calc(16 / var(--font-size-base) * 1rem);
-  --item-file-body-padding-horizontal: calc(16 / var(--font-size-base) * 1rem);
-  --item-file-action-buttons-gap: calc(16 / var(--font-size-base) * 1rem);
+  --item-file-gap: var(--rem-8);
+  --item-file-body-padding-vertical: var(--rem-16);
+  --item-file-body-padding-horizontal: var(--rem-16);
+  --item-file-action-buttons-gap: var(--rem-16);
 
   > .af-item-file__body > .af-icon {
     --icon-fill: var(--green-1000);

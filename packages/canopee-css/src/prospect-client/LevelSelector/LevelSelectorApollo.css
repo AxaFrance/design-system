@@ -5,8 +5,6 @@
   --level-selector-color: var(--blue-1000);
   --level-selector-title-color: var(--blue-1000);
   --level-selector-outline-color: var(--blue-200);
-  --level-selector-description-font-size: calc(
-    14 / var(--font-size-base) * 1rem
-  );
+  --level-selector-description-font-size: var(--rem-14);
   --level-selector-description-color: var(--gray-800);
 }

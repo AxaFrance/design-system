@@ -11,37 +11,31 @@
 }
 
 .af-apollo-click-item--large {
-  --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --click-item-text-secondary-font-size: calc(
-    14 / var(--font-size-base) * 1rem
-  );
-  --click-item-text-tertiary-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --click-item-title-font-size: var(--rem-16);
+  --click-item-subtitle-font-size: var(--rem-16);
+  --click-item-text-secondary-font-size: var(--rem-14);
+  --click-item-text-tertiary-font-size: var(--rem-14);
 
   @media (--desktop-small) {
-    --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
-    --click-item-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
-    --click-item-text-secondary-font-size: calc(
-      16 / var(--font-size-base) * 1rem
-    );
-    --click-item-text-tertiary-font-size: calc(
-      16 / var(--font-size-base) * 1rem
-    );
+    --click-item-title-font-size: var(--rem-18);
+    --click-item-subtitle-font-size: var(--rem-18);
+    --click-item-text-secondary-font-size: var(--rem-16);
+    --click-item-text-tertiary-font-size: var(--rem-16);
   }
 }
 
 .af-apollo-click-item--medium {
-  --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --click-item-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --click-item-title-font-size: var(--rem-16);
+  --click-item-subtitle-font-size: var(--rem-14);
 
   @media (--desktop-small) {
-    --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
-    --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --click-item-title-font-size: var(--rem-18);
+    --click-item-subtitle-font-size: var(--rem-16);
   }
 }
 
 .af-apollo-click-item--small {
-  --click-item-title-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --click-item-title-font-size: var(--rem-14);
   --click-item-title-color: var(--gray-1000);
   --click-item-title-font-weight: 400;
 
@@ -50,16 +44,16 @@
   }
 
   @media (--desktop-small) {
-    --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --click-item-title-font-size: var(--rem-16);
   }
 }
 
 .af-apollo-click-item--agent {
-  --click-item-title-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --click-item-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --click-item-title-font-size: var(--rem-16);
+  --click-item-subtitle-font-size: var(--rem-14);
 
   @media (--desktop-small) {
-    --click-item-title-font-size: calc(18 / var(--font-size-base) * 1rem);
-    --click-item-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --click-item-title-font-size: var(--rem-18);
+    --click-item-subtitle-font-size: var(--rem-16);
   }
 }

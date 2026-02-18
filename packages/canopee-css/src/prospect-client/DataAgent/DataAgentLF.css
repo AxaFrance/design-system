@@ -3,12 +3,11 @@
 .af-data-agent {
   --data-agent-border-color: var(--blue-200);
   --data-agent-text-orias-font-color: var(--gray-800);
-  --data-agent-text-orias-font-size: calc(14 / var(--font-size-base) * 1rem);
-  --data-agent-intro-padding: calc(16 / var(--font-size-base) * 1rem);
-  --data-agent-intro-content-padding: calc(12 / var(--font-size-base) * 1rem)
-    calc(16 / var(--font-size-base) * 1rem) 0;
+  --data-agent-text-orias-font-size: var(--rem-14);
+  --data-agent-intro-padding: var(--rem-16);
+  --data-agent-intro-content-padding: var(--rem-12) var(--rem-16) 0;
 
   @media (--desktop-small) {
-    --data-agent-text-orias-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --data-agent-text-orias-font-size: var(--rem-16);
   }
 }

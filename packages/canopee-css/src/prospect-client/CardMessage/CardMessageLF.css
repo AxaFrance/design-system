@@ -1,7 +1,7 @@
 @import "./CardMessageCommon.css";
 
 .af-card-message {
-  --card-message-padding: calc(12 / var(--font-size-base) * 1rem);
+  --card-message-padding: var(--rem-12);
   --card-message-border-radius: var(--radius-4);
 }
 

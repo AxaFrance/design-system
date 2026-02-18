@@ -12,13 +12,13 @@
     inset;
 
   &:has(> input ~ *) {
-    column-gap: calc(8 / var(--font-size-base) * 1rem);
+    column-gap: var(--rem-8);
   }
 
   > input {
     all: unset;
-    padding: calc(16 / var(--font-size-base) * 1rem);
-    font-size: calc(16 / var(--font-size-base) * 1rem);
+    padding: var(--rem-16);
+    font-size: var(--rem-16);
     font-weight: 600;
     line-height: 1.25em;
     color: var(--input-text-color);
@@ -29,13 +29,13 @@
     }
 
     & ~ * {
-      margin-right: calc(16 / var(--font-size-base) * 1rem);
+      margin-right: var(--rem-16);
       color: var(--input-text-icon-color);
       fill: var(--input-text-icon-color);
     }
 
     @media (--desktop-small) {
-      font-size: calc(18 / var(--font-size-base) * 1rem);
+      font-size: var(--rem-18);
     }
   }
 

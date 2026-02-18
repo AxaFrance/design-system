@@ -4,40 +4,38 @@
 .af-modal {
   --modal-bg-color: var(--white-1000);
   --modal-text-color: var(--gray-1000);
-  --modal-text-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --modal-text-font-size: var(--rem-16);
   --modal-overlay-color: var(--gray-1000-48);
   --modal-border-radius: var(--radius-8);
-  --modal-default-padding: calc(16 / var(--font-size-base) * 1rem);
-  --modal-header-gap: calc(24 / var(--font-size-base) * 1rem);
+  --modal-default-padding: var(--rem-16);
+  --modal-header-gap: var(--rem-24);
   --modal-header-bottom-padding: var(--modal-default-padding);
   --modal-header-border-bottom: 1px solid var(--blue-200);
-  --modal-body-padding-top: calc(24 / var(--font-size-base) * 1rem);
+  --modal-body-padding-top: var(--rem-24);
   --modal-body-padding-bottom: var(--modal-default-padding);
-  --modal-body-gap: calc(32 / var(--font-size-base) * 1rem);
+  --modal-body-gap: var(--rem-32);
   --modal-footer-vertical-padding: var(--modal-default-padding);
   --modal-footer-horizontal-padding: var(--modal-default-padding);
   --modal-footer-gap: var(--modal-default-padding);
 
   :has(.af-modal__body-vertical-scroll) {
     --modal-footer-border-top: 1px solid var(--blue-200);
-    --modal-footer-vertical-padding: calc(12 / var(--font-size-base) * 1rem);
-    --modal-footer-horizontal-padding: calc(16 / var(--font-size-base) * 1rem);
+    --modal-footer-vertical-padding: var(--rem-12);
+    --modal-footer-horizontal-padding: var(--rem-16);
   }
 
   @media (--desktop-small) {
-    --modal-default-padding: calc(24 / var(--font-size-base) * 1rem);
-    --modal-text-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --modal-default-padding: var(--rem-24);
+    --modal-text-font-size: var(--rem-18);
     --modal-footer-vertical-padding: var(--modal-default-padding);
     --modal-footer-horizontal-padding: var(--modal-default-padding);
-    --modal-body-gap: calc(40 / var(--font-size-base) * 1rem);
-    --modal-body-padding-bottom: calc(16 / var(--font-size-base) * 1rem);
+    --modal-body-gap: var(--rem-40);
+    --modal-body-padding-bottom: var(--rem-16);
 
     :has(.af-modal__body-vertical-scroll) {
       --modal-footer-border-top: none;
-      --modal-footer-vertical-padding: calc(16 / var(--font-size-base) * 1rem);
-      --modal-footer-horizontal-padding: calc(
-        16 / var(--font-size-base) * 1rem
-      );
+      --modal-footer-vertical-padding: var(--rem-16);
+      --modal-footer-horizontal-padding: var(--rem-16);
     }
   }
 }

@@ -8,82 +8,82 @@
   .af-content-item-mono__text-content {
     .af-content-item-mono__title {
       --title-font-family: var(--font-family-sans-serif);
-      --title-font-size: calc(16 / var(--font-size-base) * 1rem);
+      --title-font-size: var(--rem-16);
       --title-font-weight: 600;
       --title-color: var(--gray-1000);
-      --title-line-height: calc(20 / var(--font-size-base) * 1rem);
+      --title-line-height: var(--rem-20);
     }
 
     .af-content-item-mono__subtitle-primary {
       --subtitle-primary-font-family: var(--font-family-sans-serif);
-      --subtitle-primary-font-size: calc(16 / var(--font-size-base) * 1rem);
+      --subtitle-primary-font-size: var(--rem-16);
       --subtitle-primary-color: var(--gray-1000);
-      --subtitle-primary-line-height: calc(20 / var(--font-size-base) * 1rem);
+      --subtitle-primary-line-height: var(--rem-20);
     }
 
     .af-content-item-mono__subtitle {
       --subtitle-font-family: var(--font-family-sans-serif);
-      --subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
+      --subtitle-font-size: var(--rem-14);
       --subtitle-color: var(--gray-800);
-      --subtitle-line-height: calc(18 / var(--font-size-base) * 1rem);
+      --subtitle-line-height: var(--rem-18);
     }
   }
 
   .af-content-item-mono__stick
     + .af-content-item-mono__text-content
     .af-content-item-mono__title {
-    --title-font-size: calc(14 / var(--font-size-base) * 1rem);
-    --title-line-height: calc(18 / var(--font-size-base) * 1rem);
+    --title-font-size: var(--rem-14);
+    --title-line-height: var(--rem-18);
   }
 
   &.af-content-item-mono--large .af-content-item-mono__text-content {
     .title {
       --title-font-family: var(--font-family-publico);
       --title-font-weight: 700;
-      --title-font-size: calc(20 / var(--font-size-base) * 1rem);
-      --title-line-height: calc(25 / var(--font-size-base) * 1rem);
+      --title-font-size: var(--rem-20);
+      --title-line-height: var(--rem-25);
     }
 
     .af-content-item-mono__subtitle {
-      --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
-      --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
+      --subtitle-font-size: var(--rem-16);
+      --subtitle-line-height: var(--rem-20);
     }
   }
 
   @media (--desktop-small) {
     .af-content-item-mono__text-content {
       .af-content-item-mono__title {
-        --title-font-size: calc(18 / var(--font-size-base) * 1rem);
-        --title-line-height: calc(23 / var(--font-size-base) * 1rem);
+        --title-font-size: var(--rem-18);
+        --title-line-height: var(--rem-23);
       }
 
       .af-content-item-mono__subtitle-primary {
-        --subtitle-primary-font-size: calc(18 / var(--font-size-base) * 1rem);
-        --subtitle-primary-line-height: calc(23 / var(--font-size-base) * 1rem);
+        --subtitle-primary-font-size: var(--rem-18);
+        --subtitle-primary-line-height: var(--rem-23);
       }
 
       .af-content-item-mono__subtitle {
-        --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
-        --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
+        --subtitle-font-size: var(--rem-16);
+        --subtitle-line-height: var(--rem-20);
       }
     }
 
     .af-content-item-mono__stick
       + .af-content-item-mono__text-content
       .af-content-item-mono__title {
-      --title-font-size: calc(16 / var(--font-size-base) * 1rem);
-      --title-line-height: calc(20 / var(--font-size-base) * 1rem);
+      --title-font-size: var(--rem-16);
+      --title-line-height: var(--rem-20);
     }
 
     &.af-content-item-mono--large .af-content-item-mono__text-content {
       .title {
-        --title-font-size: calc(24 / var(--font-size-base) * 1rem);
-        --title-line-height: calc(30 / var(--font-size-base) * 1rem);
+        --title-font-size: var(--rem-24);
+        --title-line-height: var(--rem-30);
       }
 
       .af-content-item-mono__subtitle {
-        --subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
-        --subtitle-line-height: calc(23 / var(--font-size-base) * 1rem);
+        --subtitle-font-size: var(--rem-18);
+        --subtitle-line-height: var(--rem-23);
       }
     }
   }

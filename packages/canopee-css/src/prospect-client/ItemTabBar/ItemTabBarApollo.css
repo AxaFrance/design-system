@@ -2,8 +2,7 @@
 
 .af-item-tab-bar {
   --item-tab-bar-font-color: var(--blue-1000);
-  --item-tab-bar-padding: calc(10 / var(--font-size-base) * 1rem)
-    calc(8 / var(--font-size-base) * 1rem);
+  --item-tab-bar-padding: var(--rem-10) var(--rem-8);
   --item-tab-bar-box-shadow-color: var(--blue-200);
   --item-tab-bar-outline-color: var(--blue-1000);
 
@@ -12,6 +11,6 @@
   }
 
   @media (--desktop-small) {
-    --item-tab-bar-padding: calc(16 / var(--font-size-base) * 1rem);
+    --item-tab-bar-padding: var(--rem-16);
   }
 }

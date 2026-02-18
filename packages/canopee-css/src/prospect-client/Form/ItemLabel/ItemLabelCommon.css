@@ -7,10 +7,10 @@
     "more more";
   grid-template-columns: 1fr auto;
   place-items: end start;
-  row-gap: calc(4 / var(--font-size-base) * 1rem);
+  row-gap: var(--rem-4);
 
   &:has(> .af-item-label__sidebutton) {
-    column-gap: calc(12 / var(--font-size-base) * 1rem);
+    column-gap: var(--rem-12);
   }
 
   &:not(:has(> .af-item-label__description), * ~ .af-item-label__more) {
@@ -33,15 +33,15 @@
 .af-item-label__label {
   display: flex;
   grid-area: label;
-  gap: calc(4 / var(--font-size-base) * 1rem);
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  gap: var(--rem-4);
+  font-size: var(--rem-16);
   font-weight: 600;
-  line-height: calc(20 / var(--font-size-base) * 1rem);
+  line-height: var(--rem-20);
   color: var(--label-color);
 
   @media (--desktop-small) {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
-    line-height: calc(24 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-18);
+    line-height: var(--rem-24);
   }
 }
 
@@ -60,13 +60,13 @@
 
 .af-item-label__description {
   grid-area: description;
-  font-size: calc(14 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-14);
   font-weight: 400;
   line-height: 1.25em;
   color: var(--label-description-color);
 
   @media (--desktop-small) {
-    font-size: calc(16 / var(--font-size-base) * 1rem);
-    line-height: calc(20 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-16);
+    line-height: var(--rem-20);
   }
 }

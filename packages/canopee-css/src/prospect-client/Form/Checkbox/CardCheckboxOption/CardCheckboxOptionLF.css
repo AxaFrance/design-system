@@ -4,7 +4,7 @@
   --checkbox-option-border-color: var(--gray-800);
   --checkbox-option-color-title: var(--gray-1000);
   --checkbox-option-color-subtitle: var(--gray-800);
-  --checkbox-option-gap: calc(8 / var(--font-size-base) * 1rem);
+  --checkbox-option-gap: var(--rem-8);
   --checkbox-option-border-radius: var(--radius-4);
   --checkbox-option-background-color: var(--white-1000);
 
@@ -16,17 +16,17 @@
 
   &:not(.af-card-checkbox-option--horizontal) .af-checkbox {
     position: absolute;
-    top: calc(12 / var(--font-size-base) * 1rem);
-    left: calc(12 / var(--font-size-base) * 1rem);
+    top: var(--rem-12);
+    left: var(--rem-12);
 
     @media (--desktop-small) {
-      top: calc(16 / var(--font-size-base) * 1rem);
-      left: calc(16 / var(--font-size-base) * 1rem);
+      top: var(--rem-16);
+      left: var(--rem-16);
     }
   }
 
   & .af-card-checkbox-option__content {
-    --checkbox-option-gap: calc(4 / var(--font-size-base) * 1rem);
+    --checkbox-option-gap: var(--rem-4);
   }
 
   &:has(input:checked) {
@@ -40,5 +40,5 @@
 }
 
 .af-card-checkbox-option--horizontal {
-  column-gap: calc(12 / var(--font-size-base) * 1rem);
+  column-gap: var(--rem-12);
 }

@@ -209,6 +209,44 @@
 
   /* *************************************************************************/
 
+  /* FONT SIZING                                                                  */
+
+  /* *************************************************************************/
+  --rem-2: calc(2 / var(--font-size-base) * 1rem);
+  --rem-3: calc(3 / var(--font-size-base) * 1rem);
+  --rem-4: calc(4 / var(--font-size-base) * 1rem);
+  --rem-6: calc(6 / var(--font-size-base) * 1rem);
+  --rem-8: calc(8 / var(--font-size-base) * 1rem);
+  --rem-10: calc(10 / var(--font-size-base) * 1rem);
+  --rem-11: calc(11 / var(--font-size-base) * 1rem);
+  --rem-12: calc(12 / var(--font-size-base) * 1rem);
+  --rem-13: calc(13 / var(--font-size-base) * 1rem);
+  --rem-14: calc(14 / var(--font-size-base) * 1rem);
+  --rem-16: calc(16 / var(--font-size-base) * 1rem);
+  --rem-18: calc(18 / var(--font-size-base) * 1rem);
+  --rem-20: calc(20 / var(--font-size-base) * 1rem);
+  --rem-22: calc(22 / var(--font-size-base) * 1rem);
+  --rem-23: calc(23 / var(--font-size-base) * 1rem);
+  --rem-24: calc(24 / var(--font-size-base) * 1rem);
+  --rem-25: calc(25 / var(--font-size-base) * 1rem);
+  --rem-26: calc(26 / var(--font-size-base) * 1rem);
+  --rem-28: calc(28 / var(--font-size-base) * 1rem);
+  --rem-30: calc(30 / var(--font-size-base) * 1rem);
+  --rem-32: calc(32 / var(--font-size-base) * 1rem);
+  --rem-35: calc(35 / var(--font-size-base) * 1rem);
+  --rem-36: calc(36 / var(--font-size-base) * 1rem);
+  --rem-38: calc(38 / var(--font-size-base) * 1rem);
+  --rem-40: calc(40 / var(--font-size-base) * 1rem);
+  --rem-48: calc(48 / var(--font-size-base) * 1rem);
+  --rem-50: calc(50 / var(--font-size-base) * 1rem);
+  --rem-52: calc(52 / var(--font-size-base) * 1rem);
+  --rem-60: calc(60 / var(--font-size-base) * 1rem);
+  --rem-64: calc(64 / var(--font-size-base) * 1rem);
+  --rem-80: calc(80 / var(--font-size-base) * 1rem);
+  --rem-120: calc(120 / var(--font-size-base) * 1rem);
+
+  /* *************************************************************************/
+
   /* ANIMATIONS                                                              */
 
   /* *************************************************************************/

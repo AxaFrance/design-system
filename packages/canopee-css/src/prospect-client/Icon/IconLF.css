@@ -6,7 +6,7 @@
 
 .af-icon--small {
   &.af-icon--has-background {
-    --icon-padding: calc(8 / var(--font-size-base) * 1rem);
+    --icon-padding: var(--rem-8);
   }
 }
 
