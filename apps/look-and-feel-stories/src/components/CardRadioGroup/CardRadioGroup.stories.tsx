@@ -34,7 +34,7 @@ const meta: Meta = {
   title: "Components/Form/Radio/CardRadioGroup",
   component: CardRadioGroup,
   argTypes: {
-    type: {
+    cardStyle: {
       control: { type: "inline-radio" },
       options: ["vertical", "horizontal"],
       table: {
@@ -84,7 +84,7 @@ const meta: Meta = {
     },
   },
   args: {
-    type: "vertical",
+    cardStyle: "vertical",
     label: "Label",
     description: "Description",
     name: "name",
@@ -99,12 +99,11 @@ export default meta;
 
 export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadioGroup>> = {
   name: "Playground",
-  render: ({ description, error, name, type, ...args }) => (
+  render: ({ description, error, name, ...args }) => (
     <CardRadioGroup
       description={description !== "" ? description : undefined}
       error={error !== "" ? error : undefined}
       name={name !== "" ? name : undefined}
-      type={type === "horizontal" ? type : undefined}
       {...args}
     />
   ),

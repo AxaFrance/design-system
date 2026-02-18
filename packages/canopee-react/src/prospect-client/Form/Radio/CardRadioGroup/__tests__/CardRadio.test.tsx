@@ -62,7 +62,7 @@ describe("Radio card Component", () => {
   it("should force the checked state of the radio card", () => {
     render(
       <CardRadio
-        type="vertical"
+        cardStyle="vertical"
         name="cities"
         label="Choose a city"
         options={[

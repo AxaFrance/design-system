@@ -29,7 +29,11 @@ export type CardRadioGroupProps = Omit<
   | "subtitle"
   | "children"
 > & {
+  /**
+   * @deprecated Use `position` and `cardStyle` instead.
+   */
   type?: "vertical" | "horizontal";
+  cardStyle?: CardRadioOptionProps["position"];
   /**
    * @deprecated Use `label` instead.
    */
@@ -70,6 +74,7 @@ const CardRadioGroupCommon = ({
   isRequired,
   required,
   options,
+  cardStyle,
   type = "vertical",
   error,
   message,
@@ -82,8 +87,9 @@ const CardRadioGroupCommon = ({
   ...inputProps
 }: CardRadioCommonProps) => {
   const generatedId = useId();
-  const cardRadioId = id ?? generatedId;
-  const messageId = `${cardRadioId}-error`;
+  const cardRadioGroupId = id ?? generatedId;
+  const messageId = `${cardRadioGroupId}-error`;
+  const cardRadioGroupCardStyle = cardStyle ?? type;
 
   const hasError =
     (Boolean(message) && messageType === "error") || Boolean(error);
@@ -95,7 +101,7 @@ const CardRadioGroupCommon = ({
       aria-required={Boolean(required) || undefined}
       aria-invalid={hasError || undefined}
       aria-errormessage={hasError ? messageId : undefined}
-      id={cardRadioId}
+      id={cardRadioGroupId}
     >
       <legend className="af-card-radio-group__legend">
         <p className="af-card-radio-group__label">
@@ -114,13 +120,13 @@ const CardRadioGroupCommon = ({
       <div
         className={[
           "af-card-radio-group__options",
-          `af-card-radio-group__options--${type}`,
+          `af-card-radio-group__options--${cardRadioGroupCardStyle}`,
         ].join(" ")}
       >
         {options.map((cardRadioItemProps) => (
           <CardRadioOptionComponent
-            key={`${name ?? cardRadioId}-${cardRadioItemProps.label}`}
-            id={`${cardRadioId}-${cardRadioItemProps.value}`}
+            key={`${name ?? cardRadioGroupId}-${cardRadioItemProps.label}`}
+            id={`${cardRadioGroupId}-${cardRadioItemProps.value}`}
             checked={
               value !== undefined
                 ? value === cardRadioItemProps.value
@@ -129,7 +135,7 @@ const CardRadioGroupCommon = ({
             required={required}
             {...inputProps}
             {...(cardRadioItemProps as CardRadioOptionProps)}
-            position={type}
+            position={cardRadioGroupCardStyle}
             isInvalid={hasError}
             name={name}
           />
