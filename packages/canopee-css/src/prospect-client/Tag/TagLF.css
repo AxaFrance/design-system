@@ -5,11 +5,11 @@
 }
 
 .af-tag__label {
-  --tag-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --tag-font-size: var(--rem-14);
   --tag-line-height: calc(var(--tag-font-size) * 1.25);
 
   @media (--desktop-small) {
-    --tag-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --tag-font-size: var(--rem-16);
   }
 }
 

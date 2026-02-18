@@ -1,7 +1,7 @@
 @import "./StepperCommon.css";
 
 .af-stepper {
-  --stepper-gap: calc(12 / var(--font-size-base) * 1rem);
+  --stepper-gap: var(--rem-12);
 }
 
 .af-stepper__header {
@@ -10,42 +10,42 @@
 
 .af-stepper__title {
   --title-font-family: var(--font-family-publico);
-  --title-font-size: calc(24 / var(--font-size-base) * 1rem);
+  --title-font-size: var(--rem-24);
   --title-font-weight: 700;
-  --title-line-height: calc(30 / var(--font-size-base) * 1rem);
+  --title-line-height: var(--rem-30);
   --title-color: var(--blue-1000);
 }
 
 .af-stepper__subtitle {
   --subtitle-font-family: var(--font-family-sans-serif);
-  --subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --subtitle-font-size: var(--rem-16);
   --subtitle-color: var(--gray-800);
 }
 
 .af-stepper__helper {
   --helper-font-family: var(--font-family-sans-serif);
-  --helper-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --helper-font-size: var(--rem-14);
   --helper-color: var(--gray-800);
 }
 
 @media (--desktop-small) {
   .af-stepper {
-    --stepper-gap: calc(16 / var(--font-size-base) * 1rem);
+    --stepper-gap: var(--rem-16);
   }
 
   .af-stepper__title {
-    --title-font-size: calc(32 / var(--font-size-base) * 1rem);
-    --title-line-height: calc(40 / var(--font-size-base) * 1rem);
+    --title-font-size: var(--rem-32);
+    --title-line-height: var(--rem-40);
   }
 
   .af-stepper__subtitle {
-    --subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
-    --subtitle-line-height: calc(20 / var(--font-size-base) * 1rem);
+    --subtitle-font-size: var(--rem-18);
+    --subtitle-line-height: var(--rem-20);
   }
 
   .af-stepper__helper {
     --helper-font-family: var(--font-family-sans-serif);
-    --helper-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --helper-font-size: var(--rem-16);
     --helper-color: var(--gray-800);
   }
 }

@@ -1,13 +1,9 @@
 @import "./AccordionContextualCommon.css";
 
 .af-apollo-accordion {
-  --accordion-contextual-title-font-size: calc(
-    16 / var(--font-size-base) * 1rem
-  );
+  --accordion-contextual-title-font-size: var(--rem-16);
   @media (--desktop-small) {
-    --accordion-contextual-title-font-size: calc(
-      18 / var(--font-size-base) * 1rem
-    );
+    --accordion-contextual-title-font-size: var(--rem-18);
   }
 }
 

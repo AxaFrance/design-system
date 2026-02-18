@@ -1,7 +1,7 @@
 .af-click-icon {
   display: grid;
   width: fit-content;
-  padding: calc(8 / var(--font-size-base) * 1rem);
+  padding: var(--rem-8);
   border: 0;
   border-radius: 100vmax;
   background-color: var(--click-icon-background-color);
@@ -16,7 +16,7 @@
   }
 
   &.af-click-icon--extra-small {
-    padding: calc(4 / var(--font-size-base) * 1rem);
+    padding: var(--rem-4);
   }
 
   &:focus-visible {

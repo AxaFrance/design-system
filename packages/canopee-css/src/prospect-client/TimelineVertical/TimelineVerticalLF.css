@@ -1,23 +1,17 @@
 @import "./TimelineVerticalCommon.css";
 
 .af-timeline-vertical {
-  --timeline-vertical-padding: calc(16 / var(--font-size-base) * 1rem);
+  --timeline-vertical-padding: var(--rem-16);
   --timeline-vertical-title-color: var(--gray-1000);
-  --timeline-vertical-title-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --timeline-vertical-title-font-size: var(--rem-16);
   --timeline-vertical-description-color: var(--gray-800);
-  --timeline-vertical-description-font-size: calc(
-    16 / var(--font-size-base) * 1rem
-  );
+  --timeline-vertical-description-font-size: var(--rem-16);
   --timeline-vertical-bg-color: var(--white-1000);
   --timeline-vertical-border-color: var(--blue-200);
 
   @media (--desktop-small) {
-    --timeline-vertical-padding: calc(24 / var(--font-size-base) * 1rem);
-    --timeline-vertical-title-font-size: calc(
-      18 / var(--font-size-base) * 1rem
-    );
-    --timeline-vertical-description-font-size: calc(
-      18 / var(--font-size-base) * 1rem
-    );
+    --timeline-vertical-padding: var(--rem-24);
+    --timeline-vertical-title-font-size: var(--rem-18);
+    --timeline-vertical-description-font-size: var(--rem-18);
   }
 }

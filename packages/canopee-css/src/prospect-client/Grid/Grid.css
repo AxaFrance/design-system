@@ -12,9 +12,9 @@ Its MOBILE FIRST approach, so the defauts values target the mobile.
 ******************************************************************************* */
 
 .grid {
-  --col-gap: calc(8 / var(--font-size-base) * 1rem);
-  --row-gap: calc(16 / var(--font-size-base) * 1rem);
-  --margin-inline: calc(16 / var(--font-size-base) * 1rem);
+  --col-gap: var(--rem-8);
+  --row-gap: var(--rem-16);
+  --margin-inline: var(--rem-16);
   --cols: 4;
   --start: auto;
 
@@ -25,18 +25,18 @@ Its MOBILE FIRST approach, so the defauts values target the mobile.
 
   @media (--tablet) {
     --cols: 8;
-    --col-gap: calc(16 / var(--font-size-base) * 1rem);
-    --margin-inline: calc(60 / var(--font-size-base) * 1rem);
+    --col-gap: var(--rem-16);
+    --margin-inline: var(--rem-60);
   }
 
   @media (--desktop-small) {
-    --col-gap: calc(24 / var(--font-size-base) * 1rem);
-    --margin-inline: calc(80 / var(--font-size-base) * 1rem);
+    --col-gap: var(--rem-24);
+    --margin-inline: var(--rem-80);
     --cols: 12;
   }
 
   @media (--desktop-medium) {
-    --margin-inline: calc(120 / var(--font-size-base) * 1rem);
+    --margin-inline: var(--rem-120);
   }
 
   @media (--desktop-large) {

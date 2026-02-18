@@ -12,13 +12,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: calc(8 / var(--font-size-base) * 1rem);
+  gap: var(--rem-8);
 
   & > span {
     width: 41px;
     flex-shrink: 0;
     overflow: hidden;
-    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-16);
     font-weight: 600;
     line-height: 125%;
     white-space: nowrap;
@@ -27,7 +27,7 @@
   .af-progress-bar__progress {
     display: block;
     width: 100%;
-    height: calc(6 / var(--font-size-base) * 1rem);
+    height: var(--rem-6);
     border: none;
     border-radius: var(--radius-4);
     overflow: hidden;

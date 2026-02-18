@@ -4,7 +4,7 @@
   --radio-option-border-color: var(--gray-800);
   --radio-option-color-title: var(--gray-1000);
   --radio-option-color-subtitle: var(--gray-800);
-  --radio-option-gap: calc(8 / var(--font-size-base) * 1rem);
+  --radio-option-gap: var(--rem-8);
   --radio-option-border-radius: var(--radius-4);
   --radio-option-background-color: var(--white-1000);
 
@@ -16,17 +16,17 @@
 
   &:not(.af-card-radio-option--horizontal) .af-radio {
     position: absolute;
-    top: calc(12 / var(--font-size-base) * 1rem);
-    left: calc(12 / var(--font-size-base) * 1rem);
+    top: var(--rem-12);
+    left: var(--rem-12);
 
     @media (--desktop-small) {
-      top: calc(16 / var(--font-size-base) * 1rem);
-      left: calc(16 / var(--font-size-base) * 1rem);
+      top: var(--rem-16);
+      left: var(--rem-16);
     }
   }
 
   & .af-card-radio-option__content {
-    --radio-option-gap: calc(4 / var(--font-size-base) * 1rem);
+    --radio-option-gap: var(--rem-4);
   }
 
   &:has(input:checked) {
@@ -36,7 +36,7 @@
 }
 
 .af-card-radio-option--horizontal {
-  column-gap: calc(12 / var(--font-size-base) * 1rem);
+  column-gap: var(--rem-12);
 }
 
 .af-card-radio-option--invalid:not(:has(input:checked)) {

@@ -1,7 +1,7 @@
 .af-card-radio {
   display: flex;
   flex-direction: column;
-  gap: calc(8 / var(--font-size-base) * 1rem);
+  gap: var(--rem-8);
 }
 
 .af-card-radio__legend {
@@ -14,24 +14,24 @@
 
 .af-card-radio__label {
   display: inline;
-  font-size: calc(18 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-18);
   font-weight: 600;
   color: var(--card-radio-color);
 
   span {
-    margin-left: calc(4 / var(--font-size-base) * 1rem);
+    margin-left: var(--rem-4);
   }
 }
 
 .af-card-radio__description {
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-16);
   font-weight: 400;
-  line-height: calc(16 / var(--font-size-base) * 1rem);
+  line-height: var(--rem-16);
   color: var(--card-radio-color);
 
   @media (--desktop-small) {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
-    line-height: calc(18 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-18);
+    line-height: var(--rem-18);
   }
 }
 

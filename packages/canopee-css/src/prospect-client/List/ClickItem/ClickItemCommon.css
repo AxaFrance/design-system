@@ -5,7 +5,7 @@
   border: none;
   flex-direction: row;
   align-items: center;
-  gap: calc(12 / var(--font-size-base) * 1rem);
+  gap: var(--rem-12);
   font-family: var(--font-family-base);
   background: none;
   cursor: pointer;
@@ -23,7 +23,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: calc(2 / var(--font-size-base) * 1rem);
+  gap: var(--rem-2);
 }
 
 .af-apollo-click-item__title {
@@ -55,7 +55,7 @@
 }
 
 .af-apollo-click-item__tag-container {
-  padding-top: calc(6 / var(--font-size-base) * 1rem);
+  padding-top: var(--rem-6);
 }
 
 .af-apollo-click-item--small {

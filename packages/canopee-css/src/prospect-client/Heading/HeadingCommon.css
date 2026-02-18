@@ -1,12 +1,12 @@
 .af-heading {
-  --heading-column-gap: calc(8 / var(--font-size-base) * 1rem);
+  --heading-column-gap: var(--rem-8);
 
   display: grid;
   align-items: start;
-  gap: calc(8 / var(--font-size-base) * 1rem) var(--heading-column-gap);
+  gap: var(--rem-8) var(--heading-column-gap);
 
   &:has(h1) {
-    --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+    --heading-column-gap: var(--rem-12);
   }
 
   &:has(.af-heading__icon) {
@@ -17,7 +17,7 @@
 .af-heading__title-container {
   display: grid;
   grid-column: var(--heading-grid-column);
-  row-gap: calc(4 / var(--font-size-base) * 1rem);
+  row-gap: var(--rem-4);
 
   &:not(:has(.af-heading__subtitle)) {
     align-self: center;
@@ -50,14 +50,14 @@
 }
 
 .af-heading__label {
-  margin-block-end: calc(4 / var(--font-size-base) * 1rem);
+  margin-block-end: var(--rem-4);
   grid-column: span 3;
 }
 
 @media (--desktop-small) {
   .af-heading {
     &:has(h2) {
-      --heading-column-gap: calc(12 / var(--font-size-base) * 1rem);
+      --heading-column-gap: var(--rem-12);
     }
   }
 }

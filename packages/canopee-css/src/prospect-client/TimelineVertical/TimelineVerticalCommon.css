@@ -3,7 +3,7 @@
   padding: var(--timeline-vertical-padding);
   border: 1px solid var(--timeline-vertical-border-color);
   border-radius: var(--radius-8);
-  row-gap: calc(16 / var(--font-size-base) * 1rem);
+  row-gap: var(--rem-16);
   background-color: var(--timeline-vertical-bg-color);
 }
 

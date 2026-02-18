@@ -5,30 +5,24 @@
   --accordion-info2-text-color: var(--green-1000);
   --accordion-title-text-color: var(--gray-1000);
   --accordion-subtitle-text-color: var(--gray-800);
-  --accordion-title-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --accordion-subtitle-font-size: calc(14 / var(--font-size-base) * 1rem);
-  --accordion-info2-font-size: calc(16 / var(--font-size-base) * 1rem);
-  --accordion-info1-font-size-secondary: calc(
-    14 / var(--font-size-base) * 1rem
-  );
+  --accordion-title-font-size: var(--rem-16);
+  --accordion-subtitle-font-size: var(--rem-14);
+  --accordion-info2-font-size: var(--rem-16);
+  --accordion-info1-font-size-secondary: var(--rem-14);
   --accordion-line-height: 1.25;
-  --accordion-gap: calc(4 / var(--font-size-base) * 1rem);
+  --accordion-gap: var(--rem-4);
 
   @media (--desktop-small) {
-    --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
-    --accordion-title-font-size: calc(18 / var(--font-size-base) * 1rem);
-    --accordion-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
-    --accordion-info2-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --accordion-column-gap: var(--rem-16);
+    --accordion-title-font-size: var(--rem-18);
+    --accordion-subtitle-font-size: var(--rem-16);
+    --accordion-info2-font-size: var(--rem-18);
   }
 
   .af-accordion__date {
-    --accordion-secondary-date-font-size: calc(
-      16 / var(--font-size-base) * 1rem
-    );
+    --accordion-secondary-date-font-size: var(--rem-16);
     @media (--desktop-small) {
-      --accordion-secondary-date-font-size: calc(
-        16 / var(--font-size-base) * 1rem
-      );
+      --accordion-secondary-date-font-size: var(--rem-16);
     }
   }
 }
@@ -37,31 +31,25 @@
   --accordion-title-text-color: var(--gray-1000);
 
   .af-apollo-accordion__info1 {
-    --accordion-info1-text-size: calc(14 / var(--font-size-base) * 1rem);
+    --accordion-info1-text-size: var(--rem-14);
   }
 }
 
 .af-apollo-accordion--secondary {
   --accordion-title-text-color: var(--gray-1000);
   --accordion-date-text-color: var(--gray-800);
-  --accordion-secondary-date-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --accordion-secondary-date-font-size: var(--rem-14);
 
   .af-apollo-accordion__summary .af-accordion {
     @media (--desktop-small) {
-      --accordion-secondary-date-font-size: calc(
-        18 / var(--font-size-base) * 1rem
-      );
+      --accordion-secondary-date-font-size: var(--rem-18);
     }
   }
 
   .af-apollo-accordion__summary .af-accordion__date {
-    --accordion-secondary-date-font-size: calc(
-      16 / var(--font-size-base) * 1rem
-    );
+    --accordion-secondary-date-font-size: var(--rem-16);
     @media (--desktop-small) {
-      --accordion-secondary-date-font-size: calc(
-        18 / var(--font-size-base) * 1rem
-      );
+      --accordion-secondary-date-font-size: var(--rem-18);
     }
   }
 }

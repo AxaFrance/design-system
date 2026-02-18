@@ -2,7 +2,7 @@
   list-style-type: none;
 
   @media (--desktop-small) {
-    padding: calc(24 / var(--font-size-base) * 1rem);
+    padding: var(--rem-24);
   }
 }
 

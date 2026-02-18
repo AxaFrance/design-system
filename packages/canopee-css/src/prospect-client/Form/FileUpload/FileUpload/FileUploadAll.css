@@ -1,7 +1,7 @@
 .af-file-upload {
   .af-file-list__title {
     margin: 0;
-    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-18);
     font-weight: 600;
     line-height: 125%;
   }

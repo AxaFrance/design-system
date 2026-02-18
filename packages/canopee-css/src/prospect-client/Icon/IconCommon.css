@@ -1,8 +1,8 @@
 .af-icon {
-  --icon-size-large: calc(40 / var(--font-size-base) * 1rem);
-  --icon-size-medium: calc(32 / var(--font-size-base) * 1rem);
-  --icon-size-small: calc(24 / var(--font-size-base) * 1rem);
-  --icon-size-extra-small: calc(16 / var(--font-size-base) * 1rem);
+  --icon-size-large: var(--rem-40);
+  --icon-size-medium: var(--rem-32);
+  --icon-size-small: var(--rem-24);
+  --icon-size-extra-small: var(--rem-16);
   --icon-size: var(--icon-size-small);
 
   display: grid;
@@ -23,7 +23,7 @@
   --icon-size: var(--icon-size-large);
 
   &.af-icon--has-background {
-    --icon-padding: calc(12 / var(--font-size-base) * 1rem);
+    --icon-padding: var(--rem-12);
   }
 }
 
@@ -31,7 +31,7 @@
   --icon-size: var(--icon-size-medium);
 
   &.af-icon--has-background {
-    --icon-padding: calc(12 / var(--font-size-base) * 1rem);
+    --icon-padding: var(--rem-12);
   }
 }
 
@@ -43,7 +43,7 @@
   --icon-size: var(--icon-size-extra-small);
 
   &.af-icon--has-background {
-    --icon-padding: calc(8 / var(--font-size-base) * 1rem);
+    --icon-padding: var(--rem-8);
   }
 }
 

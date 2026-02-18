@@ -4,35 +4,35 @@
   --heading-grid-column: 1;
   --heading-title-color: var(--gray-1000);
   --heading-subtitle-color: var(--gray-1000);
-  --heading-subtitle-font-size: calc(16 / var(--font-size-base) * 1rem);
+  --heading-subtitle-font-size: var(--rem-16);
 
   h1 {
     --heading-title-color: var(--blue-1000);
-    --heading-title-font-size: calc(32 / var(--font-size-base) * 1rem);
-    --heading-title-line-height: calc(40 / var(--font-size-base) * 1rem);
+    --heading-title-font-size: var(--rem-32);
+    --heading-title-line-height: var(--rem-40);
     --heading-title-font-weight: 700;
     --heading-title-font-family: var(--font-family-publico-headline);
   }
 
   h2 {
     --heading-title-color: var(--blue-1000);
-    --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
-    --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
+    --heading-title-font-size: var(--rem-24);
+    --heading-title-line-height: var(--rem-30);
     --heading-title-font-weight: 300;
     --heading-title-font-family: var(--font-family-publico);
   }
 
   h3 {
     --heading-title-color: var(--blue-1000);
-    --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
-    --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
+    --heading-title-font-size: var(--rem-24);
+    --heading-title-line-height: var(--rem-30);
     --heading-title-font-weight: 600;
     --heading-title-font-family: var(--font-family-base);
   }
 
   h4 {
-    --heading-title-font-size: calc(20 / var(--font-size-base) * 1rem);
-    --heading-title-line-height: calc(25 / var(--font-size-base) * 1rem);
+    --heading-title-font-size: var(--rem-20);
+    --heading-title-line-height: var(--rem-25);
     --heading-title-font-weight: 600;
     --heading-title-font-family: var(--font-family-base);
   }
@@ -42,26 +42,26 @@
   }
 
   @media (--desktop-small) {
-    --heading-subtitle-font-size: calc(18 / var(--font-size-base) * 1rem);
+    --heading-subtitle-font-size: var(--rem-18);
 
     h1 {
-      --heading-title-font-size: calc(48 / var(--font-size-base) * 1rem);
-      --heading-title-line-height: calc(60 / var(--font-size-base) * 1rem);
+      --heading-title-font-size: var(--rem-48);
+      --heading-title-line-height: var(--rem-60);
     }
 
     h2 {
-      --heading-title-font-size: calc(40 / var(--font-size-base) * 1rem);
-      --heading-title-line-height: calc(50 / var(--font-size-base) * 1rem);
+      --heading-title-font-size: var(--rem-40);
+      --heading-title-line-height: var(--rem-50);
     }
 
     h3 {
-      --heading-title-font-size: calc(32 / var(--font-size-base) * 1rem);
-      --heading-title-line-height: calc(40 / var(--font-size-base) * 1rem);
+      --heading-title-font-size: var(--rem-32);
+      --heading-title-line-height: var(--rem-40);
     }
 
     h4 {
-      --heading-title-font-size: calc(24 / var(--font-size-base) * 1rem);
-      --heading-title-line-height: calc(30 / var(--font-size-base) * 1rem);
+      --heading-title-font-size: var(--rem-24);
+      --heading-title-line-height: var(--rem-30);
     }
   }
 }

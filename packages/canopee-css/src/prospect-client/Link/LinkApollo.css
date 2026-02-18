@@ -13,7 +13,7 @@
 .af-link--default {
   --link-line-height: 125%;
   @media (--desktop-small) {
-    --link-line-height: calc(24 / var(--font-size-base) * 1rem);
+    --link-line-height: var(--rem-24);
   }
 
   &:hover {
@@ -27,9 +27,9 @@
 }
 
 .af-link--underline {
-  --link-line-height: calc(20 / var(--font-size-base) * 1rem);
+  --link-line-height: var(--rem-20);
   @media (--desktop-small) {
-    --link-line-height: calc(24 / var(--font-size-base) * 1rem);
+    --link-line-height: var(--rem-24);
   }
 
   &:hover {
@@ -49,9 +49,9 @@
   &:hover,
   &:active,
   &:focus {
-    --link-line-height: calc(20 / var(--font-size-base) * 1rem);
+    --link-line-height: var(--rem-20);
     @media (--desktop-small) {
-      --link-line-height: calc(24 / var(--font-size-base) * 1rem);
+      --link-line-height: var(--rem-24);
     }
   }
 }
