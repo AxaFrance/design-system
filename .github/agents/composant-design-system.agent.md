@@ -644,7 +644,7 @@ packages/canopee-css/src/prospect-client/MonComposant/
   - Utiliser exclusivement les tokens primitifs du thème concerné (ex : `--axa-blue-100`, `--color-blue-1`, etc.)
   - Ces tokens sont définis dans :
     - Prospect : `packages/canopee-css/src/prospect-client/common/tokens.css`
-    - Client : `packages/canopee-css/src/prospect-client/common/tokensLF.css`
+    - Client : `packages/canopee-css/src/prospect-client/common/tokens.css`
     - Distributeur : `packages/canopee-css/src/distributeur/common/tokens.css`
   - **Interdiction d'utiliser des tokens fonctionnels ou des tokens primitifs d'un autre thème dans un fichier de thème**
   - le nommage du nom de token de surcharge doit toujours commencer par `--af-`, contenir le nom du composant, puis le nom de la propriété css et le tout doit être en kebab-case (ex : `--af-range-accent-color`)
