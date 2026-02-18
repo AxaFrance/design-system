@@ -11,10 +11,7 @@ import {
 } from "../../ItemMessage/ItemMessageCommon";
 import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
 
-type RadioOption = Omit<
-  CardRadioOptionProps,
-  "name" | "type" | "position" | "isInvalid"
->;
+type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
 
 export type CardRadioGroupProps = Omit<
   CardRadioOptionProps,
@@ -28,12 +25,14 @@ export type CardRadioGroupProps = Omit<
   | "description"
   | "subtitle"
   | "children"
+  | "position"
 > & {
   /**
    * @deprecated Use `position` and `cardStyle` instead.
    */
   type?: "vertical" | "horizontal";
   cardStyle?: CardRadioOptionProps["position"];
+  position?: "line" | "column";
   /**
    * @deprecated Use `label` instead.
    */
@@ -76,6 +75,7 @@ const CardRadioGroupCommon = ({
   options,
   cardStyle,
   type = "vertical",
+  position = cardStyle === "vertical" ? "column" : "line",
   error,
   message,
   messageType = "error",
@@ -89,7 +89,6 @@ const CardRadioGroupCommon = ({
   const generatedId = useId();
   const cardRadioGroupId = id ?? generatedId;
   const messageId = `${cardRadioGroupId}-error`;
-  const cardRadioGroupCardStyle = cardStyle ?? type;
 
   const hasError =
     (Boolean(message) && messageType === "error") || Boolean(error);
@@ -120,7 +119,7 @@ const CardRadioGroupCommon = ({
       <div
         className={[
           "af-card-radio-group__options",
-          `af-card-radio-group__options--${cardRadioGroupCardStyle}`,
+          `af-card-radio-group__options--${position}`,
         ].join(" ")}
       >
         {options.map((cardRadioItemProps) => (
@@ -133,9 +132,9 @@ const CardRadioGroupCommon = ({
                 : undefined
             }
             required={required}
+            position={cardStyle ?? type}
             {...inputProps}
             {...(cardRadioItemProps as CardRadioOptionProps)}
-            position={cardRadioGroupCardStyle}
             isInvalid={hasError}
             name={name}
           />

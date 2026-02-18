@@ -45,10 +45,10 @@
   }
 }
 
-.af-card-radio-group__options--vertical {
+.af-card-radio-group__options--column {
   flex-direction: row;
 }
 
-.af-card-radio-group__options--horizontal {
+.af-card-radio-group__options--line {
   flex-direction: column;
 }

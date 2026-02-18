@@ -42,6 +42,13 @@ const meta: Meta = {
         type: { summary: '"vertical" | "horizontal"' },
       },
     },
+    position: {
+      control: { type: "inline-radio" },
+      options: ["column", "line"],
+      table: {
+        type: { summary: '"column" | "line"' },
+      },
+    },
     label: {
       control: "text",
     },
@@ -85,6 +92,7 @@ const meta: Meta = {
   },
   args: {
     cardStyle: "vertical",
+    position: "column",
     label: "Label",
     description: "Description",
     name: "name",

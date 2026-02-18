@@ -133,6 +133,40 @@ describe("Radio card Component", () => {
     expect(radiogroup).toBeRequired();
   });
 
+  it("should derive position class from explicit `position` prop", () => {
+    const { container } = render(
+      <CardRadio
+        options={radioOptions}
+        label="Choose a city"
+        position="line"
+      />,
+    );
+
+    const options = container.querySelector(".af-card-radio-group__options");
+    expect(options).toHaveClass("af-card-radio-group__options--line");
+  });
+
+  it.each([
+    { cardStyleValue: "vertical", expectedClassSuffix: "column" },
+    { cardStyleValue: "horizontal", expectedClassSuffix: "line" },
+  ])(
+    "should derive position class from `cardStyle` when `position` not provided ($cardStyleValue -> $expectedClassSuffix)",
+    ({ cardStyleValue, expectedClassSuffix }) => {
+      const { container } = render(
+        <CardRadio
+          options={radioOptions}
+          label="Choose a city"
+          cardStyle={cardStyleValue as CardRadioGroupProps["cardStyle"]}
+        />,
+      );
+
+      const options = container.querySelector(".af-card-radio-group__options");
+      expect(options).toHaveClass(
+        `af-card-radio-group__options--${expectedClassSuffix}`,
+      );
+    },
+  );
+
   it("should display message with error type by default", () => {
     render(
       <CardRadio
