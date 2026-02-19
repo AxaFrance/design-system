@@ -130,3 +130,9 @@ export { Loader } from "./distributeur/Loader/Loader";
 
 export { CardData } from "./distributeur/CardData/CardData";
 export type { CardDataVariant } from "./distributeur/CardData/CardData";
+
+export {
+  EditorialMessage,
+  type EditorialMessageProps,
+  type EditorialMessageType,
+} from "./distributeur/EditorialMessage/EditorialMessage";

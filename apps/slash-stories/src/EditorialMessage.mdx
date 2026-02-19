@@ -1,0 +1,85 @@
+import { EditorialMessage } from "@axa-fr/canopee-react/distributeur";
+import {
+  Description,
+  Primary,
+  Stories,
+  Subtitle,
+  Title,
+} from "@storybook/addon-docs/blocks";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as EditorialMessageStories from "./EditorialMessage.stories";
+
+<Meta of={EditorialMessageStories} />
+
+<Title />
+<Subtitle of={EditorialMessageStories} />
+<Description of={EditorialMessageStories} />
+
+## Import
+
+```tsx title="App.tsx"
+import { EditorialMessage } from "@axa-fr/canopee-react/distributeur/";
+```
+
+## Use
+
+```tsx title="App.tsx"
+export const EditorialMessageComponent = () => (
+  <EditorialMessage type="ecoconception">
+    This service is eco-designed to minimize its environmental impact.
+  </EditorialMessage>
+);
+```
+
+## Types
+
+There are 3 types available for the `EditorialMessage` component:
+
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>Types</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ecoconception</td>
+      <td>Displays an eco-conception message</td>
+    </tr>
+    <tr>
+      <td>accessibility</td>
+      <td>Displays an accessibility message</td>
+    </tr>
+    <tr>
+      <td>promotion</td>
+      <td>Displays a promotional message</td>
+    </tr>
+  </tbody>
+</table>
+
+## Playground
+
+<Canvas of={EditorialMessageStories.Green} />
+<Controls of={EditorialMessageStories.Green} />
+
+## Examples
+
+### Ecoconception
+
+<Canvas of={EditorialMessageStories.Green} />
+
+### Accessibility
+
+<Canvas of={EditorialMessageStories.Information} />
+
+### Promotion
+
+<Canvas of={EditorialMessageStories.Promotion} />
+
+### Optional content
+
+At least one of `title` or `children` props must be provided. But the other one is optional.
+
+<Canvas of={EditorialMessageStories.NoTitle} />
+<Canvas of={EditorialMessageStories.NoContent} />
