@@ -1,0 +1,25 @@
+@import "./TableMobileCardCommon.css";
+
+.af-table-mobile-card {
+  --table-card-text-color: var(--color-gray-900);
+  --table-card-border: var(--color-gray-1);
+  --table-card-drow-border-color: var(--color-blue-400);
+
+  &.af-table-mobile-card--white .af-table-mobile-card__drow {
+    --table-card-drow-background-color: var(--color-white);
+  }
+
+  &.af-table-mobile-card--blue .af-table-mobile-card__drow {
+    --table-card-drow-background-color: var(--color-btn-tertiary-bg-lighter);
+  }
+
+  &.af-table-mobile-card--alternate {
+    .af-table-mobile-card__drow:nth-child(even) {
+      --table-card-drow-background-color: var(--color-btn-tertiary-bg-lighter);
+    }
+
+    .af-table-mobile-card__drow:nth-child(odd) {
+      --table-card-drow-background-color: var(--color-white);
+    }
+  }
+}

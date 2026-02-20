@@ -1,0 +1,32 @@
+.table-scroll {
+  margin-inline: calc(-1 * var(--margin-inline));
+  padding-inline: var(--margin-inline);
+  overflow: auto hidden;
+}
+
+main.table-page {
+  --font-size-base: 16;
+
+  padding-block: calc(40 / var(--font-size-base) * 1rem);
+
+  @media (width > 1023px) {
+    padding-block: calc(48 / var(--font-size-base) * 1rem);
+  }
+
+  > section.subgrid {
+    row-gap: calc(28 / var(--font-size-base) * 1rem);
+
+    @media (width > 1023px) {
+      --row-gap: calc(48 / var(--font-size-base) * 1rem);
+    }
+
+    .table-page__dropdown {
+      --cols: 4;
+    }
+
+    .table-page__pagination {
+      width: fit-content;
+      justify-self: center;
+    }
+  }
+}

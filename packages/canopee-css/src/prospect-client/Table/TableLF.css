@@ -1,0 +1,33 @@
+@import "./TableCommon.css";
+
+.af-table {
+  --table-header-text-color-blue: var(--color-axa);
+  --table-header-text-color-gray: var(--color-gray-900);
+  --table-header-bg-gray: var(--color-gray-200);
+  --table-header-bg-blue: var(--color-btn-tertiary-bg-darker);
+  --table-tr-border-color: var(--color-gray-400);
+
+  .af-table__tbody {
+    --table-body-text-color: var(--color-gray-900);
+  }
+
+  & .af-table__tbody--white .af-table__tr,
+  & .af-table__td--white {
+    --table-body-bg-color: var(--color-white);
+  }
+
+  & .af-table__tbody--blue .af-table__tr,
+  & .af-table__td--blue {
+    --table-body-bg-color: var(--color-blue-2);
+  }
+
+  & .af-table__tbody--alternate .af-table__tr {
+    &:nth-child(even) {
+      --table-body-bg-color: var(--color-blue-2);
+    }
+
+    &:nth-child(odd) {
+      --table-body-bg-color: var(--color-white);
+    }
+  }
+}

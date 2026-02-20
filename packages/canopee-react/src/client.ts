@@ -155,6 +155,17 @@ export {
   type SkeletonListProps,
 } from "./prospect-client/SkeletonList/SkeletonListLF";
 export {
+  Table,
+  type TableProps,
+  type HeadColorVariants,
+  type BodyColorVariants,
+  type RowSizeVariants,
+} from "./prospect-client/Table/TableLF";
+export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetLF";
+export {
+  TableMobileCard,
+  type TableMobileCardProps,
+} from "./prospect-client/TableMobileCard/TableMobileCardLF";
