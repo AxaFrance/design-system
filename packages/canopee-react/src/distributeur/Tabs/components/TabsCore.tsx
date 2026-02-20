@@ -1,39 +1,41 @@
-import React, { useState } from "react";
-import { TabsStateless, TabsStatelessProps } from "./TabsStateless";
+import React, { type FormEvent, useEffect, useState } from "react";
+import { TabsStateless, type TabsStatelessProps } from "./TabsStateless";
 
 const DEFAULT_ACTIVE_INDEX = "0";
 
 type Tabs = {
-  onChange?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange?: (event: FormEvent<HTMLButtonElement>) => void;
   activeIndex?: string;
 };
 
 export type TabsCoreProps = Tabs & Omit<TabsStatelessProps, "activeIndex">;
 
-export const onChangeEvent =
-  (onChange?: (event: React.MouseEvent<HTMLButtonElement>) => void) =>
-  (setState: (newValue: string) => void) =>
-  (event: React.MouseEvent<HTMLButtonElement>, index: string) => {
-    if (onChange) {
-      onChange(event);
-    }
-    if (index) {
-      setState(index);
-    }
-  };
-
 const TabsCore: React.FunctionComponent<TabsCoreProps> = ({
-  activeIndex = DEFAULT_ACTIVE_INDEX,
+  activeIndex: activeIndexProp = DEFAULT_ACTIVE_INDEX,
   onChange,
   ...otherProps
 }) => {
-  const [stateActiveIndex, setActiveIndex] = useState<string>(activeIndex);
+  const [activeIndex, setActiveIndex] = useState<number>(
+    Number(activeIndexProp),
+  );
+
+  // Allow to update activeIndex from props
+  useEffect(() => {
+    setActiveIndex(Number(activeIndexProp));
+  }, [activeIndexProp]);
 
   return (
     <TabsStateless
-      activeIndex={stateActiveIndex}
+      activeIndex={activeIndex}
       {...otherProps}
-      onChange={onChangeEvent(onChange)(setActiveIndex)}
+      onChange={(e, index) => {
+        if (onChange) {
+          onChange(e);
+        }
+        if (index >= 0) {
+          setActiveIndex(index);
+        }
+      }}
     />
   );
 };

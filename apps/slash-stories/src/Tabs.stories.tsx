@@ -1,4 +1,4 @@
-import { Badge, Tabs } from "@axa-fr/canopee-react/distributeur";
+import { Tabs, Tag } from "@axa-fr/canopee-react/distributeur";
 import { Meta, type StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
@@ -16,11 +16,7 @@ export default {
   },
 } as Meta;
 
-const TabTitleIconLeft = (
-  <span>
-    <i className="glyphicon glyphicon-ok" /> Title with left icon
-  </span>
-);
+const TabTitleIconLeft = <span>Title with left icon</span>;
 const TabTitleIconRight = (
   <span>
     Title with right icon <i className="glyphicon glyphicon-facetime-video" />
@@ -28,14 +24,14 @@ const TabTitleIconRight = (
 );
 const TabTitleBadge = (
   <span>
-    Title with badge <Badge classModifier="danger"> 42 </Badge>
+    Title with badge
+    <Tag variant="success">42</Tag>
   </span>
 );
 const TabTitleIconBadge = (
   <span>
     Title with badge and left icon
-    <Badge classModifier="error"> Lorem ipsum </Badge>
-    <i className="glyphicon glyphicon-facetime-video" />
+    <Tag variant="error"> Lorem ipsum </Tag>
   </span>
 );
 
@@ -60,7 +56,7 @@ export const ComplexTabs: StoryObj<typeof Tabs> = {
       </Tabs.Tab>
       <Tabs.Tab title={TabTitleBadge}>Content of my third tab </Tabs.Tab>
       <Tabs.Tab title={TabTitleIconBadge} classModifier="has-icon-left">
-        Content of my fifth tab
+        Content of my fourth tab
       </Tabs.Tab>
     </Tabs>
   ),
