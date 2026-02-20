@@ -4,15 +4,15 @@ import "@axa-fr/canopee-css/client/Grid/Grid.css";
 import "@fontsource/source-sans-pro";
 
 export {
-  AccordionContextual,
-  accordionContextualVariants,
-  type AccordionContextualVariants,
-} from "./prospect-client/AccordionContextual/AccordionContextualLF";
-export {
   Accordion,
   accordionVariants,
   type AccordionVariants,
 } from "./prospect-client/Accordion/AccordionLF";
+export {
+  AccordionContextual,
+  accordionContextualVariants,
+  type AccordionContextualVariants,
+} from "./prospect-client/AccordionContextual/AccordionContextualLF";
 export { AccordionCore } from "./prospect-client/AccordionCore/AccordionCoreLF";
 export { BasePicture } from "./prospect-client/BasePicture/BasePicture";
 export {
@@ -20,6 +20,7 @@ export {
   buttonVariants,
   type ButtonVariants,
 } from "./prospect-client/Button/ButtonLF";
+export { Card, type CardProps } from "./prospect-client/Card/CardLF";
 export {
   CardMessage,
   cardMessageVariants,
@@ -33,6 +34,10 @@ export {
 export { ContentItemMono } from "./prospect-client/ContentItemMono/ContentItemMonoLF";
 export { DataAgent } from "./prospect-client/DataAgent/DataAgentLF";
 export { Divider } from "./prospect-client/Divider/DividerLF";
+export {
+  Fieldset,
+  type FieldsetProps,
+} from "./prospect-client/Fieldset/FieldsetLF";
 export {
   CardCheckbox,
   /** @deprecated Use `CardCheckbox` instead. */
@@ -64,7 +69,11 @@ export {
   itemMessageVariants,
   type ItemMessageVariants,
 } from "./prospect-client/Form/ItemMessage/ItemMessageLF";
-export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioLF";
+export {
+  /** @deprecated Use `CardRadioGroup` instead. */
+  CardRadioGroup as CardRadio,
+  CardRadioGroup,
+} from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupLF";
 export { CardRadioOption } from "./prospect-client/Form/Radio/CardRadioOption/CardRadioOptionLF";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioLF";
 export { TextArea } from "./prospect-client/Form/TextArea/TextAreaLF";
@@ -89,6 +98,10 @@ export {
   type FooterProps,
 } from "./prospect-client/Layout/Footer/FooterLF";
 export {
+  LevelSelector,
+  type LevelSelectorProps,
+} from "./prospect-client/LevelSelector/LevelSelectorLF";
+export {
   Link,
   linkVariants,
   type LinkVariants,
@@ -101,6 +114,7 @@ export {
   type ClickItemVariants,
 } from "./prospect-client/List/ClickItem/ClickItemLF";
 export { ContentItemDuo } from "./prospect-client/List/ContentItemDuo/ContentItemDuoLF";
+export { List, type ListProps } from "./prospect-client/List/List/ListLF";
 export {
   Message,
   messageVariants,
@@ -113,8 +127,21 @@ export {
   ModalCoreFooter,
   ModalCoreHeader,
 } from "./prospect-client/Modal/ModalLF";
+export {
+  ItemPagination,
+  type ItemPaginationProps,
+} from "./prospect-client/Pagination/ItemPagination/ItemPaginationLF";
+export { Pagination } from "./prospect-client/Pagination/PaginationLF";
 export { ProgressBar } from "./prospect-client/ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./prospect-client/ProgressBarGroup/ProgressBarGroupLF";
+export {
+  Skeleton,
+  type SkeletonProps,
+} from "./prospect-client/Skeleton/SkeletonLF";
+export {
+  SkeletonList,
+  type SkeletonListProps,
+} from "./prospect-client/SkeletonList/SkeletonListLF";
 export {
   Spinner,
   spinnerVariants,
@@ -135,26 +162,3 @@ export {
 } from "./prospect-client/Tag/TagLF";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./prospect-client/Toggle/ToggleLF";
-export { Pagination } from "./prospect-client/Pagination/PaginationLF";
-export {
-  ItemPagination,
-  type ItemPaginationProps,
-} from "./prospect-client/Pagination/ItemPagination/ItemPaginationLF";
-export { Card, type CardProps } from "./prospect-client/Card/CardLF";
-export { List, type ListProps } from "./prospect-client/List/List/ListLF";
-export {
-  LevelSelector,
-  type LevelSelectorProps,
-} from "./prospect-client/LevelSelector/LevelSelectorLF";
-export {
-  Skeleton,
-  type SkeletonProps,
-} from "./prospect-client/Skeleton/SkeletonLF";
-export {
-  SkeletonList,
-  type SkeletonListProps,
-} from "./prospect-client/SkeletonList/SkeletonListLF";
-export {
-  Fieldset,
-  type FieldsetProps,
-} from "./prospect-client/Fieldset/FieldsetLF";

@@ -1,0 +1,9 @@
+@import "./CardRadioGroupCommon.css";
+
+.af-card-radio-group__label {
+  --card-radio-group-color: var(--gray-1000);
+}
+
+.af-card-radio-group__description {
+  --card-radio-group-color: var(--gray-800);
+}

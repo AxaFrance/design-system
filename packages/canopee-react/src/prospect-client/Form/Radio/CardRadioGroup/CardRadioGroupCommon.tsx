@@ -5,15 +5,15 @@ import {
   type ReactNode,
   useId,
 } from "react";
-import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
 import {
   ItemMessage,
   type ItemMessageProps,
 } from "../../ItemMessage/ItemMessageCommon";
+import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
 
 type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
 
-export type CardRadioProps = Omit<
+export type CardRadioGroupProps = Omit<
   CardRadioOptionProps,
   | "value"
   | "label"
@@ -25,8 +25,14 @@ export type CardRadioProps = Omit<
   | "description"
   | "subtitle"
   | "children"
+  | "position"
 > & {
+  /**
+   * @deprecated Use `position` and `cardStyle` instead.
+   */
   type?: "vertical" | "horizontal";
+  cardStyle?: CardRadioOptionProps["position"];
+  position?: "line" | "column";
   /**
    * @deprecated Use `label` instead.
    */
@@ -53,12 +59,12 @@ export type CardRadioProps = Omit<
 } & PropsWithChildren &
   Partial<ItemMessageProps>;
 
-export type CardRadioCommonProps = CardRadioProps & {
+export type CardRadioCommonProps = CardRadioGroupProps & {
   CardRadioOptionComponent: ComponentType<CardRadioOptionProps>;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-const CardRadioCommon = ({
+const CardRadioGroupCommon = ({
   className,
   labelGroup,
   descriptionGroup,
@@ -67,7 +73,9 @@ const CardRadioCommon = ({
   isRequired,
   required,
   options,
+  cardStyle,
   type = "vertical",
+  position = cardStyle === "vertical" ? "column" : "line",
   error,
   message,
   messageType = "error",
@@ -79,30 +87,30 @@ const CardRadioCommon = ({
   ...inputProps
 }: CardRadioCommonProps) => {
   const generatedId = useId();
-  const cardRadioId = id ?? generatedId;
-  const messageId = `${cardRadioId}-error`;
+  const cardRadioGroupId = id ?? generatedId;
+  const messageId = `${cardRadioGroupId}-error`;
 
   const hasError =
     (Boolean(message) && messageType === "error") || Boolean(error);
 
   return (
     <fieldset
-      className={["af-card-radio", className].filter(Boolean).join(" ")}
+      className={["af-card-radio-group", className].filter(Boolean).join(" ")}
       role="radiogroup"
       aria-required={Boolean(required) || undefined}
       aria-invalid={hasError || undefined}
       aria-errormessage={hasError ? messageId : undefined}
-      id={cardRadioId}
+      id={cardRadioGroupId}
     >
-      <legend className="af-card-radio__legend">
-        <p className="af-card-radio__label">
+      <legend className="af-card-radio-group__legend">
+        <p className="af-card-radio-group__label">
           {label}
           {labelGroup}
           {required || isRequired ? <span aria-hidden>*</span> : null}
         </p>
 
         {description || descriptionGroup ? (
-          <p className="af-card-radio__description">
+          <p className="af-card-radio-group__description">
             {description}
             {descriptionGroup}
           </p>
@@ -110,23 +118,23 @@ const CardRadioCommon = ({
       </legend>
       <div
         className={[
-          "af-card-radio__options",
-          `af-card-radio__options--${type}`,
+          "af-card-radio-group__options",
+          `af-card-radio-group__options--${position}`,
         ].join(" ")}
       >
         {options.map((cardRadioItemProps) => (
           <CardRadioOptionComponent
-            key={`${name ?? cardRadioId}-${cardRadioItemProps.label}`}
-            id={`${cardRadioId}-${cardRadioItemProps.value}`}
+            key={`${name ?? cardRadioGroupId}-${cardRadioItemProps.label}`}
+            id={`${cardRadioGroupId}-${cardRadioItemProps.value}`}
             checked={
               value !== undefined
                 ? value === cardRadioItemProps.value
                 : undefined
             }
             required={required}
+            position={cardStyle ?? type}
             {...inputProps}
             {...(cardRadioItemProps as CardRadioOptionProps)}
-            type={type as "horizontal"}
             isInvalid={hasError}
             name={name}
           />
@@ -141,6 +149,6 @@ const CardRadioCommon = ({
   );
 };
 
-CardRadioCommon.displayName = "CardRadioCommon";
+CardRadioGroupCommon.displayName = "CardRadioGroupCommon";
 
-export { CardRadioCommon };
+export { CardRadioGroupCommon };

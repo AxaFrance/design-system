@@ -19,7 +19,7 @@ main.example-form {
 .form__fields {
   --row-gap: 2rem;
 
-  .af-card-radio,
+  .af-card-radio-group,
   .af-form__input-container {
     --cols: 4;
 

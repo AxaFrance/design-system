@@ -5,7 +5,10 @@ import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
 import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
 import { CardRadioOption } from "../../CardRadioOption/CardRadioOptionApollo";
-import { CardRadioCommon, type CardRadioProps } from "../CardRadioCommon";
+import {
+  CardRadioGroupCommon,
+  type CardRadioGroupProps,
+} from "../CardRadioGroupCommon";
 
 describe("Radio card Component", () => {
   const radioOptions = [
@@ -24,8 +27,8 @@ describe("Radio card Component", () => {
       icon: homeIcons,
     },
   ];
-  const CardRadio = (props: CardRadioProps) => (
-    <CardRadioCommon
+  const CardRadio = (props: CardRadioGroupProps) => (
+    <CardRadioGroupCommon
       {...props}
       CardRadioOptionComponent={CardRadioOption}
       ItemMessageComponent={ItemMessage}
@@ -59,7 +62,7 @@ describe("Radio card Component", () => {
   it("should force the checked state of the radio card", () => {
     render(
       <CardRadio
-        type="vertical"
+        cardStyle="vertical"
         name="cities"
         label="Choose a city"
         options={[
@@ -129,6 +132,40 @@ describe("Radio card Component", () => {
     expect(radiogroup).toContainHTML("*");
     expect(radiogroup).toBeRequired();
   });
+
+  it("should derive position class from explicit `position` prop", () => {
+    const { container } = render(
+      <CardRadio
+        options={radioOptions}
+        label="Choose a city"
+        position="line"
+      />,
+    );
+
+    const options = container.querySelector(".af-card-radio-group__options");
+    expect(options).toHaveClass("af-card-radio-group__options--line");
+  });
+
+  it.each([
+    { cardStyleValue: "vertical", expectedClassSuffix: "column" },
+    { cardStyleValue: "horizontal", expectedClassSuffix: "line" },
+  ])(
+    "should derive position class from `cardStyle` when `position` not provided ($cardStyleValue -> $expectedClassSuffix)",
+    ({ cardStyleValue, expectedClassSuffix }) => {
+      const { container } = render(
+        <CardRadio
+          options={radioOptions}
+          label="Choose a city"
+          cardStyle={cardStyleValue as CardRadioGroupProps["cardStyle"]}
+        />,
+      );
+
+      const options = container.querySelector(".af-card-radio-group__options");
+      expect(options).toHaveClass(
+        `af-card-radio-group__options--${expectedClassSuffix}`,
+      );
+    },
+  );
 
   it("should display message with error type by default", () => {
     render(

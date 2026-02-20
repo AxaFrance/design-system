@@ -1,6 +1,6 @@
 import { CardRadioOption } from "@axa-fr/canopee-react/client";
-import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import accountBalanceIcon from "@material-symbols/svg-400/outlined/account_balance-fill.svg";
+import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
@@ -21,7 +21,7 @@ const meta: Meta<
     layout: "centered",
   },
   argTypes: {
-    type: {
+    position: {
       control: { type: "inline-radio" },
       options: ["vertical", "horizontal"],
     },
@@ -37,7 +37,7 @@ const meta: Meta<
     iconVariant: {
       control: { type: "inline-radio" },
       options: ["icon", "base picture"],
-      if: { arg: "type", eq: "horizontal" },
+      if: { arg: "position", eq: "horizontal" },
     },
     icon: {
       control: "select",
@@ -49,7 +49,7 @@ const meta: Meta<
     },
   },
   args: {
-    type: "vertical",
+    position: "vertical",
     label: "Titre",
     description: "Sous-titre 1",
     subtitle: "Sous-titre 2",
