@@ -1,0 +1,5 @@
+.af-input__unit {
+  font-size: calc(14rem / 16);
+  line-height: 1rem;
+  color: var(--text-color);
+}

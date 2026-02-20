@@ -1,0 +1,10 @@
+.af-label {
+  margin-bottom: var(--label-margin-bottom, 0);
+  font-size: 1rem;
+  line-height: 20px;
+}
+
+.af-label__required {
+  padding-left: calc(4rem / 16);
+  color: var(--error-color);
+}
