@@ -1,129 +1,15 @@
-import { Canvas, Controls, Meta } from "@storybook/blocks";
+import { Canvas, Controls, Meta, Title } from "@storybook/blocks";
 import * as CardRadioGroupStories from "./CardRadioGroup.stories";
 
 <Meta of={CardRadioGroupStories} name="CardRadioGroup" />
 
-# CardRadioGroup
-
-Accessible fieldset that groups CardRadioOption components with a label, optional description and validation/error messaging.
+<Title />
 
 ## Import
 
 ```tsx
 import { CardRadioGroup } from "@axa-fr/canopee-react/client";
 ```
-
-## Props
-
-<table>
-  <thead>
-    <tr>
-      <th>Prop</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <code>name</code>
-      </td>
-      <td>
-        <code>string</code>
-      </td>
-      <td>—</td>
-      <td>Form field name</td>
-    </tr>
-    <tr>
-      <td>
-        <code>label</code>
-      </td>
-      <td>
-        <code>ReactNode</code>
-      </td>
-      <td>—</td>
-      <td>Group legend</td>
-    </tr>
-    <tr>
-      <td>
-        <code>cardStyle</code>
-      </td>
-      <td>
-        <code>'vertical' | 'horizontal'</code>
-      </td>
-      <td>
-        <code>'vertical'</code>
-      </td>
-      <td>
-        Radio cards layout (corresponds to <code>CardRadioOption</code>{" "}
-        <code>position</code> prop)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>position</code>
-      </td>
-      <td>
-        <code>'line' | 'column'</code>
-      </td>
-      <td>
-        <code>'column'</code>
-      </td>
-      <td>Options container layout</td>
-    </tr>
-    <tr>
-      <td>
-        <code>options</code>
-      </td>
-      <td>
-        <code>CardRadioOptionProps[]</code>
-      </td>
-      <td>—</td>
-      <td>
-        Array of options — each item corresponds to the props of the{" "}
-        <code>CardRadioOption</code> component
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>required</code>
-      </td>
-      <td>
-        <code>boolean</code>
-      </td>
-      <td>
-        <code>false</code>
-      </td>
-      <td>
-        Adds <code>aria-required</code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>message</code>
-      </td>
-      <td>
-        <code>ReactNode</code>
-      </td>
-      <td>—</td>
-      <td>
-        Error or help message displayed below the group (depends on the{" "}
-        <code>messageType</code>)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>className</code>
-      </td>
-      <td>
-        <code>string</code>
-      </td>
-      <td>—</td>
-      <td>Extra root class</td>
-    </tr>
-  </tbody>
-</table>
 
 ## Accessibility
 
@@ -133,34 +19,5 @@ import { CardRadioGroup } from "@axa-fr/canopee-react/client";
 
 ## Example
 
-```tsx
-<CardRadioGroup
-  name="city"
-  label="Choose a city"
-  cardStyle="vertical"
-  position="column"
-  options={[
-    {
-      label: "Paris",
-      value: "paris",
-      icon: homeIcon,
-      description: "Capitale de la France",
-      subtitle: "Nord",
-    },
-    {
-      label: "Bruxelles",
-      value: "bruxelles",
-      icon: homeIcon,
-      description: "Capitale de la Belgique",
-    },
-    {
-      label: "Lille",
-      value: "lille",
-      icon: homeIcon,
-    },
-  ]}
-/>
-```
-
-<Canvas of={CardRadioGroupStories.CardRadioStory} />
+<Canvas of={CardRadioGroupStories.CardRadioStory} sourceState="shown" />
 <Controls of={CardRadioGroupStories.CardRadioStory} />
