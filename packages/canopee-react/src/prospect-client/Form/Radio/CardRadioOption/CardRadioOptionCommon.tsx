@@ -6,6 +6,7 @@ import {
 } from "react";
 import { BasePicture } from "../../../BasePicture/BasePicture";
 import type { Icon as IconCommon } from "../../../Icon/IconCommon";
+import { getClassName } from "../../../utilities/getClassName";
 import type { Radio } from "../Radio/RadioCommon";
 
 type BaseCardRadioOptionProps = Omit<ComponentProps<typeof Radio>, "size"> & {
@@ -56,14 +57,14 @@ export const CardRadioOptionCommon = forwardRef<
 
     return (
       <label
-        className={[
-          "af-card-radio-option",
-          isInvalid && "af-card-radio-option--invalid",
-          isCardRadioOptionHorizontal && "af-card-radio-option--horizontal",
+        className={getClassName({
+          baseClassName: "af-card-radio-option",
+          modifiers: [
+            isInvalid && "invalid",
+            isCardRadioOptionHorizontal && "horizontal",
+          ],
           className,
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        })}
       >
         {icon ? <IconComponent src={icon} role="presentation" /> : null}
         {isCardRadioOptionHorizontal && src ? (
