@@ -37,10 +37,10 @@
 
 .af-card-radio-group__options {
   display: flex;
-  gap: calc(16 / var(--font-size-base) * 1rem);
+  gap: var(--rem-16);
 
   @media (--desktop-small) {
-    gap: calc(24 / var(--font-size-base) * 1rem);
+    gap: var(--rem-24);
   }
 
   > * {
