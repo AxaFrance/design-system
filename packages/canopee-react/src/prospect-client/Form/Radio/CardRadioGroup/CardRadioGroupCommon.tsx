@@ -75,7 +75,7 @@ const CardRadioGroupCommon = ({
   options,
   cardStyle,
   type = "vertical",
-  position = cardStyle === "vertical" ? "column" : "line",
+  position = (cardStyle ?? type) === "vertical" ? "column" : "line",
   error,
   message,
   messageType = "error",
