@@ -5,7 +5,7 @@
   border-radius: var(--button-radius);
   align-items: center;
   justify-content: center;
-  gap: calc(12 / var(--font-size-base) * 1rem);
+  gap: var(--rem-12);
   font-family: var(--font-family-base);
   font-size: var(--button-font-size);
   font-weight: 600;
@@ -44,7 +44,7 @@
 }
 
 .af-btn-client--ghost {
-  gap: calc(4 / var(--font-size-base) * 1rem);
+  gap: var(--rem-4);
   line-height: 1.25em;
 
   &:hover,

@@ -1,38 +1,38 @@
 @import "./ClickIconCommon.css";
 
 .af-click-icon {
-  --click-icon-background-color: var(--axa-blue-8);
+  --click-icon-background-color: var(--blue-80);
 
   &:hover {
-    --click-icon-background-color: var(--axa-blue-120);
-    --click-icon-svg-fill: var(--white);
+    --click-icon-background-color: var(--blue-1200);
+    --click-icon-svg-fill: var(--white-1000);
 
     &.af-click-icon--ghost {
-      --click-icon-svg-fill: var(--axa-blue-120);
+      --click-icon-svg-fill: var(--blue-1200);
     }
   }
 
   &:active {
-    --click-icon-background-color: var(--axa-blue-80);
-    --click-icon-svg-fill: var(--white);
+    --click-icon-background-color: var(--blue-900);
+    --click-icon-svg-fill: var(--white-1000);
 
     &.af-click-icon--ghost {
-      --click-icon-svg-fill: var(--axa-blue-80);
+      --click-icon-svg-fill: var(--blue-900);
     }
   }
 
   &:disabled {
-    --click-icon-background-color: var(--neutral-5);
-    --click-icon-svg-fill: var(--neutral-50);
+    --click-icon-background-color: var(--gray-050);
+    --click-icon-svg-fill: var(--gray-500);
   }
 
   &:focus-visible {
-    --click-icon-outline-color: var(--axa-blue-100);
+    --click-icon-outline-color: var(--blue-1000);
   }
 }
 
 /* Should be deleted, prefer use :disabled */
 .af-click-icon--disabled {
-  --click-icon-background-color: var(--neutral-5);
-  --click-icon-svg-fill: var(--neutral-50);
+  --click-icon-background-color: var(--gray-050);
+  --click-icon-svg-fill: var(--gray-500);
 }

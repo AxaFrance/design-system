@@ -1,10 +1,7 @@
 .af-item-tab-bar {
-  padding: var(--item-tab-bar-padding, calc(16 / var(--font-size-base) * 1rem));
+  padding: var(--item-tab-bar-padding, var(--rem-16));
   border: none;
-  font-size: var(
-    --item-tab-bar-font-size,
-    calc(16 / var(--font-size-base) * 1rem)
-  );
+  font-size: var(--item-tab-bar-font-size, var(--rem-16));
   font-weight: var(--item-tab-bar-font-weight, 400);
   line-height: 125%;
   color: var(--item-tab-bar-font-color);

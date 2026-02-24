@@ -1,8 +1,8 @@
 @import "./SpinnerCommon.css";
 
 .af-spinner {
-  --spinner-border-color: color-mix(in srgb, var(--color-axa), transparent 80%);
-  --spinner-border-top-color: var(--color-axa);
+  --spinner-border-color: color-mix(in srgb, var(--blue-1000), transparent 80%);
+  --spinner-border-top-color: var(--blue-1000);
 }
 
 .af-spinner--24 {
@@ -14,19 +14,15 @@
 }
 
 .af-spinner--gray {
-  --spinner-border-color: color-mix(
-    in srgb,
-    var(--color-gray),
-    transparent 80%
-  );
-  --spinner-border-top-color: var(--color-gray);
+  --spinner-border-color: color-mix(in srgb, var(--gray-800), transparent 80%);
+  --spinner-border-top-color: var(--gray-800);
 }
 
 .af-spinner--white {
   --spinner-border-color: color-mix(
     in srgb,
-    var(--color-white),
+    var(--white-1000),
     transparent 80%
   );
-  --spinner-border-top-color: var(--color-white);
+  --spinner-border-top-color: var(--white-1000);
 }

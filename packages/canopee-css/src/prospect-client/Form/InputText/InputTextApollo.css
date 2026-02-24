@@ -1,13 +1,13 @@
 @import "./InputTextCommon.css";
 
 .af-form__input-helper {
-  --input-helper-color: var(--neutral-80);
+  --input-helper-color: var(--gray-800);
 }
 
 .af-form__input-container:has([class*="__sidebutton"]):has(:disabled)
   .af-form__input-atom-container {
-  --input-border-color: var(--neutral-50);
-  --input-text-color: var(--neutral-80);
-  --input-bg-color: var(--neutral-5);
-  --input-text-icon-color: var(--neutral-80);
+  --input-border-color: var(--gray-500);
+  --input-text-color: var(--gray-800);
+  --input-bg-color: var(--gray-050);
+  --input-text-icon-color: var(--gray-800);
 }

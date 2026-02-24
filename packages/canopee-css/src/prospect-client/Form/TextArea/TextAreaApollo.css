@@ -2,24 +2,24 @@
 
 .af-form__textarea {
   --textarea-border-radius: var(--radius-8);
-  --textarea-placeholder-color: var(--neutral-80);
-  --textarea-background-color: var(--white);
-  --textarea-color: var(--axa-blue-100);
-  --textarea-box-shadow-color: var(--axa-blue-65);
+  --textarea-placeholder-color: var(--gray-800);
+  --textarea-background-color: var(--white-1000);
+  --textarea-color: var(--blue-1000);
+  --textarea-box-shadow-color: var(--blue-650);
 
   &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
-    --textarea-box-shadow-color: var(--axa-blue-100);
+    --textarea-box-shadow-color: var(--blue-1000);
   }
 
   &:disabled {
-    --textarea-background-color: var(--neutral-5);
-    --textarea-box-shadow-color: var(--neutral-50);
-    --textarea-placeholder-color: var(--neutral-50);
-    --textarea-color: var(--neutral-80);
+    --textarea-background-color: var(--gray-050);
+    --textarea-box-shadow-color: var(--gray-500);
+    --textarea-placeholder-color: var(--gray-500);
+    --textarea-color: var(--gray-800);
   }
 
   &[aria-invalid="true"] {
-    --textarea-box-shadow-color: var(--red-alert-100);
+    --textarea-box-shadow-color: var(--red-alert-1000);
 
     &:is(:focus-visible, :hover, :active, :focus) {
       --textarea-box-shadow-width: 3px;

@@ -19,16 +19,16 @@ main.example-form {
 .form__fields {
   --row-gap: 2rem;
 
-  .af-card-radio {
+  .af-card-radio-group {
     --row-gap: 1rem;
 
-    .af-card-radio__legend {
+    .af-card-radio-group__legend {
       display: inherit;
       margin-bottom: calc(16 / var(--font-size-base) * 1rem);
     }
   }
 
-  .af-card-radio,
+  .af-card-radio-group,
   .af-form__input-container {
     --cols: 4;
 

@@ -43,12 +43,12 @@
 
 .af-card-checkbox-option__label {
   margin: 0;
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-16);
   font-weight: 400;
   color: var(--checkbox-option-color-title);
 
   @media (--desktop-small) {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-18);
   }
 }
 
@@ -81,7 +81,7 @@
 .af-card-checkbox-option__description,
 .af-card-checkbox-option__subtitle {
   margin: 0;
-  font-size: calc(14 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-14);
   font-weight: 400;
   color: var(--checkbox-option-color-subtitle);
 

@@ -3,28 +3,164 @@ import * as CardRadioOptionStories from "./CardRadioOption.stories";
 
 <Meta of={CardRadioOptionStories} name="CardRadioOption" />
 
-# CardRadioOption components
+# CardRadioOption
 
-## How to use
+One-line: a single selectable card used inside `CardRadioGroup`, rendering a label, optional icon/picture, description and subtitle.
 
-To use the `CardRadioOption`component import it like this:
+## Import
 
 ```tsx
 import { CardRadioOption } from "@axa-fr/canopee-react/prospect";
-
-const MyComponent = () => (
-  <CardRadioOption
-    label="Titre"
-    description="Sous-titre 1"
-    subtitle="Sous-titre 2"
-    icon={icon}
-    name="foo"
-    value="bar"
-  />
-);
 ```
 
-## Playground
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>name</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>—</td>
+      <td>Form field name (usually provided by the group)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>value</code>
+      </td>
+      <td>
+        <code>string | number</code>
+      </td>
+      <td>—</td>
+      <td>Option value</td>
+    </tr>
+    <tr>
+      <td>
+        <code>label</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>—</td>
+      <td>Main title shown on the card</td>
+    </tr>
+    <tr>
+      <td>
+        <code>description</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>—</td>
+      <td>Extended text under the label</td>
+    </tr>
+    <tr>
+      <td>
+        <code>subtitle</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>—</td>
+      <td>Small subtitle text</td>
+    </tr>
+    <tr>
+      <td>
+        <code>position</code>
+      </td>
+      <td>
+        <code>'vertical' | 'horizontal'</code>
+      </td>
+      <td>
+        <code>'vertical'</code>
+      </td>
+      <td>Visual orientation of the card</td>
+    </tr>
+    <tr>
+      <td>
+        <code>icon</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>—</td>
+      <td>Icon to display on the card</td>
+    </tr>
+    <tr>
+      <td>
+        <code>src</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>—</td>
+      <td>Image source for `BasePicture`</td>
+    </tr>
+    <tr>
+      <td>
+        <code>disabled</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>Disable the option</td>
+    </tr>
+    <tr>
+      <td>
+        <code>isInvalid</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>Mark option as invalid (affects styling)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>className</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>—</td>
+      <td>Extra class on the option</td>
+    </tr>
+  </tbody>
+</table>
+
+## Accessibility
+
+- The option is rendered as a `<label>` wrapping the radio control; ensure `label` content is descriptive.
+- If used inside `CardRadioGroup`, keyboard and ARIA responsibilities are handled by the group (radiogroup / legend / aria-errormessage).
+
+## Example
+
+```tsx
+<CardRadioOption
+  name="city"
+  value="paris"
+  label="Paris"
+  description="Capitale de la France"
+  subtitle="Nord"
+  icon={homeIcon}
+/>
+```
 
 <Canvas of={CardRadioOptionStories.CardRadioOptionStory} />
 <Controls of={CardRadioOptionStories.CardRadioOptionStory} />

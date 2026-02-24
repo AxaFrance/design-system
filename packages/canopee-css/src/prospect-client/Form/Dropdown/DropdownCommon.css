@@ -3,11 +3,11 @@
 
   display: block;
   width: 100%;
-  padding: calc(16 / var(--font-size-base) * 1rem);
+  padding: var(--rem-16);
   border: none;
   border-radius: var(--dropdown-border-radius);
   font-family: var(--font-family-sans-serif);
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-16);
   font-weight: 600;
   line-height: 1.5;
   text-overflow: ellipsis;
@@ -43,7 +43,7 @@
   }
 
   @media (--desktop-small) {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-18);
     line-height: 1.25;
   }
 }
@@ -60,16 +60,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  row-gap: calc(8 / var(--font-size-base) * 1rem);
+  row-gap: var(--rem-8);
 }
 
 .af-form__dropdown-container--input-helper {
-  font-size: calc(14 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-14);
   font-weight: 400;
   line-height: 1.25em;
   color: var(--input-helper-color);
 
   @media (--desktop-small) {
-    font-size: calc(16 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-16);
   }
 }

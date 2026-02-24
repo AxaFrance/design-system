@@ -2,43 +2,43 @@
 
 .af-form__dropdown-input {
   --dropdown-border-radius: var(--radius-8);
-  --dropdown-color: var(--axa-blue-100);
-  --dropdown-background-color: var(--white);
+  --dropdown-color: var(--blue-1000);
+  --dropdown-background-color: var(--white-1000);
   --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%2300008F' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
-  --dropdown-box-shadow-color: var(--axa-blue-100);
+  --dropdown-box-shadow-color: var(--blue-1000);
 
   &:open {
     --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%2300008F' d='M240-376l240-240 240 240-43 43-197-197-197 197-43-43Z'/></svg>");
   }
 
   option {
-    --dropdown-option-color: var(--neutral-100);
+    --dropdown-option-color: var(--gray-1000);
 
     &:disabled {
-      --dropdown-option-disabled-color: var(--neutral-80);
+      --dropdown-option-disabled-color: var(--gray-800);
     }
   }
 
   &:is(:focus-visible, :hover, :active) {
-    --dropdown-box-shadow-color: var(--axa-blue-100);
+    --dropdown-box-shadow-color: var(--blue-1000);
   }
 
   &:disabled {
-    --dropdown-background-color: var(--neutral-5);
-    --dropdown-box-shadow-color: var(--neutral-50);
+    --dropdown-background-color: var(--gray-050);
+    --dropdown-box-shadow-color: var(--gray-500);
     --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%23999999' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
-    --dropdown-color: var(--neutral-50);
+    --dropdown-color: var(--gray-500);
   }
 
   &:has(option[value=""]:checked) {
-    --dropdown-color: var(--neutral-80);
+    --dropdown-color: var(--gray-800);
   }
 }
 
 .af-form__dropdown-input--error {
-  --dropdown-box-shadow-color: var(--axa-red-100);
+  --dropdown-box-shadow-color: var(--red-alert-1000);
 
   &:is(:focus-visible, :hover, :active) {
-    --dropdown-box-shadow-color: var(--axa-red-100);
+    --dropdown-box-shadow-color: var(--red-alert-1000);
   }
 }

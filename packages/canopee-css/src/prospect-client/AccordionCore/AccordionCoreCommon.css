@@ -1,6 +1,6 @@
 .af-apollo-accordion {
-  --spacing-summary-inline: calc(16 / var(--font-size-base) * 1rem);
-  --spacing-summary-block: calc(16 / var(--font-size-base) * 1rem);
+  --spacing-summary-inline: var(--rem-16);
+  --spacing-summary-block: var(--rem-16);
   --summary-areas: "summary arrow";
   --summary-columns: 1fr auto;
 
@@ -13,7 +13,7 @@
   }
 
   @media (--desktop-small) {
-    --spacing-summary-inline: calc(24 / var(--font-size-base) * 1rem);
+    --spacing-summary-inline: var(--rem-24);
   }
 }
 

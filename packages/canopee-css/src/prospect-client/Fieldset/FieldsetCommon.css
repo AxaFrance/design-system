@@ -1,18 +1,18 @@
 .af-fieldset {
   display: flex;
   margin: 0;
-  padding: calc(16 / var(--font-size-base) * 1rem);
+  padding: var(--rem-16);
   border: none;
   flex-direction: column;
-  gap: calc(24 / var(--font-size-base) * 1rem);
+  gap: var(--rem-24);
 
   > legend.af-content-item-mono {
-    padding-top: calc(16 / var(--font-size-base) * 1rem);
+    padding-top: var(--rem-16);
   }
 
   .af-fieldset__content {
     display: flex;
     flex-direction: column;
-    gap: calc(16 / var(--font-size-base) * 1rem);
+    gap: var(--rem-16);
   }
 }

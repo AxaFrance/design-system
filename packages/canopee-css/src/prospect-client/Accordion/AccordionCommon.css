@@ -1,7 +1,7 @@
 .af-apollo-accordion__summary {
-  --accordion-column-gap: calc(12 / var(--font-size-base) * 1rem);
-  --accordion-gap: calc(4 / var(--font-size-base) * 1rem);
-  --accordion-row-gap: calc(2 / var(--font-size-base) * 1rem);
+  --accordion-column-gap: var(--rem-12);
+  --accordion-gap: var(--rem-4);
+  --accordion-row-gap: var(--rem-2);
 
   grid-template-areas: var(--summary-areas);
   grid-template-columns: var(--summary-columns);
@@ -10,7 +10,7 @@
   font-family: var(--font-family-base);
 
   @media (--desktop-small) {
-    --accordion-column-gap: calc(16 / var(--font-size-base) * 1rem);
+    --accordion-column-gap: var(--rem-16);
   }
 
   .af-icon:first-child {
@@ -64,7 +64,7 @@
   --summary-areas: "icon title arrow" "icon subtitle arrow"
     "icon tag-container arrow" "icon info1 arrow" "icon info2 arrow";
   --summary-columns: min-content 1fr min-content;
-  --accordion-info1-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --accordion-info1-font-size: var(--rem-14);
 
   .af-apollo-accordion__summary .af-accordion__date {
     display: none;
@@ -74,7 +74,7 @@
     --summary-areas: "icon title tag-container info1 info2 arrow"
       "icon subtitle tag-container info1 info2 arrow";
     --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
-    --accordion-info1-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --accordion-info1-font-size: var(--rem-16);
   }
 }
 

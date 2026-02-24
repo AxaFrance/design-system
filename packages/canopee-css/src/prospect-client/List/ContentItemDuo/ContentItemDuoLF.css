@@ -1,6 +1,6 @@
 @import "./ContentItemDuoCommon.css";
 
 .af-content-item-duo {
-  --content-item-duo-label-color: var(--color-gray-700);
-  --content-item-duo-value-color: var(--color-gray-900);
+  --content-item-duo-label-color: var(--gray-800);
+  --content-item-duo-value-color: var(--gray-1000);
 }

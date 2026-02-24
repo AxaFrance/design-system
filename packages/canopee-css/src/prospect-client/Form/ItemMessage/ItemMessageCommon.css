@@ -1,12 +1,12 @@
 .af-item-message {
-  --item-message-font-size: calc(14 / var(--font-size-base) * 1rem);
+  --item-message-font-size: var(--rem-14);
 
   display: flex;
   align-items: center;
-  gap: calc(8 / var(--font-size-base) * 1rem);
+  gap: var(--rem-8);
 
   @media (--desktop-small) {
-    --item-message-font-size: calc(16 / var(--font-size-base) * 1rem);
+    --item-message-font-size: var(--rem-16);
   }
 }
 

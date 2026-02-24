@@ -1,7 +1,7 @@
 .af-card {
   --card-border-width: 1px;
 
-  padding: calc(16 / var(--font-size-base) * 1rem);
+  padding: var(--rem-16);
   border: inherit;
   border-radius: var(--card-border-radius);
   text-align: inherit;

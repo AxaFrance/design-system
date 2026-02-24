@@ -1,10 +1,10 @@
 .af-content-item-mono {
   display: flex;
   align-items: center;
-  gap: calc(12 / var(--font-size-base) * 1rem);
+  gap: var(--rem-12);
 
   .af-content-item-mono__stick {
-    width: calc(4 / var(--font-size-base) * 1rem);
+    width: var(--rem-4);
     border-radius: 2px;
     align-self: stretch;
     background-color: var(--stick-background-color);
@@ -13,7 +13,7 @@
   .af-content-item-mono__text-content {
     display: flex;
     flex-direction: column;
-    gap: calc(2 / var(--font-size-base) * 1rem);
+    gap: var(--rem-2);
 
     .af-content-item-mono__title {
       font-family: var(--title-font-family);

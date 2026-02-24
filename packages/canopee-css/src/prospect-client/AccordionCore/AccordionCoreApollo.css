@@ -1,5 +1,5 @@
 @import "./AccordionCoreCommon.css";
 
 .af-apollo-accordion {
-  --accordion-border-color: var(--axa-blue-20);
+  --accordion-border-color: var(--blue-200);
 }

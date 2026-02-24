@@ -2,24 +2,24 @@
 
 .af-form__textarea {
   --textarea-border-radius: var(--radius-4);
-  --textarea-placeholder-color: var(--color-gray-700);
-  --textarea-background-color: var(--color-white);
-  --textarea-color: var(--color-gray-900);
-  --textarea-box-shadow-color: var(--color-gray-700);
+  --textarea-placeholder-color: var(--gray-800);
+  --textarea-background-color: var(--white-1000);
+  --textarea-color: var(--gray-1000);
+  --textarea-box-shadow-color: var(--gray-800);
 
   &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
-    --textarea-box-shadow-color: var(--color-axa);
+    --textarea-box-shadow-color: var(--blue-1000);
   }
 
   &:disabled {
-    --textarea-background-color: var(--color-gray-200);
-    --textarea-box-shadow-color: var(--color-gray-400);
-    --textarea-placeholder-color: var(--color-gray-500);
-    --textarea-color: var(--color-gray-700);
+    --textarea-background-color: var(--gray-050);
+    --textarea-box-shadow-color: var(--gray-140);
+    --textarea-placeholder-color: var(--gray-500);
+    --textarea-color: var(--gray-800);
   }
 
   &[aria-invalid="true"] {
-    --textarea-box-shadow-color: var(--color-red-700);
+    --textarea-box-shadow-color: var(--red-alert-1200);
 
     &:is(:focus-visible, :hover, :active, :focus) {
       --textarea-box-shadow-width: 3px;

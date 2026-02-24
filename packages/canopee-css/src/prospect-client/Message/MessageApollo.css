@@ -1,8 +1,8 @@
 @import "./MessageCommon.css";
 
 .af-message {
-  --message-theme-color: var(--axa-blue-100);
-  --message-bg-color: var(--axa-blue-4);
+  --message-theme-color: var(--blue-1000);
+  --message-bg-color: var(--blue-040);
   --message-icon-color: var(--message-theme-color);
   --message-title-color: var(--message-theme-color);
   --message-content-color: var(--message-theme-color);
@@ -20,21 +20,21 @@
 }
 
 .af-message--error {
-  --message-theme-color: var(--red-alert-100);
-  --message-bg-color: var(--axa-red-4);
+  --message-theme-color: var(--red-alert-1000);
+  --message-bg-color: var(--red-040);
 }
 
 .af-message--neutral {
-  --message-theme-color: var(--neutral-80);
-  --message-bg-color: var(--neutral-5);
+  --message-theme-color: var(--gray-800);
+  --message-bg-color: var(--gray-050);
 }
 
 .af-message--warning {
-  --message-theme-color: var(--warning-100);
-  --message-bg-color: var(--axa-red-4);
+  --message-theme-color: var(--orange-1000);
+  --message-bg-color: var(--red-040);
 }
 
 .af-message--validation {
-  --message-theme-color: var(--green-100);
-  --message-bg-color: var(--aqua-green-12);
+  --message-theme-color: var(--green-1000);
+  --message-bg-color: var(--green-040);
 }

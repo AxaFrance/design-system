@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  row-gap: calc(8 / var(--font-size-base) * 1rem);
+  row-gap: var(--rem-8);
 }
 
 .af-form__input-date {
@@ -13,9 +13,9 @@
   position: relative;
   display: block;
   width: 100%;
-  padding: calc(16 / var(--font-size-base) * 1rem);
+  padding: var(--rem-16);
   border-radius: var(--input-date-border-radius);
-  font-size: calc(16 / var(--font-size-base) * 1rem);
+  font-size: var(--rem-16);
   font-weight: 600;
   line-height: 1.5;
   text-transform: uppercase;
@@ -59,7 +59,7 @@
   }
 
   @media (--desktop-small) {
-    font-size: calc(18 / var(--font-size-base) * 1rem);
+    font-size: var(--rem-18);
     line-height: 1.25;
   }
 }

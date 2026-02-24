@@ -67,7 +67,7 @@ describe("CardRadioOptionCommon", () => {
     render(
       <CardRadioOptionCommon
         label="Label"
-        type="horizontal"
+        position="horizontal"
         src="image-src"
         basePictureProps={{ alt: "Test Image" }}
         RadioComponent={Radio}
