@@ -4,6 +4,8 @@ import { DRow } from "./DRow";
 import { Dt } from "./Dt";
 import { Dd } from "./Dd";
 
+import "@axa-fr/canopee-css/prospect/TableMobileCard/TableMobileCardAll.css";
+
 export type TableMobileCardVariants = "white" | "blue" | "alternate";
 
 export type TableMobileCardProps = ComponentPropsWithRef<"dl"> & {

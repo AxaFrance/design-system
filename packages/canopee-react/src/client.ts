@@ -162,25 +162,6 @@ export {
 } from "./prospect-client/Tag/TagLF";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./prospect-client/Toggle/ToggleLF";
-export { Pagination } from "./prospect-client/Pagination/PaginationLF";
-export {
-  ItemPagination,
-  type ItemPaginationProps,
-} from "./prospect-client/Pagination/ItemPagination/ItemPaginationLF";
-export { Card, type CardProps } from "./prospect-client/Card/CardLF";
-export { List, type ListProps } from "./prospect-client/List/List/ListLF";
-export {
-  LevelSelector,
-  type LevelSelectorProps,
-} from "./prospect-client/LevelSelector/LevelSelectorLF";
-export {
-  Skeleton,
-  type SkeletonProps,
-} from "./prospect-client/Skeleton/SkeletonLF";
-export {
-  SkeletonList,
-  type SkeletonListProps,
-} from "./prospect-client/SkeletonList/SkeletonListLF";
 export {
   Table,
   type TableProps,
@@ -189,10 +170,6 @@ export {
   type RowSizeVariants,
 } from "./prospect-client/Table/TableLF";
 export {
-  Fieldset,
-  type FieldsetProps,
-} from "./prospect-client/Fieldset/FieldsetLF";
-export {
   TableMobileCard,
   type TableMobileCardProps,
-} from "./prospect-client/TableMobileCard/TableMobileCardLF";
+} from "./prospect-client/TableMobileCard/TableMobileCard";

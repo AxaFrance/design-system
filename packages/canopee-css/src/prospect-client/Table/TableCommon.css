@@ -4,7 +4,7 @@
   box-sizing: border-box;
   width: 100%;
   border-collapse: collapse;
-  line-height: calc(20 / var(--font-size-base) * 1rem);
+  line-height: var(--rem-20);
 
   .af-table__th {
     padding: 0;
@@ -13,7 +13,7 @@
       display: flex;
       box-sizing: border-box;
       height: 100%;
-      padding: var(--spacing-16);
+      padding: var(--rem-16);
       place-items: center;
 
       .af-table__th-sort-icon {
@@ -26,7 +26,7 @@
       display: flex;
       flex: 1;
       align-items: center;
-      font-size: calc(16 / var(--font-size-base) * 1rem);
+      font-size: var(--rem-16ptable);
       font-weight: 600;
       text-align: left;
     }
@@ -43,7 +43,7 @@
 
     &:has(input[type="checkbox"]) {
       .af-table__th-content {
-        padding-left: var(--spacing-16);
+        padding-left: var(--rem-16);
       }
 
       &.af-table__th--checkbox-right {
@@ -52,7 +52,7 @@
         }
 
         .af-table__th-content {
-          padding-right: var(--spacing-16);
+          padding-right: var(--rem-16);
           padding-left: 0;
         }
       }
@@ -61,9 +61,8 @@
 
   .af-table__td {
     box-sizing: border-box;
-    padding-inline: var(--spacing-16);
+    padding-inline: var(--rem-16);
     white-space: normal;
-    background-color: var(--table-body-bg-color);
 
     &.af-table__td--left {
       text-align: left;
@@ -78,7 +77,7 @@
     }
 
     &.af-table__td--top {
-      padding-top: var(--spacing-16);
+      padding-top: var(--rem-16);
       vertical-align: top;
     }
 
@@ -100,7 +99,7 @@
   }
 
   .af-table__tr {
-    border-bottom: 1px solid var(--table-tr-border-color);
+    border-bottom: 1px solid var(--blue-200);
 
     .af-table__td {
       padding-block: calc(10 / var(--font-size-base) * 1rem);
@@ -121,22 +120,38 @@
 
   .af-table__thead {
     &.af-table__thead--gray .af-table__th {
-      color: var(--table-header-text-color-gray);
-      background-color: var(--table-header-bg-gray);
+      color: var(--gray-1000);
+      background-color: var(--gray-050);
     }
 
     &.af-table__thead--blue .af-table__th {
-      color: var(--table-header-text-color-blue);
+      color: var(--blue-1000);
       background-color: var(--table-header-bg-blue);
     }
   }
 
   .af-table__tbody {
     font-weight: 600;
-    color: var(--table-body-text-color);
+    color: var(--gray-1000);
 
-    &.af-table__tbody .af-table__tr {
-      background-color: var(--table-body-bg-color);
+    &.af-table__tbody--white .af-table__tr,
+    & .af-table__td--white {
+      background: var(--white-1000);
+    }
+
+    &.af-table__tbody--blue .af-table__tr,
+    & .af-table__td--blue {
+      background: var(--blue-040);
+    }
+
+    &.af-table__tbody--alternate .af-table__tr {
+      &:nth-child(even) {
+        background: var(--blue-040);
+      }
+
+      &:nth-child(odd) {
+        background: var(--white-1000);
+      }
     }
   }
 }

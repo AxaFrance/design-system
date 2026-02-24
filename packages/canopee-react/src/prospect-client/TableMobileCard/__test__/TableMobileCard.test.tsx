@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { TableMobileCard } from "../TableMobileCardCommon";
+import { TableMobileCard } from "../TableMobileCard";
 
 describe("TableMobileCard", () => {
   it("should render correctly", () => {

@@ -154,25 +154,6 @@ export {
 } from "./prospect-client/Tag/TagApollo";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./prospect-client/Toggle/ToggleApollo";
-export { Pagination } from "./prospect-client/Pagination/PaginationApollo";
-export {
-  ItemPagination,
-  type ItemPaginationProps,
-} from "./prospect-client/Pagination/ItemPagination/ItemPaginationApollo";
-export { Card, type CardProps } from "./prospect-client/Card/CardApollo";
-export { List, type ListProps } from "./prospect-client/List/List/ListApollo";
-export {
-  LevelSelector,
-  type LevelSelectorProps,
-} from "./prospect-client/LevelSelector/LevelSelectorApollo";
-export {
-  Skeleton,
-  type SkeletonProps,
-} from "./prospect-client/Skeleton/SkeletonApollo";
-export {
-  SkeletonList,
-  type SkeletonListProps,
-} from "./prospect-client/SkeletonList/SkeletonListApollo";
 export {
   Table,
   type TableProps,
@@ -180,8 +161,4 @@ export {
   type BodyColorVariants,
   type RowSizeVariants,
 } from "./prospect-client/Table/TableApollo";
-export {
-  Fieldset,
-  type FieldsetProps,
-} from "./prospect-client/Fieldset/FieldsetApollo";
-export { TableMobileCard } from "./prospect-client/TableMobileCard/TableMobileCardApollo";
+export { TableMobileCard } from "./prospect-client/TableMobileCard/TableMobileCard";
