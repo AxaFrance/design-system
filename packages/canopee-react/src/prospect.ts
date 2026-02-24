@@ -4,15 +4,15 @@ import "@axa-fr/canopee-css/prospect/Grid/Grid.css";
 import "@fontsource/source-sans-pro";
 
 export {
-  AccordionContextual,
-  accordionContextualVariants,
-  type AccordionContextualVariants,
-} from "./prospect-client/AccordionContextual/AccordionContextualApollo";
-export {
   Accordion,
   accordionVariants,
   type AccordionVariants,
 } from "./prospect-client/Accordion/AccordionApollo";
+export {
+  AccordionContextual,
+  accordionContextualVariants,
+  type AccordionContextualVariants,
+} from "./prospect-client/AccordionContextual/AccordionContextualApollo";
 export { AccordionCore } from "./prospect-client/AccordionCore/AccordionCoreApollo";
 export { BasePicture } from "./prospect-client/BasePicture/BasePicture";
 export {
@@ -20,6 +20,7 @@ export {
   buttonVariants,
   type ButtonVariants,
 } from "./prospect-client/Button/ButtonApollo";
+export { Card, type CardProps } from "./prospect-client/Card/CardApollo";
 export {
   CardMessage,
   cardMessageVariants,
@@ -33,6 +34,10 @@ export {
 export { ContentItemMono } from "./prospect-client/ContentItemMono/ContentItemMonoApollo";
 export { DataAgent } from "./prospect-client/DataAgent/DataAgentApollo";
 export { Divider } from "./prospect-client/Divider/DividerApollo";
+export {
+  Fieldset,
+  type FieldsetProps,
+} from "./prospect-client/Fieldset/FieldsetApollo";
 export {
   CardCheckbox,
   /** @deprecated Use `CardCheckbox` instead. */
@@ -56,7 +61,11 @@ export {
   itemMessageVariants,
   type ItemMessageVariants,
 } from "./prospect-client/Form/ItemMessage/ItemMessageApollo";
-export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioApollo";
+export {
+  /** @deprecated Use `CardRadioGroup` instead. */
+  CardRadioGroup as CardRadio,
+  CardRadioGroup,
+} from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupApollo";
 export { CardRadioOption } from "./prospect-client/Form/Radio/CardRadioOption/CardRadioOptionApollo";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioApollo";
 export { TextArea } from "./prospect-client/Form/TextArea/TextAreaApollo";
@@ -81,6 +90,10 @@ export {
   type FooterProps,
 } from "./prospect-client/Layout/Footer/FooterApollo";
 export {
+  LevelSelector,
+  type LevelSelectorProps,
+} from "./prospect-client/LevelSelector/LevelSelectorApollo";
+export {
   Link,
   linkVariants,
   type LinkVariants,
@@ -93,6 +106,7 @@ export {
   type ClickItemVariants,
 } from "./prospect-client/List/ClickItem/ClickItemApollo";
 export { ContentItemDuo } from "./prospect-client/List/ContentItemDuo/ContentItemDuoApollo";
+export { List, type ListProps } from "./prospect-client/List/List/ListApollo";
 export {
   Message,
   messageVariants,
@@ -105,8 +119,21 @@ export {
   ModalCoreFooter,
   ModalCoreHeader,
 } from "./prospect-client/Modal/ModalApollo";
+export {
+  ItemPagination,
+  type ItemPaginationProps,
+} from "./prospect-client/Pagination/ItemPagination/ItemPaginationApollo";
+export { Pagination } from "./prospect-client/Pagination/PaginationApollo";
 export { ProgressBar } from "./prospect-client/ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./prospect-client/ProgressBarGroup/ProgressBarGroupApollo";
+export {
+  Skeleton,
+  type SkeletonProps,
+} from "./prospect-client/Skeleton/SkeletonApollo";
+export {
+  SkeletonList,
+  type SkeletonListProps,
+} from "./prospect-client/SkeletonList/SkeletonListApollo";
 export {
   Spinner,
   spinnerVariants,
@@ -127,26 +154,3 @@ export {
 } from "./prospect-client/Tag/TagApollo";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./prospect-client/Toggle/ToggleApollo";
-export { Pagination } from "./prospect-client/Pagination/PaginationApollo";
-export {
-  ItemPagination,
-  type ItemPaginationProps,
-} from "./prospect-client/Pagination/ItemPagination/ItemPaginationApollo";
-export { Card, type CardProps } from "./prospect-client/Card/CardApollo";
-export { List, type ListProps } from "./prospect-client/List/List/ListApollo";
-export {
-  LevelSelector,
-  type LevelSelectorProps,
-} from "./prospect-client/LevelSelector/LevelSelectorApollo";
-export {
-  Skeleton,
-  type SkeletonProps,
-} from "./prospect-client/Skeleton/SkeletonApollo";
-export {
-  SkeletonList,
-  type SkeletonListProps,
-} from "./prospect-client/SkeletonList/SkeletonListApollo";
-export {
-  Fieldset,
-  type FieldsetProps,
-} from "./prospect-client/Fieldset/FieldsetApollo";

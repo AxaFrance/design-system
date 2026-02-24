@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Title } from "@storybook/blocks";
+import * as CardRadioGroupStories from "./CardRadioGroup.stories";
+
+<Meta of={CardRadioGroupStories} name="CardRadioGroup" />
+
+<Title />
+
+## Import
+
+```tsx
+import { CardRadioGroup } from "@axa-fr/canopee-react/client";
+```
+
+## Accessibility
+
+- Renders a `<fieldset role="radiogroup">` with a `<legend>`.
+- Uses `aria-required`, `aria-invalid` and `aria-errormessage` when applicable.
+- Keyboard: Tab into group, navigate with arrow keys.
+
+## Example
+
+<Canvas of={CardRadioGroupStories.CardRadioStory} sourceState="shown" />
+<Controls of={CardRadioGroupStories.CardRadioStory} />
