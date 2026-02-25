@@ -154,3 +154,11 @@ export {
 } from "./prospect-client/Tag/TagApollo";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./prospect-client/Toggle/ToggleApollo";
+export {
+  Table,
+  type TableProps,
+  type HeadColorVariants,
+  type BodyColorVariants,
+  type RowSizeVariants,
+} from "./prospect-client/Table/TableApollo";
+export { TableMobileCard } from "./prospect-client/TableMobileCard/TableMobileCard";

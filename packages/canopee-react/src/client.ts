@@ -162,3 +162,14 @@ export {
 } from "./prospect-client/Tag/TagLF";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./prospect-client/Toggle/ToggleLF";
+export {
+  Table,
+  type TableProps,
+  type HeadColorVariants,
+  type BodyColorVariants,
+  type RowSizeVariants,
+} from "./prospect-client/Table/TableLF";
+export {
+  TableMobileCard,
+  type TableMobileCardProps,
+} from "./prospect-client/TableMobileCard/TableMobileCard";

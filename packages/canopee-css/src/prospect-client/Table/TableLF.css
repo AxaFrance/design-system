@@ -1,0 +1,5 @@
+@import "./TableCommon.css";
+
+.af-table {
+  --table-header-bg-blue: var(--blue-100);
+}

@@ -1,0 +1,79 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as TableStories from "./Table.stories";
+
+<Meta of={TableStories} name="Table" />
+
+# Table
+
+To use the table import it like that:
+
+```tsx
+import { Table } from "@axa-fr/canopee-react/prospect";
+
+const MyComponent = () => (
+  <Table>
+    <Table.THead variant="blue">
+      <Table.Tr>
+        <Table.Th>Nom</Table.Th>
+        <Table.Th>Email</Table.Th>
+      </Table.Tr>
+    </Table.THead>
+    <Table.TBody>
+      <Table.Tr>
+        <Table.Td>Jean Dupont</Table.Td>
+        <Table.Td>jean.dupont@example.com</Table.Td>
+      </Table.Tr>
+    </Table.TBody>
+  </Table>
+);
+```
+
+## Usage
+
+The Table component is a compound component with the following sub-components:
+
+- `Table.THead` - Table header with optional `variant` prop
+- `Table.TBody` - Table body with optional `variant` prop
+- `Table.Tr` - Table row with optional `size` and variant props
+- `Table.Th` - Table header cell with optional `onSort`, `onCheck`, `checkboxPosition` props
+- `Table.Td` - Table data cell with optional `position`, `verticalAlign`, `variant` and `size` props
+
+## Examples
+
+### Basic Table
+
+<Canvas of={TableStories.BasicTable} />
+
+### Alternate Variants
+
+Use `variant="alternate"` on `Table.TBody` to get zebra-striped rows.
+
+<Canvas of={TableStories.AlternateVariantTable} />
+
+### With Tags
+
+Tables work great with other components like Tags for status indicators.
+
+<Canvas of={TableStories.TableWithTags} />
+
+### With Buttons
+
+Tables can include interactive elements like buttons for actions.
+
+<Canvas of={TableStories.TableWithButtons} />
+
+### Different Sizes
+
+Use the `size` prop on `Table.Tr` to control row height ("S", "M", "L").
+
+<Canvas of={TableStories.TableWithDifferentSizes} />
+
+### Text Alignment
+
+Use the `position` prop on `Table.Td` to align cell content ("left", "center", "right").
+
+<Canvas of={TableStories.TableWithAlignments} />
+
+### Compact Table
+
+<Canvas of={TableStories.CompactTable} />
