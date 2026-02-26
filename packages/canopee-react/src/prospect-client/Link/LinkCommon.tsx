@@ -2,15 +2,12 @@ import openInNew from "@material-symbols/svg-400/outlined/open_in_new.svg";
 import {
   ComponentPropsWithoutRef,
   PropsWithChildren,
-  useMemo,
   type ReactNode,
 } from "react";
 import { Svg } from "../Svg/Svg";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 
 export const linkVariants = {
-  default: "default",
-  underline: "underline",
   inverse: "inverse",
 } as const;
 
@@ -22,12 +19,15 @@ type LinkProps = {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
+  /**
+   * @deprecated Use variant instead
+   */
   classModifier?: string;
 } & ComponentPropsWithoutRef<"a">;
 
 export const Link = ({
   href,
-  variant = "underline",
+  variant,
   openInNewTab = false,
   leftIcon,
   rightIcon,
@@ -41,18 +41,17 @@ export const Link = ({
     rel: "noopener noreferrer",
   };
 
-  const componentClassName = useMemo(
-    () =>
-      getComponentClassName(
-        "af-link",
-        className,
-        `${classModifier}${!className && openInNewTab ? " openInNewTab" : ""} ${variant}`,
-      ),
-    [classModifier, className, openInNewTab, variant],
-  );
-
   return (
-    <a className={componentClassName} href={href} {...newTabProps} {...props}>
+    <a
+      className={getClassName({
+        baseClassName: "af-link",
+        modifiers: [classModifier, variant, openInNewTab && "openInNewTab"],
+        className,
+      })}
+      href={href}
+      {...newTabProps}
+      {...props}
+    >
       {leftIcon}
       {children}
       {openInNewTab || Boolean(rightIcon)

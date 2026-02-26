@@ -128,32 +128,6 @@ sup {
   top: -0.5em;
 }
 
-a {
-  text-decoration: none;
-  color: #00008f;
-  background-color: transparent;
-}
-
-a:hover {
-  text-decoration: underline;
-  color: #000043;
-}
-
-a:not([href], [tabindex]) {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:not([href], [tabindex]):focus,
-a:not([href], [tabindex]):hover {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:not([href], [tabindex]):focus {
-  outline: 0;
-}
-
 code,
 kbd,
 pre,
