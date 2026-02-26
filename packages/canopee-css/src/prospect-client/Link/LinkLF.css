@@ -2,48 +2,13 @@
 
 .af-link {
   --link-font-weight: 400;
-  --link-text-color-default: var(--blue-1000);
-  --underline-offset: 10%;
-  --link-font-size: 14;
+  --link-font-size: var(--rem-16);
 
   @media (--desktop-small) {
-    --link-font-size: 18;
+    --link-font-size: var(--rem-18);
   }
 }
 
-.af-link--default {
-  --link-line-height: 125%;
-
-  &:hover {
-    --link-text-color: var(--blue-1200);
-  }
-
-  &:active,
-  &:focus {
-    --link-color-outline: var(--blue-800);
-  }
-}
-
-.af-link--underline {
-  --link-line-height: 125%;
-
-  &:hover {
-    --link-text-color: var(--blue-1200);
-  }
-
-  &:active,
-  &:focus {
-    --link-color-outline: var(--blue-800);
-  }
-}
-
-.af-link--inverse {
-  --link-text-color-inverse: var(--white-1000);
-  --link-line-height: 125%;
-
-  &:hover,
-  &:active,
-  &:focus {
-    --link-line-height: 125%;
-  }
+.af-link--openInNewTab {
+  --link-font-weight: 600;
 }

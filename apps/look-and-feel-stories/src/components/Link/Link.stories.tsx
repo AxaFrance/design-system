@@ -9,7 +9,28 @@ const meta: Meta<typeof Link> = {
 };
 export default meta;
 
-export const Default: StoryObj<typeof Link> = {
+export const Playground: StoryObj<typeof Link> = {
+  args: {
+    href: "https://fakelink.com",
+    children: "My link",
+  },
+};
+
+export const LinkInverse: StoryObj<typeof Link> = {
+  args: {
+    href: "https://fakelink.com",
+    children: "My link",
+    variant: "inverse",
+  },
+  parameters: {
+    backgrounds: {
+      default: "dark",
+      values: [{ name: "dark", value: "var(--blue-1000)" }],
+    },
+  },
+};
+
+export const LinkOpenInNewTab: StoryObj<typeof Link> = {
   args: {
     href: "https://fakelink.com",
     children: "My link",
@@ -17,12 +38,20 @@ export const Default: StoryObj<typeof Link> = {
   },
 };
 
-export const LinkWithCustomIcons: StoryObj<typeof Link> = {
+export const LinkWithIcons: StoryObj<typeof Link> = {
   args: {
     href: "https://fakelink.com",
     children: "My link",
-    openInNewTab: true,
     leftIcon: <Svg src={arrowLeftAlt} />,
     rightIcon: <Svg src={personFill} />,
+  },
+};
+
+export const LinkButton: StoryObj<typeof Link> = {
+  args: {
+    href: "https://fakelink.com",
+    children: "LinkButton",
+    leftIcon: <Svg src={arrowLeftAlt} />,
+    className: "af-btn-client",
   },
 };

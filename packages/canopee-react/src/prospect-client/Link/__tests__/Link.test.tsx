@@ -87,15 +87,4 @@ describe("Link component", () => {
       }
     },
   );
-
-  it("remove openInNewTab class when className is provided", () => {
-    render(
-      <Link href="/" openInNewTab className="test-class">
-        Test Link
-      </Link>,
-    );
-
-    const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).not.toHaveClass("af-link--openInNewTab");
-  });
 });

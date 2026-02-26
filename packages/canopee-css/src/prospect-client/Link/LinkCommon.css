@@ -3,76 +3,53 @@
   width: fit-content;
   height: fit-content;
   align-items: center;
-  gap: 0.25rem;
-  font-size: calc(var(--link-font-size) / var(--font-size-base) * 1rem);
-  font-weight: var(--link-font-weight);
+  gap: var(--rem-4);
+  font-size: var(--link-font-size, var(--rem-14));
+  font-weight: var(--link-font-weight, 600);
+  line-height: var(--rem-20);
   text-decoration: underline;
-  text-underline-offset: var(--underline-offset);
-  color: var(--link-text-color-default);
-  cursor: pointer;
-  fill: var(--link-text-color-default);
+  text-underline-offset: var(--link-underline-offset, 25%);
+  color: var(--link-text-color, var(--blue-1000));
+  fill: var(--link-text-color, var(--blue-1000));
+
+  @media (--desktop-small) {
+    --link-font-size: var(--rem-16);
+  }
 
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: var(--rem-24);
+    height: var(--rem-24);
     aspect-ratio: 1;
     fill: currentcolor;
   }
 
-  &:hover,
-  &:active,
-  &:focus {
-    fill: var(--link-text-color);
+  &:hover {
+    --link-text-color: var(--blue-1200);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--link-color-outline);
+    --link-text-color: var(--blue-900);
+
+    outline: 2px solid var(--blue-650);
     outline-offset: 3px;
   }
-}
 
-.af-link--openInNewTab {
-  font-weight: 600;
-}
+  &.af-btn-client {
+    --link-text-color: var(--white-1000);
 
-.af-link--default {
-  line-height: var(--link-line-height);
-  text-decoration: none;
+    text-decoration: none;
 
-  &:hover {
-    text-decoration: underline;
-    color: var(--link-text-color);
-  }
-
-  &:active,
-  &:focus {
-    text-decoration: underline;
-    color: var(--link-color-outline);
-  }
-}
-
-.af-link--underline {
-  line-height: var(--link-line-height);
-
-  &:hover {
-    color: var(--link-text-color);
-  }
-
-  &:active,
-  &:focus {
-    color: var(--link-color-outline);
+    :is(&:hover, &:active, &:focus) {
+      --link-text-color: var(--white-1000);
+    }
   }
 }
 
 .af-link--inverse {
-  line-height: var(--link-line-height);
-  text-decoration: none;
-  color: var(--link-text-color-inverse);
+  --link-text-color: var(--white-1000);
+  --link-font-weight: 400;
 
-  &:hover,
-  &:active,
-  &:focus {
-    line-height: var(--link-line-height);
-    text-decoration: underline;
+  :is(&:hover, &:active, &:focus, &:focus-visible) {
+    --link-text-color: var(--white-1000);
   }
 }
