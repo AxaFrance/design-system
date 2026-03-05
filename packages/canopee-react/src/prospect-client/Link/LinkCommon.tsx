@@ -13,7 +13,7 @@ export const linkVariants = {
 
 export type LinkVariants = keyof typeof linkVariants;
 
-type LinkProps = {
+export type LinkProps = {
   variant?: LinkVariants;
   openInNewTab?: boolean;
   leftIcon?: ReactNode;

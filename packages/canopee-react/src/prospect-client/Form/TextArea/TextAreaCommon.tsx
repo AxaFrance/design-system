@@ -13,6 +13,7 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
+import { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ItemLabelProps["children"];
@@ -21,6 +22,7 @@ export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
    * @deprecated Use `message` and messageType instead.
    */
   error?: string;
+  containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "description"
@@ -61,6 +63,7 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
       ItemMessageComponent,
       onSideButtonClick,
       placeholder = " ",
+      containerProps,
       ...inputProps
     },
     inputRef,
@@ -78,6 +81,7 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
         className={["af-form__input-container", className]
           .filter(Boolean)
           .join(" ")}
+        {...containerProps}
       >
         <ItemLabelComponent
           description={description}

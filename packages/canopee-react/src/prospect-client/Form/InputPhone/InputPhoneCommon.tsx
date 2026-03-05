@@ -20,6 +20,7 @@ import {
 import { CountryCodeSelect } from "./CountryCodeSelect";
 import { type OptionType } from "./InputPhone.types";
 import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
+import { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
@@ -40,6 +41,7 @@ export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   onChangeInput?: (value: string) => void;
   mask?: (value: string) => string;
   label: ItemLabelProps["children"];
+  containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "description"
@@ -92,6 +94,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
       InputTextComponent,
       IconComponent,
       "aria-errormessage": ariaErrormessage,
+      containerProps,
       ...otherProps
     },
     inputRef,
@@ -126,7 +129,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
     };
 
     return (
-      <div className="af-form__input-phone-container">
+      <div className="af-form__input-phone-container" {...containerProps}>
         <ItemLabelComponent
           description={description}
           moreButtonLabel={moreButtonLabel ?? buttonLabel}

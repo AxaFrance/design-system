@@ -1,4 +1,3 @@
-import "./Coordonnees.css";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Coordonnees } from "./Coordonnees";

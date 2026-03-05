@@ -10,6 +10,7 @@ import {
   type ItemMessageProps,
 } from "../../ItemMessage/ItemMessageCommon";
 import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
+import { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 
 type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
 
@@ -56,6 +57,7 @@ export type CardRadioGroupProps = Omit<
    * @deprecated Use `message` and messageType instead.
    */
   error?: ReactNode;
+  containerProps?: GridContainerProps<"fieldset">;
 } & PropsWithChildren &
   Partial<ItemMessageProps>;
 
@@ -84,6 +86,7 @@ const CardRadioGroupCommon = ({
   id,
   CardRadioOptionComponent,
   ItemMessageComponent,
+  containerProps,
   ...inputProps
 }: CardRadioCommonProps) => {
   const generatedId = useId();
@@ -101,6 +104,7 @@ const CardRadioGroupCommon = ({
       aria-invalid={hasError || undefined}
       aria-errormessage={hasError ? messageId : undefined}
       id={cardRadioGroupId}
+      {...containerProps}
     >
       <legend className="af-card-radio-group__legend">
         <p className="af-card-radio-group__label">
