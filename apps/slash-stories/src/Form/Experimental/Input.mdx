@@ -1,0 +1,81 @@
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Primary,
+  Subtitle,
+  Title,
+} from "@storybook/blocks";
+import * as Stories from "./Input.stories";
+
+<Meta of={Stories} title="Form/Experimental/Input" />
+
+<Title />
+
+## ⚠️ Experimental Component
+
+This component is **experimental** and may change in future releases. You can however use it in your projects, but be aware that the API might change.
+We welcome your feedback and contributions to improve this component.
+
+## Overview
+
+The `Input` component is a low-level form input component that provides a styled HTML input element. It serves as the foundation for more complex input components like `TextInput`.
+
+This component is a wrapper around the native HTML `input` element with predefined styles and accessibility features. It's typically used in combination with other form components like `Label`, `InputContainer`, and `InputUnit` to create complete form fields.
+
+## Playground
+
+<Primary />
+<Controls />
+
+## Usage
+
+The `Input` component forwards all props to the underlying HTML input element, making it fully compatible with standard input attributes.
+
+```tsx
+import { Input } from "@axa-fr/design-system-slash-react/experimental";
+
+const MyComponent = () => {
+  return <Input type="text" placeholder="Enter your name" />;
+};
+```
+
+## States
+
+### Disabled
+
+Set the `disabled` prop to true to disable the input field.
+
+<Canvas of={Stories.DisabledStory} />
+
+### Required
+
+Set the `required` prop to mark the input as required.
+
+<Canvas of={Stories.RequiredStory} />
+
+### Invalid
+
+Use the `aria-invalid` attribute to mark the input as invalid. This will apply error styling.
+
+<Canvas of={Stories.InvalidStory} />
+
+## Form Integration
+
+This component can be used with form libraries like [react-hook-form](https://react-hook-form.com/) or [Formik](https://formik.org/). It supports controlled and uncontrolled usage patterns and forwards refs properly.
+
+```tsx
+import { Input } from "@axa-fr/design-system-slash-react/experimental";
+import { useForm } from "react-hook-form";
+
+const MyForm = () => {
+  const { register, handleSubmit } = useForm();
+
+  return (
+    <form onSubmit={handleSubmit(console.log)}>
+      <Input {...register("fieldName")} />
+    </form>
+  );
+};
+```

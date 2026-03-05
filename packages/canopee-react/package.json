@@ -7,6 +7,10 @@
       "import": "./dist/distributeur.js",
       "types": "./dist/distributeur.d.ts"
     },
+    "./distributeur/experimental": {
+      "import": "./dist/distributeur-experimental.js",
+      "types": "./dist/distributeur-experimental.d.ts"
+    },
     "./client": {
       "import": "./dist/client.js",
       "types": "./dist/client.d.ts"

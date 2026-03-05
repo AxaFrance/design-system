@@ -1,0 +1,93 @@
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Primary,
+  Subtitle,
+  Title,
+} from "@storybook/blocks";
+import * as Stories from "./InputContainer.stories";
+
+<Meta of={Stories} title="Form/Experimental/InputContainer" />
+
+<Title />
+
+## ⚠️ Experimental Component
+
+This component is **experimental** and may change in future releases. You can however use it in your projects, but be aware that the API might change.
+We welcome your feedback and contributions to improve this component.
+
+## Overview
+
+The `InputContainer` component is a layout component that manages the positioning of form elements using CSS Grid. It coordinates the display of labels, inputs, units, and messages in either horizontal or vertical layouts.
+
+This component is essential for building consistent form layouts and is typically used to wrap `Label`, `Input`, `InputUnit`, and `ItemMessage` components together.
+
+## Playground
+
+<Primary />
+<Controls />
+
+## Usage
+
+The `InputContainer` component uses CSS Grid to arrange its children. It automatically positions elements based on their CSS class names (grid areas).
+
+```tsx
+import {
+  Input,
+  InputContainer,
+  InputUnit,
+  Label,
+} from "@axa-fr/design-system-slash-react/experimental";
+
+const MyFormField = () => {
+  return (
+    <InputContainer>
+      <Label htmlFor="amount">Amount</Label>
+      <Input id="amount" type="number" />
+      <InputUnit>€</InputUnit>
+    </InputContainer>
+  );
+};
+```
+
+## Layout Options
+
+### Horizontal Layout (Default)
+
+By default, the container arranges elements horizontally with the label, input, and unit on the same row.
+
+<Canvas of={Stories.HorizontalStory} />
+
+### Vertical Layout
+
+Set the `vertical` prop to true to stack the label above the input.
+
+<Canvas of={Stories.VerticalStory} />
+
+### Without Unit
+
+The unit element is optional. You can omit it when not needed.
+
+<Canvas of={Stories.WithoutUnitStory} />
+
+## Grid Areas
+
+The container defines the following grid areas that child components automatically fill:
+
+- **label**: Filled by `Label` components
+- **input**: Filled by `Input` components
+- **unit**: Filled by `InputUnit` components
+- **helper-message**: Filled by `ItemMessage` components
+- **error-message**: Additional area for error messages
+
+Child components are positioned automatically based on their CSS class names. This makes the container flexible and easy to compose with different combinations of form elements.
+
+## Customization
+
+You can pass a custom `className` to override or extend the default styling:
+
+```tsx
+<InputContainer className="my-custom-container">{/* ... */}</InputContainer>
+```
