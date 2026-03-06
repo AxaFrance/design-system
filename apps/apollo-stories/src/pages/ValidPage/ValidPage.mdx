@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ValidPageStories from "./ValidPage.stories";
+
+<Meta of={ValidPageStories} name="Valid Page" />
+
+# Valid page
+
+## Import
+
+```tsx
+import { ValidPage } from "@axa-fr/canopee-react/prospect";
+```
+
+## Uses
+
+### Valid Page Playground
+
+<Canvas of={ValidPageStories.Playground} />
+
+<Controls of={ValidPageStories.Playground} />

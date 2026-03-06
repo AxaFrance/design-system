@@ -1,0 +1,104 @@
+main.grid:has(.af-form-layout) {
+  padding-block: var(--rem-24);
+
+  --row-gap: var(--rem-48);
+
+  .af-form-layout {
+    --start: 1;
+
+    @media (--desktop-small) {
+      --start: 3;
+      --cols: 8;
+      --row-gap: calc(32 / var(--font-size-base) * 1rem);
+    }
+
+    .af-form-layout__header {
+      --row-gap: calc(32 / var(--font-size-base) * 1rem);
+    }
+
+    .af-form-layout__fields {
+      --row-gap: 2rem;
+
+      > * {
+        --cols-mobile-max: 4; /* nombre de colonnes max sur mobile */
+        --cols-over-tablet-max: 8; /* nombre de colonnes max sur tablette et plus */
+        --cols-default-field: 5; /* nombre de colonnes par défaut pour les champs au-delà de la tablette */
+        --cols-desktop-small: var(--cols-default-field);
+        --cols-desktop-medium: var(--cols-desktop-small);
+
+        /* Calcul du nombre de colonnes à utiliser en mobile 
+          * On prend la valeur la plus petite entre le nombre de colonnes défini pour mobile et le nombre de colonnes max pour mobile
+          * la valeur par défaut pour mobile est le nombre de colonnes max pour mobile, 
+          * les champs prendront toute la largeur disponible sur mobile, sauf si un nombre de colonnes spécifique est défini pour mobile  
+        */
+        --cols: min(
+          var(--cols-mobile, var(--cols-mobile-max)),
+          var(--cols-mobile-max)
+        );
+
+        /* Calcul du nombre de colonnes à utiliser en tablette 
+          * On prend la valeur la plus petite entre le nombre de colonnes défini pour tablette et le nombre de colonnes max pour tablette et plus
+          * la valeur par défaut pour tablette est le nombre de colonnes max pour tablette, 
+          * les champs prendront toute la largeur disponible sur tablette, sauf si un nombre de colonnes spécifique est défini pour tablette  
+        */
+        @media (--tablet) {
+          --cols: min(
+            var(--cols-tablet, var(--cols-over-tablet-max)),
+            var(--cols-over-tablet-max)
+          );
+        }
+
+        /* Calcul du nombre de colonnes à utiliser en desktop small
+          * On prend la valeur la plus petite entre le nombre de colonnes défini pour desktop small et le nombre de colonnes max pour tablette et plus
+          * la valeur par défaut pour desktop small est le nombre de colonnes par défaut pour les champs.
+        */
+        @media (--desktop-small) {
+          --cols: min(var(--cols-desktop-small), var(--cols-over-tablet-max));
+        }
+
+        /* Calcul du nombre de colonnes à utiliser en desktop medium
+          * On prend la valeur la plus petite entre le nombre de colonnes défini pour desktop medium et le nombre de colonnes max pour tablette et plus
+          * la valeur par défaut pour desktop medium est le nombre de colonnes défini pour desktop small, 
+          * les champs prendront la même nombre de colonnes que sur desktop small par héritage. 
+        */
+        @media (--desktop-medium) {
+          --cols: min(var(--cols-desktop-medium), var(--cols-over-tablet-max));
+        }
+
+        /* Calcul du nombre de colonnes à utiliser en desktop large
+          * On prend la valeur la plus petite entre le nombre de colonnes défini pour desktop large et le nombre de colonnes max pour tablette et plus
+          * la valeur par défaut pour desktop large est le nombre de colonnes défini pour desktop medium, 
+          * les champs prendront la même nombre de colonnes que sur desktop medium par héritage.  
+        */
+        @media (--desktop-large) {
+          --cols: min(
+            var(--cols-desktop-large, var(--cols-desktop-medium)),
+            var(--cols-over-tablet-max)
+          );
+        }
+      }
+    }
+
+    .af-form-layout__actions {
+      --row-gap: var(--rem-16);
+
+      align-items: center;
+
+      > * {
+        --cols: 4;
+
+        @media (--desktop-small) {
+          --cols: 3;
+        }
+      }
+    }
+  }
+
+  .af-form-layout__faq {
+    --row-gap: var(--rem-24);
+
+    @media (--desktop-small) {
+      --row-gap: var(--rem-32);
+    }
+  }
+}

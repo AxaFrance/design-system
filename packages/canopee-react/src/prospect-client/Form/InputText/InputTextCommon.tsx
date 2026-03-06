@@ -1,6 +1,5 @@
 import {
   type ComponentProps,
-  type ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
   type ReactNode,
@@ -15,8 +14,9 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
-export type InputTextProps = ComponentPropsWithRef<"input"> & {
+export type InputTextProps = ComponentProps<"input"> & {
   unit?: ReactNode;
   classModifier?: string;
   label?: ItemLabelProps["children"];
@@ -29,6 +29,7 @@ export type InputTextProps = ComponentPropsWithRef<"input"> & {
    * @deprecated Use `message` and messageType instead.
    */
   success?: string;
+  containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "description"
@@ -72,6 +73,7 @@ const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
       ItemLabelComponent,
       ItemMessageComponent,
       InputTextAtomComponent,
+      containerProps,
       ...otherProps
     },
     inputRef,
@@ -85,8 +87,10 @@ const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
       Boolean,
     ) as string[];
 
+    console.log("containerProps", containerProps);
+
     return (
-      <div className="af-form__input-container">
+      <div className="af-form__input-container" {...containerProps}>
         <ItemLabelComponent
           description={description}
           moreButtonLabel={moreButtonLabel ?? buttonLabel}

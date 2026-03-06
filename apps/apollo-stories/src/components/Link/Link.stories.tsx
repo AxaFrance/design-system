@@ -5,7 +5,7 @@ import personFill from "@material-symbols/svg-400/rounded/person-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Link> = {
-  title: "Components/Link",
+  title: "Components/Link 🚧",
   component: Link,
 };
 export default meta;
@@ -36,6 +36,7 @@ export const LinkOpenInNewTab: StoryObj<typeof Link> = {
     href: "https://fakelink.com",
     children: "My link",
     openInNewTab: true,
+    rightIcon: <Svg src={personFill} />,
   },
 };
 
@@ -49,6 +50,7 @@ export const LinkWithIcons: StoryObj<typeof Link> = {
 };
 
 export const LinkButton: StoryObj<typeof Link> = {
+  name: "Link button 🚧",
   args: {
     href: "https://fakelink.com",
     children: "LinkButton",

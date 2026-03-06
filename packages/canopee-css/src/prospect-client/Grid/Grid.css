@@ -42,7 +42,7 @@ Its MOBILE FIRST approach, so the defauts values target the mobile.
   @media (--desktop-large) {
     --margin-inline: auto;
 
-    max-width: 1320px;
+    width: 1320px;
   }
 
   > *,
