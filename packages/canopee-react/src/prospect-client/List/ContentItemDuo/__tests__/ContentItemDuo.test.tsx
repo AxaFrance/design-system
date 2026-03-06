@@ -18,6 +18,7 @@ const renderContentItemDuo = (props: Partial<ContentItemDuoProps> = {}) =>
     <ContentItemDuoCommon
       label="Label"
       value="Value"
+      itemMessage="Titre du message"
       {...props}
       ButtonComponent={ButtonComponent}
     />,
@@ -29,6 +30,7 @@ describe("ContentItemDuoCommon", () => {
 
     expect(screen.getByText("Label")).toBeInTheDocument();
     expect(screen.getByText("Value")).toBeInTheDocument();
+    expect(screen.getByText("Titre du message")).toBeInTheDocument();
   });
 
   it("applies vertical modifier when isVertical is true", () => {
@@ -157,5 +159,33 @@ describe("ContentItemDuoCommon", () => {
       (v) => v.id !== "definition-list",
     );
     expect(filteredResults).toHaveNoViolations();
+  });
+
+  it("renders ItemMessage always, even if value or button are hidden", () => {
+    renderContentItemDuo({
+      itemMessage: "Test message",
+      itemMessageType: "warning",
+      valueIsVisible: false,
+      buttonIsVisible: false,
+    });
+    expect(screen.getByText("Test message")).toBeInTheDocument();
+  });
+
+  it("hides value when valueIsVisible is false", () => {
+    renderContentItemDuo({ valueIsVisible: false });
+    expect(screen.queryByText("Value")).not.toBeInTheDocument();
+  });
+
+  it("renders button when buttonText and onButtonClick are provided", async () => {
+    const handleClick = vi.fn();
+    renderContentItemDuo({
+      buttonIsVisible: true,
+      buttonText: "Click me",
+      onButtonClick: handleClick,
+    });
+    const button = screen.getByRole("button", { name: "Click me" });
+    expect(button).toBeInTheDocument();
+    await userEvent.click(button);
+    expect(handleClick).toHaveBeenCalled();
   });
 });
