@@ -7,7 +7,7 @@ import arrowLeftAlt from "@material-symbols/svg-400/outlined/arrow_left_alt.svg"
 import { LayoutDemo } from "../../layouts/LayoutDemo/LayoutDemo";
 
 const meta: Meta = {
-  title: "Pages/Valide Page",
+  title: "Pages/Valid Page",
   parameters: { layout: "fullscreen" },
   argTypes: {
     showAgent: { control: "boolean" },

@@ -9,6 +9,14 @@ import * as ErrorPageStories from "./ErrorPage.stories";
 
 ```tsx
 import { ErrorPage } from "@axa-fr/canopee-react/prospect";
+
+<Myheader />
+<main className="grid">
+    <ErrorPage headingProps={headingProps} linkProps={linkProps}>
+      {children}
+    </ErrorPage>
+</main>
+<MyFooter />
 ```
 
 ## Uses

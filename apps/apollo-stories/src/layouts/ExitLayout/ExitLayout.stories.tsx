@@ -8,8 +8,6 @@ const meta: Meta = {
   title: "Layouts/Exit Layout",
   parameters: { layout: "fullscreen" },
   argTypes: {
-    title: { control: "text" },
-    firstSubtitle: { control: "text" },
     showAgent: { control: "boolean" },
     actions: {
       control: "number",

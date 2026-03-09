@@ -6,19 +6,6 @@ import { LayoutDemo } from "../LayoutDemo/LayoutDemo";
 const meta: Meta = {
   title: "Layouts/Form Layout",
   parameters: { layout: "fullscreen" },
-  argTypes: {
-    title: { control: "text" },
-    firstSubtitle: { control: "text" },
-    showAgent: { control: "boolean" },
-    actions: {
-      control: "number",
-      min: 1,
-    },
-    content: {
-      control: "number",
-      min: 1,
-    },
-  },
 };
 
 export default meta;
