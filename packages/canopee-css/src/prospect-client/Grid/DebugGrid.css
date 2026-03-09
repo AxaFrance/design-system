@@ -8,6 +8,7 @@
 
 .debug-grid {
   position: fixed;
+  z-index: -1;
   top: 0;
   display: none;
   width: 100%;
@@ -25,10 +26,10 @@
     &::before {
       position: absolute;
       top: 50%;
-      left: 0.5vw;
+      left: 3vw;
       width: 100%;
       height: 100%;
-      font-size: clamp(0.5rem, 4vw, 3rem);
+      font-size: clamp(0.5rem, 4vw, 1rem);
       text-align: center;
       text-orientation: mixed;
       writing-mode: vertical-rl;

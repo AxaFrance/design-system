@@ -36,11 +36,35 @@
 
   &.af-btn-client {
     --link-text-color: var(--white-1000);
+    --link-line-height: var(--rem-24);
+    --link-font-size: var(--rem-16);
 
+    width: inherit;
+    line-height: var(--link-line-height);
     text-decoration: none;
+
+    @media (--desktop-small) {
+      --link-line-height: var(--rem-32);
+      --link-font-size: var(--rem-18);
+    }
 
     :is(&:hover, &:active, &:focus) {
       --link-text-color: var(--white-1000);
+    }
+
+    &.af-btn-client--secondary {
+      --link-text-color: var(--blue-1000);
+      --link-shadow-color: var(--blue-1000);
+
+      background-color: var(--white-1000);
+      box-shadow: 0 0 0 2px var(--link-shadow-color) inset;
+
+      :is(&:hover, &:active, &:focus) {
+        --link-text-color: var(--white-1000);
+        --link-shadow-color: var(--blue-1200);
+
+        background-color: var(--blue-1200);
+      }
     }
   }
 }

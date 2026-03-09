@@ -32,7 +32,10 @@ export {
   type ContentItemDuoActionState,
 } from "./prospect-client/ContentItemDuoAction/ContentItemDuoActionLF";
 export { ContentItemMono } from "./prospect-client/ContentItemMono/ContentItemMonoLF";
-export { DataAgent } from "./prospect-client/DataAgent/DataAgentLF";
+export {
+  DataAgent,
+  type DataAgentProps,
+} from "./prospect-client/DataAgent/DataAgentLF";
 export { Divider } from "./prospect-client/Divider/DividerLF";
 export {
   Fieldset,
@@ -81,6 +84,7 @@ export { DebugGrid } from "./prospect-client/Grid/DebugGridLF";
 export {
   Heading,
   type HeadingLevel,
+  type HeadingProps,
 } from "./prospect-client/Heading/HeadingLF";
 export {
   Icon,
@@ -105,6 +109,7 @@ export {
   Link,
   linkVariants,
   type LinkVariants,
+  type LinkProps,
 } from "./prospect-client/Link/LinkLF";
 export {
   ClickItem,
@@ -173,3 +178,21 @@ export {
   TableMobileCard,
   type TableMobileCardProps,
 } from "./prospect-client/TableMobileCard/TableMobileCard";
+export {
+  ExitLayout,
+  type ExitLayoutWithSubComponents,
+  type ExitLayoutProps,
+} from "./prospect-client/Layout/ExitLayout/ExitLayoutLF";
+export {
+  FormLayout,
+  type FormLayoutProps,
+} from "./prospect-client/Layout/FormLayout/FormLayout";
+export {
+  ValidPage,
+  type ValidPageProps,
+} from "./prospect-client/pages/ValidPage/ValidPageLF";
+export {
+  ErrorPage,
+  type ErrorPageProps,
+} from "./prospect-client/pages/ErrorPage/ErrorPageLF";
+export type { GridContainerProps } from "./prospect-client/utilities/types/GridContainerProps";

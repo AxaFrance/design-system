@@ -1,4 +1,3 @@
-import "./Situation.css";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Situation } from "./Situation";

@@ -1,0 +1,27 @@
+#storybook-root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+.af-header-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--rem-8) var(--rem-16);
+  border-bottom: 1px solid var(--neutral-14);
+  gap: var(--rem-16);
+
+  img {
+    height: var(--rem-40);
+    aspect-ratio: 1 / 1;
+  }
+
+  @media (width > 1023px) {
+    padding: var(--rem-8) var(--rem-48);
+
+    img {
+      height: calc(56 / var(--font-size-base) * 1rem);
+    }
+  }
+}

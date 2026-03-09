@@ -5,6 +5,8 @@ import { Divider } from "../Divider/DividerApollo";
 
 import "@axa-fr/canopee-css/prospect/DataAgent/DataAgentApollo.css";
 
+export { type DataAgentProps } from "./DataAgentCommon";
+
 export const DataAgent = (props: DataAgentProps) => (
   <DataAgentCommon
     {...props}

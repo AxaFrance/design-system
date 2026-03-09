@@ -32,7 +32,10 @@ export {
   type ContentItemDuoActionState,
 } from "./prospect-client/ContentItemDuoAction/ContentItemDuoActionApollo";
 export { ContentItemMono } from "./prospect-client/ContentItemMono/ContentItemMonoApollo";
-export { DataAgent } from "./prospect-client/DataAgent/DataAgentApollo";
+export {
+  DataAgent,
+  type DataAgentProps,
+} from "./prospect-client/DataAgent/DataAgentApollo";
 export { Divider } from "./prospect-client/Divider/DividerApollo";
 export {
   Fieldset,
@@ -73,6 +76,7 @@ export { DebugGrid } from "./prospect-client/Grid/DebugGridApollo";
 export {
   Heading,
   type HeadingLevel,
+  type HeadingProps,
 } from "./prospect-client/Heading/HeadingApollo";
 export {
   Icon,
@@ -97,6 +101,7 @@ export {
   Link,
   linkVariants,
   type LinkVariants,
+  type LinkProps,
 } from "./prospect-client/Link/LinkApollo";
 export {
   ClickItem,
@@ -162,3 +167,21 @@ export {
   type RowSizeVariants,
 } from "./prospect-client/Table/TableApollo";
 export { TableMobileCard } from "./prospect-client/TableMobileCard/TableMobileCard";
+export {
+  ExitLayout,
+  type ExitLayoutWithSubComponents,
+  type ExitLayoutProps,
+} from "./prospect-client/Layout/ExitLayout/ExitLayoutApollo";
+export {
+  FormLayout,
+  type FormLayoutProps,
+} from "./prospect-client/Layout/FormLayout/FormLayout";
+export {
+  ValidPage,
+  type ValidPageProps,
+} from "./prospect-client/pages/ValidPage/ValidPageApollo";
+export {
+  ErrorPage,
+  type ErrorPageProps,
+} from "./prospect-client/pages/ErrorPage/ErrorPageApollo";
+export type { GridContainerProps } from "./prospect-client/utilities/types/GridContainerProps";

@@ -1,6 +1,7 @@
 import { type ReactNode, useId, type ComponentType, forwardRef } from "react";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 import type { CheckboxProps } from "../Checkbox/CheckboxCommon";
+import { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 
 export type CheckboxTextProps = {
   label: string | ReactNode;
@@ -8,6 +9,7 @@ export type CheckboxTextProps = {
    * @deprecated Use `message` and messageType instead.
    */
   errorMessage?: string;
+  containerProps?: GridContainerProps;
 } & Omit<CheckboxProps, "aria-errormessage" | "aria-invalid"> &
   Partial<ItemMessageProps>;
 
@@ -29,6 +31,7 @@ const CheckboxTextCommon = forwardRef<
       messageType,
       CheckboxComponent,
       ItemMessageComponent,
+      containerProps,
       ...inputProps
     },
     ref,
@@ -41,7 +44,7 @@ const CheckboxTextCommon = forwardRef<
       (Boolean(message) && messageType === "error") || Boolean(errorMessage);
 
     return (
-      <div className="af-checkbox-text">
+      <div className="af-checkbox-text" {...containerProps}>
         <label htmlFor={inputId}>
           <CheckboxComponent
             id={inputId}

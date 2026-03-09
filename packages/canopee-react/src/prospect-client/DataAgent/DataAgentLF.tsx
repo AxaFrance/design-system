@@ -5,6 +5,8 @@ import { Divider } from "../Divider/DividerLF";
 
 import "@axa-fr/canopee-css/client/DataAgent/DataAgentLF.css";
 
+export { type DataAgentProps } from "./DataAgentCommon";
+
 export const DataAgent = (props: DataAgentProps) => (
   <DataAgentCommon
     {...props}
