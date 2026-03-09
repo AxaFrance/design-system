@@ -1,8 +1,10 @@
 import { type ComponentProps, type ComponentType, type ReactNode } from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
 import { getClassName } from "../../utilities/getClassName";
-import { ItemMessage } from "../../Form/ItemMessage/ItemMessageCommon";
-import type { ItemMessageVariants } from "../../Form/ItemMessage/ItemMessageCommon";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../../Form/ItemMessage/ItemMessageCommon";
 
 type ContentItemDuoPositions =
   | {
@@ -23,10 +25,8 @@ export type ContentItemDuoProps = {
   isVertical?: boolean;
   /** @deprecated Use `size` or `className` instead */
   classModifier?: string;
-  itemMessage?: string;
-  itemMessageType?: ItemMessageVariants;
-  valueIsVisible?: boolean;
-  buttonIsVisible?: boolean;
+  message?: string;
+  messageType?: ItemMessageProps["messageType"];
 } & ContentItemDuoPositions &
   ComponentProps<"div">;
 
@@ -45,10 +45,8 @@ export const ContentItemDuoCommon = ({
   buttonText,
   onButtonClick,
   ButtonComponent,
-  itemMessage,
-  itemMessageType,
-  valueIsVisible = true,
-  buttonIsVisible = true,
+  message,
+  messageType = "warning",
   ...containerProps
 }: ContentItemDuoCommonProps) => {
   const componentClassName = getClassName({
@@ -65,12 +63,12 @@ export const ContentItemDuoCommon = ({
     <div className={componentClassName} {...containerProps}>
       <dt className="af-content-item-duo__label">{label}</dt>
       <dd className="af-content-item-duo__value">
-        {valueIsVisible ? value : null}
-        {itemMessage ? (
-          <ItemMessage message={itemMessage} messageType={itemMessageType} />
+        {value}
+        {message ? (
+          <ItemMessage message={message} messageType={messageType} />
         ) : null}
       </dd>
-      {buttonIsVisible && Boolean(buttonText && onButtonClick) ? (
+      {buttonText && onButtonClick ? (
         <ButtonComponent
           className="af-content-item-duo__button"
           variant="ghost"

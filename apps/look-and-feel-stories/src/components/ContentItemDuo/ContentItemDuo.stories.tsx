@@ -8,7 +8,7 @@ const meta: Meta<typeof ContentItemDuo> = {
   args: {
     label: "Label",
     value: "Value",
-    itemMessage: "Titre du message",
+    message: "Titre du message",
     buttonText: "Learn more",
   },
   argTypes: {
@@ -20,15 +20,13 @@ const meta: Meta<typeof ContentItemDuo> = {
         type: "select",
       },
     },
-    itemMessage: { control: "text" },
-    itemMessageType: {
-      options: ["error", "warning", "sucess"],
+    message: { control: "text" },
+    messageType: {
+      options: ["error", "warning", "success"],
       control: {
         type: "select",
       },
     },
-    valueIsVisible: { control: "boolean" },
-    buttonIsVisible: { control: "boolean" },
     isVertical: { control: "boolean" },
     size: {
       options: ["small", "large"],
