@@ -87,8 +87,6 @@ const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
       Boolean,
     ) as string[];
 
-    console.log("containerProps", containerProps);
-
     return (
       <div className="af-form__input-container" {...containerProps}>
         <ItemLabelComponent
