@@ -1,4 +1,4 @@
-main.grid:has(.af-exit-page) {
+.grid:has(.af-exit-page) {
   padding-block: var(--rem-40);
 
   @media (--desktop-small) {

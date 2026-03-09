@@ -1,4 +1,4 @@
-main.grid:has(.af-form-layout) {
+.grid:has(.af-form-layout) {
   padding-block: var(--rem-24);
 
   --row-gap: var(--rem-48);
