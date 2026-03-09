@@ -82,7 +82,7 @@
     .af-form-layout__actions {
       --row-gap: var(--rem-16);
 
-      align-items: center;
+      align-items: start;
 
       > * {
         --cols: 4;
