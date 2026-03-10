@@ -1,10 +1,13 @@
 import "@axa-fr/canopee-css/distributeur/Layout/Header/HeaderTitle/HeaderTitle.css";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import classNames from "classnames";
 import { Action } from "../../../Action/Action";
 import { getComponentClassName } from "../../../utilities";
-import { AnchorNavBar, AnchorNavBarItem } from "../AnchorNavBar/AnchorNavBar";
+import {
+  AnchorNavBar,
+  type AnchorNavBarItem,
+} from "../AnchorNavBar/AnchorNavBar";
 import { ToggleButton } from "../ToggleButton/ToggleButton";
 import { getClassModifier } from "./HeaderTitle.helpers";
 

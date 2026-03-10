@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { getComponentClassName } from "../utilities";
 
 const defaultClassName = "af-steps-new";

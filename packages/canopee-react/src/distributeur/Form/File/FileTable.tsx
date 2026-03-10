@@ -1,9 +1,9 @@
-import { ComponentPropsWithoutRef } from "react";
-import { FileRejection } from "react-dropzone";
-import { FileLine } from "./FileLine";
-import { CustomFile } from "./File";
-import { FileErrors } from "./FileErrors";
+import type { ComponentPropsWithoutRef } from "react";
+import type { FileRejection } from "react-dropzone";
 import { getComponentClassName } from "../../utilities";
+import type { CustomFile } from "./File";
+import { FileErrors } from "./FileErrors";
+import { FileLine } from "./FileLine";
 
 type FileLineProps = ComponentPropsWithoutRef<typeof FileLine>;
 type Props = Pick<FileLineProps, "onClick"> & {

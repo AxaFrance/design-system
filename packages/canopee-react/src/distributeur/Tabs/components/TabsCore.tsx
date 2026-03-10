@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabsStateless, TabsStatelessProps } from "./TabsStateless";
+import { TabsStateless, type TabsStatelessProps } from "./TabsStateless";
 
 const DEFAULT_ACTIVE_INDEX = "0";
 

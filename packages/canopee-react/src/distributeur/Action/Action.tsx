@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Action/Action.css";
-import { ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { getComponentClassName } from "../utilities";
 
 type ActionCoreProps = ComponentPropsWithoutRef<"a"> & {

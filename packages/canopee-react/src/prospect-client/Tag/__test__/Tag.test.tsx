@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Tag, TagVariants } from "../TagCommon";
+import { Tag, type TagVariants } from "../TagCommon";
 
 describe("Tag", () => {
   it("should render children correctly", () => {

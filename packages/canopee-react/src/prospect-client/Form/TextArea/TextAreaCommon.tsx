@@ -1,10 +1,11 @@
 import {
   type ComponentProps,
-  ComponentPropsWithRef,
+  type ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
   useId,
 } from "react";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -13,7 +14,6 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ItemLabelProps["children"];

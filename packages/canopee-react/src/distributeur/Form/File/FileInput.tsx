@@ -1,8 +1,8 @@
 import "@axa-fr/canopee-css/distributeur/Form/File/File.css";
-import { ComponentPropsWithoutRef, ReactNode, useId } from "react";
+import { type ComponentPropsWithoutRef, type ReactNode, useId } from "react";
 
 import { type ConsumerFieldProps, Field } from "../core";
-import { CustomFile, File } from "./File";
+import { type CustomFile, File } from "./File";
 import { FileTable } from "./FileTable";
 
 type FileProps = ComponentPropsWithoutRef<typeof File>;

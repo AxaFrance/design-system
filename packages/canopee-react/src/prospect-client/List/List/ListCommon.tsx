@@ -1,4 +1,4 @@
-import { Children, ComponentProps, ComponentType } from "react";
+import { Children, type ComponentProps, type ComponentType } from "react";
 import {
   CardCommon as Card,
   type CardCommonProps,

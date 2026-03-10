@@ -6,7 +6,7 @@ import Select, {
   type Options,
   type SingleValue,
 } from "react-select";
-import AsyncSelect, { AsyncProps } from "react-select/async";
+import AsyncSelect, { type AsyncProps } from "react-select/async";
 import { formatOptionLabel } from "./FormatOptionLabel";
 import { noOptionsMessage } from "./NoOptionsMessage";
 import { useMultiSelectStyle } from "./useMultiSelectStyle";

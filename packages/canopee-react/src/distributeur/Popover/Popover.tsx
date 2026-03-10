@@ -1,6 +1,6 @@
+import type { Placement } from "@floating-ui/react";
 import React from "react";
-import { Placement } from "@floating-ui/react";
-import { PopoverModes } from "./Popover.types";
+import type { PopoverModes } from "./Popover.types";
 import { PopoverClick } from "./PopoverClick";
 import { PopoverOver } from "./PopoverOver";
 

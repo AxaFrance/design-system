@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
+import type { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
 import { StepperCommon } from "../StepperCommon";
 

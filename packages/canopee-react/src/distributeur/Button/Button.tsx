@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import {
-  ComponentPropsWithoutRef,
+  type ComponentPropsWithoutRef,
   forwardRef,
-  PropsWithChildren,
-  ReactNode,
+  type PropsWithChildren,
+  type ReactNode,
 } from "react";
 
 import "@axa-fr/canopee-css/distributeur/Button/Button.css";

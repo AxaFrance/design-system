@@ -1,14 +1,14 @@
 import "@axa-fr/canopee-css/prospect/Layout/ExitLayout/ExitLayoutAll.css";
 import {
   Children,
-  ComponentType,
+  type ComponentType,
   isValidElement,
   type PropsWithChildren,
 } from "react";
-import { useIsSmallScreen } from "../../utilities/hook/useIsSmallScreen";
-import { BREAKPOINT } from "../../utilities/constants";
 import { type HeadingProps } from "../../Heading/types";
 import { type IconProps } from "../../Icon/IconCommon";
+import { BREAKPOINT } from "../../utilities/constants";
+import { useIsSmallScreen } from "../../utilities/hook/useIsSmallScreen";
 
 export type ExitLayoutProps = PropsWithChildren & {
   headingProps?: HeadingProps;

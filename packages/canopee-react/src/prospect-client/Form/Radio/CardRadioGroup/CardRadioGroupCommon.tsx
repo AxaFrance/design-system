@@ -5,12 +5,12 @@ import {
   type ReactNode,
   useId,
 } from "react";
+import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import {
   ItemMessage,
   type ItemMessageProps,
 } from "../../ItemMessage/ItemMessageCommon";
 import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
-import { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 
 type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
 

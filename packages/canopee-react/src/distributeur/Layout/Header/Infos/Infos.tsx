@@ -1,5 +1,5 @@
 import infoIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
-import { Fragment, ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { getComponentClassName } from "../../../utilities";
 import { generateId } from "../../../utilities/helpers/generateId";
 

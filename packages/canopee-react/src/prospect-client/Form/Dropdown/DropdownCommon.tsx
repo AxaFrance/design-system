@@ -6,6 +6,7 @@ import {
   forwardRef,
   useId,
 } from "react";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -14,7 +15,6 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;

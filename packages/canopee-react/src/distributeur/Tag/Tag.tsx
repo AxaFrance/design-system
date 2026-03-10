@@ -1,5 +1,9 @@
 import "@axa-fr/canopee-css/distributeur/Tag/Tag.css";
-import { ComponentPropsWithRef, PropsWithChildren, forwardRef } from "react";
+import {
+  type ComponentPropsWithRef,
+  type PropsWithChildren,
+  forwardRef,
+} from "react";
 import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
 
 export type TagVariants =

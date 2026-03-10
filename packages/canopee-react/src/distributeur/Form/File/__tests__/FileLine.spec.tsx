@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
+import type { FilePreview } from "../File";
 import { FileLine } from "../FileLine";
-import { FilePreview } from "../File";
 
 describe("<File.FileInput>", () => {
   it("renders File.FileInput correctly", () => {

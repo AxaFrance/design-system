@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 import { type ConsumerFieldProps, Field } from "../core";
 
 import { Number } from "./Number";

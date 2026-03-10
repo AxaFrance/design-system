@@ -1,5 +1,5 @@
-import { ComponentProps, forwardRef, ReactNode } from "react";
-import { ConsumerFieldProps, Field } from "../core";
+import { type ComponentProps, forwardRef, type ReactNode } from "react";
+import { type ConsumerFieldProps, Field } from "../core";
 import { Date } from "./Date";
 
 type Props = ConsumerFieldProps &

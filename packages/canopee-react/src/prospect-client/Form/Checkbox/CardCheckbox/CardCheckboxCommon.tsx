@@ -1,13 +1,13 @@
 import {
   useId,
-  type ComponentType,
-  type ReactNode,
   useRef,
   type ChangeEvent,
+  type ComponentType,
+  type ReactNode,
 } from "react";
+import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 import type { CardCheckboxOptionProps } from "../CardCheckboxOption/CardCheckboxOptionCommon";
-import { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 
 type CheckboxOption = Omit<CardCheckboxOptionProps, "name" | "type">;
 

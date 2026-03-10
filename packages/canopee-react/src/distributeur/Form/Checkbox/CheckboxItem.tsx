@@ -1,5 +1,10 @@
 import check from "@material-symbols/svg-700/sharp/check.svg";
-import { ComponentPropsWithoutRef, ReactNode, forwardRef, useId } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  forwardRef,
+  useId,
+} from "react";
 import { getOptionClassName } from "../core";
 
 import "@axa-fr/canopee-css/distributeur/Form/Checkbox/Checkbox.css";

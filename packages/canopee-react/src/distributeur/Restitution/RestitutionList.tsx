@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
 type RestitutionListProps = ComponentPropsWithoutRef<"ul"> & {
   values: string[];

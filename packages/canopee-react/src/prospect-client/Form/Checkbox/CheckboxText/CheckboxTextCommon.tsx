@@ -1,7 +1,7 @@
-import { type ReactNode, useId, type ComponentType, forwardRef } from "react";
+import { type ComponentType, forwardRef, type ReactNode, useId } from "react";
+import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 import type { CheckboxProps } from "../Checkbox/CheckboxCommon";
-import { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 
 export type CheckboxTextProps = {
   label: string | ReactNode;

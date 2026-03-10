@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 import { getComponentClassName } from "../../utilities";
 
 import "@axa-fr/canopee-css/distributeur/Form/Pass/Pass.css";

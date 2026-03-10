@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { vi } from "vitest";
 import { VerticalStep } from "../VerticalStep";
-import { VerticalStepMode } from "../types";
+import type { VerticalStepMode } from "../types";
 
 const setStepMode = vi.fn();
 

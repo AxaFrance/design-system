@@ -1,8 +1,8 @@
 import "@axa-fr/canopee-css/distributeur/Form/Select/Select.css";
 import {
-  ComponentPropsWithoutRef,
+  type ComponentPropsWithoutRef,
   forwardRef,
-  OptionHTMLAttributes,
+  type OptionHTMLAttributes,
 } from "react";
 import { getComponentClassName } from "../../utilities";
 

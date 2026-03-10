@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export { LegacyField } from "./Deprecated/Field";
 export { FieldForm } from "./Deprecated/FieldForm";

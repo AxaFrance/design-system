@@ -1,11 +1,11 @@
 import {
-  ComponentProps,
+  type ComponentProps,
   forwardRef,
-  OptionHTMLAttributes,
-  PropsWithChildren,
+  type OptionHTMLAttributes,
+  type PropsWithChildren,
 } from "react";
 
-import { ConsumerFieldProps, Field } from "../core";
+import { type ConsumerFieldProps, Field } from "../core";
 import { Select } from "./Select";
 
 type Props = ConsumerFieldProps &

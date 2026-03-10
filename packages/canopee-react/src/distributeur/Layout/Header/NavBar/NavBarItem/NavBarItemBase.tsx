@@ -1,7 +1,7 @@
 import {
-  HTMLAttributes,
-  KeyboardEvent,
-  ReactElement,
+  type HTMLAttributes,
+  type KeyboardEvent,
+  type ReactElement,
   useEffect,
   useMemo,
   useRef,

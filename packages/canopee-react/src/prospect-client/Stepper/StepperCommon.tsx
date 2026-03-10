@@ -1,5 +1,5 @@
 import {
-  ComponentType,
+  type ComponentType,
   type ElementType,
   type HTMLAttributes,
   useId,
