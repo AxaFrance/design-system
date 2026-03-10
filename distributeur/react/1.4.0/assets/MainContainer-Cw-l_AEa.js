@@ -1,0 +1,1 @@
+import{j as i}from"./jsx-runtime-D_zvdyIk.js";import"./EditorialMessage-BmsJa9B6.js";const t=({children:a,...n})=>i.jsx("main",{className:"af-container af-main-container",...n,children:a});export{t as M};
