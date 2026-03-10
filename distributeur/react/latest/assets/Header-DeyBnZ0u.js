@@ -1,1 +1,0 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{g as t,c as m}from"./CardData-BIJbskTL.js";import"./index-ZnYipkzV.js";const a="af-header",d=({classModifier:s,className:n,children:o})=>{const r=t(n,s,a);return e.jsx("div",{className:m("af-container",r),children:e.jsx("header",{className:`${a}__content`,role:"banner",children:o})})};export{d as H};
