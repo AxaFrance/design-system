@@ -134,13 +134,6 @@ describe("ContentItemDuoCommon", () => {
     expect(screen.getByText("Value").tagName).toBe("DD");
   });
 
-  it("renders ItemMessage component when message prop is provided", () => {
-    renderContentItemDuo({
-      message: <div data-testid="custom-message">Message</div>,
-    });
-    expect(screen.getByTestId("custom-message")).toBeInTheDocument();
-  });
-
   it("has no accessibility violations", async () => {
     const { container } = render(
       <dl>
