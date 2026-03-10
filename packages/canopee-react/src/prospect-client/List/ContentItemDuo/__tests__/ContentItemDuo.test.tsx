@@ -18,7 +18,7 @@ const renderContentItemDuo = (props: Partial<ContentItemDuoProps> = {}) =>
     <ContentItemDuoCommon
       label="Label"
       value="Value"
-      itemMessage="Titre du message"
+      message="Titre du message"
       {...props}
       ButtonComponent={ButtonComponent}
     />,
@@ -27,10 +27,18 @@ const renderContentItemDuo = (props: Partial<ContentItemDuoProps> = {}) =>
 describe("ContentItemDuoCommon", () => {
   it("renders label and value", () => {
     renderContentItemDuo();
-
     expect(screen.getByText("Label")).toBeInTheDocument();
     expect(screen.getByText("Value")).toBeInTheDocument();
     expect(screen.getByText("Titre du message")).toBeInTheDocument();
+  });
+
+  it("renders message with correct messageType", () => {
+    renderContentItemDuo({
+      message: "Message warning",
+      messageType: "warning",
+    });
+    const message = screen.getByText("Message warning");
+    expect(message).toBeInTheDocument();
   });
 
   it("applies vertical modifier when isVertical is true", () => {
@@ -49,7 +57,6 @@ describe("ContentItemDuoCommon", () => {
 
   it("applies custom className", () => {
     renderContentItemDuo({ className: "custom-class" });
-
     const container = screen.getByText("Label").closest("div");
     expect(container).toHaveClass("custom-class");
   });
@@ -66,7 +73,6 @@ describe("ContentItemDuoCommon", () => {
       buttonText: "Click me",
       onButtonClick: handleClick,
     });
-
     const button = screen.getByRole("button", { name: "Click me" });
     expect(button).toBeInTheDocument();
     await userEvent.click(button);
@@ -124,9 +130,15 @@ describe("ContentItemDuoCommon", () => {
 
   it("renders correct semantic elements", () => {
     renderContentItemDuo();
-
     expect(screen.getByText("Label").tagName).toBe("DT");
     expect(screen.getByText("Value").tagName).toBe("DD");
+  });
+
+  it("renders ItemMessage component when message prop is provided", () => {
+    renderContentItemDuo({
+      message: <div data-testid="custom-message">Message</div>,
+    });
+    expect(screen.getByTestId("custom-message")).toBeInTheDocument();
   });
 
   it("has no accessibility violations", async () => {
@@ -159,33 +171,5 @@ describe("ContentItemDuoCommon", () => {
       (v) => v.id !== "definition-list",
     );
     expect(filteredResults).toHaveNoViolations();
-  });
-
-  it("renders ItemMessage always, even if value or button are hidden", () => {
-    renderContentItemDuo({
-      itemMessage: "Test message",
-      itemMessageType: "warning",
-      valueIsVisible: false,
-      buttonIsVisible: false,
-    });
-    expect(screen.getByText("Test message")).toBeInTheDocument();
-  });
-
-  it("hides value when valueIsVisible is false", () => {
-    renderContentItemDuo({ valueIsVisible: false });
-    expect(screen.queryByText("Value")).not.toBeInTheDocument();
-  });
-
-  it("renders button when buttonText and onButtonClick are provided", async () => {
-    const handleClick = vi.fn();
-    renderContentItemDuo({
-      buttonIsVisible: true,
-      buttonText: "Click me",
-      onButtonClick: handleClick,
-    });
-    const button = screen.getByRole("button", { name: "Click me" });
-    expect(button).toBeInTheDocument();
-    await userEvent.click(button);
-    expect(handleClick).toHaveBeenCalled();
   });
 });

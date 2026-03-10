@@ -25,7 +25,7 @@ export type ContentItemDuoProps = {
   isVertical?: boolean;
   /** @deprecated Use `size` or `className` instead */
   classModifier?: string;
-  message?: string;
+  message?: ReactNode;
   messageType?: ItemMessageProps["messageType"];
 } & ContentItemDuoPositions &
   ComponentProps<"div">;
