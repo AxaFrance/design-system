@@ -1,3 +1,4 @@
+import addCircleIcon from "@material-symbols/svg-400/rounded/add_circle-fill.svg";
 import {
   type ComponentPropsWithRef,
   type ComponentType,
@@ -6,12 +7,11 @@ import {
   type ReactNode,
   useId,
 } from "react";
-import addCircleIcon from "@material-symbols/svg-400/rounded/add_circle-fill.svg";
 import { Svg } from "../../../Svg/Svg";
 import { getClassName } from "../../../utilities/getClassName";
+import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import { type ItemLabelProps } from "../../ItemLabel/ItemLabelCommon";
 import { type ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
-import { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 
 type LabelProps = Partial<
   Omit<

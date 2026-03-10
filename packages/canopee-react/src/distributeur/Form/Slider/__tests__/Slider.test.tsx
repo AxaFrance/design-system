@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import userEvent, { UserEvent } from "@testing-library/user-event";
 import { Slider } from "../Slider";
 
 const options = [

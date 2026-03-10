@@ -1,9 +1,9 @@
 import { type ComponentPropsWithRef } from "react";
 import {
   Icon,
-  IconVariants,
-  IconSizeVariants,
+  type IconSizeVariants,
   iconSizeVariants,
+  type IconVariants,
 } from "../Icon/IconCommon";
 import { getClassName } from "../utilities/getClassName";
 

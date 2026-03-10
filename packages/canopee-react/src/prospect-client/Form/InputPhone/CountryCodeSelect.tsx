@@ -1,7 +1,7 @@
-import { ComponentProps, ComponentType, useState } from "react";
-import Select, { SingleValue } from "react-select";
-import { OptionType } from "./InputPhone.types";
+import { type ComponentProps, type ComponentType, useState } from "react";
+import Select, { type SingleValue } from "react-select";
 import { Icon } from "../../Icon/IconCommon";
+import type { OptionType } from "./InputPhone.types";
 
 const CountryCodeSelect = ({
   options,

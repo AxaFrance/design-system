@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Table/Pager.css";
-import { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { getComponentClassName } from "../../utilities";
 import { Li } from "./Li";
 import { LiPoint } from "./LiPoint";

@@ -1,4 +1,4 @@
-import { FileRejection } from "react-dropzone";
+import { type FileRejection } from "react-dropzone";
 
 type Props = {
   errors?: FileRejection[];

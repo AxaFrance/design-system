@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Form/NestedQuestion/NestedQuestion.css";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { getComponentClassName } from "../../utilities";
 
 export const NestedQuestion = ({

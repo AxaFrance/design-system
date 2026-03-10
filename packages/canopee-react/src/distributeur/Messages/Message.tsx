@@ -5,7 +5,7 @@ import errorSvg from "@material-symbols/svg-400/outlined/error-fill.svg";
 import infoSvg from "@material-symbols/svg-400/outlined/info-fill.svg";
 import warningSvg from "@material-symbols/svg-400/outlined/warning-fill.svg";
 
-import { MouseEventHandler, PropsWithChildren, ReactNode } from "react";
+import type { MouseEventHandler, PropsWithChildren, ReactNode } from "react";
 import { Svg } from "../Svg";
 import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
 

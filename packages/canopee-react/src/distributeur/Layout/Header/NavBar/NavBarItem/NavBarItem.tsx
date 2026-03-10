@@ -1,7 +1,7 @@
 import React, {
-  ComponentProps,
-  KeyboardEvent,
-  ReactElement,
+  type ComponentProps,
+  type KeyboardEvent,
+  type ReactElement,
   useCallback,
   useState,
 } from "react";

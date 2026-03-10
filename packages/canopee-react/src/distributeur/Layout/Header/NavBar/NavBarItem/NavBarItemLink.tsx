@@ -1,4 +1,4 @@
-import { AllHTMLAttributes, RefObject } from "react";
+import type { AllHTMLAttributes, RefObject } from "react";
 
 const defaultClassName = "af-nav__link";
 type Props = AllHTMLAttributes<HTMLAnchorElement> & {

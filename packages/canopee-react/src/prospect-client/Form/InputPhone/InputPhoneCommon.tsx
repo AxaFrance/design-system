@@ -6,8 +6,9 @@ import {
   forwardRef,
   useId,
 } from "react";
-import { SingleValue } from "react-select";
+import type { SingleValue } from "react-select";
 import { Icon } from "../../Icon/IconCommon";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import {
   ItemLabelCommon,
@@ -20,7 +21,6 @@ import {
 import { CountryCodeSelect } from "./CountryCodeSelect";
 import { type OptionType } from "./InputPhone.types";
 import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
-import { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   classModifier?: string;

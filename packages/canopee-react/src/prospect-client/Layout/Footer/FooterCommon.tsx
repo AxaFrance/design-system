@@ -1,9 +1,9 @@
 import expandMore from "@material-symbols/svg-400/outlined/keyboard_arrow_down.svg";
 import classNames from "classnames";
 import { useCallback, useState } from "react";
-import { MenuIcons, SocialMedia } from "./MenuIcons";
-import { Link, MenuLink } from "./MenuLink";
 import { Svg } from "../../Svg/Svg";
+import { MenuIcons, type SocialMedia } from "./MenuIcons";
+import { type Link, MenuLink } from "./MenuLink";
 
 export type FooterProps = {
   links: Link[];

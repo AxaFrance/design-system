@@ -1,9 +1,9 @@
 import "@axa-fr/canopee-css/distributeur/Title/Title.css";
 import {
-  ComponentPropsWithRef,
-  PropsWithChildren,
-  ReactElement,
-  ReactNode,
+  type ComponentPropsWithRef,
+  type PropsWithChildren,
+  type ReactElement,
+  type ReactNode,
   forwardRef,
 } from "react";
 

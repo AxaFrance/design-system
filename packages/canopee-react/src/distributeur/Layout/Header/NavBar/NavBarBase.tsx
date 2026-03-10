@@ -1,5 +1,5 @@
-import { FocusEvent, MouseEvent, ReactNode } from "react";
 import classNames from "classnames";
+import type { FocusEvent, MouseEvent, ReactNode } from "react";
 import { getComponentClassName } from "../../../utilities";
 
 const defaultClassName = "af-nav-container";

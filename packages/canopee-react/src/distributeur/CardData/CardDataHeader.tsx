@@ -2,10 +2,10 @@ import React from "react";
 
 import "@axa-fr/canopee-css/distributeur/CardData/CardData.css";
 import classNames from "classnames";
-import { Svg } from "../Svg";
-import { CardDataVariant } from "./CardData";
 import { Divider } from "../Divider/Divider";
+import { Svg } from "../Svg";
 import { Title } from "../Title/Title";
+import type { CardDataVariant } from "./CardData";
 
 type CardDataHeaderProps = {
   title: React.ReactNode;

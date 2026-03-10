@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { getClassName } from "../utilities/getClassName";
 
 export type CellContentPositionVariants = "left" | "center" | "right";

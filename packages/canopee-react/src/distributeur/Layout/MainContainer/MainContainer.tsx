@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
 import "@axa-fr/canopee-css/distributeur/common/breakpoints.css";
 import "@axa-fr/canopee-css/distributeur/MainContainer/MainContainer.css";

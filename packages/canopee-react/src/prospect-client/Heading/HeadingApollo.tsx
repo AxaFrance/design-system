@@ -1,8 +1,8 @@
 import "@axa-fr/canopee-css/prospect/Heading/HeadingApollo.css";
 
-import { DEFAULT_TAG_PROPS, HeadingCommon } from "./HeadingCommon";
 import { Tag } from "../Tag/TagApollo";
-import { HeadingProps } from "./types";
+import { DEFAULT_TAG_PROPS, HeadingCommon } from "./HeadingCommon";
+import type { HeadingProps } from "./types";
 
 export type { HeadingLevel, HeadingProps } from "./types";
 

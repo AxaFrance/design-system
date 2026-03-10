@@ -1,7 +1,7 @@
 import "@axa-fr/canopee-css/distributeur/Form/MultiSelect/MultiSelect.css";
 
 import { type ComponentProps } from "react";
-import { ConsumerFieldProps, Field } from "../core";
+import { type ConsumerFieldProps, Field } from "../core";
 import { MultiSelect } from "./MultiSelect";
 
 type Props = ConsumerFieldProps & ComponentProps<typeof MultiSelect>;

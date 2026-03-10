@@ -1,7 +1,7 @@
 import classnames from "classnames";
 
 import "@axa-fr/canopee-css/distributeur/Divider/Divider.css";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 type DividerProps = ComponentProps<"hr"> & {
   mode?: "horizontal" | "vertical";

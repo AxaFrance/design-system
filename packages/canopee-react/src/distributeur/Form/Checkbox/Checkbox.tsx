@@ -1,5 +1,5 @@
-import React, { ComponentProps, forwardRef, ReactNode } from "react";
-import { Option } from "../core";
+import React, { type ComponentProps, forwardRef, type ReactNode } from "react";
+import type { Option } from "../core";
 import { CheckboxItem } from "./CheckboxItem";
 import { CheckboxModes } from "./CheckboxModes";
 

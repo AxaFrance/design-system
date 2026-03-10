@@ -1,5 +1,5 @@
-import { ComponentProps, ReactNode, useState } from "react";
-import { ConsumerFieldProps, Field } from "../core";
+import { type ComponentProps, type ReactNode, useState } from "react";
+import { type ConsumerFieldProps, Field } from "../core";
 import { Pass } from "./Pass";
 
 const strengthList: Record<number, string> = {

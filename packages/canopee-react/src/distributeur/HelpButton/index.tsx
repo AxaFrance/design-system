@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Action/Action.css";
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Popover } from "../Popover";
 import { getComponentClassName } from "../utilities";
 

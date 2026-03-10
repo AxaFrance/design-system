@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef, useId, useState } from "react";
+import { type ComponentPropsWithRef, forwardRef, useId, useState } from "react";
 import { SelectBase } from "./SelectBase";
 
 type Props = Omit<

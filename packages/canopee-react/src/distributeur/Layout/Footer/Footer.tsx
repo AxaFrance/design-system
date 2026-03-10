@@ -1,8 +1,8 @@
-import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import "@axa-fr/canopee-css/distributeur/Layout/Footer/Footer.css";
 import "@axa-fr/canopee-css/distributeur/common/breakpoints.css";
-import { PropsWithChildren, forwardRef } from "react";
+import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import classNames from "classnames";
+import { type PropsWithChildren, forwardRef } from "react";
 
 type FooterProps = {
   href?: string;

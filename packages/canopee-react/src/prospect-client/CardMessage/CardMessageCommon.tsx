@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useMemo } from "react";
+import { type ComponentPropsWithoutRef, useMemo } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export const cardMessageVariants = {

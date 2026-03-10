@@ -1,5 +1,5 @@
-import { ComponentProps, forwardRef } from "react";
-import { ConsumerFieldProps, Field } from "../core";
+import { type ComponentProps, forwardRef } from "react";
+import { type ConsumerFieldProps, Field } from "../core";
 import { Text } from "./Text";
 
 export type TextInputProps = ConsumerFieldProps & ComponentProps<typeof Text>;

@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Form/Text/Text.css";
-import { ComponentPropsWithRef, forwardRef, useId } from "react";
+import { type ComponentPropsWithRef, forwardRef, useId } from "react";
 import { getComponentClassName } from "../../utilities";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "type"> & {

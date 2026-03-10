@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 import { CardDataHeader } from "./CardDataHeader";
 
 import "@axa-fr/canopee-css/distributeur/CardData/CardData.css";

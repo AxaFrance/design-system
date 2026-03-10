@@ -1,5 +1,5 @@
 import React from "react";
-import { PopoverProps } from "./Popover.types";
+import type { PopoverProps } from "./Popover.types";
 import { PopoverBase } from "./PopoverBase";
 
 export const PopoverOver = ({

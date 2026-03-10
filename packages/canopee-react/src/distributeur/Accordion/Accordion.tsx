@@ -1,8 +1,8 @@
 import "@axa-fr/canopee-css/distributeur/Accordion/Accordion.css";
 import React, { useId } from "react";
 import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
-import { CollapseCard, CollapseProps } from "./CollapseCard";
-import { AccordionVariant, TDefaultProps } from "./types";
+import { CollapseCard, type CollapseProps } from "./CollapseCard";
+import type { AccordionVariant, TDefaultProps } from "./types";
 
 const defaultClassName = "af-accordion";
 

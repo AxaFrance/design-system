@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
+import type { FilePreview } from "../File";
 import { FileTable } from "../FileTable";
-import { FilePreview } from "../File";
 
 describe("<File.FileTable>", () => {
   it("renders File.FileTable correctly", () => {

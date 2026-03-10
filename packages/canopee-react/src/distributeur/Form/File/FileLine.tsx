@@ -1,5 +1,5 @@
 import { getComponentClassName } from "../../utilities";
-import { CustomFile } from "./File";
+import type { CustomFile } from "./File";
 
 type Props = CustomFile & {
   onClick: (id: string) => void;

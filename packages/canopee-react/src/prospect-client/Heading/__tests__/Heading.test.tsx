@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
 import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
+import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { DEFAULT_TAG_PROPS, HeadingCommon } from "../HeadingCommon";
 import { Tag } from "../../Tag/TagCommon";
-import { HeadingLevel } from "../types";
+import { DEFAULT_TAG_PROPS, HeadingCommon } from "../HeadingCommon";
+import type { HeadingLevel } from "../types";
 
 describe("Heading", () => {
   it("should render correctly h1 by default", () => {

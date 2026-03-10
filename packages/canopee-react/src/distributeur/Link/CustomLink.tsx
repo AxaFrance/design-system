@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { linkClassName } from "./linkClassName";
 
 type CustomLinkProps = {

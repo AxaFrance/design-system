@@ -1,7 +1,7 @@
 import { StepCurrent } from "./StepCurrent";
 import { StepDisabled } from "./StepDisabled";
 import { StepLink, type StepLinkProps } from "./StepLink";
-import { StepMode } from "./types";
+import type { StepMode } from "./types";
 
 type Props = Omit<StepLinkProps, "href"> & {
   href?: string;

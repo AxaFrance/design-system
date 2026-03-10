@@ -6,6 +6,7 @@ import {
   useId,
 } from "react";
 import { getClassName } from "../../utilities/getClassName";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -16,7 +17,6 @@ import {
 } from "../ItemMessage/ItemMessageCommon";
 import { InputDateAtom, type InputDateAtomProps } from "./InputDateAtom";
 import { InputDateTextAtom } from "./InputDateTextAtom";
-import { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type InputDateProps = Omit<
   ComponentPropsWithRef<"input">,

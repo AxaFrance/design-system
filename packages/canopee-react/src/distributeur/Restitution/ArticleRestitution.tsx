@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import { getComponentClassName } from "../utilities";
 
 type ArticleRestitutionProps = ComponentPropsWithoutRef<"article"> & {

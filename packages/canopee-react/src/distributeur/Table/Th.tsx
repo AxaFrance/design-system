@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { getComponentClassName } from "../utilities";
 
 type Props = ComponentPropsWithoutRef<"th"> & {

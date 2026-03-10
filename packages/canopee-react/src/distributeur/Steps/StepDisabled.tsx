@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { StepNoLink } from "./StepNoLink";
 
 type Props = ComponentPropsWithoutRef<typeof StepNoLink>;

@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/distributeur/Form/Textarea/Textarea.css";
 
-import { ComponentProps, forwardRef } from "react";
+import { type ComponentProps, forwardRef } from "react";
 import { type ConsumerFieldProps, Field } from "../core";
 
 import { Textarea } from "./Textarea";
