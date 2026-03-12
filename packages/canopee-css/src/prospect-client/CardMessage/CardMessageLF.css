@@ -6,7 +6,7 @@
 }
 
 .af-card-message--info {
-  --card-message-background-color: var(--blue-80);
+  --card-message-background-color: var(--blue-080);
   --card-message-text-color: var(--blue-1000);
   --card-message-border-color: var(--blue-1000);
 }

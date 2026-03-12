@@ -1,7 +1,7 @@
 @import "./ToggleCommon.css";
 
 .af-toggle {
-  --toggle-bg-color: var(--blue-80);
+  --toggle-bg-color: var(--blue-080);
   --toggle-border-color: var(--gray-800);
   --toggle-focus-outline-color: var(--blue-1000);
   --toggle-border-radius: var(--radius-32);
