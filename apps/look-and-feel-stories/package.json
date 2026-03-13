@@ -33,7 +33,7 @@
     "@vitejs/plugin-react": "^5.1.2",
     "@whitespace/storybook-addon-html": "^6.1.1",
     "chromatic": "^13.1.2",
-    "globals": "^16.5.0",
+    "globals": "^17.0.0",
     "remark-gfm": "^4.0.1",
     "storybook": "^8.6.3",
     "typescript": "~5.9.3",
