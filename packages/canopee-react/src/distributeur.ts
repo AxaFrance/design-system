@@ -5,6 +5,7 @@ import "@axa-fr/canopee-css/distributeur/common/tokens.css";
 import "@axa-fr/canopee-css/distributeur/Form/core/FormCore.css";
 
 import "@fontsource/source-sans-pro/400.css";
+import "@fontsource/source-sans-pro/600.css";
 import "@fontsource/source-sans-pro/700.css";
 
 import { Message } from "./distributeur/Messages/Message";
