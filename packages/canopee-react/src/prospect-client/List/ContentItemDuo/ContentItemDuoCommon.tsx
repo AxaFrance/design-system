@@ -1,6 +1,10 @@
 import { type ComponentProps, type ComponentType, type ReactNode } from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
 import { getClassName } from "../../utilities/getClassName";
+import {
+  ItemMessage,
+  type ItemMessageProps,
+} from "../../Form/ItemMessage/ItemMessageCommon";
 
 type ContentItemDuoPositions =
   | {
@@ -21,6 +25,8 @@ export type ContentItemDuoProps = {
   isVertical?: boolean;
   /** @deprecated Use `size` or `className` instead */
   classModifier?: string;
+  message?: ReactNode;
+  messageType?: ItemMessageProps["messageType"];
 } & ContentItemDuoPositions &
   ComponentProps<"div">;
 
@@ -39,6 +45,8 @@ export const ContentItemDuoCommon = ({
   buttonText,
   onButtonClick,
   ButtonComponent,
+  message,
+  messageType = "warning",
   ...containerProps
 }: ContentItemDuoCommonProps) => {
   const componentClassName = getClassName({
@@ -54,8 +62,13 @@ export const ContentItemDuoCommon = ({
   return (
     <div className={componentClassName} {...containerProps}>
       <dt className="af-content-item-duo__label">{label}</dt>
-      <dd className="af-content-item-duo__value">{value}</dd>
-      {Boolean(buttonText && onButtonClick) && (
+      <dd className="af-content-item-duo__value">
+        {value}
+        {message ? (
+          <ItemMessage message={message} messageType={messageType} />
+        ) : null}
+      </dd>
+      {buttonText && onButtonClick ? (
         <ButtonComponent
           className="af-content-item-duo__button"
           variant="ghost"
@@ -63,7 +76,7 @@ export const ContentItemDuoCommon = ({
         >
           {buttonText}
         </ButtonComponent>
-      )}
+      ) : null}
     </div>
   );
 };
