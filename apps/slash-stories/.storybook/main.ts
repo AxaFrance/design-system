@@ -1,6 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -38,6 +38,39 @@ const config: StorybookConfig = {
   },
   core: {
     disableTelemetry: true,
+  },
+  typescript: {
+    reactDocgen: "react-docgen",
+  },
+  // Black magic to make Storybook use the source code of canopee packages instead of the compiled code, preserving TSDoc comments in Storybook UI
+  async viteFinal(viteConfig) {
+    // Merge custom configuration into the default config
+    const { mergeConfig } = await import("vite");
+
+    return mergeConfig(viteConfig, {
+      resolve: {
+        alias: {
+          // Point to TypeScript source files to preserve TSDoc in Storybook
+          // Order matters: more specific paths must come first
+          "@axa-fr/canopee-react/distributeur/experimental": fileURLToPath(
+            new URL(
+              "../../../packages/canopee-react/src/distributeur-experimental.ts",
+              import.meta.url,
+            ),
+          ),
+          "@axa-fr/canopee-react/distributeur": fileURLToPath(
+            new URL(
+              "../../../packages/canopee-react/src/distributeur.ts",
+              import.meta.url,
+            ),
+          ),
+        },
+      },
+      optimizeDeps: {
+        // Exclude canopee packages from pre-bundling to preserve source code
+        exclude: ["@axa-fr/canopee-react"],
+      },
+    });
   },
 };
 

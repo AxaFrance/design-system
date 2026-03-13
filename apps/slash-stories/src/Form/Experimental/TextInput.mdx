@@ -1,0 +1,79 @@
+import { Message } from "@axa-fr/design-system-slash-react";
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Primary,
+  Subtitle,
+  Title,
+} from "@storybook/blocks";
+import * as Stories from "./TextInput.stories";
+
+<Meta of={Stories} title="Form/Experimental/TextInput" />
+
+<Title />
+
+## ⚠️ Experimental Component
+
+This component is **experimental** and may change in future releases. You can however use it in your projects, but be aware that the API might change.
+We welcome your feedback and contributions to improve this component.
+
+## Playground
+
+<Primary />
+<Controls />
+
+## Usage with form libraries
+
+This component can be used with form libraries like [react-hook-form](https://react-hook-form.com/) or [Formik](https://formik.org/). It supports controlled and uncontrolled usage patterns.
+
+You can pass a ref to the component to access the underlying input element, which is useful for form libraries that require direct access to the input.
+
+```tsx
+import { TextInput } from "@axa-fr/canopee-react/distributeur/experimental";
+import { useForm } from "react-hook-form";
+const MyForm = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <TextInput label="My Input" {...register("myInput")} />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+## Customization examples
+
+### Disabled Input
+
+Set the `disabled` prop to true to disable the input field.
+
+<Canvas of={Stories.Disabled} />
+
+### Rich Label
+
+If you need to display a label with HTML content, you can pass a ReactNode in the `label` prop.
+
+<Canvas of={Stories.RichLabel} />
+
+### Error Message
+
+If you want to display an error message, you can use the `error` prop.
+This will render the error message below the input field, and apply the appropriate styles to indicate an error state. The input will also be marked as `aria-invalid`.
+
+<Canvas of={Stories.ErrorStory} />
+
+### With Unit
+
+If you want to display a unit next to the input field, you can use the `rightContent` prop. It can be a string or a ReactNode. This is useful for inputs that require a unit of measurement, like currency or percentage.
+
+It can technically be used to display any content on the right side of the input, such as an icon or a button, however, it is primarily intended for units.
+
+<Canvas of={Stories.WithUnit} />
