@@ -1,8 +1,8 @@
-import { Link, Svg } from "@axa-fr/canopee-react/prospect";
-
+import { Link, Icon } from "@axa-fr/canopee-react/prospect";
 import arrowLeftAlt from "@material-symbols/svg-400/outlined/arrow_left_alt.svg";
 import personFill from "@material-symbols/svg-400/rounded/person-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
+import type { ComponentProps } from "react";
 
 const meta: Meta<typeof Link> = {
   title: "Components/Link 🚧",
@@ -36,7 +36,7 @@ export const LinkOpenInNewTab: StoryObj<typeof Link> = {
     href: "https://fakelink.com",
     children: "My link",
     openInNewTab: true,
-    rightIcon: <Svg src={personFill} />,
+    rightIcon: <Icon src={personFill} />,
   },
 };
 
@@ -44,17 +44,33 @@ export const LinkWithIcons: StoryObj<typeof Link> = {
   args: {
     href: "https://fakelink.com",
     children: "My link",
-    leftIcon: <Svg src={arrowLeftAlt} />,
-    rightIcon: <Svg src={personFill} />,
+    leftIcon: <Icon src={arrowLeftAlt} />,
+    rightIcon: <Icon src={personFill} />,
   },
 };
 
-export const LinkButton: StoryObj<typeof Link> = {
+type LinkStoryProps = ComponentProps<typeof Link> & {
+  classNameButton: "" | "secondary" | "tertiary";
+};
+
+const LinkButton = ({ classNameButton, ...args }: LinkStoryProps) => (
+  <Link
+    {...args}
+    className={`af-btn-client ${classNameButton ? `af-btn-client--${classNameButton}` : ""}`}
+  />
+);
+export const LinkButtonStory: StoryObj<LinkStoryProps> = {
   name: "Link button 🚧",
+  render: LinkButton,
   args: {
     href: "https://fakelink.com",
     children: "LinkButton",
-    leftIcon: <Svg src={arrowLeftAlt} />,
-    className: "af-btn-client",
+    leftIcon: <Icon src={arrowLeftAlt} />,
+  },
+  argTypes: {
+    classNameButton: {
+      options: ["", "secondary", "tertiary"],
+      control: { type: "multi-select" },
+    },
   },
 };
