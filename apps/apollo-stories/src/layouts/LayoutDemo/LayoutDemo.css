@@ -1,4 +1,5 @@
-#storybook-root {
+#storybook-root:not([hidden]),
+#storybook-docs:not([hidden]) {
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;

@@ -6,13 +6,13 @@ import {
   Footer,
 } from "@axa-fr/canopee-react/prospect";
 import logo from "@axa-fr/canopee-css/logo-axa.svg";
-import "./LayoutDemo.css";
 import {
   copyright,
   expandLinkText,
   links,
   socialMedias,
 } from "./LayoutDemo.constant";
+import "./LayoutDemo.css";
 
 export const LayoutDemo = ({
   children,
