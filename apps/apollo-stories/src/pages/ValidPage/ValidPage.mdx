@@ -10,28 +10,32 @@ import * as ValidPageStories from "./ValidPage.stories";
 ```tsx
 import { ValidPage } from "@axa-fr/canopee-react/prospect";
 
-<Myheader />
-<main className="grid">
-    <ValidPage
-      headingProps={headingProps}
-      dataAgentProps={dataAgentProps}
-      linkProps={linkProps}
-    >
-      <p>
-        Vous recevrez dans quelques instants un e-mail récapitulatif avec le
-        détail de votre tarif.
-      </p>
-      <p>
-        Votre Conseiller AXA vous contactera rapidement pour confirmer vos
-        informations et finaliser votre contrat.
-      </p>
-      <p>
-        Vous souhaitez prendre les devants ? N&apos;hésitez pas à le contacter
-        directement !
-      </p>
-    </ValidPage>
-</main>
-<MyFooter />
+export const MyValidPage = () => (
+  <>
+    <Myheader />
+    <main className="grid">
+      <ValidPage
+        headingProps={headingProps}
+        dataAgentProps={dataAgentProps}
+        linkProps={linkProps}
+      >
+        <p>
+          Vous recevrez dans quelques instants un e-mail récapitulatif avec le
+          détail de votre tarif.
+        </p>
+        <p>
+          Votre Conseiller AXA vous contactera rapidement pour confirmer vos
+          informations et finaliser votre contrat.
+        </p>
+        <p>
+          Vous souhaitez prendre les devants ? N&apos;hésitez pas à le contacter
+          directement !
+        </p>
+      </ValidPage>
+    </main>
+    <MyFooter />
+  </>
+);
 ```
 
 ## Uses
