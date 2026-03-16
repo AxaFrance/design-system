@@ -15,7 +15,7 @@ export type StepperProps = {
   currentStep: number;
   currentSubtitle?: string;
   currentTitle?: string;
-  nbSteps?: 3 | 4 | 5 | 6 | 7 | 8;
+  nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   helper?: string;
   message?: string;
   messageType?: ItemMessageProps["messageType"];
