@@ -4,7 +4,12 @@ import {
   ContentItemDuoCommon,
   type ContentItemDuoProps,
 } from "./ContentItemDuoCommon";
+import { ItemMessage } from "../../../client";
 
 export const ContentItemDuo = (props: ContentItemDuoProps) => (
-  <ContentItemDuoCommon {...props} ButtonComponent={Button} />
+  <ContentItemDuoCommon
+    {...props}
+    ButtonComponent={Button}
+    ItemMessageComponent={ItemMessage}
+  />
 );

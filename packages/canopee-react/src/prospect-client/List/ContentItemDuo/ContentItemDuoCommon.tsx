@@ -25,13 +25,13 @@ export type ContentItemDuoProps = {
   isVertical?: boolean;
   /** @deprecated Use `size` or `className` instead */
   classModifier?: string;
-  message?: ReactNode;
-  messageType?: ItemMessageProps["messageType"];
-} & ContentItemDuoPositions &
+} & Pick<ItemMessageProps, "message" | "messageType"> &
+  ContentItemDuoPositions &
   ComponentProps<"div">;
 
 type ContentItemDuoCommonProps = ContentItemDuoProps & {
   ButtonComponent: ComponentType<ButtonProps>;
+  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
 export const ContentItemDuoCommon = ({
@@ -46,7 +46,8 @@ export const ContentItemDuoCommon = ({
   onButtonClick,
   ButtonComponent,
   message,
-  messageType = "warning",
+  messageType,
+  ItemMessageComponent,
   ...containerProps
 }: ContentItemDuoCommonProps) => {
   const componentClassName = getClassName({
@@ -65,7 +66,7 @@ export const ContentItemDuoCommon = ({
       <dd className="af-content-item-duo__value">
         {value}
         {message ? (
-          <ItemMessage message={message} messageType={messageType} />
+          <ItemMessageComponent message={message} messageType={messageType} />
         ) : null}
       </dd>
       {buttonText && onButtonClick ? (

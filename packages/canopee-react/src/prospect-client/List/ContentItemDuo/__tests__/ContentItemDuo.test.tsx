@@ -8,6 +8,7 @@ import {
   ContentItemDuoCommon,
   type ContentItemDuoProps,
 } from "../ContentItemDuoCommon";
+import { ItemMessage } from "../../../../client";
 
 const ButtonComponent = (props: ButtonProps) => (
   <ButtonCommon SpinnerComponent={Spinner} {...props} />
@@ -21,6 +22,7 @@ const renderContentItemDuo = (props: Partial<ContentItemDuoProps> = {}) =>
       message="Titre du message"
       {...props}
       ButtonComponent={ButtonComponent}
+      ItemMessageComponent={ItemMessage}
     />,
   );
 
@@ -141,6 +143,7 @@ describe("ContentItemDuoCommon", () => {
           label="Label"
           value="Value"
           ButtonComponent={ButtonComponent}
+          ItemMessageComponent={ItemMessage}
         />
         <ContentItemDuoCommon
           label="Label with button"
@@ -148,6 +151,7 @@ describe("ContentItemDuoCommon", () => {
           buttonText="Action"
           onButtonClick={() => {}}
           ButtonComponent={ButtonComponent}
+          ItemMessageComponent={ItemMessage}
         />
       </dl>,
     );
