@@ -1,1 +1,0 @@
-import{j as a}from"./jsx-runtime-D_zvdyIk.js";import{a as r,I as m}from"./FormLayout-DrOZh3Eg.js";import{C as s}from"./CardRadioOptionLF-Bu-YT9ye.js";const i=o=>a.jsx(r,{...o,CardRadioOptionComponent:s,ItemMessageComponent:m});export{i as C};
