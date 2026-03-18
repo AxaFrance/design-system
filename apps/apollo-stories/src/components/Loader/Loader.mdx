@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as LoaderStories from "./Loader.stories";
+
+<Meta of={LoaderStories} name="Loader" />
+
+# Loader
+
+Animated loading indicator with a required title and an optional subtitle. Uses the Design System's internal Spinner component.
+
+## Import
+
+```tsx
+import { Loader } from "@axa-fr/canopee-react/prospect";
+
+const App = () => <Loader title="Loading" subtitle="Please wait" />;
+```
+
+## Playground
+
+<Canvas of={LoaderStories.Playground} />
+<Controls of={LoaderStories.Playground} />
+
+## Props
+
+| Prop           | Type           | Default     | Description                 |
+| -------------- | -------------- | ----------- | --------------------------- |
+| `title`        | `string`       | -           | Loader title (required)     |
+| `subtitle`     | `string`       | `undefined` | Loader subtitle (optional)  |
+| `spinnerProps` | `SpinnerProps` | `{}`        | Props passed to the Spinner |
+| `className`    | `string`       | `undefined` | Custom CSS classes          |
+
+## BEM Classes
+
+| Class                  | Description    |
+| ---------------------- | -------------- |
+| `.af-loader`           | Main block     |
+| `.af-loader__content`  | Text container |
+| `.af-loader__title`    | Title          |
+| `.af-loader__subtitle` | Subtitle       |
+
+## Accessibility
+
+- ✅ `status` role to notify assistive technologies of loading state
+- ✅ Accessible title via `aria-label`
+- ✅ Minimum 4.5:1 contrast ratio for text
+
+## Technical Notes
+
+- The component reuses the Design System's Spinner
+- Spinner props can be customized via `spinnerProps`
+- Strict BEM with `af-` prefix
