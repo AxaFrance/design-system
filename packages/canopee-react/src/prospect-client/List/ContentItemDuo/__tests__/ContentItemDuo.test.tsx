@@ -8,6 +8,7 @@ import {
   ContentItemDuoCommon,
   type ContentItemDuoProps,
 } from "../ContentItemDuoCommon";
+import { ItemMessage } from "../../../../client";
 
 const ButtonComponent = (props: ButtonProps) => (
   <ButtonCommon SpinnerComponent={Spinner} {...props} />
@@ -18,17 +19,28 @@ const renderContentItemDuo = (props: Partial<ContentItemDuoProps> = {}) =>
     <ContentItemDuoCommon
       label="Label"
       value="Value"
+      message="Titre du message"
       {...props}
       ButtonComponent={ButtonComponent}
+      ItemMessageComponent={ItemMessage}
     />,
   );
 
 describe("ContentItemDuoCommon", () => {
   it("renders label and value", () => {
     renderContentItemDuo();
-
     expect(screen.getByText("Label")).toBeInTheDocument();
     expect(screen.getByText("Value")).toBeInTheDocument();
+    expect(screen.getByText("Titre du message")).toBeInTheDocument();
+  });
+
+  it("renders message with correct messageType", () => {
+    renderContentItemDuo({
+      message: "Message warning",
+      messageType: "warning",
+    });
+    const message = screen.getByText("Message warning");
+    expect(message).toBeInTheDocument();
   });
 
   it("applies vertical modifier when isVertical is true", () => {
@@ -47,7 +59,6 @@ describe("ContentItemDuoCommon", () => {
 
   it("applies custom className", () => {
     renderContentItemDuo({ className: "custom-class" });
-
     const container = screen.getByText("Label").closest("div");
     expect(container).toHaveClass("custom-class");
   });
@@ -64,7 +75,6 @@ describe("ContentItemDuoCommon", () => {
       buttonText: "Click me",
       onButtonClick: handleClick,
     });
-
     const button = screen.getByRole("button", { name: "Click me" });
     expect(button).toBeInTheDocument();
     await userEvent.click(button);
@@ -122,7 +132,6 @@ describe("ContentItemDuoCommon", () => {
 
   it("renders correct semantic elements", () => {
     renderContentItemDuo();
-
     expect(screen.getByText("Label").tagName).toBe("DT");
     expect(screen.getByText("Value").tagName).toBe("DD");
   });
@@ -134,6 +143,7 @@ describe("ContentItemDuoCommon", () => {
           label="Label"
           value="Value"
           ButtonComponent={ButtonComponent}
+          ItemMessageComponent={ItemMessage}
         />
         <ContentItemDuoCommon
           label="Label with button"
@@ -141,6 +151,7 @@ describe("ContentItemDuoCommon", () => {
           buttonText="Action"
           onButtonClick={() => {}}
           ButtonComponent={ButtonComponent}
+          ItemMessageComponent={ItemMessage}
         />
       </dl>,
     );

@@ -8,6 +8,7 @@ const meta: Meta<typeof ContentItemDuo> = {
   args: {
     label: "Label",
     value: "Value",
+    message: "Titre du message",
     buttonText: "Learn more",
   },
   argTypes: {
@@ -15,6 +16,13 @@ const meta: Meta<typeof ContentItemDuo> = {
     classModifier: { control: "text" },
     position: {
       options: ["horizontal", "vertical"],
+      control: {
+        type: "select",
+      },
+    },
+    message: { control: "text" },
+    messageType: {
+      options: ["error", "warning", "success"],
       control: {
         type: "select",
       },
