@@ -185,3 +185,7 @@ export {
   type ErrorPageProps,
 } from "./prospect-client/pages/ErrorPage/ErrorPageApollo";
 export type { GridContainerProps } from "./prospect-client/utilities/types/GridContainerProps";
+export {
+  Loader,
+  type LoaderProps,
+} from "./prospect-client/Loader/LoaderApollo";
