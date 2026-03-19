@@ -8,6 +8,7 @@ import {
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 import type { CardCheckboxOptionProps } from "../CardCheckboxOption/CardCheckboxOptionCommon";
+import type { CheckboxTextProps } from "../CheckboxText/CheckboxTextCommon";
 
 type CheckboxOption = Omit<CardCheckboxOptionProps, "name" | "type">;
 
@@ -16,6 +17,7 @@ export type CardCheckboxProps = Omit<
   "value" | "label" | "type" | "icon" | "description" | "subtitle" | "children"
 > & {
   type?: "vertical" | "horizontal";
+  mode?: "text";
   /**
    * @deprecated Use `label` instead.
    */
@@ -39,6 +41,7 @@ export type CardCheckboxProps = Omit<
 } & Partial<ItemMessageProps>;
 
 type CardCheckboxCommonProps = CardCheckboxProps & {
+  CheckboxTextComponent: ComponentType<CheckboxTextProps>;
   CardCheckboxItemComponent: ComponentType<CardCheckboxOptionProps>;
   ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
@@ -58,15 +61,20 @@ export const CardCheckboxCommon = ({
   id,
   onChange = () => {},
   CardCheckboxItemComponent,
+  CheckboxTextComponent,
   ItemMessageComponent,
   message,
   messageType = "error",
   containerProps,
+  mode,
   ...inputProps
 }: CardCheckboxCommonProps) => {
   const generatedId = useId();
   const cardCheckboxId = id || generatedId;
   const messageId = `${cardCheckboxId}-error`;
+
+  const CheckboxItemComponent =
+    mode === "text" ? CheckboxTextComponent : CardCheckboxItemComponent;
 
   const cardCheckboxOptionsRef = useRef<HTMLDivElement>(null);
 
@@ -122,7 +130,7 @@ export const CardCheckboxCommon = ({
         ref={cardCheckboxOptionsRef}
       >
         {options.map((cardCheckboxItemProps) => (
-          <CardCheckboxItemComponent
+          <CheckboxItemComponent
             key={`${name ?? cardCheckboxId}-${cardCheckboxItemProps.label}`}
             id={`${cardCheckboxId}-${cardCheckboxItemProps.value}`}
             required={required}

@@ -90,7 +90,7 @@ const meta: Meta = {
     name: "name",
     options: optionsDefault,
     required: false,
-    error: "",
+    messageType: "",
     message: "",
   },
 };
@@ -100,13 +100,45 @@ export default meta;
 export const CardCheckboxStory: StoryObj<ComponentProps<typeof CardCheckbox>> =
   {
     name: "Playground",
-    render: ({ description, error, name, type, ...args }) => (
+    render: ({ description, name, type, ...args }) => (
       <CardCheckbox
         {...args}
         description={description !== "" ? description : undefined}
-        error={error !== "" ? error : undefined}
         name={name !== "" ? name : undefined}
         type={type === "horizontal" ? type : undefined}
       />
     ),
   };
+
+const optionsCheckboxText = [
+  {
+    label: "option 1",
+    description: "description 1",
+    subtitle: "subtitle 1",
+    value: "1",
+  },
+  {
+    label: "option 2",
+    value: "2",
+  },
+  {
+    label: "option 3",
+    value: "3",
+  },
+];
+
+export const CardCheckboxTextStory: StoryObj<
+  ComponentProps<typeof CardCheckbox>
+> = {
+  name: "Card CheckboxText",
+  render: ({ description, name, type, ...args }) => (
+    <CardCheckbox
+      {...args}
+      description={description !== "" ? description : undefined}
+      name={name !== "" ? name : undefined}
+      type={type === "horizontal" ? type : undefined}
+      mode="text"
+      options={optionsCheckboxText}
+    />
+  ),
+};
