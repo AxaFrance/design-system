@@ -66,7 +66,9 @@ export const ContentItemDuoCommon = ({
       <dd className="af-content-item-duo__value">
         {value}
         {message ? (
-          <ItemMessageComponent message={message} messageType={messageType} />
+          <dd className="af-content-item-duo__message">
+            <ItemMessageComponent message={message} messageType={messageType} />
+          </dd>
         ) : null}
       </dd>
       {buttonText && onButtonClick ? (

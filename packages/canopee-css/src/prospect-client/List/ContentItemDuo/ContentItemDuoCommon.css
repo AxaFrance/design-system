@@ -33,6 +33,10 @@
     color: var(--content-item-duo-value-color);
   }
 
+  .af-content-item-duo__message {
+    margin-top: 8px;
+  }
+
   .af-content-item-duo__button {
     grid-area: button;
     justify-self: var(--content-item-duo-button-justify);
@@ -47,6 +51,13 @@
     grid-template:
       "label value"
       ". button";
+  }
+
+  &.af-content-item-duo--horizontal.af-content-item-duo--small
+    .af-content-item-duo__value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   &.af-content-item-duo--horizontal.af-content-item-duo--small {
