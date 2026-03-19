@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef } from "react";
 import {
   arrow,
   FloatingArrow,
   offset,
-  Placement,
+  type Placement,
   useFloating,
 } from "@floating-ui/react";
+import React, { useRef } from "react";
 import { getComponentClassName } from "../utilities";
 
 const defaultClassName = "af-popover__container";

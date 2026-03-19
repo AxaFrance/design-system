@@ -6,6 +6,7 @@ import {
   forwardRef,
   useId,
 } from "react";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -30,6 +31,7 @@ export type DropdownProps = ComponentPropsWithRef<"select"> & {
   placeholder?: string;
   description?: string;
   helper?: string;
+  containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "buttonLabel"
@@ -70,6 +72,7 @@ const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
       onSideButtonClick,
       ItemLabelComponent,
       ItemMessageComponent,
+      containerProps,
       ...otherProps
     },
     inputRef,
@@ -87,7 +90,7 @@ const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
     );
 
     return (
-      <div className="af-form__dropdown-container">
+      <div className="af-form__dropdown-container" {...containerProps}>
         <ItemLabelComponent
           description={description}
           moreButtonLabel={moreButtonLabel ?? buttonLabel}

@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
 
 type ClickItemWrapperProps = HTMLAttributes<HTMLElement> & {
   isClickable?: boolean;

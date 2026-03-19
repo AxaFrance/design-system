@@ -1,6 +1,6 @@
-import { ComponentProps, useMemo } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { type ComponentProps, useMemo } from "react";
 import { Svg } from "../Svg/Svg";
+import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export const iconVariants = {
   primary: "primary",

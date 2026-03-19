@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Table/Paging.css";
-import { ComponentPropsWithoutRef, useCallback } from "react";
+import { type ComponentPropsWithoutRef, useCallback } from "react";
 import { getComponentClassName } from "../../utilities";
 import { Items } from "./Items";
 import { Pager } from "./Pager";

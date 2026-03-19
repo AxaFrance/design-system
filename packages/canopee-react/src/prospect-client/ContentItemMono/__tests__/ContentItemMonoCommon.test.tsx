@@ -1,11 +1,11 @@
-import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import { Icon } from "../../Icon/IconCommon";
 import {
-  ContentItemCommonProps,
+  type ContentItemCommonProps,
   ContentItemMonoCommon,
   getContentItemCoreProps,
 } from "../ContentItemMonoCommon";
-import { Icon } from "../../Icon/IconCommon";
 
 describe("getContentItemCoreProps", () => {
   it("returns correct props for type 'icon'", () => {

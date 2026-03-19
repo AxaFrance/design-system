@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Form/Textarea/Textarea.css";
-import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useId } from "react";
 
 import { getComponentClassName } from "../../utilities";
 

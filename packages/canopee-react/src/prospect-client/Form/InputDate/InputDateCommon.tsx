@@ -6,6 +6,7 @@ import {
   useId,
 } from "react";
 import { getClassName } from "../../utilities/getClassName";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -37,6 +38,7 @@ export type InputDateProps = Omit<
   success?: string;
   hidePicker?: boolean;
   label: ItemLabelProps["children"];
+  containerProps?: GridContainerProps;
 } & Partial<
     Pick<
       ItemLabelProps,
@@ -78,6 +80,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
       hidePicker,
       max,
       min,
+      containerProps,
       ...otherProps
     },
     inputRef,
@@ -111,7 +114,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     const ariaInvalid = hasError || undefined;
 
     return (
-      <div className="af-form__input-container">
+      <div className="af-form__input-container" {...containerProps}>
         <ItemLabelComponent
           description={description}
           moreButtonLabel={moreButtonLabel ?? buttonLabel}

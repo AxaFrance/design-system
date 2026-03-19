@@ -4,7 +4,7 @@ import { axe } from "jest-axe";
 import { type ComponentProps, type PropsWithChildren, useRef } from "react";
 import { describe, test } from "vitest";
 import { ModalBody, ModalFooter, ModalHeader } from "..";
-import { Modal, ModalProps } from "../Modal";
+import { Modal, type ModalProps } from "../Modal";
 
 type Props = Pick<
   ModalProps & ComponentProps<typeof ModalHeader>,

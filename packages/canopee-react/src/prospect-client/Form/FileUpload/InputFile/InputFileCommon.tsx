@@ -1,3 +1,4 @@
+import addCircleIcon from "@material-symbols/svg-400/rounded/add_circle-fill.svg";
 import {
   type ComponentPropsWithRef,
   type ComponentType,
@@ -6,9 +7,9 @@ import {
   type ReactNode,
   useId,
 } from "react";
-import addCircleIcon from "@material-symbols/svg-400/rounded/add_circle-fill.svg";
 import { Svg } from "../../../Svg/Svg";
 import { getClassName } from "../../../utilities/getClassName";
+import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import { type ItemLabelProps } from "../../ItemLabel/ItemLabelCommon";
 import { type ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 
@@ -82,6 +83,7 @@ export type InputFileProps = Omit<ComponentPropsWithRef<"input">, "type"> & {
     or?: ReactNode;
     button?: ReactNode;
   };
+  containerProps?: GridContainerProps;
 } & Omit<ItemMessageProps, "id">;
 
 type InputFileCommonProps = InputFileProps & {
@@ -116,9 +118,9 @@ export const InputFileCommon = forwardRef<
       message,
       messageType = "error",
       className,
-      style,
       dropzoneLabels = {},
       children,
+      containerProps,
       ...props
     },
     ref,
@@ -147,7 +149,7 @@ export const InputFileCommon = forwardRef<
           baseClassName: "af-input-file",
           className,
         })}
-        style={style}
+        {...containerProps}
       >
         <ItemLabelComponent
           htmlFor={inputId}

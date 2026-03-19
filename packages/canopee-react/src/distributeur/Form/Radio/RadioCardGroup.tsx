@@ -1,9 +1,9 @@
 import "@axa-fr/canopee-css/distributeur/Form/Radio/RadioCardGroup.css";
 
-import { ComponentProps, ReactNode, useId } from "react";
 import classNames from "classnames";
-import type { Option } from "../core";
+import { type ComponentProps, type ReactNode, useId } from "react";
 import { Svg } from "../../Svg";
+import type { Option } from "../core";
 
 const DEFAULT_CLASSNAME = "af-card";
 const DEFAULT_CONTAINER_CLASSNAME = "af-form__radio-card-group";

@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
-import classNames from "classnames";
 import externalLinkIcon from "@material-symbols/svg-400/sharp/exit_to_app.svg";
-import { Svg } from "../../../Svg";
+import classNames from "classnames";
+import { type ReactNode } from "react";
 import { Link } from "../../../Link/Link";
 import { linkClassName } from "../../../Link/linkClassName";
+import { Svg } from "../../../Svg";
 
 import "@axa-fr/canopee-css/distributeur/Layout/Header/AnchorNavBar/AnchorNavBar.css";
 import "@axa-fr/canopee-css/distributeur/common/breakpoints.css";

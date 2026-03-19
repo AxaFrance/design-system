@@ -1,7 +1,7 @@
 import {
-  ComponentPropsWithRef,
+  type ComponentPropsWithRef,
   forwardRef,
-  OptionHTMLAttributes,
+  type OptionHTMLAttributes,
   useId,
   useMemo,
   useState,

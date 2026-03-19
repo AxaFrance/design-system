@@ -1,8 +1,8 @@
-import classNames from "classnames";
 import checkIcon from "@material-symbols/svg-700/outlined/check.svg";
+import classNames from "classnames";
 import { type FormatOptionLabelMeta } from "react-select";
-import { Option } from "./MultiSelect";
 import { Svg } from "../../Svg";
+import type { Option } from "./MultiSelect";
 
 const formatOptionLabel = (
   data: Option,

@@ -6,8 +6,9 @@ import {
   forwardRef,
   useId,
 } from "react";
-import { SingleValue } from "react-select";
+import type { SingleValue } from "react-select";
 import { Icon } from "../../Icon/IconCommon";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import {
   ItemLabelCommon,
@@ -40,6 +41,7 @@ export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   onChangeInput?: (value: string) => void;
   mask?: (value: string) => string;
   label: ItemLabelProps["children"];
+  containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "description"
@@ -92,6 +94,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
       InputTextComponent,
       IconComponent,
       "aria-errormessage": ariaErrormessage,
+      containerProps,
       ...otherProps
     },
     inputRef,
@@ -126,7 +129,7 @@ const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
     };
 
     return (
-      <div className="af-form__input-phone-container">
+      <div className="af-form__input-phone-container" {...containerProps}>
         <ItemLabelComponent
           description={description}
           moreButtonLabel={moreButtonLabel ?? buttonLabel}

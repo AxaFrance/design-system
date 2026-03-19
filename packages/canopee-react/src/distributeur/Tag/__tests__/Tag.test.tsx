@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import { describe, expect, it } from "vitest";
-import { Tag, TagVariants } from "../Tag";
+import { Tag, type TagVariants } from "../Tag";
 
 const classModifiers: ComponentProps<typeof Tag>["classModifier"][] = [
   "success",

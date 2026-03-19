@@ -1,7 +1,11 @@
 import classnames from "classnames";
-import { ComponentPropsWithRef, forwardRef, ReactElement } from "react";
-import { linkClassName } from "./linkClassName";
+import {
+  type ComponentPropsWithRef,
+  forwardRef,
+  type ReactElement,
+} from "react";
 import { Svg } from "../Svg";
+import { linkClassName } from "./linkClassName";
 
 type AnchorLinkProps = {
   leftIcon?: ReactElement<typeof Svg>;

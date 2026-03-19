@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { type ConsumerFieldProps, Field, useOptionsWithId } from "../core";
 import { Radio, RadioModes } from "./Radio";
 

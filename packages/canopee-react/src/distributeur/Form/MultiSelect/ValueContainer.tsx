@@ -2,10 +2,10 @@ import React, { type CSSProperties } from "react";
 import {
   components,
   type GroupBase,
-  type ValueContainerProps,
   type MultiValueProps,
+  type ValueContainerProps,
 } from "react-select";
-import { Option } from "./MultiSelect";
+import type { Option } from "./MultiSelect";
 
 const ValueContainer = ({
   children,

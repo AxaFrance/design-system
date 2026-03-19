@@ -1,8 +1,8 @@
-import { render, screen, within } from "@testing-library/react";
 import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
+import { render, screen, within } from "@testing-library/react";
 import { axe } from "jest-axe";
+import type { Option } from "../../core";
 import { RadioInput } from "../RadioInput";
-import { Option } from "../../core";
 
 const languageOptions = [
   { label: "French", value: "french" },

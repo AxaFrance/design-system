@@ -1,0 +1,32 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ErrorPageStories from "./ErrorPage.stories";
+
+<Meta of={ErrorPageStories} name="Error Page" />
+
+# Error page
+
+## Import
+
+```tsx
+import { ErrorPage } from "@axa-fr/canopee-react/prospect";
+
+export const MyErrorPage = () => (
+  <>
+    <Myheader />
+    <main className="grid">
+      <ErrorPage headingProps={headingProps} linkProps={linkProps}>
+        {children}
+      </ErrorPage>
+    </main>
+    <MyFooter />
+  </>
+);
+```
+
+## Uses
+
+### Error Page Playground
+
+<Canvas of={ErrorPageStories.Playground} />
+
+<Controls of={ErrorPageStories.Playground} />

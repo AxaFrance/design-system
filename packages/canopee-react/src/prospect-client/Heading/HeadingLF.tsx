@@ -1,8 +1,8 @@
 import "@axa-fr/canopee-css/client/Heading/HeadingLF.css";
 
-import { DEFAULT_TAG_PROPS, HeadingCommon } from "./HeadingCommon";
 import { Tag } from "../Tag/TagLF";
-import { HeadingProps } from "./types";
+import { DEFAULT_TAG_PROPS, HeadingCommon } from "./HeadingCommon";
+import type { HeadingProps } from "./types";
 
 export type { HeadingLevel, HeadingProps } from "./types";
 

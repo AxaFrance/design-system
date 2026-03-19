@@ -1,15 +1,20 @@
-import { type ComponentProps, ComponentType, Fragment, useMemo } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
-import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
-import { BREAKPOINT } from "../utilities/constants";
-import { Divider } from "../Divider/DividerCommon";
+import {
+  type ComponentProps,
+  type ComponentType,
+  Fragment,
+  useMemo,
+} from "react";
 import type {
   ContentItemProps,
   ContentMonoItemIconProps,
   ContentMonoItemPictureProps,
   ContentMonoItemStickProps,
 } from "../ContentItemMono/ContentItemMonoCommon";
+import { Divider } from "../Divider/DividerCommon";
 import type { ClickItemProps } from "../List/ClickItem/types";
+import { BREAKPOINT } from "../utilities/constants";
+import { getComponentClassName } from "../utilities/getComponentClassName";
+import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
 
 export type TupleMax3<T> = [T] | [T, T] | [T, T, T];
 

@@ -1,6 +1,6 @@
 import { type GroupBase, type StylesConfig } from "react-select";
 
-import { Option } from "./MultiSelect";
+import type { Option } from "./MultiSelect";
 
 export const useMultiSelectStyle = () => {
   // The recommended way to provide custom styles to react-select is to use the styles prop

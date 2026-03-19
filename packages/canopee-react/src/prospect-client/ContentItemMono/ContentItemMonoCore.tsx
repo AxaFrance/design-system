@@ -1,8 +1,7 @@
-import type { ElementType } from "react";
-import { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 
-import { AtLeastOne } from "../utilities/types/AtLeastOne";
 import { getClassName } from "../utilities/getClassName";
+import type { AtLeastOne } from "../utilities/types/AtLeastOne";
 
 export type ContentMonoItemSize = "medium" | "large";
 

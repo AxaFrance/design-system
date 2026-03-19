@@ -1,9 +1,9 @@
+import classNames from "classnames";
 import {
-  ComponentPropsWithoutRef,
-  ComponentPropsWithRef,
+  type ComponentPropsWithoutRef,
+  type ComponentPropsWithRef,
   forwardRef,
 } from "react";
-import classNames from "classnames";
 import type { Option } from "../core";
 import { RadioCardGroup } from "./RadioCardGroup";
 import { RadioItem } from "./RadioItem";

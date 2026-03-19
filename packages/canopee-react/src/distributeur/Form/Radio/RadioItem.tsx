@@ -1,5 +1,10 @@
 import "@axa-fr/canopee-css/distributeur/Form/Radio/Radio.css";
-import { ComponentPropsWithRef, forwardRef, ReactNode, useId } from "react";
+import {
+  type ComponentPropsWithRef,
+  forwardRef,
+  type ReactNode,
+  useId,
+} from "react";
 import { getOptionClassName } from "../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "checked" | "type"> & {

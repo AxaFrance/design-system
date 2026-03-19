@@ -1,10 +1,11 @@
 import {
   useId,
-  type ComponentType,
-  type ReactNode,
   useRef,
   type ChangeEvent,
+  type ComponentType,
+  type ReactNode,
 } from "react";
+import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 import type { CardCheckboxOptionProps } from "../CardCheckboxOption/CardCheckboxOptionCommon";
 
@@ -34,6 +35,7 @@ export type CardCheckboxProps = Omit<
    * @deprecated  Use `message` and messageType instead.
    */
   error?: string;
+  containerProps?: GridContainerProps<"fieldset">;
 } & Partial<ItemMessageProps>;
 
 type CardCheckboxCommonProps = CardCheckboxProps & {
@@ -59,6 +61,7 @@ export const CardCheckboxCommon = ({
   ItemMessageComponent,
   message,
   messageType = "error",
+  containerProps,
   ...inputProps
 }: CardCheckboxCommonProps) => {
   const generatedId = useId();
@@ -96,6 +99,7 @@ export const CardCheckboxCommon = ({
     <fieldset
       className={["af-card-checkbox", className].filter(Boolean).join(" ")}
       id={cardCheckboxId}
+      {...containerProps}
     >
       <legend className="af-card-checkbox__legend">
         <p className="af-card-checkbox__label">

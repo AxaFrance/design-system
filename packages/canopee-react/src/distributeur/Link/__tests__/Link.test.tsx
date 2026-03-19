@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { describe, expect, it } from "vitest";
 import { Link } from "../Link";
 

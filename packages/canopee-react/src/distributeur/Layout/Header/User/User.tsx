@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Layout/Header/User/User.css";
-import { MouseEvent, ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { getComponentClassName } from "../../../utilities";
 import { InnerUser } from "./InnerUser";
 

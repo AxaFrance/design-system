@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef } from "react";
+import { type ComponentProps, forwardRef } from "react";
 
 import { type ConsumerFieldProps, Field, useOptionsWithId } from "../core";
 import { Checkbox } from "./Checkbox";

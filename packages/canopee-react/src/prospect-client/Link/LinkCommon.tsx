@@ -1,8 +1,8 @@
 import openInNew from "@material-symbols/svg-400/outlined/open_in_new.svg";
-import {
+import type {
   ComponentPropsWithoutRef,
   PropsWithChildren,
-  type ReactNode,
+  ReactNode,
 } from "react";
 import { Svg } from "../Svg/Svg";
 import { getClassName } from "../utilities/getClassName";
@@ -13,7 +13,7 @@ export const linkVariants = {
 
 export type LinkVariants = keyof typeof linkVariants;
 
-type LinkProps = {
+export type LinkProps = {
   variant?: LinkVariants;
   openInNewTab?: boolean;
   leftIcon?: ReactNode;

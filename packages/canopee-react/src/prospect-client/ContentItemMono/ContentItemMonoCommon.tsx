@@ -1,6 +1,6 @@
 import type { ComponentProps, ComponentType } from "react";
-import { Icon, IconProps } from "../Icon/IconCommon";
 import { BasePicture } from "../BasePicture/BasePicture";
+import { Icon, type IconProps } from "../Icon/IconCommon";
 import {
   type ContentItemCoreProps,
   ContentItemMonoCore,

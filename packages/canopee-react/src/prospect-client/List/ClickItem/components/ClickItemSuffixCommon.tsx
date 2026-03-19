@@ -1,8 +1,8 @@
-import { ComponentProps, ComponentType } from "react";
 import keyboardArrowRight from "@material-symbols/svg-400/rounded/keyboard_arrow_right-fill.svg";
+import type { ComponentProps, ComponentType } from "react";
 import type { IconProps } from "../../../Icon/IconCommon";
-import { ClickItemStates, ClickItemVariants } from "../ClickItemCommon";
 import { Spinner } from "../../../Spinner/SpinnerCommon";
+import type { ClickItemStates, ClickItemVariants } from "../ClickItemCommon";
 
 export type ClickItemSuffixProps = {
   state: ClickItemStates;

@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { MessageTypes } from "../../core";
-import { FilePreview } from "../File";
+import type { FilePreview } from "../File";
 import { FileInput } from "../FileInput";
 
 const values = [

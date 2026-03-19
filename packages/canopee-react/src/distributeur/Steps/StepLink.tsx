@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { StepBase, type StepBaseProps } from "./StepBase";
 import type { StepLinkOnClickHandler } from "./types";
 

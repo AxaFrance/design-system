@@ -1,4 +1,4 @@
-import { TagProps } from "../Tag/TagCommon";
+import type { TagProps } from "../Tag/TagCommon";
 import type { TimelineVerticalProps as TimelineVerticalCommonProps } from "./TimelineVerticalCommon";
 
 export type TimelineVerticalProps = TimelineVerticalCommonProps & {

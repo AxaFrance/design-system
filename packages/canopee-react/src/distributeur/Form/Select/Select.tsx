@@ -1,8 +1,8 @@
 import {
-  ComponentProps,
+  type ComponentProps,
   forwardRef,
-  OptionHTMLAttributes,
-  PropsWithChildren,
+  type OptionHTMLAttributes,
+  type PropsWithChildren,
 } from "react";
 import { SelectBase } from "./SelectBase";
 import { SelectDefault } from "./SelectDefault";

@@ -1,12 +1,12 @@
+import classNames from "classnames";
 import {
-  ComponentProps,
-  ComponentType,
-  ReactNode,
+  type ComponentProps,
+  type ComponentType,
+  type ReactNode,
   useCallback,
   useRef,
   useState,
 } from "react";
-import classNames from "classnames";
 import {
   ItemTabBar,
   type ItemTabBarProps,

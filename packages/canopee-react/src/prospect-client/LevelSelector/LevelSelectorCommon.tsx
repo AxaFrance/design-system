@@ -1,8 +1,8 @@
 import add from "@material-symbols/svg-400/rounded/add-fill.svg";
 import remove from "@material-symbols/svg-400/rounded/remove-fill.svg";
-import { ComponentProps, ComponentType, useId } from "react";
-import { ClickIcon } from "../ClickIcon/ClickIconCommon";
+import { type ComponentProps, type ComponentType, useId } from "react";
 import { CardCommon } from "../Card/CardCommon";
+import { ClickIcon } from "../ClickIcon/ClickIconCommon";
 
 export type LevelSelectorProps = {
   title: string;

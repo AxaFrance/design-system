@@ -1,15 +1,15 @@
-import {
-  ComponentProps,
-  ComponentType,
-  type ComponentPropsWithoutRef,
-} from "react";
 import chevronBackward from "@material-symbols/svg-400/rounded/chevron_backward.svg";
 import chevronForward from "@material-symbols/svg-400/rounded/chevron_forward.svg";
-import { getClassName } from "../utilities/getClassName";
+import type {
+  ComponentProps,
+  ComponentPropsWithoutRef,
+  ComponentType,
+} from "react";
 import { ClickIcon } from "../ClickIcon/ClickIconCommon";
+import { getClassName } from "../utilities/getClassName";
 import {
-  ItemPaginationCommon,
   ELLIPSIS,
+  ItemPaginationCommon,
 } from "./ItemPagination/ItemPaginationCommon";
 import { getItems, type getItemsProps } from "./Pagination.helper";
 

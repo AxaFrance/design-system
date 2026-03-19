@@ -129,7 +129,7 @@
 }
 
 .af-btn-client--tertiary {
-  --button-bg-color: var(--blue-80);
+  --button-bg-color: var(--blue-080);
   --button-text-color: var(--blue-1000);
 
   &:hover,

@@ -3,7 +3,7 @@ import { Button, Modal, getComponentClassName } from "../../distributeur";
 import { Body } from "./components/Body";
 import { Footer } from "./components/Footer";
 import { Header, type HeaderProps } from "./components/Header";
-import { ModalProps } from "./Modal";
+import type { ModalProps } from "./Modal";
 
 const defaultClassName = "af-modal";
 

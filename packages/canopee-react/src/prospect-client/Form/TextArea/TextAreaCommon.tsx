@@ -1,10 +1,11 @@
 import {
   type ComponentProps,
-  ComponentPropsWithRef,
+  type ComponentPropsWithRef,
   type ComponentType,
   forwardRef,
   useId,
 } from "react";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
@@ -21,6 +22,7 @@ export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
    * @deprecated Use `message` and messageType instead.
    */
   error?: string;
+  containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "description"
@@ -61,6 +63,7 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
       ItemMessageComponent,
       onSideButtonClick,
       placeholder = " ",
+      containerProps,
       ...inputProps
     },
     inputRef,
@@ -78,6 +81,7 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
         className={["af-form__input-container", className]
           .filter(Boolean)
           .join(" ")}
+        {...containerProps}
       >
         <ItemLabelComponent
           description={description}

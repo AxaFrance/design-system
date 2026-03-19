@@ -1,5 +1,5 @@
 import { type ComponentProps } from "react";
-import { ConsumerFieldProps, Field } from "../core";
+import { type ConsumerFieldProps, Field } from "../core";
 import { Slider } from "./Slider";
 
 type Props = ConsumerFieldProps & ComponentProps<typeof Slider>;

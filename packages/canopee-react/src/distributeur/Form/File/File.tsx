@@ -1,13 +1,13 @@
+import { useId } from "react";
 import {
-  DropzoneInputProps,
-  DropzoneOptions,
-  FileRejection,
+  type DropzoneInputProps,
+  type DropzoneOptions,
+  type FileRejection,
   useDropzone,
 } from "react-dropzone";
-import { useId } from "react";
-import { getComponentClassName } from "../../utilities";
 import { Button } from "../../Button/Button";
-import { FileActions } from "./constants";
+import { getComponentClassName } from "../../utilities";
+import type { FileActions } from "./constants";
 
 type Dropzone = DropzoneInputProps & DropzoneOptions;
 type Props = Omit<Dropzone, "onDrop" | "onChange"> & {

@@ -1,5 +1,5 @@
-import { PropsWithChildren, ReactNode } from "react";
 import classNames from "classnames";
+import type { PropsWithChildren, ReactNode } from "react";
 
 export type TimelineVerticalProps = PropsWithChildren<{
   title: string;

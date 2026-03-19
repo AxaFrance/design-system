@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { describe } from "vitest";
-import { BooleanModal, BooleanModalProps } from "../BooleanModal";
+import { BooleanModal, type BooleanModalProps } from "../BooleanModal";
 
 type Props = Pick<BooleanModalProps, "onSubmit" | "onCancel" | "size">;
 
