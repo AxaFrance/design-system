@@ -1,1 +1,0 @@
-import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{y as n}from"./ExitLayoutApollo-C8lkrE4B.js";import{C as e}from"./CardCommon-Ctv9XERU.js";import{r as i}from"./index-ZnYipkzV.js";const p=({children:r,CardComponent:t,as:m="ul",...a})=>o.jsx(t,{as:m,...a,children:i.Children.toArray(r).map(s=>o.jsx("li",{children:s},n(s)))}),c=r=>o.jsx(p,{...r,CardComponent:e});export{c as L};
