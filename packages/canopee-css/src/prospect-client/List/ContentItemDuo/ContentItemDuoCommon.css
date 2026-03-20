@@ -22,8 +22,11 @@
   }
 
   .af-content-item-duo__value {
+    display: flex;
     grid-area: value;
+    flex-direction: column;
     justify-self: var(--content-item-duo-value-justify);
+    gap: var(--rem-8);
     font-size: calc(
       var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
     );
@@ -47,6 +50,13 @@
     grid-template:
       "label value"
       ". button";
+  }
+
+  &.af-content-item-duo--horizontal.af-content-item-duo--small
+    .af-content-item-duo__value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   &.af-content-item-duo--horizontal.af-content-item-duo--small {
