@@ -22,8 +22,11 @@
   }
 
   .af-content-item-duo__value {
+    display: flex;
     grid-area: value;
+    flex-direction: column;
     justify-self: var(--content-item-duo-value-justify);
+    gap: var(--rem-8);
     font-size: calc(
       var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
     );
@@ -31,10 +34,6 @@
     line-height: 125%;
     word-break: break-word;
     color: var(--content-item-duo-value-color);
-  }
-
-  .af-content-item-duo__message {
-    margin-top: 8px;
   }
 
   .af-content-item-duo__button {
