@@ -4,7 +4,7 @@ import {
   ContentItemDuoCommon,
   type ContentItemDuoProps,
 } from "./ContentItemDuoCommon";
-import { ItemMessage } from "../../../client";
+import { ItemMessage } from "../../Form/ItemMessage/ItemMessageApollo";
 
 export const ContentItemDuo = (props: ContentItemDuoProps) => (
   <ContentItemDuoCommon
