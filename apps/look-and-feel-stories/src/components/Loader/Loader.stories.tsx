@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Loader } from "@axa-fr/canopee-react/client";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const meta: Meta<typeof Loader> = {
   title: "Components/Loader",
@@ -40,7 +40,7 @@ export const Dialog: Story = {
     (Story, { args: { open = true, isDialog = true, ...args } }) => {
       const modalRef = useRef<HTMLDialogElement>(null);
 
-      useLayoutEffect(() => {
+      useEffect(() => {
         if (open && isDialog) {
           modalRef.current?.showModal();
           return;
