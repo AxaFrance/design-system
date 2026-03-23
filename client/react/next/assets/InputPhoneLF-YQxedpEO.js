@@ -1,1 +1,0 @@
-import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{o as e,c as n,p as m,I as s,j as p}from"./FormLayout-Dredn-HW.js";const r=o=>t.jsx(e,{...o,ItemLabelComponent:p,ItemMessageComponent:s,InputTextComponent:m,IconComponent:n});export{r as I};
