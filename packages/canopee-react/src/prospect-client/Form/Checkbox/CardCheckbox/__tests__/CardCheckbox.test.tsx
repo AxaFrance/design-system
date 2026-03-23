@@ -11,6 +11,10 @@ import {
 } from "../../CardCheckboxOption/CardCheckboxOptionCommon";
 import { Checkbox } from "../../Checkbox/CheckboxCommon";
 import {
+  CheckboxTextCommon,
+  type CheckboxTextProps,
+} from "../../CheckboxText/CheckboxTextCommon";
+import {
   CardCheckboxCommon,
   type CardCheckboxProps,
 } from "../CardCheckboxCommon";
@@ -24,10 +28,20 @@ const CardCheckboxOption = (props: CardCheckboxOptionProps) => (
 );
 
 // eslint-disable-next-line react/no-multi-comp
+const CheckboxText = (props: CheckboxTextProps) => (
+  <CheckboxTextCommon
+    {...props}
+    CheckboxComponent={Checkbox}
+    ItemMessageComponent={ItemMessage}
+  />
+);
+
+// eslint-disable-next-line react/no-multi-comp
 const CardCheckbox = (props: CardCheckboxProps) => (
   <CardCheckboxCommon
     {...props}
     CardCheckboxItemComponent={CardCheckboxOption}
+    CheckboxTextComponent={CheckboxText}
     ItemMessageComponent={ItemMessage}
   />
 );
@@ -81,13 +95,45 @@ describe("CardCheckbox", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it("should display error message when error prop is provided", () => {
+  it("should display error message when error prop is provided (deprecated)", () => {
     render(<CardCheckbox {...defaultArgs} error="Erreur obligatoire" />);
 
     const checkboxInput = screen.getByRole("checkbox", { name: /Paris/ });
 
     expect(checkboxInput).toHaveAccessibleErrorMessage("Erreur obligatoire");
     expect(checkboxInput).not.toBeValid();
+  });
+
+  it("should display error message when message prop is provided with error type", () => {
+    render(
+      <CardCheckbox
+        {...defaultArgs}
+        message="Champ obligatoire"
+        messageType="error"
+      />,
+    );
+
+    const parisCheckbox = screen.getByRole("checkbox", { name: /Paris/ });
+    const londresCheckbox = screen.getByRole("checkbox", { name: /Londres/ });
+
+    expect(parisCheckbox).toHaveAccessibleErrorMessage("Champ obligatoire");
+    expect(parisCheckbox).not.toBeValid();
+    expect(londresCheckbox).toHaveAccessibleErrorMessage("Champ obligatoire");
+    expect(londresCheckbox).not.toBeValid();
+  });
+
+  it("should not mark checkboxes as invalid when messageType is not error", () => {
+    render(
+      <CardCheckbox
+        {...defaultArgs}
+        message="Information"
+        messageType="success"
+      />,
+    );
+
+    const parisCheckbox = screen.getByRole("checkbox", { name: /Paris/ });
+
+    expect(parisCheckbox).toBeValid();
   });
 
   it("should display description and label when provided", () => {
@@ -141,6 +187,16 @@ describe("CardCheckbox", () => {
     ).not.toBeRequired();
   });
 
+  it("should render CheckboxText components when mode is text", () => {
+    render(<CardCheckbox {...defaultArgs} mode="text" />);
+
+    expect(screen.getByRole("checkbox", { name: /Paris/ })).toBeInTheDocument();
+    expect(
+      screen.getByRole("checkbox", { name: /Londres/ }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("presentation")).not.toBeInTheDocument();
+  });
+
   it("should display message with error type by default", () => {
     render(<CardCheckbox {...defaultArgs} message="Error message" />);
 
@@ -150,5 +206,20 @@ describe("CardCheckbox", () => {
     expect(
       screen.getByRole("checkbox", { name: /Londres/ }),
     ).toHaveAccessibleErrorMessage("Error message");
+  });
+
+  it("should set aria-invalid and aria-errormessage directly on checkboxes", () => {
+    render(
+      <CardCheckbox
+        {...defaultArgs}
+        message="Erreur directe"
+        messageType="error"
+      />,
+    );
+
+    const parisCheckbox = screen.getByRole("checkbox", { name: /Paris/ });
+
+    expect(parisCheckbox).toHaveAttribute("aria-invalid", "true");
+    expect(parisCheckbox).toHaveAttribute("aria-errormessage");
   });
 });
