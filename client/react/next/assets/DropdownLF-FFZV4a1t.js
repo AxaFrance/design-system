@@ -1,1 +1,0 @@
-import{j as m}from"./jsx-runtime-D_zvdyIk.js";import{I as e}from"./LoaderLF-emSfIVr0.js";import{D as s,I as t}from"./LoaderCommon-BmA7JIbz.js";const p=o=>m.jsx(s,{...o,ItemLabelComponent:e,ItemMessageComponent:t});export{p as D};
