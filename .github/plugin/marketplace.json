@@ -1,0 +1,26 @@
+{
+  "name": "canopee-plugins",
+  "metadata": {
+    "description": "Canopée plugins",
+    "version": "0.0.1"
+  },
+  "owner": {
+    "name": "AXA France"
+  },
+  "plugins": [
+    {
+      "name": "Canopée Distributeur",
+      "source": "./plugins/canopee-distributeur",
+      "description": "Canopée Distributeur plugin for GitHub Copilot.",
+      "version": "0.0.1",
+      "skills": ["./skills/canopee-distributeur"]
+    },
+    {
+      "name": "Canopée Prospect-Client",
+      "source": "./plugins/canopee-prospect-client",
+      "description": "Canopée Prospect-Client plugin for GitHub Copilot.",
+      "version": "0.0.1",
+      "skills": ["./skills/canopee-prospect-client"]
+    }
+  ]
+}
