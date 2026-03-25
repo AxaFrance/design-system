@@ -36,8 +36,8 @@ Ton rôle va être de construire un skill Copilot parfait pour rendre utilisable
 
 1. Recherche et analyse le design system **Canopée** {univers} pour comprendre ses composants, ses fonctionnalités et son architecture.
 2. Crée un plan détaillé pour développer le skill, en identifiant les tâches nécessaires pour chaque composant du design system.
-3. Crée le skill qui explique le but du Design System **Canopée** {univers}, les composants qu'il contient, et comment les utiliser dans d'autres projets. Le skill doit être structuré de manière claire et facile à comprendre, avec des exemples d'utilisation pour chaque composant. Tu référenceras dans le fichier skill.md les fichiers de documentation que tu auras créés pour chaque composant dans le dossier `.github/skills/canopee-{univers}/references`.
-4. Rédige une documentation claire et concise pour chaque composant du design system, en expliquant son utilisation, ses propriétés et ses exemples d'utilisation dans le dossier `.github/skills/canopee-{univers}/references`. Assure-toi que la documentation est facile à comprendre et à suivre pour les développeurs qui utiliseront le skill. Tu devras fournir des exemples complets avec l'exhaustivité des cas possibles d'utilisation de chaque composant.
+3. Crée le skill qui explique le but du Design System **Canopée** {univers}, les composants qu'il contient, et comment les utiliser dans d'autres projets. Le skill doit être structuré de manière claire et facile à comprendre, avec des exemples d'utilisation pour chaque composant. Tu référenceras dans le fichier skill.md les fichiers de documentation que tu auras créés pour chaque composant dans le dossier `plugins/canopee-{univers}/skills/canopee-{univers}/references`.
+4. Rédige une documentation claire et concise pour chaque composant du design system, en expliquant son utilisation, ses propriétés et ses exemples d'utilisation dans le dossier `plugins/canopee-{univers}/skills/canopee-{univers}/references`. Assure-toi que la documentation est facile à comprendre et à suivre pour les développeurs qui utiliseront le skill. Tu devras fournir des exemples complets avec l'exhaustivité des cas possibles d'utilisation de chaque composant.
 5. Tu vas relire la documentation que tu auras générée en corrigeant les exemples d'utilisation et en t'assurant que les explications sont claires et précises. Tu peux utiliser des outils de correction grammaticale et orthographique pour t'aider dans cette tâche. Si les exemples d'utilisation ou les explications sur lesquels tu te seras appuyé pour rédiger la documentation ne sont pas clairs ou contiennent des erreurs, tu devras les corriger pour t'assurer que la documentation finale est de haute qualité et facile à comprendre pour les développeurs qui utiliseront le skill.
 6. Tu vas maintenant ajouter un numéro de version dans le skill que tu auras créé, qui correspondra à la date du jour au format YYYY.MM.DD. Par exemple, si tu crées le skill le 15 juin 2024, tu ajouteras la version `2024.06.15` dans le skill. Si tu génères plusieurs versions du skill dans la même journée, tu ajouteras un suffixe pour différencier les versions, par exemple `2024.06.15-a`, `2024.06.15-b`, etc.
 
@@ -56,8 +56,22 @@ Ton rôle va être de construire un skill Copilot parfait pour rendre utilisable
 
 ## Output
 
-Le skill doit être écrit dans le fichier `.github/skills/canopee-{univers}/SKILL.md`.
+Les fichiers du plugin doivent être écrits dans le dossier `plugins/canopee-{univers}/` selon la structure suivante :
 
-Dans le dossier `.github/skills/canopee-{univers}/references`, tu écriras un markdown de documentation par composant que tu trouveras.
+```
+plugins/canopee-{univers}/
+├── README.md                                    # Description du plugin
+└── skills/
+    └── canopee-{univers}/
+        ├── SKILL.md                             # Fichier principal du skill
+        └── references/                          # Documentation par composant
+            ├── 01-composant.md
+            ├── 02-composant.md
+            └── ...
+```
 
-Rappel au développeur qui appelle cet agent qu'il est important de partager ce skill et sa mise à jour dans le marketplace interne d'instructions de l'entreprise pour que les autres développeurs puissent en bénéficier.
+Le skill principal doit être écrit dans le fichier `plugins/canopee-{univers}/skills/canopee-{univers}/SKILL.md`.
+
+Dans le dossier `plugins/canopee-{univers}/skills/canopee-{univers}/references`, tu écriras un markdown de documentation par composant que tu trouveras.
+
+Une fois le skill créé ou mis à jour, vérifie que le plugin correspondant est bien référencé dans le fichier `.github/plugin/marketplace.json`. Si ce n'est pas le cas, ajoute-y une entrée avec les champs `name`, `source`, `description`, `version` et `skills` (pointant vers `./skills/canopee-{univers}`).
