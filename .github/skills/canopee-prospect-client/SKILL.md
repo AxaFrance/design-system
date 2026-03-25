@@ -262,3 +262,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | Démarrage projet | [16-demarrer-un-projet.md](./references/16-demarrer-un-projet.md) | Installation, app minimale, commandes monorepo        |
 | Icônes           | [17-icones.md](./references/17-icones.md)                         | Material Symbols, Svg, Icon, ClickIcon, accessibilité |
 | Tokens CSS       | [18-tokens-css.md](./references/18-tokens-css.md)                 | Variables CSS, surcharge, imports par composant       |
+
+---
+
+_Version : 2026.03.25_
