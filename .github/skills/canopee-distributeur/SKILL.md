@@ -167,3 +167,7 @@ Tous les composants respectent WCAG 2.1. Rappels lors de la génération de code
 - Utiliser `scope="col"` / `scope="row"` dans les `<th>` de tableaux
 - Ne jamais véhiculer une information uniquement par la couleur
 - Tester la navigation clavier (Tab, Enter, Espace, flèches)
+
+---
+
+_Version : 2026.03.25_
