@@ -17,6 +17,7 @@
 
   > input {
     all: unset;
+    min-width: 0;
     padding: var(--rem-16);
     font-size: var(--rem-16);
     font-weight: 600;
