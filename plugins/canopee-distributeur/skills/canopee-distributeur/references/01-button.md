@@ -1,23 +1,23 @@
-# Button
+# Button (Bouton)
 
-## Overview
-The Button component is a flexible, styled button element that supports multiple variants, sizes, and icon positioning. It's the primary call-to-action (CTA) component for user interactions.
+## Présentation
+Le composant Button est un élément bouton stylé et flexible, supportant plusieurs variantes, tailles et positionnements d'icônes. C'est le composant principal d'appel à l'action pour les interactions utilisateur.
 
 ## Import
 ```tsx
 import { Button } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Basic Usage
+## Utilisation de base
 ```tsx
 import { Button } from "@axa-fr/canopee-react/distributeur";
 
-const MyComponent = () => {
+const MonComposant = () => {
   const [count, setCount] = useState(0);
   
   return (
     <Button type="button" onClick={() => setCount(count + 1)}>
-      Clicked {count} times
+      Cliqué {count} fois
     </Button>
   );
 };
@@ -25,144 +25,143 @@ const MyComponent = () => {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"primary" \| "secondary" \| "validated" \| "danger" \| "ghost" \| "ghost-reverse"` | `"primary"` | Visual style of the button |
-| `small` | `boolean` | `false` | Renders a smaller button when true |
-| `leftIcon` | `ReactNode` | `undefined` | Icon element displayed on the left |
-| `rightIcon` | `ReactNode` | `undefined` | Icon element displayed on the right |
-| `type` | `"button" \| "submit" \| "reset"` | `"button"` | HTML button type |
-| `disabled` | `boolean` | `false` | Disables the button |
-| `children` | `ReactNode` | Required | Button text content |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `variant` | `"primary" \| "secondary" \| "validated" \| "danger" \| "ghost" \| "ghost-reverse"` | `"primary"` | Style visuel du bouton |
+| `small` | `boolean` | `false` | Rendu en petite taille si activé |
+| `leftIcon` | `ReactNode` | `undefined` | Élément icône affiché à gauche |
+| `rightIcon` | `ReactNode` | `undefined` | Élément icône affiché à droite |
+| `type` | `"button" \| "submit" \| "reset"` | `"button"` | Type HTML du bouton |
+| `disabled` | `boolean` | `false` | Désactive le bouton |
+| `children` | `ReactNode` | Obligatoire | Texte du bouton |
 
-All standard HTML button attributes are supported.
+Tous les attributs HTML standard du `<button>` sont supportés.
 
-## Variants
+## Variantes
 
-### Primary (Default)
-Main call-to-action button. Use one per page/section.
+### Primary (par défaut)
+Bouton d'appel à l'action principal. Un seul par page/section.
 ```tsx
-<Button variant="primary">Primary Action</Button>
+<Button variant="primary">Action principale</Button>
 ```
 
 ### Secondary
-Secondary action button. Multiple allowed per section.
+Bouton d'action secondaire. Plusieurs autorisés par section.
 ```tsx
-<Button variant="secondary">Secondary Action</Button>
+<Button variant="secondary">Action secondaire</Button>
 ```
 
 ### Validated
-Success/confirmation button with checkmark styling.
+Bouton de confirmation ou de succès.
 ```tsx
-<Button variant="validated">Confirm</Button>
+<Button variant="validated">Confirmer</Button>
 ```
 
 ### Danger
-Destructive action button (delete, cancel critical operations).
+Bouton pour actions destructives (suppression, annulation critique).
 ```tsx
-<Button variant="danger">Delete</Button>
+<Button variant="danger">Supprimer</Button>
 ```
 
 ### Ghost
-Transparent button with border.
+Bouton transparent avec bordure.
 ```tsx
-<Button variant="ghost">Ghost Button</Button>
+<Button variant="ghost">Bouton ghost</Button>
 ```
 
 ### Ghost Reverse
-Ghost button with inverted colors for dark backgrounds.
+Bouton ghost avec couleurs inversées pour fonds sombres.
 ```tsx
-<Button variant="ghost-reverse">Ghost Reverse</Button>
+<Button variant="ghost-reverse">Ghost inversé</Button>
 ```
 
-## Size Variation
+## Tailles
 
-### Default Size
+### Taille par défaut
 ```tsx
-<Button>Default Size</Button>
+<Button>Taille normale</Button>
 ```
 
-### Small Size
+### Petite taille
 ```tsx
-<Button small>Small Size</Button>
+<Button small>Petit bouton</Button>
 ```
 
-## With Icons
+## Avec icônes
 
-### Material Symbols Icons
 ```tsx
 import checkIcon from "@material-symbols/svg-400/outlined/check.svg";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import { Button, Svg } from "@axa-fr/canopee-react/distributeur";
 
-const MyComponent = () => (
+const MonComposant = () => (
   <>
     <Button leftIcon={<Svg src={checkIcon} />}>
-      Confirm
+      Confirmer
     </Button>
     <Button rightIcon={<Svg src={deleteIcon} />}>
-      Delete
+      Supprimer
     </Button>
     <Button 
       variant="secondary" 
       leftIcon={<Svg src={checkIcon} />}
       rightIcon={<Svg src={deleteIcon} />}
     >
-      Complex Button
+      Bouton complexe
     </Button>
   </>
 );
 ```
 
-## Form Usage
+## Utilisation en formulaire
 
-### Submit Button
+### Bouton de soumission
 ```tsx
 <form onSubmit={handleSubmit}>
   <input type="text" />
   <Button type="submit" variant="primary">
-    Submit
+    Valider
   </Button>
 </form>
 ```
 
-### Reset Button
+### Bouton de réinitialisation
 ```tsx
 <form>
   <input type="text" />
   <Button type="reset" variant="secondary">
-    Clear
+    Réinitialiser
   </Button>
 </form>
 ```
 
-## States
+## États
 
-### Disabled
+### Désactivé
 ```tsx
-<Button disabled>Disabled Button</Button>
+<Button disabled>Bouton désactivé</Button>
 ```
 
-## Accessibility
-- Buttons are semantic HTML elements
-- Use `type="submit"` in forms for proper keyboard navigation
-- Icon-only buttons should have `aria-label` when used via custom wrapper
-- Disabled state is visually distinct and prevents interaction
+## Accessibilité
+- Les boutons sont des éléments HTML sémantiques
+- Utiliser `type="submit"` dans les formulaires pour la navigation clavier
+- Les boutons icône seuls doivent avoir un `aria-label`
+- L'état désactivé est visuellement distinct et empêche l'interaction
 
-## Best Practices
-- Use one primary button per page/section
-- Position buttons consistently (usually right-aligned for forms)
-- Pair primary with secondary actions when needed
-- Use danger variant sparingly for destructive actions
-- Ensure sufficient padding for touch targets (minimum 44x44px)
-- Use ghost variant for tertiary actions
+## Bonnes pratiques
+- Un seul bouton primary par page/section
+- Positionner les boutons de manière cohérente (alignés à droite pour les formulaires)
+- Associer primary et secondary pour les actions complémentaires
+- Utiliser la variante danger avec parcimonie
+- Assurer une zone de clic suffisante (minimum 44x44px)
+- Utiliser ghost pour les actions tertiaires
 
-## CSS Classes
-- `.af-btn` - Base button class
-- `.af-btn--primary` - Primary variant
-- `.af-btn--secondary` - Secondary variant
-- `.af-btn--validated` - Validated variant
-- `.af-btn--danger` - Danger variant
-- `.af-btn--ghost` - Ghost variant
-- `.af-btn--ghost-reverse` - Ghost reverse variant
-- `.af-btn--small` - Small size
+## Classes CSS
+- `.af-btn` - Classe de base du bouton
+- `.af-btn--primary` - Variante primary
+- `.af-btn--secondary` - Variante secondary
+- `.af-btn--validated` - Variante validated
+- `.af-btn--danger` - Variante danger
+- `.af-btn--ghost` - Variante ghost
+- `.af-btn--ghost-reverse` - Variante ghost-reverse
+- `.af-btn--small` - Petite taille

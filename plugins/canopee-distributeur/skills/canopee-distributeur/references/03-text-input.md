@@ -1,215 +1,215 @@
-# Form Text Input
+# Form Text Input (Saisie texte)
 
-## Overview
-The Text Input component is a wrapper around the HTML `<input type="text">` element with label, validation messages, and help text support. It's the foundation for most single-line text input forms.
+## Présentation
+Le composant TextInput est un wrapper autour de l'élément HTML `<input type="text">` avec support du label, des messages de validation et du texte d'aide.
 
 ## Import
 ```tsx
 import { Text, TextInput } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Components
+## Composants
 
-### Text (Base Input)
-Low-level wrapper around `<input>` element.
+### Text (base)
+Wrapper bas niveau autour de l'élément `<input>`.
 ```tsx
 import { Text } from "@axa-fr/canopee-react/distributeur";
 
-const MyInput = () => <Text id="name" name="name" placeholder="Enter name" />;
+const MonInput = () => <Text id="nom" name="nom" placeholder="Saisir le nom" />;
 ```
 
-### TextInput (High-level)
-Complete form input with label, validation, and help messages.
+### TextInput (haute niveau)
+Saisie complète avec label, validation et messages d'aide.
 ```tsx
 import { TextInput } from "@axa-fr/canopee-react/distributeur";
 
-const MyInput = () => (
+const MonInput = () => (
   <TextInput
     id="email"
     name="email"
-    label="Email Address"
+    label="Adresse e-mail"
     type="email"
-    placeholder="you@example.com"
+    placeholder="vous@exemple.fr"
   />
 );
 ```
 
-## Props - TextInput
+## Props — TextInput
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `id` | `string` | Required | HTML id attribute |
-| `name` | `string` | Required | HTML name attribute |
-| `label` | `string \| ReactNode` | - | Input label text |
-| `type` | `string` | `"text"` | HTML input type (text, email, password, tel, url, etc.) |
-| `value` | `string` | - | Input value |
-| `placeholder` | `string` | - | Placeholder text |
-| `disabled` | `boolean` | `false` | Disables input |
-| `readOnly` | `boolean` | `false` | Read-only mode |
-| `required` | `boolean` | `false` | Required field (shows asterisk) |
-| `message` | `string` | - | Validation/help message |
-| `messageType` | `"error" \| "info" \| "success"` | - | Message styling |
-| `forceDisplayMessage` | `boolean` | `false` | Always show message |
-| `onChange` | `function` | - | Change handler |
-| `onBlur` | `function` | - | Blur handler |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `id` | `string` | Obligatoire | Attribut HTML id |
+| `name` | `string` | Obligatoire | Attribut HTML name |
+| `label` | `string \| ReactNode` | - | Texte du label |
+| `type` | `string` | `"text"` | Type HTML (text, email, password, tel, url...) |
+| `value` | `string` | - | Valeur de la saisie |
+| `placeholder` | `string` | - | Texte de placeholder |
+| `disabled` | `boolean` | `false` | Désactive la saisie |
+| `readOnly` | `boolean` | `false` | Mode lecture seule |
+| `required` | `boolean` | `false` | Champ obligatoire (affiche astérisque) |
+| `message` | `string` | - | Message de validation/aide |
+| `messageType` | `"error" \| "info" \| "success"` | - | Style du message |
+| `forceDisplayMessage` | `boolean` | `false` | Toujours afficher le message |
+| `onChange` | `function` | - | Gestionnaire de changement |
+| `onBlur` | `function` | - | Gestionnaire de perte de focus |
 
-## Props - Text (Base)
+## Props — Text (base)
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
 | `id` | `string` | - | HTML id |
 | `name` | `string` | - | HTML name |
-| `type` | `string` | `"text"` | HTML input type |
-| `value` | `string` | - | Input value |
-| `placeholder` | `string` | - | Placeholder text |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `readOnly` | `boolean` | `false` | Read-only state |
-| `required` | `boolean` | `false` | Required field |
-| `classModifier` | `string` | - | CSS modifier classes |
+| `type` | `string` | `"text"` | Type de saisie HTML |
+| `value` | `string` | - | Valeur |
+| `placeholder` | `string` | - | Texte de placeholder |
+| `disabled` | `boolean` | `false` | État désactivé |
+| `readOnly` | `boolean` | `false` | État lecture seule |
+| `required` | `boolean` | `false` | Champ obligatoire |
+| `classModifier` | `string` | - | Classes CSS modificatrices |
 
-Standard HTML `<input>` attributes supported.
+Attributs HTML standard `<input>` supportés.
 
-## Basic Usage
+## Utilisation de base
 
-### Simple Text Input
+### Saisie texte simple
 ```tsx
-const SimpleInput = () => {
-  const [value, setValue] = useState("");
+const SaisieSimple = () => {
+  const [valeur, setValeur] = useState("");
   
   return (
     <TextInput
-      id="name"
-      name="name"
-      label="Full Name"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      placeholder="John Doe"
+      id="nom"
+      name="nom"
+      label="Nom complet"
+      value={valeur}
+      onChange={(e) => setValeur(e.target.value)}
+      placeholder="Jean Dupont"
     />
   );
 };
 ```
 
-### Email Input
+### Saisie e-mail
 ```tsx
 <TextInput
   id="email"
   name="email"
-  label="Email Address"
+  label="Adresse e-mail"
   type="email"
-  placeholder="user@example.com"
+  placeholder="utilisateur@exemple.fr"
   required
 />
 ```
 
-### Required Field with Help Text
+### Champ obligatoire avec texte d'aide
 ```tsx
 <TextInput
-  id="username"
-  name="username"
-  label="Username"
+  id="pseudo"
+  name="pseudo"
+  label="Pseudonyme"
   required
-  message="Username must be 3-20 characters"
+  message="Le pseudonyme doit contenir entre 3 et 20 caractères"
   messageType="info"
 />
 ```
 
 ## Validation
 
-### Error Message
+### Message d'erreur
 ```tsx
-const [error, setError] = useState("");
+const [erreur, setErreur] = useState("");
 
 const handleChange = (e) => {
-  const value = e.target.value;
-  if (value.length < 3) {
-    setError("Must be at least 3 characters");
+  const valeur = e.target.value;
+  if (valeur.length < 3) {
+    setErreur("Minimum 3 caractères requis");
   } else {
-    setError("");
+    setErreur("");
   }
 };
 
 <TextInput
   id="password"
   name="password"
-  label="Password"
+  label="Mot de passe"
   type="password"
-  message={error}
-  messageType={error ? "error" : undefined}
+  message={erreur}
+  messageType={erreur ? "error" : undefined}
   onChange={handleChange}
 />
 ```
 
-### Success Message
+### Message de succès
 ```tsx
 <TextInput
-  id="confirmed"
-  name="confirmed"
-  label="Confirmed Email"
-  message="Email verified successfully"
+  id="email-confirme"
+  name="email-confirme"
+  label="E-mail confirmé"
+  message="E-mail vérifié avec succès"
   messageType="success"
 />
 ```
 
-### Info Message
+### Message d'information
 ```tsx
 <TextInput
-  id="phone"
-  name="phone"
-  label="Phone Number"
+  id="telephone"
+  name="telephone"
+  label="Numéro de téléphone"
   type="tel"
-  message="Format: +33 X XX XX XX XX"
+  message="Format : +33 X XX XX XX XX"
   messageType="info"
 />
 ```
 
-## States
+## États
 
-### Disabled
+### Désactivé
 ```tsx
-<TextInput id="disabled" name="disabled" label="Disabled" disabled />
+<TextInput id="desactive" name="desactive" label="Désactivé" disabled />
 ```
 
-### Read-Only
+### Lecture seule
 ```tsx
-<TextInput id="readonly" name="readonly" label="Read-Only" readOnly value="Fixed value" />
+<TextInput id="lecture" name="lecture" label="Lecture seule" readOnly value="Valeur fixe" />
 ```
 
-### Required
+### Obligatoire
 ```tsx
-<TextInput id="required" name="required" label="Required" required />
+<TextInput id="obligatoire" name="obligatoire" label="Obligatoire" required />
 ```
 
-## Input Types
+## Types de saisie
 
 ```tsx
-// Text
-<TextInput id="text" type="text" label="Text" />
+// Texte
+<TextInput id="texte" type="text" label="Texte" />
 
-// Email
-<TextInput id="email" type="email" label="Email" />
+// E-mail
+<TextInput id="email" type="email" label="E-mail" />
 
-// Password
-<TextInput id="password" type="password" label="Password" />
+// Mot de passe
+<TextInput id="password" type="password" label="Mot de passe" />
 
-// Phone
-<TextInput id="phone" type="tel" label="Phone" />
+// Téléphone
+<TextInput id="tel" type="tel" label="Téléphone" />
 
 // URL
-<TextInput id="url" type="url" label="Website" />
+<TextInput id="url" type="url" label="Site web" />
 
-// Number
-<TextInput id="number" type="number" label="Quantity" />
+// Nombre
+<TextInput id="nombre" type="number" label="Quantité" />
 
 // Date
-<TextInput id="date" type="date" label="Birth Date" />
+<TextInput id="date" type="date" label="Date de naissance" />
 ```
 
-## Form Integration
+## Intégration en formulaire
 
 ```tsx
-const LoginForm = () => {
+const FormulaireConnexion = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    identifiant: "",
     password: ""
   });
   
@@ -220,51 +220,49 @@ const LoginForm = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Formulaire soumis :", formData);
   };
   
   return (
     <form onSubmit={handleSubmit} className="af-form">
       <TextInput
-        id="username"
-        name="username"
-        label="Username"
-        value={formData.username}
+        id="identifiant"
+        name="identifiant"
+        label="Identifiant"
+        value={formData.identifiant}
         onChange={handleChange}
         required
       />
       <TextInput
         id="password"
         name="password"
-        label="Password"
+        label="Mot de passe"
         type="password"
         value={formData.password}
         onChange={handleChange}
         required
       />
-      <button type="submit">Login</button>
+      <button type="submit">Se connecter</button>
     </form>
   );
 };
 ```
 
-## Accessibility
-- Use clear, descriptive labels
-- Required fields indicated with asterisk
-- Error messages linked via `aria-describedby` (automatically handled)
-- Email, phone, and number inputs trigger appropriate mobile keyboards
-- Read-only inputs still focusable for screen readers
+## Accessibilité
+- Toujours fournir un label clair et descriptif
+- Les champs obligatoires sont marqués avec un astérisque
+- Les messages d'erreur sont liés via `aria-describedby` (géré automatiquement)
+- Les types email, tel et number déclenchent le clavier mobile adapté
+- Les champs lecture seule restent accessibles au clavier
 
-## Best Practices
-- Always provide a `<label>` (`label` prop does this)
-- Use appropriate `type` for better UX and validation
-- Display validation early (on blur) rather than requiring submission
-- Keep placeholder text different from label
-- Use help text to explain constraints (password requirements, format, etc.)
-- Test with screen readers for accessibility
-- Provide immediate feedback on validation
+## Bonnes pratiques
+- Toujours fournir un `<label>` (la prop `label` le fait)
+- Utiliser le type `type` approprié pour une meilleure UX et validation
+- Afficher la validation tôt (au blur) plutôt qu'à la soumission
+- Garder le placeholder différent du label
+- Utiliser le texte d'aide pour expliquer les contraintes
 
-## CSS Classes
-- `.af-form__input-text` - Base text input class
-- `.af-form__input-text--required` - Required field
-- `.af-form__input-text--disabled` - Disabled state
+## Classes CSS
+- `.af-form__input-text` - Classe de base de la saisie
+- `.af-form__input-text--required` - Champ obligatoire
+- `.af-form__input-text--disabled` - État désactivé

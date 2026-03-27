@@ -1,7 +1,7 @@
 # Message (Alert)
 
-## Overview
-The Message component displays informational, warning, error, or success messages. It provides visual feedback to users with optional dismiss functionality.
+## Présentation
+Le composant Message affiche des messages informatifs, d'avertissement, d'erreur ou de succès. Il fournit un retour visuel aux utilisateurs avec une fonctionnalité optionnelle de fermeture.
 
 ## Import
 ```tsx
@@ -10,168 +10,168 @@ import { Message } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `ReactNode` | Required | Message title/header |
-| `variant` | `"error" \| "warning" \| "info" \| "success"` | `"info"` | Message type and styling |
-| `onClose` | `(e: MouseEvent) => void` | - | Close button click handler |
-| `closeButtonAriaLabel` | `string` | `"Close"` | Accessibility label for close button |
-| `icon` | `string` | - | Custom icon SVG URL (overrides variant icon) |
-| `className` | `string` | - | Additional CSS classes |
-| `children` | `ReactNode` | - | Message content/body |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `title` | `ReactNode` | Obligatoire | Titre/en-tête du message |
+| `variant` | `"error" \| "warning" \| "info" \| "success"` | `"info"` | Type et style du message |
+| `onClose` | `(e: MouseEvent) => void` | - | Gestionnaire du bouton de fermeture |
+| `closeButtonAriaLabel` | `string` | `"Close"` | Label d'accessibilité du bouton de fermeture |
+| `icon` | `string` | - | URL SVG d'icône personnalisée (remplace l'icône de la variante) |
+| `className` | `string` | - | Classes CSS additionnelles |
+| `children` | `ReactNode` | - | Contenu/corps du message |
 
-## Basic Usage
+## Utilisation de base
 
-### Error Message
+### Message d'erreur
 ```tsx
 import { Message } from "@axa-fr/canopee-react/distributeur";
 
 <Message 
   variant="error" 
-  title="Error occurred"
+  title="Une erreur s'est produite"
 >
-  Something went wrong. Please try again.
+  Quelque chose s'est mal passé. Veuillez réessayer.
 </Message>
 ```
 
-### Warning Message
+### Message d'avertissement
 ```tsx
 <Message 
   variant="warning" 
-  title="Warning"
+  title="Avertissement"
 >
-  This action cannot be undone.
+  Cette action est irréversible.
 </Message>
 ```
 
-### Info Message
+### Message d'information
 ```tsx
 <Message 
   variant="info" 
   title="Information"
 >
-  This is an informational message.
+  Voici un message d'information.
 </Message>
 ```
 
-### Success Message
+### Message de succès
 ```tsx
 <Message 
   variant="success" 
-  title="Success"
+  title="Succès"
 >
-  Your changes have been saved successfully.
+  Vos modifications ont été enregistrées avec succès.
 </Message>
 ```
 
-## Closeable Messages
+## Messages fermables
 
-### With Close Button
+### Avec bouton de fermeture
 ```tsx
 const [visible, setVisible] = useState(true);
 
 {visible && (
   <Message
     variant="warning"
-    title="Maintenance Notice"
+    title="Maintenance programmée"
     onClose={() => setVisible(false)}
   >
-    The system will be under maintenance from 2-4 AM.
+    Le système sera en maintenance de 2h à 4h du matin.
   </Message>
 )}
 ```
 
-### Custom Close Label
+### Label de fermeture personnalisé
 ```tsx
 <Message
   variant="info"
-  title="Update Available"
+  title="Mise à jour disponible"
   onClose={handleClose}
-  closeButtonAriaLabel="Dismiss notification"
+  closeButtonAriaLabel="Ignorer la notification"
 >
-  A new version is available. Refresh to update.
+  Une nouvelle version est disponible. Rechargez pour mettre à jour.
 </Message>
 ```
 
-## Variants and Icons
+## Variantes et icônes
 
-### Automatic Icons (by Variant)
-Each variant has a built-in icon:
-- **error**: Red error icon
-- **warning**: Yellow warning icon
-- **info**: Blue info icon
-- **success**: Green checkmark icon
+### Icônes automatiques (par variante)
+Chaque variante a une icône intégrée :
+- **error** : icône rouge d'erreur
+- **warning** : icône jaune d'avertissement
+- **info** : icône bleue d'information
+- **success** : icône verte de validation
 
 ```tsx
-// Built-in icons appear automatically based on variant
-<Message variant="success" title="Done">
-  Process completed
+// Les icônes intégrées apparaissent automatiquement selon la variante
+<Message variant="success" title="Terminé">
+  Processus accompli
 </Message>
 ```
 
-### Custom Icon
+### Icône personnalisée
 ```tsx
 import customIcon from "@material-symbols/svg-400/outlined/custom.svg";
 
 <Message
   variant="info"
-  title="Custom Message"
+  title="Message personnalisé"
   icon={customIcon}
 >
-  This message uses a custom icon
+  Ce message utilise une icône personnalisée
 </Message>
 ```
 
-## Complex Content
+## Contenu enrichi
 
-### With HTML/JSX
+### Avec HTML/JSX
 ```tsx
 <Message
   variant="error"
-  title="Validation Errors"
+  title="Erreurs de validation"
 >
   <ul>
-    <li>Email is invalid</li>
-    <li>Password is too short</li>
-    <li>Terms must be accepted</li>
+    <li>L'adresse e-mail est invalide</li>
+    <li>Le mot de passe est trop court</li>
+    <li>Les conditions d'utilisation doivent être acceptées</li>
   </ul>
 </Message>
 ```
 
-### With Formatted Text
+### Avec texte formaté
 ```tsx
 <Message
   variant="info"
-  title="Contact Information"
+  title="Informations de contact"
 >
-  <p>Email: <strong>support@example.com</strong></p>
-  <p>Phone: <strong>+33 1 23 45 67 89</strong></p>
+  <p>E-mail : <strong>support@exemple.fr</strong></p>
+  <p>Téléphone : <strong>+33 1 23 45 67 89</strong></p>
 </Message>
 ```
 
-## Form Validation Messages
+## Messages de validation de formulaire
 
-### Single Field Error
+### Erreur sur un champ
 ```tsx
 const [email, setEmail] = useState("");
-const [error, setError] = useState("");
+const [erreur, setErreur] = useState("");
 
 const handleChange = (e) => {
-  const value = e.target.value;
-  setEmail(value);
+  const valeur = e.target.value;
+  setEmail(valeur);
   
-  if (value && !value.includes("@")) {
-    setError("Please enter a valid email");
+  if (valeur && !valeur.includes("@")) {
+    setErreur("Veuillez saisir une adresse e-mail valide");
   } else {
-    setError("");
+    setErreur("");
   }
 };
 
 return (
   <>
-    {error && (
-      <Message variant="error" title="Validation Error">
-        {error}
+    {erreur && (
+      <Message variant="error" title="Erreur de validation">
+        {erreur}
       </Message>
     )}
     <input 
@@ -183,55 +183,55 @@ return (
 );
 ```
 
-### Multiple Fields Error Summary
+### Récapitulatif d'erreurs multiples
 ```tsx
-const [errors, setErrors] = useState<string[]>([]);
+const [erreurs, setErreurs] = useState<string[]>([]);
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  const validationErrors: string[] = [];
+  const erreursValidation: string[] = [];
   
-  if (!formData.email) validationErrors.push("Email is required");
-  if (!formData.password) validationErrors.push("Password is required");
+  if (!formData.email) erreursValidation.push("L'e-mail est obligatoire");
+  if (!formData.password) erreursValidation.push("Le mot de passe est obligatoire");
   
-  if (validationErrors.length > 0) {
-    setErrors(validationErrors);
+  if (erreursValidation.length > 0) {
+    setErreurs(erreursValidation);
   } else {
-    // Submit form
+    // Soumettre le formulaire
   }
 };
 
 return (
   <>
-    {errors.length > 0 && (
-      <Message variant="error" title="Please fix the following errors">
+    {erreurs.length > 0 && (
+      <Message variant="error" title="Veuillez corriger les erreurs suivantes">
         <ul>
-          {errors.map((error, i) => (
-            <li key={i}>{error}</li>
+          {erreurs.map((erreur, i) => (
+            <li key={i}>{erreur}</li>
           ))}
         </ul>
       </Message>
     )}
     <form onSubmit={handleSubmit}>
-      {/* form fields */}
+      {/* champs du formulaire */}
     </form>
   </>
 );
 ```
 
-## Non-Dismissible Messages
+## Message non fermable
 
 ```tsx
-// No close button shown when onClose not provided
+// Pas de bouton de fermeture si onClose n'est pas fourni
 <Message
   variant="info"
-  title="Important Notice"
+  title="Notice importante"
 >
-  This message will always be visible
+  Ce message sera toujours visible
 </Message>
 ```
 
-## Dismissible With Auto-Hide
+## Disparition automatique
 
 ```tsx
 const [visible, setVisible] = useState(true);
@@ -246,33 +246,32 @@ useEffect(() => {
 {visible && (
   <Message
     variant="success"
-    title="Saved Successfully"
+    title="Enregistrement réussi"
     onClose={() => setVisible(false)}
   >
-    Your changes have been automatically saved.
+    Vos modifications ont été automatiquement enregistrées.
   </Message>
 )}
 ```
 
-## Accessibility
-- Icon color provides visual distinction
-- Title clearly states message purpose
-- Close button has accessible aria-label
-- Color alone not used to convey meaning (icon + styling)
-- Supports screen readers for icon meaning
+## Accessibilité
+- La couleur de l'icône apporte une distinction visuelle
+- Le titre exprime clairement l'objet du message
+- Le bouton de fermeture a un `aria-label` accessible
+- La couleur seule ne véhicule pas le sens (icône + style)
+- Support des lecteurs d'écran
 
-## Best Practices
-- Place messages near relevant content (above form, etc.)
-- Keep titles concise and actionable
-- Provide specific, helpful error messages
-- Use variants appropriately (error for problems, success for confirmations)
-- Include close button for non-critical messages
-- Stack multiple related messages vertically
-- Limit to most relevant errors (don't show all at once)
+## Bonnes pratiques
+- Placer les messages près du contenu concerné (au-dessus du formulaire, etc.)
+- Garder les titres concis et actionnables
+- Fournir des messages d'erreur spécifiques et utiles
+- Utiliser les variantes de manière cohérente (error pour les problèmes, success pour les confirmations)
+- Inclure un bouton de fermeture pour les messages non critiques
+- Empiler les messages liés verticalement
 
-## CSS Classes
-- `.af-alert` - Base message class
-- `.af-alert--error` - Error variant
-- `.af-alert--warning` - Warning variant
-- `.af-alert--info` - Info variant
-- `.af-alert--success` - Success variant
+## Classes CSS
+- `.af-alert` - Classe de base du message
+- `.af-alert--error` - Variante erreur
+- `.af-alert--warning` - Variante avertissement
+- `.af-alert--info` - Variante information
+- `.af-alert--success` - Variante succ\u00e8s

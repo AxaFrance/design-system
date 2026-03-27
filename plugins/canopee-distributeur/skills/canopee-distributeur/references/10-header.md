@@ -1,7 +1,7 @@
-# Header Layout Component
+# Composant Header (En-tête)
 
-## Overview
-Header provides the top navigation bar of an application with support for logos, user information, and menu items.
+## Présentation
+Header est la barre de navigation supérieure d'une application, avec support du logo, des informations utilisateur et des éléments de menu.
 
 ## Import
 ```tsx
@@ -16,16 +16,16 @@ import {
 } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Components
-- **Header**: Top-level container
-- **HeaderTitle**: Header title section
-- **NavBar**: Navigation menu container
-- **NavBarItem**: Individual menu item
-- **User**: User profile display
-- **Infos**: Information display
-- **Name**: Application/brand name display
+## Composants
+- **Header** : Conteneur principal
+- **HeaderTitle** : Section titre de l'en-tête
+- **NavBar** : Conteneur du menu de navigation
+- **NavBarItem** : Élément individuel du menu
+- **User** : Affichage du profil utilisateur
+- **Infos** : Affichage d'informations
+- **Name** : Affichage du nom de l'application/marque
 
-## Basic Header
+## En-tête simple
 
 ```tsx
 import logo from "@axa-fr/canopee-css/logo-axa.svg";
@@ -34,45 +34,45 @@ import { Header, Name } from "@axa-fr/canopee-react/distributeur";
 <Header>
   <Name 
     img={logo}
-    title="My Application"
+    title="Mon Application"
     subtitle="Version 1.0"
     onClick={() => navigate("/")}
   />
 </Header>
 ```
 
-## Header with User Info
+## Avec informations utilisateur
 
 ```tsx
 import { Header, Name, User, Infos } from "@axa-fr/canopee-react/distributeur";
 
 <Header>
-  <Name img={logo} title="Dashboard" subtitle="Admin Panel" />
+  <Name img={logo} title="Tableau de bord" subtitle="Panneau d'administration" />
   <Infos infos={[
-    { word: "Customer:", definition: "0123456789" },
-    { word: "Status:", definition: "Active" }
+    { word: "Client :", definition: "0123456789" },
+    { word: "Statut :", definition: "Actif" }
   ]} />
-  <User username="John Doe" onLogout={handleLogout} />
+  <User username="Jean Dupont" onLogout={handleLogout} />
 </Header>
 ```
 
-## With Navigation
+## Avec navigation
 
 ```tsx
 import { Header, NavBar, NavBarItem } from "@axa-fr/canopee-react/distributeur";
 
 <Header>
-  <Name img={logo} title="App" />
+  <Name img={logo} title="Application" />
   <NavBar>
-    <NavBarItem onClick={() => navigate("/home")}>Home</NavBarItem>
-    <NavBarItem onClick={() => navigate("/products")}>Products</NavBarItem>
-    <NavBarItem onClick={() => navigate("/about")}>About</NavBarItem>
+    <NavBarItem onClick={() => navigate("/accueil")}>Accueil</NavBarItem>
+    <NavBarItem onClick={() => navigate("/produits")}>Produits</NavBarItem>
+    <NavBarItem onClick={() => navigate("/a-propos")}>À propos</NavBarItem>
   </NavBar>
 </Header>
 ```
 
-## CSS Classes
-- `.af-header` - Base header
-- `.af-container` - Width constraint
-- `.af-logo` - Logo wrapper
-- `.af-logo__brand` - Brand image
+## Classes CSS
+- `.af-header` - En-tête de base
+- `.af-container` - Contrainte de largeur
+- `.af-logo` - Conteneur du logo
+- `.af-logo__brand` - Image de marque

@@ -1,27 +1,27 @@
-# Card
+# Card (Carte)
 
-## Overview
-The Card component is a clickable button-based container for displaying content with optional icons, error states, and active/selected states. It's commonly used for choice selection interfaces.
+## Présentation
+Le composant Card est un conteneur cliquable basé sur un bouton, pour afficher du contenu avec icônes optionnelles, états d'erreur et états actifs/sélectionnés. Utilisé principalement pour les interfaces de sélection.
 
 ## Import
 ```tsx
 import { Card, Svg } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Basic Usage
+## Utilisation de base
 ```tsx
 import { Card } from "@axa-fr/canopee-react/distributeur";
 
-const MyComponent = () => {
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
+const MonComposant = () => {
+  const [carteSelectionnee, setCarteSelectionnee] = useState<string | null>(null);
   
   return (
     <Card 
-      id="card-1"
-      onClick={() => setSelectedCard("card-1")}
-      active={selectedCard === "card-1"}
+      id="carte-1"
+      onClick={() => setCarteSelectionnee("carte-1")}
+      active={carteSelectionnee === "carte-1"}
     >
-      Card Content
+      Contenu de la carte
     </Card>
   );
 };
@@ -29,99 +29,98 @@ const MyComponent = () => {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Layout orientation |
-| `iconSrc` | `string` | `undefined` | Material Symbols SVG icon URL |
-| `error` | `boolean` | `false` | Red error styling when true |
-| `active` | `boolean` | `false` | Selected/active state styling |
-| `id` | `string` | - | HTML id attribute |
-| `onClick` | `(event) => void` | - | Click handler |
-| `disabled` | `boolean` | `false` | Disables the card |
-| `children` | `ReactNode` | - | Card content |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Orientation de la mise en page |
+| `iconSrc` | `string` | `undefined` | URL de l'icône SVG Material Symbols |
+| `error` | `boolean` | `false` | Style d'erreur rouge si actif |
+| `active` | `boolean` | `false` | Style sélectionné/actif |
+| `id` | `string` | - | Attribut HTML id |
+| `onClick` | `(event) => void` | - | Gestionnaire de clic |
+| `disabled` | `boolean` | `false` | Désactive la carte |
+| `children` | `ReactNode` | - | Contenu de la carte |
 
-All standard HTML button attributes are supported.
+Tous les attributs HTML standard du `<button>` sont supportés.
 
 ## Orientations
 
-### Vertical (Default)
-Icon stacked above content (icon-on-top layout).
+### Verticale (par défaut)
+Icône empilée au-dessus du contenu.
 ```tsx
 import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
 
 <Card iconSrc={villaIcon}>
-  House
+  Maison
 </Card>
 ```
 
-### Horizontal
-Icon positioned to the left of content (side-by-side layout).
+### Horizontale
+Icône positionnée à gauche du contenu.
 ```tsx
 import carIcon from "@material-symbols/svg-400/outlined/car.svg";
 
 <Card orientation="horizontal" iconSrc={carIcon}>
-  Vehicle
+  Véhicule
 </Card>
 ```
 
-## States
+## États
 
-### Active/Selected State
+### État actif/sélectionné
 ```tsx
 <Card 
   iconSrc={villaIcon}
   active={true}
 >
-  Selected Card
+  Carte sélectionnée
 </Card>
 ```
 
-### Error State
+### État d'erreur
 ```tsx
 <Card 
   iconSrc={villaIcon}
   error={true}
 >
-  Error Card
+  Carte en erreur
 </Card>
 ```
 
-### Active + Error (Mutually indicative)
+### Actif + Erreur
 ```tsx
 <Card 
   iconSrc={villaIcon}
   active={true}
   error={true}
 >
-  Conflicting States
+  États combinés
 </Card>
 ```
 
-### Disabled State
+### État désactivé
 ```tsx
 <Card disabled>
-  Disabled Card
+  Carte désactivée
 </Card>
 ```
 
-## Icon Usage
+## Utilisation des icônes
 
-### Material Symbols
 ```tsx
 import searchIcon from "@material-symbols/svg-400/outlined/search.svg";
 import { Card, Svg } from "@axa-fr/canopee-react/distributeur";
 
 <Card iconSrc={searchIcon}>
-  Search
+  Rechercher
 </Card>
 ```
 
-### Without Icon
+### Sans icône
 ```tsx
-<Card>Content Only</Card>
+<Card>Contenu seul</Card>
 ```
 
-## Full Example - Choice Selection
+## Exemple complet — Sélection de choix
 
 ```tsx
 import { useState } from "react";
@@ -130,24 +129,24 @@ import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import apartmentIcon from "@material-symbols/svg-400/outlined/apartment.svg";
 import workIcon from "@material-symbols/svg-400/outlined/work.svg";
 
-const PropertyTypeSelector = () => {
-  const [selectedType, setSelectedType] = useState<string | null>(null);
+const SelecteurTypeBien = () => {
+  const [typeSelectionne, setTypeSelectionne] = useState<string | null>(null);
   
-  const propertyTypes = [
-    { id: "home", label: "House", icon: homeIcon },
-    { id: "apartment", label: "Apartment", icon: apartmentIcon },
-    { id: "office", label: "Office", icon: workIcon }
+  const typesBien = [
+    { id: "maison", label: "Maison", icon: homeIcon },
+    { id: "appartement", label: "Appartement", icon: apartmentIcon },
+    { id: "bureau", label: "Bureau", icon: workIcon }
   ];
   
   return (
     <div style={{ display: "flex", gap: "1rem" }}>
-      {propertyTypes.map(type => (
+      {typesBien.map(type => (
         <Card
           key={type.id}
           id={type.id}
           iconSrc={type.icon}
-          active={selectedType === type.id}
-          onClick={() => setSelectedType(type.id)}
+          active={typeSelectionne === type.id}
+          onClick={() => setTypeSelectionne(type.id)}
         >
           {type.label}
         </Card>
@@ -157,25 +156,23 @@ const PropertyTypeSelector = () => {
 };
 ```
 
-## Accessibility
-- Cards are rendered as `<button type="button">` elements
-- Click handlers are keyboard accessible (Enter, Space)
-- Use `active` state instead of visual markers for selection
-- Error state should be accompanied by error messaging elsewhere
-- Consider `aria-label` for icon-only cards for clarity
+## Accessibilité
+- Les cartes sont rendues comme des éléments `<button type="button">`
+- Les gestionnaires de clic sont accessibles au clavier (Entrée, Espace)
+- Utiliser l'état `active` plutôt que des marqueurs visuels pour la sélection
+- L'état d'erreur doit être accompagné d'un message d'erreur visible ailleurs
+- Envisager un `aria-label` pour les cartes icône-seule
 
-## Best Practices
-- Use Cards in groups for selection workflows
-- Pair with clear instructions about what each card represents
-- Use consistent icon sizes and styles
-- Provide feedback when cards are selected/active
-- Use error state to highlight invalid selections
-- Consider responsive layouts for mobile (single column vs grid)
-- Don't mix error and active states on the same card
+## Bonnes pratiques
+- Utiliser les cartes en groupe pour les flux de sélection
+- Accompagner d'instructions claires sur ce que représente chaque carte
+- Utiliser des tailles et styles d'icônes cohérents
+- Fournir un retour visuel lors de la sélection
+- Utiliser l'état d'erreur pour mettre en évidence les sélections invalides
+- Prévoir des mises en page responsives (colonne unique vs grille)
 
-## CSS Classes
-- `.af-card` - Base card class
-- `.af-card--vertical` - Vertical orientation (default, no modifier needed)
-- `.af-card--horizontal` - Horizontal orientation
-- `.af-card--active` - Active/selected state
-- `.af-card--error` - Error state
+## Classes CSS
+- `.af-card` - Classe de base de la carte
+- `.af-card--horizontal` - Orientation horizontale
+- `.af-card--active` - État actif/sélectionné
+- `.af-card--error` - État d'erreur

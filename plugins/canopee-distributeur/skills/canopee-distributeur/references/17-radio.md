@@ -1,91 +1,91 @@
-# Form Radio
+# Form Radio (Bouton radio)
 
-## Overview
-Radio component provides single-selection from multiple options with support for different display modes (classic, default, inline, card).
+## Présentation
+Le composant Radio permet une sélection unique parmi plusieurs options, avec différents modes d'affichage (classic, default, inline, card).
 
 ## Import
 ```tsx
 import { Radio, RadioItem, RadioInput } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Components
-- **Radio**: Multiple radio buttons from options
-- **RadioItem**: Single radio button
-- **RadioInput**: Complete form wrapper with label
+## Composants
+- **Radio** : Groupe de boutons radio générés depuis une liste d'options
+- **RadioItem** : Bouton radio individuel
+- **RadioInput** : Wrapper haute niveau avec label et validation
 
-## Basic Usage
+## Utilisation de base
 
 ```tsx
 import { Radio } from "@axa-fr/canopee-react/distributeur";
 import { useState } from "react";
 
-const GenderSelector = () => {
-  const [gender, setGender] = useState("");
+const SelecteurCivilite = () => {
+  const [civilite, setCivilite] = useState("");
   
   return (
     <Radio
-      id="gender"
-      name="gender"
+      id="civilite"
+      name="civilite"
       mode="default"
-      value={gender}
-      onChange={(e) => setGender(e.target.value)}
+      value={civilite}
+      onChange={(e) => setCivilite(e.target.value)}
       options={[
-        { value: "male", label: "Male" },
-        { value: "female", label: "Female" },
-        { value: "other", label: "Other" }
+        { value: "m", label: "M." },
+        { value: "mme", label: "Mme" },
+        { value: "autre", label: "Autre" }
       ]}
     />
   );
 };
 ```
 
-## Display Modes
+## Modes d'affichage
 
 ```tsx
-// Classic (native HTML)
+// Classic (HTML natif)
 <Radio mode="classic" options={options} />
 
-// Default (custom styled)
+// Default (stylé personnalisé)
 <Radio mode="default" options={options} />
 
-// Inline (horizontal layout)
+// Inline (disposition horizontale)
 <Radio mode="inline" options={options} />
 
-// Card (large clickable cards)
+// Card (grandes cartes cliquables)
 <Radio mode="cardRadio" options={options} />
 ```
 
-## Complete Form Integration
+## Intégration en formulaire
 
 ```tsx
-const PreferenceForm = () => {
+const FormulairePreferences = () => {
   const [preferences, setPreferences] = useState({
-    frequency: "weekly",
+    frequence: "hebdomadaire",
     format: "email"
   });
   
   return (
     <form className="af-form">
       <RadioInput
-        id="frequency"
-        name="frequency"
-        label="Update Frequency"
-        value={preferences.frequency}
+        id="frequence"
+        name="frequence"
+        label="Fréquence des mises à jour"
+        value={preferences.frequence}
         onChange={(e) => setPreferences({
           ...preferences,
-          frequency: e.target.value
+          frequence: e.target.value
         })}
         options={[
-          { value: "daily", label: "Daily" },
-          { value: "weekly", label: "Weekly" },
-          { value: "monthly", label: "Monthly" }
+          { value: "quotidien", label: "Quotidien" },
+          { value: "hebdomadaire", label: "Hebdomadaire" },
+          { value: "mensuel", label: "Mensuel" }
         ]}
       />
       
       <RadioInput
         id="format"
         name="format"
-        label="Notification Format"
+        label="Format de notification"
         mode="inline"
         value={preferences.format}
         onChange={(e) => setPreferences({
@@ -93,20 +93,20 @@ const PreferenceForm = () => {
           format: e.target.value
         })}
         options={[
-          { value: "email", label: "Email" },
+          { value: "email", label: "E-mail" },
           { value: "sms", label: "SMS" },
-          { value: "push", label: "Push" }
+          { value: "push", label: "Notification push" }
         ]}
       />
       
-      <button type="submit">Save</button>
+      <button type="submit">Enregistrer</button>
     </form>
   );
 };
 ```
 
-## CSS Classes
-- `.af-form__radio` - Classic mode
-- `.af-form__radio-custom` - Default mode
-- `.af-form__radio-inline` - Inline mode
-- `.af-form__radio-card` - Card mode
+## Classes CSS
+- `.af-form__radio` - Mode classic
+- `.af-form__radio-custom` - Mode default
+- `.af-form__radio-inline` - Mode inline
+- `.af-form__radio-card` - Mode card

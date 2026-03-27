@@ -1,7 +1,7 @@
 # Modal
 
-## Overview
-The Modal component displays content in a dialog box overlaying the page. It supports multiple sizes and provides header, body, and footer sections for structured content.
+## Présentation
+Le composant Modal affiche du contenu dans une boîte de dialogue superposée à la page. Il supporte plusieurs tailles et propose des sections en-tête, corps et pied de page pour un contenu structuré.
 
 ## Import
 ```tsx
@@ -14,88 +14,88 @@ import {
 } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Components
+## Composants
 
 ### Modal
-Main modal container and coordinator.
+Conteneur principal et coordinateur de la modale.
 
 ### ModalHeader / ModalHeaderBase
-Header section with title and close button.
+Section d'en-tête avec titre et bouton de fermeture.
 
 ### ModalBody
-Content area of the modal.
+Zone de contenu de la modale.
 
 ### ModalFooter
-Footer section, typically for action buttons.
+Section de pied de page, généralement pour les boutons d'action.
 
 ### BooleanModal
-Specialized modal for yes/no confirmation dialogs.
+Modale spécialisée pour les dialogues de confirmation oui/non.
 
 ## Props
 
 ### Modal
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `"" \| "lg" \| "sm"` | `""` | Modal size (empty = default) |
-| `onSubmit` | `() => void` | - | Submit/confirm handler |
-| `onCancel` | `() => void` | - | Cancel/close handler |
-| `onOutsideTap` | `() => void` | - | Click outside handler |
-| `children` | `ReactNode` | - | Modal content |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `size` | `"" \| "lg" \| "sm"` | `""` | Taille de la modale (vide = défaut) |
+| `onSubmit` | `() => void` | - | Gestionnaire de soumission/confirmation |
+| `onCancel` | `() => void` | - | Gestionnaire d'annulation/fermeture |
+| `onOutsideTap` | `() => void` | - | Gestionnaire de clic extérieur |
+| `children` | `ReactNode` | - | Contenu de la modale |
 
 ### ModalHeader / ModalHeaderBase
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string \| ReactNode` | - | Header title |
-| `onClose` | `() => void` | - | Close button click handler |
-| `children` | `ReactNode` | - | Custom header content |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `title` | `string \| ReactNode` | - | Titre de l'en-tête |
+| `onClose` | `() => void` | - | Gestionnaire du clic sur fermeture |
+| `children` | `ReactNode` | - | Contenu d'en-tête personnalisé |
 
 ### ModalBody
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | - | Body content |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `children` | `ReactNode` | - | Contenu du corps |
 
 ### ModalFooter
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | - | Footer content (usually buttons) |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `children` | `ReactNode` | - | Contenu du pied de page (généralement des boutons) |
 
-## Basic Usage
+## Utilisation de base
 
-### Simple Modal
+### Modale simple
 ```tsx
 import { useRef } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "@axa-fr/canopee-react/distributeur";
 
-const SimpleModal = () => {
+const ModaleSimple = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   
-  const handleOpen = () => {
+  const handleOuvrir = () => {
     modalRef.current?.showModal?.();
   };
   
-  const handleClose = () => {
+  const handleFermer = () => {
     modalRef.current?.close?.();
   };
   
   return (
     <>
-      <Button onClick={handleOpen}>Open Modal</Button>
+      <Button onClick={handleOuvrir}>Ouvrir la modale</Button>
       
-      <Modal ref={modalRef} onCancel={handleClose}>
-        <ModalHeader title="Modal Title" onClose={handleClose} />
+      <Modal ref={modalRef} onCancel={handleFermer}>
+        <ModalHeader title="Titre de la modale" onClose={handleFermer} />
         <ModalBody>
-          This is the modal content.
+          Ceci est le contenu de la modale.
         </ModalBody>
         <ModalFooter>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
+          <Button variant="secondary" onClick={handleFermer}>
+            Annuler
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Confirm
+          <Button variant="primary" onClick={handleFermer}>
+            Confirmer
           </Button>
         </ModalFooter>
       </Modal>
@@ -104,65 +104,65 @@ const SimpleModal = () => {
 };
 ```
 
-## Sizes
+## Tailles
 
-### Default Size
+### Taille par défaut
 ```tsx
 <Modal ref={modalRef}>
-  {/* content */}
+  {/* contenu */}
 </Modal>
 ```
 
-### Large Size
+### Taille large
 ```tsx
 <Modal ref={modalRef} size="lg">
-  {/* content */}
+  {/* contenu */}
 </Modal>
 ```
 
-### Small Size
+### Taille petite
 ```tsx
 <Modal ref={modalRef} size="sm">
-  {/* content */}
+  {/* contenu */}
 </Modal>
 ```
 
-## Confirmation Dialog
+## Dialogue de confirmation
 
 ```tsx
-const ConfirmationModal = () => {
+const ModaleConfirmation = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   
-  const handleConfirm = () => {
-    console.log("Action confirmed");
+  const handleConfirmer = () => {
+    console.log("Action confirmée");
     modalRef.current?.close?.();
   };
   
   return (
     <Modal 
       ref={modalRef} 
-      onSubmit={handleConfirm}
+      onSubmit={handleConfirmer}
       onCancel={() => modalRef.current?.close?.()}
     >
       <ModalHeader 
-        title="Confirm Action" 
+        title="Confirmer l'action" 
         onClose={() => modalRef.current?.close?.()}
       />
       <ModalBody>
-        Are you sure you want to proceed? This action cannot be undone.
+        Êtes-vous sûr(e) de vouloir continuer ? Cette action est irréversible.
       </ModalBody>
       <ModalFooter>
         <Button 
           variant="secondary" 
           onClick={() => modalRef.current?.close?.()}
         >
-          Cancel
+          Annuler
         </Button>
         <Button 
           variant="danger" 
-          onClick={handleConfirm}
+          onClick={handleConfirmer}
         >
-          Confirm
+          Confirmer
         </Button>
       </ModalFooter>
     </Modal>
@@ -170,44 +170,44 @@ const ConfirmationModal = () => {
 };
 ```
 
-## Form in Modal
+## Formulaire dans une modale
 
 ```tsx
-const FormModal = () => {
+const ModaleFormulaire = () => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [formData, setFormData] = useState({ nom: "", email: "" });
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSoumettre = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Formulaire soumis :", formData);
     modalRef.current?.close?.();
   };
   
   return (
     <>
       <Button onClick={() => modalRef.current?.showModal?.()}>
-        Add User
+        Ajouter un utilisateur
       </Button>
       
       <Modal ref={modalRef}>
         <ModalHeader 
-          title="Add New User" 
+          title="Ajouter un nouvel utilisateur" 
           onClose={() => modalRef.current?.close?.()}
         />
         <ModalBody>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSoumettre}>
             <TextInput
-              id="name"
-              name="name"
-              label="Name"
-              value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              id="nom"
+              name="nom"
+              label="Nom"
+              value={formData.nom}
+              onChange={(e) => setFormData({...formData, nom: e.target.value})}
               required
             />
             <TextInput
               id="email"
               name="email"
-              label="Email"
+              label="E-mail"
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -220,15 +220,15 @@ const FormModal = () => {
             variant="secondary" 
             onClick={() => modalRef.current?.close?.()}
           >
-            Cancel
+            Annuler
           </Button>
           <Button 
             variant="primary" 
             onClick={() => {
-              handleSubmit({ preventDefault: () => {} } as any);
+              handleSoumettre({ preventDefault: () => {} } as any);
             }}
           >
-            Add User
+            Ajouter l'utilisateur
           </Button>
         </ModalFooter>
       </Modal>
@@ -237,16 +237,16 @@ const FormModal = () => {
 };
 ```
 
-## BooleanModal (Yes/No Dialog)
+## BooleanModal (dialogue oui/non)
 
 ```tsx
 import { BooleanModal } from "@axa-fr/canopee-react/distributeur";
 
-const DeleteConfirmation = () => {
+const ConfirmationSuppression = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   
-  const handleDelete = () => {
-    console.log("Deleted");
+  const handleSupprimer = () => {
+    console.log("Supprimé");
     modalRef.current?.close?.();
   };
   
@@ -256,28 +256,28 @@ const DeleteConfirmation = () => {
         variant="danger" 
         onClick={() => modalRef.current?.showModal?.()}
       >
-        Delete Item
+        Supprimer l'élément
       </Button>
       
       <BooleanModal
         ref={modalRef}
-        title="Delete Item?"
-        submitLabel="Delete"
-        cancelLabel="Keep"
-        onSubmit={handleDelete}
+        title="Supprimer l'élément ?"
+        submitLabel="Supprimer"
+        cancelLabel="Conserver"
+        onSubmit={handleSupprimer}
         onCancel={() => modalRef.current?.close?.()}
       >
-        This item will be permanently deleted. Are you sure?
+        Cet élément sera définitivement supprimé. Êtes-vous sûr(e) ?
       </BooleanModal>
     </>
   );
 };
 ```
 
-## Click Outside to Close
+## Fermeture au clic extérieur
 
 ```tsx
-const DismissibleModal = () => {
+const ModaleIgnorable = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   
   return (
@@ -286,36 +286,36 @@ const DismissibleModal = () => {
       onOutsideTap={() => modalRef.current?.close?.()}
     >
       <ModalHeader 
-        title="Click outside to close" 
+        title="Cliquer à l'extérieur pour fermer" 
         onClose={() => modalRef.current?.close?.()}
       />
       <ModalBody>
-        Content here. Click outside or click X to dismiss.
+        Contenu ici. Cliquer à l'extérieur ou sur X pour fermer.
       </ModalBody>
     </Modal>
   );
 };
 ```
 
-## Rich Content Modal
+## Modale avec contenu riche
 
 ```tsx
-const ArticleModal = () => {
+const ModaleArticle = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   
   return (
     <Modal ref={modalRef} size="lg">
       <ModalHeader 
-        title="Article Preview" 
+        title="Aperçu de l'article" 
         onClose={() => modalRef.current?.close?.()}
       />
       <ModalBody>
         <img src="banner.jpg" alt="Article" style={{ width: "100%" }} />
-        <h2>Article Title</h2>
-        <p>Article content goes here...</p>
+        <h2>Titre de l'article</h2>
+        <p>Contenu de l'article ici...</p>
         <section>
           <h3>Section</h3>
-          <p>More content...</p>
+          <p>Plus de contenu...</p>
         </section>
       </ModalBody>
       <ModalFooter>
@@ -323,10 +323,10 @@ const ArticleModal = () => {
           variant="secondary" 
           onClick={() => modalRef.current?.close?.()}
         >
-          Close
+          Fermer
         </Button>
         <Button variant="primary">
-          Read Full Article
+          Lire l'article complet
         </Button>
       </ModalFooter>
     </Modal>
@@ -334,28 +334,28 @@ const ArticleModal = () => {
 };
 ```
 
-## Accessibility
-- Modals trap focus (can't tab out)
-- Escape key closes modal (when programmed)
-- ARIA attributes for dialog semantics
-- Close button has accessible label
-- Backdrop prevents interaction with background
-- Semantic header/body/footer structure
+## Accessibilité
+- Les modales piègent le focus (pas de tab vers l'extérieur)
+- La touche Échap ferme la modale (si programmé)
+- Attributs ARIA pour la sémantique du dialogue
+- Le bouton de fermeture a un label accessible
+- L'arrière-plan empêche l'interaction avec le fond
+- Structure sémantique en-tête/corps/pied de page
 
-## Best Practices
-- Use modal for critical actions or confirmations
-- Keep modal content focused and concise
-- Provide clear close button and alternative (Cancel button)
-- Use appropriate size to fit content
-- Avoid nested modals when possible
-- Always provide a way to close without action
-- Use confirm dialogs for destructive actions
-- Test keyboard navigation (Tab, Escape)
+## Bonnes pratiques
+- Utiliser la modale pour les actions critiques ou les confirmations
+- Garder le contenu de la modale ciblé et concis
+- Fournir un bouton de fermeture clair et une alternative (bouton Annuler)
+- Utiliser la taille appropriée selon le contenu
+- Éviter les modales imbriquées autant que possible
+- Toujours fournir un moyen de fermer sans effectuer d'action
+- Utiliser des dialogues de confirmation pour les actions destructives
+- Tester la navigation au clavier (Tab, Échap)
 
-## CSS Classes
-- `.af-modal` - Base modal class
-- `.af-modal--lg` - Large modal
-- `.af-modal--sm` - Small modal
-- `.af-modal__header` - Header section
-- `.af-modal__body` - Body section
-- `.af-modal__footer` - Footer section
+## Classes CSS
+- `.af-modal` - Classe de base de la modale
+- `.af-modal--lg` - Modale large
+- `.af-modal--sm` - Modale petite
+- `.af-modal__header` - Section en-tête
+- `.af-modal__body` - Section corps
+- `.af-modal__footer` - Section pied de page

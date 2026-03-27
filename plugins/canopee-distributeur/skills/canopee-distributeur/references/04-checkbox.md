@@ -1,45 +1,45 @@
-# Form Checkbox
+# Form Checkbox (Case à cocher)
 
-## Overview
-Checkboxes allow users to select multiple options from a list. The component supports multiple display modes (classic, default, inline, toggle) and grouped selection with state management.
+## Présentation
+Les cases à cocher permettent la sélection multiple. Le composant supporte plusieurs modes d'affichage (classic, default, inline, toggle) et la gestion de sélection groupée.
 
 ## Import
 ```tsx
 import { Checkbox, CheckboxItem, CheckboxInput } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Components
+## Composants
 
-### CheckboxItem (Individual)
-A single checkbox with label.
+### CheckboxItem (individuelle)
+Une seule case à cocher avec label.
 ```tsx
 import { CheckboxItem } from "@axa-fr/canopee-react/distributeur";
 
-<CheckboxItem id="agree" label="I agree to terms" checked={true} />
+<CheckboxItem id="accord" label="J'accepte les conditions" checked={true} />
 ```
 
-### Checkbox (Group with data)
-Multiple checkboxes rendered from options list.
+### Checkbox (groupe de données)
+Plusieurs cases à cocher générées depuis une liste d'options.
 ```tsx
 import { Checkbox } from "@axa-fr/canopee-react/distributeur";
 
 const options = [
-  { value: "apple", label: "Apple" },
-  { value: "banana", label: "Banana" }
+  { value: "pomme", label: "Pomme" },
+  { value: "banane", label: "Banane" }
 ];
 
-<Checkbox options={options} values={["apple"]} />
+<Checkbox options={options} values={["pomme"]} />
 ```
 
-### CheckboxInput (High-level)
-Complete form wrapper with label and validation.
+### CheckboxInput (haute niveau)
+Wrapper complèt de formulaire avec label et validation.
 ```tsx
 import { CheckboxInput } from "@axa-fr/canopee-react/distributeur";
 
 <CheckboxInput
   id="fruits"
   name="fruits"
-  label="Select Fruits"
+  label="Sélectionner des fruits"
   options={options}
 />
 ```
@@ -48,36 +48,36 @@ import { CheckboxInput } from "@axa-fr/canopee-react/distributeur";
 
 ### Checkbox / CheckboxInput
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `options` | `Option[]` | Required | Array of `{value, label, disabled?, id?}` |
-| `values` | `string[]` | - | Selected values |
-| `mode` | `"default" \| "classic" \| "inline" \| "toggle"` | `"default"` | Display mode |
-| `id` | `string` | - | HTML id attribute |
-| `name` | `string` | - | HTML name attribute |
-| `label` | `string` | - | Input label |
-| `disabled` | `boolean` | `false` | Disables all checkboxes |
-| `readOnly` | `boolean` | `false` | Read-only mode |
-| `required` | `boolean` | `false` | Required field |
-| `onChange` | `function` | - | Change handler |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `options` | `Option[]` | Obligatoire | Tableau de `{value, label, disabled?, id?}` |
+| `values` | `string[]` | - | Valeurs sélectionnées |
+| `mode` | `"default" \| "classic" \| "inline" \| "toggle"` | `"default"` | Mode d'affichage |
+| `id` | `string` | - | Attribut HTML id |
+| `name` | `string` | - | Attribut HTML name |
+| `label` | `string` | - | Label du groupe |
+| `disabled` | `boolean` | `false` | Désactive toutes les cases |
+| `readOnly` | `boolean` | `false` | Mode lecture seule |
+| `required` | `boolean` | `false` | Champ obligatoire |
+| `onChange` | `function` | - | Gestionnaire de changement |
 
 ### CheckboxItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
 | `id` | `string` | - | HTML id |
 | `name` | `string` | - | HTML name |
-| `label` | `string \| ReactNode` | - | Checkbox label |
-| `value` | `string` | - | Option value |
-| `checked` | `boolean` | `false` | Checked state |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `readOnly` | `boolean` | `false` | Read-only state |
-| `onChange` | `function` | - | Change handler |
+| `label` | `string \| ReactNode` | - | Label de la case |
+| `value` | `string` | - | Valeur de l'option |
+| `checked` | `boolean` | `false` | État coché |
+| `disabled` | `boolean` | `false` | État désactivé |
+| `readOnly` | `boolean` | `false` | État lecture seule |
+| `onChange` | `function` | - | Gestionnaire de changement |
 
-## Display Modes
+## Modes d'affichage
 
-### Default Mode (Custom Styling)
-Modern checkbox with custom styling.
+### Mode default (style personnalisé)
+Case à cocher moderne avec style personnalisé.
 ```tsx
 const options = [
   { value: "js", label: "JavaScript" },
@@ -92,8 +92,8 @@ const options = [
 />
 ```
 
-### Classic Mode (Native HTML)
-Traditional HTML checkboxes.
+### Mode classic (HTML natif)
+Cases à cocher HTML traditionnelles.
 ```tsx
 <Checkbox
   mode="classic"
@@ -102,8 +102,8 @@ Traditional HTML checkboxes.
 />
 ```
 
-### Inline Mode
-Horizontal layout.
+### Mode inline
+Disposition horizontale.
 ```tsx
 <Checkbox
   mode="inline"
@@ -112,204 +112,196 @@ Horizontal layout.
 />
 ```
 
-### Toggle Mode
-iPhone-style toggles (for 2-option selections).
+### Mode toggle
+Interrupteurs style iOS (pour sélections 2 options).
 ```tsx
-const toggleOptions = [
-  { value: "yes", label: "Yes" },
-  { value: "no", label: "No" }
+const optionsToggle = [
+  { value: "oui", label: "Oui" },
+  { value: "non", label: "Non" }
 ];
 
 <Checkbox
   mode="toggle"
-  options={toggleOptions}
-  values={["yes"]}
+  options={optionsToggle}
+  values={["oui"]}
 />
 ```
 
-## Single Checkbox Usage
+## Case à cocher individuelle
 
-### Simple Checkbox
+### Case simple
 ```tsx
-const [agreed, setAgreed] = useState(false);
+const [accepte, setAccepte] = useState(false);
 
 <CheckboxItem
-  id="terms"
-  label="I agree to the terms"
-  checked={agreed}
-  onChange={(e) => setAgreed(e.target.checked)}
+  id="conditions"
+  label="J'accepte les conditions générales"
+  checked={accepte}
+  onChange={(e) => setAccepte(e.target.checked)}
 />
 ```
 
-### Disabled Checkbox
+### Case désactivée
 ```tsx
 <CheckboxItem
-  id="disabled"
-  label="Disabled option"
+  id="desactivee"
+  label="Option désactivée"
   disabled
 />
 ```
 
-## Multiple Selection Usage
+## Sélection multiple
 
-### Basic Group
+### Groupe de base
 ```tsx
 import { useCallback, useState } from "react";
 import { Checkbox } from "@axa-fr/canopee-react/distributeur";
 
-const interests = [
-  { value: "sports", label: "Sports" },
-  { value: "music", label: "Music" },
-  { value: "gaming", label: "Gaming" },
-  { value: "reading", label: "Reading" }
+const centres = [
+  { value: "sport", label: "Sport" },
+  { value: "musique", label: "Musique" },
+  { value: "jeux", label: "Jeux vidéo" },
+  { value: "lecture", label: "Lecture" }
 ];
 
-const InterestSelector = () => {
-  const [selected, setSelected] = useState<string[]>([]);
+const SelecteurCentresInteret = () => {
+  const [selection, setSelection] = useState<string[]>([]);
   
   const handleChange = useCallback((data) => {
-    setSelected(data.values);
+    setSelection(data.values);
   }, []);
   
   return (
     <Checkbox
-      id="interests"
-      name="interests"
-      options={interests}
-      values={selected}
+      id="centres"
+      name="centres"
+      options={centres}
+      values={selection}
       onChange={handleChange}
     />
   );
 };
 ```
 
-### With Validation
+### Avec validation
 ```tsx
-const [interests, setInterests] = useState<string[]>([]);
-const [error, setError] = useState("");
+const [centres, setCentres] = useState<string[]>([]);
+const [erreur, setErreur] = useState("");
 
 const handleChange = (data) => {
-  setInterests(data.values);
+  setCentres(data.values);
   if (data.values.length === 0) {
-    setError("Please select at least one interest");
+    setErreur("Veuillez sélectionner au moins un centre d'intérêt");
   } else {
-    setError("");
+    setErreur("");
   }
 };
 
 <CheckboxInput
-  id="interests"
-  name="interests"
-  label="Select your interests"
-  options={interests}
-  values={interests}
+  id="centres"
+  name="centres"
+  label="Sélectionnez vos centres d'intérêt"
+  options={centres}
+  values={centres}
   onChange={handleChange}
-  message={error}
-  messageType={error ? "error" : undefined}
+  message={erreur}
+  messageType={erreur ? "error" : undefined}
 />
 ```
 
-### Disabled Options
+### Options désactivées
 ```tsx
-const statusOptions = [
-  { value: "active", label: "Active" },
-  { value: "inactive", label: "Inactive", disabled: true },
-  { value: "pending", label: "Pending" }
+const optionsStatut = [
+  { value: "actif", label: "Actif" },
+  { value: "inactif", label: "Inactif", disabled: true },
+  { value: "en-attente", label: "En attente" }
 ];
 
 <Checkbox
-  options={statusOptions}
-  values={["active"]}
+  options={optionsStatut}
+  values={["actif"]}
 />
 ```
 
-## Form Integration
+## Intégration en formulaire
 
 ```tsx
-const RegistrationForm = () => {
+const FormulaireInscription = () => {
   const [data, setData] = useState({
-    interests: [],
+    centres: [],
     newsletter: false
   });
-  
-  const handleInterestsChange = (checkboxData) => {
-    setData(prev => ({
-      ...prev,
-      interests: checkboxData.values
-    }));
-  };
-  
-  const handleNewsletterChange = (e) => {
-    setData(prev => ({
-      ...prev,
-      newsletter: e.target.checked
-    }));
-  };
   
   return (
     <form className="af-form" onSubmit={(e) => {
       e.preventDefault();
-      console.log("Form data:", data);
+      console.log("Données :", data);
     }}>
       <Checkbox
-        id="interests"
-        name="interests"
-        label="Interests"
+        id="centres"
+        name="centres"
+        label="Centres d'intérêt"
         options={[
-          { value: "tech", label: "Technology" },
+          { value: "tech", label: "Technologie" },
           { value: "business", label: "Business" }
         ]}
-        values={data.interests}
-        onChange={handleInterestsChange}
+        values={data.centres}
+        onChange={(checkboxData) => setData(prev => ({
+          ...prev,
+          centres: checkboxData.values
+        }))}
       />
       
       <CheckboxItem
         id="newsletter"
         name="newsletter"
-        label="Subscribe to newsletter"
+        label="S'abonner à la newsletter"
         checked={data.newsletter}
-        onChange={handleNewsletterChange}
+        onChange={(e) => setData(prev => ({
+          ...prev,
+          newsletter: e.target.checked
+        }))}
       />
       
-      <button type="submit">Register</button>
+      <button type="submit">S'inscrire</button>
     </form>
   );
 };
 ```
 
-## Change Handler Data Structure
+## Structure de données du gestionnaire onChange
 
-The `onChange` handler receives an object with:
+Le gestionnaire `onChange` reçoit un objet avec :
 ```tsx
 {
-  id?: string;           // Component id
-  name?: string;         // Component name
-  values: string[];      // Selected values array
+  id?: string;           // id du composant
+  name?: string;         // name du composant
+  values: string[];      // Tableau des valeurs sélectionnées
   target: {
-    value: string;       // Changed item value
-    checked: boolean;    // New checked state
+    value: string;       // Valeur de l'élément modifié
+    checked: boolean;    // Nouvel état coché
   }
 }
 ```
 
-## Accessibility
-- Labels associated with each checkbox
-- Keyboard navigation (Tab to move, Space/Enter to toggle)
-- Visual indicators for checked, disabled, and focused states
-- ARIA attributes for screen readers
-- Required indicators shown with asterisk
+## Accessibilité
+- Labels associés à chaque case à cocher
+- Navigation clavier (Tab pour se déplacer, Espace/Entrée pour basculer)
+- Indicateurs visuels pour les états coché, désactivé et focusé
+- Attributs ARIA pour les lecteurs d'écran
+- Indicateurs de champs obligatoires visibles
 
-## Best Practices
-- Display related checkboxes together
-- Use mode="default" for modern UI
-- Provide clear descriptive labels
-- Use disabled state for unavailable options
-- Validate minimums/maximums needed (e.g., "select at least 2")
-- Group related checkboxes logically
-- Test with keyboard-only navigation
+## Bonnes pratiques
+- Regrouper les cases à cocher liées
+- Utiliser `mode="default"` pour une UI moderne
+- Fournir des labels clairs et descriptifs
+- Utiliser l'état désactivé pour les options indisponibles
+- Valider les minimums/maximums requis (ex : "sélectionner au moins 2")
+- Organiser les cases à cocher logiquement
+- Tester avec la navigation au clavier uniquement
 
-## CSS Classes
-- `.af-form__checkbox-custom` - Default mode styling
-- `.af-form__checkbox` - Classic mode styling
-- `.af-form__checkbox-inline` - Inline mode styling
-- `.af-form__checkbox-toggle` - Toggle mode styling
+## Classes CSS
+- `.af-form__checkbox-custom` - Style du mode par défaut
+- `.af-form__checkbox` - Style du mode classique
+- `.af-form__checkbox-inline` - Style du mode en ligne
+- `.af-form__checkbox-toggle` - Style du mode bascule

@@ -1,7 +1,7 @@
 # Restitution
 
-## Overview
-Restitution component displays read-only data in a definition list format (label-value pairs).
+## Présentation
+Le composant Restitution affiche des données en lecture seule sous forme de liste de définitions (paires label-valeur).
 
 ## Import
 ```tsx
@@ -13,29 +13,29 @@ import {
 } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Basic Usage
+## Utilisation de base
 
 ```tsx
 import { Restitution } from "@axa-fr/canopee-react/distributeur";
 
 <Restitution label="Email">
-  john.doe@example.com
+  jean.dupont@exemple.fr
 </Restitution>
 ```
 
-## Multiple Fields
+## Champs multiples
 
 ```tsx
 import { RestitutionList } from "@axa-fr/canopee-react/distributeur";
 
 <RestitutionList>
-  <Restitution label="Full Name">
-    John Doe
+  <Restitution label="Nom complet">
+    Jean Dupont
   </Restitution>
   <Restitution label="Email">
-    john@example.com
+    jean@exemple.fr
   </Restitution>
-  <Restitution label="Phone">
+  <Restitution label="Téléphone">
     +33 1 23 45 67 89
   </Restitution>
 </RestitutionList>
@@ -52,16 +52,16 @@ import {
 
 <SectionRestitution>
   <SectionRestitutionTitle>
-    Personal Information
+    Informations personnelles
   </SectionRestitutionTitle>
   <ArticleRestitution>
-    <Restitution label="Name">John Doe</Restitution>
-    <Restitution label="Age">35</Restitution>
+    <Restitution label="Nom">Jean Dupont</Restitution>
+    <Restitution label="Âge">35</Restitution>
   </ArticleRestitution>
 </SectionRestitution>
 ```
 
-## CSS Classes
-- `.af-restitution__listdef` - Base class
+## Classes CSS
+- `.af-restitution__listdef` - Classe de base
 - `.af-restitution__text` - Label
-- `.af-restitution__listdef-value` - Value
+- `.af-restitution__listdef-value` - Valeur

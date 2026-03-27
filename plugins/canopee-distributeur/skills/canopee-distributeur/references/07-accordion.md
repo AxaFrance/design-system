@@ -1,7 +1,7 @@
 # Accordion
 
-## Overview
-The Accordion component is a collapsible container system that displays multiple sections with expand/collapse functionality. It supports single-expand and multi-expand modes with optional action buttons.
+## Présentation
+Le composant Accordion est un système de conteneurs repliables qui affiche plusieurs sections avec une fonctionnalité de déploiement/réduction. Il supporte les modes mono-déploiement et multi-déploiement avec des boutons d'action optionnels.
 
 ## Import
 ```tsx
@@ -11,52 +11,52 @@ import {
 } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Components
+## Composants
 
 ### Accordion
-Container for collapse sections.
+Conteneur des sections repliables.
 
-### CollapseCard (or CollapseItem)
-Individual expandable section within accordion.
+### CollapseCard (ou CollapseItem)
+Section individuelle déployable dans le composant Accordion.
 
 ## Props
 
 ### Accordion
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "white" \| "light"` | `"default"` | Visual styling |
-| `onlyOne` | `boolean` | `false` | Only one card open at a time |
-| `children` | `CollapseCard[]` | Required | Array of CollapseCard components |
-| `className` | `string` | - | Additional CSS classes |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `variant` | `"default" \| "white" \| "light"` | `"default"` | Style visuel |
+| `onlyOne` | `boolean` | `false` | Une seule carte ouverte à la fois |
+| `children` | `CollapseCard[]` | Obligatoire | Tableau de composants CollapseCard |
+| `className` | `string` | - | Classes CSS additionnelles |
 
 ### CollapseCard
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `id` | `string` | Required | Unique identifier for card |
-| `title` | `string \| ReactNode` | Required | Card header/title |
-| `open` | `boolean` | `false` | Initially open state |
-| `children` | `ReactNode` | - | Collapsible content |
-| `actions` | `Action[]` | - | Action buttons |
-| `variant` | `"default" \| "white" \| "light"` | - | Optional override |
-| `classModifier` | `string` | - | Additional CSS modifier |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `id` | `string` | Obligatoire | Identifiant unique de la carte |
+| `title` | `string \| ReactNode` | Obligatoire | En-tête/titre de la carte |
+| `open` | `boolean` | `false` | État initial ouvert |
+| `children` | `ReactNode` | - | Contenu repliable |
+| `actions` | `Action[]` | - | Boutons d'action |
+| `variant` | `"default" \| "white" \| "light"` | - | Surcharge optionnelle |
+| `classModifier` | `string` | - | Modificateur CSS additionnel |
 
-## Action Object
+## Type Action
 
 ```tsx
 type Action = {
-  key: string;           // Unique action identifier
-  label: string;         // Button text
-  onClick: () => void;   // Click handler
-  leftIcon?: ReactNode;  // Icon on left
-  rightIcon?: ReactNode; // Icon on right
+  key: string;           // Identifiant unique de l'action
+  label: string;         // Texte du bouton
+  onClick: () => void;   // Gestionnaire de clic
+  leftIcon?: ReactNode;  // Icône à gauche
+  rightIcon?: ReactNode; // Icône à droite
 };
 ```
 
-## Basic Usage
+## Utilisation de base
 
-### Default Accordion
+### Accordion par défaut
 ```tsx
 import { Accordion, CollapseCard } from "@axa-fr/canopee-react/distributeur";
 
@@ -65,7 +65,7 @@ import { Accordion, CollapseCard } from "@axa-fr/canopee-react/distributeur";
     id="section1" 
     title="Section 1"
   >
-    Content for section 1
+    Contenu de la section 1
   </CollapseCard>
   
   <CollapseCard 
@@ -73,69 +73,69 @@ import { Accordion, CollapseCard } from "@axa-fr/canopee-react/distributeur";
     title="Section 2"
     open={true}
   >
-    Content for section 2 (initially open)
+    Contenu de la section 2 (initialement ouverte)
   </CollapseCard>
 </Accordion>
 ```
 
-### Multi-Expand (Default)
-Multiple sections can be open simultaneously:
+### Multi-déploiement (défaut)
+Plusieurs sections peuvent être ouvertes simultanément :
 ```tsx
 <Accordion>
-  <CollapseCard id="faq1" title="What is included?">
-    Full description of included features...
+  <CollapseCard id="faq1" title="Qu'est-ce qui est inclus ?">
+    Description complète des fonctionnalités incluses...
   </CollapseCard>
-  <CollapseCard id="faq2" title="How long is shipping?">
-    Estimated shipping details...
+  <CollapseCard id="faq2" title="Quel est le délai de livraison ?">
+    Informations sur les délais estimés...
   </CollapseCard>
 </Accordion>
 ```
 
-### Single-Expand Mode
-Only one section open at a time:
+### Mode mono-déploiement
+Une seule section ouverte à la fois :
 ```tsx
 <Accordion onlyOne={true}>
-  <CollapseCard id="step1" title="Step 1: Register">
-    Registration instructions...
+  <CollapseCard id="step1" title="Étape 1 : Inscription">
+    Instructions d'inscription...
   </CollapseCard>
-  <CollapseCard id="step2" title="Step 2: Verify">
-    Verification instructions...
+  <CollapseCard id="step2" title="Étape 2 : Vérification">
+    Instructions de vérification...
   </CollapseCard>
 </Accordion>
 ```
 
-## Visual Variants
+## Variantes visuelles
 
-### Default (Blue background)
+### Défaut (fond bleu)
 ```tsx
 <Accordion variant="default">
-  <CollapseCard id="card" title="Default Style">
-    Content with blue header
+  <CollapseCard id="carte" title="Style par défaut">
+    Contenu avec en-tête bleu
   </CollapseCard>
 </Accordion>
 ```
 
-### White Variant
+### Variante blanche
 ```tsx
 <Accordion variant="white">
-  <CollapseCard id="card" title="White Background">
-    Minimalist white header style
+  <CollapseCard id="carte" title="Fond blanc">
+    Style d'en-tête blanc minimaliste
   </CollapseCard>
 </Accordion>
 ```
 
-### Light Variant
+### Variante légère
 ```tsx
 <Accordion variant="light">
-  <CollapseCard id="card" title="Light Style">
-    Light gray background
+  <CollapseCard id="carte" title="Style léger">
+    Fond gris clair
   </CollapseCard>
 </Accordion>
 ```
 
-## With Actions
+## Avec actions
 
-### Single Action
+### Action unique
 ```tsx
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import { Svg } from "@axa-fr/canopee-react/distributeur";
@@ -143,99 +143,99 @@ import { Svg } from "@axa-fr/canopee-react/distributeur";
 <Accordion>
   <CollapseCard
     id="item1"
-    title="Item with Action"
+    title="Élément avec action"
     actions={[
       {
-        key: "delete",
-        label: "Delete",
+        key: "supprimer",
+        label: "Supprimer",
         rightIcon: <Svg src={deleteIcon} />,
-        onClick: () => console.log("Delete clicked")
+        onClick: () => console.log("Suppression cliquée")
       }
     ]}
   >
-    Content here
+    Contenu ici
   </CollapseCard>
 </Accordion>
 ```
 
-### Multiple Actions (Max 2)
+### Actions multiples (max 2)
 ```tsx
 import editIcon from "@material-symbols/svg-400/outlined/edit.svg";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 
 <CollapseCard
   id="item2"
-  title="Editable Item"
+  title="Élément modifiable"
   actions={[
     {
-      key: "edit",
-      label: "Edit",
+      key: "modifier",
+      label: "Modifier",
       leftIcon: <Svg src={editIcon} />,
       onClick: () => handleEdit()
     },
     {
-      key: "delete",
-      label: "Delete",
+      key: "supprimer",
+      label: "Supprimer",
       rightIcon: <Svg src={deleteIcon} />,
       onClick: () => handleDelete()
     }
   ]}
 >
-  Item content
+  Contenu de l'élément
 </CollapseCard>
 ```
 
-## Content Examples
+## Exemples de contenu
 
-### Rich HTML Content
+### Contenu HTML riche
 ```tsx
-<CollapseCard id="rich" title="Complex Content">
+<CollapseCard id="riche" title="Contenu complexe">
   <section>
-    <h3>Features</h3>
+    <h3>Fonctionnalités</h3>
     <ul>
-      <li>Feature 1</li>
-      <li>Feature 2</li>
+      <li>Fonctionnalité 1</li>
+      <li>Fonctionnalité 2</li>
     </ul>
   </section>
   <section>
-    <h3>Technical Specs</h3>
+    <h3>Spécifications techniques</h3>
     <table>
-      <tr><td>Spec</td><td>Value</td></tr>
+      <tr><td>Spec</td><td>Valeur</td></tr>
     </table>
   </section>
 </CollapseCard>
 ```
 
-### Nested Components
+### Composants imbriqués
 ```tsx
 import { CheckboxItem } from "@axa-fr/canopee-react/distributeur";
 
-<CollapseCard id="nested" title="With Checkboxes">
+<CollapseCard id="imbrique" title="Avec cases à cocher">
   <CheckboxItem label="Option A" />
   <CheckboxItem label="Option B" />
   <CheckboxItem label="Option C" />
 </CollapseCard>
 ```
 
-## FAQ Example
+## Exemple FAQ
 
 ```tsx
-const FAQSection = () => {
+const SectionFAQ = () => {
   const faqs = [
     {
       id: "q1",
-      title: "What payment methods are accepted?",
-      content: "We accept all major credit cards, PayPal, and bank transfers."
+      title: "Quels modes de paiement sont acceptés ?",
+      content: "Nous acceptons toutes les principales cartes de crédit, PayPal et les virements bancaires."
     },
     {
       id: "q2",
-      title: "What is your refund policy?",
-      content: "30-day money-back guarantee on all purchases."
+      title: "Quelle est votre politique de remboursement ?",
+      content: "Satisfait ou remboursé sous 30 jours pour tout achat."
     },
     {
       id: "q3",
-      title: "Do you ship internationally?",
-      content: "Yes, we ship to over 150 countries worldwide."
+      title: "Livrez-vous à l'international ?",
+      content: "Oui, nous livrons dans plus de 150 pays dans le monde."
     }
   ];
   
@@ -255,93 +255,93 @@ const FAQSection = () => {
 };
 ```
 
-## Settings/Configuration Example
+## Exemple paramètres/configuration
 
 ```tsx
-const SettingsPanel = () => {
-  const [settings, setSettings] = useState({});
+const PanneauParametres = () => {
+  const [parametres, setParametres] = useState({});
   
-  const handleDelete = (itemId: string) => {
-    console.log(`Removing ${itemId}`);
-    // Handle deletion logic
+  const handleSupprimer = (itemId: string) => {
+    console.log(`Suppression de ${itemId}`);
+    // Logique de suppression
   };
   
   return (
     <Accordion variant="white" onlyOne={false}>
       <CollapseCard
         id="notifications"
-        title="Notification Settings"
+        title="Paramètres de notification"
         open={true}
       >
-        <CheckboxItem label="Email notifications" />
-        <CheckboxItem label="SMS alerts" />
+        <CheckboxItem label="Notifications par e-mail" />
+        <CheckboxItem label="Alertes SMS" />
       </CollapseCard>
       
       <CollapseCard
-        id="privacy"
-        title="Privacy Settings"
+        id="confidentialite"
+        title="Paramètres de confidentialité"
         actions={[
           {
-            key: "reset",
-            label: "Reset",
-            onClick: () => handleDelete("privacy")
+            key: "reinitialiser",
+            label: "Réinitialiser",
+            onClick: () => handleSupprimer("confidentialite")
           }
         ]}
       >
-        <CheckboxItem label="Share profile" />
-        <CheckboxItem label="Allow recommendations" />
+        <CheckboxItem label="Partager le profil" />
+        <CheckboxItem label="Autoriser les recommandations" />
       </CollapseCard>
     </Accordion>
   );
 };
 ```
 
-## Controlled Expansion
+## Expansion contrôlée
 
 ```tsx
-const [expandedCards, setExpandedCards] = useState<Set<string>>(
+const [cartesOuvertes, setCartesOuvertes] = useState<Set<string>>(
   new Set(["section1"])
 );
 
-const toggleCard = (cardId: string) => {
-  setExpandedCards(prev => {
-    const newSet = new Set(prev);
-    if (newSet.has(cardId)) {
-      newSet.delete(cardId);
+const basculerCarte = (idCarte: string) => {
+  setCartesOuvertes(prev => {
+    const nouvelEnsemble = new Set(prev);
+    if (nouvelEnsemble.has(idCarte)) {
+      nouvelEnsemble.delete(idCarte);
     } else {
-      newSet.add(cardId);
+      nouvelEnsemble.add(idCarte);
     }
-    return newSet;
+    return nouvelEnsemble;
   });
 };
 
-// Note: CollapseCard expansion is controlled internally
-// Use open prop to set initial state
+// Note : l'expansion de CollapseCard est gérée en interne
+// Utiliser la prop open pour définir l'état initial
 <Accordion>
-  <CollapseCard id="card1" title="Card 1" open={expandedCards.has("card1")}>
-    Content
+  <CollapseCard id="carte1" title="Carte 1" open={cartesOuvertes.has("carte1")}>
+    Contenu
   </CollapseCard>
 </Accordion>
 ```
 
-## Accessibility
-- Keyboard navigation (Tab through titles, Enter/Space to expand)
-- Sections clearly labeled with headings
-- Action buttons accessible via keyboard
-- ARIA attributes for expanded/collapsed state
-- Sufficient color contrast in all variants
+## Accessibilité
+- Navigation au clavier (Tab pour les titres, Entrée/Espace pour déployer)
+- Sections clairement labelisées avec des titres
+- Boutons d'action accessibles au clavier
+- Attributs ARIA pour les états déployé/réduit
+- Contraste de couleur suffisant dans toutes les variantes
 
-## Best Practices
-- Use descriptive, concise section titles
-- Keep content within each section focused
-- Use onlyOne mode for step-by-step workflows
-- Provide actions only when needed
-- Put most important FAQ/content in first section
-- Test with keyboard navigation
-- Use consistent variant across related accordions
+## Bonnes pratiques
+- Utiliser des titres de sections descriptifs et concis
+- Garder le contenu de chaque section ciblé
+- Utiliser le mode onlyOne pour les processus étape par étape
+- Ne fournir des actions que si nécessaire
+- Mettre le contenu le plus important en première section
+- Tester avec la navigation au clavier
+- Utiliser une variante cohérente pour les composants Accordion liés
 
-## CSS Classes
-- `.af-accordion` - Base accordion class
-- `.af-accordion--default` - Default variant
-- `.af-accordion--white` - White variant
-- `.af-accordion--light` - Light variant
+## Classes CSS
+- `.af-accordion` - Classe de base du composant Accordion
+- `.af-accordion--default` - Variante par défaut
+- `.af-accordion--white` - Variante blanche
+- `.af-accordion--light` - Variante légère
