@@ -24,22 +24,14 @@ Jamais de sélecteurs par tag HTML ou par ID.
 **Props — noms HTML natifs, sans préfixe**
 
 ```tsx
-// ✅
 <TextInput required readOnly value="..." />
-// ❌
-<TextInput isRequired isReadOnly defaultValue="..." />
 ```
 
 **JSX — pas de leaked render**
 
 ```tsx
-// ✅
 {
   items.length > 0 ? <List items={items} /> : null;
-}
-// ❌
-{
-  items.length && <List items={items} />;
 }
 ```
 

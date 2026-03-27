@@ -169,7 +169,7 @@ const handleChange = (e) => {
 
 return (
   <>
-    {erreur && (
+    {Boolean(erreur) && (
       <Message variant="error" title="Erreur de validation">
         {erreur}
       </Message>
