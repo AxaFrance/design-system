@@ -32,6 +32,7 @@
     --modal-body-padding-bottom: var(--rem-16);
 
     :has(.af-modal__body-vertical-scroll) {
+      --modal-footer-border-top: none;
       --modal-footer-vertical-padding: var(--rem-16);
       --modal-footer-horizontal-padding: var(--rem-16);
     }

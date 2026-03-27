@@ -1,6 +1,7 @@
 .af-modal {
   --modal-transition-duration: 0.2s;
   --modal-max-height: calc(100vh - 5rem);
+  --modal-footer-border-top: none;
 
   width: 100%;
   max-width: 100vw;
