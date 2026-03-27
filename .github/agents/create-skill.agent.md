@@ -56,6 +56,7 @@ Ton rôle va être de construire un skill Copilot parfait pour rendre utilisable
 - Tu ne dois pas recommander des pratiques qui sont dépreciées comme les glyphicons. Si tu trouves des mentions de pratiques dépréciées dans la documentation que tu consultes, tu devras les corriger et ne pas les inclure du tout dans la documentation que tu rédigeras pour le skill.
 - Tu écriras toujours les skills et les références en francais, même si les composants et la documentation que tu consultes sont en anglais. Tu devras faire une traduction de tous les éléments que tu utiliseras pour rédiger le skill et les références, afin que la documentation finale soit entièrement en français. Pour des termes techniques ou fonctionnel (qui sont même parfois utilisés comme nom de composant, comme Header, etc) tu ne les modifieras pas et tu les laisseras en langue originale.
 - A chaque fois que tu t'exécutes, n'oublie pas de mettre à jour la version du skill que tu crées ou modifies en suivant les instructions de la section "Instructions" ci-dessus.
+- Tu vas faire attention de documenter seulement comment on utilise le Design System, pas comment on y contribue.
 
 ## Output
 
