@@ -31,26 +31,17 @@ Jamais de sélecteurs par tag HTML ou ID.
 **Props — noms HTML natifs, sans préfixe booléen**
 
 ```tsx
-// ✅
 <InputText required disabled value="..." />
-// ❌
-<InputText isRequired isDisabled defaultValue="..." />
 ```
 
 **JSX — pas de leaked render**
 
 ```tsx
-// ✅  (ternaire explicite)
 {
   items.length > 0 ? <List items={items} /> : null;
 }
-// ✅  (Boolean() pour les valeurs potentiellement falsy)
 {
   Boolean(subtitle) && <p>{subtitle}</p>;
-}
-// ❌
-{
-  items.length && <List items={items} />;
 }
 ```
 
