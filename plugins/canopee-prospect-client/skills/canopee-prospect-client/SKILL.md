@@ -82,13 +82,10 @@ Pour le détail complet (composant `Icon`, `ClickIcon`, accessibilité) → lire
 
 ```tsx
 import home from "@material-symbols/svg-400/outlined/home.svg";
-import { Svg, Icon } from "@axa-fr/canopee-react/prospect";
-
-// SVG brut (sans conteneur ni style)
-<Svg src={home} />
+import { Icon } from "@axa-fr/canopee-react/prospect";
 
 // Icon avec variante, taille et fond optionnel
-<Icon src={home} variant="primary" size="M" hasBackground />
+<Icon src={home} variant="primary" size="M" hasBackground />;
 ```
 
 ## Grid et layout responsive
@@ -239,21 +236,20 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ### Utilitaires
 
-| Composant                 | Cas d'usage                                                                       |
-| ------------------------- | --------------------------------------------------------------------------------- |
-| `Svg`                     | Wrapper SVG brut (sans variante) — voir [17-icones.md](./references/17-icones.md) |
-| `BasePicture`             | Image simple (fallback logo AXA)                                                  |
-| `DebugGrid`               | Superposition grille pour le développement                                        |
-| `GridContainerProps` type | Props `data-cols-*` pour la grille responsive                                     |
+| Composant                 | Cas d'usage                                   |
+| ------------------------- | --------------------------------------------- |
+| `BasePicture`             | Image simple (fallback logo AXA)              |
+| `DebugGrid`               | Superposition grille pour le développement    |
+| `GridContainerProps` type | Props `data-cols-*` pour la grille responsive |
 
 ### Guides transverses
 
-| Guide            | Référence                                                         | Cas d'usage                                           |
-| ---------------- | ----------------------------------------------------------------- | ----------------------------------------------------- |
-| Démarrage projet | [16-demarrer-un-projet.md](./references/16-demarrer-un-projet.md) | Installation, app minimale, configuration CSS         |
-| Icônes           | [17-icones.md](./references/17-icones.md)                         | Material Symbols, Svg, Icon, ClickIcon, accessibilité |
-| Tokens CSS       | [18-tokens-css.md](./references/18-tokens-css.md)                 | Variables CSS, surcharge, imports par composant       |
+| Guide            | Référence                                                         | Cas d'usage                                      |
+| ---------------- | ----------------------------------------------------------------- | ------------------------------------------------ |
+| Démarrage projet | [16-demarrer-un-projet.md](./references/16-demarrer-un-projet.md) | Installation, app minimale, configuration CSS    |
+| Icônes           | [17-icones.md](./references/17-icones.md)                         | Material Symbols, Icon, ClickIcon, accessibilité |
+| Tokens CSS       | [18-tokens-css.md](./references/18-tokens-css.md)                 | Variables CSS, surcharge, imports par composant  |
 
 ---
 
-_Version : 2026.03.27-a_
+_Version : 2026.03.27-b_

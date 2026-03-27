@@ -44,7 +44,7 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
 <Tag variant="error">Inactif</Tag>
 ```
 
-### Badge de catégorie
+### Tag de catégorie
 ```tsx
 <Tag variant="purple">Mis en avant</Tag>
 <Tag variant="gray">Archive</Tag>

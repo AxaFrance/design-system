@@ -43,7 +43,6 @@ Section individuelle déployable dans le composant Accordion.
 | `actions` | `Action[]` | - | Boutons d'action |
 | `variant` | `"default" \| "white" \| "light"` | - | Surcharge optionnelle |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | ⚠️ DÉPRÉCIÉ | Modificateur CSS additionnel (remplacé par `variant`) |
 
 ## Type Action
 

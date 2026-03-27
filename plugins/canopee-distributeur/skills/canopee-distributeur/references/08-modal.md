@@ -42,7 +42,6 @@ Modale spécialisée pour les dialogues de confirmation oui/non.
 | `title` | `string` | - | Titre de la modale |
 | `children` | `ReactNode` | - | Contenu de la modale |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | ⚠️ DÉPRÉCIÉ | Modificateur CSS (remplacé par `size`) |
 
 ### ModalHeader / ModalHeaderBase
 
