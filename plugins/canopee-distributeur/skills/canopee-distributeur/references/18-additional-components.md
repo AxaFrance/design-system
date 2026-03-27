@@ -1,8 +1,8 @@
-# Additional Core Components
+# Composants supplémentaires
 
-## Divider
+## Divider (Séparateur)
 
-Simple visual separator line component.
+Ligne de séparation visuelle simple.
 
 ```tsx
 import { Divider } from "@axa-fr/canopee-react/distributeur";
@@ -11,69 +11,69 @@ import { Divider } from "@axa-fr/canopee-react/distributeur";
 <Divider className="custom-divider" />
 ```
 
-## Title
+## Title (Titre)
 
-Styled heading component.
+Composant de titre stylé.
 
 ```tsx
 import { Title } from "@axa-fr/canopee-react/distributeur";
 
-<Title level={1}>Main Title</Title>
-<Title level={2}>Subtitle</Title>
-<Title level={3}>Section Title</Title>
+<Title level={1}>Titre principal</Title>
+<Title level={2}>Sous-titre</Title>
+<Title level={3}>Titre de section</Title>
 ```
 
 ## Action
 
-Button-like action component for triggering operations.
+Composant de type bouton pour déclencher des opérations.
 
 ```tsx
 import { Action } from "@axa-fr/canopee-react/distributeur";
 
 <Action onClick={() => handleAction()}>
-  Perform Action
+  Exécuter l'action
 </Action>
 ```
 
 ## Svg
 
-SVG wrapper component for icon rendering.
+Composant d'enveloppe SVG pour l'affichage d'icônes.
 
 ```tsx
 import { Svg } from "@axa-fr/canopee-react/distributeur";
-import icon from "@material-symbols/svg-400/outlined/info.svg";
+import infoIcon from "@material-symbols/svg-400/outlined/info.svg";
 
-<Svg src={icon} alt="Information" />
+<Svg src={infoIcon} alt="Information" />
 ```
 
 ## MainContainer
 
-Layout wrapper for main content area.
+Wrapper de mise en page pour la zone de contenu principale.
 
 ```tsx
 import { MainContainer } from "@axa-fr/canopee-react/distributeur";
 
 <MainContainer>
-  <h1>Page Content</h1>
-  <p>Content goes here</p>
+  <h1>Contenu de la page</h1>
+  <p>Contenu ici</p>
 </MainContainer>
 ```
 
 ## HelpButton
 
-Interactive help/info button component.
+Bouton d'aide interactif.
 
 ```tsx
 import { HelpButton } from "@axa-fr/canopee-react/distributeur";
 
 <HelpButton>
-  This is help text explaining the field
+  Texte d'aide expliquant le champ
 </HelpButton>
 ```
 
 ## Loader
 
-Loading indicator component.
+Indicateur de chargement.
 
 ```tsx
 import { Loader } from "@axa-fr/canopee-react/distributeur";
@@ -85,32 +85,32 @@ import { Loader } from "@axa-fr/canopee-react/distributeur";
 
 ## CardData
 
-Data display card component.
+Carte d'affichage de données.
 
 ```tsx
 import { CardData } from "@axa-fr/canopee-react/distributeur";
 
 <CardData variant="default">
-  <h3>Card Title</h3>
-  <p>Card content</p>
+  <h3>Titre de la carte</h3>
+  <p>Contenu de la carte</p>
 </CardData>
 ```
 
 ## EditorialMessage
 
-Large message component for editorial content.
+Grand composant de message pour le contenu éditorial.
 
 ```tsx
 import { EditorialMessage } from "@axa-fr/canopee-react/distributeur";
 
 <EditorialMessage type="info">
-  Important information about the system
+  Information importante sur le système
 </EditorialMessage>
 ```
 
 ## Popover
 
-Tooltip/popover component for contextual information.
+Composant tooltip/popover pour des informations contextuelles.
 
 ```tsx
 import { Popover } from "@axa-fr/canopee-react/distributeur";
@@ -118,25 +118,25 @@ import { Popover } from "@axa-fr/canopee-react/distributeur";
 <Popover 
   mode="click"
   placement="top"
-  popoverElement={<div>Help content</div>}
+  popoverElement={<div>Contenu d'aide</div>}
 >
-  <button>Help</button>
+  <button>Aide</button>
 </Popover>
 ```
 
 ## Summary
 
-Summary/accordion-like component for collapsible content.
+Composant résumé repliable pour le contenu condensable.
 
 ```tsx
 import { Summary } from "@axa-fr/canopee-react/distributeur";
 
-<Summary label="View Details">
-  Detailed content here
+<Summary label="Voir les détails">
+  Contenu détaillé
 </Summary>
 ```
 
-## Form Components (High-level Wrappers)
+## Composants de formulaire (wrappers haute niveau)
 
 ### Textarea
 ```tsx
@@ -145,74 +145,64 @@ import { Textarea, TextareaInput } from "@axa-fr/canopee-react/distributeur";
 <TextareaInput
   id="message"
   name="message"
-  label="Your Message"
-  placeholder="Enter message..."
+  label="Votre message"
+  placeholder="Saisissez votre message..."
 />
 ```
 
-### Select Variants
-```tsx
-import { SelectBase } from "@axa-fr/canopee-react/distributeur";
-
-<SelectBase>
-  <option>Option 1</option>
-  <option>Option 2</option>
-</SelectBase>
-```
-
-### Choice (Toggle-like)
+### Choice (Choix toggle)
 ```tsx
 import { Choice, ChoiceInput } from "@axa-fr/canopee-react/distributeur";
 
 <Choice options={[
-  { value: "yes", label: "Yes" },
-  { value: "no", label: "No" }
+  { value: "oui", label: "Oui" },
+  { value: "non", label: "Non" }
 ]} />
 ```
 
-### Date Picker
+### Date
 ```tsx
 import { Date, DateInput } from "@axa-fr/canopee-react/distributeur";
 
 <DateInput
-  id="birth"
-  name="birth"
-  label="Birth Date"
+  id="naissance"
+  name="naissance"
+  label="Date de naissance"
   type="date"
 />
 ```
 
-### Password Input
+### Mot de passe
 ```tsx
 import { Pass, PassInput } from "@axa-fr/canopee-react/distributeur";
 
 <PassInput
   id="password"
   name="password"
-  label="Password"
+  label="Mot de passe"
 />
 ```
 
-### Number Input
+### Nombre
 ```tsx
 import { Number, NumberInput } from "@axa-fr/canopee-react/distributeur";
 
 <NumberInput
   id="quantity"
   name="quantity"
-  label="Quantity"
+  label="Quantité"
   min={1}
 />
 ```
 
-### File Upload
+### Téléchargement de fichier
 ```tsx
 import { File, FileInput } from "@axa-fr/canopee-react/distributeur";
 
 <FileInput
   id="document"
   name="document"
-  label="Upload Document"
+  label="Télécharger un document"
   accept=".pdf,.doc"
 />
 ```
@@ -222,10 +212,10 @@ import { File, FileInput } from "@axa-fr/canopee-react/distributeur";
 import { MultiSelect, MultiSelectInput } from "@axa-fr/canopee-react/distributeur";
 
 <MultiSelectInput
-  id="skills"
-  name="skills"
-  label="Select Skills"
-  options={skillOptions}
+  id="competences"
+  name="competences"
+  label="Sélectionner des compétences"
+  options={competenceOptions}
 />
 ```
 
@@ -234,9 +224,9 @@ import { MultiSelect, MultiSelectInput } from "@axa-fr/canopee-react/distributeu
 import { Slider, SliderInput } from "@axa-fr/canopee-react/distributeur";
 
 <SliderInput
-  id="price"
-  name="price"
-  label="Price Range"
+  id="prix"
+  name="prix"
+  label="Fourchette de prix"
   min={0}
   max={1000}
 />
@@ -246,18 +236,18 @@ import { Slider, SliderInput } from "@axa-fr/canopee-react/distributeur";
 ```tsx
 import { NestedQuestion } from "@axa-fr/canopee-react/distributeur";
 
-<NestedQuestion label="Parent question">
-  <p>Content shown when parent is answered</p>
+<NestedQuestion label="Question parente">
+  <p>Contenu affiché selon la réponse parente</p>
 </NestedQuestion>
 ```
 
-## Experimental Components
+## Composants expérimentaux
 
-Advanced/experimental form components available via `canopee-react/distributeur-experimental`:
+Composants de formulaire avancés/expérimentaux disponibles via `canopee-react/distributeur-experimental` :
 - InputContainer
-- Label (high-level)
+- Label (haute niveau)
 - Input wrapper
 - ItemMessage
 - InputUnit
 
-These are subject to API changes and should be used carefully in production.
+Ces composants sont sujets à des changements d'API et doivent être utilisés avec précaution en production.

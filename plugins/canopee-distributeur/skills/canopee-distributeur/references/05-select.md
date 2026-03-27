@@ -1,37 +1,37 @@
-# Form Select
+# Form Select (Liste déroulante)
 
-## Overview
-The Select component provides dropdown selection for forms. It supports both simple option properties and custom JSX children, with two rendering modes.
+## Présentation
+Le composant Select fournit une liste déroulante pour les formulaires. Il supporte les options simples et les enfants JSX personnalisés, avec deux modes de rendu.
 
 ## Import
 ```tsx
 import { Select, SelectBase, SelectInput } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Components
+## Composants
 
-### Select (Smart Component)
-Auto-detects children vs options prop and renders appropriately.
+### Select (composant intelligent)
+Détecte automatiquement les enfants ou la prop options.
 ```tsx
 import { Select } from "@axa-fr/canopee-react/distributeur";
 
-// With options array
+// Avec tableau d'options
 <Select 
   options={[
-    { value: "apple", label: "Apple" },
-    { value: "banana", label: "Banana" }
+    { value: "pomme", label: "Pomme" },
+    { value: "banane", label: "Banane" }
   ]}
 />
 
-// With children
+// Avec enfants
 <Select>
-  <option value="apple">Apple</option>
-  <option value="banana">Banana</option>
+  <option value="pomme">Pomme</option>
+  <option value="banane">Banane</option>
 </Select>
 ```
 
-### SelectBase (Low-level)
-Core select element with option rendering logic.
+### SelectBase (bas niveau)
+Élément select principal avec logique de rendu des options.
 ```tsx
 import { SelectBase } from "@axa-fr/canopee-react/distributeur";
 
@@ -43,18 +43,18 @@ import { SelectBase } from "@axa-fr/canopee-react/distributeur";
 />
 ```
 
-### SelectInput (High-level)
-Complete form wrapper with label and validation.
+### SelectInput (haute niveau)
+Wrapper complet de formulaire avec label et validation.
 ```tsx
 import { SelectInput } from "@axa-fr/canopee-react/distributeur";
 
 <SelectInput
-  id="color"
-  name="color"
-  label="Choose a color"
+  id="couleur"
+  name="couleur"
+  label="Choisir une couleur"
   options={[
-    { value: "red", label: "Red" },
-    { value: "blue", label: "Blue" }
+    { value: "rouge", label: "Rouge" },
+    { value: "bleu", label: "Bleu" }
   ]}
 />
 ```
@@ -63,77 +63,77 @@ import { SelectInput } from "@axa-fr/canopee-react/distributeur";
 
 ### Select / SelectInput
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `options` | `Option[]` | - | Array of `{value, label}` objects |
-| `value` | `string` | - | Selected value |
-| `mode` | `"default" \| "base"` | `"default"` | Rendering mode |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `options` | `Option[]` | - | Tableau d'objets `{value, label}` |
+| `value` | `string` | - | Valeur sélectionnée |
+| `mode` | `"default" \| "base"` | `"default"` | Mode de rendu |
 | `id` | `string` | - | HTML id |
 | `name` | `string` | - | HTML name |
-| `label` | `string` | - | Input label |
-| `placeholder` | `string` | `"- Select -"` | Default select text |
-| `disabled` | `boolean` | `false` | Disables select |
-| `readOnly` | `boolean` | `false` | Read-only mode |
-| `required` | `boolean` | `false` | Required field |
-| `message` | `string` | - | Validation message |
-| `messageType` | `"error" \| "info" \| "success"` | - | Message styling |
-| `onChange` | `function` | - | Change handler |
-| `onBlur` | `function` | - | Blur handler |
-| `children` | `ReactNode` | - | Option JSX elements |
+| `label` | `string` | - | Label du champ |
+| `placeholder` | `string` | `"- Sélectionner -"` | Texte de sélection par défaut |
+| `disabled` | `boolean` | `false` | Désactive la liste |
+| `readOnly` | `boolean` | `false` | Mode lecture seule |
+| `required` | `boolean` | `false` | Champ obligatoire |
+| `message` | `string` | - | Message de validation |
+| `messageType` | `"error" \| "info" \| "success"` | - | Style du message |
+| `onChange` | `function` | - | Gestionnaire de changement |
+| `onBlur` | `function` | - | Gestionnaire de perte de focus |
+| `children` | `ReactNode` | - | Éléments JSX d'options |
 
-## Basic Usage
+## Utilisation de base
 
-### Simple Select with Options
+### Select simple avec options
 ```tsx
 import { useState } from "react";
 import { Select } from "@axa-fr/canopee-react/distributeur";
 
-const ColorPicker = () => {
-  const [color, setColor] = useState("");
+const SelecteurCouleur = () => {
+  const [couleur, setCouleur] = useState("");
   
   return (
     <Select
-      id="color"
-      name="color"
-      placeholder="Pick a color"
+      id="couleur"
+      name="couleur"
+      placeholder="Choisir une couleur"
       options={[
-        { value: "red", label: "Red" },
-        { value: "green", label: "Green" },
-        { value: "blue", label: "Blue" }
+        { value: "rouge", label: "Rouge" },
+        { value: "vert", label: "Vert" },
+        { value: "bleu", label: "Bleu" }
       ]}
-      value={color}
-      onChange={(e) => setColor(e.target.value)}
+      value={couleur}
+      onChange={(e) => setCouleur(e.target.value)}
     />
   );
 };
 ```
 
-### Select with Children (JSX)
+### Select avec enfants (JSX)
 ```tsx
-<Select id="size" name="size">
-  <optgroup label="Clothing Sizes">
-    <option value="xs">Extra Small</option>
-    <option value="s">Small</option>
-    <option value="m">Medium</option>
+<Select id="taille" name="taille">
+  <optgroup label="Tailles vêtements">
+    <option value="xs">Très petit</option>
+    <option value="s">Petit</option>
+    <option value="m">Moyen</option>
   </optgroup>
-  <optgroup label="Large Sizes">
-    <option value="l">Large</option>
-    <option value="xl">Extra Large</option>
+  <optgroup label="Grandes tailles">
+    <option value="l">Grand</option>
+    <option value="xl">Très grand</option>
   </optgroup>
 </Select>
 ```
 
-### SelectInput with Label
+### SelectInput avec label
 ```tsx
 <SelectInput
-  id="country"
-  name="country"
-  label="Country"
-  placeholder="- Select Country -"
+  id="pays"
+  name="pays"
+  label="Pays"
+  placeholder="- Sélectionner un pays -"
   options={[
     { value: "fr", label: "France" },
-    { value: "de", label: "Germany" },
-    { value: "uk", label: "United Kingdom" }
+    { value: "de", label: "Allemagne" },
+    { value: "en", label: "Royaume-Uni" }
   ]}
   required
 />
@@ -141,8 +141,8 @@ const ColorPicker = () => {
 
 ## Modes
 
-### Default Mode (value prop)
-Simpler API using `options` array.
+### Mode default (prop value)
+API simplifiée avec tableau d'options.
 ```tsx
 <Select
   mode="default"
@@ -153,11 +153,11 @@ Simpler API using `options` array.
 />
 ```
 
-### Base Mode (children elements)
-Full control using JSX option elements.
+### Mode base (enfants JSX)
+Contrôle total avec éléments option JSX.
 ```tsx
 <Select mode="base">
-  <option value="">-- Select --</option>
+  <option value="">-- Sélectionner --</option>
   <option value="a">Option A</option>
   <option value="b">Option B</option>
 </Select>
@@ -165,73 +165,73 @@ Full control using JSX option elements.
 
 ## Validation
 
-### Required Field
+### Champ obligatoire
 ```tsx
 <SelectInput
   id="role"
   name="role"
-  label="User Role"
+  label="Rôle utilisateur"
   required
   options={[
-    { value: "admin", label: "Administrator" },
-    { value: "user", label: "Regular User" }
+    { value: "admin", label: "Administrateur" },
+    { value: "user", label: "Utilisateur standard" }
   ]}
 />
 ```
 
-### With Error Message
+### Avec message d'erreur
 ```tsx
 const [role, setRole] = useState("");
-const [error, setError] = useState("");
+const [erreur, setErreur] = useState("");
 
 const handleChange = (e) => {
-  const value = e.target.value;
-  setRole(value);
-  if (!value) {
-    setError("Please select a role");
+  const valeur = e.target.value;
+  setRole(valeur);
+  if (!valeur) {
+    setErreur("Veuillez sélectionner un rôle");
   } else {
-    setError("");
+    setErreur("");
   }
 };
 
 <SelectInput
   id="role"
   name="role"
-  label="User Role"
+  label="Rôle utilisateur"
   value={role}
   onChange={handleChange}
-  message={error}
-  messageType={error ? "error" : undefined}
+  message={erreur}
+  messageType={erreur ? "error" : undefined}
   options={[
     { value: "admin", label: "Admin" },
-    { value: "user", label: "User" }
+    { value: "user", label: "Utilisateur" }
   ]}
 />
 ```
 
-### With Help Text
+### Avec texte d'aide
 ```tsx
 <SelectInput
   id="type"
   name="type"
-  label="Document Type"
+  label="Type de document"
   options={[
     { value: "pdf", label: "PDF" },
-    { value: "doc", label: "Word Document" }
+    { value: "doc", label: "Document Word" }
   ]}
-  message="Select the document format"
+  message="Sélectionnez le format du document"
   messageType="info"
 />
 ```
 
-## States
+## États
 
-### Disabled
+### Désactivé
 ```tsx
 <SelectInput
-  id="disabled"
-  name="disabled"
-  label="Disabled"
+  id="desactive"
+  name="desactive"
+  label="Désactivé"
   disabled
   options={[
     { value: "opt1", label: "Option 1" }
@@ -239,105 +239,102 @@ const handleChange = (e) => {
 />
 ```
 
-### Read-Only
+### Lecture seule
 ```tsx
 <SelectInput
-  id="readonly"
-  name="readonly"
-  label="Read-Only"
+  id="lecture"
+  name="lecture"
+  label="Lecture seule"
   readOnly
-  value="fixed-value"
+  value="valeur-fixe"
   options={[
-    { value: "fixed-value", label: "Fixed Value" }
+    { value: "valeur-fixe", label: "Valeur fixe" }
   ]}
 />
 ```
 
-## Form Integration
+## Intégration en formulaire
 
 ```tsx
-const SubscriptionForm = () => {
+const FormulaireAbonnement = () => {
   const [formData, setFormData] = useState({
-    country: "",
-    planType: "",
-    currency: "EUR"
+    pays: "",
+    typePlan: ""
   });
   
-  const handleChange = (fieldName) => (e) => {
+  const handleChange = (champ) => (e) => {
     setFormData(prev => ({
       ...prev,
-      [fieldName]: e.target.value
+      [champ]: e.target.value
     }));
   };
   
   return (
     <form className="af-form" onSubmit={(e) => {
       e.preventDefault();
-      console.log("Form data:", formData);
+      console.log("Données :", formData);
     }}>
       <SelectInput
-        id="country"
-        name="country"
-        label="Country"
-        value={formData.country}
-        onChange={handleChange("country")}
+        id="pays"
+        name="pays"
+        label="Pays"
+        value={formData.pays}
+        onChange={handleChange("pays")}
         required
         options={[
           { value: "fr", label: "France" },
-          { value: "de", label: "Germany" }
+          { value: "de", label: "Allemagne" }
         ]}
       />
       
       <SelectInput
         id="plan"
         name="plan"
-        label="Plan Type"
-        value={formData.planType}
-        onChange={handleChange("planType")}
+        label="Type de plan"
+        value={formData.typePlan}
+        onChange={handleChange("typePlan")}
         options={[
-          { value: "basic", label: "Basic" },
-          { value: "pro", label: "Professional" }
+          { value: "basic", label: "Basique" },
+          { value: "pro", label: "Professionnel" }
         ]}
       />
       
-      <button type="submit">Subscribe</button>
+      <button type="submit">S'abonner</button>
     </form>
   );
 };
 ```
 
-## Option Groups (Children Mode)
+## Groupes d'options (mode enfants)
 
 ```tsx
 <Select>
   <optgroup label="Fruits">
-    <option value="apple">Apple</option>
-    <option value="banana">Banana</option>
+    <option value="pomme">Pomme</option>
+    <option value="banane">Banane</option>
   </optgroup>
-  <optgroup label="Vegetables">
-    <option value="carrot">Carrot</option>
-    <option value="broccoli">Broccoli</option>
+  <optgroup label="Légumes">
+    <option value="carotte">Carotte</option>
+    <option value="brocoli">Brocoli</option>
   </optgroup>
 </Select>
 ```
 
-## Accessibility
-- Labels associated via `label` prop
-- Semantic HTML `<select>` element
-- Keyboard navigation (Arrow keys to select)
-- Required indicators shown
-- Error messages linked via `aria-describedby`
+## Accessibilité
+- Labels associés via la prop `label`
+- Élément HTML `<select>` sémantique
+- Navigation clavier (touches fléchées pour sélectionner)
+- Indicateurs de champs obligatoires visibles
+- Messages d'erreur liés via `aria-describedby`
 
-## Best Practices
-- Use clear, concise option labels
-- Provide a default/placeholder option
-- Group related options when using children mode
-- Use validation to ensure selection before submission
-- Consider using Radio or Checkbox for 3 or fewer options
-- Disable irrelevant options rather than removing them
-- Provide help text for complex selections
+## Bonnes pratiques
+- Utiliser des labels d'options clairs et concis
+- Fournir une option par défaut/placeholder
+- Grouper les options liées en mode enfants
+- Valider la sélection avant soumission
+- Envisager Radio ou Checkbox pour 3 options ou moins
 
-## CSS Classes
-- `.af-form__select` - Base select class
-- `.af-form__select--required` - Required field
-- `.af-form__select--disabled` - Disabled state
+## Classes CSS
+- `.af-form__select` - Classe de base de la liste déroulante
+- `.af-form__select--required` - Champ obligatoire
+- `.af-form__select--disabled` - État désactivé

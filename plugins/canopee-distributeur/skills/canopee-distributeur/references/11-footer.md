@@ -1,7 +1,7 @@
-# Footer Layout Component
+# Composant Footer (Pied de page)
 
-## Overview
-Footer renders the bottom section of an application with branding, copyright, and optional version information.
+## Présentation
+Footer affiche la section inférieure d'une application avec la marque, le copyright et des informations de version optionnelles.
 
 ## Import
 ```tsx
@@ -10,53 +10,55 @@ import { Footer } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `href` | `string` | `"https://www.axa.fr/"` | Logo link URL |
-| `title` | `string` | `"Site Axa"` | Link title/tooltip |
-| `icon` | `string` | AXA logo | Brand icon SVG URL |
-| `alt` | `string` | `"Logo Axa"` | Icon alt text |
-| `version` | `string` | - | Version number to display |
-| `className` | `string` | `"af-footer"` | CSS classes |
-| `children` | `ReactNode` | Copyright text | Footer content |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `href` | `string` | `"https://www.axa.fr/"` | URL du lien du logo |
+| `title` | `string` | `"Site Axa"` | Titre/info-bulle du lien |
+| `icon` | `string` | Logo AXA | URL SVG de l'icône de marque |
+| `alt` | `string` | `"Logo Axa"` | Texte alternatif de l'icône |
+| `version` | `string` | - | Numéro de version à afficher |
+| `className` | `string` | `"af-footer"` | Classes CSS |
+| `children` | `ReactNode` | Texte copyright | Contenu du pied de page |
 
-## Basic Usage
+## Pied de page simple
 
-### Simple Footer
 ```tsx
 import { Footer } from "@axa-fr/canopee-react/distributeur";
 
 <Footer />
 ```
 
-### With Version
+## Avec numéro de version
+
 ```tsx
 <Footer version="1.2.3">
-  © 2024 My Company. All rights reserved.
+  © 2024 Mon Entreprise. Tous droits réservés.
 </Footer>
 ```
 
-### Custom Logo and Link
+## Logo et lien personnalisés
+
 ```tsx
 import customLogo from "./logo.svg";
 
 <Footer 
   icon={customLogo}
-  href="https://mycompany.com"
-  title="My Company"
+  href="https://monentreprise.fr"
+  title="Mon Entreprise"
 >
-  © 2024 My Company
+  © 2024 Mon Entreprise
 </Footer>
 ```
 
-### No Logo
+## Sans logo
+
 ```tsx
 <Footer icon="">
-  © 2024 All rights reserved
+  © 2024 Tous droits réservés
 </Footer>
 ```
 
-## CSS Classes
-- `.af-footer` - Base footer
-- `.af-logo` - Logo wrapper
-- `.af-footer-content` - Content section
+## Classes CSS
+- `.af-footer` - Pied de page de base
+- `.af-logo` - Conteneur du logo
+- `.af-footer-content` - Section du contenu

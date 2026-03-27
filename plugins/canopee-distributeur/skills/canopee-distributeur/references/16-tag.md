@@ -1,7 +1,7 @@
 # Tag
 
-## Overview
-Tag component displays labeled status indicators or categories with various color variants.
+## Présentation
+Le composant Tag affiche des indicateurs de statut ou des catégories étiquetées avec différentes variantes de couleur.
 
 ## Import
 ```tsx
@@ -10,47 +10,47 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | TagVariants | `"default"` | Color and style |
-| `children` | `ReactNode` | - | Tag text/content |
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `variant` | TagVariants | `"default"` | Couleur et style |
+| `children` | `ReactNode` | - | Texte/contenu du tag |
 
-## Variants
+## Variantes
 
 ```tsx
 import { Tag } from "@axa-fr/canopee-react/distributeur";
 
-// Default
-<Tag>Default</Tag>
+// Par défaut
+<Tag>Défaut</Tag>
 
-// Status variants
-<Tag variant="success">Approved</Tag>
-<Tag variant="warning">Pending</Tag>
-<Tag variant="error">Rejected</Tag>
+// Variantes de statut
+<Tag variant="success">Approuvé</Tag>
+<Tag variant="warning">En attente</Tag>
+<Tag variant="error">Rejeté</Tag>
 <Tag variant="information">Info</Tag>
 
-// Color variants
-<Tag variant="dark">Dark</Tag>
-<Tag variant="purple">Purple</Tag>
-<Tag variant="gray">Gray</Tag>
-<Tag variant="white">White</Tag>
+// Variantes de couleur
+<Tag variant="dark">Sombre</Tag>
+<Tag variant="purple">Violet</Tag>
+<Tag variant="gray">Gris</Tag>
+<Tag variant="white">Blanc</Tag>
 ```
 
-## Use Cases
+## Cas d'utilisation
 
-### Status Label
+### Étiquette de statut
 ```tsx
-<Tag variant="success">Active</Tag>
-<Tag variant="error">Inactive</Tag>
+<Tag variant="success">Actif</Tag>
+<Tag variant="error">Inactif</Tag>
 ```
 
-### Category Badge
+### Badge de catégorie
 ```tsx
-<Tag variant="purple">Featured</Tag>
+<Tag variant="purple">Mis en avant</Tag>
 <Tag variant="gray">Archive</Tag>
 ```
 
-### Multiple Tags
+### Tags multiples
 ```tsx
 <div style={{ display: "flex", gap: "0.5rem" }}>
   <Tag variant="information">React</Tag>
@@ -59,13 +59,13 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
 </div>
 ```
 
-## CSS Classes
-- `.af-tag` - Base tag class
-- `.af-tag--success` - Success variant
-- `.af-tag--warning` - Warning variant
-- `.af-tag--error` - Error variant
-- `.af-tag--information` - Information variant
-- `.af-tag--default` - Default variant
+## Classes CSS
+- `.af-tag` - Classe de base du tag
+- `.af-tag--success` - Variante succès
+- `.af-tag--warning` - Variante avertissement
+- `.af-tag--error` - Variante erreur
+- `.af-tag--information` - Variante information
+- `.af-tag--default` - Variante par défaut
 - `.af-tag--dark` - Dark variant
 - `.af-tag--purple` - Purple variant
 - `.af-tag--gray` - Gray variant
