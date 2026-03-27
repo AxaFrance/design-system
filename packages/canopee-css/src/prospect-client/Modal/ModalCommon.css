@@ -1,7 +1,6 @@
 .af-modal {
   --modal-transition-duration: 0.2s;
   --modal-max-height: calc(100vh - 5rem);
-  --modal-footer-border-top: none;
 
   width: 100%;
   max-width: 100vw;
@@ -89,7 +88,6 @@
   display: grid;
   padding: var(--modal-default-padding);
   padding-block-end: var(--modal-header-bottom-padding);
-  border-bottom: var(--modal-header-border-bottom);
   grid-template-areas: "headertitle closebtn";
   grid-template-columns: 1fr auto;
   gap: var(--modal-header-gap);
