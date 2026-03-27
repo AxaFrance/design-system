@@ -57,11 +57,11 @@ Quand `disabled` OU `loading` est `true` :
 
 // Avec icônes
 import arrowForward from "@material-symbols/svg-400/outlined/arrow_forward.svg";
-import { Svg } from "@axa-fr/canopee-react/prospect";
+import { Icon } from "@axa-fr/canopee-react/prospect";
 
 <Button
   variant="primary"
-  iconRight={<Svg src={arrowForward} />}
+  iconRight={<Icon src={arrowForward} size="S" variant="primary" />}
 >
   Continuer
 </Button>

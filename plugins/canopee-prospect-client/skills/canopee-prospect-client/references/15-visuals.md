@@ -54,7 +54,8 @@ import {
 ### Props
 
 ```tsx
-type IconProps = ComponentProps<typeof Svg> & {
+type IconProps = ComponentPropsWithoutRef<"span"> & {
+  src: string;
   variant?: IconVariants;         // "primary" | "secondary" | "disabled" | "success" | "error" | "warning"
                                   // (défaut: "primary")
   size?: IconSizeVariants;        // "L" | "M" | "S" | "XS"  (défaut: "S")
@@ -106,7 +107,7 @@ type HeadingProps = {
   level?: HeadingLevel;           // 1 | 2 | 3 | 4  (défaut: 1)
   icon?: string;                  // SVG src (optionnel)
   iconProps?: Omit<IconProps, "src">;
-  tag?: ReactNode;                // Tag / Badge affiché en haut (niveau 1 et 2 uniquement)
+  tag?: ReactNode;                // Tag affiché en haut (niveau 1 et 2 uniquement)
   tagProps?: Omit<TagProps, "children">;  // (défaut: { variant: "neutral" })
   firstSubtitle?: ReactNode;
   secondSubtitle?: ReactNode;

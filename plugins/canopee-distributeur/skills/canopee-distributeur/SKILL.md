@@ -37,7 +37,7 @@ Jamais de sélecteurs par tag HTML ou par ID.
 
 **Formulaires — toujours enveloppés dans `<form className="af-form">`**
 
-**Composants hauts niveau d'abord** — utilise `TextInput` plutôt que `Text`, `SelectInput` plutôt que `SelectBase`, sauf besoin explicite du bas niveau.
+**Composants hauts niveau d'abord** — utilise `TextInput` plutôt que `Text`, `SelectInput` pour les formulaires complets, sauf besoin explicite du bas niveau.
 
 ## Installation et démarrage
 
@@ -81,16 +81,16 @@ Lis la référence correspondante dès que le développeur demande de l'aide sur
 
 ### Composants de base
 
-| Composant       | Référence                                   | Cas d'usage                                             |
-| --------------- | ------------------------------------------- | ------------------------------------------------------- |
-| `Button`        | [01-button.md](./references/01-button.md)   | CTA, actions, variantes primary/secondary/danger/ghost… |
-| `Card`          | [02-card.md](./references/02-card.md)       | Sélection visuelle par carte cliquable                  |
-| `Tag` / `Badge` | [16-tag.md](./references/16-tag.md)         | Labels de statut, catégories                            |
-| `Link`          | [15-link.md](./references/15-link.md)       | Liens stylisés, intégration React Router / Next.js      |
-| `Divider`       | [18-divider.md](./references/18-divider.md) | Séparateur horizontal ou vertical                       |
-| `Title`         | [19-title.md](./references/19-title.md)     | Titre stylé h2/h3/h4 avec éléments latéraux             |
-| `Action`        | [20-action.md](./references/20-action.md)   | Lien circulaire avec icône                              |
-| `Svg`           | [21-svg.md](./references/21-svg.md)         | Enveloppe SVG pour les icônes Material Symbols          |
+| Composant | Référence                                   | Cas d'usage                                             |
+| --------- | ------------------------------------------- | ------------------------------------------------------- |
+| `Button`  | [01-button.md](./references/01-button.md)   | CTA, actions, variantes primary/secondary/danger/ghost… |
+| `Card`    | [02-card.md](./references/02-card.md)       | Sélection visuelle par carte cliquable                  |
+| `Tag`     | [16-tag.md](./references/16-tag.md)         | Labels de statut, catégories                            |
+| `Link`    | [15-link.md](./references/15-link.md)       | Liens stylisés, intégration React Router / Next.js      |
+| `Divider` | [18-divider.md](./references/18-divider.md) | Séparateur horizontal ou vertical                       |
+| `Title`   | [19-title.md](./references/19-title.md)     | Titre stylé h2/h3/h4 avec éléments latéraux             |
+| `Action`  | [20-action.md](./references/20-action.md)   | Lien circulaire avec icône                              |
+| `Svg`     | [21-svg.md](./references/21-svg.md)         | Enveloppe SVG pour les icônes Material Symbols          |
 
 ### Layout
 
@@ -116,10 +116,9 @@ Lis la référence correspondante dès que le développeur demande de l'aide sur
 | --------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------- |
 | `Checkbox` / `CheckboxItem` / `CheckboxInput` | [04-checkbox.md](./references/04-checkbox.md)               | Sélection multiple, modes classic/default/inline/toggle  |
 | `Radio` / `RadioItem` / `RadioInput`          | [17-radio.md](./references/17-radio.md)                     | Sélection unique, modes classic/default/inline/cardRadio |
-| `Select` / `SelectBase` / `SelectInput`       | [05-select.md](./references/05-select.md)                   | Dropdown, options ou JSX children                        |
+| `Select` / `SelectInput`                      | [05-select.md](./references/05-select.md)                   | Dropdown, options ou JSX children                        |
 | `Choice` / `ChoiceInput`                      | [30-choice.md](./references/30-choice.md)                   | Choix binaire oui/non (options booléennes)               |
 | `MultiSelect` / `MultiSelectInput`            | [35-multi-select.md](./references/35-multi-select.md)       | Sélection multiple avancée (react-select, async)         |
-| `Slider` / `SliderInput` ⚠️ DÉPRÉCIÉ          | [36-slider.md](./references/36-slider.md)                   | Curseur numérique (plage de valeurs)                     |
 | `File` / `FileInput`                          | [34-file-input.md](./references/34-file-input.md)           | Upload fichier avec drag-and-drop                        |
 | `NestedQuestion`                              | [37-nested-question.md](./references/37-nested-question.md) | Questions conditionnelles imbriquées                     |
 
@@ -131,7 +130,7 @@ Disponibles via `@axa-fr/canopee-react/distributeur-experimental` — API instab
 
 | Composant                            | Référence                                                       | Cas d'usage                                        |
 | ------------------------------------ | --------------------------------------------------------------- | -------------------------------------------------- |
-| `Message` / `Alert`                  | [06-message.md](./references/06-message.md)                     | Alertes error/warning/info/success, dismissible    |
+| `Message`                            | [06-message.md](./references/06-message.md)                     | Alertes error/warning/info/success, dismissible    |
 | `Accordion` / `CollapseCard`         | [07-accordion.md](./references/07-accordion.md)                 | Sections dépliables, variantes default/white/light |
 | `Modal` / `BooleanModal`             | [08-modal.md](./references/08-modal.md)                         | Fenêtres modales, tailles sm/default/lg            |
 | `Table`                              | [09-table.md](./references/09-table.md)                         | Tableaux avec THead/TBody/Th/Td, pagination        |
@@ -165,4 +164,4 @@ Tous les composants respectent WCAG 2.1. Rappels lors de la génération de code
 
 ---
 
-_Version : 2026.03.27-b_
+_Version : 2026.03.27-d_

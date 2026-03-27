@@ -15,9 +15,8 @@ import { Summary } from "@axa-fr/canopee-react/distributeur";
 | `messages` | `ReactNode[]` | `[]` | Liste des messages d'erreur à afficher |
 | `title` | `string` | `"Invalid form"` | Titre du récapitulatif |
 | `isVisible` | `boolean` | `true` | Contrôle l'affichage |
-| `classModifier` | `string` | `"error"` | Modificateur CSS (hérité de `Message`) |
 
-Toutes les autres props de `Message` sont acceptées (`onClose`, `className`, …).
+Les props courantes de `Message` sont acceptées (`onClose`, `className`, …).
 
 > **Comportement :** Si `messages` est vide, si tous les messages sont falsy, ou si `isVisible` est `false`, le composant ne rend rien.
 

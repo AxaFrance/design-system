@@ -10,42 +10,6 @@ npm install @material-symbols/svg-400
 
 N'importe quelle librairie exportant des SVG compatibles Material Symbols fonctionne, ainsi que des SVG personnalisés.
 
-## Composant Svg — wrapper SVG brut
-
-`Svg` est un wrapper minimal qui rend le SVG importé directement dans le DOM (inline), sans conteneur ni fond.
-
-### Import
-
-```tsx
-import { Svg } from "@axa-fr/canopee-react/prospect";
-// ou
-import { Svg } from "@axa-fr/canopee-react/client";
-```
-
-### Usage basique
-
-```tsx
-import home from "@material-symbols/svg-400/outlined/home.svg";
-import { Svg } from "@axa-fr/canopee-react/prospect";
-
-<Svg src={home} />
-```
-
-### Dans un Button
-
-```tsx
-import arrowForward from "@material-symbols/svg-400/outlined/arrow_forward.svg";
-import { Button, Svg } from "@axa-fr/canopee-react/prospect";
-
-<Button variant="primary" iconRight={<Svg src={arrowForward} />}>
-  Continuer
-</Button>
-
-<Button variant="secondary" iconLeft={<Svg src={arrowForward} />}>
-  Retour
-</Button>
-```
-
 ## Composant Icon — icône avec variante et taille
 
 `Icon` enveloppe le SVG dans un conteneur cliquable stylisé avec variante visuelle, taille et fond optionnel.
@@ -140,11 +104,14 @@ import { ClickIcon } from "@axa-fr/canopee-react/prospect";
 
 - **Bouton icône seul** : fournir toujours un `aria-label` explicite
 - **Icône décorative** : ajouter `aria-hidden="true"` si l'icône est uniquement décorative et qu'un texte adjacent décrit l'action
-- **SVG dans un texte** : si un `<Svg>` est dans un `<Button>` avec du texte, le SVG est décoratif — ne pas mettre d'`aria-label` sur le composant `Svg`
+- **Icône dans un bouton texte** : si un `<Icon>` est dans un `<Button>` avec du texte, l'icône est décorative — utiliser `aria-hidden="true"`
 
 ```tsx
-// ✅ Bouton avec texte — le SVG est décoratif
-<Button iconLeft={<Svg src={home} aria-hidden="true" />}>
+import home from "@material-symbols/svg-400/outlined/home.svg";
+import { Button, Icon, ClickIcon } from "@axa-fr/canopee-react/prospect";
+
+// ✅ Bouton avec texte — l'icône est décorative
+<Button iconLeft={<Icon src={home} aria-hidden="true" />}>
   Accueil
 </Button>
 

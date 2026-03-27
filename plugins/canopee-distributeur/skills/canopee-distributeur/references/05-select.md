@@ -1,46 +1,25 @@
 # Form Select (Liste déroulante)
 
 ## Présentation
-Le composant Select fournit une liste déroulante pour les formulaires. Il supporte les options simples et les enfants JSX personnalisés, avec deux modes de rendu.
+Le composant Select fournit une liste déroulante pour les formulaires. Utiliser les enfants JSX (`<option>`, `<optgroup>`) pour construire les options.
 
 ## Import
 ```tsx
-import { Select, SelectBase, SelectInput } from "@axa-fr/canopee-react/distributeur";
+import { Select, SelectInput } from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Composants
 
-### Select (composant intelligent)
-Détecte automatiquement les enfants ou la prop options.
+### Select
+Liste déroulante bas niveau à base d'enfants JSX.
 ```tsx
 import { Select } from "@axa-fr/canopee-react/distributeur";
-
-// Avec tableau d'options
-<Select 
-  options={[
-    { value: "pomme", label: "Pomme" },
-    { value: "banane", label: "Banane" }
-  ]}
-/>
 
 // Avec enfants
 <Select>
   <option value="pomme">Pomme</option>
   <option value="banane">Banane</option>
 </Select>
-```
-
-### SelectBase (bas niveau)
-Élément select principal avec logique de rendu des options.
-```tsx
-import { SelectBase } from "@axa-fr/canopee-react/distributeur";
-
-<SelectBase
-  options={[
-    { value: "1", label: "Option 1" },
-    { value: "2", label: "Option 2" }
-  ]}
-/>
 ```
 
 ### SelectInput (haute niveau)
@@ -61,13 +40,12 @@ import { SelectInput } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-### Select / SelectInput
+### SelectInput
 
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
 | `options` | `Option[]` | - | Tableau d'objets `{value, label}` |
 | `value` | `string` | - | Valeur sélectionnée |
-| `mode` | `"default" \| "base"` | `"default"` | Mode de rendu |
 | `id` | `string` | - | HTML id |
 | `name` | `string` | - | HTML name |
 | `label` | `string` | - | Label du champ |
@@ -139,24 +117,9 @@ const SelecteurCouleur = () => {
 />
 ```
 
-## Modes
-
-### Mode default (prop value)
-API simplifiée avec tableau d'options.
+### Select avec enfants JSX
 ```tsx
-<Select
-  mode="default"
-  options={[
-    { value: "opt1", label: "Option 1" },
-    { value: "opt2", label: "Option 2" }
-  ]}
-/>
-```
-
-### Mode base (enfants JSX)
-Contrôle total avec éléments option JSX.
-```tsx
-<Select mode="base">
+<Select id="taille" name="taille">
   <option value="">-- Sélectionner --</option>
   <option value="a">Option A</option>
   <option value="b">Option B</option>

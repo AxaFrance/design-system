@@ -44,7 +44,7 @@ type InputTextProps = ComponentProps<"input"> & {
 
 ```tsx
 import { InputText } from "@axa-fr/canopee-react/prospect";
-import { Svg } from "@axa-fr/canopee-react/prospect";
+import { Icon } from "@axa-fr/canopee-react/prospect";
 import euroIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
 
 // Basique
@@ -69,7 +69,7 @@ import euroIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
   label="Montant"
   type="number"
   name="amount"
-  unit={<Svg src={euroIcon} aria-label="en euros" />}
+  unit={<Icon src={euroIcon} size="S" variant="secondary" aria-label="en euros" />}
 />
 
 // Avec description et bouton more
