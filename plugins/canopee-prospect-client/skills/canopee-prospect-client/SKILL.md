@@ -56,7 +56,7 @@ Jamais de sélecteurs par tag HTML ou ID.
 
 **Messages de formulaire — API unifiée `message` + `messageType`**
 
-Les props `error` et `success` sont **@deprecated** sur tous les inputs. Utiliser :
+Tous les inputs utilisent `message` et `messageType` pour afficher les messages d'état :
 
 ```tsx
 <InputText message="Valeur invalide" messageType="error" />

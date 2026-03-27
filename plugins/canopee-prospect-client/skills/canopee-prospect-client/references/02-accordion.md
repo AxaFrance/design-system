@@ -36,7 +36,6 @@ type AccordionProps = {
   isPlain?: boolean;                      // Variante sans style de fond
   // + toutes les props de AccordionCore sauf `summary`
   open?: boolean;
-  /** @deprecated */ isOpen?: boolean;
   onClick?: MouseEventHandler<HTMLElement>;
   showArrowAsClickIcon?: boolean;
   arrowIconVariant?: IconVariants;
@@ -145,7 +144,6 @@ import { AccordionCore } from "@axa-fr/canopee-react/prospect";
 ```tsx
 type AccordionCoreProps = {
   summary: ReactNode;                             // Contenu du <summary> (obligatoire)
-  /** @deprecated */ isOpen?: boolean;            // Remplacé par open (HTML natif)
   open?: boolean;                                 // État ouvert/fermé
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: MouseEventHandler<HTMLElement>;       // Intercepte le clic (empêche toggle natif)

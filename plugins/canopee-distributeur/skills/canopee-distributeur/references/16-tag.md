@@ -1,11 +1,11 @@
-# Tag / Badge
+# Tag
 
 ## Overview
-Tag component displays labeled status indicators or categories with various color variants. Badge is a deprecated alias for Tag.
+Tag component displays labeled status indicators or categories with various color variants.
 
 ## Import
 ```tsx
-import { Tag, Badge } from "@axa-fr/canopee-react/distributeur";
+import { Tag } from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Props
@@ -13,7 +13,6 @@ import { Tag, Badge } from "@axa-fr/canopee-react/distributeur";
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `variant` | TagVariants | `"default"` | Color and style |
-| `classModifier` | `string` | - | CSS modifier (deprecated, use variant) |
 | `children` | `ReactNode` | - | Tag text/content |
 
 ## Variants
@@ -58,27 +57,6 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
   <Tag variant="information">JavaScript</Tag>
   <Tag variant="information">Web</Tag>
 </div>
-```
-
-## Deprecated Props
-
-`classModifier` is deprecated - use `variant` instead:
-```tsx
-// Old
-<Tag classModifier="success">Old</Tag>
-
-// New
-<Tag variant="success">New</Tag>
-```
-
-## Deprecated: Badge Alias
-
-Badge was renamed to Tag:
-```tsx
-import { Badge } from "@axa-fr/canopee-react/distributeur"; // Still works but deprecated
-
-<Badge>Content</Badge> // Still works
-<Tag>Content</Tag>     // Use this instead
 ```
 
 ## CSS Classes

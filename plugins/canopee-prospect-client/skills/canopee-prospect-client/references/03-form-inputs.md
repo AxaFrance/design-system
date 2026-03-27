@@ -3,7 +3,7 @@
 Tous les composants de cette section partagent le même pattern :
 - `label` : label du champ
 - `helper` : texte d'aide affiché sous le label
-- `message` + `messageType` : message d'état (remplace `error`/`success` désormais @deprecated)
+- `message` + `messageType` : message d'état
 - `containerProps` : props `GridContainerProps` pour la grille responsive (data-cols-*)
 - `required` : marqueur visuel requis + attribut HTML `required`
 - Supportent `ref` (forwardRef)
@@ -29,8 +29,6 @@ type InputTextProps = ComponentProps<"input"> & {
   classModifier?: string;
   label?: ReactNode;              // Label au-dessus du champ
   helper?: string;                // Texte d'aide (ex: "Format attendu : JJ/MM/AAAA")
-  /** @deprecated */ error?: string;
-  /** @deprecated */ success?: string;
   message?: ReactNode;            // Message d'état unifié
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps;
@@ -39,8 +37,6 @@ type InputTextProps = ComponentProps<"input"> & {
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
   sideButtonLabel?: ReactNode;    // Bouton secondaire dans le label (ex: "Modifier")
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  /** @deprecated */ buttonLabel?: ReactNode;
-  /** @deprecated */ onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 ```
 
@@ -117,8 +113,6 @@ type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
   classModifier?: string;
   label?: ReactNode;
-  /** @deprecated */ error?: string;
-  /** @deprecated */ success?: string;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
   placeholder?: string;           // Option désactivée en premier
@@ -129,8 +123,6 @@ type DropdownProps = ComponentPropsWithRef<"select"> & {
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
   sideButtonLabel?: ReactNode;
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  /** @deprecated */ buttonLabel?: ReactNode;
-  /** @deprecated */ onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 ```
 
@@ -173,7 +165,6 @@ import { TextArea } from "@axa-fr/canopee-react/prospect";
 type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ReactNode;
   helper?: string;
-  /** @deprecated */ error?: string;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps;
@@ -182,8 +173,6 @@ type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
   sideButtonLabel?: ReactNode;
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  /** @deprecated */ buttonLabel?: ReactNode;
-  /** @deprecated */ onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 ```
 
@@ -211,7 +200,7 @@ Sélecteur de date avec support du picker natif ou mode texte uniquement (`hideP
 
 ```tsx
 import { InputDate } from "@axa-fr/canopee-react/prospect";
-// ou client  (aussi exporté comme DateInput @deprecated dans client)
+// ou client
 ```
 
 ### Props
@@ -224,8 +213,6 @@ type InputDateProps = Omit<ComponentPropsWithRef<"input">, "value" | "min" | "ma
   min?: string;                   // Format ISO: "2020-01-01"
   max?: string;
   helper?: string;
-  /** @deprecated */ error?: string;
-  /** @deprecated */ success?: string;
   hidePicker?: boolean;           // Cache l'icône picker natif
   label: ReactNode;               // Obligatoire
   containerProps?: GridContainerProps;
@@ -234,8 +221,6 @@ type InputDateProps = Omit<ComponentPropsWithRef<"input">, "value" | "min" | "ma
   description?: ReactNode;
   moreButtonLabel?: ReactNode;
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  /** @deprecated */ buttonLabel?: ReactNode;
-  /** @deprecated */ onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 ```
 
@@ -278,8 +263,6 @@ import { InputPhone, type OptionType } from "@axa-fr/canopee-react/prospect";
 type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
   helper?: string;
-  /** @deprecated */ error?: string;
-  /** @deprecated */ success?: string;
   defaultCountry?: string;        // Code pays par défaut (ex: "FR")
   showSelect?: boolean;           // Affiche le sélecteur de pays (défaut: false)
   disabled?: boolean;
@@ -296,8 +279,6 @@ type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
   sideButtonLabel?: ReactNode;
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  /** @deprecated */ buttonLabel?: ReactNode;
-  /** @deprecated */ onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 ```
 

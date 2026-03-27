@@ -65,8 +65,7 @@ import { ProgressBarGroup } from "@axa-fr/canopee-react/prospect";
 ```tsx
 type ProgressBarGroupProps = {
   currentStep: number;            // Étape actuelle (1-based, obligatoire)
-  /** @deprecated Use stepsCount */ nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
-  stepsCount?: 2 | 3 | 4 | 5 | 6 | 7 | 8;  // Nombre total d'étapes (défaut via nbSteps ou 4)
+  stepsCount?: 2 | 3 | 4 | 5 | 6 | 7 | 8;  // Nombre total d'étapes (défaut: 4)
   currentStepProgress?: number;   // % de completion de l'étape courante (0-100)
   max?: number;                   // Valeur max de progress (défaut: 100)
   className?: string;

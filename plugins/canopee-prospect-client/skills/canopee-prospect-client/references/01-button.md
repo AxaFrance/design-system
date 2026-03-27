@@ -152,8 +152,6 @@ type LinkProps = {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
-  /** @deprecated Use variant instead */
-  classModifier?: string;
 } & ComponentPropsWithoutRef<"a">;
 ```
 
