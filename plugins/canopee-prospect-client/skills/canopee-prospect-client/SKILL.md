@@ -256,4 +256,4 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ---
 
-_Version : 2026.03.27_
+_Version : 2026.03.27-a_

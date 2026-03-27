@@ -37,10 +37,13 @@ Section individuelle déployable dans le composant Accordion.
 | `id` | `string` | Obligatoire | Identifiant unique de la carte |
 | `title` | `string \| ReactNode` | Obligatoire | En-tête/titre de la carte |
 | `open` | `boolean` | `false` | État initial ouvert |
+| `name` | `string` | - | Groupement pour mode radio (une seule ouvert) |
+| `onToggle` | `() => void` | - | Gestionnaire d'événement de déploiement/réduction |
 | `children` | `ReactNode` | - | Contenu repliable |
 | `actions` | `Action[]` | - | Boutons d'action |
 | `variant` | `"default" \| "white" \| "light"` | - | Surcharge optionnelle |
-| `classModifier` | `string` | - | Modificateur CSS additionnel |
+| `className` | `string` | - | Classes CSS additionnelles |
+| `classModifier` | `string` | ⚠️ DÉPRÉCIÉ | Modificateur CSS additionnel (remplacé par `variant`) |
 
 ## Type Action
 

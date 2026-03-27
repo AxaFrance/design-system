@@ -18,6 +18,7 @@ import { Message } from "@axa-fr/canopee-react/distributeur";
 | `closeButtonAriaLabel` | `string` | `"Close"` | Label d'accessibilité du bouton de fermeture |
 | `icon` | `string` | - | URL SVG d'icône personnalisée (remplace l'icône de la variante) |
 | `className` | `string` | - | Classes CSS additionnelles |
+| `classModifier` | `string \| "danger"` | ⚠️ DÉPRÉCIÉ | Modificateur CSS (remplacé par `variant`). Note: `"danger"` mappe à `"warning"` |
 | `children` | `ReactNode` | - | Contenu/corps du message |
 
 ## Utilisation de base

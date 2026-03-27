@@ -38,10 +38,11 @@ Modale spécialisée pour les dialogues de confirmation oui/non.
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
 | `size` | `"" \| "lg" \| "sm"` | `""` | Taille de la modale (vide = défaut) |
-| `onSubmit` | `() => void` | - | Gestionnaire de soumission/confirmation |
-| `onCancel` | `() => void` | - | Gestionnaire d'annulation/fermeture |
-| `onOutsideTap` | `() => void` | - | Gestionnaire de clic extérieur |
+| `onOutsideTap` | `(event: React.MouseEvent \| React.KeyboardEvent) => void` | **Obligatoire** | Gestionnaire de clic extérieur ou touche Échap |
+| `title` | `string` | - | Titre de la modale |
 | `children` | `ReactNode` | - | Contenu de la modale |
+| `className` | `string` | - | Classes CSS additionnelles |
+| `classModifier` | `string` | ⚠️ DÉPRÉCIÉ | Modificateur CSS (remplacé par `size`) |
 
 ### ModalHeader / ModalHeaderBase
 
@@ -85,7 +86,7 @@ const ModaleSimple = () => {
     <>
       <Button onClick={handleOuvrir}>Ouvrir la modale</Button>
       
-      <Modal ref={modalRef} onCancel={handleFermer}>
+      <Modal ref={modalRef} onOutsideTap={handleFermer}>
         <ModalHeader title="Titre de la modale" onClose={handleFermer} />
         <ModalBody>
           Ceci est le contenu de la modale.
@@ -138,15 +139,18 @@ const ModaleConfirmation = () => {
     modalRef.current?.close?.();
   };
   
+  const handleFermer = () => {
+    modalRef.current?.close?.();
+  };
+  
   return (
     <Modal 
       ref={modalRef} 
-      onSubmit={handleConfirmer}
-      onCancel={() => modalRef.current?.close?.()}
+      onOutsideTap={handleFermer}
     >
       <ModalHeader 
         title="Confirmer l'action" 
-        onClose={() => modalRef.current?.close?.()}
+        onClose={handleFermer}
       />
       <ModalBody>
         Êtes-vous sûr(e) de vouloir continuer ? Cette action est irréversible.
@@ -154,7 +158,7 @@ const ModaleConfirmation = () => {
       <ModalFooter>
         <Button 
           variant="secondary" 
-          onClick={() => modalRef.current?.close?.()}
+          onClick={handleFermer}
         >
           Annuler
         </Button>
@@ -240,13 +244,18 @@ const ModaleFormulaire = () => {
 ## BooleanModal (dialogue oui/non)
 
 ```tsx
-import { BooleanModal } from "@axa-fr/canopee-react/distributeur";
+import { useRef } from "react";
+import { BooleanModal, Button } from "@axa-fr/canopee-react/distributeur";
 
 const ConfirmationSuppression = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   
-  const handleSupprimer = () => {
+  const handleSupprimer = (event: React.MouseEvent | React.KeyboardEvent) => {
     console.log("Supprimé");
+    modalRef.current?.close?.();
+  };
+  
+  const handleAnnuler = (event: React.MouseEvent | React.KeyboardEvent) => {
     modalRef.current?.close?.();
   };
   
@@ -261,11 +270,12 @@ const ConfirmationSuppression = () => {
       
       <BooleanModal
         ref={modalRef}
+        id="delete-modal"
         title="Supprimer l'élément ?"
-        submitLabel="Supprimer"
-        cancelLabel="Conserver"
+        submitTitle="Supprimer"
+        cancelTitle="Conserver"
         onSubmit={handleSupprimer}
-        onCancel={() => modalRef.current?.close?.()}
+        onCancel={handleAnnuler}
       >
         Cet élément sera définitivement supprimé. Êtes-vous sûr(e) ?
       </BooleanModal>
@@ -280,14 +290,18 @@ const ConfirmationSuppression = () => {
 const ModaleIgnorable = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   
+  const handleFermer = () => {
+    modalRef.current?.close?.();
+  };
+  
   return (
     <Modal 
       ref={modalRef}
-      onOutsideTap={() => modalRef.current?.close?.()}
+      onOutsideTap={handleFermer}
     >
       <ModalHeader 
         title="Cliquer à l'extérieur pour fermer" 
-        onClose={() => modalRef.current?.close?.()}
+        onClose={handleFermer}
       />
       <ModalBody>
         Contenu ici. Cliquer à l'extérieur ou sur X pour fermer.
