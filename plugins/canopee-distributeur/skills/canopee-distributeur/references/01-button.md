@@ -114,13 +114,6 @@ const MyComponent = () => (
 );
 ```
 
-### Glyphicon Icons
-```tsx
-<Button leftIcon={<i className="glyphicon glyphicon-search" />}>
-  Search
-</Button>
-```
-
 ## Form Usage
 
 ### Submit Button

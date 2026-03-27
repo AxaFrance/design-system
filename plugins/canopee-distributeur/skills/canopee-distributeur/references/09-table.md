@@ -14,10 +14,10 @@ import { Table } from "@axa-fr/canopee-react/distributeur";
 Main table element.
 
 ### Table.THead
-Table head section (replaces deprecated `Table.Header`).
+Section d'en-tête du tableau.
 
 ### Table.TBody
-Table body section (replaces deprecated `Table.Body`).
+Section du corps du tableau.
 
 ### Table.Tr
 Table row element.
@@ -270,15 +270,6 @@ const PaginatedTable = () => {
     </>
   );
 };
-```
-
-## Deprecated: Table.Header and Table.Body
-
-Old prop names:
-```tsx
-// Deprecated
-Table.Header   // Use Table.THead instead
-Table.Body     // Use Table.TBody instead
 ```
 
 ## Accessibility

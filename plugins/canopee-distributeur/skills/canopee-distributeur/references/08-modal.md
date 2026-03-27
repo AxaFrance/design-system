@@ -38,7 +38,6 @@ Specialized modal for yes/no confirmation dialogs.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `"" \| "lg" \| "sm"` | `""` | Modal size (empty = default) |
-| `classModifier` | `string` | - | CSS modifier (deprecated, use size) |
 | `onSubmit` | `() => void` | - | Submit/confirm handler |
 | `onCancel` | `() => void` | - | Cancel/close handler |
 | `onOutsideTap` | `() => void` | - | Click outside handler |
@@ -333,18 +332,6 @@ const ArticleModal = () => {
     </Modal>
   );
 };
-```
-
-## Deprecated: classModifier
-
-The `classModifier` prop is deprecated in favor of `size`:
-
-```tsx
-// Old (deprecated)
-<Modal classModifier="lg">Content</Modal>
-
-// New (recommended)
-<Modal size="lg">Content</Modal>
 ```
 
 ## Accessibility

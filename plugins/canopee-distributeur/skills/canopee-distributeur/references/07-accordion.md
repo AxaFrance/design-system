@@ -29,7 +29,6 @@ Individual expandable section within accordion.
 | `onlyOne` | `boolean` | `false` | Only one card open at a time |
 | `children` | `CollapseCard[]` | Required | Array of CollapseCard components |
 | `className` | `string` | - | Additional CSS classes |
-| `classModifier` | `string` | - | CSS modifier (deprecated, use variant) |
 
 ### CollapseCard
 

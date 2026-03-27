@@ -46,8 +46,6 @@ import "@axa-fr/canopee-css/client/common/tokens.css";
 --white-gray-1000  /* hsl(0, 0%, 98%) */
 ```
 
-> ⚠️ Les alias legacy (`--color-white`, `--axa-blue-100`, `--dark`…) sont dépréciés. Utiliser les tokens `--blue-*` et `--white-*` directement.
-
 ### Couleurs sémantiques
 
 ```css

@@ -254,29 +254,6 @@ useEffect(() => {
 )}
 ```
 
-## Deprecated: classModifier Prop
-
-The `classModifier` prop is deprecated in favor of `variant`:
-
-```tsx
-// Old (deprecated)
-<Message classModifier="error" title="Error">Error message</Message>
-
-// New (recommended)
-<Message variant="error" title="Error">Error message</Message>
-```
-
-## Deprecated: Alert Alias
-
-`Alert` was renamed to `Message` for UX consistency:
-
-```tsx
-import { Alert } from "@axa-fr/canopee-react/distributeur"; // Still works but deprecated
-
-// Use this instead:
-import { Message } from "@axa-fr/canopee-react/distributeur";
-```
-
 ## Accessibility
 - Icon color provides visual distinction
 - Title clearly states message purpose

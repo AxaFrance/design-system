@@ -19,15 +19,11 @@ import { ItemLabel } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type ItemLabelProps = ComponentProps<"label"> & {
-  /** @deprecated use children instead */ label?: ReactNode;
   description?: ReactNode;               // Texte descriptif additonnel
   required?: boolean;                    // Affiche un * visuel + attribut HTML required
-  /** @deprecated use htmlFor instead */ inputId?: string;
   sideButtonLabel?: ReactNode;           // Label bouton secondaire (ex: "Modifier")
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
   sideButtonProps?: Partial<ButtonProps>;
-  /** @deprecated use moreButtonLabel instead */ buttonLabel?: ReactNode;
-  /** @deprecated use onMoreButtonClick instead */ onButtonClick?: MouseEventHandler<HTMLButtonElement>;
   moreButtonLabel?: ReactNode;           // Label bouton info (ouvre un tooltip/modal)
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
   moreButtonProps?: Partial<ButtonProps>;

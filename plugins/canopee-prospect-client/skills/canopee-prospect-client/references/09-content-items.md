@@ -22,7 +22,6 @@ import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
   title?: string;
   subtitle1?: string;
   subtitle2?: string;
-  /** @deprecated Use iconProps */ icon?: string;  // SVG src
   iconProps?: IconProps;
 }
 ```

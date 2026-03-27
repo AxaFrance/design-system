@@ -53,6 +53,7 @@ Ton rôle va être de construire un skill Copilot parfait pour rendre utilisable
   - comment afficher des icônes, tu trouveras l'explication dans le fichier `/README.md` à la racine du projet dans "## Utilisation des icônes".
   - comment démarrer un projet avec le design system **Canopée**, tu trouveras l'explication dans le fichier `/README.md` à la racine du projet dans "## Démarrer le projet".
 - Tu dois respecter les règles de rédaction d'un skill Copilot. Tu trouveras un skill appelé "skill-creator" dans `.github/skills/skill-creator` qui te permettra de t'aider à écrire ce skill.
+- Tu ne dois pas recommander des pratiques qui sont dépreciées comme les glyphicons. Si tu trouves des mentions de pratiques dépréciées dans la documentation que tu consultes, tu devras les corriger et ne pas les inclure du tout dans la documentation que tu rédigeras pour le skill.
 
 ## Output
 

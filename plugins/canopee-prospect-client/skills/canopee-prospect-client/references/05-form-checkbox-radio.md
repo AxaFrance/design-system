@@ -16,8 +16,6 @@ import { Checkbox } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type CheckboxProps = {
-  /** @deprecated Use aria-errormessage instead */ errorId?: string;
-  /** @deprecated Use aria-invalid instead */ hasError?: boolean;
 } & Omit<ComponentProps<"input">, "disabled" | "type">;
 // Tous les attributs <input type="checkbox"> transmis
 ```
@@ -39,7 +37,6 @@ import { CheckboxText } from "@axa-fr/canopee-react/prospect";
 ```tsx
 type CheckboxTextProps = {
   label: string | ReactNode;      // Label affiché à droite de la checkbox (obligatoire)
-  /** @deprecated Use message + messageType instead */ errorMessage?: string;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps;
@@ -72,7 +69,6 @@ Groupe de checkboxes en mode carte (vertical ou horizontal). Peut fonctionner en
 
 ```tsx
 import { CardCheckbox } from "@axa-fr/canopee-react/prospect";
-// (aussi exporté sous le nom CheckboxCard — @deprecated)
 ```
 
 ### Props
@@ -83,9 +79,6 @@ type CardCheckboxProps = {
   mode?: "text";                      // Mode CheckboxText au lieu de cartes
   label: ReactNode;                   // Label du groupe (légende)
   description?: ReactNode;
-  /** @deprecated */ labelGroup?: string;
-  /** @deprecated */ descriptionGroup?: string;
-  /** @deprecated */ isRequired?: boolean;
   required?: boolean;
   options: {
     label: ReactNode;
@@ -98,7 +91,6 @@ type CardCheckboxProps = {
   }[];
   name: string;                       // Attribut name du groupe
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  /** @deprecated */ error?: string;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps<"fieldset">;
@@ -197,33 +189,23 @@ type RadioProps = Omit<ComponentProps<"input">, "disabled" | "type"> & {
 
 ## CardRadioGroup
 
-Groupe de radios en mode cartes. Remplace l'ancien `CardRadio` (@deprecated).
+Groupe de radios en mode cartes.
 
 ### Import
 
 ```tsx
 import { CardRadioGroup } from "@axa-fr/canopee-react/prospect";
-// (aussi exporté sous CardRadio — @deprecated)
 ```
 
 ### Props
 
 ```tsx
 type CardRadioGroupProps = {
-  /**
-   * @deprecated Use position instead.
-   * @deprecated Use cardStyle instead.
-   */
-  type?: "vertical" | "horizontal";
   cardStyle?: "vertical" | "horizontal";  // Orientation des cartes
   position?: "line" | "column";           // "column" pour vertical, "line" pour horizontal
   label: ReactNode;                        // Légende du groupe (obligatoire)
   description?: ReactNode;
-  /** @deprecated */ labelGroup?: string;
-  /** @deprecated */ descriptionGroup?: string;
-  /** @deprecated */ isRequired?: boolean;
   required?: boolean;
-  /** @deprecated */ value?: number | string;
   options: {
     label: ReactNode;
     value: string | number;
@@ -237,7 +219,6 @@ type CardRadioGroupProps = {
   }[];
   name: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  /** @deprecated */ error?: ReactNode;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps<"fieldset">;
@@ -301,7 +282,6 @@ import { CardRadioOption } from "@axa-fr/canopee-react/prospect";
 ```tsx
 type CardRadioOptionProps = {
   label: ReactNode;
-  /** @deprecated Use position instead */ type?: "vertical" | "horizontal";
   position?: "vertical" | "horizontal";
   icon?: string;                    // SVG src
   src?: string;                     // URL image (BasePicture)

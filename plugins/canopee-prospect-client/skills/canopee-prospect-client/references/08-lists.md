@@ -163,10 +163,8 @@ type ContentItemDuoProps = {
   value: ReactNode;
   buttonText?: string;            // Texte du bouton modifier (si omit, pas de bouton)
   onButtonClick?: () => void;
-  /** @deprecated Use position instead */ isVertical?: boolean;
   position?: "horizontal" | "vertical";  // (défaut: "horizontal")
   size?: "small" | "large";             // (défaut: "large")
-  /** @deprecated Use size or className */ classModifier?: string;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
 } & ComponentProps<"div">;
