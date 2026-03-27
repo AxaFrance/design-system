@@ -1,7 +1,7 @@
 # Démarrer un projet avec Canopée Distributeur
 
 ## Objectif
-Ce guide explique comment démarrer rapidement un projet utilisant l’univers **Distributeur** de Canopée, et comment lancer le monorepo Design System en local pour contribuer.
+Ce guide explique comment démarrer rapidement un projet utilisant l’univers **Distributeur** de Canopée.
 
 ## 1) Installer les packages Canopée
 
@@ -58,31 +58,7 @@ export const App = () => {
 };
 ```
 
-## 5) Lancer le monorepo Design System en local (contribution)
-
-Ces commandes viennent du `README.md` racine du monorepo :
-
-```bash
-npm run dev
-```
-Démarre l’ensemble du projet (build CSS + storybooks).
-
-```bash
-npm run dev:distributeur
-```
-Démarre uniquement la partie Distributeur.
-
-```bash
-npm run build
-```
-Génère le build global.
-
-```bash
-npm run build:distributeur
-```
-Génère le build Distributeur.
-
-## 6) Vérifications recommandées
+## 5) Vérifications recommandées
 - Vérifier l’import `@axa-fr/canopee-react/distributeur`.
 - Vérifier la présence des tokens CSS (`tokens.css`) si personnalisation visuelle.
 - Vérifier que les icônes SVG sont bien résolues (cf. documentation icônes).

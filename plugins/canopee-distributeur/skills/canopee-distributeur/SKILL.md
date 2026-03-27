@@ -41,7 +41,7 @@ Jamais de sélecteurs par tag HTML ou par ID.
 
 ## Installation et démarrage
 
-Pour le détail complet (commandes `dev`, `build`, gestion monorepo) → lire **[references/19-demarrer-un-projet.md](./references/19-demarrer-un-projet.md)**
+Pour le détail complet (installation, configuration CSS, application minimale) → lire **[references/19-demarrer-un-projet.md](./references/19-demarrer-un-projet.md)**
 
 ```bash
 npm install @axa-fr/canopee-react@latest @axa-fr/canopee-css@latest
@@ -162,4 +162,4 @@ Tous les composants respectent WCAG 2.1. Rappels lors de la génération de code
 
 ---
 
-_Version : 2026.03.25_
+_Version : 2026.03.27_

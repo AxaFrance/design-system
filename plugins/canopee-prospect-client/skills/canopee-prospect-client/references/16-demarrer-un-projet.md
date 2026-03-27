@@ -99,32 +99,6 @@ Il est possible de n'importer que les styles CSS d'un composant spécifique :
 @import "@axa-fr/canopee-css/client/Button/buttonLF.css";
 ```
 
-## Commandes du monorepo Design System (développement interne)
-
-Ces commandes sont utiles si vous travaillez **directement dans le monorepo** du design system AXA.
-
-```bash
-# Démarrer toutes les parties du projet
-npm run dev
-
-# Démarrer uniquement le Storybook Prospect
-npm run dev:prospect
-
-# Démarrer uniquement le Storybook Client
-npm run dev:client
-
-# Build global
-npm run build
-
-# Build uniquement Prospect
-npm run build:prospect
-
-# Build uniquement Client
-npm run build:client
-```
-
-Ces commandes démarrent automatiquement le build CSS et le Storybook React.
-
 ## Typescript
 
 Les types sont tous exportés depuis les entrées thématiques :

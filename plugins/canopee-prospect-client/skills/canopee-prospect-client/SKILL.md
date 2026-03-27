@@ -57,7 +57,7 @@ Tous les inputs utilisent `message` et `messageType` pour afficher les messages 
 
 ## Installation
 
-Pour le détail complet (installation next/latest, app minimale, commandes monorepo, CSS uniquement) → lire **[references/16-demarrer-un-projet.md](./references/16-demarrer-un-projet.md)**
+Pour le détail complet (installation next/latest, app minimale, CSS uniquement) → lire **[references/16-demarrer-un-projet.md](./references/16-demarrer-un-projet.md)**
 
 ```bash
 npm install @axa-fr/canopee-react@latest @axa-fr/canopee-css@latest
@@ -250,10 +250,10 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 | Guide            | Référence                                                         | Cas d'usage                                           |
 | ---------------- | ----------------------------------------------------------------- | ----------------------------------------------------- |
-| Démarrage projet | [16-demarrer-un-projet.md](./references/16-demarrer-un-projet.md) | Installation, app minimale, commandes monorepo        |
+| Démarrage projet | [16-demarrer-un-projet.md](./references/16-demarrer-un-projet.md) | Installation, app minimale, configuration CSS         |
 | Icônes           | [17-icones.md](./references/17-icones.md)                         | Material Symbols, Svg, Icon, ClickIcon, accessibilité |
 | Tokens CSS       | [18-tokens-css.md](./references/18-tokens-css.md)                 | Variables CSS, surcharge, imports par composant       |
 
 ---
 
-_Version : 2026.03.25_
+_Version : 2026.03.27_
