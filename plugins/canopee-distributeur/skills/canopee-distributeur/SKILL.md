@@ -191,4 +191,4 @@ Tous les composants respectent WCAG 2.1. Rappels lors de la génération de code
 
 ---
 
-_Version : 2026.04.02-d_
+_Version : 2026.04.02-e_
