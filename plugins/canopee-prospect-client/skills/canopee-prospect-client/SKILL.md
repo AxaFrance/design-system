@@ -64,15 +64,13 @@ npm install @axa-fr/canopee-react@latest @axa-fr/canopee-css@latest
 npm install @material-symbols/svg-400   # peer dependency pour les icônes
 ```
 
-Import de base dans l'app (**une seule fois**, en point d'entrée) — inclut automatiquement reboot CSS, tokens et grille :
+Import de base dans l'app — l'import depuis l'entry point charge automatiquement le reboot CSS, les tokens et la grille :
 
 ```tsx
 // Thème Prospect
-import "@axa-fr/canopee-react/prospect";
 import { Button, InputText } from "@axa-fr/canopee-react/prospect";
 
 // Thème Client
-import "@axa-fr/canopee-react/client";
 import { Button, InputText } from "@axa-fr/canopee-react/client";
 ```
 
@@ -252,4 +250,4 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ---
 
-_Version : 2026.03.27-b_
+_Version : 2026.04.02_
