@@ -36,24 +36,33 @@ Si vous utilisez seulement la couche CSS :
 
 ```tsx
 import "@axa-fr/canopee-css/distributeur/common/tokens.css";
-import { Button, TextInput } from "@axa-fr/canopee-react/distributeur";
+import {
+  Button,
+  HeaderTitle,
+  MainContainer,
+  TextInput,
+} from "@axa-fr/canopee-react/distributeur";
 import { useState } from "react";
 
 export const App = () => {
   const [name, setName] = useState("");
 
   return (
-    <main className="af-container">
-      <h1>Mon projet Distributeur</h1>
-      <TextInput
-        id="name"
-        name="name"
-        label="Nom"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-      />
-      <Button variant="primary">Valider</Button>
-    </main>
+    <>
+      <HeaderTitle title="Mon projet Distributeur" />
+      <MainContainer>
+        <form className="af-form">
+          <TextInput
+            id="name"
+            name="name"
+            label="Nom"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+          <Button variant="primary">Valider</Button>
+        </form>
+      </MainContainer>
+    </>
   );
 };
 ```
