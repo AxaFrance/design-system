@@ -53,8 +53,10 @@ import { SelectInput } from "@axa-fr/canopee-react/distributeur";
 | `disabled` | `boolean` | `false` | Désactive la liste |
 | `readOnly` | `boolean` | `false` | Mode lecture seule |
 | `required` | `boolean` | `false` | Champ obligatoire |
-| `message` | `string` | - | Message de validation |
-| `messageType` | `"error" \| "info" \| "success"` | - | Style du message |
+| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 | `onChange` | `function` | - | Gestionnaire de changement |
 | `onBlur` | `function` | - | Gestionnaire de perte de focus |
 | `children` | `ReactNode` | - | Éléments JSX d'options |
@@ -165,6 +167,7 @@ const handleChange = (e) => {
   onChange={handleChange}
   message={erreur}
   messageType={erreur ? "error" : undefined}
+  forceDisplayMessage={Boolean(erreur)}
   options={[
     { value: "admin", label: "Admin" },
     { value: "user", label: "Utilisateur" }
@@ -182,8 +185,7 @@ const handleChange = (e) => {
     { value: "pdf", label: "PDF" },
     { value: "doc", label: "Document Word" }
   ]}
-  message="Sélectionnez le format du document"
-  messageType="info"
+  helpMessage="Sélectionnez le format du document"
 />
 ```
 

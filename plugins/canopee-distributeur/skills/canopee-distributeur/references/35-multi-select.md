@@ -46,7 +46,10 @@ Wrapper complet avec label et gestion des erreurs.
 | `selectedLimit` | `number` | - | Nombre maximum de sélections |
 | `selectedLimitLabel` | `string` | - | Message affiché quand la limite est atteinte |
 | `required` | `boolean` | `false` | Champ obligatoire |
-| `message` | `string` | - | Message d'erreur |
+| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 
 ## Utilisation
 

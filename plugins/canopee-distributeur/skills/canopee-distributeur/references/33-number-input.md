@@ -29,8 +29,10 @@ Wrapper complet avec label et gestion des erreurs.
 | `min` | `number` | - | Valeur minimale |
 | `max` | `number` | - | Valeur maximale |
 | `step` | `number` | - | Pas d'incrément |
-| `message` | `string` | - | Message d'erreur |
-| `messageType` | `"error" \| "success" \| "info"` | - | Type du message |
+| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 
 Tous les attributs HTML standard de `<input type="number">` sont supportés.
 
@@ -80,5 +82,6 @@ import { NumberInput } from "@axa-fr/canopee-react/distributeur";
   step={100}
   message={erreurs.montant}
   messageType="error"
+  forceDisplayMessage={Boolean(erreurs.montant)}
 />
 ```

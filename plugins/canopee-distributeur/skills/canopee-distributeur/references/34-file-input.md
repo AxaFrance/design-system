@@ -44,7 +44,9 @@ Wrapper complet avec label, tableau des fichiers ajoutés et gestion des erreurs
 | `maxSize` | `number` | `20000000` | Taille maximale en octets (20 Mo par défaut) |
 | `accept` | `Accept` | - | Types MIME acceptés (format react-dropzone) |
 | `disabled` | `boolean` | `false` | Champ désactivé |
-| `message` | `string` | - | Message d'erreur global |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
 
 ### File (bas niveau)
 
