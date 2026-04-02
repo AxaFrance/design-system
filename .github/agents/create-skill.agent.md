@@ -59,6 +59,7 @@ Ton rôle va être de construire un skill Copilot parfait pour rendre utilisable
 - A chaque fois que tu t'exécutes, n'oublie pas de mettre à jour la version du skill que tu crées ou modifies en suivant les instructions de la section "Instructions" ci-dessus.
 - Tu vas faire attention de documenter seulement comment on utilise le Design System, pas comment on y contribue.
 - Parfois certaines props ne sont pas mentionnées dans las doc `.mdx` mais sont bien présentes dans les props du composants ou utilisée dans la story. Dans ce cas tu vas devoir interpréter et expliquer toi même ce qu'elle fait. Si tu trouves des erreurs ou des oublis, corrige-les pour t'assurer que la documentation est complète et précise. Tu feras attention d'utiliser que de vrais props qui existent et pas des props que tu aurais halluciné. Si tu trouves des erreurs ou des hallucinations dans la documentation que tu as rédigée, corrige-les pour t'assurer que la documentation finale est de haute qualité et facile à comprendre pour les développeurs qui utiliseront le skill.
+- Tu dois resepecter les types voulus dans la doc initiales ou dans les stories. Par exemple si dans la story une prop est de type `HTMLDialogElement` tu ne peux pas utiliser de `HTMLDivElement`
 
 ## Output
 
