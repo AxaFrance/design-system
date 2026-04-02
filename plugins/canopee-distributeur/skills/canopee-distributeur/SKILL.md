@@ -155,21 +155,21 @@ Disponibles via `@axa-fr/canopee-react/distributeur-experimental` — API instab
 
 ### Structure et feedback
 
-| Composant                            | Référence                                                       | Cas d'usage                                        |
-| ------------------------------------ | --------------------------------------------------------------- | -------------------------------------------------- |
-| `Message`                            | [06-message.md](./references/06-message.md)                     | Alertes error/warning/info/success, dismissible    |
-| `Accordion` / `CollapseCard`         | [07-accordion.md](./references/07-accordion.md)                 | Sections dépliables, variantes default/white/light |
-| `Modal` / `BooleanModal`             | [08-modal.md](./references/08-modal.md)                         | Fenêtres modales, tailles sm/default/lg            |
-| `Table`                              | [09-table.md](./references/09-table.md)                         | Tableaux avec THead/TBody/Th/Td, pagination        |
-| `Tabs`                               | [12-tabs.md](./references/12-tabs.md)                           | Navigation par onglets                             |
-| `Steps` / `VerticalStep`             | [13-steps.md](./references/13-steps.md)                         | Indicateur de progression horizontale/verticale    |
-| `Restitution` / `SectionRestitution` | [14-restitution.md](./references/14-restitution.md)             | Affichage lecture seule label/valeur               |
-| `Popover`                            | [23-popover.md](./references/23-popover.md)                     | Infobulle au clic ou au survol                     |
-| `HelpButton`                         | [24-help-button.md](./references/24-help-button.md)             | Bouton d'aide contextuelle (wrap Popover)          |
-| `Loader`                             | [25-loader.md](./references/25-loader.md)                       | Indicateur de chargement avec overlay              |
-| `CardData`                           | [26-card-data.md](./references/26-card-data.md)                 | Carte de données avec en-tête structuré            |
-| `EditorialMessage`                   | [27-editorial-message.md](./references/27-editorial-message.md) | Message éditorial (écologie, promo, info)          |
-| `Summary`                            | [28-summary.md](./references/28-summary.md)                     | Récapitulatif des erreurs de formulaire            |
+| Composant                                                   | Référence                                                       | Cas d'usage                                           |
+| ----------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------- |
+| `Message`                                                   | [06-message.md](./references/06-message.md)                     | Alertes error/warning/info/success, dismissible       |
+| `Accordion` / `CollapseCard`                                | [07-accordion.md](./references/07-accordion.md)                 | Sections dépliables, variantes default/white/light    |
+| `Modal` / `BooleanModal`                                    | [08-modal.md](./references/08-modal.md)                         | Fenêtres modales, tailles sm/default/lg               |
+| `Table`                                                     | [09-table.md](./references/09-table.md)                         | Tableaux avec THead/TBody/Th/Td, pagination           |
+| `Tabs`                                                      | [12-tabs.md](./references/12-tabs.md)                           | Navigation par onglets                                |
+| `Steps` / `VerticalStep`                                    | [13-steps.md](./references/13-steps.md)                         | Indicateur de progression horizontale/verticale       |
+| `Restitution` / `SectionRestitution` / `ArticleRestitution` | [14-restitution.md](./references/14-restitution.md)             | Affichage récapitulatif label/valeur en lecture seule |
+| `Popover`                                                   | [23-popover.md](./references/23-popover.md)                     | Infobulle au clic ou au survol                        |
+| `HelpButton`                                                | [24-help-button.md](./references/24-help-button.md)             | Bouton d'aide contextuelle (wrap Popover)             |
+| `Loader`                                                    | [25-loader.md](./references/25-loader.md)                       | Indicateur de chargement avec overlay                 |
+| `CardData`                                                  | [26-card-data.md](./references/26-card-data.md)                 | Carte de données avec en-tête structuré               |
+| `EditorialMessage`                                          | [27-editorial-message.md](./references/27-editorial-message.md) | Message éditorial (écologie, promo, info)             |
+| `Summary`                                                   | [28-summary.md](./references/28-summary.md)                     | Récapitulatif des erreurs de formulaire               |
 
 ## Variants rapides à mémoriser
 
@@ -191,4 +191,4 @@ Tous les composants respectent WCAG 2.1. Rappels lors de la génération de code
 
 ---
 
-_Version : 2026.04.02-c_
+_Version : 2026.04.02-d_
