@@ -17,13 +17,15 @@ Tous les attributs HTML standard du `<main>` sont supportés (`id`, `className`,
 ## Utilisation
 
 ```tsx
-import { MainContainer } from "@axa-fr/canopee-react/distributeur";
+import { HeaderTitle, MainContainer } from "@axa-fr/canopee-react/distributeur";
 
 const App = () => (
-  <MainContainer>
-    <h1>Bienvenue</h1>
-    <p>Contenu de la page...</p>
-  </MainContainer>
+  <>
+    <HeaderTitle title="Bienvenue" />
+    <MainContainer>
+      <p>Contenu de la page...</p>
+    </MainContainer>
+  </>
 );
 
 // Avec aria-label pour accessibilité

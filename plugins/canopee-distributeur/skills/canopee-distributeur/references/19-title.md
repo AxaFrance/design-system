@@ -20,7 +20,7 @@ import { Title } from "@axa-fr/canopee-react/distributeur";
 
 Tous les attributs HTML standard du `<h2>` (ou du heading choisi) sont supportés.
 
-> **Note :** Le composant ne supporte pas `h1`. Pour les titres de page, utiliser directement la balise HTML `<h1>`.
+> **Note :** Le composant `Title` ne supporte pas `h1`. Pour les titres de page, utiliser le composant `HeaderTitle` (cf. [10-header.md](./10-header.md)).
 
 ## Utilisation
 
