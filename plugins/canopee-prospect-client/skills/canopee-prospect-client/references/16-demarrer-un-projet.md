@@ -16,35 +16,27 @@ npm install @axa-fr/canopee-react@next @axa-fr/canopee-css@next
 
 ## Imports dans l'application
 
-Importer **une seule fois** l'entrée thématique à la racine de l'application (ex : `main.tsx` / `App.tsx`). Cet import inclut automatiquement les CSS reboot, les tokens et la grille.
+Importer **une seule fois** l'entrée thématique à la racine de l'application (ex : `main.tsx` / `App.tsx`). Cet import inclut automatiquement les CSS reboot, les tokens et la grille. Un simple import destructuré de composant suffit — il déclenche les mêmes side-effects CSS.
 
 ### Thème Prospect (ex-Apollo)
 
 ```tsx
-import "@axa-fr/canopee-react/prospect";
-// Importe automatiquement :
+// L'import depuis cet entry point charge automatiquement :
 //   @axa-fr/canopee-css/prospect/common/reboot.css
 //   @axa-fr/canopee-css/prospect/common/tokens.css
 //   @axa-fr/canopee-css/prospect/Grid/Grid.css
 //   @fontsource/source-sans-pro
+import { Button, InputText, Modal } from "@axa-fr/canopee-react/prospect";
 ```
 
 ### Thème Client (ex-Look & Feel)
 
 ```tsx
-import "@axa-fr/canopee-react/client";
-// Importe automatiquement :
+// L'import depuis cet entry point charge automatiquement :
 //   @axa-fr/canopee-css/client/common/rebootLF.css
 //   @axa-fr/canopee-css/client/common/tokens.css
 //   @axa-fr/canopee-css/client/Grid/Grid.css
 //   @fontsource/source-sans-pro
-```
-
-Puis importer les composants depuis le thème choisi :
-
-```tsx
-import { Button, InputText, Modal } from "@axa-fr/canopee-react/prospect";
-// ou
 import { Button, InputText, Modal } from "@axa-fr/canopee-react/client";
 ```
 
@@ -52,7 +44,6 @@ import { Button, InputText, Modal } from "@axa-fr/canopee-react/client";
 
 ```tsx
 // main.tsx
-import "@axa-fr/canopee-react/prospect";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
@@ -66,6 +57,8 @@ createRoot(document.getElementById("root")!).render(
 
 ```tsx
 // App.tsx
+// L'import du premier composant depuis cet entry point
+// déclenche automatiquement le chargement des CSS globaux (reboot, tokens, grille)
 import { Button, InputText } from "@axa-fr/canopee-react/prospect";
 import { useState } from "react";
 
