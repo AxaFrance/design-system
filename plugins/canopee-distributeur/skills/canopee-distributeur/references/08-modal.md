@@ -71,7 +71,7 @@ import { useRef } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "@axa-fr/canopee-react/distributeur";
 
 const ModaleSimple = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   
   const handleOuvrir = () => {
     modalRef.current?.showModal?.();
@@ -131,7 +131,7 @@ const ModaleSimple = () => {
 
 ```tsx
 const ModaleConfirmation = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   
   const handleConfirmer = () => {
     console.log("Action confirmée");
@@ -177,7 +177,7 @@ const ModaleConfirmation = () => {
 
 ```tsx
 const ModaleFormulaire = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   const [formData, setFormData] = useState({ nom: "", email: "" });
   
   const handleSoumettre = (e: React.FormEvent) => {
@@ -287,7 +287,7 @@ const ConfirmationSuppression = () => {
 
 ```tsx
 const ModaleIgnorable = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   
   const handleFermer = () => {
     modalRef.current?.close?.();
@@ -314,7 +314,7 @@ const ModaleIgnorable = () => {
 
 ```tsx
 const ModaleArticle = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   
   return (
     <Modal ref={modalRef} size="lg">
