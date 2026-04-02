@@ -39,6 +39,33 @@ Jamais de sélecteurs par tag HTML ou par ID.
 
 **Composants hauts niveau d'abord** — utilise `TextInput` plutôt que `Text`, `SelectInput` pour les formulaires complets, sauf besoin explicite du bas niveau.
 
+**Messages de formulaire — `forceDisplayMessage` obligatoire**
+
+Les composants formulaire haut niveau (`TextInput`, `SelectInput`, `TextareaInput`, `DateInput`, `NumberInput`, `PassInput`, `CheckboxInput`, `RadioInput`, `ChoiceInput`, `MultiSelectInput`, `FileInput`) gèrent deux types de messages :
+
+- **`helpMessage`** : message d'aide affiché par défaut sous le champ (texte gris discret).
+- **`message`** + **`messageType`** + **`forceDisplayMessage={true}`** : message de statut (erreur, succès, avertissement) qui **remplace** `helpMessage` quand il est activé.
+
+Sans `forceDisplayMessage={true}`, le `message` ne s'affiche jamais. Voici le pattern à suivre systématiquement :
+
+```tsx
+// Message d'aide (affiché par défaut)
+<TextInput
+  label="Nom"
+  helpMessage="Saisissez votre nom complet"
+/>
+
+// Message de statut (erreur, succès, avertissement)
+<TextInput
+  label="Nom"
+  message="Ce champ est obligatoire"
+  messageType={MessageTypes.error}
+  forceDisplayMessage={true}
+/>
+```
+
+`MessageTypes` est un enum exporté depuis `@axa-fr/canopee-react/distributeur` avec les valeurs : `error`, `success`, `warning`.
+
 ## Installation et démarrage
 
 Pour le détail complet (installation, configuration CSS, application minimale) → lire **[references/38-demarrer-un-projet.md](./references/38-demarrer-un-projet.md)**
@@ -164,4 +191,4 @@ Tous les composants respectent WCAG 2.1. Rappels lors de la génération de code
 
 ---
 
-_Version : 2026.03.27-d_
+_Version : 2026.04.02_

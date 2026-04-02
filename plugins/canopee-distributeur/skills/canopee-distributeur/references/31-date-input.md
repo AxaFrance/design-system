@@ -27,8 +27,10 @@ Wrapper complet avec label et gestion des erreurs. Accepte `value` comme `Date` 
 | `defaultValue` | `Date \| string` | - | Valeur initiale non contrôlée |
 | `required` | `boolean` | `false` | Champ obligatoire |
 | `disabled` | `boolean` | `false` | Champ désactivé |
-| `message` | `string` | - | Message d'erreur |
-| `messageType` | `"error" \| "success" \| "info"` | - | Type du message |
+| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 | `min` | `string` | - | Date minimale (format YYYY-MM-DD) |
 | `max` | `string` | - | Date maximale (format YYYY-MM-DD) |
 
@@ -67,5 +69,6 @@ import { DateInput } from "@axa-fr/canopee-react/distributeur";
   max="2026-12-31"
   message={erreurs.rdv}
   messageType="error"
+  forceDisplayMessage={Boolean(erreurs.rdv)}
 />
 ```

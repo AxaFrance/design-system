@@ -21,8 +21,9 @@ Wrapper complet avec label, message d'erreur et layout de formulaire.
 | `label` | `ReactNode` | **Obligatoire** | Label du champ |
 | `id` | `string` | Auto-généré | Identifiant HTML |
 | `name` | `string` | - | Attribut HTML `name` |
-| `message` | `string` | - | Message d'erreur affiché sous le champ |
-| `messageType` | `"error" \| "success" \| "info"` | - | Type du message |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 | `required` | `boolean` | `false` | Champ obligatoire |
 | `disabled` | `boolean` | `false` | Champ désactivé |
 | `helpMessage` | `ReactNode` | - | Message d'aide |
@@ -65,6 +66,7 @@ import { TextareaInput } from "@axa-fr/canopee-react/distributeur";
   required
   message={erreurs.commentaire}
   messageType="error"
+  forceDisplayMessage={Boolean(erreurs.commentaire)}
 />
 
 // Avec message d'aide

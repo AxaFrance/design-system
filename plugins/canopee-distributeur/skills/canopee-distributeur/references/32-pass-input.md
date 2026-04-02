@@ -26,8 +26,10 @@ Wrapper complet avec label, gestion des erreurs et indicateur de force du mot de
 | `score` | `string` | - | Force du mot de passe (de `"0"` faible à `"4"` excellent). Affiche un indicateur coloré. |
 | `required` | `boolean` | `false` | Champ obligatoire |
 | `disabled` | `boolean` | `false` | Champ désactivé |
-| `message` | `string` | - | Message d'erreur ou conseil |
 | `helpMessage` | `ReactNode` | - | Message d'aide |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 
 Tous les attributs HTML standard de `<input>` sont supportés (`placeholder`, `autoComplete`, …).
 
@@ -82,5 +84,6 @@ import { PassInput } from "@axa-fr/canopee-react/distributeur";
   label="Confirmer le mot de passe"
   message={passwordMismatch ? "Les mots de passe ne correspondent pas" : undefined}
   messageType="error"
+  forceDisplayMessage={passwordMismatch}
 />
 ```

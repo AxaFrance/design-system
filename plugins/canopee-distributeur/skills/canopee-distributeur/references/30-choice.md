@@ -26,7 +26,10 @@ Wrapper complet avec label et gestion des erreurs.
 | `onChange` | `function` | - | Gestionnaire de changement |
 | `required` | `boolean` | `false` | Champ obligatoire |
 | `disabled` | `boolean` | `false` | État désactivé |
-| `message` | `string` | - | Message d'erreur |
+| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 
 ### Choice (bas niveau)
 

@@ -55,6 +55,24 @@ const SelecteurCivilite = () => {
 <Radio mode="cardRadio" options={options} />
 ```
 
+## Props — RadioInput
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `options` | `Option[]` | Obligatoire | Tableau de `{value, label, disabled?, id?}` |
+| `value` | `string` | - | Valeur sélectionnée |
+| `mode` | `"default" \| "classic" \| "inline" \| "cardRadio"` | `"default"` | Mode d'affichage |
+| `id` | `string` | - | Attribut HTML id |
+| `name` | `string` | - | Attribut HTML name |
+| `label` | `ReactNode` | - | Label du groupe |
+| `disabled` | `boolean` | `false` | Désactive tous les boutons |
+| `required` | `boolean` | `false` | Champ obligatoire |
+| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
+| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
+| `onChange` | `function` | - | Gestionnaire de changement |
+
 ## Intégration en formulaire
 
 ```tsx

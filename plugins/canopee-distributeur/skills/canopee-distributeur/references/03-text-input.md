@@ -47,9 +47,10 @@ const MonInput = () => (
 | `disabled` | `boolean` | `false` | Désactive la saisie |
 | `readOnly` | `boolean` | `false` | Mode lecture seule |
 | `required` | `boolean` | `false` | Champ obligatoire (affiche astérisque) |
-| `message` | `string` | - | Message de validation/aide |
-| `messageType` | `"error" \| "info" \| "success"` | - | Style du message |
-| `forceDisplayMessage` | `boolean` | `false` | Toujours afficher le message |
+| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
+| `message` | `string` | - | Message de statut (erreur, succès, avertissement) — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
+| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
 | `onChange` | `function` | - | Gestionnaire de changement |
 | `onBlur` | `function` | - | Gestionnaire de perte de focus |
 
@@ -101,15 +102,14 @@ const SaisieSimple = () => {
 />
 ```
 
-### Champ obligatoire avec texte d'aide
+### Champ avec message d'aide
 ```tsx
 <TextInput
   id="pseudo"
   name="pseudo"
   label="Pseudonyme"
   required
-  message="Le pseudonyme doit contenir entre 3 et 20 caractères"
-  messageType="info"
+  helpMessage="Le pseudonyme doit contenir entre 3 et 20 caractères"
 />
 ```
 
@@ -117,6 +117,8 @@ const SaisieSimple = () => {
 
 ### Message d'erreur
 ```tsx
+import { TextInput, MessageTypes } from "@axa-fr/canopee-react/distributeur";
+
 const [erreur, setErreur] = useState("");
 
 const handleChange = (e) => {
@@ -134,7 +136,8 @@ const handleChange = (e) => {
   label="Mot de passe"
   type="password"
   message={erreur}
-  messageType={erreur ? "error" : undefined}
+  messageType={MessageTypes.error}
+  forceDisplayMessage={Boolean(erreur)}
   onChange={handleChange}
 />
 ```
@@ -146,19 +149,21 @@ const handleChange = (e) => {
   name="email-confirme"
   label="E-mail confirmé"
   message="E-mail vérifié avec succès"
-  messageType="success"
+  messageType={MessageTypes.success}
+  forceDisplayMessage={true}
 />
 ```
 
-### Message d'information
+### Message d'avertissement
 ```tsx
 <TextInput
   id="telephone"
   name="telephone"
   label="Numéro de téléphone"
   type="tel"
-  message="Format : +33 X XX XX XX XX"
-  messageType="info"
+  message="Le format recommandé est +33 X XX XX XX XX"
+  messageType={MessageTypes.warning}
+  forceDisplayMessage={true}
 />
 ```
 
