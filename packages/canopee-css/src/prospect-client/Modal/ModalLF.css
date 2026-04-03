@@ -10,7 +10,6 @@
   --modal-default-padding: var(--rem-16);
   --modal-header-gap: var(--rem-24);
   --modal-header-bottom-padding: var(--modal-default-padding);
-  --modal-header-border-bottom: 1px solid var(--blue-200);
   --modal-body-padding-top: var(--rem-24);
   --modal-body-padding-bottom: var(--modal-default-padding);
   --modal-body-gap: var(--rem-32);

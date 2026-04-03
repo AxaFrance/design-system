@@ -89,7 +89,6 @@
   display: grid;
   padding: var(--modal-default-padding);
   padding-block-end: var(--modal-header-bottom-padding);
-  border-bottom: var(--modal-header-border-bottom);
   grid-template-areas: "headertitle closebtn";
   grid-template-columns: 1fr auto;
   gap: var(--modal-header-gap);
