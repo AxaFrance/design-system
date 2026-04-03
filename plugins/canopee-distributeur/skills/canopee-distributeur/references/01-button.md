@@ -64,7 +64,7 @@ Bouton pour actions destructives (suppression, annulation critique).
 ```
 
 ### Ghost
-Bouton transparent avec bordure.
+Bouton transparent souligné, sans bordure ni fond.
 ```tsx
 <Button variant="ghost">Bouton ghost</Button>
 ```
