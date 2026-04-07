@@ -46,7 +46,9 @@ component for styling purposes, you can create a snapshot test. If your
 component has some logic, you should write tests using `testing-library` and
 `user-event`, covering each user interaction possible.
 
-## Stories
+## Documentation
+
+### Stories
 
 Every component should have a stories allowing the users to visualize the
 possible states. The stories should be defined in a `component-name.stories.tsx`
@@ -137,15 +139,19 @@ Example in the MDX file :
 > **Warning:** The `text` prop is deprecated. Please use `children` prop instead.
 ```
 
-### Accessibility
+### Copilot
+
+When you create a new component (or you update an existing one), you need to update the skill provided by the Design System in order to have the new component available when an user use Copilot. To do that, you can write by your own the *reference* file for your component in `/plugins/canopee-{univers}/skills/references/{component-name}.md` or you can use the agent `/create-skill`.
+
+## Accessibility
 
 Every component should tested for accessibility.
 
-### Responsive design
+## Responsive design
 
 Every component should be tested for responsiveness if it makes sense.
 
-### Updating the sample
+## Updating the sample
 
 When adding a new component, make sure to update the sample to include it and
 check that it behaves as expected when used in a client application with other
