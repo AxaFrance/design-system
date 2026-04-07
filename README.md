@@ -12,6 +12,26 @@ Il propose d'utiliser les deux designs systems principaux :
 - **Collab-Distrib (~~Slash~~)** pour le <abbr title="Business to business">B2B</abbr>, les
   applications internes
 
+Table des matières : 
+- [AXA France Design System](#axa-france-design-system)
+  - [Migration depuis @axa-fr/react-toolkit](#migration-depuis-axa-frreact-toolkit)
+  - [Packages](#packages)
+    - [B2B - Univers Collab-Distrib](#b2b---univers-collab-distrib)
+    - [B2C - Univers Prospect](#b2c---univers-prospect)
+    - [B2C - Univers Client](#b2c---univers-client)
+  - [Build status](#build-status)
+    - [Sonarcloud Quality metrics](#sonarcloud-quality-metrics)
+    - [Composants Collab-Distrib](#composants-collab-distrib)
+    - [Composants Client et Prospect](#composants-client-et-prospect)
+  - [Structure du projet](#structure-du-projet)
+  - [Démarrer le projet](#démarrer-le-projet)
+  - [Utilisation des icones](#utilisation-des-icones)
+  - [Utilisation des CSS variables](#utilisation-des-css-variables)
+  - [Utilisation avec Copilot ou Claude](#utilisation-avec-copilot-ou-claude)
+    - [Comment faire ?](#comment-faire-)
+
+
+
 ## Migration depuis @axa-fr/react-toolkit
 
 Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers

@@ -1,5 +1,19 @@
 # Definition of done for a component
 
+- [Definition of done for a component](#definition-of-done-for-a-component)
+  - [Folder structure](#folder-structure)
+    - [Single component](#single-component)
+    - [Multiple components](#multiple-components)
+  - [Tests](#tests)
+  - [Documentation](#documentation)
+    - [Stories](#stories)
+    - [Depreciate component or prop](#depreciate-component-or-prop)
+    - [Copilot](#copilot)
+  - [Accessibility](#accessibility)
+  - [Responsive design](#responsive-design)
+  - [Updating the sample](#updating-the-sample)
+
+
 ## Folder structure
 
 ### Single component
