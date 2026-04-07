@@ -212,3 +212,11 @@ Pour Univers Collab-Distrib :
 ```typescript
 import '@axa-fr/canopee-css/distributeur/common/tokens.css';
 ```
+
+## Utilisation avec Copilot ou Claude
+
+Vous pouvez désormais ajouter le design system comme un plugin de Github Copilot Primitives et aider votre chat à parfaitement utiliser le design system Canopéee, aussi bien Distributeur que Prospect Client. Grâce à ça, vous pourrait consulter la doc mais aussi rendre naturel l’utilisation des composants du design system par vos agents. La différence est flagrante, en plus d’être plus rapides, vos agents utiliseront bien mieux et bien plus souvent les composants AXA. 
+
+### Comment faire ? 
+
+Vous pouvez utiliser la fonctionnalité marketplace de votre chat pour ajouter le plugin du design system, ou alors vous pouvez aussi le faire manuellement en ajoutant le plugin présent dans `plugins/canopee-distributeur` et `plugins/canopee-prospect-client` à votre chat.
