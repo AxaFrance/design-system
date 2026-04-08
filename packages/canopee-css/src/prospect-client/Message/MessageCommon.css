@@ -32,7 +32,7 @@
     var(--message-content-font-size) / var(--font-size-base) * 1rem
   );
   font-weight: 400;
-  line-height: calc(22.5 / var(--font-size-base) * 1rem);
+  line-height: var(--message-content-line-height);
   color: var(--message-content-color);
 }
 
