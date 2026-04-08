@@ -10,11 +10,13 @@
   --message-title-font-size: 16;
   --message-content-color: var(--gray-1000);
   --message-content-font-size: 16;
+  --message-content-line-height: var(--rem-20);
   --message-action-padding-top: 12;
 
   @media (--desktop-small) {
     --message-content-font-size: 18;
     --message-title-font-size: 18;
+    --message-content-line-height: var(--rem-23);
   }
 }
 
