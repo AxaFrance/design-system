@@ -21,6 +21,10 @@
     outline-offset: 2px;
   }
 
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
   &[aria-selected="true"] {
     --item-tab-bar-font-weight: 600;
   }
