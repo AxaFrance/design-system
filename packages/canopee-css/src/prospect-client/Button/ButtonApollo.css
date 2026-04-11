@@ -5,11 +5,12 @@
   --button-text-color: var(--white-1000);
   --button-radius: var(--radius-32);
   --button-shadow-color: var(--blue-1000);
-  --button-padding: var(--rem-12) var(--rem-24);
+  --button-padding: var(--rem-16) var(--rem-24);
   --button-line-height: var(--rem-24);
   --button-font-size: var(--rem-16);
 
   @media (--desktop-small) {
+    --button-padding: var(--rem-12) var(--rem-24);
     --button-line-height: var(--rem-32);
     --button-font-size: var(--rem-18);
   }
