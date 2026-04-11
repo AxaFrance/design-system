@@ -101,3 +101,7 @@
   height: 100%;
   padding-top: 0;
 }
+
+.af-form__text > .af-popover__wrapper {
+  margin-left: 0.5rem;
+}
