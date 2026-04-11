@@ -222,6 +222,7 @@
   --rem-12: calc(12 / var(--font-size-base) * 1rem);
   --rem-13: calc(13 / var(--font-size-base) * 1rem);
   --rem-14: calc(14 / var(--font-size-base) * 1rem);
+  --rem-15: calc(15 / var(--font-size-base) * 1rem);
   --rem-16: calc(16 / var(--font-size-base) * 1rem);
   --rem-18: calc(18 / var(--font-size-base) * 1rem);
   --rem-20: calc(20 / var(--font-size-base) * 1rem);
@@ -244,6 +245,33 @@
   --rem-64: calc(64 / var(--font-size-base) * 1rem);
   --rem-80: calc(80 / var(--font-size-base) * 1rem);
   --rem-120: calc(120 / var(--font-size-base) * 1rem);
+
+  /* *************************************************************************/
+
+  /* BODY TYPOGRAPHY                                                          */
+
+  /* *************************************************************************/
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --body-1-font-size: var(--rem-18);
+  --body-1-line-height: var(--rem-23);
+  --body-2-font-size: var(--rem-16);
+  --body-2-line-height: var(--rem-20);
+  --body-3-font-size: var(--rem-14);
+  --body-3-line-height: var(--rem-18);
+  --body-4-font-size: var(--rem-12);
+  --body-4-line-height: var(--rem-15);
+
+  @media (--desktop-small) {
+    --body-1-font-size: var(--rem-20);
+    --body-1-line-height: var(--rem-25);
+    --body-2-font-size: var(--rem-18);
+    --body-2-line-height: var(--rem-23);
+    --body-3-font-size: var(--rem-16);
+    --body-3-line-height: var(--rem-20);
+    --body-4-font-size: var(--rem-14);
+    --body-4-line-height: var(--rem-18);
+  }
 
   /* *************************************************************************/
 
