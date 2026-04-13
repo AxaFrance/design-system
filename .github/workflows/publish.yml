@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    tags:
+      - '[0-9]*.[0-9]*.[0-9]*-RC.*'
+      - '[0-9]*.[0-9]*.[0-9]*'
   workflow_dispatch:
 
 permissions:
@@ -16,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.gitversion.outputs.fullSemVer }}
-      isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' }}
+      isStableRelease: ${{ steps.gitversion.outputs.preReleaseTag == '' && github.ref_type == 'tag' }}
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -62,7 +65,7 @@ jobs:
           npm config set provenance=true
 
       - name: Publish latest packages
-        if: steps.gitversion.outputs.preReleaseTag == ''
+        if: steps.gitversion.outputs.preReleaseTag == '' && github.ref_type == 'tag'
         run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag latest;
 
       - name: Publish rc packages
