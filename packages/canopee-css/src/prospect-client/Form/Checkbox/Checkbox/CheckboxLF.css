@@ -15,6 +15,10 @@
 
   &:checked {
     --checkbox-background-color: var(--blue-1000);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: var(--rem-16) var(--rem-16);
   }
 
   &[aria-invalid="true"]:not(:checked) {
