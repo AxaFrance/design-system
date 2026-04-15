@@ -1,0 +1,1 @@
+import{j as a}from"./jsx-runtime-D_zvdyIk.js";import{b as r,I as m}from"./LoaderApollo-ChoC1rgu.js";import{C as s}from"./CardRadioOptionApollo-DrMjGhZN.js";const i=o=>a.jsx(r,{...o,CardRadioOptionComponent:s,ItemMessageComponent:m});export{i as C};
