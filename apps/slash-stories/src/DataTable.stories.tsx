@@ -207,18 +207,18 @@ export const WithActionColumn: Story = {
         header: "Actions",
         cellRender: () => (
           <div style={{ display: "flex" }}>
-            <Button variant="secondary" small style={{ flexGrow: 1 }}>
+            <Button variant="ghost" small style={{ flexGrow: 1 }}>
               Créer
             </Button>
             <Button
-              variant="primary"
+              variant="ghost"
               small
               style={{ marginLeft: "10px", flexGrow: 1 }}
             >
               Modifier
             </Button>
             <Button
-              variant="danger"
+              variant="ghost"
               small
               style={{ marginLeft: "10px", flexGrow: 1 }}
             >
