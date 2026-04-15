@@ -18,6 +18,10 @@
     --input-border-color: var(--red-alert-1200);
   }
 
+  &:has(> input[class*="--warning"]) {
+    --input-border-color: var(--orange-1050);
+  }
+
   &:has(> input:disabled),
   &:has(> input:disabled):is(:hover, :focus, :active) {
     --input-border-color: var(--gray-140);
@@ -30,7 +34,14 @@
     }
   }
 
-  &:has(> input[value]:not([value=""], [class*="--error"], :disabled)) {
+  &:has(
+    > input[value]:not(
+        [value=""],
+        [class*="--error"],
+        [class*="--warning"],
+        :disabled
+      )
+  ) {
     --input-border-color: var(--blue-1000);
   }
 }

@@ -11,6 +11,7 @@ type InputTextAtomProps = ComponentPropsWithRef<"input"> & {
   unit?: ReactNode;
   classModifier?: string;
   error?: string;
+  warning?: string;
   idMessage?: string;
   idHelp?: string;
 };
@@ -22,6 +23,7 @@ const InputTextAtom = forwardRef<HTMLInputElement, InputTextAtomProps>(
       className,
       classModifier = "",
       error,
+      warning,
       required,
       idMessage,
       idHelp,
@@ -34,7 +36,11 @@ const InputTextAtom = forwardRef<HTMLInputElement, InputTextAtomProps>(
   ) => {
     const componentClassName = getClassName({
       baseClassName: "af-form__input-text",
-      modifiers: [classModifier, error || ariaErrormessage ? "error" : ""],
+      modifiers: [
+        classModifier,
+        error || ariaErrormessage ? "error" : "",
+        !error && !ariaErrormessage && warning ? "warning" : "",
+      ],
       className,
     });
 
