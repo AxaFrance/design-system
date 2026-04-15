@@ -1,0 +1,75 @@
+.af-datatable__global-filter {
+  display: flex;
+  margin-bottom: 0.5rem;
+  justify-content: flex-end;
+}
+
+.af-datatable {
+  .af-form__checkbox .af-form__label {
+    padding: 0;
+  }
+
+  .af-table__cell--no-content {
+    text-align: center;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+}
+
+.af-table__th {
+  background-color: var(--axablue80);
+
+  .af-datatable__th-wrapper {
+    display: flex;
+    box-sizing: border-box;
+    height: 100%;
+    padding: var(--rem-16);
+    place-items: center;
+
+    .af-datatable__th-content {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      text-align: left;
+    }
+
+    .af-datatable__th-sort-icon {
+      width: 40px;
+      cursor: pointer;
+    }
+  }
+
+  .af-form__input-text,
+  .af-form__input-date {
+    width: 100%;
+  }
+
+  .af-form__select-container,
+  .af-form__input-select {
+    width: 100%;
+  }
+
+  .af-form__select-container .glyphicon-menu-down {
+    position: absolute !important;
+    top: 50% !important;
+    right: 1em !important;
+    height: 0.7em !important;
+    font-size: 0.7em !important;
+    color: black;
+    transform: translateY(-50%) !important;
+  }
+
+  .glyphicon {
+    inset: unset !important;
+  }
+}

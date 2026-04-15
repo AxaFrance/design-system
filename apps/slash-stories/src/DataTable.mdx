@@ -1,0 +1,240 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as DataTableStories from "./DataTable.stories.tsx";
+
+<Meta of={DataTableStories} />
+
+# DataTable
+
+Le composant `DataTable` est un tableau de données avancé basé sur [TanStack Table v8](https://tanstack.com/table). Il supporte le tri, le filtrage, la pagination et la sélection de lignes.
+
+## Import
+
+```tsx
+import { DataTable } from "@axa-fr/canopee-react/distributeur";
+```
+
+## Utilisation de base
+
+<Canvas of={DataTableStories.Simple} />
+
+```tsx
+import { DataTable } from "@axa-fr/canopee-react/distributeur";
+
+const columns = [
+  { accessorKey: "firstName", header: "Prénom" },
+  { accessorKey: "lastName", header: "Nom" },
+  { accessorKey: "city", header: "Ville" },
+];
+
+const data = [
+  { firstName: "Jean", lastName: "Dupont", city: "Paris" },
+  { firstName: "Marie", lastName: "Martin", city: "Lyon" },
+];
+
+const MyTable = () => <DataTable data={data} columns={columns} />;
+```
+
+## Avec tri
+
+Le tri par colonne est activé via `options.enableSorting`. Un clic sur l'en-tête de colonne cycle entre : non trié → croissant → décroissant.
+
+<Canvas of={DataTableStories.WithSorting} />
+
+```tsx
+<DataTable data={data} columns={columns} options={{ enableSorting: true }} />
+```
+
+## Avec filtres par colonne
+
+Les filtres par colonne sont activés via `options.enableColumnFilters`. Chaque colonne affiche un champ de saisie sous son en-tête.
+
+<Canvas of={DataTableStories.WithFilters} />
+
+```tsx
+<DataTable
+  data={data}
+  columns={columns}
+  options={{ enableColumnFilters: true }}
+/>
+```
+
+### Variante select
+
+Pour les colonnes à valeurs discrètes, utilisez `filterVariant: "select"` avec `selectOptions` pour un filtre par liste déroulante (correspondance exacte).
+
+```tsx
+const columns = [
+  {
+    accessorKey: "status",
+    header: "Statut",
+    filterVariant: "select",
+    selectOptions: ["Actif", "Inactif"],
+  },
+];
+```
+
+### Variante date
+
+Pour les colonnes de dates, utilisez `filterVariant: "date"` pour afficher un champ de saisie de type date.
+
+```tsx
+const columns = [
+  {
+    accessorKey: "birthdate",
+    header: "Date de naissance",
+    filterVariant: "date",
+  },
+];
+```
+
+## Avec filtre global
+
+Le filtre global permet de rechercher dans toutes les colonnes simultanément.
+
+<Canvas of={DataTableStories.WithGlobalFilter} />
+
+```tsx
+<DataTable
+  data={data}
+  columns={columns}
+  options={{ enableGlobalFilter: true }}
+/>
+```
+
+## Avec pagination
+
+La pagination est activée via `options.enablePagination`. La configuration initiale de la page s'effectue via `paginationConfig`.
+
+<Canvas of={DataTableStories.WithPagination} />
+
+```tsx
+<DataTable
+  data={data}
+  columns={columns}
+  options={{ enablePagination: true }}
+  paginationConfig={{ pageIndex: 0, pageSize: 5 }}
+/>
+```
+
+## Avec sélection de lignes
+
+La sélection de lignes est activée via `options.enableRowSelection`. Une colonne de cases à cocher est ajoutée automatiquement.
+
+<Canvas of={DataTableStories.WithRowSelection} />
+
+```tsx
+<DataTable
+  data={data}
+  columns={columns}
+  options={{ enableRowSelection: true }}
+  onRowSelectionChange={(selectedRows) => console.log(selectedRows)}
+/>
+```
+
+## Avec colonne d'action
+
+Vous pouvez ajouter une colonne personnalisée avec des boutons d'action via `cellRender`.
+
+<Canvas of={DataTableStories.WithActionColumn} />
+
+```tsx
+const columns = [
+  { accessorKey: "firstName", header: "Prénom" },
+  {
+    accessorKey: "id",
+    header: "Actions",
+    cellRender: (value, row) => (
+      <Button variant="primary" small onClick={() => handleEdit(row)}>
+        Modifier
+      </Button>
+    ),
+  },
+];
+```
+
+## Aucune donnée
+
+Quand `data` est un tableau vide, un message « Aucun résultat trouvé » est affiché.
+
+<Canvas of={DataTableStories.Empty} />
+
+## Toutes les fonctionnalités
+
+<Canvas of={DataTableStories.FullFeatured} />
+
+## Props
+
+<Controls of={DataTableStories.Simple} />
+
+## Définition des colonnes
+
+Chaque colonne est décrite par un objet `DataTableColumnDefinition` :
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriété</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>accessorKey</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>Clé de la propriété dans les données</td>
+    </tr>
+    <tr>
+      <td>
+        <code>header</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>Libellé affiché dans l'en-tête</td>
+    </tr>
+    <tr>
+      <td>
+        <code>cellRender</code>
+      </td>
+      <td>
+        <code>(value, row) =&gt; ReactNode</code>
+      </td>
+      <td>Rendu personnalisé de la cellule</td>
+    </tr>
+    <tr>
+      <td>
+        <code>filterVariant</code>
+      </td>
+      <td>
+        <code>"text" | "select" | "date"</code>
+      </td>
+      <td>Type de filtre à afficher</td>
+    </tr>
+    <tr>
+      <td>
+        <code>selectOptions</code>
+      </td>
+      <td>
+        <code>string[]</code>
+      </td>
+      <td>
+        Options du filtre select (requis si <code>filterVariant: "select"</code>
+        )
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>enableSorting</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>Active ou désactive le tri sur cette colonne spécifiquement</td>
+    </tr>
+  </tbody>
+</table>
