@@ -3,7 +3,7 @@
   padding: var(--rem-16);
   border: 1px solid var(--message-border-color);
   border-radius: var(--message-border-radius);
-  gap: var(--rem-16);
+  gap: var(--rem-8);
   background-color: var(--message-bg-color);
 }
 
