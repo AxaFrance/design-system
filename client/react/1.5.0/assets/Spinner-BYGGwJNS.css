@@ -1,0 +1,1 @@
+.demo-spinner-container{display:grid;grid-template-columns:repeat(3,1fr);column-gap:5rem}.demo-spinner{display:flex;flex-direction:column;text-align:center;row-gap:5rem;padding:2rem;border-radius:.5rem}.demo-spinner--white{background-color:var(--color-axa);color:var(--color-white)}
