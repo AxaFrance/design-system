@@ -84,7 +84,7 @@
 }
 
 .af-apollo-click-item--medium {
-  align-items: flex-start;
+  align-items: center;
 
   .af-apollo-click-item {
     .af-apollo-click-item__secondary,
