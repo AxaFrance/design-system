@@ -5,7 +5,7 @@
 }
 
 .af-icon--small.af-icon--has-background {
-  --icon-padding: var(--rem-12);
+  --icon-padding: var(--rem-8);
 }
 
 .af-icon--secondary.af-icon--has-background {
