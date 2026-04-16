@@ -74,3 +74,24 @@ const MyComponent = () => (
 <Canvas of={DataAgentStories.Default} />
 
 <Controls of={DataAgentStories.Default} />
+
+## Compact
+
+Use `variant="compact"` to force the compact layout (header only — avatar + name + subtitle) regardless of screen size.
+This is useful when the DataAgent is embedded in a constrained layout such as a desktop sidebar.
+
+```tsx
+<DataAgent
+  agentProps={{
+    picture: "https://dummyimage.com/48/48/fff&text=A",
+    subtitle: "AXA Assurance & Banque",
+    title: "Michel Lhote",
+    type: "picture",
+  }}
+  variant="compact"
+/>
+```
+
+<Canvas of={DataAgentStories.DesktopCompact} />
+
+<Controls of={DataAgentStories.DesktopCompact} />
