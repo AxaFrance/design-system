@@ -49,3 +49,20 @@ export const All: Story = {
   },
   render: renderAllHeading,
 };
+
+export const IconOnTop: Story = {
+  args: {
+    ...Playground.args,
+    iconPosition: "top",
+  },
+  argTypes: {
+    iconPosition: {
+      options: ["start", "top"] as const,
+      control: "inline-radio",
+    },
+    level: {
+      options: [1, 2, 3, 4] as HeadingLevel[],
+      control: "inline-radio",
+    },
+  },
+};

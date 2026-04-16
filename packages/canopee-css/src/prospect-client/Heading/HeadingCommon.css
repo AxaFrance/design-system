@@ -12,6 +12,12 @@
   &:has(.af-heading__icon) {
     grid-template-columns: auto 1fr;
   }
+
+  &.af-heading--icon-top:has(.af-heading__icon) {
+    --heading-grid-column: 1;
+
+    grid-template-columns: 1fr;
+  }
 }
 
 .af-heading__title-container {
@@ -47,6 +53,11 @@
   grid-column: 1;
   grid-row: 1/3;
   box-shadow: 0 0.125rem 0.5rem 0 rgba(var(--blue-1000), 0.15);
+}
+
+.af-heading--icon-top .af-heading__icon {
+  grid-row: auto;
+  justify-self: start;
 }
 
 .af-heading__label {
