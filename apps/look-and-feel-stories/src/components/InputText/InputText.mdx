@@ -29,3 +29,18 @@ const MyComponent = () => (
 <Canvas of={InputTextStories.InputTextPlaygroundStory}></Canvas>
 
 <Controls of={InputTextStories.InputTextPlaygroundStory} />
+
+## Warning
+
+Use `message` with `messageType="warning"` to display a warning state with orange border and ⚠️ icon.
+
+```tsx
+<InputText
+  value="John Doe"
+  label="Label"
+  message="Warning Message"
+  messageType="warning"
+/>
+```
+
+<Canvas of={InputTextStories.InputTextWarningStory} />

@@ -49,3 +49,13 @@ export const InputTextPlaygroundStory: Story = {
   name: "Playground",
   render,
 };
+
+export const InputTextWarningStory: Story = {
+  name: "Warning",
+  render,
+  args: {
+    error: "",
+    message: "Warning Message",
+    messageType: "warning",
+  },
+};
