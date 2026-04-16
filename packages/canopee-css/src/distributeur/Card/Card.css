@@ -87,17 +87,20 @@
   --card-text-color: var(--white);
   --card-icon-color: var(--white);
   --card-background-color: var(--axablue80);
+  --card-border-color: transparent;
 
   &:focus {
     --card-text-color: var(--white);
     --card-icon-color: var(--white);
     --card-background-color: var(--axablue80);
+    --card-border-color: transparent;
   }
 
   &:hover {
-    --card-text-color: var(--gray80);
-    --card-icon-color: var(--axablue80);
-    --card-background-color: var(--white);
+    --card-text-color: var(--white);
+    --card-icon-color: var(--white);
+    --card-background-color: var(--axablue80);
+    --card-border-color: transparent;
   }
 
   &:disabled:hover {
