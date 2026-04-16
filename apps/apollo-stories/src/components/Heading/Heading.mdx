@@ -27,3 +27,15 @@ The heading accepts all icon props (the `iconProps` props key) except for the `s
 <Canvas of={HeadingStories.Playground} />
 
 <Controls of={HeadingStories.Playground} />
+
+## Icon on top
+
+Set `iconPosition="top"` to stack the icon above the title instead of aligning it to the start. Default is `"start"`.
+
+```tsx
+<Heading icon={bank} iconPosition="top">
+  Titre de la page
+</Heading>
+```
+
+<Canvas of={HeadingStories.IconOnTop} />

@@ -43,9 +43,8 @@ export const HeadingCommon = ({
   return (
     <div
       className={getClassName({
-        baseClassName: `af-heading${
-          iconPosition === "top" ? " af-heading--icon-top" : ""
-        }`,
+        baseClassName: "af-heading",
+        modifiers: [iconPosition === "top" && "icon-top"],
         className,
       })}
       {...props}

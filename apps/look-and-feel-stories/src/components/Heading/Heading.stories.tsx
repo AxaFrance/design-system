@@ -21,6 +21,10 @@ const meta: Meta<typeof Heading> = {
     tagProps: {
       control: "object",
     },
+    iconPosition: {
+      options: ["start", "top"] as const,
+      control: "inline-radio",
+    },
   },
 };
 
@@ -54,10 +58,6 @@ export const IconOnTop: Story = {
     iconPosition: "top",
   },
   argTypes: {
-    iconPosition: {
-      options: ["start", "top"] as const,
-      control: "inline-radio",
-    },
     level: {
       options: [1, 2, 3, 4] as HeadingLevel[],
       control: "inline-radio",
