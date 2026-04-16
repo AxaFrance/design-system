@@ -79,6 +79,6 @@ export const DesktopCompact: Story = {
       subtitle: "AXA Assurance & Banque",
       type: "picture",
     },
-    isDesktopCompact: true,
+    variant: "compact",
   },
 };
