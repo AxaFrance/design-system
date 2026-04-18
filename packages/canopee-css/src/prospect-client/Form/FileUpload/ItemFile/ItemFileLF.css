@@ -3,14 +3,12 @@
 .af-item-file {
   --item-file-border-radius: var(--radius-4);
   --item-file-border-color: var(--gray-800);
-  --item-file-file-name-color: var(--gray-1000);
-  --item-file-file-size-color: var(--gray-800);
   --item-file-gap: var(--rem-8);
   --item-file-body-padding-vertical: var(--rem-16);
   --item-file-body-padding-horizontal: var(--rem-16);
   --item-file-action-buttons-gap: var(--rem-16);
 
-  > .af-item-file__body > .af-icon {
+  .af-item-file__body .af-content-item-mono .af-icon {
     --icon-fill: var(--green-1000);
   }
 
@@ -24,7 +22,7 @@
 .af-item-file--error {
   --item-file-border-color: var(--red-alert-1200);
 
-  > .af-item-file__body > .af-icon {
+  .af-item-file__body .af-content-item-mono .af-icon {
     --icon-fill: var(--red-alert-1200);
   }
 }

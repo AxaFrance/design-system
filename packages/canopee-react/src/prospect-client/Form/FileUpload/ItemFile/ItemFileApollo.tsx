@@ -5,7 +5,7 @@ import { Icon } from "../../../Icon/IconApollo";
 import { Spinner } from "../../../Spinner/SpinnerApollo";
 import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
 import { ItemFileCommon, type ItemFileProps } from "./ItemFileCommon";
-
+import "@axa-fr/canopee-css/prospect/ContentItemMono/ContentItemMonoApollo.css";
 import "@axa-fr/canopee-css/prospect/Form/FileUpload/ItemFile/ItemFileApollo.css";
 
 export const ItemFile = (props: ItemFileProps) => (
