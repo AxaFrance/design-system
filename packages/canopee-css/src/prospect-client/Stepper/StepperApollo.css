@@ -9,21 +9,6 @@
   --stepper-header-gap: 0;
 }
 
-.af-stepper__title {
-  --title-font-family: var(--font-family-publico);
-  --title-font-size: var(--rem-28);
-  --title-font-weight: 300;
-  --title-line-height: var(--rem-36);
-  --title-color: var(--blue-1000);
-}
-
-.af-stepper__subtitle {
-  --subtitle-font-family: var(--font-family-sans-serif);
-  --subtitle-font-size: var(--rem-14);
-  --subtitle-line-height: var(--rem-18);
-  --subtitle-color: var(--blue-1000);
-}
-
 .af-stepper__helper {
   --helper-color: var(--gray-800);
 }
@@ -35,15 +20,5 @@
 
   .af-stepper__header {
     --stepper-header-gap: var(--rem-4);
-  }
-
-  .af-stepper__title {
-    --title-font-size: var(--rem-40);
-    --title-line-height: var(--rem-48);
-  }
-
-  .af-stepper__subtitle {
-    --subtitle-font-size: var(--rem-16);
-    --subtitle-line-height: var(--rem-20);
   }
 }
