@@ -2,7 +2,6 @@
 
 .af-radio {
   --radio-border-color: var(--gray-800);
-  --radio-ckecked-width: var(--rem-10);
 
   &:hover,
   &:focus-within,
