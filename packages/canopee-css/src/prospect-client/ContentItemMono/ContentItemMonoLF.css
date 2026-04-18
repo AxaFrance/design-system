@@ -37,7 +37,7 @@
   }
 
   &.af-content-item-mono--large .af-content-item-mono__text-content {
-    .title {
+    .af-content-item-mono__title {
       --title-font-family: var(--font-family-publico);
       --title-font-weight: 700;
       --title-font-size: var(--rem-20);
@@ -76,7 +76,7 @@
     }
 
     &.af-content-item-mono--large .af-content-item-mono__text-content {
-      .title {
+      .af-content-item-mono__title {
         --title-font-size: var(--rem-24);
         --title-line-height: var(--rem-30);
       }
