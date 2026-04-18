@@ -39,4 +39,5 @@
 .af-card-radio-option--invalid:not(:has(input:checked)) {
   --radio-option-border-color: var(--red-alert-1000);
   --radio-option-background-color: var(--red-040);
+  --radio-option-color-title: var(--gray-800);
 }
