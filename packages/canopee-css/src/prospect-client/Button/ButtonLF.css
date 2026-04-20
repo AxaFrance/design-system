@@ -68,7 +68,6 @@
   --button-text-color: var(--blue-1000);
   --button-bg-color: transparent;
   --button-padding: 0;
-  --button-font-size: var(--rem-16);
 
   &:hover,
   &:focus,
