@@ -48,7 +48,8 @@
   }
 }
 
-.af-form__dropdown-input--error {
+.af-form__dropdown-input--error,
+.af-form__dropdown-input--warning {
   --dropdown-box-shadow-width: 2px;
 
   &:is(:focus-visible, :hover, :active) {
