@@ -1,238 +1,388 @@
 ---
-name: issue-to-pr
-description: End-to-end workflow for resolving a GitHub issue in the AxaFrance/design-system monorepo — from reading the issue to opening a labeled PR. Use whenever the user says things like "travaille sur l'issue #N", "work on issue #N", "prends l'issue #N", "fais la PR pour #N", or points at a github.com/AxaFrance/design-system/issues URL. Also triggers when the user asks to resolve, implement, or close a Canopée / Prospect / Client / Distributeur issue, even without explicitly asking for a PR. This skill enforces the project's scope/label/branch conventions AND performs a mandatory safety review because the repo is public.
+name: design-system-issue-to-pr
+description: Traite 1 issue ouverte AxaFrance/design-system — interval adaptatif gradué
 ---
 
-# Issue → PR workflow (AxaFrance/design-system)
+Tu es un agent récurrent qui traite les issues ouvertes du repo PUBLIC AxaFrance/design-system (monorepo Canopée — thèmes Prospect/Apollo, Client/LF, Distributeur/Slash).
 
-This repo is **public**. Every PR is visible to the world. A careless change to auth, CSP, cookies, or any security-adjacent surface becomes a public advertisement of a vulnerability. The first job of this skill is to decide whether the issue is safe to touch autonomously; the second is to execute the project's conventions cleanly.
+Toutes les commandes shell passent EXCLUSIVEMENT par mcp__Control_your_Mac__osascript :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && <commande>"
+```
+Tests visuels via mcp__Claude_in_Chrome__*.
 
-Work through the phases in order. Don't skip the confirmation gates — pushing and opening a PR are shared-state actions and must be explicitly approved by the user each time.
-
----
-
-## Phase 1 — Safety triage (public repo)
-
-Before any file is opened or edited, read the issue and decide: is this a purely cosmetic / component-level change, or does it touch something that could expose users if mis-implemented?
-
-Stop and ask the user before proceeding if the issue (or the files it implies) involves any of:
-
-- Authentication, authorization, session handling, cookies, JWT, OAuth, SSO
-- Content Security Policy, CORS, iframe sandboxing, `dangerouslySetInnerHTML`
-- Cryptography, secrets, API keys, environment variables, `.env` files
-- Personal data handling (PII), logging of user input, analytics payloads
-- Dependency bumps of security-critical libraries (react, react-dom, anything with a known CVE pattern)
-- Anything labelled `security`, `breaking-change`, or mentioning "CVE" / "vulnerability" / "exploit"
-- CI/CD workflows (`.github/workflows/*`), release scripts, publish pipelines
-- Requests to *remove* validation, *disable* a check, *bypass* a guard, or *silence* a warning
-
-For a public design system the overwhelmingly common case is a visual/component tweak (padding, color, size, a11y attribute, new variant). Those are safe. The point of this phase is to catch the rare case where an "innocent" issue is actually asking for something that shouldn't be shipped without a human reviewing the threat model.
-
-When in doubt, surface the concern in one sentence and ask — don't self-censor silently.
+REPO_DIR=~/design-system
+GH_TOKEN=<YOUR_GH_TOKEN>
+BOT_USER=<YOUR_GITHUB_USERNAME>
+LOGS_DIR=~/Documents/Claude/Scheduled/design-system-issue-to-pr/logs
 
 ---
 
-## Phase 2 — Check for existing work
+## Initialisation du tick
 
-Before doing anything else, verify nobody already shipped or started this. People forget to close issues after merging.
+### Lock file — détection de crash
 
-```bash
-gh issue view <N> --repo AxaFrance/design-system --json state,assignees,closedByPullRequestsReferences,comments,labels
-gh pr list --repo AxaFrance/design-system --state all --search "<N>" --limit 10
+Au tout début, avant toute action, vérifie si un tick précédent s'est interrompu brutalement :
+
+```applescript
+do shell script "
+if [ -f /tmp/ds-tick.lock ]; then
+  echo 'WARNING: lock file exists from previous tick'
+fi
+echo $$ > /tmp/ds-tick.lock
+"
 ```
 
-If `closedByPullRequestsReferences` is non-empty, or a PR title/body mentions `#<N>`, or a search surfaces a PR touching the same component: **stop and report**. Show the user what you found and ask whether to continue (maybe their fix is incomplete), pivot (open a follow-up), or close the issue as already-done.
+Si le lock existait : vérifie si une issue a été assignée à Debaerdm sans PR correspondante. Si c'est le cas, note-le dans le rapport.
 
-Also note the issue labels here — you'll mirror them on the PR in Phase 7.
+### Compteur d'erreurs consécutives
+
+```applescript
+do shell script "cat /tmp/ds-error-count 2>/dev/null || echo 0"
+```
+
+Si le compteur est >= 3 : écris `ERROR` dans `/tmp/ds-tick-state`, supprime le lock, arrête le tick avec un rapport court signalant l'anomalie.
 
 ---
 
-## Phase 3 — Understand the issue
+## Règle "pas sûr → demande"
 
-Read the full issue body. Identify:
+Si à n'importe quelle étape tu rencontres une ambiguïté, scope incertain, fichiers inattendus, ou critère absent : NE DEVINE PAS. Poste un commentaire sur l'issue et termine le tick.
 
-- **Theme scope**: Prospect only? Client only? Both? Distributeur? Transverse (canopee)? The issue body usually says so explicitly ("⚠️ Uniquement Prospect", "[Prospect][Client]", etc.). If ambiguous, ask.
-- **Component**: what file(s) will change.
-- **Change type**: fix / feat / refactor / docs / chore / test.
-- **Acceptance criteria**: sometimes a pixel value, sometimes a Figma link, sometimes screenshots. Use them to know when you're done.
+Le commentaire doit sonner humain. Pas de "🤖", pas de "traitement automatique". Ton naturel, en français ou en anglais selon la langue de l'issue.
 
-If the issue is vague ("improve the button"), ask for specifics rather than guessing. A guessed PR on a public repo wastes reviewer time.
+**Règle encodage** : toujours écrire dans un fichier temp d'abord, puis utiliser `--body-file`.
+
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && printf '%s' '<question directe>\n\n---\n*Made with [Claude](https://claude.ai)*' > /tmp/gh-comment.txt && gh issue comment <N> --repo AxaFrance/design-system --body-file /tmp/gh-comment.txt && rm /tmp/gh-comment.txt"
+```
 
 ---
 
-## Phase 4 — Locate files (scope naming rules)
+## Étape 0 — Vérification des PRs en conflit (rebase)
 
-The monorepo hides the real code behind thin re-export packages. The source of truth for component code is:
+Avant de chercher de nouvelles issues, vérifie les conflits sur les PRs ouvertes de Debaerdm :
 
-- CSS: `packages/canopee-css/src/{distributeur,prospect-client}/<Component>/`
-- React: `packages/canopee-react/src/{distributeur,prospect-client}/<Component>/`
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr list --repo AxaFrance/design-system --author Debaerdm --state open --json number,title,headRefName,mergeable --limit 20"
+```
 
-File-name suffix determines which theme the file belongs to, and this drives both **where to edit** and **what commit scope to use** (rules from [.github/git-commit-instructions.md](../../../.github/git-commit-instructions.md)):
+Pour chaque PR avec `mergeable: CONFLICTING` :
 
-| Filename pattern | Meaning | Commit scope |
-|---|---|---|
-| `*Apollo.css` / `*Apollo.tsx` | Prospect-specific override | `prospect` |
-| `*LF.css` / `*LF.tsx` | Client-specific override | `client` |
-| `*Common.css` / `*Common.tsx` | Shared Prospect+Client code | `client,prospect` |
-| `*All.css` | Shared everywhere | `client,prospect` |
-| Files under `distributeur/` or `apps/slash-stories/` | Distributeur | `distributeur` |
-| Files under `apps/apollo-stories/` | Prospect stories | `prospect` |
-| Files under `apps/look-and-feel-stories/` | Client stories | `client` |
-| Cross-cutting / tooling / CI | Everything else | `canopee` or `design-system` |
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system && git fetch origin && git checkout <headRefName> && git rebase origin/main && git push --force-with-lease origin <headRefName> && echo 'rebase ok'"
+```
 
-When multiple scopes apply, list them alphabetically comma-separated: `fix(client,prospect): ...`. The scopes `deps`, `deps-dev`, `release` are reserved — never use them.
-
-**Gotcha**: a file like `ButtonApollo.css` that declares classes starting with `.af-btn-client` is normal — the classname root is shared but the file only contains Prospect overrides. Trust the filename, not the classnames, for scope selection.
+Si rebase échoue → `git rebase --abort`, note dans le rapport, continue.
 
 ---
 
-## Phase 5 — Make the change
+## Étape 1 — Lister les issues ouvertes
 
-Keep it minimal and focused. No drive-by refactors, no reformatting unrelated lines, no "while I'm here" cleanups. The reviewer should see only what the issue asked for.
-
-When the issue scopes the change to a specific breakpoint ("mobile only", "desktop only"), be surgical: change the base value AND add an explicit override in the other breakpoint if needed, so the untouched breakpoint's visual result doesn't drift.
-
-Example from a real fix — issue asks for mobile height 48→56 on Prospect Button:
-
-```css
-/* Before */
-.af-btn-client {
-  --button-padding: var(--rem-12) var(--rem-24);   /* mobile 12+24+12 = 48 */
-  @media (--desktop-small) {
-    --button-line-height: var(--rem-32);           /* desktop 12+32+12 = 56 */
-  }
-}
-
-/* After */
-.af-btn-client {
-  --button-padding: var(--rem-16) var(--rem-24);   /* mobile 16+24+16 = 56 ✓ */
-  @media (--desktop-small) {
-    --button-padding: var(--rem-12) var(--rem-24); /* preserved 12+32+12 = 56 ✓ */
-    --button-line-height: var(--rem-32);
-  }
-}
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue list --repo AxaFrance/design-system --state open --limit 50 --json number,title,labels,body,createdAt,milestone"
 ```
-
-The second line inside the media query is the "surgical preservation" — without it, the desktop height would have drifted to 64px.
 
 ---
 
-## Phase 6 — Visual verification (before committing)
+## Étape 2 — Filtrer les issues à sauter
 
-Always test in Storybook before claiming the change works. Type-checking and unit tests confirm correctness of code; they do not confirm correctness of the pixel.
+### 2a. PR existante (open OU merged OU closed)
 
-**Storybook launch commands** per theme (via the monorepo scripts):
-
-```bash
-npm run dev:prospect      # apps/apollo-stories → port 6410
-npm run dev:client        # apps/look-and-feel-stories
-npm run dev:distributeur  # apps/slash-stories
+**Requête 1 — PRs ouvertes :**
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr list --repo AxaFrance/design-system --state open --search '#<N>' --limit 5 --json number,title,state"
 ```
 
-**Known pitfall**: if port 6410 (or the theme's default) is already taken by another process, Storybook prompts `"Port 6410 is not available. Would you like to run Storybook on port 6411 instead? (Y/n)"` and the background task hangs silently (zero stdout). To avoid this, launch the binary directly with a chosen free port and `--ci` (non-interactive) + `--no-open`:
-
-```bash
-cd apps/apollo-stories && \
-  ../../node_modules/.bin/storybook dev -p 6420 --ci --no-open
+**Requête 2 — PRs mergées :**
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr list --repo AxaFrance/design-system --state merged --search '#<N>' --limit 5 --json number,title,state"
 ```
 
-Run in the background, monitor the output for `Storybook X.Y.Z for react-vite started` and `Local: http://localhost:<port>/`, then give the user the URL and the specific story path to check (e.g. `?path=/story/molecules-button--button-primary`). Ask them to open DevTools, toggle responsive mode, and confirm the pixel value before you commit.
+**Requête 3 — Closes explicite :**
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr list --repo AxaFrance/design-system --state all --search 'Closes:#<N>' --limit 5 --json number,title,state"
+```
 
-If a browser MCP is available, use it to capture screenshots; otherwise hand off to the user.
+Si l'une retourne au moins une PR → **SKIP immédiat**.
+
+**Doublon détecté après création :**
+- Fermer : `gh pr close <PR_NUM> --repo AxaFrance/design-system --comment 'Duplicate of #<PR_ORIGINALE>. Closing.'`
+- Supprimer branche : `cd ~/design-system && git push origin --delete <nom-branche>`
+
+### 2b. Commentaire de clarification déjà posté sans réponse
+
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue view <N> --repo AxaFrance/design-system --json comments --jq '.comments[] | {author: .author.login, body: .body[:80], createdAt: .createdAt}'"
+```
+
+Logique :
+- Dernier commentaire = Debaerdm ET pas de réponse humaine après :
+  - **< 7 jours** → SKIP silencieux.
+  - **>= 7 jours ET un seul commentaire Debaerdm** → poste un re-ping :
+    ```applescript
+    do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && printf '%s' 'Petit rappel — tu as des elements sur ce point ? Je peux avancer des que tu confirmes la direction.\n\n---\n*Made with [Claude](https://claude.ai)*' > /tmp/gh-comment.txt && gh issue comment <N> --repo AxaFrance/design-system --body-file /tmp/gh-comment.txt && rm /tmp/gh-comment.txt"
+    ```
+    Puis SKIP.
+  - **>= 7 jours ET deux commentaires Debaerdm consécutifs** → SKIP silencieux (déjà re-pingé).
+- Quelqu'un a répondu après Debaerdm → ré-évalue normalement.
+- Aucun commentaire Debaerdm → traiter normalement.
+
+### 2c. Issue trop vague
+
+Body trop vague ET pas encore commenté → règle "pas sûr".
+
+### 2d. Issue trop ancienne (> 3 mois)
+
+SKIP silencieux.
 
 ---
 
-## Phase 7 — Commit, push, PR, labels
+Traite **UNE seule issue par tick**. Priorité stricte :
+1. Milestone **1.6.0** (due 11 mai 2026)
+2. Milestone **2.0.0**
+3. Issues `bug` récentes (< 3 mois)
+4. Issues `Evolution` récentes (< 3 mois)
 
-**Confirmation gate**: do not execute Phase 7 until the user has visually validated Phase 6.
-
-### Branch
-
-```bash
-git switch -c <type>/<theme>-<short-kebab-description>
-# examples:
-#   fix/prospect-button-mobile-height
-#   feat/client-header-skip-link
-#   fix/client,prospect-itemmessage-import
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue list --repo AxaFrance/design-system --milestone '1.6.0' --state open --limit 20 --json number,title,labels,body,createdAt,milestone"
 ```
 
-### Commit message
+---
 
-Format (strict): `<type>(<scope>): <imperative description>`
+## Phase 1 — Safety triage
 
-- Types allowed: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`
-- Imperative mood, lowercase, ≤ 70 characters, no trailing period
-- No body unless something non-obvious deserves one line of "why"
-- No `refs #N` or `closes #N` in the commit title — that goes in the PR body
-
-Good: `fix(prospect): align button mobile height to 56px`
-Bad: `fix: Button Height (Mobile) 48→56 — refs #1756`
-
-Stage only the files you touched (`git add <explicit paths>`, not `git add .`). The repo has a lint-staged hook that runs stylelint/eslint on commit; if it rewrites your files, that's fine, the commit picks up the fixed content automatically.
-
-### PR body template
-
-Keep it short. Follow the style of recent merged PRs (check `gh pr view <recent-pr> --repo AxaFrance/design-system` if unsure).
-
+**S'assigner sur l'issue** :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue edit <N> --repo AxaFrance/design-system --add-assignee Debaerdm"
 ```
-<one-line summary of the user-visible change>
 
-<optional one-line "how": what knob moved and why, if non-obvious>
+Poste le commentaire "Je prends ça" :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && printf '%s' 'Je prends ca, PR en cours.\n\n---\n*Made with [Claude](https://claude.ai)*' > /tmp/gh-comment.txt && gh issue comment <N> --repo AxaFrance/design-system --body-file /tmp/gh-comment.txt && rm /tmp/gh-comment.txt"
+```
+
+(Si l'issue est en anglais : "On it, opening a PR.")
+
+**STOP** si l'issue touche : auth, session, cookies, JWT, OAuth, SSO, CORS, CSP, crypto, secrets, env vars, PII, CVE, CI/CD, `.github/workflows/`, breaking-change, `dangerouslySetInnerHTML`, désactiver une validation.
+
+---
+
+## Phase 2 — Comprendre l'issue
+
+**Images** : navigue via `mcp__Claude_in_Chrome__navigate`.
+**Liens zeroheight** : navigue et extrait les valeurs concrètes.
+**Liens Figma** : navigue, extrait les specs, inclus l'URL dans le body de la PR.
+
+Si vague → règle "pas sûr".
+
+---
+
+## Bonnes pratiques React
+
+**Props → `variant` union string** (jamais `isXxx?: boolean`)
+```tsx
+variant?: 'default' | 'compact'
+```
+
+**MDX obligatoire** pour chaque nouvelle story.
+
+**Scope minimal** — n'édite que les fichiers strictement nécessaires.
+
+**Nettoyage CSS** — supprime les surcharges devenues redondantes avec le défaut.
+
+---
+
+## Phase 3 — Localiser les fichiers
+
+- CSS : `packages/canopee-css/src/{distributeur,prospect-client}/<Component>/`
+- React : `packages/canopee-react/src/{distributeur,prospect-client}/<Component>/`
+
+Scope : `*Apollo` → `prospect`, `*LF` → `client`, `*Common`/`*All` → `client+prospect`, `distributeur/` → `distributeur`.
+
+Si scope ambigu → règle "pas sûr".
+
+---
+
+## Phase 4 — Implémenter
+
+Minimal et chirurgical. Édite via osascript (sed/awk/heredoc).
+
+---
+
+## Phase 4b — Vérification pré-commit
+
+Avant tout `git add`, vérifie les fichiers modifiés :
+
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system && git diff --name-only"
+```
+
+- Tous les fichiers doivent être dans le scope du composant ciblé.
+- Fichiers inattendus → `git checkout -- <fichier>` + note dans le rapport.
+- Plus de 10 fichiers modifiés → STOP, règle "pas sûr".
+
+---
+
+## Phase 5 — Test visuel (Storybook + Chrome)
+
+Lance Storybook :
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system/apps/apollo-stories && nohup ../../node_modules/.bin/storybook dev -p 6420 --ci --no-open > /tmp/sb-6420.log 2>&1 & echo $!"
+```
+
+Ports : 6420 = Prospect, 6421 = Client, 6422 = Distributeur.
+
+Si régression → `git checkout -- .`, arrête Storybook, skip.
+
+Arrête après les tests :
+```applescript
+do shell script "kill $(lsof -ti:6420) 2>/dev/null; kill $(lsof -ti:6421) 2>/dev/null; kill $(lsof -ti:6422) 2>/dev/null; echo ok"
+```
+
+**JAMAIS de screenshots dans git.**
+
+Capture Playwright avant/après :
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && npx --yes playwright screenshot --browser chromium 'http://localhost:6420/iframe.html?id=<story-id>' /tmp/ds-before.png 2>/dev/null || true"
+```
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && npx --yes playwright screenshot --browser chromium 'http://localhost:6420/iframe.html?id=<story-id>' /tmp/ds-after.png 2>/dev/null || true"
+```
+
+Validation (> 5 Ko) :
+```applescript
+do shell script "wc -c < /tmp/ds-after.png"
+```
+
+Si < 5000 octets → trouve le bon ID via la sidebar Storybook.
+
+Upload :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && curl -s -X POST -H \"Authorization: token $GH_TOKEN\" -F \"asset=@/tmp/ds-after.png;type=image/png\" \"https://uploads.github.com/repos/AxaFrance/design-system/issues/<ISSUE_N>/assets\" | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d.get(\"browser_download_url\",\"\"))'"
+```
+
+Si échec → omets la section Visuel.
+
+---
+
+## Phase 6 — Commit, push, PR
+
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system && git checkout main && git pull origin main && git checkout -b <branche>"
+```
+
+`git add <chemins explicites>` — jamais `git add .`
+
+**commitlint** : `<type>(<scope>): <description>` — header ≤ 100 chars. Jamais `Closes #N` dans le titre.
+
+Body PR :
+```
+<résumé 1 ligne>
+<impl si non évidente>
 
 Closes #<N>
+<lien Figma>
+
+## Visuel
+| Avant | Après |
+|-------|-------|
+| ![avant](<URL>) | ![après](<URL>) |
 ```
 
-If the issue links to Figma, paste the Figma URL below `Closes #<N>`. That's the convention in several merged PRs.
+---
+*Made with [Claude](https://claude.ai)*
 
-### Open the PR
+Labels : hérite de l'issue + `css-package`/`react-package`. Ne mets pas `bug` si `Evolution`.
 
-```bash
-gh pr create --repo AxaFrance/design-system --base main \
-  --head <branch> --title "<commit title>" --body "$(cat <<'EOF'
-<body>
-EOF
-)"
+Milestone :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr edit <PR_NUM> --repo AxaFrance/design-system --milestone '<NOM>'"
 ```
 
-### Labels
+Assignee :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr edit <PR_NUM> --repo AxaFrance/design-system --add-assignee Debaerdm"
+```
 
-Inherit from the issue, then add package-scope labels for the files you touched:
+Vérification CI (45s) :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && sleep 45 && gh pr checks <PR_NUM> --repo AxaFrance/design-system"
+```
 
-- `css-package` — if you touched `packages/canopee-css/**`
-- `react-package` — if you touched `packages/canopee-react/**`
+Si commitlint échoue → `git commit --amend -m '<message>' && git push --force-with-lease`.
 
-Common labels to expect on the issue and mirror on the PR: `Prospect`, `Client`, `molecule`, `atome`, `Organisme`, `Fondations`, `Evolution`, `Création`, `accessibility`, `bug`.
+---
 
-Do **not** add `bug` just because the type is `fix` — look at the issue. `fix` commits that implement an `Evolution`-labelled issue should carry `Evolution`, not `bug`. Example from #1756 (type `fix`, issue label `Evolution`): final PR labels were `Prospect`, `molecule`, `Evolution`, `css-package`.
+## Étape 3 — Traiter les retours sur PRs ouvertes
 
-```bash
-gh pr edit <PR-number> --repo AxaFrance/design-system \
-  --add-label "Label1,Label2,Label3,Label4"
+Si aucune issue traitable, vérifie les PRs :
+
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr list --repo AxaFrance/design-system --author Debaerdm --state open --json number,title,headRefName,reviews,comments,createdAt --limit 20"
+```
+
+**CHANGES_REQUESTED** → checkout, implémente, push, réponds.
+
+**PRs approuvées sans merge depuis > 5 jours** → poster un rappel doux (une seule fois par PR) :
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && printf '%s' 'Petite relance — cette PR est approuvee depuis quelques jours, dispo pour un merge quand vous avez un creneau.\n\n---\n*Made with [Claude](https://claude.ai)*' > /tmp/gh-comment.txt && gh pr comment <N> --repo AxaFrance/design-system --body-file /tmp/gh-comment.txt && rm /tmp/gh-comment.txt"
 ```
 
 ---
 
-## Confirmation gates recap
+## Signal adaptatif gradué
 
-These are the three moments where you must pause and get an explicit "go" from the user before acting, because the actions affect shared or public state:
+Écris le **nombre d'actions réalisées** (nouvelles PRs + commits de correction + rebases) :
 
-1. Before running visual tests if the safety triage in Phase 1 turned up anything non-trivial
-2. Before `git push` (branch becomes visible on the remote)
-3. Before `gh pr create` (PR becomes visible to the world and pings reviewers)
+```applescript
+do shell script "echo '<N>' > /tmp/ds-tick-state"
+```
 
-A single blanket "fais la PR" from the user at the start is enough to clear gates 2 and 3 *for this specific issue only*. It is not a standing authorization for future issues.
+- `0` → Dispatch laisse le cron 1h
+- `1` → Dispatch schedule à +45min
+- `>= 2` → Dispatch schedule à +30min
+
+Si erreur non récupérable :
+```applescript
+do shell script "echo 'ERROR' > /tmp/ds-tick-state && cat /tmp/ds-error-count 2>/dev/null | python3 -c 'import sys; n=int(sys.stdin.read().strip() or 0); print(n+1)' > /tmp/ds-error-count"
+```
+
+Si tick réussi → reset compteur :
+```applescript
+do shell script "echo '0' > /tmp/ds-error-count"
+```
 
 ---
 
-## Quick reference: the happy path (no surprises)
+## Rapport de fin de tick
 
-1. `gh issue view <N> --repo AxaFrance/design-system` — read it, safety-check it
-2. `gh pr list --repo AxaFrance/design-system --state all --search "<N>"` — no duplicates
-3. Locate files via naming rules (Phase 4)
-4. Edit minimally
-5. Launch Storybook on a free port with `--ci --no-open`, share URL
-6. User confirms the pixel
-7. Branch → commit → push → PR → labels
-8. Return the PR URL
+- ✅ `PR #<N> créée pour issue #<M>`
+- 🔄 `PR #<N> — review corrigée`
+- ♻️ `PR #<N> — rebase effectué (conflit résolu)`
+- 🔔 `Issue #<N> — re-ping posté (sans réponse depuis >7j)`
+- ⏭️ `<X> issues couvertes/en attente/sensibles`
+- 💬 `Issue #<N> — clarification demandée`
+- ⏳ `Issue #<N> — en attente de réponse`
+- ⚠️ `Fichiers inattendus réinitialisés : <liste>`
 
-If any step surprises you (unexpected files, ambiguous scope, hanging dev server, label not found), stop and report — don't paper over it.
+---
+
+## Finalisation
+
+### Suppression du lock
+```applescript
+do shell script "rm -f /tmp/ds-tick.lock"
+```
+
+### Log persistant
+```applescript
+do shell script "
+LOGDIR=~/Documents/Claude/Scheduled/design-system-issue-to-pr/logs
+mkdir -p \"$LOGDIR\"
+LOGFILE=\"$LOGDIR/$(date '+%Y-%m-%d-%H').md\"
+printf '## Tick %s\n\n%s\n' \"$(date '+%Y-%m-%d %H:%M')\" '<RAPPORT>' >> \"$LOGFILE\"
+"
+```
+
+Remplace `<RAPPORT>` par le contenu du rapport du tick (une entrée par ligne).
