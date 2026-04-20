@@ -272,9 +272,26 @@ Si échec → omets la section Visuel.
 do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system && git checkout main && git pull origin main && git checkout -b <branche>"
 ```
 
-`git add <chemins explicites>` — jamais `git add .`
+**Commits atomiques — 3 commits séparés (sauter si catégorie vide) :**
 
-**commitlint** : `<type>(<scope>): <description>` — header ≤ 100 chars. Jamais `Closes #N` dans le titre.
+**Commit 1 — composant React** (`.tsx`, `.ts`, `.css`, `.module.css` — hors stories et tests) :
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system && git add <fichiers-composant> && git commit -m 'feat(<Component>): <description courte>'"
+```
+
+**Commit 2 — stories/docs** (`.stories.ts`, `.mdx`) :
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system && git add <fichiers-stories> && git commit -m 'docs(<Component>): add Storybook story'"
+```
+
+**Commit 3 — tests** (`.spec.ts`, `.test.ts` — si présents) :
+```applescript
+do shell script "export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && cd ~/design-system && git add <fichiers-tests> && git commit -m 'test(<Component>): add visual regression screenshots'"
+```
+
+`git add` toujours par chemins explicites — jamais `git add .`. Push unique après tous les commits.
+
+**commitlint** : header ≤ 100 chars. Jamais `Closes #N` dans le titre.
 
 Body PR :
 ```
