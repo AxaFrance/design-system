@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "dependencies": {
-    "@csstools/postcss-global-data": "^3.1.0",
+    "@csstools/postcss-global-data": "^4.0.0",
     "@csstools/postcss-sass": "^5.1.1",
     "cssnano": "^7.0.3",
     "postcss": "^8.4.44",
