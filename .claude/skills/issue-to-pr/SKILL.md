@@ -104,7 +104,21 @@ do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/
 do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr list --repo AxaFrance/design-system --state all --search 'Closes:#<N>' --limit 5 --json number,title,state"
 ```
 
-Si l'une retourne au moins une PR → **SKIP immédiat**.
+**Requête 4 — Numéro dans le titre (ex: "fix: radio (#1748)") :**
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh pr list --repo AxaFrance/design-system --state open --search '<N> in:title' --limit 5 --json number,title,state,author --jq 'map(select(.author.login != "<YOUR_GITHUB_USERNAME>"))'"
+```
+
+> ⚠️ Cette requête exclut les PRs de <YOUR_GITHUB_USERNAME> lui-même (sinon le bot se détecterait). Si le résultat est non vide, c'est qu'un collègue a une PR ouverte qui mentionne l'issue dans son titre — **SKIP immédiat**, même sans mot-clé `closes`.
+
+**Requête 5 — PRs liées via l'API GitHub (timeline) :**
+```applescript
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh api repos/AxaFrance/design-system/issues/<N>/timeline --paginate --jq '[.[] | select(.event == \"cross-referenced\" and .source.type == \"pullrequest\") | {pr: .source.issue.number, title: .source.issue.title, state: .source.issue.state, author: .actor.login}]'"
+```
+
+> Si la timeline contient une cross-reference vers une PR ouverte d'un auteur différent de <YOUR_GITHUB_USERNAME> → **SKIP immédiat**.
+
+Si l'une des 5 requêtes retourne au moins une PR → **SKIP immédiat**.
 
 **Doublon détecté après création :**
 - Fermer : `gh pr close <PR_NUM> --repo AxaFrance/design-system --comment 'Duplicate of #<PR_ORIGINALE>. Closing.'`
