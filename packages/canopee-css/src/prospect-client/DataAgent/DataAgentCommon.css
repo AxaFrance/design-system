@@ -22,6 +22,10 @@
 
 .af-data-agent__info-content {
   padding: var(--data-agent-intro-content-padding);
+
+  .af-data-agent__line:last-of-type {
+    display: none;
+  }
 }
 
 .af-data-agent__info-click-content {
