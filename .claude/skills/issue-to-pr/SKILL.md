@@ -148,17 +148,15 @@ Logique :
 
 Body trop vague ET pas encore commenté → règle "pas sûr".
 
-### 2d. Issue trop ancienne (> 3 mois)
 
-SKIP silencieux.
 
 ---
 
 Traite **UNE seule issue par tick**. Priorité stricte :
 1. Milestone **1.6.0** (due 11 mai 2026)
 2. Milestone **2.0.0**
-3. Issues `bug` récentes (< 3 mois)
-4. Issues `Evolution` récentes (< 3 mois)
+3. Issues `bug`
+4. Issues `Evolution`
 
 ```applescript
 do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue list --repo AxaFrance/design-system --milestone '1.6.0' --label RFD --state open --limit 20 --json number,title,labels,body,createdAt,milestone"
