@@ -121,3 +121,23 @@ export const InputDateTextStory: Story = {
     hidePicker: true,
   },
 };
+
+export const InputDateWarningStory: Story = {
+  name: "Date on warning",
+  render,
+  args: {
+    message: "Titre du message",
+    messageType: "warning",
+    value: new Date("2025-01-01"),
+  },
+};
+
+export const InputDateWarningEmptyStory: Story = {
+  name: "Date on warning empty",
+  render,
+  args: {
+    message: "Titre du message",
+    messageType: "warning",
+    value: undefined,
+  },
+};
