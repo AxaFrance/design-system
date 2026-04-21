@@ -43,3 +43,12 @@ export default meta;
 export const TextAreaStory: StoryObj<typeof TextArea> = {
   name: "Playground",
 };
+
+export const TextAreaWarningStory: StoryObj<typeof TextArea> = {
+  name: "Warning",
+  args: {
+    error: "",
+    message: "Warning Message",
+    messageType: "warning",
+  },
+};
