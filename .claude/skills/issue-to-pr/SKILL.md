@@ -370,8 +370,8 @@ do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/
 do shell script "echo '<N>' > /tmp/ds-tick-state"
 ```
 
-- `0` → Dispatch laisse le cron 1h
-- `1` → Dispatch schedule à +45min
+- `0` → Dispatch laisse le cron 2h
+- `1` → Dispatch schedule à +1h
 - `>= 2` → Dispatch schedule à +30min
 
 Si erreur non récupérable :
