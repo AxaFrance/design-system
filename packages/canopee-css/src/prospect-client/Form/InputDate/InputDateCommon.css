@@ -44,7 +44,8 @@
       :hover,
       :active,
       :focus-within,
-      &[aria-invalid="true"]
+      &[aria-invalid="true"],
+      &[class*="--warning"]
     ):not(:disabled) {
     --input-date-box-shadow-width: 2px;
   }
