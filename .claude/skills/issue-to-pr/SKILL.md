@@ -79,10 +79,10 @@ Si rebase échoue → `git rebase --abort`, note dans le rapport, continue.
 
 ## Étape 1 — Lister les issues ouvertes
 
-> **Règle UX (prioritaire)** : Ne traiter **que** les issues portant le label `RFD` (Ready For Dev). Les issues sans ce label sont ignorées, quelle que soit leur milestone ou ancienneté. C'est l'équipe UX qui pose ce label quand la spec est validée et prête à implémenter.
+> **Règle UX (prioritaire)** : Ne traiter **que** les issues portant le label `📐 RFD` (Ready For Dev). Les issues sans ce label sont ignorées, quelle que soit leur milestone ou ancienneté. C'est l'équipe UX qui pose ce label quand la spec est validée et prête à implémenter.
 
 ```applescript
-do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue list --repo AxaFrance/design-system --state open --label RFD --limit 50 --json number,title,labels,body,createdAt,milestone"
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue list --repo AxaFrance/design-system --state open --label '📐 RFD' --limit 50 --json number,title,labels,body,createdAt,milestone"
 ```
 
 ---
@@ -159,7 +159,7 @@ Traite **UNE seule issue par tick**. Priorité stricte :
 4. Issues `Evolution`
 
 ```applescript
-do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue list --repo AxaFrance/design-system --milestone '1.6.0' --label RFD --state open --limit 20 --json number,title,labels,body,createdAt,milestone"
+do shell script "export GH_TOKEN=<YOUR_GH_TOKEN> && export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH && gh issue list --repo AxaFrance/design-system --milestone '1.6.0' --label '📐 RFD' --state open --limit 20 --json number,title,labels,body,createdAt,milestone"
 ```
 
 ---
