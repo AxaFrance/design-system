@@ -75,6 +75,15 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
 
     const hasError =
       (Boolean(message) && messageType === "error") || Boolean(error);
+    const hasWarning =
+      Boolean(message) && messageType === "warning" && !hasError;
+
+    const textareaClassName = [
+      "af-form__textarea",
+      hasWarning ? "af-form__textarea--warning" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <div
@@ -97,7 +106,7 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
 
         <textarea
           id={inputId}
-          className="af-form__textarea"
+          className={textareaClassName}
           ref={inputRef}
           aria-errormessage={hasError ? messageId : undefined}
           aria-describedby={helper ? helperId : undefined}

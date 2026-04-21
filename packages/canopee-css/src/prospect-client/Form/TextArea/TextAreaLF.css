@@ -25,4 +25,12 @@
       --textarea-box-shadow-width: 3px;
     }
   }
+
+  &[class*="--warning"] {
+    --textarea-box-shadow-color: var(--orange-1050);
+
+    &:is(:focus-visible, :hover, :active, :focus) {
+      --textarea-box-shadow-width: 3px;
+    }
+  }
 }
