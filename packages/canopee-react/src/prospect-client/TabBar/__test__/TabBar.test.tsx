@@ -9,9 +9,15 @@ import {
   type TabBarDirection,
 } from "../TabBarCommon";
 
+const handleSelectTabMock = vi.fn();
+
 const tabs = [
   { title: "Tab 1", content: "Content 1" },
-  { title: "Tab 2", content: "Content 2" },
+  {
+    title: "Tab 2",
+    content: "Content 2",
+    handleSelectTab: handleSelectTabMock,
+  },
   { title: "Tab 3", content: "Content 3" },
 ];
 
@@ -22,6 +28,10 @@ const tabs2 = [
 ];
 
 describe("TabBar", () => {
+  afterEach(() => {
+    handleSelectTabMock.mockReset();
+  });
+
   it("should render the component", () => {
     render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
     expect(screen.getByRole("tablist")).toBeInTheDocument();
@@ -119,6 +129,44 @@ describe("TabBar", () => {
       "aria-selected",
       "true",
     );
+  });
+
+  it("should call handleClick tab on click", async () => {
+    const user = userEvent.setup();
+    render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
+    expect(screen.getByRole("tablist")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")).toHaveLength(3);
+    expect(screen.getByText("Content 1")).toBeInTheDocument();
+    await user.click(screen.getAllByRole("tab")[1]);
+    expect(handleSelectTabMock).toHaveBeenCalledOnce();
+  });
+
+  it("should call handleClick tab on arrow right key press", async () => {
+    const user = userEvent.setup();
+    render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
+    expect(screen.getByRole("tablist")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")).toHaveLength(3);
+    expect(screen.getByText("Content 1")).toBeInTheDocument();
+    screen.getAllByRole("tab")[0].focus();
+    await user.keyboard("{ArrowRight}");
+    expect(handleSelectTabMock).toHaveBeenCalledOnce();
+  });
+
+  it("should call handleClick tab on arrow left key press", async () => {
+    const user = userEvent.setup();
+    render(
+      <TabBar
+        items={tabs}
+        preSelectedTabIndex={2}
+        ItemTabBarComponent={ItemTabBar}
+      />,
+    );
+    expect(screen.getByRole("tablist")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")).toHaveLength(3);
+    expect(screen.getByText("Content 3")).toBeInTheDocument();
+    screen.getAllByRole("tab")[2].focus();
+    await user.keyboard("{ArrowLeft}");
+    expect(handleSelectTabMock).toHaveBeenCalledOnce();
   });
 
   it("should have no accessibility violations", async () => {

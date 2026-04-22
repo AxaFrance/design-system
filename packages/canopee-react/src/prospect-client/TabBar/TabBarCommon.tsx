@@ -22,6 +22,7 @@ export type TabBarDirection = keyof typeof tabBarDirection;
 export type TabBarProps = {
   items: ({
     content: ReactNode;
+    handleSelectTab?: () => void;
   } & Omit<ItemTabBarProps, "content">)[];
   preSelectedTabIndex?: number;
   direction?: TabBarDirection;
@@ -48,6 +49,11 @@ export const TabBarCommon = ({
 
   const isActive = (index: number) => index === selectedTabIndex;
 
+  const handleClickFn = (index: number) => {
+    setSelectedTabIndex(index);
+    items[index]?.handleSelectTab?.();
+  };
+
   const onChangeTab = useCallback(
     (e: React.KeyboardEvent<HTMLButtonElement>) => {
       const firstTabIndex = 0;
@@ -55,6 +61,7 @@ export const TabBarCommon = ({
 
       const goToNextTab = (nextTabIndex: number) => {
         setSelectedTabIndex(nextTabIndex);
+        items[nextTabIndex]?.handleSelectTab?.();
         buttonRefs.current[nextTabIndex].focus();
         e.stopPropagation();
         e.preventDefault();
@@ -103,7 +110,7 @@ export const TabBarCommon = ({
             aria-selected={isActive(index)}
             aria-controls={`tabpanel-${index}`}
             onKeyDown={onChangeTab}
-            onClick={() => setSelectedTabIndex(index)}
+            onClick={() => handleClickFn(index)}
             ref={(element: HTMLButtonElement) => {
               buttonRefs.current[index] = element;
             }}

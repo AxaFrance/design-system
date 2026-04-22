@@ -4,6 +4,7 @@ import {
   type TabBarProps,
 } from "@axa-fr/canopee-react/client";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
 
 const meta: Meta<typeof TabBar> = {
@@ -50,6 +51,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
     items: [
       {
         title: "ReactNode tab 1",
+        handleSelectTab: fn(() => console.log("ReactNode tab 1")),
         content: (
           <>
             <h2>Titre 1</h2>
@@ -59,6 +61,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
       },
       {
         title: "ReactNode tab 2",
+        handleSelectTab: fn(() => console.log("ReactNode tab 2")),
         content: (
           <>
             <h2>Titre 2</h2>
@@ -68,6 +71,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
       },
       {
         title: "ReactNode tab 3",
+        handleSelectTab: fn(() => console.log("ReactNode tab 3")),
         content: (
           <>
             <h2>Titre 3</h2>
