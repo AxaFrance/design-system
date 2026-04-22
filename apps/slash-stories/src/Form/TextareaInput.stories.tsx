@@ -3,10 +3,10 @@ import {
   MessageTypes,
   TextareaInput,
 } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
-const meta: Meta<typeof TextareaInput> = {
+const meta = preview.meta({
   component: TextareaInput,
   title: "Components/Form/Input/Textarea",
   argTypes: { onChange: { action: "onChange" } },
@@ -32,25 +32,21 @@ const meta: Meta<typeof TextareaInput> = {
     tabIndex: 0,
     autoFocus: true,
   },
-};
+});
 
-export default meta;
-
-type Story = StoryObj<React.ComponentProps<typeof TextareaInput>>;
-
-export const TextareaInputStory: Story = {
+export const TextareaInputStory = meta.story({
   name: "TextareaInput",
   render: ({ onChange, ...args }) => (
     <TextareaInput onChange={onChange} {...args} />
   ),
   args: {},
-};
+});
 
-export const TextAreaInputWithChildren: Story = {
+export const TextAreaInputWithChildren = meta.story({
   name: "TextareaInput with help button",
   render: ({ onChange, ...args }) => (
     <TextareaInput onChange={onChange} {...args}>
       <HelpButton mode="hover">Help</HelpButton>
     </TextareaInput>
   ),
-};
+});

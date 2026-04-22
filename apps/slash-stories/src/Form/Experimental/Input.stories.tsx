@@ -1,7 +1,7 @@
 import { Input } from "@axa-fr/canopee-react/distributeur/experimental";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 
-const meta = {
+const meta = preview.meta({
   title: "Experimental/Form/Atoms/Input",
   component: Input,
   argTypes: {
@@ -14,20 +14,17 @@ const meta = {
     },
     onChange: { action: "changed", table: { disable: true } },
   },
-} satisfies Meta<typeof Input>;
+});
 
-export default meta;
-type Story = StoryObj<typeof Input>;
-
-export const DefaultStory: Story = {
+export const DefaultStory = meta.story({
   name: "Default",
   render: (args) => <Input {...args} />,
   args: {
     placeholder: "Enter text...",
   },
-};
+});
 
-export const DisabledStory: Story = {
+export const DisabledStory = meta.story({
   name: "Disabled",
   render: (args) => <Input {...args} />,
   args: {
@@ -35,18 +32,18 @@ export const DisabledStory: Story = {
     disabled: true,
     value: "Cannot edit this",
   },
-};
+});
 
-export const RequiredStory: Story = {
+export const RequiredStory = meta.story({
   name: "Required",
   render: (args) => <Input {...args} />,
   args: {
     placeholder: "Required field",
     required: true,
   },
-};
+});
 
-export const InvalidStory: Story = {
+export const InvalidStory = meta.story({
   name: "Invalid",
   render: (args) => <Input {...args} />,
   args: {
@@ -54,4 +51,4 @@ export const InvalidStory: Story = {
     "aria-invalid": true,
     value: "Invalid value",
   },
-};
+});

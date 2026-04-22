@@ -4,20 +4,17 @@ import {
   InputUnit,
   Label,
 } from "@axa-fr/canopee-react/distributeur/experimental";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 
-const meta = {
+const meta = preview.meta({
   title: "Experimental/Form/Atoms/InputContainer",
   component: InputContainer,
   argTypes: {
     vertical: { control: "boolean" },
   },
-} satisfies Meta<typeof InputContainer>;
+});
 
-export default meta;
-type Story = StoryObj<typeof InputContainer>;
-
-export const HorizontalStory: Story = {
+export const HorizontalStory = meta.story({
   name: "Horizontal Layout",
   render: (args) => (
     <InputContainer {...args}>
@@ -29,9 +26,9 @@ export const HorizontalStory: Story = {
   args: {
     vertical: false,
   },
-};
+});
 
-export const VerticalStory: Story = {
+export const VerticalStory = meta.story({
   name: "Vertical Layout",
   render: (args) => (
     <InputContainer {...args}>
@@ -43,9 +40,9 @@ export const VerticalStory: Story = {
   args: {
     vertical: true,
   },
-};
+});
 
-export const WithoutUnitStory: Story = {
+export const WithoutUnitStory = meta.story({
   name: "Without Unit",
   render: (args) => (
     <InputContainer {...args}>
@@ -56,4 +53,4 @@ export const WithoutUnitStory: Story = {
   args: {
     vertical: false,
   },
-};
+});

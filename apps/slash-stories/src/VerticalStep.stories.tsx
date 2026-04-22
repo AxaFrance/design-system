@@ -1,15 +1,12 @@
 import { Button, VerticalStep } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 
-const meta = {
+const meta = preview.meta({
   title: "Components/Steps/VerticalStep",
   component: VerticalStep,
-} satisfies Meta<typeof VerticalStep>;
+});
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const VerticalStepLockedStory: Story = {
+export const VerticalStepLockedStory = meta.story({
   name: "Test composant VerticalStep bloqué",
   args: {
     title: "Configuration",
@@ -19,9 +16,9 @@ export const VerticalStepLockedStory: Story = {
     form: <h3>Formulaire de l&apos;étape configuration</h3>,
     restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
-};
+});
 
-export const VerticalStepEditedStory: Story = {
+export const VerticalStepEditedStory = meta.story({
   name: "Test composant VerticalStep en édition",
   args: {
     title: "Configuration",
@@ -38,9 +35,9 @@ export const VerticalStepEditedStory: Story = {
     ),
     restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
-};
+});
 
-export const VerticalStepValidatedWithoutRestitutionStory: Story = {
+export const VerticalStepValidatedWithoutRestitutionStory = meta.story({
   name: "Test composant VerticalStep validé sans restitution",
   args: {
     title: "Configuration",
@@ -51,9 +48,9 @@ export const VerticalStepValidatedWithoutRestitutionStory: Story = {
     restitution: <h3>Resitution de l&apos;étape configuration</h3>,
     showRestitution: false,
   },
-};
+});
 
-export const VerticalStepValidatedWithRestitutionStory: Story = {
+export const VerticalStepValidatedWithRestitutionStory = meta.story({
   name: "Test composant VerticalStep validé avec restitution",
   args: {
     title: "Configuration",
@@ -63,9 +60,9 @@ export const VerticalStepValidatedWithRestitutionStory: Story = {
     form: <h3>Formulaire de l&apos;étape configuration</h3>,
     restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
-};
+});
 
-export const VerticalStepValidatedWithContentRightStory: Story = {
+export const VerticalStepValidatedWithContentRightStory = meta.story({
   name: "Test composant VerticalStep validé avec contenu à droite",
   args: {
     title: "Configuration",
@@ -76,9 +73,9 @@ export const VerticalStepValidatedWithContentRightStory: Story = {
     form: <h3>Formulaire de l&apos;étape configuration</h3>,
     restitution: <h3>Resitution de l&apos;étape configuration</h3>,
   },
-};
+});
 
-export const VerticalStepValidatedReadOnlyStory = {
+export const VerticalStepValidatedReadOnlyStory = meta.story({
   name: "Test composant VerticalStep validé en lecture seule",
   args: {
     title: "Configuration",
@@ -88,18 +85,21 @@ export const VerticalStepValidatedReadOnlyStory = {
     restitution: <h3>Resitution de l&apos;étape configuration</h3>,
     readonly: true,
   },
-};
+});
 
-type FullStory = StoryObj<typeof VerticalStep>;
-export const ManyVerticalStep: FullStory = {
+export const ManyVerticalStep = meta.story({
   name: "Test composant avec plusieurs VerticalStep",
   render: () => (
     <>
-      <VerticalStep {...VerticalStepValidatedWithoutRestitutionStory.args} />
-      <VerticalStep {...VerticalStepValidatedWithRestitutionStory.args} />
-      <VerticalStep {...VerticalStepValidatedWithContentRightStory.args} />
-      <VerticalStep {...VerticalStepEditedStory.args} />
-      <VerticalStep {...VerticalStepLockedStory.args} />
+      <VerticalStep
+        {...VerticalStepValidatedWithoutRestitutionStory.input.args}
+      />
+      <VerticalStep {...VerticalStepValidatedWithRestitutionStory.input.args} />
+      <VerticalStep
+        {...VerticalStepValidatedWithContentRightStory.input.args}
+      />
+      <VerticalStep {...VerticalStepEditedStory.input.args} />
+      <VerticalStep {...VerticalStepLockedStory.input.args} />
     </>
   ),
-};
+});

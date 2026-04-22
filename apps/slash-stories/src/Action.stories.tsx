@@ -1,17 +1,16 @@
 import { Action } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../.storybook/preview";
 
-const meta: Meta<typeof Action> = {
+const meta = preview.meta({
   title: "Components/Action",
   component: Action,
   args: {
     onClick: fn(),
   },
-};
-export default meta;
+});
 
-export const Default: StoryObj<typeof Action> = {
+export const Default = meta.story({
   name: "Action Link",
   render: ({ ...args }) => <Action {...args} />,
   args: {
@@ -21,9 +20,9 @@ export const Default: StoryObj<typeof Action> = {
     target: "_blank",
     id: "id",
   },
-};
+});
 
-export const Button: StoryObj<typeof Action> = {
+export const Button = meta.story({
   name: "Action Button",
   render: ({ onClick, ...args }) => <Action onClick={onClick} {...args} />,
   args: {
@@ -31,4 +30,4 @@ export const Button: StoryObj<typeof Action> = {
     title: "Enregistrer",
     id: "id",
   },
-};
+});

@@ -1,7 +1,7 @@
 import { TabBar, tabBarDirection } from "@axa-fr/canopee-react/prospect";
 import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
+import { fn } from "storybook/test";
 
 const meta: Meta<typeof TabBar> = {
   component: TabBar,

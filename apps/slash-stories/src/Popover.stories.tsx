@@ -1,17 +1,16 @@
 import { Popover } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 
-const meta: Meta<typeof Popover> = {
+const meta = preview.meta({
   title: "Components/Popover",
   component: Popover,
   args: {},
   parameters: {
     layout: "centered",
   },
-};
-export default meta;
+});
 
-export const Default: StoryObj<typeof Popover> = {
+export const Default = meta.story({
   name: "Popover",
   render: ({ ...args }) => (
     <Popover
@@ -60,4 +59,4 @@ export const Default: StoryObj<typeof Popover> = {
       control: { type: "select" },
     },
   },
-};
+});

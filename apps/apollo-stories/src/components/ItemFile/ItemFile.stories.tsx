@@ -1,7 +1,7 @@
-import { ItemFile } from "@axa-fr/design-system-apollo-react";
-import { fn } from "@storybook/test";
+import { ItemFile } from "@axa-fr/canopee-react/prospect";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
+import { fn } from "storybook/test";
 
 type Story = StoryObj<
   Omit<ComponentProps<typeof ItemFile>, "file"> & {

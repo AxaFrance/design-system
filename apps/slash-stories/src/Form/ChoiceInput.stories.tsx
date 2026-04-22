@@ -3,9 +3,9 @@ import {
   HelpButton,
   MessageTypes,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { ComponentPropsWithRef } from "react";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 type ChoiceInputProps = Omit<
   ComponentPropsWithRef<typeof ChoiceInput>,
@@ -14,8 +14,7 @@ type ChoiceInputProps = Omit<
   classModifier?: string[];
 };
 
-const meta: Meta<ChoiceInputProps> = {
-  component: ChoiceInput,
+const meta = preview.type<{ args: ChoiceInputProps }>().meta({
   title: "Components/Form/Input/Choice",
   args: {
     name: "placeName",
@@ -46,22 +45,20 @@ const meta: Meta<ChoiceInputProps> = {
       control: { type: "inline-radio" },
     },
   },
-};
+});
 
-export default meta;
-
-export const ChoiceInputStory: StoryObj<ChoiceInputProps> = {
+export const ChoiceInputStory = meta.story({
   name: "ChoiceInput",
   render: ({ classModifier, ...args }) => (
     <ChoiceInput classModifier={classModifier?.join(" ")} {...args} />
   ),
-};
+});
 
-export const ChoiceInputWithChildrenStory: StoryObj<ChoiceInputProps> = {
+export const ChoiceInputWithChildrenStory = meta.story({
   name: "ChoiceInput with help button",
   render: ({ classModifier, ...args }) => (
     <ChoiceInput classModifier={classModifier?.join(" ")} {...args}>
       <HelpButton mode="hover">Help</HelpButton>
     </ChoiceInput>
   ),
-};
+});
