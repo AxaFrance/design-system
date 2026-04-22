@@ -10,13 +10,6 @@
   }
 }
 
-.af-item-message__icon {
-  width: var(--item-message-icon-size);
-  height: var(--item-message-icon-size);
-  color: var(--item-message-color);
-  fill: currentcolor;
-}
-
 .af-item-message__message {
   font-family: var(--font-family-base);
   font-size: var(--item-message-font-size);
