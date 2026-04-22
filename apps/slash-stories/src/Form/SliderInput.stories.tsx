@@ -1,15 +1,18 @@
 import { MessageTypes, SliderInput } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import type { ComponentProps } from "react";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 const MODIFIERS = ["required", "disabled"];
 
-const meta: Meta = {
-  title: "Components/Form/Input/Slider/SliderInput",
-  component: SliderInput,
-  args: { onChange: fn() },
+type StoryProps = Omit<ComponentProps<typeof SliderInput>, "classModifier"> & {
+  classModifier: string[];
 };
+
+const meta = preview.type<{ args: StoryProps }>().meta({
+  title: "Components/Form/Input/Slider/SliderInput",
+  args: { onChange: fn() },
+});
 
 export default meta;
 
@@ -22,12 +25,7 @@ const options = [
   { label: "4096", value: 4096 },
 ];
 
-type StoryProps = Omit<ComponentProps<typeof SliderInput>, "classModifier"> & {
-  classModifier: string[];
-};
-type Story = StoryObj<StoryProps>;
-
-export const SliderInputStory: Story = {
+export const SliderInputStory = meta.story({
   name: "SliderInput",
   render: ({ classModifier, ...args }) => (
     <form className="af-form" name="myform">
@@ -57,4 +55,4 @@ export const SliderInputStory: Story = {
     onBlur: { action: "onBlur" },
     onFocus: { action: "onFocus" },
   },
-};
+});

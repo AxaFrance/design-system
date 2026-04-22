@@ -1,25 +1,22 @@
 import { Text } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 import { inputTypes } from "./inputTypes";
 
 const MODIFIERS = ["", "required", "disabled"];
-
-const meta: Meta<typeof Text> = {
-  component: Text,
-  title: "Components/Form/Input/Text",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
-
 type StoryProps = Omit<React.ComponentProps<typeof Text>, "classModifier"> & {
   classModifier: string[];
 };
-type Story = StoryObj<StoryProps>;
 
-export const TextStory: Story = {
+const meta = preview.type<{ args: StoryProps }>().meta({
+  title: "Components/Form/Input/Text",
+  argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
+});
+
+export default meta;
+
+export const TextStory = meta.story({
   name: "Text",
   render: ({ classModifier, onChange, ...args }) => (
     <Text
@@ -50,4 +47,4 @@ export const TextStory: Story = {
       control: { type: "select" },
     },
   },
-};
+});

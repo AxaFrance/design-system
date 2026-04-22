@@ -1,8 +1,8 @@
 import { HelpButton } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 import "./HelpButton.stories.scss?inline";
 
-const meta: Meta<typeof HelpButton> = {
+const meta = preview.meta({
   title: "Components/HelpButton",
   component: HelpButton,
   args: {},
@@ -35,10 +35,10 @@ const meta: Meta<typeof HelpButton> = {
   parameters: {
     layout: "centered",
   },
-};
+});
 export default meta;
 
-export const Default: StoryObj<typeof HelpButton> = {
+export const Default = meta.story({
   name: "HelpButton",
   render: ({ ...args }) => (
     <HelpButton {...args}>Lorem ipsum dolor sit amet</HelpButton>
@@ -46,9 +46,9 @@ export const Default: StoryObj<typeof HelpButton> = {
   args: {
     mode: "hover",
   },
-};
+});
 
-export const WithHtml: StoryObj<typeof HelpButton> = {
+export const WithHtml = meta.story({
   name: "With HTML in the popover",
   render: ({ ...args }) => (
     <HelpButton {...args}>
@@ -75,4 +75,4 @@ export const WithHtml: StoryObj<typeof HelpButton> = {
     mode: "hover",
     classModifier: "custom",
   },
-};
+});

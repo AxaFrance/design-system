@@ -1,15 +1,17 @@
 import { Slider } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import type { ComponentProps } from "react";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 const MODIFIERS = ["required", "disabled"];
 
-const meta: Meta = {
-  title: "Components/Form/Input/Slider",
-  component: Slider,
-  args: { onChange: fn() },
+type StoryProps = Omit<ComponentProps<typeof Slider>, "classModifier"> & {
+  classModifier: string[];
 };
+const meta = preview.type<{ args: StoryProps }>().meta({
+  title: "Components/Form/Input/Slider",
+  args: { onChange: fn() },
+});
 
 export default meta;
 
@@ -22,16 +24,10 @@ const options = [
   { label: "4096", value: 4096 },
 ];
 
-type StoryProps = Omit<ComponentProps<typeof Slider>, "classModifier"> & {
-  classModifier: string[];
-};
-type Story = StoryObj<StoryProps>;
-
-export const SliderStory: Story = {
+export const SliderStory = meta.story({
   name: "Slider",
   render: ({ classModifier, ...args }) => (
     <form className="af-form" name="myform">
-      {JSON.stringify({ a: args.className })}
       <Slider classModifier={classModifier.join(" ")} {...args} />
     </form>
   ),
@@ -53,4 +49,4 @@ export const SliderStory: Story = {
     onBlur: { action: "onBlur" },
     onFocus: { action: "onFocus" },
   },
-};
+});

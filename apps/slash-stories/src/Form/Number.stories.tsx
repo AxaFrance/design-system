@@ -1,24 +1,21 @@
 import { Number } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-
-const MODIFIERS = ["", "required", "disabled"];
-
-const meta: Meta<typeof Number> = {
-  component: Number,
-  title: "Components/Form/Input/Number",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 type StoryProps = Omit<React.ComponentProps<typeof Number>, "classModifier"> & {
   classModifier: string[];
 };
-type Story = StoryObj<StoryProps>;
+const MODIFIERS = ["", "required", "disabled"];
 
-export const NumberStory: Story = {
+const meta = preview.type<{ args: StoryProps }>().meta({
+  title: "Components/Form/Input/Number",
+  argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
+});
+
+export default meta;
+
+export const NumberStory = meta.story({
   name: "Number",
   render: ({ classModifier, onChange, ...args }) => (
     <Number
@@ -45,4 +42,4 @@ export const NumberStory: Story = {
       control: { type: "inline-check" },
     },
   },
-};
+});

@@ -1,24 +1,46 @@
 import { Button, Link, Title } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
 import { ReactElement } from "react";
-
-const meta: Meta<typeof Title> = {
-  title: "Components/Title",
-  component: Title,
-};
-export default meta;
+import preview from "../.storybook/preview";
 
 const MODIFIERS = ["", "content"];
-const CONTENTS = ["Button", "Link", "None"];
+const CONTENTS = ["Button", "Link", "None"] as const;
 
 type StoryProps = Omit<
   React.ComponentProps<typeof Title>,
-  "classModifier" | "children"
+  "classModifier" | "children" | "contentLeft" | "contentRight"
 > & {
   children: string;
   classModifier: string;
+  contentLeft?: (typeof CONTENTS)[number];
+  contentRight?: (typeof CONTENTS)[number];
 };
-type Story = StoryObj<StoryProps>;
+
+const meta = preview.type<{ args: StoryProps }>().meta({
+  title: "Components/Title",
+  args: {
+    children: "Sample Title",
+    classModifier: "",
+    className: "",
+    heading: "h2",
+    contentLeft: "None",
+    contentRight: "None",
+  },
+  argTypes: {
+    contentLeft: {
+      options: CONTENTS,
+      control: { type: "select" },
+    },
+    contentRight: {
+      options: CONTENTS,
+      control: { type: "select" },
+    },
+    classModifier: {
+      options: MODIFIERS,
+      control: { type: "select" },
+    },
+  },
+});
+export default meta;
 
 const getContent = (content?: string) => {
   switch (content) {
@@ -34,10 +56,15 @@ const getContent = (content?: string) => {
   }
 };
 
-export const Template: Story = {
+export const Template = meta.story({
   name: "Title",
   render: ({ children: text, classModifier, ...args }) => (
-    <Title classModifier={classModifier} {...args}>
+    <Title
+      classModifier={classModifier}
+      {...args}
+      contentLeft={undefined}
+      contentRight={undefined}
+    >
       {text}
     </Title>
   ),
@@ -48,19 +75,12 @@ export const Template: Story = {
     heading: "h2",
   },
   argTypes: {
-    classModifier: {
-      options: MODIFIERS,
-      control: { type: "select" },
-    },
+    contentLeft: { control: false },
+    contentRight: { control: false },
   },
-};
+});
 
-export const TitleWithContent: StoryObj<
-  Omit<StoryProps, "contentLeft" | "contentRight"> & {
-    contentLeft?: string;
-    contentRight?: string;
-  }
-> = {
+export const TitleWithContent = meta.story({
   render: ({ children, contentLeft, contentRight, heading }) => {
     return (
       <Title
@@ -78,14 +98,4 @@ export const TitleWithContent: StoryObj<
     contentLeft: "Button",
     contentRight: "Link",
   },
-  argTypes: {
-    contentLeft: {
-      options: CONTENTS,
-      control: { type: "select" },
-    },
-    contentRight: {
-      options: CONTENTS,
-      control: { type: "select" },
-    },
-  },
-};
+});

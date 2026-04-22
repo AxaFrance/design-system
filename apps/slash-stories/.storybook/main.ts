@@ -1,4 +1,4 @@
-import type { StorybookConfig } from "@storybook/react-vite";
+import { defineMain } from "@storybook/react-vite/node";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -17,32 +17,26 @@ function getAbsolutePath(value: string): string {
   );
 }
 
-const config: StorybookConfig = {
+export default defineMain({
+  framework: "@storybook/react-vite",
   stories: [
     "../src/Home.mdx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
-    getAbsolutePath("@storybook/addon-onboarding"),
-    getAbsolutePath("@storybook/addon-essentials"),
-    getAbsolutePath("@chromatic-com/storybook"),
-    getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@whitespace/storybook-addon-html"),
   ],
-  framework: {
-    name: getAbsolutePath("@storybook/react-vite"),
-    options: {},
-  },
   core: {
     disableTelemetry: true,
+    builder: "@storybook/builder-vite",
   },
   typescript: {
     reactDocgen: "react-docgen",
   },
-  // Black magic to make Storybook use the source code of canopee packages instead of the compiled code, preserving TSDoc comments in Storybook UI
   async viteFinal(viteConfig) {
     // Merge custom configuration into the default config
     const { mergeConfig } = await import("vite");
@@ -72,6 +66,4 @@ const config: StorybookConfig = {
       },
     });
   },
-};
-
-export default config;
+});

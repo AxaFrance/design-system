@@ -1,18 +1,17 @@
-import { Meta, StoryObj } from "@storybook/react";
-
 import {
   MenuTitleWrapper,
   NavBarItem,
 } from "@axa-fr/canopee-react/distributeur";
+import preview from "../../../.storybook/preview";
 
-const meta: Meta<typeof MenuTitleWrapper> = {
+const meta = preview.meta({
   component: MenuTitleWrapper,
   title: "Components/Header/MenuTitleWrapper",
-};
+});
 
 export default meta;
 
-export const Default: StoryObj<typeof MenuTitleWrapper> = {
+export const Default = meta.story({
   args: {
     children: [
       <NavBarItem
@@ -158,4 +157,4 @@ export const Default: StoryObj<typeof MenuTitleWrapper> = {
     subtitle: "Sous titre",
     title: "Toolkit Axa",
   },
-};
+});

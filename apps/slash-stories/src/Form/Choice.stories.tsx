@@ -1,16 +1,6 @@
 import { Choice } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { ComponentPropsWithRef } from "react";
-
-const meta: Meta<typeof Choice> = {
-  component: Choice,
-  title: "Components/Form/Input/Choice",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
+import preview from "../../.storybook/preview";
 
 type ChoiceProps = Omit<
   ComponentPropsWithRef<typeof Choice>,
@@ -19,7 +9,14 @@ type ChoiceProps = Omit<
   classModifier?: string[];
 };
 
-export const ChoiceStory: StoryObj<ChoiceProps> = {
+const meta = preview.type<{ args: ChoiceProps }>().meta({
+  title: "Components/Form/Input/Choice",
+  argTypes: { onChange: { action: "onChange" } },
+});
+
+export default meta;
+
+export const ChoiceStory = meta.story({
   name: "Choice",
   render: ({ classModifier, ...args }) => (
     <Choice classModifier={classModifier?.join(" ")} {...args} />
@@ -44,4 +41,4 @@ export const ChoiceStory: StoryObj<ChoiceProps> = {
       control: { type: "inline-radio" },
     },
   },
-};
+});

@@ -1,7 +1,7 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { Button, Icon, TableMobileCard } from "@axa-fr/canopee-react/client";
 import download from "@material-symbols/svg-400/outlined/download_2-fill.svg";
+import { Meta, StoryObj } from "@storybook/react";
+import { action } from "storybook/actions";
 
 interface TableMobileCardStoryArgs {
   variant?: "alternate" | "blue" | "white";

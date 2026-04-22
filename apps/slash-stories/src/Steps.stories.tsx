@@ -3,15 +3,15 @@ import {
   Steps,
   type StepLinkOnClickHandler,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, type StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../.storybook/preview";
 
 type StoryProps = React.ComponentProps<typeof Steps> & {
   onClick: StepLinkOnClickHandler;
   mode?: "link" | "active" | "disabled";
 };
 
-const meta: Meta<StoryProps> = {
+const meta = preview.meta({
   component: Steps,
   title: "Components/Steps/Step",
   args: {
@@ -27,13 +27,10 @@ const meta: Meta<StoryProps> = {
       },
     },
   },
-};
-
+});
 export default meta;
 
-type Story = StoryObj<StoryProps>;
-
-export const NewStepsStory: Story = {
+export const NewStepsStory = meta.story({
   name: "Horizontal Stepper",
   render: ({ classModifier, className, mode, onClick }: StoryProps) => (
     <Steps classModifier={classModifier} className={className}>
@@ -68,9 +65,9 @@ export const NewStepsStory: Story = {
     classModifier: "",
     className: "",
   },
-};
+});
 
-export const StepsValidated: Story = {
+export const StepsValidated = meta.story({
   name: "Final step is active",
   render: ({ classModifier, className, mode, onClick }: StoryProps) => (
     <Steps classModifier={classModifier} className={className}>
@@ -113,4 +110,4 @@ export const StepsValidated: Story = {
     classModifier: "",
     className: "",
   },
-};
+});

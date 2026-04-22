@@ -3,9 +3,9 @@ import {
   MessageTypes,
   SelectInput,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 const options = [
   { value: "fun", label: "For fun" },
@@ -13,10 +13,9 @@ const options = [
   { value: "drink", label: "For drink" },
 ];
 
-const meta: Meta<typeof SelectInput> = {
+const meta = preview.meta({
   component: SelectInput,
   title: "Components/Form/Input/Select",
-  argTypes: { onChange: { action: "onChange" } },
   args: {
     label: "Place type",
     mode: "default",
@@ -35,38 +34,18 @@ const meta: Meta<typeof SelectInput> = {
     name: "placeName",
     options,
     onChange: fn(),
-  },
-};
+    children: undefined,
+  } satisfies ComponentProps<typeof SelectInput>,
+});
 
 export default meta;
 
-type StoryProps = ComponentProps<typeof SelectInput>;
-type Story = StoryObj<StoryProps>;
-
-export const SelectInputStory: Story = {
+export const SelectInputStory = meta.story({
   name: "SelectInput with label",
   tags: ["Form", "Input"],
   render: ({ onChange, ...args }) => (
     <SelectInput onChange={onChange} {...args} />
   ),
-  args: {
-    label: "Place type",
-    mode: "default",
-    helpMessage: "Enter the place type",
-    required: false,
-    disabled: false,
-    isVisible: true,
-    classModifier: "",
-    className: "",
-    placeholder: "- Select -",
-    messageType: undefined,
-    forceDisplayMessage: false,
-    classNameContainerLabel: "col-md-2",
-    classNameContainerInput: "col-md-10",
-    forceDisplayPlaceholder: false,
-    name: "placeName",
-    options,
-  },
   argTypes: {
     messageType: {
       control: {
@@ -84,9 +63,9 @@ export const SelectInputStory: Story = {
     ariaLabelContainer: { table: { disable: true } },
     isLabelContainerLinkedToInput: { table: { disable: true } },
   },
-};
+});
 
-export const SelectWithStatus: StoryObj<ComponentProps<typeof SelectInput>> = {
+export const SelectWithStatus = meta.story({
   name: "SelectInput with statuses",
   tags: ["Form", "Input"],
   render: ({ onChange }) => (
@@ -137,16 +116,13 @@ export const SelectWithStatus: StoryObj<ComponentProps<typeof SelectInput>> = {
       />
     </>
   ),
-  argTypes: {
-    onChange: { action: "onChange" },
-  },
-};
+});
 
-export const SelectWithChildren: Story = {
+export const SelectWithChildren = meta.story({
   name: "SelectInput with children",
   render: ({ ...args }) => (
     <SelectInput {...args}>
       <HelpButton mode="hover">Help</HelpButton>
     </SelectInput>
   ),
-};
+});

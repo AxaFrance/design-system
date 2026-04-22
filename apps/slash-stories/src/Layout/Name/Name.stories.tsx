@@ -1,15 +1,14 @@
 import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import { Name } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 
-const meta: Meta<typeof Name> = {
+const meta = preview.meta({
   component: Name,
   title: "Components/Header/Name",
-};
-
+});
 export default meta;
 
-export const Default: StoryObj<typeof Name> = {
+export const Default = meta.story({
   args: {
     alt: "Logo React",
     img: logo,
@@ -19,4 +18,4 @@ export const Default: StoryObj<typeof Name> = {
   argTypes: {
     onClick: { action: "onClick" },
   },
-};
+});

@@ -1,8 +1,8 @@
 import { User } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../../.storybook/preview";
 
-const meta: Meta<typeof User> = {
+const meta = preview.meta({
   args: {
     name: "Pierre Martin",
     profile: "profile",
@@ -14,16 +14,15 @@ const meta: Meta<typeof User> = {
   },
   component: User,
   title: "Components/Header/User",
-};
-
+});
 export default meta;
 
-export const UserWithLink: StoryObj<typeof User> = {
+export const UserWithLink = meta.story({
   args: {
     href: "/#",
   },
-};
+});
 
-export const UserWithoutLink: StoryObj<typeof User> = {
+export const UserWithoutLink = meta.story({
   name: "User Without link",
-};
+});

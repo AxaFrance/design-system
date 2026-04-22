@@ -3,10 +3,10 @@ import {
   MessageTypes,
   PassInput,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import preview from "../../.storybook/preview";
 
-const meta: Meta<typeof PassInput> = {
+const meta = preview.meta({
   title: "Components/Form/Input/Pass",
   component: PassInput,
   args: {
@@ -47,10 +47,11 @@ const meta: Meta<typeof PassInput> = {
     },
     onChange: { action: "onChange" },
   },
-};
+});
+
 export default meta;
 
-export const PassInputStory: StoryObj<typeof PassInput> = {
+export const PassInputStory = meta.story({
   name: "PassInput",
   render: ({ value: initValue, onChange, ...args }) => {
     const [value, setValue] = useState(initValue);
@@ -72,9 +73,9 @@ export const PassInputStory: StoryObj<typeof PassInput> = {
       </form>
     );
   },
-};
+});
 
-export const PassInputWithChildrenStory: StoryObj<typeof PassInput> = {
+export const PassInputWithChildrenStory = meta.story({
   name: "PassInput with help button",
   render: ({ value: initValue, onChange, ...args }) => {
     const [value, setValue] = useState(initValue);
@@ -98,4 +99,4 @@ export const PassInputWithChildrenStory: StoryObj<typeof PassInput> = {
       </form>
     );
   },
-};
+});

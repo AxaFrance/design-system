@@ -1,9 +1,9 @@
-import { Meta, StoryObj } from "@storybook/react";
 import { DataAgent } from "@axa-fr/canopee-react/client";
 import accountBalanceWallet from "@material-symbols/svg-400/rounded/account_balance_wallet-fill.svg";
 import call from "@material-symbols/svg-400/rounded/call-fill.svg";
 import fax from "@material-symbols/svg-400/rounded/fax-fill.svg";
-import { action } from "@storybook/addon-actions";
+import { Meta, StoryObj } from "@storybook/react";
+import { action } from "storybook/actions";
 
 type Story = StoryObj<typeof DataAgent>;
 

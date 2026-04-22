@@ -1,9 +1,9 @@
 import { Button, Table, CardData } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
 
 import bank from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
+import preview from "../.storybook/preview";
 
-const meta = {
+const meta = preview.meta({
   title: "Components/CardData",
   component: CardData,
   argTypes: {
@@ -24,12 +24,10 @@ const meta = {
       description: "Change the background color of the icon",
     },
   },
-} satisfies Meta<typeof CardData>;
-
+});
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const CardDataPrimary: Story = {
+export const CardDataPrimary = meta.story({
   name: "CardData",
   args: {
     title: "Saisie de contrat",
@@ -54,9 +52,9 @@ export const CardDataPrimary: Story = {
     contentFitAllSize: true,
     icon: bank,
   },
-};
+});
 
-export const CardDataPrimaryAvecSousTitre: Story = {
+export const CardDataPrimaryAvecSousTitre = meta.story({
   name: "CardData with subtitle",
   args: {
     title: "Console des flux",
@@ -70,9 +68,9 @@ export const CardDataPrimaryAvecSousTitre: Story = {
     icon: bank,
     variant: "success",
   },
-};
+});
 
-export const CardDataPrimaryAvecDescription: Story = {
+export const CardDataPrimaryAvecDescription = meta.story({
   name: "CardData with description",
   args: {
     title: "Console des flux",
@@ -86,9 +84,9 @@ export const CardDataPrimaryAvecDescription: Story = {
     icon: bank,
     variant: "success",
   },
-};
+});
 
-export const CardDataWithContentRight: Story = {
+export const CardDataWithContentRight = meta.story({
   name: "CardData with contentRight",
   args: {
     title: "Console des flux",
@@ -106,4 +104,4 @@ export const CardDataWithContentRight: Story = {
       <Button classModifier="reverse">Accéder à la console de flux</Button>
     ),
   },
-};
+});

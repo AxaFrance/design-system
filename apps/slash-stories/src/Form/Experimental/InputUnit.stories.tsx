@@ -1,18 +1,15 @@
 import { InputUnit } from "@axa-fr/canopee-react/distributeur/experimental";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 
-const meta = {
+const meta = preview.meta({
   title: "Experimental/Form/Atoms/InputUnit",
   component: InputUnit,
   argTypes: {
     children: { control: "text" },
   },
-} satisfies Meta<typeof InputUnit>;
+});
 
-export default meta;
-type Story = StoryObj<typeof InputUnit>;
-
-export const DefaultStory: Story = {
+export const DefaultStory = meta.story({
   name: "Default",
   render: ({ children, ...args }) => (
     <InputUnit {...args}>{children}</InputUnit>
@@ -20,9 +17,10 @@ export const DefaultStory: Story = {
   args: {
     children: "€",
   },
-};
+});
+export default meta;
 
-export const PercentageStory: Story = {
+export const PercentageStory = meta.story({
   name: "Percentage",
   render: ({ children, ...args }) => (
     <InputUnit {...args}>{children}</InputUnit>
@@ -30,9 +28,9 @@ export const PercentageStory: Story = {
   args: {
     children: "%",
   },
-};
+});
 
-export const TextUnitStory: Story = {
+export const TextUnitStory = meta.story({
   name: "Text Unit",
   render: ({ children, ...args }) => (
     <InputUnit {...args}>{children}</InputUnit>
@@ -40,4 +38,4 @@ export const TextUnitStory: Story = {
   args: {
     children: "per month",
   },
-};
+});

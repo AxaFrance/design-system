@@ -1,16 +1,7 @@
 import { RadioItem } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { ComponentPropsWithRef } from "react";
-
-const meta: Meta<typeof RadioItem> = {
-  component: RadioItem,
-  title: "Components/Form/Input/Radio",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 type RadioItemProps = Omit<
   ComponentPropsWithRef<typeof RadioItem>,
@@ -18,8 +9,11 @@ type RadioItemProps = Omit<
 > & {
   classModifier?: string[];
 };
-export const RadioItemStory: StoryObj<RadioItemProps> = {
-  name: "RadioItem",
+
+const meta = preview.type<{ args: RadioItemProps }>().meta({
+  title: "Components/Form/Input/Radio",
+  argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
   render: ({ classModifier, onChange, ...args }) => (
     <RadioItem
       classModifier={classModifier?.join(" ")}
@@ -27,6 +21,11 @@ export const RadioItemStory: StoryObj<RadioItemProps> = {
       {...args}
     />
   ),
+});
+export default meta;
+
+export const RadioItemStory = meta.story({
+  name: "RadioItem",
   args: {
     label: "Paris",
     value: "",
@@ -43,4 +42,4 @@ export const RadioItemStory: StoryObj<RadioItemProps> = {
       control: { type: "inline-check" },
     },
   },
-};
+});

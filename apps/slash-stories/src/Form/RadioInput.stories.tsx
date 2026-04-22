@@ -4,10 +4,10 @@ import {
   RadioInput,
   RadioModes,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import preview from "../../.storybook/preview";
 
-const meta: Meta<typeof RadioInput> = {
+const meta = preview.meta({
   component: RadioInput,
   title: "Components/Form/Input/Radio",
   args: {
@@ -47,13 +47,11 @@ const meta: Meta<typeof RadioInput> = {
       control: { type: "inline-radio" },
     },
   },
-};
+});
 
 export default meta;
 
-type Story = StoryObj<typeof RadioInput>;
-
-export const RadioInputStory: Story = {
+export const RadioInputStory = meta.story({
   name: "RadioInput",
   render: ({ value, ...args }) => {
     const [newValue, setValue] = useState(value);
@@ -68,9 +66,9 @@ export const RadioInputStory: Story = {
       />
     );
   },
-};
+});
 
-export const RadioInputWithChildrenStory: Story = {
+export const RadioInputWithChildrenStory = meta.story({
   name: "RadioInput with help button",
   render: ({ value, ...args }) => {
     const [newValue, setValue] = useState(value);
@@ -87,4 +85,4 @@ export const RadioInputWithChildrenStory: Story = {
       </RadioInput>
     );
   },
-};
+});

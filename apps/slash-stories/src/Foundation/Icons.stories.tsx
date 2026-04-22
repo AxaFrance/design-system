@@ -1,13 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import type { ComponentType } from "react";
+import preview from "../../.storybook/preview";
 
 import "./Icons.story.css";
 
-const meta: Meta = {
+const meta = preview.meta({
   title: "Fondations/Icons",
-  component: "span" as unknown as ComponentType,
   tags: ["!autodocs"],
-};
+});
+
 export default meta;
 
 const glyphicon = [
@@ -315,7 +314,7 @@ const glyphicon = [
   "zoom-out",
 ];
 
-export const Glyphicon: StoryObj<{ iconName: string }> = {
+export const Glyphicon = meta.story({
   render: ({ iconName }) => {
     return <span className={`glyphicon glyphicon-${iconName}`} />;
   },
@@ -330,9 +329,9 @@ export const Glyphicon: StoryObj<{ iconName: string }> = {
       },
     },
   },
-};
+});
 
-export const AllIcons: StoryObj = {
+export const AllIcons = meta.story({
   render: () => {
     return (
       <div className="icon-list">
@@ -348,4 +347,4 @@ export const AllIcons: StoryObj = {
     );
   },
   tags: ["!dev"],
-};
+});
