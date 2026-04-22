@@ -11,12 +11,12 @@
   --message-content-color: var(--gray-1000);
   --message-content-font-size: 16;
   --message-content-line-height: var(--rem-20);
-  --message-action-padding-top: 12;
+  --message-action-padding-top: 4;
 
   @media (--desktop-small) {
-    --message-content-font-size: 18;
+    --message-content-font-size: 16;
     --message-title-font-size: 18;
-    --message-content-line-height: var(--rem-23);
+    --message-content-line-height: var(--rem-20);
   }
 }
 
