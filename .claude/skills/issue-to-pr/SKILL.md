@@ -207,6 +207,64 @@ variant?: 'default' | 'compact'
 
 ---
 
+
+## Conventions apprises (retours core team)
+
+Ces règles ont été extraites des reviews de l'équipe core (GuillaumeKESTEMAN, JLou) sur les PRs du bot.
+
+### CSS — Mutualisation dans Common
+- **Règle absolue** : si un style CSS est identique dans `*Apollo.css` et `*LF.css`, le mettre dans `*Common.css` et supprimer les deux surcharges. Ne jamais dupliquer la même valeur dans Apollo et LF.
+- Vérifier toujours si le fichier `*Common.css` du composant existe avant d'éditer Apollo/LF séparément.
+
+### CSS — Nettoyage des surcharges redondantes
+- Si une surcharge CSS applique exactement la même valeur que le style déjà défini par défaut dans Common, la supprimer. Ne garder que les vraies différences.
+
+### CSS — Focus clavier vs clic souris
+- Pour désactiver le focus ring uniquement au clic souris (pas au clavier) :
+  ```css
+  &:focus { outline: none; }
+  &:focus-visible { outline: 2px solid var(--token-outline-color); outline-offset: 2px; }
+  ```
+- Ne jamais utiliser `:focus` seul — toujours distinguer `:focus` et `:focus-visible`.
+
+### React — classModifier pour les variantes visuelles
+- Les nouvelles variantes visuelles d'un composant s'expriment via `classModifier`, JAMAIS via une modification du `baseClassName`.
+- Exemple : `iconPosition: 'top'` → ajouter `'icon-top'` dans `classModifier`, pas changer `af-heading` en `af-heading-icon-top`.
+
+### React — getClassName obligatoire
+- Toujours utiliser la fonction utilitaire `getClassName` (ou `getModifiers`) du DS pour construire les classes CSS. Jamais de concaténation de chaînes manuelle.
+- La fonction `modifiers` filtre automatiquement les valeurs falsy (`false`, `undefined`, `null`). Syntaxe simplifiée :
+  ```tsx
+  modifiers: [...classModifier.split(' '), hasWarning && 'warning']
+  // Pas besoin de ternaire : hasWarning ? 'warning' : ''
+  ```
+
+### Storybook — argTypes dans le meta
+- Toute nouvelle prop ajoutée à un composant doit être déclarée dans les `argTypes` du `meta` Storybook, pour qu'elle soit accessible dans toutes les stories du fichier (pas seulement dans une story isolée).
+
+### Storybook — Decorators dans le meta
+- Les decorators visuels (ex : maxWidth, wrapper div) s'appliquent dans le `meta` avec `decorators: [...]`, pas répétés dans le `render` de chaque story individuelle.
+
+### Storybook — Une story par variant
+- Ne créer qu'une seule story par variant. Ne pas dupliquer une story quasi-identique pour apollo et LF si le rendu est le même.
+
+### Documentation MDX — Anglais obligatoire
+- Toute la documentation `.mdx` doit être rédigée en **anglais**. Jamais en français, même si l'issue est en français.
+
+### Tokens — Ne jamais inventer des valeurs
+- **CRITIQUE** : toutes les valeurs de design tokens (font-size, line-height, rem, spacing...) doivent être lues depuis les fichiers existants du DS.
+- Ne jamais générer une valeur comme `var(--rem-15)` si cette valeur n'existe pas dans le système. Vérifier dans les fichiers de tokens avant d'écrire.
+- En cas de doute sur une valeur : règle "pas sûr", poster un commentaire sur l'issue.
+
+### Lire l'issue word by word avant d'implémenter
+- Identifier précisément quel thème est à corriger (apollo/prospect vs client/LF vs common).
+- Si l'issue dit "seul la partie prospect est à corriger", ne toucher QUE les fichiers prospect. Ne pas modifier ni supprimer les fichiers client qui sont déjà corrects.
+
+### Accès Figma refusé
+- Si Figma retourne une erreur de permission, ne pas deviner les valeurs. Poster un commentaire sur l'issue/PR en demandant à un UX designer de confirmer les specs avant de continuer.
+
+---
+
 ## Phase 3 — Localiser les fichiers
 
 - CSS : `packages/canopee-css/src/{distributeur,prospect-client}/<Component>/`
