@@ -2,6 +2,7 @@
 
 @layer canopee {
   .af-link {
+    --link-font-weight: 400;
     --link-font-size: var(--rem-16);
 
     @media (--desktop-small) {
@@ -13,5 +14,9 @@
         --link-line-height: var(--rem-24);
       }
     }
+  }
+
+  .af-link--openInNewTab {
+    --link-font-weight: 600;
   }
 }
