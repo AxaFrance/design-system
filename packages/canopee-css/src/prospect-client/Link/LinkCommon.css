@@ -4,7 +4,7 @@
   height: fit-content;
   align-items: center;
   gap: var(--rem-4);
-  font-size: var(--link-font-size, var(--rem-14));
+  font-size: var(--link-font-size, var(--rem-16));
   font-weight: var(--link-font-weight, 600);
   line-height: var(--rem-20);
   text-decoration: underline;
@@ -13,7 +13,7 @@
   fill: var(--link-text-color, var(--blue-1000));
 
   @media (--desktop-small) {
-    --link-font-size: var(--rem-16);
+    --link-font-size: var(--rem-18);
   }
 
   svg {
