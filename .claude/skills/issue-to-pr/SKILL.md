@@ -77,6 +77,22 @@ Si rebase échoue → `git rebase --abort`, note dans le rapport, continue.
 
 ---
 
+
+---
+
+## Étape 0b — Charger les skills contextuels
+
+Avant tout triage, lire et garder en mémoire courante les skills suivants :
+
+1. **Canopée Prospect/Client** (`plugins/canopee-prospect-client/skills/SKILL.md`) — conventions d'usage du DS pour Apollo et Client (imports, APIs, patterns CSS/React).
+2. **Canopée Distributeur** (`plugins/canopee-distributeur/skills/SKILL.md`) — idem pour l'univers Distributeur.
+3. **Design System audit** (skill `design:design-system`) — grille d'audit cohérence tokens, naming, composants.
+4. **Accessibility review** (skill `design:accessibility-review`) — checklist WCAG 2.1 AA à appliquer sur chaque nouveau composant.
+
+Ces 4 référentiels guident l'implémentation et la review de chaque PR produite.
+
+---
+
 ## Étape 1 — Lister les issues ouvertes
 
 > **Règle UX (prioritaire)** : Ne traiter **que** les issues portant le label `📐 RFD` (Ready For Dev). Les issues sans ce label sont ignorées, quelle que soit leur milestone ou ancienneté. C'est l'équipe UX qui pose ce label quand la spec est validée et prête à implémenter.
