@@ -75,11 +75,16 @@
       --title-line-height: var(--rem-20);
     }
 
-    &.af-content-item-mono--large
-      .af-content-item-mono__text-content
+    &.af-content-item-mono--large .af-content-item-mono__text-content {
       .af-content-item-mono__title {
-      --title-font-size: var(--rem-24);
-      --title-line-height: var(--rem-30);
+        --title-font-size: var(--rem-24);
+        --title-line-height: var(--rem-30);
+      }
+
+      .af-content-item-mono__subtitle {
+        --subtitle-font-size: var(--rem-18);
+        --subtitle-line-height: var(--rem-23);
+      }
     }
   }
 }
