@@ -87,7 +87,7 @@ describe("TabBar", () => {
     );
   });
 
-  it("should change tab on click", async () => {
+  it("should change tab and call handleClick on click", async () => {
     const user = userEvent.setup();
     render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
     expect(screen.getByRole("tablist")).toBeInTheDocument();
@@ -99,9 +99,10 @@ describe("TabBar", () => {
       "aria-selected",
       "true",
     );
+    expect(handleSelectTabMock).toHaveBeenCalledOnce();
   });
 
-  it("should change tab on arrow right key press", async () => {
+  it("should change tab and call handleClick on arrow right key press", async () => {
     const user = userEvent.setup();
     render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
     expect(screen.getByRole("tablist")).toBeInTheDocument();
@@ -114,45 +115,10 @@ describe("TabBar", () => {
       "aria-selected",
       "true",
     );
-  });
-
-  it("should change tab on arrow left key press", async () => {
-    const user = userEvent.setup();
-    render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
-    expect(screen.getByRole("tablist")).toBeInTheDocument();
-    expect(screen.getAllByRole("tab")).toHaveLength(3);
-    expect(screen.getByText("Content 1")).toBeInTheDocument();
-    screen.getAllByRole("tab")[0].focus();
-    await user.keyboard("{ArrowLeft}");
-    expect(screen.getByText("Content 3")).toBeInTheDocument();
-    expect(screen.getAllByRole("tab")[2]).toHaveAttribute(
-      "aria-selected",
-      "true",
-    );
-  });
-
-  it("should call handleClick tab on click", async () => {
-    const user = userEvent.setup();
-    render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
-    expect(screen.getByRole("tablist")).toBeInTheDocument();
-    expect(screen.getAllByRole("tab")).toHaveLength(3);
-    expect(screen.getByText("Content 1")).toBeInTheDocument();
-    await user.click(screen.getAllByRole("tab")[1]);
     expect(handleSelectTabMock).toHaveBeenCalledOnce();
   });
 
-  it("should call handleClick tab on arrow right key press", async () => {
-    const user = userEvent.setup();
-    render(<TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />);
-    expect(screen.getByRole("tablist")).toBeInTheDocument();
-    expect(screen.getAllByRole("tab")).toHaveLength(3);
-    expect(screen.getByText("Content 1")).toBeInTheDocument();
-    screen.getAllByRole("tab")[0].focus();
-    await user.keyboard("{ArrowRight}");
-    expect(handleSelectTabMock).toHaveBeenCalledOnce();
-  });
-
-  it("should call handleClick tab on arrow left key press", async () => {
+  it("should change tab and call handleClick on arrow left key press", async () => {
     const user = userEvent.setup();
     render(
       <TabBar
@@ -166,6 +132,11 @@ describe("TabBar", () => {
     expect(screen.getByText("Content 3")).toBeInTheDocument();
     screen.getAllByRole("tab")[2].focus();
     await user.keyboard("{ArrowLeft}");
+    expect(screen.getByText("Content 2")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")[1]).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
     expect(handleSelectTabMock).toHaveBeenCalledOnce();
   });
 
