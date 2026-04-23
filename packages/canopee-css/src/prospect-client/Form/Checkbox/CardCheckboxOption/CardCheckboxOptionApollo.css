@@ -25,13 +25,11 @@
   }
 }
 
+.af-card-checkbox-option .af-card-checkbox-option__content {
+  --checkbox-option-gap: var(--rem-4);
+}
+
 .af-card-checkbox-option--horizontal {
-  --checkbox-option-gap: var(--rem-8);
-
-  & .af-card-checkbox-option__content {
-    --checkbox-option-gap: var(--rem-4);
-  }
-
   & .af-checkbox {
     margin-right: var(--rem-8);
   }
