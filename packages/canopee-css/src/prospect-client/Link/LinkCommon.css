@@ -4,7 +4,7 @@
   height: fit-content;
   align-items: center;
   gap: var(--rem-4);
-  font-size: var(--link-font-size, var(--rem-16));
+  font-size: var(--rem-16);
   font-weight: var(--link-font-weight, 600);
   line-height: var(--rem-20);
   text-decoration: underline;
@@ -13,7 +13,7 @@
   fill: var(--link-text-color, var(--blue-1000));
 
   @media (--desktop-small) {
-    --link-font-size: var(--rem-18);
+    font-size: var(--rem-18);
   }
 
   svg {
@@ -37,7 +37,6 @@
   &.af-btn-client {
     --link-text-color: var(--white-1000);
     --link-line-height: var(--rem-24);
-    --link-font-size: var(--rem-16);
     --link-background-color: var(--blue-1000);
 
     width: inherit;
@@ -47,7 +46,6 @@
 
     @media (--desktop-small) {
       --link-line-height: var(--rem-32);
-      --link-font-size: var(--rem-18);
     }
 
     :is(&:hover, &:active, &:focus) {
