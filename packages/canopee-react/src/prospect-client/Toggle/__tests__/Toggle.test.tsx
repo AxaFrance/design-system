@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { Toggle } from "../ToggleCommon";
+import { Toggle } from "../ToggleApollo";
 
 describe("Toggle component", () => {
   it("should change to selected", async () => {
