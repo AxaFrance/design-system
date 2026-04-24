@@ -1,0 +1,1 @@
+import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{I as e}from"./LoaderLF-JQXF76to.js";import{h as n,b as m,j as s,I as p}from"./LoaderCommon-DCg8_8er.js";const x=o=>t.jsx(n,{...o,ItemLabelComponent:e,ItemMessageComponent:p,InputTextComponent:s,IconComponent:m});export{x as I};

@@ -1,0 +1,6 @@
+import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as n}from"./index-D3yXdDgY.js";import{M as s,C as m,a}from"./index-t9T03smp.js";import{G as p,W as e}from"./GridWireframe.stories-rB2HCTJW.js";import"./index-CtOEgLBf.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-DyPNBKFX.js";import"./index-BjCk13Vd.js";import"./index-xQ9y_n2y.js";import"./index-DgH-xKnr.js";import"./index-DrFu-skq.js";import"./LoaderLF-JQXF76to.js";import"./LoaderCommon-DCg8_8er.js";/* empty css               */import"./DebugGridLF-CIE2Y08b.js";function i(o){const t={a:"a",h2:"h2",p:"p",...n(),...o.components};return r.jsxs(r.Fragment,{children:[r.jsx(s,{name:"How to use Grid ?",of:p}),`
+`,r.jsx(t.h2,{id:"grid-system",children:"Grid System"}),`
+`,r.jsxs(t.p,{children:["More info here : ",r.jsx(t.a,{href:"https://axafrance.github.io/design-system/apollo/react/latest?path=/docs/guidelines-grid-system--grid",rel:"nofollow",children:"Grid documentation"})]}),`
+`,r.jsx(t.h2,{id:"wireframe",children:"Wireframe"}),`
+`,r.jsx(m,{of:e}),`
+`,r.jsx(a,{of:e})]})}function D(o={}){const{wrapper:t}={...n(),...o.components};return t?r.jsx(t,{...o,children:r.jsx(i,{...o})}):i(o)}export{D as default};
