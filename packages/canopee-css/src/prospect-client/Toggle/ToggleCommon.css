@@ -13,7 +13,6 @@
   --toggle-height: var(--toggle-handle-size);
   --toggle-handle-color: var(--white-1000);
   --toggle-handle-position: 0;
-  --toggle-icon-size: 16px;
 
   position: relative;
   cursor: pointer;
@@ -59,9 +58,7 @@
 }
 
 .af-toggle__icon {
-  width: var(--toggle-icon-size);
-  height: var(--toggle-icon-size);
-  fill: var(--toggle-bg-color);
+  --icon-fill: var(--toggle-bg-color);
 }
 
 .af-toggle__icon--check {

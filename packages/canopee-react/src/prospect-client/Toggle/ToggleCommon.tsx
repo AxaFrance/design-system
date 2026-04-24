@@ -1,7 +1,8 @@
 import check from "@material-symbols/svg-400/rounded/check.svg";
 import close from "@material-symbols/svg-400/rounded/close.svg";
 import { forwardRef, type InputHTMLAttributes, useId } from "react";
-import { Svg } from "../Svg/Svg";
+
+import { Icon } from "../Icon/IconCommon";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export type ToggleProps = Omit<
@@ -21,19 +22,17 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
       >
         <div className="af-toggle__root">
           <span className="af-toggle__handle">
-            <Svg
+            <Icon
               src={check}
               aria-hidden="true"
               className="af-toggle__icon af-toggle__icon--check"
-              width={16}
-              height={16}
+              size="XS"
             />
-            <Svg
+            <Icon
               src={close}
               aria-hidden="true"
               className="af-toggle__icon af-toggle__icon--close"
-              width={16}
-              height={16}
+              size="XS"
             />
           </span>
         </div>
