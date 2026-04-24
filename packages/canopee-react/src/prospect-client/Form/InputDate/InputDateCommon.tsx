@@ -112,7 +112,7 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
 
     const componentClassName = getClassName({
       baseClassName: "af-form__input-date",
-      modifiers: [...classModifier.split(" "), hasWarning ? "warning" : ""],
+      modifiers: [...classModifier.split(" "), hasWarning && "warning"],
       className,
     });
 

@@ -59,6 +59,14 @@
     outline-width: var(--input-date-box-shadow-width);
   }
 
+  &[class*="--warning"] {
+    --input-date-box-shadow-color: var(--orange-1050);
+
+    &:is(:focus-visible, :hover, :active, :focus-within):not(:disabled) {
+      --input-date-box-shadow-width: 3px;
+    }
+  }
+
   @media (--desktop-small) {
     font-size: var(--rem-18);
     line-height: 1.25;

@@ -30,14 +30,6 @@
     }
   }
 
-  &[class*="--warning"] {
-    --input-date-box-shadow-color: var(--orange-1050);
-
-    &:is(:focus-visible, :hover, :active, :focus-within):not(:disabled) {
-      --input-date-box-shadow-width: 3px;
-    }
-  }
-
   &:disabled {
     --input-date-box-shadow-color: var(--gray-500);
     --input-date-color: var(--gray-500);
