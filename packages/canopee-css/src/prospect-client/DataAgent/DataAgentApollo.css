@@ -4,8 +4,8 @@
   --data-agent-border-color: var(--blue-200);
   --data-agent-text-orias-font-color: var(--gray-800);
   --data-agent-text-orias-font-size: var(--rem-14);
-  --data-agent-intro-padding: var(--rem-16) var(--rem-16) var(--rem-28);
-  --data-agent-intro-content-padding: var(--rem-12) var(--rem-16) var(--rem-16);
+  --data-agent-intro-padding: var(--rem-16);
+  --data-agent-intro-content-padding: var(--rem-16) var(--rem-16) 0;
 }
 
 .af-data-agent__info-content {

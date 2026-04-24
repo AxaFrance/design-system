@@ -25,7 +25,7 @@
 }
 
 .af-data-agent__info-click-content {
-  padding: var(--rem-12) var(--rem-16) 0;
+  padding: var(--rem-16) var(--rem-16) 0;
 
   .af-data-agent__line:last-of-type {
     display: none;
@@ -34,7 +34,7 @@
 
 .af-data-agent__text-orias {
   margin: 0;
-  padding: var(--rem-16) var(--rem-16) 0;
+  padding: var(--rem-24) var(--rem-16) 0;
   font-size: var(--data-agent-text-orias-font-size);
   font-weight: 400;
   line-height: 125%;
