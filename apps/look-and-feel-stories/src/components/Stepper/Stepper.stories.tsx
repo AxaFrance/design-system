@@ -13,19 +13,22 @@ const meta: Meta<typeof Stepper> = {
     messageType: { control: "select", options: ["error", "success"] },
     titleLevel: { control: "select", options: [1, 2, 3, 4] },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ minWidth: "70vw" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
+
 type StoryProps = ComponentProps<typeof Stepper>;
 type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   name: "Stepper",
-  render: (props) => (
-    <div style={{ minWidth: "70vw" }}>
-      <Stepper {...props} />
-    </div>
-  ),
   args: {
     currentTitle: "Titre étape",
     currentStep: 2,
@@ -38,11 +41,6 @@ export const Playground: Story = {
 
 export const WithIcon: Story = {
   name: "WithIcon",
-  render: (props) => (
-    <div style={{ minWidth: "70vw" }}>
-      <Stepper {...props} />
-    </div>
-  ),
   args: {
     currentTitle: "Titre étape",
     currentStep: 2,

@@ -1,5 +1,4 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs";
-
 import * as StepperStories from "./Stepper.stories";
 
 <Meta of={StepperStories} name="Stepper Client" />
@@ -14,24 +13,23 @@ import { Stepper } from "@axa-fr/canopee-react/client";
 const MyComponent = () => <Stepper />;
 ```
 
-Le Stepper rend son titre via la molécule [`Heading`](?path=/docs/components-heading--docs). La prop `titleLevel` (1, 2, 3 ou 4) contrôle la balise (`h1` → `h4`) et la typographie héritée du Heading. Le Stepper peut maintenant afficher une icône optionnelle via la prop `icon`.
+The Stepper renders its title through the [`Heading`](?path=/docs/components-heading--docs) molecule. The `titleLevel` prop (1, 2, 3 or 4) controls the tag (`h1` through `h4`) and the typography inherited from the Heading. The Stepper can now display an optional icon through the `icon` prop.
 
 ## Playground
 
 <Canvas of={StepperStories.Playground} />
-
 <Controls of={StepperStories.Playground} />
 
 ## With icon
 
-Passe une `icon` (SVG) et un `titleLevel` pour afficher une icône associée au titre, comme dans les autres composants utilisant la molécule `Heading`.
+Pass an `icon` (SVG) and a `titleLevel` to display an icon next to the title, consistent with other components that rely on the `Heading` molecule.
 
 ```tsx
 import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
 
 <Stepper
-  currentTitle="Titre étape"
-  currentSubtitle="Étape X sur X"
+  currentTitle="Step title"
+  currentSubtitle="Step X of X"
   currentStep={2}
   currentStepProgress={50}
   icon={bank}
