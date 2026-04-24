@@ -242,6 +242,7 @@
   --rem-52: calc(52 / var(--font-size-base) * 1rem);
   --rem-60: calc(60 / var(--font-size-base) * 1rem);
   --rem-64: calc(64 / var(--font-size-base) * 1rem);
+  --rem-72: calc(72 / var(--font-size-base) * 1rem);
   --rem-80: calc(80 / var(--font-size-base) * 1rem);
   --rem-120: calc(120 / var(--font-size-base) * 1rem);
 
