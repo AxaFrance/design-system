@@ -17,7 +17,6 @@ import {
 } from "../ItemMessage/ItemMessageCommon";
 
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
-  classModifier?: string;
   label?: ItemLabelProps["children"];
   helper?: string;
   /**
@@ -49,7 +48,6 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
     {
       id,
       className,
-      classModifier = "",
       label,
       description,
       helper,
@@ -83,7 +81,7 @@ const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
 
     const textareaClassName = getClassName({
       baseClassName: "af-form__textarea",
-      modifiers: [...classModifier.split(" "), hasWarning && "warning"],
+      modifiers: [hasWarning && "warning"],
     });
 
     return (
