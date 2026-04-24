@@ -135,13 +135,3 @@ export const InputDateWarningStory: Story = {
     value: new Date("2000-09-12"),
   },
 };
-
-export const InputDateWarningEmptyStory: Story = {
-  name: "Date on warning empty",
-  render,
-  args: {
-    message: "Titre du message",
-    messageType: "warning",
-    value: undefined,
-  },
-};
