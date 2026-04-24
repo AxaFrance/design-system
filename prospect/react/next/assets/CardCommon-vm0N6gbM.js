@@ -1,0 +1,1 @@
+import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{g as t}from"./LoaderApollo-BigFYKXL.js";const c=({as:s,children:a,className:o,...m})=>{const r=s||"div";return e.jsx(r,{className:t({baseClassName:"af-card",className:o}),...m,children:a})};export{c as C};
