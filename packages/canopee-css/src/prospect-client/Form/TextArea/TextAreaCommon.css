@@ -33,4 +33,17 @@
     font-weight: 400;
     color: var(--textarea-placeholder-color);
   }
+
+  &[class*="--warning"] {
+    --textarea-box-shadow-color: var(--orange-1050);
+
+    &:not(:placeholder-shown) {
+      --textarea-box-shadow-color: var(--orange-1050);
+    }
+
+    &:is(:focus-visible, :hover, :active, :focus) {
+      --textarea-box-shadow-color: var(--orange-1050);
+      --textarea-box-shadow-width: 3px;
+    }
+  }
 }
