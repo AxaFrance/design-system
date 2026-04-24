@@ -35,7 +35,7 @@
 .af-restitution__content-title {
   margin-bottom: 1.25rem;
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: normal;
   color: var(--brand-primary);
 }
 
@@ -114,7 +114,6 @@
   padding-left: 0.5rem;
   flex-basis: 50%;
   font-weight: 600;
-  color: var(--azur);
 }
 
 .af-restitution__listdef--marge {
