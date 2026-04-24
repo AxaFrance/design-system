@@ -6,9 +6,9 @@
   --message-icon-color: var(--message-theme-color);
   --message-title-color: var(--message-theme-color);
   --message-content-color: var(--message-theme-color);
-  --message-content-font-size: 14;
+  --message-content-font-size: 16;
   --message-title-font-size: 16;
-  --message-content-line-height: var(--rem-18);
+  --message-content-line-height: var(--rem-20);
   --message-border-radius: var(--radius-8);
   --message-action-padding-top: 4;
 
