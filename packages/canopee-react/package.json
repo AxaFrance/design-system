@@ -18,6 +18,10 @@
     "./prospect": {
       "import": "./dist/prospect.js",
       "types": "./dist/prospect.d.ts"
+    },
+    "./distributeur-experimental": {
+      "import": "./dist/distributeur-experimental.js",
+      "types": "./dist/distributeur-experimental.d.ts"
     }
   },
   "files": [

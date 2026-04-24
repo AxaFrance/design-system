@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 import { SectionRestitutionTitle } from "./SectionRestitutionTitle";
 
 export type SectionRestitutionColumnProps = {
@@ -14,11 +14,11 @@ export const SectionRestitutionColumn = ({
   title,
   classModifier,
 }: PropsWithChildren<SectionRestitutionColumnProps>) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
     className,
-    classModifier,
-    "col-sm-12 col-md-12 col-lg-6 col-xl-6",
-  );
+    modifiers: classModifier?.split(" "),
+    baseClassName: "af-restitution__content-column",
+  });
   return (
     <div className={componentClassName}>
       {title ? <SectionRestitutionTitle title={title} /> : null}

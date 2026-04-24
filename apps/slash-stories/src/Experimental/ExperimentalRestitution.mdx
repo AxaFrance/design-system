@@ -1,0 +1,107 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import Stories, { Restitution4x1 } from "./ExperimentalRestitution.stories";
+
+<Meta of={Stories} />
+
+# ⚠️ Restitution
+
+## Experimental disclaimer
+
+This component is currently in an experimental phase, which means that its API and design are not yet finalized and may undergo significant changes. We encourage you to try it out and provide feedback, but please be aware that it may not be stable and should not be used in production environments.
+
+**Imports for the demo component and the component tree sections are from the `distributeur-experimental` entry point, which is a separate entry point from the main `distributeur` entry point. This allows us to keep the experimental components separate from the stable components and avoid breaking changes in the main entry point.**
+
+```ts
+import {
+  ExperimentalRestitution,
+  ExperimentalRestitutionColumn,
+  ExperimentalRestitutionItem,
+  ExperimentalRestitutionListDef,
+  ExperimentalRestitutionRow,
+  ExperimentalRestitutionSection,
+  ExperimentalRestitutionValue,
+  ExperimentalRestitutionValueList,
+} from "@axa-fr/canopee-react/distributeur-experimental";
+```
+
+## Introduction
+
+The restitution component is a layout component that allows you to display data in a structured way.
+It is composed of several components:
+
+- `ExperimentalRestitution`: The main container for the restitution layout.
+- `ExperimentalRestitutionRow`: A row of the restitution layout that can contain multiple columns
+- `ExperimentalRestitutionSection`: A section within a row that can contain multiple columns
+- `ExperimentalRestitutionColumn`: A column of content
+- `ExperimentalRestitutionListDef`: A component that can be used to display a definition list in a column
+- `ExperimentalRestitutionItem`: A component that can be used to display a label inside a ListDef
+- `ExperimentalRestitutionValue`: A component that can be used to display a value inside a ListDef
+- `ExperimentalRestitutionValueList`: A component that can be used to display a value as a list of items inside a ListDef
+
+## Demo component
+
+<Canvas of={Restitution4x1} />
+
+## Component tree
+
+The components are expected to be used in a specific order, as shown in the following tree. Other combinations may not be supported and may lead to unexpected results.
+
+```tsx
+<ExperimentalRestitution>
+  <ExperimentalRestitutionRow>
+    <ExperimentalRestitutionSection>
+      <ExperimentalRestitutionColumn>
+        <ExperimentalRestitutionListDef>
+          <ExperimentalRestitutionItem />
+          <ExperimentalRestitutionValue />
+          <ExperimentalRestitutionItem />
+          <ExperimentalRestitutionValue>
+            <ExperimentalRestitutionValueList />
+          </ExperimentalRestitutionValue>
+        </ExperimentalRestitutionListDef>
+      </ExperimentalRestitutionColumn>
+    </ExperimentalRestitutionSection>
+  </ExperimentalRestitutionRow>
+</ExperimentalRestitution>
+```
+
+### ExperimentalRestitution
+
+The `ExperimentalRestitution` component is the main container for the restitution layout. It **may** have a header, and contains one or more `ExperimentalRestitutionRow` components.
+It accepts the following props:
+
+- `title`: The title of the restitution, which will be displayed in the header. If this prop is not provided, the header will not be displayed.
+- `subtitle`: The subtitle of the restitution, which will be displayed in the header. This prop is optional and will only be displayed if the `title` prop is provided.
+- `rightElement`: An element that will be displayed on the right side of the header. This prop is optional and will only be displayed if the `title` prop is provided.
+- `children`: The content of the restitution, which should be composed of `ExperimentalRestitutionRow` components.
+
+### ExperimentalRestitutionRow
+
+The `ExperimentalRestitutionRow` component represents a row in the restitution layout. It can contain one or more `ExperimentalRestitutionSection` components. If the container shrinks too much, the sections will wrap to the next line.
+
+### ExperimentalRestitutionSection
+
+A group of columns with a title. The title is optional, but if provided, it will be displayed above the columns. It can contain one or more `ExperimentalRestitutionColumn` components.
+
+### ExperimentalRestitutionColumn
+
+A column of content. It can contain any content, but it is recommended to use `ExperimentalRestitutionListDef` to display data in a structured way.
+
+### ExperimentalRestitutionListDef
+
+The `ExperimentalRestitutionListDef` component is used to display a definition list in a column. It should contain pairs of `ExperimentalRestitutionItem` and `ExperimentalRestitutionValue` components, or `ExperimentalRestitutionValueList` components. It uses a `dl` element under the hood, so it is important to use the correct components to ensure proper semantics and accessibility.
+
+### ExperimentalRestitutionItem
+
+The `ExperimentalRestitutionItem` component is used to display a label inside a `ExperimentalRestitutionListDef`. It should be used in pairs with `ExperimentalRestitutionValue` or `ExperimentalRestitutionValueList` components to create a definition list. It uses a `dt` element under the hood, so it is important to use it correctly to ensure proper semantics and accessibility.
+
+### ExperimentalRestitutionValue
+
+The `ExperimentalRestitutionValue` component is used to display a value inside a `ExperimentalRestitutionListDef`. It should be used in pairs with `ExperimentalRestitutionItem` components to create a definition list. It uses a `dd` element under the hood, so it is important to use it correctly to ensure proper semantics and accessibility.
+
+### ExperimentalRestitutionValueList
+
+The `ExperimentalRestitutionValueList` component is used to display a value as a list of items inside a `ExperimentalRestitutionValue`. It allows to properly align the items in the list with the label of the `ExperimentalRestitutionItem`. It uses a `ul` element under the hood.
+It takes the following props:
+
+- `items`: An array of `ReactNode`s to display as list items. Each item will be rendered as a `li` element inside the `ul`.

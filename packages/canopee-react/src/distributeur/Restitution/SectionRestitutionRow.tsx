@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 import { SectionRestitutionTitle } from "./SectionRestitutionTitle";
 
-const DEFAULT_CLASSNAME = "col col-sm-12 col-md-12 col-lg-12 col-xl-12";
+const DEFAULT_CLASSNAME = "af-restitution__content-row";
 
 export type SectionRestitutionRowProps = {
   title?: React.ReactNode;
@@ -13,16 +13,16 @@ export type SectionRestitutionRowProps = {
 
 export const SectionRestitutionRow = ({
   title,
-  className = DEFAULT_CLASSNAME,
-  classNameContainer = "row af-restitution__content-left",
+  className,
+  classNameContainer = "af-restitution__content-left",
   children,
   classModifier,
 }: PropsWithChildren<SectionRestitutionRowProps>) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
     className,
-    classModifier,
-    DEFAULT_CLASSNAME,
-  );
+    modifiers: classModifier?.split(" "),
+    baseClassName: DEFAULT_CLASSNAME,
+  });
   return (
     <div className={componentClassName}>
       {title ? <SectionRestitutionTitle title={title} /> : null}
