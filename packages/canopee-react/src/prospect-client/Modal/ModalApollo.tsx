@@ -1,9 +1,7 @@
 import "@axa-fr/canopee-css/prospect/Modal/ModalApollo.css";
-
 import { forwardRef } from "react";
 import { Button } from "../Button/ButtonApollo";
 import { Heading } from "../Heading/HeadingApollo";
-import { Icon } from "../Icon/IconApollo";
 import { ModalCommon } from "./ModalCommon";
 import type { ModalProps } from "./types";
 
@@ -21,14 +19,17 @@ export type {
 } from "./types";
 
 export const Modal = forwardRef<HTMLDialogElement, ModalProps>(
-  ({ headingProps = {}, icon, iconProps = {}, ...props }, ref) => (
+  ({ headingProps = {}, icon, iconProps, ...props }, ref) => (
     <ModalCommon
       {...props}
       ref={ref}
       headingComponent={Heading}
-      headingProps={{ ...headingProps, children: props.title }}
-      iconComponent={icon ? Icon : undefined}
-      iconProps={icon ? { src: icon, ...iconProps } : undefined}
+      headingProps={{
+        ...headingProps,
+        children: props.title,
+        icon: headingProps.icon ?? icon,
+        iconProps: headingProps.iconProps ?? iconProps,
+      }}
       buttonComponent={Button}
     />
   ),

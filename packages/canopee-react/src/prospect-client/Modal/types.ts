@@ -24,13 +24,13 @@ export type ModalProps = Omit<
 > & {
   headingProps?: Omit<HeadingProps, "children">;
   /**
-   * @deprecated Use the Heading atom at the consumer level instead.
-   * The icon slot in Modal will be removed in the next major version (2.0.0).
+   * Icon displayed alongside the title. Internally rendered by the Heading
+   * molecule, equivalent to passing `headingProps.icon`.
    */
   icon?: string;
   /**
-   * @deprecated Use the Heading atom at the consumer level instead.
-   * The icon slot in Modal will be removed in the next major version (2.0.0).
+   * Props forwarded to the icon rendered by the Heading molecule.
+   * Equivalent to passing `headingProps.iconProps`.
    */
   iconProps?: Omit<IconProps, "src">;
 };
