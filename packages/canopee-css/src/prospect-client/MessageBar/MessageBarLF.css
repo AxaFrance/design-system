@@ -1,0 +1,27 @@
+@import "./MessageBarCommon.css";
+
+.af-message-bar {
+  --message-bar-title-font-size: 16;
+  --message-bar-title-line-height: var(--rem-20);
+  --message-bar-body-font-size: 16;
+  --message-bar-body-line-height: var(--rem-20);
+
+  @media (--desktop-small) {
+    --message-bar-title-font-size: 20;
+    --message-bar-title-line-height: var(--rem-25);
+    --message-bar-body-font-size: 18;
+    --message-bar-body-line-height: var(--rem-23);
+  }
+}
+
+.af-message-bar--blue {
+  --message-bar-bg-color: var(--blue-040);
+  --message-bar-color: var(--blue-1000);
+  --message-bar-body-color: var(--gray-1000);
+}
+
+.af-message-bar--red {
+  --message-bar-bg-color: var(--red-040);
+  --message-bar-color: var(--red-alert-1200);
+  --message-bar-body-color: var(--gray-1000);
+}
