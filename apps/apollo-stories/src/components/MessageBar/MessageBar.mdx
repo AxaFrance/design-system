@@ -1,0 +1,33 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as MessageBarStories from "./MessageBar.stories";
+
+<Meta of={MessageBarStories} name="MessageBar" />
+
+# MessageBar
+
+A full-width banner used to display important information. Supports collapsible description via a toggle chevron.
+
+## Playground
+
+<Canvas of={MessageBarStories.Playground} />
+<Controls of={MessageBarStories.Playground} />
+
+## Blue (default)
+
+<Canvas of={MessageBarStories.Blue} />
+
+## Red
+
+<Canvas of={MessageBarStories.Red} />
+
+## Open state
+
+<Canvas of={MessageBarStories.Open} />
+
+## Without description
+
+<Canvas of={MessageBarStories.NoDescription} />
+
+## All variants
+
+<Canvas of={MessageBarStories.All} layout="fullscreen" />
