@@ -6,7 +6,7 @@ import type { ModalCommonProps } from "./ModalCommon";
 
 export type ModalCoreHeaderProps = Omit<
   ModalCoreHeaderCommonProps,
-  "headingComponent" | "iconComponent"
+  "headingComponent"
 >;
 
 export type ModalCoreFooterProps = Omit<
@@ -16,21 +16,21 @@ export type ModalCoreFooterProps = Omit<
 
 export type ModalProps = Omit<
   ModalCommonProps,
-  | "headingComponent"
-  | "headingProps"
-  | "iconComponent"
-  | "iconProps"
-  | "buttonComponent"
+  "headingComponent" | "headingProps" | "iconProps" | "buttonComponent"
 > & {
   headingProps?: Omit<HeadingProps, "children">;
   /**
-   * Icon displayed alongside the title. Internally rendered by the Heading
-   * molecule, equivalent to passing `headingProps.icon`.
+   * @deprecated Pass `icon` inside `headingProps` instead
+   * (e.g. `headingProps={{ icon }}`). The top-level `icon` prop is
+   * forwarded to the Heading molecule for backward compatibility and will
+   * be removed in 2.0.0.
    */
   icon?: string;
   /**
-   * Props forwarded to the icon rendered by the Heading molecule.
-   * Equivalent to passing `headingProps.iconProps`.
+   * @deprecated Pass `iconProps` inside `headingProps` instead
+   * (e.g. `headingProps={{ iconProps }}`). The top-level `iconProps`
+   * is forwarded to the Heading molecule for backward compatibility and
+   * will be removed in 2.0.0.
    */
   iconProps?: Omit<IconProps, "src">;
 };

@@ -34,7 +34,6 @@ export const YourComponent = () => {
       <ButtonClient onClick={() => ref.current?.showModal()}>
         Open the modal
       </ButtonClient>
-
       <ModalCore
         onCancel={() => {}}
         onClose={() => {}}
@@ -45,8 +44,8 @@ export const YourComponent = () => {
         <ModalCoreHeader
           headingProps={{
             children: "Modal title",
+            icon: iconSrc,
           }}
-          iconProps={{ src: iconSrc }}
           onClose={() => {}}
         />
         <ModalCoreBody>
@@ -92,15 +91,14 @@ export const YourComponent = () => {
       <button type="button" onClick={() => ref.current?.showModal()}>
         Open modal
       </button>
-
       <Modal
         ref={ref}
         headingProps={{
           firstSubtitle: "Modal subtitle",
-        }}
-        icon={iconSrc}
-        iconProps={{
-          variant: "primary",
+          icon: iconSrc,
+          iconProps: {
+            variant: "primary",
+          },
         }}
         onCancel={() => {}}
         onClose={() => {}}

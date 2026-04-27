@@ -27,39 +27,45 @@ Example of usage of ModalCore component :
 import { useRef } from "react";
 
 export const YourComponent = () => {
-  const ref = useRef < HTMLDialogElement > null;
+  const ref = useRef<HTMLDialogElement>(null);
 
   return (
     <>
       <ButtonClient onClick={() => ref.current?.showModal()}>
         Open the modal
       </ButtonClient>
-
-      <ModalCore onOutsideTap={() => ref.current?.close()} ref={ref}>
-        <ModalCoreHeader title="Modal Title" onCancel={() => {}} />
+      <ModalCore
+        onCancel={() => {}}
+        onClose={() => {}}
+        onSubmit={() => {}}
+        title="Modal title"
+        ref={ref}
+      >
+        <ModalCoreHeader
+          headingProps={{
+            children: "Modal title",
+            icon: iconSrc,
+          }}
+          onClose={() => {}}
+        />
         <ModalCoreBody>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Curabitur
-            pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius,
-            turpis et commodo pharetra, est eros bibendum elit, nec luctus magna
-            felis sollicitudin mauris
-          </p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          consectetur urna a tellus semper, id elementum ligula fermentum. In
+          semper quis mi eu commodo. Vivamus in metus eros. Sed ut pellentesque
+          purus. Maecenas congue ornare massa quis porttitor. Nullam ut diam
+          dapibus, consequat libero eget, faucibus nibh. Etiam imperdiet metus
+          at nulla fermentum semper. In ipsum urna, tempus vel lorem vel,
+          venenatis malesuada dui. Cras massa ipsum, accumsan et scelerisque ut,
+          vulputate at elit.
         </ModalCoreBody>
-        <ModalCoreFooter>
-          <ButtonClient
-            variant={ButtonVariants.secondary}
-            onClick={() => ref.current?.close()}
-          >
-            Annuler
-          </ButtonClient>
-          <ButtonClient variant={ButtonVariants.primary}>Valider</ButtonClient>
-        </ModalCoreFooter>
+        <ModalCoreFooter
+          primaryButtonProps={{
+            children: "Valider",
+          }}
+          secondaryButtonProps={{
+            children: "Annuler",
+          }}
+        />
       </ModalCore>
     </>
   );
@@ -75,23 +81,50 @@ export const YourComponent = () => {
 Example of usage of Modal component :
 
 ```tsx
-<button type="button" onClick={() => ref.current?.showModal()}>
-  Open modal
-</button>
+import { useRef } from "react";
 
-<Modal ref={ref} {...args}
-    onCancel={() => ref.current?.close()}
-    onSubmit={() => ref.current?.close()}
->
-  <p>
-    Reprehenderit sit quis aute nisi consequat consequat mollit. Commodo in
-    aliquip consectetur nulla sit anim. Pariatur minim commodo enim ea eu
-    laborum culpa laboris. Labore labore irure ipsum consequat enim officia anim
-    ipsum aliqua excepteur qui sint. Duis sint do culpa adipisicing dolor
-    adipisicing ea dolore aute nisi quis ullamco aliquip occaecat. Aute ut
-    mollit amet.
-  </p>
-</BooleanModal>
+export const YourComponent = () => {
+  const ref = useRef<HTMLDialogElement>(null);
+
+  return (
+    <>
+      <button type="button" onClick={() => ref.current?.showModal()}>
+        Open modal
+      </button>
+      <Modal
+        ref={ref}
+        headingProps={{
+          firstSubtitle: "Modal subtitle",
+          icon: iconSrc,
+          iconProps: {
+            variant: "primary",
+          },
+        }}
+        onCancel={() => {}}
+        onClose={() => {}}
+        primaryButtonProps={{
+          children: "Submit",
+          onClick: () => {},
+        }}
+        secondaryButtonProps={{
+          children: "Cancel",
+          onClick: () => {},
+        }}
+        title="Modal title"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla
+        gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros
+        bibendum elit, nec luctus magna felis sollicitudin mauris
+      </Modal>
+    </>
+  );
+};
 ```
 
 <Canvas of={ModalStories.Playground} />

@@ -10,11 +10,6 @@ export type ModalCoreHeaderCommonProps = ModalCoreHeaderContainerProps & {
   headingComponent: ComponentType<HeadingProps>;
   headingProps: HeadingProps;
   /**
-   * @deprecated The icon is now rendered by the Heading molecule.
-   * `iconComponent` is no longer used and will be removed in 2.0.0.
-   */
-  iconComponent?: ComponentType<IconProps>;
-  /**
    * @deprecated Pass `icon` and `iconProps` (without `src`) inside
    * `headingProps` instead. The legacy `iconProps` is forwarded to the
    * Heading molecule for backward compatibility and will be removed in 2.0.0.
@@ -32,10 +27,6 @@ export const ModalCoreHeaderCommon = (props: ModalCoreHeaderCommonProps) => {
     iconProps,
     onClose,
     closeButtonAriaLabel = "Fermer la boite de dialogue",
-    // `iconComponent` is intentionally consumed but no longer used: the icon
-    // is rendered by the Heading molecule below.
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    iconComponent,
     ...rest
   } = props;
 
