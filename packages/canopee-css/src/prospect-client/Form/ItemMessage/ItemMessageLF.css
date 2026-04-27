@@ -2,7 +2,6 @@
 
 .af-item-message {
   --item-message-color: var(--red-alert-1200);
-  --item-message-icon-size: var(--rem-16);
 }
 
 .af-item-message--success {
