@@ -1,5 +1,4 @@
 import "@axa-fr/canopee-css/distributeur/Form/MultiSelect/MultiSelect.css";
-import "./MultiSelect.types";
 import { useId } from "react";
 import Select, {
   type GroupBase,
