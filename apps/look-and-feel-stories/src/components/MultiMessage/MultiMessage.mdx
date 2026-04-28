@@ -1,0 +1,35 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as MultiMessageStories from "./MultiMessage.stories";
+
+<Meta of={MultiMessageStories} name="MultiMessage" />
+
+# MultiMessage
+
+A carousel of messages sharing the same surface. Use it to group several
+related notifications when only one needs to be visible at a time.
+
+```tsx
+import { MultiMessage } from "@axa-fr/canopee-react/client";
+
+const MyComponent = () => (
+  <MultiMessage
+    items={[
+      { variant: "information", title: "First", children: "..." },
+      { variant: "error", title: "Second", children: "..." },
+    ]}
+  />
+);
+```
+
+## Playground
+
+<Canvas of={MultiMessageStories.Playground} />
+
+<Controls of={MultiMessageStories.Playground} />
+
+## Variants
+
+Each item carries its own `variant` (`information`, `validation`, `warning`,
+`error`, `neutral`) and the wrapper colors update with the active item.
+
+<Canvas of={MultiMessageStories.All} layout="fullscreen" />
