@@ -1,10 +1,17 @@
 import {
-  Button,
+  ArticleRestitution,
+  Footer,
+  Header,
+  HeaderRestitution,
+  HeaderTitle,
   Loader,
-  MessageTypes,
-  TextInput,
+  MainContainer,
+  Name,
+  Restitution,
+  SectionRestitution,
   Title,
 } from "@axa-fr/canopee-react/distributeur";
+import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Loader> = {
@@ -22,27 +29,62 @@ type Story = StoryObj<StoryProps>;
 
 export const Default: Story = {
   name: "Loader",
-  render: ({ children: text, ...args }) => <Loader {...args}>{text}</Loader>,
+  render: ({ ...args }) => (
+    <div style={{ height: "100vh" }}>
+      <Loader {...args} />
+    </div>
+  ),
   args: {
-    mode: "get",
-    text: "",
-    children: (
-      <form style={{ height: "100vh", padding: "3rem" }}>
-        <Title>A form asking for your name</Title>
-        <TextInput
-          label="name"
-          message="error"
-          messageType={MessageTypes.error}
-        />
-        <Button>Send</Button>
-      </form>
-    ),
+    variant: "inline",
+    text: "Recherche en cours",
   },
-  argTypes: {
-    children: {
-      table: {
-        disable: true,
-      },
-    },
-  },
+};
+
+export const ContentVariant: Story = {
+  name: "Loader avec variant content",
+  render: () => (
+    <>
+      <Header>
+        <Name title="Application AXA" img={logo} alt="Logo Axa" />
+      </Header>
+      <HeaderTitle title="Titre de la page" />
+      <MainContainer>
+        <Title>Contenu principal</Title>
+        <ArticleRestitution>
+          <HeaderRestitution title="Titre de l'article de restitution" />
+          <SectionRestitution>
+            <Restitution label="Contenu secondaire 1">
+              Valeur Contenu secondaire 1
+            </Restitution>
+            <Restitution label="Contenu secondaire 2">
+              Valeur Contenu secondaire 2
+            </Restitution>
+            <Restitution label="Contenu secondaire 3">
+              Valeur Contenu secondaire 3
+            </Restitution>
+          </SectionRestitution>
+        </ArticleRestitution>
+
+        <Title>Contenu secondaire en cours de chargement</Title>
+        <Loader variant="content" text="Recherche en cours" />
+      </MainContainer>
+      <Footer>{`© ${new Date().getFullYear()} Tous droits réservés`}</Footer>
+    </>
+  ),
+};
+
+export const FullScreenVariant: Story = {
+  name: "Loader avec variant fullScreen",
+  render: () => (
+    <>
+      <Header>
+        <Name title="Application AXA" img={logo} alt="Logo Axa" />
+      </Header>
+      <HeaderTitle title="Titre de la page" />
+      <MainContainer>
+        <Loader variant="fullScreen" text="Recherche en cours" />
+      </MainContainer>
+      <Footer>{`© ${new Date().getFullYear()} Tous droits réservés`}</Footer>
+    </>
+  ),
 };

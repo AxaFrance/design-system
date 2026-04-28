@@ -127,6 +127,8 @@ export { Alert, Message };
 
 export { HelpButton } from "./distributeur/HelpButton";
 export { Loader } from "./distributeur/Loader/Loader";
+export { LoaderLegacy } from "./distributeur/Loader/LoaderLegacy";
+export { Spinner } from "./distributeur/Spinner/Spinner";
 
 export { CardData } from "./distributeur/CardData/CardData";
 export type { CardDataVariant } from "./distributeur/CardData/CardData";
