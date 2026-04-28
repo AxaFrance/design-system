@@ -1,0 +1,33 @@
+.af-multi-message__footer {
+  display: flex;
+  width: 100%;
+  padding-top: var(--rem-4);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rem-8);
+}
+
+.af-multi-message__pagination .af-pagination-list {
+  margin: 0;
+}
+
+.af-multi-message__pagination
+  .af-pagination-list
+  > li:has(> .af-pagination-counter) {
+  display: list-item;
+}
+
+.af-multi-message__pagination
+  .af-pagination-list
+  > li:has(> .af-item-pagination) {
+  display: none;
+}
+
+.af-multi-message__action {
+  display: flex;
+  margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--rem-16);
+}
