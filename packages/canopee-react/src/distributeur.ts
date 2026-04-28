@@ -160,3 +160,9 @@ export {
 } from "./distributeur/CardButton/CardButton";
 
 export { BaseCard, type BaseCardProps } from "./distributeur/Card/BaseCard";
+
+export {
+  ItemFormHelper,
+  type ItemFormHelperProps,
+  type ItemFormHelperVariant,
+} from "./distributeur/ItemFormHelper/ItemFormHelper";
