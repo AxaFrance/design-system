@@ -136,3 +136,12 @@ export {
   type EditorialMessageProps,
   type EditorialMessageType,
 } from "./distributeur/EditorialMessage/EditorialMessage";
+
+export {
+  DataTable,
+  type DataTableRowSelection,
+  type DataTableProps,
+  type DataTableColumnDefinition,
+  type DataTableColumnFilter,
+  type DataTableColumnVisibility,
+} from "./distributeur/DataTable/DataTable";
