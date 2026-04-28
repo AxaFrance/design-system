@@ -128,7 +128,7 @@ import '@axa-fr/canopee-css/client/buttonLF.css';
 
 ### Composants Collab-Distrib
 
-L'ensemble des composants Slash ont été migrés depuis l'ancien repository [Slash](https://github.com/AxaFrance/react-toolkit), nous vous invitons à migrer vos projets vers ce nouveau package. Vous pouvez consulter notre [guide de migration](./MIGRATION-GUIDE-TOOLKIT.md)
+L'ensemble des composants Slash ont été migrés depuis l'ancien repository [Slash](https://github.com/AxaFrance/react-toolkit), nous vous invitons à migrer vos projets vers ce nouveau package. Vous pouvez consulter notre [guide de migration](./docs/changelogs/slash/MIGRATION-GUIDE-TOOLKIT.md)
 
 ### Composants Client et Prospect
 
