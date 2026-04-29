@@ -8,6 +8,10 @@
   --radio-option-border-radius: var(--radius-8);
   --radio-option-background-color: var(--white-1000);
 
+  & .af-card-radio-option__content {
+    --radio-option-gap: var(--rem-4);
+  }
+
   &:hover,
   &:focus-visible,
   &:focus-within {
@@ -21,12 +25,6 @@
 }
 
 .af-card-radio-option--horizontal {
-  --radio-option-gap: var(--rem-8);
-
-  & .af-card-radio-option__content {
-    --radio-option-gap: var(--rem-4);
-  }
-
   & .af-radio {
     margin-right: var(--rem-8);
   }
