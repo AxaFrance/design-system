@@ -1,0 +1,1 @@
+import{j as a}from"./jsx-runtime-D_zvdyIk.js";import"./LoaderLF-DYChe2bf.js";import{a as n,b as t,R as i}from"./LoaderCommon-BvsKcm5d.js";const s=o=>a.jsx(n,{...o,RadioComponent:i,IconComponent:t});export{s as C};
