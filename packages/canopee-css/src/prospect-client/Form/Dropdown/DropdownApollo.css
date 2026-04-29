@@ -42,3 +42,11 @@
     --dropdown-box-shadow-color: var(--red-alert-1000);
   }
 }
+
+.af-form__dropdown-input--warning {
+  --dropdown-box-shadow-color: var(--orange-1050);
+
+  &:is(:focus-visible, :hover, :active) {
+    --dropdown-box-shadow-color: var(--orange-1050);
+  }
+}
