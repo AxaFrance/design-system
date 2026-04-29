@@ -3,22 +3,18 @@ import {
   MessageTypes,
   TextInput,
 } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 import { inputTypes } from "./inputTypes";
 
-const meta: Meta<typeof TextInput> = {
+const meta = preview.meta({
   component: TextInput,
   title: "Components/Form/Input/Text",
   argTypes: { onChange: { action: "onChange" } },
   args: { onChange: fn() },
-};
+});
 
-export default meta;
-
-type Story = StoryObj<typeof TextInput>;
-
-export const TextInputStory: Story = {
+export const TextInputStory = meta.story({
   name: "TextInput",
   render: ({ onChange, ...args }) => (
     <TextInput onChange={onChange} {...args} />
@@ -49,9 +45,9 @@ export const TextInputStory: Story = {
       control: { type: "select" },
     },
   },
-};
+});
 
-export const TextInputErrorStory: Story = {
+export const TextInputErrorStory = meta.story({
   name: "TextInputError",
   render: ({ onChange, ...args }) => (
     <TextInput onChange={onChange} {...args} />
@@ -82,9 +78,9 @@ export const TextInputErrorStory: Story = {
       control: { type: "select" },
     },
   },
-};
+});
 
-export const TextInputSuccessStory: Story = {
+export const TextInputSuccessStory = meta.story({
   name: "TextInputSuccess",
   render: ({ onChange, ...args }) => (
     <TextInput onChange={onChange} {...args} />
@@ -115,9 +111,9 @@ export const TextInputSuccessStory: Story = {
       control: { type: "select" },
     },
   },
-};
+});
 
-export const TextInputRichLabelStory: Story = {
+export const TextInputRichLabelStory = meta.story({
   name: "TextInputRichLabel",
   render: ({ onChange, ...args }) => (
     <TextInput onChange={onChange} {...args} />
@@ -149,9 +145,9 @@ export const TextInputRichLabelStory: Story = {
       control: { type: "select" },
     },
   },
-};
+});
 
-export const TextInputWithAppendChildren: Story = {
+export const TextInputWithAppendChildren = meta.story({
   name: "TextInput with help button",
   render: ({ onChange, ...args }) => (
     <TextInput onChange={onChange} {...args}>
@@ -172,4 +168,4 @@ export const TextInputWithAppendChildren: Story = {
     helpMessage: "Aide à la saisie",
     label: "Your name",
   },
-};
+});

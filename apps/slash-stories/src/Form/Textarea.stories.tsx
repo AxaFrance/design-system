@@ -1,27 +1,22 @@
 import { Textarea } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 const MODIFIERS = ["", "required", "disabled"];
-
-const meta: Meta<typeof Textarea> = {
-  component: Textarea,
-  title: "Components/Form/Input/Textarea",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
-
 type StoryProps = Omit<
   React.ComponentProps<typeof Textarea>,
   "classModifier"
 > & {
   classModifier: string[];
 };
-type Story = StoryObj<StoryProps>;
 
-export const TextareaStory: Story = {
+const meta = preview.type<{ args: StoryProps }>().meta({
+  title: "Components/Form/Input/Textarea",
+  argTypes: { onChange: { action: "onChange" } },
+  args: { onChange: fn() },
+});
+
+export const TextareaStory = meta.story({
   name: "Textarea",
   render: ({ classModifier, onChange, ...args }) => (
     <Textarea
@@ -48,4 +43,4 @@ export const TextareaStory: Story = {
       control: { type: "multi-select" },
     },
   },
-};
+});

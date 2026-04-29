@@ -3,7 +3,7 @@ import {
   MessageTypes,
   NumberInput,
 } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 
 const MODIFIERS = ["", "required", "disabled"];
 type StoryProps = Omit<
@@ -12,10 +12,8 @@ type StoryProps = Omit<
 > & {
   classModifier: string[];
 };
-type Story = StoryObj<StoryProps>;
 
-const meta: Meta<StoryProps> = {
-  component: NumberInput,
+const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Components/Form/Input/Number",
   args: {
     required: true,
@@ -43,18 +41,16 @@ const meta: Meta<StoryProps> = {
       control: { type: "inline-check" },
     },
   },
-};
+});
 
-export default meta;
-
-export const NumberInputStory: Story = {
+export const NumberInputStory = meta.story({
   name: "NumberInput",
   render: ({ classModifier, ...args }) => (
     <NumberInput classModifier={classModifier.join(" ")} {...args} />
   ),
-};
+});
 
-export const NumberInputWithChildrenStory: Story = {
+export const NumberInputWithChildrenStory = meta.story({
   name: "NumberInput with help button",
   render: ({ classModifier, ...args }) => (
     // Add a button as children to the NumberInput
@@ -62,4 +58,4 @@ export const NumberInputWithChildrenStory: Story = {
       <HelpButton mode="hover">Help</HelpButton>
     </NumberInput>
   ),
-};
+});

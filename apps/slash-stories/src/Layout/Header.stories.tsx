@@ -1,16 +1,14 @@
 import logo from "@axa-fr/canopee-css/logo-axa.svg";
-import { Meta, StoryObj } from "@storybook/react";
 
 import { Header, Infos, Name, User } from "@axa-fr/canopee-react/distributeur";
+import preview from "../../.storybook/preview";
 
-const meta: Meta<typeof Header> = {
+const meta = preview.meta({
   component: Header,
   title: "Components/Header",
-};
+});
 
-export default meta;
-
-export const HeaderWithName: StoryObj<typeof Header> = {
+export const HeaderWithName = meta.story({
   args: {
     children: (
       <Name
@@ -22,9 +20,9 @@ export const HeaderWithName: StoryObj<typeof Header> = {
       />
     ),
   },
-};
+});
 
-export const HeaderWithNameAndInfos: StoryObj<typeof Header> = {
+export const HeaderWithNameAndInfos = meta.story({
   args: {
     children: (
       <>
@@ -45,9 +43,9 @@ export const HeaderWithNameAndInfos: StoryObj<typeof Header> = {
       </>
     ),
   },
-};
+});
 
-export const HeaderWithNameUserAndInfos: StoryObj<typeof Header> = {
+export const HeaderWithNameUserAndInfos = meta.story({
   args: {
     children: (
       <>
@@ -77,4 +75,4 @@ export const HeaderWithNameUserAndInfos: StoryObj<typeof Header> = {
       </>
     ),
   },
-};
+});

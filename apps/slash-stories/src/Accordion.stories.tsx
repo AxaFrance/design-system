@@ -6,12 +6,18 @@ import {
   CheckboxItem,
   CollapseCard,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 
-const meta: Meta<typeof Accordion> = {
+const meta = preview.meta({
   title: "Components/Accordion",
   component: Accordion,
-};
+  argTypes: {
+    variant: {
+      options: ["default", "light", "white"],
+      control: { type: "select" },
+    },
+  },
+});
 
 const actions = [
   {
@@ -28,9 +34,7 @@ const actions = [
   },
 ];
 
-export default meta;
-
-export const Default: StoryObj<typeof Accordion> = {
+export const Default = meta.story({
   name: "Regular Accordion",
   render: ({ ...args }) => (
     <Accordion {...args}>
@@ -75,9 +79,9 @@ export const Default: StoryObj<typeof Accordion> = {
     variant: "default",
     onlyOne: false,
   },
-};
+});
 
-export const Light: StoryObj<typeof Accordion> = {
+export const Light = meta.story({
   name: "Light accordion",
   render: ({ ...args }) => (
     <Accordion {...args}>
@@ -102,9 +106,9 @@ export const Light: StoryObj<typeof Accordion> = {
     onlyOne: false,
     variant: "light",
   },
-};
+});
 
-export const White: StoryObj<typeof Accordion> = {
+export const White = meta.story({
   name: "White accordion",
   render: ({ ...args }) => (
     <Accordion {...args}>
@@ -149,4 +153,4 @@ export const White: StoryObj<typeof Accordion> = {
     onlyOne: false,
     variant: "white",
   },
-};
+});

@@ -1,7 +1,7 @@
 import { ItemMessage } from "@axa-fr/canopee-react/distributeur/experimental";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 
-const meta = {
+const meta = preview.meta({
   title: "Experimental/Form/Atoms/ItemMessage",
   component: ItemMessage,
   argTypes: {
@@ -11,12 +11,9 @@ const meta = {
       options: [undefined, "error", "success"],
     },
   },
-} satisfies Meta<typeof ItemMessage>;
+});
 
-export default meta;
-type Story = StoryObj<typeof ItemMessage>;
-
-export const ItemMessageHelpStory: Story = {
+export const ItemMessageHelpStory = meta.story({
   name: "Help Message",
   render: ({ children, ...args }) => (
     <ItemMessage {...args}>{children}</ItemMessage>
@@ -25,9 +22,9 @@ export const ItemMessageHelpStory: Story = {
     children: "Help message",
   },
   argTypes: {},
-};
+});
 
-export const ItemMessageErrorStory: Story = {
+export const ItemMessageErrorStory = meta.story({
   name: "Error Message",
   render: ({ children, ...args }) => (
     <ItemMessage {...args}>{children}</ItemMessage>
@@ -37,9 +34,9 @@ export const ItemMessageErrorStory: Story = {
     children: "Error message",
   },
   argTypes: {},
-};
+});
 
-export const ItemMessageSuccessStory: Story = {
+export const ItemMessageSuccessStory = meta.story({
   name: "Success Message",
   render: ({ children, ...args }) => (
     <ItemMessage {...args}>{children}</ItemMessage>
@@ -49,4 +46,4 @@ export const ItemMessageSuccessStory: Story = {
     children: "Success message",
   },
   argTypes: {},
-};
+});

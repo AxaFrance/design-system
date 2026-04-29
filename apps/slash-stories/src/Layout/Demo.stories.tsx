@@ -26,8 +26,8 @@ import {
   VerticalStep,
 } from "@axa-fr/canopee-react/distributeur";
 
-import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import preview from "../../.storybook/preview";
 
 type DemoFormValues = {
   "text-input": string;
@@ -40,7 +40,11 @@ type DemoFormValues = {
   delivery: string;
 };
 
-const meta: Meta<StoryProps> = {
+type StoryProps = {
+  withAnchorNavBar?: boolean;
+};
+
+const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Layout/Demo Page",
   parameters: {
     options: {
@@ -55,15 +59,9 @@ const meta: Meta<StoryProps> = {
     },
   },
   tags: ["!autodocs"],
-};
+});
 
-type StoryProps = {
-  withAnchorNavBar?: boolean;
-};
-
-export default meta;
-
-export const DemoStory: StoryObj<StoryProps> = {
+export const DemoStory = meta.story({
   name: "Demo",
   render: ({ withAnchorNavBar }) => {
     const [stepMode, setStepMode] = useState<"edited" | "validated" | "locked">(
@@ -315,4 +313,4 @@ export const DemoStory: StoryObj<StoryProps> = {
       </>
     );
   },
-};
+});

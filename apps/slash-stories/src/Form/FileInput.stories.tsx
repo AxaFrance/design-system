@@ -6,9 +6,9 @@ import {
   HelpMessage,
   MessageTypes,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { FileRejection } from "react-dropzone";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 const values = [
   {
@@ -39,20 +39,16 @@ const values = [
   },
 ];
 
-const meta: Meta<typeof FileInput> = {
+const meta = preview.meta({
   component: FileInput,
   title: "Components/Form/Input/File",
   argTypes: {
     onChange: { action: "onChange" },
   },
   args: { onChange: fn() },
-};
+});
 
-export default meta;
-
-type Story = StoryObj<typeof FileInput>;
-
-export const FileInputStory: Story = {
+export const FileInputStory = meta.story({
   name: "FileInput",
   render: ({ onChange, ...args }) => (
     <FileInput onChange={onChange} {...args} />
@@ -72,9 +68,9 @@ export const FileInputStory: Story = {
     classNameContainerInput: "col-md-10",
     values,
   },
-};
+});
 
-export const FileStory: Story = {
+export const FileStory = meta.story({
   name: "File",
   render: ({ onChange, ...args }) => <File onChange={onChange} {...args} />,
   args: {
@@ -86,7 +82,7 @@ export const FileStory: Story = {
     isVisible: true,
     icon: "open",
   },
-};
+});
 
 const errors = [
   {
@@ -112,7 +108,7 @@ const errors = [
   },
 ] as FileRejection[];
 
-export const FileWithValuesStory: Story = {
+export const FileWithValuesStory = meta.story({
   name: "File with values",
   render: ({ onChange, ...args }) => (
     <>
@@ -126,9 +122,12 @@ export const FileWithValuesStory: Story = {
       />
     </>
   ),
-};
+  args: {
+    label: "Image",
+  },
+});
 
-export const FileWithErrorsStory: Story = {
+export const FileWithErrorsStory = meta.story({
   name: "File with errors",
   render: ({ onChange, ...args }) => (
     <>
@@ -142,4 +141,5 @@ export const FileWithErrorsStory: Story = {
       />
     </>
   ),
-};
+  args: { label: "Image" },
+});

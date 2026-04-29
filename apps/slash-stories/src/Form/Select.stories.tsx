@@ -1,27 +1,20 @@
 import { Select } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { ComponentProps } from "react";
+import preview from "../../.storybook/preview";
 
 const options = [
   { value: "fun", label: "For fun" },
   { value: "work", label: "For work" },
   { value: "drink", label: "For drink" },
 ];
+type StoryProps = ComponentProps<typeof Select>;
 
-const meta: Meta<typeof Select> = {
-  component: Select,
+const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Components/Form/Input/Select",
   argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
+});
 
-export default meta;
-
-type StoryProps = ComponentProps<typeof Select>;
-type Story = StoryObj<StoryProps>;
-
-export const SelectStory: Story = {
+export const SelectStory = meta.story({
   name: "Select",
   tags: ["Form", "Input"],
   render: ({ onChange, ...args }: ComponentProps<typeof Select>) => (
@@ -45,10 +38,10 @@ export const SelectStory: Story = {
       },
     },
   },
-};
+});
 
-export const SelectStoryWithChildren: Story = {
-  ...SelectStory,
+export const SelectStoryWithChildren = meta.story({
+  ...SelectStory.input,
   name: "Select With Children",
   render: ({ onChange, ...args }: ComponentProps<typeof Select>) => (
     <Select onChange={onChange} {...args}>
@@ -71,4 +64,4 @@ export const SelectStoryWithChildren: Story = {
     disabled: false,
     required: false,
   },
-};
+});

@@ -1,21 +1,16 @@
 import { NestedQuestion, TextInput } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 
-const meta: Meta<typeof NestedQuestion> = {
+const meta = preview.meta({
   component: NestedQuestion,
   title: "Components/Form/NestedQuestion",
   args: { children: <TextInput label="Champ texte" /> },
-};
+});
 
-export default meta;
-
-type StoryProps = React.ComponentProps<typeof NestedQuestion>;
-type Story = StoryObj<StoryProps>;
-
-export const Playground: Story = {
+export const Playground = meta.story({
   name: "NestedQuestion",
   render: ({ children }) => <NestedQuestion>{children}</NestedQuestion>,
   args: {
     children: <TextInput label="Champ texte" />,
   },
-};
+});

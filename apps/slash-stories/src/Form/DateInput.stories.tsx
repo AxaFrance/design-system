@@ -3,9 +3,8 @@ import {
   HelpButton,
   MessageTypes,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import { ComponentProps } from "react";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 const commonProps = {
   name: "birthDate",
@@ -13,19 +12,14 @@ const commonProps = {
   value: new Date("01/01/2024"),
 };
 
-const meta: Meta<typeof DateInput> = {
+const meta = preview.meta({
   component: DateInput,
   title: "Components/Form/Input/Date",
   argTypes: { onChange: { action: "onChange" } },
   args: { onChange: fn() },
-};
+});
 
-export default meta;
-
-type StoryProps = ComponentProps<typeof DateInput>;
-type Story = StoryObj<StoryProps>;
-
-export const DateInputStory: Story = {
+export const DateInputStory = meta.story({
   name: "Date with label",
   tags: ["Form", "Input"],
   render: ({ onChange, ...args }) => (
@@ -45,9 +39,9 @@ export const DateInputStory: Story = {
     className: "",
     disabled: false,
   },
-};
+});
 
-export const DateInputRequiredStory: Story = {
+export const DateInputRequiredStory = meta.story({
   name: "Required Date with label",
   tags: ["Form", "Input"],
   render: ({ ...args }) => <DateInput {...args} />,
@@ -64,9 +58,9 @@ export const DateInputRequiredStory: Story = {
     className: "",
     disabled: false,
   },
-};
+});
 
-export const DateInputWithChildrenStory: Story = {
+export const DateInputWithChildrenStory = meta.story({
   name: "DateInput with help button",
   tags: ["Form", "Input"],
   render: ({ ...args }) => (
@@ -89,4 +83,4 @@ export const DateInputWithChildrenStory: Story = {
     classNameContainerLabel: "col-md-2",
     classNameContainerInput: "col-md-10",
   },
-};
+});

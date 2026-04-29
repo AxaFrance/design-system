@@ -52,7 +52,6 @@ jobs:
           jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' packages/canopee-react/package.json > temps.json && mv temps.json packages/canopee-react/package.json
           jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' client/apollo/react/package.json > temps.json && mv temps.json client/apollo/react/package.json
           jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' slash/react/package.json > temps.json && mv temps.json slash/react/package.json
-
       - name: Build packages
         run: npm run build
 
@@ -63,15 +62,20 @@ jobs:
 
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag latest;
-
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w
+          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
+          --tag latest;
       - name: Publish rc packages
         if: contains(steps.gitversion.outputs.fullSemVer, 'RC')
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag rc;
-
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w
+          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
+          --tag rc;
       - name: Publish next packages
-        if: steps.gitversion.outputs.preReleaseTag != '' && !contains(steps.gitversion.outputs.fullSemVer, 'RC')
-        run: npm publish -w packages/canopee-css -w packages/canopee-react -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react --tag next;
+        if: steps.gitversion.outputs.preReleaseTag != '' &&
+          !contains(steps.gitversion.outputs.fullSemVer, 'RC')
+        run: npm publish -w packages/canopee-css -w packages/canopee-react -w
+          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
+          --tag next;
 
       - name: Create artifact folders
         uses: ./.github/action/create-storybook-artifact
@@ -119,10 +123,12 @@ jobs:
           publish_dir: ./${{ matrix.storybook.publish_dir }}
           destination_dir: ${{ matrix.storybook.destination_dir }}/latest
 
-      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{ needs.publish.outputs.version }}
+      - name: Upload the ${{ matrix.storybook.name }} storybook version ${{
+          needs.publish.outputs.version }}
         if: needs.publish.outputs.isStableRelease == 'true'
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./${{ matrix.storybook.publish_dir }}
-          destination_dir: ${{ matrix.storybook.destination_dir }}/${{ needs.publish.outputs.version }}
+          destination_dir: ${{ matrix.storybook.destination_dir }}/${{
+            needs.publish.outputs.version }}

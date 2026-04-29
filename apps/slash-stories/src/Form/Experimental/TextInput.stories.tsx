@@ -2,10 +2,10 @@ import {
   SingleLineLabelPosition,
   TextInput,
 } from "@axa-fr/canopee-react/distributeur/experimental";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../../.storybook/preview";
 
-const meta: Meta<typeof TextInput> = {
+const meta = preview.meta({
   component: TextInput,
   title: "Experimental/Form/TextInput",
   argTypes: {
@@ -124,24 +124,20 @@ const meta: Meta<typeof TextInput> = {
     name: "myTextInput",
     onChange: fn(),
   },
-};
+});
 
-export default meta;
-
-type Story = StoryObj<typeof TextInput>;
-
-export const Default: Story = {
+export const Default = meta.story({
   args: {},
-};
+});
 
-export const Vertical: Story = {
+export const Vertical = meta.story({
   args: {
     disabled: true,
     labelPosition: "above",
   },
-};
+});
 
-export const ErrorStory: Story = {
+export const ErrorStory = meta.story({
   args: {
     required: true,
     errorMessage: "This field is required",
@@ -149,26 +145,26 @@ export const ErrorStory: Story = {
     value: "",
     name: "errorInput",
   },
-};
+});
 
-export const Disabled: Story = {
+export const Disabled = meta.story({
   args: {
     disabled: true,
     value: "Disabled input",
     name: "disabledInput",
   },
-};
+});
 
-export const WithUnit: Story = {
+export const WithUnit = meta.story({
   args: {
     label: "Price",
     placeholder: "Enter amount",
     contentRight: "€",
     name: "unitInput",
   },
-};
+});
 
-export const RichLabel: Story = {
+export const RichLabel = meta.story({
   args: {
     label: (
       <span>
@@ -177,4 +173,4 @@ export const RichLabel: Story = {
     ),
     name: "richLabelInput",
   },
-};
+});

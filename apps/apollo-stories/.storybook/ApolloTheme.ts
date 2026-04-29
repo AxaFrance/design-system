@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { create } from "@storybook/theming";
+import { create } from "storybook/theming";
 
 export const ApolloTheme = create({
   base: "dark",

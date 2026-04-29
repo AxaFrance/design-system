@@ -4,20 +4,18 @@ import {
   MultiSelect,
   MultiSelectInput,
 } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import { useState, type ComponentPropsWithoutRef } from "react";
+import { useState } from "react";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
-const meta: Meta = {
+const meta = preview.meta({
   title: "Components/Form/Input/MultiSelect",
   component: MultiSelect,
   argTypes: {
     onChange: { action: "onChange" },
   },
   args: { onChange: fn() },
-};
-
-export default meta;
+});
 
 const options = [
   { value: "fun", label: "For fun", clearableValue: false },
@@ -28,8 +26,6 @@ const options = [
 ];
 const selectedValues = ["work", "drink"];
 
-type Story = StoryObj<ComponentPropsWithoutRef<typeof MultiSelect>>;
-
 const commonArgs = {
   name: "multiSelectName",
   options,
@@ -38,7 +34,7 @@ const commonArgs = {
   placeholder: "- Sélectionner -",
 };
 
-export const MultiSelectStory: Story = {
+export const MultiSelectStory = meta.story({
   name: "MultiSelect",
   render: ({ values, onChange = () => {}, ...args }) => {
     const [newValues, setNewValues] = useState(values);
@@ -64,9 +60,9 @@ export const MultiSelectStory: Story = {
   argTypes: {
     onChange: { action: "onChange" },
   },
-};
+});
 
-export const MultiSelectOneValueStory: Story = {
+export const MultiSelectOneValueStory = meta.story({
   name: "MultiSelect with one value",
   render: ({ value, onChange = () => {}, ...args }) => {
     const [newValue, setNewValue] = useState(value);
@@ -92,11 +88,9 @@ export const MultiSelectOneValueStory: Story = {
   argTypes: {
     onChange: { action: "onChange" },
   },
-};
+});
 
-export const MultiSelectInputStory: StoryObj<
-  ComponentPropsWithoutRef<typeof MultiSelectInput>
-> = {
+export const MultiSelectInputStory = meta.story({
   name: "MultiSelectInput",
   render: ({ values, onChange = () => {}, ...args }) => {
     const [newValues, setNewValues] = useState(values);
@@ -104,6 +98,7 @@ export const MultiSelectInputStory: StoryObj<
     return (
       <form className="af-form" name="myform">
         <MultiSelectInput
+          label="Place type"
           values={newValues}
           onChange={(data) => {
             setNewValues(data.values);
@@ -134,11 +129,9 @@ export const MultiSelectInputStory: StoryObj<
   argTypes: {
     onChange: { action: "onChange" },
   },
-};
+});
 
-export const MultiSelectInputWithChildrenStory: StoryObj<
-  ComponentPropsWithoutRef<typeof MultiSelectInput>
-> = {
+export const MultiSelectInputWithChildrenStory = meta.story({
   name: "MultiSelectInput with help button",
   render: ({ values, onChange = () => {}, ...args }) => {
     const [newValues, setNewValues] = useState(values);
@@ -146,6 +139,7 @@ export const MultiSelectInputWithChildrenStory: StoryObj<
     return (
       <form className="af-form" name="myform">
         <MultiSelectInput
+          label="Place type"
           values={newValues}
           onChange={(data) => {
             setNewValues(data.values);
@@ -174,4 +168,4 @@ export const MultiSelectInputWithChildrenStory: StoryObj<
   argTypes: {
     onChange: { action: "onChange" },
   },
-};
+});

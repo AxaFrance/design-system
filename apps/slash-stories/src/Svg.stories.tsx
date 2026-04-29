@@ -3,15 +3,13 @@ import closeIcons from "@material-symbols/svg-400/outlined/close.svg";
 import headphonesIcons from "@material-symbols/svg-400/outlined/headphones.svg";
 import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 import "./Svg.stories.css?inline";
 
-const meta: Meta = {
+const meta = preview.meta({
   title: "Components/Svg",
   component: Svg,
-};
-
-export default meta;
+});
 
 const MODIFIERS: Record<string, string> = {
   "/public/headphones.svg": headphonesIcons,
@@ -21,7 +19,7 @@ const MODIFIERS: Record<string, string> = {
   "simulate svg error": "foo",
 };
 
-export const Default: StoryObj<typeof Svg> = {
+export const Default = meta.story({
   name: "Svg",
   render: ({ src, ...args }) => <Svg src={MODIFIERS[src]} {...args} />,
   args: {
@@ -35,9 +33,9 @@ export const Default: StoryObj<typeof Svg> = {
       control: { type: "select" },
     },
   },
-};
+});
 
-export const Headphones: StoryObj<typeof Svg> = {
+export const Headphones = meta.story({
   name: "Svg Headphones",
   render: () => <Svg src={headphonesIcons} fill="#00008f" />,
-};
+});

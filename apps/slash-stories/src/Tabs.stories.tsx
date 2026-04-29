@@ -1,8 +1,8 @@
 import { Tabs, Tag } from "@axa-fr/canopee-react/distributeur";
-import { Meta, type StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../.storybook/preview";
 
-export default {
+const meta = preview.meta({
   title: "Components/Tabs",
   component: Tabs,
   parameters: {
@@ -14,7 +14,7 @@ export default {
   args: {
     onChange: fn(),
   },
-} as Meta;
+});
 
 const TabTitleIconLeft = <span>Long title that is very long</span>;
 const TabTitleIconRight = <span>Title</span>;
@@ -31,7 +31,7 @@ const TabTitleIconBadge = (
   </span>
 );
 
-export const SingleTab: StoryObj<typeof Tabs> = {
+export const SingleTab = meta.story({
   render: (args) => (
     <Tabs {...args}>
       <Tabs.Tab title="My Title">Content of my single tab</Tabs.Tab>
@@ -39,9 +39,9 @@ export const SingleTab: StoryObj<typeof Tabs> = {
   ),
   args: { activeIndex: "0" },
   argTypes: { onChange: { action: "onChange" } },
-};
+});
 
-export const ComplexTabs: StoryObj<typeof Tabs> = {
+export const ComplexTabs = meta.story({
   render: (args) => (
     <Tabs {...args}>
       <Tabs.Tab title={TabTitleIconLeft} classModifier="has-icon-left">
@@ -58,4 +58,4 @@ export const ComplexTabs: StoryObj<typeof Tabs> = {
   ),
   args: { activeIndex: "1" },
   argTypes: { onChange: { action: "onChange" } },
-};
+});

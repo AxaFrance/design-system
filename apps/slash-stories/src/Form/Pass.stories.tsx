@@ -1,9 +1,8 @@
-import { Meta, StoryObj } from "@storybook/react";
-
 import { Pass } from "@axa-fr/canopee-react/distributeur";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
-const meta: Meta<typeof Pass> = {
+const meta = preview.meta({
   title: "Components/Form/Input/Pass",
   component: Pass,
   args: {
@@ -30,11 +29,13 @@ const meta: Meta<typeof Pass> = {
       defaultValue: "bad",
     },
   },
-};
+});
 
-export default meta;
-
-export const PassStory: StoryObj<typeof Pass> = {
+export const PassStory = meta.story({
   render: (args) => <Pass {...args} />,
   name: "Pass",
-};
+  args: {
+    onChange: fn(),
+    onToggleType: fn(),
+  },
+});

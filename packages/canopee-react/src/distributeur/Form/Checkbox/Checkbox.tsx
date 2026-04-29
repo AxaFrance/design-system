@@ -19,6 +19,9 @@ type Props = Omit<
   options: Option[];
   values?: string[];
   children?: ReactNode;
+  /**
+   * description
+   */
   mode?: keyof typeof CheckboxModes;
 } & OnChange;
 

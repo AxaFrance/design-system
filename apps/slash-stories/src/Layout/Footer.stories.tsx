@@ -1,26 +1,20 @@
 import { Footer } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 
-const meta: Meta<typeof Footer> = {
+const meta = preview.meta({
   title: "Components/Footer",
   component: Footer,
   parameters: {
     options: {},
   },
-};
-export default meta;
+});
 
-type StoryProps = Omit<React.ComponentProps<typeof Footer>, "children"> & {
-  children: string;
-};
-type Story = StoryObj<StoryProps>;
-
-export const FooterStory: Story = {
+export const FooterStory = meta.story({
   name: "Default",
   render: ({ children, ...args }) => <Footer {...args}>{children}</Footer>,
-};
+});
 
-export const FooterCoreStory: Story = {
+export const FooterCoreStory = meta.story({
   name: "Core with HTML children",
   render: ({ ...args }) => (
     <Footer {...args}>
@@ -30,4 +24,4 @@ export const FooterCoreStory: Story = {
       <em>Tous droits réservés</em>
     </Footer>
   ),
-};
+});

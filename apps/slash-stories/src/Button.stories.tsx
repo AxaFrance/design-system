@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import arrowForwardIcons from "@material-symbols/svg-400/outlined/arrow_forward.svg";
-import arrowBackIcons from "@material-symbols/svg-400/outlined/arrow_back.svg";
 import { Button, Svg } from "@axa-fr/canopee-react/distributeur";
+import arrowBackIcons from "@material-symbols/svg-400/outlined/arrow_back.svg";
+import arrowForwardIcons from "@material-symbols/svg-400/outlined/arrow_forward.svg";
 import type { ComponentProps } from "react";
+import { fn } from "storybook/test";
+import preview from "../.storybook/preview";
 
 const CssIcons: Record<string, string> = {
   "(none)": "none",
@@ -13,7 +13,15 @@ const CssIcons: Record<string, string> = {
   "glyphicon arrow-right": "arrow-right",
 };
 
-const meta: Meta<typeof Button> = {
+type StoryProps = Omit<
+  ComponentProps<typeof Button>,
+  "leftIcon" | "rightIcon"
+> & {
+  leftIcon: string;
+  rightIcon: string;
+};
+
+const meta = preview.type<{ args: StoryProps }>().meta({
   component: Button,
   title: "Components/Button",
   parameters: {
@@ -57,20 +65,9 @@ const meta: Meta<typeof Button> = {
       control: { type: "select" },
     },
   },
-};
+});
 
-export default meta;
-
-type StoryProps = Omit<
-  ComponentProps<typeof Button>,
-  "leftIcon" | "rightIcon"
-> & {
-  leftIcon: string;
-  rightIcon: string;
-};
-type Story = StoryObj<StoryProps>;
-
-export const Playground: Story = {
+export const Playground = meta.story({
   tags: ["dev"],
   render: ({ leftIcon, rightIcon, ...props }) => {
     const getIcon = (type: string) => {
@@ -93,61 +90,61 @@ export const Playground: Story = {
       <Button leftIcon={leftIconProps} rightIcon={rightIconProps} {...props} />
     );
   },
-};
+});
 
-export const Primary: Story = {
+export const Primary = meta.story({
   name: "Button Primary",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
     children: "Button Primary",
     onClick: undefined,
     variant: undefined,
   },
-};
+});
 
-export const Secondary: Story = {
+export const Secondary = meta.story({
   name: "Button Secondary",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "Button Secondary",
     variant: "secondary",
   },
-};
+});
 
-export const Validated: Story = {
+export const Validated = meta.story({
   name: "Button Validated",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "Button Validated",
     variant: "validated",
   },
-};
+});
 
-export const Danger: Story = {
+export const Danger = meta.story({
   name: "Button danger",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "Button Danger",
     variant: "danger",
   },
-};
+});
 
-export const Ghost: Story = {
+export const Ghost = meta.story({
   name: "Button ghost",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "Button ghost",
     variant: "ghost",
   },
-};
+});
 
-export const GhostReverse: Story = {
+export const GhostReverse = meta.story({
   name: "Button ghost-reverse",
-  render: Playground.render,
+  render: Playground.input.render,
   decorators: [
     (Story) => (
       <div style={{ backgroundColor: "var(--axablue90)", padding: "1rem" }}>
@@ -156,38 +153,38 @@ export const GhostReverse: Story = {
     ),
   ],
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "Button ghost-reverse",
     variant: "ghost-reverse",
   },
-};
+});
 
-export const WithIconRight: Story = {
+export const WithIconRight = meta.story({
   name: "Button with right svg icon",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "With right svg icon",
     rightIcon: "/public/arrow_forward.svg",
   },
-};
+});
 
-export const WithIconLeft: Story = {
+export const WithIconLeft = meta.story({
   name: "Button with left glyphicon icon",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "With left glyphicon icon",
     leftIcon: "glyphicon arrow-left",
   },
-};
+});
 
-export const Small: Story = {
+export const Small = meta.story({
   name: "Button small",
-  render: Playground.render,
+  render: Playground.input.render,
   args: {
-    ...Primary.args,
+    ...Primary.input.args,
     children: "Button Small",
     small: true,
   },
-};
+});
