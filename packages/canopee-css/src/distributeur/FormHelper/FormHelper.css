@@ -17,13 +17,14 @@
   }
 }
 
-.af-form-helper__main-content {
+.af-restitution.af-form-helper__main-content {
   padding: 1rem 1.25rem;
   background-color: var(--gray10);
 
   & ul {
     margin-bottom: 1rem;
     padding: 0;
+    list-style: none;
   }
 
   & ul:last-child {

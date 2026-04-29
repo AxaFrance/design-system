@@ -17,10 +17,7 @@ export const ItemFormHelper = ({
   const className = `af-item-form-helper__${mode}`;
   const showTick = mode === "validated";
   return (
-    <li
-      className={classNames("af-item-form-helper", className)}
-      key={`etape_${label}`}
-    >
+    <span className={classNames("af-item-form-helper", className)}>
       {showTick ? (
         <Svg
           src={greenTick}
@@ -39,6 +36,6 @@ export const ItemFormHelper = ({
           {label}
         </span>
       )}
-    </li>
+    </span>
   );
 };

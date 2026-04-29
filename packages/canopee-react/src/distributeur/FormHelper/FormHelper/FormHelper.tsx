@@ -28,30 +28,39 @@ export const FormHelper = ({ formTitle, sections }: FormHelperProps) => (
     <HeaderRestitution title={formTitle} />
     <SectionRestitution className="af-form-helper__legend">
       <ul>
-        <ItemFormHelper label="à compléter" mode="locked" />
-        <ItemFormHelper label="en cours" mode="edited" />
-        <ItemFormHelper label="validé" mode="validated" />
+        <li>
+          <ItemFormHelper label="à compléter" mode="locked" />
+        </li>
+        <li>
+          <ItemFormHelper label="en cours" mode="edited" />
+        </li>
+        <li>
+          <ItemFormHelper label="validé" mode="validated" />
+        </li>
       </ul>
     </SectionRestitution>
     <SectionRestitution
       className={classNames("af-restitution", "af-form-helper__main-content")}
     >
       {sections.map((section, idx) => (
-        <ul key={section.title || idx}>
+        <div key={section.title || idx}>
           {section.title ? (
             <h3 className={classNames("af-form-helper__section-title")}>
               {section.title}
             </h3>
           ) : null}
-          {section.items.map((item) => (
-            <ItemFormHelper
-              key={item.label}
-              label={item.label}
-              mode={item.mode}
-              anchor={item.anchor}
-            />
-          ))}
-        </ul>
+          <ul>
+            {section.items.map((item) => (
+              <li key={item.label}>
+                <ItemFormHelper
+                  label={item.label}
+                  mode={item.mode}
+                  anchor={item.anchor}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       ))}
     </SectionRestitution>
   </ArticleRestitution>
