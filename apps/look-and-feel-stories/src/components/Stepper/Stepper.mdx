@@ -19,22 +19,3 @@ The Stepper renders its title through the [`Heading`](?path=/docs/components-hea
 
 <Canvas of={StepperStories.Playground} />
 <Controls of={StepperStories.Playground} />
-
-## With icon
-
-Pass an `icon` (SVG) and a `titleLevel` to display an icon next to the title, consistent with other components that rely on the `Heading` molecule.
-
-```tsx
-import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
-
-<Stepper
-  currentTitle="Step title"
-  currentSubtitle="Step X of X"
-  currentStep={2}
-  currentStepProgress={50}
-  icon={bank}
-  titleLevel={1}
-/>;
-```
-
-<Canvas of={StepperStories.WithIcon} />

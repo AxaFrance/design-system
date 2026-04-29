@@ -1,7 +1,6 @@
 import { Stepper } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
-import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
 
 const meta: Meta<typeof Stepper> = {
   component: Stepper,
@@ -35,19 +34,6 @@ export const Playground: Story = {
     currentSubtitle: "Étape X sur X",
     currentStepProgress: 50,
     message: "Titre message",
-    helper: "Sauf mention du contraire, tous les champs sont obligatoires.",
-  },
-};
-
-export const WithIcon: Story = {
-  name: "WithIcon",
-  args: {
-    currentTitle: "Titre étape",
-    currentStep: 2,
-    currentSubtitle: "Étape X sur X",
-    currentStepProgress: 50,
-    icon: bank,
-    titleLevel: 1,
     helper: "Sauf mention du contraire, tous les champs sont obligatoires.",
   },
 };
