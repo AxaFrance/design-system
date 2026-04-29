@@ -1,10 +1,4 @@
-import {
-  Button,
-  Loader,
-  MessageTypes,
-  TextInput,
-  Title,
-} from "@axa-fr/canopee-react/distributeur";
+import { Loader } from "@axa-fr/canopee-react/distributeur";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Loader> = {
@@ -12,6 +6,13 @@ const meta: Meta<typeof Loader> = {
   title: "Components/Loader",
   parameters: {
     layout: "fullscreen",
+  },
+  argTypes: {
+    variant: {
+      options: ["inline", "fullScreen", "content"],
+      control: { type: "select" },
+    },
+    text: { control: { type: "text" } },
   },
 };
 
@@ -22,27 +23,13 @@ type Story = StoryObj<StoryProps>;
 
 export const Default: Story = {
   name: "Loader",
-  render: ({ children: text, ...args }) => <Loader {...args}>{text}</Loader>,
+  render: (args) => (
+    <div style={{ height: "100vh" }}>
+      <Loader {...args} />
+    </div>
+  ),
   args: {
-    mode: "get",
-    text: "",
-    children: (
-      <form style={{ height: "100vh", padding: "3rem" }}>
-        <Title>A form asking for your name</Title>
-        <TextInput
-          label="name"
-          message="error"
-          messageType={MessageTypes.error}
-        />
-        <Button>Send</Button>
-      </form>
-    ),
-  },
-  argTypes: {
-    children: {
-      table: {
-        disable: true,
-      },
-    },
+    variant: "inline",
+    text: "Recherche en cours",
   },
 };

@@ -37,4 +37,5 @@
 @import "./Link/Link.css";
 @import "./Popover/Popover.css";
 @import "./Loader/Loader.css";
+@import "./Loader/LoaderLegacy.css";
 @import "./CardData/CardData.css";

@@ -18,6 +18,10 @@ const meta: Meta<typeof Loader> = {
       control: "text",
       description: "Sous-titre du loader (optionnel)",
     },
+    isDialog: {
+      control: "boolean",
+      description: "Affiche le loader dans un <dialog> modal",
+    },
     spinnerProps: {
       control: "object",
       description: "Props à passer au Spinner",
@@ -29,31 +33,24 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  args: {
-    title: "Chargement en cours",
-    subtitle: "Veuillez patienter",
-  },
-};
-
-export const Dialog: Story = {
   decorators: [
-    (Story, { args: { open = true, isDialog = true, ...args } }) => {
+    (Story, { args: { isDialog = false, ...args } }) => {
       const modalRef = useRef<HTMLDialogElement>(null);
 
       useEffect(() => {
-        if (open && isDialog) {
+        if (isDialog) {
           modalRef.current?.showModal();
           return;
         }
-
         modalRef.current?.close();
-      }, [open, isDialog]);
+      }, [isDialog]);
 
       return <Story args={{ ...args, isDialog, ref: modalRef }} />;
     },
   ],
   args: {
     title: "Chargement en cours",
-    subtitle: "Merci de patienter quelques instants",
+    subtitle: "Veuillez patienter",
+    isDialog: false,
   },
 };
