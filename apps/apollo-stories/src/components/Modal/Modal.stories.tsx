@@ -1,5 +1,4 @@
 import "./Modal.story.scss";
-
 import { Button, Modal } from "@axa-fr/canopee-react/prospect";
 import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
 import { action } from "@storybook/addon-actions";
@@ -28,16 +27,13 @@ export const ModalContent: ModalStory = {
   decorators: [
     (Story, { args: { open, ...args } }) => {
       const modalRef = useRef<HTMLDialogElement>(null);
-
       useLayoutEffect(() => {
         if (open) {
           modalRef.current?.showModal();
           return;
         }
-
         modalRef.current?.close();
       }, [open]);
-
       return <Story args={{ ...args, ref: modalRef }} />;
     },
   ],
@@ -46,9 +42,9 @@ export const ModalContent: ModalStory = {
     title: "Modal title",
     headingProps: {
       firstSubtitle: "Modal subtitle",
+      icon: bank,
+      iconProps: { variant: "primary" },
     },
-    icon: bank,
-    iconProps: { variant: "primary" },
     children:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris",
     secondaryButtonProps: {
@@ -66,19 +62,16 @@ export const Playground: ModalStory = {
   decorators: [
     (Story, { args: { secondaryButtonProps = {}, ...args } }) => {
       const ref = useRef<HTMLDialogElement>(null);
-
       const onClose = () => {
         args.onClose?.();
         ref.current?.close();
       };
-
       const onClickSecondaryButton: React.MouseEventHandler<
         HTMLButtonElement
       > = (e) => {
         secondaryButtonProps.onClick?.(e);
         ref.current?.close();
       };
-
       return (
         <>
           <div className="button-wrapper">

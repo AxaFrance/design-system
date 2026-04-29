@@ -37,7 +37,6 @@ export const ModalCommon = forwardRef<HTMLDialogElement, ModalCommonProps>(
       headingProps,
       closeButtonAriaLabel,
       onClose,
-      iconComponent,
       iconProps,
       primaryButtonProps,
       secondaryButtonProps,
@@ -54,7 +53,6 @@ export const ModalCommon = forwardRef<HTMLDialogElement, ModalCommonProps>(
       <ModalCoreHeaderCommon
         headingComponent={headingComponent}
         headingProps={headingProps}
-        iconComponent={iconComponent}
         iconProps={iconProps}
         onClose={onClose}
         closeButtonAriaLabel={closeButtonAriaLabel}
@@ -71,5 +69,4 @@ export const ModalCommon = forwardRef<HTMLDialogElement, ModalCommonProps>(
     </ModalCore>
   ),
 );
-
 ModalCommon.displayName = "ModalCommon";
