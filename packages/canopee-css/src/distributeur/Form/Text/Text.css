@@ -101,3 +101,8 @@
   height: 100%;
   padding-top: 0;
 }
+
+.af-form__text > .af-popover__wrapper,
+.af-form__text > .af-input__unit {
+  margin-left: 0.5rem;
+}
