@@ -15,6 +15,7 @@ export type HeadingCommonProps = PropsWithChildren<{
   level?: HeadingLevel;
   icon?: string;
   iconProps?: Omit<IconProps, "src">;
+  iconPosition?: "start" | "top";
   tag?: ReactNode;
   firstSubtitle?: ReactNode;
   secondSubtitle?: ReactNode;
@@ -34,6 +35,7 @@ export const HeadingCommon = ({
   level = 1,
   icon,
   iconProps = {},
+  iconPosition = "start",
   tag,
   ...props
 }: HeadingCommonProps) => {
@@ -42,6 +44,7 @@ export const HeadingCommon = ({
     <div
       className={getClassName({
         baseClassName: "af-heading",
+        modifiers: [iconPosition === "top" && "icon-top"],
         className,
       })}
       {...props}

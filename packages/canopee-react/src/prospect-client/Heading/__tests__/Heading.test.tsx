@@ -136,6 +136,34 @@ describe("Heading", () => {
     );
   });
 
+  it("should apply the icon-top modifier when iconPosition is 'top'", () => {
+    render(
+      <HeadingCommon
+        icon={bank}
+        iconProps={{ "aria-label": "icon" }}
+        iconPosition="top"
+      >
+        Title
+      </HeadingCommon>,
+    );
+
+    expect(screen.getByText("Title").parentElement?.parentElement).toHaveClass(
+      "af-heading--icon-top",
+    );
+  });
+
+  it("should not apply the icon-top modifier by default", () => {
+    render(
+      <HeadingCommon icon={bank} iconProps={{ "aria-label": "icon" }}>
+        Title
+      </HeadingCommon>,
+    );
+
+    expect(
+      screen.getByText("Title").parentElement?.parentElement,
+    ).not.toHaveClass("af-heading--icon-top");
+  });
+
   it.each([{ level: 1 }, { level: 2 }, { level: 3 }] as {
     level: HeadingLevel;
   }[])(
