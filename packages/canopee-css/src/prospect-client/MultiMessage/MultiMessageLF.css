@@ -1,0 +1,42 @@
+@import "./MultiMessageCommon.css";
+
+.af-multi-message {
+  --multi-message-theme-color: var(--blue-1000);
+  --multi-message-bg-color: var(--white-1000);
+  --multi-message-border-color: var(--multi-message-theme-color);
+  --multi-message-border-radius: var(--radius-12);
+  --multi-message-icon-color: var(--multi-message-theme-color);
+  --multi-message-title-color: var(--multi-message-theme-color);
+  --multi-message-title-font-size: 16;
+  --multi-message-content-color: var(--gray-1000);
+  --multi-message-content-font-size: 16;
+  --multi-message-counter-color: var(--multi-message-theme-color);
+  --multi-message-counter-font-size: 14;
+  --multi-message-pagination-bg-color: var(--white-1000);
+  --multi-message-pagination-border-color: var(--gray-140);
+  --multi-message-content-line-height: var(--rem-20);
+  --multi-message-footer-padding-top: 12;
+
+  @media (--desktop-small) {
+    --multi-message-content-font-size: 18;
+    --multi-message-title-font-size: 18;
+    --multi-message-counter-font-size: 16;
+    --multi-message-content-line-height: var(--rem-23);
+  }
+}
+
+.af-multi-message--error {
+  --multi-message-theme-color: var(--red-alert-1200);
+}
+
+.af-multi-message--neutral {
+  --multi-message-theme-color: var(--gray-800);
+}
+
+.af-multi-message--warning {
+  --multi-message-theme-color: var(--orange-1000);
+}
+
+.af-multi-message--validation {
+  --multi-message-theme-color: var(--green-1000);
+}

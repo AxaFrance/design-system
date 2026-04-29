@@ -126,6 +126,10 @@ export {
   type MessageVariants,
 } from "./prospect-client/Message/MessageLF";
 export {
+  MultiMessage,
+  type MultiMessageItem,
+} from "./prospect-client/MultiMessage/MultiMessageLF";
+export {
   Modal,
   ModalCore,
   ModalCoreBody,
