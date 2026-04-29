@@ -1,0 +1,36 @@
+.af-form-helper__legend {
+  padding: 0;
+  border-bottom: 1px solid var(--gray20);
+  font-size: 1rem;
+  background-color: var(--white);
+
+  & ul {
+    width: 100%;
+    margin: 0.5rem;
+    padding: 0;
+    columns: 3;
+    list-style: none;
+
+    & li {
+      padding-left: 0.75rem;
+    }
+  }
+}
+
+.af-form-helper__main-content {
+  padding: 1rem 1.25rem;
+  background-color: var(--gray10);
+
+  & ul {
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+
+  & ul:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.af-form-helper__section-title {
+  font-size: 1.125rem;
+}
