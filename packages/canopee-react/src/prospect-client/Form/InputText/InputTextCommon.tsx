@@ -112,6 +112,9 @@ const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
               ? messageType || error
               : undefined
           }
+          warning={
+            message && messageType === "warning" ? messageType : undefined
+          }
           required={required}
           idMessage={message || error ? idMessage : undefined}
           idHelp={
