@@ -1,0 +1,34 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as ItemFormHelperStories from "./ItemFormHelper.stories";
+
+<Meta of={ItemFormHelperStories} />
+
+# ItemFormHelper
+
+`ItemFormHelper` is a small status row used inside a form helper to show the
+progress of a given step. Each item carries an icon and a label, and switches
+visual state through the `variant` prop.
+
+```tsx
+import { ItemFormHelper } from "@axa-fr/canopee-react/distributeur";
+
+export const MyFormHelper = () => (
+  <ItemFormHelper variant="inprogress" label="Identité" />
+);
+```
+
+## Variants
+
+The `variant` prop drives the icon and the default label:
+
+- `todo` — step is pending (default label: "à compléter").
+- `inprogress` — step is currently being filled (default label: "en cours").
+- `validated` — step has been completed (default label: "validé").
+
+Pass a `label` to override the default text.
+
+## Playground
+
+<Canvas of={ItemFormHelperStories.Default} />
+
+<Controls of={ItemFormHelperStories.Default} />
