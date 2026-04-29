@@ -16,6 +16,10 @@
     --item-tab-bar-box-shadow-width: -4px;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   &:focus-visible {
     outline: 2px solid var(--item-tab-bar-outline-color);
     outline-offset: 2px;
