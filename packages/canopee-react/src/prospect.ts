@@ -189,3 +189,9 @@ export {
   Loader,
   type LoaderProps,
 } from "./prospect-client/Loader/LoaderApollo";
+export {
+  MessageBar,
+  messageBarVariants,
+  type MessageBarProps,
+  type MessageBarVariant,
+} from "./prospect-client/MessageBar/MessageBarApollo";
