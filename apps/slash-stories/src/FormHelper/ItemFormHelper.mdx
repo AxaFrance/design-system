@@ -1,4 +1,4 @@
-import { Canvas, Controls, Description, Meta } from "@storybook/blocks";
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
 import * as Stories from "./ItemFormHelper.stories";
 
 <Meta of={Stories} />
@@ -13,15 +13,13 @@ The `ItemFormHelper` component displays a single step in a form helper or steppe
 import { ItemFormHelper } from "@axa-fr/canopee-react/distributeur";
 ```
 
-## Usage without anchor
+## Playground
 
-<Canvas of={Stories.Default} />
+Switch `mode` and toggle the `anchor` prop directly via Storybook controls.
 
-## Usage with anchor
+<Canvas of={Stories.Playground} />
 
-If the `anchor` prop is provided, the label is rendered as a link to the corresponding anchor in the page.
-
-<Canvas of={Stories.Anchor} />
+<Controls of={Stories.Playground} />
 
 ## Modes
 
@@ -44,7 +42,7 @@ The `mode` prop controls the visual state of the step:
 ## Accessibility
 
 - The anchor (`<a>`) includes an `aria-label` for better screen reader support.
-- The component uses semantic HTML (`<li>`, `<a>`, `<span>`) for proper list and navigation structure.
+- The component renders inline content (`<a>` or `<span>`) so parent components can own list semantics.
 
 ---
 
