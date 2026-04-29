@@ -14,9 +14,14 @@
     var(--textarea-box-shadow-color) inset;
   outline: none;
 
-  &:is(:focus-visible, :hover, :active, :focus, [aria-invalid="true"]):not(
-      :disabled
-    ) {
+  &:is(
+      :focus-visible,
+      :hover,
+      :active,
+      :focus,
+      [aria-invalid="true"],
+      [class*="--warning"]
+    ):not(:disabled) {
     --textarea-box-shadow-width: 2px;
   }
 
@@ -27,5 +32,13 @@
   &::placeholder {
     font-weight: 400;
     color: var(--textarea-placeholder-color);
+  }
+
+  &[class*="--warning"] {
+    --textarea-box-shadow-color: var(--orange-1050);
+
+    &:is(:focus-visible, :hover, :active, :focus) {
+      --textarea-box-shadow-width: 3px;
+    }
   }
 }
