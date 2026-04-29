@@ -3,7 +3,6 @@ import {
   MessageTypes,
   TextInput,
 } from "@axa-fr/canopee-react/distributeur";
-import { InputUnit } from "@axa-fr/canopee-react/distributeur/experimental";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { inputTypes } from "./inputTypes";
@@ -172,28 +171,5 @@ export const TextInputWithAppendChildren: Story = {
     type: "text",
     helpMessage: "Aide à la saisie",
     label: "Your name",
-  },
-};
-
-export const TextInputWithUnit: Story = {
-  name: "TextInput with unit",
-  render: ({ onChange, ...args }) => (
-    <TextInput onChange={onChange} {...args}>
-      <InputUnit>€</InputUnit>
-    </TextInput>
-  ),
-  args: {
-    required: true,
-    value: "150",
-    placeholder: "Montant",
-    name: "amount",
-    id: "amountid",
-    readOnly: false,
-    disabled: false,
-    autoFocus: false,
-    className: "",
-    type: "text",
-    helpMessage: "Saisissez un montant",
-    label: "Montant",
   },
 };
