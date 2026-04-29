@@ -2,11 +2,6 @@
 
 .af-link {
   --link-font-weight: 400;
-  --link-font-size: var(--rem-16);
-
-  @media (--desktop-small) {
-    --link-font-size: var(--rem-18);
-  }
 
   &.af-btn-client {
     @media (--desktop-small) {
