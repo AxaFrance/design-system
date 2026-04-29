@@ -26,10 +26,11 @@
     --input-border-color: var(--gray-500);
     --input-text-color: var(--gray-500);
     --input-bg-color: var(--gray-050);
-    --input-text-icon-color: var(--gray-500);
+    --input-text-icon-color: var(--gray-800);
+    --input-text-placeholder-color: var(--gray-800);
 
     + .af-form__input-helper {
-      --input-helper-color: var(--gray-500);
+      --input-helper-color: var(--gray-800);
     }
   }
 
