@@ -1,0 +1,1 @@
+import{j as a}from"./jsx-runtime-D_zvdyIk.js";import"./LoaderLF-BrEPfRjY.js";import{C as r,I as m}from"./LoaderCommon-CqRZ_kgL.js";import{C as t}from"./CardRadioOptionLF-Ba9PNlrO.js";const C=o=>a.jsx(r,{...o,CardRadioOptionComponent:t,ItemMessageComponent:m});export{C};
