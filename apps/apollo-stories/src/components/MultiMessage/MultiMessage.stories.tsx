@@ -2,9 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { MultiMessage } from "@axa-fr/canopee-react/prospect";
 
-import { renderMultiMessage, renderMultiMessageVariants } from "./render";
-
-import "./MultiMessage.story.scss";
+import { renderMultiMessage } from "./render";
 
 const meta: Meta<typeof MultiMessage> = {
   component: MultiMessage,
@@ -24,8 +22,4 @@ export const Playground: Story = {
   args: {
     defaultActiveIndex: 0,
   },
-};
-
-export const All: StoryObj<typeof MultiMessage> = {
-  render: renderMultiMessageVariants,
 };

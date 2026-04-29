@@ -57,27 +57,3 @@ const sampleItems: MultiMessageItem[] = [
 export const renderMultiMessage = ({ defaultActiveIndex }: Args) => (
   <MultiMessage items={sampleItems} defaultActiveIndex={defaultActiveIndex} />
 );
-
-export const renderMultiMessageVariants = () => (
-  <div className="af-multi-message-demo">
-    {Object.values(messageVariants).map((variant) => (
-      <MultiMessage
-        key={variant}
-        items={[
-          {
-            variant,
-            title: "Titre du message",
-            children: `Ici quelques lignes pour présenter aux utilisateurs des éléments classés comme ${
-              variant
-            }.`,
-            action: (
-              <Link href="https://www.axa.fr" openInNewTab>
-                Lien 1
-              </Link>
-            ),
-          },
-        ]}
-      />
-    ))}
-  </div>
-);
