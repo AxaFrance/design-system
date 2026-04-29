@@ -1,8 +1,25 @@
 .af-toggle {
+  --toggle-bg-color: var(--gray-500);
+  --toggle-border-color: unset;
+  --toggle-focus-outline-color: var(--blue-1000);
+  --toggle-border-size: 0;
+  --toggle-border-radius: var(--radius-100);
+  --toggle-padding: 2px;
+  --toggle-handle-size: 20px;
+  --toggle-handle-scale: 1;
+  --toggle-width: calc(
+    var(--toggle-handle-size) * 2 - var(--toggle-padding) * 2
+  );
+  --toggle-height: var(--toggle-handle-size);
+  --toggle-handle-color: var(--white-1000);
+  --toggle-handle-position: 0;
+
   position: relative;
   cursor: pointer;
 
   &:has(:disabled) {
+    --toggle-bg-color: var(--gray-250);
+
     cursor: unset;
   }
 
@@ -27,17 +44,50 @@
   background-color: var(--toggle-bg-color);
 }
 
+.af-toggle__handle {
+  display: flex;
+  width: var(--toggle-handle-size);
+  height: var(--toggle-handle-size);
+  border-radius: var(--radius-100);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--toggle-handle-color);
+  transform: translateX(var(--toggle-handle-position))
+    scale(var(--toggle-handle-scale));
+  transition: 200ms;
+}
+
+.af-toggle__icon {
+  --icon-fill: var(--toggle-bg-color);
+}
+
+.af-toggle__icon--check {
+  display: none;
+}
+
 .af-toggle:has(:focus-visible) .af-toggle__root {
   outline: 2px solid var(--toggle-focus-outline-color);
   outline-offset: 2px;
 }
 
-.af-toggle__handle {
-  width: var(--toggle-handle-size);
-  height: var(--toggle-handle-size);
-  border-radius: var(--radius-100);
-  background-color: var(--toggle-handle-color);
-  transform: translateX(var(--toggle-handle-position))
-    scale(var(--toggle-handle-scale));
-  transition: 200ms;
+.af-toggle:has(:checked) {
+  --toggle-bg-color: var(--blue-1000);
+}
+
+.af-toggle:has(:checked) .af-toggle__handle {
+  --toggle-handle-position: calc(
+    var(--toggle-width) - var(--toggle-handle-size)
+  );
+}
+
+.af-toggle:has(:checked) .af-toggle__icon--check {
+  display: block;
+}
+
+.af-toggle:has(:checked) .af-toggle__icon--close {
+  display: none;
+}
+
+.af-toggle:has(:disabled:checked) {
+  --toggle-bg-color: var(--gray-250);
 }
