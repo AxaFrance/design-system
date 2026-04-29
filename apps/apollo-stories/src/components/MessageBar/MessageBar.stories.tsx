@@ -39,9 +39,6 @@ const primaryButton = (
 const DESCRIPTION =
   "Vos informations personnelles doivent etre actualisees afin de maintenir la protection de vos donnees.";
 
-const DESCRIPTION_RED =
-  "Information utile, importante ou critique, pour aider a comprendre les informations presentees.";
-
 export const Playground: Story = {
   name: "MessageBar",
   args: {
@@ -51,59 +48,4 @@ export const Playground: Story = {
     button: primaryButton,
     description: DESCRIPTION,
   },
-};
-
-export const Blue: Story = {
-  args: {
-    title: "Pensez a mettre a jour votre dossier client AXA",
-    variant: "blue",
-    button: primaryButton,
-    description: DESCRIPTION,
-  },
-};
-
-export const Red: Story = {
-  args: {
-    title: "Titre du message",
-    variant: "red",
-    button: primaryButton,
-    description: DESCRIPTION_RED,
-  },
-};
-
-export const Open: Story = {
-  args: {
-    title: "Pensez a mettre a jour votre dossier client AXA",
-    variant: "blue",
-    showDescription: true,
-    button: primaryButton,
-    description: DESCRIPTION,
-  },
-};
-
-export const NoDescription: Story = {
-  args: {
-    title: "Pensez a mettre a jour votre dossier client AXA",
-    variant: "blue",
-    button: primaryButton,
-  },
-};
-
-export const All: StoryObj = {
-  render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <MessageBar
-        title="Pensez a mettre a jour votre dossier client AXA"
-        variant="blue"
-        button={primaryButton}
-        description={DESCRIPTION}
-      />
-      <MessageBar
-        title="Titre du message"
-        variant="red"
-        button={primaryButton}
-        description={DESCRIPTION_RED}
-      />
-    </div>
-  ),
 };
