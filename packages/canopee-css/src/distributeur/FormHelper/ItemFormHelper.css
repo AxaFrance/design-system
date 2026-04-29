@@ -5,9 +5,9 @@
 
 .af-item-form-helper {
   line-height: 1.5rem;
-  list-style: none;
 
   a {
+    text-decoration: underline;
     color: var(--link-color);
   }
 
