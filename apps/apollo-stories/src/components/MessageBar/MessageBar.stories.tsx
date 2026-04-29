@@ -1,11 +1,21 @@
+import { MessageBar } from "@axa-fr/canopee-react/prospect";
+import accountBalanceIcon from "@material-symbols/svg-400/outlined/account_balance-fill.svg";
+import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  MessageBar,
-  messageBarVariants,
-  Button,
-} from "@axa-fr/canopee-react/prospect";
+import type { ComponentProps } from "react";
 
-const meta: Meta<typeof MessageBar> = {
+const MESSAGE_BAR_VARIANTS = ["blue", "red"] as const;
+
+const ICONS: Record<string, string> = {
+  accountBalanceIcon,
+  homeIcon,
+};
+
+type MessageBarStoryProps = ComponentProps<typeof MessageBar> & {
+  icon: keyof typeof ICONS;
+};
+
+const meta: Meta<MessageBarStoryProps> = {
   component: MessageBar,
   title: "Components/MessageBar",
   parameters: { layout: "fullscreen" },
@@ -17,93 +27,46 @@ const meta: Meta<typeof MessageBar> = {
     ),
   ],
   argTypes: {
+    title: {
+      control: { type: "text" },
+    },
+    description: {
+      control: { type: "text" },
+    },
+    icon: {
+      control: { type: "select" },
+      options: Object.keys(ICONS),
+    },
     variant: {
-      options: Object.values(messageBarVariants),
+      options: MESSAGE_BAR_VARIANTS,
       control: { type: "select" },
     },
-    showDescription: {
+    defaultDescriptionOpen: {
       control: { type: "boolean" },
+    },
+    buttonProps: {
+      control: { type: "object" },
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof MessageBar>;
-
-const primaryButton = (
-  <Button variant="primary" onClick={() => undefined}>
-    Primary
-  </Button>
-);
+type Story = StoryObj<MessageBarStoryProps>;
 
 const DESCRIPTION =
   "Vos informations personnelles doivent etre actualisees afin de maintenir la protection de vos donnees.";
-
-const DESCRIPTION_RED =
-  "Information utile, importante ou critique, pour aider a comprendre les informations presentees.";
 
 export const Playground: Story = {
   name: "MessageBar",
   args: {
     title: "Pensez a mettre a jour votre dossier client AXA",
+    icon: "accountBalanceIcon",
     variant: "blue",
-    showDescription: true,
-    button: primaryButton,
+    defaultDescriptionOpen: true,
+    buttonProps: { children: "Primary", variant: "primary" },
     description: DESCRIPTION,
   },
-};
-
-export const Blue: Story = {
-  args: {
-    title: "Pensez a mettre a jour votre dossier client AXA",
-    variant: "blue",
-    button: primaryButton,
-    description: DESCRIPTION,
-  },
-};
-
-export const Red: Story = {
-  args: {
-    title: "Titre du message",
-    variant: "red",
-    button: primaryButton,
-    description: DESCRIPTION_RED,
-  },
-};
-
-export const Open: Story = {
-  args: {
-    title: "Pensez a mettre a jour votre dossier client AXA",
-    variant: "blue",
-    showDescription: true,
-    button: primaryButton,
-    description: DESCRIPTION,
-  },
-};
-
-export const NoDescription: Story = {
-  args: {
-    title: "Pensez a mettre a jour votre dossier client AXA",
-    variant: "blue",
-    button: primaryButton,
-  },
-};
-
-export const All: StoryObj = {
-  render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <MessageBar
-        title="Pensez a mettre a jour votre dossier client AXA"
-        variant="blue"
-        button={primaryButton}
-        description={DESCRIPTION}
-      />
-      <MessageBar
-        title="Titre du message"
-        variant="red"
-        button={primaryButton}
-        description={DESCRIPTION_RED}
-      />
-    </div>
+  render: ({ icon, ...args }) => (
+    <MessageBar {...args} icon={ICONS[icon] ?? icon} />
   ),
 };
