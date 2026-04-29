@@ -11,12 +11,12 @@
   --input-date-bg-color: var(--white-1000);
   --input-date-indicator-bg-color: var(--white-1000);
 
-  &[value]:not([value=""], [aria-invalid="true"], [class*="--warning"]),
+  &[value]:not([value=""], [aria-invalid="true"]),
   &:is(:focus-visible, :hover, :active, :focus-within) {
     --input-date-box-shadow-color: var(--blue-1000);
   }
 
-  &[value]:not([aria-invalid="true"], [value=""], [class*="--warning"]) {
+  &[value]:not([aria-invalid="true"], [value=""]) {
     --input-date-color: var(--blue-1000);
   }
 
