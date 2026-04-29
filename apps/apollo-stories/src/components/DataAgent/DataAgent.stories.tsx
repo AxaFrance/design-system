@@ -68,3 +68,17 @@ export const Default: Story = {
     isCompact: true,
   },
 };
+
+export const DesktopCompact: Story = {
+  name: "DataAgent Desktop Compact",
+  render: ({ ...args }) => <DataAgent {...args} />,
+  args: {
+    agentProps: {
+      picture: "https://dummyimage.com/48/48/fff&text=A",
+      title: "Michel Lhote",
+      subtitle: "AXA Assurance & Banque",
+      type: "picture",
+    },
+    variant: "compact",
+  },
+};

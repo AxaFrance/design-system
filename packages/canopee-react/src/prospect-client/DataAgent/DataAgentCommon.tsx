@@ -26,6 +26,8 @@ export type DataAgentProps = {
   clickContents?: TupleMax3<ClickItemProps>;
   texteOrias?: string;
   isCompact?: boolean;
+  /** Display the compact layout (header only) regardless of screen size */
+  variant?: "default" | "compact";
 };
 
 type DataAgentCommonProps = DataAgentProps & {
@@ -45,6 +47,7 @@ export const DataAgentCommon = ({
   ContentItemMonoComponent,
   ClickItemComponent,
   isCompact = true,
+  variant = "default",
 }: DataAgentCommonProps) => {
   const componentClassName = useMemo(
     () => getComponentClassName("af-data-agent", className),
@@ -103,7 +106,7 @@ export const DataAgentCommon = ({
 
   return (
     <section className={componentClassName}>
-      {isMobile && isCompact
+      {(isMobile && isCompact) || variant === "compact"
         ? renderForMobileLayout()
         : renderForDefaultLayout()}
     </section>
