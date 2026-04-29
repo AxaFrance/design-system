@@ -36,3 +36,18 @@ For browsers _**not supporting WebKit**_ (such as Firefox), the date picker _**i
 <Canvas of={InputDateStories.InputDateDefaultStory} />
 
 <Controls of={InputDateStories.InputDateDefaultStory} />
+
+## Warning
+
+Use `message` with `messageType="warning"` to display a warning state with an orange border.
+
+```tsx
+<InputDate
+  label="Date de naissance"
+  message="Titre du message"
+  messageType="warning"
+  value={new Date("2000-09-12")}
+/>
+```
+
+<Canvas of={InputDateStories.InputDateWarningStory} />

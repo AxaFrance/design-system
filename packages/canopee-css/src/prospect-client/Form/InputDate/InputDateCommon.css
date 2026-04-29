@@ -44,7 +44,8 @@
       :hover,
       :active,
       :focus-within,
-      &[aria-invalid="true"]
+      &[aria-invalid="true"],
+      &[class*="--warning"]
     ):not(:disabled) {
     --input-date-box-shadow-width: 2px;
   }
@@ -56,6 +57,14 @@
     outline-color: var(--input-date-box-shadow-color);
     outline-offset: 1px;
     outline-width: var(--input-date-box-shadow-width);
+  }
+
+  &[class*="--warning"] {
+    --input-date-box-shadow-color: var(--orange-1050);
+
+    &:is(:focus-visible, :hover, :active, :focus-within):not(:disabled) {
+      --input-date-box-shadow-width: 3px;
+    }
   }
 
   @media (--desktop-small) {

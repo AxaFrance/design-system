@@ -85,12 +85,6 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     },
     inputRef,
   ) => {
-    const componentClassName = getClassName({
-      baseClassName: "af-form__input-date",
-      modifiers: classModifier.split(" "),
-      className,
-    });
-
     let inputId = useId();
     inputId = otherProps.id ?? inputId;
     const idMessage = useId();
@@ -112,6 +106,15 @@ const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
     const ariaErrormessage = hasError ? idMessage : undefined;
 
     const ariaInvalid = hasError || undefined;
+
+    const hasWarning =
+      Boolean(message) && messageType === "warning" && !hasError;
+
+    const componentClassName = getClassName({
+      baseClassName: "af-form__input-date",
+      modifiers: [...classModifier.split(" "), hasWarning && "warning"],
+      className,
+    });
 
     return (
       <div className="af-form__input-container" {...containerProps}>
