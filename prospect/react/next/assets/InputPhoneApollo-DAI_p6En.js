@@ -1,0 +1,1 @@
+import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{p as e,d as n,q as m,I as s,k as p}from"./LoaderApollo-DcYYkGhI.js";const r=o=>t.jsx(e,{...o,ItemLabelComponent:p,ItemMessageComponent:s,InputTextComponent:m,IconComponent:n});export{r as I};
