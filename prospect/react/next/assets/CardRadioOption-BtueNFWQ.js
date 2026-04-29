@@ -1,0 +1,25 @@
+import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as s}from"./index-D3yXdDgY.js";import{M as c,C as t,a as l}from"./index-D9MEyJ6n.js";import{C as o,a as r}from"./CardRadioOption.stories-BMEHy5jJ.js";import"./index-CtOEgLBf.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-KxSLfSyi.js";import"./index-BjCk13Vd.js";import"./index-xQ9y_n2y.js";import"./index-DgH-xKnr.js";import"./index-DrFu-skq.js";import"./LoaderApollo-BOCy7keK.js";/* empty css               */import"./CardRadioOptionApollo-Dv4s8drC.js";import"./account_balance-fill-CCsNGmBQ.js";import"./home-BuLaEOyh.js";function n(i){const d={code:"code",h1:"h1",h2:"h2",li:"li",p:"p",pre:"pre",ul:"ul",...s(),...i.components};return e.jsxs(e.Fragment,{children:[e.jsx(c,{of:o,name:"CardRadioOption"}),`
+`,e.jsx(d.h1,{id:"cardradiooption",children:"CardRadioOption"}),`
+`,e.jsxs(d.p,{children:["One-line: a single selectable card used inside ",e.jsx(d.code,{children:"CardRadioGroup"}),", rendering a label, optional icon/picture, description and subtitle."]}),`
+`,e.jsx(d.h2,{id:"import",children:"Import"}),`
+`,e.jsx(d.pre,{children:e.jsx(d.code,{className:"language-tsx",children:`import { CardRadioOption } from "@axa-fr/canopee-react/prospect";
+`})}),`
+`,e.jsx(d.h2,{id:"props",children:"Props"}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:"Prop"}),e.jsx("th",{children:"Type"}),e.jsx("th",{children:"Default"}),e.jsx("th",{children:"Description"})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"name"})}),e.jsx("td",{children:e.jsx("code",{children:"string"})}),e.jsx("td",{children:"—"}),e.jsx("td",{children:"Form field name (usually provided by the group)"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"value"})}),e.jsx("td",{children:e.jsx("code",{children:"string | number"})}),e.jsx("td",{children:"—"}),e.jsx("td",{children:"Option value"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"label"})}),e.jsx("td",{children:e.jsx("code",{children:"ReactNode"})}),e.jsx("td",{children:"—"}),e.jsx("td",{children:"Main title shown on the card"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"description"})}),e.jsx("td",{children:e.jsx("code",{children:"ReactNode"})}),e.jsx("td",{children:"—"}),e.jsx("td",{children:"Extended text under the label"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"subtitle"})}),e.jsx("td",{children:e.jsx("code",{children:"ReactNode"})}),e.jsx("td",{children:"—"}),e.jsx("td",{children:"Small subtitle text"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"position"})}),e.jsx("td",{children:e.jsx("code",{children:"'vertical' | 'horizontal'"})}),e.jsx("td",{children:e.jsx("code",{children:"'vertical'"})}),e.jsx("td",{children:"Visual orientation of the card"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"icon"})}),e.jsx("td",{children:e.jsx("code",{children:"string"})}),e.jsx("td",{children:"—"}),e.jsx("td",{children:"Icon to display on the card"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"src"})}),e.jsx("td",{children:e.jsx("code",{children:"string"})}),e.jsx("td",{children:"—"}),e.jsxs("td",{children:["Image source for ",e.jsx(d.code,{children:"BasePicture"})]})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"disabled"})}),e.jsx("td",{children:e.jsx("code",{children:"boolean"})}),e.jsx("td",{children:e.jsx("code",{children:"false"})}),e.jsx("td",{children:"Disable the option"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"isInvalid"})}),e.jsx("td",{children:e.jsx("code",{children:"boolean"})}),e.jsx("td",{children:e.jsx("code",{children:"false"})}),e.jsx("td",{children:"Mark option as invalid (affects styling)"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"className"})}),e.jsx("td",{children:e.jsx("code",{children:"string"})}),e.jsx("td",{children:"—"}),e.jsx("td",{children:"Extra class on the option"})]})]})]}),`
+`,e.jsx(d.h2,{id:"accessibility",children:"Accessibility"}),`
+`,e.jsxs(d.ul,{children:[`
+`,e.jsxs(d.li,{children:["The option is rendered as a ",e.jsx(d.code,{children:"<label>"})," wrapping the radio control; ensure ",e.jsx(d.code,{children:"label"})," content is descriptive."]}),`
+`,e.jsxs(d.li,{children:["If used inside ",e.jsx(d.code,{children:"CardRadioGroup"}),", keyboard and ARIA responsibilities are handled by the group (radiogroup / legend / aria-errormessage)."]}),`
+`]}),`
+`,e.jsx(d.h2,{id:"example",children:"Example"}),`
+`,e.jsx(d.pre,{children:e.jsx(d.code,{className:"language-tsx",children:`<CardRadioOption
+  name="city"
+  value="paris"
+  label="Paris"
+  description="Capitale de la France"
+  subtitle="Nord"
+  icon={homeIcon}
+/>
+`})}),`
+`,e.jsx(t,{of:r}),`
+`,e.jsx(l,{of:r})]})}function I(i={}){const{wrapper:d}={...s(),...i.components};return d?e.jsx(d,{...i,children:e.jsx(n,{...i})}):n(i)}export{I as default};
