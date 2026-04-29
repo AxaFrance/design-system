@@ -6,6 +6,7 @@ import {
   type MouseEvent,
 } from "react";
 import type { ClickIconProps } from "../../../ClickIcon/ClickIconCommon";
+import { ContentItemMonoCore } from "../../../ContentItemMono/ContentItemMonoCore";
 import type { IconProps } from "../../../Icon/IconCommon";
 import type { SpinnerProps } from "../../../Spinner/SpinnerCommon";
 import { getClassName } from "../../../utilities/getClassName";
@@ -63,6 +64,7 @@ export type ItemFileCommonProps = ItemFileProps & {
 
 const BASE_UNIT = 1000;
 const BYTE_UNITS = ["Ko", "Mo", "Go"];
+
 const getReadableFileSizeString = (fileSizeInBytes: number) => {
   let i = -1;
   let fileSizeInBytesCopy = fileSizeInBytes;
@@ -99,6 +101,13 @@ export const ItemFileCommon = ({
       callback(file, e);
     };
 
+  const statusIndicator =
+    isLoading && !hasError ? (
+      <ItemSpinnerComponent size={24} />
+    ) : (
+      <ItemIconComponent size="S" src={hasError ? errorIcon : validationIcon} />
+    );
+
   return (
     <section
       className={getClassName({
@@ -111,18 +120,11 @@ export const ItemFileCommon = ({
       {...props}
     >
       <div className="af-item-file__body">
-        {isLoading && !hasError ? (
-          <ItemSpinnerComponent size={24} />
-        ) : (
-          <ItemIconComponent
-            size="S"
-            src={hasError ? errorIcon : validationIcon}
-          />
-        )}
-        <p className="af-item-file__file-name">{file.name}</p>
-        <p className="af-item-file__file-size">
-          {getReadableFileSizeString(file.size)}
-        </p>
+        <ContentItemMonoCore
+          leftComponent={statusIndicator}
+          title={file.name}
+          subtitle={getReadableFileSizeString(file.size)}
+        />
         <div className="af-item-file__actions">
           {!isLoading && !hasError && (
             <ClickIconComponent
