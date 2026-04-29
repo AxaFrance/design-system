@@ -78,7 +78,7 @@
 
 .af-accordion--light {
   .af-accordion__content {
-    padding: 0;
+    padding: 1rem 1.25rem 1.25rem 3.5rem;
     box-shadow: none;
   }
 
