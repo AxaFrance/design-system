@@ -1,0 +1,4 @@
+import{n as e}from"./chunk-DnJy8xQt.js";import{r as t}from"./react-CrCwfpcW.js";import{m as n,u as r,w as i}from"./iframe-B6pS4pdr.js";import{t as a}from"./mdx-react-shim-gngZ-MEU.js";function o(e){let n={a:`a`,code:`code`,h2:`h2`,p:`p`,...t(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(r,{title:`Components/Alert`}),`
+`,(0,c.jsx)(n.h2,{id:`alert`,children:`Alert`}),`
+`,(0,c.jsxs)(n.p,{children:[`The `,(0,c.jsx)(n.code,{children:`Alert`}),` has been renamed to `,(0,c.jsx)(n.code,{children:`Message`}),` to align the naming between UX components and our implementation.
+See the `,(0,c.jsx)(n.a,{href:`?path=/docs/components-message--docs`,children:`Message documentation`}),` for more details.`]})]})}function s(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,c.jsx)(n,{...e,children:(0,c.jsx)(o,{...e})}):o(e)}var c;e((()=>{c=i(),a(),n()}))();export{s as default};
