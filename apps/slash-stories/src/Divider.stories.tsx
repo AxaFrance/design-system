@@ -1,14 +1,14 @@
 import { Divider } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 
-const meta: Meta<typeof Divider> = {
+const meta = preview.meta({
   title: "Components/Divider",
   component: Divider,
   args: {},
-};
+});
 export default meta;
 
-export const Default: StoryObj<typeof Divider> = {
+export const Default = meta.story({
   name: "Divider",
   render: ({ mode, ...args }) => (
     <div
@@ -31,4 +31,4 @@ export const Default: StoryObj<typeof Divider> = {
   args: {
     mode: "horizontal",
   },
-};
+});

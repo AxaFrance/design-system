@@ -6,14 +6,8 @@ import {
   HelpButton,
   MessageTypes,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import {
-  ComponentPropsWithoutRef,
-  PropsWithChildren,
-  useEffect,
-  useState,
-} from "react";
+import { ComponentProps, PropsWithChildren, useEffect, useState } from "react";
+import preview from "../../.storybook/preview";
 
 const messageTypes = [...Object.values(MessageTypes), ""];
 
@@ -23,26 +17,6 @@ const modes = [
   CheckboxModes.inline.toString(),
   CheckboxModes.toggle.toString(),
 ];
-
-const meta: Meta = {
-  title: "Components/Form/Input/Checkbox",
-  component: CheckboxInput,
-  argTypes: {
-    onChange: { action: "onChange" },
-    messageType: { control: { type: "select", options: messageTypes } },
-    mode: {
-      control: {
-        type: "radio",
-        options: modes,
-      },
-    },
-  },
-  args: { onChange: fn() },
-};
-
-export default meta;
-
-const modifiers = ["required", "disabled"];
 
 const Badge = ({
   children,
@@ -60,51 +34,46 @@ const options = [
   { label: <Badge classModifier="success">A JSX element</Badge>, value: "4" },
 ];
 const values = ["1", "3"];
+const modifiers = ["required", "disabled"];
 
-type Story = StoryObj<
-  Omit<ComponentPropsWithoutRef<typeof CheckboxInput>, "classModifier"> & {
-    classModifier: string[];
-  }
->;
+type Story = Omit<ComponentProps<typeof CheckboxInput>, "classModifier"> & {
+  classModifier: string[];
+};
 
-export const CheckboxInputStory: Story = {
-  name: "CheckboxInput",
+const meta = preview.type<{ args: Story }>().meta({
+  title: "Components/Form/Input/Checkbox",
+  argTypes: {
+    onChange: { action: "onChange" },
+    messageType: { control: { type: "select", options: messageTypes } },
+    classModifier: {
+      options: modifiers,
+      control: { type: "inline-check" },
+    },
+    mode: {
+      control: {
+        type: "radio",
+        options: modes,
+      },
+    },
+  },
   render: ({ classModifier, ...args }) => (
     <form className="af-form" name="myform">
       <CheckboxInput
         {...args}
+        classModifier={(classModifier ?? []).join(" ")}
         values={values}
         options={options}
-        classModifier={(classModifier ?? []).join(" ")}
-        isVisible
         classNameContainerLabel="col-md-2"
         classNameContainerInput="col-md-10"
       />
     </form>
   ),
-  args: {
-    label: "Place type",
-    required: true,
-    classModifier: [],
-    mode: CheckboxModes.classic,
-    message: "Error message",
-    messageType: MessageTypes.error,
-    forceDisplayMessage: false,
-    id: "inputuniqueid",
-    name: "placeType",
-  },
-  argTypes: {
-    classModifier: { options: modifiers, control: { type: "inline-check" } },
-    mode: {
-      options: modes,
-      control: { type: "radio", options: modes },
-    },
-    messageType: {
-      options: messageTypes,
-      control: { type: "select", options: messageTypes },
-    },
-    onChange: { action: "onChange" },
-  },
+});
+
+export default meta;
+
+export const CheckboxInputStory = meta.story({
+  name: "CheckboxInput",
   parameters: {
     controls: {
       include: [
@@ -119,9 +88,9 @@ export const CheckboxInputStory: Story = {
       ],
     },
   },
-};
+});
 
-export const CheckboxInputErrorStory: Story = {
+export const CheckboxInputErrorStory = meta.story({
   name: "CheckboxInputError",
   render: ({ classModifier, ...args }) => (
     <form className="af-form" name="myform">
@@ -139,7 +108,6 @@ export const CheckboxInputErrorStory: Story = {
   args: {
     label: "Place type",
     required: true,
-    classModifier: [],
     mode: CheckboxModes.default,
     message: "Error message",
     messageType: MessageTypes.error,
@@ -176,13 +144,18 @@ export const CheckboxInputErrorStory: Story = {
       ],
     },
   },
-};
+});
 
-export const CheckboxInputWithChildren: Story = {
+export const CheckboxInputWithChildren = meta.story({
   name: "CheckboxInput with help button",
   render: (args) => {
     return (
-      <CheckboxInput {...args} name="placeType" id="uniqueid" value="toto">
+      <CheckboxInput
+        {...args}
+        classModifier={(args.classModifier ?? []).join(" ")}
+        name="placeType"
+        id="uniqueid"
+      >
         <HelpButton mode="hover">help</HelpButton>
       </CheckboxInput>
     );
@@ -196,19 +169,15 @@ export const CheckboxInputWithChildren: Story = {
     options,
   },
   parameters: { controls: { include: ["isChecked", "disabled", "onChange"] } },
-};
+});
 
-export const CheckboxItemToggleStory: StoryObj<{
-  isChecked: boolean;
-  disabled: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}> = {
+export const CheckboxItemToggleStory = meta.story({
   name: "CheckboxItem Toggle",
   render: (args) => {
-    const [state, setState] = useState<boolean>(args.isChecked);
+    const [state, setState] = useState<boolean>(args.isChecked ?? false);
 
     useEffect(() => {
-      setState(args.isChecked);
+      setState(args.isChecked ?? false);
     }, [args.isChecked]);
 
     return (
@@ -217,6 +186,7 @@ export const CheckboxItemToggleStory: StoryObj<{
         name="placeType"
         id="uniqueid"
         value="toto"
+        classModifier={(args.classModifier ?? []).join(" ")}
         className="af-form__checkbox-toggle"
         isChecked={state}
         onChange={(e) => setState(e.target.checked)}
@@ -226,16 +196,18 @@ export const CheckboxItemToggleStory: StoryObj<{
   args: { isChecked: true, disabled: false },
   argTypes: { onChange: { action: "onChange" } },
   parameters: { controls: { include: ["isChecked", "disabled", "onChange"] } },
-};
+});
 
-export const CheckboxItemStory: StoryObj<typeof CheckboxItem> = {
+export const CheckboxItemStory = meta.story({
   name: "CheckboxItem",
   render: ({ isChecked, ...args }) => (
     <CheckboxItem
       {...args}
       name="placeType"
-      id="uniqueid"
-      value="toto"
+      id="uniqueid2"
+      classModifier={(args.classModifier ?? []).join(" ")}
+      isChecked={false}
+      onChange={() => {}}
       defaultChecked={isChecked}
     />
   ),
@@ -243,13 +215,14 @@ export const CheckboxItemStory: StoryObj<typeof CheckboxItem> = {
   parameters: {
     controls: { include: ["isChecked", "disabled", "label", "onChange"] },
   },
-};
+});
 
-export const CheckboxStory: StoryObj<typeof Checkbox> = {
+export const CheckboxStory = meta.story({
   name: "Checkbox",
   render: (args) => (
     <Checkbox
       {...args}
+      classModifier={(args.classModifier ?? []).join(" ")}
       options={options}
       values={values}
       name="placeName"
@@ -259,4 +232,4 @@ export const CheckboxStory: StoryObj<typeof Checkbox> = {
   ),
   args: { mode: CheckboxModes.default },
   parameters: { controls: { include: ["mode"] } },
-};
+});

@@ -1,9 +1,9 @@
 import { NavBar, NavBarItem } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import type React from "react";
+import { fn } from "storybook/test";
+import preview from "../../../.storybook/preview";
 
-const meta: Meta<typeof NavBar> = {
+const meta = preview.meta({
   title: "Components/NavBar",
   component: NavBar,
   argTypes: {
@@ -11,11 +11,10 @@ const meta: Meta<typeof NavBar> = {
     positionInit: { control: { type: "number", min: 0, max: 3 } },
   },
   args: { onClick: fn() },
-};
+});
 export default meta;
 
 type StoryProps = React.ComponentProps<typeof NavBar>;
-type Story = StoryObj<StoryProps>;
 
 const withPreventDefaultClick =
   <T extends React.MouseEvent>(next?: (e: T) => void): ((e: T) => void) =>
@@ -124,13 +123,13 @@ const template = ({ children, onClick, ...args }: StoryProps) => (
   </NavBar>
 );
 
-export const NavBarBaseStory: Story = {
+export const NavBarBaseStory = meta.story({
   name: "NavBarBase",
   render: template,
   args: { positionInit: 2 },
-};
+});
 
-export const NavBarBaseWithCustomableChildrenStory: Story = {
+export const NavBarBaseWithCustomableChildrenStory = meta.story({
   name: "NavBarBase with customable children",
   render: template,
   args: {
@@ -153,4 +152,4 @@ export const NavBarBaseWithCustomableChildrenStory: Story = {
   argTypes: {
     positionInit: { control: { type: "number", min: 0, max: 4 } },
   },
-};
+});

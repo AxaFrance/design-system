@@ -1,7 +1,7 @@
 import { Message } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { InputType } from "storybook/internal/types";
+import { fn } from "storybook/test";
+import preview from "../.storybook/preview";
 
 const MODIFIERS = [undefined, "success", "info", "warning", "error"];
 
@@ -20,7 +20,7 @@ const variantInputType: InputType = {
     "Variant of the message. Used to determine the icon and style of the message.",
 };
 
-const meta = {
+const meta = preview.meta({
   title: "Components/Message",
   component: Message,
   args: {
@@ -64,12 +64,10 @@ const meta = {
       description: "Content of the message.",
     },
   },
-} satisfies Meta<typeof Message>;
-
+});
 export default meta;
 
-type Story = StoryObj<typeof Message>;
-export const Default: Story = {
+export const Default = meta.story({
   args: {
     title: "Error: some fields are invalid",
     closeButtonAriaLabel: "close message",
@@ -97,33 +95,33 @@ export const Default: Story = {
       type: "string",
     },
   },
-};
+});
 
-export const WarningMessage: Story = {
+export const WarningMessage = meta.story({
   args: {
     variant: "warning",
     title: "Attention: des informations sont manquantes",
     closeButtonAriaLabel: "close",
   },
-};
+});
 
-export const InfoMessage: Story = {
+export const InfoMessage = meta.story({
   args: {
     variant: "info",
     title: "Attention: des informations sont manquantes",
     closeButtonAriaLabel: "close",
   },
-};
+});
 
-export const SuccessMessage: Story = {
+export const SuccessMessage = meta.story({
   args: {
     variant: "success",
     title: "Succès: votre demande a bien été enregistrée.",
     closeButtonAriaLabel: "close alert",
   },
-};
+});
 
-export const ErrorMessage: Story = {
+export const ErrorMessage = meta.story({
   args: {
     variant: "error",
     title: "Erreur dans les champs suivants :",
@@ -137,4 +135,4 @@ export const ErrorMessage: Story = {
       </ul>
     ),
   },
-};
+});

@@ -1,6 +1,3 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import type { ComponentProps } from "react";
 import {
   ClickItem,
   clickItemStates,
@@ -10,6 +7,9 @@ import {
   type TagVariants,
 } from "@axa-fr/canopee-react/prospect";
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
+import { Meta, StoryObj } from "@storybook/react";
+import type { ComponentProps } from "react";
+import { action } from "storybook/actions";
 
 const meta: Meta<typeof ClickItem> = {
   title: "Components/List/ClickItem",

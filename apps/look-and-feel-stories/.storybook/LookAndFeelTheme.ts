@@ -1,4 +1,4 @@
-import { create } from "@storybook/theming";
+import { create } from "storybook/theming";
 
 export const LookAndFeelTheme = create({
   base: "dark",

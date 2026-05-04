@@ -1,22 +1,20 @@
 import { Radio, RadioModes } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import { ComponentPropsWithRef, useState } from "react";
 import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
-
-const meta: Meta<typeof Radio> = {
-  component: Radio,
-  title: "Components/Form/Input/Radio",
-  argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-};
-
-export default meta;
+import { ComponentPropsWithRef, useState } from "react";
+import preview from "../../.storybook/preview";
 
 type RadioProps = Omit<ComponentPropsWithRef<typeof Radio>, "classModifier"> & {
   classModifier?: string[];
 };
-export const RadioStory: StoryObj<RadioProps> = {
+
+const meta = preview.type<{ args: RadioProps }>().meta({
+  title: "Components/Form/Input/Radio",
+  argTypes: { onChange: { action: "onChange" } },
+});
+
+export default meta;
+
+export const RadioStory = meta.story({
   name: "Radio",
   render: ({ classModifier, value: initValue, onChange, ...args }) => {
     const [value, setValue] = useState(initValue);
@@ -71,4 +69,4 @@ export const RadioStory: StoryObj<RadioProps> = {
       control: { type: "inline-check" },
     },
   },
-};
+});

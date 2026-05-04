@@ -1,6 +1,6 @@
-import type { StorybookConfig } from "@storybook/react-vite";
+import { defineMain } from "@storybook/react-vite/node";
+import { dirname, join } from "path";
 import remarkGfm from "remark-gfm";
-import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 /**
@@ -17,7 +17,8 @@ function getAbsolutePath(value: string): string {
     ),
   );
 }
-const config: StorybookConfig = {
+export default defineMain({
+  framework: "@storybook/react-vite",
   stories: [
     "../src/Getstarted.mdx",
     "../src/fondations/**/*.mdx",
@@ -30,14 +31,10 @@ const config: StorybookConfig = {
   ],
   staticDirs: ["../public"],
   addons: [
-    getAbsolutePath("@storybook/addon-onboarding"),
-    getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@chromatic-com/storybook"),
-    getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("@whitespace/storybook-addon-html"),
     {
-      // eslint-disable-next-line storybook/no-uninstalled-addons
       name: "@storybook/addon-docs",
       options: {
         mdxPluginOptions: {
@@ -48,12 +45,7 @@ const config: StorybookConfig = {
       },
     },
   ],
-  framework: {
-    name: getAbsolutePath("@storybook/react-vite"),
-    options: {},
-  },
   core: {
     disableTelemetry: true,
   },
-};
-export default config;
+});

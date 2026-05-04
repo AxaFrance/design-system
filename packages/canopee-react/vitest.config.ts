@@ -15,12 +15,7 @@ export default defineConfig(({ mode }) => {
       environment: "jsdom",
       setupFiles: "./vitest.setup.ts",
       name: "canopee",
-      poolOptions: {
-        forks: {
-          minForks: env.CI ? 1 : undefined,
-          maxForks: env.CI ? 1 : undefined,
-        },
-      },
+      maxWorkers: env.CI ? 1 : undefined,
       include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
       coverage: {
         reporter: ["text", "lcov", "html"],
@@ -34,5 +29,5 @@ export default defineConfig(({ mode }) => {
         ],
       },
     },
-  };
+  } satisfies Parameters<typeof defineConfig>[0];
 });

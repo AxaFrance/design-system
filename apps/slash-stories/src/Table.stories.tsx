@@ -1,17 +1,16 @@
 import { Paging, Table } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../.storybook/preview";
 
-const meta: Meta<typeof Paging> = {
+const meta = preview.meta({
   component: Paging,
   title: "Components/Table",
   argTypes: { onChange: { action: "onChange" } },
   args: { onChange: fn() },
-};
-
+});
 export default meta;
 
-export const Simple: StoryObj<typeof Table> = {
+export const Simple = meta.story({
   name: "Simple table",
   render: () => (
     <Table>
@@ -40,9 +39,9 @@ export const Simple: StoryObj<typeof Table> = {
   ),
   args: {},
   argTypes: {},
-};
+});
 
-export const WithPagination: StoryObj<typeof Paging> = {
+export const WithPagination = meta.story({
   name: "Table with pagination",
   render: ({
     currentPage,
@@ -132,4 +131,4 @@ export const WithPagination: StoryObj<typeof Paging> = {
     },
     onChange: { table: { disable: true } },
   },
-};
+});

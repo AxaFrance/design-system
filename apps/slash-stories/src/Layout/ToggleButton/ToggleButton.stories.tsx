@@ -1,12 +1,10 @@
 import { Action, ToggleButton } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps } from "react";
+import preview from "../../../.storybook/preview";
 
-const meta: Meta<typeof ToggleButton> = {
+const meta = preview.meta({
   component: ToggleButton,
   title: "Components/Header/ToggleButton",
-};
-
+});
 export default meta;
 
 const actionToggle = {
@@ -14,7 +12,7 @@ const actionToggle = {
   title: "Toggle",
 };
 
-export const Default: StoryObj<ComponentProps<typeof ToggleButton>> = {
+export const Default = meta.story({
   args: {
     children: (
       <Action
@@ -29,4 +27,4 @@ export const Default: StoryObj<ComponentProps<typeof ToggleButton>> = {
   render: (args) => (
     <ToggleButton idControl={args.idControl}>{args.children}</ToggleButton>
   ),
-};
+});

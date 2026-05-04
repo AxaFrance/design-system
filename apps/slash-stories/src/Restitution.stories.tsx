@@ -7,18 +7,16 @@ import {
   SectionRestitutionColumn,
   SectionRestitutionRow,
 } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 
-const meta: Meta = {
+const meta = preview.meta({
   title: "Components/Restitution",
-  component: Restitution,
-  args: {
-    classModifier: "",
-  },
-};
+  component: ArticleRestitution,
+  args: {},
+});
 export default meta;
 
-export const Default: StoryObj = {
+export const Default = meta.story({
   name: "Restitution",
   render: ({ ...args }) => (
     <ArticleRestitution {...args}>
@@ -131,4 +129,4 @@ export const Default: StoryObj = {
       </SectionRestitution>
     </ArticleRestitution>
   ),
-};
+});

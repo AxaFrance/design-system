@@ -1,8 +1,7 @@
-import { Link, Svg, type LinkProps } from "@axa-fr/canopee-react/distributeur";
+import { Link, Svg } from "@axa-fr/canopee-react/distributeur";
 import editIcons from "@material-symbols/svg-400/outlined/edit.svg";
 import saveIcons from "@material-symbols/svg-400/outlined/save.svg";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import preview from "../.storybook/preview";
 
 const CssIcons = {
   "(none)": "none",
@@ -10,27 +9,22 @@ const CssIcons = {
   "/public/edit.svg": editIcons,
 } as const;
 
-const meta: Meta<LinkProps> = {
-  title: "Components/Link",
-  component: Link,
-  args: {
-    onClick: fn(),
-  },
-};
-
-export default meta;
-
 type AnchorStoryType = {
   leftIcon: keyof typeof CssIcons;
   rightIcon: keyof typeof CssIcons;
   disabled: boolean;
   children: string;
   href: string;
-  className: string;
+  className?: string;
   variant?: "default" | "reverse";
 };
 
-export const LinkAsAnchorStory: StoryObj<AnchorStoryType> = {
+const meta = preview.type<{ args: AnchorStoryType }>().meta({
+  title: "Components/Link",
+});
+export default meta;
+
+export const LinkAsAnchorStory = meta.story({
   name: "Link",
   render: ({ rightIcon, leftIcon, variant, ...args }) => {
     const getIcon = (type: keyof typeof CssIcons) => {
@@ -95,9 +89,9 @@ export const LinkAsAnchorStory: StoryObj<AnchorStoryType> = {
       description: "Use 'reverse' to change the color of the link",
     },
   },
-};
+});
 
-export const CustomLinkStory: StoryObj<LinkProps> = {
+export const CustomLinkStory = meta.story({
   name: "Custom Link, using a button",
   render: () => (
     <Link
@@ -115,4 +109,4 @@ export const CustomLinkStory: StoryObj<LinkProps> = {
   ),
   args: {},
   argTypes: {},
-};
+});

@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import {
-  Table,
   Button,
+  Table,
   Tag,
-  type HeadColorVariants,
   type BodyColorVariants,
+  type HeadColorVariants,
   type RowSizeVariants,
 } from "@axa-fr/canopee-react/client";
+import { Meta, StoryObj } from "@storybook/react";
+import { action } from "storybook/actions";
 
 interface TableStoryArgs {
   theadVariant?: HeadColorVariants;
@@ -110,7 +110,7 @@ export const AlternateVariantTable: Story = {
         <Table.Tr>
           <Table.Th>Produit</Table.Th>
           <Table.Th>Catégorie</Table.Th>
-          <Table.Th position='right'>Prix</Table.Th>
+          <Table.Th position="right">Prix</Table.Th>
           <Table.Th>Stock</Table.Th>
         </Table.Tr>
       </Table.THead>
@@ -169,7 +169,9 @@ export const TableWithTags: Story = {
           <Table.Th onSort={action("sort-reference")}>Référence</Table.Th>
           <Table.Th onSort={action("sort-statut")}>Statut</Table.Th>
           <Table.Th onSort={action("sort-client")}>Client</Table.Th>
-          <Table.Th onSort={action("sort-montant")} position='right'>Montant</Table.Th>
+          <Table.Th onSort={action("sort-montant")} position="right">
+            Montant
+          </Table.Th>
         </Table.Tr>
       </Table.THead>
       <Table.TBody variant={args.tbodyVariant}>
@@ -330,7 +332,7 @@ export const TableWithDifferentSizes: Story = {
         <Table.Tr>
           <Table.Th>Nom</Table.Th>
           <Table.Th>Description</Table.Th>
-          <Table.Th position='right'>Prix</Table.Th>
+          <Table.Th position="right">Prix</Table.Th>
           <Table.Th>Disponibilité</Table.Th>
         </Table.Tr>
       </Table.THead>
@@ -390,8 +392,8 @@ export const TableWithAlignments: Story = {
         <Table.Tr>
           <Table.Th>Article</Table.Th>
           <Table.Th>Quantité</Table.Th>
-          <Table.Th position='right'>Prix unitaire</Table.Th>
-          <Table.Th position='right'>Total</Table.Th>
+          <Table.Th position="right">Prix unitaire</Table.Th>
+          <Table.Th position="right">Total</Table.Th>
         </Table.Tr>
       </Table.THead>
       <Table.TBody variant={args.tbodyVariant}>

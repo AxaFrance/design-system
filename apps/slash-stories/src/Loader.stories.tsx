@@ -5,22 +5,18 @@ import {
   TextInput,
   Title,
 } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 
-const meta: Meta<typeof Loader> = {
+const meta = preview.meta({
   component: Loader,
   title: "Components/Loader",
   parameters: {
     layout: "fullscreen",
   },
-};
-
+});
 export default meta;
 
-type StoryProps = React.ComponentProps<typeof Loader>;
-type Story = StoryObj<StoryProps>;
-
-export const Default: Story = {
+export const Default = meta.story({
   name: "Loader",
   render: ({ children: text, ...args }) => <Loader {...args}>{text}</Loader>,
   args: {
@@ -45,4 +41,4 @@ export const Default: Story = {
       },
     },
   },
-};
+});

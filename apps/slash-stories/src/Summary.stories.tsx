@@ -1,8 +1,8 @@
 import { Summary } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../.storybook/preview";
 
-export default {
+const meta = preview.meta({
   title: "Components/Summary",
   component: Summary,
   argTypes: {
@@ -14,14 +14,12 @@ export default {
   args: {
     onClose: fn(),
   },
-} as Meta;
+});
+export default meta;
 
 const messages = ["Field Author is required", "Field PlaceName is required"];
 
-type SummaryProps = React.ComponentProps<typeof Summary>;
-type Story = StoryObj<SummaryProps>;
-
-export const Template: Story = {
+export const Template = meta.story({
   name: "Simple Summary in error",
   render: (args) => <Summary {...args} />,
   args: {
@@ -30,9 +28,9 @@ export const Template: Story = {
     onClose: fn(),
     classModifier: "error",
   },
-};
+});
 
-export const Success: Story = {
+export const Success = meta.story({
   name: "Summary in success with react nodes in messages",
   render: (args) => <Summary {...args} />,
   args: {
@@ -45,4 +43,4 @@ export const Success: Story = {
     onClose: fn(),
     classModifier: "success",
   },
-};
+});

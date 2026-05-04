@@ -1,6 +1,6 @@
 import { ItemFile } from "@axa-fr/canopee-react/client";
-import { fn } from "@storybook/test";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
 
 type Story = StoryObj<Omit<typeof ItemFile, "file"> & { file: string }>;
 

@@ -1,6 +1,6 @@
 import { Date as DateComponent } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
+import preview from "../../.storybook/preview";
 
 const MODIFIERS = ["", "required", "disabled"];
 
@@ -10,13 +10,11 @@ const commonProps = {
   value: new Date("01/01/2024"),
 };
 
-const meta: Meta<typeof DateComponent> = {
-  component: DateComponent,
+const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Components/Form/Input/Date",
   argTypes: { onChange: { action: "onChange" } },
   args: { onChange: fn() },
-};
-
+});
 export default meta;
 
 type StoryProps = Omit<
@@ -25,9 +23,8 @@ type StoryProps = Omit<
 > & {
   classModifier: string[];
 };
-type Story = StoryObj<StoryProps>;
 
-export const DateStory: Story = {
+export const DateStory = meta.story({
   name: "Date",
   tags: ["Form", "Input"],
   render: ({ classModifier, onChange, ...args }) => (
@@ -46,4 +43,4 @@ export const DateStory: Story = {
       options: MODIFIERS,
     },
   },
-};
+});

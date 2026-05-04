@@ -1,10 +1,16 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import "@axa-fr/design-system-slash-css/dist/common/icons.css";
-import "@axa-fr/design-system-slash-css/dist/common/tokens.css";
-import "@fontsource/source-sans-pro";
-import type { Preview } from "@storybook/react";
+import addonChromatic from "@chromatic-com/storybook";
+import addonA11y from "@storybook/addon-a11y";
+import addonDocs from "@storybook/addon-docs";
+import { definePreview } from "@storybook/react-vite";
+import whitespaceStorybookAddonHtml from "@whitespace/storybook-addon-html/preview";
 
-const preview: Preview = {
+export default definePreview({
+  addons: [
+    addonDocs(),
+    addonA11y(),
+    addonChromatic(),
+    whitespaceStorybookAddonHtml,
+  ],
   parameters: {
     controls: {
       matchers: {
@@ -12,6 +18,7 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    actions: { argTypesRegex: "^on.*" },
     options: {
       storySort: {
         order: ["Fondations", ["Icons"], "Layout", "Components"],
@@ -19,6 +26,4 @@ const preview: Preview = {
     },
   },
   tags: ["autodocs"],
-};
-
-export default preview;
+});

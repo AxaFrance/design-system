@@ -1,8 +1,8 @@
 import { Svg, Tag } from "@axa-fr/canopee-react/distributeur";
 import iconBell from "@material-symbols/svg-400/outlined/notifications-fill.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "../.storybook/preview";
 
-const meta: Meta<typeof Tag> = {
+const meta = preview.meta({
   title: "Components/Tag",
   component: Tag,
   parameters: {
@@ -33,19 +33,19 @@ const meta: Meta<typeof Tag> = {
       defaultValue: "success",
     },
   },
-};
+});
 export default meta;
 
-export const Default: StoryObj<typeof Tag> = {
+export const Default = meta.story({
   name: "Tag",
   args: {
     children: "Lorem ipsum",
     variant: "success",
     disabled: false,
   },
-};
+});
 
-export const WhiteTagOnDarkBackground: StoryObj<typeof Tag> = {
+export const WhiteTagOnDarkBackground = meta.story({
   name: "White Tag on dark background",
   args: {
     children: "Lorem ipsum",
@@ -57,9 +57,9 @@ export const WhiteTagOnDarkBackground: StoryObj<typeof Tag> = {
       default: "blue",
     },
   },
-};
+});
 
-export const TagIconStory: StoryObj<typeof Tag> = {
+export const TagIconStory = meta.story({
   name: "Tag with Icon",
   args: {
     children: (
@@ -70,9 +70,9 @@ export const TagIconStory: StoryObj<typeof Tag> = {
     variant: "success",
     disabled: false,
   },
-};
+});
 
-export const MultiExamples: StoryObj<typeof Tag> = {
+export const MultiExamples = meta.story({
   name: "Tag with modifiers",
   render: (args) => {
     return (
@@ -174,4 +174,4 @@ export const MultiExamples: StoryObj<typeof Tag> = {
   args: {
     disabled: false,
   },
-};
+});

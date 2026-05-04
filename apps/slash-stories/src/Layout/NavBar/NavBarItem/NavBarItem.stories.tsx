@@ -1,7 +1,7 @@
 import { NavBarItem } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../../../../.storybook/preview";
 
-const meta: Meta<typeof NavBarItem> = {
+const meta = preview.meta({
   title: "Components/NavBar/NavBarItem",
   component: NavBarItem,
   args: {
@@ -16,13 +16,12 @@ const meta: Meta<typeof NavBarItem> = {
       },
     },
   },
-};
+});
 export default meta;
 
 type StoryProps = Omit<React.ComponentProps<typeof NavBarItem>, "onClick"> & {
   onClick: () => void;
 };
-type Story = StoryObj<StoryProps>;
 
 const withPreventDefaultClick =
   <T extends React.MouseEvent>(next?: (e: T) => void): ((e: T) => void) =>
@@ -52,19 +51,19 @@ const template = ({ onClick, ...args }: StoryProps) => (
   </ul>
 );
 
-export const NavBarItemDefaultStory: Story = {
+export const NavBarItemDefaultStory = meta.story({
   name: "Default",
   render: template,
   args: { classModifier: "" },
-};
+});
 
-export const ActiveNavBarItemStory: Story = {
+export const ActiveNavBarItemStory = meta.story({
   name: "Active",
   render: template,
   args: { classModifier: "active" },
-};
+});
 
-export const NavBarItemWithChildrenStory: Story = {
+export const NavBarItemWithChildrenStory = meta.story({
   name: "Active with children",
   render: ({ onClick, ...args }) => (
     <div style={{ height: "300px" }}>
@@ -136,4 +135,4 @@ export const NavBarItemWithChildrenStory: Story = {
   args: {
     classModifier: "",
   },
-};
+});

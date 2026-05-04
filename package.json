@@ -17,9 +17,6 @@
     "build:client": "turbo build --filter=./apps/look-and-feel-stories",
     "build:prospect": "turbo build --filter=./apps/apollo-stories",
     "lint": "turbo lint",
-    "lint:slash": "turbo lint --filter=./slash/*",
-    "lint:look-and-feel": "turbo lint --filter=./client/look-and-feel/*",
-    "lint:apollo": "turbo lint --filter=./client/apollo/*",
     "package:check": "npx --yes package-lock-utd@1.1.3",
     "prepare": "husky",
     "test": "vitest"
@@ -31,15 +28,11 @@
   },
   "homepage": "https://github.com/AxaFrance/design-system#readme",
   "workspaces": [
-    "slash/css",
-    "slash/react",
-    "client/apollo/css",
-    "client/look-and-feel/css",
-    "client/apollo/react",
-    "client/look-and-feel/react",
     "samples/vite",
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "slash/*",
+    "client/apollo/*"
   ],
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -47,12 +40,14 @@
     "@material-symbols/svg-400": "^0.31.2",
     "@material-symbols/svg-700": "^0.40.2",
     "@types/node": "^22.13.5",
+    "@vitest/coverage-v8": "^4.1.5",
     "commander": "^13.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "tsc-files": "^1.1.4",
     "turbo": "^2.5.8",
-    "vite": "^6.3.3"
+    "vite": "^8.0.10",
+    "vitest": "^4.1.5"
   },
   "lint-staged": {
     "{package,package-lock}.json": "npm run package:check"

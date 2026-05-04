@@ -4,18 +4,18 @@ import {
   HeaderTitle,
   Svg,
 } from "@axa-fr/canopee-react/distributeur";
+import chevronLeftIcon from "@material-symbols/svg-400/outlined/chevron_left.svg";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
+import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import mailIcon from "@material-symbols/svg-400/outlined/mail.svg";
 import saveIcon from "@material-symbols/svg-400/outlined/save.svg";
-import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
-import chevronLeftIcon from "@material-symbols/svg-400/outlined/chevron_left.svg";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { ComponentProps, useState } from "react";
+import { fn } from "storybook/test";
+import preview from "../../../.storybook/preview";
 
 const MODIFIERS = ["sticky", "fixed"];
 
-const meta: Meta<typeof HeaderTitle> = {
+const meta = preview.meta({
   args: {
     className: "af-title-bar",
     isSticky: true,
@@ -33,7 +33,7 @@ const meta: Meta<typeof HeaderTitle> = {
   },
   component: HeaderTitle,
   title: "Components/Header/HeaderTitle",
-};
+});
 
 export default meta;
 
@@ -68,9 +68,9 @@ const leftActions = [
   },
 ];
 
-export const DefaultTitle: StoryObj<typeof HeaderTitle> = {};
+export const DefaultTitle = meta.story();
 
-export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
+export const ComplexTitle = meta.story({
   args: {
     contentRight: (
       <div className="af-title-bar__actions">
@@ -88,48 +88,47 @@ export const ComplexTitle: StoryObj<typeof HeaderTitle> = {
       </div>
     ),
   },
-};
+});
 
-export const ComplexTitleWithContentAndChildren: StoryObj<typeof HeaderTitle> =
-  {
-    args: {
-      contentLeft: (
-        <div className="af-title-bar__actions">
-          {leftActions.map(
-            ({ icon, id, title }: ComponentProps<typeof Action>) => (
-              <a
-                key={id}
-                href="/#"
-                role="button"
-                title={title}
-                className="btn  af-btn--circle"
-              >
-                <Svg src={icon} />
-              </a>
-            ),
-          )}
-        </div>
-      ),
-      children: <Badge classModifier="success"> Statut OK </Badge>,
-      contentRight: (
-        <div className="af-title-bar__actions">
-          {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
+export const ComplexTitleWithContentAndChildren = meta.story({
+  args: {
+    contentLeft: (
+      <div className="af-title-bar__actions">
+        {leftActions.map(
+          ({ icon, id, title }: ComponentProps<typeof Action>) => (
             <a
               key={id}
               href="/#"
               role="button"
               title={title}
-              className="btn af-btn--circle"
+              className="btn  af-btn--circle"
             >
               <Svg src={icon} />
             </a>
-          ))}
-        </div>
-      ),
-    },
-  };
+          ),
+        )}
+      </div>
+    ),
+    children: <Badge classModifier="success"> Statut OK </Badge>,
+    contentRight: (
+      <div className="af-title-bar__actions">
+        {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (
+          <a
+            key={id}
+            href="/#"
+            role="button"
+            title={title}
+            className="btn af-btn--circle"
+          >
+            <Svg src={icon} />
+          </a>
+        ))}
+      </div>
+    ),
+  },
+});
 
-export const HeaderTitleWithAnchorNavBar: StoryObj<typeof HeaderTitle> = {
+export const HeaderTitleWithAnchorNavBar = meta.story({
   render: ({ anchorNavBarItems, ...args }) => {
     const [activeItem, setActiveItem] = useState("Accueil");
 
@@ -160,4 +159,4 @@ export const HeaderTitleWithAnchorNavBar: StoryObj<typeof HeaderTitle> = {
       },
     ],
   },
-};
+});
