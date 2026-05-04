@@ -1,0 +1,7 @@
+import{a as e,n as t,r as n}from"./chunk-DnJy8xQt.js";import{k as r}from"./iframe-CMLjgIon.js";import{t as i}from"./jsx-runtime-CXZ2plg1.js";import{t as a}from"./client-D92F0iso.js";import{Gn as o,qn as s}from"./LoaderCommon-C19GLX9C.js";var c,l,u,d=t((()=>{a(),c=e(r(),1),l=i(),u=e=>(0,l.jsx)(`div`,{className:`af-tag-client-demo`,children:Object.values(s).map(t=>(0,c.createElement)(o,{...e,key:t,variant:t}))}),u.__docgenInfo={description:``,methods:[],displayName:`renderTagAll`}})),f=t((()=>{})),p=n({All:()=>_,Default:()=>g,__namedExportsOrder:()=>v,default:()=>h}),m,h,g,_,v,y=t((()=>{a(),d(),f(),m=i(),h={title:`Components/Tag`,component:o,args:{children:`Texte`}},g={name:`Tag`,render:e=>(0,m.jsx)(o,{...e})},_={name:`Tag All Variants`,render:u},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  name: "Tag",
+  render: args => <Tag {...args} />
+}`,...g.parameters?.docs?.source}}},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{
+  name: "Tag All Variants",
+  render: renderTagAll
+}`,..._.parameters?.docs?.source}}},v=[`Default`,`All`]}));y();export{_ as All,g as Default,v as __namedExportsOrder,h as default,y as n,p as t};

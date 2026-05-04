@@ -1,0 +1,6 @@
+import{n as e}from"./chunk-DnJy8xQt.js";import{t}from"./jsx-runtime-CXZ2plg1.js";import{r as n}from"./react-rw17kmD6.js";import{t as r}from"./mdx-react-shim-okekR0or.js";import{i,l as a,n as o,s}from"./blocks-DqZwWlVi.js";import{Wireframe as c,n as l,t as u}from"./GridWireframe.stories-C4fLqv3z.js";function d(e){let t={a:`a`,h2:`h2`,p:`p`,...n(),...e.components};return(0,p.jsxs)(p.Fragment,{children:[(0,p.jsx)(s,{name:`How to use Grid ?`,of:u}),`
+`,(0,p.jsx)(t.h2,{id:`grid-system`,children:`Grid System`}),`
+`,(0,p.jsxs)(t.p,{children:[`More info here : `,(0,p.jsx)(t.a,{href:`https://axafrance.github.io/design-system/apollo/react/latest?path=/docs/guidelines-grid-system--grid`,rel:`nofollow`,children:`Grid documentation`})]}),`
+`,(0,p.jsx)(t.h2,{id:`wireframe`,children:`Wireframe`}),`
+`,(0,p.jsx)(o,{of:c}),`
+`,(0,p.jsx)(i,{of:c})]})}function f(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,p.jsx)(t,{...e,children:(0,p.jsx)(d,{...e})}):d(e)}var p;e((()=>{p=t(),r(),a(),l()}))();export{f as default};
