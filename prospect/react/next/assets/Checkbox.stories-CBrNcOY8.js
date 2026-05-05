@@ -1,0 +1,3 @@
+import{n as e,r as t}from"./chunk-DnJy8xQt.js";import{Z as n,t as r}from"./prospect-DFDSrotB.js";var i=t({CheckboxStory:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s,c=e((()=>{r(),a={title:`Components/Form/Checkbox/Checkbox`,component:n,argTypes:{name:{control:{type:`text`}},value:{control:{type:`text`}},checked:{control:{type:`boolean`}},"aria-invalid":{type:`boolean`},errorId:{table:{disable:!0}},hasError:{table:{disable:!0}}},args:{name:`option1`,value:`option1`}},o={name:`Playground`},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  name: "Playground"
+}`,...o.parameters?.docs?.source}}},s=[`CheckboxStory`]}));c();export{o as CheckboxStory,s as __namedExportsOrder,a as default,c as n,i as t};
