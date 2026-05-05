@@ -1,6 +1,33 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Decorator, Meta, StoryObj } from "@storybook/react";
 import { Loader } from "@axa-fr/canopee-react/prospect";
 import { useEffect, useRef } from "react";
+
+const withDialogState: Decorator = (
+  Story,
+  { args: { isDialog = false, ...args } },
+) => {
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = modalRef.current;
+    if (!dialog) {
+      return;
+    }
+
+    if (isDialog) {
+      if (!dialog.open) {
+        dialog.showModal();
+      }
+      return;
+    }
+
+    if (dialog.open) {
+      dialog.close();
+    }
+  }, [isDialog]);
+
+  return <Story args={{ ...args, isDialog, ref: modalRef }} />;
+};
 
 const meta: Meta<typeof Loader> = {
   title: "Components/Loader",
@@ -9,6 +36,7 @@ const meta: Meta<typeof Loader> = {
     layout: "fullscreen",
     viewport: { defaultViewport: "desktop" },
   },
+  decorators: [withDialogState],
   argTypes: {
     title: {
       control: "text",
@@ -17,6 +45,10 @@ const meta: Meta<typeof Loader> = {
     subtitle: {
       control: "text",
       description: "Sous-titre du loader (optionnel)",
+    },
+    isDialog: {
+      control: "boolean",
+      description: "Affiche le loader dans un <dialog> modal",
     },
     spinnerProps: {
       control: "object",
@@ -32,28 +64,6 @@ export const Playground: Story = {
   args: {
     title: "Chargement en cours",
     subtitle: "Veuillez patienter",
-  },
-};
-
-export const Dialog: Story = {
-  decorators: [
-    (Story, { args: { open = true, isDialog = true, ...args } }) => {
-      const modalRef = useRef<HTMLDialogElement>(null);
-
-      useEffect(() => {
-        if (open && isDialog) {
-          modalRef.current?.showModal();
-          return;
-        }
-
-        modalRef.current?.close();
-      }, [open, isDialog]);
-
-      return <Story args={{ ...args, isDialog, ref: modalRef }} />;
-    },
-  ],
-  args: {
-    title: "Chargement en cours",
-    subtitle: "Merci de patienter quelques instants",
+    isDialog: false,
   },
 };
