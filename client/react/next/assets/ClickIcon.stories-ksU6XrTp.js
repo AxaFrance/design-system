@@ -1,0 +1,9 @@
+import{n as e,r as t}from"./chunk-DnJy8xQt.js";import{t as n}from"./jsx-runtime-CXZ2plg1.js";import{t as r}from"./client-DKDZiWM3.js";import{Cn as i}from"./LoaderCommon-CNPQWS5E.js";var a,o=e((()=>{a=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='48'%20height='48'%20viewBox='0%20-960%20960%20960'%3e%3cpath%20d='M180-120q-24%200-42-18t-18-42v-600q0-24%2018-42t42-18h600q24%200%2042%2018t18%2042v600q0%2024-18%2042t-42%2018H180Zm127-159h215q12.75%200%2021.38-8.68%208.62-8.67%208.62-21.5%200-12.82-8.62-21.32-8.63-8.5-21.38-8.5H307q-12.75%200-21.37%208.68-8.63%208.67-8.63%2021.5%200%2012.82%208.63%2021.32%208.62%208.5%2021.37%208.5Zm0-171h346q12.75%200%2021.38-8.68%208.62-8.67%208.62-21.5%200-12.82-8.62-21.32-8.63-8.5-21.38-8.5H307q-12.75%200-21.37%208.68-8.63%208.67-8.63%2021.5%200%2012.82%208.63%2021.32%208.62%208.5%2021.37%208.5Zm0-171h346q12.75%200%2021.38-8.68%208.62-8.67%208.62-21.5%200-12.82-8.62-21.32-8.63-8.5-21.38-8.5H307q-12.75%200-21.37%208.68-8.63%208.67-8.63%2021.5%200%2012.82%208.63%2021.32%208.62%208.5%2021.37%208.5Z'/%3e%3c/svg%3e`})),s=t({Default:()=>u,__namedExportsOrder:()=>d,default:()=>l}),c,l,u,d,f=e((()=>{r(),o(),c=n(),l={component:i,title:`Components/ClickIcon`,argTypes:{onClick:{action:`onClick`},"aria-label":{control:`text`,description:`The aria-label attribute for accessibility.`,defaultValue:`Click icon`},iconVariant:{options:[`primary`,`disabled`],control:{type:`select`}},size:{options:[`S`,`XS`],control:{type:`select`}},variant:{options:[`default`,`ghost`],control:{type:`select`}}}},u={name:`ClickIcon`,render:({...e})=>(0,c.jsx)(i,{...e}),args:{src:a}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  name: "ClickIcon",
+  render: ({
+    ...args
+  }) => <ClickIcon {...args} />,
+  args: {
+    src: article
+  }
+}`,...u.parameters?.docs?.source}}},d=[`Default`]}));f();export{u as Default,d as __namedExportsOrder,l as default,f as n,s as t};
