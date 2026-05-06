@@ -247,6 +247,31 @@
 
   /* *************************************************************************/
 
+  /* BODY TYPOGRAPHY                                                          */
+
+  /* *************************************************************************/
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --body-1-font-size: var(--rem-18);
+  --body-1-line-height: var(--rem-23);
+  --body-2-font-size: var(--rem-16);
+  --body-2-line-height: var(--rem-20);
+  --body-3-font-size: var(--rem-14);
+  --body-3-line-height: var(--rem-18);
+  --body-4-font-size: var(--rem-14);
+  --body-4-line-height: var(--rem-18);
+
+  @media (--desktop-small) {
+    --body-1-font-size: var(--rem-20);
+    --body-1-line-height: var(--rem-25);
+    --body-2-font-size: var(--rem-18);
+    --body-2-line-height: var(--rem-23);
+    --body-3-font-size: var(--rem-16);
+    --body-3-line-height: var(--rem-20);
+  }
+
+  /* *************************************************************************/
+
   /* ANIMATIONS                                                              */
 
   /* *************************************************************************/
