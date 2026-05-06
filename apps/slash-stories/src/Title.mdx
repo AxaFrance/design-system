@@ -5,15 +5,15 @@ import * as TitleStories from "./Title.stories";
 
 ## Title
 
+> **Deprecated prop**: The `classModifier` prop is deprecated. Use `className` to add custom CSS modifier classes instead.
+
 ### Use of Title
 
 ```tsx
 import { Title } from "@axa-fr/canopee-react/distributeur";
 
 export const MyComponent = () => (
-  <Title classModifier="af-title" className="">
-    Sample Title
-  </Title>
+  <Title className="af-title--custom">Sample Title</Title>
 );
 ```
 
@@ -27,8 +27,7 @@ import { Title } from "@axa-fr/canopee-react/distributeur";
 
 export const MyComponent = () => (
   <Title
-    classModifier="af-title"
-    className=""
+    className="af-title--custom"
     contentLeft={<Button>Left button</Button>}
     contentRight={<Button>Right button</Button>}
   >

@@ -1,7 +1,8 @@
 import type { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type Props = ComponentPropsWithoutRef<"thead"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 
@@ -11,11 +12,11 @@ const THead = ({
   classModifier,
   ...otherProps
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-table__thead",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-table__thead",
-  );
+  });
   return (
     <thead className={componentClassName} {...otherProps}>
       {children}

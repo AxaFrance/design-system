@@ -18,9 +18,12 @@ describe("Number", () => {
     render(<Number value="999" className="custom-class" />);
 
     // Assert
-    expect(screen.getByRole("spinbutton")).toHaveClass("custom-class", {
-      exact: true,
-    });
+    expect(screen.getByRole("spinbutton")).toHaveClass(
+      "af-form__input-text custom-class",
+      {
+        exact: true,
+      },
+    );
   });
 
   it("should have custom class and modifier", () => {
@@ -31,7 +34,7 @@ describe("Number", () => {
 
     // Assert
     expect(screen.getByRole("spinbutton")).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-form__input-text af-form__input-text--modifier custom-class",
       {
         exact: true,
       },

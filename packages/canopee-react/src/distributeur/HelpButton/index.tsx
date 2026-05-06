@@ -1,7 +1,8 @@
 import "@axa-fr/canopee-css/distributeur/Action/Action.css";
+import classNames from "classnames";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Popover } from "../Popover";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type HelpProps = Omit<
   ComponentPropsWithoutRef<typeof Popover>,
@@ -18,10 +19,12 @@ export const HelpButton = ({
   placement = "right",
   helpButtonContent = <span className="af-more-help">i</span>,
 }: HelpProps) => {
-  const buttonClassName = getComponentClassName(
-    "btn af-btn--circle",
-    classModifier,
-    "",
+  const buttonClassName = classNames(
+    "btn",
+    getClassName({
+      baseClassName: "af-btn--circle",
+      modifiers: classModifier?.split(" "),
+    }),
   );
 
   return (

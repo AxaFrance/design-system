@@ -1,7 +1,7 @@
 import infoIcon from "@material-symbols/svg-400/outlined/info-fill.svg";
 import { Fragment, type ReactNode } from "react";
-import { getComponentClassName } from "../../../utilities";
 import { generateId } from "../../../utilities/helpers/generateId";
+import { getClassName } from "../../../utilities/helpers/getClassName";
 
 import "@axa-fr/canopee-css/distributeur/Layout/Header/Infos/Infos.css";
 import { Svg } from "../../../Svg";
@@ -15,17 +15,18 @@ export type TInfo = {
 };
 
 type InfosProps = {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   className?: string;
   infos: TInfo[];
 };
 
 const Infos = ({ infos, className, classModifier }: InfosProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    defaultClassName,
-  );
+  });
 
   return (
     <div className={componentClassName}>

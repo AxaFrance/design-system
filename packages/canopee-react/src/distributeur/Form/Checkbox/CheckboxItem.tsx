@@ -11,11 +11,13 @@ import "@axa-fr/canopee-css/distributeur/Form/Checkbox/Checkbox.css";
 import { Svg } from "../../Svg";
 
 type Props = Omit<ComponentPropsWithoutRef<"input">, "type"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   optionClassName?: string;
   children?: ReactNode;
   label?: ReactNode;
   isChecked?: boolean;
+  variant?: "error" | "warning";
 };
 
 const CheckboxItem = forwardRef<HTMLInputElement, Props>(
@@ -29,6 +31,7 @@ const CheckboxItem = forwardRef<HTMLInputElement, Props>(
       isChecked,
       className,
       classModifier,
+      variant,
       ...otherProps
     }: Props,
     inputRef,
@@ -41,6 +44,7 @@ const CheckboxItem = forwardRef<HTMLInputElement, Props>(
       classModifier ?? "",
       "af-form__checkbox",
       disabled,
+      variant,
     );
     return (
       <div className={optionClassName}>

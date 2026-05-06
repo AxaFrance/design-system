@@ -1,18 +1,23 @@
 import "@axa-fr/canopee-css/distributeur/Action/Action.css";
+import classNames from "classnames";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type ActionCoreProps = ComponentPropsWithoutRef<"a"> & {
   icon: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 
 export const Action = forwardRef<HTMLAnchorElement, ActionCoreProps>(
   ({ icon, className, classModifier, ...otherProps }, ref) => {
-    const componentClassName = getComponentClassName(
-      className,
-      classModifier,
-      "btn af-btn--circle",
+    const componentClassName = classNames(
+      "btn",
+      getClassName({
+        baseClassName: "af-btn--circle",
+        modifiers: classModifier?.split(" "),
+        className,
+      }),
     );
     return (
       <a {...otherProps} className={componentClassName} ref={ref}>
