@@ -1,21 +1,19 @@
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities/helpers/getClassName";
 
 export function getOptionClassName(
   className: string,
   classModifier: string,
   defaultClassName: string,
   disabled: boolean,
+  variant?: string,
 ) {
-  const classModifierWithDisabled = [
-    classModifier,
-    disabled ? "disabled" : undefined,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  return getComponentClassName(
+  return getClassName({
+    baseClassName: defaultClassName,
+    modifiers: [
+      variant,
+      ...(classModifier?.split(" ") ?? []),
+      disabled ? "disabled" : undefined,
+    ],
     className,
-    classModifierWithDisabled,
-    defaultClassName,
-  );
+  });
 }

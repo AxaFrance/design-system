@@ -5,6 +5,8 @@ import * as StepsStories from "./Steps.stories";
 
 # Steps
 
+> **Deprecated prop**: The `classModifier` prop on `Steps` and `StepBase` is deprecated. Use `className` to add custom CSS modifier classes instead.
+
 1. [Import](#import)
 2. [Steps](#steps-use)
 
@@ -24,7 +26,7 @@ import { Steps, Step, StepBase } from "@axa-fr/canopee-react/distributeur";
 
 ```javascript
 const MyComponent = () => (
-  <Steps classModifier="" className="">
+  <Steps>
     <Step
       id="id1"
       href="/etape1"

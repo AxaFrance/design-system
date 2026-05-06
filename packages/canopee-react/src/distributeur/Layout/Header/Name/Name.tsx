@@ -1,12 +1,13 @@
 import "@axa-fr/canopee-css/distributeur/Layout/Header/Logo/Logo.css";
 import "@axa-fr/canopee-css/distributeur/Layout/Header/Name/Name.css";
 import { type MouseEvent } from "react";
-import { getComponentClassName } from "../../../utilities";
+import { getClassName } from "../../../utilities/helpers/getClassName";
 
 const defaultClassName = "af-header__name";
 
 type Props = {
   alt?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   className?: string;
   img?: string;
@@ -24,11 +25,11 @@ const Name = ({
   subtitle,
   title,
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    defaultClassName,
-  );
+  });
 
   return (
     <div className={componentClassName}>

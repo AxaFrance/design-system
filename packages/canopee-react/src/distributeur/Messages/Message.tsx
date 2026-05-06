@@ -7,7 +7,7 @@ import warningSvg from "@material-symbols/svg-400/outlined/warning-fill.svg";
 
 import type { MouseEventHandler, PropsWithChildren, ReactNode } from "react";
 import { Svg } from "../Svg";
-import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 export type MessageVariants = "error" | "warning" | "info" | "success";
 
@@ -95,10 +95,10 @@ export const Message = ({
 }: PropsWithChildren<MessageProps>) => {
   const safeVariant = getVariant(classModifier, variant);
 
-  const componentClassName = getComponentClassNameWithUserClassname({
-    componentClassName: "af-alert",
-    userClassName: className,
-    classModifier: safeVariant,
+  const componentClassName = getClassName({
+    baseClassName: "af-alert",
+    modifiers: [safeVariant],
+    className,
   });
 
   const iconSrc = icon ?? getIconUrl(safeVariant);

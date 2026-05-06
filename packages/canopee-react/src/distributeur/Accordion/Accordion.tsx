@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/distributeur/Accordion/Accordion.css";
 import React, { useId } from "react";
-import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
+import { getClassName } from "../utilities/helpers/getClassName";
 import { CollapseCard, type CollapseProps } from "./CollapseCard";
 import type { AccordionVariant, TDefaultProps } from "./types";
 
@@ -24,10 +24,13 @@ const Accordion = ({
   children,
   onlyOne = false,
 }: EnhancedProps) => {
-  const componentClassName = getComponentClassNameWithUserClassname({
-    componentClassName: defaultClassName,
-    userClassName: className,
-    classModifier: classModifier || (variant !== "default" && variant) || "",
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: [
+      variant !== "default" ? variant : undefined,
+      ...(classModifier?.split(" ") ?? []),
+    ],
+    className,
   });
 
   const id = useId();

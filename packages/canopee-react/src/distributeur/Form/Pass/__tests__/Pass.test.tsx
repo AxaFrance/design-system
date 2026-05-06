@@ -21,7 +21,7 @@ describe("Pass", () => {
 
     // Assert
     expect(screen.getByRole("password").parentElement!).toHaveClass(
-      "custom-class",
+      "af-form__pass custom-class",
       {
         exact: true,
       },
@@ -41,7 +41,7 @@ describe("Pass", () => {
 
     // Assert
     expect(screen.getByRole("password").parentElement!).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-form__pass af-form__pass--modifier custom-class",
       {
         exact: true,
       },
