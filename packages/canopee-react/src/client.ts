@@ -197,3 +197,9 @@ export {
 } from "./prospect-client/pages/ErrorPage/ErrorPageLF";
 export type { GridContainerProps } from "./prospect-client/utilities/types/GridContainerProps";
 export { Loader, type LoaderProps } from "./prospect-client/Loader/LoaderLF";
+export {
+  MessageBar,
+  messageBarVariants,
+  type MessageBarProps,
+  type MessageBarVariant,
+} from "./prospect-client/MessageBar/MessageBarLF";

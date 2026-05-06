@@ -1,0 +1,19 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as MessageBarStories from "./MessageBar.stories";
+
+<Meta of={MessageBarStories} name="MessageBar" />
+
+# MessageBar
+
+A full-width banner used to display important information. Supports a
+collapsible description via a toggle chevron.
+
+The colour scheme is driven by the `variant` prop (`blue`, `red`, …) and the
+description visibility by `showDescription`. Switch them in the playground
+controls below.
+
+## Playground
+
+<Canvas of={MessageBarStories.Playground} />
+
+<Controls of={MessageBarStories.Playground} />

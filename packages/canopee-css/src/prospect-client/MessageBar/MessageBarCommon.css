@@ -1,0 +1,145 @@
+.af-message-bar {
+  display: grid;
+  width: 100%;
+  grid-template-areas:
+    "icon title toggle"
+    "body body body"
+    "action action action";
+  grid-template-columns: auto 1fr auto;
+  background-color: var(--message-bar-bg-color);
+}
+
+.af-message-bar__header {
+  display: contents;
+}
+
+.af-message-bar__icon {
+  padding: var(--rem-16) 0 var(--rem-16) var(--rem-12);
+  grid-area: icon;
+  align-self: center;
+
+  --icon-fill: var(--message-bar-color);
+}
+
+.af-message-bar__title {
+  margin: 0;
+  padding: var(--rem-16) var(--rem-16);
+  grid-area: title;
+  align-self: center;
+  font-size: calc(
+    var(--message-bar-title-font-size) / var(--font-size-base) * 1rem
+  );
+  font-weight: 600;
+  line-height: var(--message-bar-title-line-height);
+  overflow-wrap: anywhere;
+  color: var(--message-bar-color);
+}
+
+.af-message-bar__toggle {
+  display: flex;
+  padding: var(--rem-16) var(--rem-12) var(--rem-16) 0;
+  border: none;
+  grid-area: toggle;
+  align-items: center;
+  justify-content: center;
+  color: var(--message-bar-color);
+  background: none;
+  cursor: pointer;
+
+  --icon-fill: var(--message-bar-color);
+}
+
+.af-message-bar__toggle:focus {
+  outline: none;
+}
+
+.af-message-bar__toggle:focus-visible {
+  border-radius: var(--radius-8);
+  outline: 2px solid var(--message-bar-color);
+  outline-offset: 2px;
+}
+
+.af-message-bar__toggle-icon {
+  transition: transform 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .af-message-bar__toggle-icon {
+    transition-duration: 0s;
+  }
+}
+
+.af-message-bar--open .af-message-bar__toggle-icon {
+  transform: rotate(180deg);
+}
+
+.af-message-bar__body {
+  display: none;
+  padding: 0 var(--rem-16);
+  grid-area: body;
+  font-size: calc(
+    var(--message-bar-body-font-size) / var(--font-size-base) * 1rem
+  );
+  line-height: var(--message-bar-body-line-height);
+  color: var(--message-bar-body-color, var(--message-bar-color));
+}
+
+.af-message-bar__action {
+  display: none;
+  padding: var(--rem-24) var(--rem-16) var(--rem-16);
+  grid-area: action;
+}
+
+.af-message-bar__action > * {
+  width: 100%;
+}
+
+.af-message-bar--open .af-message-bar__body,
+.af-message-bar--open .af-message-bar__action {
+  display: block;
+}
+
+@media (--desktop-small) {
+  .af-message-bar {
+    padding: var(--rem-24) var(--rem-120);
+    grid-template-areas:
+      "icon title button"
+      "icon body button";
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+  }
+
+  .af-message-bar__icon {
+    padding: 0;
+    align-self: start;
+  }
+
+  .af-message-bar__title {
+    margin-right: var(--rem-64);
+    margin-left: var(--rem-8);
+    padding: 0;
+    align-self: start;
+  }
+
+  .af-message-bar__toggle {
+    display: none;
+  }
+
+  .af-message-bar__body,
+  .af-message-bar--open .af-message-bar__body {
+    display: block;
+    padding: var(--rem-8) var(--rem-64) 0 var(--rem-8);
+  }
+
+  .af-message-bar__action,
+  .af-message-bar--open .af-message-bar__action {
+    display: block;
+    padding: 0;
+    grid-area: button;
+    align-self: center;
+  }
+
+  .af-message-bar__action > * {
+    width: auto;
+  }
+}
