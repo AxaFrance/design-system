@@ -1,0 +1,7 @@
+.af-mandatory--one {
+  color: var(--red30);
+}
+
+.af-mandatory--all {
+  color: var(--gray50);
+}
