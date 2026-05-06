@@ -39,6 +39,7 @@ export {
   FileTable,
   type FilePreview,
 } from "./distributeur/Form/File";
+export { FormHelper, ItemFormHelper } from "./distributeur/FormHelper";
 export { MultiSelect, MultiSelectInput } from "./distributeur/Form/MultiSelect";
 export { NestedQuestion } from "./distributeur/Form/NestedQuestion/NestedQuestion";
 export { Number, NumberInput } from "./distributeur/Form/Number";
