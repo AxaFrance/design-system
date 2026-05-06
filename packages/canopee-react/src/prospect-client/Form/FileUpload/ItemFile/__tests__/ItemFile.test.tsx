@@ -32,8 +32,12 @@ describe("<ItemFile />", () => {
   it("should render file item with file name and size", () => {
     render(<ItemFile file={mockFile} />);
 
-    expect(screen.getByText("test-document.pdf")).toBeInTheDocument();
-    expect(screen.getByText("0.1 Ko")).toBeInTheDocument();
+    expect(screen.getByText("test-document.pdf")).toHaveClass(
+      "af-content-item-mono__subtitle-primary",
+    );
+    expect(screen.getByText("0.1 Ko")).toHaveClass(
+      "af-content-item-mono__subtitle",
+    );
   });
 
   it("should display readable file sizes correctly", () => {
