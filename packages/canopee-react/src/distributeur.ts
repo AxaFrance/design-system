@@ -136,3 +136,9 @@ export {
   type EditorialMessageProps,
   type EditorialMessageType,
 } from "./distributeur/EditorialMessage/EditorialMessage";
+
+export {
+  ItemFormHelper,
+  type ItemFormHelperProps,
+  type ItemFormHelperVariant,
+} from "./distributeur/ItemFormHelper/ItemFormHelper";
