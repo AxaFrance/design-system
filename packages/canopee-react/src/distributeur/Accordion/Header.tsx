@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../Button/Button";
 import { Svg } from "../Svg/Svg";
 import { Title } from "../Title/Title";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 import type { AccordionActions, AccordionVariant } from "./types";
 
 const defaultClassName = "af-accordion__item-header";
@@ -17,6 +17,7 @@ export type HeaderToggleElement = {
 export type HeaderProps = {
   children: React.ReactNode;
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   id?: string;
   actions?: AccordionActions;
@@ -31,11 +32,11 @@ const Header = ({
   actions,
   variant,
 }: HeaderProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    defaultClassName,
-  );
+  });
 
   return (
     <summary className={componentClassName} id={id}>

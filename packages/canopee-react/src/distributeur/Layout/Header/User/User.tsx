@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/distributeur/Layout/Header/User/User.css";
 import type { MouseEvent, ReactNode } from "react";
-import { getComponentClassName } from "../../../utilities";
+import { getClassName } from "../../../utilities/helpers/getClassName";
 import { InnerUser } from "./InnerUser";
 
 const defaultClassName = "af-info-user";
@@ -25,6 +25,7 @@ type Props = {
    * <User classModifier="custom-class" />
    * ```
    * This will apply the class `af-info-user--custom-class` to the component.
+   * @deprecated Use `className` instead.
    */
   classModifier?: string;
   /**
@@ -73,11 +74,11 @@ const User = ({
   onClick,
   title = "Voir mon profil",
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    defaultClassName,
-  );
+  });
 
   return (
     <div className={componentClassName}>

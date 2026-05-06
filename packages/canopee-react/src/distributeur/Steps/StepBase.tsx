@@ -1,13 +1,15 @@
 import checkSvg from "@material-symbols/svg-400/outlined/check.svg";
 import chevronSvg from "@material-symbols/svg-400/outlined/chevron_right.svg";
 import type { ReactNode } from "react";
-import { getComponentClassName, Svg } from "../../distributeur";
+import { Svg } from "../../distributeur";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 export type StepBaseProps = {
   id: string;
   title: string;
   children?: ReactNode;
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   /**
    * Label to add to the title as state indication (e.g. "in progress", "to come"...)
@@ -28,11 +30,11 @@ const StepBase = ({
   classModifier,
   stateLabel,
 }: StepBaseProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-steps-list-step",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-steps-list-step",
-  );
+  });
 
   const outputTitle = stateLabel ? `${title} (${stateLabel})` : title;
   return (

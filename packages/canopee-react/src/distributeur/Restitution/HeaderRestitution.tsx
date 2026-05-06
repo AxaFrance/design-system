@@ -1,11 +1,12 @@
 import React from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 export type HeaderRestitutionProps = {
   className?: string;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
   rightTitle?: React.ReactNode;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 
@@ -16,11 +17,11 @@ export const HeaderRestitution = ({
   className,
   classModifier,
 }: HeaderRestitutionProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-restitution__header",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-restitution__header",
-  );
+  });
   return (
     <header className={componentClassName}>
       <div className="af-restitution__header-left">

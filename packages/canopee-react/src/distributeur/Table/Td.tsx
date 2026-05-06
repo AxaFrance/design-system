@@ -1,7 +1,8 @@
 import type { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type Props = ComponentPropsWithoutRef<"td"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 
@@ -12,11 +13,11 @@ const Td = ({
   classModifier,
   ...otherProps
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-table__cell",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-table__cell",
-  );
+  });
   return (
     <td className={componentClassName} key={id} id={id} {...otherProps}>
       {children}

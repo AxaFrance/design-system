@@ -36,6 +36,9 @@ type Props = Omit<
   "onToggleType" | "type"
 >;
 
+/**
+ * @deprecated The PassInput component is deprecated and will be removed in a future release
+ */
 const PassInput = ({
   children,
   score,

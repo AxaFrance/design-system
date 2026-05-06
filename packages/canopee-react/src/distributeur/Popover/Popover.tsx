@@ -6,6 +6,7 @@ import { PopoverOver } from "./PopoverOver";
 
 type Props = {
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   placement?: Placement;
   mode: PopoverModes;

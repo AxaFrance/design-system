@@ -1,8 +1,9 @@
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 export type SectionRestitutionTitleProps = {
   title: React.ReactNode;
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 
@@ -11,10 +12,10 @@ export const SectionRestitutionTitle = ({
   className,
   classModifier,
 }: SectionRestitutionTitleProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-restitution__content-title",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-restitution__content-title",
-  );
+  });
   return <h4 className={componentClassName}>{title}</h4>;
 };

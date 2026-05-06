@@ -5,6 +5,8 @@ import * as RestitutionStories from "./Restitution.stories.tsx";
 
 ## Restitution
 
+> **Deprecated prop**: The `classModifier` prop is deprecated on all Restitution components. Use `className` with the appropriate BEM modifier class instead (e.g. `className="af-restitution--lg"`).
+
 The Restitution components are a group of related components that are used to
 display recapitulative data. The main component is `ArticleRestitution` which is
 a container for the other components.
@@ -50,7 +52,7 @@ const RightTitle = () => (
 );
 
 export const Restititution = () => (
-  <ArticleRestitution classModifier="lg">
+  <ArticleRestitution className="af-restitution--lg">
     <HeaderRestitution
       title="Tarifs"
       subtitle="Tout adhérent, assuré, base (sans EAC ou sans PAC)"
@@ -62,7 +64,10 @@ export const Restititution = () => (
           <Restitution label="TA">99,99 %</Restitution>
           <Restitution label="EURO">EURO</Restitution>
           <Restitution label="TT" />
-          <Restitution label="Garanties complémentaires" classModifier="marge">
+          <Restitution
+            label="Garanties complémentaires"
+            className="af-restitution__listdef--marge"
+          >
             <RestitutionList
               values={[
                 "Vol au domicile",
@@ -74,11 +79,14 @@ export const Restititution = () => (
             />
           </Restitution>
         </SectionRestitutionColumn>
-        <SectionRestitutionColumn classModifier="test">
+        <SectionRestitutionColumn className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xl-6--test">
           <Restitution label="TA">99,99 %</Restitution>
           <Restitution label="EURO">EURO</Restitution>
           <Restitution label="TT" />
-          <Restitution label="Garanties complémentaires" classModifier="marge">
+          <Restitution
+            label="Garanties complémentaires"
+            className="af-restitution__listdef--marge"
+          >
             <RestitutionList
               values={[
                 "Vol au domicile",
@@ -97,7 +105,10 @@ export const Restititution = () => (
           <Restitution label="TA">99,99 %</Restitution>
           <Restitution label="EURO">EURO</Restitution>
           <Restitution label="TT" />
-          <Restitution label="Garanties complémentaires" classModifier="marge">
+          <Restitution
+            label="Garanties complémentaires"
+            className="af-restitution__listdef--marge"
+          >
             <RestitutionList
               values={[
                 "Vol au domicile",
@@ -114,7 +125,10 @@ export const Restititution = () => (
           <Restitution label="EURO">
             <span style={{ textDecoration: "underline" }}>EURO</span>
           </Restitution>
-          <Restitution label="Garanties complémentaires" classModifier="marge">
+          <Restitution
+            label="Garanties complémentaires"
+            className="af-restitution__listdef--marge"
+          >
             <RestitutionList
               values={[
                 "Vol au domicile",
