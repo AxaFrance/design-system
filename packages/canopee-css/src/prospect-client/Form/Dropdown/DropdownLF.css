@@ -43,3 +43,7 @@
     --dropdown-box-shadow-color: var(--red-alert-1200);
   }
 }
+
+.af-form__dropdown-input--warning {
+  --dropdown-box-shadow-color: var(--orange-1050);
+}
