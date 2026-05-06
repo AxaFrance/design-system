@@ -1,0 +1,38 @@
+.af-loader-spinner {
+  --loader-spinner-gap: calc(16rem / 16);
+  --loader-spinner-icon-size: calc(32rem / 16);
+  --loader-spinner-text-font-size: calc(20rem / 16);
+  --loader-spinner-text-line-height: calc(24rem / 16);
+
+  display: flex;
+  gap: var(--loader-spinner-gap);
+}
+
+.af-loader-spinner__icon {
+  width: var(--loader-spinner-icon-size);
+  height: var(--loader-spinner-icon-size);
+  order: 2;
+}
+
+.af-loader-spinner__text {
+  margin: 0;
+  font-size: var(--loader-spinner-text-font-size);
+  line-height: var(--loader-spinner-text-line-height);
+  color: var(--gray50);
+}
+
+.af-loader-spinner--fullScreen,
+.af-loader-spinner--content {
+  height: 100%;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.af-loader-spinner--fullScreen .af-loader-spinner__icon {
+  --loader-spinner-icon-size: calc(72rem / 16);
+}
+
+.af-loader-spinner--content .af-loader-spinner__icon {
+  --loader-spinner-icon-size: calc(48rem / 16);
+}
