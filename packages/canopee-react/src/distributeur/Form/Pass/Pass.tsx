@@ -1,11 +1,15 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities/helpers/getClassName";
 
 import "@axa-fr/canopee-css/distributeur/Form/Pass/Pass.css";
 
+type PassStrength = "bad" | "okay" | "good" | "verygood" | "excellent";
+
 type Props = Omit<ComponentPropsWithRef<"input">, "type" | "role"> & {
   type?: "text" | "password";
+  /** @deprecated Use `className` and the native `required` prop instead. */
   classModifier?: string;
+  strength?: PassStrength;
   onToggleType: () => void;
 };
 
@@ -16,15 +20,16 @@ const Pass = forwardRef<HTMLInputElement, Props>(
       type = "password",
       className,
       classModifier,
+      strength,
       ...inputProps
     },
     inputRef,
   ) => {
-    const componentClassName = getComponentClassName(
+    const componentClassName = getClassName({
+      baseClassName: "af-form__pass",
+      modifiers: [strength, ...(classModifier?.split(" ") ?? [])],
       className,
-      classModifier,
-      "af-form__pass",
-    );
+    });
 
     return (
       <div className={componentClassName}>

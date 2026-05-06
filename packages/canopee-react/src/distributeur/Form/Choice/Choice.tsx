@@ -12,6 +12,7 @@ type Props = Omit<ComponentProps<typeof Radio>, "options" | "value"> & {
   name?: string;
   options?: Array<Omit<Option, "value"> & { value: boolean }>;
   value?: boolean | string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 

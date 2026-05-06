@@ -18,9 +18,12 @@ describe("Text", () => {
     render(<Text value="Hello World" className="custom-class" />);
 
     // Assert
-    expect(screen.getByRole("textbox")).toHaveClass("custom-class", {
-      exact: true,
-    });
+    expect(screen.getByRole("textbox")).toHaveClass(
+      "af-form__input-text custom-class",
+      {
+        exact: true,
+      },
+    );
   });
 
   it("should have custom class and modifier", () => {
@@ -35,7 +38,7 @@ describe("Text", () => {
 
     // Assert
     expect(screen.getByRole("textbox")).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-form__input-text af-form__input-text--modifier custom-class",
       {
         exact: true,
       },

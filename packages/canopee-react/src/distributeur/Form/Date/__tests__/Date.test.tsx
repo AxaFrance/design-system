@@ -26,9 +26,12 @@ describe("Date", () => {
     );
 
     // Assert
-    expect(screen.getByTestId("myElement")).toHaveClass("custom-class", {
-      exact: true,
-    });
+    expect(screen.getByTestId("myElement")).toHaveClass(
+      "af-form__input-date custom-class",
+      {
+        exact: true,
+      },
+    );
   });
 
   it("should have custom class and modifier", () => {
@@ -44,7 +47,7 @@ describe("Date", () => {
 
     // Assert
     expect(screen.getByTestId("myElement")).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-form__input-date af-form__input-date--modifier custom-class",
       {
         exact: true,
       },

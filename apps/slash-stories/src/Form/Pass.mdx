@@ -20,10 +20,12 @@ import { Pass } from "@axa-fr/canopee-react/distributeur";
 
 ### Modifiers
 
+> **Deprecated prop**: The `classModifier` prop is deprecated. Use `className` with the appropriate BEM modifier class instead (e.g. `className="af-form__pass--good"`).
+
 <table>
   <thead>
     <tr>
-      <th>classModifiers</th>
+      <th>CSS modifiers (via className)</th>
     </tr>
   </thead>
   <tbody>
@@ -52,7 +54,7 @@ const PassInput = () => (
   <form className="af-form" name="myform">
     <Pass
       id="uniqueid"
-      classModifier="good"
+      className="af-form__pass--good"
       onChange={(e) => {
         console.log(e);
       }}
@@ -111,4 +113,4 @@ export default PassInputReturn;
 
 The component can be required. In that case, the label will be followed by a red asterisk. In order to make the component required, set the `required` prop to `true`.
 
-Alternatively you can to add to the `classModifier` the value `required`. This behaviour exists to keep backward compatibility but might disapear in the future.
+Alternatively you can add to the `classModifier` the value `required`. This behaviour exists for backward compatibility. Note that `classModifier` is deprecated; use the native `required` prop instead.

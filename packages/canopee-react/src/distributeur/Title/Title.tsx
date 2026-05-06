@@ -7,11 +7,12 @@ import {
   forwardRef,
 } from "react";
 
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type Headings = "h2" | "h3" | "h4";
 
 type TitleProps = ComponentPropsWithRef<"h2"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   heading?: Headings;
   contentLeft?: ReactElement;
@@ -36,11 +37,11 @@ export const Title = forwardRef<
     },
     ref,
   ) => {
-    const componentClassName = getComponentClassName(
+    const componentClassName = getClassName({
+      baseClassName: baseClass,
+      modifiers: classModifier?.split(" "),
       className,
-      classModifier,
-      baseClass,
-    );
+    });
 
     return (
       <div className={`${baseClass}--container`}>

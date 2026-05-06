@@ -1,8 +1,10 @@
 import type { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type Props = ComponentPropsWithoutRef<"th"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
+  sortable?: boolean;
 };
 
 const Th = ({
@@ -10,13 +12,14 @@ const Th = ({
   id,
   className,
   classModifier,
+  sortable,
   ...otherProps
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-table__th",
+    modifiers: [sortable && "sortable", ...(classModifier?.split(" ") ?? [])],
     className,
-    classModifier,
-    "af-table__th",
-  );
+  });
   return (
     <th className={componentClassName} key={id} id={id} {...otherProps}>
       {children}
