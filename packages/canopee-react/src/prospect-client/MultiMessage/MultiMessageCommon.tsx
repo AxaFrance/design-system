@@ -2,14 +2,11 @@ import { useState, type ComponentType } from "react";
 import type { MessageProps } from "../Message/MessageCommon";
 import type { PaginationProps } from "../Pagination/PaginationCommon";
 import { getClassName } from "../utilities/getClassName";
+import { MultiMessageFooter } from "./MultiMessageFooter";
 import { clampIndex } from "./MultiMessage.helpers";
 import type { MultiMessageItem } from "./types";
 
 type Headings = "h2" | "h3" | "h4" | "h5" | "h6";
-type PaginationButtonProps = Omit<
-  NonNullable<PaginationProps["prevButtonProps"]>,
-  "src"
->;
 
 export type MultiMessageProps = {
   /** Messages displayed inside the carousel */
@@ -29,9 +26,9 @@ export type MultiMessageProps = {
   /** ARIA label for the next button */
   nextLabel?: string;
   /** Optional override for the previous button props */
-  prevButtonProps?: PaginationButtonProps;
+  prevButtonProps?: PaginationProps["prevButtonProps"];
   /** Optional override for the next button props */
-  nextButtonProps?: PaginationButtonProps;
+  nextButtonProps?: PaginationProps["nextButtonProps"];
 } & Omit<
   MessageProps,
   "action" | "children" | "heading" | "iconSize" | "title" | "variant"
@@ -82,37 +79,6 @@ export const MultiMessageCommon = ({
     onChangeActive?.(clamped);
   };
 
-  const footer =
-    hasMultiple || item.action ? (
-      <div className={`${baseClassName}__footer`}>
-        {hasMultiple ? (
-          <PaginationComponent
-            className={`${baseClassName}__pagination`}
-            numberPages={total}
-            currentPage={currentIndex + 1}
-            onChangePage={(page) => goTo(page - 1)}
-            asItem="button"
-            aria-label="Pagination des messages"
-            prevButtonProps={
-              {
-                "aria-label": prevLabel,
-                ...prevButtonProps,
-              } as PaginationProps["prevButtonProps"]
-            }
-            nextButtonProps={
-              {
-                "aria-label": nextLabel,
-                ...nextButtonProps,
-              } as PaginationProps["nextButtonProps"]
-            }
-          />
-        ) : null}
-        {item.action ? (
-          <div className={`${baseClassName}__action`}>{item.action}</div>
-        ) : null}
-      </div>
-    ) : undefined;
-
   return (
     <MessageComponent
       className={getClassName({
@@ -126,7 +92,18 @@ export const MultiMessageCommon = ({
       {...sectionProps}
     >
       {item.children}
-      {footer}
+      <MultiMessageFooter
+        action={item.action}
+        currentIndex={currentIndex}
+        hasMultiple={hasMultiple}
+        nextButtonProps={nextButtonProps}
+        nextLabel={nextLabel}
+        onChangePage={goTo}
+        PaginationComponent={PaginationComponent}
+        prevButtonProps={prevButtonProps}
+        prevLabel={prevLabel}
+        total={total}
+      />
     </MessageComponent>
   );
 };
