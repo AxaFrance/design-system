@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "Publico Headline";
+  src:
+    url("PublicoHeadlineWeb-Light.woff2") format("woff2"),
+    url("PublicoHeadlineWeb-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Publico Headline";
+  src:
+    url("PublicoHeadlineWeb-Medium.woff2") format("woff2"),
+    url("PublicoHeadlineWeb-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Publico Headline";
+  src:
+    url("PublicoHeadlineWeb-Bold.woff2") format("woff2"),
+    url("PublicoHeadlineWeb-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Publico Headline";
+  src:
+    url("PublicoHeadlineWeb-Extrabold.woff2") format("woff2"),
+    url("PublicoHeadlineWeb-Extrabold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Publico Headline";
+  src:
+    url("PublicoHeadlineWeb-Black.woff2") format("woff2"),
+    url("PublicoHeadlineWeb-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Publico Roman";
+  src:
+    url("PublicoHeadlineWeb-Roman.woff2") format("woff2"),
+    url("PublicoHeadlineWeb-Roman.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
