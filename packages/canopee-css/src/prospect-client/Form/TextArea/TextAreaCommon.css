@@ -2,6 +2,7 @@
   --textarea-box-shadow-width: 1px;
 
   width: 100%;
+  min-height: var(--rem-72);
   padding: var(--rem-16);
   border: none;
   border-radius: var(--textarea-border-radius);
@@ -21,6 +22,7 @@
   }
 
   @media (--desktop-small) {
+    min-height: var(--rem-80);
     font-size: var(--rem-18);
   }
 
