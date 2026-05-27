@@ -10,6 +10,7 @@ export {
   messageVariants,
   type MessageVariants,
 } from "../Message/MessageApollo";
+export type { MultiMessageProps } from "./MultiMessageCommon";
 export type { MultiMessageItem } from "./types";
 
 export const MultiMessage = (props: MultiMessageProps) => (

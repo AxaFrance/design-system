@@ -120,6 +120,7 @@ export {
 export {
   MultiMessage,
   type MultiMessageItem,
+  type MultiMessageProps,
 } from "./prospect-client/MultiMessage/MultiMessageApollo";
 export {
   Modal,
