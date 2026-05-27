@@ -104,7 +104,7 @@
   --orange-1050: hsl(19deg, 82%, 41%);
   --orange-1000: hsl(19deg, 82%, 43%);
   --orange-800: hsl(19deg, 63%, 55%);
-  --orange-100: hsl(355deg, 100%, 98%);
+  --orange-050: hsl(355deg, 100%, 98%);
 
   /* ⛔ legacy names colors - DO NOT USE */
   --warning-120: var(--orange-1050);
@@ -114,7 +114,7 @@
   --color-btn-business: var(--orange-1000);
   --warning-80: var(--orange-800);
   --color-btn-business-light: var(--orange-800);
-  --color-orange-100: var(--orange-100);
+  --color-orange-100: var(--orange-050);
 
   /* ORANGE PRIMITIVES **************************************************************/
 
