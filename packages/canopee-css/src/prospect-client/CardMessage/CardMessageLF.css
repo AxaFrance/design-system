@@ -12,7 +12,7 @@
 }
 
 .af-card-message--warning {
-  --card-message-background-color: var(--orange-100);
+  --card-message-background-color: var(--orange-050);
   --card-message-text-color: var(--orange-1050);
   --card-message-border-color: var(--orange-1050);
 }
