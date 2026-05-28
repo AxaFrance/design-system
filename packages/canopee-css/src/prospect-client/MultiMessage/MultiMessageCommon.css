@@ -1,15 +1,25 @@
+.af-multi-message {
+  --multi-message-gap: var(--rem-16);
+
+  gap: var(--multi-message-gap);
+}
+
 .af-multi-message__footer {
   display: flex;
   width: 100%;
-  padding-top: var(--rem-4);
+  margin-top: var(--rem-20);
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: var(--rem-8);
 }
 
 .af-multi-message__pagination .af-pagination-list {
   margin: 0;
+}
+
+.af-multi-message__pagination .af-pagination-counter {
+  color: var(--gray-800);
 }
 
 .af-multi-message__pagination

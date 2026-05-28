@@ -34,6 +34,11 @@ const sampleItems: MultiMessageItem[] = [
     title: "Titre du message",
     children:
       "Ici quelques lignes pour présenter aux utilisateurs des éléments classés comme alertes.",
+    action: (
+      <Link href="https://www.axa.fr" openInNewTab>
+        Lien 1
+      </Link>
+    ),
   },
   {
     variant: messageVariants.error,
@@ -51,6 +56,11 @@ const sampleItems: MultiMessageItem[] = [
     title: "Titre du message",
     children:
       "Ici quelques lignes pour présenter aux utilisateurs des éléments classés comme neutres.",
+    action: (
+      <Link href="https://www.axa.fr" openInNewTab>
+        Lien 1
+      </Link>
+    ),
   },
 ];
 
