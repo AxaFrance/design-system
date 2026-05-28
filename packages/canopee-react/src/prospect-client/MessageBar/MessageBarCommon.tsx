@@ -1,16 +1,18 @@
 import {
-  useCallback,
   useId,
-  useState,
   type ComponentPropsWithoutRef,
   type ComponentType,
   type ReactNode,
 } from "react";
-import keyboardDown from "@material-symbols/svg-400/rounded/keyboard_arrow_down-fill.svg";
+import type { AccordionCoreProps } from "../AccordionCore/AccordionCoreCommon";
 import type { ButtonProps } from "../Button/ButtonCommon";
-import type { ClickIconProps } from "../ClickIcon/ClickIconCommon";
-import { getClassName } from "../utilities/getClassName";
 import type { IconProps, IconVariants } from "../Icon/IconCommon";
+import { BREAKPOINT } from "../utilities/constants";
+import { getClassName } from "../utilities/getClassName";
+import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
+import { MessageBarAction } from "./MessageBarAction";
+import { MessageBarDescription } from "./MessageBarDescription";
+import { MessageBarSummary } from "./MessageBarSummary";
 import type { MessageBarVariant } from "./types";
 
 export type MessageBarProps = {
@@ -35,8 +37,8 @@ const iconVariantByMessageBarVariant: Record<MessageBarVariant, IconVariants> =
   };
 
 type MessageBarCommonProps = MessageBarProps & {
+  AccordionCoreComponent: ComponentType<AccordionCoreProps>;
   ButtonComponent: ComponentType<ButtonProps>;
-  ClickIconComponent: ComponentType<ClickIconProps>;
   IconComponent: ComponentType<IconProps>;
 };
 
@@ -48,70 +50,69 @@ export const MessageBarCommon = ({
   defaultDescriptionOpen = false,
   buttonProps,
   className,
+  AccordionCoreComponent,
   ButtonComponent,
-  ClickIconComponent,
   IconComponent,
   ...sectionProps
 }: MessageBarCommonProps) => {
   const titleId = useId();
-  const [isOpen, setIsOpen] = useState(defaultDescriptionOpen);
+  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
   const hasDescription = Boolean(description);
-  const handleToggle = useCallback(() => {
-    setIsOpen((prev) => !prev);
-  }, []);
   const sectionAriaLabelledBy =
     sectionProps["aria-label"] || sectionProps["aria-labelledby"]
       ? undefined
       : titleId;
+  const iconVariant = iconVariantByMessageBarVariant[variant];
+  const componentClassName = getClassName({
+    baseClassName: "af-message-bar",
+    modifiers: [variant],
+    className,
+  });
+  const summary = (
+    <MessageBarSummary
+      title={title}
+      titleId={titleId}
+      icon={icon}
+      iconVariant={iconVariant}
+      IconComponent={IconComponent}
+    />
+  );
+  const action = (
+    <MessageBarAction
+      buttonProps={buttonProps}
+      ButtonComponent={ButtonComponent}
+    />
+  );
+  const body = <MessageBarDescription description={description} />;
+
+  if (hasDescription && isMobile) {
+    return (
+      <AccordionCoreComponent
+        className={componentClassName}
+        role="region"
+        aria-labelledby={sectionAriaLabelledBy}
+        open={defaultDescriptionOpen}
+        summary={summary}
+        summaryProps={{ className: "af-message-bar__header" }}
+        arrowClickIconVariant="ghost"
+        arrowIconVariant={iconVariant}
+        {...sectionProps}
+      >
+        {body}
+        {action}
+      </AccordionCoreComponent>
+    );
+  }
 
   return (
     <section
-      className={getClassName({
-        baseClassName: "af-message-bar",
-        modifiers: [variant, hasDescription && isOpen && "open"],
-        className,
-      })}
+      className={componentClassName}
       aria-labelledby={sectionAriaLabelledBy}
       {...sectionProps}
     >
-      <div className="af-message-bar__header">
-        <IconComponent
-          src={icon}
-          className="af-message-bar__icon"
-          role="presentation"
-          variant={iconVariantByMessageBarVariant[variant]}
-        />
-        <p id={titleId} className="af-message-bar__title">
-          {title}
-        </p>
-        {hasDescription ? (
-          <ClickIconComponent
-            className="af-message-bar__toggle"
-            aria-expanded={isOpen}
-            aria-label={isOpen ? "Réduire le message" : "Développer le message"}
-            iconClassName="af-message-bar__toggle-icon"
-            iconVariant={iconVariantByMessageBarVariant[variant]}
-            onClick={handleToggle}
-            src={keyboardDown}
-            variant="ghost"
-          />
-        ) : null}
-      </div>
-      {hasDescription && typeof description === "string" ? (
-        <p className="af-message-bar__body">{description}</p>
-      ) : null}
-      {hasDescription && typeof description !== "string" ? (
-        <div className="af-message-bar__body">{description}</div>
-      ) : null}
-      {buttonProps ? (
-        <ButtonComponent
-          {...buttonProps}
-          className={getClassName({
-            baseClassName: "af-message-bar__action",
-            className: buttonProps.className,
-          })}
-        />
-      ) : null}
+      <div className="af-message-bar__header">{summary}</div>
+      {body}
+      {action}
     </section>
   );
 };

@@ -1,15 +1,22 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ComponentProps } from "react";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
+import {
+  AccordionCoreCommon,
+  type AccordionCoreProps,
+} from "../../AccordionCore/AccordionCoreCommon";
 import { ButtonCommon, type ButtonProps } from "../../Button/ButtonCommon";
-import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import { Icon } from "../../Icon/IconCommon";
 import { Spinner } from "../../Spinner/SpinnerCommon";
 import { MessageBarCommon } from "../MessageBarCommon";
 
 const ButtonComponent = (props: ButtonProps) => (
   <ButtonCommon {...props} SpinnerComponent={Spinner} />
+);
+
+const renderAccordionCore = (props: AccordionCoreProps) => (
+  <AccordionCoreCommon {...props} IconComponent={Icon} />
 );
 
 const renderMessageBar = (
@@ -19,14 +26,26 @@ const renderMessageBar = (
     <MessageBarCommon
       title="Important information"
       icon="custom.svg"
+      AccordionCoreComponent={renderAccordionCore}
       ButtonComponent={ButtonComponent}
-      ClickIconComponent={ClickIcon}
       IconComponent={Icon}
       {...props}
     />,
   );
 
+const setScreenWidth = (width: number) => {
+  Object.defineProperty(globalThis, "innerWidth", {
+    configurable: true,
+    writable: true,
+    value: width,
+  });
+};
+
 describe("MessageBar", () => {
+  beforeEach(() => {
+    setScreenWidth(1024);
+  });
+
   it("renders the icon, content and action", () => {
     renderMessageBar({
       description: "Read this update",
@@ -44,9 +63,11 @@ describe("MessageBar", () => {
     const action = screen.getByRole("button", { name: "Read more" });
     expect(action).toHaveClass("af-message-bar__action", "custom-action");
 
-    const icon = within(messageBar).getByRole("presentation");
+    const icon = within(messageBar)
+      .getAllByRole("presentation")
+      .find((element) => element.dataset.src === "custom.svg");
     expect(icon).toHaveAttribute("data-src", "custom.svg");
-    expect(icon.parentElement).toHaveClass("af-icon--primary");
+    expect(icon?.parentElement).toHaveClass("af-icon--primary");
   });
 
   it("renders the icon with the red variant", () => {
@@ -78,6 +99,7 @@ describe("MessageBar", () => {
   });
 
   it("toggles the mobile description state", async () => {
+    setScreenWidth(320);
     renderMessageBar({
       title: "Toggle title",
       description: "Toggle body",
@@ -85,16 +107,27 @@ describe("MessageBar", () => {
 
     const user = userEvent.setup();
     const messageBar = screen.getByRole("region", { name: "Toggle title" });
-    const toggle = screen.getByRole("button", {
-      name: "Développer le message",
+    const summary = within(messageBar).getByText("Toggle title");
+    expect(messageBar).not.toHaveAttribute("open");
+
+    await user.click(summary);
+
+    expect(messageBar).toHaveAttribute("open");
+  });
+
+  it("uses AccordionCore with a ghost arrow on mobile", () => {
+    setScreenWidth(320);
+    renderMessageBar({
+      description: "Accordion body",
     });
-    expect(toggle).toHaveAttribute("aria-expanded", "false");
-    expect(messageBar).not.toHaveClass("af-message-bar--open");
 
-    await user.click(toggle);
+    const messageBar = screen.getByRole("region", {
+      name: "Important information",
+    });
+    const arrow = messageBar.querySelector(".af-accordion__arrow");
 
-    expect(toggle).toHaveAttribute("aria-expanded", "true");
-    expect(messageBar).toHaveClass("af-message-bar--open");
+    expect(messageBar).toHaveClass("af-apollo-accordion");
+    expect(arrow).toHaveClass("af-click-icon", "af-click-icon--ghost");
   });
 
   it("does not render buttons when there is no description or action", () => {
