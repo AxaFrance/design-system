@@ -1,11 +1,6 @@
 .af-message-bar {
-  display: grid;
   width: 100%;
-  grid-template-areas:
-    "icon title toggle"
-    "body body body"
-    "action action action";
-  grid-template-columns: auto 1fr auto;
+  border: 0;
   background-color: var(--message-bar-bg-color);
 
   --message-bar-title-font-size: 16;
@@ -25,8 +20,13 @@
   --message-bar-body-color: var(--gray-1000);
 }
 
-.af-message-bar__header {
-  display: contents;
+.af-message-bar > .af-message-bar__header {
+  display: grid;
+  padding: 0;
+  grid-template-areas: "icon title arrow";
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 0;
 }
 
 .af-message-bar__header > .af-icon:first-child {
@@ -51,9 +51,9 @@
   color: var(--message-bar-color);
 }
 
-.af-click-icon.af-message-bar__toggle {
-  padding: var(--rem-16) var(--rem-12) var(--rem-16) 0;
-  grid-area: toggle;
+.af-message-bar > .af-message-bar__header > .af-accordion__arrow {
+  padding: var(--rem-16) var(--rem-12);
+  grid-area: arrow;
   align-items: center;
   justify-content: center;
 
@@ -61,28 +61,8 @@
   --click-icon-svg-fill: var(--message-bar-color);
 }
 
-.af-click-icon.af-message-bar__toggle:focus {
-  outline: none;
-}
-
-.af-click-icon.af-message-bar__toggle:focus-visible {
-  border-radius: var(--radius-8);
-  outline: 2px solid var(--message-bar-color);
-  outline-offset: 2px;
-}
-
-.af-message-bar__toggle-icon {
-  transition: transform 0.2s ease-in-out;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .af-message-bar__toggle-icon {
-    transition-duration: 0s;
-  }
-}
-
-.af-message-bar--open .af-message-bar__toggle-icon {
-  transform: rotate(180deg);
+.af-message-bar[open] > .af-message-bar__header {
+  border-bottom: 0;
 }
 
 .af-message-bar__body {
@@ -104,16 +84,17 @@
   justify-self: stretch;
 }
 
-.af-message-bar--open .af-message-bar__body {
+.af-message-bar[open] > .af-message-bar__body {
   display: block;
 }
 
-.af-message-bar--open .af-message-bar__action {
+.af-message-bar[open] > .af-message-bar__action {
   display: flex;
 }
 
 @media (--desktop-small) {
   .af-message-bar {
+    display: grid;
     padding: var(--rem-24) var(--rem-120);
     grid-template-areas:
       "icon title button"
@@ -125,6 +106,10 @@
     --message-bar-title-line-height: var(--rem-25);
     --message-bar-body-font-size: 18;
     --message-bar-body-line-height: var(--rem-23);
+  }
+
+  .af-message-bar > .af-message-bar__header {
+    display: contents;
   }
 
   .af-message-bar__header > .af-icon:first-child {
@@ -139,18 +124,14 @@
     align-self: start;
   }
 
-  .af-click-icon.af-message-bar__toggle {
-    display: none;
-  }
-
   .af-message-bar__body,
-  .af-message-bar--open .af-message-bar__body {
+  .af-message-bar[open] > .af-message-bar__body {
     display: block;
     padding: var(--rem-8) var(--rem-64) 0 var(--rem-8);
   }
 
   .af-btn-client.af-message-bar__action,
-  .af-message-bar--open .af-btn-client.af-message-bar__action {
+  .af-message-bar[open] > .af-btn-client.af-message-bar__action {
     display: flex;
     margin: 0;
     grid-area: button;

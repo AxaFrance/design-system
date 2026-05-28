@@ -18,12 +18,15 @@ The `Accordion` component displays content in a collapsible panel with a customi
 When the user clicks on the summary to open or close the accordion you can use the `onClick` function prop to do something at that moment. (you will get the native event as `onClick` parameter)
 
 You can also add/change the props of the `Tag` component inside of the `Accordion`.
+Use the native `open` prop to control the expanded state. When the arrow must
+look like a click icon, `arrowClickIconVariant` accepts the same variants as
+`ClickIcon`.
 
 ### AccordionCore
 
 ```tsx
 export const AccordionCoreComponent = () => (
-  <AccordionCore title="Titre onglet">
+  <AccordionCore summary="Titre onglet">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
     tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
     massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
@@ -40,7 +43,7 @@ export const AccordionCoreComponent = () => (
 
 ```tsx
 export const AccordionCorePlainComponent = () => (
-  <AccordionCore className="af-apollo-accordion--plain" title="Titre onglet">
+  <AccordionCore className="af-apollo-accordion--plain" summary="Titre onglet">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper magna et
     tempor blandit. Nulla vitae eros a odio pretium gravida. Sed eget tortor nec
     massa lobortis bibendum. Morbi eget ligula porttitor, euismod odio
