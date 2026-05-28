@@ -18,7 +18,15 @@ type MessageBarStoryProps = ComponentProps<typeof MessageBar> & {
 const meta: Meta<MessageBarStoryProps> = {
   component: MessageBar,
   title: "Components/MessageBar",
-  parameters: { layout: "fullscreen" },
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      description: {
+        component:
+          "The description is displayed directly on desktop and uses AccordionCore only on small screens.",
+      },
+    },
+  },
   decorators: [
     (Story) => (
       <div style={{ padding: "1rem", maxWidth: "900px", margin: "0 auto" }}>
@@ -43,6 +51,7 @@ const meta: Meta<MessageBarStoryProps> = {
     },
     defaultDescriptionOpen: {
       control: { type: "boolean" },
+      description: "Initial expanded state for the mobile accordion.",
     },
     buttonProps: {
       control: { type: "object" },
