@@ -3,19 +3,17 @@
   border: 0;
   background-color: var(--message-bar-bg-color);
 
-  --message-bar-title-font-size: 16;
   --message-bar-title-line-height: var(--rem-20);
-  --message-bar-body-font-size: 16;
   --message-bar-body-line-height: var(--rem-20);
 }
 
-.af-message-bar--blue {
+.af-message-bar--info {
   --message-bar-bg-color: var(--blue-040);
   --message-bar-color: var(--blue-1000);
   --message-bar-body-color: var(--gray-1000);
 }
 
-.af-message-bar--red {
+.af-message-bar--error {
   --message-bar-bg-color: var(--red-040);
   --message-bar-body-color: var(--gray-1000);
 }
@@ -42,9 +40,7 @@
   padding: var(--rem-16) var(--rem-16);
   grid-area: title;
   align-self: center;
-  font-size: calc(
-    var(--message-bar-title-font-size) / var(--font-size-base) * 1rem
-  );
+  font-size: var(--rem-16);
   font-weight: 600;
   line-height: var(--message-bar-title-line-height);
   overflow-wrap: anywhere;
@@ -70,9 +66,7 @@
   margin: 0;
   padding: 0 var(--rem-16);
   grid-area: body;
-  font-size: calc(
-    var(--message-bar-body-font-size) / var(--font-size-base) * 1rem
-  );
+  font-size: var(--rem-16);
   line-height: var(--message-bar-body-line-height);
   color: var(--message-bar-body-color, var(--message-bar-color));
 }
@@ -102,9 +96,7 @@
     grid-template-columns: auto 1fr auto;
     align-items: start;
 
-    --message-bar-title-font-size: 20;
     --message-bar-title-line-height: var(--rem-25);
-    --message-bar-body-font-size: 18;
     --message-bar-body-line-height: var(--rem-23);
   }
 
@@ -121,6 +113,7 @@
     margin-right: var(--rem-64);
     margin-left: var(--rem-8);
     padding: 0;
+    font-size: var(--rem-20);
     align-self: start;
   }
 
@@ -128,6 +121,7 @@
   .af-message-bar[open] > .af-message-bar__body {
     display: block;
     padding: var(--rem-8) var(--rem-64) 0 var(--rem-8);
+    font-size: var(--rem-18);
   }
 
   .af-btn-client.af-message-bar__action,

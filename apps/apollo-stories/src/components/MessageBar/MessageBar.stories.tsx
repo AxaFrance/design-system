@@ -4,7 +4,7 @@ import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
-const MESSAGE_BAR_VARIANTS = ["blue", "red"] as const;
+const MESSAGE_BAR_VARIANTS = ["info", "error"] as const;
 
 const ICONS: Record<string, string> = {
   accountBalanceIcon,
@@ -70,7 +70,7 @@ export const Playground: Story = {
   args: {
     title: "Pensez a mettre a jour votre dossier client AXA",
     icon: "accountBalanceIcon",
-    variant: "blue",
+    variant: "info",
     defaultDescriptionOpen: true,
     buttonProps: { children: "Primary", variant: "primary" },
     description: DESCRIPTION,

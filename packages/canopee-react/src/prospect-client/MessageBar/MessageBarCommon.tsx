@@ -32,8 +32,8 @@ export type MessageBarProps = {
 
 const iconVariantByMessageBarVariant: Record<MessageBarVariant, IconVariants> =
   {
-    blue: "primary",
-    red: "error",
+    info: "primary",
+    error: "error",
   };
 
 type MessageBarCommonProps = MessageBarProps & {
@@ -46,7 +46,7 @@ export const MessageBarCommon = ({
   title,
   description,
   icon,
-  variant = "blue",
+  variant = "info",
   defaultDescriptionOpen = false,
   buttonProps,
   className,
