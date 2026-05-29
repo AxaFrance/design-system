@@ -1,1 +1,1 @@
-export type MessageBarVariant = "blue" | "red";
+export type MessageBarVariant = "info" | "error";
