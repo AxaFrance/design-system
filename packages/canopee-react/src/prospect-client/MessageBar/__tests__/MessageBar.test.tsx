@@ -56,7 +56,7 @@ describe("MessageBar", () => {
     const messageBar = screen.getByRole("region", {
       name: "Important information",
     });
-    expect(messageBar).toHaveClass("af-message-bar--blue");
+    expect(messageBar).toHaveClass("af-message-bar--info");
     expect(screen.getByText("Important information")).toBeInTheDocument();
     expect(screen.getByText("Read this update")).toBeInTheDocument();
 
@@ -70,8 +70,8 @@ describe("MessageBar", () => {
     expect(icon?.parentElement).toHaveClass("af-icon--primary");
   });
 
-  it("renders the icon with the red variant", () => {
-    renderMessageBar({ title: "Alert", variant: "red" });
+  it("renders the icon with the error variant", () => {
+    renderMessageBar({ title: "Alert", variant: "error" });
 
     const icon = screen.getByRole("presentation");
     expect(icon).toHaveAttribute("data-src", "custom.svg");
