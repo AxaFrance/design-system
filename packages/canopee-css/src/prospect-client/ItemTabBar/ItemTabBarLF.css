@@ -2,16 +2,8 @@
 
 .af-item-tab-bar {
   --item-tab-bar-font-color: var(--gray-1000);
-  --item-tab-bar-box-shadow-color: var(--blue-200);
-  --item-tab-bar-outline-color: var(--blue-1000);
-  --item-tab-bar-font-size: var(--rem-18);
 
   &[aria-selected="true"] {
     --item-tab-bar-font-color: var(--blue-1000);
-    --item-tab-bar-box-shadow-color: var(--blue-1000);
-  }
-
-  @media (--desktop-small) {
-    --item-tab-bar-font-size: var(--rem-20);
   }
 }
