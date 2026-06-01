@@ -1,5 +1,5 @@
 import type { DetailsHTMLAttributes, ReactNode } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 import { Body } from "./Body";
 import { Header } from "./Header";
 import type { AccordionActions, AccordionVariant } from "./types";
@@ -12,6 +12,7 @@ export type CollapseProps = {
   name?: string;
   onToggle?: DetailsHTMLAttributes<HTMLDetailsElement>["onToggle"];
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   actions?: AccordionActions;
   variant?: AccordionVariant;
@@ -34,11 +35,11 @@ export const CollapseCard = ({
   let newClassModifier = open ? "open" : "";
   newClassModifier += ` ${classModifier}`;
 
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-accordion__details",
+    modifiers: newClassModifier.trim().split(" "),
     className,
-    newClassModifier.trim(),
-    "af-accordion__details",
-  );
+  });
 
   return (
     <details

@@ -1,23 +1,20 @@
 import type { ReactNode } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 const defaultClassName = "af-steps-new";
 
 type Props = {
   children: ReactNode;
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
-const Steps = ({
-  children,
-  className = defaultClassName,
-  classModifier,
-}: Props) => {
-  const componentClassName = getComponentClassName(
+const Steps = ({ children, className, classModifier }: Props) => {
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    defaultClassName,
-  );
+  });
 
   return (
     <div className={componentClassName}>

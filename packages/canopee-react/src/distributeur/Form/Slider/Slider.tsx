@@ -5,12 +5,13 @@ import {
   type ComponentProps,
   type ReactNode,
 } from "react";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities/helpers/getClassName";
 
 type RcSliderProps = ComponentProps<typeof RcSlider>;
 type Marks = RcSliderProps["marks"];
 
 type Props = Omit<RcSliderProps, "marks" | "onChange" | "onChangeComplete"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   options: { value: number; label?: string | ReactNode }[];
   id: string;
@@ -63,7 +64,12 @@ const Slider = ({
   );
 
   const componentClassName = useMemo(
-    () => getComponentClassName(className, classModifier, "af-slider"),
+    () =>
+      getClassName({
+        baseClassName: "af-slider",
+        modifiers: classModifier?.split(" "),
+        className,
+      }),
     [className, classModifier],
   );
 

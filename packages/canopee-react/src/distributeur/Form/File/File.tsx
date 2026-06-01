@@ -6,11 +6,12 @@ import {
   useDropzone,
 } from "react-dropzone";
 import { Button } from "../../Button/Button";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities/helpers/getClassName";
 import type { FileActions } from "./constants";
 
 type Dropzone = DropzoneInputProps & DropzoneOptions;
 type Props = Omit<Dropzone, "onDrop" | "onChange"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   label?: string;
   icon?: string;
@@ -106,11 +107,11 @@ const File = ({
     disabled,
   });
 
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-form__file-input",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-form__file-input",
-  );
+  });
 
   return (
     <div className={componentClassName}>

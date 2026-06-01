@@ -4,7 +4,7 @@ import {
   type PropsWithChildren,
   forwardRef,
 } from "react";
-import { getComponentClassNameWithUserClassname } from "../utilities/helpers/getComponentClassName";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 export type TagVariants =
   | "success"
@@ -49,17 +49,17 @@ export const Tag = forwardRef<HTMLSpanElement, PropsWithChildren<TagProps>>(
   ({ children, className, classModifier, variant, ...otherProps }, ref) => {
     const actualModifier = variant || classModifier || "default";
 
-    const componentClassName = getComponentClassNameWithUserClassname({
-      userClassName: className,
-      classModifier: actualModifier,
-      componentClassName: "af-tag",
+    const componentClassName = getClassName({
+      baseClassName: "af-tag",
+      modifiers: [actualModifier],
+      className,
     });
 
     // Kept for backward compatibility. May be removed in a future version
-    const badgeClassName = getComponentClassNameWithUserClassname({
-      userClassName: className,
-      classModifier: actualModifier,
-      componentClassName: "af-badge",
+    const badgeClassName = getClassName({
+      baseClassName: "af-badge",
+      modifiers: [actualModifier],
+      className,
     });
 
     return (

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import type { FocusEvent, MouseEvent, ReactNode } from "react";
-import { getComponentClassName } from "../../../utilities";
+import { getClassName } from "../../../utilities/helpers/getClassName";
 
 const defaultClassName = "af-nav-container";
 
@@ -11,6 +11,7 @@ type Props = {
   isMenuFocused?: boolean;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   handleKeys: (key: string) => void;
   onFocus: (action: { e: FocusEvent<HTMLUListElement> }) => void;
@@ -31,11 +32,11 @@ const NavBarBase = ({
   onBlur,
   children,
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    defaultClassName,
-  );
+  });
 
   return (
     <div className={classNames("af-container", componentClassName)}>

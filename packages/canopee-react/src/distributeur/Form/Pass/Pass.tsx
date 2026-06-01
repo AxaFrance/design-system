@@ -9,6 +9,9 @@ type Props = Omit<ComponentPropsWithRef<"input">, "type" | "role"> & {
   onToggleType: () => void;
 };
 
+/**
+ * @deprecated The Pass component is deprecated and will be removed in a future release
+ */
 const Pass = forwardRef<HTMLInputElement, Props>(
   (
     {

@@ -24,9 +24,12 @@ describe("Textarea", () => {
     render(<Textarea className="custom-class">A textarea</Textarea>);
 
     // Assert
-    expect(screen.getByRole("textbox")).toHaveClass("custom-class", {
-      exact: true,
-    });
+    expect(screen.getByRole("textbox")).toHaveClass(
+      "af-form__input-textarea custom-class",
+      {
+        exact: true,
+      },
+    );
   });
 
   it("should have custom class with modifier", () => {
@@ -39,7 +42,7 @@ describe("Textarea", () => {
 
     // Assert
     expect(screen.getByRole("textbox")).toHaveClass(
-      "custom-class custom-class--modifier",
+      "af-form__input-textarea af-form__input-textarea--modifier custom-class",
       {
         exact: true,
       },

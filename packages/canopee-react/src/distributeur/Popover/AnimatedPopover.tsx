@@ -7,7 +7,7 @@ import {
   useFloating,
 } from "@floating-ui/react";
 import React, { useRef } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 const defaultClassName = "af-popover__container";
 
@@ -17,6 +17,7 @@ type PropsAnimatedPopover = {
   isOpen: boolean;
   target: React.ReactNode;
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: (event: React.MouseEvent) => void;
@@ -32,11 +33,11 @@ export const AnimatedPopover = ({
   onMouseEnter,
   onMouseLeave,
 }: PropsAnimatedPopover) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: classModifier?.split(" ") ?? [],
     className,
-    classModifier,
-    defaultClassName,
-  );
+  });
 
   const [referenceElement, setReferenceElement] = React.useState(null);
   const [popperElement, setPopperElement] = React.useState(null);

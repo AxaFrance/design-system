@@ -1,9 +1,11 @@
 import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 export type RestitutionProps = ComponentPropsWithoutRef<"dl"> & {
   label: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
+  variant?: "marge";
 };
 
 export const Restitution = ({
@@ -11,12 +13,13 @@ export const Restitution = ({
   children = "-",
   className,
   classModifier,
+  variant,
 }: PropsWithChildren<RestitutionProps>) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-restitution__listdef",
+    modifiers: [variant, ...(classModifier?.split(" ") ?? [])],
     className,
-    classModifier,
-    "af-restitution__listdef",
-  );
+  });
   return (
     <dl className={componentClassName}>
       <dt className="af-restitution__listdef-item">

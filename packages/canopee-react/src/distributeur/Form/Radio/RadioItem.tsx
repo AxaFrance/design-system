@@ -8,6 +8,7 @@ import {
 import { getOptionClassName } from "../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "checked" | "type"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   optionClassName?: string;
   label?: ReactNode;

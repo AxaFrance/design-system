@@ -4,7 +4,7 @@ import {
   forwardRef,
   type OptionHTMLAttributes,
 } from "react";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities/helpers/getClassName";
 
 type Props = ComponentPropsWithoutRef<"select"> & {
   /**
@@ -22,6 +22,7 @@ type Props = ComponentPropsWithoutRef<"select"> & {
    * It allows you to use the `optgroup` tag for example.
    */
   options?: OptionHTMLAttributes<HTMLOptionElement>[];
+  /** @deprecated Use `className` and the native `required` prop instead. */
   classModifier?: string;
 };
 
@@ -41,11 +42,11 @@ const SelectBase = forwardRef<HTMLSelectElement, Props>(
     },
     inputRef,
   ) => {
-    const componentClassName = getComponentClassName(
+    const componentClassName = getClassName({
+      baseClassName: "af-form__input-select",
+      modifiers: classModifier?.split(" "),
       className,
-      classModifier,
-      "af-form__input-select",
-    );
+    });
     return (
       <div className="af-form__select-container">
         <select

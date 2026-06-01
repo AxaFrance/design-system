@@ -1,6 +1,7 @@
 import closeIcon from "@material-symbols/svg-400/outlined/close.svg";
 import type { MouseEventHandler, ReactNode } from "react";
-import { getComponentClassName, Svg } from "../../../distributeur";
+import { Svg } from "../../../distributeur";
+import { getClassName } from "../../utilities/helpers/getClassName";
 
 export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
   /**
@@ -22,6 +23,7 @@ export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
   closeButtonAriaLabel?: string;
   /**
    * Class modifier for the header. Can be used to apply custom styles.
+   * @deprecated Use `className` instead.
    */
   classModifier?: string;
   /**
@@ -39,11 +41,11 @@ const Header = ({
   children,
   ...props
 }: HeaderProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-modal__header",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-modal__header",
-  );
+  });
 
   return (
     <header className={componentClassName} {...props}>

@@ -4,11 +4,10 @@ import { AnimatedPopover } from "./AnimatedPopover";
 
 import "@axa-fr/canopee-css/distributeur/Popover/Popover.css";
 
-const defaultClassName = "af-popover__container";
-
 type Props = {
   placement?: Placement;
   className?: string;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
   element: React.ReactNode;
   children: React.ReactNode | React.ReactNode[];
@@ -21,7 +20,7 @@ const PopoverBase = ({
   children,
   isOpen,
   placement = "right",
-  className = defaultClassName,
+  className,
   classModifier,
   element,
   onMouseEnter,

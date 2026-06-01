@@ -1,9 +1,10 @@
 import "@axa-fr/canopee-css/distributeur/Form/Textarea/Textarea.css";
 import { type ComponentPropsWithoutRef, forwardRef, useId } from "react";
 
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities/helpers/getClassName";
 
 type Props = ComponentPropsWithoutRef<"textarea"> & {
+  /** @deprecated Use `className` and the native `required` prop instead. */
   classModifier?: string;
 };
 
@@ -11,11 +12,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, Props>(
   ({ id, className, classModifier, ...otherProps }, inputRef) => {
     const inputUseId = useId();
     const inputId = id ?? inputUseId;
-    const componentClassName = getComponentClassName(
+    const componentClassName = getClassName({
+      baseClassName: "af-form__input-textarea",
+      modifiers: classModifier?.split(" "),
       className,
-      classModifier,
-      "af-form__input-textarea",
-    );
+    });
 
     return (
       <textarea

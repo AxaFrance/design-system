@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 import { TBody } from "./TBody";
 import { THead } from "./THead";
 import { Td } from "./Td";
@@ -9,6 +9,7 @@ import { Tr } from "./Tr";
 import "@axa-fr/canopee-css/distributeur/Table/Table.css";
 
 type TableProps = ComponentPropsWithoutRef<"table"> & {
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 
@@ -18,11 +19,11 @@ const Table = ({
   children,
   ...othersProps
 }: TableProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-table",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-table",
-  );
+  });
   return (
     <table className={componentClassName} {...othersProps}>
       {children}

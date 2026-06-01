@@ -279,8 +279,8 @@ describe("ModalHeader", () => {
 
     const banner = screen.getByRole("banner");
     expect(banner).toHaveClass("custom-header-class");
-    expect(banner).toHaveClass("custom-header-class--custom-modifier");
-    expect(banner).not.toHaveClass("af-modal__header");
+    expect(banner).toHaveClass("af-modal__header--custom-modifier");
+    expect(banner).toHaveClass("af-modal__header");
   });
 });
 
@@ -302,8 +302,8 @@ describe("ModalBody", () => {
 
     const body = screen.getByText(/My Modal Body/i);
     expect(body).toHaveClass("custom-body-class");
-    expect(body).toHaveClass("custom-body-class--custom-modifier");
-    expect(body).not.toHaveClass("af-modal__body");
+    expect(body).toHaveClass("af-modal__body--custom-modifier");
+    expect(body).toHaveClass("af-modal__body");
   });
 });
 
@@ -329,7 +329,7 @@ describe("ModalFooter", () => {
 
     const footer = screen.getByText(/my modal footer/i);
     expect(footer).toHaveClass("custom-footer-class");
-    expect(footer).toHaveClass("custom-footer-class--custom-modifier");
-    expect(footer).not.toHaveClass("af-modal__footer");
+    expect(footer).toHaveClass("af-modal__footer--custom-modifier");
+    expect(footer).toHaveClass("af-modal__footer");
   });
 });

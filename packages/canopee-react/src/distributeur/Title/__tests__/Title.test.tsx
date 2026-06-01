@@ -32,7 +32,7 @@ describe("Title", () => {
     // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).toHaveClass("custom-class", {
+    ).toHaveClass("af-title custom-class", {
       exact: true,
     });
   });
@@ -48,7 +48,7 @@ describe("Title", () => {
     // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).toHaveClass("custom-class custom-class--modifier", {
+    ).toHaveClass("af-title af-title--modifier custom-class", {
       exact: true,
     });
   });

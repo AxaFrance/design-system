@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/distributeur/Loader/Loader.css";
 import { type ReactNode } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities/helpers/getClassName";
 
 type LoaderMode = "none" | "get" | "post" | "delete" | "update" | "error";
 
@@ -26,6 +26,7 @@ type LoaderProps = {
   mode: LoaderMode;
   text?: string;
   children: ReactNode;
+  /** @deprecated Use `className` instead. */
   classModifier?: string;
 };
 
@@ -36,11 +37,11 @@ export const Loader = ({
   classModifier,
   mode = "none",
 }: LoaderProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-loader",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-loader",
-  );
+  });
   const message = text || getText(mode);
   const isLoaderVisible = mode !== "none";
   const isLoaderInError = mode === "error";
