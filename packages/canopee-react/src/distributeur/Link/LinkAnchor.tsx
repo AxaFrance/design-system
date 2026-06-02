@@ -33,6 +33,8 @@ const LinkAnchor = forwardRef<HTMLAnchorElement, LinkComponentProps>(
     ref,
   ) => {
     const finalClassName = classnames(linkClassName, className, {
+      [`${linkClassName}--default`]: variant !== "reverse",
+      [`${linkClassName}--default-reverse`]: variant === "reverse",
       [`${linkClassName}--reverse`]: variant === "reverse",
     });
 
