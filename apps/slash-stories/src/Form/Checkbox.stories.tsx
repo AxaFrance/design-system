@@ -50,6 +50,7 @@ const meta = preview.type<{ args: Story }>().meta({
       control: { type: "inline-check" },
     },
     mode: {
+      options: modes,
       control: {
         type: "radio",
         options: modes,
