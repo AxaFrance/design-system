@@ -1,6 +1,8 @@
 @import "./ProgressBarGroupCommon.css";
 
-.af-progress-bar-group {
-  border-radius: var(--rem-6);
-  overflow: hidden;
+@layer canopee {
+  .af-progress-bar-group {
+    border-radius: var(--rem-6);
+    overflow: hidden;
+  }
 }
