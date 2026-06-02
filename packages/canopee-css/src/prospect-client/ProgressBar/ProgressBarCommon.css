@@ -1,57 +1,59 @@
-.af-progress-bar__label {
-  display: block;
-  width: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-  user-select: none;
-}
-
-.af-progress-bar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--rem-8);
-
-  & > span {
-    width: 41px;
-    flex-shrink: 0;
-    overflow: hidden;
-    font-size: var(--rem-16);
-    font-weight: 600;
-    line-height: 125%;
-    white-space: nowrap;
+@layer canopee {
+  .af-progress-bar__label {
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    user-select: none;
   }
 
-  .af-progress-bar__progress {
-    display: block;
-    width: 100%;
-    height: var(--rem-6);
-    border: none;
-    border-radius: var(--radius-4);
-    overflow: hidden;
-    background-color: var(--progress-bar-background-color);
-    appearance: var(--progress-bar-appearance);
+  .af-progress-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--rem-8);
 
-    /* For WebKit browsers */
-    &::-webkit-progress-bar {
+    & > span {
+      width: 41px;
+      flex-shrink: 0;
+      overflow: hidden;
+      font-size: var(--rem-16);
+      font-weight: 600;
+      line-height: 125%;
+      white-space: nowrap;
+    }
+
+    .af-progress-bar__progress {
+      display: block;
+      width: 100%;
+      height: var(--rem-6);
+      border: none;
+      border-radius: var(--radius-4);
+      overflow: hidden;
       background-color: var(--progress-bar-background-color);
-    }
+      appearance: var(--progress-bar-appearance);
 
-    /* For WebKit browsers */
-    &::-webkit-progress-value {
-      border-radius: var(--radius-4);
-      background-color: var(--progress-bar-appearance);
-      transition: width 0.75s ease;
-    }
+      /* For WebKit browsers */
+      &::-webkit-progress-bar {
+        background-color: var(--progress-bar-background-color);
+      }
 
-    /* For Firefox */
-    &::-moz-progress-bar {
-      border-radius: var(--radius-4);
-      background-color: var(--progress-bar-appearance);
+      /* For WebKit browsers */
+      &::-webkit-progress-value {
+        border-radius: var(--radius-4);
+        background-color: var(--progress-bar-appearance);
+        transition: width 0.75s ease;
+      }
 
-      /* transition doesn't work in Firefox for native progress bars */
+      /* For Firefox */
+      &::-moz-progress-bar {
+        border-radius: var(--radius-4);
+        background-color: var(--progress-bar-appearance);
+
+        /* transition doesn't work in Firefox for native progress bars */
+      }
     }
   }
 }

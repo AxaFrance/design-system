@@ -1,22 +1,24 @@
 @import "./IconCommon.css";
 
-.af-icon {
-  --icon-border-radius: var(--radius-100);
-}
+@layer canopee {
+  .af-icon {
+    --icon-border-radius: var(--radius-100);
+  }
 
-.af-icon--small.af-icon--has-background {
-  --icon-padding: var(--rem-8);
-}
+  .af-icon--small.af-icon--has-background {
+    --icon-padding: var(--rem-8);
+  }
 
-.af-icon--secondary.af-icon--has-background {
-  --icon-background-color: var(--blue-040);
-  --icon-outline-color: var(--blue-040);
-}
+  .af-icon--secondary.af-icon--has-background {
+    --icon-background-color: var(--blue-040);
+    --icon-outline-color: var(--blue-040);
+  }
 
-.af-icon--error {
-  --icon-fill: var(--red-alert-1000);
+  .af-icon--error {
+    --icon-fill: var(--red-alert-1000);
 
-  &.af-icon--has-background {
-    --icon-background-color: var(--red-alert-1000);
+    &.af-icon--has-background {
+      --icon-background-color: var(--red-alert-1000);
+    }
   }
 }

@@ -1,3 +1,5 @@
-.af-main-container {
-  margin-top: 2rem;
+@layer canopee {
+  .af-main-container {
+    margin-top: 2rem;
+  }
 }

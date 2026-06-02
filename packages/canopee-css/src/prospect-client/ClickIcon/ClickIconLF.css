@@ -1,43 +1,45 @@
 @import "./ClickIconCommon.css";
 
-.af-click-icon {
-  --click-icon-background-color: var(--blue-080);
+@layer canopee {
+  .af-click-icon {
+    --click-icon-background-color: var(--blue-080);
 
-  &:hover {
-    --click-icon-background-color: var(--blue-100);
+    &:hover {
+      --click-icon-background-color: var(--blue-100);
 
-    &.af-click-icon--ghost {
-      --click-icon-svg-fill: var(--blue-1000);
+      &.af-click-icon--ghost {
+        --click-icon-svg-fill: var(--blue-1000);
+      }
+    }
+
+    &:active {
+      --click-icon-background-color: var(--blue-040);
+
+      &.af-click-icon--ghost {
+        --click-icon-svg-fill: var(--blue-800);
+      }
+    }
+
+    &:disabled {
+      --click-icon-background-color: var(--gray-050);
+      --click-icon-svg-fill: var(--gray-500);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      --click-icon-outline-color: var(--blue-650);
+
+      outline: 2px solid var(--click-icon-outline-color);
+      outline-offset: 2px;
     }
   }
 
-  &:active {
-    --click-icon-background-color: var(--blue-040);
-
-    &.af-click-icon--ghost {
-      --click-icon-svg-fill: var(--blue-800);
-    }
-  }
-
-  &:disabled {
+  /* Should be deleted, prefer use :disabled */
+  .af-click-icon--disabled {
     --click-icon-background-color: var(--gray-050);
     --click-icon-svg-fill: var(--gray-500);
   }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
-    --click-icon-outline-color: var(--blue-650);
-
-    outline: 2px solid var(--click-icon-outline-color);
-    outline-offset: 2px;
-  }
-}
-
-/* Should be deleted, prefer use :disabled */
-.af-click-icon--disabled {
-  --click-icon-background-color: var(--gray-050);
-  --click-icon-svg-fill: var(--gray-500);
 }

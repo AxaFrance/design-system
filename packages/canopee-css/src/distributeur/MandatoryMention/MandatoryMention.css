@@ -1,11 +1,13 @@
-.af-mandatory {
-  margin-bottom: 2rem;
-}
+@layer canopee {
+  .af-mandatory {
+    margin-bottom: 2rem;
+  }
 
-.af-mandatory--one {
-  color: var(--red30);
-}
+  .af-mandatory--one {
+    color: var(--red30);
+  }
 
-.af-mandatory--all {
-  color: var(--gray80);
+  .af-mandatory--all {
+    color: var(--gray80);
+  }
 }

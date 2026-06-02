@@ -1,147 +1,149 @@
 @import "./ButtonCommon.css";
 
-.af-btn-client {
-  --button-bg-color: var(--blue-1000);
-  --button-text-color: var(--white-1000);
-  --button-radius: var(--radius-32);
-  --button-shadow-color: var(--blue-1000);
-  --button-padding: var(--rem-16) var(--rem-24);
-  --button-line-height: var(--rem-24);
-  --button-font-size: var(--rem-16);
+@layer canopee {
+  .af-btn-client {
+    --button-bg-color: var(--blue-1000);
+    --button-text-color: var(--white-1000);
+    --button-radius: var(--radius-32);
+    --button-shadow-color: var(--blue-1000);
+    --button-padding: var(--rem-16) var(--rem-24);
+    --button-line-height: var(--rem-24);
+    --button-font-size: var(--rem-16);
 
-  @media (--desktop-small) {
-    --button-padding: var(--rem-12) var(--rem-24);
-    --button-line-height: var(--rem-32);
-    --button-font-size: var(--rem-18);
+    @media (--desktop-small) {
+      --button-padding: var(--rem-12) var(--rem-24);
+      --button-line-height: var(--rem-32);
+      --button-font-size: var(--rem-18);
+    }
+
+    &:hover {
+      --button-bg-color: var(--blue-1200);
+    }
+
+    &:active {
+      --button-bg-color: var(--blue-900);
+    }
+
+    &:focus-visible,
+    &:focus {
+      --button-outline-color: var(--blue-650);
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      --button-bg-color: var(--gray-050);
+      --button-text-color: var(--gray-500);
+      --button-shadow-color: var(--gray-500);
+    }
   }
 
-  &:hover {
-    --button-bg-color: var(--blue-1200);
+  .af-btn-client--primary-business {
+    --button-bg-color: var(--orange-1000);
+    --button-text-color: var(--white-1000);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color: var(--orange-1050);
+    }
+
+    &:active {
+      --button-bg-color: var(--orange-800);
+    }
   }
 
-  &:active {
-    --button-bg-color: var(--blue-900);
+  .af-btn-client--primary-inverse {
+    --button-bg-color: var(--white-1000);
+    --button-text-color: var(--blue-1000);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color: var(--gray-140);
+      --button-text-color: var(--blue-1200);
+    }
+
+    &:active {
+      --button-bg-color: var(--gray-050);
+      --button-text-color: var(--blue-900);
+    }
   }
 
-  &:focus-visible,
-  &:focus {
-    --button-outline-color: var(--blue-650);
-  }
-
-  &:disabled,
-  &[aria-disabled="true"] {
-    --button-bg-color: var(--gray-050);
-    --button-text-color: var(--gray-500);
-    --button-shadow-color: var(--gray-500);
-  }
-}
-
-.af-btn-client--primary-business {
-  --button-bg-color: var(--orange-1000);
-  --button-text-color: var(--white-1000);
-
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    --button-bg-color: var(--orange-1050);
-  }
-
-  &:active {
-    --button-bg-color: var(--orange-800);
-  }
-}
-
-.af-btn-client--primary-inverse {
-  --button-bg-color: var(--white-1000);
-  --button-text-color: var(--blue-1000);
-
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    --button-bg-color: var(--gray-140);
-    --button-text-color: var(--blue-1200);
-  }
-
-  &:active {
-    --button-bg-color: var(--gray-050);
-    --button-text-color: var(--blue-900);
-  }
-}
-
-.af-btn-client--ghost {
-  --button-bg-color: transparent;
-  --button-text-color: var(--blue-1000);
-  --button-padding: 0;
-
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    --button-text-color: var(--blue-1200);
+  .af-btn-client--ghost {
     --button-bg-color: transparent;
+    --button-text-color: var(--blue-1000);
+    --button-padding: 0;
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-text-color: var(--blue-1200);
+      --button-bg-color: transparent;
+    }
+
+    &:active {
+      --button-text-color: var(--blue-900);
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      --button-bg-color: transparent;
+    }
   }
 
-  &:active {
-    --button-text-color: var(--blue-900);
+  .af-btn-client--secondary {
+    --button-bg-color: var(--white-1000);
+    --button-text-color: var(--blue-1000);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color: var(--blue-1200);
+      --button-text-color: var(--white-1000);
+      --button-shadow-color: var(--blue-1200);
+    }
+
+    &:active {
+      --button-bg-color: var(--blue-900);
+      --button-text-color: var(--white-1000);
+      --button-shadow-color: var(--blue-900);
+    }
   }
 
-  &:disabled,
-  &[aria-disabled="true"] {
+  .af-btn-client--secondary-inverse {
     --button-bg-color: transparent;
-  }
-}
-
-.af-btn-client--secondary {
-  --button-bg-color: var(--white-1000);
-  --button-text-color: var(--blue-1000);
-
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    --button-bg-color: var(--blue-1200);
     --button-text-color: var(--white-1000);
-    --button-shadow-color: var(--blue-1200);
+    --button-shadow-color: var(--white-1000);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color: var(--gray-140);
+      --button-text-color: var(--blue-1200);
+      --button-shadow-color: var(--gray-140);
+    }
+
+    &:active {
+      --button-bg-color: var(--gray-050);
+      --button-text-color: var(--blue-900);
+      --button-shadow-color: var(--gray-050);
+    }
   }
 
-  &:active {
-    --button-bg-color: var(--blue-900);
-    --button-text-color: var(--white-1000);
-    --button-shadow-color: var(--blue-900);
-  }
-}
+  .af-btn-client--tertiary {
+    --button-bg-color: var(--blue-080);
+    --button-text-color: var(--blue-1000);
 
-.af-btn-client--secondary-inverse {
-  --button-bg-color: transparent;
-  --button-text-color: var(--white-1000);
-  --button-shadow-color: var(--white-1000);
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --button-bg-color: var(--blue-1200);
+      --button-text-color: var(--white-1000);
+    }
 
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    --button-bg-color: var(--gray-140);
-    --button-text-color: var(--blue-1200);
-    --button-shadow-color: var(--gray-140);
-  }
-
-  &:active {
-    --button-bg-color: var(--gray-050);
-    --button-text-color: var(--blue-900);
-    --button-shadow-color: var(--gray-050);
-  }
-}
-
-.af-btn-client--tertiary {
-  --button-bg-color: var(--blue-080);
-  --button-text-color: var(--blue-1000);
-
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    --button-bg-color: var(--blue-1200);
-    --button-text-color: var(--white-1000);
-  }
-
-  &:active {
-    --button-bg-color: var(--blue-900);
-    --button-text-color: var(--white-1000);
+    &:active {
+      --button-bg-color: var(--blue-900);
+      --button-text-color: var(--white-1000);
+    }
   }
 }
