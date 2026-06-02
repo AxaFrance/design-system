@@ -8,7 +8,7 @@ export function getOptionClassName(
   variant?: string,
 ) {
   return getClassName({
-    baseClassName: defaultClassName,
+    baseClassName: className || defaultClassName,
     modifiers: [
       variant,
       ...(classModifier?.split(" ") ?? []),
