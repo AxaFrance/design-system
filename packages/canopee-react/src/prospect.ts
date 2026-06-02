@@ -47,7 +47,10 @@ export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetApollo";
-export { CardCheckbox } from "./prospect-client/Form/Checkbox/CardCheckbox/CardCheckboxApollo";
+export {
+  CardCheckbox,
+  type CardCheckboxProps,
+} from "./prospect-client/Form/Checkbox/CardCheckbox/CardCheckboxApollo";
 export { CardCheckboxOption } from "./prospect-client/Form/Checkbox/CardCheckboxOption/CardCheckboxOptionApollo";
 export { Checkbox } from "./prospect-client/Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxText } from "./prospect-client/Form/Checkbox/CheckboxText/CheckboxTextApollo";
