@@ -23,13 +23,10 @@ describe("Choice", () => {
 
     // Assert
     expect(screen.getAllByRole("radio")[0].parentElement).toHaveClass(
-      "af-form__radio",
-    );
-    expect(screen.getAllByRole("radio")[0].parentElement).toHaveClass(
-      "af-form__radio--custom-class",
-    );
-    expect(screen.getAllByRole("radio")[0].parentElement).toHaveClass(
       "af-form__radio-custom",
+    );
+    expect(screen.getAllByRole("radio")[0].parentElement).toHaveClass(
+      "af-form__radio-custom--custom-class",
     );
   });
 
