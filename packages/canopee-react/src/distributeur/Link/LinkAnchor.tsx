@@ -1,18 +1,18 @@
-import classnames from "classnames";
 import {
   type ComponentPropsWithRef,
   forwardRef,
   type ReactElement,
 } from "react";
 import { Svg } from "../Svg";
-import { linkClassName } from "./linkClassName";
+import { ButtonPolymorphe } from "../Button/ButtonPolymorphe";
 
+export type LinkVariant = "default" | "reverse";
 type AnchorLinkProps = {
   leftIcon?: ReactElement<typeof Svg>;
   rightIcon?: ReactElement<typeof Svg>;
   className?: string;
   disabled?: boolean;
-  variant?: "default" | "reverse";
+  variant?: LinkVariant;
 };
 
 type LinkComponentProps = ComponentPropsWithRef<"a"> & AnchorLinkProps;
@@ -32,23 +32,21 @@ const LinkAnchor = forwardRef<HTMLAnchorElement, LinkComponentProps>(
     }: LinkComponentProps,
     ref,
   ) => {
-    const finalClassName = classnames(linkClassName, className, {
-      [`${linkClassName}--reverse`]: variant === "reverse",
-    });
-
     return (
-      <a
-        className={finalClassName}
+      <ButtonPolymorphe
+        className={className}
+        variant={variant}
         rel={target === "_blank" ? "noopener noreferrer" : rel}
         aria-disabled={disabled ?? restProps["aria-disabled"]}
         ref={ref}
         target={target}
         {...restProps}
+        as="a"
       >
         {leftIcon}
         {children}
         {rightIcon}
-      </a>
+      </ButtonPolymorphe>
     );
   },
 );

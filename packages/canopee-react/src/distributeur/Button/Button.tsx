@@ -1,12 +1,7 @@
-import classNames from "classnames";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  type PropsWithChildren,
-  type ReactNode,
-} from "react";
+import { forwardRef, type PropsWithChildren } from "react";
 
 import "@axa-fr/canopee-css/distributeur/Button/Button.css";
+import { ButtonPolymorphe, type ButtonProps } from "./ButtonPolymorphe";
 
 export type ButtonVariant =
   | "primary"
@@ -15,15 +10,6 @@ export type ButtonVariant =
   | "danger"
   | "ghost"
   | "ghost-reverse";
-
-type ButtonProps = {
-  variant?: ButtonVariant;
-  small?: boolean;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-} & ComponentPropsWithoutRef<"button">;
-
-const DEFAULT_CLASS_NAME = "af-btn";
 
 export const Button = forwardRef<
   HTMLButtonElement,
@@ -41,21 +27,18 @@ export const Button = forwardRef<
     },
     ref,
   ) => (
-    <button
+    <ButtonPolymorphe
       type="button"
-      className={classNames(
-        DEFAULT_CLASS_NAME,
-        variant !== "primary" && `${DEFAULT_CLASS_NAME}--${variant}`,
-        small && `${DEFAULT_CLASS_NAME}--small`,
-        className,
-      )}
+      className={className}
+      variant={variant}
+      small={small}
       {...props}
       ref={ref}
     >
       {leftIcon}
       {children}
       {rightIcon}
-    </button>
+    </ButtonPolymorphe>
   ),
 );
 

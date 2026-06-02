@@ -40,25 +40,14 @@ export const LinkAsAnchorStory = meta.story({
     const leftIconProps = getIcon(leftIcon);
     const rightIconProps = getIcon(rightIcon);
 
-    const backgroundColor = variant === "reverse" ? "#00008f" : "#ffffff";
-
     return (
-      <div
-        style={{
-          maxWidth: "150px",
-          height: "50px",
-          padding: "10px",
-          backgroundColor,
-        }}
-      >
-        <Link
-          {...args}
-          target="_blank"
-          leftIcon={leftIconProps}
-          rightIcon={rightIconProps}
-          variant={variant}
-        />
-      </div>
+      <Link
+        {...args}
+        target="_blank"
+        leftIcon={leftIconProps}
+        rightIcon={rightIconProps}
+        variant={variant}
+      />
     );
   },
   args: {
