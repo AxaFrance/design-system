@@ -1,5 +1,7 @@
 @import "./ListCommon.css";
 
-:is(ol, ul).af-card {
-  --list-item-separator-bg-color: var(--gray-140);
+@layer canopee {
+  :is(ol, ul).af-card {
+    --list-item-separator-bg-color: var(--gray-140);
+  }
 }

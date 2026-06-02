@@ -1,18 +1,20 @@
-.af-fieldset {
-  display: flex;
-  margin: 0;
-  padding: var(--rem-16);
-  border: none;
-  flex-direction: column;
-  gap: var(--rem-24);
-
-  > legend.af-content-item-mono {
-    padding-top: var(--rem-16);
-  }
-
-  .af-fieldset__content {
+@layer canopee {
+  .af-fieldset {
     display: flex;
+    margin: 0;
+    padding: var(--rem-16);
+    border: none;
     flex-direction: column;
-    gap: var(--rem-16);
+    gap: var(--rem-24);
+
+    > legend.af-content-item-mono {
+      padding-top: var(--rem-16);
+    }
+
+    .af-fieldset__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--rem-16);
+    }
   }
 }

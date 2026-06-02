@@ -22,14 +22,14 @@
 
   /* BRAND PRIMITIVES **************************************************************/
 
-  /* ✅ valid names colors */
+  /* Ã¢Å“â€¦ valid names colors */
   --black: hsl(0deg, 0%, 0%);
   --black-1000: hsl(0deg, 0%, 7%);
   --white-1000: hsl(0deg, 0%, 100%);
   --white-1000-20: hsl(from var(--white-1000) h s l / 20%);
   --white-gray-1000: hsl(0deg, 0%, 98%);
 
-  /* ⛔ legacy names colors - DO NOT USE */
+  /* Ã¢â€ºâ€ legacy names colors - DO NOT USE */
   --color-white: var(--white-1000);
   --color-black: var(--black-1000);
   --dark: var(--black-1000);
@@ -40,7 +40,7 @@
 
   /* BLUE PRIMITIVES **************************************************************/
 
-  /* ✅ valid names colors */
+  /* Ã¢Å“â€¦ valid names colors */
   --blue-1200: hsl(240deg, 100%, 22%);
   --blue-1000: hsl(240deg, 100%, 28%);
   --blue-1000-20: hsl(from var(--blue-1000) h s l / 20%);
@@ -54,14 +54,14 @@
   --blue-080: hsl(240deg, 38%, 94%);
   --blue-040: hsl(240deg, 43%, 97%);
 
-  /* ⛔ legacy names colors - DO NOT USE */
+  /* Ã¢â€ºâ€ legacy names colors - DO NOT USE */
   --axa-blue-120: var(--blue-1200);
   --color-blue-1: var(--blue-1200);
   --axa-blue-100: var(--blue-1000);
   --color-axa: var(--blue-1000);
   --color-blue-800: var(--blue-1000);
-  --axa-blue-100-20: var(--blue-1000-20); /* pas utilisé */
-  --axa-blue-100-40: var(--blue-1000-40); /* pas utilisé */
+  --axa-blue-100-20: var(--blue-1000-20); /* pas utilisÃƒÂ© */
+  --axa-blue-100-40: var(--blue-1000-40); /* pas utilisÃƒÂ© */
   --axa-blue-80: var(--blue-900);
   --color-btn-light: var(--blue-800);
   --color-blue-80: var(--blue-800);
@@ -82,17 +82,17 @@
 
   /* RED PRIMITIVES **************************************************************/
 
-  /* ✅ valid names colors */
+  /* Ã¢Å“â€¦ valid names colors */
   --red-040: hsl(17deg, 64%, 98%);
   --red-alert-1000: hsl(0deg, 100%, 45%);
   --red-alert-1200: hsl(0deg, 100%, 36%);
 
-  /* ⛔ legacy names colors - DO NOT USE */
+  /* Ã¢â€ºâ€ legacy names colors - DO NOT USE */
   --axa-red-4: var(--red-040);
   --color-btn-error-bg: var(--red-040);
   --red-alert-100: var(--red-alert-1000);
   --axa-red-100: var(--red-alert-1000);
-  --color-red: var(--red-alert-1000); /* pas utilisé */
+  --color-red: var(--red-alert-1000); /* pas utilisÃƒÂ© */
   --color-red-700: var(--red-alert-1200);
   --color-btn-error-text: var(--red-alert-1200);
 
@@ -100,13 +100,13 @@
 
   /* ORANGE PRIMITIVES **************************************************************/
 
-  /* ✅ valid names colors */
+  /* Ã¢Å“â€¦ valid names colors */
   --orange-1050: hsl(19deg, 82%, 41%);
   --orange-1000: hsl(19deg, 82%, 43%);
   --orange-800: hsl(19deg, 63%, 55%);
   --orange-050: hsl(355deg, 100%, 98%);
 
-  /* ⛔ legacy names colors - DO NOT USE */
+  /* Ã¢â€ºâ€ legacy names colors - DO NOT USE */
   --warning-120: var(--orange-1050);
   --color-btn-business-dark: var(--orange-1050);
   --warning-100: var(--orange-1000);
@@ -120,7 +120,7 @@
 
   /* GRAY PRIMITIVES **************************************************************/
 
-  /* ✅ valid names colors */
+  /* Ã¢Å“â€¦ valid names colors */
   --gray-1000: hsl(0deg, 0%, 20%);
   --gray-1000-48: hsl(from var(--gray-1000) h s l / 48%);
   --gray-800: hsl(0deg, 0%, 36%);
@@ -131,7 +131,7 @@
   --gray-140: hsl(0deg, 0%, 89%);
   --gray-050: hsl(0deg, 0%, 96%);
 
-  /* ⛔ legacy names colors - DO NOT USE */
+  /* Ã¢â€ºâ€ legacy names colors - DO NOT USE */
   --color-gray-900: var(--gray-1000);
   --neutral-100: var(--gray-1000);
   --neutral-80: var(--gray-800);
@@ -153,11 +153,11 @@
 
   /* GREEN PRIMITIVES **************************************************************/
 
-  /* ✅ valid names colors */
+  /* Ã¢Å“â€¦ valid names colors */
   --green-1000: hsl(138deg, 68%, 30%);
   --green-040: hsl(135deg, 29%, 97%);
 
-  /* ⛔ legacy names colors - DO NOT USE */
+  /* Ã¢â€ºâ€ legacy names colors - DO NOT USE */
   --green-100: var(--green-1000);
   --color-green-600: var(--green-1000);
   --aqua-green-12: var(--green-040);
@@ -166,7 +166,7 @@
 
   /* OTHER PRIMITIVES **************************************************************/
 
-  /* ✅ valid names colors */
+  /* Ã¢Å“â€¦ valid names colors */
   --grape-1000: hsl(247deg, 77%, 61%);
   --grape-040: hsl(247deg, 77%, 85%);
   --sky-900: hsl(202deg, 71%, 71%);
