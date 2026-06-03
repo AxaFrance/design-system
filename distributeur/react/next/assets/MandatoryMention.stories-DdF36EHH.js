@@ -1,5 +1,0 @@
-import{n as e,r as t}from"./chunk-DnJy8xQt.js";import{j as n,n as r}from"./distributeur-BRYb64j7.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s,c=e((()=>{r(),a={title:`Components/MandatoryMention`,component:n,argTypes:{variant:{control:`radio`,options:[`one`,`all`]},id:{control:`text`}}},o={args:{variant:`one`}},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  args: {
-    variant: "one"
-  }
-}`,...o.parameters?.docs?.source}}},s=[`Default`]}));c();export{o as Default,s as __namedExportsOrder,a as default,c as n,i as t};
