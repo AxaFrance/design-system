@@ -69,7 +69,13 @@ export const AnimatedPopover = ({
           className="af-popover__container-pop"
         >
           <div>{children}</div>
-          <FloatingArrow ref={arrowRef} context={context} fill="white" />
+          <FloatingArrow
+            ref={arrowRef}
+            context={context}
+            fill="white"
+            width={16}
+            height={10}
+          />
         </div>
       ) : null}
     </div>
