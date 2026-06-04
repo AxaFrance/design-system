@@ -46,9 +46,9 @@
 }
 
 .af-card-checkbox__options--vertical {
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .af-card-checkbox__options--horizontal {
-  flex-direction: column;
+  flex-direction: row;
 }
