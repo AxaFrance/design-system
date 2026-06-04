@@ -2,13 +2,8 @@
 
 .af-item-message {
   --item-message-color: var(--red-alert-1000);
-  --item-message-icon-size: var(--rem-20);
 
   font-size: clamp(14px, 1.4vw, 16px);
-
-  @media (--desktop-small) {
-    --item-message-icon-size: var(--rem-24);
-  }
 }
 
 .af-item-message--success {
