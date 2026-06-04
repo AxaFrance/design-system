@@ -125,12 +125,12 @@
 .af-form__checkbox {
   position: relative;
   display: flex;
-  border-bottom: 1px solid var(--disabled-color);
   align-items: center;
 }
 
-.af-form__checkbox:last-child {
-  border-bottom: none;
+.af-form__checkbox .af-form__label {
+  margin-bottom: 1rem;
+  padding: 0;
 }
 
 /* Inline */
