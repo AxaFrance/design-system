@@ -7,9 +7,3 @@
   --data-agent-intro-padding: var(--rem-16);
   --data-agent-intro-content-padding: var(--rem-16) var(--rem-16) 0;
 }
-
-.af-data-agent__info-content {
-  .af-data-agent__line:last-of-type {
-    display: none;
-  }
-}
