@@ -1,7 +1,7 @@
 import {
   type ComponentType,
-  type ElementType,
   type HTMLAttributes,
+  type ReactNode,
   useId,
 } from "react";
 import {
@@ -9,21 +9,26 @@ import {
   type ItemMessageProps,
 } from "../Form/ItemMessage/ItemMessageCommon";
 import { type ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
+import type { HeadingCommonProps } from "../Heading/HeadingCommon";
+import type { HeadingLevel } from "../Heading/types";
 
 export type StepperProps = {
   currentStepProgress?: number;
   currentStep: number;
-  currentSubtitle?: string;
-  currentTitle?: string;
+  currentSubtitle?: ReactNode;
+  currentTitle?: ReactNode;
   nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   helper?: string;
+  icon?: string;
+  iconProps?: HeadingCommonProps["iconProps"];
   message?: string;
   messageType?: ItemMessageProps["messageType"];
-  titleLevel?: 1 | 2 | 3;
-} & Omit<HTMLAttributes<HTMLDivElement>, "role">;
+  titleLevel?: HeadingLevel;
+} & Omit<HTMLAttributes<HTMLDivElement>, "role" | "title">;
 
 export type StepperCommonProps = StepperProps & {
   ProgressBarGroupComponent: ComponentType<ProgressBarGroupProps>;
+  HeadingComponent: ComponentType<HeadingCommonProps>;
 };
 
 export const StepperCommon = ({
@@ -34,26 +39,28 @@ export const StepperCommon = ({
   currentSubtitle,
   className,
   ProgressBarGroupComponent,
+  HeadingComponent,
   helper,
+  icon,
+  iconProps,
   message,
   messageType = "success",
   titleLevel = 2,
   ...props
 }: StepperCommonProps) => {
   const titleId = useId();
-  const Title = `h${titleLevel}` as ElementType<
-    HTMLAttributes<HTMLHeadingElement>
-  >;
 
   return (
     <div className="af-stepper" {...props} tabIndex={undefined}>
-      <div className="af-stepper__header">
-        <Title id={titleId} className="af-stepper__title">
+      <div className="af-stepper__header" id={titleId}>
+        <HeadingComponent
+          level={titleLevel}
+          icon={icon}
+          iconProps={iconProps}
+          firstSubtitle={currentSubtitle}
+        >
           {currentTitle}
-        </Title>
-        {Boolean(currentSubtitle) && (
-          <p className="af-stepper__subtitle">{currentSubtitle}</p>
-        )}
+        </HeadingComponent>
       </div>
       <ProgressBarGroupComponent
         className={className}
