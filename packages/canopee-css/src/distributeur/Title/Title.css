@@ -1,12 +1,15 @@
 h2.af-title {
+  margin-bottom: 2rem;
   font-size: 1.5rem;
 }
 
 h3.af-title {
+  margin-bottom: 1.5rem;
   font-size: 1.25rem;
 }
 
 h4.af-title {
+  margin-bottom: 1rem;
   font-size: 1.125rem;
 }
 
