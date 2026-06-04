@@ -79,6 +79,7 @@ export {
 } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupLF";
 export { CardRadioOption } from "./prospect-client/Form/Radio/CardRadioOption/CardRadioOptionLF";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioLF";
+export { RadioText } from "./prospect-client/Form/Radio/RadioText/RadioTextLF";
 export { TextArea } from "./prospect-client/Form/TextArea/TextAreaLF";
 export { DebugGrid } from "./prospect-client/Grid/DebugGridLF";
 export {
