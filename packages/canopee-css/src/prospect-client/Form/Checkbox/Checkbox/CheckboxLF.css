@@ -6,6 +6,10 @@
   --checkbox-background-color: var(--white-1000);
   --checkbox-border-color: var(--gray-500);
 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: var(--rem-16) var(--rem-16);
+
   &:hover,
   &:focus-within,
   &:checked {
