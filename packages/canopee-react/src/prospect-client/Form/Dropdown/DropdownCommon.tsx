@@ -83,10 +83,13 @@ const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
 
     const hasError =
       (Boolean(message) && messageType === "error") || Boolean(error);
+    const hasWarning =
+      !hasError && Boolean(message) && messageType === "warning";
 
     const classname = classNames(
       "af-form__dropdown-input",
       hasError && "af-form__dropdown-input--error",
+      hasWarning && "af-form__dropdown-input--warning",
     );
 
     return (
@@ -114,7 +117,6 @@ const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
         {helper ? (
           <span className="af-form__input-helper">{helper}</span>
         ) : null}
-
         <ItemMessageComponent
           id={idMessage}
           message={message || error || success}
