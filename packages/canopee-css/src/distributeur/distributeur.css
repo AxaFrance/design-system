@@ -21,6 +21,7 @@
 @import "./Tabs/Tabs.css";
 @import "./Message/Message.css";
 @import "./Action/Action.css";
+@import "./HelpButton/HelpButton.css";
 @import "./Layout/Header/Drawer/Drawer.css";
 @import "./Layout/Header/Header.css";
 @import "./Layout/Header/Infos/Infos.css";
