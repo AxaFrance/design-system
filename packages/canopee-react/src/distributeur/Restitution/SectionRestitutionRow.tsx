@@ -3,7 +3,7 @@ import type { PropsWithChildren } from "react";
 import { getClassName } from "../utilities/helpers/getClassName";
 import { SectionRestitutionTitle } from "./SectionRestitutionTitle";
 
-const DEFAULT_CLASSNAME = "col col-sm-12 col-md-12 col-lg-12 col-xl-12";
+const DEFAULT_CLASSNAME = "af-restitution__content-row";
 
 export type SectionRestitutionRowProps = {
   title?: React.ReactNode;
