@@ -1,4 +1,5 @@
-.af-btn {
+.af-btn,
+.af-slash-link {
   --button-color-background: var(--axablue80);
   --button-color-border: var(--axablue100);
   --button-padding-horizontal: calc(16rem / 16);
@@ -97,16 +98,20 @@
     --button-padding-vertical: calc(10rem / 16);
   }
 
-  &.af-btn--ghost {
+  &.af-btn--ghost,
+  &.af-slash-link--default {
     --button-color-label: var(--axablue90);
   }
 
-  &.af-btn--ghost-reverse {
+  &.af-btn--ghost-reverse,
+  &.af-slash-link--default-reverse {
     --button-color-label: var(--white);
   }
 
   &.af-btn--ghost,
-  &.af-btn--ghost-reverse {
+  &.af-btn--ghost-reverse,
+  &.af-slash-link--default,
+  &.af-slash-link--default-reverse {
     --button-padding-vertical: calc(4rem / 16);
     --button-padding-horizontal: calc(8rem / 16);
     --button-color-background: transparent;
