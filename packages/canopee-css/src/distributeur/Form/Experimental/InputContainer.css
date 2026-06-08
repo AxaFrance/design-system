@@ -2,7 +2,8 @@
   --label-margin-bottom: 0;
 
   display: grid;
-  width: fit-content;
+
+  /* width: fit-content; */
   margin-bottom: 3rem;
   grid-template-areas:
     "label input unit"

@@ -1,0 +1,55 @@
+@layer radio-group {
+  .af-radio__group {
+    --radiogroup-gap: 0.25rem;
+
+    display: flex;
+    flex-direction: row;
+    gap: 8px var(--radiogroup-gap);
+  }
+
+  .af-radio__group:has(.af-radio__card) {
+    --radiogroup-gap: 1rem;
+    --radiogroup-card-direction: column;
+    --card-width: 180px;
+
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      [col-start] minmax(var(--card-width), 1fr)
+    );
+    grid-auto-rows: 1fr auto;
+    align-items: stretch;
+    gap: var(--radiogroup-gap);
+
+    .af-radiocard {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      grid-template-rows: subgrid;
+      grid-row: span 2;
+    }
+
+    .af-radio__card,
+    .af-radio-add-card {
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+    }
+
+    .af-radio-add-card {
+      justify-content: center;
+    }
+
+    .af-radiocard__action {
+      display: flex;
+      min-height: 0;
+    }
+
+    &.af-radio__group--vertical {
+      --radiogroup-card-direction: row;
+
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

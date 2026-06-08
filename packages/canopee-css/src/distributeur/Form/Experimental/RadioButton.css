@@ -1,0 +1,50 @@
+@layer radio-button {
+  .af-radio__button {
+    input {
+      appearance: none;
+    }
+
+    --background-color: var(--gray20);
+    --accent-border-color: var(--gray50);
+    --radio-text-color: var(--text-color);
+
+    display: inline;
+    width: max-content;
+    padding: 10px 16px 8px;
+    border-bottom: 2px solid var(--accent-border-color);
+    color: var(--radio-text-color);
+    background-color: var(--background-color);
+    cursor: pointer;
+
+    &:hover {
+      --background-color: var(--brand-primary);
+      --accent-border-color: var(--axablue90);
+      --radio-text-color: var(--white);
+    }
+
+    &:has(:checked) {
+      --background-color: var(--axablue90);
+      --accent-border-color: var(--axablue90);
+      --radio-text-color: var(--white);
+    }
+
+    &:has(:focus-visible) {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 2px;
+    }
+
+    &:has(:disabled) {
+      --background-color: var(--gray20);
+      --accent-border-color: var(--disabled-color);
+      --radio-text-color: var(--disabled-color);
+
+      cursor: not-allowed;
+    }
+
+    &:has([aria-invalid="true"]) {
+      --background-color: var(--red10);
+      --accent-border-color: var(--error-color);
+      --radio-text-color: var(--error-color);
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import "../../../CardButton/CardButton.css";
+
+@layer canopee {
+  .af-radio-add-card {
+    --radio-add-card-border-color: transparent;
+
+    min-height: 0;
+    padding: 14px 26px;
+    border: 1px solid var(--radio-add-card-border-color);
+    border-radius: 0;
+    justify-content: center;
+    gap: 1rem;
+    font-weight: 700;
+
+    .af-radiocard__label {
+      flex-grow: 0;
+      color: var(--brand-primary);
+    }
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    &:is(:hover, :active) .af-radiocard__label {
+      color: var(--white);
+    }
+  }
+}
+
+/* Styles when parent RadioGroup is vertical */
+.af-radio__group--vertical .af-radio-add-card {
+  --radio-add-card-border-color: var(--brand-primary);
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,0 +1,40 @@
+@import "../Card/BaseCard.css";
+
+@layer canopee {
+  .af-cardbutton {
+    --card-border-color: transparent;
+    --card-background-color: var(--white);
+    --card-text-color: var(--text-color);
+    --card-icon-color: var(--brand-primary);
+    --outline-color: transparent;
+    --outtline-offset: 0;
+
+    display: flex;
+    outline: 2px solid var(--outline-color);
+    outline-offset: var(--outtline-offset);
+
+    &:focus {
+      --outline-color: transparent;
+    }
+
+    &:active,
+    &:hover {
+      --card-border-color: var(--brand-primary);
+      --card-background-color: var(--brand-primary);
+      --card-text-color: var(--white);
+      --card-icon-color: var(--white);
+    }
+
+    &:focus-visible {
+      --outline-color: var(--brand-primary);
+    }
+
+    &:active:focus-visible,
+    &:hover:focus-visible {
+      --outtline-offset: 2px;
+      --card-background-color: var(--brand-primary);
+      --card-text-color: var(--white);
+      --card-icon-color: var(--white);
+    }
+  }
+}

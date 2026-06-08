@@ -1,7 +1,7 @@
 import "@axa-fr/canopee-css/distributeur/Form/Experimental/Label.css";
 import type { ComponentProps } from "react";
 
-export type LabelProps = ComponentProps<"label"> & {
+export type LegendProps = ComponentProps<"legend"> & {
   /**
    * Whether the label is required or not.
    * This will add a `*` after the label text.
@@ -10,13 +10,18 @@ export type LabelProps = ComponentProps<"label"> & {
    */
   required?: boolean;
 };
-export const Label = ({ children, required = false, ...props }: LabelProps) => (
-  <label className="af-label" {...props}>
+
+export const Legend = ({
+  children,
+  required = false,
+  ...props
+}: LegendProps) => (
+  <span className="af-label" {...props}>
     {children}
     {required ? (
       <span className="af-label__required" aria-hidden>
         *
       </span>
     ) : null}
-  </label>
+  </span>
 );

@@ -137,3 +137,10 @@ export {
   type EditorialMessageProps,
   type EditorialMessageType,
 } from "./distributeur/EditorialMessage/EditorialMessage";
+
+export {
+  CardButton,
+  type CardButtonProps,
+} from "./distributeur/CardButton/CardButton";
+
+export { BaseCard, type BaseCardProps } from "./distributeur/Card/BaseCard";
