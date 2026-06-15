@@ -1,0 +1,129 @@
+.af-timeline {
+  padding: 0;
+  box-shadow: 0 0 9px 0 rgb(0, 0, 0, 18%);
+  list-style: none;
+}
+
+.af-timeline__item {
+  width: 100%;
+  border-top: 1px solid var(--gray40);
+  font-size: 1rem;
+}
+
+.af-timeline__item:first-child {
+  border-top: none;
+}
+
+.af-timeline__parent-circle::before {
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  border-left: 1px solid var(--axablue80);
+  content: "";
+}
+
+.af-timeline__item:first-child .af-timeline__parent-circle::before {
+  top: 50%;
+}
+
+.af-timeline__item:last-child .af-timeline__parent-circle::before {
+  top: 0;
+  height: 50%;
+}
+
+.af-timeline--single-item
+  .af-timeline__item
+  .af-timeline__parent-circle::before {
+  content: none;
+}
+
+.af-timeline__parent-circle {
+  position: relative;
+  width: 1rem;
+  height: 100%;
+  margin: 1.5rem auto;
+}
+
+.af-timeline__circle {
+  position: absolute;
+  top: calc(50% - 0.5rem);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--axablue80);
+  border-radius: 50%;
+  background-color: var(--axablue80);
+}
+
+.af-timeline__circle--half {
+  background-color: var(--white);
+}
+
+.af-timeline__details {
+  & .af-timeline__summary {
+    position: relative;
+    display: grid;
+    padding: 0 0.5rem;
+    grid-template-columns: 5% 90% 5%;
+    align-items: center;
+    background-color: var(--white);
+    cursor: pointer;
+  }
+
+  & .af-timeline__summary::marker {
+    content: none;
+  }
+
+  & .af-timeline__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  & .af-timeline__show-and-hide-icon {
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 1rem;
+    transition: 0.3s ease-in-out;
+  }
+
+  &[open] .af-timeline__show-and-hide-icon {
+    transform: rotate(180deg);
+  }
+
+  & .af-timeline__results {
+    display: grid;
+    padding: 0 0.5rem;
+    grid-template-columns: 5% 95%;
+    background-color: var(--gray10);
+  }
+
+  & .af-timeline__content {
+    margin: 0;
+    padding: 1rem 0;
+  }
+
+  & .af-timeline__vertical-line {
+    position: relative;
+    left: 50%;
+    height: 100%;
+    border-left: 1px solid var(--axablue80);
+  }
+}
+
+.af-timeline--single-item .af-timeline__vertical-line {
+  border-left: none;
+}
+
+.af-timeline__item:last-child .af-timeline__vertical-line {
+  border-left: none;
+}
+
+.af-timeline--without-details .af-timeline__without-details {
+  display: grid;
+  padding: 0 0.5rem;
+  grid-template-columns: 5% 95%;
+  align-items: center;
+  background-color: var(--white);
+}
+
+.af-timeline--without-details .af-timeline__without-details-content {
+  padding: 1rem 0;
+}
