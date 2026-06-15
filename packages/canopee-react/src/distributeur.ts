@@ -137,3 +137,9 @@ export {
   type EditorialMessageProps,
   type EditorialMessageType,
 } from "./distributeur/EditorialMessage/EditorialMessage";
+
+export {
+  Timeline,
+  type TimelineProps,
+  type TimelineVariants,
+} from "./distributeur/Timeline/Timeline";
