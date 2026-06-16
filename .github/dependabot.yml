@@ -12,7 +12,14 @@ updates:
       - dependency-name: "*storybook*" # ignore all storybook packages
   - package-ecosystem: "github-actions"
     directory: "/"
+    groups:
+     minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     labels:
-      - "gh-actions"      
+      - "gh-actions"
