@@ -1,0 +1,209 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import tokensCssSource from "../../../../packages/canopee-css/src/distributeur/common/tokens.css?raw";
+
+export const parsedTokens = (() => {
+  const variableRegex =
+    /^\s*(--[a-z0-9-]+)\s*:\s*([^;]+);\s*(?:\/\*\s*(#[a-f0-9]{3,8})\s*\*\/)?/i;
+  const customMediaRegex = /^\s*@custom-media\s+(--[a-z0-9-]+)\s+([^;]+);/i;
+  const commentBlockRegex = /^\s*\/\*+\s*(.*?)\s*\*+\/\s*$/;
+  const directColorRegex = /^(hsl|rgb|rgba|#|oklch|lab|lch|hwb|color\()/i;
+
+const ensureSection = (sections, title) => {
+const existing = sections.find((section) => section.title === title);
+if (existing) {
+return existing;
+}
+
+    const created = { title, cssVariables: [], customMedias: [] };
+    sections.push(created);
+    return created;
+
+};
+
+const parsed = tokensCssSource.split("\n").reduce(
+(acc, line) => {
+const commentMatch = line.match(commentBlockRegex);
+if (commentMatch) {
+const [, rawTitle] = commentMatch;
+const normalizedTitle = rawTitle.replace(/\*/g, "").trim();
+if (/[a-z]/i.test(normalizedTitle)) {
+acc.currentSectionTitle = normalizedTitle;
+ensureSection(acc.sections, normalizedTitle);
+}
+return acc;
+}
+
+      const variableMatch = line.match(variableRegex);
+      if (variableMatch) {
+        const [, token, value, hexValue] = variableMatch;
+        const section = ensureSection(acc.sections, acc.currentSectionTitle);
+        section.cssVariables.push({
+          token,
+          value: value.trim(),
+          hexValue: hexValue ? hexValue.toUpperCase() : null,
+        });
+        return acc;
+      }
+
+      const customMediaMatch = line.match(customMediaRegex);
+      if (customMediaMatch) {
+        const [, token, value] = customMediaMatch;
+        const section = ensureSection(acc.sections, acc.currentSectionTitle);
+        section.customMedias.push({ token, value: value.trim() });
+      }
+
+      return acc;
+    },
+    { sections: [], currentSectionTitle: "Autres" },
+
+);
+
+const allVariables = parsed.sections.flatMap((section) => section.cssVariables);
+
+const tokenMap = new Map(
+allVariables.map(({ token, value, hexValue }) => [token, { value, hexValue }]),
+);
+
+const resolvePreviewColor = (rawValue, depth = 0) => {
+const value = rawValue.trim();
+if (depth > 8) {
+return null;
+}
+
+    if (directColorRegex.test(value)) {
+      return value;
+    }
+
+    const variableRefMatch = value.match(/^var\((--[a-z0-9-]+)\)$/i);
+    if (variableRefMatch) {
+      const [, referencedToken] = variableRefMatch;
+      const referencedEntry = tokenMap.get(referencedToken);
+      return referencedEntry
+        ? resolvePreviewColor(referencedEntry.value, depth + 1)
+        : null;
+    }
+
+    return null;
+
+};
+
+const resolveHexValue = (rawValue, directHexValue, depth = 0) => {
+const value = rawValue.trim();
+if (depth > 8) {
+return null;
+}
+
+    if (directHexValue) {
+      return directHexValue;
+    }
+
+    const variableRefMatch = value.match(/^var\((--[a-z0-9-]+)\)$/i);
+    if (variableRefMatch) {
+      const [, referencedToken] = variableRefMatch;
+      const referencedEntry = tokenMap.get(referencedToken);
+      return referencedEntry
+        ? resolveHexValue(
+          referencedEntry.value,
+          referencedEntry.hexValue,
+          depth + 1,
+        )
+        : null;
+    }
+
+    return null;
+
+};
+
+return parsed.sections.map((section) => ({
+title: section.title,
+customMedias: section.customMedias,
+cssVariables: section.cssVariables.map(({ token, value, hexValue }) => ({
+token,
+value,
+hexValue: resolveHexValue(value, hexValue),
+previewColor: resolvePreviewColor(value),
+})),
+}));
+})();
+
+<Meta title="Fondations/Tokens" />
+
+# Tokens Distributeur
+
+Cette page est alimentee directement depuis
+`packages/canopee-css/src/distributeur/common/tokens.css`.
+
+{parsedTokens.map((section) => (
+
+  <div key={section.title}>
+    <h2>{section.title}</h2>
+
+    {section.cssVariables.length > 0 ? (
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valeur</th>
+            <th>Apercu</th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.cssVariables.map(({ token, value, hexValue, previewColor }) => (
+            <tr key={token}>
+              <td>
+                <code>{token}</code>
+              </td>
+              <td>
+                <code>{value}</code>
+                {hexValue && hexValue.toLowerCase() !== value.trim().toLowerCase() ? (
+                  <> / <code>({hexValue})</code></>
+                ) : null}
+              </td>
+              <td>
+                {previewColor ? (
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: "1.5em",
+                      height: "1.5em",
+                      backgroundColor: previewColor,
+                      border: "1px solid #ccc",
+                      borderRadius: "2px",
+                    }}
+                    title={token}
+                  />
+                ) : (
+                  "-"
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : null}
+
+    {section.customMedias.length > 0 ? (
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valeur</th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.customMedias.map(({ token, value }) => (
+            <tr key={token}>
+              <td>
+                <code>{token}</code>
+              </td>
+              <td>
+                <code>{value}</code>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : null}
+
+  </div>
+))}
