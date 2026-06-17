@@ -4,6 +4,7 @@ import {
   type ComponentType,
   useId,
 } from "react";
+import { getClassName } from "../../utilities/getClassName";
 import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import {
   ItemLabelCommon,
@@ -70,6 +71,12 @@ const TextAreaCommon = ({
 
   const hasError =
     (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasWarning = Boolean(message) && messageType === "warning" && !hasError;
+
+  const textareaClassName = getClassName({
+    baseClassName: "af-form__textarea",
+    modifiers: [hasWarning && "warning"],
+  });
 
   return (
     <div
@@ -89,10 +96,9 @@ const TextAreaCommon = ({
       >
         {label}
       </ItemLabelComponent>
-
       <textarea
         id={inputId}
-        className="af-form__textarea"
+        className={textareaClassName}
         aria-errormessage={hasError ? messageId : undefined}
         aria-describedby={helper ? helperId : undefined}
         required={required}
@@ -100,13 +106,11 @@ const TextAreaCommon = ({
         placeholder={placeholder}
         {...inputProps}
       />
-
       {helper ? (
         <span id={helperId} className="af-form__input-helper">
           {helper}
         </span>
       ) : null}
-
       <ItemMessageComponent
         id={messageId}
         message={message || error}
