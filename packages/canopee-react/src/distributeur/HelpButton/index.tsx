@@ -1,14 +1,17 @@
-import "@axa-fr/canopee-css/distributeur/Action/Action.css";
+import "@axa-fr/canopee-css/distributeur/HelpButton/HelpButton.css";
 import classNames from "classnames";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import info from "@material-symbols/svg-400/rounded/info_i-fill.svg";
 import { Popover } from "../Popover";
 import { getClassName } from "../utilities/helpers/getClassName";
+import { Svg } from "../Svg";
 
 type HelpProps = Omit<
   ComponentPropsWithoutRef<typeof Popover>,
   "popoverElement"
 > & {
   helpButtonContent?: ReactNode;
+  variant?: "default" | "inverse";
 };
 
 export const HelpButton = ({
@@ -17,19 +20,23 @@ export const HelpButton = ({
   children,
   mode = "click",
   placement = "right",
-  helpButtonContent = <span className="af-more-help">i</span>,
+  variant = "default",
+  helpButtonContent = <Svg src={info} alt="Help" />,
 }: HelpProps) => {
   const buttonClassName = classNames(
     "btn",
     getClassName({
       baseClassName: "af-btn--circle",
-      modifiers: classModifier?.split(" "),
+      modifiers: [
+        ...(classModifier?.split(" ") ?? []),
+        ...(variant === "inverse" ? ["inverse"] : []),
+      ],
     }),
   );
 
   return (
     <Popover
-      className={className}
+      className={classNames("af-help-button", className)}
       classModifier={classModifier}
       placement={placement}
       mode={mode}
