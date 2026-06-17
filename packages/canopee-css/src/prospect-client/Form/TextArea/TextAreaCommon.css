@@ -12,13 +12,15 @@
     line-height: 125%;
     color: var(--textarea-color);
     background-color: var(--textarea-background-color);
-    box-shadow: 0 0 0 var(--textarea-box-shadow-width)
-      var(--textarea-box-shadow-color) inset;
+    box-shadow: 0 0 0 var(--textarea-box-shadow-width) var(--textarea-box-shadow-color) inset;
     outline: none;
 
-    &:is(:focus-visible, :hover, :active, :focus, [aria-invalid="true"]):not(
-        :disabled
-      ) {
+    &:is( :focus-visible,
+      :hover,
+      :active,
+      :focus,
+      [aria-invalid="true"],
+      [class*="--warning"]):not(:disabled) {
       --textarea-box-shadow-width: 2px;
     }
 
@@ -30,6 +32,19 @@
     &::placeholder {
       font-weight: 400;
       color: var(--textarea-placeholder-color);
+    }
+
+    &[class*="--warning"] {
+      --textarea-box-shadow-color: var(--orange-1050);
+
+      &:not(:placeholder-shown) {
+        --textarea-box-shadow-color: var(--orange-1050);
+      }
+
+      &:is(:focus-visible, :hover, :active, :focus) {
+        --textarea-box-shadow-color: var(--orange-1050);
+        --textarea-box-shadow-width: 3px;
+      }
     }
   }
 }
