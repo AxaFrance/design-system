@@ -78,10 +78,12 @@ const DropdownCommon = ({
 
   const hasError =
     (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasWarning = !hasError && Boolean(message) && messageType === "warning";
 
   const classname = classNames(
     "af-form__dropdown-input",
     hasError && "af-form__dropdown-input--error",
+    hasWarning && "af-form__dropdown-input--warning",
   );
 
   return (
@@ -102,7 +104,6 @@ const DropdownCommon = ({
         {children}
       </select>
       {helper ? <span className="af-form__input-helper">{helper}</span> : null}
-
       <ItemMessageComponent
         id={idMessage}
         message={message || error || success}
