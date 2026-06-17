@@ -48,11 +48,20 @@
   }
 }
 
-.af-form__dropdown-input--error {
+.af-form__dropdown-input--error,
+.af-form__dropdown-input--warning {
   --dropdown-box-shadow-width: 2px;
 
   &:is(:focus-visible, :hover, :active) {
     --dropdown-box-shadow-width: 3px;
+  }
+}
+
+.af-form__dropdown-input.af-form__dropdown-input--warning {
+  --dropdown-box-shadow-color: var(--orange-1050);
+
+  &:is(:focus-visible, :hover, :active) {
+    --dropdown-box-shadow-color: var(--orange-1050);
   }
 }
 
