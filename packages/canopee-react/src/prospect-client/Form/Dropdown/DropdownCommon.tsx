@@ -3,7 +3,6 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
-  forwardRef,
   useId,
 } from "react";
 import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
@@ -50,82 +49,70 @@ type DropdownCommonProps = DropdownProps & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-const DropdownCommon = forwardRef<HTMLSelectElement, DropdownCommonProps>(
-  (
-    {
-      id,
-      required,
-      label,
-      error,
-      placeholder,
-      children,
-      helper,
-      success,
-      message,
-      messageType,
-      description,
-      buttonLabel,
-      moreButtonLabel,
-      onButtonClick,
-      onMoreButtonClick,
-      sideButtonLabel,
-      onSideButtonClick,
-      ItemLabelComponent,
-      ItemMessageComponent,
-      containerProps,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    const idMessage = useId();
-    let inputId = useId();
-    inputId = id || inputId;
+const DropdownCommon = ({
+  id,
+  required,
+  label,
+  error,
+  placeholder,
+  children,
+  helper,
+  success,
+  message,
+  messageType,
+  description,
+  buttonLabel,
+  moreButtonLabel,
+  onButtonClick,
+  onMoreButtonClick,
+  sideButtonLabel,
+  onSideButtonClick,
+  ItemLabelComponent,
+  ItemMessageComponent,
+  containerProps,
+  ...otherProps
+}: DropdownCommonProps) => {
+  const idMessage = useId();
+  let inputId = useId();
+  inputId = id || inputId;
 
-    const hasError =
-      (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(error);
     const hasWarning =
       !hasError && Boolean(message) && messageType === "warning";
 
-    const classname = classNames(
-      "af-form__dropdown-input",
-      hasError && "af-form__dropdown-input--error",
+  const classname = classNames(
+    "af-form__dropdown-input",
+    hasError && "af-form__dropdown-input--error",
       hasWarning && "af-form__dropdown-input--warning",
-    );
+  );
 
-    return (
-      <div className="af-form__dropdown-container" {...containerProps}>
-        <ItemLabelComponent
-          description={description}
-          moreButtonLabel={moreButtonLabel ?? buttonLabel}
-          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
-          sideButtonLabel={sideButtonLabel}
-          onSideButtonClick={onSideButtonClick}
-          required={required}
-          htmlFor={inputId}
-        >
-          {label}
-        </ItemLabelComponent>
-        <select
-          className={classname}
-          {...otherProps}
-          ref={inputRef}
-          id={inputId}
-        >
-          {Boolean(placeholder) && <option value="">{placeholder}</option>}
-          {children}
-        </select>
-        {helper ? (
-          <span className="af-form__input-helper">{helper}</span>
-        ) : null}
-        <ItemMessageComponent
-          id={idMessage}
-          message={message || error || success}
-          messageType={messageType || (error ? "error" : "success")}
-        />
-      </div>
-    );
-  },
-);
+  return (
+    <div className="af-form__dropdown-container" {...containerProps}>
+      <ItemLabelComponent
+        description={description}
+        moreButtonLabel={moreButtonLabel ?? buttonLabel}
+        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        sideButtonLabel={sideButtonLabel}
+        onSideButtonClick={onSideButtonClick}
+        required={required}
+        htmlFor={inputId}
+      >
+        {label}
+      </ItemLabelComponent>
+      <select className={classname} {...otherProps} id={inputId}>
+        {Boolean(placeholder) && <option value="">{placeholder}</option>}
+        {children}
+      </select>
+      {helper ? <span className="af-form__input-helper">{helper}</span> : null}
+      <ItemMessageComponent
+        id={idMessage}
+        message={message || error || success}
+        messageType={messageType || (error ? "error" : "success")}
+      />
+    </div>
+  );
+};
 
 DropdownCommon.displayName = "Dropdown";
 

@@ -1,7 +1,6 @@
 import {
   type ComponentProps,
   type ComponentType,
-  forwardRef,
   type ReactNode,
   useId,
 } from "react";
@@ -50,94 +49,86 @@ type InputTextCommonProps = InputTextProps & {
   InputTextAtomComponent: ComponentType<ComponentProps<typeof InputTextAtom>>;
 };
 
-const InputTextCommon = forwardRef<HTMLInputElement, InputTextCommonProps>(
-  (
-    {
-      unit,
-      className,
-      classModifier = "",
-      helper,
-      error,
-      success,
-      message,
-      messageType,
-      label,
-      description,
-      buttonLabel,
-      moreButtonLabel,
-      onButtonClick,
-      onMoreButtonClick,
-      required,
-      sideButtonLabel,
-      onSideButtonClick,
-      ItemLabelComponent,
-      ItemMessageComponent,
-      InputTextAtomComponent,
-      containerProps,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    let inputId = useId();
-    inputId = otherProps.id || inputId;
-    const idMessage = useId();
-    const idHelp = useId();
+const InputTextCommon = ({
+  unit,
+  className,
+  classModifier = "",
+  helper,
+  error,
+  success,
+  message,
+  messageType,
+  label,
+  description,
+  buttonLabel,
+  moreButtonLabel,
+  onButtonClick,
+  onMoreButtonClick,
+  required,
+  sideButtonLabel,
+  onSideButtonClick,
+  ItemLabelComponent,
+  ItemMessageComponent,
+  InputTextAtomComponent,
+  containerProps,
+  ...otherProps
+}: InputTextCommonProps) => {
+  let inputId = useId();
+  inputId = otherProps.id || inputId;
+  const idMessage = useId();
+  const idHelp = useId();
 
-    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
-      Boolean,
-    ) as string[];
+  const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
+    Boolean,
+  ) as string[];
 
-    return (
-      <div className="af-form__input-container" {...containerProps}>
-        <ItemLabelComponent
-          description={description}
-          moreButtonLabel={moreButtonLabel ?? buttonLabel}
-          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
-          sideButtonLabel={sideButtonLabel}
-          onSideButtonClick={onSideButtonClick}
-          required={required}
-          htmlFor={inputId}
-        >
-          {label}
-        </ItemLabelComponent>
+  return (
+    <div className="af-form__input-container" {...containerProps}>
+      <ItemLabelComponent
+        description={description}
+        moreButtonLabel={moreButtonLabel ?? buttonLabel}
+        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        sideButtonLabel={sideButtonLabel}
+        onSideButtonClick={onSideButtonClick}
+        required={required}
+        htmlFor={inputId}
+      >
+        {label}
+      </ItemLabelComponent>
 
-        <InputTextAtomComponent
-          id={inputId}
-          ref={inputRef}
-          unit={unit}
-          className={className}
-          classModifier={classModifier}
-          error={
-            (message && messageType === "error") || Boolean(error)
-              ? messageType || error
-              : undefined
-          }
-          warning={
-            message && messageType === "warning" ? messageType : undefined
-          }
-          required={required}
-          idMessage={message || error ? idMessage : undefined}
-          idHelp={
-            ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
-          }
-          {...otherProps}
-        />
+      <InputTextAtomComponent
+        id={inputId}
+        unit={unit}
+        className={className}
+        classModifier={classModifier}
+        error={
+          (message && messageType === "error") || Boolean(error)
+            ? messageType || error
+            : undefined
+        }
+        warning={message && messageType === "warning" ? messageType : undefined}
+        required={required}
+        idMessage={message || error ? idMessage : undefined}
+        idHelp={
+          ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+        }
+        {...otherProps}
+      />
 
-        {helper ? (
-          <span id={idHelp} className="af-form__input-helper">
-            {helper}
-          </span>
-        ) : null}
+      {helper ? (
+        <span id={idHelp} className="af-form__input-helper">
+          {helper}
+        </span>
+      ) : null}
 
-        <ItemMessageComponent
-          id={idMessage}
-          message={message || error || success}
-          messageType={messageType || (error ? "error" : "success")}
-        />
-      </div>
-    );
-  },
-);
+      <ItemMessageComponent
+        id={idMessage}
+        message={message || error || success}
+        messageType={messageType || (error ? "error" : "success")}
+      />
+    </div>
+  );
+};
 
 InputTextCommon.displayName = "InputText";
 

@@ -1,6 +1,5 @@
-import { render, waitFor } from "@testing-library/react";
+import { act, render, waitFor } from "@testing-library/react";
 import userEvent, { type UserEvent } from "@testing-library/user-event";
-import { act } from "react";
 import { Popover } from "../Popover";
 
 describe("<Popover />", () => {

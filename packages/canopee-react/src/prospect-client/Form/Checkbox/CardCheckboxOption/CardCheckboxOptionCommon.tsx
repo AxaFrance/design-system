@@ -1,4 +1,4 @@
-import { type ComponentType, forwardRef, type ReactNode } from "react";
+import { type ComponentType, type ReactNode } from "react";
 import type { IconProps } from "../../../Icon/IconCommon";
 import type { CheckboxProps } from "../Checkbox/CheckboxCommon";
 
@@ -15,46 +15,38 @@ export type CardCheckboxOptionCommonProps = CardCheckboxOptionProps & {
   IconComponent: ComponentType<IconProps>;
 };
 
-const CardCheckboxOptionCommon = forwardRef<
-  HTMLInputElement,
-  CardCheckboxOptionCommonProps
->(
-  (
-    {
-      label,
-      type = "vertical",
-      description,
-      subtitle,
-      icon,
+const CardCheckboxOptionCommon = ({
+  label,
+  type = "vertical",
+  description,
+  subtitle,
+  icon,
+  className,
+  CheckboxComponent,
+  IconComponent,
+  ...inputProps
+}: CardCheckboxOptionCommonProps) => (
+  <label
+    className={[
+      "af-card-checkbox-option",
+      type === "horizontal" && "af-card-checkbox-option--horizontal",
       className,
-      CheckboxComponent,
-      IconComponent,
-      ...inputProps
-    },
-    ref,
-  ) => (
-    <label
-      className={[
-        "af-card-checkbox-option",
-        type === "horizontal" && "af-card-checkbox-option--horizontal",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      {icon ? <IconComponent src={icon} role="presentation" /> : null}
-      <div className="af-card-checkbox-option__content">
-        <p className="af-card-checkbox-option__label">{label}</p>
-        {Boolean(description) && (
-          <p className="af-card-checkbox-option__description">{description}</p>
-        )}
-        {Boolean(subtitle) && (
-          <p className="af-card-checkbox-option__subtitle">{subtitle}</p>
-        )}
-      </div>
-      <CheckboxComponent {...inputProps} ref={ref} />
-    </label>
-  ),
+    ]
+      .filter(Boolean)
+      .join(" ")}
+  >
+    {icon ? <IconComponent src={icon} role="presentation" /> : null}
+    <div className="af-card-checkbox-option__content">
+      <p className="af-card-checkbox-option__label">{label}</p>
+      {Boolean(description) && (
+        <p className="af-card-checkbox-option__description">{description}</p>
+      )}
+      {Boolean(subtitle) && (
+        <p className="af-card-checkbox-option__subtitle">{subtitle}</p>
+      )}
+    </div>
+    <CheckboxComponent {...inputProps} />
+  </label>
 );
 
 CardCheckboxOptionCommon.displayName = "CardCheckboxOptionCommon";
