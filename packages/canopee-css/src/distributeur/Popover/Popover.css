@@ -16,13 +16,14 @@
 .af-popover__container-pop {
   position: relative;
   z-index: 100;
-  width: calc(260rem / 16);
-  padding: 0.5rem 1rem;
-  border-radius: 3px;
+  max-width: 30rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
   line-height: 1.125rem;
-  color: var(--azur);
+  color: var(--axablue80);
   background: var(--white);
-  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
+  filter: drop-shadow(0 0 9px rgba(0, 0, 0, 18%));
 }
 
 .af-popover__container-pop .af-subtitle {
