@@ -1,0 +1,5 @@
+@import "./MultiMessageCommon.css";
+
+.af-multi-message {
+  --multi-message-gap: var(--rem-12);
+}
