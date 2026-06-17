@@ -1,6 +1,5 @@
 import {
   type ComponentProps,
-  forwardRef,
   type OptionHTMLAttributes,
   type PropsWithChildren,
 } from "react";
@@ -28,24 +27,26 @@ type SelectProps = PropsWithChildren<
     mode?: "default" | "base";
   }
 >;
-const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ mode = "default", children, options, ...props }, inputRef) => {
-    if (mode === "default") {
-      return options ? (
-        <SelectDefaultWithOptions ref={inputRef} {...props} options={options} />
-      ) : (
-        <SelectDefault ref={inputRef} {...props}>
-          {children}
-        </SelectDefault>
-      );
-    }
-    return (
-      <SelectBase ref={inputRef} {...props} options={options}>
-        {children}
-      </SelectBase>
+
+const Select = ({
+  mode = "default",
+  children,
+  options,
+  ...props
+}: SelectProps) => {
+  if (mode === "default") {
+    return options ? (
+      <SelectDefaultWithOptions {...props} options={options} />
+    ) : (
+      <SelectDefault {...props}>{children}</SelectDefault>
     );
-  },
-);
+  }
+  return (
+    <SelectBase {...props} options={options}>
+      {children}
+    </SelectBase>
+  );
+};
 
 Select.displayName = "Select";
 

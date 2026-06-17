@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 import { getComponentClassName } from "../utilities/getComponentClassName";
 
 export type ItemTabBarProps = ComponentPropsWithRef<"button"> & {
@@ -6,23 +6,25 @@ export type ItemTabBarProps = ComponentPropsWithRef<"button"> & {
   title: string;
 };
 
-export const ItemTabBar = forwardRef<HTMLButtonElement, ItemTabBarProps>(
-  ({ isActive = false, title, className, ...props }, ref) => {
-    const classNames = getComponentClassName("af-item-tab-bar", className);
+export const ItemTabBar = ({
+  isActive = false,
+  title,
+  className,
+  ...props
+}: ItemTabBarProps) => {
+  const classNames = getComponentClassName("af-item-tab-bar", className);
 
-    return (
-      <button
-        ref={ref}
-        type="button"
-        role="tab"
-        aria-selected={isActive}
-        className={classNames}
-        {...props}
-      >
-        {title}
-      </button>
-    );
-  },
-);
+  return (
+    <button
+      type="button"
+      role="tab"
+      aria-selected={isActive}
+      className={classNames}
+      {...props}
+    >
+      {title}
+    </button>
+  );
+};
 
 ItemTabBar.displayName = "ItemTabBar";

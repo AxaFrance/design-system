@@ -63,7 +63,6 @@ export const NavBarItemBase = ({
         role={role}
         tabIndex={tabIndex}
         aria-expanded={isMenuOpen}
-        ref={ref}
       />
       {children}
     </li>
