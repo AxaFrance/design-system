@@ -16,8 +16,8 @@ import { getItems, type getItemsProps } from "./Pagination.helper";
 export type PaginationProps = getItemsProps &
   ComponentPropsWithoutRef<"nav"> & {
     hidePrevNext?: boolean;
-    prevButtonProps?: ComponentProps<typeof ClickIcon>;
-    nextButtonProps?: ComponentProps<typeof ClickIcon>;
+    prevButtonProps?: Partial<ComponentProps<typeof ClickIcon>>;
+    nextButtonProps?: Partial<ComponentProps<typeof ClickIcon>>;
   };
 
 type PaginationCommonProps = PaginationProps & {

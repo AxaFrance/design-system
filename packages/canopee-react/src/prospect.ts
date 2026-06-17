@@ -127,6 +127,11 @@ export {
   type MessageVariants,
 } from "./prospect-client/Message/MessageApollo";
 export {
+  MultiMessage,
+  type MultiMessageItem,
+  type MultiMessageProps,
+} from "./prospect-client/MultiMessage/MultiMessageApollo";
+export {
   Modal,
   ModalCore,
   ModalCoreBody,
