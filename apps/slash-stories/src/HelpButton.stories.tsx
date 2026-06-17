@@ -31,6 +31,10 @@ const meta = preview.meta({
       options: ["hover", "click"],
       control: { type: "inline-radio" },
     },
+    variant: {
+      options: ["default", "inverse"],
+      control: { type: "inline-radio" },
+    },
   },
   parameters: {
     layout: "centered",
@@ -45,6 +49,18 @@ export const Default = meta.story({
   ),
   args: {
     mode: "hover",
+    variant: "default",
+  },
+});
+
+export const Inverse = meta.story({
+  name: "HelpButton Inverse",
+  render: ({ ...args }) => (
+    <HelpButton {...args}>Lorem ipsum dolor sit amet</HelpButton>
+  ),
+  args: {
+    mode: "hover",
+    variant: "inverse",
   },
 });
 
