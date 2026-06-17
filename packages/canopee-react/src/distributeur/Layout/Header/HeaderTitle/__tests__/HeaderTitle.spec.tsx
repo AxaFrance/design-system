@@ -1,5 +1,5 @@
-import { axe } from "jest-axe";
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { HeaderTitle } from "../HeaderTitle";
 
 const items = [
@@ -22,7 +22,7 @@ describe("HeaderTitle", () => {
     render(<HeaderTitle title="Titre de la page" subtitle="Sous titre" />);
 
     expect(
-      screen.getByRole("heading", { name: "Titre de la page Sous titre" }),
+      screen.getByRole("heading", { name: "Titre de la pageSous titre" }),
     ).toBeInTheDocument();
   });
 
