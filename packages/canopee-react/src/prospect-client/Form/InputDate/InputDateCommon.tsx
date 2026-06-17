@@ -2,7 +2,6 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
-  forwardRef,
   useId,
 } from "react";
 import { getClassName } from "../../utilities/getClassName";
@@ -58,116 +57,108 @@ type InputDateCommonProps = InputDateProps & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-const InputDateCommon = forwardRef<HTMLInputElement, InputDateCommonProps>(
-  (
-    {
-      className,
-      classModifier = "",
-      helper,
-      error,
-      success,
-      message,
-      messageType,
-      label,
-      description,
-      buttonLabel,
-      moreButtonLabel,
-      onButtonClick,
-      onMoreButtonClick,
-      ItemLabelComponent,
-      ItemMessageComponent,
-      required,
-      hidePicker,
-      max,
-      min,
-      containerProps,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    let inputId = useId();
-    inputId = otherProps.id ?? inputId;
-    const idMessage = useId();
-    const idHelp = useId();
+const InputDateCommon = ({
+  className,
+  classModifier = "",
+  helper,
+  error,
+  success,
+  message,
+  messageType,
+  label,
+  description,
+  buttonLabel,
+  moreButtonLabel,
+  onButtonClick,
+  onMoreButtonClick,
+  ItemLabelComponent,
+  ItemMessageComponent,
+  required,
+  hidePicker,
+  max,
+  min,
+  containerProps,
+  ...otherProps
+}: InputDateCommonProps) => {
+  let inputId = useId();
+  inputId = otherProps.id ?? inputId;
+  const idMessage = useId();
+  const idHelp = useId();
 
-    const ariaDescribedbyIds = [
-      helper && idHelp,
-      ((Boolean(message) && messageType === "success") || Boolean(success)) &&
-        idMessage,
-    ].filter(Boolean) as string[];
+  const ariaDescribedbyIds = [
+    helper && idHelp,
+    ((Boolean(message) && messageType === "success") || Boolean(success)) &&
+      idMessage,
+  ].filter(Boolean) as string[];
 
-    const ariaDescribedby = ariaDescribedbyIds.length
-      ? ariaDescribedbyIds.join(" ")
-      : undefined;
+  const ariaDescribedby = ariaDescribedbyIds.length
+    ? ariaDescribedbyIds.join(" ")
+    : undefined;
 
-    const hasError =
-      (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(error);
 
-    const ariaErrormessage = hasError ? idMessage : undefined;
+  const ariaErrormessage = hasError ? idMessage : undefined;
 
-    const ariaInvalid = hasError || undefined;
+  const ariaInvalid = hasError || undefined;
 
-    const hasWarning =
-      Boolean(message) && messageType === "warning" && !hasError;
+  const hasWarning = Boolean(message) && messageType === "warning" && !hasError;
 
-    const componentClassName = getClassName({
-      baseClassName: "af-form__input-date",
-      modifiers: [...classModifier.split(" "), hasWarning && "warning"],
-      className,
-    });
+  const componentClassName = getClassName({
+    baseClassName: "af-form__input-date",
+    modifiers: [...classModifier.split(" "), hasWarning && "warning"],
+    className,
+  });
 
-    return (
-      <div className="af-form__input-container" {...containerProps}>
-        <ItemLabelComponent
-          description={description}
-          moreButtonLabel={moreButtonLabel ?? buttonLabel}
-          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+  return (
+    <div className="af-form__input-container" {...containerProps}>
+      <ItemLabelComponent
+        description={description}
+        moreButtonLabel={moreButtonLabel ?? buttonLabel}
+        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        required={required}
+        htmlFor={inputId}
+      >
+        {label}
+      </ItemLabelComponent>
+      {hidePicker ? (
+        <InputDateTextAtom
+          {...otherProps}
+          id={inputId}
+          className={componentClassName}
+          aria-errormessage={ariaErrormessage}
+          aria-invalid={ariaInvalid}
+          aria-describedby={ariaDescribedby}
           required={required}
-          htmlFor={inputId}
-        >
-          {label}
-        </ItemLabelComponent>
-        {hidePicker ? (
-          <InputDateTextAtom
-            {...otherProps}
-            id={inputId}
-            className={componentClassName}
-            ref={inputRef}
-            aria-errormessage={ariaErrormessage}
-            aria-invalid={ariaInvalid}
-            aria-describedby={ariaDescribedby}
-            required={required}
-          />
-        ) : (
-          <InputDateAtom
-            {...otherProps}
-            id={inputId}
-            className={componentClassName}
-            ref={inputRef}
-            aria-errormessage={ariaErrormessage}
-            aria-invalid={ariaInvalid}
-            aria-describedby={ariaDescribedby}
-            required={required}
-            max={max}
-            min={min}
-          />
-        )}
-
-        {helper ? (
-          <span id={idHelp} className="af-form__input-helper">
-            {helper}
-          </span>
-        ) : null}
-
-        <ItemMessageComponent
-          id={idMessage}
-          message={message || error || success}
-          messageType={messageType || (error ? "error" : "success")}
         />
-      </div>
-    );
-  },
-);
+      ) : (
+        <InputDateAtom
+          {...otherProps}
+          id={inputId}
+          className={componentClassName}
+          aria-errormessage={ariaErrormessage}
+          aria-invalid={ariaInvalid}
+          aria-describedby={ariaDescribedby}
+          required={required}
+          max={max}
+          min={min}
+        />
+      )}
+
+      {helper ? (
+        <span id={idHelp} className="af-form__input-helper">
+          {helper}
+        </span>
+      ) : null}
+
+      <ItemMessageComponent
+        id={idMessage}
+        message={message || error || success}
+        messageType={messageType || (error ? "error" : "success")}
+      />
+    </div>
+  );
+};
 
 InputDateCommon.displayName = "InputDate";
 

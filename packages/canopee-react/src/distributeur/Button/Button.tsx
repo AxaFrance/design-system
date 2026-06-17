@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
+  type ComponentPropsWithRef,
   type PropsWithChildren,
   type ReactNode,
 } from "react";
@@ -16,47 +15,40 @@ export type ButtonVariant =
   | "ghost"
   | "ghost-reverse";
 
-type ButtonProps = {
-  variant?: ButtonVariant;
-  small?: boolean;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-} & ComponentPropsWithoutRef<"button">;
+type ButtonProps = PropsWithChildren<
+  {
+    variant?: ButtonVariant;
+    small?: boolean;
+    leftIcon?: ReactNode;
+    rightIcon?: ReactNode;
+  } & ComponentPropsWithRef<"button">
+>;
 
 const DEFAULT_CLASS_NAME = "af-btn";
 
-export const Button = forwardRef<
-  HTMLButtonElement,
-  PropsWithChildren<ButtonProps>
->(
-  (
-    {
-      variant = "primary",
-      small,
-      leftIcon,
-      rightIcon,
+export const Button = ({
+  variant = "primary",
+  small,
+  leftIcon,
+  rightIcon,
+  className,
+  children,
+  ...props
+}: ButtonProps) => (
+  <button
+    type="button"
+    className={classNames(
+      DEFAULT_CLASS_NAME,
+      variant !== "primary" && `${DEFAULT_CLASS_NAME}--${variant}`,
+      small && `${DEFAULT_CLASS_NAME}--small`,
       className,
-      children,
-      ...props
-    },
-    ref,
-  ) => (
-    <button
-      type="button"
-      className={classNames(
-        DEFAULT_CLASS_NAME,
-        variant !== "primary" && `${DEFAULT_CLASS_NAME}--${variant}`,
-        small && `${DEFAULT_CLASS_NAME}--small`,
-        className,
-      )}
-      {...props}
-      ref={ref}
-    >
-      {leftIcon}
-      {children}
-      {rightIcon}
-    </button>
-  ),
+    )}
+    {...props}
+  >
+    {leftIcon}
+    {children}
+    {rightIcon}
+  </button>
 );
 
 Button.displayName = "Button";

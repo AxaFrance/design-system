@@ -1,9 +1,4 @@
-import {
-  type ComponentProps,
-  type ComponentType,
-  forwardRef,
-  type ReactNode,
-} from "react";
+import { type ComponentProps, type ComponentType, type ReactNode } from "react";
 import { BasePicture } from "../../../BasePicture/BasePicture";
 import type { Icon as IconCommon } from "../../../Icon/IconCommon";
 import { getClassName } from "../../../utilities/getClassName";
@@ -31,58 +26,50 @@ export type CardRadioOptionCommonProps = CardRadioOptionProps & {
   IconComponent: ComponentType<ComponentProps<typeof IconCommon>>;
 };
 
-export const CardRadioOptionCommon = forwardRef<
-  HTMLInputElement,
-  CardRadioOptionCommonProps
->(
-  (
-    {
-      label,
-      position,
-      type,
-      description,
-      subtitle,
-      icon,
-      src,
-      basePictureProps,
-      isInvalid,
-      className,
-      RadioComponent,
-      IconComponent,
-      ...inputProps
-    },
-    ref,
-  ) => {
-    const isCardRadioOptionHorizontal = [position, type].includes("horizontal");
+export const CardRadioOptionCommon = ({
+  label,
+  position,
+  type,
+  description,
+  subtitle,
+  icon,
+  src,
+  basePictureProps,
+  isInvalid,
+  className,
+  RadioComponent,
+  IconComponent,
+  ...inputProps
+}: CardRadioOptionCommonProps) => {
+  const isCardRadioOptionHorizontal = [position, type].includes("horizontal");
 
-    return (
-      <label
-        className={getClassName({
-          baseClassName: "af-card-radio-option",
-          modifiers: [
-            isInvalid && "invalid",
-            isCardRadioOptionHorizontal && "horizontal",
-          ],
-          className,
-        })}
-      >
-        {icon ? <IconComponent src={icon} role="presentation" /> : null}
-        {isCardRadioOptionHorizontal && src ? (
-          <BasePicture src={src} {...basePictureProps} />
-        ) : null}
-        <div className="af-card-radio-option__content">
-          <p className="af-card-radio-option__label">{label}</p>
-          {Boolean(description) && (
-            <p className="af-card-radio-option__description">{description}</p>
-          )}
-          {Boolean(subtitle) && (
-            <p className="af-card-radio-option__subtitle">{subtitle}</p>
-          )}
-        </div>
-        <RadioComponent {...inputProps} isInvalid={isInvalid} ref={ref} />
-      </label>
-    );
-  },
-);
+  return (
+    <label
+      className={getClassName({
+        baseClassName: "af-card-radio-option",
+        modifiers: [
+          isInvalid && "invalid",
+          isCardRadioOptionHorizontal && "horizontal",
+        ],
+        className,
+      })}
+    >
+      {icon ? <IconComponent src={icon} role="presentation" /> : null}
+      {isCardRadioOptionHorizontal && src ? (
+        <BasePicture src={src} {...basePictureProps} />
+      ) : null}
+      <div className="af-card-radio-option__content">
+        <p className="af-card-radio-option__label">{label}</p>
+        {Boolean(description) && (
+          <p className="af-card-radio-option__description">{description}</p>
+        )}
+        {Boolean(subtitle) && (
+          <p className="af-card-radio-option__subtitle">{subtitle}</p>
+        )}
+      </div>
+      <RadioComponent {...inputProps} isInvalid={isInvalid} />
+    </label>
+  );
+};
 
 CardRadioOptionCommon.displayName = "CardRadioOptionCommon";

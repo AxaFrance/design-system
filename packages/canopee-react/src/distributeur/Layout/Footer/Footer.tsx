@@ -2,7 +2,7 @@ import "@axa-fr/canopee-css/distributeur/Layout/Footer/Footer.css";
 import "@axa-fr/canopee-css/distributeur/common/breakpoints.css";
 import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import classNames from "classnames";
-import { type PropsWithChildren, forwardRef } from "react";
+import { type PropsWithChildren } from "react";
 
 type FooterProps = {
   href?: string;
@@ -13,44 +13,32 @@ type FooterProps = {
   version?: string;
 };
 
-export const Footer = forwardRef<
-  HTMLDivElement,
-  PropsWithChildren<FooterProps>
->(
-  (
-    {
-      className = "af-footer",
-      href = "https://www.axa.fr/",
-      title = "Site Axa",
-      icon = logo,
-      alt = "Logo Axa",
-      version,
-      children = `© ${new Date().getFullYear()} AXA Tous droits réservés`,
-      ...props
-    },
-    ref,
-  ) => (
-    <footer
-      ref={ref}
-      className={classNames("af-container", className)}
-      {...props}
-    >
-      {Boolean(icon) && (
-        <a
-          className="af-logo"
-          href={href}
-          title={title}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img className="af-logo__brand" src={icon} alt={alt} />
-        </a>
-      )}
-      <div className="af-footer-content">{children}</div>
-      {version ? (
-        <span className="af-footer-version">Version {version}</span>
-      ) : null}
-    </footer>
-  ),
+export const Footer = ({
+  className = "af-footer",
+  href = "https://www.axa.fr/",
+  title = "Site Axa",
+  icon = logo,
+  alt = "Logo Axa",
+  version,
+  children = `© ${new Date().getFullYear()} AXA Tous droits réservés`,
+  ...props
+}: PropsWithChildren<FooterProps>) => (
+  <footer className={classNames("af-container", className)} {...props}>
+    {Boolean(icon) && (
+      <a
+        className="af-logo"
+        href={href}
+        title={title}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img className="af-logo__brand" src={icon} alt={alt} />
+      </a>
+    )}
+    <div className="af-footer-content">{children}</div>
+    {version ? (
+      <span className="af-footer-version">Version {version}</span>
+    ) : null}
+  </footer>
 );
 Footer.displayName = "Footer";

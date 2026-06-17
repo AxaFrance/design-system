@@ -2,7 +2,6 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
-  forwardRef,
   useId,
 } from "react";
 import { getClassName } from "../../utilities/getClassName";
@@ -43,39 +42,35 @@ type TextAreaCommonProps = TextAreaProps & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
-  (
-    {
-      id,
-      className,
-      label,
-      description,
-      helper,
-      error,
-      message,
-      messageType,
-      buttonLabel,
-      moreButtonLabel,
-      onButtonClick,
-      onMoreButtonClick,
-      required,
-      sideButtonLabel,
-      ItemLabelComponent,
-      ItemMessageComponent,
-      onSideButtonClick,
-      placeholder = " ",
-      containerProps,
-      ...inputProps
-    },
-    inputRef,
-  ) => {
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
-    const helperId = `${inputId}-helper`;
-    const messageId = `${inputId}-error`;
+const TextAreaCommon = ({
+  id,
+  className,
+  label,
+  description,
+  helper,
+  error,
+  message,
+  messageType,
+  buttonLabel,
+  moreButtonLabel,
+  onButtonClick,
+  onMoreButtonClick,
+  required,
+  sideButtonLabel,
+  ItemLabelComponent,
+  ItemMessageComponent,
+  onSideButtonClick,
+  placeholder = " ",
+  containerProps,
+  ...inputProps
+}: TextAreaCommonProps) => {
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const helperId = `${inputId}-helper`;
+  const messageId = `${inputId}-error`;
 
-    const hasError =
-      (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(error);
     const hasWarning =
       Boolean(message) && messageType === "warning" && !hasError;
 

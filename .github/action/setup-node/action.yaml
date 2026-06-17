@@ -29,7 +29,7 @@ runs:
       run: npm install -g npm@${{ env.NPM_VERSION }}
 
     - name: Check package
-      if: inputs.check-package
+      if: inputs.check-package == 'true'
       run: npm run package:check
       shell: bash
 

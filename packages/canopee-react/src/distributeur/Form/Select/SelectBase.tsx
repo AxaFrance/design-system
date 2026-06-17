@@ -1,12 +1,8 @@
 import "@axa-fr/canopee-css/distributeur/Form/Select/Select.css";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  type OptionHTMLAttributes,
-} from "react";
+import { type ComponentPropsWithRef, type OptionHTMLAttributes } from "react";
 import { getClassName } from "../../utilities/helpers/getClassName";
 
-type Props = ComponentPropsWithoutRef<"select"> & {
+type Props = ComponentPropsWithRef<"select"> & {
   /**
    * @deprecated Use `children` instead
    * Instead of
@@ -29,45 +25,39 @@ type Props = ComponentPropsWithoutRef<"select"> & {
 /**
  * @deprecated Use Select instead
  */
-const SelectBase = forwardRef<HTMLSelectElement, Props>(
-  (
-    {
-      options,
-      id,
-      className,
-      classModifier,
-      required,
-      children,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    const componentClassName = getClassName({
-      baseClassName: "af-form__input-select",
-      modifiers: classModifier?.split(" "),
-      className,
-    });
-    return (
-      <div className="af-form__select-container">
-        <select
-          {...otherProps}
-          id={id}
-          className={componentClassName}
-          ref={inputRef}
-          required={classModifier?.includes("required") || required}
-        >
-          {children ??
-            options?.map(({ label, ...opt }) => (
-              <option key={opt.value?.toString()} {...opt}>
-                {label}
-              </option>
-            ))}
-        </select>
-        <span aria-controls={id} className="glyphicon glyphicon-menu-down" />
-      </div>
-    );
-  },
-);
+const SelectBase = ({
+  options,
+  id,
+  className,
+  classModifier,
+  required,
+  children,
+  ...otherProps
+}: Props) => {
+  const componentClassName = getClassName({
+    baseClassName: "af-form__input-select",
+    modifiers: classModifier?.split(" "),
+    className,
+  });
+  return (
+    <div className="af-form__select-container">
+      <select
+        {...otherProps}
+        id={id}
+        className={componentClassName}
+        required={classModifier?.includes("required") || required}
+      >
+        {children ??
+          options?.map(({ label, ...opt }) => (
+            <option key={opt.value?.toString()} {...opt}>
+              {label}
+            </option>
+          ))}
+      </select>
+      <span aria-controls={id} className="glyphicon glyphicon-menu-down" />
+    </div>
+  );
+};
 
 SelectBase.displayName = "SelectBase";
 
