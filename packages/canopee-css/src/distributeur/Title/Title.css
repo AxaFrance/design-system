@@ -1,13 +1,16 @@
 @layer canopee {
   h2.af-title {
+    margin-bottom: 2rem;
     font-size: 1.5rem;
   }
 
   h3.af-title {
+    margin-bottom: 1.5rem;
     font-size: 1.25rem;
   }
 
   h4.af-title {
+    margin-bottom: 1rem;
     font-size: 1.125rem;
   }
 
@@ -23,7 +26,7 @@
     display: flex;
   }
 
-  .af-title--container > * {
+  .af-title--container>* {
     display: flex;
     align-items: center;
   }
@@ -42,7 +45,7 @@
     content: " ";
   }
 
-  .af-title + .af-title {
+  .af-title+.af-title {
     margin-top: 0;
   }
 
@@ -59,7 +62,7 @@
     margin-top: 0;
   }
 
-  .af-title > :first-child {
+  .af-title> :first-child {
     margin-left: 1.5rem;
   }
 }
