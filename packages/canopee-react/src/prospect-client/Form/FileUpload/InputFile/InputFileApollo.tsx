@@ -1,20 +1,18 @@
-import { forwardRef } from "react";
 import { ItemLabel } from "../../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
 import { InputFileCommon, type InputFileProps } from "./InputFileCommon";
 
 import "@axa-fr/canopee-css/prospect/Form/FileUpload/InputFile/InputFileApollo.css";
 
-const InputFile = forwardRef<HTMLInputElement, InputFileProps>((props, ref) => {
+const InputFile = ({ ...props }: InputFileProps) => {
   return (
     <InputFileCommon
       {...props}
-      ref={ref}
       ItemLabelComponent={ItemLabel}
       ItemMessageComponent={ItemMessage}
     />
   );
-});
+};
 
 InputFile.displayName = "InputFile";
 

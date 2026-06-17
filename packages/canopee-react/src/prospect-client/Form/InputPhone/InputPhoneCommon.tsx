@@ -3,7 +3,6 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
-  forwardRef,
   useId,
 } from "react";
 import type { SingleValue } from "react-select";
@@ -63,135 +62,129 @@ type InputPhoneCommonProps = InputPhoneProps & {
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
 };
 
-const InputPhoneCommon = forwardRef<HTMLInputElement, InputPhoneCommonProps>(
-  (
-    {
-      className,
-      classModifier = "",
-      helper,
-      error,
-      success,
-      message,
-      messageType,
-      defaultCountry,
-      showSelect,
-      disabled,
-      label,
-      description,
-      buttonLabel,
-      moreButtonLabel,
-      onButtonClick,
-      onMoreButtonClick,
-      required,
-      sideButtonLabel,
-      onSideButtonClick,
-      countryCodeOptions = [],
-      onChangeSelect,
-      onChangeInput,
-      mask = maskFrenchPhoneNumber,
-      ItemLabelComponent,
-      ItemMessageComponent,
-      InputTextComponent,
-      IconComponent,
-      "aria-errormessage": ariaErrormessage,
-      containerProps,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    let inputId = useId();
-    inputId = otherProps.id || inputId;
-    const idMessage = useId();
-    const idHelp = useId();
+const InputPhoneCommon = ({
+  className,
+  classModifier = "",
+  helper,
+  error,
+  success,
+  message,
+  messageType,
+  defaultCountry,
+  showSelect,
+  disabled,
+  label,
+  description,
+  buttonLabel,
+  moreButtonLabel,
+  onButtonClick,
+  onMoreButtonClick,
+  required,
+  sideButtonLabel,
+  onSideButtonClick,
+  countryCodeOptions = [],
+  onChangeSelect,
+  onChangeInput,
+  mask = maskFrenchPhoneNumber,
+  ItemLabelComponent,
+  ItemMessageComponent,
+  InputTextComponent,
+  IconComponent,
+  "aria-errormessage": ariaErrormessage,
+  containerProps,
+  ...otherProps
+}: InputPhoneCommonProps) => {
+  let inputId = useId();
+  inputId = otherProps.id || inputId;
+  const idMessage = useId();
+  const idHelp = useId();
 
-    const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
-      Boolean,
-    ) as string[];
+  const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
+    Boolean,
+  ) as string[];
 
-    const hasError =
-      (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(error);
 
-    /**
-     * Gère le changement de valeur du champ numéro de téléphone.
-     * - Récupère une fonction de masquage (mask) depuis les props ou utilise une version par défaut.
-     * - La fonction de masquage par défaut :
-     *   - Ne garde que les chiffres (supprime tout le reste).
-     *   - Limite à 10 chiffres.
-     *   - Formate par groupes de 2 chiffres séparés par un espace (ex: 06 12 34 56 78).
-     * - Applique le masquage à la valeur saisie et transmet le résultat via onChangeInput.
-     */
-    const handleChangeNumber = (e: ChangeEvent<HTMLInputElement>) => {
-      const input = e.target;
-      const rawValue = input.value;
-      const maskedValue = mask(rawValue);
+  /**
+   * Gère le changement de valeur du champ numéro de téléphone.
+   * - Récupère une fonction de masquage (mask) depuis les props ou utilise une version par défaut.
+   * - La fonction de masquage par défaut :
+   *   - Ne garde que les chiffres (supprime tout le reste).
+   *   - Limite à 10 chiffres.
+   *   - Formate par groupes de 2 chiffres séparés par un espace (ex: 06 12 34 56 78).
+   * - Applique le masquage à la valeur saisie et transmet le résultat via onChangeInput.
+   */
+  const handleChangeNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    const input = e.target;
+    const rawValue = input.value;
+    const maskedValue = mask(rawValue);
 
-      onChangeInput?.(maskedValue);
-    };
+    onChangeInput?.(maskedValue);
+  };
 
-    return (
-      <div className="af-form__input-phone-container" {...containerProps}>
-        <ItemLabelComponent
-          description={description}
-          moreButtonLabel={moreButtonLabel ?? buttonLabel}
-          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
-          sideButtonLabel={sideButtonLabel}
-          onSideButtonClick={onSideButtonClick}
-          required={required}
-          htmlFor={inputId}
-        >
-          {label}
-        </ItemLabelComponent>
+  return (
+    <div className="af-form__input-phone-container" {...containerProps}>
+      <ItemLabelComponent
+        description={description}
+        moreButtonLabel={moreButtonLabel ?? buttonLabel}
+        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        sideButtonLabel={sideButtonLabel}
+        onSideButtonClick={onSideButtonClick}
+        required={required}
+        htmlFor={inputId}
+      >
+        {label}
+      </ItemLabelComponent>
 
-        <div className="af-form__input-phone-fields">
-          {showSelect ? (
-            <div className="af-form__country-code-wrapper">
-              <CountryCodeSelect
-                options={countryCodeOptions}
-                defaultCountry={defaultCountry}
-                onChangeSelect={onChangeSelect}
-                IconComponent={IconComponent}
-                disabled={disabled}
-              />
-            </div>
-          ) : null}
-          <InputTextComponent
-            {...otherProps}
-            className={["af-form__input-phone", className]
-              .filter(Boolean)
-              .join(" ")}
-            classModifier={classModifier}
-            ref={inputRef}
-            error={hasError ? messageType || error : undefined}
-            type="tel"
-            required={required}
-            placeholder={otherProps.placeholder}
-            aria-errormessage={ariaErrormessage}
-            value={otherProps.value}
-            onChange={handleChangeNumber}
-            disabled={disabled}
-            idMessage={hasError ? idMessage : undefined}
-            idHelp={
-              ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
-            }
-            id={inputId}
-          />
-        </div>
-
-        {helper ? (
-          <span id={idHelp} className="af-form__input-phone-helper">
-            {helper}
-          </span>
+      <div className="af-form__input-phone-fields">
+        {showSelect ? (
+          <div className="af-form__country-code-wrapper">
+            <CountryCodeSelect
+              options={countryCodeOptions}
+              defaultCountry={defaultCountry}
+              onChangeSelect={onChangeSelect}
+              IconComponent={IconComponent}
+              disabled={disabled}
+            />
+          </div>
         ) : null}
-
-        <ItemMessageComponent
-          id={idMessage}
-          message={message || error || success}
-          messageType={messageType || (error ? "error" : "success")}
+        <InputTextComponent
+          {...otherProps}
+          className={["af-form__input-phone", className]
+            .filter(Boolean)
+            .join(" ")}
+          classModifier={classModifier}
+          error={hasError ? messageType || error : undefined}
+          type="tel"
+          required={required}
+          placeholder={otherProps.placeholder}
+          aria-errormessage={ariaErrormessage}
+          value={otherProps.value}
+          onChange={handleChangeNumber}
+          disabled={disabled}
+          idMessage={hasError ? idMessage : undefined}
+          idHelp={
+            ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+          }
+          id={inputId}
         />
       </div>
-    );
-  },
-);
+
+      {helper ? (
+        <span id={idHelp} className="af-form__input-phone-helper">
+          {helper}
+        </span>
+      ) : null}
+
+      <ItemMessageComponent
+        id={idMessage}
+        message={message || error || success}
+        messageType={messageType || (error ? "error" : "success")}
+      />
+    </div>
+  );
+};
 InputPhoneCommon.displayName = "InputPhone";
 
 export { InputPhoneCommon };

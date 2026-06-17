@@ -1,4 +1,4 @@
-import { type ComponentType, forwardRef, type ReactNode, useId } from "react";
+import { type ComponentType, type ReactNode, useId } from "react";
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
 import type { CheckboxProps } from "../Checkbox/CheckboxCommon";
@@ -18,52 +18,43 @@ export type CheckboxTextCommonProps = CheckboxTextProps & {
   ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
 
-const CheckboxTextCommon = forwardRef<
-  HTMLInputElement,
-  CheckboxTextCommonProps
->(
-  (
-    {
-      label,
-      errorMessage,
-      id,
-      message,
-      messageType,
-      CheckboxComponent,
-      ItemMessageComponent,
-      containerProps,
-      ...inputProps
-    },
-    ref,
-  ) => {
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
-    const messageId = `${inputId}-error`;
+const CheckboxTextCommon = ({
+  label,
+  errorMessage,
+  id,
+  message,
+  messageType,
+  CheckboxComponent,
+  ItemMessageComponent,
+  containerProps,
+  ...inputProps
+}: CheckboxTextCommonProps) => {
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const messageId = `${inputId}-error`;
 
-    const hasError =
-      (Boolean(message) && messageType === "error") || Boolean(errorMessage);
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(errorMessage);
 
-    return (
-      <div className="af-checkbox-text" {...containerProps}>
-        <label htmlFor={inputId}>
-          <CheckboxComponent
-            id={inputId}
-            {...inputProps}
-            aria-errormessage={hasError ? messageId : undefined}
-            aria-invalid={hasError || undefined}
-            ref={ref}
-          />
-          <span className="af-checkbox-text__label-content">{label}</span>
-        </label>
-        <ItemMessageComponent
-          message={message || errorMessage}
-          id={messageId}
-          messageType={messageType}
+  return (
+    <div className="af-checkbox-text" {...containerProps}>
+      <label htmlFor={inputId}>
+        <CheckboxComponent
+          id={inputId}
+          {...inputProps}
+          aria-errormessage={hasError ? messageId : undefined}
+          aria-invalid={hasError || undefined}
         />
-      </div>
-    );
-  },
-);
+        <span className="af-checkbox-text__label-content">{label}</span>
+      </label>
+      <ItemMessageComponent
+        message={message || errorMessage}
+        id={messageId}
+        messageType={messageType}
+      />
+    </div>
+  );
+};
 
 CheckboxTextCommon.displayName = "CheckboxTextCommon";
 

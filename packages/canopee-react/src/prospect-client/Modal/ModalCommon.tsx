@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import { ModalCore, type ModalCoreProps } from "./components/ModalCore";
 import {
   ModalCoreBody,
@@ -29,44 +28,39 @@ export type ModalCommonProps = ModalCoreProps &
     modalCoreHeaderProps?: ModalCoreHeaderContainerProps;
   };
 
-export const ModalCommon = forwardRef<HTMLDialogElement, ModalCommonProps>(
-  (
-    {
-      children,
-      headingComponent,
-      headingProps,
-      closeButtonAriaLabel,
-      onClose,
-      iconProps,
-      primaryButtonProps,
-      secondaryButtonProps,
-      tertiaryButtonProps,
-      buttonComponent,
-      modalCoreBodyProps,
-      modalCoreFooterProps,
-      modalCoreHeaderProps,
-      ...props
-    },
-    ref,
-  ) => (
-    <ModalCore onClose={onClose} ref={ref} {...props}>
-      <ModalCoreHeaderCommon
-        headingComponent={headingComponent}
-        headingProps={headingProps}
-        iconProps={iconProps}
-        onClose={onClose}
-        closeButtonAriaLabel={closeButtonAriaLabel}
-        {...modalCoreHeaderProps}
-      />
-      <ModalCoreBody {...modalCoreBodyProps}>{children}</ModalCoreBody>
-      <ModalCoreFooterCommon
-        buttonComponent={buttonComponent}
-        primaryButtonProps={primaryButtonProps}
-        secondaryButtonProps={secondaryButtonProps}
-        tertiaryButtonProps={tertiaryButtonProps}
-        {...modalCoreFooterProps}
-      />
-    </ModalCore>
-  ),
+export const ModalCommon = ({
+  children,
+  headingComponent,
+  headingProps,
+  closeButtonAriaLabel,
+  onClose,
+  iconProps,
+  primaryButtonProps,
+  secondaryButtonProps,
+  tertiaryButtonProps,
+  buttonComponent,
+  modalCoreBodyProps,
+  modalCoreFooterProps,
+  modalCoreHeaderProps,
+  ...props
+}: ModalCommonProps) => (
+  <ModalCore onClose={onClose} {...props}>
+    <ModalCoreHeaderCommon
+      headingComponent={headingComponent}
+      headingProps={headingProps}
+      iconProps={iconProps}
+      onClose={onClose}
+      closeButtonAriaLabel={closeButtonAriaLabel}
+      {...modalCoreHeaderProps}
+    />
+    <ModalCoreBody {...modalCoreBodyProps}>{children}</ModalCoreBody>
+    <ModalCoreFooterCommon
+      buttonComponent={buttonComponent}
+      primaryButtonProps={primaryButtonProps}
+      secondaryButtonProps={secondaryButtonProps}
+      tertiaryButtonProps={tertiaryButtonProps}
+      {...modalCoreFooterProps}
+    />
+  </ModalCore>
 );
 ModalCommon.displayName = "ModalCommon";
