@@ -1,10 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Form/Radio/Radio.css";
-import {
-  type ComponentPropsWithRef,
-  forwardRef,
-  type ReactNode,
-  useId,
-} from "react";
+import { type ComponentPropsWithRef, type ReactNode, useId } from "react";
 import { getOptionClassName } from "../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "checked" | "type"> & {
@@ -15,48 +10,42 @@ type Props = Omit<ComponentPropsWithRef<"input">, "checked" | "type"> & {
   isChecked?: boolean;
 };
 
-const RadioItem = forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      value = "",
-      id,
-      isChecked,
-      label,
-      classModifier = "",
-      className = "",
-      disabled = false,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    const optionClassName = getOptionClassName(
-      className,
-      classModifier,
-      "af-form__radio",
-      disabled,
-    );
-    const generatedId = useId();
-    const newId = id ?? generatedId;
+const RadioItem = ({
+  value = "",
+  id,
+  isChecked,
+  label,
+  classModifier = "",
+  className = "",
+  disabled = false,
+  ...otherProps
+}: Props) => {
+  const optionClassName = getOptionClassName(
+    className,
+    classModifier,
+    "af-form__radio",
+    disabled,
+  );
+  const generatedId = useId();
+  const newId = id ?? generatedId;
 
-    return (
-      <div className={optionClassName} key={value as string}>
-        <input
-          {...otherProps}
-          className="af-form__input-radio"
-          id={newId}
-          type="radio"
-          value={value}
-          checked={isChecked}
-          ref={inputRef}
-          disabled={disabled}
-        />
-        <label className="af-form__label" htmlFor={newId}>
-          <span className="af-form__description">{label}</span>
-        </label>
-      </div>
-    );
-  },
-);
+  return (
+    <div className={optionClassName} key={value as string}>
+      <input
+        {...otherProps}
+        className="af-form__input-radio"
+        id={newId}
+        type="radio"
+        value={value}
+        checked={isChecked}
+        disabled={disabled}
+      />
+      <label className="af-form__label" htmlFor={newId}>
+        <span className="af-form__description">{label}</span>
+      </label>
+    </div>
+  );
+};
 
 RadioItem.displayName = "RadioItem";
 

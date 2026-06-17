@@ -2,7 +2,6 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
-  forwardRef,
   useId,
 } from "react";
 import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
@@ -42,86 +41,80 @@ type TextAreaCommonProps = TextAreaProps & {
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
-const TextAreaCommon = forwardRef<HTMLTextAreaElement, TextAreaCommonProps>(
-  (
-    {
-      id,
-      className,
-      label,
-      description,
-      helper,
-      error,
-      message,
-      messageType,
-      buttonLabel,
-      moreButtonLabel,
-      onButtonClick,
-      onMoreButtonClick,
-      required,
-      sideButtonLabel,
-      ItemLabelComponent,
-      ItemMessageComponent,
-      onSideButtonClick,
-      placeholder = " ",
-      containerProps,
-      ...inputProps
-    },
-    inputRef,
-  ) => {
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
-    const helperId = `${inputId}-helper`;
-    const messageId = `${inputId}-error`;
+const TextAreaCommon = ({
+  id,
+  className,
+  label,
+  description,
+  helper,
+  error,
+  message,
+  messageType,
+  buttonLabel,
+  moreButtonLabel,
+  onButtonClick,
+  onMoreButtonClick,
+  required,
+  sideButtonLabel,
+  ItemLabelComponent,
+  ItemMessageComponent,
+  onSideButtonClick,
+  placeholder = " ",
+  containerProps,
+  ...inputProps
+}: TextAreaCommonProps) => {
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const helperId = `${inputId}-helper`;
+  const messageId = `${inputId}-error`;
 
-    const hasError =
-      (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError =
+    (Boolean(message) && messageType === "error") || Boolean(error);
 
-    return (
-      <div
-        className={["af-form__input-container", className]
-          .filter(Boolean)
-          .join(" ")}
-        {...containerProps}
+  return (
+    <div
+      className={["af-form__input-container", className]
+        .filter(Boolean)
+        .join(" ")}
+      {...containerProps}
+    >
+      <ItemLabelComponent
+        description={description}
+        moreButtonLabel={moreButtonLabel ?? buttonLabel}
+        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        sideButtonLabel={sideButtonLabel}
+        onSideButtonClick={onSideButtonClick}
+        required={required}
+        htmlFor={inputId}
       >
-        <ItemLabelComponent
-          description={description}
-          moreButtonLabel={moreButtonLabel ?? buttonLabel}
-          onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
-          sideButtonLabel={sideButtonLabel}
-          onSideButtonClick={onSideButtonClick}
-          required={required}
-          htmlFor={inputId}
-        >
-          {label}
-        </ItemLabelComponent>
+        {label}
+      </ItemLabelComponent>
 
-        <textarea
-          id={inputId}
-          className="af-form__textarea"
-          ref={inputRef}
-          aria-errormessage={hasError ? messageId : undefined}
-          aria-describedby={helper ? helperId : undefined}
-          required={required}
-          aria-invalid={hasError || undefined}
-          placeholder={placeholder}
-          {...inputProps}
-        />
+      <textarea
+        id={inputId}
+        className="af-form__textarea"
+        aria-errormessage={hasError ? messageId : undefined}
+        aria-describedby={helper ? helperId : undefined}
+        required={required}
+        aria-invalid={hasError || undefined}
+        placeholder={placeholder}
+        {...inputProps}
+      />
 
-        {helper ? (
-          <span id={helperId} className="af-form__input-helper">
-            {helper}
-          </span>
-        ) : null}
+      {helper ? (
+        <span id={helperId} className="af-form__input-helper">
+          {helper}
+        </span>
+      ) : null}
 
-        <ItemMessageComponent
-          id={messageId}
-          message={message || error}
-          messageType={messageType}
-        />
-      </div>
-    );
-  },
-);
+      <ItemMessageComponent
+        id={messageId}
+        message={message || error}
+        messageType={messageType}
+      />
+    </div>
+  );
+};
 
 TextAreaCommon.displayName = "TextArea";
 
