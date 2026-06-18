@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as RadioTextStories from "./RadioText.stories";
+
+<Meta of={RadioTextStories} name="RadioText" />
+
+# RadioText
+
+## How to use
+
+```tsx
+import { RadioText } from "@axa-fr/canopee-react/client";
+
+const MyComponent = () => (
+  <RadioText
+    name="option1"
+    value="option1"
+    label="J'accepte de fournir à AXA mes coordonnées ainsi que les données relatives à mon projet et ma situation."
+  />
+);
+```
+
+## Playground
+
+<Canvas of={RadioTextStories.RadioTextStory} sourceState="shown" />
+<Controls of={RadioTextStories.RadioTextStory} />

@@ -1,0 +1,17 @@
+.af-radio-text {
+  display: flex;
+  align-items: start;
+  gap: var(--rem-8);
+  cursor: pointer;
+}
+
+.af-radio-text__label-content {
+  font-size: var(--rem-16);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--gray-1000);
+
+  @media (--desktop-small) {
+    font-size: var(--rem-18);
+  }
+}
