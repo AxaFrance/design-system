@@ -1,1 +1,0 @@
-import{n as e}from"./chunk-DnJy8xQt.js";import{a as t,r as n}from"./iframe-CSdX1VlE.js";e((()=>{t()}))();export{n as DocsRenderer};
