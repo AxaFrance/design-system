@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as TimelineStories from "./Timeline.stories";
+
+<Meta of={TimelineStories} />
+
+# Timeline
+
+Le composant Timeline permet d'afficher une suite d'étapes chronologiques.
+Chaque item contient un en-tête, un contenu détaillé et une date.
+
+Le composant expose un variant :
+
+- `default` : affichage actuel avec zone repliable `details/summary`
+- `withoutDetails` : affichage en timeline simple, sans zone de détails
+
+### Import
+
+```tsx
+import { Timeline } from "@axa-fr/canopee-react/distributeur";
+```
+
+### Utilisation
+
+```tsx
+export const ExempleTimeline = () => (
+  <Timeline
+    items={[
+      {
+        header: "Etape 1",
+        details: "Details de la premiere etape",
+        date: new Date("2024-11-14"),
+      },
+      {
+        header: "Etape 2",
+        details: "Details de la deuxieme etape",
+        date: new Date("2035-12-17"),
+      },
+    ]}
+  />
+);
+```
+
+### Playground
+
+<Canvas of={TimelineStories.Default} />
+<Controls of={TimelineStories.Default} />
+
+### Variante
+
+#### Item unique
+
+<Canvas of={TimelineStories.SingleItem} />
+
+#### Without details
+
+<Canvas of={TimelineStories.WithoutDetails} />
