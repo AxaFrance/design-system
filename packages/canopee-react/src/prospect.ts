@@ -67,6 +67,10 @@ export {
 export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioApollo";
 export { CardRadioGroup } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupApollo";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioApollo";
+export {
+  RadioText,
+  type RadioTextProps,
+} from "./prospect-client/Form/Radio/RadioText/RadioTextApollo";
 export { TextArea } from "./prospect-client/Form/TextArea/TextAreaApollo";
 export { DebugGrid } from "./prospect-client/Grid/DebugGridApollo";
 export {
