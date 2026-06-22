@@ -58,7 +58,7 @@ export const AccordionCoreCommon = ({
         baseClassName: "af-click-icon",
         modifiers: [arrowClickIconVariant === "ghost" && arrowClickIconVariant],
       })
-    : "";
+    : undefined;
 
   return (
     <details
