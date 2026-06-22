@@ -10,8 +10,12 @@ type MessageBarActionProps = {
 export const MessageBarAction = ({
   buttonProps,
   ButtonComponent,
-}: MessageBarActionProps) =>
-  buttonProps ? (
+}: MessageBarActionProps) => {
+  if (!buttonProps) {
+    return null;
+  }
+
+  return (
     <ButtonComponent
       {...buttonProps}
       className={getClassName({
@@ -19,4 +23,5 @@ export const MessageBarAction = ({
         className: buttonProps.className,
       })}
     />
-  ) : null;
+  );
+};

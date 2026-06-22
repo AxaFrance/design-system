@@ -11,9 +11,7 @@ export const MessageBarDescription = ({
     return null;
   }
 
-  if (typeof description === "string") {
-    return <p className="af-message-bar__body">{description}</p>;
-  }
+  const Component = typeof description === "string" ? "p" : "div";
 
-  return <div className="af-message-bar__body">{description}</div>;
+  return <Component className="af-message-bar__body">{description}</Component>;
 };

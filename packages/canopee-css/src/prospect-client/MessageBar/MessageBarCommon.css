@@ -62,7 +62,6 @@
 }
 
 .af-message-bar__body {
-  display: none;
   margin: 0;
   padding: 0 var(--rem-16);
   grid-area: body;
@@ -72,18 +71,9 @@
 }
 
 .af-btn-client.af-message-bar__action {
-  display: none;
   margin: var(--rem-24) var(--rem-16) var(--rem-16);
   grid-area: action;
   justify-self: stretch;
-}
-
-.af-message-bar[open] > .af-message-bar__body {
-  display: block;
-}
-
-.af-message-bar[open] > .af-message-bar__action {
-  display: flex;
 }
 
 @media (--desktop-small) {
