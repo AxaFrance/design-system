@@ -1,14 +1,16 @@
 @import "./ItemMessageCommon.css";
 
-.af-item-message {
-  --item-message-color: var(--red-alert-1200);
-  --item-message-icon-size: var(--rem-16);
-}
+@layer canopee {
+  .af-item-message {
+    --item-message-color: var(--red-alert-1200);
+    --item-message-icon-size: var(--rem-16);
+  }
 
-.af-item-message--success {
-  --item-message-color: var(--green-1000);
-}
+  .af-item-message--success {
+    --item-message-color: var(--green-1000);
+  }
 
-.af-item-message--warning {
-  --item-message-color: var(--orange-1000);
+  .af-item-message--warning {
+    --item-message-color: var(--orange-1000);
+  }
 }

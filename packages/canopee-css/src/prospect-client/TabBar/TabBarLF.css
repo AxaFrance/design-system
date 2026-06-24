@@ -1,5 +1,7 @@
 @import "./TabBarCommon.css";
 
-.af-tabbar {
-  --tabbar-box-shadow-color: var(--blue-200);
+@layer canopee {
+  .af-tabbar {
+    --tabbar-box-shadow-color: var(--blue-200);
+  }
 }

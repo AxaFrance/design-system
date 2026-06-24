@@ -1,25 +1,27 @@
-.af-item-message {
-  --item-message-font-size: var(--rem-14);
+@layer canopee {
+  .af-item-message {
+    --item-message-font-size: var(--rem-14);
 
-  display: flex;
-  align-items: center;
-  gap: var(--rem-8);
+    display: flex;
+    align-items: center;
+    gap: var(--rem-8);
 
-  @media (--desktop-small) {
-    --item-message-font-size: var(--rem-16);
+    @media (--desktop-small) {
+      --item-message-font-size: var(--rem-16);
+    }
   }
-}
 
-.af-item-message__icon {
-  width: var(--item-message-icon-size);
-  height: var(--item-message-icon-size);
-  color: var(--item-message-color);
-  fill: currentcolor;
-}
+  .af-item-message__icon {
+    width: var(--item-message-icon-size);
+    height: var(--item-message-icon-size);
+    color: var(--item-message-color);
+    fill: currentcolor;
+  }
 
-.af-item-message__message {
-  font-family: var(--font-family-base);
-  font-size: var(--item-message-font-size);
-  line-height: 1.25em;
-  color: var(--item-message-color);
+  .af-item-message__message {
+    font-family: var(--font-family-base);
+    font-size: var(--item-message-font-size);
+    line-height: 1.25em;
+    color: var(--item-message-color);
+  }
 }

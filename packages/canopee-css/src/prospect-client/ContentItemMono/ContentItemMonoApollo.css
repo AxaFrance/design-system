@@ -1,71 +1,72 @@
 @import "./ContentItemMonoCommon.css";
 
-.af-content-item-mono {
-  .af-content-item-mono__stick {
-    --stick-background-color: var(--blue-1000);
-  }
-
-  .af-content-item-mono__text-content {
-    .af-content-item-mono__title {
-      --title-font-family: var(--font-family-sans-serif);
-      --title-font-size: var(--rem-16);
-      --title-font-weight: 600;
-      --title-color: var(--gray-1000);
-      --title-line-height: var(--rem-20);
+@layer canopee {
+  .af-content-item-mono {
+    .af-content-item-mono__stick {
+      --stick-background-color: var(--blue-1000);
     }
 
-    .af-content-item-mono__subtitle-primary {
-      --subtitle-primary-font-family: var(--font-family-sans-serif);
-      --subtitle-primary-font-size: var(--rem-16);
-      --subtitle-primary-color: var(--gray-1000);
-      --subtitle-primary-line-height: var(--rem-20);
-    }
-
-    .af-content-item-mono__subtitle {
-      --subtitle-font-family: var(--font-family-sans-serif);
-      --subtitle-font-size: var(--rem-14);
-      --subtitle-color: var(--gray-800);
-      --subtitle-line-height: var(--rem-18);
-    }
-  }
-
-  .af-content-item-mono__stick
-    + .af-content-item-mono__text-content
-    .af-content-item-mono__title {
-    --title-font-size: var(--rem-14);
-    --title-line-height: var(--rem-18);
-  }
-
-  &.af-content-item-mono--large .af-content-item-mono__text-content {
-    .af-content-item-mono__title {
-      --title-font-family: var(--font-family-publico-headline);
-      --title-font-weight: 300;
-    }
-  }
-
-  @media (--desktop-small) {
     .af-content-item-mono__text-content {
       .af-content-item-mono__title {
-        --title-font-size: var(--rem-18);
-        --title-line-height: var(--rem-23);
+        --title-font-family: var(--font-family-sans-serif);
+        --title-font-size: var(--rem-16);
+        --title-font-weight: 600;
+        --title-color: var(--gray-1000);
+        --title-line-height: var(--rem-20);
       }
 
       .af-content-item-mono__subtitle-primary {
-        --subtitle-primary-font-size: var(--rem-18);
-        --subtitle-primary-line-height: var(--rem-23);
+        --subtitle-primary-font-family: var(--font-family-sans-serif);
+        --subtitle-primary-font-size: var(--rem-16);
+        --subtitle-primary-color: var(--gray-1000);
+        --subtitle-primary-line-height: var(--rem-20);
       }
 
       .af-content-item-mono__subtitle {
-        --subtitle-font-size: var(--rem-16);
-        --subtitle-line-height: var(--rem-20);
+        --subtitle-font-family: var(--font-family-sans-serif);
+        --subtitle-font-size: var(--rem-14);
+        --subtitle-color: var(--gray-800);
+        --subtitle-line-height: var(--rem-18);
       }
     }
 
-    .af-content-item-mono__stick
-      + .af-content-item-mono__text-content
-      .af-content-item-mono__title {
-      --title-font-size: var(--rem-16);
-      --title-line-height: var(--rem-20);
+    .af-content-item-mono__stick+.af-content-item-mono__text-content .af-content-item-mono__title {
+      --title-font-size: var(--rem-14);
+      --title-line-height: var(--rem-18);
+    }
+
+    &.af-content-item-mono--large .af-content-item-mono__text-content .af-content-item-mono__title {
+      --title-font-family: var(--font-family-publico-headline);
+      --title-font-weight: 300;
+    }
+
+
+    @media (--desktop-small) {
+      .af-content-item-mono__text-content {
+        .af-content-item-mono__title {
+          --title-font-size: var(--rem-18);
+          --title-line-height: var(--rem-23);
+        }
+
+        .af-content-item-mono__subtitle-primary {
+          --subtitle-primary-font-size: var(--rem-18);
+          --subtitle-primary-line-height: var(--rem-23);
+        }
+
+        .af-content-item-mono__subtitle {
+          --subtitle-font-size: var(--rem-16);
+          --subtitle-line-height: var(--rem-20);
+        }
+      }
+
+      .af-content-item-mono__stick+.af-content-item-mono__text-content .af-content-item-mono__title {
+        --title-font-size: var(--rem-16);
+        --title-line-height: var(--rem-20);
+      }
+
+      &.af-content-item-mono--large .af-content-item-mono__text-content .af-content-item-mono__title {
+        --title-font-size: var(--rem-28);
+        --title-line-height: var(--rem-35);
+      }
     }
   }
-}
