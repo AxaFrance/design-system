@@ -1,28 +1,30 @@
 @import "./TextAreaCommon.css";
 
-.af-form__textarea {
-  --textarea-border-radius: var(--radius-4);
-  --textarea-placeholder-color: var(--gray-800);
-  --textarea-background-color: var(--white-1000);
-  --textarea-color: var(--gray-1000);
-  --textarea-box-shadow-color: var(--gray-800);
+@layer canopee {
+  .af-form__textarea {
+    --textarea-border-radius: var(--radius-4);
+    --textarea-placeholder-color: var(--gray-800);
+    --textarea-background-color: var(--white-1000);
+    --textarea-color: var(--gray-1000);
+    --textarea-box-shadow-color: var(--gray-800);
 
-  &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
-    --textarea-box-shadow-color: var(--blue-1000);
-  }
+    &:is(:focus-visible, :hover, :active, :focus, :not(:placeholder-shown)) {
+      --textarea-box-shadow-color: var(--blue-1000);
+    }
 
-  &:disabled {
-    --textarea-background-color: var(--gray-050);
-    --textarea-box-shadow-color: var(--gray-140);
-    --textarea-placeholder-color: var(--gray-500);
-    --textarea-color: var(--gray-800);
-  }
+    &:disabled {
+      --textarea-background-color: var(--gray-050);
+      --textarea-box-shadow-color: var(--gray-140);
+      --textarea-placeholder-color: var(--gray-500);
+      --textarea-color: var(--gray-800);
+    }
 
-  &[aria-invalid="true"] {
-    --textarea-box-shadow-color: var(--red-alert-1200);
+    &[aria-invalid="true"] {
+      --textarea-box-shadow-color: var(--red-alert-1200);
 
-    &:is(:focus-visible, :hover, :active, :focus) {
-      --textarea-box-shadow-width: 3px;
+      &:is(:focus-visible, :hover, :active, :focus) {
+        --textarea-box-shadow-width: 3px;
+      }
     }
   }
 }

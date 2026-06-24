@@ -1,69 +1,71 @@
-/* GRID SYSTEM DESIGN SYSTEM AXA FRANCE (Look & Feel et Apollo) ****************
+@layer canopee {
+  /* GRID SYSTEM DESIGN SYSTEM AXA FRANCE (Look & Feel et Apollo) ****************
 
-See the documentation : https://zeroheight.com/54c5bd254/v/latest/p/48d0d1-grille
+  See the documentation : https://zeroheight.com/54c5bd254/v/latest/p/48d0d1-grille
 
-Its MOBILE FIRST approach, so the defauts values target the mobile.
+  Its MOBILE FIRST approach, so the defauts values target the mobile.
 
-@media (--tablet) { >>>>> more than  667px
-@media (--desktop-small) { >>>>> more than 1023px
-@media (--desktop-medium) { >>>>> more than 1279px
-@media (--desktop-large) { >>>>> more than 1599px
+  @media (--tablet) { >>>>> more than  667px
+  @media (--desktop-small) { >>>>> more than 1023px
+  @media (--desktop-medium) { >>>>> more than 1279px
+  @media (--desktop-large) { >>>>> more than 1599px
 
-******************************************************************************* */
+  ******************************************************************************* */
 
-.grid {
-  --col-gap: var(--rem-8);
-  --row-gap: var(--rem-16);
-  --margin-inline: var(--rem-16);
-  --cols: 4;
-  --start: auto;
-
-  display: grid;
-  margin-inline: var(--margin-inline);
-  grid-template-columns: repeat(var(--cols), 1fr);
-  gap: var(--row-gap) var(--col-gap);
-
-  @media (--tablet) {
-    --cols: 8;
-    --col-gap: var(--rem-16);
-    --margin-inline: var(--rem-60);
-  }
-
-  @media (--desktop-small) {
-    --col-gap: var(--rem-24);
-    --margin-inline: var(--rem-80);
-    --cols: 12;
-  }
-
-  @media (--desktop-medium) {
-    --margin-inline: var(--rem-120);
-  }
-
-  @media (--desktop-large) {
-    --margin-inline: auto;
-
-    width: 1320px;
-  }
-
-  > *,
-  & .subgrid,
-  & :has(> .subgrid) {
-    display: grid;
-    grid-column: var(--start) / span var(--cols);
-    align-content: start;
-    row-gap: var(--row-gap);
-  }
-
-  > * > * {
+  .grid {
+    --col-gap: var(--rem-8);
+    --row-gap: var(--rem-16);
+    --margin-inline: var(--rem-16);
+    --cols: 4;
     --start: auto;
-  }
 
-  .subgrid,
-  & :has(> .subgrid) {
-    grid-template-columns: subgrid;
+    display: grid;
+    margin-inline: var(--margin-inline);
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: var(--row-gap) var(--col-gap);
 
-    > * {
+    @media (--tablet) {
+      --cols: 8;
+      --col-gap: var(--rem-16);
+      --margin-inline: var(--rem-60);
+    }
+
+    @media (--desktop-small) {
+      --col-gap: var(--rem-24);
+      --margin-inline: var(--rem-80);
+      --cols: 12;
+    }
+
+    @media (--desktop-medium) {
+      --margin-inline: var(--rem-120);
+    }
+
+    @media (--desktop-large) {
+      --margin-inline: auto;
+
+      width: 1320px;
+    }
+
+    > *,
+    & .subgrid,
+    & :has(> .subgrid) {
+      display: grid;
       grid-column: var(--start) / span var(--cols);
+      align-content: start;
+      row-gap: var(--row-gap);
+    }
+
+    > * > * {
+      --start: auto;
+    }
+
+    .subgrid,
+    & :has(> .subgrid) {
+      grid-template-columns: subgrid;
+
+      > * {
+        grid-column: var(--start) / span var(--cols);
+      }
     }
   }
 }

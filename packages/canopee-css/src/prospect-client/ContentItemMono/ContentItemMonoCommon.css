@@ -1,42 +1,44 @@
-.af-content-item-mono {
-  display: flex;
-  align-items: center;
-  gap: var(--rem-12);
-
-  .af-content-item-mono__stick {
-    width: var(--rem-4);
-    border-radius: 2px;
-    align-self: stretch;
-    background-color: var(--stick-background-color);
-  }
-
-  .af-content-item-mono__text-content {
+@layer canopee {
+  .af-content-item-mono {
     display: flex;
-    flex-direction: column;
-    gap: var(--rem-2);
+    align-items: center;
+    gap: var(--rem-12);
 
-    .af-content-item-mono__title {
-      font-family: var(--title-font-family);
-      font-size: var(--title-font-size);
-      font-weight: var(--title-font-weight);
-      line-height: var(--title-line-height);
-      color: var(--title-color);
+    .af-content-item-mono__stick {
+      width: var(--rem-4);
+      border-radius: 2px;
+      align-self: stretch;
+      background-color: var(--stick-background-color);
     }
 
-    .af-content-item-mono__subtitle-primary {
-      font-family: var(--subtitle-primary-font-family);
-      font-size: var(--subtitle-primary-font-size);
-      font-weight: 400;
-      line-height: var(--subtitle-primary-line-height);
-      color: var(--subtitle-primary-color);
-    }
+    .af-content-item-mono__text-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--rem-2);
 
-    .af-content-item-mono__subtitle {
-      font-family: var(--subtitle-font-family);
-      font-size: var(--subtitle-font-size);
-      font-weight: 400;
-      line-height: var(--subtitle-line-height);
-      color: var(--subtitle-color);
+      .af-content-item-mono__title {
+        font-family: var(--title-font-family);
+        font-size: var(--title-font-size);
+        font-weight: var(--title-font-weight);
+        line-height: var(--title-line-height);
+        color: var(--title-color);
+      }
+
+      .af-content-item-mono__subtitle-primary {
+        font-family: var(--subtitle-primary-font-family);
+        font-size: var(--subtitle-primary-font-size);
+        font-weight: 400;
+        line-height: var(--subtitle-primary-line-height);
+        color: var(--subtitle-primary-color);
+      }
+
+      .af-content-item-mono__subtitle {
+        font-family: var(--subtitle-font-family);
+        font-size: var(--subtitle-font-size);
+        font-weight: 400;
+        line-height: var(--subtitle-line-height);
+        color: var(--subtitle-color);
+      }
     }
   }
 }

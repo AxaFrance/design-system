@@ -1,3 +1,5 @@
+@layer canopee, reset;
+
 @import "./common/tokens.css";
 @import "./common/reboot.css";
 @import "./Grid/Grid.css";
