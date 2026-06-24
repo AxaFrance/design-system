@@ -1,25 +1,27 @@
 @import "./RadioCommon.css";
 
-.af-radio {
-  --radio-border-color: var(--blue-650);
-  --radio-background-color: var(--white-1000);
+@layer canopee {
+  .af-radio {
+    --radio-border-color: var(--blue-650);
+    --radio-background-color: var(--white-1000);
 
-  &:hover,
-  &:focus-within,
-  &:checked {
-    --radio-border-color: var(--blue-1000);
+    &:hover,
+    &:focus-within,
+    &:checked {
+      --radio-border-color: var(--blue-1000);
+    }
+
+    &:checked {
+      --radio-ckecked-color: var(--blue-1000);
+    }
   }
 
-  &:checked {
-    --radio-ckecked-color: var(--blue-1000);
-  }
-}
-
-.af-radio--invalid:not(:checked) {
-  --radio-border-color: var(--red-alert-1000);
-
-  &:hover,
-  &:focus-within {
+  .af-radio--invalid:not(:checked) {
     --radio-border-color: var(--red-alert-1000);
+
+    &:hover,
+    &:focus-within {
+      --radio-border-color: var(--red-alert-1000);
+    }
   }
 }

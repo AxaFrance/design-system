@@ -1,6 +1,8 @@
 @import "./PaginationCommon.css";
 
-.af-pagination-list {
-  --pagination-list-border-color: var(--blue-200);
-  --pagination-list-background-color: var(--white-1000);
+@layer canopee {
+  .af-pagination-list {
+    --pagination-list-border-color: var(--blue-200);
+    --pagination-list-background-color: var(--white-1000);
+  }
 }

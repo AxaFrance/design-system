@@ -1,98 +1,100 @@
-.af-icon {
-  --icon-size-large: var(--rem-40);
-  --icon-size-medium: var(--rem-32);
-  --icon-size-small: var(--rem-24);
-  --icon-size-extra-small: var(--rem-16);
-  --icon-size: var(--icon-size-small);
+@layer canopee {
+  .af-icon {
+    --icon-size-large: var(--rem-40);
+    --icon-size-medium: var(--rem-32);
+    --icon-size-small: var(--rem-24);
+    --icon-size-extra-small: var(--rem-16);
+    --icon-size: var(--icon-size-small);
 
-  display: grid;
-  width: fit-content;
-  padding: var(--icon-padding);
-  border-radius: var(--icon-border-radius);
-  background-color: var(--icon-background-color, transparent);
-  outline-color: var(--icon-outline-color);
+    display: grid;
+    width: fit-content;
+    padding: var(--icon-padding);
+    border-radius: var(--icon-border-radius);
+    background-color: var(--icon-background-color, transparent);
+    outline-color: var(--icon-outline-color);
 
-  svg {
-    width: var(--icon-size);
-    height: var(--icon-size);
-    fill: var(--icon-fill);
+    svg {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      fill: var(--icon-fill);
+    }
   }
-}
 
-.af-icon--primary {
-  --icon-fill: var(--blue-1000);
-
-  &.af-icon--has-background {
-    --icon-fill: var(--white-1000);
-    --icon-background-color: var(--blue-1000);
-  }
-}
-
-.af-icon--large {
-  --icon-size: var(--icon-size-large);
-
-  &.af-icon--has-background {
-    --icon-padding: var(--rem-12);
-  }
-}
-
-.af-icon--medium {
-  --icon-size: var(--icon-size-medium);
-
-  &.af-icon--has-background {
-    --icon-padding: var(--rem-12);
-  }
-}
-
-.af-icon--small {
-  --icon-size: var(--icon-size-small);
-}
-
-.af-icon--extra-small {
-  --icon-size: var(--icon-size-extra-small);
-
-  &.af-icon--has-background {
-    --icon-padding: var(--rem-8);
-  }
-}
-
-.af-icon--secondary {
-  --icon-fill: var(--white-1000);
-
-  &.af-icon--has-background {
+  .af-icon--primary {
     --icon-fill: var(--blue-1000);
 
-    outline-style: solid;
-    outline-width: 1px;
+    &.af-icon--has-background {
+      --icon-fill: var(--white-1000);
+      --icon-background-color: var(--blue-1000);
+    }
   }
-}
 
-.af-icon--disabled {
-  --icon-fill: var(--gray-500);
+  .af-icon--large {
+    --icon-size: var(--icon-size-large);
 
-  &.af-icon--has-background {
-    --icon-background-color: var(--gray-050);
+    &.af-icon--has-background {
+      --icon-padding: var(--rem-12);
+    }
   }
-}
 
-.af-icon--success {
-  --icon-fill: var(--green-1000);
+  .af-icon--medium {
+    --icon-size: var(--icon-size-medium);
 
-  &.af-icon--has-background {
+    &.af-icon--has-background {
+      --icon-padding: var(--rem-12);
+    }
+  }
+
+  .af-icon--small {
+    --icon-size: var(--icon-size-small);
+  }
+
+  .af-icon--extra-small {
+    --icon-size: var(--icon-size-extra-small);
+
+    &.af-icon--has-background {
+      --icon-padding: var(--rem-8);
+    }
+  }
+
+  .af-icon--secondary {
     --icon-fill: var(--white-1000);
-    --icon-background-color: var(--green-1000);
+
+    &.af-icon--has-background {
+      --icon-fill: var(--blue-1000);
+
+      outline-style: solid;
+      outline-width: 1px;
+    }
   }
-}
 
-.af-icon--warning {
-  --icon-fill: var(--orange-1000);
+  .af-icon--disabled {
+    --icon-fill: var(--gray-500);
 
-  &.af-icon--has-background {
+    &.af-icon--has-background {
+      --icon-background-color: var(--gray-050);
+    }
+  }
+
+  .af-icon--success {
+    --icon-fill: var(--green-1000);
+
+    &.af-icon--has-background {
+      --icon-fill: var(--white-1000);
+      --icon-background-color: var(--green-1000);
+    }
+  }
+
+  .af-icon--warning {
+    --icon-fill: var(--orange-1000);
+
+    &.af-icon--has-background {
+      --icon-fill: var(--white-1000);
+      --icon-background-color: var(--orange-1000);
+    }
+  }
+
+  .af-icon--error.af-icon--has-background {
     --icon-fill: var(--white-1000);
-    --icon-background-color: var(--orange-1000);
   }
-}
-
-.af-icon--error.af-icon--has-background {
-  --icon-fill: var(--white-1000);
 }

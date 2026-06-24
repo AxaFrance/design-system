@@ -1,12 +1,14 @@
-.af-mandatory {
-  margin-bottom: 2rem;
-  font-size: 0.875rem;
-}
+@layer canopee {
+  .af-mandatory {
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
 
-.af-mandatory--one {
-  color: var(--red30);
-}
+  .af-mandatory--one {
+    color: var(--red30);
+  }
 
-.af-mandatory--all {
-  color: var(--gray80);
+  .af-mandatory--all {
+    color: var(--gray80);
+  }
 }

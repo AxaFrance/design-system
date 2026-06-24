@@ -1,99 +1,101 @@
-.af-tabs__control {
-  display: flex;
-  margin-bottom: 0;
-  padding-left: 0;
-  align-items: flex-end;
-  list-style: none;
-}
-
-/* Button to change tab */
-.af-tabs__link {
-  --tabs-background-color: var(--white);
-  --tabs-color: var(--brand-primary);
-  --tabs-margin-top: 0.5rem;
-  --tabs-padding: 0.5rem 1rem;
-
-  position: relative;
-  display: block;
-  height: auto;
-  margin-top: var(--tabs-margin-top);
-  padding: var(--tabs-padding);
-  border: none;
-  border: 1px solid var(--brand-primary);
-  border-bottom: 0;
-  border-radius: 0.25rem 0.25rem 0 0;
-  overflow: hidden;
-  font-size: 1rem;
-  font-weight: 600;
-
-  /* To equal the line-height of the tags */
-  line-height: 1.75rem;
-  color: var(--tabs-color);
-  background: none;
-  background-color: var(--tabs-background-color);
-  transition:
-    padding 0.5s linear,
-    margin-top 0.5s linear;
-
-  &:focus-visible {
-    outline: 2px solid var(--brand-primary);
-    outline-offset: 2px;
+@layer canopee {
+  .af-tabs__control {
+    display: flex;
+    margin-bottom: 0;
+    padding-left: 0;
+    align-items: flex-end;
+    list-style: none;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
+  /* Button to change tab */
   .af-tabs__link {
-    transition: none;
-  }
-}
+    --tabs-background-color: var(--white);
+    --tabs-color: var(--brand-primary);
+    --tabs-margin-top: 0.5rem;
+    --tabs-padding: 0.5rem 1rem;
 
-/* List item wrapping the button */
-.af-tabs__item {
-  position: relative;
-  box-sizing: border-box;
-  margin-right: 0.25rem;
-  margin-left: 0;
-}
-
-.af-tabs__item--active {
-  .af-tabs__link {
-    --tabs-color: var(--white);
-    --tabs-background-color: var(--brand-primary);
-    --tabs-margin-top: 0;
-    --tabs-padding: 0.75rem 1rem;
-  }
-}
-
-.af-tabs__link:hover {
-  --tabs-background-color: var(--brand-primary);
-  --tabs-color: var(--white);
-}
-
-.af-tabs__item:last-child {
-  margin-right: 0;
-}
-
-.af-tabs__item .glyphicon {
-  margin-left: 0.5rem;
-  vertical-align: sub;
-  font-size: 1.125rem;
-}
-
-.af-tabs__item .af-badge {
-  margin-left: 0.5rem;
-}
-
-.af-tabs__content {
-  border-top: 2px solid var(--brand-primary);
-  background-color: var(--white);
-  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
-}
-
-.af-tabs__pane {
-  display: none;
-  padding: 1.5rem 1.25rem;
-
-  &.af-tabs__pane--active {
+    position: relative;
     display: block;
+    height: auto;
+    margin-top: var(--tabs-margin-top);
+    padding: var(--tabs-padding);
+    border: none;
+    border: 1px solid var(--brand-primary);
+    border-bottom: 0;
+    border-radius: 0.25rem 0.25rem 0 0;
+    overflow: hidden;
+    font-size: 1rem;
+    font-weight: 600;
+
+    /* To equal the line-height of the tags */
+    line-height: 1.75rem;
+    color: var(--tabs-color);
+    background: none;
+    background-color: var(--tabs-background-color);
+    transition:
+      padding 0.5s linear,
+      margin-top 0.5s linear;
+
+    &:focus-visible {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .af-tabs__link {
+      transition: none;
+    }
+  }
+
+  /* List item wrapping the button */
+  .af-tabs__item {
+    position: relative;
+    box-sizing: border-box;
+    margin-right: 0.25rem;
+    margin-left: 0;
+  }
+
+  .af-tabs__item--active {
+    .af-tabs__link {
+      --tabs-color: var(--white);
+      --tabs-background-color: var(--brand-primary);
+      --tabs-margin-top: 0;
+      --tabs-padding: 0.75rem 1rem;
+    }
+  }
+
+  .af-tabs__link:hover {
+    --tabs-background-color: var(--brand-primary);
+    --tabs-color: var(--white);
+  }
+
+  .af-tabs__item:last-child {
+    margin-right: 0;
+  }
+
+  .af-tabs__item .glyphicon {
+    margin-left: 0.5rem;
+    vertical-align: sub;
+    font-size: 1.125rem;
+  }
+
+  .af-tabs__item .af-badge {
+    margin-left: 0.5rem;
+  }
+
+  .af-tabs__content {
+    border-top: 2px solid var(--brand-primary);
+    background-color: var(--white);
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
+  }
+
+  .af-tabs__pane {
+    display: none;
+    padding: 1.5rem 1.25rem;
+
+    &.af-tabs__pane--active {
+      display: block;
+    }
   }
 }

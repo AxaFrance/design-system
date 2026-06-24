@@ -1,51 +1,50 @@
-.af-form__textarea {
-  --textarea-box-shadow-width: 1px;
+@layer canopee {
+  .af-form__textarea {
+    --textarea-box-shadow-width: 1px;
 
-  width: 100%;
-  min-height: var(--rem-72);
-  padding: var(--rem-16);
-  border: none;
-  border-radius: var(--textarea-border-radius);
-  font-size: var(--rem-16);
-  font-weight: 600;
-  line-height: 125%;
-  color: var(--textarea-color);
-  background-color: var(--textarea-background-color);
-  box-shadow: 0 0 0 var(--textarea-box-shadow-width)
-    var(--textarea-box-shadow-color) inset;
-  outline: none;
+    width: 100%;
+    min-height: var(--rem-72);
+    padding: var(--rem-16);
+    border: none;
+    border-radius: var(--textarea-border-radius);
+    font-size: var(--rem-16);
+    font-weight: 600;
+    line-height: 125%;
+    color: var(--textarea-color);
+    background-color: var(--textarea-background-color);
+    box-shadow: 0 0 0 var(--textarea-box-shadow-width) var(--textarea-box-shadow-color) inset;
+    outline: none;
 
-  &:is(
-      :focus-visible,
+    &:is( :focus-visible,
       :hover,
       :active,
       :focus,
       [aria-invalid="true"],
-      [class*="--warning"]
-    ):not(:disabled) {
-    --textarea-box-shadow-width: 2px;
-  }
-
-  @media (--desktop-small) {
-    min-height: var(--rem-80);
-    font-size: var(--rem-18);
-  }
-
-  &::placeholder {
-    font-weight: 400;
-    color: var(--textarea-placeholder-color);
-  }
-
-  &[class*="--warning"] {
-    --textarea-box-shadow-color: var(--orange-1050);
-
-    &:not(:placeholder-shown) {
-      --textarea-box-shadow-color: var(--orange-1050);
+      [class*="--warning"]):not(:disabled) {
+      --textarea-box-shadow-width: 2px;
     }
 
-    &:is(:focus-visible, :hover, :active, :focus) {
+    @media (--desktop-small) {
+      min-height: var(--rem-80);
+      font-size: var(--rem-18);
+    }
+
+    &::placeholder {
+      font-weight: 400;
+      color: var(--textarea-placeholder-color);
+    }
+
+    &[class*="--warning"] {
       --textarea-box-shadow-color: var(--orange-1050);
-      --textarea-box-shadow-width: 3px;
+
+      &:not(:placeholder-shown) {
+        --textarea-box-shadow-color: var(--orange-1050);
+      }
+
+      &:is(:focus-visible, :hover, :active, :focus) {
+        --textarea-box-shadow-color: var(--orange-1050);
+        --textarea-box-shadow-width: 3px;
+      }
     }
   }
 }
