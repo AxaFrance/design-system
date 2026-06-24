@@ -31,3 +31,15 @@ To install the Slash React package, run:
 ```bash
 npm install @axa-fr/canopee-react/distributeur
 ```
+
+## Layers
+
+To make customization easier, the Slash design system is making use of CSS layers. This allows you to easily override styles without having to worry about specificity or the order of your CSS files.
+See [MDN documentation](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/At-rules/@layer) for more information on CSS layers.
+
+The layers are defined as follows:
+
+- `@layer reset` for global styles and resets;
+- `@layer canopee` for component styles;
+
+By default, the layers are order `reset` first, then `canopee`.

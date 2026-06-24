@@ -1,23 +1,25 @@
-.af-file-upload {
-  .af-file-list__title {
-    margin: 0;
-    font-size: var(--rem-18);
-    font-weight: 600;
-    line-height: 125%;
-  }
+@layer canopee {
+  .af-file-upload {
+    .af-file-list__title {
+      margin: 0;
+      font-size: var(--rem-18);
+      font-weight: 600;
+      line-height: 125%;
+    }
 
-  .af-file-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+    .af-file-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
 
-  .af-file-list,
-  .af-file-list__item {
-    display: contents;
-  }
+    .af-file-list,
+    .af-file-list__item {
+      display: contents;
+    }
 
-  .af-file-list__item > .af-item-file {
-    align-self: stretch;
+    .af-file-list__item > .af-item-file {
+      align-self: stretch;
+    }
   }
 }

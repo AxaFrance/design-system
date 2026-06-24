@@ -1,86 +1,88 @@
-.af-content-item-duo {
-  --content-item-duo-column-gap: 16;
-  --content-item-duo-text-font-size: 16;
-  --content-item-duo-value-justify: start;
-  --content-item-duo-button-justify: start;
-
-  display: grid;
-  width: 100%;
-  grid-template: "label value";
-  grid-template-columns: 1fr 1fr;
-  gap: var(--rem-8)
-    calc(var(--content-item-duo-column-gap) / var(--font-size-base) * 1rem);
-
-  .af-content-item-duo__label {
-    grid-area: label;
-    font-size: calc(
-      var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
-    );
-    font-weight: 400;
-    line-height: 125%;
-    color: var(--content-item-duo-label-color);
-  }
-
-  .af-content-item-duo__value {
-    display: flex;
-    grid-area: value;
-    flex-direction: column;
-    justify-self: var(--content-item-duo-value-justify);
-    gap: var(--rem-8);
-    font-size: calc(
-      var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
-    );
-    font-weight: 600;
-    line-height: 125%;
-    word-break: break-word;
-    color: var(--content-item-duo-value-color);
-  }
-
-  .af-content-item-duo__button {
-    grid-area: button;
-    justify-self: var(--content-item-duo-button-justify);
-  }
-
-  @media (--desktop-small) {
-    --content-item-duo-column-gap: 40;
-    --content-item-duo-text-font-size: 18;
-  }
-
-  &.af-content-item-duo--horizontal:has(.af-content-item-duo__button) {
-    grid-template:
-      "label value"
-      ". button";
-  }
-
-  &.af-content-item-duo--horizontal.af-content-item-duo--small
-    .af-content-item-duo__value {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  &.af-content-item-duo--horizontal.af-content-item-duo--small {
+@layer canopee {
+  .af-content-item-duo {
     --content-item-duo-column-gap: 16;
     --content-item-duo-text-font-size: 16;
-    --content-item-duo-value-justify: end;
-    --content-item-duo-button-justify: end;
-  }
+    --content-item-duo-value-justify: start;
+    --content-item-duo-button-justify: start;
 
-  &.af-content-item-duo--vertical {
-    grid-template:
-      "label"
-      "value";
-    grid-template-columns: 1fr;
+    display: grid;
+    width: 100%;
+    grid-template: "label value";
+    grid-template-columns: 1fr 1fr;
+    gap: var(--rem-8)
+      calc(var(--content-item-duo-column-gap) / var(--font-size-base) * 1rem);
 
-    --content-item-duo-column-gap: 12;
-  }
+    .af-content-item-duo__label {
+      grid-area: label;
+      font-size: calc(
+        var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
+      );
+      font-weight: 400;
+      line-height: 125%;
+      color: var(--content-item-duo-label-color);
+    }
 
-  &.af-content-item-duo--vertical:has(.af-content-item-duo__button) {
-    grid-template:
-      "label button"
-      "value value";
-    grid-template-columns: 1fr auto;
+    .af-content-item-duo__value {
+      display: flex;
+      grid-area: value;
+      flex-direction: column;
+      justify-self: var(--content-item-duo-value-justify);
+      gap: var(--rem-8);
+      font-size: calc(
+        var(--content-item-duo-text-font-size) / var(--font-size-base) * 1rem
+      );
+      font-weight: 600;
+      line-height: 125%;
+      word-break: break-word;
+      color: var(--content-item-duo-value-color);
+    }
 
-    --content-item-duo-button-justify: end;
+    .af-content-item-duo__button {
+      grid-area: button;
+      justify-self: var(--content-item-duo-button-justify);
+    }
+
+    @media (--desktop-small) {
+      --content-item-duo-column-gap: 40;
+      --content-item-duo-text-font-size: 18;
+    }
+
+    &.af-content-item-duo--horizontal:has(.af-content-item-duo__button) {
+      grid-template:
+        "label value"
+        ". button";
+    }
+
+    &.af-content-item-duo--horizontal.af-content-item-duo--small
+      .af-content-item-duo__value {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    &.af-content-item-duo--horizontal.af-content-item-duo--small {
+      --content-item-duo-column-gap: 16;
+      --content-item-duo-text-font-size: 16;
+      --content-item-duo-value-justify: end;
+      --content-item-duo-button-justify: end;
+    }
+
+    &.af-content-item-duo--vertical {
+      grid-template:
+        "label"
+        "value";
+      grid-template-columns: 1fr;
+
+      --content-item-duo-column-gap: 12;
+    }
+
+    &.af-content-item-duo--vertical:has(.af-content-item-duo__button) {
+      grid-template:
+        "label button"
+        "value value";
+      grid-template-columns: 1fr auto;
+
+      --content-item-duo-button-justify: end;
+    }
   }
 }

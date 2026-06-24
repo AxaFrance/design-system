@@ -1,16 +1,18 @@
 @import "./TimelineVerticalCommon.css";
 
-.af-timeline-vertical {
-  --timeline-vertical-padding: var(--rem-24);
-  --timeline-vertical-title-color: var(--gray-1000);
-  --timeline-vertical-title-font-size: var(--rem-16);
-  --timeline-vertical-description-color: var(--gray-800);
-  --timeline-vertical-description-font-size: var(--rem-14);
-  --timeline-vertical-bg-color: var(--white-1000);
-  --timeline-vertical-border-color: var(--blue-200);
+@layer canopee {
+  .af-timeline-vertical {
+    --timeline-vertical-padding: var(--rem-24);
+    --timeline-vertical-title-color: var(--gray-1000);
+    --timeline-vertical-title-font-size: var(--rem-16);
+    --timeline-vertical-description-color: var(--gray-800);
+    --timeline-vertical-description-font-size: var(--rem-14);
+    --timeline-vertical-bg-color: var(--white-1000);
+    --timeline-vertical-border-color: var(--blue-200);
 
-  @media (--desktop-small) {
-    --timeline-vertical-title-font-size: var(--rem-18);
-    --timeline-vertical-description-font-size: var(--rem-16);
+    @media (--desktop-small) {
+      --timeline-vertical-title-font-size: var(--rem-18);
+      --timeline-vertical-description-font-size: var(--rem-16);
+    }
   }
 }
