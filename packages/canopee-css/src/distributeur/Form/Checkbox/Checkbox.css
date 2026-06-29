@@ -207,9 +207,7 @@
     stroke-width: 10px;
   }
 
-  .af-form__checkbox-custom
-    .af-form__input-checkbox:focus
-    + .af-form__label {
+  .af-form__checkbox-custom .af-form__input-checkbox:focus + .af-form__label {
     outline: 2px solid var(--button-primary-default);
     outline-offset: 2px;
   }
