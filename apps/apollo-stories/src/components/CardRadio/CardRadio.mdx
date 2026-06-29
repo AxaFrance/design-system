@@ -1,16 +1,16 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
-import * as CardRadioOptionStories from "./CardRadioOption.stories";
+import * as CardRadioStories from "./CardRadio.stories";
 
-<Meta of={CardRadioOptionStories} name="CardRadioOption" />
+<Meta of={CardRadioStories} name="CardRadio" />
 
-# CardRadioOption
+# CardRadio
 
 One-line: a single selectable card used inside `CardRadioGroup`, rendering a label, optional icon/picture, description and subtitle.
 
 ## Import
 
 ```tsx
-import { CardRadioOption } from "@axa-fr/canopee-react/client";
+import { CardRadio } from "@axa-fr/canopee-react/prospect";
 ```
 
 ## Props
@@ -152,7 +152,7 @@ import { CardRadioOption } from "@axa-fr/canopee-react/client";
 ## Example
 
 ```tsx
-<CardRadioOption
+<CardRadio
   name="city"
   value="paris"
   label="Paris"
@@ -162,5 +162,5 @@ import { CardRadioOption } from "@axa-fr/canopee-react/client";
 />
 ```
 
-<Canvas of={CardRadioOptionStories.CardRadioOptionStory} />
-<Controls of={CardRadioOptionStories.CardRadioOptionStory} />
+<Canvas of={CardRadioStories.CardRadioStory} />
+<Controls of={CardRadioStories.CardRadioStory} />

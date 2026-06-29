@@ -1,16 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
 import { Radio } from "../../Radio/RadioCommon";
-import { CardRadioOptionCommon } from "../CardRadioOptionCommon";
+import { CardRadioCommon } from "../CardRadioCommon";
 
 const MockIconComponent = (props: ComponentProps<"svg">) => (
   <svg data-testid="mock-icon" {...props} />
 );
 
-describe("CardRadioOptionCommon", () => {
+describe("CardRadioCommon", () => {
   it("should render the label", () => {
     render(
-      <CardRadioOptionCommon
+      <CardRadioCommon
         label="Test Label"
         RadioComponent={Radio}
         IconComponent={MockIconComponent}
@@ -23,7 +23,7 @@ describe("CardRadioOptionCommon", () => {
 
   it("should render the description if provided", () => {
     render(
-      <CardRadioOptionCommon
+      <CardRadioCommon
         label="Label"
         description="Test Description"
         RadioComponent={Radio}
@@ -37,7 +37,7 @@ describe("CardRadioOptionCommon", () => {
 
   it("should render the subtitle if provided", () => {
     render(
-      <CardRadioOptionCommon
+      <CardRadioCommon
         label="Label"
         subtitle="Test Subtitle"
         RadioComponent={Radio}
@@ -51,7 +51,7 @@ describe("CardRadioOptionCommon", () => {
 
   it("should render the icon if provided", () => {
     render(
-      <CardRadioOptionCommon
+      <CardRadioCommon
         label="Label"
         icon="icon-src"
         RadioComponent={Radio}
@@ -65,7 +65,7 @@ describe("CardRadioOptionCommon", () => {
 
   it("should render the image if src is provided", () => {
     render(
-      <CardRadioOptionCommon
+      <CardRadioCommon
         label="Label"
         position="horizontal"
         src="image-src"
@@ -83,7 +83,7 @@ describe("CardRadioOptionCommon", () => {
 
   it("should render the RadioComponent with the correct props", () => {
     render(
-      <CardRadioOptionCommon
+      <CardRadioCommon
         label="Label"
         RadioComponent={Radio}
         IconComponent={MockIconComponent}

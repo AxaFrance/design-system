@@ -4,13 +4,13 @@ import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
 import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
-import { CardRadioOption } from "../../CardRadioOption/CardRadioOptionApollo";
+import { CardRadio } from "../../CardRadio/CardRadioLF";
 import {
   CardRadioGroupCommon,
   type CardRadioGroupProps,
 } from "../CardRadioGroupCommon";
 
-describe("Radio card Component", () => {
+describe("CardRadioGroup", () => {
   const radioOptions = [
     {
       label: "Paris",
@@ -27,16 +27,16 @@ describe("Radio card Component", () => {
       icon: homeIcons,
     },
   ];
-  const CardRadio = (props: CardRadioGroupProps) => (
+  const CardRadioGroup = (props: CardRadioGroupProps) => (
     <CardRadioGroupCommon
       {...props}
-      CardRadioOptionComponent={CardRadioOption}
+      CardRadioComponent={CardRadio}
       ItemMessageComponent={ItemMessage}
     />
   );
 
   it("should render the Radio card component with label", () => {
-    render(<CardRadio options={radioOptions} label="Choose a city" />);
+    render(<CardRadioGroup options={radioOptions} label="Choose a city" />);
 
     expect(screen.getByRole("radio", { name: /Paris/ })).toBeInTheDocument();
     expect(screen.getByRole("radio", { name: /Lyon/ })).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe("Radio card Component", () => {
   it("should call the onChange handler when clicked", async () => {
     const handleChange = vi.fn();
     render(
-      <CardRadio
+      <CardRadioGroup
         options={radioOptions}
         label="Choose a city"
         onChange={handleChange}
@@ -61,7 +61,7 @@ describe("Radio card Component", () => {
 
   it("should force the checked state of the radio card", () => {
     render(
-      <CardRadio
+      <CardRadioGroup
         cardStyle="vertical"
         name="cities"
         label="Choose a city"
@@ -89,7 +89,7 @@ describe("Radio card Component", () => {
 
   it("should not violate accessibility of the radio card", async () => {
     const { container } = render(
-      <CardRadio options={radioOptions} label="Choose a city" />,
+      <CardRadioGroup options={radioOptions} label="Choose a city" />,
     );
 
     expect(await axe(container)).toHaveNoViolations();
@@ -97,7 +97,7 @@ describe("Radio card Component", () => {
 
   it("should display error message when error prop is provided", () => {
     render(
-      <CardRadio
+      <CardRadioGroup
         options={radioOptions}
         label="Choose a city"
         error="This field is required"
@@ -113,7 +113,7 @@ describe("Radio card Component", () => {
 
   it("should display description and label when provided", () => {
     render(
-      <CardRadio
+      <CardRadioGroup
         options={radioOptions}
         label="Choose a city"
         description="Select your favorite city"
@@ -124,7 +124,9 @@ describe("Radio card Component", () => {
   });
 
   it("should display asterisk when required is true", () => {
-    render(<CardRadio options={radioOptions} label="Choose a city" required />);
+    render(
+      <CardRadioGroup options={radioOptions} label="Choose a city" required />,
+    );
     const radiogroup = screen.getByRole("radiogroup", {
       name: /Choose a city/,
     });
@@ -135,7 +137,7 @@ describe("Radio card Component", () => {
 
   it("should derive position class from explicit `position` prop", () => {
     const { container } = render(
-      <CardRadio
+      <CardRadioGroup
         options={radioOptions}
         label="Choose a city"
         position="line"
@@ -153,7 +155,7 @@ describe("Radio card Component", () => {
     "should derive position class from `cardStyle` when `position` not provided ($cardStyleValue -> $expectedClassSuffix)",
     ({ cardStyleValue, expectedClassSuffix }) => {
       const { container } = render(
-        <CardRadio
+        <CardRadioGroup
           options={radioOptions}
           label="Choose a city"
           cardStyle={cardStyleValue as CardRadioGroupProps["cardStyle"]}
@@ -169,7 +171,7 @@ describe("Radio card Component", () => {
 
   it("should display message with error type by default", () => {
     render(
-      <CardRadio
+      <CardRadioGroup
         label="Choose a city"
         options={radioOptions}
         message="Error message"
