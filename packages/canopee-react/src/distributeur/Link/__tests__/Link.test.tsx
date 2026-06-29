@@ -30,7 +30,7 @@ describe("Link component", () => {
       </Link>,
     );
 
-    const link = screen.getByRole("link", { name: "Left Icon Test Link" });
+    const link = screen.getByRole("link", { name: "Left IconTest Link" });
     expect(link).toBeInTheDocument();
   });
 
@@ -41,7 +41,7 @@ describe("Link component", () => {
       </Link>,
     );
 
-    const link = screen.getByRole("link", { name: "Test Link Right Icon" });
+    const link = screen.getByRole("link", { name: "Test LinkRight Icon" });
     expect(link).toBeInTheDocument();
   });
 
