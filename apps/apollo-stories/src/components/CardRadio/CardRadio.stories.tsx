@@ -1,4 +1,4 @@
-import { CardRadioOption } from "@axa-fr/canopee-react/client";
+import { CardRadio } from "@axa-fr/canopee-react/prospect";
 import accountBalanceIcon from "@material-symbols/svg-400/outlined/account_balance-fill.svg";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import { Meta, StoryObj } from "@storybook/react";
@@ -11,12 +11,12 @@ const ICONS: Record<string, string | undefined> = {
 };
 
 const meta: Meta<
-  ComponentProps<typeof CardRadioOption> & {
+  ComponentProps<typeof CardRadio> & {
     iconVariant: "icon" | "base picture";
   }
 > = {
-  title: "Components/Form/Radio/CardRadioOption",
-  component: CardRadioOption,
+  title: "Components/Form/Radio/CardRadio",
+  component: CardRadio,
   parameters: {
     layout: "centered",
   },
@@ -64,23 +64,19 @@ const meta: Meta<
 
 export default meta;
 
-export const CardRadioOptionStory: StoryObj<
-  ComponentProps<typeof CardRadioOption>
-> = {
+export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
   name: "Playground",
   render: ({
     icon,
-    type,
     description,
     subtitle,
     name,
     value,
     ...args
-  }: ComponentProps<typeof CardRadioOption>) => (
-    <CardRadioOption
+  }: ComponentProps<typeof CardRadio>) => (
+    <CardRadio
       {...args}
       icon={ICONS[icon ?? "none"]}
-      type={type}
       value={value !== "" ? value : undefined}
       name={name !== "" ? name : undefined}
       description={description !== "" ? description : undefined}
@@ -89,7 +85,7 @@ export const CardRadioOptionStory: StoryObj<
   ),
   decorators: [
     (Story, { args }) => (
-      <div style={{ width: args.type === "horizontal" ? 500 : 300 }}>
+      <div style={{ width: args.position === "horizontal" ? 500 : 300 }}>
         <Story />
       </div>
     ),

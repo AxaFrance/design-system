@@ -72,12 +72,8 @@ export {
   itemMessageVariants,
   type ItemMessageVariants,
 } from "./prospect-client/Form/ItemMessage/ItemMessageLF";
-export {
-  /** @deprecated Use `CardRadioGroup` instead. */
-  CardRadioGroup as CardRadio,
-  CardRadioGroup,
-} from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupLF";
-export { CardRadioOption } from "./prospect-client/Form/Radio/CardRadioOption/CardRadioOptionLF";
+export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioLF";
+export { CardRadioGroup } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupLF";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioLF";
 export {
   RadioText,
