@@ -1,5 +1,5 @@
 import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
-import { CardRadioOption } from "../CardRadioOption/CardRadioOptionApollo";
+import { CardRadio } from "../CardRadio/CardRadioApollo";
 import {
   CardRadioGroupCommon,
   type CardRadioGroupProps,
@@ -10,7 +10,7 @@ import "@axa-fr/canopee-css/prospect/Form/Radio/CardRadioGroup/CardRadioGroupApo
 export const CardRadioGroup = (props: CardRadioGroupProps) => (
   <CardRadioGroupCommon
     {...props}
-    CardRadioOptionComponent={CardRadioOption}
+    CardRadioComponent={CardRadio}
     ItemMessageComponent={ItemMessage}
   />
 );

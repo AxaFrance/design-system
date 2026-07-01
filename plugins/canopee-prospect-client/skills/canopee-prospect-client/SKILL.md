@@ -175,7 +175,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `CardCheckboxOption` | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte checkbox |
 | `Radio`              | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Radio simple (bas niveau)             |
 | `CardRadioGroup`     | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Groupe de radios en cartes            |
-| `CardRadioOption`    | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
+| `CardRadio`    | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
 
 ### Upload de fichiers
 

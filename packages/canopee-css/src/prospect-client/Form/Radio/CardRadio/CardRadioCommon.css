@@ -1,35 +1,34 @@
 @layer canopee {
-  .af-card-radio-option {
-    --radio-option-border-width: 1px;
+  .af-card-radio {
+    --radio-border-width: 1px;
 
     position: relative;
     display: flex;
     padding: var(--rem-16);
-    border-radius: var(--radio-option-border-radius);
+    border-radius: var(--radio-border-radius);
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: var(--radio-option-gap);
+    gap: var(--radio-gap);
     text-align: center;
-    background-color: var(--radio-option-background-color);
-    outline: var(--radio-option-border-width) solid
-      var(--radio-option-border-color);
-    outline-offset: calc(-1 * var(--radio-option-border-width));
+    background-color: var(--radio-background-color);
+    outline: var(--radio-border-width) solid var(--radio-border-color);
+    outline-offset: calc(-1 * var(--radio-border-width));
     cursor: pointer;
 
     &:hover,
     &:focus-visible,
     &:focus-within {
-      --radio-option-border-width: 2px;
+      --radio-border-width: 2px;
     }
 
     &:has(input:checked) {
-      --radio-option-border-width: 1px;
+      --radio-border-width: 1px;
 
       &:hover,
       &:focus-visible,
       &:focus-within {
-        --radio-option-border-width: 2px;
+        --radio-border-width: 2px;
       }
     }
 
@@ -42,57 +41,57 @@
     }
   }
 
-  .af-card-radio-option__label {
+  .af-card-radio__label {
     margin: 0;
     font-size: var(--rem-16);
     font-weight: 400;
-    color: var(--radio-option-color-title);
+    color: var(--radio-color-title);
 
     @media (--desktop-small) {
       font-size: var(--rem-18);
     }
   }
 
-  .af-card-radio-option:has(input:checked) .af-card-radio-option__label {
+  .af-card-radio:has(input:checked) .af-card-radio__label {
     font-weight: 600;
   }
 
-  .af-card-radio-option--invalid:not(:has(input:checked)) {
-    --radio-option-border-width: 2px;
+  .af-card-radio--invalid:not(:has(input:checked)) {
+    --radio-border-width: 2px;
 
     &:hover,
     &:focus-visible,
     &:focus-within {
-      --radio-option-border-width: 3px;
+      --radio-border-width: 3px;
     }
   }
 
-  .af-card-radio-option__content {
+  .af-card-radio__content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     align-items: center;
     justify-content: space-between;
-    gap: var(--radio-option-gap);
+    gap: var(--radio-gap);
     text-align: center;
   }
 
-  .af-card-radio-option__description,
-  .af-card-radio-option__subtitle {
+  .af-card-radio__description,
+  .af-card-radio__subtitle {
     margin: 0;
     font-size: var(--rem-14);
     font-weight: 400;
-    color: var(--radio-option-color-subtitle);
+    color: var(--radio-color-subtitle);
 
     @media (--desktop-small) {
       font-size: 1rem;
     }
   }
 
-  .af-card-radio-option--horizontal {
+  .af-card-radio--horizontal {
     flex-direction: row;
 
-    & .af-card-radio-option__content {
+    & .af-card-radio__content {
       align-items: flex-start;
       text-align: left;
     }
