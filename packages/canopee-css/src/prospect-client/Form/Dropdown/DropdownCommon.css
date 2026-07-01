@@ -14,12 +14,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color: var(--dropdown-color);
-    background: var(--dropdown-background-color)
-      var(--dropdown-background-image) no-repeat right 1rem center / 1.5rem
-      1.5rem;
+    background: var(--dropdown-background-color) var(--dropdown-background-image) no-repeat right 1rem center / 1.5rem 1.5rem;
     background-position-x: calc(100% - 1rem);
-    box-shadow: 0 0 0 var(--dropdown-box-shadow-width)
-      var(--dropdown-box-shadow-color) inset;
+    box-shadow: 0 0 0 var(--dropdown-box-shadow-width) var(--dropdown-box-shadow-color) inset;
     outline: none;
     cursor: pointer;
     appearance: none;
@@ -50,11 +47,20 @@
     }
   }
 
-  .af-form__dropdown-input--error {
+  .af-form__dropdown-input--error,
+  .af-form__dropdown-input--warning {
     --dropdown-box-shadow-width: 2px;
 
     &:is(:focus-visible, :hover, :active) {
       --dropdown-box-shadow-width: 3px;
+    }
+  }
+
+  .af-form__dropdown-input.af-form__dropdown-input--warning {
+    --dropdown-box-shadow-color: var(--orange-1050);
+
+    &:is(:focus-visible, :hover, :active) {
+      --dropdown-box-shadow-color: var(--orange-1050);
     }
   }
 

@@ -1,0 +1,27 @@
+.af-help-button .btn.af-btn--circle {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-color: var(--axablue80);
+  align-items: center;
+  justify-content: center;
+  background: var(--axablue80);
+  cursor: pointer;
+}
+
+.af-help-button .btn.af-btn--circle svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  fill: var(--white);
+}
+
+.af-help-button .btn.af-btn--circle--inverse {
+  border-color: var(--white);
+  color: var(--axablue80);
+  background: var(--white);
+}
+
+.af-help-button .btn.af-btn--circle--inverse svg {
+  fill: var(--axablue80);
+}

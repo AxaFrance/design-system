@@ -22,6 +22,7 @@
 @import "./Link/LinkApollo.css";
 @import "./Toggle/ToggleApollo.css";
 @import "./Message/MessageApollo.css";
+@import "./MultiMessage/MultiMessageApollo.css";
 @import "./Tag/TagApollo.css";
 @import "./CardMessage/CardMessageApollo.css";
 @import "./AccordionCore/AccordionCoreApollo.css";
@@ -41,6 +42,7 @@
 @import "./Form/Checkbox/CardCheckboxOption/CardCheckboxOptionApollo.css";
 @import "./ContentItemMono/ContentItemMonoApollo.css";
 @import "./Form/Radio/Radio/RadioApollo.css";
+@import "./Form/Radio/RadioText/RadioTextAll.css";
 @import "./Form/Radio/CardRadio/CardRadioApollo.css";
 @import "./Form/Radio/CardRadioGroup/CardRadioGroupApollo.css";
 @import "./Form/InputPhone/InputPhoneApollo.css";

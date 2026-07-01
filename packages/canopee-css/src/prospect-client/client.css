@@ -22,6 +22,7 @@
 @import "./Link/LinkLF.css";
 @import "./Toggle/ToggleLF.css";
 @import "./Message/MessageLF.css";
+@import "./MultiMessage/MultiMessageLF.css";
 @import "./Tag/TagLF.css";
 @import "./CardMessage/CardMessageLF.css";
 @import "./AccordionCore/AccordionCoreLF.css";
@@ -41,6 +42,7 @@
 @import "./Form/Checkbox/CardCheckboxOption/CardCheckboxOptionLF.css";
 @import "./ContentItemMono/ContentItemMonoLF.css";
 @import "./Form/Radio/Radio/RadioLF.css";
+@import "./Form/Radio/RadioText/RadioTextAll.css";
 @import "./Form/Radio/CardRadio/CardRadioLF.css";
 @import "./Form/Radio/CardRadioGroup/CardRadioGroupLF.css";
 @import "./Form/InputPhone/InputPhoneLF.css";

@@ -5,7 +5,7 @@ import { Icon } from "../../../Icon/IconLF";
 import { Spinner } from "../../../Spinner/SpinnerLF";
 import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
 import { ItemFileCommon, type ItemFileProps } from "./ItemFileCommon";
-
+import "@axa-fr/canopee-css/client/ContentItemMono/ContentItemMonoLF.css";
 import "@axa-fr/canopee-css/client/Form/FileUpload/ItemFile/ItemFileLF.css";
 
 export const ItemFile = (props: ItemFileProps) => (
