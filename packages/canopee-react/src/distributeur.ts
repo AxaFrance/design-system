@@ -128,6 +128,11 @@ export { Alert, Message };
 
 export { HelpButton } from "./distributeur/HelpButton";
 export { Loader } from "./distributeur/Loader/Loader";
+export {
+  ItemLoader,
+  type ItemLoaderVariant,
+} from "./distributeur/Loader/ItemLoader";
+export { SquareLoader } from "./distributeur/Loader/SquareLoader";
 
 export { CardData } from "./distributeur/CardData/CardData";
 export type { CardDataVariant } from "./distributeur/CardData/CardData";

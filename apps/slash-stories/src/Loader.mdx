@@ -5,24 +5,55 @@ import * as LoaderStories from "./Loader.stories";
 
 # Loader
 
+> **Breaking-change safe migration**: `Loader` now supports variants. The default variant keeps the historical Loader behavior.
+>
+> **Deprecated component**: `SquareLoader` is still exported for compatibility but is deprecated. Prefer `Loader` with `variant="fullscreen"`.
+>
 > **Deprecated prop**: The `classModifier` prop is deprecated. Use `className` to add custom CSS modifier classes instead.
 
 The loader is a component to disable part of your application to express an unspecified wait time or display the length of a process.
 
+The default variant is the `fullscreen` variant, which is a fullscreen overlay spinner. The `inline` and `content` variants are also available for inline and content area spinners.
+
+For `fullscreen`, you can pass `children` to wrap page content and display the loader overlay above it (same usage pattern as `SquareLoader`).
+
 ```tsx
 import { Loader } from "@axa-fr/canopee-react/distributeur";
 
-const MyComponent = () => <Loader mode="get">My Content</Loader>;
+const MyComponent = () => (
+  <>
+    <Loader variant="fullscreen" text="Chargement en cours">
+      My Content
+    </Loader>
+    <Loader variant="inline" text="Recherche en cours" />
+  </>
+);
 ```
 
 ## Playground
 
-<Canvas of={LoaderStories.Default} />
-<Controls of={LoaderStories.Default} />
+<Canvas of={LoaderStories.InlineVariant} />
+<Controls of={LoaderStories.InlineVariant} />
 
-## Modes
+## Variants
 
-The loader has 6 modes and a `none` mode to disable it. Each mode will display a different text, which can be overloaded via the `text` prop.
+`Loader` supports 3 variants:
+
+- `inline`: spinner displayed inline
+- `content`: compact spinner for content areas
+- `fullscreen`: fullscreen overlay spinner
+
+<Canvas of={LoaderStories.InlineVariant} />
+<Canvas of={LoaderStories.ContentVariant} />
+<Canvas of={LoaderStories.FullScreenVariant} />
+
+## Deprecated Component
+
+`SquareLoader` is still available and behaves exactly like the previous Loader implementation.
+
+### Modes
+
+The square loader has 6 modes and a `none` mode to disable it. Each mode will display a different text, which can be overloaded via the `text` prop.
 
 <table>
   <thead>
@@ -58,3 +89,5 @@ The loader has 6 modes and a `none` mode to disable it. Each mode will display a
     </tr>
   </tbody>
 </table>
+
+<Canvas of={LoaderStories.SquareLoaderComponent} />
