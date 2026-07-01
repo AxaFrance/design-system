@@ -1,0 +1,5 @@
+@import "./MessageBarCommon.css";
+
+.af-message-bar--error {
+  --message-bar-color: var(--red-alert-1200);
+}

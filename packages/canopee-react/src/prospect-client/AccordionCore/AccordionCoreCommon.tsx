@@ -6,6 +6,7 @@ import {
   useCallback,
 } from "react";
 import keyboardDown from "@material-symbols/svg-400/rounded/keyboard_arrow_down-fill.svg";
+import type { ClickIconVariant } from "../ClickIcon/ClickIconCommon";
 import type { IconProps } from "../Icon/IconCommon";
 import { getClassName } from "../utilities/getClassName";
 
@@ -20,6 +21,7 @@ export type AccordionCoreProps = {
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: SummaryOnClick;
   showArrowAsClickIcon?: boolean;
+  arrowClickIconVariant?: ClickIconVariant;
   arrowIconVariant?: IconProps["variant"];
 } & ComponentProps<"details">;
 
@@ -32,10 +34,12 @@ export const AccordionCoreCommon = ({
   children,
   className,
   summaryProps,
-  isOpen = false,
+  isOpen,
   IconComponent,
   onClick,
+  open = false,
   showArrowAsClickIcon = true,
+  arrowClickIconVariant = "default",
   arrowIconVariant,
   ...detailsProps
 }: AccordionPropsCommonProps) => {
@@ -48,6 +52,13 @@ export const AccordionCoreCommon = ({
     },
     [onClick],
   );
+  const accordionOpen = isOpen ?? open;
+  const arrowClassName = showArrowAsClickIcon
+    ? getClassName({
+        baseClassName: "af-click-icon",
+        modifiers: [arrowClickIconVariant === "ghost" && arrowClickIconVariant],
+      })
+    : undefined;
 
   return (
     <details
@@ -55,7 +66,7 @@ export const AccordionCoreCommon = ({
         baseClassName: "af-apollo-accordion",
         className,
       })}
-      open={isOpen}
+      open={accordionOpen}
       {...detailsProps}
     >
       <summary
@@ -71,7 +82,7 @@ export const AccordionCoreCommon = ({
         <div
           className={getClassName({
             baseClassName: "af-accordion__arrow",
-            className: showArrowAsClickIcon ? "af-click-icon" : "",
+            className: arrowClassName,
           })}
         >
           <IconComponent

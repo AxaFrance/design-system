@@ -198,3 +198,8 @@ export {
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./prospect-client/Toggle/ToggleApollo";
 export type { GridContainerProps } from "./prospect-client/utilities/types/GridContainerProps";
+export {
+  MessageBar,
+  type MessageBarProps,
+  type MessageBarVariant,
+} from "./prospect-client/MessageBar/MessageBarApollo";
