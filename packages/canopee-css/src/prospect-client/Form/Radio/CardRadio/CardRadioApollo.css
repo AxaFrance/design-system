@@ -1,0 +1,43 @@
+@import "./CardRadioCommon.css";
+
+@layer canopee {
+  .af-card-radio {
+    --radio-border-color: var(--blue-650);
+    --radio-color-title: var(--blue-1000);
+    --radio-color-subtitle: var(--gray-800);
+    --radio-gap: var(--rem-8);
+    --radio-border-radius: var(--radius-8);
+    --radio-background-color: var(--white-1000);
+
+    & .af-card-radio__content {
+      --radio-gap: var(--rem-4);
+    }
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --radio-border-color: var(--blue-1000);
+    }
+
+    &:has(input:checked) {
+      --radio-background-color: var(--blue-040);
+      --radio-border-color: var(--blue-1000);
+    }
+  }
+
+  .af-card-radio--horizontal {
+    & .af-radio {
+      margin-right: var(--rem-8);
+    }
+  }
+
+  .af-card-radio:not(.af-card-radio--horizontal) .af-radio {
+    margin-top: var(--rem-8);
+  }
+
+  .af-card-radio--invalid:not(:has(input:checked)) {
+    --radio-border-color: var(--red-alert-1000);
+    --radio-background-color: var(--red-040);
+    --radio-color-title: var(--gray-800);
+  }
+}

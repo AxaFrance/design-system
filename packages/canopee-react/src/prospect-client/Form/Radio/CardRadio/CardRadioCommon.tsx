@@ -4,13 +4,13 @@ import type { Icon as IconCommon } from "../../../Icon/IconCommon";
 import { getClassName } from "../../../utilities/getClassName";
 import type { Radio } from "../Radio/RadioCommon";
 
-type BaseCardRadioOptionProps = Omit<ComponentProps<typeof Radio>, "size"> & {
+type BaseCardRadioProps = Omit<ComponentProps<typeof Radio>, "size"> & {
   label: ReactNode;
   description?: ReactNode;
   subtitle?: ReactNode;
 };
 
-export type CardRadioOptionProps = BaseCardRadioOptionProps & {
+export type CardRadioProps = BaseCardRadioProps & {
   /**
    * @deprecated Use `position` instead.
    */
@@ -21,12 +21,12 @@ export type CardRadioOptionProps = BaseCardRadioOptionProps & {
   basePictureProps?: Omit<ComponentProps<typeof BasePicture>, "src">;
 };
 
-export type CardRadioOptionCommonProps = CardRadioOptionProps & {
+export type CardRadioCommonProps = CardRadioProps & {
   RadioComponent: ComponentType<ComponentProps<typeof Radio>>;
   IconComponent: ComponentType<ComponentProps<typeof IconCommon>>;
 };
 
-export const CardRadioOptionCommon = ({
+export const CardRadioCommon = ({
   label,
   position,
   type,
@@ -40,31 +40,31 @@ export const CardRadioOptionCommon = ({
   RadioComponent,
   IconComponent,
   ...inputProps
-}: CardRadioOptionCommonProps) => {
-  const isCardRadioOptionHorizontal = [position, type].includes("horizontal");
+}: CardRadioCommonProps) => {
+  const isCardRadioHorizontal = [position, type].includes("horizontal");
 
   return (
     <label
       className={getClassName({
-        baseClassName: "af-card-radio-option",
+        baseClassName: "af-card-radio",
         modifiers: [
           isInvalid && "invalid",
-          isCardRadioOptionHorizontal && "horizontal",
+          isCardRadioHorizontal && "horizontal",
         ],
         className,
       })}
     >
       {icon ? <IconComponent src={icon} role="presentation" /> : null}
-      {isCardRadioOptionHorizontal && src ? (
+      {isCardRadioHorizontal && src ? (
         <BasePicture src={src} {...basePictureProps} />
       ) : null}
-      <div className="af-card-radio-option__content">
-        <p className="af-card-radio-option__label">{label}</p>
+      <div className="af-card-radio__content">
+        <p className="af-card-radio__label">{label}</p>
         {Boolean(description) && (
-          <p className="af-card-radio-option__description">{description}</p>
+          <p className="af-card-radio__description">{description}</p>
         )}
         {Boolean(subtitle) && (
-          <p className="af-card-radio-option__subtitle">{subtitle}</p>
+          <p className="af-card-radio__subtitle">{subtitle}</p>
         )}
       </div>
       <RadioComponent {...inputProps} isInvalid={isInvalid} />
@@ -72,4 +72,4 @@ export const CardRadioOptionCommon = ({
   );
 };
 
-CardRadioOptionCommon.displayName = "CardRadioOptionCommon";
+CardRadioCommon.displayName = "CardRadioCommon";
