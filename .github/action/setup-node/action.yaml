@@ -28,12 +28,11 @@ runs:
       shell: bash
       run: npm install -g npm@${{ env.NPM_VERSION }}
 
-
-    - name: Install package
-      run: npm ci
-      shell: bash
-
     - name: Check package
       if: inputs.check-package == 'true'
       run: npm run package:check
+      shell: bash
+
+    - name: Install package
+      run: npm ci
       shell: bash
