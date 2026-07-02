@@ -30,12 +30,16 @@
       }
     }
 
-    .af-content-item-mono__stick+.af-content-item-mono__text-content .af-content-item-mono__title {
+    .af-content-item-mono__stick
+      + .af-content-item-mono__text-content
+      .af-content-item-mono__title {
       --title-font-size: var(--rem-14);
       --title-line-height: var(--rem-18);
     }
 
-    &.af-content-item-mono--large .af-content-item-mono__text-content .af-content-item-mono__title {
+    &.af-content-item-mono--large
+      .af-content-item-mono__text-content
+      .af-content-item-mono__title {
       --title-font-family: var(--font-family-publico);
       --title-font-weight: 700;
     }
@@ -58,7 +62,9 @@
         }
       }
 
-      .af-content-item-mono__stick+.af-content-item-mono__text-content .af-content-item-mono__title {
+      .af-content-item-mono__stick
+        + .af-content-item-mono__text-content
+        .af-content-item-mono__title {
         --title-font-size: var(--rem-16);
         --title-line-height: var(--rem-20);
       }
