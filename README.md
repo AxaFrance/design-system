@@ -236,7 +236,11 @@ import '@axa-fr/canopee-css/distributeur/common/tokens.css';
 
 Utilisez les plugins GitHub Copilot pour que Copilot vous aide à générer du code conforme au Design System Canopée.
 
-### � Installation via CLI (recommandé)
+### Installation des plugins
+
+Il existe plusieurs méthodes pour installer les plugins :
+
+#### 1. Via CLI
 
 Installez les plugins dans votre projet avec une simple commande :
 
@@ -252,26 +256,28 @@ npx @axa-fr/copilot-plugin install canopee-distributeur
 npx @axa-fr/copilot-plugin install canopee-prospect-client
 ```
 
-**Qu'est-ce que ça fait :**
+Le CLI crée automatiquement `.copilot-plugins/` et configure `.vscode/settings.json`.
 
-- ✅ Crée un dossier `.copilot-plugins/` dans votre projet
-- ✅ Configure automatiquement `.vscode/settings.json`
-- ✅ Copilot aura accès à la documentation du Design System
+#### 2. Via GitHub Copilot Marketplace
+
+1. Ouvrez GitHub Copilot Chat dans VS Code
+2. Allez dans l'onglet **Plugins**
+3. Cherchez **"Canopée Distributeur"** ou **"Canopée Prospect & Client"**
+4. Cliquez sur **"Install"**
+
+#### 3. Via configuration manuelle
+
+Ajoutez dans `.vscode/settings.json` de votre projet :
+
+```json
+{
+  "github.copilot.workspace.extensions": [
+    "file://${workspaceFolder}/.copilot-plugins/canopee-distributeur/.claude-plugin",
+    "file://${workspaceFolder}/.copilot-plugins/canopee-prospect-client/.claude-plugin"
+  ]
+}
+```
 
 Rechargez VS Code après l'installation.
 
-### 📚 Utilisation
-
-Dans GitHub Copilot Chat, demandez simplement :
-
-```
-"Crée un formulaire avec Canopée Distributeur"
-"Montre-moi les variantes du composant Button"
-"Comment utiliser les tokens CSS ?"
-```
-
-Copilot générera du code conforme au design system.
-
-### 📖 Documentation complète
-
-Pour plus de détails, voir [packages/copilot-plugins/README.md](./packages/copilot-plugins/README.md).
+Pour plus de détails, voir [packages/copilot-plugins/README.md](./packages/copilot-plugins/README.md) et [plugins/README.md](./plugins/README.md).

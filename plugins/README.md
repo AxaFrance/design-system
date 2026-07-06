@@ -54,14 +54,14 @@ plugins/
 - **Directory**: `canopee-distributeur/`
 - **For**: Internal AXA applications (B2B)
 - **Packages**: `@axa-fr/canopee-react/distributeur`, `@axa-fr/canopee-css/distributeur`
-- **Install**: `npx copilot-plugin install canopee-distributeur`
+- **Install**: `npx @axa-fr/copilot-plugin install canopee-distributeur`
 
 ### Canopée Prospect & Client (B2C)
 
 - **Directory**: `canopee-prospect-client/`
 - **For**: Customer-facing applications (B2C)
 - **Packages**: `@axa-fr/canopee-react/prospect`, `@axa-fr/canopee-react/client`
-- **Install**: `npx copilot-plugin install canopee-prospect-client`
+- **Install**: `npx @axa-fr/copilot-plugin install canopee-prospect-client`
 
 ## 📝 Plugin Files
 
@@ -88,8 +88,8 @@ Each plugin contains:
 1. Edit files in `plugins/<plugin-name>/`
 2. Test locally:
    ```bash
-   npm install --save-dev ./packages/copilot-plugins
-   npx copilot-plugin install <plugin-name>
+   npm install --save-dev @axa-fr/copilot-plugin
+   npx @axa-fr/copilot-plugin install <plugin-name>
    ```
 3. Update `CHANGELOG.md`
 4. Submit a PR

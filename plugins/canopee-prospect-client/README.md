@@ -8,6 +8,22 @@ Oriente GitHub Copilot pour générer des interfaces React conformes au Design S
 
 ## 🚀 Installation
 
+### Via CLI
+
+Installez le plugin via la CLI `@axa-fr/copilot-plugin` :
+
+```bash
+# Installer npm package
+npm install --save-dev @axa-fr/copilot-plugin
+
+# Installer le plugin
+npx @axa-fr/copilot-plugin install canopee-prospect-client
+```
+
+Le CLI crée automatiquement `.copilot-plugins/` et configure `.vscode/settings.json`.
+
+Relevez VS Code après l'installation pour activer le plugin.
+
 ### Via GitHub Copilot Marketplace
 
 1. Ouvrez GitHub Copilot Chat dans VS Code
@@ -22,7 +38,7 @@ Ajoutez dans `.vscode/settings.json` de votre projet :
 ```json
 {
   "github.copilot.workspace.extensions": [
-    "file://${workspaceFolder}/node_modules/@axa-fr/copilot-canopee-plugins/plugins/canopee-prospect-client/.claude-plugin"
+    "file://${workspaceFolder}/.copilot-plugins/canopee-prospect-client/.claude-plugin"
   ]
 }
 ```

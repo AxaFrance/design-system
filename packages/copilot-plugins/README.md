@@ -53,6 +53,41 @@ your-project/
 
 Reload VS Code after installation. GitHub Copilot will now provide guidance on Canopée components.
 
+## 🔧 Installation Methods
+
+### Method 1: CLI
+
+The CLI automatically creates `.copilot-plugins/` and configures `.vscode/settings.json`:
+
+```bash
+npm install --save-dev @axa-fr/copilot-plugin
+npx @axa-fr/copilot-plugin setup-all
+```
+
+### Method 2: GitHub Copilot Marketplace
+
+If plugins are available on the GitHub Copilot Marketplace:
+
+1. Open GitHub Copilot Chat in VS Code
+2. Go to the **Plugins** tab
+3. Search for **"Canopée"** (Distributeur or Prospect & Client)
+4. Click **"Install"**
+
+### Method 3: Manual Configuration
+
+Add plugin paths directly to `.vscode/settings.json`:
+
+```json
+{
+  "github.copilot.workspace.extensions": [
+    "file://${workspaceFolder}/.copilot-plugins/canopee-distributeur/.claude-plugin",
+    "file://${workspaceFolder}/.copilot-plugins/canopee-prospect-client/.claude-plugin"
+  ]
+}
+```
+
+Then reload VS Code.
+
 ## 💡 Usage
 
 Open GitHub Copilot Chat and ask:
@@ -134,16 +169,29 @@ After installation, your `.vscode/settings.json` will be updated:
 
 ## 🗑️ Uninstall
 
+### Via CLI
+
 ```bash
 npx @axa-fr/copilot-plugin uninstall canopee-distributeur
 npx @axa-fr/copilot-plugin uninstall canopee-prospect-client
 ```
 
-Or delete the `.copilot-plugins/` directory manually:
+### Via Marketplace
+
+1. Open GitHub Copilot Chat in VS Code
+2. Go to the **Plugins** tab
+3. Find the installed plugins
+4. Click **"Uninstall"**
+
+### Manual Removal
+
+Delete the `.copilot-plugins/` directory:
 
 ```bash
 rm -rf .copilot-plugins
 ```
+
+And remove entries from `.vscode/settings.json` if using manual configuration.
 
 ## 📚 Resources
 
