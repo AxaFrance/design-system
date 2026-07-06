@@ -1,0 +1,41 @@
+{
+  "name": "@axa-fr/copilot-plugin",
+  "version": "0.1.0",
+  "description": "CLI to install GitHub Copilot plugins for AXA Canopée Design System in your project",
+  "license": "MIT",
+  "author": {
+    "name": "AXA France"
+  },
+  "homepage": "https://github.com/AxaFrance/design-system",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AxaFrance/design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "bin": "./bin/copilot-plugin.js",
+  "main": "./cli/index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "axa",
+    "canopee",
+    "design-system",
+    "copilot",
+    "plugins",
+    "github-copilot",
+    "cli"
+  ],
+  "files": [
+    "bin/",
+    "cli/",
+    "plugins/"
+  ]
+}

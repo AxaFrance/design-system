@@ -1,0 +1,46 @@
+{
+  "id": "axa-fr.canopee-prospect-client",
+  "name": "Canopée Prospect & Client",
+  "displayName": "AXA Canopée Design System - Prospect & Client",
+  "version": "0.1.0",
+  "description": "GitHub Copilot plugin for the AXA Canopée Design System (Prospect and Client/B2C universes). Guides code generation for React components, CSS conventions, and design system best practices for customer-facing applications.",
+  "publisher": "AXA France",
+  "license": "MIT",
+  "homepage": "https://github.com/AxaFrance/design-system",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AxaFrance/design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AxaFrance/design-system/issues"
+  },
+  "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect fill='%23002060' width='128' height='128'/%3E%3Ctext x='50%25' y='50%25' font-size='80' font-family='Arial' fill='%23FFF' text-anchor='middle' dominant-baseline='middle'%3EC%3C/text%3E%3C/svg%3E",
+  "keywords": [
+    "axa",
+    "canopee",
+    "design-system",
+    "react",
+    "components",
+    "css",
+    "prospect",
+    "client",
+    "b2c",
+    "ui",
+    "ux"
+  ],
+  "author": {
+    "name": "AXA France",
+    "url": "https://www.axa.fr"
+  },
+  "skills": ["./skills/canopee-prospect-client/"],
+  "engines": {
+    "copilot": ">=1.0.0"
+  },
+  "categories": ["Design Systems", "Frontend Development", "React"],
+  "activationEvents": [
+    "onLanguage:tsx",
+    "onLanguage:jsx",
+    "onLanguage:typescript",
+    "onLanguage:javascript"
+  ]
+}
