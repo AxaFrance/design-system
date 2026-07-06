@@ -24,6 +24,7 @@
   cursor: pointer;
 
   & > svg {
+    width: calc(20rem / 16);
     height: calc(20rem / 16);
     fill: currentcolor;
   }
@@ -107,12 +108,12 @@
 
   &.af-btn--ghost,
   &.af-btn--ghost-reverse {
-    --button-padding-vertical: calc(4rem / 16);
-    --button-padding-horizontal: calc(8rem / 16);
+    --button-padding-vertical: 0;
+    --button-padding-horizontal: 0;
     --button-color-background: transparent;
 
     border: unset;
-    gap: calc(8rem / 16);
+    gap: calc(4rem / 16);
     font-weight: 400;
     text-decoration: underline;
     box-shadow: unset;
