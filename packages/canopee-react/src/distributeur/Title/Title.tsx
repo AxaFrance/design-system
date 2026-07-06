@@ -17,6 +17,7 @@ type TitleProps = ComponentPropsWithRef<"h2"> & {
   heading?: Headings;
   contentLeft?: ReactElement;
   contentRight?: ReactNode;
+  withDivider?: boolean;
 };
 
 const baseClass = "af-title";
@@ -33,13 +34,19 @@ export const Title = forwardRef<
       heading: Heading = "h2",
       contentLeft,
       contentRight,
+      withDivider = true,
       ...otherProps
     },
     ref,
   ) => {
+    const modifiers = classModifier?.split(" ") ?? [];
+    if (!withDivider) {
+      modifiers.push("without-divider");
+    }
+
     const componentClassName = getClassName({
       baseClassName: baseClass,
-      modifiers: classModifier?.split(" "),
+      modifiers,
       className,
     });
 

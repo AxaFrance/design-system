@@ -130,4 +130,24 @@ describe("Title", () => {
       within(container.childNodes[1] as HTMLElement).getByText("Some content"),
     ).toBeInTheDocument();
   });
+
+  it("should hide divider when withDivider is false", () => {
+    // Act
+    render(<Title withDivider={false}>A title</Title>);
+
+    // Assert
+    expect(
+      screen.getByRole("heading", { name: /A title/, level: 2 }),
+    ).toHaveClass("af-title--without-divider");
+  });
+
+  it("should show divider by default", () => {
+    // Act
+    render(<Title>A title</Title>);
+
+    // Assert
+    expect(
+      screen.getByRole("heading", { name: /A title/, level: 2 }),
+    ).not.toHaveClass("af-title--without-divider");
+  });
 });

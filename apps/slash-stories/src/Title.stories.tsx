@@ -22,6 +22,7 @@ const meta = preview.type<{ args: StoryProps }>().meta({
     classModifier: "",
     className: "",
     heading: "h2",
+    withDivider: true,
     contentLeft: "None",
     contentRight: "None",
   },
@@ -73,6 +74,7 @@ export const Template = meta.story({
     classModifier: "",
     className: "",
     heading: "h2",
+    withDivider: true,
   },
   argTypes: {
     contentLeft: { control: false },
@@ -81,10 +83,11 @@ export const Template = meta.story({
 });
 
 export const TitleWithContent = meta.story({
-  render: ({ children, contentLeft, contentRight, heading }) => {
+  render: ({ children, contentLeft, contentRight, heading, withDivider }) => {
     return (
       <Title
         heading={heading}
+        withDivider={withDivider}
         contentLeft={getContent(contentLeft)}
         contentRight={getContent(contentRight)}
       >
@@ -95,7 +98,27 @@ export const TitleWithContent = meta.story({
   args: {
     children: "Title with content",
     heading: "h2",
+    withDivider: true,
     contentLeft: "Button",
     contentRight: "Link",
+  },
+});
+
+export const WithoutDivider = meta.story({
+  render: ({ children, heading }) => (
+    <Title heading={heading} withDivider={false}>
+      {children}
+    </Title>
+  ),
+  args: {
+    children: "Title without divider",
+    heading: "h2",
+    withDivider: false,
+  },
+  argTypes: {
+    classModifier: { control: false },
+    className: { control: false },
+    contentLeft: { control: false },
+    contentRight: { control: false },
   },
 });
