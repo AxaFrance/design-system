@@ -22,12 +22,15 @@ The title can also contain any React component. Simply pass it into :
 - the `contentLeft` prop if you want it to be displayed between the title and the separator.
 - the `contentRight` prop if you want it to be displayed after the separator.
 
+By default, the title displays a separator line. Use `withDivider={false}` to hide the separator line.
+
 ```tsx title="content.js"
 import { Title } from "@axa-fr/canopee-react/distributeur";
 
 export const MyComponent = () => (
   <Title
     className="af-title--custom"
+    withDivider={false}
     contentLeft={<Button>Left button</Button>}
     contentRight={<Button>Right button</Button>}
   >
