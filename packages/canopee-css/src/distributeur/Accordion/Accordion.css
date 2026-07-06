@@ -9,7 +9,6 @@
 
 .af-accordion__item-header {
   display: flex;
-  min-height: 3rem;
   padding: 0 1.25rem;
   align-items: center;
   justify-content: space-between;
@@ -78,12 +77,13 @@
 
 .af-accordion--light {
   .af-accordion__content {
-    padding: 0;
+    padding: 1rem 1.25rem 1.25rem 3.5rem;
     box-shadow: none;
   }
 
   .af-accordion__details {
     position: relative;
+    min-height: 3rem;
   }
 }
 
