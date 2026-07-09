@@ -24,7 +24,7 @@ export const Default = meta.story({
           </div>
         ),
         details: "Informations générales",
-        date: new Date("2024-11-14"),
+        date: new Date("2024-01-10"),
       },
       {
         header: (
@@ -39,7 +39,7 @@ export const Default = meta.story({
           >
             <span>10/01/2025</span>
             <Tag variant="success">Informations complementaires</Tag>
-            <Button type="button" variant="ghost" small>
+            <Button type="button" variant="ghost">
               Voir
             </Button>
           </div>
@@ -50,7 +50,7 @@ export const Default = meta.story({
             <li>Détail B</li>
           </ul>
         ),
-        date: new Date("2025-03-01"),
+        date: new Date("2025-01-10"),
       },
       {
         header: (
@@ -60,7 +60,7 @@ export const Default = meta.story({
           </div>
         ),
         details: "Détails d'une étape future",
-        date: new Date("2035-12-17"),
+        date: new Date("2035-01-10"),
       },
     ],
   },
