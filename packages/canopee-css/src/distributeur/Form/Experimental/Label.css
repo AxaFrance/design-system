@@ -2,7 +2,7 @@
   .af-label {
     margin-bottom: var(--label-margin-bottom, 0);
     font-size: 1rem;
-    line-height: 20px;
+    line-height: calc(20rem / 16);
   }
 
   .af-label__required {

@@ -154,3 +154,9 @@ export {
   type TimelineProps,
   type TimelineVariants,
 } from "./distributeur/Timeline/Timeline";
+export {
+  CardButton,
+  type CardButtonProps,
+} from "./distributeur/CardButton/CardButton";
+
+export { BaseCard, type BaseCardProps } from "./distributeur/Card/BaseCard";

@@ -23,7 +23,7 @@ export const useInput = (props: useInputProps) => {
   });
   const labelClassName = getClassName({
     baseClassName: "af-label",
-    modifiers: [props.labelPosition === "above" && "top"],
+    modifiers: [props.labelPosition === "topLeft" && "top-left"],
     className: props.labelClassName,
   });
 
