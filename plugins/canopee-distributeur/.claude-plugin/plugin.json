@@ -1,0 +1,14 @@
+{
+  "name": "Canopée Distributeur Components",
+  "id": "axa-fr.canopee-distributeur",
+  "description": "Copilot plugin for Canopée design system components (Distributeur theme)",
+  "version": "0.1.0",
+  "publisher": "AXA France",
+  "homepage": "https://github.com/axa-fr/design-system",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axa-fr/design-system.git"
+  },
+  "license": "MIT",
+  "icon": "icon.png"
+}

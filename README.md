@@ -12,7 +12,8 @@ Il propose d'utiliser les deux designs systems principaux :
 - **Collab-Distrib (~~Slash~~)** pour le <abbr title="Business to business">B2B</abbr>, les
   applications internes
 
-Table des matières : 
+Table des matières :
+
 - [AXA France Design System](#axa-france-design-system)
   - [Migration depuis @axa-fr/react-toolkit](#migration-depuis-axa-frreact-toolkit)
   - [Packages](#packages)
@@ -28,9 +29,9 @@ Table des matières :
   - [Utilisation des icones](#utilisation-des-icones)
   - [Utilisation des CSS variables](#utilisation-des-css-variables)
   - [Utilisation avec Copilot ou Claude](#utilisation-avec-copilot-ou-claude)
-    - [Comment faire ?](#comment-faire-)
-
-
+    - [Installation automatique](#installation-automatique)
+    - [Installation manuelle (optionnel)](#installation-manuelle-optionnel)
+    - [Mise à jour des plugins](#mise-à-jour-des-plugins)
 
 ## Migration depuis @axa-fr/react-toolkit
 
@@ -235,8 +236,93 @@ import '@axa-fr/canopee-css/distributeur/common/tokens.css';
 
 ## Utilisation avec Copilot ou Claude
 
-Vous pouvez désormais ajouter le design system comme un plugin de Github Copilot Primitives et aider votre chat à parfaitement utiliser le design system Canopéee, aussi bien Distributeur que Prospect Client. Grâce à ça, vous pourrait consulter la doc mais aussi rendre naturel l’utilisation des composants du design system par vos agents. La différence est flagrante, en plus d’être plus rapides, vos agents utiliseront bien mieux et bien plus souvent les composants AXA. 
+Vous pouvez désormais ajouter le design system comme un plugin de Github Copilot Primitives et aider votre chat à parfaitement utiliser le design system Canopéee, aussi bien Distributeur que Prospect Client. Grâce à ça, vous pouvez consulter la doc mais aussi rendre naturel l'utilisation des composants du design system par vos agents. La différence est flagrante : en plus d'être plus rapides, vos agents utiliseront bien mieux et bien plus souvent les composants AXA.
 
-### Comment faire ? 
+### Installation automatique
 
-Vous pouvez utiliser la fonctionnalité marketplace de votre chat pour ajouter le plugin du design system, ou alors vous pouvez aussi le faire manuellement en ajoutant le plugin présent dans `plugins/canopee-distributeur` et `plugins/canopee-prospect-client` à votre chat.
+Les plugins Canopée sont **proposés à l'installation** lors de l'installation de `@axa-fr/canopee-react` :
+
+```bash
+npm install @axa-fr/canopee-react
+```
+
+**En mode interactif** (local), un prompt vous demande de confirmer l'installation des plugins :
+
+```
+📦 Install Canopée Copilot plugins? (y/n)
+```
+
+Répondez `y` pour installer les plugins. Ils seront ensuite disponibles dans `.copilot-plugins/` et configurés automatiquement dans `.vscode/settings.json`.
+
+**En mode CI/CD** (GitHub Actions, GitLab CI, etc.), les plugins s'installent automatiquement sans confirmation.
+
+**Pour skipper l'installation**, utilisez la variable d'environnement :
+
+```bash
+SKIP_CANOPEE_PLUGINS=true npm install @axa-fr/canopee-react
+```
+
+Après l'installation, ouvrez VS Code dans votre projet et GitHub Copilot détectera automatiquement les plugins.
+
+### Installation manuelle (optionnel)
+
+Si vous avez skippé l'installation automatique ou si vous avez besoin de réinstaller les plugins :
+
+**Option 1 : Réinstaller avec npm**
+
+```bash
+npm run setup-plugins
+```
+
+**Option 2 : Utiliser la CLI**
+
+```bash
+npm install --save-dev @axa-fr/copilot-plugin
+npx @axa-fr/copilot-plugin setup-all
+```
+
+**Option 3 : Installer depuis la marketplace GitHub Copilot**
+
+Recherchez « AXA France » ou « Canopée » dans l'onglet Extensions → GitHub Copilot Plugins de VS Code.
+
+**Option 4 : Configuration manuelle**
+
+Ajoutez les chemins suivants à `.vscode/settings.json` de votre projet :
+
+```json
+{
+  "github.copilot.workspace.extensions": [
+    "file://${workspaceFolder}/.copilot-plugins/canopee-distributeur",
+    "file://${workspaceFolder}/.copilot-plugins/canopee-prospect-client"
+  ]
+}
+```
+
+### Mise à jour des plugins
+
+Lorsque vous mettez à jour `@axa-fr/canopee-react` avec une nouvelle version qui contient des améliorations des plugins, vous devez mettre à jour vos plugins locaux :
+
+```bash
+npm update @axa-fr/canopee-react
+npm run update-plugins
+```
+
+La commande `update-plugins` remplace les anciens fichiers par les nouveaux, permettant aux skills et references de Copilot d'être à jour.
+
+**Pour utiliser cette commande**, ajoutez le script suivant à votre `package.json` :
+
+```json
+{
+  "scripts": {
+    "update-plugins": "node node_modules/@axa-fr/canopee-react/scripts/update-plugins.js"
+  }
+}
+```
+
+Alternativement, vous pouvez exécuter directement :
+
+```bash
+node node_modules/@axa-fr/canopee-react/scripts/update-plugins.js
+```
+
+**Note** : Les plugins ne se mettent pas à jour automatiquement lors de `npm update`. Vous devez exécuter manuellement `npm run update-plugins` (ou la commande directe) pour obtenir les dernières versions des plugins.

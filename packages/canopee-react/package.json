@@ -25,10 +25,15 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "scripts"
   ],
   "scripts": {
-    "prebuild": "rimraf dist",
+    "postinstall": "node scripts/postinstall.js",
+    "update-plugins": "node scripts/update-plugins.js",
+    "setup-plugins": "CANOPEE_PLUGINS_NO_PROMPT=true node scripts/postinstall.js",
+    "prebuild": "rimraf dist && npm run copy:plugins",
+    "copy:plugins": "mkdir -p dist/plugins && cp -r ../../plugins/* dist/plugins/",
     "dev": "tsc -p tsconfig.build.json --watch",
     "build": "tsc -p tsconfig.build.json",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
