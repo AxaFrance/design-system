@@ -24,6 +24,7 @@
 @import "./Message/MessageApollo.css";
 @import "./MultiMessage/MultiMessageApollo.css";
 @import "./Tag/TagApollo.css";
+@import "./TagList/TagListAll.css";
 @import "./CardMessage/CardMessageApollo.css";
 @import "./AccordionCore/AccordionCoreApollo.css";
 @import "./ProgressBar/ProgressBarApollo.css";

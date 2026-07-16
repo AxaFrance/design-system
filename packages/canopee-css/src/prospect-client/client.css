@@ -24,6 +24,7 @@
 @import "./Message/MessageLF.css";
 @import "./MultiMessage/MultiMessageLF.css";
 @import "./Tag/TagLF.css";
+@import "./TagList/TagListAll.css";
 @import "./CardMessage/CardMessageLF.css";
 @import "./AccordionCore/AccordionCoreLF.css";
 @import "./ProgressBar/ProgressBarLF.css";
