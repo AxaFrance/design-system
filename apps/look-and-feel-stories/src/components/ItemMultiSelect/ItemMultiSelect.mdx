@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as ItemMultiSelectStories from "./ItemMultiSelect.stories";
+
+<Meta of={ItemMultiSelectStories} name="ItemMultiSelect" />
+
+# ItemMultiSelect
+
+The ItemMultiSelect component combines a checkbox with a label aligned horizontally.
+It supports two background variants: primary (blue-040) and secondary (white-1000).
+Only the checkbox changes on hover or selection, while the background container remains stable.
+
+Example usage:
+
+```tsx
+import { ItemMultiSelect } from "@axa-fr/canopee-react/client";
+
+const MyComponent = () => (
+  <ItemMultiSelect
+    label="I agree to the terms"
+    variant="primary"
+    name="agree"
+    value="agree"
+  />
+);
+```
+
+## Playground
+
+<Canvas of={ItemMultiSelectStories.Playground} sourceState="shown" />
+<Controls of={ItemMultiSelectStories.Playground} />
+
+## Variants
+
+### Primary (Default)
+
+The primary variant uses a blue-040 background.
+
+<Canvas of={ItemMultiSelectStories.Primary} />
+
+### Secondary
+
+The secondary variant uses a white-1000 background.
+
+<Canvas of={ItemMultiSelectStories.Secondary} />
+
+## States
+
+### Checked
+
+<Canvas of={ItemMultiSelectStories.Checked} />
+
+### With Long Label
+
+<Canvas of={ItemMultiSelectStories.WithLongLabel} />
