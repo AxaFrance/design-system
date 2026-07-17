@@ -72,6 +72,7 @@ export {
 } from "./distributeur/Layout/Header";
 export { MainContainer } from "./distributeur/Layout/MainContainer/MainContainer";
 export { Link, type LinkProps } from "./distributeur/Link/Link";
+export { ButtonMultiActions } from "./distributeur/ButtonMultiActions";
 export { MandatoryMention } from "./distributeur/MandatoryMention/MandatoryMention";
 export {
   BooleanModal,

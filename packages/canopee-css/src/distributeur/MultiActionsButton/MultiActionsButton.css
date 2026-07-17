@@ -1,0 +1,48 @@
+.af-button-multi-actions {
+  position: relative;
+  display: inline-block;
+}
+
+.af-button-multi-actions__menu {
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 2px);
+  min-width: max-content;
+  border: 1px solid var(--gray30);
+  background: var(--white);
+  box-shadow: 0 0 0.5625rem 0 rgba(0, 0, 0, 18%);
+}
+
+.af-button-multi-actions__trigger--left + .af-button-multi-actions__menu {
+  left: 0;
+}
+
+.af-button-multi-actions__trigger--right + .af-button-multi-actions__menu {
+  right: 0;
+}
+
+.af-button-multi-actions__menu > * {
+  display: block;
+  width: 100%;
+  padding: calc(8 / var(--font-size-base) * 1rem)
+    calc(24 / var(--font-size-base) * 1rem)
+    calc(8 / var(--font-size-base) * 1rem)
+    calc(12 / var(--font-size-base) * 1rem);
+}
+
+.af-button-multi-actions__menu > *:not(:last-child) {
+  border-bottom: 1px solid var(--gray20);
+}
+
+.af-button-multi-actions__menu :focus-visible {
+  outline: 2px solid var(--axablue80);
+  outline-offset: -2px;
+}
+
+.af-button-multi-actions__icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.af-button-multi-actions__icon--open {
+  transform: rotate(180deg);
+}

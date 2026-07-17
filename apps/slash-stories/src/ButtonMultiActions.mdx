@@ -1,0 +1,64 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as ButtonMultiActionsStories from "./ButtonMultiActions.stories";
+
+<Meta of={ButtonMultiActionsStories} name="ButtonMultiActions" />
+
+## ButtonMultiActions
+
+`ButtonMultiActions` is a button that reveals a menu of secondary actions when
+activated. Use it when you need to group several related actions (edit,
+duplicate, archive, delete...) behind a single trigger, typically in a table
+row or a card, instead of displaying every action as its own button.
+
+The component manages the open/closed state, the focus movement between the
+trigger and the menu, and the ARIA attributes required for a menu button
+pattern. Menu items can be any focusable element (a `Link` for navigation, or
+a `button` for an in-page action).
+
+### Import
+
+```tsx
+import { ButtonMultiActions } from "@axa-fr/canopee-react/distributeur";
+```
+
+### Use
+
+```tsx
+import { ButtonMultiActions, Link } from "@axa-fr/canopee-react/distributeur";
+
+const Example = () => (
+  <ButtonMultiActions label="Actions" menuLabel="Actions supplementaires">
+    <Link href="#">Modifier</Link>
+    <Link href="#">Dupliquer</Link>
+    <button type="button" className="af-slash-link" data-close-menu="true">
+      Archiver
+    </button>
+  </ButtonMultiActions>
+);
+```
+
+### Playground
+
+<Canvas of={ButtonMultiActionsStories.Playground} />
+
+<Controls of={ButtonMultiActionsStories.Playground} />
+
+## Accessibility and keyboard
+
+The trigger exposes aria-haspopup, aria-expanded and aria-controls.
+
+Keyboard interactions:
+
+- ArrowDown opens the menu and focuses the first action.
+- Escape closes the menu.
+- Clicking outside closes the menu.
+
+## Align
+
+The menu can be aligned to the left or right of the trigger.
+
+<Canvas of={ButtonMultiActionsStories.AlignRight} sourceState="shown" />
+
+## Close behavior
+
+By default, clicking on an action closes the menu.
