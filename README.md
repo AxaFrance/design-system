@@ -12,7 +12,8 @@ Il propose d'utiliser les deux designs systems principaux :
 - **Collab-Distrib (~~Slash~~)** pour le <abbr title="Business to business">B2B</abbr>, les
   applications internes
 
-Table des matières : 
+Table des matières :
+
 - [AXA France Design System](#axa-france-design-system)
   - [Migration depuis @axa-fr/react-toolkit](#migration-depuis-axa-frreact-toolkit)
   - [Packages](#packages)
@@ -29,8 +30,6 @@ Table des matières :
   - [Utilisation des CSS variables](#utilisation-des-css-variables)
   - [Utilisation avec Copilot ou Claude](#utilisation-avec-copilot-ou-claude)
     - [Comment faire ?](#comment-faire-)
-
-
 
 ## Migration depuis @axa-fr/react-toolkit
 
@@ -233,10 +232,52 @@ Pour Univers Collab-Distrib :
 import '@axa-fr/canopee-css/distributeur/common/tokens.css';
 ```
 
-## Utilisation avec Copilot ou Claude
+## Utilisation avec GitHub Copilot
 
-Vous pouvez désormais ajouter le design system comme un plugin de Github Copilot Primitives et aider votre chat à parfaitement utiliser le design system Canopéee, aussi bien Distributeur que Prospect Client. Grâce à ça, vous pourrait consulter la doc mais aussi rendre naturel l’utilisation des composants du design system par vos agents. La différence est flagrante, en plus d’être plus rapides, vos agents utiliseront bien mieux et bien plus souvent les composants AXA. 
+Utilisez les plugins GitHub Copilot pour que Copilot vous aide à générer du code conforme au Design System Canopée.
 
-### Comment faire ? 
+### Installation des plugins
 
-Vous pouvez utiliser la fonctionnalité marketplace de votre chat pour ajouter le plugin du design system, ou alors vous pouvez aussi le faire manuellement en ajoutant le plugin présent dans `plugins/canopee-distributeur` et `plugins/canopee-prospect-client` à votre chat.
+Il existe plusieurs méthodes pour installer les plugins :
+
+#### 1. Via CLI
+
+Installez les plugins dans votre projet avec une simple commande :
+
+```bash
+# Installer le CLI
+npm install --save-dev @axa-fr/copilot-plugin
+
+# Installer les plugins
+npx @axa-fr/copilot-plugin setup-all
+
+# Ou installer individuellement
+npx @axa-fr/copilot-plugin install canopee-distributeur
+npx @axa-fr/copilot-plugin install canopee-prospect-client
+```
+
+Le CLI crée automatiquement `.copilot-plugins/` et configure `.vscode/settings.json`.
+
+#### 2. Via GitHub Copilot Marketplace
+
+1. Ouvrez GitHub Copilot Chat dans VS Code
+2. Allez dans l'onglet **Plugins**
+3. Cherchez **"Canopée Distributeur"** ou **"Canopée Prospect & Client"**
+4. Cliquez sur **"Install"**
+
+#### 3. Via configuration manuelle
+
+Ajoutez dans `.vscode/settings.json` de votre projet :
+
+```json
+{
+  "github.copilot.workspace.extensions": [
+    "file://${workspaceFolder}/.copilot-plugins/canopee-distributeur/.claude-plugin",
+    "file://${workspaceFolder}/.copilot-plugins/canopee-prospect-client/.claude-plugin"
+  ]
+}
+```
+
+Rechargez VS Code après l'installation.
+
+Pour plus de détails, voir [packages/copilot-plugins/README.md](./packages/copilot-plugins/README.md) et [plugins/README.md](./plugins/README.md).

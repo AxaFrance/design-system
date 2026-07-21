@@ -44,7 +44,7 @@ jobs:
 
       - name: Npm version
         run: |
-          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w packages/canopee-css -w packages/canopee-react
+          npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w packages/canopee-css -w packages/canopee-react -w packages/copilot-plugins
           npm version "${{ env.FULL_SEMVER_OLD_PACKAGE }}" -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react
 
       - name: Set to react package the @axa-fr/canopee-css dependency version
@@ -63,19 +63,19 @@ jobs:
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
         run: npm publish -w packages/canopee-css -w packages/canopee-react -w
-          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
-          --tag latest;
+          packages/copilot-plugins -w client/apollo/css -w client/apollo/react -w
+          slash/css -w slash/react --tag latest;
       - name: Publish rc packages
         if: contains(steps.gitversion.outputs.fullSemVer, 'RC')
         run: npm publish -w packages/canopee-css -w packages/canopee-react -w
-          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
-          --tag rc;
+          packages/copilot-plugins -w client/apollo/css -w client/apollo/react -w
+          slash/css -w slash/react --tag rc;
       - name: Publish next packages
         if: steps.gitversion.outputs.preReleaseTag != '' &&
           !contains(steps.gitversion.outputs.fullSemVer, 'RC')
         run: npm publish -w packages/canopee-css -w packages/canopee-react -w
-          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
-          --tag next;
+          packages/copilot-plugins -w client/apollo/css -w client/apollo/react -w
+          slash/css -w slash/react --tag next;
 
       - name: Create artifact folders
         uses: ./.github/action/create-storybook-artifact
