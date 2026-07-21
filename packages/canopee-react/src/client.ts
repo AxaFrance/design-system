@@ -45,6 +45,7 @@ export {
   CardCheckbox,
   /** @deprecated Use `CardCheckbox` instead. */
   CardCheckbox as CheckboxCard,
+  type CardCheckboxProps,
 } from "./prospect-client/Form/Checkbox/CardCheckbox/CardCheckboxLF";
 export { CardCheckboxOption } from "./prospect-client/Form/Checkbox/CardCheckboxOption/CardCheckboxOptionLF";
 export { Checkbox } from "./prospect-client/Form/Checkbox/Checkbox/CheckboxLF";
