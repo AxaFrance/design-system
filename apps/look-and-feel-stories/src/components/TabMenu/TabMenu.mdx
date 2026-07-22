@@ -1,0 +1,54 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import * as TabMenuStories from "./TabMenu.stories.tsx";
+
+<Meta of={TabMenuStories} name="TabMenu" />
+
+## TabMenu
+
+Composant de navigation horizontale présenté sous forme de liste d'éléments. Gère la navigation au clavier avec support des touches fléchées.
+
+### Import
+
+```tsx
+import { TabMenu, type TabMenuItemProps } from "@axa-fr/canopee-react/client";
+```
+
+### Utilisation
+
+```tsx
+export const TabMenuComponent = () => {
+  const items: TabMenuItemProps[] = [
+    { href: "#contracts", label: "Mes contrats", isActive: true },
+    { href: "#claims", label: "Mes sinistres" },
+    { href: "#documents", label: "Mes documents" },
+  ];
+
+  return <TabMenu items={items} />;
+};
+```
+
+### Props
+
+- **items**: `TabMenuItemProps[]` (optionnel) - Tableau des éléments à afficher
+  - `href`: URL de destination
+  - `label`: Texte affiché dans le menu
+  - `isActive`: Boolean indiquant l'élément actif
+- **className**: Classe CSS personnalisée (optionnel)
+
+### Navigation au clavier
+
+- **ArrowRight / ArrowDown**: Élément suivant
+- **ArrowLeft / ArrowUp**: Élément précédent
+- **Escape**: Quitter le menu
+- Les éléments sont cycliques (dernier → premier)
+
+### Comportement
+
+- Retourne `null` si aucun item n'est fourni
+- Le premier élément est focalisable par défaut (tabIndex="0")
+- Les autres éléments ont tabIndex="-1"
+- Navigation accessible au clavier pour une meilleure accessibilité
+
+## Playground
+
+<Canvas of={TabMenuStories.Playground} />
