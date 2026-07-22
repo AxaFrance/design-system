@@ -94,6 +94,10 @@ export {
   type ItemMenuProps,
 } from "./prospect-client/ItemMenu/ItemMenuApollo";
 export {
+  TabMenu,
+  type TabMenuProps,
+} from "./prospect-client/TabMenu/TabMenuApollo";
+export {
   ExitLayout,
   type ExitLayoutProps,
   type ExitLayoutWithSubComponents,
