@@ -1,0 +1,7 @@
+@import "./ItemMenuCommon.css";
+
+@layer canopee {
+  .af-item-menu {
+    --item-menu-text-color: var(--gray-1000);
+  }
+}
