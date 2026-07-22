@@ -98,6 +98,10 @@ export {
   type ItemTabBarProps,
 } from "./prospect-client/ItemTabBar/ItemTabBarLF";
 export {
+  ItemMenu,
+  type ItemMenuProps,
+} from "./prospect-client/ItemMenu/ItemMenuLF";
+export {
   ExitLayout,
   type ExitLayoutProps,
   type ExitLayoutWithSubComponents,

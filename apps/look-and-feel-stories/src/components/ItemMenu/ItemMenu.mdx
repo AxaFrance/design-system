@@ -1,0 +1,28 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as ItemMenuStories from "./ItemMenu.stories.tsx";
+
+<Meta of={ItemMenuStories} name="ItemMenu" />
+
+## ItemMenu
+
+### Import
+
+```tsx
+import { ItemMenu } from "@axa-fr/canopee-react/client";
+```
+
+### Use
+
+```tsx
+export const ItemMenuComponent = () => (
+  <ItemMenu href="#contracts" isActive>
+    Mes contrats
+  </ItemMenu>
+);
+```
+
+## Playground
+
+<Canvas of={ItemMenuStories.Playground} />
+
+<Controls of={ItemMenuStories.Playground} />

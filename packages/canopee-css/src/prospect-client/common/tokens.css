@@ -60,8 +60,12 @@
   --axa-blue-100: var(--blue-1000);
   --color-axa: var(--blue-1000);
   --color-blue-800: var(--blue-1000);
-  --axa-blue-100-20: var(--blue-1000-20); /* pas utilisé */
-  --axa-blue-100-40: var(--blue-1000-40); /* pas utilisé */
+  --axa-blue-100-20: var(--blue-1000-20);
+
+  /* pas utilisé */
+  --axa-blue-100-40: var(--blue-1000-40);
+
+  /* pas utilisé */
   --axa-blue-80: var(--blue-900);
   --color-btn-light: var(--blue-800);
   --color-blue-80: var(--blue-800);
@@ -86,13 +90,16 @@
   --red-040: hsl(17deg, 64%, 98%);
   --red-alert-1000: hsl(0deg, 100%, 45%);
   --red-alert-1200: hsl(0deg, 100%, 36%);
+  --brand-red-1000: hsl(357deg, 100%, 64%);
 
   /* ⛔ legacy names colors - DO NOT USE */
   --axa-red-4: var(--red-040);
   --color-btn-error-bg: var(--red-040);
   --red-alert-100: var(--red-alert-1000);
   --axa-red-100: var(--red-alert-1000);
-  --color-red: var(--red-alert-1000); /* pas utilisé */
+  --color-red: var(--red-alert-1000);
+
+  /* pas utilisé */
   --color-red-700: var(--red-alert-1200);
   --color-btn-error-text: var(--red-alert-1200);
 
