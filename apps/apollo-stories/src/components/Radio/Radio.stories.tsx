@@ -16,6 +16,7 @@ const meta: Meta = {
       control: { type: "boolean" },
     },
     isInvalid: { type: "boolean" },
+    hasWarning: { type: "boolean" },
   },
   args: {
     name: "option1",
@@ -27,7 +28,11 @@ export default meta;
 
 export const RadioStory: StoryObj<ComponentProps<typeof Radio>> = {
   name: "Playground",
-  render: ({ isInvalid, ...args }) => (
-    <Radio {...args} isInvalid={isInvalid ? true : undefined} />
+  render: ({ isInvalid, hasWarning, ...args }) => (
+    <Radio
+      {...args}
+      isInvalid={isInvalid ? true : undefined}
+      hasWarning={hasWarning ? true : undefined}
+    />
   ),
 };

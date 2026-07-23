@@ -23,3 +23,12 @@
     --radio-border-color: var(--red-alert-1000);
   }
 }
+
+.af-radio--warning:not(:checked) {
+  --radio-border-color: var(--orange-1050);
+
+  &:hover,
+  &:focus-within {
+    --radio-border-color: var(--orange-1050);
+  }
+}
