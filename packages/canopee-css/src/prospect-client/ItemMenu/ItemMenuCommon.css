@@ -1,28 +1,44 @@
 @layer canopee {
   .af-item-menu {
+    display: block;
     padding: var(--rem-16);
     font-size: var(--rem-16);
     font-weight: var(--item-menu-font-weight, 400);
     line-height: var(--rem-20);
     text-decoration: none;
     color: var(--item-menu-text-color, var(--blue-1000));
-    box-shadow: inset 0 var(--item-menu-border-width, -1px) 0 0
+    box-shadow: inset var(--item-menu-border-width, 1px) 0 0 0
       var(--item-menu-border-color, var(--blue-200));
 
     &:hover {
-      --item-menu-border-width: -4px;
+      --item-menu-border-width: 4px;
     }
 
     &:focus-visible {
       outline: 2px solid var(--blue-650);
-      outline-offset: 3px;
     }
 
     &.af-item-menu--active {
       --item-menu-font-weight: 700;
-      --item-menu-border-width: -4px;
+      --item-menu-border-width: 4px;
       --item-menu-border-color: var(--brand-red-1000);
       --item-menu-text-color: var(--blue-1000);
+    }
+  }
+
+  @media (--desktop-small) {
+    .af-item-menu {
+      box-shadow: inset 0 var(--item-menu-border-width, -1px) 0 0
+        var(--item-menu-border-color, var(--blue-200));
+
+      &:hover,
+      &.af-item-menu--active {
+        --item-menu-border-width: -4px;
+      }
+
+      &:focus-visible {
+        outline-offset: 3px;
+      }
     }
   }
 }

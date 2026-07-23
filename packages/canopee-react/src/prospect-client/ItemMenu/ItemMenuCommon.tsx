@@ -1,18 +1,20 @@
-import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type PropsWithChildren,
+} from "react";
 import { getClassName } from "../utilities/getClassName";
 
 export type ItemMenuProps = {
   isActive?: boolean;
-  className?: string;
 } & ComponentPropsWithoutRef<"a">;
 
-export const ItemMenu = ({
-  isActive = false,
-  children,
-  className,
-  ...props
-}: PropsWithChildren<ItemMenuProps>) => (
+export const ItemMenu = forwardRef<
+  HTMLAnchorElement,
+  PropsWithChildren<ItemMenuProps>
+>(({ isActive = false, children, className, ...props }, ref) => (
   <a
+    ref={ref}
     className={getClassName({
       baseClassName: "af-item-menu",
       modifiers: [isActive && "active"],
@@ -22,4 +24,6 @@ export const ItemMenu = ({
   >
     {children}
   </a>
-);
+));
+
+ItemMenu.displayName = "ItemMenu";
