@@ -117,6 +117,7 @@ describe("TabMenu", () => {
     const secondLink = screen.getByRole("link", { name: "Mes sinistres" });
     expect(firstLink).toHaveAttribute("tabindex", "-1");
     expect(secondLink).toHaveAttribute("tabindex", "0");
+    expect(secondLink).toHaveFocus();
   });
 
   it("navigates to previous item with ArrowLeft", async () => {
