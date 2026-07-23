@@ -5,7 +5,7 @@ import * as TabMenuStories from "./TabMenu.stories.tsx";
 
 ## TabMenu
 
-Composant de navigation horizontale présenté sous forme de liste d'éléments. Gère la navigation au clavier avec support des touches fléchées.
+Horizontal navigation component presented as a list of elements. Handles keyboard navigation with arrow key support.
 
 ### Import
 
@@ -13,14 +13,14 @@ Composant de navigation horizontale présenté sous forme de liste d'éléments.
 import { TabMenu, type TabMenuItemProps } from "@axa-fr/canopee-react/client";
 ```
 
-### Utilisation
+### Usage
 
 ```tsx
 export const TabMenuComponent = () => {
   const items: TabMenuItemProps[] = [
-    { href: "#contracts", label: "Mes contrats", isActive: true },
-    { href: "#claims", label: "Mes sinistres" },
-    { href: "#documents", label: "Mes documents" },
+    { href: "#contracts", label: "My contracts", isActive: true },
+    { href: "#claims", label: "My claims" },
+    { href: "#documents", label: "My documents" },
   ];
 
   return <TabMenu items={items} />;
@@ -29,25 +29,25 @@ export const TabMenuComponent = () => {
 
 ### Props
 
-- **items**: `TabMenuItemProps[]` (optionnel) - Tableau des éléments à afficher
-  - `href`: URL de destination
-  - `label`: Texte affiché dans le menu
-  - `isActive`: Boolean indiquant l'élément actif
-- **className**: Classe CSS personnalisée (optionnel)
+- **items**: `TabMenuItemProps[]` (optional) - Array of items to display
+  - `href`: Destination URL
+  - `label`: Text displayed in the menu
+  - `isActive`: Boolean indicating the active element
+- **initialPosition**: `number` (optional) - Initial position (default: 0)
+- **className**: Custom CSS class (optional)
 
-### Navigation au clavier
+### Keyboard Navigation
 
-- **ArrowRight / ArrowDown**: Élément suivant
-- **ArrowLeft / ArrowUp**: Élément précédent
-- **Escape**: Quitter le menu
-- Les éléments sont cycliques (dernier → premier)
+- **ArrowRight / ArrowDown**: Next element
+- **ArrowLeft / ArrowUp**: Previous element
+- Elements are cyclic (last → first)
 
-### Comportement
+### Behavior
 
-- Retourne `null` si aucun item n'est fourni
-- Le premier élément est focalisable par défaut (tabIndex="0")
-- Les autres éléments ont tabIndex="-1"
-- Navigation accessible au clavier pour une meilleure accessibilité
+- Returns `null` if no items are provided
+- The first element is focusable by default (tabIndex="0")
+- Other elements have tabIndex="-1"
+- Keyboard accessible navigation for better accessibility
 
 ## Playground
 
