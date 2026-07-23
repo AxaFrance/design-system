@@ -126,6 +126,8 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `AccordionCore`       | [02-accordion.md](./references/02-accordion.md)   | Accordéon low-level (`<details>/<summary>`) |
 | `TabBar`              | [10-navigation.md](./references/10-navigation.md) | Barre d'onglets                             |
 | `ItemTabBar`          | [10-navigation.md](./references/10-navigation.md) | Item d'onglet individuel                    |
+| `TabMenu`             | [10-navigation.md](./references/10-navigation.md) | Menu d'onglets basé sur liens               |
+| `ItemMenu`            | [10-navigation.md](./references/10-navigation.md) | Item lien individuel pour TabMenu           |
 | `Pagination`          | [10-navigation.md](./references/10-navigation.md) | Pagination numérotée                        |
 | `Stepper`             | [10-navigation.md](./references/10-navigation.md) | Indicateur de progression multi-étapes      |
 

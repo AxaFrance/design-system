@@ -1,6 +1,5 @@
 import {
   useCallback,
-  useEffect,
   useRef,
   useState,
   type ComponentPropsWithoutRef,
@@ -12,15 +11,40 @@ import { getPosition } from "./TabMenu.helpers";
 
 import "@axa-fr/canopee-css/prospect/TabMenu/TabMenuAll.css";
 
+/**
+ * One item displayed in the TabMenu component.
+ */
 export type TabMenuItemProps = Omit<ItemMenuProps, "children"> & {
+  /**
+   * Visible label of the menu item.
+   */
   label: string;
 };
 
+/**
+ * Props for the TabMenu component.
+ */
 export type TabMenuProps = {
+  /**
+   * List of menu items.
+   */
   items?: TabMenuItemProps[];
+  /**
+   * Initial active item position.
+   * @default 0
+   */
   initialPosition?: number;
 } & Omit<ComponentPropsWithoutRef<"nav">, "children">;
 
+/**
+ * Renders a keyboard-navigable tab-style menu.
+ *
+ * @component
+ * @param {TabMenuProps} props - TabMenu props.
+ * @param {TabMenuItemProps[]} [props.items] - Items to render.
+ * @param {number} [props.initialPosition=0] - Initially selected item index.
+ * @returns {JSX.Element | null} The rendered TabMenu, or null when no items are provided.
+ */
 export const TabMenu = ({
   items,
   className,
@@ -34,18 +58,12 @@ export const TabMenu = ({
     (key: string) => {
       if (key === "ArrowRight" || key === "ArrowLeft") {
         const newPosition = getPosition(items?.length ?? 0, position, key);
+        itemRefs.current[newPosition]?.focus();
         setPosition(newPosition);
       }
     },
     [position, items?.length],
   );
-
-  useEffect(() => {
-    const currentItemRef = itemRefs.current[position];
-    if (currentItemRef) {
-      currentItemRef.focus();
-    }
-  }, [position]);
 
   if (!items || items.length === 0) {
     return null;
