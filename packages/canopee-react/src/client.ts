@@ -101,10 +101,7 @@ export {
   ItemMenu,
   type ItemMenuProps,
 } from "./prospect-client/ItemMenu/ItemMenuLF";
-export {
-  TabMenu,
-  type TabMenuProps,
-} from "./prospect-client/TabMenu/TabMenuLF";
+export { TabMenu, type TabMenuProps } from "./prospect-client/TabMenu/TabMenu";
 export {
   ExitLayout,
   type ExitLayoutProps,

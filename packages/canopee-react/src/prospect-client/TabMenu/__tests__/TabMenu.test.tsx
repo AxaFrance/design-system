@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import { TabMenu } from "../TabMenuCommon";
+import { TabMenu } from "../TabMenu";
 
 describe("TabMenu", () => {
   it("renders as nav element with ul list", () => {
@@ -55,6 +55,35 @@ describe("TabMenu", () => {
   it("returns null when items is undefined", () => {
     const { container } = render(<TabMenu />);
     expect(container.firstChild).toBeNull();
+  });
+
+  it("sets initial position when initialPosition is provided", () => {
+    render(
+      <TabMenu
+        initialPosition={1}
+        items={[
+          { href: "#contracts", label: "Mes contrats" },
+          { href: "#claims", label: "Mes sinistres" },
+        ]}
+      />,
+    );
+    const firstLink = screen.getByRole("link", { name: "Mes contrats" });
+    const secondLink = screen.getByRole("link", { name: "Mes sinistres" });
+    expect(firstLink).toHaveAttribute("tabindex", "-1");
+    expect(secondLink).toHaveAttribute("tabindex", "0");
+  });
+
+  it("defaults to position 0 when initialPosition is not provided", () => {
+    render(
+      <TabMenu
+        items={[
+          { href: "#contracts", label: "Mes contrats" },
+          { href: "#claims", label: "Mes sinistres" },
+        ]}
+      />,
+    );
+    const firstLink = screen.getByRole("link", { name: "Mes contrats" });
+    expect(firstLink).toHaveAttribute("tabindex", "0");
   });
 
   it("sets focus to first item by default", () => {
@@ -147,25 +176,6 @@ describe("TabMenu", () => {
   });
 
   describe("violation tests", () => {
-    it("resets position when Escape is pressed", async () => {
-      const user = userEvent.setup();
-      render(
-        <TabMenu
-          items={[
-            { href: "#contracts", label: "Mes contrats" },
-            { href: "#claims", label: "Mes sinistres" },
-          ]}
-        />,
-      );
-      const nav = screen.getByRole("navigation");
-      await user.click(nav);
-      await user.keyboard("{ArrowRight}");
-      await user.keyboard("{Escape}");
-
-      // After escape, focus is lost but nav is still accessible
-      expect(nav).toHaveAttribute("tabindex", "0");
-    });
-
     it("ignores unhandled keys", async () => {
       const user = userEvent.setup();
       render(
@@ -196,7 +206,7 @@ describe("TabMenu", () => {
       expect(link).toHaveAttribute("tabindex", "0");
     });
 
-    it("maintains focus state on blur", async () => {
+    it("updates tabIndex when navigating", async () => {
       const user = userEvent.setup();
       render(
         <TabMenu
@@ -208,15 +218,15 @@ describe("TabMenu", () => {
       );
       const nav = screen.getByRole("navigation");
       const firstLink = screen.getByRole("link", { name: "Mes contrats" });
+      const secondLink = screen.getByRole("link", { name: "Mes sinistres" });
 
       await user.click(nav);
+      expect(firstLink).toHaveAttribute("tabindex", "0");
+      expect(secondLink).toHaveAttribute("tabindex", "-1");
+
       await user.keyboard("{ArrowRight}");
-
-      // Simulate blur
-      await user.click(document.body);
-
-      // Active state should not be active anymore (isActive prop removed)
       expect(firstLink).toHaveAttribute("tabindex", "-1");
+      expect(secondLink).toHaveAttribute("tabindex", "0");
     });
 
     it("allows multiple sequential navigation", async () => {
@@ -238,6 +248,19 @@ describe("TabMenu", () => {
       await user.keyboard("{ArrowRight}");
       await user.keyboard("{ArrowRight}");
 
+      const firstLink = screen.getByRole("link", { name: "Mes contrats" });
+      expect(firstLink).toHaveAttribute("tabindex", "0");
+    });
+
+    it("respects isActive prop when provided", () => {
+      render(
+        <TabMenu
+          items={[
+            { href: "#contracts", label: "Mes contrats" },
+            { href: "#claims", label: "Mes sinistres", isActive: true },
+          ]}
+        />,
+      );
       const firstLink = screen.getByRole("link", { name: "Mes contrats" });
       expect(firstLink).toHaveAttribute("tabindex", "0");
     });

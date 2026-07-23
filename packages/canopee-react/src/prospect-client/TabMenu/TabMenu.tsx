@@ -1,7 +1,16 @@
-import { useCallback, useState, type ComponentPropsWithoutRef } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentPropsWithoutRef,
+} from "react";
+
 import { ItemMenu, type ItemMenuProps } from "../ItemMenu/ItemMenuCommon";
 import { getClassName } from "../utilities/getClassName";
 import { getPosition } from "./TabMenu.helpers";
+
+import "@axa-fr/canopee-css/prospect/TabMenu/TabMenuAll.css";
 
 export type TabMenuItemProps = Omit<ItemMenuProps, "children"> & {
   label: string;
@@ -9,18 +18,20 @@ export type TabMenuItemProps = Omit<ItemMenuProps, "children"> & {
 
 export type TabMenuProps = {
   items?: TabMenuItemProps[];
-  className?: string;
+  initialPosition?: number;
 } & Omit<ComponentPropsWithoutRef<"nav">, "children">;
 
-export const TabMenu = ({ items, className, ...props }: TabMenuProps) => {
-  const [position, setPosition] = useState(0);
-  const [isMenuFocused, setIsMenuFocused] = useState(false);
+export const TabMenu = ({
+  items,
+  className,
+  initialPosition = 0,
+  ...props
+}: TabMenuProps) => {
+  const [position, setPosition] = useState(initialPosition);
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const handleKeys = useCallback(
     (key: string) => {
-      if (key === "Escape") {
-        setIsMenuFocused(false);
-      }
       if (key === "ArrowRight" || key === "ArrowLeft") {
         const newPosition = getPosition(items?.length ?? 0, position, key);
         setPosition(newPosition);
@@ -28,6 +39,13 @@ export const TabMenu = ({ items, className, ...props }: TabMenuProps) => {
     },
     [position, items?.length],
   );
+
+  useEffect(() => {
+    const currentItemRef = itemRefs.current[position];
+    if (currentItemRef) {
+      currentItemRef.focus();
+    }
+  }, [position]);
 
   if (!items || items.length === 0) {
     return null;
@@ -43,18 +61,17 @@ export const TabMenu = ({ items, className, ...props }: TabMenuProps) => {
       {...props}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
-      onFocus={() => setIsMenuFocused(true)}
-      onBlur={() => setIsMenuFocused(false)}
       onKeyDown={(e) => handleKeys(e.key)}
     >
       <ul className="af-tab-menu__list">
         {items.map((item, index) => (
           <li key={item.href} role="presentation">
             <ItemMenu
+              ref={(el) => {
+                itemRefs.current[index] = el;
+              }}
               {...item}
-              isActive={
-                isMenuFocused && index === position ? true : item.isActive
-              }
+              isActive={index === position ? true : item.isActive}
               tabIndex={index === position ? 0 : -1}
             >
               {item.label}
