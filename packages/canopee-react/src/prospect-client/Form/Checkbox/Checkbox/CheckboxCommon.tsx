@@ -10,21 +10,42 @@ export type CheckboxProps = {
   hasWarning?: boolean;
 } & Omit<ComponentProps<"input">, "disabled" | "type">;
 
+type CheckboxPropsInternal = Omit<
+  ComponentProps<"input">,
+  "disabled" | "type"
+> & {
+  errorId?: string;
+  hasError?: boolean;
+  hasWarning?: boolean;
+};
+
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ errorId, hasError, hasWarning, className, ...inputProps }, ref) => (
-    <input
-      aria-errormessage={errorId}
-      aria-invalid={hasError}
-      {...inputProps}
-      className={getClassName({
-        baseClassName: "af-checkbox",
-        modifiers: [hasWarning && "warning"],
-        className,
-      })}
-      ref={ref}
-      type="checkbox"
-    />
-  ),
+  (props, ref) => {
+    const {
+      errorId,
+      hasError,
+      hasWarning,
+      className,
+      "aria-errormessage": ariaErrorMessage,
+      "aria-invalid": ariaInvalid,
+      ...inputProps
+    } = props as CheckboxPropsInternal;
+
+    return (
+      <input
+        aria-errormessage={ariaErrorMessage ?? errorId}
+        aria-invalid={ariaInvalid ?? hasError}
+        {...inputProps}
+        className={getClassName({
+          baseClassName: "af-checkbox",
+          modifiers: [hasWarning && "warning"],
+          className,
+        })}
+        ref={ref}
+        type="checkbox"
+      />
+    );
+  },
 );
 
 Checkbox.displayName = "Checkbox";
