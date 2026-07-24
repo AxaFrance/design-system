@@ -56,6 +56,10 @@ export { CardCheckboxOption } from "./prospect-client/Form/Checkbox/CardCheckbox
 export { Checkbox } from "./prospect-client/Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxText } from "./prospect-client/Form/Checkbox/CheckboxText/CheckboxTextApollo";
 export { Dropdown } from "./prospect-client/Form/Dropdown/DropdownApollo";
+export {
+  DropdownMultiSelect,
+  type DropdownMultiSelectProps,
+} from "./prospect-client/Form/DropdownMultiSelect/DropdownMultiSelectApollo";
 export { FileUpload } from "./prospect-client/Form/FileUpload/FileUpload/FileUploadApollo";
 export { InputFile } from "./prospect-client/Form/FileUpload/InputFile/InputFileApollo";
 export { ItemFile } from "./prospect-client/Form/FileUpload/ItemFile/ItemFileApollo";

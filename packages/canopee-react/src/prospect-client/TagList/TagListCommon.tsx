@@ -1,16 +1,17 @@
 import {
   Children,
   isValidElement,
+  type ComponentProps,
   type ComponentType,
   type ReactNode,
 } from "react";
 import { getClassName } from "../utilities/getClassName";
+import type { TagProps } from "../Tag/TagCommon";
 
-export type TagListProps = {
+export type TagListProps = ComponentProps<"div"> & {
   children: ReactNode;
   hideThreshold?: number;
-  className?: string;
-  OverflowTag: ComponentType<{ children: ReactNode }>;
+  OverflowTag: ComponentType<TagProps>;
 };
 
 export const TagListCommon = ({
@@ -18,6 +19,7 @@ export const TagListCommon = ({
   hideThreshold = 2,
   className = "",
   OverflowTag,
+  ...divProps
 }: TagListProps) => {
   const childArray = Children.toArray(children).filter(isValidElement);
   const total = childArray.length;
@@ -33,6 +35,7 @@ export const TagListCommon = ({
         baseClassName: "af-tag-list",
         className,
       })}
+      {...divProps}
     >
       {visibleChildren}
       {isOverflowing ? <OverflowTag>+{hiddenCount}</OverflowTag> : null}
