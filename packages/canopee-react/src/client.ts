@@ -56,6 +56,10 @@ export { CardCheckboxOption } from "./prospect-client/Form/Checkbox/CardCheckbox
 export { Checkbox } from "./prospect-client/Form/Checkbox/Checkbox/CheckboxLF";
 export { CheckboxText } from "./prospect-client/Form/Checkbox/CheckboxText/CheckboxTextLF";
 export { Dropdown } from "./prospect-client/Form/Dropdown/DropdownLF";
+export {
+  DropdownMultiSelect,
+  type DropdownMultiSelectProps,
+} from "./prospect-client/Form/DropdownMultiSelect/DropdownMultiSelectLF";
 export { FileUpload } from "./prospect-client/Form/FileUpload/FileUpload/FileUploadLF";
 export { InputFile } from "./prospect-client/Form/FileUpload/InputFile/InputFileLF";
 export { ItemFile } from "./prospect-client/Form/FileUpload/ItemFile/ItemFileLF";
