@@ -1,0 +1,6 @@
+@import "./DropdownMultiSelectCommon.css";
+
+.af-form__dropdown-multi-select {
+  --dropdown-multi-select-summary-color: var(--gray-800);
+  --dropdown-multi-select-summary-selected-color: var(--blue-1000);
+}

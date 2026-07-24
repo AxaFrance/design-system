@@ -10,8 +10,9 @@ export type ItemMultiSelectVariant = "primary" | "secondary";
 
 export type ItemMultiSelectCommonProps = Omit<
   ComponentProps<"input">,
-  "type"
+  "type" | "id"
 > & {
+  id: string;
   label: ReactNode;
   variant?: ItemMultiSelectVariant;
   Checkbox: ComponentType<ComponentProps<"input">>;
