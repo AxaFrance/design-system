@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as ItemMenuStories from "./ItemMenu.stories.tsx";
+
+<Meta of={ItemMenuStories} name="ItemMenu" />
+
+## ItemMenu
+
+Atomic navigation element that appears in the Header and allows navigation between multiple elements.
+
+### Import
+
+```tsx
+import { ItemMenu } from "@axa-fr/canopee-react/prospect";
+```
+
+### Usage
+
+```tsx
+export const ItemMenuComponent = () => (
+  <ItemMenu href="#contracts" isActive>
+    My contracts
+  </ItemMenu>
+);
+```
+
+### Props
+
+- **href**: `string` - Destination URL
+- **isActive**: `boolean` (optional) - Indicates if the item is active
+- **children**: `ReactNode` - Text or content to display
+- **className**: `string` (optional) - Custom CSS class
+
+## Playground
+
+<Canvas of={ItemMenuStories.Playground} />
+
+<Controls of={ItemMenuStories.Playground} />

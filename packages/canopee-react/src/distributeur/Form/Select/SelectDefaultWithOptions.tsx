@@ -1,6 +1,5 @@
 import {
   type ComponentPropsWithRef,
-  forwardRef,
   type OptionHTMLAttributes,
   useId,
   useMemo,
@@ -27,57 +26,45 @@ type Props = ComponentPropsWithRef<typeof SelectBase> & {
  * ```
  * It allows you to use the `optgroup` tag for example.
  */
-export const SelectDefaultWithOptions = forwardRef<HTMLSelectElement, Props>(
-  (
-    {
-      onChange,
-      forceDisplayPlaceholder = false,
-      value,
-      defaultValue,
-      required,
-      placeholder = "- Select -",
-      options,
-      id,
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    const [hasHandleChangeOnce, setHasHandleChangeOnce] = useState(false);
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
 
-    const newOptions = useMemo(
-      () =>
-        (hasHandleChangeOnce || defaultValue || value) && required
-          ? options
-          : [{ value: "", label: placeholder }, ...options],
-      [
-        hasHandleChangeOnce,
-        options,
-        defaultValue,
-        value,
-        required,
-        placeholder,
-      ],
-    );
+export const SelectDefaultWithOptions = ({
+  onChange,
+  forceDisplayPlaceholder = false,
+  value,
+  defaultValue,
+  required,
+  placeholder = "- Select -",
+  options,
+  id,
+  ...otherProps
+}: Props) => {
+  const [hasHandleChangeOnce, setHasHandleChangeOnce] = useState(false);
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
 
-    return (
-      <SelectBase
-        {...otherProps}
-        id={inputId}
-        value={value}
-        defaultValue={defaultValue}
-        options={newOptions}
-        onChange={(e) => {
-          if (onChange) {
-            onChange(e);
-          }
-          setHasHandleChangeOnce(!forceDisplayPlaceholder);
-        }}
-        ref={inputRef}
-      />
-    );
-  },
-);
+  const newOptions = useMemo(
+    () =>
+      (hasHandleChangeOnce || defaultValue || value) && required
+        ? options
+        : [{ value: "", label: placeholder }, ...options],
+    [hasHandleChangeOnce, options, defaultValue, value, required, placeholder],
+  );
+
+  return (
+    <SelectBase
+      {...otherProps}
+      id={inputId}
+      value={value}
+      defaultValue={defaultValue}
+      options={newOptions}
+      onChange={(e) => {
+        if (onChange) {
+          onChange(e);
+        }
+        setHasHandleChangeOnce(!forceDisplayPlaceholder);
+      }}
+    />
+  );
+};
 
 SelectDefaultWithOptions.displayName = "SelectDefaultWithOptions";

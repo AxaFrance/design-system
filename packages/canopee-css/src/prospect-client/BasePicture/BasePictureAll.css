@@ -1,5 +1,7 @@
-.af-basepicture {
-  width: var(--rem-48);
-  height: var(--rem-48);
-  border-radius: 100%;
+@layer canopee {
+  .af-basepicture {
+    width: var(--rem-48);
+    height: var(--rem-48);
+    border-radius: 100%;
+  }
 }

@@ -1,48 +1,50 @@
-:root {
-  --anchor-navbar-border-bottom-color: var(--white);
-}
+@layer canopee {
+  :root {
+    --anchor-navbar-border-bottom-color: var(--white);
+  }
 
-.af-anchor-navbar {
-  width: 100%;
-  background-color: var(--white);
-  box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 5%);
-
-  ul {
-    display: flex;
+  .af-anchor-navbar {
     width: 100%;
-    margin: auto;
-    padding: 0;
-    align-items: center;
+    background-color: var(--white);
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 5%);
 
-    li {
-      list-style: none;
+    ul {
+      display: flex;
+      width: 100%;
+      margin: auto;
+      padding: 0;
+      align-items: center;
 
-      .af-anchor-navbar-link {
-        display: flex;
-        padding: 0.8rem 1rem;
-        border-bottom: 4px solid var(--anchor-navbar-border-bottom-color);
-        align-items: center;
-        gap: 0.5rem;
-        text-decoration: none;
-        color: var(--black);
+      li {
+        list-style: none;
 
-        &:hover:not(.af-anchor-navbar-link--active),
-        &:focus:not(.af-anchor-navbar-link--active) {
-          --anchor-navbar-border-bottom-color: var(--gray40);
+        .af-anchor-navbar-link {
+          display: flex;
+          padding: 0.8rem 1rem;
+          border-bottom: 4px solid var(--anchor-navbar-border-bottom-color);
+          align-items: center;
+          gap: 0.5rem;
+          text-decoration: none;
+          color: var(--black);
+
+          &:hover:not(.af-anchor-navbar-link--active),
+          &:focus:not(.af-anchor-navbar-link--active) {
+            --anchor-navbar-border-bottom-color: var(--gray40);
+          }
         }
-      }
 
-      a.af-anchor-navbar-link--active {
-        --anchor-navbar-border-bottom-color: var(--axablue80);
+        a.af-anchor-navbar-link--active {
+          --anchor-navbar-border-bottom-color: var(--axablue80);
 
-        font-weight: 600;
-        color: var(--axablue80);
-      }
+          font-weight: 600;
+          color: var(--axablue80);
+        }
 
-      .af-anchor-navbar-external-link-svg {
-        width: 1rem;
-        height: 1rem;
-        fill: var(--black);
+        .af-anchor-navbar-external-link-svg {
+          width: 1rem;
+          height: 1rem;
+          fill: var(--black);
+        }
       }
     }
   }

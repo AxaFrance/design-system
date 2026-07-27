@@ -1,39 +1,41 @@
-.af-click-icon {
-  display: grid;
-  width: fit-content;
-  padding: var(--rem-8);
-  border: 0;
-  border-radius: 100vmax;
-  background-color: var(--click-icon-background-color);
-  cursor: pointer;
+@layer canopee {
+  .af-click-icon {
+    display: grid;
+    width: fit-content;
+    padding: var(--rem-8);
+    border: 0;
+    border-radius: 100vmax;
+    background-color: var(--click-icon-background-color);
+    cursor: pointer;
 
-  .af-icon svg {
-    fill: var(--click-icon-svg-fill, var(--icon-fill));
+    .af-icon svg {
+      fill: var(--click-icon-svg-fill, var(--icon-fill));
+    }
+
+    &:disabled {
+      pointer-events: none;
+    }
+
+    &.af-click-icon--extra-small {
+      padding: var(--rem-4);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--click-icon-outline-color, transparent);
+      outline-offset: 2px;
+    }
+
+    &.af-click-icon--ghost {
+      background-color: transparent;
+    }
+
+    &:active .af-click-icon--ghost {
+      --click-icon-svg-fill: var(--blue-900);
+    }
   }
 
-  &:disabled {
+  /* Should be deleted, prefer use :disabled */
+  .af-click-icon--disabled {
     pointer-events: none;
   }
-
-  &.af-click-icon--extra-small {
-    padding: var(--rem-4);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--click-icon-outline-color, transparent);
-    outline-offset: 2px;
-  }
-
-  &.af-click-icon--ghost {
-    background-color: transparent;
-  }
-
-  &:active .af-click-icon--ghost {
-    --click-icon-svg-fill: var(--blue-900);
-  }
-}
-
-/* Should be deleted, prefer use :disabled */
-.af-click-icon--disabled {
-  pointer-events: none;
 }

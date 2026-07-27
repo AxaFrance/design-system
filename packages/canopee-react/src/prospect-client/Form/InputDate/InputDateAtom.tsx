@@ -1,8 +1,4 @@
-import {
-  type ComponentProps,
-  type ComponentPropsWithRef,
-  forwardRef,
-} from "react";
+import { type ComponentProps, type ComponentPropsWithRef } from "react";
 import { formatInputDateValue } from "./InputDate.helper";
 
 export type InputDateAtomProps = Omit<
@@ -15,18 +11,21 @@ export type InputDateAtomProps = Omit<
   max?: ComponentProps<"input">["max"] | Date;
 };
 
-const InputDateAtom = forwardRef<HTMLInputElement, InputDateAtomProps>(
-  ({ defaultValue, value, min, max, ...otherProps }, inputRef) => (
-    <input
-      {...otherProps}
-      type="date"
-      ref={inputRef}
-      defaultValue={formatInputDateValue(defaultValue)}
-      value={formatInputDateValue(value)}
-      min={formatInputDateValue(min)}
-      max={formatInputDateValue(max)}
-    />
-  ),
+const InputDateAtom = ({
+  defaultValue,
+  value,
+  min,
+  max,
+  ...otherProps
+}: InputDateAtomProps) => (
+  <input
+    {...otherProps}
+    type="date"
+    defaultValue={formatInputDateValue(defaultValue)}
+    value={formatInputDateValue(value)}
+    min={formatInputDateValue(min)}
+    max={formatInputDateValue(max)}
+  />
 );
 
 InputDateAtom.displayName = "InputDateAtom";

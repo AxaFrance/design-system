@@ -1,37 +1,39 @@
 @import "./MessageCommon.css";
 
-.af-message {
-  --message-theme-color: var(--blue-1000);
-  --message-bg-color: var(--white-1000);
-  --message-border-color: var(--message-theme-color);
-  --message-border-radius: var(--radius-12);
-  --message-icon-color: var(--message-theme-color);
-  --message-title-color: var(--message-theme-color);
-  --message-title-font-size: 16;
-  --message-content-color: var(--gray-1000);
-  --message-content-font-size: 16;
-  --message-content-line-height: var(--rem-20);
-  --message-action-padding-top: 4;
-
-  @media (--desktop-small) {
+@layer canopee {
+  .af-message {
+    --message-theme-color: var(--blue-1000);
+    --message-bg-color: var(--white-1000);
+    --message-border-color: var(--message-theme-color);
+    --message-border-radius: var(--radius-12);
+    --message-icon-color: var(--message-theme-color);
+    --message-title-color: var(--message-theme-color);
+    --message-title-font-size: 16;
+    --message-content-color: var(--gray-1000);
     --message-content-font-size: 16;
-    --message-title-font-size: 18;
     --message-content-line-height: var(--rem-20);
+    --message-action-padding-top: 4;
+
+    @media (--desktop-small) {
+      --message-content-font-size: 16;
+      --message-title-font-size: 18;
+      --message-content-line-height: var(--rem-20);
+    }
   }
-}
 
-.af-message--error {
-  --message-theme-color: var(--red-alert-1200);
-}
+  .af-message--error {
+    --message-theme-color: var(--red-alert-1200);
+  }
 
-.af-message--neutral {
-  --message-theme-color: var(--gray-800);
-}
+  .af-message--neutral {
+    --message-theme-color: var(--gray-800);
+  }
 
-.af-message--warning {
-  --message-theme-color: var(--orange-1000);
-}
+  .af-message--warning {
+    --message-theme-color: var(--orange-1000);
+  }
 
-.af-message--validation {
-  --message-theme-color: var(--green-1000);
+  .af-message--validation {
+    --message-theme-color: var(--green-1000);
+  }
 }

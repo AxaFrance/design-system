@@ -1,6 +1,5 @@
 import {
   type ComponentProps,
-  forwardRef,
   type OptionHTMLAttributes,
   type PropsWithChildren,
 } from "react";
@@ -13,36 +12,36 @@ type Props = ConsumerFieldProps &
     options: OptionHTMLAttributes<HTMLOptionElement>[];
   };
 
-const SelectInput = forwardRef<HTMLSelectElement, PropsWithChildren<Props>>(
-  ({ label, options, children, ...props }, inputRef) => {
-    return (
-      <Field
-        label={label}
-        classNameSuffix="select"
-        {...props}
-        renderInput={({
-          classModifier,
-          id,
-          ariaInvalid,
-          errorId,
-          ...otherSelectProps
-        }) => (
-          <>
-            <Select
-              id={id}
-              ref={inputRef}
-              classModifier={classModifier}
-              aria-describedby={errorId}
-              aria-invalid={ariaInvalid}
-              options={options}
-              {...otherSelectProps}
-            />
-            {children}
-          </>
-        )}
-      />
-    );
-  },
+const SelectInput = ({
+  label,
+  options,
+  children,
+  ...props
+}: PropsWithChildren<Props>) => (
+  <Field
+    label={label}
+    classNameSuffix="select"
+    {...props}
+    renderInput={({
+      classModifier,
+      id,
+      ariaInvalid,
+      errorId,
+      ...otherSelectProps
+    }) => (
+      <>
+        <Select
+          id={id}
+          classModifier={classModifier}
+          aria-describedby={errorId}
+          aria-invalid={ariaInvalid}
+          options={options}
+          {...otherSelectProps}
+        />
+        {children}
+      </>
+    )}
+  />
 );
 
 SelectInput.displayName = "SelectInput";

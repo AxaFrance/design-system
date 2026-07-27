@@ -1,9 +1,5 @@
 import classNames from "classnames";
-import {
-  type ComponentPropsWithoutRef,
-  type ComponentPropsWithRef,
-  forwardRef,
-} from "react";
+import { type ComponentPropsWithRef } from "react";
 import type { Option } from "../core";
 import { RadioCardGroup } from "./RadioCardGroup";
 import { RadioItem } from "./RadioItem";
@@ -24,7 +20,7 @@ type Props = {
     > & {
       mode?: "classic" | "default" | "inline";
     })
-  | (ComponentPropsWithoutRef<typeof RadioCardGroup> & {
+  | (ComponentPropsWithRef<typeof RadioCardGroup> & {
       mode: "cardRadio";
     })
 );
@@ -42,48 +38,51 @@ const getClassNameMode = (mode: Props["mode"]) => {
   }
 };
 
-const Radio = forwardRef<HTMLInputElement, Props>(
-  ({ options, value = "", children, disabled, ...otherProps }, inputRef) => {
-    const { mode, ...onlyNecessaryProps } = otherProps;
-    const classNameMode = getClassNameMode(mode ?? "default");
+const Radio = ({
+  options,
+  value = "",
+  children,
+  disabled,
+  ...otherProps
+}: Props) => {
+  const { mode, ...onlyNecessaryProps } = otherProps;
+  const classNameMode = getClassNameMode(mode ?? "default");
 
-    if (mode === "cardRadio") {
-      return (
-        <RadioCardGroup
-          {...onlyNecessaryProps}
-          options={options}
-          disabled={disabled}
-          value={value}
-        >
-          {children}
-        </RadioCardGroup>
-      );
-    }
-
+  if (mode === "cardRadio") {
     return (
-      <>
-        <div
-          className={classNames("af-form__radio-group", [
-            { "af-form__radio-group-classic": mode === RadioModes.classic },
-          ])}
-        >
-          {options.map((option: Option) => (
-            <RadioItem
-              {...onlyNecessaryProps}
-              key={option.value}
-              isChecked={option.value === value}
-              disabled={option.disabled || disabled}
-              className={classNameMode}
-              ref={inputRef}
-              {...option}
-            />
-          ))}
-        </div>
+      <RadioCardGroup
+        {...onlyNecessaryProps}
+        options={options}
+        disabled={disabled}
+        value={value}
+      >
         {children}
-      </>
+      </RadioCardGroup>
     );
-  },
-);
+  }
+
+  return (
+    <>
+      <div
+        className={classNames("af-form__radio-group", [
+          { "af-form__radio-group-classic": mode === RadioModes.classic },
+        ])}
+      >
+        {options.map((option: Option) => (
+          <RadioItem
+            {...onlyNecessaryProps}
+            key={option.value}
+            isChecked={option.value === value}
+            disabled={option.disabled || disabled}
+            className={classNameMode}
+            {...option}
+          />
+        ))}
+      </div>
+      {children}
+    </>
+  );
+};
 
 Radio.displayName = "EnhancedInputRadio";
 

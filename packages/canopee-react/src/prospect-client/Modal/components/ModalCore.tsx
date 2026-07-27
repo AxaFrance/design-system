@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 
 export type ModalCoreProps = Omit<
   ComponentPropsWithRef<"dialog">,
@@ -8,26 +8,20 @@ export type ModalCoreProps = Omit<
     onClose?: VoidFunction;
   };
 
-const ModalCore = forwardRef<HTMLDialogElement, ModalCoreProps>(
-  ({ className, children, ...props }: ModalCoreProps, ref) => (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
-    <dialog
-      aria-modal
-      aria-label={props["aria-label"] ?? props.title}
-      className={["af-modal", className].filter(Boolean).join(" ")}
-      onClick={props.onClose}
-      ref={ref}
-      {...props}
-    >
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-      <section
-        className="af-modal__content"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {children}
-      </section>
-    </dialog>
-  ),
+const ModalCore = ({ className, children, ...props }: ModalCoreProps) => (
+  // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
+  <dialog
+    aria-modal
+    aria-label={props["aria-label"] ?? props.title}
+    className={["af-modal", className].filter(Boolean).join(" ")}
+    onClick={props.onClose}
+    {...props}
+  >
+    {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+    <section className="af-modal__content" onClick={(e) => e.stopPropagation()}>
+      {children}
+    </section>
+  </dialog>
 );
 
 ModalCore.displayName = "ModalCore";

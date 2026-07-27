@@ -48,7 +48,7 @@ const meta: Meta = {
       control: { type: "inline-radio" },
       options: ["vertical", "horizontal"],
       description:
-        "Radio cards layout (corresponds to `CardRadioOption` `position` prop)",
+        "Radio cards layout (corresponds to `CardRadio` `position` prop)",
       table: {
         category: "Layout",
         defaultValue: { summary: "vertical" },
@@ -70,7 +70,7 @@ const meta: Meta = {
       description: "Radio card options",
       table: {
         category: "Options",
-        type: { summary: "CardRadioOptionProps[]" },
+        type: { summary: "CardRadioProps[]" },
       },
     },
     required: {

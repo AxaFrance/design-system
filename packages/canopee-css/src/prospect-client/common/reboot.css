@@ -1,49 +1,51 @@
-*,
-::after,
-::before {
-  box-sizing: border-box;
-  font-family: var(--font-family-sans-serif);
-}
-
-html {
-  &:has(dialog[open]) {
-    overflow: hidden;
+@layer reset {
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
+    font-family: var(--font-family-sans-serif);
   }
-}
 
-body {
-  margin: 0;
-  font-family: var(--font-family-sans-serif);
-  -webkit-font-smoothing: antialiased;
-}
+  html {
+    &:has(dialog[open]) {
+      overflow: hidden;
+    }
+  }
 
-p {
-  text-wrap: pretty;
-}
+  body {
+    margin: 0;
+    font-family: var(--font-family-sans-serif);
+    -webkit-font-smoothing: antialiased;
+  }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
+  p {
+    text-wrap: pretty;
+  }
 
-fieldset {
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
 
-legend {
-  padding: 0;
-}
+  fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
 
-dl,
-dt,
-dd {
-  margin: 0;
+  legend {
+    padding: 0;
+  }
+
+  dl,
+  dt,
+  dd {
+    margin: 0;
+  }
 }

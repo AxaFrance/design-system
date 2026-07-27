@@ -1,9 +1,11 @@
 @import "./ItemTabBarCommon.css";
 
-.af-item-tab-bar {
-  --item-tab-bar-font-color: var(--gray-1000);
+@layer canopee {
+  .af-item-tab-bar {
+    --item-tab-bar-font-color: var(--gray-1000);
 
-  &[aria-selected="true"] {
-    --item-tab-bar-font-color: var(--blue-1000);
+    &[aria-selected="true"] {
+      --item-tab-bar-font-color: var(--blue-1000);
+    }
   }
 }

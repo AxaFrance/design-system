@@ -1,72 +1,74 @@
-.af-item-label {
-  display: grid;
-  width: 100%;
-  grid-template-areas:
-    "label sidebutton"
-    "description sidebutton"
-    "more more";
-  grid-template-columns: 1fr auto;
-  place-items: end start;
-  row-gap: var(--rem-4);
-
-  &:has(> .af-item-label__sidebutton) {
-    column-gap: var(--rem-12);
-  }
-
-  &:not(:has(> .af-item-label__description), * ~ .af-item-label__more) {
-    grid-template-areas: "label sidebutton";
-  }
-
-  &:not(:has(> .af-item-label__more)):has(* ~ .af-item-label__description) {
+@layer canopee {
+  .af-item-label {
+    display: grid;
+    width: 100%;
     grid-template-areas:
       "label sidebutton"
-      "description sidebutton";
-  }
-
-  &:not(:has(> .af-item-label__description)):has(* ~ .af-item-label__more) {
-    grid-template-areas:
-      "label sidebutton"
+      "description sidebutton"
       "more more";
+    grid-template-columns: 1fr auto;
+    place-items: end start;
+    row-gap: var(--rem-4);
+
+    &:has(> .af-item-label__sidebutton) {
+      column-gap: var(--rem-12);
+    }
+
+    &:not(:has(> .af-item-label__description), * ~ .af-item-label__more) {
+      grid-template-areas: "label sidebutton";
+    }
+
+    &:not(:has(> .af-item-label__more)):has(* ~ .af-item-label__description) {
+      grid-template-areas:
+        "label sidebutton"
+        "description sidebutton";
+    }
+
+    &:not(:has(> .af-item-label__description)):has(* ~ .af-item-label__more) {
+      grid-template-areas:
+        "label sidebutton"
+        "more more";
+    }
   }
-}
 
-.af-item-label__label {
-  display: flex;
-  grid-area: label;
-  gap: var(--rem-4);
-  font-size: var(--rem-16);
-  font-weight: 600;
-  line-height: var(--rem-20);
-  color: var(--label-color);
-
-  @media (--desktop-small) {
-    font-size: var(--rem-18);
-    line-height: var(--rem-24);
-  }
-}
-
-.af-item-label__sidebutton {
-  grid-area: sidebutton;
-  place-self: center end;
-
-  &:has(+ .af-item-label__description) {
-    align-self: end;
-  }
-}
-
-.af-item-label__more {
-  grid-area: more;
-}
-
-.af-item-label__description {
-  grid-area: description;
-  font-size: var(--rem-14);
-  font-weight: 400;
-  line-height: 1.25em;
-  color: var(--label-description-color);
-
-  @media (--desktop-small) {
+  .af-item-label__label {
+    display: flex;
+    grid-area: label;
+    gap: var(--rem-4);
     font-size: var(--rem-16);
+    font-weight: 600;
     line-height: var(--rem-20);
+    color: var(--label-color);
+
+    @media (--desktop-small) {
+      font-size: var(--rem-18);
+      line-height: var(--rem-24);
+    }
+  }
+
+  .af-item-label__sidebutton {
+    grid-area: sidebutton;
+    place-self: center end;
+
+    &:has(+ .af-item-label__description) {
+      align-self: end;
+    }
+  }
+
+  .af-item-label__more {
+    grid-area: more;
+  }
+
+  .af-item-label__description {
+    grid-area: description;
+    font-size: var(--rem-14);
+    font-weight: 400;
+    line-height: 1.25em;
+    color: var(--label-description-color);
+
+    @media (--desktop-small) {
+      font-size: var(--rem-16);
+      line-height: var(--rem-20);
+    }
   }
 }

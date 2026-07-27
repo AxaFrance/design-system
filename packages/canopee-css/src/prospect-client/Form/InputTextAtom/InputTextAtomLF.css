@@ -1,47 +1,49 @@
 @import "./InputTextAtomCommon.css";
 
-.af-form__input-atom-container {
-  --input-border-color: var(--gray-800);
-  --input-border-radius: var(--radius-4);
-  --input-bg-color: var(--white-1000);
-  --input-text-color: var(--gray-1000);
-  --input-text-icon-color: var(--gray-1000);
-  --input-text-placeholder-color: var(--gray-800);
-  --input-text-outline-color: var(--blue-650);
+@layer canopee {
+  .af-form__input-atom-container {
+    --input-border-color: var(--gray-800);
+    --input-border-radius: var(--radius-4);
+    --input-bg-color: var(--white-1000);
+    --input-text-color: var(--gray-1000);
+    --input-text-icon-color: var(--gray-1000);
+    --input-text-placeholder-color: var(--gray-800);
+    --input-text-outline-color: var(--blue-650);
 
-  &:has(> input:is(:hover, :focus, :active)) {
-    --input-border-color: var(--blue-1000);
-    --input-text-placeholder-color: var(--gray-1000);
-  }
-
-  &:has(> input[class*="--error"]) {
-    --input-border-color: var(--red-alert-1200);
-  }
-
-  &:has(> input[class*="--warning"]) {
-    --input-border-color: var(--orange-1050);
-  }
-
-  &:has(> input:disabled),
-  &:has(> input:disabled):is(:hover, :focus, :active) {
-    --input-border-color: var(--gray-140);
-    --input-text-color: var(--gray-500);
-    --input-bg-color: var(--gray-050);
-    --input-text-icon-color: var(--gray-800);
-
-    + .af-form__input-helper {
-      --input-helper-color: var(--gray-800);
+    &:has(> input:is(:hover, :focus, :active)) {
+      --input-border-color: var(--blue-1000);
+      --input-text-placeholder-color: var(--gray-1000);
     }
-  }
 
-  &:has(
-    > input[value]:not(
-        [value=""],
-        [class*="--error"],
-        [class*="--warning"],
-        :disabled
-      )
-  ) {
-    --input-border-color: var(--blue-1000);
+    &:has(> input[class*="--error"]) {
+      --input-border-color: var(--red-alert-1200);
+    }
+
+    &:has(> input[class*="--warning"]) {
+      --input-border-color: var(--orange-1050);
+    }
+
+    &:has(> input:disabled),
+    &:has(> input:disabled):is(:hover, :focus, :active) {
+      --input-border-color: var(--gray-140);
+      --input-text-color: var(--gray-500);
+      --input-bg-color: var(--gray-050);
+      --input-text-icon-color: var(--gray-800);
+
+      + .af-form__input-helper {
+        --input-helper-color: var(--gray-800);
+      }
+    }
+
+    &:has(
+      > input[value]:not(
+          [value=""],
+          [class*="--error"],
+          [class*="--warning"],
+          :disabled
+        )
+    ) {
+      --input-border-color: var(--blue-1000);
+    }
   }
 }

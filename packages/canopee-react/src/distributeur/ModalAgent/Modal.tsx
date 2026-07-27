@@ -1,4 +1,4 @@
-import { forwardRef, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { getComponentClassName } from "../utilities";
 
 export type ModalProps = React.DetailedHTMLProps<
@@ -27,56 +27,50 @@ export type ModalProps = React.DetailedHTMLProps<
   ref?: React.Ref<HTMLDialogElement>;
 };
 
-const Modal = forwardRef<HTMLDialogElement, ModalProps>(
-  (
-    {
-      className,
-      title = "",
-      onOutsideTap,
-      children,
-      classModifier,
-      size,
-      ...props
-    }: ModalProps,
-    ref,
-  ) => {
-    // If size is set to 'lg' or 'sm', use it as the classModifier, otherwise use the provided classModifier
-    let effectiveClassModifier: string | undefined;
-    if (size) {
-      if (classModifier && classModifier !== "lg" && classModifier !== "sm") {
-        effectiveClassModifier = `${size} ${classModifier}`;
-      } else {
-        effectiveClassModifier = size;
-      }
+const Modal = ({
+  className,
+  title = "",
+  onOutsideTap,
+  children,
+  classModifier,
+  size,
+  ...props
+}: ModalProps) => {
+  // If size is set to 'lg' or 'sm', use it as the classModifier, otherwise use the provided classModifier
+  let effectiveClassModifier: string | undefined;
+  if (size) {
+    if (classModifier && classModifier !== "lg" && classModifier !== "sm") {
+      effectiveClassModifier = `${size} ${classModifier}`;
     } else {
-      effectiveClassModifier = classModifier;
+      effectiveClassModifier = size;
     }
-    const componentClassName = getComponentClassName(
-      className,
-      effectiveClassModifier,
-      "af-modal",
-    );
+  } else {
+    effectiveClassModifier = classModifier;
+  }
+  const componentClassName = getComponentClassName(
+    className,
+    effectiveClassModifier,
+    "af-modal",
+  );
 
-    return (
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
-      <dialog
-        aria-label={title}
-        className={componentClassName}
-        onClick={onOutsideTap}
-        ref={ref}
-        {...props}
+  return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
+    <dialog
+      aria-label={title}
+      className={componentClassName}
+      onClick={onOutsideTap}
+      {...props}
+    >
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+      <div
+        className="af-modal__dialog"
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-        <div
-          className="af-modal__dialog"
-          onClick={(event) => event.stopPropagation()}
-        >
-          <div className="af-modal__content">{children}</div>
-        </div>
-      </dialog>
-    );
-  },
-);
+        <div className="af-modal__content">{children}</div>
+      </div>
+    </dialog>
+  );
+};
 
 Modal.displayName = "Modal";
 

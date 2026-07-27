@@ -1,4 +1,4 @@
-import { type ComponentType, type ElementType, forwardRef, useId } from "react";
+import { type ComponentType, type ElementType, useId } from "react";
 import { getClassName } from "../utilities/getClassName";
 
 import { type SpinnerProps } from "../Spinner/SpinnerCommon";
@@ -18,48 +18,39 @@ export type LoaderCommonProps<T extends ElementType> = PolymorphicComponent<
   SpinnerComponent: ComponentType<SpinnerProps>;
 };
 
-export const LoaderCommon = forwardRef<
-  HTMLElement,
-  LoaderCommonProps<ElementType>
->(
-  (
-    {
-      title,
-      subtitle,
-      SpinnerComponent,
-      spinnerProps,
-      className,
-      isDialog,
-      ...rest
-    },
-    ref,
-  ) => {
-    const baseClassName = "af-loader";
-    const titleId = useId();
-    const Component = (isDialog && "dialog") || "article";
+export const LoaderCommon = ({
+  title,
+  subtitle,
+  SpinnerComponent,
+  spinnerProps,
+  className,
+  isDialog,
+  ...rest
+}: LoaderCommonProps<ElementType>) => {
+  const baseClassName = "af-loader";
+  const titleId = useId();
+  const Component = (isDialog && "dialog") || "article";
 
-    return (
-      <Component
-        ref={ref}
-        className={getClassName({
-          baseClassName,
-          className,
-        })}
-        aria-labelledby={titleId}
-        {...rest}
-      >
-        <SpinnerComponent {...spinnerProps} />
-        <div className={`${baseClassName}__content`}>
-          <span id={titleId} className={`${baseClassName}__title`}>
-            {title}
-          </span>
-          {subtitle ? (
-            <span className={`${baseClassName}__subtitle`}>{subtitle}</span>
-          ) : null}
-        </div>
-      </Component>
-    );
-  },
-);
+  return (
+    <Component
+      className={getClassName({
+        baseClassName,
+        className,
+      })}
+      aria-labelledby={titleId}
+      {...rest}
+    >
+      <SpinnerComponent {...spinnerProps} />
+      <div className={`${baseClassName}__content`}>
+        <span id={titleId} className={`${baseClassName}__title`}>
+          {title}
+        </span>
+        {subtitle ? (
+          <span className={`${baseClassName}__subtitle`}>{subtitle}</span>
+        ) : null}
+      </div>
+    </Component>
+  );
+};
 
 LoaderCommon.displayName = "LoaderCommon";

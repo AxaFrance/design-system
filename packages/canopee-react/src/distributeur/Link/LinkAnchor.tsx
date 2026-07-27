@@ -1,9 +1,5 @@
 import classnames from "classnames";
-import {
-  type ComponentPropsWithRef,
-  forwardRef,
-  type ReactElement,
-} from "react";
+import { type ComponentPropsWithRef, type ReactElement } from "react";
 import { Svg } from "../Svg";
 import { linkClassName } from "./linkClassName";
 
@@ -17,41 +13,35 @@ type AnchorLinkProps = {
 
 type LinkComponentProps = ComponentPropsWithRef<"a"> & AnchorLinkProps;
 
-const LinkAnchor = forwardRef<HTMLAnchorElement, LinkComponentProps>(
-  (
-    {
-      className,
-      target,
-      rel,
-      leftIcon,
-      children,
-      rightIcon,
-      disabled,
-      variant,
-      ...restProps
-    }: LinkComponentProps,
-    ref,
-  ) => {
-    const finalClassName = classnames(linkClassName, className, {
-      [`${linkClassName}--reverse`]: variant === "reverse",
-    });
+const LinkAnchor = ({
+  className,
+  target,
+  rel,
+  leftIcon,
+  children,
+  rightIcon,
+  disabled,
+  variant,
+  ...restProps
+}: LinkComponentProps) => {
+  const finalClassName = classnames(linkClassName, className, {
+    [`${linkClassName}--reverse`]: variant === "reverse",
+  });
 
-    return (
-      <a
-        className={finalClassName}
-        rel={target === "_blank" ? "noopener noreferrer" : rel}
-        aria-disabled={disabled ?? restProps["aria-disabled"]}
-        ref={ref}
-        target={target}
-        {...restProps}
-      >
-        {leftIcon}
-        {children}
-        {rightIcon}
-      </a>
-    );
-  },
-);
+  return (
+    <a
+      className={finalClassName}
+      rel={target === "_blank" ? "noopener noreferrer" : rel}
+      aria-disabled={disabled ?? restProps["aria-disabled"]}
+      target={target}
+      {...restProps}
+    >
+      {leftIcon}
+      {children}
+      {rightIcon}
+    </a>
+  );
+};
 
 LinkAnchor.displayName = "LinkAnchor";
 

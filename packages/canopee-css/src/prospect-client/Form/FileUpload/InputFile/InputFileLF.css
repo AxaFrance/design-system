@@ -1,26 +1,28 @@
 @import "./InputFileCommon.css";
 
-.af-input-file__dropzone {
-  --input-file-dropzone-border-color: var(--blue-1000);
-  --input-file-dropzone-color: var(--blue-1000);
-  --input-file-dropzone-bg-color: var(--white-1000);
+@layer canopee {
+  .af-input-file__dropzone {
+    --input-file-dropzone-border-color: var(--blue-1000);
+    --input-file-dropzone-color: var(--blue-1000);
+    --input-file-dropzone-bg-color: var(--white-1000);
 
-  &:hover,
-  &:has(input[type="file"]:focus) {
-    > span:is(.af-btn-client) {
-      --button-bg-color: var(--blue-100);
+    &:hover,
+    &:has(input[type="file"]:focus) {
+      > span:is(.af-btn-client) {
+        --button-bg-color: var(--blue-100);
+      }
+    }
+
+    &:has(input[type="file"]:focus-visible) > span:is(.af-btn-client) {
+      --button-outline-color: var(--blue-650);
     }
   }
 
-  &:has(input[type="file"]:focus-visible) > span:is(.af-btn-client) {
-    --button-outline-color: var(--blue-650);
+  .af-input-file__dropzone--error {
+    --input-file-dropzone-border-color: var(--red-alert-1200);
   }
-}
 
-.af-input-file__dropzone--error {
-  --input-file-dropzone-border-color: var(--red-alert-1200);
-}
-
-.af-input-file__help {
-  --input-file-help-color: var(--gray-800);
+  .af-input-file__help {
+    --input-file-help-color: var(--gray-800);
+  }
 }

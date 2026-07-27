@@ -1,6 +1,8 @@
 @import "./ItemLabelCommon.css";
 
-.af-item-label {
-  --label-color: var(--gray-1000);
-  --label-description-color: var(--gray-800);
+@layer canopee {
+  .af-item-label {
+    --label-color: var(--gray-1000);
+    --label-description-color: var(--gray-800);
+  }
 }

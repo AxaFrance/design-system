@@ -1,0 +1,103 @@
+@layer canopee {
+  .af-card-radio {
+    --radio-border-width: 1px;
+
+    position: relative;
+    display: flex;
+    padding: var(--rem-16);
+    border-radius: var(--radio-border-radius);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--radio-gap);
+    text-align: center;
+    background-color: var(--radio-background-color);
+    outline: var(--radio-border-width) solid var(--radio-border-color);
+    outline-offset: calc(-1 * var(--radio-border-width));
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --radio-border-width: 2px;
+    }
+
+    &:has(input:checked) {
+      --radio-border-width: 1px;
+
+      &:hover,
+      &:focus-visible,
+      &:focus-within {
+        --radio-border-width: 2px;
+      }
+    }
+
+    & .af-icon {
+      --icon-size: var(--icon-size-medium);
+
+      @media (--desktop-small) {
+        --icon-size: var(--icon-size-large);
+      }
+    }
+  }
+
+  .af-card-radio__label {
+    margin: 0;
+    font-size: var(--rem-16);
+    font-weight: 400;
+    color: var(--radio-color-title);
+
+    @media (--desktop-small) {
+      font-size: var(--rem-18);
+    }
+  }
+
+  .af-card-radio:has(input:checked) .af-card-radio__label {
+    font-weight: 600;
+  }
+
+  .af-card-radio--invalid:not(:has(input:checked)) {
+    --radio-border-width: 2px;
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --radio-border-width: 3px;
+    }
+  }
+
+  .af-card-radio__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--radio-gap);
+    text-align: center;
+  }
+
+  .af-card-radio__description,
+  .af-card-radio__subtitle {
+    margin: 0;
+    font-size: var(--rem-14);
+    font-weight: 400;
+    color: var(--radio-color-subtitle);
+
+    @media (--desktop-small) {
+      font-size: 1rem;
+    }
+  }
+
+  .af-card-radio--horizontal {
+    flex-direction: row;
+
+    & .af-card-radio__content {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    & .af-radio {
+      order: -1;
+    }
+  }
+}

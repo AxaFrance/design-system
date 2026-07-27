@@ -1,19 +1,21 @@
-.af-checkbox {
-  --checkbox-border-width: 1px;
+@layer canopee {
+  .af-checkbox {
+    --checkbox-border-width: 1px;
 
-  width: var(--rem-24);
-  height: var(--rem-24);
-  margin: 0;
-  border-radius: var(--checkbox-border-radius);
-  flex-shrink: 0;
-  align-items: center;
-  background-color: var(--checkbox-background-color);
-  outline: var(--checkbox-border-width) solid var(--checkbox-border-color);
-  outline-offset: calc(-1 * var(--checkbox-border-width));
-  cursor: pointer;
-  appearance: unset;
+    width: var(--rem-24);
+    height: var(--rem-24);
+    margin: 0;
+    border-radius: var(--checkbox-border-radius);
+    flex-shrink: 0;
+    align-items: center;
+    background-color: var(--checkbox-background-color);
+    outline: var(--checkbox-border-width) solid var(--checkbox-border-color);
+    outline-offset: calc(-1 * var(--checkbox-border-width));
+    cursor: pointer;
+    appearance: unset;
 
-  &:checked {
-    background-image: var(--checkbox-background-image);
+    &:checked {
+      background-image: var(--checkbox-background-image);
+    }
   }
 }

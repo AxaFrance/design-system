@@ -1,6 +1,8 @@
 @import "./ContentItemDuoCommon.css";
 
-.af-content-item-duo {
-  --content-item-duo-label-color: var(--gray-800);
-  --content-item-duo-value-color: var(--gray-1000);
+@layer canopee {
+  .af-content-item-duo {
+    --content-item-duo-label-color: var(--gray-800);
+    --content-item-duo-value-color: var(--gray-1000);
+  }
 }

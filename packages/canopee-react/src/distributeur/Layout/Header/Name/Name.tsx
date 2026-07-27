@@ -40,10 +40,10 @@ const Name = ({
       >
         <img className="af-logo__brand" src={img} alt={alt} />
       </a>
-      <h2 className="af-header__title">
+      <p className="af-header__title">
         {title}
         <span className="af-header__subtitle">{subtitle}</span>
-      </h2>
+      </p>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Form/Text/Text.css";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 import { getClassName } from "../../utilities/helpers/getClassName";
 
 type Props = ComponentPropsWithRef<"input"> & {
@@ -7,25 +7,22 @@ type Props = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
 };
 
-const Text = forwardRef<HTMLInputElement, Props>(
-  ({ className, classModifier, required, ...otherProps }, inputRef) => {
-    const componentClassName = getClassName({
-      baseClassName: "af-form__input-text",
-      modifiers: classModifier?.split(" "),
-      className,
-    });
+const Text = ({ className, classModifier, required, ...otherProps }: Props) => {
+  const componentClassName = getClassName({
+    baseClassName: "af-form__input-text",
+    modifiers: classModifier?.split(" "),
+    className,
+  });
 
-    return (
-      <input
-        className={componentClassName}
-        type="text"
-        ref={inputRef}
-        required={required || classModifier?.includes("required")}
-        {...otherProps}
-      />
-    );
-  },
-);
+  return (
+    <input
+      className={componentClassName}
+      type="text"
+      required={required || classModifier?.includes("required")}
+      {...otherProps}
+    />
+  );
+};
 
 Text.displayName = "Text";
 

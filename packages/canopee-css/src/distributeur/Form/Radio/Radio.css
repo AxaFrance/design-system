@@ -1,181 +1,183 @@
-.af-form__radio {
-  position: relative;
-  display: flex;
-  border-bottom: 1px solid var(--gray40);
-}
+@layer canopee {
+  .af-form__radio {
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid var(--gray40);
+  }
 
-.af-form__radio-inline {
-  position: relative;
-  display: flex;
-  margin-right: 1rem;
-  align-items: center;
-}
+  .af-form__radio-inline {
+    position: relative;
+    display: flex;
+    margin-right: 1rem;
+    align-items: center;
+  }
 
-.af-form__radio-inline .af-form__label {
-  padding: 0;
-}
+  .af-form__radio-inline .af-form__label {
+    padding: 0;
+  }
 
-.af-form__radio,
-.af-form__radio-inline {
-  align-items: center;
+  .af-form__radio,
+  .af-form__radio-inline {
+    align-items: center;
 
-  --radio-color: var(--disabled-color);
-  --label-color: var(--text-color);
+    --radio-color: var(--disabled-color);
+    --label-color: var(--text-color);
 
-  color: var(--label-color);
-}
+    color: var(--label-color);
+  }
 
-.af-form__radio:nth-last-child(1),
-.af-form__radio-inline:nth-last-child(1) {
-  border-bottom: 0;
-}
+  .af-form__radio:nth-last-child(1),
+  .af-form__radio-inline:nth-last-child(1) {
+    border-bottom: 0;
+  }
 
-.af-form__radio:hover,
-.af-form__radio:focus-within,
-.af-form__radio-inline:hover,
-.af-form__radio-inline:focus-within {
-  --radio-color: var(--brand-primary);
-  --label-color: var(--brand-primary);
-}
+  .af-form__radio:hover,
+  .af-form__radio:focus-within,
+  .af-form__radio-inline:hover,
+  .af-form__radio-inline:focus-within {
+    --radio-color: var(--brand-primary);
+    --label-color: var(--brand-primary);
+  }
 
-.af-form__radio:has(.af-form__input-radio:checked),
-.af-form__radio-inline:has(.af-form__input-radio:checked) {
-  --radio-color: var(--brand-primary);
-  --label-color: var(--brand-primary);
-}
+  .af-form__radio:has(.af-form__input-radio:checked),
+  .af-form__radio-inline:has(.af-form__input-radio:checked) {
+    --radio-color: var(--brand-primary);
+    --label-color: var(--brand-primary);
+  }
 
-.af-form__radio:has(.af-form__input-radio[aria-invalid="true"]),
-.af-form__radio-inline:has(.af-form__input-radio[aria-invalid="true"]) {
-  --radio-color: var(--error-color);
-  --label-color: var(--error-color);
-}
+  .af-form__radio:has(.af-form__input-radio[aria-invalid="true"]),
+  .af-form__radio-inline:has(.af-form__input-radio[aria-invalid="true"]) {
+    --radio-color: var(--error-color);
+    --label-color: var(--error-color);
+  }
 
-.af-form__radio-custom {
-  position: relative;
-  display: inline-flex;
-  margin: 0 0.3rem 0.3rem 0;
-  align-items: center;
-  text-align: center;
-}
+  .af-form__radio-custom {
+    position: relative;
+    display: inline-flex;
+    margin: 0 0.3rem 0.3rem 0;
+    align-items: center;
+    text-align: center;
+  }
 
-.af-form__radio-custom .af-form__description {
-  padding: 0;
-}
+  .af-form__radio-custom .af-form__description {
+    padding: 0;
+  }
 
-.af-form__radio-custom .af-form__label {
-  --background-color: var(--inactive-button-background);
-  --border-color: var(--inactive-button-border-color);
-  --label-color: var(--text-color);
+  .af-form__radio-custom .af-form__label {
+    --background-color: var(--inactive-button-background);
+    --border-color: var(--inactive-button-border-color);
+    --label-color: var(--text-color);
 
-  margin: 0;
-  padding: 0.6rem 2rem;
-  font-weight: normal;
-  color: var(--label-color);
-  background: var(--background-color);
-  box-shadow: inset 0 -2px 0 0 var(--border-color);
-  cursor: pointer;
-}
+    margin: 0;
+    padding: 0.6rem 2rem;
+    font-weight: normal;
+    color: var(--label-color);
+    background: var(--background-color);
+    box-shadow: inset 0 -2px 0 0 var(--border-color);
+    cursor: pointer;
+  }
 
-.af-form__radio-custom--disabled .af-form__label {
-  opacity: 0.6;
-  box-shadow: inset 0 -2px 0 0 var(--gray40);
-  cursor: not-allowed;
-}
+  .af-form__radio-custom--disabled .af-form__label {
+    opacity: 0.6;
+    box-shadow: inset 0 -2px 0 0 var(--gray40);
+    cursor: not-allowed;
+  }
 
-.af-form__radio-custom--disabled .af-form__description {
-  opacity: 0.4;
-}
+  .af-form__radio-custom--disabled .af-form__description {
+    opacity: 0.4;
+  }
 
-.af-form__radio-custom--error .af-form__label {
-  --label-color: var(--error-color);
-  --background-color: var(--error-button-background);
-  --border-color: var(--error-color);
-}
+  .af-form__radio-custom--error .af-form__label {
+    --label-color: var(--error-color);
+    --background-color: var(--error-button-background);
+    --border-color: var(--error-color);
+  }
 
-.af-form__radio-custom--warning .af-form__label {
-  --label-color: var(--warning-color);
-  --background-color: var(--orange10);
-  --border-color: var(--warning-color);
-}
+  .af-form__radio-custom--warning .af-form__label {
+    --label-color: var(--warning-color);
+    --background-color: var(--orange10);
+    --border-color: var(--warning-color);
+  }
 
-.af-form__radio-custom .af-form__input-radio {
-  appearance: none;
-}
+  .af-form__radio-custom .af-form__input-radio {
+    appearance: none;
+  }
 
-.af-form__radio-custom .af-form__input-radio:checked + .af-form__label,
-.af-form__radio-custom .af-form__input-radio:focus + .af-form__label {
-  --background-color: var(--brand-primary);
-  --border-color: var(--active-button-border-color);
-  --label-color: var(--white);
-}
+  .af-form__radio-custom .af-form__input-radio:checked + .af-form__label,
+  .af-form__radio-custom .af-form__input-radio:focus + .af-form__label {
+    --background-color: var(--brand-primary);
+    --border-color: var(--active-button-border-color);
+    --label-color: var(--white);
+  }
 
-.af-form__radio-custom .af-form__label:hover:hover {
-  --background-color: var(--brand-primary);
-  --border-color: var(--active-button-border-color);
-  --label-color: var(--white);
-}
+  .af-form__radio-custom .af-form__label:hover:hover {
+    --background-color: var(--brand-primary);
+    --border-color: var(--active-button-border-color);
+    --label-color: var(--white);
+  }
 
-.af-form__radio:has(.af-form__input-radio:disabled),
-.af-form__radio-inline:has(.af-form__input-radio:disabled) {
-  --radio-color: var(--disabled-color);
-  --label-color: var(--disabled-color);
+  .af-form__radio:has(.af-form__input-radio:disabled),
+  .af-form__radio-inline:has(.af-form__input-radio:disabled) {
+    --radio-color: var(--disabled-color);
+    --label-color: var(--disabled-color);
 
-  cursor: not-allowed;
-}
+    cursor: not-allowed;
+  }
 
-.af-form__radio .af-form__input-radio[aria-invalid="true"]:checked,
-.af-form__radio-inline .af-form__input-radio[aria-invalid="true"]:checked {
-  background-color: var(--radio-color);
-}
+  .af-form__radio .af-form__input-radio[aria-invalid="true"]:checked,
+  .af-form__radio-inline .af-form__input-radio[aria-invalid="true"]:checked {
+    background-color: var(--radio-color);
+  }
 
-.af-form__radio .af-form__input-radio,
-.af-form__radio-inline .af-form__input-radio {
-  display: grid;
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--radio-color);
-  border-radius: 50%;
-  place-content: center;
-  cursor: pointer;
-  appearance: none;
-}
+  .af-form__radio .af-form__input-radio,
+  .af-form__radio-inline .af-form__input-radio {
+    display: grid;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--radio-color);
+    border-radius: 50%;
+    place-content: center;
+    cursor: pointer;
+    appearance: none;
+  }
 
-.af-form__radio .af-form__input-radio:checked::before,
-.af-form__radio-inline .af-form__input-radio:checked::before {
-  display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--radio-color);
-  transition: 120ms transform ease-in-out;
-  content: "";
-}
+  .af-form__radio .af-form__input-radio:checked::before,
+  .af-form__radio-inline .af-form__input-radio:checked::before {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--radio-color);
+    transition: 120ms transform ease-in-out;
+    content: "";
+  }
 
-.af-form__radio .af-form__input-radio:disabled,
-.af-form__radio-inline .af-form__input-radio:disabled {
-  cursor: not-allowed;
-}
+  .af-form__radio .af-form__input-radio:disabled,
+  .af-form__radio-inline .af-form__input-radio:disabled {
+    cursor: not-allowed;
+  }
 
-.af-form__radio .af-form__input-radio:disabled + .af-form__label,
-.af-form__radio-inline .af-form__input-radio:disabled + .af-form__label {
-  cursor: not-allowed;
-}
+  .af-form__radio .af-form__input-radio:disabled + .af-form__label,
+  .af-form__radio-inline .af-form__input-radio:disabled + .af-form__label {
+    cursor: not-allowed;
+  }
 
-.af-form__radio-inline .af-form__description {
-  padding-left: 0.5rem;
-}
+  .af-form__radio-inline .af-form__description {
+    padding-left: 0.5rem;
+  }
 
-.af-form__text:has(.af-form__input-radio-inline) {
-  display: flex;
-}
+  .af-form__text:has(.af-form__input-radio-inline) {
+    display: flex;
+  }
 
-.af-form__radio-group {
-  display: flex;
-  margin-right: 1rem;
-  flex-flow: row wrap;
-}
+  .af-form__radio-group {
+    display: flex;
+    margin-right: 1rem;
+    flex-flow: row wrap;
+  }
 
-.af-form__radio-group-classic {
-  display: block;
-  flex-grow: 1;
+  .af-form__radio-group-classic {
+    display: block;
+    flex-grow: 1;
+  }
 }

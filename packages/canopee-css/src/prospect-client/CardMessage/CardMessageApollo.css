@@ -1,30 +1,32 @@
 @import "./CardMessageCommon.css";
 
-.af-card-message {
-  --card-message-padding: var(--size-8) var(--size-16);
-  --card-message-border-radius: var(--radius-8);
-}
+@layer canopee {
+  .af-card-message {
+    --card-message-padding: var(--size-8) var(--size-16);
+    --card-message-border-radius: var(--radius-8);
+  }
 
-.af-card-message--info {
-  --card-message-background-color: var(--blue-040);
-  --card-message-border-color: var(--blue-040);
-  --card-message-text-color: var(--blue-1000);
-}
+  .af-card-message--info {
+    --card-message-background-color: var(--blue-040);
+    --card-message-border-color: var(--blue-040);
+    --card-message-text-color: var(--blue-1000);
+  }
 
-.af-card-message--warning {
-  --card-message-background-color: var(--red-040);
-  --card-message-border-color: var(--red-040);
-  --card-message-text-color: var(--orange-1000);
-}
+  .af-card-message--warning {
+    --card-message-background-color: var(--red-040);
+    --card-message-border-color: var(--red-040);
+    --card-message-text-color: var(--orange-1000);
+  }
 
-.af-card-message--error {
-  --card-message-background-color: var(--red-040);
-  --card-message-border-color: var(--red-040);
-  --card-message-text-color: var(--red-alert-1000);
-}
+  .af-card-message--error {
+    --card-message-background-color: var(--red-040);
+    --card-message-border-color: var(--red-040);
+    --card-message-text-color: var(--red-alert-1000);
+  }
 
-.af-card-message--neutral {
-  --card-message-background-color: var(--gray-050);
-  --card-message-border-color: var(--gray-050);
-  --card-message-text-color: var(--gray-800);
+  .af-card-message--neutral {
+    --card-message-background-color: var(--gray-050);
+    --card-message-border-color: var(--gray-050);
+    --card-message-text-color: var(--gray-800);
+  }
 }

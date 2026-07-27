@@ -1,20 +1,22 @@
 @import "./ItemMessageCommon.css";
 
-.af-item-message {
-  --item-message-color: var(--red-alert-1000);
-  --item-message-icon-size: var(--rem-20);
+@layer canopee {
+  .af-item-message {
+    --item-message-color: var(--red-alert-1000);
+    --item-message-icon-size: var(--rem-20);
 
-  font-size: clamp(14px, 1.4vw, 16px);
+    font-size: clamp(14px, 1.4vw, 16px);
 
-  @media (--desktop-small) {
-    --item-message-icon-size: var(--rem-24);
+    @media (--desktop-small) {
+      --item-message-icon-size: var(--rem-24);
+    }
   }
-}
 
-.af-item-message--success {
-  --item-message-color: var(--green-1000);
-}
+  .af-item-message--success {
+    --item-message-color: var(--green-1000);
+  }
 
-.af-item-message--warning {
-  --item-message-color: var(--orange-1000);
+  .af-item-message--warning {
+    --item-message-color: var(--orange-1000);
+  }
 }

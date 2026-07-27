@@ -1,4 +1,4 @@
-import React, { type ComponentProps, forwardRef, type ReactNode } from "react";
+import React, { type ComponentPropsWithRef, type ReactNode } from "react";
 import type { Option } from "../core";
 import { CheckboxItem } from "./CheckboxItem";
 import { CheckboxModes } from "./CheckboxModes";
@@ -13,7 +13,7 @@ type OnChange = {
 };
 
 type Props = Omit<
-  ComponentProps<typeof CheckboxItem>,
+  ComponentPropsWithRef<typeof CheckboxItem>,
   "value" | "label" | "checked" | "onChange"
 > & {
   options: Option[];
@@ -36,56 +36,50 @@ const defaultClassName = (mode: string) => {
   }
 };
 
-const CheckboxInner = forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      id,
-      name,
-      options,
-      disabled,
-      children,
-      values = [],
-      mode = CheckboxModes.default,
-      onChange = () => {},
-      ...otherProps
-    },
-    inputRef,
-  ) => {
-    const className = defaultClassName(mode);
+const CheckboxInner = ({
+  id,
+  name,
+  options,
+  disabled,
+  children,
+  values = [],
+  mode = CheckboxModes.default,
+  onChange = () => {},
+  ...otherProps
+}: Props) => {
+  const className = defaultClassName(mode);
 
-    const handleOnChange: React.ChangeEventHandler<HTMLInputElement> = ({
-      target: { value, checked },
-    }) => {
-      const newValues = checked
-        ? [...values, value]
-        : values.filter((v) => v !== value);
-      onChange({ values: newValues, target: { value, checked }, id, name });
-    };
-    return (
-      <div className="af-form__checkbox-container">
-        {options.map((option) => {
-          const isChecked = values ? values.indexOf(option.value) >= 0 : false;
+  const handleOnChange: React.ChangeEventHandler<HTMLInputElement> = ({
+    target: { value, checked },
+  }) => {
+    const newValues = checked
+      ? [...values, value]
+      : values.filter((v) => v !== value);
+    onChange({ values: newValues, target: { value, checked }, id, name });
+  };
+  return (
+    <div className="af-form__checkbox-container">
+      {options.map((option) => {
+        const isChecked = values ? values.indexOf(option.value) >= 0 : false;
 
-          return (
-            <CheckboxItem
-              {...otherProps}
-              onChange={handleOnChange}
-              key={option.value}
-              className={className}
-              isChecked={isChecked}
-              name={name}
-              disabled={option.disabled || disabled}
-              ref={inputRef}
-              {...option}
-            >
-              {children}
-            </CheckboxItem>
-          );
-        })}
-      </div>
-    );
-  },
-);
+        return (
+          <CheckboxItem
+            {...otherProps}
+            onChange={handleOnChange}
+            key={option.value}
+            className={className}
+            isChecked={isChecked}
+            name={name}
+            disabled={option.disabled || disabled}
+            {...option}
+          >
+            {children}
+          </CheckboxItem>
+        );
+      })}
+    </div>
+  );
+};
 
 CheckboxInner.displayName = "Checkbox";
 

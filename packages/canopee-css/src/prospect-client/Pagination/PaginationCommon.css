@@ -1,30 +1,32 @@
-.af-pagination-list {
-  display: flex;
-  padding: var(--rem-8);
-  border: 1px solid var(--pagination-list-border-color);
-  border-radius: 100vmax;
-  align-items: center;
-  gap: var(--rem-16);
-  background-color: var(--pagination-list-background-color);
-  list-style: none;
+@layer canopee {
+  .af-pagination-list {
+    display: flex;
+    padding: var(--rem-8);
+    border: 1px solid var(--pagination-list-border-color);
+    border-radius: 100vmax;
+    align-items: center;
+    gap: var(--rem-16);
+    background-color: var(--pagination-list-background-color);
+    list-style: none;
 
-  > li:has(> .af-item-pagination) {
-    display: none;
-  }
-
-  @media (--desktop-small) {
-    > li:has(> .af-pagination-counter) {
+    > li:has(> .af-item-pagination) {
       display: none;
     }
 
-    > li:has(> .af-item-pagination) {
-      display: list-item;
-    }
-
-    .af-pagination--hide-prev-next & {
-      > li:first-child,
-      > li:last-child {
+    @media (--desktop-small) {
+      > li:has(> .af-pagination-counter) {
         display: none;
+      }
+
+      > li:has(> .af-item-pagination) {
+        display: list-item;
+      }
+
+      .af-pagination--hide-prev-next & {
+        > li:first-child,
+        > li:last-child {
+          display: none;
+        }
       }
     }
   }

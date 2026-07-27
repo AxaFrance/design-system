@@ -1,5 +1,7 @@
 @import "./LoaderCommon.css";
 
-.af-loader {
-  --af-loader-backdrop-color: var(--gray-1000-48);
+@layer canopee {
+  .af-loader {
+    --af-loader-backdrop-color: var(--gray-1000-48);
+  }
 }

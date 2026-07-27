@@ -1,12 +1,14 @@
-.af-progress-bar-group {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  align-items: flex-end;
-  gap: var(--rem-8);
-  list-style-type: none;
-}
+@layer canopee {
+  .af-progress-bar-group {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: flex-end;
+    gap: var(--rem-8);
+    list-style-type: none;
+  }
 
-.af-progress-bar-group__item {
-  flex: 1;
+  .af-progress-bar-group__item {
+    flex: 1;
+  }
 }

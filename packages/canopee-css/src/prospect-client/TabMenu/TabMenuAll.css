@@ -1,0 +1,20 @@
+@layer canopee {
+  .af-tab-menu:focus-visible {
+    outline: 2px solid var(--blue-650);
+    outline-offset: 3px;
+  }
+
+  .af-tab-menu__list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    list-style: none;
+  }
+
+  @media (--desktop-small) {
+    .af-tab-menu__list {
+      flex-direction: row;
+    }
+  }
+}

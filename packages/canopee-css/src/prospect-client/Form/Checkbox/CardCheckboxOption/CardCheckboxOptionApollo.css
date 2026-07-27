@@ -1,42 +1,44 @@
 @import "./CardCheckboxOptionCommon.css";
 
-.af-card-checkbox-option {
-  --checkbox-option-border-color: var(--blue-650);
-  --checkbox-option-color-title: var(--blue-1000);
-  --checkbox-option-color-subtitle: var(--gray-800);
-  --checkbox-option-gap: var(--rem-8);
-  --checkbox-option-border-radius: var(--radius-8);
-  --checkbox-option-background-color: var(--white-1000);
+@layer canopee {
+  .af-card-checkbox-option {
+    --checkbox-option-border-color: var(--blue-650);
+    --checkbox-option-color-title: var(--blue-1000);
+    --checkbox-option-color-subtitle: var(--gray-800);
+    --checkbox-option-gap: var(--rem-8);
+    --checkbox-option-border-radius: var(--radius-8);
+    --checkbox-option-background-color: var(--white-1000);
 
-  &:hover,
-  &:focus-visible,
-  &:focus-within {
-    --checkbox-option-border-color: var(--blue-1000);
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --checkbox-option-border-color: var(--blue-1000);
+    }
+
+    &:has(input:checked) {
+      --checkbox-option-background-color: var(--blue-040);
+      --checkbox-option-border-color: var(--blue-1000);
+    }
+
+    &:has(input[aria-invalid="true"]):not(:has(input:checked)) {
+      --checkbox-option-border-color: var(--red-alert-1000);
+      --checkbox-option-background-color: var(--red-040);
+      --checkbox-option-color-title: var(--gray-800);
+    }
   }
 
-  &:has(input:checked) {
-    --checkbox-option-background-color: var(--blue-040);
-    --checkbox-option-border-color: var(--blue-1000);
+  .af-card-checkbox-option .af-card-checkbox-option__content {
+    --checkbox-option-gap: var(--rem-4);
   }
 
-  &:has(input[aria-invalid="true"]):not(:has(input:checked)) {
-    --checkbox-option-border-color: var(--red-alert-1000);
-    --checkbox-option-background-color: var(--red-040);
-    --checkbox-option-color-title: var(--gray-800);
+  .af-card-checkbox-option--horizontal {
+    & .af-checkbox {
+      margin-right: var(--rem-8);
+    }
   }
-}
 
-.af-card-checkbox-option .af-card-checkbox-option__content {
-  --checkbox-option-gap: var(--rem-4);
-}
-
-.af-card-checkbox-option--horizontal {
-  & .af-checkbox {
-    margin-right: var(--rem-8);
+  .af-card-checkbox-option:not(.af-card-checkbox-option--horizontal)
+    .af-checkbox {
+    margin-top: var(--rem-8);
   }
-}
-
-.af-card-checkbox-option:not(.af-card-checkbox-option--horizontal)
-  .af-checkbox {
-  margin-top: var(--rem-8);
 }

@@ -44,17 +44,11 @@ type Props = {
   /** Labels for different states for accessibility purposes
    * @default
    * {
-   * validatedState: "validée",
-   *  editState: "en cours de modification",
-   *  lockedState: "verrouillée",
-   * }
+   * validatedState: "validée", *  editState: "en cours de modification", *  lockedState: "verrouillée", * }
    * @example
    * ```json
    * {
-   *  validatedState: "completed",
-   *  editState: "being edited",
-   *  lockedState: "locked",
-   * }
+   *  validatedState: "completed", *  editState: "being edited", *  lockedState: "locked", * }
    * ```
    * will change the aria-labels of the step to "Étape verticale ${title} (completed)" when validated, "Étape verticale ${title} (being edited)" when in edition and "Étape verticale ${title} (locked)" when locked.
    */

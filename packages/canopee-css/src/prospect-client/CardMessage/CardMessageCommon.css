@@ -1,34 +1,36 @@
-.af-card-message {
-  display: flex;
-  width: var(--card-message-width, 100%);
-  padding: var(--card-message-padding);
-  border-radius: var(--card-message-border-radius);
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
-  gap: var(--rem-4);
-  font-size: var(--card-font-size, var(--rem-14));
-  color: var(--card-message-text-color);
-  background-color: var(--card-message-background-color);
-  box-shadow: inset var(--card-message-border-width, 0) 0
-    var(--card-message-border-color);
+@layer canopee {
+  .af-card-message {
+    display: flex;
+    width: var(--card-message-width, 100%);
+    padding: var(--card-message-padding);
+    border-radius: var(--card-message-border-radius);
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: var(--rem-4);
+    font-size: var(--card-font-size, var(--rem-14));
+    color: var(--card-message-text-color);
+    background-color: var(--card-message-background-color);
+    box-shadow: inset var(--card-message-border-width, 0) 0
+      var(--card-message-border-color);
 
-  @media (--desktop-small) {
-    --card-font-size: var(--font-size-base);
+    @media (--desktop-small) {
+      --card-font-size: var(--font-size-base);
+    }
   }
-}
 
-.af-card-message--title,
-.af-card-message--text {
-  font-size: var(--card-font-size);
-  line-height: 125%;
-  color: var(--card-message-text-color);
-}
+  .af-card-message--title,
+  .af-card-message--text {
+    font-size: var(--card-font-size);
+    line-height: 125%;
+    color: var(--card-message-text-color);
+  }
 
-.af-card-message--title {
-  font-weight: 600;
-}
+  .af-card-message--title {
+    font-weight: 600;
+  }
 
-.af-card-message--text {
-  font-weight: 400;
+  .af-card-message--text {
+    font-weight: 400;
+  }
 }

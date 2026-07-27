@@ -1,45 +1,47 @@
-.af-radio {
-  --radio-border-width: 1px;
-  --radio-ckecked-color: transparent;
-  --radio-ckecked-width: var(--rem-12);
-  --radio-background-color: var(--white-1000);
+@layer canopee {
+  .af-radio {
+    --radio-border-width: 1px;
+    --radio-ckecked-color: transparent;
+    --radio-ckecked-width: var(--rem-12);
+    --radio-background-color: var(--white-1000);
 
-  display: flex;
-  width: var(--rem-24);
-  height: var(--rem-24);
-  margin: 0;
-  padding: 0;
-  border-radius: 50%;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--radio-background-color);
-  outline: var(--radio-border-width) solid var(--radio-border-color);
-  outline-offset: calc(-1 * var(--radio-border-width));
-  cursor: pointer;
-  appearance: unset;
-
-  &::after {
-    width: var(--radio-ckecked-width);
-    height: var(--radio-ckecked-width);
+    display: flex;
+    width: var(--rem-24);
+    height: var(--rem-24);
+    margin: 0;
+    padding: 0;
     border-radius: 50%;
     flex-shrink: 0;
-    background-color: var(--radio-ckecked-color);
-    content: "";
+    align-items: center;
+    justify-content: center;
+    background-color: var(--radio-background-color);
+    outline: var(--radio-border-width) solid var(--radio-border-color);
+    outline-offset: calc(-1 * var(--radio-border-width));
+    cursor: pointer;
+    appearance: unset;
+
+    &::after {
+      width: var(--radio-ckecked-width);
+      height: var(--radio-ckecked-width);
+      border-radius: 50%;
+      flex-shrink: 0;
+      background-color: var(--radio-ckecked-color);
+      content: "";
+    }
+
+    &:hover,
+    &:focus-within,
+    &:checked {
+      --radio-border-width: 2px;
+    }
   }
 
-  &:hover,
-  &:focus-within,
-  &:checked {
+  .af-radio--invalid:not(:checked) {
     --radio-border-width: 2px;
-  }
-}
 
-.af-radio--invalid:not(:checked) {
-  --radio-border-width: 2px;
-
-  &:hover,
-  &:focus-within {
-    --radio-border-width: 3px;
+    &:hover,
+    &:focus-within {
+      --radio-border-width: 3px;
+    }
   }
 }

@@ -1,16 +1,18 @@
 @import "./AccordionContextualCommon.css";
 
-.af-apollo-accordion {
-  --accordion-contextual-title-font-size: var(--rem-16);
-  @media (--desktop-small) {
-    --accordion-contextual-title-font-size: var(--rem-18);
+@layer canopee {
+  .af-apollo-accordion {
+    --accordion-contextual-title-font-size: var(--rem-16);
+    @media (--desktop-small) {
+      --accordion-contextual-title-font-size: var(--rem-18);
+    }
   }
-}
 
-.af-apollo-accordion-contextual--info {
-  --accordion-contextual-title-text-color: var(--blue-1000);
-}
+  .af-apollo-accordion-contextual--info {
+    --accordion-contextual-title-text-color: var(--blue-1000);
+  }
 
-.af-apollo-accordion-contextual--warning {
-  --accordion-contextual-title-text-color: var(--red-alert-1200);
+  .af-apollo-accordion-contextual--warning {
+    --accordion-contextual-title-text-color: var(--red-alert-1200);
+  }
 }

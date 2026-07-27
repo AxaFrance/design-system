@@ -1,4 +1,4 @@
-import React, { forwardRef, type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { Button, Modal, getComponentClassName } from "../../distributeur";
 import { Body } from "./components/Body";
 import { Footer } from "./components/Footer";
@@ -47,54 +47,49 @@ export type BooleanModalProps = React.DetailedHTMLProps<
      */
     classModifier?: string;
   };
-const BooleanModal = forwardRef<HTMLDialogElement, BooleanModalProps>(
-  (
-    {
-      children,
-      title,
-      submitTitle = "Valider",
-      cancelTitle = "Annuler",
-      className = defaultClassName,
-      classModifier,
-      onCancel,
-      onSubmit,
-      closeButtonAriaLabel,
-      ...props
-    },
-    ref,
-  ) => {
-    const componentClassName = getComponentClassName(
-      className,
-      classModifier,
-      defaultClassName,
-    );
 
-    return (
-      <Modal
-        className={componentClassName}
-        onOutsideTap={onCancel}
+const BooleanModal = ({
+  children,
+  title,
+  submitTitle = "Valider",
+  cancelTitle = "Annuler",
+  className = defaultClassName,
+  classModifier,
+  onCancel,
+  onSubmit,
+  closeButtonAriaLabel,
+  ...props
+}: BooleanModalProps) => {
+  const componentClassName = getComponentClassName(
+    className,
+    classModifier,
+    defaultClassName,
+  );
+
+  return (
+    <Modal
+      className={componentClassName}
+      onOutsideTap={onCancel}
+      title={title}
+      {...props}
+    >
+      <Header
         title={title}
-        ref={ref}
-        {...props}
-      >
-        <Header
-          title={title}
-          onCancel={onCancel}
-          closeButtonAriaLabel={closeButtonAriaLabel}
-        />
-        <Body>{children}</Body>
-        <Footer>
-          <Button variant="secondary" onClick={onCancel}>
-            {cancelTitle}
-          </Button>
-          <Button onClick={onSubmit} variant="validated">
-            {submitTitle}
-          </Button>
-        </Footer>
-      </Modal>
-    );
-  },
-);
+        onCancel={onCancel}
+        closeButtonAriaLabel={closeButtonAriaLabel}
+      />
+      <Body>{children}</Body>
+      <Footer>
+        <Button variant="secondary" onClick={onCancel}>
+          {cancelTitle}
+        </Button>
+        <Button onClick={onSubmit} variant="validated">
+          {submitTitle}
+        </Button>
+      </Footer>
+    </Modal>
+  );
+};
 
 BooleanModal.displayName = "BooleanModal";
 export { BooleanModal };

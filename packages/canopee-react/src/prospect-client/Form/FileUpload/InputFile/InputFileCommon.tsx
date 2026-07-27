@@ -2,7 +2,6 @@ import addCircleIcon from "@material-symbols/svg-400/rounded/add_circle-fill.svg
 import {
   type ComponentPropsWithRef,
   type ComponentType,
-  forwardRef,
   type MouseEventHandler,
   type ReactNode,
   useId,
@@ -97,120 +96,109 @@ const DEFAULT_DROPZONE_LABELS = {
   button: "Importer fichier",
 } as const;
 
-export const InputFileCommon = forwardRef<
-  HTMLInputElement,
-  InputFileCommonProps
->(
-  (
-    {
-      ItemLabelComponent,
-      ItemMessageComponent,
-      id,
-      label,
-      description,
-      sideButtonLabel,
-      onSideButtonClick,
-      moreButtonLabel,
-      onMoreButtonClick,
-      labelProps,
-      helper,
-      required,
-      message,
-      messageType = "error",
-      className,
-      dropzoneLabels = {},
-      children,
-      containerProps,
-      ...props
-    },
-    ref,
-  ) => {
-    const generatedId = useId();
-    const inputId = id || generatedId;
-    const messageId = `${inputId}-message`;
-    const helpId = `${inputId}-help`;
+export const InputFileCommon = ({
+  ItemLabelComponent,
+  ItemMessageComponent,
+  id,
+  label,
+  description,
+  sideButtonLabel,
+  onSideButtonClick,
+  moreButtonLabel,
+  onMoreButtonClick,
+  labelProps,
+  helper,
+  required,
+  message,
+  messageType = "error",
+  className,
+  dropzoneLabels = {},
+  children,
+  containerProps,
+  ...props
+}: InputFileCommonProps) => {
+  const generatedId = useId();
+  const inputId = id || generatedId;
+  const messageId = `${inputId}-message`;
+  const helpId = `${inputId}-help`;
 
-    const ariaDescribedby = [
-      helper && helpId,
-      message && messageType === "success" && messageId,
-    ].filter(Boolean) as string[];
+  const ariaDescribedby = [
+    helper && helpId,
+    message && messageType === "success" && messageId,
+  ].filter(Boolean) as string[];
 
-    const hasError = Boolean(message && messageType === "error");
+  const hasError = Boolean(message && messageType === "error");
 
-    const resolvedDropzoneLabels = {
-      dropzone: dropzoneLabels.dropzone || DEFAULT_DROPZONE_LABELS.dropzone,
-      or: dropzoneLabels.or || DEFAULT_DROPZONE_LABELS.or,
-      button: dropzoneLabels.button || DEFAULT_DROPZONE_LABELS.button,
-    };
+  const resolvedDropzoneLabels = {
+    dropzone: dropzoneLabels.dropzone || DEFAULT_DROPZONE_LABELS.dropzone,
+    or: dropzoneLabels.or || DEFAULT_DROPZONE_LABELS.or,
+    button: dropzoneLabels.button || DEFAULT_DROPZONE_LABELS.button,
+  };
 
-    return (
-      <div
-        className={getClassName({
-          baseClassName: "af-input-file",
-          className,
-        })}
-        {...containerProps}
+  return (
+    <div
+      className={getClassName({
+        baseClassName: "af-input-file",
+        className,
+      })}
+      {...containerProps}
+    >
+      <ItemLabelComponent
+        htmlFor={inputId}
+        description={description}
+        sideButtonLabel={sideButtonLabel}
+        onSideButtonClick={onSideButtonClick}
+        moreButtonLabel={moreButtonLabel}
+        onMoreButtonClick={onMoreButtonClick}
+        required={required}
+        {...labelProps}
       >
-        <ItemLabelComponent
-          htmlFor={inputId}
-          description={description}
-          sideButtonLabel={sideButtonLabel}
-          onSideButtonClick={onSideButtonClick}
-          moreButtonLabel={moreButtonLabel}
-          onMoreButtonClick={onMoreButtonClick}
-          required={required}
-          {...labelProps}
+        {label}
+      </ItemLabelComponent>
+      <div className="af-input-file__container">
+        <span
+          className={getClassName({
+            baseClassName: "af-input-file__dropzone",
+            modifiers: [hasError && "error"],
+          })}
         >
-          {label}
-        </ItemLabelComponent>
-        <div className="af-input-file__container">
+          <input
+            type="file"
+            id={inputId}
+            required={required}
+            aria-invalid={hasError || undefined}
+            aria-errormessage={hasError ? messageId : undefined}
+            aria-describedby={
+              ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+            }
+            {...props}
+          />
+          <span>{resolvedDropzoneLabels.dropzone}</span>
+          <span>{resolvedDropzoneLabels.or}</span>
           <span
             className={getClassName({
-              baseClassName: "af-input-file__dropzone",
-              modifiers: [hasError && "error"],
+              baseClassName: "af-btn-client",
+              modifiers: ["tertiary"],
             })}
           >
-            <input
-              ref={ref}
-              type="file"
-              id={inputId}
-              required={required}
-              aria-invalid={hasError || undefined}
-              aria-errormessage={hasError ? messageId : undefined}
-              aria-describedby={
-                ariaDescribedby.length > 0
-                  ? ariaDescribedby.join(" ")
-                  : undefined
-              }
-              {...props}
-            />
-            <span>{resolvedDropzoneLabels.dropzone}</span>
-            <span>{resolvedDropzoneLabels.or}</span>
-            <span
-              className={getClassName({
-                baseClassName: "af-btn-client",
-                modifiers: ["tertiary"],
-              })}
-            >
-              <Svg src={addCircleIcon} role="presentation" />
-              {resolvedDropzoneLabels.button}
-            </span>
+            <Svg src={addCircleIcon} role="presentation" />
+            {resolvedDropzoneLabels.button}
           </span>
-          {helper ? (
-            <span id={helpId} className="af-input-file__help">
-              {helper}
-            </span>
-          ) : null}
-          <ItemMessageComponent
-            id={messageId}
-            message={message}
-            messageType={messageType}
-          />
-        </div>
-        {children}
+        </span>
+        {helper ? (
+          <span id={helpId} className="af-input-file__help">
+            {helper}
+          </span>
+        ) : null}
+        <ItemMessageComponent
+          id={messageId}
+          message={message}
+          messageType={messageType}
+        />
       </div>
-    );
-  },
-);
+      {children}
+    </div>
+  );
+};
 
 InputFileCommon.displayName = "InputFileCommon";

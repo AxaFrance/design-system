@@ -1,90 +1,92 @@
-.af-link {
-  display: inline-flex;
-  width: fit-content;
-  height: fit-content;
-  align-items: center;
-  gap: var(--rem-4);
-  font-size: var(--link-font-size, var(--rem-14));
-  font-weight: var(--link-font-weight, 600);
-  line-height: var(--rem-20);
-  text-decoration: underline;
-  text-underline-offset: var(--link-underline-offset, 25%);
-  color: var(--link-text-color, var(--blue-1000));
-  fill: var(--link-text-color, var(--blue-1000));
-
-  @media (--desktop-small) {
-    --link-font-size: var(--rem-16);
-  }
-
-  svg {
-    width: var(--rem-24);
-    height: var(--rem-24);
-    aspect-ratio: 1;
-    fill: currentcolor;
-  }
-
-  &:hover {
-    --link-text-color: var(--blue-1200);
-  }
-
-  &:focus-visible {
-    --link-text-color: var(--blue-900);
-
-    outline: 2px solid var(--blue-650);
-    outline-offset: 3px;
-  }
-
-  &.af-btn-client {
-    --link-text-color: var(--white-1000);
-    --link-line-height: var(--rem-24);
-    --link-font-size: var(--rem-16);
-    --link-background-color: var(--blue-1000);
-
-    width: inherit;
-    line-height: var(--link-line-height);
-    text-decoration: none;
-    background-color: var(--link-background-color);
+@layer canopee {
+  .af-link {
+    display: inline-flex;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    gap: var(--rem-4);
+    font-size: var(--link-font-size, var(--rem-14));
+    font-weight: var(--link-font-weight, 600);
+    line-height: var(--rem-20);
+    text-decoration: underline;
+    text-underline-offset: var(--link-underline-offset, 25%);
+    color: var(--link-text-color, var(--blue-1000));
+    fill: var(--link-text-color, var(--blue-1000));
 
     @media (--desktop-small) {
-      --link-line-height: var(--rem-32);
-      --link-font-size: var(--rem-18);
+      --link-font-size: var(--rem-16);
     }
 
-    :is(&:hover, &:active, &:focus) {
+    svg {
+      width: var(--rem-24);
+      height: var(--rem-24);
+      aspect-ratio: 1;
+      fill: currentcolor;
+    }
+
+    &:hover {
+      --link-text-color: var(--blue-1200);
+    }
+
+    &:focus-visible {
+      --link-text-color: var(--blue-900);
+
+      outline: 2px solid var(--blue-650);
+      outline-offset: 3px;
+    }
+
+    &.af-btn-client {
       --link-text-color: var(--white-1000);
-    }
+      --link-line-height: var(--rem-24);
+      --link-font-size: var(--rem-16);
+      --link-background-color: var(--blue-1000);
 
-    &.af-btn-client--secondary {
-      --link-text-color: var(--blue-1000);
-      --link-shadow-color: var(--blue-1000);
-      --link-background-color: var(--white-1000);
+      width: inherit;
+      line-height: var(--link-line-height);
+      text-decoration: none;
+      background-color: var(--link-background-color);
 
-      box-shadow: 0 0 0 2px var(--link-shadow-color) inset;
-
-      :is(&:hover, &:active, &:focus) {
-        --link-text-color: var(--white-1000);
-        --link-shadow-color: var(--blue-1200);
-        --link-background-color: var(--blue-1200);
+      @media (--desktop-small) {
+        --link-line-height: var(--rem-32);
+        --link-font-size: var(--rem-18);
       }
-    }
-
-    &.af-btn-client--tertiary {
-      --link-text-color: var(--blue-1000);
-      --link-background-color: var(--blue-080);
 
       :is(&:hover, &:active, &:focus) {
         --link-text-color: var(--white-1000);
-        --link-background-color: var(--blue-1200);
+      }
+
+      &.af-btn-client--secondary {
+        --link-text-color: var(--blue-1000);
+        --link-shadow-color: var(--blue-1000);
+        --link-background-color: var(--white-1000);
+
+        box-shadow: 0 0 0 2px var(--link-shadow-color) inset;
+
+        :is(&:hover, &:active, &:focus) {
+          --link-text-color: var(--white-1000);
+          --link-shadow-color: var(--blue-1200);
+          --link-background-color: var(--blue-1200);
+        }
+      }
+
+      &.af-btn-client--tertiary {
+        --link-text-color: var(--blue-1000);
+        --link-background-color: var(--blue-080);
+
+        :is(&:hover, &:active, &:focus) {
+          --link-text-color: var(--white-1000);
+          --link-background-color: var(--blue-1200);
+        }
       }
     }
   }
-}
 
-.af-link--inverse {
-  --link-text-color: var(--white-1000);
-  --link-font-weight: 400;
-
-  :is(&:hover, &:active, &:focus, &:focus-visible) {
+  .af-link--inverse {
     --link-text-color: var(--white-1000);
+    --link-font-weight: 400;
+
+    :is(&:hover, &:active, &:focus, &:focus-visible) {
+      --link-text-color: var(--white-1000);
+    }
   }
 }

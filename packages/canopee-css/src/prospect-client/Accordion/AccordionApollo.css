@@ -1,40 +1,42 @@
 @import "./AccordionCommon.css";
 
-.af-apollo-accordion {
-  --accordion-info1-text-color: var(--gray-800);
-  --accordion-info2-text-color: var(--green-1000);
-  --accordion-title-text-color: var(--blue-1000);
-  --accordion-subtitle-text-color: var(--gray-800);
-  --accordion-title-font-size: var(--rem-16);
-  --accordion-subtitle-font-size: var(--rem-14);
-  --accordion-info2-font-size: var(--rem-16);
-  --accordion-info1-font-size: var(--rem-14);
-  --accordion-line-height: 1.25;
-  --accordion-column-gap: var(--rem-12);
+@layer canopee {
+  .af-apollo-accordion {
+    --accordion-info1-text-color: var(--gray-800);
+    --accordion-info2-text-color: var(--green-1000);
+    --accordion-title-text-color: var(--blue-1000);
+    --accordion-subtitle-text-color: var(--gray-800);
+    --accordion-title-font-size: var(--rem-16);
+    --accordion-subtitle-font-size: var(--rem-14);
+    --accordion-info2-font-size: var(--rem-16);
+    --accordion-info1-font-size: var(--rem-14);
+    --accordion-line-height: 1.25;
+    --accordion-column-gap: var(--rem-12);
 
-  @media (--desktop-small) {
-    --accordion-column-gap: var(--rem-16);
-    --accordion-info1-font-size: var(--rem-16);
-  }
-
-  .af-accordion__date {
-    --accordion-secondary-date-font-size: var(--rem-16);
     @media (--desktop-small) {
+      --accordion-column-gap: var(--rem-16);
+      --accordion-info1-font-size: var(--rem-16);
+    }
+
+    .af-accordion__date {
       --accordion-secondary-date-font-size: var(--rem-16);
+      @media (--desktop-small) {
+        --accordion-secondary-date-font-size: var(--rem-16);
+      }
     }
   }
-}
 
-.af-apollo-accordion--primary {
-  --accordion-title-text-color: var(--blue-1000);
-}
+  .af-apollo-accordion--primary {
+    --accordion-title-text-color: var(--blue-1000);
+  }
 
-.af-apollo-accordion--secondary {
-  --accordion-date-text-color: var(--gray-800);
-  --accordion-title-text-color: var(--gray-1000);
+  .af-apollo-accordion--secondary {
+    --accordion-date-text-color: var(--gray-800);
+    --accordion-title-text-color: var(--gray-1000);
 
-  @media (--desktop-small) {
-    --accordion-info1-font-size-secondary: var(--rem-16);
-    --accordion-secondary-date-font-size: var(--rem-16);
+    @media (--desktop-small) {
+      --accordion-info1-font-size-secondary: var(--rem-16);
+      --accordion-secondary-date-font-size: var(--rem-16);
+    }
   }
 }

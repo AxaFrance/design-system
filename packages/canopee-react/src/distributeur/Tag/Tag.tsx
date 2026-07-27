@@ -1,9 +1,5 @@
 import "@axa-fr/canopee-css/distributeur/Tag/Tag.css";
-import {
-  type ComponentPropsWithRef,
-  type PropsWithChildren,
-  forwardRef,
-} from "react";
+import { type ComponentPropsWithRef, type PropsWithChildren } from "react";
 import { getClassName } from "../utilities/helpers/getClassName";
 
 export type TagVariants =
@@ -45,33 +41,34 @@ type TagProps = ComponentPropsWithRef<"span"> & {
  * @param {React.Ref<HTMLSpanElement>} ref - The ref to the span element.
  * @returns {JSX.Element} The rendered Tag component.
  */
-export const Tag = forwardRef<HTMLSpanElement, PropsWithChildren<TagProps>>(
-  ({ children, className, classModifier, variant, ...otherProps }, ref) => {
-    const actualModifier = variant || classModifier || "default";
 
-    const componentClassName = getClassName({
-      baseClassName: "af-tag",
-      modifiers: [actualModifier],
-      className,
-    });
+export const Tag = ({
+  children,
+  className,
+  classModifier,
+  variant,
+  ...otherProps
+}: PropsWithChildren<TagProps>) => {
+  const actualModifier = variant || classModifier || "default";
 
-    // Kept for backward compatibility. May be removed in a future version
-    const badgeClassName = getClassName({
-      baseClassName: "af-badge",
-      modifiers: [actualModifier],
-      className,
-    });
+  const componentClassName = getClassName({
+    baseClassName: "af-tag",
+    modifiers: [actualModifier],
+    className,
+  });
 
-    return (
-      <span
-        ref={ref}
-        className={`${componentClassName} ${badgeClassName}`}
-        {...otherProps}
-      >
-        {children}
-      </span>
-    );
-  },
-);
+  // Kept for backward compatibility. May be removed in a future version
+  const badgeClassName = getClassName({
+    baseClassName: "af-badge",
+    modifiers: [actualModifier],
+    className,
+  });
+
+  return (
+    <span className={`${componentClassName} ${badgeClassName}`} {...otherProps}>
+      {children}
+    </span>
+  );
+};
 
 Tag.displayName = "Tag";

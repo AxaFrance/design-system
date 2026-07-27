@@ -1,5 +1,7 @@
 @import "./DividerCommon.css";
 
-.af-divider {
-  --divider-border-color: var(--blue-200);
+@layer canopee {
+  .af-divider {
+    --divider-border-color: var(--blue-200);
+  }
 }

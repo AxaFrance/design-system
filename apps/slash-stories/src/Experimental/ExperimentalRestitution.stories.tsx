@@ -326,10 +326,22 @@ export const RestitutionSection: StoryObj<
       <ExperimentalRestitutionSection title="Section title">
         <ExperimentalRestitutionColumn>
           <ExperimentalRestitutionListDef>
-            <ExperimentalRestitutionLabelValue label="item1" value="item value" />
-            <ExperimentalRestitutionLabelValue label="item2" value="item value" />
-            <ExperimentalRestitutionLabelValue label="item3" value="item value" />
-            <ExperimentalRestitutionLabelValue label="item4" value="item value" />
+            <ExperimentalRestitutionLabelValue
+              label="item1"
+              value="item value"
+            />
+            <ExperimentalRestitutionLabelValue
+              label="item2"
+              value="item value"
+            />
+            <ExperimentalRestitutionLabelValue
+              label="item3"
+              value="item value"
+            />
+            <ExperimentalRestitutionLabelValue
+              label="item4"
+              value="item value"
+            />
           </ExperimentalRestitutionListDef>
         </ExperimentalRestitutionColumn>
       </ExperimentalRestitutionSection>

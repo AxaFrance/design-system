@@ -267,20 +267,20 @@ type CardRadioGroupProps = {
 
 ---
 
-## CardRadioOption
+## CardRadio
 
 Option individuelle de carte radio (utilisé dans `CardRadioGroup` ou seul).
 
 ### Import
 
 ```tsx
-import { CardRadioOption } from "@axa-fr/canopee-react/prospect";
+import { CardRadio } from "@axa-fr/canopee-react/prospect";
 ```
 
 ### Props
 
 ```tsx
-type CardRadioOptionProps = {
+type CardRadioProps = {
   label: ReactNode;
   position?: "vertical" | "horizontal";
   icon?: string;                    // SVG src

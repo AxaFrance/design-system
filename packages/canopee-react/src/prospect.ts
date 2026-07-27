@@ -64,12 +64,8 @@ export {
   itemMessageVariants,
   type ItemMessageVariants,
 } from "./prospect-client/Form/ItemMessage/ItemMessageApollo";
-export {
-  /** @deprecated Use `CardRadioGroup` instead. */
-  CardRadioGroup as CardRadio,
-  CardRadioGroup,
-} from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupApollo";
-export { CardRadioOption } from "./prospect-client/Form/Radio/CardRadioOption/CardRadioOptionApollo";
+export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioApollo";
+export { CardRadioGroup } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupApollo";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioApollo";
 export {
   RadioText,
@@ -93,6 +89,11 @@ export {
   ItemTabBar,
   type ItemTabBarProps,
 } from "./prospect-client/ItemTabBar/ItemTabBarApollo";
+export {
+  ItemMenu,
+  type ItemMenuProps,
+} from "./prospect-client/ItemMenu/ItemMenuApollo";
+export { TabMenu, type TabMenuProps } from "./prospect-client/TabMenu/TabMenu";
 export {
   ExitLayout,
   type ExitLayoutProps,

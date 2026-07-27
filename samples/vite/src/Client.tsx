@@ -1,7 +1,7 @@
 import {
   Button,
   CardCheckbox,
-  CardRadio,
+  CardRadioGroup,
   Dropdown,
   Icon,
   InputText,
@@ -76,7 +76,7 @@ const Client = () => {
           </article>
 
           <article>
-            <CardRadio
+            <CardRadioGroup
               label="Card Radio Group"
               type="vertical"
               required

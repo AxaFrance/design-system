@@ -1,3 +1,5 @@
+@layer canopee, reset;
+
 @import "./common/tokens.css";
 @import "./common/reboot.css";
 @import "./Grid/Grid.css";
@@ -30,6 +32,8 @@
 @import "./Form/InputDate/InputDateLF.css";
 @import "./TimelineVertical/TimelineVerticalLF.css";
 @import "./ItemTabBar/ItemTabBarLF.css";
+@import "./ItemMenu/ItemMenuLF.css";
+@import "./TabMenu/TabMenuAll.css";
 @import "./Heading/HeadingLF.css";
 @import "./List/ContentItemDuo/ContentItemDuoLF.css";
 @import "./List/ContentItemDuoAction/ContentItemDuoActionAll.css";
@@ -42,6 +46,7 @@
 @import "./Form/Radio/Radio/RadioLF.css";
 @import "./Form/Radio/RadioText/RadioTextAll.css";
 @import "./Form/Radio/CardRadioOption/CardRadioOptionLF.css";
+@import "./Form/Radio/CardRadio/CardRadioLF.css";
 @import "./Form/Radio/CardRadioGroup/CardRadioGroupLF.css";
 @import "./Form/InputPhone/InputPhoneLF.css";
 @import "./Modal/ModalLF.css";

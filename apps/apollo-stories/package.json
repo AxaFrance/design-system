@@ -16,7 +16,7 @@
   "dependencies": {
     "@axa-fr/canopee-css": "*",
     "@axa-fr/canopee-react": "*",
-    "@material-symbols/svg-400": "^0.31.2"
+    "@material-symbols/svg-400": "^0.44.3"
   },
   "devDependencies": {
     "@axa-fr/eslint-config-design-system": "*",

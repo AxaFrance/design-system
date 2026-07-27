@@ -1,0 +1,54 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import * as TabMenuStories from "./TabMenu.stories.tsx";
+
+<Meta of={TabMenuStories} name="TabMenu" />
+
+## TabMenu
+
+Horizontal navigation component presented as a list of elements. Handles keyboard navigation with arrow key support.
+
+### Import
+
+```tsx
+import { TabMenu, type TabMenuItemProps } from "@axa-fr/canopee-react/client";
+```
+
+### Usage
+
+```tsx
+export const TabMenuComponent = () => {
+  const items: TabMenuItemProps[] = [
+    { href: "#contracts", label: "My contracts", isActive: true },
+    { href: "#claims", label: "My claims" },
+    { href: "#documents", label: "My documents" },
+  ];
+
+  return <TabMenu items={items} />;
+};
+```
+
+### Props
+
+- **items**: `TabMenuItemProps[]` (optional) - Array of items to display
+  - `href`: Destination URL
+  - `label`: Text displayed in the menu
+  - `isActive`: Boolean indicating the active element
+- **initialPosition**: `number` (optional) - Initial position (default: 0)
+- **className**: Custom CSS class (optional)
+
+### Keyboard Navigation
+
+- **ArrowRight / ArrowDown**: Next element
+- **ArrowLeft / ArrowUp**: Previous element
+- Elements are cyclic (last → first)
+
+### Behavior
+
+- Returns `null` if no items are provided
+- The first element is focusable by default (tabIndex="0")
+- Other elements have tabIndex="-1"
+- Keyboard accessible navigation for better accessibility
+
+## Playground
+
+<Canvas of={TabMenuStories.Playground} />

@@ -126,6 +126,8 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `AccordionCore`       | [02-accordion.md](./references/02-accordion.md)   | Accordéon low-level (`<details>/<summary>`) |
 | `TabBar`              | [10-navigation.md](./references/10-navigation.md) | Barre d'onglets                             |
 | `ItemTabBar`          | [10-navigation.md](./references/10-navigation.md) | Item d'onglet individuel                    |
+| `TabMenu`             | [10-navigation.md](./references/10-navigation.md) | Menu d'onglets basé sur liens               |
+| `ItemMenu`            | [10-navigation.md](./references/10-navigation.md) | Item lien individuel pour TabMenu           |
 | `Pagination`          | [10-navigation.md](./references/10-navigation.md) | Pagination numérotée                        |
 | `Stepper`             | [10-navigation.md](./references/10-navigation.md) | Indicateur de progression multi-étapes      |
 
@@ -175,7 +177,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `CardCheckboxOption` | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte checkbox |
 | `Radio`              | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Radio simple (bas niveau)             |
 | `CardRadioGroup`     | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Groupe de radios en cartes            |
-| `CardRadioOption`    | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
+| `CardRadio`    | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
 
 ### Upload de fichiers
 

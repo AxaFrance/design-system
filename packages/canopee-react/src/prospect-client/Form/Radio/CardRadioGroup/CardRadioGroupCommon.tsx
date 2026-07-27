@@ -10,12 +10,12 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../../ItemMessage/ItemMessageCommon";
-import { type CardRadioOptionProps } from "../CardRadioOption/CardRadioOptionCommon";
+import { type CardRadioProps } from "../CardRadio/CardRadioCommon";
 
-type RadioOption = Omit<CardRadioOptionProps, "name" | "type" | "isInvalid">;
+type RadioOption = Omit<CardRadioProps, "name" | "type" | "isInvalid">;
 
 export type CardRadioGroupProps = Omit<
-  CardRadioOptionProps,
+  CardRadioProps,
   | "value"
   | "label"
   | "type"
@@ -32,7 +32,7 @@ export type CardRadioGroupProps = Omit<
    * @deprecated Use `position` and `cardStyle` instead.
    */
   type?: "vertical" | "horizontal";
-  cardStyle?: CardRadioOptionProps["position"];
+  cardStyle?: CardRadioProps["position"];
   position?: "line" | "column";
   /**
    * @deprecated Use `label` instead.
@@ -62,7 +62,7 @@ export type CardRadioGroupProps = Omit<
   Partial<ItemMessageProps>;
 
 export type CardRadioCommonProps = CardRadioGroupProps & {
-  CardRadioOptionComponent: ComponentType<CardRadioOptionProps>;
+  CardRadioComponent: ComponentType<CardRadioProps>;
   ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
 };
 
@@ -84,7 +84,7 @@ const CardRadioGroupCommon = ({
   name,
   value,
   id,
-  CardRadioOptionComponent,
+  CardRadioComponent,
   ItemMessageComponent,
   containerProps,
   ...inputProps
@@ -127,7 +127,7 @@ const CardRadioGroupCommon = ({
         ].join(" ")}
       >
         {options.map((cardRadioItemProps) => (
-          <CardRadioOptionComponent
+          <CardRadioComponent
             key={`${name ?? cardRadioGroupId}-${cardRadioItemProps.label}`}
             id={`${cardRadioGroupId}-${cardRadioItemProps.value}`}
             checked={
@@ -138,7 +138,7 @@ const CardRadioGroupCommon = ({
             required={required}
             position={cardStyle ?? type}
             {...inputProps}
-            {...(cardRadioItemProps as CardRadioOptionProps)}
+            {...(cardRadioItemProps as CardRadioProps)}
             isInvalid={hasError}
             name={name}
           />
