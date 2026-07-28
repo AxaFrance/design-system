@@ -44,4 +44,15 @@
       --radio-border-width: 3px;
     }
   }
+
+  .af-radio--warning:not(:checked) {
+    --radio-border-width: 2px;
+    --radio-border-color: var(--orange-1050);
+
+    &:hover,
+    &:focus-within {
+      --radio-border-width: 3px;
+      --radio-border-color: var(--orange-1050);
+    }
+  }
 }

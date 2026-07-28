@@ -16,6 +16,7 @@ const meta: Meta = {
       control: { type: "boolean" },
     },
     isInvalid: { type: "boolean" },
+    hasWarning: { type: "boolean" },
   },
   args: {
     name: "option1",
