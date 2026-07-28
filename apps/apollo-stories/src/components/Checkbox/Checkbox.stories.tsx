@@ -16,6 +16,17 @@ const meta: Meta = {
       control: { type: "boolean" },
     },
     "aria-invalid": { type: "boolean" },
+    hasWarning: { type: "boolean" },
+    errorId: {
+      table: {
+        disable: true,
+      },
+    },
+    hasError: {
+      table: {
+        disable: true,
+      },
+    },
   },
   args: {
     name: "option1",
