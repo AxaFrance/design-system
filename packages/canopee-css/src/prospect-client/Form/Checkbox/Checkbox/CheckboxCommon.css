@@ -17,5 +17,15 @@
     &:checked {
       background-image: var(--checkbox-background-image);
     }
+
+    &[class*="--warning"]:not(:checked) {
+      --checkbox-border-color: var(--orange-1050);
+      --checkbox-border-width: 2px;
+
+      &:hover,
+      &:focus-within {
+        --checkbox-border-width: 3px;
+      }
+    }
   }
 }
