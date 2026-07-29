@@ -11,7 +11,6 @@
   }
 
   .af-stepper__title {
-    --title-font-family: var(--font-family-publico);
     --title-font-size: var(--rem-28);
     --title-font-weight: 300;
     --title-line-height: var(--rem-36);

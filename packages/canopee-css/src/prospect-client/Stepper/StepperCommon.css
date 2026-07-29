@@ -16,7 +16,7 @@
   .af-stepper__title {
     margin: 0;
     vertical-align: middle;
-    font-family: var(--title-font-family);
+    font-family: var(--font-family-publico-headline);
     font-size: var(--title-font-size);
     font-weight: var(--title-font-weight);
     line-height: var(--title-line-height);
