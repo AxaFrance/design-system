@@ -204,6 +204,10 @@ export {
   tagVariants,
   type TagVariants,
 } from "./prospect-client/Tag/TagLF";
+export {
+  TagList,
+  type TagListProps,
+} from "./prospect-client/TagList/TagListLF";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalLF";
 export { Toggle } from "./prospect-client/Toggle/ToggleLF";
 export type { GridContainerProps } from "./prospect-client/utilities/types/GridContainerProps";

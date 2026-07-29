@@ -196,6 +196,10 @@ export {
   tagVariants,
   type TagVariants,
 } from "./prospect-client/Tag/TagApollo";
+export {
+  TagList,
+  type TagListProps,
+} from "./prospect-client/TagList/TagListApollo";
 export { TimelineVertical } from "./prospect-client/TimelineVertical/TimelineVerticalApollo";
 export { Toggle } from "./prospect-client/Toggle/ToggleApollo";
 export type { GridContainerProps } from "./prospect-client/utilities/types/GridContainerProps";

@@ -1,0 +1,50 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as TagListStories from "./TagList.stories";
+
+<Meta of={TagListStories} name="TagList" />
+
+# TagList
+
+Displays a list of `Tag` components. When the number of tags exceeds the `hideThreshold` (default: 2), only the first tags are shown and a `+N` tag indicates the number of hidden tags.
+
+### Import
+
+```tsx
+import { Tag, TagList } from "@axa-fr/canopee-react/client";
+```
+
+### Use
+
+```tsx
+export const TagListComponent = () => (
+  <TagList>
+    <Tag>Remboursement</Tag>
+    <Tag>Santé</Tag>
+    <Tag>Auto</Tag>
+  </TagList>
+);
+```
+
+## Playground
+
+<Canvas of={TagListStories.Default} />
+
+<Controls of={TagListStories.Default} />
+
+## With overflow
+
+When the number of `Tag` components exceeds `hideThreshold`, the extra tags are hidden and replaced by a `+N` tag.
+
+<Canvas of={TagListStories.WithOverflow} />
+
+## Custom threshold
+
+<Canvas of={TagListStories.CustomThreshold} />
+
+## Props
+
+| Prop            | Type        | Default | Description                                            |
+| --------------- | ----------- | ------- | ------------------------------------------------------ |
+| `children`      | `ReactNode` | -       | Child `Tag` components to display                      |
+| `hideThreshold` | `number`    | `2`     | Max number of visible tags before showing the `+N` tag |
+| `className`     | `string`    | `''`    | Custom CSS classes added to the container              |
