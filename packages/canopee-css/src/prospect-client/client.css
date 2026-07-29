@@ -1,4 +1,4 @@
-@layer canopee, reset;
+@layer reset, canopee;
 
 @import "./common/tokens.css";
 @import "./common/reboot.css";
