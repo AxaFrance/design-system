@@ -15,14 +15,12 @@ export const Checkbox = ({
   hasError,
   hasWarning,
   className,
-  "aria-errormessage": ariaErrorMessage,
-  "aria-invalid": ariaInvalid,
   ref,
   ...inputProps
 }: CheckboxProps) => (
   <input
-    aria-errormessage={ariaErrorMessage ?? errorId}
-    aria-invalid={ariaInvalid ?? hasError}
+    aria-errormessage={errorId}
+    aria-invalid={hasError}
     {...inputProps}
     className={getClassName({
       baseClassName: "af-checkbox",
