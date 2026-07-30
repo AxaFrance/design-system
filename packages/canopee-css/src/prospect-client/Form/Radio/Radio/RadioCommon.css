@@ -34,25 +34,38 @@
     &:checked {
       --radio-border-width: 2px;
     }
-  }
 
-  .af-radio--invalid:not(:checked) {
-    --radio-border-width: 2px;
+    &[class*="--invalid"] {
+      &:checked {
+        --radio-ckecked-color: transparent;
+      }
 
-    &:hover,
-    &:focus-within {
-      --radio-border-width: 3px;
+      &:checked,
+      &:not(:checked) {
+        --radio-border-width: 2px;
+
+        &:hover,
+        &:focus-within {
+          --radio-border-width: 3px;
+        }
+      }
     }
-  }
 
-  .af-radio--warning:not(:checked) {
-    --radio-border-width: 2px;
-    --radio-border-color: var(--orange-1050);
+    &[class*="--warning"] {
+      &:checked {
+        --radio-ckecked-color: transparent;
+      }
 
-    &:hover,
-    &:focus-within {
-      --radio-border-width: 3px;
-      --radio-border-color: var(--orange-1050);
+      &:checked,
+      &:not(:checked) {
+        --radio-border-width: 2px;
+        --radio-border-color: var(--orange-1050);
+
+        &:hover,
+        &:focus-within {
+          --radio-border-width: 3px;
+        }
+      }
     }
   }
 }

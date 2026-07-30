@@ -14,14 +14,12 @@
     &:checked {
       --radio-ckecked-color: var(--blue-1000);
     }
-  }
 
-  .af-radio--invalid:not(:checked) {
-    --radio-border-color: var(--red-alert-1200);
-
-    &:hover,
-    &:focus-within {
-      --radio-border-color: var(--red-alert-1200);
+    &[class*="--invalid"] {
+      &:checked,
+      &:not(:checked) {
+        --radio-border-color: var(--red-alert-1200);
+      }
     }
   }
 }
