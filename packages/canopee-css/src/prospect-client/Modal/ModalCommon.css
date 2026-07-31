@@ -137,7 +137,7 @@
 
     @media (--desktop-small) {
       min-width: 180px;
-      flex-grow: inherit;
+      flex: inherit;
     }
   }
 }
