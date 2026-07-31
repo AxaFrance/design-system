@@ -1,0 +1,9 @@
+@import "./ItemMultiSelectCommon.css";
+
+.af-item-multi-select--primary {
+  --item-multi-select-background-color: var(--blue-040);
+}
+
+.af-item-multi-select--secondary {
+  --item-multi-select-background-color: var(--white-1000);
+}

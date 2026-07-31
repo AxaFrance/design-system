@@ -1,0 +1,21 @@
+.af-item-multi-select {
+  display: inline-flex;
+  width: 100%;
+  padding: var(--size-16) var(--size-16);
+  align-items: center;
+  column-gap: var(--size-8);
+  background-color: var(--item-multi-select-background-color);
+  cursor: pointer;
+}
+
+.af-item-multi-select__checkbox {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.af-item-multi-select__label {
+  flex: 1 1 auto;
+  font-size: var(--rem-16);
+  font-weight: 400;
+}
