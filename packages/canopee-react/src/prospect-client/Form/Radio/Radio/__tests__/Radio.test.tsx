@@ -42,4 +42,41 @@ describe("Radio Component", () => {
     const radioInput = screen.getByRole("radio");
     expect(radioInput).toHaveClass("af-radio custom-class");
   });
+
+  it("should apply invalid modifier when isInvalid is true", () => {
+    render(<Radio isInvalid />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).toHaveClass("af-radio af-radio--invalid");
+  });
+
+  it("should not apply invalid modifier when isInvalid is false", () => {
+    render(<Radio isInvalid={false} />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).not.toHaveClass("af-radio--invalid");
+  });
+
+  it("should apply warning modifier when hasWarning is true", () => {
+    render(<Radio hasWarning />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).toHaveClass("af-radio af-radio--warning");
+  });
+
+  it("should not apply warning modifier when hasWarning is false", () => {
+    render(<Radio hasWarning={false} />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).not.toHaveClass("af-radio--warning");
+  });
+
+  it("should apply both invalid and warning modifiers when both are true", () => {
+    render(<Radio isInvalid hasWarning />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).toHaveClass(
+      "af-radio af-radio--invalid af-radio--warning",
+    );
+  });
 });
