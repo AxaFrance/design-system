@@ -48,6 +48,7 @@ describe("Radio Component", () => {
 
     const radioInput = screen.getByRole("radio");
     expect(radioInput).toHaveClass("af-radio af-radio--invalid");
+    expect(radioInput).toHaveAttribute("aria-invalid", "true");
   });
 
   it("should not apply invalid modifier when isInvalid is false", () => {
@@ -55,6 +56,7 @@ describe("Radio Component", () => {
 
     const radioInput = screen.getByRole("radio");
     expect(radioInput).not.toHaveClass("af-radio--invalid");
+    expect(radioInput).not.toHaveAttribute("aria-invalid");
   });
 
   it("should apply warning modifier when hasWarning is true", () => {
