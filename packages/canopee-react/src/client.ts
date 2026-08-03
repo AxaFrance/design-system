@@ -1,4 +1,4 @@
-import "@axa-fr/canopee-css/client/common/rebootLF.css";
+import "@axa-fr/canopee-css/client/common/reboot.css";
 import "@axa-fr/canopee-css/client/common/tokens.css";
 import "@axa-fr/canopee-css/client/Grid/Grid.css";
 import "@fontsource/source-sans-pro";
