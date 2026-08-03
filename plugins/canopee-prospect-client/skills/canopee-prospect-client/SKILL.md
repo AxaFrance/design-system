@@ -206,7 +206,6 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `Icon`    | [15-visuals.md](./references/15-visuals.md) | Icône SVG avec variante et taille                    |
 | `Heading` | [15-visuals.md](./references/15-visuals.md) | Titre de page avec icône, sous-titres, tag           |
 | `Divider` | [15-visuals.md](./references/15-visuals.md) | Séparateur `<hr>`                                    |
-| `Card`    | [15-visuals.md](./references/15-visuals.md) | Conteneur carte polymorphique                        |
 | `Toggle`  | [15-visuals.md](./references/15-visuals.md) | Interrupteur on/off                                  |
 
 ### Tableaux
@@ -226,6 +225,10 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `ExitLayout`    | [12-layout.md](./references/12-layout.md) | Page de sortie (confirmation / erreur)      |
 | `Fieldset`      | [12-layout.md](./references/12-layout.md) | Groupe de form en carte                     |
 | `LevelSelector` | [12-layout.md](./references/12-layout.md) | Sélecteur de niveau par incréments          |
+| `Card`          | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant`) |
+| `AppName`       | [12-layout.md](./references/12-layout.md) | Logo AXA + nom d'application, lien cliquable |
+| `Header`        | [12-layout.md](./references/12-layout.md) | En-tête responsive (AppName + TabMenu + MenuBurger) |
+| `MenuBurger`    | [12-layout.md](./references/12-layout.md) | Menu compte utilisateur avec popover desktop |
 
 ### Pages complètes
 
@@ -252,4 +255,4 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ---
 
-_Version : 2026.04.02_
+_Version : 2026.08.03_
