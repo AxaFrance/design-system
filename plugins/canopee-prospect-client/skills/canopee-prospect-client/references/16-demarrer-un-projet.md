@@ -26,32 +26,32 @@ Importer **une seule fois** l'entrée thématique à la racine de l'application 
 //   @axa-fr/canopee-css/prospect/common/tokens.css
 //   @axa-fr/canopee-css/prospect/Grid/Grid.css
 //   @fontsource/source-sans-pro
-import { Button, InputText, Modal } from "@axa-fr/canopee-react/prospect";
+import { Button, InputText, Modal } from '@axa-fr/canopee-react/prospect';
 ```
 
 ### Thème Client (ex-Look & Feel)
 
 ```tsx
 // L'import depuis cet entry point charge automatiquement :
-//   @axa-fr/canopee-css/client/common/rebootLF.css
+//   @axa-fr/canopee-css/client/common/reboot.css
 //   @axa-fr/canopee-css/client/common/tokens.css
 //   @axa-fr/canopee-css/client/Grid/Grid.css
 //   @fontsource/source-sans-pro
-import { Button, InputText, Modal } from "@axa-fr/canopee-react/client";
+import { Button, InputText, Modal } from '@axa-fr/canopee-react/client';
 ```
 
 ## Application minimale (Prospect)
 
 ```tsx
 // main.tsx
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+        <App />
+    </StrictMode>,
 );
 ```
 
@@ -59,24 +59,24 @@ createRoot(document.getElementById("root")!).render(
 // App.tsx
 // L'import du premier composant depuis cet entry point
 // déclenche automatiquement le chargement des CSS globaux (reboot, tokens, grille)
-import { Button, InputText } from "@axa-fr/canopee-react/prospect";
-import { useState } from "react";
+import { Button, InputText } from '@axa-fr/canopee-react/prospect';
+import { useState } from 'react';
 
 export default function App() {
-  const [value, setValue] = useState("");
+    const [value, setValue] = useState('');
 
-  return (
-    <main>
-      <InputText
-        id="field"
-        name="field"
-        label="Votre nom"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <Button onClick={() => alert(`Bonjour ${value}`)}>Valider</Button>
-    </main>
-  );
+    return (
+        <main>
+            <InputText
+                id="field"
+                name="field"
+                label="Votre nom"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+            />
+            <Button onClick={() => alert(`Bonjour ${value}`)}>Valider</Button>
+        </main>
+    );
 }
 ```
 
@@ -86,10 +86,10 @@ Il est possible de n'importer que les styles CSS d'un composant spécifique :
 
 ```css
 /* Prospect */
-@import "@axa-fr/canopee-css/prospect/Button/buttonApollo.css";
+@import '@axa-fr/canopee-css/prospect/Button/buttonApollo.css';
 
 /* Client */
-@import "@axa-fr/canopee-css/client/Button/buttonLF.css";
+@import '@axa-fr/canopee-css/client/Button/buttonLF.css';
 ```
 
 ## Typescript
@@ -97,5 +97,9 @@ Il est possible de n'importer que les styles CSS d'un composant spécifique :
 Les types sont tous exportés depuis les entrées thématiques :
 
 ```tsx
-import type { ButtonVariants, GridContainerProps, CardMessageVariants } from "@axa-fr/canopee-react/prospect";
+import type {
+    ButtonVariants,
+    GridContainerProps,
+    CardMessageVariants,
+} from '@axa-fr/canopee-react/prospect';
 ```
