@@ -1,0 +1,7 @@
+@import "./HeaderCommon.css";
+
+@layer canopee {
+  .af-header {
+    border-bottom: 1px solid var(--blue-200);
+  }
+}

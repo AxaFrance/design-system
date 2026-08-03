@@ -14,13 +14,22 @@ export {
   type AccordionContextualVariants,
 } from "./prospect-client/AccordionContextual/AccordionContextualApollo";
 export { AccordionCore } from "./prospect-client/AccordionCore/AccordionCoreApollo";
+export {
+  AppName,
+  type AppNameProps,
+} from "./prospect-client/AppName/AppNameApollo";
 export { BasePicture } from "./prospect-client/BasePicture/BasePicture";
 export {
   Button,
   buttonVariants,
   type ButtonVariants,
 } from "./prospect-client/Button/ButtonApollo";
-export { Card, type CardProps } from "./prospect-client/Card/CardApollo";
+export {
+  Card,
+  cardVariants,
+  type CardProps,
+  type CardVariants,
+} from "./prospect-client/Card/CardApollo";
 export {
   CardMessage,
   cardMessageVariants,
@@ -83,6 +92,10 @@ export {
   type HeadingProps,
 } from "./prospect-client/Heading/HeadingApollo";
 export {
+  Header,
+  type HeaderProps,
+} from "./prospect-client/Header/HeaderApollo";
+export {
   Icon,
   iconSizeVariants,
   iconVariants,
@@ -97,6 +110,10 @@ export {
   ItemMenu,
   type ItemMenuProps,
 } from "./prospect-client/ItemMenu/ItemMenuApollo";
+export {
+  MenuBurger,
+  type MenuBurgerProps,
+} from "./prospect-client/MenuBurger/MenuBurgerApollo";
 export { TabMenu, type TabMenuProps } from "./prospect-client/TabMenu/TabMenu";
 export {
   ExitLayout,

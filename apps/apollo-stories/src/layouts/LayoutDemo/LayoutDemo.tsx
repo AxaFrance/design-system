@@ -1,18 +1,24 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from "react";
 import {
   DebugGrid,
-  Link,
-  Heading,
+  Header,
+  Icon,
   Footer,
+  Button,
 } from "@axa-fr/canopee-react/prospect";
-import logo from "@axa-fr/canopee-css/logo-axa.svg";
+
+import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
+import { action } from "storybook/actions";
+
 import {
   copyright,
   expandLinkText,
   links,
   socialMedias,
-} from "./LayoutDemo.constant";
-import "./LayoutDemo.css";
+  tabMenuProps,
+  menuBurgerProps,
+} from "./LayoutDemo.constant.tsx";
 
 export const LayoutDemo = ({
   children,
@@ -23,12 +29,20 @@ export const LayoutDemo = ({
 }) => (
   <>
     <DebugGrid isCheckedByDefault forceVisible />
-    <header className="af-header-layout">
-      <Link href="/" className="af-header-layout-logo-link">
-        <img src={logo} alt="Logo AXA" className="af-header-layout-logo" />
-      </Link>
-      {title ? <Heading level={1}>{title}</Heading> : null}
-    </header>
+    <Header
+      appNameProps={{ label: title ?? "Mon application" }}
+      tabMenuProps={tabMenuProps}
+      menuBurgerProps={menuBurgerProps}
+      actionChildren={
+        <Button
+          variant="secondary"
+          iconLeft={<Icon src={accountBalance} size="S" />}
+          onClick={action("Logout clicked")}
+        >
+          Accéder à AXA Banque
+        </Button>
+      }
+    />
     <main className="grid">{children}</main>
     <Footer
       links={links}
