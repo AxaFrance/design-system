@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as AppNameStories from "./AppName.stories";
+
+<Meta of={AppNameStories} name="AppName" />
+
+# AppName
+
+Displays the application name alongside the AXA logo. Typically placed inside the `Header` component.
+
+To use it, import it from the client package:
+
+```tsx
+import { AppName } from "@axa-fr/canopee-react/client";
+
+// Logo only (no link)
+const MyComponent = () => <AppName label="My application" />;
+
+// Logo wrapped in a native anchor
+const WithLink = () => (
+  <AppName label="My application" logoLinkProps={{ href: "/" }} />
+);
+
+// Logo wrapped in a custom link component (e.g. React Router)
+import { Link } from "react-router-dom";
+
+const WithRouterLink = () => (
+  <AppName
+    label="My application"
+    LogoLinkComponent={Link}
+    logoLinkProps={{ to: "/" }}
+  />
+);
+```
+
+## Playground
+
+<Canvas of={AppNameStories.Playground} />
+
+<Controls of={AppNameStories.Playground} />
+
+## Props
+
+| Prop                | Type                      | Default      | Description                                                                                                                                |
+| ------------------- | ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `label`             | `string`                  | —            | Application name displayed next to the logo. **Required.**                                                                                 |
+| `logoAlt`           | `string`                  | `"Logo AXA"` | Alt text for the AXA logo image.                                                                                                           |
+| `logoLinkProps`     | `Record<string, unknown>` | `undefined`  | Props forwarded to the wrapping `<a>` tag (or `LogoLinkComponent`). When provided without `LogoLinkComponent`, a native `<a>` is rendered. |
+| `LogoLinkComponent` | `ComponentType`           | `undefined`  | Custom link component (e.g. `Link` from React Router) used to wrap the logo.                                                               |
+| `className`         | `string`                  | `undefined`  | Additional CSS class applied to the root `div`.                                                                                            |
+
+Any other prop is forwarded to the root `<div>` element.
