@@ -101,6 +101,10 @@
       --button-bg-color: var(--blue-1200);
       --button-text-color: var(--white-1000);
       --button-shadow-color: var(--blue-1200);
+
+      .af-icon {
+        --icon-fill: var(--white-1000);
+      }
     }
 
     &:active {
@@ -139,6 +143,10 @@
     &:focus-visible {
       --button-bg-color: var(--blue-1200);
       --button-text-color: var(--white-1000);
+
+      .af-icon {
+        --icon-fill: var(--white-1000);
+      }
     }
 
     &:active {
