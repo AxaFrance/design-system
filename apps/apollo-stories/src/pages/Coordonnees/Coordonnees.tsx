@@ -1,6 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useRef } from "react";
+/* eslint-disable import/no-extraneous-dependencies */
 
+import { useRef } from "react";
 import {
   Button,
   InputText,

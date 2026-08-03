@@ -1,0 +1,39 @@
+.popover-header {
+  position: relative;
+  display: flex;
+  padding: var(--rem-16) var(--rem-24);
+  border-bottom: 1px solid var(--blue-200);
+  align-items: center;
+  justify-content: end;
+}
+
+[popovertarget] {
+  align-self: flex-end;
+  anchor-name: --trigger;
+}
+
+[popover] {
+  top: var(--rem-16);
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: center;
+  transition:
+    display var(--transition-duration) allow-discrete,
+    overlay var(--transition-duration) allow-discrete,
+    opacity var(--transition-duration),
+    transform var(--transition-duration);
+  transition-timing-function: ease-in-out;
+  position-area: bottom span-left;
+}
+
+[popover]:popover-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}

@@ -14,13 +14,22 @@ export {
   type AccordionContextualVariants,
 } from "./prospect-client/AccordionContextual/AccordionContextualLF";
 export { AccordionCore } from "./prospect-client/AccordionCore/AccordionCoreLF";
+export {
+  AppName,
+  type AppNameProps,
+} from "./prospect-client/AppName/AppNameLF";
 export { BasePicture } from "./prospect-client/BasePicture/BasePicture";
 export {
   Button,
   buttonVariants,
   type ButtonVariants,
 } from "./prospect-client/Button/ButtonLF";
-export { Card, type CardProps } from "./prospect-client/Card/CardLF";
+export {
+  Card,
+  cardVariants,
+  type CardProps,
+  type CardVariants,
+} from "./prospect-client/Card/CardLF";
 export {
   CardMessage,
   cardMessageVariants,
@@ -90,6 +99,7 @@ export {
   type HeadingLevel,
   type HeadingProps,
 } from "./prospect-client/Heading/HeadingLF";
+export { Header, type HeaderProps } from "./prospect-client/Header/HeaderLF";
 export {
   Icon,
   iconSizeVariants,
@@ -105,6 +115,10 @@ export {
   ItemMenu,
   type ItemMenuProps,
 } from "./prospect-client/ItemMenu/ItemMenuLF";
+export {
+  MenuBurger,
+  type MenuBurgerProps,
+} from "./prospect-client/MenuBurger/MenuBurgerLF";
 export { TabMenu, type TabMenuProps } from "./prospect-client/TabMenu/TabMenu";
 export {
   ExitLayout,
