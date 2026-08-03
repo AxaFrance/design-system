@@ -126,3 +126,20 @@ export const ContentItemDuoActionList: StoryObj<typeof List> = {
     )),
   },
 };
+
+export const UnstyledVariant: StoryObj<typeof List> = {
+  name: "List Unstyled Variant",
+  render,
+  args: {
+    variant: "unstyled",
+    children: [
+      <ClickItem key={0} icon={walletIcon} subtitle="Information" />,
+      <ClickItem
+        key={1}
+        icon={publishedWithChangesIcon}
+        subtitle="Modifier le profil"
+      />,
+      <ClickItem key={2} icon={trashIcon} subtitle="Supprimer le profil" />,
+    ],
+  },
+};

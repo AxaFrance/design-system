@@ -35,4 +35,14 @@ describe("List", () => {
     expect(screen.getByText("Child 2")).toBeInTheDocument();
     expect(screen.getByText("Child 3")).toBeInTheDocument();
   });
+
+  it("should pass unstyled variant to Card", () => {
+    render(
+      <List CardComponent={Card} variant="unstyled">
+        <div>Child 1</div>
+      </List>,
+    );
+
+    expect(screen.getByRole("list")).toHaveClass("af-card--unstyled");
+  });
 });
