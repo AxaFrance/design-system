@@ -1,0 +1,63 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import * as MenuBurgerStories from "./MenuBurger.stories";
+
+<Meta of={MenuBurgerStories} name="MenuBurger" />
+
+# MenuBurger
+
+A burger-style account menu that opens a popover panel containing navigation items and custom actions.
+
+- On **mobile**: the trigger button is hidden; the panel is always visible inline.
+- On **desktop**: a trigger button opens/closes the panel via the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
+
+## Import
+
+```tsx
+import { MenuBurger } from "@axa-fr/canopee-react/prospect";
+```
+
+## Usage
+
+```tsx
+import { MenuBurger, Button, Icon } from "@axa-fr/canopee-react/prospect";
+import logout from "@material-symbols/svg-400/rounded/logout.svg";
+import settings from "@material-symbols/svg-400/rounded/settings-fill.svg";
+
+<MenuBurger
+  buttonLabel="My account"
+  clickItems={[
+    {
+      icon: settings,
+      title: "My profile",
+      subtitle: "Personal information",
+      state: "default",
+      ariaLabelForActionIcon: "Go to my profile",
+      onClick: () => {},
+    },
+  ]}
+>
+  {/* Optional extra content rendered below the click items */}
+  <Button
+    variant="tertiary"
+    iconLeft={<Icon src={logout} size="S" />}
+    onClick={() => {}}
+  >
+    Log out
+  </Button>
+</MenuBurger>;
+```
+
+## Props
+
+| Prop          | Type                         | Default     | Description                                                              |
+| ------------- | ---------------------------- | ----------- | ------------------------------------------------------------------------ |
+| `buttonLabel` | `string`                     | —           | Label displayed in the desktop trigger button. **Required.**             |
+| `icon`        | `string` (SVG src)           | `person`    | Icon displayed on the left of the trigger button.                        |
+| `variant`     | `"primary" \| "secondary"`   | `"primary"` | Visual variant of the trigger button.                                    |
+| `clickItems`  | `MenuBurgerClickItemProps[]` | `undefined` | List of navigation items rendered inside the panel.                      |
+| `children`    | `ReactNode`                  | `undefined` | Extra content rendered below the click item list (e.g. a logout button). |
+| `className`   | `string`                     | `undefined` | Additional CSS class applied to the root element.                        |
+
+## Playground
+
+<Canvas of={MenuBurgerStories.Playground} />
