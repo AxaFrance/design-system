@@ -36,3 +36,11 @@ export const ButtonCard: StoryObj<typeof Card> = {
     onClick: { action: "onClick" },
   },
 };
+
+export const Unstyled: StoryObj<typeof Card> = {
+  render: (args) => <Card {...args} />,
+  args: {
+    children: BASIC_CONTENT,
+    variant: "unstyled",
+  },
+};
