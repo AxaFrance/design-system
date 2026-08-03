@@ -1,6 +1,8 @@
 import type { ClickItemPropsCommon } from "./types";
 import { ClickItemWrapper } from "./ClickItemWrapper";
 
+export type { ClickItemProps } from "./types";
+
 export const clickItemVariants = {
   small: "small",
   medium: "medium",
