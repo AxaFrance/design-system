@@ -20,4 +20,10 @@ describe("Card", () => {
 
     expect(screen.getByText("A card").tagName).toBe("FIELDSET");
   });
+
+  it("should have unstyled modifier class", () => {
+    render(<CardCommon variant="unstyled">A card</CardCommon>);
+
+    expect(screen.getByText("A card")).toHaveClass("af-card--unstyled");
+  });
 });
