@@ -1,0 +1,34 @@
+@layer canopee {
+  .af-app-name {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--rem-16);
+  }
+
+  .af-app-name__logo {
+    width: var(--rem-40);
+    height: var(--rem-40);
+    margin-block: var(--rem-8);
+  }
+
+  .af-app-name__label {
+    display: none;
+    max-inline-size: var(--rem-96);
+    font-size: var(--rem-16);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--rem-16);
+    color: var(--blue-1000);
+  }
+
+  @media (--desktop-small) {
+    .af-app-name__logo {
+      width: var(--rem-56);
+      height: var(--rem-56);
+      margin-block: var(--rem-16);
+    }
+
+    .af-app-name__label {
+      display: inline;
+    }
+  }
+}
