@@ -4,11 +4,6 @@ import "@axa-fr/canopee-css/prospect/common/tokens.css";
 
 const preview: Preview = {
   parameters: {
-    options: {
-      storySort: {
-        order: ["*", ["Tokens", "Font Style", "*"]],
-      },
-    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
