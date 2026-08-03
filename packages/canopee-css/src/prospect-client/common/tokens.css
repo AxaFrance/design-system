@@ -53,6 +53,7 @@
   --blue-100: hsl(240deg, 41%, 93%);
   --blue-080: hsl(240deg, 38%, 94%);
   --blue-040: hsl(240deg, 43%, 97%);
+  --blue-1000-48: hsla(240deg, 100%, 28%, 48%);
 
   /* ⛔ legacy names colors - DO NOT USE */
   --axa-blue-120: var(--blue-1200);
@@ -247,10 +248,12 @@
   --rem-48: calc(48 / var(--font-size-base) * 1rem);
   --rem-50: calc(50 / var(--font-size-base) * 1rem);
   --rem-52: calc(52 / var(--font-size-base) * 1rem);
+  --rem-56: calc(56 / var(--font-size-base) * 1rem);
   --rem-60: calc(60 / var(--font-size-base) * 1rem);
   --rem-64: calc(64 / var(--font-size-base) * 1rem);
   --rem-72: calc(72 / var(--font-size-base) * 1rem);
   --rem-80: calc(80 / var(--font-size-base) * 1rem);
+  --rem-96: calc(96 / var(--font-size-base) * 1rem);
   --rem-120: calc(120 / var(--font-size-base) * 1rem);
 
   /* *************************************************************************/
