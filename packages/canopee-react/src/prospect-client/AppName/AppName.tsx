@@ -1,6 +1,7 @@
 import logoAxa from "@axa-fr/canopee-css/logo-axa.svg";
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { getClassName } from "../utilities/getClassName";
+import "@axa-fr/canopee-css/prospect/AppName/AppNameAll.css";
 
 /**
  * Props for the AppName component.
@@ -45,7 +46,7 @@ export type AppNameProps = ComponentPropsWithoutRef<"div"> & {
  * @returns {JSX.Element} The rendered AppName component.
  */
 
-export const AppNameCommon = ({
+export const AppName = ({
   label,
   className,
   logoAlt = "Logo AXA",

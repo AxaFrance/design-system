@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Link } from "react-router";
 import { describe, expect, it } from "vitest";
 
-import { AppNameCommon as AppName } from "../AppNameCommon";
+import { AppName } from "../AppName";
 
 describe("AppName", () => {
   it("renders logo and label", () => {

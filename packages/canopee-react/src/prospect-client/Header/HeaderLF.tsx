@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/client/Header/HeaderLF.css";
 
-import { AppName } from "../AppName/AppNameLF";
+import { AppName } from "../AppName/AppName";
 import { Heading } from "../Heading/HeadingLF";
 import { MenuBurger } from "../MenuBurger/MenuBurgerLF";
 import { ClickIcon } from "../ClickIcon/ClickIconLF";

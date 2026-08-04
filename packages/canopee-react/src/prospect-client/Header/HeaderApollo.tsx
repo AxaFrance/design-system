@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/prospect/Header/HeaderApollo.css";
 
-import { AppName } from "../AppName/AppNameApollo";
+import { AppName } from "../AppName/AppName";
 import { Heading } from "../Heading/HeadingApollo";
 import { MenuBurger } from "../MenuBurger/MenuBurgerApollo";
 import { ClickIcon } from "../ClickIcon/ClickIconApollo";

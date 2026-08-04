@@ -1,4 +1,4 @@
-import "@axa-fr/canopee-css/client/MenuBurger/MenuBurgerLF.css";
+import "@axa-fr/canopee-css/client/MenuBurger/MenuBurgerAll.css";
 
 import { Button } from "../Button/ButtonLF";
 import { Icon } from "../Icon/IconLF";

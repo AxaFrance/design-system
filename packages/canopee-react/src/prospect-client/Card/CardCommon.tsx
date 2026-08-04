@@ -3,7 +3,6 @@ import { type PolymorphicComponent } from "../utilities/types/PolymorphicCompone
 import { getClassName } from "../utilities/getClassName";
 
 export const cardVariants = {
-  default: "default",
   unstyled: "unstyled",
 } as const;
 
@@ -19,9 +18,7 @@ export type CardCommonProps<T extends ElementType> = PolymorphicComponent<
   ComponentProps<"div"> & {
     /**
      * Visual variant of the card.
-     * - `"default"` — bordered card with padding.
      * - `"unstyled"` — removes border and padding.
-     * @default "default"
      */
     variant?: CardVariants;
   }
@@ -35,7 +32,7 @@ export type CardCommonProps<T extends ElementType> = PolymorphicComponent<
  * @template T - The element type rendered by the card.
  * @param {CardCommonProps<T>} props - Card props.
  * @param {ElementType} [props.as="div"] - HTML element or component to render as.
- * @param {CardVariants} [props.variant="default"] - Visual variant of the card.
+ * @param {CardVariants} [props.variant] - Visual variant of the card.
  * @param {string} [props.className] - Additional CSS class applied to the root element.
  * @param {ReactNode} [props.children] - Content rendered inside the card.
  * @returns {JSX.Element} The rendered Card component.
@@ -45,7 +42,7 @@ export const CardCommon = <T extends ElementType = "div">({
   as,
   children,
   className,
-  variant = "default",
+  variant,
   ...props
 }: CardCommonProps<T>) => {
   const Component = as || "div";
@@ -54,7 +51,7 @@ export const CardCommon = <T extends ElementType = "div">({
     <Component
       className={getClassName({
         baseClassName: "af-card",
-        modifiers: [variant !== "default" && variant],
+        modifiers: [variant],
         className,
       })}
       {...props}
