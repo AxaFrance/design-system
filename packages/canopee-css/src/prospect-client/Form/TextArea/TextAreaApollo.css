@@ -14,7 +14,7 @@
 
     &:disabled {
       --textarea-background-color: var(--gray-050);
-      --textarea-box-shadow-color: var(--gray-800);
+      --textarea-box-shadow-color: var(--gray-140);
       --textarea-placeholder-color: var(--gray-800);
       --textarea-color: var(--gray-800);
     }
