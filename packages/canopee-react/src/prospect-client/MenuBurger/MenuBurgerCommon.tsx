@@ -91,6 +91,7 @@ export const MenuBurgerCommon = ({
   const isDesktop = !isSmallScreen;
 
   const popoverId = useId();
+  const triggerId = `${popoverId}-trigger`;
   const iconVariant = variant === "primary" ? "secondary" : "primary";
 
   return (
@@ -103,6 +104,7 @@ export const MenuBurgerCommon = ({
     >
       {isDesktop ? (
         <ButtonComponent
+          id={triggerId}
           className="af-menu-burger__button"
           variant={variant}
           iconLeft={
@@ -126,18 +128,17 @@ export const MenuBurgerCommon = ({
           }
           popoverTarget={popoverId}
           popoverTargetAction="toggle"
-          aria-haspopup="dialog"
+          aria-haspopup="true"
         >
           {buttonLabel}
         </ButtonComponent>
       ) : null}
 
-      <div
+      <section
         id={isDesktop ? popoverId : undefined}
         popover={isDesktop ? "auto" : undefined}
         className="af-menu-burger__panel"
-        role={isDesktop ? "dialog" : undefined}
-        aria-label={isDesktop ? buttonLabel : undefined}
+        aria-labelledby={isDesktop ? triggerId : undefined}
       >
         {clickItems && clickItems.length > 0 ? (
           <div className="af-menu-burger__section af-menu-burger__section--actions">
@@ -161,7 +162,7 @@ export const MenuBurgerCommon = ({
             {children}
           </div>
         ) : null}
-      </div>
+      </section>
     </div>
   );
 };

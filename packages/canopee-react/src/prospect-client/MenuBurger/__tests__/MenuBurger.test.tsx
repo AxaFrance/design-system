@@ -131,5 +131,30 @@ describe("MenuBurger", () => {
       expect(button).toHaveAttribute("popovertarget", panel?.id);
       expect(button).toHaveAttribute("popovertargetaction", "toggle");
     });
+
+    it("uses section element for the panel with aria-labelledby pointing to the trigger", () => {
+      const { container } = renderMenuBurger();
+
+      const button = screen.getByRole("button", { name: /mon espace/i });
+      const panel = container.querySelector("section.af-menu-burger__panel");
+
+      expect(panel).toBeInTheDocument();
+      expect(panel).not.toHaveAttribute("role");
+      expect(panel).toHaveAttribute("aria-labelledby", button.id);
+    });
+  });
+
+  describe("mobile (isSmallScreen = true) — accessibility", () => {
+    beforeEach(() => {
+      vi.mocked(useIsSmallScreen).mockReturnValue(true);
+    });
+
+    it("does not set role or aria-labelledby on the panel", () => {
+      const { container } = renderMenuBurger();
+      const panel = container.querySelector(".af-menu-burger__panel");
+
+      expect(panel).not.toHaveAttribute("role");
+      expect(panel).not.toHaveAttribute("aria-labelledby");
+    });
   });
 });

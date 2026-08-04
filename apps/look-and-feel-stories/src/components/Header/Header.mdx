@@ -1,0 +1,115 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as HeaderStories from "./Header.stories";
+
+<Meta of={HeaderStories} name="Header" />
+
+# Header
+
+Responsive page header composed of an `AppName`, an optional `TabMenu`, an optional `MenuBurger`, and optional action children.
+
+- **Mobile**: the hamburger icon (`ClickIcon`) toggles the menu panel. The `TabMenu` and actions slide in as a full-height overlay.
+- **Desktop**: the menu is always visible inline; the icon is hidden. The `MenuBurger` uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
+
+## Import
+
+```tsx
+import { Header } from "@axa-fr/canopee-react/client";
+```
+
+## Usage
+
+```tsx
+import {
+  Header,
+  Button,
+  Icon,
+  type MenuBurgerProps,
+  type TabMenuProps,
+} from "@axa-fr/canopee-react/client";
+import logout from "@material-symbols/svg-400/rounded/logout.svg";
+import settings from "@material-symbols/svg-400/rounded/settings-fill.svg";
+
+const tabMenuProps: TabMenuProps = {
+  items: [
+    { href: "#accueil", label: "Accueil" },
+    { href: "#contrats", label: "Contrats" },
+  ],
+};
+
+const menuBurgerProps: MenuBurgerProps = {
+  buttonLabel: "Mon espace",
+  clickItems: [
+    {
+      icon: settings,
+      title: "Mon profil",
+      subtitle: "Informations personnelles",
+      state: "default",
+      ariaLabelForActionIcon: "Aller à mon profil",
+      onClick: () => {},
+    },
+  ],
+  children: (
+    <Button
+      variant="tertiary"
+      iconLeft={<Icon src={logout} size="S" />}
+      onClick={() => {}}
+    >
+      Déconnexion
+    </Button>
+  ),
+};
+
+<Header
+  appNameProps={{ label: "Mon application", logoLinkProps: { href: "/" } }}
+  tabMenuProps={tabMenuProps}
+  menuBurgerProps={menuBurgerProps}
+/>;
+```
+
+## Props
+
+| Prop              | Type              | Default     | Description                                                    |
+| ----------------- | ----------------- | ----------- | -------------------------------------------------------------- |
+| `appNameProps`    | `AppNameProps`    | —           | Props forwarded to the `AppName` component. **Required.**      |
+| `tabMenuProps`    | `TabMenuProps`    | `undefined` | Navigation items rendered as a tab menu.                       |
+| `menuBurgerProps` | `MenuBurgerProps` | `undefined` | Account menu rendered as a burger button on desktop.           |
+| `clickIconProps`  | `ClickIconProps`  | `undefined` | Props forwarded to the mobile hamburger trigger icon.          |
+| `title`           | `string`          | `undefined` | Title displayed in the actions zone (desktop only).            |
+| `actionChildren`  | `ReactNode`       | `undefined` | Free content rendered in the actions zone (e.g. a CTA button). |
+| `className`       | `string`          | `undefined` | Additional CSS class on the `<header>` element.                |
+
+## Playground
+
+### Default (all props)
+
+<Canvas of={HeaderStories.Default} />
+
+<Controls of={HeaderStories.Default} />
+
+### Logo only
+
+<Canvas of={HeaderStories.Logo} />
+
+### Logo + TabMenu
+
+<Canvas of={HeaderStories.LogoAndMenu} />
+
+### Logo + action children
+
+<Canvas of={HeaderStories.LogoAndActionChildren} />
+
+### Logo + action children + MenuBurger
+
+<Canvas of={HeaderStories.LogoAndActionChildrenAndMenuBurger} />
+
+### Logo + MenuBurger
+
+<Canvas of={HeaderStories.LogoAndMenuBurger} />
+
+### Logo + TabMenu + title
+
+<Canvas of={HeaderStories.LogoAndMenuWithTitle} />
+
+### Logo + title
+
+<Canvas of={HeaderStories.LogoWithTitle} />

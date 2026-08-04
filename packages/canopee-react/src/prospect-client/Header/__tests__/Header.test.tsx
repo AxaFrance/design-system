@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { AppName } from "../../AppName/AppNameApollo";
+import { AppName } from "../../AppName/AppName";
 import { Heading } from "../../Heading/HeadingApollo";
 import { MenuBurger } from "../../MenuBurger/MenuBurgerApollo";
 import { ClickIcon } from "../../ClickIcon/ClickIconApollo";
@@ -221,71 +220,48 @@ describe("HeaderCommon", () => {
     });
   });
 
-  describe("Menu open/close — mobile", () => {
+  describe("Menu open/close — mobile (native Popover API)", () => {
     beforeEach(() => {
       vi.mocked(useIsSmallScreen).mockReturnValue(true);
     });
 
-    it("menu panel does not have af-header__menu--open class by default", () => {
+    it('menu panel has popover="auto" attribute', () => {
       renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-      expect(getMenuPanel()).not.toHaveClass("af-header__menu--open");
+      expect(getMenuPanel()).toHaveAttribute("popover", "auto");
     });
 
-    it("adds af-header__menu--open when trigger is clicked", async () => {
-      const user = userEvent.setup();
-      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-
-      await user.click(getMenuTrigger());
-      expect(getMenuPanel()).toHaveClass("af-header__menu--open");
-    });
-
-    it("removes af-header__menu--open when trigger is clicked a second time", async () => {
-      const user = userEvent.setup();
-      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-
-      const trigger = getMenuTrigger();
-      await user.click(trigger);
-      await user.click(trigger);
-      expect(getMenuPanel()).not.toHaveClass("af-header__menu--open");
-    });
-
-    it("closes the menu on Escape key", async () => {
-      const user = userEvent.setup();
-      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-
-      const trigger = getMenuTrigger();
-      await user.click(trigger);
-      expect(getMenuPanel()).toHaveClass("af-header__menu--open");
-
-      trigger.focus();
-      await user.keyboard("{Escape}");
-      expect(getMenuPanel()).not.toHaveClass("af-header__menu--open");
-    });
-
-    it("sets aria-expanded to false initially", () => {
-      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-      expect(getMenuTrigger()).toHaveAttribute("aria-expanded", "false");
-    });
-
-    it("sets aria-expanded to true when menu is open", async () => {
-      const user = userEvent.setup();
-      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-
-      await user.click(getMenuTrigger());
-      expect(getMenuTrigger()).toHaveAttribute("aria-expanded", "true");
-    });
-
-    it("sets aria-controls to the menu panel id", () => {
+    it("trigger has popoverTarget pointing to menu panel id", () => {
       renderHeader({ menuBurgerProps: menuBurgerWithLabel });
       expect(getMenuTrigger()).toHaveAttribute(
-        "aria-controls",
+        "popovertarget",
         "af-header-menu",
       );
+    });
+
+    it('trigger has popoverTargetAction="toggle"', () => {
+      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
+      expect(getMenuTrigger()).toHaveAttribute("popovertargetaction", "toggle");
     });
 
     it("sets aria-haspopup to menu", () => {
       renderHeader({ menuBurgerProps: menuBurgerWithLabel });
       expect(getMenuTrigger()).toHaveAttribute("aria-haspopup", "menu");
+    });
+  });
+
+  describe("Menu — desktop (no popover)", () => {
+    beforeEach(() => {
+      vi.mocked(useIsSmallScreen).mockReturnValue(false);
+    });
+
+    it("menu panel does not have popover attribute", () => {
+      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
+      expect(getMenuPanel()).not.toHaveAttribute("popover");
+    });
+
+    it("trigger does not have popoverTarget attribute", () => {
+      renderHeader({ menuBurgerProps: menuBurgerWithLabel });
+      expect(getMenuTrigger()).not.toHaveAttribute("popovertarget");
     });
   });
 });

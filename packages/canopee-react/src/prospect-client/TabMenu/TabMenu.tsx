@@ -83,7 +83,7 @@ export const TabMenu = ({
     >
       <ul className="af-tab-menu__list">
         {items.map((item, index) => (
-          <li key={item.href} role="presentation">
+          <li key={item.href}>
             <ItemMenu
               ref={(el) => {
                 itemRefs.current[index] = el;

@@ -14,10 +14,7 @@ export {
   type AccordionContextualVariants,
 } from "./prospect-client/AccordionContextual/AccordionContextualLF";
 export { AccordionCore } from "./prospect-client/AccordionCore/AccordionCoreLF";
-export {
-  AppName,
-  type AppNameProps,
-} from "./prospect-client/AppName/AppNameLF";
+export { AppName, type AppNameProps } from "./prospect-client/AppName/AppName";
 export { BasePicture } from "./prospect-client/BasePicture/BasePicture";
 export {
   Button,

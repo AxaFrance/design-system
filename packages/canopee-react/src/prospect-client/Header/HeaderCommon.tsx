@@ -1,18 +1,13 @@
 import {
   type ComponentPropsWithoutRef,
   type ComponentType,
-  type KeyboardEvent,
-  type MouseEvent,
   type ReactNode,
-  useEffect,
-  useState,
 } from "react";
 import menu from "@material-symbols/svg-400/outlined/menu.svg";
-import close from "@material-symbols/svg-400/rounded/close.svg";
 import { BREAKPOINT } from "../utilities/constants";
 import { type ClickIconProps } from "../ClickIcon/ClickIconCommon";
 import { TabMenu } from "../TabMenu/TabMenu";
-import { type AppNameProps } from "../AppName/AppNameCommon";
+import { type AppNameProps } from "../AppName/AppName";
 import { type HeadingProps } from "../Heading/types";
 import { type MenuBurgerProps } from "../MenuBurger/MenuBurgerCommon";
 import { type TabMenuProps } from "../TabMenu/TabMenu";
@@ -61,7 +56,6 @@ export const HeaderCommon = ({
   ...props
 }: HeaderCommonProps) => {
   const isSmallScreen = useIsSmallScreen(BREAKPOINT.MD);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const parsedAppNameProps = withElementClass(
     appNameProps,
@@ -74,34 +68,6 @@ export const HeaderCommon = ({
   const parsedTabMenuProps = tabMenuProps
     ? withElementClass(tabMenuProps, "af-header__tab-menu")
     : undefined;
-
-  useEffect(() => {
-    if (!isSmallScreen) {
-      setIsMenuOpen(false);
-    }
-  }, [isSmallScreen]);
-
-  const handleMenuIconClick = (event: MouseEvent<HTMLButtonElement>) => {
-    clickIconProps?.onClick?.(event);
-
-    if (!isSmallScreen) {
-      return;
-    }
-
-    setIsMenuOpen((currentValue) => !currentValue);
-  };
-
-  const handleMenuIconKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-    clickIconProps?.onKeyDown?.(event);
-
-    if (!isSmallScreen) {
-      return;
-    }
-
-    if (event.key === "Escape") {
-      setIsMenuOpen(false);
-    }
-  };
 
   return (
     <header
@@ -118,25 +84,21 @@ export const HeaderCommon = ({
       Boolean(actionChildren) ? (
         <ClickIconComponent
           {...clickIconProps}
-          src={isMenuOpen ? close : menu}
+          src={menu}
           size="S"
           variant="ghost"
           className="af-header__menu-icon"
-          aria-controls={isSmallScreen ? "af-header-menu" : undefined}
-          aria-expanded={isSmallScreen ? isMenuOpen : undefined}
           aria-haspopup={isSmallScreen ? "menu" : undefined}
           aria-label={clickIconProps?.["aria-label"] ?? "Ouvrir le menu"}
-          onClick={handleMenuIconClick}
-          onKeyDown={handleMenuIconKeyDown}
+          popoverTarget={isSmallScreen ? "af-header-menu" : undefined}
+          popoverTargetAction={isSmallScreen ? "toggle" : undefined}
         />
       ) : null}
 
       <div
         id="af-header-menu"
-        className={getClassName({
-          baseClassName: "af-header__menu",
-          modifiers: [isSmallScreen && isMenuOpen && "open"],
-        })}
+        popover={isSmallScreen ? "auto" : undefined}
+        className="af-header__menu"
       >
         {parsedTabMenuProps ? <TabMenu {...parsedTabMenuProps} /> : null}
 
