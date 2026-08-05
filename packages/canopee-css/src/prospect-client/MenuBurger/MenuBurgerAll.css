@@ -51,8 +51,8 @@
       opacity: 0;
       transform-origin: center;
       transition:
-        display var(--transition-duration) allow-discrete,
-        overlay var(--transition-duration) allow-discrete,
+        display var(--transition-duration) allow-discrete forwards,
+        overlay var(--transition-duration) allow-discrete forwards,
         opacity var(--transition-duration),
         transform var(--transition-duration);
       transition-timing-function: ease-in-out;
@@ -61,12 +61,9 @@
 
       &:popover-open {
         opacity: 1;
-      }
-    }
-
-    @starting-style {
-      .af-menu-burger__panel:popover-open {
-        opacity: 0;
+        @starting-style {
+          opacity: 0;
+        }
       }
     }
 
