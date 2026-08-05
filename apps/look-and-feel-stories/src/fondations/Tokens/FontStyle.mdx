@@ -1,0 +1,186 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Heading } from "@axa-fr/canopee-react/client";
+
+export const headingStyles = [
+  {
+    label: "H1",
+    level: 1,
+    sample: "Titre H1",
+    mobileFontSize: "var(--rem-28)",
+    mobileLineHeight: "var(--rem-35)",
+    desktopFontSize: "var(--rem-40)",
+    desktopLineHeight: "var(--rem-50)",
+    fontFamily: "var(--font-family-publico-headline)",
+    fontWeight: 700,
+  },
+  {
+    label: "H2",
+    level: 2,
+    sample: "Titre H2",
+    mobileFontSize: "var(--rem-24)",
+    mobileLineHeight: "var(--rem-30)",
+    desktopFontSize: "var(--rem-32)",
+    desktopLineHeight: "var(--rem-40)",
+    fontFamily: "var(--font-family-publico-headline)",
+    fontWeight: 700,
+  },
+  {
+    label: "H3",
+    level: 3,
+    sample: "Titre H3",
+    mobileFontSize: "var(--rem-20)",
+    mobileLineHeight: "var(--rem-25)",
+    desktopFontSize: "var(--rem-24)",
+    desktopLineHeight: "var(--rem-30)",
+    fontFamily: "var(--font-family-base)",
+    fontWeight: 600,
+  },
+  {
+    label: "H4",
+    level: 4,
+    sample: "Titre H4",
+    mobileFontSize: "var(--rem-18)",
+    mobileLineHeight: "var(--rem-23)",
+    desktopFontSize: "var(--rem-20)",
+    desktopLineHeight: "var(--rem-25)",
+    fontFamily: "var(--font-family-base)",
+    fontWeight: 600,
+  },
+];
+
+export const bodyStyles = [
+  {
+    label: "Body 1",
+    sample: "Texte body 1",
+    fontSize: "var(--body-1-font-size)",
+    lineHeight: "var(--body-1-line-height)",
+    desktopFontSize: "var(--rem-20)",
+    desktopLineHeight: "var(--rem-25)",
+  },
+  {
+    label: "Body 2",
+    sample: "Texte body 2",
+    fontSize: "var(--body-2-font-size)",
+    lineHeight: "var(--body-2-line-height)",
+    desktopFontSize: "var(--rem-18)",
+    desktopLineHeight: "var(--rem-23)",
+  },
+  {
+    label: "Body 3",
+    sample: "Texte body 3",
+    fontSize: "var(--body-3-font-size)",
+    lineHeight: "var(--body-3-line-height)",
+    desktopFontSize: "var(--rem-16)",
+    desktopLineHeight: "var(--rem-20)",
+  },
+  {
+    label: "Body 4",
+    sample: "Texte body 4",
+    fontSize: "var(--body-4-font-size)",
+    lineHeight: "var(--body-4-line-height)",
+    desktopFontSize: "var(--body-4-font-size)",
+    desktopLineHeight: "var(--body-4-line-height)",
+  },
+];
+
+export const previewCardStyle = {
+  border: "1px solid var(--gray-300)",
+  borderRadius: "0.75rem",
+  padding: "1.5rem",
+  marginBottom: "1rem",
+};
+
+export const previewTextStyle = {
+  margin: 0,
+  color: "var(--gray-1000)",
+};
+
+<Meta title="Fondations/Font Style" />
+
+# Font Style
+
+Cette page regroupe les styles de titres et les styles `body` disponibles dans le thème Client.
+
+## Titres
+
+{headingStyles.map((style) => (
+
+  <div key={style.label} style={previewCardStyle}>
+    <Heading level={style.level}>{style.sample}</Heading>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Style</th>
+          <th>Font family</th>
+          <th>Font weight</th>
+          <th>Mobile</th>
+          <th>Desktop</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{style.label}</td>
+          <td>
+            <code>{style.fontFamily}</code>
+          </td>
+          <td>{style.fontWeight}</td>
+          <td>
+            <code>{style.mobileFontSize}</code> / <code>{style.mobileLineHeight}</code>
+          </td>
+          <td>
+            <code>{style.desktopFontSize}</code> / <code>{style.desktopLineHeight}</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+))}
+
+## Body
+
+{bodyStyles.map((style) => (
+
+  <div key={style.label} style={previewCardStyle}>
+    <p
+      style={{
+        ...previewTextStyle,
+        fontFamily: "var(--font-family-base)",
+        fontWeight: 400,
+        fontSize: style.fontSize,
+        lineHeight: style.lineHeight,
+      }}
+    >
+      {style.sample} - Le rapide renard brun saute par-dessus le chien paresseux.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Style</th>
+          <th>Font family</th>
+          <th>Font weight</th>
+          <th>Mobile</th>
+          <th>Desktop</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{style.label}</td>
+          <td>
+            <code>var(--font-family-base)</code>
+          </td>
+          <td>400</td>
+          <td>
+            <code>{style.fontSize}</code> / <code>{style.lineHeight}</code>
+          </td>
+          <td>
+            <code>{style.desktopFontSize}</code> / <code>{style.desktopLineHeight}</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+))}
