@@ -26,9 +26,9 @@
 
     &:disabled {
       --dropdown-background-color: var(--gray-050);
-      --dropdown-box-shadow-color: var(--gray-500);
-      --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%23999999' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
-      --dropdown-color: var(--gray-500);
+      --dropdown-box-shadow-color: var(--gray-140);
+      --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%235C5C5C' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
+      --dropdown-color: var(--gray-800);
     }
 
     &:has(option[value=""]:checked) {
