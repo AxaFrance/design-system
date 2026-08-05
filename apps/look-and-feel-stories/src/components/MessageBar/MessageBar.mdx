@@ -1,0 +1,21 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as MessageBarStories from "./MessageBar.stories";
+
+<Meta of={MessageBarStories} name="MessageBar" />
+
+# MessageBar
+
+A full-width banner used to display important information. Supports a
+collapsible description on small screens via `AccordionCore`; on desktop the
+description is displayed directly in the banner layout.
+
+The colour scheme is driven by the `variant` prop (`info`, `error`, …). Provide
+the icon with the `icon` prop, the optional action through `buttonProps`, and
+the initial small-screen description state with `defaultDescriptionOpen`.
+Switch them in the playground controls below.
+
+## Playground
+
+<Canvas of={MessageBarStories.Playground} />
+
+<Controls of={MessageBarStories.Playground} />
