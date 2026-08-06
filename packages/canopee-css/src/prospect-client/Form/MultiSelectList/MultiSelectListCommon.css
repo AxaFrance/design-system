@@ -1,0 +1,13 @@
+.af-multi-select-list {
+  max-height: calc(4.5 * (1lh + (2 * var(--size-16))));
+  padding: 0;
+  border: 0.5px solid rgba(51, 51, 51, 20%);
+  border-radius: var(--radius-8);
+  overflow: hidden auto;
+  box-shadow: 0 4px 16px -2px rgba(51, 51, 51, 20%);
+  list-style-type: none;
+}
+
+.af-multi-select-list > li {
+  padding: 0;
+}

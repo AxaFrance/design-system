@@ -82,6 +82,11 @@ export {
   ItemMultiSelect,
   type ItemMultiSelectProps,
 } from "./prospect-client/Form/ItemMultiSelect/ItemMultiSelectLF";
+export {
+  MultiSelectList,
+  type MultiSelectListItem,
+  type MultiSelectListProps,
+} from "./prospect-client/Form/MultiSelectList/MultiSelectListLF";
 export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioLF";
 export { CardRadioGroup } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupLF";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioLF";
