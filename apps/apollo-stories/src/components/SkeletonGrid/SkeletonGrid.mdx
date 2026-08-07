@@ -1,0 +1,165 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as SkeletonStories from "./SkeletonGrid.stories.tsx";
+import * as SkeletonWrapperStories from "./SkeletonGridWrapper.stories.tsx";
+
+<Meta of={SkeletonStories} />
+
+## SkeletonGrid
+
+### Import
+
+```tsx
+import { SkeletonGrid } from "@axa-fr/canopee-react/prospect";
+```
+
+### Use
+
+```tsx
+export const SkeletonComponent = () => (
+  <SkeletonGrid grid={[[{ colSize: 12 }]]} />
+);
+```
+
+### grid props
+
+The `grid` property receives a two-level array of `SkeletonProps`.
+
+The first level corresponds to rows. The second level corresponds to the skeleton cells rendered in each row.
+
+To make a row full width with the default `maxCols={12}`, use `colSize: 12`.
+
+For example, if you want 3 full lines :
+
+```tsx
+export const SkeletonComponent = () => (
+  <SkeletonGrid
+    grid={[[{ colSize: 12 }], [{ colSize: 12 }], [{ colSize: 12 }]]}
+  />
+);
+```
+
+If you want 2 lines at 100% and the 3rd at 50% :
+
+```tsx
+export const SkeletonComponent = () => (
+  <SkeletonGrid
+    grid={[[{ colSize: 12 }], [{ colSize: 12 }], [{ colSize: 6 }]]}
+  />
+);
+```
+
+Multiple cells can be defined within a single row, and each cell can receive the full set of `Skeleton` props.
+
+If you want 2 rows at 100% and on the 3rd row, 2 cells at 50% :
+
+```tsx
+export const SkeletonComponent = () => (
+  <SkeletonGrid
+    grid={[
+      [{ colSize: 12 }],
+      [{ colSize: 12 }],
+      [
+        { colSize: 6, variant: "circle", size: "S" },
+        { colSize: 6, variant: "rectangle", size: "L" },
+      ],
+    ]}
+  />
+);
+```
+
+## Default
+
+You can define cols or lines :
+
+<Canvas of={SkeletonStories.Default} />
+
+<Controls of={SkeletonStories.Default} />
+
+## Mixed
+
+<Canvas of={SkeletonStories.Mixed} />
+
+<Controls of={SkeletonStories.Mixed} />
+
+## MaxColumns
+
+This property defines the maximum number of columns, with a default value of 12.
+
+```tsx
+export const SkeletonComponent = () => (
+  <SkeletonGrid
+    maxCols={8}
+    grid={[
+      [{ colSize: 8 }],
+      [{ colSize: 8 }],
+      [{ colSize: 4 }, { colSize: 4 }],
+    ]}
+  />
+);
+```
+
+> Note that by changing the max value of columns to 8, to obtain 100% of the value is 8 and no longer 12.
+
+<Canvas of={SkeletonStories.MaxColumns} />
+
+<Controls of={SkeletonStories.MaxColumns} />
+
+## ColumnGap
+
+This property defines the spacing between columns (gutters), with a default value of 1. (rem)
+
+```tsx
+export const SkeletonComponent = () => (
+  <SkeletonGrid
+    colGap={2}
+    grid={[
+      [{ colSize: 12 }],
+      [{ colSize: 12 }],
+      [{ colSize: 6 }, { colSize: 6 }],
+    ]}
+  />
+);
+```
+
+<Canvas of={SkeletonStories.ColumnGap} />
+
+<Controls of={SkeletonStories.ColumnGap} />
+
+## RowGapSpacing
+
+This property defines the vertical spacing between lines (gutters), with a default value of 0.5. (rem)
+
+```tsx
+export const SkeletonComponent = () => (
+  <SkeletonGrid
+    rowGap={1}
+    grid={[
+      [{ colSize: 12 }],
+      [{ colSize: 12 }],
+      [{ colSize: 6 }, { colSize: 6 }],
+    ]}
+  />
+);
+```
+
+<Canvas of={SkeletonStories.RowGapSpacing} />
+
+<Controls of={SkeletonStories.RowGapSpacing} />
+
+## Wrapper mode
+
+You can use the SkeletonGrid like a wrapper with the isLoading prop.
+
+```tsx
+<SkeletonGrid {...props} isLoading={isLoading}>
+  <div className="skeleton-wrapper-content">
+    <p>Ceci est mon contenu à charger</p>
+    <p>Ceci est mon contenu à charger</p>
+    <p>mon contenu</p>
+  </div>
+</SkeletonGrid>
+```
+
+<Canvas of={SkeletonWrapperStories.WrapperMode} />
+
+<Controls of={SkeletonWrapperStories.WrapperMode} />

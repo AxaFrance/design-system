@@ -1,4 +1,3 @@
-import { Skeleton } from "../Skeleton/SkeletonApollo";
 import { List } from "../List/List/ListApollo";
 import {
   SkeletonListCommon,
@@ -7,10 +6,13 @@ import {
 
 export { type SkeletonListProps } from "./SkeletonListCommon";
 
+/**
+ * Apollo-themed `SkeletonList` component.
+ *
+ * @component
+ * @param {SkeletonListProps} props - SkeletonList props.
+ * @returns {JSX.Element | ReactNode[]} The rendered Apollo-themed SkeletonList.
+ */
 export const SkeletonList = (props: SkeletonListProps) => (
-  <SkeletonListCommon
-    {...props}
-    SkeletonComponent={Skeleton}
-    ListComponent={List}
-  />
+  <SkeletonListCommon {...props} ListComponent={List} />
 );

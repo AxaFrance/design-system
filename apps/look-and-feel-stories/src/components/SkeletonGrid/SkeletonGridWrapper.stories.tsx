@@ -1,16 +1,18 @@
-import { Skeleton } from "@axa-fr/canopee-react/prospect";
+import { SkeletonGrid } from "@axa-fr/canopee-react/client";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import "./Skeleton.stories.scss?inline";
+import "./SkeletonGrid.stories.scss?inline";
 
-const meta: Meta<typeof Skeleton> = {
-  title: "Components/Skeleton",
-  component: Skeleton,
+const meta: Meta<typeof SkeletonGrid> = {
+  title: "Components/SkeletonGrid",
+  component: SkeletonGrid,
 };
 
 export default meta;
 
-const RenderWrapper = (props: ComponentPropsWithoutRef<typeof Skeleton>) => {
+const RenderWrapper = (
+  props: ComponentPropsWithoutRef<typeof SkeletonGrid>,
+) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -22,20 +24,24 @@ const RenderWrapper = (props: ComponentPropsWithoutRef<typeof Skeleton>) => {
 
   return (
     <div className="skeleton-wrapper-demo">
-      <Skeleton {...props} isLoading={isLoading}>
+      <SkeletonGrid {...props} isLoading={isLoading}>
         <div className="skeleton-wrapper-content">
           <p>Ceci est mon contenu à charger</p>
           <p>Ceci est mon contenu à charger</p>
           <p>mon contenu</p>
         </div>
-      </Skeleton>
+      </SkeletonGrid>
     </div>
   );
 };
 
-export const WrapperMode: StoryObj<typeof Skeleton> = {
+export const WrapperMode: StoryObj<typeof SkeletonGrid> = {
   args: {
-    grid: [[8], [8], [5]],
+    grid: [
+      [{ colSize: 7, size: "XS" }],
+      [{ colSize: 8, size: "XS" }],
+      [{ colSize: 5, size: "XS" }],
+    ],
   },
   render: RenderWrapper,
 };

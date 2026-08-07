@@ -1,0 +1,12 @@
+@layer canopee {
+  .af-skeleton-grid {
+    --max-cols: 12;
+    --col-gap: 1rem;
+    --row-gap: 0.5rem;
+
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(var(--max-cols), 1fr);
+    gap: var(--row-gap) var(--col-gap);
+  }
+}

@@ -1,14 +1,33 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from "react";
-import { DebugGrid, Link, Heading, Footer } from "@axa-fr/canopee-react/client";
-import logo from "@axa-fr/canopee-css/logo-axa.svg";
+import {
+  DebugGrid,
+  Header,
+  Icon,
+  Footer,
+  Button,
+} from "@axa-fr/canopee-react/client";
+import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
+import { action } from "storybook/actions";
 import "./LayoutDemo.css";
 import {
   copyright,
   expandLinkText,
   links,
   socialMedias,
+  tabMenuProps,
+  menuBurgerProps,
 } from "./LayoutDemo.constant";
 
+/**
+ * Storybook layout wrapper used by page and layout stories.
+ *
+ * @component
+ * @param {{ children: ReactNode; title?: string }} props - LayoutDemo props.
+ * @param {ReactNode} props.children - Story content rendered between the header and the footer.
+ * @param {string} [props.title] - Title shown in the header.
+ * @returns {JSX.Element} The rendered Storybook layout wrapper.
+ */
 export const LayoutDemo = ({
   children,
   title,
@@ -18,12 +37,20 @@ export const LayoutDemo = ({
 }) => (
   <>
     <DebugGrid isCheckedByDefault forceVisible />
-    <header className="af-header-layout">
-      <Link href="/" className="af-header-layout-logo-link">
-        <img src={logo} alt="Logo AXA" className="af-header-layout-logo" />
-      </Link>
-      {title ? <Heading level={1}>{title}</Heading> : null}
-    </header>
+    <Header
+      appNameProps={{ label: title ?? "Mon application" }}
+      tabMenuProps={tabMenuProps}
+      menuBurgerProps={menuBurgerProps}
+      actionChildren={
+        <Button
+          variant="secondary"
+          iconLeft={<Icon src={accountBalance} size="S" />}
+          onClick={action("Logout clicked")}
+        >
+          Acceder a AXA Banque
+        </Button>
+      }
+    />
     <main className="grid">{children}</main>
     <Footer
       links={links}
