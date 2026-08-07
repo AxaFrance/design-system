@@ -3,11 +3,11 @@
     --color: var(--help-color);
 
     display: flex;
-    margin-top: 8px;
+    margin-top: 0.5em;
     align-items: center;
-    gap: 4px;
+    gap: calc(4rem / 16);
     font-size: calc(13rem / 16);
-    line-height: 16px;
+    line-height: 1em;
     color: var(--color);
 
     .af-item-message__icon {

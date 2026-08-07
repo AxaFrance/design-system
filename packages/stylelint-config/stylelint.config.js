@@ -32,5 +32,6 @@ module.exports = {
     ],
 
     "scss/at-extend-no-missing-placeholder": null,
+    "no-descending-specificity": null
   },
 };

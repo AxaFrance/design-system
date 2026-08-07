@@ -55,5 +55,11 @@
   "volta": {
     "node": "24.11.1",
     "npm": "11.6.4"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "@swc/core@1.15.46": true,
+    "@parcel/watcher": true,
+    "unrs-resolver": true
   }
 }
