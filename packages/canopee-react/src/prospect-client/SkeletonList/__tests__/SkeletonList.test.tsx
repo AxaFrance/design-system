@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { SkeletonListCommon } from "../SkeletonListCommon";
-import { Skeleton } from "../../Skeleton/SkeletonCommon";
+import { SkeletonGrid } from "../../SkeletonGrid/SkeletonGrid";
 import { CardCommon as Card } from "../../Card/CardCommon";
 import { ListCommon as List, type ListProps } from "../../List/List/ListCommon";
 
 const defaultProps = {
-  SkeletonComponent: Skeleton,
+  SkeletonGridComponent: SkeletonGrid,
   ListComponent: (props: ListProps) => <List CardComponent={Card} {...props} />,
-  lists: [{ grid: [[3, 9]], lines: 10 }],
+  lists: [{ grid: [[{ colSize: 3 }, { colSize: 9 }]], lines: 10 }],
 };
 
 describe("SkeletonList", () => {
@@ -21,7 +21,7 @@ describe("SkeletonList", () => {
     const skeletons = screen.getAllByRole("status");
     expect(skeletons.length).toEqual(10);
     expect(skeletons[0]).toHaveAccessibleName("Chargement");
-    expect(skeletons[0]).toHaveClass("af-skeleton-container");
+    expect(skeletons[0]).toHaveClass("af-skeleton-grid-container");
     expect(screen.queryByText("Chargement terminé")).not.toBeInTheDocument();
   });
 

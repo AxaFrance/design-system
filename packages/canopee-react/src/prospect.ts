@@ -116,6 +116,8 @@ export {
   ExitLayout,
   type ExitLayoutProps,
   type ExitLayoutWithSubComponents,
+  ExitLayoutSkeleton,
+  type ExitLayoutSkeletonProps,
 } from "./prospect-client/Layout/ExitLayout/ExitLayoutApollo";
 export {
   Footer,
@@ -182,8 +184,18 @@ export { ProgressBar } from "./prospect-client/ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./prospect-client/ProgressBarGroup/ProgressBarGroupApollo";
 export {
   Skeleton,
+  skeletonSizeVariants,
+  skeletonVariants,
+  type SkeletonActionSizeVariant,
+  type SkeletonCircleSizeVariant,
   type SkeletonProps,
-} from "./prospect-client/Skeleton/SkeletonApollo";
+  type SkeletonSizeVariant,
+  type SkeletonVariant,
+} from "./prospect-client/Skeleton/Skeleton";
+export {
+  SkeletonGrid,
+  type SkeletonGridProps,
+} from "./prospect-client/SkeletonGrid/SkeletonGrid";
 export {
   SkeletonList,
   type SkeletonListProps,

@@ -1,0 +1,87 @@
+@layer canopee {
+  .af-skeleton {
+    --col-size: 1;
+    --row-size: 1;
+    --skeleton-height: 56px;
+    --skeleton-width: 100%;
+    --skeleton-radius: var(--radius-8);
+    --skeleton-color-odd: var(--gray-140);
+    --skeleton-color-even: var(--gray-050);
+
+    width: var(--skeleton-width);
+    height: var(--skeleton-height);
+    border-radius: var(--skeleton-radius);
+    grid-column: span var(--col-size);
+    grid-row: span var(--row-size);
+    background: linear-gradient(
+      -45deg,
+      var(--skeleton-color-odd) 40%,
+      var(--skeleton-color-even) 50%,
+      var(--skeleton-color-odd) 60%
+    );
+    background-size: 400% 400%;
+  }
+
+  .af-skeleton--action,
+  .af-skeleton--circle {
+    --skeleton-radius: var(--radius-100);
+  }
+
+  .af-skeleton--circle {
+    --skeleton-width: var(--skeleton-height);
+
+    aspect-ratio: 1 / 1;
+
+    &.af-skeleton--small {
+      --skeleton-height: 24px;
+    }
+
+    &.af-skeleton--medium {
+      --skeleton-height: 48px;
+    }
+
+    &.af-skeleton--large {
+      --skeleton-height: 64px;
+    }
+  }
+
+  .af-skeleton--extra-small {
+    --skeleton-height: 24px;
+  }
+
+  .af-skeleton--small {
+    --skeleton-height: 40px;
+  }
+
+  .af-skeleton--medium {
+    --skeleton-height: 56px;
+  }
+
+  .af-skeleton--large {
+    --skeleton-height: 80px;
+  }
+
+  .af-skeleton--extra-large {
+    --skeleton-height: 150px;
+  }
+
+  .af-skeleton--extra-extra-large {
+    --skeleton-height: 400px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .af-skeleton {
+      animation: pulse 1s ease-in infinite;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      background-position: 0% 0%;
+    }
+
+    100% {
+      background-position: -100% 0%;
+    }
+  }
+}
