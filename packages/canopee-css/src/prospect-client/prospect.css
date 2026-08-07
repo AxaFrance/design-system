@@ -14,6 +14,7 @@
 @import "./Form/InputText/InputTextApollo.css";
 @import "./Form/TextArea/TextAreaApollo.css";
 @import "./Form/Dropdown/DropdownApollo.css";
+@import "./Form/DropdownMultiSelect/DropdownMultiSelectApollo.css";
 @import "./Icon/IconApollo.css";
 @import "./BasePicture/BasePictureAll.css";
 @import "./DataAgent/DataAgentApollo.css";
@@ -45,6 +46,7 @@
 @import "./Form/Checkbox/CardCheckbox/CardCheckboxApollo.css";
 @import "./Form/Checkbox/CardCheckboxOption/CardCheckboxOptionApollo.css";
 @import "./Form/ItemMultiSelect/ItemMultiSelectApollo.css";
+@import "./Form/MultiSelectList/MultiSelectListApollo.css";
 @import "./ContentItemMono/ContentItemMonoApollo.css";
 @import "./Form/Radio/Radio/RadioApollo.css";
 @import "./Form/Radio/RadioText/RadioTextAll.css";

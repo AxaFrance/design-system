@@ -14,6 +14,7 @@
 @import "./Form/InputText/InputTextLF.css";
 @import "./Form/TextArea/TextAreaLF.css";
 @import "./Form/Dropdown/DropdownLF.css";
+@import "./Form/DropdownMultiSelect/DropdownMultiSelectLF.css";
 @import "./Icon/IconLF.css";
 @import "./BasePicture/BasePictureAll.css";
 @import "./DataAgent/DataAgentLF.css";
@@ -45,6 +46,7 @@
 @import "./Form/Checkbox/CardCheckbox/CardCheckboxLF.css";
 @import "./Form/Checkbox/CardCheckboxOption/CardCheckboxOptionLF.css";
 @import "./Form/ItemMultiSelect/ItemMultiSelectLF.css";
+@import "./Form/MultiSelectList/MultiSelectListLF.css";
 @import "./ContentItemMono/ContentItemMonoLF.css";
 @import "./Form/Radio/Radio/RadioLF.css";
 @import "./Form/Radio/RadioText/RadioTextAll.css";
