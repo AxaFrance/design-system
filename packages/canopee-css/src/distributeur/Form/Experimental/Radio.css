@@ -2,5 +2,3 @@
 @import "./RadioButton.css";
 @import "./RadioGroup.css";
 @import "./RadioCard.css";
-
-@layer reset, canopee, radio-item, radio-button, radio-card, radio-group;
