@@ -10,6 +10,7 @@ import {
 
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
 import { action } from "storybook/actions";
+import "./LayoutDemo.css";
 
 import {
   copyright,
@@ -20,6 +21,15 @@ import {
   menuBurgerProps,
 } from "./LayoutDemo.constant.tsx";
 
+/**
+ * Storybook layout wrapper used by page and layout stories.
+ *
+ * @component
+ * @param {{ children: ReactNode; title?: string }} props - LayoutDemo props.
+ * @param {ReactNode} props.children - Story content rendered between the header and the footer.
+ * @param {string} [props.title] - Title shown in the header.
+ * @returns {JSX.Element} The rendered Storybook layout wrapper.
+ */
 export const LayoutDemo = ({
   children,
   title,

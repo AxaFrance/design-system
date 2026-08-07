@@ -62,7 +62,8 @@
 @import "./Card/CardApollo.css";
 @import "./List/List/ListApollo.css";
 @import "./LevelSelector/LevelSelectorApollo.css";
-@import "./Skeleton/SkeletonApollo.css";
+@import "./Skeleton/SkeletonAll.css";
+@import "./SkeletonGrid/SkeletonGridAll.css";
 @import "./Table/TableApollo.css";
 @import "./Fieldset/FieldsetApollo.css";
 @import "./TableMobileCard/TableMobileCardAll.css";
