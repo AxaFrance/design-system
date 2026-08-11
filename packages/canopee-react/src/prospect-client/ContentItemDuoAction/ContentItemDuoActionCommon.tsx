@@ -1,8 +1,8 @@
 import { type ComponentType, type ReactElement } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
-import type { ToggleProps } from "../Toggle/ToggleCommon";
-import type { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
 import type { ButtonProps } from "../Button/ButtonCommon";
+import type { ContentItemProps } from "../ContentItemMono/ContentItemMonoCommon";
+import type { ToggleProps } from "../Toggle/ToggleCommon";
+import { getClassName } from "../utilities/getClassName";
 
 export const ContentItemDuoActionState = {
   edit: "edit",
@@ -47,10 +47,10 @@ export const ContentItemDuoActionCommon = ({
 }: ContentItemDuoActionCommonProps & {
   ToggleComponent?: ComponentType<ToggleProps>;
 }) => {
-  const componentClassName = getComponentClassName(
-    "af-content-item-duo-action",
+  const componentClassName = getClassName({
+    baseClassName: "af-content-item-duo-action",
     className,
-  );
+  });
 
   return (
     <div className={componentClassName}>
