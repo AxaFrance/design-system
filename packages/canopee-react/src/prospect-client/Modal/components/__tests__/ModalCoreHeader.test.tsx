@@ -21,7 +21,10 @@ describe("ModalCoreHeader", () => {
     render(
       <ModalCoreHeader
         {...defaultProps}
-        iconProps={{ src: bank, "aria-label": "icon" }}
+        headingProps={{
+          icon: bank,
+          iconProps: { "aria-label": "icon" },
+        }}
       />,
     );
     expect(screen.getByLabelText("icon")).toBeInTheDocument();

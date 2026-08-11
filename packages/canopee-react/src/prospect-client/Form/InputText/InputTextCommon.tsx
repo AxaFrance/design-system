@@ -4,6 +4,7 @@ import {
   type ReactNode,
   useId,
 } from "react";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import {
   ItemLabelCommon,
@@ -13,29 +14,18 @@ import {
   ItemMessage,
   type ItemMessageProps,
 } from "../ItemMessage/ItemMessageCommon";
-import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type InputTextProps = ComponentProps<"input"> & {
   unit?: ReactNode;
   classModifier?: string;
   label?: ItemLabelProps["children"];
   helper?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  error?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  success?: string;
   containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "description"
     | "moreButtonLabel"
-    | "buttonLabel"
     | "onMoreButtonClick"
-    | "onButtonClick"
     | "sideButtonLabel"
     | "onSideButtonClick"
   > &
@@ -54,15 +44,11 @@ const InputTextCommon = ({
   className,
   classModifier = "",
   helper,
-  error,
-  success,
   message,
-  messageType,
+  messageType = "error",
   label,
   description,
-  buttonLabel,
   moreButtonLabel,
-  onButtonClick,
   onMoreButtonClick,
   required,
   sideButtonLabel,
@@ -78,16 +64,17 @@ const InputTextCommon = ({
   const idMessage = useId();
   const idHelp = useId();
 
-  const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
-    Boolean,
-  ) as string[];
+  const ariaDescribedby = [
+    helper && idHelp,
+    message && messageType === "success" && idMessage,
+  ].filter(Boolean) as string[];
 
   return (
     <div className="af-form__input-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
-        moreButtonLabel={moreButtonLabel ?? buttonLabel}
-        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        moreButtonLabel={moreButtonLabel}
+        onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
         onSideButtonClick={onSideButtonClick}
         required={required}
@@ -101,14 +88,10 @@ const InputTextCommon = ({
         unit={unit}
         className={className}
         classModifier={classModifier}
-        error={
-          (message && messageType === "error") || Boolean(error)
-            ? messageType || error
-            : undefined
-        }
+        error={message && messageType === "error" ? messageType : undefined}
         warning={message && messageType === "warning" ? messageType : undefined}
         required={required}
-        idMessage={message || error ? idMessage : undefined}
+        idMessage={message ? idMessage : undefined}
         idHelp={
           ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
         }
@@ -123,8 +106,8 @@ const InputTextCommon = ({
 
       <ItemMessageComponent
         id={idMessage}
-        message={message || error || success}
-        messageType={messageType || (error ? "error" : "success")}
+        message={message}
+        messageType={messageType}
       />
     </div>
   );

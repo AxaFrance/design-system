@@ -68,7 +68,6 @@ export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
   name: "Playground",
   render: ({
     icon,
-    type,
     description,
     subtitle,
     name,
@@ -78,7 +77,6 @@ export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
     <CardRadio
       {...args}
       icon={ICONS[icon ?? "none"]}
-      type={type}
       value={value !== "" ? value : undefined}
       name={name !== "" ? name : undefined}
       description={description !== "" ? description : undefined}
@@ -87,7 +85,7 @@ export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
   ),
   decorators: [
     (Story, { args }) => (
-      <div style={{ width: args.type === "horizontal" ? 500 : 300 }}>
+      <div style={{ width: args.position === "horizontal" ? 500 : 300 }}>
         <Story />
       </div>
     ),

@@ -13,7 +13,6 @@ const meta: Meta<typeof ContentItemDuo> = {
   },
   argTypes: {
     className: { control: "text" },
-    classModifier: { control: "text" },
     position: {
       options: ["horizontal", "vertical"],
       control: {
@@ -27,7 +26,6 @@ const meta: Meta<typeof ContentItemDuo> = {
         type: "select",
       },
     },
-    isVertical: { control: "boolean" },
     size: {
       options: ["small", "large"],
       control: {

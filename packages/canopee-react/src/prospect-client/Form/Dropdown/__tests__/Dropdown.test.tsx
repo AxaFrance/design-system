@@ -31,7 +31,7 @@ describe("Select", () => {
     render(
       <Dropdown
         label={selectLabel}
-        error={errorMessage}
+        message={errorMessage}
         helper={helperText}
         placeholder={placeholderText}
         required
@@ -50,7 +50,7 @@ describe("Select", () => {
   });
 
   it("applies error styles and displays error message when 'error' prop is passed", () => {
-    render(<Dropdown label={selectLabel} error={errorMessage} />);
+    render(<Dropdown label={selectLabel} message={errorMessage} />);
 
     const selectElement = screen.getByLabelText(/label/i);
     expect(selectElement).toHaveClass("af-form__dropdown-input--error");

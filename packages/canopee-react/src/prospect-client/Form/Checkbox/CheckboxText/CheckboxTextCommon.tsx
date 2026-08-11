@@ -5,10 +5,6 @@ import type { CheckboxProps } from "../Checkbox/CheckboxCommon";
 
 export type CheckboxTextProps = {
   label: string | ReactNode;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  errorMessage?: string;
   containerProps?: GridContainerProps;
 } & Omit<CheckboxProps, "aria-errormessage" | "aria-invalid"> &
   Partial<ItemMessageProps>;
@@ -20,10 +16,9 @@ export type CheckboxTextCommonProps = CheckboxTextProps & {
 
 const CheckboxTextCommon = ({
   label,
-  errorMessage,
   id,
   message,
-  messageType,
+  messageType = "error",
   CheckboxComponent,
   ItemMessageComponent,
   containerProps,
@@ -33,8 +28,7 @@ const CheckboxTextCommon = ({
   const inputId = id ?? generatedId;
   const messageId = `${inputId}-error`;
 
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(errorMessage);
+  const hasError = Boolean(message) && messageType === "error";
 
   return (
     <div className="af-checkbox-text" {...containerProps}>
@@ -48,7 +42,7 @@ const CheckboxTextCommon = ({
         <span className="af-checkbox-text__label-content">{label}</span>
       </label>
       <ItemMessageComponent
-        message={message || errorMessage}
+        message={message}
         id={messageId}
         messageType={messageType}
       />

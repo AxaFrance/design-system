@@ -18,9 +18,6 @@ const meta: Meta = {
     value: {
       control: { type: "text" },
     },
-    errorMessage: {
-      control: { type: "text" },
-    },
     checked: {
       control: { type: "boolean" },
     },

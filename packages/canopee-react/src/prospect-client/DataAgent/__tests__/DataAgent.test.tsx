@@ -1,13 +1,13 @@
-import { fireEvent, render, screen, act } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { DataAgent } from "../DataAgentApollo";
+import { describe, expect, it } from "vitest";
 import type {
   ContentMonoItemIconProps,
   ContentMonoItemPictureProps,
   ContentMonoItemStickProps,
 } from "../../ContentItemMono/ContentItemMonoCommon";
 import type { ClickItemProps } from "../../List/ClickItem/types";
+import { DataAgent } from "../DataAgentApollo";
 import type { TupleMax3 } from "../DataAgentCommon";
 
 const agentProps: ContentMonoItemPictureProps = {
@@ -38,19 +38,19 @@ const verifyContractProps = () => {
 const contents: TupleMax3<ContentMonoItemIconProps> = [
   {
     type: "icon",
-    icon: "accountBalance",
+    iconProps: { src: "accountBalance" },
     subtitle1: "6 place du 14 juillet 28 240 Ivry la Bataille",
     title: "",
   },
   {
     type: "icon",
-    icon: "accountBalance",
+    iconProps: { src: "accountBalance" },
     subtitle1: "01 23 34 45 67",
     title: "",
   },
   {
     type: "icon",
-    icon: "accountBalance",
+    iconProps: { src: "accountBalance" },
     subtitle1: "Ouvert aujourd’hui de 09h00 à 13h00 et de 14h00 à 18h00",
     title: "",
   },

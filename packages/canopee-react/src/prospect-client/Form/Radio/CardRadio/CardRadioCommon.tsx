@@ -11,10 +11,6 @@ type BaseCardRadioProps = Omit<ComponentProps<typeof Radio>, "size"> & {
 };
 
 export type CardRadioProps = BaseCardRadioProps & {
-  /**
-   * @deprecated Use `position` instead.
-   */
-  type?: "vertical" | "horizontal";
   position?: "vertical" | "horizontal";
   icon?: ComponentProps<typeof IconCommon>["src"];
   src?: ComponentProps<typeof BasePicture>["src"];
@@ -29,7 +25,6 @@ export type CardRadioCommonProps = CardRadioProps & {
 export const CardRadioCommon = ({
   label,
   position,
-  type,
   description,
   subtitle,
   icon,
@@ -41,7 +36,7 @@ export const CardRadioCommon = ({
   IconComponent,
   ...inputProps
 }: CardRadioCommonProps) => {
-  const isCardRadioHorizontal = [position, type].includes("horizontal");
+  const isCardRadioHorizontal = position === "horizontal";
 
   return (
     <label

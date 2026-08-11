@@ -10,9 +10,9 @@ describe("<TextArea />", () => {
         value="Lorem Ipsum"
         description="Description"
         helper="Helper"
-        buttonLabel="Button label"
+        moreButtonLabel="Button label"
         onChange={() => {}}
-        error="Error message"
+        message="Error message"
         sideButtonLabel="button"
       />,
     );
@@ -45,8 +45,8 @@ describe("<TextArea />", () => {
       );
     });
 
-    it("should set aria-errormessage when error is present", () => {
-      render(<TextArea label="Label" error="Error message" />);
+    it("should set aria-errormessage when message is present", () => {
+      render(<TextArea label="Label" message="Error message" />);
 
       const input = screen.getByRole("textbox");
       const error = screen.getByText("Error message");

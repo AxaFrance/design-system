@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { InputPhoneCommon } from "../InputPhoneCommon";
+import { Icon } from "../../../Icon/IconApollo";
+import { InputTextAtom } from "../../InputTextAtom/InputTextAtomApollo";
 import { ItemLabel } from "../../ItemLabel/ItemLabelApollo";
 import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
-import { InputTextAtom } from "../../InputTextAtom/InputTextAtomApollo";
-import { Icon } from "../../../Icon/IconApollo";
+import { InputPhoneCommon } from "../InputPhoneCommon";
 
 describe("<InputPhone />", () => {
   it("renders the InputPhone component with label and helper text", () => {
@@ -26,7 +26,7 @@ describe("<InputPhone />", () => {
     render(
       <InputPhoneCommon
         label="Phone Number"
-        error="Invalid phone number"
+        message="Invalid phone number"
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
         InputTextComponent={InputTextAtom}
@@ -40,7 +40,8 @@ describe("<InputPhone />", () => {
     render(
       <InputPhoneCommon
         label="Phone Number"
-        success="Phone number is valid"
+        message="Phone number is valid"
+        messageType="success"
         ItemLabelComponent={ItemLabel}
         ItemMessageComponent={ItemMessage}
         InputTextComponent={InputTextAtom}
@@ -122,7 +123,8 @@ describe("<InputPhone />", () => {
         <InputPhoneCommon
           label="Phone Number"
           helper="Help text"
-          success="Success message"
+          message="Success message"
+          messageType="success"
           ItemLabelComponent={ItemLabel}
           ItemMessageComponent={ItemMessage}
           InputTextComponent={InputTextAtom}
@@ -143,7 +145,7 @@ describe("<InputPhone />", () => {
       render(
         <InputPhoneCommon
           label="Phone Number"
-          error="Error message"
+          message="Error message"
           ItemLabelComponent={ItemLabel}
           ItemMessageComponent={ItemMessage}
           InputTextComponent={InputTextAtom}
