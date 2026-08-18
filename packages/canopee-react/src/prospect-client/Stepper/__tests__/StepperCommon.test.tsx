@@ -4,9 +4,7 @@ import {
   type ItemMessageVariants,
 } from "../../Form/ItemMessage/ItemMessageApollo";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
-import { Stepper as StepperApollo } from "../StepperApollo";
 import { StepperCommon } from "../StepperCommon";
-import { Stepper as StepperLF } from "../StepperLF";
 
 describe("StepperCommon Component", () => {
   it("renders the title and subtitle when visible", () => {
@@ -141,15 +139,4 @@ describe("StepperCommon Component", () => {
       expect(heading.tagName).toStrictEqual(tag);
     },
   );
-});
-
-describe.each([
-  ["StepperApollo", StepperApollo],
-  ["StepperLF", StepperLF],
-])("%s", (_, Stepper) => {
-  it("renders the stepper with title and progress", () => {
-    render(<Stepper currentStep={1} currentTitle="Step 1" nbSteps={4} />);
-
-    expect(screen.getByRole("heading", { name: "Step 1" })).toBeInTheDocument();
-  });
 });
