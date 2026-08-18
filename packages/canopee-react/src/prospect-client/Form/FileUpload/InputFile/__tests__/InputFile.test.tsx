@@ -11,7 +11,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../../../ItemLabel/ItemLabelCommon";
-import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
+import { ItemMessage } from "../../../ItemMessage/ItemMessageApollo";
 import { InputFileCommon, type InputFileProps } from "../InputFileCommon";
 
 const ButtonMock = (props: ButtonProps) => (
