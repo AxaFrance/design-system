@@ -1,5 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import type { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
+import {
+  ItemMessage,
+  type ItemMessageVariants,
+} from "../../Form/ItemMessage/ItemMessageApollo";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
 import { StepperCommon } from "../StepperCommon";
 
@@ -12,6 +15,7 @@ describe("StepperCommon Component", () => {
         currentSubtitle="Step 1 Subtitle"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
       />,
     );
 
@@ -30,6 +34,7 @@ describe("StepperCommon Component", () => {
         currentSubtitle=""
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
       />,
     );
 
@@ -45,6 +50,7 @@ describe("StepperCommon Component", () => {
         currentStepProgress={50}
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
       />,
     );
 
@@ -61,6 +67,7 @@ describe("StepperCommon Component", () => {
         helper="This is a helper text"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
       />,
     );
 
@@ -80,7 +87,8 @@ describe("StepperCommon Component", () => {
           message={messageText}
           nbSteps={4}
           ProgressBarGroupComponent={ProgressBarGroup}
-          messageType={messageType as ItemMessageProps["messageType"]}
+          ItemMessageComponent={ItemMessage}
+          messageType={messageType as ItemMessageVariants}
         />,
       );
 
@@ -100,6 +108,7 @@ describe("StepperCommon Component", () => {
         className="custom-class"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
       />,
     );
 
@@ -120,6 +129,7 @@ describe("StepperCommon Component", () => {
           currentTitle={`Step Title ${tag}`}
           nbSteps={4}
           ProgressBarGroupComponent={ProgressBarGroup}
+          ItemMessageComponent={ItemMessage}
           titleLevel={level as 1 | 2 | 3}
         />,
       );

@@ -10,10 +10,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessageCommon";
 
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ItemLabelProps["children"];
@@ -39,7 +36,7 @@ type TextAreaCommonProps = TextAreaProps & {
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
 
 const TextAreaCommon = ({
