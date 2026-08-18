@@ -1,8 +1,15 @@
 import "@axa-fr/canopee-css/client/Form/ItemMessage/ItemMessageLF.css";
-import "@axa-fr/canopee-css/client/Icon/IconLF.css";
+import { Icon } from "../../Icon/IconLF";
+import {
+  ItemMessage as ItemMessageCommon,
+  type ItemMessageProps,
+} from "./ItemMessageCommon";
+
+export const ItemMessage = (props: ItemMessageProps) => (
+  <ItemMessageCommon {...props} IconComponent={Icon} />
+);
 
 export {
-  ItemMessage,
   itemMessageVariants,
   type ItemMessageVariants,
 } from "./ItemMessageCommon";

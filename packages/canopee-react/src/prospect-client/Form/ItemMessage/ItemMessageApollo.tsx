@@ -1,8 +1,15 @@
 import "@axa-fr/canopee-css/prospect/Form/ItemMessage/ItemMessageApollo.css";
-import "@axa-fr/canopee-css/prospect/Icon/IconApollo.css";
+import { Icon } from "../../Icon/IconApollo";
+import {
+  ItemMessage as ItemMessageCommon,
+  type ItemMessageProps,
+} from "./ItemMessageCommon";
+
+export const ItemMessage = (props: ItemMessageProps) => (
+  <ItemMessageCommon {...props} IconComponent={Icon} />
+);
 
 export {
-  ItemMessage,
   itemMessageVariants,
   type ItemMessageVariants,
 } from "./ItemMessageCommon";

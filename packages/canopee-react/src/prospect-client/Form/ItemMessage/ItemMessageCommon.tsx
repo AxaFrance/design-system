@@ -1,8 +1,8 @@
 import successIcon from "@material-symbols/svg-400/outlined/check_circle-fill.svg";
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
-import type { ReactNode } from "react";
-import { Icon } from "../../Icon/IconCommon";
+import type { ComponentType, ReactNode } from "react";
+import type { IconProps } from "../../Icon/IconCommon";
 
 export const itemMessageVariants = {
   error: "error",
@@ -18,11 +18,16 @@ export type ItemMessageProps = {
   messageType?: ItemMessageVariants;
 };
 
+type ItemMessageCommonProps = ItemMessageProps & {
+  IconComponent: ComponentType<IconProps>;
+};
+
 export const ItemMessage = ({
   message,
   id,
   messageType = "error",
-}: ItemMessageProps) => {
+  IconComponent,
+}: ItemMessageCommonProps) => {
   if (!message) {
     return null;
   }
@@ -41,7 +46,7 @@ export const ItemMessage = ({
       role={messageType === "success" ? undefined : "alert"}
       aria-live="assertive"
     >
-      <Icon
+      <IconComponent
         src={getIcon()}
         size="XS"
         variant={messageType}
