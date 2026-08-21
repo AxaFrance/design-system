@@ -55,7 +55,6 @@ const meta: Meta<
     subtitle: "Sous-titre 2",
     name: "foo",
     value: "bar",
-    isInvalid: false,
     iconVariant: "icon",
     icon: "accountBalanceIcon",
     src: "https://picsum.photos/48",

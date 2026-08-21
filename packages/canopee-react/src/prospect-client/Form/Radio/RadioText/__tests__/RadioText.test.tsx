@@ -30,14 +30,16 @@ describe("RadioText Component", () => {
     expect(radio).toBeChecked();
   });
 
-  it("should apply invalid class when isInvalid is true", () => {
-    render(<RadioText label="Option" name="option" value="1" isInvalid />);
+  it("should apply invalid class when variant is error", () => {
+    render(
+      <RadioText label="Option" name="option" value="1" variant="error" />,
+    );
 
     const radio = screen.getByRole("radio", { name: "Option" });
     expect(radio).toHaveClass("af-radio--invalid");
   });
 
-  it("should not apply invalid class when isInvalid is false", () => {
+  it("should not apply invalid class when variant is not set", () => {
     render(<RadioText label="Option" name="option" value="1" />);
 
     const radio = screen.getByRole("radio", { name: "Option" });

@@ -18,8 +18,10 @@ const meta: Meta = {
     checked: {
       control: { type: "boolean" },
     },
-    isInvalid: {
-      control: { type: "boolean" },
+    variant: {
+      control: { type: "inline-radio" },
+      options: ["none", "error", "warning"],
+      mapping: { none: undefined },
     },
   },
   args: {

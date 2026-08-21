@@ -43,42 +43,31 @@ describe("Radio Component", () => {
     expect(radioInput).toHaveClass("af-radio custom-class");
   });
 
-  it("should apply invalid modifier when isInvalid is true", () => {
-    render(<Radio isInvalid />);
+  it("should apply invalid modifier when variant is error", () => {
+    render(<Radio variant="error" />);
 
     const radioInput = screen.getByRole("radio");
     expect(radioInput).toHaveClass("af-radio af-radio--invalid");
-    expect(radioInput).toHaveAttribute("aria-invalid", "true");
   });
 
-  it("should not apply invalid modifier when isInvalid is false", () => {
-    render(<Radio isInvalid={false} />);
+  it("should not apply invalid modifier when variant is not set", () => {
+    render(<Radio />);
 
     const radioInput = screen.getByRole("radio");
     expect(radioInput).not.toHaveClass("af-radio--invalid");
-    expect(radioInput).not.toHaveAttribute("aria-invalid");
   });
 
-  it("should apply warning modifier when hasWarning is true", () => {
-    render(<Radio hasWarning />);
+  it("should apply warning modifier when variant is warning", () => {
+    render(<Radio variant="warning" />);
 
     const radioInput = screen.getByRole("radio");
     expect(radioInput).toHaveClass("af-radio af-radio--warning");
   });
 
-  it("should not apply warning modifier when hasWarning is false", () => {
-    render(<Radio hasWarning={false} />);
+  it("should not apply warning modifier when variant is not set", () => {
+    render(<Radio />);
 
     const radioInput = screen.getByRole("radio");
     expect(radioInput).not.toHaveClass("af-radio--warning");
-  });
-
-  it("should apply both invalid and warning modifiers when both are true", () => {
-    render(<Radio isInvalid hasWarning />);
-
-    const radioInput = screen.getByRole("radio");
-    expect(radioInput).toHaveClass(
-      "af-radio af-radio--invalid af-radio--warning",
-    );
   });
 });
