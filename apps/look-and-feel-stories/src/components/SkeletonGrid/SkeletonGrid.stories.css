@@ -8,11 +8,9 @@
   }
 }
 
-.skeleton-wrapper {
-  &-demo {
-    width: 300px;
-    p {
-      margin: 0;
-    }
+.skeleton-wrapper-demo {
+  width: 300px;
+  p {
+    margin: 0;
   }
 }

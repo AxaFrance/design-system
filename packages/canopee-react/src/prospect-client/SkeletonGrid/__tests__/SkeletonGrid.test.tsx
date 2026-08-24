@@ -10,7 +10,7 @@ describe("<SkeletonGrid/>", () => {
     render(<SkeletonGrid {...defaultProps} />);
     const skeleton = screen.getByRole("status");
     expect(skeleton).toHaveAccessibleName();
-    expect(skeleton).toHaveClass("af-skeleton-grid-container");
+    expect(skeleton).toHaveClass("af-skeleton-grid");
   });
 
   it("Render <SkeletonGrid/> with other className", () => {

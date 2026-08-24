@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, CSSProperties } from "react";
 import "@axa-fr/canopee-css/client/Skeleton/SkeletonAll.css";
 import { getClassName } from "../utilities/getClassName";
 
@@ -100,7 +100,7 @@ export const Skeleton = ({
         "--col-size": colSize,
         "--row-size": rowSize,
         ...style,
-      } as React.CSSProperties
+      } as CSSProperties
     }
   />
 );

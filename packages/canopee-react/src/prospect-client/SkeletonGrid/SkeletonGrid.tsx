@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import type { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
 import { Skeleton, type SkeletonProps } from "../Skeleton/Skeleton";
 import "@axa-fr/canopee-css/prospect/SkeletonGrid/SkeletonGridAll.css";
 import { getClassName } from "../utilities/getClassName";
@@ -61,30 +61,33 @@ export const SkeletonGrid = ({
   rowGap = 8,
   isLoading = true,
   children,
-}: SkeletonGridProps) =>
-  isLoading ? (
-    <div
-      className={getClassName({
-        baseClassName: CLASS_NAME,
-        className,
-      })}
-      aria-label={ariaLabel}
-      role="status"
-      aria-busy={ariaBusy}
-      style={
-        {
-          "--max-cols": maxCols,
-          "--col-gap": `calc(${colGap} / var(--font-size-base) * 1rem)`,
-          "--row-gap": `calc(${rowGap} / var(--font-size-base) * 1rem)`,
-        } as React.CSSProperties
-      }
-    >
-      {grid.map((cols, indexRow) =>
-        cols.map((skeletonProps, indexCol) => (
-          <Skeleton key={`${indexRow}-${indexCol}`} {...skeletonProps} />
-        )),
-      )}
-    </div>
-  ) : (
-    children
-  );
+}: SkeletonGridProps) => {
+  if (isLoading) {
+    return (
+      <div
+        className={getClassName({
+          baseClassName: CLASS_NAME,
+          className,
+        })}
+        aria-label={ariaLabel}
+        role="status"
+        aria-busy={ariaBusy}
+        style={
+          {
+            "--max-cols": maxCols,
+            "--col-gap": `calc(${colGap} / var(--font-size-base) * 1rem)`,
+            "--row-gap": `calc(${rowGap} / var(--font-size-base) * 1rem)`,
+          } as CSSProperties
+        }
+      >
+        {grid.map((cols, indexRow) =>
+          cols.map((skeletonProps, indexCol) => (
+            <Skeleton key={`${indexRow}-${indexCol}`} {...skeletonProps} />
+          )),
+        )}
+      </div>
+    );
+  }
+
+  return children;
+};

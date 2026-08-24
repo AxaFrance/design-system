@@ -21,7 +21,7 @@ describe("SkeletonList", () => {
     const skeletons = screen.getAllByRole("status");
     expect(skeletons.length).toEqual(10);
     expect(skeletons[0]).toHaveAccessibleName("Chargement");
-    expect(skeletons[0]).toHaveClass("af-skeleton-grid-container");
+    expect(skeletons[0]).toHaveClass("af-skeleton-grid");
     expect(screen.queryByText("Chargement terminé")).not.toBeInTheDocument();
   });
 
