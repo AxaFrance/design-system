@@ -1,7 +1,7 @@
 import { SkeletonGrid } from "@axa-fr/canopee-react/client";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import "./SkeletonGrid.stories.scss?inline";
+import "./SkeletonGrid.stories.css?inline";
 
 const meta: Meta<typeof SkeletonGrid> = {
   title: "Components/SkeletonGrid",

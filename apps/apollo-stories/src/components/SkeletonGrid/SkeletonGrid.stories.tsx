@@ -1,7 +1,8 @@
 import { SkeletonGrid } from "@axa-fr/canopee-react/prospect";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import "./SkeletonGrid.stories.scss?inline";
+import { useArgs, useEffect, useState } from "storybook/preview-api";
+import { type ChangeEvent, ComponentPropsWithoutRef } from "react";
+import "./SkeletonGrid.stories.css?inline";
 
 type SkeletonGridProps = ComponentPropsWithoutRef<typeof SkeletonGrid>;
 
@@ -20,23 +21,26 @@ const meta: Meta<typeof SkeletonGrid> = {
 export default meta;
 
 const Render = ({ grid, ...props }: SkeletonGridProps) => {
+  const [, updateArgs] = useArgs<SkeletonGridProps>();
   const [nbLines, setLines] = useState("3");
   const [nbCols, setCols] = useState("12");
   const [gridState, setGrid] = useState(grid);
 
-  const onChangeLines = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeLines = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setLines(value);
   };
 
-  const onChangeCols = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeCols = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setCols(value);
   };
 
   useEffect(() => {
-    setGrid(repeatRows(Number(nbLines), Number(nbCols), "XS"));
-  }, [nbCols, nbLines]);
+    const nextGrid = repeatRows(Number(nbLines), Number(nbCols), "XS");
+    setGrid(nextGrid);
+    updateArgs({ grid: nextGrid });
+  }, [nbCols, nbLines, updateArgs]);
 
   return (
     <div className="skeleton-demo">
