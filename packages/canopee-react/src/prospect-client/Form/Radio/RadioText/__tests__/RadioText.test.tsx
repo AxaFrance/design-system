@@ -36,14 +36,14 @@ describe("RadioText Component", () => {
     );
 
     const radio = screen.getByRole("radio", { name: "Option" });
-    expect(radio).toHaveClass("af-radio--invalid");
+    expect(radio).toHaveClass("af-radio--error");
   });
 
   it("should not apply invalid class when variant is not set", () => {
     render(<RadioText label="Option" name="option" value="1" />);
 
     const radio = screen.getByRole("radio", { name: "Option" });
-    expect(radio).not.toHaveClass("af-radio--invalid");
+    expect(radio).not.toHaveClass("af-radio--error");
   });
 
   it("should call onChange when clicked", async () => {

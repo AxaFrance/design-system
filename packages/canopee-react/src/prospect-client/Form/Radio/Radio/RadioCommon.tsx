@@ -16,10 +16,7 @@ export const Radio = ({
     {...inputProps}
     className={getClassName({
       baseClassName: "af-radio",
-      modifiers: [
-        variant === "error" && "invalid",
-        variant === "warning" && "warning",
-      ],
+      modifiers: [variant],
       className,
     })}
     ref={ref}

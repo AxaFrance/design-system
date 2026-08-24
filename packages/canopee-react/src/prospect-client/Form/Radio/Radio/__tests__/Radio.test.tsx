@@ -47,14 +47,14 @@ describe("Radio Component", () => {
     render(<Radio variant="error" />);
 
     const radioInput = screen.getByRole("radio");
-    expect(radioInput).toHaveClass("af-radio af-radio--invalid");
+    expect(radioInput).toHaveClass("af-radio af-radio--error");
   });
 
   it("should not apply invalid modifier when variant is not set", () => {
     render(<Radio />);
 
     const radioInput = screen.getByRole("radio");
-    expect(radioInput).not.toHaveClass("af-radio--invalid");
+    expect(radioInput).not.toHaveClass("af-radio--error");
   });
 
   it("should apply warning modifier when variant is warning", () => {

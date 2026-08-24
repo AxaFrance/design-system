@@ -35,7 +35,7 @@
       --radio-border-width: 2px;
     }
 
-    &[class*="--invalid"] {
+    &[class*="--error"] {
       &:checked {
         --radio-ckecked-color: transparent;
       }

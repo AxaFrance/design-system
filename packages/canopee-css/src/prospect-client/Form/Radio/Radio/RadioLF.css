@@ -15,7 +15,7 @@
       --radio-ckecked-color: var(--blue-1000);
     }
 
-    &[class*="--invalid"] {
+    &[class*="--error"] {
       &:checked,
       &:not(:checked) {
         --radio-border-color: var(--red-alert-1200);

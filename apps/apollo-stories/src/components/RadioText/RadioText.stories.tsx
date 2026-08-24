@@ -19,9 +19,8 @@ const meta: Meta = {
       control: { type: "boolean" },
     },
     variant: {
-      control: { type: "inline-radio" },
-      options: ["none", "error", "warning"],
-      mapping: { none: undefined },
+      control: { type: "select" },
+      options: [undefined, "error", "warning"],
     },
   },
   args: {
