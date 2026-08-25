@@ -1,6 +1,7 @@
 import {
   Svg,
   InputText,
+  Spinner,
   itemMessageVariants,
 } from "@axa-fr/canopee-react/prospect";
 import euroSymbolIcon from "@material-symbols/svg-400/outlined/euro_symbol.svg";
@@ -63,5 +64,18 @@ export const InputTextWarningStory: Story = {
     error: "",
     message: "Warning Message",
     messageType: "warning",
+  },
+};
+
+export const InputTextLoadingStory: Story = {
+  name: "Loading",
+  render,
+  args: {
+    value: "",
+    error: "",
+    message: "",
+    unit: <Spinner size={24} />,
+    disabled: true,
+    placeholder: "Chargement en cours...",
   },
 };
