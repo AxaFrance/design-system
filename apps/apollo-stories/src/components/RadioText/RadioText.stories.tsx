@@ -20,7 +20,7 @@ const meta: Meta = {
     },
     variant: {
       control: { type: "select" },
-      options: [undefined, "error", "warning"],
+      options: ["error", "warning"],
     },
   },
   args: {
