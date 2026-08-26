@@ -18,7 +18,7 @@
       --checkbox-background-color: var(--blue-1000);
     }
 
-    &[aria-invalid="true"] {
+    &[class*="--error"] {
       &:checked {
         --checkbox-background-color: var(--white-1000);
 

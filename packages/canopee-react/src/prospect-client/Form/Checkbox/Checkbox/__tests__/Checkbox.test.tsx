@@ -44,32 +44,34 @@ describe("CheckboxCommon Component", () => {
     expect(checkbox).toHaveClass("af-checkbox custom-class");
   });
 
-  it("should apply warning modifier when hasWarning is true", () => {
-    render(<Checkbox hasWarning />);
+  it("should apply error modifier and aria-invalid when variant is error", () => {
+    render(<Checkbox variant="error" />);
+
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).toHaveClass("af-checkbox af-checkbox--error");
+    expect(checkbox).toHaveAttribute("aria-invalid", "true");
+  });
+
+  it("should not apply error modifier when variant is not set", () => {
+    render(<Checkbox />);
+
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).not.toHaveClass("af-checkbox--error");
+    expect(checkbox).not.toHaveAttribute("aria-invalid");
+  });
+
+  it("should apply warning modifier when variant is warning", () => {
+    render(<Checkbox variant="warning" />);
 
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveClass("af-checkbox af-checkbox--warning");
   });
 
-  it("should not apply warning modifier when hasWarning is false", () => {
-    render(<Checkbox hasWarning={false} />);
+  it("should not apply warning modifier when variant is not set", () => {
+    render(<Checkbox />);
 
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).not.toHaveClass("af-checkbox--warning");
-  });
-
-  it("should set aria-invalid when hasError is true", () => {
-    render(<Checkbox hasError />);
-
-    const checkbox = screen.getByRole("checkbox");
-    expect(checkbox).toHaveAttribute("aria-invalid", "true");
-  });
-
-  it("should not set aria-invalid when hasError is false", () => {
-    render(<Checkbox hasError={false} />);
-
-    const checkbox = screen.getByRole("checkbox");
-    expect(checkbox).not.toHaveAttribute("aria-invalid", "true");
   });
 
   it("should set aria-errormessage when errorId is provided", () => {
@@ -77,13 +79,5 @@ describe("CheckboxCommon Component", () => {
 
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveAttribute("aria-errormessage", "error-1");
-  });
-
-  it("should apply warning modifier and aria-invalid when both hasWarning and hasError are true", () => {
-    render(<Checkbox hasWarning hasError />);
-
-    const checkbox = screen.getByRole("checkbox");
-    expect(checkbox).toHaveClass("af-checkbox af-checkbox--warning");
-    expect(checkbox).toHaveAttribute("aria-invalid", "true");
   });
 });
