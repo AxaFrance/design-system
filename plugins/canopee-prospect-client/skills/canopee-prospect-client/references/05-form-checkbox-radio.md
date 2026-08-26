@@ -181,8 +181,7 @@ import { Radio } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type RadioProps = Omit<ComponentProps<"input">, "disabled" | "type"> & {
-  isInvalid?: boolean;            // Ajoute la classe af-radio--invalid
-  hasWarning?: boolean;           // Ajoute la classe af-radio--warning (bordure orange)
+  variant?: "error" | "warning";  // "error" → af-radio--error, "warning" → af-radio--warning
 };
 ```
 
@@ -289,6 +288,6 @@ type CardRadioProps = {
   basePictureProps?: Partial<ComponentProps<typeof BasePicture>>;
   description?: ReactNode;
   subtitle?: ReactNode;
-  isInvalid?: boolean;
+  variant?: "error" | "warning";  // hérité de RadioProps
 } & Omit<ComponentProps<"input">, "size">;  // attributs <input type="radio">
 ```
