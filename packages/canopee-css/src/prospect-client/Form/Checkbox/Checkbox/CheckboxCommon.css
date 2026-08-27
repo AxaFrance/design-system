@@ -36,5 +36,24 @@
         }
       }
     }
+
+    &[class*="--error"],
+    &[aria-invalid="true"] {
+      &:checked {
+        --checkbox-background-color: var(--white-1000);
+
+        background-image: none;
+      }
+
+      &:checked,
+      &:not(:checked) {
+        --checkbox-border-width: 2px;
+
+        &:hover,
+        &:focus-within {
+          --checkbox-border-width: 3px;
+        }
+      }
+    }
   }
 }

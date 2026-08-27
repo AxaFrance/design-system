@@ -5,14 +5,11 @@ import { getClassName } from "../../../utilities/getClassName";
 export type CheckboxProps = {
   /** @deprecated Use `aria-errormessage` instead */
   errorId?: string;
-  /** @deprecated Use `variant` instead */
-  hasError?: boolean;
   variant?: "error" | "warning";
 } & Omit<ComponentProps<"input">, "disabled" | "type">;
 
 export const Checkbox = ({
   errorId,
-  hasError,
   variant,
   className,
   ref,
@@ -20,7 +17,7 @@ export const Checkbox = ({
 }: CheckboxProps) => (
   <input
     aria-errormessage={errorId}
-    aria-invalid={variant === "error" || hasError || undefined}
+    aria-invalid={variant === "error" || undefined}
     {...inputProps}
     className={getClassName({
       baseClassName: "af-checkbox",
