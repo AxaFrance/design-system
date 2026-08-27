@@ -47,6 +47,10 @@ const meta: Meta<
     src: {
       if: { arg: "iconVariant", eq: "base picture" },
     },
+    variant: {
+      control: { type: "select" },
+      options: ["error", "warning"],
+    },
   },
   args: {
     position: "vertical",
