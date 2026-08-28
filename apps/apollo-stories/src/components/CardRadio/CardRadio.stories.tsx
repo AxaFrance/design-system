@@ -47,6 +47,10 @@ const meta: Meta<
     src: {
       if: { arg: "iconVariant", eq: "base picture" },
     },
+    variant: {
+      control: { type: "select" },
+      options: ["error", "warning"],
+    },
   },
   args: {
     position: "vertical",
@@ -55,7 +59,6 @@ const meta: Meta<
     subtitle: "Sous-titre 2",
     name: "foo",
     value: "bar",
-    isInvalid: false,
     iconVariant: "icon",
     icon: "accountBalanceIcon",
     src: "https://picsum.photos/48",

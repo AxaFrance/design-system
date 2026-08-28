@@ -35,7 +35,7 @@ export const CardRadioCommon = ({
   icon,
   src,
   basePictureProps,
-  isInvalid,
+  variant,
   className,
   RadioComponent,
   IconComponent,
@@ -48,7 +48,7 @@ export const CardRadioCommon = ({
       className={getClassName({
         baseClassName: "af-card-radio",
         modifiers: [
-          isInvalid && "invalid",
+          variant === "error" && "invalid",
           isCardRadioHorizontal && "horizontal",
         ],
         className,
@@ -67,7 +67,7 @@ export const CardRadioCommon = ({
           <p className="af-card-radio__subtitle">{subtitle}</p>
         )}
       </div>
-      <RadioComponent {...inputProps} isInvalid={isInvalid} />
+      <RadioComponent {...inputProps} variant={variant} />
     </label>
   );
 };

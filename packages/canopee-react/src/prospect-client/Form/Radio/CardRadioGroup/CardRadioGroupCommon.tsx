@@ -12,14 +12,14 @@ import {
 } from "../../ItemMessage/ItemMessageCommon";
 import { type CardRadioProps } from "../CardRadio/CardRadioCommon";
 
-type RadioOption = Omit<CardRadioProps, "name" | "type" | "isInvalid">;
+type RadioOption = Omit<CardRadioProps, "name" | "type" | "variant">;
 
 export type CardRadioGroupProps = Omit<
   CardRadioProps,
   | "value"
   | "label"
   | "type"
-  | "isInvalid"
+  | "variant"
   | "icon"
   | "src"
   | "basePictureProps"
@@ -139,7 +139,7 @@ const CardRadioGroupCommon = ({
             position={cardStyle ?? type}
             {...inputProps}
             {...(cardRadioItemProps as CardRadioProps)}
-            isInvalid={hasError}
+            variant={hasError ? "error" : undefined}
             name={name}
           />
         ))}

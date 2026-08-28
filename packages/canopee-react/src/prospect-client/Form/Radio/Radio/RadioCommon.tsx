@@ -1,17 +1,25 @@
 import { type ComponentProps } from "react";
 
+import { getClassName } from "../../../utilities/getClassName";
+
 export type RadioProps = Omit<ComponentProps<"input">, "disabled" | "type"> & {
-  isInvalid?: boolean;
+  variant?: "error" | "warning";
 };
 
-export const Radio = ({ className, isInvalid, ...props }: RadioProps) => (
+export const Radio = ({
+  variant,
+  className,
+  ref,
+  ...inputProps
+}: RadioProps) => (
   <input
-    {...props}
-    className={["af-radio", isInvalid && "af-radio--invalid", className]
-      .filter(Boolean)
-      .join(" ")}
+    {...inputProps}
+    className={getClassName({
+      baseClassName: "af-radio",
+      modifiers: [variant],
+      className,
+    })}
+    ref={ref}
     type="radio"
   />
 );
-
-Radio.displayName = "Radio";

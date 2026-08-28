@@ -89,7 +89,7 @@ describe("CardRadioCommon", () => {
         IconComponent={MockIconComponent}
         name="test"
         value="radio-value"
-        isInvalid
+        variant="error"
       />,
     );
 

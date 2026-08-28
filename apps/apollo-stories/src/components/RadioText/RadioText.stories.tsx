@@ -18,8 +18,9 @@ const meta: Meta = {
     checked: {
       control: { type: "boolean" },
     },
-    isInvalid: {
-      control: { type: "boolean" },
+    variant: {
+      control: { type: "select" },
+      options: ["error", "warning"],
     },
   },
   args: {
