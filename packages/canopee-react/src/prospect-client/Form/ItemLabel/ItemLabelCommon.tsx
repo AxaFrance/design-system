@@ -135,6 +135,7 @@ export const ItemLabelCommon = ({
   required,
   inputId,
   htmlFor,
+  id,
   className,
   style,
   "aria-describedby": ariaDescribedby,
@@ -166,6 +167,7 @@ export const ItemLabelCommon = ({
       style={style}
     >
       <label
+        id={id}
         htmlFor={htmlFor || inputId}
         className="af-item-label__label"
         aria-describedby={describedByIds || undefined}

@@ -180,6 +180,14 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `CardRadioGroup`     | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Groupe de radios en cartes            |
 | `CardRadio`    | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
 
+### Formulaires — multi-sélection
+
+| Composant              | Référence                                                   | Cas d'usage                                 |
+| ---------------------- | ----------------------------------------------------------- | ------------------------------------------- |
+| `ItemMultiSelect`      | [19-multi-select.md](./references/19-multi-select.md)       | Item checkbox pour multi-sélection          |
+| `MultiSelectList`      | [19-multi-select.md](./references/19-multi-select.md)       | Liste de checkboxes multi-sélection         |
+| `DropdownMultiSelect`  | [19-multi-select.md](./references/19-multi-select.md)       | Select multiple complet (dropdown + tags)   |
+
 ### Upload de fichiers
 
 | Composant    | Référence                                       | Cas d'usage                                      |
@@ -204,6 +212,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | Composant | Référence                                   | Cas d'usage                                          |
 | --------- | ------------------------------------------- | ---------------------------------------------------- |
 | `Tag`     | [15-visuals.md](./references/15-visuals.md) | Label de statut (info/success/warning/error/neutral) |
+| `TagList` | [19-multi-select.md](./references/19-multi-select.md) | Liste de tags avec overflow automatique              |
 | `Icon`    | [15-visuals.md](./references/15-visuals.md) | Icône SVG avec variante et taille                    |
 | `Heading` | [15-visuals.md](./references/15-visuals.md) | Titre de page avec icône, sous-titres, tag           |
 | `Divider` | [15-visuals.md](./references/15-visuals.md) | Séparateur `<hr>`                                    |
@@ -266,4 +275,4 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ---
 
-_Version : 2026.08.07_
+_Version : 2026.08.25_
