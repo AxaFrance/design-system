@@ -1,7 +1,7 @@
 import { type ComponentProps, type ComponentType, type ReactNode } from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
 import { getClassName } from "../../utilities/getClassName";
-import { type ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../../Form/ItemMessage/ItemMessage";
 
 type ContentItemDuoPositions =
   | {

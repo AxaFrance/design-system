@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { ItemMessage } from "../ItemMessageApollo";
+import { ItemMessage } from "../ItemMessage";
 
-describe("ItemMessageCommon", () => {
+describe("ItemMessage", () => {
   const message = "Custom message";
   it("renders the component with a custom message", () => {
     render(<ItemMessage message={message} />);

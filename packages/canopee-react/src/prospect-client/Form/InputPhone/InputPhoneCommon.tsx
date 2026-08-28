@@ -13,7 +13,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import { type ItemMessageProps } from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 import { CountryCodeSelect } from "./CountryCodeSelect";
 import { type OptionType } from "./InputPhone.types";
 import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";

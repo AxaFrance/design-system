@@ -12,7 +12,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../../../ItemLabel/ItemLabelCommon";
-import { ItemMessage } from "../../../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import {
   InputFileCommon,
   type InputFileProps,

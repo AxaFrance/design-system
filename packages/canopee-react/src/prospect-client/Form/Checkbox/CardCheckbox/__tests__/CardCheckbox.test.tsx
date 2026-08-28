@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
 import { Icon } from "../../../../Icon/IconCommon";
-import { ItemMessage } from "../../../ItemMessage/ItemMessageLF";
+import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import {
   CardCheckboxOptionCommon,
   type CardCheckboxOptionProps,

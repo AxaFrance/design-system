@@ -3,8 +3,8 @@ import { axe } from "jest-axe";
 import { Icon } from "../../../Icon/IconApollo";
 import { InputTextAtom } from "../../InputTextAtom/InputTextAtomApollo";
 import { ItemLabel } from "../../ItemLabel/ItemLabelApollo";
-import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
 import { InputPhoneCommon } from "../InputPhoneCommon";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 
 describe("<InputPhone />", () => {
   it("renders the InputPhone component with label and helper text", () => {
