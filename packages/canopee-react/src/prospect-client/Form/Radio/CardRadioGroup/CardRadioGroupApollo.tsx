@@ -1,4 +1,4 @@
-import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { CardRadio } from "../CardRadio/CardRadioApollo";
 import {
   CardRadioGroupCommon,

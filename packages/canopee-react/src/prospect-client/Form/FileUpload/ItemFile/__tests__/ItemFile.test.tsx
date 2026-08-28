@@ -4,7 +4,7 @@ import { userEvent } from "@testing-library/user-event";
 import { ClickIcon } from "../../../../ClickIcon/ClickIconCommon";
 import { Icon } from "../../../../Icon/IconCommon";
 import { Spinner } from "../../../../Spinner/SpinnerCommon";
-import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
+import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 
 import { ItemFileCommon, type ItemFileProps } from "../ItemFileCommon";
 

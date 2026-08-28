@@ -1,0 +1,33 @@
+@layer canopee {
+  .af-item-message {
+    --item-message-color: var(--red-alert-1000);
+    --item-message-font-size: var(--rem-14);
+
+    display: flex;
+    align-items: center;
+    gap: var(--rem-8);
+
+    @media (--desktop-small) {
+      --item-message-font-size: var(--rem-16);
+    }
+  }
+
+  .af-item-message--success {
+    --item-message-color: var(--green-1000);
+  }
+
+  .af-item-message--warning {
+    --item-message-color: var(--orange-1000);
+  }
+
+  .af-item-message .af-icon {
+    --icon-fill: var(--item-message-color);
+  }
+
+  .af-item-message__message {
+    font-family: var(--font-family-base);
+    font-size: var(--item-message-font-size);
+    line-height: 1.25em;
+    color: var(--item-message-color);
+  }
+}

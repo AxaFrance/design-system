@@ -77,7 +77,7 @@ export {
   ItemMessage,
   itemMessageVariants,
   type ItemMessageVariants,
-} from "./prospect-client/Form/ItemMessage/ItemMessageLF";
+} from "./prospect-client/Form/ItemMessage/ItemMessage";
 export {
   ItemMultiSelect,
   type ItemMultiSelectProps,

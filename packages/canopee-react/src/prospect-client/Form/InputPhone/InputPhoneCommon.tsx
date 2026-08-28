@@ -13,10 +13,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 import { CountryCodeSelect } from "./CountryCodeSelect";
 import { type OptionType } from "./InputPhone.types";
 import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
@@ -57,7 +54,7 @@ type InputPhoneCommonProps = InputPhoneProps & {
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
   InputTextComponent: ComponentType<ComponentProps<typeof InputTextAtom>>;
   IconComponent: ComponentType<ComponentProps<typeof Icon>>;
 };

@@ -1,5 +1,5 @@
 import { ItemLabel } from "../../ItemLabel/ItemLabelApollo";
-import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { InputFileCommon, type InputFileProps } from "./InputFileCommon";
 
 import "@axa-fr/canopee-css/prospect/Form/FileUpload/InputFile/InputFileApollo.css";

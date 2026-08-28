@@ -10,10 +10,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 
 export type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
@@ -46,7 +43,7 @@ type DropdownCommonProps = DropdownProps & {
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
 
 const DropdownCommon = ({

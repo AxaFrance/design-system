@@ -1,6 +1,6 @@
 import { type ComponentType, type ReactNode, useId } from "react";
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
-import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
+import type { ItemMessageProps } from "../../ItemMessage/ItemMessage";
 import type { CheckboxProps } from "../Checkbox/CheckboxCommon";
 
 export type CheckboxTextProps = {

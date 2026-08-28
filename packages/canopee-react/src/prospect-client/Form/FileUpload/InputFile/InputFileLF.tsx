@@ -1,5 +1,5 @@
 import { ItemLabel } from "../../ItemLabel/ItemLabelLF";
-import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { InputFileCommon, type InputFileProps } from "./InputFileCommon";
 
 import "@axa-fr/canopee-css/client/Form/FileUpload/InputFile/InputFileLF.css";

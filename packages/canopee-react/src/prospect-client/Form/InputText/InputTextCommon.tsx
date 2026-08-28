@@ -9,10 +9,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type InputTextProps = ComponentProps<"input"> & {
@@ -45,7 +42,7 @@ type InputTextCommonProps = InputTextProps & {
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
   InputTextAtomComponent: ComponentType<ComponentProps<typeof InputTextAtom>>;
 };
 

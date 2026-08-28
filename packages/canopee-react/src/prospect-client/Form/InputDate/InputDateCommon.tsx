@@ -10,10 +10,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 import { InputDateAtom, type InputDateAtomProps } from "./InputDateAtom";
 import { InputDateTextAtom } from "./InputDateTextAtom";
 
@@ -54,7 +51,7 @@ type InputDateCommonProps = InputDateProps & {
   ItemLabelComponent: ComponentType<
     Omit<ComponentProps<typeof ItemLabelCommon>, "ButtonComponent">
   >;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
 
 const InputDateCommon = ({

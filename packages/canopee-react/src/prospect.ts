@@ -69,7 +69,7 @@ export {
   ItemMessage,
   itemMessageVariants,
   type ItemMessageVariants,
-} from "./prospect-client/Form/ItemMessage/ItemMessageApollo";
+} from "./prospect-client/Form/ItemMessage/ItemMessage";
 export {
   ItemMultiSelect,
   type ItemMultiSelectProps,

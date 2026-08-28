@@ -1,15 +1,11 @@
 import {
-  type ComponentProps,
   type ComponentType,
   type PropsWithChildren,
   type ReactNode,
   useId,
 } from "react";
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../../ItemMessage/ItemMessage";
 import { type CardRadioProps } from "../CardRadio/CardRadioCommon";
 
 type RadioOption = Omit<CardRadioProps, "name" | "type" | "variant">;
@@ -63,7 +59,7 @@ export type CardRadioGroupProps = Omit<
 
 export type CardRadioCommonProps = CardRadioGroupProps & {
   CardRadioComponent: ComponentType<CardRadioProps>;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
 
 const CardRadioGroupCommon = ({
