@@ -10,7 +10,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import { type ItemMessageProps } from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ItemLabelProps["children"];

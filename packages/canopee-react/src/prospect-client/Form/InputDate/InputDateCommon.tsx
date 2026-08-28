@@ -10,7 +10,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import { type ItemMessageProps } from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 import { InputDateAtom, type InputDateAtomProps } from "./InputDateAtom";
 import { InputDateTextAtom } from "./InputDateTextAtom";
 

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import {
   ItemMessage,
   type ItemMessageVariants,
-} from "../../Form/ItemMessage/ItemMessageApollo";
+} from "../../Form/ItemMessage/ItemMessage";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
 import { StepperCommon } from "../StepperCommon";
 

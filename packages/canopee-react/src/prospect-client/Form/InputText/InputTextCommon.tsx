@@ -9,7 +9,7 @@ import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
-import { type ItemMessageProps } from "../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type InputTextProps = ComponentProps<"input"> & {

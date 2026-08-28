@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { InputPhoneCommon } from "../InputPhoneCommon";
 import { ItemLabel } from "../../ItemLabel/ItemLabelApollo";
-import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { InputTextAtom } from "../../InputTextAtom/InputTextAtomApollo";
 import { Icon } from "../../../Icon/IconApollo";
 

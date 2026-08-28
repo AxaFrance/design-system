@@ -5,7 +5,7 @@ import {
   useId,
 } from "react";
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
-import { type ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../../ItemMessage/ItemMessage";
 import { type CardRadioProps } from "../CardRadio/CardRadioCommon";
 
 type RadioOption = Omit<CardRadioProps, "name" | "type" | "isInvalid">;

@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/prospect/Form/Checkbox/CheckboxText/CheckboxTextApollo.css";
-import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { Checkbox } from "../Checkbox/CheckboxApollo";
 import {
   CheckboxTextCommon,

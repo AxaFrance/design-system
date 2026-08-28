@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/prospect/Stepper/StepperApollo.css";
-import { ItemMessage } from "../Form/ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../Form/ItemMessage/ItemMessage";
 import { ProgressBarGroup } from "../ProgressBarGroup/ProgressBarGroupApollo";
 import { StepperCommon, type StepperProps } from "./StepperCommon";
 

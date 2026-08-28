@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/client/Form/InputPhone/InputPhoneLF.css";
 import { ItemLabel } from "../ItemLabel/ItemLabelLF";
-import { ItemMessage } from "../ItemMessage/ItemMessageLF";
+import { ItemMessage } from "../ItemMessage/ItemMessage";
 import { InputPhoneCommon, type InputPhoneProps } from "./InputPhoneCommon";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomLF";
 import { Icon } from "../../Icon/IconLF";

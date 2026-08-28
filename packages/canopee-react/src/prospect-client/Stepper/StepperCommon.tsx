@@ -4,7 +4,7 @@ import {
   type HTMLAttributes,
   useId,
 } from "react";
-import { type ItemMessageProps } from "../Form/ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../Form/ItemMessage/ItemMessage";
 import { type ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
 
 export type StepperProps = {

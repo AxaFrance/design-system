@@ -88,7 +88,7 @@
 
   /* ✅ valid names colors */
   --red-040: hsl(17deg, 64%, 98%);
-  --red-alert-1000: hsl(0deg, 100%, 45%);
+  --red-alert-1000: #e50000;
   --red-alert-1200: hsl(0deg, 100%, 36%);
   --brand-red-1000: hsl(357deg, 100%, 64%);
 
