@@ -18,13 +18,11 @@
       --checkbox-background-color: var(--blue-1000);
     }
 
-    &[aria-invalid="true"]:not(:checked) {
-      --checkbox-border-color: var(--red-alert-1200);
-      --checkbox-border-width: 2px;
-
-      &:hover,
-      &:focus-within {
-        --checkbox-border-width: 3px;
+    &[class*="--error"],
+    &[aria-invalid="true"] {
+      &:checked,
+      &:not(:checked) {
+        --checkbox-border-color: var(--red-alert-1200);
       }
     }
   }

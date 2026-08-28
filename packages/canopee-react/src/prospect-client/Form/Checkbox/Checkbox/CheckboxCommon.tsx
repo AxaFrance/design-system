@@ -1,25 +1,30 @@
 import { type ComponentProps } from "react";
 
+import { getClassName } from "../../../utilities/getClassName";
+
 export type CheckboxProps = {
   /** @deprecated Use `aria-errormessage` instead */
   errorId?: string;
-  /** @deprecated Use `aria-invalid` instead */
-  hasError?: boolean;
+  variant?: "error" | "warning";
 } & Omit<ComponentProps<"input">, "disabled" | "type">;
 
 export const Checkbox = ({
   errorId,
-  hasError,
+  variant,
   className,
+  ref,
   ...inputProps
 }: CheckboxProps) => (
   <input
     aria-errormessage={errorId}
-    aria-invalid={hasError}
+    aria-invalid={variant === "error" || undefined}
     {...inputProps}
-    className={["af-checkbox", className].filter(Boolean).join(" ")}
+    className={getClassName({
+      baseClassName: "af-checkbox",
+      modifiers: [variant],
+      className,
+    })}
+    ref={ref}
     type="checkbox"
   />
 );
-
-Checkbox.displayName = "Checkbox";
