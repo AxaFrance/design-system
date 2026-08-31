@@ -163,6 +163,7 @@ Disponibles via `@axa-fr/canopee-react/distributeur-experimental` — API instab
 | `Table`                                                     | [09-table.md](./references/09-table.md)                         | Tableaux avec THead/TBody/Th/Td, pagination           |
 | `Tabs`                                                      | [12-tabs.md](./references/12-tabs.md)                           | Navigation par onglets                                |
 | `Steps` / `VerticalStep`                                    | [13-steps.md](./references/13-steps.md)                         | Indicateur de progression horizontale/verticale       |
+| `FormHelper` / `ItemFormHelper`                             | [13-steps.md](./references/13-steps.md)                         | Assistant de saisie : étapes d'un formulaire et états |
 | `Restitution` / `SectionRestitution` / `ArticleRestitution` | [14-restitution.md](./references/14-restitution.md)             | Affichage récapitulatif label/valeur en lecture seule |
 | `Popover`                                                   | [23-popover.md](./references/23-popover.md)                     | Infobulle au clic ou au survol                        |
 | `HelpButton`                                                | [24-help-button.md](./references/24-help-button.md)             | Bouton d'aide contextuelle (wrap Popover)             |
