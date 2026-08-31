@@ -211,6 +211,8 @@ const [page, setPage] = useState(1);
 
 Indicateur d'avancement multi-étapes avec titre, sous-titre et message.
 
+Le titre est rendu par la molécule [`Heading`](./15-visuals.md) : `titleLevel` pilote la balise (`h1` à `h4`) et la typographie associée, et `icon` affiche une icône devant le titre.
+
 ### Import
 
 ```tsx
@@ -225,13 +227,15 @@ type StepperProps = {
     currentStep: number; // Étape actuelle (1-based, obligatoire)
     nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8; // Nombre total d'étapes (défaut via ProgressBarGroup)
     currentStepProgress?: number; // Progression (0-100) dans l'étape courante
-    currentTitle?: string; // Titre de l'étape
-    currentSubtitle?: string; // Sous-titre de l'étape
+    currentTitle?: ReactNode; // Titre de l'étape
+    currentSubtitle?: ReactNode; // Sous-titre de l'étape
     helper?: string; // Texte d'aide sous la barre
+    icon?: string; // Icône SVG affichée devant le titre
+    iconProps?: HeadingCommonProps['iconProps']; // Options de l'icône du Heading
     message?: string; // Message de validation/erreur
     messageType?: 'error' | 'success' | 'warning';
-    titleLevel?: 1 | 2 | 3; // Niveau de heading du titre (défaut: 2)
-} & Omit<HTMLAttributes<HTMLDivElement>, 'role'>;
+    titleLevel?: 1 | 2 | 3 | 4; // Niveau de heading du titre (défaut: 2)
+} & Omit<HTMLAttributes<HTMLDivElement>, 'role' | 'title'>;
 ```
 
 ### Exemple
@@ -243,6 +247,19 @@ type StepperProps = {
   currentTitle="Vos informations personnelles"
   currentSubtitle="Étape 2 sur 4"
   currentStepProgress={50}
+/>
+
+// Avec icône et niveau de titre
+import bank from '@material-symbols/svg-700/rounded/account_balance.svg';
+
+<Stepper
+  currentStep={2}
+  nbSteps={8}
+  currentTitle="Vos informations bancaires"
+  currentSubtitle="Étape 2 sur 8"
+  currentStepProgress={50}
+  icon={bank}
+  titleLevel={1}
 />
 
 // Avec message d'erreur
