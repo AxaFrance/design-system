@@ -130,6 +130,22 @@ describe("MessageBar", () => {
     expect(arrow).toHaveClass("af-click-icon", "af-click-icon--ghost");
   });
 
+  it("keeps the collapsible layout up to the desktop breakpoint", () => {
+    setScreenWidth(1023);
+    renderMessageBar({
+      description: "Tablet body",
+    });
+
+    const messageBar = screen.getByRole("region", {
+      name: "Important information",
+    });
+
+    expect(messageBar.tagName).toBe("DETAILS");
+    expect(
+      messageBar.querySelector(".af-accordion__arrow"),
+    ).toBeInTheDocument();
+  });
+
   it("does not render buttons when there is no description or action", () => {
     renderMessageBar({ title: "Only title" });
 

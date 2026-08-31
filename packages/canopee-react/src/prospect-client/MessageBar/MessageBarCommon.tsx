@@ -56,7 +56,7 @@ export const MessageBarCommon = ({
   ...sectionProps
 }: MessageBarCommonProps) => {
   const titleId = useId();
-  const isMobile = useIsSmallScreen(BREAKPOINT.SM);
+  const isMobile = useIsSmallScreen(BREAKPOINT.MD);
   const hasDescription = Boolean(description);
   const sectionAriaLabelledBy =
     sectionProps["aria-label"] || sectionProps["aria-labelledby"]
