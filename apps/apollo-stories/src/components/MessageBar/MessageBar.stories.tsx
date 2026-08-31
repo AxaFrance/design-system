@@ -63,12 +63,12 @@ export default meta;
 type Story = StoryObj<MessageBarStoryProps>;
 
 const DESCRIPTION =
-  "Vos informations personnelles doivent etre actualisees afin de maintenir la protection de vos donnees.";
+  "Vos informations personnelles doivent être actualisées afin de maintenir la protection de vos données.";
 
 export const Playground: Story = {
   name: "MessageBar",
   args: {
-    title: "Pensez a mettre a jour votre dossier client AXA",
+    title: "Pensez à mettre à jour votre dossier client AXA",
     icon: "accountBalanceIcon",
     variant: "info",
     defaultDescriptionOpen: true,
