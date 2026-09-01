@@ -50,6 +50,23 @@ describe("<InputPhone />", () => {
     expect(screen.getByText("Phone number is valid")).toBeInTheDocument();
   });
 
+  it("renders the InputPhone component with warning message", () => {
+    render(
+      <InputPhoneCommon
+        label="Phone Number"
+        message="Phone number format might be invalid"
+        messageType="warning"
+        ItemLabelComponent={ItemLabel}
+        ItemMessageComponent={ItemMessage}
+        InputTextComponent={InputTextAtom}
+        IconComponent={Icon}
+      />,
+    );
+    expect(
+      screen.getByText("Phone number format might be invalid"),
+    ).toBeInTheDocument();
+  });
+
   it("is accessible according to axe", async () => {
     const { container } = render(
       <InputPhoneCommon
