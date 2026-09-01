@@ -6,11 +6,11 @@
     --dropdown-border-color: var(--gray-800);
     --dropdown-color: var(--gray-1000);
     --dropdown-background-color: var(--white-1000);
-    --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%2300008F'/></svg>");
+    --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><path fill='%2300008F' transform='translate(0 48) scale(0.05)' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
     --dropdown-box-shadow-color: var(--blue-1000);
 
     &:open {
-      --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,30 36,30 24,14' fill='%2300008F'/></svg>");
+      --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><path fill='%2300008F' transform='translate(0 48) scale(0.05)' d='M240-376l240-240 240 240-43 43-197-197-197 197-43-43Z'/></svg>");
     }
 
     option {
@@ -28,7 +28,7 @@
     &:disabled {
       --dropdown-background-color: var(--gray-050);
       --dropdown-box-shadow-color: var(--gray-140);
-      --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><polygon points='12,18 36,18 24,34' fill='%23999999'/></svg>");
+      --dropdown-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><path fill='%23999999' transform='translate(0 48) scale(0.05)' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
       --dropdown-color: var(--gray-500);
     }
 
