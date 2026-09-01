@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 
 type DividerProps = {
   className?: string;
@@ -8,7 +8,12 @@ type DividerProps = {
 
 export const Divider = ({ className, classModifier }: DividerProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName("af-divider", className, classModifier),
+    () =>
+      getClassName({
+        baseClassName: "af-divider",
+        className,
+        modifiers: classModifier?.split(" ").filter(Boolean) ?? [],
+      }),
     [className, classModifier],
   );
 

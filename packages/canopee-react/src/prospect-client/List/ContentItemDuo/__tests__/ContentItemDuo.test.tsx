@@ -2,13 +2,13 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
+import { ItemMessage } from "../../../../client";
 import { ButtonCommon, type ButtonProps } from "../../../Button/ButtonCommon";
 import { Spinner } from "../../../Spinner/SpinnerCommon";
 import {
   ContentItemDuoCommon,
   type ContentItemDuoProps,
 } from "../ContentItemDuoCommon";
-import { ItemMessage } from "../../../../client";
 
 const ButtonComponent = (props: ButtonProps) => (
   <ButtonCommon SpinnerComponent={Spinner} {...props} />
@@ -43,30 +43,10 @@ describe("ContentItemDuoCommon", () => {
     expect(message).toBeInTheDocument();
   });
 
-  it("applies vertical modifier when isVertical is true", () => {
-    renderContentItemDuo({ isVertical: true });
-    const container = screen.getByText("Label").closest("div");
-    expect(container).toHaveClass("af-content-item-duo--vertical");
-    expect(container).not.toHaveClass("af-content-item-duo--horizontal");
-  });
-
-  it("does not apply vertical modifier when isVertical is false", () => {
-    renderContentItemDuo({ isVertical: false });
-    const container = screen.getByText("Label").closest("div");
-    expect(container).toHaveClass("af-content-item-duo--horizontal");
-    expect(container).not.toHaveClass("af-content-item-duo--vertical");
-  });
-
   it("applies custom className", () => {
     renderContentItemDuo({ className: "custom-class" });
     const container = screen.getByText("Label").closest("div");
     expect(container).toHaveClass("custom-class");
-  });
-
-  it("applies custom classModifier", () => {
-    renderContentItemDuo({ classModifier: "custom-modifier" });
-    const container = screen.getByText("Label").closest("div");
-    expect(container).toHaveClass("af-content-item-duo--custom-modifier");
   });
 
   it("renders button when buttonText and onButtonClick are provided", async () => {

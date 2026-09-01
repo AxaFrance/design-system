@@ -19,23 +19,13 @@ export type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
   classModifier?: string;
   label?: ItemLabelProps["children"];
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  error?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  success?: string;
   placeholder?: string;
   description?: string;
   helper?: string;
   containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
-    | "buttonLabel"
     | "moreButtonLabel"
-    | "onButtonClick"
     | "onMoreButtonClick"
     | "sideButtonLabel"
     | "onSideButtonClick"
@@ -53,17 +43,13 @@ const DropdownCommon = ({
   id,
   required,
   label,
-  error,
   placeholder,
   children,
   helper,
-  success,
   message,
-  messageType,
+  messageType = "error",
   description,
-  buttonLabel,
   moreButtonLabel,
-  onButtonClick,
   onMoreButtonClick,
   sideButtonLabel,
   onSideButtonClick,
@@ -76,8 +62,7 @@ const DropdownCommon = ({
   let inputId = useId();
   inputId = id || inputId;
 
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError = Boolean(message) && messageType === "error";
   const hasWarning = !hasError && Boolean(message) && messageType === "warning";
 
   const classname = classNames(
@@ -90,8 +75,8 @@ const DropdownCommon = ({
     <div className="af-form__dropdown-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
-        moreButtonLabel={moreButtonLabel ?? buttonLabel}
-        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        moreButtonLabel={moreButtonLabel}
+        onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
         onSideButtonClick={onSideButtonClick}
         required={required}
@@ -106,8 +91,8 @@ const DropdownCommon = ({
       {helper ? <span className="af-form__input-helper">{helper}</span> : null}
       <ItemMessageComponent
         id={idMessage}
-        message={message || error || success}
-        messageType={messageType || (error ? "error" : "success")}
+        message={message}
+        messageType={messageType}
       />
     </div>
   );

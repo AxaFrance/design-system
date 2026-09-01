@@ -18,25 +18,9 @@ export type CardCheckboxProps = Omit<
 > & {
   type?: "vertical" | "horizontal";
   mode?: "text";
-  /**
-   * @deprecated Use `label` instead.
-   */
-  labelGroup?: string;
-  /**
-   * @deprecated Use `description` instead.
-   */
-  descriptionGroup?: string;
   label: ReactNode;
   description?: ReactNode;
-  /**
-   * @deprecated Use `required` instead.
-   */
-  isRequired?: boolean;
   options: CheckboxOption[];
-  /**
-   * @deprecated  Use `message` and messageType instead.
-   */
-  error?: string;
   containerProps?: GridContainerProps<"fieldset">;
 } & Partial<ItemMessageProps>;
 
@@ -48,15 +32,11 @@ type CardCheckboxCommonProps = CardCheckboxProps & {
 
 export const CardCheckboxCommon = ({
   className,
-  labelGroup,
-  descriptionGroup,
   label,
   description,
-  isRequired,
   required,
   options,
   type = "vertical",
-  error,
   name,
   id,
   onChange = () => {},
@@ -100,8 +80,7 @@ export const CardCheckboxCommon = ({
     onChange(event);
   };
 
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError = Boolean(message) && messageType === "error";
 
   return (
     <fieldset
@@ -112,14 +91,10 @@ export const CardCheckboxCommon = ({
       <legend className="af-card-checkbox__legend">
         <p className="af-card-checkbox__label">
           {label}
-          {labelGroup}
-          {required || isRequired ? <span aria-hidden>*</span> : null}
+          {required ? <span aria-hidden>*</span> : null}
         </p>
-        {description || descriptionGroup ? (
-          <p className="af-card-checkbox__description">
-            {description}
-            {descriptionGroup}
-          </p>
+        {description ? (
+          <p className="af-card-checkbox__description">{description}</p>
         ) : null}
       </legend>
       <div
@@ -146,7 +121,7 @@ export const CardCheckboxCommon = ({
       </div>
       <ItemMessageComponent
         id={messageId}
-        message={message || error}
+        message={message}
         messageType={messageType}
       />
     </fieldset>

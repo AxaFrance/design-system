@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "@axa-fr/canopee-react/client";
+import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
 const meta: Meta = {
@@ -16,16 +16,6 @@ const meta: Meta = {
       control: { type: "boolean" },
     },
     "aria-invalid": { type: "boolean" },
-    errorId: {
-      table: {
-        disable: true,
-      },
-    },
-    hasError: {
-      table: {
-        disable: true,
-      },
-    },
   },
   args: {
     name: "option1",

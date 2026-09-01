@@ -18,18 +18,12 @@ import {
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ItemLabelProps["children"];
   helper?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  error?: string;
   containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
     | "description"
     | "moreButtonLabel"
-    | "buttonLabel"
     | "onMoreButtonClick"
-    | "onButtonClick"
     | "sideButtonLabel"
     | "onSideButtonClick"
   > &
@@ -48,12 +42,9 @@ const TextAreaCommon = ({
   label,
   description,
   helper,
-  error,
   message,
-  messageType,
-  buttonLabel,
+  messageType = "error",
   moreButtonLabel,
-  onButtonClick,
   onMoreButtonClick,
   required,
   sideButtonLabel,
@@ -69,8 +60,7 @@ const TextAreaCommon = ({
   const helperId = `${inputId}-helper`;
   const messageId = `${inputId}-error`;
 
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError = Boolean(message) && messageType === "error";
   const hasWarning = Boolean(message) && messageType === "warning" && !hasError;
 
   const textareaClassName = getClassName({
@@ -87,8 +77,8 @@ const TextAreaCommon = ({
     >
       <ItemLabelComponent
         description={description}
-        moreButtonLabel={moreButtonLabel ?? buttonLabel}
-        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        moreButtonLabel={moreButtonLabel}
+        onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
         onSideButtonClick={onSideButtonClick}
         required={required}
@@ -113,7 +103,7 @@ const TextAreaCommon = ({
       ) : null}
       <ItemMessageComponent
         id={messageId}
-        message={message || error}
+        message={message}
         messageType={messageType}
       />
     </div>

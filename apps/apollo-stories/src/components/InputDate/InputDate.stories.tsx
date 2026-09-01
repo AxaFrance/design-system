@@ -61,7 +61,7 @@ export const InputDateErrorStory: Story = {
   render,
   args: {
     classModifier: "error",
-    error: "Titre du message",
+    message: "Titre du message",
     "aria-errormessage": undefined,
     value: new Date("2067-09-12"),
   },
@@ -77,7 +77,7 @@ export const InputDateErrorEmptyStory: Story = {
   render,
   args: {
     classModifier: "error",
-    error: "Titre du message",
+    message: "Titre du message",
     "aria-errormessage": undefined,
     value: undefined,
   },

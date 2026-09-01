@@ -26,8 +26,6 @@ import {
 type ModalProps = {
   title: string;                          // Titre de la modale (obligatoire, aussi aria-label)
   headingProps?: Omit<HeadingProps, "children">;  // Props du composant Heading
-  icon?: string;                          // SVG src pour l'icône dans le header
-  iconProps?: Omit<IconProps, "src">;    // Props de l'icône
   onClose?: VoidFunction;                 // Handler de fermeture (backdrop + bouton X)
   closeButtonAriaLabel?: string;          // aria-label du bouton fermer (défaut: "Fermer la boite de dialogue")
   primaryButtonProps?: Partial<ButtonProps>;
@@ -62,9 +60,11 @@ const MyModal = () => {
       <Modal
         ref={modalRef}
         title="Mon contrat"
-        headingProps={{ firstSubtitle: "Référence 12345" }}
-        icon={bank}
-        iconProps={{ variant: "primary" }}
+        headingProps={{
+          firstSubtitle: "Référence 12345",
+          icon: bank,
+          iconProps: { variant: "primary" },
+        }}
         onClose={() => modalRef.current?.close()}
         primaryButtonProps={{
           children: "Valider",
@@ -133,9 +133,8 @@ import {
 
 ```tsx
 type ModalCoreHeaderProps = ComponentPropsWithoutRef<"header"> & {
-  // Heading et Icon injectés par le thème — passer les props directement :
+  // Heading injecté par le thème — passer les props (titre, icône, sous-titres) dans headingProps :
   headingProps: HeadingProps;
-  iconProps?: IconProps;
   onClose?: VoidFunction;
   closeButtonAriaLabel?: string;
 };

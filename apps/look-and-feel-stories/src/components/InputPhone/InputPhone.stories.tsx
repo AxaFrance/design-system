@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import { InputPhone, itemMessageVariants } from "@axa-fr/canopee-react/client";
+import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { flagsList } from "./FlagUtils.tsx";
 
@@ -22,7 +22,6 @@ const meta: Meta<typeof InputPhone> = {
     sideButtonLabel: "Modifier",
     description: "Description",
     pattern: "[0-9]{10}",
-    error: "Titre du Message",
     message: "Message",
   },
   argTypes: {

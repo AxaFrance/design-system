@@ -27,25 +27,13 @@ export type InputDateProps = Omit<
   min?: InputDateAtomProps["min"];
   max?: InputDateAtomProps["max"];
   helper?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  error?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  success?: string;
   hidePicker?: boolean;
   label: ItemLabelProps["children"];
   containerProps?: GridContainerProps;
 } & Partial<
     Pick<
       ItemLabelProps,
-      | "description"
-      | "buttonLabel"
-      | "moreButtonLabel"
-      | "onButtonClick"
-      | "onMoreButtonClick"
+      "description" | "moreButtonLabel" | "onMoreButtonClick"
     > &
       ItemMessageProps
   >;
@@ -61,15 +49,11 @@ const InputDateCommon = ({
   className,
   classModifier = "",
   helper,
-  error,
-  success,
   message,
-  messageType,
+  messageType = "error",
   label,
   description,
-  buttonLabel,
   moreButtonLabel,
-  onButtonClick,
   onMoreButtonClick,
   ItemLabelComponent,
   ItemMessageComponent,
@@ -87,16 +71,14 @@ const InputDateCommon = ({
 
   const ariaDescribedbyIds = [
     helper && idHelp,
-    ((Boolean(message) && messageType === "success") || Boolean(success)) &&
-      idMessage,
+    Boolean(message) && messageType === "success" && idMessage,
   ].filter(Boolean) as string[];
 
   const ariaDescribedby = ariaDescribedbyIds.length
     ? ariaDescribedbyIds.join(" ")
     : undefined;
 
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError = Boolean(message) && messageType === "error";
 
   const ariaErrormessage = hasError ? idMessage : undefined;
 
@@ -114,8 +96,8 @@ const InputDateCommon = ({
     <div className="af-form__input-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
-        moreButtonLabel={moreButtonLabel ?? buttonLabel}
-        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        moreButtonLabel={moreButtonLabel}
+        onMoreButtonClick={onMoreButtonClick}
         required={required}
         htmlFor={inputId}
       >
@@ -153,8 +135,8 @@ const InputDateCommon = ({
 
       <ItemMessageComponent
         id={idMessage}
-        message={message || error || success}
-        messageType={messageType || (error ? "error" : "success")}
+        message={message}
+        messageType={messageType}
       />
     </div>
   );

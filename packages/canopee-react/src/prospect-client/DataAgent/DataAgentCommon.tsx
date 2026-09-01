@@ -13,7 +13,7 @@ import type {
 import { Divider } from "../Divider/DividerCommon";
 import type { ClickItemProps } from "../List/ClickItem/types";
 import { BREAKPOINT } from "../utilities/constants";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
 
 export type TupleMax3<T> = [T] | [T, T] | [T, T, T];
@@ -50,7 +50,7 @@ export const DataAgentCommon = ({
   variant = "default",
 }: DataAgentCommonProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName("af-data-agent", className),
+    () => getClassName({ baseClassName: "af-data-agent", className }),
     [className],
   );
 

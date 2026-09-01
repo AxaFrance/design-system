@@ -1,6 +1,6 @@
 import { type ComponentProps, useMemo } from "react";
 import { Svg } from "../Svg/Svg";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 
 export const iconVariants = {
   primary: "primary",
@@ -30,19 +30,22 @@ export const Icon = ({
   variant = "primary",
   size = "S",
   hasBackground = false,
+  className,
   ...props
 }: IconProps) => {
-  const componentClassName = useMemo(() => {
-    const newClassModifier = [
-      variant,
-      iconSizeVariants[size],
-      hasBackground && "has-background",
-    ]
-      .filter(Boolean)
-      .join(" ");
-
-    return getComponentClassName("af-icon", "", newClassModifier);
-  }, [variant, hasBackground, size]);
+  const componentClassName = useMemo(
+    () =>
+      getClassName({
+        baseClassName: "af-icon",
+        className,
+        modifiers: [
+          variant,
+          iconSizeVariants[size],
+          hasBackground && "has-background",
+        ].filter(Boolean),
+      }),
+    [className, variant, size, hasBackground],
+  );
 
   return (
     <div className={componentClassName}>

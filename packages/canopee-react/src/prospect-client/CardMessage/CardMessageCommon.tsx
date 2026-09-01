@@ -1,5 +1,5 @@
 import { type ComponentPropsWithoutRef, useMemo } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 
 export const cardMessageVariants = {
   info: "info",
@@ -22,9 +22,15 @@ export const CardMessage = ({
   className,
   ...props
 }: CardMessageProps) => {
-  const componentClassName = useMemo(() => {
-    return getComponentClassName("af-card-message", className, variant);
-  }, [className, variant]);
+  const componentClassName = useMemo(
+    () =>
+      getClassName({
+        baseClassName: "af-card-message",
+        modifiers: [variant],
+        className,
+      }),
+    [className, variant],
+  );
 
   return (
     <div {...props} className={componentClassName}>

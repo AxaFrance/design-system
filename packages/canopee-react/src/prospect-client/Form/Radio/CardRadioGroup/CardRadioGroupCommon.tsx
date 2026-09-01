@@ -28,35 +28,11 @@ export type CardRadioGroupProps = Omit<
   | "children"
   | "position"
 > & {
-  /**
-   * @deprecated Use `position` and `cardStyle` instead.
-   */
-  type?: "vertical" | "horizontal";
   cardStyle?: CardRadioProps["position"];
   position?: "line" | "column";
-  /**
-   * @deprecated Use `label` instead.
-   */
-  labelGroup?: string;
-  /**
-   * @deprecated Use `description` instead.
-   */
-  descriptionGroup?: string;
   label: ReactNode;
   description?: ReactNode;
-  /**
-   * @deprecated Use `required` instead.
-   */
-  isRequired?: boolean;
-  /**
-   * @deprecated This prop is deprecated. To check an option, use the `checked` property in each item of the `options` array.
-   */
-  value?: number | string;
   options: RadioOption[];
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  error?: ReactNode;
   containerProps?: GridContainerProps<"fieldset">;
 } & PropsWithChildren &
   Partial<ItemMessageProps>;
@@ -68,21 +44,15 @@ export type CardRadioCommonProps = CardRadioGroupProps & {
 
 const CardRadioGroupCommon = ({
   className,
-  labelGroup,
-  descriptionGroup,
   label,
   description,
-  isRequired,
   required,
   options,
   cardStyle,
-  type = "vertical",
-  position = (cardStyle ?? type) === "vertical" ? "column" : "line",
-  error,
+  position = cardStyle === "vertical" ? "column" : "line",
   message,
   messageType = "error",
   name,
-  value,
   id,
   CardRadioComponent,
   ItemMessageComponent,
@@ -93,8 +63,7 @@ const CardRadioGroupCommon = ({
   const cardRadioGroupId = id ?? generatedId;
   const messageId = `${cardRadioGroupId}-error`;
 
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError = Boolean(message) && messageType === "error";
 
   return (
     <fieldset
@@ -109,15 +78,11 @@ const CardRadioGroupCommon = ({
       <legend className="af-card-radio-group__legend">
         <p className="af-card-radio-group__label">
           {label}
-          {labelGroup}
-          {required || isRequired ? <span aria-hidden>*</span> : null}
+          {required ? <span aria-hidden>*</span> : null}
         </p>
 
-        {description || descriptionGroup ? (
-          <p className="af-card-radio-group__description">
-            {description}
-            {descriptionGroup}
-          </p>
+        {description ? (
+          <p className="af-card-radio-group__description">{description}</p>
         ) : null}
       </legend>
       <div
@@ -130,13 +95,8 @@ const CardRadioGroupCommon = ({
           <CardRadioComponent
             key={`${name ?? cardRadioGroupId}-${cardRadioItemProps.label}`}
             id={`${cardRadioGroupId}-${cardRadioItemProps.value}`}
-            checked={
-              value !== undefined
-                ? value === cardRadioItemProps.value
-                : undefined
-            }
             required={required}
-            position={cardStyle ?? type}
+            position={cardStyle}
             {...inputProps}
             {...(cardRadioItemProps as CardRadioProps)}
             variant={hasError ? "error" : undefined}
@@ -146,7 +106,7 @@ const CardRadioGroupCommon = ({
       </div>
       <ItemMessageComponent
         id={messageId}
-        message={message || error}
+        message={message}
         messageType={messageType}
       />
     </fieldset>

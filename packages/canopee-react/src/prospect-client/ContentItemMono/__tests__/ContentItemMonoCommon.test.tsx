@@ -11,7 +11,7 @@ describe("getContentItemCoreProps", () => {
   it("returns correct props for type 'icon'", () => {
     const props = {
       type: "icon",
-      icon: "test-icon.svg",
+      iconProps: { src: "test-icon.svg" },
       title: "Icon Title",
       subtitle1: "Primary Subtitle",
       subtitle2: "Secondary Subtitle",
@@ -63,28 +63,7 @@ describe("getContentItemCoreProps", () => {
 });
 
 describe("ContentItemMonoCommon Component", () => {
-  it("renders correctly for type 'icon'", () => {
-    render(
-      <ContentItemMonoCommon
-        type="icon"
-        icon="test-icon.svg"
-        title="Icon Title"
-        subtitle1="Primary Subtitle"
-        subtitle2="Secondary Subtitle"
-        IconComponent={Icon}
-      />,
-    );
-
-    expect(screen.getByText("Icon Title")).toBeInTheDocument();
-    expect(screen.getByText("Primary Subtitle")).toBeInTheDocument();
-    expect(screen.getByText("Secondary Subtitle")).toBeInTheDocument();
-    expect(screen.getByTestId("icon")).toHaveAttribute(
-      "data-src",
-      "test-icon.svg",
-    );
-  });
-
-  it("renders correctly for type 'icon' using inconProps", () => {
+  it("renders correctly icon", () => {
     render(
       <ContentItemMonoCommon
         type="icon"

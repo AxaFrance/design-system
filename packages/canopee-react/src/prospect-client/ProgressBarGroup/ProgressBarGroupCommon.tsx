@@ -6,10 +6,6 @@ import { useSequentialProgress } from "./useSequentialProgress";
 export type ProgressBarGroupProps = {
   currentStepProgress?: number;
   currentStep: number;
-  /**
-   * @deprecated Use `stepsCount` instead.
-   */
-  nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   stepsCount?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   max?: number;
   className?: string;
@@ -22,8 +18,7 @@ type ProgressBarGroupCommonProps = ProgressBarGroupProps & {
 export const ProgressBarGroupCommon = ({
   currentStepProgress = 0,
   max = 100,
-  nbSteps = 4,
-  stepsCount = nbSteps,
+  stepsCount = 4,
   currentStep,
   className,
   ProgressBarComponent,

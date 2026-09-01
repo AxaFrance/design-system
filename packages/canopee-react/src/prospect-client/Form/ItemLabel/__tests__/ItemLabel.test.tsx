@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
+import { ButtonCommon, type ButtonProps } from "../../../Button/ButtonCommon";
 import { Spinner } from "../../../Spinner/SpinnerCommon";
 import { ItemLabelCommon, type ItemLabelProps } from "../ItemLabelCommon";
-import { ButtonCommon, type ButtonProps } from "../../../Button/ButtonCommon";
 
 const ButtonMock = (props: ButtonProps) => (
   <ButtonCommon {...props} SpinnerComponent={Spinner} />
@@ -100,88 +100,32 @@ describe("<ItemLabelCommon/>", () => {
   });
 
   describe("Deprecated props support", () => {
-    it("should support deprecated label prop", () => {
-      render(<ItemLabel label="Deprecated Label" />);
+    it("should render children as the label content", () => {
+      render(<ItemLabel>Label</ItemLabel>);
 
-      const labelElement = screen.getByText("Deprecated Label");
+      const labelElement = screen.getByText("Label");
       expect(labelElement).toBeInTheDocument();
-    });
-
-    it("should prefer children over deprecated label prop", () => {
-      render(<ItemLabel label="Deprecated Label">Children Label</ItemLabel>);
-
-      const childrenLabel = screen.getByText("Children Label");
-      const deprecatedLabel = screen.queryByText("Deprecated Label");
-
-      expect(childrenLabel).toBeInTheDocument();
-      expect(deprecatedLabel).not.toBeInTheDocument();
-    });
-
-    it("should support deprecated inputId prop", () => {
-      render(<ItemLabel inputId="deprecated-input-id">Label Text</ItemLabel>);
-
-      const labelElement = screen.getByText("Label Text");
-      expect(labelElement).toHaveAttribute("for", "deprecated-input-id");
-    });
-
-    it("should prefer htmlFor over deprecated inputId prop", () => {
-      render(
-        <ItemLabel inputId="deprecated-input-id" htmlFor="preferred-id">
-          Label Text
-        </ItemLabel>,
-      );
-
-      const labelElement = screen.getByText("Label Text");
-      expect(labelElement).toHaveAttribute("for", "preferred-id");
     });
 
     it("should support deprecated buttonLabel and onButtonClick props", async () => {
       const user = userEvent.setup();
-      const handleClickDeprecatedButton = vi.fn();
+      const handleClickButton = vi.fn();
       render(
         <ItemLabel
-          buttonLabel="Deprecated Button"
-          onButtonClick={handleClickDeprecatedButton}
+          moreButtonLabel="Button"
+          onMoreButtonClick={handleClickButton}
         >
           Label Text
         </ItemLabel>,
       );
 
-      const deprecatedButton = screen.getByRole("button", {
-        name: "Deprecated Button",
+      const button = screen.getByRole("button", {
+        name: "Button",
       });
-      expect(deprecatedButton).toBeInTheDocument();
+      expect(button).toBeInTheDocument();
 
-      await user.click(deprecatedButton);
-      expect(handleClickDeprecatedButton).toHaveBeenCalledTimes(1);
-    });
-
-    it("should prefer moreButton over deprecated buttonLabel prop", async () => {
-      const user = userEvent.setup();
-      const handleClickInfoButton = vi.fn();
-      const handleClickDeprecatedButton = vi.fn();
-      render(
-        <ItemLabel
-          moreButtonLabel="More Button"
-          onMoreButtonClick={handleClickInfoButton}
-          buttonLabel="Deprecated Button"
-          onButtonClick={handleClickDeprecatedButton}
-        >
-          Label Text
-        </ItemLabel>,
-      );
-
-      const moreButton = screen.getByRole("button", { name: "More Button" });
-      const deprecatedButton = screen.queryByRole("button", {
-        name: "Deprecated Button",
-      });
-
-      expect(moreButton).toBeInTheDocument();
-      expect(deprecatedButton).not.toBeInTheDocument();
-
-      await user.click(moreButton);
-      expect(handleClickInfoButton).toHaveBeenCalledTimes(1);
-      expect(handleClickDeprecatedButton).not.toHaveBeenCalled();
+      await user.click(button);
+      expect(handleClickButton).toHaveBeenCalledTimes(1);
     });
   });
 });
