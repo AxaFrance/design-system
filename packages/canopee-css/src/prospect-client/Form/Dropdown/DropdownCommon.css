@@ -33,7 +33,9 @@
     }
 
     &:disabled {
+      opacity: 1;
       cursor: not-allowed;
+      -webkit-text-fill-color: var(--dropdown-color);
     }
 
     &:is(:focus-visible, :hover, :active) {
