@@ -70,6 +70,10 @@ export {
   ItemMultiSelect,
   type ItemMultiSelectProps,
 } from "./prospect-client/Form/ItemMultiSelect/ItemMultiSelectApollo";
+export {
+  MultiSelectList,
+  type MultiSelectListProps,
+} from "./prospect-client/Form/MultiSelectList/MultiSelectListApollo";
 export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioApollo";
 export { CardRadioGroup } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupApollo";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioApollo";
