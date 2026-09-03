@@ -1,4 +1,4 @@
-# Message, CardMessage, Loader, Spinner, Skeleton
+# Message, CardMessage, MessageBar, Loader, Spinner, Skeleton
 
 ---
 
@@ -105,6 +105,68 @@ type CardMessageProps = ComponentPropsWithoutRef<'div'> & {
 />
 
 <CardMessage variant="info" text="Les prix affichés incluent toutes taxes." />
+```
+
+---
+
+## MessageBar
+
+Bandeau d'information pleine largeur, avec icône, titre, description et action optionnelle.
+La description est affichée directement en desktop ; en dessous de 1024px elle devient repliable
+(rendu `AccordionCore` avec chevron).
+
+### Import
+
+```tsx
+import { MessageBar, type MessageBarProps } from '@axa-fr/canopee-react/prospect';
+// ou client
+import accountBalance from '@material-symbols/svg-400/outlined/account_balance-fill.svg';
+```
+
+### Props
+
+```tsx
+type MessageBarProps = {
+    title: string; // Titre du message (obligatoire)
+    description?: ReactNode; // Toujours visible en desktop, repliable en mobile
+    icon: string; // URL de l'icône affichée avant le titre (obligatoire)
+    variant?: MessageBarVariant; // "info" | "error"  (défaut: "info")
+    defaultDescriptionOpen?: boolean; // État initial du repli mobile (défaut: false)
+    buttonProps?: ButtonProps; // Aucun bouton n'est rendu si omis
+} & Omit<ComponentPropsWithoutRef<'section'>, 'children'>;
+```
+
+L'icône n'est pas déduite de la variante : elle est toujours fournie par le consommateur.
+La variante pilote la couleur (`info` → primaire, `error` → rouge alerte) et la variante d'icône.
+
+### Accessibilité
+
+Le composant rend une `section` (ou une `region` en mobile) reliée à son titre via
+`aria-labelledby`. Passer `aria-label` ou `aria-labelledby` explicitement remplace ce lien
+automatique.
+
+### Exemple
+
+```tsx
+<MessageBar
+  title="Pensez à mettre à jour votre dossier client"
+  description="Vos informations personnelles doivent être actualisées afin de maintenir la protection de vos données."
+  icon={accountBalance}
+  variant="info"
+  buttonProps={{ children: 'Mettre à jour', variant: 'primary' }}
+/>
+
+// Variante erreur, description dépliée par défaut en mobile
+<MessageBar
+  title="Votre prélèvement a échoué"
+  description="Vérifiez vos coordonnées bancaires pour éviter la suspension du contrat."
+  icon={accountBalance}
+  variant="error"
+  defaultDescriptionOpen
+/>
+
+// Sans description ni action : bandeau simple
+<MessageBar title="Maintenance prévue dimanche" icon={accountBalance} />
 ```
 
 ---
