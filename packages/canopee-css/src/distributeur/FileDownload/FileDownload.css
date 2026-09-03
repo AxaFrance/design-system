@@ -1,0 +1,68 @@
+@layer canopee {
+  .af-file-download {
+    display: grid;
+    padding: 1rem 1.5rem;
+    gap: 2rem;
+    background-color: var(--white);
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 18%);
+
+    .af-file-download__content {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .af-file-download__icon {
+      display: flex;
+      width: 40px;
+      height: 40px;
+      border-radius: 0.25rem;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--axablue80);
+
+      svg {
+        width: auto;
+        fill: var(--white);
+      }
+    }
+
+    .af-file-download__subtitle {
+      color: var(--gray80);
+    }
+
+    .af-file-download__status {
+      margin-left: 1rem;
+      justify-self: start;
+    }
+
+    .af-file-download__actions {
+      display: flex;
+      margin-left: 3.5rem;
+      gap: 1rem;
+    }
+
+    .af-title--container,
+    .af-title {
+      margin: 0;
+
+      &::after {
+        content: none;
+      }
+    }
+
+    @media (--desktop-small) {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+
+      .af-file-download__content {
+        grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .af-file-download__actions {
+        margin-left: 0;
+      }
+    }
+  }
+}
