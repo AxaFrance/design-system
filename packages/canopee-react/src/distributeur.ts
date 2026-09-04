@@ -150,3 +150,9 @@ export {
   type TimelineProps,
   type TimelineVariants,
 } from "./distributeur/Timeline/Timeline";
+
+export {
+  ItemFormHelper,
+  type ItemFormHelperProps,
+  type ItemFormHelperVariant,
+} from "./distributeur/ItemFormHelper/ItemFormHelper";
