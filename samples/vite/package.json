@@ -13,8 +13,6 @@
   "dependencies": {
     "@axa-fr/canopee-react": "*",
     "@axa-fr/canopee-css": "*",
-    "@axa-fr/design-system-apollo-react": "*",
-    "@axa-fr/design-system-apollo-css": "*",
     "@axa-fr/design-system-look-and-feel-react": "*",
     "@axa-fr/design-system-look-and-feel-css": "*",
     "@axa-fr/design-system-slash-react": "*",
