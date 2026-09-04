@@ -24,14 +24,13 @@ packages/canopee-react/src/
 └── client.ts              # Re-exports depuis canopee-react/client
 
 client/look-and-feel/react # Thin wrapper re-exportant prospect-client
-slash/react/               # Thin wrapper re-exportant distributeur
 ```
 
 **Points critiques** :
 - Les composants Prospect/Client partagent du code (`*Common.tsx`) avec surcharges par thème
-- Les packages legacy restants `client/look-and-feel/react` et `slash/react` ne sont que des re-exports
+- Le package legacy restant `client/look-and-feel/react` n'est qu'un re-export
 - Le vrai code React est dans `packages/canopee-react/src/`
-- Les CSS sont dans `packages/canopee-css/`, `client/look-and-feel/css` et `slash/css`
+- Les CSS sont dans `packages/canopee-css/` et `client/look-and-feel/css`
 
 ## Conventions de Code
 

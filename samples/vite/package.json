@@ -15,8 +15,6 @@
     "@axa-fr/canopee-css": "*",
     "@axa-fr/design-system-look-and-feel-react": "*",
     "@axa-fr/design-system-look-and-feel-css": "*",
-    "@axa-fr/design-system-slash-react": "*",
-    "@axa-fr/design-system-slash-css": "*",
     "@material-symbols/svg-400": "^0.31.2",
     "react": "19.2.5",
     "react-dom": "19.2.5",

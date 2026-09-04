@@ -30,8 +30,7 @@
     "workspaces": [
         "samples/vite",
         "apps/*",
-        "packages/*",
-        "slash/*"
+        "packages/*"
     ],
     "devDependencies": {
         "@commitlint/cli": "^20.5.0",

@@ -47,6 +47,10 @@ Les anciens packages miroir Apollo `@axa-fr/design-system-apollo-react` et
 `@axa-fr/design-system-apollo-css` sont en cours de retrait du monorepo. Utiliser
 désormais `@axa-fr/canopee-react/prospect` et `@axa-fr/canopee-css/prospect`.
 
+Les anciens packages miroir Slash `@axa-fr/design-system-slash-react` et
+`@axa-fr/design-system-slash-css` sont en cours de retrait du monorepo. Utiliser
+désormais `@axa-fr/canopee-react/distributeur` et `@axa-fr/canopee-css/distributeur`.
+
 **Installation latest**
 
 ```bash
