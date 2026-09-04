@@ -40,17 +40,16 @@ jobs:
           MAJOR=$(echo "$SEMVER" | cut -d. -f1)
           MINOR=$(echo "$SEMVER" | cut -d. -f2)
           PATCH=$(echo "$SEMVER" | cut -d. -f3)
-          echo "FULL_SEMVER_OLD_PACKAGE=$((MAJOR + 3)).${MINOR}.${PATCH}${SEMVER_SUFFIX}" >> $GITHUB_ENV
+          echo "fullSemVerOldPackage=$((MAJOR + 3)).${MINOR}.${PATCH}${SEMVER_SUFFIX}" >> $GITHUB_OUTPUT
 
       - name: Npm version
         run: |
           npm version "${{ steps.gitversion.outputs.fullSemVer }}" -w packages/canopee-css -w packages/canopee-react
-          npm version "${{ env.FULL_SEMVER_OLD_PACKAGE }}" -w client/apollo/css -w client/apollo/react -w slash/css -w slash/react
+          npm version "${{ steps.oldpackageversion.outputs.fullSemVerOldPackage }}" -w slash/css -w slash/react
 
       - name: Set to react package the @axa-fr/canopee-css dependency version
         run: |
           jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' packages/canopee-react/package.json > temps.json && mv temps.json packages/canopee-react/package.json
-          jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' client/apollo/react/package.json > temps.json && mv temps.json client/apollo/react/package.json
           jq '.peerDependencies["@axa-fr/canopee-css"] = "${{ steps.gitversion.outputs.fullSemVer }}"' slash/react/package.json > temps.json && mv temps.json slash/react/package.json
       - name: Build packages
         run: npm run build
@@ -63,18 +62,18 @@ jobs:
       - name: Publish latest packages
         if: steps.gitversion.outputs.preReleaseTag == ''
         run: npm publish -w packages/canopee-css -w packages/canopee-react -w
-          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
+          slash/css -w slash/react
           --tag latest;
       - name: Publish rc packages
         if: contains(steps.gitversion.outputs.fullSemVer, 'RC')
         run: npm publish -w packages/canopee-css -w packages/canopee-react -w
-          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
+          slash/css -w slash/react
           --tag rc;
       - name: Publish next packages
         if: steps.gitversion.outputs.preReleaseTag != '' &&
           !contains(steps.gitversion.outputs.fullSemVer, 'RC')
         run: npm publish -w packages/canopee-css -w packages/canopee-react -w
-          client/apollo/css -w client/apollo/react -w slash/css -w slash/react
+          slash/css -w slash/react
           --tag next;
 
       - name: Create artifact folders
