@@ -27,6 +27,7 @@ jobs:
           workingDir: "apps/slash-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
+          autoAcceptChanges: "main"
 
       - uses: chromaui/action@1db61b73b7919508ee8e62336f04bd0aed6da756 # v17.4.1
         name: Run Chromatic for design-system-lookandfeel-react
@@ -37,6 +38,7 @@ jobs:
           workingDir: "apps/look-and-feel-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
+          autoAcceptChanges: "main"
       - uses: chromaui/action@1db61b73b7919508ee8e62336f04bd0aed6da756 # v17.4.1
         name: Run Chromatic for design-system-apollo-react
         with:
@@ -46,3 +48,4 @@ jobs:
           workingDir: "apps/apollo-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
+          autoAcceptChanges: "main"
