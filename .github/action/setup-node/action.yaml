@@ -3,7 +3,7 @@ description: setup node and install packages
 
 inputs:
   check-package:
-    description: 'Check package'
+    description: "Check package"
     default: false
 
 runs:
@@ -12,7 +12,7 @@ runs:
     - name: Get Node.js version from volta
       shell: bash
       run: echo "NODE_VERSION=$(jq -r .volta.node package.json)" >> $GITHUB_ENV
-    
+
     - name: Get npm version from volta
       shell: bash
       run: echo "NPM_VERSION=$(jq -r .volta.npm package.json)" >> $GITHUB_ENV
