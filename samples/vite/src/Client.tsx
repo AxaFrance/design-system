@@ -3,10 +3,8 @@ import {
   CardCheckbox,
   CardRadioGroup,
   Dropdown,
-  Icon,
   InputText,
 } from "@axa-fr/canopee-react/client";
-import acUnit from "@material-symbols/svg-400/outlined/ac_unit.svg";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NavLink } from "react-router";
@@ -78,7 +76,7 @@ const Client = () => {
           <article>
             <CardRadioGroup
               label="Card Radio Group"
-              type="vertical"
+              cardStyle="vertical"
               required
               message={errors.exampleRadioInput?.message}
               messageType="error"
@@ -131,7 +129,6 @@ const Client = () => {
               variant="secondary"
               onClick={() => console.log("click")}
               type="submit"
-              iconRight={<Icon src={acUnit} />}
             >
               Submit
             </Button>
