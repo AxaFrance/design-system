@@ -62,7 +62,7 @@ jobs:
         uses: ./.github/action/create-storybook-artifact
         with:
           artifact-name: storybooks
-          folders: "apollo/react,look-and-feel/react,slash/react"
+          folders: "apollo/react,client/react,slash/react"
 
   deploy-storybooks:
     needs:
@@ -79,7 +79,7 @@ jobs:
             publish_dir: apollo/react
             destination_dir: prospect/react
           - name: look-and-feel react
-            publish_dir: look-and-feel/react
+            publish_dir: client/react
             destination_dir: client/react
       max-parallel: 1
 
