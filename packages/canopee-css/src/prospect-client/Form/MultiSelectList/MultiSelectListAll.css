@@ -1,0 +1,15 @@
+.af-multi-select-list {
+  --item-select-height: calc(1lh + (2 * var(--size-16)));
+
+  /* Allow overflow of list items with 5th item partially visible */
+  max-height: calc(4.75 * var(--item-select-height));
+  padding: 0;
+  border-radius: var(--radius-8);
+  overflow: hidden auto;
+  box-shadow: 0 4px 16px -2px var(--gray-250);
+  list-style-type: none;
+}
+
+.af-multi-select-list > li {
+  padding: 0;
+}
