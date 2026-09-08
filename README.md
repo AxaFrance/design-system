@@ -244,6 +244,33 @@ import '@axa-fr/canopee-css/distributeur/common/tokens.css';
 
 Vous pouvez désormais ajouter le design system comme un plugin de Github Copilot Primitives et aider votre chat à parfaitement utiliser le design system Canopéee, aussi bien Distributeur que Prospect Client. Grâce à ça, vous pourrait consulter la doc mais aussi rendre naturel l’utilisation des composants du design system par vos agents. La différence est flagrante, en plus d’être plus rapides, vos agents utiliseront bien mieux et bien plus souvent les composants AXA.
 
+### Configuration MCP Zeroheight (workspace)
+
+Pour rendre la documentation Zeroheight accessible aux agents dans ce repository, ajouter les serveurs MCP suivants dans [`.vscode/mcp.json`](./.vscode/mcp.json) :
+
+```json
+{
+  "servers": {
+    "univers-client-et-prospect": {
+      "type": "http",
+      "url": "https://mcp.zeroheight.com/mcp/1bb166a348d406a4d73ddb61365533daff859566"
+    },
+    "univers-distributeur-et-collaborateur": {
+      "type": "http",
+      "url": "https://mcp.zeroheight.com/mcp/588d276aca51f9bf6066fb5f253c909733e6e2b8"
+    }
+  },
+  "inputs": []
+}
+```
+
+Ces deux serveurs couvrent :
+
+- `univers-client-et-prospect` : univers B2C Prospect et Client
+- `univers-distributeur-et-collaborateur` : univers B2B Distributeur/Collaborateur
+
+Les skills plugins exploitent ensuite ce workflow : `search-pages` (ou `list-pages`) puis `get-page` avant toute génération de code UI.
+
 ### Comment faire ?
 
 Vous pouvez utiliser la fonctionnalité marketplace de votre chat pour ajouter le plugin du design system, ou alors vous pouvez aussi le faire manuellement en ajoutant le plugin présent dans `plugins/canopee-distributeur` et `plugins/canopee-prospect-client` à votre chat.

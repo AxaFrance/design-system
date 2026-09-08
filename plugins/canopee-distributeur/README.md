@@ -12,6 +12,19 @@ Ce plugin fournit à Copilot une connaissance complète du Design System Canopé
 - Proposer les bonnes variantes et états de chaque composant
 - Configurer les tokens CSS et les icônes Material Symbols
 
+## MCP Zeroheight
+
+Le plugin s'appuie sur la documentation officielle Zeroheight via MCP pour fiabiliser la génération UI.
+
+- Serveur MCP : `univers-distributeur-et-collaborateur`
+- URL : `https://mcp.zeroheight.com/mcp/588d276aca51f9bf6066fb5f253c909733e6e2b8`
+
+Le skill utilise ce workflow :
+
+1. Rechercher la page composant (`search-pages` ou `list-pages`)
+2. Lire la page officielle (`get-page`)
+3. Générer le code en s'alignant sur la documentation
+
 ## Skills
 
 ### `canopee-distributeur`
