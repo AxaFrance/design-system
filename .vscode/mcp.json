@@ -1,0 +1,13 @@
+{
+	"servers": {
+		"univers-client-et-prospect": {
+			"type": "http",
+			"url": "https://mcp.zeroheight.com/mcp/1bb166a348d406a4d73ddb61365533daff859566"
+		},
+		"univers-distributeur-et-collaborateur": {
+			"type": "http",
+			"url": "https://mcp.zeroheight.com/mcp/588d276aca51f9bf6066fb5f253c909733e6e2b8"
+		}
+	},
+	"inputs": []
+}
