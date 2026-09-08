@@ -200,6 +200,38 @@ ExitLayout.Action; // Zone pour un lien / bouton de retour
 
 > **Note** : Préférer `ValidPage` et `ErrorPage` pour les cas standards plutôt que `ExitLayout` directement.
 
+## ExitLayoutSkeleton
+
+Version skeleton de `ExitLayout`, utilisée pour afficher la structure de chargement avant les données finales.
+
+### Import
+
+```tsx
+import {
+    ExitLayoutSkeleton,
+    type ExitLayoutSkeletonProps,
+} from '@axa-fr/canopee-react/prospect';
+// ou client
+```
+
+### Props
+
+```tsx
+type ExitLayoutSkeletonProps = {
+    hasAgent?: boolean;
+    hasIcon?: boolean;
+    hasAction?: boolean;
+    hasContent?: boolean;
+    hasHeading?: boolean;
+};
+```
+
+### Exemple
+
+```tsx
+<ExitLayoutSkeleton hasAgent hasIcon hasAction hasContent hasHeading />
+```
+
 ---
 
 ## Fieldset

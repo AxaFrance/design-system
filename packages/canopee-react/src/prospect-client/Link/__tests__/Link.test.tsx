@@ -63,17 +63,11 @@ describe("Link component", () => {
     },
   );
 
-  it.each`
-    className       | classModifier
-    ${undefined}    | ${undefined}
-    ${"test-class"} | ${undefined}
-    ${undefined}    | ${"test-modifier"}
-    ${"test-class"} | ${"test-modifier"}
-  `(
-    "renders correctly with className as $className and classModifier as $classModifier",
-    ({ className, classModifier }) => {
+  it.each([undefined, "test-class"])(
+    "renders correctly with className as $s",
+    (className: string | undefined) => {
       render(
-        <Link href="/" className={className} classModifier={classModifier}>
+        <Link href="/" className={className}>
           Test Link
         </Link>,
       );
@@ -81,9 +75,6 @@ describe("Link component", () => {
       const link = screen.getByRole("link", { name: "Test Link" });
       if (className) {
         expect(link).toHaveClass(className);
-      }
-      if (classModifier) {
-        expect(link).toHaveClass(`af-link af-link--test-modifier`);
       }
     },
   );

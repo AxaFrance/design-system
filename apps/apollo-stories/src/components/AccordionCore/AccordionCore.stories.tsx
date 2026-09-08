@@ -5,6 +5,11 @@ import type { ComponentProps } from "react";
 const meta: Meta<typeof AccordionCore> = {
   component: AccordionCore,
   title: "Components/AccordionCore",
+  argTypes: {
+    open: {
+      control: { type: "boolean" },
+    },
+  },
 };
 
 export default meta;
@@ -45,7 +50,7 @@ const defaultArgs = {
       </p>
     </>
   ),
-  isOpen: undefined,
+  open: undefined,
   onClick: undefined,
 };
 

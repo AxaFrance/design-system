@@ -24,14 +24,6 @@ import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
 export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
   helper?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  error?: string;
-  /**
-   * @deprecated Use `message` and messageType instead.
-   */
-  success?: string;
   defaultCountry?: string;
   showSelect?: boolean;
   disabled?: boolean;
@@ -45,9 +37,7 @@ export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
     ItemLabelProps,
     | "description"
     | "moreButtonLabel"
-    | "buttonLabel"
     | "onMoreButtonClick"
-    | "onButtonClick"
     | "sideButtonLabel"
     | "onSideButtonClick"
   > &
@@ -66,18 +56,14 @@ const InputPhoneCommon = ({
   className,
   classModifier = "",
   helper,
-  error,
-  success,
   message,
-  messageType,
+  messageType = "error",
   defaultCountry,
   showSelect,
   disabled,
   label,
   description,
-  buttonLabel,
   moreButtonLabel,
-  onButtonClick,
   onMoreButtonClick,
   required,
   sideButtonLabel,
@@ -99,12 +85,12 @@ const InputPhoneCommon = ({
   const idMessage = useId();
   const idHelp = useId();
 
-  const ariaDescribedby = [helper && idHelp, success && idMessage].filter(
-    Boolean,
-  ) as string[];
+  const ariaDescribedby = [
+    helper && idHelp,
+    message && messageType === "success" && idMessage,
+  ].filter(Boolean) as string[];
 
-  const hasError =
-    (Boolean(message) && messageType === "error") || Boolean(error);
+  const hasError = Boolean(message) && messageType === "error";
 
   const hasWarning = Boolean(message) && messageType === "warning" && !hasError;
 
@@ -129,8 +115,8 @@ const InputPhoneCommon = ({
     <div className="af-form__input-phone-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
-        moreButtonLabel={moreButtonLabel ?? buttonLabel}
-        onMoreButtonClick={onMoreButtonClick ?? onButtonClick}
+        moreButtonLabel={moreButtonLabel}
+        onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
         onSideButtonClick={onSideButtonClick}
         required={required}
@@ -157,7 +143,7 @@ const InputPhoneCommon = ({
             .filter(Boolean)
             .join(" ")}
           classModifier={classModifier}
-          error={hasError ? messageType || error : undefined}
+          error={hasError ? messageType : undefined}
           warning={hasWarning ? "warning" : undefined}
           type="tel"
           required={required}
@@ -182,8 +168,8 @@ const InputPhoneCommon = ({
 
       <ItemMessageComponent
         id={idMessage}
-        message={message || error || success}
-        messageType={messageType || (error ? "error" : "success")}
+        message={message}
+        messageType={messageType}
       />
     </div>
   );

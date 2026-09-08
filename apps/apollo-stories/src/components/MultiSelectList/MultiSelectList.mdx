@@ -1,0 +1,26 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as MultiSelectListStories from "./MultiSelectList.stories";
+
+<Meta of={MultiSelectListStories} name="MultiSelectList" />
+
+# MultiSelectList
+
+To use MultiSelectList import it like this:
+
+```tsx
+import { MultiSelectList } from "@axa-fr/canopee-react/prospect";
+
+const MyComponent = () => <MultiSelectList items={[]} />;
+```
+
+## 3 items
+
+Use this example to display a compact list without scroll behavior.
+
+<Canvas of={MultiSelectListStories.ThreeItems} />
+
+## 6 items (scroll)
+
+Use this example to illustrate the list when more elements are displayed and scrolling becomes visible.
+
+<Canvas of={MultiSelectListStories.SixItemsScroll} />

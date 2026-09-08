@@ -21,10 +21,6 @@ export type ContentMonoItemIconProps = {
   title?: string;
   subtitle1?: string;
   subtitle2?: string;
-  /**
-   * @deprecated Use `iconProps` instead.
-   */
-  icon?: string;
   iconProps?: IconProps;
 };
 
@@ -49,16 +45,16 @@ export const getContentItemCoreProps = ({
   ...props
 }: ContentItemCommonProps): ContentItemCoreProps => {
   if (type === "icon") {
-    const { icon, iconProps, title, subtitle1, subtitle2 } =
+    const { iconProps, title, subtitle1, subtitle2 } =
       props as ContentMonoItemIconProps;
 
     return {
       title,
       primarySubtitle: subtitle1,
       subtitle: subtitle2,
-      leftComponent:
-        (iconProps && <IconComponent data-testid="icon" {...iconProps} />) ||
-        (icon && <IconComponent data-testid="icon" src={icon} />),
+      leftComponent: iconProps && (
+        <IconComponent data-testid="icon" {...iconProps} />
+      ),
     } as ContentItemCoreProps;
   }
 

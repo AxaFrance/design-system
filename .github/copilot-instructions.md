@@ -22,17 +22,12 @@ packages/canopee-react/src/
 ├── distributeur.ts        # Entry point avec imports CSS
 ├── prospect.ts            # Re-exports depuis canopee-react/prospect
 └── client.ts              # Re-exports depuis canopee-react/client
-
-client/apollo/react/       # Thin wrapper re-exportant prospect-client
-client/look-and-feel/react # Thin wrapper re-exportant prospect-client
-slash/react/               # Thin wrapper re-exportant distributeur
 ```
 
 **Points critiques** :
 - Les composants Prospect/Client partagent du code (`*Common.tsx`) avec surcharges par thème
-- Les packages `client/*/react` et `slash/react` ne sont que des re-exports
 - Le vrai code React est dans `packages/canopee-react/src/`
-- Les CSS sont dans `packages/canopee-css/` et `client/*/css`, `slash/css`
+- Les CSS sont dans `packages/canopee-css/`
 
 ## Conventions de Code
 

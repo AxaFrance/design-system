@@ -17,20 +17,13 @@ export type {
   ModalProps,
 } from "./types";
 
-export const Modal = ({
-  headingProps = {},
-  icon,
-  iconProps,
-  ...props
-}: ModalProps) => (
+export const Modal = ({ headingProps = {}, ...props }: ModalProps) => (
   <ModalCommon
     {...props}
     headingComponent={Heading}
     headingProps={{
       ...headingProps,
       children: props.title,
-      icon: headingProps.icon ?? icon,
-      iconProps: headingProps.iconProps ?? iconProps,
     }}
     buttonComponent={Button}
   />

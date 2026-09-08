@@ -147,12 +147,4 @@ export default meta;
 
 export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadioGroup>> = {
   name: "Playground",
-  render: ({ description, error, name, ...args }) => (
-    <CardRadioGroup
-      description={description !== "" ? description : undefined}
-      error={error !== "" ? error : undefined}
-      name={name !== "" ? name : undefined}
-      {...args}
-    />
-  ),
 };

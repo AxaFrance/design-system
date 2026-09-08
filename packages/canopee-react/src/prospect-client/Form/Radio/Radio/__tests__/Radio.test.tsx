@@ -42,4 +42,32 @@ describe("Radio Component", () => {
     const radioInput = screen.getByRole("radio");
     expect(radioInput).toHaveClass("af-radio custom-class");
   });
+
+  it("should apply invalid modifier when variant is error", () => {
+    render(<Radio variant="error" />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).toHaveClass("af-radio af-radio--error");
+  });
+
+  it("should not apply invalid modifier when variant is not set", () => {
+    render(<Radio />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).not.toHaveClass("af-radio--error");
+  });
+
+  it("should apply warning modifier when variant is warning", () => {
+    render(<Radio variant="warning" />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).toHaveClass("af-radio af-radio--warning");
+  });
+
+  it("should not apply warning modifier when variant is not set", () => {
+    render(<Radio />);
+
+    const radioInput = screen.getByRole("radio");
+    expect(radioInput).not.toHaveClass("af-radio--warning");
+  });
 });

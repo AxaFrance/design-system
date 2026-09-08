@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Button } from "../../Button/ButtonApollo";
 import { ContentItemDuoAction as ContentItemDuoActionApollo } from "../ContentItemDuoActionApollo";
 import { ContentItemDuoAction as ContentItemDuoActionLF } from "../ContentItemDuoActionLF";
-import { Button } from "../../Button/ButtonApollo";
 
 const variants = [
   { name: "Apollo", Component: ContentItemDuoActionApollo },
@@ -22,7 +22,7 @@ describe.each(variants)(
             title: "Icon Title",
             subtitle1: "Primary Subtitle",
             subtitle2: "Secondary Subtitle",
-            icon: "test-icon.svg",
+            iconProps: { src: "test-icon.svg" },
           }}
           toggleProps={{
             onClick: handleOnClick,
@@ -52,7 +52,7 @@ describe.each(variants)(
             title: "Icon Title",
             subtitle1: "Primary Subtitle",
             subtitle2: "Secondary Subtitle",
-            icon: "test-icon.svg",
+            iconProps: { src: "test-icon.svg" },
           }}
           buttons={
             <>

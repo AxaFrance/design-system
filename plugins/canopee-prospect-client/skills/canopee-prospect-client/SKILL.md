@@ -139,7 +139,8 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `CardMessage`      | [06-message-feedback.md](./references/06-message-feedback.md) | Carte message compacte                              |
 | `Loader`           | [06-message-feedback.md](./references/06-message-feedback.md) | Plein écran de chargement                           |
 | `Spinner`          | [06-message-feedback.md](./references/06-message-feedback.md) | Indicateur de chargement inline                     |
-| `Skeleton`         | [06-message-feedback.md](./references/06-message-feedback.md) | Placeholder de chargement grille                    |
+| `Skeleton`         | [06-message-feedback.md](./references/06-message-feedback.md) | Placeholder de chargement basé sur `SkeletonProps`  |
+| `SkeletonGrid`     | [06-message-feedback.md](./references/06-message-feedback.md) | Grille de squelettes multi-cellules                 |
 | `SkeletonList`     | [06-message-feedback.md](./references/06-message-feedback.md) | Skeleton pour listes                                |
 | `ProgressBar`      | [11-progress.md](./references/11-progress.md)                 | Barre de progression simple                         |
 | `ProgressBarGroup` | [11-progress.md](./references/11-progress.md)                 | Groupe de barres de progression                     |
@@ -223,6 +224,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `Footer`        | [12-layout.md](./references/12-layout.md) | Pied de page avec liens, réseaux, copyright |
 | `FormLayout`    | [12-layout.md](./references/12-layout.md) | Mise en page de formulaire responsive       |
 | `ExitLayout`    | [12-layout.md](./references/12-layout.md) | Page de sortie (confirmation / erreur)      |
+| `ExitLayoutSkeleton` | [12-layout.md](./references/12-layout.md) | Version skeleton de `ExitLayout`            |
 | `Fieldset`      | [12-layout.md](./references/12-layout.md) | Groupe de form en carte                     |
 | `LevelSelector` | [12-layout.md](./references/12-layout.md) | Sélecteur de niveau par incréments          |
 | `Card`          | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant`) |
@@ -236,6 +238,15 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | ----------- | --------------------------------------- | --------------------------------------- |
 | `ValidPage` | [13-pages.md](./references/13-pages.md) | Page de confirmation avec agent et lien |
 | `ErrorPage` | [13-pages.md](./references/13-pages.md) | Page d'erreur avec lien de retour       |
+
+## Changements récents à connaître
+
+- `Skeleton` a été refondu autour d'une API typée par `variant` et `size` avec `SkeletonProps` discriminé.
+- `SkeletonGrid` accepte maintenant `grid: SkeletonProps[][]` et rend chaque cellule comme un vrai `Skeleton`.
+- `SkeletonList` s'appuie sur `SkeletonGrid` pour éviter de dupliquer le rendu des cellules.
+- `ExitLayoutSkeleton` existe désormais comme export dédié, et `ExitLayout` le re-exporte dans les deux thèmes.
+- Dans le Storybook Look & Feel, les MDX et layouts doivent importer depuis `@axa-fr/canopee-react/client`.
+- Les layouts Storybook ont été alignés sur `Header`, `MenuBurgerProps` et `TabMenuProps` au lieu d'un header custom local.
 
 ### Utilitaires
 
@@ -255,4 +266,4 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ---
 
-_Version : 2026.08.03_
+_Version : 2026.08.07_

@@ -55,24 +55,6 @@ const meta: Meta = {
     required: {
       control: "boolean",
     },
-    error: {
-      control: "text",
-    },
-    labelGroup: {
-      table: {
-        disable: true,
-      },
-    },
-    descriptionGroup: {
-      table: {
-        disable: true,
-      },
-    },
-    isRequired: {
-      table: {
-        disable: true,
-      },
-    },
     value: {
       table: {
         disable: true,

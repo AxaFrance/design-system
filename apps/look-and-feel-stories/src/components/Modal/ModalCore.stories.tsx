@@ -39,8 +39,7 @@ export const ModalCore: TModalCoreStory = {
       const children = (
         <>
           <ModalCoreHeader
-            headingProps={{ children: args.title }}
-            iconProps={{ src: bank }}
+            headingProps={{ children: args.title, icon: bank }}
             onClose={onClose as VoidFunction}
           />
           <ModalCoreBody>{args.children}</ModalCoreBody>

@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from "@storybook/react";
 import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
+import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps } from "react";
 
 const meta: Meta<typeof ContentItemMono> = {
@@ -44,7 +44,9 @@ export const IconStory: Story = {
   render: (props: ContentItemProps) => <ContentItemMono {...props} />,
   args: {
     type: "icon",
-    icon: bank,
+    iconProps: {
+      src: bank,
+    },
     title: "Texte principale",
     subtitle1: "Texte secondaire",
     subtitle2: "Texte tertiare",

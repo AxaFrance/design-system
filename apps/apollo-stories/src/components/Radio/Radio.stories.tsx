@@ -15,7 +15,10 @@ const meta: Meta = {
     checked: {
       control: { type: "boolean" },
     },
-    isInvalid: { type: "boolean" },
+    variant: {
+      control: { type: "select" },
+      options: ["error", "warning"],
+    },
   },
   args: {
     name: "option1",
@@ -27,7 +30,4 @@ export default meta;
 
 export const RadioStory: StoryObj<ComponentProps<typeof Radio>> = {
   name: "Playground",
-  render: ({ isInvalid, ...args }) => (
-    <Radio {...args} isInvalid={isInvalid ? true : undefined} />
-  ),
 };

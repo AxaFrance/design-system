@@ -1,3 +1,4 @@
+import keyboardDown from "@material-symbols/svg-400/rounded/keyboard_arrow_down-fill.svg";
 import {
   type ComponentProps,
   type ComponentType,
@@ -5,7 +6,6 @@ import {
   type ReactNode,
   useCallback,
 } from "react";
-import keyboardDown from "@material-symbols/svg-400/rounded/keyboard_arrow_down-fill.svg";
 import type { IconProps } from "../Icon/IconCommon";
 import { getClassName } from "../utilities/getClassName";
 
@@ -13,10 +13,6 @@ type SummaryOnClick = MouseEventHandler<HTMLElement>;
 
 export type AccordionCoreProps = {
   summary: ReactNode;
-  /**
-   * @deprecated use `open` instead
-   */
-  isOpen?: boolean;
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: SummaryOnClick;
   showArrowAsClickIcon?: boolean;
@@ -32,7 +28,6 @@ export const AccordionCoreCommon = ({
   children,
   className,
   summaryProps,
-  isOpen = false,
   IconComponent,
   onClick,
   showArrowAsClickIcon = true,
@@ -55,7 +50,6 @@ export const AccordionCoreCommon = ({
         baseClassName: "af-apollo-accordion",
         className,
       })}
-      open={isOpen}
       {...detailsProps}
     >
       <summary

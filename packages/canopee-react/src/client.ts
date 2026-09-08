@@ -47,11 +47,7 @@ export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetLF";
-export {
-  CardCheckbox,
-  /** @deprecated Use `CardCheckbox` instead. */
-  CardCheckbox as CheckboxCard,
-} from "./prospect-client/Form/Checkbox/CardCheckbox/CardCheckboxLF";
+export { CardCheckbox } from "./prospect-client/Form/Checkbox/CardCheckbox/CardCheckboxLF";
 export { CardCheckboxOption } from "./prospect-client/Form/Checkbox/CardCheckboxOption/CardCheckboxOptionLF";
 export { Checkbox } from "./prospect-client/Form/Checkbox/Checkbox/CheckboxLF";
 export { CheckboxText } from "./prospect-client/Form/Checkbox/CheckboxText/CheckboxTextLF";
@@ -59,18 +55,10 @@ export { Dropdown } from "./prospect-client/Form/Dropdown/DropdownLF";
 export { FileUpload } from "./prospect-client/Form/FileUpload/FileUpload/FileUploadLF";
 export { InputFile } from "./prospect-client/Form/FileUpload/InputFile/InputFileLF";
 export { ItemFile } from "./prospect-client/Form/FileUpload/ItemFile/ItemFileLF";
-export {
-  /** @deprecated Use `InputDate` instead. */
-  InputDate as DateInput,
-  InputDate,
-} from "./prospect-client/Form/InputDate/InputDateLF";
+export { InputDate } from "./prospect-client/Form/InputDate/InputDateLF";
 export { type OptionType } from "./prospect-client/Form/InputPhone/InputPhone.types";
 export { InputPhone } from "./prospect-client/Form/InputPhone/InputPhoneLF";
-export {
-  InputText,
-  /** @deprecated Use `InputText` instead. */
-  InputText as TextInput,
-} from "./prospect-client/Form/InputText/InputTextLF";
+export { InputText } from "./prospect-client/Form/InputText/InputTextLF";
 export { InputTextAtom } from "./prospect-client/Form/InputTextAtom/InputTextAtomLF";
 export { ItemLabel } from "./prospect-client/Form/ItemLabel/ItemLabelLF";
 export {
@@ -82,6 +70,10 @@ export {
   ItemMultiSelect,
   type ItemMultiSelectProps,
 } from "./prospect-client/Form/ItemMultiSelect/ItemMultiSelectLF";
+export {
+  MultiSelectList,
+  type MultiSelectListProps,
+} from "./prospect-client/Form/MultiSelectList/MultiSelectListLF";
 export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioLF";
 export { CardRadioGroup } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupLF";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioLF";
@@ -91,12 +83,12 @@ export {
 } from "./prospect-client/Form/Radio/RadioText/RadioTextLF";
 export { TextArea } from "./prospect-client/Form/TextArea/TextAreaLF";
 export { DebugGrid } from "./prospect-client/Grid/DebugGridLF";
+export { Header, type HeaderProps } from "./prospect-client/Header/HeaderLF";
 export {
   Heading,
   type HeadingLevel,
   type HeadingProps,
 } from "./prospect-client/Heading/HeadingLF";
-export { Header, type HeaderProps } from "./prospect-client/Header/HeaderLF";
 export {
   Icon,
   iconSizeVariants,
@@ -105,22 +97,19 @@ export {
   type IconVariants,
 } from "./prospect-client/Icon/IconLF";
 export {
-  ItemTabBar,
-  type ItemTabBarProps,
-} from "./prospect-client/ItemTabBar/ItemTabBarLF";
-export {
   ItemMenu,
   type ItemMenuProps,
 } from "./prospect-client/ItemMenu/ItemMenuLF";
 export {
-  MenuBurger,
-  type MenuBurgerProps,
-} from "./prospect-client/MenuBurger/MenuBurgerLF";
-export { TabMenu, type TabMenuProps } from "./prospect-client/TabMenu/TabMenu";
+  ItemTabBar,
+  type ItemTabBarProps,
+} from "./prospect-client/ItemTabBar/ItemTabBarLF";
 export {
   ExitLayout,
   type ExitLayoutProps,
   type ExitLayoutWithSubComponents,
+  ExitLayoutSkeleton,
+  type ExitLayoutSkeletonProps,
 } from "./prospect-client/Layout/ExitLayout/ExitLayoutLF";
 export {
   Footer,
@@ -151,15 +140,14 @@ export { ContentItemDuo } from "./prospect-client/List/ContentItemDuo/ContentIte
 export { List, type ListProps } from "./prospect-client/List/List/ListLF";
 export { Loader, type LoaderProps } from "./prospect-client/Loader/LoaderLF";
 export {
+  MenuBurger,
+  type MenuBurgerProps,
+} from "./prospect-client/MenuBurger/MenuBurgerLF";
+export {
   Message,
   messageVariants,
   type MessageVariants,
 } from "./prospect-client/Message/MessageLF";
-export {
-  MultiMessage,
-  type MultiMessageItem,
-  type MultiMessageProps,
-} from "./prospect-client/MultiMessage/MultiMessageLF";
 export {
   Modal,
   ModalCore,
@@ -167,6 +155,11 @@ export {
   ModalCoreFooter,
   ModalCoreHeader,
 } from "./prospect-client/Modal/ModalLF";
+export {
+  MultiMessage,
+  type MultiMessageItem,
+  type MultiMessageProps,
+} from "./prospect-client/MultiMessage/MultiMessageLF";
 export {
   ErrorPage,
   type ErrorPageProps,
@@ -184,8 +177,18 @@ export { ProgressBar } from "./prospect-client/ProgressBar/ProgressBarLF";
 export { ProgressBarGroup } from "./prospect-client/ProgressBarGroup/ProgressBarGroupLF";
 export {
   Skeleton,
+  skeletonSizeVariants,
+  skeletonVariants,
+  type SkeletonActionSizeVariant,
+  type SkeletonCircleSizeVariant,
   type SkeletonProps,
-} from "./prospect-client/Skeleton/SkeletonLF";
+  type SkeletonSizeVariant,
+  type SkeletonVariant,
+} from "./prospect-client/Skeleton/Skeleton";
+export {
+  SkeletonGrid,
+  type SkeletonGridProps,
+} from "./prospect-client/SkeletonGrid/SkeletonGrid";
 export {
   SkeletonList,
   type SkeletonListProps,
@@ -214,6 +217,7 @@ export {
   TableMobileCard,
   type TableMobileCardProps,
 } from "./prospect-client/TableMobileCard/TableMobileCard";
+export { TabMenu, type TabMenuProps } from "./prospect-client/TabMenu/TabMenu";
 export {
   Tag,
   tagVariants,

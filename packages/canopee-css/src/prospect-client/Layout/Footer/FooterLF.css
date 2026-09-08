@@ -2,12 +2,12 @@
 
 @layer canopee {
   .af-footer {
-    --footer-bg-color: var(--blue-550);
+    --footer-bg-color: var(--blue-1000);
     --footer-color: var(--white-1000);
   }
 
   .af-footer__linkItem:hover,
   .af-footer__menuIconLinks:hover {
-    --footer-color: var(--blue-1200);
+    --footer-color: var(--white-1000);
   }
 }

@@ -2,7 +2,7 @@ import check from "@material-symbols/svg-400/rounded/check.svg";
 import close from "@material-symbols/svg-400/rounded/close.svg";
 import { type ComponentType, type InputHTMLAttributes, useId } from "react";
 import type { IconProps } from "../Icon/IconCommon";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 
 export type ToggleProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -23,7 +23,7 @@ export const ToggleCommon = ({
 
   return (
     <label
-      className={getComponentClassName("af-toggle", className)}
+      className={getClassName({ baseClassName: "af-toggle", className })}
       htmlFor={inputId}
     >
       <div className="af-toggle__root">

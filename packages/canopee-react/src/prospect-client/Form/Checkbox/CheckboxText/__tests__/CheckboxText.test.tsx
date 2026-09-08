@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
 import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
 import { Checkbox } from "../../Checkbox/CheckboxCommon";
 import {
@@ -46,7 +46,8 @@ describe("CheckboxText Component", () => {
         label="Option"
         name="option"
         value="1"
-        errorMessage="Required error"
+        message="Required error"
+        messageType="error"
       />,
     );
 

@@ -8,16 +8,39 @@ import * as SkeletonListStories from "./SkeletonList.stories.tsx";
 ### Import
 
 ```tsx
-import { SkeletonList } from "@axa-fr/canopee-react/client";
+import { SkeletonList } from "@axa-fr/canopee-react/prospect";
 ```
 
 ### Use
 
 ```tsx
 const lists = [
-  { grid: [[3, 9]], lines: 10 },
-  { grid: [[3, 9]], lines: 3 },
-  { grid: [[6], [12], [12], [12]] },
+  {
+    grid: [
+      [
+        { colSize: 3, size: "XS" },
+        { colSize: 9, size: "XS" },
+      ],
+    ],
+    lines: 10,
+  },
+  {
+    grid: [
+      [
+        { colSize: 3, size: "XS" },
+        { colSize: 9, size: "M" },
+      ],
+    ],
+    lines: 3,
+  },
+  {
+    grid: [
+      [{ colSize: 6, size: "XS" }],
+      [{ colSize: 12 }],
+      [{ colSize: 12 }],
+      [{ colSize: 12 }],
+    ],
+  },
 ];
 const isLoading = true;
 

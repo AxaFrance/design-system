@@ -19,11 +19,11 @@ describe("<InputText />", () => {
           name="name"
           placeholder="placeholder"
           helper="helper"
-          error="error"
+          message="error"
           value="value"
           onChange={() => {}}
           required
-          buttonLabel="buttonLabel"
+          moreButtonLabel="buttonLabel"
           description="description"
           unit="unit"
         />,
@@ -66,7 +66,12 @@ describe("<InputText />", () => {
 
     it("should set aria-describedby with two ids when helper and success are present", () => {
       render(
-        <InputText label="foo" helper="Help text" success="Success message" />,
+        <InputText
+          label="foo"
+          helper="Help text"
+          message="Success message"
+          messageType="success"
+        />,
       );
 
       const input = screen.getByLabelText("foo");
@@ -79,7 +84,7 @@ describe("<InputText />", () => {
     });
 
     it("should set aria-errormessage when error is present", () => {
-      render(<InputText label="foo" error="Error message" />);
+      render(<InputText label="foo" message="Error message" />);
 
       const input = screen.getByLabelText("foo");
       const error = screen.getByText("Error message");

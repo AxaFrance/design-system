@@ -11,10 +11,6 @@ type BaseCardRadioProps = Omit<ComponentProps<typeof Radio>, "size"> & {
 };
 
 export type CardRadioProps = BaseCardRadioProps & {
-  /**
-   * @deprecated Use `position` instead.
-   */
-  type?: "vertical" | "horizontal";
   position?: "vertical" | "horizontal";
   icon?: ComponentProps<typeof IconCommon>["src"];
   src?: ComponentProps<typeof BasePicture>["src"];
@@ -29,26 +25,25 @@ export type CardRadioCommonProps = CardRadioProps & {
 export const CardRadioCommon = ({
   label,
   position,
-  type,
   description,
   subtitle,
   icon,
   src,
   basePictureProps,
-  isInvalid,
+  variant,
   className,
   RadioComponent,
   IconComponent,
   ...inputProps
 }: CardRadioCommonProps) => {
-  const isCardRadioHorizontal = [position, type].includes("horizontal");
+  const isCardRadioHorizontal = position === "horizontal";
 
   return (
     <label
       className={getClassName({
         baseClassName: "af-card-radio",
         modifiers: [
-          isInvalid && "invalid",
+          variant === "error" && "invalid",
           isCardRadioHorizontal && "horizontal",
         ],
         className,
@@ -67,7 +62,7 @@ export const CardRadioCommon = ({
           <p className="af-card-radio__subtitle">{subtitle}</p>
         )}
       </div>
-      <RadioComponent {...inputProps} isInvalid={isInvalid} />
+      <RadioComponent {...inputProps} variant={variant} />
     </label>
   );
 };

@@ -1,8 +1,0 @@
-@import "./SkeletonCommon.css";
-
-@layer canopee {
-  .af-skeleton {
-    --skeleton-color-odd: var(--gray-140);
-    --skeleton-color-even: var(--gray-050);
-  }
-}

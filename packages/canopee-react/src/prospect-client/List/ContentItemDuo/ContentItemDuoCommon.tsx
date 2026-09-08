@@ -1,10 +1,10 @@
 import { type ComponentProps, type ComponentType, type ReactNode } from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
-import { getClassName } from "../../utilities/getClassName";
 import {
   ItemMessage,
   type ItemMessageProps,
 } from "../../Form/ItemMessage/ItemMessageCommon";
+import { getClassName } from "../../utilities/getClassName";
 
 type ContentItemDuoPositions =
   | {
@@ -21,10 +21,6 @@ export type ContentItemDuoProps = {
   value: ReactNode;
   buttonText?: string;
   onButtonClick?: () => void;
-  /** @deprecated Use `position` instead */
-  isVertical?: boolean;
-  /** @deprecated Use `size` or `className` instead */
-  classModifier?: string;
 } & Pick<ItemMessageProps, "message" | "messageType"> &
   ContentItemDuoPositions &
   ComponentProps<"div">;
@@ -40,8 +36,6 @@ export const ContentItemDuoCommon = ({
   position = "horizontal",
   size = "large",
   className,
-  classModifier,
-  isVertical,
   buttonText,
   onButtonClick,
   ButtonComponent,
@@ -53,11 +47,7 @@ export const ContentItemDuoCommon = ({
   const componentClassName = getClassName({
     baseClassName: "af-content-item-duo",
     className,
-    modifiers: [
-      isVertical ? "vertical" : position,
-      size === "small" && size,
-      classModifier,
-    ],
+    modifiers: [position, size === "small" && size],
   });
 
   return (

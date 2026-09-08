@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
 import { ContentItemMono } from "../ContentItemMonoLF";
 
 describe("ContentItemMono Component", () => {
@@ -29,7 +29,7 @@ describe("ContentItemMono Component", () => {
         title="Icon Title"
         subtitle1="Primary Subtitle"
         subtitle2="Secondary Subtitle"
-        icon="test-icon.svg"
+        iconProps={{ src: "test-icon.svg" }}
       />,
     );
 

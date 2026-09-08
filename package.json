@@ -1,59 +1,57 @@
 {
-  "name": "@axa-fr/design-system",
-  "version": "0.1.0",
-  "description": "",
-  "packageManager": "npm@11.6.4",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AxaFrance/design-system.git"
-  },
-  "scripts": {
-    "dev": "turbo dev --filter=./apps/*",
-    "dev:client": "turbo dev --filter=./apps/look-and-feel-stories",
-    "dev:prospect": "turbo dev --filter=./apps/apollo-stories",
-    "dev:distributeur": "turbo dev --filter=./apps/slash-stories",
-    "build": "turbo build --concurrency=1 --filter=!./samples/vite",
-    "build:distributeur": "turbo build --filter=./apps/slash-stories",
-    "build:client": "turbo build --filter=./apps/look-and-feel-stories",
-    "build:prospect": "turbo build --filter=./apps/apollo-stories",
-    "lint": "turbo lint",
-    "package:check": "npx --yes package-lock-utd@1.1.3",
-    "prepare": "husky",
-    "test": "vitest"
-  },
-  "author": "AxaFrance",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AxaFrance/design-system/issues"
-  },
-  "homepage": "https://github.com/AxaFrance/design-system#readme",
-  "workspaces": [
-    "samples/vite",
-    "apps/*",
-    "packages/*",
-    "slash/*",
-    "client/apollo/*"
-  ],
-  "devDependencies": {
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^19.8.0",
-    "@material-symbols/svg-400": "^0.44.3",
-    "@material-symbols/svg-700": "^0.45.1",
-    "@types/node": "^22.13.5",
-    "@vitest/coverage-v8": "^4.1.5",
-    "commander": "^14.0.3",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.5.0",
-    "tsc-files": "^1.1.4",
-    "turbo": "^2.5.8",
-    "vite": "^8.0.10",
-    "vitest": "^4.1.5"
-  },
-  "lint-staged": {
-    "{package,package-lock}.json": "npm run package:check"
-  },
-  "volta": {
-    "node": "24.11.1",
-    "npm": "11.6.4"
-  }
+    "name": "@axa-fr/design-system",
+    "version": "0.1.0",
+    "description": "",
+    "packageManager": "npm@11.6.4",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AxaFrance/design-system.git"
+    },
+    "scripts": {
+        "dev": "turbo dev --filter=./apps/*",
+        "dev:client": "turbo dev --filter=./apps/look-and-feel-stories",
+        "dev:prospect": "turbo dev --filter=./apps/apollo-stories",
+        "dev:distributeur": "turbo dev --filter=./apps/slash-stories",
+        "build": "turbo build --concurrency=1 --filter=!./samples/vite",
+        "build:distributeur": "turbo build --filter=./apps/slash-stories",
+        "build:client": "turbo build --filter=./apps/look-and-feel-stories",
+        "build:prospect": "turbo build --filter=./apps/apollo-stories",
+        "lint": "turbo lint",
+        "package:check": "npx --yes package-lock-utd@1.1.3",
+        "prepare": "husky",
+        "test": "vitest"
+    },
+    "author": "AxaFrance",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/AxaFrance/design-system/issues"
+    },
+    "homepage": "https://github.com/AxaFrance/design-system#readme",
+    "workspaces": [
+        "samples/vite",
+        "apps/*",
+        "packages/*"
+    ],
+    "devDependencies": {
+        "@commitlint/cli": "^20.5.0",
+        "@commitlint/config-conventional": "^19.8.0",
+        "@material-symbols/svg-400": "^0.44.3",
+        "@material-symbols/svg-700": "^0.45.1",
+        "@types/node": "^22.13.5",
+        "@vitest/coverage-v8": "^4.1.5",
+        "commander": "^14.0.3",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.5.0",
+        "tsc-files": "^1.1.4",
+        "turbo": "^2.5.8",
+        "vite": "^8.0.10",
+        "vitest": "^4.1.5"
+    },
+    "lint-staged": {
+        "{package,package-lock}.json": "npm run package:check"
+    },
+    "volta": {
+        "node": "24.11.1",
+        "npm": "11.6.4"
+    }
 }

@@ -96,7 +96,7 @@ describe("CardCheckbox", () => {
   });
 
   it("should display error message when error prop is provided (deprecated)", () => {
-    render(<CardCheckbox {...defaultArgs} error="Erreur obligatoire" />);
+    render(<CardCheckbox {...defaultArgs} message="Erreur obligatoire" />);
 
     const checkboxInput = screen.getByRole("checkbox", { name: /Paris/ });
 

@@ -41,8 +41,6 @@
       }
 
       > .af-exit-page__agent {
-        height: fit-content;
-
         @media (--desktop-small) {
           --start: 7;
           --cols: 4;

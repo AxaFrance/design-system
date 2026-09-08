@@ -10,6 +10,10 @@
     gap: var(--rem-16);
     background: var(--white);
     anchor-name: --af-header;
+
+    .af-heading {
+      display: none;
+    }
   }
 
   .af-header__menu {
@@ -88,15 +92,7 @@
     gap: var(--rem-16);
   }
 
-  .af-heading {
-    display: none;
-  }
-
   @media (--desktop-small) {
-    .af-heading {
-      display: inline-block;
-    }
-
     .af-header {
       display: grid;
       padding: 0 var(--rem-32);
@@ -118,6 +114,10 @@
       &:has(:popover-open)::after {
         background-color: var(--blue-1000-48);
         pointer-events: auto;
+      }
+
+      .af-heading {
+        display: inline-block;
       }
     }
 

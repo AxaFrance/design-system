@@ -1,5 +1,5 @@
 import { type ComponentPropsWithRef } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 
 export type ItemTabBarProps = ComponentPropsWithRef<"button"> & {
   isActive?: boolean;
@@ -12,7 +12,10 @@ export const ItemTabBar = ({
   className,
   ...props
 }: ItemTabBarProps) => {
-  const classNames = getComponentClassName("af-item-tab-bar", className);
+  const classNames = getClassName({
+    baseClassName: "af-item-tab-bar",
+    className,
+  });
 
   return (
     <button

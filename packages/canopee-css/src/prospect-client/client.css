@@ -62,7 +62,8 @@
 @import "./Card/CardLF.css";
 @import "./List/List/ListLF.css";
 @import "./LevelSelector/LevelSelectorLF.css";
-@import "./Skeleton/SkeletonLF.css";
+@import "./Skeleton/SkeletonAll.css";
+@import "./SkeletonGrid/SkeletonGridAll.css";
 @import "./Table/TableLF.css";
 @import "./Fieldset/FieldsetLF.css";
 @import "./TableMobileCard/TableMobileCardAll.css";

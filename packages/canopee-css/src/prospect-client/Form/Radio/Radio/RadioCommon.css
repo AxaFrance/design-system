@@ -34,14 +34,38 @@
     &:checked {
       --radio-border-width: 2px;
     }
-  }
 
-  .af-radio--invalid:not(:checked) {
-    --radio-border-width: 2px;
+    &[class*="--error"] {
+      &:checked {
+        --radio-ckecked-color: transparent;
+      }
 
-    &:hover,
-    &:focus-within {
-      --radio-border-width: 3px;
+      &:checked,
+      &:not(:checked) {
+        --radio-border-width: 2px;
+
+        &:hover,
+        &:focus-within {
+          --radio-border-width: 3px;
+        }
+      }
+    }
+
+    &[class*="--warning"] {
+      &:checked {
+        --radio-ckecked-color: transparent;
+      }
+
+      &:checked,
+      &:not(:checked) {
+        --radio-border-width: 2px;
+        --radio-border-color: var(--orange-1050);
+
+        &:hover,
+        &:focus-within {
+          --radio-border-width: 3px;
+        }
+      }
     }
   }
 }

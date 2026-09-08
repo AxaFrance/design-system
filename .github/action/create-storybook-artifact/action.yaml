@@ -3,7 +3,7 @@ description: Create artifact storybooks
 
 inputs:
   folders:
-    description: 'List of artifact folder names (e.g., "apollo/react,look-and-feel/react,look-and-feel/css")'
+    description: 'List of artifact folder names (e.g., "apollo/react,client/react,slash/react")'
     required: true
   artifact-name:
     description: 'Name of the artifact to be created'
@@ -17,7 +17,11 @@ runs:
       run: |
         IFS=',' read -r -a folders <<< "${{ inputs.folders }}"
         for folder in "${folders[@]}"; do
-          app="apps/${folder%%/*}-stories-${folder#*/}/storybook-static/*"
+          app_prefix="${folder%%/*}"
+          if [[ "$app_prefix" == "client" ]]; then
+            app_prefix="look-and-feel"
+          fi
+          app="apps/${app_prefix}-stories-${folder#*/}/storybook-static/*"
           app=$(echo "$app" | sed 's/-react//')
           artifact="artifact/$folder"
           mkdir -p $artifact

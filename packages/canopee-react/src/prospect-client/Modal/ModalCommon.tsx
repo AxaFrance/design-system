@@ -34,7 +34,6 @@ export const ModalCommon = ({
   headingProps,
   closeButtonAriaLabel,
   onClose,
-  iconProps,
   primaryButtonProps,
   secondaryButtonProps,
   tertiaryButtonProps,
@@ -48,7 +47,6 @@ export const ModalCommon = ({
     <ModalCoreHeaderCommon
       headingComponent={headingComponent}
       headingProps={headingProps}
-      iconProps={iconProps}
       onClose={onClose}
       closeButtonAriaLabel={closeButtonAriaLabel}
       {...modalCoreHeaderProps}

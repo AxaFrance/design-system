@@ -47,11 +47,7 @@ export {
   Fieldset,
   type FieldsetProps,
 } from "./prospect-client/Fieldset/FieldsetApollo";
-export {
-  CardCheckbox,
-  /** @deprecated Use `CardCheckbox` instead. */
-  CardCheckbox as CheckboxCard,
-} from "./prospect-client/Form/Checkbox/CardCheckbox/CardCheckboxApollo";
+export { CardCheckbox } from "./prospect-client/Form/Checkbox/CardCheckbox/CardCheckboxApollo";
 export { CardCheckboxOption } from "./prospect-client/Form/Checkbox/CardCheckboxOption/CardCheckboxOptionApollo";
 export { Checkbox } from "./prospect-client/Form/Checkbox/Checkbox/CheckboxApollo";
 export { CheckboxText } from "./prospect-client/Form/Checkbox/CheckboxText/CheckboxTextApollo";
@@ -74,6 +70,10 @@ export {
   ItemMultiSelect,
   type ItemMultiSelectProps,
 } from "./prospect-client/Form/ItemMultiSelect/ItemMultiSelectApollo";
+export {
+  MultiSelectList,
+  type MultiSelectListProps,
+} from "./prospect-client/Form/MultiSelectList/MultiSelectListApollo";
 export { CardRadio } from "./prospect-client/Form/Radio/CardRadio/CardRadioApollo";
 export { CardRadioGroup } from "./prospect-client/Form/Radio/CardRadioGroup/CardRadioGroupApollo";
 export { Radio } from "./prospect-client/Form/Radio/Radio/RadioApollo";
@@ -116,6 +116,8 @@ export {
   ExitLayout,
   type ExitLayoutProps,
   type ExitLayoutWithSubComponents,
+  ExitLayoutSkeleton,
+  type ExitLayoutSkeletonProps,
 } from "./prospect-client/Layout/ExitLayout/ExitLayoutApollo";
 export {
   Footer,
@@ -182,8 +184,18 @@ export { ProgressBar } from "./prospect-client/ProgressBar/ProgressBarApollo";
 export { ProgressBarGroup } from "./prospect-client/ProgressBarGroup/ProgressBarGroupApollo";
 export {
   Skeleton,
+  skeletonSizeVariants,
+  skeletonVariants,
+  type SkeletonActionSizeVariant,
+  type SkeletonCircleSizeVariant,
   type SkeletonProps,
-} from "./prospect-client/Skeleton/SkeletonApollo";
+  type SkeletonSizeVariant,
+  type SkeletonVariant,
+} from "./prospect-client/Skeleton/Skeleton";
+export {
+  SkeletonGrid,
+  type SkeletonGridProps,
+} from "./prospect-client/SkeletonGrid/SkeletonGrid";
 export {
   SkeletonList,
   type SkeletonListProps,

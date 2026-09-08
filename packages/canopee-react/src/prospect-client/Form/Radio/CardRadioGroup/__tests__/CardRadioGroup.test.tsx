@@ -69,13 +69,13 @@ describe("CardRadioGroup", () => {
           {
             label: "Paris",
             value: "paris",
+            checked: true,
           },
           {
             label: "Lyon",
             value: "lyon",
           },
         ]}
-        value="paris"
         onChange={vi.fn()}
       />,
     );
@@ -100,7 +100,7 @@ describe("CardRadioGroup", () => {
       <CardRadioGroup
         options={radioOptions}
         label="Choose a city"
-        error="This field is required"
+        message="This field is required"
       />,
     );
 

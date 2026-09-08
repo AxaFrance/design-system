@@ -11,12 +11,6 @@ import { Svg } from "../../Svg/Svg";
 
 export type ItemLabelProps = ComponentProps<"label"> & {
   /**
-   * Label text content
-   * @deprecated use `children` instead.
-   */
-  label?: ReactNode;
-
-  /**
    * Additional description text that enriches the label.
    * @example "Phone bill, EDF receipt, etc."
    */
@@ -26,12 +20,6 @@ export type ItemLabelProps = ComponentProps<"label"> & {
    * Shows a visual asterisk (*) indicator next to the label.
    */
   required?: boolean;
-
-  /**
-   * ID of the associated input element
-   * @deprecated use `htmlFor` instead.
-   */
-  inputId?: string;
 
   /**
    * Label content for the side action button.
@@ -51,18 +39,6 @@ export type ItemLabelProps = ComponentProps<"label"> & {
     Partial<ButtonProps>,
     "children" | "onClick" | "variant" | "className"
   >;
-
-  /**
-   * Label content for the more button
-   * @deprecated use `moreButtonLabel` instead.
-   */
-  buttonLabel?: ReactNode;
-
-  /**
-   * Click handler for the info button
-   * @deprecated use `onMoreButtonClick` instead.
-   */
-  onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 
   /**
    * Label content for the more button
@@ -120,7 +96,7 @@ export type ItemLabelCommonProps = ItemLabelProps & {
  *   description="Accepted: PDF, JPG, PNG (max 5MB)"
  *   sideButtonLabel="Browse"
  *   onSideButtonClick={handleBrowse}
- *   moreButton="Help"
+ *   moreButtonLabel="Help"
  *   onMoreButtonClick={handleShowHelp}
  *   ButtonComponent={Button}
  * >
@@ -129,20 +105,15 @@ export type ItemLabelCommonProps = ItemLabelProps & {
  * ```
  */
 export const ItemLabelCommon = ({
-  label,
   children,
   description,
   required,
-  inputId,
-  htmlFor,
   className,
   style,
   "aria-describedby": ariaDescribedby,
   sideButtonLabel,
   onSideButtonClick,
   sideButtonProps,
-  buttonLabel,
-  onButtonClick,
   moreButtonLabel,
   onMoreButtonClick,
   ButtonComponent,
@@ -151,12 +122,11 @@ export const ItemLabelCommon = ({
 }: ItemLabelCommonProps) => {
   const idDescription = useId();
 
-  const contentLabel = children ?? label;
   const describedByIds = [description ? idDescription : null, ariaDescribedby]
     .filter(Boolean)
     .join(" ");
 
-  if (!contentLabel) {
+  if (!children) {
     return null;
   }
 
@@ -166,12 +136,11 @@ export const ItemLabelCommon = ({
       style={style}
     >
       <label
-        htmlFor={htmlFor || inputId}
         className="af-item-label__label"
         aria-describedby={describedByIds || undefined}
         {...props}
       >
-        {contentLabel}
+        {children}
         {required ? <span aria-hidden>*</span> : null}
       </label>
 
@@ -192,15 +161,15 @@ export const ItemLabelCommon = ({
         </span>
       ) : null}
 
-      {moreButtonLabel || buttonLabel ? (
+      {moreButtonLabel ? (
         <ButtonComponent
           iconLeft={<Svg src={infoIcon} role="presentation" />}
           {...moreButtonProps}
           variant="ghost"
           className="af-item-label__more"
-          onClick={onMoreButtonClick || onButtonClick}
+          onClick={onMoreButtonClick}
         >
-          {moreButtonLabel || buttonLabel}
+          {moreButtonLabel}
         </ButtonComponent>
       ) : null}
     </div>

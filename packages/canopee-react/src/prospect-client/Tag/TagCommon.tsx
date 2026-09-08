@@ -1,5 +1,5 @@
 import { useMemo, type ComponentProps } from "react";
-import { getComponentClassName } from "../utilities/getComponentClassName";
+import { getClassName } from "../utilities/getClassName";
 
 export const tagVariants = {
   info: "info",
@@ -22,7 +22,12 @@ export const Tag = ({
   ...divProps
 }: TagProps) => {
   const componentClassName = useMemo(
-    () => getComponentClassName("af-tag", className, variant),
+    () =>
+      getClassName({
+        baseClassName: "af-tag",
+        className,
+        modifiers: [variant],
+      }),
     [className, variant],
   );
 

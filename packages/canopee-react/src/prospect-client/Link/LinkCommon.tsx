@@ -19,10 +19,6 @@ export type LinkProps = {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
-  /**
-   * @deprecated Use variant instead
-   */
-  classModifier?: string;
 } & ComponentPropsWithoutRef<"a">;
 
 export const Link = ({
@@ -33,7 +29,6 @@ export const Link = ({
   rightIcon,
   children,
   className,
-  classModifier = "",
   ...props
 }: PropsWithChildren<LinkProps>) => {
   const newTabProps = openInNewTab && {
@@ -45,7 +40,7 @@ export const Link = ({
     <a
       className={getClassName({
         baseClassName: "af-link",
-        modifiers: [classModifier, variant, openInNewTab && "openInNewTab"],
+        modifiers: [variant, openInNewTab && "openInNewTab"],
         className,
       })}
       href={href}
