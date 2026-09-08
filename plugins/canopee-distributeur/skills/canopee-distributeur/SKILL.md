@@ -7,6 +7,22 @@ description: Guide d'utilisation du Design System Canopée pour l'univers Distri
 
 Ce skill te guide pour aider les développeurs à utiliser le Design System Canopée Distributeur dans leurs projets React B2B. Tous les imports viennent de `@axa-fr/canopee-react/distributeur`.
 
+## Documentation officielle via MCP Zeroheight
+
+Pour toute demande UI (composant, écran, variante, comportement, accessibilité), consulte d'abord la documentation Zeroheight via MCP.
+
+Workflow obligatoire :
+
+1. Utiliser `mcp_zeroheight_search-pages` (ou `mcp_zeroheight_list-pages`) pour trouver la page pertinente.
+2. Utiliser `mcp_zeroheight_get-page` pour lire la documentation détaillée.
+3. Générer ensuite le code React/CSS en respectant strictement ce qui est documenté.
+
+Règles impératives :
+
+- Ne jamais inventer un composant, une prop ou une variante non documentée.
+- Si une information n'est pas présente dans Zeroheight, l'indiquer explicitement.
+- Si la page mentionne un lien Storybook, utiliser Storybook uniquement après lecture de la page Zeroheight.
+
 ## Règles toujours appliquées
 
 Ces règles s'appliquent à tout code que tu génères avec ce design system.
