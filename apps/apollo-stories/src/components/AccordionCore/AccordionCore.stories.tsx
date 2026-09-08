@@ -6,6 +6,10 @@ const meta: Meta<typeof AccordionCore> = {
   component: AccordionCore,
   title: "Components/AccordionCore",
   argTypes: {
+    arrowClickIconVariant: {
+      control: { type: "select" },
+      options: ["default", "ghost"],
+    },
     open: {
       control: { type: "boolean" },
     },
@@ -52,6 +56,7 @@ const defaultArgs = {
   ),
   open: undefined,
   onClick: undefined,
+  arrowClickIconVariant: "default" as const,
 };
 
 export const AccordionCoreStory: StoryObj<

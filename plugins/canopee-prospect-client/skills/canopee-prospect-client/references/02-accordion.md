@@ -148,9 +148,12 @@ type AccordionCoreProps = {
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: MouseEventHandler<HTMLElement>;       // Intercepte le clic (empêche toggle natif)
   showArrowAsClickIcon?: boolean;                 // Flèche stylisée comme ClickIcon (défaut: true)
+  arrowClickIconVariant?: "default" | "ghost";    // Style du ClickIcon de la flèche (défaut: "default")
   arrowIconVariant?: IconVariants;               // Variante couleur de la flèche
 } & ComponentProps<"details">;
 ```
+
+`arrowClickIconVariant` n'a d'effet que si `showArrowAsClickIcon` est à `true` : la valeur `ghost` retire le fond du bouton de flèche, comme sur `MessageBar` en mobile.
 
 ### Exemple
 

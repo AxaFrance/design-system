@@ -137,6 +137,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | ------------------ | ------------------------------------------------------------- | --------------------------------------------------- |
 | `Message`          | [06-message-feedback.md](./references/06-message-feedback.md) | Alerte validation/error/warning/information/neutral |
 | `CardMessage`      | [06-message-feedback.md](./references/06-message-feedback.md) | Carte message compacte                              |
+| `MessageBar`       | [06-message-feedback.md](./references/06-message-feedback.md) | Bandeau pleine largeur, repliable en mobile         |
 | `Loader`           | [06-message-feedback.md](./references/06-message-feedback.md) | Plein écran de chargement                           |
 | `Spinner`          | [06-message-feedback.md](./references/06-message-feedback.md) | Indicateur de chargement inline                     |
 | `Skeleton`         | [06-message-feedback.md](./references/06-message-feedback.md) | Placeholder de chargement basé sur `SkeletonProps`  |
