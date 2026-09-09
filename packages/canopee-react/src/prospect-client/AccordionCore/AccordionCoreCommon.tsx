@@ -6,6 +6,7 @@ import {
   type ReactNode,
   useCallback,
 } from "react";
+import type { ClickIconVariant } from "../ClickIcon/ClickIconCommon";
 import type { IconProps } from "../Icon/IconCommon";
 import { getClassName } from "../utilities/getClassName";
 
@@ -16,6 +17,7 @@ export type AccordionCoreProps = {
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
   onClick?: SummaryOnClick;
   showArrowAsClickIcon?: boolean;
+  arrowClickIconVariant?: ClickIconVariant;
   arrowIconVariant?: IconProps["variant"];
 } & ComponentProps<"details">;
 
@@ -31,6 +33,7 @@ export const AccordionCoreCommon = ({
   IconComponent,
   onClick,
   showArrowAsClickIcon = true,
+  arrowClickIconVariant = "default",
   arrowIconVariant,
   ...detailsProps
 }: AccordionPropsCommonProps) => {
@@ -43,6 +46,12 @@ export const AccordionCoreCommon = ({
     },
     [onClick],
   );
+  const arrowClassName = showArrowAsClickIcon
+    ? getClassName({
+        baseClassName: "af-click-icon",
+        modifiers: [arrowClickIconVariant === "ghost" && arrowClickIconVariant],
+      })
+    : undefined;
 
   return (
     <details
@@ -65,7 +74,7 @@ export const AccordionCoreCommon = ({
         <div
           className={getClassName({
             baseClassName: "af-accordion__arrow",
-            className: showArrowAsClickIcon ? "af-click-icon" : "",
+            className: arrowClassName,
           })}
         >
           <IconComponent
