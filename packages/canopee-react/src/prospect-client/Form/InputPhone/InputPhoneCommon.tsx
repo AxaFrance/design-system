@@ -92,6 +92,8 @@ const InputPhoneCommon = ({
 
   const hasError = Boolean(message) && messageType === "error";
 
+  const hasWarning = Boolean(message) && messageType === "warning" && !hasError;
+
   /**
    * Gère le changement de valeur du champ numéro de téléphone.
    * - Récupère une fonction de masquage (mask) depuis les props ou utilise une version par défaut.
@@ -142,6 +144,7 @@ const InputPhoneCommon = ({
             .join(" ")}
           classModifier={classModifier}
           error={hasError ? messageType : undefined}
+          warning={hasWarning ? "warning" : undefined}
           type="tel"
           required={required}
           placeholder={otherProps.placeholder}
