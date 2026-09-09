@@ -1,0 +1,182 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Primary,
+  Subtitle,
+  Title,
+} from "@storybook/addon-docs/blocks";
+import * as RadioButtonStories from "./RadioButton.stories";
+import * as RadioCardStories from "./RadioCard.stories";
+import * as RadioGroupStories from "./RadioGroup.stories";
+import * as RadioInputStories from "./RadioInput.stories";
+import * as RadioItemStories from "./RadioItem.stories";
+import * as RadioTextStories from "./RadioText.stories";
+
+<Meta of={RadioInputStories} title="Form/Experimental/Radio" />
+
+<Title />
+<Subtitle>How to use the experimental radio components</Subtitle>
+
+## ⚠️ Experimental Components
+
+These components are experimental and may evolve in future releases.
+Use them in production with care and prefer the high-level API when possible.
+
+## Component map
+
+The radio package is designed in layers:
+
+- `RadioInput`: full field component (label, help/error messages, and radio options)
+- `RadioGroup`: layout and orientation wrapper for multiple radio options
+- `RadioButton` and `RadioCard`: option variants to use inside a group
+- `RadioText`: text radio option with integrated label
+- `RadioItem`: low-level native radio input only
+
+## Recommended entry point: RadioInput
+
+Start with `RadioInput` when building forms. It handles field-level concerns and keeps usage simple.
+
+<Primary />
+<Controls />
+
+### Example
+
+```tsx
+import { RadioInput } from "@axa-fr/canopee-react/distributeur/experimental";
+
+const options = [
+  { id: "option1", name: "transport", value: "train", label: "Train" },
+  { id: "option2", name: "transport", value: "car", label: "Car" },
+  { id: "option3", name: "transport", value: "bike", label: "Bike" },
+];
+
+export const Example = () => (
+  <RadioInput
+    label="Preferred transport"
+    helpMessage="Choose one option"
+    errorMessage=""
+    options={options}
+    variant="button"
+    orientation="horizontal"
+  />
+);
+```
+
+## Layout with RadioGroup
+
+Use `RadioGroup` when you need full control over composition of options.
+
+<Canvas of={RadioGroupStories.HorizontalStory} />
+<Canvas of={RadioGroupStories.VerticalStory} />
+
+### Orientation details
+
+`orientation` controls how options are laid out in the group.
+
+- `horizontal`: options are displayed on one row when possible
+- `vertical`: options are stacked
+
+Recommended usage:
+
+- Use `horizontal` for short labels and a limited number of options
+- Use `vertical` for long labels, rich content, or better readability on narrow screens
+
+When using `RadioInput`, pass `orientation` directly:
+
+```tsx
+<RadioInput
+  label="Preferred transport"
+  options={options}
+  variant="button"
+  orientation="vertical"
+/>
+```
+
+For card layouts, `orientation="horizontal"` creates a responsive card grid and `orientation="vertical"` switches to a stacked layout.
+
+## Option variants
+
+### RadioButton
+
+Compact variant for dense layouts.
+
+<Canvas of={RadioButtonStories.DefaultStory} />
+<Canvas of={RadioButtonStories.States} />
+
+### RadioCard
+
+Rich variant for visual choices (icon/action).
+
+<Canvas of={RadioCardStories.DefaultStory} />
+<Canvas of={RadioCardStories.WithIconStory} />
+<Canvas of={RadioCardStories.States} />
+
+#### Card variant details
+
+Use `variant="card"` when each option needs more context than a simple label.
+
+Typical card option fields:
+
+- `label`: main option text
+- `icon`: visual cue for quick scanning
+- `action`: optional secondary text for details
+- `disabled`: disable a specific option
+
+You can also expose an add button for dynamic workflows:
+
+- `showAddButton`: displays an extra add card/button
+- `onAdd`: callback triggered when add is selected
+
+```tsx
+<RadioInput
+  label="Select a template"
+  variant="card"
+  orientation="horizontal"
+  showAddButton
+  onAdd={() => {
+    // open creation flow
+  }}
+  options={[
+    {
+      id: "template-a",
+      name: "templates",
+      value: "a",
+      label: "Template A",
+      action: "Recommended for standard cases",
+      icon: <MyTemplateIcon />,
+    },
+    {
+      id: "template-b",
+      name: "templates",
+      value: "b",
+      label: "Template B",
+      action: "Advanced customization",
+    },
+  ]}
+/>
+```
+
+## Low-level building blocks
+
+### RadioText
+
+Use when you need a radio item with a simple label and custom group composition.
+
+<Canvas of={RadioTextStories.DefaultStory} />
+<Canvas of={RadioTextStories.States} />
+
+### RadioItem
+
+Use only when you need to fully control label rendering and surrounding markup.
+
+<Canvas of={RadioItemStories.DefaultStory} />
+<Canvas of={RadioItemStories.States} />
+
+## Accessibility checklist
+
+- Share the same `name` for options in a single group
+- Ensure each option has a unique `id`
+- Use meaningful labels for all options
+- Prefer field-level help and error messages via `RadioInput`
+- Use `aria-invalid` when displaying an error state

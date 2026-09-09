@@ -3,7 +3,6 @@
     --label-margin-bottom: 0;
 
     display: grid;
-    width: fit-content;
     margin-bottom: 3rem;
     grid-template-areas:
       "label input unit"
@@ -32,10 +31,18 @@
     .af-item-message--error {
       grid-area: error-message;
     }
+
+    &.af-radio__input-container {
+      grid-template-areas:
+        "label input input"
+        ". helper-message helper-message"
+        ". error-message error-message";
+      grid-template-columns: 17rem auto;
+    }
   }
 
   .af-input__container--vertical {
-    --label-margin-bottom: 8px;
+    --label-margin-bottom: 0.5em;
 
     grid-template-areas:
       "label label"

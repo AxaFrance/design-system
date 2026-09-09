@@ -45,10 +45,10 @@ export const ItemMessage = ({ variant, children, className, id }: Props) => {
 
   const icon = variant ? iconByVariant[variant] : null;
 
-  return (
+  return children ? (
     <div className={componentClassName} id={id}>
       {icon ? <Svg src={icon} className="af-item-message__icon" /> : null}
       {children}
     </div>
-  );
+  ) : null;
 };
