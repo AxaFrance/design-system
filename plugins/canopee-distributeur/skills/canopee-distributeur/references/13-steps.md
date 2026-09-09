@@ -1,17 +1,23 @@
 # Steps (Étapes)
 
 ## Présentation
-Le composant Steps affiche un indicateur de progression horizontal. Le composant VerticalStep permet de créer un stepper vertical avec gestion des modes édition/validation/verrouillage.
+Le composant Steps affiche un indicateur de progression horizontal. Le composant VerticalStep permet de créer un stepper vertical avec gestion des modes édition/validation/verrouillage. Le composant ItemFormHelper affiche l'état d'avancement d'une section de formulaire (à compléter / en cours / validé).
 
 ## Import
 ```tsx
-import { Steps, Step, VerticalStep } from "@axa-fr/canopee-react/distributeur";
+import {
+  Steps,
+  Step,
+  VerticalStep,
+  ItemFormHelper,
+} from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Composants
 - **Steps** : Conteneur des étapes horizontales
 - **Step** : Étape individuelle dans le flux horizontal
 - **VerticalStep** : Étape verticale avec gestion de mode (édition, validation, verrouillage)
+- **ItemFormHelper** : Indicateur d'état d'avancement d'une section de formulaire
 
 ## Steps horizontales
 
@@ -224,9 +230,61 @@ Par défaut, le composant génère un `aria-label` de la forme `"Étape vertical
 {/* aria-label="Étape verticale Configuration (completed)" */}
 ```
 
+## ItemFormHelper
+
+`ItemFormHelper` est un atome qui signale l'état d'avancement d'une section de formulaire. Il se place à côté d'un titre de section ou dans une zone d'aide, et affiche une icône plus un libellé.
+
+### Props — ItemFormHelper
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `variant` | `"todo" \| "inprogress" \| "validated"` | **Obligatoire** | État d'avancement : pilote l'icône, la couleur et le libellé par défaut |
+| `label` | `string` | Libellé par défaut du `variant` | Remplace le libellé par défaut |
+| `className` | `string` | - | Classe CSS additionnelle, ajoutée après le modifier BEM |
+
+Le type `ItemFormHelperVariant` et le type `ItemFormHelperProps` sont exportés depuis `@axa-fr/canopee-react/distributeur`.
+
+### Variants
+
+| Variant | Icône | Couleur | Libellé par défaut |
+|---------|-------|---------|--------------------|
+| `todo` | `circle` (cercle vide) | `--axablue80` | `à compléter` |
+| `inprogress` | `circle-fill` (cercle plein) | `--axablue80` | `en cours` |
+| `validated` | `check` | `--green40` | `validé` |
+
+Les icônes sont fournies par le composant (Material Symbols, rendues via `Svg` en 12 × 12) : rien à passer côté consommateur.
+
+### Exemple
+
+```tsx
+import { ItemFormHelper, Title } from "@axa-fr/canopee-react/distributeur";
+
+const SectionIdentite = () => (
+  <>
+    <Title>Identité</Title>
+    <ItemFormHelper variant="inprogress" />
+  </>
+);
+```
+
+### Libellés personnalisés
+
+```tsx
+<ItemFormHelper variant="todo" label="Pièces justificatives à fournir" />
+<ItemFormHelper variant="validated" label="Tâche terminée" />
+```
+
+### Points d'attention
+
+- Le libellé fait partie du rendu : l'information n'est jamais portée uniquement par la couleur de l'icône.
+- Le composant est un `inline-flex` : il se place naturellement à la suite d'un titre sans casser le flux.
+- Le libellé par défaut est en français ; pour une application multilingue, passer systématiquement `label`.
+
 ## Classes CSS
 - `.af-steps-new` — Conteneur des étapes horizontales
 - `.af-steps-list` — Liste des étapes horizontales
 - `.af-steps-list-step` — Étape individuelle horizontale
 - `.af-vertical-step` — Étape verticale
 - `.af-vertical-step--edition` — Étape verticale en mode édition
+- `.af-item-form-helper` — Indicateur d'état d'une section de formulaire
+- `.af-item-form-helper--todo` / `--inprogress` / `--validated` — Modifiers d'état
