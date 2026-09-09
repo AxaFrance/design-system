@@ -1,0 +1,93 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as FileDownloadStories from "./FileDownload.stories";
+
+<Meta of={FileDownloadStories} />
+
+## FileDownload
+
+The FileDownload component allows users to download or consult documents with optional status indicators and custom icons.
+
+### Import
+
+```tsx
+import { FileDownload } from "@axa-fr/canopee-react/distributeur";
+```
+
+### Use
+
+#### Basic Example
+
+<Canvas of={FileDownloadStories.Playground} />
+
+<Controls of={FileDownloadStories.Playground} />
+
+```tsx
+export const FileDownloadExample = () => (
+  <FileDownload
+    label="Mon superbe document"
+    fileName="mon-superbe-document.pdf"
+    status="En cours"
+    consultButtonLabel="Consulter"
+    downloadButtonLabel="Télécharger"
+    onConsult={async () => {
+      // handle consult
+    }}
+    onDownload={async () => {
+      // handle download
+    }}
+  />
+);
+```
+
+## Variations
+
+Action buttons require a callback to be displayed
+
+<Canvas of={FileDownloadStories.WithoutDownload} />
+<Canvas of={FileDownloadStories.WithoutConsult} />
+
+## Props
+
+### label (required)
+
+The main title of the document. Always displayed.
+
+### fileName (optional)
+
+The name of the document file. Displayed below the label in smaller text.
+
+### status (optional)
+
+A status badge displayed to the right of the label. Examples: "En cours", "Validé", "Expiré".
+
+### iconSrc (optional)
+
+Custom icon SVG source.
+
+### className (optional)
+
+Additional class name appended to the root element without replacing `af-file-download`.
+
+### consultDisabled (optional)
+
+Disables the consult button when it is displayed.
+
+### downloadDisabled (optional)
+
+Disables the download button when it is displayed.
+
+### consultButtonLabel (optional)
+
+Custom label for the consult button. Defaults to "Consulter".
+
+### downloadButtonLabel (optional)
+
+Custom label for the download button. Defaults to "Télécharger".
+
+### onConsult (optional)
+
+Callback function triggered when the "Consulter" button is clicked. Must return a Promise.
+
+### onDownload (optional)
+
+Callback function triggered when the "Télécharger" button is clicked. Must return a Promise.
