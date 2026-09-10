@@ -27,6 +27,12 @@ const CountryCodeSelect = ({
     control: (provided: Record<string, unknown>) => ({
       ...provided,
       margin: 0,
+      borderColor: "var(--select-border-color)",
+      borderRadius: "var(--select-border-radius)",
+      boxShadow: "var(--select-box-shadow, none)",
+      "&:hover": {
+        borderColor: "var(--select-border-color)",
+      },
     }),
     dropdownIndicator: (provided: Record<string, unknown>) => ({
       ...provided,
