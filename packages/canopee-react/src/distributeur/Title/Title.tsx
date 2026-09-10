@@ -49,7 +49,7 @@ export const Title = ({
         {contentLeft}
       </Heading>
       {contentRight ? (
-        <div className="content-right">{contentRight}</div>
+        <div className={`${baseClass}__content-right`}>{contentRight}</div>
       ) : null}
     </div>
   );
