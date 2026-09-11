@@ -11,6 +11,10 @@ import { Svg } from "../../Svg/Svg";
 
 export type ItemLabelProps = ComponentProps<"label"> & {
   /**
+   * The id of the associated input element.
+   */
+  inputId?: string;
+  /**
    * Additional description text that enriches the label.
    * @example "Phone bill, EDF receipt, etc."
    */
@@ -108,6 +112,9 @@ export const ItemLabelCommon = ({
   children,
   description,
   required,
+  inputId,
+  htmlFor,
+  id,
   className,
   style,
   "aria-describedby": ariaDescribedby,
@@ -136,6 +143,8 @@ export const ItemLabelCommon = ({
       style={style}
     >
       <label
+        id={id}
+        htmlFor={htmlFor || inputId}
         className="af-item-label__label"
         aria-describedby={describedByIds || undefined}
         {...props}
