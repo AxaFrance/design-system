@@ -8,6 +8,7 @@ on:
   issues:
     types: [opened, reopened]
   reaction: eyes
+  workflow_dispatch:
 
 permissions:
   contents: read

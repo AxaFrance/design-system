@@ -1,25 +1,27 @@
-version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    labels:
-      - "dependencies"
-    open-pull-requests-limit: 6
-    target-branch: "main"
-    ignore:
-      - dependency-name: "*storybook*" # ignore all storybook packages
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    groups:
-     minor-and-patch:
-        patterns:
-          - "*"
-        update-types:
-          - "patch"
-          - "minor"
-    schedule:
-      interval: "weekly"
-    labels:
-      - "gh-actions"
+- directory: /
+  ignore:
+  - dependency-name: "*storybook*"
+  labels:
+  - dependencies
+  open-pull-requests-limit: 6
+  package-ecosystem: npm
+  schedule:
+    interval: daily
+  target-branch: main
+- directory: /
+  groups:
+    minor-and-patch:
+      patterns:
+      - "*"
+      update-types:
+      - patch
+      - minor
+  ignore:
+  - dependency-name: "github/gh-aw-actions" # Managed by gh aw compile. Version-locked to the gh-aw compiler; do not bump.
+  labels:
+  - gh-actions
+  package-ecosystem: github-actions
+  schedule:
+    interval: weekly
+version: 2
