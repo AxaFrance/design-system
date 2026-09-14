@@ -8,6 +8,8 @@ import {
 
 import "@axa-fr/canopee-css/client/Form/Checkbox/CardCheckbox/CardCheckboxLF.css";
 
+export type { CardCheckboxProps };
+
 export const CardCheckbox = (props: CardCheckboxProps) => (
   <CardCheckboxCommon
     {...props}

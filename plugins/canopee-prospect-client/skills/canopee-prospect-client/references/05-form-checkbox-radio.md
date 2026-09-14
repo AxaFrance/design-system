@@ -68,14 +68,15 @@ Groupe de checkboxes en mode carte (vertical ou horizontal). Peut fonctionner en
 ### Import
 
 ```tsx
-import { CardCheckbox } from "@axa-fr/canopee-react/prospect";
+import { CardCheckbox, type CardCheckboxProps } from "@axa-fr/canopee-react/prospect";
 ```
 
 ### Props
 
 ```tsx
 type CardCheckboxProps = {
-  type?: "vertical" | "horizontal";  // Orientation des cartes (défaut: "vertical")
+  type?: "vertical" | "horizontal";  // vertical = cartes empilées en colonne,
+                                     // horizontal = cartes alignées en ligne (défaut: "vertical")
   mode?: "text";                      // Mode CheckboxText au lieu de cartes
   label: ReactNode;                   // Label du groupe (légende)
   description?: ReactNode;

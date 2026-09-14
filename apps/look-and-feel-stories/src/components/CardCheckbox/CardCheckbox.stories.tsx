@@ -42,6 +42,14 @@ const meta: Meta = {
         type: { summary: '"vertical" | "horizontal"' },
       },
     },
+    mode: {
+      control: { type: "inline-radio" },
+      options: [undefined, "text"],
+      table: {
+        defaultValue: { summary: "undefined" },
+        type: { summary: '"text"' },
+      },
+    },
     label: {
       control: "text",
     },
