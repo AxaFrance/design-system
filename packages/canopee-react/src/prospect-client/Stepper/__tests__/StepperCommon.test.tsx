@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import type { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
+import { Heading } from "../../Heading/HeadingApollo";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
 import { StepperCommon } from "../StepperCommon";
 
@@ -12,6 +13,7 @@ describe("StepperCommon Component", () => {
         currentSubtitle="Step 1 Subtitle"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        HeadingComponent={Heading}
       />,
     );
 
@@ -30,11 +32,11 @@ describe("StepperCommon Component", () => {
         currentSubtitle=""
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        HeadingComponent={Heading}
       />,
     );
 
     const subtitle = screen.queryByText("Step 1 Subtitle");
-
     expect(subtitle).not.toBeInTheDocument();
   });
 
@@ -45,12 +47,14 @@ describe("StepperCommon Component", () => {
         currentStepProgress={50}
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        HeadingComponent={Heading}
       />,
     );
 
     const progressBars = screen.getAllByRole("progressbar", {
       hidden: true,
     });
+
     expect(progressBars).toHaveLength(4);
   });
 
@@ -61,9 +65,9 @@ describe("StepperCommon Component", () => {
         helper="This is a helper text"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        HeadingComponent={Heading}
       />,
     );
-
     const helper = screen.getByText("This is a helper text");
     expect(helper).toBeInTheDocument();
   });
@@ -80,11 +84,13 @@ describe("StepperCommon Component", () => {
           message={messageText}
           nbSteps={4}
           ProgressBarGroupComponent={ProgressBarGroup}
+          HeadingComponent={Heading}
           messageType={messageType as ItemMessageProps["messageType"]}
         />,
       );
 
       const message = screen.getByText(messageText);
+
       expect(message.parentElement?.classList).toContain(
         `af-item-message--${messageType}`,
       );
@@ -100,6 +106,7 @@ describe("StepperCommon Component", () => {
         className="custom-class"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        HeadingComponent={Heading}
       />,
     );
 
@@ -111,6 +118,7 @@ describe("StepperCommon Component", () => {
     [1, "H1"],
     [2, "H2"],
     [3, "H3"],
+    [4, "H4"],
   ])(
     "should render the title as a %s according to titleLevel prop",
     (level, tag) => {
@@ -120,9 +128,11 @@ describe("StepperCommon Component", () => {
           currentTitle={`Step Title ${tag}`}
           nbSteps={4}
           ProgressBarGroupComponent={ProgressBarGroup}
-          titleLevel={level as 1 | 2 | 3}
+          HeadingComponent={Heading}
+          titleLevel={level as 1 | 2 | 3 | 4}
         />,
       );
+
       const heading = screen.getByRole("heading", {
         name: `Step Title ${tag}`,
       });
