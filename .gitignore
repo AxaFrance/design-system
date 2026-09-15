@@ -10,6 +10,3 @@ dist/
 coverage/
 .turbo
 mise.toml
-
-# Agentic Workflow lock files - generated in CI
-.github/workflows/*.lock.yml
