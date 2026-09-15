@@ -12,6 +12,7 @@ on:
       - '.github/workflows/*.md'
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   compile:
