@@ -18,5 +18,8 @@
 	"search.exclude": {
 		"**/slash": true,
 		"**/client": true
+	},
+	"chat.tools.terminal.autoApprove": {
+		"npx vitest": true
 	}
 }
