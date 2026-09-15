@@ -1,4 +1,9 @@
-import { Button, Link, Title } from "@axa-fr/canopee-react/distributeur";
+import {
+  Button,
+  Link,
+  TextInput,
+  Title,
+} from "@axa-fr/canopee-react/distributeur";
 import { ReactElement } from "react";
 import preview from "../.storybook/preview";
 
@@ -60,14 +65,18 @@ const getContent = (content?: string) => {
 export const Template = meta.story({
   name: "Title",
   render: ({ children: text, classModifier, ...args }) => (
-    <Title
-      classModifier={classModifier}
-      {...args}
-      contentLeft={undefined}
-      contentRight={undefined}
-    >
-      {text}
-    </Title>
+    <>
+      <Title
+        classModifier={classModifier}
+        {...args}
+        contentLeft={undefined}
+        contentRight={undefined}
+      >
+        {text}
+      </Title>
+
+      <TextInput label="Sample Input to illustrate bottom margin" required />
+    </>
   ),
   args: {
     children: "Sample Title",
