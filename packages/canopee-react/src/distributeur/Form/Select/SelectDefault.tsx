@@ -5,9 +5,9 @@ type Props = Omit<
   ComponentPropsWithRef<typeof SelectBase> & {
     forceDisplayPlaceholder?: boolean;
     placeholder?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
   },
-  "options"
+  never
 >;
 
 const SelectDefault = ({

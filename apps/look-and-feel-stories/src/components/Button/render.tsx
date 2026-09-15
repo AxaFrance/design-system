@@ -5,7 +5,7 @@ import {
   Button,
   buttonVariants,
   type ButtonVariants,
-  Svg,
+  Icon,
 } from "@axa-fr/canopee-react/client";
 
 const ButtonBlock = ({
@@ -32,10 +32,10 @@ const ButtonBlock = ({
     <Button variant={variant} disabled {...args}>
       {variant}
     </Button>
-    <Button variant={variant} iconLeft={<Svg src={arrowBack} {...args} />}>
+    <Button variant={variant} iconLeft={<Icon src={arrowBack} {...args} />}>
       {variant}
     </Button>
-    <Button variant={variant} iconRight={<Svg src={arrowFront} {...args} />}>
+    <Button variant={variant} iconRight={<Icon src={arrowFront} {...args} />}>
       {variant}
     </Button>
   </div>

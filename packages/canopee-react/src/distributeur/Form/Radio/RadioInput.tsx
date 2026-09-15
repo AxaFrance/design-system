@@ -20,11 +20,11 @@ const RadioInput = ({
       labelPosition={labelPosition}
       roleContainer="radiogroup"
       {...props}
-      renderInput={({ classModifier, ...radioProps }) => (
+      renderInput={({ inputClassName, ...radioProps }) => (
         <Radio
           options={newOptions}
           mode={mode}
-          classModifier={classModifier}
+          className={inputClassName}
           {...radioProps}
         >
           {children}

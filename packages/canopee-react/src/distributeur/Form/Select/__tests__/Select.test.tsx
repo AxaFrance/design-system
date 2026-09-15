@@ -8,11 +8,16 @@ const options = [
   { value: "work", label: "For work" },
   { value: "drink", label: "For drink" },
 ];
+const optionsChildren = options.map(({ value, label }) => (
+  <option key={value} value={value}>
+    {label}
+  </option>
+));
 
 describe("Select", () => {
   it("should have option and default class", () => {
     // Act
-    render(<Select mode="default" options={options} />);
+    render(<Select mode="default">{optionsChildren}</Select>);
 
     // Asser
     const selectInput = screen.getByRole("combobox");
@@ -30,7 +35,7 @@ describe("Select", () => {
 
   it("should have mode base", () => {
     // Act
-    render(<Select mode="base" options={options} />);
+    render(<Select mode="base">{optionsChildren}</Select>);
 
     // Assert
     const combobox = screen.getByRole("combobox");
@@ -48,7 +53,11 @@ describe("Select", () => {
 
   it("should mode base to be required", () => {
     // Act
-    render(<Select mode="base" required options={options} />);
+    render(
+      <Select mode="base" required>
+        {optionsChildren}
+      </Select>,
+    );
 
     // Assert
     const selectBaseInput = screen.getByRole("combobox");
@@ -57,7 +66,11 @@ describe("Select", () => {
 
   it("should mode base to be required with classModifier", () => {
     // Act
-    render(<Select mode="base" classModifier="required" options={options} />);
+    render(
+      <Select mode="base" classModifier="required">
+        {optionsChildren}
+      </Select>,
+    );
 
     // Assert
     const selectBaseInput = screen.getByRole("combobox");
@@ -66,7 +79,11 @@ describe("Select", () => {
 
   it("should mode default have default value", () => {
     // Act
-    render(<Select mode="default" defaultValue="fun" options={options} />);
+    render(
+      <Select mode="default" defaultValue="fun">
+        {optionsChildren}
+      </Select>,
+    );
 
     // Assert
     const selectBaseInput = screen.getByRole("combobox");
@@ -82,8 +99,9 @@ describe("Select", () => {
         mode="default"
         onChange={(e) => onChangeFn(e.target.value)}
         defaultValue="fun"
-        options={options}
-      />,
+      >
+        {optionsChildren}
+      </Select>,
     );
 
     // Assert
@@ -99,8 +117,9 @@ describe("Select", () => {
         aria-label="select-default"
         onChange={() => {}}
         defaultValue="fun"
-        options={options}
-      />,
+      >
+        {optionsChildren}
+      </Select>,
     );
 
     expect(await axe(container)).toHaveNoViolations();

@@ -1,32 +1,12 @@
 import "@axa-fr/canopee-css/distributeur/Form/Select/Select.css";
-import { type ComponentPropsWithRef, type OptionHTMLAttributes } from "react";
+import { type ComponentPropsWithRef } from "react";
 import { getClassName } from "../../utilities/helpers/getClassName";
 
 type Props = ComponentPropsWithRef<"select"> & {
-  /**
-   * @deprecated Use `children` instead
-   * Instead of
-   * ```jsx
-   * <SelectBase options={[{ value: "1", label: "Option 1" }]} />
-   * ```
-   * you can now do something like :
-   * ```jsx
-   * <SelectBase>
-   *   <option value="1">Option 1</option>
-   * </SelectBase>
-   * ```
-   * It allows you to use the `optgroup` tag for example.
-   */
-  options?: OptionHTMLAttributes<HTMLOptionElement>[];
-  /** @deprecated Use `className` and the native `required` prop instead. */
   classModifier?: string;
 };
 
-/**
- * @deprecated Use Select instead
- */
 const SelectBase = ({
-  options,
   id,
   className,
   classModifier,
@@ -47,12 +27,7 @@ const SelectBase = ({
         className={componentClassName}
         required={classModifier?.includes("required") || required}
       >
-        {children ??
-          options?.map(({ label, ...opt }) => (
-            <option key={opt.value?.toString()} {...opt}>
-              {label}
-            </option>
-          ))}
+        {children}
       </select>
       <span aria-controls={id} className="glyphicon glyphicon-menu-down" />
     </div>

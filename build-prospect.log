@@ -1,0 +1,518 @@
+
+> @axa-fr/design-system@0.1.0 build:prospect
+> turbo build --filter=./apps/apollo-stories
+
+• turbo 2.8.20
+
+   • Packages in scope: @axa-fr/apollo-stories
+   • Running build in 1 packages
+   • Remote caching disabled
+
+@axa-fr/canopee-react:eslint: cache miss, executing a32c6da4f3fb8412
+@axa-fr/canopee-react:prettier: cache miss, executing 123252b47e34488a
+@axa-fr/canopee-css:stylelint: cache hit, replaying logs 19dc295dc537e4e7
+@axa-fr/canopee-css:stylelint: 
+@axa-fr/canopee-css:stylelint: > @axa-fr/canopee-css@0.0.0 stylelint
+@axa-fr/canopee-css:stylelint: > stylelint "src/**/*.css"
+@axa-fr/canopee-css:stylelint: 
+@axa-fr/canopee-css:build: cache hit, replaying logs 9e998ecb82acc8f0
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: > @axa-fr/canopee-css@0.0.0 prebuild
+@axa-fr/canopee-css:build: > rimraf dist
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: > @axa-fr/canopee-css@0.0.0 build
+@axa-fr/canopee-css:build: > npm run build:prospect && npm run build:client && npm run build:distributeur
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: > @axa-fr/canopee-css@0.0.0 build:prospect
+@axa-fr/canopee-css:build: > postcss "src/prospect-client/**/*{Apollo,Grid,DebugGrid,Svg,All,prospect}.css" "src/prospect-client/common" --base src/prospect-client --dir dist/prospect --verbose --env prospect-production
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\prospect.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\AppName\AppNameAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Accordion\AccordionApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\BasePicture\BasePictureAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\AccordionCore\AccordionCoreApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Button\ButtonApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\AccordionContextual\AccordionContextualApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Card\CardApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\CardMessage\CardMessageApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\common\breakpoints.scss[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ClickIcon\ClickIconApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\common\reboot.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ContentItemMono\ContentItemMonoApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\DataAgent\DataAgentApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\common\tokens.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Fieldset\FieldsetApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Divider\DividerApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Grid\DebugGrid.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Grid\Grid.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Heading\HeadingApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Icon\IconApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Header\HeaderApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ItemMenu\ItemMenuApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ItemTabBar\ItemTabBarApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\LevelSelector\LevelSelectorApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Loader\LoaderApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Link\LinkApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Message\MessageApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\MenuBurger\MenuBurgerAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\MessageBar\MessageBarAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\MultiMessage\MultiMessageApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Modal\ModalApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ProgressBar\ProgressBarApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Pagination\PaginationApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ProgressBarGroup\ProgressBarGroupApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Skeleton\SkeletonAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\SkeletonGrid\SkeletonGridAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Stepper\StepperApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Spinner\SpinnerApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TabBar\TabBarApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Table\TableApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Svg\Svg.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TableMobileCard\TableMobileCardAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TabMenu\TabMenuAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TagList\TagListAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TimelineVertical\TimelineVerticalApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Toggle\ToggleApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Tag\TagApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Dropdown\DropdownApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputPhone\InputPhoneApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputDate\InputDateApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputTextAtom\InputTextAtomApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputText\InputTextApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\ItemLabel\ItemLabelApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\ItemMessage\ItemMessageApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\TextArea\TextAreaApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\ItemMultiSelect\ItemMultiSelectApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\MultiSelectList\MultiSelectListAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Layout\ExitLayout\ExitLayoutAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Layout\Footer\FooterApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Layout\FormLayout\FormLayoutAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\ClickItem\ClickItemApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\ContentItemDuo\ContentItemDuoApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\List\ListApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\ContentItemDuoAction\ContentItemDuoActionAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Pagination\ItemPagination\ItemPaginationApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\CardCheckbox\CardCheckboxApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\Checkbox\CheckboxApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\FileUpload\FileUpload\FileUploadAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\CardCheckboxOption\CardCheckboxOptionApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\FileUpload\InputFile\InputFileApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\CheckboxText\CheckboxTextApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\FileUpload\ItemFile\ItemFileApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\CardRadio\CardRadioApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\CardRadioGroup\CardRadioGroupApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\Radio\RadioApollo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\RadioText\RadioTextAll.css[22m...[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\ContentItemDuoAction\ContentItemDuoActionAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\common\reboot.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Layout\FormLayout\FormLayoutAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\AppName\AppNameAll.css[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\BasePicture\BasePictureAll.css[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Grid\DebugGrid.css[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\MessageBar\MessageBarAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TableMobileCard\TableMobileCardAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\FileUpload\FileUpload\FileUploadAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\MenuBurger\MenuBurgerAll.css[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\SkeletonGrid\SkeletonGridAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Svg\Svg.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Skeleton\SkeletonAll.css[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TabMenu\TabMenuAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TagList\TagListAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\common\tokens.css[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\common\breakpoints.scss[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\MultiSelectList\MultiSelectListAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\RadioText\RadioTextAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Layout\ExitLayout\ExitLayoutAll.css[22m in [1m5.82 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Grid\Grid.css[22m in [1m5.83 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ClickIcon\ClickIconApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ContentItemMono\ContentItemMonoApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\CardMessage\CardMessageApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Card\CardApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\AccordionContextual\AccordionContextualApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\DataAgent\DataAgentApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Divider\DividerApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Button\ButtonApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\AccordionCore\AccordionCoreApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ItemMenu\ItemMenuApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Accordion\AccordionApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Message\MessageApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Header\HeaderApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Loader\LoaderApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Link\LinkApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ProgressBarGroup\ProgressBarGroupApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\LevelSelector\LevelSelectorApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Heading\HeadingApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Icon\IconApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ItemTabBar\ItemTabBarApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Stepper\StepperApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Fieldset\FieldsetApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Modal\ModalApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Table\TableApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Toggle\ToggleApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ProgressBar\ProgressBarApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Spinner\SpinnerApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\MultiMessage\MultiMessageApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Tag\TagApollo.css[22m in [1m6.13 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TabBar\TabBarApollo.css[22m in [1m6.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Pagination\PaginationApollo.css[22m in [1m6.17 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TimelineVertical\TimelineVerticalApollo.css[22m in [1m6.22 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\TextArea\TextAreaApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputDate\InputDateApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Dropdown\DropdownApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\ItemMessage\ItemMessageApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\List\ListApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputTextAtom\InputTextAtomApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Pagination\ItemPagination\ItemPaginationApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputPhone\InputPhoneApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\ItemMultiSelect\ItemMultiSelectApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\ClickItem\ClickItemApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\ItemLabel\ItemLabelApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\ContentItemDuo\ContentItemDuoApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Layout\Footer\FooterApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputText\InputTextApollo.css[22m in [1m6.29 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\CardRadio\CardRadioApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\FileUpload\ItemFile\ItemFileApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\FileUpload\InputFile\InputFileApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\Radio\RadioApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\CheckboxText\CheckboxTextApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\CardCheckbox\CardCheckboxApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\CardRadioGroup\CardRadioGroupApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\CardCheckboxOption\CardCheckboxOptionApollo.css[22m in [1m6.36 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\Checkbox\CheckboxApollo.css[22m in [1m6.37 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\prospect.css[22m in [1m7.02 s[22m[39m
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: > @axa-fr/canopee-css@0.0.0 build:client
+@axa-fr/canopee-css:build: > postcss "src/prospect-client/**/*{LF,Grid,DebugGrid,Svg,All,client}.css" "src/prospect-client/common" --base src/prospect-client --dir dist/client --verbose --env client-production
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Accordion\AccordionLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\AccordionContextual\AccordionContextualLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\client.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\AppName\AppNameAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Button\ButtonLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\BasePicture\BasePictureAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\AccordionCore\AccordionCoreLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Card\CardLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ClickIcon\ClickIconLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\common\breakpoints.scss[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\CardMessage\CardMessageLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\common\reboot.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ContentItemMono\ContentItemMonoLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Fieldset\FieldsetLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\DataAgent\DataAgentLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\common\tokens.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Divider\DividerLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Grid\DebugGrid.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Grid\Grid.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Heading\HeadingLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Header\HeaderLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Icon\IconLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\LevelSelector\LevelSelectorLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ItemMenu\ItemMenuLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ItemTabBar\ItemTabBarLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Link\LinkLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Message\MessageLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\MenuBurger\MenuBurgerAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\MessageBar\MessageBarAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Loader\LoaderLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\MultiMessage\MultiMessageLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Pagination\PaginationLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ProgressBar\ProgressBarLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\ProgressBarGroup\ProgressBarGroupLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Modal\ModalLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Skeleton\SkeletonAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Stepper\StepperLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\SkeletonGrid\SkeletonGridAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Spinner\SpinnerLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Svg\Svg.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Table\TableLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TabBar\TabBarLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TableMobileCard\TableMobileCardAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TimelineVertical\TimelineVerticalLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Tag\TagLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TagList\TagListAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\TabMenu\TabMenuAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Dropdown\DropdownLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Toggle\ToggleLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputDate\InputDateLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputText\InputTextLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputTextAtom\InputTextAtomLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\ItemLabel\ItemLabelLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\ItemMessage\ItemMessageLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\InputPhone\InputPhoneLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\ItemMultiSelect\ItemMultiSelectLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\MultiSelectList\MultiSelectListAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\TextArea\TextAreaLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Layout\ExitLayout\ExitLayoutAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Layout\FormLayout\FormLayoutAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\ContentItemDuo\ContentItemDuoLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Layout\Footer\FooterLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\ContentItemDuoAction\ContentItemDuoActionAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\List\ListLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\List\ClickItem\ClickItemLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Pagination\ItemPagination\ItemPaginationLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\CardCheckbox\CardCheckboxLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\CardCheckboxOption\CardCheckboxOptionLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\Checkbox\CheckboxLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\FileUpload\ItemFile\ItemFileLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Checkbox\CheckboxText\CheckboxTextLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\FileUpload\FileUpload\FileUploadAll.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\FileUpload\InputFile\InputFileLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\CardRadio\CardRadioLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\CardRadioGroup\CardRadioGroupLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\Radio\RadioLF.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\prospect-client\Form\Radio\RadioText\RadioTextAll.css[22m...[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\AppName\AppNameAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Layout\ExitLayout\ExitLayoutAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\BasePicture\BasePictureAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\common\tokens.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Grid\DebugGrid.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\SkeletonGrid\SkeletonGridAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\MenuBurger\MenuBurgerAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\MessageBar\MessageBarAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Svg\Svg.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\MultiSelectList\MultiSelectListAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\ContentItemDuoAction\ContentItemDuoActionAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Layout\FormLayout\FormLayoutAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TableMobileCard\TableMobileCardAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Skeleton\SkeletonAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TabMenu\TabMenuAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TagList\TagListAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\common\reboot.css[22m in [1m4.78 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\common\breakpoints.scss[22m in [1m4.78 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Grid\Grid.css[22m in [1m4.78 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\FileUpload\FileUpload\FileUploadAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\RadioText\RadioTextAll.css[22m in [1m4.77 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Card\CardLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Heading\HeadingLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Button\ButtonLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Accordion\AccordionLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ItemMenu\ItemMenuLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\CardMessage\CardMessageLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\AccordionCore\AccordionCoreLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ClickIcon\ClickIconLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Divider\DividerLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Icon\IconLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ProgressBar\ProgressBarLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\DataAgent\DataAgentLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ContentItemMono\ContentItemMonoLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ProgressBarGroup\ProgressBarGroupLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\AccordionContextual\AccordionContextualLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Link\LinkLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\ItemTabBar\ItemTabBarLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Header\HeaderLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\MultiMessage\MultiMessageLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Fieldset\FieldsetLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Tag\TagLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Spinner\SpinnerLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\LevelSelector\LevelSelectorLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Loader\LoaderLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Pagination\PaginationLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TabBar\TabBarLF.css[22m in [1m4.98 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Stepper\StepperLF.css[22m in [1m4.99 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Message\MessageLF.css[22m in [1m4.99 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\TimelineVertical\TimelineVerticalLF.css[22m in [1m4.99 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Toggle\ToggleLF.css[22m in [1m4.99 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Table\TableLF.css[22m in [1m5.01 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Modal\ModalLF.css[22m in [1m5.02 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Layout\Footer\FooterLF.css[22m in [1m5.09 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\ItemMultiSelect\ItemMultiSelectLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputPhone\InputPhoneLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputDate\InputDateLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputText\InputTextLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\ItemMessage\ItemMessageLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Dropdown\DropdownLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\TextArea\TextAreaLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\ItemLabel\ItemLabelLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\ClickItem\ClickItemLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\InputTextAtom\InputTextAtomLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\ContentItemDuo\ContentItemDuoLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\List\List\ListLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Pagination\ItemPagination\ItemPaginationLF.css[22m in [1m5.1 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\FileUpload\ItemFile\ItemFileLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\CheckboxText\CheckboxTextLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\CardRadioGroup\CardRadioGroupLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\CardRadio\CardRadioLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\Checkbox\CheckboxLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\FileUpload\InputFile\InputFileLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\CardCheckboxOption\CardCheckboxOptionLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Checkbox\CardCheckbox\CardCheckboxLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\Form\Radio\Radio\RadioLF.css[22m in [1m5.16 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\prospect-client\client.css[22m in [1m5.62 s[22m[39m
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: > @axa-fr/canopee-css@0.0.0 build:distributeur
+@axa-fr/canopee-css:build: > postcss "src/distributeur/**/*.css" --base src/distributeur --dir dist/distributeur --verbose --env distributeur-production
+@axa-fr/canopee-css:build: 
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\distributeur.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Action\Action.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Alert\Alert.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Accordion\Accordion.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Button\Button.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Card\Card.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\CardData\CardData.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\common\breakpoints.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\common\grid.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\common\reboot.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\common\icons.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\common\layers.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Divider\Divider.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\HelpButton\HelpButton.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\MainContainer\MainContainer.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Link\Link.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\common\tokens.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Loader\Loader.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\EditorialMessage\EditorialMessage.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Message\Message.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Popover\Popover.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Modal\Modal.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Steps\Steps.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Steps\VerticalStep.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Restitution\ExperimentalRestitution.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Restitution\Restitution.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Table\Paging.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Table\Pager.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Table\Table.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\MandatoryMention\MandatoryMention.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Tabs\Tabs.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Tag\Tag.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Timeline\Timeline.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Checkbox\Checkbox.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Title\Title.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\core\FormCore.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Date\Date.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Experimental\Input.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Experimental\InputContainer.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Experimental\ItemMessage.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\File\File.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Experimental\Label.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\NestedQuestion\NestedQuestion.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Experimental\InputUnit.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Radio\Radio.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\MultiSelect\MultiSelect.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Select\Select.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Text\Text.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Textarea\Textarea.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\Header.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Form\Radio\RadioCardGroup.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Footer\Footer.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\HeaderTitle\HeaderTitle.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\AnchorNavBar\AnchorNavBar.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\Infos\Infos.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\Logo\Logo.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\Drawer\Drawer.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\NavBar\NavBar.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\Name\Name.css[22m...[39m
+@axa-fr/canopee-css:build: [36mProcessing [1msrc\distributeur\Layout\Header\User\User.css[22m...[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Experimental\InputContainer.css[22m in [1m4.89 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Action\Action.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\MultiSelect\MultiSelect.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\File\File.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\Logo\Logo.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\CardData\CardData.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\HeaderTitle\HeaderTitle.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\common\breakpoints.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Alert\Alert.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Button\Button.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Restitution\ExperimentalRestitution.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Card\Card.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Link\Link.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\MainContainer\MainContainer.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\EditorialMessage\EditorialMessage.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\HelpButton\HelpButton.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Divider\Divider.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Accordion\Accordion.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Steps\VerticalStep.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\MandatoryMention\MandatoryMention.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Loader\Loader.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Title\Title.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Tag\Tag.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Modal\Modal.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Table\Paging.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Message\Message.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Timeline\Timeline.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Popover\Popover.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\core\FormCore.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Radio\RadioCardGroup.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\NestedQuestion\NestedQuestion.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\NavBar\NavBar.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Tabs\Tabs.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Checkbox\Checkbox.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Select\Select.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Textarea\Textarea.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\AnchorNavBar\AnchorNavBar.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\Drawer\Drawer.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\Name\Name.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Text\Text.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\Header.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Date\Date.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Footer\Footer.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\common\reboot.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\common\grid.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\common\layers.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\User\User.css[22m in [1m4.9 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Restitution\Restitution.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\common\tokens.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Table\Pager.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Steps\Steps.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\common\icons.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Table\Table.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Experimental\ItemMessage.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Experimental\Input.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Radio\Radio.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Experimental\InputUnit.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Form\Experimental\Label.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\Layout\Header\Infos\Infos.css[22m in [1m4.91 s[22m[39m
+@axa-fr/canopee-css:build: [32mFinished [1msrc\distributeur\distributeur.css[22m in [1m5.15 s[22m[39m
+@axa-fr/canopee-react:check-types: cache miss, executing 5df2322ada1e61d1
+@axa-fr/canopee-react:build: cache miss, executing e099592038952adb
+@axa-fr/canopee-react:eslint: 
+@axa-fr/canopee-react:eslint: > @axa-fr/canopee-react@0.0.0 eslint
+@axa-fr/canopee-react:eslint: > eslint "src/**/*.{js,jsx,ts,tsx}"
+@axa-fr/canopee-react:eslint: 
+@axa-fr/canopee-react:prettier: 
+@axa-fr/canopee-react:prettier: > @axa-fr/canopee-react@0.0.0 prettier
+@axa-fr/canopee-react:prettier: > prettier "src/**/*.!(js|jsx|ts|tsx|svg)" --check --ignore-unknown
+@axa-fr/canopee-react:prettier: 
+@axa-fr/canopee-react:prettier: Checking formatting...
+@axa-fr/canopee-react:check-types: 
+@axa-fr/canopee-react:check-types: > @axa-fr/canopee-react@0.0.0 check-types
+@axa-fr/canopee-react:check-types: > tsc --noEmit
+@axa-fr/canopee-react:check-types: 
+@axa-fr/canopee-react:build: 
+@axa-fr/canopee-react:build: > @axa-fr/canopee-react@0.0.0 prebuild
+@axa-fr/canopee-react:build: > rimraf dist
+@axa-fr/canopee-react:build: 
+@axa-fr/canopee-react:build: 
+@axa-fr/canopee-react:build: > @axa-fr/canopee-react@0.0.0 build
+@axa-fr/canopee-react:build: > tsc -p tsconfig.build.json
+@axa-fr/canopee-react:build: 
+@axa-fr/canopee-react:prettier: All matched files use Prettier code style!
+@axa-fr/canopee-react:eslint: 
+@axa-fr/canopee-react:eslint: C:\dev\copstuff\design-system\packages\canopee-react\src\distributeur\Form\Select\Select.tsx
+@axa-fr/canopee-react:eslint:   1:9  error  Replace `␍⏎··type·ComponentProps,␍⏎··type·PropsWithChildren,␍⏎` with `·type·ComponentProps,·type·PropsWithChildren·`  prettier/prettier
+@axa-fr/canopee-react:eslint: 
+@axa-fr/canopee-react:eslint: C:\dev\copstuff\design-system\packages\canopee-react\src\distributeur\Form\Select\SelectInput.tsx
+@axa-fr/canopee-react:eslint:   40:27  error  'label' is already declared in the upper scope on line 16 column 3  @typescript-eslint/no-shadow
+@axa-fr/canopee-react:eslint: 
+@axa-fr/canopee-react:eslint: C:\dev\copstuff\design-system\packages\canopee-react\src\prospect-client\TabBar\TabBarCommon.tsx
+@axa-fr/canopee-react:eslint:   95:5  warning  React Hook useCallback has a missing dependency: 'items'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+@axa-fr/canopee-react:eslint: 
+@axa-fr/canopee-react:eslint: ✖ 3 problems (2 errors, 1 warning)
+@axa-fr/canopee-react:eslint:   1 error and 0 warnings potentially fixable with the `--fix` option.
+@axa-fr/canopee-react:eslint: 
+@axa-fr/canopee-react:eslint: npm error Lifecycle script `eslint` failed with error:
+@axa-fr/canopee-react:eslint: npm error code 1
+@axa-fr/canopee-react:eslint: npm error path C:\dev\copstuff\design-system\packages\canopee-react
+@axa-fr/canopee-react:eslint: npm error workspace @axa-fr/canopee-react@0.0.0
+@axa-fr/canopee-react:eslint: npm error location C:\dev\copstuff\design-system\packages\canopee-react
+@axa-fr/canopee-react:eslint: npm error command failed
+@axa-fr/canopee-react:eslint: npm error command C:\Windows\system32\cmd.exe /d /s /c eslint "src/**/*.{js,jsx,ts,tsx}"
+ ERROR  @axa-fr/canopee-react#eslint: command (C:\dev\copstuff\design-system\packages\canopee-react) C:\Users\A459HB\AppData\Local\mise\installs\npm\11.6.4\npm.cmd run eslint exited (1)
+
+ Tasks:    5 successful, 6 total
+Cached:    2 cached, 6 total
+  Time:    31.906s 
+Failed:    @axa-fr/canopee-react#eslint
+
+ ERROR  run failed: command  exited (1)

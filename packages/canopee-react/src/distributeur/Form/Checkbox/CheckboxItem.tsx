@@ -6,8 +6,6 @@ import "@axa-fr/canopee-css/distributeur/Form/Checkbox/Checkbox.css";
 import { Svg } from "../../Svg";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "type"> & {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   optionClassName?: string;
   children?: ReactNode;
   label?: ReactNode;
@@ -23,7 +21,6 @@ const CheckboxItem = ({
   label,
   isChecked,
   className,
-  classModifier,
   variant,
   ...otherProps
 }: Props) => {
@@ -32,7 +29,7 @@ const CheckboxItem = ({
   const newId = id ?? generatedId; // id is required on this component
   const optionClassName = getOptionClassName(
     className ?? "",
-    classModifier ?? "",
+    "",
     "af-form__checkbox",
     disabled,
     variant,

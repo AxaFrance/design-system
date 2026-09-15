@@ -10,7 +10,6 @@ import {
   Infos,
   MainContainer,
   Name,
-  PassInput,
   RadioInput,
   Restitution,
   RestitutionList,
@@ -230,7 +229,7 @@ export const DemoStory = meta.story({
                   defaultValue={defaultValues["text-error"]}
                 />
 
-                <PassInput
+                <TextInput
                   label="Password"
                   name="password"
                   placeholder="••••••"

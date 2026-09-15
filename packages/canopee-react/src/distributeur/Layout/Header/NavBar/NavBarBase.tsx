@@ -11,8 +11,6 @@ type Props = {
   isMenuFocused?: boolean;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   handleKeys: (key: string) => void;
   onFocus: (action: { e: FocusEvent<HTMLUListElement> }) => void;
   onBlur: (action: { e: FocusEvent<HTMLUListElement> }) => void;
@@ -26,7 +24,6 @@ const NavBarBase = ({
   toggleMenuId = "togglemenu",
   isMenuFocused,
   className,
-  classModifier,
   handleKeys,
   onFocus,
   onBlur,
@@ -34,7 +31,6 @@ const NavBarBase = ({
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" "),
     className,
   });
 

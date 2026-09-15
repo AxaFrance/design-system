@@ -18,9 +18,9 @@ const cloneAttributes = (
 };
 
 /**
- * @deprecated Use Icon instead
+ * Internal SVG primitive used by Icon and other components.
  */
-export const Svg = ({
+export const SvgBase = ({
   className,
   src,
   alt,

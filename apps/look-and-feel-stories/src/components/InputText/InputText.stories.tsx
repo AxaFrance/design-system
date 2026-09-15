@@ -1,5 +1,5 @@
 import {
-  Svg,
+  Icon,
   InputText,
   Spinner,
   itemMessageVariants,
@@ -19,7 +19,7 @@ const meta: Meta<typeof InputText> = {
     id: "nameid",
     disabled: false,
     required: false,
-    unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,
+    unit: <Icon src={euroSymbolIcon} aria-label="en euros" />,
     description: "Description",
     buttonLabel: "En savoir plus",
     sideButtonLabel: "Modifier",

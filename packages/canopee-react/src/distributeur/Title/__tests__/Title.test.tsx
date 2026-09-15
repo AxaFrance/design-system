@@ -37,34 +37,16 @@ describe("Title", () => {
     });
   });
 
-  it("should have custom class with modifier", () => {
+  it("should support a custom class", () => {
     // Act
-    render(
-      <Title className="custom-class" classModifier="modifier">
-        A title
-      </Title>,
-    );
+    render(<Title className="custom-class">A title</Title>);
 
     // Assert
     expect(
       screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).toHaveClass("af-title af-title--modifier custom-class", {
+    ).toHaveClass("af-title custom-class", {
       exact: true,
     });
-  });
-
-  it("should not have classModifier attribute", () => {
-    // Act
-    render(
-      <Title className="custom-class" classModifier="modifier">
-        A title
-      </Title>,
-    );
-
-    // Assert
-    expect(
-      screen.getByRole("heading", { name: /A title/, level: 2 }),
-    ).not.toHaveAttribute("classModifier");
   });
 
   it("should have correct heading level", () => {

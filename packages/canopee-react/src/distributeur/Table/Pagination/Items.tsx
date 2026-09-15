@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { Select } from "../../Form/Select";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities";
 
 export type Props = {
   id?: string;
@@ -42,11 +42,11 @@ const Items = ({
 }: Props) => {
   const defaultIdName = useId();
   const newId = id ?? defaultIdName;
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-paging__form",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-paging__form",
-  );
+  });
   return (
     <div className="af-paging__limit">
       <form className={componentClassName}>
@@ -61,16 +61,18 @@ const Items = ({
               id={newId}
               value={numberItems}
               mode="base"
-              options={items.map((item) => ({
-                label: item.toString(),
-                value: item.toString(),
-              }))}
               onChange={(e) => {
                 e.preventDefault();
                 onChange({ value: Number(e.target.value) });
               }}
               aria-label={selectAriaLabel}
-            />
+            >
+              {items.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </Select>
             <span className="af-form__input-cmplt">{elementsLabel}</span>
           </div>
         </div>

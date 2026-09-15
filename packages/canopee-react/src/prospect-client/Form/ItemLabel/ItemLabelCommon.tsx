@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
-import { Svg } from "../../Svg/Svg";
+import { SvgBase } from "../../Svg/Svg";
 
 export type ItemLabelProps = ComponentProps<"label"> & {
   /**
@@ -163,7 +163,7 @@ export const ItemLabelCommon = ({
 
       {moreButtonLabel ? (
         <ButtonComponent
-          iconLeft={<Svg src={infoIcon} role="presentation" />}
+          iconLeft={<SvgBase src={infoIcon} role="presentation" />}
           {...moreButtonProps}
           variant="ghost"
           className="af-item-label__more"

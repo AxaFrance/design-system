@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/distributeur/Table/Paging.css";
 import { type ComponentPropsWithoutRef, useCallback } from "react";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities";
 import { Items } from "./Items";
 import { Pager } from "./Pager";
 
@@ -32,11 +32,11 @@ const Paging = ({
   items,
   onChange,
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-paging",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-paging",
-  );
+  });
 
   const handleChangeItems = useCallback<OnChangeItems>(
     (e) =>

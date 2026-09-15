@@ -20,10 +20,10 @@ const SelectInput = ({
 }: PropsWithChildren<Props>) => (
   <Field
     label={label}
-    classNameSuffix="select"
+    fieldClassNameSuffix="select"
     {...props}
     renderInput={({
-      classModifier,
+      inputClassName,
       id,
       ariaInvalid,
       errorId,
@@ -32,12 +32,17 @@ const SelectInput = ({
       <>
         <Select
           id={id}
-          classModifier={classModifier}
+          className={inputClassName}
           aria-describedby={errorId}
           aria-invalid={ariaInvalid}
-          options={options}
           {...otherSelectProps}
-        />
+        >
+          {options.map(({ label: optionLabel, ...option }) => (
+            <option key={option.value?.toString()} {...option}>
+              {optionLabel}
+            </option>
+          ))}
+        </Select>
         {children}
       </>
     )}

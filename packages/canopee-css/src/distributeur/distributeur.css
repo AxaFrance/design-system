@@ -7,8 +7,6 @@
 @import "./Form/Checkbox/Checkbox.css";
 @import "./Form/core/FormCore.css";
 @import "./Form/Date/Date.css";
-@import "./Form/Slider/Slider.css";
-@import "./Form/Pass/Pass.css";
 @import "./Form/Radio/Radio.css";
 @import "./Form/Radio/RadioCardGroup.css";
 @import "./Form/Select/Select.css";
@@ -40,7 +38,6 @@
 @import "./Link/Link.css";
 @import "./Popover/Popover.css";
 @import "./Loader/Loader.css";
-@import "./Loader/SquareLoader.css";
 @import "./CardData/CardData.css";
 @import "./MandatoryMention/MandatoryMention.css";
 @import "./Timeline/Timeline.css";

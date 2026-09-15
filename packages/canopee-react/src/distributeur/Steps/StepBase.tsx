@@ -9,8 +9,6 @@ export type StepBaseProps = {
   title: string;
   children?: ReactNode;
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   /**
    * Label to add to the title as state indication (e.g. "in progress", "to come"...)
    * Will be wrapped in parentheses, next to the `title` in the `title` attribute of the <li> element.
@@ -27,12 +25,11 @@ const StepBase = ({
   id,
   title,
   className,
-  classModifier,
   stateLabel,
 }: StepBaseProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-steps-list-step",
-    modifiers: classModifier?.split(" "),
+    modifiers: [],
     className,
   });
 

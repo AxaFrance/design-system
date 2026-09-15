@@ -16,7 +16,6 @@ type HelpProps = Omit<
 
 export const HelpButton = ({
   className,
-  classModifier,
   children,
   mode = "click",
   placement = "right",
@@ -27,17 +26,14 @@ export const HelpButton = ({
     "btn",
     getClassName({
       baseClassName: "af-btn--circle",
-      modifiers: [
-        ...(classModifier?.split(" ") ?? []),
-        ...(variant === "inverse" ? ["inverse"] : []),
-      ],
+      modifiers: [...(variant === "inverse" ? ["inverse"] : [])],
+      className,
     }),
   );
 
   return (
     <Popover
       className={classNames("af-help-button", className)}
-      classModifier={classModifier}
       placement={placement}
       mode={mode}
       popoverElement={children}

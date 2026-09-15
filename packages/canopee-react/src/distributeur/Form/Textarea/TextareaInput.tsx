@@ -11,7 +11,7 @@ const TextareaInput = ({ label, children, ...props }: Props) => (
   <Field
     label={label}
     labelPosition="top"
-    classNameSuffix="textarea"
+    fieldClassNameSuffix="textarea"
     {...props}
     renderInput={({ id, ariaInvalid, errorId, ...inputProps }) => (
       <>

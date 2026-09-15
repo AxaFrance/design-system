@@ -1,7 +1,7 @@
 import expandMore from "@material-symbols/svg-400/outlined/keyboard_arrow_down.svg";
 import classNames from "classnames";
 import { useCallback, useState } from "react";
-import { Svg } from "../../Svg/Svg";
+import { SvgBase } from "../../Svg/Svg";
 import { MenuIcons, type SocialMedia } from "./MenuIcons";
 import { type Link, MenuLink } from "./MenuLink";
 
@@ -42,7 +42,7 @@ export const Footer = ({
             <span className="af-footer__menuAboutTriggerText">
               {expandLinkText}
             </span>
-            <Svg
+            <SvgBase
               src={expandMore}
               className={classNames(
                 "af-footer__icon",

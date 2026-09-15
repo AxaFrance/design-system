@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { vi } from "vitest";
-import { Svg } from "../Svg";
+import { SvgBase } from "../Svg";
 
 const mocks = vi.hoisted(() => {
   return {
@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => {
 
 vi.mock("@tanem/svg-injector", () => mocks);
 
-describe("<Svg />", () => {
+describe("<SvgBase />", () => {
   describe("render", () => {
     it("renders correctly", () => {
       mocks.SVGInjector.mockImplementationOnce((el, { afterEach }) => {
@@ -19,7 +19,7 @@ describe("<Svg />", () => {
       });
 
       const svgSrc = "svgSrc";
-      render(<Svg src="svgSrc" alt="foo" aria-label="test" />);
+      render(<SvgBase src="svgSrc" alt="foo" aria-label="test" />);
 
       const svg = screen.getByLabelText("test");
       expect(svg).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("<Svg />", () => {
         afterEach("error");
       });
 
-      render(<Svg src="fake" alt="foo" aria-label="test" />);
+      render(<SvgBase src="fake" alt="foo" aria-label="test" />);
 
       const svg = screen.getByText("foo");
 
@@ -41,8 +41,8 @@ describe("<Svg />", () => {
   });
 
   describe("A11Y", () => {
-    it("shouldn't have an accessibility violation <Svg />", async () => {
-      const { container } = render(<Svg src="svgSrc" alt="foo" />);
+    it("shouldn't have an accessibility violation <SvgBase />", async () => {
+      const { container } = render(<SvgBase src="svgSrc" alt="foo" />);
 
       expect(await axe(container)).toHaveNoViolations();
     });

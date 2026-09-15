@@ -6,7 +6,7 @@ import {
   type ReactNode,
   useId,
 } from "react";
-import { Svg } from "../../../Svg/Svg";
+import { SvgBase } from "../../../Svg/Svg";
 import { getClassName } from "../../../utilities/getClassName";
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import { type ItemLabelProps } from "../../ItemLabel/ItemLabelCommon";
@@ -181,7 +181,7 @@ export const InputFileCommon = ({
               modifiers: ["tertiary"],
             })}
           >
-            <Svg src={addCircleIcon} role="presentation" />
+            <SvgBase src={addCircleIcon} role="presentation" />
             {resolvedDropzoneLabels.button}
           </span>
         </span>

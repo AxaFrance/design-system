@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { getComponentClassName } from "../../../../utilities";
+import { getClassName } from "../../../../utilities";
 import { handleLinkFocus } from "./NavBarItemBase.helpers";
 
 type Props = HTMLAttributes<HTMLLIElement> & {
@@ -28,11 +28,11 @@ export const NavBarItemBase = ({
   actionElt,
   ...otherProps
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-nav__item",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-nav__item",
-  );
+  });
   const ref = useRef(null);
 
   useEffect(() => {

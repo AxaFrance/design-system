@@ -9,8 +9,6 @@ const defaultClassName = "af-accordion";
 export type EnhancedProps = Partial<TDefaultProps> & {
   onlyOne?: boolean;
   className?: string;
-  /** @deprecated Use `variant` instead. */
-  classModifier?: string;
   variant?: AccordionVariant;
   children:
     | React.ReactElement<CollapseProps>[]
@@ -19,17 +17,13 @@ export type EnhancedProps = Partial<TDefaultProps> & {
 
 const Accordion = ({
   className,
-  classModifier,
   variant = "default",
   children,
   onlyOne = false,
 }: EnhancedProps) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: [
-      variant !== "default" && variant,
-      ...(classModifier?.split(" ") ?? []),
-    ],
+    modifiers: [variant !== "default" && variant],
     className,
   });
 

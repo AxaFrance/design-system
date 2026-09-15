@@ -95,12 +95,9 @@ describe("Alert component", () => {
       expect(alert).toHaveClass("af-alert af-alert--error");
       expect(alertTitle).toBeInTheDocument();
     });
-    it("should render warning correctly when using danger classModifier", () => {
+    it("should render warning correctly when using the warning variant", () => {
       render(
-        <Message
-          classModifier="danger"
-          title="Warning: information is missing"
-        />,
+        <Message variant="warning" title="Warning: information is missing" />,
       );
 
       const alert = screen.getByRole("alert");
@@ -112,7 +109,7 @@ describe("Alert component", () => {
     it("should render success with children correctly", () => {
       render(
         <Message
-          classModifier="success"
+          variant="success"
           title="Success: your request has been approved"
         >
           <h4>Children</h4>
@@ -132,7 +129,7 @@ describe("Alert component", () => {
     it("should call onClose function when clicking the cross icon", () => {
       render(
         <Message
-          classModifier="danger"
+          variant="warning"
           title="Warning: information is missing"
           onClose={mockOnClose}
         />,

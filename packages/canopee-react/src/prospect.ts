@@ -206,7 +206,6 @@ export {
   type SpinnerVariants,
 } from "./prospect-client/Spinner/SpinnerApollo";
 export { Stepper } from "./prospect-client/Stepper/StepperApollo";
-export { Svg } from "./prospect-client/Svg/Svg";
 export {
   TabBar,
   tabBarDirection,

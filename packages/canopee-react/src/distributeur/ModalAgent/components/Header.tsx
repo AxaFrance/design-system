@@ -5,11 +5,6 @@ import { getClassName } from "../../utilities/helpers/getClassName";
 
 export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
   /**
-   * Text displayed in the header.
-   * @deprecated Use `children` instead to allow for more flexible content.
-   */
-  title?: string;
-  /**
    * Text displayed in the header, overrides `title` if both are set.
    */
   children?: ReactNode;
@@ -22,11 +17,6 @@ export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
    */
   closeButtonAriaLabel?: string;
   /**
-   * Class modifier for the header. Can be used to apply custom styles.
-   * @deprecated Use `className` instead.
-   */
-  classModifier?: string;
-  /**
    * Prop to override the style of the header. Will totally remove the default styles.
    */
   className?: string;
@@ -34,8 +24,6 @@ export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const Header = ({
   className,
-  classModifier,
-  title,
   closeButtonAriaLabel = "Fermer la boite de dialogue",
   onCancel,
   children,
@@ -43,13 +31,12 @@ const Header = ({
 }: HeaderProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-modal__header",
-    modifiers: classModifier?.split(" "),
     className,
   });
 
   return (
     <header className={componentClassName} {...props}>
-      <h4 className="af-modal__header-title">{children ?? title}</h4>
+      <h4 className="af-modal__header-title">{children}</h4>
       <button
         className="af-modal__header-close-btn"
         type="button"

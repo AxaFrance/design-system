@@ -2,7 +2,7 @@ import successIcon from "@material-symbols/svg-400/outlined/check_circle-fill.sv
 import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 import warningIcon from "@material-symbols/svg-400/outlined/warning-fill.svg";
 import type { ReactNode } from "react";
-import { Svg } from "../../Svg/Svg";
+import { SvgBase } from "../../Svg/Svg";
 
 export const itemMessageVariants = {
   error: "error",
@@ -41,7 +41,7 @@ export const ItemMessage = ({
       role={messageType === "success" ? undefined : "alert"}
       aria-live="assertive"
     >
-      <Svg
+      <SvgBase
         src={getIcon()}
         className="af-item-message__icon"
         aria-hidden="true"

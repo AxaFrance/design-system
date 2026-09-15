@@ -4,7 +4,7 @@ import type {
   PropsWithChildren,
   ReactNode,
 } from "react";
-import { Svg } from "../Svg/Svg";
+import { SvgBase } from "../Svg/Svg";
 import { getClassName } from "../utilities/getClassName";
 
 export const linkVariants = {
@@ -50,7 +50,7 @@ export const Link = ({
       {leftIcon}
       {children}
       {openInNewTab || Boolean(rightIcon)
-        ? (rightIcon ?? <Svg src={openInNew} />)
+        ? (rightIcon ?? <SvgBase src={openInNew} />)
         : null}
     </a>
   );

@@ -1,5 +1,5 @@
 import { type ComponentProps, useMemo } from "react";
-import { Svg } from "../Svg/Svg";
+import { SvgBase } from "../Svg/Svg";
 import { getClassName } from "../utilities/getClassName";
 
 export const iconVariants = {
@@ -20,7 +20,7 @@ export const iconSizeVariants = {
 } as const;
 export type IconSizeVariants = keyof typeof iconSizeVariants;
 
-export type IconProps = ComponentProps<typeof Svg> & {
+export type IconProps = ComponentProps<typeof SvgBase> & {
   variant?: IconVariants;
   size?: IconSizeVariants;
   hasBackground?: boolean;
@@ -49,7 +49,7 @@ export const Icon = ({
 
   return (
     <div className={componentClassName}>
-      <Svg {...props} />
+      <SvgBase {...props} />
     </div>
   );
 };

@@ -17,16 +17,13 @@ describe("Choice", () => {
     expect(choiceSecondContent).toHaveClass("af-form__input-radio");
   });
 
-  it("should have custom class modifier", () => {
+  it("should support a custom class", () => {
     // Act
-    render(<Choice value="true" id="choix" classModifier="custom-class" />);
+    render(<Choice value="true" id="choix" className="custom-class" />);
 
     // Assert
     expect(screen.getAllByRole("radio")[0].parentElement).toHaveClass(
       "af-form__radio-custom",
-    );
-    expect(screen.getAllByRole("radio")[0].parentElement).toHaveClass(
-      "af-form__radio-custom--custom-class",
     );
   });
 

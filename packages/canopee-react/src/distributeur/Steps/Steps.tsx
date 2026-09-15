@@ -6,13 +6,11 @@ const defaultClassName = "af-steps-new";
 type Props = {
   children: ReactNode;
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
 };
-const Steps = ({ children, className, classModifier }: Props) => {
+const Steps = ({ children, className }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" "),
+    modifiers: [],
     className,
   });
 

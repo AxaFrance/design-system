@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import classNames from "classnames";
 import { Action } from "../../../Action/Action";
-import { getComponentClassName } from "../../../utilities";
+import { getClassName } from "../../../utilities";
 import {
   AnchorNavBar,
   type AnchorNavBarItem,
@@ -38,11 +38,11 @@ const HeaderTitle = ({
   toggleMenu,
   anchorNavBarItems,
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: (getClassModifier(classModifier, isSticky) ?? "").split(" "),
     className,
-    getClassModifier(classModifier, isSticky),
-    defaultClassName,
-  );
+  });
 
   const isAnchorNavBarPresent =
     anchorNavBarItems && anchorNavBarItems.length > 0;

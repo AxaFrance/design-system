@@ -11,8 +11,6 @@ import { getClassName } from "../utilities/helpers/getClassName";
 type Headings = "h2" | "h3" | "h4";
 
 type TitleProps = ComponentPropsWithRef<"h2"> & {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   heading?: Headings;
   contentLeft?: ReactElement;
   contentRight?: ReactNode;
@@ -23,7 +21,6 @@ const baseClass = "af-title";
 
 export const Title = ({
   className,
-  classModifier,
   children,
   heading: Heading = "h2",
   contentLeft,
@@ -31,7 +28,7 @@ export const Title = ({
   withDivider = true,
   ...otherProps
 }: PropsWithChildren<TitleProps>) => {
-  const modifiers = classModifier?.split(" ") ?? [];
+  const modifiers: string[] = [];
   if (!withDivider) {
     modifiers.push("without-divider");
   }
