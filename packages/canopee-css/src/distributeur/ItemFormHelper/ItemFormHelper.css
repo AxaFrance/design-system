@@ -1,0 +1,21 @@
+.af-item-form-helper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Source Sans Pro", sans-serif;
+  color: var(--grey80);
+}
+
+.af-item-form-helper--todo {
+  fill: var(--axablue80);
+}
+
+.af-item-form-helper--inprogress {
+  fill: var(--axablue80);
+}
+
+.af-item-form-helper--validated {
+  margin: 0;
+  color: var(--green40);
+  fill: var(--green40);
+}
