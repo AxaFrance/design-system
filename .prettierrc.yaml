@@ -1,0 +1,6 @@
+extends:
+  - "@axa-fr/prettier-config-design-system"
+
+# Exclude workflow files to prevent lock file hash conflicts
+ignorePatterns:
+  - ".github/workflows/*.md"
