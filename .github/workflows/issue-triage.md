@@ -1,37 +1,37 @@
 ---
 description: |
-  Triages new and reopened issues by assessing completeness, setting issue type
-  and priority labels, finding duplicates, and posting a concise maintainer-facing
-  report with actionable next steps.
+    Triages new and reopened issues by assessing completeness, setting issue type
+    and priority labels, finding duplicates, and posting a concise maintainer-facing
+    report with actionable next steps.
 
 on:
-  issues:
-    types: [opened, reopened]
-  reaction: eyes
-  workflow_dispatch:
+    issues:
+        types: [opened, reopened]
+    reaction: eyes
+    workflow_dispatch:
 
 permissions:
-  contents: read
-  issues: read
+    contents: read
+    issues: read
 
 safe-outputs:
-  add-labels:
-    allowed:
-      - bug
-      - feature
-      - question
-      - needs-info
-      - priority/p0
-      - priority/p1
-      - priority/p2
-      - duplicate
-      - invalid
-      - spam
-    max: 4
-  add-comment:
-    max: 1
-  set-issue-type:
-    max: 1
+    add-labels:
+        allowed:
+            - bug
+            - feature
+            - question
+            - needs-info
+            - priority/p0
+            - priority/p1
+            - priority/p2
+            - duplicate
+            - invalid
+            - spam
+        max: 4
+    add-comment:
+        max: 1
+    set-issue-type:
+        max: 1
 
 timeout-minutes: 10
 source: githubnext/agentics/workflows/issue-triage.md@4bc8419fad05e6b032741cbfd189986700bcf71c
@@ -127,16 +127,18 @@ Post one concise comment for maintainers:
 
 [Two or three sentences summarizing the issue and recommended routing.]
 
-| Assessment | Result | Reasoning |
-|---|---|---|
-| Type | [type or unset] | [brief evidence] |
-| Priority | [priority or unset] | [brief evidence] |
-| Coding agent | [suitability] | [brief evidence] |
+| Assessment   | Result              | Reasoning        |
+| ------------ | ------------------- | ---------------- |
+| Type         | [type or unset]     | [brief evidence] |
+| Priority     | [priority or unset] | [brief evidence] |
+| Coding agent | [suitability]       | [brief evidence] |
 
 ### Similar issues
+
 - #[number] — [duplicate or related, with a brief reason]
 
 ### Next step
+
 [One focused action or the specific information still needed.]
 ```
 
