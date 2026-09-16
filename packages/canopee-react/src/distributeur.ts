@@ -56,6 +56,7 @@ export { Slider, SliderInput } from "./distributeur/Form/Slider";
 export { Text, TextInput } from "./distributeur/Form/Text";
 export { Textarea, TextareaInput } from "./distributeur/Form/Textarea";
 export { Footer } from "./distributeur/Layout/Footer";
+export { FileDownload } from "./distributeur/FileDownload/FileDownload";
 export {
   Header,
   HeaderTitle,
