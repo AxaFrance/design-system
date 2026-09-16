@@ -11,8 +11,6 @@ import type { FileActions } from "./constants";
 
 type Dropzone = DropzoneInputProps & DropzoneOptions;
 type Props = Omit<Dropzone, "onDrop" | "onChange"> & {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   label?: string;
   icon?: string;
   onChange: (data: onChangeProps) => void;
@@ -34,7 +32,6 @@ type onChangeProps = {
 
 const File = ({
   className,
-  classModifier,
   id,
   name,
   disabled,
@@ -109,7 +106,6 @@ const File = ({
 
   const componentClassName = getClassName({
     baseClassName: "af-form__file-input",
-    modifiers: classModifier?.split(" "),
     className,
   });
 

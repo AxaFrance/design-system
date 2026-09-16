@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 import type { FileRejection } from "react-dropzone";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities";
 import type { CustomFile } from "./File";
 import { FileErrors } from "./FileErrors";
 import { FileLine } from "./FileLine";
@@ -10,22 +10,13 @@ type Props = Pick<FileLineProps, "onClick"> & {
   errors?: FileRejection[];
   values?: CustomFile[];
   className?: string;
-  classModifier?: string;
   disabled?: boolean;
 };
-const FileTable = ({
-  errors,
-  values,
-  className,
-  classModifier,
-  disabled,
-  onClick,
-}: Props) => {
-  const componentClassName = getComponentClassName(
-    className,
-    classModifier,
-    "custom-table-file af-file-table",
-  );
+const FileTable = ({ errors, values, className, disabled, onClick }: Props) => {
+  const componentClassName = getClassName({
+    baseClassName: "af-file-table",
+    className: `custom-table-file ${className ?? ""}`,
+  });
   return (
     <div className={componentClassName}>
       {errors && errors.length > 0 ? <FileErrors errors={errors} /> : null}

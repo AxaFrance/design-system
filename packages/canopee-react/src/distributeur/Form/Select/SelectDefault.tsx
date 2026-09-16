@@ -1,14 +1,11 @@
 import { type ComponentPropsWithRef, useId, useState } from "react";
 import { SelectBase } from "./SelectBase";
 
-type Props = Omit<
-  ComponentPropsWithRef<typeof SelectBase> & {
-    forceDisplayPlaceholder?: boolean;
-    placeholder?: string;
-    children: React.ReactNode;
-  },
-  "options"
->;
+type Props = ComponentPropsWithRef<typeof SelectBase> & {
+  forceDisplayPlaceholder?: boolean;
+  placeholder?: string;
+  children?: React.ReactNode;
+};
 
 const SelectDefault = ({
   onChange,

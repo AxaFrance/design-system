@@ -40,4 +40,27 @@ describe("<File.FileInput>", () => {
     fireEvent.click(getByRole("button"));
     expect(onClickMock).toHaveBeenCalled();
   });
+
+  it("should append custom class to default class", () => {
+    const { container } = render(
+      <FileLine
+        file={
+          {
+            ...new File([], "name"),
+            name: "name",
+            size: 1,
+            preview: "#",
+          } as FilePreview
+        }
+        id="id"
+        className="custom-file-line"
+        onClick={() => {}}
+      />,
+    );
+
+    expect(container.querySelector("li")).toHaveClass(
+      "af-form__file-line",
+      "custom-file-line",
+    );
+  });
 });

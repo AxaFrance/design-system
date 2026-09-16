@@ -15,10 +15,6 @@ export type TabsStatelessProps = {
   children: ReactElement<TabProps> | ReactElement<TabProps>[];
   activeIndex: number;
   className?: string;
-  /**
-   * @deprecated Use `className` instead
-   */
-  classModifier?: string;
 };
 
 export type TabsStatelessHandlers = {
@@ -54,14 +50,13 @@ type Props = TabsStatelessProps & TabsStatelessHandlers;
 const TabsStateless = ({
   activeIndex,
   className = "af-tabs",
-  classModifier,
   children,
   onChange,
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: "af-tabs",
     className,
-    modifiers: classModifier?.split(" "),
+    modifiers: [],
   });
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);

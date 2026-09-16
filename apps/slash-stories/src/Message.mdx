@@ -15,28 +15,25 @@ import { Message } from "@axa-fr/canopee-react/distributeur/";
 
 ```tsx title="App.tsx"
 export const MessageComponent = () => (
-  <Message classModifier="danger" title="Warning: information is missing" />
+  <Message variant="warning" title="Warning: information is missing" />
 );
 ```
 
 The property `closeButtonAriaLabel` allows projects to change the aria-label of the close button, making it more accessible.
 
-### Modifiers
+### Variants
 
-There are 4 modifiers available for the Alert component, `error` modifier is the default one :
+There are 4 variants available for the Message component, `error` is the default one:
 
 <table style={{ width: "100%" }}>
   <thead>
     <tr>
-      <th>Modifiers</th>
+      <th>Variant</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>danger</td>
-    </tr>
-    <tr>
-      <td>info</td>
+      <td>warning</td>
     </tr>
     <tr>
       <td>error</td>

@@ -9,6 +9,7 @@ const meta = preview.meta({
     layout: "centered",
   },
 });
+
 export default meta;
 
 export const Default = meta.story({
@@ -40,6 +41,10 @@ export const Default = meta.story({
   ),
   args: {
     mode: "hover",
+    children: null,
+    className: "",
+    placement: "top",
+    popoverElement: null,
   },
   argTypes: {
     placement: {

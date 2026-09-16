@@ -26,15 +26,13 @@ describe("Number", () => {
     );
   });
 
-  it("should have custom class and modifier", () => {
+  it("should support a custom class", () => {
     // Act
-    render(
-      <Number value="456" className="custom-class" classModifier="modifier" />,
-    );
+    render(<Number value="456" className="custom-class" />);
 
     // Assert
     expect(screen.getByRole("spinbutton")).toHaveClass(
-      "af-form__input-text af-form__input-text--modifier custom-class",
+      "af-form__input-text custom-class",
       {
         exact: true,
       },
@@ -49,9 +47,9 @@ describe("Number", () => {
     expect(screen.getByRole("spinbutton")).toBeRequired();
   });
 
-  it("should be required by classModifier", () => {
+  it("should be required", () => {
     // Act
-    render(<Number value="123" classModifier="required" />);
+    render(<Number value="123" required />);
 
     // Assert
     expect(screen.getByRole("spinbutton")).toBeRequired();

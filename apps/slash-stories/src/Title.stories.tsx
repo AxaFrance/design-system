@@ -7,15 +7,13 @@ import {
 import { ReactElement } from "react";
 import preview from "../.storybook/preview";
 
-const MODIFIERS = ["", "content"];
 const CONTENTS = ["Button", "Link", "None"] as const;
 
 type StoryProps = Omit<
   React.ComponentProps<typeof Title>,
-  "classModifier" | "children" | "contentLeft" | "contentRight"
+  "children" | "contentLeft" | "contentRight"
 > & {
   children: string;
-  classModifier: string;
   contentLeft?: (typeof CONTENTS)[number];
   contentRight?: (typeof CONTENTS)[number];
 };
@@ -24,8 +22,6 @@ const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Components/Title",
   args: {
     children: "Sample Title",
-    classModifier: "",
-    className: "",
     heading: "h2",
     withDivider: true,
     contentLeft: "None",
@@ -38,10 +34,6 @@ const meta = preview.type<{ args: StoryProps }>().meta({
     },
     contentRight: {
       options: CONTENTS,
-      control: { type: "select" },
-    },
-    classModifier: {
-      options: MODIFIERS,
       control: { type: "select" },
     },
   },
@@ -64,14 +56,9 @@ const getContent = (content?: string) => {
 
 export const Template = meta.story({
   name: "Title",
-  render: ({ children: text, classModifier, ...args }) => (
+  render: ({ children: text, ...args }) => (
     <>
-      <Title
-        classModifier={classModifier}
-        {...args}
-        contentLeft={undefined}
-        contentRight={undefined}
-      >
+      <Title {...args} contentLeft={undefined} contentRight={undefined}>
         {text}
       </Title>
 
@@ -80,8 +67,6 @@ export const Template = meta.story({
   ),
   args: {
     children: "Sample Title",
-    classModifier: "",
-    className: "",
     heading: "h2",
     withDivider: true,
   },
@@ -125,8 +110,6 @@ export const WithoutDivider = meta.story({
     withDivider: false,
   },
   argTypes: {
-    classModifier: { control: false },
-    className: { control: false },
     contentLeft: { control: false },
     contentRight: { control: false },
   },

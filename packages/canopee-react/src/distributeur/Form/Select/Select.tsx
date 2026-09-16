@@ -1,51 +1,16 @@
-import {
-  type ComponentProps,
-  type OptionHTMLAttributes,
-  type PropsWithChildren,
-} from "react";
+import { type ComponentProps, type PropsWithChildren } from "react";
 import { SelectBase } from "./SelectBase";
 import { SelectDefault } from "./SelectDefault";
-import { SelectDefaultWithOptions } from "./SelectDefaultWithOptions";
 
 type SelectProps = PropsWithChildren<
-  ComponentProps<typeof SelectDefault | typeof SelectDefaultWithOptions> & {
-    /**
-     * @deprecated Use `children` instead
-     * Instead of
-     * ```jsx
-     * <SelectBase options={[{ value: "1", label: "Option 1" }]} />
-     * ```
-     * you can now do something like :
-     * ```jsx
-     * <SelectBase>
-     *   <option value="1">Option 1</option>
-     * </SelectBase>
-     * ```
-     * It allows you to use the `optgroup` tag for example.
-     */
-    options?: OptionHTMLAttributes<HTMLOptionElement>[];
-    mode?: "default" | "base";
-  }
+  ComponentProps<typeof SelectDefault> & { mode?: "default" | "base" }
 >;
 
-const Select = ({
-  mode = "default",
-  children,
-  options,
-  ...props
-}: SelectProps) => {
+const Select = ({ mode = "default", children, ...props }: SelectProps) => {
   if (mode === "default") {
-    return options ? (
-      <SelectDefaultWithOptions {...props} options={options} />
-    ) : (
-      <SelectDefault {...props}>{children}</SelectDefault>
-    );
+    return <SelectDefault {...props}>{children}</SelectDefault>;
   }
-  return (
-    <SelectBase {...props} options={options}>
-      {children}
-    </SelectBase>
-  );
+  return <SelectBase {...props}>{children}</SelectBase>;
 };
 
 Select.displayName = "Select";

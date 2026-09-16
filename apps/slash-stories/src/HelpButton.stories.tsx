@@ -5,7 +5,9 @@ import "./HelpButton.stories.scss?inline";
 const meta = preview.meta({
   title: "Components/HelpButton",
   component: HelpButton,
-  args: {},
+  args: {
+    children: null,
+  },
   argTypes: {
     placement: {
       options: [
@@ -89,6 +91,6 @@ export const WithHtml = meta.story({
   ),
   args: {
     mode: "hover",
-    classModifier: "custom",
+    className: "custom",
   },
 });

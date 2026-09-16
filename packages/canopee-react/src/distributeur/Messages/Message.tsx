@@ -18,7 +18,7 @@ export type MessageProps = {
   title: ReactNode;
   /**
    * URL of an svg icon to display in the sidebar of the message.
-   * If not provided, a default icon based on the classModifier will be used.
+   * If not provided, a default icon based on the variant will be used.
    * <strong>This not recommended to use</strong>. Only use as an escape hatch.
    */
   icon?: string;
@@ -38,10 +38,6 @@ export type MessageProps = {
    * <div class="my-custom-class af-alert">My message</div>
    */
   className?: string;
-  /**
-   * @deprecated Use `variant` instead.
-   */
-  classModifier?: MessageVariants | "danger";
   /**
    * Variant of the message.
    * This will determine the icon and the style of the message.
@@ -70,38 +66,22 @@ const getIconUrl = (type: string) => {
   }
 };
 
-const getVariant = (
-  classModifier: MessageVariants | "danger",
-  variant?: MessageVariants,
-) => {
-  if (variant) {
-    return variant;
-  }
-  if (classModifier) {
-    return classModifier === "danger" ? "warning" : classModifier;
-  }
-  return "error"; // Default variant
-};
-
 export const Message = ({
   className,
   onClose,
   icon,
   title,
   children,
-  classModifier = "error",
-  variant, // Backward compatibility
+  variant = "error",
   closeButtonAriaLabel = "close",
 }: PropsWithChildren<MessageProps>) => {
-  const safeVariant = getVariant(classModifier, variant);
-
   const componentClassName = getClassName({
     baseClassName: "af-alert",
-    modifiers: [safeVariant],
+    modifiers: [variant],
     className,
   });
 
-  const iconSrc = icon ?? getIconUrl(safeVariant);
+  const iconSrc = icon ?? getIconUrl(variant);
 
   return (
     <div className={componentClassName} role="alert">
