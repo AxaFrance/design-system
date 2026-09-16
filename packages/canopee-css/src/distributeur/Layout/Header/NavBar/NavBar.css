@@ -8,21 +8,22 @@
     z-index: 17;
     top: 0;
     left: 0;
-    display: none;
+    display: block;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 80%);
   }
 
-  .mask.show {
-    display: block;
-  }
-
   .af-nav {
     position: relative;
     z-index: 18;
+    display: none;
     max-width: 320px;
     background: var(--gray10);
+  }
+
+  .af-nav--open {
+    display: block;
   }
 
   .af-nav.af-drawer {
@@ -77,6 +78,7 @@
   .af-nav__item {
     position: relative;
     width: 100%;
+    color: var(--brand-primary);
   }
 
   .af-nav__item--haschild > .af-nav__link {
@@ -134,6 +136,7 @@
 
   @media (--tablet-landscape) {
     .af-nav {
+      display: block;
       max-width: inherit;
     }
 
@@ -188,7 +191,7 @@
       display: none;
     }
 
-    .mask.show {
+    .mask {
       display: none;
     }
   }

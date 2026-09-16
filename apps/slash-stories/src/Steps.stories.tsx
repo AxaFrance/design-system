@@ -6,13 +6,15 @@ import {
 import { fn } from "storybook/test";
 import preview from "../.storybook/preview";
 
-type StoryProps = React.ComponentProps<typeof Steps> & {
-  onClick: StepLinkOnClickHandler;
-  mode?: "link" | "active" | "disabled";
-};
+type StoryProps = Omit<
+  React.ComponentProps<typeof Steps> & {
+    onClick: StepLinkOnClickHandler;
+    mode?: "link" | "active" | "disabled";
+  },
+  "children"
+>;
 
-const meta = preview.meta({
-  component: Steps,
+const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Components/Steps/Step",
   args: {
     mode: "link",
@@ -32,8 +34,8 @@ export default meta;
 
 export const NewStepsStory = meta.story({
   name: "Horizontal Stepper",
-  render: ({ classModifier, className, mode, onClick }: StoryProps) => (
-    <Steps classModifier={classModifier} className={className}>
+  render: ({ className, mode, onClick }: StoryProps) => (
+    <Steps className={className}>
       <Step
         id="id1"
         href="/etape1"
@@ -61,16 +63,13 @@ export const NewStepsStory = meta.story({
       <Step id="id5" title="Final step" mode="disabled" />
     </Steps>
   ),
-  args: {
-    classModifier: "",
-    className: "",
-  },
+  args: {},
 });
 
 export const StepsValidated = meta.story({
   name: "Final step is active",
-  render: ({ classModifier, className, mode, onClick }: StoryProps) => (
-    <Steps classModifier={classModifier} className={className}>
+  render: ({ className, mode, onClick }: StoryProps) => (
+    <Steps className={className}>
       <Step
         id="id1"
         href="/etape1"
@@ -106,8 +105,5 @@ export const StepsValidated = meta.story({
       <Step id="id5" title="Final step" mode="active" />
     </Steps>
   ),
-  args: {
-    classModifier: "",
-    className: "",
-  },
+  args: {},
 });

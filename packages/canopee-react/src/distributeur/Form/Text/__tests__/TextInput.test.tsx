@@ -79,6 +79,20 @@ describe("TextInput", () => {
     expect(screen.getByText(/content/i)).toBeInTheDocument();
   });
 
+  it("should apply infobulle class when hasInfobulle is true", () => {
+    // Act
+    render(
+      <TextInput label="TextInput label" value="Hello World" hasInfobulle>
+        Content
+      </TextInput>,
+    );
+
+    // Assert
+    expect(screen.getByLabelText("TextInput label")).toHaveClass(
+      "af-form__input-text--hasinfobulle",
+    );
+  });
+
   it("shouldn't have an accessibility violation <TextInput/>", async () => {
     // Act
     const { container } = render(

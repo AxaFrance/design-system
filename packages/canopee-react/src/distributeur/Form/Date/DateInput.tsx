@@ -9,13 +9,13 @@ type Props = ConsumerFieldProps &
 
 const DateInput = ({ children, ...otherProps }: Props) => (
   <Field
-    classNameSuffix="date"
+    fieldClassNameSuffix="date"
     {...otherProps}
-    renderInput={({ id, classModifier, ariaInvalid, errorId, ...props }) => (
+    renderInput={({ id, inputClassName, ariaInvalid, errorId, ...props }) => (
       <>
         <Date
           id={id}
-          classModifier={classModifier}
+          className={inputClassName}
           aria-describedby={errorId}
           aria-invalid={ariaInvalid}
           {...props}

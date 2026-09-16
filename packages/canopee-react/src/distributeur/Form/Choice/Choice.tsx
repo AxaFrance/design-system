@@ -12,8 +12,6 @@ type Props = Omit<ComponentPropsWithRef<typeof Radio>, "options" | "value"> & {
   name?: string;
   options?: Array<Omit<Option, "value"> & { value: boolean }>;
   value?: boolean | string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
 };
 
 const Choice = ({

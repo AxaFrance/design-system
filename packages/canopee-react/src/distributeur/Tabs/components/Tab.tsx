@@ -5,10 +5,6 @@ export type TabProps = {
   title: ReactNode;
   children?: ReactNode;
   className?: string;
-  /**
-   * @deprecated Use className instead
-   */
-  classModifier?: string;
 };
 
 const Tab = () => null;

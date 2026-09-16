@@ -4,9 +4,7 @@ import {
   Action,
   BooleanModal,
   Button,
-  Checkbox,
   CheckboxInput,
-  Field,
   FileInput,
   Infos,
   Link,
@@ -16,8 +14,8 @@ import {
   Name,
   Paging,
   Popover,
-  SelectBase,
-  SliderInput,
+  Select,
+  NumberInput,
   Svg,
   THead,
   Table,
@@ -100,27 +98,13 @@ const Agent = () => {
         </article>
         <form className="af-form">
           <article>
-            <Title heading="h3">Slider</Title>
-            <SliderInput
+            <Title heading="h3">Number input</Title>
+            <NumberInput
               id="slider"
               name="slider"
               value={sliderValue}
-              onChange={(e) => setSliderValue(e.value)}
-              label="Slider"
-              options={[
-                {
-                  value: 10,
-                  label: "ten",
-                },
-                {
-                  value: 50,
-                  label: "fifty",
-                },
-                {
-                  value: 100,
-                  label: "one hundred",
-                },
-              ]}
+              onChange={(e) => setSliderValue(Number(e.target.value))}
+              label="Number"
             />
           </article>
 
@@ -171,27 +155,25 @@ const Agent = () => {
               ]}
             />
 
-            <Field label="Manual Checkboxes">
-              <Checkbox
-                mode="inline"
-                values={["option-2"]}
-                options={[
-                  {
-                    label: "Option 1",
-                    value: "option-1",
-                  },
-                  {
-                    label: "Option 2",
-                    value: "option-2",
-                    checked: true,
-                  },
-                  {
-                    label: "Option 3",
-                    value: "option-3",
-                  },
-                ]}
-              />
-            </Field>
+            <CheckboxInput
+              label="Manual Checkboxes"
+              values={["option-2"]}
+              options={[
+                {
+                  label: "Option 1",
+                  value: "option-1",
+                },
+                {
+                  label: "Option 2",
+                  value: "option-2",
+                  checked: true,
+                },
+                {
+                  label: "Option 3",
+                  value: "option-3",
+                },
+              ]}
+            />
           </article>
 
           <article>
@@ -278,8 +260,11 @@ const Agent = () => {
           </Title>
         </article>
         <article>
-          <Title heading="h3">Deprecated stuff</Title>
-          <SelectBase />
+          <Title heading="h3">Base select</Title>
+          <Select mode="base" aria-label="Base select">
+            <option value="first">First option</option>
+            <option value="second">Second option</option>
+          </Select>
         </article>
         <BooleanModal
           ref={modalRef}

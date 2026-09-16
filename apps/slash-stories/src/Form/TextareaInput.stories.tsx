@@ -26,8 +26,6 @@ const meta = preview.meta({
     forceDisplayMessage: false,
     readOnly: false,
     disabled: false,
-    isVisible: true,
-    classModifier: "",
     className: "",
     tabIndex: 0,
     autoFocus: true,
@@ -47,7 +45,7 @@ export const TextareaInputStory = meta.story({
 export const TextAreaInputWithChildren = meta.story({
   name: "TextareaInput with help button",
   render: ({ onChange, ...args }) => (
-    <TextareaInput onChange={onChange} {...args}>
+    <TextareaInput onChange={onChange} {...args} hasInfobulle>
       <HelpButton mode="hover">Help</HelpButton>
     </TextareaInput>
   ),

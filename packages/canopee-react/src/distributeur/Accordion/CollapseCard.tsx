@@ -12,8 +12,6 @@ export type CollapseProps = {
   name?: string;
   onToggle?: DetailsHTMLAttributes<HTMLDetailsElement>["onToggle"];
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   actions?: AccordionActions;
   variant?: AccordionVariant;
 };
@@ -26,18 +24,14 @@ export const CollapseCard = ({
   open,
   onToggle,
   className,
-  classModifier = "",
   actions,
   variant,
 }: CollapseProps) => {
   const headerId = id;
 
-  let newClassModifier = open ? "open" : "";
-  newClassModifier += ` ${classModifier}`;
-
   const componentClassName = getClassName({
     baseClassName: "af-accordion__details",
-    modifiers: newClassModifier.trim().split(" "),
+    modifiers: open ? ["open"] : [],
     className,
   });
 

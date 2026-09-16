@@ -75,4 +75,20 @@ describe("<File.FileTable>", () => {
     expect(asFragment()).toMatchSnapshot();
     expect(queryByRole("list")).not.toHaveClass("af-form__file-errors-list");
   });
+
+  it("should append custom class to default classes", () => {
+    const { container } = render(
+      <FileTable
+        className="custom-file-table"
+        values={[]}
+        onClick={() => {}}
+      />,
+    );
+
+    expect(container.firstChild).toHaveClass(
+      "af-file-table",
+      "custom-table-file",
+      "custom-file-table",
+    );
+  });
 });

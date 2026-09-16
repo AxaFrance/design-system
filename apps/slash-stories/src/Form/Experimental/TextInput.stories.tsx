@@ -129,13 +129,16 @@ const meta = preview.meta({
 export default meta;
 
 export const Default = meta.story({
-  args: {},
+  args: {
+    label: "What is your name?",
+  },
 });
 
 export const Vertical = meta.story({
   args: {
     disabled: true,
     labelPosition: "above",
+    label: "What is your name?",
   },
 });
 
@@ -146,6 +149,7 @@ export const ErrorStory = meta.story({
     helpMessage: "",
     value: "",
     name: "errorInput",
+    label: "What is your name?",
   },
 });
 
@@ -154,6 +158,7 @@ export const Disabled = meta.story({
     disabled: true,
     value: "Disabled input",
     name: "disabledInput",
+    label: "What is your name?",
   },
 });
 

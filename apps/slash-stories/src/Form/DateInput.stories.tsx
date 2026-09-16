@@ -37,7 +37,6 @@ export const DateInputStory = meta.story({
     message: "",
     forceDisplayMessage: false,
     id: "dateId",
-    classModifier: "",
     className: "",
     disabled: false,
   },
@@ -66,7 +65,7 @@ export const DateInputWithChildrenStory = meta.story({
   name: "DateInput with help button",
   tags: ["Form", "Input"],
   render: ({ ...args }) => (
-    <DateInput {...args}>
+    <DateInput {...args} hasInfobulle>
       <HelpButton mode="hover">Help</HelpButton>
     </DateInput>
   ),

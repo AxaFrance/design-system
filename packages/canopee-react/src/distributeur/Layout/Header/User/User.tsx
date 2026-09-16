@@ -19,16 +19,6 @@ type Props = {
    */
   children?: ReactNode;
   /**
-   * Class modifier to apply additional styles\
-   * @example
-   * ```tsx
-   * <User classModifier="custom-class" />
-   * ```
-   * This will apply the class `af-info-user--custom-class` to the component.
-   * @deprecated Use `className` instead.
-   */
-  classModifier?: string;
-  /**
    * classNames to override completely the component's style
    */
   className?: string;
@@ -65,7 +55,6 @@ type Props = {
 
 const User = ({
   children,
-  classModifier,
   className,
   href,
   name,
@@ -76,7 +65,6 @@ const User = ({
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" "),
     className,
   });
 

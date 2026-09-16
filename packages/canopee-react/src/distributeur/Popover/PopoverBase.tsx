@@ -7,8 +7,6 @@ import "@axa-fr/canopee-css/distributeur/Popover/Popover.css";
 type Props = {
   placement?: Placement;
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   element: React.ReactNode;
   children: React.ReactNode | React.ReactNode[];
   isOpen: boolean;
@@ -21,7 +19,6 @@ const PopoverBase = ({
   isOpen,
   placement = "right",
   className,
-  classModifier,
   element,
   onMouseEnter,
   onMouseLeave,
@@ -32,7 +29,6 @@ const PopoverBase = ({
       placement={placement}
       isOpen={isOpen}
       className={className}
-      classModifier={classModifier}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/distributeur/Table/Pager.css";
 import type { ComponentPropsWithoutRef } from "react";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities";
 import { Li } from "./Li";
 import { LiPoint } from "./LiPoint";
 import { PaginationButton } from "./PaginationButton";
@@ -10,7 +10,6 @@ export type PagerComponentProps = Pick<
   "onChange"
 > & {
   className?: string;
-  classModifier?: string;
   /**
    * Total number of pages in the table
    */
@@ -47,7 +46,6 @@ export type PagerComponentProps = Pick<
 
 const Pager = ({
   className,
-  classModifier,
   numberPages = 1,
   currentPage = 1,
   onChange,
@@ -60,11 +58,10 @@ const Pager = ({
   const hasNext = currentPage < numberPages;
   const hasPrevious = currentPage > 1;
 
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-pager",
     className,
-    classModifier,
-    "af-pager",
-  );
+  });
 
   if (mode === "light") {
     return (

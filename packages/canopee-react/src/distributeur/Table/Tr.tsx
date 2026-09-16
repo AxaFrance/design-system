@@ -1,21 +1,12 @@
 import { type ComponentPropsWithoutRef } from "react";
 import { getClassName } from "../utilities/helpers/getClassName";
 
-type Props = ComponentPropsWithoutRef<"tr"> & {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
-};
+type Props = ComponentPropsWithoutRef<"tr"> & {};
 
-const Tr = ({
-  children,
-  id,
-  className,
-  classModifier,
-  ...otherProps
-}: Props) => {
+const Tr = ({ children, id, className, ...otherProps }: Props) => {
   const componentClassName = getClassName({
     baseClassName: "af-table__tr",
-    modifiers: classModifier?.split(" "),
+    modifiers: [],
     className,
   });
   return (

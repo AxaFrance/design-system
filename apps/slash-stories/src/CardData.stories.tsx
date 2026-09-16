@@ -62,7 +62,7 @@ export const CardDataPrimaryAvecSousTitre = meta.story({
     children: (
       <>
         <p style={{ marginTop: 0 }}>Contenu de la carte</p>
-        <Button classModifier="reverse">Accéder à la console de flux</Button>
+        <Button className="reverse">Accéder à la console de flux</Button>
       </>
     ),
     icon: bank,
@@ -78,7 +78,7 @@ export const CardDataPrimaryAvecDescription = meta.story({
     children: (
       <>
         <p style={{ marginTop: 0 }}>Contenu de la carte</p>
-        <Button classModifier="reverse">Accéder à la console de flux</Button>
+        <Button className="reverse">Accéder à la console de flux</Button>
       </>
     ),
     icon: bank,
@@ -95,13 +95,13 @@ export const CardDataWithContentRight = meta.story({
     children: (
       <>
         <p style={{ marginTop: 0 }}>Contenu de la carte</p>
-        <Button classModifier="reverse">Accéder à la console de flux</Button>
+        <Button className="reverse">Accéder à la console de flux</Button>
       </>
     ),
     icon: bank,
     variant: "error",
     contentRight: (
-      <Button classModifier="reverse">Accéder à la console de flux</Button>
+      <Button className="reverse">Accéder à la console de flux</Button>
     ),
   },
 });

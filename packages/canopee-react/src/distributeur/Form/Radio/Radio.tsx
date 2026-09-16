@@ -14,10 +14,7 @@ export enum RadioModes {
 type Props = {
   options: Option[];
 } & (
-  | (Omit<
-      ComponentPropsWithRef<typeof RadioItem>,
-      "id" | "label" | "className"
-    > & {
+  | (Omit<ComponentPropsWithRef<typeof RadioItem>, "id" | "label"> & {
       mode?: "classic" | "default" | "inline";
     })
   | (ComponentPropsWithRef<typeof RadioCardGroup> & {

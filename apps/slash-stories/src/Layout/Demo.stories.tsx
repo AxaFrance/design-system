@@ -10,7 +10,6 @@ import {
   Infos,
   MainContainer,
   Name,
-  PassInput,
   RadioInput,
   Restitution,
   RestitutionList,
@@ -170,7 +169,7 @@ export const DemoStory = meta.story({
           <Step id="step-confirmation" title="Confirmation" mode="disabled" />
         </Steps>
         <MainContainer>
-          <ArticleRestitution classModifier="lg">
+          <ArticleRestitution className="lg">
             <HeaderRestitution
               title="Policy details"
               subtitle="Contract n° 000123456789"
@@ -183,7 +182,7 @@ export const DemoStory = meta.story({
                     168 High Holborn, London WC1V 7AA, UK
                   </Restitution>
                   <Restitution label="Job">Alchemist</Restitution>
-                  <Restitution label="Beverages" classModifier="marge">
+                  <Restitution label="Beverages" className="marge">
                     <RestitutionList
                       values={[
                         "Hoppiness manager",
@@ -194,7 +193,7 @@ export const DemoStory = meta.story({
                     />
                   </Restitution>
                 </SectionRestitutionColumn>
-                <SectionRestitutionColumn classModifier="test">
+                <SectionRestitutionColumn className="test">
                   <Restitution label="Favorite color">Blue</Restitution>
                   <Restitution label="Favorite movie">
                     The Lord of the Rings
@@ -226,11 +225,11 @@ export const DemoStory = meta.story({
                   label="Text input (error)"
                   name="text-error"
                   message="This field has an error"
-                  classModifier="error"
+                  className="error"
                   defaultValue={defaultValues["text-error"]}
                 />
 
-                <PassInput
+                <TextInput
                   label="Password"
                   name="password"
                   placeholder="••••••"

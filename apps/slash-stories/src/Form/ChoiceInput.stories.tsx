@@ -9,10 +9,8 @@ import preview from "../../.storybook/preview";
 
 type ChoiceInputProps = Omit<
   ComponentPropsWithRef<typeof ChoiceInput>,
-  "classModifier"
-> & {
-  classModifier?: string[];
-};
+  "className"
+>;
 
 const meta = preview.type<{ args: ChoiceInputProps }>().meta({
   title: "Components/Form/Input/Choice",
@@ -27,7 +25,6 @@ const meta = preview.type<{ args: ChoiceInputProps }>().meta({
     classNameContainerLabel: "col-md-2",
     message: "",
     id: "uniqueid",
-    classModifier: [],
     onChange: fn(),
     isVisible: true,
     readOnly: false,
@@ -36,10 +33,6 @@ const meta = preview.type<{ args: ChoiceInputProps }>().meta({
   },
   argTypes: {
     onChange: { action: "onChange" },
-    classModifier: {
-      options: ["disabled", "required"],
-      control: { type: "inline-check" },
-    },
     value: {
       options: [undefined, true, false],
       control: { type: "inline-radio" },
@@ -51,15 +44,13 @@ export default meta;
 
 export const ChoiceInputStory = meta.story({
   name: "ChoiceInput",
-  render: ({ classModifier, ...args }) => (
-    <ChoiceInput classModifier={classModifier?.join(" ")} {...args} />
-  ),
+  render: (args) => <ChoiceInput {...args} />,
 });
 
 export const ChoiceInputWithChildrenStory = meta.story({
   name: "ChoiceInput with help button",
-  render: ({ classModifier, ...args }) => (
-    <ChoiceInput classModifier={classModifier?.join(" ")} {...args}>
+  render: (args) => (
+    <ChoiceInput {...args}>
       <HelpButton mode="hover">Help</HelpButton>
     </ChoiceInput>
   ),
