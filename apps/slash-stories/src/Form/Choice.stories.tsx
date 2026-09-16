@@ -2,11 +2,8 @@ import { Choice } from "@axa-fr/canopee-react/distributeur";
 import { ComponentPropsWithRef } from "react";
 import preview from "../../.storybook/preview";
 
-type ChoiceProps = Omit<
-  ComponentPropsWithRef<typeof Choice>,
-  "classModifier"
-> & {
-  classModifier?: string[];
+type ChoiceProps = Omit<ComponentPropsWithRef<typeof Choice>, "className"> & {
+  modifiers?: string[];
 };
 
 const meta = preview.type<{ args: ChoiceProps }>().meta({
@@ -18,21 +15,21 @@ export default meta;
 
 export const ChoiceStory = meta.story({
   name: "Choice",
-  render: ({ classModifier, ...args }) => (
-    <Choice classModifier={classModifier?.join(" ")} {...args} />
+  render: ({ modifiers, ...args }) => (
+    <Choice className={modifiers?.join(" ")} {...args} />
   ),
   args: {
     name: "placeName",
     placeholder: "Paris",
     id: "uniqueid",
-    classModifier: [],
+    modifiers: [],
     readOnly: false,
     disabled: false,
     value: false,
   },
   argTypes: {
     onChange: { action: "onChange" },
-    classModifier: {
+    modifiers: {
       options: ["disabled", "required"],
       control: { type: "inline-check" },
     },

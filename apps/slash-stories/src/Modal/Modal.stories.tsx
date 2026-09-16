@@ -34,7 +34,7 @@ const meta = preview.meta({
       },
       options: MODIFIERS.map((m) => m.value),
     },
-    classModifier: {
+    className: {
       options: MODIFIERS.map((m) => m.value),
       control: {
         type: "radio",
@@ -124,7 +124,7 @@ export const DefaultModalStory = meta.story({
     open: false,
     title: "Modal title",
     children:
-      'Voici une version avec un header classique Modal.Header. Un classModifier "lg" a été mis pour montrer une version plus large d\'une modale. Il est existe également un modifier "sm", pour les modales plus petites. Mais il est possible d\'ajouter son propre modifier pour personnaliser selon ses besoins avec un peu de CSS.',
+      'Voici une version avec un header classique Modal.Header. Un className "lg" a été mis pour montrer une version plus large d\'une modale. Il est existe également un modifier "sm", pour les modales plus petites. Mais il est possible d\'ajouter son propre modifier pour personnaliser selon ses besoins avec un peu de CSS.',
     size: undefined,
   },
 });

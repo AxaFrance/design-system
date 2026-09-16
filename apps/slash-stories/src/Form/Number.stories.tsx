@@ -2,30 +2,11 @@ import { Number } from "@axa-fr/canopee-react/distributeur";
 import { fn } from "storybook/test";
 import preview from "../../.storybook/preview";
 
-type StoryProps = Omit<React.ComponentProps<typeof Number>, "classModifier"> & {
-  classModifier: string[];
-};
-const MODIFIERS = ["", "required", "disabled"];
-
-const meta = preview.type<{ args: StoryProps }>().meta({
+const meta = preview.meta({
   title: "Components/Form/Input/Number",
   argTypes: { onChange: { action: "onChange" } },
-  args: { onChange: fn() },
-});
-
-export default meta;
-
-export const NumberStory = meta.story({
-  name: "Number",
-  render: ({ classModifier, onChange, ...args }) => (
-    <Number
-      classModifier={classModifier.join(" ")}
-      onChange={onChange}
-      {...args}
-    />
-  ),
   args: {
-    classModifier: [] as string[],
+    onChange: fn(),
     value: 5,
     placeholder: "Your name",
     name: "name",
@@ -36,10 +17,13 @@ export const NumberStory = meta.story({
     className: "",
     "aria-disabled": false,
   },
-  argTypes: {
-    classModifier: {
-      options: MODIFIERS,
-      control: { type: "inline-check" },
-    },
-  },
+  component: Number,
+});
+
+export default meta;
+
+export const NumberStory = meta.story({
+  name: "Number",
+  render: ({ onChange, ...args }) => <Number onChange={onChange} {...args} />,
+  args: {},
 });

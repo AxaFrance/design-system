@@ -9,9 +9,6 @@ import "@fontsource/source-sans-pro/400.css";
 import "@fontsource/source-sans-pro/600.css";
 import "@fontsource/source-sans-pro/700.css";
 
-import { Message } from "./distributeur/Messages/Message";
-import { Tag } from "./distributeur/Tag/Tag";
-
 export { Action } from "./distributeur/Action/Action";
 export { Button } from "./distributeur/Button/Button";
 export type { ButtonVariant } from "./distributeur/Button/Button";
@@ -25,10 +22,8 @@ export {
 } from "./distributeur/Form/Checkbox";
 export { Choice, ChoiceInput } from "./distributeur/Form/Choice";
 export {
-  LegacyField as Field,
+  Field,
   FieldError,
-  FieldForm,
-  FieldInput,
   FormClassManager,
   HelpMessage,
   InputList,
@@ -44,15 +39,13 @@ export {
 export { MultiSelect, MultiSelectInput } from "./distributeur/Form/MultiSelect";
 export { NestedQuestion } from "./distributeur/Form/NestedQuestion/NestedQuestion";
 export { Number, NumberInput } from "./distributeur/Form/Number";
-export { Pass, PassInput } from "./distributeur/Form/Pass";
 export {
   Radio,
   RadioInput,
   RadioItem,
   RadioModes,
 } from "./distributeur/Form/Radio";
-export { Select, SelectBase, SelectInput } from "./distributeur/Form/Select";
-export { Slider, SliderInput } from "./distributeur/Form/Slider";
+export { Select, SelectInput } from "./distributeur/Form/Select";
 export { Text, TextInput } from "./distributeur/Form/Text";
 export { Textarea, TextareaInput } from "./distributeur/Form/Textarea";
 export { Footer } from "./distributeur/Layout/Footer";
@@ -105,19 +98,10 @@ export { Summary } from "./distributeur/Summary";
 export { Svg } from "./distributeur/Svg";
 export { Tabs } from "./distributeur/Tabs/Tabs";
 export { Title } from "./distributeur/Title/Title";
-export { getComponentClassName } from "./distributeur/utilities";
-
-/** @deprecated Use `Tag` instead. */
-const Badge = Tag;
+export { getClassName } from "./distributeur/utilities";
 
 export type { TagVariants } from "./distributeur/Tag/Tag";
-export { Badge, Tag };
-
-/**
- * @deprecated `Alert` has been renamed `Message` in order to comply with UX naming of components. Use `Message` instead.
- * @see {@link Message}
- */
-const Alert = Message;
+export { Tag } from "./distributeur/Tag/Tag";
 
 export * from "./distributeur/Accordion";
 export {
@@ -126,7 +110,7 @@ export {
 } from "./distributeur/Messages/Message";
 export * from "./distributeur/Popover";
 export * from "./distributeur/Table";
-export { Alert, Message };
+export { Message } from "./distributeur/Messages/Message";
 
 export { HelpButton } from "./distributeur/HelpButton";
 export { Loader } from "./distributeur/Loader/Loader";
@@ -134,8 +118,6 @@ export {
   ItemLoader,
   type ItemLoaderVariant,
 } from "./distributeur/Loader/ItemLoader";
-export { SquareLoader } from "./distributeur/Loader/SquareLoader";
-
 export { CardData } from "./distributeur/CardData/CardData";
 export type { CardDataVariant } from "./distributeur/CardData/CardData";
 

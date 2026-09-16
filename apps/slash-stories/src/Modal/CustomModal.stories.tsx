@@ -25,7 +25,7 @@ const MODIFIERS = [
 const meta = preview.type<{ args: CustomTitleModalStoryProps }>().meta({
   title: "Components/Modal",
   argTypes: {
-    classModifier: {
+    className: {
       options: MODIFIERS.map((m) => m.label),
       control: { type: "radio" },
     },
@@ -66,9 +66,9 @@ export const CustomTitleModalStory = meta.story({
       </p>
     ),
     bodyContent:
-      'Voici une version avec un header customisé à l\'aide du composant Modal.HeaderBase. Un classModifier "lg" a été mis pour montrer une version plus large d\'une modale. Il est existe également un modifier "sm", pour les modales plus petites. Mais il est possible d\'ajouter son propre modifier pour personnaliser selon ses besoins avec un peu de CSS.',
+      'Voici une version avec un header customisé à l\'aide du composant Modal.HeaderBase. Un className "lg" a été mis pour montrer une version plus large d\'une modale. Il est existe également un modifier "sm", pour les modales plus petites. Mais il est possible d\'ajouter son propre modifier pour personnaliser selon ses besoins avec un peu de CSS.',
     cancelButtonText: "Annuler",
     saveButtonText: "Valider",
-    classModifier: MODIFIERS[0].label,
+    className: MODIFIERS[0].label,
   },
 });

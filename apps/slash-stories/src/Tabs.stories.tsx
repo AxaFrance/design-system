@@ -45,14 +45,14 @@ export const SingleTab = meta.story({
 export const ComplexTabs = meta.story({
   render: (args) => (
     <Tabs {...args}>
-      <Tabs.Tab title={TabTitleIconLeft} classModifier="has-icon-left">
+      <Tabs.Tab title={TabTitleIconLeft} className="has-icon-left">
         Content of my first tab
       </Tabs.Tab>
-      <Tabs.Tab title={TabTitleIconRight} classModifier="has-icon-right">
+      <Tabs.Tab title={TabTitleIconRight} className="has-icon-right">
         Content of my second tab
       </Tabs.Tab>
       <Tabs.Tab title={TabTitleBadge}>Content of my third tab </Tabs.Tab>
-      <Tabs.Tab title={TabTitleIconBadge} classModifier="has-icon-left">
+      <Tabs.Tab title={TabTitleIconBadge} className="has-icon-left">
         Content of my fourth tab
       </Tabs.Tab>
     </Tabs>

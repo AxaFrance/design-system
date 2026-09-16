@@ -32,8 +32,8 @@ export default meta;
 
 export const NewStepsStory = meta.story({
   name: "Horizontal Stepper",
-  render: ({ classModifier, className, mode, onClick }: StoryProps) => (
-    <Steps classModifier={classModifier} className={className}>
+  render: ({ className, mode, onClick }: StoryProps) => (
+    <Steps className={className}>
       <Step
         id="id1"
         href="/etape1"
@@ -62,15 +62,14 @@ export const NewStepsStory = meta.story({
     </Steps>
   ),
   args: {
-    classModifier: "",
     className: "",
   },
 });
 
 export const StepsValidated = meta.story({
   name: "Final step is active",
-  render: ({ classModifier, className, mode, onClick }: StoryProps) => (
-    <Steps classModifier={classModifier} className={className}>
+  render: ({ className, mode, onClick }: StoryProps) => (
+    <Steps className={className}>
       <Step
         id="id1"
         href="/etape1"
@@ -107,7 +106,6 @@ export const StepsValidated = meta.story({
     </Steps>
   ),
   args: {
-    classModifier: "",
     className: "",
   },
 });

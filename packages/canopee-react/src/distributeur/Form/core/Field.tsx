@@ -7,7 +7,7 @@ import {
   MessageTypes,
   useInputClassModifier,
 } from ".";
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities";
 import { useAriaInvalid } from "./useAriaInvalid";
 
 type InputProps = {
@@ -23,13 +23,6 @@ type InputProps = {
   classModifier?: string;
   classNameContainerLabel?: string;
   classNameContainerInput?: string;
-  /**
-   * Setting this to false will disable the rendering of the component
-   * @default true
-   * @deprecated You should handle the visibility of the component in your code
-   * instead of using this prop. This prop will be removed in a future version.
-   */
-  isVisible?: boolean;
   roleContainer?: string;
   ariaLabelContainer?: string;
   isLabelContainerLinkedToInput?: boolean;
@@ -47,23 +40,11 @@ type InputProps = {
    *
    */
   labelPosition?: "top" | "center";
-  /**
-   * suffix appended to the className of the div wrapping the input
-   * @deprecated We should rationalize the CSS for the components to avoid having to use different sufixes
-   * but it would be a breaking change to do so, so we keep it for now
-   * @example "textarea" will result in
-   * ```html
-   * <div class="af-form__textarea">
-   *  // ... input
-   * </div>
-   * ```
-   * @default "text"
-   */
-  classNameSuffix?: string;
+  fieldClassNameSuffix?: string;
   renderInput: (
     props: {
       id: string;
-      classModifier: string;
+      inputClassName: string;
       errorId?: string;
       ariaInvalid?: boolean;
     } & Record<string, unknown>,
@@ -110,12 +91,11 @@ export const Field = ({
   disabled = false,
   helpMessage,
   id,
-  isVisible = true,
   roleContainer,
   ariaLabelContainer,
   isLabelContainerLinkedToInput = true,
   labelPosition = "center",
-  classNameSuffix = "text",
+  fieldClassNameSuffix = "text",
   renderInput,
   appendChildren,
   ...otherProps
@@ -136,25 +116,21 @@ export const Field = ({
 
   const labelId = useId();
 
-  if (!isVisible) {
-    return null;
-  }
-
   const isGroup = roleContainer === "radiogroup" || roleContainer === "group";
   const LabelElement = isGroup ? "div" : "label";
 
   const modifiers = forceDisplayMessage
     ? `${inputFieldClassModifier} ${FormClassManager.getModifier(messageType)}`
     : inputFieldClassModifier;
-  const fieldContainerClassName = getComponentClassName(
-    `af-form__${classNameSuffix}`,
-    modifiers,
-  );
-  const groupClassName = getComponentClassName(
+  const fieldContainerClassName = getClassName({
+    baseClassName: `af-form__${fieldClassNameSuffix}`,
+    modifiers: modifiers.split(" "),
+  });
+  const groupClassName = getClassName({
+    baseClassName: "af-form__group",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-form__group",
-  );
+  });
 
   return (
     <div
@@ -184,7 +160,7 @@ export const Field = ({
       <div className={classNameContainerInput}>
         <div className={fieldContainerClassName}>
           {renderInput({
-            classModifier: `${inputClassModifier} ${modifiers}`,
+            inputClassName: `${inputClassModifier} ${modifiers}`,
             id: inputId,
             errorId,
             disabled,

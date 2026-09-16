@@ -12,10 +12,10 @@ const CONTENTS = ["Button", "Link", "None"] as const;
 
 type StoryProps = Omit<
   React.ComponentProps<typeof Title>,
-  "classModifier" | "children" | "contentLeft" | "contentRight"
+  "className" | "children" | "contentLeft" | "contentRight"
 > & {
   children: string;
-  classModifier: string;
+  className: string;
   contentLeft?: (typeof CONTENTS)[number];
   contentRight?: (typeof CONTENTS)[number];
 };
@@ -24,7 +24,6 @@ const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Components/Title",
   args: {
     children: "Sample Title",
-    classModifier: "",
     className: "",
     heading: "h2",
     withDivider: true,
@@ -40,7 +39,7 @@ const meta = preview.type<{ args: StoryProps }>().meta({
       options: CONTENTS,
       control: { type: "select" },
     },
-    classModifier: {
+    className: {
       options: MODIFIERS,
       control: { type: "select" },
     },
@@ -64,10 +63,10 @@ const getContent = (content?: string) => {
 
 export const Template = meta.story({
   name: "Title",
-  render: ({ children: text, classModifier, ...args }) => (
+  render: ({ children: text, className, ...args }) => (
     <>
       <Title
-        classModifier={classModifier}
+        className={className}
         {...args}
         contentLeft={undefined}
         contentRight={undefined}
@@ -80,7 +79,6 @@ export const Template = meta.story({
   ),
   args: {
     children: "Sample Title",
-    classModifier: "",
     className: "",
     heading: "h2",
     withDivider: true,
@@ -125,7 +123,6 @@ export const WithoutDivider = meta.story({
     withDivider: false,
   },
   argTypes: {
-    classModifier: { control: false },
     className: { control: false },
     contentLeft: { control: false },
     contentRight: { control: false },

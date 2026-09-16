@@ -9,7 +9,7 @@ const meta = preview.meta({
   },
   argTypes: {
     onClick: { action: "onClick" },
-    classModifier: {
+    className: {
       control: {
         type: "select",
         options: ["", "active"],
@@ -54,13 +54,13 @@ const template = ({ onClick, ...args }: StoryProps) => (
 export const NavBarItemDefaultStory = meta.story({
   name: "Default",
   render: template,
-  args: { classModifier: "" },
+  args: { className: "" },
 });
 
 export const ActiveNavBarItemStory = meta.story({
   name: "Active",
   render: template,
-  args: { classModifier: "active" },
+  args: { className: "active" },
 });
 
 export const NavBarItemWithChildrenStory = meta.story({
@@ -133,6 +133,6 @@ export const NavBarItemWithChildrenStory = meta.story({
     </div>
   ),
   args: {
-    classModifier: "",
+    className: "",
   },
 });

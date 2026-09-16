@@ -37,7 +37,6 @@ export const DateInputStory = meta.story({
     message: "",
     forceDisplayMessage: false,
     id: "dateId",
-    classModifier: "",
     className: "",
     disabled: false,
   },

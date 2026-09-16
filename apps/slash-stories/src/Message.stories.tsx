@@ -27,7 +27,7 @@ const meta = preview.meta({
     onClose: fn(),
   },
   argTypes: {
-    classModifier: variantInputType,
+    className: variantInputType,
     variant: variantInputType,
     onClose: {
       action: "close",
@@ -89,7 +89,7 @@ export const Default = meta.story({
     ),
   },
   argTypes: {
-    classModifier: variantInputType,
+    className: variantInputType,
     variant: variantInputType,
     title: {
       type: "string",

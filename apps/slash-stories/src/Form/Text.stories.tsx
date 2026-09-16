@@ -4,8 +4,8 @@ import preview from "../../.storybook/preview";
 import { inputTypes } from "./inputTypes";
 
 const MODIFIERS = ["", "required", "disabled"];
-type StoryProps = Omit<React.ComponentProps<typeof Text>, "classModifier"> & {
-  classModifier: string[];
+type StoryProps = Omit<React.ComponentProps<typeof Text>, "className"> & {
+  modifiers: string[];
 };
 
 const meta = preview.type<{ args: StoryProps }>().meta({
@@ -18,15 +18,10 @@ export default meta;
 
 export const TextStory = meta.story({
   name: "Text",
-  render: ({ classModifier, onChange, ...args }) => (
-    <Text
-      classModifier={classModifier.join(" ")}
-      onChange={onChange}
-      {...args}
-    />
+  render: ({ modifiers, onChange, ...args }) => (
+    <Text className={modifiers.join(" ")} onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: [] as string[],
     value: "John Doe",
     placeholder: "Your name",
     name: "name",
@@ -34,11 +29,11 @@ export const TextStory = meta.story({
     readOnly: false,
     disabled: false,
     autoFocus: false,
-    className: "",
+    modifiers: [],
     type: "text",
   },
   argTypes: {
-    classModifier: {
+    modifiers: {
       options: MODIFIERS,
       control: { type: "multi-select" },
     },

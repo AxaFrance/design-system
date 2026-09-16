@@ -5,21 +5,17 @@ import preview from "../../.storybook/preview";
 
 type RadioItemProps = Omit<
   ComponentPropsWithRef<typeof RadioItem>,
-  "classModifier"
+  "className"
 > & {
-  classModifier?: string[];
+  modifiers?: string[];
 };
 
 const meta = preview.type<{ args: RadioItemProps }>().meta({
   title: "Components/Form/Input/Radio",
   argTypes: { onChange: { action: "onChange" } },
   args: { onChange: fn() },
-  render: ({ classModifier, onChange, ...args }) => (
-    <RadioItem
-      classModifier={classModifier?.join(" ")}
-      onChange={onChange}
-      {...args}
-    />
+  render: ({ modifiers, onChange, ...args }) => (
+    <RadioItem className={modifiers?.join(" ")} onChange={onChange} {...args} />
   ),
 });
 export default meta;
@@ -37,7 +33,7 @@ export const RadioItemStory = meta.story({
   },
   argTypes: {
     onChange: { action: "onChange" },
-    classModifier: {
+    modifiers: {
       options: ["disabled", "required"],
       control: { type: "inline-check" },
     },

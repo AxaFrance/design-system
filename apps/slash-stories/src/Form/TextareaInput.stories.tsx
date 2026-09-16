@@ -27,7 +27,6 @@ const meta = preview.meta({
     readOnly: false,
     disabled: false,
     isVisible: true,
-    classModifier: "",
     className: "",
     tabIndex: 0,
     autoFocus: true,

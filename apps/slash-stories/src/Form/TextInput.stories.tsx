@@ -22,7 +22,6 @@ export const TextInputStory = meta.story({
     <TextInput onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: "required",
     value: "John Doe",
     placeholder: "Your name",
     name: "name",

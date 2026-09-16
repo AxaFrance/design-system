@@ -89,6 +89,6 @@ export const WithHtml = meta.story({
   ),
   args: {
     mode: "hover",
-    classModifier: "custom",
+    className: "custom",
   },
 });

@@ -1,7 +1,6 @@
 import {
   Button,
   Loader,
-  SquareLoader,
   MessageTypes,
   TextInput,
   Title,
@@ -50,22 +49,5 @@ export const FullScreenVariant = meta.story({
         <Button>Send</Button>
       </form>
     </Loader>
-  ),
-});
-
-export const SquareLoaderComponent = meta.story({
-  name: "SquareLoader (deprecated)",
-  render: () => (
-    <SquareLoader mode="get">
-      <form>
-        <Title>A form asking for your name</Title>
-        <TextInput
-          label="name"
-          message="error"
-          messageType={MessageTypes.error}
-        />
-        <Button>Send</Button>
-      </form>
-    </SquareLoader>
   ),
 });

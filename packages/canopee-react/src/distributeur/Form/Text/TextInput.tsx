@@ -9,7 +9,7 @@ const TextInput = ({ children, ...props }: TextInputProps) => (
     {...props}
     renderInput={({
       id,
-      classModifier,
+      inputClassName,
       ariaInvalid,
       errorId,
       ...textProps
@@ -17,7 +17,7 @@ const TextInput = ({ children, ...props }: TextInputProps) => (
       <>
         <Text
           id={id}
-          classModifier={classModifier}
+          className={inputClassName}
           aria-describedby={errorId}
           aria-invalid={ariaInvalid}
           {...textProps}

@@ -36,10 +36,7 @@ export const Default = meta.story({
             <Restitution label="TA">99,99 %</Restitution>
             <Restitution label="EURO">EURO</Restitution>
             <Restitution label="TT" />
-            <Restitution
-              label="Garanties complémentaires"
-              classModifier="marge"
-            >
+            <Restitution label="Garanties complémentaires" className="marge">
               <RestitutionList
                 values={[
                   "Vol au domicile",
@@ -51,14 +48,11 @@ export const Default = meta.story({
               />
             </Restitution>
           </SectionRestitutionColumn>
-          <SectionRestitutionColumn classModifier="test">
+          <SectionRestitutionColumn className="test">
             <Restitution label="TA">99,99 %</Restitution>
             <Restitution label="EURO">EURO</Restitution>
             <Restitution label="TT" />
-            <Restitution
-              label="Garanties complémentaires"
-              classModifier="marge"
-            >
+            <Restitution label="Garanties complémentaires" className="marge">
               <RestitutionList
                 values={[
                   "Vol au domicile",
@@ -77,10 +71,7 @@ export const Default = meta.story({
             <Restitution label="TA">99,99 %</Restitution>
             <Restitution label="EURO">EURO</Restitution>
             <Restitution label="TT" />
-            <Restitution
-              label="Garanties complémentaires"
-              classModifier="marge"
-            >
+            <Restitution label="Garanties complémentaires" className="marge">
               <RestitutionList
                 values={[
                   "Vol au domicile",
@@ -97,10 +88,7 @@ export const Default = meta.story({
             <Restitution label="EURO">
               <span style={{ textDecoration: "underline" }}>EURO</span>
             </Restitution>
-            <Restitution
-              label="Garanties complémentaires"
-              classModifier="marge"
-            >
+            <Restitution label="Garanties complémentaires" className="marge">
               <RestitutionList
                 values={[
                   "Vol au domicile",

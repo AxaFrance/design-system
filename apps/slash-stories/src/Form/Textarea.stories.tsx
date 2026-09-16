@@ -3,11 +3,8 @@ import { fn } from "storybook/test";
 import preview from "../../.storybook/preview";
 
 const MODIFIERS = ["", "required", "disabled"];
-type StoryProps = Omit<
-  React.ComponentProps<typeof Textarea>,
-  "classModifier"
-> & {
-  classModifier: string[];
+type StoryProps = Omit<React.ComponentProps<typeof Textarea>, "className"> & {
+  modifiers: string[];
 };
 
 const meta = preview.type<{ args: StoryProps }>().meta({
@@ -19,15 +16,10 @@ export default meta;
 
 export const TextareaStory = meta.story({
   name: "Textarea",
-  render: ({ classModifier, onChange, ...args }) => (
-    <Textarea
-      classModifier={classModifier.join(" ")}
-      onChange={onChange}
-      {...args}
-    />
+  render: ({ modifiers, onChange, ...args }) => (
+    <Textarea className={modifiers.join(" ")} onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: [] as string[],
     value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     placeholder: "Your comment",
     name: "comment",
@@ -36,10 +28,10 @@ export const TextareaStory = meta.story({
     disabled: false,
     tabIndex: 0,
     autoFocus: false,
-    className: "",
+    modifiers: [],
   },
   argTypes: {
-    classModifier: {
+    modifiers: {
       options: MODIFIERS,
       control: { type: "multi-select" },
     },

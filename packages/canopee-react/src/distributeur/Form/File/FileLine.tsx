@@ -1,4 +1,4 @@
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities";
 import type { CustomFile } from "./File";
 
 type Props = CustomFile & {
@@ -15,11 +15,11 @@ const FileLine = ({
   id,
   onClick,
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-form__file-line",
+    modifiers: classModifier?.split(" "),
     className,
-    classModifier,
-    "af-form__file-line",
-  );
+  });
   return (
     <li className={componentClassName}>
       {file && file.type && file.type.startsWith("image") ? (

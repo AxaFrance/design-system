@@ -34,7 +34,7 @@ describe("HeaderTitle", () => {
   test("should render children", async () => {
     const { container } = render(
       <HeaderTitle title="Title">
-        <Tag classModifier="success"> Lorem ipsum </Tag>
+        <Tag variant="success"> Lorem ipsum </Tag>
       </HeaderTitle>,
     );
     expect(await axe(container)).toHaveNoViolations();

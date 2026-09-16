@@ -15,7 +15,7 @@ const meta = preview.meta({
     required: true,
     mode: RadioModes.classic,
     value: "paris",
-    classModifier: "",
+    className: "",
     readOnly: false,
     disabled: false,
     name: "placeName",

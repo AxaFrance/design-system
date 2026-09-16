@@ -44,10 +44,10 @@ const FileInput = ({
       label={label}
       labelPosition="top"
       id={actualId}
-      classNameSuffix="file"
+      fieldClassNameSuffix="file"
       {...otherFileProps}
       renderInput={({
-        classModifier: inputClassModifiers,
+        inputClassName: inputClassModifiers,
         id: inputId,
         ariaInvalid,
         errorId,
@@ -58,7 +58,7 @@ const FileInput = ({
             id={inputId}
             name={name}
             onChange={onChange}
-            classModifier={inputClassModifiers}
+            className={inputClassModifiers}
             label={fileLabel}
             aria-describedby={errorId}
             aria-invalid={ariaInvalid}

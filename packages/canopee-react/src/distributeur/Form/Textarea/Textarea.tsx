@@ -3,17 +3,13 @@ import { type ComponentPropsWithRef, useId } from "react";
 
 import { getClassName } from "../../utilities/helpers/getClassName";
 
-type Props = ComponentPropsWithRef<"textarea"> & {
-  /** @deprecated Use `className` and the native `required` prop instead. */
-  classModifier?: string;
-};
+type Props = ComponentPropsWithRef<"textarea">;
 
-const Textarea = ({ id, className, classModifier, ...otherProps }: Props) => {
+const Textarea = ({ id, className, required, ...otherProps }: Props) => {
   const inputUseId = useId();
   const inputId = id ?? inputUseId;
   const componentClassName = getClassName({
     baseClassName: "af-form__input-textarea",
-    modifiers: classModifier?.split(" "),
     className,
   });
 
@@ -22,7 +18,7 @@ const Textarea = ({ id, className, classModifier, ...otherProps }: Props) => {
       {...otherProps}
       id={inputId}
       className={componentClassName}
-      required={classModifier?.includes("required")}
+      required={required}
     />
   );
 };

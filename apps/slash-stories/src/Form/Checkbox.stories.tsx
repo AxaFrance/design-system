@@ -20,9 +20,9 @@ const modes = [
 
 const Badge = ({
   children,
-  classModifier,
-}: PropsWithChildren<{ classModifier?: string }>) => (
-  <strong style={{ color: "green" }} className={classModifier ?? ""}>
+  className,
+}: PropsWithChildren<{ className?: string }>) => (
+  <strong style={{ color: "green" }} className={className ?? ""}>
     {children}
   </strong>
 );
@@ -31,13 +31,13 @@ const options = [
   { label: "Disabled", value: "1", disabled: true, id: "uniqueId1" },
   { label: "Unchecked", value: "2", id: "uniqueId2" },
   { label: "Checked", value: "3" },
-  { label: <Badge classModifier="success">A JSX element</Badge>, value: "4" },
+  { label: <Badge className="success">A JSX element</Badge>, value: "4" },
 ];
 const values = ["1", "3"];
-const modifiers = ["required", "disabled"];
+const modifierOptions = ["required", "disabled"];
 
-type Story = Omit<ComponentProps<typeof CheckboxInput>, "classModifier"> & {
-  classModifier: string[];
+type Story = Omit<ComponentProps<typeof CheckboxInput>, "className"> & {
+  modifiers: string[];
 };
 
 const meta = preview.type<{ args: Story }>().meta({
@@ -45,8 +45,8 @@ const meta = preview.type<{ args: Story }>().meta({
   argTypes: {
     onChange: { action: "onChange" },
     messageType: { control: { type: "select", options: messageTypes } },
-    classModifier: {
-      options: modifiers,
+    modifiers: {
+      options: modifierOptions,
       control: { type: "inline-check" },
     },
     mode: {
@@ -57,11 +57,11 @@ const meta = preview.type<{ args: Story }>().meta({
       },
     },
   },
-  render: ({ classModifier, ...args }) => (
+  render: ({ modifiers, ...args }) => (
     <form className="af-form" name="myform">
       <CheckboxInput
         {...args}
-        classModifier={(classModifier ?? []).join(" ")}
+        className={(modifiers ?? []).join(" ")}
         values={values}
         options={options}
         classNameContainerLabel="col-md-2"
@@ -79,7 +79,7 @@ export const CheckboxInputStory = meta.story({
     controls: {
       include: [
         "label",
-        "classModifier",
+        "modifiers",
         "mode",
         "message",
         "messageType",
@@ -93,13 +93,13 @@ export const CheckboxInputStory = meta.story({
 
 export const CheckboxInputErrorStory = meta.story({
   name: "CheckboxInputError",
-  render: ({ classModifier, ...args }) => (
+  render: ({ modifiers, ...args }) => (
     <form className="af-form" name="myform">
       <CheckboxInput
         {...args}
         values={values}
         options={options}
-        classModifier={(classModifier ?? []).join(" ")}
+        className={(modifiers ?? []).join(" ")}
         isVisible
         classNameContainerLabel="col-md-2"
         classNameContainerInput="col-md-10"
@@ -135,7 +135,7 @@ export const CheckboxInputErrorStory = meta.story({
     controls: {
       include: [
         "label",
-        "classModifier",
+        "modifiers",
         "mode",
         "message",
         "messageType",
@@ -153,7 +153,7 @@ export const CheckboxInputWithChildren = meta.story({
     return (
       <CheckboxInput
         {...args}
-        classModifier={(args.classModifier ?? []).join(" ")}
+        className={(args.modifiers ?? []).join(" ")}
         name="placeType"
         id="uniqueid"
       >
@@ -187,8 +187,7 @@ export const CheckboxItemToggleStory = meta.story({
         name="placeType"
         id="uniqueid"
         value="toto"
-        classModifier={(args.classModifier ?? []).join(" ")}
-        className="af-form__checkbox-toggle"
+        className={`af-form__checkbox-toggle ${(args.modifiers ?? []).join(" ")}`}
         isChecked={state}
         onChange={(e) => setState(e.target.checked)}
       />
@@ -206,7 +205,7 @@ export const CheckboxItemStory = meta.story({
       {...args}
       name="placeType"
       id="uniqueid2"
-      classModifier={(args.classModifier ?? []).join(" ")}
+      className={(args.modifiers ?? []).join(" ")}
       isChecked={false}
       onChange={() => {}}
       defaultChecked={isChecked}
@@ -223,7 +222,7 @@ export const CheckboxStory = meta.story({
   render: (args) => (
     <Checkbox
       {...args}
-      classModifier={(args.classModifier ?? []).join(" ")}
+      className={(args.modifiers ?? []).join(" ")}
       options={options}
       values={values}
       name="placeName"

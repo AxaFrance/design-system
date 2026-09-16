@@ -8,7 +8,7 @@ import { Modal, type ModalProps } from "../Modal";
 
 type Props = Pick<
   ModalProps & ComponentProps<typeof ModalHeader>,
-  "onOutsideTap" | "onCancel" | "classModifier" | "size"
+  "onOutsideTap" | "onCancel" | "size"
 >;
 
 const TestModal = ({
@@ -117,30 +117,6 @@ describe("Modal", () => {
   });
 
   describe("Size", () => {
-    test.each(["lg", "sm"])(
-      "classModifier should apply '%s' size class",
-      async (modifier) => {
-        const onOutsideTap = vitest.fn();
-        const onCancel = vitest.fn();
-        render(
-          <TestModal
-            onOutsideTap={onOutsideTap}
-            onCancel={onCancel}
-            classModifier={modifier}
-          />,
-        );
-
-        await userEvent.click(
-          screen.getByRole("button", { name: /open modal/i }),
-        );
-
-        expect(
-          screen.getByRole("dialog", {
-            name: /my aria-title/i,
-          }),
-        ).toHaveClass(`af-modal--${modifier}`);
-      },
-    );
     test.each(["lg", "sm"] as const)(
       "size prop should apply '%s' size class",
       async (size) => {
@@ -165,96 +141,26 @@ describe("Modal", () => {
         ).toHaveClass(`af-modal--${size}`);
       },
     );
-
-    test("should prioritize size over classModifier", async () => {
-      const onOutsideTap = vitest.fn();
-      const onCancel = vitest.fn();
-      render(
-        <TestModal
-          onOutsideTap={onOutsideTap}
-          onCancel={onCancel}
-          classModifier="sm"
-          size="lg"
-        />,
-      );
-
-      await userEvent.click(
-        screen.getByRole("button", { name: /open modal/i }),
-      );
-
-      expect(
-        screen.getByRole("dialog", {
-          name: /my aria-title/i,
-        }),
-      ).toHaveClass("af-modal--lg");
-    });
-
-    test("should apply classModifier different than lg/sm if size is set", async () => {
-      const onOutsideTap = vitest.fn();
-      const onCancel = vitest.fn();
-      render(
-        <TestModal
-          onOutsideTap={onOutsideTap}
-          onCancel={onCancel}
-          classModifier="custom-class"
-          size="lg"
-        />,
-      );
-
-      await userEvent.click(
-        screen.getByRole("button", { name: /open modal/i }),
-      );
-
-      expect(
-        screen.getByRole("dialog", {
-          name: /my aria-title/i,
-        }),
-      ).toHaveClass("af-modal--lg");
-      expect(
-        screen.getByRole("dialog", {
-          name: /my aria-title/i,
-        }),
-      ).toHaveClass("af-modal--custom-class");
-    });
   });
 });
 
 describe("ModalHeader", () => {
-  describe("Backward compatibility", () => {
-    test("should render the header with title", () => {
-      render(
-        <ModalHeader
-          onCancel={() => {}}
-          closeButtonAriaLabel="close"
-          title="My Modal Title"
-        />,
-      );
+  test("should render its children", () => {
+    render(
+      <ModalHeader onCancel={() => {}} closeButtonAriaLabel="close">
+        <span>My Custom Title</span>
+      </ModalHeader>,
+    );
 
-      expect(screen.getByText(/my modal title/i)).toBeInTheDocument();
-    });
-
-    test("children should override title", () => {
-      render(
-        <ModalHeader
-          onCancel={() => {}}
-          closeButtonAriaLabel="close"
-          title="My Modal Title"
-        >
-          <span>My Custom Title</span>
-        </ModalHeader>,
-      );
-
-      expect(screen.getByText(/my custom title/i)).toBeInTheDocument();
-      expect(screen.queryByText(/my modal title/i)).not.toBeInTheDocument();
-    });
+    expect(screen.getByText(/my custom title/i)).toBeInTheDocument();
   });
 
-  test("classmodifier should add a new class", () => {
+  test("should support a custom class", () => {
     render(
       <ModalHeader
         onCancel={() => {}}
         closeButtonAriaLabel="close"
-        classModifier="custom-class"
+        className="custom-class"
       >
         My Modal Title
       </ModalHeader>,
@@ -262,7 +168,7 @@ describe("ModalHeader", () => {
 
     const banner = screen.getByRole("banner");
     expect(banner).toHaveClass("af-modal__header");
-    expect(banner).toHaveClass("af-modal__header--custom-class");
+    expect(banner).toHaveClass("custom-class");
   });
 
   test("should override className", () => {
@@ -271,7 +177,6 @@ describe("ModalHeader", () => {
         onCancel={() => {}}
         closeButtonAriaLabel="close"
         className="custom-header-class"
-        classModifier="custom-modifier"
       >
         My Modal Title
       </ModalHeader>,
@@ -279,57 +184,41 @@ describe("ModalHeader", () => {
 
     const banner = screen.getByRole("banner");
     expect(banner).toHaveClass("custom-header-class");
-    expect(banner).toHaveClass("af-modal__header--custom-modifier");
     expect(banner).toHaveClass("af-modal__header");
   });
 });
 
 describe("ModalBody", () => {
-  test("classmodifier should add a new class", () => {
-    render(<ModalBody classModifier="custom-class">My Modal Body</ModalBody>);
+  test("should support a custom class", () => {
+    render(<ModalBody className="custom-class">My Modal Body</ModalBody>);
 
     const body = screen.getByText(/My Modal Body/i);
     expect(body).toHaveClass("af-modal__body");
-    expect(body).toHaveClass("af-modal__body--custom-class");
+    expect(body).toHaveClass("custom-class");
   });
 
   test("should override className", () => {
-    render(
-      <ModalBody className="custom-body-class" classModifier="custom-modifier">
-        My Modal Body
-      </ModalBody>,
-    );
+    render(<ModalBody className="custom-body-class">My Modal Body</ModalBody>);
 
     const body = screen.getByText(/My Modal Body/i);
     expect(body).toHaveClass("custom-body-class");
-    expect(body).toHaveClass("af-modal__body--custom-modifier");
     expect(body).toHaveClass("af-modal__body");
   });
 });
 
 describe("ModalFooter", () => {
-  test("classmodifier should add a new class", () => {
-    render(
-      <ModalFooter classModifier="custom-class">My Modal Footer</ModalFooter>,
-    );
+  test("should support a custom class", () => {
+    render(<ModalFooter className="custom-class" />);
 
-    const footer = screen.getByText(/my modal footer/i);
+    const footer = screen.getByRole("contentinfo");
     expect(footer).toHaveClass("af-modal__footer");
-    expect(footer).toHaveClass("af-modal__footer--custom-class");
+    expect(footer).toHaveClass("custom-class");
   });
   test("should override className", () => {
-    render(
-      <ModalFooter
-        className="custom-footer-class"
-        classModifier="custom-modifier"
-      >
-        My Modal Footer
-      </ModalFooter>,
-    );
+    render(<ModalFooter className="custom-footer-class" />);
 
-    const footer = screen.getByText(/my modal footer/i);
+    const footer = screen.getByRole("contentinfo");
     expect(footer).toHaveClass("custom-footer-class");
-    expect(footer).toHaveClass("af-modal__footer--custom-modifier");
     expect(footer).toHaveClass("af-modal__footer");
   });
 });
