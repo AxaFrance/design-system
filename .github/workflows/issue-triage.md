@@ -4,6 +4,10 @@ description: |
     and priority labels, finding duplicates, and posting a concise maintainer-facing
     report with actionable next steps.
 
+engine:
+    id: copilot
+    model: gpt-4o-mini
+
 on:
     issues:
         types: [opened, reopened]
