@@ -10,11 +10,13 @@ export type ItemMultiSelectVariant = "primary" | "secondary";
 
 export type ItemMultiSelectCommonProps = Omit<
   ComponentProps<"input">,
-  "type"
+  "type" | "id"
 > & {
+  id: string;
   label: ReactNode;
   variant?: ItemMultiSelectVariant;
   Checkbox: ComponentType<ComponentProps<"input">>;
+  onItemSelect?: (id: string, checked: boolean) => void;
 };
 
 export const ItemMultiSelectCommon: FC<ItemMultiSelectCommonProps> = ({
@@ -23,6 +25,7 @@ export const ItemMultiSelectCommon: FC<ItemMultiSelectCommonProps> = ({
   className = "",
   id,
   Checkbox,
+  onItemSelect,
   ...inputProps
 }) => (
   <label
@@ -34,7 +37,14 @@ export const ItemMultiSelectCommon: FC<ItemMultiSelectCommonProps> = ({
     htmlFor={id}
   >
     <span className="af-item-multi-select__checkbox">
-      <Checkbox id={id} {...inputProps} />
+      <Checkbox
+        id={id}
+        {...inputProps}
+        onChange={(e) => {
+          onItemSelect?.(id, e.target.checked);
+          inputProps.onChange?.(e);
+        }}
+      />
     </span>
     <span className="af-item-multi-select__label">{label}</span>
   </label>
