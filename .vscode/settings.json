@@ -18,5 +18,5 @@
 	"search.exclude": {
 		"**/slash": true,
 		"**/client": true
-	}
+	},
 }
