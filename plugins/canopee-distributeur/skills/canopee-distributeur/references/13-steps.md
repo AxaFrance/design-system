@@ -1,17 +1,25 @@
 # Steps (Étapes)
 
 ## Présentation
-Le composant Steps affiche un indicateur de progression horizontal. Le composant VerticalStep permet de créer un stepper vertical avec gestion des modes édition/validation/verrouillage.
+Le composant Steps affiche un indicateur de progression horizontal. Le composant VerticalStep permet de créer un stepper vertical avec gestion des modes édition/validation/verrouillage. Le composant FormHelper affiche, à côté d'un formulaire long, le récapitulatif des étapes et leur état d'avancement.
 
 ## Import
 ```tsx
-import { Steps, Step, VerticalStep } from "@axa-fr/canopee-react/distributeur";
+import {
+  Steps,
+  Step,
+  VerticalStep,
+  FormHelper,
+  ItemFormHelper,
+} from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Composants
 - **Steps** : Conteneur des étapes horizontales
 - **Step** : Étape individuelle dans le flux horizontal
 - **VerticalStep** : Étape verticale avec gestion de mode (édition, validation, verrouillage)
+- **FormHelper** : Assistant de saisie listant les étapes d'un formulaire avec leur état
+- **ItemFormHelper** : Étape unitaire affichée dans l'assistant de saisie
 
 ## Steps horizontales
 
@@ -224,9 +232,84 @@ Par défaut, le composant génère un `aria-label` de la forme `"Étape vertical
 {/* aria-label="Étape verticale Configuration (completed)" */}
 ```
 
+## FormHelper (assistant de saisie)
+
+`FormHelper` accompagne un formulaire long : il affiche le titre du formulaire, une légende rappelant les trois états possibles, puis les étapes regroupées par section. Il s'appuie sur `ArticleRestitution`, `HeaderRestitution` et `SectionRestitution`, et rend chaque étape avec `ItemFormHelper`.
+
+### Props — FormHelper
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `formTitle` | `string` | **Obligatoire** | Titre affiché en en-tête de l'assistant |
+| `sections` | `Section[]` | **Obligatoire** | Sections d'étapes affichées dans le contenu principal |
+
+```ts
+type Section = {
+  title?: string;
+  items: { label: string; mode: string; anchor?: string }[];
+};
+```
+
+### Props — ItemFormHelper
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `label` | `string` | **Obligatoire** | Libellé de l'étape |
+| `mode` | `string` | **Obligatoire** | État de l'étape : `"locked"`, `"edited"` ou `"validated"` |
+| `anchor` | `string` | - | Identifiant cible ; rend le libellé en lien `#anchor` vers l'étape |
+
+### États
+
+- **`"locked"`** : étape à compléter, puce vide cerclée
+- **`"edited"`** : étape en cours, puce pleine
+- **`"validated"`** : étape validée, coche verte à la place de la puce
+
+La légende affichée en haut de l'assistant reprend systématiquement ces trois états (« à compléter », « en cours », « validé »).
+
+### Exemple
+
+```tsx
+import { FormHelper } from "@axa-fr/canopee-react/distributeur";
+
+const AssistantSaisie = () => (
+  <FormHelper
+    formTitle="Assistant de saisie"
+    sections={[
+      {
+        title: "Mon formulaire",
+        items: [
+          { label: "Configuration", mode: "validated" },
+          { label: "Souscription", mode: "validated" },
+          { label: "Paiement", mode: "edited" },
+        ],
+      },
+      {
+        title: "Deuxième section avec ancres",
+        items: [
+          { label: "Préférences", mode: "locked", anchor: "preferences" },
+          { label: "Rétractation", mode: "locked", anchor: "retraction" },
+        ],
+      },
+    ]}
+  />
+);
+```
+
+### Subtilités d'usage
+
+- `ItemFormHelper` rend un `span` : c'est `FormHelper` qui porte les `li`, l'atome peut donc être réutilisé hors liste.
+- Une étape avec `anchor` devient un lien souligné en permanence, avec un `aria-label` explicite (« Accéder à l'étape … depuis l'assistant de saisie »).
+- Le titre de section (`section.title`) est optionnel : sans titre, seules les étapes sont rendues.
+- La légende est affichée sur trois colonnes ; le contenu principal utilise le fond `--gray10`.
+
 ## Classes CSS
 - `.af-steps-new` — Conteneur des étapes horizontales
 - `.af-steps-list` — Liste des étapes horizontales
 - `.af-steps-list-step` — Étape individuelle horizontale
 - `.af-vertical-step` — Étape verticale
 - `.af-vertical-step--edition` — Étape verticale en mode édition
+- `.af-form-helper__legend` — Légende des états en haut de l'assistant de saisie
+- `.af-form-helper__main-content` — Contenu principal de l'assistant (fond gris)
+- `.af-form-helper__section-title` — Titre d'une section d'étapes
+- `.af-item-form-helper` — Étape unitaire de l'assistant
+- `.af-item-form-helper__locked` / `__edited` / `__validated` — États de l'étape
