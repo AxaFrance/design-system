@@ -1,4 +1,4 @@
-import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { CardCheckboxOption } from "../CardCheckboxOption/CardCheckboxOptionApollo";
 import { CheckboxText } from "../CheckboxText/CheckboxTextApollo";
 import {

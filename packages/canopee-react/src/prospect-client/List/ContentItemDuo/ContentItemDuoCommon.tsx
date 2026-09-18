@@ -1,10 +1,7 @@
 import { type ComponentProps, type ComponentType, type ReactNode } from "react";
 import type { ButtonProps } from "../../Button/ButtonCommon";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../../Form/ItemMessage/ItemMessageCommon";
 import { getClassName } from "../../utilities/getClassName";
+import { type ItemMessageProps } from "../../Form/ItemMessage/ItemMessage";
 
 type ContentItemDuoPositions =
   | {
@@ -27,7 +24,7 @@ export type ContentItemDuoProps = {
 
 type ContentItemDuoCommonProps = ContentItemDuoProps & {
   ButtonComponent: ComponentType<ButtonProps>;
-  ItemMessageComponent: ComponentType<ComponentProps<typeof ItemMessage>>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
 
 export const ContentItemDuoCommon = ({

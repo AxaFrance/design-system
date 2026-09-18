@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/client/Form/InputDate/InputDateLF.css";
 import { ItemLabel } from "../ItemLabel/ItemLabelLF";
-import { ItemMessage } from "../ItemMessage/ItemMessageLF";
+import { ItemMessage } from "../ItemMessage/ItemMessage";
 
 import { InputDateCommon, type InputDateProps } from "./InputDateCommon";
 
