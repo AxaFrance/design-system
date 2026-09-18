@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import type { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
+import type { ItemMessageProps } from "../../Form/ItemMessage/ItemMessage";
 import { Heading } from "../../Heading/HeadingApollo";
-import { ItemMessage } from "../../Form/ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../Form/ItemMessage/ItemMessage";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
 import { StepperCommon } from "../StepperCommon";
 
