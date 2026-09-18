@@ -16,6 +16,7 @@ import { Checkbox } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type CheckboxProps = {
+  hasWarning?: boolean;           // Ajoute la classe af-checkbox--warning (bordure orange)
 } & Omit<ComponentProps<"input">, "disabled" | "type">;
 // Tous les attributs <input type="checkbox"> transmis
 ```
