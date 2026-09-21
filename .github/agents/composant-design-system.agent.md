@@ -1195,27 +1195,27 @@ Corriger toute erreur détectée avant de poursuivre la validation ou la mise en
 
 ```bash
 # Développement avec hot reload
-npm run dev                    # Tous les Storybooks
-npm run dev:distributeur       # Distributeur uniquement
-npm run dev:prospect           # Prospect uniquement
-npm run dev:client             # Client uniquement
+rtk npm run dev                    # Tous les Storybooks
+rtk npm run dev:distributeur       # Distributeur uniquement
+rtk npm run dev:prospect           # Prospect uniquement
+rtk npm run dev:client             # Client uniquement
 
 # Tests
-npm test                       # Tous les tests
-npm test MonComposant          # Tests d'un composant spécifique
-npm test -- --coverage         # Avec couverture
+rtk npm test                       # Tous les tests
+rtk npm test MonComposant          # Tests d'un composant spécifique
+rtk npm test -- --coverage         # Avec couverture
 
 # Lint et format
-npm run lint                   # ESLint
-npm run lint:fix              # ESLint avec auto-fix
-npm run format                # Prettier
+rtk npm run lint                   # ESLint
+rtk npm run lint:fix              # ESLint avec auto-fix
+rtk npm run format                # Prettier
 
 # Build
-npm run build                 # Build complet
-npm run build:distributeur    # Build Distributeur Storybook
+rtk npm run build                 # Build complet
+rtk npm run build:distributeur    # Build Distributeur Storybook
 
 # Tests accessibilité (dans Storybook)
-npx @axe-core/cli http://localhost:6006/iframe.html?id=composants-moncomposant--primary
+rtk npx @axe-core/cli http://localhost:6006/iframe.html?id=composants-moncomposant--primary
 ```
 
 ## Ressources

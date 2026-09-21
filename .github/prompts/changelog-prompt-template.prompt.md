@@ -8,7 +8,7 @@ This template serves to generate structured and consistent changelogs for the AX
 ### 1. Commit Collection
 ```bash
 # Get all commits since the last tag (replace X.Y.Z with the previous version)
-git log X.Y.Z..HEAD --pretty=format:"%h %an %s" --no-merges
+rtk git log X.Y.Z..HEAD --pretty=format:"%h %an %s" --no-merges
 ```
 
 ### 2. Filtering
@@ -160,7 +160,7 @@ Describe the main improvements and changes in this major version.
 ### Step 1: Preparation
 \`\`\`bash
 # Create a migration branch
-git checkout -b migration/design-system-v[CURRENT_VERSION]
+rtk git checkout -b migration/design-system-v[CURRENT_VERSION]
 
 # Backup current state
 git tag backup-before-migration-$(date +%Y%m%d)
@@ -169,7 +169,7 @@ git tag backup-before-migration-$(date +%Y%m%d)
 ### Step 2: Dependency Updates
 \`\`\`bash
 # Update the main package
-npm install @axa-fr/design-system-[universe]-[type]@[CURRENT_VERSION]
+rtk npm install @axa-fr/design-system-[universe]-[type]@[CURRENT_VERSION]
 \`\`\`
 
 ### Step 3: Automatic Migrations
