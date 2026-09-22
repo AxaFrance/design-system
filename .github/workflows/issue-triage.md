@@ -51,10 +51,16 @@ repository context. Do not invent missing details.
 
 1. Read the issue and its comments.
 2. Inspect the repository's available labels and issue types.
-3. Search open and recent closed issues for the same symptoms, request, error
-   messages, affected component, or expected behavior.
-4. Consult relevant repository documentation when it clarifies expected behavior
-   or contribution requirements.
+3. Search open issues first, then recent closed issues only if needed, for the
+    same symptoms, request, error messages, affected component, or expected
+    behavior.
+4. Keep duplicate research narrow: shortlist candidates from search results
+    first, then read at most three candidate issues in full before deciding
+    whether to mark a duplicate or cite related work.
+5. Consult repository documentation only when it directly clarifies expected
+    behavior or contribution requirements for the reported component. Read at
+    most two relevant files and skip doc lookup when the issue can already be
+    triaged confidently.
 
 ## 2. Assess completeness
 
@@ -98,6 +104,14 @@ Labels can trigger other automation. Prefer leaving a label unset over applying
 one speculatively.
 
 ## 4. Find duplicates and related issues
+
+Use a bounded search strategy:
+
+- prefer issue titles, snippets, labels, and state from search results before
+    opening a candidate issue
+- stop once you have enough evidence for a confident duplicate decision or up to
+    three useful matches
+- do not review issues exhaustively or page through large result sets
 
 Distinguish between:
 
