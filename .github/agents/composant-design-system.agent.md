@@ -1193,6 +1193,8 @@ Corriger toute erreur détectée avant de poursuivre la validation ou la mise en
 
 ## Commandes Utiles
 
+If `rtk` is not installed in the current environment, remove the `rtk` prefix and use the classic command directly.
+
 ```bash
 # Développement avec hot reload
 rtk npm run dev                    # Tous les Storybooks

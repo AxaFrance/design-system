@@ -3,6 +3,8 @@
 ## 🎯 Objective
 This template serves to generate structured and consistent changelogs for the AXA France design system.
 
+If `rtk` is not installed, use the same commands without the `rtk` prefix.
+
 ## 📋 Instructions
 
 ### 1. Commit Collection

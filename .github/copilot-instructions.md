@@ -132,10 +132,13 @@ Consulter [docs/decision-records/](../docs/decision-records/) pour comprendre le
 # RTK — Token-Optimized CLI
 
 **rtk** is a CLI proxy that filters and compresses command outputs, saving 60-90% tokens.
+Official site: https://www.rtk-ai.app/
 
 ## Rule
 
 Always prefix shell commands with `rtk`:
+
+If `rtk` is not installed in the current environment, run the same command directly without the prefix.
 
 ```bash
 # Instead of:              Use:
