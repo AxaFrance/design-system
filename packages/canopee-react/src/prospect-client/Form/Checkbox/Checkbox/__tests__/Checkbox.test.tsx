@@ -43,4 +43,41 @@ describe("CheckboxCommon Component", () => {
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveClass("af-checkbox custom-class");
   });
+
+  it("should apply error modifier and aria-invalid when variant is error", () => {
+    render(<Checkbox variant="error" />);
+
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).toHaveClass("af-checkbox af-checkbox--error");
+    expect(checkbox).toHaveAttribute("aria-invalid", "true");
+  });
+
+  it("should not apply error modifier when variant is not set", () => {
+    render(<Checkbox />);
+
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).not.toHaveClass("af-checkbox--error");
+    expect(checkbox).not.toHaveAttribute("aria-invalid");
+  });
+
+  it("should apply warning modifier when variant is warning", () => {
+    render(<Checkbox variant="warning" />);
+
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).toHaveClass("af-checkbox af-checkbox--warning");
+  });
+
+  it("should not apply warning modifier when variant is not set", () => {
+    render(<Checkbox />);
+
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).not.toHaveClass("af-checkbox--warning");
+  });
+
+  it("should set aria-errormessage when errorId is provided", () => {
+    render(<Checkbox errorId="error-1" />);
+
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).toHaveAttribute("aria-errormessage", "error-1");
+  });
 });

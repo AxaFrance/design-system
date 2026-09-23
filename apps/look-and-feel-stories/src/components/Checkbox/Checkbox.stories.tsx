@@ -15,7 +15,20 @@ const meta: Meta = {
     checked: {
       control: { type: "boolean" },
     },
-    "aria-invalid": { type: "boolean" },
+    variant: {
+      control: { type: "select" },
+      options: ["error", "warning"],
+    },
+    errorId: {
+      table: {
+        disable: true,
+      },
+    },
+    hasError: {
+      table: {
+        disable: true,
+      },
+    },
   },
   args: {
     name: "option1",

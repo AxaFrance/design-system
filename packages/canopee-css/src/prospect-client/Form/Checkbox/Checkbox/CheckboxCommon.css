@@ -17,5 +17,43 @@
     &:checked {
       background-image: var(--checkbox-background-image);
     }
+
+    &[class*="--warning"] {
+      &:checked {
+        --checkbox-background-color: var(--white-1000);
+
+        background-image: none;
+      }
+
+      &:checked,
+      &:not(:checked) {
+        --checkbox-border-color: var(--orange-1050);
+        --checkbox-border-width: 2px;
+
+        &:hover,
+        &:focus-within {
+          --checkbox-border-width: 3px;
+        }
+      }
+    }
+
+    &[class*="--error"],
+    &[aria-invalid="true"] {
+      &:checked {
+        --checkbox-background-color: var(--white-1000);
+
+        background-image: none;
+      }
+
+      &:checked,
+      &:not(:checked) {
+        --checkbox-border-width: 2px;
+
+        &:hover,
+        &:focus-within {
+          --checkbox-border-width: 3px;
+        }
+      }
+    }
   }
 }
