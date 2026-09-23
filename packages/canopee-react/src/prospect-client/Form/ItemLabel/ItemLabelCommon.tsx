@@ -141,7 +141,7 @@ export const ItemLabelCommon = ({
         {...props}
       >
         {children}
-        {required ? <span aria-hidden>*</span> : null}
+        {required ? <span aria-hidden="true">*</span> : null}
       </label>
 
       {sideButtonLabel ? (
