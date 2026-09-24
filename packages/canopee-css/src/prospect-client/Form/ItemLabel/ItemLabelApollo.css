@@ -4,9 +4,5 @@
   .af-item-label {
     --label-color: var(--gray-1000);
     --label-description-color: var(--gray-800);
-
-    > label > span[aria-hidden] {
-      display: none;
-    }
   }
 }
