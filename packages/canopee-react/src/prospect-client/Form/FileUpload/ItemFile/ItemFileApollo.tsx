@@ -3,7 +3,7 @@ import visibilityIcon from "@material-symbols/svg-400/outlined/visibility-fill.s
 import { ClickIcon } from "../../../ClickIcon/ClickIconApollo";
 import { Icon } from "../../../Icon/IconApollo";
 import { Spinner } from "../../../Spinner/SpinnerApollo";
-import { ItemMessage } from "../../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { ItemFileCommon, type ItemFileProps } from "./ItemFileCommon";
 import "@axa-fr/canopee-css/prospect/ContentItemMono/ContentItemMonoApollo.css";
 import "@axa-fr/canopee-css/prospect/Form/FileUpload/ItemFile/ItemFileApollo.css";
