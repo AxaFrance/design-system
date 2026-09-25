@@ -21,10 +21,9 @@ const meta: Meta<typeof InputText> = {
     required: false,
     unit: <Svg src={euroSymbolIcon} aria-label="en euros" />,
     description: "Description",
-    buttonLabel: "En savoir plus",
+    moreButtonLabel: "En savoir plus",
     sideButtonLabel: "Modifier",
-    error: "Error Message",
-    message: "",
+    message: "Error Message",
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -55,7 +54,6 @@ export const InputTextWarningStory: Story = {
   name: "Warning",
   render,
   args: {
-    error: "",
     message: "Warning Message",
     messageType: "warning",
   },
@@ -66,7 +64,6 @@ export const InputTextLoadingStory: Story = {
   render,
   args: {
     value: "",
-    error: "",
     message: "",
     unit: <Spinner size={24} />,
     disabled: true,
