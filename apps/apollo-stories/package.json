@@ -26,7 +26,7 @@
     "@storybook/addon-docs": "^10.3.5",
     "@storybook/react": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^6.1.1",
     "@whitespace/storybook-addon-html": "^9.0.0",
     "globals": "^17.5.0",
     "remark-gfm": "^4.0.1",
