@@ -42,7 +42,7 @@ export type InputBaseProps = {
    * - `leftAbove` will place the label above the input, aligned to the left. This is used to have the label above the input.
    * @default "centerLeft"
    */
-  labelPosition?: SingleLineLabelPosition;
+  labelPosition?: LabelPosition;
 
   /**
    * The help message to display below the input.
