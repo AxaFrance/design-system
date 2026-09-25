@@ -37,17 +37,17 @@ export const Playground: Story = {
 
 export const Dialog: Story = {
   decorators: [
-    (Story, { args: { open = true, isDialog = true, ...args } }) => {
+    (Story, { args: { isDialog = true, ...args } }) => {
       const modalRef = useRef<HTMLDialogElement>(null);
 
       useEffect(() => {
-        if (open && isDialog) {
+        if (isDialog) {
           modalRef.current?.showModal();
           return;
         }
 
         modalRef.current?.close();
-      }, [open, isDialog]);
+      }, [isDialog]);
 
       return <Story args={{ ...args, isDialog, ref: modalRef }} />;
     },
