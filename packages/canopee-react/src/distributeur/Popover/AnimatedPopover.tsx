@@ -17,8 +17,6 @@ type PropsAnimatedPopover = {
   isOpen: boolean;
   target: React.ReactNode;
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: (event: React.MouseEvent) => void;
 };
@@ -29,13 +27,11 @@ export const AnimatedPopover = ({
   isOpen,
   target,
   className,
-  classModifier,
   onMouseEnter,
   onMouseLeave,
 }: PropsAnimatedPopover) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" ") ?? [],
     className,
   });
 

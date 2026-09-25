@@ -34,20 +34,19 @@ describe("Date", () => {
     );
   });
 
-  it("should have custom class and modifier", () => {
+  it("should support a custom class", () => {
     // Act
     render(
       <DateComponent
         value={fakeDate}
         data-testid="myElement"
-        classModifier="modifier"
         className="custom-class"
       />,
     );
 
     // Assert
     expect(screen.getByTestId("myElement")).toHaveClass(
-      "af-form__input-date af-form__input-date--modifier custom-class",
+      "af-form__input-date custom-class",
       {
         exact: true,
       },
@@ -62,15 +61,9 @@ describe("Date", () => {
     expect(screen.getByTestId("myElement")).toBeRequired();
   });
 
-  it("should be required by classModifier", () => {
+  it("should be required", () => {
     // Act
-    render(
-      <DateComponent
-        value={fakeDate}
-        data-testid="myElement"
-        classModifier="required"
-      />,
-    );
+    render(<DateComponent value={fakeDate} data-testid="myElement" required />);
 
     // Assert
     expect(screen.getByTestId("myElement")).toBeRequired();

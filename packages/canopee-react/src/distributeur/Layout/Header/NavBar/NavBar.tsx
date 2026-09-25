@@ -10,7 +10,6 @@ import { getPosition } from "./NavBar.helpers";
 import { NavBarBase } from "./NavBarBase";
 
 type ChildrenProps = {
-  classModifier?: string;
   tabIndex?: number;
   hasFocus?: boolean;
   [key: string]: unknown;
@@ -64,12 +63,7 @@ const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
         const isCurrent = index === position;
         return React.cloneElement(child, {
           key: `NavBarItem`,
-          classModifier: [
-            (child.props as { classModifier?: string }).classModifier,
-            isCurrent ? "active" : undefined,
-          ]
-            .filter((c) => Boolean(c))
-            .join(" "),
+          active: isCurrent,
           tabIndex: isCurrent ? 0 : -1,
           index,
           hasFocus: isMenuFocused && isCurrent,

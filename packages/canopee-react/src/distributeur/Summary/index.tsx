@@ -12,15 +12,13 @@ export const Summary = ({
   messages = [],
   isVisible = true,
   title = "Invalid form",
-  classModifier = "error",
+  variant = "error",
   ...args
 }: SummaryProps) => {
   const messagesNotBlank = messages.filter((message) => Boolean(message));
   if (!messages || !isVisible || messagesNotBlank.length === 0) {
     return null;
   }
-
-  const variant = classModifier === "danger" ? "warning" : classModifier;
 
   return (
     <Message title={title} variant={variant} {...args}>

@@ -22,7 +22,7 @@ import { Summary } from "@axa-fr/canopee-react/distributeur";
 ```tsx
 export const SummaryForm = () => (
   <Summary
-    classModifier="error"
+    variant="error"
     title="Invalid form"
     messages={[
       <span>Field Author is required</span>,
@@ -37,9 +37,9 @@ export const SummaryForm = () => (
 <Canvas of={SummaryStories.Template} />
 <Controls of={SummaryStories.Template} />
 
-### Modifiers
+### Variants
 
-The modifiers are the same as in the Action component: `error`, `info`,
+The variants are the same as in the Action component: `error`, `info`,
 `success` and `warning`.
 
 #### Success

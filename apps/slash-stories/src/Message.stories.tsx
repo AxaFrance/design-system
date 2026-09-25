@@ -3,10 +3,10 @@ import { InputType } from "storybook/internal/types";
 import { fn } from "storybook/test";
 import preview from "../.storybook/preview";
 
-const MODIFIERS = [undefined, "success", "info", "warning", "error"];
+const variants = [undefined, "success", "info", "warning", "error"];
 
 const variantInputType: InputType = {
-  options: MODIFIERS,
+  options: variants,
   control: {
     type: "inline-radio",
   },
@@ -27,7 +27,6 @@ const meta = preview.meta({
     onClose: fn(),
   },
   argTypes: {
-    classModifier: variantInputType,
     variant: variantInputType,
     onClose: {
       action: "close",
@@ -89,7 +88,6 @@ export const Default = meta.story({
     ),
   },
   argTypes: {
-    classModifier: variantInputType,
     variant: variantInputType,
     title: {
       type: "string",

@@ -7,11 +7,11 @@ import React, {
 } from "react";
 import { getPosition } from "../NavBar.helpers";
 import { NavBarItemBase } from "./NavBarItemBase";
+import { getClassName } from "../../../../utilities";
 
 const defaultClassName = "af-nav__item";
 
 type ChildrenProps = {
-  classModifier?: string;
   tabIndex?: number;
   hasFocus?: boolean;
   [key: string]: unknown;
@@ -23,6 +23,7 @@ type Props = Omit<
 > & {
   ariaLabel?: string;
   children?: ReactElement<ChildrenProps> | ReactElement<ChildrenProps>[];
+  active?: boolean;
 };
 
 const NavBarItem = ({
@@ -32,7 +33,8 @@ const NavBarItem = ({
   ariaLabel = "",
   tabIndex = -1,
   role = "menuitem",
-  className = defaultClassName,
+  className,
+  active = false,
   ...otherProps
 }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -93,8 +95,9 @@ const NavBarItem = ({
   const renderChild = useCallback(
     (child: ReactElement<ChildrenProps>, childIndex: number) =>
       React.cloneElement(child, {
-        classModifier:
-          childIndex === position && isMenuOpen ? " active" : undefined,
+        className: child.props.className,
+        "aria-current":
+          childIndex === position && isMenuOpen ? "page" : undefined,
         tabIndex: childIndex === position && isMenuOpen ? 0 : -1,
         key: `child${childIndex}`,
         hasFocus: hasFocus && position === childIndex && isMenuOpen,
@@ -102,9 +105,14 @@ const NavBarItem = ({
     [position, isMenuOpen, hasFocus],
   );
 
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: [active ? "active" : ""],
+    className,
+  });
   return (
     <NavBarItemBase
-      className={className}
+      className={componentClassName}
       role={role}
       hasFocus={hasFocus}
       tabIndex={tabIndex}

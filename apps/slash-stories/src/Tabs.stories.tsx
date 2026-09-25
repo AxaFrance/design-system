@@ -2,19 +2,20 @@ import { Tabs, Tag } from "@axa-fr/canopee-react/distributeur";
 import { fn } from "storybook/test";
 import preview from "../.storybook/preview";
 
-const meta = preview.meta({
-  title: "Components/Tabs",
-  component: Tabs,
-  parameters: {
-    options: {},
-  },
-  argTypes: {
-    onChange: { action: "tab changed" },
-  },
-  args: {
-    onChange: fn(),
-  },
-});
+const meta = preview
+  .type<{ args: Omit<React.ComponentProps<typeof Tabs>, "children"> }>()
+  .meta({
+    title: "Components/Tabs",
+    parameters: {
+      options: {},
+    },
+    argTypes: {
+      onChange: { action: "tab changed" },
+    },
+    args: {
+      onChange: fn(),
+    },
+  });
 export default meta;
 
 const TabTitleIconLeft = <span>Long title that is very long</span>;
@@ -39,24 +40,24 @@ export const SingleTab = meta.story({
     </Tabs>
   ),
   args: { activeIndex: "0" },
-  argTypes: { onChange: { action: "onChange" } },
+  argTypes: { onChange: fn() },
 });
 
 export const ComplexTabs = meta.story({
   render: (args) => (
     <Tabs {...args}>
-      <Tabs.Tab title={TabTitleIconLeft} classModifier="has-icon-left">
+      <Tabs.Tab title={TabTitleIconLeft} className="has-icon-left">
         Content of my first tab
       </Tabs.Tab>
-      <Tabs.Tab title={TabTitleIconRight} classModifier="has-icon-right">
+      <Tabs.Tab title={TabTitleIconRight} className="has-icon-right">
         Content of my second tab
       </Tabs.Tab>
       <Tabs.Tab title={TabTitleBadge}>Content of my third tab </Tabs.Tab>
-      <Tabs.Tab title={TabTitleIconBadge} classModifier="has-icon-left">
+      <Tabs.Tab title={TabTitleIconBadge} className="has-icon-left">
         Content of my fourth tab
       </Tabs.Tab>
     </Tabs>
   ),
   args: { activeIndex: "1" },
-  argTypes: { onChange: { action: "onChange" } },
+  argTypes: { onChange: fn() },
 });

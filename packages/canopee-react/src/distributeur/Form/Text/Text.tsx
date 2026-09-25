@@ -2,15 +2,12 @@ import "@axa-fr/canopee-css/distributeur/Form/Text/Text.css";
 import { type ComponentPropsWithRef } from "react";
 import { getClassName } from "../../utilities/helpers/getClassName";
 
-type Props = ComponentPropsWithRef<"input"> & {
-  /** @deprecated Use `className` and the native `required` prop instead. */
-  classModifier?: string;
-};
+type Props = ComponentPropsWithRef<"input"> & { hasInfobulle?: boolean };
 
-const Text = ({ className, classModifier, required, ...otherProps }: Props) => {
+const Text = ({ className, required, hasInfobulle, ...otherProps }: Props) => {
   const componentClassName = getClassName({
     baseClassName: "af-form__input-text",
-    modifiers: classModifier?.split(" "),
+    modifiers: [hasInfobulle && "hasinfobulle"],
     className,
   });
 
@@ -18,7 +15,7 @@ const Text = ({ className, classModifier, required, ...otherProps }: Props) => {
     <input
       className={componentClassName}
       type="text"
-      required={required || classModifier?.includes("required")}
+      required={required}
       {...otherProps}
     />
   );

@@ -9,7 +9,7 @@ import { useRef } from "react";
 import { fn } from "storybook/test";
 import preview from "../../.storybook/preview";
 
-const MODIFIERS = [
+const sizeOptions = [
   { label: "Default", value: "" },
   { label: "Large (lg)", value: "lg" },
   { label: "Small (sm)", value: "sm" },
@@ -32,14 +32,7 @@ const meta = preview.meta({
         type: "radio",
         labels: { lg: "Large (lg)", sm: "Small (sm)", "": "Default" },
       },
-      options: MODIFIERS.map((m) => m.value),
-    },
-    classModifier: {
-      options: MODIFIERS.map((m) => m.value),
-      control: {
-        type: "radio",
-        labels: { "": "Default", lg: "Large (lg)", sm: "Small (sm)" },
-      },
+      options: sizeOptions.map((m) => m.value),
     },
     onClose: {
       table: {
@@ -124,7 +117,7 @@ export const DefaultModalStory = meta.story({
     open: false,
     title: "Modal title",
     children:
-      'Voici une version avec un header classique Modal.Header. Un classModifier "lg" a été mis pour montrer une version plus large d\'une modale. Il est existe également un modifier "sm", pour les modales plus petites. Mais il est possible d\'ajouter son propre modifier pour personnaliser selon ses besoins avec un peu de CSS.',
+      'Voici une version avec un header classique Modal.Header. La prop size="lg" permet d’afficher une modale plus large, et size="sm" une modale plus petite.',
     size: undefined,
   },
 });

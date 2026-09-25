@@ -1,14 +1,10 @@
 import { getClassName } from "../../utilities/helpers/getClassName";
 
-export type FooterProps = React.HTMLAttributes<HTMLDivElement> & {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
-};
+export type FooterProps = React.HTMLAttributes<HTMLDivElement> & {};
 
-const Footer = ({ classModifier, className, ...rest }: FooterProps) => {
+const Footer = ({ className, ...rest }: FooterProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-modal__footer",
-    modifiers: classModifier?.split(" "),
     className,
   });
 

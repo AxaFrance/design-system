@@ -15,11 +15,6 @@ export type TagVariants =
 
 type TagProps = ComponentPropsWithRef<"span"> & {
   /**
-   * Modifier class to apply specific styles. Note: "danger" is deprecated, use "warning" instead. "info" is deprecated, use "information" instead
-   * @deprecated Use `variant` instead
-   */
-  classModifier?: string;
-  /**
    * Variant of the tag to apply specific styles.
    * "warning" replaces the deprecated "danger
    * "information" replaces the deprecated "info"
@@ -45,11 +40,10 @@ type TagProps = ComponentPropsWithRef<"span"> & {
 export const Tag = ({
   children,
   className,
-  classModifier,
   variant,
   ...otherProps
 }: PropsWithChildren<TagProps>) => {
-  const actualModifier = variant || classModifier || "default";
+  const actualModifier = variant || "default";
 
   const componentClassName = getClassName({
     baseClassName: "af-tag",

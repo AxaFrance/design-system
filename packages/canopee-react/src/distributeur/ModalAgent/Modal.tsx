@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { getComponentClassName } from "../utilities";
+import { getClassName } from "../utilities";
 
 export type ModalProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,
@@ -17,12 +17,7 @@ export type ModalProps = React.DetailedHTMLProps<
   title?: string;
   className?: string;
   /**
-   * @deprecated Use `size` prop instead.
-   * Class modifier for the modal. Can be used to apply custom styles.
-   */
-  classModifier?: string;
-  /**
-   * Size of the modal. Overrides classModifier if set
+   * Size of the modal.
    */
   ref?: React.Ref<HTMLDialogElement>;
 };
@@ -32,26 +27,14 @@ const Modal = ({
   title = "",
   onOutsideTap,
   children,
-  classModifier,
   size,
   ...props
 }: ModalProps) => {
-  // If size is set to 'lg' or 'sm', use it as the classModifier, otherwise use the provided classModifier
-  let effectiveClassModifier: string | undefined;
-  if (size) {
-    if (classModifier && classModifier !== "lg" && classModifier !== "sm") {
-      effectiveClassModifier = `${size} ${classModifier}`;
-    } else {
-      effectiveClassModifier = size;
-    }
-  } else {
-    effectiveClassModifier = classModifier;
-  }
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-modal",
+    modifiers: [size],
     className,
-    effectiveClassModifier,
-    "af-modal",
-  );
+  });
 
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events

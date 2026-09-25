@@ -23,15 +23,15 @@ const CheckboxInput = ({
       labelPosition={mode === CheckboxModes.classic ? "top" : "center"}
       roleContainer="group"
       {...otherProps}
-      renderInput={({ classModifier, id, ariaInvalid, errorId, ...props }) => {
+      renderInput={({ inputClassName, id, ariaInvalid, errorId, ...props }) => {
         return (
           <>
             <Checkbox
               id={id}
               mode={mode}
               options={newOptions}
-              classModifier={
-                ariaInvalid ? `${classModifier} error` : classModifier
+              className={
+                ariaInvalid ? `${inputClassName} error` : inputClassName
               }
               aria-describedby={errorId}
               aria-invalid={ariaInvalid}

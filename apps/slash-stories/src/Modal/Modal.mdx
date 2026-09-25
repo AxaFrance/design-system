@@ -7,8 +7,6 @@ import * as ModalStories from "./Modal.stories";
 
 # Modal
 
-> **Deprecated prop**: The `classModifier` prop on `ModalHeader`, `ModalHeaderBase`, `ModalBody`, and `ModalFooter` is deprecated. Use `className` to add custom CSS modifier classes instead.
-
 ## Components
 
 Modals are built of composable components:
@@ -69,9 +67,8 @@ export const YourComponent = () => {
           <p>
             Voici une version avec un header classique du composant Modal. La
             propriété `size="lg"` a été mise pour montrer une version plus large
-            d'une modale. Il est existe également un modifier "sm", pour les
-            modales plus petites. Mais il est possible d'ajouter son propre
-            modifier pour personnaliser selon ses besoins avec un peu de CSS.
+            d'une modale. Il existe également la valeur `size="sm"` pour les
+            modales plus petites.
           </p>
         </ModalBody>
         <ModalFooter>
@@ -124,9 +121,7 @@ export const YourComponent = () => {
             Voici une version avec un header customisé à l'aide du composant
             Modal.HeaderBase. La propriété `size="lg"` a été mise pour montrer
             une version plus large d'une modale. Il est existe également un
-            modifier "sm", pour les modales plus petites. Mais il est possible
-            d'ajouter son propre modifier pour personnaliser selon ses besoins
-            avec un peu de CSS.
+            `size="sm"` pour les modales plus petites.
           </p>
         </ModalBody>
         <ModalFooter>

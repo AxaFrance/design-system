@@ -1,8 +1,8 @@
 import {
   Action,
-  Badge,
   HeaderTitle,
   Svg,
+  Tag,
 } from "@axa-fr/canopee-react/distributeur";
 import chevronLeftIcon from "@material-symbols/svg-400/outlined/chevron_left.svg";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
@@ -13,11 +13,8 @@ import { ComponentProps, useState } from "react";
 import { fn } from "storybook/test";
 import preview from "../../../.storybook/preview";
 
-const MODIFIERS = ["sticky", "fixed"];
-
 const meta = preview.meta({
   args: {
-    className: "af-title-bar",
     isSticky: true,
     subtitle: "Info complémentaire",
     title: "Toolkit Axa",
@@ -25,11 +22,6 @@ const meta = preview.meta({
   },
   argTypes: {
     toggleMenu: { action: "onToggle" },
-    classModifier: {
-      options: MODIFIERS,
-      control: { type: "select" },
-      defaultValue: "sticky",
-    },
   },
   component: HeaderTitle,
   title: "Components/Header/HeaderTitle",
@@ -109,7 +101,7 @@ export const ComplexTitleWithContentAndChildren = meta.story({
         )}
       </div>
     ),
-    children: <Badge classModifier="success"> Statut OK </Badge>,
+    children: <Tag variant="success"> Statut OK </Tag>,
     contentRight: (
       <div className="af-title-bar__actions">
         {actions.map(({ icon, id, title }: ComponentProps<typeof Action>) => (

@@ -9,10 +9,10 @@ const meta = preview.meta({
     layout: "centered",
     backgrounds: {
       default: "light",
-      values: [
-        { name: "light", value: "#ffffff" },
-        { name: "blue", value: "#00008f" },
-      ],
+      options: {
+        light: { name: "light", value: "#ffffff" },
+        blue: { name: "blue", value: "#00008f" },
+      },
     },
   },
   globals: {},
@@ -73,7 +73,7 @@ export const TagIconStory = meta.story({
 });
 
 export const MultiExamples = meta.story({
-  name: "Tag with modifiers",
+  name: "Tag variants",
   render: (args) => {
     return (
       <div

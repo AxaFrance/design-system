@@ -17,7 +17,7 @@ describe("Action component", () => {
     );
 
     const action = screen.getByTitle("action-link-title");
-    const actionIcon = screen.getByRole("img");
+    const actionIcon = screen.getByRole("presentation");
 
     expect(action).toHaveAttribute("href", "https://axa.fr");
     expect(action).toHaveAttribute("target", "_blank");

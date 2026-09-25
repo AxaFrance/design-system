@@ -13,6 +13,8 @@ type Props = ConsumerFieldProps &
   Pick<FileTableProps, "values" | "errors"> & {
     fileLabel?: string;
     helpMessage?: ReactNode;
+  } & {
+    tableClassName?: string;
   };
 const FileInput = ({
   values = [],
@@ -22,7 +24,6 @@ const FileInput = ({
   label,
   errors,
   fileLabel,
-  classModifier,
   children,
   ...otherFileProps
 }: Props) => {
@@ -44,10 +45,10 @@ const FileInput = ({
       label={label}
       labelPosition="top"
       id={actualId}
-      classNameSuffix="file"
+      fieldClassNameSuffix="file"
       {...otherFileProps}
       renderInput={({
-        classModifier: inputClassModifiers,
+        inputClassName: inputClassModifiers,
         id: inputId,
         ariaInvalid,
         errorId,
@@ -58,7 +59,7 @@ const FileInput = ({
             id={inputId}
             name={name}
             onChange={onChange}
-            classModifier={inputClassModifiers}
+            className={inputClassModifiers}
             label={fileLabel}
             aria-describedby={errorId}
             aria-invalid={ariaInvalid}
@@ -72,7 +73,7 @@ const FileInput = ({
           errors={errors}
           values={values}
           onClick={(selectedId) => onDeleteClick(selectedId, actualId)}
-          classModifier={classModifier}
+          className={otherFileProps.tableClassName}
         />
       }
     />

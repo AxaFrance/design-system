@@ -11,12 +11,19 @@ const TextareaInput = ({ label, children, ...props }: Props) => (
   <Field
     label={label}
     labelPosition="top"
-    classNameSuffix="textarea"
+    fieldClassNameSuffix="textarea"
     {...props}
-    renderInput={({ id, ariaInvalid, errorId, ...inputProps }) => (
+    renderInput={({
+      id,
+      inputClassName,
+      ariaInvalid,
+      errorId,
+      ...inputProps
+    }) => (
       <>
         <Textarea
           id={id}
+          className={inputClassName}
           aria-describedby={errorId}
           aria-invalid={ariaInvalid}
           {...inputProps}
