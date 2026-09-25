@@ -7,6 +7,7 @@ export type MultiSelectListProps = Omit<
   "children" | "separator" | "onChange"
 > & {
   items: Omit<ItemMultiSelectCommonProps, "Checkbox">[];
+  onItemSelect?: (id: string, checked: boolean) => void;
 };
 
 type MultiSelectListCommonProps = MultiSelectListProps & {
@@ -18,12 +19,14 @@ type MultiSelectListCommonProps = MultiSelectListProps & {
 export const MultiSelectListCommon = ({
   items,
   ItemMultiSelectComponent,
+  onItemSelect,
 }: MultiSelectListCommonProps) => (
   <ul className="af-multi-select-list">
     {items.map((item, index) => (
       <li key={item.id}>
         <ItemMultiSelectComponent
           {...item}
+          onItemSelect={onItemSelect}
           variant={index % 2 === 0 ? "primary" : "secondary"}
         />
       </li>
