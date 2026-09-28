@@ -160,3 +160,5 @@ export {
 } from "./distributeur/CardButton/CardButton";
 
 export { BaseCard, type BaseCardProps } from "./distributeur/Card/BaseCard";
+
+export type { ClickableComponentProps } from "./distributeur/ClickableGhost";
