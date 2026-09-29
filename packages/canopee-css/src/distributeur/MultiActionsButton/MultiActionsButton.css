@@ -3,6 +3,7 @@
     position: relative;
     display: inline-block;
     anchor-name: --multi-actions-button-menu;
+    anchor-scope: --multi-actions-button-menu;
   }
 
   .af-button-multi-actions__menu {
