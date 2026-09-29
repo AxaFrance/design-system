@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
@@ -138,6 +138,28 @@ describe("TabBar", () => {
       "true",
     );
     expect(handleSelectTabMock).toHaveBeenCalledOnce();
+  });
+
+  it("should keep ids unique and linked when several TabBar are rendered", () => {
+    const { container } = render(
+      <>
+        <TabBar items={tabs} ItemTabBarComponent={ItemTabBar} />
+        <TabBar items={tabs2} ItemTabBarComponent={ItemTabBar} />
+      </>,
+    );
+    const ids = Array.from(
+      container.querySelectorAll('[role="tab"], [role="tabpanel"]'),
+    ).map((element) => element.id);
+    expect(new Set(ids).size).toBe(ids.length);
+
+    const secondTabBar =
+      container.querySelectorAll<HTMLElement>(".af-tabbar")[1];
+    const firstTab = within(secondTabBar).getAllByRole("tab")[0];
+    const panel = document.getElementById(
+      firstTab.getAttribute("aria-controls") ?? "",
+    );
+    expect(secondTabBar).toContainElement(panel);
+    expect(panel).toHaveAttribute("aria-labelledby", firstTab.id);
   });
 
   it("should have no accessibility violations", async () => {
