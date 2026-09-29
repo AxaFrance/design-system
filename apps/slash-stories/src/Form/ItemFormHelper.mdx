@@ -7,7 +7,8 @@ import * as ItemFormHelperStories from "./ItemFormHelper.stories";
 
 `ItemFormHelper` is a small status row used inside a form helper to show the
 progress of a given step. Each item carries an icon and a label, and switches
-visual state through the `variant` prop.
+visual state through the `variant` prop. The `FormHelper` uses it for its
+legend and `ListFormHelper` for each step.
 
 ```tsx
 import { ItemFormHelper } from "@axa-fr/canopee-react/distributeur";
@@ -19,13 +20,25 @@ export const MyFormHelper = () => (
 
 ## Variants
 
-The `variant` prop drives the icon and the default label:
+The `variant` prop drives the icon and the default state text:
 
-- `todo` — step is pending (default label: "à compléter").
-- `inprogress` — step is currently being filled (default label: "en cours").
-- `validated` — step has been completed (default label: "validé").
+| Figma "Step state" | `variant`    | Default state text |
+| ------------------ | ------------ | ------------------ |
+| Todo               | `todo`       | "à compléter"      |
+| Active             | `inprogress` | "en cours"         |
+| Done               | `validated`  | "validé"           |
 
-Pass a `label` to override the default text.
+## Label and state
+
+- Without `label`, the item shows its state text (legend usage).
+- With `label`, the item shows the label (the name of the step) and the state
+  text is visually hidden: screen readers read "Identité, en cours".
+- `stateLabel` replaces the default state text, e.g. for another language.
+
+## Accessibility
+
+- The icon is decorative (`aria-hidden`): the state is always given as text.
+- The root is a `span`: the item can be used in a list, a link or a title.
 
 ## Playground
 

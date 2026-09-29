@@ -239,18 +239,21 @@ Par défaut, le composant génère un `aria-label` de la forme `"Étape vertical
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
 | `variant` | `"todo" \| "inprogress" \| "validated"` | **Obligatoire** | État d'avancement : pilote l'icône, la couleur et le libellé par défaut |
-| `label` | `string` | Libellé par défaut du `variant` | Remplace le libellé par défaut |
+| `label` | `string` | - | Nom de l'étape. Sans `label`, l'item affiche le texte de son état (usage légende) |
+| `stateLabel` | `string` | Texte d'état du `variant` | Remplace le texte d'état : visible sans `label`, masqué et lu après le `label` sinon |
 | `className` | `string` | - | Classe CSS additionnelle, ajoutée après le modifier BEM |
+
+Les autres attributs HTML d'un `span` (`id`, `data-*`, `aria-*`…) sont transmis à la racine.
 
 Le type `ItemFormHelperVariant` et le type `ItemFormHelperProps` sont exportés depuis `@axa-fr/canopee-react/distributeur`.
 
 ### Variants
 
-| Variant | Icône | Couleur | Libellé par défaut |
-|---------|-------|---------|--------------------|
-| `todo` | `circle` (cercle vide) | `--axablue80` | `à compléter` |
-| `inprogress` | `circle-fill` (cercle plein) | `--axablue80` | `en cours` |
-| `validated` | `check` | `--green40` | `validé` |
+| Variant (état Figma) | Icône | Couleur | Texte d'état par défaut |
+|----------------------|-------|---------|-------------------------|
+| `todo` (Todo) | `circle` (cercle vide) | `--axablue80` | `à compléter` |
+| `inprogress` (Active) | `circle-fill` (cercle plein) | `--axablue80` | `en cours` |
+| `validated` (Done) | `check` | `--green40` | `validé` |
 
 Les icônes sont fournies par le composant (Material Symbols, rendues via `Svg` en 12 × 12) : rien à passer côté consommateur.
 
@@ -267,18 +270,21 @@ const SectionIdentite = () => (
 );
 ```
 
-### Libellés personnalisés
+### Nom d'étape et texte d'état
 
 ```tsx
-<ItemFormHelper variant="todo" label="Pièces justificatives à fournir" />
-<ItemFormHelper variant="validated" label="Tâche terminée" />
+{/* Affiche « Pièces justificatives », lu « Pièces justificatives, à compléter » */}
+<ItemFormHelper variant="todo" label="Pièces justificatives" />
+
+{/* Texte d'état traduit */}
+<ItemFormHelper variant="validated" label="Identity" stateLabel="completed" />
 ```
 
 ### Points d'attention
 
-- Le libellé fait partie du rendu : l'information n'est jamais portée uniquement par la couleur de l'icône.
-- Le composant est un `inline-flex` : il se place naturellement à la suite d'un titre sans casser le flux.
-- Le libellé par défaut est en français ; pour une application multilingue, passer systématiquement `label`.
+- L'état est toujours donné en texte : visible sans `label`, masqué visuellement et lu après le `label` sinon. L'icône est décorative (`aria-hidden`).
+- La racine est un `span` en `inline-flex` : l'item se place dans une liste, un lien ou à la suite d'un titre sans casser le flux.
+- Les textes d'état par défaut sont en français ; pour une application multilingue, passer `stateLabel`.
 
 ## Classes CSS
 - `.af-steps-new` — Conteneur des étapes horizontales
@@ -288,3 +294,5 @@ const SectionIdentite = () => (
 - `.af-vertical-step--edition` — Étape verticale en mode édition
 - `.af-item-form-helper` — Indicateur d'état d'une section de formulaire
 - `.af-item-form-helper--todo` / `--inprogress` / `--validated` — Modifiers d'état
+- `.af-item-form-helper__label` — Texte affiché (nom de l'étape ou texte d'état)
+- `.af-item-form-helper__state` — Texte d'état masqué visuellement, lu après le nom de l'étape
