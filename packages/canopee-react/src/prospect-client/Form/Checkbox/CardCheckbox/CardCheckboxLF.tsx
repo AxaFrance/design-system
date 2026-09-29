@@ -1,4 +1,4 @@
-import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { CardCheckboxOption } from "../CardCheckboxOption/CardCheckboxOptionLF";
 import { CheckboxText } from "../CheckboxText/CheckboxTextLF";
 import {

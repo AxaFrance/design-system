@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/prospect/Form/TextArea/TextAreaApollo.css";
 import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
-import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../ItemMessage/ItemMessage";
 import { TextAreaCommon, type TextAreaProps } from "./TextAreaCommon";
 
 export const TextArea = ({ ...props }: TextAreaProps) => (

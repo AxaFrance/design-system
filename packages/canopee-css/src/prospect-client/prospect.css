@@ -3,7 +3,7 @@
 @import "./common/tokens.css";
 @import "./common/reboot.css";
 @import "./Grid/Grid.css";
-@import "./Form/ItemMessage/ItemMessageApollo.css";
+@import "./Form/ItemMessage/ItemMessageAll.css";
 @import "./Accordion/AccordionApollo.css";
 @import "./AccordionContextual/AccordionContextualApollo.css";
 @import "./Grid/DebugGrid.css";

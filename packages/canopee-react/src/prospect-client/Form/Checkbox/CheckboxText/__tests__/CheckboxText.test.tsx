@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import { ItemMessage } from "../../../ItemMessage/ItemMessageCommon";
+import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import { Checkbox } from "../../Checkbox/CheckboxCommon";
 import {
   CheckboxTextCommon,

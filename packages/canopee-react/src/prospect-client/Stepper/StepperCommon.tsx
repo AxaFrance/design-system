@@ -4,10 +4,7 @@ import {
   type ReactNode,
   useId,
 } from "react";
-import {
-  ItemMessage,
-  type ItemMessageProps,
-} from "../Form/ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../Form/ItemMessage/ItemMessage";
 import { type ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
 import type { HeadingCommonProps } from "../Heading/HeadingCommon";
 import type { HeadingLevel } from "../Heading/types";
@@ -29,6 +26,7 @@ export type StepperProps = {
 export type StepperCommonProps = StepperProps & {
   ProgressBarGroupComponent: ComponentType<ProgressBarGroupProps>;
   HeadingComponent: ComponentType<HeadingCommonProps>;
+  ItemMessageComponent: ComponentType<ItemMessageProps>;
 };
 
 export const StepperCommon = ({
@@ -40,6 +38,7 @@ export const StepperCommon = ({
   className,
   ProgressBarGroupComponent,
   HeadingComponent,
+  ItemMessageComponent,
   helper,
   icon,
   iconProps,
@@ -70,7 +69,7 @@ export const StepperCommon = ({
         aria-labelledby={titleId}
       />
       {Boolean(helper) && <span className="af-stepper__helper">{helper}</span>}
-      <ItemMessage message={message} messageType={messageType} />
+      <ItemMessageComponent message={message} messageType={messageType} />
     </div>
   );
 };

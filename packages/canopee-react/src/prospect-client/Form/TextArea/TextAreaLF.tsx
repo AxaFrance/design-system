@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/client/Form/TextArea/TextAreaLF.css";
 import { ItemLabel } from "../ItemLabel/ItemLabelLF";
-import { ItemMessage } from "../ItemMessage/ItemMessageLF";
+import { ItemMessage } from "../ItemMessage/ItemMessage";
 import { TextAreaCommon, type TextAreaProps } from "./TextAreaCommon";
 
 export const TextArea = ({ ...props }: TextAreaProps) => (
