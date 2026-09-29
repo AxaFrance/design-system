@@ -1,5 +1,7 @@
-.af-tag-list {
-  display: flex;
-  flex-flow: row wrap;
-  gap: var(--rem-8);
+@layer canopee {
+  .af-tag-list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--rem-8);
+  }
 }
