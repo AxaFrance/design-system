@@ -26,7 +26,7 @@
 
   .af-form__select--success::after,
   .af-form__select--valid::after {
-    font-family: var(--font-family-icon);
+    font-family: icons;
     color: var(--valid-element-color);
     content: "\EABA";
   }
