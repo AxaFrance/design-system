@@ -1,7 +1,7 @@
 # Steps (Étapes)
 
 ## Présentation
-Le composant Steps affiche un indicateur de progression horizontal. Le composant VerticalStep permet de créer un stepper vertical avec gestion des modes édition/validation/verrouillage. Le composant ItemFormHelper affiche l'état d'avancement d'une section de formulaire (à compléter / en cours / validé).
+Le composant Steps affiche un indicateur de progression horizontal. Le composant VerticalStep permet de créer un stepper vertical avec gestion des modes édition/validation/verrouillage. Le composant ItemFormHelper affiche l'état d'avancement d'une section de formulaire (à compléter / en cours / validé). Les composants FormHelper et ListFormHelper l'utilisent pour montrer l'avancement d'un formulaire à plusieurs sections sur une seule page.
 
 ## Import
 ```tsx
@@ -10,6 +10,8 @@ import {
   Step,
   VerticalStep,
   ItemFormHelper,
+  FormHelper,
+  ListFormHelper,
 } from "@axa-fr/canopee-react/distributeur";
 ```
 
@@ -18,6 +20,8 @@ import {
 - **Step** : Étape individuelle dans le flux horizontal
 - **VerticalStep** : Étape verticale avec gestion de mode (édition, validation, verrouillage)
 - **ItemFormHelper** : Indicateur d'état d'avancement d'une section de formulaire
+- **FormHelper** : Encart d'avancement d'un formulaire (titre, légende des états, contenu libre)
+- **ListFormHelper** : Liste des étapes du formulaire, à placer dans `FormHelper`
 
 ## Steps horizontales
 
@@ -286,6 +290,79 @@ const SectionIdentite = () => (
 - La racine est un `span` en `inline-flex` : l'item se place dans une liste, un lien ou à la suite d'un titre sans casser le flux.
 - Les textes d'état par défaut sont en français ; pour une application multilingue, passer `stateLabel`.
 
+## FormHelper et ListFormHelper
+
+`FormHelper` accompagne un formulaire à plusieurs sections affiché sur une seule page : un en-tête bleu avec le titre, une légende des trois états (rendue avec `ItemFormHelper`), puis un contenu libre, en général un `ListFormHelper`. `ListFormHelper` liste les sections dans l'ordre, chacune rendue avec `ItemFormHelper`.
+
+À ne pas utiliser avec un stepper horizontal, ni comme navigation de page ou menu d'ancres (utiliser la Navbar ou l'Anchor Menu).
+
+### Props — FormHelper
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `title` | `string` | **Obligatoire** | Titre affiché dans l'en-tête bleu |
+| `heading` | `"h2" \| "h3" \| "h4"` | `"h2"` | Niveau du titre |
+| `stateLabels` | `FormHelperStateLabels` | - | Textes de la légende, par état (`todo`, `inprogress`, `validated`) |
+| `children` | `ReactNode` | **Obligatoire** | Contenu de l'encart, en général un `ListFormHelper` |
+| `aria-label` | `string` | `"Progression du formulaire"` | Nom du repère `aside` |
+| `className` | `string` | - | Classe CSS additionnelle |
+
+Les autres attributs HTML d'un `aside` sont transmis.
+
+### Props — ListFormHelper
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `steps` | `ListFormHelperStep[]` | **Obligatoire** | Sections du formulaire, dans l'ordre |
+| `navAriaLabel` | `string` | `"étapes du formulaire"` | Nom du `nav`, rendu dès qu'une étape a un `href` |
+| `stateLabels` | `FormHelperStateLabels` | - | Textes d'état lus après le nom de chaque étape |
+| `className` | `string` | - | Classe CSS additionnelle de l'`ol` |
+
+```ts
+type ListFormHelperStep = {
+  label: string; // nom de la section
+  variant: "todo" | "inprogress" | "validated";
+  href?: string; // ex. "#tarification" : rend l'étape cliquable
+  onClick?: MouseEventHandler<HTMLAnchorElement>; // seulement avec href
+};
+```
+
+Les types `FormHelperProps`, `ListFormHelperProps`, `ListFormHelperStep` et `FormHelperStateLabels` sont exportés depuis `@axa-fr/canopee-react/distributeur`.
+
+### Exemple
+
+```tsx
+import { FormHelper, ListFormHelper } from "@axa-fr/canopee-react/distributeur";
+
+const AssistantCreation = () => (
+  <FormHelper title="Assistant de création">
+    <ListFormHelper
+      steps={[
+        { label: "Informations clients", variant: "validated", href: "#clients" },
+        { label: "Tarification", variant: "inprogress", href: "#tarification" },
+        { label: "Signature du contrat", variant: "todo", href: "#signature" },
+      ]}
+    />
+  </FormHelper>
+);
+```
+
+### Depuis des VerticalStep
+
+| `VerticalStep` (`stepMode`) | `ListFormHelper` (`variant`) |
+|-----------------------------|------------------------------|
+| `locked` | `todo` |
+| `edited` | `inprogress` |
+| `validated` | `validated` |
+
+### Points d'attention
+
+- `FormHelper` rend un `aside` nommé et un vrai titre (`h2` par défaut) ; `ListFormHelper` rend un `ol`, entouré d'un `nav` dès qu'une étape a un `href`.
+- La première étape `inprogress` reçoit `aria-current="step"`. Chaque étape est lue « nom, état » (ex. « Tarification, en cours ») ; les liens sont soulignés en permanence.
+- Le composant ne se positionne pas : le rendre sticky depuis la mise en page (via `className`).
+- Pas d'état désactivé ni de titre de section : ils ne figurent pas dans la spécification zeroheight.
+- Un seul `ListFormHelper` par `FormHelper` : il porte la numérotation de l'`ol`, le nom du `nav` et l'unique `aria-current`.
+
 ## Classes CSS
 - `.af-steps-new` — Conteneur des étapes horizontales
 - `.af-steps-list` — Liste des étapes horizontales
@@ -296,3 +373,7 @@ const SectionIdentite = () => (
 - `.af-item-form-helper--todo` / `--inprogress` / `--validated` — Modifiers d'état
 - `.af-item-form-helper__label` — Texte affiché (nom de l'étape ou texte d'état)
 - `.af-item-form-helper__state` — Texte d'état masqué visuellement, lu après le nom de l'étape
+- `.af-form-helper` — Encart d'avancement (`aside`)
+- `.af-form-helper__title` / `__legend` / `__body` — En-tête, légende et contenu de l'encart
+- `.af-list-form-helper` — Liste des étapes (`ol`)
+- `.af-list-form-helper__step` / `__link` — Étape et lien vers sa section
