@@ -41,13 +41,13 @@
   }
 
   .af-restitution__content-left--borderRight {
-    border-right: solid 1px rgba(var(--gray50), 0.27);
+    border-right: solid 1px color-mix(in srgb, var(--gray50) 27%, transparent);
   }
 
   .af-restitution__content-left--borderBottom {
     margin-bottom: 1.875rem;
     padding-bottom: 1.875rem;
-    border-bottom: solid 1px rgba(var(--gray50), 0.27);
+    border-bottom: solid 1px color-mix(in srgb, var(--gray50) 27%, transparent);
   }
 
   .af-restitution__content-block {
