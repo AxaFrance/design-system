@@ -253,7 +253,7 @@ Le type `ItemFormHelperVariant` et le type `ItemFormHelperProps` sont exportés 
 |----------------------|-------|---------|-------------------------|
 | `todo` (Todo) | `circle` (cercle vide) | `--axablue80` | `à compléter` |
 | `inprogress` (Active) | `circle-fill` (cercle plein) | `--axablue80` | `en cours` |
-| `validated` (Done) | `check` | `--green40` | `validé` |
+| `validated` (Done) | `check` | `--green30` | `validé` |
 
 Les icônes sont fournies par le composant (Material Symbols, rendues via `Svg` en 12 × 12) : rien à passer côté consommateur.
 

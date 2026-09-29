@@ -21,8 +21,8 @@
 
   .af-item-form-helper--validated {
     margin: 0;
-    color: var(--green40);
-    fill: var(--green40);
+    color: var(--green30);
+    fill: var(--green30);
   }
 
   /* Read after the label by screen readers, hidden on screen */
