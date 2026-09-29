@@ -29,7 +29,7 @@ Dans la majorité des cas, les composants React importent leurs styles.
 ### Option B — Mode CSS-only
 Si vous utilisez seulement la couche CSS :
 ```css
-@import "@axa-fr/canopee-css/distributeur/button.css";
+@import "@axa-fr/canopee-css/distributeur/Button/Button.css";
 ```
 
 ## 4) Exemple minimal d’application
