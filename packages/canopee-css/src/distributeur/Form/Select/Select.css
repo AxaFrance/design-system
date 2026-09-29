@@ -53,7 +53,7 @@
   }
 
   .af-form__select--disabled .af-form__select-container {
-    background: var(--color-mercury);
+    background: var(--gray30);
     cursor: not-allowed;
   }
 
