@@ -14,7 +14,6 @@ import type { GridContainerProps } from "../../utilities/types/GridContainerProp
 
 export type InputTextProps = ComponentProps<"input"> & {
   unit?: ReactNode;
-  classModifier?: string;
   label?: ItemLabelProps["children"];
   helper?: string;
   containerProps?: GridContainerProps;
@@ -39,7 +38,6 @@ type InputTextCommonProps = InputTextProps & {
 const InputTextCommon = ({
   unit,
   className,
-  classModifier = "",
   helper,
   message,
   messageType = "error",
@@ -84,7 +82,6 @@ const InputTextCommon = ({
         id={inputId}
         unit={unit}
         className={className}
-        classModifier={classModifier}
         error={message && messageType === "error" ? messageType : undefined}
         warning={message && messageType === "warning" ? messageType : undefined}
         required={required}
