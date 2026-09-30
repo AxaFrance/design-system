@@ -156,6 +156,32 @@ describe("MultiSelect", () => {
     );
   });
 
+  it("should allow the user to clear the selection with the keyboard", async () => {
+    const onChange = vi.fn();
+    const user = userEvent.setup();
+
+    // Given
+    render(
+      <MultiSelect {...commonProps} onChange={onChange} values={values} />,
+    );
+
+    const clearButton = screen.getByRole("button", {
+      name: "Effacer la sélection",
+    });
+    clearButton.focus();
+
+    // When
+    await user.keyboard("{Enter}");
+
+    // Then
+    expect(onChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        values: [],
+      }),
+    );
+    expect(screen.getByRole("combobox")).toHaveFocus();
+  });
+
   it("shouldn't have an accessibility violation <MultiSelect />", async () => {
     const { container } = render(
       <MultiSelect
