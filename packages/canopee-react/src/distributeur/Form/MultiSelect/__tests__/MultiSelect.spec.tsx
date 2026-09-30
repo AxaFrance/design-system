@@ -156,7 +156,10 @@ describe("MultiSelect", () => {
     );
   });
 
-  it("should allow the user to clear the selection with the keyboard", async () => {
+  it.each([
+    ["Enter", "{Enter}"],
+    ["Space", " "],
+  ])("should clear the selection with the %s key", async (_, key) => {
     const onChange = vi.fn();
     const user = userEvent.setup();
 
@@ -171,7 +174,7 @@ describe("MultiSelect", () => {
     clearButton.focus();
 
     // When
-    await user.keyboard("{Enter}");
+    await user.keyboard(key);
 
     // Then
     expect(onChange).toHaveBeenCalledWith(
