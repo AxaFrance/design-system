@@ -10,7 +10,7 @@ All React components in the design system must have a `className` prop. This pro
 - Its value (one or more classes separated by a space) must be added to the `className` property of the parent element of the component.
 - The design system's default classes must always be present; the `className` prop should be appended.
 - You must use the `getClassName` utility function to generate the `className` for the parent element of the component. This ensures consistent handling of base classes, modifiers (mainly for variants), and developer-provided classes.
-- The `modifier` parameter (sometimes called `classModifier`) is mainly used for variants and should be passed to `getClassName` as the second argument.
+- The `modifier` parameter is mainly used for variants and and boolean states (e.g. 'required', 'large') and should be passed to `getClassName` as the second argument.
 - Example implementation:
 
 ```tsx
