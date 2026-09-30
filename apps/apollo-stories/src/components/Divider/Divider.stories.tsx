@@ -16,13 +16,4 @@ export const Default: StoryObj<typeof Divider> = {
       <Divider {...args} /> <span>world!</span>
     </div>
   ),
-  args: {
-    classModifier: " ",
-  },
-  argTypes: {
-    classModifier: {
-      control: { type: "text" },
-      defaultValue: " ",
-    },
-  },
 };

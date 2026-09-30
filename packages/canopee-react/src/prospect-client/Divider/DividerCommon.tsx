@@ -3,18 +3,12 @@ import { getClassName } from "../utilities/getClassName";
 
 type DividerProps = {
   className?: string;
-  classModifier?: string;
 };
 
-export const Divider = ({ className, classModifier }: DividerProps) => {
+export const Divider = ({ className }: DividerProps) => {
   const componentClassName = useMemo(
-    () =>
-      getClassName({
-        baseClassName: "af-divider",
-        className,
-        modifiers: classModifier?.split(" ").filter(Boolean) ?? [],
-      }),
-    [className, classModifier],
+    () => getClassName({ baseClassName: "af-divider", className }),
+    [className],
   );
 
   return <hr className={componentClassName} />;
