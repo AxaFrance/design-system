@@ -22,7 +22,7 @@ const meta: Meta<typeof InputPhone> = {
     showSelect: false,
     className: "",
     type: "text",
-    buttonLabel: "Hello",
+    moreButtonLabel: "Hello",
     sideButtonLabel: "Modifier",
     description: "Description",
     pattern: "[0-9]{10}",

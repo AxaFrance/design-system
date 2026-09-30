@@ -31,19 +31,19 @@ export const Default: Story = {
     contents: [
       {
         type: "icon",
-        icon: call,
+        iconProps: { src: call },
         subtitle1: "01 23 34 45 67",
         title: "",
       },
       {
         type: "icon",
-        icon: fax,
+        iconProps: { src: fax },
         subtitle1: "01 23 34 45 67",
         title: "",
       },
       {
         type: "icon",
-        icon: fax,
+        iconProps: { src: fax },
         subtitle1: "01 23 34 45 67",
         title: "",
       },
