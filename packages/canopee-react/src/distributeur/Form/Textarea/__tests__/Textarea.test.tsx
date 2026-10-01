@@ -32,17 +32,13 @@ describe("Textarea", () => {
     );
   });
 
-  it("should have custom class with modifier", () => {
+  it("should support a custom class", () => {
     // Act
-    render(
-      <Textarea className="custom-class" classModifier="modifier">
-        A textarea
-      </Textarea>,
-    );
+    render(<Textarea className="custom-class">A textarea</Textarea>);
 
     // Assert
     expect(screen.getByRole("textbox")).toHaveClass(
-      "af-form__input-textarea af-form__input-textarea--modifier custom-class",
+      "af-form__input-textarea custom-class",
       {
         exact: true,
       },

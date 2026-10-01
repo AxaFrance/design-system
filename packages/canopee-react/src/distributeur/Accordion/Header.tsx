@@ -17,24 +17,14 @@ export type HeaderToggleElement = {
 export type HeaderProps = {
   children: React.ReactNode;
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   id?: string;
   actions?: AccordionActions;
   variant?: AccordionVariant;
 };
 
-const Header = ({
-  children,
-  className,
-  classModifier,
-  id,
-  actions,
-  variant,
-}: HeaderProps) => {
+const Header = ({ children, className, id, actions, variant }: HeaderProps) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" "),
     className,
   });
 

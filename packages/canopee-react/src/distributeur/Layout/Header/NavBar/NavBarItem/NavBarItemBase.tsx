@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { getComponentClassName } from "../../../../utilities";
+import { getClassName } from "../../../../utilities";
 import { handleLinkFocus } from "./NavBarItemBase.helpers";
 
 type Props = HTMLAttributes<HTMLLIElement> & {
@@ -14,7 +14,6 @@ type Props = HTMLAttributes<HTMLLIElement> & {
   handleKeys: (event: KeyboardEvent<HTMLLIElement>) => void;
   hasFocus?: boolean;
   isMenuOpen?: boolean;
-  classModifier?: string;
 };
 export const NavBarItemBase = ({
   tabIndex = -1,
@@ -24,15 +23,13 @@ export const NavBarItemBase = ({
   handleKeys,
   isMenuOpen,
   className,
-  classModifier,
   actionElt,
   ...otherProps
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: "af-nav__item",
     className,
-    classModifier,
-    "af-nav__item",
-  );
+  });
   const ref = useRef(null);
 
   useEffect(() => {

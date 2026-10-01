@@ -19,11 +19,11 @@ const ChoiceInput = ({
     label={label}
     roleContainer="radiogroup"
     {...otherProps}
-    renderInput={({ classModifier, id, errorId, ariaInvalid, ...props }) => (
+    renderInput={({ inputClassName, id, errorId, ariaInvalid, ...props }) => (
       <>
         <Choice
           id={id}
-          classModifier={classModifier}
+          className={inputClassName}
           aria-describedby={errorId}
           aria-invalid={ariaInvalid}
           options={options}

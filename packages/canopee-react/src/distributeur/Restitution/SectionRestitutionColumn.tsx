@@ -6,20 +6,16 @@ import { SectionRestitutionTitle } from "./SectionRestitutionTitle";
 export type SectionRestitutionColumnProps = {
   className?: string;
   title?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
 };
 
 export const SectionRestitutionColumn = ({
   children,
   className,
   title,
-  classModifier,
 }: PropsWithChildren<SectionRestitutionColumnProps>) => {
   const baseClassName = className
     ? getClassName({
         baseClassName: className,
-        modifiers: classModifier?.split(" "),
       })
     : null;
   const componentClassName = classNames(

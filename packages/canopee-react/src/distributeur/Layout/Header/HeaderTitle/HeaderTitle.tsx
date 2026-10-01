@@ -3,19 +3,17 @@ import type { ReactNode } from "react";
 
 import classNames from "classnames";
 import { Action } from "../../../Action/Action";
-import { getComponentClassName } from "../../../utilities";
+import { getClassName } from "../../../utilities";
 import {
   AnchorNavBar,
   type AnchorNavBarItem,
 } from "../AnchorNavBar/AnchorNavBar";
 import { ToggleButton } from "../ToggleButton/ToggleButton";
-import { getClassModifier } from "./HeaderTitle.helpers";
 
 const defaultClassName = "af-title-bar";
 
 type Props = {
   children?: ReactNode;
-  classModifier?: string;
   className?: string;
   isSticky?: boolean;
   contentLeft?: ReactNode;
@@ -28,7 +26,6 @@ type Props = {
 
 const HeaderTitle = ({
   children,
-  classModifier,
   className,
   isSticky = true,
   contentLeft,
@@ -38,11 +35,11 @@ const HeaderTitle = ({
   toggleMenu,
   anchorNavBarItems,
 }: Props) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
+    modifiers: [isSticky && "sticky"],
     className,
-    getClassModifier(classModifier, isSticky),
-    defaultClassName,
-  );
+  });
 
   const isAnchorNavBarPresent =
     anchorNavBarItems && anchorNavBarItems.length > 0;

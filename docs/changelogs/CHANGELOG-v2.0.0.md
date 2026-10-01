@@ -13,6 +13,26 @@ documents required migration steps for consumer applications.
   non-heading text to preserve heading hierarchy when used with
   `HeaderTitle` (`h1`). Consumer tests or selectors targeting `h2` in header
   name must be updated.
+- **Removed component aliases**: Removed the deprecated `Badge` and `Alert`
+  exports. Use `Tag` instead of `Badge` and `Message` instead of `Alert`.
+- **Removed Table aliases**: Removed the deprecated `Table.Header` and
+  `Table.Body` members. Use `Table.THead` and `Table.TBody` instead.
+- **Removed legacy form fields**: Removed `LegacyField`, `FieldForm`, and
+  `FieldInput`. The public `Field` export now points to the active field
+  implementation.
+- **Removed Pass and Slider fields**: Removed `Pass`, `PassInput`, `Slider`,
+  and `SliderInput`. Migrate password fields to `TextInput` and range-like
+  numeric inputs to `NumberInput` or another active control.
+- **Removed Select compatibility APIs**: `SelectBase` is no longer a public
+  export and `Select.options` was removed. Render native `<option>` elements
+  as `Select` children. `SelectInput.options` remains available and renders
+  those options as children internally.
+- **Removed deprecated class-name helpers**: Replace
+  `getComponentClassName` and `getComponentClassNameWithUserClassname` with
+  `getClassName`.
+- **Removed `classModifier` prop** in all remaining components. Use `className` instead,
+  as it no longer remove the default class of the component and won't break
+  the component's look.
 
 ### ♿ Accessibility
 

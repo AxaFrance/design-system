@@ -1,71 +1,49 @@
 import { NavBarItem } from "@axa-fr/canopee-react/distributeur";
 import preview from "../../../../.storybook/preview";
 
+type NavBarItemProps = React.ComponentProps<typeof NavBarItem>;
+
+const defaultActionElt = (
+  <a className="af-nav__link" href="/home">
+    Home
+  </a>
+);
+
 const meta = preview.meta({
   title: "Components/NavBar/NavBarItem",
   component: NavBarItem,
   args: {
     hasFocus: false,
-  },
-  argTypes: {
-    onClick: { action: "onClick" },
-    classModifier: {
-      control: {
-        type: "select",
-        options: ["", "active"],
-      },
-    },
+    actionElt: defaultActionElt,
   },
 });
 export default meta;
 
-type StoryProps = Omit<React.ComponentProps<typeof NavBarItem>, "onClick"> & {
-  onClick: () => void;
-};
-
-const withPreventDefaultClick =
-  <T extends React.MouseEvent>(next?: (e: T) => void): ((e: T) => void) =>
-  (e: T) => {
-    e.preventDefault();
-    next?.(e);
-  };
-
-const template = ({ onClick, ...args }: StoryProps) => (
+const Template = (args: NavBarItemProps) => (
   <ul style={{ listStyle: "none" }}>
     <NavBarItem
       {...args}
-      onClick={withPreventDefaultClick(onClick)}
       style={{
         width: "100px",
       }}
-      actionElt={
-        <a
-          className="af-nav__link"
-          href="/home"
-          onClick={withPreventDefaultClick(onClick)}
-        >
-          Home
-        </a>
-      }
     />
   </ul>
 );
 
 export const NavBarItemDefaultStory = meta.story({
   name: "Default",
-  render: template,
-  args: { classModifier: "" },
+  render: Template,
 });
 
 export const ActiveNavBarItemStory = meta.story({
   name: "Active",
-  render: template,
-  args: { classModifier: "active" },
+  render: Template,
+  args: { active: true },
 });
 
 export const NavBarItemWithChildrenStory = meta.story({
   name: "Active with children",
-  render: ({ onClick, ...args }) => (
+  render: (args) => (
     <div style={{ height: "300px" }}>
       <NavBarItem
         style={{ width: "100px" }}
@@ -74,7 +52,6 @@ export const NavBarItemWithChildrenStory = meta.story({
         ariaLabel="Table"
         className="af-nav__item--haschild af-nav__item af-nav__item--open"
         {...args}
-        onClick={withPreventDefaultClick(onClick)}
         actionElt={
           <a className="af-nav__link" href="/doc">
             Doc
@@ -84,11 +61,7 @@ export const NavBarItemWithChildrenStory = meta.story({
         <NavBarItem
           key="doc-1"
           actionElt={
-            <a
-              className="af-nav__link"
-              href="/doc/sous-lien"
-              onClick={withPreventDefaultClick(onClick)}
-            >
+            <a className="af-nav__link" href="/doc/sous-lien">
               Sous lien
             </a>
           }
@@ -96,11 +69,7 @@ export const NavBarItemWithChildrenStory = meta.story({
         <NavBarItem
           key="doc-2"
           actionElt={
-            <a
-              className="af-nav__link"
-              href="/doc/sous-lien2"
-              onClick={withPreventDefaultClick(onClick)}
-            >
+            <a className="af-nav__link" href="/doc/sous-lien2">
               Sous lien2
             </a>
           }
@@ -108,11 +77,7 @@ export const NavBarItemWithChildrenStory = meta.story({
         <NavBarItem
           key="doc-3"
           actionElt={
-            <a
-              className="af-nav__link"
-              href="/doc/sous-lien3"
-              onClick={withPreventDefaultClick(onClick)}
-            >
+            <a className="af-nav__link" href="/doc/sous-lien3">
               Sous lien3
             </a>
           }
@@ -120,11 +85,7 @@ export const NavBarItemWithChildrenStory = meta.story({
         <NavBarItem
           key="doc-4"
           actionElt={
-            <a
-              className="af-nav__link"
-              href="/doc/sous-lien4"
-              onClick={withPreventDefaultClick(onClick)}
-            >
+            <a className="af-nav__link" href="/doc/sous-lien4">
               Sous lien4
             </a>
           }
@@ -133,6 +94,6 @@ export const NavBarItemWithChildrenStory = meta.story({
     </div>
   ),
   args: {
-    classModifier: "",
+    className: "",
   },
 });

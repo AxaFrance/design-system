@@ -4,8 +4,6 @@ export type PopoverModes = "hover" | "click";
 
 export type PopoverProps = {
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   size?: "small";
   placement?: Placement;
   children?: React.ReactNode;

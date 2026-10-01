@@ -3,9 +3,10 @@ import type React from "react";
 import { fn } from "storybook/test";
 import preview from "../../../.storybook/preview";
 
-const meta = preview.meta({
+type StoryProps = Omit<React.ComponentProps<typeof NavBar>, "children">;
+
+const meta = preview.type<{ args: StoryProps }>().meta({
   title: "Components/NavBar",
-  component: NavBar,
   argTypes: {
     onClick: { action: "onClick" },
     positionInit: { control: { type: "number", min: 0, max: 3 } },
@@ -14,8 +15,6 @@ const meta = preview.meta({
 });
 export default meta;
 
-type StoryProps = React.ComponentProps<typeof NavBar>;
-
 const withPreventDefaultClick =
   <T extends React.MouseEvent>(next?: (e: T) => void): ((e: T) => void) =>
   (e: T) => {
@@ -23,7 +22,11 @@ const withPreventDefaultClick =
     next?.(e);
   };
 
-const template = ({ children, onClick, ...args }: StoryProps) => (
+const Template = ({
+  children,
+  onClick,
+  ...args
+}: React.ComponentProps<typeof NavBar>) => (
   <NavBar onClick={withPreventDefaultClick(onClick)} {...args}>
     <NavBarItem
       actionElt={
@@ -125,16 +128,15 @@ const template = ({ children, onClick, ...args }: StoryProps) => (
 
 export const NavBarBaseStory = meta.story({
   name: "NavBarBase",
-  render: template,
-  args: { positionInit: 2 },
+  args: { positionInit: 2, children: null },
+  render: (args) => <Template {...args}>{null}</Template>,
 });
 
 export const NavBarBaseWithCustomableChildrenStory = meta.story({
   name: "NavBarBase with customable children",
-  render: template,
-  args: {
-    positionInit: 2,
-    children: (
+  args: { positionInit: -1 },
+  render: (args) => (
+    <Template {...args}>
       <NavBarItem
         key={1}
         actionElt={
@@ -147,8 +149,8 @@ export const NavBarBaseWithCustomableChildrenStory = meta.story({
           </a>
         }
       />
-    ),
-  },
+    </Template>
+  ),
   argTypes: {
     positionInit: { control: { type: "number", min: 0, max: 4 } },
   },

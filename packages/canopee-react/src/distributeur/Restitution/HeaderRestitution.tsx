@@ -6,8 +6,6 @@ export type HeaderRestitutionProps = {
   title: React.ReactNode;
   subtitle?: React.ReactNode;
   rightTitle?: React.ReactNode;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
 };
 
 export const HeaderRestitution = ({
@@ -15,11 +13,9 @@ export const HeaderRestitution = ({
   subtitle,
   rightTitle,
   className,
-  classModifier,
 }: HeaderRestitutionProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-restitution__header",
-    modifiers: classModifier?.split(" "),
     className,
   });
   return (

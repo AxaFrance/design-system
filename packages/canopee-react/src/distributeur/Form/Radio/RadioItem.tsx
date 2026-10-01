@@ -3,8 +3,6 @@ import { type ComponentPropsWithRef, type ReactNode, useId } from "react";
 import { getOptionClassName } from "../core";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "checked" | "type"> & {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   optionClassName?: string;
   label?: ReactNode;
   isChecked?: boolean;
@@ -15,14 +13,12 @@ const RadioItem = ({
   id,
   isChecked,
   label,
-  classModifier = "",
   className = "",
   disabled = false,
   ...otherProps
 }: Props) => {
   const optionClassName = getOptionClassName(
     className,
-    classModifier,
     "af-form__radio",
     disabled,
   );

@@ -22,7 +22,6 @@ export const TextInputStory = meta.story({
     <TextInput onChange={onChange} {...args} />
   ),
   args: {
-    classModifier: "required",
     value: "John Doe",
     placeholder: "Your name",
     name: "name",
@@ -152,7 +151,7 @@ export const TextInputRichLabelStory = meta.story({
 export const TextInputWithAppendChildren = meta.story({
   name: "TextInput with help button",
   render: ({ onChange, ...args }) => (
-    <TextInput onChange={onChange} {...args}>
+    <TextInput onChange={onChange} {...args} hasInfobulle>
       <HelpButton mode="hover">asdasd</HelpButton>
     </TextInput>
   ),

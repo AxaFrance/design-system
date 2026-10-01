@@ -26,19 +26,13 @@ describe("Text", () => {
     );
   });
 
-  it("should have custom class and modifier", () => {
+  it("should support a custom class", () => {
     // Act
-    render(
-      <Text
-        value="Hello World"
-        className="custom-class"
-        classModifier="modifier"
-      />,
-    );
+    render(<Text value="Hello World" className="custom-class" />);
 
     // Assert
     expect(screen.getByRole("textbox")).toHaveClass(
-      "af-form__input-text af-form__input-text--modifier custom-class",
+      "af-form__input-text custom-class",
       {
         exact: true,
       },
@@ -53,9 +47,9 @@ describe("Text", () => {
     expect(screen.getByRole("textbox")).toBeRequired();
   });
 
-  it("should be required by classModifier", () => {
+  it("should be required", () => {
     // Act
-    render(<Text value="Hello World" classModifier="required" />);
+    render(<Text value="Hello World" required />);
 
     // Assert
     expect(screen.getByRole("textbox")).toBeRequired();

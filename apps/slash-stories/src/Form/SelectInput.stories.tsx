@@ -22,8 +22,6 @@ const meta = preview.meta({
     helpMessage: "Enter the place type",
     required: false,
     disabled: false,
-    isVisible: true,
-    classModifier: "",
     className: "",
     placeholder: "- Select -",
     messageType: undefined,
@@ -52,10 +50,6 @@ export const SelectInputStory = meta.story({
         type: "select",
         options: Object.keys(MessageTypes),
       },
-    },
-    classModifier: {
-      control: "inline-check",
-      options: ["required"],
     },
     name: { table: { disable: true } },
     id: { table: { disable: true } },
@@ -121,7 +115,7 @@ export const SelectWithStatus = meta.story({
 export const SelectWithChildren = meta.story({
   name: "SelectInput with children",
   render: ({ ...args }) => (
-    <SelectInput {...args}>
+    <SelectInput {...args} hasInfobulle>
       <HelpButton mode="hover">Help</HelpButton>
     </SelectInput>
   ),
