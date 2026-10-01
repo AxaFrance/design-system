@@ -6,7 +6,6 @@ type Props = ComponentPropsWithoutRef<"thead"> & {};
 const THead = ({ children, className, ...otherProps }: Props) => {
   const componentClassName = getClassName({
     baseClassName: "af-table__thead",
-    modifiers: [],
     className,
   });
   return (

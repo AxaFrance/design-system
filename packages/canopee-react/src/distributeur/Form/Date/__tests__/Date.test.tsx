@@ -61,14 +61,6 @@ describe("Date", () => {
     expect(screen.getByTestId("myElement")).toBeRequired();
   });
 
-  it("should be required", () => {
-    // Act
-    render(<DateComponent value={fakeDate} data-testid="myElement" required />);
-
-    // Assert
-    expect(screen.getByTestId("myElement")).toBeRequired();
-  });
-
   it("shouldn't have an accesibility violation <Date />", async () => {
     // Act
     const { container } = render(

@@ -116,7 +116,7 @@ export const FileWithValuesStory = meta.story({
     <>
       <File onChange={onChange} {...args} />
       <HelpMessage message="Enter the place name, ex : Webcenter" />
-      <FileTable errors={[]} values={values} onClick={() => {}} className="" />
+      <FileTable errors={[]} values={values} onClick={() => {}} />
     </>
   ),
   args: {
@@ -130,12 +130,7 @@ export const FileWithErrorsStory = meta.story({
     <>
       <File onChange={onChange} {...args} />
       <HelpMessage message="Enter the place name, ex : Webcenter" />
-      <FileTable
-        errors={errors}
-        values={values}
-        onClick={() => {}}
-        className=""
-      />
+      <FileTable errors={errors} values={values} onClick={() => {}} />
     </>
   ),
   args: { label: "Image" },

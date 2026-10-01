@@ -4,9 +4,9 @@ import {
   isValidElement,
   useId,
   useRef,
-  type FormEvent,
   type KeyboardEvent,
   type ReactElement,
+  type SyntheticEvent,
 } from "react";
 import { getClassName } from "../../utilities/helpers/getClassName";
 import type { TabProps } from "./Tab";
@@ -18,7 +18,7 @@ export type TabsStatelessProps = {
 };
 
 export type TabsStatelessHandlers = {
-  onChange: (event: FormEvent<HTMLButtonElement>, index: number) => void;
+  onChange: (event: SyntheticEvent<HTMLButtonElement>, index: number) => void;
 };
 
 function handleKeyDown(

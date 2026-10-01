@@ -2,6 +2,7 @@ import React, { type ComponentPropsWithRef, type ReactNode } from "react";
 import type { Option } from "../core";
 import { CheckboxItem } from "./CheckboxItem";
 import { CheckboxModes } from "./CheckboxModes";
+import { getClassName } from "../../utilities";
 
 type OnChange = {
   onChange?: (data: {
@@ -45,10 +46,14 @@ const CheckboxInner = ({
   values = [],
   mode = CheckboxModes.default,
   onChange = () => {},
+  className,
   ...otherProps
 }: Props) => {
-  const className = defaultClassName(mode);
-
+  const itemClassName = defaultClassName(mode);
+  const componentClassName = getClassName({
+    baseClassName: "af-form__checkbox-container",
+    className,
+  });
   const handleOnChange: React.ChangeEventHandler<HTMLInputElement> = ({
     target: { value, checked },
   }) => {
@@ -57,8 +62,9 @@ const CheckboxInner = ({
       : values.filter((v) => v !== value);
     onChange({ values: newValues, target: { value, checked }, id, name });
   };
+
   return (
-    <div className="af-form__checkbox-container">
+    <div className={componentClassName}>
       {options.map((option) => {
         const isChecked = values ? values.indexOf(option.value) >= 0 : false;
 
@@ -67,7 +73,7 @@ const CheckboxInner = ({
             {...otherProps}
             onChange={handleOnChange}
             key={option.value}
-            className={className}
+            className={itemClassName}
             isChecked={isChecked}
             name={name}
             disabled={option.disabled || disabled}

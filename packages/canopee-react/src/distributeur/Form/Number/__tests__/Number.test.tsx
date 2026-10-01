@@ -47,14 +47,6 @@ describe("Number", () => {
     expect(screen.getByRole("spinbutton")).toBeRequired();
   });
 
-  it("should be required", () => {
-    // Act
-    render(<Number value="123" required />);
-
-    // Assert
-    expect(screen.getByRole("spinbutton")).toBeRequired();
-  });
-
   it("shouldn't have an accesibility violation <Number />", async () => {
     // Act
     const { container } = render(

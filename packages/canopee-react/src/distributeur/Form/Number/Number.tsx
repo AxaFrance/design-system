@@ -4,7 +4,7 @@ import { getClassName } from "../../utilities/helpers/getClassName";
 
 type Props = Omit<ComponentPropsWithRef<"input">, "type"> & {};
 
-const Number = ({ id, className, required, ...otherProps }: Props) => {
+const NumberComponent = ({ id, className, required, ...otherProps }: Props) => {
   const inputUseId = useId();
   const inputId = id ?? inputUseId;
   const componentClassName = getClassName({
@@ -22,6 +22,6 @@ const Number = ({ id, className, required, ...otherProps }: Props) => {
   );
 };
 
-Number.displayName = "Number";
+NumberComponent.displayName = "Number";
 
-export { Number };
+export { NumberComponent as Number };

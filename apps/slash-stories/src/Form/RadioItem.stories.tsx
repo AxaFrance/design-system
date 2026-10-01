@@ -1,20 +1,12 @@
 import { RadioItem } from "@axa-fr/canopee-react/distributeur";
-import { ComponentPropsWithRef } from "react";
 import { fn } from "storybook/test";
 import preview from "../../.storybook/preview";
 
-type RadioItemProps = Omit<
-  ComponentPropsWithRef<typeof RadioItem>,
-  "className"
->;
-
-const meta = preview.type<{ args: RadioItemProps }>().meta({
+const meta = preview.meta({
   title: "Components/Form/Input/Radio",
   argTypes: { onChange: { action: "onChange" } },
   args: { onChange: fn() },
-  render: ({ onChange, ...args }) => (
-    <RadioItem onChange={onChange} {...args} />
-  ),
+  component: RadioItem,
 });
 export default meta;
 

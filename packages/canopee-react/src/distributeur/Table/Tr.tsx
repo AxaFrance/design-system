@@ -6,7 +6,6 @@ type Props = ComponentPropsWithoutRef<"tr"> & {};
 const Tr = ({ children, id, className, ...otherProps }: Props) => {
   const componentClassName = getClassName({
     baseClassName: "af-table__tr",
-    modifiers: [],
     className,
   });
   return (

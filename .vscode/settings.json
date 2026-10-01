@@ -1,22 +1,23 @@
 {
-	"[mdx]": {
-		"editor.wordWrap": "on"
-	},
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit",
-		"source.fixAll.stylelint": "explicit"
-	},
-	"stylelint.validate": [
-		"css",
-		"scss"
-	],
-	"github.copilot.chat.commitMessageGeneration.instructions": [
-		{
-			"file": ".github/git-commit-instructions.md"
-		}
-	],
-	"search.exclude": {
-		"**/slash": true,
-		"**/client": true
-	},
+  "[mdx]": {
+    "editor.wordWrap": "on"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "stylelint.validate": ["css", "scss"],
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "file": ".github/git-commit-instructions.md"
+    }
+  ],
+  "search.exclude": {
+    "**/slash": true,
+    "**/client": true
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "axaguildev",
+    "projectKey": "AxaFrance_design-system"
+  }
 }
