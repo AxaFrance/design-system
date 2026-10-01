@@ -27,26 +27,7 @@ describe("Date", () => {
 
     // Assert
     expect(screen.getByTestId("myElement")).toHaveClass(
-      "af-form__input-date custom-class",
-      {
-        exact: true,
-      },
-    );
-  });
-
-  it("should support a custom class", () => {
-    // Act
-    render(
-      <DateComponent
-        value={fakeDate}
-        data-testid="myElement"
-        className="custom-class"
-      />,
-    );
-
-    // Assert
-    expect(screen.getByTestId("myElement")).toHaveClass(
-      "af-form__input-date custom-class",
+      "af-form__input-date custom-class af-form__input-text",
       {
         exact: true,
       },
