@@ -1,5 +1,7 @@
 @layer canopee {
   .af-form__select {
+    --select-outline-color: transparent;
+
     position: relative;
   }
 
@@ -19,16 +21,24 @@
     transform: translateY(-50%);
   }
 
+  .af-form__input-select {
+    position: relative;
+    z-index: 1;
+    padding: 0.5em 2.7em 0.5em 1em;
+    border: 0;
+    font-size: 1em;
+    background: transparent;
+    outline: 2px solid var(--select-outline-color);
+    appearance: none;
+
+    &:focus {
+      --select-outline-color: var(--brand-primary);
+    }
+  }
+
   .af-form__select--success .af-form__select-container,
   .af-form__select--valid .af-form__select-container {
     margin-right: 1rem;
-  }
-
-  .af-form__select--success::after,
-  .af-form__select--valid::after {
-    font-family: var(--font-family-icon);
-    color: var(--valid-element-color);
-    content: "\EABA";
   }
 
   .af-form__select--success > .af-btn--circle,
@@ -57,9 +67,10 @@
     cursor: not-allowed;
   }
 
-  .af-form__select--error .af-form__input-text,
-  .af-form__select--error .af-form__select-container {
-    border: 1px solid var(--error-color);
+  .af-form__select--error .af-form__input-select,
+  .af-form__select--error .af-form__input-select:focus {
+    --select-outline-color: var(--error-color);
+
     color: var(--error-color);
   }
 
@@ -67,23 +78,22 @@
     color: var(--error-color);
   }
 
-  .af-form__select--warning .af-form__input-text,
-  .af-form__select--warning .af-form__select-container {
-    border: 1px solid var(--warning-color);
-    color: var(--warning-color);
-  }
+  .af-form__select--warning .af-form__input-select,
+  .af-form__select--warning .af-form__input-select:focus {
+    --select-outline-color: var(--warning-color);
 
-  .af-form__input-select {
-    position: relative;
-    z-index: 1;
-    padding: 0.5em 2.7em 0.5em 1em;
-    border: 0;
-    font-size: 1em;
-    background: transparent;
-    appearance: none;
+    color: var(--warning-color);
   }
 
   .af-form__input-select::-ms-expand {
     display: none;
+  }
+
+  .af-form__select-container:has(.af-form__input-text--hasinfobulle) {
+    margin-right: 1rem;
+
+    .af-form__input-text--hasinfobulle {
+      margin-right: 0;
+    }
   }
 }

@@ -110,12 +110,10 @@ export const Field = ({
     required && "required",
     forceDisplayMessage && FormClassManager.getModifier(messageType),
   ];
-  const inputClassName = [
-    ...fieldModifiers,
-    hasInfobulle && `af-form__input-${fieldClassNameSuffix}--hasinfobulle`,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const inputClassName = getClassName({
+    baseClassName: `af-form__input-${fieldClassNameSuffix}`,
+    modifiers: [...fieldModifiers, hasInfobulle && `hasinfobulle`],
+  });
   const fieldContainerClassName = getClassName({
     baseClassName: `af-form__${fieldClassNameSuffix}`,
     modifiers: fieldModifiers,
