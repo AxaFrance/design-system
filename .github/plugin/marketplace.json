@@ -23,6 +23,13 @@
       "skills": ["./skills/canopee-prospect-client"]
     },
     {
+      "name": "canopee-migration",
+      "source": "./plugins/canopee-migration",
+      "description": "Canopée migration plugin for GitHub Copilot: from react-toolkit, Slash, Apollo or Look & Feel to Canopée, and from 1.x to 2.0.",
+      "version": "0.0.1",
+      "skills": ["./skills/canopee-migration"]
+    },
+    {
       "name": "frontend-slides",
       "source": {
         "source": "github",
