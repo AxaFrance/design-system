@@ -29,6 +29,7 @@ Table des matières :
     - [Utilisation des icones](#utilisation-des-icones)
     - [Utilisation des CSS variables](#utilisation-des-css-variables)
     - [Utilisation avec Copilot ou Claude](#utilisation-avec-copilot-ou-claude)
+      - [Atelier GitHub Agentic Workflows](#atelier-github-agentic-workflows)
         - [Comment faire ?](#comment-faire-)
 
 ## Migration depuis @axa-fr/react-toolkit
@@ -270,6 +271,10 @@ Ces deux serveurs couvrent :
 - `univers-distributeur-et-collaborateur` : univers B2B Distributeur/Collaborateur
 
 Les skills plugins exploitent ensuite ce workflow : `search-pages` (ou `list-pages`) puis `get-page` avant toute génération de code UI.
+
+### Atelier GitHub Agentic Workflows
+
+Pour préparer votre poste et consulter les prérequis gh-aw, suivez le [guide de l’atelier](./docs/workshops/agentic-workflows/README.md).
 
 ### Comment faire ?
 
