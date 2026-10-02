@@ -4,14 +4,22 @@
     --local-input-border-color: var(--input-border-color);
     --input-background-color: var(--white);
     --color-border-selected: var(--brand-primary);
+    --input-border-width: 1px;
+    --input-padding-right: 0;
 
-    padding: 0 0 0 1rem;
-    border: 1px solid var(--local-input-border-color);
+    padding: 0 var(--input-padding-right) 0 1rem;
+    border: var(--input-border-width) solid var(--local-input-border-color);
     font-size: 1rem;
     line-height: 2.5rem;
     color: var(--input-color);
     background-color: var(--input-background-color);
     outline: 1px solid transparent;
+  }
+
+  .af-input__input[type="date"] {
+    --input-padding-right: 1rem;
+
+    width: fit-content;
   }
 
   .af-input__input[aria-invalid="true"] {
