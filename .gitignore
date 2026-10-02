@@ -10,3 +10,4 @@ dist/
 coverage/
 .turbo
 mise.toml
+.github/aw/logs/
