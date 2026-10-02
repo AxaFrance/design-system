@@ -11,7 +11,6 @@ export default meta;
 
 export const Playground = meta.story({
   name: "NestedQuestion",
-  render: ({ ...args }) => <NestedQuestion {...args} />,
   args: {
     children: <TextInput label="Champ texte" />,
   },

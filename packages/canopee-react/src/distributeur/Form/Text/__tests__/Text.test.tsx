@@ -47,14 +47,6 @@ describe("Text", () => {
     expect(screen.getByRole("textbox")).toBeRequired();
   });
 
-  it("should be required", () => {
-    // Act
-    render(<Text value="Hello World" required />);
-
-    // Assert
-    expect(screen.getByRole("textbox")).toBeRequired();
-  });
-
   it("shouldn't have an accesibility violation <Text />", async () => {
     // Act
     const { container } = render(

@@ -24,6 +24,5 @@ export default meta;
 
 export const NumberStory = meta.story({
   name: "Number",
-  render: ({ onChange, ...args }) => <Number onChange={onChange} {...args} />,
   args: {},
 });

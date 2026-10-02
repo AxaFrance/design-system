@@ -30,9 +30,7 @@ const CheckboxInput = ({
               id={id}
               mode={mode}
               options={newOptions}
-              className={
-                ariaInvalid ? `${inputClassName} error` : inputClassName
-              }
+              className={inputClassName}
               aria-describedby={errorId}
               aria-invalid={ariaInvalid}
               {...props}
