@@ -1,5 +1,5 @@
 import "@axa-fr/canopee-css/client/Form/Checkbox/CheckboxText/CheckboxTextLF.css";
-import { ItemMessage } from "../../ItemMessage/ItemMessageLF";
+import { ItemMessage } from "../../ItemMessage/ItemMessage";
 import { Checkbox } from "../Checkbox/CheckboxLF";
 import {
   CheckboxTextCommon,

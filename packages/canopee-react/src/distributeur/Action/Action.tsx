@@ -5,27 +5,19 @@ import { getClassName } from "../utilities/helpers/getClassName";
 
 type ActionCoreProps = ComponentPropsWithRef<"a"> & {
   icon: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
 };
 
-export const Action = ({
-  icon,
-  className,
-  classModifier,
-  ...otherProps
-}: ActionCoreProps) => {
+export const Action = ({ icon, className, ...otherProps }: ActionCoreProps) => {
   const componentClassName = classNames(
     "btn",
     getClassName({
       baseClassName: "af-btn--circle",
-      modifiers: classModifier?.split(" "),
       className,
     }),
   );
   return (
     <a {...otherProps} className={componentClassName}>
-      <i role="img" className={`glyphicon glyphicon-${icon}`} />
+      <i role="presentation" className={`glyphicon glyphicon-${icon}`} />
     </a>
   );
 };

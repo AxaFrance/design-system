@@ -12,7 +12,7 @@ const meta = preview.meta({
 });
 export default meta;
 
-const MODIFIERS: Record<string, string> = {
+const iconsByName: Record<string, string> = {
   "/public/headphones.svg": headphonesIcons,
   "/public/home.svg": homeIcons,
   "/public/save.svg": saveIcons,
@@ -22,7 +22,7 @@ const MODIFIERS: Record<string, string> = {
 
 export const Default = meta.story({
   name: "Svg",
-  render: ({ src, ...args }) => <Svg src={MODIFIERS[src]} {...args} />,
+  render: ({ src, ...args }) => <Svg src={iconsByName[src]} {...args} />,
   args: {
     src: "/public/headphones.svg",
     fill: "#00008f",
@@ -30,7 +30,7 @@ export const Default = meta.story({
   },
   argTypes: {
     src: {
-      options: Object.keys(MODIFIERS),
+      options: Object.keys(iconsByName),
       control: { type: "select" },
     },
   },

@@ -10,7 +10,7 @@ import { Svg } from "../../../Svg/Svg";
 import { getClassName } from "../../../utilities/getClassName";
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
 import { type ItemLabelProps } from "../../ItemLabel/ItemLabelCommon";
-import { type ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
+import { type ItemMessageProps } from "../../ItemMessage/ItemMessage";
 
 type LabelProps = Partial<
   Omit<

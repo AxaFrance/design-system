@@ -7,8 +7,6 @@ const defaultClassName = "af-header__name";
 
 type Props = {
   alt?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   className?: string;
   img?: string;
   onClick?: (action: { event: MouseEvent<HTMLAnchorElement> }) => void;
@@ -18,7 +16,6 @@ type Props = {
 
 const Name = ({
   alt = "logo",
-  classModifier,
   className,
   img,
   onClick,
@@ -27,7 +24,6 @@ const Name = ({
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" "),
     className,
   });
 

@@ -12,7 +12,7 @@ describe("Restitution", () => {
   it("shouldn't have an accessibility violation <ArticleRestitution/>", async () => {
     // Act
     const { container } = render(
-      <ArticleRestitution classModifier="lg">
+      <ArticleRestitution className="lg">
         <HeaderRestitution title="Tarifs" />
         <SectionRestitution>
           <SectionRestitutionRow>
@@ -20,10 +20,7 @@ describe("Restitution", () => {
               <Restitution label="TA">99,99 %</Restitution>
               <Restitution label="EURO">EURO</Restitution>
               <Restitution label="TT" />
-              <Restitution
-                label="Garanties complémentaires"
-                classModifier="marge"
-              >
+              <Restitution label="Garanties complémentaires" className="marge">
                 <RestitutionList
                   values={[
                     "Vol au domicile",
@@ -35,14 +32,11 @@ describe("Restitution", () => {
                 />
               </Restitution>
             </SectionRestitutionColumn>
-            <SectionRestitutionColumn classModifier="test">
+            <SectionRestitutionColumn className="test">
               <Restitution label="TA">99,99 %</Restitution>
               <Restitution label="EURO">EURO</Restitution>
               <Restitution label="TT" />
-              <Restitution
-                label="Garanties complémentaires"
-                classModifier="marge"
-              >
+              <Restitution label="Garanties complémentaires" className="marge">
                 <RestitutionList
                   values={[
                     "Vol au domicile",
@@ -66,7 +60,7 @@ describe("Restitution", () => {
   it("Header Restitution with rightTitle and subtitle", async () => {
     // Act
     render(
-      <ArticleRestitution classModifier="lg">
+      <ArticleRestitution className="lg">
         <HeaderRestitution
           title="Tarifs"
           subtitle="Tout adhérent, assuré, base (sans EAC ou sans PAC)"
@@ -78,10 +72,7 @@ describe("Restitution", () => {
               <Restitution label="TA">99,99 %</Restitution>
               <Restitution label="EURO">EURO</Restitution>
               <Restitution label="TT" />
-              <Restitution
-                label="Garanties complémentaires"
-                classModifier="marge"
-              >
+              <Restitution label="Garanties complémentaires" className="marge">
                 <RestitutionList
                   values={[
                     "Vol au domicile",
@@ -93,14 +84,11 @@ describe("Restitution", () => {
                 />
               </Restitution>
             </SectionRestitutionColumn>
-            <SectionRestitutionColumn classModifier="test" title="Prix">
+            <SectionRestitutionColumn className="test" title="Prix">
               <Restitution label="TA">99,99 %</Restitution>
               <Restitution label="EURO">EURO</Restitution>
               <Restitution label="TT" />
-              <Restitution
-                label="Garanties complémentaires"
-                classModifier="marge"
-              >
+              <Restitution label="Garanties complémentaires" className="marge">
                 <RestitutionList
                   values={[
                     "Vol au domicile",
@@ -135,10 +123,7 @@ describe("Restitution", () => {
             <Restitution label="TA">99,99 %</Restitution>
             <Restitution label="EURO">EURO</Restitution>
             <Restitution label="TT" />
-            <Restitution
-              label="Garanties complémentaires"
-              classModifier="marge"
-            >
+            <Restitution label="Garanties complémentaires" className="marge">
               <RestitutionList
                 values={[
                   "Vol au domicile",
@@ -168,10 +153,7 @@ describe("Restitution", () => {
             <Restitution label="TA">99,99 %</Restitution>
             <Restitution label="EURO">EURO</Restitution>
             <Restitution label="TT" />
-            <Restitution
-              label="Garanties complémentaires"
-              classModifier="marge"
-            >
+            <Restitution label="Garanties complémentaires" className="marge">
               <RestitutionList
                 values={[
                   "Vol au domicile",

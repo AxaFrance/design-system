@@ -3,7 +3,7 @@
 exports[`<File.FileTable> > renders Errors correctly with empty errors 1`] = `
 <DocumentFragment>
   <div
-    class="custom-table-file af-file-table"
+    class="af-file-table custom-table-file"
   >
     <ul
       class="af-form__file-list"
@@ -39,7 +39,7 @@ exports[`<File.FileTable> > renders Errors correctly with empty errors 1`] = `
 exports[`<File.FileTable> > renders File.FileTable correctly 1`] = `
 <DocumentFragment>
   <div
-    class="custom-table-file af-file-table"
+    class="af-file-table custom-table-file"
   >
     <div
       class="af-form__file-errors"
@@ -89,7 +89,7 @@ exports[`<File.FileTable> > renders File.FileTable correctly 1`] = `
 exports[`<File.FileTable> > renders File.FileTable correctly when no have values 1`] = `
 <DocumentFragment>
   <div
-    class="custom-table-file af-file-table"
+    class="af-file-table custom-table-file"
   >
     <div
       class="af-form__file-errors"

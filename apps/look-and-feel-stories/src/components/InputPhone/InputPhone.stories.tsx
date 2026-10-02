@@ -18,7 +18,7 @@ const meta: Meta<typeof InputPhone> = {
     countryCodeOptions: flagsList,
     className: "",
     type: "text",
-    buttonLabel: "Hello",
+    moreButtonLabel: "Hello",
     sideButtonLabel: "Modifier",
     description: "Description",
     pattern: "[0-9]{10}",

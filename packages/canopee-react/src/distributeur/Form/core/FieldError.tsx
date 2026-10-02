@@ -1,4 +1,4 @@
-import { getComponentClassName } from "../../utilities";
+import { getClassName } from "../../utilities";
 import { MessageTypes } from "./MessageTypes";
 
 const DEFAULT_CLASS_NAME = "af-form__message";
@@ -14,11 +14,10 @@ export const FieldError = ({
   messageType = MessageTypes.error,
   errorId = undefined,
 }: FieldProps) => {
-  const className = getComponentClassName(
-    DEFAULT_CLASS_NAME,
-    messageType,
-    DEFAULT_CLASS_NAME,
-  );
+  const className = getClassName({
+    baseClassName: DEFAULT_CLASS_NAME,
+    modifiers: [messageType],
+  });
 
   return (
     message && (

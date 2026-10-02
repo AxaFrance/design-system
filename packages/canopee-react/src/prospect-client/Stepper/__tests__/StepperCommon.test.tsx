@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import type { ItemMessageProps } from "../../Form/ItemMessage/ItemMessageCommon";
+import type { ItemMessageProps } from "../../Form/ItemMessage/ItemMessage";
 import { Heading } from "../../Heading/HeadingApollo";
+import { ItemMessage } from "../../Form/ItemMessage/ItemMessage";
 import { ProgressBarGroup } from "../../ProgressBarGroup/ProgressBarGroupApollo";
 import { StepperCommon } from "../StepperCommon";
 
@@ -13,6 +14,7 @@ describe("StepperCommon Component", () => {
         currentSubtitle="Step 1 Subtitle"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
         HeadingComponent={Heading}
       />,
     );
@@ -32,6 +34,7 @@ describe("StepperCommon Component", () => {
         currentSubtitle=""
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
         HeadingComponent={Heading}
       />,
     );
@@ -47,6 +50,7 @@ describe("StepperCommon Component", () => {
         currentStepProgress={50}
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
         HeadingComponent={Heading}
       />,
     );
@@ -65,6 +69,7 @@ describe("StepperCommon Component", () => {
         helper="This is a helper text"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
         HeadingComponent={Heading}
       />,
     );
@@ -84,6 +89,7 @@ describe("StepperCommon Component", () => {
           message={messageText}
           nbSteps={4}
           ProgressBarGroupComponent={ProgressBarGroup}
+          ItemMessageComponent={ItemMessage}
           HeadingComponent={Heading}
           messageType={messageType as ItemMessageProps["messageType"]}
         />,
@@ -106,6 +112,7 @@ describe("StepperCommon Component", () => {
         className="custom-class"
         nbSteps={4}
         ProgressBarGroupComponent={ProgressBarGroup}
+        ItemMessageComponent={ItemMessage}
         HeadingComponent={Heading}
       />,
     );
@@ -128,6 +135,7 @@ describe("StepperCommon Component", () => {
           currentTitle={`Step Title ${tag}`}
           nbSteps={4}
           ProgressBarGroupComponent={ProgressBarGroup}
+          ItemMessageComponent={ItemMessage}
           HeadingComponent={Heading}
           titleLevel={level as 1 | 2 | 3 | 4}
         />,

@@ -6,8 +6,6 @@ import { PopoverOver } from "./PopoverOver";
 
 type Props = {
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   placement?: Placement;
   mode: PopoverModes;
   popoverElement: React.ReactNode;
@@ -18,18 +16,12 @@ const Popover = ({
   children,
   placement = "top",
   className,
-  classModifier,
   mode = "click",
   popoverElement: content,
 }: Props) => {
   const Component = mode === "click" ? PopoverClick : PopoverOver;
   return (
-    <Component
-      className={className}
-      classModifier={classModifier}
-      placement={placement}
-      element={content}
-    >
+    <Component className={className} placement={placement} element={content}>
       {children}
     </Component>
   );

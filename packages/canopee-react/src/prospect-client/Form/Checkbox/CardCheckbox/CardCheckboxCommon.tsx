@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import type { GridContainerProps } from "../../../utilities/types/GridContainerProps";
-import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
+import type { ItemMessageProps } from "../../ItemMessage/ItemMessage";
 import type { CardCheckboxOptionProps } from "../CardCheckboxOption/CardCheckboxOptionCommon";
 import type { CheckboxTextProps } from "../CheckboxText/CheckboxTextCommon";
 

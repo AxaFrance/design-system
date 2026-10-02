@@ -11,7 +11,7 @@ const MultiSelectInput = ({ label, children, ...multiSelectProps }: Props) => {
     <Field
       label={label}
       {...multiSelectProps}
-      classNameSuffix="select"
+      fieldClassNameSuffix="select"
       renderInput={({ id, ariaInvalid, errorId, ...props }) => {
         return (
           <>

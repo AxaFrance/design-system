@@ -11,7 +11,7 @@ import { ContentItemMonoCore } from "../../../ContentItemMono/ContentItemMonoCor
 import type { IconProps } from "../../../Icon/IconCommon";
 import type { SpinnerProps } from "../../../Spinner/SpinnerCommon";
 import { getClassName } from "../../../utilities/getClassName";
-import type { ItemMessageProps } from "../../ItemMessage/ItemMessageCommon";
+import type { ItemMessageProps } from "../../ItemMessage/ItemMessage";
 
 export type ItemFileProps = {
   /**

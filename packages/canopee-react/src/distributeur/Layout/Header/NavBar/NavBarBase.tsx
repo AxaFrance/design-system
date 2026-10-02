@@ -11,8 +11,6 @@ type Props = {
   isMenuFocused?: boolean;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   handleKeys: (key: string) => void;
   onFocus: (action: { e: FocusEvent<HTMLUListElement> }) => void;
   onBlur: (action: { e: FocusEvent<HTMLUListElement> }) => void;
@@ -20,37 +18,42 @@ type Props = {
 };
 
 const NavBarBase = ({
-  isVisible = true,
   onClick,
   id = "mainmenu",
   toggleMenuId = "togglemenu",
   isMenuFocused,
   className,
-  classModifier,
   handleKeys,
   onFocus,
   onBlur,
   children,
+  isVisible,
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" "),
     className,
   });
 
+  const navClassName = getClassName({
+    baseClassName: "af-nav",
+    modifiers: [isVisible && "open"],
+    className: "af-drawer left",
+  });
   return (
     <div className={classNames("af-container", componentClassName)}>
-      <button
-        aria-controls={id}
-        aria-haspopup="true"
-        type="button"
-        onClick={onClick}
-        className={`mask fade ${isVisible ? "show" : ""}`}
-        id={`open-${toggleMenuId}`}
-        aria-label="Open Menu"
-      />
+      {isVisible ? (
+        <button
+          aria-controls={id}
+          aria-haspopup="true"
+          type="button"
+          onClick={onClick}
+          className="mask fade"
+          id={`open-${toggleMenuId}`}
+          aria-label="Close Menu"
+        />
+      ) : null}
       <nav
-        className={`af-nav af-drawer left ${isVisible ? "show" : ""}`}
+        className={navClassName}
         role="navigation"
         aria-label="Menu principal"
       >

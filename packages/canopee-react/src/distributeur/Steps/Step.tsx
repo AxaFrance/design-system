@@ -12,7 +12,6 @@ const Step = ({
   number,
   id,
   title,
-  classModifier,
   href,
   onClick,
   mode = "link",
@@ -26,7 +25,6 @@ const Step = ({
           id={id}
           href={href ?? "#"}
           number={number}
-          classModifier={classModifier}
           className={className}
           title={title}
           onClick={onClick}
@@ -38,7 +36,6 @@ const Step = ({
         <StepCurrent
           id={id}
           title={title}
-          classModifier={classModifier}
           className={className}
           number={number}
           stateLabel={stateLabel || "en cours"}
@@ -49,7 +46,6 @@ const Step = ({
         <StepDisabled
           id={id}
           title={title}
-          classModifier={classModifier}
           className={className}
           number={number}
           stateLabel={stateLabel || "à venir"}

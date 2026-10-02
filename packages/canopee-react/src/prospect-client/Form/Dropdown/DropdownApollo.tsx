@@ -1,6 +1,6 @@
 import "@axa-fr/canopee-css/prospect/Form/Dropdown/DropdownApollo.css";
 import { ItemLabel } from "../ItemLabel/ItemLabelApollo";
-import { ItemMessage } from "../ItemMessage/ItemMessageApollo";
+import { ItemMessage } from "../ItemMessage/ItemMessage";
 import { DropdownCommon, type DropdownProps } from "./DropdownCommon";
 
 export const Dropdown = (props: DropdownProps) => (

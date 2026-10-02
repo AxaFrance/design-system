@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { Button, Modal, getComponentClassName } from "../../distributeur";
+import { Button, getClassName, Modal } from "../../distributeur";
 import { Body } from "./components/Body";
 import { Footer } from "./components/Footer";
 import { Header, type HeaderProps } from "./components/Header";
@@ -41,11 +41,6 @@ export type BooleanModalProps = React.DetailedHTMLProps<
      */
     cancelTitle?: string;
     className?: string;
-    /**
-     * @deprecated Use `size` prop instead.
-     * Class modifier for the modal. Can be used to apply custom styles.
-     */
-    classModifier?: string;
   };
 
 const BooleanModal = ({
@@ -53,19 +48,16 @@ const BooleanModal = ({
   title,
   submitTitle = "Valider",
   cancelTitle = "Annuler",
-  className = defaultClassName,
-  classModifier,
+  className,
   onCancel,
   onSubmit,
   closeButtonAriaLabel,
   ...props
 }: BooleanModalProps) => {
-  const componentClassName = getComponentClassName(
+  const componentClassName = getClassName({
+    baseClassName: defaultClassName,
     className,
-    classModifier,
-    defaultClassName,
-  );
-
+  });
   return (
     <Modal
       className={componentClassName}
@@ -73,11 +65,9 @@ const BooleanModal = ({
       title={title}
       {...props}
     >
-      <Header
-        title={title}
-        onCancel={onCancel}
-        closeButtonAriaLabel={closeButtonAriaLabel}
-      />
+      <Header onCancel={onCancel} closeButtonAriaLabel={closeButtonAriaLabel}>
+        {title}
+      </Header>
       <Body>{children}</Body>
       <Footer>
         <Button variant="secondary" onClick={onCancel}>

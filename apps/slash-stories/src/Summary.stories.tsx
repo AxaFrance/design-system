@@ -6,7 +6,7 @@ const meta = preview.meta({
   title: "Components/Summary",
   component: Summary,
   argTypes: {
-    classModifier: {
+    className: {
       options: ["success", "info", "danger", "error"],
       control: { type: "select" },
     },
@@ -26,7 +26,7 @@ export const Template = meta.story({
     messages,
     isVisible: true,
     onClose: fn(),
-    classModifier: "error",
+    className: "error",
   },
 });
 
@@ -41,6 +41,6 @@ export const Success = meta.story({
     title: "Congratulations on submitting a flawless form",
     isVisible: true,
     onClose: fn(),
-    classModifier: "success",
+    className: "success",
   },
 });

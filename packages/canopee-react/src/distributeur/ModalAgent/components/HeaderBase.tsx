@@ -1,14 +1,10 @@
 import { getClassName } from "../../utilities/helpers/getClassName";
 
-export type HeaderBaseProps = React.HTMLAttributes<HTMLDivElement> & {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
-};
+export type HeaderBaseProps = React.HTMLAttributes<HTMLDivElement> & {};
 
-const HeaderBase = ({ classModifier, className, ...rest }: HeaderBaseProps) => {
+const HeaderBase = ({ className, ...rest }: HeaderBaseProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-modal__header",
-    modifiers: classModifier?.split(" "),
     className,
   });
 

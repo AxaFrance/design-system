@@ -7,6 +7,11 @@ const options = [
   { value: "work", label: "For work" },
   { value: "drink", label: "For drink" },
 ];
+const optionsChildren = options.map(({ value, label }) => (
+  <option key={value} value={value}>
+    {label}
+  </option>
+));
 type StoryProps = ComponentProps<typeof Select>;
 
 const meta = preview.type<{ args: StoryProps }>().meta({
@@ -19,12 +24,13 @@ export const SelectStory = meta.story({
   name: "Select",
   tags: ["Form", "Input"],
   render: ({ onChange, ...args }: ComponentProps<typeof Select>) => (
-    <Select onChange={onChange} {...args} />
+    <Select onChange={onChange} {...args}>
+      {optionsChildren}
+    </Select>
   ),
   args: {
     mode: "default",
     className: "",
-    options,
     placeholder: "- Select -",
     name: "name",
     id: "nameid",

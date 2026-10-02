@@ -11,7 +11,7 @@ export const NumberInput = ({ children, ...props }: Props) => {
       {...props}
       renderInput={({
         id,
-        classModifier,
+        inputClassName,
         ariaInvalid,
         errorId,
         ...inputProps
@@ -19,7 +19,7 @@ export const NumberInput = ({ children, ...props }: Props) => {
         <>
           <Number
             id={id}
-            classModifier={classModifier}
+            className={inputClassName}
             aria-describedby={errorId}
             aria-invalid={ariaInvalid}
             {...inputProps}

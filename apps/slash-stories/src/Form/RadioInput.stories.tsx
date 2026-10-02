@@ -15,7 +15,7 @@ const meta = preview.meta({
     required: true,
     mode: RadioModes.classic,
     value: "paris",
-    classModifier: "",
+    className: "",
     readOnly: false,
     disabled: false,
     name: "placeName",
@@ -58,6 +58,7 @@ export const RadioInputStory = meta.story({
     return (
       <RadioInput
         {...args}
+        hasInfobulle
         value={newValue}
         onChange={(e) => {
           setValue(e.target.value);

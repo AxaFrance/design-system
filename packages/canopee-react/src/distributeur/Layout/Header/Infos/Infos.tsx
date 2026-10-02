@@ -15,16 +15,13 @@ export type TInfo = {
 };
 
 type InfosProps = {
-  /** @deprecated Use `className` instead. */
-  classModifier?: string;
   className?: string;
   infos: TInfo[];
 };
 
-const Infos = ({ infos, className, classModifier }: InfosProps) => {
+const Infos = ({ infos, className }: InfosProps) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
-    modifiers: classModifier?.split(" "),
     className,
   });
 

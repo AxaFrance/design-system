@@ -39,7 +39,7 @@ export const Default = meta.story({
   name: "Regular Accordion",
   render: ({ ...args }) => (
     <Accordion {...args}>
-      <CollapseCard title="About AXA" id="t1" open classModifier="test">
+      <CollapseCard title="About AXA" id="t1" open className="test">
         <p>
           AXA is a French multinational insurance firm headquartered in the 8th
           arrondissement of Pars that engages in global insurance, investment

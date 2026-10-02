@@ -3,9 +3,7 @@ import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
 import { ComponentPropsWithRef, useState } from "react";
 import preview from "../../.storybook/preview";
 
-type RadioProps = Omit<ComponentPropsWithRef<typeof Radio>, "classModifier"> & {
-  classModifier?: string[];
-};
+type RadioProps = Omit<ComponentPropsWithRef<typeof Radio>, "className">;
 
 const meta = preview.type<{ args: RadioProps }>().meta({
   title: "Components/Form/Input/Radio",
@@ -16,12 +14,11 @@ export default meta;
 
 export const RadioStory = meta.story({
   name: "Radio",
-  render: ({ classModifier, value: initValue, onChange, ...args }) => {
+  render: ({ value: initValue, onChange, ...args }) => {
     const [value, setValue] = useState(initValue);
     return (
       <Radio
         {...args}
-        classModifier={classModifier?.join(" ")}
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
@@ -36,7 +33,7 @@ export const RadioStory = meta.story({
     mode: RadioModes.classic,
     orientation: undefined,
     value: "",
-    classModifier: [],
+    required: false,
     isChecked: false,
     readOnly: false,
     disabled: false,
@@ -63,10 +60,6 @@ export const RadioStory = meta.story({
         empty: "",
       },
       control: { type: "inline-radio" },
-    },
-    classModifier: {
-      options: ["disabled", "required", "error"],
-      control: { type: "inline-check" },
     },
   },
 });

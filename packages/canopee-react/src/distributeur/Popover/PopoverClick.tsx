@@ -6,7 +6,6 @@ export const PopoverClick = ({
   children,
   placement,
   className,
-  classModifier,
   element,
 }: PopoverProps) => {
   const wrapperRef = React.useRef(null);
@@ -59,7 +58,6 @@ export const PopoverClick = ({
         isOpen={isOpen}
         placement={placement}
         className={className}
-        classModifier={classModifier}
         element={element}
       >
         {children}
