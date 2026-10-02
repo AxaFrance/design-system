@@ -2,43 +2,43 @@ import { defineConfig } from '@terrazzo/cli'
 import css from '@terrazzo/plugin-css'
 import customMedia from './terrazzo-custom-media.mjs'
 
-// Les dimensions passent en rem, sur une base de 16 px. Les épaisseurs de
-// bordure, les arrondis et les breakpoints restent en px, comme dans le code actuel.
-const resteEnPx = (id) => ['border.width.', 'border.radius.', 'breakpoint.'].some((p) => id.startsWith(p))
-const enRem = (token) => {
+// Dimensions are converted to rem, on a 16 px base. Border widths, border radii
+// and breakpoints stay in px, as in the current code.
+const staysInPx = (id) => ['border.width.', 'border.radius.', 'breakpoint.'].some((p) => id.startsWith(p))
+const toRem = (token) => {
   const v = token.$value
-  if (token.$type !== 'dimension' || resteEnPx(token.id) || v?.unit !== 'px') return
+  if (token.$type !== 'dimension' || staysInPx(token.id) || v?.unit !== 'px') return
   return `${Math.round((v.value / 16) * 10000) / 10000}rem`
 }
 
-// Tokens de la collection Typography, les seuls qui changent entre mobile et desktop.
-const TYPO_RESPONSIVE = ['heading.**', 'body.**']
+// Tokens of the Typography collection, the only ones that change between mobile and desktop.
+const RESPONSIVE_TYPOGRAPHY = ['heading.**', 'body.**']
 
 export default defineConfig({
   tokens: ['./design-tokens-canopee.resolver.json'],
   outDir: './generated/',
   plugins: [
-    // Un fichier par thème B2C : typo mobile par défaut, typo desktop à partir
-    // de desktop-small (1024 px), comme le fait déjà le code.
+    // One file per B2C theme: mobile typography by default, desktop typography
+    // from desktop-small (1024 px), as the current code already does.
     ...['prospect', 'client'].map((theme) => css({
       filename: `${theme}/tokens.css`,
       legacyHex: true,
-      transform: enRem,
+      transform: toRem,
       permutations: [
-        { input: { Typography: `${theme}-mobile` }, prepare: (contenu) => `:root {\n  ${contenu}\n}` },
+        { input: { Typography: `${theme}-mobile` }, prepare: (content) => `:root {\n  ${content}\n}` },
         {
           input: { Typography: `${theme}-desktop` },
-          include: TYPO_RESPONSIVE,
-          prepare: (contenu) => `@media (--desktop-small) {\n  :root {\n    ${contenu}\n  }\n}`
+          include: RESPONSIVE_TYPOGRAPHY,
+          prepare: (content) => `@media (--desktop-small) {\n  :root {\n    ${content}\n  }\n}`
         }
       ]
     })),
-    // Noms des custom media du code actuel, et primitive breakpoint de chacun.
+    // Custom media names of the current code, and the breakpoint primitive of each.
     customMedia({
-      univers: {
+      targets: {
         'prospect-client': {
           filename: 'prospect-client/custom-media.css',
-          medias: {
+          media: {
             mobile: 'breakpoint.0',
             tablet: 'breakpoint.668',
             'desktop-small': 'breakpoint.1024',
@@ -48,7 +48,7 @@ export default defineConfig({
         },
         distributeur: {
           filename: 'distributeur/custom-media.css',
-          medias: {
+          media: {
             small: 'breakpoint.0',
             'tablet-portrait': 'breakpoint.576',
             'tablet-landscape': 'breakpoint.772',
