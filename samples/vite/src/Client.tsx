@@ -4,6 +4,7 @@ import {
   CardRadioGroup,
   Dropdown,
   InputText,
+  DropdownMultiSelect,
 } from "@axa-fr/canopee-react/client";
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -14,6 +15,7 @@ type Inputs = {
   exampleSelectInput: string;
   exampleRadioInput: string;
   exampleCheckboxInput: string[];
+  exampleDropdownMultiSelect: string[];
 };
 
 const Client = () => {
@@ -27,6 +29,7 @@ const Client = () => {
       exampleSelectInput: "",
       exampleRadioInput: "",
       exampleCheckboxInput: [],
+      exampleDropdownMultiSelect: ["option1"],
     },
   });
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
@@ -120,6 +123,25 @@ const Client = () => {
               {...register("exampleCheckboxInput", {
                 required: "This field is required",
               })}
+            />
+          </article>
+
+          <article>
+            <DropdownMultiSelect
+              label="Dropdown Multi Select"
+              name="exampleDropdownMultiSelect"
+              items={[
+                { id: "item1", label: "Item 1" },
+                { id: "item2", label: "Item 2" },
+                { id: "item3", label: "Item 3" },
+              ]}
+              inputProps={{
+                ...register("exampleDropdownMultiSelect", {
+                  required: "This field is required",
+                }),
+              }}
+              message={errors.exampleDropdownMultiSelect?.message}
+              messageType="error"
             />
           </article>
 
