@@ -20,7 +20,7 @@ const SelectBase = ({
       <select
         {...otherProps}
         id={id}
-        className={componentClassName}
+        className={`${componentClassName}`}
         required={required}
       >
         {children}
