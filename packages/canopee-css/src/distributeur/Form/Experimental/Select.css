@@ -1,0 +1,62 @@
+@layer canopee {
+  select.af-input__input {
+    width: min-content;
+    min-width: 280px;
+    max-width: 100%;
+    height: 2.5rem;
+
+    /* Leave room for the icon: 1rem offset + 1.5rem icon + 0.5rem gap */
+    --input-padding-right: 3rem;
+
+    anchor-name: --af-select;
+    appearance: none;
+
+    &[aria-invalid="true"] {
+      --input-border-width: 2px;
+    }
+
+    &:active:not(:disabled),
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      --input-color: var(--text-color);
+    }
+  }
+
+  .af-input__select-icon {
+    z-index: 1;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 1rem;
+
+    /* Fallback for browsers without anchor positioning: overlap the select
+       by sharing its grid area inside .af-input__container */
+    grid-area: input;
+    justify-self: end;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    fill: var(--text-color);
+  }
+
+  @supports (anchor-scope: --af-select) {
+    .af-input__container {
+      /* Keep each select and its icon paired, even with several on the page */
+      anchor-scope: --af-select;
+    }
+
+    .af-input__select-icon {
+      position: absolute;
+
+      /* Align the icon right edge 1rem inside the select right border */
+      top: anchor(top);
+      right: calc(anchor(right) + 1rem);
+      bottom: anchor(bottom);
+      margin-right: 0;
+      margin-block: auto;
+      position-anchor: --af-select;
+    }
+  }
+
+  select.af-input__input:open + .af-input__select-icon {
+    transform: rotate(180deg);
+  }
+}

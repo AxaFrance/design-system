@@ -1,0 +1,124 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Primary,
+  Title,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./SelectInput.stories";
+
+<Meta of={Stories} title="Form/Experimental/SelectInput" />
+
+<Title />
+
+## ⚠️ Experimental Component
+
+This component is **experimental** and may change in future releases. You can however use it in your projects, but be aware that the API might change.
+We welcome your feedback and contributions to improve this component.
+
+## Playground
+
+<Primary />
+<Controls />
+
+## Options
+
+The options are passed as JSX through the `options` prop. This lets you render `<option>` elements and group them with `<optgroup>`.
+
+```tsx
+import { SelectInput } from "@axa-fr/canopee-react/distributeur/experimental";
+
+<SelectInput
+  label="Country"
+  options={
+    <>
+      <option value="fr">France</option>
+      <option value="be">Belgique</option>
+      <option value="it" disabled>
+        Italie
+      </option>
+    </>
+  }
+  onChange={onChange}
+/>;
+```
+
+### Grouped options
+
+<Canvas of={Stories.Grouped} />
+
+```tsx
+<SelectInput
+  label="Country"
+  options={
+    <>
+      <optgroup label="Europe">
+        <option value="fr">France</option>
+        <option value="es">Espagne</option>
+      </optgroup>
+      <optgroup label="Amérique">
+        <option value="us">États-Unis</option>
+      </optgroup>
+    </>
+  }
+/>
+```
+
+## Usage with form libraries
+
+This component can be used with form libraries like [react-hook-form](https://react-hook-form.com/) or [Formik](https://formik.org/). It supports controlled and uncontrolled usage patterns.
+
+You can pass a ref to the component to access the underlying select element, which is useful for form libraries that require direct access to the field.
+
+```tsx
+import { SelectInput } from "@axa-fr/canopee-react/distributeur/experimental";
+import { useForm } from "react-hook-form";
+
+const MyForm = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <SelectInput label="Country" options={options} {...register("country")} />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+## Customization examples
+
+### Disabled Select
+
+Set the `disabled` prop to true to disable the select field.
+
+<Canvas of={Stories.Disabled} />
+
+### Rich Label
+
+If you need to display a label with HTML content, you can pass a ReactNode in the `label` prop.
+
+<Canvas of={Stories.RichLabel} />
+
+### Error Message
+
+If you want to display an error message, you can use the `errorMessage` prop.
+This will render the error message below the select field, and apply the appropriate styles to indicate an error state. The select will also be marked as `aria-invalid`.
+
+<Canvas of={Stories.ErrorStory} />
+
+### Without placeholder
+
+By default, an empty option labelled `- Select -` is rendered first. You can customize it with the `placeholder` prop, or remove it entirely by passing `null`.
+
+<Canvas of={Stories.WithoutPlaceholder} />
+
+### With Unit
+
+If you want to display a unit next to the select field, you can use the `contentRight` prop. It can be a string or a ReactNode.
+
+<Canvas of={Stories.WithUnit} />
