@@ -79,6 +79,7 @@ export const ButtonMultiActions = ({
     <div className="af-button-multi-actions" ref={containerRef}>
       <Button
         ref={triggerRef}
+        id={id}
         variant="ghost"
         className={getClassName({
           baseClassName: "af-button-multi-actions__trigger",

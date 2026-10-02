@@ -1,4 +1,2 @@
-@layer canopee {
-  /* This file is kept for backward compatibility only. */
-  @import "../Message/Message.css";
-}
+/* This file is kept for backward compatibility only. */
+@import "../Message/Message.css";

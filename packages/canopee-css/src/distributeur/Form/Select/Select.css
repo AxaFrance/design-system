@@ -26,7 +26,7 @@
 
   .af-form__select--success::after,
   .af-form__select--valid::after {
-    font-family: var(--font-family-icon);
+    font-family: icons;
     color: var(--valid-element-color);
     content: "\EABA";
   }
@@ -53,7 +53,7 @@
   }
 
   .af-form__select--disabled .af-form__select-container {
-    background: var(--color-mercury);
+    background: var(--gray30);
     cursor: not-allowed;
   }
 
