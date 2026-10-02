@@ -14,7 +14,6 @@ import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 
 export type DropdownProps = ComponentPropsWithRef<"select"> & {
   id?: string;
-  classModifier?: string;
   label?: ItemLabelProps["children"];
   placeholder?: string;
   description?: string;

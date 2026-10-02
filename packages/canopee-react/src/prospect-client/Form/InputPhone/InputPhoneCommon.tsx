@@ -19,7 +19,6 @@ import { type OptionType } from "./InputPhone.types";
 import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
 
 export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
-  classModifier?: string;
   helper?: string;
   defaultCountry?: string;
   showSelect?: boolean;
@@ -51,7 +50,6 @@ type InputPhoneCommonProps = InputPhoneProps & {
 
 const InputPhoneCommon = ({
   className,
-  classModifier = "",
   helper,
   message,
   messageType = "error",
@@ -139,7 +137,6 @@ const InputPhoneCommon = ({
           className={["af-form__input-phone", className]
             .filter(Boolean)
             .join(" ")}
-          classModifier={classModifier}
           error={hasError ? messageType : undefined}
           warning={hasWarning ? "warning" : undefined}
           type="tel"

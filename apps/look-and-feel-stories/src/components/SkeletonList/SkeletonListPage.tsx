@@ -47,17 +47,17 @@ export const SkeletonListPage = ({
           <ContentItemDuo
             label="Infos complémentaires"
             value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-            classModifier="large"
+            size="large"
           />
           <ContentItemDuo
             label="Infos complémentaires"
             value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-            classModifier="large"
+            size="large"
           />
           <ContentItemDuo
             label="Infos complémentaires"
             value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-            classModifier="large"
+            size="large"
           />
         </List>
         <List>
