@@ -34,6 +34,16 @@ const formatValue = (token) => {
 // Tokens of the Typography collection, the only ones that change between mobile and desktop.
 const RESPONSIVE_TYPOGRAPHY = ['heading.**', 'body.**']
 
+// Custom media names of the current code, and the breakpoint primitive of each.
+// Prospect and client share the same breakpoints.
+const B2C_MEDIA = {
+  mobile: 'breakpoint.0',
+  tablet: 'breakpoint.668',
+  'desktop-small': 'breakpoint.1024',
+  'desktop-medium': 'breakpoint.1280',
+  'desktop-large': 'breakpoint.1600'
+}
+
 export default defineConfig({
   tokens: ['./design-tokens-canopee.resolver.json'],
   outDir: './generated/',
@@ -52,19 +62,11 @@ export default defineConfig({
         }
       ]
     })),
-    // Custom media names of the current code, and the breakpoint primitive of each.
+    // One custom media file per folder of dist.
     customMedia({
       targets: {
-        'prospect-client': {
-          filename: 'prospect-client/custom-media.css',
-          media: {
-            mobile: 'breakpoint.0',
-            tablet: 'breakpoint.668',
-            'desktop-small': 'breakpoint.1024',
-            'desktop-medium': 'breakpoint.1280',
-            'desktop-large': 'breakpoint.1600'
-          }
-        },
+        prospect: { filename: 'prospect/custom-media.css', media: B2C_MEDIA },
+        client: { filename: 'client/custom-media.css', media: B2C_MEDIA },
         distributeur: {
           filename: 'distributeur/custom-media.css',
           media: {
