@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
+      issues: write
 
     steps:
       - name: Checkout
@@ -32,6 +32,11 @@ jobs:
         run: |
           which gh || (apt-get update && apt-get install -y gh)
           gh version
+
+      - name: Setup gh-aw CLI
+        uses: github/gh-aw/actions/setup-cli@v0.89.21
+        with:
+          version: v0.89.21
 
       - name: Compile agentic workflows
         run: |
@@ -47,7 +52,7 @@ jobs:
       - name: Check for changes
         id: check
         run: |
-          if git diff --quiet .github/workflows/*.lock.yml; then
+          if [[ -z "$(git status --porcelain -- .github/workflows/*.lock.yml)" ]]; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
