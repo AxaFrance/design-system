@@ -51,13 +51,17 @@
       outline-offset: 3px;
     }
 
-    &:disabled {
+    &.country-code-select__control--is-disabled {
       border: 1px solid var(--select-border-color);
       color: var(--select-color);
       cursor: not-allowed;
     }
 
-    &:not(:disabled):is(:hover, :active, :focus-within) {
+    &:not(.country-code-select__control--is-disabled):is(
+        :hover,
+        :active,
+        :focus-within
+      ) {
       border: 1px solid var(--select-border-color);
       box-shadow: 0 0 0 1px var(--select-border-color) inset;
     }
