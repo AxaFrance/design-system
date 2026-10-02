@@ -1,11 +1,11 @@
 import classNames from "classnames";
-import {
-  type ComponentPropsWithRef,
-  type PropsWithChildren,
-  type ReactNode,
-} from "react";
+import { type ComponentPropsWithRef, type PropsWithChildren } from "react";
 
 import "@axa-fr/canopee-css/distributeur/Button/Button.css";
+import {
+  ClickableGhost,
+  type ClickableComponentProps,
+} from "../ClickableGhost";
 
 export type ButtonVariant =
   | "primary"
@@ -15,14 +15,13 @@ export type ButtonVariant =
   | "ghost"
   | "ghost-reverse";
 
-type ButtonProps = PropsWithChildren<
-  {
-    variant?: ButtonVariant;
-    small?: boolean;
-    leftIcon?: ReactNode;
-    rightIcon?: ReactNode;
-  } & ComponentPropsWithRef<"button">
->;
+type ButtonProps = ClickableComponentProps &
+  PropsWithChildren<
+    {
+      variant?: ButtonVariant;
+      small?: boolean;
+    } & ComponentPropsWithRef<"button">
+  >;
 
 const DEFAULT_CLASS_NAME = "af-btn";
 
@@ -34,21 +33,37 @@ export const Button = ({
   className,
   children,
   ...props
-}: ButtonProps) => (
-  <button
-    type="button"
-    className={classNames(
-      DEFAULT_CLASS_NAME,
-      variant !== "primary" && `${DEFAULT_CLASS_NAME}--${variant}`,
-      small && `${DEFAULT_CLASS_NAME}--small`,
-      className,
-    )}
-    {...props}
-  >
-    {leftIcon}
-    {children}
-    {rightIcon}
-  </button>
-);
+}: ButtonProps) => {
+  if (variant === "ghost" || variant === "ghost-reverse") {
+    return (
+      <ClickableGhost
+        component="button"
+        type="button"
+        variant={variant === "ghost-reverse" ? "reverse" : "ghost"}
+        {...props}
+      >
+        {leftIcon}
+        {children}
+        {rightIcon}
+      </ClickableGhost>
+    );
+  }
+  return (
+    <button
+      type="button"
+      className={classNames(
+        DEFAULT_CLASS_NAME,
+        variant !== "primary" && `${DEFAULT_CLASS_NAME}--${variant}`,
+        small && `${DEFAULT_CLASS_NAME}--small`,
+        className,
+      )}
+      {...props}
+    >
+      {leftIcon}
+      {children}
+      {rightIcon}
+    </button>
+  );
+};
 
 Button.displayName = "Button";
