@@ -4,6 +4,7 @@ import {
   type ComponentType,
   type ReactNode,
   useCallback,
+  useId,
   useRef,
   useState,
 } from "react";
@@ -44,6 +45,9 @@ export const TabBarCommon = ({
     preSelectedTabIndex || 0,
   );
   const buttonRefs = useRef<HTMLButtonElement[]>([]);
+  const baseId = useId();
+  const getTabId = (index: number) => `${baseId}-tab-${index}`;
+  const getTabPanelId = (index: number) => `${baseId}-tabpanel-${index}`;
   const tablistRef = useRef<HTMLDivElement>(null);
   const totalTabs = items.length;
 
@@ -106,9 +110,9 @@ export const TabBarCommon = ({
         {items.map(({ title }, index) => (
           <ItemTabBarComponent
             key={`tab-${title}`}
-            id={`tab-${index}`}
+            id={getTabId(index)}
             aria-selected={isActive(index)}
-            aria-controls={`tabpanel-${index}`}
+            aria-controls={getTabPanelId(index)}
             onKeyDown={onChangeTab}
             onClick={() => handleClickFn(index)}
             ref={(element: HTMLButtonElement) => {
@@ -125,8 +129,8 @@ export const TabBarCommon = ({
           key={`tabpanel-${item.title}`}
           role="tabpanel"
           aria-hidden={!isActive(index)}
-          id={`tabpanel-${index}`}
-          aria-labelledby={`tab-${index}`}
+          id={getTabPanelId(index)}
+          aria-labelledby={getTabId(index)}
         >
           {item.content}
         </div>
