@@ -15,21 +15,22 @@ Il propose d'utiliser les deux designs systems principaux :
 Table des matières :
 
 - [AXA France Design System](#axa-france-design-system)
-    - [Migration depuis @axa-fr/react-toolkit](#migration-depuis-axa-frreact-toolkit)
-    - [Packages](#packages)
-        - [B2B - Univers Collab-Distrib](#b2b---univers-collab-distrib)
-        - [B2C - Univers Prospect](#b2c---univers-prospect)
-        - [B2C - Univers Client](#b2c---univers-client)
-    - [Build status](#build-status)
-        - [Sonarcloud Quality metrics](#sonarcloud-quality-metrics)
-        - [Composants Collab-Distrib](#composants-collab-distrib)
-        - [Composants Client et Prospect](#composants-client-et-prospect)
-    - [Structure du projet](#structure-du-projet)
-    - [Démarrer le projet](#démarrer-le-projet)
-    - [Utilisation des icones](#utilisation-des-icones)
-    - [Utilisation des CSS variables](#utilisation-des-css-variables)
-    - [Utilisation avec Copilot ou Claude](#utilisation-avec-copilot-ou-claude)
-        - [Comment faire ?](#comment-faire-)
+  - [Migration depuis @axa-fr/react-toolkit](#migration-depuis-axa-frreact-toolkit)
+  - [Packages](#packages)
+    - [B2B - Univers Collab-Distrib](#b2b---univers-collab-distrib)
+    - [B2C - Univers Prospect](#b2c---univers-prospect)
+    - [B2C - Univers Client](#b2c---univers-client)
+  - [Build status](#build-status)
+    - [Sonarcloud Quality metrics](#sonarcloud-quality-metrics)
+    - [Composants Collab-Distrib](#composants-collab-distrib)
+    - [Composants Client et Prospect](#composants-client-et-prospect)
+  - [Structure du projet](#structure-du-projet)
+  - [Démarrer le projet](#démarrer-le-projet)
+  - [Utilisation des icones](#utilisation-des-icones)
+  - [Utilisation des CSS variables](#utilisation-des-css-variables)
+  - [Utilisation avec Copilot ou Claude](#utilisation-avec-copilot-ou-claude)
+    - [GitHub Agentic Workflows](#github-agentic-workflows)
+      - [Comment faire ?](#comment-faire-)
 
 ## Migration depuis @axa-fr/react-toolkit
 
@@ -80,7 +81,7 @@ npm install @axa-fr/canopee-react@next @axa-fr/canopee-css@next
 Utilisation des nouveaux packages :
 
 ```javascript
-import { Button } from '@axa-fr/canopee-react/distributeur';
+import { Button } from "@axa-fr/canopee-react/distributeur";
 ```
 
 Only CSS :
@@ -106,7 +107,7 @@ import '@axa-fr/canopee-css/distributeur/button.css';
 **Utilisation des nouveaux packages :**
 
 ```javascript
-import { Button } from '@axa-fr/canopee-react/prospect';
+import { Button } from "@axa-fr/canopee-react/prospect";
 ```
 
 Only CSS :
@@ -132,7 +133,7 @@ import '@axa-fr/canopee-css/client/buttonApollo.css';
 **Utilisation des nouveaux packages :**
 
 ```javascript
-import { Button } from '@axa-fr/canopee-react/client';
+import { Button } from "@axa-fr/canopee-react/client";
 ```
 
 Only CSS :
@@ -210,11 +211,11 @@ vos propres svg fonctionnera.
 Exemple :
 
 ```tsx
-import home from '@material-symbols/svg-400/outlined/home.svg';
-import { Svg } from '@axa-fr/canopee-react/distributeur';
+import home from "@material-symbols/svg-400/outlined/home.svg";
+import { Svg } from "@axa-fr/canopee-react/distributeur";
 
 const App = () => {
-    return <Svg src={home} />;
+  return <Svg src={home} />;
 };
 ```
 
@@ -225,19 +226,19 @@ Il suffit d'importer le fichier des tokens dans votre application.
 Pour Univers Client :
 
 ```typescript
-import '@axa-fr/canopee-css/client/common/tokens.css';
+import "@axa-fr/canopee-css/client/common/tokens.css";
 ```
 
 Pour Univers Prospect :
 
 ```typescript
-import '@axa-fr/canopee-css/prospect/common/tokens.css';
+import "@axa-fr/canopee-css/prospect/common/tokens.css";
 ```
 
 Pour Univers Collab-Distrib :
 
 ```typescript
-import '@axa-fr/canopee-css/distributeur/common/tokens.css';
+import "@axa-fr/canopee-css/distributeur/common/tokens.css";
 ```
 
 ## Utilisation avec Copilot ou Claude
@@ -270,6 +271,10 @@ Ces deux serveurs couvrent :
 - `univers-distributeur-et-collaborateur` : univers B2B Distributeur/Collaborateur
 
 Les skills plugins exploitent ensuite ce workflow : `search-pages` (ou `list-pages`) puis `get-page` avant toute génération de code UI.
+
+### GitHub Agentic Workflows
+
+Pour découvrir l’utilisation de gh-aw dans ce dépôt, consultez les [guidelines GitHub Agentic Workflows](./docs/guidelines/agentic-workflows.md).
 
 ### Comment faire ?
 
