@@ -62,37 +62,18 @@
   }
 
   .af-apollo-accordion--primary {
-    --summary-areas: "icon title arrow";
+    --summary-areas: "icon title arrow" "icon tag-container arrow"
+      "icon info1 arrow" "icon info2 arrow";
     --summary-columns: min-content 1fr min-content;
     --accordion-info1-font-size: var(--rem-14);
 
-    .af-apollo-accordion__summary .af-accordion__date {
-      display: none;
+    &:has(.af-accordion__subtitle) {
+      --summary-areas: "icon title arrow" "icon subtitle arrow"
+        "icon tag-container arrow" "icon info1 arrow" "icon info2 arrow";
     }
 
-    @media (width <= 1023px) {
-      &:has(.af-accordion__subtitle) {
-        --summary-areas: "icon title arrow" "icon subtitle arrow";
-      }
-
-      &:has(.af-accordion__subtitle):has(.af-accordion__tag-container) {
-        --summary-areas: "icon title arrow" "icon subtitle arrow"
-          "icon tag-container arrow";
-      }
-
-      &:has(.af-accordion__subtitle):has(.af-accordion__tag-container):has(
-          .af-accordion__info1
-        ) {
-        --summary-areas: "icon title arrow" "icon subtitle arrow"
-          "icon tag-container arrow" "icon info1 arrow";
-      }
-
-      &:has(.af-accordion__subtitle):has(.af-accordion__tag-container):has(
-          .af-accordion__info1
-        ):has(.af-accordion__info2) {
-        --summary-areas: "icon title arrow" "icon subtitle arrow"
-          "icon tag-container arrow" "icon info1 arrow" "icon info2 arrow";
-      }
+    .af-apollo-accordion__summary .af-accordion__date {
+      display: none;
     }
 
     @media (--desktop-small) {
@@ -100,6 +81,11 @@
         "icon subtitle tag-container info1 info2 arrow";
       --summary-columns: min-content 1fr 1fr 1fr max-content max-content;
       --accordion-info1-font-size: var(--rem-16);
+
+      &:has(.af-accordion__subtitle) {
+        --summary-areas: "icon title tag-container info1 info2 arrow"
+          "icon subtitle tag-container info1 info2 arrow";
+      }
     }
   }
 
