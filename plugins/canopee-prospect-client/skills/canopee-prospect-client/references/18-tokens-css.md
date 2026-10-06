@@ -122,18 +122,18 @@ Si tu n'utilises que les CSS sans les composants React, chaque composant expose 
 
 ```css
 /* Prospect */
-@import "@axa-fr/canopee-css/prospect/Button/buttonApollo.css";
-@import "@axa-fr/canopee-css/prospect/Message/messageApollo.css";
+@import "@axa-fr/canopee-css/prospect/Button/ButtonApollo.css";
+@import "@axa-fr/canopee-css/prospect/Message/MessageApollo.css";
 
 /* Client */
-@import "@axa-fr/canopee-css/client/Button/buttonLF.css";
-@import "@axa-fr/canopee-css/client/Message/messageLF.css";
+@import "@axa-fr/canopee-css/client/Button/ButtonLF.css";
+@import "@axa-fr/canopee-css/client/Message/MessageLF.css";
 ```
 
 Ou importer tous les styles d'un thème d'un coup :
 
 ```css
-@import "@axa-fr/canopee-css/prospect.css";
+@import "@axa-fr/canopee-css/prospect/prospect.css";
 /* ou */
-@import "@axa-fr/canopee-css/client.css";
+@import "@axa-fr/canopee-css/client/client.css";
 ```

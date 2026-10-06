@@ -87,7 +87,7 @@ import { Button } from "@axa-fr/canopee-react/distributeur";
 Only CSS :
 
 ```css
-import '@axa-fr/canopee-css/distributeur/button.css';
+@import "@axa-fr/canopee-css/distributeur/Button/Button.css";
 ```
 
 ### <abbr title="Business to client">B2C</abbr> - Univers Prospect
@@ -113,7 +113,7 @@ import { Button } from "@axa-fr/canopee-react/prospect";
 Only CSS :
 
 ```css
-import '@axa-fr/canopee-css/client/buttonApollo.css';
+@import "@axa-fr/canopee-css/prospect/Button/ButtonApollo.css";
 ```
 
 ### <abbr title="Business to client">B2C</abbr> - Univers Client
@@ -139,7 +139,7 @@ import { Button } from "@axa-fr/canopee-react/client";
 Only CSS :
 
 ```css
-import '@axa-fr/canopee-css/client/buttonLF.css';
+@import "@axa-fr/canopee-css/client/Button/ButtonLF.css";
 ```
 
 ## Build status

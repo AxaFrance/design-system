@@ -86,10 +86,10 @@ Il est possible de n'importer que les styles CSS d'un composant spécifique :
 
 ```css
 /* Prospect */
-@import '@axa-fr/canopee-css/prospect/Button/buttonApollo.css';
+@import '@axa-fr/canopee-css/prospect/Button/ButtonApollo.css';
 
 /* Client */
-@import '@axa-fr/canopee-css/client/Button/buttonLF.css';
+@import '@axa-fr/canopee-css/client/Button/ButtonLF.css';
 ```
 
 ## Typescript

@@ -20,7 +20,7 @@
   }
 
   .af-tag--success {
-    --tag-bg-color: var(--green-12);
+    --tag-bg-color: var(--green-040);
     --tag-text-color: var(--green-1000);
     --tag-border-color: var(--green-1000);
   }

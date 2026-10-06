@@ -15,7 +15,7 @@
       var(--card-message-border-color);
 
     @media (--desktop-small) {
-      --card-font-size: var(--font-size-base);
+      --card-font-size: var(--rem-16);
     }
   }
 
