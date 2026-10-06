@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
     forks: ["*"]
 engine: copilot
-model: gpt-5.6-luna
+model: auto
 permissions:
   contents: read
   pull-requests: read
