@@ -8,7 +8,7 @@
       "label input unit"
       ". helper-message helper-message"
       ". error-message error-message";
-    grid-template-columns: 17rem auto auto;
+    grid-template-columns: 17rem auto 1fr;
     align-items: center;
     column-gap: 0.5rem;
 
