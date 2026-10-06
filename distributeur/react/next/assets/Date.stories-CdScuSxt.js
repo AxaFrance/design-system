@@ -1,4 +1,0 @@
-import{n as e}from"./chunk-DnJy8xQt.js";import{n as t,t as n}from"./iframe-CjYPSWt0.js";import{pt as r,t as i}from"./distributeur-CBX4AbFh.js";var a,o,s,c,l=e((()=>{i(),n(),{fn:a}=__STORYBOOK_MODULE_TEST__,o=t.meta({title:`Components/Form/Input/Date`,component:r,argTypes:{onChange:{action:`onChange`}},args:{onChange:a(),name:`birthDate`,id:`uniqueid`,value:new Date(`01/01/2024`)}}),s=o.story({name:`Date`,tags:[`Form`,`Input`]}),s.input.parameters={...s.input.parameters,docs:{...s.input.parameters?.docs,source:{originalSource:`meta.story({
-  name: "Date",
-  tags: ["Form", "Input"]
-})`,...s.input.parameters?.docs?.source}}},c=[`DateStory`]}));l();export{s as DateStory,c as __namedExportsOrder,o as default,l as t};
