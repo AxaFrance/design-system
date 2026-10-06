@@ -2,9 +2,9 @@
 name: pr-review
 description: Review pull requests for quality and issues and summarize repository status
 on:
-  schedule: daily
+  # schedule: daily
   pull_request:
-    types: [ready_for_review]
+    types: [opened, ready_for_review]
   workflow_dispatch:
 permissions:
   contents: read
