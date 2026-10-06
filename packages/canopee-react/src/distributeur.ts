@@ -140,9 +140,9 @@ export {
   CardButton,
   type CardButtonProps,
 } from "./distributeur/CardButton/CardButton";
+export type { ClickableComponentProps } from "./distributeur/ClickableGhost";
 
 export { BaseCard, type BaseCardProps } from "./distributeur/Card/BaseCard";
-
 export {
   ItemFormHelper,
   type ItemFormHelperProps,

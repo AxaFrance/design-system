@@ -1,17 +1,19 @@
 import classnames from "classnames";
-import { type ComponentPropsWithRef, type ReactElement } from "react";
-import { Svg } from "../Svg";
+import { type AnchorHTMLAttributes } from "react";
 import { linkClassName } from "./linkClassName";
+import {
+  ClickableGhost,
+  type ClickableComponentProps,
+} from "../ClickableGhost";
 
-type AnchorLinkProps = {
-  leftIcon?: ReactElement<typeof Svg>;
-  rightIcon?: ReactElement<typeof Svg>;
+type AnchorLinkProps = ClickableComponentProps & {
   className?: string;
   disabled?: boolean;
   variant?: "default" | "reverse";
 };
 
-type LinkComponentProps = ComponentPropsWithRef<"a"> & AnchorLinkProps;
+type LinkComponentProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  AnchorLinkProps;
 
 const LinkAnchor = ({
   className,
@@ -29,7 +31,8 @@ const LinkAnchor = ({
   });
 
   return (
-    <a
+    <ClickableGhost
+      component="a"
       className={finalClassName}
       rel={target === "_blank" ? "noopener noreferrer" : rel}
       aria-disabled={disabled ?? restProps["aria-disabled"]}
@@ -39,7 +42,7 @@ const LinkAnchor = ({
       {leftIcon}
       {children}
       {rightIcon}
-    </a>
+    </ClickableGhost>
   );
 };
 

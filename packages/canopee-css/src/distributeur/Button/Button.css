@@ -98,40 +98,6 @@
     &.af-btn--small {
       --button-padding-vertical: calc(10rem / 16);
     }
-
-    &.af-btn--ghost {
-      --button-color-label: var(--axablue90);
-    }
-
-    &.af-btn--ghost-reverse {
-      --button-color-label: var(--white);
-    }
-
-    &.af-btn--ghost,
-    &.af-btn--ghost-reverse {
-      --button-padding-vertical: 0;
-      --button-padding-horizontal: 0;
-      --button-color-background: transparent;
-
-      border: unset;
-      gap: calc(4rem / 16);
-      font-weight: 400;
-      text-decoration: underline;
-      box-shadow: unset;
-
-      &:hover {
-        --button-color-background: transparent;
-
-        text-decoration: none;
-      }
-
-      &:disabled {
-        --button-color-background: transparent;
-        --button-color-label: var(--gray40);
-
-        text-decoration: underline;
-      }
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
