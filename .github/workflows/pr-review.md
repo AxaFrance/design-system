@@ -5,6 +5,7 @@ on:
   schedule: daily
   pull_request:
     types: [ready_for_review]
+  workflow_dispatch:
 permissions:
   contents: read
   issues: read
