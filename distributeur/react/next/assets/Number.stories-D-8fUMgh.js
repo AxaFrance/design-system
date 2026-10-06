@@ -1,0 +1,4 @@
+import{n as e,r as t}from"./chunk-DnJy8xQt.js";import{n,t as r}from"./iframe-CjYPSWt0.js";import{at as i,t as a}from"./distributeur-CBX4AbFh.js";var o=t({NumberStory:()=>l,__namedExportsOrder:()=>u,default:()=>c}),s,c,l,u,d=e((()=>{a(),r(),{fn:s}=__STORYBOOK_MODULE_TEST__,c=n.meta({title:`Components/Form/Input/Number`,argTypes:{onChange:{action:`onChange`}},args:{onChange:s(),value:5,placeholder:`Your name`,name:`name`,id:`nameid`,readOnly:!1,disabled:!1,autoFocus:!1,className:``,"aria-disabled":!1},component:i}),l=c.story({name:`Number`,args:{}}),l.input.parameters={...l.input.parameters,docs:{...l.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "Number",
+  args: {}
+})`,...l.input.parameters?.docs?.source}}},u=[`NumberStory`]}));d();export{l as NumberStory,u as __namedExportsOrder,c as default,d as n,o as t};
