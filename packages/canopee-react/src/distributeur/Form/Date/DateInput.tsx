@@ -9,7 +9,6 @@ type Props = ConsumerFieldProps &
 
 const DateInput = ({ children, ...otherProps }: Props) => (
   <Field
-    fieldClassNameSuffix="date"
     {...otherProps}
     renderInput={({ id, inputClassName, ariaInvalid, errorId, ...props }) => (
       <>

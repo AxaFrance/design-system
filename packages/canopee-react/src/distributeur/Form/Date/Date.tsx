@@ -24,7 +24,7 @@ const Date = ({
 
   return (
     <input
-      className={componentClassName}
+      className={`${componentClassName} af-form__input-text`}
       type="date"
       defaultValue={formatDateInputValue(defaultValue)}
       value={formatDateInputValue(value)}
