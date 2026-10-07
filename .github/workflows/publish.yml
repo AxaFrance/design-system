@@ -113,3 +113,40 @@ jobs:
           publish_dir: ./${{ matrix.storybook.publish_dir }}
           destination_dir: ${{ matrix.storybook.destination_dir }}/${{
             needs.publish.outputs.version }}
+
+  deploy-presentations:
+    needs:
+      - publish
+      - deploy-storybooks
+    runs-on: ubuntu-latest
+    name: Deploy presentations to gh-pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Checkout current Pages content
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: gh-pages
+          path: pages-site
+          persist-credentials: false
+
+      - name: Build merged Pages site
+        run: |
+          mkdir -p pages-output
+          tar --exclude=.git -cf - -C pages-site . | tar -xf - -C pages-output
+          rm -f pages-output/index.html
+          if [[ -d docs/presentation ]]; then
+            cp -R docs/presentation/. pages-output/
+          fi
+          if [[ ! -f pages-output/canopee-design-system.html ]]; then
+            echo "::error::docs/presentation/canopee-design-system.html is required for the GitHub Pages homepage"
+            exit 1
+          fi
+          cp pages-output/canopee-design-system.html pages-output/index.html
+
+      - name: Publish merged Pages content
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./pages-output
