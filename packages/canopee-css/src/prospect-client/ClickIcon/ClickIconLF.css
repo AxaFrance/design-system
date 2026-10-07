@@ -18,27 +18,6 @@
       &.af-click-icon--ghost {
         --click-icon-svg-fill: var(--blue-800);
       }
-
-      &:has(.af-icon--error) {
-        --click-icon-background-color: var(--red-alert-100);
-
-        &:hover {
-          --click-icon-background-color: var(--red-alert-200);
-        }
-
-        &:active {
-          --click-icon-background-color: var(--red-alert-900);
-          --click-icon-svg-fill: var(--white-1000);
-        }
-
-        &.af-click-icon--ghost:hover {
-          --click-icon-svg-fill: var(--red-alert-1200);
-        }
-
-        &.af-click-icon--ghost:active {
-          --click-icon-svg-fill: var(--red-alert-800);
-        }
-      }
     }
 
     &:disabled {
