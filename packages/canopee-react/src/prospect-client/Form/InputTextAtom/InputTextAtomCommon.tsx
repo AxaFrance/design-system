@@ -4,7 +4,6 @@ import { getClassName } from "../../utilities/getClassName";
 
 type InputTextAtomProps = ComponentPropsWithRef<"input"> & {
   unit?: ReactNode;
-  classModifier?: string;
   error?: string;
   warning?: string;
   idMessage?: string;
@@ -14,7 +13,6 @@ type InputTextAtomProps = ComponentPropsWithRef<"input"> & {
 const InputTextAtom = ({
   unit,
   className,
-  classModifier = "",
   error,
   warning,
   required,
@@ -28,7 +26,6 @@ const InputTextAtom = ({
   const componentClassName = getClassName({
     baseClassName: "af-form__input-text",
     modifiers: [
-      classModifier,
       error || ariaErrormessage ? "error" : "",
       !error && !ariaErrormessage && warning ? "warning" : "",
     ],

@@ -18,7 +18,6 @@ export type InputDateProps = Omit<
   ComponentPropsWithRef<"input">,
   "value" | "min" | "max"
 > & {
-  classModifier?: string;
   defaultValue?: Date | string;
   value?: Date | string;
   min?: InputDateAtomProps["min"];
@@ -44,7 +43,6 @@ type InputDateCommonProps = InputDateProps & {
 
 const InputDateCommon = ({
   className,
-  classModifier = "",
   helper,
   message,
   messageType = "error",
@@ -85,7 +83,7 @@ const InputDateCommon = ({
 
   const componentClassName = getClassName({
     baseClassName: "af-form__input-date",
-    modifiers: [...classModifier.split(" "), hasWarning && "warning"],
+    modifiers: [hasWarning && "warning"],
     className,
   });
 
