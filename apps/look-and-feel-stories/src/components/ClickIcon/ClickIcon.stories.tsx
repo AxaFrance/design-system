@@ -13,7 +13,7 @@ const meta: Meta<typeof ClickIcon> = {
       defaultValue: "Click icon",
     },
     iconVariant: {
-      options: ["primary", "disabled"],
+      options: ["primary", "disabled", "error"],
       control: { type: "select" },
     },
     size: {
