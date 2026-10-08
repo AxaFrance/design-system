@@ -44,6 +44,12 @@ describe("<InputText />", () => {
       screen.getByText("description");
       screen.getByText("unit");
     });
+
+    it("uses a blank placeholder when none is provided", () => {
+      render(<InputText label="foo" />);
+
+      expect(screen.getByLabelText("foo")).toHaveAttribute("placeholder", " ");
+    });
   });
 
   describe("A11Y", () => {
