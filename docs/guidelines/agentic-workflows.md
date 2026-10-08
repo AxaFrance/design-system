@@ -55,6 +55,45 @@ gh aw run <identifiant> --ref <branche>
 
 La branche doit contenir la source et le lock compilé, et les règles du dépôt doivent autoriser l’exécution. Les commandes `gh aw logs <identifiant>` et `gh aw audit <id-du-run>` permettent de consulter les résultats et d’examiner une exécution.
 
+### Dry-run du triage de pertinence des issues
+
+Le workflow `issue-relevance-triage` est livré initialement avec `safe-outputs.staged: true`. Le dry-run doit être exécuté par GitHub Actions depuis une branche publiée contenant à la fois la source Markdown et son lock généré ; une simulation locale ne reproduit pas correctement le checkout, les permissions, le cache ou le moteur Agentic Workflow.
+
+Préparer l’exécution :
+
+```sh
+gh auth status
+gh aw compile .github/workflows/issue-relevance-triage.md
+gh aw run issue-relevance-triage --ref <branche-publiee>
+```
+
+Les secrets optionnels suivants peuvent être configurés par les mainteneurs pour activer la vérification Zeroheight sans écrire de credential dans le workflow. Ils sont utilisés comme tokens Bearer sur l’endpoint stable `https://mcp.zeroheight.com/mcp` :
+
+- `ZEROHEIGHT_DISTRIBUTEUR_MCP_TOKEN`
+- `ZEROHEIGHT_PROSPECT_CLIENT_MCP_TOKEN`
+
+Sans ces secrets, le workflow doit poursuivre l’analyse du code avec une confiance réduite pour les issues UI et ne doit jamais conclure à l’obsolescence sur cette seule absence.
+
+Inspecter le run :
+
+```sh
+gh run list --workflow issue-relevance-triage.lock.yml --limit 3
+gh aw logs issue-relevance-triage
+gh aw audit <run-id>
+```
+
+Pendant le dry-run, vérifier que :
+
+- cinq issues au maximum sont sélectionnées ;
+- les issues protégées, assignées, associées à un milestone ou à une pull request ouverte sont ignorées ;
+- les conclusions `likely-obsolete` citent au moins deux preuves indépendantes ;
+- les tests, lint ou builds ciblés utilisent uniquement les scripts existants ;
+- les labels et commentaires apparaissent comme prévisualisations dans le résumé Actions ;
+- aucune issue ne reçoit réellement le label `stale-candidate`, aucun commentaire et aucun changement d’état ;
+- une même empreinte produit `noop` et qu’une relance n’est envisagée qu’après 60 jours sans réponse humaine.
+
+Conserver le mode staged jusqu’à la revue d’au moins un run manuel. La promotion vers les sorties visibles nécessite une modification explicite de `safe-outputs.staged`, une nouvelle compilation et une revue du lock file.
+
 ## Sécurité et authentification
 
 - Gardez le job agent en lecture seule; routez les écritures GitHub via les `safe-outputs` adaptés.
