@@ -105,6 +105,23 @@ If your application uses the deprecated `Select.options` prop, render native
 
 `SelectInput.options` is not affected by this change.
 
+For the removed Distributeur select aliases, use native `option` children so
+the replacement keeps the same field semantics:
+
+```tsx
+// Before
+<SelectDefaultWithOptions options={options} />
+
+// After
+<SelectDefault>
+  {options.map((option) => (
+    <option key={option.value} value={option.value}>
+      {option.label}
+    </option>
+  ))}
+</SelectDefault>
+```
+
 #### Distributeur class modifiers and deprecated props
 
 The `classModifier` and `classModifiers` APIs have been removed from
@@ -131,26 +148,172 @@ The following deprecated component aliases are no longer exported:
 | `DateInput` | `InputDate` |
 | `TextInput` | `InputText` |
 | `CardRadio` | `CardRadioGroup` |
-| `CardRadioOption` | Use the `options` API of `CardRadioGroup`. |
+| `CardRadioOption` | `CardRadio`, used through the `options` API of `CardRadioGroup`. |
 
 Update imports and component usage in applications that use one of these
 aliases.
 
-#### Deprecated props replaced by the current API
+When the replacement keeps the same responsibility, migrate the import and
+then compare the generated markup and styling in the affected story:
 
-Deprecated props available in `1.8.0` have been removed from the affected
-components. Apply the following migrations:
+```tsx
+// Before
+import {
+  CheckboxCard,
+  DateInput,
+  TextInput,
+} from "@axa-fr/canopee-react/client";
+
+// After
+import {
+  CardCheckbox,
+  InputDate,
+  InputText,
+} from "@axa-fr/canopee-react/client";
+```
+
+#### Migrating replacement components without visual regressions
+
+Some replacements split responsibilities that were previously combined in one
+component. Preserve both the data contract and the visual layout when making
+the change. In particular, the old `CardRadio` group API must be migrated to
+`CardRadioGroup`; the individual option is now `CardRadio`.
+
+`CardRadioGroup` also changes its implicit layout defaults. In v1.8.0, the
+group defaulted to `type="vertical"` and `position="column"`, even when the
+application did not pass a `type` prop. In v2.0.0, `type` is removed,
+`cardStyle` controls each card orientation, and `position` controls the group
+layout. When neither replacement prop is provided, the group no longer derives
+the v1.8.0 defaults and may render its cards in a different arrangement.
+
+Do not leave both replacement props implicit during the migration. For code
+that relied on the v1.8.0 defaults without passing `type`, migrate this:
+
+```tsx
+// v1.8.0: type was omitted, but its vertical default was still applied
+<CardRadioGroup label="Choose a city" options={options} />
+```
+
+to this, which preserves the v1.8.0 layout explicitly:
+
+```tsx
+<CardRadioGroup
+  cardStyle="vertical"
+  position="column"
+  label="Choose a city"
+  options={options}
+/>
+```
+
+Do not confuse the two props: `cardStyle` is forwarded as `position="vertical"
+| "horizontal"` to each `CardRadio`, while `position="column" | "line"`
+controls the layout container of the group.
+
+The individual option also changes from `CardRadioOption` to `CardRadio`.
+Rename its `type` prop to `position` and replace `isInvalid` with
+`variant="error"` or `variant="warning"`:
+
+```tsx
+// Before
+<CardRadioOption
+  type="horizontal"
+  isInvalid
+  label="Paris"
+  value="paris"
+/>
+
+// After
+<CardRadio
+  position="horizontal"
+  variant="error"
+  label="Paris"
+  value="paris"
+/>
+```
+
+For a group of horizontal cards displayed on one line:
+
+Before:
+
+```tsx
+import { CardRadio } from "@axa-fr/canopee-react/client";
+
+<CardRadio
+  labelGroup="Choose a city"
+  descriptionGroup="Select one option"
+  type="horizontal"
+  value={selectedCity}
+  error="Choose a city"
+  options={options}
+  onChange={handleChange}
+/>
+```
+
+After:
+
+```tsx
+import { CardRadioGroup } from "@axa-fr/canopee-react/client";
+
+<CardRadioGroup
+  label="Choose a city"
+  description="Select one option"
+  cardStyle="horizontal"
+  position="line"
+  message="Choose a city"
+  messageType="error"
+  options={options.map((option) => ({
+    ...option,
+    checked: option.value === selectedCity,
+  }))}
+  onChange={handleChange}
+/>
+```
+
+Use `cardStyle="vertical"` with `position="column"` for the equivalent
+v1.8.0 card orientation and group layout. The `position` inside each option is
+also available when an option needs an individual orientation, and the option
+component is now named `CardRadio`:
+
+```tsx
+const options = [
+  {
+    label: "Paris",
+    value: "paris",
+    position: "horizontal",
+    description: "France",
+  },
+];
+```
+
+Map the former invalid state to `variant="error"` on an individual
+`CardRadio`, or use the group's `message` and `messageType` for group-level
+validation. After migration, compare the card orientation, group layout,
+selected value, and error presentation with the v1.8.0 rendering.
+
+#### API migration reference
+
+Use this table as a quick reference. The examples below explain the
+structural migrations and the checks needed to preserve behavior or visual
+appearance.
 
 | Component | Removed prop | Replacement |
 | --- | --- | --- |
 | `Accordion` | `isOpen` | `open` |
+| `CardRadioGroup` | `type` | `cardStyle` for card orientation and `position` for group layout |
+| `CardRadioGroup` | `labelGroup` | `label` |
+| `CardRadioGroup` | `descriptionGroup` | `description` |
+| `CardRadioGroup` | `isRequired` | `required` |
+| `CardRadioGroup` | `value` | Set `checked` on the matching item in `options` |
+| `CardRadioGroup` | `error` | `message` and `messageType` |
+| `CardRadioOption` | `type` | `CardRadio.position` |
+| `CardRadioOption` | `isInvalid` | `CardRadio.variant` |
 | `ContentItemMono` | `icon` | `iconProps` |
 | `CardCheckbox` | `labelGroup` | `label` |
 | `CardCheckbox` | `descriptionGroup` | `description` |
 | `CardCheckbox` | `isRequired` | `required` |
 | `CardCheckbox` | `error` | `message` and `messageType` |
 | `Checkbox` | `errorId` | `aria-errormessage` |
-| `Checkbox` | `hasError` | `aria-invalid` |
+| `Checkbox` | `hasError` | `variant="error"` or `variant="warning"` |
 | `CheckboxText` | `errorMessage` | `message` and `messageType` |
 | `Dropdown` | `error` or `success` | `message` and `messageType` |
 | `InputDate` | `error` or `success` | `message` and `messageType` |
@@ -160,20 +323,227 @@ components. Apply the following migrations:
 | `ItemLabel` | `inputId` | `htmlFor` |
 | `ItemLabel` | `buttonLabel` | `moreButtonLabel` |
 | `ItemLabel` | `onButtonClick` | `onMoreButtonClick` |
-| `CardRadioGroup` | `type` | `position` and `cardStyle` |
-| `CardRadioGroup` | `labelGroup` | `label` |
-| `CardRadioGroup` | `descriptionGroup` | `description` |
-| `CardRadioGroup` | `isRequired` | `required` |
-| `CardRadioGroup` | `value` | Set `checked` on the matching option. |
-| `CardRadioGroup` | `error` | `message` and `messageType` |
-| `CardRadioOption` | `type` | `position` |
 | `TextArea` | `error` | `message` and `messageType` |
 | `Link` | `classModifier` | Use `variant` for a supported variant or `className` for custom styling. |
 | `ContentItemDuo` | `isVertical` | `position` |
-| `ContentItemDuo` | `classModifier` | `className` |
+| `ContentItemDuo` | `classModifier` | `position` for `vertical`/`horizontal`, `size` for supported sizes, or `className` only for a genuinely custom class |
 | `Modal` | `icon` | `headingProps={{ icon }}` |
 | `Modal` | `iconProps` | `headingProps={{ iconProps }}` |
 | `ProgressBarGroup` | `nbSteps` | `stepsCount` |
+
+##### Form action labels
+
+For `Dropdown`, `InputDate`, `InputFile`, `InputPhone`, `InputText`, and
+`TextArea`, replace the deprecated contextual-button props with their explicit
+names:
+
+| Removed prop | Replacement |
+| --- | --- |
+| `buttonLabel` | `moreButtonLabel` |
+| `onButtonClick` | `onMoreButtonClick` |
+
+Do not apply this replacement to `MenuBurger.buttonLabel`, which remains the
+label for its menu trigger.
+
+##### Validation variants
+
+The `isInvalid` prop was removed from `Checkbox`, `Radio`, and components that
+inherit their input props, such as `RadioText`. Use the semantic `variant`
+instead:
+
+```tsx
+<Checkbox variant="error" />
+<Radio variant="warning" />
+```
+
+Use `message` and `messageType` for the associated validation message where the
+component supports a message API.
+
+##### Disclosure state
+
+The controlled state of the public `Accordion` uses the native `open` prop.
+The lower-level `AccordionCore` uses `summary`; do not apply that rename to
+the public `Accordion`, which keeps its `title` content prop.
+
+Before:
+
+```tsx
+<Accordion title="Personal details" isOpen={isOpen} onClick={toggle}>
+  {children}
+</Accordion>
+```
+
+After:
+
+```tsx
+<Accordion title="Personal details" open={isOpen} onClick={toggle}>
+  {children}
+</Accordion>
+```
+
+Keep the existing `variant` and `className` values when migrating so the
+visual treatment is unchanged.
+
+For the lower-level `AccordionCore`, migrate both names:
+
+```tsx
+// Before
+<AccordionCore title="Personal details" isOpen={isOpen}>
+  {children}
+</AccordionCore>
+
+// After
+<AccordionCore summary="Personal details" open={isOpen}>
+  {children}
+</AccordionCore>
+```
+
+##### Form feedback and validation
+
+The former string props on form controls become a message plus an explicit
+message type. The same transformation applies to `Dropdown`, `InputDate`,
+`InputPhone`, `InputText`, and `TextArea`.
+
+Before:
+
+```tsx
+<InputText label="Email" error="Enter a valid email address" />
+```
+
+After:
+
+```tsx
+<InputText
+  label="Email"
+  message="Enter a valid email address"
+  messageType="error"
+/>
+```
+
+For `CheckboxText`, replace `errorMessage` with the same pair. For the base
+`Checkbox`, replace `hasError` with `variant="error"` and preserve the
+`aria-errormessage` association when supplying a custom error message.
+
+Before:
+
+```tsx
+<CheckboxText label="Accept" errorMessage="This choice is required" />
+```
+
+After:
+
+```tsx
+<CheckboxText
+  label="Accept"
+  message="This choice is required"
+  messageType="error"
+/>
+```
+
+##### Card checkbox
+
+`CheckboxCard` becomes `CardCheckbox`. Keep the option `type` to preserve the
+horizontal or vertical layout, and move group labels and validation feedback
+to their v2 names.
+
+Before:
+
+```tsx
+<CheckboxCard
+  labelGroup="Contact preferences"
+  descriptionGroup="Choose all that apply"
+  type="horizontal"
+  isRequired
+  error="Select at least one option"
+  options={options}
+/>
+```
+
+After:
+
+```tsx
+<CardCheckbox
+  label="Contact preferences"
+  description="Choose all that apply"
+  type="horizontal"
+  required
+  message="Select at least one option"
+  messageType="error"
+  options={options}
+/>
+```
+
+##### Content and layout
+
+For an icon content item, move the former icon value into `iconProps` so the
+icon configuration is preserved rather than replacing it with a bare string.
+
+Before:
+
+```tsx
+<ContentItemMono type="icon" icon="info" title="More information" />
+```
+
+After:
+
+```tsx
+<ContentItemMono
+  type="icon"
+  iconProps={{ src: infoIcon }}
+  title="More information"
+/>
+```
+
+For `ContentItemDuo`, replace `isVertical` with `position` and keep
+`className` for custom styling:
+
+```tsx
+<ContentItemDuo position="vertical" className="custom-content-item">
+  {children}
+</ContentItemDuo>
+```
+
+##### Labels and progress
+
+`ItemLabel` now uses native label semantics and explicit action names:
+
+```tsx
+<ItemLabel
+  htmlFor="email"
+  moreButtonLabel="Why do we need this?"
+  onMoreButtonClick={showExplanation}
+>
+  Email
+</ItemLabel>
+```
+
+For `ProgressBarGroup`, rename `nbSteps` to `stepsCount` without changing the
+current step or progress values:
+
+```tsx
+<ProgressBarGroup
+  currentStep={currentStep}
+  currentStepProgress={progress}
+  stepsCount={5}
+/>
+```
+
+##### Modal heading props
+
+When configuring a modal heading, keep the icon configuration intact by
+nesting it under `headingProps`:
+
+Before:
+
+```tsx
+<Modal icon={icon} iconProps={{ size: "S" }} />
+```
+
+After:
+
+```tsx
+<Modal headingProps={{ icon, iconProps: { size: "S" } }} />
+```
 
 Warning states are now represented by the `warning` and `hover-warning`
 variants where supported. The renamed `orange-100` token is now `orange-050`.
@@ -181,24 +551,112 @@ variants where supported. The renamed `orange-100` token is now `orange-050`.
 For form validation messages, pass the text through `message` and specify its
 kind with `messageType` instead of using the former `error` or `success` props.
 
-#### Class modifiers
+#### Skeleton components and modal headers
 
-The `classModifier` and `classModifiers` APIs have been removed from Prospect
-and Client components. Use `className` for custom classes, or use the
-component's supported variant or position props when the styling represents a
-component state.
+The skeleton APIs now use dedicated components and structured cell definitions.
+This migration also changes the default visual appearance: in v1.8.0,
+`Skeleton` was the grid container. In v2.0.0, `SkeletonGrid` is the grid
+container and `Skeleton` is an individual cell. A cell now defaults to the
+`rectangle` variant with size `M` and a rounded shape.
+
+- Replace `Skeleton grid={...}` with `SkeletonGrid grid={...}`.
+- Convert numeric cells to objects containing `colSize`, preserving any
+  documented cell props such as `size` or `variant`.
+- Update `SkeletonList.lists` entries to use the same structured `grid` shape;
+  each entry may also define `lines` to repeat the grid.
 
 Before:
 
 ```tsx
-<Link classModifier="highlighted" />
+<Skeleton grid={[[3, 9], [12]]} />
 ```
 
 After:
 
 ```tsx
-<Link className="highlighted" />
+<SkeletonGrid
+  grid={[
+    [{ colSize: 3 }, { colSize: 9 }],
+    [{ colSize: 12 }],
+  ]}
+/>
 ```
+
+To avoid the large `M` default while staying within the library styles, choose
+the smallest supported rectangle size explicitly. The migration adopts the
+closest supported library style:
+
+```tsx
+<SkeletonGrid
+  grid={[
+    [
+      { colSize: 3, size: "XS", variant: "rectangle" },
+      { colSize: 9, size: "XS", variant: "rectangle" },
+    ],
+    [{ colSize: 12, size: "XS", variant: "rectangle" }],
+  ]}
+/>
+```
+
+The same cell migration applies to every `SkeletonList.lists[].grid` entry.
+Do not add a CSS override to reproduce the former appearance; use the
+supported v2 `size` and `variant` values so the component keeps the library's
+responsive and theme-aware styling.
+
+For `ModalCoreHeader`, move `iconProps` into `headingProps`:
+
+```tsx
+<ModalCoreHeader headingProps={{ children: title, iconProps }} />
+```
+
+#### Header heading semantics
+
+`Header.Name` no longer renders an `h2`. Update tests and custom selectors such
+as `h2.af-header__title` to target its text instead.
+Keep the page's main heading on `HeaderTitle` (`h1`) so the heading hierarchy
+remains valid.
+
+#### Class modifiers
+
+The `classModifier` and `classModifiers` APIs have been removed from Prospect
+and Client components. They did not behave like `className`: a modifier such
+as `vertical` was converted into a BEM class based on the component block, for
+example `af-content-item-duo--vertical`. A mechanical replacement such as
+`className="vertical"` therefore does not preserve the same style.
+
+Use the component's supported semantic prop when one exists. For
+`ContentItemDuo`, migrate layout modifiers as follows:
+
+Before:
+
+```tsx
+<ContentItemDuo classModifier="vertical" label="Label" value="Value" />
+```
+
+After:
+
+```tsx
+<ContentItemDuo position="vertical" label="Label" value="Value" />
+```
+
+For a size modifier, use the corresponding `size` prop:
+
+Before:
+
+```tsx
+<ContentItemDuo classModifier="large" label="Label" value="Value" />
+```
+
+After:
+
+```tsx
+<ContentItemDuo size="large" label="Label" value="Value" />
+```
+
+The same rule applies to other components: use `variant`, `position`, or
+`size` when the former modifier represented a documented component state. Use
+`className` only for a genuinely custom class, knowing that it is appended as
+written and does not generate an `af-...--modifier` class.
 
 The deprecated `getComponentClassName` helper has also been replaced by
 `getClassName` for applications that import the helper directly.
@@ -234,6 +692,8 @@ review custom CSS selectors and CSS layer ordering.
 - [ ] The project compiles with React 19 and Canopée 2.0.0.
 - [ ] Tests pass without selectors targeting removed aliases or the old Header
   `Name` heading element.
+- [ ] Replacement components preserve the previous layout, selected/checked
+  state, validation message, and visual variants in their affected stories.
 - [ ] The interface and accessibility tree preserve the intended heading order.
 - [ ] Custom styles still have the intended precedence.
 

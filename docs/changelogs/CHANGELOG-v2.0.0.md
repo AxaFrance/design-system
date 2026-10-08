@@ -30,8 +30,6 @@ for all required consumer changes.
   components ([#2034](https://github.com/AxaFrance/design-system/pull/2034)).
 - **ItemFormHelper**: Added a helper component for form fields ([#1833](https://github.com/AxaFrance/design-system/pull/1833)).
 - **Radio controls**: Added experimental radio components ([#1940](https://github.com/AxaFrance/design-system/pull/1940)).
-- **Header semantics**: Updated `Name` to render non-heading text so it can be
-  composed with `HeaderTitle` without breaking heading hierarchy.
 - **Loader and Tooltip**: Updated visual behavior, sizing, and spacing to match
   the guidelines ([#1881](https://github.com/AxaFrance/design-system/pull/1881)).
 
@@ -48,7 +46,7 @@ for all required consumer changes.
 - **Deprecated APIs**: Removed `Badge`, `Alert`, `Pass`, `PassInput`, `Slider`, `SliderInput`, `LegacyField`, `FieldForm`, `FieldInput`, and `SelectBase`.
 - **Table aliases**: Replaced `Table.Header` and `Table.Body` with `Table.THead` and `Table.TBody`.
 - **Select options**: `Select.options` was removed; render native `option` elements as children.
-- **Class names**: Removed `classModifier` and deprecated class-name helpers; use `className` and `getClassName`.
+- **Class names**: Removed `classModifier` and deprecated class-name helpers. `className` appends literal classes; use supported semantic props such as `variant`, `position`, or `size` when the former modifier represented a component state.
 
 ## 👥 Client / Prospect
 
@@ -76,9 +74,11 @@ for all required consumer changes.
 
 - **Deprecated aliases**: Removed `CheckboxCard`, `DateInput`, `TextInput`, `CardRadio`, and `CardRadioOption` aliases in favor of the current APIs.
 - **CardRadio**: Renamed the exported `CardRadioOption` API to `CardRadio` ([#1915](https://github.com/AxaFrance/design-system/pull/1915)).
-- **Deprecated props**: Removed legacy `isOpen`, `isRequired`, `error`, `success`, `labelGroup`, `descriptionGroup`, `inputId`, `buttonLabel`, `onButtonClick`, `type`, `value`, `isVertical`, `icon`, `iconProps`, `nbSteps`, and `classModifier` props. Use the current semantic props listed in the migration guide.
-- **Class modifiers**: Removed `classModifiers` across Client and Prospect components ([#2027](https://github.com/AxaFrance/design-system/pull/2027)).
+- **Deprecated props**: Removed legacy `isOpen`, `isRequired`, `isInvalid`, `error`, `success`, `labelGroup`, `descriptionGroup`, `inputId`, `buttonLabel`, `onButtonClick`, `type`, `value`, `isVertical`, `icon`, `iconProps`, `nbSteps`, and `classModifier` props. Use the current semantic props listed in the migration guide.
+- **Class modifiers**: Removed `classModifiers` across Client and Prospect components ([#2027](https://github.com/AxaFrance/design-system/pull/2027)). Migrate documented modifiers to semantic props; `className` does not generate the former BEM modifier classes.
 - **Tokens and refs**: Renamed `orange-100` to `orange-050` and replaced component `forwardRef` usage with the current `ref` API.
+- **Header semantics**: `Header.Name` no longer renders an `h2`; update consumer selectors and heading assertions while keeping the main page title on `HeaderTitle` (`h1`).
+- **Skeleton and modal structures**: Replaced numeric `Skeleton grid` definitions with `SkeletonGrid` cells using `{ colSize }`, updated `SkeletonList` to use the structured grid shape, and moved `ModalCoreHeader.iconProps` into `headingProps`.
 
 ## 🌳 Canopée
 

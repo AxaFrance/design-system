@@ -47,7 +47,9 @@ the guide does not define one; report the occurrence for manual review.
 3. Extract the migration categories, deprecated identifiers, replacements,
    prerequisites, and verification requirements from the v2.0.0 documents.
    Search the target scope for those extracted identifiers and for related
-   package manifests, imports, CSS imports, configuration, and documentation.
+   package manifests, imports, CSS imports, configuration, documentation, and
+   component structure changes such as replacement components, nested prop
+   shapes, and child data formats.
 4. Classify every match as a real migration, documentation-only reference,
    generated output, or intentional compatibility fixture. Do not blindly
    replace text in generated files, lockfiles, snapshots, or historical
@@ -56,8 +58,11 @@ the guide does not define one; report the occurrence for manual review.
    checklist for all verification decisions before moving to the next category.
 6. Preserve public behavior and accessibility semantics. Prefer semantic v2
    props such as `open`, `required`, `message`, `messageType`, `position`,
-   `className`, and `getClassName` only where the guide maps the old API to
-   them.
+   `className`, `getClassName`, `variant`, `moreButtonLabel`, and
+   `onMoreButtonClick` only where the guide maps the old API to them. Include
+   structural searches for `isInvalid`, `buttonLabel`, `onButtonClick`, old
+   heading selectors, numeric skeleton grids, and props moved into nested
+   objects.
 7. Do not add compatibility aliases, reintroduce removed APIs, or create a
    codemod unless the user explicitly requests that behavior.
 
