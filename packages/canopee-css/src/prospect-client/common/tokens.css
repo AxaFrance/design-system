@@ -89,6 +89,12 @@
 
   /* ✅ valid names colors */
   --red-040: hsl(17deg, 64%, 98%);
+  --red-100: hsl(357deg, 100%, 95%);
+  --red-200: hsl(357deg, 100%, 91%);
+  --red-alert-100: hsl(0deg, 79%, 94%);
+  --red-alert-200: hsl(0deg, 82%, 89%);
+  --red-alert-800: hsl(0deg, 81%, 56%);
+  --red-alert-900: hsl(0deg, 82%, 51%);
   --red-alert-1000: hsl(0deg, 100%, 45%);
   --red-alert-1200: hsl(0deg, 100%, 36%);
   --brand-red-1000: hsl(357deg, 100%, 64%);
@@ -96,7 +102,6 @@
   /* ⛔ legacy names colors - DO NOT USE */
   --axa-red-4: var(--red-040);
   --color-btn-error-bg: var(--red-040);
-  --red-alert-100: var(--red-alert-1000);
   --axa-red-100: var(--red-alert-1000);
   --color-red: var(--red-alert-1000);
 
