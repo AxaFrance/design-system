@@ -14,7 +14,7 @@
     "files"
   ],
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist generated && tz build",
     "build:prospect": "postcss \"src/prospect-client/**/*{Apollo,Grid,DebugGrid,Svg,All,prospect}.css\" \"src/prospect-client/common\" --base src/prospect-client --dir dist/prospect --verbose --env prospect-production",
     "build:client": "postcss \"src/prospect-client/**/*{LF,Grid,DebugGrid,Svg,All,client}.css\" \"src/prospect-client/common\" --base src/prospect-client --dir dist/client --verbose --env client-production",
     "build:distributeur": "postcss \"src/distributeur/**/*.css\" --base src/distributeur --dir dist/distributeur --verbose --env distributeur-production",
@@ -41,6 +41,8 @@
     "@axa-fr/stylelint-config-design-system": "*",
     "@csstools/postcss-global-data": "^4.0.0",
     "@csstools/postcss-sass": "^5.1.1",
+    "@terrazzo/cli": "^2.7.1",
+    "@terrazzo/plugin-css": "^2.7.1",
     "cssnano": "^7.0.3",
     "postcss": "^8.4.44",
     "postcss-cli": "^11.0.1",
