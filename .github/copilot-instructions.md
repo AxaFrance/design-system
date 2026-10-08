@@ -128,6 +128,14 @@ Consulter [docs/decision-records/](../docs/decision-records/) pour comprendre le
 - **Turbo** : cache activé sauf pour tâches `dev` (persistent)
 - **Workspace npm** : tous les packages sont liés via workspaces npm 11.6.4
 
+## Présentations HTML
+
+- Pour les présentations de ce dépôt, placez les fichiers HTML et leurs ressources sous `docs/presentation/`.
+- La publication publique se fait uniquement par GitHub Pages via `.github/workflows/publish.yml`, après fusion sur `main`. Le déploiement conserve les fichiers Storybook existants et retire l’ancienne redirection de la racine vers `site-slash`.
+- Pour toute demande de publication d’une présentation de ce dépôt, ne proposez ni n’utilisez le déploiement Vercel intégré au plugin Frontend Slides. Publiez par GitHub Pages après fusion sur `main`.
+- La page d’accueil est la présentation Canopée : `https://axafrance.github.io/design-system/`.
+- Chaque fichier HTML reste aussi accessible par son nom, par exemple `https://axafrance.github.io/design-system/canopee-design-system.html`.
+
 <!-- rtk-instructions v2 -->
 # RTK — Token-Optimized CLI
 

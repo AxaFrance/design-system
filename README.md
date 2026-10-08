@@ -279,3 +279,5 @@ Pour découvrir l’utilisation de gh-aw dans ce dépôt, consultez les [guideli
 ### Comment faire ?
 
 Vous pouvez utiliser la fonctionnalité marketplace de votre chat pour ajouter le plugin du design system, ou alors vous pouvez aussi le faire manuellement en ajoutant le plugin présent dans `plugins/canopee-distributeur` et `plugins/canopee-prospect-client` à votre chat.
+
+Le dépôt embarque également le plugin Frontend Slides pour créer ou faire évoluer des présentations HTML. Consultez le [guide Frontend Slides](./plugins/frontend-slides/README.md) pour l’installer et le mettre à jour dans GitHub Copilot CLI.
