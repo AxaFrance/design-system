@@ -14,8 +14,7 @@
       right 1rem center / 1.5rem 1.5rem;
 
     &.country-code-select__control--is-disabled {
-      --select-bg-color-disabled: var(--gray-500);
-      --select-border-color: var(--gray-140);
+      --select-border-color: var(--gray-500);
       --select-control-background-url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'><path fill='%235C5C5C' d='M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z'/></svg>");
     }
 
@@ -37,10 +36,6 @@
 
   .country-code-select__option {
     --select-option-color: var(--gray-1000);
-
-    &:disabled {
-      --select-option-disabled-color: var(--gray-500);
-    }
   }
 
   .country-code-select__placeholder {
