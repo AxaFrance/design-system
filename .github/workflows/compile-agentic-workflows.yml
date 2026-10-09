@@ -34,7 +34,7 @@ jobs:
           gh version
 
       - name: Setup gh-aw CLI
-        uses: github/gh-aw/actions/setup-cli@v0.89.21
+        uses: github/gh-aw/actions/setup-cli@v0.91.3
         with:
           version: v0.89.21
 
