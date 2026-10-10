@@ -13,9 +13,9 @@ import { Message } from "@axa-fr/canopee-react/distributeur";
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
 | `title` | `ReactNode` | Obligatoire | Titre/en-tête du message |
-| `variant` | `"error" \| "warning" \| "info" \| "success"` | `"info"` | Type et style du message |
+| `variant` | `"error" \| "warning" \| "info" \| "success"` | `"error"` | Type, style et rôle du message |
 | `onClose` | `(e: MouseEvent) => void` | - | Gestionnaire du bouton de fermeture |
-| `closeButtonAriaLabel` | `string` | `"Close"` | Label d'accessibilité du bouton de fermeture |
+| `closeButtonAriaLabel` | `string` | `"Fermer"` | Label d'accessibilité du bouton de fermeture |
 | `icon` | `string` | - | URL SVG d'icône personnalisée (remplace l'icône de la variante) |
 | `className` | `string` | - | Classes CSS additionnelles |
 | `children` | `ReactNode` | - | Contenu/corps du message |
@@ -259,7 +259,8 @@ useEffect(() => {
 - Le titre exprime clairement l'objet du message
 - Le bouton de fermeture a un `aria-label` accessible
 - La couleur seule ne véhicule pas le sens (icône + style)
-- Support des lecteurs d'écran
+- Rôle selon la variante : `alert` pour `error` et `warning` (annonce immédiate), `status` pour `info`
+  et `success` (annonce polie, sans interrompre)
 
 ## Bonnes pratiques
 - Placer les messages près du contenu concerné (au-dessus du formulaire, etc.)
