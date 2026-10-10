@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { VisuallyHidden } from "../utilities/VisuallyHidden";
 import { StepBase } from "./StepBase";
 
 type Props = ComponentPropsWithoutRef<typeof StepBase> & {
@@ -22,6 +23,7 @@ const StepNoLink = ({
         <div className="af-steps-list-step__number">{number}</div>
       )}
       <div className="af-steps-list-step__title">{title}</div>
+      {stateLabel ? <VisuallyHidden> ({stateLabel})</VisuallyHidden> : null}
     </div>
   </StepBase>
 );
