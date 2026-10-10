@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { TextArea } from "../TextAreaLF";
+import { TextArea as TextAreaApollo } from "../TextAreaApollo";
 
 describe("<TextArea />", () => {
   it("should render component with default props", () => {
@@ -63,5 +64,18 @@ describe("<TextArea />", () => {
       expect(input).not.toHaveAttribute("aria-describedby");
       expect(input).not.toHaveAttribute("aria-errormessage");
     });
+  });
+});
+
+describe.each([
+  ["Apollo", TextAreaApollo],
+  ["LF", TextArea],
+])("<TextArea /> %s description", (_, Component) => {
+  it("should describe the textarea with its description and helper", () => {
+    render(<Component label="Label" description="Description" helper="Aide" />);
+
+    expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+      "Description Aide",
+    );
   });
 });

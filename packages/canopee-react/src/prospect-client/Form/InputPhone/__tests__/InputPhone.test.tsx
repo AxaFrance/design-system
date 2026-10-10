@@ -5,6 +5,8 @@ import { InputTextAtom } from "../../InputTextAtom/InputTextAtomApollo";
 import { ItemLabel } from "../../ItemLabel/ItemLabelApollo";
 import { InputPhoneCommon } from "../InputPhoneCommon";
 import { ItemMessage } from "../../ItemMessage/ItemMessage";
+import { InputPhone as InputPhoneApollo } from "../InputPhoneApollo";
+import { InputPhone as InputPhoneLF } from "../InputPhoneLF";
 
 describe("<InputPhone />", () => {
   it("renders the InputPhone component with label and helper text", () => {
@@ -207,5 +209,20 @@ describe("<InputPhone />", () => {
       );
       expect(await axe(container)).toHaveNoViolations();
     });
+  });
+});
+
+describe.each([
+  ["Apollo", InputPhoneApollo],
+  ["LF", InputPhoneLF],
+])("<InputPhone /> %s description", (_, Component) => {
+  it("should describe the input with its description and helper", () => {
+    render(
+      <Component label="Téléphone" description="Description" helper="Aide" />,
+    );
+
+    expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+      "Description Aide",
+    );
   });
 });

@@ -63,8 +63,10 @@ const InputDateCommon = ({
   inputId = otherProps.id ?? inputId;
   const idMessage = useId();
   const idHelp = useId();
+  const idDescription = useId();
 
   const ariaDescribedbyIds = [
+    description && idDescription,
     helper && idHelp,
     Boolean(message) && messageType === "success" && idMessage,
   ].filter(Boolean) as string[];
@@ -91,6 +93,7 @@ const InputDateCommon = ({
     <div className="af-form__input-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
+        descriptionId={idDescription}
         moreButtonLabel={moreButtonLabel}
         onMoreButtonClick={onMoreButtonClick}
         required={required}
