@@ -15,6 +15,10 @@ export type TabsStatelessProps = {
   children: ReactElement<TabProps> | ReactElement<TabProps>[];
   activeIndex: number;
   className?: string;
+  /** Accessible name of the tab list */
+  "aria-label"?: string;
+  /** Id of the element that names the tab list */
+  "aria-labelledby"?: string;
 };
 
 export type TabsStatelessHandlers = {
@@ -52,6 +56,8 @@ const TabsStateless = ({
   className = "af-tabs",
   children,
   onChange,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: "af-tabs",
@@ -75,13 +81,19 @@ const TabsStateless = ({
   const id = useId();
 
   return (
-    <div className={componentClassName} role="tablist">
-      <ul className="af-tabs__control">
+    <div className={componentClassName}>
+      <ul
+        className="af-tabs__control"
+        role="tablist"
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+      >
         {Children.map(
           children,
           (child, index) =>
             isValidElement(child) && (
               <li
+                role="presentation"
                 className={getClassName({
                   className,
                   modifiers: [activeIndex === index && "active"],
@@ -90,12 +102,13 @@ const TabsStateless = ({
               >
                 <button
                   type="button"
+                  role="tab"
+                  aria-selected={activeIndex === index}
                   id={`${id}-tab-${index}`}
                   ref={(el) => {
                     tabRefs.current[index] = el;
                   }}
                   aria-controls={`${id}-pane-${index}`}
-                  onChange={(event) => onChange(event, index)}
                   onKeyDown={(event) => {
                     handleKeyDown(
                       event,
