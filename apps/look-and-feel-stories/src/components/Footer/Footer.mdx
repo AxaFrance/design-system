@@ -20,6 +20,13 @@ const MyComponent = () => (
 );
 ```
 
+## Accessibility
+
+- On small screens, the links are collapsed behind the `expandLinkText` button. The button
+  exposes its state with `aria-expanded` and points to the list with `aria-controls`. While
+  collapsed, the list is `inert`: its links can be neither focused nor read.
+- The button shows the browser focus ring when it is reached with the keyboard.
+
 ## Playground
 
 <Canvas of={FooterStories.Playground} />
