@@ -22,7 +22,10 @@ export const FieldError = ({
   return (
     message && (
       <small className={className}>
-        <span className="glyphicon glyphicon-exclamation-sign" />
+        <span
+          className="glyphicon glyphicon-exclamation-sign"
+          aria-hidden="true"
+        />
         <span
           id={errorId}
           role="alert"
