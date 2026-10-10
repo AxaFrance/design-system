@@ -121,8 +121,10 @@ export const InputFileCommon = ({
   const inputId = id || generatedId;
   const messageId = `${inputId}-message`;
   const helpId = `${inputId}-help`;
+  const descriptionId = labelProps?.descriptionId ?? `${inputId}-description`;
 
   const ariaDescribedby = [
+    description && descriptionId,
     helper && helpId,
     message && messageType === "success" && messageId,
   ].filter(Boolean) as string[];
@@ -152,6 +154,7 @@ export const InputFileCommon = ({
         onMoreButtonClick={onMoreButtonClick}
         required={required}
         {...labelProps}
+        descriptionId={descriptionId}
       >
         {label}
       </ItemLabelComponent>
