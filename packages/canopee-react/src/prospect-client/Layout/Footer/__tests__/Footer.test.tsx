@@ -42,8 +42,12 @@ describe("Footer", () => {
         expandLinkText="More"
       />,
     );
-    expect(screen.getByLabelText("social media twitter")).toBeInTheDocument();
-    expect(screen.getByLabelText("social media linkedin")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "X (Twitter) (nouvelle fenêtre)" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "LinkedIn (nouvelle fenêtre)" }),
+    ).toBeInTheDocument();
   });
 });
 
@@ -142,5 +146,52 @@ describe("<Footer /> disclosure", () => {
     expect(
       screen.getByRole("button", { name: "À propos" }),
     ).not.toHaveAttribute("aria-controls");
+  });
+});
+
+describe("<Footer /> social links", () => {
+  it("should name the social links from their content", async () => {
+    const { container } = render(
+      <FooterApollo
+        links={[]}
+        socialMedias={[
+          { icon: "facebook", link: "https://facebook.com" },
+          { icon: "twitter", link: "https://twitter.com" },
+          { icon: "youtube", link: "https://youtube.com" },
+          { icon: "linkedin", link: "https://linkedin.com" },
+        ]}
+        copyright="© 2024 AXA"
+        expandLinkText="À propos"
+      />,
+    );
+
+    ["Facebook", "X (Twitter)", "YouTube", "LinkedIn"].forEach((label) => {
+      const name = `${label} (nouvelle fenêtre)`;
+      const link = screen.getByRole("link", { name });
+      expect(link).not.toHaveAttribute("aria-label");
+      expect(within(link).getByRole("img")).toHaveAccessibleName(name);
+    });
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should name a social link from its label", () => {
+    render(
+      <FooterApollo
+        links={[]}
+        socialMedias={[
+          {
+            icon: "facebook",
+            link: "https://facebook.com",
+            label: "AXA sur Facebook",
+          },
+        ]}
+        copyright="© 2024 AXA"
+        expandLinkText="À propos"
+      />,
+    );
+
+    expect(screen.getByRole("link")).toHaveAccessibleName(
+      "AXA sur Facebook (nouvelle fenêtre)",
+    );
   });
 });
