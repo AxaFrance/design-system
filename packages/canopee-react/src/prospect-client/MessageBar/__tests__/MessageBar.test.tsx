@@ -64,7 +64,7 @@ describe("MessageBar", () => {
     expect(action).toHaveClass("af-message-bar__action", "custom-action");
 
     const icon = within(messageBar)
-      .getAllByRole("presentation")
+      .getAllByRole("presentation", { hidden: true })
       .find((element) => element.dataset.src === "custom.svg");
     expect(icon).toHaveAttribute("data-src", "custom.svg");
     expect(icon?.parentElement).toHaveClass("af-icon--primary");
@@ -73,7 +73,7 @@ describe("MessageBar", () => {
   it("renders the icon with the error variant", () => {
     renderMessageBar({ title: "Alert", variant: "error" });
 
-    const icon = screen.getByRole("presentation");
+    const icon = screen.getByRole("presentation", { hidden: true });
     expect(icon).toHaveAttribute("data-src", "custom.svg");
     expect(icon.parentElement).toHaveClass("af-icon--error");
   });

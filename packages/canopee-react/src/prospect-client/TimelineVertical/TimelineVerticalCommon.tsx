@@ -19,7 +19,7 @@ export const TimelineVerticalCommon = ({
       <h4 className="af-timeline-vertical__title">{title}</h4>
     </header>
     {Boolean(children) && (
-      <main className="af-timeline-vertical__description">{children}</main>
+      <div className="af-timeline-vertical__description">{children}</div>
     )}
   </section>
 );

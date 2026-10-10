@@ -6,6 +6,7 @@ exports[`<File.FileInput> > renders File.FileInput correctly 1`] = `
     class="af-form__file-line"
   >
     <i
+      aria-hidden="true"
       class="glyphicon glyphicon-file"
     />
     <span>
@@ -15,6 +16,7 @@ exports[`<File.FileInput> > renders File.FileInput correctly 1`] = `
       1
     </span>
     <button
+      aria-label="Supprimer name"
       class="af-link af-link--delete-file"
       type="button"
     >

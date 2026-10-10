@@ -12,7 +12,9 @@ describe("Card button", () => {
 
     // Assert
     expect(screen.getByRole("button")).toHaveAccessibleName(/contenu/i);
-    expect(screen.queryByRole("presentation")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("presentation", { hidden: true }),
+    ).not.toBeInTheDocument();
   });
 
   it("have icon display", () => {
@@ -21,7 +23,9 @@ describe("Card button", () => {
 
     // Assert
     expect(screen.getByRole("button")).toHaveAccessibleName(/contenu/i);
-    expect(screen.getByRole("presentation")).toBeInTheDocument();
+    expect(
+      screen.getByRole("presentation", { hidden: true }),
+    ).toBeInTheDocument();
   });
 
   it("shouldn't have an accessibility violation", async () => {

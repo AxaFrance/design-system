@@ -1,5 +1,10 @@
+import { useId } from "react";
 import type { ClickItemPropsCommon } from "./types";
 import { ClickItemWrapper } from "./ClickItemWrapper";
+import {
+  type ClickItemContentPart,
+  getClickItemContentId,
+} from "./components/ClickItemContentCommon";
 
 export type { ClickItemProps } from "./types";
 
@@ -18,6 +23,14 @@ export const clickItemStates = {
 } as const;
 export type ClickItemStates = keyof typeof clickItemStates;
 
+/** Content that ClickItemCommon.css hides for a variant: not described */
+const hiddenContentByVariant: Partial<
+  Record<ClickItemVariants, ClickItemContentPart[]>
+> = {
+  small: ["subtitle", "secondary", "tertiary", "tag"],
+  agent: ["secondary", "tertiary", "tag"],
+};
+
 export const ClickItemCommon = ({
   className = "",
   state = "default",
@@ -31,24 +44,56 @@ export const ClickItemCommon = ({
   tagProps,
   basePictureProps,
   onClick,
+  href,
+  target,
+  rel,
   ariaLabelForActionIcon,
   ClickItemContentComponent,
   ClickItemSuffixComponent,
   ClickItemPrefixComponent,
 }: ClickItemPropsCommon) => {
-  const clickableProps = onClick && {
-    "aria-label": ariaLabelForActionIcon,
+  const isLink = href !== undefined;
+  const isClickable = isLink || Boolean(onClick);
+  const idPrefix = useId();
+  const actionDescriptionId = `${idPrefix}-action`;
+  const spinnerId = `${idPrefix}-spinner`;
+  // ClickItemSuffixCommon only shows the spinner of the large variant
+  const hasSpinner = variant === "large" && state === "loading";
+  const describedContent: [ClickItemContentPart, string | undefined][] = [
+    ["subtitle", subtitle],
+    ["secondary", textSecondary],
+    ["tertiary", textTertiary],
+    ["tag", tagLabel],
+  ];
+  const describedBy = [
+    ...describedContent
+      .filter(
+        ([part, text]) =>
+          text && !hiddenContentByVariant[variant]?.includes(part),
+      )
+      .map(([part]) => getClickItemContentId(idPrefix, part)),
+    ...(hasSpinner ? [spinnerId] : []),
+    ...(ariaLabelForActionIcon ? [actionDescriptionId] : []),
+  ].join(" ");
+
+  const clickableProps = isClickable && {
+    "aria-labelledby": getClickItemContentId(idPrefix, "title"),
+    "aria-describedby": describedBy || undefined,
     onClick,
+    href,
+    target,
+    rel,
     disabled: state === "disabled" || state === "loading",
   };
 
   return (
     <ClickItemWrapper
-      isClickable={Boolean(onClick)}
+      isClickable={isClickable}
       className={[
         "af-apollo-click-item",
         `af-apollo-click-item--${variant}`,
         `af-apollo-click-item--${state}`,
+        isLink && "af-apollo-click-item--link",
         className,
       ]
         .filter(Boolean)
@@ -65,6 +110,7 @@ export const ClickItemCommon = ({
       </div>
       <div className="af-apollo-click-item__content">
         <ClickItemContentComponent
+          idPrefix={idPrefix}
           title={title}
           subtitle={subtitle}
           textSecondary={textSecondary}
@@ -77,8 +123,17 @@ export const ClickItemCommon = ({
         />
       </div>
       <div className="af-apollo-click-item__trailing">
-        <ClickItemSuffixComponent variant={variant} state={state} />
+        <ClickItemSuffixComponent
+          variant={variant}
+          state={state}
+          spinnerId={spinnerId}
+        />
       </div>
+      {isClickable && ariaLabelForActionIcon ? (
+        <span id={actionDescriptionId} hidden>
+          {ariaLabelForActionIcon}
+        </span>
+      ) : null}
     </ClickItemWrapper>
   );
 };

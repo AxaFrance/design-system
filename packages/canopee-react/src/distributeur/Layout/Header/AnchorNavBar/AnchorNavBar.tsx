@@ -4,6 +4,7 @@ import { type ReactNode } from "react";
 import { Link } from "../../../Link/Link";
 import { linkClassName } from "../../../Link/linkClassName";
 import { Svg } from "../../../Svg";
+import { VisuallyHidden } from "../../../utilities/VisuallyHidden";
 
 import "@axa-fr/canopee-css/distributeur/Layout/Header/AnchorNavBar/AnchorNavBar.css";
 import "@axa-fr/canopee-css/distributeur/common/breakpoints.css";
@@ -29,6 +30,7 @@ export type AnchorNavBarItem = {
   link?: string;
   /**
    * externalLink - If true, the link will open in a new tab and show an external link icon.
+   * Its accessible name ends with a visually hidden "(nouvelle fenêtre)", see `newWindowLabel`.
    */
   externalLink?: boolean;
   /**
@@ -40,12 +42,17 @@ export type AnchorNavBarItem = {
 /**
  * Props for the AnchorNavBar component.
  * items - An array of navigation items to display in the navigation bar.
+ * newWindowLabel - Visually hidden text, in parentheses, after the name of external links.
  */
 export type AnchorNavBarProps = {
   items: AnchorNavBarItem[];
+  newWindowLabel?: string;
 };
 
-export const AnchorNavBar = ({ items }: AnchorNavBarProps) => {
+export const AnchorNavBar = ({
+  items,
+  newWindowLabel = "nouvelle fenêtre",
+}: AnchorNavBarProps) => {
   return (
     <nav className={classNames("af-container", defaultClassName)}>
       <ul>
@@ -78,12 +85,17 @@ export const AnchorNavBar = ({ items }: AnchorNavBarProps) => {
                 target={item.externalLink ? "_blank" : undefined}
               >
                 {item.name}
+                {/* The link is a flex container: the space is not rendered */}
                 {item.externalLink ? (
-                  <Svg
-                    role="presentation"
-                    src={externalLinkIcon}
-                    className={`${defaultClassName}-external-link-svg`}
-                  />
+                  <>
+                    {" "}
+                    <VisuallyHidden>({newWindowLabel})</VisuallyHidden>
+                    <Svg
+                      role="presentation"
+                      src={externalLinkIcon}
+                      className={`${defaultClassName}-external-link-svg`}
+                    />
+                  </>
                 ) : null}
               </Link>
             </li>

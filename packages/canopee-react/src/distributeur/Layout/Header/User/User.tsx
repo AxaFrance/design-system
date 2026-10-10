@@ -46,9 +46,9 @@ type Props = {
    */
   path?: string;
   /**
-   * Title for the user link, defaults to "Voir mon profil"
-   * This is used as the `title` attribute for the anchor tag if `href` is provided.
-   * It provides additional context for screen readers and tooltips.
+   * Optional `title` attribute (tooltip) of the user link, set only if `href` is provided.
+   * The link is named by its visible content (name and profile): if you set a title,
+   * start it with that text, e.g. "Pierre Martin, voir mon profil".
    */
   title?: string;
 };
@@ -61,7 +61,7 @@ const User = ({
   path,
   profile,
   onClick,
-  title = "Voir mon profil",
+  title,
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
@@ -72,7 +72,6 @@ const User = ({
     <div className={componentClassName}>
       {href ? (
         <a
-          aria-label="user info link"
           className={`${defaultClassName}__link`}
           href={href}
           title={title}

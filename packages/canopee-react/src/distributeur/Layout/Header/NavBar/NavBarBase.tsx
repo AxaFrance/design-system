@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import type { FocusEvent, MouseEvent, ReactNode } from "react";
 import { getClassName } from "../../../utilities/helpers/getClassName";
+import { isHandledKey } from "./NavBar.helpers";
 
 const defaultClassName = "af-nav-container";
 
@@ -49,7 +50,7 @@ const NavBarBase = ({
           onClick={onClick}
           className="mask fade"
           id={`open-${toggleMenuId}`}
-          aria-label="Close Menu"
+          aria-label="Fermer le menu"
         />
       ) : null}
       <nav
@@ -66,14 +67,16 @@ const NavBarBase = ({
             type="button"
             className="af-nav__aside-close"
             id={`close-${toggleMenuId}`}
-            aria-label="Close Menu"
+            aria-label="Fermer le menu"
           >
             ×
           </button>
         </div>
         <ul
           onKeyDown={(e) => {
-            e.preventDefault();
+            if (isHandledKey(e.key)) {
+              e.preventDefault();
+            }
             handleKeys(e.key);
           }}
           onFocus={(e) => {

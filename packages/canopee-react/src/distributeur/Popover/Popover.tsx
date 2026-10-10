@@ -10,6 +10,8 @@ type Props = {
   mode: PopoverModes;
   popoverElement: React.ReactNode;
   children: React.ReactNode;
+  /** Accessible name of the trigger, when its content does not give one */
+  triggerAriaLabel?: string;
 };
 
 const Popover = ({
@@ -18,10 +20,16 @@ const Popover = ({
   className,
   mode = "click",
   popoverElement: content,
+  triggerAriaLabel,
 }: Props) => {
   const Component = mode === "click" ? PopoverClick : PopoverOver;
   return (
-    <Component className={className} placement={placement} element={content}>
+    <Component
+      className={className}
+      placement={placement}
+      element={content}
+      triggerAriaLabel={triggerAriaLabel}
+    >
       {children}
     </Component>
   );

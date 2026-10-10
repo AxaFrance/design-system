@@ -141,7 +141,9 @@ export const Field = ({
           className={classNames("af-form__group-label", {
             "af-form__group-label--required": required,
           })}
-          htmlFor={isLabelContainerLinkedToInput ? inputId : undefined}
+          htmlFor={
+            !isGroup && isLabelContainerLinkedToInput ? inputId : undefined
+          }
           id={labelId}
         >
           {label}

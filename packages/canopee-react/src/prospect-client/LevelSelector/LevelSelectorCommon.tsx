@@ -31,6 +31,7 @@ export const LevelSelectorCommon = ({
   onChange,
 }: LevelSelectorCommonProps) => {
   const levelSelectorId = useId();
+  const descriptionId = `level-selector-${levelSelectorId}-description`;
   const stepsArray = Array.from(
     { length: stepsCount },
     (_, index) => index + 1,
@@ -56,12 +57,12 @@ export const LevelSelectorCommon = ({
             <label
               className={`af-level-selector__radio ${step <= value ? "af-level-selector__active" : ""}`}
               key={step}
-              aria-label={`Niveau ${step}`}
             >
               <input
                 type="radio"
                 name={`level-selector-${levelSelectorId}`}
-                aria-describedby={`level-selector-${levelSelectorId}-description`}
+                aria-label={`Niveau ${step}`}
+                aria-describedby={description ? descriptionId : undefined}
                 value={step}
                 checked={step === value}
                 onChange={() => onChange?.(step)}
@@ -78,7 +79,7 @@ export const LevelSelectorCommon = ({
       </div>
       {Boolean(description) && (
         <span
-          id={`level-selector-${levelSelectorId}-description`}
+          id={descriptionId}
           className="af-level-selector__description"
           aria-live="polite"
         >

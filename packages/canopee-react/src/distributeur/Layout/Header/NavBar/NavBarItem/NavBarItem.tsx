@@ -126,6 +126,7 @@ const NavBarItem = ({
           <i
             key={`icon${tabIndex}`}
             className="glyphicon glyphicon-arrow-xs-down"
+            aria-hidden="true"
           />
           <ul
             key={`list${tabIndex}`}

@@ -29,6 +29,7 @@ exports[`<File.File> > renders File.File correctly 1`] = `
       type="button"
     >
       <i
+        aria-hidden="true"
         class="glyphicon glyphicon-open"
       />
       File *

@@ -28,6 +28,7 @@ type IconProps = {
   variant?: IconVariants;         // "primary" | "secondary" | "tertiary" | "ghost"
   size?: IconSizeVariants;        // "S" | "M" | "L"
   hasBackground?: boolean;        // ajoute un fond rond autour de l'icône
+  alt?: string;                   // nom d'une icône porteuse d'information (sinon décorative)
   onClick?: () => void;           // rend l'icône interactive (bouton)
   'aria-label'?: string;          // obligatoire si onClick fourni (bouton icône seul)
 } & ComponentPropsWithoutRef<"span">;
@@ -103,17 +104,25 @@ import { ClickIcon } from "@axa-fr/canopee-react/prospect";
 ## Accessibilité avec les icônes
 
 - **Bouton icône seul** : fournir toujours un `aria-label` explicite
-- **Icône décorative** : ajouter `aria-hidden="true"` si l'icône est uniquement décorative et qu'un texte adjacent décrit l'action
-- **Icône dans un bouton texte** : si un `<Icon>` est dans un `<Button>` avec du texte, l'icône est décorative — utiliser `aria-hidden="true"`
+- **Icône décorative** : rien à ajouter. Sans `alt`, `aria-label` ni `aria-labelledby`, `Icon` (et `Svg`) pose
+  `aria-hidden="true"` et `focusable="false"` : un `aria-hidden` manuel n'est plus nécessaire
+- **Icône dans un bouton texte** : si un `<Icon>` est dans un `<Button>` avec du texte, l'icône est décorative et déjà masquée
+- **Icône porteuse d'information** (aucun texte voisin ne donne l'information) : passer `alt`, qui devient son nom
+  (`role="img"` et `aria-label`)
+- Une prop passée explicitement (`aria-hidden`, `aria-label`, `role`…) reste prioritaire sur ces défauts
 
 ```tsx
 import home from "@material-symbols/svg-400/outlined/home.svg";
+import checkCircle from "@material-symbols/svg-400/outlined/check_circle.svg";
 import { Button, Icon, ClickIcon } from "@axa-fr/canopee-react/prospect";
 
-// ✅ Bouton avec texte — l'icône est décorative
-<Button iconLeft={<Icon src={home} aria-hidden="true" />}>
+// ✅ Bouton avec texte — l'icône est décorative, masquée par défaut
+<Button iconLeft={<Icon src={home} />}>
   Accueil
 </Button>
+
+// ✅ Icône seule porteuse d'information — alt devient son nom
+<Icon src={checkCircle} variant="success" alt="Fichier chargé" />
 
 // ✅ Bouton icône seul — aria-label obligatoire
 <ClickIcon src={deleteIcon} aria-label="Supprimer" onClick={handleDelete} />

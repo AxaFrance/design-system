@@ -7,6 +7,8 @@ import type { ClickItemStates, ClickItemVariants } from "../ClickItemCommon";
 export type ClickItemSuffixProps = {
   state: ClickItemStates;
   variant: ClickItemVariants;
+  /** Id of the loading spinner, which describes the item while it loads */
+  spinnerId?: string;
 };
 
 export type ClickItemSuffixCommonProps = ClickItemSuffixProps & {
@@ -18,12 +20,13 @@ export type ClickItemSuffixCommonProps = ClickItemSuffixProps & {
 export const ClickItemSuffixCommon = ({
   state,
   variant,
+  spinnerId,
   trailingClickIcon,
   IconComponent,
   SpinnerComponent,
 }: ClickItemSuffixCommonProps) => {
   if (variant === "large" && state === "loading") {
-    return <SpinnerComponent size={32} />;
+    return <SpinnerComponent id={spinnerId} size={32} />;
   }
 
   if (variant === "small") {

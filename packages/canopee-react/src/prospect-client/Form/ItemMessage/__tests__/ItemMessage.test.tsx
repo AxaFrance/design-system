@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { describe, it, expect } from "vitest";
 import { ItemMessage } from "../ItemMessage";
 
@@ -34,5 +35,35 @@ describe("ItemMessage", () => {
     expect(container.querySelector(".af-item-message")).toHaveClass(
       "af-item-message--warning",
     );
+  });
+
+  describe("A11Y", () => {
+    it("announces a success message politely with the status role", () => {
+      render(<ItemMessage message={message} messageType="success" />);
+      const status = screen.getByRole("status");
+
+      expect(status).toHaveTextContent(message);
+      expect(status).not.toHaveAttribute("aria-live");
+      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    });
+
+    it.each(["error", "warning"] as const)(
+      "announces the %s message with the alert role",
+      (messageType) => {
+        render(<ItemMessage message={message} messageType={messageType} />);
+        const alert = screen.getByRole("alert");
+
+        expect(alert).toHaveTextContent(message);
+        expect(alert).not.toHaveAttribute("aria-live");
+      },
+    );
+
+    it("shouldn't have an accessibility violation", async () => {
+      const { container } = render(
+        <ItemMessage message={message} messageType="success" />,
+      );
+
+      expect(await axe(container)).toHaveNoViolations();
+    });
   });
 });

@@ -1,14 +1,13 @@
+import "@axa-fr/canopee-css/distributeur/Action/Action.css";
 import "@axa-fr/canopee-css/distributeur/Layout/Header/HeaderTitle/HeaderTitle.css";
 import type { ReactNode } from "react";
 
 import classNames from "classnames";
-import { Action } from "../../../Action/Action";
 import { getClassName } from "../../../utilities";
 import {
   AnchorNavBar,
   type AnchorNavBarItem,
 } from "../AnchorNavBar/AnchorNavBar";
-import { ToggleButton } from "../ToggleButton/ToggleButton";
 
 const defaultClassName = "af-title-bar";
 
@@ -21,7 +20,19 @@ type Props = {
   subtitle?: string;
   title: string;
   toggleMenu?: () => void;
+  /**
+   * Whether the menu opened by the toggle is open, exposed by aria-expanded.
+   * When set, the toggle also points to the NavBar ("mainmenu") with aria-controls.
+   */
+  isMenuOpen?: boolean;
+  /** Accessible name of the menu toggle */
+  toggleMenuLabel?: string;
   anchorNavBarItems?: AnchorNavBarItem[];
+  /**
+   * Visually hidden text, in parentheses, after the name of the anchorNavBarItems
+   * links that open in a new tab, "nouvelle fenêtre" by default.
+   */
+  newWindowLabel?: string;
 };
 
 const HeaderTitle = ({
@@ -33,7 +44,10 @@ const HeaderTitle = ({
   subtitle,
   title,
   toggleMenu,
+  isMenuOpen,
+  toggleMenuLabel = "Menu principal",
   anchorNavBarItems,
+  newWindowLabel,
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
@@ -49,15 +63,20 @@ const HeaderTitle = ({
       <div className={classNames("af-container", componentClassName)}>
         {Boolean(toggleMenu) && (
           <div className="burger-container">
-            <ToggleButton idControl="mainmenu">
-              <Action
-                className="btn af-title-bar__mobile-menu af-btn--circle"
-                id="togglemenu"
-                icon="menu-hamburger"
-                title="Toggle menu"
-                onClick={toggleMenu}
+            <button
+              type="button"
+              className="btn af-btn--circle af-title-bar__mobile-menu"
+              id="togglemenu"
+              aria-controls={isMenuOpen === undefined ? undefined : "mainmenu"}
+              aria-expanded={isMenuOpen}
+              aria-label={toggleMenuLabel}
+              onClick={toggleMenu}
+            >
+              <i
+                aria-hidden="true"
+                className="glyphicon glyphicon-menu-hamburger"
               />
-            </ToggleButton>
+            </button>
           </div>
         )}
         <div className={`${defaultClassName}__leftSection`}>
@@ -80,7 +99,10 @@ const HeaderTitle = ({
       </div>
 
       {isAnchorNavBarPresent ? (
-        <AnchorNavBar items={anchorNavBarItems} />
+        <AnchorNavBar
+          items={anchorNavBarItems}
+          newWindowLabel={newWindowLabel}
+        />
       ) : null}
     </>
   );

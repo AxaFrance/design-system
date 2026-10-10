@@ -132,6 +132,14 @@ describe("MenuBurger", () => {
       expect(button).toHaveAttribute("popovertargetaction", "toggle");
     });
 
+    it("does not announce a menu popup on the disclosure trigger", () => {
+      renderMenuBurger();
+
+      expect(
+        screen.getByRole("button", { name: /mon espace/i }),
+      ).not.toHaveAttribute("aria-haspopup");
+    });
+
     it("uses section element for the panel with aria-labelledby pointing to the trigger", () => {
       const { container } = renderMenuBurger();
 

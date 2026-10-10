@@ -79,10 +79,13 @@ const InputPhoneCommon = ({
   inputId = otherProps.id || inputId;
   const idMessage = useId();
   const idHelp = useId();
+  const idDescription = useId();
+  const idLabel = useId();
 
   const ariaDescribedby = [
+    description && idDescription,
     helper && idHelp,
-    message && messageType === "success" && idMessage,
+    message && idMessage,
   ].filter(Boolean) as string[];
 
   const hasError = Boolean(message) && messageType === "error";
@@ -110,17 +113,23 @@ const InputPhoneCommon = ({
     <div className="af-form__input-phone-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
+        descriptionId={idDescription}
         moreButtonLabel={moreButtonLabel}
         onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
         onSideButtonClick={onSideButtonClick}
         required={required}
         htmlFor={inputId}
+        id={idLabel}
       >
         {label}
       </ItemLabelComponent>
 
-      <div className="af-form__input-phone-fields">
+      <div
+        className="af-form__input-phone-fields"
+        role={showSelect ? "group" : undefined}
+        aria-labelledby={showSelect ? idLabel : undefined}
+      >
         {showSelect ? (
           <div className="af-form__country-code-wrapper">
             <CountryCodeSelect

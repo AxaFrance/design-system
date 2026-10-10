@@ -90,3 +90,9 @@ const MonFormulaire = () => {
   );
 };
 ```
+
+## Accessibilité
+
+- Chaque fichier chargé a un bouton « Supprimer » nommé « Supprimer {nom du fichier} » : le nom commence
+  par le texte visible et distingue les fichiers entre eux.
+- Les icônes du type de fichier et du bouton « Parcourir » sont décoratives (`aria-hidden`).

@@ -26,7 +26,7 @@ describe("Timeline component", () => {
     expect(screen.getByText("Header 2")).toBeInTheDocument();
     expect(
       screen.getByRole("img", {
-        name: /devoiler le detail de la date 14\/11\/2024/i,
+        name: "Dévoiler le détail de la date 14/11/2024",
       }),
     ).toBeInTheDocument();
   });
@@ -53,7 +53,7 @@ describe("Timeline component", () => {
     expect(screen.getByText("Details 1")).toBeVisible();
     expect(
       screen.getByRole("img", {
-        name: /masquer le detail de la date 14\/11\/2024/i,
+        name: "Masquer le détail de la date 14/11/2024",
       }),
     ).toBeInTheDocument();
   });
@@ -92,7 +92,7 @@ describe("Timeline component", () => {
     );
     expect(screen.queryByText("Details 1")).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("img", { name: /detail de la date/i }),
+      screen.queryByRole("img", { name: /détail de la date/i }),
     ).toBeNull();
     expect(screen.queryByRole("group")).toBeNull();
   });

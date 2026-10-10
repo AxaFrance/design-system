@@ -1,6 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { LevelSelectorCommon } from "../LevelSelectorCommon";
+import { LevelSelector as LevelSelectorApollo } from "../LevelSelectorApollo";
+import { LevelSelector as LevelSelectorLF } from "../LevelSelectorLF";
 import { ClickIcon } from "../../ClickIcon/ClickIconCommon";
 import { CardCommon } from "../../Card/CardCommon";
 
@@ -158,6 +161,45 @@ describe("<LevelSelectorCommon />", () => {
         "aria-live",
         "polite",
       );
+    });
+  });
+});
+
+describe.each([
+  ["Apollo", LevelSelectorApollo],
+  ["LF", LevelSelectorLF],
+])("<LevelSelector /> %s radio names", (_, LevelSelector) => {
+  it("should name each radio on the input itself", async () => {
+    const { container } = render(
+      <LevelSelector title="Niveau de garantie" stepsCount={3} />,
+    );
+
+    screen.getAllByRole("radio").forEach((radio, index) => {
+      expect(radio).toHaveAttribute("aria-label", `Niveau ${index + 1}`);
+      expect(radio).toHaveAccessibleName(`Niveau ${index + 1}`);
+      expect(radio.closest("label")).not.toHaveAttribute("aria-label");
+    });
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should not reference a missing description", () => {
+    render(<LevelSelector title="Niveau de garantie" />);
+
+    screen.getAllByRole("radio").forEach((radio) => {
+      expect(radio).not.toHaveAttribute("aria-describedby");
+    });
+  });
+
+  it("should describe each radio with the description", () => {
+    render(
+      <LevelSelector
+        title="Niveau de garantie"
+        description="Niveau conseillé"
+      />,
+    );
+
+    screen.getAllByRole("radio").forEach((radio) => {
+      expect(radio).toHaveAccessibleDescription("Niveau conseillé");
     });
   });
 });
