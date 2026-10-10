@@ -16,16 +16,23 @@ import { HeaderTitle } from "@axa-fr/canopee-react/distributeur";
 ## Use
 
 ```tsx
-const TitleComponent = () => (
-  <HeaderTitle
-    isSticky
-    title="Toolkit Axa"
-    subtitle="Info complémentaire"
-    toggleMenu={() => {}}
-  />
-);
+const TitleComponent = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <HeaderTitle
+      isSticky
+      title="Toolkit Axa"
+      subtitle="Info complémentaire"
+      toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
+      isMenuOpen={isMenuOpen}
+    />
+  );
+};
 export default TitleComponent;
 ```
+
+The `toggleMenu` property adds a button that opens the main menu (`id="mainmenu"`) on small screens. Pass the state of that menu with `isMenuOpen` so that screen readers announce whether it is open: the button then gets `aria-expanded` and `aria-controls="mainmenu"`. `MenuTitleWrapper` passes it for you. The button is named "Menu principal" by default; use `toggleMenuLabel` to change its accessible name.
 
 If you need to have a navbar with anchors, you can use the `anchorNavBarItems` property. The `HeaderTitle` component will then show the `AnchorNavBar` component with the items you provide. You should update the `isActive` property of the items when the user clicks on them to highlight the active item. The `onClick` function will be called when the item is clicked, allowing you to handle navigation or other actions.
 The `anchorNavBarItems` property is an array of objects with the following structure:

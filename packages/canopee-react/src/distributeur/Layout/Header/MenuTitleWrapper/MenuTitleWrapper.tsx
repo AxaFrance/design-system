@@ -30,7 +30,12 @@ const MenuTitleWrapper = ({
       <NavBar isVisible={isMenuVisible} onClick={handleClick} {...navBarProps}>
         {children}
       </NavBar>
-      <HeaderTitle title={title} subtitle={subtitle} toggleMenu={handleClick} />
+      <HeaderTitle
+        title={title}
+        subtitle={subtitle}
+        toggleMenu={handleClick}
+        isMenuOpen={navBarProps?.isVisible ?? isMenuVisible}
+      />
     </>
   );
 };
