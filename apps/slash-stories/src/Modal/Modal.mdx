@@ -45,6 +45,13 @@ By default, the modal will be rendered with a medium size.
 | lg      | 800px |
 | default | 460px |
 
+## Accessibility
+
+The `<dialog>` needs a name. With a `ModalHeader`, it is named by the header
+title, so `title` can be omitted. Pass `title` to give it another name. With a
+`ModalHeaderBase`, pass `title`, or `aria-labelledby` pointing to your title.
+`BooleanModal` uses its `title` prop.
+
 ## Basic Usage
 
 Example of usage of Modal component :
