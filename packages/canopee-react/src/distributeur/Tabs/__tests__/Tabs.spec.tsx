@@ -1,11 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { describe, expect, it, vi } from "vitest";
 import { Tabs } from "../Tabs";
 
 describe("Tabs", () => {
   describe("Rendering", () => {
-    it("should render all tab buttons with their titles", () => {
+    it("should render all tabs with their titles", () => {
       render(
         <Tabs>
           <Tabs.Tab title="First Tab">First content</Tabs.Tab>
@@ -15,13 +16,13 @@ describe("Tabs", () => {
       );
 
       expect(
-        screen.getByRole("button", { name: "First Tab" }),
+        screen.getByRole("tab", { name: "First Tab" }),
       ).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: "Second Tab" }),
+        screen.getByRole("tab", { name: "Second Tab" }),
       ).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: "Third Tab" }),
+        screen.getByRole("tab", { name: "Third Tab" }),
       ).toBeInTheDocument();
     });
 
@@ -68,7 +69,7 @@ describe("Tabs", () => {
   });
 
   describe("User Interactions - Click", () => {
-    it("should change active tab when clicking on a tab button", async () => {
+    it("should change active tab when clicking on a tab", async () => {
       const user = userEvent.setup();
 
       render(
@@ -80,7 +81,7 @@ describe("Tabs", () => {
 
       expect(screen.getByText("First content")).toBeVisible();
 
-      await user.click(screen.getByRole("button", { name: "Second Tab" }));
+      await user.click(screen.getByRole("tab", { name: "Second Tab" }));
 
       expect(screen.getByText("Second content")).toBeVisible();
       expect(screen.getByText("First content")).toBeInTheDocument();
@@ -97,7 +98,7 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      await user.click(screen.getByRole("button", { name: "Second Tab" }));
+      await user.click(screen.getByRole("tab", { name: "Second Tab" }));
 
       expect(onChange).toHaveBeenCalledTimes(1);
     });
@@ -113,13 +114,13 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      await user.click(screen.getByRole("button", { name: "Second Tab" }));
+      await user.click(screen.getByRole("tab", { name: "Second Tab" }));
       expect(screen.getByText("Second content")).toBeVisible();
 
-      await user.click(screen.getByRole("button", { name: "Third Tab" }));
+      await user.click(screen.getByRole("tab", { name: "Third Tab" }));
       expect(screen.getByText("Third content")).toBeVisible();
 
-      await user.click(screen.getByRole("button", { name: "First Tab" }));
+      await user.click(screen.getByRole("tab", { name: "First Tab" }));
       expect(screen.getByText("First content")).toBeVisible();
     });
   });
@@ -136,13 +137,13 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const firstButton = screen.getByRole("button", { name: "First Tab" });
+      const firstButton = screen.getByRole("tab", { name: "First Tab" });
       firstButton.focus();
 
       await user.keyboard("{ArrowRight}");
 
       expect(screen.getByText("Second content")).toBeVisible();
-      expect(screen.getByRole("button", { name: "Second Tab" })).toHaveFocus();
+      expect(screen.getByRole("tab", { name: "Second Tab" })).toHaveFocus();
     });
 
     it("should navigate to previous tab with ArrowLeft", async () => {
@@ -156,13 +157,13 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const secondButton = screen.getByRole("button", { name: "Second Tab" });
+      const secondButton = screen.getByRole("tab", { name: "Second Tab" });
       secondButton.focus();
 
       await user.keyboard("{ArrowLeft}");
 
       expect(screen.getByText("First content")).toBeVisible();
-      expect(screen.getByRole("button", { name: "First Tab" })).toHaveFocus();
+      expect(screen.getByRole("tab", { name: "First Tab" })).toHaveFocus();
     });
 
     it("should navigate to first tab with Home key", async () => {
@@ -176,13 +177,13 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const thirdButton = screen.getByRole("button", { name: "Third Tab" });
+      const thirdButton = screen.getByRole("tab", { name: "Third Tab" });
       thirdButton.focus();
 
       await user.keyboard("{Home}");
 
       expect(screen.getByText("First content")).toBeVisible();
-      expect(screen.getByRole("button", { name: "First Tab" })).toHaveFocus();
+      expect(screen.getByRole("tab", { name: "First Tab" })).toHaveFocus();
     });
 
     it("should navigate to last tab with End key", async () => {
@@ -196,13 +197,13 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const firstButton = screen.getByRole("button", { name: "First Tab" });
+      const firstButton = screen.getByRole("tab", { name: "First Tab" });
       firstButton.focus();
 
       await user.keyboard("{End}");
 
       expect(screen.getByText("Third content")).toBeVisible();
-      expect(screen.getByRole("button", { name: "Third Tab" })).toHaveFocus();
+      expect(screen.getByRole("tab", { name: "Third Tab" })).toHaveFocus();
     });
 
     it("should not navigate beyond first tab when pressing ArrowLeft", async () => {
@@ -215,13 +216,13 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const firstButton = screen.getByRole("button", { name: "First Tab" });
+      const firstButton = screen.getByRole("tab", { name: "First Tab" });
       firstButton.focus();
 
       await user.keyboard("{ArrowLeft}");
 
       expect(screen.getByText("First content")).toBeVisible();
-      expect(screen.getByRole("button", { name: "First Tab" })).toHaveFocus();
+      expect(screen.getByRole("tab", { name: "First Tab" })).toHaveFocus();
     });
 
     it("should not navigate beyond last tab when pressing ArrowRight", async () => {
@@ -234,13 +235,13 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const secondButton = screen.getByRole("button", { name: "Second Tab" });
+      const secondButton = screen.getByRole("tab", { name: "Second Tab" });
       secondButton.focus();
 
       await user.keyboard("{ArrowRight}");
 
       expect(screen.getByText("Second content")).toBeVisible();
-      expect(screen.getByRole("button", { name: "Second Tab" })).toHaveFocus();
+      expect(screen.getByRole("tab", { name: "Second Tab" })).toHaveFocus();
     });
   });
 
@@ -265,7 +266,7 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const firstButton = screen.getByRole("button", { name: "First Tab" });
+      const firstButton = screen.getByRole("tab", { name: "First Tab" });
       const ariaControls = firstButton.getAttribute("aria-controls");
 
       expect(ariaControls).toBeTruthy();
@@ -284,11 +285,96 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      const firstButton = screen.getByRole("button", { name: "First Tab" });
+      const firstButton = screen.getByRole("tab", { name: "First Tab" });
       const panels = screen.getAllByRole("tabpanel");
       const firstPanel = panels[0];
 
       expect(firstPanel.getAttribute("aria-labelledby")).toBe(firstButton.id);
+    });
+
+    it("should put only tabs in the tablist and name each panel by its tab", () => {
+      render(
+        <Tabs>
+          <Tabs.Tab title="First Tab">First content</Tabs.Tab>
+          <Tabs.Tab title="Second Tab">Second content</Tabs.Tab>
+        </Tabs>,
+      );
+
+      const tablist = screen.getByRole("tablist");
+
+      expect(within(tablist).getAllByRole("tab")).toHaveLength(2);
+      expect(within(tablist).queryAllByRole("tabpanel")).toHaveLength(0);
+      expect(
+        screen.getByRole("tabpanel", { name: "First Tab" }),
+      ).toHaveTextContent("First content");
+      expect(
+        screen.getByRole("tabpanel", { name: "Second Tab" }),
+      ).toHaveTextContent("Second content");
+    });
+
+    it("should expose the selected tab with aria-selected", async () => {
+      const user = userEvent.setup();
+
+      render(
+        <Tabs>
+          <Tabs.Tab title="First Tab">First content</Tabs.Tab>
+          <Tabs.Tab title="Second Tab">Second content</Tabs.Tab>
+        </Tabs>,
+      );
+
+      expect(screen.getByRole("tab", { name: "First Tab" })).toHaveAttribute(
+        "aria-selected",
+        "true",
+      );
+      expect(screen.getByRole("tab", { name: "Second Tab" })).toHaveAttribute(
+        "aria-selected",
+        "false",
+      );
+
+      await user.click(screen.getByRole("tab", { name: "Second Tab" }));
+
+      expect(screen.getByRole("tab", { name: "First Tab" })).toHaveAttribute(
+        "aria-selected",
+        "false",
+      );
+      expect(screen.getByRole("tab", { name: "Second Tab" })).toHaveAttribute(
+        "aria-selected",
+        "true",
+      );
+    });
+
+    it("should name the tablist with aria-label or aria-labelledby", () => {
+      const { rerender } = render(
+        <Tabs aria-label="Informations du contrat">
+          <Tabs.Tab title="First Tab">First content</Tabs.Tab>
+        </Tabs>,
+      );
+
+      expect(screen.getByRole("tablist")).toHaveAccessibleName(
+        "Informations du contrat",
+      );
+
+      rerender(
+        <>
+          <h2 id="tabs-title">Contrat</h2>
+          <Tabs aria-labelledby="tabs-title">
+            <Tabs.Tab title="First Tab">First content</Tabs.Tab>
+          </Tabs>
+        </>,
+      );
+
+      expect(screen.getByRole("tablist")).toHaveAccessibleName("Contrat");
+    });
+
+    it("shouldn't have an accessibility violation", async () => {
+      const { container } = render(
+        <Tabs aria-label="Informations du contrat">
+          <Tabs.Tab title="First Tab">First content</Tabs.Tab>
+          <Tabs.Tab title="Second Tab">Second content</Tabs.Tab>
+        </Tabs>,
+      );
+
+      expect(await axe(container)).toHaveNoViolations();
     });
 
     it("should set tabIndex to 0 for active tab and -1 for inactive tabs", () => {
@@ -300,14 +386,15 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      expect(screen.getByRole("button", { name: "First Tab" })).toHaveAttribute(
+      expect(screen.getByRole("tab", { name: "First Tab" })).toHaveAttribute(
         "tabIndex",
         "0",
       );
-      expect(
-        screen.getByRole("button", { name: "Second Tab" }),
-      ).toHaveAttribute("tabIndex", "-1");
-      expect(screen.getByRole("button", { name: "Third Tab" })).toHaveAttribute(
+      expect(screen.getByRole("tab", { name: "Second Tab" })).toHaveAttribute(
+        "tabIndex",
+        "-1",
+      );
+      expect(screen.getByRole("tab", { name: "Third Tab" })).toHaveAttribute(
         "tabIndex",
         "-1",
       );
@@ -323,15 +410,16 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      await user.click(screen.getByRole("button", { name: "Second Tab" }));
+      await user.click(screen.getByRole("tab", { name: "Second Tab" }));
 
-      expect(screen.getByRole("button", { name: "First Tab" })).toHaveAttribute(
+      expect(screen.getByRole("tab", { name: "First Tab" })).toHaveAttribute(
         "tabIndex",
         "-1",
       );
-      expect(
-        screen.getByRole("button", { name: "Second Tab" }),
-      ).toHaveAttribute("tabIndex", "0");
+      expect(screen.getByRole("tab", { name: "Second Tab" })).toHaveAttribute(
+        "tabIndex",
+        "0",
+      );
     });
   });
 
@@ -366,9 +454,7 @@ describe("Tabs", () => {
         </Tabs>,
       );
 
-      expect(
-        screen.getByRole("button", { name: "Only Tab" }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("tab", { name: "Only Tab" })).toBeInTheDocument();
       expect(screen.getByText("Only content")).toBeVisible();
     });
 
@@ -390,7 +476,7 @@ describe("Tabs", () => {
 
       expect(screen.getByText("bold")).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: "Simple Tab" }),
+        screen.getByRole("tab", { name: "Simple Tab" }),
       ).toBeInTheDocument();
     });
 
