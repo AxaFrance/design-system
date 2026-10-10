@@ -29,7 +29,7 @@ const clickItems: NonNullable<MenuBurgerProps["clickItems"]> = [
     ariaLabelForActionIcon: "Aller à mon profil",
     tagLabel: "Nouveau",
     tagProps: { variant: "info" as TagVariants },
-    onClick: action("Profil clicked"),
+    href: "#profil",
   },
   {
     icon: settings,
@@ -37,7 +37,7 @@ const clickItems: NonNullable<MenuBurgerProps["clickItems"]> = [
     subtitle: "Notifications et sécurité",
     state: "default" as ClickItemStates,
     ariaLabelForActionIcon: "Aller aux préférences",
-    onClick: action("Preferences clicked"),
+    href: "#preferences",
   },
 ];
 
