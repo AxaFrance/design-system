@@ -72,9 +72,9 @@ describe("NavBar", () => {
     const externalLink = screen.getByRole("link", { name: "Services" });
     expect(externalLink).toHaveAttribute("href", "services");
     expect(externalLink).toHaveAttribute("target", "_blank");
-    expect(within(externalLink).getByRole("presentation")).toHaveClass(
-      "af-anchor-navbar-external-link-svg",
-    );
+    expect(
+      within(externalLink).getByRole("presentation", { hidden: true }),
+    ).toHaveClass("af-anchor-navbar-external-link-svg");
   });
 
   it("Affiche les liens externes correctement", () => {
