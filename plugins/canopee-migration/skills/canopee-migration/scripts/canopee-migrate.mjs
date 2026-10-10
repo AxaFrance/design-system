@@ -11,8 +11,9 @@
 //   --report FILE  also writes the report as a Markdown checklist (relative to projectDir)
 //   --json         machine-readable report
 //   --all          also lists every AUTO edit and every deprecated usage
-//   --check        dry run, then runs the project typecheck, lint, test and build scripts and
-//                  prints VERDICT: DONE only when nothing is left and every check passes
+//   --check        dry run (it also lists each toolkit Sass value, breakpoint or token deleted since
+//                  --write: SASS_LOST), then runs the project typecheck, lint, test and build scripts
+//                  and prints VERDICT: DONE only when nothing is left and every check passes
 //
 // Everything listed under MANUAL is left to you: one line per change, with file:line, what to do
 // and the reference to read (search the code, e.g. TK_REMOVED, in the given references/*.md file).
@@ -541,21 +542,30 @@ const REMOVED_TOKENS_APOLLO = {
   "--color-alert-danger-bg-color": "#f1d596",
   "--color-gray-300": "#e9ecf2",
 };
-// Component variables of the prospect and client CSS removed in 2.0 (--orange-100 is renamed).
-const REMOVED_TOKENS_B2C_2 = Object.fromEntries(
-  [
-    "--item-message-icon-size",
-    "--link-font-size",
-    "--dropdown-border-color",
-    "--radio-option-border-width",
-    "--radio-option-border-color",
-    "--radio-option-color-title",
-    "--radio-option-color-subtitle",
-    "--radio-option-gap",
-    "--radio-option-border-radius",
-    "--radio-option-background-color",
-  ].map((n) => [n, ""]),
-);
+// Component variables of the prospect and client CSS removed in 2.0 (--orange-100 is renamed), with
+// what 2.0 reads instead (compared in the 1.8.0 and 2.0.0-alpha.76 stylesheets).
+const REMOVED_TOKENS_B2C_2 = {
+  "--item-message-icon-size":
+    "2.0 sizes the icon with --icon-size on the .af-icon inside .af-item-message: write --icon-size with the same value on <your selector> .af-icon",
+  "--link-font-size":
+    "2.0 .af-link sets font-size itself: write font-size with the same value on the same selector",
+  "--dropdown-border-color":
+    "1.x did not read it either (the border is --dropdown-box-shadow-color): this declaration never changed the page, remove it",
+  ...Object.fromEntries(
+    [
+      "border-width",
+      "border-color",
+      "color-title",
+      "color-subtitle",
+      "gap",
+      "border-radius",
+      "background-color",
+    ].map((n) => [
+      `--radio-option-${n}`,
+      `2.0 CardRadio reads --radio-${n} on .af-card-radio (was .af-card-radio-option, CARDRADIO_2): rename the variable and the selector, keep the value`,
+    ]),
+  ),
+};
 
 // Toolkit < 3 called onChange with { name, value, id }; Canopée does not.
 const NATIVE =
@@ -676,6 +686,14 @@ const CODES = {
   ],
   SASS_VALUE: [
     "toolkit Sass variable redefined with another value",
+    "packages-and-css.md",
+  ],
+  SASS_UNDEFINED: [
+    "Sass variable or mixin defined nowhere since the toolkit import is gone",
+    "packages-and-css.md",
+  ],
+  SASS_LOST: [
+    "toolkit variable, breakpoint or token deleted without its replacement",
     "packages-and-css.md",
   ],
   TOKEN_REMOVED: [
@@ -882,9 +900,18 @@ function classify(spec) {
 
 // Maps an asset path (CSS, SCSS, SVG) to its Canopée path. Returns { to } or { code, hint } or null.
 // fromCode: the stylesheet is imported from a JS/TS file (import "x.scss"), not from a stylesheet.
-function mapAsset(info, target, usesToolkitReact, fromCode = false) {
+// fromSass: imported from a Sass file, where a path without extension is a Sass partial.
+function mapAsset(
+  info,
+  target,
+  usesToolkitReact,
+  fromCode = false,
+  fromSass = false,
+) {
   const { family, sub } = info;
-  const isSass = /\.s[ac]ss$/.test(sub);
+  const isSass =
+    /\.s[ac]ss$/.test(sub) ||
+    (fromSass && !/\.[A-Za-z0-9]+$/.test(sub.split("/").pop()));
   const logo = "@axa-fr/canopee-css/logo-axa.svg";
   const exists = (p) =>
     CSS_FILES_1.has(p) && !(target === 2 && CSS_REMOVED_IN_2.has(p));
@@ -996,7 +1023,7 @@ const SIDE_EFFECT_RE =
 const CALL_RE =
   /\b(require|import|jest\.mock|vi\.mock|jest\.doMock|vi\.doMock|jest\.requireActual|vi\.importActual|jest\.unmock|vi\.unmock)\s*\(\s*(['"])([^'"\n]+)\2/g;
 const CSS_IMPORT_RE =
-  /@(import|use|forward)\s+(?:url\(\s*)?(['"])([^'"\n]+)\2\s*\)?[^;\n]*;?[ \t]*\r?\n?/g;
+  /@(import|use|forward)\s+(?:url\(\s*)?(['"])([^'"\n]+)\2[ \t]*\)?[^;\n]*;?[ \t]*\r?\n?/g;
 const CSS_URL_RE = /url\(\s*(['"]?)(~?@axa-fr\/[^'")\s]+)\1\s*\)/g;
 
 // Parses an import/export clause. Returns null when unsupported.
@@ -2128,13 +2155,14 @@ function analyzeStyle(file, text, ctx) {
       detail,
       breaksIn,
     });
+  const fromSass = /\.s[ac]ss$/i.test(file);
   CSS_IMPORT_RE.lastIndex = 0;
   let m;
   while ((m = CSS_IMPORT_RE.exec(text))) {
     const spec = m[3];
     const info = classify(spec);
     if (!info || info.kind !== "asset") continue;
-    const r = mapAsset(info, ctx.target, false);
+    const r = mapAsset(info, ctx.target, false, false, fromSass);
     if (!r) continue;
     const specStart = m.index + m[0].indexOf(spec);
     if (r.to)
@@ -2151,7 +2179,8 @@ function analyzeStyle(file, text, ctx) {
       !m[0].includes(",") &&
       blankComments(text)[m.index] === "@"
     ) {
-      // toolkit Sass @import (one path): deleted; toolkitSassItems replaces what the file used
+      // toolkit Sass @import (one path): deleted; toolkitSassItems replaces what the file used, or
+      // puts the breakpoint helper import in its place (tkImport)
       let start = m.index;
       while (start > 0 && (text[start - 1] === " " || text[start - 1] === "\t"))
         start--;
@@ -2161,6 +2190,11 @@ function analyzeStyle(file, text, ctx) {
         end: m.index + m[0].length,
         text: "",
         kind: "sass",
+        tkImport: {
+          indent: text.slice(start, m.index),
+          quote: m[2],
+          nl: /\n$/.test(m[0]) ? (/\r\n$/.test(m[0]) ? "\r\n" : "\n") : "",
+        },
       });
     } else if (info.family === "toolkit" && /\.css$/.test(info.sub))
       add(
@@ -2226,41 +2260,85 @@ function tokenEdits(text, map) {
   return out;
 }
 
-// Custom properties removed from Canopée (usage or override in the project).
+// Custom properties removed from Canopée (usage or override in the project). A name the project
+// declares itself (`--spacing-16: 16px;`) is the project's: neither its usages nor that declaration
+// are listed. Every usage listed is also tracked: --check reports it if it disappears (SASS_LOST).
 function removedTokenItems(file, text, ctx) {
   const items = [];
   const lists = [];
+  const tokenOf = ctx.tkData
+    ? new Map(
+        Object.entries(ctx.tkData.tokens).map(([t, v]) => [normValue(v), t]),
+      )
+    : new Map();
+  const same = (v) => {
+    const t = tokenOf.get(normValue(v));
+    return t ? ` or var(${t}) (same value)` : "";
+  };
   if (ctx.fromApollo)
     lists.push([
       REMOVED_TOKENS_APOLLO,
       1,
-      (v) =>
-        `removed (Apollo/Look & Feel token), its value was ${v}: use a Canopée token or a project variable`,
+      (n, v) =>
+        `removed (Apollo/Look & Feel token), its value was ${v}: declare it once in the project (:root { ${n}: ${v}; }) and keep every var(${n}); never delete a declaration that uses it`,
+      true,
+      false,
+    ]);
+  if (ctx.fromToolkit && ctx.tkRootCss && ctx.tkData)
+    lists.push([
+      Object.fromEntries(
+        Object.entries(ctx.tkData.rootProperties).filter(
+          ([n]) => !(n in ctx.tkData.tokens),
+        ),
+      ),
+      1,
+      (n, v) =>
+        `defined by the toolkit stylesheet af-toolkit-core.css (:root), value ${v}; Canopée does not define it: declare it once in the project (:root { ${n}: ${v}; }) and keep every var(${n})${same(v)}; never delete a declaration that uses it`,
+      true,
+      true,
     ]);
   if (ctx.target === 2 && ctx.universes.has("b2c"))
     lists.push([
       REMOVED_TOKENS_B2C_2,
       2,
-      () =>
-        "component variable removed in 2.0: overriding it has no effect any more",
+      (n, v) =>
+        `component variable removed in 2.0, overriding it has no effect any more: ${v}`,
+      false,
+      false,
     ]);
-  for (const [list, breaksIn, hint] of lists) {
-    const names = Object.keys(list);
-    if (!names.some((n) => text.includes(n))) continue;
+  for (const [list, breaksIn, hint, track, withTokens] of lists) {
+    const names = Object.keys(list).filter(
+      (n) => text.includes(n) && !(track && ctx.ownProps?.has(n)),
+    );
+    if (!names.length) continue;
+    // a removed token counts where it is read (var(--x)); a 2.0 component variable where it is
+    // overridden too
     const re = new RegExp(
-      `(${names.map((n) => n.replace(/-/g, "\\-")).join("|")})(?![\\w-])`,
+      `${track ? "var\\(\\s*" : "(?<![\\w-])"}(${names.map((n) => n.replace(/-/g, "\\-")).join("|")})(?![\\w-])`,
       "g",
     );
     let m;
-    while ((m = re.exec(text)))
+    while ((m = re.exec(text))) {
+      const n = m[1];
+      const at = m.index + m[0].indexOf(n);
       items.push({
         file,
-        index: m.index,
-        line: lineOf(text, m.index),
+        index: at,
+        line: lineOf(text, at),
         code: "TOKEN_REMOVED",
-        detail: `${m[1]}: ${hint(list[m[1]])}`,
+        detail: `${n}: ${hint(n, list[n])}`,
         breaksIn,
       });
+      if (track && ctx.track) {
+        const v = list[n];
+        const t = withTokens ? tokenOf.get(normValue(v)) : undefined;
+        ctx.track(file, at, `var(${n}) (${v})`, [
+          `var(${n}`,
+          ...(/[()]/.test(v) ? [] : literalKeys(v)),
+          ...(t ? [`var(${t})`] : []),
+        ]);
+      }
+    }
   }
   return items;
 }
@@ -2268,12 +2346,19 @@ function removedTokenItems(file, text, ctx) {
 // ---------------------------------------------------------------------------------------------
 // Toolkit Sass: variables, mixins and functions that disappear with @axa-fr/react-toolkit-core
 // ---------------------------------------------------------------------------------------------
+//
+// Rule: no toolkit variable, function, mixin or breakpoint disappears without its replacement.
+// --write replaces what has a certain value (the exact Canopée token, otherwise the literal toolkit
+// value) and leaves every other line as it is, listed in MANUAL with the value to write. --write also
+// records what it found (.canopee-migrate.json, sassLedger); every later run compares: a use that
+// disappeared without its replacement is listed as SASS_LOST and keeps the VERDICT at NOT DONE.
 
 // Sass colour functions do not accept var(...): a toolkit variable used inside one keeps a literal.
 const SASS_FUNCS =
   /\b(darken|lighten|rgba?|mix|transparentize|fade-?out|fade-?in|opacify|saturate|desaturate|adjust-hue|scale-color|adjust-color|change-color|color\.[a-z-]+)\(/;
-const TK_SASS_OTHER =
-  /@include\s+(generate-universes)\b|\b(theme-color-level|theme-color|color-yiq|breakpoint-(?:next|min|max|infix)|str-replace)\(/g;
+// The toolkit breakpoint functions and mixins (Bootstrap 4), kept in a project partial written by
+// --write when a rule computes a breakpoint (variable argument): see breakpointHelper().
+const TK_BP_HELPER = "_toolkit-breakpoints.scss";
 
 function loadToolkitSass(scriptDir) {
   try {
@@ -2321,6 +2406,123 @@ function mediaQuery(kind, args, bp) {
   return `@media ${[lo && `(min-width: ${lo})`, hi && `(max-width: ${hi})`]
     .filter(Boolean)
     .join(" and ")}`;
+}
+// Value of a toolkit breakpoint function with a literal name, or undefined; null is Sass null.
+function breakpointValue(fn, arg, bp) {
+  const names = Object.keys(bp);
+  const i = names.indexOf(arg);
+  if (i < 0) return undefined;
+  const next = i < names.length - 1 ? names[i + 1] : null;
+  if (fn === "breakpoint-next") return next;
+  if (fn === "breakpoint-min") return bp[arg] ? `${bp[arg]}px` : null;
+  if (fn === "breakpoint-max")
+    return next ? `${Math.round((bp[next] - 0.02) * 100) / 100}px` : null;
+  return bp[arg] ? `"-${arg}"` : '""';
+}
+// The toolkit breakpoint code, as a project partial: same functions and mixins as
+// @axa-fr/react-toolkit-core src/common/scss/_breakpoints.scss, same $grid-breakpoints.
+function breakpointHelper(bp) {
+  const map = Object.entries(bp)
+    .map(([k, v]) => `${k}: ${v ? `${v}px` : 0}`)
+    .join(", ");
+  return `// Breakpoint functions and mixins of @axa-fr/react-toolkit-core (Bootstrap 4, MIT licence), with the
+// toolkit breakpoints, written by the Canopée migration for the rules that compute a breakpoint
+// (a variable argument). Same thresholds as the Canopée distributeur grid (.col-sm-* 576px, md 768px,
+// lg 992px, xl 1200px). Literal uses were replaced by @media queries. Do not change these values.
+@use "sass:list";
+@use "sass:map";
+
+$grid-breakpoints: (${map}) !default;
+
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map.keys($breakpoints)) {
+  $n: list.index($breakpoint-names, $name);
+  @if $n < list.length($breakpoint-names) {
+    @return list.nth($breakpoint-names, $n + 1);
+  }
+  @return null;
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map.get($breakpoints, $name);
+  @if $min != 0 {
+    @return $min;
+  }
+  @return null;
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @if $next {
+    @return breakpoint-min($next, $breakpoints) - 0.02px;
+  }
+  @return null;
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @if breakpoint-min($name, $breakpoints) == null {
+    @return "";
+  }
+  @return "-#{$name}";
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $max: breakpoint-max($name, $breakpoints);
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+`;
 }
 
 // The replacement --write makes for a toolkit Sass variable without changing what Sass computes, or
@@ -2372,43 +2574,334 @@ function sassAutoValue(t, index, name, value, token) {
   return single ? v : null;
 }
 
-// Lists every toolkit Sass variable, mixin and function the project still needs, with the exact
-// replacement, so that nobody guesses a colour or a breakpoint once the toolkit is uninstalled.
-// Also returns the toolkit variables the project defines itself, recorded on --write: a definition
-// added later with another value than the toolkit one is reported (SASS_VALUE).
-function toolkitSassItems(styleFiles, texts, ctx, data, rel) {
+// --- non-loss ledger ------------------------------------------------------------------------
+// A tracked use is a list of keys: the old name (still to replace) and every exact replacement
+// (the literal value, var(--token), the computed result next to "/" or "*"). Per file, the uses that
+// share a key form a group; --write records how many keys each group has once its edits are applied,
+// and a later run that finds fewer means a use was deleted without its replacement.
+function ledgerNorm(s) {
+  return blankComments(String(s))
+    .toLowerCase()
+    .replace(/"/g, "'")
+    .replace(/\s+/g, " ")
+    .replace(/\s*([(),:;{}])\s*/g, "$1")
+    .trim();
+}
+function countKeys(norm, keys) {
+  const hits = new Set();
+  for (const raw of keys) {
+    const k = ledgerNorm(raw);
+    if (!k) continue;
+    const esc = k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const before = /^\$/.test(k)
+      ? "(?<![\\w$])"
+      : /^[\w#.]/.test(k)
+        ? "(?<![\\w#.$-])"
+        : /^-/.test(k)
+          ? "(?<![\\w-])"
+          : "";
+    const after = /[\w%]$/.test(k) ? "(?![\\w-])" : "";
+    for (const m of norm.matchAll(new RegExp(before + esc + after, "g")))
+      hits.add(m.index);
+  }
+  return hits.size;
+}
+// Literal keys of a value: both spellings of a short hex colour. A value as common as 0 or none
+// says nothing about where it came from: not a key.
+function literalKeys(v) {
+  const s = String(v).trim();
+  if (
+    !s ||
+    /^(-?\d|none|auto|inherit|initial|unset|normal|true|false|null|transparent|currentcolor)$/i.test(
+      s,
+    )
+  )
+    return [];
+  const out = [s];
+  const n = normValue(s);
+  if (n !== s.toLowerCase()) out.push(n);
+  const short = /^#([0-9a-f])\1([0-9a-f])\2([0-9a-f])\3$/i.exec(s);
+  if (short) out.push(`#${short[1]}${short[2]}${short[3]}`);
+  return out;
+}
+// The values of a Sass map literal "(a: 1px, b: #fff)", keyed by name (quotes removed).
+function mapEntries(v) {
+  const out = {};
+  const s = String(v).trim();
+  if (!s.startsWith("(")) return out;
+  let depth = 0;
+  let cur = "";
+  const parts = [];
+  for (const c of s.slice(1, -1)) {
+    if (c === "(") depth++;
+    if (c === ")") depth--;
+    if (c === "," && !depth) {
+      parts.push(cur);
+      cur = "";
+    } else cur += c;
+  }
+  parts.push(cur);
+  for (const p of parts) {
+    const i = p.indexOf(":");
+    if (i > 0)
+      out[
+        p
+          .slice(0, i)
+          .trim()
+          .replace(/^['"]|['"]$/g, "")
+      ] = p.slice(i + 1).trim();
+  }
+  return out;
+}
+// Keys of a toolkit value: the literal, var(--token), and the values of a map.
+function valueKeys(value, token) {
+  const out = token ? [`var(${token})`] : [];
+  if (String(value).startsWith("("))
+    for (const v of Object.values(mapEntries(value)))
+      if (/[\d#]/.test(v) && v !== "0") out.push(...literalKeys(v));
+  if (!String(value).startsWith("(")) out.push(...literalKeys(value));
+  return out;
+}
+// "30px" / 2 -> "15px": the result Sass printed for `$x / 2`, `$x * 2`, `2 * $x`, `-$x`.
+function arithmeticResult(t, index, end, value) {
+  const n = /^(-?\d*\.?\d+)([a-z%]*)$/i.exec(String(value).trim());
+  if (!n) return null;
+  const num = Number(n[1]);
+  const fmt = (x) => `${Number(x.toFixed(10))}${n[2]}`;
+  const after = /^\s*([*/])\s*(\d*\.?\d+)(?![\w%.])/.exec(t.slice(end));
+  if (after)
+    return fmt(
+      after[1] === "*" ? num * Number(after[2]) : num / Number(after[2]),
+    );
+  const before = /(?<![\w$.-])(\d*\.?\d+)\s*\*\s*$/.exec(t.slice(0, index));
+  if (before) return fmt(num * Number(before[1]));
+  if (t[index - 1] === "-" && !/[\w)]/.test(t[index - 2] || " "))
+    return fmt(-num);
+  return null;
+}
+
+// --- project Sass files: imports, definitions, compilation units ----------------------------
+
+// Bundler options that put Sass code or load paths in every file (Vite/webpack additionalData...):
+// definitions may then reach a file without any @import the script can see.
+function sassInjected(root) {
+  let names = [];
+  try {
+    names = fs.readdirSync(root);
+  } catch {
+    return false;
+  }
+  return names
+    .filter((n) =>
+      /^(vite|webpack|craco|next|vue|rsbuild|rspack|nuxt)\.config\.[cm]?[jt]s$|^angular\.json$/.test(
+        n,
+      ),
+    )
+    .some((n) => {
+      try {
+        return /\b(additionalData|prependData|includePaths|loadPaths|stylePreprocessorOptions)\b/.test(
+          fs.readFileSync(path.join(root, n), "utf8"),
+        );
+      } catch {
+        return false;
+      }
+    });
+}
+// The project Sass files each file imports (@import, @use, @forward), its toolkit imports, and the
+// files the script cannot follow (a package other than @axa-fr, an alias, a load path).
+function sassGraph(root, src) {
+  const files = new Set(src.keys());
+  const edges = new Map();
+  const importsAt = new Map(); // file -> [{ index, target }]
+  const tk = new Map();
+  const external = new Set();
+  const resolve = (from, spec) => {
+    const bases = /^\.\.?\//.test(spec)
+      ? [path.dirname(from)]
+      : [path.dirname(from), root, path.join(root, "src")];
+    for (const b of bases) {
+      const p = path.resolve(b, spec);
+      const dir = path.dirname(p);
+      const base = path.basename(p);
+      const cands = [p, path.join(dir, `_${base}`)];
+      for (const e of [".scss", ".sass"])
+        cands.push(
+          p + e,
+          path.join(dir, `_${base}${e}`),
+          path.join(p, `_index${e}`),
+          path.join(p, `index${e}`),
+        );
+      const hit = cands.find((c) => files.has(c));
+      if (hit) return hit;
+    }
+    return null;
+  };
+  for (const [f, t] of src) {
+    const out = new Set();
+    for (const m of t.matchAll(/@(import|use|forward)\s+([^;{}\n]+)/g)) {
+      const all = [...m[2].matchAll(/(['"])([^'"\n]+)\1/g)].map((x) => x[2]);
+      const specs = m[1] === "import" ? all : all.slice(0, 1);
+      for (const spec of specs) {
+        if (/^(sass:|https?:|\/\/)/.test(spec) || /\.css$/i.test(spec))
+          continue;
+        const clean = spec.replace(/^~/, "");
+        if (/^@axa-fr\/react-toolkit-/.test(clean)) {
+          if (!tk.has(f)) tk.set(f, []);
+          tk.get(f).push({ index: m.index, spec: clean });
+          continue;
+        }
+        const r = resolve(f, spec);
+        if (r) {
+          out.add(r);
+          if (!importsAt.has(f)) importsAt.set(f, []);
+          importsAt.get(f).push({ index: m.index, target: r });
+        } else if (!/^@axa-fr\//.test(clean)) external.add(f);
+      }
+    }
+    edges.set(f, out);
+  }
+  const reachMemo = new Map();
+  const reach = (f) => {
+    if (reachMemo.has(f)) return reachMemo.get(f);
+    const seen = new Set([f]);
+    const stack = [f];
+    while (stack.length)
+      for (const n of edges.get(stack.pop()) || [])
+        if (!seen.has(n)) {
+          seen.add(n);
+          stack.push(n);
+        }
+    reachMemo.set(f, seen);
+    return seen;
+  };
+  const imported = new Set([...edges.values()].flatMap((s) => [...s]));
+  // compilation unit: the files compiled with f (every file reached from an entry that reaches f)
+  const unit = new Map();
+  for (const r of [...files].filter((f) => !imported.has(f))) {
+    const s = reach(r);
+    for (const f of s) {
+      if (!unit.has(f)) unit.set(f, new Set());
+      for (const x of s) unit.get(f).add(x);
+    }
+  }
+  for (const f of files) if (!unit.has(f)) unit.set(f, reach(f));
+  return { tk, external, reach, unit, importsAt };
+}
+
+// Removes the @include wrapper of a breakpoint without media query (up(xs), down(xl)): its content
+// applies everywhere, exactly as the toolkit mixin did. Returns the edits, or null.
+function unwrapEdits(text, t, start, end) {
+  let i = end;
+  while (i < t.length && /\s/.test(t[i])) i++;
+  if (t[i] !== "{") return null;
+  const open = i;
+  let depth = 0;
+  let close = -1;
+  for (let j = open; j < t.length; j++) {
+    const c = t[j];
+    if (c === '"' || c === "'") {
+      j++;
+      while (j < t.length && t[j] !== c) j += t[j] === "\\" ? 2 : 1;
+    } else if (c === "{") depth++;
+    else if (c === "}" && --depth === 0) {
+      close = j;
+      break;
+    }
+  }
+  if (close < 0) return null;
+  const lineStart = (k) => text.lastIndexOf("\n", k - 1) + 1;
+  const lineEnd = (k) => (text.indexOf("\n", k) + 1 || text.length + 1) - 1;
+  let hs = start;
+  if (!text.slice(lineStart(start), start).trim()) hs = lineStart(start);
+  let he = open + 1;
+  if (!text.slice(he, lineEnd(he)).trim())
+    he = Math.min(lineEnd(he) + 1, text.length);
+  let cs = close;
+  let ce = close + 1;
+  if (
+    !text.slice(lineStart(close), close).trim() &&
+    !text.slice(ce, lineEnd(ce)).trim()
+  ) {
+    cs = lineStart(close);
+    ce = Math.min(lineEnd(ce) + 1, text.length);
+  }
+  return [
+    { start: hs, end: he, text: "", kind: "sass" },
+    { start: cs, end: ce, text: "", kind: "sass" },
+  ];
+}
+
+// Lists every toolkit Sass variable, mixin, function and breakpoint the project still needs, with the
+// exact replacement, so that nobody guesses or drops a value once the toolkit is uninstalled.
+// Returns the items, the safe edits (applied by --write), the toolkit variables the project defines
+// (SASS_VALUE), the breakpoint helper to write and the files that had a toolkit import.
+// tkDeleted: file -> the toolkit @import edits of analyzeStyle (deleted by --write).
+function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
   const items = [];
   const edits = new Map(); // file -> safe replacements, applied by --write (AUTO kind "sass")
+  const empty = {
+    items,
+    edits,
+    defs: [],
+    helper: null,
+    tkFiles: [],
+    shadowed: {},
+  };
   const src = new Map();
   for (const f of styleFiles)
     if (/\.s[ac]ss$/i.test(f) && texts.has(f))
       src.set(f, blankComments(texts.get(f)));
-  if (!src.size) return { items, edits, defs: [] };
-  const defined = new Set();
-  const own = new Set(); // mixins and functions of the project
+  if (!src.size) return empty;
+  const g = sassGraph(root, src);
+  const injected = sassInjected(root);
+  // files that imported the toolkit: now, or before --write (recorded then; the imports are gone)
+  const tkFiles = new Set(g.tk.keys());
+  for (const r of ctx.state.sassTkFiles || []) tkFiles.add(path.join(root, r));
+  const definedIn = new Map(); // variable -> files that define it
+  const locals = new Set(); // parameters and loop variables
+  const own = new Map(); // project mixin or function -> files
   const defs = [];
   let bootstrapSass = false;
+  const addTo = (map, k, f) => {
+    if (!map.has(k)) map.set(k, new Set());
+    map.get(k).add(f);
+  };
   for (const [f, t] of src) {
     for (const m of t.matchAll(
       /^[ \t]*\$([A-Za-z_][\w-]*)[ \t]*:[ \t]*([^;\n]*)/gm,
     )) {
-      defined.add(m[1]);
+      addTo(definedIn, m[1], f);
       defs.push({
         file: f,
         index: m.index + m[0].indexOf("$"),
         name: m[1],
         value: m[2].replace(/\s*!(default|global)\b/g, "").trim(),
+        isDefault: /!default\b/.test(m[2]),
       });
     }
-    for (const m of t.matchAll(
-      /@(?:mixin|function)\s+([\w-]+)\s*(\(([^)]*)\))?/g,
-    )) {
-      own.add(m[1]);
-      for (const p of (m[3] || "").matchAll(/(?:^|,)\s*\$([\w-]+)/g))
-        defined.add(p[1]);
+    for (const m of t.matchAll(/@(?:mixin|function)\s+([\w-]+)\s*(\()?/g)) {
+      addTo(own, m[1], f);
+      if (!m[2]) continue;
+      // parameters, read up to the matching parenthesis (a default may hold a list)
+      let depth = 0;
+      let part = "";
+      for (const c of t.slice(m.index + m[0].length)) {
+        if (c === ")" && !depth) break;
+        if (c === "(") depth++;
+        if (c === ")") depth--;
+        if (c === "," && !depth) {
+          const p = /^\s*\$([\w-]+)/.exec(part);
+          if (p) locals.add(p[1]);
+          part = "";
+        } else part += c;
+      }
+      const p = /^\s*\$([\w-]+)/.exec(part);
+      if (p) locals.add(p[1]);
     }
+    for (const m of t.matchAll(/\busing\s*\(([^)]*)\)/g))
+      for (const p of m[1].matchAll(/\$([\w-]+)/g)) locals.add(p[1]);
     for (const m of t.matchAll(/@(?:each|for)\s+([^{]*?)\s+(?:in|from)\b/g))
-      for (const p of m[1].matchAll(/\$([\w-]+)/g)) defined.add(p[1]);
+      for (const p of m[1].matchAll(/\$([\w-]+)/g)) locals.add(p[1]);
     if (/@(?:import|use|forward)\s+[^;\n]*bootstrap/.test(t))
       bootstrapSass = true;
   }
@@ -2418,8 +2911,87 @@ function toolkitSassItems(styleFiles, texts, ctx, data, rel) {
   const tokenOf = new Map(
     Object.entries(data.tokens).map(([t, v]) => [normValue(v), t]),
   );
+  const unitOf = (f) => g.unit.get(f) || new Set([f]);
+  const inUnit = (f, files) => [...files].some((x) => unitOf(f).has(x));
+  const sees = (f, name) =>
+    locals.has(name) ||
+    (definedIn.has(name) && (injected || inUnit(f, definedIn.get(name))));
+  const isHelper = (x) => path.basename(x) === TK_BP_HELPER;
+  // a mixin or function of the project itself (the breakpoint helper is the toolkit's code)
+  const hasOwn = (f, name, helperToo = true) =>
+    own.has(name) &&
+    [...own.get(name)].some(
+      (x) => unitOf(f).has(x) && (helperToo || !isHelper(x)),
+    );
+  const hadToolkit = (f) => inUnit(f, tkFiles);
+  const followed = (f) => !injected && !inUnit(f, g.external);
+  const bpNames = Object.keys(data.breakpoints);
+  const literalArgs = (raw, n) => {
+    const args = raw
+      .split(",")
+      .map((s) => s.trim().replace(/^['"]|['"]$/g, ""))
+      .filter(Boolean);
+    return args.length === n && args.every((a) => bpNames.includes(a))
+      ? args
+      : null;
+  };
+  const track = (f, index, label, keys) =>
+    ctx.track && ctx.track(f, index, label, keys);
+
+  // 1. rules that compute a breakpoint (variable argument): the toolkit code goes into a project
+  //    partial, imported where a toolkit import is deleted, so that they compile exactly as before
+  const dyn = new Set();
   for (const [f, t] of src) {
+    if (isHelper(f)) continue;
+    for (const m of t.matchAll(
+      /@include\s+(media-breakpoint-(up|down|only|between))\s*\(([^)]*)\)/g,
+    ))
+      if (!hasOwn(f, m[1]) && !literalArgs(m[3], m[2] === "between" ? 2 : 1))
+        dyn.add(f);
+    for (const m of t.matchAll(
+      /(?<![\w$.-])(breakpoint-(?:next|min|max|infix))\(([^()]*)\)/g,
+    ))
+      if (!hasOwn(f, m[1]) && !literalArgs(m[2], 1)) dyn.add(f);
+  }
+  let helper = null;
+  if (dyn.size) {
+    const existing = [...src.keys()].find(isHelper);
+    const file =
+      existing || path.join(path.dirname([...dyn].sort()[0]), TK_BP_HELPER);
+    const sites = new Map();
+    const missing = [];
+    for (const f of [...dyn].sort()) {
+      const cands = [...unitOf(f)].filter(
+        (s) => tkDeleted.has(s) && g.reach(s).has(f),
+      );
+      if (!cands.length) missing.push(f);
+      for (const s of cands) {
+        let spec = path
+          .relative(path.dirname(s), file)
+          .split(path.sep)
+          .join("/")
+          .replace(/(^|\/)_([^/]+)\.scss$/, "$1$2");
+        if (!spec.startsWith(".")) spec = `./${spec}`;
+        sites.set(s, spec);
+      }
+    }
+    helper = {
+      file,
+      text: existing ? null : breakpointHelper(data.breakpoints),
+      sites,
+      missing,
+    };
+  }
+  // files compiled with the helper see its variable, functions and mixins
+  const helperFile = [...src.keys()].find(isHelper);
+  const withHelper = (f) =>
+    (helperFile && unitOf(f).has(helperFile)) ||
+    (helper && inUnit(f, helper.sites.keys()));
+
+  for (const [f, t] of src) {
+    if (isHelper(f)) continue;
     const text = texts.get(f);
+    const scss = /\.scss$/i.test(f);
     const add = (index, code, detail) =>
       items.push({
         file: f,
@@ -2432,28 +3004,104 @@ function toolkitSassItems(styleFiles, texts, ctx, data, rel) {
     const fileEdits = [];
     const edit = (start, end, text) =>
       fileEdits.push({ start, end, text, kind: "sass" });
-    // one line per variable and replacement, with every line where it is used
+    const unknownHere = hadToolkit(f) && followed(f);
+
+    // 2. variables: one line per variable and replacement, with every line where it is used;
+    //    a lookup in a toolkit map with a written key (map-get($grid-breakpoints, md)) is its value
+    const consumed = new Set();
+    for (const m of t.matchAll(
+      /(?<![\w$.-])(?:map-get|map\.get)\(\s*\$([\w-]+)\s*,\s*(['"]?)([\w-]+)\2\s*\)/g,
+    )) {
+      const name = m[1];
+      if (sees(f, name) || (name === "grid-breakpoints" && withHelper(f)))
+        continue;
+      const map = valueOf(name);
+      const value = map?.startsWith("(") ? mapEntries(map)[m[3]] : undefined;
+      if (value === undefined) continue;
+      const token = tokenOf.get(normValue(value));
+      track(f, m.index, m[0], [m[0], `$${name}`, ...valueKeys(value, token)]);
+      const auto = scss ? sassAutoValue(t, m.index, name, value, token) : null;
+      consumed.add(m.index + m[0].indexOf("$"));
+      if (auto !== null) edit(m.index, m.index + m[0].length, auto);
+      else add(m.index, "SASS_VAR", `${m[0]} -> ${value} (toolkit value)`);
+    }
     const vars = new Map();
     for (const m of t.matchAll(/\$([A-Za-z_][\w-]*)(?![\w-])/g)) {
       const name = m[1];
-      const value = defined.has(name) ? undefined : valueOf(name);
-      if (value === undefined) continue;
+      if (consumed.has(m.index)) continue;
+      if (sees(f, name) || (name === "grid-breakpoints" && withHelper(f)))
+        continue;
+      if (
+        /^\s*:/.test(t.slice(m.index + m[0].length)) &&
+        t[m.index - 1] !== "."
+      )
+        continue; // a definition (parameter default, map key) is not a use
       const line = lineOf(text, m.index);
+      let value = valueOf(name);
+      let candidates = null;
+      if (value === undefined && hadToolkit(f) && data.components?.[name]) {
+        const vals = [...new Set(Object.values(data.components[name]))];
+        if (vals.length === 1) value = vals[0];
+        else candidates = data.components[name];
+      }
+      if (value === undefined) {
+        if (candidates) {
+          add(
+            m.index,
+            "SASS_VAR",
+            `$${name}: toolkit component variable, its value depends on the toolkit stylesheet this file imported (${Object.entries(
+              candidates,
+            )
+              .map(([file, v]) => `${v} in ${file}`)
+              .join(
+                ", ",
+              )}; git show HEAD:${rel(f)} shows the import): write that value, never another one`,
+          );
+          track(f, m.index, `$${name}`, [
+            `$${name}`,
+            ...Object.values(candidates).flatMap(literalKeys),
+          ]);
+        } else if (
+          unknownHere &&
+          !definedIn.has(name) &&
+          t[m.index - 1] !== "." &&
+          !(bootstrapSass && name in data.bootstrap)
+        ) {
+          add(
+            m.index,
+            "SASS_UNDEFINED",
+            `$${name} is defined neither in the project nor by the toolkit: it came with an import that is gone; find its value (git show HEAD:${rel(f)}, the imported file), keep this line until you write that exact value, STOP if you cannot find it`,
+          );
+          track(f, m.index, `$${name}`, [`$${name}`]);
+        }
+        continue;
+      }
       const lineText = t.slice(
         t.lastIndexOf("\n", m.index) + 1,
         (t.indexOf("\n", m.index) + 1 || t.length + 1) - 1,
       );
       const token = tokenOf.get(normValue(value));
-      const auto = /\.scss$/i.test(f)
-        ? sassAutoValue(t, m.index, name, value, token)
-        : null;
+      const result = arithmeticResult(t, m.index, m.index + m[0].length, value);
+      track(
+        f,
+        m.index,
+        `$${name} (${value.length > 40 ? `${value.slice(0, 40)}...` : value})`,
+        [`$${name}`, ...valueKeys(value, token), ...(result ? [result] : [])],
+      );
+      const auto = scss ? sassAutoValue(t, m.index, name, value, token) : null;
       if (auto !== null) {
         edit(m.index, m.index + name.length + 1, auto);
         continue;
       }
       let detail;
-      if (value.startsWith("("))
+      const ns =
+        t[m.index - 1] === "." ? /([\w-]+)\.$/.exec(t.slice(0, m.index)) : null;
+      if (ns)
+        detail = `${ns[1]}.$${name} -> ${token ? `var(${token})` : value} (toolkit value ${value}; replace the whole ${ns[1]}.$${name})`;
+      else if (value.startsWith("("))
         detail = `$${name}: toolkit map ${value}: declare $${name} in the project with exactly this value`;
+      else if (token && /@(?:mixin|function)\s/.test(lineText))
+        detail = `$${name} as a parameter default -> ${value} (toolkit value, not var(...): the mixin may pass it to a Sass function)`;
       else if (token && !SASS_FUNCS.test(lineText))
         detail = `$${name} -> var(${token}) (same value as the toolkit: ${value})`;
       else if (token)
@@ -2462,7 +3110,8 @@ function toolkitSassItems(styleFiles, texts, ctx, data, rel) {
         detail = `$${name} -> ${value} (toolkit value; no Canopée token has exactly this value, never use a close one)`;
       // "30px / 2" in a property is printed as is: Sass only divides a variable or a parenthesis
       if (!value.startsWith("(") && /[^/]\/[^/*]/.test(lineText))
-        detail += `; next to "/", write the result or calc(): Sass does not divide two literals in a property`;
+        detail += `; next to "/", write the result${result ? ` (${result})` : ""} or calc(): Sass does not divide two literals in a property`;
+      else if (result && t[m.index - 1] === "-") detail += ` (here: ${result})`;
       const v = vars.get(detail);
       if (!v) vars.set(detail, { index: m.index, lines: [line] });
       else if (!v.lines.includes(line)) v.lines.push(line);
@@ -2475,50 +3124,224 @@ function toolkitSassItems(styleFiles, texts, ctx, data, rel) {
           ? `${detail}, also line${v.lines.length > 2 ? "s" : ""} ${v.lines.slice(1).join(", ")}`
           : detail,
       );
+
+    // 3. media-breakpoint-*: a literal breakpoint becomes its @media query (or loses the wrapper when
+    //    it has none); a variable argument keeps the @include, compiled by the breakpoint helper
     for (const m of t.matchAll(
       /@include\s+media-breakpoint-(up|down|only|between)\s*\(([^)]*)\)/g,
     )) {
-      if (own.has(`media-breakpoint-${m[1]}`)) continue;
-      const args = m[2]
-        .split(",")
-        .map((s) => s.trim().replace(/^['"]|['"]$/g, ""));
-      const q = mediaQuery(m[1], args, data.breakpoints);
-      if (q && q.startsWith("@media ") && /\.scss$/i.test(f)) {
-        edit(m.index, m.index + m[0].length, q);
+      if (hasOwn(f, `media-breakpoint-${m[1]}`, false)) continue;
+      const call = `@include media-breakpoint-${m[1]}(${m[2].trim()})`;
+      const args = literalArgs(m[2], m[1] === "between" ? 2 : 1);
+      const q = args ? mediaQuery(m[1], args, data.breakpoints) : null;
+      if (q && q.startsWith("@media ")) {
+        track(f, m.index, `${call} -> ${q}`, [call, q.slice(7)]);
+        if (scss) {
+          edit(m.index, m.index + m[0].length, q);
+          continue;
+        }
+        add(m.index, "SASS_MIXIN", `${call} -> ${q}`);
+        continue;
+      }
+      if (q) {
+        const un = scss
+          ? unwrapEdits(text, t, m.index, m.index + m[0].length)
+          : null;
+        if (un) {
+          for (const e of un) fileEdits.push(e);
+          continue;
+        }
+        add(
+          m.index,
+          "SASS_MIXIN",
+          `${call}: no media query (the toolkit applied the content at every width): remove only the @include line and its closing brace, keep every rule inside`,
+        );
+        track(f, m.index, call, [call]);
+        continue;
+      }
+      track(f, m.index, call, [call]);
+      if (withHelper(f)) continue;
+      add(
+        m.index,
+        "SASS_MIXIN",
+        helper
+          ? `${call}: variable argument: add @import "${path
+              .relative(path.dirname(f), helper.file)
+              .split(path.sep)
+              .join("/")
+              .replace(
+                /(^|\/)_([^/]+)\.scss$/,
+                "$1$2",
+              )}"; at the top of this file (the toolkit breakpoint mixins, written by --write in ${rel(helper.file)}); never replace or delete the @include`
+          : `${call}: variable argument: the toolkit breakpoints are xs 0, sm 576px, md 768px, lg 992px, xl 1200px (up(X) = min-width X, none for xs; down(X) = max-width of the next one minus 0.02px, none for xl); run --write again to get the breakpoint mixins, never delete the @include`,
+      );
+    }
+
+    // 4. functions: breakpoint-* and the map lookups theme-color(), gray(), color() with a literal
+    //    key are replaced by their value; the others stay and are listed
+    const maps = {
+      "theme-color": mapEntries(bs["theme-colors"] || ""),
+      gray: mapEntries(bs.grays || ""),
+      color: mapEntries(bs.colors || ""),
+    };
+    for (const m of t.matchAll(
+      /(?<![\w$.-])(breakpoint-(?:next|min|max|infix)|theme-color-level|theme-color|color-yiq|str-replace|gray|color)\(([^()]*)\)/g,
+    )) {
+      const fn = m[1];
+      if (hasOwn(f, fn, !fn.startsWith("breakpoint-"))) continue;
+      const arg = m[2].trim().replace(/^['"]|['"]$/g, "");
+      const call = m[0];
+      let value;
+      if (fn.startsWith("breakpoint-")) {
+        if (!literalArgs(m[2], 1)) {
+          track(f, m.index, call, [call]);
+          if (!withHelper(f))
+            add(
+              m.index,
+              "SASS_MIXIN",
+              `${call}: variable argument: the toolkit breakpoint function is in the breakpoint helper (${helper ? rel(helper.file) : TK_BP_HELPER}): import it in this file, never delete the call`,
+            );
+          continue;
+        }
+        value = breakpointValue(fn, arg, data.breakpoints);
+      } else if (fn in maps) {
+        if (!(arg in maps[fn])) {
+          if (fn === "color" || fn === "gray") continue; // CSS color(), not the toolkit's
+          add(
+            m.index,
+            "SASS_MIXIN",
+            `${call}: toolkit function with a key the script cannot read; its values: ${bs["theme-colors"]}: write the value of the key, STOP if the key is a variable`,
+          );
+          track(f, m.index, call, [call]);
+          continue;
+        }
+        value = maps[fn][arg];
+      } else {
+        add(
+          m.index,
+          "SASS_MIXIN",
+          `${fn}: toolkit Sass function (${data.functions?.[fn] || "@axa-fr/react-toolkit-core"}) without Canopée equivalent: keep the line and STOP and ask`,
+        );
+        track(f, m.index, call, [call]);
+        continue;
+      }
+      const token = value ? tokenOf.get(normValue(value)) : undefined;
+      const bare =
+        value === null ? "" : String(value).replace(/^["']|["']$/g, "");
+      track(f, m.index, call, [
+        call,
+        ...(value ? valueKeys(value, token) : []),
+        ...(bare && bare !== value ? [bare] : []),
+      ]);
+      if (
+        fn.startsWith("breakpoint-") &&
+        t.slice(m.index - 2, m.index) === "#{" &&
+        t[m.index + call.length] === "}"
+      ) {
+        // #{breakpoint-infix(md)} printed -md: write it as is
+        edit(m.index - 2, m.index + call.length + 1, bare);
+        continue;
+      }
+      const auto =
+        scss && value && !/^["']/.test(value) && fn !== "breakpoint-next"
+          ? sassAutoValue(t, m.index, fn, value, token)
+          : null;
+      if (auto !== null) {
+        edit(m.index, m.index + call.length, auto);
         continue;
       }
       add(
         m.index,
         "SASS_MIXIN",
-        `@include media-breakpoint-${m[1]}(${m[2].trim()}) -> ${
-          q ||
-          "toolkit breakpoints xs 0, sm 576px, md 768px, lg 992px, xl 1200px; up(X) = min-width X, down(X) = max-width of the next one minus 0.02px"
-        }`,
+        value === null
+          ? `${call} is null for this breakpoint (no limit): the toolkit printed nothing for it; keep the line and STOP and ask`
+          : `${call} -> ${value} (toolkit value)`,
       );
     }
-    if (!own.has("rem"))
-      for (const m of t.matchAll(/\brem\(\s*(-?[\d.]+)px\s*\)/g))
-        edit(
+    if (!hasOwn(f, "rem"))
+      for (const m of t.matchAll(/\brem\(\s*(-?[\d.]+)px\s*\)/g)) {
+        const v = `${Math.round((Number(m[1]) / 16) * 10000) / 10000}rem`;
+        track(f, m.index, m[0], [m[0], v]);
+        edit(m.index, m.index + m[0].length, v);
+      }
+
+    // 5. mixins: a toolkit mixin stays and is listed; a mixin defined nowhere came with the
+    //    toolkit import that is gone
+    for (const m of t.matchAll(/@include\s+([\w-]+)(?![\w.-])/g)) {
+      const n = m[1];
+      if (n.startsWith("media-breakpoint-") || hasOwn(f, n)) continue;
+      if (data.mixins?.[n]) {
+        add(
           m.index,
-          m.index + m[0].length,
-          `${Math.round((Number(m[1]) / 16) * 10000) / 10000}rem`,
+          "SASS_MIXIN",
+          `${n}: toolkit Sass mixin (${data.mixins[n]}) without Canopée equivalent: keep the @include and STOP and ask`,
         );
-    TK_SASS_OTHER.lastIndex = 0;
-    for (const m of t.matchAll(TK_SASS_OTHER)) {
-      const n = m[1] || m[2];
-      if (own.has(n)) continue;
-      add(
-        m.index,
-        "SASS_MIXIN",
-        `${n}: toolkit Sass ${m[1] ? "mixin" : "function"} without Canopée equivalent: STOP and ask`,
-      );
+        track(f, m.index, `@include ${n}`, [`@include ${n}`]);
+      } else if (unknownHere) {
+        add(
+          m.index,
+          "SASS_UNDEFINED",
+          `@include ${n}: this mixin is defined neither in the project nor by the toolkit: it came with an import that is gone; find it (git show HEAD:${rel(f)}), keep the @include, STOP if you cannot find it`,
+        );
+        track(f, m.index, `@include ${n}`, [`@include ${n}`]);
+      }
     }
     if (fileEdits.length) edits.set(f, fileEdits);
   }
+  for (const f of helper?.missing || []) {
+    if (items.some((i) => i.file === f && /variable argument/.test(i.detail)))
+      continue;
+    items.push({
+      file: f,
+      index: 0,
+      line: 1,
+      code: "SASS_MIXIN",
+      detail: `this file computes a breakpoint (variable argument) and no toolkit import of its own or of a file that imports it is left to replace: add @import of ${rel(helper.file)} at the top of this file, never delete the @include`,
+      breaksIn: 1,
+    });
+  }
   const tkDefs = defs.filter((d) => valueOf(d.name) !== undefined);
+  // `$x: w !default` placed after the toolkit import did nothing: the pages used the toolkit value;
+  // once the import is gone, w applies. Found while the imports exist, recorded on --write.
+  const shadowed = new Map(Object.entries(ctx.state.sassShadowed || {}));
+  for (const d of tkDefs) {
+    const v = valueOf(d.name);
+    if (!d.isDefault || isHelper(d.file) || v.startsWith("(")) continue;
+    if (normValue(d.value) === normValue(v)) continue;
+    const after = [...unitOf(d.file)].some((s) => {
+      const tki = (g.tk.get(s) || []).map((x) => x.index);
+      if (!tki.length) return false;
+      const first = Math.min(...tki);
+      if (s === d.file) return first < d.index;
+      return (g.importsAt.get(s) || []).some(
+        (x) => x.index > first && g.reach(x.target).has(d.file),
+      );
+    });
+    if (after) shadowed.set(`${rel(d.file)}|${d.name}`, v);
+  }
+  for (const [k, v] of shadowed) {
+    const [rf, name] = k.split("|");
+    const d = defs.find((x) => rel(x.file) === rf && x.name === name);
+    if (!d) continue;
+    const token = tokenOf.get(normValue(v));
+    if (
+      normValue(d.value) === normValue(v) ||
+      (token && normValue(d.value) === `var(${token})`)
+    )
+      continue;
+    items.push({
+      file: d.file,
+      index: d.index,
+      line: lineOf(texts.get(d.file), d.index),
+      code: "SASS_VALUE",
+      detail: `$${name}: ${d.value} !default comes after the toolkit import, so the pages used the toolkit value ${v}; without the toolkit this line would apply ${d.value}: write ${v} here (the value the pages had), or STOP and ask if a page needs ${d.value}`,
+      breaksIn: 1,
+    });
+  }
   if (Array.isArray(ctx.state.sassDefs)) {
     const before = new Set(ctx.state.sassDefs);
     for (const d of tkDefs) {
+      if (isHelper(d.file)) continue;
       const value = valueOf(d.name);
       const v = normValue(d.value);
       if (value.startsWith("(") || before.has(`${rel(d.file)}|${d.name}|${v}`))
@@ -2544,8 +3367,47 @@ function toolkitSassItems(styleFiles, texts, ctx, data, rel) {
   return {
     items,
     edits,
-    defs: tkDefs.map((d) => `${rel(d.file)}|${d.name}|${normValue(d.value)}`),
+    defs: tkDefs
+      .filter((d) => !isHelper(d.file))
+      .map((d) => `${rel(d.file)}|${d.name}|${normValue(d.value)}`),
+    helper,
+    tkFiles: [...g.tk.keys()],
+    shadowed: Object.fromEntries(shadowed),
   };
+}
+
+// Project variables and custom properties whose value is one of the keys: a value used many times
+// may go into one project variable (SASS_VAR), whose uses then count as the value.
+function aliasKeys(styleTexts, keys) {
+  const want = new Set(keys.map((k) => ledgerNorm(k)).filter(Boolean));
+  const out = [];
+  for (const t of styleTexts)
+    for (const m of blankComments(t).matchAll(
+      /(?:^|[;{\s])(\$|--)([A-Za-z_][\w-]*)\s*:\s*([^;{}\n]+?)\s*(?:!default\s*)?;/g,
+    ))
+      if (want.has(ledgerNorm(m[3])))
+        out.push(m[1] === "$" ? `$${m[2]}` : `var(--${m[2]})`);
+  return [...new Set(out)];
+}
+// Groups the tracked uses of each file by shared key and counts their keys in the given texts.
+function ledgerGroups(uses) {
+  const groups = [];
+  for (const u of uses) {
+    const keys = new Set(u.keys.map((k) => ledgerNorm(k)).filter(Boolean));
+    const hit = groups.filter((g) => [...keys].some((k) => g.keys.has(k)));
+    const g = hit[0] || { keys: new Set(), labels: [], index: u.index };
+    if (!hit.length) groups.push(g);
+    for (const o of hit.slice(1)) {
+      o.keys.forEach((k) => g.keys.add(k));
+      g.labels.push(...o.labels);
+      g.index = Math.min(g.index, o.index);
+      groups.splice(groups.indexOf(o), 1);
+    }
+    keys.forEach((k) => g.keys.add(k));
+    if (!g.labels.includes(u.label)) g.labels.push(u.label);
+    g.index = Math.min(g.index, u.index);
+  }
+  return groups;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -2929,7 +3791,7 @@ function fixHints(name, lines, pm, deps, root, rel, codeFiles = []) {
     lines.some((l) => /Undefined (variable|mixin)|Undefined function/.test(l))
   )
     out.push(
-      "FIX: Sass undefined variable or mixin: use the SASS_VAR / SASS_MIXIN lines above with their exact value",
+      "FIX: Sass undefined variable, mixin or function: write the exact value of its SASS_VAR / SASS_MIXIN / SASS_UNDEFINED line above; a name listed nowhere: STOP and ask. Never delete the line or the rule that uses it, never declare the name with a value of your own",
     );
   return out;
 }
@@ -3053,7 +3915,7 @@ function main() {
     process.stdout.write(
       src
         .split("\n")
-        .slice(1, 18)
+        .slice(1, 19)
         .map((l) => l.replace(/^\/\/ ?/, ""))
         .join("\n") + "\n",
     );
@@ -3183,6 +4045,31 @@ function main() {
   )
     ctx.canopeeMajor = 2;
 
+  // the toolkit stylesheet that defined Bootstrap's :root custom properties (--primary, --blue...)
+  origin.tkRootCss =
+    [...texts.values()].some((t) =>
+      /react-toolkit-all\/dist\/style\/af-toolkit-core|react-toolkit-core\/src\/bootstrap/.test(
+        t,
+      ),
+    ) || !!state.origin?.tkRootCss;
+  ctx.tkRootCss = origin.tkRootCss;
+  const tkSass = ctx.fromToolkit ? loadToolkitSass(scriptDir) : null;
+  ctx.tkData = tkSass;
+  // custom properties the project declares itself: a removed token it declares is its own
+  ctx.ownProps = new Set();
+  for (const f of files.style)
+    for (const m of blankComments(texts.get(f) || "").matchAll(
+      /(?:^|[;{])\s*(--[A-Za-z_][\w-]*)\s*:/g,
+    ))
+      ctx.ownProps.add(m[1]);
+  // non-loss ledger: every toolkit Sass variable, function, mixin, breakpoint and removed token in
+  // use, with its exact replacements (recorded at the first --write, compared afterwards)
+  const uses = new Map();
+  ctx.track = (file, index, label, keys) => {
+    if (!uses.has(file)) uses.set(file, []);
+    uses.get(file).push({ index, label, keys });
+  };
+
   const tokMap = tokenRenames(ctx);
   const results = [];
   let items = [];
@@ -3207,9 +4094,23 @@ function main() {
   if (ctx.fromToolkit) items.push(...cssOrderItems(files.code, texts));
   for (const [f, t] of texts) items.push(...removedTokenItems(f, t, ctx));
   // Toolkit Sass: exact values for every variable and mixin the project still uses
-  const tkSass = ctx.fromToolkit ? loadToolkitSass(scriptDir) : null;
+  let helper = null;
   if (tkSass) {
-    const r = toolkitSassItems(files.style, texts, ctx, tkSass, rel);
+    // the toolkit @import lines --write deletes (analyzeStyle)
+    const tkDeleted = new Map();
+    for (const r of results) {
+      const e = r.edits.filter((x) => x.tkImport);
+      if (e.length) tkDeleted.set(r.file, e);
+    }
+    const r = toolkitSassItems(
+      root,
+      files.style,
+      texts,
+      ctx,
+      tkSass,
+      rel,
+      tkDeleted,
+    );
     items.push(...r.items);
     // the safe replacements join the other AUTO edits of the same file
     for (const [f, e] of r.edits) {
@@ -3217,8 +4118,43 @@ function main() {
       if (res) res.edits.push(...e);
       else results.push({ file: f, text: texts.get(f), edits: e });
     }
+    // a rule that computes a breakpoint: the first deleted toolkit import of the files that compile
+    // it becomes the import of the breakpoint helper
+    helper = r.helper;
+    for (const [site, spec] of helper?.sites || []) {
+      const e = tkDeleted.get(site)[0];
+      const { indent, quote, nl } = e.tkImport;
+      e.text = `${indent}@import ${quote}${spec}${quote};${nl}`;
+    }
     if (opts.write && !Array.isArray(state.sassDefs))
       ctx.applied.sassDefs = r.defs;
+    if (opts.write && !Array.isArray(state.sassTkFiles))
+      ctx.applied.sassTkFiles = r.tkFiles.map(rel);
+    if (opts.write && !state.sassShadowed && Object.keys(r.shadowed).length)
+      ctx.applied.sassShadowed = r.shadowed;
+  }
+  // a toolkit variable, breakpoint or token recorded at --write that is gone without its replacement
+  if (state.sassLedger) {
+    const styleNow = files.style.map((f) => texts.get(f) || "");
+    for (const [rf, groups] of Object.entries(state.sassLedger)) {
+      const f = path.join(root, rf);
+      const t = texts.get(f);
+      const norm = t === undefined ? "" : ledgerNorm(t);
+      for (const g of groups) {
+        const n =
+          t === undefined
+            ? 0
+            : countKeys(norm, [...g.keys, ...aliasKeys(styleNow, g.keys)]);
+        if (n >= g.min) continue;
+        items.push({
+          file: f,
+          line: g.line,
+          code: "SASS_LOST",
+          detail: `${g.what}: ${g.min} ${g.min > 1 ? "uses or exact replacements" : "use or exact replacement"} after --write, ${n} now${t === undefined ? " (file deleted)" : ""}: one was deleted without its replacement. Put it back with the value of its SASS_VAR / SASS_MIXIN / TOKEN_REMOVED line (git diff ${rf} shows the deleted line); never delete a toolkit variable, breakpoint or token, nor the rule that uses it`,
+          breaksIn: 1,
+        });
+      }
+    }
   }
   // Casts and checker suppressions: counted per file at the first --write, listed when a file has
   // more of them afterwards (a cast hides a wrong migration from the typecheck and the linter).
@@ -3272,6 +4208,16 @@ function main() {
       );
     if (opts.write) fs.writeFileSync(r.file, out);
   }
+  // the toolkit breakpoint functions and mixins, for the rules that compute a breakpoint
+  if (helper?.text && !fs.existsSync(helper.file)) {
+    autoCount++;
+    autoByKind.create = (autoByKind.create || 0) + 1;
+    autoList.push(
+      `${rel(helper.file)}:1 create: toolkit breakpoint functions and mixins (rules with a variable breakpoint)`,
+    );
+    rewrittenFiles.set(helper.file, { out: helper.text, kept: [] });
+    if (opts.write) fs.writeFileSync(helper.file, helper.text);
+  }
   const autoFiles = rewrittenFiles.size;
   // after --write, line numbers must point into the rewritten files
   if (opts.write) {
@@ -3283,6 +4229,32 @@ function main() {
         : -1;
       i.line = lineOf(w.out, at >= 0 ? at : shiftIndex(i.index, w.kept));
     }
+  }
+  // the non-loss ledger: per file, each group of tracked uses and how many of its keys --write left
+  if (opts.write && !state.sassLedger && uses.size) {
+    const after = (f) => rewrittenFiles.get(f)?.out ?? texts.get(f) ?? "";
+    const styleNow = files.style.map(after);
+    const ledger = {};
+    for (const [f, list] of uses) {
+      const out = after(f);
+      const norm = ledgerNorm(out);
+      const kept = rewrittenFiles.get(f)?.kept || [];
+      const groups = ledgerGroups(list)
+        .map((g) => {
+          const keys = [...g.keys];
+          return {
+            what:
+              g.labels.slice(0, 3).join(", ") +
+              (g.labels.length > 3 ? ` and ${g.labels.length - 3} more` : ""),
+            line: lineOf(out, shiftIndex(g.index, kept)),
+            min: countKeys(norm, [...keys, ...aliasKeys(styleNow, keys)]),
+            keys,
+          };
+        })
+        .filter((g) => g.min > 0);
+      if (groups.length) ledger[rel(f)] = groups;
+    }
+    ctx.applied.sassLedger = ledger;
   }
   const hasOrigin =
     origin.fromToolkit || origin.fromApollo || origin.slashCssMajor !== null;
@@ -3398,7 +4370,7 @@ function main() {
   }
   // work order: styles break the build and every page, imports break the typecheck, then components
   const rank = (code) =>
-    /^(SASS|SASS_VAR|SASS_MIXIN|SASS_VALUE|CSS_MISSING|CSS_ORDER|TK_CSS_IN_STYLES|OLD_LF|DS0|TOKEN_REMOVED)$/.test(
+    /^(SASS|SASS_VAR|SASS_MIXIN|SASS_VALUE|SASS_UNDEFINED|SASS_LOST|CSS_MISSING|CSS_ORDER|TK_CSS_IN_STYLES|OLD_LF|DS0|TOKEN_REMOVED)$/.test(
       code,
     )
       ? 0
@@ -3542,7 +4514,7 @@ function main() {
     if (dead.length)
       c.L.push(
         "",
-        `VISUAL: ${dead.length} project style rules use a design system class that nothing renders (toolkit markup gone, a modifier class lost, or a rule already dead before): they compile and pass every check, but no longer apply. Check these pages, restyle on the Canopée markup or delete the rule, and list them in the report (packages-and-css.md, VISUAL)`,
+        `VISUAL: ${dead.length} project style rules use a design system class that nothing renders (toolkit markup gone, a modifier class lost, or a rule already dead before): they compile and pass every check, but no longer apply. Check these pages: restyle on the Canopée markup where the page needs it, otherwise leave the rule as it is (never delete it to clear this list), and list them in the report (packages-and-css.md, VISUAL)`,
         ...dead.slice(0, 40),
         ...(dead.length > 40 ? [`  ... and ${dead.length - 40} more`] : []),
       );

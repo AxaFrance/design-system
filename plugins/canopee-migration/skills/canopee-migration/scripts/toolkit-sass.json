@@ -1,5 +1,5 @@
 {
-  "source": "Resolved values of the Sass variables of @axa-fr/react-toolkit-core 3.0.2 (src/common/scss, same values since 1.4.1); tokens: literal colours of @axa-fr/canopee-css distributeur/common/tokens.css 1.8.0 (same in 2.0.0-alpha.76)",
+  "source": "Resolved values of the Sass variables of @axa-fr/react-toolkit-core 3.0.2 (src/common/scss, same values since 1.4.1; compared again with 2.3.1 by compiling it: no difference); tokens: literal colours of @axa-fr/canopee-css distributeur/common/tokens.css 1.8.0 (same in 2.0.0-alpha.76); maps added to bootstrap, components, rootProperties, mixins and functions: read from the 2.3.1 packages (components: variables of the toolkit component stylesheets, by file; rootProperties: the :root custom properties of @axa-fr/react-toolkit-all/dist/style/af-toolkit-core.css)",
   "breakpoints": {
     "xs": 0,
     "sm": 576,
@@ -735,6 +735,138 @@
     "pre-color": "#212529",
     "pre-scrollable-max-height": "340px",
     "print-page-size": "a3",
-    "print-body-min-width": "992px"
+    "print-body-min-width": "992px",
+    "colors": "(\"blue\": #0275d8, \"indigo\": #6610f2, \"purple\": #613d7c, \"pink\": #ff5b77, \"red\": #d90000, \"orange\": #e18a00, \"yellow\": #ffd500, \"green\": #468847, \"teal\": #3a87ad, \"cyan\": #17a2b8, \"white\": #fff, \"gray\": #6c757d, \"gray-dark\": #343a40)",
+    "grays": "(\"100\": #f8f9fa, \"200\": #e9ecef, \"300\": #dee2e6, \"400\": #ced4da, \"500\": #adb5bd, \"600\": #6c757d, \"700\": #495057, \"800\": #343a40, \"900\": #212529)",
+    "theme-colors": "(\"primary\": #0275d8, \"secondary\": #6c757d, \"success\": #468847, \"info\": #17a2b8, \"warning\": #ffd500, \"danger\": #d90000, \"light\": #f8f9fa, \"dark\": #343a40)",
+    "sizes": "(25: 25%, 50: 50%, 75: 75%, 100: 100%, auto: auto)",
+    "universes": "(auto: #a70d26, habitation: #ec4d33, loisirs: #00af8f, sante: #1cc578, banque: #51aad3, epargne: #6377ba, entreprise: #5e3778, collective: #49bdca, iard: #42145f, patrimonial: #c5a57f, pros: #738b9c, assurbanque: #ff1821)",
+    "btn-transition": "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+    "custom-checkbox-indicator-icon-checked": "url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E\")",
+    "custom-checkbox-indicator-icon-indeterminate": "url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Cpath stroke='%23fff' d='M0 2h4'/%3E%3C/svg%3E\")",
+    "custom-radio-indicator-icon-checked": "url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E\")",
+    "custom-select-indicator": "url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E\")",
+    "custom-file-text": "(en: \"Browse\", fr: \"Parcourir\")",
+    "carousel-control-prev-icon-bg": "url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E\")",
+    "carousel-control-next-icon-bg": "url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E\")",
+    "navbar-dark-toggler-icon-bg": "url(\"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E\")",
+    "navbar-light-toggler-icon-bg": "url(\"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E\")",
+    "spacers": "(0: 0, 1: 0.25rem, 2: 0.5rem, 3: 1rem, 4: 1.5rem, 5: 3rem)"
+  },
+  "components": {
+    "active-sort-table-th": {
+      "@axa-fr/react-toolkit-action/dist/button.scss": "#20a892",
+      "@axa-fr/react-toolkit-button/dist/button.scss": "#20a892"
+    },
+    "arrow-offset": {
+      "@axa-fr/react-toolkit-popover/dist/popover.scss": "-4px"
+    },
+    "arrow-size": {
+      "@axa-fr/react-toolkit-popover/dist/popover.scss": "16px"
+    },
+    "color-border-default": {
+      "@axa-fr/react-toolkit-panel/dist/panel.scss": "#494df4"
+    },
+    "color-footpanel-default": {
+      "@axa-fr/react-toolkit-panel/dist/panel.scss": "#00008f"
+    },
+    "color-headpanel-default": {
+      "@axa-fr/react-toolkit-panel/dist/panel.scss": "#00008f"
+    },
+    "font-size-step": {
+      "@axa-fr/react-toolkit-form-steps/dist/step-form-new.scss": "1rem",
+      "@axa-fr/react-toolkit-form-steps/dist/step-form.scss": "1rem"
+    },
+    "font-size-step-number": {
+      "@axa-fr/react-toolkit-form-steps/dist/step-form-new.scss": "1.2rem",
+      "@axa-fr/react-toolkit-form-steps/dist/step-form.scss": "2rem"
+    },
+    "heightslide": {
+      "@axa-fr/react-toolkit-form-input-slider/dist/slider.scss": "6px"
+    },
+    "levels": {
+      "@axa-fr/react-toolkit-form-input-pass/dist/pass.scss": "bad red \"20%\", okay orange \"40%\", good green \"60%\", verygood blue \"80%\", excellent purple \"100%\""
+    },
+    "logo-size": {
+      "@axa-fr/react-toolkit-layout-header/dist/Logo/logo.scss": "55px",
+      "@axa-fr/react-toolkit-layout-footer/dist/footer.scss": "22px"
+    },
+    "mask-background": {
+      "@axa-fr/react-toolkit-layout-header/dist/NavBar/nav.scss": "rgba(0, 0, 0, 0.5)"
+    },
+    "nb-card-max": {
+      "@axa-fr/react-toolkit-form-input-card/dist/card.scss": "5"
+    },
+    "padding-popover": {
+      "@axa-fr/react-toolkit-popover/dist/popover.scss": "0.5rem 1rem"
+    },
+    "steps-bg": {
+      "@axa-fr/react-toolkit-form-steps/dist/step-form-new.scss": "#eceeef",
+      "@axa-fr/react-toolkit-form-steps/dist/step-form.scss": "#eceeef"
+    },
+    "steps-bg-active": {
+      "@axa-fr/react-toolkit-form-steps/dist/step-form-new.scss": "#fff",
+      "@axa-fr/react-toolkit-form-steps/dist/step-form.scss": "#fff"
+    },
+    "steps-color": {
+      "@axa-fr/react-toolkit-form-steps/dist/step-form-new.scss": "#333",
+      "@axa-fr/react-toolkit-form-steps/dist/step-form.scss": "#292b2c"
+    },
+    "steps-color-active": {
+      "@axa-fr/react-toolkit-form-steps/dist/step-form-new.scss": "#00008f",
+      "@axa-fr/react-toolkit-form-steps/dist/step-form.scss": "rgb(0, 0, 114.4)"
+    },
+    "switch-size": {
+      "@axa-fr/react-toolkit-layout-header/dist/Logo/logo.scss": "14px"
+    },
+    "types": {
+      "@axa-fr/react-toolkit-badge/dist/badge.scss": "success #1cc54e, info #30b8dc, danger #f1b531, error #fe3951"
+    },
+    "typesLite": {
+      "@axa-fr/react-toolkit-alert/dist/alert.scss": "success #38a758 #bdeccb #a1cbae #146a2d, info #0b99bf #97d3e3 #78b2c1 #1b6a7f, danger #c78e13 #f1d596 #c8b282 #805b0a, error #a70d26 #ffd5dc #debbc1 #a02237"
+    }
+  },
+  "rootProperties": {
+    "--blue": "#0275d8",
+    "--indigo": "#6610f2",
+    "--purple": "#613d7c",
+    "--pink": "#ff5b77",
+    "--red": "#d90000",
+    "--orange": "#e18a00",
+    "--yellow": "#ffd500",
+    "--green": "#468847",
+    "--teal": "#3a87ad",
+    "--cyan": "#17a2b8",
+    "--white": "#fff",
+    "--gray": "#6c757d",
+    "--gray-dark": "#343a40",
+    "--primary": "#0275d8",
+    "--secondary": "#6c757d",
+    "--success": "#468847",
+    "--info": "#17a2b8",
+    "--warning": "#ffd500",
+    "--danger": "#d90000",
+    "--light": "#f8f9fa",
+    "--dark": "#343a40",
+    "--breakpoint-xs": "0",
+    "--breakpoint-sm": "576px",
+    "--breakpoint-md": "768px",
+    "--breakpoint-lg": "992px",
+    "--breakpoint-xl": "1200px",
+    "--font-family-sans-serif": "\"Source Sans Pro\",Arial,sans-serif",
+    "--font-family-monospace": "SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace"
+  },
+  "mixins": {
+    "generate-universes": "@axa-fr/react-toolkit-core/src/common/scss/_custom-af.scss",
+    "hasIcon": "@axa-fr/react-toolkit-button/dist/button.scss",
+    "_set-message-type": "@axa-fr/react-toolkit-form-input-select/dist/select.scss",
+    "scroll-horizontal-shadow": "@axa-fr/react-toolkit-table/dist/table.scss",
+    "_assert-ascending": "@axa-fr/react-toolkit-core/src/common/scss/_functions.scss",
+    "_assert-starts-at-zero": "@axa-fr/react-toolkit-core/src/common/scss/_functions.scss"
+  },
+  "functions": {
+    "str-replace": "@axa-fr/react-toolkit-core/src/common/scss/_functions.scss",
+    "color-yiq": "@axa-fr/react-toolkit-core/src/common/scss/_functions.scss",
+    "theme-color-level": "@axa-fr/react-toolkit-core/src/common/scss/_functions.scss"
   }
 }
