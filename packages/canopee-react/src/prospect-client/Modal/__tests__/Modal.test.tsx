@@ -129,6 +129,14 @@ describe("Modal", () => {
     expect(dialog).toHaveAttribute("aria-label", ariaLabelValue);
   });
 
+  it("Should be named by its title without a title attribute", () => {
+    render(<ModalDemo {...defaultProps} />);
+    const dialog = getDialog();
+    expect(dialog).toHaveAccessibleName(defaultProps.title);
+    expect(dialog).not.toHaveAccessibleDescription();
+    expect(dialog).not.toHaveAttribute("title");
+  });
+
   it("Should close modal when click outside", async () => {
     render(<ModalDemo {...defaultProps} />);
     const dialog = getDialog();
