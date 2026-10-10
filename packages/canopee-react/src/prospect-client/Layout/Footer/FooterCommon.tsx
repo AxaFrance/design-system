@@ -1,6 +1,6 @@
 import expandMore from "@material-symbols/svg-400/outlined/keyboard_arrow_down.svg";
 import classNames from "classnames";
-import { useCallback, useState } from "react";
+import { useCallback, useId, useRef, useState } from "react";
 import { Svg } from "../../Svg/Svg";
 import { MenuIcons, type SocialMedia } from "./MenuIcons";
 import { type Link, MenuLink } from "./MenuLink";
@@ -21,6 +21,8 @@ export const Footer = ({
   id,
 }: FooterProps) => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const linksId = useId();
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = useCallback(() => {
     setIsAboutOpen((isOpen) => !isOpen);
@@ -35,9 +37,12 @@ export const Footer = ({
           aria-label={expandLinkText}
         >
           <button
+            ref={triggerRef}
             type="button"
             onClick={handleClick}
             className="af-footer__menuAboutTrigger"
+            aria-expanded={isAboutOpen}
+            aria-controls={links.length > 0 ? linksId : undefined}
           >
             <span className="af-footer__menuAboutTriggerText">
               {expandLinkText}
@@ -51,7 +56,12 @@ export const Footer = ({
               )}
             />
           </button>
-          <MenuLink links={links} isAboutOpen={isAboutOpen} />
+          <MenuLink
+            id={linksId}
+            triggerRef={triggerRef}
+            links={links}
+            isAboutOpen={isAboutOpen}
+          />
         </nav>
         <MenuIcons socialMedias={socialMedias} />
       </div>
