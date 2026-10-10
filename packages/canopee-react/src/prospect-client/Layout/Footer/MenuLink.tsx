@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { type RefObject, useLayoutEffect, useRef } from "react";
 import { useIsSmallScreen } from "../../utilities/hook/useIsSmallScreen";
 import { BREAKPOINT } from "../../utilities/constants";
+import { VisuallyHidden } from "../../utilities/VisuallyHidden";
 
 export type Link = {
   link: string;
@@ -15,6 +16,7 @@ type MenuLinkProps = {
   triggerRef?: RefObject<HTMLButtonElement | null>;
   links: Link[];
   isAboutOpen?: boolean;
+  newWindowLabel: string;
 };
 
 export const MenuLink = ({
@@ -22,6 +24,7 @@ export const MenuLink = ({
   triggerRef,
   links,
   isAboutOpen = false,
+  newWindowLabel,
 }: MenuLinkProps) => {
   const isSmallScreen = useIsSmallScreen(BREAKPOINT.MD);
   // Collapsed on small screens: the links can be neither focused nor read
@@ -57,6 +60,12 @@ export const MenuLink = ({
             rel="noreferrer"
           >
             {menuItem.text}
+            {menuItem.openInCurrentTab ? null : (
+              <>
+                {" "}
+                <VisuallyHidden>({newWindowLabel})</VisuallyHidden>
+              </>
+            )}
           </a>
         </li>
       ))}

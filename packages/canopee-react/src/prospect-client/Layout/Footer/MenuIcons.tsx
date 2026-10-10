@@ -3,7 +3,7 @@ import { DynamicIcon } from "./DynamicIcons";
 export type SocialMedia = {
   icon: "facebook" | "twitter" | "youtube" | "linkedin";
   link: string;
-  /** Name of the social network, followed by "(nouvelle fenêtre)" */
+  /** Name of the social network, followed by the Footer newWindowLabel */
   label?: string;
 };
 
@@ -16,9 +16,10 @@ const defaultLabels: Record<SocialMedia["icon"], string> = {
 
 type MenuIconsProps = {
   socialMedias: SocialMedia[];
+  newWindowLabel: string;
 };
 
-export const MenuIcons = ({ socialMedias }: MenuIconsProps) => {
+export const MenuIcons = ({ socialMedias, newWindowLabel }: MenuIconsProps) => {
   if (socialMedias.length === 0) {
     return null;
   }
@@ -36,7 +37,7 @@ export const MenuIcons = ({ socialMedias }: MenuIconsProps) => {
               {/* The icon alternative is the link text (RGAA 6.2.1) */}
               <DynamicIcon
                 iconName={socialItem.icon}
-                alt={`${socialItem.label ?? defaultLabels[socialItem.icon]} (nouvelle fenêtre)`}
+                alt={`${socialItem.label ?? defaultLabels[socialItem.icon]} (${newWindowLabel})`}
               />
             </a>
           </li>
