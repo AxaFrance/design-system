@@ -62,6 +62,7 @@ const TextAreaCommon = ({
   const ariaDescribedby = [
     description && descriptionId,
     helper && helperId,
+    message && messageId,
   ].filter(Boolean) as string[];
 
   const hasError = Boolean(message) && messageType === "error";

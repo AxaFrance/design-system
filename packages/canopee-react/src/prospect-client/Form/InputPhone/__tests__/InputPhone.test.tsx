@@ -225,4 +225,22 @@ describe("<InputPhone /> description", () => {
       "Description Aide",
     );
   });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <InputPhoneApollo
+          label="Téléphone"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
 });

@@ -229,8 +229,8 @@ const MyComponent = () => (
 ## Best practices and accessibility
 
 - Provide an explicit `id` (or use the generated one) so the `label` (`htmlFor`) correctly targets the file input.
-- When a `helper` or a `message` is present, they are linked via `aria-describedby` / `aria-errormessage`. Do not rely on color alone to indicate an error: provide explicit text.
-- If an error message is shown, `aria-invalid` is set on the input and `aria-errormessage` points to the message id.
+- The `description`, the `helper` and the `message` (error, warning or success) are linked to the input via `aria-describedby`. Do not rely on color alone to indicate an error: provide explicit text.
+- If an error message is shown, `aria-invalid` is set on the input and `aria-errormessage` also points to the message id.
 - Action buttons (side / more) must have an accessible name (visible text or `aria-label`) for voice command users.
 - The component ensures screen-reader-friendly labels and avoids adding static elements to the tab order unnecessarily.
 

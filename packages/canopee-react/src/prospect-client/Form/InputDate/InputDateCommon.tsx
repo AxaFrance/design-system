@@ -68,7 +68,7 @@ const InputDateCommon = ({
   const ariaDescribedbyIds = [
     description && idDescription,
     helper && idHelp,
-    Boolean(message) && messageType === "success" && idMessage,
+    Boolean(message) && idMessage,
   ].filter(Boolean) as string[];
 
   const ariaDescribedby = ariaDescribedbyIds.length
