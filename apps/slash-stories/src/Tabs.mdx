@@ -69,3 +69,16 @@ const MyComponent = () => (
 
 <Canvas of={TabsStories.ComplexTabs} />
 <Controls of={TabsStories.ComplexTabs} />
+
+## Accessibility
+
+The titles form a `tablist` of `tab` elements, and the selected tab has `aria-selected="true"`. The arrow keys, Home and End move between tabs. Name the list with `aria-label`, or with `aria-labelledby` pointing to a visible title:
+
+```tsx
+const MyComponent = () => (
+  <Tabs aria-label="Informations du contrat">
+    <Tabs.Tab title="Garanties">Content of my first tab</Tabs.Tab>
+    <Tabs.Tab title="Documents">Content of my second tab</Tabs.Tab>
+  </Tabs>
+);
+```
