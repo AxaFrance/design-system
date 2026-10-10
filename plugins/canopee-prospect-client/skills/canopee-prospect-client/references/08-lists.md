@@ -64,18 +64,23 @@ import {
 ```tsx
 type ClickItemProps = {
   // Identification
-  state: ClickItemStates;          // "default" | "disabled" | "loading"
-  variant: ClickItemVariants;      // "small" | "medium" | "large" | "agent"
+  state?: ClickItemStates;         // "default" | "disabled" | "loading" (défaut : "default")
+  variant?: ClickItemVariants;     // "small" | "medium" | "large" | "agent" (défaut : "large")
   className?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement | HTMLDivElement>;
-  ariaLabelForActionIcon?: string; // aria-label de l'icône d'action (obligatoire si onClick)
+
+  // Action : href → lien <a>, sinon onClick → <button>, sinon simple affichage (<div>)
+  href?: string;                   // navigation : rend un lien
+  target?: HTMLAttributeAnchorTarget;
+  rel?: string;
+  onClick?: MouseEventHandler<HTMLElement>; // action sur la page ; appelé aussi avec href
+  ariaLabelForActionIcon?: string; // description de l'action, lue après le titre
 
   // Contenu texte (ClickItemContent)
-  title: ReactNode;
-  subtitle?: ReactNode;
-  textSecondary?: ReactNode;
-  textTertiary?: ReactNode;
-  tagLabel?: ReactNode;
+  title: string;                   // nom accessible de l'item
+  subtitle?: string;
+  textSecondary?: string;
+  textTertiary?: string;
+  tagLabel?: string;
   tagProps?: Partial<TagProps>;
 
   // Préfixe visuel (ClickItemPrefix)
@@ -98,15 +103,27 @@ type ClickItemProps = {
 | État | Comportement |
 |---|---|
 | `default` | Normal |
-| `disabled` | Désactivé visuellement et via `disabled` |
-| `loading` | Affiche un indicateur de chargement |
+| `disabled` | Désactivé visuellement et via `disabled` ; en lien : sans `href`, avec `aria-disabled="true"` et `tabIndex={-1}` (le focus reste sur l'item) |
+| `loading` | Affiche un indicateur de chargement ; désactivé comme `disabled` ; en variante `large`, « Chargement en cours » s'ajoute à la description |
+
+### Lien ou bouton, nom accessible
+
+- **Naviguer** (changer de page, ouvrir un détail) : `href`, l'item est rendu en `<a href>`. Avec un
+  routeur, garder `href` et faire la navigation dans `onClick` (`event.preventDefault()` puis
+  `navigate(…)`) : le lecteur d'écran annonce un lien et l'ouverture dans un nouvel onglet reste
+  possible. Avec `target="_blank"`, le signaler dans `ariaLabelForActionIcon` (« … (nouvelle fenêtre) »).
+- **Agir sur la page** (ouvrir une modale, déplier) : `onClick` seul, l'item est rendu en `<button>`.
+- **Nom accessible** : le titre (`aria-labelledby`). Le sous-titre, les textes et le tag que la variante
+  affiche, puis `ariaLabelForActionIcon`, forment la description (`aria-describedby`).
+  `ariaLabelForActionIcon` s'ajoute donc au titre au lieu de le remplacer : y décrire l'action
+  (« Voir le détail du contrat Auto »).
 
 ### Exemple
 
 ```tsx
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
 
-// Item cliquable
+// Item de navigation : un lien
 <ClickItem
   state="default"
   variant="large"
@@ -118,7 +135,7 @@ import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fi
   tagLabel="Actif"
   tagProps={{ variant: "success" }}
   ariaLabelForActionIcon="Voir le détail du contrat Auto"
-  onClick={() => navigate("/contrat/auto")}
+  href="/contrat/auto"
 />
 
 // Item désactivé
@@ -129,7 +146,7 @@ import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fi
   subtitle="En cours de souscription"
 />
 
-// Avec image
+// Avec image, action sur la page : un bouton
 <ClickItem
   state="default"
   variant="agent"
