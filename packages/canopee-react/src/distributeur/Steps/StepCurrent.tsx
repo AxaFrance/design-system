@@ -5,6 +5,8 @@ type Props = ComponentPropsWithoutRef<typeof StepNoLink>;
 const StepCurrent = ({
   className = "on af-steps-list-step",
   ...otherProps
-}: Props) => <StepNoLink className={className} {...otherProps} />;
+}: Props) => (
+  <StepNoLink className={className} aria-current="step" {...otherProps} />
+);
 
 export { StepCurrent };
