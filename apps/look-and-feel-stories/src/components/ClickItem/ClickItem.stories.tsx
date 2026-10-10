@@ -35,7 +35,7 @@ const defaultArgTypes = {
     options: Object.values(clickItemVariants),
     control: { type: "select" },
   },
-};
+} satisfies Meta<typeof ClickItem>["argTypes"];
 
 export const ClickItemDefault: StoryObj<ComponentProps<typeof ClickItem>> = {
   name: "ClickItem",

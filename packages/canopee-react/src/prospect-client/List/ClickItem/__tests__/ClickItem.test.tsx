@@ -2,7 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { expect, it } from "vitest";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
+import type { TagVariants } from "../../../Tag/TagCommon";
 import { ClickItem } from "../ClickItemApollo";
+import type { ClickItemStates } from "../ClickItemCommon";
+import type { ClickItemProps } from "../types";
 
 describe("ClickItem Component", () => {
   const commonProps = {
@@ -15,9 +18,14 @@ describe("ClickItem Component", () => {
     },
     title: "Titre",
     ariaLabelForActionIcon: "Aller à la page de détails",
-  };
+  } satisfies ClickItemProps;
 
-  const stateAndTagTestCases = [
+  const stateAndTagTestCases: {
+    state: ClickItemStates;
+    tagVariant: TagVariants;
+    expectedTagClass: string;
+    noOfClick: number;
+  }[] = [
     {
       state: "default",
       tagVariant: "info",
@@ -62,7 +70,7 @@ describe("ClickItem Component", () => {
       textSecondary: "Texte secondaire",
       textTertiary: "Texte tertiaire",
       variant: "large",
-    };
+    } satisfies ClickItemProps;
 
     it.each(stateAndTagTestCases)(
       "renders ClickItem variant: Large with state $state and tag variant $tagVariant",
@@ -151,7 +159,7 @@ describe("ClickItem Component", () => {
     const defaultProps = {
       ...commonProps,
       variant: "medium",
-    };
+    } satisfies ClickItemProps;
 
     it.each(stateAndTagTestCases)(
       "renders ClickItem variant: Medium with state $state and tag variant $tagVariant",
@@ -246,7 +254,7 @@ describe("ClickItem Component", () => {
     it("renders the component with all props", () => {
       const { container } = render(
         <ClickItem
-          basePictureProps={{ "data-src": "picture.png", alt: "My Photo" }}
+          basePictureProps={{ src: "picture.png", alt: "My Photo" }}
           state="default"
           subtitle="Sous-titre"
           title="Titre"
@@ -267,7 +275,7 @@ describe("ClickItem Component", () => {
     it("shouldn't have an accessibility violation", async () => {
       const { container } = render(
         <ClickItem
-          basePictureProps={{ "data-src": "picture.png", alt: "My Photo" }}
+          basePictureProps={{ src: "picture.png", alt: "My Photo" }}
           state="default"
           subtitle="Sous-titre"
           title="Titre"
