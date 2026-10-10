@@ -143,12 +143,18 @@ type TabMenuProps = {
 ```tsx
 <TabMenu
     items={[
-        { href: '#contrats', label: 'Mes contrats' },
+        { href: '#contrats', label: 'Mes contrats', isActive: true },
         { href: '#sinistres', label: 'Mes sinistres' },
         { href: '#documents', label: 'Mes documents' },
     ]}
 />
 ```
+
+### Accessibilité
+
+L'item marqué `isActive` est la page courante : il reçoit `aria-current="page"`, quel que soit
+l'item qui a le focus. Toujours marquer la page courante avec `isActive` ; un `aria-current`
+passé dans l'item reste prioritaire. Le style actif, lui, suit encore le focus clavier.
 
 ---
 
