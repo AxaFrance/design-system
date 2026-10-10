@@ -29,7 +29,7 @@ describe("<InputDate />", () => {
 
     const inputDate = screen.getByLabelText(/test/);
     expect(inputDate).toBeInTheDocument();
-    expect(inputDate).toHaveAccessibleDescription("helper");
+    expect(inputDate).toHaveAccessibleDescription("description helper");
     expect(inputDate).toHaveAccessibleErrorMessage("error");
     expect(inputDate).toHaveValue("2025-01-01");
     expect(inputDate).toHaveClass("af-form__input-date");
@@ -178,4 +178,24 @@ describe("<InputDate />", () => {
       `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
     );
   });
+});
+
+describe("<InputDate /> description", () => {
+  it.each([false, true])(
+    "should describe the input with its description and helper (hidePicker: %s)",
+    (hidePicker) => {
+      render(
+        <InputDate
+          label="Date"
+          description="Description"
+          helper="Aide"
+          hidePicker={hidePicker}
+        />,
+      );
+
+      expect(screen.getByLabelText("Date")).toHaveAccessibleDescription(
+        "Description Aide",
+      );
+    },
+  );
 });

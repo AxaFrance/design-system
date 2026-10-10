@@ -80,8 +80,10 @@ const InputPhoneCommon = ({
   inputId = otherProps.id || inputId;
   const idMessage = useId();
   const idHelp = useId();
+  const idDescription = useId();
 
   const ariaDescribedby = [
+    description && idDescription,
     helper && idHelp,
     message && messageType === "success" && idMessage,
   ].filter(Boolean) as string[];
@@ -111,6 +113,7 @@ const InputPhoneCommon = ({
     <div className="af-form__input-phone-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
+        descriptionId={idDescription}
         moreButtonLabel={moreButtonLabel}
         onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
