@@ -243,9 +243,9 @@ describe("HeaderCommon", () => {
       expect(getMenuTrigger()).toHaveAttribute("popovertargetaction", "toggle");
     });
 
-    it("sets aria-haspopup to menu", () => {
+    it("does not announce a menu popup on the disclosure trigger", () => {
       renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-      expect(getMenuTrigger()).toHaveAttribute("aria-haspopup", "menu");
+      expect(getMenuTrigger()).not.toHaveAttribute("aria-haspopup");
     });
   });
 
