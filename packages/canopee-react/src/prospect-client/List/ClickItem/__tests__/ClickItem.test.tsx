@@ -284,3 +284,82 @@ describe("ClickItem Component", () => {
     });
   });
 });
+
+describe("ClickItem accessible name", () => {
+  const fullContent = {
+    title: "Titre",
+    subtitle: "Sous-titre",
+    textSecondary: "Texte secondaire",
+    textTertiary: "Texte tertiaire",
+    tagLabel: "Nouveau",
+    ariaLabelForActionIcon: "Aller à la page de détails",
+  } satisfies ClickItemProps;
+
+  it("is named by its visible title and described by the rest", async () => {
+    const { container } = render(
+      <ClickItem {...fullContent} variant="large" onClick={vi.fn()} />,
+    );
+
+    const button = screen.getByRole("button", { name: "Titre" });
+    expect(button).not.toHaveAttribute("aria-label");
+    expect(button).toHaveAccessibleDescription(
+      "Sous-titre Texte secondaire Texte tertiaire Nouveau " +
+        "Aller à la page de détails",
+    );
+    expect(screen.getByText("Aller à la page de détails")).not.toBeVisible();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it.each([
+    { variant: "small", description: "Aller à la page de détails" },
+    { variant: "agent", description: "Sous-titre Aller à la page de détails" },
+  ] as const)(
+    "leaves out the text the $variant variant hides",
+    ({ variant, description }) => {
+      render(
+        <ClickItem {...fullContent} variant={variant} onClick={vi.fn()} />,
+      );
+
+      expect(
+        screen.getByRole("button", { name: "Titre" }),
+      ).toHaveAccessibleDescription(description);
+    },
+  );
+
+  it("is described by its spinner while it loads", () => {
+    render(
+      <ClickItem
+        title="Titre"
+        subtitle="Sous-titre"
+        variant="large"
+        state="loading"
+        onClick={vi.fn()}
+      />,
+    );
+
+    const button = screen.getByRole("button", { name: "Titre" });
+    const spinner = screen.getByLabelText("Chargement en cours");
+    expect(button.getAttribute("aria-describedby")?.split(" ")).toContain(
+      spinner.id,
+    );
+  });
+
+  it("has no description when there is nothing to describe", () => {
+    render(<ClickItem title="Titre" variant="small" onClick={vi.fn()} />);
+
+    const button = screen.getByRole("button", { name: "Titre" });
+    expect(button).not.toHaveAttribute("aria-describedby");
+  });
+
+  it("keeps a display-only item free of names and descriptions", () => {
+    const { container } = render(
+      <ClickItem {...fullContent} variant="large" />,
+    );
+
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(container.firstChild).not.toHaveAttribute("aria-labelledby");
+    expect(
+      screen.queryByText("Aller à la page de détails"),
+    ).not.toBeInTheDocument();
+  });
+});
