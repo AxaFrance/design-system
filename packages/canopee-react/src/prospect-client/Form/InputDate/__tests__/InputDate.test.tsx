@@ -30,7 +30,7 @@ describe("<InputDate />", () => {
 
     const inputDate = screen.getByLabelText(/test/);
     expect(inputDate).toBeInTheDocument();
-    expect(inputDate).toHaveAccessibleDescription("description helper");
+    expect(inputDate).toHaveAccessibleDescription("description helper error");
     expect(inputDate).toHaveAccessibleErrorMessage("error");
     expect(inputDate).toHaveValue("2025-01-01");
     expect(inputDate).toHaveClass("af-form__input-date");
@@ -199,6 +199,24 @@ describe.each([
 
       expect(screen.getByLabelText("Date")).toHaveAccessibleDescription(
         "Description Aide",
+      );
+    },
+  );
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <Component
+          label="Date"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByLabelText("Date")).toHaveAccessibleDescription(
+        "Aide Message",
       );
     },
   );

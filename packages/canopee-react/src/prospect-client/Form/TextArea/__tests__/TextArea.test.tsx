@@ -78,4 +78,22 @@ describe.each([
       "Description Aide",
     );
   });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the textarea with its %s message",
+    (messageType) => {
+      render(
+        <Component
+          label="Label"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
 });

@@ -237,4 +237,22 @@ describe.each([
       "Description",
     );
   });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <Component
+          label="Justificatif"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByLabelText("Justificatif")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
 });

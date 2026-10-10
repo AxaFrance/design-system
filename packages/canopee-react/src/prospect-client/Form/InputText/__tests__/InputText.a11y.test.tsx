@@ -18,4 +18,38 @@ describe.each([
     ).toHaveAccessibleDescription("Comme sur la carte Aide");
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <InputText
+          label="Nom"
+          helper="Aide"
+          message="Le nom est obligatoire"
+          messageType={messageType}
+        />,
+      );
+
+      expect(
+        screen.getByRole("textbox", { name: "Nom" }),
+      ).toHaveAccessibleDescription("Aide Le nom est obligatoire");
+    },
+  );
+
+  it("should keep the error message in aria-errormessage", () => {
+    render(
+      <InputText
+        label="Nom"
+        required
+        message="Le nom est obligatoire"
+        messageType="error"
+      />,
+    );
+
+    const input = screen.getByRole("textbox", { name: "Nom" });
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAccessibleErrorMessage("Le nom est obligatoire");
+    expect(input).toHaveAccessibleDescription("Le nom est obligatoire");
+  });
 });

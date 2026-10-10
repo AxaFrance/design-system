@@ -126,7 +126,7 @@ export const InputFileCommon = ({
   const ariaDescribedby = [
     description && descriptionId,
     helper && helpId,
-    message && messageType === "success" && messageId,
+    message && messageId,
   ].filter(Boolean) as string[];
 
   const hasError = Boolean(message && messageType === "error");
