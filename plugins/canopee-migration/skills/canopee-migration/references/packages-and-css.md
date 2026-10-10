@@ -58,7 +58,8 @@ The old stylesheet path has no file with the same name in `@axa-fr/canopee-css`.
 `ls node_modules/@axa-fr/canopee-css/dist/<universe>/` and pick the file of the same component.
 Known cases: `slash.css` -> `distributeur/distributeur.css`; Apollo `CardRadio` became `CardRadioGroup`
 (`prospect/Form/Radio/CardRadioGroup/CardRadioGroupApollo.css`, `client/.../CardRadioGroupLF.css`).
-If you use the React components, the import can simply be deleted.
+If you use the React components, the import of a stylesheet can simply be deleted. A toolkit Sass
+partial (`.../scss/variables`, `.../scss/core`) is not a stylesheet: it gave variables, see `SASS`.
 
 ### SASS
 
@@ -67,14 +68,33 @@ Canopée ships no Sass, except one file in each B2C universe: `prospect/common/b
 Apollo's `dist/common/breakpoints.scss` is the same file: the script rewrites that import to
 `@axa-fr/canopee-css/prospect/common/breakpoints.scss`, keep the `$breakpoint-*` variables.
 Slash 3.0 and Look & Feel 3.0 moved their colours to CSS custom properties: for every other Sass import,
-delete it. Coming from the toolkit, `--write` already did the safe part in `.scss` files: it deleted
-each toolkit `@import` with a single path, and replaced each toolkit variable, `media-breakpoint-*`
-and `rem()` whose replacement cannot change what Sass computes (`var(--token)` in a plain declaration,
-the literal toolkit value elsewhere). What is left is listed file by file, with the exact replacement:
-`SASS` (a `@use`, a commented or multi-path import), `SASS_VAR` (maps, values next to `/`, inside
-`#{...}` or after a unary minus, a font stack inside a longer value) and `SASS_MIXIN`; do exactly what
-each line says. The toolkit is uninstalled at step 4, so its values are gone from `node_modules`:
-never guess one, never declare a "fallback" variable with a value of your own.
+delete the import, then replace each variable it gave (below).
+
+**The rule: no Sass variable, function, mixin or breakpoint disappears without its replacement.**
+Replace it with exactly what its line says, or leave the line as it is and STOP. Never delete the
+variable, the `@include`, the `@media`, the declaration or the rule that uses it to clear an error or
+a MANUAL line; never declare it with a value of your own; never pick a "close" value. `--write`
+records every one it found, and `--check` lists each one that disappeared without its replacement
+(`SASS_LOST`): the VERDICT stays NOT DONE.
+
+Coming from the toolkit, `--write` already did the safe part in `.scss` files:
+
+- each toolkit variable, `map-get` of a toolkit map, `theme-color()` / `gray()` / `color()` with a
+  written key, `breakpoint-min()` / `breakpoint-max()` and `rem()` whose replacement cannot change what
+  Sass computes became `var(--token)` (a plain declaration, exactly the same value) or the literal
+  toolkit value (everywhere else);
+- each `@include media-breakpoint-*` with a written breakpoint became its `@media` query (table in
+  `SASS_MIXIN`); when the toolkit printed no media query (`up(xs)`, `down(xl)`), only the `@include`
+  line and its closing brace were removed, every rule inside is kept;
+- a rule that computes a breakpoint (`media-breakpoint-up($breakpoint, $breakpoints)` in a mixin or an
+  `@each`) keeps its `@include`: `--write` wrote the toolkit breakpoint functions and mixins, same
+  values, in `_toolkit-breakpoints.scss`, and imports it where the toolkit import was;
+- each toolkit `@import` with a single path was deleted (or became that import).
+
+What is left is listed file by file, with the exact replacement: `SASS` (a `@use`, a commented or
+multi-path import), `SASS_VAR`, `SASS_MIXIN`, `SASS_UNDEFINED`, `SASS_VALUE`; do exactly what each line
+says. The toolkit is uninstalled at step 4, so its values are gone from `node_modules`: never guess one,
+never declare a "fallback" variable with a value of your own.
 
 Other origins (Slash, Look & Feel): replace each Sass variable by a CSS custom property of
 `<universe>/common/tokens.css` that has exactly the same value. Same values, toolkit and Slash Sass:
@@ -96,32 +116,83 @@ Sass variable with the literal value there.
 
 ### SASS_VAR
 
-A toolkit Sass variable that no file of the project defines. The line gives the replacement:
+A toolkit Sass variable that no file compiled with this one defines. The line gives the replacement:
 `var(--token)` when a Canopée token has exactly the toolkit value, otherwise the toolkit value itself
-(e.g. `$color-mercury -> #e5e5e5`). Replace the variable on the listed lines of that file. Used many
-times, the literal may go in one project variable with exactly that value. A toolkit map
-(`$grid-breakpoints`) is declared in the project with the value printed.
+(e.g. `$color-mercury -> #e5e5e5`). Replace the variable on the listed lines of that file and keep the
+rest of the line. Used many times, the literal may go in one project variable with exactly that value
+(it still counts for `SASS_LOST`). A toolkit map (`$container-max-widths`) is declared in the project
+with the value printed. `tk.$color-axa` (a `@use ... as tk` namespace): replace the whole `tk.$color-axa`.
 
-Next to `/`, write the result: in a property, Sass divides a variable but prints two literals as they
-are (`padding: $grid-gutter-width / 2` gave `15px`, `padding: 30px / 2` gives `30px/2`).
+Next to `/`, write the result the line prints: in a property, Sass divides a variable but prints two
+literals as they are (`padding: $grid-gutter-width / 2` gave `15px`, `padding: 30px / 2` gives `30px/2`).
+After a unary minus, the line prints the result too (`-$spacer`: `-1rem`).
 
 ```scss
 .cell { padding: $grid-gutter-width / 2; }   // BEFORE (toolkit $grid-gutter-width: 30px)
 .cell { padding: 15px; }                     // AFTER: the result, or calc(30px / 2)
+.cell { }                                    // WRONG: the value is gone (SASS_LOST)
 ```
 
 ### SASS_MIXIN
 
-Toolkit breakpoints: `xs` 0, `sm` 576px, `md` 768px, `lg` 992px, `xl` 1200px. The line gives the media
-query to write; `down` ends 0.02px before the next breakpoint, `up(sm)` starts at 576px (not 768px):
+The toolkit breakpoints are those of Bootstrap 4: `xs` 0, `sm` 576px, `md` 768px, `lg` 992px,
+`xl` 1200px. The Canopée distributeur grid uses exactly the same thresholds (`.col-sm-*` from 576px,
+`md` 768px, `lg` 992px, `xl` 1200px, `@axa-fr/canopee-css/distributeur/common/grid.css`), but Canopée
+publishes no Sass mixin, Sass variable or custom media for them: a toolkit breakpoint becomes this
+literal media query, never another one.
+
+| Breakpoint | `media-breakpoint-up(X)` | `media-breakpoint-down(X)` | `media-breakpoint-only(X)` |
+| --- | --- | --- | --- |
+| `xs` | none | `(max-width: 575.98px)` | `(max-width: 575.98px)` |
+| `sm` | `(min-width: 576px)` | `(max-width: 767.98px)` | `(min-width: 576px) and (max-width: 767.98px)` |
+| `md` | `(min-width: 768px)` | `(max-width: 991.98px)` | `(min-width: 768px) and (max-width: 991.98px)` |
+| `lg` | `(min-width: 992px)` | `(max-width: 1199.98px)` | `(min-width: 992px) and (max-width: 1199.98px)` |
+| `xl` | `(min-width: 1200px)` | none | `(min-width: 1200px)` |
+
+`media-breakpoint-between(A, B)`: the `min-width` of `up(A)` and the `max-width` of `down(B)`.
+`breakpoint-min(X)` / `breakpoint-max(X)`: the values of `up(X)` / `down(X)`. `down` ends 0.02px
+before the next breakpoint: never write `768px` or `width < 768px` for `down(sm)`. "none": the toolkit
+printed the rules without media query; remove only the `@include` line and its closing brace, keep
+every rule inside. Never use instead the B2C `$breakpoint-*` of `breakpoints.scss` (667px, 1023px...:
+Apollo's) nor the `@custom-media` of the Canopée sources (`--tablet-landscape` 772px,
+`--desktop-small` 1016px...: internal to the Canopée components, not the toolkit thresholds).
 
 ```scss
 @include media-breakpoint-down(sm) { .menu { display: none; } }  // BEFORE
 @media (max-width: 767.98px) { .menu { display: none; } }         // AFTER
 ```
 
-`rem(24px)` becomes `1.5rem` (px / 16). A toolkit function or mixin without equivalent (`theme-color`,
-`generate-universes`...): STOP and ask.
+A variable argument (`media-breakpoint-up($breakpoint, $breakpoints)` in a mixin or an `@each`): keep
+the `@include` and the loop. `--write` wrote `_toolkit-breakpoints.scss` (the toolkit functions and
+mixins, same values) and imports it in the file that compiled this one; a line that asks you to import
+it gives the exact `@import`. Do not edit that file.
+
+`rem(24px)` becomes `1.5rem` (px / 16). A toolkit function or mixin without equivalent
+(`theme-color-level`, `color-yiq`, `str-replace`, `generate-universes`, `hasIcon`...): keep the line and
+STOP and ask.
+
+### SASS_UNDEFINED
+
+A Sass variable or mixin used in a file that compiled with the toolkit, and that neither the project
+nor the toolkit defines: it came with an import that is gone. Find its definition in the old code
+(`git show HEAD:<file>` and the files it imported) and write exactly that value; keep the line
+meanwhile. Not found: STOP and ask. Never delete the line, never declare the name with a value of your
+own.
+
+### SASS_LOST
+
+`--write` recorded, file by file, every toolkit variable, function, mixin, breakpoint and removed token
+in use, with its exact replacements. A `SASS_LOST` line means the file has fewer of them than after
+`--write`: one was deleted, or replaced by another value. `git diff <file>` shows where: put the line
+back with the replacement of its `SASS_VAR` / `SASS_MIXIN` / `TOKEN_REMOVED` line (the value printed,
+or the `var(--token)`). A project variable that holds exactly that value counts. Never "fix" it by
+writing the value somewhere else in the file.
+
+```scss
+.card { border: 1px solid $color-mercury; }   // BEFORE --write
+.card { border: 1px solid #e5e5e5; }          // after --write: keep it
+.card { }                                     // WRONG: SASS_LOST
+```
 
 ### SASS_VALUE
 
@@ -129,11 +200,26 @@ A toolkit variable that the project defines with another value than the toolkit,
 `--write` (the script records the definitions that existed before). It is an invented value: write the
 value printed on the line, or the `var(--token)` it gives.
 
+Also a project `$x: value !default` placed after the toolkit import: it did nothing while the toolkit was
+there (the toolkit value applied); once the import is gone, its own value would apply. The line gives
+the toolkit value the pages had: write it, or STOP and ask if a page needs the other one.
+
 ### TOKEN_REMOVED
 
-Custom properties of Apollo / Look & Feel that Canopée no longer defines. A `var(--x)` with an unknown
-name silently renders nothing. Use a Canopée token with the same meaning, or declare the old value in a
-project variable (the script prints the old value):
+Custom properties that Canopée no longer defines. A `var(--x)` with an unknown name silently renders
+nothing: no error, no warning. Keep every `var(--x)` as it is and declare the old value once in the
+project, under the same name (the script prints it), e.g. in the global stylesheet:
+
+```css
+:root {
+  --spacing-16: 16px; /* Apollo token removed from Canopée: old value */
+}
+```
+
+Once the project declares the name, the line disappears. Never delete a `var(--x)`, nor the declaration
+or the rule that uses it.
+
+Apollo / Look & Feel:
 
 | Removed | Old value |
 | --- | --- |
@@ -147,9 +233,21 @@ project variable (the script prints the old value):
 | `--error-custom-border`, `--error-custom-bg` | `#d18e8e`, `#ffbfbf` |
 | `--color-alert-danger-color-border`, `--color-alert-danger-bg-color` | `#c8b282`, `#f1d596` |
 
-With `--target 2`, also component variables removed in 2.0 (`--radio-option-*`, `--item-message-icon-size`,
-`--link-font-size`, `--dropdown-border-color`): overriding them has no effect any more; restyle with a
-class instead.
+Toolkit, when the project loaded `af-toolkit-core` (the Bootstrap 4 `:root` of the toolkit): `--primary`,
+`--secondary`, `--success`, `--info`, `--warning`, `--danger`, `--light`, `--dark`, the colours
+(`--blue`, `--red`, `--gray`...), `--breakpoint-xs` to `--breakpoint-xl` and `--font-family-sans-serif`,
+`--font-family-monospace`; the line prints each old value. `--white` exists in Canopée with the same
+value.
+
+With `--target 2`, component variables removed in 2.0: overriding them has no effect any more. Move the
+value to what 2.0 reads, keep it unchanged:
+
+| 1.x | 2.0 |
+| --- | --- |
+| `--radio-option-<x>` on `.af-card-radio-option` | `--radio-<x>` on `.af-card-radio` (CardRadioOption became CardRadio, `CARDRADIO_2`) |
+| `--link-font-size` | `font-size` on the same selector (2.0 `.af-link` sets it itself) |
+| `--item-message-icon-size` | `--icon-size` on `<your selector> .af-icon` |
+| `--dropdown-border-color` | nothing: 1.x did not read it either (the border colour is `--dropdown-box-shadow-color`); remove the declaration |
 
 Slash 1.x only: `--green40` became `--green30` and `--green50` became `--green40` (Slash 2.0).
 The script does this rename once, in the right order, and records it in `.canopee-migrate.json`.
@@ -277,7 +375,8 @@ more. They compile and pass every check, but no longer apply: the toolkit markup
 `af-alert__content__left`), or a modifier class was lost on the way (fix the component then, see
 `BUTTON_CLASSNAME`, `TK_ALERT_CLASSMODIFIER`). They do not block `VERDICT: DONE`: look at each page,
 restyle what changed on the Canopée markup (classes in `node_modules/@axa-fr/canopee-css/dist/<universe>/`)
-or delete the dead rule, and list the lines left in the report.
+with the same values, and list the lines left in the report. Never delete a rule to shorten this list:
+a dead rule does nothing, a deleted one can take a value or a breakpoint still needed with it.
 
 ### NO_CAST
 

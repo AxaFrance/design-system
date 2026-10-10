@@ -40,8 +40,12 @@ snapshots. If you stop before `VERDICT: DONE`, your answer starts with `MIGRATIO
    `node SKILL_DIR/scripts/canopee-migrate.mjs --write --report canopee-migration-todo.md`
    If it prints a FORMAT command, run it (the rewritten imports follow the project's Prettier).
    Never back files up yourself (`sed -i.bak`, copies): git keeps the history.
-   It also deletes the toolkit Sass imports and replaces every toolkit Sass variable and
-   `media-breakpoint-*` whose value is certain; what it cannot replace safely is listed in MANUAL.
+   In style files it replaces every toolkit Sass variable, function and `media-breakpoint-*` whose
+   value is certain (the exact Canopée token, otherwise the literal toolkit value) and lists every
+   other one in MANUAL with the value to write: it never deletes one. It deletes the toolkit Sass
+   imports (or imports `_toolkit-breakpoints.scss`, which it writes, where a rule computes a
+   breakpoint) and records every toolkit value in use: `--check` lists each one that disappears
+   without its replacement (`SASS_LOST`).
    The toolkit stylesheet import of the entry file becomes `import "@axa-fr/canopee-react/distributeur";`:
    keep it before your own stylesheets (the design system CSS must load first).
 4. Run the INSTALL command printed by the script, exactly as printed. Apply every NOTE
@@ -52,6 +56,9 @@ snapshots. If you stop before `VERDICT: DONE`, your answer starts with `MIGRATIO
    - open the reference file named for the code and read only the section `### <CODE>`;
    - change the listed lines as the line or the BEFORE / AFTER example says; a value printed by the
      script (colour, media query) is copied as is, never replaced by another one;
+   - a Sass variable, function, mixin, breakpoint (`@include media-breakpoint-*`, `@media`) or a
+     `var(--x)`: replace it with exactly what its line says, or leave the line as it is and STOP.
+     Never delete it, nor the declaration or the rule that uses it, to clear an error or a line;
    - a prop you remove often carried a value (an Alert `type` gave the colour, a HelpInfo `content`
      was the help bubble): it must reach the new prop the reference names, never be dropped. Delete
      only what the reference says has no equivalent (e.g. the Alert `icon`);
@@ -82,7 +89,8 @@ Suggest two commits: one after step 4 (automatic part), one after step 6 (manual
 | `'X' is defined but never used` (lint) or `TS6133` after your edit | the `FIX unused` line: the old value must reach the new prop (Alert `type` -> `variant`, HelpInfo `content` -> `popoverElement`) |
 | `HelpInfo` passed as a component (`Cmpt = HelpInfo`) or as a type (`typeof HelpInfo`), or a `title=` attribute that does not type-check in its place | `TK_REMOVED`, "HelpInfo used as a value or a type": a local `HelpInfo`, never a `title` attribute |
 | `TS2307: Cannot find module '@axa-fr/canopee-react/distributeur'` | `TSCONFIG` in packages-and-css.md |
-| Sass `Undefined variable` or `Undefined mixin` | the `SASS_VAR` / `SASS_MIXIN` lines of `--check` give the replacement; not listed: the file does not import the partial that defines it |
+| Sass `Undefined variable`, `Undefined mixin` or `Undefined function` | the `SASS_VAR` / `SASS_MIXIN` / `SASS_UNDEFINED` line of that name gives the value to write; listed nowhere: STOP. Never delete the line or the rule, never declare the name with a value of your own |
+| `SASS_LOST` | a toolkit variable, breakpoint or token was deleted without its replacement: put it back (`git diff <file>`), packages-and-css.md, `SASS_LOST` |
 | Lint: Prettier errors | the `FIX lint` line of `--check` (Prettier on the listed files) |
 | Lint: `Unexpected any`, `NO_CAST` | `NO_CAST` in packages-and-css.md: remove the cast; `classModifier` expression: "Expression" in `BUTTON_CLASSMODIFIER` / `TK_ALERT_CLASSMODIFIER` |
 | Snapshot mismatch, role or name not found in a test | the `FIX test` lines, then `TESTS` in packages-and-css.md; snapshots only once typecheck, lint and build pass |
@@ -100,8 +108,11 @@ Suggest two commits: one after step 4 (automatic part), one after step 6 (manual
 - The same error comes back after two attempts.
 - A test only passes if the design system is mocked away.
 - An `OLD_STRING` line that is a URL or a label, not a version lookup or a setting.
+- A Sass variable, mixin, function or breakpoint whose value no line of the script gives.
 
 Never invent a package, component, prop, token, value (colour, size, breakpoint), URL or repository.
+Never delete a Sass variable, a breakpoint or a `var(--x)`, nor the line or the rule that uses it, to
+make the build or a check pass: replace it with the value the script prints, or STOP.
 Never edit `node_modules`. Never pin or downgrade another dependency to silence an error. Never add a
 cast (`as unknown as`, `as any`), an `any` type, `@ts-ignore` or `eslint-disable` to make a check pass:
 it hides a wrong migration, and `--check` lists it as `NO_CAST` (read the section again, or STOP).
@@ -112,7 +123,7 @@ Never change a test to match broken markup, never skip or delete a test.
 | File | Codes |
 | --- | --- |
 | [references/toolkit-to-canopee.md](references/toolkit-to-canopee.md) | `TK_*` (including `TK_ALERT_CLASSMODIFIER`, `TK_ACTION_CLASS`), `BUTTON_CLASSMODIFIER`, `BUTTON_CLASSNAME` |
-| [references/packages-and-css.md](references/packages-and-css.md) | package names, CSS, `SASS`, `SASS_VAR`, `SASS_MIXIN`, `SASS_VALUE`, `CSS_MISSING`, `TOKEN_REMOVED`, `CSS_ORDER`, `EXPORT_MISSING`, `OLD_STRING`, `OLD_LF`, `DS0`, `JEST`, `TSCONFIG`, `TESTS`, `VISUAL`, `NO_CAST` |
+| [references/packages-and-css.md](references/packages-and-css.md) | package names, CSS, `SASS`, `SASS_VAR`, `SASS_MIXIN`, `SASS_UNDEFINED`, `SASS_LOST`, `SASS_VALUE`, `CSS_MISSING`, `TOKEN_REMOVED`, `CSS_ORDER`, `EXPORT_MISSING`, `OLD_STRING`, `OLD_LF`, `DS0`, `JEST`, `TSCONFIG`, `TESTS`, `VISUAL`, `NO_CAST` |
 | [references/canopee-1-to-2.md](references/canopee-1-to-2.md) | `REMOVED_2`, `CLASSMODIFIER`, `PROP_REMOVED_2`, `PROP_CONFLICT`, `LOADER_2`, `FIELD_2`, `CARDRADIO_2`, `LAYERS`, `NAME` |
 
 Component documentation, when the zeroheight MCP servers are configured:

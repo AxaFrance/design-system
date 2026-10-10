@@ -24,8 +24,11 @@ The intermediate name of this universe was Slash (`@axa-fr/design-system-slash-*
   imports reboot, grid, icons, tokens and the Source Sans Pro font. The first one of a file became
   `import "@axa-fr/canopee-react/distributeur";`: it keeps the Canopée CSS where the toolkit CSS was,
   before the project's own stylesheets, so that their rules still win. Keep that line where it is.
-- In `.scss` files: the toolkit `@import` was deleted, and each toolkit variable, `media-breakpoint-*`
-  and `rem()` with a certain replacement was replaced (packages-and-css.md, `SASS`).
+- In `.scss` files: each toolkit variable, function, `media-breakpoint-*` and `rem()` with a certain
+  replacement was replaced (exact Canopée token, otherwise the literal toolkit value); every other one
+  is listed in MANUAL with its value, never deleted. The toolkit `@import` was deleted, or became the
+  import of `_toolkit-breakpoints.scss` where a rule computes a breakpoint (packages-and-css.md, `SASS`).
+  Deleting a toolkit value afterwards is reported (`SASS_LOST`).
 - The logo import now uses `@axa-fr/canopee-css/logo-axa.svg`.
 
 Canopée needs React 18 or more (1.x) and React 19 (2.0). Upgrade `react`, `react-dom` and their

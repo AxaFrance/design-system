@@ -14,6 +14,11 @@ values, renamed props, CSS paths, renamed tokens. The model only fixes the lines
 one reference section per case, then runs the project checks: the procedure is designed to need only a
 handful of requests.
 
+Styles get the same care: a toolkit Sass variable, function or breakpoint is replaced by the exact
+Canopée token or the literal toolkit value, or left as it is and listed with the value to write; never
+deleted. `--write` records every toolkit value, breakpoint and removed token in use, and `--check`
+reports any of them deleted afterwards without its replacement (`SASS_LOST`).
+
 ## Install in the project to migrate
 
 The skill is a folder: copy `skills/canopee-migration` into the project. GitHub Copilot (VS Code, Copilot CLI,
@@ -84,7 +89,9 @@ rename tables at the top of the script and the matching reference section.
 
 `toolkit-sass.json` holds the values of the Sass variables of `@axa-fr/react-toolkit-core` 3.0.2
 (`src/common/scss`, unchanged since 1.4.1) as Sass resolves them (`toolkit` for the toolkit's own
-files, `bootstrap` for its Bootstrap 4 copy; values with `url()` and maps other than
-`$grid-breakpoints` and `$container-max-widths` are left out), and the literal colours of
-`@axa-fr/canopee-css` `distributeur/common/tokens.css` (identical in 1.8.0 and 2.0.0-alpha.76). Update
-`tokens` when a release changes these colours.
+files, `bootstrap` for its Bootstrap 4 copy, maps and `url()` values included), the variables of the
+toolkit component stylesheets by file (`components`), the `:root` custom properties of
+`af-toolkit-core.css` (`rootProperties`), the toolkit mixins and functions without equivalent
+(`mixins`, `functions`), and the literal colours of `@axa-fr/canopee-css`
+`distributeur/common/tokens.css` (identical in 1.8.0 and 2.0.0-alpha.76). Update `tokens` when a
+release changes these colours.
