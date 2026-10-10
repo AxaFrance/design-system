@@ -11,6 +11,11 @@ export type FooterProps = {
   copyright: string;
   expandLinkText: string;
   id?: string;
+  /**
+   * Visually hidden text, in parentheses, at the end of the name of the links
+   * that open in a new tab. Default: "nouvelle fenêtre".
+   */
+  newWindowLabel?: string;
 };
 
 export const Footer = ({
@@ -19,6 +24,7 @@ export const Footer = ({
   copyright,
   expandLinkText,
   id,
+  newWindowLabel = "nouvelle fenêtre",
 }: FooterProps) => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const linksId = useId();
@@ -61,9 +67,13 @@ export const Footer = ({
             triggerRef={triggerRef}
             links={links}
             isAboutOpen={isAboutOpen}
+            newWindowLabel={newWindowLabel}
           />
         </nav>
-        <MenuIcons socialMedias={socialMedias} />
+        <MenuIcons
+          socialMedias={socialMedias}
+          newWindowLabel={newWindowLabel}
+        />
       </div>
       <div className="af-footer__footerBottom">
         <div className="af-footer__footerBottomWidth">

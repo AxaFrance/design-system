@@ -202,3 +202,50 @@ describe.each([
     );
   });
 });
+
+describe.each([
+  ["Apollo", FooterApollo],
+  ["LF", FooterLF],
+])("<Footer /> %s links opening in a new tab", (_, FooterComponent) => {
+  it("should announce the menu links that open in a new tab", () => {
+    render(
+      <FooterComponent
+        links={[
+          { text: "Mentions légales", link: "/mentions-legales" },
+          { text: "Contact", link: "/contact", openInCurrentTab: true },
+        ]}
+        copyright="© 2024 AXA"
+        expandLinkText="À propos"
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "Mentions légales (nouvelle fenêtre)" }),
+    ).toHaveAttribute("target", "_blank");
+    expect(screen.getByRole("link", { name: "Contact" })).toHaveAttribute(
+      "target",
+      "_top",
+    );
+  });
+
+  it("should use newWindowLabel for menu and social links", () => {
+    render(
+      <FooterComponent
+        links={[{ text: "Mentions légales", link: "/mentions-legales" }]}
+        socialMedias={[{ icon: "youtube", link: "https://youtube.com" }]}
+        copyright="© 2024 AXA"
+        expandLinkText="À propos"
+        newWindowLabel="opens in a new tab"
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", {
+        name: "Mentions légales (opens in a new tab)",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "YouTube (opens in a new tab)" }),
+    ).toBeInTheDocument();
+  });
+});
