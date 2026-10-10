@@ -75,6 +75,24 @@ describe("Alert component", () => {
 
     expect(mockOnClose).toHaveBeenCalled();
   });
+  it("should name the close button in French by default", () => {
+    render(<Message title="Information" onClose={mockOnClose} />);
+
+    expect(screen.getByRole("button", { name: "Fermer" })).toBeInTheDocument();
+  });
+  it("should name the close button with closeButtonAriaLabel", () => {
+    render(
+      <Message
+        title="Information"
+        onClose={mockOnClose}
+        closeButtonAriaLabel="Fermer le message"
+      />,
+    );
+
+    expect(
+      screen.getByRole("button", { name: "Fermer le message" }),
+    ).toBeInTheDocument();
+  });
   it("shouldn't have an accessibility violation <Message />", async () => {
     // Act
     const { container } = render(
