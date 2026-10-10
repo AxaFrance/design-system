@@ -26,13 +26,13 @@ export const Default: StoryObj<typeof List> = {
   render,
   args: {
     children: [
-      <ClickItem key={0} icon={walletIcon} subtitle="Information" />,
+      <ClickItem key={0} icon={walletIcon} title="Information" />,
       <ClickItem
         key={1}
         icon={publishedWithChangesIcon}
-        subtitle="Modifier le profil"
+        title="Modifier le profil"
       />,
-      <ClickItem key={2} icon={trashIcon} subtitle="Supprimer le profil" />,
+      <ClickItem key={2} icon={trashIcon} title="Supprimer le profil" />,
       null,
       undefined,
     ],
@@ -133,13 +133,13 @@ export const UnstyledVariant: StoryObj<typeof List> = {
   args: {
     variant: "unstyled",
     children: [
-      <ClickItem key={0} icon={walletIcon} subtitle="Information" />,
+      <ClickItem key={0} icon={walletIcon} title="Information" />,
       <ClickItem
         key={1}
         icon={publishedWithChangesIcon}
-        subtitle="Modifier le profil"
+        title="Modifier le profil"
       />,
-      <ClickItem key={2} icon={trashIcon} subtitle="Supprimer le profil" />,
+      <ClickItem key={2} icon={trashIcon} title="Supprimer le profil" />,
     ],
   },
 };
