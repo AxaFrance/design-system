@@ -47,7 +47,9 @@ describe("MessageCommon", () => {
         expect(component.getByText(RegExp(children))).toBeDefined();
       }
 
-      expect(component.getByRole("presentation")).toHaveAttribute(
+      expect(
+        component.getByRole("presentation", { hidden: true }),
+      ).toHaveAttribute(
         "data-src",
 
         expect.stringContaining(icon),

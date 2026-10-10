@@ -63,12 +63,16 @@ describe("CardCheckboxOptionCommon", () => {
 
   it("should render an icon when icon prop is provided", () => {
     render(<CardCheckboxOption label="Label" icon="check" name="test" />);
-    expect(screen.getByRole("presentation")).toBeInTheDocument();
+    expect(
+      screen.getByRole("presentation", { hidden: true }),
+    ).toBeInTheDocument();
   });
 
   it("should not render an icon when icon prop is not provided", () => {
     render(<CardCheckboxOption label="Label" name="test" />);
-    expect(screen.queryByRole("presentation")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("presentation", { hidden: true }),
+    ).not.toBeInTheDocument();
   });
 
   it("should apply horizontal class when type is horizontal", () => {

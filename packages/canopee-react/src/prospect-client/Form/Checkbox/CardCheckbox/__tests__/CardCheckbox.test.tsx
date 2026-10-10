@@ -194,7 +194,9 @@ describe("CardCheckbox", () => {
     expect(
       screen.getByRole("checkbox", { name: /Londres/ }),
     ).toBeInTheDocument();
-    expect(screen.queryByRole("presentation")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("presentation", { hidden: true }),
+    ).not.toBeInTheDocument();
   });
 
   it("should display message with error type by default", () => {

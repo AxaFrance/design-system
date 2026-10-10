@@ -1,20 +1,11 @@
 import "@axa-fr/canopee-css/prospect/Svg/Svg.css";
 import React, { type ComponentProps, type SVGAttributes } from "react";
+import { cloneAttributes, getAccessibilityProps } from "./Svg.helpers";
 import { svgInjector } from "./svgInjector";
 
 type SvgProps = SVGAttributes<SVGSVGElement> & {
   src: string;
   alt?: string;
-};
-
-const cloneAttributes = (
-  from: HTMLElement | SVGSVGElement,
-  to: HTMLElement | SVGSVGElement,
-) => {
-  const attributes = from.getAttributeNames();
-  attributes.forEach((attribute) => {
-    to.setAttribute(attribute, from.getAttribute(attribute) as string);
-  });
 };
 
 /**
@@ -84,6 +75,7 @@ export const Svg = ({
       data-src={src}
       width={width}
       height={height}
+      {...getAccessibilityProps({ alt, ...props })}
       {...props}
     />
   );
