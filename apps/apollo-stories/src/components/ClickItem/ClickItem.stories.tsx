@@ -14,6 +14,12 @@ import { action } from "storybook/actions";
 const meta: Meta<typeof ClickItem> = {
   title: "Components/List/ClickItem",
   component: ClickItem,
+  argTypes: {
+    href: {
+      control: "text",
+      description: "Renders the item as a link instead of a button",
+    },
+  },
 };
 
 export default meta;
