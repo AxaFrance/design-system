@@ -89,8 +89,9 @@ rename tables at the top of the script and the matching reference section.
 
 `toolkit-sass.json` holds the values of the Sass variables of `@axa-fr/react-toolkit-core` 3.0.2
 (`src/common/scss`, unchanged since 1.4.1) as Sass resolves them (`toolkit` for the toolkit's own
-files, `bootstrap` for its Bootstrap 4 copy, maps and `url()` values included), the variables of the
-toolkit component stylesheets by file (`components`), the `:root` custom properties of
+files, `bootstrap` for its Bootstrap 4 copy, maps and `url()` values included), the variables each of
+them is computed from (`deps`, so that a project value set before the toolkit import is never mistaken
+for the toolkit's), the variables of the toolkit component stylesheets by file (`components`), the `:root` custom properties of
 `af-toolkit-core.css` (`rootProperties`), the toolkit mixins and functions without equivalent
 (`mixins`, `functions`), and the literal colours of `@axa-fr/canopee-css`
 `distributeur/common/tokens.css` (identical in 1.8.0 and 2.0.0-alpha.76). Update `tokens` when a

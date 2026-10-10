@@ -2143,6 +2143,9 @@ function jsxRules(
 // Style files and tokens
 // ---------------------------------------------------------------------------------------------
 
+const SASS_LIST_HINT =
+  "toolkit Sass in a list of imports: remove only this path from the list and keep the other paths, then replace what SASS_VAR and SASS_MIXIN list for this file";
+
 function analyzeStyle(file, text, ctx) {
   const edits = [];
   const items = [];
@@ -2159,6 +2162,18 @@ function analyzeStyle(file, text, ctx) {
   CSS_IMPORT_RE.lastIndex = 0;
   let m;
   while ((m = CSS_IMPORT_RE.exec(text))) {
+    // `@import 'a', '~@axa-fr/...';`: the regexp took the whole statement, the other paths of the
+    // list are looked at here
+    if (m[1] === "import" && m[0].includes(","))
+      for (const q of [...m[0].matchAll(/(['"])([^'"\n]+)\1/g)].slice(1)) {
+        const qi = classify(q[2]);
+        if (
+          qi?.kind === "asset" &&
+          qi.family === "toolkit" &&
+          mapAsset(qi, ctx.target, false, false, fromSass)?.code === "SASS"
+        )
+          add(m.index + q.index, "SASS", `${q[2]}: ${SASS_LIST_HINT}`);
+      }
     const spec = m[3];
     const info = classify(spec);
     if (!info || info.kind !== "asset") continue;
@@ -2202,7 +2217,24 @@ function analyzeStyle(file, text, ctx) {
         "TK_CSS_IN_STYLES",
         `${spec}: remove it if the app uses ${REACT_PKG} (components import their CSS), otherwise import ${CSS_PKG}/distributeur/distributeur.css`,
       );
-    else add(m.index, r.code, `${spec}: ${r.hint}`);
+    else {
+      const stmt = text.slice(
+        m.index,
+        text.indexOf(";", m.index) + 1 || m.index + m[0].length,
+      );
+      const toolkitSass = r.code === "SASS" && info.family === "toolkit";
+      add(
+        m.index,
+        r.code,
+        `${spec}: ${
+          toolkitSass && m[1] === "import" && m[0].includes(",")
+            ? SASS_LIST_HINT
+            : toolkitSass && /\bwith\s*\(/.test(stmt)
+              ? "toolkit Sass @use with a `with (...)` configuration: delete it, then replace what SASS_VAR and SASS_MIXIN list for this file (the values the configuration set are listed as SASS_VAR)"
+              : r.hint
+        }`,
+      );
+    }
   }
   CSS_URL_RE.lastIndex = 0;
   while ((m = CSS_URL_RE.exec(text))) {
@@ -2355,7 +2387,32 @@ function removedTokenItems(file, text, ctx) {
 
 // Sass colour functions do not accept var(...): a toolkit variable used inside one keeps a literal.
 const SASS_FUNCS =
-  /\b(darken|lighten|rgba?|mix|transparentize|fade-?out|fade-?in|opacify|saturate|desaturate|adjust-hue|scale-color|adjust-color|change-color|color\.[a-z-]+)\(/;
+  /\b(darken|lighten|rgba?|hsla?|mix|transparentize|fade-?out|fade-?in|opacify|saturate|desaturate|adjust-hue|scale-color|adjust-color|change-color|grayscale|complement|invert|red|green|blue|hue|saturation|lightness|alpha|opacity|ie-hex-str|color\.[a-z-]+)\(/;
+// The CSS functions that take var(...): any other call around a variable (a Sass function of the
+// toolkit or of the project) computes with it at compile time and needs the literal value.
+const CSS_CALLS =
+  /^(calc|clamp|min|max|var|env|(?:repeating-)?(?:linear|radial|conic)-gradient|drop-shadow|color-mix|light-dark|image-set)$/;
+// Names of the calls that enclose st[at], outermost first ("" for a plain parenthesis).
+function enclosingCalls(st, at) {
+  const stack = [];
+  for (let i = 0; i < at; i++) {
+    const c = st[i];
+    if (c === '"' || c === "'") {
+      i++;
+      while (i < at && st[i] !== c) i += st[i] === "\\" ? 2 : 1;
+    } else if (c === "(") stack.push(/([\w.-]*)$/.exec(st.slice(0, i))[1]);
+    else if (c === ")") stack.pop();
+  }
+  return stack;
+}
+// The variable at t[index] is an argument of a call that is not a CSS function.
+function insideSassCall(t, index) {
+  let s = index;
+  while (s > 0 && !";{}".includes(t[s - 1])) s--;
+  return enclosingCalls(t.slice(s, index), index - s).some(
+    (n) => n !== "" && !CSS_CALLS.test(n),
+  );
+}
 // The toolkit breakpoint functions and mixins (Bootstrap 4), kept in a project partial written by
 // --write when a rule computes a breakpoint (variable argument): see breakpointHelper().
 const TK_BP_HELPER = "_toolkit-breakpoints.scss";
@@ -2561,7 +2618,8 @@ function sassAutoValue(t, index, name, value, token) {
   const single = !/[\s,()]/.test(v) || /^(['"])[^'"]*\1$/.test(v);
   if (kind === "decl") {
     const math = /[*/+%]|\s-\s/.test(st);
-    if (token && !math && !SASS_FUNCS.test(st)) return `var(${token})`;
+    if (token && !math && !SASS_FUNCS.test(st) && !insideSassCall(t, index))
+      return `var(${token})`;
     if (st.includes("/")) return null;
     if (single) return v;
     const val = st
@@ -2714,6 +2772,7 @@ function sassGraph(root, src) {
   const edges = new Map();
   const importsAt = new Map(); // file -> [{ index, target }]
   const tk = new Map();
+  const config = []; // `@use "<toolkit>" with ($x: v)`: { file, index, vars }
   const external = new Set();
   const resolve = (from, spec) => {
     const bases = /^\.\.?\//.test(spec)
@@ -2758,6 +2817,19 @@ function sassGraph(root, src) {
         } else if (!/^@axa-fr\//.test(clean)) external.add(f);
       }
     }
+    for (const m of t.matchAll(
+      /@use\s+(['"])~?@axa-fr\/react-toolkit-[^'"\n]+\1[^;]*?\bwith\s*\(([^)]*)\)/g,
+    )) {
+      const vars = {};
+      for (const [k, v] of Object.entries(mapEntries(`(${m[2]})`)))
+        vars[k.replace(/^\$/, "")] = v.replace(/\s*!default\s*$/, "");
+      config.push({
+        file: f,
+        index: m.index,
+        end: m.index + m[0].length,
+        vars,
+      });
+    }
     edges.set(f, out);
   }
   const reachMemo = new Map();
@@ -2785,7 +2857,7 @@ function sassGraph(root, src) {
     }
   }
   for (const f of files) if (!unit.has(f)) unit.set(f, reach(f));
-  return { tk, external, reach, unit, importsAt };
+  return { tk, config, external, reach, unit, importsAt };
 }
 
 // Removes the @include wrapper of a breakpoint without media query (up(xs), down(xl)): its content
@@ -2846,6 +2918,8 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     helper: null,
     tkFiles: [],
     shadowed: {},
+    overrides: [],
+    partial: [],
   };
   const src = new Map();
   for (const f of styleFiles)
@@ -2861,7 +2935,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
   const locals = new Set(); // parameters and loop variables
   const own = new Map(); // project mixin or function -> files
   const defs = [];
-  let bootstrapSass = false;
+  const bsFiles = new Set(); // files that import Bootstrap's own Sass
   const addTo = (map, k, f) => {
     if (!map.has(k)) map.set(k, new Set());
     map.get(k).add(f);
@@ -2870,6 +2944,13 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     for (const m of t.matchAll(
       /^[ \t]*\$([A-Za-z_][\w-]*)[ \t]*:[ \t]*([^;\n]*)/gm,
     )) {
+      // a line of `@use "<toolkit>" with (...)` configures the toolkit, it defines nothing
+      if (
+        g.config.some(
+          (c) => c.file === f && m.index >= c.index && m.index < c.end,
+        )
+      )
+        continue;
       addTo(definedIn, m[1], f);
       defs.push({
         file: f,
@@ -2877,6 +2958,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         name: m[1],
         value: m[2].replace(/\s*!(default|global)\b/g, "").trim(),
         isDefault: /!default\b/.test(m[2]),
+        top: m[0][0] === "$",
       });
     }
     for (const m of t.matchAll(/@(?:mixin|function)\s+([\w-]+)\s*(\()?/g)) {
@@ -2902,17 +2984,26 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       for (const p of m[1].matchAll(/\$([\w-]+)/g)) locals.add(p[1]);
     for (const m of t.matchAll(/@(?:each|for)\s+([^{]*?)\s+(?:in|from)\b/g))
       for (const p of m[1].matchAll(/\$([\w-]+)/g)) locals.add(p[1]);
-    if (/@(?:import|use|forward)\s+[^;\n]*bootstrap/.test(t))
-      bootstrapSass = true;
+    // (the toolkit's own `custom-bootstrap` partial is not Bootstrap's Sass)
+    for (const m of t.matchAll(/@(?:import|use|forward)\s+([^;\n]+)/g))
+      if (
+        [...m[1].matchAll(/(['"])([^'"\n]+)\1/g)].some(
+          (q) => /bootstrap/i.test(q[2]) && !/^~?@axa-fr\//.test(q[2]),
+        ) ||
+        /^[^'"]*bootstrap/i.test(m[1])
+      )
+        bsFiles.add(f);
   }
-  // with Bootstrap's own Sass still imported, its variables are not the toolkit's to replace
-  const bs = bootstrapSass ? {} : data.bootstrap;
-  const valueOf = (n) => data.toolkit[n] ?? bs[n];
+  const unitOf = (f) => g.unit.get(f) || new Set([f]);
+  const inUnit = (f, files) => [...files].some((x) => unitOf(f).has(x));
+  // with Bootstrap's own Sass imported in a compilation unit, its variables are not the toolkit's to
+  // replace there
+  const bsOf = (f) => (inUnit(f, bsFiles) ? {} : data.bootstrap);
+  const valueOf = (n, f) =>
+    data.toolkit[n] ?? (f === undefined ? data.bootstrap : bsOf(f))[n];
   const tokenOf = new Map(
     Object.entries(data.tokens).map(([t, v]) => [normValue(v), t]),
   );
-  const unitOf = (f) => g.unit.get(f) || new Set([f]);
-  const inUnit = (f, files) => [...files].some((x) => unitOf(f).has(x));
   const sees = (f, name) =>
     locals.has(name) ||
     (definedIn.has(name) && (injected || inUnit(f, definedIn.get(name))));
@@ -2938,6 +3029,124 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
   const track = (f, index, label, keys) =>
     ctx.track && ctx.track(f, index, label, keys);
 
+  // 0. what the project sets itself. A toolkit variable set before the toolkit import (or in
+  //    `@use ... with (...)`) changes every toolkit value computed from it: `$primary: red` changes
+  //    theme-color('primary') and what is built on it, `$grid-breakpoints` every breakpoint. Such a
+  //    value is not the one of toolkit-sass.json: it is never replaced, it is listed with STOP; the
+  //    breakpoints keep the toolkit code (the helper), which reads the project's $grid-breakpoints.
+  const sameAsToolkit = (d) => {
+    const value = valueOf(d.name, d.file);
+    if (value === undefined) return false;
+    const v = normValue(d.value);
+    const token = tokenOf.get(normValue(value));
+    const ref = /^\$([\w-]+)$/.exec(v);
+    return (
+      v === normValue(value) ||
+      (token && v === `var(${token})`) ||
+      (ref && normValue(valueOf(ref[1], d.file) ?? "") === normValue(value))
+    );
+  };
+  // d comes after the toolkit import of every file that compiles it: the toolkit values were
+  // computed before it, and a !default of the project did nothing
+  const afterToolkit = (d) => {
+    const entries = [...unitOf(d.file)].filter(
+      (s) => (g.tk.get(s) || []).length && g.reach(s).has(d.file),
+    );
+    return (
+      entries.length > 0 &&
+      entries.every((s) => {
+        const first = Math.min(...g.tk.get(s).map((x) => x.index));
+        if (s === d.file) return first < d.index;
+        return (g.importsAt.get(s) || []).some(
+          (x) => x.index > first && g.reach(x.target).has(d.file),
+        );
+      })
+    );
+  };
+  const ovr = Array.isArray(ctx.state.sassOverrides)
+    ? ctx.state.sassOverrides.map((o) => ({
+        ...o,
+        file: path.join(root, o.file),
+      }))
+    : [
+        ...defs
+          .filter(
+            (d) =>
+              d.top &&
+              !isHelper(d.file) &&
+              (valueOf(d.name, d.file) !== undefined ||
+                data.components?.[d.name]) &&
+              !sameAsToolkit(d) &&
+              !afterToolkit(d),
+          )
+          .map((d) => ({
+            name: d.name,
+            file: d.file,
+            line: lineOf(texts.get(d.file), d.index),
+            value: d.value,
+            kind: "def",
+          })),
+        ...g.config.flatMap((c) =>
+          Object.entries(c.vars).map(([name, value]) => ({
+            name,
+            file: c.file,
+            line: lineOf(texts.get(c.file), c.index),
+            value,
+            kind: "with",
+          })),
+        ),
+      ];
+  const closureMemo = new Map();
+  const closure = (name) => {
+    if (closureMemo.has(name)) return closureMemo.get(name);
+    const seen = new Set([name]);
+    const stack = [name];
+    while (stack.length)
+      for (const n of data.deps?.[stack.pop()] || [])
+        if (!seen.has(n)) {
+          seen.add(n);
+          stack.push(n);
+        }
+    closureMemo.set(name, seen);
+    return seen;
+  };
+  // the project value (ovr entry) that a toolkit value is computed from, or null
+  const affectedBy = (f, name) => {
+    const here = ovr.filter((o) => unitOf(f).has(o.file));
+    for (const dep of here.length ? closure(name) : []) {
+      const o = here.find((x) => x.name === dep);
+      if (o) return o;
+    }
+    return null;
+  };
+  const bpOvr = (f) =>
+    ovr.some((o) => o.name === "grid-breakpoints" && unitOf(f).has(o.file));
+  // A file compiled with only a partial of the toolkit core that loads after custom-af (`variables`,
+  // `custom-bootstrap`...): toolkit-sass.json holds the values of the whole core, and some differ (e.g.
+  // $blue, set first by custom-af). custom-af and its colours alone give the same values as the core.
+  const PARTIAL_RE =
+    /react-toolkit-core\/.*scss\/_?(variables|functions|breakpoints|custom-bootstrap)(\.scss)?$/;
+  const partialNow = (f) => {
+    const specs = [...unitOf(f)].flatMap((s) =>
+      (g.tk.get(s) || []).map((x) => x.spec),
+    );
+    return specs.length && specs.every((x) => PARTIAL_RE.test(x))
+      ? specs.find((x) => PARTIAL_RE.test(x))
+      : null;
+  };
+  // recorded at --write: the toolkit imports are gone afterwards
+  const partialRecorded = Array.isArray(ctx.state.sassPartial)
+    ? new Map(
+        ctx.state.sassPartial.map((x) => [path.join(root, x.file), x.spec]),
+      )
+    : null;
+  const partialOf = (f) =>
+    partialRecorded ? partialRecorded.get(f) || null : partialNow(f);
+  const partialText = (spec) =>
+    `this file is compiled with only the toolkit partial ${spec}, not the whole core: the toolkit values known to the script are those of the whole core and can differ here. Keep this line as it is and STOP and ask what value it must keep`;
+  const stopText = (o) =>
+    `the toolkit computes this value from $${o.name}, and ${o.kind === "with" ? "an @use ... with" : "this project"} sets $${o.name} to ${o.value} (${rel(o.file)}:${o.line}): the toolkit default is not the value Sass used here. Keep this line as it is and STOP and ask what value it must keep`;
+
   // 1. rules that compute a breakpoint (variable argument): the toolkit code goes into a project
   //    partial, imported where a toolkit import is deleted, so that they compile exactly as before
   const dyn = new Set();
@@ -2946,12 +3155,15 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     for (const m of t.matchAll(
       /@include\s+(media-breakpoint-(up|down|only|between))\s*\(([^)]*)\)/g,
     ))
-      if (!hasOwn(f, m[1]) && !literalArgs(m[3], m[2] === "between" ? 2 : 1))
+      if (
+        !hasOwn(f, m[1]) &&
+        (bpOvr(f) || !literalArgs(m[3], m[2] === "between" ? 2 : 1))
+      )
         dyn.add(f);
     for (const m of t.matchAll(
       /(?<![\w$.-])(breakpoint-(?:next|min|max|infix))\(([^()]*)\)/g,
     ))
-      if (!hasOwn(f, m[1]) && !literalArgs(m[2], 1)) dyn.add(f);
+      if (!hasOwn(f, m[1]) && (bpOvr(f) || !literalArgs(m[2], 1))) dyn.add(f);
   }
   let helper = null;
   if (dyn.size) {
@@ -3015,9 +3227,21 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       const name = m[1];
       if (sees(f, name) || (name === "grid-breakpoints" && withHelper(f)))
         continue;
-      const map = valueOf(name);
+      const map = valueOf(name, f);
       const value = map?.startsWith("(") ? mapEntries(map)[m[3]] : undefined;
       if (value === undefined) continue;
+      const hit = affectedBy(f, name);
+      const part = partialOf(f);
+      if (hit || part) {
+        consumed.add(m.index + m[0].indexOf("$"));
+        add(
+          m.index,
+          "SASS_VAR",
+          `${m[0]}: ${hit ? stopText(hit) : partialText(part)}`,
+        );
+        track(f, m.index, m[0], [m[0], `$${name}`]);
+        continue;
+      }
       const token = tokenOf.get(normValue(value));
       track(f, m.index, m[0], [m[0], `$${name}`, ...valueKeys(value, token)]);
       const auto = scss ? sassAutoValue(t, m.index, name, value, token) : null;
@@ -3037,7 +3261,37 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       )
         continue; // a definition (parameter default, map key) is not a use
       const line = lineOf(text, m.index);
-      let value = valueOf(name);
+      // set by `@use ... with (...)`: that value applied, not the toolkit one
+      const cfg = ovr.find(
+        (o) => o.kind === "with" && o.name === name && unitOf(f).has(o.file),
+      );
+      const hit = cfg ? null : affectedBy(f, name);
+      const part = cfg || hit ? null : partialOf(f);
+      if (part && (valueOf(name, f) !== undefined || data.components?.[name])) {
+        add(m.index, "SASS_VAR", `$${name}: ${partialText(part)}`);
+        track(f, m.index, `$${name}`, [`$${name}`]);
+        continue;
+      }
+      if (cfg || hit) {
+        const ns =
+          t[m.index - 1] === "."
+            ? /([\w-]+)\.$/.exec(t.slice(0, m.index))
+            : null;
+        const literal = cfg && !/[$()]/.test(cfg.value);
+        add(
+          m.index,
+          "SASS_VAR",
+          literal
+            ? `${ns ? `${ns[1]}.` : ""}$${name} -> ${cfg.value} (the value set by the @use ... with at ${rel(cfg.file)}:${cfg.line}, not the toolkit value${ns ? `; replace the whole ${ns[1]}.$${name}` : ""})`
+            : `$${name}: ${stopText(cfg || hit)}`,
+        );
+        track(f, m.index, `$${name}`, [
+          `$${name}`,
+          ...(literal ? literalKeys(cfg.value) : []),
+        ]);
+        continue;
+      }
+      let value = valueOf(name, f);
       let candidates = null;
       if (value === undefined && hadToolkit(f) && data.components?.[name]) {
         const vals = [...new Set(Object.values(data.components[name]))];
@@ -3065,7 +3319,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
           unknownHere &&
           !definedIn.has(name) &&
           t[m.index - 1] !== "." &&
-          !(bootstrapSass && name in data.bootstrap)
+          !(inUnit(f, bsFiles) && name in data.bootstrap)
         ) {
           add(
             m.index,
@@ -3102,7 +3356,11 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         detail = `$${name}: toolkit map ${value}: declare $${name} in the project with exactly this value`;
       else if (token && /@(?:mixin|function)\s/.test(lineText))
         detail = `$${name} as a parameter default -> ${value} (toolkit value, not var(...): the mixin may pass it to a Sass function)`;
-      else if (token && !SASS_FUNCS.test(lineText))
+      else if (
+        token &&
+        !SASS_FUNCS.test(lineText) &&
+        !insideSassCall(t, m.index)
+      )
         detail = `$${name} -> var(${token}) (same value as the toolkit: ${value})`;
       else if (token)
         detail = `$${name} inside a Sass function -> ${value} (toolkit value; a Sass function does not accept var(...))`;
@@ -3133,7 +3391,8 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       if (hasOwn(f, `media-breakpoint-${m[1]}`, false)) continue;
       const call = `@include media-breakpoint-${m[1]}(${m[2].trim()})`;
       const args = literalArgs(m[2], m[1] === "between" ? 2 : 1);
-      const q = args ? mediaQuery(m[1], args, data.breakpoints) : null;
+      const q =
+        args && !bpOvr(f) ? mediaQuery(m[1], args, data.breakpoints) : null;
       if (q && q.startsWith("@media ")) {
         track(f, m.index, `${call} -> ${q}`, [call, q.slice(7)]);
         if (scss) {
@@ -3165,7 +3424,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         m.index,
         "SASS_MIXIN",
         helper
-          ? `${call}: variable argument: add @import "${path
+          ? `${call}: variable argument${bpOvr(f) ? " (this project sets $grid-breakpoints, the toolkit mixin reads it)" : ""}: add @import "${path
               .relative(path.dirname(f), helper.file)
               .split(path.sep)
               .join("/")
@@ -3173,12 +3432,13 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
                 /(^|\/)_([^/]+)\.scss$/,
                 "$1$2",
               )}"; at the top of this file (the toolkit breakpoint mixins, written by --write in ${rel(helper.file)}); never replace or delete the @include`
-          : `${call}: variable argument: the toolkit breakpoints are xs 0, sm 576px, md 768px, lg 992px, xl 1200px (up(X) = min-width X, none for xs; down(X) = max-width of the next one minus 0.02px, none for xl); run --write again to get the breakpoint mixins, never delete the @include`,
+          : `${call}: variable argument${bpOvr(f) ? " (this project sets $grid-breakpoints)" : ""}: the toolkit breakpoints are xs 0, sm 576px, md 768px, lg 992px, xl 1200px (up(X) = min-width X, none for xs; down(X) = max-width of the next one minus 0.02px, none for xl); run --write again to get the breakpoint mixins, never delete the @include`,
       );
     }
 
     // 4. functions: breakpoint-* and the map lookups theme-color(), gray(), color() with a literal
     //    key are replaced by their value; the others stay and are listed
+    const bs = bsOf(f);
     const maps = {
       "theme-color": mapEntries(bs["theme-colors"] || ""),
       gray: mapEntries(bs.grays || ""),
@@ -3193,7 +3453,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       const call = m[0];
       let value;
       if (fn.startsWith("breakpoint-")) {
-        if (!literalArgs(m[2], 1)) {
+        if (!literalArgs(m[2], 1) || bpOvr(f)) {
           track(f, m.index, call, [call]);
           if (!withHelper(f))
             add(
@@ -3212,6 +3472,15 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
             "SASS_MIXIN",
             `${call}: toolkit function with a key the script cannot read; its values: ${bs["theme-colors"]}: write the value of the key, STOP if the key is a variable`,
           );
+          track(f, m.index, call, [call]);
+          continue;
+        }
+        const hit = affectedBy(
+          f,
+          { "theme-color": "theme-colors", gray: "grays", color: "colors" }[fn],
+        );
+        if (hit) {
+          add(m.index, "SASS_MIXIN", `${call}: ${stopText(hit)}`);
           track(f, m.index, call, [call]);
           continue;
         }
@@ -3258,11 +3527,43 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
           : `${call} -> ${value} (toolkit value)`,
       );
     }
+    // rem(24px) is 1.5rem (the toolkit divides by 16px and prints up to 10 decimals, like Sass); the
+    // size of any other rem() is computed by Sass: calc() gives the same number
     if (!hasOwn(f, "rem"))
-      for (const m of t.matchAll(/\brem\(\s*(-?[\d.]+)px\s*\)/g)) {
-        const v = `${Math.round((Number(m[1]) / 16) * 10000) / 10000}rem`;
-        track(f, m.index, m[0], [m[0], v]);
-        edit(m.index, m.index + m[0].length, v);
+      for (const m of t.matchAll(/(?<![\w$.-])rem\(/g)) {
+        const open = m.index + m[0].length - 1;
+        let depth = 0;
+        let close = -1;
+        for (let j = open; j < t.length && close < 0; j++) {
+          if (t[j] === "(") depth++;
+          else if (t[j] === ")" && --depth === 0) close = j;
+        }
+        if (close < 0) continue;
+        const call = t.slice(m.index, close + 1);
+        const arg = t.slice(open + 1, close).trim();
+        const named = /^\$([\w-]+)$/.exec(arg);
+        const known =
+          named &&
+          !sees(f, named[1]) &&
+          !ovr.some((o) => o.name === named[1] && unitOf(f).has(o.file)) &&
+          !affectedBy(f, named[1])
+            ? valueOf(named[1], f)
+            : undefined;
+        const px =
+          /^(-?[\d.]+)px$/.exec(arg) ||
+          (known === undefined ? null : /^(-?[\d.]+)px$/.exec(known));
+        if (px) {
+          const v = `${Number((Number(px[1]) / 16).toFixed(10))}rem`;
+          track(f, m.index, call, [call, v]);
+          edit(m.index, close + 1, v);
+          continue;
+        }
+        track(f, m.index, call, ["rem(", "/ 16px * 1rem"]);
+        add(
+          m.index,
+          "SASS_MIXIN",
+          `${call} -> calc((${arg}) / 16px * 1rem) (the toolkit rem() divided the size by 16px and printed rem: same number; keep the argument as it is in the file, a toolkit variable in it has its own line)`,
+        );
       }
 
     // 5. mixins: a toolkit mixin stays and is listed; a mixin defined nowhere came with the
@@ -3300,12 +3601,12 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       breaksIn: 1,
     });
   }
-  const tkDefs = defs.filter((d) => valueOf(d.name) !== undefined);
+  const tkDefs = defs.filter((d) => valueOf(d.name, d.file) !== undefined);
   // `$x: w !default` placed after the toolkit import did nothing: the pages used the toolkit value;
   // once the import is gone, w applies. Found while the imports exist, recorded on --write.
   const shadowed = new Map(Object.entries(ctx.state.sassShadowed || {}));
   for (const d of tkDefs) {
-    const v = valueOf(d.name);
+    const v = valueOf(d.name, d.file);
     if (!d.isDefault || isHelper(d.file) || v.startsWith("(")) continue;
     if (normValue(d.value) === normValue(v)) continue;
     const after = [...unitOf(d.file)].some((s) => {
@@ -3342,7 +3643,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     const before = new Set(ctx.state.sassDefs);
     for (const d of tkDefs) {
       if (isHelper(d.file)) continue;
-      const value = valueOf(d.name);
+      const value = valueOf(d.name, d.file);
       const v = normValue(d.value);
       if (value.startsWith("(") || before.has(`${rel(d.file)}|${d.name}|${v}`))
         continue;
@@ -3351,7 +3652,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       if (
         v === normValue(value) ||
         (token && v === `var(${token})`) ||
-        (ref && normValue(valueOf(ref[1]) ?? "") === normValue(value))
+        (ref && normValue(valueOf(ref[1], d.file) ?? "") === normValue(value))
       )
         continue;
       items.push({
@@ -3373,6 +3674,10 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     helper,
     tkFiles: [...g.tk.keys()],
     shadowed: Object.fromEntries(shadowed),
+    overrides: ovr.map((o) => ({ ...o, file: rel(o.file) })),
+    partial: [...src.keys()]
+      .filter((f) => !isHelper(f) && partialNow(f))
+      .map((f) => ({ file: rel(f), spec: partialNow(f) })),
   };
 }
 
@@ -4046,12 +4351,24 @@ function main() {
     ctx.canopeeMajor = 2;
 
   // the toolkit stylesheet that defined Bootstrap's :root custom properties (--primary, --blue...)
+  // (a <link> of index.html or a "styles" entry of angular.json loads it as well as an import)
+  const TK_ROOT_CSS =
+    /react-toolkit-all\/dist\/style\/af-toolkit-core|react-toolkit-core\/src\/bootstrap/;
+  const pageTexts = [
+    "index.html",
+    "public/index.html",
+    "src/index.html",
+    "angular.json",
+  ].map((n) => {
+    try {
+      return fs.readFileSync(path.join(root, n), "utf8");
+    } catch {
+      return "";
+    }
+  });
   origin.tkRootCss =
-    [...texts.values()].some((t) =>
-      /react-toolkit-all\/dist\/style\/af-toolkit-core|react-toolkit-core\/src\/bootstrap/.test(
-        t,
-      ),
-    ) || !!state.origin?.tkRootCss;
+    [...texts.values(), ...pageTexts].some((t) => TK_ROOT_CSS.test(t)) ||
+    !!state.origin?.tkRootCss;
   ctx.tkRootCss = origin.tkRootCss;
   const tkSass = ctx.fromToolkit ? loadToolkitSass(scriptDir) : null;
   ctx.tkData = tkSass;
@@ -4132,6 +4449,10 @@ function main() {
       ctx.applied.sassTkFiles = r.tkFiles.map(rel);
     if (opts.write && !state.sassShadowed && Object.keys(r.shadowed).length)
       ctx.applied.sassShadowed = r.shadowed;
+    if (opts.write && !Array.isArray(state.sassOverrides))
+      ctx.applied.sassOverrides = r.overrides;
+    if (opts.write && !Array.isArray(state.sassPartial))
+      ctx.applied.sassPartial = r.partial;
   }
   // a toolkit variable, breakpoint or token recorded at --write that is gone without its replacement
   if (state.sassLedger) {

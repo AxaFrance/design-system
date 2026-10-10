@@ -91,6 +91,14 @@ Coming from the toolkit, `--write` already did the safe part in `.scss` files:
   values, in `_toolkit-breakpoints.scss`, and imports it where the toolkit import was;
 - each toolkit `@import` with a single path was deleted (or became that import).
 
+`--write` does not replace a toolkit value when the project changes what the toolkit computes. A toolkit
+variable set before the toolkit import or in `@use ... with (...)` (`$primary: #00ff00;`) changes every
+toolkit value computed from it (`theme-color('primary')`, `$component-active-bg`, `$theme-colors`); a file
+compiled with only a partial of the core (`.../scss/variables`, `functions`) does not get the values of the
+whole core. Those uses are listed with STOP (`SASS_VAR`, `SASS_MIXIN`): leave the line as it is and ask what
+value it must keep. A project `$grid-breakpoints` is the exception: the breakpoints of its files keep the
+toolkit mixins (`_toolkit-breakpoints.scss`), which read the project map.
+
 What is left is listed file by file, with the exact replacement: `SASS` (a `@use`, a commented or
 multi-path import), `SASS_VAR`, `SASS_MIXIN`, `SASS_UNDEFINED`, `SASS_VALUE`; do exactly what each line
 says. The toolkit is uninstalled at step 4, so its values are gone from `node_modules`: never guess one,
@@ -122,6 +130,9 @@ A toolkit Sass variable that no file compiled with this one defines. The line gi
 rest of the line. Used many times, the literal may go in one project variable with exactly that value
 (it still counts for `SASS_LOST`). A toolkit map (`$container-max-widths`) is declared in the project
 with the value printed. `tk.$color-axa` (a `@use ... as tk` namespace): replace the whole `tk.$color-axa`.
+
+A `SASS_VAR` line that says STOP has no value to write: the toolkit value of that variable is not the one
+the pages had (see `SASS`). Keep the line, do not write the value of another variable, ask.
 
 Next to `/`, write the result the line prints: in a property, Sass divides a variable but prints two
 literals as they are (`padding: $grid-gutter-width / 2` gave `15px`, `padding: 30px / 2` gives `30px/2`).
@@ -167,7 +178,8 @@ the `@include` and the loop. `--write` wrote `_toolkit-breakpoints.scss` (the to
 mixins, same values) and imports it in the file that compiled this one; a line that asks you to import
 it gives the exact `@import`. Do not edit that file.
 
-`rem(24px)` becomes `1.5rem` (px / 16). A toolkit function or mixin without equivalent
+`rem(24px)` becomes `1.5rem` (px / 16); any other `rem(X)` becomes `calc((X) / 16px * 1rem)`, the same
+number (Sass computes it). A toolkit function or mixin without equivalent
 (`theme-color-level`, `color-yiq`, `str-replace`, `generate-universes`, `hasIcon`...): keep the line and
 STOP and ask.
 

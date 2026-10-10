@@ -89,7 +89,7 @@ Suggest two commits: one after step 4 (automatic part), one after step 6 (manual
 | `'X' is defined but never used` (lint) or `TS6133` after your edit | the `FIX unused` line: the old value must reach the new prop (Alert `type` -> `variant`, HelpInfo `content` -> `popoverElement`) |
 | `HelpInfo` passed as a component (`Cmpt = HelpInfo`) or as a type (`typeof HelpInfo`), or a `title=` attribute that does not type-check in its place | `TK_REMOVED`, "HelpInfo used as a value or a type": a local `HelpInfo`, never a `title` attribute |
 | `TS2307: Cannot find module '@axa-fr/canopee-react/distributeur'` | `TSCONFIG` in packages-and-css.md |
-| Sass `Undefined variable`, `Undefined mixin` or `Undefined function` | the `SASS_VAR` / `SASS_MIXIN` / `SASS_UNDEFINED` line of that name gives the value to write; listed nowhere: STOP. Never delete the line or the rule, never declare the name with a value of your own |
+| Sass `Undefined variable`, `Undefined mixin` or `Undefined function` | the `SASS_VAR` / `SASS_MIXIN` / `SASS_UNDEFINED` line of that name gives the value to write, or says STOP; listed nowhere: STOP. Never delete the line or the rule, never declare the name with a value of your own |
 | `SASS_LOST` | a toolkit variable, breakpoint or token was deleted without its replacement: put it back (`git diff <file>`), packages-and-css.md, `SASS_LOST` |
 | Lint: Prettier errors | the `FIX lint` line of `--check` (Prettier on the listed files) |
 | Lint: `Unexpected any`, `NO_CAST` | `NO_CAST` in packages-and-css.md: remove the cast; `classModifier` expression: "Expression" in `BUTTON_CLASSMODIFIER` / `TK_ALERT_CLASSMODIFIER` |
@@ -108,7 +108,9 @@ Suggest two commits: one after step 4 (automatic part), one after step 6 (manual
 - The same error comes back after two attempts.
 - A test only passes if the design system is mocked away.
 - An `OLD_STRING` line that is a URL or a label, not a version lookup or a setting.
-- A Sass variable, mixin, function or breakpoint whose value no line of the script gives.
+- A Sass variable, mixin, function or breakpoint whose value no line of the script gives, or whose line says
+  STOP (the project sets a variable the toolkit value is computed from, only a partial of the toolkit core
+  is imported).
 
 Never invent a package, component, prop, token, value (colour, size, breakpoint), URL or repository.
 Never delete a Sass variable, a breakpoint or a `var(--x)`, nor the line or the rule that uses it, to
