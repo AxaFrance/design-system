@@ -7,6 +7,7 @@ import {
   useRef,
 } from "react";
 import { getClassName } from "../../../../utilities";
+import { isHandledKey } from "../NavBar.helpers";
 import { handleLinkFocus } from "./NavBarItemBase.helpers";
 
 type Props = HTMLAttributes<HTMLLIElement> & {
@@ -49,7 +50,9 @@ export const NavBarItemBase = ({
       className={`${componentClassName} ${openClass}`}
       role="none"
       onKeyDown={(e) => {
-        e.preventDefault();
+        if (isHandledKey(e.key)) {
+          e.preventDefault();
+        }
         handleKeys(e);
       }}
     >
