@@ -29,6 +29,9 @@ const MyComponent = () => (
 - Social links always open in a new tab. Each one is named by the text alternative of its
   icon: the optional `label` of the social media (`Facebook`, `X (Twitter)`, `YouTube` or
   `LinkedIn` by default), followed by `(nouvelle fenêtre)`.
+- Menu links open in a new tab unless `openInCurrentTab` is set: their name then ends with
+  a visually hidden `(nouvelle fenêtre)`. The optional `newWindowLabel` prop changes the
+  text in parentheses, for menu and social links alike.
 
 ## Playground
 
