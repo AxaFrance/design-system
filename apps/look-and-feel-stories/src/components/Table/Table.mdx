@@ -35,7 +35,11 @@ The Table component is a compound component with the following sub-components:
 - `Table.THead` - Table header with optional `variant` prop
 - `Table.TBody` - Table body with optional `variant` prop
 - `Table.Tr` - Table row with optional `size` and variant props
-- `Table.Th` - Table header cell with optional `onSort`, `onCheck`, `checkboxPosition` props
+- `Table.Th` - Table header cell with optional `onSort`, `onCheck`, `checkboxPosition` props.
+  With `onSort`, pass `sortDirection` (`"ascending"`, `"descending"` or `"none"`) to expose
+  the current sort to assistive technologies (the header cannot know it). `sortLabel` and
+  `checkboxLabel` name the sort button and the checkbox (defaults: "Trier par" followed by the
+  header text, and `Tout sélectionner`). The header keeps its text as its name.
 - `Table.Td` - Table data cell with optional `position`, `verticalAlign`, `variant` and `size` props
 
 ## Examples
