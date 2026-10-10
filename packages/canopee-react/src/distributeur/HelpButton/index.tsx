@@ -20,8 +20,11 @@ export const HelpButton = ({
   mode = "click",
   placement = "right",
   variant = "default",
-  helpButtonContent = <Svg src={info} alt="Help" />,
+  helpButtonContent,
+  triggerAriaLabel,
 }: HelpProps) => {
+  // The default icon is decorative: the trigger is named by its aria-label
+  const hasDefaultContent = helpButtonContent === undefined;
   const buttonClassName = classNames(
     "btn",
     getClassName({
@@ -37,8 +40,13 @@ export const HelpButton = ({
       placement={placement}
       mode={mode}
       popoverElement={children}
+      triggerAriaLabel={
+        triggerAriaLabel ?? (hasDefaultContent ? "Aide" : undefined)
+      }
     >
-      <div className={buttonClassName}>{helpButtonContent}</div>
+      <div className={buttonClassName}>
+        {hasDefaultContent ? <Svg src={info} /> : helpButtonContent}
+      </div>
     </Popover>
   );
 };

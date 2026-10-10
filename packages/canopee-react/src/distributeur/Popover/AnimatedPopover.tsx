@@ -17,6 +17,8 @@ type PropsAnimatedPopover = {
   isOpen: boolean;
   target: React.ReactNode;
   className?: string;
+  /** Id of the popover content, so that the trigger can reference it */
+  contentId?: string;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: (event: React.MouseEvent) => void;
 };
@@ -27,6 +29,7 @@ export const AnimatedPopover = ({
   isOpen,
   target,
   className,
+  contentId,
   onMouseEnter,
   onMouseLeave,
 }: PropsAnimatedPopover) => {
@@ -64,7 +67,7 @@ export const AnimatedPopover = ({
           data-popper-placement={placement}
           className="af-popover__container-pop"
         >
-          <div>{children}</div>
+          <div id={contentId}>{children}</div>
           <FloatingArrow
             ref={arrowRef}
             context={context}

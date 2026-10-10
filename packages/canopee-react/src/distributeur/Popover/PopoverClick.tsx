@@ -7,8 +7,10 @@ export const PopoverClick = ({
   placement,
   className,
   element,
+  triggerAriaLabel,
 }: PopoverProps) => {
   const wrapperRef = React.useRef(null);
+  const contentId = React.useId();
   const [isOpen, setOpen] = React.useState(false);
   const [isPopoverHover, setPopoverHover] = React.useState(false);
 
@@ -46,6 +48,9 @@ export const PopoverClick = ({
     <div
       role="button"
       tabIndex={0}
+      aria-label={triggerAriaLabel}
+      // The open popover sits in the trigger, whose content a fixed name hides
+      aria-describedby={isOpen && triggerAriaLabel ? contentId : undefined}
       ref={wrapperRef}
       className="af-popover__wrapper af-popover__wrapper--click"
       onKeyDown={handleKeyDown}
@@ -59,6 +64,7 @@ export const PopoverClick = ({
         placement={placement}
         className={className}
         element={element}
+        contentId={contentId}
       >
         {children}
       </PopoverBase>
