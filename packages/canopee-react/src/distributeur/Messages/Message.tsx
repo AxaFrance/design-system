@@ -40,7 +40,8 @@ export type MessageProps = {
   className?: string;
   /**
    * Variant of the message.
-   * This will determine the icon and the style of the message.
+   * This will determine the icon and the style of the message, and its role:
+   * `alert` for error and warning, `status` for info and success.
    */
   variant?: MessageVariants;
   /**
@@ -82,9 +83,11 @@ export const Message = ({
   });
 
   const iconSrc = icon ?? getIconUrl(variant);
+  const role =
+    variant === "error" || variant === "warning" ? "alert" : "status";
 
   return (
-    <div className={componentClassName} role="alert">
+    <div className={componentClassName} role={role}>
       <div className="af-alert__sidebar">
         <div className="af-alert__indicator">
           <Svg src={iconSrc} className="af-alert__icon" role="presentation" />
