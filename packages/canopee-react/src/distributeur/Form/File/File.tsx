@@ -117,7 +117,9 @@ const File = ({
       </div>
       <Button
         className="af-btn--file"
-        leftIcon={<i className={`glyphicon glyphicon-${icon}`} />}
+        leftIcon={
+          <i className={`glyphicon glyphicon-${icon}`} aria-hidden="true" />
+        }
         onClick={open}
         disabled={disabled}
       >
