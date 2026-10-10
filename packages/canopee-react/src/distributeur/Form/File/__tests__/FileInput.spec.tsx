@@ -32,7 +32,9 @@ describe("<FileInput>", () => {
         messageType={MessageTypes.error}
       />,
     );
-    userEvent.click(screen.getByRole("button", { name: "Supprimer" }));
+    userEvent.click(
+      screen.getByRole("button", { name: "Supprimer error-file.jpg" }),
+    );
     await waitFor(() => {
       expect(handleChange).toHaveBeenCalledWith(
         expect.objectContaining({
