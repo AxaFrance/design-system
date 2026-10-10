@@ -89,6 +89,15 @@ describe("NavBar", () => {
     expect(contracts).toHaveAttribute("aria-expanded", "false");
   });
 
+  it("hides the submenu arrow icon", () => {
+    const { container } = renderNavBar();
+
+    expect(container.querySelector(".glyphicon-arrow-xs-down")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+  });
+
   it("shouldn't have an accessibility violation", async () => {
     const { container } = renderNavBar();
 
