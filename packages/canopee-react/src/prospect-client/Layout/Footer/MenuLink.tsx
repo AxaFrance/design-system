@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { type RefObject, useLayoutEffect, useRef } from "react";
 import { useIsSmallScreen } from "../../utilities/hook/useIsSmallScreen";
 import { BREAKPOINT } from "../../utilities/constants";
 
@@ -9,22 +10,43 @@ export type Link = {
 };
 
 type MenuLinkProps = {
+  id?: string;
+  /** Gets the focus back if the list collapses while it holds the focus */
+  triggerRef?: RefObject<HTMLButtonElement | null>;
   links: Link[];
   isAboutOpen?: boolean;
 };
 
-export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
+export const MenuLink = ({
+  id,
+  triggerRef,
+  links,
+  isAboutOpen = false,
+}: MenuLinkProps) => {
   const isSmallScreen = useIsSmallScreen(BREAKPOINT.MD);
+  // Collapsed on small screens: the links can be neither focused nor read
+  const isCollapsed = isSmallScreen && !isAboutOpen;
+  const listRef = useRef<HTMLUListElement>(null);
+
+  // A resize or a zoom can collapse the list around the focus, which inert drops
+  useLayoutEffect(() => {
+    if (isCollapsed && listRef.current?.contains(document.activeElement)) {
+      triggerRef?.current?.focus();
+    }
+  }, [isCollapsed, triggerRef]);
 
   if (links.length === 0) {
     return null;
   }
   return (
     <ul
+      id={id}
+      ref={listRef}
       className={classNames(
         "af-footer__menuLinks",
         isAboutOpen && "af-footer__menuLinks--display",
       )}
+      inert={isCollapsed}
     >
       {links.map((menuItem) => (
         <li key={menuItem.text}>
@@ -33,7 +55,6 @@ export const MenuLink = ({ links, isAboutOpen = false }: MenuLinkProps) => {
             href={menuItem.link}
             target={menuItem.openInCurrentTab ? "_top" : "_blank"}
             rel="noreferrer"
-            tabIndex={isSmallScreen && !isAboutOpen ? -1 : undefined}
           >
             {menuItem.text}
           </a>
