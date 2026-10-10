@@ -76,3 +76,11 @@ const MyComponent = () => (
 <Canvas of={StepsStories.NewStepsStory} />
 
 <Controls of={StepsStories.NewStepsStory} />
+
+## Accessibility
+
+Each `Step` reads its state after its title, in a visually hidden text:
+"complété", "en cours" or "à venir" by default, or the `stateLabel` you pass.
+The active step also has `aria-current="step"`. With a `StepBase` and custom
+content, add the state to your content and pass `aria-current="step"` on the
+current step.
