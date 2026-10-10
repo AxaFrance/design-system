@@ -535,7 +535,7 @@ const menuBurgerProps: MenuBurgerProps = {
             subtitle: 'Informations personnelles',
             state: 'default',
             ariaLabelForActionIcon: 'Aller à mon profil',
-            onClick: () => {},
+            href: '/profil',
         },
     ],
     children: (
@@ -583,7 +583,7 @@ import { MenuBurger } from '@axa-fr/canopee-react/prospect';
             title: 'Mon profil',
             state: 'default',
             ariaLabelForActionIcon: 'Aller à mon profil',
-            onClick: () => {},
+            href: '/profil',
         },
     ]}
 >
