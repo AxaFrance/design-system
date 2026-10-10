@@ -17,6 +17,11 @@ const MyComponent = () => <ItemMessage type="success" message="My message" />;
 
 Use the `type` prop to change the type of the item message. The available variants are `error` (default), `success` or `warning`.
 
+## Accessibility
+
+An `error` or `warning` message has `role="alert"` and interrupts screen readers. A `success`
+message has `role="status"` and is announced politely.
+
 ## Playground Message
 
 <Canvas of={ItemMessageStories.Playground} />
