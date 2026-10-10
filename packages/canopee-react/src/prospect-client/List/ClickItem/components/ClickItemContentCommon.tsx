@@ -10,7 +10,24 @@ export type ClickItemContentProps = {
   tagProps?: TagProps;
 };
 
-export type ClickItemContentCommonProps = ClickItemContentProps & {
+export type ClickItemContentPart =
+  | "title"
+  | "subtitle"
+  | "secondary"
+  | "tertiary"
+  | "tag";
+
+export const getClickItemContentId = (
+  idPrefix: string,
+  part: ClickItemContentPart,
+) => `${idPrefix}-${part}`;
+
+export type ClickItemContentComponentProps = ClickItemContentProps & {
+  /** Prefix of the ids the item uses to name and describe its action */
+  idPrefix?: string;
+};
+
+export type ClickItemContentCommonProps = ClickItemContentComponentProps & {
   TagComponent: ComponentType<TagProps>;
 };
 
@@ -21,22 +38,34 @@ export const ClickItemContentCommon = ({
   textTertiary,
   tagLabel,
   tagProps,
+  idPrefix,
   TagComponent,
 }: ClickItemContentCommonProps) => {
+  const getId = (part: ClickItemContentPart) =>
+    idPrefix ? getClickItemContentId(idPrefix, part) : undefined;
+
   return (
     <>
-      <p className="af-apollo-click-item__title">{title}</p>
+      <p id={getId("title")} className="af-apollo-click-item__title">
+        {title}
+      </p>
       {subtitle ? (
-        <p className="af-apollo-click-item__subtitle">{subtitle}</p>
+        <p id={getId("subtitle")} className="af-apollo-click-item__subtitle">
+          {subtitle}
+        </p>
       ) : null}
       {textSecondary ? (
-        <p className="af-apollo-click-item__secondary">{textSecondary}</p>
+        <p id={getId("secondary")} className="af-apollo-click-item__secondary">
+          {textSecondary}
+        </p>
       ) : null}
       {textTertiary ? (
-        <p className="af-apollo-click-item__tertiary">{textTertiary}</p>
+        <p id={getId("tertiary")} className="af-apollo-click-item__tertiary">
+          {textTertiary}
+        </p>
       ) : null}
       {tagLabel ? (
-        <div className="af-apollo-click-item__tag-container">
+        <div id={getId("tag")} className="af-apollo-click-item__tag-container">
           <TagComponent {...tagProps}>{tagLabel}</TagComponent>
         </div>
       ) : null}
