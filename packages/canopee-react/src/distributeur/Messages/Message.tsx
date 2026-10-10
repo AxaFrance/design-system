@@ -46,7 +46,7 @@ export type MessageProps = {
   /**
    * Aria label for the close button.
    * This is important for accessibility, use a meaningful label to describe the action.
-   * @default "close"
+   * @default "Fermer"
    */
   closeButtonAriaLabel?: string;
 };
@@ -73,7 +73,7 @@ export const Message = ({
   title,
   children,
   variant = "error",
-  closeButtonAriaLabel = "close",
+  closeButtonAriaLabel = "Fermer",
 }: PropsWithChildren<MessageProps>) => {
   const componentClassName = getClassName({
     baseClassName: "af-alert",

@@ -50,7 +50,7 @@ const NavBarBase = ({
           onClick={onClick}
           className="mask fade"
           id={`open-${toggleMenuId}`}
-          aria-label="Close Menu"
+          aria-label="Fermer le menu"
         />
       ) : null}
       <nav
@@ -67,7 +67,7 @@ const NavBarBase = ({
             type="button"
             className="af-nav__aside-close"
             id={`close-${toggleMenuId}`}
-            aria-label="Close Menu"
+            aria-label="Fermer le menu"
           >
             ×
           </button>
