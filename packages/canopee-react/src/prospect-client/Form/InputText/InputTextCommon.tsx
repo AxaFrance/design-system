@@ -63,7 +63,7 @@ const InputTextCommon = ({
   const ariaDescribedby = [
     description && idDescription,
     helper && idHelp,
-    message && messageType === "success" && idMessage,
+    message && idMessage,
   ].filter(Boolean) as string[];
 
   return (

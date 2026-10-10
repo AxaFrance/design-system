@@ -84,7 +84,7 @@ const InputPhoneCommon = ({
   const ariaDescribedby = [
     description && idDescription,
     helper && idHelp,
-    message && messageType === "success" && idMessage,
+    message && idMessage,
   ].filter(Boolean) as string[];
 
   const hasError = Boolean(message) && messageType === "error";
