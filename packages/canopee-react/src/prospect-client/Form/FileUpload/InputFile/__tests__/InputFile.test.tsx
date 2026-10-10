@@ -13,6 +13,8 @@ import {
 } from "../../../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import { InputFileCommon, type InputFileProps } from "../InputFileCommon";
+import { InputFile as InputFileApollo } from "../InputFileApollo";
+import { InputFile as InputFileLF } from "../InputFileLF";
 
 const ButtonMock = (props: ButtonProps) => (
   <ButtonCommon {...props} SpinnerComponent={Spinner} />
@@ -197,5 +199,42 @@ describe("InputFile", () => {
       const input = screen.getByLabelText("Upload image");
       expect(input).toHaveAttribute("accept", "image/*");
     });
+  });
+});
+
+describe.each([
+  ["Apollo", InputFileApollo],
+  ["LF", InputFileLF],
+])("InputFile %s description", (_, Component) => {
+  it("should describe the input with its description and helper", () => {
+    render(
+      <Component
+        label="Justificatif"
+        description="Description"
+        helper="Aide"
+      />,
+    );
+
+    expect(screen.getByLabelText("Justificatif")).toHaveAccessibleDescription(
+      "Description Aide",
+    );
+  });
+
+  it("should keep a description id passed in labelProps", () => {
+    render(
+      <Component
+        label="Justificatif"
+        description="Description"
+        labelProps={{ descriptionId: "description-id" }}
+      />,
+    );
+
+    expect(screen.getByText("Description")).toHaveAttribute(
+      "id",
+      "description-id",
+    );
+    expect(screen.getByLabelText("Justificatif")).toHaveAccessibleDescription(
+      "Description",
+    );
   });
 });

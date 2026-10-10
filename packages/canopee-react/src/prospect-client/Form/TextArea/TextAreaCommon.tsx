@@ -56,6 +56,12 @@ const TextAreaCommon = ({
   const inputId = id ?? generatedId;
   const helperId = `${inputId}-helper`;
   const messageId = `${inputId}-error`;
+  const descriptionId = `${inputId}-description`;
+
+  const ariaDescribedby = [
+    description && descriptionId,
+    helper && helperId,
+  ].filter(Boolean) as string[];
 
   const hasError = Boolean(message) && messageType === "error";
   const hasWarning = Boolean(message) && messageType === "warning" && !hasError;
@@ -74,6 +80,7 @@ const TextAreaCommon = ({
     >
       <ItemLabelComponent
         description={description}
+        descriptionId={descriptionId}
         moreButtonLabel={moreButtonLabel}
         onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
@@ -87,7 +94,9 @@ const TextAreaCommon = ({
         id={inputId}
         className={textareaClassName}
         aria-errormessage={hasError ? messageId : undefined}
-        aria-describedby={helper ? helperId : undefined}
+        aria-describedby={
+          ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+        }
         required={required}
         aria-invalid={hasError || undefined}
         placeholder={placeholder}
