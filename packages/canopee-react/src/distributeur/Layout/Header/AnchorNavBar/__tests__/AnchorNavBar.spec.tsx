@@ -36,7 +36,9 @@ describe("NavBar", () => {
     const about = screen.getByRole("link", { name: "À Propos" });
     expect(about).toBeInTheDocument();
 
-    const services = screen.getByRole("link", { name: "Services" });
+    const services = screen.getByRole("link", {
+      name: "Services (nouvelle fenêtre)",
+    });
     expect(services).toBeInTheDocument();
 
     const contact = screen.getByRole("link", { name: "Contact" });
@@ -69,7 +71,9 @@ describe("NavBar", () => {
   it("Affiche les liens externes correctement", () => {
     render(<AnchorNavBarComponent />);
 
-    const externalLink = screen.getByRole("link", { name: "Services" });
+    const externalLink = screen.getByRole("link", {
+      name: "Services (nouvelle fenêtre)",
+    });
     expect(externalLink).toHaveAttribute("href", "services");
     expect(externalLink).toHaveAttribute("target", "_blank");
     expect(
@@ -81,6 +85,34 @@ describe("NavBar", () => {
     render(<AnchorNavBarComponent />);
 
     expect(screen.getByRole("link", { name: "Contact" })).toBeInTheDocument();
+  });
+
+  it("annonce les liens qui s'ouvrent dans un nouvel onglet", () => {
+    render(<AnchorNavBarComponent />);
+
+    expect(
+      screen.getByRole("link", { name: /^Services/ }),
+    ).toHaveAccessibleName("Services (nouvelle fenêtre)");
+    expect(screen.getByText("(nouvelle fenêtre)")).toHaveStyle({
+      position: "absolute",
+      overflow: "hidden",
+    });
+    expect(screen.getByRole("link", { name: /^Accueil/ })).toHaveAccessibleName(
+      "Accueil",
+    );
+  });
+
+  it("utilise le libellé newWindowLabel", () => {
+    render(
+      <AnchorNavBar
+        items={[{ name: "Services", link: "services", externalLink: true }]}
+        newWindowLabel="opens in a new tab"
+      />,
+    );
+
+    expect(screen.getByRole("link")).toHaveAccessibleName(
+      "Services (opens in a new tab)",
+    );
   });
 
   it("ne doit pas avoir de violations d’accessibilité (axe)", async () => {
