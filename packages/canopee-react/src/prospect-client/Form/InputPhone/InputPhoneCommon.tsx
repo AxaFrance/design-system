@@ -80,6 +80,7 @@ const InputPhoneCommon = ({
   const idMessage = useId();
   const idHelp = useId();
   const idDescription = useId();
+  const idLabel = useId();
 
   const ariaDescribedby = [
     description && idDescription,
@@ -119,11 +120,16 @@ const InputPhoneCommon = ({
         onSideButtonClick={onSideButtonClick}
         required={required}
         htmlFor={inputId}
+        id={idLabel}
       >
         {label}
       </ItemLabelComponent>
 
-      <div className="af-form__input-phone-fields">
+      <div
+        className="af-form__input-phone-fields"
+        role={showSelect ? "group" : undefined}
+        aria-labelledby={showSelect ? idLabel : undefined}
+      >
         {showSelect ? (
           <div className="af-form__country-code-wrapper">
             <CountryCodeSelect

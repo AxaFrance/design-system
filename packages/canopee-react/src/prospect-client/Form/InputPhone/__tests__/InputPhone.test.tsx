@@ -243,4 +243,29 @@ describe.each([
       );
     },
   );
+
+  it("should group the country code and the number under the label", async () => {
+    const { container } = render(
+      <Component
+        label="Téléphone"
+        required
+        showSelect
+        countryCodeOptions={[{ flag: "fr.svg", code: "+33" }]}
+        defaultCountry="+33"
+      />,
+    );
+
+    const group = screen.getByRole("group", { name: "Téléphone" });
+    expect(group).toContainElement(screen.getByRole("combobox"));
+    expect(group).toContainElement(
+      screen.getByRole("textbox", { name: "Téléphone" }),
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should not add a group without the country code select", () => {
+    render(<Component label="Téléphone" />);
+
+    expect(screen.queryByRole("group")).not.toBeInTheDocument();
+  });
 });
