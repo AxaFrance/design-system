@@ -22,7 +22,7 @@ describe("Link component", () => {
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
     expect(link).toHaveClass("af-link--openInNewTab");
-    expect(link.querySelector("svg")).toBeInTheDocument();
+    expect(link.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
   });
 
   it.each`

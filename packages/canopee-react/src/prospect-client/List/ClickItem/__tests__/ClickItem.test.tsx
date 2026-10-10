@@ -54,10 +54,9 @@ describe("ClickItem Component", () => {
 
   describe("ClickItem Component Variant: Large", () => {
     const assertCommon = () => {
-      expect(screen.getAllByRole("presentation")[0]).toHaveAttribute(
-        "data-src",
-        "icon.svg",
-      );
+      expect(
+        screen.getAllByRole("presentation", { hidden: true })[0],
+      ).toHaveAttribute("data-src", "icon.svg");
       expect(screen.getByText("Titre")).toBeInTheDocument();
       expect(screen.getByText("Sous-titre")).toBeInTheDocument();
       expect(screen.getByText("Texte secondaire")).toBeInTheDocument();
@@ -147,10 +146,9 @@ describe("ClickItem Component", () => {
 
   describe("ClickItem Component Variant: Medium", () => {
     const assertCommon = () => {
-      expect(screen.getAllByRole("presentation")[0]).toHaveAttribute(
-        "data-src",
-        "icon.svg",
-      );
+      expect(
+        screen.getAllByRole("presentation", { hidden: true })[0],
+      ).toHaveAttribute("data-src", "icon.svg");
       expect(screen.getByText("Titre")).toBeInTheDocument();
       expect(screen.getByText("Sous-titre")).toBeInTheDocument();
       expect(screen.getByText("Texte Tag")).toBeInTheDocument();
@@ -221,10 +219,9 @@ describe("ClickItem Component", () => {
         />,
       );
 
-      expect(screen.getAllByRole("presentation")[0]).toHaveAttribute(
-        "data-src",
-        "icon.svg",
-      );
+      expect(
+        screen.getAllByRole("presentation", { hidden: true })[0],
+      ).toHaveAttribute("data-src", "icon.svg");
 
       expect(container.firstChild).toHaveClass("af-apollo-click-item");
       expect(container.firstChild).toHaveClass("af-apollo-click-item--small");
