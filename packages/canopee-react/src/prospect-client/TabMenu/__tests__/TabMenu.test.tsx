@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
 import { TabMenu } from "../TabMenu";
 
@@ -264,6 +265,64 @@ describe("TabMenu", () => {
       );
       const firstLink = screen.getByRole("link", { name: "Mes contrats" });
       expect(firstLink).toHaveAttribute("tabindex", "0");
+    });
+  });
+
+  describe("current page", () => {
+    const items = [
+      { href: "#contracts", label: "Mes contrats" },
+      { href: "#claims", label: "Mes sinistres", isActive: true },
+      { href: "#documents", label: "Mes documents" },
+    ];
+
+    it("marks only the isActive item with aria-current", () => {
+      render(<TabMenu items={items} />);
+
+      expect(
+        screen.getByRole("link", { name: "Mes sinistres" }),
+      ).toHaveAttribute("aria-current", "page");
+      expect(
+        screen.getByRole("link", { name: "Mes contrats" }),
+      ).not.toHaveAttribute("aria-current");
+      expect(
+        screen.getByRole("link", { name: "Mes documents" }),
+      ).not.toHaveAttribute("aria-current");
+    });
+
+    it("keeps aria-current on the current page when focus moves", async () => {
+      const user = userEvent.setup();
+      render(<TabMenu items={items} />);
+
+      await user.click(screen.getByRole("navigation"));
+      await user.keyboard("{ArrowLeft}");
+
+      const documents = screen.getByRole("link", { name: "Mes documents" });
+      expect(documents).toHaveFocus();
+      expect(documents).not.toHaveAttribute("aria-current");
+      expect(
+        screen.getByRole("link", { name: "Mes sinistres" }),
+      ).toHaveAttribute("aria-current", "page");
+    });
+
+    it("sets no aria-current when no item is active", () => {
+      render(
+        <TabMenu
+          items={[
+            { href: "#contracts", label: "Mes contrats" },
+            { href: "#claims", label: "Mes sinistres" },
+          ]}
+        />,
+      );
+
+      screen.getAllByRole("link").forEach((link) => {
+        expect(link).not.toHaveAttribute("aria-current");
+      });
+    });
+
+    it("shouldn't have an accessibility violation", async () => {
+      const { container } = render(<TabMenu items={items} />);
+
+      expect(await axe(container)).toHaveNoViolations();
     });
   });
 });
