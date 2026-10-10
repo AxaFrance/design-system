@@ -44,11 +44,16 @@ export const ClickItemCommon = ({
   tagProps,
   basePictureProps,
   onClick,
+  href,
+  target,
+  rel,
   ariaLabelForActionIcon,
   ClickItemContentComponent,
   ClickItemSuffixComponent,
   ClickItemPrefixComponent,
 }: ClickItemPropsCommon) => {
+  const isLink = href !== undefined;
+  const isClickable = isLink || Boolean(onClick);
   const idPrefix = useId();
   const actionDescriptionId = `${idPrefix}-action`;
   const spinnerId = `${idPrefix}-spinner`;
@@ -71,20 +76,24 @@ export const ClickItemCommon = ({
     ...(ariaLabelForActionIcon ? [actionDescriptionId] : []),
   ].join(" ");
 
-  const clickableProps = onClick && {
+  const clickableProps = isClickable && {
     "aria-labelledby": getClickItemContentId(idPrefix, "title"),
     "aria-describedby": describedBy || undefined,
     onClick,
+    href,
+    target,
+    rel,
     disabled: state === "disabled" || state === "loading",
   };
 
   return (
     <ClickItemWrapper
-      isClickable={Boolean(onClick)}
+      isClickable={isClickable}
       className={[
         "af-apollo-click-item",
         `af-apollo-click-item--${variant}`,
         `af-apollo-click-item--${state}`,
+        isLink && "af-apollo-click-item--link",
         className,
       ]
         .filter(Boolean)
@@ -120,7 +129,7 @@ export const ClickItemCommon = ({
           spinnerId={spinnerId}
         />
       </div>
-      {onClick && ariaLabelForActionIcon ? (
+      {isClickable && ariaLabelForActionIcon ? (
         <span id={actionDescriptionId} hidden>
           {ariaLabelForActionIcon}
         </span>

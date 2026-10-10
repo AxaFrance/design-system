@@ -367,3 +367,81 @@ describe.each([
     ).not.toBeInTheDocument();
   });
 });
+
+describe.each([
+  { name: "Apollo", Component: ClickItem },
+  { name: "LF", Component: ClickItemLF },
+])("ClickItem $name as a link", ({ Component }) => {
+  const linkProps = {
+    title: "Titre",
+    subtitle: "Sous-titre",
+    variant: "large",
+    href: "/contrats/auto",
+    ariaLabelForActionIcon: "Aller à la page de détails",
+  } satisfies ClickItemProps;
+
+  it("renders a link named by its title when href is set", async () => {
+    const handleClick = vi.fn((event: React.MouseEvent) =>
+      event.preventDefault(),
+    );
+    const { container } = render(
+      <Component
+        {...linkProps}
+        target="_blank"
+        rel="noopener"
+        onClick={handleClick}
+      />,
+    );
+
+    const link = screen.getByRole("link", { name: "Titre" });
+    expect(link).toHaveAttribute("href", "/contrats/auto");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener");
+    expect(link).toHaveClass("af-apollo-click-item--link");
+    expect(link).toHaveAccessibleDescription(
+      "Sous-titre Aller à la page de détails",
+    );
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByText("Titre"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("renders a link without onClick", () => {
+    render(<Component {...linkProps} />);
+
+    expect(screen.getByRole("link", { name: "Titre" })).toHaveAttribute(
+      "href",
+      "/contrats/auto",
+    );
+  });
+
+  it.each(["disabled", "loading"] as const)(
+    "drops the href and the click when $0",
+    async (state) => {
+      const handleClick = vi.fn();
+      const { container } = render(
+        <Component {...linkProps} state={state} onClick={handleClick} />,
+      );
+
+      const link = screen.getByRole("link", { name: "Titre" });
+      expect(link).not.toHaveAttribute("href");
+      expect(link).toHaveAttribute("aria-disabled", "true");
+      expect(link).toHaveAttribute("tabindex", "-1");
+
+      await userEvent.click(screen.getByText("Titre"));
+      expect(handleClick).not.toHaveBeenCalled();
+      expect(await axe(container)).toHaveNoViolations();
+    },
+  );
+
+  it("stays a button without href", () => {
+    render(<Component {...linkProps} href={undefined} onClick={vi.fn()} />);
+
+    expect(screen.getByRole("button", { name: "Titre" })).not.toHaveClass(
+      "af-apollo-click-item--link",
+    );
+    expect(screen.queryByRole("link")).not.toBeInTheDocument();
+  });
+});

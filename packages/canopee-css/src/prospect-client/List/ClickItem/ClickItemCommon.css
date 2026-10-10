@@ -18,6 +18,11 @@
     }
   }
 
+  .af-apollo-click-item--link {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .af-apollo-click-item__content {
     display: flex;
     flex: 1;
