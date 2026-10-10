@@ -233,4 +233,22 @@ describe("InputFile description", () => {
       "Description",
     );
   });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <InputFileApollo
+          label="Justificatif"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByLabelText("Justificatif")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
 });

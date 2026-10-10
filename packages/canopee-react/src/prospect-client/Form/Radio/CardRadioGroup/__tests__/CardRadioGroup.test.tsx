@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
+import { CardRadioGroup as CardRadioGroupApollo } from "../CardRadioGroupApollo";
 import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import { CardRadio } from "../../CardRadio/CardRadioLF";
 import {
@@ -184,4 +185,24 @@ describe("CardRadioGroup", () => {
     expect(radiogroup).not.toBeValid();
     expect(radiogroup).toHaveAccessibleErrorMessage("Error message");
   });
+});
+
+describe("CardRadioGroup message", () => {
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the group with its %s message",
+    (messageType) => {
+      render(
+        <CardRadioGroupApollo
+          label="Ville"
+          options={[{ label: "Paris", value: "paris" }]}
+          message="Choisissez une ville"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByRole("radiogroup")).toHaveAccessibleDescription(
+        "Choisissez une ville",
+      );
+    },
+  );
 });

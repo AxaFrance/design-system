@@ -31,7 +31,7 @@ describe("<InputText />", () => {
 
       const textinput = screen.getByLabelText(/foo/);
       expect(textinput).toBeInTheDocument();
-      expect(textinput).toHaveAccessibleDescription("description helper");
+      expect(textinput).toHaveAccessibleDescription("description helper error");
       expect(textinput).toHaveProperty("placeholder", "placeholder");
       expect(textinput).toHaveAccessibleErrorMessage("error");
       expect(textinput).toHaveValue("value");
