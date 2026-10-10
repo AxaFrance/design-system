@@ -89,6 +89,14 @@ describe("NavBar", () => {
     expect(contracts).toHaveAttribute("aria-expanded", "false");
   });
 
+  it("names the close buttons in French", () => {
+    renderNavBar();
+
+    expect(
+      screen.getAllByRole("button", { name: "Fermer le menu" }),
+    ).toHaveLength(2);
+  });
+
   it("hides the submenu arrow icon", () => {
     const { container } = renderNavBar();
 
