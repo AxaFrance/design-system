@@ -37,6 +37,8 @@ Table des matières :
 Si vous utilisez `@axa-fr/react-toolkit` et que vous souhaitez migrer vers
 `@axa-fr/design-system`, vous pouvez suivre notre
 [guide de migration](./MIGRATION-GUIDE-TOOLKIT.md).
+Le skill [canopee-migration](./plugins/canopee-migration/README.md) fait l'essentiel
+de cette migration dans votre projet.
 
 ## Packages
 
@@ -279,5 +281,7 @@ Pour découvrir l’utilisation de gh-aw dans ce dépôt, consultez les [guideli
 ### Comment faire ?
 
 Vous pouvez utiliser la fonctionnalité marketplace de votre chat pour ajouter le plugin du design system, ou alors vous pouvez aussi le faire manuellement en ajoutant le plugin présent dans `plugins/canopee-distributeur` et `plugins/canopee-prospect-client` à votre chat.
+
+Pour migrer un projet vers Canopée (depuis `@axa-fr/react-toolkit`, Slash, Apollo ou Look & Feel, ou de la 1.x vers la 2.0), installez le skill `canopee-migration` dans ce projet : voir [plugins/canopee-migration](./plugins/canopee-migration/README.md).
 
 Le dépôt embarque également le plugin Frontend Slides pour créer ou faire évoluer des présentations HTML. Consultez le [guide Frontend Slides](./plugins/frontend-slides/README.md) pour l’installer et le mettre à jour dans GitHub Copilot CLI.
