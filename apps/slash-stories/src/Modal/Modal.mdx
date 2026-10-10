@@ -45,6 +45,13 @@ By default, the modal will be rendered with a medium size.
 | lg      | 800px |
 | default | 460px |
 
+## Accessibility
+
+The `<dialog>` needs a name. Pass `title`, or name it with its visible title:
+give a `titleId` to `ModalHeader` and pass the same id to `Modal` in
+`aria-labelledby`. With a `ModalHeaderBase`, point `aria-labelledby` to the id
+of your own title. `BooleanModal` uses its `title` prop.
+
 ## Basic Usage
 
 Example of usage of Modal component :
@@ -61,8 +68,14 @@ export const YourComponent = () => {
         Open modal
       </button>
 
-      <Modal onOutsideTap={() => ref.current?.close()} ref={ref}>
-        <ModalHeader onCancel={() => {}}>Modal Title</ModalHeader>
+      <Modal
+        aria-labelledby="modal-title"
+        onOutsideTap={() => ref.current?.close()}
+        ref={ref}
+      >
+        <ModalHeader titleId="modal-title" onCancel={() => {}}>
+          Modal Title
+        </ModalHeader>
         <ModalBody>
           <p>
             Voici une version avec un header classique du composant Modal. La
@@ -109,7 +122,11 @@ export const YourComponent = () => {
         Open modal
       </button>
 
-      <Modal onOutsideTap={() => ref.current?.close()} ref={ref}>
+      <Modal
+        aria-labelledby="headerId"
+        onOutsideTap={() => ref.current?.close()}
+        ref={ref}
+      >
         <ModalHeaderBase id="headerId">
           <p>
             Ici je contrôle complètement
