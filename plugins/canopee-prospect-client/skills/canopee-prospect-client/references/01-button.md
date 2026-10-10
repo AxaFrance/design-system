@@ -149,13 +149,14 @@ import { Link, linkVariants, type LinkVariants, type LinkProps } from "@axa-fr/c
 type LinkProps = {
   variant?: LinkVariants;         // "inverse" (optionnel — sur fond coloré)
   openInNewTab?: boolean;         // ajoute target="_blank" + icône externe (défaut: false)
+  newWindowLabel?: string;        // texte masqué entre parenthèses si openInNewTab (défaut: "nouvelle fenêtre")
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
 } & ComponentPropsWithoutRef<"a">;
 ```
 
-Quand `openInNewTab` est `true`, un SVG « open_in_new » s'affiche automatiquement à droite, et `rel="noopener noreferrer"` est ajouté.
+Quand `openInNewTab` est `true`, un SVG « open_in_new » (décoratif) s'affiche automatiquement à droite, et `rel="noopener noreferrer"` est ajouté. Le nom accessible du lien se termine alors par « (nouvelle fenêtre) », en texte masqué : `newWindowLabel` change le texte entre parenthèses.
 
 ### Exemples
 
