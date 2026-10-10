@@ -86,6 +86,20 @@ const MyComponent = () => {
     </tr>
     <tr>
       <td>
+        <code>successLabel</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>"Fichier chargé"</code>
+      </td>
+      <td>
+        Text alternative of the success icon shown once the file is loaded.
+      </td>
+    </tr>
+    <tr>
+      <td>
         <code>onRemove</code>
       </td>
       <td>
@@ -163,7 +177,8 @@ const MyComponent = () => {
 
 - Ensure the `file` prop is a valid `File` object and that file names are sanitized if displayed in untrusted contexts.
 - The component sets `aria-busy` when `isLoading` is true and uses `aria-live="polite"` for the message area so screen readers are notified of status changes.
-- Action icon buttons (preview / remove) must have a clear accessible name. By default the component provides `aria-label` attributes (e.g. "Preview file {name}", "Remove file {name}"). If you override button props, keep or provide an `aria-label`.
+- Action icon buttons (preview / remove) must have a clear accessible name. By default the component provides `aria-label` attributes (`Prévisualiser le fichier <name>`, `Suppression du fichier <name>`). If you override button props, keep or provide an `aria-label`.
+- The success icon is an image named by `successLabel` (default `Fichier chargé`). The error icon is decorative: the `errorMessage` carries the information.
 - Do not rely on color alone to indicate an error. Provide an explicit `errorMessage` text which is announced to assistive technologies.
 - If your list of files is interactive, ensure focus is handled appropriately when an item is removed (move focus to a sensible next element).
 
