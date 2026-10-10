@@ -11,7 +11,7 @@ export type BooleanModalProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,
   HTMLDialogElement
 > &
-  Omit<HeaderProps, "children" | "onCancel" | "title"> &
+  Omit<HeaderProps, "children" | "onCancel" | "title" | "titleId"> &
   Pick<ModalProps, "size"> & {
     /**
      * Title of the modal, displayed in the header.

@@ -116,6 +116,58 @@ describe("Modal", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
+  describe("Accessible name", () => {
+    test("should be named by the ModalHeader title with aria-labelledby", async () => {
+      const { container } = render(
+        <Modal open onOutsideTap={() => {}} aria-labelledby="modal-title">
+          <ModalHeader onCancel={() => {}} titleId="modal-title">
+            Titre de la modale
+          </ModalHeader>
+          <ModalBody>Contenu</ModalBody>
+        </Modal>,
+      );
+
+      const dialog = screen.getByRole("dialog");
+      expect(dialog).toHaveAccessibleName("Titre de la modale");
+      expect(dialog).not.toHaveAttribute("aria-label");
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    test("should be named by a non-empty title", () => {
+      render(
+        <Modal open onOutsideTap={() => {}} title="Nom de la modale">
+          <ModalHeader onCancel={() => {}}>Titre de la modale</ModalHeader>
+        </Modal>,
+      );
+
+      expect(screen.getByRole("dialog")).toHaveAccessibleName(
+        "Nom de la modale",
+      );
+    });
+
+    test("should not set an empty aria-label without title", () => {
+      render(
+        <Modal open onOutsideTap={() => {}}>
+          <ModalBody>Contenu</ModalBody>
+        </Modal>,
+      );
+
+      expect(screen.getByRole("dialog")).not.toHaveAttribute("aria-label");
+    });
+
+    test("should keep the ModalHeader title as a level 4 heading without id by default", () => {
+      render(
+        <Modal open onOutsideTap={() => {}} title="Nom de la modale">
+          <ModalHeader onCancel={() => {}}>Titre de la modale</ModalHeader>
+        </Modal>,
+      );
+
+      expect(
+        screen.getByRole("heading", { level: 4, name: "Titre de la modale" }),
+      ).not.toHaveAttribute("id");
+    });
+  });
+
   describe("Size", () => {
     test.each(["lg", "sm"] as const)(
       "size prop should apply '%s' size class",
