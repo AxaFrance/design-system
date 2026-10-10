@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { describe, expect, it } from "vitest";
+import { CardCheckbox as CardCheckboxApollo } from "../CardCheckboxApollo";
 import { Icon } from "../../../../Icon/IconCommon";
 import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import {
@@ -224,4 +225,85 @@ describe("CardCheckbox", () => {
     expect(parisCheckbox).toHaveAttribute("aria-invalid", "true");
     expect(parisCheckbox).toHaveAttribute("aria-errormessage");
   });
+});
+
+describe("CardCheckbox message", () => {
+  it.each([undefined, "text"] as const)(
+    "should describe each option with the message (mode: %s)",
+    (mode) => {
+      render(
+        <CardCheckboxApollo
+          label="Garanties"
+          mode={mode}
+          options={[
+            { label: "Vol", value: "vol" },
+            { label: "Incendie", value: "incendie" },
+          ]}
+          message="Choisissez une garantie"
+          messageType="error"
+        />,
+      );
+
+      screen.getAllByRole("checkbox").forEach((checkbox) => {
+        expect(checkbox).toHaveAccessibleDescription("Choisissez une garantie");
+      });
+    },
+  );
+
+  it.each([undefined, "text"] as const)(
+    "should keep the aria-describedby of the caller (mode: %s)",
+    (mode) => {
+      const { rerender } = render(
+        <>
+          <p id="aide-vol">Hors objets de valeur</p>
+          <p id="aide-garanties">Une garantie au moins</p>
+          <CardCheckboxApollo
+            label="Garanties"
+            mode={mode}
+            aria-describedby="aide-garanties"
+            options={[
+              {
+                label: "Vol",
+                value: "vol",
+                "aria-describedby": "aide-vol",
+              },
+              { label: "Incendie", value: "incendie" },
+            ]}
+          />
+        </>,
+      );
+      const [vol, incendie] = screen.getAllByRole("checkbox");
+
+      expect(vol).toHaveAccessibleDescription("Hors objets de valeur");
+      expect(incendie).toHaveAccessibleDescription("Une garantie au moins");
+
+      rerender(
+        <>
+          <p id="aide-vol">Hors objets de valeur</p>
+          <p id="aide-garanties">Une garantie au moins</p>
+          <CardCheckboxApollo
+            label="Garanties"
+            mode={mode}
+            aria-describedby="aide-garanties"
+            options={[
+              {
+                label: "Vol",
+                value: "vol",
+                "aria-describedby": "aide-vol",
+              },
+              { label: "Incendie", value: "incendie" },
+            ]}
+            message="Choisissez une garantie"
+          />
+        </>,
+      );
+
+      expect(vol).toHaveAccessibleDescription(
+        "Hors objets de valeur Choisissez une garantie",
+      );
+      expect(incendie).toHaveAccessibleDescription(
+        "Une garantie au moins Choisissez une garantie",
+      );
+    },
+  );
 });

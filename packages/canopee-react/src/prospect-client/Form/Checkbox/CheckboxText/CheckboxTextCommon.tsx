@@ -22,6 +22,7 @@ const CheckboxTextCommon = ({
   CheckboxComponent,
   ItemMessageComponent,
   containerProps,
+  "aria-describedby": ariaDescribedby,
   ...inputProps
 }: CheckboxTextCommonProps) => {
   const generatedId = useId();
@@ -29,6 +30,9 @@ const CheckboxTextCommon = ({
   const messageId = `${inputId}-error`;
 
   const hasError = Boolean(message) && messageType === "error";
+  const describedByIds = [ariaDescribedby, message && messageId]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className="af-checkbox-text" {...containerProps}>
@@ -36,6 +40,7 @@ const CheckboxTextCommon = ({
         <CheckboxComponent
           id={inputId}
           {...inputProps}
+          aria-describedby={describedByIds || undefined}
           aria-errormessage={hasError ? messageId : undefined}
           aria-invalid={hasError || undefined}
         />

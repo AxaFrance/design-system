@@ -77,4 +77,22 @@ describe("<TextArea /> description", () => {
       "Description Aide",
     );
   });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the textarea with its %s message",
+    (messageType) => {
+      render(
+        <TextAreaApollo
+          label="Label"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
 });
