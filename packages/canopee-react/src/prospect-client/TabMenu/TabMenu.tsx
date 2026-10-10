@@ -13,6 +13,7 @@ import "@axa-fr/canopee-css/prospect/TabMenu/TabMenuAll.css";
 
 /**
  * One item displayed in the TabMenu component.
+ * The item with `isActive` is the current page: it gets `aria-current="page"`.
  */
 export type TabMenuItemProps = Omit<ItemMenuProps, "children"> & {
   /**
@@ -88,6 +89,7 @@ export const TabMenu = ({
               ref={(el) => {
                 itemRefs.current[index] = el;
               }}
+              aria-current={item.isActive ? "page" : undefined}
               {...item}
               isActive={index === position ? true : item.isActive}
               tabIndex={index === position ? 0 : -1}
