@@ -8,6 +8,13 @@ Tous les composants de cette section partagent le même pattern :
 - `required` : marqueur visuel requis + attribut HTML `required`
 - Supportent `ref` (forwardRef)
 
+Accessibilité commune (InputText, Dropdown, TextArea, InputDate, InputPhone, et InputFile du
+fichier 04) : le champ est décrit par `aria-describedby`, dans l'ordre, par la `description`, le
+`helper` puis le `message`, quel que soit son `messageType`. En erreur, le champ porte aussi
+`aria-invalid="true"` et `aria-errormessage` vers le message. Ne pas recâbler ces attributs à la
+main : selon le composant, un `aria-describedby` passé en prop remplace la liste calculée ou est
+ignoré.
+
 ---
 
 ## InputText
@@ -248,7 +255,8 @@ type InputDateProps = Omit<ComponentPropsWithRef<"input">, "value" | "min" | "ma
 
 ## InputPhone
 
-Champ téléphone avec sélecteur de code pays (react-select) et masque français.
+Champ téléphone avec sélecteur de code pays (react-select) et masque français. Avec
+`showSelect`, l'indicatif et le numéro sont regroupés (`role="group"`) sous le nom du `label`.
 
 ### Import
 

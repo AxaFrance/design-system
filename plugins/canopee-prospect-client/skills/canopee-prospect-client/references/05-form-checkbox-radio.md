@@ -44,6 +44,9 @@ type CheckboxTextProps = {
 } & Omit<CheckboxProps, "aria-errormessage" | "aria-invalid">;
 ```
 
+Le `message` est relié à la case par `aria-describedby` (et par `aria-errormessage` en erreur),
+après un éventuel `aria-describedby` passé en prop.
+
 ### Exemple
 
 ```tsx
@@ -98,6 +101,9 @@ type CardCheckboxProps = {
   containerProps?: GridContainerProps<"fieldset">;
 };
 ```
+
+Le `message` est relié à chaque option par `aria-describedby`, en cartes comme en
+`mode="text"`, après l'`aria-describedby` passé à l'option ou à tout le groupe.
 
 ### Exemple
 
@@ -226,6 +232,9 @@ type CardRadioGroupProps = {
   containerProps?: GridContainerProps<"fieldset">;
 };
 ```
+
+Le `message` est relié au groupe (`radiogroup`) par `aria-describedby`, et par
+`aria-errormessage` en erreur.
 
 ### Exemple
 

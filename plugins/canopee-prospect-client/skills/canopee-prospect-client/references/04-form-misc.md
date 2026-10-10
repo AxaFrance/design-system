@@ -20,6 +20,8 @@ import { ItemLabel } from "@axa-fr/canopee-react/prospect";
 ```tsx
 type ItemLabelProps = ComponentProps<"label"> & {
   description?: ReactNode;               // Texte descriptif additonnel
+  descriptionId?: string;                // id de la description (généré sinon), à mettre
+                                         // dans l'aria-describedby du champ
   required?: boolean;                    // Affiche un * visuel + attribut HTML required
   sideButtonLabel?: ReactNode;           // Label bouton secondaire (ex: "Modifier")
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
@@ -37,6 +39,7 @@ type ItemLabelProps = ComponentProps<"label"> & {
   htmlFor="email"
   required
   description="Utilisé pour vos notifications"
+  descriptionId="email-description"
   moreButtonLabel="En savoir plus"
   onMoreButtonClick={() => openModal()}
   sideButtonLabel="Modifier"
@@ -44,8 +47,12 @@ type ItemLabelProps = ComponentProps<"label"> & {
 >
   Adresse email
 </ItemLabel>
-<input id="email" type="email" />
+<input id="email" type="email" aria-describedby="email-description" />
 ```
+
+> En composition custom, c'est au champ de référencer la description : l'`aria-describedby`
+> que l'ItemLabel pose sur le `<label>` n'est pas restitué avec le champ. Les champs du design
+> system (InputText, Dropdown…) le font déjà.
 
 ---
 
@@ -137,12 +144,17 @@ type ItemFileProps = {
   file: File;                     // Objet File JS (obligatoire)
   isLoading?: boolean;            // Affiche un Spinner
   errorMessage?: string;          // Message d'erreur sous le fichier
+  successLabel?: string;          // Alternative de l'icône de succès (défaut : "Fichier chargé")
   onRemove?: (file: File, event: MouseEvent<HTMLButtonElement>) => void;
   onPreview?: (file: File, event: MouseEvent<HTMLButtonElement>) => void;
   previewProps?: Partial<Omit<ClickIconProps, "src" | "onClick">>;
   removeProps?: Partial<Omit<ClickIconProps, "src" | "onClick">>;
 } & Omit<ComponentPropsWithoutRef<"section">, "children">;
 ```
+
+Noms par défaut : boutons « Prévisualiser le fichier {nom} » et « Suppression du fichier {nom} »
+(surchargeables par `previewProps` et `removeProps`), icône de succès « Fichier chargé ». L'icône
+d'erreur est décorative : l'`errorMessage` porte l'information.
 
 ### Exemple complet
 
