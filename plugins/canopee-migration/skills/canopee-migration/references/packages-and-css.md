@@ -251,16 +251,6 @@ Toolkit, when the project loaded `af-toolkit-core` (the Bootstrap 4 `:root` of t
 `--font-family-monospace`; the line prints each old value. `--white` exists in Canopée with the same
 value.
 
-With `--target 2`, component variables removed in 2.0: overriding them has no effect any more. Move the
-value to what 2.0 reads, keep it unchanged:
-
-| 1.x | 2.0 |
-| --- | --- |
-| `--radio-option-<x>` on `.af-card-radio-option` | `--radio-<x>` on `.af-card-radio` (CardRadioOption became CardRadio, `CARDRADIO_2`) |
-| `--link-font-size` | `font-size` on the same selector (2.0 `.af-link` sets it itself) |
-| `--item-message-icon-size` | `--icon-size` on `<your selector> .af-icon` |
-| `--dropdown-border-color` | nothing: 1.x did not read it either (the border colour is `--dropdown-box-shadow-color`); remove the declaration |
-
 Slash 1.x only: `--green40` became `--green30` and `--green50` became `--green40` (Slash 2.0).
 The script does this rename once, in the right order, and records it in `.canopee-migrate.json`.
 

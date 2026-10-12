@@ -31,7 +31,7 @@ The intermediate name of this universe was Slash (`@axa-fr/design-system-slash-*
   Deleting a toolkit value afterwards is reported (`SASS_LOST`).
 - The logo import now uses `@axa-fr/canopee-css/logo-axa.svg`.
 
-Canopée needs React 18 or more (1.x) and React 19 (2.0). Upgrade `react`, `react-dom` and their
+Canopée 1.x needs React 18 or more. Upgrade `react`, `react-dom` and their
 `@types` first if the script printed a NOTE about it.
 
 ### TK_REMOVED
@@ -319,7 +319,7 @@ useEffect(() => {
 ```
 
 The title is the children of `ModalHeader`: its `title` prop still works in 1.x but is deprecated, and in 2.0
-the header text silently disappears (`PROP_REMOVED_2`). The toolkit 3.x `Modal` is already a `<dialog>` with a
+the header text silently disappears. The toolkit 3.x `Modal` is already a `<dialog>` with a
 `ref` and no `isOpen`: only its `Header title="..."` changes, the same way.
 
 `BooleanModal`: the same ref, effect and `onClose`; `onSubmit`, `onCancel`, `title`, `submitTitle`,

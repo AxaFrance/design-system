@@ -1,6 +1,6 @@
 ---
 name: canopee-migration
-description: Migrates a React project to the Canopée design system (@axa-fr/canopee-react, @axa-fr/canopee-css) from @axa-fr/react-toolkit-*, @axa-fr/design-system-slash-*, @axa-fr/design-system-apollo-* or @axa-fr/design-system-look-and-feel-*, and from Canopée 1.x to 2.0. Use it when someone asks to migrate, upgrade or "migrer" a project to Canopée or away from react-toolkit, Slash, Apollo or Look & Feel, when package.json depends on one of these old packages, or when an upgrade breaks on classModifier, Alert, Badge, PassInput or CardRadio. A bundled Node script does the inventory and every safe rewrite, so the migration takes few requests.
+description: Migrates a React project to the Canopée design system 1.x (@axa-fr/canopee-react, @axa-fr/canopee-css) from @axa-fr/react-toolkit-*, @axa-fr/design-system-slash-*, @axa-fr/design-system-apollo-* or @axa-fr/design-system-look-and-feel-*. Use it when someone asks to migrate, upgrade or "migrer" a project to Canopée or away from react-toolkit, Slash, Apollo or Look & Feel, or when package.json depends on one of these old packages. A bundled Node script does the inventory and every safe rewrite, so the migration takes few requests. From Canopée 1.x to 2.0, use the canopee-v2-migration skill of the design system instead.
 ---
 
 # Canopée migration
@@ -21,8 +21,8 @@ snapshots. If you stop before `VERDICT: DONE`, your answer starts with `MIGRATIO
 - `SKILL_DIR` below is the folder of this file, usually `.github/skills/canopee-migration`
   (or `.agents/skills/canopee-migration`, `.claude/skills/canopee-migration`; if unsure:
   `ls .github/skills .agents/skills .claude/skills`).
-- Target: 1.x (latest stable, default). Add `--target 2` to every command only if the user asked for
-  Canopée 2.0 (not released yet).
+- Target: Canopée 1.x (latest 1.8.0), the only target of the script. To upgrade a project from
+  Canopée 1.x to 2.0, see "Moving on to Canopée 2.0" below.
 - Monorepo: run the procedure once per application, passing its folder as first argument
   (`node SKILL_DIR/scripts/canopee-migrate.mjs apps/web`).
 
@@ -34,7 +34,7 @@ snapshots. If you stop before `VERDICT: DONE`, your answer starts with `MIGRATIO
    package and is not scanned. A template or an example: leave it, it does not block the VERDICT.
    Another application: run this whole procedure on its folder afterwards.
 2. If a NOTE says React is too old, upgrade `react`, `react-dom`, `@types/react`, `@types/react-dom`
-   first (Canopée 1.x needs React 18, 2.0 needs React 19), with React's own changes
+   first (Canopée 1.x needs React 18), with React's own changes
    (e.g. `ReactDOM.render` -> `createRoot`).
 3. Safe rewrites and checklist:
    `node SKILL_DIR/scripts/canopee-migrate.mjs --write --report canopee-migration-todo.md`
@@ -82,8 +82,8 @@ Suggest two commits: one after step 4 (automatic part), one after step 6 (manual
 
 | Error | Where to look |
 | --- | --- |
-| `Property 'classModifier' does not exist` | `CLASSMODIFIER` (or `BUTTON_CLASSMODIFIER` for Button) |
-| `Module '...' has no exported member 'X'` | search `X` in the three references; absent: STOP |
+| `Property 'classModifier' does not exist` | `BUTTON_CLASSMODIFIER` (Button) |
+| `Module '...' has no exported member 'X'` | search `X` in the two references; absent: STOP |
 | `Property 'X' does not exist on type` | search `X` in the references, then read the component type in `node_modules/@axa-fr/canopee-react/dist/<universe>/` |
 | `TS2783: 'disabled' is specified more than once` | spread first, then your props, merge both values: "Expression" in `BUTTON_CLASSMODIFIER` |
 | `'X' is defined but never used` (lint) or `TS6133` after your edit | the `FIX unused` line: the old value must reach the new prop (Alert `type` -> `variant`, HelpInfo `content` -> `popoverElement`) |
@@ -126,7 +126,6 @@ Never change a test to match broken markup, never skip or delete a test.
 | --- | --- |
 | [references/toolkit-to-canopee.md](references/toolkit-to-canopee.md) | `TK_*` (including `TK_ALERT_CLASSMODIFIER`, `TK_ACTION_CLASS`), `BUTTON_CLASSMODIFIER`, `BUTTON_CLASSNAME` |
 | [references/packages-and-css.md](references/packages-and-css.md) | package names, CSS, `SASS`, `SASS_VAR`, `SASS_MIXIN`, `SASS_UNDEFINED`, `SASS_LOST`, `SASS_VALUE`, `CSS_MISSING`, `TOKEN_REMOVED`, `CSS_ORDER`, `EXPORT_MISSING`, `OLD_STRING`, `OLD_LF`, `DS0`, `JEST`, `TSCONFIG`, `TESTS`, `VISUAL`, `NO_CAST` |
-| [references/canopee-1-to-2.md](references/canopee-1-to-2.md) | `REMOVED_2`, `CLASSMODIFIER`, `PROP_REMOVED_2`, `PROP_CONFLICT`, `LOADER_2`, `FIELD_2`, `CARDRADIO_2`, `LAYERS`, `NAME` |
 
 Component documentation, when the zeroheight MCP servers are configured:
 `univers-distributeur-et-collaborateur` (distributeur) and `univers-client-et-prospect` (prospect,
@@ -136,12 +135,21 @@ client), with `search-pages` then `get-page`.
 
 - First line: the `VERDICT` line of the last `--check`, copied as printed. If it is not
   `VERDICT: DONE`, the title of the report is `MIGRATION NOT FINISHED`.
-- From (old packages and versions) to (Canopée version, target 1.x or 2.0).
+- From (old packages and versions) to (Canopée 1.x version).
 - AUTO edits applied by the script, MANUAL items fixed.
 - Items left and STOP questions, with `file:line`.
 - The `CHECK` lines of the last `--check`, as printed (never "PASS" for a check you did not see pass).
   Without `VERDICT: DONE`, say the migration is not finished, what is left and why.
 - Snapshots updated and test queries changed (`TESTS`), with the reason.
 - Pages to check visually: those using Button, Message, Popover, HelpButton, CollapseCard, Loader,
-  Modal, DateInput, Action (all pages for 2.0: CSS layers), at desktop and mobile width, and every
-  `VISUAL` line of the last `--check` with `file:line` (packages-and-css.md, `VISUAL`).
+  Modal, DateInput, Action, at desktop and mobile width, and every `VISUAL` line of the last
+  `--check` with `file:line` (packages-and-css.md, `VISUAL`).
+
+## Moving on to Canopée 2.0
+
+This skill stops at Canopée 1.x: the script has no 2.0 target (`--target 2` is refused). Finish the
+migration to 1.x first (`VERDICT: DONE`, its pull request merged), then upgrade from 1.x to 2.0 with
+the design system's own skill and guide, in the `AxaFrance/design-system` repository:
+
+- skill [canopee-v2-migration](https://raw.githubusercontent.com/AxaFrance/design-system/refs/heads/main/docs/changelogs/skills/canopee-v2-migration/SKILL.md);
+- [migration guide](https://raw.githubusercontent.com/AxaFrance/design-system/refs/heads/main/docs/changelogs/MIGRATION-GUIDE-v2.0.0.md).

@@ -1,12 +1,13 @@
 # Canopée Migration
 
-Agent skill that migrates a React project to the Canopée design system
+Agent skill that migrates a React project to the Canopée design system 1.x
 (`@axa-fr/canopee-react`, `@axa-fr/canopee-css`):
 
 - from `@axa-fr/react-toolkit-*` (distributeur universe, ex-Slash);
 - from `@axa-fr/design-system-slash-*` (Slash), `@axa-fr/design-system-apollo-*` (Apollo, `/lf` included)
-  and `@axa-fr/design-system-look-and-feel-*` (Look & Feel);
-- from Canopée 1.x to 2.0 (`--target 2`, once 2.0 is released).
+  and `@axa-fr/design-system-look-and-feel-*` (Look & Feel).
+
+From Canopée 1.x to 2.0, see [Moving on to Canopée 2.0](#moving-on-to-canopée-20).
 
 It is built for small, cheap models. A Node script (no dependency, works offline) does the inventory
 and every safe 1:1 rewrite: import paths, default imports, renamed components, known `classModifier`
@@ -78,12 +79,20 @@ node .github/skills/canopee-migration/scripts/canopee-migrate.mjs --help
 | `skills/canopee-migration/scripts/toolkit-sass.json` | values of the toolkit Sass variables, Canopée colour tokens |
 | `skills/canopee-migration/references/toolkit-to-canopee.md` | `@axa-fr/react-toolkit-*` to distributeur |
 | `skills/canopee-migration/references/packages-and-css.md` | package names, CSS, Sass, tokens, Jest |
-| `skills/canopee-migration/references/canopee-1-to-2.md` | breaking changes of Canopée 2.0 |
+
+## Moving on to Canopée 2.0
+
+This skill stops at Canopée 1.x (`--target 2` is refused). Once the project is on 1.x, the upgrade to
+2.0 follows the design system's own skill and guide, which avoids keeping the 2.0 changes in two
+places:
+
+- skill [canopee-v2-migration](https://raw.githubusercontent.com/AxaFrance/design-system/refs/heads/main/docs/changelogs/skills/canopee-v2-migration/SKILL.md);
+- [migration guide](https://github.com/AxaFrance/design-system/blob/main/docs/changelogs/MIGRATION-GUIDE-v2.0.0.md).
 
 ## Maintenance
 
-The script embeds facts read from the published packages (exports of `@axa-fr/canopee-react` 1.8.0 and
-2.0.0-alpha.76, files of `@axa-fr/canopee-css`, toolkit 3.0.2, Slash, Apollo and Look & Feel). When a
+The script embeds facts read from the published packages (exports of `@axa-fr/canopee-react` 1.8.0,
+files of `@axa-fr/canopee-css`, toolkit 3.0.2, Slash, Apollo and Look & Feel). When a
 release removes or renames an export, a stylesheet or a token, update the `EXPORTS`, `CSS_*` and
 rename tables at the top of the script and the matching reference section.
 
@@ -94,5 +103,4 @@ them is computed from (`deps`, so that a project value set before the toolkit im
 for the toolkit's), the variables of the toolkit component stylesheets by file (`components`), the `:root` custom properties of
 `af-toolkit-core.css` (`rootProperties`), the toolkit mixins and functions without equivalent
 (`mixins`, `functions`), and the literal colours of `@axa-fr/canopee-css`
-`distributeur/common/tokens.css` (identical in 1.8.0 and 2.0.0-alpha.76). Update `tokens` when a
-release changes these colours.
+`distributeur/common/tokens.css` (1.8.0). Update `tokens` when a release changes these colours.
