@@ -1,19 +1,21 @@
 #!/usr/bin/env node
-// canopee-migrate.mjs: inventory and safe rewrites for a migration to the Canopée design system
+// canopee-migrate.mjs: inventory and safe rewrites for a migration to the Canopée design system 1.x
 // (@axa-fr/canopee-react, @axa-fr/canopee-css). Node >= 18, no dependency, works offline.
 //
-//   node canopee-migrate.mjs [projectDir] [--target 1|2] [--write] [--report FILE] [--json] [--all]
-//   node canopee-migrate.mjs [projectDir] [--target 1|2] --check
+//   node canopee-migrate.mjs [projectDir] [--write] [--report FILE] [--json] [--all]
+//   node canopee-migrate.mjs [projectDir] --check
 //
 //   (default)      dry run: prints the report, writes nothing
 //   --write        applies the AUTO rewrites (safe 1:1 changes only), then prints the report
-//   --target 2     also prepares the 2.0 breaking changes (default 1 = latest 1.x)
 //   --report FILE  also writes the report as a Markdown checklist (relative to projectDir)
 //   --json         machine-readable report
-//   --all          also lists every AUTO edit and every deprecated usage
+//   --all          also lists every AUTO edit
 //   --check        dry run (it also lists each toolkit Sass value, breakpoint or token deleted since
 //                  --write: SASS_LOST), then runs the project typecheck, lint, test and build scripts
 //                  and prints VERDICT: DONE only when nothing is left and every check passes
+//
+// Target: Canopée 1.x (latest 1.8.0). From Canopée 1.x to 2.0: the canopee-v2-migration skill and
+// the 2.0 migration guide of the design system repository (SKILL.md, "Moving on to Canopée 2.0").
 //
 // Everything listed under MANUAL is left to you: one line per change, with file:line, what to do
 // and the reference to read (search the code, e.g. TK_REMOVED, in the given references/*.md file).
@@ -21,7 +23,7 @@
 // A folder with its own package.json (template, other application) is not scanned: see its NOTE.
 //
 // The facts embedded below were read from the published npm packages: @axa-fr/canopee-react and
-// @axa-fr/canopee-css 1.8.0 and 2.0.0-alpha.76, @axa-fr/react-toolkit-* 3.0.2,
+// @axa-fr/canopee-css 1.8.0, @axa-fr/react-toolkit-* 3.0.2,
 // @axa-fr/design-system-slash-* 1.2.0 / 2.0.5 / 3.0.0, @axa-fr/design-system-apollo-* 3.2.0,
 // @axa-fr/design-system-look-and-feel-* 3.2.0. toolkit-sass.json, next to this file, holds the
 // resolved values of the toolkit Sass variables and the literal Canopée distributeur colour tokens.
@@ -33,7 +35,7 @@ import { fileURLToPath } from "node:url";
 
 const words = (s) => new Set(s.split(/\s+/).filter(Boolean));
 
-// Value and type exports of @axa-fr/canopee-react/<universe> 1.8.0, and the 2.0 differences.
+// Value and type exports of @axa-fr/canopee-react/<universe> 1.8.0.
 const EXPORTS = {
   distributeur: {
     v1: words(
@@ -52,14 +54,6 @@ const EXPORTS = {
         "Summary Svg TBody THead Table Tabs Tag TagVariants Td Text TextInput Textarea TextareaInput Th " +
         "Timeline TimelineProps TimelineVariants Title ToggleButton Tr User VerticalStep VerticalStepMode " +
         "getComponentClassName",
-    ),
-    removedIn2: words(
-      "Alert Badge FieldForm FieldInput Pass PassInput SelectBase Slider SliderInput getComponentClassName",
-    ),
-    addedIn2: words(
-      "BaseCard BaseCardProps ButtonMultiActions ButtonMultiActionsProps CardButton CardButtonProps " +
-        "ItemFormHelper ItemFormHelperProps ItemFormHelperVariant ItemLoader ItemLoaderVariant ThProps " +
-        "getClassName",
     ),
   },
   prospect: {
@@ -85,15 +79,6 @@ const EXPORTS = {
         "iconVariants itemMessageVariants linkVariants messageVariants spinnerVariants tabBarDirection " +
         "tagVariants",
     ),
-    removedIn2: words("CardRadioOption CheckboxCard"),
-    addedIn2: words(
-      "AppName AppNameProps CardCheckboxProps CardVariants ExitLayoutSkeleton ExitLayoutSkeletonProps " +
-        "Header HeaderProps ItemMenu ItemMenuProps ItemMultiSelect ItemMultiSelectProps MenuBurger " +
-        "MenuBurgerProps MessageBar MessageBarProps MessageBarVariant MultiSelectList " +
-        "MultiSelectListProps SkeletonActionSizeVariant SkeletonCircleSizeVariant SkeletonGrid " +
-        "SkeletonGridProps SkeletonSizeVariant SkeletonVariant TabMenu TabMenuProps TagList TagListProps " +
-        "cardVariants skeletonSizeVariants skeletonVariants",
-    ),
   },
   client: {
     v1: words(
@@ -118,20 +103,10 @@ const EXPORTS = {
         "clickItemVariants iconSizeVariants iconVariants itemMessageVariants linkVariants messageVariants " +
         "spinnerVariants tabBarDirection tagVariants",
     ),
-    removedIn2: words("CardRadioOption CheckboxCard DateInput TextInput"),
-    addedIn2: words(
-      "AppName AppNameProps CardCheckboxProps CardVariants ExitLayoutSkeleton ExitLayoutSkeletonProps " +
-        "Header HeaderProps ItemMenu ItemMenuProps ItemMultiSelect ItemMultiSelectProps MenuBurger " +
-        "MenuBurgerProps MessageBar MessageBarProps MessageBarVariant MultiSelectList " +
-        "MultiSelectListProps SkeletonActionSizeVariant SkeletonCircleSizeVariant SkeletonGrid " +
-        "SkeletonGridProps SkeletonSizeVariant SkeletonVariant TabMenu TabMenuProps TagList TagListProps " +
-        "cardVariants skeletonSizeVariants skeletonVariants",
-    ),
   },
 };
 
-// CSS files published by @axa-fr/canopee-css 1.8.0 (paths after the package name), and those
-// removed in 2.0.
+// CSS files published by @axa-fr/canopee-css 1.8.0 (paths after the package name).
 const CSS_FILES_1 = words(
   "client/Accordion/AccordionLF.css client/AccordionContextual/AccordionContextualLF.css " +
     "client/AccordionCore/AccordionCoreLF.css client/BasePicture/BasePictureAll.css " +
@@ -234,14 +209,6 @@ const CSS_FILES_1 = words(
     "prospect/common/breakpoints.scss prospect/common/reboot.css prospect/common/rebootLF.css " +
     "prospect/common/tokens.css prospect/prospect.css",
 );
-const CSS_REMOVED_IN_2 = words(
-  "client/Form/ItemMessage/ItemMessageLF.css " +
-    "client/Form/Radio/CardRadioOption/CardRadioOptionLF.css client/Skeleton/SkeletonLF.css " +
-    "client/common/rebootLF.css distributeur/Form/Pass/Pass.css distributeur/Form/Slider/Slider.css " +
-    "prospect/Form/ItemMessage/ItemMessageApollo.css " +
-    "prospect/Form/Radio/CardRadioOption/CardRadioOptionApollo.css " +
-    "prospect/Skeleton/SkeletonApollo.css prospect/common/rebootLF.css",
-);
 
 // ---------------------------------------------------------------------------------------------
 // Migration knowledge
@@ -286,10 +253,9 @@ const ALIASES = {
     TextInput: "InputText",
   },
 };
-// In 1.x `CardRadio` is a deprecated alias of `CardRadioGroup`; in 2.0 `CardRadio` is the option
-// (formerly `CardRadioOption`). Both are renamed together, only while the project is still on 1.x.
+// In 1.x `CardRadio` is a deprecated alias of `CardRadioGroup` (in 2.0 `CardRadio` is the option,
+// formerly `CardRadioOption`): renamed only while the project is known to be on 1.x.
 const CARDRADIO_1 = { CardRadio: "CardRadioGroup" };
-const CARDRADIO_2 = { CardRadioOption: "CardRadio" };
 
 // @axa-fr/react-toolkit-*: name of the default export of each package (as re-exported by
 // @axa-fr/react-toolkit-all), and named exports that react-toolkit-all renamed.
@@ -398,18 +364,6 @@ const TK_ENUMS = {
   },
 };
 
-// Exports removed in 2.0 without a rename.
-const REMOVED_2 = {
-  Pass: 'use <TextInput type="password" .../>',
-  PassInput: 'use <TextInput type="password" .../>',
-  Slider: "use NumberInput or another control",
-  SliderInput: "use NumberInput or another control",
-  SelectBase: "use <Select> with <option> children",
-  FieldForm: "use the *Input components (TextInput, SelectInput...)",
-  FieldInput: "use the *Input components (TextInput, SelectInput...)",
-  getComponentClassName:
-    "use getClassName({ baseClassName, modifiers, className })",
-};
 const OTHER_HINTS = {
   BREAKPOINT:
     "not exported by Canopée: copy it into the project (packages-and-css.md, EXPORT_MISSING)",
@@ -475,55 +429,6 @@ const B2C_PROP_RENAMES = {
   ProgressBarGroup: { nbSteps: "stepsCount" },
   Checkbox: { hasError: "aria-invalid", errorId: "aria-errormessage" },
 };
-// B2C deprecated props removed in 2.0 without a 1:1 replacement.
-const MSG = 'use message="..." with messageType="error" | "success"';
-const B2C_REMOVED_PROPS_2 = {
-  CardCheckbox: { error: MSG },
-  CheckboxText: { errorMessage: MSG },
-  Dropdown: { error: MSG, success: MSG },
-  InputDate: { error: MSG, success: MSG },
-  InputPhone: { error: MSG, success: MSG },
-  InputText: { error: MSG, success: MSG },
-  TextArea: { error: MSG },
-  CardRadioGroup: {
-    error: MSG,
-    type: "use position and cardStyle",
-    value: "set checked on the selected item of options",
-  },
-  CardRadioOption: { type: "use position" },
-  ContentItemMono: { icon: "use iconProps" },
-  ContentItemDuo: {
-    classModifier: "use size or className",
-    isVertical: 'use position="vertical"',
-  },
-  Link: { classModifier: "use variant" },
-  Modal: {
-    icon: "move it into headingProps={{ icon }}",
-    iconProps: "move it into headingProps={{ iconProps }}",
-  },
-  ItemLabel: { label: "pass the label as children" },
-};
-const HIDDEN_FIELD = "render the field conditionally";
-const DIST_REMOVED_PROPS_2 = {
-  Select: { options: "render <option> children (SelectInput keeps options)" },
-  ModalHeader: { title: "pass the title as children" },
-  Field: { isVisible: HIDDEN_FIELD, classNameSuffix: "removed" },
-  ...Object.fromEntries(
-    [
-      "CheckboxInput",
-      "ChoiceInput",
-      "DateInput",
-      "FileInput",
-      "MultiSelectInput",
-      "NumberInput",
-      "RadioInput",
-      "SelectInput",
-      "TextInput",
-      "TextareaInput",
-    ].map((n) => [n, { isVisible: HIDDEN_FIELD }]),
-  ),
-};
-
 // CSS custom properties defined by @axa-fr/design-system-apollo-css 3.2.0 (tokens.css, tokensLF.css)
 // and absent from @axa-fr/canopee-css 1.8.0, with their former value.
 const REMOVED_TOKENS_APOLLO = {
@@ -542,31 +447,6 @@ const REMOVED_TOKENS_APOLLO = {
   "--color-alert-danger-bg-color": "#f1d596",
   "--color-gray-300": "#e9ecf2",
 };
-// Component variables of the prospect and client CSS removed in 2.0 (--orange-100 is renamed), with
-// what 2.0 reads instead (compared in the 1.8.0 and 2.0.0-alpha.76 stylesheets).
-const REMOVED_TOKENS_B2C_2 = {
-  "--item-message-icon-size":
-    "2.0 sizes the icon with --icon-size on the .af-icon inside .af-item-message: write --icon-size with the same value on <your selector> .af-icon",
-  "--link-font-size":
-    "2.0 .af-link sets font-size itself: write font-size with the same value on the same selector",
-  "--dropdown-border-color":
-    "1.x did not read it either (the border is --dropdown-box-shadow-color): this declaration never changed the page, remove it",
-  ...Object.fromEntries(
-    [
-      "border-width",
-      "border-color",
-      "color-title",
-      "color-subtitle",
-      "gap",
-      "border-radius",
-      "background-color",
-    ].map((n) => [
-      `--radio-option-${n}`,
-      `2.0 CardRadio reads --radio-${n} on .af-card-radio (was .af-card-radio-option, CARDRADIO_2): rename the variable and the selector, keep the value`,
-    ]),
-  ),
-};
-
 // Toolkit < 3 called onChange with { name, value, id }; Canopée does not.
 const NATIVE =
   "receives the native event now: use e.target.value and e.target.name";
@@ -708,13 +588,6 @@ const CODES = {
     "cast or checker suppression added since --write",
     "packages-and-css.md",
   ],
-  REMOVED_2: ["export removed in 2.0", "canopee-1-to-2.md"],
-  CLASSMODIFIER: ["classModifier removed in 2.0", "canopee-1-to-2.md"],
-  PROP_REMOVED_2: ["deprecated prop removed in 2.0", "canopee-1-to-2.md"],
-  PROP_CONFLICT: ["old and new prop both present", "canopee-1-to-2.md"],
-  LOADER_2: ["distributeur Loader has a new API in 2.0", "canopee-1-to-2.md"],
-  FIELD_2: ["distributeur Field has a new API in 2.0", "canopee-1-to-2.md"],
-  CARDRADIO_2: ["CardRadio changes meaning in 2.0", "canopee-1-to-2.md"],
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -725,10 +598,15 @@ function fail(msg) {
   process.stderr.write(`canopee-migrate: ${msg}\n`);
   process.exit(2);
 }
+// From Canopée 1.x to 2.0, the design system repository has its own skill and guide.
+const TO_V2 =
+  "from Canopée 1.x to 2.0, follow the canopee-v2-migration skill " +
+  "(docs/changelogs/skills/canopee-v2-migration/SKILL.md) and the guide " +
+  "docs/changelogs/MIGRATION-GUIDE-v2.0.0.md of the AxaFrance/design-system repository " +
+  '(SKILL.md of this skill, "Moving on to Canopée 2.0")';
 function parseArgs(argv) {
   const o = {
     dir: ".",
-    target: 1,
     write: false,
     json: false,
     all: false,
@@ -743,13 +621,18 @@ function parseArgs(argv) {
     else if (a === "--all") o.all = true;
     else if (a === "--report") o.report = argv[++i];
     else if (a.startsWith("--report=")) o.report = a.slice(9);
-    else if (a === "--target") o.target = Number(argv[++i]);
-    else if (a.startsWith("--target=")) o.target = Number(a.slice(9));
-    else if (a === "-h" || a === "--help") o.help = true;
+    else if (a === "--target" || a.startsWith("--target=")) {
+      // the only target is 1.x: --target 1 is accepted, any other value is refused
+      const v = a === "--target" ? argv[++i] : a.slice(9);
+      if (Number(v) !== 1)
+        fail(
+          `--target${v === undefined ? "" : ` ${v}`}: this script migrates to Canopée 1.x only. ` +
+            `Finish that migration first (--check prints VERDICT: DONE), then ${TO_V2}.`,
+        );
+    } else if (a === "-h" || a === "--help") o.help = true;
     else if (a.startsWith("-")) fail(`unknown option ${a} (see --help)`);
     else o.dir = a;
   }
-  if (![1, 2].includes(o.target)) fail("--target must be 1 or 2");
   if (o.check && (o.write || o.json))
     fail("--check runs alone: first --write, then --check");
   return o;
@@ -769,12 +652,8 @@ function lineOf(text, index) {
     n++;
   return n;
 }
-function exportsOf(u, target) {
-  const e = EXPORTS[u];
-  if (target === 1) return e.v1;
-  const s = new Set([...e.v1].filter((n) => !e.removedIn2.has(n)));
-  for (const n of e.addedIn2) s.add(n);
-  return s;
+function exportsOf(u) {
+  return EXPORTS[u].v1;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -901,39 +780,12 @@ function classify(spec) {
 // Maps an asset path (CSS, SCSS, SVG) to its Canopée path. Returns { to } or { code, hint } or null.
 // fromCode: the stylesheet is imported from a JS/TS file (import "x.scss"), not from a stylesheet.
 // fromSass: imported from a Sass file, where a path without extension is a Sass partial.
-function mapAsset(
-  info,
-  target,
-  usesToolkitReact,
-  fromCode = false,
-  fromSass = false,
-) {
+function mapAsset(info, usesToolkitReact, fromCode = false, fromSass = false) {
   const { family, sub } = info;
   const isSass =
     /\.s[ac]ss$/.test(sub) ||
     (fromSass && !/\.[A-Za-z0-9]+$/.test(sub.split("/").pop()));
   const logo = "@axa-fr/canopee-css/logo-axa.svg";
-  const exists = (p) =>
-    CSS_FILES_1.has(p) && !(target === 2 && CSS_REMOVED_IN_2.has(p));
-  // 2.0 renamed a few B2C files; returns the new path, or null.
-  const css2 = (p) => {
-    if (target !== 2 || !CSS_REMOVED_IN_2.has(p)) return null;
-    const r = p
-      .replace(/common\/rebootLF\.css$/, "common/reboot.css")
-      .replace(
-        /Form\/ItemMessage\/ItemMessage(LF|Apollo)\.css$/,
-        "Form/ItemMessage/ItemMessageAll.css",
-      )
-      .replace(
-        /Form\/Radio\/CardRadioOption\/CardRadioOption(LF|Apollo)\.css$/,
-        "Form/Radio/CardRadio/CardRadio$1.css",
-      )
-      .replace(
-        /Skeleton\/Skeleton(LF|Apollo)\.css$/,
-        "Skeleton/SkeletonAll.css",
-      );
-    return r !== p ? r : null;
-  };
   if (/(^|\/)logo-axa\.svg$/.test(sub)) return { to: logo };
   if (family === "toolkit") {
     // imported from JS, a toolkit .scss (af-components.scss) is a whole stylesheet, like its .css
@@ -951,16 +803,7 @@ function mapAsset(
           };
     return { code: "CSS_MISSING", hint: "toolkit asset without equivalent" };
   }
-  if (family === "canopee-css") {
-    const p = sub;
-    if (target === 2 && CSS_REMOVED_IN_2.has(p)) {
-      const r = css2(p);
-      return r
-        ? { to: `${CSS_PKG}/${r}` }
-        : { code: "CSS_MISSING", hint: "removed in 2.0 (component removed)" };
-    }
-    return null;
-  }
+  if (family === "canopee-css") return null;
   // The only Sass file of Apollo is published unchanged by Canopée.
   if (
     family === "design-system-apollo-css" &&
@@ -978,14 +821,11 @@ function mapAsset(
       rest === "slash.css"
         ? "distributeur/distributeur.css"
         : `distributeur/${rest}`;
-    if (exists(p)) return { to: `${CSS_PKG}/${p}` };
-    const r = css2(p);
-    return r
-      ? { to: `${CSS_PKG}/${r}` }
-      : {
-          code: "CSS_MISSING",
-          hint: "no file at this path in @axa-fr/canopee-css/distributeur",
-        };
+    if (CSS_FILES_1.has(p)) return { to: `${CSS_PKG}/${p}` };
+    return {
+      code: "CSS_MISSING",
+      hint: "no file at this path in @axa-fr/canopee-css/distributeur",
+    };
   }
   if (family === "design-system-apollo-css") {
     const rest = sub.replace(/^dist\//, "");
@@ -995,14 +835,11 @@ function mapAsset(
     else if (rest === "common/tokensLF.css") p = "client/common/tokens.css";
     else if (/LF\.css$/.test(rest)) p = `client/${rest}`;
     else p = `prospect/${rest}`;
-    if (exists(p)) return { to: `${CSS_PKG}/${p}` };
-    const r = css2(p);
-    return r
-      ? { to: `${CSS_PKG}/${r}` }
-      : {
-          code: "CSS_MISSING",
-          hint: "no file at this path in @axa-fr/canopee-css (CardRadio was renamed CardRadioGroup in 1.x)",
-        };
+    if (CSS_FILES_1.has(p)) return { to: `${CSS_PKG}/${p}` };
+    return {
+      code: "CSS_MISSING",
+      hint: "no file at this path in @axa-fr/canopee-css (CardRadio was renamed CardRadioGroup in 1.x)",
+    };
   }
   if (family === "design-system-look-and-feel-css")
     return {
@@ -1235,18 +1072,16 @@ function analyzeCode(file, text, ctx) {
   const locals = new Map(); // local name -> { u, name, name1, origin }
   const tkEnumLocals = new Map(); // local -> enum name
   const ext = path.extname(file).toLowerCase();
-  const add = (index, code, detail, breaksIn = 1, spec = undefined) =>
+  const add = (index, code, detail, spec = undefined) =>
     items.push({
       file,
       index,
       line: lineOf(text, index),
       code,
       detail,
-      breaksIn,
       spec,
     });
   const usesTkCss = ctx.usesToolkitReact;
-  const target = ctx.target;
   const rewritten = []; // statements rewritten to a Canopée entry point, for merging
   const crlf = text.includes("\r\n");
   const actionClasses = []; // { file, index, line, cls }: project classes on an <Action>
@@ -1254,8 +1089,7 @@ function analyzeCode(file, text, ctx) {
   // Maps one imported name. Returns { name } (Canopée name), or { code, hint }.
   function mapName(mod, imported, isDefault) {
     const u = mod.u;
-    let note = null;
-    const avail = exportsOf(u, target);
+    const avail = exportsOf(u);
     let name = imported;
     let name1 = imported;
     if (mod.kind === "toolkit") {
@@ -1290,52 +1124,25 @@ function analyzeCode(file, text, ctx) {
         (mod.origin === "canopee" &&
           mod.canopeeMajor !== 2 &&
           (mod.canopeeMajor === 1 || ctx.fromApollo || ctx.state.cardRadio1));
-      const crDone = ctx.state.cardRadio1 || ctx.state.cardRadio2;
       if (
         u !== "distributeur" &&
-        !known1 &&
-        !crDone &&
-        mod.canopeeMajor !== 2 &&
-        target === 2 &&
-        (name === "CardRadio" || name === "CardRadioOption")
+        known1 &&
+        CARDRADIO_1[name] &&
+        !ctx.state.cardRadio1
       ) {
-        note = {
-          code: "CARDRADIO_2",
-          hint: `${name}: version of ${REACT_PKG} unknown; in 1.x CardRadio is the group (-> CardRadioGroup) and CardRadioOption the option (-> CardRadio)`,
-          breaksIn: 2,
-        };
+        name = CARDRADIO_1[name];
+        ctx.applied.cardRadio1 = true;
       }
-      if (u !== "distributeur" && known1) {
-        if (
-          CARDRADIO_1[name] &&
-          !ctx.state.cardRadio1 &&
-          !ctx.state.cardRadio2
-        ) {
-          name = CARDRADIO_1[name];
-          ctx.applied.cardRadio1 = true;
-        } else if (target === 2 && CARDRADIO_2[name] && !ctx.state.cardRadio2) {
-          name = CARDRADIO_2[name];
-          ctx.applied.cardRadio2 = true;
-        }
-      }
-      // after the renames above, a B2C `CardRadio` is always the option (CardRadioOption in 1.x)
+      // after the rename above, a B2C `CardRadio` is always the option (CardRadioOption in 1.x)
       name1 =
         u !== "distributeur" && name === "CardRadio" ? "CardRadioOption" : name;
     }
-    if (!avail.has(name)) {
-      if (note) return note;
-      if (target === 2 && REMOVED_2[name])
-        return {
-          code: "REMOVED_2",
-          hint: `${name}: ${REMOVED_2[name]}`,
-          breaksIn: 2,
-        };
+    if (!avail.has(name))
       return {
         code: "EXPORT_MISSING",
         hint: `${name}: ${OTHER_HINTS[name] || `not exported by ${REACT_PKG}/${u}`}`,
       };
-    }
-    return { name, name1, note };
+    return { name, name1 };
   }
 
   // 1. import / export ... from
@@ -1416,11 +1223,9 @@ function analyzeCode(file, text, ctx) {
       }
       if (r.code) {
         keep.push(s);
-        add(start, r.code, `${spec}: ${r.hint}`, r.breaksIn || 1, spec);
+        add(start, r.code, `${spec}: ${r.hint}`, spec);
         continue;
       }
-      if (r.note)
-        add(start, r.note.code, `${spec}: ${r.note.hint}`, r.note.breaksIn);
       if (r.name !== s.imported) renamed = true;
       moved.push({ type: s.type, imported: r.name, local: s.local });
       locals.set(s.local, {
@@ -1586,7 +1391,7 @@ function analyzeCode(file, text, ctx) {
     const info = classify(spec);
     if (!info) continue;
     if (info.kind !== "asset") continue;
-    const r = mapAsset(info, target, ctx.usesToolkitReact, true);
+    const r = mapAsset(info, ctx.usesToolkitReact, true);
     if (!r) continue;
     const specStart = m.index + m[0].indexOf(spec);
     if (r.remove) {
@@ -1628,7 +1433,7 @@ function analyzeCode(file, text, ctx) {
         kind: "import",
       });
     } else if (info.kind === "asset") {
-      const r = mapAsset(info, target, false);
+      const r = mapAsset(info, false);
       if (r?.to)
         edits.push({
           start: specStart,
@@ -1655,7 +1460,7 @@ function analyzeCode(file, text, ctx) {
     const spec = m[6];
     const info = classify(spec);
     if (!info || info.kind !== "asset") continue;
-    const r = mapAsset(info, target, false);
+    const r = mapAsset(info, false);
     const specStart = m.index + m[0].lastIndexOf(spec);
     if (r?.to)
       edits.push({
@@ -1710,7 +1515,6 @@ function analyzeCode(file, text, ctx) {
       jsxRules(text, tag, info, {
         add,
         edits,
-        target,
         fromToolkit: ctx.fromToolkit,
         toolkitMajor: ctx.toolkitMajor,
         actionClass: (index, cls) =>
@@ -1790,7 +1594,7 @@ function jsxRules(
   text,
   tag,
   info,
-  { add, edits, target, fromToolkit, toolkitMajor, actionClass },
+  { add, edits, fromToolkit, toolkitMajor, actionClass },
 ) {
   const attr = (n) => tag.attrs.find((a) => a.name === n);
   const where = tag.start;
@@ -1923,13 +1727,7 @@ function jsxRules(
           "TK_ALERT_CLASSMODIFIER",
           `${label} classModifier=${toks ? `"${cm.value}"` : "{...}"}: ${detail}`,
         );
-      } else
-        add(
-          where,
-          "CLASSMODIFIER",
-          `${label} classModifier: use variant="error" | "warning" | "info" | "success" (danger -> warning)`,
-          2,
-        );
+      }
     } else if (name === "Tag" && cm) {
       const v = cm.kind === "string" ? TAG_VARIANTS[cm.value.trim()] : null;
       if (v && !attr("variant"))
@@ -1939,20 +1737,6 @@ function jsxRules(
           text: `variant="${v}"`,
           kind: "prop",
         });
-      else
-        add(
-          where,
-          "CLASSMODIFIER",
-          `${label} classModifier: use variant (info -> information, danger -> warning)`,
-          2,
-        );
-    } else if (cm) {
-      add(
-        where,
-        "CLASSMODIFIER",
-        `${label} classModifier=${cm.kind === "string" ? `"${cm.value}"` : "{...}"}: use the matching prop if one exists, otherwise className with the modifier class`,
-        2,
-      );
     }
     if (
       info.origin === "toolkit" &&
@@ -2057,85 +1841,20 @@ function jsxRules(
         "TK_COLLAPSECARD",
         `${label}: id and title are required, isOpen -> open, no Header/Body children`,
       );
-    for (const [p, hint] of Object.entries(DIST_REMOVED_PROPS_2[name] || {})) {
-      const a = attr(p);
-      if (a) add(where, "PROP_REMOVED_2", `${label} ${p}: ${hint}`, 2);
-    }
-    if (name === "Loader" && attr("mode"))
-      add(
-        where,
-        "LOADER_2",
-        `${label}: 2.0 Loader takes text and variant and is rendered only while loading (no mode)`,
-        2,
-      );
-    if (name === "Field" && !attr("renderInput"))
-      add(
-        where,
-        "FIELD_2",
-        `${label}: in 2.0 Field is the new renderInput API; prefer the *Input components`,
-        2,
-      );
     return;
   }
   // prospect / client
   const renames = B2C_PROP_RENAMES[info.name1] || B2C_PROP_RENAMES[name] || {};
   for (const [oldP, newP] of Object.entries(renames)) {
     const a = attr(oldP);
-    if (!a) continue;
-    if (attr(newP)) {
-      add(
-        where,
-        "PROP_CONFLICT",
-        `${label} has both ${oldP} and ${newP}: keep ${newP} only`,
-        2,
-      );
-      continue;
-    }
+    // both props given: left as they are (keeping one is not a 1:1 rename)
+    if (!a || attr(newP)) continue;
     edits.push({
       start: a.start,
       end: a.start + oldP.length,
       text: newP,
       kind: "prop",
     });
-  }
-  // 2.0: B2C Radio `isInvalid` -> `variant="error"` (variant does not exist in 1.x).
-  const inv = name === "Radio" && target === 2 ? attr("isInvalid") : null;
-  if (inv && !attr("variant")) {
-    if (inv.kind === "bool" || (inv.kind === "expr" && inv.value === "true"))
-      edits.push({
-        start: inv.start,
-        end: inv.end,
-        text: 'variant="error"',
-        kind: "prop",
-      });
-    else if (inv.kind === "expr" && inv.value === "false")
-      edits.push({ ...removeAttr(inv), kind: "prop" });
-    else if (inv.kind === "expr")
-      edits.push({
-        start: inv.start,
-        end: inv.end,
-        text: `variant={${inv.value} ? "error" : undefined}`,
-        kind: "prop",
-      });
-  } else if (inv)
-    add(
-      where,
-      "PROP_CONFLICT",
-      `${label} has both isInvalid and variant: keep variant only`,
-      2,
-    );
-  const removed =
-    B2C_REMOVED_PROPS_2[info.name1] || B2C_REMOVED_PROPS_2[name] || {};
-  for (const [p, hint] of Object.entries(removed)) {
-    if (attr(p)) add(where, "PROP_REMOVED_2", `${label} ${p}: ${hint}`, 2);
-  }
-  if (
-    info.origin === "canopee" &&
-    info.name1 === "CardRadioGroup" &&
-    target === 2 &&
-    tag.local === "CardRadio"
-  ) {
-    // renamed by the import alias: nothing to do
   }
 }
 
@@ -2149,14 +1868,13 @@ const SASS_LIST_HINT =
 function analyzeStyle(file, text, ctx) {
   const edits = [];
   const items = [];
-  const add = (index, code, detail, breaksIn = 1) =>
+  const add = (index, code, detail) =>
     items.push({
       file,
       index,
       line: lineOf(text, index),
       code,
       detail,
-      breaksIn,
     });
   const fromSass = /\.s[ac]ss$/i.test(file);
   CSS_IMPORT_RE.lastIndex = 0;
@@ -2170,14 +1888,14 @@ function analyzeStyle(file, text, ctx) {
         if (
           qi?.kind === "asset" &&
           qi.family === "toolkit" &&
-          mapAsset(qi, ctx.target, false, false, fromSass)?.code === "SASS"
+          mapAsset(qi, false, false, fromSass)?.code === "SASS"
         )
           add(m.index + q.index, "SASS", `${q[2]}: ${SASS_LIST_HINT}`);
       }
     const spec = m[3];
     const info = classify(spec);
     if (!info || info.kind !== "asset") continue;
-    const r = mapAsset(info, ctx.target, false, false, fromSass);
+    const r = mapAsset(info, false, false, fromSass);
     if (!r) continue;
     const specStart = m.index + m[0].indexOf(spec);
     if (r.to)
@@ -2241,7 +1959,7 @@ function analyzeStyle(file, text, ctx) {
     const spec = m[2];
     const info = classify(spec);
     if (!info || info.kind !== "asset") continue;
-    const r = mapAsset(info, ctx.target, false);
+    const r = mapAsset(info, false);
     const specStart = m.index + m[0].indexOf(spec);
     if (r?.to)
       edits.push({
@@ -2265,12 +1983,6 @@ function tokenRenames(ctx) {
   const map = {};
   if (ctx.slashCssMajor !== null && ctx.slashCssMajor < 2 && !ctx.state.green)
     Object.assign(map, { "--green40": "--green30", "--green50": "--green40" });
-  if (
-    ctx.target === 2 &&
-    ctx.universes.has("b2c") &&
-    (ctx.canopeeMajor === null || ctx.canopeeMajor < 2)
-  )
-    map["--orange-100"] = "--orange-050";
   return map;
 }
 function tokenEdits(text, map) {
@@ -2310,10 +2022,8 @@ function removedTokenItems(file, text, ctx) {
   if (ctx.fromApollo)
     lists.push([
       REMOVED_TOKENS_APOLLO,
-      1,
       (n, v) =>
         `removed (Apollo/Look & Feel token), its value was ${v}: declare it once in the project (:root { ${n}: ${v}; }) and keep every var(${n}); never delete a declaration that uses it`,
-      true,
       false,
     ]);
   if (ctx.fromToolkit && ctx.tkRootCss && ctx.tkData)
@@ -2323,30 +2033,18 @@ function removedTokenItems(file, text, ctx) {
           ([n]) => !(n in ctx.tkData.tokens),
         ),
       ),
-      1,
       (n, v) =>
         `defined by the toolkit stylesheet af-toolkit-core.css (:root), value ${v}; Canopée does not define it: declare it once in the project (:root { ${n}: ${v}; }) and keep every var(${n})${same(v)}; never delete a declaration that uses it`,
       true,
-      true,
     ]);
-  if (ctx.target === 2 && ctx.universes.has("b2c"))
-    lists.push([
-      REMOVED_TOKENS_B2C_2,
-      2,
-      (n, v) =>
-        `component variable removed in 2.0, overriding it has no effect any more: ${v}`,
-      false,
-      false,
-    ]);
-  for (const [list, breaksIn, hint, track, withTokens] of lists) {
+  for (const [list, hint, withTokens] of lists) {
     const names = Object.keys(list).filter(
-      (n) => text.includes(n) && !(track && ctx.ownProps?.has(n)),
+      (n) => text.includes(n) && !ctx.ownProps?.has(n),
     );
     if (!names.length) continue;
-    // a removed token counts where it is read (var(--x)); a 2.0 component variable where it is
-    // overridden too
+    // a removed token counts where it is read (var(--x))
     const re = new RegExp(
-      `${track ? "var\\(\\s*" : "(?<![\\w-])"}(${names.map((n) => n.replace(/-/g, "\\-")).join("|")})(?![\\w-])`,
+      `var\\(\\s*(${names.map((n) => n.replace(/-/g, "\\-")).join("|")})(?![\\w-])`,
       "g",
     );
     let m;
@@ -2359,9 +2057,8 @@ function removedTokenItems(file, text, ctx) {
         line: lineOf(text, at),
         code: "TOKEN_REMOVED",
         detail: `${n}: ${hint(n, list[n])}`,
-        breaksIn,
       });
-      if (track && ctx.track) {
+      if (ctx.track) {
         const v = list[n];
         const t = withTokens ? tokenOf.get(normValue(v)) : undefined;
         ctx.track(file, at, `var(${n}) (${v})`, [
@@ -3211,7 +2908,6 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         line: lineOf(text, index),
         code,
         detail,
-        breaksIn: 1,
       });
     const fileEdits = [];
     const edit = (start, end, text) =>
@@ -3598,7 +3294,6 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       line: 1,
       code: "SASS_MIXIN",
       detail: `this file computes a breakpoint (variable argument) and no toolkit import of its own or of a file that imports it is left to replace: add @import of ${rel(helper.file)} at the top of this file, never delete the @include`,
-      breaksIn: 1,
     });
   }
   const tkDefs = defs.filter((d) => valueOf(d.name, d.file) !== undefined);
@@ -3636,7 +3331,6 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       line: lineOf(texts.get(d.file), d.index),
       code: "SASS_VALUE",
       detail: `$${name}: ${d.value} !default comes after the toolkit import, so the pages used the toolkit value ${v}; without the toolkit this line would apply ${d.value}: write ${v} here (the value the pages had), or STOP and ask if a page needs ${d.value}`,
-      breaksIn: 1,
     });
   }
   if (Array.isArray(ctx.state.sassDefs)) {
@@ -3661,7 +3355,6 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         line: lineOf(texts.get(d.file), d.index),
         code: "SASS_VALUE",
         detail: `$${d.name}: ${d.value} was added after --write and is not the toolkit value ${value}${token ? ` (var(${token}))` : ""}: use the toolkit value`,
-        breaksIn: 1,
       });
     }
   }
@@ -3800,7 +3493,6 @@ function actionClassItems(actionClasses, styleFiles, texts, rel) {
             line: lineOf(texts.get(f), r.index),
             code: "TK_ACTION_CLASS",
             detail: `${last.trim()} is a class of the <Action> at ${rel(a.file)}:${a.line}: Canopée styles the Action with .btn.af-btn--circle (two classes: display, size, colours), so this rule now loses; write the selector with .btn as well (${last.trim().replace(`.${a.cls}`, `.btn.${a.cls}`)})`,
-            breaksIn: 1,
           });
         }
   return items;
@@ -3850,7 +3542,6 @@ function cssOrderItems(codeFiles, texts) {
       line: lineOf(t, last),
       code: "CSS_ORDER",
       detail: `your stylesheets load before the Canopée CSS, so Canopée wins every rule as specific as yours: add import "${REACT_PKG}/distributeur"; where the toolkit stylesheet import was (git log -p shows it), before the stylesheets that override the design system`,
-      breaksIn: 1,
     });
   }
   return items;
@@ -4220,7 +3911,7 @@ function main() {
     process.stdout.write(
       src
         .split("\n")
-        .slice(1, 19)
+        .slice(1, 21)
         .map((l) => l.replace(/^\/\/ ?/, ""))
         .join("\n") + "\n",
     );
@@ -4290,7 +3981,6 @@ function main() {
     if (origin[k] === null || origin[k] === false)
       origin[k] = state.origin?.[k] ?? origin[k];
   const ctx = {
-    target: opts.target,
     canopeeMajor: canopeeRange ? majorOf(canopeeRange) : null,
     usesToolkitReact: false,
     universes: new Set(),
@@ -4349,6 +4039,12 @@ function main() {
     (deps.get(REACT_PKG) === "next" || deps.get(CSS_PKG) === "next")
   )
     ctx.canopeeMajor = 2;
+  // already on 2.x: the INSTALL line of this script (1.x) would downgrade it
+  if (ctx.canopeeMajor !== null && ctx.canopeeMajor >= 2)
+    fail(
+      `package.json already depends on Canopée ${ctx.canopeeMajor} (${canopeeRange}): this script ` +
+        `migrates to Canopée 1.x only and would install 1.x over it; ${TO_V2}.`,
+    );
 
   // the toolkit stylesheet that defined Bootstrap's :root custom properties (--primary, --blue...)
   // (a <link> of index.html or a "styles" entry of angular.json loads it as well as an import)
@@ -4472,7 +4168,6 @@ function main() {
           line: g.line,
           code: "SASS_LOST",
           detail: `${g.what}: ${g.min} ${g.min > 1 ? "uses or exact replacements" : "use or exact replacement"} after --write, ${n} now${t === undefined ? " (file deleted)" : ""}: one was deleted without its replacement. Put it back with the value of its SASS_VAR / SASS_MIXIN / TOKEN_REMOVED line (git diff ${rf} shows the deleted line); never delete a toolkit variable, breakpoint or token, nor the rule that uses it`,
-          breaksIn: 1,
         });
       }
     }
@@ -4502,7 +4197,6 @@ function main() {
           line: lineOf(t, c.index),
           code: "NO_CAST",
           detail: `${c[0].trim()}: this file has ${n} casts or suppressions, ${before} before --write: remove the ones you added; a classModifier expression takes a typed table (BUTTON_CLASSMODIFIER, TK_ALERT_CLASSMODIFIER)`,
-          breaksIn: 1,
         });
     }
   // backup files (sed -i.bak...) that were not there at the first --write
@@ -4594,10 +4288,9 @@ function main() {
   const info = [];
   const reactRange = deps.get("react");
   const reactMajor = reactRange ? majorOf(reactRange) : null;
-  const needReact = opts.target === 2 ? 19 : 18;
-  if (reactMajor !== null && reactMajor < needReact)
+  if (reactMajor !== null && reactMajor < 18)
     info.push(
-      `react ${reactRange}: Canopée ${opts.target}.x needs react >= ${needReact} (upgrade react and react-dom first)`,
+      `react ${reactRange}: Canopée 1.x needs react >= 18 (upgrade react and react-dom first)`,
     );
   if (deps.has("jest") || deps.has("react-scripts"))
     info.push(
@@ -4630,18 +4323,10 @@ function main() {
     info.push(
       "bootstrap dependency: Canopée ships its own reboot and grid; remove bootstrap if nothing else uses it",
     );
-  if (opts.target === 2 && ctx.universes.size)
-    info.push(
-      "2.0 wraps all Canopée CSS in @layer: your own unlayered CSS now wins over it; review overrides (canopee-1-to-2.md, LAYERS)",
-    );
-  if (opts.target === 2 && usedUniverses.has("distributeur"))
-    info.push(
-      "2.0: Header Name renders <p> instead of <h2>; update tests that look for that heading (canopee-1-to-2.md, NAME)",
-    );
 
   // install command
   const pm = packageManager(root);
-  const ver = opts.target === 2 ? "@next" : "@^1.8.0";
+  const ver = "@^1.8.0";
   const toAdd = [];
   if (usesReact)
     toAdd.push(
@@ -4652,11 +4337,7 @@ function main() {
     );
   else if (usesCssOnly || oldDeps.length)
     toAdd.push(`${CSS_PKG}${ver}`, "@material-symbols/svg-400");
-  const already =
-    toAdd.length &&
-    opts.target === 1 &&
-    ctx.canopeeMajor === 1 &&
-    !oldDeps.length;
+  const already = toAdd.length && ctx.canopeeMajor === 1 && !oldDeps.length;
   let install = null;
   if (toAdd.length && !already) {
     const rm = {
@@ -4695,7 +4376,7 @@ function main() {
       code,
     )
       ? 0
-      : /^(EXPORT_MISSING|OLD_STRING|TK_NAMESPACE|TK_REMOVED|TK_ENUM|REMOVED_2|NO_CAST)$/.test(
+      : /^(EXPORT_MISSING|OLD_STRING|TK_NAMESPACE|TK_REMOVED|TK_ENUM|NO_CAST)$/.test(
             code,
           )
         ? 1
@@ -4713,14 +4394,12 @@ function main() {
               ? 1
               : a.line - b.line,
   );
-  const shown = items.filter((i) => opts.all || i.breaksIn <= opts.target);
-  const later = items.filter((i) => !opts.all && i.breaksIn > opts.target);
+  const shown = items;
   if (opts.json) {
     process.stdout.write(
       JSON.stringify(
         {
           root,
-          target: opts.target,
           written: opts.write,
           oldDependencies: oldDeps,
           universes: [...usedUniverses],
@@ -4736,7 +4415,6 @@ function main() {
             file: rel(i.file),
             ref: `${refBase}/${CODES[i.code]?.[1] || ""}`,
           })),
-          laterFor2: later.length,
           info,
         },
         null,
@@ -4747,7 +4425,7 @@ function main() {
   }
   const L = [];
   L.push(
-    `canopee-migrate: ${opts.write ? "WRITE" : "DRY RUN (nothing written)"}, target ${opts.target === 2 ? "2.0 (next)" : "1.x (latest 1.8.0)"}`,
+    `canopee-migrate: ${opts.write ? "WRITE" : "DRY RUN (nothing written)"}, target 1.x (latest 1.8.0)`,
   );
   L.push(`project: ${root}`);
   L.push(
@@ -4789,12 +4467,6 @@ function main() {
       }
       L.push(`  ${rel(i.file)}:${i.line}  ${i.detail}`);
     }
-  }
-  if (later.length) {
-    L.push("");
-    L.push(
-      `LATER: ${later.length} deprecated usages still work in 1.x but break in 2.0 (run with --target 2 to list them).`,
-    );
   }
   L.push("");
   if (hasState)
@@ -4849,10 +4521,7 @@ function main() {
     process.exitCode = open.length ? 1 : 0;
   }
   if (opts.report) {
-    const R = [
-      `# Canopée migration checklist (target ${opts.target === 2 ? "2.0" : "1.x"})`,
-      "",
-    ];
+    const R = ["# Canopée migration checklist (target 1.x)", ""];
     R.push(
       "Generated by canopee-migrate.mjs. Work from top to bottom (styles, then imports, then components);",
       "tick each line when done; delete this file only after `--check` prints `VERDICT: DONE`.",
