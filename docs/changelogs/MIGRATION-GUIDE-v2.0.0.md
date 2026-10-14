@@ -126,18 +126,20 @@ the replacement keeps the same field semantics:
 #### Distributeur class modifiers and deprecated props
 
 The `classModifier` and `classModifiers` APIs have been removed from
-Distributeur components. Use `className` for custom styling. Some components
-have a more specific replacement:
+Distributeur components. A modifier generated an `af-<block>--<modifier>` class:
+use the matching prop when one exists, otherwise keep that class in `className`.
 
 | Component | Removed API | Replacement |
 | --- | --- | --- |
 | `Accordion` | `classModifier` | `variant` |
-| `Message` | `classModifier` | `variant` |
+| `Message` | `classModifier` | `variant` (`danger` becomes `warning`) |
+| `Tag` | `classModifier` | `variant` (`danger` becomes `warning`, `info` becomes `information`) |
 | `Modal` | `classModifier` | `size` or `className` |
-| Other Distributeur components | `classModifier` | `className` |
+| Form controls and `*Input` | `classModifier="required"` | `required` |
+| Other Distributeur components | `classModifier` | `className="af-<block>--<modifier>"` |
 
-The deprecated visibility prop on `Field` was also removed. Control whether a
-field is rendered in the application instead of passing `isVisible`.
+`isVisible` was also removed from `Field` and from every `*Input`: render the
+field conditionally in the application instead.
 
 ### Prospect and Client
 
