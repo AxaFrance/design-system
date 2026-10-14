@@ -82,16 +82,17 @@ The following deprecated Distributeur exports are also no longer available:
 | --- | --- |
 | `Badge` | `Tag` |
 | `Alert` | `Message` |
-| `Pass` | Use the supported password input component. |
+| `Pass` | `<Text type="password" />` |
 | `Slider` | Use the supported range or number input component. |
 | `SliderInput` | Use the supported range or number input component. |
-| `SelectBase` | `Select` |
-| `SelectDefaultWithOptions` | `SelectDefault` |
+| `SelectBase` | `<Select mode="base">` with native `option` children |
+| `Table.Header` and `Table.Body` | `Table.THead` and `Table.TBody` |
 | `getComponentClassName` | `getClassName` |
 
-`FieldForm` and `FieldInput` were deprecated internal components and are no
-longer exported. Applications should use the public field components, such as
-`Field`, `TextInput`, or `SelectInput`, instead.
+`FieldForm` and `FieldInput` are no longer exported. The `Field` export also
+changes: in v1.8.0 it was the children-based `LegacyField`; in v2.0.0 it
+requires `renderInput`. Prefer `TextInput`, `SelectInput` or another `*Input`,
+or render the control through `renderInput`.
 
 If your application uses the deprecated `Select.options` prop, render native
 `option` elements as `Select` children:
