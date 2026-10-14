@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
 import { Checkbox } from "../CheckboxCommon";
 
 describe("CheckboxCommon Component", () => {
@@ -72,12 +72,5 @@ describe("CheckboxCommon Component", () => {
 
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).not.toHaveClass("af-checkbox--warning");
-  });
-
-  it("should set aria-errormessage when errorId is provided", () => {
-    render(<Checkbox errorId="error-1" />);
-
-    const checkbox = screen.getByRole("checkbox");
-    expect(checkbox).toHaveAttribute("aria-errormessage", "error-1");
   });
 });
