@@ -64,9 +64,11 @@ The `client` universe replaces the former Look & Feel package and Storybook
 paths. Update hard-coded documentation or deployment links from
 `look-and-feel/...` to `client/...` where applicable.
 
-Client and Prospect styles are now wrapped in CSS layers. Review custom CSS
-overrides and layer ordering if application styles relied on the previous
-import order.
+Client, Prospect and Distributeur styles are now wrapped in CSS layers
+(`@layer reset, canopee`). Unlayered application styles, including global
+element rules such as `button {}` or `a {}`, now take precedence over
+component styles. Review custom CSS overrides and layer ordering if
+application styles relied on the previous import order.
 
 ### Distributeur
 
