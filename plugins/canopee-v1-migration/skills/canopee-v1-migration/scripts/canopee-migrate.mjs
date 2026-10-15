@@ -26,7 +26,8 @@
 // @axa-fr/canopee-css 1.8.0, @axa-fr/react-toolkit-* 3.0.2,
 // @axa-fr/design-system-slash-* 1.2.0 / 2.0.5 / 3.0.0, @axa-fr/design-system-apollo-* 3.2.0,
 // @axa-fr/design-system-look-and-feel-* 3.2.0. toolkit-sass.json, next to this file, holds the
-// resolved values of the toolkit Sass variables and the literal Canopée distributeur colour tokens.
+// resolved values of the toolkit Sass variables, the Canopée distributeur tokens and the toolkit to
+// Canopée token map (tokenMap).
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -2010,13 +2011,10 @@ function tokenEdits(text, map) {
 function removedTokenItems(file, text, ctx) {
   const items = [];
   const lists = [];
-  const tokenOf = ctx.tkData
-    ? new Map(
-        Object.entries(ctx.tkData.tokens).map(([t, v]) => [normValue(v), t]),
-      )
-    : new Map();
-  const same = (v) => {
-    const t = tokenOf.get(normValue(v));
+  // the Canopée token that has exactly the value of a toolkit :root property (tokenMap)
+  const rootToken = (n) => ctx.tkData?.tokenMap?.rootProperties?.[n];
+  const same = (n) => {
+    const t = rootToken(n);
     return t ? ` or var(${t}) (same value)` : "";
   };
   if (ctx.fromApollo)
@@ -2034,7 +2032,7 @@ function removedTokenItems(file, text, ctx) {
         ),
       ),
       (n, v) =>
-        `defined by the toolkit stylesheet af-toolkit-core.css (:root), value ${v}; Canopée does not define it: declare it once in the project (:root { ${n}: ${v}; }) and keep every var(${n})${same(v)}; never delete a declaration that uses it`,
+        `defined by the toolkit stylesheet af-toolkit-core.css (:root), value ${v}; Canopée does not define it: declare it once in the project (:root { ${n}: ${v}; }) and keep every var(${n})${same(n)}; never delete a declaration that uses it`,
       true,
     ]);
   for (const [list, hint, withTokens] of lists) {
@@ -2060,7 +2058,7 @@ function removedTokenItems(file, text, ctx) {
       });
       if (ctx.track) {
         const v = list[n];
-        const t = withTokens ? tokenOf.get(normValue(v)) : undefined;
+        const t = withTokens ? rootToken(n) : undefined;
         ctx.track(file, at, `var(${n}) (${v})`, [
           `var(${n}`,
           ...(/[()]/.test(v) ? [] : literalKeys(v)),
@@ -2081,6 +2079,11 @@ function removedTokenItems(file, text, ctx) {
 // value) and leaves every other line as it is, listed in MANUAL with the value to write. --write also
 // records what it found (.canopee-migrate.json, sassLedger); every later run compares: a use that
 // disappeared without its replacement is listed as SASS_LOST and keeps the VERDICT at NOT DONE.
+//
+// The Canopée token of a toolkit value comes from tokenMap in toolkit-sass.json (exactly the same
+// colour; built by tools/build-token-map.mjs of the plugin). var(--token) is written only where CSS
+// reads the value as it is: varContext() decides, for the AUTO rewrites and the MANUAL lines alike.
+// Everywhere else the literal toolkit value is written, and the LITERAL list says why.
 
 // Sass colour functions do not accept var(...): a toolkit variable used inside one keeps a literal.
 const SASS_FUNCS =
@@ -2089,6 +2092,10 @@ const SASS_FUNCS =
 // toolkit or of the project) computes with it at compile time and needs the literal value.
 const CSS_CALLS =
   /^(calc|clamp|min|max|var|env|(?:repeating-)?(?:linear|radial|conic)-gradient|drop-shadow|color-mix|light-dark|image-set)$/;
+// Sass operators in a declaration value (names removed first): arithmetic, division, comparison,
+// boolean. A "%" right after a digit is a unit (0%), anywhere else a modulo.
+const SASS_OPS =
+  /[*/+]|\s-\s|(?<![\d.])%|==|!=|<=|>=|\s[<>]\s|(?:^|[\s(])(?:and|or|not)(?=[\s(]|$)/;
 // Names of the calls that enclose st[at], outermost first ("" for a plain parenthesis).
 function enclosingCalls(st, at) {
   const stack = [];
@@ -2102,14 +2109,282 @@ function enclosingCalls(st, at) {
   }
   return stack;
 }
-// The variable at t[index] is an argument of a call that is not a CSS function.
-function insideSassCall(t, index) {
+// The end of the quoted string that starts at t[i] (the index of its closing quote, or of the line
+// end when it is not closed); an interpolation #{...} inside it may hold quotes and line breaks.
+function stringEnd(t, i) {
+  const q = t[i];
+  let j = i + 1;
+  while (j < t.length && t[j] !== q && t[j] !== "\n") {
+    if (t[j] === "\\") j += 2;
+    else if (t[j] === "#" && t[j + 1] === "{") {
+      let depth = 0;
+      for (; j < t.length; j++) {
+        if (t[j] === "{") depth++;
+        else if (t[j] === "}" && --depth === 0) break;
+      }
+      j++;
+    } else j++;
+  }
+  return Math.min(j, t.length);
+}
+// t with the inside of every quoted string blanked ("_"), same length: a ; { } in a string ends no
+// statement.
+let maskedFor = null;
+let maskedText = null;
+function maskStrings(t) {
+  if (t === maskedFor) return maskedText;
+  let out = "";
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    out += c;
+    if (c !== '"' && c !== "'") continue;
+    const j = stringEnd(t, i);
+    out += t.slice(i + 1, j).replace(/[^\n]/g, "_");
+    if (j < t.length) out += t[j];
+    i = j;
+  }
+  maskedFor = t;
+  maskedText = out;
+  return maskedText;
+}
+// A value with its strings and url(...) replaced by neutral words: a "/" or an operator there is
+// text, not Sass arithmetic.
+function plainValue(v) {
+  let out = "";
+  for (let i = 0; i < v.length; i++) {
+    if (v[i] !== '"' && v[i] !== "'") {
+      out += v[i];
+      continue;
+    }
+    out += '""';
+    i = stringEnd(v, i);
+  }
+  return out.replace(/\burl\([^)]*\)/gi, "url()");
+}
+// Start and end of the statement around t[index]: after the previous ; { }, before the next one
+// (strings skipped).
+function stmtBounds(t, index) {
+  const m = maskStrings(t);
   let s = index;
-  while (s > 0 && !";{}".includes(t[s - 1])) s--;
-  return enclosingCalls(t.slice(s, index), index - s).some(
-    (n) => n !== "" && !CSS_CALLS.test(n),
+  while (s > 0 && !";{}".includes(m[s - 1])) s--;
+  let e = index;
+  while (e < m.length && !";{}".includes(m[e])) e++;
+  return [s, e];
+}
+// The selectors and at-rules of the blocks that contain t[s], outermost first ([] at the top level;
+// strings skipped).
+function blockStack(t, s) {
+  const stack = [];
+  let start = 0;
+  for (let i = 0; i < s; i++) {
+    const c = t[i];
+    if (c === '"' || c === "'") {
+      i++;
+      while (i < s && t[i] !== c) i += t[i] === "\\" ? 2 : 1;
+    } else if (c === "{") {
+      stack.push(t.slice(start, i).trim());
+      start = i + 1;
+    } else if (c === "}") {
+      stack.pop();
+      start = i + 1;
+    } else if (c === ";") start = i + 1;
+  }
+  return stack;
+}
+const EXPORT_RE = /^:(export|import)\b/;
+// The project mixins whose declarations end up in a CSS Modules :export (or :import) block: included
+// there, directly or through another mixin. A declaration in them gives its value to JavaScript.
+function exportMixins(texts) {
+  const roots = new Set();
+  const calls = new Map(); // mixin -> mixins it includes
+  for (const t of texts)
+    for (const m of t.matchAll(/@include\s+([\w-]+)/g)) {
+      const stack = blockStack(t, m.index);
+      if (stack.some((p) => EXPORT_RE.test(p))) roots.add(m[1]);
+      for (const p of stack) {
+        const mx = /^@mixin\s+([\w-]+)/.exec(p);
+        if (!mx) continue;
+        if (!calls.has(mx[1])) calls.set(mx[1], new Set());
+        calls.get(mx[1]).add(m[1]);
+      }
+    }
+  const out = new Set();
+  const todo = [...roots];
+  while (todo.length) {
+    const n = todo.pop();
+    if (out.has(n)) continue;
+    out.add(n);
+    todo.push(...(calls.get(n) || []));
+  }
+  return out;
+}
+// Why var(--token) cannot replace the toolkit value at t[index] (t: the file without comments; for
+// tk.$x, the index of "tk."), or null when it can. var() is right only in a plain property
+// declaration of a .scss file, outside Sass functions and operators, in a project that loads the
+// Canopée distributeur tokens. Anywhere else Sass reads the value (variable, @if, @each, @return,
+// mixin argument, media query, function, operator), prints it into something var() does not fit
+// (interpolation, custom property) or gives it to JavaScript (:export, a mixin included there:
+// toJs, from exportMixins). In doubt: a reason.
+function varContext(t, index, file, tokensLoaded, toJs = new Set()) {
+  if (!tokensLoaded) return "no-tokens-css";
+  if (!/\.scss$/i.test(file)) return "indented";
+  if (t[index - 1] === "-" || t[index - 1] === "+") return "operand";
+  const [s, e] = stmtBounds(t, index);
+  const st = t.slice(s, e).trim();
+  const lineStart = t.lastIndexOf("\n", index) + 1;
+  const lineEnd =
+    t.indexOf("\n", index) === -1 ? t.length : t.indexOf("\n", index);
+  if (
+    st.includes("#{") ||
+    (t[s - 1] === "{" && t[s - 2] === "#") ||
+    t.slice(lineStart, lineEnd).includes("#{")
+  )
+    return "interpolation";
+  if (/^--[\w-]*\s*:/.test(st)) return "custom-property";
+  const decl = /^-?[A-Za-z][\w-]*\s*:/.exec(st);
+  if (!decl) return "sass-statement";
+  const stack = blockStack(t, s);
+  if (!stack.length) return "sass-statement";
+  if (
+    stack.some(
+      (p) => EXPORT_RE.test(p) || toJs.has(/^@mixin\s+([\w-]+)/.exec(p)?.[1]),
+    )
+  )
+    return "export";
+  const value = plainValue(st.slice(decl[0].length)).replace(
+    /(?:[\w-]+\.)?\$[\w-]+|--[\w-]+/g,
+    "v",
+  );
+  if (SASS_OPS.test(value)) return "arithmetic";
+  if (
+    SASS_FUNCS.test(value) ||
+    enclosingCalls(t.slice(s, index), index - s).some(
+      (n) => n !== "" && !CSS_CALLS.test(n),
+    )
+  )
+    return "function";
+  return null;
+}
+// What a statement does with a value, for a sass-statement line.
+function statementWhy(st) {
+  const s = st.trim();
+  if (/^\$[\w-]+\s*:/.test(s))
+    return "a Sass variable: the project may compute with it";
+  if (/^@(?:if|else)\b/.test(s)) return "in an @if, Sass compares the value";
+  if (/^@(?:each|for|while)\b/.test(s))
+    return "in an @each or @for, Sass reads the value";
+  if (/^@return\b/.test(s)) return "@return gives the value to Sass";
+  if (/^@include\b/.test(s))
+    return "a mixin argument: the mixin may compute with it";
+  if (/^@(?:mixin|function)\b/.test(s))
+    return "a parameter default: the mixin may compute with it";
+  if (/^@(?:media|supports|container)\b/.test(s))
+    return "a media query or condition does not accept var(...)";
+  if (/^@(?:use|forward)\b/.test(s)) return "a module configuration";
+  return "Sass reads the value here";
+}
+// The reasons of the LITERAL list (and of the MANUAL lines that keep a literal), by code.
+const LITERAL_WHY = {
+  "no-token": "no Canopée token has exactly this value, never use a close one",
+  ambiguous: "several Canopée tokens have this value, none is chosen",
+  "not-colour": "Canopée has no token for it",
+  "no-tokens-css":
+    "nothing loads the Canopée distributeur stylesheet (tokens.css) for this file: var(...) would be empty",
+  indented: "indented syntax (.sass)",
+  operand: "after a unary minus or plus",
+  interpolation:
+    "interpolated (#{...}): Sass prints it into a selector, a string or a url()",
+  "custom-property": "in a custom property (--x), which Sass prints as written",
+  export: ":export gives the value to JavaScript",
+  "project-token":
+    "the project declares this custom property itself, var(...) would take its value",
+  arithmetic: "Sass computes with it here (operator, comparison or /)",
+  function: "inside a Sass function, which does not accept var(...)",
+};
+// The CSS colour names (CSS Color 4) and transparent: Sass reads such an unquoted word as a colour.
+const CSS_COLOUR_NAMES = new Set(
+  (
+    "aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond blue " +
+    "blueviolet brown burlywood cadetblue chartreuse chocolate coral cornflowerblue cornsilk " +
+    "crimson cyan darkblue darkcyan darkgoldenrod darkgray darkgreen darkgrey darkkhaki " +
+    "darkmagenta darkolivegreen darkorange darkorchid darkred darksalmon darkseagreen " +
+    "darkslateblue darkslategray darkslategrey darkturquoise darkviolet deeppink deepskyblue " +
+    "dimgray dimgrey dodgerblue firebrick floralwhite forestgreen fuchsia gainsboro " +
+    "ghostwhite gold goldenrod gray green greenyellow grey honeydew hotpink indianred indigo " +
+    "ivory khaki lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral lightcyan " +
+    "lightgoldenrodyellow lightgray lightgreen lightgrey lightpink lightsalmon lightseagreen " +
+    "lightskyblue lightslategray lightslategrey lightsteelblue lightyellow lime limegreen " +
+    "linen magenta maroon mediumaquamarine mediumblue mediumorchid mediumpurple " +
+    "mediumseagreen mediumslateblue mediumspringgreen mediumturquoise mediumvioletred " +
+    "midnightblue mintcream mistyrose moccasin navajowhite navy oldlace olive olivedrab " +
+    "orange orangered orchid palegoldenrod palegreen paleturquoise palevioletred papayawhip " +
+    "peachpuff peru pink plum powderblue purple rebeccapurple red rosybrown royalblue " +
+    "saddlebrown salmon sandybrown seagreen seashell sienna silver skyblue slateblue " +
+    "slategray slategrey snow springgreen steelblue tan teal thistle tomato turquoise violet " +
+    "wheat white whitesmoke yellow yellowgreen transparent"
+  ).split(" "),
+);
+// What Sass reads in a map key or a function argument: a quoted key is a string; unquoted, a number,
+// a colour (a colour name) or a string. A map lookup finds a key of the same kind only:
+// map-get($colors, white) looks up the colour white, not the key "white", and gives null.
+function sassKeyKind(raw) {
+  const k = String(raw).trim();
+  if (/^(['"]).*\1$/.test(k)) return "string";
+  if (/^-?(?:\d+\.?\d*|\.\d+)$/.test(k)) return "number";
+  return CSS_COLOUR_NAMES.has(k.toLowerCase()) ? "colour" : "string";
+}
+// A colour value (hex, rgb(), hsl()..., transparent): the LITERAL list separates the colours that have
+// no token from the sizes, fonts and maps, which never have one. The toolkit uses no colour names.
+const isColour = (v) =>
+  /^(#[0-9a-f]{3,8}|(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(.*\)|transparent|currentcolor)$/i.test(
+    String(v).trim(),
+  );
+// var(--axablue80) is a value only where the Canopée distributeur tokens are loaded: the stylesheet
+// distributeur.css or common/tokens.css of @axa-fr/canopee-css (a style or code import, a page), or
+// the React entry point @axa-fr/canopee-react/distributeur, whose code imports tokens.css (1.8.0).
+// Only an import counts (import, require(), import(), export ... from, @import, @use, @forward): not a
+// mention in a string, not a type-only import. kind: "code", "style" or "page" (index.html,
+// angular.json: any mention).
+const TOKENS_CSS_RE =
+  /@axa-fr\/canopee-css\/(?:dist\/)?distributeur\/(?:distributeur|common\/tokens)\.css/;
+function loadsCanopeeTokens(text, kind) {
+  const t = blankComments(text).replace(/<!--[\s\S]*?-->/g, "");
+  if (kind === "page") return TOKENS_CSS_RE.test(t);
+  const specs = [];
+  if (kind === "style") {
+    for (const m of t.matchAll(/@(?:import|use|forward)\s+([^;\n]+)/g))
+      for (const q of m[1].matchAll(
+        /(['"])([^'"\n]+)\1|url\(\s*([^)'"\s]+)\s*\)/g,
+      ))
+        specs.push(q[2] || q[3]);
+  } else {
+    for (const m of t.matchAll(/\bimport\s*(['"])([^'"\n]+)\1/g))
+      specs.push(m[2]);
+    for (const m of t.matchAll(
+      /\b(?:require|import)\s*\(\s*(['"])([^'"\n]+)\1\s*\)/g,
+    ))
+      specs.push(m[2]);
+    for (const m of t.matchAll(
+      /\b(?:import|export)\s+(?!type\s)([^;'"]*?)\bfrom\s*(['"])([^'"\n]+)\2/g,
+    ))
+      // not `import { type A, type B } from`: types only, nothing is loaded
+      if (
+        !/^\{\s*(?:type\s+[\w$]+(?:\s+as\s+[\w$]+)?\s*,?\s*)+\}$/.test(
+          m[1].trim(),
+        )
+      )
+        specs.push(m[3]);
+  }
+  return specs.some(
+    (x) =>
+      TOKENS_CSS_RE.test(x) ||
+      x.trim() === "@axa-fr/canopee-react/distributeur",
   );
 }
+// Test, story and mock files: what they import is not loaded by the pages.
+const TEST_FILE_RE =
+  /(?:^|[\\/])(?:__tests__|__mocks__|\.storybook|e2e|cypress)[\\/]|\.(?:test|spec|stories|cy)\.[cm]?[jt]sx?$|(?:^|[\\/])setupTests\.[cm]?[jt]sx?$/;
+
 // The toolkit breakpoint functions and mixins (Bootstrap 4), kept in a project partial written by
 // --write when a rule computes a breakpoint (variable argument): see breakpointHelper().
 const TK_BP_HELPER = "_toolkit-breakpoints.scss";
@@ -2122,6 +2397,64 @@ function loadToolkitSass(scriptDir) {
   } catch {
     return null;
   }
+}
+// The tokens of tokenMap whose value in the installed @axa-fr/canopee-css differs from the version
+// toolkit-sass.json was built from (tokensSource), as a NOTE, or null (same values, or not installed).
+// var(--token) shows the installed value: a change there is a colour the pages did not have.
+function tokenChanges(root, data) {
+  const src = data.tokensSource;
+  if (!src?.tokensCss || !data.tokenMap) return null;
+  let css = null;
+  let version = "?";
+  for (let dir = root; ; ) {
+    const pkg = path.join(dir, "node_modules", CSS_PKG);
+    if (fs.existsSync(pkg)) {
+      try {
+        css = fs.readFileSync(path.join(pkg, src.tokensCss), "utf8");
+        version = JSON.parse(
+          fs.readFileSync(path.join(pkg, "package.json"), "utf8"),
+        ).version;
+      } catch {
+        // an incomplete install: compared as found
+      }
+      break;
+    }
+    const up = path.dirname(dir);
+    if (up === dir) break;
+    dir = up;
+  }
+  if (css === null) return null;
+  const now = {};
+  const block = /:root\s*\{([^}]*)\}/.exec(css)?.[1] ?? "";
+  for (const m of block.matchAll(/(--[\w-]+)\s*:\s*([^;}]+)/g))
+    now[m[1]] = m[2].trim();
+  const resolve = (tokens, t) => {
+    const seen = new Set();
+    let v = tokens[t];
+    while (v !== undefined && !seen.has(v)) {
+      seen.add(v);
+      const ref = /^var\((--[\w-]+)\)$/.exec(String(v).trim());
+      if (!ref) return normValue(v);
+      v = tokens[ref[1]];
+    }
+    return undefined;
+  };
+  const tm = data.tokenMap;
+  const used = new Set([
+    ...Object.values(tm.variables || {}),
+    ...Object.values(tm.components || {}),
+    ...Object.values(tm.rootProperties || {}),
+    ...Object.values(tm.maps || {}).flatMap((m) => Object.values(m)),
+  ]);
+  const diff = [...used]
+    .sort()
+    .filter((t) => resolve(data.tokens, t) !== resolve(now, t))
+    .map(
+      (t) =>
+        `${t} ${resolve(data.tokens, t)} -> ${resolve(now, t) ?? "absent"}`,
+    );
+  if (!diff.length) return null;
+  return `${CSS_PKG} ${version} is installed, and toolkit-sass.json maps the toolkit colours to the tokens of ${src.version}: ${diff.join(", ")}. Every var(--token) that --write wrote for these tokens shows the installed value, not the toolkit colour: STOP and ask`;
 }
 // "#FFF" -> "#ffffff"; other values: lower case, single spaces.
 function normValue(v) {
@@ -2282,16 +2615,16 @@ $grid-breakpoints: (${map}) !default;
 // The replacement --write makes for a toolkit Sass variable without changing what Sass computes, or
 // null (left to MANUAL). The literal toolkit value is what the variable held, so it fits anywhere Sass
 // reads a value, except next to "/" (a literal division becomes a plain CSS slash). var(--token) only
-// where plain CSS reads it: a declaration, outside Sass functions and arithmetic. Maps, lists inside
-// expressions, interpolation, module members (tk.$x) and unary minus stay MANUAL.
-function sassAutoValue(t, index, name, value, token) {
+// where varContext() found nothing against it (why === null): a plain declaration, outside Sass
+// functions and operators. Maps, lists inside expressions, interpolation, module members (tk.$x) and
+// unary minus stay MANUAL.
+function sassAutoValue(t, index, name, value, token, why) {
   if (value.startsWith("(") || t[index - 1] === "." || t[index - 1] === "-")
     return null;
-  let s = index;
-  while (s > 0 && !";{}".includes(t[s - 1])) s--;
-  let e = index;
-  while (e < t.length && !";{}".includes(t[e])) e++;
+  const [s, e] = stmtBounds(t, index);
   const st = t.slice(s, e).trim();
+  // a "/" in a string or a url() divides nothing
+  const slash = plainValue(st).includes("/");
   const lineStart = t.lastIndexOf("\n", index) + 1;
   const lineEnd =
     t.indexOf("\n", index) === -1 ? t.length : t.indexOf("\n", index);
@@ -2314,10 +2647,8 @@ function sassAutoValue(t, index, name, value, token) {
   const v = value.trim();
   const single = !/[\s,()]/.test(v) || /^(['"])[^'"]*\1$/.test(v);
   if (kind === "decl") {
-    const math = /[*/+%]|\s-\s/.test(st);
-    if (token && !math && !SASS_FUNCS.test(st) && !insideSassCall(t, index))
-      return `var(${token})`;
-    if (st.includes("/")) return null;
+    if (token && why === null) return `var(${token})`;
+    if (slash) return null;
     if (single) return v;
     const val = st
       .slice(st.indexOf(":") + 1)
@@ -2325,7 +2656,7 @@ function sassAutoValue(t, index, name, value, token) {
       .trim();
     return val === `$${name}` ? v : null; // a whole list value, e.g. a font stack
   }
-  if (st.includes("/")) return null;
+  if (slash) return null;
   return single ? v : null;
 }
 
@@ -2379,9 +2710,10 @@ function literalKeys(v) {
   if (short) out.push(`#${short[1]}${short[2]}${short[3]}`);
   return out;
 }
-// The values of a Sass map literal "(a: 1px, b: #fff)", keyed by name (quotes removed).
-function mapEntries(v) {
-  const out = {};
+// The entries of a Sass map literal "(a: 1px, "b": #fff)", in order: key (quotes removed), key as
+// written, value.
+function mapParts(v) {
+  const out = [];
   const s = String(v).trim();
   if (!s.startsWith("(")) return out;
   let depth = 0;
@@ -2398,15 +2730,29 @@ function mapEntries(v) {
   parts.push(cur);
   for (const p of parts) {
     const i = p.indexOf(":");
-    if (i > 0)
-      out[
-        p
-          .slice(0, i)
-          .trim()
-          .replace(/^['"]|['"]$/g, "")
-      ] = p.slice(i + 1).trim();
+    if (i > 0) {
+      const raw = p.slice(0, i).trim();
+      out.push({
+        key: raw.replace(/^['"]|['"]$/g, ""),
+        raw,
+        value: p.slice(i + 1).trim(),
+      });
+    }
   }
   return out;
+}
+// The entries of a Sass map value: key (without quotes) -> value.
+const mapEntries = (v) =>
+  Object.fromEntries(mapParts(v).map((x) => [x.key, x.value]));
+// A lookup in a toolkit map whose written key is not of the kind of the map key (sassKeyKind): Sass
+// found nothing (null) and printed no declaration. Its MANUAL text, or null when the kinds match.
+function keyMismatch(call, written, mapName, map, key) {
+  const k = mapParts(map).find((x) => x.key === key);
+  if (!k) return null;
+  const kind = sassKeyKind(written);
+  const has = sassKeyKind(k.raw);
+  if (kind === has) return null;
+  return `${call}: Sass reads ${written.trim()} as a ${kind}, not as the key ${k.raw} of $${mapName} (a ${has}): the lookup gives null and the toolkit printed no declaration here. Keep the line as it is and STOP and ask`;
 }
 // Keys of a toolkit value: the literal, var(--token), and the values of a map.
 function valueKeys(value, token) {
@@ -2557,6 +2903,103 @@ function sassGraph(root, src) {
   return { tk, config, external, reach, unit, importsAt };
 }
 
+// A LITERAL entry as printed: "label -> value (token; why)".
+function literalText(x) {
+  const why =
+    x.reason === "ambiguous"
+      ? `tokens ${x.candidates.join(", ")}: none chosen`
+      : x.reason === "no-token" || x.reason === "not-colour"
+        ? ""
+        : `${x.token}; ${x.note || LITERAL_WHY[x.reason]}`;
+  return `${x.label} -> ${x.value}${why ? ` (${why})` : ""}`;
+}
+// Where a LITERAL entry is: file:line, or the file alone when the line is not found any more.
+const literalAt = (x) =>
+  x.moved ? `${x.file} (line moved)` : `${x.file}:${x.line}`;
+// The LITERAL entries by reason: the colours written by --write, the values a MANUAL line asks to
+// write, then the other values (sizes, breakpoints, fonts, maps), which never have a token.
+const LITERAL_GROUPS = [
+  [
+    "no Canopée token has exactly this value (never use a close one):",
+    (r) => r === "no-token",
+  ],
+  [
+    "several Canopée tokens have exactly this value, none is chosen:",
+    (r) => r === "ambiguous",
+  ],
+  [
+    "a token exists, but nothing loads the Canopée distributeur stylesheet (tokens.css) for this file, so var(...) would be empty:",
+    (r) => r === "no-tokens-css",
+  ],
+  [
+    "a token exists, but the project declares it itself, so var(...) would take the project value:",
+    (r) => r === "project-token",
+  ],
+  [
+    "a token exists, but Sass or JavaScript reads the value here:",
+    (r) =>
+      ![
+        "no-token",
+        "ambiguous",
+        "no-tokens-css",
+        "project-token",
+        "not-colour",
+      ].includes(r),
+  ],
+];
+function literalGroups(list) {
+  const out = [];
+  const auto = list.filter((x) => !x.manual && x.reason !== "not-colour");
+  for (const [title, test] of LITERAL_GROUPS) {
+    const l = auto.filter((x) => test(x.reason));
+    if (l.length) out.push([title, l]);
+  }
+  const manual = list.filter((x) => x.manual);
+  if (manual.length)
+    out.push([
+      "to write by hand, as its MANUAL line (SASS_VAR, SASS_MIXIN) says:",
+      manual,
+    ]);
+  const other = list.filter((x) => !x.manual && x.reason === "not-colour");
+  if (other.length)
+    out.push([
+      "other toolkit values (sizes, breakpoints, fonts, maps): Canopée has no token for them:",
+      other,
+    ]);
+  return out;
+}
+// The LITERAL lines of the report: the colours, grouped by reason, at most max of them; the other
+// values (sizes, breakpoints, fonts, maps) are only counted.
+function literalLines(literals, max = 20) {
+  if (!literals.length) return [];
+  const colours = literals
+    .filter((x) => x.reason !== "not-colour")
+    .sort((a, b) =>
+      a.file < b.file ? -1 : a.file > b.file ? 1 : a.line - b.line,
+    );
+  const other = literals.length - colours.length;
+  if (!colours.length)
+    return [
+      `LITERAL: ${other} toolkit values written as the toolkit value (sizes, breakpoints, fonts, maps): Canopée has no token for them (no action)`,
+    ];
+  const L = [
+    `LITERAL: ${colours.length} toolkit colours written as the toolkit value, not var(--token) (no action: --report lists them all for the report, see LITERAL)`,
+  ];
+  let n = 0;
+  for (const [title, list] of literalGroups(colours)) {
+    if (n < max) L.push(`  ${title}`);
+    for (const x of list)
+      if (n++ < max) L.push(`    ${literalAt(x)}  ${literalText(x)}`);
+  }
+  if (n > max)
+    L.push(`  ... and ${n - max} more (--report and --json list them all)`);
+  if (other)
+    L.push(
+      `  and ${other} other toolkit values (sizes, breakpoints, fonts, maps): Canopée has no token for them`,
+    );
+  return L;
+}
+
 // Removes the @include wrapper of a breakpoint without media query (up(xs), down(xl)): its content
 // applies everywhere, exactly as the toolkit mixin did. Returns the edits, or null.
 function unwrapEdits(text, t, start, end) {
@@ -2617,6 +3060,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     shadowed: {},
     overrides: [],
     partial: [],
+    literals: [],
   };
   const src = new Map();
   for (const f of styleFiles)
@@ -2698,9 +3142,73 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
   const bsOf = (f) => (inUnit(f, bsFiles) ? {} : data.bootstrap);
   const valueOf = (n, f) =>
     data.toolkit[n] ?? (f === undefined ? data.bootstrap : bsOf(f))[n];
-  const tokenOf = new Map(
-    Object.entries(data.tokens).map(([t, v]) => [normValue(v), t]),
-  );
+  // the Canopée token of a toolkit value (tokenMap, built by tools/build-token-map.mjs), and the
+  // candidates when several tokens have it (tokenAmbiguous); a JSON without tokenMap: no token
+  const tm = data.tokenMap || {};
+  const ta = data.tokenAmbiguous || {};
+  const MAP_OF = {
+    "theme-color": "theme-colors",
+    gray: "grays",
+    color: "colors",
+  };
+  // the Canopée tokens are loaded for this file (its package loads them, see main())
+  const loadedFor = (f) =>
+    ctx.tokensLoadedFor ? ctx.tokensLoadedFor(f) : !!ctx.tokensLoaded;
+  // the project mixins whose declarations end up in a :export block (values given to JavaScript)
+  const toJs = exportMixins([...src.values()]);
+  // the token, or the token it is an alias of, when the project declares it itself: var() would take
+  // the project value there, not the toolkit one
+  const ownToken = (token) => {
+    const seen = new Set();
+    for (let x = token; x && !seen.has(x); ) {
+      if (ctx.ownProps?.has(x)) return x;
+      seen.add(x);
+      x = /^var\((--[\w-]+)\)$/.exec(
+        String(data.tokens?.[x] ?? "").trim(),
+      )?.[1];
+    }
+    return null;
+  };
+  // why var(token) cannot replace the toolkit value at t[index] ({ why: null }: it can), with a note
+  const whyNot = (t, index, f, token) => {
+    if (!token) return { why: null };
+    const why = varContext(t, index, f, loadedFor(f), toJs);
+    if (why !== null) return { why };
+    const own = ownToken(token);
+    return own
+      ? {
+          why: "project-token",
+          note: `the project declares ${own} itself, var(...) would take its value`,
+        }
+      : { why: null };
+  };
+  // every toolkit value written or listed as a literal, with the reason (LITERAL)
+  const literals = [];
+  const literal = (f, index, label, value, token, why, cands, manual, note) =>
+    literals.push({
+      file: f,
+      index,
+      label,
+      value,
+      ...(token ? { token } : {}),
+      reason: token
+        ? why
+        : cands
+          ? "ambiguous"
+          : isColour(value)
+            ? "no-token"
+            : "not-colour",
+      ...(cands ? { candidates: cands } : {}),
+      ...(note ? { note } : {}),
+      manual,
+    });
+  // why a MANUAL line keeps the toolkit value
+  const keepWhy = (token, why, cands, note) =>
+    token
+      ? `${note || LITERAL_WHY[why]}: not var(${token})`
+      : cands
+        ? `${LITERAL_WHY.ambiguous} (${cands.join(", ")})`
+        : LITERAL_WHY["no-token"];
   const sees = (f, name) =>
     locals.has(name) ||
     (definedIn.has(name) && (injected || inUnit(f, definedIn.get(name))));
@@ -2735,7 +3243,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     const value = valueOf(d.name, d.file);
     if (value === undefined) return false;
     const v = normValue(d.value);
-    const token = tokenOf.get(normValue(value));
+    const token = tm.variables?.[d.name];
     const ref = /^\$([\w-]+)$/.exec(v);
     return (
       v === normValue(value) ||
@@ -2938,12 +3446,49 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         track(f, m.index, m[0], [m[0], `$${name}`]);
         continue;
       }
-      const token = tokenOf.get(normValue(value));
-      track(f, m.index, m[0], [m[0], `$${name}`, ...valueKeys(value, token)]);
-      const auto = scss ? sassAutoValue(t, m.index, name, value, token) : null;
+      const wrong = keyMismatch(m[0], `${m[2]}${m[3]}${m[2]}`, name, map, m[3]);
+      if (wrong) {
+        consumed.add(m.index + m[0].indexOf("$"));
+        add(m.index, "SASS_VAR", wrong);
+        track(f, m.index, m[0], [m[0]]);
+        continue;
+      }
+      const token = tm.maps?.[name]?.[m[3]];
+      const cands = ta.maps?.[name]?.[m[3]];
+      const { why, note: own } = whyNot(t, m.index, f, token);
+      const note =
+        why === "sass-statement"
+          ? statementWhy(t.slice(...stmtBounds(t, m.index)))
+          : own;
+      // var(--token) counts as the exact replacement only where it may be written
+      track(f, m.index, m[0], [
+        m[0],
+        `$${name}`,
+        ...valueKeys(value, why === null ? token : undefined),
+      ]);
+      const auto = scss
+        ? sassAutoValue(t, m.index, name, value, token, why)
+        : null;
       consumed.add(m.index + m[0].indexOf("$"));
       if (auto !== null) edit(m.index, m.index + m[0].length, auto);
-      else add(m.index, "SASS_VAR", `${m[0]} -> ${value} (toolkit value)`);
+      else
+        add(
+          m.index,
+          "SASS_VAR",
+          `${m[0]} -> ${value} (toolkit value; ${keepWhy(token, why, cands, note)})`,
+        );
+      if (auto === null || !auto.startsWith("var("))
+        literal(
+          f,
+          m.index,
+          m[0],
+          value,
+          token,
+          why,
+          cands,
+          auto === null,
+          note,
+        );
     }
     const vars = new Map();
     for (const m of t.matchAll(/\$([A-Za-z_][\w-]*)(?![\w-])/g)) {
@@ -2988,11 +3533,16 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         continue;
       }
       let value = valueOf(name, f);
+      let token = value === undefined ? undefined : tm.variables?.[name];
+      let cands = value === undefined ? undefined : ta.variables?.[name];
       let candidates = null;
       if (value === undefined && hadToolkit(f) && data.components?.[name]) {
         const vals = [...new Set(Object.values(data.components[name]))];
-        if (vals.length === 1) value = vals[0];
-        else candidates = data.components[name];
+        if (vals.length === 1) {
+          value = vals[0];
+          token = tm.components?.[name];
+          cands = ta.components?.[name];
+        } else candidates = data.components[name];
       }
       if (value === undefined) {
         if (candidates) {
@@ -3026,44 +3576,61 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         }
         continue;
       }
-      const lineText = t.slice(
-        t.lastIndexOf("\n", m.index) + 1,
-        (t.indexOf("\n", m.index) + 1 || t.length + 1) - 1,
-      );
-      const token = tokenOf.get(normValue(value));
+      const ns =
+        t[m.index - 1] === "." ? /([\w-]+)\.$/.exec(t.slice(0, m.index)) : null;
+      // tk.$x: the context is the one of "tk."
+      const at = ns ? m.index - ns[0].length : m.index;
+      const { why, note: own } = whyNot(t, at, f, token);
+      const st = t.slice(...stmtBounds(t, at));
+      const note = why === "sass-statement" ? statementWhy(st) : own;
       const result = arithmeticResult(t, m.index, m.index + m[0].length, value);
       track(
         f,
         m.index,
         `$${name} (${value.length > 40 ? `${value.slice(0, 40)}...` : value})`,
-        [`$${name}`, ...valueKeys(value, token), ...(result ? [result] : [])],
+        [
+          `$${name}`,
+          ...valueKeys(value, why === null ? token : undefined),
+          ...(result ? [result] : []),
+        ],
       );
-      const auto = scss ? sassAutoValue(t, m.index, name, value, token) : null;
+      const auto = scss
+        ? sassAutoValue(t, m.index, name, value, token, why)
+        : null;
       if (auto !== null) {
         edit(m.index, m.index + name.length + 1, auto);
+        if (!auto.startsWith("var("))
+          literal(
+            f,
+            m.index,
+            `$${name}`,
+            value,
+            token,
+            why,
+            cands,
+            false,
+            note,
+          );
         continue;
       }
+      const label = `${ns ? `${ns[1]}.` : ""}$${name}`;
+      if (!(token && why === null))
+        literal(f, at, label, value, token, why, cands, true, note);
+      const keep = keepWhy(token, why, cands, note);
       let detail;
-      const ns =
-        t[m.index - 1] === "." ? /([\w-]+)\.$/.exec(t.slice(0, m.index)) : null;
       if (ns)
-        detail = `${ns[1]}.$${name} -> ${token ? `var(${token})` : value} (toolkit value ${value}; replace the whole ${ns[1]}.$${name})`;
+        detail =
+          token && why === null
+            ? `${label} -> var(${token}) (toolkit value ${value}; replace the whole ${label})`
+            : `${label} -> ${value} (toolkit value; ${keep}; replace the whole ${label})`;
       else if (value.startsWith("("))
-        detail = `$${name}: toolkit map ${value}: declare $${name} in the project with exactly this value`;
-      else if (token && /@(?:mixin|function)\s/.test(lineText))
-        detail = `$${name} as a parameter default -> ${value} (toolkit value, not var(...): the mixin may pass it to a Sass function)`;
-      else if (
-        token &&
-        !SASS_FUNCS.test(lineText) &&
-        !insideSassCall(t, m.index)
-      )
+        detail = `$${name}: toolkit map ${value}: declare $${name} in the project with exactly this value (these literal values, never var(...) in a map)`;
+      else if (token && why === null)
         detail = `$${name} -> var(${token}) (same value as the toolkit: ${value})`;
-      else if (token)
-        detail = `$${name} inside a Sass function -> ${value} (toolkit value; a Sass function does not accept var(...))`;
-      else
-        detail = `$${name} -> ${value} (toolkit value; no Canopée token has exactly this value, never use a close one)`;
+      else detail = `$${name} -> ${value} (toolkit value; ${keep})`;
       // "30px / 2" in a property is printed as is: Sass only divides a variable or a parenthesis
-      if (!value.startsWith("(") && /[^/]\/[^/*]/.test(lineText))
+      // (a "/" inside a string or a url(), e.g. a data URI, divides nothing)
+      if (!value.startsWith("(") && /[^/]\/[^/*]/.test(plainValue(st)))
         detail += `; next to "/", write the result${result ? ` (${result})` : ""} or calc(): Sass does not divide two literals in a property`;
       else if (result && t[m.index - 1] === "-") detail += ` (here: ${result})`;
       const v = vars.get(detail);
@@ -3171,12 +3738,15 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
           track(f, m.index, call, [call]);
           continue;
         }
-        const hit = affectedBy(
-          f,
-          { "theme-color": "theme-colors", gray: "grays", color: "colors" }[fn],
-        );
+        const hit = affectedBy(f, MAP_OF[fn]);
         if (hit) {
           add(m.index, "SASS_MIXIN", `${call}: ${stopText(hit)}`);
+          track(f, m.index, call, [call]);
+          continue;
+        }
+        const wrong = keyMismatch(call, m[2], MAP_OF[fn], bs[MAP_OF[fn]], arg);
+        if (wrong) {
+          add(m.index, "SASS_MIXIN", wrong);
           track(f, m.index, call, [call]);
           continue;
         }
@@ -3190,12 +3760,20 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         track(f, m.index, call, [call]);
         continue;
       }
-      const token = value ? tokenOf.get(normValue(value)) : undefined;
+      const token =
+        value && fn in MAP_OF ? tm.maps?.[MAP_OF[fn]]?.[arg] : undefined;
+      const cands =
+        value && fn in MAP_OF ? ta.maps?.[MAP_OF[fn]]?.[arg] : undefined;
+      const { why, note: own } = whyNot(t, m.index, f, token);
+      const note =
+        why === "sass-statement"
+          ? statementWhy(t.slice(...stmtBounds(t, m.index)))
+          : own;
       const bare =
         value === null ? "" : String(value).replace(/^["']|["']$/g, "");
       track(f, m.index, call, [
         call,
-        ...(value ? valueKeys(value, token) : []),
+        ...(value ? valueKeys(value, why === null ? token : undefined) : []),
         ...(bare && bare !== value ? [bare] : []),
       ]);
       if (
@@ -3209,8 +3787,20 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       }
       const auto =
         scss && value && !/^["']/.test(value) && fn !== "breakpoint-next"
-          ? sassAutoValue(t, m.index, fn, value, token)
+          ? sassAutoValue(t, m.index, fn, value, token, why)
           : null;
+      if (value !== null && (auto === null || !auto.startsWith("var(")))
+        literal(
+          f,
+          m.index,
+          call,
+          value,
+          token,
+          why,
+          cands,
+          auto === null,
+          note,
+        );
       if (auto !== null) {
         edit(m.index, m.index + call.length, auto);
         continue;
@@ -3220,7 +3810,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
         "SASS_MIXIN",
         value === null
           ? `${call} is null for this breakpoint (no limit): the toolkit printed nothing for it; keep the line and STOP and ask`
-          : `${call} -> ${value} (toolkit value)`,
+          : `${call} -> ${value} (toolkit value${token || cands ? `; ${keepWhy(token, why, cands, note)}` : ""})`,
       );
     }
     // rem(24px) is 1.5rem (the toolkit divides by 16px and prints up to 10 decimals, like Sass); the
@@ -3319,7 +3909,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     const [rf, name] = k.split("|");
     const d = defs.find((x) => rel(x.file) === rf && x.name === name);
     if (!d) continue;
-    const token = tokenOf.get(normValue(v));
+    const token = tm.variables?.[name];
     if (
       normValue(d.value) === normValue(v) ||
       (token && normValue(d.value) === `var(${token})`)
@@ -3341,7 +3931,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
       const v = normValue(d.value);
       if (value.startsWith("(") || before.has(`${rel(d.file)}|${d.name}|${v}`))
         continue;
-      const token = tokenOf.get(normValue(value));
+      const token = tm.variables?.[d.name];
       const ref = /^\$([\w-]+)$/.exec(v);
       if (
         v === normValue(value) ||
@@ -3371,6 +3961,7 @@ function toolkitSassItems(root, styleFiles, texts, ctx, data, rel, tkDeleted) {
     partial: [...src.keys()]
       .filter((f) => !isHelper(f) && partialNow(f))
       .map((f) => ({ file: rel(f), spec: partialNow(f) })),
+    literals,
   };
 }
 
@@ -4106,8 +4697,48 @@ function main() {
   items.push(...actionClassItems(actionClasses, files.style, texts, rel));
   if (ctx.fromToolkit) items.push(...cssOrderItems(files.code, texts));
   for (const [f, t] of texts) items.push(...removedTokenItems(f, t, ctx));
+  // the Canopée distributeur tokens are loaded once the AUTO rewrites are applied (the toolkit
+  // imports become @axa-fr/canopee-react/distributeur): otherwise var(--token) would be empty, and
+  // every toolkit value is written as is (LITERAL, no-tokens-css). Per package (the folder of the
+  // nearest package.json): a Sass package of a monorepo may be published and used without Canopée.
+  // A test, story or mock file loads nothing for the pages. Recorded on --write.
+  const rewritten = new Map(
+    results.map((r) => [r.file, applyEdits(r.text, r.edits).out]),
+  );
+  const pkgMemo = new Map();
+  const pkgOf = (f) => {
+    const start = path.dirname(f);
+    if (pkgMemo.has(start)) return pkgMemo.get(start);
+    let d = start;
+    while (
+      d !== root &&
+      d.startsWith(root + path.sep) &&
+      !fs.existsSync(path.join(d, "package.json"))
+    )
+      d = path.dirname(d);
+    const r = d.startsWith(root + path.sep) ? rel(d) : ".";
+    pkgMemo.set(start, r);
+    return r;
+  };
+  const loaded = new Set();
+  for (const [f, t] of texts) {
+    const isCode = CODE_EXT.has(path.extname(f).toLowerCase());
+    if (isCode && TEST_FILE_RE.test(rel(f))) continue;
+    if (loadsCanopeeTokens(rewritten.get(f) ?? t, isCode ? "code" : "style"))
+      loaded.add(pkgOf(f));
+  }
+  if (pageTexts.some((t) => loadsCanopeeTokens(t, "page"))) loaded.add(".");
+  const loadedBefore = state.origin?.tokensLoaded;
+  if (loadedBefore === true)
+    loaded.add("*"); // an older state: the whole project
+  else if (Array.isArray(loadedBefore))
+    for (const d of loadedBefore) loaded.add(d);
+  origin.tokensLoaded = [...loaded].sort();
+  ctx.tokensLoaded = loaded.size > 0;
+  ctx.tokensLoadedFor = (f) => loaded.has("*") || loaded.has(pkgOf(f));
   // Toolkit Sass: exact values for every variable and mixin the project still uses
   let helper = null;
+  let literalsNow = [];
   if (tkSass) {
     // the toolkit @import lines --write deletes (analyzeStyle)
     const tkDeleted = new Map();
@@ -4125,6 +4756,7 @@ function main() {
       tkDeleted,
     );
     items.push(...r.items);
+    literalsNow = r.literals;
     // the safe replacements join the other AUTO edits of the same file
     for (const [f, e] of r.edits) {
       const res = results.find((x) => x.file === f);
@@ -4245,6 +4877,61 @@ function main() {
       i.line = lineOf(w.out, at >= 0 ? at : shiftIndex(i.index, w.kept));
     }
   }
+  // LITERAL: the toolkit values written (or to write, MANUAL) as the toolkit value, not var(--token).
+  // After --write the toolkit names are gone: the list recorded by the first --write is printed again,
+  // each entry found again in its file (FORMAT and the MANUAL edits move the lines): the line recorded
+  // (anchor), else the nearest line with its value (or, MANUAL, its toolkit name); else "line moved".
+  const literalsHere = literalsNow.map((x) => {
+    const w = opts.write ? rewrittenFiles.get(x.file) : null;
+    const { file, index, ...rest } = x;
+    const out = w ? w.out : texts.get(file);
+    const line = lineOf(out, w ? shiftIndex(index, w.kept) : index);
+    return {
+      file: rel(file),
+      line,
+      anchor: (out.split("\n")[line - 1] ?? "").trim(),
+      ...rest,
+    };
+  });
+  if (opts.write && !Array.isArray(state.sassLiterals) && tkSass)
+    ctx.applied.sassLiterals = literalsHere;
+  const flat = (v) =>
+    String(v ?? "")
+      .replace(/\s+/g, "")
+      .replace(/'/g, '"')
+      .toLowerCase();
+  const relocate = (x) => {
+    const t = texts.get(path.join(root, x.file));
+    if (t === undefined) return { ...x, moved: true };
+    const lines = t.split("\n").map(flat);
+    const near = (test) => {
+      let best = 0;
+      for (let i = 1; i <= lines.length; i++)
+        if (
+          test(lines[i - 1]) &&
+          (!best || Math.abs(i - x.line) < Math.abs(best - x.line))
+        )
+          best = i;
+      return best;
+    };
+    const anchor = flat(x.anchor);
+    const value = flat(x.value);
+    const label = flat(x.label);
+    const line =
+      (anchor && near((l) => l === anchor)) ||
+      (x.manual && label && near((l) => l.includes(label))) ||
+      (value && near((l) => l.includes(value)));
+    return line ? { ...x, line } : { ...x, moved: true };
+  };
+  const literals = (
+    Array.isArray(state.sassLiterals)
+      ? state.sassLiterals.map(relocate)
+      : literalsHere
+  )
+    .map(({ anchor, ...x }) => x)
+    .sort((a, b) =>
+      a.file < b.file ? -1 : a.file > b.file ? 1 : a.line - b.line,
+    );
   // the non-loss ledger: per file, each group of tracked uses and how many of its keys --write left
   if (opts.write && !state.sassLedger && uses.size) {
     const after = (f) => rewrittenFiles.get(f)?.out ?? texts.get(f) ?? "";
@@ -4300,6 +4987,15 @@ function main() {
     info.push(
       "toolkit-sass.json is missing next to the script: copy the whole skill folder again",
     );
+  if (ctx.fromToolkit && tkSass && !tkSass.tokenMap)
+    info.push(
+      "toolkit-sass.json has no tokenMap (an older copy): every toolkit value is written as is, never var(--token); copy the whole skill folder again",
+    );
+  const changed =
+    ctx.fromToolkit && tkSass && ctx.tokensLoaded
+      ? tokenChanges(root, tkSass)
+      : null;
+  if (changed) info.push(changed);
   for (const name of ["tsconfig.json", "tsconfig.app.json"]) {
     let t;
     try {
@@ -4415,6 +5111,7 @@ function main() {
             file: rel(i.file),
             ref: `${refBase}/${CODES[i.code]?.[1] || ""}`,
           })),
+          literals,
           info,
         },
         null,
@@ -4452,6 +5149,8 @@ function main() {
   );
   if (opts.all) for (const a of autoList) L.push(`  ${a}`);
   if (format) L.push(`FORMAT: ${format}`);
+  const lit = literalLines(literals);
+  if (lit.length) L.push("", ...lit);
   L.push("");
   if (!shown.length) L.push("MANUAL: nothing left for the script to report.");
   else {
@@ -4545,6 +5244,22 @@ function main() {
       }
       R.push(`- [ ] \`${rel(i.file)}:${i.line}\` ${i.detail}`);
     }
+    if (literals.length) {
+      R.push(
+        "",
+        "## Toolkit values kept as literals",
+        "",
+        "The toolkit value, not `var(--token)`. No action, except the values a MANUAL line above asks you",
+        "to write. The report copies this section (LITERAL in packages-and-css.md).",
+      );
+      for (const [title, list] of literalGroups(literals))
+        R.push(
+          "",
+          `${title[0].toUpperCase()}${title.slice(1)}`,
+          "",
+          ...list.map((x) => `- \`${literalAt(x)}\` ${literalText(x)}`),
+        );
+    }
     R.push(
       "",
       "## Checks",
@@ -4557,4 +5272,16 @@ function main() {
   }
 }
 
-main();
+// Tests import this file with "?no-main" to use the functions below without running the script.
+if (!import.meta.url.endsWith("?no-main")) main();
+
+export {
+  blankComments,
+  breakpointHelper,
+  exportMixins,
+  literalLines,
+  loadsCanopeeTokens,
+  sassAutoValue,
+  sassKeyKind,
+  varContext,
+};

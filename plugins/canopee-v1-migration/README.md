@@ -20,6 +20,16 @@ Canopée token or the literal toolkit value, or left as it is and listed with th
 deleted. `--write` records every toolkit value, breakpoint and removed token in use, and `--check`
 reports any of them deleted afterwards without its replacement (`SASS_LOST`).
 
+The correspondence between the toolkit Sass variables and the Canopée tokens is a table,
+`tokenMap` in `toolkit-sass.json`: a toolkit value maps to the distributeur token that has exactly
+its colour (the token of the same name first, `$brand-primary` -> `--brand-primary`, then the palette
+token, `$color-axa` -> `--axablue80`), never to a close colour nor to a token a component sets again
+(`--text-color`). The script writes `var(--token)` only in a plain CSS declaration of a project that
+loads the Canopée stylesheet and does not declare that token itself; where Sass computes with the
+value (`darken()`, `rgba()`, `@if`, a mixin argument, a media query) or JavaScript reads it
+(`:export`), it writes the toolkit value. Every value kept as a literal is listed in its report
+(`LITERAL`), with the reason.
+
 ## Install in the project to migrate
 
 The skill is a folder: copy `skills/canopee-v1-migration` into the project. GitHub Copilot (VS Code, Copilot CLI,
@@ -76,9 +86,11 @@ node .github/skills/canopee-v1-migration/scripts/canopee-migrate.mjs --help
 | --- | --- |
 | `skills/canopee-v1-migration/SKILL.md` | procedure for the agent (short, loaded when the skill is used) |
 | `skills/canopee-v1-migration/scripts/canopee-migrate.mjs` | inventory and safe rewrites, dry run by default |
-| `skills/canopee-v1-migration/scripts/toolkit-sass.json` | values of the toolkit Sass variables, Canopée colour tokens |
+| `skills/canopee-v1-migration/scripts/toolkit-sass.json` | values of the toolkit Sass variables, Canopée tokens, toolkit to Canopée token map |
 | `skills/canopee-v1-migration/references/toolkit-to-canopee.md` | `@axa-fr/react-toolkit-*` to distributeur |
 | `skills/canopee-v1-migration/references/packages-and-css.md` | package names, CSS, Sass, tokens, Jest |
+| `tools/build-token-map.mjs` | builds the token map of `toolkit-sass.json` (maintainers, not copied with the skill) |
+| `tests/` | tests of the token map and of the Sass rewrites (`node --test`, not copied with the skill) |
 
 ## Moving on to Canopée 2.0
 
@@ -102,5 +114,31 @@ files, `bootstrap` for its Bootstrap 4 copy, maps and `url()` values included), 
 them is computed from (`deps`, so that a project value set before the toolkit import is never mistaken
 for the toolkit's), the variables of the toolkit component stylesheets by file (`components`), the `:root` custom properties of
 `af-toolkit-core.css` (`rootProperties`), the toolkit mixins and functions without equivalent
-(`mixins`, `functions`), and the literal colours of `@axa-fr/canopee-css`
-`distributeur/common/tokens.css` (1.8.0). Update `tokens` when a release changes these colours.
+(`mixins`, `functions`). Its first sections are written by `tools/build-token-map.mjs` from the
+published `@axa-fr/canopee-css` (1.8.0): `tokensSource` (version, tarball integrity, sha256 of
+`tokens.css`), `tokens` (the `:root` of `distributeur/common/tokens.css` as published),
+`tokensRedefined` (tokens that another rule of the distributeur CSS declares again: never chosen),
+`tokenMap` and, when a colour has several candidate tokens, `tokenAmbiguous`. The resolved toolkit
+values stay: the script writes them where no token fits, and checks them for `SASS_LOST`.
+
+When a Canopée 1.x release changes the distributeur CSS (the script installs `@^1.8.0`, and its
+`--check` prints a NOTE when a mapped token of the installed version has another value), rebuild the
+map from the published package and check it. From the root of the repository, with the package
+unpacked outside it:
+
+```bash
+D=$(mktemp -d) && (cd "$D" && npm pack @axa-fr/canopee-css@1.8.0 && tar -xzf axa-fr-canopee-css-1.8.0.tgz)
+npm view @axa-fr/canopee-css@1.8.0 dist.integrity                             # for --integrity
+node plugins/canopee-v1-migration/tools/build-token-map.mjs --canopee-css "$D/package" --integrity <sha512-...> --write
+npx prettier --write plugins/canopee-v1-migration/skills/canopee-v1-migration/scripts/toolkit-sass.json
+node plugins/canopee-v1-migration/tools/build-token-map.mjs --canopee-css "$D/package" --check
+```
+
+Without `--write` the tool prints a summary: the tokens matched by name, the ambiguous colours, and
+the toolkit colours within 2/255 of a token, which it never maps (`$color-azur` `#3032c1`, `--azur`
+`#3032c0`). Tests (Node 22 or later; with the `sass` package of the repository, they also compile the
+rewritten Sass; with `CANOPEE_CSS_DIR="$D/package"`, they also check the JSON against the package):
+
+```bash
+node --test plugins/canopee-v1-migration/tests/*.test.mjs
+```

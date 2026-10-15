@@ -41,8 +41,11 @@ snapshots. If you stop before `VERDICT: DONE`, your answer starts with `MIGRATIO
    If it prints a FORMAT command, run it (the rewritten imports follow the project's Prettier).
    Never back files up yourself (`sed -i.bak`, copies): git keeps the history.
    In style files it replaces every toolkit Sass variable, function and `media-breakpoint-*` whose
-   value is certain (the exact Canopée token, otherwise the literal toolkit value) and lists every
-   other one in MANUAL with the value to write: it never deletes one. It deletes the toolkit Sass
+   value is certain and lists every other one in MANUAL with the value to write: it never deletes one.
+   It writes `var(--token)` only where a Canopée token has exactly the toolkit value, in a plain CSS
+   declaration of a project that loads the Canopée stylesheet; everywhere else (a Sass function, an
+   operator, `@if`, a mixin argument, `:export`, no Canopée stylesheet loaded...) the literal toolkit
+   value, listed in LITERAL with the reason. It deletes the toolkit Sass
    imports (or imports `_toolkit-breakpoints.scss`, which it writes, where a rule computes a
    breakpoint) and records every toolkit value in use: `--check` lists each one that disappears
    without its replacement (`SASS_LOST`).
@@ -73,8 +76,10 @@ snapshots. If you stop before `VERDICT: DONE`, your answer starts with `MIGRATIO
    nothing (styles compile only when a page loads). Stop before DONE only on a STOP rule, or when two
    `--check` in a row print the same MANUAL count and the same failing checks (no progress): then
    report NOT DONE.
-7. Only after `VERDICT: DONE`: delete `canopee-migration-todo.md` and `.canopee-migrate.json`, then
-   write the report. While NOT DONE, keep them: they hold what is left.
+7. Only after `VERDICT: DONE`: run `node SKILL_DIR/scripts/canopee-migrate.mjs --report canopee-migration-todo.md`
+   once more (it lists every toolkit value kept as a literal), write the report, then delete
+   `canopee-migration-todo.md` and `.canopee-migrate.json`. While NOT DONE, keep them: they hold what is
+   left.
 
 Suggest two commits: one after step 4 (automatic part), one after step 6 (manual part).
 
@@ -125,7 +130,7 @@ Never change a test to match broken markup, never skip or delete a test.
 | File | Codes |
 | --- | --- |
 | [references/toolkit-to-canopee.md](references/toolkit-to-canopee.md) | `TK_*` (including `TK_ALERT_CLASSMODIFIER`, `TK_ACTION_CLASS`), `BUTTON_CLASSMODIFIER`, `BUTTON_CLASSNAME` |
-| [references/packages-and-css.md](references/packages-and-css.md) | package names, CSS, `SASS`, `SASS_VAR`, `SASS_MIXIN`, `SASS_UNDEFINED`, `SASS_LOST`, `SASS_VALUE`, `CSS_MISSING`, `TOKEN_REMOVED`, `CSS_ORDER`, `EXPORT_MISSING`, `OLD_STRING`, `OLD_LF`, `DS0`, `JEST`, `TSCONFIG`, `TESTS`, `VISUAL`, `NO_CAST` |
+| [references/packages-and-css.md](references/packages-and-css.md) | package names, CSS, `SASS`, `SASS_VAR`, `SASS_MIXIN`, `SASS_UNDEFINED`, `SASS_LOST`, `SASS_VALUE`, `LITERAL`, `CSS_MISSING`, `TOKEN_REMOVED`, `CSS_ORDER`, `EXPORT_MISSING`, `OLD_STRING`, `OLD_LF`, `DS0`, `JEST`, `TSCONFIG`, `TESTS`, `VISUAL`, `NO_CAST` |
 
 Component documentation, when the zeroheight MCP servers are configured:
 `univers-distributeur-et-collaborateur` (distributeur) and `univers-client-et-prospect` (prospect,
@@ -140,6 +145,9 @@ client), with `search-pages` then `get-page`.
 - Items left and STOP questions, with `file:line`.
 - The `CHECK` lines of the last `--check`, as printed (never "PASS" for a check you did not see pass).
   Without `VERDICT: DONE`, say the migration is not finished, what is left and why.
+- Toolkit values kept as literals: the section "Toolkit values kept as literals" of the last `--report`
+  (step 7), as written (no Canopée token has exactly the value, the project loads no Canopée stylesheet,
+  or Sass or JavaScript reads it there).
 - Snapshots updated and test queries changed (`TESTS`), with the reason.
 - Pages to check visually: those using Button, Message, Popover, HelpButton, CollapseCard, Loader,
   Modal, DateInput, Action, at desktop and mobile width, and every `VISUAL` line of the last

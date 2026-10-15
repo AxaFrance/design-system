@@ -81,8 +81,7 @@ Coming from the toolkit, `--write` already did the safe part in `.scss` files:
 
 - each toolkit variable, `map-get` of a toolkit map, `theme-color()` / `gray()` / `color()` with a
   written key, `breakpoint-min()` / `breakpoint-max()` and `rem()` whose replacement cannot change what
-  Sass computes became `var(--token)` (a plain declaration, exactly the same value) or the literal
-  toolkit value (everywhere else);
+  Sass computes became `var(--token)` or the literal toolkit value (rule below);
 - each `@include media-breakpoint-*` with a written breakpoint became its `@media` query (table in
   `SASS_MIXIN`); when the toolkit printed no media query (`up(xs)`, `down(xl)`), only the `@include`
   line and its closing brace were removed, every rule inside is kept;
@@ -99,17 +98,30 @@ whole core. Those uses are listed with STOP (`SASS_VAR`, `SASS_MIXIN`): leave th
 value it must keep. A project `$grid-breakpoints` is the exception: the breakpoints of its files keep the
 toolkit mixins (`_toolkit-breakpoints.scss`), which read the project map.
 
+`var(--token)` replaces a toolkit value only when a Canopée distributeur token has exactly that colour
+(the token of the same name first: `$brand-primary` -> `var(--brand-primary)`), in a plain property
+declaration of a `.scss` file, outside any Sass function and operator, in a package that loads the
+Canopée stylesheet (`@axa-fr/canopee-react/distributeur` or `distributeur.css`, imported by the app,
+not only by a test) and does not declare that token itself (`--brand-primary` in a theme: `var()` would
+take the project value). Everywhere else the literal toolkit value is written: a Sass function
+(`darken()`, `rgba()`, `if()`), an operator, `/`, a Sass variable, `@if`, `@each`, `@return`, a mixin
+argument, a media query, an interpolation (`#{}`), a custom property, a `:export` block or a mixin
+included there (CSS Modules give it to JavaScript), a `.sass` file. Each such value is listed in
+`LITERAL` with the reason.
+
 What is left is listed file by file, with the exact replacement: `SASS` (a `@use`, a commented or
 multi-path import), `SASS_VAR`, `SASS_MIXIN`, `SASS_UNDEFINED`, `SASS_VALUE`; do exactly what each line
 says. The toolkit is uninstalled at step 4, so its values are gone from `node_modules`: never guess one,
 never declare a "fallback" variable with a value of your own.
 
 Other origins (Slash, Look & Feel): replace each Sass variable by a CSS custom property of
-`<universe>/common/tokens.css` that has exactly the same value. Same values, toolkit and Slash Sass:
+`<universe>/common/tokens.css` that has exactly the same value, with the same rule. Same values,
+toolkit and Slash Sass (the whole list: `tokenMap` in `scripts/toolkit-sass.json`):
 
 | Sass | CSS |
 | --- | --- |
-| `$color-axa`, `$brand-primary` | `var(--axablue80)` |
+| `$color-axa` | `var(--axablue80)` |
+| `$brand-primary` | `var(--brand-primary)` |
 | `$color-texte`, `$color-mine-shaft`, `$color-scorpion` | `var(--gray80)` |
 | `$color-gray-1`, `$color-silver` | `var(--gray40)` |
 | `$color-dusty-gray` | `var(--gray50)` |
@@ -117,19 +129,25 @@ Other origins (Slash, Look & Feel): replace each Sass variable by a CSS custom p
 | `$white`, `$color-white` | `var(--white)` |
 | `$black` | `var(--black)` |
 
-Rules: never pick a "close" colour. A variable with no exact token keeps its old value in a
-project variable (declare it once, e.g. `:root { --app-color-red-error: #f02849; }`).
-Sass functions (`darken($color-axa, 10%)`, `rgba($x, .5)`) do not accept `var(...)`: keep a local
-Sass variable with the literal value there.
+Rules: never pick a "close" colour (`$color-azur` is `#3032c1`, `--azur` is `#3032c0`: no token). A
+variable with no exact token keeps its old value in a project variable (declare it once, e.g.
+`:root { --app-color-red-error: #f02849; }`). Sass functions (`darken($color-axa, 10%)`,
+`rgba($x, .5)`) do not accept `var(...)`: keep a local Sass variable with the literal value there.
 
 ### SASS_VAR
 
 A toolkit Sass variable that no file compiled with this one defines. The line gives the replacement:
-`var(--token)` when a Canopée token has exactly the toolkit value, otherwise the toolkit value itself
-(e.g. `$color-mercury -> #e5e5e5`). Replace the variable on the listed lines of that file and keep the
-rest of the line. Used many times, the literal may go in one project variable with exactly that value
-(it still counts for `SASS_LOST`). A toolkit map (`$container-max-widths`) is declared in the project
-with the value printed. `tk.$color-axa` (a `@use ... as tk` namespace): replace the whole `tk.$color-axa`.
+`var(--token)` when a Canopée token has exactly the toolkit value and the line is a plain declaration,
+otherwise the toolkit value itself, with the reason (e.g. `$color-mercury -> #e5e5e5`, no token;
+`$color-axa -> #00008f` in an `@if`: Sass compares the value, `var(...)` would drop the rule). Replace
+the variable on the listed lines of that file and keep the rest of the line. Used many times, the
+literal may go in one project variable with exactly that value (it still counts for `SASS_LOST`). A
+toolkit map (`$container-max-widths`) is declared in the project with the value printed.
+`tk.$color-axa` (a `@use ... as tk` namespace): replace the whole `tk.$color-axa`.
+
+A lookup whose key is an unquoted colour name or a number (`map-get($colors, white)`, `color(white)`,
+`gray(100)`) found nothing: Sass looked up the colour `white` or the number `100`, not the key `"white"`
+or `"100"`, and printed no declaration. Its line says STOP: keep it as it is and ask.
 
 A `SASS_VAR` line that says STOP has no value to write: the toolkit value of that variable is not the one
 the pages had (see `SASS`). Keep the line, do not write the value of another variable, ask.
@@ -197,8 +215,10 @@ own.
 in use, with its exact replacements. A `SASS_LOST` line means the file has fewer of them than after
 `--write`: one was deleted, or replaced by another value. `git diff <file>` shows where: put the line
 back with the replacement of its `SASS_VAR` / `SASS_MIXIN` / `TOKEN_REMOVED` line (the value printed,
-or the `var(--token)`). A project variable that holds exactly that value counts. Never "fix" it by
-writing the value somewhere else in the file.
+or the `var(--token)`). A project variable that holds exactly that value counts, and so does the
+literal value in place of the `var(--token)` the script wrote. Another token with the same colour does
+not (`var(--axablue80)` where the script wrote `var(--brand-primary)`). Never "fix" it by writing the
+value somewhere else in the file.
 
 ```scss
 .card { border: 1px solid $color-mercury; }   // BEFORE --write
@@ -215,6 +235,17 @@ value printed on the line, or the `var(--token)` it gives.
 Also a project `$x: value !default` placed after the toolkit import: it did nothing while the toolkit was
 there (the toolkit value applied); once the import is gone, its own value would apply. The line gives
 the toolkit value the pages had: write it, or STOP and ask if a page needs the other one.
+
+### LITERAL
+
+No action: the toolkit values the script wrote, or a MANUAL line asks you to write, as the toolkit
+value and not `var(--token)`, with the reason. Either no Canopée token has exactly this value (never
+use a close one), or a token exists but Sass or JavaScript reads the value there (a Sass function, an
+operator, `@if`, a Sass variable, a mixin argument, an interpolation, `:export`...), or nothing loads
+the Canopée stylesheet for that file, or the project declares the token itself. Keep these values as
+they are. `--write` records the list in `.canopee-migrate.json`; `--check` prints it again with the
+line where each value is now (at most 20 colours), and `--report` writes all of them: the report
+copies that section of the last `--report` (SKILL.md, step 7).
 
 ### TOKEN_REMOVED
 
