@@ -2,7 +2,7 @@
   "name": "canopee-plugins",
   "metadata": {
     "description": "Canopée plugins",
-    "version": "0.0.2"
+    "version": "0.0.3"
   },
   "owner": {
     "name": "AXA France"
@@ -23,11 +23,11 @@
       "skills": ["./skills/canopee-prospect-client"]
     },
     {
-      "name": "canopee-migration",
-      "source": "./plugins/canopee-migration",
-      "description": "Canopée migration plugin for GitHub Copilot: from react-toolkit, Slash, Apollo or Look & Feel to Canopée 1.x.",
+      "name": "canopee-v1-migration",
+      "source": "./plugins/canopee-v1-migration",
+      "description": "Canopée v1 migration plugin for GitHub Copilot: from react-toolkit, Slash, Apollo or Look & Feel to Canopée 1.8.0 (1.x).",
       "version": "0.0.1",
-      "skills": ["./skills/canopee-migration"]
+      "skills": ["./skills/canopee-v1-migration"]
     },
     {
       "name": "frontend-slides",

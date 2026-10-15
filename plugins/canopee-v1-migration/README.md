@@ -1,4 +1,4 @@
-# Canopée Migration
+# Canopée v1 migration
 
 Agent skill that migrates a React project to the Canopée design system 1.x
 (`@axa-fr/canopee-react`, `@axa-fr/canopee-css`):
@@ -22,30 +22,30 @@ reports any of them deleted afterwards without its replacement (`SASS_LOST`).
 
 ## Install in the project to migrate
 
-The skill is a folder: copy `skills/canopee-migration` into the project. GitHub Copilot (VS Code, Copilot CLI,
+The skill is a folder: copy `skills/canopee-v1-migration` into the project. GitHub Copilot (VS Code, Copilot CLI,
 cloud agent) reads skills from `.github/skills/`, `.agents/skills/` and `.claude/skills/`; Claude Code
 reads `.claude/skills/`.
 
 With the GitHub CLI (`gh skill`, April 2026 or later), from the project root:
 
 ```bash
-gh skill install AxaFrance/design-system canopee-migration --pin main
+gh skill install AxaFrance/design-system canopee-v1-migration --pin main
 ```
 
-It installs into `.agents/skills/canopee-migration`. Without `--pin`, `gh` uses the latest GitHub release of
+It installs into `.agents/skills/canopee-v1-migration`. Without `--pin`, `gh` uses the latest GitHub release of
 this repository, which may not contain the skill yet. For Claude Code add `--agent claude-code`.
 
 Without the GitHub CLI (macOS, Linux, Git Bash; on Windows PowerShell write `curl.exe`):
 
 ```bash
-mkdir -p .github/skills && curl -sL https://codeload.github.com/AxaFrance/design-system/tar.gz/main | tar -xz -C .github/skills --strip-components=4 design-system-main/plugins/canopee-migration/skills/canopee-migration
+mkdir -p .github/skills && curl -sL https://codeload.github.com/AxaFrance/design-system/tar.gz/main | tar -xz -C .github/skills --strip-components=4 design-system-main/plugins/canopee-v1-migration/skills/canopee-v1-migration
 ```
 
 With Copilot CLI plugins:
 
 ```bash
 copilot plugin marketplace add AxaFrance/design-system
-copilot plugin install canopee-migration@canopee-plugins
+copilot plugin install canopee-v1-migration@canopee-plugins
 ```
 
 Remove the folder once the migration is merged.
@@ -55,7 +55,7 @@ Remove the folder once the migration is merged.
 In Copilot Chat (agent mode) or Copilot CLI, with any model:
 
 ```text
-/canopee-migration migrate this project to Canopée
+/canopee-v1-migration migrate this project to Canopée
 ```
 
 The agent follows `SKILL.md`: inventory, `--write`, install, fix the checklist, `--check` (typecheck,
@@ -64,21 +64,21 @@ lint, tests and build of the project) until it prints `VERDICT: DONE`, report.
 The script also works without an agent:
 
 ```bash
-node .github/skills/canopee-migration/scripts/canopee-migrate.mjs            # dry run, writes nothing
-node .github/skills/canopee-migration/scripts/canopee-migrate.mjs --write    # applies the safe rewrites
-node .github/skills/canopee-migration/scripts/canopee-migrate.mjs --check    # what is left + project checks
-node .github/skills/canopee-migration/scripts/canopee-migrate.mjs --help
+node .github/skills/canopee-v1-migration/scripts/canopee-migrate.mjs            # dry run, writes nothing
+node .github/skills/canopee-v1-migration/scripts/canopee-migrate.mjs --write    # applies the safe rewrites
+node .github/skills/canopee-v1-migration/scripts/canopee-migrate.mjs --check    # what is left + project checks
+node .github/skills/canopee-v1-migration/scripts/canopee-migrate.mjs --help
 ```
 
 ## Content
 
 | Path | Role |
 | --- | --- |
-| `skills/canopee-migration/SKILL.md` | procedure for the agent (short, loaded when the skill is used) |
-| `skills/canopee-migration/scripts/canopee-migrate.mjs` | inventory and safe rewrites, dry run by default |
-| `skills/canopee-migration/scripts/toolkit-sass.json` | values of the toolkit Sass variables, Canopée colour tokens |
-| `skills/canopee-migration/references/toolkit-to-canopee.md` | `@axa-fr/react-toolkit-*` to distributeur |
-| `skills/canopee-migration/references/packages-and-css.md` | package names, CSS, Sass, tokens, Jest |
+| `skills/canopee-v1-migration/SKILL.md` | procedure for the agent (short, loaded when the skill is used) |
+| `skills/canopee-v1-migration/scripts/canopee-migrate.mjs` | inventory and safe rewrites, dry run by default |
+| `skills/canopee-v1-migration/scripts/toolkit-sass.json` | values of the toolkit Sass variables, Canopée colour tokens |
+| `skills/canopee-v1-migration/references/toolkit-to-canopee.md` | `@axa-fr/react-toolkit-*` to distributeur |
+| `skills/canopee-v1-migration/references/packages-and-css.md` | package names, CSS, Sass, tokens, Jest |
 
 ## Moving on to Canopée 2.0
 

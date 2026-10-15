@@ -1,9 +1,9 @@
 ---
-name: canopee-migration
+name: canopee-v1-migration
 description: Migrates a React project to the Canopée design system 1.x (@axa-fr/canopee-react, @axa-fr/canopee-css) from @axa-fr/react-toolkit-*, @axa-fr/design-system-slash-*, @axa-fr/design-system-apollo-* or @axa-fr/design-system-look-and-feel-*. Use it when someone asks to migrate, upgrade or "migrer" a project to Canopée or away from react-toolkit, Slash, Apollo or Look & Feel, or when package.json depends on one of these old packages. A bundled Node script does the inventory and every safe rewrite, so the migration takes few requests. From Canopée 1.x to 2.0, use the canopee-v2-migration skill of the design system instead.
 ---
 
-# Canopée migration
+# Canopée v1 migration
 
 A script does the mechanical work. Your job: run it, install, fix the few lines it lists, verify.
 To save requests: do not read the script, do not explore the codebase, read only the reference
@@ -18,8 +18,8 @@ snapshots. If you stop before `VERDICT: DONE`, your answer starts with `MIGRATIO
 ## Before you start
 
 - The git working tree must be clean (`git status`). Otherwise stop and ask.
-- `SKILL_DIR` below is the folder of this file, usually `.github/skills/canopee-migration`
-  (or `.agents/skills/canopee-migration`, `.claude/skills/canopee-migration`; if unsure:
+- `SKILL_DIR` below is the folder of this file, usually `.github/skills/canopee-v1-migration`
+  (or `.agents/skills/canopee-v1-migration`, `.claude/skills/canopee-v1-migration`; if unsure:
   `ls .github/skills .agents/skills .claude/skills`).
 - Target: Canopée 1.x (latest 1.8.0), the only target of the script. To upgrade a project from
   Canopée 1.x to 2.0, see "Moving on to Canopée 2.0" below.
