@@ -21,6 +21,7 @@ const InputTextAtom = ({
   "aria-errormessage": ariaErrormessage,
   "aria-describedby": ariaDescribedby,
   type = "text",
+  placeholder = " ",
   ...otherProps
 }: InputTextAtomProps) => {
   const componentClassName = getClassName({
@@ -45,6 +46,7 @@ const InputTextAtom = ({
         aria-errormessage={ariaErrormessage ?? idMessage}
         aria-invalid={Boolean(error || ariaErrormessage)}
         aria-describedby={ariaDescribedby ?? idHelp}
+        placeholder={placeholder}
         {...otherProps}
       />
       {unit}
