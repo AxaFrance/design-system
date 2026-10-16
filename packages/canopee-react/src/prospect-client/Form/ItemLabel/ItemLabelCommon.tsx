@@ -17,6 +17,12 @@ export type ItemLabelProps = ComponentProps<"label"> & {
   description?: ReactNode;
 
   /**
+   * Id of the description element, so that the form control can reference it
+   * in its `aria-describedby`. Generated when not provided.
+   */
+  descriptionId?: string;
+
+  /**
    * Shows a visual asterisk (*) indicator next to the label.
    */
   required?: boolean;
@@ -107,6 +113,7 @@ export type ItemLabelCommonProps = ItemLabelProps & {
 export const ItemLabelCommon = ({
   children,
   description,
+  descriptionId,
   required,
   className,
   style,
@@ -120,7 +127,8 @@ export const ItemLabelCommon = ({
   moreButtonProps,
   ...props
 }: ItemLabelCommonProps) => {
-  const idDescription = useId();
+  const generatedDescriptionId = useId();
+  const idDescription = descriptionId ?? generatedDescriptionId;
 
   const describedByIds = [description ? idDescription : null, ariaDescribedby]
     .filter(Boolean)

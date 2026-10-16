@@ -40,13 +40,14 @@ export type MessageProps = {
   className?: string;
   /**
    * Variant of the message.
-   * This will determine the icon and the style of the message.
+   * This will determine the icon and the style of the message, and its role:
+   * `alert` for error and warning, `status` for info and success.
    */
   variant?: MessageVariants;
   /**
    * Aria label for the close button.
    * This is important for accessibility, use a meaningful label to describe the action.
-   * @default "close"
+   * @default "Fermer"
    */
   closeButtonAriaLabel?: string;
 };
@@ -73,7 +74,7 @@ export const Message = ({
   title,
   children,
   variant = "error",
-  closeButtonAriaLabel = "close",
+  closeButtonAriaLabel = "Fermer",
 }: PropsWithChildren<MessageProps>) => {
   const componentClassName = getClassName({
     baseClassName: "af-alert",
@@ -82,9 +83,11 @@ export const Message = ({
   });
 
   const iconSrc = icon ?? getIconUrl(variant);
+  const role =
+    variant === "error" || variant === "warning" ? "alert" : "status";
 
   return (
-    <div className={componentClassName} role="alert">
+    <div className={componentClassName} role={role}>
       <div className="af-alert__sidebar">
         <div className="af-alert__indicator">
           <Svg src={iconSrc} className="af-alert__icon" role="presentation" />

@@ -1,6 +1,6 @@
 import checkSvg from "@material-symbols/svg-400/outlined/check.svg";
 import chevronSvg from "@material-symbols/svg-400/outlined/chevron_right.svg";
-import type { ReactNode } from "react";
+import type { AriaAttributes, ReactNode } from "react";
 import { Svg } from "../../distributeur";
 import { getClassName } from "../utilities/helpers/getClassName";
 
@@ -18,6 +18,10 @@ export type StepBaseProps = {
    * => title attribute will be "Step 1 (In progress)"
    */
   stateLabel?: string;
+  /**
+   * Set to "step" on the current step.
+   */
+  "aria-current"?: AriaAttributes["aria-current"];
 };
 
 const StepBase = ({
@@ -26,6 +30,7 @@ const StepBase = ({
   title,
   className,
   stateLabel,
+  "aria-current": ariaCurrent,
 }: StepBaseProps) => {
   const componentClassName = getClassName({
     baseClassName: "af-steps-list-step",
@@ -34,7 +39,12 @@ const StepBase = ({
 
   const outputTitle = stateLabel ? `${title} (${stateLabel})` : title;
   return (
-    <li key={id} className={componentClassName} title={outputTitle}>
+    <li
+      key={id}
+      className={componentClassName}
+      title={outputTitle}
+      aria-current={ariaCurrent}
+    >
       <Svg src={checkSvg} />
 
       {children}

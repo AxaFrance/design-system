@@ -11,20 +11,21 @@ describe("AccordionContextual", () => {
       </AccordionContextual>,
     );
 
-    expect(screen.getAllByRole("presentation")[0]).toHaveAttribute(
-      "data-src",
-      "icon.svg",
-    );
+    expect(
+      screen.getAllByRole("presentation", { hidden: true })[0],
+    ).toHaveAttribute("data-src", "icon.svg");
     expect(screen.getByText("Test Title")).toBeInTheDocument();
-    expect(screen.getAllByRole("presentation")[1]).not.toHaveClass(
-      "af-click-icon",
-    );
+    expect(
+      screen.getAllByRole("presentation", { hidden: true })[1],
+    ).not.toHaveClass("af-click-icon");
     expect(screen.getByText("Accordion Content")).toBeInTheDocument();
   });
 
   it("does not render icon if not provided", () => {
     render(<AccordionContextual title="Title Only" />);
-    expect(screen.queryAllByRole("presentation")).toHaveLength(1);
+    expect(
+      screen.queryAllByRole("presentation", { hidden: true }),
+    ).toHaveLength(1);
   });
 
   it("shouldn't have an accessibility violation", async () => {
@@ -46,7 +47,7 @@ describe("AccordionContextual", () => {
     expect(screen.getByRole("group")).toHaveClass(
       "af-apollo-accordion-contextual--info",
     );
-    screen.getAllByRole("presentation").forEach((element) => {
+    screen.getAllByRole("presentation", { hidden: true }).forEach((element) => {
       expect(element.parentElement).toHaveClass("af-icon--primary");
     });
   });
@@ -61,7 +62,7 @@ describe("AccordionContextual", () => {
     expect(screen.getByRole("group")).toHaveClass(
       "af-apollo-accordion-contextual--warning",
     );
-    screen.getAllByRole("presentation").forEach((element) => {
+    screen.getAllByRole("presentation", { hidden: true }).forEach((element) => {
       expect(element.parentElement).toHaveClass("af-icon--error");
     });
   });
@@ -76,7 +77,7 @@ describe("AccordionContextual", () => {
     expect(screen.getByRole("group")).toHaveClass(
       "af-apollo-accordion-contextual--reverse",
     );
-    screen.getAllByRole("presentation").forEach((element) => {
+    screen.getAllByRole("presentation", { hidden: true }).forEach((element) => {
       expect(element.parentElement).toHaveClass("af-icon--secondary");
     });
   });

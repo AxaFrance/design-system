@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
+import { CheckboxText as CheckboxTextApollo } from "../CheckboxTextApollo";
+import { CheckboxText as CheckboxTextLF } from "../CheckboxTextLF";
 import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import { Checkbox } from "../../Checkbox/CheckboxCommon";
 import {
@@ -70,5 +72,44 @@ describe("CheckboxText Component", () => {
     const checkbox = screen.getByRole("checkbox", { name: "Option" });
     await user.click(checkbox);
     expect(handleChange).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe.each([
+  ["Apollo", CheckboxTextApollo],
+  ["LF", CheckboxTextLF],
+])("CheckboxText %s message", (_, Component) => {
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the checkbox with its %s message",
+    (messageType) => {
+      render(
+        <Component
+          label="J'accepte"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(
+        screen.getByRole("checkbox", { name: "J'accepte" }),
+      ).toHaveAccessibleDescription("Message");
+    },
+  );
+
+  it("should keep an aria-describedby passed to the checkbox", () => {
+    render(
+      <>
+        <span id="details">Détails</span>
+        <Component
+          label="J'accepte"
+          aria-describedby="details"
+          message="Message"
+        />
+      </>,
+    );
+
+    expect(
+      screen.getByRole("checkbox", { name: "J'accepte" }),
+    ).toHaveAccessibleDescription("Détails Message");
   });
 });

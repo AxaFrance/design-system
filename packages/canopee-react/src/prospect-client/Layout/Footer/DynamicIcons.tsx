@@ -8,19 +8,21 @@ import { Svg } from "../../Svg/Svg";
 export const DynamicIcon = ({
   iconName,
   className,
+  alt,
 }: {
   iconName: string;
   className?: string;
+  alt?: string;
 }) => {
   switch (iconName) {
     case "facebook":
-      return <Svg src={facebook} className={className} />;
+      return <Svg src={facebook} className={className} alt={alt} />;
     case "twitter":
-      return <Svg src={twitterx} className={className} />;
+      return <Svg src={twitterx} className={className} alt={alt} />;
     case "youtube":
-      return <Svg src={youtube} className={className} />;
+      return <Svg src={youtube} className={className} alt={alt} />;
     case "linkedin":
-      return <Svg src={linkedin} className={className} />;
+      return <Svg src={linkedin} className={className} alt={alt} />;
     default:
       return iconName;
   }

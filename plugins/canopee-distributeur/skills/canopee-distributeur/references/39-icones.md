@@ -57,8 +57,10 @@ import { Svg } from "@axa-fr/canopee-react/distributeur";
 - Éviter de dépendre uniquement de la couleur d’icône pour transmettre l’état.
 
 ## Accessibilité
-- Pour les icônes décoratives : masquer aux lecteurs d’écran si nécessaire.
-- Pour les icônes porteuses d’information : fournir un label/texte équivalent.
+- Icône décorative : rien à ajouter. Sans `alt`, `aria-label` ni `aria-labelledby`, `Svg` pose
+  `aria-hidden="true"` et `focusable="false"` (en plus de `role="presentation"`).
+- Icône porteuse d’information sans texte voisin : passer `alt`, qui devient son nom
+  (`<Svg src={check} alt="Validé" />` donne `role="img"` et `aria-label="Validé"`).
 - Vérifier le contraste sur fonds clairs/sombres.
 
 ## Références

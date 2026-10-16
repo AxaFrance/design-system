@@ -12,6 +12,27 @@ type SvgProps = SVGAttributes<SVGSVGElement> & {
   alt?: string;
 };
 
+/**
+ * An icon with a non-empty alt is an image named by it; an icon without alt,
+ * aria-label or aria-labelledby is decorative and hidden from assistive
+ * technologies. Explicit props are spread afterwards and take precedence.
+ */
+const getAccessibilityProps = ({
+  alt,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+}: Pick<SvgProps, "alt" | "aria-label" | "aria-labelledby">) => {
+  if (alt) {
+    return { role: "img", "aria-label": alt };
+  }
+
+  if (ariaLabel || ariaLabelledBy) {
+    return {};
+  }
+
+  return { role: "presentation", "aria-hidden": true, focusable: false };
+};
+
 const cloneAttributes = (
   from: HTMLElement | SVGSVGElement,
   to: HTMLElement | SVGSVGElement,
@@ -78,5 +99,12 @@ export const Svg = ({
     ) : null;
   }
 
-  return <svg ref={rootRef} data-src={src} role="presentation" {...props} />;
+  return (
+    <svg
+      ref={rootRef}
+      data-src={src}
+      {...getAccessibilityProps({ alt, ...props })}
+      {...props}
+    />
+  );
 };

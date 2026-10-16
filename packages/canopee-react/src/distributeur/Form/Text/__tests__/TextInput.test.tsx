@@ -33,6 +33,23 @@ describe("TextInput", () => {
     expect(screen.getByText("Hello message")).toBeInTheDocument();
   });
 
+  it("hides the icon of the error message", () => {
+    // Act
+    const { container } = render(
+      <TextInput
+        label="TextInput label"
+        message="Champ obligatoire"
+        forceDisplayMessage
+      />,
+    );
+
+    // Assert
+    expect(
+      container.querySelector(".glyphicon-exclamation-sign"),
+    ).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByRole("alert")).toHaveTextContent("Champ obligatoire");
+  });
+
   it("should print help message", () => {
     // Act
     render(

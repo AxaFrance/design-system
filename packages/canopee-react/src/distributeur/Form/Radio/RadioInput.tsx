@@ -20,11 +20,19 @@ const RadioInput = ({
       labelPosition={labelPosition}
       roleContainer="radiogroup"
       {...props}
-      renderInput={({ inputClassName, ...radioProps }) => (
+      renderInput={({
+        inputClassName,
+        errorId,
+        // aria-invalid stays on the radiogroup, set by Field
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ariaInvalid,
+        ...radioProps
+      }) => (
         <Radio
           options={newOptions}
           mode={mode}
           className={inputClassName}
+          aria-describedby={errorId}
           {...radioProps}
         >
           {children}

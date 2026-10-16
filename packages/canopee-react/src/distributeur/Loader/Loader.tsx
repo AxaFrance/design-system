@@ -21,9 +21,7 @@ export const Loader = ({
 }: LoaderProps) => {
   const loader = (
     <section
-      role="alert"
-      aria-live="assertive"
-      aria-busy="true"
+      role="status"
       className={getClassName({
         baseClassName: LOADER_CLASS_NAME,
         modifiers: [variant !== "inline" && variant],

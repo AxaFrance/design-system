@@ -22,40 +22,53 @@ type FooterProps = {
     copyright: string;
     expandLinkText: string; // Texte du bouton déroulant (ex: "À propos d'AXA")
     id?: string;
+    newWindowLabel?: string; // Texte masqué, entre parenthèses, des liens ouverts dans un nouvel onglet (défaut : "nouvelle fenêtre")
 };
 
 type Link = {
-    label: string;
-    href: string;
-    target?: string;
+    link: string; // href
+    text: string; // Intitulé visible
+    openInCurrentTab?: boolean; // Par défaut, le lien s'ouvre dans un nouvel onglet
 };
 
 type SocialMedia = {
-    svgSrc: string; // SVG src de l'icône
-    label: string; // aria-label
-    href: string;
+    icon: 'facebook' | 'twitter' | 'youtube' | 'linkedin';
+    link: string; // href, toujours ouvert dans un nouvel onglet
+    label?: string; // Nom du réseau (défaut : "Facebook", "X (Twitter)", "YouTube", "LinkedIn")
 };
 ```
+
+### Accessibilité
+
+- Sur petit écran (≤ 1023 px), les liens sont repliés derrière le bouton `expandLinkText` : il expose
+  son état par `aria-expanded` et désigne la liste par `aria-controls` ; repliée, la liste est `inert`
+  (ses liens ne sont ni focalisables ni lus). Si elle se replie pendant qu'un de ses liens a le focus
+  (redimensionnement, zoom), le focus passe au bouton. Au clavier, le bouton affiche l'anneau de focus
+  du navigateur.
+- Chaque lien de réseau social est nommé par l'alternative de son icône : `label` suivi de
+  « (nouvelle fenêtre) ». Ne pas ajouter d'`aria-label` sur le lien.
+- Les liens de menu sans `openInCurrentTab` s'ouvrent dans un nouvel onglet : leur nom se termine par
+  « (nouvelle fenêtre) », en texte masqué. `newWindowLabel` change ce texte, pour les liens de menu
+  comme pour les réseaux sociaux.
 
 ### Exemple
 
 ```tsx
-import facebook from '@material-symbols/svg-400/outlined/facebook.svg';
-
 <Footer
     expandLinkText="À propos d'AXA"
     copyright="© 2024 AXA France IARD - Tous droits réservés"
     links={[
-        { label: 'Mentions légales', href: '/mentions-legales' },
-        { label: 'Politique de confidentialité', href: '/confidentialite' },
-        { label: 'Cookies', href: '/cookies' },
-        { label: 'Accessibilité', href: '/accessibilite' },
+        { text: 'Mentions légales', link: '/mentions-legales' }, // « Mentions légales (nouvelle fenêtre) »
+        { text: 'Politique de confidentialité', link: '/confidentialite' },
+        { text: 'Cookies', link: '/cookies' },
+        { text: 'Accessibilité', link: '/accessibilite', openInCurrentTab: true }, // onglet courant
     ]}
     socialMedias={[
+        { icon: 'facebook', link: 'https://www.facebook.com/axafrance' },
         {
-            svgSrc: facebook,
-            label: 'Facebook',
-            href: 'https://facebook.com/axa',
+            icon: 'linkedin',
+            link: 'https://www.linkedin.com/company/axa-france/',
+            label: 'LinkedIn AXA France',
         },
     ]}
 />;
@@ -300,6 +313,10 @@ type LevelSelectorProps = {
 };
 ```
 
+Accessibilité : chaque radio est nommé « Niveau n » sur l'`input` lui-même ; la `description`,
+quand elle est fournie, est reliée aux radios par `aria-describedby` et annoncée poliment
+(`aria-live="polite"`) quand elle change.
+
 ### Exemple
 
 ```tsx
@@ -464,7 +481,7 @@ const menuBurgerProps: MenuBurgerProps = {
             subtitle: 'Informations personnelles',
             state: 'default',
             ariaLabelForActionIcon: 'Aller à mon profil',
-            onClick: () => {},
+            href: '/profil',
         },
     ],
     children: (
@@ -512,7 +529,7 @@ import { MenuBurger } from '@axa-fr/canopee-react/prospect';
             title: 'Mon profil',
             state: 'default',
             ariaLabelForActionIcon: 'Aller à mon profil',
-            onClick: () => {},
+            href: '/profil',
         },
     ]}
 >

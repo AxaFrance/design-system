@@ -6,6 +6,7 @@ import type {
 } from "react";
 import { Svg } from "../Svg/Svg";
 import { getClassName } from "../utilities/getClassName";
+import { VisuallyHidden } from "../utilities/VisuallyHidden";
 
 export const linkVariants = {
   inverse: "inverse",
@@ -16,6 +17,11 @@ export type LinkVariants = keyof typeof linkVariants;
 export type LinkProps = {
   variant?: LinkVariants;
   openInNewTab?: boolean;
+  /**
+   * Visually hidden text, in parentheses, at the end of the name of a link
+   * that opens in a new tab. Default: "nouvelle fenêtre".
+   */
+  newWindowLabel?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
@@ -25,6 +31,7 @@ export const Link = ({
   href,
   variant,
   openInNewTab = false,
+  newWindowLabel = "nouvelle fenêtre",
   leftIcon,
   rightIcon,
   children,
@@ -52,6 +59,13 @@ export const Link = ({
       {openInNewTab || Boolean(rightIcon)
         ? (rightIcon ?? <Svg src={openInNew} />)
         : null}
+      {/* The link is a flex container: the space is not rendered */}
+      {openInNewTab ? (
+        <>
+          {" "}
+          <VisuallyHidden>({newWindowLabel})</VisuallyHidden>
+        </>
+      ) : null}
     </a>
   );
 };
