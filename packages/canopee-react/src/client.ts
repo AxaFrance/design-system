@@ -97,6 +97,7 @@ export {
   iconSizeVariants,
   iconVariants,
   type IconSizeVariants,
+  type IconProps,
   type IconVariants,
 } from "./prospect-client/Icon/IconLF";
 export {
