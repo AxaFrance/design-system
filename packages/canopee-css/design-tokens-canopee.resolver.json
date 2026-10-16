@@ -1,0 +1,2301 @@
+{
+  "name": "Fondations Canopée",
+  "version": "2025.10",
+  "$extensions": {
+    "fr.axa.canopee": {
+      "source": "Fondations Canopée",
+      "plugin": "0.16.1",
+      "date": "2026-10-01T12:27:01Z"
+    }
+  },
+  "sets": {
+    "Primitive": {
+      "sources": [
+        {
+          "border": {
+            "radius": {
+              "4": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 4,
+                  "unit": "px"
+                },
+                "$description": "Arrondi d'angle de 4 px."
+              },
+              "6": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 6,
+                  "unit": "px"
+                },
+                "$description": "Arrondi d'angle de 6 px."
+              },
+              "8": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 8,
+                  "unit": "px"
+                },
+                "$description": "Arrondi d'angle de 8 px."
+              },
+              "12": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 12,
+                  "unit": "px"
+                },
+                "$description": "Arrondi d'angle de 12 px."
+              },
+              "16": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 16,
+                  "unit": "px"
+                },
+                "$description": "Arrondi d'angle de 16 px."
+              },
+              "full": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 9999,
+                  "unit": "px"
+                },
+                "$description": "Arrondi complet, qui donne une forme de pilule, ou un cercle sur un élément carré. Vaut 9999 px."
+              }
+            },
+            "width": {
+              "1": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 1,
+                  "unit": "px"
+                },
+                "$description": "Épaisseur de bordure de 1 px."
+              },
+              "2": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 2,
+                  "unit": "px"
+                },
+                "$description": "Épaisseur de bordure de 2 px."
+              },
+              "3": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 3,
+                  "unit": "px"
+                },
+                "$description": "Épaisseur de bordure de 3 px."
+              },
+              "4": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 4,
+                  "unit": "px"
+                },
+                "$description": "Épaisseur de bordure de 4 px."
+              }
+            }
+          },
+          "breakpoint": {
+            "0": {
+              "$type": "dimension",
+              "$value": {
+                "value": 0,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 0 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par prospect, client et distributeur."
+            },
+            "576": {
+              "$type": "dimension",
+              "$value": {
+                "value": 576,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 576 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par distributeur."
+            },
+            "668": {
+              "$type": "dimension",
+              "$value": {
+                "value": 668,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 668 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par prospect et client."
+            },
+            "772": {
+              "$type": "dimension",
+              "$value": {
+                "value": 772,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 772 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par distributeur."
+            },
+            "1016": {
+              "$type": "dimension",
+              "$value": {
+                "value": 1016,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 1016 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par distributeur."
+            },
+            "1024": {
+              "$type": "dimension",
+              "$value": {
+                "value": 1024,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 1024 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par prospect et client."
+            },
+            "1272": {
+              "$type": "dimension",
+              "$value": {
+                "value": 1272,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 1272 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par distributeur."
+            },
+            "1280": {
+              "$type": "dimension",
+              "$value": {
+                "value": 1280,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 1280 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par prospect et client."
+            },
+            "1432": {
+              "$type": "dimension",
+              "$value": {
+                "value": 1432,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 1432 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par distributeur."
+            },
+            "1600": {
+              "$type": "dimension",
+              "$value": {
+                "value": 1600,
+                "unit": "px"
+              },
+              "$description": "Largeur d'écran de 1600 px à partir de laquelle la mise en page change. Reste en px dans le code. Utilisé par prospect et client."
+            }
+          },
+          "color": {
+            "azure": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.8863, 0.9373, 1],
+                  "hex": "#e2efff"
+                },
+                "$description": "Couleur azure, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #E2EFFF. Contraste de 1,2:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.8, 0.89, 1],
+                  "hex": "#cce3ff"
+                },
+                "$description": "Couleur azure, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #CCE3FF. Contraste de 1,3:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6, 0.78, 1],
+                  "hex": "#99c7ff"
+                },
+                "$description": "Couleur azure, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #99C7FF. Contraste de 1,8:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.4, 0.67, 1],
+                  "hex": "#66abff"
+                },
+                "$description": "Couleur azure, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #66ABFF. Contraste de 2,4:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.2, 0.5569, 1],
+                  "hex": "#338eff"
+                },
+                "$description": "Couleur azure, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #338EFF. Contraste de 3,3:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0.4471, 1],
+                  "hex": "#0072ff"
+                },
+                "$description": "Couleur azure, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0072FF. Contraste de 4,3:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0.3569, 0.8],
+                  "hex": "#005bcc"
+                },
+                "$description": "Couleur azure, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #005BCC. Contraste de 6,2:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0.27, 0.6],
+                  "hex": "#004599"
+                },
+                "$description": "Couleur azure, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #004599. Contraste de 9,1:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0.18, 0.4],
+                  "hex": "#002e66"
+                },
+                "$description": "Couleur azure, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #002E66. Contraste de 13,3:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0.09, 0.2],
+                  "hex": "#001733"
+                },
+                "$description": "Couleur azure, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #001733. Contraste de 17,9:1 sur blanc."
+              }
+            },
+            "blue": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.9, 0.9, 1],
+                  "hex": "#e5e5ff"
+                },
+                "$description": "Couleur blue, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #E5E5FF. Contraste de 1,2:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.8, 0.8, 1],
+                  "hex": "#ccccff"
+                },
+                "$description": "Couleur blue, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #CCCCFF. Contraste de 1,5:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6, 0.6, 1],
+                  "hex": "#9999ff"
+                },
+                "$description": "Couleur blue, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #9999FF. Contraste de 2,5:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.4, 0.4, 1],
+                  "hex": "#6666ff"
+                },
+                "$description": "Couleur blue, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #6666FF. Contraste de 4,3:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.2, 0.2, 1],
+                  "hex": "#3333ff"
+                },
+                "$description": "Couleur blue, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #3333FF. Contraste de 6,9:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0, 0.9686],
+                  "hex": "#0000f7"
+                },
+                "$description": "Couleur blue, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0000F7. Contraste de 9:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0, 0.8235],
+                  "hex": "#0000d2"
+                },
+                "$description": "Couleur blue, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0000D2. Contraste de 10,9:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0, 0.56],
+                  "hex": "#00008f"
+                },
+                "$description": "Couleur blue, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #00008F. Contraste de 15:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0, 0.4],
+                  "hex": "#000066"
+                },
+                "$description": "Couleur blue, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #000066. Contraste de 17,6:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0, 0.2],
+                  "hex": "#000033"
+                },
+                "$description": "Couleur blue, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #000033. Contraste de 20:1 sur blanc."
+              }
+            },
+            "cotton-candy": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.9, 0.935],
+                  "hex": "#ffe5ee"
+                },
+                "$description": "Couleur cotton-candy, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFE5EE. Contraste de 1,2:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.8, 0.87],
+                  "hex": "#ffccde"
+                },
+                "$description": "Couleur cotton-candy, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFCCDE. Contraste de 1,4:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.7059, 0.8088],
+                  "hex": "#ffb4ce"
+                },
+                "$description": "Couleur cotton-candy, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFB4CE. Contraste de 1,7:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.4, 0.6078],
+                  "hex": "#ff669b"
+                },
+                "$description": "Couleur cotton-candy, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF669B. Contraste de 2,8:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.2, 0.48],
+                  "hex": "#ff337a"
+                },
+                "$description": "Couleur cotton-candy, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF337A. Contraste de 3,5:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0, 0.3451],
+                  "hex": "#ff0058"
+                },
+                "$description": "Couleur cotton-candy, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF0058. Contraste de 3,9:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.8, 0, 0.28],
+                  "hex": "#cc0047"
+                },
+                "$description": "Couleur cotton-candy, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #CC0047. Contraste de 5,7:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6, 0, 0.2078],
+                  "hex": "#990035"
+                },
+                "$description": "Couleur cotton-candy, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #990035. Contraste de 8,7:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.4, 0, 0.1373],
+                  "hex": "#660023"
+                },
+                "$description": "Couleur cotton-candy, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #660023. Contraste de 13,2:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.2, 0, 0.07],
+                  "hex": "#330012"
+                },
+                "$description": "Couleur cotton-candy, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #330012. Contraste de 18,3:1 sur blanc."
+              }
+            },
+            "grape": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.9205, 0.9115, 0.9885],
+                  "hex": "#ebe8fc"
+                },
+                "$description": "Couleur grape, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #EBE8FC. Contraste de 1,2:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.841, 0.823, 0.977],
+                  "hex": "#d6d2f9"
+                },
+                "$description": "Couleur grape, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #D6D2F9. Contraste de 1,5:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6819, 0.646, 0.954],
+                  "hex": "#aea5f3"
+                },
+                "$description": "Couleur grape, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #AEA5F3. Contraste de 2,2:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.5229, 0.469, 0.931],
+                  "hex": "#8578ed"
+                },
+                "$description": "Couleur grape, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #8578ED. Contraste de 3,6:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.3798, 0.3097, 0.9103],
+                  "hex": "#614fe8"
+                },
+                "$description": "Couleur grape, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #614FE8. Contraste de 5,5:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.2048, 0.115, 0.885],
+                  "hex": "#341de2"
+                },
+                "$description": "Couleur grape, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #341DE2. Contraste de 8,7:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.1631, 0.092, 0.708],
+                  "hex": "#2a17b5"
+                },
+                "$description": "Couleur grape, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #2A17B5. Contraste de 11,1:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.1243, 0.069, 0.531],
+                  "hex": "#201287"
+                },
+                "$description": "Couleur grape, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #201287. Contraste de 14:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.0819, 0.046, 0.354],
+                  "hex": "#150c5a"
+                },
+                "$description": "Couleur grape, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #150C5A. Contraste de 17,1:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.041, 0.023, 0.177],
+                  "hex": "#0a062d"
+                },
+                "$description": "Couleur grape, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0A062D. Contraste de 19,5:1 sur blanc."
+              }
+            },
+            "gray": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.95, 0.95, 0.95],
+                  "hex": "#f2f2f2"
+                },
+                "$description": "Couleur gray, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #F2F2F2. Contraste de 1,1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.898, 0.898, 0.898],
+                  "hex": "#e5e5e5"
+                },
+                "$description": "Couleur gray, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #E5E5E5. Contraste de 1,3:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.8, 0.8, 0.8],
+                  "hex": "#cccccc"
+                },
+                "$description": "Couleur gray, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #CCCCCC. Contraste de 1,6:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.7, 0.7, 0.7],
+                  "hex": "#b2b2b2"
+                },
+                "$description": "Couleur gray, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #B2B2B2. Contraste de 2,1:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6, 0.6, 0.6],
+                  "hex": "#999999"
+                },
+                "$description": "Couleur gray, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #999999. Contraste de 2,8:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.5, 0.5, 0.5],
+                  "hex": "#808080"
+                },
+                "$description": "Couleur gray, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #808080. Contraste de 4:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.4, 0.4, 0.4],
+                  "hex": "#666666"
+                },
+                "$description": "Couleur gray, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #666666. Contraste de 5,7:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.3, 0.3, 0.3],
+                  "hex": "#4d4d4d"
+                },
+                "$description": "Couleur gray, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #4D4D4D. Contraste de 8,5:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.2, 0.2, 0.2],
+                  "hex": "#333333"
+                },
+                "$description": "Couleur gray, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #333333. Contraste de 12,6:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.0549, 0.0549, 0.0549],
+                  "hex": "#0e0e0e"
+                },
+                "$description": "Couleur gray, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0E0E0E. Contraste de 19,3:1 sur blanc."
+              }
+            },
+            "green": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.9664, 0.9936, 0.9746],
+                  "hex": "#f6fdf9"
+                },
+                "$description": "Couleur green, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #F6FDF9. Contraste de 1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.832, 0.968, 0.8728],
+                  "hex": "#d4f7df"
+                },
+                "$description": "Couleur green, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #D4F7DF. Contraste de 1,2:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.664, 0.936, 0.7456],
+                  "hex": "#a9efbe"
+                },
+                "$description": "Couleur green, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #A9EFBE. Contraste de 1,3:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.496, 0.904, 0.6184],
+                  "hex": "#7ee79e"
+                },
+                "$description": "Couleur green, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #7EE79E. Contraste de 1,5:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.328, 0.872, 0.4912],
+                  "hex": "#54de7d"
+                },
+                "$description": "Couleur green, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #54DE7D. Contraste de 1,7:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.16, 0.84, 0.3698],
+                  "hex": "#29d65e"
+                },
+                "$description": "Couleur green, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #29D65E. Contraste de 1,9:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.128, 0.672, 0.2951],
+                  "hex": "#21ab4b"
+                },
+                "$description": "Couleur green, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #21AB4B. Contraste de 3:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.0941, 0.502, 0.2196],
+                  "hex": "#188038"
+                },
+                "$description": "Couleur green, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #188038. Contraste de 5:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.064, 0.336, 0.1456],
+                  "hex": "#105625"
+                },
+                "$description": "Couleur green, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #105625. Contraste de 8,9:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.032, 0.168, 0.0728],
+                  "hex": "#082b13"
+                },
+                "$description": "Couleur green, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #082B13. Contraste de 15,4:1 sur blanc."
+              }
+            },
+            "mint": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.912, 0.988, 0.9525],
+                  "hex": "#e9fcf3"
+                },
+                "$description": "Couleur mint, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #E9FCF3. Contraste de 1,1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.824, 0.976, 0.9051],
+                  "hex": "#d2f9e7"
+                },
+                "$description": "Couleur mint, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #D2F9E7. Contraste de 1,1:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6471, 0.9529, 0.8078],
+                  "hex": "#a5f3ce"
+                },
+                "$description": "Couleur mint, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #A5F3CE. Contraste de 1,3:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.5072, 0.9328, 0.7342],
+                  "hex": "#81eebb"
+                },
+                "$description": "Couleur mint, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #81EEBB. Contraste de 1,4:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.3312, 0.9088, 0.6393],
+                  "hex": "#54e8a3"
+                },
+                "$description": "Couleur mint, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #54E8A3. Contraste de 1,6:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.12, 0.88, 0.5253],
+                  "hex": "#1fe086"
+                },
+                "$description": "Couleur mint, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #1FE086. Contraste de 1,7:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.096, 0.704, 0.4203],
+                  "hex": "#18b46b"
+                },
+                "$description": "Couleur mint, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #18B46B. Contraste de 2,7:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.072, 0.528, 0.3152],
+                  "hex": "#128750"
+                },
+                "$description": "Couleur mint, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #128750. Contraste de 4,6:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.0471, 0.3529, 0.2078],
+                  "hex": "#0c5a35"
+                },
+                "$description": "Couleur mint, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0C5A35. Contraste de 8,3:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.024, 0.176, 0.1051],
+                  "hex": "#062d1b"
+                },
+                "$description": "Couleur mint, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #062D1B. Contraste de 15:1 sur blanc."
+              }
+            },
+            "orange": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.9928, 0.948, 0.9272],
+                  "hex": "#fdf2ec"
+                },
+                "$description": "Couleur orange, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FDF2EC. Contraste de 1,1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.982, 0.8699, 0.818],
+                  "hex": "#faded1"
+                },
+                "$description": "Couleur orange, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FADED1. Contraste de 1,3:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.964, 0.7399, 0.636],
+                  "hex": "#f6bda2"
+                },
+                "$description": "Couleur orange, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #F6BDA2. Contraste de 1,7:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.946, 0.6098, 0.454],
+                  "hex": "#f19b74"
+                },
+                "$description": "Couleur orange, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #F19B74. Contraste de 2,2:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.928, 0.4797, 0.272],
+                  "hex": "#ed7a45"
+                },
+                "$description": "Couleur orange, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #ED7A45. Contraste de 2,8:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.91, 0.3497, 0.09],
+                  "hex": "#e85917"
+                },
+                "$description": "Couleur orange, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #E85917. Contraste de 3,6:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.7276, 0.2824, 0.0724],
+                  "hex": "#ba4812"
+                },
+                "$description": "Couleur orange, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #BA4812. Contraste de 5,2:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.546, 0.2098, 0.054],
+                  "hex": "#8b350e"
+                },
+                "$description": "Couleur orange, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #8B350E. Contraste de 8:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.364, 0.1399, 0.036],
+                  "hex": "#5d2409"
+                },
+                "$description": "Couleur orange, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #5D2409. Contraste de 12,2:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.182, 0.0699, 0.018],
+                  "hex": "#2e1205"
+                },
+                "$description": "Couleur orange, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #2E1205. Contraste de 17,4:1 sur blanc."
+              }
+            },
+            "red": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.92, 0.924],
+                  "hex": "#ffebec"
+                },
+                "$description": "Couleur red, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFEBEC. Contraste de 1,1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.8, 0.81],
+                  "hex": "#ffcccf"
+                },
+                "$description": "Couleur red, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFCCCF. Contraste de 1,4:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.6, 0.62],
+                  "hex": "#ff999e"
+                },
+                "$description": "Couleur red, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF999E. Contraste de 2:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.302, 0.3369],
+                  "hex": "#ff4d56"
+                },
+                "$description": "Couleur red, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF4D56. Contraste de 3,3:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.2, 0.2353],
+                  "hex": "#ff333c"
+                },
+                "$description": "Couleur red, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF333C. Contraste de 3,6:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.0902, 0.1294],
+                  "hex": "#ff1721"
+                },
+                "$description": "Couleur red, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF1721. Contraste de 3,9:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.8, 0, 0.04],
+                  "hex": "#cc000a"
+                },
+                "$description": "Couleur red, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #CC000A. Contraste de 5,9:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6, 0, 0.03],
+                  "hex": "#990008"
+                },
+                "$description": "Couleur red, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #990008. Contraste de 8,9:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.4, 0, 0.02],
+                  "hex": "#660005"
+                },
+                "$description": "Couleur red, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #660005. Contraste de 13,4:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.2, 0, 0.01],
+                  "hex": "#330003"
+                },
+                "$description": "Couleur red, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #330003. Contraste de 18,4:1 sur blanc."
+              }
+            },
+            "sky": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.914, 0.9596, 0.986],
+                  "hex": "#e9f5fb"
+                },
+                "$description": "Couleur sky, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #E9F5FB. Contraste de 1,1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.828, 0.9192, 0.972],
+                  "hex": "#d3eaf8"
+                },
+                "$description": "Couleur sky, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #D3EAF8. Contraste de 1,2:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.656, 0.8384, 0.944],
+                  "hex": "#a7d6f1"
+                },
+                "$description": "Couleur sky, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #A7D6F1. Contraste de 1,6:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.4549, 0.7412, 0.9098],
+                  "hex": "#74bde8"
+                },
+                "$description": "Couleur sky, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #74BDE8. Contraste de 2,1:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.312, 0.6768, 0.888],
+                  "hex": "#50ade2"
+                },
+                "$description": "Couleur sky, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #50ADE2. Contraste de 2,5:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.14, 0.596, 0.86],
+                  "hex": "#2498db"
+                },
+                "$description": "Couleur sky, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #2498DB. Contraste de 3,2:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.112, 0.4768, 0.688],
+                  "hex": "#1d7aaf"
+                },
+                "$description": "Couleur sky, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #1D7AAF. Contraste de 4,7:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.084, 0.3576, 0.516],
+                  "hex": "#155b84"
+                },
+                "$description": "Couleur sky, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #155B84. Contraste de 7,3:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.056, 0.2384, 0.344],
+                  "hex": "#0e3d58"
+                },
+                "$description": "Couleur sky, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0E3D58. Contraste de 11,5:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.028, 0.1192, 0.172],
+                  "hex": "#071e2c"
+                },
+                "$description": "Couleur sky, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #071E2C. Contraste de 17:1 sur blanc."
+              }
+            },
+            "sunshine": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.99, 0.9],
+                  "hex": "#fffce5"
+                },
+                "$description": "Couleur sunshine, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFFCE5. Contraste de 1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.98, 0.8],
+                  "hex": "#fffacc"
+                },
+                "$description": "Couleur sunshine, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFFACC. Contraste de 1,1:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.96, 0.6],
+                  "hex": "#fff599"
+                },
+                "$description": "Couleur sunshine, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFF599. Contraste de 1,1:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.9412, 0.4235],
+                  "hex": "#fff06c"
+                },
+                "$description": "Couleur sunshine, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFF06C. Contraste de 1,2:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.9176, 0.2],
+                  "hex": "#ffea33"
+                },
+                "$description": "Couleur sunshine, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFEA33. Contraste de 1,2:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.9, 0],
+                  "hex": "#ffe500"
+                },
+                "$description": "Couleur sunshine, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFE500. Contraste de 1,3:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.8, 0.7176, 0],
+                  "hex": "#ccb700"
+                },
+                "$description": "Couleur sunshine, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #CCB700. Contraste de 2:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.6, 0.5373, 0],
+                  "hex": "#998900"
+                },
+                "$description": "Couleur sunshine, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #998900. Contraste de 3,5:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.4, 0.36, 0],
+                  "hex": "#665c00"
+                },
+                "$description": "Couleur sunshine, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #665C00. Contraste de 6,8:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.2, 0.18, 0],
+                  "hex": "#332e00"
+                },
+                "$description": "Couleur sunshine, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #332E00. Contraste de 13,7:1 sur blanc."
+              }
+            },
+            "teal": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.9105, 0.9803, 0.9895],
+                  "hex": "#e8fafc"
+                },
+                "$description": "Couleur teal, palier 050, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #E8FAFC. Contraste de 1,1:1 sur blanc."
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.821, 0.9606, 0.979],
+                  "hex": "#d1f5fa"
+                },
+                "$description": "Couleur teal, palier 100, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #D1F5FA. Contraste de 1,2:1 sur blanc."
+              },
+              "200": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.642, 0.9211, 0.958],
+                  "hex": "#a4ebf4"
+                },
+                "$description": "Couleur teal, palier 200, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #A4EBF4. Contraste de 1,3:1 sur blanc."
+              },
+              "300": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.463, 0.8817, 0.937],
+                  "hex": "#76e1ef"
+                },
+                "$description": "Couleur teal, palier 300, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #76E1EF. Contraste de 1,5:1 sur blanc."
+              },
+              "400": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.284, 0.837, 0.916],
+                  "hex": "#48d5ea"
+                },
+                "$description": "Couleur teal, palier 400, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #48D5EA. Contraste de 1,7:1 sur blanc."
+              },
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.1059, 0.7961, 0.8941],
+                  "hex": "#1bcbe4"
+                },
+                "$description": "Couleur teal, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #1BCBE4. Contraste de 2:1 sur blanc."
+              },
+              "600": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.084, 0.637, 0.716],
+                  "hex": "#15a2b7"
+                },
+                "$description": "Couleur teal, palier 600, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #15A2B7. Contraste de 3:1 sur blanc."
+              },
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.0588, 0.4431, 0.498],
+                  "hex": "#0f717f"
+                },
+                "$description": "Couleur teal, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0F717F. Contraste de 5,7:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.042, 0.3185, 0.358],
+                  "hex": "#0b515b"
+                },
+                "$description": "Couleur teal, palier 800, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #0B515B. Contraste de 8,9:1 sur blanc."
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.021, 0.1606, 0.179],
+                  "hex": "#05292e"
+                },
+                "$description": "Couleur teal, palier 900, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #05292E. Contraste de 15,4:1 sur blanc."
+              }
+            },
+            "white": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [1, 1, 1],
+                "hex": "#ffffff"
+              },
+              "$description": "Blanc, sans teinte ni palier. #FFFFFF."
+            }
+          },
+          "font": {
+            "family": {
+              "publico": {
+                "$type": "fontFamily",
+                "$value": "Publico",
+                "$description": "Famille de police Publico."
+              },
+              "publico-headline": {
+                "$type": "fontFamily",
+                "$value": "Publico Headline",
+                "$description": "Famille de police Publico Headline."
+              },
+              "sans-serif": {
+                "$type": "fontFamily",
+                "$value": "Source Sans Pro",
+                "$description": "Famille de police Source Sans Pro."
+              }
+            },
+            "line-height": {
+              "16": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 16,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 16 px, soit 1rem dans le code. S'utilise avec la taille de texte font/size/13."
+              },
+              "18": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 18,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 18 px, soit 1.125rem dans le code. S'utilise avec la taille de texte font/size/14."
+              },
+              "19": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 19,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 19 px, soit 1.1875rem dans le code. S'utilise avec la taille de texte font/size/15."
+              },
+              "20": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 20,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 20 px, soit 1.25rem dans le code. S'utilise avec la taille de texte font/size/16."
+              },
+              "23": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 23,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 23 px, soit 1.4375rem dans le code. S'utilise avec la taille de texte font/size/18."
+              },
+              "25": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 25,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 25 px, soit 1.5625rem dans le code. S'utilise avec la taille de texte font/size/20."
+              },
+              "28": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 28,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 28 px, soit 1.75rem dans le code. S'utilise avec la taille de texte font/size/22."
+              },
+              "30": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 30,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 30 px, soit 1.875rem dans le code. S'utilise avec la taille de texte font/size/24."
+              },
+              "35": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 35,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 35 px, soit 2.1875rem dans le code. S'utilise avec la taille de texte font/size/28."
+              },
+              "40": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 40,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 40 px, soit 2.5rem dans le code. S'utilise avec la taille de texte font/size/32."
+              },
+              "50": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 50,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 50 px, soit 3.125rem dans le code. S'utilise avec la taille de texte font/size/40."
+              },
+              "60": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 60,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 60 px, soit 3.75rem dans le code. S'utilise avec la taille de texte font/size/48."
+              }
+            },
+            "size": {
+              "13": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 13,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 13 px, soit 0.8125rem dans le code. S'utilise avec l'interligne font/line-height/16."
+              },
+              "14": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 14,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 14 px, soit 0.875rem dans le code. S'utilise avec l'interligne font/line-height/18."
+              },
+              "15": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 15,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 15 px, soit 0.9375rem dans le code. S'utilise avec l'interligne font/line-height/19."
+              },
+              "16": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 16,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 16 px, soit 1rem dans le code. S'utilise avec l'interligne font/line-height/20."
+              },
+              "18": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 18,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 18 px, soit 1.125rem dans le code. S'utilise avec l'interligne font/line-height/23."
+              },
+              "20": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 20,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 20 px, soit 1.25rem dans le code. S'utilise avec l'interligne font/line-height/25."
+              },
+              "22": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 22,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 22 px, soit 1.375rem dans le code. S'utilise avec l'interligne font/line-height/28."
+              },
+              "24": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 24,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 24 px, soit 1.5rem dans le code. S'utilise avec l'interligne font/line-height/30."
+              },
+              "28": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 28,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 28 px, soit 1.75rem dans le code. S'utilise avec l'interligne font/line-height/35."
+              },
+              "32": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 32,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 32 px, soit 2rem dans le code. S'utilise avec l'interligne font/line-height/40."
+              },
+              "40": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 40,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 40 px, soit 2.5rem dans le code. S'utilise avec l'interligne font/line-height/50."
+              },
+              "48": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 48,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 48 px, soit 3rem dans le code. S'utilise avec l'interligne font/line-height/60."
+              }
+            },
+            "weight": {
+              "bold": {
+                "$type": "fontWeight",
+                "$value": 700,
+                "$description": "Graisse bold, de valeur 700."
+              },
+              "light": {
+                "$type": "fontWeight",
+                "$value": 300,
+                "$description": "Graisse light, de valeur 300."
+              },
+              "regular": {
+                "$type": "fontWeight",
+                "$value": 400,
+                "$description": "Graisse regular, de valeur 400."
+              },
+              "semibold": {
+                "$type": "fontWeight",
+                "$value": 600,
+                "$description": "Graisse semibold, de valeur 600."
+              }
+            }
+          },
+          "size": {
+            "12": {
+              "$type": "dimension",
+              "$value": {
+                "value": 12,
+                "unit": "px"
+              },
+              "$description": "Dimension de 12 px, soit 0.75rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "14": {
+              "$type": "dimension",
+              "$value": {
+                "value": 14,
+                "unit": "px"
+              },
+              "$description": "Dimension de 14 px, soit 0.875rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "16": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Dimension de 16 px, soit 1rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "18": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Dimension de 18 px, soit 1.125rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "20": {
+              "$type": "dimension",
+              "$value": {
+                "value": 20,
+                "unit": "px"
+              },
+              "$description": "Dimension de 20 px, soit 1.25rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "24": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Dimension de 24 px, soit 1.5rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "28": {
+              "$type": "dimension",
+              "$value": {
+                "value": 28,
+                "unit": "px"
+              },
+              "$description": "Dimension de 28 px, soit 1.75rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "32": {
+              "$type": "dimension",
+              "$value": {
+                "value": 32,
+                "unit": "px"
+              },
+              "$description": "Dimension de 32 px, soit 2rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "40": {
+              "$type": "dimension",
+              "$value": {
+                "value": 40,
+                "unit": "px"
+              },
+              "$description": "Dimension de 40 px, soit 2.5rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "48": {
+              "$type": "dimension",
+              "$value": {
+                "value": 48,
+                "unit": "px"
+              },
+              "$description": "Dimension de 48 px, soit 3rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "56": {
+              "$type": "dimension",
+              "$value": {
+                "value": 56,
+                "unit": "px"
+              },
+              "$description": "Dimension de 56 px, soit 3.5rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "64": {
+              "$type": "dimension",
+              "$value": {
+                "value": 64,
+                "unit": "px"
+              },
+              "$description": "Dimension de 64 px, soit 4rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "72": {
+              "$type": "dimension",
+              "$value": {
+                "value": 72,
+                "unit": "px"
+              },
+              "$description": "Dimension de 72 px, soit 4.5rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            },
+            "80": {
+              "$type": "dimension",
+              "$value": {
+                "value": 80,
+                "unit": "px"
+              },
+              "$description": "Dimension de 80 px, soit 5rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            }
+          },
+          "spacing": {
+            "2": {
+              "$type": "dimension",
+              "$value": {
+                "value": 2,
+                "unit": "px"
+              },
+              "$description": "Espacement de 2 px, soit 0.125rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "4": {
+              "$type": "dimension",
+              "$value": {
+                "value": 4,
+                "unit": "px"
+              },
+              "$description": "Espacement de 4 px, soit 0.25rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "6": {
+              "$type": "dimension",
+              "$value": {
+                "value": 6,
+                "unit": "px"
+              },
+              "$description": "Espacement de 6 px, soit 0.375rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "8": {
+              "$type": "dimension",
+              "$value": {
+                "value": 8,
+                "unit": "px"
+              },
+              "$description": "Espacement de 8 px, soit 0.5rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "10": {
+              "$type": "dimension",
+              "$value": {
+                "value": 10,
+                "unit": "px"
+              },
+              "$description": "Espacement de 10 px, soit 0.625rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "12": {
+              "$type": "dimension",
+              "$value": {
+                "value": 12,
+                "unit": "px"
+              },
+              "$description": "Espacement de 12 px, soit 0.75rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "14": {
+              "$type": "dimension",
+              "$value": {
+                "value": 14,
+                "unit": "px"
+              },
+              "$description": "Espacement de 14 px, soit 0.875rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "16": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Espacement de 16 px, soit 1rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "20": {
+              "$type": "dimension",
+              "$value": {
+                "value": 20,
+                "unit": "px"
+              },
+              "$description": "Espacement de 20 px, soit 1.25rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "24": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Espacement de 24 px, soit 1.5rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "32": {
+              "$type": "dimension",
+              "$value": {
+                "value": 32,
+                "unit": "px"
+              },
+              "$description": "Espacement de 32 px, soit 2rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "40": {
+              "$type": "dimension",
+              "$value": {
+                "value": 40,
+                "unit": "px"
+              },
+              "$description": "Espacement de 40 px, soit 2.5rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "48": {
+              "$type": "dimension",
+              "$value": {
+                "value": 48,
+                "unit": "px"
+              },
+              "$description": "Espacement de 48 px, soit 3rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "56": {
+              "$type": "dimension",
+              "$value": {
+                "value": 56,
+                "unit": "px"
+              },
+              "$description": "Espacement de 56 px, soit 3.5rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "64": {
+              "$type": "dimension",
+              "$value": {
+                "value": 64,
+                "unit": "px"
+              },
+              "$description": "Espacement de 64 px, soit 4rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            }
+          }
+        }
+      ]
+    },
+    "Typography": {
+      "sources": [
+        {
+          "body": {
+            "1": {
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.20}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.25}"
+              }
+            },
+            "2": {
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.18}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.23}"
+              }
+            },
+            "3": {
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.16}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.20}"
+              }
+            },
+            "4": {
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.14}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.18}"
+              }
+            }
+          },
+          "heading": {
+            "h1": {
+              "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.publico-headline}"
+              },
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.40}"
+              },
+              "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.bold}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.50}"
+              }
+            },
+            "h2": {
+              "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.publico}"
+              },
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.32}"
+              },
+              "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.light}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.40}"
+              }
+            },
+            "h3": {
+              "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.sans-serif}"
+              },
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.24}"
+              },
+              "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.semibold}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.30}"
+              }
+            },
+            "h4": {
+              "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.sans-serif}"
+              },
+              "font-size": {
+                "$type": "dimension",
+                "$value": "{font.size.20}"
+              },
+              "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.semibold}"
+              },
+              "line-height": {
+                "$type": "dimension",
+                "$value": "{font.line-height.25}"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Styles": {
+      "sources": [
+        {
+          "typographie": {
+            "body": {
+              "1": {
+                "regular": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.1.font-size}",
+                    "fontWeight": "{font.weight.regular}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.1.line-height}"
+                  }
+                },
+                "semibold": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.1.font-size}",
+                    "fontWeight": "{font.weight.semibold}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.1.line-height}"
+                  }
+                }
+              },
+              "2": {
+                "regular": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.2.font-size}",
+                    "fontWeight": "{font.weight.regular}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.2.line-height}"
+                  }
+                },
+                "semibold": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.2.font-size}",
+                    "fontWeight": "{font.weight.semibold}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.2.line-height}"
+                  }
+                }
+              },
+              "3": {
+                "regular": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.3.font-size}",
+                    "fontWeight": "{font.weight.regular}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.3.line-height}"
+                  }
+                },
+                "regular-underline": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.3.font-size}",
+                    "fontWeight": "{font.weight.regular}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.3.line-height}"
+                  }
+                },
+                "semibold": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.3.font-size}",
+                    "fontWeight": "{font.weight.semibold}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.3.line-height}"
+                  }
+                },
+                "semibold-underline": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.3.font-size}",
+                    "fontWeight": "{font.weight.semibold}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.3.line-height}"
+                  }
+                }
+              },
+              "4": {
+                "regular": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.4.font-size}",
+                    "fontWeight": "{font.weight.regular}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.4.line-height}"
+                  }
+                },
+                "semibold": {
+                  "$type": "typography",
+                  "$value": {
+                    "fontFamily": "{font.family.sans-serif}",
+                    "fontSize": "{body.4.font-size}",
+                    "fontWeight": "{font.weight.semibold}",
+                    "letterSpacing": {
+                      "value": 0,
+                      "unit": "px"
+                    },
+                    "lineHeight": "{body.4.line-height}"
+                  }
+                }
+              }
+            },
+            "heading": {
+              "h1": {
+                "$type": "typography",
+                "$value": {
+                  "fontFamily": "{heading.h1.font-family}",
+                  "fontSize": "{heading.h1.font-size}",
+                  "fontWeight": "{heading.h1.font-weight}",
+                  "letterSpacing": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "lineHeight": "{heading.h1.line-height}"
+                }
+              },
+              "h2": {
+                "$type": "typography",
+                "$value": {
+                  "fontFamily": "{heading.h2.font-family}",
+                  "fontSize": "{heading.h2.font-size}",
+                  "fontWeight": "{heading.h2.font-weight}",
+                  "letterSpacing": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "lineHeight": "{heading.h2.line-height}"
+                }
+              },
+              "h3": {
+                "$type": "typography",
+                "$value": {
+                  "fontFamily": "{heading.h3.font-family}",
+                  "fontSize": "{heading.h3.font-size}",
+                  "fontWeight": "{heading.h3.font-weight}",
+                  "letterSpacing": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "lineHeight": "{heading.h3.line-height}"
+                }
+              },
+              "h4": {
+                "$type": "typography",
+                "$value": {
+                  "fontFamily": "{heading.h4.font-family}",
+                  "fontSize": "{heading.h4.font-size}",
+                  "fontWeight": "{heading.h4.font-weight}",
+                  "letterSpacing": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "lineHeight": "{heading.h4.line-height}"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "Typography": {
+      "default": "prospect-desktop",
+      "contexts": {
+        "prospect-desktop": [],
+        "prospect-mobile": [
+          {
+            "body": {
+              "1": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.18}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.23}"
+                }
+              },
+              "2": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.16}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.20}"
+                }
+              },
+              "3": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.14}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.18}"
+                }
+              }
+            },
+            "heading": {
+              "h1": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.28}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.35}"
+                }
+              },
+              "h2": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.24}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.30}"
+                }
+              },
+              "h3": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.20}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.25}"
+                }
+              },
+              "h4": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.18}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.23}"
+                }
+              }
+            }
+          }
+        ],
+        "client-desktop": [
+          {
+            "heading": {
+              "h2": {
+                "font-family": {
+                  "$type": "fontFamily",
+                  "$value": "{font.family.publico-headline}"
+                },
+                "font-weight": {
+                  "$type": "fontWeight",
+                  "$value": "{font.weight.bold}"
+                }
+              }
+            }
+          }
+        ],
+        "client-mobile": [
+          {
+            "body": {
+              "1": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.18}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.23}"
+                }
+              },
+              "2": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.16}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.20}"
+                }
+              },
+              "3": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.14}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.18}"
+                }
+              }
+            },
+            "heading": {
+              "h1": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.28}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.35}"
+                }
+              },
+              "h2": {
+                "font-family": {
+                  "$type": "fontFamily",
+                  "$value": "{font.family.publico-headline}"
+                },
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.24}"
+                },
+                "font-weight": {
+                  "$type": "fontWeight",
+                  "$value": "{font.weight.bold}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.30}"
+                }
+              },
+              "h3": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.20}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.25}"
+                }
+              },
+              "h4": {
+                "font-size": {
+                  "$type": "dimension",
+                  "$value": "{font.size.18}"
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": "{font.line-height.23}"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/Primitive"
+    },
+    {
+      "$ref": "#/sets/Typography"
+    },
+    {
+      "$ref": "#/sets/Styles"
+    },
+    {
+      "$ref": "#/modifiers/Typography"
+    }
+  ]
+}
