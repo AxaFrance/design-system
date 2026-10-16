@@ -5,5 +5,6 @@ export {
   iconVariants,
   type IconVariants,
   iconSizeVariants,
+  type IconProps,
   type IconSizeVariants,
 } from "./IconCommon";
