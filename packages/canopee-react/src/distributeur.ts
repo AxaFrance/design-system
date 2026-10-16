@@ -148,3 +148,14 @@ export {
   type ItemFormHelperProps,
   type ItemFormHelperVariant,
 } from "./distributeur/ItemFormHelper/ItemFormHelper";
+
+export {
+  FormHelper,
+  type FormHelperProps,
+} from "./distributeur/FormHelper/FormHelper";
+export {
+  ListFormHelper,
+  type ListFormHelperProps,
+  type ListFormHelperStep,
+} from "./distributeur/FormHelper/ListFormHelper";
+export type { FormHelperStateLabels } from "./distributeur/FormHelper/types";
