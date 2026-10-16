@@ -1,11 +1,8 @@
 import openInNew from "@material-symbols/svg-400/outlined/open_in_new.svg";
-import type {
-  ComponentPropsWithoutRef,
-  PropsWithChildren,
-  ReactNode,
-} from "react";
+import type { ElementType, ReactNode } from "react";
 import { Svg } from "../Svg/Svg";
 import { getClassName } from "../utilities/getClassName";
+import type { PolymorphicComponent } from "../utilities/types/PolymorphicComponent";
 
 export const linkVariants = {
   inverse: "inverse",
@@ -13,16 +10,20 @@ export const linkVariants = {
 
 export type LinkVariants = keyof typeof linkVariants;
 
-export type LinkProps = {
-  variant?: LinkVariants;
-  openInNewTab?: boolean;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-  className?: string;
-} & ComponentPropsWithoutRef<"a">;
+export type LinkProps<T extends ElementType = "a"> = PolymorphicComponent<
+  T,
+  {
+    variant?: LinkVariants;
+    openInNewTab?: boolean;
+    leftIcon?: ReactNode;
+    rightIcon?: ReactNode;
+    className?: string;
+    children?: ReactNode;
+  }
+>;
 
-export const Link = ({
-  href,
+export const Link = <T extends ElementType = "a">({
+  as,
   variant,
   openInNewTab = false,
   leftIcon,
@@ -30,20 +31,20 @@ export const Link = ({
   children,
   className,
   ...props
-}: PropsWithChildren<LinkProps>) => {
+}: LinkProps<T>) => {
+  const Component = as ?? "a";
   const newTabProps = openInNewTab && {
     target: "_blank",
     rel: "noopener noreferrer",
   };
 
   return (
-    <a
+    <Component
       className={getClassName({
         baseClassName: "af-link",
         modifiers: [variant, openInNewTab && "openInNewTab"],
         className,
       })}
-      href={href}
       {...newTabProps}
       {...props}
     >
@@ -52,6 +53,6 @@ export const Link = ({
       {openInNewTab || Boolean(rightIcon)
         ? (rightIcon ?? <Svg src={openInNew} />)
         : null}
-    </a>
+    </Component>
   );
 };

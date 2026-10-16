@@ -131,7 +131,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | ----------- | ----------------------------------------- | ---------------------------------------------------------------- |
 | `Button`    | [01-button.md](./references/01-button.md) | CTA, actions, 7 variantes (primary, secondary, tertiary, ghost…) |
 | `ClickIcon` | [01-button.md](./references/01-button.md) | Bouton icône seul                                                |
-| `Link`      | [01-button.md](./references/01-button.md) | Lien stylisé, ouverture nouvel onglet                            |
+| `Link`      | [01-button.md](./references/01-button.md) | Lien polymorphe (`as`), React Router, ouverture nouvel onglet     |
 
 ### Accords et navigation
 
