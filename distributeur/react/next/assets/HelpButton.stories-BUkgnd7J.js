@@ -1,0 +1,46 @@
+import{n as e,r as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./jsx-runtime-DeHZSEgm.js";import{n as r,r as i}from"./iframe-CUw-2XJG.js";import{f as a,t as o}from"./distributeur-BR8zYeHf.js";var s=t({Default:()=>u,Inverse:()=>d,WithHtml:()=>f,__namedExportsOrder:()=>p,default:()=>l}),c,l,u,d,f,p;function m(){return(m=e((()=>{o(),r(),c=n(),l=i.meta({title:`Components/HelpButton`,component:a,args:{children:null},argTypes:{placement:{options:[`auto`,`auto-start`,`auto-end`,`top`,`top-start`,`top-end`,`bottom`,`bottom-start`,`bottom-end`,`right`,`right-start`,`right-end`,`left`,`left-start`,`left-end`],control:{type:`select`}},mode:{options:[`hover`,`click`],control:{type:`inline-radio`}},variant:{options:[`default`,`inverse`],control:{type:`inline-radio`}}},parameters:{layout:`centered`}}),u=l.story({name:`HelpButton`,render:({...e})=>(0,c.jsx)(a,{...e,children:`Lorem ipsum dolor sit amet`}),args:{mode:`hover`,variant:`default`}}),d=l.story({name:`HelpButton Inverse`,render:({...e})=>(0,c.jsx)(a,{...e,children:`Lorem ipsum dolor sit amet`}),args:{mode:`hover`,variant:`inverse`}}),f=l.story({name:`With HTML in the popover`,render:({...e})=>(0,c.jsx)(a,{...e,children:(0,c.jsxs)(`div`,{className:`af-help-demo__container`,children:[(0,c.jsx)(`h3`,{className:`af-help-demo__title`,children:`Profile`}),(0,c.jsxs)(`div`,{className:`af-help-demo__infos`,children:[(0,c.jsxs)(`p`,{className:`af-help-demo__info`,children:[(0,c.jsx)(`span`,{className:`af-help-demo__info-title`,children:`Tweets`}),(0,c.jsx)(`span`,{className:`af-help-demo__info-number`,children:`1,337`})]}),(0,c.jsxs)(`p`,{className:`af-help-demo__info`,children:[(0,c.jsx)(`span`,{className:`af-help-demo__info-title`,children:`Following`}),(0,c.jsx)(`span`,{className:`af-help-demo__info-number`,children:`561`})]}),(0,c.jsxs)(`p`,{className:`af-help-demo__info`,children:[(0,c.jsx)(`span`,{className:`af-help-demo__info-title`,children:`Followers`}),(0,c.jsx)(`span`,{className:`af-help-demo__info-number`,children:`718`})]})]})]})}),args:{mode:`hover`,className:`custom`}}),u.input.parameters={...u.input.parameters,docs:{...u.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "HelpButton",
+  render: ({
+    ...args
+  }) => <HelpButton {...args}>Lorem ipsum dolor sit amet</HelpButton>,
+  args: {
+    mode: "hover",
+    variant: "default"
+  }
+})`,...u.input.parameters?.docs?.source}}},d.input.parameters={...d.input.parameters,docs:{...d.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "HelpButton Inverse",
+  render: ({
+    ...args
+  }) => <HelpButton {...args}>Lorem ipsum dolor sit amet</HelpButton>,
+  args: {
+    mode: "hover",
+    variant: "inverse"
+  }
+})`,...d.input.parameters?.docs?.source}}},f.input.parameters={...f.input.parameters,docs:{...f.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "With HTML in the popover",
+  render: ({
+    ...args
+  }) => <HelpButton {...args}>
+      <div className="af-help-demo__container">
+        <h3 className="af-help-demo__title">Profile</h3>
+        <div className="af-help-demo__infos">
+          <p className="af-help-demo__info">
+            <span className="af-help-demo__info-title">Tweets</span>
+            <span className="af-help-demo__info-number">1,337</span>
+          </p>
+          <p className="af-help-demo__info">
+            <span className="af-help-demo__info-title">Following</span>
+            <span className="af-help-demo__info-number">561</span>
+          </p>
+          <p className="af-help-demo__info">
+            <span className="af-help-demo__info-title">Followers</span>
+            <span className="af-help-demo__info-number">718</span>
+          </p>
+        </div>
+      </div>
+    </HelpButton>,
+  args: {
+    mode: "hover",
+    className: "custom"
+  }
+})`,...f.input.parameters?.docs?.source}}},p=[`Default`,`Inverse`,`WithHtml`]})))()}export{m as i,s as n,f as r,u as t};
