@@ -1,6 +1,9 @@
+import { readFileSync } from "node:fs";
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import customMedia from "./terrazzo-custom-media.mjs";
+
+const TOKENS = "./design-tokens-canopee.resolver.json";
 
 // Colors are written in HSL, as in the current code, rounded to one decimal.
 // An alias keeps its var() reference.
@@ -41,8 +44,24 @@ const formatValue = (token) => {
   return `${Math.round((v.value / 16) * 10000) / 10000}rem`;
 };
 
-// Tokens of the Typography collection, the only ones that change between mobile and desktop.
-const RESPONSIVE_TYPOGRAPHY = ["heading.**", "body.**"];
+// Typography modes and families are read from the tokens file, so that a mode
+// or a family added in Figma needs no change here. A theme with a mobile and a
+// desktop mode (prospect, client) is responsive, a theme with a single mode
+// (distributeur) is not. Typography tokens are the only ones that change
+// between mobile and desktop.
+const resolver = JSON.parse(readFileSync(new URL(TOKENS, import.meta.url)));
+const typographyModes = Object.keys(resolver.modifiers.Typography.contexts);
+const responsiveThemes = typographyModes
+  .filter((mode) => mode.endsWith("-desktop"))
+  .map((mode) => mode.replace(/-desktop$/, ""));
+const singleModeThemes = typographyModes.filter(
+  (mode) => !/-(mobile|desktop)$/.test(mode),
+);
+const RESPONSIVE_TYPOGRAPHY = resolver.sets.Typography.sources.flatMap(
+  (source) => Object.keys(source).map((family) => `${family}.**`),
+);
+
+const root = (content) => `:root {\n  ${content}\n}`;
 
 // Custom media names of the current code, and the breakpoint primitive of each.
 // Prospect and client share the same breakpoints.
@@ -55,19 +74,19 @@ const B2C_MEDIA = {
 };
 
 export default defineConfig({
-  tokens: ["./design-tokens-canopee.resolver.json"],
+  tokens: [TOKENS],
   outDir: "./generated/",
   plugins: [
-    // One file per B2C theme: mobile typography by default, desktop typography
-    // from desktop-small (1024 px), as the current code already does.
-    ...["prospect", "client"].map((theme) =>
+    // One file per responsive theme: mobile typography by default, desktop
+    // typography from desktop-small, as the current code already does.
+    ...responsiveThemes.map((theme) =>
       css({
         filename: `${theme}/tokens.css`,
         transform: formatValue,
         permutations: [
           {
             input: { Typography: `${theme}-mobile` },
-            prepare: (content) => `:root {\n  ${content}\n}`,
+            prepare: root,
           },
           {
             input: { Typography: `${theme}-desktop` },
@@ -76,6 +95,14 @@ export default defineConfig({
               `@media (--desktop-small) {\n  :root {\n    ${content}\n  }\n}`,
           },
         ],
+      }),
+    ),
+    // One file per single-mode theme, with the same typography on every screen.
+    ...singleModeThemes.map((theme) =>
+      css({
+        filename: `${theme}/tokens.css`,
+        transform: formatValue,
+        permutations: [{ input: { Typography: theme }, prepare: root }],
       }),
     ),
     // One custom media file per folder of dist.
