@@ -133,7 +133,9 @@ import edit from "@material-symbols/svg-400/outlined/edit.svg";
 
 ## Link
 
-Lien stylisé avec support ouverture nouvel onglet, icônes gauche/droite.
+Lien stylisé polymorphe avec support ouverture nouvel onglet, icônes gauche/droite.
+Sans `as`, le composant rend une balise `<a>`. Utiliser `as` pour sélectionner
+un composant de navigation sans perdre les styles ni les icônes Canopée.
 
 ### Import
 
@@ -146,16 +148,34 @@ import { Link, linkVariants, type LinkVariants, type LinkProps } from "@axa-fr/c
 ### Props
 
 ```tsx
-type LinkProps = {
-  variant?: LinkVariants;         // "inverse" (optionnel — sur fond coloré)
-  openInNewTab?: boolean;         // ajoute target="_blank" + icône externe (défaut: false)
+import type { ComponentPropsWithRef, ElementType, ReactNode } from "react";
+
+type LinkCustomProps = {
+  variant?: LinkVariants;
+  openInNewTab?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
-} & ComponentPropsWithoutRef<"a">;
+  children?: ReactNode;
+};
+
+type LinkProps<T extends ElementType = "a"> = LinkCustomProps &
+  Omit<ComponentPropsWithRef<T>, keyof LinkCustomProps | "as"> & {
+    as?: T;
+  };
 ```
 
+La variante `inverse` est destinée aux fonds colorés. `openInNewTab` vaut `false`
+par défaut.
+
 Quand `openInNewTab` est `true`, un SVG « open_in_new » s'affiche automatiquement à droite, et `rel="noopener noreferrer"` est ajouté.
+
+Les props natives ou personnalisées et le type de `ref` sont déduits du composant
+choisi avec `as`. Sans `as`, utiliser `href` et une ref `HTMLAnchorElement`.
+Avec un composant de routeur, fournir ses propres props de navigation, par exemple
+`to` pour React Router ; `as` n'effectue aucune conversion de `href` en `to`.
+Le composant personnalisé doit transmettre `className`, `children`, les attributs
+de lien et la ref à son élément sous-jacent pour conserver les comportements Canopée.
 
 ### Exemples
 
@@ -170,3 +190,26 @@ Quand `openInNewTab` est `true`, un SVG « open_in_new » s'affiche automatiquem
   Retour (sur fond coloré)
 </Link>
 ```
+
+### React Router
+
+```tsx
+import { Link as RouterLink } from "react-router";
+import { Link } from "@axa-fr/canopee-react/prospect";
+
+export const AccountLink = () => (
+  <Link as={RouterLink} to="/account">
+    Mon compte
+  </Link>
+);
+```
+
+Le même exemple fonctionne avec l'import `@axa-fr/canopee-react/client`.
+React Router doit être installé par l'application et le lien rendu dans un
+contexte de routeur. Pour une application React Router 6, importer `RouterLink`
+depuis `react-router-dom`. Ne pas imbriquer deux liens : utiliser
+`<Link as={RouterLink} to="...">` plutôt que `<Link><RouterLink /></Link>`.
+
+Pour typer des props de navigation réutilisables, utiliser
+`LinkProps<typeof RouterLink>` ; `LinkProps` sans paramètre conserve les props
+du lien HTML par défaut.

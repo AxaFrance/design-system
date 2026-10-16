@@ -21,6 +21,23 @@ export const LinkComponent = () => (
 );
 ```
 
+### React Router
+
+The `as` prop selects the rendered component and infers its props and ref type.
+By default, `Link` renders an HTML anchor. React Router must be installed in the
+application, and this example must be rendered inside a router.
+
+```tsx
+import { Link as RouterLink } from "react-router";
+import { Link } from "@axa-fr/canopee-react/client";
+
+export const AccountLink = () => (
+  <Link as={RouterLink} to="/account">
+    Mon compte
+  </Link>
+);
+```
+
 ## Playground
 
 <Canvas of={LinkStories.Playground} />
