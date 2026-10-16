@@ -1,0 +1,81 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as DropdownMultiSelectStories from "./DropdownMultiSelect.stories";
+
+<Meta of={DropdownMultiSelectStories} name="DropdownMultiSelect" />
+
+# DropdownMultiSelect
+
+## Import
+
+```tsx
+import { DropdownMultiSelect } from "@axa-fr/canopee-react/client";
+```
+
+## Uses
+
+The `DropdownMultiSelect` component displays a dropdown containing a list of
+checkboxes. Selected options are summarized in the trigger and displayed as
+tags below it.
+
+The component accepts an array of `items`. Each item must have an `id` and a
+`label`. An item can be initially selected with `checked: true`.
+
+`values` can be used to provide the IDs selected when the component is
+initialized. When `values` is not provided, the initial selection is inferred
+from the items whose `checked` property is `true`. Later changes to `values`
+do not reset the internal selection.
+
+`onChange` is called with the native change event of the checkbox that was
+selected or deselected. The selected ID is available through
+`event.target.value` and the new state through `event.target.checked`.
+
+`hideThreshold` controls how many selected tags remain visible below the
+dropdown. Additional tags are grouped into an overflow tag showing the number
+of hidden selections.
+
+### DropdownMultiSelect
+
+```tsx
+import { DropdownMultiSelect } from "@axa-fr/canopee-react/client";
+
+export const DropdownMultiSelectComponent = () => (
+  <DropdownMultiSelect
+    label="Choix multiples"
+    helper="Sélectionnez une ou plusieurs options"
+    items={[
+      { id: "option-1", label: "Option 1" },
+      { id: "option-2", label: "Option 2" },
+      { id: "option-3", label: "Option 3" },
+    ]}
+    values={["option-1"]}
+    hideThreshold={2}
+    onChange={(event) => {
+      console.log(event.target.value, event.target.checked);
+    }}
+  />
+);
+```
+
+### DropdownMultiSelect Playground
+
+<Canvas of={DropdownMultiSelectStories.Playground} />
+
+<Controls of={DropdownMultiSelectStories.Playground} />
+
+### DropdownMultiSelect Empty
+
+<Canvas of={DropdownMultiSelectStories.Empty} />
+
+<Controls of={DropdownMultiSelectStories.Empty} />
+
+### DropdownMultiSelect With message
+
+<Canvas of={DropdownMultiSelectStories.WithMessage} />
+
+<Controls of={DropdownMultiSelectStories.WithMessage} />
+
+### DropdownMultiSelect Disabled
+
+<Canvas of={DropdownMultiSelectStories.Disabled} />
+
+<Controls of={DropdownMultiSelectStories.Disabled} />
