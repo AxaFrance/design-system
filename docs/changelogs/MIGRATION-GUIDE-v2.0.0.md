@@ -72,6 +72,16 @@ application styles relied on the previous import order.
 
 ### Distributeur
 
+#### Loader
+
+The previous Distributeur loader remains available under the `SquareLoader`
+export to make the migration easier. Use it as a temporary compatibility path
+while migrating existing usages:
+
+```tsx
+import { SquareLoader } from "@axa-fr/canopee-react/distributeur";
+```
+
 #### Removed `PassInput`
 
 `PassInput` is no longer available in the Distributeur package. If your
