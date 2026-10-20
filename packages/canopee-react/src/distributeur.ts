@@ -121,6 +121,7 @@ export { Loader } from "./distributeur/Loader/Loader";
 export {
   SquareLoader,
   type SquareLoaderProps,
+  type LoaderMode,
 } from "./distributeur/Loader/SquareLoader";
 export {
   ItemLoader,
