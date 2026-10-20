@@ -19,6 +19,7 @@ const RadioInput = ({
       label={label}
       labelPosition={labelPosition}
       roleContainer="radiogroup"
+      fieldClassNameSuffix="inputgroup"
       {...props}
       renderInput={({ inputClassName, ...radioProps }) => (
         <Radio

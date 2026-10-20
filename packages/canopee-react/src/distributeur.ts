@@ -119,6 +119,10 @@ export { Message } from "./distributeur/Messages/Message";
 export { HelpButton } from "./distributeur/HelpButton";
 export { Loader } from "./distributeur/Loader/Loader";
 export {
+  SquareLoader,
+  type SquareLoaderProps,
+} from "./distributeur/Loader/SquareLoader";
+export {
   ItemLoader,
   type ItemLoaderVariant,
 } from "./distributeur/Loader/ItemLoader";
