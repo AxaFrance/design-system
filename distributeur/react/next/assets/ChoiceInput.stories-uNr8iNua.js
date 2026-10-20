@@ -1,0 +1,9 @@
+import{n as e,r as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./jsx-runtime-DeHZSEgm.js";import{n as r,r as i}from"./iframe-DBecIi7S.js";import{Sn as a,Un as o,f as s,t as c}from"./distributeur-wY98V-UD.js";var l=t({ChoiceInputStory:()=>p,ChoiceInputWithChildrenStory:()=>m,__namedExportsOrder:()=>h,default:()=>f}),u,d,f,p,m,h;function g(){return(g=e((()=>{c(),r(),u=n(),{fn:d}=__STORYBOOK_MODULE_TEST__,f=i.type().meta({title:`Components/Form/Input/Choice`,args:{name:`placeName`,required:!0,label:`Place type`,placeholder:`Paris`,messageType:o.error,forceDisplayMessage:!1,classNameContainerInput:`col-md-10`,classNameContainerLabel:`col-md-2`,message:``,id:`uniqueid`,onChange:d(),isVisible:!0,readOnly:!1,disabled:!1,value:void 0},argTypes:{onChange:{action:`onChange`},value:{options:[void 0,!0,!1],control:{type:`inline-radio`}}}}),p=f.story({name:`ChoiceInput`,render:e=>(0,u.jsx)(a,{...e})}),m=f.story({name:`ChoiceInput with help button`,render:e=>(0,u.jsx)(a,{...e,children:(0,u.jsx)(s,{mode:`hover`,children:`Help`})})}),p.input.parameters={...p.input.parameters,docs:{...p.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "ChoiceInput",
+  render: args => <ChoiceInput {...args} />
+})`,...p.input.parameters?.docs?.source}}},m.input.parameters={...m.input.parameters,docs:{...m.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "ChoiceInput with help button",
+  render: args => <ChoiceInput {...args}>
+      <HelpButton mode="hover">Help</HelpButton>
+    </ChoiceInput>
+})`,...m.input.parameters?.docs?.source}}},h=[`ChoiceInputStory`,`ChoiceInputWithChildrenStory`]})))()}export{l as n,g as r,p as t};

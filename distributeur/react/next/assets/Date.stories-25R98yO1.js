@@ -1,4 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-DkW27tQK.js";import{n,r}from"./iframe-CUw-2XJG.js";import{bn as i,t as a}from"./distributeur-BR8zYeHf.js";var o=t({DateStory:()=>l,__namedExportsOrder:()=>u,default:()=>c}),s,c,l,u;function d(){return(d=e((()=>{a(),n(),{fn:s}=__STORYBOOK_MODULE_TEST__,c=r.meta({title:`Components/Form/Input/Date`,component:i,argTypes:{onChange:{action:`onChange`}},args:{onChange:s(),name:`birthDate`,id:`uniqueid`,value:new Date(`01/01/2024`)}}),l=c.story({name:`Date`,tags:[`Form`,`Input`]}),l.input.parameters={...l.input.parameters,docs:{...l.input.parameters?.docs,source:{originalSource:`meta.story({
-  name: "Date",
-  tags: ["Form", "Input"]
-})`,...l.input.parameters?.docs?.source}}},u=[`DateStory`]})))()}export{o as n,d as r,l as t};
