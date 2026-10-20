@@ -1,6 +1,6 @@
 ---
 name: canopee-v2-migration
-description: Migrate an application or package from AXA Design System 1.8.0 to Canopée 2.0.0. Use this skill whenever a user mentions this migration, Apollo or Slash package replacement, React 19 compatibility, deprecated Canopée APIs, or class modifier removal, even if they do not explicitly ask for a migration plan. Read the version 2.0.0 changelog and migration guide before deciding what to change, apply only documented migrations, determine available commands from package.json scripts, and prefer verification in this order: single-file typecheck, component-focused test, then package lint.
+description: Migrate an application or package from AXA Design System 1.8.0 to Canopée 2.0.0. Use this skill whenever a user mentions this migration, Apollo or Slash package replacement, React 19 compatibility, deprecated Canopée APIs, or class modifier removal, even if they do not explicitly ask for a migration plan. Read the version 2.0.0 changelog and migration guide before deciding what to change, apply only documented migrations, determine available commands from package.json scripts, and prefer verification in this order "single-file typecheck, component-focused test, then package lint".
 ---
 
 # Canopée 2.0.0 Migration
