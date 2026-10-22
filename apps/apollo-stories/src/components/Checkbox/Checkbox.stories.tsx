@@ -19,11 +19,6 @@ const meta: Meta = {
       control: { type: "select" },
       options: ["error", "warning"],
     },
-    errorId: {
-      table: {
-        disable: true,
-      },
-    },
     hasError: {
       table: {
         disable: true,
