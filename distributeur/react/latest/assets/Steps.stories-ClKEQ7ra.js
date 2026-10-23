@@ -1,0 +1,29 @@
+import{n as e,r as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./jsx-runtime-DeHZSEgm.js";import{n as r,r as i}from"./iframe-DBecIi7S.js";import{I as a,R as o,t as s}from"./distributeur-wY98V-UD.js";var c=t({NewStepsStory:()=>f,StepsValidated:()=>p,__namedExportsOrder:()=>m,default:()=>d}),l,u,d,f,p,m;function h(){return(h=e((()=>{s(),r(),l=n(),{fn:u}=__STORYBOOK_MODULE_TEST__,d=i.type().meta({title:`Components/Steps/Step`,args:{mode:`link`,onClick:u()},argTypes:{onClick:{action:`onClick`},mode:{options:[`link`,`active`,`disabled`],control:{type:`select`}}}}),f=d.story({name:`Horizontal Stepper`,render:({className:e,mode:t,onClick:n})=>(0,l.jsxs)(a,{className:e,children:[(0,l.jsx)(o,{id:`id1`,href:`/etape1`,onClick:n,number:`1`,mode:t,title:`First Step`}),(0,l.jsx)(o,{id:`id2`,href:`/etape2`,number:`2`,onClick:n,title:`Second step`,mode:`link`}),(0,l.jsx)(o,{id:`id3`,number:`3`,onClick:n,title:`Current step`,mode:`active`}),(0,l.jsx)(o,{id:`idf4`,title:`Future Step`,mode:`disabled`}),(0,l.jsx)(o,{id:`id5`,title:`Final step`,mode:`disabled`})]}),args:{}}),p=d.story({name:`Final step is active`,render:({className:e,mode:t,onClick:n})=>(0,l.jsxs)(a,{className:e,children:[(0,l.jsx)(o,{id:`id1`,href:`/etape1`,onClick:n,number:`1`,mode:t,title:`Previous step`}),(0,l.jsx)(o,{id:`id2`,href:`/etape2`,number:`2`,onClick:n,title:`Previous step`,mode:`link`}),(0,l.jsx)(o,{id:`id3`,href:`/etape3`,number:`3`,onClick:n,title:`Previous step`,mode:`link`}),(0,l.jsx)(o,{id:`id3`,href:`/etape3`,number:`3`,onClick:n,title:`Previous step`,mode:`link`}),(0,l.jsx)(o,{id:`id5`,title:`Final step`,mode:`active`})]}),args:{}}),f.input.parameters={...f.input.parameters,docs:{...f.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "Horizontal Stepper",
+  render: ({
+    className,
+    mode,
+    onClick
+  }: StoryProps) => <Steps className={className}>
+      <Step id="id1" href="/etape1" onClick={onClick} number="1" mode={mode} title="First Step" />
+      <Step id="id2" href="/etape2" number="2" onClick={onClick} title="Second step" mode="link" />
+      <Step id="id3" number="3" onClick={onClick} title="Current step" mode="active" />
+      <Step id="idf4" title="Future Step" mode="disabled" />
+      <Step id="id5" title="Final step" mode="disabled" />
+    </Steps>,
+  args: {}
+})`,...f.input.parameters?.docs?.source}}},p.input.parameters={...p.input.parameters,docs:{...p.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "Final step is active",
+  render: ({
+    className,
+    mode,
+    onClick
+  }: StoryProps) => <Steps className={className}>
+      <Step id="id1" href="/etape1" onClick={onClick} number="1" mode={mode} title="Previous step" />
+      <Step id="id2" href="/etape2" number="2" onClick={onClick} title="Previous step" mode="link" />
+      <Step id="id3" href="/etape3" number="3" onClick={onClick} title="Previous step" mode="link" />
+      <Step id="id3" href="/etape3" number="3" onClick={onClick} title="Previous step" mode="link" />
+      <Step id="id5" title="Final step" mode="active" />
+    </Steps>,
+  args: {}
+})`,...p.input.parameters?.docs?.source}}},m=[`NewStepsStory`,`StepsValidated`]})))()}export{c as n,h as r,f as t};
