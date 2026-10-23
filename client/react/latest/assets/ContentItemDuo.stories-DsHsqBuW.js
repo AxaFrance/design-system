@@ -1,0 +1,19 @@
+import{n as e,r as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./jsx-runtime-DeHZSEgm.js";import{I as r,t as i}from"./client-CEQNs7hR.js";var a=t({ContentItemDuoHorizontal:()=>c,ContentItemDuoVertical:()=>l,__namedExportsOrder:()=>u,default:()=>s}),o,s,c,l,u;function d(){return(d=e((()=>{i(),o=n(),s={title:`Components/ContentItemDuo`,component:r,args:{label:`Label`,value:`Value`,message:`Titre du message`,buttonText:`Learn more`},argTypes:{className:{control:`text`},position:{options:[`horizontal`,`vertical`],control:{type:`select`}},message:{control:`text`},messageType:{options:[`error`,`warning`,`success`],control:{type:`select`}},size:{options:[`small`,`large`],control:{type:`select`}},onButtonClick:{action:`onButtonClick`}},decorators:[e=>(0,o.jsx)(`dl`,{children:(0,o.jsx)(e,{})})]},c={args:{position:`horizontal`,label:`Label`,value:`Value`,size:`large`}},l={args:{position:`vertical`,label:`Collision of motor vehicles (car, electric scooter, etc.) or crash of aircraft (planes, helicopters, etc.) with an identified owner of the other vehicle?`,value:`Fires, explosions, implosions, smoke, and lightning`},argTypes:{size:{control:!1}}},c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    position: "horizontal",
+    label: "Label",
+    value: "Value",
+    size: "large"
+  }
+}`,...c.parameters?.docs?.source}}},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    position: "vertical",
+    label: "Collision of motor vehicles (car, electric scooter, etc.) or crash of aircraft (planes, helicopters, etc.) with an identified owner of the other vehicle?",
+    value: "Fires, explosions, implosions, smoke, and lightning"
+  },
+  argTypes: {
+    size: {
+      control: false
+    }
+  }
+}`,...l.parameters?.docs?.source}}},u=[`ContentItemDuoHorizontal`,`ContentItemDuoVertical`]})))()}export{d as i,l as n,a as r,c as t};
