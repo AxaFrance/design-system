@@ -5,22 +5,69 @@ import * as MultiSelectListStories from "./MultiSelectList.stories";
 
 # MultiSelectList
 
-To use MultiSelectList import it like this:
+## Import
 
 ```tsx
 import { MultiSelectList } from "@axa-fr/canopee-react/prospect";
-
-const MyComponent = () => <MultiSelectList items={[]} />;
 ```
 
-## 3 items
+## Uses
 
-Use this example to display a compact list without scroll behavior.
+The `MultiSelectList` component displays a list of `ItemMultiSelect`
+checkboxes. The items alternate between the `primary` and `secondary`
+variants.
+
+Each item requires an `id` and a `label`. Items also accept the native input
+props of an HTML checkbox, such as `checked`, `disabled`, `name`,
+`aria-*`, `className` and `onChange`. These item-level props allow the input
+configuration to be customized for each option.
+
+### Item type
+
+```tsx
+type MultiSelectListItem = Omit<
+  React.ComponentProps<"input">,
+  "type" | "id"
+> & {
+  id: string;
+  label: React.ReactNode;
+  variant?: "primary" | "secondary";
+};
+
+type MultiSelectListProps = {
+  items: MultiSelectListItem[];
+};
+```
+
+### MultiSelectList
+
+```tsx
+const items = [
+  {
+    id: "option-1",
+    label: "Option 1",
+    name: "options",
+    "aria-label": "Select Option 1",
+  },
+  {
+    id: "option-2",
+    label: "Option 2",
+    checked: true,
+    disabled: false,
+  },
+];
+
+<MultiSelectList items={items} />;
+```
+
+### MultiSelectList 3 items
 
 <Canvas of={MultiSelectListStories.ThreeItems} />
 
-## 6 items (scroll)
+<Controls of={MultiSelectListStories.ThreeItems} />
 
-Use this example to illustrate the list when more elements are displayed and scrolling becomes visible.
+### MultiSelectList 6 items
 
 <Canvas of={MultiSelectListStories.SixItemsScroll} />
+
+<Controls of={MultiSelectListStories.SixItemsScroll} />
