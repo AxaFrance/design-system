@@ -27,6 +27,25 @@
     border-radius: 0.25rem;
   }
 
+  .react-select__clear-indicator {
+    display: flex;
+    padding: 0.5rem;
+    border: 0;
+    color: hsl(0deg, 0%, 40%);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .react-select__clear-indicator:hover {
+    color: hsl(0deg, 0%, 20%);
+  }
+
+  .react-select__clear-indicator:focus-visible {
+    border-radius: 0.125rem;
+    outline: 0.125rem solid var(--axablue80);
+    outline-offset: -0.125rem;
+  }
+
   .react-select__multi-option-label {
     display: grid;
     grid-template-columns: 1rem 1fr;

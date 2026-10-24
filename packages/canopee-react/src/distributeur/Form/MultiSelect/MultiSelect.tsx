@@ -7,6 +7,7 @@ import Select, {
   type SingleValue,
 } from "react-select";
 import AsyncSelect, { type AsyncProps } from "react-select/async";
+import { ClearIndicator } from "./ClearIndicator";
 import { formatOptionLabel } from "./FormatOptionLabel";
 import { noOptionsMessage } from "./NoOptionsMessage";
 import { useMultiSelectStyle } from "./useMultiSelectStyle";
@@ -94,7 +95,7 @@ const MultiSelect = ({
     noOptionsMessage,
     isClearable: true,
     hideSelectedOptions: false,
-    components: { ValueContainer },
+    components: { ClearIndicator, ValueContainer },
     closeMenuOnSelect: !values,
     ...otherProps,
   };
