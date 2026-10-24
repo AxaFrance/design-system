@@ -36,8 +36,8 @@
     }
 
     &:has(
-      > input[value]:not(
-          [value=""],
+      > input:not(
+          :placeholder-shown,
           [class*="--error"],
           [class*="--warning"],
           :disabled
