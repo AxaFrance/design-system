@@ -26,7 +26,6 @@ const meta = preview.type<{ args: ChoiceInputProps }>().meta({
     message: "",
     id: "uniqueid",
     onChange: fn(),
-    isVisible: true,
     readOnly: false,
     disabled: false,
     value: undefined,
