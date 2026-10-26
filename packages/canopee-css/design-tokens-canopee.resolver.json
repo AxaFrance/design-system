@@ -4,8 +4,8 @@
   "$extensions": {
     "fr.axa.canopee": {
       "source": "Fondations Canopée",
-      "plugin": "0.24.4",
-      "date": "2026-10-19T15:05:07Z"
+      "plugin": "0.25.0",
+      "date": "2026-10-26T14:16:49Z"
     }
   },
   "sets": {
@@ -1325,14 +1325,6 @@
                 },
                 "$description": "Interligne de 18 px, soit 1.125rem dans le code."
               },
-              "19": {
-                "$type": "dimension",
-                "$value": {
-                  "value": 19,
-                  "unit": "px"
-                },
-                "$description": "Interligne de 19 px, soit 1.1875rem dans le code."
-              },
               "20": {
                 "$type": "dimension",
                 "$value": {
@@ -1340,14 +1332,6 @@
                   "unit": "px"
                 },
                 "$description": "Interligne de 20 px, soit 1.25rem dans le code."
-              },
-              "21": {
-                "$type": "dimension",
-                "$value": {
-                  "value": 21,
-                  "unit": "px"
-                },
-                "$description": "Interligne de 21 px, soit 1.3125rem dans le code."
               },
               "22": {
                 "$type": "dimension",
@@ -1357,21 +1341,13 @@
                 },
                 "$description": "Interligne de 22 px, soit 1.375rem dans le code."
               },
-              "23": {
+              "24": {
                 "$type": "dimension",
                 "$value": {
-                  "value": 23,
+                  "value": 24,
                   "unit": "px"
                 },
-                "$description": "Interligne de 23 px, soit 1.4375rem dans le code."
-              },
-              "25": {
-                "$type": "dimension",
-                "$value": {
-                  "value": 25,
-                  "unit": "px"
-                },
-                "$description": "Interligne de 25 px, soit 1.5625rem dans le code."
+                "$description": "Interligne de 24 px, soit 1.5rem dans le code."
               },
               "28": {
                 "$type": "dimension",
@@ -1389,13 +1365,13 @@
                 },
                 "$description": "Interligne de 30 px, soit 1.875rem dans le code."
               },
-              "35": {
+              "36": {
                 "$type": "dimension",
                 "$value": {
-                  "value": 35,
+                  "value": 36,
                   "unit": "px"
                 },
-                "$description": "Interligne de 35 px, soit 2.1875rem dans le code."
+                "$description": "Interligne de 36 px, soit 2.25rem dans le code."
               },
               "40": {
                 "$type": "dimension",
@@ -1412,14 +1388,6 @@
                   "unit": "px"
                 },
                 "$description": "Interligne de 50 px, soit 3.125rem dans le code."
-              },
-              "60": {
-                "$type": "dimension",
-                "$value": {
-                  "value": 60,
-                  "unit": "px"
-                },
-                "$description": "Interligne de 60 px, soit 3.75rem dans le code."
               }
             },
             "size": {
@@ -1805,7 +1773,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style body/1/regular."
                 }
               },
@@ -1827,7 +1795,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style body/1/semibold."
                 }
               }
@@ -2060,7 +2028,7 @@
               },
               "line-height": {
                 "$type": "dimension",
-                "$value": "{font.line-height.25}",
+                "$value": "{font.line-height.24}",
                 "$description": "Interligne du style heading/h4."
               }
             }
@@ -2085,7 +2053,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style label/1/regular."
                 }
               },
@@ -2107,7 +2075,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style label/1/semibold."
                 }
               }
@@ -2225,7 +2193,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style subtitle/1/regular."
                 }
               }
@@ -2321,7 +2289,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style title/1/regular."
                 }
               },
@@ -2343,7 +2311,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style title/1/semibold."
                 }
               }
@@ -2873,7 +2841,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.35}",
+                  "$value": "{font.line-height.36}",
                   "$description": "Interligne du style heading/h1."
                 }
               },
@@ -2897,7 +2865,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.25}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style heading/h3."
                 }
               },
@@ -2906,11 +2874,6 @@
                   "$type": "dimension",
                   "$value": "{font.size.18}",
                   "$description": "Taille de texte du style heading/h4."
-                },
-                "line-height": {
-                  "$type": "dimension",
-                  "$value": "{font.line-height.23}",
-                  "$description": "Interligne du style heading/h4."
                 }
               }
             },
@@ -3162,7 +3125,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.35}",
+                  "$value": "{font.line-height.36}",
                   "$description": "Interligne du style heading/h1."
                 }
               },
@@ -3191,7 +3154,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.25}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style heading/h3."
                 }
               },
@@ -3200,11 +3163,6 @@
                   "$type": "dimension",
                   "$value": "{font.size.18}",
                   "$description": "Taille de texte du style heading/h4."
-                },
-                "line-height": {
-                  "$type": "dimension",
-                  "$value": "{font.line-height.23}",
-                  "$description": "Interligne du style heading/h4."
                 }
               }
             },
@@ -3351,22 +3309,6 @@
         "distributeur": [
           {
             "body": {
-              "1": {
-                "regular": {
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.25}",
-                    "$description": "Interligne du style body/1/regular."
-                  }
-                },
-                "semibold": {
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.25}",
-                    "$description": "Interligne du style body/1/semibold."
-                  }
-                }
-              },
               "2": {
                 "regular": {
                   "line-height": {
@@ -3392,7 +3334,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.21}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style body/3/regular."
                   }
                 },
@@ -3404,7 +3346,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.21}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style body/3/semibold."
                   }
                 }
@@ -3481,7 +3423,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.25}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style heading/h2."
                 }
               },
@@ -3493,7 +3435,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.23}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style heading/h3."
                 }
               },
@@ -3591,15 +3533,6 @@
               }
             },
             "subtitle": {
-              "1": {
-                "regular": {
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.25}",
-                    "$description": "Interligne du style subtitle/1/regular."
-                  }
-                }
-              },
               "2": {
                 "regular": {
                   "line-height": {
@@ -3624,11 +3557,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.20}",
                     "$description": "Taille de texte du style title/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.25}",
-                    "$description": "Interligne du style title/1/regular."
                   }
                 },
                 "semibold": {
@@ -3636,11 +3564,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.20}",
                     "$description": "Taille de texte du style title/1/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.25}",
-                    "$description": "Interligne du style title/1/semibold."
                   }
                 }
               },
