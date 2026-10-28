@@ -22,19 +22,19 @@
     "@axa-fr/eslint-config-design-system": "*",
     "@axa-fr/prettier-config-design-system": "*",
     "@chromatic-com/storybook": "^5.1.2",
-    "@storybook/addon-a11y": "^10.3.5",
+    "@storybook/addon-a11y": "^10.6.5",
     "@storybook/addon-docs": "^10.3.5",
     "@storybook/react": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^6.1.2",
     "@whitespace/storybook-addon-html": "^9.0.0",
     "globals": "^17.5.0",
     "remark-gfm": "^4.0.1",
-    "storybook": "^10.3.5",
+    "storybook": "^10.6.5",
     "typescript": "~6.0.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.62.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.66.0"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": "eslint --fix",
