@@ -11,7 +11,7 @@ const meta = preview.type<{ args: StoryProps }>().meta({
     onClick: { action: "onClick" },
     positionInit: { control: { type: "number", min: 0, max: 3 } },
   },
-  args: { onClick: fn() },
+  args: { onClick: fn(), isVisible: true },
 });
 export default meta;
 

@@ -1,7 +1,7 @@
 import { Button, Svg } from "@axa-fr/canopee-react/distributeur";
 import arrowBackIcons from "@material-symbols/svg-400/outlined/arrow_back.svg";
 import arrowForwardIcons from "@material-symbols/svg-400/outlined/arrow_forward.svg";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ComponentType } from "react";
 import { fn } from "storybook/test";
 import preview from "../.storybook/preview";
 
@@ -22,7 +22,9 @@ type StoryProps = Omit<
 };
 
 const meta = preview.type<{ args: StoryProps }>().meta({
-  component: Button,
+  // The icons are chosen by key in the controls (see CssIcons) and turned into
+  // elements by `render`, so the args must not be inferred from Button's props
+  component: Button as unknown as ComponentType<StoryProps>,
   title: "Components/Button",
   parameters: {
     layout: "centered",
@@ -31,7 +33,8 @@ const meta = preview.type<{ args: StoryProps }>().meta({
   args: {
     onClick: fn(),
     children: "Button",
-    variant: "primary",
+    // `as const` keeps the literal type so that stories inherit these args
+    variant: "primary" as const,
     small: false,
     disabled: false,
     leftIcon: "(none)",

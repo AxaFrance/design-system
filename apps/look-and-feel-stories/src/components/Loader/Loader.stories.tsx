@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Loader } from "@axa-fr/canopee-react/client";
-import { useEffect, useRef } from "react";
+import { type ComponentProps, type Ref, useEffect, useRef } from "react";
 
 const meta: Meta<typeof Loader> = {
   title: "Components/Loader",
@@ -28,6 +28,11 @@ const meta: Meta<typeof Loader> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// `ref` is forwarded to the root element but is missing from the Loader props
+type DialogStory = StoryObj<
+  ComponentProps<typeof Loader> & { ref?: Ref<HTMLDialogElement> }
+>;
+
 export const Playground: Story = {
   args: {
     title: "Chargement en cours",
@@ -35,7 +40,7 @@ export const Playground: Story = {
   },
 };
 
-export const Dialog: Story = {
+export const Dialog: DialogStory = {
   decorators: [
     (Story, { args: { isDialog = true, ...args } }) => {
       const modalRef = useRef<HTMLDialogElement>(null);
