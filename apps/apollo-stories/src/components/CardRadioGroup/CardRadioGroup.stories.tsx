@@ -3,7 +3,7 @@ import {
   itemMessageVariants,
 } from "@axa-fr/canopee-react/prospect";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 
 const optionsDefault = [

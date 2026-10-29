@@ -13,12 +13,7 @@ export type SquareLoaderProps = {
 };
 
 export type LoaderMode =
-  | "none"
-  | "get"
-  | "post"
-  | "delete"
-  | "update"
-  | "error";
+  "none" | "get" | "post" | "delete" | "update" | "error";
 
 const getText = (index: LoaderMode) => {
   switch (index) {

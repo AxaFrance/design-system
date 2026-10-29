@@ -1,5 +1,5 @@
 import { AccordionCore } from "@axa-fr/canopee-react/prospect";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 
 const meta: Meta<typeof AccordionCore> = {

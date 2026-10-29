@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp */
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ErrorPage, Icon } from "@axa-fr/canopee-react/prospect";
 import arrowLeftAlt from "@material-symbols/svg-400/outlined/arrow_left_alt.svg";
 import type { ComponentProps } from "react";

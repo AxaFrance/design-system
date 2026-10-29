@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Card, ExitLayout } from "@axa-fr/canopee-react/client";
 import check from "@material-symbols/svg-400/rounded/check.svg";
 import type { ComponentProps } from "react";

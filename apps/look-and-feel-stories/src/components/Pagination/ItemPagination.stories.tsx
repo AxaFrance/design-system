@@ -1,5 +1,5 @@
 import { ItemPagination } from "@axa-fr/canopee-react/client";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ItemPagination> = {
   component: ItemPagination,

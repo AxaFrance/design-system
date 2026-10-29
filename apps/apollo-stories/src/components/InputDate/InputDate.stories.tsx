@@ -1,5 +1,5 @@
 import { InputDate, itemMessageVariants } from "@axa-fr/canopee-react/prospect";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 const meta: Meta<typeof InputDate> = {

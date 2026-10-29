@@ -42,6 +42,7 @@ export const AnimatedPopover = ({
   const { floatingStyles, context } = useFloating({
     placement,
     elements: { reference: referenceElement, floating: popperElement },
+    // eslint-disable-next-line react-hooks/refs
     middleware: [offset(12), arrow({ element: arrowRef })],
   });
 

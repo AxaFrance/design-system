@@ -1,8 +1,12 @@
 import { ItemFile } from "@axa-fr/canopee-react/client";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { ComponentProps } from "react";
 import { fn } from "storybook/test";
 
-type Story = StoryObj<Omit<typeof ItemFile, "file"> & { file: string }>;
+type StoryArgs = Omit<ComponentProps<typeof ItemFile>, "file"> & {
+  file: string;
+};
+type Story = StoryObj<StoryArgs>;
 
 const fileLists = [
   new File([new Uint8Array(1_496)], "Wallpaper.jpg", { type: "image/jpg" }),

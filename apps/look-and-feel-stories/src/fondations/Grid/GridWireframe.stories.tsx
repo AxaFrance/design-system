@@ -1,5 +1,5 @@
 import { DebugGrid } from "@axa-fr/canopee-react/client";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import "./Grid-demo-wireframe.story.scss";
 import { Card } from "./components/Card";
 import { Offsets } from "./components/Offsets";

@@ -9,7 +9,7 @@ import {
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
 import logout from "@material-symbols/svg-400/rounded/logout.svg";
 import settings from "@material-symbols/svg-400/rounded/settings-fill.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { action } from "storybook/actions";
 
 const meta: Meta<typeof MenuBurger> = {

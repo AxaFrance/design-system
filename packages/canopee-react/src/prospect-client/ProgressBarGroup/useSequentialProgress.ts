@@ -51,37 +51,41 @@ export const useSequentialProgress = (
   );
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const animate = useCallback(() => {
-    const targetStep = currentStepIndex + stepPercentage;
+  const animate = useCallback(
+    function animateStep() {
+      const targetStep = currentStepIndex + stepPercentage;
 
-    if (currentAnimationStep.current === targetStep) {
-      return;
-    }
+      if (currentAnimationStep.current === targetStep) {
+        return;
+      }
 
-    const diff = targetStep - currentAnimationStep.current;
-    if (
-      !Number.isInteger(currentAnimationStep.current) &&
-      Math.floor(currentAnimationStep.current) !== currentStepIndex
-    ) {
-      currentAnimationStep.current =
-        diff > 0
-          ? Math.ceil(currentAnimationStep.current)
-          : Math.floor(currentAnimationStep.current);
-    } else if (Math.abs(diff) > 1) {
-      currentAnimationStep.current += Number(Math.sign(diff)) * 1;
-    } else if (Math.abs(diff) > 0) {
-      currentAnimationStep.current = targetStep;
-    }
+      const diff = targetStep - currentAnimationStep.current;
+      if (
+        !Number.isInteger(currentAnimationStep.current) &&
+        Math.floor(currentAnimationStep.current) !== currentStepIndex
+      ) {
+        currentAnimationStep.current =
+          diff > 0
+            ? Math.ceil(currentAnimationStep.current)
+            : Math.floor(currentAnimationStep.current);
+      } else if (Math.abs(diff) > 1) {
+        currentAnimationStep.current += Number(Math.sign(diff)) * 1;
+      } else if (Math.abs(diff) > 0) {
+        currentAnimationStep.current = targetStep;
+      }
 
-    setProgressValues(
-      getProgressValues(
-        Math.floor(currentAnimationStep.current),
-        currentAnimationStep.current - Math.floor(currentAnimationStep.current),
-        steps,
-      ),
-    );
-    timeoutRef.current = setTimeout(animate, duration);
-  }, [currentStepIndex, duration, stepPercentage, steps]);
+      setProgressValues(
+        getProgressValues(
+          Math.floor(currentAnimationStep.current),
+          currentAnimationStep.current -
+            Math.floor(currentAnimationStep.current),
+          steps,
+        ),
+      );
+      timeoutRef.current = setTimeout(animateStep, duration);
+    },
+    [currentStepIndex, duration, stepPercentage, steps],
+  );
 
   // Reset the array and animation if the number of steps changes
   useEffect(() => {

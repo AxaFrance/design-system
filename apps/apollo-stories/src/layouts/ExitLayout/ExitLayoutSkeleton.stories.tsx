@@ -3,7 +3,7 @@ import {
   ExitLayout,
   ExitLayoutSkeleton,
 } from "@axa-fr/canopee-react/prospect";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import check from "@material-symbols/svg-400/rounded/check.svg";
 import type { ComponentProps } from "react";
 import { LayoutDemo } from "../LayoutDemo/LayoutDemo";

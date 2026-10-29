@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 import { Button, ContentItemDuoAction } from "@axa-fr/canopee-react/client";
 import { ComponentProps } from "react";

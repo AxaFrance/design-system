@@ -1,5 +1,5 @@
 import { Stepper } from "@axa-fr/canopee-react/prospect";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 
 const meta: Meta<typeof Stepper> = {
@@ -26,7 +26,6 @@ export default meta;
 type Story = StoryObj<ComponentProps<typeof Stepper>>;
 
 export const Playground: Story = {
-  name: "Playground",
   args: {
     nbSteps: 8,
     currentTitle: "Titre étape",

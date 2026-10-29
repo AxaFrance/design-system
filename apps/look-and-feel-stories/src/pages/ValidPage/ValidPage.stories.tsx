@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Icon, ValidPage } from "@axa-fr/canopee-react/client";
 import type { ComponentProps } from "react";
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
@@ -31,19 +31,19 @@ const dataAgentProps = {
   contents: [
     {
       type: "icon",
-      icon: accountBalance,
+      iconProps: { src: accountBalance },
       subtitle1: "6 place du 14 juillet 28 240 Ivry la Bataille",
       title: "",
     },
     {
       type: "icon",
-      icon: accountBalance,
+      iconProps: { src: accountBalance },
       subtitle1: "01 23 34 45 67",
       title: "",
     },
     {
       type: "icon",
-      icon: accountBalance,
+      iconProps: { src: accountBalance },
       subtitle1: "Ouvert aujourd’hui de 09h00 à 13h00 et de 14h00 à 18h00",
       title: "",
     },

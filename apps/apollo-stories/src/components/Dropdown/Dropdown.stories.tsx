@@ -1,5 +1,5 @@
 import { Dropdown, itemMessageVariants } from "@axa-fr/canopee-react/prospect";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 
 const options = [

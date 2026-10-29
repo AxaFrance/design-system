@@ -1,6 +1,6 @@
 import { Button, Icon, TableMobileCard } from "@axa-fr/canopee-react/client";
 import download from "@material-symbols/svg-400/outlined/download_2-fill.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { action } from "storybook/actions";
 
 interface TableMobileCardStoryArgs {

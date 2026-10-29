@@ -2,7 +2,7 @@ import {
   ItemMessage,
   itemMessageVariants,
 } from "@axa-fr/canopee-react/prospect";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ItemMessage> = {
   title: "Components/Form/ItemMessage",

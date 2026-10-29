@@ -1,7 +1,7 @@
 import { Fieldset, CheckboxText, Radio } from "@axa-fr/canopee-react/prospect";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
 import personIcon from "@material-symbols/svg-400/outlined/person.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Fieldset> = {
   title: "Components/Fieldset",

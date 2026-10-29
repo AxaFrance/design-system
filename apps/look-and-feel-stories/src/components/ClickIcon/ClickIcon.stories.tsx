@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ClickIcon } from "@axa-fr/canopee-react/client";
 import article from "@material-symbols/svg-400/rounded/article-fill.svg";
 

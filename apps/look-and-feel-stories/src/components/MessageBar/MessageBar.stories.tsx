@@ -1,7 +1,7 @@
 import { MessageBar } from "@axa-fr/canopee-react/client";
 import accountBalanceWalletIcon from "@material-symbols/svg-400/outlined/account_balance_wallet-fill.svg";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 
 const MESSAGE_BAR_VARIANTS = ["info", "error"] as const;

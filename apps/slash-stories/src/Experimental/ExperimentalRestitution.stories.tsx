@@ -7,7 +7,7 @@ import {
   ExperimentalRestitutionSection,
   ExperimentalRestitutionValueList,
 } from "@axa-fr/canopee-react/distributeur-experimental";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Experimental/ExperimentalRestitution",

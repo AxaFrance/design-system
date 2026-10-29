@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import type { ReactNode, CSSProperties } from "react";
 import { Skeleton, type SkeletonProps } from "../Skeleton/Skeleton";
 import "@axa-fr/canopee-css/prospect/SkeletonGrid/SkeletonGridAll.css";

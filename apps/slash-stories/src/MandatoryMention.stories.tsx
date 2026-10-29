@@ -1,5 +1,5 @@
 import { MandatoryMention } from "@axa-fr/canopee-react/distributeur";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof MandatoryMention> = {
   title: "Components/MandatoryMention",

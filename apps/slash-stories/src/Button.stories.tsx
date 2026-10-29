@@ -22,7 +22,6 @@ type StoryProps = Omit<
 };
 
 const meta = preview.type<{ args: StoryProps }>().meta({
-  component: Button,
   title: "Components/Button",
   parameters: {
     layout: "centered",

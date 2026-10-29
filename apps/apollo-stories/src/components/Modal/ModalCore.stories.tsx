@@ -8,7 +8,7 @@ import {
   ModalCoreHeader,
 } from "@axa-fr/canopee-react/prospect";
 import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useRef } from "react";
 import { fn } from "storybook/test";
 

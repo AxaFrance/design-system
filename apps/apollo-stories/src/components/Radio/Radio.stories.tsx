@@ -1,5 +1,5 @@
 import { Radio } from "@axa-fr/canopee-react/prospect";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 
 const meta: Meta = {

@@ -1,5 +1,5 @@
 import { ItemFile } from "@axa-fr/canopee-react/prospect";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 import { fn } from "storybook/test";
 

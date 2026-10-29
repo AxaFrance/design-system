@@ -6,7 +6,7 @@ import {
   type HeadColorVariants,
   type RowSizeVariants,
 } from "@axa-fr/canopee-react/client";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { action } from "storybook/actions";
 
 interface TableStoryArgs {

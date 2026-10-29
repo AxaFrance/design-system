@@ -1,5 +1,5 @@
 import { ItemLabel } from "@axa-fr/canopee-react/client";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ItemLabel> = {
   title: "Components/Form/ItemLabel",

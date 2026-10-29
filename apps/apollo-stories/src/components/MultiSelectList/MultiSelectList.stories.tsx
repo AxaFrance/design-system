@@ -2,7 +2,7 @@ import {
   MultiSelectList,
   type MultiSelectListProps,
 } from "@axa-fr/canopee-react/prospect";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof MultiSelectList> = {
   title: "Components/Form/MultiSelectList",

@@ -4,7 +4,7 @@ import {
   type AccordionVariants,
   type TagVariants,
 } from "@axa-fr/canopee-react/client";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
 

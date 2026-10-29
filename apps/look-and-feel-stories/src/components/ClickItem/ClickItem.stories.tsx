@@ -7,7 +7,7 @@ import {
   type TagVariants,
 } from "@axa-fr/canopee-react/client";
 import accountBalanceWallet from "@material-symbols/svg-400/rounded/account_balance_wallet-fill.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 import { action } from "storybook/actions";
 

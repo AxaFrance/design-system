@@ -1,5 +1,5 @@
 import { SkeletonGrid } from "@axa-fr/canopee-react/prospect";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { useArgs, useEffect, useState } from "storybook/preview-api";
 import { type ChangeEvent, ComponentPropsWithoutRef } from "react";
 import "./SkeletonGrid.stories.css?inline";

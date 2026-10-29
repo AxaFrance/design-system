@@ -29,14 +29,8 @@ export const Svg = ({
   ...props
 }: SvgProps) => {
   const rootRef = React.useRef<SVGSVGElement | null>(null);
-  const [hasError, setHasError] = React.useState(false);
-
-  React.useLayoutEffect(() => {
-    if (hasError) {
-      setHasError(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [src]);
+  const [errorSrc, setErrorSrc] = React.useState<string | null>(null);
+  const hasError = errorSrc === src;
 
   React.useLayoutEffect(() => {
     if (hasError) {
@@ -59,7 +53,7 @@ export const Svg = ({
       svgInjector(svg, {
         afterEach: (error, svgInject) => {
           if (error) {
-            setHasError(true);
+            setErrorSrc(src);
           }
 
           if (svgInject) {

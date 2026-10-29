@@ -1,5 +1,5 @@
 import { FileUpload, ItemFile } from "@axa-fr/canopee-react/client";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import type { ReactNode } from "react";
 
 const meta: Meta<typeof FileUpload> = {

@@ -89,7 +89,6 @@ export const CheckboxInputErrorStory = meta.story({
         {...args}
         values={values}
         options={options}
-        isVisible
         classNameContainerLabel="col-md-2"
         classNameContainerInput="col-md-10"
       />

@@ -1,5 +1,5 @@
 import { ItemMultiSelect } from "@axa-fr/canopee-react/prospect";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 
 const meta: Meta = {
@@ -34,9 +34,7 @@ const meta: Meta = {
 
 export default meta;
 
-export const Playground: StoryObj<ComponentProps<typeof ItemMultiSelect>> = {
-  name: "Playground",
-};
+export const Playground: StoryObj<ComponentProps<typeof ItemMultiSelect>> = {};
 
 export const Primary: StoryObj<ComponentProps<typeof ItemMultiSelect>> = {
   args: {

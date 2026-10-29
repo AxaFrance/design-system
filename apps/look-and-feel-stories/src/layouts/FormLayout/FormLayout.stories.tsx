@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Card, FormLayout, Link } from "@axa-fr/canopee-react/client";
 import type { ComponentProps } from "react";
 import { LayoutDemo } from "../LayoutDemo/LayoutDemo";

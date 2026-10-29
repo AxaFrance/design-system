@@ -1,5 +1,5 @@
 import { SkeletonList } from "@axa-fr/canopee-react/client";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { SkeletonListPage } from "./SkeletonListPage";
 import "./SkeletonList.stories.scss?inline";
 

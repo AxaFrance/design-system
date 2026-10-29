@@ -1,5 +1,5 @@
 import { ProgressBar } from "@axa-fr/canopee-react/client";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 
 const meta: Meta<typeof ProgressBar> = {
@@ -41,6 +41,4 @@ export default meta;
 type StoryProps = ComponentProps<typeof ProgressBar>;
 type Story = StoryObj<StoryProps>;
 
-export const Playground: Story = {
-  name: "Playground",
-};
+export const Playground: Story = {};

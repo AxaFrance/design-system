@@ -1,7 +1,7 @@
 import { CardRadio } from "@axa-fr/canopee-react/prospect";
 import accountBalanceIcon from "@material-symbols/svg-400/outlined/account_balance-fill.svg";
 import homeIcon from "@material-symbols/svg-400/outlined/home.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 
 const ICONS: Record<string, string | undefined> = {

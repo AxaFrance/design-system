@@ -1,5 +1,5 @@
 import { ItemFormHelper } from "@axa-fr/canopee-react/distributeur";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ItemFormHelper> = {
   title: "Form/ItemFormHelper",

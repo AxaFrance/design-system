@@ -1,5 +1,5 @@
 import { TabMenu } from "@axa-fr/canopee-react/prospect";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof TabMenu> = {
   title: "Components/TabMenu 🚧",

@@ -1,4 +1,4 @@
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { TabsStateless, type TabsStatelessProps } from "./TabsStateless";
 
 const DEFAULT_ACTIVE_INDEX = "0";
@@ -18,11 +18,14 @@ const TabsCore = ({
   const [activeIndex, setActiveIndex] = useState<number>(
     Number(activeIndexProp),
   );
+  const [previousActiveIndexProp, setPreviousActiveIndexProp] =
+    useState(activeIndexProp);
 
-  // Allow to update activeIndex from props
-  useEffect(() => {
+  // Keep the internal state in sync when the prop changes.
+  if (activeIndexProp !== previousActiveIndexProp) {
+    setPreviousActiveIndexProp(activeIndexProp);
     setActiveIndex(Number(activeIndexProp));
-  }, [activeIndexProp]);
+  }
 
   return (
     <TabsStateless

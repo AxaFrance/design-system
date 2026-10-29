@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { AccordionContextual } from "@axa-fr/canopee-react/prospect";
 import type { ComponentProps } from "react";
 import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";

@@ -1,5 +1,5 @@
 import { LevelSelector } from "@axa-fr/canopee-react/prospect";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 const meta: Meta<typeof LevelSelector> = {

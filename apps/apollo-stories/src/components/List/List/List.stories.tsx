@@ -11,7 +11,7 @@ import publishedWithChangesIcon from "@material-symbols/svg-400/outlined/publish
 import walletIcon from "@material-symbols/svg-400/outlined/account_balance_wallet-fill.svg";
 import checkIcon from "@material-symbols/svg-400/outlined/check-fill.svg";
 import closeIcon from "@material-symbols/svg-400/outlined/close-fill.svg";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof List> = {
   title: "Components/List/List",

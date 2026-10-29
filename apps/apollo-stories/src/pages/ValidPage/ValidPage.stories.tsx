@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Icon, ValidPage } from "@axa-fr/canopee-react/prospect";
 import type { ComponentProps } from "react";
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";

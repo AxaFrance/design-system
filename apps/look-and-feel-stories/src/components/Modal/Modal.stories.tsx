@@ -1,7 +1,7 @@
 import "./Modal.story.scss";
 import { Button, Modal } from "@axa-fr/canopee-react/client";
 import bank from "@material-symbols/svg-700/rounded/account_balance.svg";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentPropsWithRef, useLayoutEffect, useRef } from "react";
 import { action } from "storybook/actions";
 import { fn } from "storybook/test";

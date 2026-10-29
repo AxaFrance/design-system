@@ -3,7 +3,7 @@ import {
   tabBarDirection,
   type TabBarProps,
 } from "@axa-fr/canopee-react/client";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentProps } from "react";
 import { fn } from "storybook/test";
 
@@ -51,7 +51,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
     items: [
       {
         title: "ReactNode tab 1",
-        handleSelectTab: fn(() => console.log("ReactNode tab 1")),
+        handleSelectTab: fn(),
         content: (
           <>
             <h2>Titre 1</h2>
@@ -61,7 +61,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
       },
       {
         title: "ReactNode tab 2",
-        handleSelectTab: fn(() => console.log("ReactNode tab 2")),
+        handleSelectTab: fn(),
         content: (
           <>
             <h2>Titre 2</h2>
@@ -71,7 +71,7 @@ export const TabBarWithReactNodeStory: StoryObj<typeof TabBar> = {
       },
       {
         title: "ReactNode tab 3",
-        handleSelectTab: fn(() => console.log("ReactNode tab 3")),
+        handleSelectTab: fn(),
         content: (
           <>
             <h2>Titre 3</h2>

@@ -99,7 +99,6 @@ export const CustomLinkStory = meta.story({
         <button
           type="button"
           className={className}
-          // eslint-disable-next-line no-alert
           onClick={() => alert("Button clicked!")}
         >
           This link is actually a button 🤯

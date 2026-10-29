@@ -1,4 +1,4 @@
-import { type ComponentType, type ElementType, useId } from "react";
+import { type ComponentType, type ElementType, type Ref, useId } from "react";
 import { getClassName } from "../utilities/getClassName";
 
 import { type SpinnerProps } from "../Spinner/SpinnerCommon";
@@ -9,6 +9,7 @@ export type LoaderProps = {
   title: string;
   subtitle?: string;
   spinnerProps?: SpinnerProps;
+  ref?: Ref<HTMLElement>;
 };
 
 export type LoaderCommonProps<T extends ElementType> = PolymorphicComponent<
