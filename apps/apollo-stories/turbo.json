@@ -1,34 +1,17 @@
 {
-    "$schema": "https://v2-11-10.turborepo.dev/schema.json",
-    "extends": [
-        "//"
-    ],
-    "tasks": {
-        "dev": {
-            "with": [
-                "@axa-fr/canopee-css#dev:prospect",
-                "@axa-fr/canopee-react#dev"
-            ],
-            "persistent": true,
-            "cache": false
-        },
-        "lint": {
-            "dependsOn": [
-                "eslint",
-                "prettier",
-                "check-types"
-            ]
-        },
-        "eslint": {
-            "dependsOn": [
-                "^build"
-            ]
-        },
-        "prettier": {},
-        "check-types": {
-            "dependsOn": [
-                "^build"
-            ]
-        }
+  "$schema": "https://v2-11-10.turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "dev": {
+      "with": ["@axa-fr/canopee-css#dev:prospect", "@axa-fr/canopee-react#dev"],
+      "persistent": true,
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["check-types"]
+    },
+    "check-types": {
+      "dependsOn": ["^build"]
     }
+  }
 }

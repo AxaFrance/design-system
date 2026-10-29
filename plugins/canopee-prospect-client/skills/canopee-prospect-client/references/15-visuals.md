@@ -9,7 +9,11 @@ Label de statut coloré.
 ### Import
 
 ```tsx
-import { Tag, tagVariants, type TagVariants } from "@axa-fr/canopee-react/prospect";
+import {
+  Tag,
+  tagVariants,
+  type TagVariants,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -17,8 +21,8 @@ import { Tag, tagVariants, type TagVariants } from "@axa-fr/canopee-react/prospe
 
 ```tsx
 type TagProps = ComponentProps<"div"> & {
-  variant?: TagVariants;          // "info" | "success" | "warning" | "error" | "neutral"
-                                  // (défaut: "info")
+  variant?: TagVariants; // "info" | "success" | "warning" | "error" | "neutral"
+  // (défaut: "info")
 };
 ```
 
@@ -56,21 +60,21 @@ import {
 ```tsx
 type IconProps = ComponentPropsWithoutRef<"span"> & {
   src: string;
-  variant?: IconVariants;         // "primary" | "secondary" | "disabled" | "success" | "error" | "warning"
-                                  // (défaut: "primary")
-  size?: IconSizeVariants;        // "L" | "M" | "S" | "XS"  (défaut: "S")
-  hasBackground?: boolean;        // Cercle de fond (défaut: false)
+  variant?: IconVariants; // "primary" | "secondary" | "disabled" | "success" | "error" | "warning"
+  // (défaut: "primary")
+  size?: IconSizeVariants; // "L" | "M" | "S" | "XS"  (défaut: "S")
+  hasBackground?: boolean; // Cercle de fond (défaut: false)
 };
 ```
 
 ### Correspondance tailles
 
-| Code | Rendu CSS |
-|---|---|
-| `XS` | `extra-small` |
-| `S` | `small` (défaut) |
-| `M` | `medium` |
-| `L` | `large` |
+| Code | Rendu CSS        |
+| ---- | ---------------- |
+| `XS` | `extra-small`    |
+| `S`  | `small` (défaut) |
+| `M`  | `medium`         |
+| `L`  | `large`          |
 
 ### Exemple
 
@@ -104,26 +108,26 @@ import {
 
 ```tsx
 type HeadingProps = {
-  level?: HeadingLevel;           // 1 | 2 | 3 | 4  (défaut: 1)
-  icon?: string;                  // SVG src (optionnel)
+  level?: HeadingLevel; // 1 | 2 | 3 | 4  (défaut: 1)
+  icon?: string; // SVG src (optionnel)
   iconProps?: Omit<IconProps, "src">;
-  tag?: ReactNode;                // Tag affiché en haut (niveau 1 et 2 uniquement)
-  tagProps?: Omit<TagProps, "children">;  // (défaut: { variant: "neutral" })
+  tag?: ReactNode; // Tag affiché en haut (niveau 1 et 2 uniquement)
+  tagProps?: Omit<TagProps, "children">; // (défaut: { variant: "neutral" })
   firstSubtitle?: ReactNode;
   secondSubtitle?: ReactNode;
   className?: string;
-  children?: ReactNode;           // Texte du titre
+  children?: ReactNode; // Texte du titre
 } & JSX.IntrinsicElements["div"];
 ```
 
 ### Tailles d'icônes automatiques
 
 | Niveau | Desktop | Mobile |
-|---|---|---|
-| 1 | `L` | `S` |
-| 2 | `M` | `S` |
-| 3 | `S` | `S` |
-| 4 | `S` | `XS` |
+| ------ | ------- | ------ |
+| 1      | `L`     | `S`    |
+| 2      | `M`     | `S`    |
+| 3      | `S`     | `S`    |
+| 4      | `S`     | `XS`   |
 
 ### Exemple
 
@@ -169,7 +173,7 @@ import { Divider } from "@axa-fr/canopee-react/prospect";
 ```tsx
 type DividerProps = {
   className?: string;
-  classModifier?: string;         // pour des modificateurs BEM custom
+  classModifier?: string; // pour des modificateurs BEM custom
 };
 ```
 
@@ -196,7 +200,10 @@ import { Card, type CardProps } from "@axa-fr/canopee-react/prospect";
 ### Props
 
 ```tsx
-type CardProps<T extends ElementType> = PolymorphicComponent<T, ComponentProps<"div">>;
+type CardProps<T extends ElementType> = PolymorphicComponent<
+  T,
+  ComponentProps<"div">
+>;
 // as?: ElementType  (défaut: "div")
 // + tous props HTML de l'élément cible
 ```
@@ -237,7 +244,10 @@ import { Toggle } from "@axa-fr/canopee-react/prospect";
 ### Props
 
 ```tsx
-type ToggleProps = Omit<InputHTMLAttributes<HTMLInputElement>, "style" | "type">;
+type ToggleProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "style" | "type"
+>;
 // Supporte: checked, defaultChecked, onChange, disabled, id, name, aria-*, …
 ```
 

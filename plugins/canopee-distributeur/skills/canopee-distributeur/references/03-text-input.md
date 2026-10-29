@@ -1,9 +1,11 @@
 # Form Text Input (Saisie texte)
 
 ## Présentation
+
 Le composant TextInput est un wrapper autour de l'élément HTML `<input type="text">` avec support du label, des messages de validation et du texte d'aide.
 
 ## Import
+
 ```tsx
 import { Text, TextInput } from "@axa-fr/canopee-react/distributeur";
 ```
@@ -11,7 +13,9 @@ import { Text, TextInput } from "@axa-fr/canopee-react/distributeur";
 ## Composants
 
 ### Text (base)
+
 Wrapper bas niveau autour de l'élément `<input>`.
+
 ```tsx
 import { Text } from "@axa-fr/canopee-react/distributeur";
 
@@ -19,7 +23,9 @@ const MonInput = () => <Text id="nom" name="nom" placeholder="Saisir le nom" />;
 ```
 
 ### TextInput (haute niveau)
+
 Saisie complète avec label, validation et messages d'aide.
+
 ```tsx
 import { TextInput } from "@axa-fr/canopee-react/distributeur";
 
@@ -36,47 +42,48 @@ const MonInput = () => (
 
 ## Props — TextInput
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `id` | `string` | Obligatoire | Attribut HTML id |
-| `name` | `string` | Obligatoire | Attribut HTML name |
-| `label` | `string \| ReactNode` | - | Texte du label |
-| `type` | `string` | `"text"` | Type HTML (text, email, password, tel, url...) |
-| `value` | `string` | - | Valeur de la saisie |
-| `placeholder` | `string` | - | Texte de placeholder |
-| `disabled` | `boolean` | `false` | Désactive la saisie |
-| `readOnly` | `boolean` | `false` | Mode lecture seule |
-| `required` | `boolean` | `false` | Champ obligatoire (affiche astérisque) |
-| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
-| `message` | `string` | - | Message de statut (erreur, succès, avertissement) — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
-| `onChange` | `function` | - | Gestionnaire de changement |
-| `onBlur` | `function` | - | Gestionnaire de perte de focus |
+| Prop                  | Type                                                     | Défaut      | Description                                                                                                   |
+| --------------------- | -------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- |
+| `id`                  | `string`                                                 | Obligatoire | Attribut HTML id                                                                                              |
+| `name`                | `string`                                                 | Obligatoire | Attribut HTML name                                                                                            |
+| `label`               | `string \| ReactNode`                                    | -           | Texte du label                                                                                                |
+| `type`                | `string`                                                 | `"text"`    | Type HTML (text, email, password, tel, url...)                                                                |
+| `value`               | `string`                                                 | -           | Valeur de la saisie                                                                                           |
+| `placeholder`         | `string`                                                 | -           | Texte de placeholder                                                                                          |
+| `disabled`            | `boolean`                                                | `false`     | Désactive la saisie                                                                                           |
+| `readOnly`            | `boolean`                                                | `false`     | Mode lecture seule                                                                                            |
+| `required`            | `boolean`                                                | `false`     | Champ obligatoire (affiche astérisque)                                                                        |
+| `helpMessage`         | `ReactNode`                                              | -           | Message d'aide affiché par défaut sous le champ                                                               |
+| `message`             | `string`                                                 | -           | Message de statut (erreur, succès, avertissement) — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -           | Type du message de statut                                                                                     |
+| `forceDisplayMessage` | `boolean`                                                | `false`     | Active l'affichage du `message` à la place de `helpMessage`                                                   |
+| `onChange`            | `function`                                               | -           | Gestionnaire de changement                                                                                    |
+| `onBlur`              | `function`                                               | -           | Gestionnaire de perte de focus                                                                                |
 
 ## Props — Text (base)
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `id` | `string` | - | HTML id |
-| `name` | `string` | - | HTML name |
-| `type` | `string` | `"text"` | Type de saisie HTML |
-| `value` | `string` | - | Valeur |
-| `placeholder` | `string` | - | Texte de placeholder |
-| `disabled` | `boolean` | `false` | État désactivé |
-| `readOnly` | `boolean` | `false` | État lecture seule |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `classModifier` | `string` | - | Classes CSS modificatrices |
+| Prop            | Type      | Défaut   | Description                |
+| --------------- | --------- | -------- | -------------------------- |
+| `id`            | `string`  | -        | HTML id                    |
+| `name`          | `string`  | -        | HTML name                  |
+| `type`          | `string`  | `"text"` | Type de saisie HTML        |
+| `value`         | `string`  | -        | Valeur                     |
+| `placeholder`   | `string`  | -        | Texte de placeholder       |
+| `disabled`      | `boolean` | `false`  | État désactivé             |
+| `readOnly`      | `boolean` | `false`  | État lecture seule         |
+| `required`      | `boolean` | `false`  | Champ obligatoire          |
+| `classModifier` | `string`  | -        | Classes CSS modificatrices |
 
 Attributs HTML standard `<input>` supportés.
 
 ## Utilisation de base
 
 ### Saisie texte simple
+
 ```tsx
 const SaisieSimple = () => {
   const [valeur, setValeur] = useState("");
-  
+
   return (
     <TextInput
       id="nom"
@@ -91,6 +98,7 @@ const SaisieSimple = () => {
 ```
 
 ### Saisie e-mail
+
 ```tsx
 <TextInput
   id="email"
@@ -103,6 +111,7 @@ const SaisieSimple = () => {
 ```
 
 ### Champ avec message d'aide
+
 ```tsx
 <TextInput
   id="pseudo"
@@ -116,6 +125,7 @@ const SaisieSimple = () => {
 ## Validation
 
 ### Message d'erreur
+
 ```tsx
 import { TextInput, MessageTypes } from "@axa-fr/canopee-react/distributeur";
 
@@ -139,10 +149,11 @@ const handleChange = (e) => {
   messageType={MessageTypes.error}
   forceDisplayMessage={Boolean(erreur)}
   onChange={handleChange}
-/>
+/>;
 ```
 
 ### Message de succès
+
 ```tsx
 <TextInput
   id="email-confirme"
@@ -155,6 +166,7 @@ const handleChange = (e) => {
 ```
 
 ### Message d'avertissement
+
 ```tsx
 <TextInput
   id="telephone"
@@ -170,16 +182,25 @@ const handleChange = (e) => {
 ## États
 
 ### Désactivé
+
 ```tsx
 <TextInput id="desactive" name="desactive" label="Désactivé" disabled />
 ```
 
 ### Lecture seule
+
 ```tsx
-<TextInput id="lecture" name="lecture" label="Lecture seule" readOnly value="Valeur fixe" />
+<TextInput
+  id="lecture"
+  name="lecture"
+  label="Lecture seule"
+  readOnly
+  value="Valeur fixe"
+/>
 ```
 
 ### Obligatoire
+
 ```tsx
 <TextInput id="obligatoire" name="obligatoire" label="Obligatoire" required />
 ```
@@ -215,19 +236,19 @@ const handleChange = (e) => {
 const FormulaireConnexion = () => {
   const [formData, setFormData] = useState({
     identifiant: "",
-    password: ""
+    password: "",
   });
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Formulaire soumis :", formData);
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className="af-form">
       <TextInput
@@ -254,6 +275,7 @@ const FormulaireConnexion = () => {
 ```
 
 ## Accessibilité
+
 - Toujours fournir un label clair et descriptif
 - Les champs obligatoires sont marqués avec un astérisque
 - Les messages d'erreur sont liés via `aria-describedby` (géré automatiquement)
@@ -261,6 +283,7 @@ const FormulaireConnexion = () => {
 - Les champs lecture seule restent accessibles au clavier
 
 ## Bonnes pratiques
+
 - Toujours fournir un `<label>` (la prop `label` le fait)
 - Utiliser le type `type` approprié pour une meilleure UX et validation
 - Afficher la validation tôt (au blur) plutôt qu'à la soumission
@@ -268,6 +291,7 @@ const FormulaireConnexion = () => {
 - Utiliser le texte d'aide pour expliquer les contraintes
 
 ## Classes CSS
+
 - `.af-form__input-text` - Classe de base de la saisie
 - `.af-form__input-text--required` - Champ obligatoire
 - `.af-form__input-text--disabled` - État désactivé

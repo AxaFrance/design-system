@@ -1,6 +1,7 @@
 # Changelog Generation Prompt Template
 
 ## 🎯 Objective
+
 This template serves to generate structured and consistent changelogs for the AXA France design system.
 
 If `rtk` is not installed, use the same commands without the `rtk` prefix.
@@ -8,35 +9,42 @@ If `rtk` is not installed, use the same commands without the `rtk` prefix.
 ## 📋 Instructions
 
 ### 1. Commit Collection
+
 ```bash
 # Get all commits since the last tag (replace X.Y.Z with the previous version)
 rtk git log X.Y.Z..HEAD --pretty=format:"%h %an %s" --no-merges
 ```
 
 ### 2. Filtering
+
 - **EXCLUDE** all commits from `dependabot[bot]`
 - **INCLUDE** only functional commits (feat, fix, documented chore)
 - **IGNORE** merge commits
 
 ### 3. Grouping by Universe
+
 Organize commits according to their scope (first part in parentheses):
 
 #### Main Universes:
+
 - **🏢 Distributor**: `(distributeur)`, `(slash)` - _Note: slash is part of the Distributor universe_
 - **👥 Client / Prospect**: `(client)`, `(prospect)`, `(client,prospect)`, `(apollo)`, `(look&feel)`, `(apollo,look&feel)` - _Note: apollo and look&feel are part of the Client/Prospect universe_
 - **🌳 Canopee**: `(canopee)`
 
 #### Categories by Type:
+
 - **✨ New Features**: `feat(` commits
 - **🐛 Bug Fixes**: `fix(` commits
 - **📝 Documentation**: `chore(` or `docs(` commits
 
 ### 4. File Location
+
 - **Create the file** in the `docs/changelogs/` folder
 - **File name**: `CHANGELOG-vX.Y.Z.md` (replace X.Y.Z with the version number)
 - **Full path**: `docs/changelogs/CHANGELOG-vX.Y.Z.md`
 
 ### 4bis. Major Version - Migration Guide ⚠️
+
 **FOR MAJOR VERSIONS ONLY** (X.0.0): Also create a migration guide
 
 - **Create the file** in the same folder `docs/changelogs/`
@@ -53,16 +61,21 @@ Organize commits according to their scope (first part in parentheses):
 # Changelog vX.Y.Z
 
 ## 📋 Overview
+
 [General description of the version]
 
 ## [Universe Emoji] [Universe Name]
+
 ### ✨ New Features
+
 - **Component**: Feature description ([#XXXX](link-to-PR))
 
-### 🐛 Bug Fixes  
+### 🐛 Bug Fixes
+
 - **Component**: Fix description ([#XXXX](link-to-PR))
 
 ### 📝 Documentation
+
 - **Topic**: Documentation description
 
 [Repeat for each universe]
@@ -78,23 +91,28 @@ Organize commits according to their scope (first part in parentheses):
 **⚠️ LANGUAGE: All changelogs must be written in ENGLISH**
 
 #### Section titles:
+
 - Use emojis to visually identify universes
 - Keep a clear hierarchy: Universe > Type > Details
 
 #### Descriptions:
+
 - **Format**: `**Component**: Clear description ([#PR](link))`
 - **Style**: Short and action-oriented sentences
 - **Links**: Always include PR link when available
 - **Context**: Mention the improvement (accessibility, UX, etc.)
 
 #### Prioritization:
+
 1. Impactful features first
 2. Important fixes
 3. Minor improvements
 4. Documentation
 
 ### 7. Validation
+
 Before publication, verify:
+
 - [ ] All represented universes are included
 - [ ] No dependabot commits are listed
 - [ ] PR links work
@@ -107,6 +125,7 @@ Before publication, verify:
 ## 🔄 Automatable Process
 
 To automate this process:
+
 1. Retrieve the list of commits
 2. Filter by author (≠ dependabot)
 3. Parse scopes and commit types
@@ -124,6 +143,7 @@ To automate this process:
 # Migration Guide v[PREVIOUS_VERSION] → v[CURRENT_VERSION]
 
 ## 🎯 Overview
+
 Describe the main improvements and changes in this major version.
 
 ## ⚠️ Breaking Changes
@@ -146,10 +166,13 @@ Describe the main improvements and changes in this major version.
 
 **Automatic migration**: _(if applicable)_
 \`\`\`bash
+
 # Commands to migrate automatically
+
 \`\`\`
 
 **Manual migration**: _(if applicable)_
+
 1. Step 1
 2. Step 2
 
@@ -160,27 +183,37 @@ Describe the main improvements and changes in this major version.
 ## 🚀 Step-by-Step Migration Guide
 
 ### Step 1: Preparation
+
 \`\`\`bash
+
 # Create a migration branch
+
 rtk git checkout -b migration/design-system-v[CURRENT_VERSION]
 
 # Backup current state
+
 git tag backup-before-migration-$(date +%Y%m%d)
 \`\`\`
 
 ### Step 2: Dependency Updates
+
 \`\`\`bash
+
 # Update the main package
+
 rtk npm install @axa-fr/design-system-[universe]-[type]@[CURRENT_VERSION]
 \`\`\`
 
 ### Step 3: Automatic Migrations
+
 [Include automatic migration scripts here if available]
 
 ### Step 4: Manual Migrations
+
 [Detail necessary manual migration steps]
 
 ### Step 5: Verification
+
 - [ ] Project compiles without errors
 - [ ] Tests pass
 - [ ] Interface displays correctly
@@ -196,10 +229,12 @@ rtk npm install @axa-fr/design-system-[universe]-[type]@[CURRENT_VERSION]
 
 **⚡ Automatic migration prompt** (if applicable):
 \`\`\`
---- 
+---
+
 mode: agent
 description: "automatic migration to v[CURRENT_VERSION]"
 ---
+
 [Include prompt to automate migration here]
 \`\`\`
 ```
@@ -207,12 +242,14 @@ description: "automatic migration to v[CURRENT_VERSION]"
 ### 9. Major Version Identification
 
 **How to identify a major version**:
+
 - Version number follows the X.0.0 pattern (first part incremented)
 - Presence of commits with `BREAKING CHANGE` in the footer
 - Presence of `!` in commit type: `feat!:` or `fix!:`
 - Commit analysis to identify API breaking changes
 
 **Typical breaking changes to identify**:
+
 - Renaming of props/parameters
 - Removal of components/functions
 - API structure modifications
@@ -222,27 +259,35 @@ description: "automatic migration to v[CURRENT_VERSION]"
 ## 📖 Format Examples
 
 ### Commit feat
+
 ```
 feat(distributeur): ajout d'une option action (#1617)
 ```
-→ 
+
+→
+
 ```markdown
 - **Actions**: Added action option ([#1617](https://github.com/AxaFrance/design-system/pull/1617))
 ```
 
 ### Commit fix
+
 ```
-fix(slash): correction du style par défaut des boutons radio (#1618)  
+fix(slash): correction du style par défaut des boutons radio (#1618)
 ```
+
 → (in Distributor section)
+
 ```markdown
 - **Radio**: Fixed default style for radio buttons ([#1618](https://github.com/AxaFrance/design-system/pull/1618))
 ```
 
 ### Commit multi-scope
+
 ```
 feat(client,prospect): ajout d'icônes pour les niveaux 2, 3 et 4 (#1634)
 ```
+
 → Place in "Client / Prospect" section
 
 ---

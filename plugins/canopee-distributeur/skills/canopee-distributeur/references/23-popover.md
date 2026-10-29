@@ -10,14 +10,14 @@ import { Popover } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `mode` | `"click" \| "over"` | **Obligatoire** | Déclenchement par clic ou par survol |
-| `popoverElement` | `ReactNode` | **Obligatoire** | Contenu affiché dans le popover |
-| `children` | `ReactNode` | **Obligatoire** | Élément déclencheur |
-| `placement` | `Placement` | `"top"` | Position du popover (`"top"`, `"bottom"`, `"left"`, `"right"`, `"top-start"`, …) |
-| `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop             | Type                | Défaut          | Description                                                                      |
+| ---------------- | ------------------- | --------------- | -------------------------------------------------------------------------------- |
+| `mode`           | `"click" \| "over"` | **Obligatoire** | Déclenchement par clic ou par survol                                             |
+| `popoverElement` | `ReactNode`         | **Obligatoire** | Contenu affiché dans le popover                                                  |
+| `children`       | `ReactNode`         | **Obligatoire** | Élément déclencheur                                                              |
+| `placement`      | `Placement`         | `"top"`         | Position du popover (`"top"`, `"bottom"`, `"left"`, `"right"`, `"top-start"`, …) |
+| `className`      | `string`            | -               | Classes CSS additionnelles                                                       |
+| `classModifier`  | `string`            | -               | Modificateur CSS BEM                                                             |
 
 `Placement` provient de `@floating-ui/react`.
 

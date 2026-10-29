@@ -73,21 +73,21 @@ La grille utilise des propriétés `data-cols-*` sur les conteneurs :
 <InputText
   label="Prénom"
   containerProps={{
-    "data-cols-mobile": "12",     // 12/12 colonnes = pleine largeur
-    "data-cols-tablet": "6",      // 6/12 colonnes
-    "data-cols-desktop-medium": "4",  // 4/12 colonnes
+    "data-cols-mobile": "12", // 12/12 colonnes = pleine largeur
+    "data-cols-tablet": "6", // 6/12 colonnes
+    "data-cols-desktop-medium": "4", // 4/12 colonnes
   }}
 />
 ```
 
 Points de rupture disponibles :
 
-| Attribut | Breakpoint |
-|---|---|
-| `data-cols-mobile` | < 768px |
-| `data-cols-tablet` | ≥ 768px |
-| `data-cols-desktop-medium` | ≥ 1024px |
-| `data-cols-desktop-large` | ≥ 1280px |
+| Attribut                   | Breakpoint |
+| -------------------------- | ---------- |
+| `data-cols-mobile`         | < 768px    |
+| `data-cols-tablet`         | ≥ 768px    |
+| `data-cols-desktop-medium` | ≥ 1024px   |
+| `data-cols-desktop-large`  | ≥ 1280px   |
 
 Composant de debug en développement :
 
@@ -95,7 +95,7 @@ Composant de debug en développement :
 import { DebugGrid } from "@axa-fr/canopee-react/prospect";
 
 // Superposer la grille sur la page pendant le développement
-<DebugGrid />
+<DebugGrid />;
 ```
 
 ## Surcharger les tokens
@@ -105,7 +105,7 @@ Pour personnaliser le thème, surcharger les variables dans ton CSS global **apr
 ```css
 /* custom-theme.css */
 :root {
-  --blue-1000: hsl(220deg, 90%, 30%);  /* Changer le bleu principal */
+  --blue-1000: hsl(220deg, 90%, 30%); /* Changer le bleu principal */
   --font-family-base: "Roboto", sans-serif;
 }
 ```
@@ -113,7 +113,7 @@ Pour personnaliser le thème, surcharger les variables dans ton CSS global **apr
 ```tsx
 // main.tsx
 import "@axa-fr/canopee-react/prospect";
-import "./custom-theme.css";  // importer après pour avoir la priorité
+import "./custom-theme.css"; // importer après pour avoir la priorité
 ```
 
 ## CSS uniquement par composant

@@ -34,7 +34,8 @@ export type ContentItemDuoActionProps =
   | Omit<ContentItemDuoActionButtonsProps, "ContentItemMonoComponent">;
 
 export type ContentItemDuoActionCommonProps =
-  ContentItemDuoActionToggleProps | ContentItemDuoActionButtonsProps;
+  | ContentItemDuoActionToggleProps
+  | ContentItemDuoActionButtonsProps;
 
 export const ContentItemDuoActionCommon = ({
   className,

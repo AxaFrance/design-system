@@ -41,7 +41,7 @@ Fournit des conseils sur :
 
 ## Compatibilité
 
-| Thème | Ancienne lib | Package React | Package CSS |
-| ----- | ------------ | ------------- | ----------- |
-| **Prospect** (ex-Apollo) | `@axa-fr/apollo-react` | `@axa-fr/canopee-react/prospect` | `@axa-fr/canopee-css/prospect` |
-| **Client** (ex-Look & Feel) | `@axa-fr/look-and-feel-react` | `@axa-fr/canopee-react/client` | `@axa-fr/canopee-css/client` |
+| Thème                       | Ancienne lib                  | Package React                    | Package CSS                    |
+| --------------------------- | ----------------------------- | -------------------------------- | ------------------------------ |
+| **Prospect** (ex-Apollo)    | `@axa-fr/apollo-react`        | `@axa-fr/canopee-react/prospect` | `@axa-fr/canopee-css/prospect` |
+| **Client** (ex-Look & Feel) | `@axa-fr/look-and-feel-react` | `@axa-fr/canopee-react/client`   | `@axa-fr/canopee-css/client`   |

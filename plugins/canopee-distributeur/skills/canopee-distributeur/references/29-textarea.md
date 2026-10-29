@@ -16,19 +16,19 @@ Wrapper complet avec label, message d'erreur et layout de formulaire.
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `ReactNode` | **Obligatoire** | Label du champ |
-| `id` | `string` | Auto-généré | Identifiant HTML |
-| `name` | `string` | - | Attribut HTML `name` |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `disabled` | `boolean` | `false` | Champ désactivé |
-| `helpMessage` | `ReactNode` | - | Message d'aide |
-| `rows` | `number` | - | Nombre de lignes visibles (hérité de `<textarea>`) |
-| `placeholder` | `string` | - | Texte placeholder |
+| Prop                  | Type                                                     | Défaut          | Description                                                                   |
+| --------------------- | -------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------- |
+| `label`               | `ReactNode`                                              | **Obligatoire** | Label du champ                                                                |
+| `id`                  | `string`                                                 | Auto-généré     | Identifiant HTML                                                              |
+| `name`                | `string`                                                 | -               | Attribut HTML `name`                                                          |
+| `message`             | `string`                                                 | -               | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -               | Type du message de statut                                                     |
+| `forceDisplayMessage` | `boolean`                                                | `false`         | Active l'affichage du `message` à la place de `helpMessage`                   |
+| `required`            | `boolean`                                                | `false`         | Champ obligatoire                                                             |
+| `disabled`            | `boolean`                                                | `false`         | Champ désactivé                                                               |
+| `helpMessage`         | `ReactNode`                                              | -               | Message d'aide                                                                |
+| `rows`                | `number`                                                 | -               | Nombre de lignes visibles (hérité de `<textarea>`)                            |
+| `placeholder`         | `string`                                                 | -               | Texte placeholder                                                             |
 
 Tous les attributs HTML standard du `<textarea>` sont supportés.
 
@@ -38,9 +38,9 @@ Champ `<textarea>` stylé seul, sans label ni gestion d'erreur.
 
 #### Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type     | Défaut | Description          |
+| --------------- | -------- | ------ | -------------------- |
+| `classModifier` | `string` | -      | Modificateur CSS BEM |
 
 Plus tous les attributs HTML standard de `<textarea>`.
 

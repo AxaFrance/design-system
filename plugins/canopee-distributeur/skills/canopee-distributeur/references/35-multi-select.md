@@ -18,8 +18,8 @@ type Option = { value: string; label: string };
 type OnChangeProps = {
   id: string;
   name: string;
-  values?: string[];  // Valeurs sélectionnées (multi)
-  value?: string;     // Valeur sélectionnée (mono)
+  values?: string[]; // Valeurs sélectionnées (multi)
+  value?: string; // Valeur sélectionnée (mono)
 };
 ```
 
@@ -31,25 +31,25 @@ Wrapper complet avec label et gestion des erreurs.
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `ReactNode` | **Obligatoire** | Label du champ |
-| `id` | `string` | Auto-généré | Identifiant HTML |
-| `name` | `string` | - | Attribut HTML `name` |
-| `loadOptions` | `(inputValue: string) => Promise<Option[]>` | - | Chargement asynchrone des options |
-| `options` | `Option[]` | - | Options statiques |
-| `values` | `string[]` | - | Valeurs sélectionnées (mode multi) |
-| `value` | `string` | - | Valeur sélectionnée (mode mono) |
-| `onChange` | `(data: OnChangeProps) => void` | - | Gestionnaire de changement |
-| `placeholder` | `string` | `"- Sélectionner -"` | Texte placeholder |
-| `disabled` | `boolean` | `false` | Champ désactivé |
-| `selectedLimit` | `number` | - | Nombre maximum de sélections |
-| `selectedLimitLabel` | `string` | - | Message affiché quand la limite est atteinte |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
+| Prop                  | Type                                                     | Défaut               | Description                                                                   |
+| --------------------- | -------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------- |
+| `label`               | `ReactNode`                                              | **Obligatoire**      | Label du champ                                                                |
+| `id`                  | `string`                                                 | Auto-généré          | Identifiant HTML                                                              |
+| `name`                | `string`                                                 | -                    | Attribut HTML `name`                                                          |
+| `loadOptions`         | `(inputValue: string) => Promise<Option[]>`              | -                    | Chargement asynchrone des options                                             |
+| `options`             | `Option[]`                                               | -                    | Options statiques                                                             |
+| `values`              | `string[]`                                               | -                    | Valeurs sélectionnées (mode multi)                                            |
+| `value`               | `string`                                                 | -                    | Valeur sélectionnée (mode mono)                                               |
+| `onChange`            | `(data: OnChangeProps) => void`                          | -                    | Gestionnaire de changement                                                    |
+| `placeholder`         | `string`                                                 | `"- Sélectionner -"` | Texte placeholder                                                             |
+| `disabled`            | `boolean`                                                | `false`              | Champ désactivé                                                               |
+| `selectedLimit`       | `number`                                                 | -                    | Nombre maximum de sélections                                                  |
+| `selectedLimitLabel`  | `string`                                                 | -                    | Message affiché quand la limite est atteinte                                  |
+| `required`            | `boolean`                                                | `false`              | Champ obligatoire                                                             |
+| `helpMessage`         | `ReactNode`                                              | -                    | Message d'aide affiché par défaut sous le champ                               |
+| `message`             | `string`                                                 | -                    | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -                    | Type du message de statut                                                     |
+| `forceDisplayMessage` | `boolean`                                                | `false`              | Active l'affichage du `message` à la place de `helpMessage`                   |
 
 ## Utilisation
 

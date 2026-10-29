@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { Radio } from "../../Radio/RadioCommon";
 import { RadioTextCommon, type RadioTextProps } from "../RadioTextCommon";
 

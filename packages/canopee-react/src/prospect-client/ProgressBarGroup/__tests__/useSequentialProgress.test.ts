@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import { vi } from "vitest";
+import { vi } from "vite-plus/test";
 import { useSequentialProgress } from "../useSequentialProgress";
 
 // Helper to advance timers

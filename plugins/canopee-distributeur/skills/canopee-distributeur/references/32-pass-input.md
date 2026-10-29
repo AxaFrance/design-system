@@ -18,18 +18,18 @@ Wrapper complet avec label, gestion des erreurs et indicateur de force du mot de
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `ReactNode` | **Obligatoire** | Label du champ |
-| `id` | `string` | Auto-généré | Identifiant HTML |
-| `name` | `string` | - | Attribut HTML `name` |
-| `score` | `string` | - | Force du mot de passe (de `"0"` faible à `"4"` excellent). Affiche un indicateur coloré. |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `disabled` | `boolean` | `false` | Champ désactivé |
-| `helpMessage` | `ReactNode` | - | Message d'aide |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
+| Prop                  | Type                                                     | Défaut          | Description                                                                              |
+| --------------------- | -------------------------------------------------------- | --------------- | ---------------------------------------------------------------------------------------- |
+| `label`               | `ReactNode`                                              | **Obligatoire** | Label du champ                                                                           |
+| `id`                  | `string`                                                 | Auto-généré     | Identifiant HTML                                                                         |
+| `name`                | `string`                                                 | -               | Attribut HTML `name`                                                                     |
+| `score`               | `string`                                                 | -               | Force du mot de passe (de `"0"` faible à `"4"` excellent). Affiche un indicateur coloré. |
+| `required`            | `boolean`                                                | `false`         | Champ obligatoire                                                                        |
+| `disabled`            | `boolean`                                                | `false`         | Champ désactivé                                                                          |
+| `helpMessage`         | `ReactNode`                                              | -               | Message d'aide                                                                           |
+| `message`             | `string`                                                 | -               | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true`            |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -               | Type du message de statut                                                                |
+| `forceDisplayMessage` | `boolean`                                                | `false`         | Active l'affichage du `message` à la place de `helpMessage`                              |
 
 Tous les attributs HTML standard de `<input>` sont supportés (`placeholder`, `autoComplete`, …).
 
@@ -39,21 +39,21 @@ Input de mot de passe stylé avec bouton de toggle. Requiert `onToggleType` pour
 
 #### Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `onToggleType` | `() => void` | **Obligatoire** | Gestionnaire pour basculer la visibilité |
-| `type` | `"text" \| "password"` | `"password"` | Type actuel du champ |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type                   | Défaut          | Description                              |
+| --------------- | ---------------------- | --------------- | ---------------------------------------- |
+| `onToggleType`  | `() => void`           | **Obligatoire** | Gestionnaire pour basculer la visibilité |
+| `type`          | `"text" \| "password"` | `"password"`    | Type actuel du champ                     |
+| `classModifier` | `string`               | -               | Modificateur CSS BEM                     |
 
 ## Niveaux de score
 
 | Score | Libellé affiché |
-|-------|-----------------|
-| `"0"` | Mauvais |
-| `"1"` | Passable |
-| `"2"` | Bon |
-| `"3"` | Très bon |
-| `"4"` | Excellent |
+| ----- | --------------- |
+| `"0"` | Mauvais         |
+| `"1"` | Passable        |
+| `"2"` | Bon             |
+| `"3"` | Très bon        |
+| `"4"` | Excellent       |
 
 ## Utilisation
 

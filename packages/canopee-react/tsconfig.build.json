@@ -8,10 +8,8 @@
     "src/**/*.test.tsx",
     "src/**/*.test.ts"
   ],
-  "include": [
-    "src/**/*",
-  ],
+  "include": ["src/**/*"],
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": "./src"
   }
 }

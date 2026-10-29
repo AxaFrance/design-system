@@ -16,7 +16,7 @@ import { Checkbox } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type CheckboxProps = {
-  hasWarning?: boolean;           // Ajoute la classe af-checkbox--warning (bordure orange)
+  hasWarning?: boolean; // Ajoute la classe af-checkbox--warning (bordure orange)
 } & Omit<ComponentProps<"input">, "disabled" | "type">;
 // Tous les attributs <input type="checkbox"> transmis
 ```
@@ -37,7 +37,7 @@ import { CheckboxText } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type CheckboxTextProps = {
-  label: string | ReactNode;      // Label affiché à droite de la checkbox (obligatoire)
+  label: string | ReactNode; // Label affiché à droite de la checkbox (obligatoire)
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps;
@@ -69,17 +69,20 @@ Groupe de checkboxes en mode carte (vertical ou horizontal). Peut fonctionner en
 ### Import
 
 ```tsx
-import { CardCheckbox, type CardCheckboxProps } from "@axa-fr/canopee-react/prospect";
+import {
+  CardCheckbox,
+  type CardCheckboxProps,
+} from "@axa-fr/canopee-react/prospect";
 ```
 
 ### Props
 
 ```tsx
 type CardCheckboxProps = {
-  type?: "vertical" | "horizontal";  // vertical = cartes empilées en colonne,
-                                     // horizontal = cartes alignées en ligne (défaut: "vertical")
-  mode?: "text";                      // Mode CheckboxText au lieu de cartes
-  label: ReactNode;                   // Label du groupe (légende)
+  type?: "vertical" | "horizontal"; // vertical = cartes empilées en colonne,
+  // horizontal = cartes alignées en ligne (défaut: "vertical")
+  mode?: "text"; // Mode CheckboxText au lieu de cartes
+  label: ReactNode; // Label du groupe (légende)
   description?: ReactNode;
   required?: boolean;
   options: {
@@ -89,9 +92,9 @@ type CardCheckboxProps = {
     disabled?: boolean;
     description?: ReactNode;
     subtitle?: ReactNode;
-    icon?: string;                    // SVG src pour l'icône de la carte
+    icon?: string; // SVG src pour l'icône de la carte
   }[];
-  name: string;                       // Attribut name du groupe
+  name: string; // Attribut name du groupe
   onChange?: ChangeEventHandler<HTMLInputElement>;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
@@ -163,7 +166,7 @@ type CardCheckboxOptionProps = CheckboxProps & {
   type?: "vertical" | "horizontal";
   description?: ReactNode;
   subtitle?: ReactNode;
-  icon?: IconProps["src"];          // SVG src
+  icon?: IconProps["src"]; // SVG src
 };
 ```
 
@@ -183,7 +186,7 @@ import { Radio } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type RadioProps = Omit<ComponentProps<"input">, "disabled" | "type"> & {
-  variant?: "error" | "warning";  // "error" → af-radio--error, "warning" → af-radio--warning
+  variant?: "error" | "warning"; // "error" → af-radio--error, "warning" → af-radio--warning
 };
 ```
 
@@ -203,9 +206,9 @@ import { CardRadioGroup } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type CardRadioGroupProps = {
-  cardStyle?: "vertical" | "horizontal";  // Orientation des cartes
-  position?: "line" | "column";           // "column" pour vertical, "line" pour horizontal
-  label: ReactNode;                        // Légende du groupe (obligatoire)
+  cardStyle?: "vertical" | "horizontal"; // Orientation des cartes
+  position?: "line" | "column"; // "column" pour vertical, "line" pour horizontal
+  label: ReactNode; // Légende du groupe (obligatoire)
   description?: ReactNode;
   required?: boolean;
   options: {
@@ -215,8 +218,8 @@ type CardRadioGroupProps = {
     disabled?: boolean;
     description?: ReactNode;
     subtitle?: ReactNode;
-    icon?: string;                          // SVG src
-    src?: string;                           // Image (BasePicture)
+    icon?: string; // SVG src
+    src?: string; // Image (BasePicture)
     basePictureProps?: Partial<ComponentProps<typeof BasePicture>>;
   }[];
   name: string;
@@ -285,11 +288,11 @@ import { CardRadio } from "@axa-fr/canopee-react/prospect";
 type CardRadioProps = {
   label: ReactNode;
   position?: "vertical" | "horizontal";
-  icon?: string;                    // SVG src
-  src?: string;                     // URL image (BasePicture)
+  icon?: string; // SVG src
+  src?: string; // URL image (BasePicture)
   basePictureProps?: Partial<ComponentProps<typeof BasePicture>>;
   description?: ReactNode;
   subtitle?: ReactNode;
-  variant?: "error" | "warning";  // hérité de RadioProps
-} & Omit<ComponentProps<"input">, "size">;  // attributs <input type="radio">
+  variant?: "error" | "warning"; // hérité de RadioProps
+} & Omit<ComponentProps<"input">, "size">; // attributs <input type="radio">
 ```

@@ -12,3 +12,4 @@ coverage/
 mise.toml
 # CSS généré par Terrazzo à partir des design tokens
 packages/canopee-css/generated/
+.vitest/

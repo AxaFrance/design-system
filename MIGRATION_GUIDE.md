@@ -16,12 +16,12 @@
 
 ##### SASS to CSS
 
-You have to migrate your previous sass colors to their equivalent in css token custom property. 
+You have to migrate your previous sass colors to their equivalent in css token custom property.
 
-There a prompt that can help you: 
+There a prompt that can help you:
 
 ```
---- 
+---
 mode: agent
 description: "migration sass var to css custom property"
 ---
@@ -40,7 +40,7 @@ If you don't find an exact equivalent, don't look for the closest color, you wil
 
 ##### Button component
 
-`classModifier` prop is now called `variant`, his value remains the same, except for `reverse` and `success` : 
+`classModifier` prop is now called `variant`, his value remains the same, except for `reverse` and `success` :
 
 ```diff
 - <Button classModifier="reverse small">Button</Button>
@@ -93,4 +93,3 @@ to be able to add content at the right with the `children` property, we now
 support two different solutions. The `children` property is still available and
 add content at the right side of the title. To add content at the far right of
 the title bar, you can use the `contentRight` property.
-

@@ -17,8 +17,8 @@ import { ProgressBar } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type ProgressBarProps = ComponentProps<"progress"> & {
-  label?: ReactNode;              // Label affiché au-dessus (crée un <label> lié au <progress>)
-  showPercentage?: boolean;       // Affiche le pourcentage à droite (défaut: false)
+  label?: ReactNode; // Label affiché au-dessus (crée un <label> lié au <progress>)
+  showPercentage?: boolean; // Affiche le pourcentage à droite (défaut: false)
 };
 ```
 
@@ -64,19 +64,20 @@ import { ProgressBarGroup } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type ProgressBarGroupProps = {
-  currentStep: number;            // Étape actuelle (1-based, obligatoire)
-  stepsCount?: 2 | 3 | 4 | 5 | 6 | 7 | 8;  // Nombre total d'étapes (défaut: 4)
-  currentStepProgress?: number;   // % de completion de l'étape courante (0-100)
-  max?: number;                   // Valeur max de progress (défaut: 100)
+  currentStep: number; // Étape actuelle (1-based, obligatoire)
+  stepsCount?: 2 | 3 | 4 | 5 | 6 | 7 | 8; // Nombre total d'étapes (défaut: 4)
+  currentStepProgress?: number; // % de completion de l'étape courante (0-100)
+  max?: number; // Valeur max de progress (défaut: 100)
   className?: string;
 } & Omit<ComponentProps<"ol">, "children" | "className">;
 ```
 
 ### Comportement
 
-Chaque barre correspond à une étape :  
-- Étapes **complétées** (index < currentStep) → `value = max` (100%)  
-- Étape **courante** → `value = currentStepProgress`  
+Chaque barre correspond à une étape :
+
+- Étapes **complétées** (index < currentStep) → `value = max` (100%)
+- Étape **courante** → `value = currentStepProgress`
 - Étapes **futures** → `value = 0`
 
 La progression entre étapes est animée avec `useSequentialProgress`.

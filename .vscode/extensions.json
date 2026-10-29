@@ -1,10 +1,9 @@
 {
-    "recommendations": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "stylelint.vscode-stylelint",
-        "unifiedjs.vscode-mdx",
-        "github.vscode-github-actions",
-        "vitest.explorer"
-    ]
+  "recommendations": [
+    "stylelint.vscode-stylelint",
+    "unifiedjs.vscode-mdx",
+    "github.vscode-github-actions",
+    "vitest.explorer",
+    "VoidZero.vite-plus-extension-pack"
+  ]
 }

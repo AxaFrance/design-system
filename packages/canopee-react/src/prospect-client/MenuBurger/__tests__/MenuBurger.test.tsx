@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
 import person from "@material-symbols/svg-400/outlined/person.svg";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vite-plus/test";
 
 import { Button } from "../../Button/ButtonApollo";
 import { Icon } from "../../Icon/IconApollo";

@@ -91,15 +91,15 @@ the following checks in order, skipping a check only when its trigger does not
 apply or the command is unavailable. Record unavailable commands and the
 reason in the final report.
 
-| Order | Check | Trigger |
-| --- | --- | --- |
-| 1 | Single-file typecheck | The target exposes a typecheck command that accepts the changed file. |
-| 2 | Component-focused test | A changed component has a focused test command. |
-| 3 | Package lint | The affected package exposes a lint command. |
-| 4 | Legacy-match search | Always: search for active legacy package names, removed aliases, deprecated props, class modifiers, and React 18 constraints. |
-| 5 | Affected package/application typecheck or build | No single-file typecheck was available, or the change affects package-wide types/build output. |
-| 6 | Broader tests | The change crosses package boundaries. Run the repository test command after focused tests. |
-| 7 | Accessibility and CSS inspection | Headings, form error associations, focus behavior, or CSS layer precedence changed. |
+| Order | Check                                           | Trigger                                                                                                                       |
+| ----- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Single-file typecheck                           | The target exposes a typecheck command that accepts the changed file.                                                         |
+| 2     | Component-focused test                          | A changed component has a focused test command.                                                                               |
+| 3     | Package lint                                    | The affected package exposes a lint command.                                                                                  |
+| 4     | Legacy-match search                             | Always: search for active legacy package names, removed aliases, deprecated props, class modifiers, and React 18 constraints. |
+| 5     | Affected package/application typecheck or build | No single-file typecheck was available, or the change affects package-wide types/build output.                                |
+| 6     | Broader tests                                   | The change crosses package boundaries. Run the repository test command after focused tests.                                   |
+| 7     | Accessibility and CSS inspection                | Headings, form error associations, focus behavior, or CSS layer precedence changed.                                           |
 
 Apply this ordered checklist after each migration category and again after all
 edits; do not duplicate checks that already passed for an unchanged category.

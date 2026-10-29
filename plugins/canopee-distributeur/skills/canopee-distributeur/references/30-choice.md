@@ -16,20 +16,20 @@ Wrapper complet avec label et gestion des erreurs.
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `ReactNode` | **Obligatoire** | Label du groupe |
-| `id` | `string` | **Obligatoire** | Identifiant HTML |
-| `name` | `string` | - | Attribut HTML `name` |
-| `value` | `boolean \| string` | - | Valeur sélectionnée |
-| `options` | `Array<{ value: boolean, label: string }>` | `[{ value: true, label: "Oui" }, { value: false, label: "Non" }]` | Options disponibles |
-| `onChange` | `function` | - | Gestionnaire de changement |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `disabled` | `boolean` | `false` | État désactivé |
-| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
+| Prop                  | Type                                                     | Défaut                                                            | Description                                                                   |
+| --------------------- | -------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `label`               | `ReactNode`                                              | **Obligatoire**                                                   | Label du groupe                                                               |
+| `id`                  | `string`                                                 | **Obligatoire**                                                   | Identifiant HTML                                                              |
+| `name`                | `string`                                                 | -                                                                 | Attribut HTML `name`                                                          |
+| `value`               | `boolean \| string`                                      | -                                                                 | Valeur sélectionnée                                                           |
+| `options`             | `Array<{ value: boolean, label: string }>`               | `[{ value: true, label: "Oui" }, { value: false, label: "Non" }]` | Options disponibles                                                           |
+| `onChange`            | `function`                                               | -                                                                 | Gestionnaire de changement                                                    |
+| `required`            | `boolean`                                                | `false`                                                           | Champ obligatoire                                                             |
+| `disabled`            | `boolean`                                                | `false`                                                           | État désactivé                                                                |
+| `helpMessage`         | `ReactNode`                                              | -                                                                 | Message d'aide affiché par défaut sous le champ                               |
+| `message`             | `string`                                                 | -                                                                 | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -                                                                 | Type du message de statut                                                     |
+| `forceDisplayMessage` | `boolean`                                                | `false`                                                           | Active l'affichage du `message` à la place de `helpMessage`                   |
 
 ### Choice (bas niveau)
 
@@ -37,13 +37,13 @@ Groupe radio sans label ni gestion d'erreur.
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `id` | `string` | **Obligatoire** | Identifiant HTML |
-| `name` | `string` | - | Attribut HTML `name` |
-| `value` | `boolean \| string` | - | Valeur sélectionnée |
-| `options` | `Array<{ value: boolean, label: string }>` | `[Oui/Non]` | Options (valeurs booléennes) |
-| `onChange` | `function` | - | Gestionnaire de changement |
+| Prop       | Type                                       | Défaut          | Description                  |
+| ---------- | ------------------------------------------ | --------------- | ---------------------------- |
+| `id`       | `string`                                   | **Obligatoire** | Identifiant HTML             |
+| `name`     | `string`                                   | -               | Attribut HTML `name`         |
+| `value`    | `boolean \| string`                        | -               | Valeur sélectionnée          |
+| `options`  | `Array<{ value: boolean, label: string }>` | `[Oui/Non]`     | Options (valeurs booléennes) |
+| `onChange` | `function`                                 | -               | Gestionnaire de changement   |
 
 ## Utilisation
 

@@ -13,7 +13,6 @@
   - [Responsive design](#responsive-design)
   - [Updating the sample](#updating-the-sample)
 
-
 ## Folder structure
 
 ### Single component
@@ -49,8 +48,8 @@ Accordion/
 The barrel file `index.ts` should export the component(s) like this:
 
 ```typescript
-export { Accordion } from './Accordion';
-export { CollapseCard } from './CollapseCard';
+export { Accordion } from "./Accordion";
+export { CollapseCard } from "./CollapseCard";
 ```
 
 ## Tests
@@ -72,8 +71,8 @@ component.
 Here is an example of what a mdx file should might look like:
 
 ````mdx
-import { Canvas, Controls, Meta } from '@storybook/addon-docs';
-import * as ButtonStories from './Button.stories';
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as ButtonStories from "./Button.stories";
 
 <Meta of={ButtonStories} name="Button" />
 
@@ -86,7 +85,7 @@ Short description of the component.
 Short sample that users can copy and paste to import the component.
 
 ```tsx
-import { Button } from '@axa-fr/canopee-react/distributeur';
+import { Button } from "@axa-fr/canopee-react/distributeur";
 
 const MyComponent = () => (
   <Button classModifier="reverse" type="submit">
@@ -155,7 +154,7 @@ Example in the MDX file :
 
 ### Copilot
 
-When you create a new component (or you update an existing one), you need to update the skill provided by the Design System in order to have the new component available when an user use Copilot. To do that, you can write by your own the *reference* file for your component in `/plugins/canopee-{univers}/skills/references/{component-name}.md` or you can use the agent `/create-skill`.
+When you create a new component (or you update an existing one), you need to update the skill provided by the Design System in order to have the new component available when an user use Copilot. To do that, you can write by your own the _reference_ file for your component in `/plugins/canopee-{univers}/skills/references/{component-name}.md` or you can use the agent `/create-skill`.
 
 ## Accessibility
 

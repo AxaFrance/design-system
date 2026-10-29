@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* oxlint-disable import-js/no-extraneous-dependencies */
 
 import { useRef } from "react";
 import {

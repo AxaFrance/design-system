@@ -1,19 +1,21 @@
 # Tag
 
 ## Présentation
+
 Le composant Tag affiche des indicateurs de statut ou des catégories étiquetées avec différentes variantes de couleur.
 
 ## Import
+
 ```tsx
 import { Tag } from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `variant` | TagVariants | `"default"` | Couleur et style |
-| `children` | `ReactNode` | - | Texte/contenu du tag |
+| Prop       | Type        | Défaut      | Description          |
+| ---------- | ----------- | ----------- | -------------------- |
+| `variant`  | TagVariants | `"default"` | Couleur et style     |
+| `children` | `ReactNode` | -           | Texte/contenu du tag |
 
 ## Variantes
 
@@ -39,18 +41,21 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
 ## Cas d'utilisation
 
 ### Étiquette de statut
+
 ```tsx
 <Tag variant="success">Actif</Tag>
 <Tag variant="error">Inactif</Tag>
 ```
 
 ### Tag de catégorie
+
 ```tsx
 <Tag variant="purple">Mis en avant</Tag>
 <Tag variant="gray">Archive</Tag>
 ```
 
 ### Tags multiples
+
 ```tsx
 <div style={{ display: "flex", gap: "0.5rem" }}>
   <Tag variant="information">React</Tag>
@@ -60,6 +65,7 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Classes CSS
+
 - `.af-tag` - Classe de base du tag
 - `.af-tag--success` - Variante succès
 - `.af-tag--warning` - Variante avertissement

@@ -16,10 +16,7 @@ import { List, type ListProps } from "@axa-fr/canopee-react/prospect";
 ### Props
 
 ```tsx
-type ListProps = PolymorphicComponent<
-  "ul" | "ol",
-  ComponentProps<"div">
->;
+type ListProps = PolymorphicComponent<"ul" | "ol", ComponentProps<"div">>;
 // as?: "ul" | "ol"  (défaut: "ul")
 // className?, children?, …
 ```
@@ -64,8 +61,8 @@ import {
 ```tsx
 type ClickItemProps = {
   // Identification
-  state: ClickItemStates;          // "default" | "disabled" | "loading"
-  variant: ClickItemVariants;      // "small" | "medium" | "large" | "agent"
+  state: ClickItemStates; // "default" | "disabled" | "loading"
+  variant: ClickItemVariants; // "small" | "medium" | "large" | "agent"
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLDivElement>;
   ariaLabelForActionIcon?: string; // aria-label de l'icône d'action (obligatoire si onClick)
@@ -79,27 +76,27 @@ type ClickItemProps = {
   tagProps?: Partial<TagProps>;
 
   // Préfixe visuel (ClickItemPrefix)
-  icon?: string;                   // SVG src
+  icon?: string; // SVG src
   basePictureProps?: { src: string; alt: string } & ComponentProps<"img">;
 };
 ```
 
 ### Variantes de taille
 
-| Variante | Affichage |
-|---|---|
-| `small` | Compact, icône petite |
-| `medium` | Taille intermédiaire |
-| `large` | Complet : titre + sous-titre + tag + texte secondaire/tertiaire |
-| `agent` | Format agent (avec image carrée) |
+| Variante | Affichage                                                       |
+| -------- | --------------------------------------------------------------- |
+| `small`  | Compact, icône petite                                           |
+| `medium` | Taille intermédiaire                                            |
+| `large`  | Complet : titre + sous-titre + tag + texte secondaire/tertiaire |
+| `agent`  | Format agent (avec image carrée)                                |
 
 ### États
 
-| État | Comportement |
-|---|---|
-| `default` | Normal |
+| État       | Comportement                             |
+| ---------- | ---------------------------------------- |
+| `default`  | Normal                                   |
 | `disabled` | Désactivé visuellement et via `disabled` |
-| `loading` | Affiche un indicateur de chargement |
+| `loading`  | Affiche un indicateur de chargement      |
 
 ### Exemple
 
@@ -161,10 +158,10 @@ import { ContentItemDuo } from "@axa-fr/canopee-react/prospect";
 type ContentItemDuoProps = {
   label: ReactNode;
   value: ReactNode;
-  buttonText?: string;            // Texte du bouton modifier (si omit, pas de bouton)
+  buttonText?: string; // Texte du bouton modifier (si omit, pas de bouton)
   onButtonClick?: () => void;
-  position?: "horizontal" | "vertical";  // (défaut: "horizontal")
-  size?: "small" | "large";             // (défaut: "large")
+  position?: "horizontal" | "vertical"; // (défaut: "horizontal")
+  size?: "small" | "large"; // (défaut: "large")
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
 } & ComponentProps<"div">;
@@ -214,6 +211,7 @@ import {
 ### Props (2 modes)
 
 **Mode Toggle** :
+
 ```tsx
 {
   state: "toggle";
@@ -223,11 +221,12 @@ import {
 ```
 
 **Mode Boutons** :
+
 ```tsx
 {
   state: "edit";
   contentItemProps: ContentItemProps;
-  buttons: ReactElement<ComponentType<ButtonProps>>;  // JSX de boutons
+  buttons: ReactElement<ComponentType<ButtonProps>>; // JSX de boutons
 }
 ```
 

@@ -3,8 +3,8 @@
     "editor.wordWrap": "on"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.oxc": "explicit"
   },
   "stylelint.validate": ["css", "scss"],
   "github.copilot.chat.commitMessageGeneration.instructions": [
@@ -20,5 +20,21 @@
     "connectionId": "axaguildev",
     "projectKey": "AxaFrance_design-system"
   },
-  "eslint.workingDirectories": [{ "mode": "auto" }]
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "oxc.disableNestedConfig": true,
+  "oxc.fmt.disableNestedConfig": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file"
 }

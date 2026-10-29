@@ -1,9 +1,11 @@
 # Utilisation des icônes en Distributeur
 
 ## Objectif
+
 Ce guide décrit la stratégie recommandée pour afficher des icônes dans les composants Canopée Distributeur.
 
 ## Recommandation officielle
+
 D’après le `README.md`, la librairie recommandée est :
 
 ```bash
@@ -29,7 +31,7 @@ import { Button, Svg } from "@axa-fr/canopee-react/distributeur";
 
 <Button leftIcon={<Svg src={check} />} variant="primary">
   Confirmer
-</Button>
+</Button>;
 ```
 
 ## Utiliser une icône dans une `Card`
@@ -38,7 +40,7 @@ import { Button, Svg } from "@axa-fr/canopee-react/distributeur";
 import villa from "@material-symbols/svg-400/outlined/villa.svg";
 import { Card } from "@axa-fr/canopee-react/distributeur";
 
-<Card iconSrc={villa}>Maison</Card>
+<Card iconSrc={villa}>Maison</Card>;
 ```
 
 ## Utiliser vos propres SVG
@@ -51,16 +53,19 @@ import { Svg } from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Bonnes pratiques
+
 - Favoriser le composant `Svg` pour homogénéiser le rendu.
 - Utiliser les variantes `outlined`, `rounded`, etc. de manière cohérente dans un écran.
 - Prévoir un texte adjacent explicite si l’icône porte un sens métier.
 - Éviter de dépendre uniquement de la couleur d’icône pour transmettre l’état.
 
 ## Accessibilité
+
 - Pour les icônes décoratives : masquer aux lecteurs d’écran si nécessaire.
 - Pour les icônes porteuses d’information : fournir un label/texte équivalent.
 - Vérifier le contraste sur fonds clairs/sombres.
 
 ## Références
+
 - `README.md` racine → section « Utilisation des icones »
 - Composants liés : `Svg`, `Button`, `Card`, `Message`

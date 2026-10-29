@@ -1,57 +1,58 @@
 # Accordion
 
 ## Présentation
+
 Le composant Accordion est un système de conteneurs repliables qui affiche plusieurs sections avec une fonctionnalité de déploiement/réduction. Il supporte les modes mono-déploiement et multi-déploiement avec des boutons d'action optionnels.
 
 ## Import
+
 ```tsx
-import { 
-  Accordion, 
-  CollapseCard 
-} from "@axa-fr/canopee-react/distributeur";
+import { Accordion, CollapseCard } from "@axa-fr/canopee-react/distributeur";
 ```
 
 ## Composants
 
 ### Accordion
+
 Conteneur des sections repliables.
 
 ### CollapseCard (ou CollapseItem)
+
 Section individuelle déployable dans le composant Accordion.
 
 ## Props
 
 ### Accordion
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `variant` | `"default" \| "white" \| "light"` | `"default"` | Style visuel |
-| `onlyOne` | `boolean` | `false` | Une seule carte ouverte à la fois |
-| `children` | `CollapseCard[]` | Obligatoire | Tableau de composants CollapseCard |
-| `className` | `string` | - | Classes CSS additionnelles |
+| Prop        | Type                              | Défaut      | Description                        |
+| ----------- | --------------------------------- | ----------- | ---------------------------------- |
+| `variant`   | `"default" \| "white" \| "light"` | `"default"` | Style visuel                       |
+| `onlyOne`   | `boolean`                         | `false`     | Une seule carte ouverte à la fois  |
+| `children`  | `CollapseCard[]`                  | Obligatoire | Tableau de composants CollapseCard |
+| `className` | `string`                          | -           | Classes CSS additionnelles         |
 
 ### CollapseCard
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `id` | `string` | Obligatoire | Identifiant unique de la carte |
-| `title` | `string \| ReactNode` | Obligatoire | En-tête/titre de la carte |
-| `open` | `boolean` | `false` | État initial ouvert |
-| `name` | `string` | - | Groupement pour mode radio (une seule ouvert) |
-| `onToggle` | `() => void` | - | Gestionnaire d'événement de déploiement/réduction |
-| `children` | `ReactNode` | - | Contenu repliable |
-| `actions` | `Action[]` | - | Boutons d'action |
-| `variant` | `"default" \| "white" \| "light"` | - | Surcharge optionnelle |
-| `className` | `string` | - | Classes CSS additionnelles |
+| Prop        | Type                              | Défaut      | Description                                       |
+| ----------- | --------------------------------- | ----------- | ------------------------------------------------- |
+| `id`        | `string`                          | Obligatoire | Identifiant unique de la carte                    |
+| `title`     | `string \| ReactNode`             | Obligatoire | En-tête/titre de la carte                         |
+| `open`      | `boolean`                         | `false`     | État initial ouvert                               |
+| `name`      | `string`                          | -           | Groupement pour mode radio (une seule ouvert)     |
+| `onToggle`  | `() => void`                      | -           | Gestionnaire d'événement de déploiement/réduction |
+| `children`  | `ReactNode`                       | -           | Contenu repliable                                 |
+| `actions`   | `Action[]`                        | -           | Boutons d'action                                  |
+| `variant`   | `"default" \| "white" \| "light"` | -           | Surcharge optionnelle                             |
+| `className` | `string`                          | -           | Classes CSS additionnelles                        |
 
 ## Type Action
 
 ```tsx
 type Action = {
-  key: string;           // Identifiant unique de l'action
-  label: string;         // Texte du bouton
-  onClick: () => void;   // Gestionnaire de clic
-  leftIcon?: ReactNode;  // Icône à gauche
+  key: string; // Identifiant unique de l'action
+  label: string; // Texte du bouton
+  onClick: () => void; // Gestionnaire de clic
+  leftIcon?: ReactNode; // Icône à gauche
   rightIcon?: ReactNode; // Icône à droite
 };
 ```
@@ -59,29 +60,25 @@ type Action = {
 ## Utilisation de base
 
 ### Accordion par défaut
+
 ```tsx
 import { Accordion, CollapseCard } from "@axa-fr/canopee-react/distributeur";
 
 <Accordion>
-  <CollapseCard 
-    id="section1" 
-    title="Section 1"
-  >
+  <CollapseCard id="section1" title="Section 1">
     Contenu de la section 1
   </CollapseCard>
-  
-  <CollapseCard 
-    id="section2" 
-    title="Section 2"
-    open={true}
-  >
+
+  <CollapseCard id="section2" title="Section 2" open={true}>
     Contenu de la section 2 (initialement ouverte)
   </CollapseCard>
-</Accordion>
+</Accordion>;
 ```
 
 ### Multi-déploiement (défaut)
+
 Plusieurs sections peuvent être ouvertes simultanément :
+
 ```tsx
 <Accordion>
   <CollapseCard id="faq1" title="Qu'est-ce qui est inclus ?">
@@ -94,7 +91,9 @@ Plusieurs sections peuvent être ouvertes simultanément :
 ```
 
 ### Mode mono-déploiement
+
 Une seule section ouverte à la fois :
+
 ```tsx
 <Accordion onlyOne={true}>
   <CollapseCard id="step1" title="Étape 1 : Inscription">
@@ -109,6 +108,7 @@ Une seule section ouverte à la fois :
 ## Variantes visuelles
 
 ### Défaut (fond bleu)
+
 ```tsx
 <Accordion variant="default">
   <CollapseCard id="carte" title="Style par défaut">
@@ -118,6 +118,7 @@ Une seule section ouverte à la fois :
 ```
 
 ### Variante blanche
+
 ```tsx
 <Accordion variant="white">
   <CollapseCard id="carte" title="Fond blanc">
@@ -127,6 +128,7 @@ Une seule section ouverte à la fois :
 ```
 
 ### Variante légère
+
 ```tsx
 <Accordion variant="light">
   <CollapseCard id="carte" title="Style léger">
@@ -138,6 +140,7 @@ Une seule section ouverte à la fois :
 ## Avec actions
 
 ### Action unique
+
 ```tsx
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 import { Svg } from "@axa-fr/canopee-react/distributeur";
@@ -151,16 +154,17 @@ import { Svg } from "@axa-fr/canopee-react/distributeur";
         key: "supprimer",
         label: "Supprimer",
         rightIcon: <Svg src={deleteIcon} />,
-        onClick: () => console.log("Suppression cliquée")
-      }
+        onClick: () => console.log("Suppression cliquée"),
+      },
     ]}
   >
     Contenu ici
   </CollapseCard>
-</Accordion>
+</Accordion>;
 ```
 
 ### Actions multiples (max 2)
+
 ```tsx
 import editIcon from "@material-symbols/svg-400/outlined/edit.svg";
 import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
@@ -173,23 +177,24 @@ import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
       key: "modifier",
       label: "Modifier",
       leftIcon: <Svg src={editIcon} />,
-      onClick: () => handleEdit()
+      onClick: () => handleEdit(),
     },
     {
       key: "supprimer",
       label: "Supprimer",
       rightIcon: <Svg src={deleteIcon} />,
-      onClick: () => handleDelete()
-    }
+      onClick: () => handleDelete(),
+    },
   ]}
 >
   Contenu de l'élément
-</CollapseCard>
+</CollapseCard>;
 ```
 
 ## Exemples de contenu
 
 ### Contenu HTML riche
+
 ```tsx
 <CollapseCard id="riche" title="Contenu complexe">
   <section>
@@ -202,13 +207,17 @@ import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
   <section>
     <h3>Spécifications techniques</h3>
     <table>
-      <tr><td>Spec</td><td>Valeur</td></tr>
+      <tr>
+        <td>Spec</td>
+        <td>Valeur</td>
+      </tr>
     </table>
   </section>
 </CollapseCard>
 ```
 
 ### Composants imbriqués
+
 ```tsx
 import { CheckboxItem } from "@axa-fr/canopee-react/distributeur";
 
@@ -216,7 +225,7 @@ import { CheckboxItem } from "@axa-fr/canopee-react/distributeur";
   <CheckboxItem label="Option A" />
   <CheckboxItem label="Option B" />
   <CheckboxItem label="Option C" />
-</CollapseCard>
+</CollapseCard>;
 ```
 
 ## Exemple FAQ
@@ -227,28 +236,25 @@ const SectionFAQ = () => {
     {
       id: "q1",
       title: "Quels modes de paiement sont acceptés ?",
-      content: "Nous acceptons toutes les principales cartes de crédit, PayPal et les virements bancaires."
+      content:
+        "Nous acceptons toutes les principales cartes de crédit, PayPal et les virements bancaires.",
     },
     {
       id: "q2",
       title: "Quelle est votre politique de remboursement ?",
-      content: "Satisfait ou remboursé sous 30 jours pour tout achat."
+      content: "Satisfait ou remboursé sous 30 jours pour tout achat.",
     },
     {
       id: "q3",
       title: "Livrez-vous à l'international ?",
-      content: "Oui, nous livrons dans plus de 150 pays dans le monde."
-    }
+      content: "Oui, nous livrons dans plus de 150 pays dans le monde.",
+    },
   ];
-  
+
   return (
     <Accordion onlyOne={false}>
-      {faqs.map(faq => (
-        <CollapseCard 
-          key={faq.id} 
-          id={faq.id} 
-          title={faq.title}
-        >
+      {faqs.map((faq) => (
+        <CollapseCard key={faq.id} id={faq.id} title={faq.title}>
           {faq.content}
         </CollapseCard>
       ))}
@@ -262,12 +268,12 @@ const SectionFAQ = () => {
 ```tsx
 const PanneauParametres = () => {
   const [parametres, setParametres] = useState({});
-  
+
   const handleSupprimer = (itemId: string) => {
     console.log(`Suppression de ${itemId}`);
     // Logique de suppression
   };
-  
+
   return (
     <Accordion variant="white" onlyOne={false}>
       <CollapseCard
@@ -278,7 +284,7 @@ const PanneauParametres = () => {
         <CheckboxItem label="Notifications par e-mail" />
         <CheckboxItem label="Alertes SMS" />
       </CollapseCard>
-      
+
       <CollapseCard
         id="confidentialite"
         title="Paramètres de confidentialité"
@@ -286,8 +292,8 @@ const PanneauParametres = () => {
           {
             key: "reinitialiser",
             label: "Réinitialiser",
-            onClick: () => handleSupprimer("confidentialite")
-          }
+            onClick: () => handleSupprimer("confidentialite"),
+          },
         ]}
       >
         <CheckboxItem label="Partager le profil" />
@@ -302,11 +308,11 @@ const PanneauParametres = () => {
 
 ```tsx
 const [cartesOuvertes, setCartesOuvertes] = useState<Set<string>>(
-  new Set(["section1"])
+  new Set(["section1"]),
 );
 
 const basculerCarte = (idCarte: string) => {
-  setCartesOuvertes(prev => {
+  setCartesOuvertes((prev) => {
     const nouvelEnsemble = new Set(prev);
     if (nouvelEnsemble.has(idCarte)) {
       nouvelEnsemble.delete(idCarte);
@@ -323,10 +329,11 @@ const basculerCarte = (idCarte: string) => {
   <CollapseCard id="carte1" title="Carte 1" open={cartesOuvertes.has("carte1")}>
     Contenu
   </CollapseCard>
-</Accordion>
+</Accordion>;
 ```
 
 ## Accessibilité
+
 - Navigation au clavier (Tab pour les titres, Entrée/Espace pour déployer)
 - Sections clairement labelisées avec des titres
 - Boutons d'action accessibles au clavier
@@ -334,6 +341,7 @@ const basculerCarte = (idCarte: string) => {
 - Contraste de couleur suffisant dans toutes les variantes
 
 ## Bonnes pratiques
+
 - Utiliser des titres de sections descriptifs et concis
 - Garder le contenu de chaque section ciblé
 - Utiliser le mode onlyOne pour les processus étape par étape
@@ -343,6 +351,7 @@ const basculerCarte = (idCarte: string) => {
 - Utiliser une variante cohérente pour les composants Accordion liés
 
 ## Classes CSS
+
 - `.af-accordion` - Classe de base du composant Accordion
 - `.af-accordion--default` - Variante par défaut
 - `.af-accordion--white` - Variante blanche

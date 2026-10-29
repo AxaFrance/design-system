@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* oxlint-disable import-js/no-extraneous-dependencies */
 import type { ReactNode } from "react";
 import {
   DebugGrid,

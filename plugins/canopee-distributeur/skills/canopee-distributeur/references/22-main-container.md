@@ -29,7 +29,5 @@ const App = () => (
 );
 
 // Avec aria-label pour accessibilité
-<MainContainer aria-label="Contenu principal">
-  {/* ... */}
-</MainContainer>
+<MainContainer aria-label="Contenu principal">{/* ... */}</MainContainer>;
 ```

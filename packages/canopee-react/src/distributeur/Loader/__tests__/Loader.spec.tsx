@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Loader } from "../Loader";
+import { describe, expect, it } from "vite-plus/test";
 
 describe("Loader component", () => {
   it("should render inline spinner variant", () => {

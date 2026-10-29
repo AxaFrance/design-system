@@ -1,7 +1,13 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
 import { toHaveNoViolations } from "jest-axe";
-import { afterEach, expect, vi } from "vitest";
+import { afterEach, expect, vi } from "vite-plus/test";
+
+declare module "vitest" {
+  interface Matchers<R, T> {
+    toHaveNoViolations: jest.Matchers<R, T>["toHaveNoViolations"];
+  }
+}
 
 expect.extend(toHaveNoViolations);
 

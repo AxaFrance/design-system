@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { type ComponentProps, type PropsWithChildren, useRef } from "react";
-import { describe, test } from "vitest";
+import { describe, test } from "vite-plus/test";
 import { ModalBody, ModalFooter, ModalHeader } from "..";
 import { Modal, type ModalProps } from "../Modal";
 

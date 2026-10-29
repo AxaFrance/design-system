@@ -3,7 +3,7 @@ next-version: 1.0.0
 commit-message-incrementing: Disabled
 branches:
   main:
-    tag: 'alpha'
+    tag: "alpha"
     mode: ContinuousDeployment
   release:
     tag: RC

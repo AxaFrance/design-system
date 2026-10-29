@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { type ComponentPropsWithRef, createRef } from "react";
-import { describe, expect, expectTypeOf, it } from "vitest";
+import { describe, expect, expectTypeOf, it } from "vite-plus/test";
 import { Link, type LinkProps } from "../LinkCommon";
 
 type NavigationLinkProps = Omit<ComponentPropsWithRef<"a">, "href"> & {

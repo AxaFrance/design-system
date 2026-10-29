@@ -4,9 +4,7 @@ module.exports = {
     "stylelint-config-recommended-scss",
     "stylelint-config-pretty-order",
   ],
-  plugins: ["stylelint-prettier"],
   rules: {
-    "prettier/prettier": true,
     "import-notation": "string",
     "at-rule-empty-line-before": null,
     "scss/operator-no-newline-after": null,
@@ -32,6 +30,6 @@ module.exports = {
     ],
 
     "scss/at-extend-no-missing-placeholder": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
   },
 };

@@ -10,13 +10,13 @@ import { Action } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `icon` | `string` | **Obligatoire** | Nom de l'icône |
-| `href` | `string` | - | URL de destination |
-| `onClick` | `MouseEventHandler` | - | Gestionnaire de clic |
-| `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type                | Défaut          | Description                |
+| --------------- | ------------------- | --------------- | -------------------------- |
+| `icon`          | `string`            | **Obligatoire** | Nom de l'icône             |
+| `href`          | `string`            | -               | URL de destination         |
+| `onClick`       | `MouseEventHandler` | -               | Gestionnaire de clic       |
+| `className`     | `string`            | -               | Classes CSS additionnelles |
+| `classModifier` | `string`            | -               | Modificateur CSS BEM       |
 
 Tous les attributs HTML standard du `<a>` sont supportés (`aria-label`, `target`, `rel`, `aria-disabled`, …).
 

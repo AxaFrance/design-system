@@ -10,11 +10,11 @@ import { Summary } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `messages` | `ReactNode[]` | `[]` | Liste des messages d'erreur à afficher |
-| `title` | `string` | `"Invalid form"` | Titre du récapitulatif |
-| `isVisible` | `boolean` | `true` | Contrôle l'affichage |
+| Prop        | Type          | Défaut           | Description                            |
+| ----------- | ------------- | ---------------- | -------------------------------------- |
+| `messages`  | `ReactNode[]` | `[]`             | Liste des messages d'erreur à afficher |
+| `title`     | `string`      | `"Invalid form"` | Titre du récapitulatif                 |
+| `isVisible` | `boolean`     | `true`           | Contrôle l'affichage                   |
 
 Les props courantes de `Message` sont acceptées (`onClose`, `className`, …).
 

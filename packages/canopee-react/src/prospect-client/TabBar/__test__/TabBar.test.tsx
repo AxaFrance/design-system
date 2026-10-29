@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vite-plus/test";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
 import { ItemTabBar } from "../../ItemTabBar/ItemTabBarCommon";

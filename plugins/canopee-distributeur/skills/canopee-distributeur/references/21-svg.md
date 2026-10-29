@@ -10,13 +10,13 @@ import { Svg } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `src` | `string` | **Obligatoire** | Chemin vers le fichier SVG (import statique) |
-| `alt` | `string` | - | Texte alternatif affiché si le SVG échoue à charger |
-| `width` | `number` | `24` | Largeur en pixels |
-| `height` | `number` | `24` | Hauteur en pixels |
-| `role` | `string` | `"presentation"` | Rôle ARIA |
+| Prop     | Type     | Défaut           | Description                                         |
+| -------- | -------- | ---------------- | --------------------------------------------------- |
+| `src`    | `string` | **Obligatoire**  | Chemin vers le fichier SVG (import statique)        |
+| `alt`    | `string` | -                | Texte alternatif affiché si le SVG échoue à charger |
+| `width`  | `number` | `24`             | Largeur en pixels                                   |
+| `height` | `number` | `24`             | Hauteur en pixels                                   |
+| `role`   | `string` | `"presentation"` | Rôle ARIA                                           |
 
 Toutes les propriétés SVG standard (`className`, `aria-label`, `aria-hidden`, `style`, …) sont supportées.
 
@@ -48,7 +48,5 @@ import checkIcon from "@material-symbols/svg-400/outlined/check_circle.svg";
 import { Button, Svg } from "@axa-fr/canopee-react/distributeur";
 import arrowIcon from "@material-symbols/svg-400/outlined/arrow_forward.svg";
 
-<Button rightIcon={<Svg src={arrowIcon} />}>
-  Continuer
-</Button>
+<Button rightIcon={<Svg src={arrowIcon} />}>Continuer</Button>;
 ```

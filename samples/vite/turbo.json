@@ -1,14 +1,9 @@
 {
-    "$schema": "https://v2-11-10.turborepo.dev/schema.json",
-    "extends": [
-        "//"
-    ],
-    "tasks": {
-        "lint": {
-            "dependsOn": [
-                "eslint"
-            ]
-        },
-        "eslint": {}
+  "$schema": "https://v2-11-10.turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "lint": {
+      "dependsOn": ["^build"]
     }
+  }
 }

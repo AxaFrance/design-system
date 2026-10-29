@@ -42,7 +42,7 @@ Accompagner les développeurs dans la création de composants réutilisables, ac
 - **Respecter scrupuleusement les pré-requis et checklist fournis ci-dessous**
 - **Ne jamais passer à la phase suivante tant que le build React n'est pas au vert et que les tests sont validés**
 - **Ne jamais passer à la phase suivante tant que le build CSS n'est pas au vert**
-- **Exécuter automatiquement le formatage Prettier, lint automatique et build complet après chaque modification**
+- **Exécuter automatiquement le formatage Oxfmt, lint automatique et build complet après chaque modification**
 - **Ne jamais valider une PR ou un commit sans un build vert et un formatage/lintage conforme**
 
 ## Architecture du Projet
@@ -111,7 +111,7 @@ packages/canopee-react/src/prospect-client/
 ```tsx
 // ✅ Bon - noms HTML standards
 type ButtonProps = {
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
   disabled?: boolean;
   required?: boolean;
   readOnly?: boolean;
@@ -176,8 +176,8 @@ type InputProps = {
 
 ```tsx
 // ✅ Bon - types stricts et unions discriminées
-type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
-type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonVariant = "primary" | "secondary" | "tertiary";
+type ButtonSize = "small" | "medium" | "large";
 
 type BaseButtonProps = {
   children: ReactNode;
@@ -189,17 +189,17 @@ type BaseButtonProps = {
 // Pour types complexes avec conditions
 type ButtonProps = BaseButtonProps &
   (
-    | { type: 'submit'; form: string }
-    | { type?: 'button' | 'reset'; form?: string }
+    | { type: "submit"; form: string }
+    | { type?: "button" | "reset"; form?: string }
   );
 ```
 
 **⚠️ Pour toute prop d'injection de composant (ex : ItemLabel, ItemMessage, etc.), il est OBLIGATOIRE d'utiliser le pattern suivant :**
 
 ```tsx
-import type { ComponentType, ComponentProps } from 'react';
-import { ItemLabel } from '../Form/ItemLabel/ItemLabelApollo';
-import { ItemMessage } from '../Form/ItemMessage/ItemMessageApollo';
+import type { ComponentType, ComponentProps } from "react";
+import { ItemLabel } from "../Form/ItemLabel/ItemLabelApollo";
+import { ItemMessage } from "../Form/ItemMessage/ItemMessageApollo";
 
 export type RangeProps = {
   // ...autres props
@@ -225,12 +225,12 @@ export const Button = ({ children }: ButtonProps) => (
 );
 
 // ✅ Bon - utiliser les rôles et labels accessibles
-export const Button = ({ children, type = 'button' }: ButtonProps) => (
+export const Button = ({ children, type = "button" }: ButtonProps) => (
   <button type={type}>{children}</button>
 );
 
 // Dans les tests : cibler par rôle et contenu
-screen.getByRole('button', { name: /mon bouton/i });
+screen.getByRole("button", { name: /mon bouton/i });
 ```
 
 ##### 6. Chemins d'import CSS dans les fichiers React
@@ -256,13 +256,13 @@ Exporte également les types associés si nécessaire dans le même export.
 export {
   NouveauComposant,
   type NouveauComposantProps,
-} from './NouveauComposant';
+} from "./NouveauComposant";
 ```
 
 **❌ Mauvais :**
 
 ```ts
-export { NouveauComposant } from './NouveauComposant';
+export { NouveauComposant } from "./NouveauComposant";
 // ...autres exports
 // En appliquant ces règles, tu garantis un build vert et une intégration fluide des nouveaux composants dans le monorepo.
 ```
@@ -276,7 +276,7 @@ Lorsque vous utilisez des fonctions ou hooks React (par exemple `useState`, `use
 **✅ Bon :**
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 const [value, setValue] = useState(0);
 ```
 
@@ -291,13 +291,13 @@ const [value, setValue] = React.useState(0);
 ##### 9. Template de Composant React
 
 ````tsx
-import { forwardRef, type ReactNode, type ComponentPropsWithRef } from 'react';
-import { getClassName } from '../utilities/getClassName';
-import '@axa-fr/canopee-css/prospect/MonComposant/MonComposant.css';
+import { forwardRef, type ReactNode, type ComponentPropsWithRef } from "react";
+import { getClassName } from "../utilities/getClassName";
+import "@axa-fr/canopee-css/prospect/MonComposant/MonComposant.css";
 
 // Types stricts pour les variants
-export type MonComposantVariant = 'primary' | 'secondary';
-export type MonComposantSize = 'small' | 'medium' | 'large';
+export type MonComposantVariant = "primary" | "secondary";
+export type MonComposantSize = "small" | "medium" | "large";
 
 // Type des props avec documentation
 export type MonComposantProps = ComponentPropsWithRef<HTMLDivElement> & {
@@ -325,8 +325,8 @@ export type MonComposantProps = ComponentPropsWithRef<HTMLDivElement> & {
  * ```
  */
 export const MonComposant = forwardRef<HTMLDivElement, MonComposantProps>(
-  ({ children, variant = 'primary', size = 'medium', className = '' }, ref) => {
-    const baseClassName = 'af-mon-composant';
+  ({ children, variant = "primary", size = "medium", className = "" }, ref) => {
+    const baseClassName = "af-mon-composant";
 
     return (
       <div
@@ -345,26 +345,26 @@ export const MonComposant = forwardRef<HTMLDivElement, MonComposantProps>(
   },
 );
 
-MonComposant.displayName = 'MonComposant';
+MonComposant.displayName = "MonComposant";
 ````
 
 ##### 10. Auto-format/lint/build après chaque modification
 
-Après chaque création ou modification de composant, il est **obligatoire** d'exécuter automatiquement la séquence suivante pour garantir un build vert, la conformité Prettier/ESLint/Stylelint, et la stabilité du Design System :
+Après chaque création ou modification de composant, il est **obligatoire** d'exécuter automatiquement la séquence suivante pour garantir un build vert, la conformité Oxfmt/Oxlint/Stylelint, et la stabilité du Design System :
 
-1. **Formatage Prettier**
+1. **Formatage Oxfmt**
 
-- `npm run format` (ou `npx prettier --write <fichiers modifiés>`) sur tous les fichiers modifiés
+- `vp fmt <fichiers modifiés>` sur tous les fichiers modifiés
 
 2. **Lint automatique**
 
-- `npm run lint:fix` pour corriger les erreurs ESLint simples (si le script existe)
+- `vp check --fix <fichiers modifiés>` pour corriger les erreurs Oxlint simples
 
 3. **Build complet**
 
 - `npm run build` pour valider l'absence d'erreur de build sur tous les packages concernés
 
-**Si le build échoue à cause de Prettier, ESLint ou Stylelint :**
+**Si le build échoue à cause de Oxfmt, Oxlint ou Stylelint :**
 
 - Corriger immédiatement le formatage ou toute erreur de lint détectée
 - Relancer la séquence complète (format > lint:fix > build) jusqu'à obtention d'un build vert
@@ -376,8 +376,8 @@ Après chaque création ou modification de composant, il est **obligatoire** d'e
 1. Création ou modification d'un composant
 2. Exécution automatique :
 
-- `npx prettier --write <fichiers modifiés>`
-- `npm run lint:fix` (si disponible)
+- `vp fmt <fichiers modifiés>`
+- `vp check --fix <fichiers modifiés>`
 - `npm run build`
 
 3. Si erreur : corriger et recommencer la séquence
@@ -399,8 +399,8 @@ Pour garantir un build vert lors de la création ou modification de composants, 
 
 **3. Indentation et retours à la ligne**
 
-- Respecter les retours à la ligne imposés par Prettier, notamment pour les props JSX longues ou les expressions complexes.
-- Ne jamais ajouter d'espaces ou d'indentation superflue sur les retours à la ligne (ex : `{value}` ou un callback doivent être alignés sur la colonne attendue par Prettier).
+- Respecter les retours à la ligne imposés par Oxfmt, notamment pour les props JSX longues ou les expressions complexes.
+- Ne jamais ajouter d'espaces ou d'indentation superflue sur les retours à la ligne (ex : `{value}` ou un callback doivent être alignés sur la colonne attendue par Oxfmt).
 
 **4. Exports**
 
@@ -409,13 +409,13 @@ Pour garantir un build vert lors de la création ou modification de composants, 
 **5. Correction automatique**
 
 - Après toute création ou modification, lancer :
-  - `npm run format` pour corriger le formatage Prettier
-  - `npm run lint:fix` pour corriger les erreurs ESLint simples
+  - `vp fmt <fichiers modifiés>` pour corriger le formatage Oxfmt
+  - `vp check --fix <fichiers modifiés>` pour corriger les erreurs Oxlint simples
   - `npm run build` pour valider l'absence d'erreur
 
 **7. Correction des erreurs courantes**
 
-- Si le build échoue à cause de Prettier/ESLint, corriger :
+- Si le build échoue à cause de Oxfmt/Oxlint, corriger :
   - Lignes vides en trop ou manquantes
   - Ordre ou doublon d'import
   - Indentation/retour à la ligne JSX
@@ -436,7 +436,7 @@ Pour garantir un build vert lors de la création ou modification de composants, 
 - [ ] **Gérer le focus** pour composants interactifs (dialogs, menus, etc.)
 - [ ] **Ne jamais exposer le composant via un fichier `index.tsx` dans son dossier**
 - [ ] **Réexporter explicitement le composant dans le fichier d'entrée du thème concerné** (`client.ts`, `prospect.ts`, `distributeur.ts`)
-- [ ] **Exécuter le formatage Prettier, lint automatique et build complet** pour garantir un build vert
+- [ ] **Exécuter le formatage Oxfmt, lint automatique et build complet** pour garantir un build vert
 
 > Ne passe pas à la phase suivante tant que le build React n'est pas au vert.
 
@@ -462,8 +462,8 @@ Lorsque le composant testé utilise des composants injectés (par exemple `ItemL
 **Exemple : dans `RangeCommon.test.tsx`, importer les composants injectés comme dans `InputPhone.test.tsx` :**
 
 ```tsx
-import { ItemLabelApollo } from '../../ItemLabel/ItemLabelApollo';
-import { ItemMessageApollo } from '../../ItemMessage/ItemMessageApollo';
+import { ItemLabelApollo } from "../../ItemLabel/ItemLabelApollo";
+import { ItemMessageApollo } from "../../ItemMessage/ItemMessageApollo";
 // ...
 ```
 
@@ -479,72 +479,72 @@ Cette règle garantit la cohérence des tests, la non-duplication de logique, et
 ##### 3. Template de Tests
 
 ```tsx
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
-import { axe } from 'jest-axe';
-import { MonComposant } from './MonComposant';
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, it, expect, vi } from "vitest";
+import { axe } from "jest-axe";
+import { MonComposant } from "./MonComposant";
 
-describe('MonComposant', () => {
-  it('renders the component with content', () => {
+describe("MonComposant", () => {
+  it("renders the component with content", () => {
     render(<MonComposant>Test content</MonComposant>);
 
-    expect(screen.getByText('Test content')).toBeInTheDocument();
+    expect(screen.getByText("Test content")).toBeInTheDocument();
   });
 
-  it('applies BEM classes according to variant', () => {
+  it("applies BEM classes according to variant", () => {
     const { container } = render(
       <MonComposant variant="primary">Content</MonComposant>,
     );
 
     const element = container.firstChild;
-    expect(element).toHaveClass('af-mon-composant');
-    expect(element).toHaveClass('af-mon-composant--primary');
+    expect(element).toHaveClass("af-mon-composant");
+    expect(element).toHaveClass("af-mon-composant--primary");
   });
 
-  it('applies BEM classes according to size', () => {
+  it("applies BEM classes according to size", () => {
     const { container } = render(
       <MonComposant size="large">Content</MonComposant>,
     );
 
-    expect(container.firstChild).toHaveClass('af-mon-composant--large');
+    expect(container.firstChild).toHaveClass("af-mon-composant--large");
   });
 
-  it('merges custom classes', () => {
+  it("merges custom classes", () => {
     const { container } = render(
       <MonComposant className="custom-class">Content</MonComposant>,
     );
 
-    expect(container.firstChild).toHaveClass('af-mon-composant');
-    expect(container.firstChild).toHaveClass('custom-class');
+    expect(container.firstChild).toHaveClass("af-mon-composant");
+    expect(container.firstChild).toHaveClass("custom-class");
   });
 
-  it('is keyboard accessible', async () => {
+  it("is keyboard accessible", async () => {
     const user = userEvent.setup();
     render(<MonComposant>Content</MonComposant>);
 
-    const element = screen.getByRole('region');
+    const element = screen.getByRole("region");
 
     // Test navigation clavier
     await user.tab();
     expect(element).toHaveFocus();
   });
 
-  it('exposes the correct ARIA attributes', () => {
+  it("exposes the correct ARIA attributes", () => {
     render(<MonComposant>Content</MonComposant>);
 
-    const element = screen.getByRole('region');
-    expect(element).toHaveAttribute('aria-label');
+    const element = screen.getByRole("region");
+    expect(element).toHaveAttribute("aria-label");
   });
 
   // Test d'interaction si applicable
-  it('handles user interactions', async () => {
+  it("handles user interactions", async () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();
 
     render(<MonComposant onClick={handleClick}>Content</MonComposant>);
 
-    await user.click(screen.getByText('Content'));
+    await user.click(screen.getByText("Content"));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
@@ -777,11 +777,11 @@ Nous utilisons des media queries basées sur les variables CSS définies dans le
 
 ##### 5. Auto-format/lint/build après chaque modification
 
-Après chaque création ou modification de CSS, il est **obligatoire** d'exécuter automatiquement la séquence suivante pour garantir un build vert, la conformité Prettier/Stylelint, et la stabilité du Design System :
+Après chaque création ou modification de CSS, il est **obligatoire** d'exécuter automatiquement la séquence suivante pour garantir un build vert, la conformité Oxfmt/Stylelint, et la stabilité du Design System :
 
-1. **Formatage Prettier**
+1. **Formatage Oxfmt**
 
-- `npm run format` (ou `npx prettier --write <fichiers modifiés>`) sur tous les fichiers modifiés
+- `vp fmt <fichiers modifiés>` sur tous les fichiers modifiés
 
 2. **Lint automatique**
 
@@ -791,7 +791,7 @@ Après chaque création ou modification de CSS, il est **obligatoire** d'exécut
 
 - `npm run build` pour valider l'absence d'erreur de build sur tous les packages concernés
 
-**Si le build échoue à cause de Prettier ou Stylelint :**
+**Si le build échoue à cause de Oxfmt ou Stylelint :**
 
 - Corriger immédiatement le formatage, l'ordre des propriétés CSS, ou toute erreur de lint détectée
 - Relancer la séquence complète (format > stylelint:fix > build) jusqu'à obtention d'un build vert
@@ -803,7 +803,7 @@ Après chaque création ou modification de CSS, il est **obligatoire** d'exécut
 1. Création ou modification d'un fichier CSS
 2. Exécution automatique :
 
-- `npx prettier --write <fichiers modifiés>`
+- `vp fmt <fichiers modifiés>`
 - `npm run stylelint:fix` (si disponible)
 - `npm run build`
 
@@ -825,13 +825,13 @@ Pour garantir un build vert lors de la création ou modification de composants, 
 
 **3. Indentation et retours à la ligne**
 
-- Respecter les retours à la ligne imposés par Prettier.
+- Respecter les retours à la ligne imposés par Oxfmt.
 - Ne jamais ajouter d'espaces ou d'indentation superflue sur les retours à la ligne.
 
 **4. Correction automatique**
 
 - Après toute création ou modification, lancer :
-  - `npm run format` pour corriger le formatage Prettier
+  - `vp fmt <fichiers modifiés>` pour corriger le formatage Oxfmt
   - `npm run stylelint:fix` pour corriger les erreurs Stylelint simples
   - `npm run build` pour valider l'absence d'erreur
 
@@ -842,7 +842,7 @@ Pour garantir un build vert lors de la création ou modification de composants, 
 
 **7. Correction des erreurs courantes**
 
-- Si le build échoue à cause de Prettier/Stylelint, corriger :
+- Si le build échoue à cause de Oxfmt/Stylelint, corriger :
   - Lignes vides en trop ou manquantes
   - Ordre ou doublon d'import
   - Ordre des propriétés CSS
@@ -860,7 +860,7 @@ Pour garantir un build vert lors de la création ou modification de composants, 
 - [ ] **Vérifier responsive** et zoom 400%
 - [ ] **Tester `prefers-reduced-motion`** pour animations
 - [ ] **Importer le CSS du composant dans le fichier CSS global du thème concerné à la fin du fichier** (`client.css`, `prospect.css`, `distributeur.css`)
-- [ ] **Exécuter le formatage Prettier, lint automatique et build complet** pour garantir un build vert
+- [ ] **Exécuter le formatage Oxfmt, lint automatique et build complet** pour garantir un build vert
 - [ ] **Vérifier l'absence de régression** avec `npm run build`
 - [] **Après avoir buildé les CSS, ajouter l'import du CSS du composant dans le fichier React du composant** (ex : `import '@axa-fr/canopee-css/prospect/MonComposant/MonComposant.css';`) et relancer le build React pour vérifier l'absence d'erreur
 
@@ -901,28 +901,28 @@ apps/look-and-feel-stories/src/components/
 ##### 2. Template Storybook (avec props requises)
 
 ```tsx
-import type { Meta, StoryObj } from '@storybook/react';
-import { MonComposant } from './MonComposant';
+import type { Meta, StoryObj } from "@storybook/react";
+import { MonComposant } from "./MonComposant";
 
 const meta: Meta<typeof MonComposant> = {
-  title: 'Components/MonComposant',
+  title: "Components/MonComposant",
   component: MonComposant,
 
   argTypes: {
-    onChange: { action: 'onChange' },
+    onChange: { action: "onChange" },
     variant: {
-      control: 'select',
-      options: ['primary', 'secondary'],
-      description: 'Variante visuelle du composant',
+      control: "select",
+      options: ["primary", "secondary"],
+      description: "Variante visuelle du composant",
     },
     size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Taille du composant',
+      control: "select",
+      options: ["small", "medium", "large"],
+      description: "Taille du composant",
     },
     children: {
-      control: 'text',
-      description: 'Contenu du composant',
+      control: "text",
+      description: "Contenu du composant",
     },
   },
 };
@@ -933,46 +933,46 @@ type Story = StoryObj<typeof meta>;
 // Story principale interactive
 export const Playground: Story = {
   args: {
-    variant: 'primary',
-    size: 'medium',
-    children: 'Contenu du composant',
+    variant: "primary",
+    size: "medium",
+    children: "Contenu du composant",
   },
 };
 
 // Exemples de variants
 export const Primary: Story = {
   args: {
-    variant: 'primary',
-    children: 'Composant primary',
+    variant: "primary",
+    children: "Composant primary",
   },
 };
 
 export const Secondary: Story = {
   args: {
-    variant: 'secondary',
-    children: 'Composant secondary',
+    variant: "secondary",
+    children: "Composant secondary",
   },
 };
 
 // Exemples de tailles
 export const Small: Story = {
   args: {
-    size: 'small',
-    children: 'Composant small',
+    size: "small",
+    children: "Composant small",
   },
 };
 
 export const Large: Story = {
   args: {
-    size: 'large',
-    children: 'Composant large',
+    size: "large",
+    children: "Composant large",
   },
 };
 
 // Galerie de tous les variants
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
       <MonComposant variant="primary">Primary</MonComposant>
       <MonComposant variant="secondary">Secondary</MonComposant>
     </div>
@@ -983,8 +983,8 @@ export const AllVariants: Story = {
 ##### 3. Template Documentation MDX
 
 ````mdx
-import { Canvas, Controls, Meta } from '@storybook/addon-docs';
-import * as MonComposantStories from './MonComposant.stories';
+import { Canvas, Controls, Meta } from "@storybook/addon-docs";
+import * as MonComposantStories from "./MonComposant.stories";
 
 <Meta of={MonComposantStories} name="MonComposant" />
 
@@ -995,11 +995,11 @@ Description courte du composant et de son usage principal.
 ## Import
 
 ```tsx
-import { MonComposant } from '@axa-fr/canopee-react/distributeur';
+import { MonComposant } from "@axa-fr/canopee-react/distributeur";
 // ou
-import { MonComposant } from '@axa-fr/canopee-react/prospect';
+import { MonComposant } from "@axa-fr/canopee-react/prospect";
 // ou
-import { MonComposant } from '@axa-fr/canopee-react/client';
+import { MonComposant } from "@axa-fr/canopee-react/client";
 
 const App = () => (
   <MonComposant variant="primary" size="medium">
@@ -1208,9 +1208,9 @@ rtk npm test MonComposant          # Tests d'un composant spécifique
 rtk npm test -- --coverage         # Avec couverture
 
 # Lint et format
-rtk npm run lint                   # ESLint
-rtk npm run lint:fix              # ESLint avec auto-fix
-rtk npm run format                # Prettier
+rtk npm run check                 # Oxfmt, Oxlint et types
+rtk vp check --fix                # Format et lint avec auto-fix
+rtk npm run format                # Oxfmt
 
 # Build
 rtk npm run build                 # Build complet

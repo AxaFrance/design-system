@@ -22,6 +22,7 @@
     "dev:client": "npm run build:client -- --watch -- --env client",
     "dev:prospect": "npm run build:prospect -- --watch -- --env prospect",
     "dev:distributeur": "npm run build:distributeur -- --watch -- --env distributeur",
+    "lint": "vp fmt --check src",
     "stylelint": "stylelint \"src/**/*.css\"",
     "stylelint:fix": "npm run stylelint -- --fix"
   },
@@ -37,7 +38,6 @@
     }
   },
   "devDependencies": {
-    "@axa-fr/prettier-config-design-system": "*",
     "@axa-fr/stylelint-config-design-system": "*",
     "@csstools/postcss-global-data": "^4.0.0",
     "@csstools/postcss-sass": "^5.1.1",
@@ -78,9 +78,13 @@
     ]
   },
   "lint-staged": {
-    "*.css": "npm run stylelint -- --fix"
+    "*.{js,mjs,cjs}": "vp check --fix",
+    "*.{scss,json,jsonc,md,yml,yaml}": "vp fmt --no-error-on-unmatched-pattern",
+    "*.css": [
+      "npm run stylelint -- --fix",
+      "vp fmt"
+    ]
   },
-  "prettier": "@axa-fr/prettier-config-design-system",
   "stylelint": {
     "extends": "@axa-fr/stylelint-config-design-system"
   },

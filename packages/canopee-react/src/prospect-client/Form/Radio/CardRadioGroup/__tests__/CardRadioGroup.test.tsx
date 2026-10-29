@@ -2,7 +2,7 @@ import homeIcons from "@material-symbols/svg-400/outlined/home.svg";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import { CardRadio } from "../../CardRadio/CardRadioLF";
 import {

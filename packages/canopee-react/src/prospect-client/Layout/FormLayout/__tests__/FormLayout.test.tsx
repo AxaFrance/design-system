@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vite-plus/test";
 import type { GridContainerProps } from "../../../../client";
 import { FormLayout } from "../FormLayout";
 
@@ -218,7 +218,7 @@ describe("FormLayout", () => {
 
       const element = container.querySelector('[style*="--cols-mobile"]');
       expect(element).toBeInTheDocument();
-      expect(element).toHaveStyle({ "--cols-mobile": "1" });
+      expect(element).toHaveStyle("--cols-mobile: 1");
     });
 
     it("applies data-cols-tablet CSS variable", () => {
@@ -232,7 +232,7 @@ describe("FormLayout", () => {
 
       const element = container.querySelector('[style*="--cols-tablet"]');
       expect(element).toBeInTheDocument();
-      expect(element).toHaveStyle({ "--cols-tablet": "2" });
+      expect(element).toHaveStyle("--cols-tablet: 2");
     });
 
     it("applies data-cols-desktop-small CSS variable", () => {
@@ -248,7 +248,7 @@ describe("FormLayout", () => {
         '[style*="--cols-desktop-small"]',
       );
       expect(element).toBeInTheDocument();
-      expect(element).toHaveStyle({ "--cols-desktop-small": "3" });
+      expect(element).toHaveStyle("--cols-desktop-small: 3");
     });
 
     it("applies data-cols-desktop-medium CSS variable", () => {
@@ -264,7 +264,7 @@ describe("FormLayout", () => {
         '[style*="--cols-desktop-medium"]',
       );
       expect(element).toBeInTheDocument();
-      expect(element).toHaveStyle({ "--cols-desktop-medium": "4" });
+      expect(element).toHaveStyle("--cols-desktop-medium: 4");
     });
 
     it("applies data-cols-desktop-large CSS variable", () => {
@@ -280,7 +280,7 @@ describe("FormLayout", () => {
         '[style*="--cols-desktop-large"]',
       );
       expect(element).toBeInTheDocument();
-      expect(element).toHaveStyle({ "--cols-desktop-large": "5" });
+      expect(element).toHaveStyle("--cols-desktop-large: 5");
     });
 
     it("applies multiple responsive CSS variables", () => {
@@ -302,13 +302,13 @@ describe("FormLayout", () => {
       );
 
       const element = container.querySelector("div.input-container");
-      expect(element).toHaveStyle({
-        "--cols-mobile": "1",
-        "--cols-tablet": "2",
-        "--cols-desktop-small": "3",
-        "--cols-desktop-medium": "4",
-        "--cols-desktop-large": "6",
-      });
+      expect(element).toHaveStyle(`
+        --cols-mobile: 1;
+        --cols-tablet: 2;
+        --cols-desktop-small: 3;
+        --cols-desktop-medium: 4;
+        --cols-desktop-large: 6;
+      `);
     });
 
     it("preserves existing style prop when applying responsive styles", () => {
@@ -327,10 +327,7 @@ describe("FormLayout", () => {
       );
 
       const element = container.querySelector("div.input-container");
-      expect(element).toHaveStyle({
-        color: "#ff0000",
-        "--cols-mobile": "1",
-      });
+      expect(element).toHaveStyle("color: #ff0000; --cols-mobile: 1");
     });
 
     it("applies responsive styles to containerProps when present", () => {
@@ -359,10 +356,7 @@ describe("FormLayout", () => {
 
       const element = container.querySelector("div.input-container");
 
-      expect(element).toHaveStyle({
-        "--cols-mobile": "1",
-        padding: "10px",
-      });
+      expect(element).toHaveStyle("--cols-mobile: 1; padding: 10px");
     });
 
     it("handles multiple children in Body", () => {
@@ -380,9 +374,9 @@ describe("FormLayout", () => {
         ".af-form-layout__fields > div",
       );
       expect(elements).toHaveLength(3);
-      expect(elements[0]).toHaveStyle({ "--cols-mobile": "1" });
-      expect(elements[1]).toHaveStyle({ "--cols-mobile": "2" });
-      expect(elements[2]).toHaveStyle({ "--cols-tablet": "3" });
+      expect(elements[0]).toHaveStyle("--cols-mobile: 1");
+      expect(elements[1]).toHaveStyle("--cols-mobile: 2");
+      expect(elements[2]).toHaveStyle("--cols-tablet: 3");
     });
 
     it("handles non-element children in Body", () => {

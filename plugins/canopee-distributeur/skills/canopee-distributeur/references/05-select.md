@@ -1,9 +1,11 @@
 # Form Select (Liste déroulante)
 
 ## Présentation
+
 Le composant Select fournit une liste déroulante pour les formulaires. Utiliser les enfants JSX (`<option>`, `<optgroup>`) pour construire les options.
 
 ## Import
+
 ```tsx
 import { Select, SelectInput } from "@axa-fr/canopee-react/distributeur";
 ```
@@ -11,7 +13,9 @@ import { Select, SelectInput } from "@axa-fr/canopee-react/distributeur";
 ## Composants
 
 ### Select
+
 Liste déroulante bas niveau à base d'enfants JSX.
+
 ```tsx
 import { Select } from "@axa-fr/canopee-react/distributeur";
 
@@ -19,11 +23,13 @@ import { Select } from "@axa-fr/canopee-react/distributeur";
 <Select>
   <option value="pomme">Pomme</option>
   <option value="banane">Banane</option>
-</Select>
+</Select>;
 ```
 
 ### SelectInput (haute niveau)
+
 Wrapper complet de formulaire avec label et validation.
+
 ```tsx
 import { SelectInput } from "@axa-fr/canopee-react/distributeur";
 
@@ -33,44 +39,45 @@ import { SelectInput } from "@axa-fr/canopee-react/distributeur";
   label="Choisir une couleur"
   options={[
     { value: "rouge", label: "Rouge" },
-    { value: "bleu", label: "Bleu" }
+    { value: "bleu", label: "Bleu" },
   ]}
-/>
+/>;
 ```
 
 ## Props
 
 ### SelectInput
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `options` | `Option[]` | - | Tableau d'objets `{value, label}` |
-| `value` | `string` | - | Valeur sélectionnée |
-| `id` | `string` | - | HTML id |
-| `name` | `string` | - | HTML name |
-| `label` | `string` | - | Label du champ |
-| `placeholder` | `string` | `"- Sélectionner -"` | Texte de sélection par défaut |
-| `disabled` | `boolean` | `false` | Désactive la liste |
-| `readOnly` | `boolean` | `false` | Mode lecture seule |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
-| `onChange` | `function` | - | Gestionnaire de changement |
-| `onBlur` | `function` | - | Gestionnaire de perte de focus |
-| `children` | `ReactNode` | - | Éléments JSX d'options |
+| Prop                  | Type                                                     | Défaut               | Description                                                                   |
+| --------------------- | -------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------- |
+| `options`             | `Option[]`                                               | -                    | Tableau d'objets `{value, label}`                                             |
+| `value`               | `string`                                                 | -                    | Valeur sélectionnée                                                           |
+| `id`                  | `string`                                                 | -                    | HTML id                                                                       |
+| `name`                | `string`                                                 | -                    | HTML name                                                                     |
+| `label`               | `string`                                                 | -                    | Label du champ                                                                |
+| `placeholder`         | `string`                                                 | `"- Sélectionner -"` | Texte de sélection par défaut                                                 |
+| `disabled`            | `boolean`                                                | `false`              | Désactive la liste                                                            |
+| `readOnly`            | `boolean`                                                | `false`              | Mode lecture seule                                                            |
+| `required`            | `boolean`                                                | `false`              | Champ obligatoire                                                             |
+| `helpMessage`         | `ReactNode`                                              | -                    | Message d'aide affiché par défaut sous le champ                               |
+| `message`             | `string`                                                 | -                    | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -                    | Type du message de statut                                                     |
+| `forceDisplayMessage` | `boolean`                                                | `false`              | Active l'affichage du `message` à la place de `helpMessage`                   |
+| `onChange`            | `function`                                               | -                    | Gestionnaire de changement                                                    |
+| `onBlur`              | `function`                                               | -                    | Gestionnaire de perte de focus                                                |
+| `children`            | `ReactNode`                                              | -                    | Éléments JSX d'options                                                        |
 
 ## Utilisation de base
 
 ### Select simple avec options
+
 ```tsx
 import { useState } from "react";
 import { Select } from "@axa-fr/canopee-react/distributeur";
 
 const SelecteurCouleur = () => {
   const [couleur, setCouleur] = useState("");
-  
+
   return (
     <Select
       id="couleur"
@@ -79,7 +86,7 @@ const SelecteurCouleur = () => {
       options={[
         { value: "rouge", label: "Rouge" },
         { value: "vert", label: "Vert" },
-        { value: "bleu", label: "Bleu" }
+        { value: "bleu", label: "Bleu" },
       ]}
       value={couleur}
       onChange={(e) => setCouleur(e.target.value)}
@@ -89,6 +96,7 @@ const SelecteurCouleur = () => {
 ```
 
 ### Select avec enfants (JSX)
+
 ```tsx
 <Select id="taille" name="taille">
   <optgroup label="Tailles vêtements">
@@ -104,6 +112,7 @@ const SelecteurCouleur = () => {
 ```
 
 ### SelectInput avec label
+
 ```tsx
 <SelectInput
   id="pays"
@@ -113,13 +122,14 @@ const SelecteurCouleur = () => {
   options={[
     { value: "fr", label: "France" },
     { value: "de", label: "Allemagne" },
-    { value: "en", label: "Royaume-Uni" }
+    { value: "en", label: "Royaume-Uni" },
   ]}
   required
 />
 ```
 
 ### Select avec enfants JSX
+
 ```tsx
 <Select id="taille" name="taille">
   <option value="">-- Sélectionner --</option>
@@ -131,6 +141,7 @@ const SelecteurCouleur = () => {
 ## Validation
 
 ### Champ obligatoire
+
 ```tsx
 <SelectInput
   id="role"
@@ -139,12 +150,13 @@ const SelecteurCouleur = () => {
   required
   options={[
     { value: "admin", label: "Administrateur" },
-    { value: "user", label: "Utilisateur standard" }
+    { value: "user", label: "Utilisateur standard" },
   ]}
 />
 ```
 
 ### Avec message d'erreur
+
 ```tsx
 const [role, setRole] = useState("");
 const [erreur, setErreur] = useState("");
@@ -170,12 +182,13 @@ const handleChange = (e) => {
   forceDisplayMessage={Boolean(erreur)}
   options={[
     { value: "admin", label: "Admin" },
-    { value: "user", label: "Utilisateur" }
+    { value: "user", label: "Utilisateur" },
   ]}
-/>
+/>;
 ```
 
 ### Avec texte d'aide
+
 ```tsx
 <SelectInput
   id="type"
@@ -183,7 +196,7 @@ const handleChange = (e) => {
   label="Type de document"
   options={[
     { value: "pdf", label: "PDF" },
-    { value: "doc", label: "Document Word" }
+    { value: "doc", label: "Document Word" },
   ]}
   helpMessage="Sélectionnez le format du document"
 />
@@ -192,19 +205,19 @@ const handleChange = (e) => {
 ## États
 
 ### Désactivé
+
 ```tsx
 <SelectInput
   id="desactive"
   name="desactive"
   label="Désactivé"
   disabled
-  options={[
-    { value: "opt1", label: "Option 1" }
-  ]}
+  options={[{ value: "opt1", label: "Option 1" }]}
 />
 ```
 
 ### Lecture seule
+
 ```tsx
 <SelectInput
   id="lecture"
@@ -212,9 +225,7 @@ const handleChange = (e) => {
   label="Lecture seule"
   readOnly
   value="valeur-fixe"
-  options={[
-    { value: "valeur-fixe", label: "Valeur fixe" }
-  ]}
+  options={[{ value: "valeur-fixe", label: "Valeur fixe" }]}
 />
 ```
 
@@ -224,21 +235,24 @@ const handleChange = (e) => {
 const FormulaireAbonnement = () => {
   const [formData, setFormData] = useState({
     pays: "",
-    typePlan: ""
+    typePlan: "",
   });
-  
+
   const handleChange = (champ) => (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [champ]: e.target.value
+      [champ]: e.target.value,
     }));
   };
-  
+
   return (
-    <form className="af-form" onSubmit={(e) => {
-      e.preventDefault();
-      console.log("Données :", formData);
-    }}>
+    <form
+      className="af-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log("Données :", formData);
+      }}
+    >
       <SelectInput
         id="pays"
         name="pays"
@@ -248,10 +262,10 @@ const FormulaireAbonnement = () => {
         required
         options={[
           { value: "fr", label: "France" },
-          { value: "de", label: "Allemagne" }
+          { value: "de", label: "Allemagne" },
         ]}
       />
-      
+
       <SelectInput
         id="plan"
         name="plan"
@@ -260,10 +274,10 @@ const FormulaireAbonnement = () => {
         onChange={handleChange("typePlan")}
         options={[
           { value: "basic", label: "Basique" },
-          { value: "pro", label: "Professionnel" }
+          { value: "pro", label: "Professionnel" },
         ]}
       />
-      
+
       <button type="submit">S'abonner</button>
     </form>
   );
@@ -286,6 +300,7 @@ const FormulaireAbonnement = () => {
 ```
 
 ## Accessibilité
+
 - Labels associés via la prop `label`
 - Élément HTML `<select>` sémantique
 - Navigation clavier (touches fléchées pour sélectionner)
@@ -293,6 +308,7 @@ const FormulaireAbonnement = () => {
 - Messages d'erreur liés via `aria-describedby`
 
 ## Bonnes pratiques
+
 - Utiliser des labels d'options clairs et concis
 - Fournir une option par défaut/placeholder
 - Grouper les options liées en mode enfants
@@ -300,6 +316,7 @@ const FormulaireAbonnement = () => {
 - Envisager Radio ou Checkbox pour 3 options ou moins
 
 ## Classes CSS
+
 - `.af-form__select` - Classe de base de la liste déroulante
 - `.af-form__select--required` - Champ obligatoire
 - `.af-form__select--disabled` - État désactivé

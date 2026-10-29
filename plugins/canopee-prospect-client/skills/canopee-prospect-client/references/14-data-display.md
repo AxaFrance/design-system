@@ -35,17 +35,17 @@ Table
 ```tsx
 // Table.THead
 type THeadProps = ComponentPropsWithRef<"thead"> & {
-  colorVariant?: HeadColorVariants;  // variantes couleur du header
+  colorVariant?: HeadColorVariants; // variantes couleur du header
 };
 
 // Table.TBody
 type TBodyProps = ComponentPropsWithRef<"tbody"> & {
-  colorVariant?: BodyColorVariants;  // variantes couleur du body
+  colorVariant?: BodyColorVariants; // variantes couleur du body
 };
 
 // Table.Tr
 type TrProps = ComponentPropsWithRef<"tr"> & {
-  sizeVariant?: RowSizeVariants;    // variantes taille des rangs
+  sizeVariant?: RowSizeVariants; // variantes taille des rangs
 };
 ```
 
@@ -85,7 +85,10 @@ Alternative au tableau pour l'affichage mobile, sous forme de cartes `<dl>` (des
 ### Import
 
 ```tsx
-import { TableMobileCard, type TableMobileCardProps } from "@axa-fr/canopee-react/prospect";
+import {
+  TableMobileCard,
+  type TableMobileCardProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -93,7 +96,7 @@ import { TableMobileCard, type TableMobileCardProps } from "@axa-fr/canopee-reac
 
 ```tsx
 type TableMobileCardProps = ComponentPropsWithRef<"dl"> & {
-  variant?: "white" | "blue" | "alternate";  // Fond de la carte (défaut: "alternate")
+  variant?: "white" | "blue" | "alternate"; // Fond de la carte (défaut: "alternate")
 };
 ```
 
@@ -109,22 +112,24 @@ TableMobileCard
 ### Exemple
 
 ```tsx
-{contracts.map((contract) => (
-  <TableMobileCard key={contract.id} variant="alternate">
-    <TableMobileCard.DRow>
-      <TableMobileCard.Dt>Contrat</TableMobileCard.Dt>
-      <TableMobileCard.Dd>{contract.name}</TableMobileCard.Dd>
-    </TableMobileCard.DRow>
-    <TableMobileCard.DRow>
-      <TableMobileCard.Dt>Échéance</TableMobileCard.Dt>
-      <TableMobileCard.Dd>{contract.date}</TableMobileCard.Dd>
-    </TableMobileCard.DRow>
-    <TableMobileCard.DRow>
-      <TableMobileCard.Dt>Montant</TableMobileCard.Dt>
-      <TableMobileCard.Dd>{contract.amount} €</TableMobileCard.Dd>
-    </TableMobileCard.DRow>
-  </TableMobileCard>
-))}
+{
+  contracts.map((contract) => (
+    <TableMobileCard key={contract.id} variant="alternate">
+      <TableMobileCard.DRow>
+        <TableMobileCard.Dt>Contrat</TableMobileCard.Dt>
+        <TableMobileCard.Dd>{contract.name}</TableMobileCard.Dd>
+      </TableMobileCard.DRow>
+      <TableMobileCard.DRow>
+        <TableMobileCard.Dt>Échéance</TableMobileCard.Dt>
+        <TableMobileCard.Dd>{contract.date}</TableMobileCard.Dd>
+      </TableMobileCard.DRow>
+      <TableMobileCard.DRow>
+        <TableMobileCard.Dt>Montant</TableMobileCard.Dt>
+        <TableMobileCard.Dd>{contract.amount} €</TableMobileCard.Dd>
+      </TableMobileCard.DRow>
+    </TableMobileCard>
+  ));
+}
 ```
 
 ### Approche responsive recommandée
@@ -157,8 +162,8 @@ import { TimelineVertical } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type TimelineVerticalProps = PropsWithChildren<{
-  title: string;                  // Titre de la section (obligatoire)
-  tag: ReactNode;                 // Tag ou badge de statut (obligatoire)
+  title: string; // Titre de la section (obligatoire)
+  tag: ReactNode; // Tag ou badge de statut (obligatoire)
   className?: string;
 }>;
 ```

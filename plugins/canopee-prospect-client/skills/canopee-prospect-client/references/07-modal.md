@@ -24,18 +24,18 @@ import {
 
 ```tsx
 type ModalProps = {
-  title: string;                          // Titre de la modale (obligatoire, aussi aria-label)
-  headingProps?: Omit<HeadingProps, "children">;  // Props du composant Heading
-  onClose?: VoidFunction;                 // Handler de fermeture (backdrop + bouton X)
-  closeButtonAriaLabel?: string;          // aria-label du bouton fermer (défaut: "Fermer la boite de dialogue")
+  title: string; // Titre de la modale (obligatoire, aussi aria-label)
+  headingProps?: Omit<HeadingProps, "children">; // Props du composant Heading
+  onClose?: VoidFunction; // Handler de fermeture (backdrop + bouton X)
+  closeButtonAriaLabel?: string; // aria-label du bouton fermer (défaut: "Fermer la boite de dialogue")
   primaryButtonProps?: Partial<ButtonProps>;
   secondaryButtonProps?: Partial<ButtonProps>;
   tertiaryButtonProps?: Partial<ButtonProps>;
   modalCoreBodyProps?: ModalCoreBodyProps;
   modalCoreFooterProps?: ModalCoreFooterContainerProps;
   modalCoreHeaderProps?: ModalCoreHeaderContainerProps;
-  children?: ReactNode;                   // Corps de la modale
-  open?: boolean;                         // Attribut HTML <dialog open>
+  children?: ReactNode; // Corps de la modale
+  open?: boolean; // Attribut HTML <dialog open>
 };
 ```
 
@@ -104,7 +104,10 @@ import { ModalCore, type ModalCoreProps } from "@axa-fr/canopee-react/prospect";
 ### Props
 
 ```tsx
-type ModalCoreProps = Omit<ComponentPropsWithRef<"dialog">, "title" | "onClose"> &
+type ModalCoreProps = Omit<
+  ComponentPropsWithRef<"dialog">,
+  "title" | "onClose"
+> &
   Required<Pick<ComponentPropsWithRef<"dialog">, "title">> & {
     onClose?: VoidFunction;
   };

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createRef } from "react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vite-plus/test";
 import { axe } from "jest-axe";
 import { LoaderCommon } from "../LoaderCommon";
 import { Spinner } from "../../Spinner/SpinnerApollo";

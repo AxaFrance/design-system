@@ -10,14 +10,14 @@ import { HelpButton } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `children` | `ReactNode` | - | Contenu affiché dans le popover |
-| `helpButtonContent` | `ReactNode` | `<span className="af-more-help">i</span>` | Contenu du bouton déclencheur (remplace le "i" par défaut) |
-| `mode` | `"click" \| "over"` | `"click"` | Déclenchement par clic ou au survol |
-| `placement` | `Placement` | `"right"` | Position du popover (`"top"`, `"bottom"`, `"left"`, `"right"`, …) |
-| `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop                | Type                | Défaut                                    | Description                                                       |
+| ------------------- | ------------------- | ----------------------------------------- | ----------------------------------------------------------------- |
+| `children`          | `ReactNode`         | -                                         | Contenu affiché dans le popover                                   |
+| `helpButtonContent` | `ReactNode`         | `<span className="af-more-help">i</span>` | Contenu du bouton déclencheur (remplace le "i" par défaut)        |
+| `mode`              | `"click" \| "over"` | `"click"`                                 | Déclenchement par clic ou au survol                               |
+| `placement`         | `Placement`         | `"right"`                                 | Position du popover (`"top"`, `"bottom"`, `"left"`, `"right"`, …) |
+| `className`         | `string`            | -                                         | Classes CSS additionnelles                                        |
+| `classModifier`     | `string`            | -                                         | Modificateur CSS BEM                                              |
 
 ## Utilisation
 

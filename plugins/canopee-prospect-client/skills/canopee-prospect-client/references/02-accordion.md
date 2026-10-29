@@ -23,33 +23,33 @@ import {
 
 ```tsx
 type AccordionProps = {
-  variant?: AccordionVariants;            // "primary" | "secondary"  (défaut: "primary")
-  title: string;                          // Titre principal (obligatoire)
-  subtitle?: string;                      // Sous-titre
-  icon?: string;                          // SVG src pour l'icône dans le header
-  info1: string;                          // Texte info ligne 1
-  info2: string;                          // Texte info ligne 2
-  dateLabel?: string;                     // Texte de la date affichée dans un <time>
+  variant?: AccordionVariants; // "primary" | "secondary"  (défaut: "primary")
+  title: string; // Titre principal (obligatoire)
+  subtitle?: string; // Sous-titre
+  icon?: string; // SVG src pour l'icône dans le header
+  info1: string; // Texte info ligne 1
+  info2: string; // Texte info ligne 2
+  dateLabel?: string; // Texte de la date affichée dans un <time>
   dateProps?: Omit<ComponentProps<"time">, "children">; // ex: { dateTime: "2024-01-01" }
-  tagLabel?: string;                      // Label du Tag optionnel
+  tagLabel?: string; // Label du Tag optionnel
   tagProps?: Omit<TagProps, "children">; // ex: { variant: "warning" }
-  isPlain?: boolean;                      // Variante sans style de fond
+  isPlain?: boolean; // Variante sans style de fond
   // + toutes les props de AccordionCore sauf `summary`
   open?: boolean;
   onClick?: MouseEventHandler<HTMLElement>;
   showArrowAsClickIcon?: boolean;
   arrowIconVariant?: IconVariants;
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
-  children?: ReactNode;                   // Contenu déplié
+  children?: ReactNode; // Contenu déplié
 };
 ```
 
 ### Variantes disponibles
 
-| Variante | Usage |
-|---|---|
-| `primary` | Style principal (fond bleu clair) |
-| `secondary` | Style secondaire |
+| Variante    | Usage                             |
+| ----------- | --------------------------------- |
+| `primary`   | Style principal (fond bleu clair) |
+| `secondary` | Style secondaire                  |
 
 ### Exemple
 
@@ -69,7 +69,7 @@ import bank from "@material-symbols/svg-700/rounded/account_balance-fill.svg";
   dateProps={{ dateTime: "2024-01-01" }}
 >
   <p>Contenu détaillé du contrat...</p>
-</Accordion>
+</Accordion>;
 ```
 
 ---
@@ -94,19 +94,19 @@ import {
 ```tsx
 type AccordionContextualProps = {
   variant?: AccordionContextualVariants; // "info" | "warning" | "reverse"  (défaut: "info")
-  title: string;                         // Titre (obligatoire)
-  icon?: string;                         // SVG src optionnel
+  title: string; // Titre (obligatoire)
+  icon?: string; // SVG src optionnel
   // + props de AccordionCore (open, onClick, summaryProps, children, …)
 };
 ```
 
 ### Comportement des variantes
 
-| Variante | Couleur icône | Usage |
-|---|---|---|
-| `info` | `primary` (bleu) | Information standard |
-| `warning` | `error` (rouge) | Alerte importante |
-| `reverse` | `secondary` | Sur fond coloré |
+| Variante  | Couleur icône    | Usage                |
+| --------- | ---------------- | -------------------- |
+| `info`    | `primary` (bleu) | Information standard |
+| `warning` | `error` (rouge)  | Alerte importante    |
+| `reverse` | `secondary`      | Sur fond coloré      |
 
 ### Exemple
 
@@ -143,13 +143,13 @@ import { AccordionCore } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type AccordionCoreProps = {
-  summary: ReactNode;                             // Contenu du <summary> (obligatoire)
-  open?: boolean;                                 // État ouvert/fermé
+  summary: ReactNode; // Contenu du <summary> (obligatoire)
+  open?: boolean; // État ouvert/fermé
   summaryProps?: Omit<ComponentProps<"summary">, "onClick">;
-  onClick?: MouseEventHandler<HTMLElement>;       // Intercepte le clic (empêche toggle natif)
-  showArrowAsClickIcon?: boolean;                 // Flèche stylisée comme ClickIcon (défaut: true)
-  arrowClickIconVariant?: "default" | "ghost";    // Style du ClickIcon de la flèche (défaut: "default")
-  arrowIconVariant?: IconVariants;               // Variante couleur de la flèche
+  onClick?: MouseEventHandler<HTMLElement>; // Intercepte le clic (empêche toggle natif)
+  showArrowAsClickIcon?: boolean; // Flèche stylisée comme ClickIcon (défaut: true)
+  arrowClickIconVariant?: "default" | "ghost"; // Style du ClickIcon de la flèche (défaut: "default")
+  arrowIconVariant?: IconVariants; // Variante couleur de la flèche
 } & ComponentProps<"details">;
 ```
 

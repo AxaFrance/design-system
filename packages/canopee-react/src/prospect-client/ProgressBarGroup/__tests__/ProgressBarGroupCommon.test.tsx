@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { vi } from "vitest";
+import { vi } from "vite-plus/test";
 import { ProgressBar } from "../../ProgressBar/ProgressBarCommon";
 import { ProgressBarGroupCommon } from "../ProgressBarGroupCommon";
 import * as ProgressBarGroupModule from "../useSequentialProgress";

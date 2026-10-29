@@ -31,22 +31,22 @@ Wrapper complet avec label, tableau des fichiers ajoutés et gestion des erreurs
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `ReactNode` | **Obligatoire** | Label du champ |
-| `name` | `string` | `""` | Attribut HTML `name` |
-| `onChange` | `(data: { id?, name?, fileAction?, values: CustomFile[], errors?: CustomFile<FileRejection>[] }) => void` | **Obligatoire** | Gestionnaire appelé à chaque ajout/suppression |
-| `values` | `CustomFile[]` | `[]` | Liste des fichiers déjà chargés |
-| `errors` | `CustomFile<FileRejection>[]` | - | Fichiers refusés (pour affichage d'erreur) |
-| `fileLabel` | `string` | - | Texte du bouton "Parcourir" |
-| `helpMessage` | `ReactNode` | - | Message d'aide |
-| `multiple` | `boolean` | `true` | Autoriser plusieurs fichiers |
-| `maxSize` | `number` | `20000000` | Taille maximale en octets (20 Mo par défaut) |
-| `accept` | `Accept` | - | Types MIME acceptés (format react-dropzone) |
-| `disabled` | `boolean` | `false` | Champ désactivé |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| Prop                  | Type                                                                                                      | Défaut          | Description                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------- |
+| `label`               | `ReactNode`                                                                                               | **Obligatoire** | Label du champ                                                                |
+| `name`                | `string`                                                                                                  | `""`            | Attribut HTML `name`                                                          |
+| `onChange`            | `(data: { id?, name?, fileAction?, values: CustomFile[], errors?: CustomFile<FileRejection>[] }) => void` | **Obligatoire** | Gestionnaire appelé à chaque ajout/suppression                                |
+| `values`              | `CustomFile[]`                                                                                            | `[]`            | Liste des fichiers déjà chargés                                               |
+| `errors`              | `CustomFile<FileRejection>[]`                                                                             | -               | Fichiers refusés (pour affichage d'erreur)                                    |
+| `fileLabel`           | `string`                                                                                                  | -               | Texte du bouton "Parcourir"                                                   |
+| `helpMessage`         | `ReactNode`                                                                                               | -               | Message d'aide                                                                |
+| `multiple`            | `boolean`                                                                                                 | `true`          | Autoriser plusieurs fichiers                                                  |
+| `maxSize`             | `number`                                                                                                  | `20000000`      | Taille maximale en octets (20 Mo par défaut)                                  |
+| `accept`              | `Accept`                                                                                                  | -               | Types MIME acceptés (format react-dropzone)                                   |
+| `disabled`            | `boolean`                                                                                                 | `false`         | Champ désactivé                                                               |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`)                                                  | -               | Type du message de statut                                                     |
+| `forceDisplayMessage` | `boolean`                                                                                                 | `false`         | Active l'affichage du `message` à la place de `helpMessage`                   |
+| `message`             | `string`                                                                                                  | -               | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
 
 ### File (bas niveau)
 
@@ -54,14 +54,14 @@ Zone de drop stylée seule.
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `onChange` | `function` | **Obligatoire** | Gestionnaire de fichiers ajoutés |
-| `label` | `string` | `"Parcourir"` | Texte du bouton |
-| `placeholder` | `string` | `"Glissez/déposez vos fichiers"` | Texte de la zone de drop |
-| `multiple` | `boolean` | `true` | Plusieurs fichiers |
-| `maxSize` | `number` | `20000000` | Taille max en octets |
-| `accept` | `Accept` | - | Types MIME acceptés |
+| Prop          | Type       | Défaut                           | Description                      |
+| ------------- | ---------- | -------------------------------- | -------------------------------- |
+| `onChange`    | `function` | **Obligatoire**                  | Gestionnaire de fichiers ajoutés |
+| `label`       | `string`   | `"Parcourir"`                    | Texte du bouton                  |
+| `placeholder` | `string`   | `"Glissez/déposez vos fichiers"` | Texte de la zone de drop         |
+| `multiple`    | `boolean`  | `true`                           | Plusieurs fichiers               |
+| `maxSize`     | `number`   | `20000000`                       | Taille max en octets             |
+| `accept`      | `Accept`   | -                                | Types MIME acceptés              |
 
 ## Utilisation
 

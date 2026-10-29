@@ -18,21 +18,21 @@ Wrapper complet avec label et gestion des erreurs. Accepte `value` comme `Date` 
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `ReactNode` | **Obligatoire** | Label du champ |
-| `id` | `string` | Auto-généré | Identifiant HTML |
-| `name` | `string` | - | Attribut HTML `name` |
-| `value` | `Date \| string` | - | Valeur contrôlée |
-| `defaultValue` | `Date \| string` | - | Valeur initiale non contrôlée |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `disabled` | `boolean` | `false` | Champ désactivé |
-| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
-| `min` | `string` | - | Date minimale (format YYYY-MM-DD) |
-| `max` | `string` | - | Date maximale (format YYYY-MM-DD) |
+| Prop                  | Type                                                     | Défaut          | Description                                                                   |
+| --------------------- | -------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------- |
+| `label`               | `ReactNode`                                              | **Obligatoire** | Label du champ                                                                |
+| `id`                  | `string`                                                 | Auto-généré     | Identifiant HTML                                                              |
+| `name`                | `string`                                                 | -               | Attribut HTML `name`                                                          |
+| `value`               | `Date \| string`                                         | -               | Valeur contrôlée                                                              |
+| `defaultValue`        | `Date \| string`                                         | -               | Valeur initiale non contrôlée                                                 |
+| `required`            | `boolean`                                                | `false`         | Champ obligatoire                                                             |
+| `disabled`            | `boolean`                                                | `false`         | Champ désactivé                                                               |
+| `helpMessage`         | `ReactNode`                                              | -               | Message d'aide affiché par défaut sous le champ                               |
+| `message`             | `string`                                                 | -               | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -               | Type du message de statut                                                     |
+| `forceDisplayMessage` | `boolean`                                                | `false`         | Active l'affichage du `message` à la place de `helpMessage`                   |
+| `min`                 | `string`                                                 | -               | Date minimale (format YYYY-MM-DD)                                             |
+| `max`                 | `string`                                                 | -               | Date maximale (format YYYY-MM-DD)                                             |
 
 ### Date (bas niveau)
 

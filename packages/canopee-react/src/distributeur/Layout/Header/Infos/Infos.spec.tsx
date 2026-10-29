@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { Infos } from "./Infos";
+import { describe, expect, test } from "vite-plus/test";
 
 describe("Infos", () => {
   test("should display 3 items", async () => {

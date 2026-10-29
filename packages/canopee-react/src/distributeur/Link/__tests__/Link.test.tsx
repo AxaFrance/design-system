@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import type { PropsWithChildren } from "react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { Link } from "../Link";
 
 describe("Link component", () => {

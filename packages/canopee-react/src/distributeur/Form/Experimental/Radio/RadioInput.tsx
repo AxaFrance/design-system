@@ -25,7 +25,8 @@ export type RadioInputPropsCardVariant = InputBaseProps & {
 };
 
 export type RadioInputProps =
-  RadioInputPropsCardVariant | RadioInputPropsButtonVariant;
+  | RadioInputPropsCardVariant
+  | RadioInputPropsButtonVariant;
 
 function getLabelPosition(
   labelPosition?: LabelPosition,

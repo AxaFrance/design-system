@@ -14,7 +14,7 @@ All React components in the design system must have a `className` prop. This pro
 - Example implementation:
 
 ```tsx
-function Button({ className, variant = 'primary', isLarge = false, ...props }) {
+function Button({ className, variant = "primary", isLarge = false, ...props }) {
   return (
     <button
       className={getClassName({
@@ -29,9 +29,10 @@ function Button({ className, variant = 'primary', isLarge = false, ...props }) {
 ```
 
 ```tsx
-function Field({className, required, ...props}) {
+function Field({ className, required, ...props }) {
   return (
-    <div className={getClassName({
+    <div
+      className={getClassName({
         baseClassName: "af-field",
         modifiers: [required && "required"],
         className,
@@ -40,7 +41,7 @@ function Field({className, required, ...props}) {
       <Label className="af-field__label" />
       <Input className="af-field__input" />
     </div>
-  )
+  );
 }
 ```
 

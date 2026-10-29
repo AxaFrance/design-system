@@ -2,9 +2,8 @@
 name: Slash Accessibility report
 about: Create an accessibility report to help us improve Slash Design System
 title: "[a11y] "
-labels: ['bug', 'accessibility', 'agent-slash']
-assignees: ''
-
+labels: ["bug", "accessibility", "agent-slash"]
+assignees: ""
 ---
 
 # Accessibility verification of the component: component

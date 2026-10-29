@@ -35,7 +35,7 @@ Ce Code de Conduite s'applique à la fois au sein des espaces du projet ainsi qu
 
 ## Mise en œuvre
 
-Les cas de comportement abusif, harcelant ou autrement inacceptable peuvent être signalés en contactant l'équipe du projet . Toutes les plaintes seront examinées et étudiées et aboutiront à une réponse jugée nécessaire et appropriée aux circonstances. L'équipe du projet est obligée de maintenir la confidentialité à propos du lanceur de l'alerte. 
+Les cas de comportement abusif, harcelant ou autrement inacceptable peuvent être signalés en contactant l'équipe du projet . Toutes les plaintes seront examinées et étudiées et aboutiront à une réponse jugée nécessaire et appropriée aux circonstances. L'équipe du projet est obligée de maintenir la confidentialité à propos du lanceur de l'alerte.
 
 Les mainteneurs qui ne respectent pas ou n'appliquent pas le Code de Conduite de manière équitable peuvent être confrontés à une action temporaire ou permanente décidée par les autres membres de la direction du projet.
 

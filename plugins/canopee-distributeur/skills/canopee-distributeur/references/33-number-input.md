@@ -18,21 +18,21 @@ Wrapper complet avec label et gestion des erreurs.
 
 #### Props principales
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `ReactNode` | **Obligatoire** | Label du champ |
-| `id` | `string` | Auto-généré | Identifiant HTML |
-| `name` | `string` | - | Attribut HTML `name` |
-| `value` | `number \| string` | - | Valeur contrôlée |
-| `required` | `boolean` | `false` | Champ obligatoire |
-| `disabled` | `boolean` | `false` | Champ désactivé |
-| `min` | `number` | - | Valeur minimale |
-| `max` | `number` | - | Valeur maximale |
-| `step` | `number` | - | Pas d'incrément |
-| `helpMessage` | `ReactNode` | - | Message d'aide affiché par défaut sous le champ |
-| `message` | `string` | - | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
-| `messageType` | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | - | Type du message de statut |
-| `forceDisplayMessage` | `boolean` | `false` | Active l'affichage du `message` à la place de `helpMessage` |
+| Prop                  | Type                                                     | Défaut          | Description                                                                   |
+| --------------------- | -------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------- |
+| `label`               | `ReactNode`                                              | **Obligatoire** | Label du champ                                                                |
+| `id`                  | `string`                                                 | Auto-généré     | Identifiant HTML                                                              |
+| `name`                | `string`                                                 | -               | Attribut HTML `name`                                                          |
+| `value`               | `number \| string`                                       | -               | Valeur contrôlée                                                              |
+| `required`            | `boolean`                                                | `false`         | Champ obligatoire                                                             |
+| `disabled`            | `boolean`                                                | `false`         | Champ désactivé                                                               |
+| `min`                 | `number`                                                 | -               | Valeur minimale                                                               |
+| `max`                 | `number`                                                 | -               | Valeur maximale                                                               |
+| `step`                | `number`                                                 | -               | Pas d'incrément                                                               |
+| `helpMessage`         | `ReactNode`                                              | -               | Message d'aide affiché par défaut sous le champ                               |
+| `message`             | `string`                                                 | -               | Message de statut — affiché uniquement quand `forceDisplayMessage` est `true` |
+| `messageType`         | `MessageTypes` (`"error"` \| `"success"` \| `"warning"`) | -               | Type du message de statut                                                     |
+| `forceDisplayMessage` | `boolean`                                                | `false`         | Active l'affichage du `message` à la place de `helpMessage`                   |
 
 Tous les attributs HTML standard de `<input type="number">` sont supportés.
 
@@ -42,9 +42,9 @@ Input `<input type="number">` stylé seul, sans label.
 
 #### Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type     | Défaut | Description          |
+| --------------- | -------- | ------ | -------------------- |
+| `classModifier` | `string` | -      | Modificateur CSS BEM |
 
 Plus tous les attributs HTML standard de `<input>` sauf `type` (forcé à `"number"`).
 

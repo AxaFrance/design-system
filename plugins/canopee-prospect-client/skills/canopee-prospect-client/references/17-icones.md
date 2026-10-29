@@ -17,38 +17,42 @@ N'importe quelle librairie exportant des SVG compatibles Material Symbols foncti
 ### Import
 
 ```tsx
-import { Icon, iconVariants, iconSizeVariants } from "@axa-fr/canopee-react/prospect";
+import {
+  Icon,
+  iconVariants,
+  iconSizeVariants,
+} from "@axa-fr/canopee-react/prospect";
 ```
 
 ### Props
 
 ```tsx
 type IconProps = {
-  src: string;                    // SVG importé
-  variant?: IconVariants;         // "primary" | "secondary" | "tertiary" | "ghost"
-  size?: IconSizeVariants;        // "S" | "M" | "L"
-  hasBackground?: boolean;        // ajoute un fond rond autour de l'icône
-  onClick?: () => void;           // rend l'icône interactive (bouton)
-  'aria-label'?: string;          // obligatoire si onClick fourni (bouton icône seul)
+  src: string; // SVG importé
+  variant?: IconVariants; // "primary" | "secondary" | "tertiary" | "ghost"
+  size?: IconSizeVariants; // "S" | "M" | "L"
+  hasBackground?: boolean; // ajoute un fond rond autour de l'icône
+  onClick?: () => void; // rend l'icône interactive (bouton)
+  "aria-label"?: string; // obligatoire si onClick fourni (bouton icône seul)
 } & ComponentPropsWithoutRef<"span">;
 ```
 
 ### Variantes disponibles
 
-| Variante | Usage |
-|---|---|
-| `primary` | Icône principale (bleu) |
-| `secondary` | Icône secondaire |
-| `tertiary` | Icône discrète |
-| `ghost` | Icône sans fond ni couleur |
+| Variante    | Usage                      |
+| ----------- | -------------------------- |
+| `primary`   | Icône principale (bleu)    |
+| `secondary` | Icône secondaire           |
+| `tertiary`  | Icône discrète             |
+| `ghost`     | Icône sans fond ni couleur |
 
 ### Tailles disponibles
 
-| Taille | Valeur CSS |
-|---|---|
-| `S` | Small |
-| `M` | Medium (défaut) |
-| `L` | Large |
+| Taille | Valeur CSS      |
+| ------ | --------------- |
+| `S`    | Small           |
+| `M`    | Medium (défaut) |
+| `L`    | Large           |
 
 ### Exemples
 
@@ -80,9 +84,9 @@ import deleteIcon from "@material-symbols/svg-400/outlined/delete.svg";
 
 ```tsx
 type ClickIconProps = {
-  src: string;         // SVG importé
+  src: string; // SVG importé
   onClick: () => void;
-  'aria-label': string;  // OBLIGATOIRE pour l'accessibilité
+  "aria-label": string; // OBLIGATOIRE pour l'accessibilité
   disabled?: boolean;
 } & ComponentPropsWithoutRef<"button">;
 ```
@@ -93,11 +97,7 @@ type ClickIconProps = {
 import close from "@material-symbols/svg-400/outlined/close.svg";
 import { ClickIcon } from "@axa-fr/canopee-react/prospect";
 
-<ClickIcon
-  src={close}
-  aria-label="Fermer"
-  onClick={handleClose}
-/>
+<ClickIcon src={close} aria-label="Fermer" onClick={handleClose} />;
 ```
 
 ## Accessibilité avec les icônes

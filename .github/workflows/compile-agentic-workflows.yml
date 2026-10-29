@@ -3,13 +3,13 @@ name: Compile Agentic Workflows
 on:
   push:
     paths:
-      - '.github/workflows/*.md'
-      - '.github/workflows/compile-agentic-workflows.yml'
+      - ".github/workflows/*.md"
+      - ".github/workflows/compile-agentic-workflows.yml"
     branches:
       - main
   pull_request:
     paths:
-      - '.github/workflows/*.md'
+      - ".github/workflows/*.md"
     branches:
       - main
   workflow_dispatch:

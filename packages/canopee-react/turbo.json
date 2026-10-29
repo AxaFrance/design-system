@@ -1,18 +1,10 @@
 {
-    "$schema": "https://v2-11-10.turborepo.dev/schema.json",
-    "extends": [
-        "//"
-    ],
-    "tasks": {
-        "lint": {
-            "dependsOn": [
-                "eslint",
-                "prettier",
-                "check-types"
-            ]
-        },
-        "eslint": {},
-        "prettier": {},
-        "check-types": {}
-    }
+  "$schema": "https://v2-11-10.turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "lint": {
+      "dependsOn": ["check-types"]
+    },
+    "check-types": {}
+  }
 }

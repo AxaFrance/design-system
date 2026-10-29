@@ -157,11 +157,11 @@ grep -r "Button classModifier=" src/ --include="*.tsx"
 
 **For each occurrence found, apply the following transformations:**
 
-| Previous                  | New                          |
-| ------------------------- | ---------------------------- |
-| `classModifier="success"` | `variant="validated"`        |
-| `classModifier="reverse"` | `variant="secondary"`        |
-| `classModifier="danger"`  | `variant="danger"`           |
+| Previous                  | New                           |
+| ------------------------- | ----------------------------- |
+| `classModifier="success"` | `variant="validated"`         |
+| `classModifier="reverse"` | `variant="secondary"`         |
+| `classModifier="danger"`  | `variant="danger"`            |
 | `classModifier=""`        | `variant="primary"` (default) |
 
 **Button icon migration:**
@@ -202,7 +202,7 @@ find src/pages -name "*.tsx" -o -name "*.jsx" | head -10
 Add the import:
 
 ```jsx
-import { MainContainer } from '@axa-fr/design-system-slash-react';
+import { MainContainer } from "@axa-fr/design-system-slash-react";
 ```
 
 Transform the content:

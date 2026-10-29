@@ -1,8 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { loadEnv } from "vite";
-import { defineConfig } from "vitest/config";
+import { defineConfig, loadEnv } from "vite-plus";
 
-// eslint-disable-next-line import/no-default-export
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 

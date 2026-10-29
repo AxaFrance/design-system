@@ -1,5 +1,0 @@
-# Agentic Workflows - maintain original formatting for lock file hash compatibility
-**/.github/workflows/*.md
-.github/workflows/**/*.md
-**/.github/workflows/*.lock.yml
-.github/workflows/**/*.lock.yml

@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { SquareLoader } from "../SquareLoader";
+import { describe, expect, it } from "vite-plus/test";
 
 const LEGACY_MODE_TEXT_CASES = [
   { mode: "get", text: "Chargement en cours" },

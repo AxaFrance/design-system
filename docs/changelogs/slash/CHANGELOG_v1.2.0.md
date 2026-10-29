@@ -29,7 +29,7 @@ Example usage:
 />
 ```
 
-When using a custom link component, eslint might screen this error : 
+When using a custom link component, eslint might screen this error :
 
 > The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.mdeslintjsx-a11y/anchor-is-valid
 
@@ -202,7 +202,11 @@ inputs are marked invalid with the `aria-invalid` attribute.
   `closeButtonAriaLabel` property.
 
 ```jsx
-<Alert title="my alert" closeButtonAriaLabel="Close this alert" classModifier="error">
+<Alert
+  title="my alert"
+  closeButtonAriaLabel="Close this alert"
+  classModifier="error"
+>
   <ul>
     <li>The last name is required</li>
     <li>The first name is required</li>

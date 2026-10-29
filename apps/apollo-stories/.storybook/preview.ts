@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import type { Preview } from "@storybook/react";
 
 import "@axa-fr/canopee-css/prospect/common/tokens.css";

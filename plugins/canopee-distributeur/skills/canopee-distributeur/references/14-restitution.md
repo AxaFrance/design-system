@@ -1,9 +1,11 @@
 # Restitution
 
 ## Présentation
+
 Les composants Restitution forment un groupe de composants liés permettant d'afficher des données récapitulatives en lecture seule (paires label-valeur). Le composant racine est `ArticleRestitution` qui englobe tous les autres.
 
 ## Import
+
 ```tsx
 import {
   ArticleRestitution,
@@ -36,79 +38,80 @@ ArticleRestitution               (article — conteneur racine)
 
 Conteneur racine `<article>`.
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `children` | `ReactNode` | - | Contenu (HeaderRestitution + SectionRestitution) |
-| `className` | `string` | `"af-restitution"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM (ex : `"lg"`) |
+| Prop            | Type        | Défaut             | Description                                      |
+| --------------- | ----------- | ------------------ | ------------------------------------------------ |
+| `children`      | `ReactNode` | -                  | Contenu (HeaderRestitution + SectionRestitution) |
+| `className`     | `string`    | `"af-restitution"` | Classe CSS                                       |
+| `classModifier` | `string`    | -                  | Modificateur CSS BEM (ex : `"lg"`)               |
 
 ### HeaderRestitution
 
 En-tête avec titre, sous-titre et contenu à droite (ex : bouton Modifier).
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `title` | `ReactNode` | **Obligatoire** | Titre principal |
-| `subtitle` | `ReactNode` | - | Sous-titre |
-| `rightTitle` | `ReactNode` | - | Contenu à droite (ex : lien de modification) |
-| `className` | `string` | `"af-restitution__header"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type        | Défaut                     | Description                                  |
+| --------------- | ----------- | -------------------------- | -------------------------------------------- |
+| `title`         | `ReactNode` | **Obligatoire**            | Titre principal                              |
+| `subtitle`      | `ReactNode` | -                          | Sous-titre                                   |
+| `rightTitle`    | `ReactNode` | -                          | Contenu à droite (ex : lien de modification) |
+| `className`     | `string`    | `"af-restitution__header"` | Classe CSS                                   |
+| `classModifier` | `string`    | -                          | Modificateur CSS BEM                         |
 
 ### SectionRestitution
 
 Conteneur `<section>` pour les lignes de restitution.
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `children` | `ReactNode` | - | Éléments `SectionRestitutionRow` |
-| `className` | `string` | `"af-restitution__content"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type        | Défaut                      | Description                      |
+| --------------- | ----------- | --------------------------- | -------------------------------- |
+| `children`      | `ReactNode` | -                           | Éléments `SectionRestitutionRow` |
+| `className`     | `string`    | `"af-restitution__content"` | Classe CSS                       |
+| `classModifier` | `string`    | -                           | Modificateur CSS BEM             |
 
 ### SectionRestitutionRow
 
 Ligne de restitution avec titre optionnel. Peut contenir des `SectionRestitutionColumn`.
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `title` | `ReactNode` | - | Titre de la ligne (rendu via `SectionRestitutionTitle`) |
-| `children` | `ReactNode` | - | Éléments `SectionRestitutionColumn` |
-| `className` | `string` | `"col col-sm-12 col-md-12 col-lg-12 col-xl-12"` | Classe CSS |
-| `classNameContainer` | `string` | `"row af-restitution__content-left"` | Classe CSS du conteneur interne |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop                 | Type        | Défaut                                          | Description                                             |
+| -------------------- | ----------- | ----------------------------------------------- | ------------------------------------------------------- |
+| `title`              | `ReactNode` | -                                               | Titre de la ligne (rendu via `SectionRestitutionTitle`) |
+| `children`           | `ReactNode` | -                                               | Éléments `SectionRestitutionColumn`                     |
+| `className`          | `string`    | `"col col-sm-12 col-md-12 col-lg-12 col-xl-12"` | Classe CSS                                              |
+| `classNameContainer` | `string`    | `"row af-restitution__content-left"`            | Classe CSS du conteneur interne                         |
+| `classModifier`      | `string`    | -                                               | Modificateur CSS BEM                                    |
 
 ### SectionRestitutionColumn
 
 Colonne à l'intérieur d'une ligne, avec titre optionnel. Contient les éléments `Restitution`.
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `title` | `string` | - | Titre de la colonne |
-| `children` | `ReactNode` | - | Éléments `Restitution` |
-| `className` | `string` | `"col-sm-12 col-md-12 col-lg-6 col-xl-6"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type        | Défaut                                    | Description            |
+| --------------- | ----------- | ----------------------------------------- | ---------------------- |
+| `title`         | `string`    | -                                         | Titre de la colonne    |
+| `children`      | `ReactNode` | -                                         | Éléments `Restitution` |
+| `className`     | `string`    | `"col-sm-12 col-md-12 col-lg-6 col-xl-6"` | Classe CSS             |
+| `classModifier` | `string`    | -                                         | Modificateur CSS BEM   |
 
 ### Restitution
 
 Paire label/valeur rendue en `<dl>`. Si aucun enfant n'est passé, affiche `"-"` par défaut.
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `label` | `string` | **Obligatoire** | Label de la donnée |
-| `children` | `ReactNode` | `"-"` | Valeur à afficher |
-| `className` | `string` | `"af-restitution__listdef"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM (ex : `"marge"`) |
+| Prop            | Type        | Défaut                      | Description                           |
+| --------------- | ----------- | --------------------------- | ------------------------------------- |
+| `label`         | `string`    | **Obligatoire**             | Label de la donnée                    |
+| `children`      | `ReactNode` | `"-"`                       | Valeur à afficher                     |
+| `className`     | `string`    | `"af-restitution__listdef"` | Classe CSS                            |
+| `classModifier` | `string`    | -                           | Modificateur CSS BEM (ex : `"marge"`) |
 
 ### RestitutionList
 
 Liste de valeurs sous forme `<ul>`, à utiliser comme **enfant** d'un composant `Restitution`.
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
+| Prop     | Type       | Défaut          | Description                 |
+| -------- | ---------- | --------------- | --------------------------- |
 | `values` | `string[]` | **Obligatoire** | Valeurs à afficher en liste |
 
 ## Utilisation de base
 
 ### Restitution simple (label-valeur)
+
 ```tsx
 <ArticleRestitution>
   <SectionRestitution>
@@ -124,9 +127,12 @@ Liste de valeurs sous forme `<ul>`, à utiliser comme **enfant** d'un composant 
 ```
 
 ### Valeur absente (affiche "-" par défaut)
+
 ```tsx
-<Restitution label="TT" />
-{/* Affiche "TT" avec la valeur "-" */}
+<Restitution label="TT" />;
+{
+  /* Affiche "TT" avec la valeur "-" */
+}
 ```
 
 ## Exemple complet
@@ -204,6 +210,7 @@ Les titres peuvent être portés par la `SectionRestitutionRow` (titre commun) o
 ```
 
 ## Classes CSS
+
 - `.af-restitution` — Conteneur article
 - `.af-restitution__header` — En-tête
 - `.af-restitution__title` — Titre de l'en-tête

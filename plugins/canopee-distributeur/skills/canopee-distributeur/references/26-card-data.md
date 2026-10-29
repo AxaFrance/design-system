@@ -10,17 +10,17 @@ import { CardData } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `title` | `ReactNode` | **Obligatoire** | Titre de la carte |
-| `icon` | `string` | **Obligatoire** | Chemin SVG de l'icône (import Material Symbols) |
-| `subTitle` | `ReactNode` | - | Sous-titre affiché sous le titre |
-| `description` | `ReactNode` | - | Description additionnelle |
-| `variant` | `"default" \| "error" \| "warning" \| "information" \| "success" \| "dark" \| "gray" \| "purple"` | `"default"` | Style visuel de l'en-tête |
-| `contentRight` | `ReactNode` | - | Contenu affiché à droite de l'en-tête (ex: bouton) |
-| `withDivider` | `boolean` | `true` | Affiche un séparateur entre l'en-tête et le corps |
-| `contentFitAllSize` | `boolean` | `false` | Le corps de la carte occupe toute la largeur disponible |
-| `children` | `ReactNode` | - | Contenu du corps de la carte |
+| Prop                | Type                                                                                              | Défaut          | Description                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------- | --------------- | ------------------------------------------------------- |
+| `title`             | `ReactNode`                                                                                       | **Obligatoire** | Titre de la carte                                       |
+| `icon`              | `string`                                                                                          | **Obligatoire** | Chemin SVG de l'icône (import Material Symbols)         |
+| `subTitle`          | `ReactNode`                                                                                       | -               | Sous-titre affiché sous le titre                        |
+| `description`       | `ReactNode`                                                                                       | -               | Description additionnelle                               |
+| `variant`           | `"default" \| "error" \| "warning" \| "information" \| "success" \| "dark" \| "gray" \| "purple"` | `"default"`     | Style visuel de l'en-tête                               |
+| `contentRight`      | `ReactNode`                                                                                       | -               | Contenu affiché à droite de l'en-tête (ex: bouton)      |
+| `withDivider`       | `boolean`                                                                                         | `true`          | Affiche un séparateur entre l'en-tête et le corps       |
+| `contentFitAllSize` | `boolean`                                                                                         | `false`         | Le corps de la carte occupe toute la largeur disponible |
+| `children`          | `ReactNode`                                                                                       | -               | Contenu du corps de la carte                            |
 
 ## Utilisation
 

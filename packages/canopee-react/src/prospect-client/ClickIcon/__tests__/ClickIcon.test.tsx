@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vite-plus/test";
 import bank from "@material-symbols/svg-700/rounded/account_balance_wallet-fill.svg";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";

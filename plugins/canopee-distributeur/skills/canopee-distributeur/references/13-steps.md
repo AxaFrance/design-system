@@ -1,9 +1,11 @@
 # Steps (Étapes)
 
 ## Présentation
+
 Le composant Steps affiche un indicateur de progression horizontal. Le composant VerticalStep permet de créer un stepper vertical avec gestion des modes édition/validation/verrouillage. Le composant ItemFormHelper affiche l'état d'avancement d'une section de formulaire (à compléter / en cours / validé).
 
 ## Import
+
 ```tsx
 import {
   Steps,
@@ -14,6 +16,7 @@ import {
 ```
 
 ## Composants
+
 - **Steps** : Conteneur des étapes horizontales
 - **Step** : Étape individuelle dans le flux horizontal
 - **VerticalStep** : Étape verticale avec gestion de mode (édition, validation, verrouillage)
@@ -23,25 +26,25 @@ import {
 
 ### Props — Steps
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `children` | `ReactNode` | - | Éléments `Step` enfants |
-| `className` | `string` | `"af-steps-new"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type        | Défaut           | Description             |
+| --------------- | ----------- | ---------------- | ----------------------- |
+| `children`      | `ReactNode` | -                | Éléments `Step` enfants |
+| `className`     | `string`    | `"af-steps-new"` | Classe CSS              |
+| `classModifier` | `string`    | -                | Modificateur CSS BEM    |
 
 ### Props — Step
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `id` | `string` | **Obligatoire** | Identifiant unique de l'étape |
-| `title` | `string` | **Obligatoire** | Titre de l'étape |
-| `number` | `ReactNode` | - | Numéro affiché dans l'étape |
-| `mode` | `"link" \| "active" \| "disabled"` | `"link"` | Mode d'affichage de l'étape |
-| `href` | `string` | - | URL de navigation (utilisé en mode `"link"`) |
-| `onClick` | `(e: CustomClickEvent) => void` | - | Gestionnaire de clic (utilisé en mode `"link"`) |
-| `stateLabel` | `string` | - | Label d'état pour l'accessibilité (ex : "complété", "en cours", "à venir") |
-| `className` | `string` | - | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type                               | Défaut          | Description                                                                |
+| --------------- | ---------------------------------- | --------------- | -------------------------------------------------------------------------- |
+| `id`            | `string`                           | **Obligatoire** | Identifiant unique de l'étape                                              |
+| `title`         | `string`                           | **Obligatoire** | Titre de l'étape                                                           |
+| `number`        | `ReactNode`                        | -               | Numéro affiché dans l'étape                                                |
+| `mode`          | `"link" \| "active" \| "disabled"` | `"link"`        | Mode d'affichage de l'étape                                                |
+| `href`          | `string`                           | -               | URL de navigation (utilisé en mode `"link"`)                               |
+| `onClick`       | `(e: CustomClickEvent) => void`    | -               | Gestionnaire de clic (utilisé en mode `"link"`)                            |
+| `stateLabel`    | `string`                           | -               | Label d'état pour l'accessibilité (ex : "complété", "en cours", "à venir") |
+| `className`     | `string`                           | -               | Classe CSS                                                                 |
+| `classModifier` | `string`                           | -               | Modificateur CSS BEM                                                       |
 
 ### Modes de Step
 
@@ -78,17 +81,8 @@ const TunnelCommande = () => {
         mode="link"
         onClick={handleClick}
       />
-      <Step
-        id="etape3"
-        number="3"
-        title="Paiement"
-        mode="active"
-      />
-      <Step
-        id="etape4"
-        title="Confirmation"
-        mode="disabled"
-      />
+      <Step id="etape3" number="3" title="Paiement" mode="active" />
+      <Step id="etape4" title="Confirmation" mode="disabled" />
     </Steps>
   );
 };
@@ -100,31 +94,39 @@ Le composant `VerticalStep` gère trois modes : `"locked"` (verrouillé), `"edit
 
 ### Props — VerticalStep
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `title` | `string` | **Obligatoire** | Titre de l'étape |
-| `stepMode` | `"edited" \| "validated" \| "locked"` | **Obligatoire** | Mode courant de l'étape |
-| `onEdit` | `React.MouseEventHandler<HTMLButtonElement>` | **Obligatoire** | Gestionnaire appelé au clic sur le bouton Modifier (affiché en mode `"validated"`) |
-| `form` | `ReactNode` | **Obligatoire** | Contenu du formulaire, affiché en mode `"edited"` |
-| `restitution` | `ReactNode` | **Obligatoire** | Contenu de restitution, affiché en mode `"validated"` |
-| `id` | `string` | Auto-généré | Identifiant du titre de l'étape (pour ancres/navigation) |
-| `editButtonLabel` | `string` | `"Modifier"` | Texte du bouton de modification |
-| `editButtonAriaLabel` | `string` | `"Modifier l'étape {title}"` | Aria-label du bouton de modification |
-| `showRestitution` | `boolean` | `true` | Affiche ou masque la restitution en mode `"validated"` |
-| `contentRight` | `string` | - | Contenu textuel affiché à droite du titre |
-| `contentRightAriaLabel` | `string` | `"Contenu supplémentaire étape verticale {title}"` | Aria-label du contenu à droite |
-| `readonly` | `boolean` | `false` | Masque le bouton Modifier en mode `"validated"` |
-| `stateLabels` | `{ validatedState: string, editState: string, lockedState: string }` | `{ validatedState: "validée", editState: "en cours de modification", lockedState: "verrouillée" }` | Labels d'état pour l'accessibilité (aria-label de la section) |
+| Prop                    | Type                                                                 | Défaut                                                                                             | Description                                                                        |
+| ----------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `title`                 | `string`                                                             | **Obligatoire**                                                                                    | Titre de l'étape                                                                   |
+| `stepMode`              | `"edited" \| "validated" \| "locked"`                                | **Obligatoire**                                                                                    | Mode courant de l'étape                                                            |
+| `onEdit`                | `React.MouseEventHandler<HTMLButtonElement>`                         | **Obligatoire**                                                                                    | Gestionnaire appelé au clic sur le bouton Modifier (affiché en mode `"validated"`) |
+| `form`                  | `ReactNode`                                                          | **Obligatoire**                                                                                    | Contenu du formulaire, affiché en mode `"edited"`                                  |
+| `restitution`           | `ReactNode`                                                          | **Obligatoire**                                                                                    | Contenu de restitution, affiché en mode `"validated"`                              |
+| `id`                    | `string`                                                             | Auto-généré                                                                                        | Identifiant du titre de l'étape (pour ancres/navigation)                           |
+| `editButtonLabel`       | `string`                                                             | `"Modifier"`                                                                                       | Texte du bouton de modification                                                    |
+| `editButtonAriaLabel`   | `string`                                                             | `"Modifier l'étape {title}"`                                                                       | Aria-label du bouton de modification                                               |
+| `showRestitution`       | `boolean`                                                            | `true`                                                                                             | Affiche ou masque la restitution en mode `"validated"`                             |
+| `contentRight`          | `string`                                                             | -                                                                                                  | Contenu textuel affiché à droite du titre                                          |
+| `contentRightAriaLabel` | `string`                                                             | `"Contenu supplémentaire étape verticale {title}"`                                                 | Aria-label du contenu à droite                                                     |
+| `readonly`              | `boolean`                                                            | `false`                                                                                            | Masque le bouton Modifier en mode `"validated"`                                    |
+| `stateLabels`           | `{ validatedState: string, editState: string, lockedState: string }` | `{ validatedState: "validée", editState: "en cours de modification", lockedState: "verrouillée" }` | Labels d'état pour l'accessibilité (aria-label de la section)                      |
 
 ### Exemple complet
 
 ```tsx
 import { useState } from "react";
-import { VerticalStep, TextInput, Button } from "@axa-fr/canopee-react/distributeur";
+import {
+  VerticalStep,
+  TextInput,
+  Button,
+} from "@axa-fr/canopee-react/distributeur";
 
 const FormulaireEtapes = () => {
-  const [configMode, setConfigMode] = useState<"edited" | "validated" | "locked">("edited");
-  const [confirmMode, setConfirmMode] = useState<"edited" | "validated" | "locked">("locked");
+  const [configMode, setConfigMode] = useState<
+    "edited" | "validated" | "locked"
+  >("edited");
+  const [confirmMode, setConfirmMode] = useState<
+    "edited" | "validated" | "locked"
+  >("locked");
 
   const handleValiderConfig = () => {
     setConfigMode("validated");
@@ -226,8 +228,10 @@ Par défaut, le composant génère un `aria-label` de la forme `"Étape vertical
   onEdit={() => setMode("edited")}
   form={<p>Formulaire...</p>}
   restitution={<p>Restitution...</p>}
-/>
-{/* aria-label="Étape verticale Configuration (completed)" */}
+/>;
+{
+  /* aria-label="Étape verticale Configuration (completed)" */
+}
 ```
 
 ## ItemFormHelper
@@ -236,21 +240,21 @@ Par défaut, le composant génère un `aria-label` de la forme `"Étape vertical
 
 ### Props — ItemFormHelper
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `variant` | `"todo" \| "inprogress" \| "validated"` | **Obligatoire** | État d'avancement : pilote l'icône, la couleur et le libellé par défaut |
-| `label` | `string` | Libellé par défaut du `variant` | Remplace le libellé par défaut |
-| `className` | `string` | - | Classe CSS additionnelle, ajoutée après le modifier BEM |
+| Prop        | Type                                    | Défaut                          | Description                                                             |
+| ----------- | --------------------------------------- | ------------------------------- | ----------------------------------------------------------------------- |
+| `variant`   | `"todo" \| "inprogress" \| "validated"` | **Obligatoire**                 | État d'avancement : pilote l'icône, la couleur et le libellé par défaut |
+| `label`     | `string`                                | Libellé par défaut du `variant` | Remplace le libellé par défaut                                          |
+| `className` | `string`                                | -                               | Classe CSS additionnelle, ajoutée après le modifier BEM                 |
 
 Le type `ItemFormHelperVariant` et le type `ItemFormHelperProps` sont exportés depuis `@axa-fr/canopee-react/distributeur`.
 
 ### Variants
 
-| Variant | Icône | Couleur | Libellé par défaut |
-|---------|-------|---------|--------------------|
-| `todo` | `circle` (cercle vide) | `--axablue80` | `à compléter` |
-| `inprogress` | `circle-fill` (cercle plein) | `--axablue80` | `en cours` |
-| `validated` | `check` | `--green40` | `validé` |
+| Variant      | Icône                        | Couleur       | Libellé par défaut |
+| ------------ | ---------------------------- | ------------- | ------------------ |
+| `todo`       | `circle` (cercle vide)       | `--axablue80` | `à compléter`      |
+| `inprogress` | `circle-fill` (cercle plein) | `--axablue80` | `en cours`         |
+| `validated`  | `check`                      | `--green40`   | `validé`           |
 
 Les icônes sont fournies par le composant (Material Symbols, rendues via `Svg` en 12 × 12) : rien à passer côté consommateur.
 
@@ -281,6 +285,7 @@ const SectionIdentite = () => (
 - Le libellé par défaut est en français ; pour une application multilingue, passer systématiquement `label`.
 
 ## Classes CSS
+
 - `.af-steps-new` — Conteneur des étapes horizontales
 - `.af-steps-list` — Liste des étapes horizontales
 - `.af-steps-list-step` — Étape individuelle horizontale

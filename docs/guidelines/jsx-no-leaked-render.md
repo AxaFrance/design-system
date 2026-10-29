@@ -14,23 +14,33 @@ Leaked render occurs when a non-boolean value is used directly in a conditional 
 
 ```jsx
 // If 'subtitle' is a string, it will be rendered as-is if not empty.
-{subtitle && <p>{subtitle}</p>}
+{
+  subtitle && <p>{subtitle}</p>;
+}
 
 // If 'icon' is 0, it will be rendered instead of <IconComponent />.
-{icon && <IconComponent src={icon} />}
+{
+  icon && <IconComponent src={icon} />;
+}
 ```
 
 ### ✅ Good Practice
 
 ```jsx
 // Use ternary to ensure only the intended component is rendered.
-{subtitle ? <p>{subtitle}</p> : null}
+{
+  subtitle ? <p>{subtitle}</p> : null;
+}
 
 // Use Boolean coercion for clarity.
-{Boolean(icon) && <IconComponent src={icon} />}
+{
+  Boolean(icon) && <IconComponent src={icon} />;
+}
 
 // Explicitly handle possible values.
-{Array.isArray(items) && items.length > 0 ? <List items={items} /> : null}
+{
+  Array.isArray(items) && items.length > 0 ? <List items={items} /> : null;
+}
 ```
 
 ## Recommendation

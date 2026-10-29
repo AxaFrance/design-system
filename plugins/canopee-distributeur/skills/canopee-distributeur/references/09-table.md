@@ -1,9 +1,11 @@
 # Table
 
 ## Présentation
+
 Le composant Table fournit une structure de tableau HTML sémantique avec un style cohérent. Il inclut des sous-composants pour les sections du tableau (en-tête, corps) et les types de cellules (en-tête, données).
 
 ## Import
+
 ```tsx
 import { Table } from "@axa-fr/canopee-react/distributeur";
 ```
@@ -11,31 +13,37 @@ import { Table } from "@axa-fr/canopee-react/distributeur";
 ## Composants
 
 ### Table
+
 Élément de tableau principal.
 
 ### Table.THead
+
 Section d'en-tête du tableau.
 
 ### Table.TBody
+
 Section du corps du tableau.
 
 ### Table.Tr
+
 Élément de ligne du tableau.
 
 ### Table.Th
+
 Cellule d'en-tête du tableau avec sémantique.
 
 ### Table.Td
+
 Cellule de données du tableau.
 
 ## Props
 
 ### Table
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Classes de modificateur CSS |
+| Prop            | Type     | Défaut | Description                 |
+| --------------- | -------- | ------ | --------------------------- |
+| `className`     | `string` | -      | Classes CSS additionnelles  |
+| `classModifier` | `string` | -      | Classes de modificateur CSS |
 
 Tous les attributs HTML standard de `<table>` sont supportés.
 
@@ -46,6 +54,7 @@ Props standard des cellules HTML (`colspan`, `rowspan`, `scope`, etc.)
 ## Utilisation de base
 
 ### Tableau simple
+
 ```tsx
 import { Table } from "@axa-fr/canopee-react/distributeur";
 
@@ -69,7 +78,7 @@ import { Table } from "@axa-fr/canopee-react/distributeur";
       <Table.Td>marie@exemple.fr</Table.Td>
     </Table.Tr>
   </Table.TBody>
-</Table>
+</Table>;
 ```
 
 ## Exemple complet de tableau de données
@@ -79,9 +88,9 @@ const TableauUtilisateurs = () => {
   const utilisateurs = [
     { id: 1, nom: "Alice Martin", role: "Administrateur", statut: "Actif" },
     { id: 2, nom: "Bob Dupont", role: "Utilisateur", statut: "Actif" },
-    { id: 3, nom: "Claire David", role: "Éditeur", statut: "Inactif" }
+    { id: 3, nom: "Claire David", role: "Éditeur", statut: "Inactif" },
   ];
-  
+
   return (
     <Table>
       <Table.THead>
@@ -93,7 +102,7 @@ const TableauUtilisateurs = () => {
         </Table.Tr>
       </Table.THead>
       <Table.TBody>
-        {utilisateurs.map(user => (
+        {utilisateurs.map((user) => (
           <Table.Tr key={user.id}>
             <Table.Td>{user.nom}</Table.Td>
             <Table.Td>{user.role}</Table.Td>
@@ -113,6 +122,7 @@ const TableauUtilisateurs = () => {
 ## Colspan et Rowspan
 
 ### Fusion de colonnes
+
 ```tsx
 <Table>
   <Table.THead>
@@ -136,6 +146,7 @@ const TableauUtilisateurs = () => {
 ```
 
 ### Fusion de lignes
+
 ```tsx
 <Table>
   <Table.THead>
@@ -165,14 +176,18 @@ const TableauUtilisateurs = () => {
 ## Contenu formaté
 
 ### Avec texte en gras
+
 ```tsx
 <Table.Tr>
-  <Table.Td><strong>Valeur importante</strong></Table.Td>
+  <Table.Td>
+    <strong>Valeur importante</strong>
+  </Table.Td>
   <Table.Td>Valeur normale</Table.Td>
 </Table.Tr>
 ```
 
 ### Avec des liens
+
 ```tsx
 import { Link } from "@axa-fr/canopee-react/distributeur";
 
@@ -180,10 +195,11 @@ import { Link } from "@axa-fr/canopee-react/distributeur";
   <Table.Td>
     <Link href="/profil/123">Jean Dupont</Link>
   </Table.Td>
-</Table.Tr>
+</Table.Tr>;
 ```
 
 ### Avec des étiquettes/tags
+
 ```tsx
 import { Tag } from "@axa-fr/canopee-react/distributeur";
 
@@ -191,7 +207,7 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
   <Table.Td>
     <Tag variant="success">Approuvé</Tag>
   </Table.Td>
-</Table.Tr>
+</Table.Tr>;
 ```
 
 ## Tableau responsive
@@ -200,9 +216,7 @@ import { Tag } from "@axa-fr/canopee-react/distributeur";
 const TableauResponsive = () => {
   return (
     <div style={{ overflowX: "auto" }}>
-      <Table>
-        {/* Structure standard du tableau */}
-      </Table>
+      <Table>{/* Structure standard du tableau */}</Table>
     </div>
   );
 };
@@ -213,23 +227,34 @@ const TableauResponsive = () => {
 ```tsx
 const RapportFinancier = () => {
   const donnees = [
-    { categorie: "Chiffre d'affaires", t1: "50 000 €", t2: "55 000 €", t3: "60 000 €" },
+    {
+      categorie: "Chiffre d'affaires",
+      t1: "50 000 €",
+      t2: "55 000 €",
+      t3: "60 000 €",
+    },
     { categorie: "Dépenses", t1: "30 000 €", t2: "32 000 €", t3: "35 000 €" },
-    { categorie: "Bénéfice", t1: "20 000 €", t2: "23 000 €", t3: "25 000 €" }
+    { categorie: "Bénéfice", t1: "20 000 €", t2: "23 000 €", t3: "25 000 €" },
   ];
-  
+
   return (
     <Table>
       <Table.THead>
         <Table.Tr>
           <Table.Th scope="col">Catégorie</Table.Th>
-          <Table.Th scope="col" style={{ textAlign: "right" }}>T1</Table.Th>
-          <Table.Th scope="col" style={{ textAlign: "right" }}>T2</Table.Th>
-          <Table.Th scope="col" style={{ textAlign: "right" }}>T3</Table.Th>
+          <Table.Th scope="col" style={{ textAlign: "right" }}>
+            T1
+          </Table.Th>
+          <Table.Th scope="col" style={{ textAlign: "right" }}>
+            T2
+          </Table.Th>
+          <Table.Th scope="col" style={{ textAlign: "right" }}>
+            T3
+          </Table.Th>
         </Table.Tr>
       </Table.THead>
       <Table.TBody>
-        {donnees.map(ligne => (
+        {donnees.map((ligne) => (
           <Table.Tr key={ligne.categorie}>
             <Table.Th scope="row">{ligne.categorie}</Table.Th>
             <Table.Td style={{ textAlign: "right" }}>{ligne.t1}</Table.Td>
@@ -251,17 +276,15 @@ import { Paging } from "@axa-fr/canopee-react/distributeur";
 const TableauPaginé = () => {
   const [page, setPage] = useState(1);
   const elementsParPage = 10;
-  
+
   const elementsAffiches = elements.slice(
     (page - 1) * elementsParPage,
-    page * elementsParPage
+    page * elementsParPage,
   );
-  
+
   return (
     <>
-      <Table>
-        {/* Tableau avec elementsAffiches */}
-      </Table>
+      <Table>{/* Tableau avec elementsAffiches */}</Table>
       <Paging
         currentPage={page}
         numberPages={Math.ceil(elements.length / elementsParPage)}
@@ -273,6 +296,7 @@ const TableauPaginé = () => {
 ```
 
 ## Accessibilité
+
 - Utiliser `<th scope="col">` pour les en-têtes de colonnes
 - Utiliser `<th scope="row">` pour les en-têtes de lignes
 - Fournir une légende ou un contexte descriptif au tableau
@@ -280,6 +304,7 @@ const TableauPaginé = () => {
 - En-têtes de colonnes explicites
 
 ## Bonnes pratiques
+
 - Toujours inclure l'en-tête du tableau (`<THead>`)
 - Utiliser des cellules d'en-tête sémantiques (`<Th>`) pour les titres de colonnes
 - Garder les tableaux lisibles (pas trop de colonnes)
@@ -290,5 +315,6 @@ const TableauPaginé = () => {
 - Utiliser des couleurs en alternance pour les grands tableaux via CSS
 
 ## Classes CSS
+
 - `.af-table` - Classe de base du tableau
 - `.af-table--striped` - Couleurs de lignes alternées

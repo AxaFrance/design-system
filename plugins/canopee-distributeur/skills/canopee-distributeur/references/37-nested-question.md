@@ -10,17 +10,22 @@ import { NestedQuestion } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `children` | `ReactNode` | - | Contenu conditionnel imbriqué |
-| `className` | `string` | - | Classes CSS additionnelles |
+| Prop        | Type        | Défaut | Description                   |
+| ----------- | ----------- | ------ | ----------------------------- |
+| `children`  | `ReactNode` | -      | Contenu conditionnel imbriqué |
+| `className` | `string`    | -      | Classes CSS additionnelles    |
 
 ## Utilisation
 
 Le composant est utilisé pour afficher des questions supplémentaires en fonction d'une réponse précédente.
 
 ```tsx
-import { NestedQuestion, RadioInput, TextInput, ChoiceInput } from "@axa-fr/canopee-react/distributeur";
+import {
+  NestedQuestion,
+  RadioInput,
+  TextInput,
+  ChoiceInput,
+} from "@axa-fr/canopee-react/distributeur";
 
 // Exemple : question conditionnelle
 const MonFormulaire = () => {
@@ -35,7 +40,7 @@ const MonFormulaire = () => {
         label="Avez-vous une assurance habitation ?"
         options={[
           { value: "oui", label: "Oui" },
-          { value: "non", label: "Non" }
+          { value: "non", label: "Non" },
         ]}
         value={aAssurance}
         onChange={(e) => setAAssurance(e.target.value)}
@@ -59,15 +64,17 @@ const MonFormulaire = () => {
 
 ```tsx
 // Plusieurs questions imbriquées
-{aVehicule === "oui" ? (
-  <NestedQuestion>
-    <TextInput id="immatriculation" label="Immatriculation" />
-    <ChoiceInput
-      id="garageBox"
-      label="Le véhicule est-il garé dans un garage ou box ?"
-      value={garageBox}
-      onChange={(e) => setGarageBox(e.target.value === "true")}
-    />
-  </NestedQuestion>
-) : null}
+{
+  aVehicule === "oui" ? (
+    <NestedQuestion>
+      <TextInput id="immatriculation" label="Immatriculation" />
+      <ChoiceInput
+        id="garageBox"
+        label="Le véhicule est-il garé dans un garage ou box ?"
+        value={garageBox}
+        onChange={(e) => setGarageBox(e.target.value === "true")}
+      />
+    </NestedQuestion>
+  ) : null;
+}
 ```

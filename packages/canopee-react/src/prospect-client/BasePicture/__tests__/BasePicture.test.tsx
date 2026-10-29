@@ -1,6 +1,6 @@
 import logo from "@axa-fr/canopee-css/logo-axa.svg";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { BasePicture } from "../BasePicture";
 
 describe("BasePicture component", () => {

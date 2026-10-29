@@ -16,6 +16,7 @@ import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
 ### Props (3 modes unionisés)
 
 **Mode `icon`** :
+
 ```tsx
 {
   type: "icon";
@@ -27,6 +28,7 @@ import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
 ```
 
 **Mode `picture`** :
+
 ```tsx
 {
   type: "picture";
@@ -38,6 +40,7 @@ import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
 ```
 
 **Mode `stick`** :
+
 ```tsx
 {
   type: "stick";
@@ -94,12 +97,12 @@ type TupleMax3<T> = [T] | [T, T] | [T, T, T];
 
 type DataAgentProps = {
   className?: string;
-  agentProps: ContentMonoItemPictureProps;         // Profil agent (photo + nom + rôle)
-  agentContractProps?: ContentMonoItemStickProps;  // Contrat agent (titre + sous-titre avec stick)
-  contents?: TupleMax3<ContentMonoItemIconProps>;  // 1 à 3 infos avec icône (email, tel, adresse…)
-  clickContents?: TupleMax3<ClickItemProps>;       // 1 à 3 actions cliquables
-  texteOrias?: string;                             // Mention légale ORIAS
-  isCompact?: boolean;                             // Variante compacte sur mobile  (défaut: true)
+  agentProps: ContentMonoItemPictureProps; // Profil agent (photo + nom + rôle)
+  agentContractProps?: ContentMonoItemStickProps; // Contrat agent (titre + sous-titre avec stick)
+  contents?: TupleMax3<ContentMonoItemIconProps>; // 1 à 3 infos avec icône (email, tel, adresse…)
+  clickContents?: TupleMax3<ClickItemProps>; // 1 à 3 actions cliquables
+  texteOrias?: string; // Mention légale ORIAS
+  isCompact?: boolean; // Variante compacte sur mobile  (défaut: true)
 };
 ```
 
@@ -153,5 +156,5 @@ import locationIcon from "@material-symbols/svg-400/outlined/location_on.svg";
     },
   ]}
   texteOrias="ORIAS n° 07 001 234"
-/>
+/>;
 ```

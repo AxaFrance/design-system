@@ -6,7 +6,7 @@ inputs:
     description: 'List of artifact folder names (e.g., "apollo/react,client/react,slash/react")'
     required: true
   artifact-name:
-    description: 'Name of the artifact to be created'
+    description: "Name of the artifact to be created"
     required: true
 
 runs:

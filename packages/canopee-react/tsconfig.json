@@ -1,5 +1,5 @@
 {
-  "include": ["src", "./vitest.config.ts"],
+  "include": ["src", "./vitest.config.ts", "./vitest.setup.ts"],
   "exclude": ["node_modules", "./dist/**/*"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
@@ -35,7 +35,7 @@
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
     "types": [
       "vite/client",
-      "@testing-library/jest-dom",
+      "@testing-library/jest-dom/vitest",
       "vitest/globals",
       "node"
     ] /* Specify type package names to be included without being referenced in a source file. */,

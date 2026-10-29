@@ -1,6 +1,5 @@
 import react from "@vitejs/plugin-react";
-import { loadEnv } from "vite";
-import { defineConfig } from "vitest/config";
+import { defineConfig, loadEnv } from "vite-plus";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
@@ -11,6 +10,8 @@ export default defineConfig(({ mode }) => {
       assetsInlineLimit: 0,
     },
     test: {
+      // Preserve Vitest 4 mock history while migrating to Vitest 5.
+      clearMocks: false,
       globals: true,
       environment: "jsdom",
       setupFiles: "./vitest.setup.ts",

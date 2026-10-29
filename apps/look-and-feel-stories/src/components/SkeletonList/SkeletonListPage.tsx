@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// oxlint-disable-next-line import-js/no-extraneous-dependencies
 import { type ComponentProps, useEffect, useState } from "react";
 import {
   ContentItemDuo,

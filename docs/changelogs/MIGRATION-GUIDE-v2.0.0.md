@@ -30,12 +30,12 @@ The legacy mirror packages are no longer maintained or published with version
 `2.0.0`. They must be replaced by the corresponding Canopée packages. Do not
 add new dependencies on the old package names.
 
-| Legacy package | Canopée package |
-| --- | --- |
-| `@axa-fr/design-system-apollo-react` | `@axa-fr/canopee-react/prospect` |
-| `@axa-fr/design-system-apollo-css` | `@axa-fr/canopee-css/prospect` |
-| `@axa-fr/design-system-slash-react` | `@axa-fr/canopee-react/distributeur` |
-| `@axa-fr/design-system-slash-css` | `@axa-fr/canopee-css/distributeur` |
+| Legacy package                       | Canopée package                      |
+| ------------------------------------ | ------------------------------------ |
+| `@axa-fr/design-system-apollo-react` | `@axa-fr/canopee-react/prospect`     |
+| `@axa-fr/design-system-apollo-css`   | `@axa-fr/canopee-css/prospect`       |
+| `@axa-fr/design-system-slash-react`  | `@axa-fr/canopee-react/distributeur` |
+| `@axa-fr/design-system-slash-css`    | `@axa-fr/canopee-css/distributeur`   |
 
 The Apollo React mirror previously exposed the Look & Feel universe through
 its `lf` entry point. Replace imports from that entry point with:
@@ -90,16 +90,16 @@ component used by your application, then review its props and behavior.
 
 The following deprecated Distributeur exports are also no longer available:
 
-| Removed API | Replacement |
-| --- | --- |
-| `Badge` | `Tag` |
-| `Alert` | `Message` |
-| `Pass` | `<Text type="password" />` |
-| `Slider` | Use the supported range or number input component. |
-| `SliderInput` | Use the supported range or number input component. |
-| `SelectBase` | `<Select mode="base">` with native `option` children |
-| `Table.Header` and `Table.Body` | `Table.THead` and `Table.TBody` |
-| `getComponentClassName` | `getClassName` |
+| Removed API                     | Replacement                                          |
+| ------------------------------- | ---------------------------------------------------- |
+| `Badge`                         | `Tag`                                                |
+| `Alert`                         | `Message`                                            |
+| `Pass`                          | `<Text type="password" />`                           |
+| `Slider`                        | Use the supported range or number input component.   |
+| `SliderInput`                   | Use the supported range or number input component.   |
+| `SelectBase`                    | `<Select mode="base">` with native `option` children |
+| `Table.Header` and `Table.Body` | `Table.THead` and `Table.TBody`                      |
+| `getComponentClassName`         | `getClassName`                                       |
 
 `FieldForm` and `FieldInput` are no longer exported. The `Field` export also
 changes: in v1.8.0 it was the children-based `LegacyField`; in v2.0.0 it
@@ -111,8 +111,8 @@ If your application uses the deprecated `Select.options` prop, render native
 
 ```tsx
 <Select value={value} onChange={handleChange}>
- <option value="first">First</option>
- <option value="second">Second</option>
+  <option value="first">First</option>
+  <option value="second">Second</option>
 </Select>
 ```
 
@@ -141,14 +141,14 @@ The `classModifier` and `classModifiers` APIs have been removed from
 Distributeur components. A modifier generated an `af-<block>--<modifier>` class:
 use the matching prop when one exists, otherwise keep that class in `className`.
 
-| Component | Removed API | Replacement |
-| --- | --- | --- |
-| `Accordion` | `classModifier` | `variant` |
-| `Message` | `classModifier` | `variant` (`danger` becomes `warning`) |
-| `Tag` | `classModifier` | `variant` (`danger` becomes `warning`, `info` becomes `information`) |
-| `Modal` | `classModifier` | `size` or `className` |
-| Form controls and `*Input` | `classModifier="required"` | `required` |
-| Other Distributeur components | `classModifier` | `className="af-<block>--<modifier>"` |
+| Component                     | Removed API                | Replacement                                                          |
+| ----------------------------- | -------------------------- | -------------------------------------------------------------------- |
+| `Accordion`                   | `classModifier`            | `variant`                                                            |
+| `Message`                     | `classModifier`            | `variant` (`danger` becomes `warning`)                               |
+| `Tag`                         | `classModifier`            | `variant` (`danger` becomes `warning`, `info` becomes `information`) |
+| `Modal`                       | `classModifier`            | `size` or `className`                                                |
+| Form controls and `*Input`    | `classModifier="required"` | `required`                                                           |
+| Other Distributeur components | `classModifier`            | `className="af-<block>--<modifier>"`                                 |
 
 `isVisible` was also removed from `Field` and from every `*Input`: render the
 field conditionally in the application instead.
@@ -157,12 +157,12 @@ field conditionally in the application instead.
 
 The following deprecated component aliases are no longer exported:
 
-| Removed alias | Replacement |
-| --- | --- |
-| `CheckboxCard` | `CardCheckbox` |
-| `DateInput` | `InputDate` |
-| `TextInput` | `InputText` |
-| `CardRadio` | `CardRadioGroup` |
+| Removed alias     | Replacement                                                      |
+| ----------------- | ---------------------------------------------------------------- |
+| `CheckboxCard`    | `CardCheckbox`                                                   |
+| `DateInput`       | `InputDate`                                                      |
+| `TextInput`       | `InputText`                                                      |
+| `CardRadio`       | `CardRadioGroup`                                                 |
 | `CardRadioOption` | `CardRadio`, used through the `options` API of `CardRadioGroup`. |
 
 Update imports and component usage in applications that use one of these
@@ -261,7 +261,7 @@ import { CardRadio } from "@axa-fr/canopee-react/client";
   error="Choose a city"
   options={options}
   onChange={handleChange}
-/>
+/>;
 ```
 
 After:
@@ -281,7 +281,7 @@ import { CardRadioGroup } from "@axa-fr/canopee-react/client";
     checked: option.value === selectedCity,
   }))}
   onChange={handleChange}
-/>
+/>;
 ```
 
 Use `cardStyle="vertical"` with `position="column"` for the equivalent
@@ -311,40 +311,40 @@ Use this table as a quick reference. The examples below explain the
 structural migrations and the checks needed to preserve behavior or visual
 appearance.
 
-| Component | Removed prop | Replacement |
-| --- | --- | --- |
-| `Accordion` | `isOpen` | `open` |
-| `CardRadioGroup` | `type` | `cardStyle` for card orientation and `position` for group layout |
-| `CardRadioGroup` | `labelGroup` | `label` |
-| `CardRadioGroup` | `descriptionGroup` | `description` |
-| `CardRadioGroup` | `isRequired` | `required` |
-| `CardRadioGroup` | `value` | Set `checked` on the matching item in `options` |
-| `CardRadioGroup` | `error` | `message` and `messageType` |
-| `CardRadioOption` | `type` | `CardRadio.position` |
-| `CardRadioOption` | `isInvalid` | `CardRadio.variant` |
-| `ContentItemMono` | `icon` | `iconProps` |
-| `CardCheckbox` | `labelGroup` | `label` |
-| `CardCheckbox` | `descriptionGroup` | `description` |
-| `CardCheckbox` | `isRequired` | `required` |
-| `CardCheckbox` | `error` | `message` and `messageType` |
-| `Checkbox` | `errorId` | `aria-errormessage` |
-| `Checkbox` | `hasError` | `variant="error"` or `variant="warning"` |
-| `CheckboxText` | `errorMessage` | `message` and `messageType` |
-| `Dropdown` | `error` or `success` | `message` and `messageType` |
-| `InputDate` | `error` or `success` | `message` and `messageType` |
-| `InputPhone` | `error` or `success` | `message` and `messageType` |
-| `InputText` | `error` or `success` | `message` and `messageType` |
-| `ItemLabel` | `label` | `children` |
-| `ItemLabel` | `inputId` | `htmlFor` |
-| `ItemLabel` | `buttonLabel` | `moreButtonLabel` |
-| `ItemLabel` | `onButtonClick` | `onMoreButtonClick` |
-| `TextArea` | `error` | `message` and `messageType` |
-| `Link` | `classModifier` | Use `variant` for a supported variant or `className` for custom styling. |
-| `ContentItemDuo` | `isVertical` | `position` |
-| `ContentItemDuo` | `classModifier` | `position` for `vertical`/`horizontal`, `size` for supported sizes, or `className` only for a genuinely custom class |
-| `Modal` | `icon` | `headingProps={{ icon }}` |
-| `Modal` | `iconProps` | `headingProps={{ iconProps }}` |
-| `ProgressBarGroup` | `nbSteps` | `stepsCount` |
+| Component          | Removed prop         | Replacement                                                                                                          |
+| ------------------ | -------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `Accordion`        | `isOpen`             | `open`                                                                                                               |
+| `CardRadioGroup`   | `type`               | `cardStyle` for card orientation and `position` for group layout                                                     |
+| `CardRadioGroup`   | `labelGroup`         | `label`                                                                                                              |
+| `CardRadioGroup`   | `descriptionGroup`   | `description`                                                                                                        |
+| `CardRadioGroup`   | `isRequired`         | `required`                                                                                                           |
+| `CardRadioGroup`   | `value`              | Set `checked` on the matching item in `options`                                                                      |
+| `CardRadioGroup`   | `error`              | `message` and `messageType`                                                                                          |
+| `CardRadioOption`  | `type`               | `CardRadio.position`                                                                                                 |
+| `CardRadioOption`  | `isInvalid`          | `CardRadio.variant`                                                                                                  |
+| `ContentItemMono`  | `icon`               | `iconProps`                                                                                                          |
+| `CardCheckbox`     | `labelGroup`         | `label`                                                                                                              |
+| `CardCheckbox`     | `descriptionGroup`   | `description`                                                                                                        |
+| `CardCheckbox`     | `isRequired`         | `required`                                                                                                           |
+| `CardCheckbox`     | `error`              | `message` and `messageType`                                                                                          |
+| `Checkbox`         | `errorId`            | `aria-errormessage`                                                                                                  |
+| `Checkbox`         | `hasError`           | `variant="error"` or `variant="warning"`                                                                             |
+| `CheckboxText`     | `errorMessage`       | `message` and `messageType`                                                                                          |
+| `Dropdown`         | `error` or `success` | `message` and `messageType`                                                                                          |
+| `InputDate`        | `error` or `success` | `message` and `messageType`                                                                                          |
+| `InputPhone`       | `error` or `success` | `message` and `messageType`                                                                                          |
+| `InputText`        | `error` or `success` | `message` and `messageType`                                                                                          |
+| `ItemLabel`        | `label`              | `children`                                                                                                           |
+| `ItemLabel`        | `inputId`            | `htmlFor`                                                                                                            |
+| `ItemLabel`        | `buttonLabel`        | `moreButtonLabel`                                                                                                    |
+| `ItemLabel`        | `onButtonClick`      | `onMoreButtonClick`                                                                                                  |
+| `TextArea`         | `error`              | `message` and `messageType`                                                                                          |
+| `Link`             | `classModifier`      | Use `variant` for a supported variant or `className` for custom styling.                                             |
+| `ContentItemDuo`   | `isVertical`         | `position`                                                                                                           |
+| `ContentItemDuo`   | `classModifier`      | `position` for `vertical`/`horizontal`, `size` for supported sizes, or `className` only for a genuinely custom class |
+| `Modal`            | `icon`               | `headingProps={{ icon }}`                                                                                            |
+| `Modal`            | `iconProps`          | `headingProps={{ iconProps }}`                                                                                       |
+| `ProgressBarGroup` | `nbSteps`            | `stepsCount`                                                                                                         |
 
 ##### Form action labels
 
@@ -352,9 +352,9 @@ For `Dropdown`, `InputDate`, `InputFile`, `InputPhone`, `InputText`, and
 `TextArea`, replace the deprecated contextual-button props with their explicit
 names:
 
-| Removed prop | Replacement |
-| --- | --- |
-| `buttonLabel` | `moreButtonLabel` |
+| Removed prop    | Replacement         |
+| --------------- | ------------------- |
+| `buttonLabel`   | `moreButtonLabel`   |
 | `onButtonClick` | `onMoreButtonClick` |
 
 Do not apply this replacement to `MenuBurger.buttonLabel`, which remains the
@@ -589,12 +589,7 @@ Before:
 After:
 
 ```tsx
-<SkeletonGrid
-  grid={[
-    [{ colSize: 3 }, { colSize: 9 }],
-    [{ colSize: 12 }],
-  ]}
-/>
+<SkeletonGrid grid={[[{ colSize: 3 }, { colSize: 9 }], [{ colSize: 12 }]]} />
 ```
 
 To avoid the large `M` default while staying within the library styles, choose
@@ -706,9 +701,9 @@ review custom CSS selectors and CSS layer ordering.
 
 - [ ] The project compiles with React 19 and Canopée 2.0.0.
 - [ ] Tests pass without selectors targeting removed aliases or the old Header
-  `Name` heading element.
+      `Name` heading element.
 - [ ] Replacement components preserve the previous layout, selected/checked
-  state, validation message, and visual variants in their affected stories.
+      state, validation message, and visual variants in their affected stories.
 - [ ] The interface and accessibility tree preserve the intended heading order.
 - [ ] Custom styles still have the intended precedence.
 

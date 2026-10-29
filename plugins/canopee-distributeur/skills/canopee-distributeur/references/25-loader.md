@@ -10,24 +10,24 @@ import { Loader } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `mode` | `"none" \| "get" \| "post" \| "delete" \| "update" \| "error"` | **Obligatoire** | Mode du loader (détermine le texte et l'état) |
-| `children` | `ReactNode` | **Obligatoire** | Contenu sur lequel le loader est superposé |
-| `text` | `string` | - | Texte personnalisé (remplace le texte par défaut du mode) |
-| `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
+| Prop            | Type                                                           | Défaut          | Description                                               |
+| --------------- | -------------------------------------------------------------- | --------------- | --------------------------------------------------------- |
+| `mode`          | `"none" \| "get" \| "post" \| "delete" \| "update" \| "error"` | **Obligatoire** | Mode du loader (détermine le texte et l'état)             |
+| `children`      | `ReactNode`                                                    | **Obligatoire** | Contenu sur lequel le loader est superposé                |
+| `text`          | `string`                                                       | -               | Texte personnalisé (remplace le texte par défaut du mode) |
+| `className`     | `string`                                                       | -               | Classes CSS additionnelles                                |
+| `classModifier` | `string`                                                       | -               | Modificateur CSS BEM                                      |
 
 ## Textes par défaut selon le mode
 
-| Mode | Texte affiché |
-|------|--------------|
-| `"none"` | *(aucun loader affiché)* |
-| `"get"` | "Chargement en cours" |
-| `"post"` | "Sauvegarde en cours" |
-| `"delete"` | "Suppression en cours" |
-| `"update"` | "Mise à jour en cours" |
-| `"error"` | "Une erreur est survenue lors du chargement du composant" |
+| Mode       | Texte affiché                                             |
+| ---------- | --------------------------------------------------------- |
+| `"none"`   | _(aucun loader affiché)_                                  |
+| `"get"`    | "Chargement en cours"                                     |
+| `"post"`   | "Sauvegarde en cours"                                     |
+| `"delete"` | "Suppression en cours"                                    |
+| `"update"` | "Mise à jour en cours"                                    |
+| `"error"`  | "Une erreur est survenue lors du chargement du composant" |
 
 ## Utilisation
 
@@ -63,7 +63,9 @@ import { Loader } from "@axa-fr/canopee-react/distributeur";
 ## Utilisation dynamique
 
 ```tsx
-const [loadingMode, setLoadingMode] = useState<"none" | "get" | "post" | "error">("none");
+const [loadingMode, setLoadingMode] = useState<
+  "none" | "get" | "post" | "error"
+>("none");
 
 const handleSave = async () => {
   setLoadingMode("post");
@@ -80,5 +82,5 @@ const handleSave = async () => {
     {/* formulaire */}
     <Button onClick={handleSave}>Enregistrer</Button>
   </form>
-</Loader>
+</Loader>;
 ```

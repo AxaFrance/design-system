@@ -19,12 +19,12 @@ import { ItemLabel } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type ItemLabelProps = ComponentProps<"label"> & {
-  description?: ReactNode;               // Texte descriptif additonnel
-  required?: boolean;                    // Affiche un * visuel + attribut HTML required
-  sideButtonLabel?: ReactNode;           // Label bouton secondaire (ex: "Modifier")
+  description?: ReactNode; // Texte descriptif additonnel
+  required?: boolean; // Affiche un * visuel + attribut HTML required
+  sideButtonLabel?: ReactNode; // Label bouton secondaire (ex: "Modifier")
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
   sideButtonProps?: Partial<ButtonProps>;
-  moreButtonLabel?: ReactNode;           // Label bouton info (ouvre un tooltip/modal)
+  moreButtonLabel?: ReactNode; // Label bouton info (ouvre un tooltip/modal)
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
   moreButtonProps?: Partial<ButtonProps>;
 };
@@ -56,7 +56,11 @@ Message d'état sous un champ de formulaire. Affiche une icône + texte coloré.
 ### Import
 
 ```tsx
-import { ItemMessage, itemMessageVariants, type ItemMessageVariants } from "@axa-fr/canopee-react/prospect";
+import {
+  ItemMessage,
+  itemMessageVariants,
+  type ItemMessageVariants,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -64,8 +68,8 @@ import { ItemMessage, itemMessageVariants, type ItemMessageVariants } from "@axa
 
 ```tsx
 type ItemMessageProps = {
-  message?: ReactNode;            // Affiché uniquement si présent
-  id?: string;                    // Pour aria-describedby
+  message?: ReactNode; // Affiché uniquement si présent
+  id?: string; // Pour aria-describedby
   messageType?: "error" | "success" | "warning"; // (défaut: "error")
 };
 ```
@@ -93,7 +97,11 @@ Zone de dépôt de fichiers complète (drag & drop). Composition avec `InputFile
 ### Import
 
 ```tsx
-import { FileUpload, InputFile, ItemFile } from "@axa-fr/canopee-react/prospect";
+import {
+  FileUpload,
+  InputFile,
+  ItemFile,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -102,7 +110,7 @@ import { FileUpload, InputFile, ItemFile } from "@axa-fr/canopee-react/prospect"
 ```tsx
 type FileUploadProps = Omit<InputFileProps, "children"> & {
   children?: ReactElement<ItemFileProps> | ReactElement<ItemFileProps>[];
-  fileListLabel?: ReactNode;       // Label de la liste (défaut: "Vos fichiers importés :")
+  fileListLabel?: ReactNode; // Label de la liste (défaut: "Vos fichiers importés :")
   // + toutes les props InputFile
 };
 ```
@@ -120,9 +128,9 @@ type InputFileProps = Omit<ComponentPropsWithRef<"input">, "type"> & {
   helper?: ReactNode;
   // Labels de la zone de dépôt
   dropzoneLabels?: {
-    dropzone?: string;   // texte zone de dépôt
-    or?: string;         // texte "ou"
-    button?: string;     // texte bouton
+    dropzone?: string; // texte zone de dépôt
+    or?: string; // texte "ou"
+    button?: string; // texte bouton
   };
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
@@ -134,9 +142,9 @@ type InputFileProps = Omit<ComponentPropsWithRef<"input">, "type"> & {
 
 ```tsx
 type ItemFileProps = {
-  file: File;                     // Objet File JS (obligatoire)
-  isLoading?: boolean;            // Affiche un Spinner
-  errorMessage?: string;          // Message d'erreur sous le fichier
+  file: File; // Objet File JS (obligatoire)
+  isLoading?: boolean; // Affiche un Spinner
+  errorMessage?: string; // Message d'erreur sous le fichier
   onRemove?: (file: File, event: MouseEvent<HTMLButtonElement>) => void;
   onPreview?: (file: File, event: MouseEvent<HTMLButtonElement>) => void;
   previewProps?: Partial<Omit<ClickIconProps, "src" | "onClick">>;
@@ -171,5 +179,5 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       onPreview={(f) => window.open(URL.createObjectURL(f))}
     />
   ))}
-</FileUpload>
+</FileUpload>;
 ```

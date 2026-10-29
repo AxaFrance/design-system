@@ -40,7 +40,7 @@ Fournit des conseils sur :
 
 ## Compatibilité
 
-| Usage | Package |
-| ----- | ------- |
+| Usage            | Package                              |
+| ---------------- | ------------------------------------ |
 | Composants React | `@axa-fr/canopee-react/distributeur` |
-| Styles CSS | `@axa-fr/canopee-css/distributeur` |
+| Styles CSS       | `@axa-fr/canopee-css/distributeur`   |

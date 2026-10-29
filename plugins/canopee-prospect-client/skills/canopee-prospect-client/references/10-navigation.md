@@ -10,11 +10,11 @@ Barre d'onglets accessible avec navigation clavier (ArrowLeft/Right, Home, End).
 
 ```tsx
 import {
-    TabBar,
-    tabBarDirection,
-    type TabBarDirection,
-    type TabBarProps,
-} from '@axa-fr/canopee-react/prospect';
+  TabBar,
+  tabBarDirection,
+  type TabBarDirection,
+  type TabBarProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -22,13 +22,13 @@ import {
 
 ```tsx
 type TabBarProps = {
-    items: {
-        content: ReactNode; // Contenu du panneau affiché quand l'onglet est actif
-        title: string; // Titre du bouton d'onglet
-        // + autres props du bouton ItemTabBar (disabled, onClick, etc.)
-    }[];
-    preSelectedTabIndex?: number; // Index de l'onglet actif par défaut (défaut: 0)
-    direction?: TabBarDirection; // "left" | "center"  (défaut: "left")
+  items: {
+    content: ReactNode; // Contenu du panneau affiché quand l'onglet est actif
+    title: string; // Titre du bouton d'onglet
+    // + autres props du bouton ItemTabBar (disabled, onClick, etc.)
+  }[];
+  preSelectedTabIndex?: number; // Index de l'onglet actif par défaut (défaut: 0)
+  direction?: TabBarDirection; // "left" | "center"  (défaut: "left")
 };
 ```
 
@@ -36,22 +36,22 @@ type TabBarProps = {
 
 ```tsx
 <TabBar
-    direction="left"
-    preSelectedTabIndex={0}
-    items={[
-        {
-            title: 'Mes contrats',
-            content: <ContratsList />,
-        },
-        {
-            title: 'Mes sinistres',
-            content: <SinistresList />,
-        },
-        {
-            title: 'Documents',
-            content: <DocumentsList />,
-        },
-    ]}
+  direction="left"
+  preSelectedTabIndex={0}
+  items={[
+    {
+      title: "Mes contrats",
+      content: <ContratsList />,
+    },
+    {
+      title: "Mes sinistres",
+      content: <SinistresList />,
+    },
+    {
+      title: "Documents",
+      content: <DocumentsList />,
+    },
+  ]}
 />
 ```
 
@@ -65,17 +65,17 @@ Bouton d'onglet individuel (utilisé dans TabBar, ou seul pour compositions cust
 
 ```tsx
 import {
-    ItemTabBar,
-    type ItemTabBarProps,
-} from '@axa-fr/canopee-react/prospect';
+  ItemTabBar,
+  type ItemTabBarProps,
+} from "@axa-fr/canopee-react/prospect";
 ```
 
 ### Props
 
 ```tsx
-type ItemTabBarProps = ComponentPropsWithRef<'button'> & {
-    isActive?: boolean; // (défaut: false)
-    title: string;
+type ItemTabBarProps = ComponentPropsWithRef<"button"> & {
+  isActive?: boolean; // (défaut: false)
+  title: string;
 };
 ```
 
@@ -88,15 +88,15 @@ Lien individuel utilisé dans un TabMenu, avec état actif et gestion de ref.
 ### Import
 
 ```tsx
-import { ItemMenu, type ItemMenuProps } from '@axa-fr/canopee-react/prospect';
+import { ItemMenu, type ItemMenuProps } from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
 ### Props
 
 ```tsx
-type ItemMenuProps = ComponentPropsWithRef<'a'> & {
-    isActive?: boolean; // (défaut: false)
+type ItemMenuProps = ComponentPropsWithRef<"a"> & {
+  isActive?: boolean; // (défaut: false)
 };
 ```
 
@@ -104,7 +104,7 @@ type ItemMenuProps = ComponentPropsWithRef<'a'> & {
 
 ```tsx
 <ItemMenu href="#contrats" isActive>
-    Mes contrats
+  Mes contrats
 </ItemMenu>
 ```
 
@@ -118,35 +118,35 @@ Menu d'onglets basé sur des liens, navigable au clavier avec ArrowLeft/ArrowRig
 
 ```tsx
 import {
-    TabMenu,
-    type TabMenuProps,
-    type TabMenuItemProps,
-} from '@axa-fr/canopee-react/prospect';
+  TabMenu,
+  type TabMenuProps,
+  type TabMenuItemProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
 ### Props
 
 ```tsx
-type TabMenuItemProps = Omit<ItemMenuProps, 'children'> & {
-    label: string;
+type TabMenuItemProps = Omit<ItemMenuProps, "children"> & {
+  label: string;
 };
 
 type TabMenuProps = {
-    items?: TabMenuItemProps[];
-    initialPosition?: number; // (défaut: 0)
-} & Omit<ComponentPropsWithoutRef<'nav'>, 'children'>;
+  items?: TabMenuItemProps[];
+  initialPosition?: number; // (défaut: 0)
+} & Omit<ComponentPropsWithoutRef<"nav">, "children">;
 ```
 
 ### Exemple
 
 ```tsx
 <TabMenu
-    items={[
-        { href: '#contrats', label: 'Mes contrats' },
-        { href: '#sinistres', label: 'Mes sinistres' },
-        { href: '#documents', label: 'Mes documents' },
-    ]}
+  items={[
+    { href: "#contrats", label: "Mes contrats" },
+    { href: "#sinistres", label: "Mes sinistres" },
+    { href: "#documents", label: "Mes documents" },
+  ]}
 />
 ```
 
@@ -160,10 +160,10 @@ Pagination numérotée accessible avec boutons précédent/suivant.
 
 ```tsx
 import {
-    Pagination,
-    ItemPagination,
-    type ItemPaginationProps,
-} from '@axa-fr/canopee-react/prospect';
+  Pagination,
+  ItemPagination,
+  type ItemPaginationProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -171,15 +171,15 @@ import {
 
 ```tsx
 type PaginationProps = {
-    numberPages?: number; // Total de pages (défaut: 1)
-    currentPage?: number; // Page actuelle (défaut: 1)
-    onChangePage: (page: number) => void; // Callback (obligatoire)
-    hidePrevNext?: boolean; // Cache les boutons prev/next (défaut: false)
-    'aria-label'?: string; // (défaut: "Pagination")
-    asItem?: (page: number) => ReactNode; // Rendu custom d'un item de page
-    prevButtonProps?: ComponentProps<typeof ClickIcon>;
-    nextButtonProps?: ComponentProps<typeof ClickIcon>;
-} & ComponentPropsWithoutRef<'nav'>;
+  numberPages?: number; // Total de pages (défaut: 1)
+  currentPage?: number; // Page actuelle (défaut: 1)
+  onChangePage: (page: number) => void; // Callback (obligatoire)
+  hidePrevNext?: boolean; // Cache les boutons prev/next (défaut: false)
+  "aria-label"?: string; // (défaut: "Pagination")
+  asItem?: (page: number) => ReactNode; // Rendu custom d'un item de page
+  prevButtonProps?: ComponentProps<typeof ClickIcon>;
+  nextButtonProps?: ComponentProps<typeof ClickIcon>;
+} & ComponentPropsWithoutRef<"nav">;
 ```
 
 ### Exemple
@@ -216,7 +216,7 @@ Le titre est rendu par la molécule [`Heading`](./15-visuals.md) : `titleLevel` 
 ### Import
 
 ```tsx
-import { Stepper } from '@axa-fr/canopee-react/prospect';
+import { Stepper } from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -224,18 +224,18 @@ import { Stepper } from '@axa-fr/canopee-react/prospect';
 
 ```tsx
 type StepperProps = {
-    currentStep: number; // Étape actuelle (1-based, obligatoire)
-    nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8; // Nombre total d'étapes (défaut via ProgressBarGroup)
-    currentStepProgress?: number; // Progression (0-100) dans l'étape courante
-    currentTitle?: ReactNode; // Titre de l'étape
-    currentSubtitle?: ReactNode; // Sous-titre de l'étape
-    helper?: string; // Texte d'aide sous la barre
-    icon?: string; // Icône SVG affichée devant le titre
-    iconProps?: HeadingCommonProps['iconProps']; // Options de l'icône du Heading
-    message?: string; // Message de validation/erreur
-    messageType?: 'error' | 'success' | 'warning';
-    titleLevel?: 1 | 2 | 3 | 4; // Niveau de heading du titre (défaut: 2)
-} & Omit<HTMLAttributes<HTMLDivElement>, 'role' | 'title'>;
+  currentStep: number; // Étape actuelle (1-based, obligatoire)
+  nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8; // Nombre total d'étapes (défaut via ProgressBarGroup)
+  currentStepProgress?: number; // Progression (0-100) dans l'étape courante
+  currentTitle?: ReactNode; // Titre de l'étape
+  currentSubtitle?: ReactNode; // Sous-titre de l'étape
+  helper?: string; // Texte d'aide sous la barre
+  icon?: string; // Icône SVG affichée devant le titre
+  iconProps?: HeadingCommonProps["iconProps"]; // Options de l'icône du Heading
+  message?: string; // Message de validation/erreur
+  messageType?: "error" | "success" | "warning";
+  titleLevel?: 1 | 2 | 3 | 4; // Niveau de heading du titre (défaut: 2)
+} & Omit<HTMLAttributes<HTMLDivElement>, "role" | "title">;
 ```
 
 ### Exemple

@@ -131,7 +131,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | ----------- | ----------------------------------------- | ---------------------------------------------------------------- |
 | `Button`    | [01-button.md](./references/01-button.md) | CTA, actions, 7 variantes (primary, secondary, tertiary, ghost…) |
 | `ClickIcon` | [01-button.md](./references/01-button.md) | Bouton icône seul                                                |
-| `Link`      | [01-button.md](./references/01-button.md) | Lien polymorphe (`as`), React Router, ouverture nouvel onglet     |
+| `Link`      | [01-button.md](./references/01-button.md) | Lien polymorphe (`as`), React Router, ouverture nouvel onglet    |
 
 ### Accords et navigation
 
@@ -195,7 +195,7 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `CardCheckboxOption` | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte checkbox |
 | `Radio`              | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Radio simple (bas niveau)             |
 | `CardRadioGroup`     | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Groupe de radios en cartes            |
-| `CardRadio`    | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
+| `CardRadio`          | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
 
 ### Upload de fichiers
 
@@ -236,18 +236,18 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ### Layout
 
-| Composant       | Référence                                 | Cas d'usage                                 |
-| --------------- | ----------------------------------------- | ------------------------------------------- |
-| `Footer`        | [12-layout.md](./references/12-layout.md) | Pied de page avec liens, réseaux, copyright |
-| `FormLayout`    | [12-layout.md](./references/12-layout.md) | Mise en page de formulaire responsive       |
-| `ExitLayout`    | [12-layout.md](./references/12-layout.md) | Page de sortie (confirmation / erreur)      |
-| `ExitLayoutSkeleton` | [12-layout.md](./references/12-layout.md) | Version skeleton de `ExitLayout`            |
-| `Fieldset`      | [12-layout.md](./references/12-layout.md) | Groupe de form en carte                     |
-| `LevelSelector` | [12-layout.md](./references/12-layout.md) | Sélecteur de niveau par incréments          |
-| `Card`          | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant`) |
-| `AppName`       | [12-layout.md](./references/12-layout.md) | Logo AXA + nom d'application, lien cliquable |
-| `Header`        | [12-layout.md](./references/12-layout.md) | En-tête responsive (AppName + TabMenu + MenuBurger) |
-| `MenuBurger`    | [12-layout.md](./references/12-layout.md) | Menu compte utilisateur avec popover desktop |
+| Composant            | Référence                                 | Cas d'usage                                         |
+| -------------------- | ----------------------------------------- | --------------------------------------------------- |
+| `Footer`             | [12-layout.md](./references/12-layout.md) | Pied de page avec liens, réseaux, copyright         |
+| `FormLayout`         | [12-layout.md](./references/12-layout.md) | Mise en page de formulaire responsive               |
+| `ExitLayout`         | [12-layout.md](./references/12-layout.md) | Page de sortie (confirmation / erreur)              |
+| `ExitLayoutSkeleton` | [12-layout.md](./references/12-layout.md) | Version skeleton de `ExitLayout`                    |
+| `Fieldset`           | [12-layout.md](./references/12-layout.md) | Groupe de form en carte                             |
+| `LevelSelector`      | [12-layout.md](./references/12-layout.md) | Sélecteur de niveau par incréments                  |
+| `Card`               | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant`)     |
+| `AppName`            | [12-layout.md](./references/12-layout.md) | Logo AXA + nom d'application, lien cliquable        |
+| `Header`             | [12-layout.md](./references/12-layout.md) | En-tête responsive (AppName + TabMenu + MenuBurger) |
+| `MenuBurger`         | [12-layout.md](./references/12-layout.md) | Menu compte utilisateur avec popover desktop        |
 
 ### Pages complètes
 

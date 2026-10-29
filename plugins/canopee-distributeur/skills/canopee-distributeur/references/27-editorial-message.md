@@ -10,23 +10,23 @@ import { EditorialMessage } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `type` | `"green" \| "information" \| "promotion"` | **Obligatoire** | Style visuel du message |
-| `icon` | `string` | **Obligatoire** | Chemin SVG de l'icône (import statique) |
-| `title` | `string` | - | Titre du message (`title` ou `children` est requis) |
-| `children` | `ReactNode` | - | Contenu du message (`title` ou `children` est requis) |
-| `className` | `string` | - | Classes CSS additionnelles |
+| Prop        | Type                                      | Défaut          | Description                                           |
+| ----------- | ----------------------------------------- | --------------- | ----------------------------------------------------- |
+| `type`      | `"green" \| "information" \| "promotion"` | **Obligatoire** | Style visuel du message                               |
+| `icon`      | `string`                                  | **Obligatoire** | Chemin SVG de l'icône (import statique)               |
+| `title`     | `string`                                  | -               | Titre du message (`title` ou `children` est requis)   |
+| `children`  | `ReactNode`                               | -               | Contenu du message (`title` ou `children` est requis) |
+| `className` | `string`                                  | -               | Classes CSS additionnelles                            |
 
 > Au moins `title` ou `children` doit être fourni.
 
 ## Variantes
 
-| Type | Usage recommandé |
-|------|-----------------|
-| `"green"` | Éco-conception, développement durable |
-| `"information"` | Accessibilité, information légale |
-| `"promotion"` | Offres commerciales, promotions |
+| Type            | Usage recommandé                      |
+| --------------- | ------------------------------------- |
+| `"green"`       | Éco-conception, développement durable |
+| `"information"` | Accessibilité, information légale     |
+| `"promotion"`   | Offres commerciales, promotions       |
 
 ## Utilisation
 

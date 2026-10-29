@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { expect, it } from "vitest";
+import { expect, it } from "vite-plus/test";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
 import { ClickItem } from "../ClickItemApollo";

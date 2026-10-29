@@ -1,6 +1,7 @@
 # Formulaires — Inputs texte, dates et téléphone
 
 Tous les composants de cette section partagent le même pattern :
+
 - `label` : label du champ
 - `helper` : texte d'aide affiché sous le label
 - `message` + `messageType` : message d'état
@@ -25,17 +26,17 @@ import { InputText } from "@axa-fr/canopee-react/prospect";
 
 ```tsx
 type InputTextProps = ComponentProps<"input"> & {
-  unit?: ReactNode;               // Unité affichée (ex: icône €, texte "km")
+  unit?: ReactNode; // Unité affichée (ex: icône €, texte "km")
   classModifier?: string;
-  label?: ReactNode;              // Label au-dessus du champ
-  helper?: string;                // Texte d'aide (ex: "Format attendu : JJ/MM/AAAA")
-  message?: ReactNode;            // Message d'état unifié
+  label?: ReactNode; // Label au-dessus du champ
+  helper?: string; // Texte d'aide (ex: "Format attendu : JJ/MM/AAAA")
+  message?: ReactNode; // Message d'état unifié
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps;
-  description?: ReactNode;        // Description enrichie sous le label
-  moreButtonLabel?: ReactNode;    // Bouton "en savoir plus" dans le label
+  description?: ReactNode; // Description enrichie sous le label
+  moreButtonLabel?: ReactNode; // Bouton "en savoir plus" dans le label
   onMoreButtonClick?: MouseEventHandler<HTMLButtonElement>;
-  sideButtonLabel?: ReactNode;    // Bouton secondaire dans le label (ex: "Modifier")
+  sideButtonLabel?: ReactNode; // Bouton secondaire dans le label (ex: "Modifier")
   onSideButtonClick?: MouseEventHandler<HTMLButtonElement>;
 };
 ```
@@ -115,7 +116,7 @@ type DropdownProps = ComponentPropsWithRef<"select"> & {
   label?: ReactNode;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
-  placeholder?: string;           // Option désactivée en premier
+  placeholder?: string; // Option désactivée en premier
   description?: ReactNode;
   helper?: string;
   containerProps?: GridContainerProps;
@@ -206,15 +207,18 @@ import { InputDate } from "@axa-fr/canopee-react/prospect";
 ### Props
 
 ```tsx
-type InputDateProps = Omit<ComponentPropsWithRef<"input">, "value" | "min" | "max"> & {
+type InputDateProps = Omit<
+  ComponentPropsWithRef<"input">,
+  "value" | "min" | "max"
+> & {
   classModifier?: string;
   defaultValue?: Date | string;
-  value?: Date | string;          // Accepte un objet Date
-  min?: string;                   // Format ISO: "2020-01-01"
+  value?: Date | string; // Accepte un objet Date
+  min?: string; // Format ISO: "2020-01-01"
   max?: string;
   helper?: string;
-  hidePicker?: boolean;           // Cache l'icône picker natif
-  label: ReactNode;               // Obligatoire
+  hidePicker?: boolean; // Cache l'icône picker natif
+  label: ReactNode; // Obligatoire
   containerProps?: GridContainerProps;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
@@ -263,14 +267,14 @@ import { InputPhone, type OptionType } from "@axa-fr/canopee-react/prospect";
 type InputPhoneProps = ComponentPropsWithRef<"input"> & {
   classModifier?: string;
   helper?: string;
-  defaultCountry?: string;        // Code pays par défaut (ex: "FR")
-  showSelect?: boolean;           // Affiche le sélecteur de pays (défaut: false)
+  defaultCountry?: string; // Code pays par défaut (ex: "FR")
+  showSelect?: boolean; // Affiche le sélecteur de pays (défaut: false)
   disabled?: boolean;
   countryCodeOptions?: OptionType[]; // Liste des pays { label, value }
   onChangeSelect?: (value: SingleValue<OptionType>) => void;
   onChangeInput?: (value: string) => void; // Valeur démasquée
-  mask?: (value: string) => string;        // Fonction de masque personnalisée
-  label: ReactNode;               // Obligatoire
+  mask?: (value: string) => string; // Fonction de masque personnalisée
+  label: ReactNode; // Obligatoire
   containerProps?: GridContainerProps;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";

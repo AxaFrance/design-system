@@ -48,7 +48,8 @@ const meta = preview.meta({
       control: {
         type: "select",
         options: ["centerLeft", "above", undefined] satisfies (
-          SingleLineLabelPosition | undefined
+          | SingleLineLabelPosition
+          | undefined
         )[],
       },
     },

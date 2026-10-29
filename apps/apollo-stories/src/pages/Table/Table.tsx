@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable-next-line import/no-extraneous-dependencies */
+/* oxlint-disable-next-line import-js/no-extraneous-dependencies */
 import React, {
   useCallback,
   useMemo,

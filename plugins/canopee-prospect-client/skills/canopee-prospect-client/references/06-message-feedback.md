@@ -10,10 +10,10 @@ Composant d'alerte accessible, avec icône automatique selon la variante.
 
 ```tsx
 import {
-    Message,
-    messageVariants,
-    type MessageVariants,
-} from '@axa-fr/canopee-react/prospect';
+  Message,
+  messageVariants,
+  type MessageVariants,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -21,13 +21,13 @@ import {
 
 ```tsx
 type MessageProps = {
-    variant: MessageVariants; // "validation" | "error" | "warning" | "information" | "neutral"
-    title?: string;
-    children?: ReactNode; // Corps du message
-    action?: ReactElement<typeof Link | ComponentType<ButtonProps>>;
-    iconSize?: number; // Taille icône en px (défaut: 24)
-    heading?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'; // Niveau titre (défaut: "h4")
-} & ComponentPropsWithoutRef<'section'>;
+  variant: MessageVariants; // "validation" | "error" | "warning" | "information" | "neutral"
+  title?: string;
+  children?: ReactNode; // Corps du message
+  action?: ReactElement<typeof Link | ComponentType<ButtonProps>>;
+  iconSize?: number; // Taille icône en px (défaut: 24)
+  heading?: "h2" | "h3" | "h4" | "h5" | "h6"; // Niveau titre (défaut: "h4")
+} & ComponentPropsWithoutRef<"section">;
 ```
 
 ### Comportement aria
@@ -78,20 +78,20 @@ Message compact format carte, sans icône automatique.
 
 ```tsx
 import {
-    CardMessage,
-    cardMessageVariants,
-    type CardMessageVariants,
-} from '@axa-fr/canopee-react/prospect';
+  CardMessage,
+  cardMessageVariants,
+  type CardMessageVariants,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
 ### Props
 
 ```tsx
-type CardMessageProps = ComponentPropsWithoutRef<'div'> & {
-    variant?: CardMessageVariants; // "info" | "warning" | "error" | "neutral"  (défaut: "info")
-    title?: string; // Titre optionnel en gras
-    text: string; // Texte principal (obligatoire)
+type CardMessageProps = ComponentPropsWithoutRef<"div"> & {
+  variant?: CardMessageVariants; // "info" | "warning" | "error" | "neutral"  (défaut: "info")
+  title?: string; // Titre optionnel en gras
+  text: string; // Texte principal (obligatoire)
 };
 ```
 
@@ -118,22 +118,25 @@ La description est affichée directement en desktop ; en dessous de 1024px elle 
 ### Import
 
 ```tsx
-import { MessageBar, type MessageBarProps } from '@axa-fr/canopee-react/prospect';
+import {
+  MessageBar,
+  type MessageBarProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
-import accountBalance from '@material-symbols/svg-400/outlined/account_balance-fill.svg';
+import accountBalance from "@material-symbols/svg-400/outlined/account_balance-fill.svg";
 ```
 
 ### Props
 
 ```tsx
 type MessageBarProps = {
-    title: string; // Titre du message (obligatoire)
-    description?: ReactNode; // Toujours visible en desktop, repliable en mobile
-    icon: string; // URL de l'icône affichée avant le titre (obligatoire)
-    variant?: MessageBarVariant; // "info" | "error"  (défaut: "info")
-    defaultDescriptionOpen?: boolean; // État initial du repli mobile (défaut: false)
-    buttonProps?: ButtonProps; // Aucun bouton n'est rendu si omis
-} & Omit<ComponentPropsWithoutRef<'section'>, 'children'>;
+  title: string; // Titre du message (obligatoire)
+  description?: ReactNode; // Toujours visible en desktop, repliable en mobile
+  icon: string; // URL de l'icône affichée avant le titre (obligatoire)
+  variant?: MessageBarVariant; // "info" | "error"  (défaut: "info")
+  defaultDescriptionOpen?: boolean; // État initial du repli mobile (défaut: false)
+  buttonProps?: ButtonProps; // Aucun bouton n'est rendu si omis
+} & Omit<ComponentPropsWithoutRef<"section">, "children">;
 ```
 
 L'icône n'est pas déduite de la variante : elle est toujours fournie par le consommateur.
@@ -178,7 +181,7 @@ Page de chargement (plein écran ou en ligne) avec spinner et texte.
 ### Import
 
 ```tsx
-import { Loader, type LoaderProps } from '@axa-fr/canopee-react/prospect';
+import { Loader, type LoaderProps } from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -186,11 +189,11 @@ import { Loader, type LoaderProps } from '@axa-fr/canopee-react/prospect';
 
 ```tsx
 type LoaderProps = {
-    isDialog?: boolean; // Rendu en <dialog> (true) ou <article> (false)
-    title: string; // Texte principal (obligatoire)
-    subtitle?: string; // Sous-texte optionnel
-    spinnerProps?: SpinnerProps; // Props transmis au Spinner
-    as?: ElementType; // Élément racine (polymorphique)
+  isDialog?: boolean; // Rendu en <dialog> (true) ou <article> (false)
+  title: string; // Texte principal (obligatoire)
+  subtitle?: string; // Sous-texte optionnel
+  spinnerProps?: SpinnerProps; // Props transmis au Spinner
+  as?: ElementType; // Élément racine (polymorphique)
 };
 ```
 
@@ -217,10 +220,10 @@ Indicateur de chargement circulaire inline.
 
 ```tsx
 import {
-    Spinner,
-    spinnerVariants,
-    type SpinnerVariants,
-} from '@axa-fr/canopee-react/prospect';
+  Spinner,
+  spinnerVariants,
+  type SpinnerVariants,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -228,10 +231,10 @@ import {
 
 ```tsx
 type SpinnerProps = {
-    size?: 24 | 32 | 40; // Taille en px (défaut: 40)
-    variant?: SpinnerVariants; // "blue" | "gray" | "white"  (défaut: "blue")
-    text?: string; // aria-label (défaut: "Chargement en cours")
-} & ComponentPropsWithoutRef<'div'>;
+  size?: 24 | 32 | 40; // Taille en px (défaut: 40)
+  variant?: SpinnerVariants; // "blue" | "gray" | "white"  (défaut: "blue")
+  text?: string; // aria-label (défaut: "Chargement en cours")
+} & ComponentPropsWithoutRef<"div">;
 ```
 
 Le spinner est accessible : `role="alert"`, `aria-busy`, `aria-live="assertive"`.
@@ -255,11 +258,11 @@ Placeholder de chargement basé sur des blocs individuels typés. `Skeleton` est
 
 ```tsx
 import {
-    Skeleton,
-    skeletonVariants,
-    skeletonSizeVariants,
-    type SkeletonProps,
-} from '@axa-fr/canopee-react/prospect';
+  Skeleton,
+  skeletonVariants,
+  skeletonSizeVariants,
+  type SkeletonProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -267,13 +270,13 @@ import {
 
 ```tsx
 type SkeletonProps = {
-    variant?: 'rectangle' | 'circle' | 'action';
-    size?: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
-    colSize?: number; // Nombre de colonnes occupées par le skeleton
-    rowSize?: number; // Nombre de lignes occupées par le skeleton
-    className?: string;
-    'aria-busy'?: boolean;
-    'aria-label'?: string;
+  variant?: "rectangle" | "circle" | "action";
+  size?: "XS" | "S" | "M" | "L" | "XL" | "XXL";
+  colSize?: number; // Nombre de colonnes occupées par le skeleton
+  rowSize?: number; // Nombre de lignes occupées par le skeleton
+  className?: string;
+  "aria-busy"?: boolean;
+  "aria-label"?: string;
 };
 ```
 
@@ -295,9 +298,9 @@ Grille de skeletons à deux niveaux. Chaque cellule reçoit les props complètes
 
 ```tsx
 import {
-    SkeletonGrid,
-    type SkeletonGridProps,
-} from '@axa-fr/canopee-react/prospect';
+  SkeletonGrid,
+  type SkeletonGridProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -305,15 +308,15 @@ import {
 
 ```tsx
 type SkeletonGridProps = {
-    grid: SkeletonProps[][]; // Chaque ligne contient une liste de cellules skeleton
-    className?: string;
-    'aria-busy'?: boolean; // (défaut: true)
-    'aria-label'?: string; // (défaut: "Chargement")
-    maxCols?: number; // Nombre max de colonnes (défaut: 12)
-    colGap?: number; // Espace entre colonnes en px (défaut: 16)
-    rowGap?: number; // Espace entre rangées en px (défaut: 8)
-    isLoading?: boolean; // Si false, affiche children (défaut: true)
-    children?: ReactNode; // Contenu affiché quand isLoading=false
+  grid: SkeletonProps[][]; // Chaque ligne contient une liste de cellules skeleton
+  className?: string;
+  "aria-busy"?: boolean; // (défaut: true)
+  "aria-label"?: string; // (défaut: "Chargement")
+  maxCols?: number; // Nombre max de colonnes (défaut: 12)
+  colGap?: number; // Espace entre colonnes en px (défaut: 16)
+  rowGap?: number; // Espace entre rangées en px (défaut: 8)
+  isLoading?: boolean; // Si false, affiche children (défaut: true)
+  children?: ReactNode; // Contenu affiché quand isLoading=false
 };
 ```
 
@@ -321,14 +324,14 @@ type SkeletonGridProps = {
 
 ```tsx
 <SkeletonGrid
-    grid={[
-        [{ colSize: 12 }],
-        [{ colSize: 12 }],
-        [
-            { colSize: 6, variant: 'circle', size: 'S' },
-            { colSize: 6, variant: 'rectangle', size: 'L' },
-        ],
-    ]}
+  grid={[
+    [{ colSize: 12 }],
+    [{ colSize: 12 }],
+    [
+      { colSize: 6, variant: "circle", size: "S" },
+      { colSize: 6, variant: "rectangle", size: "L" },
+    ],
+  ]}
 />
 ```
 
@@ -342,9 +345,9 @@ Skeleton optimisé pour les listes : génère plusieurs listes de `SkeletonGrid`
 
 ```tsx
 import {
-    SkeletonList,
-    type SkeletonListProps,
-} from '@axa-fr/canopee-react/prospect';
+  SkeletonList,
+  type SkeletonListProps,
+} from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -352,13 +355,13 @@ import {
 
 ```tsx
 type SkeletonListProps = {
-    lists: {
-        lines?: number; // Nombre de répétitions de la grille (défaut: 1)
-        grid: SkeletonProps[][]; // Grille par item
-    }[];
-    isLoading?: boolean;
-    className?: string;
-    children?: ReactNode; // Contenu réel quand isLoading=false
+  lists: {
+    lines?: number; // Nombre de répétitions de la grille (défaut: 1)
+    grid: SkeletonProps[][]; // Grille par item
+  }[];
+  isLoading?: boolean;
+  className?: string;
+  children?: ReactNode; // Contenu réel quand isLoading=false
 };
 ```
 
@@ -367,13 +370,13 @@ type SkeletonListProps = {
 ```tsx
 // Affiche 2 listes de squelettes quand isLoading=true
 <SkeletonList
-    isLoading={isLoading}
-    lists={[
-        { lines: 3, grid: [[{ colSize: 2 }, { colSize: 8 }, { colSize: 2 }]] },
-        { lines: 2, grid: [[{ colSize: 12 }]] },
-    ]}
+  isLoading={isLoading}
+  lists={[
+    { lines: 3, grid: [[{ colSize: 2 }, { colSize: 8 }, { colSize: 2 }]] },
+    { lines: 2, grid: [[{ colSize: 12 }]] },
+  ]}
 >
-    <MyRealList items={items} />
+  <MyRealList items={items} />
 </SkeletonList>
 ```
 
@@ -384,7 +387,7 @@ Version skeleton de `ExitLayout`, utilisée pendant le chargement des pages de s
 ### Import
 
 ```tsx
-import { ExitLayoutSkeleton } from '@axa-fr/canopee-react/prospect';
+import { ExitLayoutSkeleton } from "@axa-fr/canopee-react/prospect";
 // ou client
 ```
 
@@ -392,11 +395,11 @@ import { ExitLayoutSkeleton } from '@axa-fr/canopee-react/prospect';
 
 ```tsx
 type ExitLayoutSkeletonProps = {
-    hasAgent?: boolean;
-    hasIcon?: boolean;
-    hasAction?: boolean;
-    hasContent?: boolean;
-    hasHeading?: boolean;
+  hasAgent?: boolean;
+  hasIcon?: boolean;
+  hasAction?: boolean;
+  hasContent?: boolean;
+  hasHeading?: boolean;
 };
 ```
 

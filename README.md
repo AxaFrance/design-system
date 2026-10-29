@@ -201,6 +201,33 @@ tester votre nouveau composant.
 Et pour build une partie spécifique du projet, vous pouvez lancer `npm run build:(partie)`
 (`npm run build:distributeur`, `npm run build:client` ou `npm run build:prospect`).
 
+### Qualité du code
+
+La configuration de lint et de formatage est centralisée dans
+[`vite.config.ts`](./vite.config.ts), avec Vite+ (Oxlint et Oxfmt).
+
+```bash
+npm run check          # Formatage, lint et vérification des types
+npm run format         # Appliquer le formatage Oxfmt
+npm run format:check   # Vérifier le formatage sans modifier les fichiers
+npm run lint           # Contrôles par workspace via Turbo, dont Stylelint
+npm test -- --run      # Tests Vitest via Vite+
+```
+
+Les scripts `lint` et `lint:fix` des workspaces React, Storybook et sample utilisent
+également cette configuration racine. Stylelint conserve les règles CSS (dont BEM
+et l'ordre des propriétés), sans intégration Prettier. Les hooks lint-staged et
+l'extension VS Code Vite+ utilisent les mêmes outils.
+
+Les plugins JavaScript React, React Hooks, Import et Storybook restent nécessaires
+pour les règles sans équivalent natif Oxlint, notamment `jsx-no-leaked-render`,
+React Compiler et la résolution des imports. ESLint n'est plus exécuté.
+Les fins de ligne sont normalisées en LF via Oxfmt et `.gitattributes`
+(`endOfLine: "auto"` n'est pas pris en charge par Oxfmt). Un checkout Windows
+existant en CRLF devra être normalisé avec `npm run format`.
+Les sources et lockfiles des Agentic Workflows sont exclus du
+formatage afin de préserver leurs empreintes.
+
 ## Utilisation des icones
 
 Nous vous recommandons d’utiliser la librairie `@material-symbols/svg-400`, mais

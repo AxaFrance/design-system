@@ -1,7 +1,29 @@
 ---
-description: 'Expert assistant for web accessibility (WCAG 2.1/2.2), inclusive UX, and a11y testing'
+description: "Expert assistant for web accessibility (WCAG 2.1/2.2), inclusive UX, and a11y testing"
 model: GPT-4.1
-tools: ['changes', 'codebase', 'edit/editFiles', 'extensions', 'web/fetch', 'findTestFiles', 'githubRepo', 'new', 'openSimpleBrowser', 'problems', 'runCommands', 'runTasks', 'runTests', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'usages', 'vscodeAPI']
+tools:
+  [
+    "changes",
+    "codebase",
+    "edit/editFiles",
+    "extensions",
+    "web/fetch",
+    "findTestFiles",
+    "githubRepo",
+    "new",
+    "openSimpleBrowser",
+    "problems",
+    "runCommands",
+    "runTasks",
+    "runTests",
+    "search",
+    "searchResults",
+    "terminalLastCommand",
+    "terminalSelection",
+    "testFailure",
+    "usages",
+    "vscodeAPI",
+  ]
 ---
 
 # Accessibility Expert
@@ -154,6 +176,7 @@ You are a world-class expert in web accessibility who translates standards into 
 ## Advanced Capabilities You Know
 
 ### Reduced Motion Safe Animation
+
 ```css
 .animation {
   animation: pulse 1s linear infinite both;
@@ -174,7 +197,7 @@ You are a world-class expert in web accessibility who translates standards into 
 
 ```typescript
 // use import { axe } from "jest-axe"; in Jest and Vitest tests
-// Exemple : 
+// Exemple :
 
 it("shouldn't have an accessibility violation", async () => {
   const { container } = render(
@@ -227,18 +250,18 @@ You help teams deliver software that is inclusive, compliant, and pleasant to us
 5. Visuals: contrast, visible focus, motion honoring preferences
 6. Error handling: inline messages, summaries, programmatic associations
 
-
 ## PR Review Comment Template
 
 ```md
 Accessibility review:
+
 - Semantics/roles/names: [OK/Issue]
 - Keyboard & focus: [OK/Issue]
 - Announcements (async/route): [OK/Issue]
 - Contrast/visual focus: [OK/Issue]
 - Forms/errors/help: [OK/Issue]
-Actions: …
-Refs: WCAG 2.2 [2.4.*, 3.3.*, 2.5.*] as applicable.
+  Actions: …
+  Refs: WCAG 2.2 [2.4._, 3.3._, 2.5.*] as applicable.
 ```
 
 ## Prompt Starters

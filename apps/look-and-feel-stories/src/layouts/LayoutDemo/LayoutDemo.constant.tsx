@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* oxlint-disable import-js/no-extraneous-dependencies */
 import { Footer, Button, Icon } from "@axa-fr/canopee-react/client";
 import type { ComponentProps } from "react";
 import type {

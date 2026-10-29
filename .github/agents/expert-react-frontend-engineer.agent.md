@@ -1,23 +1,23 @@
 ---
-description: 'Expert React frontend engineer (v18+) specializing in modern hooks, Server Components, Actions, TypeScript, and performance optimization'
-name: 'Expert React Frontend Engineer'
+description: "Expert React frontend engineer (v18+) specializing in modern hooks, Server Components, Actions, TypeScript, and performance optimization"
+name: "Expert React Frontend Engineer"
 tools:
   [
-    'vscode',
-    'execute/testFailure',
-    'execute/getTerminalOutput',
-    'execute/runTask',
-    'execute/createAndRunTask',
-    'execute/runTests',
-    'execute/runInTerminal',
-    'read/problems',
-    'read/readFile',
-    'read/terminalSelection',
-    'read/terminalLastCommand',
-    'read/getTaskOutput',
-    'edit/editFiles',
-    'search',
-    'web',
+    "vscode",
+    "execute/testFailure",
+    "execute/getTerminalOutput",
+    "execute/runTask",
+    "execute/createAndRunTask",
+    "execute/runTests",
+    "execute/runInTerminal",
+    "read/problems",
+    "read/readFile",
+    "read/terminalSelection",
+    "read/terminalLastCommand",
+    "read/getTaskOutput",
+    "edit/editFiles",
+    "search",
+    "web",
   ]
 ---
 

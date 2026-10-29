@@ -10,10 +10,10 @@ import { Divider } from "@axa-fr/canopee-react/distributeur";
 
 ## Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `mode` | `"horizontal" \| "vertical"` | `"horizontal"` | Orientation du séparateur |
-| `className` | `string` | - | Classes CSS additionnelles |
+| Prop        | Type                         | Défaut         | Description                |
+| ----------- | ---------------------------- | -------------- | -------------------------- |
+| `mode`      | `"horizontal" \| "vertical"` | `"horizontal"` | Orientation du séparateur  |
+| `className` | `string`                     | -              | Classes CSS additionnelles |
 
 Tous les attributs HTML standard du `<hr>` sont supportés.
 

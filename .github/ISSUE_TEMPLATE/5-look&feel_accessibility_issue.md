@@ -2,9 +2,8 @@
 name: Look&Feel Accessibility report
 about: Create an accessibility report to help us improve Look&Feel Design System
 title: "[a11y] "
-labels: ['bug', 'accessibility', "[Client] (look'n feel Espace Client)"]
-assignees: ''
-
+labels: ["bug", "accessibility", "[Client] (look'n feel Espace Client)"]
+assignees: ""
 ---
 
 # Accessibility verification of the component: component
