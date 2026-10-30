@@ -153,6 +153,7 @@ import type { ComponentPropsWithRef, ElementType, ReactNode } from "react";
 type LinkCustomProps = {
   variant?: LinkVariants;
   openInNewTab?: boolean;
+  newWindowLabel?: string; // texte masqué entre parenthèses si openInNewTab (défaut: "nouvelle fenêtre")
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
@@ -168,7 +169,7 @@ type LinkProps<T extends ElementType = "a"> = LinkCustomProps &
 La variante `inverse` est destinée aux fonds colorés. `openInNewTab` vaut `false`
 par défaut.
 
-Quand `openInNewTab` est `true`, un SVG « open_in_new » s'affiche automatiquement à droite, et `rel="noopener noreferrer"` est ajouté.
+Quand `openInNewTab` est `true`, un SVG « open_in_new » (décoratif) s'affiche automatiquement à droite, et `rel="noopener noreferrer"` est ajouté. Le nom accessible du lien se termine alors par « (nouvelle fenêtre) », en texte masqué : `newWindowLabel` change le texte entre parenthèses.
 
 Les props natives ou personnalisées et le type de `ref` sont déduits du composant
 choisi avec `as`. Sans `as`, utiliser `href` et une ref `HTMLAnchorElement`.
