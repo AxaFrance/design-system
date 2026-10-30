@@ -29,6 +29,12 @@ Use the `size` prop to change the size of the spinner. The available variants ar
 
 Use the `variant` prop to change the look of the spinner. The available variants are `"blue"` (default), `"gray"` and `"white"`. [See the examples](#examples-of-variants).
 
+## Accessibility
+
+The spinner is a `status` region, announced politely by screen readers. The `text` prop
+(default `"Chargement en cours"`) is its accessible name and is also rendered as visually
+hidden text inside the region.
+
 ## Examples of variants
 
 <Canvas of={SpinnerStories.MultiExamples} layout="fullscreen" />

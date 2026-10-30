@@ -38,8 +38,7 @@ export const ItemMessage = ({
     <small
       id={id}
       className={`af-item-message af-item-message--${messageType}`}
-      role={messageType === "success" ? undefined : "alert"}
-      aria-live="assertive"
+      role={messageType === "success" ? "status" : "alert"}
     >
       <Icon
         src={getIcon(messageType)}
