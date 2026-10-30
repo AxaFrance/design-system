@@ -9,7 +9,7 @@ afterEach(() => {
   cleanup();
 });
 
-global.URL.createObjectURL = vi.fn(() => "mockedObjectURL");
+globalThis.URL.createObjectURL = vi.fn(() => "mockedObjectURL");
 
 vi.mock("@tanem/svg-injector", () => ({
   SVGInjector: vi.fn(),
@@ -42,6 +42,7 @@ HTMLDialogElement.prototype.close = vi.fn(function mock(
 // built on the Popover API can be tested with Testing Library.
 class PopoverToggleEvent extends Event {
   readonly oldState: "open" | "closed";
+
   readonly newState: "open" | "closed";
 
   constructor(
@@ -66,21 +67,25 @@ const dispatchToggle = (
   oldState: "open" | "closed",
   newState: "open" | "closed",
 ) => {
-  element.dispatchEvent(new PopoverToggleEvent("beforetoggle", { oldState, newState }));
-  element.dispatchEvent(new PopoverToggleEvent("toggle", { oldState, newState }));
+  element.dispatchEvent(
+    new PopoverToggleEvent("beforetoggle", { oldState, newState }),
+  );
+  element.dispatchEvent(
+    new PopoverToggleEvent("toggle", { oldState, newState }),
+  );
 };
 
 const openPopover = (element: HTMLElement) => {
   if (openPopovers.has(element)) return;
   openPopovers.add(element);
-  element.style.display = "block";
+  element.style.setProperty("display", "block");
   dispatchToggle(element, "closed", "open");
 };
 
 const closePopover = (element: HTMLElement) => {
   if (!openPopovers.has(element)) return;
   openPopovers.delete(element);
-  element.style.display = "none";
+  element.style.setProperty("display", "none");
   dispatchToggle(element, "open", "closed");
 };
 

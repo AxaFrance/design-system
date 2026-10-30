@@ -96,7 +96,7 @@ export const TabBarCommon = ({
           break;
       }
     },
-    [selectedTabIndex, totalTabs],
+    [selectedTabIndex, totalTabs, items],
   );
 
   return (
