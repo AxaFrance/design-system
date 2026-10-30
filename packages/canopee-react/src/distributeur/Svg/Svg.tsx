@@ -5,21 +5,12 @@ import {
   useRef,
   useState,
 } from "react";
+import { cloneAttributes, getAccessibilityProps } from "./Svg.helpers";
 import { svgInjector } from "./svgInjector";
 
 type SvgProps = SVGAttributes<SVGSVGElement> & {
   src: string;
   alt?: string;
-};
-
-const cloneAttributes = (
-  from: HTMLElement | SVGSVGElement,
-  to: HTMLElement | SVGSVGElement,
-) => {
-  const attributes = from.getAttributeNames();
-  attributes.forEach((attribute) => {
-    to.setAttribute(attribute, from.getAttribute(attribute) as string);
-  });
 };
 
 export const Svg = ({
@@ -78,5 +69,12 @@ export const Svg = ({
     ) : null;
   }
 
-  return <svg ref={rootRef} data-src={src} role="presentation" {...props} />;
+  return (
+    <svg
+      ref={rootRef}
+      data-src={src}
+      {...getAccessibilityProps({ alt, ...props })}
+      {...props}
+    />
+  );
 };

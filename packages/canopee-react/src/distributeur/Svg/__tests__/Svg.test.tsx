@@ -44,5 +44,39 @@ describe("<Svg />", () => {
 
       expect(await axe(container)).toHaveNoViolations();
     });
+
+    it.each`
+      props                                   | role              | ariaHidden | ariaLabel | focusable
+      ${{}}                                   | ${"presentation"} | ${"true"}  | ${null}   | ${"false"}
+      ${{ alt: "" }}                          | ${"presentation"} | ${"true"}  | ${null}   | ${"false"}
+      ${{ alt: "Aide" }}                      | ${"img"}          | ${null}    | ${"Aide"} | ${null}
+      ${{ "aria-label": "Aide" }}             | ${null}           | ${null}    | ${"Aide"} | ${null}
+      ${{ "aria-labelledby": "help-title" }}  | ${null}           | ${null}    | ${null}   | ${null}
+      ${{ role: "img", "aria-label": "Lu" }}  | ${"img"}          | ${null}    | ${"Lu"}   | ${null}
+      ${{ alt: "Aide", "aria-hidden": true }} | ${"img"}          | ${"true"}  | ${"Aide"} | ${null}
+    `(
+      "sets role=$role and aria-hidden=$ariaHidden for $props",
+      ({ props, role, ariaHidden, ariaLabel, focusable }) => {
+        const { container } = render(<Svg src="svgSrc" {...props} />);
+        const svg = container.querySelector("svg");
+
+        expect(svg?.getAttribute("role")).toBe(role);
+        expect(svg?.getAttribute("aria-hidden")).toBe(ariaHidden);
+        expect(svg?.getAttribute("aria-label")).toBe(ariaLabel);
+        expect(svg?.getAttribute("focusable")).toBe(focusable);
+      },
+    );
+
+    it("shouldn't have an accessibility violation as a decorative icon", async () => {
+      const { container } = render(
+        <button type="button">
+          <Svg src="svgSrc" />
+          Enregistrer
+        </button>,
+      );
+
+      expect(screen.getByRole("button")).toHaveAccessibleName("Enregistrer");
+      expect(await axe(container)).toHaveNoViolations();
+    });
   });
 });

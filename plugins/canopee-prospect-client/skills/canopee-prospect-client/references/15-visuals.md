@@ -60,8 +60,12 @@ type IconProps = ComponentPropsWithoutRef<"span"> & {
                                   // (défaut: "primary")
   size?: IconSizeVariants;        // "L" | "M" | "S" | "XS"  (défaut: "S")
   hasBackground?: boolean;        // Cercle de fond (défaut: false)
+  alt?: string;                   // Nom de l'icône porteuse d'information (role="img")
 };
 ```
+
+Sans `alt`, `aria-label` ni `aria-labelledby`, l'icône est décorative : `aria-hidden="true"` et
+`focusable="false"` sont posés par défaut. Une valeur passée explicitement reste prioritaire.
 
 ### Correspondance tailles
 
@@ -81,6 +85,7 @@ import home from "@material-symbols/svg-400/outlined/home.svg";
 <Icon src={home} variant="success" size="M" />
 <Icon src={home} variant="error" size="L" hasBackground />
 <Icon src={home} variant="disabled" />
+<Icon src={home} alt="Adresse principale" />           // icône informative, nommée
 ```
 
 ---

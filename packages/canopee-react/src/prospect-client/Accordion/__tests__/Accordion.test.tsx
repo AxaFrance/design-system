@@ -19,10 +19,9 @@ describe("Accordion", () => {
       </Accordion>,
     );
 
-    expect(screen.getAllByRole("presentation")[0]).toHaveAttribute(
-      "data-src",
-      "icon.svg",
-    );
+    expect(
+      screen.getAllByRole("presentation", { hidden: true })[0],
+    ).toHaveAttribute("data-src", "icon.svg");
     expect(screen.getByText("Test Title")).toBeInTheDocument();
     expect(screen.getByText("Test Subtitle")).toBeInTheDocument();
     expect(screen.getByText("Info 1")).toBeInTheDocument();
@@ -57,7 +56,9 @@ describe("Accordion", () => {
 
   it("does not render icon or subtitle if not provided", () => {
     render(<Accordion title="Title Only" info1="Info1" info2="Info2" />);
-    expect(screen.queryAllByRole("presentation")).toHaveLength(1);
+    expect(
+      screen.queryAllByRole("presentation", { hidden: true }),
+    ).toHaveLength(1);
     expect(screen.queryByText("Test Subtitle")).not.toBeInTheDocument();
   });
 

@@ -1,16 +1,19 @@
-import { ComponentType } from "react";
-import type { ClickItemContentProps } from "./ClickItemContent/ClickItemContentCommon";
-import { ClickItemStates, ClickItemVariants } from "./ClickItemCommon";
-import { ClickItemPrefixProps } from "./components/ClickItemPrefixCommon";
-import { ClickItemSuffixProps } from "./components/ClickItemSuffixCommon";
+import type { ComponentType, MouseEventHandler } from "react";
+import type { ClickItemStates, ClickItemVariants } from "./ClickItemCommon";
+import type { ClickItemContentProps } from "./components/ClickItemContentCommon";
+import type { ClickItemPrefixProps } from "./components/ClickItemPrefixCommon";
+import type { ClickItemSuffixProps } from "./components/ClickItemSuffixCommon";
 
 export type ClickItemProps = {
-  state: ClickItemStates;
-  variant: ClickItemVariants;
+  /** @default "default" */
+  state?: ClickItemStates;
+  /** @default "large" */
+  variant?: ClickItemVariants;
   className?: string;
+  onClick?: MouseEventHandler<HTMLElement>;
+  ariaLabelForActionIcon?: string;
 } & ClickItemContentProps &
-  ClickItemPrefixProps &
-  ClickItemSuffixProps;
+  Omit<ClickItemPrefixProps, "state" | "variant">;
 
 export type ClickItemPropsCommon = ClickItemProps & {
   ClickItemContentComponent: ComponentType<ClickItemContentProps>;

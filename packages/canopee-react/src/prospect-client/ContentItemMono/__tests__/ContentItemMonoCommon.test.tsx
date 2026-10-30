@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Icon } from "../../Icon/IconCommon";
 import {
   type ContentItemCommonProps,
@@ -113,5 +114,36 @@ describe("ContentItemMonoCommon Component", () => {
 
     expect(screen.getByText("Stick Title")).toBeInTheDocument();
     expect(screen.getByText("Stick Subtitle")).toBeInTheDocument();
+  });
+
+  it("hides the decorative icon from assistive technologies", async () => {
+    const { container } = render(
+      <ContentItemMonoCommon
+        type="icon"
+        title="Titre"
+        iconProps={{ src: "icon.svg" }}
+        IconComponent={Icon}
+      />,
+    );
+
+    const icon = screen.getByTestId("icon");
+    expect(icon).toHaveAttribute("aria-hidden", "true");
+    expect(icon).toHaveAttribute("focusable", "false");
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("names the icon when iconProps has an alt", () => {
+    render(
+      <ContentItemMonoCommon
+        type="icon"
+        title="Titre"
+        iconProps={{ src: "icon.svg", alt: "Contrat auto" }}
+        IconComponent={Icon}
+      />,
+    );
+
+    expect(screen.getByRole("img", { name: "Contrat auto" })).toBe(
+      screen.getByTestId("icon"),
+    );
   });
 });
