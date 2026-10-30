@@ -1,7 +1,7 @@
 @layer canopee {
   .af-form {
     padding: 1rem;
-    background: var(--color-wild-sand);
+    background: var(--gray10);
   }
 
   .af-form__group {
