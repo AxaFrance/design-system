@@ -6,7 +6,7 @@ import { TagListCommon } from "../TagListCommon";
 
 const renderTagList = (count: number, hideThreshold?: number) =>
   render(
-    <TagListCommon OverflowTag={Tag} hideThreshold={hideThreshold}>
+    <TagListCommon OverflowTagComponent={Tag} hideThreshold={hideThreshold}>
       {Array.from({ length: count }, (_, i) => (
         <Tag key={i}>{`Tag ${i + 1}`}</Tag>
       ))}
@@ -59,7 +59,7 @@ describe("TagListCommon", () => {
 
   it("merges custom className with af-tag-list", () => {
     const { container } = render(
-      <TagListCommon OverflowTag={Tag} className="custom-class">
+      <TagListCommon OverflowTagComponent={Tag} className="custom-class">
         <Tag>Tag 1</Tag>
       </TagListCommon>,
     );
