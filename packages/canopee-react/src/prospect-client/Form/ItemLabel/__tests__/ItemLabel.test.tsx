@@ -33,6 +33,22 @@ describe("<ItemLabelCommon/>", () => {
     expect(labelElement).toHaveAccessibleDescription("Description Text");
   });
 
+  it("should give the description the id passed in descriptionId", () => {
+    render(
+      <ItemLabel description="Description Text" descriptionId="description-id">
+        Label Text
+      </ItemLabel>,
+    );
+
+    expect(screen.getByText("Description Text")).toHaveAttribute(
+      "id",
+      "description-id",
+    );
+    expect(screen.getByText("Label Text")).toHaveAccessibleDescription(
+      "Description Text",
+    );
+  });
+
   it("should render the side button", () => {
     render(<ItemLabel sideButtonLabel="Side Button">Label Text</ItemLabel>);
 

@@ -47,6 +47,43 @@ type TBodyProps = ComponentPropsWithRef<"tbody"> & {
 type TrProps = ComponentPropsWithRef<"tr"> & {
   sizeVariant?: RowSizeVariants;    // variantes taille des rangs
 };
+
+// Table.Th
+type ThProps = ComponentPropsWithRef<"th"> & {
+  position?: "left" | "center" | "right";
+  checkboxPosition?: "left" | "center" | "right";
+  onSort?: () => void;     // Affiche le bouton de tri (icône unfold_more)
+  sortDirection?: "ascending" | "descending" | "none"; // Posé en aria-sort si onSort existe
+  sortLabel?: string;      // Nom du bouton de tri (défaut : "Trier par" suivi du texte de
+                           // l'en-tête, même dans un élément, sinon "Trier la colonne")
+  onCheck?: () => void;    // Affiche une case à cocher dans l'en-tête
+  checkboxLabel?: string;  // Nom de la case (défaut : "Tout sélectionner")
+};
+```
+
+### Tri et sélection accessibles
+
+- Passer `sortDirection` sur la colonne triée (`"ascending"` ou `"descending"`) et `"none"` sur
+  les autres colonnes triables : le lecteur d'écran annonce le tri courant (`aria-sort`). Sans
+  `sortDirection`, le tri n'est pas exposé : `Table.Th` ne connaît pas l'état du tri. Un
+  `aria-sort` passé directement reste prioritaire.
+- Le bouton de tri et la case d'en-tête ont toujours un nom. Le bouton reprend le texte de
+  l'en-tête (« Trier par Nom ») ; donner un `checkboxLabel` explicite si la case ne sélectionne
+  pas toutes les lignes (ex. « Sélectionner la colonne Montant »).
+- L'en-tête de colonne garde son texte pour nom (`aria-labelledby`) : la case et le bouton de tri
+  ne s'ajoutent pas à l'en-tête annoncé avec chaque cellule.
+
+```tsx
+<Table.Th
+  scope="col"
+  onSort={() => toggleSort("date")}
+  sortDirection={sort.key === "date" ? sort.direction : "none"}
+>
+  Échéance
+</Table.Th>
+<Table.Th scope="col" onCheck={toggleAll} checkboxLabel="Sélectionner tous les contrats">
+  Contrat
+</Table.Th>
 ```
 
 ### Exemple

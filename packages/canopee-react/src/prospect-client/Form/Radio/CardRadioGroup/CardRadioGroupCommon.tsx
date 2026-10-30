@@ -68,6 +68,7 @@ const CardRadioGroupCommon = ({
       aria-required={Boolean(required) || undefined}
       aria-invalid={hasError || undefined}
       aria-errormessage={hasError ? messageId : undefined}
+      aria-describedby={message ? messageId : undefined}
       id={cardRadioGroupId}
       {...containerProps}
     >
