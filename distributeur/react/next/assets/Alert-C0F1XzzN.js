@@ -1,4 +1,0 @@
-import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{_ as n,d as r,g as i,h as a}from"./iframe-DBecIi7S.js";function o(e){let t={a:`a`,code:`code`,h2:`h2`,p:`p`,...n(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(r,{title:`Components/Alert`}),`
-`,(0,c.jsx)(t.h2,{id:`alert`,children:`Alert`}),`
-`,(0,c.jsxs)(t.p,{children:[`The `,(0,c.jsx)(t.code,{children:`Alert`}),` has been renamed to `,(0,c.jsx)(t.code,{children:`Message`}),` to align the naming between UX components and our implementation.
-See the `,(0,c.jsx)(t.a,{href:`?path=/docs/components-message--docs`,children:`Message documentation`}),` for more details.`]})]})}function s(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,c.jsx)(t,{...e,children:(0,c.jsx)(o,{...e})}):o(e)}var c;function l(){return(l=e((()=>{c=t(),i(),a()})))()}l();export{s as default};
