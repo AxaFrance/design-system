@@ -22,6 +22,10 @@ The Click Item component is an interactive element designed to trigger an action
 
 The component comes in four variants: large, medium, small, and agent. The entire element is clickable.
 
+To navigate to another page, pass `href` (and `target` or `rel` if needed): the item is then rendered as a link instead of a button. Keep `onClick` for actions that stay on the page.
+
+The title is the accessible name of the item. `ariaLabelForActionIcon` describes the action (for example "Aller à la page de détails") and is read after the title and the other texts.
+
 If it's used within a parent component that already handles click events (i.e., the parent itself has an `onClick` handler), you **shouldn't provide an `onClick` function as a prop to this component**.
 In such cases, the component will automatically behave as a **display-only element**, allowing the parent to manage all click interactions.
 
