@@ -52,14 +52,28 @@ import { Header, Name, User, Infos } from "@axa-fr/canopee-react/distributeur";
     { word: "Client :", definition: "0123456789" },
     { word: "Statut :", definition: "Actif" }
   ]} />
-  <User username="Jean Dupont" onLogout={handleLogout} />
+  <User name="Jean Dupont" profile="Admin" href="/profil" />
 </Header>
 ```
+
+### Props — User
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `name` | `string` | **Obligatoire** | Nom affiché |
+| `profile` | `string` | - | Profil affiché entre crochets après le nom |
+| `href` | `string` | - | Rend le nom et le profil dans un lien |
+| `onClick` | `({ path, event }) => void` | - | Clic sur le lien |
+| `path` | `string` | - | Valeur transmise à `onClick` |
+| `title` | `string` | - (aucun) | Infobulle du lien ; si vous en mettez une, commencez par le texte visible (ex. `"Jean Dupont, voir mon profil"`) |
+| `children` | `ReactNode` | - | Contenu affiché après le nom |
+
+Le lien est nommé par son contenu visible (nom et profil), sans `aria-label` ni `title` par défaut.
 
 ## Avec navigation
 
 `NavBar` est le menu principal (`id="mainmenu"`, en tiroir sur petit écran) ; chaque `NavBarItem` reçoit
-son lien dans `actionElt`.
+son lien dans `actionElt`. Les deux boutons de fermeture du tiroir sont nommés « Fermer le menu ».
 
 ```tsx
 import { NavBar, NavBarItem } from "@axa-fr/canopee-react/distributeur";
@@ -97,7 +111,8 @@ Le composant `HeaderTitle` rend un `<h1>` stylé avec support d'un sous-titre, d
 | `toggleMenu` | `() => void` | - | Affiche, sur petit écran, le bouton hamburger qui ouvre le menu principal (`<button>`) |
 | `isMenuOpen` | `boolean` | - | État du menu ouvert par ce bouton, exposé par `aria-expanded`, avec `aria-controls="mainmenu"` (les deux absents si non renseigné ; `MenuTitleWrapper` le transmet) |
 | `toggleMenuLabel` | `string` | `"Menu principal"` | Nom accessible du bouton hamburger |
-| `anchorNavBarItems` | `AnchorNavBarItem[]` | - | Éléments de navigation par ancres sous le titre |
+| `anchorNavBarItems` | `AnchorNavBarItem[]` | - | Éléments de navigation par ancres sous le titre (`name`, `link`, `isActive`, `onClick`, `externalLink`, `render`) |
+| `newWindowLabel` | `string` | `"nouvelle fenêtre"` | Texte masqué, entre parenthèses, lu après le nom des liens `externalLink` (ouverts dans un nouvel onglet) |
 | `children` | `ReactNode` | - | Contenu additionnel après le titre |
 | `className` | `string` | `"af-title-bar"` | Classe CSS |
 
@@ -130,12 +145,16 @@ const [isMenuOpen, setIsMenuOpen] = useState(false);
 <HeaderTitle
   title="Dossier client"
   anchorNavBarItems={[
-    { label: "Identité", href: "#identite" },
-    { label: "Contrats", href: "#contrats" },
-    { label: "Sinistres", href: "#sinistres" },
+    { name: "Identité", link: "#identite", isActive: true },
+    { name: "Contrats", link: "#contrats" },
+    { name: "Aide", link: "https://aide.exemple.fr", externalLink: true },
   ]}
 />
 ```
+
+Un élément `externalLink` s'ouvre dans un nouvel onglet : son nom accessible se termine par le texte
+masqué « (nouvelle fenêtre) » (« Aide (nouvelle fenêtre) »), modifiable avec `newWindowLabel` ; l'icône
+reste décorative.
 
 ## Classes CSS
 - `.af-header` - En-tête de base

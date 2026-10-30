@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { File } from "../File";
 
 describe("<File.File>", () => {
@@ -14,5 +14,15 @@ describe("<File.File>", () => {
       />,
     );
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("hides the browse button icon", () => {
+    render(<File id="id" name="file" onChange={() => {}} />);
+
+    const button = screen.getByRole("button", { name: "Parcourir" });
+    expect(button.querySelector(".glyphicon-open")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
   });
 });

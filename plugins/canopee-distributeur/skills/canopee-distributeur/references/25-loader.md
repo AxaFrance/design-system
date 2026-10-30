@@ -1,6 +1,6 @@
 # Loader
 
-Indicateur de chargement avec overlay sur un contenu existant. Quand `mode` est différent de `"none"`, un spinner est superposé au contenu.
+Indicateur de chargement : un spinner et son texte, en ligne, dans une zone de contenu, ou en overlay plein écran au-dessus d'un contenu existant.
 
 ## Import
 
@@ -12,73 +12,56 @@ import { Loader } from "@axa-fr/canopee-react/distributeur";
 
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
-| `mode` | `"none" \| "get" \| "post" \| "delete" \| "update" \| "error"` | **Obligatoire** | Mode du loader (détermine le texte et l'état) |
-| `children` | `ReactNode` | **Obligatoire** | Contenu sur lequel le loader est superposé |
-| `text` | `string` | - | Texte personnalisé (remplace le texte par défaut du mode) |
+| `text` | `string` | **Obligatoire** | Texte affiché sous le spinner, et annoncé aux lecteurs d'écran |
+| `variant` | `"fullscreen" \| "inline" \| "content"` | `"fullscreen"` | `fullscreen` : overlay plein écran ; `inline` : spinner en ligne ; `content` : spinner compact pour une zone de contenu |
+| `children` | `ReactNode` | - | Avec `fullscreen` seulement : contenu affiché sous l'overlay |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
-
-## Textes par défaut selon le mode
-
-| Mode | Texte affiché |
-|------|--------------|
-| `"none"` | *(aucun loader affiché)* |
-| `"get"` | "Chargement en cours" |
-| `"post"` | "Sauvegarde en cours" |
-| `"delete"` | "Suppression en cours" |
-| `"update"` | "Mise à jour en cours" |
-| `"error"` | "Une erreur est survenue lors du chargement du composant" |
 
 ## Utilisation
 
 ```tsx
 import { Loader } from "@axa-fr/canopee-react/distributeur";
 
-// Contenu sans chargement
-<Loader mode="none">
-  <div>Contenu visible normalement</div>
-</Loader>
-
-// Chargement en cours
-<Loader mode="get">
-  <div>Contenu masqué pendant le chargement</div>
-</Loader>
-
-// Sauvegarde
-<Loader mode="post">
+// Overlay plein écran au-dessus d'un formulaire
+<Loader variant="fullscreen" text="Sauvegarde en cours">
   <form>...</form>
 </Loader>
 
-// Mode erreur
-<Loader mode="error">
-  <div>Contenu de la zone</div>
-</Loader>
+// Spinner en ligne
+<Loader variant="inline" text="Recherche en cours" />
 
-// Texte personnalisé
-<Loader mode="get" text="Récupération de vos contrats...">
-  <div>Liste des contrats</div>
-</Loader>
+// Zone de contenu
+<Loader variant="content" text="Chargement de vos contrats" />
 ```
 
 ## Utilisation dynamique
 
+Le composant n'a pas d'état « inactif » : l'afficher seulement pendant le chargement.
+
 ```tsx
-const [loadingMode, setLoadingMode] = useState<"none" | "get" | "post" | "error">("none");
+const [isSaving, setIsSaving] = useState(false);
 
 const handleSave = async () => {
-  setLoadingMode("post");
+  setIsSaving(true);
   try {
     await saveData();
-    setLoadingMode("none");
-  } catch {
-    setLoadingMode("error");
+  } finally {
+    setIsSaving(false);
   }
 };
 
-<Loader mode={loadingMode}>
+<>
   <form>
     {/* formulaire */}
     <Button onClick={handleSave}>Enregistrer</Button>
   </form>
-</Loader>
+  {isSaving ? <Loader variant="content" text="Sauvegarde en cours" /> : null}
+</>
 ```
+
+## Accessibilité
+
+- Le Loader a `role="status"` : les lecteurs d'écran annoncent son `text` poliment, sans interrompre
+  l'utilisateur. Il ne porte ni `aria-live="assertive"` ni `aria-busy`.
+- Le spinner est une image décorative (`aria-hidden`) : le texte porte l'information.
+- Pour signaler une erreur de chargement, utiliser un `Message` `variant="error"` (`role="alert"`).

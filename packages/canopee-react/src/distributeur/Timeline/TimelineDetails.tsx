@@ -21,7 +21,7 @@ export const TimelineDetails = ({ header, details, date }: TimelineItem) => {
           width={20}
           height={20}
           className="af-timeline__show-and-hide-icon"
-          aria-label={`${detailOpen ? "Masquer" : "Devoiler"} le detail de la date ${formatDate(date)}`}
+          aria-label={`${detailOpen ? "Masquer" : "Dévoiler"} le détail de la date ${formatDate(date)}`}
           role="img"
         />
       </summary>

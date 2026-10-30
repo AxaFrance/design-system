@@ -27,7 +27,6 @@ import {
 |------|------|--------|-------------|
 | `children` | `ReactNode` | - | Éléments `Step` enfants |
 | `className` | `string` | `"af-steps-new"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### Props — Step
 
@@ -39,9 +38,8 @@ import {
 | `mode` | `"link" \| "active" \| "disabled"` | `"link"` | Mode d'affichage de l'étape |
 | `href` | `string` | - | URL de navigation (utilisé en mode `"link"`) |
 | `onClick` | `(e: CustomClickEvent) => void` | - | Gestionnaire de clic (utilisé en mode `"link"`) |
-| `stateLabel` | `string` | - | Label d'état pour l'accessibilité (ex : "complété", "en cours", "à venir") |
+| `stateLabel` | `string` | `"complété"`, `"en cours"` ou `"à venir"` selon `mode` | État lu après le titre (texte masqué) et ajouté au `title` du `li` |
 | `className` | `string` | - | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### Modes de Step
 
@@ -93,6 +91,14 @@ const TunnelCommande = () => {
   );
 };
 ```
+
+### Accessibilité
+
+- L'état de chaque `Step` est lu après son titre, dans un texte masqué : « Livraison (complété) »,
+  « Paiement (en cours) », « Confirmation (à venir) ». Pour un autre libellé, passer `stateLabel`.
+- L'étape `"active"` porte `aria-current="step"`.
+- Avec `StepBase` et un contenu personnalisé, ajouter vous-même l'état dans le contenu, et passer
+  `aria-current="step"` à `StepBase` pour l'étape en cours.
 
 ## VerticalStep
 

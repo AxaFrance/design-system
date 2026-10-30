@@ -28,6 +28,11 @@ type Props = {
   /** Accessible name of the menu toggle */
   toggleMenuLabel?: string;
   anchorNavBarItems?: AnchorNavBarItem[];
+  /**
+   * Visually hidden text, in parentheses, after the name of the anchorNavBarItems
+   * links that open in a new tab, "nouvelle fenêtre" by default.
+   */
+  newWindowLabel?: string;
 };
 
 const HeaderTitle = ({
@@ -42,6 +47,7 @@ const HeaderTitle = ({
   isMenuOpen,
   toggleMenuLabel = "Menu principal",
   anchorNavBarItems,
+  newWindowLabel,
 }: Props) => {
   const componentClassName = getClassName({
     baseClassName: defaultClassName,
@@ -93,7 +99,10 @@ const HeaderTitle = ({
       </div>
 
       {isAnchorNavBarPresent ? (
-        <AnchorNavBar items={anchorNavBarItems} />
+        <AnchorNavBar
+          items={anchorNavBarItems}
+          newWindowLabel={newWindowLabel}
+        />
       ) : null}
     </>
   );
