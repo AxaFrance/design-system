@@ -44,6 +44,7 @@ export const CardRadioCommon = ({
         baseClassName: "af-card-radio",
         modifiers: [
           variant === "error" && "invalid",
+          variant === "warning" && "warning",
           isCardRadioHorizontal && "horizontal",
         ],
         className,
