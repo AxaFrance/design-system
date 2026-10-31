@@ -34,8 +34,11 @@ import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
   picture: string;             // src de l'image
   title: string;
   subtitle: string;
+  basePictureProps?: Omit<ComponentProps<typeof BasePicture>, "src">;
 }
 ```
+
+L'image est décorative par défaut (`alt=""`) : le titre est déjà affiché à côté, un `alt` identique le ferait lire deux fois par les lecteurs d'écran. Passer `basePictureProps={{ alt: "…" }}` seulement si l'image porte une information que le texte ne donne pas.
 
 **Mode `stick`** :
 ```tsx
@@ -90,18 +93,29 @@ import { DataAgent, type DataAgentProps } from "@axa-fr/canopee-react/prospect";
 ### Props
 
 ```tsx
-type TupleMax3<T> = [T] | [T, T] | [T, T, T];
+type TupleMax3<T> = [T] | [T, T] | [T, T, T]; // 1 à 3 éléments, comme les emplacements de la maquette
 
 type DataAgentProps = {
   className?: string;
-  agentProps: ContentMonoItemPictureProps;         // Profil agent (photo + nom + rôle)
+  agentProps: ContentMonoItemPictureProps;         // Profil agent (photo + nom + rôle), obligatoire
   agentContractProps?: ContentMonoItemStickProps;  // Contrat agent (titre + sous-titre avec stick)
   contents?: TupleMax3<ContentMonoItemIconProps>;  // 1 à 3 infos avec icône (email, tel, adresse…)
   clickContents?: TupleMax3<ClickItemProps>;       // 1 à 3 actions cliquables
-  texteOrias?: string;                             // Mention légale ORIAS
+  oriasText?: string;                              // Mention légale ORIAS
+  texteOrias?: string;                             // Déprécié : utiliser oriasText
   isCompact?: boolean;                             // Variante compacte sur mobile  (défaut: true)
-};
+  variant?: "default" | "compact";                 // "compact" : variante compacte quelle que soit la taille d'écran
+  compactClickItemProps?: Omit<ClickItemProps, "variant" | "basePictureProps" | "title" | "subtitle">;
+                                                   // ClickItem de la variante compacte (onClick, ariaLabelForActionIcon…)
+} & Omit<ComponentPropsWithoutRef<"section">, "children">; // aria-label, aria-labelledby, id, data-*…
 ```
+
+La photo de l'agent est décorative dans les deux mises en page (`alt=""`), puisque son nom est affiché à côté. `agentProps.basePictureProps` est transmis à l'image, en mise en page normale comme compacte.
+
+- **1 à 3 contenus et 1 à 3 actions** : la maquette a trois emplacements de chaque (Contenu 1 à 3, Click 1 à 3, les deux derniers optionnels). Ils sont rendus en listes (`ul`/`li`).
+- **Actions toujours en ClickItem `small`** : c'est la seule variante de la maquette du DataAgent ; la `variant` passée dans `clickContents` est ignorée.
+- **Variante compacte** : un seul ClickItem `agent` construit depuis `agentProps`. Sans `compactClickItemProps`, il n'est pas cliquable ; lui passer `onClick` pour le rendre interactif.
+- **Région nommée** : les attributs natifs de la `section` racine sont transmis ; `aria-label="Votre conseiller"` ou `aria-labelledby` (id du titre affiché au-dessus) en fait une région pour les lecteurs d'écran.
 
 ### Exemple
 
@@ -152,6 +166,6 @@ import locationIcon from "@material-symbols/svg-400/outlined/location_on.svg";
       ariaLabelForActionIcon: "Prendre rendez-vous avec Jean Martin",
     },
   ]}
-  texteOrias="ORIAS n° 07 001 234"
+  oriasText="ORIAS n° 07 001 234"
 />
 ```

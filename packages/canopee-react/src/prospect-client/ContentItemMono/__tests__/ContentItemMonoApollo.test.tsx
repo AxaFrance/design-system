@@ -15,11 +15,6 @@ describe("ContentItemMono Component", () => {
 
     // Vérifie que le titre est affiché
     expect(screen.getByText("Picture Title")).toBeInTheDocument();
-
-    // Vérifie que l'image est affichée avec le bon src et alt
-    const image = screen.getByRole("img", { name: "Picture Title" });
-    expect(image).toHaveAttribute("src", "test-image.jpg");
-    expect(image).toHaveAttribute("alt", "Picture Title");
   });
 
   it("renders correctly with type 'icon'", () => {
