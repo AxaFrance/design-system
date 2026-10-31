@@ -270,12 +270,13 @@ describe("HeaderCommon", () => {
         expect(getMenuButton()).toHaveClass("af-header__menu-icon");
       });
 
-      it("is a collapsed disclosure button controlling the hidden panel", () => {
+      it("is a collapsed button controlling the hidden panel", () => {
         renderHeader(fullProps());
 
         const button = getMenuButton();
         expect(button).toHaveAttribute("aria-expanded", "false");
         expect(button).not.toHaveAttribute("aria-haspopup");
+        expect(button).toHaveClass("af-click-icon--medium");
         expect(getMenuPanel()).toHaveClass("af-header__panel");
         expect(getMenuPanel()).not.toBeVisible();
       });
@@ -339,15 +340,20 @@ describe("HeaderCommon", () => {
     });
 
     describe("opening and closing", () => {
-      it("opens the panel with a click and moves the focus to its first entry", async () => {
+      it("opens a modal panel named like the button and focuses its close button", async () => {
         renderHeader(fullProps());
 
         await openMenu();
 
         expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
         expect(getMenuPanel()).toBeVisible();
-        expect(screen.getByRole("link", { name: "Accueil" })).toHaveFocus();
-        expect(getMenuPanel().parentElement).toHaveClass("af-header__overlay");
+        expect(screen.getByRole("dialog", { name: "Menu" })).toBe(
+          getMenuPanel(),
+        );
+        expect(getMenuPanel()).toHaveAttribute("aria-modal", "true");
+        expect(
+          screen.getByRole("button", { name: "Fermer le menu" }),
+        ).toHaveFocus();
       });
 
       it("opens with Enter, closes with Escape and gives the focus back to the button", async () => {
@@ -359,7 +365,9 @@ describe("HeaderCommon", () => {
 
         await user.keyboard("{Enter}");
         expect(getMenuPanel()).toBeVisible();
-        expect(screen.getByRole("link", { name: "Accueil" })).toHaveFocus();
+        expect(
+          screen.getByRole("button", { name: "Fermer le menu" }),
+        ).toHaveFocus();
 
         await user.keyboard("{Escape}");
         expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
@@ -376,6 +384,8 @@ describe("HeaderCommon", () => {
         expect(getMenuPanel()).toBeVisible();
 
         await user.tab();
+        expect(screen.getByRole("link", { name: "Accueil" })).toHaveFocus();
+        await user.tab();
         expect(screen.getByRole("link", { name: "Contrats" })).toHaveFocus();
         await user.tab();
         expect(
@@ -383,27 +393,29 @@ describe("HeaderCommon", () => {
         ).toHaveFocus();
       });
 
-      it("closes with the button, which keeps the focus", async () => {
+      it("closes with its close button and gives the focus back to the menu button", async () => {
         renderHeader(fullProps());
         const user = await openMenu();
 
-        await user.click(getMenuButton());
+        await user.click(
+          screen.getByRole("button", { name: "Fermer le menu" }),
+        );
 
         expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
         expect(getMenuPanel()).not.toBeVisible();
         expect(getMenuButton()).toHaveFocus();
       });
 
-      it("closes with a click on the veil and gives the focus back to the button", async () => {
-        renderHeader(fullProps());
-        const user = await openMenu();
+      it("uses a custom accessible name for the close button", async () => {
+        renderHeader({
+          ...fullProps(),
+          closeButtonAriaLabel: "Fermer la navigation",
+        });
+        await openMenu();
 
-        const veil = getMenuPanel().parentElement as HTMLElement;
-        await user.click(veil);
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
-        expect(veil).not.toBeVisible();
-        expect(getMenuButton()).toHaveFocus();
+        expect(
+          screen.getByRole("button", { name: "Fermer la navigation" }),
+        ).toHaveFocus();
       });
 
       it("closes when a navigation link is chosen", async () => {
@@ -433,22 +445,6 @@ describe("HeaderCommon", () => {
           props.menuBurgerProps?.clickItems?.[0].onClick,
         ).toHaveBeenCalled();
         expect(getMenuPanel()).not.toBeVisible();
-      });
-
-      it("closes when the logo link is chosen", async () => {
-        renderHeader({
-          ...fullProps(),
-          appNameProps: {
-            label: "Mon application",
-            logoAlt: "Accueil AXA",
-            logoLinkProps: { href: "#accueil" },
-          },
-        });
-        const user = await openMenu();
-
-        await user.click(screen.getByRole("link", { name: "Accueil AXA" }));
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
       });
 
       it("closes when a link of the free content is chosen", async () => {
@@ -482,15 +478,6 @@ describe("HeaderCommon", () => {
         );
 
         expect(onClick).toHaveBeenCalledOnce();
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
-      });
-
-      it("stays open when the title is clicked", async () => {
-        renderHeader({ ...fullProps(), title: "Devis assurance auto" });
-        const user = await openMenu();
-
-        await user.click(screen.getByText("Devis assurance auto"));
-
         expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
       });
 
@@ -663,17 +650,22 @@ describe("HeaderCommon", () => {
 
         const user = await openMenu();
         expect(main).toHaveAttribute("inert");
-        expect(document.querySelector("header")).not.toHaveAttribute("inert");
+        expect(getMenuButton()).toHaveAttribute("inert");
+        expect(document.querySelector(".af-header__app-name")).toHaveAttribute(
+          "inert",
+        );
+        expect(getMenuPanel()).not.toHaveAttribute("inert");
 
         await user.keyboard("{Escape}");
         expect(main).not.toHaveAttribute("inert");
+        expect(getMenuButton()).not.toHaveAttribute("inert");
       });
 
       it("leaves the elements that were already inert as they were", async () => {
         renderPage();
 
         const user = await openMenu();
-        await user.click(getMenuButton());
+        await user.keyboard("{Escape}");
 
         expect(screen.getByText("Pied de page")).toHaveAttribute("inert");
       });
@@ -712,7 +704,9 @@ describe("HeaderCommon", () => {
 
         const user = await openMenu();
         expect(main).toHaveAttribute("inert");
-        expect(screen.getByRole("link", { name: "Accueil" })).toHaveFocus();
+        expect(
+          screen.getByRole("button", { name: "Fermer le menu" }),
+        ).toHaveFocus();
 
         await user.keyboard("{Escape}");
         expect(main).not.toHaveAttribute("inert");
