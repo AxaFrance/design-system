@@ -111,6 +111,18 @@ describe("HeaderCommon", () => {
         expect(screen.getByText("Accueil")).toBeInTheDocument();
         expect(screen.getByText("Contrats")).toBeInTheDocument();
       });
+
+      it("does not show the icons of the entries in the tabs", () => {
+        renderHeader({
+          tabMenuProps: {
+            items: [{ href: "#accueil", label: "Accueil", icon: "home.svg" }],
+          },
+        });
+
+        const link = screen.getByRole("link", { name: "Accueil" });
+        expect(link).not.toHaveAttribute("icon");
+        expect(link.querySelector("svg")).toBeNull();
+      });
     });
 
     describe("MenuBurger", () => {
@@ -566,6 +578,29 @@ describe("HeaderCommon", () => {
         expect(
           link.querySelector(".af-apollo-click-item--small"),
         ).toBeInTheDocument();
+      });
+
+      it("shows the icon of a navigation entry in the panel", async () => {
+        renderHeader({
+          tabMenuProps: {
+            items: [
+              { href: "#accueil", label: "Accueil", icon: "home.svg" },
+              { href: "#contrats", label: "Contrats" },
+            ],
+          },
+        });
+        await openMenu();
+
+        expect(
+          screen
+            .getByRole("link", { name: "Accueil" })
+            .querySelector(".af-apollo-click-item__leading svg"),
+        ).toHaveAttribute("data-src", "home.svg");
+        expect(
+          screen
+            .getByRole("link", { name: "Contrats" })
+            .querySelector(".af-apollo-click-item__leading svg"),
+        ).toBeNull();
       });
 
       it("marks only the current page with aria-current", async () => {

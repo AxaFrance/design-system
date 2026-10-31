@@ -33,6 +33,17 @@ export const getKeyedItems = <T>(items: T[], getName: (item: T) => string) => {
 };
 
 /**
+ * Returns copies of the items without their `icon`: the icon of a navigation
+ * entry is only shown in the small screen menu, not in the TabMenu.
+ */
+export const withoutIcons = <T extends { icon?: string }>(items: T[]) =>
+  items.map((item) => {
+    const copy = { ...item };
+    delete copy.icon;
+    return copy;
+  });
+
+/**
  * Makes everything around `root` inert: its siblings, then the siblings of
  * each of its ancestors up to `body`. The background can no longer be reached
  * with the keyboard nor read by screen readers, while `root` stays usable.

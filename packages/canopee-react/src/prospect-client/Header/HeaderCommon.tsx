@@ -14,12 +14,35 @@ import { type ClickIconProps } from "../ClickIcon/ClickIconCommon";
 import { type HeadingProps } from "../Heading/types";
 import { type ClickItemProps } from "../List/ClickItem/ClickItemCommon";
 import { type MenuBurgerProps } from "../MenuBurger/MenuBurgerCommon";
-import { TabMenu, type TabMenuProps } from "../TabMenu/TabMenu";
+import {
+  TabMenu,
+  type TabMenuItemProps,
+  type TabMenuProps,
+} from "../TabMenu/TabMenu";
 import { BREAKPOINT } from "../utilities/constants";
 import { getClassName } from "../utilities/getClassName";
 import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
-import { getKeyedItems } from "./Header.helpers";
+import { getKeyedItems, withoutIcons } from "./Header.helpers";
 import { useHeaderMenu } from "./useHeaderMenu";
+
+/**
+ * One entry of the main navigation.
+ */
+export type HeaderTabMenuItemProps = TabMenuItemProps & {
+  /**
+   * Icon of the entry in the small screen menu, like the ClickItems that
+   * follow it. The large screen tabs do not show it.
+   */
+  icon?: string;
+};
+
+/**
+ * Main navigation of the header: TabMenu props with an optional icon per
+ * entry.
+ */
+export type HeaderTabMenuProps = Omit<TabMenuProps, "items"> & {
+  items?: HeaderTabMenuItemProps[];
+};
 
 /**
  * Props for the Header component.
@@ -39,7 +62,7 @@ export type HeaderProps = Omit<ComponentPropsWithoutRef<"header">, "title"> & {
    * menu panel on small screens. The item with `isActive` is the current
    * page.
    */
-  tabMenuProps?: TabMenuProps;
+  tabMenuProps?: HeaderTabMenuProps;
   /**
    * Props forwarded to the menu button of small screens.
    * Its accessible name defaults to "Menu".
@@ -143,7 +166,10 @@ export const HeaderCommon = ({
     ? withElementClass(menuBurgerProps, "af-header__menu-burger")
     : undefined;
   const parsedTabMenuProps = tabMenuProps
-    ? withElementClass(tabMenuProps, "af-header__tab-menu")
+    ? {
+        ...withElementClass(tabMenuProps, "af-header__tab-menu"),
+        items: tabMenuProps.items && withoutIcons(tabMenuProps.items),
+      }
     : undefined;
 
   const titleElement = title ? (
@@ -230,6 +256,7 @@ export const HeaderCommon = ({
                     const {
                       label,
                       isActive,
+                      icon,
                       className: itemClassName,
                       ...linkProps
                     } = item;
@@ -246,7 +273,11 @@ export const HeaderCommon = ({
                             isActive ? "page" : linkProps["aria-current"]
                           }
                         >
-                          <ClickItemComponent variant="small" title={label} />
+                          <ClickItemComponent
+                            variant="small"
+                            title={label}
+                            icon={icon}
+                          />
                         </a>
                       </li>
                     );

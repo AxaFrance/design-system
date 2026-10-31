@@ -4,6 +4,7 @@ import {
   getKeyedItems,
   lockPageScroll,
   makeOthersInert,
+  withoutIcons,
 } from "../Header.helpers";
 
 describe("Header helpers", () => {
@@ -115,6 +116,21 @@ describe("Header helpers", () => {
       lockPageScroll();
 
       expect(style.paddingRight).toBe("");
+    });
+  });
+
+  describe("withoutIcons", () => {
+    it("removes the icon of each item and keeps the rest", () => {
+      const items = [
+        { href: "#accueil", label: "Accueil", icon: "home.svg" },
+        { href: "#contrats", label: "Contrats" },
+      ];
+
+      expect(withoutIcons(items)).toEqual([
+        { href: "#accueil", label: "Accueil" },
+        { href: "#contrats", label: "Contrats" },
+      ]);
+      expect(items[0].icon).toBe("home.svg");
     });
   });
 
