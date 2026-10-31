@@ -24,7 +24,7 @@ export default meta;
 
 const tabMenuProps: TabMenuProps = {
   items: [
-    { href: "#accueil", label: "Accueil" },
+    { href: "#accueil", label: "Accueil", isActive: true },
     { href: "#contrats", label: "Contrats" },
   ],
 };
