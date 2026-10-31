@@ -5,10 +5,33 @@ import * as HeaderStories from "./Header.stories";
 
 # Header
 
-Responsive page header composed of an `AppName`, an optional `TabMenu`, an optional `MenuBurger`, and optional action children.
+Responsive page header, in two styles as in the mockup:
 
-- **Mobile**: the hamburger icon (`ClickIcon`) toggles the menu panel. The `TabMenu` and actions slide in as a full-height overlay.
-- **Desktop**: the menu is always visible inline; the icon is hidden. The `MenuBurger` uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
+- **Default**: AXA logo, an optional `TabMenu`, optional action children (a secondary button) and an optional `MenuBurger` (the primary button).
+- **Parcours**: AXA logo and a `title`, at the end of the header, in place of the actions.
+
+On desktop (1024px and more), everything is on one line; the `MenuBurger` panel uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API), with a veil on the page. On mobile (up to 1023px), the header shows the logo, the title and a "Menu" button. The button opens a full screen panel with its own close button: the `TabMenu` items (with their optional `icon`) and the `MenuBurger` click items as small `ClickItem`s, then, at the bottom, the action children and the `MenuBurger` children.
+
+## Layout
+
+| Measure                         | Mobile                            | Desktop        |
+| ------------------------------- | --------------------------------- | -------------- |
+| Side margins                    | 16px                              | 60px           |
+| Logo                            | 40px                              | 56px           |
+| Space above and under the logo  | 8px                               | 16px           |
+| Logo to navigation              | —                                 | 24px           |
+| Action children to `MenuBurger` | —                                 | 40px           |
+| Title (Publico Headline Bold)   | 20px                              | 24px           |
+| Menu button (icon)              | 32px                              | —              |
+| Menu panel                      | Full screen, close button of 40px | 371px wide     |
+| Panel padding                   | 24px                              | 24px 16px 16px |
+
+## Accessibility
+
+- One `<header>`, one `<nav>` at a time: the `TabMenu` on desktop, the panel navigation on mobile. Give a name to the `TabMenu` with `aria-label` when the page has several navigations: the panel navigation gets the same name.
+- The `TabMenu` item with `isActive` is the current page: in the mobile panel, its link gets `aria-current="page"`.
+- The "Menu" button gives its state with `aria-expanded` and points to the panel with `aria-controls`. Its name does not change; pass `clickIconProps={{ "aria-label": "…" }}` to change it. At 32px, it meets the minimum target size of WCAG 2.2 (2.5.8, 24px).
+- The mobile panel is a modal dialog named like the button. While it is open, the focus moves to its close button ("Fermer le menu", see `closeButtonAriaLabel`), the rest of the page, the header included, is `inert` and does not scroll. Escape, the close button, a link or an entry closes the panel and the focus goes back to the "Menu" button. Other buttons of the panel (one that opens a modal, for instance) leave it open.
 
 ## Import
 
@@ -23,16 +46,18 @@ import {
   Header,
   Button,
   Icon,
+  type HeaderProps,
   type MenuBurgerProps,
-  type TabMenuProps,
 } from "@axa-fr/canopee-react/prospect";
+import contract from "@material-symbols/svg-400/rounded/contract-fill.svg";
+import home from "@material-symbols/svg-400/rounded/home-fill.svg";
 import logout from "@material-symbols/svg-400/rounded/logout.svg";
 import settings from "@material-symbols/svg-400/rounded/settings-fill.svg";
 
-const tabMenuProps: TabMenuProps = {
+const tabMenuProps: HeaderProps["tabMenuProps"] = {
   items: [
-    { href: "#accueil", label: "Accueil" },
-    { href: "#contrats", label: "Contrats" },
+    { href: "/", label: "Accueil", icon: home, isActive: true },
+    { href: "/contrats", label: "Contrats", icon: contract },
   ],
 };
 
@@ -60,7 +85,7 @@ const menuBurgerProps: MenuBurgerProps = {
 };
 
 <Header
-  appNameProps={{ label: "Mon application", logoLinkProps: { href: "/" } }}
+  appNameProps={{ logoLinkProps: { href: "/" } }}
   tabMenuProps={tabMenuProps}
   menuBurgerProps={menuBurgerProps}
 />;
@@ -68,15 +93,16 @@ const menuBurgerProps: MenuBurgerProps = {
 
 ## Props
 
-| Prop              | Type              | Default     | Description                                                    |
-| ----------------- | ----------------- | ----------- | -------------------------------------------------------------- |
-| `appNameProps`    | `AppNameProps`    | —           | Props forwarded to the `AppName` component. **Required.**      |
-| `tabMenuProps`    | `TabMenuProps`    | `undefined` | Navigation items rendered as a tab menu.                       |
-| `menuBurgerProps` | `MenuBurgerProps` | `undefined` | Account menu rendered as a burger button on desktop.           |
-| `clickIconProps`  | `ClickIconProps`  | `undefined` | Props forwarded to the mobile hamburger trigger icon.          |
-| `title`           | `string`          | `undefined` | Title displayed in the actions zone (desktop only).            |
-| `actionChildren`  | `ReactNode`       | `undefined` | Free content rendered in the actions zone (e.g. a CTA button). |
-| `className`       | `string`          | `undefined` | Additional CSS class on the `<header>` element.                |
+| Prop                   | Type              | Default            | Description                                                                                                  |
+| ---------------------- | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `appNameProps`         | `AppNameProps`    | —                  | AXA logo (`logoLinkProps`, `logoAlt`). **Required.** `label` is deprecated: the mockup shows the logo alone. |
+| `tabMenuProps`         | `TabMenuProps`    | `undefined`        | Navigation items rendered as a tab menu. Each item accepts an `icon`, shown in the mobile panel only.        |
+| `menuBurgerProps`      | `MenuBurgerProps` | `undefined`        | Account menu rendered as a burger button on desktop.                                                         |
+| `clickIconProps`       | `ClickIconProps`  | `undefined`        | Props forwarded to the mobile "Menu" button.                                                                 |
+| `closeButtonAriaLabel` | `string`          | `"Fermer le menu"` | Accessible name of the close button of the mobile panel.                                                     |
+| `title`                | `string`          | `undefined`        | Title displayed at the end of the header ("Parcours" style).                                                 |
+| `actionChildren`       | `ReactNode`       | `undefined`        | Free content rendered in the actions zone (e.g. a CTA button).                                               |
+| `className`            | `string`          | `undefined`        | Additional CSS class on the `<header>` element.                                                              |
 
 ## Playground
 
@@ -110,6 +136,14 @@ const menuBurgerProps: MenuBurgerProps = {
 
 <Canvas of={HeaderStories.LogoAndMenuWithTitle} />
 
-### Logo + title
+### Parcours (logo + title)
 
 <Canvas of={HeaderStories.LogoWithTitle} />
+
+## Deprecated
+
+### Application name next to the logo
+
+`appNameProps.label` displays a name next to the logo, which is not in the Header mockup. It still works in 2.x; leave it empty, and put the title of the Parcours style in `title`.
+
+<Canvas of={HeaderStories.DeprecatedAppNameLabel} />

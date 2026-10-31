@@ -1,102 +1,145 @@
 @layer canopee {
+  /* Mobile-first: logo 40px with 8px above and below (56px), 16px margins.
+     Large screens: logo 56px with 16px above and below (88px), 60px margins,
+     24px between the logo and the navigation, 40px between the actions. */
   .af-header {
     position: sticky;
     z-index: 10;
     top: 0;
     display: flex;
-    padding: var(--rem-8) var(--rem-24);
+    padding-inline: var(--rem-16);
     align-items: center;
-    justify-content: space-between;
     gap: var(--rem-16);
     background: var(--white);
     anchor-name: --af-header;
+  }
 
-    .af-heading {
+  .af-header__app-name {
+    margin-inline-end: auto;
+
+    .af-app-name__logo {
+      display: block;
+    }
+
+    .af-app-name__label:empty {
       display: none;
     }
   }
 
+  .af-header .af-header__title {
+    min-inline-size: 0;
+    text-align: end;
+    overflow-wrap: anywhere;
+
+    h1 {
+      --heading-title-color: var(--gray-1000);
+      --heading-title-font-family: var(--font-family-publico-headline);
+      --heading-title-font-size: var(--rem-20);
+      --heading-title-font-weight: 700;
+      --heading-title-line-height: var(--rem-25);
+    }
+  }
+
+  /* Menu button: the 32px icon of the mockup, without padding. */
+  .af-header .af-header__menu-icon {
+    padding: 0;
+    flex-shrink: 0;
+  }
+
   .af-header__menu {
-    position: absolute;
-    z-index: 10;
-    top: calc(100% + 1px);
+    display: none;
+  }
+
+  /* Small screens: a full screen panel with its own close button, the
+     buttons at the bottom (Menu Burger mockup). */
+  .af-header__panel {
+    position: fixed;
+    z-index: 1;
+    top: 0;
     right: 0;
+    left: 0;
     display: flex;
-    width: 100%;
-    padding-block: var(--rem-24);
-    border: 0;
+    height: 100dvh;
+    padding: var(--rem-24);
     flex-direction: column;
-    align-items: start;
-    opacity: 0;
-    visibility: hidden;
+    gap: var(--rem-16);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--white);
-    transform: translateY(-0.25rem);
-    transition:
-      transform var(--transition-duration),
-      visibility 0s linear var(--transition-duration);
-    pointer-events: none;
-    will-change: transform;
 
-    @supports (top: anchor(--af-header bottom)) {
-      top: anchor(--af-header bottom);
-      right: 0;
-      left: 0;
-      width: 100%;
-      margin: 0;
-      position-anchor: --af-header;
-    }
-
-    > *:not(:first-child, :last-child) {
-      margin-block: var(--rem-24);
-    }
-
-    > *:not(:last-child) {
-      border-bottom: 1px solid var(--blue-200);
-    }
-
-    &:has(.af-tab-menu:not(:only-child)) > :last-child {
-      margin-top: var(--rem-24);
+    &[hidden] {
+      display: none;
     }
   }
 
-  .af-header__menu:popover-open {
-    height: 100svh;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    transition:
-      opacity var(--transition-duration),
-      transform var(--transition-duration),
-      visibility 0s linear 0s;
-    pointer-events: auto;
+  .af-header__panel-close {
+    flex-shrink: 0;
+    align-self: flex-end;
   }
 
-  @starting-style {
-    .af-header__menu:popover-open {
+  .af-header__panel-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .af-header__panel-item + .af-header__panel-item {
+    margin-top: var(--rem-16);
+    padding-top: var(--rem-16);
+    border-top: 1px solid var(--blue-200);
+  }
+
+  .af-header__panel-item .af-apollo-click-item__leading:empty {
+    display: none;
+  }
+
+  .af-header__panel-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    &:focus-visible {
+      outline: 2px solid var(--blue-650);
+      outline-offset: var(--rem-4);
+    }
+
+    /* Current page: the text of the selected Item Menu. */
+    &[aria-current="page"] .af-apollo-click-item {
+      --click-item-title-color: var(--blue-1000);
+      --click-item-title-font-weight: 700;
+    }
+  }
+
+  .af-header__panel-bottom {
+    margin-top: auto;
+  }
+
+  .af-header__panel-bottom,
+  .af-header__panel-actions,
+  .af-header__panel-footer {
+    display: grid;
+    gap: var(--rem-16);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .af-header__panel:not([hidden]) {
+      animation: af-header-panel-in var(--transition-duration) ease-out;
+    }
+  }
+
+  @keyframes af-header-panel-in {
+    from {
       opacity: 0;
       transform: translateY(-0.25rem);
     }
   }
 
-  .af-header__actions {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .af-header__actions-children {
-    display: flex;
-    width: 100%;
-    padding-inline: var(--rem-16);
-    flex-direction: column;
-    gap: var(--rem-16);
-  }
-
   @media (--desktop-small) {
     .af-header {
       display: grid;
-      padding: 0 var(--rem-32);
+      padding-inline: var(--rem-60);
       grid-template-columns: auto 1fr;
+      column-gap: var(--rem-24);
 
       &::after {
         position: absolute;
@@ -115,10 +158,15 @@
         background-color: var(--blue-1000-48);
         pointer-events: auto;
       }
+    }
 
-      .af-heading {
-        display: inline-block;
-      }
+    .af-header__app-name {
+      margin-inline-end: 0;
+    }
+
+    .af-header .af-header__title h1 {
+      --heading-title-font-size: var(--rem-24);
+      --heading-title-line-height: var(--rem-30);
     }
 
     .af-header__menu-icon {
@@ -126,52 +174,23 @@
     }
 
     .af-header__menu {
-      position: static;
-      z-index: auto;
       display: grid;
-      width: auto;
       height: 100%;
-      padding: 0;
       grid-template-columns: 1fr auto;
       align-items: center;
-      opacity: 1;
-      visibility: visible;
-      background: transparent;
-      transform: none;
-      transition: none;
-      pointer-events: auto;
-
-      > *:not(:first-child, :last-child),
-      > :first-child,
-      > :last-child {
-        margin: 0;
-      }
-
-      > *:not(:last-child) {
-        border-bottom: none;
-      }
-
-      &:has(.af-tab-menu:not(:only-child)) > :last-child {
-        margin-top: 0;
-      }
     }
 
     .af-header__actions {
-      flex-direction: row;
+      display: flex;
+      align-items: center;
       justify-content: flex-end;
-      justify-self: flex-end;
-      gap: var(--rem-16);
-
-      > *:not(.af-menu-burger) {
-        margin-inline: 0;
-      }
+      gap: var(--rem-40);
     }
 
     .af-header__actions-children {
-      width: auto;
-      padding-inline: 0;
-      flex-direction: row;
-      justify-content: flex-end;
+      display: flex;
+      align-items: center;
+      gap: var(--rem-16);
     }
   }
 }
