@@ -76,8 +76,12 @@ export const DataAgentCommon = ({
       <DividerComponent />
       {contents && contents?.length > 0 ? (
         <section className="af-data-agent__info-content">
-          {contents.map((content: ContentMonoItemIconProps) => (
-            <Fragment key={`content--${crypto.randomUUID()}`}>
+          {contents.map((content: ContentMonoItemIconProps, index) => (
+            <Fragment
+              // The index is safe here: contents is a static tuple of at most three items
+              // eslint-disable-next-line react/no-array-index-key
+              key={`content--${index}`}
+            >
               <ContentItemMonoComponent {...content} type="icon" />
               <DividerComponent className="af-data-agent__line" />
             </Fragment>
@@ -86,8 +90,12 @@ export const DataAgentCommon = ({
       ) : null}
       {clickContents && clickContents?.length > 0 ? (
         <section className="af-data-agent__info-click-content">
-          {clickContents.map((clickContent: DataAgentClickItemProps) => (
-            <Fragment key={`clickContent--${crypto.randomUUID()}`}>
+          {clickContents.map((clickContent: DataAgentClickItemProps, index) => (
+            <Fragment
+              // The index is safe here: clickContents is a static tuple of at most three items
+              // eslint-disable-next-line react/no-array-index-key
+              key={`clickContent--${index}`}
+            >
               <ClickItemComponent {...clickContent} variant="small" />
               <DividerComponent className="af-data-agent__line" />
             </Fragment>
