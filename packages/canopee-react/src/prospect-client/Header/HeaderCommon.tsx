@@ -79,6 +79,12 @@ export const HeaderCommon = ({
     >
       <AppNameComponent {...parsedAppNameProps} />
 
+      {title && isSmallScreen ? (
+        <HeadingComponent level={1} className="af-header__title">
+          {title}
+        </HeadingComponent>
+      ) : null}
+
       {Boolean(parsedMenuBurgerProps) ||
       Boolean(parsedTabMenuProps) ||
       Boolean(actionChildren) ? (

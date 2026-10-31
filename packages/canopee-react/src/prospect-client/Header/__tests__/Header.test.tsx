@@ -145,6 +145,18 @@ describe("HeaderCommon", () => {
         screen.queryByRole("heading", { level: 1 }),
       ).not.toBeInTheDocument();
     });
+
+    it("is rendered next to the logo on small screens", () => {
+      vi.mocked(useIsSmallScreen).mockReturnValue(true);
+      renderHeader({ title: "Devis assurance auto" });
+
+      const heading = screen.getByRole("heading", {
+        level: 1,
+        name: "Devis assurance auto",
+      });
+      expect(heading.closest(".af-header__title")).toBeInTheDocument();
+      expect(heading.closest(".af-header__menu")).toBeNull();
+    });
   });
 
   describe("actionChildren", () => {
