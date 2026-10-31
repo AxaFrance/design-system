@@ -309,4 +309,21 @@ describe("DataAgentCommon click items", () => {
       ).toHaveClass("af-apollo-click-item--small");
     });
   });
+
+  it("keeps the focus on a click item when the DataAgent renders again", () => {
+    const renderDataAgent = () => (
+      <DataAgent
+        agentProps={agentProps}
+        clickContents={[{ title: "Nous contacter", onClick: () => {} }]}
+      />
+    );
+    const { rerender } = render(renderDataAgent());
+    screen.getByRole("button", { name: /Nous contacter/ }).focus();
+
+    rerender(renderDataAgent());
+
+    expect(
+      screen.getByRole("button", { name: /Nous contacter/ }),
+    ).toHaveFocus();
+  });
 });
