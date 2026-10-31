@@ -1,9 +1,4 @@
-import {
-  type ComponentProps,
-  type ComponentType,
-  Fragment,
-  useMemo,
-} from "react";
+import { type ComponentProps, type ComponentType, useMemo } from "react";
 import type {
   ContentItemProps,
   ContentMonoItemIconProps,
@@ -75,32 +70,38 @@ export const DataAgentCommon = ({
       </section>
       <DividerComponent />
       {contents && contents?.length > 0 ? (
-        <section className="af-data-agent__info-content">
+        <ul className="af-data-agent__info-content">
           {contents.map((content: ContentMonoItemIconProps, index) => (
-            <Fragment
+            <li
               // The index is safe here: contents is a static tuple of at most three items
               // eslint-disable-next-line react/no-array-index-key
               key={`content--${index}`}
+              className="af-data-agent__item"
             >
               <ContentItemMonoComponent {...content} type="icon" />
-              <DividerComponent className="af-data-agent__line" />
-            </Fragment>
+              {index < contents.length - 1 ? (
+                <DividerComponent className="af-data-agent__line" />
+              ) : null}
+            </li>
           ))}
-        </section>
+        </ul>
       ) : null}
       {clickContents && clickContents?.length > 0 ? (
-        <section className="af-data-agent__info-click-content">
+        <ul className="af-data-agent__info-click-content">
           {clickContents.map((clickContent: DataAgentClickItemProps, index) => (
-            <Fragment
+            <li
               // The index is safe here: clickContents is a static tuple of at most three items
               // eslint-disable-next-line react/no-array-index-key
               key={`clickContent--${index}`}
+              className="af-data-agent__item"
             >
               <ClickItemComponent {...clickContent} variant="small" />
-              <DividerComponent className="af-data-agent__line" />
-            </Fragment>
+              {index < clickContents.length - 1 ? (
+                <DividerComponent className="af-data-agent__line" />
+              ) : null}
+            </li>
           ))}
-        </section>
+        </ul>
       ) : null}
       {Boolean(texteOrias) && (
         <p className="af-data-agent__text-orias">{texteOrias}</p>

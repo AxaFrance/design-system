@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { beforeEach, describe, expect, it } from "vitest";
 import type {
@@ -325,5 +325,52 @@ describe("DataAgentCommon click items", () => {
     expect(
       screen.getByRole("button", { name: /Nous contacter/ }),
     ).toHaveFocus();
+  });
+});
+
+describe("DataAgentCommon lists", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("renders the contents and the click items as lists", () => {
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        contents={contents}
+        clickContents={clickContents}
+      />,
+    );
+
+    const [contentList, clickList] = screen.getAllByRole("list");
+    expect(within(contentList).getAllByRole("listitem")).toHaveLength(3);
+    expect(within(clickList).getAllByRole("listitem")).toHaveLength(3);
+  });
+
+  it("puts a divider between the items, not after the last one", () => {
+    [1, 2, 3].forEach((count) => {
+      const { unmount } = render(
+        <DataAgent
+          agentProps={agentProps}
+          contents={
+            contents.slice(0, count) as TupleMax3<ContentMonoItemIconProps>
+          }
+          clickContents={
+            clickContents.slice(0, count) as TupleMax3<ClickItemProps>
+          }
+        />,
+      );
+
+      screen.getAllByRole("list").forEach((list) => {
+        const items = within(list).getAllByRole("listitem");
+        expect(items).toHaveLength(count);
+        items.forEach((item, index) => {
+          expect(within(item).queryAllByRole("separator")).toHaveLength(
+            index < count - 1 ? 1 : 0,
+          );
+        });
+      });
+      unmount();
+    });
   });
 });
