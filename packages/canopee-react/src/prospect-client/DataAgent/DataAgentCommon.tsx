@@ -33,6 +33,9 @@ export type DataAgentProps = {
   contents?: TupleMax3<ContentMonoItemIconProps>;
   /** Click items, always rendered in the `small` style of the mockup. */
   clickContents?: TupleMax3<DataAgentClickItemProps>;
+  /** Legal ORIAS mention displayed at the bottom of the card. */
+  oriasText?: string;
+  /** @deprecated Use `oriasText` instead. */
   texteOrias?: string;
   isCompact?: boolean;
   /** Display the compact layout (header only) regardless of screen size */
@@ -60,6 +63,7 @@ export const DataAgentCommon = ({
   agentContractProps,
   contents,
   clickContents,
+  oriasText,
   texteOrias,
   DividerComponent,
   ContentItemMonoComponent,
@@ -75,6 +79,7 @@ export const DataAgentCommon = ({
   );
 
   const isMobile = useIsSmallScreen(BREAKPOINT.SM);
+  const orias = oriasText ?? texteOrias;
 
   const renderForDefaultLayout = () => (
     <>
@@ -119,9 +124,7 @@ export const DataAgentCommon = ({
           ))}
         </ul>
       ) : null}
-      {Boolean(texteOrias) && (
-        <p className="af-data-agent__text-orias">{texteOrias}</p>
-      )}
+      {orias ? <p className="af-data-agent__text-orias">{orias}</p> : null}
     </>
   );
 

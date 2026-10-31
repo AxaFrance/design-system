@@ -64,7 +64,7 @@ export const Default: Story = {
         onClick: action("Clicked on Voir le site-web"),
       },
     ],
-    texteOrias: "N° Orias (orias.fr) : 10057601 - 10057601",
+    oriasText: "N° Orias (orias.fr) : 10057601 - 10057601",
     isCompact: true,
   },
 };

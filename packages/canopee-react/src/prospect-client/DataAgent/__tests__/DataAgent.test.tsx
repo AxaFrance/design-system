@@ -411,3 +411,30 @@ describe("DataAgentCommon section and compact props", () => {
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 });
+
+describe("DataAgentCommon ORIAS mention", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("renders oriasText", () => {
+    render(<DataAgent agentProps={agentProps} oriasText={oriasText} />);
+
+    verifyOriasText();
+  });
+
+  it("prefers oriasText to the deprecated texteOrias", () => {
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        oriasText={oriasText}
+        texteOrias="N° Orias (orias.fr) : 00000000"
+      />,
+    );
+
+    verifyOriasText();
+    expect(
+      screen.queryByText("N° Orias (orias.fr) : 00000000"),
+    ).not.toBeInTheDocument();
+  });
+});

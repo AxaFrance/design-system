@@ -65,7 +65,7 @@ const dataAgentProps = {
       title: "Voir le site-web",
     },
   ],
-  texteOrias: "N° Orias (orias.fr) : 10057601 - 10057601",
+  oriasText: "N° Orias (orias.fr) : 10057601 - 10057601",
   isCompact: false,
 } satisfies ComponentProps<typeof ValidPage>["dataAgentProps"];
 
