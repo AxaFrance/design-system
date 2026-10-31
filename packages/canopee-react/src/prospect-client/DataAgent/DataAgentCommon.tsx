@@ -1,4 +1,9 @@
-import { type ComponentProps, type ComponentType, useMemo } from "react";
+import {
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+  type ComponentType,
+  useMemo,
+} from "react";
 import type {
   ContentItemProps,
   ContentMonoItemIconProps,
@@ -32,7 +37,16 @@ export type DataAgentProps = {
   isCompact?: boolean;
   /** Display the compact layout (header only) regardless of screen size */
   variant?: "default" | "compact";
-};
+  /**
+   * Props of the Click Item shown in the compact layout, such as `onClick` to
+   * make it interactive. Its picture, title and subtitle come from
+   * `agentProps`.
+   */
+  compactClickItemProps?: Omit<
+    ClickItemProps,
+    "variant" | "basePictureProps" | "title" | "subtitle"
+  >;
+} & Omit<ComponentPropsWithoutRef<"section">, "children">;
 
 type DataAgentCommonProps = DataAgentProps & {
   DividerComponent: ComponentType<ComponentProps<typeof Divider>>;
@@ -52,6 +66,8 @@ export const DataAgentCommon = ({
   ClickItemComponent,
   isCompact = true,
   variant = "default",
+  compactClickItemProps,
+  ...sectionProps
 }: DataAgentCommonProps) => {
   const componentClassName = useMemo(
     () => getClassName({ baseClassName: "af-data-agent", className }),
@@ -112,6 +128,7 @@ export const DataAgentCommon = ({
   const renderForMobileLayout = () => (
     <section className="af-data-agent__intro">
       <ClickItemComponent
+        {...compactClickItemProps}
         {...agentProps}
         basePictureProps={{
           src: agentProps.picture,
@@ -123,7 +140,7 @@ export const DataAgentCommon = ({
   );
 
   return (
-    <section className={componentClassName}>
+    <section className={componentClassName} {...sectionProps}>
       {(isMobile && isCompact) || variant === "compact"
         ? renderForMobileLayout()
         : renderForDefaultLayout()}
