@@ -20,6 +20,10 @@
     .af-app-name__logo {
       display: block;
     }
+
+    .af-app-name__label:empty {
+      display: none;
+    }
   }
 
   .af-header .af-header__title {
