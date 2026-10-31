@@ -2,7 +2,9 @@
 
 @layer canopee {
   .af-header {
+    --header-border-bottom-width: 2px;
+
     border-top: 2px solid var(--blue-1000);
-    border-bottom: 2px solid var(--blue-200);
+    border-bottom: var(--header-border-bottom-width) solid var(--blue-200);
   }
 }
