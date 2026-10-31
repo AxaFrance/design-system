@@ -26,6 +26,19 @@ import { getKeyedItems, withoutIcons } from "./Header.helpers";
 import { useHeaderMenu } from "./useHeaderMenu";
 
 /**
+ * AXA logo of the header, a link to the home page with `logoLinkProps`.
+ */
+export type HeaderAppNameProps = Omit<AppNameProps, "label"> & {
+  /**
+   * Application name displayed next to the logo on large screens.
+   * @deprecated The Header mockup shows the AXA logo alone, without any name
+   * next to it. The title of the "Parcours" style goes in `title`, at the end
+   * of the header.
+   */
+  label?: string;
+};
+
+/**
  * One entry of the main navigation.
  */
 export type HeaderTabMenuItemProps = TabMenuItemProps & {
@@ -49,9 +62,9 @@ export type HeaderTabMenuProps = Omit<TabMenuProps, "items"> & {
  */
 export type HeaderProps = Omit<ComponentPropsWithoutRef<"header">, "title"> & {
   /**
-   * AXA logo and application name.
+   * AXA logo of the header.
    */
-  appNameProps: AppNameProps;
+  appNameProps: HeaderAppNameProps;
   /**
    * Account menu: a primary button and its panel on large screens; its
    * entries and its content go in the menu panel on small screens.
@@ -210,7 +223,10 @@ export const HeaderCommon = ({
       onClickCapture={handleClickCapture}
       {...props}
     >
-      <AppNameComponent {...parsedAppNameProps} />
+      <AppNameComponent
+        {...parsedAppNameProps}
+        label={appNameProps.label ?? ""}
+      />
 
       {isSmallScreen ? titleElement : null}
 

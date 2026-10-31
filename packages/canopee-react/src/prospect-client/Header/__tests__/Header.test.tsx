@@ -86,6 +86,15 @@ describe("HeaderCommon", () => {
           screen.getByText("Mon application").closest(".af-header__app-name"),
         ).toBeInTheDocument();
       });
+
+      it("renders the logo alone when no label is given, as in the mockup", () => {
+        renderHeader({ appNameProps: { logoAlt: "Accueil AXA" } });
+
+        expect(screen.getByAltText("Accueil AXA")).toBeInTheDocument();
+        expect(
+          document.querySelector(".af-app-name__label"),
+        ).toBeEmptyDOMElement();
+      });
     });
 
     describe("TabMenu", () => {
