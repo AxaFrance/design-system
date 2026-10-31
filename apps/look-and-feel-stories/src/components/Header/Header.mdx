@@ -5,10 +5,30 @@ import * as HeaderStories from "./Header.stories";
 
 # Header
 
-Responsive page header composed of an `AppName`, an optional `TabMenu`, an optional `MenuBurger`, and optional action children.
+Responsive page header composed of an `AppName`, an optional `TabMenu`, an optional `MenuBurger`, optional action children and an optional title ("Parcours" style).
 
-- **Mobile**: the hamburger icon (`ClickIcon`) toggles the menu panel. The `TabMenu` and actions slide in as a full-height overlay.
-- **Desktop**: the menu is always visible inline; the icon is hidden. The `MenuBurger` uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
+- **Desktop** (1024px and more): logo, `TabMenu`, action children, then the `MenuBurger` button, on one line. The `MenuBurger` panel uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API), with a veil on the page.
+- **Mobile** (up to 1023px): logo, title and a "Menu" button. The button opens a panel right under the header, with a veil on the rest of the page. The panel lists the `TabMenu` items and the `MenuBurger` click items as small `ClickItem`s, then the action children, then the `MenuBurger` children.
+
+## Layout
+
+| Measure                         | Mobile | Desktop        |
+| ------------------------------- | ------ | -------------- |
+| Side margins                    | 16px   | 60px           |
+| Logo                            | 40px   | 56px           |
+| Space above and under the logo  | 8px    | 16px           |
+| Logo to navigation              | —      | 24px           |
+| Action children to `MenuBurger` | —      | 40px           |
+| Title (Publico Headline Bold)   | 20px   | 24px           |
+| Menu panel width                | 100%   | 371px          |
+| Panel padding                   | 24px   | 24px 16px 16px |
+
+## Accessibility
+
+- One `<header>`, one `<nav>` at a time: the `TabMenu` on desktop, the panel navigation on mobile. Give a name to the `TabMenu` with `aria-label` when the page has several navigations: the panel navigation gets the same name.
+- The `TabMenu` item with `isActive` is the current page: in the mobile panel, its link gets `aria-current="page"`.
+- The "Menu" button is a disclosure button: `aria-expanded` gives its state and `aria-controls` points to the panel. Its name does not change; pass `clickIconProps={{ "aria-label": "…" }}` to change it.
+- While the panel is open, the focus moves to its first entry, the rest of the page is `inert` and does not scroll. Escape, a click on the veil, on a link or on an entry closes the panel and the focus goes back to the button. Other buttons of the panel (one that opens a modal, for instance) leave it open.
 
 ## Import
 
@@ -73,8 +93,8 @@ const menuBurgerProps: MenuBurgerProps = {
 | `appNameProps`    | `AppNameProps`    | —           | Props forwarded to the `AppName` component. **Required.**      |
 | `tabMenuProps`    | `TabMenuProps`    | `undefined` | Navigation items rendered as a tab menu.                       |
 | `menuBurgerProps` | `MenuBurgerProps` | `undefined` | Account menu rendered as a burger button on desktop.           |
-| `clickIconProps`  | `ClickIconProps`  | `undefined` | Props forwarded to the mobile hamburger trigger icon.          |
-| `title`           | `string`          | `undefined` | Title displayed in the actions zone (desktop only).            |
+| `clickIconProps`  | `ClickIconProps`  | `undefined` | Props forwarded to the mobile "Menu" button.                   |
+| `title`           | `string`          | `undefined` | Title displayed at the end of the header ("Parcours" style).   |
 | `actionChildren`  | `ReactNode`       | `undefined` | Free content rendered in the actions zone (e.g. a CTA button). |
 | `className`       | `string`          | `undefined` | Additional CSS class on the `<header>` element.                |
 
