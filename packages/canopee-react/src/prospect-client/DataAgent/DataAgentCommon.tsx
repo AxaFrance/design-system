@@ -16,6 +16,10 @@ import { BREAKPOINT } from "../utilities/constants";
 import { getClassName } from "../utilities/getClassName";
 import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
 
+/**
+ * One to three items: the DataAgent mockup has three content slots and three
+ * click slots, the second and third ones being optional.
+ */
 export type TupleMax3<T> = [T] | [T, T] | [T, T, T];
 
 export type DataAgentClickItemProps = Omit<ClickItemProps, "variant"> & {
@@ -28,15 +32,25 @@ export type DataAgentClickItemProps = Omit<ClickItemProps, "variant"> & {
 
 export type DataAgentProps = {
   className?: string;
+  /** Agent header (picture, name and role), always displayed. */
   agentProps: ContentMonoItemPictureProps;
+  /** Contract attached to the agent, displayed under the agent header. */
   agentContractProps?: ContentMonoItemStickProps;
+  /** One to three contact details (address, phone, opening hours…). */
   contents?: TupleMax3<ContentMonoItemIconProps>;
-  /** Click items, always rendered in the `small` style of the mockup. */
+  /**
+   * One to three click items, always rendered in the `small` style of the
+   * mockup.
+   */
   clickContents?: TupleMax3<DataAgentClickItemProps>;
   /** Legal ORIAS mention displayed at the bottom of the card. */
   oriasText?: string;
   /** @deprecated Use `oriasText` instead. */
   texteOrias?: string;
+  /**
+   * Display the compact layout (header only) on small screens.
+   * @default true
+   */
   isCompact?: boolean;
   /** Display the compact layout (header only) regardless of screen size */
   variant?: "default" | "compact";

@@ -26,47 +26,45 @@ const MyComponent = () => (
       title: "Michel Lhote",
       type: "picture",
     }}
+    aria-label="Votre conseiller"
     clickContents={[
       {
         icon: accountBalanceWallet,
         onClick: () => {},
         title: "Envoyer un message",
-        variant: "small",
       },
       {
         icon: accountBalanceWallet,
         onClick: () => {},
         title: "Envoyer un message à l’agent",
-        variant: "small",
       },
       {
         icon: accountBalanceWallet,
         onClick: () => {},
         title: "Accéder à plus d’informations",
-        variant: "small",
       },
     ]}
     contents={[
       {
-        icon: accountBalanceWallet,
+        iconProps: { src: accountBalanceWallet },
         subtitle1: "01 23 34 45 67",
         title: "",
         type: "icon",
       },
       {
-        icon: accountBalanceWallet,
+        iconProps: { src: accountBalanceWallet },
         subtitle1: "01 23 34 45 67",
         title: "",
         type: "icon",
       },
       {
-        icon: accountBalanceWallet,
+        iconProps: { src: accountBalanceWallet },
         subtitle1: "01 23 34 45 67",
         title: "",
         type: "icon",
       },
     ]}
-    texteOrias="N° Orias (orias.fr) : 10057601 - 10057601"
+    oriasText="N° Orias (orias.fr) : 10057601 - 10057601"
   />
 );
 ```
@@ -77,10 +75,20 @@ const MyComponent = () => (
 
 <Controls of={DataAgentStories.Default} />
 
+## Contents and click items
+
+`contents` and `clickContents` take one to three items each, as the mockup has three content slots
+and three click slots (the second and third ones being optional).
+
+Click items always use the `small` Click Item of the mockup: their `variant` is ignored.
+
 ## Compact
 
 Use `variant="compact"` to force the compact layout (header only — avatar + name + subtitle) regardless of screen size.
 This is useful when the DataAgent is embedded in a constrained layout such as a desktop sidebar.
+
+The compact layout shows a single Click Item built from `agentProps`. Pass an `onClick` in
+`compactClickItemProps` to make it interactive.
 
 ```tsx
 <DataAgent
@@ -90,6 +98,7 @@ This is useful when the DataAgent is embedded in a constrained layout such as a 
     title: "Michel Lhote",
     type: "picture",
   }}
+  compactClickItemProps={{ onClick: () => {} }}
   variant="compact"
 />
 ```
@@ -97,3 +106,9 @@ This is useful when the DataAgent is embedded in a constrained layout such as a 
 <Canvas of={DataAgentStories.DesktopCompact} />
 
 <Controls of={DataAgentStories.DesktopCompact} />
+
+## Accessibility
+
+The DataAgent renders a `section`. Name it with `aria-label` or `aria-labelledby` (for example
+the id of the heading displayed above it) so that screen readers list it as a region. The
+contents and the click items are rendered as lists.
