@@ -18,12 +18,21 @@ import { useIsSmallScreen } from "../utilities/hook/useIsSmallScreen";
 
 export type TupleMax3<T> = [T] | [T, T] | [T, T, T];
 
+export type DataAgentClickItemProps = Omit<ClickItemProps, "variant"> & {
+  /**
+   * Ignored: the DataAgent always renders its click items with the `small`
+   * Click Item of its mockup.
+   */
+  variant?: ClickItemProps["variant"];
+};
+
 export type DataAgentProps = {
   className?: string;
   agentProps: ContentMonoItemPictureProps;
   agentContractProps?: ContentMonoItemStickProps;
   contents?: TupleMax3<ContentMonoItemIconProps>;
-  clickContents?: TupleMax3<ClickItemProps>;
+  /** Click items, always rendered in the `small` style of the mockup. */
+  clickContents?: TupleMax3<DataAgentClickItemProps>;
   texteOrias?: string;
   isCompact?: boolean;
   /** Display the compact layout (header only) regardless of screen size */
@@ -77,7 +86,7 @@ export const DataAgentCommon = ({
       ) : null}
       {clickContents && clickContents?.length > 0 ? (
         <section className="af-data-agent__info-click-content">
-          {clickContents.map((clickContent: ClickItemProps) => (
+          {clickContents.map((clickContent: DataAgentClickItemProps) => (
             <Fragment key={`clickContent--${crypto.randomUUID()}`}>
               <ClickItemComponent {...clickContent} variant="small" />
               <DividerComponent className="af-data-agent__line" />

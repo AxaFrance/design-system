@@ -50,7 +50,7 @@ const dataAgentProps = {
   ],
   clickContents: [
     {
-      variant: "large",
+      variant: "small",
       icon: alternateEmail,
       title: "Nous contacter",
     },

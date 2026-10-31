@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import type {
   ContentMonoItemIconProps,
   ContentMonoItemPictureProps,
@@ -93,6 +93,13 @@ const verifyClickContentsProps = () => {
 const oriasText = "N° Orias (orias.fr) : 10057601 - 10057601";
 const verifyOriasText = () => {
   expect(screen.getByText(oriasText)).toBeInTheDocument();
+};
+
+const setWindowWidth = (width: number) => {
+  act(() => {
+    window.innerWidth = width;
+  });
+  fireEvent(window, new Event("resize"));
 };
 
 describe("DataAgentCommon", () => {
@@ -276,5 +283,30 @@ describe("DataAgentCommon Mobile layout", () => {
     expect(
       screen.getByRole("img", { name: "Portrait de Michel Lhote" }),
     ).toHaveAttribute("src", "agent.png");
+  });
+});
+
+describe("DataAgentCommon click items", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("renders the click items in the small variant, whatever their variant", () => {
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        clickContents={[
+          { icon: "accountBalance", title: "Nous contacter" },
+          { variant: "medium", icon: "accountBalance", title: "Rendez-vous" },
+          { variant: "large", icon: "accountBalance", title: "Site web" },
+        ]}
+      />,
+    );
+
+    ["Nous contacter", "Rendez-vous", "Site web"].forEach((title) => {
+      expect(
+        screen.getByText(title).closest(".af-apollo-click-item"),
+      ).toHaveClass("af-apollo-click-item--small");
+    });
   });
 });
