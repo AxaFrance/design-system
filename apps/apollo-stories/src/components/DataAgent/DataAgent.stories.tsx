@@ -46,7 +46,7 @@ export const Default: Story = {
     ],
     clickContents: [
       {
-        variant: "large",
+        variant: "small",
         icon: alternateEmail,
         title: "Nous contacter",
         onClick: action("Clicked on Nous contacter"),
