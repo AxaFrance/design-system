@@ -411,10 +411,12 @@ import { Link } from "react-router";
 
 ## Header
 
-En-tête de page responsive avec logo, menu de navigation, menu burger et actions.
+En-tête de page responsive avec logo, menu de navigation, menu burger, actions et titre (style « Parcours »).
 
-- **Mobile** : l'icône hamburger ouvre/ferme le bloc menu via un état React (Escape pour fermer).
-- **Desktop** : le menu s'affiche en ligne, l'icône est masquée.
+- **Desktop** (≥ 1024 px) : logo, `TabMenu`, `actionChildren`, bouton du `MenuBurger` et titre sur une ligne ; marges de 60 px, 24 px entre le logo et la navigation, 40 px entre les actions.
+- **Mobile** (≤ 1023 px) : logo, titre et bouton « Menu » (`aria-expanded`, `aria-controls`). Le bouton ouvre un panneau collé sous l'en-tête, avec un voile sur la page : entrées du `TabMenu` (liens) et `clickItems` du `MenuBurger` en `ClickItem` « small », puis `actionChildren`, puis les `children` du `MenuBurger`.
+- Panneau ouvert : reste de la page `inert` et sans défilement, focus sur la première entrée ; Échap, un clic sur le voile, sur un lien ou sur une entrée le ferment et rendent le focus au bouton. Les autres boutons du panneau (ouverture d'une modale, par exemple) le laissent ouvert.
+- L'élément du `TabMenu` avec `isActive` est la page courante : son lien porte `aria-current="page"` dans le panneau.
 
 ### Import
 
@@ -430,8 +432,8 @@ type HeaderProps = Omit<ComponentPropsWithoutRef<'header'>, 'title'> & {
     appNameProps: AppNameProps; // Props du composant AppName (obligatoire)
     tabMenuProps?: TabMenuProps; // Navigation principale
     menuBurgerProps?: MenuBurgerProps; // Menu compte utilisateur
-    clickIconProps?: ClickIconProps; // Props du bouton hamburger mobile
-    title?: string; // Titre affiché dans la zone actions (desktop)
+    clickIconProps?: ClickIconProps; // Props du bouton « Menu » mobile (nom accessible par défaut : « Menu »)
+    title?: string; // Titre du style « Parcours », en fin d'en-tête (desktop et mobile)
     actionChildren?: ReactNode; // Contenu libre dans la zone actions
 };
 ```
@@ -497,8 +499,8 @@ const menuBurgerProps: MenuBurgerProps = {
 
 Bouton compte utilisateur avec panneau popover.
 
-- **Mobile** : bouton masqué, panneau affiché en ligne dans le menu ouvert.
-- **Desktop** : bouton ouvre/ferme le panneau via la [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
+- **Mobile** : bouton masqué, panneau affiché en ligne. Dans le `Header`, ses `clickItems` et ses `children` passent dans le panneau du bouton « Menu ».
+- **Desktop** : bouton ouvre/ferme le panneau (371 px, marges 24 / 16 / 16 px) via la [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
 
 ```tsx
 import { MenuBurger } from '@axa-fr/canopee-react/prospect';
