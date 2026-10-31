@@ -79,6 +79,9 @@ export const DesktopCompact: Story = {
       subtitle: "AXA Assurance & Banque",
       type: "picture",
     },
+    compactClickItemProps: {
+      onClick: action("Clicked on the agent"),
+    },
     variant: "compact",
   },
 };

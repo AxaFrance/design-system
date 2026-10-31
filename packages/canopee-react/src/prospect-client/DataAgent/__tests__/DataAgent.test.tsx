@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   ContentMonoItemIconProps,
   ContentMonoItemPictureProps,
@@ -372,5 +373,41 @@ describe("DataAgentCommon lists", () => {
       });
       unmount();
     });
+  });
+});
+
+describe("DataAgentCommon section and compact props", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("passes the section attributes to the root element", () => {
+    render(<DataAgent agentProps={agentProps} aria-label="Votre conseiller" />);
+
+    expect(
+      screen.getByRole("region", { name: "Votre conseiller" }),
+    ).toHaveClass("af-data-agent");
+  });
+
+  it("makes the compact click item interactive", async () => {
+    const onClick = vi.fn();
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        variant="compact"
+        compactClickItemProps={{ onClick }}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /Michel Lhote/ }));
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps the compact click item static without compactClickItemProps", () => {
+    render(<DataAgent agentProps={agentProps} variant="compact" />);
+
+    expect(screen.getByText("Michel Lhote")).toBeInTheDocument();
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 });
