@@ -2,8 +2,6 @@
 
 @layer canopee {
   .af-header {
-    --header-border-bottom-width: 1px;
-
-    border-bottom: var(--header-border-bottom-width) solid var(--blue-200);
+    border-bottom: 1px solid var(--blue-200);
   }
 }

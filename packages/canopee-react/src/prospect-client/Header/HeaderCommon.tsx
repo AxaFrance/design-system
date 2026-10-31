@@ -46,6 +46,11 @@ export type HeaderProps = Omit<ComponentPropsWithoutRef<"header">, "title"> & {
    */
   clickIconProps?: ClickIconProps;
   /**
+   * Accessible name of the close button of the small screen menu.
+   * @default "Fermer le menu"
+   */
+  closeButtonAriaLabel?: string;
+  /**
    * Title of the "Parcours" style, displayed at the end of the header.
    */
   title?: string;
@@ -80,18 +85,19 @@ const withElementClass = <T extends { className?: string }>(
  *
  * - Large screens: logo, Item Menu navigation, free content, account menu
  *   and title on one line.
- * - Small screens: logo, title and a menu button. The button opens a panel
- *   right under the header, with a veil on the rest of the page: navigation
- *   and account entries as ClickItems, then the free content and the account
- *   menu content. While it is open, the rest of the page is inert and does
- *   not scroll; Escape, the veil, a link or an entry closes it and gives the
- *   focus back to the button.
+ * - Small screens: logo, title and a menu button. The button opens a full
+ *   screen panel with its own close button: navigation and account entries
+ *   as ClickItems, then the free content and the account menu content at the
+ *   bottom. While it is open, the rest of the page is inert and does not
+ *   scroll; Escape, the close button, a link or an entry closes it and gives
+ *   the focus back to the menu button.
  */
 export const HeaderCommon = ({
   appNameProps,
   menuBurgerProps,
   tabMenuProps,
   clickIconProps,
+  closeButtonAriaLabel = "Fermer le menu",
   title,
   className,
   AppNameComponent,
@@ -105,7 +111,6 @@ export const HeaderCommon = ({
 }: HeaderCommonProps) => {
   const isSmallScreen = useIsSmallScreen(BREAKPOINT.MD);
   const panelId = useId();
-  const headerRef = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const clickIconRef = clickIconProps?.ref;
@@ -123,12 +128,12 @@ export const HeaderCommon = ({
   const hasMenuContent =
     hasMenuEntries || Boolean(actionChildren) || Boolean(accountChildren);
 
-  const { isOpen, toggle, closeOnChoice, closeOnOverlay } = useHeaderMenu({
+  const { isOpen, toggle, close, closeOnChoice } = useHeaderMenu({
     isEnabled: isSmallScreen && hasMenuContent,
-    headerRef,
     panelRef,
     toggleRef,
   });
+  const menuLabel = clickIconProps?.["aria-label"] ?? "Menu";
 
   const parsedAppNameProps = withElementClass(
     appNameProps,
@@ -172,7 +177,6 @@ export const HeaderCommon = ({
 
   return (
     <header
-      ref={headerRef}
       className={getClassName({
         baseClassName: "af-header",
         className,
@@ -189,74 +193,91 @@ export const HeaderCommon = ({
           <ClickIconComponent
             {...clickIconProps}
             ref={setToggleRef}
-            src={isOpen ? closeIcon : menuIcon}
-            size="S"
+            src={menuIcon}
+            size="M"
             variant="ghost"
             className="af-header__menu-icon"
-            aria-label={clickIconProps?.["aria-label"] ?? "Menu"}
+            aria-label={menuLabel}
             aria-expanded={isOpen}
             aria-controls={panelId}
             onClick={handleToggleClick}
           />
 
           <div
-            className="af-header__overlay"
-            role="presentation"
+            id={panelId}
+            ref={panelRef}
+            className="af-header__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label={menuLabel}
             hidden={!isOpen}
-            onClick={closeOnOverlay}
           >
-            <div id={panelId} ref={panelRef} className="af-header__panel">
-              {hasMenuEntries ? (
-                <nav
-                  className="af-header__panel-nav"
-                  aria-label={tabMenuProps?.["aria-label"]}
-                >
-                  <ul className="af-header__panel-list">
-                    {navEntries.map(({ key, item }) => {
-                      const {
-                        label,
-                        isActive,
-                        className: itemClassName,
-                        ...linkProps
-                      } = item;
+            <ClickIconComponent
+              src={closeIcon}
+              size="S"
+              className="af-header__panel-close"
+              aria-label={closeButtonAriaLabel}
+              onClick={close}
+            />
 
-                      return (
-                        <li key={key} className="af-header__panel-item">
-                          <a
-                            {...linkProps}
-                            className={getClassName({
-                              baseClassName: "af-header__panel-link",
-                              className: itemClassName,
-                            })}
-                            aria-current={
-                              isActive ? "page" : linkProps["aria-current"]
-                            }
-                          >
-                            <ClickItemComponent variant="small" title={label} />
-                          </a>
-                        </li>
-                      );
-                    })}
-                    {accountEntries.map(({ key, item }) => (
+            {hasMenuEntries ? (
+              <nav
+                className="af-header__panel-nav"
+                aria-label={tabMenuProps?.["aria-label"]}
+              >
+                <ul className="af-header__panel-list">
+                  {navEntries.map(({ key, item }) => {
+                    const {
+                      label,
+                      isActive,
+                      className: itemClassName,
+                      ...linkProps
+                    } = item;
+
+                    return (
                       <li key={key} className="af-header__panel-item">
-                        <ClickItemComponent
-                          {...item}
-                          variant={item.variant ?? "small"}
-                        />
+                        <a
+                          {...linkProps}
+                          className={getClassName({
+                            baseClassName: "af-header__panel-link",
+                            className: itemClassName,
+                          })}
+                          aria-current={
+                            isActive ? "page" : linkProps["aria-current"]
+                          }
+                        >
+                          <ClickItemComponent variant="small" title={label} />
+                        </a>
                       </li>
-                    ))}
-                  </ul>
-                </nav>
-              ) : null}
+                    );
+                  })}
+                  {accountEntries.map(({ key, item }) => (
+                    <li key={key} className="af-header__panel-item">
+                      <ClickItemComponent
+                        {...item}
+                        variant={item.variant ?? "small"}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ) : null}
 
-              {actionChildren ? (
-                <div className="af-header__panel-actions">{actionChildren}</div>
-              ) : null}
+            {actionChildren || accountChildren ? (
+              <div className="af-header__panel-bottom">
+                {actionChildren ? (
+                  <div className="af-header__panel-actions">
+                    {actionChildren}
+                  </div>
+                ) : null}
 
-              {accountChildren ? (
-                <div className="af-header__panel-footer">{accountChildren}</div>
-              ) : null}
-            </div>
+                {accountChildren ? (
+                  <div className="af-header__panel-footer">
+                    {accountChildren}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         </>
       ) : null}

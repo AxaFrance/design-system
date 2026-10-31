@@ -36,7 +36,9 @@
     }
   }
 
-  .af-header__menu-icon {
+  /* Menu button: the 32px icon of the mockup, without padding. */
+  .af-header .af-header__menu-icon {
+    padding: 0;
     flex-shrink: 0;
   }
 
@@ -44,42 +46,31 @@
     display: none;
   }
 
-  /* Small screens: a veil from the bottom of the header to the bottom of the
-     window, with the panel at its top. Without anchor positioning, the header
-     is expected at the top of the window. */
-  .af-header__overlay {
-    position: absolute;
+  /* Small screens: a full screen panel with its own close button, the
+     buttons at the bottom (Menu Burger mockup). */
+  .af-header__panel {
+    position: fixed;
     z-index: 1;
-    top: calc(100% + var(--header-border-bottom-width));
+    top: 0;
     right: 0;
     left: 0;
     display: flex;
-    height: calc(100dvh - 100%);
-    flex-direction: column;
-    background: var(--blue-1000-48);
-
-    &[hidden] {
-      display: none;
-    }
-
-    @supports (top: anchor(--af-header bottom)) {
-      position: fixed;
-      top: anchor(--af-header bottom);
-      bottom: 0;
-      height: auto;
-      position-anchor: --af-header;
-    }
-  }
-
-  .af-header__panel {
-    display: flex;
-    min-height: 0;
+    height: 100dvh;
     padding: var(--rem-24);
     flex-direction: column;
     gap: var(--rem-16);
     overflow-y: auto;
     overscroll-behavior: contain;
     background: var(--white);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .af-header__panel-close {
+    flex-shrink: 0;
+    align-self: flex-end;
   }
 
   .af-header__panel-list {
@@ -115,6 +106,11 @@
     }
   }
 
+  .af-header__panel-bottom {
+    margin-top: auto;
+  }
+
+  .af-header__panel-bottom,
   .af-header__panel-actions,
   .af-header__panel-footer {
     display: grid;
@@ -122,18 +118,8 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .af-header__overlay:not([hidden]) {
-      animation: af-header-veil-in var(--transition-duration) ease-out;
-
-      .af-header__panel {
-        animation: af-header-panel-in var(--transition-duration) ease-out;
-      }
-    }
-  }
-
-  @keyframes af-header-veil-in {
-    from {
-      opacity: 0;
+    .af-header__panel:not([hidden]) {
+      animation: af-header-panel-in var(--transition-duration) ease-out;
     }
   }
 

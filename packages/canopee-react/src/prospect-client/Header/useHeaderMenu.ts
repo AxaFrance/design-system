@@ -13,16 +13,15 @@ import {
 } from "./Header.helpers";
 
 /**
- * Clicks on these elements of the header close the menu: the links, and the
- * entries of the panel. Other buttons of the panel (one that opens a dialog,
- * for instance) leave it open.
+ * Clicks on these elements close the menu: the links, and the entries of the
+ * panel. Other buttons of the panel (one that opens a dialog, for instance)
+ * leave it open.
  */
 const CLOSING_TARGETS = "a[href], .af-header__panel-list button";
 
 type UseHeaderMenuParams = {
   /** The menu can be opened: small screen and something to show. */
   isEnabled: boolean;
-  headerRef: RefObject<HTMLElement | null>;
   panelRef: RefObject<HTMLElement | null>;
   toggleRef: RefObject<HTMLElement | null>;
 };
@@ -31,17 +30,16 @@ type UseHeaderMenuParams = {
  * Open state and behaviour of the header menu on small screens.
  *
  * While the menu is open:
- * - everything around the header is inert and the page does not scroll, the
- *   header itself stays usable;
+ * - everything around the panel is inert, the rest of the header included,
+ *   and the page does not scroll;
  * - the focus moves to the first focusable element of the panel;
- * - Escape, the veil (`closeOnOverlay`), a link of the header or an entry of
- *   the panel (`closeOnChoice`) closes it.
+ * - Escape, the close button (`close`), a link or an entry of the panel
+ *   (`closeOnChoice`) closes it.
  *
  * When it closes, a focus that was in the panel goes back to the toggle.
  */
 export const useHeaderMenu = ({
   isEnabled,
-  headerRef,
   panelRef,
   toggleRef,
 }: UseHeaderMenuParams) => {
@@ -60,16 +58,6 @@ export const useHeaderMenu = ({
   const close = useCallback(() => setIsRequested(false), []);
   const toggle = useCallback(() => setIsRequested((previous) => !previous), []);
 
-  // A click on the veil around the panel, not in the panel.
-  const closeOnOverlay = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      if (event.target === event.currentTarget) {
-        close();
-      }
-    },
-    [close],
-  );
-
   // To be called in the click capture phase of the header.
   const closeOnChoice = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -86,13 +74,12 @@ export const useHeaderMenu = ({
   );
 
   useEffect(() => {
-    const header = headerRef.current;
     const panel = panelRef.current;
-    if (!isOpen || !header || !panel) {
+    if (!isOpen || !panel) {
       return undefined;
     }
 
-    const restoreBackground = makeOthersInert(header);
+    const restoreBackground = makeOthersInert(panel);
     const restoreScroll = lockPageScroll();
     getFocusableElements(panel)[0]?.focus();
 
@@ -116,7 +103,7 @@ export const useHeaderMenu = ({
       restoreScroll();
       restoreBackground();
     };
-  }, [isOpen, close, headerRef, panelRef]);
+  }, [isOpen, close, panelRef]);
 
   const wasOpen = useRef(false);
   useEffect(() => {
@@ -134,5 +121,5 @@ export const useHeaderMenu = ({
     wasOpen.current = isOpen;
   }, [isOpen, panelRef, toggleRef]);
 
-  return { isOpen, toggle, closeOnChoice, closeOnOverlay };
+  return { isOpen, toggle, close, closeOnChoice };
 };
