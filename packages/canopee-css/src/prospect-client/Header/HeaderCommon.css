@@ -97,18 +97,18 @@
       display: grid;
       padding: 0 var(--rem-32);
       grid-template-columns: auto 1fr;
+      anchor-name: --header;
 
       &::after {
-        position: absolute;
+        position: fixed;
         z-index: 10;
-        top: 100%;
-        left: 0;
+        inset: anchor(--header bottom) 0 0;
         width: 100vw;
-        height: 100vh;
         background-color: transparent;
         transition: background-color var(--transition-duration);
         pointer-events: none;
         content: "";
+        position-anchor: --header;
       }
 
       &:has(:popover-open)::after {
