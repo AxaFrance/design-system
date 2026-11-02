@@ -53,6 +53,14 @@
         --link-text-color: var(--white-1000);
       }
 
+      &:hover {
+        --link-background-color: var(--blue-1200);
+      }
+
+      &:active {
+        --link-background-color: var(--blue-900);
+      }
+
       &.af-btn-client--secondary {
         --link-text-color: var(--blue-1000);
         --link-shadow-color: var(--blue-1000);
@@ -65,6 +73,11 @@
           --link-shadow-color: var(--blue-1200);
           --link-background-color: var(--blue-1200);
         }
+
+        &:active {
+          --link-shadow-color: var(--blue-900);
+          --link-background-color: var(--blue-900);
+        }
       }
 
       &.af-btn-client--tertiary {
@@ -74,6 +87,87 @@
         :is(&:hover, &:active, &:focus) {
           --link-text-color: var(--white-1000);
           --link-background-color: var(--blue-1200);
+        }
+
+        &:active {
+          --link-background-color: var(--blue-900);
+        }
+      }
+
+      &.af-btn-client--primary-business {
+        --link-text-color: var(--white-1000);
+        --link-background-color: var(--orange-1000);
+
+        :is(&:hover, &:focus-visible, &:focus) {
+          --link-background-color: var(--orange-1050);
+        }
+
+        &:active {
+          --link-background-color: var(--orange-800);
+        }
+      }
+
+      &.af-btn-client--primary-inverse {
+        --link-text-color: var(--blue-1000);
+        --link-background-color: var(--white-1000);
+
+        :is(&:hover, &:focus-visible, &:focus) {
+          --link-text-color: var(--blue-1200);
+          --link-background-color: var(--gray-140);
+        }
+
+        &:active {
+          --link-background-color: var(--gray-050);
+          --link-text-color: var(--blue-900);
+        }
+      }
+
+      &.af-btn-client--secondary-inverse {
+        --link-text-color: var(--white-1000);
+        --link-background-color: transparent;
+        --link-shadow-color: var(--white-1000);
+
+        box-shadow: 0 0 0 2px var(--link-shadow-color) inset;
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          --link-text-color: var(--blue-1200);
+          --link-background-color: var(--gray-140);
+          --link-shadow-color: var(--gray-140);
+        }
+
+        &:active {
+          --link-text-color: var(--blue-900);
+          --link-background-color: var(--gray-050);
+          --link-shadow-color: var(--gray-050);
+        }
+      }
+
+      &.af-btn-client--ghost {
+        --link-text-color: var(--blue-1000);
+        --link-background-color: transparent;
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          --link-text-color: var(--blue-1200);
+          --link-background-color: transparent;
+        }
+
+        &:active {
+          --link-text-color: var(--blue-900);
+          --link-background-color: transparent;
+        }
+      }
+
+      &[aria-disabled="true"] {
+        --link-text-color: var(--gray-500);
+        --link-background-color: var(--gray-050);
+        --link-shadow-color: var(--gray-500);
+
+        &.af-btn-client--ghost {
+          --link-background-color: transparent;
         }
       }
     }

@@ -1,11 +1,11 @@
-import { Link, Icon } from "@axa-fr/canopee-react/client";
+import { Link, Icon, buttonVariants } from "@axa-fr/canopee-react/client";
 import arrowLeftAlt from "@material-symbols/svg-400/outlined/arrow_left_alt.svg";
 import personFill from "@material-symbols/svg-400/rounded/person-fill.svg";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps } from "react";
+import "../Button/Button.story.scss";
 
 const meta: Meta<typeof Link> = {
-  title: "Components/Link 🚧",
+  title: "Components/Link",
   component: Link,
 };
 export default meta;
@@ -23,12 +23,18 @@ export const LinkInverse: StoryObj<typeof Link> = {
     children: "My link",
     variant: "inverse",
   },
-  parameters: {
-    backgrounds: {
-      default: "dark",
-      values: [{ name: "dark", value: "var(--blue-1000)" }],
-    },
-  },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          padding: "var(--rem-16)",
+          backgroundColor: "var(--blue-1000)",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const LinkOpenInNewTab: StoryObj<typeof Link> = {
@@ -36,6 +42,7 @@ export const LinkOpenInNewTab: StoryObj<typeof Link> = {
     href: "https://fakelink.com",
     children: "My link",
     openInNewTab: true,
+    rightIcon: <Icon src={personFill} />,
   },
 };
 
@@ -48,28 +55,53 @@ export const LinkWithIcons: StoryObj<typeof Link> = {
   },
 };
 
-type LinkStoryProps = ComponentProps<typeof Link> & {
-  classNameButton: "" | "secondary" | "tertiary";
-};
-
-const LinkButton = ({ classNameButton, ...args }: LinkStoryProps) => (
-  <Link
-    {...args}
-    className={`af-btn-client ${classNameButton ? `af-btn-client--${classNameButton}` : ""}`}
-  />
-);
-export const LinkButtonStory: StoryObj<LinkStoryProps> = {
-  name: "Link button 🚧",
-  render: LinkButton,
+export const LinkButtonStory: StoryObj<typeof Link> = {
+  name: "Link button",
+  render: ({ href, children }) => (
+    <div className="af-btn-client-demo">
+      {Object.values(buttonVariants).map((variant) => {
+        const className = `af-btn-client af-btn-client--${variant}`;
+        return (
+          <div key={variant} className="af-btn-client-demo-variant">
+            <div
+              className={[
+                "af-btn-client-demo__bloc",
+                variant.includes("inverse")
+                  ? "af-btn-client-demo__bloc--blue"
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              <h2 className="af-title">{variant}</h2>
+              <Link href={href} className={className}>
+                {children} {variant}
+              </Link>
+              <Link className={className} role="link" aria-disabled="true">
+                {children} {variant}
+              </Link>
+              <Link
+                href={href}
+                className={className}
+                leftIcon={<Icon src={arrowLeftAlt} />}
+              >
+                {children} {variant}
+              </Link>
+              <Link
+                href={href}
+                className={className}
+                rightIcon={<Icon src={personFill} />}
+              >
+                {children} {variant}
+              </Link>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  ),
   args: {
     href: "https://fakelink.com",
     children: "LinkButton",
-    leftIcon: <Icon src={arrowLeftAlt} />,
-  },
-  argTypes: {
-    classNameButton: {
-      options: ["", "secondary", "tertiary"],
-      control: { type: "multi-select" },
-    },
   },
 };

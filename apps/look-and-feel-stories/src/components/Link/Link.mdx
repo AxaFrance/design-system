@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
 import * as LinkStories from "./Link.stories.tsx";
 
-<Meta of={LinkStories} />
+<Meta of={LinkStories} name="Link" />
 
 ## Link
 
@@ -43,3 +43,11 @@ export const AccountLink = () => (
 <Canvas of={LinkStories.Playground} />
 
 <Controls of={LinkStories.Playground} />
+
+## Button styles
+
+Links can use the `af-btn-client` class and a button variant modifier while
+keeping anchor semantics. The disabled examples omit `href` and use
+`role="link"` with `aria-disabled="true"` to prevent navigation.
+
+<Canvas of={LinkStories.LinkButtonStory} />
