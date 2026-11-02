@@ -132,6 +132,10 @@ export {
   type FooterProps,
 } from "./prospect-client/Layout/Footer/FooterApollo";
 export {
+  ColumnsLayout,
+  type ColumnsLayoutProps,
+} from "./prospect-client/Layout/ColumnLayout/ColumnsLayoutApollo";
+export {
   MainLayout,
   type MainLayoutProps,
   type MainLayoutSlotProps,

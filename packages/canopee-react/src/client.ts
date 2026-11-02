@@ -124,6 +124,10 @@ export {
   type FooterProps,
 } from "./prospect-client/Layout/Footer/FooterLF";
 export {
+  ColumnsLayout,
+  type ColumnsLayoutProps,
+} from "./prospect-client/Layout/ColumnLayout/ColumnsLayoutLF";
+export {
   FormLayout,
   type FormLayoutProps,
 } from "./prospect-client/Layout/FormLayout/FormLayout";

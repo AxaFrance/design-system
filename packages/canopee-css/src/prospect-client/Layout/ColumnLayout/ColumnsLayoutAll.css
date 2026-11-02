@@ -1,0 +1,71 @@
+@layer canopee {
+  main.grid:has(.af-columns-layout) {
+    padding-block: 0;
+
+    --row-gap: 0;
+
+    .af-columns-layout__top {
+      padding-block: var(--rem-24);
+    }
+
+    .af-columns-layout {
+      --row-gap: var(--rem-24);
+
+      padding-block: var(--rem-24) var(--rem-40);
+
+      @media (--desktop-small) {
+        --row-gap: var(--rem-48);
+
+        padding-block: var(--rem-40) var(--rem-80);
+
+        &.af-columns-layout--fit {
+          --start: 3;
+          --cols: 8;
+        }
+      }
+
+      .af-columns-layout__left,
+      .af-columns-layout__content,
+      .af-columns-layout__right {
+        --row-gap: var(--rem-32);
+
+        > * {
+          --start: 1;
+        }
+      }
+
+      @media (--desktop-small) {
+        .af-columns-layout__left,
+        .af-columns-layout__right {
+          --row-gap: var(--rem-40);
+        }
+
+        .af-columns-layout__left {
+          --cols: 3;
+        }
+
+        .af-columns-layout__left + .af-columns-layout__content {
+          --start: 4;
+          --cols: 9;
+
+          &:has(+ .af-columns-layout__right) {
+            --cols: 6;
+          }
+        }
+
+        .af-columns-layout__content {
+          --row-gap: var(--rem-64);
+
+          &:has(+ .af-columns-layout__right) {
+            --cols: 9;
+          }
+        }
+
+        .af-columns-layout__right {
+          --start: 10;
+          --cols: 3;
+        }
+      }
+    }
+  }
+}

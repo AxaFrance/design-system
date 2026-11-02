@@ -70,6 +70,7 @@
 @import "./TableMobileCard/TableMobileCardAll.css";
 @import "./Layout/ExitLayout/ExitLayoutAll.css";
 @import "./Layout/FormLayout/FormLayoutAll.css";
+@import "./Layout/ColumnLayout/ColumnsLayoutAll.css";
 @import "./Loader/LoaderApollo.css";
 @import "./MessageBar/MessageBarAll.css";
 @import "./TabBar/TabBarApollo.css";
