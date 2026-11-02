@@ -28,6 +28,10 @@ export {
   type CardVariants,
 } from "./prospect-client/Card/CardLF";
 export {
+  CardMarketing,
+  type CardMarketingProps,
+} from "./prospect-client/CardMarketing/CardMarketingLF";
+export {
   CardMessage,
   cardMessageVariants,
   type CardMessageVariants,

@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as Stories from "./CardMarketing.stories";
+
+<Meta of={Stories} />
+
+# CardMarketing
+
+A marketing card composed of `Card`, a responsive image, a title, a description
+and a `Link`. Content is left-aligned with a 16px spacing token.
+
+```tsx
+import { CardMarketing } from "@axa-fr/canopee-react/client";
+
+<CardMarketing
+  image={{ src: "/offer.jpg", alt: "" }}
+  sources={[
+    { srcSet: "/offer.avif", type: "image/avif" },
+    { srcSet: "/offer.webp", type: "image/webp" },
+  ]}
+  title="Discover our insurance"
+  text="Cover tailored to your needs."
+  linkProps={{ href: "/offer", children: "Discover the offer" }}
+/>;
+```
+
+`image` accepts native image attributes, including `srcSet`, `sizes`, `loading`,
+`width` and `height`. Provide meaningful alternative text, or `alt=""` when the
+image is decorative. Sources are evaluated in declaration order before the
+fallback image.
+
+`variant="vertical"` places the image above the content. `variant="horizontal"`
+places it on the left from the small desktop breakpoint (1024px); below that
+breakpoint the image remains above the content.
+
+Other `Card` props, including `style`, `className`, event handlers and ARIA
+attributes, are forwarded to the root. `title`, `variant` and `children` are
+reserved for the marketing card's content and layout.
+
+<Controls />
+
+## Vertical
+
+<Canvas of={Stories.Vertical} />
+
+## Horizontal
+
+<Canvas of={Stories.Horizontal} />
+
+## Primary business link
+
+The link keeps its anchor semantics while using the primary business button style.
+
+<Canvas of={Stories.PrimaryBusinessLink} />
