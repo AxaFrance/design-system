@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Form } from "./Form";
 
 const meta: Meta = {
-  title: "Pages/Form",
+  title: "Pages/Exemples/Form",
   parameters: { layout: "fullscreen" },
   argTypes: {
     "data-cols-mobile": { control: { type: "range", min: 2, max: 4, step: 1 } },

@@ -100,7 +100,7 @@ export const Situation = () => (
       <FormLayout.Footer>
         <Link
           href="/"
-          className="af-btn-client af-btn-client--secondary"
+          variant="button-tertiary"
           leftIcon={<Icon src={arrowLeftAlt} />}
         >
           Précédent
