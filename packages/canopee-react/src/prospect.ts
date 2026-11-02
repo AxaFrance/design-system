@@ -145,6 +145,10 @@ export {
   type FormLayoutProps,
 } from "./prospect-client/Layout/FormLayout/FormLayout";
 export {
+  PatternMozaicGrid,
+  type PatternMozaicGridProps,
+} from "./prospect-client/Layout/PatternMozaicGrid/PatternMozaicGrid";
+export {
   LevelSelector,
   type LevelSelectorProps,
 } from "./prospect-client/LevelSelector/LevelSelectorApollo";
