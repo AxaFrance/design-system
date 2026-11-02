@@ -1,7 +1,10 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { type ComponentPropsWithRef, createRef } from "react";
 import { describe, expect, expectTypeOf, it } from "vitest";
+import { Link as LinkApollo } from "../LinkApollo";
 import { Link, type LinkProps } from "../LinkCommon";
+import { Link as LinkLF } from "../LinkLF";
 
 type NavigationLinkProps = Omit<ComponentPropsWithRef<"a">, "href"> & {
   to: string;
@@ -31,7 +34,9 @@ describe("Link component", () => {
       </Link>,
     );
 
-    const link = screen.getByRole("link", { name: "Left IconAccount" });
+    const link = screen.getByRole("link", {
+      name: "Left IconAccount (nouvelle fenêtre)",
+    });
     expect(link).toHaveAttribute("href", "/account");
     expect(link).not.toHaveAttribute("to");
     expect(link).not.toHaveAttribute("as");
@@ -87,7 +92,9 @@ describe("Link component", () => {
       </Link>,
     );
 
-    const link = screen.getByRole("link", { name: "Test Link" });
+    const link = screen.getByRole("link", {
+      name: "Test Link (nouvelle fenêtre)",
+    });
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
     expect(link).toHaveClass("af-link--openInNewTab");
@@ -108,7 +115,11 @@ describe("Link component", () => {
         </Link>,
       );
       expect(
-        screen.getByRole("link", { name: "Left IconTest Link" }),
+        screen.getByRole("link", {
+          name: openInNewTab
+            ? "Left IconTest Link (nouvelle fenêtre)"
+            : "Left IconTest Link",
+        }),
       ).toBeInTheDocument();
     },
   );
@@ -127,7 +138,11 @@ describe("Link component", () => {
         </Link>,
       );
       expect(
-        screen.getByRole("link", { name: "Test LinkRight Icon" }),
+        screen.getByRole("link", {
+          name: openInNewTab
+            ? "Test LinkRight Icon (nouvelle fenêtre)"
+            : "Test LinkRight Icon",
+        }),
       ).toBeInTheDocument();
     },
   );
@@ -147,4 +162,48 @@ describe("Link component", () => {
       }
     },
   );
+});
+
+describe.each([
+  ["Apollo", LinkApollo],
+  ["LF", LinkLF],
+])("<Link /> %s opening in a new tab", (_, LinkComponent) => {
+  it("should announce a link that opens in a new tab", async () => {
+    const { container } = render(
+      <LinkComponent href="https://www.axa.fr" openInNewTab>
+        Plus de détails
+      </LinkComponent>,
+    );
+
+    expect(screen.getByRole("link")).toHaveAccessibleName(
+      "Plus de détails (nouvelle fenêtre)",
+    );
+    expect(screen.getByText("(nouvelle fenêtre)")).toHaveClass(
+      "af-visually-hidden",
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should not announce a link that opens in the same tab", () => {
+    render(<LinkComponent href="/">Plus de détails</LinkComponent>);
+
+    expect(screen.getByRole("link")).toHaveAccessibleName("Plus de détails");
+    expect(screen.queryByText("(nouvelle fenêtre)")).not.toBeInTheDocument();
+  });
+
+  it("should use newWindowLabel", () => {
+    render(
+      <LinkComponent
+        href="https://www.axa.fr"
+        openInNewTab
+        newWindowLabel="opens in a new tab"
+      >
+        Plus de détails
+      </LinkComponent>,
+    );
+
+    const link = screen.getByRole("link");
+    expect(link).toHaveAccessibleName("Plus de détails (opens in a new tab)");
+    expect(link).not.toHaveAttribute("newWindowLabel");
+  });
 });
