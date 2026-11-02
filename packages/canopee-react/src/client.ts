@@ -132,6 +132,10 @@ export {
   type FormLayoutProps,
 } from "./prospect-client/Layout/FormLayout/FormLayout";
 export {
+  PatternMozaicGrid,
+  type PatternMozaicGridProps,
+} from "./prospect-client/Layout/PatternMozaicGrid/PatternMozaicGrid";
+export {
   MainLayout,
   type MainLayoutProps,
   type MainLayoutSlotProps,

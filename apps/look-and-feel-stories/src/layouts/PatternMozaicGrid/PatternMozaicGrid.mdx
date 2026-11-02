@@ -1,0 +1,81 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as Stories from "./PatternMozaicGrid.stories";
+
+<Meta of={Stories} />
+
+# PatternMozaicGrid
+
+Arranges direct children on the application's responsive grid. Every child
+receives the same column span for each breakpoint.
+
+```tsx
+import { Card, PatternMozaicGrid } from "@axa-fr/canopee-react/client";
+
+<main className="grid">
+  <PatternMozaicGrid data-cols-mobile={4} data-cols-desktop-small={3}>
+    <Card>First card</Card>
+    <Card>Second card</Card>
+    <Card>Third card</Card>
+  </PatternMozaicGrid>
+</main>;
+```
+
+## Composition
+
+Use inside `.grid`, either directly or through an uninterrupted chain of
+`.subgrid` containers. The component adds `subgrid` automatically and inherits
+the parent's columns and horizontal gaps. Its vertical gap uses `--rem-16`.
+
+Column values describe **the span of each child**, not the number of children
+per row. On a full-width grid, a span of 4 means one item per row on mobile
+(4 columns) and two per row on tablet (8 columns). A span of 3 means four
+items per row on desktop (12 columns).
+
+Inside a narrower subgrid, spans are limited to the available columns.
+Children must forward their `style` prop to their root DOM element.
+`Card` and `CardMarketing` support this. Pass elements directly, not wrapped in
+a fragment: fragments do not forward styles to their children.
+Existing inline styles are preserved, except the responsive column variables,
+which are controlled by this layout.
+
+## Debug grid
+
+The stories render `DebugGrid` behind the content so you can check how each
+child aligns with the grid columns at every breakpoint. Use the **Grid** toggle
+at the bottom left of the canvas to hide or show the columns.
+
+## Props and inheritance
+
+| Prop                       | Breakpoint   | Default                    |
+| -------------------------- | ------------ | -------------------------- |
+| `children`                 | All          | Direct elements to arrange |
+| `cols`                     | All          | Initial fallback: `2`      |
+| `data-cols-mobile`         | Up to 667px  | `cols`                     |
+| `data-cols-tablet`         | Above 667px  | Mobile value               |
+| `data-cols-desktop-small`  | Above 1023px | Tablet value               |
+| `data-cols-desktop-medium` | Above 1279px | Small desktop value        |
+| `data-cols-desktop-large`  | Above 1599px | Medium desktop value       |
+
+Use positive whole numbers. Missing values inherit from the previous breakpoint.
+For example, `data-cols-mobile={4}` and `data-cols-desktop-small={3}` are enough
+for 4 columns per child on mobile/tablet and 3 on all desktop sizes.
+
+Native section props, such as `id`, `className`, `style`, `ref` and ARIA
+attributes, are forwarded to the root. Custom classes are merged with the
+layout classes.
+
+<Controls of={Stories.Responsive} />
+
+## Responsive
+
+<Canvas of={Stories.Responsive} />
+
+## All breakpoints
+
+Resize the viewport to compare spans at all five breakpoints.
+
+<Canvas of={Stories.AllBreakpoints} />
+
+## With CardMarketing
+
+<Canvas of={Stories.WithCardMarketing} />
