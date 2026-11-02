@@ -30,10 +30,8 @@
   }
 
   .af-card--vertical {
-    --row-gap: 1rem;
-
     display: grid;
-    row-gap: var(--row-gap);
+    row-gap: var(--rem-16);
   }
 
   :is(ol, ul).af-card.af-card--unstyled {
