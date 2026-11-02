@@ -1,0 +1,140 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as ColumnsLayoutStories from "./ColumnsLayout.stories";
+
+<Meta of={ColumnsLayoutStories} name="Columns Layout" />
+
+# Columns Layout
+
+`ColumnsLayout` arranges page content into a main column and optional side
+columns. An optional top area spans the grid above the heading and columns.
+
+## Import
+
+```tsx
+import { ColumnsLayout } from "@axa-fr/canopee-react/prospect";
+
+export const MyPage = () => (
+  <main className="grid">
+    <ColumnsLayout
+      headingProps={{
+        children: "Choose your cover",
+        firstSubtitle: "Your car insurance quote",
+      }}
+    >
+      <ColumnsLayout.Top>
+        <p>Your quote / Your cover</p>
+      </ColumnsLayout.Top>
+      <ColumnsLayout.Left>
+        <p>Your vehicle and driver details</p>
+      </ColumnsLayout.Left>
+      <ColumnsLayout.Content>
+        <p>Your available cover options</p>
+      </ColumnsLayout.Content>
+      <ColumnsLayout.Right>
+        <p>Your quote summary</p>
+      </ColumnsLayout.Right>
+    </ColumnsLayout>
+  </main>
+);
+```
+
+## Composition
+
+Place `ColumnsLayout` inside `<main className="grid">` to apply its grid and
+responsive styles. The stories use `LayoutDemo` to provide this container,
+along with the page header and footer.
+
+| Subcomponent            | Purpose                                           |
+| ----------------------- | ------------------------------------------------- |
+| `ColumnsLayout.Top`     | Full-width content above the heading and columns. |
+| `ColumnsLayout.Left`    | Supporting content on the left.                   |
+| `ColumnsLayout.Content` | Main content in the center.                       |
+| `ColumnsLayout.Right`   | Supporting content on the right.                  |
+
+Use each subcomponent at most once, as a direct child of `ColumnsLayout`.
+Do not wrap these subcomponents in a fragment or a custom component: the layout
+identifies its direct children to assign each zone. Multiple elements can be
+placed inside a zone.
+
+Omit a subcomponent when its zone is not needed. Zone visibility is controlled
+by composition, not by boolean props.
+
+The rendering order is always Top, heading, Left, Content, Right, regardless
+of the order in which the subcomponents are declared.
+
+### Centered Content With `isFit`
+
+Use `isFit` only when **neither `ColumnsLayout.Left` nor
+`ColumnsLayout.Right` is present**. It centers the heading and main content
+on 8 columns of the 12-column grid from the small desktop breakpoint.
+On mobile and tablet, the content still uses the available width.
+
+`ColumnsLayout.Top` remains optional and spans the full grid width, even when
+`isFit` is enabled. Do not combine `isFit` with either side column: it is a
+usage constraint, not a mechanism that hides or removes those zones.
+
+```tsx
+<main className="grid">
+  <ColumnsLayout isFit headingProps={{ children: "Choose your cover" }}>
+    <ColumnsLayout.Content>
+      <p>Your available cover options</p>
+    </ColumnsLayout.Content>
+  </ColumnsLayout>
+</main>
+```
+
+Omit `isFit`, or set it to `false`, to keep the default width. The fit example
+below provides a toggle to compare both widths without adding side columns.
+
+## Responsive Behavior
+
+On mobile and tablet, the columns stack vertically in Left, Content, Right
+order. From the small desktop breakpoint, the layout uses the 12-column grid:
+
+| Combination            | Left         | Content            | Right        |
+| ---------------------- | ------------ | ------------------ | ------------ |
+| Left + Content         | 3 columns    | 9 columns          | Not rendered |
+| Content + Right        | Not rendered | 9 columns          | 3 columns    |
+| Left + Content + Right | 3 columns    | 6 columns          | 3 columns    |
+| Content only           | Not rendered | 12 columns         | Not rendered |
+| Content only + `isFit` | Not rendered | 8 centered columns | Not rendered |
+
+The Top zone remains above the heading and columns when present.
+
+## Props
+
+| Prop           | Type           | Description                                                                                                              |
+| -------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `children`     | `ReactNode`    | Layout zones composed with the subcomponents above.                                                                      |
+| `headingProps` | `HeadingProps` | Optional heading configuration. Set its text with `headingProps.children`. Omit it to render no heading.                 |
+| `className`    | `string`       | Additional class applied to the columns section.                                                                         |
+| `isFit`        | `boolean`      | Centers the heading and content on 8 columns from small desktop. Use only without Left and Right. Disabled when omitted. |
+
+<Controls of={ColumnsLayoutStories.TopLeftCenterRight} />
+
+## Examples
+
+### Top + Left + Center
+
+<Canvas of={ColumnsLayoutStories.TopLeftCenter} />
+
+### Top + Center + Right
+
+<Canvas of={ColumnsLayoutStories.TopCenterRight} />
+
+### Top + Left + Center + Right
+
+<Canvas of={ColumnsLayoutStories.TopLeftCenterRight} />
+
+### Left + Center + Right
+
+<Canvas of={ColumnsLayoutStories.LeftCenterRight} />
+
+### Center Only + `isFit`
+
+This example contains only `ColumnsLayout.Content`, with no Left or Right zone.
+Toggle `isFit` to compare the centered width with the default full width.
+
+<Canvas of={ColumnsLayoutStories.FitContent} />
+
+<Controls of={ColumnsLayoutStories.FitContent} />
