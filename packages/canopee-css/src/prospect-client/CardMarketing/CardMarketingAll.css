@@ -1,0 +1,53 @@
+@layer canopee {
+  .af-card.af-card-marketing {
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .af-card-marketing__picture {
+    aspect-ratio: 12 / 5;
+  }
+
+  .af-card-marketing__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .af-card-marketing__content {
+    display: flex;
+    padding: var(--rem-16);
+    flex-direction: column;
+    gap: var(--rem-16);
+    overflow-wrap: anywhere;
+  }
+
+  .af-card-marketing__title {
+    font-size: var(--body-2-font-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--body-2-line-height);
+    color: var(--blue-1000);
+  }
+
+  .af-card-marketing__text {
+    margin: 0;
+    font-size: var(--body-3-font-size);
+    line-height: var(--body-3-line-height);
+    color: var(--gray-1000);
+  }
+
+  @media (--desktop-small) {
+    .af-card.af-card-marketing--horizontal {
+      flex-direction: row;
+
+      .af-card-marketing__picture {
+        position: relative;
+        aspect-ratio: auto;
+        flex: 0 0 42%;
+      }
+    }
+  }
+}
