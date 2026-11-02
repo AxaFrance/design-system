@@ -33,7 +33,7 @@ Activé dès qu'un développeur mentionne Apollo, Look & Feel, Prospect, Client,
 
 Fournit des conseils sur :
 
-- **Composants** — Button, Accordion, formulaires (TextInput, Select, Checkbox, Radio…), Messages de feedback, Modal, Listes, Navigation, Progress, Layout, Pages, affichage de données et visuels
+- **Composants** — Button, Accordion, formulaires (TextInput, Select, Checkbox, Radio…), Messages de feedback, Modal, Listes, Navigation, Progress, Layout, layouts de page et patterns (MainLayout, ColumnsLayout, Pattern*), Pages, affichage de données et visuels
 - **Deux thèmes, une seule API** — Les composants partagent la même interface ; seul le package d'import change entre le thème Prospect (ex-Apollo) et le thème Client (ex-Look & Feel)
 - **Fondations** — Tokens CSS (couleurs, typographie, espacements), icônes Material Symbols
 - **Démarrage de projet** — Installation, configuration CSS, mise en place des polices

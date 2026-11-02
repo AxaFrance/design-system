@@ -1,4 +1,6 @@
-# Layout : Footer, FormLayout, ExitLayout, Fieldset, LevelSelector
+# Layout : Footer, FormLayout, ExitLayout, Fieldset, LevelSelector, Card, CardMarketing, AppName, Header
+
+> Pour la structure de page (`MainLayout`, `ColumnsLayout`) et les patterns de grille, lire [19-page-layouts.md](./19-page-layouts.md).
 
 ---
 
@@ -338,7 +340,10 @@ import { Card } from '@axa-fr/canopee-react/prospect';
 ```tsx
 type CardProps<T extends ElementType = 'div'> = {
     as?: T; // Élément HTML ou composant (défaut: "div")
-    variant?: 'default' | 'unstyled'; // (défaut: "default")
+    // Variants combinables, séparés par un espace :
+    // - "unstyled" : retire bordure et padding
+    // - "vertical" : empile le contenu verticalement (flex column)
+    variant?: 'unstyled' | 'vertical' | 'unstyled vertical' | 'vertical unstyled';
     className?: string;
     children?: ReactNode;
     // + toutes les props HTML de l'élément cible
@@ -363,6 +368,72 @@ type CardProps<T extends ElementType = 'div'> = {
 <Card variant="unstyled">
   <p>Contenu</p>
 </Card>
+
+// Section sans style, contenu empilé, alignée sur la grille parente
+<Card as="section" variant="vertical unstyled" className="subgrid">
+  <Heading level={2}>Pour aller plus loin</Heading>
+  <PatternCardMarketing>…</PatternCardMarketing>
+</Card>
+```
+
+---
+
+## CardMarketing
+
+Carte promotionnelle : image responsive, titre, texte et lien avec une flèche. Elle repose sur `Card`.
+
+- `vertical` (défaut) : image au-dessus du contenu, au ratio 12/5.
+- `horizontal` : image à gauche (42 % de la largeur) à partir de 1024px, verticale en dessous.
+
+Pour disposer plusieurs cartes, utilise `PatternCardMarketing`, `PatternMozaicGrid` ou `PatternMozaicFree` (voir [19-page-layouts.md](./19-page-layouts.md)).
+
+### Import
+
+```tsx
+import {
+    CardMarketing,
+    type CardMarketingProps,
+} from '@axa-fr/canopee-react/prospect';
+// ou client
+```
+
+### Props
+
+```tsx
+type CardMarketingProps = Omit<CardProps<'div'>, 'children' | 'title' | 'variant'> & {
+    image: Omit<ComponentProps<'img'>, 'src' | 'alt' | 'className'> & {
+        src: string;
+        alt: string; // alt="" si l'image est décorative
+    };
+    sources?: ComponentProps<'source'>[]; // Sources <picture>, de la plus préférée au fallback
+    title: string;
+    text: string;
+    linkProps: LinkProps & { href: string; children: ReactNode };
+    variant?: 'vertical' | 'horizontal'; // (défaut: "vertical")
+};
+```
+
+### Exemple
+
+```tsx
+<CardMarketing
+    image={{ src: '/offre-habitation.jpg', alt: '' }}
+    sources={[
+        { media: '(min-width: 1024px)', srcSet: '/offre-habitation-large.webp', type: 'image/webp' },
+    ]}
+    title="Assurez votre habitation dès maintenant"
+    text="Découvrez notre offre et obtenez un tarif."
+    linkProps={{ href: '/offre', children: 'Découvrir notre offre' }}
+/>
+
+// Lien affiché comme un bouton (variants button-* du Link)
+<CardMarketing
+    variant="horizontal"
+    image={{ src: '/offre-auto.jpg', alt: '' }}
+    title="Assurance auto"
+    text="Jusqu'à 2 mois offerts."
+    linkProps={{ href: '/auto', children: 'Obtenir un tarif', variant: 'button-primary' }}
+/>
 ```
 
 ---
