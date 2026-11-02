@@ -346,6 +346,9 @@ describe.each([
     expect(button.getAttribute("aria-describedby")?.split(" ")).toContain(
       spinner.id,
     );
+    expect(button).toHaveAccessibleDescription(
+      "Sous-titre Chargement en cours",
+    );
   });
 
   it("has no description when there is nothing to describe", () => {

@@ -78,7 +78,7 @@ describe("StepperCommon Component", () => {
   });
 
   it.each([
-    ["success", "This is a success message", null],
+    ["success", "This is a success message", "status"],
     ["error", "This is an error message", "alert"],
   ])(
     "renders a %s message when message provided with %s message type",

@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react";
+import { VisuallyHidden } from "../utilities/VisuallyHidden";
 
 export const spinnerVariants = {
   blue: "blue",
@@ -24,11 +25,9 @@ const Spinner = ({
   ...props
 }: SpinnerProps) => (
   <div
-    role="alert"
+    role="status"
     {...props}
-    aria-busy
     aria-label={text}
-    aria-live="assertive"
     className={[
       DEFAULT_CLASSNAME,
       `${DEFAULT_CLASSNAME}--${variant}`,
@@ -42,7 +41,9 @@ const Spinner = ({
         "--spinner-size": size,
       } as React.CSSProperties
     }
-  />
+  >
+    <VisuallyHidden>{text}</VisuallyHidden>
+  </div>
 );
 
 Spinner.displayName = "Spinner";

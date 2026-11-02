@@ -80,8 +80,9 @@ type ItemMessageProps = {
 ### Comportement
 
 - Si `message` est falsy, le composant retourne `null`.
-- Type `error` et `warning` : `role="alert"` + `aria-live="assertive"`
-- Type `success` : pas de role alert
+- Type `error` et `warning` : `role="alert"`, qui interrompt le lecteur d'écran
+- Type `success` : `role="status"`, annoncé poliment
+- Aucun `aria-live` explicite : le rôle suffit.
 
 ### Exemple
 

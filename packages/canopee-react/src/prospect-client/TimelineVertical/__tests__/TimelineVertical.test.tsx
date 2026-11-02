@@ -61,5 +61,22 @@ describe("TimelineVerticalCommon", () => {
 
       expect(await axe(container)).toHaveNoViolations();
     });
+
+    it("should not render a main landmark for its description", async () => {
+      const { container } = render(
+        <>
+          <TimelineVerticalCommon tag={<Tag>1</Tag>} title="Step 1">
+            Description 1
+          </TimelineVerticalCommon>
+          <TimelineVerticalCommon tag={<Tag>2</Tag>} title="Step 2">
+            Description 2
+          </TimelineVerticalCommon>
+        </>,
+      );
+
+      expect(screen.queryAllByRole("main")).toHaveLength(0);
+      expect(screen.getByText("Description 1").tagName).toBe("DIV");
+      expect(await axe(container)).toHaveNoViolations();
+    });
   });
 });
