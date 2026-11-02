@@ -136,6 +136,10 @@ export {
   type PatternMozaicGridProps,
 } from "./prospect-client/Layout/PatternMozaicGrid/PatternMozaicGrid";
 export {
+  PatternMozaicFree,
+  type PatternMozaicFreeProps,
+} from "./prospect-client/Layout/PatternMozaicFree/PatternMozaicFree";
+export {
   PatternWithAction,
   type PatternWithActionProps,
 } from "./prospect-client/Layout/PatternWithAction/PatternWithActionLF";
