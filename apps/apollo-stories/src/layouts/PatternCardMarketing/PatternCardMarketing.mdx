@@ -1,0 +1,47 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as Stories from "./PatternCardMarketing.stories";
+
+<Meta of={Stories} />
+
+# PatternCardMarketing
+
+Arranges marketing cards in one column on mobile and tablet, and two equal-width
+columns above 1023px. With exactly three cards, the first occupies both rows on
+the left and the other two are stacked on the right. With any other card count,
+cards flow into the two-column grid without spanning rows.
+
+```tsx
+import {
+  CardMarketing,
+  PatternCardMarketing,
+} from "@axa-fr/canopee-react/prospect";
+
+<PatternCardMarketing>
+  <CardMarketing {...mainOffer} />
+  <CardMarketing {...secondOffer} variant="horizontal" />
+  <CardMarketing {...thirdOffer} variant="horizontal" />
+</PatternCardMarketing>;
+```
+
+## Composition
+
+Pass cards as direct children, not wrapped in additional DOM elements.
+The pattern only controls placement: set the cards' `variant` explicitly.
+Rows have equal heights and the gap uses `--rem-16`.
+
+The layout works independently or inside `.grid` and `.subgrid` containers.
+Native section props, including `className`, `style`, `ref` and ARIA attributes,
+are forwarded to the root element. No theme-specific layout props are required.
+
+## Three cards
+
+<Canvas of={Stories.ThreeCards} />
+<Controls of={Stories.ThreeCards} />
+
+## Two cards
+
+<Canvas of={Stories.TwoCards} />
+
+## Four cards
+
+<Canvas of={Stories.FourCards} />
