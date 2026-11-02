@@ -300,6 +300,10 @@ type LevelSelectorProps = {
 };
 ```
 
+Accessibilité : chaque radio est nommé « Niveau n » sur l'`input` lui-même ; la `description`,
+quand elle est fournie, est reliée aux radios par `aria-describedby` et annoncée poliment
+(`aria-live="polite"`) quand elle change.
+
 ### Exemple
 
 ```tsx

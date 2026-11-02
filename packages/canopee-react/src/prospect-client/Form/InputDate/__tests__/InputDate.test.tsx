@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { InputDate } from "../InputDateApollo";
+import { InputDate as InputDateLF } from "../InputDateLF";
 
 describe("<InputDate />", () => {
   const testDate = new Date("2025-01-01");
@@ -29,7 +30,7 @@ describe("<InputDate />", () => {
 
     const inputDate = screen.getByLabelText(/test/);
     expect(inputDate).toBeInTheDocument();
-    expect(inputDate).toHaveAccessibleDescription("helper");
+    expect(inputDate).toHaveAccessibleDescription("description helper error");
     expect(inputDate).toHaveAccessibleErrorMessage("error");
     expect(inputDate).toHaveValue("2025-01-01");
     expect(inputDate).toHaveClass("af-form__input-date");
@@ -178,4 +179,45 @@ describe("<InputDate />", () => {
       `${helper.getAttribute("id")} ${success.parentElement!.getAttribute("id")}`,
     );
   });
+});
+
+describe.each([
+  ["Apollo", InputDate],
+  ["LF", InputDateLF],
+])("<InputDate /> %s description", (_, Component) => {
+  it.each([false, true])(
+    "should describe the input with its description and helper (hidePicker: %s)",
+    (hidePicker) => {
+      render(
+        <Component
+          label="Date"
+          description="Description"
+          helper="Aide"
+          hidePicker={hidePicker}
+        />,
+      );
+
+      expect(screen.getByLabelText("Date")).toHaveAccessibleDescription(
+        "Description Aide",
+      );
+    },
+  );
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <Component
+          label="Date"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByLabelText("Date")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
 });
