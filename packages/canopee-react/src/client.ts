@@ -128,6 +128,11 @@ export {
   type FormLayoutProps,
 } from "./prospect-client/Layout/FormLayout/FormLayout";
 export {
+  MainLayout,
+  type MainLayoutProps,
+  type MainLayoutSlotProps,
+} from "./prospect-client/Layout/MainLayout/MainLayoutLF";
+export {
   LevelSelector,
   type LevelSelectorProps,
 } from "./prospect-client/LevelSelector/LevelSelectorLF";

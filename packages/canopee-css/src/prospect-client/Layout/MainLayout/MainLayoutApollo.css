@@ -1,0 +1,7 @@
+@import "./MainLayoutCommon.css";
+
+@layer canopee {
+  .af-main-layout {
+    --main-layout-background-color: var(--white-1000);
+  }
+}
