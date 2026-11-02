@@ -1,9 +1,11 @@
 import type { ComponentProps, ElementType } from "react";
 import { type PolymorphicComponent } from "../utilities/types/PolymorphicComponent";
 import { getClassName } from "../utilities/getClassName";
+import type { Permutations } from "../utilities/types/Permutations";
 
 export const cardVariants = {
   unstyled: "unstyled",
+  vertical: "vertical",
 } as const;
 
 export type CardVariants = keyof typeof cardVariants;
@@ -19,8 +21,9 @@ export type CardCommonProps<T extends ElementType> = PolymorphicComponent<
     /**
      * Visual variant of the card.
      * - `"unstyled"` — removes border and padding.
+     * - `"vertical"` — displays the card content in a vertical layout.
      */
-    variant?: CardVariants;
+    variant?: Permutations<CardVariants>;
   }
 >;
 
@@ -51,7 +54,7 @@ export const CardCommon = <T extends ElementType = "div">({
     <Component
       className={getClassName({
         baseClassName: "af-card",
-        modifiers: [variant],
+        modifiers: variant?.split(" "),
         className,
       })}
       {...props}
