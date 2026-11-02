@@ -71,6 +71,7 @@
 @import "./Layout/ExitLayout/ExitLayoutAll.css";
 @import "./Layout/FormLayout/FormLayoutAll.css";
 @import "./Layout/PatternMozaicGrid/PatternMozaicGridAll.css";
+@import "./Layout/PatternMozaicFree/PatternMozaicFreeAll.css";
 @import "./Layout/PatternWithAction/PatternWithActionAll.css";
 @import "./Layout/ColumnLayout/ColumnsLayoutAll.css";
 @import "./Loader/LoaderLF.css";
