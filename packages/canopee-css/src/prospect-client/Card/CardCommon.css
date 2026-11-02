@@ -6,7 +6,7 @@
     border: inherit;
     border-radius: var(--card-border-radius);
     text-align: inherit;
-    background-color: var(--card-background-color);
+    background-color: var(--white-1000);
     outline: var(--card-border-width) solid var(--card-border-color);
     outline-offset: calc(-1 * var(--card-border-width));
 
@@ -24,8 +24,16 @@
   .af-card--unstyled {
     padding: 0;
     border: 0;
+    background-color: transparent;
     outline: 0;
     outline-offset: 0;
+  }
+
+  .af-card--vertical {
+    --row-gap: 1rem;
+
+    display: grid;
+    row-gap: var(--row-gap);
   }
 
   :is(ol, ul).af-card.af-card--unstyled {
