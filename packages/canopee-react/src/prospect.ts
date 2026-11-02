@@ -149,6 +149,10 @@ export {
   type PatternMozaicGridProps,
 } from "./prospect-client/Layout/PatternMozaicGrid/PatternMozaicGrid";
 export {
+  PatternWithAction,
+  type PatternWithActionProps,
+} from "./prospect-client/Layout/PatternWithAction/PatternWithActionApollo";
+export {
   LevelSelector,
   type LevelSelectorProps,
 } from "./prospect-client/LevelSelector/LevelSelectorApollo";

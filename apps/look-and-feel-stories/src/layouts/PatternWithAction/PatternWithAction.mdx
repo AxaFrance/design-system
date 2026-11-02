@@ -1,0 +1,59 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as Stories from "./PatternWithAction.stories";
+
+<Meta of={Stories} />
+
+# PatternWithAction
+
+Section composed of an optional heading, an optional call to action and content.
+On desktop (above 1023px), the action is aligned to the right of the heading.
+On mobile and tablet, the action is displayed after the content.
+
+```tsx
+import { Button, PatternWithAction } from "@axa-fr/canopee-react/client";
+
+<main className="grid">
+  <PatternWithAction headingProps={{ children: "Mes derniers documents" }}>
+    <PatternWithAction.Action>
+      <Button variant="secondary">Afficher mes documents</Button>
+    </PatternWithAction.Action>
+    <p>Content</p>
+  </PatternWithAction>
+</main>;
+```
+
+## Props
+
+| Prop                   | Description                                                     |
+| ---------------------- | --------------------------------------------------------------- |
+| `headingProps`         | `Heading` props. The heading level defaults to `2`.             |
+| `children`             | Content. Wrap the call to action in `PatternWithAction.Action`. |
+| Native `section` props | `id`, `className`, `style`, `ref`, ARIA attributes, etc.        |
+
+Only the first `PatternWithAction.Action` is displayed in the header.
+The header is omitted when there is no heading and no action.
+
+## Composition
+
+Use inside `.grid`, either directly or through an uninterrupted chain of
+`.subgrid` containers. The component adds `subgrid` automatically, so its
+content (for example `PatternMozaicGrid`) inherits the parent's columns.
+The vertical gap uses `--rem-16`.
+
+## With action
+
+<Canvas of={Stories.WithAction} />
+<Controls of={Stories.WithAction} />
+
+## Without action
+
+<Canvas of={Stories.WithoutAction} />
+
+## Custom heading level
+
+<Canvas of={Stories.CustomHeadingLevel} />
+
+## Debug grid
+
+The stories include `DebugGrid`. Use the **Grid** toggle at the bottom left of
+the canvas to show or hide the grid columns.
