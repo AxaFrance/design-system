@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-Coq_didi.js";e();
