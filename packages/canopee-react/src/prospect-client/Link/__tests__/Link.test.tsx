@@ -132,6 +132,35 @@ describe("Link component", () => {
     },
   );
 
+  it.each`
+    variant                       | buttonModifier
+    ${"button-primary"}           | ${"primary"}
+    ${"button-primary-business"}  | ${"primary-business"}
+    ${"button-primary-inverse"}   | ${"primary-inverse"}
+    ${"button-secondary"}         | ${"secondary"}
+    ${"button-secondary-inverse"} | ${"secondary-inverse"}
+    ${"button-tertiary"}          | ${"tertiary"}
+    ${"button-ghost"}             | ${"ghost"}
+  `(
+    "applies button classes for the $variant variant",
+    ({ variant, buttonModifier }) => {
+      render(
+        <Link href="/" variant={variant} className="custom-link">
+          Test Link
+        </Link>,
+      );
+
+      const link = screen.getByRole("link", { name: "Test Link" });
+      expect(link).toHaveClass(
+        "af-link",
+        "af-btn-client",
+        `af-btn-client--${buttonModifier}`,
+        "custom-link",
+      );
+      expect(link).not.toHaveClass(`af-link--${variant}`);
+    },
+  );
+
   it.each([undefined, "test-class"])(
     "renders correctly with className as $s",
     (className: string | undefined) => {

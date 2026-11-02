@@ -168,6 +168,31 @@ type LinkProps<T extends ElementType = "a"> = LinkCustomProps &
 La variante `inverse` est destinée aux fonds colorés. `openInNewTab` vaut `false`
 par défaut.
 
+### Variantes
+
+| Variante                   | Rendu                                    |
+| -------------------------- | ---------------------------------------- |
+| _(aucune)_                 | Lien texte souligné                      |
+| `inverse`                  | Lien texte pour fond coloré              |
+| `button-primary`           | Style bouton `primary`                   |
+| `button-primary-business`  | Style bouton `primary-business`          |
+| `button-primary-inverse`   | Style bouton `primary-inverse`           |
+| `button-secondary`         | Style bouton `secondary`                 |
+| `button-secondary-inverse` | Style bouton `secondary-inverse`         |
+| `button-tertiary`          | Style bouton `tertiary`                  |
+| `button-ghost`             | Style bouton `ghost`                     |
+
+Les variantes `button-*` ajoutent automatiquement les classes
+`af-btn-client af-btn-client--<variante>` (sans le préfixe `button-`) et
+conservent la sémantique de lien. Le CSS du `Button` est importé par `Link` :
+ne pas ajouter ces classes manuellement via `className`.
+
+Utiliser un `Link` avec une variante `button-*` pour une **navigation** au style
+bouton, et un `Button` pour une **action** (soumission, ouverture de modale…).
+
+Pour un lien désactivé avec style bouton, omettre `href` et ajouter
+`role="link"` et `aria-disabled="true"`.
+
 Quand `openInNewTab` est `true`, un SVG « open_in_new » s'affiche automatiquement à droite, et `rel="noopener noreferrer"` est ajouté.
 
 Les props natives ou personnalisées et le type de `ref` sont déduits du composant
@@ -188,6 +213,14 @@ de lien et la ref à son élément sous-jacent pour conserver les comportements 
 
 <Link href="/retour" variant="inverse">
   Retour (sur fond coloré)
+</Link>
+
+<Link href="/souscrire" variant="button-primary">
+  Souscrire
+</Link>
+
+<Link variant="button-secondary" role="link" aria-disabled="true">
+  Lien indisponible
 </Link>
 ```
 

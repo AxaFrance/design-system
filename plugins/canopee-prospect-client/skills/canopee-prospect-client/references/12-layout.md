@@ -191,7 +191,7 @@ ExitLayout.Action; // Zone pour un lien / bouton de retour
     </ExitLayout.Agent>
 
     <ExitLayout.Action>
-        <Link href="/" className="af-btn-client">
+        <Link href="/" variant="button-primary">
             Retour à l'accueil
         </Link>
     </ExitLayout.Action>

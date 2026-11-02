@@ -6,9 +6,23 @@ import type { PolymorphicComponent } from "../utilities/types/PolymorphicCompone
 
 export const linkVariants = {
   inverse: "inverse",
+  "button-primary": "button-primary",
+  "button-primary-business": "button-primary-business",
+  "button-primary-inverse": "button-primary-inverse",
+  "button-secondary": "button-secondary",
+  "button-secondary-inverse": "button-secondary-inverse",
+  "button-tertiary": "button-tertiary",
+  "button-ghost": "button-ghost",
 } as const;
 
 export type LinkVariants = keyof typeof linkVariants;
+
+const BUTTON_VARIANT_PREFIX = "button-";
+
+const getButtonClassName = (variant?: LinkVariants) =>
+  variant?.startsWith(BUTTON_VARIANT_PREFIX)
+    ? `af-btn-client af-btn-client--${variant.slice(BUTTON_VARIANT_PREFIX.length)}`
+    : undefined;
 
 export type LinkProps<T extends ElementType = "a"> = PolymorphicComponent<
   T,
@@ -37,13 +51,17 @@ export const Link = <T extends ElementType = "a">({
     target: "_blank",
     rel: "noopener noreferrer",
   };
+  const buttonClassName = getButtonClassName(variant);
 
   return (
     <Component
       className={getClassName({
         baseClassName: "af-link",
-        modifiers: [variant, openInNewTab && "openInNewTab"],
-        className,
+        modifiers: [
+          buttonClassName ? undefined : variant,
+          openInNewTab && "openInNewTab",
+        ],
+        className: [buttonClassName, className].filter(Boolean).join(" "),
       })}
       {...newTabProps}
       {...props}

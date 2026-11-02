@@ -60,7 +60,7 @@ export const LinkButtonStory: StoryObj<typeof Link> = {
   render: ({ href, children }) => (
     <div className="af-btn-client-demo">
       {Object.values(buttonVariants).map((variant) => {
-        const className = `af-btn-client af-btn-client--${variant}`;
+        const linkVariant = `button-${variant}` as const;
         return (
           <div key={variant} className="af-btn-client-demo-variant">
             <div
@@ -74,22 +74,22 @@ export const LinkButtonStory: StoryObj<typeof Link> = {
                 .join(" ")}
             >
               <h2 className="af-title">{variant}</h2>
-              <Link href={href} className={className}>
+              <Link href={href} variant={linkVariant}>
                 {children} {variant}
               </Link>
-              <Link className={className} role="link" aria-disabled="true">
+              <Link variant={linkVariant} role="link" aria-disabled="true">
                 {children} {variant}
               </Link>
               <Link
                 href={href}
-                className={className}
+                variant={linkVariant}
                 leftIcon={<Icon src={arrowLeftAlt} />}
               >
                 {children} {variant}
               </Link>
               <Link
                 href={href}
-                className={className}
+                variant={linkVariant}
                 rightIcon={<Icon src={personFill} />}
               >
                 {children} {variant}

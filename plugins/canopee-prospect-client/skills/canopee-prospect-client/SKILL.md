@@ -127,11 +127,11 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ### Boutons et actions
 
-| Composant   | Référence                                 | Cas d'usage                                                      |
-| ----------- | ----------------------------------------- | ---------------------------------------------------------------- |
-| `Button`    | [01-button.md](./references/01-button.md) | CTA, actions, 7 variantes (primary, secondary, tertiary, ghost…) |
-| `ClickIcon` | [01-button.md](./references/01-button.md) | Bouton icône seul                                                |
-| `Link`      | [01-button.md](./references/01-button.md) | Lien polymorphe (`as`), React Router, ouverture nouvel onglet     |
+| Composant   | Référence                                 | Cas d'usage                                                               |
+| ----------- | ----------------------------------------- | ------------------------------------------------------------------------- |
+| `Button`    | [01-button.md](./references/01-button.md) | CTA, actions, 7 variantes (primary, secondary, tertiary, ghost…)          |
+| `ClickIcon` | [01-button.md](./references/01-button.md) | Bouton icône seul                                                         |
+| `Link`      | [01-button.md](./references/01-button.md) | Lien polymorphe (`as`), React Router, nouvel onglet, variantes `button-*` |
 
 ### Accords et navigation
 
