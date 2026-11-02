@@ -6,7 +6,7 @@ import {
   type MultiMessageItem,
 } from "@axa-fr/canopee-react/prospect";
 
-const sampleItems: MultiMessageItem[] = [
+export const sampleItems: MultiMessageItem[] = [
   {
     variant: messageVariants.information,
     title: "Titre du message",
