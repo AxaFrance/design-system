@@ -1,20 +1,20 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Loader } from "../Loader";
 
 describe("Loader component", () => {
   it("should render inline spinner variant", () => {
     render(<Loader variant="inline" text="Recherche en cours" />);
 
-    const spinnerElement = screen.getByRole("alert");
+    const spinnerElement = screen.getByRole("status");
     expect(spinnerElement).toHaveClass("af-loader");
     expect(spinnerElement).toHaveTextContent("Recherche en cours");
-    expect(spinnerElement).toHaveAttribute("aria-busy", "true");
   });
 
   it("should render fullscreen spinner variant", () => {
     render(<Loader variant="fullscreen" text="Recherche en cours" />);
 
-    const spinnerElement = screen.getByRole("alert");
+    const spinnerElement = screen.getByRole("status");
     expect(spinnerElement).toHaveClass("af-loader--fullscreen");
   });
 
@@ -26,7 +26,7 @@ describe("Loader component", () => {
     );
 
     expect(screen.getByText("Contenu de page")).toBeInTheDocument();
-    expect(screen.getByRole("alert")).toHaveClass("af-loader--fullscreen");
+    expect(screen.getByRole("status")).toHaveClass("af-loader--fullscreen");
   });
 
   it("should render children when fullscreen variant is omitted", () => {
@@ -37,13 +37,13 @@ describe("Loader component", () => {
     );
 
     expect(screen.getByText("Contenu de page")).toBeInTheDocument();
-    expect(screen.getByRole("alert")).toHaveClass("af-loader--fullscreen");
+    expect(screen.getByRole("status")).toHaveClass("af-loader--fullscreen");
   });
 
   it("should render with content variant", () => {
     render(<Loader variant="content" text="Recherche en cours" />);
 
-    const spinnerElement = screen.getByRole("alert");
+    const spinnerElement = screen.getByRole("status");
     expect(spinnerElement).toHaveClass("af-loader--content");
   });
 
@@ -56,7 +56,25 @@ describe("Loader component", () => {
       />,
     );
 
-    const spinnerElement = screen.getByRole("alert");
+    const spinnerElement = screen.getByRole("status");
     expect(spinnerElement).toHaveClass("custom-class");
+  });
+
+  it("should announce its text politely, without a permanent busy state", () => {
+    render(<Loader variant="content" text="Recherche en cours" />);
+
+    const status = screen.getByRole("status");
+    expect(status).toHaveTextContent("Recherche en cours");
+    expect(status).not.toHaveAttribute("aria-busy");
+    expect(status).not.toHaveAttribute("aria-live", "assertive");
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("shouldn't have an accessibility violation", async () => {
+    const { container } = render(
+      <Loader variant="inline" text="Recherche en cours" />,
+    );
+
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

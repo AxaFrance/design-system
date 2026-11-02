@@ -1,5 +1,6 @@
-import { type ReactNode } from "react";
+import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { getClassName } from "../utilities";
+import { ModalTitleContext } from "./ModalTitleContext";
 
 export type ModalProps = React.DetailedHTMLProps<
   React.DialogHTMLAttributes<HTMLDialogElement>,
@@ -13,6 +14,7 @@ export type ModalProps = React.DetailedHTMLProps<
   onOutsideTap: (event: React.MouseEvent | React.KeyboardEvent) => void;
   /**
    * `aria-label` of the modal, used for accessibility.
+   * When omitted, the modal is named by the title of its `ModalHeader`.
    */
   title?: string;
   className?: string;
@@ -35,11 +37,18 @@ const Modal = ({
     modifiers: [size],
     className,
   });
+  const [titleIds, setTitleIds] = useState<string[]>([]);
+  const registerTitle = useCallback((titleId: string) => {
+    setTitleIds((ids) => [...ids, titleId]);
+    return () => setTitleIds((ids) => ids.filter((id) => id !== titleId));
+  }, []);
+  const titleContext = useMemo(() => ({ registerTitle }), [registerTitle]);
 
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
     <dialog
-      aria-label={title}
+      aria-label={title || undefined}
+      aria-labelledby={title ? undefined : titleIds[0]}
       className={componentClassName}
       onClick={onOutsideTap}
       {...props}
@@ -49,7 +58,9 @@ const Modal = ({
         className="af-modal__dialog"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="af-modal__content">{children}</div>
+        <ModalTitleContext.Provider value={titleContext}>
+          <div className="af-modal__content">{children}</div>
+        </ModalTitleContext.Provider>
       </div>
     </dialog>
   );

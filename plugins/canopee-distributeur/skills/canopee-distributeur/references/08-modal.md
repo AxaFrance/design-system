@@ -39,17 +39,23 @@ Modale spécialisée pour les dialogues de confirmation oui/non.
 |------|------|--------|-------------|
 | `size` | `"" \| "lg" \| "sm"` | `""` | Taille de la modale (vide = défaut) |
 | `onOutsideTap` | `(event: React.MouseEvent \| React.KeyboardEvent) => void` | **Obligatoire** | Gestionnaire de clic extérieur ou touche Échap |
-| `title` | `string` | - | Titre de la modale |
+| `title` | `string` | - | Nom accessible de la modale (`aria-label`). Facultatif avec un `ModalHeader`, dont le titre nomme alors la modale |
 | `children` | `ReactNode` | - | Contenu de la modale |
 | `className` | `string` | - | Classes CSS additionnelles |
 
-### ModalHeader / ModalHeaderBase
+### ModalHeader
 
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
-| `title` | `string \| ReactNode` | - | Titre de l'en-tête |
-| `onClose` | `() => void` | - | Gestionnaire du clic sur fermeture |
-| `children` | `ReactNode` | - | Contenu d'en-tête personnalisé |
+| `children` | `ReactNode` | - | Titre affiché (`h4`). Dans une `Modal` sans `title`, il nomme aussi la modale |
+| `onCancel` | `MouseEventHandler<HTMLButtonElement>` | **Obligatoire** | Gestionnaire du clic sur le bouton de fermeture |
+| `closeButtonAriaLabel` | `string` | `"Fermer la boite de dialogue"` | Nom accessible du bouton de fermeture |
+| `className` | `string` | - | Classes CSS additionnelles |
+
+### ModalHeaderBase
+
+En-tête au contenu libre (`children`, attributs HTML d'un `header`). Il ne nomme pas la modale :
+passer `title` à `Modal`, ou `aria-labelledby` vers l'identifiant de votre titre.
 
 ### ModalBody
 
@@ -86,7 +92,7 @@ const ModaleSimple = () => {
       <Button onClick={handleOuvrir}>Ouvrir la modale</Button>
       
       <Modal ref={modalRef} onOutsideTap={handleFermer}>
-        <ModalHeader title="Titre de la modale" onClose={handleFermer} />
+        <ModalHeader onCancel={handleFermer}>Titre de la modale</ModalHeader>
         <ModalBody>
           Ceci est le contenu de la modale.
         </ModalBody>
@@ -147,10 +153,7 @@ const ModaleConfirmation = () => {
       ref={modalRef} 
       onOutsideTap={handleFermer}
     >
-      <ModalHeader 
-        title="Confirmer l'action" 
-        onClose={handleFermer}
-      />
+      <ModalHeader onCancel={handleFermer}>Confirmer l'action</ModalHeader>
       <ModalBody>
         Êtes-vous sûr(e) de vouloir continuer ? Cette action est irréversible.
       </ModalBody>
@@ -193,10 +196,9 @@ const ModaleFormulaire = () => {
       </Button>
       
       <Modal ref={modalRef}>
-        <ModalHeader 
-          title="Ajouter un nouvel utilisateur" 
-          onClose={() => modalRef.current?.close?.()}
-        />
+        <ModalHeader onCancel={() => modalRef.current?.close?.()}>
+          Ajouter un nouvel utilisateur
+        </ModalHeader>
         <ModalBody>
           <form onSubmit={handleSoumettre}>
             <TextInput
@@ -298,10 +300,7 @@ const ModaleIgnorable = () => {
       ref={modalRef}
       onOutsideTap={handleFermer}
     >
-      <ModalHeader 
-        title="Cliquer à l'extérieur pour fermer" 
-        onClose={handleFermer}
-      />
+      <ModalHeader onCancel={handleFermer}>Cliquer à l'extérieur pour fermer</ModalHeader>
       <ModalBody>
         Contenu ici. Cliquer à l'extérieur ou sur X pour fermer.
       </ModalBody>
@@ -318,10 +317,9 @@ const ModaleArticle = () => {
   
   return (
     <Modal ref={modalRef} size="lg">
-      <ModalHeader 
-        title="Aperçu de l'article" 
-        onClose={() => modalRef.current?.close?.()}
-      />
+      <ModalHeader onCancel={() => modalRef.current?.close?.()}>
+        Aperçu de l'article
+      </ModalHeader>
       <ModalBody>
         <img src="banner.jpg" alt="Article" style={{ width: "100%" }} />
         <h2>Titre de l'article</h2>
@@ -350,8 +348,11 @@ const ModaleArticle = () => {
 ## Accessibilité
 - Les modales piègent le focus (pas de tab vers l'extérieur)
 - La touche Échap ferme la modale (si programmé)
-- Attributs ARIA pour la sémantique du dialogue
-- Le bouton de fermeture a un label accessible
+- Le `<dialog>` est nommé par le titre du `ModalHeader` (`aria-labelledby`) quand `title` est omis ;
+  un `title` non vide le nomme (`aria-label`) ; un `aria-labelledby` passé à `Modal` reste prioritaire.
+  Avec `ModalHeaderBase`, passer `title` ou `aria-labelledby`. `BooleanModal` est nommée par son `title`
+- Le titre du `ModalHeader` reste un `h4`
+- Le bouton de fermeture a un label accessible (`"Fermer la boite de dialogue"` par défaut)
 - L'arrière-plan empêche l'interaction avec le fond
 - Structure sémantique en-tête/corps/pied de page
 
