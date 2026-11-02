@@ -1,3 +1,4 @@
+import "@axa-fr/canopee-css/prospect/Button/ButtonApollo.css";
 import "@axa-fr/canopee-css/prospect/Link/LinkApollo.css";
 
 export {

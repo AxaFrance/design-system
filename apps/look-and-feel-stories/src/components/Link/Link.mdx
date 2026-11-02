@@ -46,8 +46,24 @@ export const AccountLink = () => (
 
 ## Button styles
 
-Links can use the `af-btn-client` class and a button variant modifier while
-keeping anchor semantics. The disabled examples omit `href` and use
-`role="link"` with `aria-disabled="true"` to prevent navigation.
+Use a `button-*` variant to display a link with a button style while keeping
+anchor semantics. The `af-btn-client` classes are added automatically.
+
+```tsx
+import { Link } from "@axa-fr/canopee-react/client";
+
+export const LinkButton = () => (
+  <Link href="https://fakelink.com" variant="button-secondary">
+    Plus de détails
+  </Link>
+);
+```
+
+Available variants: `button-primary`, `button-primary-business`,
+`button-primary-inverse`, `button-secondary`, `button-secondary-inverse`,
+`button-tertiary` and `button-ghost`.
+
+The disabled examples omit `href` and use `role="link"` with
+`aria-disabled="true"` to prevent navigation.
 
 <Canvas of={LinkStories.LinkButtonStory} />
