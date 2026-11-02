@@ -88,7 +88,10 @@ const Demo = () => (
           </code>
           <p>
             You can play with them on this demo{" "}
-            <Link href="./?path=/story/pages-form--form-story" target="_top">
+            <Link
+              href="./?path=/story/pages-exemples-form--form-story"
+              target="_top"
+            >
               here
             </Link>
             .
