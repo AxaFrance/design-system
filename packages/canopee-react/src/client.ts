@@ -140,6 +140,10 @@ export {
   type PatternMozaicFreeProps,
 } from "./prospect-client/Layout/PatternMozaicFree/PatternMozaicFree";
 export {
+  PatternCardMarketing,
+  type PatternCardMarketingProps,
+} from "./prospect-client/Layout/PatternCardMarketing/PatternCardMarketing";
+export {
   PatternWithAction,
   type PatternWithActionProps,
 } from "./prospect-client/Layout/PatternWithAction/PatternWithActionLF";
