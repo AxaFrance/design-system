@@ -93,44 +93,46 @@ export const MainLayoutCommon = ({
         })}
       >
         {headerProps ? <HeaderComponent {...headerProps} /> : null}
-        {backLinkProps ? (
-          <div className={`grid ${DEFAULT_CLASS}__back-link`}>
-            <LinkComponent
-              leftIcon={<IconComponent src={arrowLeftAlt} />}
-              {...backLinkProps}
-            />
-          </div>
-        ) : null}
-        {top ? (
-          <div
-            className={getClassName({
-              baseClassName: `${DEFAULT_CLASS}__top`,
-              className: top.props.className,
-            })}
-          >
-            {top}
-          </div>
-        ) : null}
-        {mainChildren.length > 0 ? (
-          <main
-            className={getClassName({
-              baseClassName: `${DEFAULT_CLASS}__center grid`,
-              className: centerClassName,
-            })}
-          >
-            {mainChildren}
-          </main>
-        ) : null}
-        {bottom ? (
-          <div
-            className={getClassName({
-              baseClassName: `${DEFAULT_CLASS}__bottom`,
-              className: bottom.props.className,
-            })}
-          >
-            {bottom}
-          </div>
-        ) : null}
+        <div className={`${DEFAULT_CLASS}__content`}>
+          {backLinkProps ? (
+            <div className={`grid ${DEFAULT_CLASS}__back-link`}>
+              <LinkComponent
+                leftIcon={<IconComponent src={arrowLeftAlt} />}
+                {...backLinkProps}
+              />
+            </div>
+          ) : null}
+          {top ? (
+            <div
+              className={getClassName({
+                baseClassName: `${DEFAULT_CLASS}__top`,
+                className: top.props.className,
+              })}
+            >
+              {top}
+            </div>
+          ) : null}
+          {mainChildren.length > 0 ? (
+            <main
+              className={getClassName({
+                baseClassName: `${DEFAULT_CLASS}__center grid`,
+                className: centerClassName,
+              })}
+            >
+              {mainChildren}
+            </main>
+          ) : null}
+          {bottom ? (
+            <div
+              className={getClassName({
+                baseClassName: `${DEFAULT_CLASS}__bottom`,
+                className: bottom.props.className,
+              })}
+            >
+              {bottom}
+            </div>
+          ) : null}
+        </div>
         {footerProps ? <FooterComponent {...footerProps} /> : null}
       </div>
     </>

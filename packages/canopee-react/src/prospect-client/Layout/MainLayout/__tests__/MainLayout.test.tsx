@@ -18,7 +18,8 @@ describe.each([
     const root = container.querySelector(".af-main-layout");
     expect(root).toHaveClass("custom");
 
-    const areas = Array.from(root?.children ?? []);
+    const content = root?.querySelector(".af-main-layout__content");
+    const areas = Array.from(content?.children ?? []);
     expect(areas.map((area) => area.textContent)).toEqual([
       "Top",
       "Content",
@@ -62,5 +63,27 @@ describe.each([
     );
 
     expect(screen.queryByRole("main")).toBeNull();
+  });
+
+  it("keeps the content wrapper between the optional header and footer", () => {
+    const { container } = render(
+      <MainLayout
+        headerProps={{ appNameProps: { label: "My application" } }}
+        footerProps={{
+          expandLinkText: "About",
+          copyright: "© AXA",
+          links: [],
+        }}
+      >
+        Main content
+      </MainLayout>,
+    );
+
+    const root = container.querySelector(".af-main-layout");
+    const areas = Array.from(root?.children ?? []);
+    expect(areas[0].tagName).toBe("HEADER");
+    expect(areas[1]).toHaveClass("af-main-layout__content");
+    expect(areas[2].tagName).toBe("FOOTER");
+    expect(areas[1]).toContainElement(screen.getByRole("main"));
   });
 });
