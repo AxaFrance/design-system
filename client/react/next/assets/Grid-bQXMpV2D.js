@@ -1,0 +1,6 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{n,r}from"./lib-DBVbtB0w.js";import{i,l as a,n as o,s}from"./blocks-CEJSJFmd.js";import{n as c,r as l,t as u}from"./GridWireframe.stories-4bLvPlIC.js";function d(e){let t={a:`a`,h2:`h2`,p:`p`,...r(),...e.components};return(0,p.jsxs)(p.Fragment,{children:[(0,p.jsx)(s,{name:`How to use Grid ?`,of:u}),`
+`,(0,p.jsx)(t.h2,{id:`grid-system`,children:`Grid System`}),`
+`,(0,p.jsxs)(t.p,{children:[`More info here : `,(0,p.jsx)(t.a,{href:`https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/fondations-grid-system--how-to-use-grid`,rel:`nofollow`,children:`Grid documentation`})]}),`
+`,(0,p.jsx)(t.h2,{id:`wireframe`,children:`Wireframe`}),`
+`,(0,p.jsx)(o,{of:c}),`
+`,(0,p.jsx)(i,{of:c})]})}function f(e={}){let{wrapper:t}={...r(),...e.components};return t?(0,p.jsx)(t,{...e,children:(0,p.jsx)(d,{...e})}):d(e)}var p;function m(){return(m=e((()=>{p=t(),n(),a(),l()})))()}m();export{f as default};

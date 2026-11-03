@@ -1,0 +1,25 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./jsx-runtime-MKhVqBIO.js";import{J as r,t as i}from"./client-CdQKUOTE.js";import{Qn as a}from"./MessageBarCommon-BxIbuzbM.js";var o=t({ButtonCard:()=>d,Default:()=>u,Unstyled:()=>f,__namedExportsOrder:()=>p,default:()=>l}),s,c,l,u,d,f,p;function m(){return(m=e((()=>{i(),s=n(),c=(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(r,{level:2,className:`af-card__title`,children:`My card title`}),(0,s.jsx)(`p`,{children:`My card content`})]}),l={title:`Components/Card`,component:a},u={name:`Basic Content`,render:e=>(0,s.jsx)(a,{...e}),args:{children:c}},d={render:e=>(0,s.jsx)(a,{...e}),args:{children:c,as:`button`,type:`button`},argTypes:{onClick:{action:`onClick`}}},f={render:e=>(0,s.jsx)(a,{...e}),args:{children:c,variant:`unstyled`}},p=[`Default`,`ButtonCard`,`Unstyled`],u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  name: "Basic Content",
+  render: args => <Card {...args} />,
+  args: {
+    children: BASIC_CONTENT
+  }
+}`,...u.parameters?.docs?.source}}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  render: args => <Card {...args} />,
+  args: {
+    children: BASIC_CONTENT,
+    as: "button",
+    type: "button"
+  },
+  argTypes: {
+    onClick: {
+      action: "onClick"
+    }
+  }
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  render: args => <Card {...args} />,
+  args: {
+    children: BASIC_CONTENT,
+    variant: "unstyled"
+  }
+}`,...f.parameters?.docs?.source}}}})))()}export{m as a,f as i,o as n,u as r,d as t};
