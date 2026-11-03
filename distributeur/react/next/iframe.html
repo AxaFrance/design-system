@@ -13,7 +13,7 @@
       window.LOGLEVEL = 'info';
       window.FRAMEWORK_OPTIONS = {};
       window.CHANNEL_OPTIONS = {};
-      window.FEATURES = {"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":true,"viewport":true,"highlight":true,"controls":true,"interactions":true,"actions":true,"backgrounds":true,"outline":true,"measure":true,"sidebarOnboardingChecklist":true,"componentsManifest":false};
+      window.FEATURES = {"actions":true,"argTypeTargetsV7":true,"babelRemoveBugfixes":false,"backgrounds":true,"changeDetection":true,"componentsManifest":false,"controls":true,"disallowImplicitActionsInRenderV8":true,"highlight":true,"interactions":true,"legacyDecoratorFileOrder":false,"measure":true,"outline":true,"menuOnboardingChecklist":true,"sidebarOnboardingChecklist":true,"viewport":true};
       window.STORIES = [{"titlePrefix":"","directory":"./src","files":"Home.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/Home\\.mdx)$"},{"titlePrefix":"","directory":"./src","files":"**/*.mdx","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./src","files":"**/*.stories.@(js|jsx|mjs|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|mjs|ts|tsx))$"}];
       window.DOCS_OPTIONS = {"defaultName":"Docs"};
       window.TAGS_OPTIONS = {};
@@ -139,11 +139,11 @@
     border-radius: 10px;
     background: rgb(247, 247, 247);
     color: rgb(46, 52, 56);
+  }
 
-    & * {
-      background: rgb(247, 247, 247);
-      color: rgb(46, 52, 56);
-    }
+  .sb-nopreview_main * {
+    background: rgb(247, 247, 247);
+    color: rgb(46, 52, 56);
   }
 
   .sb-nopreview_heading {
@@ -174,84 +174,89 @@
     border: 1px solid #ff0000;
     box-shadow: 0 0 64px rgba(0, 0, 0, 0.1);
     gap: 24px;
+  }
 
-    & ol {
-      padding-left: 18px;
-      margin: 0;
-    }
+  .sb-errordisplay_main ol {
+    padding-left: 18px;
+    margin: 0;
+  }
 
-    /* Redefine colors to ensure readability regardless of user-provided * selectors. */
-    * {
-      background: white;
-      color: black;
-    }
+  /* Redefine colors to ensure readability regardless of user-provided * selectors. */
+  .sb-errordisplay_main * {
+    background: white;
+    color: black;
+  }
 
-    & h1 {
-      font-family: Nunito Sans;
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 30px;
-      font-weight: normal;
-      margin: 0;
+  /* Exclude error code block from the universal reset to preserve ANSI colors and dark theme */
+  .sb-errordisplay_main .sb-errordisplay_code,
+  .sb-errordisplay_main .sb-errordisplay_code * {
+    background: #242424;
+    color: #c6c6c6;
+  }
 
-      &::before {
-        content: '';
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        background: #ff4400;
-        border-radius: 50%;
-        margin-right: 8px;
-      }
-    }
+  .sb-errordisplay_main h1 {
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    margin: 0;
+  }
 
-    & p,
-    & ol {
-      font-family: Nunito Sans;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 19px;
-      margin: 0;
-    }
+  .sb-errordisplay_main h1::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #ff4400;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
 
-    & li + li {
-      margin: 0;
-      padding: 0;
-      padding-top: 12px;
-    }
+  .sb-errordisplay_main p,
+  .sb-errordisplay_main ol {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    margin: 0;
+  }
 
-    & a {
-      color: currentColor;
-    }
+  .sb-errordisplay_main li + li {
+    margin: 0;
+    padding: 0;
+    padding-top: 12px;
+  }
 
-    & .sb-errordisplay_code {
-      padding: 10px;
-      flex: 1;
-      background: #242424;
-      color: #c6c6c6;
-      box-sizing: border-box;
+  .sb-errordisplay_main a {
+    color: currentColor;
+  }
 
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 19px;
-      border-radius: 4px;
+  .sb-errordisplay_main .sb-errordisplay_code {
+    padding: 10px;
+    flex: 1;
+    background: #242424;
+    color: #c6c6c6;
+    box-sizing: border-box;
 
-      font-family:
-        'Operator Mono', 'Fira Code Retina', 'Fira Code', 'FiraCode-Retina', 'Andale Mono',
-        'Lucida Console', Consolas, Monaco, monospace;
-      margin: 0;
-      overflow: auto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    border-radius: 4px;
 
-      & code {
-        background-color: inherit;
-        color: inherit;
-      }
-    }
+    font-family:
+      'Operator Mono', 'Fira Code Retina', 'Fira Code', 'FiraCode-Retina', 'Andale Mono',
+      'Lucida Console', Consolas, Monaco, monospace;
+    margin: 0;
+    overflow: auto;
+  }
 
-    & .sb-errordisplay pre {
-      white-space: pre-wrap;
-      white-space: revert;
-    }
+  .sb-errordisplay_main .sb-errordisplay_code code {
+    background-color: inherit;
+    color: inherit;
+  }
+
+  .sb-errordisplay_main .sb-errordisplay_code {
+    white-space: pre-wrap;
   }
 
   @-webkit-keyframes sb-rotate360 {
@@ -515,19 +520,19 @@
   }
 </script>
 
-    <script type="module" crossorigin src="./assets/iframe-XGNZptDa.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-DkW27tQK.js">
-    <link rel="modulepreload" crossorigin href="./assets/preload-helper-BVscJdOD.js">
-    <link rel="modulepreload" crossorigin href="./assets/chunk-3LY4VQVK-C5jf2pns.js">
-    <link rel="modulepreload" crossorigin href="./assets/react-BL8mseS1.js">
-    <link rel="modulepreload" crossorigin href="./assets/react-dom-DGcpji5J.js">
-    <link rel="modulepreload" crossorigin href="./assets/theming-BOIu_h82.js">
-    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-DeHZSEgm.js">
-    <link rel="modulepreload" crossorigin href="./assets/chunk-RD3KTAHR-C99DqYVI.js">
-    <link rel="modulepreload" crossorigin href="./assets/chunk-242VQQM5-bHL6qIJq.js">
-    <link rel="modulepreload" crossorigin href="./assets/components-DAC5_539.js">
-    <link rel="modulepreload" crossorigin href="./assets/chunk-CYSK6WYR-B3iSfInK.js">
-    <link rel="modulepreload" crossorigin href="./assets/iframe-CjUrzS1v.js">
+    <script type="module" crossorigin src="./assets/iframe-ijjLwGih.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-sJBDdmOt.js">
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-2GovK0wV.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-DRQKCCAG-B1urANvs.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-DlPsW1c0.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-B2lTHb2f.js">
+    <link rel="modulepreload" crossorigin href="./assets/theming-z8eMA1Qs.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-MKhVqBIO.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-W22LQPXL-BQHgWPhZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-242VQQM5-DgLL3Sdg.js">
+    <link rel="modulepreload" crossorigin href="./assets/components-C17jUuMu.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-QQBDHPVZ-DGKYZDIn.js">
+    <link rel="modulepreload" crossorigin href="./assets/iframe-vhPn28sa.js">
   </head>
 
   <body>
