@@ -20,9 +20,9 @@ export type CardMarketingProps = Omit<
   /** Responsive picture sources, ordered from most preferred to fallback. */
   sources?: ComponentProps<"source">[];
   /** Title displayed above the description. */
-  title: string;
+  title: ReactNode;
   /** Description displayed between the title and link. */
-  text: string;
+  text: ReactNode;
   /** Link destination, label and native link attributes. */
   linkProps: LinkProps & { href: string; children: ReactNode };
   /** Image above the content by default; horizontal places it on the left on desktop. */
