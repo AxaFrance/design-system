@@ -26,14 +26,14 @@
     "@storybook/addon-onboarding": "^10.3.5",
     "@storybook/react": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
-    "@types/react": "^19.0.8",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@types/react": "*",
+    "@vitejs/plugin-react": "^6.1.2",
     "@whitespace/storybook-addon-html": "^9.0.0",
-    "chromatic": "^18.7.2",
-    "globals": "^17.5.0",
-    "storybook": "^10.3.5",
+    "chromatic": "^18.13.3",
+    "globals": "^17.13.0",
+    "storybook": "^10.6.5",
     "typescript": "~6.0.3",
-    "vite": "^8.0.9"
+    "vite": "^8.3.5"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.62.0"

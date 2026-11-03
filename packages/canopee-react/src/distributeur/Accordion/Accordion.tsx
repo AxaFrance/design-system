@@ -11,8 +11,7 @@ export type EnhancedProps = Partial<TDefaultProps> & {
   className?: string;
   variant?: AccordionVariant;
   children:
-    | React.ReactElement<CollapseProps>[]
-    | React.ReactElement<CollapseProps>;
+    React.ReactElement<CollapseProps>[] | React.ReactElement<CollapseProps>;
 };
 
 const Accordion = ({

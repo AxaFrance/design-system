@@ -19,5 +19,6 @@
   "sonarlint.connectedMode.project": {
     "connectionId": "axaguildev",
     "projectKey": "AxaFrance_design-system"
-  }
+  },
+  "eslint.workingDirectories": [{ "mode": "auto" }]
 }

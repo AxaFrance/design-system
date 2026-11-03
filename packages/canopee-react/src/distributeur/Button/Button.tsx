@@ -8,12 +8,7 @@ import {
 } from "../ClickableGhost";
 
 export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "validated"
-  | "danger"
-  | "ghost"
-  | "ghost-reverse";
+  "primary" | "secondary" | "validated" | "danger" | "ghost" | "ghost-reverse";
 
 type ButtonProps = ClickableComponentProps &
   PropsWithChildren<
