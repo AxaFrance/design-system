@@ -1,0 +1,144 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Primary,
+  Title,
+} from "@storybook/addon-docs/blocks";
+import * as CheckboxInputStories from "./CheckboxInput.stories";
+import * as CheckboxButtonStories from "./CheckboxButton.stories";
+import * as CheckboxCardStories from "./CheckboxCard.stories";
+import * as CheckboxGroupStories from "./CheckboxGroup.stories";
+import * as CheckboxItemStories from "./CheckboxItem.stories";
+import * as CheckboxTextStories from "./CheckboxText.stories";
+
+<Meta of={CheckboxInputStories} />
+
+<Title />
+
+## Experimental components
+
+These components may evolve. Import them from
+`@axa-fr/canopee-react/distributeur/experimental`; the stable CheckboxInput is unchanged.
+
+Use `CheckboxInput` for a complete field with a label, options and help/error messages.
+Unlike RadioInput, each option can be checked and unchecked independently, even with the same `name`.
+
+<Primary />
+<Controls />
+
+```tsx
+import { CheckboxInput } from "@axa-fr/canopee-react/distributeur/experimental";
+
+<CheckboxInput
+  label="Transport"
+  helpMessage="Choose one or more options"
+  options={[
+    {
+      name: "transport",
+      value: "train",
+      label: "Train",
+      onChange: handleChange,
+    },
+    { name: "transport", value: "bike", label: "Bike", onChange: handleChange },
+  ]}
+/>;
+```
+
+## Variants
+
+- `button` (default): compact buttons, with a checkbox to the left of the label.
+- `text`: a checkbox and its text label.
+- `card`: visual choices with optional `icon` and secondary `action` content.
+
+CheckboxButton and RadioButton share their base colors, border and interaction
+states through `SelectionButton.css`. Their layout and selected background remain
+specific to each component.
+
+<Canvas of={CheckboxInputStories.TextStory} />
+<Canvas of={CheckboxInputStories.CardStory} />
+
+## Layout
+
+As with the experimental RadioInput, `orientation` describes the group layout:
+
+- `horizontal` (default): a row of options, or a responsive grid of upright cards.
+- `vertical`: stacked options, or wide cards with their content arranged in a row.
+
+CheckboxGroup and RadioGroup delegate layout classes to SelectionGroup.
+The shared `af-selection-card` class and its orientation/variant modifiers belong
+to the group, not individual cards. Only card groups use the shared grid layout.
+
+For cards, this group orientation is distinct from the visual card orientation
+described in Zeroheight. `labelPosition="above"` places the field label above the group;
+`topLeft` aligns it to the top left.
+
+<Canvas of={CheckboxInputStories.VerticalCardsStory} />
+
+## Component stories
+
+### CheckboxGroup
+
+Compose options directly when field-level labels and messages are handled elsewhere.
+The variant control renders matching button, text or card options in both orientations.
+
+<Canvas of={CheckboxGroupStories.HorizontalStory} />
+<Canvas of={CheckboxGroupStories.VerticalStory} />
+<Canvas of={CheckboxGroupStories.TextStory} />
+<Canvas of={CheckboxGroupStories.CardsStory} />
+<Canvas of={CheckboxGroupStories.VerticalCardsStory} />
+
+### CheckboxButton
+
+<Canvas of={CheckboxButtonStories.DefaultStory} />
+<Canvas of={CheckboxButtonStories.States} />
+
+### CheckboxText
+
+<Canvas of={CheckboxTextStories.DefaultStory} />
+<Canvas of={CheckboxTextStories.States} />
+
+### CheckboxCard
+
+<Canvas of={CheckboxCardStories.DefaultStory} />
+<Canvas of={CheckboxCardStories.WithIconStory} />
+<Canvas of={CheckboxCardStories.WithActionStory} />
+<Canvas of={CheckboxCardStories.VerticalStory} />
+<Canvas of={CheckboxCardStories.States} />
+
+### CheckboxItem
+
+The low-level input stories use an accessible name without adding a visible label.
+Use a visible label in forms, or the appropriate text/button/card component.
+
+<Canvas of={CheckboxItemStories.DefaultStory} />
+<Canvas of={CheckboxItemStories.States} />
+
+## State and accessibility
+
+- Options are unchecked by default. Use `defaultChecked` for uncontrolled initial state,
+  or `checked` with `onChange` for controlled state.
+- Option `onChange` receives the native React input change event.
+- `disabled` is set per option. A checked disabled option remains checked.
+- Option ids are generated when omitted. Supply unique ids when needed.
+- The fieldset is named by its label; help and error messages describe the group and every option.
+- `errorMessage` marks every option as invalid. `required` adds a visual indicator only,
+  like RadioInput; group validation remains the application's responsibility.
+- Each enabled option is reachable with Tab and toggled with Space.
+- Low-level composition is available through `CheckboxGroup`, `CheckboxButton`,
+  `CheckboxText`, `CheckboxCard` and `CheckboxItem`. Always provide an accessible label.
+
+<Canvas of={CheckboxInputStories.ErrorStory} />
+<Canvas of={CheckboxInputStories.StatesStory} />
+<Canvas of={CheckboxInputStories.ErrorStatesStory} />
+
+## Zeroheight guidance
+
+Prefer these components for up to five visible options; use Multi Select for larger lists.
+This is a usage recommendation, not a limit enforced by the component.
+Use RadioInput or Select when only one answer is allowed.
+
+- [Checkbox](https://zeroheight.com/4b1e27a45/v/latest/p/399dba-checkbox)
+- [Checkbox Button](https://zeroheight.com/4b1e27a45/v/latest/p/668d93-checkbox-button)
+- [Checkbox Text](https://zeroheight.com/4b1e27a45/v/latest/p/999fe9-checkbox-text)
+- [Checkbox Card](https://zeroheight.com/4b1e27a45/v/latest/p/03f0e2-checkbox-card)

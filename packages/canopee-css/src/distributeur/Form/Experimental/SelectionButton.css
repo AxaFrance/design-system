@@ -1,0 +1,40 @@
+@layer canopee.selection-button {
+  .af-radio__button,
+  .af-checkbox__button {
+    --background-color: var(--gray20);
+    --accent-border-color: var(--gray50);
+    --selection-text-color: var(--text-color);
+
+    border-bottom: 2px solid var(--accent-border-color);
+    color: var(--selection-text-color);
+    background-color: var(--background-color);
+    cursor: pointer;
+
+    &:hover,
+    &:has(:checked) {
+      --background-color: var(--brand-primary);
+      --accent-border-color: var(--axablue90);
+      --selection-text-color: var(--white);
+    }
+
+    &:has(:focus-visible) {
+      outline: calc(2rem / 16) solid var(--brand-primary);
+      outline-offset: calc(2rem / 16);
+    }
+
+    &:has(:disabled) {
+      --background-color: var(--gray20);
+      --accent-border-color: var(--disabled-color);
+      --selection-text-color: var(--disabled-color);
+
+      cursor: not-allowed;
+    }
+  }
+
+  .af-radio__button:has([aria-invalid="true"]),
+  .af-checkbox__button:has([aria-invalid="true"]):not(:has(:disabled)) {
+    --background-color: var(--red10);
+    --accent-border-color: var(--error-color);
+    --selection-text-color: var(--error-color);
+  }
+}

@@ -1,0 +1,19 @@
+@import "./SelectionCardGroup.css";
+
+@layer canopee {
+  .af-checkbox__input-container:not(.af-input__container--vertical) {
+    grid-template-columns: 17rem minmax(0, 1fr) auto;
+  }
+
+  .af-checkbox__group {
+    display: flex;
+    grid-area: input;
+    flex-wrap: wrap;
+    gap: 0.5em 0.25rem;
+  }
+
+  .af-checkbox__group--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
