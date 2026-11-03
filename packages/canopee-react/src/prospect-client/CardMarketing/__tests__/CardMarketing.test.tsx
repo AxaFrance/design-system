@@ -33,6 +33,27 @@ describe.each([
     );
   });
 
+  it("renders React nodes for the title and description", () => {
+    render(
+      <CardMarketing
+        {...props}
+        title={
+          <span>
+            Offer <strong>title</strong>
+          </span>
+        }
+        text={
+          <span>
+            More <em>details</em>
+          </span>
+        }
+      />,
+    );
+
+    expect(screen.getByText("title").tagName).toBe("STRONG");
+    expect(screen.getByText("details").tagName).toBe("EM");
+  });
+
   it("forwards root props and merges classes without duplicates", () => {
     const ref = createRef<HTMLDivElement>();
     const onClick = vi.fn();
