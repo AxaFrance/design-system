@@ -75,6 +75,7 @@
 @import "./Layout/PatternCardMarketing/PatternCardMarketingAll.css";
 @import "./Layout/PatternWithAction/PatternWithActionAll.css";
 @import "./Layout/ColumnLayout/ColumnsLayoutAll.css";
+@import "./Layout/MainLayout/MainLayoutLF.css";
 @import "./Loader/LoaderLF.css";
 @import "./MessageBar/MessageBarAll.css";
 @import "./TabBar/TabBarLF.css";
