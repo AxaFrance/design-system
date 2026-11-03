@@ -75,6 +75,7 @@
 @import "./Layout/PatternCardMarketing/PatternCardMarketingAll.css";
 @import "./Layout/PatternWithAction/PatternWithActionAll.css";
 @import "./Layout/ColumnLayout/ColumnsLayoutAll.css";
+@import "./Layout/MainLayout/MainLayoutApollo.css";
 @import "./Loader/LoaderApollo.css";
 @import "./MessageBar/MessageBarAll.css";
 @import "./TabBar/TabBarApollo.css";
