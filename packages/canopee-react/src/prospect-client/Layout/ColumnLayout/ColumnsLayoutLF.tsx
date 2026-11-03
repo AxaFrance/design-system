@@ -1,4 +1,4 @@
-import { Heading } from "@axa-fr/canopee-react/client";
+import { Heading } from "../../Heading/HeadingLF";
 import {
   Right,
   Left,
