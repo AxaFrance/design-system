@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import type { FocusEvent, MouseEvent, ReactNode } from "react";
 import { getClassName } from "../../../utilities/helpers/getClassName";
+import { isHandledKey } from "./NavBar.helpers";
 
 const defaultClassName = "af-nav-container";
 
@@ -73,7 +74,9 @@ const NavBarBase = ({
         </div>
         <ul
           onKeyDown={(e) => {
-            e.preventDefault();
+            if (isHandledKey(e.key)) {
+              e.preventDefault();
+            }
             handleKeys(e.key);
           }}
           onFocus={(e) => {
