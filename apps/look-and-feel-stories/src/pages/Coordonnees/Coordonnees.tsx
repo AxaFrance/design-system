@@ -162,7 +162,7 @@ export const Coordonnees = () => {
             data-cols-desktop-small="8"
             action={
               <Link
-                className="af-button-client"
+                variant="button-tertiary"
                 href="https://www.axa.fr"
                 openInNewTab
               >
