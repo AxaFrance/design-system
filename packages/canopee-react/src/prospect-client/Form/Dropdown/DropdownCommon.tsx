@@ -55,8 +55,16 @@ const DropdownCommon = ({
   ...otherProps
 }: DropdownCommonProps) => {
   const idMessage = useId();
+  const idHelp = useId();
+  const idDescription = useId();
   let inputId = useId();
   inputId = id || inputId;
+
+  const ariaDescribedby = [
+    description && idDescription,
+    helper && idHelp,
+    message && idMessage,
+  ].filter(Boolean) as string[];
 
   const hasError = Boolean(message) && messageType === "error";
   const hasWarning = !hasError && Boolean(message) && messageType === "warning";
@@ -71,6 +79,7 @@ const DropdownCommon = ({
     <div className="af-form__dropdown-container" {...containerProps}>
       <ItemLabelComponent
         description={description}
+        descriptionId={idDescription}
         moreButtonLabel={moreButtonLabel}
         onMoreButtonClick={onMoreButtonClick}
         sideButtonLabel={sideButtonLabel}
@@ -80,11 +89,23 @@ const DropdownCommon = ({
       >
         {label}
       </ItemLabelComponent>
-      <select className={classname} {...otherProps} id={inputId}>
+      <select
+        className={classname}
+        aria-describedby={
+          ariaDescribedby.length > 0 ? ariaDescribedby.join(" ") : undefined
+        }
+        aria-invalid={hasError || undefined}
+        {...otherProps}
+        id={inputId}
+      >
         {Boolean(placeholder) && <option value="">{placeholder}</option>}
         {children}
       </select>
-      {helper ? <span className="af-form__input-helper">{helper}</span> : null}
+      {helper ? (
+        <span id={idHelp} className="af-form__input-helper">
+          {helper}
+        </span>
+      ) : null}
       <ItemMessageComponent
         id={idMessage}
         message={message}

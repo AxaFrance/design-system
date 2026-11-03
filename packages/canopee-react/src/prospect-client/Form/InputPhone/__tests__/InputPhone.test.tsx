@@ -5,6 +5,8 @@ import { InputTextAtom } from "../../InputTextAtom/InputTextAtomApollo";
 import { ItemLabel } from "../../ItemLabel/ItemLabelApollo";
 import { InputPhoneCommon } from "../InputPhoneCommon";
 import { ItemMessage } from "../../ItemMessage/ItemMessage";
+import { InputPhone as InputPhoneApollo } from "../InputPhoneApollo";
+import { InputPhone as InputPhoneLF } from "../InputPhoneLF";
 
 describe("<InputPhone />", () => {
   it("renders the InputPhone component with label and helper text", () => {
@@ -207,5 +209,63 @@ describe("<InputPhone />", () => {
       );
       expect(await axe(container)).toHaveNoViolations();
     });
+  });
+});
+
+describe.each([
+  ["Apollo", InputPhoneApollo],
+  ["LF", InputPhoneLF],
+])("<InputPhone /> %s description", (_, Component) => {
+  it("should describe the input with its description and helper", () => {
+    render(
+      <Component label="Téléphone" description="Description" helper="Aide" />,
+    );
+
+    expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+      "Description Aide",
+    );
+  });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <Component
+          label="Téléphone"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
+
+  it("should group the country code and the number under the label", async () => {
+    const { container } = render(
+      <Component
+        label="Téléphone"
+        required
+        showSelect
+        countryCodeOptions={[{ flag: "fr.svg", code: "+33" }]}
+        defaultCountry="+33"
+      />,
+    );
+
+    const group = screen.getByRole("group", { name: "Téléphone" });
+    expect(group).toContainElement(screen.getByRole("combobox"));
+    expect(group).toContainElement(
+      screen.getByRole("textbox", { name: "Téléphone" }),
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should not add a group without the country code select", () => {
+    render(<Component label="Téléphone" />);
+
+    expect(screen.queryByRole("group")).not.toBeInTheDocument();
   });
 });
