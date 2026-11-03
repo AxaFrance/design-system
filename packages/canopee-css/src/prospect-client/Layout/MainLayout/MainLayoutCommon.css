@@ -1,20 +1,19 @@
 @layer canopee {
   .af-main-layout {
-    display: grid;
+    display: flex;
     min-height: 100svh;
-    grid-template-rows: auto 1fr auto;
+    flex-direction: column;
     background-color: var(--main-layout-background-color);
 
-    &:has(.af-main-layout__top) {
-      grid-template-rows: auto auto 1fr;
-    }
-
-    > * {
-      height: fit-content;
+    .af-main-layout__content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
     }
 
     .af-main-layout__center {
       z-index: 0; /* Ensure main layout children are above DebugGrid */
+      flex: 1;
     }
 
     .af-main-layout__back-link {
