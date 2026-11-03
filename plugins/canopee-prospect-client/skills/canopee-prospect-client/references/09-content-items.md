@@ -97,7 +97,7 @@ type DataAgentProps = {
   agentProps: ContentMonoItemPictureProps;         // Profil agent (photo + nom + rôle)
   agentContractProps?: ContentMonoItemStickProps;  // Contrat agent (titre + sous-titre avec stick)
   contents?: TupleMax3<ContentMonoItemIconProps>;  // 1 à 3 infos avec icône (email, tel, adresse…)
-  clickContents?: TupleMax3<ClickItemProps>;       // 1 à 3 actions cliquables
+  clickContents?: TupleMax3<ClickItemProps>;       // 1 à 3 ClickItem (href pour naviguer)
   texteOrias?: string;                             // Mention légale ORIAS
   isCompact?: boolean;                             // Variante compacte sur mobile  (défaut: true)
 };
@@ -148,7 +148,7 @@ import locationIcon from "@material-symbols/svg-400/outlined/location_on.svg";
       variant: "small",
       title: "Prendre rendez-vous",
       icon: calendarIcon,
-      onClick: () => navigate("/rdv"),
+      href: "/rdv",
       ariaLabelForActionIcon: "Prendre rendez-vous avec Jean Martin",
     },
   ]}
