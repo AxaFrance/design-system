@@ -1,5 +1,6 @@
 import { createRef } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { CardMarketing as ProspectCardMarketing } from "../CardMarketingApollo";
 import { CardMarketing as ClientCardMarketing } from "../CardMarketingLF";
 
@@ -54,7 +55,8 @@ describe.each([
     expect(screen.getByText("details").tagName).toBe("EM");
   });
 
-  it("forwards root props and merges classes without duplicates", () => {
+  it("forwards root props and merges classes without duplicates", async () => {
+    const user = userEvent.setup();
     const ref = createRef<HTMLDivElement>();
     const onClick = vi.fn();
     render(
@@ -78,7 +80,7 @@ describe.each([
       card.className.split(" ").filter((name) => name === "af-card-marketing"),
     ).toHaveLength(1);
     expect(card).toHaveStyle({ opacity: "0.8" });
-    fireEvent.click(card);
+    await user.click(card);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
