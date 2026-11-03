@@ -1,0 +1,103 @@
+@layer canopee.checkbox-item {
+  .af-checkbox__item {
+    --checkbox-color: var(--input-border-color);
+    --checkbox-background-color: var(--white);
+
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    border: 1px solid var(--checkbox-color);
+    border-radius: 2px;
+    flex-shrink: 0;
+    background-color: var(--checkbox-background-color);
+    cursor: pointer;
+    appearance: none;
+
+    &:checked {
+      --checkbox-color: var(--brand-primary);
+    }
+
+    &::before {
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      width: 5px;
+      height: 9px;
+      border-right: 2px solid var(--checkbox-color);
+      border-bottom: 2px solid var(--checkbox-color);
+      visibility: hidden;
+      transform: rotate(45deg);
+      content: "";
+    }
+
+    &:checked::before {
+      visibility: visible;
+    }
+
+    &:not(:disabled):hover {
+      --checkbox-color: var(--brand-primary);
+    }
+
+    &[aria-invalid="true"] {
+      --checkbox-color: var(--error-color);
+    }
+
+    &:disabled {
+      --checkbox-color: var(--disabled-color);
+      --checkbox-background-color: var(--gray10);
+
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .af-checkbox__text {
+    --checkbox-text-color: var(--text-color);
+
+    display: flex;
+    width: fit-content;
+    padding: calc(2rem / 16);
+    border-radius: 4px;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--checkbox-text-color);
+    cursor: pointer;
+
+    &:has(:checked),
+    &:hover {
+      --checkbox-text-color: var(--brand-primary);
+    }
+
+    &:has([aria-invalid="true"]) {
+      --checkbox-text-color: var(--error-color);
+    }
+
+    &:has(:disabled) {
+      --checkbox-text-color: var(--disabled-color);
+
+      cursor: not-allowed;
+    }
+
+    &:has(:focus-visible) {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 2px;
+
+      .af-checkbox__item {
+        outline: none;
+      }
+    }
+  }
+
+  .af-checkbox__text,
+  .af-checkbox__button,
+  .af-checkbox__card {
+    &:hover .af-checkbox__item:not(:disabled, [aria-invalid="true"]) {
+      --checkbox-color: var(--brand-primary);
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import "./SelectionButton.css";
+
+@layer canopee.checkbox-button {
+  .af-checkbox__button {
+    display: inline-flex;
+    width: fit-content;
+    padding: calc(10rem / 16) 1em;
+    align-items: center;
+    gap: 0.5em;
+    line-height: 1rem;
+
+    &:has(:focus-visible) {
+      .af-checkbox__item {
+        outline: none;
+      }
+    }
+  }
+}
