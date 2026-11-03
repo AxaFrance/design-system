@@ -1,7 +1,7 @@
 import villaIcon from "@material-symbols/svg-400/outlined/villa.svg";
 import { render, screen, within } from "@testing-library/react";
 import { axe } from "jest-axe";
-import type { Option } from "../../core";
+import { MessageTypes, type Option } from "../../core";
 import { RadioInput } from "../RadioInput";
 
 const languageOptions = [
@@ -156,6 +156,68 @@ describe("RadioInput", () => {
       );
 
       // Assert
+      expect(await axe(container)).toHaveNoViolations();
+    });
+  });
+
+  describe("group label and error message", () => {
+    const civilityOptions = [
+      { label: "Madame", value: "mme" },
+      { label: "Monsieur", value: "m" },
+    ];
+
+    it("labels the radiogroup without a for attribute on its div", () => {
+      const { container } = render(
+        <RadioInput label="Civilité" name="civ" options={civilityOptions} />,
+      );
+
+      expect(container.querySelector("div[for]")).toBeNull();
+      expect(
+        screen.getByRole("radiogroup", { name: "Civilité" }),
+      ).toBeInTheDocument();
+    });
+
+    it.each(["default", "cardRadio"] as const)(
+      "describes each radio by the error message in %s mode",
+      (mode) => {
+        const { container } = render(
+          <RadioInput
+            label="Civilité"
+            name={`civ-${mode}`}
+            mode={mode}
+            message="Choisissez une civilité"
+            forceDisplayMessage
+            messageType={MessageTypes.error}
+            options={civilityOptions}
+          />,
+        );
+
+        const radios = screen.getAllByRole("radio");
+        expect(radios).toHaveLength(2);
+        radios.forEach((radio) => {
+          expect(radio).toHaveAccessibleDescription("Choisissez une civilité");
+          expect(radio).not.toHaveAttribute("errorid");
+        });
+        expect(container.querySelector("[errorid], [ariainvalid]")).toBeNull();
+      },
+    );
+
+    it("keeps the radiogroup invalid and accessible in error", async () => {
+      const { container } = render(
+        <RadioInput
+          label="Civilité"
+          name="civ-axe"
+          message="Choisissez une civilité"
+          forceDisplayMessage
+          messageType={MessageTypes.error}
+          options={civilityOptions}
+        />,
+      );
+
+      expect(screen.getByRole("radiogroup")).toHaveAttribute(
+        "aria-invalid",
+        "true",
+      );
       expect(await axe(container)).toHaveNoViolations();
     });
   });
