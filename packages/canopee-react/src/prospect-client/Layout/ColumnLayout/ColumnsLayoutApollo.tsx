@@ -1,4 +1,4 @@
-import { Heading } from "@axa-fr/canopee-react/prospect";
+import { Heading } from "../../Heading/HeadingApollo";
 import {
   Right,
   Left,
