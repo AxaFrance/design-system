@@ -63,7 +63,7 @@ Chaque composant a un fichier CHANGELOG.md, dans le même dossier que son Markdo
 Chaque version y a une entrée, datée du jour de l'export. Ses changements sont rangés en trois rubriques : Ajouté, Modifié et Retiré. Exemple :
 
 ```
-## 1.1.0, 2026-11-04
+## 1.1.0 - 04/11/26
 
 ### Ajouté
 - Propriété size, valeurs ajoutées : medium, small
