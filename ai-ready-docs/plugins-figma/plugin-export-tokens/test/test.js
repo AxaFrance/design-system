@@ -225,7 +225,7 @@ const scenarioExportParDefaut = async () => {
     assert.deepEqual(rapport.aliasExternes, ['Fond/marque : pointe vers Marque/Bleu'])
   })
   verifier('style de texte en typography, alias gardé, interligne px converti en ratio, espacement pourcentage en px', () => {
-    const h1 = STY.typographie.Titre.H1
+    const h1 = STY.typography.Titre.H1
     assert.equal(h1.$type, 'typography')
     assert.deepEqual(h1.$value, {
       fontFamily: 'Source Sans Pro',
@@ -236,11 +236,11 @@ const scenarioExportParDefaut = async () => {
     })
   })
   verifier('interlignage automatique écarté, style entier absent du fichier', () => {
-    assert.equal(STY.typographie.Corps, undefined)
+    assert.equal(STY.typography.Corps, undefined)
     assert.ok(rapport.ecartes.includes('Corps/texte : interligne automatique'))
   })
   verifier('ombre en shadow, couleur et dimensions en objets', () => {
-    assert.deepEqual(STY.ombre['Élévation']['2'].$value, {
+    assert.deepEqual(STY.shadow['Élévation']['2'].$value, {
       color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.2, hex: '#000000' },
       offsetX: { value: 0, unit: 'px' },
       offsetY: { value: 2, unit: 'px' },
@@ -250,12 +250,12 @@ const scenarioExportParDefaut = async () => {
     })
   })
   verifier('ombre masquée ignorée, couleur reliée gardée en référence', () => {
-    const v = STY.ombre['Élévation'].marque.$value
+    const v = STY.shadow['Élévation'].marque.$value
     assert.equal(Array.isArray(v), false)
     assert.deepEqual([v.offsetY, v.color], [{ value: 4, unit: 'px' }, '{Couleur.AXA blue 100}'])
   })
   verifier('effet sans ombre écarté', () => {
-    assert.equal(STY.ombre.Flou, undefined)
+    assert.equal(STY.shadow.Flou, undefined)
     assert.ok(rapport.ecartes.includes('Flou/fond : effet sans ombre'))
   })
   verifier('$type précède $value dans un token, groupes triés', () => {
@@ -648,9 +648,9 @@ const scenarioDiffValeursComposites = async () => {
   // avec modifier et contexte renseignés).
   const reference = JSON.parse(JSON.stringify(t))
   const STY_ref = lireSet(reference, 'Styles')
-  delete STY_ref.typographie.Titre.H5
-  STY_ref.typographie.Corps['1'].$value.fontSize = { value: 14, unit: 'px' }
-  STY_ref.ombre.Ombre.carte.$value.blur = { value: 4, unit: 'px' }
+  delete STY_ref.typography.Titre.H5
+  STY_ref.typography.Corps['1'].$value.fontSize = { value: 14, unit: 'px' }
+  STY_ref.shadow.Ombre.carte.$value.blur = { value: 4, unit: 'px' }
   reference.modifiers.Typography.contexts['client-mobile'][0].heading.h4['line-height'].$value = { value: 18, unit: 'px' }
 
   await plugin.envoyer({ type: 'comparer', reference: JSON.stringify(reference), source: 'fichier', nomFichier: 'reference-composites.json' })
@@ -662,19 +662,19 @@ const scenarioDiffValeursComposites = async () => {
     assert.deepEqual([m.modifier, m.contexte, m.avant, m.apres], ['Typography', 'client-mobile', '18 px', '20 px'])
   })
   verifier('diff : style de texte ajouté, valeur résumée plutôt qu\'en JSON', () => {
-    const a = diff.ajoutes.find((x) => x.chemin === 'typographie/Titre/H5')
+    const a = diff.ajoutes.find((x) => x.chemin === 'typography/Titre/H5')
     assert.ok(a)
     assert.equal(a.valeur, 'style de texte')
   })
   verifier('diff : style de texte modifié, résumé en tête, champ taille détaillé en dessous', () => {
-    const m = diff.modifies.find((x) => x.chemin === 'typographie/Corps/1')
+    const m = diff.modifies.find((x) => x.chemin === 'typography/Corps/1')
     assert.ok(m)
     assert.equal(m.avant, 'style de texte')
     assert.equal(m.apres, 'style de texte')
     assert.deepEqual(m.champs, [{ champ: 'taille', avant: '14 px', apres: '16 px' }])
   })
   verifier('diff : ombre modifiée, résumée en tête, champ flou détaillé en dessous', () => {
-    const m = diff.modifies.find((x) => x.chemin === 'ombre/Ombre/carte')
+    const m = diff.modifies.find((x) => x.chemin === 'shadow/Ombre/carte')
     assert.ok(m)
     assert.equal(m.avant, 'ombre')
     assert.equal(m.apres, 'ombre')
@@ -1226,17 +1226,17 @@ const scenarioDepreciation = async () => {
   })
   verifier('style de texte et style d\'effet dont la description commence par Deprecated : dépréciés', () => {
     const STY = lireSet(t, 'Styles')
-    assert.equal(STY.typographie.Ancien.titre.$deprecated, 'use Titre/H1')
-    assert.equal(STY.typographie.Titre.H1.$deprecated, undefined)
-    assert.equal(STY.ombre.Ancienne.ombre.$deprecated, true)
+    assert.equal(STY.typography.Ancien.titre.$deprecated, 'use Titre/H1')
+    assert.equal(STY.typography.Titre.H1.$deprecated, undefined)
+    assert.equal(STY.shadow.Ancienne.ombre.$deprecated, true)
   })
   const reference = JSON.parse(JSON.stringify(t))
   delete lireSet(reference, 'Primitives').Espacement['avec-remplacant'].$deprecated
-  delete lireSet(reference, 'Styles').typographie.Ancien.titre.$deprecated
+  delete lireSet(reference, 'Styles').typography.Ancien.titre.$deprecated
   await plugin.envoyer({ type: 'comparer', reference: JSON.stringify(reference), source: 'repo' })
   const diff = normaliser(plugin.dernierMessage())
   verifier('diff : $deprecated en chaîne (variable ou style) compté comme déprécié, niveau mineur', () => {
-    assert.deepEqual(diff.deprecies.map((d) => d.chemin).sort(), ['Espacement/avec-remplacant', 'typographie/Ancien/titre'])
+    assert.deepEqual(diff.deprecies.map((d) => d.chemin).sort(), ['Espacement/avec-remplacant', 'typography/Ancien/titre'])
     assert.equal(diff.niveau, 'mineur')
   })
 }
@@ -1264,7 +1264,7 @@ const scenarioStylesIncomplets = async () => {
     ]
   })
   const { t, rapport } = await exporterDocument(plugin)
-  const T = lireSet(t, 'Styles').typographie
+  const T = lireSet(t, 'Styles').typography
   // Champs hors DTCG d'un style : dans $extensions, jamais dans $value.
   const ext = (nom) => T[nom].$extensions?.['fr.axa.canopee'] || {}
   const HORS_DTCG = ['fontStyle', 'textDecoration', 'textTransform']
@@ -1308,16 +1308,16 @@ const scenarioStylesIncomplets = async () => {
 
   // Diff : référence sans le soulignement du style Lien.
   const reference = JSON.parse(JSON.stringify(t))
-  delete lireSet(reference, 'Styles').typographie.Lien.$extensions
+  delete lireSet(reference, 'Styles').typography.Lien.$extensions
   await plugin.envoyer({ type: 'comparer', reference: JSON.stringify(reference), source: 'fichier', nomFichier: 'reference-souligne.json' })
   const diff = normaliser(plugin.dernierMessage())
   verifier('diff : style souligné comparé à une référence sans le champ, « décoration du texte » de aucun à underline', () => {
-    const m = diff.modifies.find((x) => x.chemin === 'typographie/Lien')
+    const m = diff.modifies.find((x) => x.chemin === 'typography/Lien')
     assert.ok(m)
     assert.deepEqual(m.champs, [{ champ: 'décoration du texte', avant: 'aucun', apres: 'underline' }])
   })
   verifier('diff : rien d\'autre ne change, les autres extensions restent ignorées', () => {
-    assert.deepEqual(diff.modifies.map((x) => x.chemin), ['typographie/Lien'])
+    assert.deepEqual(diff.modifies.map((x) => x.chemin), ['typography/Lien'])
   })
 }
 

@@ -1,7 +1,7 @@
 // Export des variables et des styles Figma au format DTCG.
 // Un seul fichier, sans étape de build : le manifeste pointe directement dessus.
 
-const VERSION = '0.29.0'
+const VERSION = '0.30.0'
 const LARGEUR = 440
 const HAUTEUR_INITIALE = 600
 // Hauteur automatique : suit le contenu, dans ces bornes. Assez haute par défaut
@@ -847,7 +847,7 @@ const ajouterStylesTexte = async (arbreStyles, rapport, referenceDe, placer, sig
     if (deprecation(style.description) !== undefined) jeton.$deprecated = deprecation(style.description)
     if (Object.keys(horsDtcg).length) jeton.$extensions = { 'fr.axa.canopee': horsDtcg }
 
-    if (placer(['typographie', ...chemin(style.name)], jeton, arbreStyles, style.name)) {
+    if (placer(['typography', ...chemin(style.name)], jeton, arbreStyles, style.name)) {
       rapport.stylesTexte++
       if (!style.description) signaler(rapport.sansDescription, style.name)
     }
@@ -890,7 +890,7 @@ const ajouterStylesEffet = async (arbreStyles, rapport, referenceDe, placer, sig
     if (style.description) jeton.$description = style.description
     if (deprecation(style.description) !== undefined) jeton.$deprecated = deprecation(style.description)
 
-    if (placer(['ombre', ...chemin(style.name)], jeton, arbreStyles, style.name)) {
+    if (placer(['shadow', ...chemin(style.name)], jeton, arbreStyles, style.name)) {
       rapport.stylesEffet++
       if (!style.description) signaler(rapport.sansDescription, style.name)
     }

@@ -122,6 +122,8 @@ Le dépôt est bloqué dans quatre cas, et l'aide sous le bouton dit lequel : ho
 
 C'est un « resolver », la forme que le DTCG prévoit pour les thèmes : un set par collection Figma, un set `Styles` s'il y a des styles, un `modifier` par collection à plusieurs modes, et `resolutionOrder` qui dit dans quel ordre les fusionner. Chaque export porte la version du plugin et sa date.
 
+Dans le set `Styles`, les styles de texte sont rangés sous `typography/` et les ombres sous `shadow/`. Sans ce préfixe, le style `body/1/regular` porterait le même nom que le groupe de ses variables.
+
 Exemple, une primitive :
 
 ```json
