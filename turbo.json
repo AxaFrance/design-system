@@ -52,6 +52,26 @@
                 "check-types",
                 "stylelint"
             ]
+        },
+        "//#test:coverage": {
+            "dependsOn": [
+                "@axa-fr/canopee-css#build"
+            ],
+            "inputs": [
+                "vitest.config.ts",
+                "vitest.workspace.ts",
+                "packages/canopee-react/src/**",
+                "packages/canopee-react/package.json",
+                "packages/canopee-react/tsconfig.json",
+                "packages/canopee-react/vitest.config.ts",
+                "packages/canopee-react/vitest.setup.ts"
+            ],
+            "outputs": [
+                "coverage/**"
+            ],
+            "env": [
+                "CI"
+            ]
         }
     }
 }
