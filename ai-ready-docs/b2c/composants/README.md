@@ -12,7 +12,7 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 
 ## Les fiches
 
-| Composant | Markdown | JSON |
-|---|---|---|
-| Button | [button.md](button/button.md) | [button.json](button/button.json) |
-| IconButton | [iconbutton.md](iconbutton/iconbutton.md) | [iconbutton.json](iconbutton/iconbutton.json) |
+| Composant | Markdown | JSON | Changelog |
+|---|---|---|---|
+| Button | [button.md](button/button.md) | [button.json](button/button.json) | [button-changelog.md](button/button-changelog.md) |
+| IconButton | [iconbutton.md](iconbutton/iconbutton.md) | [iconbutton.json](iconbutton/iconbutton.json) | [iconbutton-changelog.md](iconbutton/iconbutton-changelog.md) |
