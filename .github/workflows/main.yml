@@ -30,7 +30,8 @@ jobs:
       - name: Lint packages
         run: npm run lint
 
-      - run: npm run test
+      - name: Test packages
+        run: npx turbo run test:coverage
 
       - name: SonarCloud Scan
         if:
