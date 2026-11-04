@@ -1,0 +1,11 @@
+{
+  "name": "Canopée, design tokens",
+  "id": "canopee-export-tokens",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "enablePrivatePluginApi": true,
+  "networkAccess": { "allowedDomains": ["https://raw.githubusercontent.com", "https://api.github.com"], "reasoning": "Lire en lecture seule, sur le repo public Canopée, le fichier de tokens et la liste des versions pour afficher les changements, et la liste des PR ouvertes pour signaler un dépôt déjà en attente." }
+}
