@@ -1,0 +1,4 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,r}from"./iframe-oztetCSC.js";import{in as i,t as a}from"./distributeur-Be_1dTUI.js";var o=t({NumberStory:()=>l,__namedExportsOrder:()=>u,default:()=>c}),s,c,l,u;function d(){return(d=e((()=>{a(),n(),{fn:s}=__STORYBOOK_MODULE_TEST__,c=r.meta({title:`Components/Form/Input/Number`,argTypes:{onChange:{action:`onChange`}},args:{onChange:s(),value:5,placeholder:`Your name`,name:`name`,id:`nameid`,readOnly:!1,disabled:!1,autoFocus:!1,className:``,"aria-disabled":!1},component:i}),l=c.story({name:`Number`,args:{}}),u=[`NumberStory`],l.input.parameters={...l.input.parameters,docs:{...l.input.parameters?.docs,source:{originalSource:`meta.story({
+  name: "Number",
+  args: {}
+})`,...l.input.parameters?.docs?.source}}}})))()}export{o as n,d as r,l as t};
