@@ -78,7 +78,7 @@ Une étiquette donne le niveau du changement, du plus élevé au plus bas :
 - **Mineur** : un token ajouté ou déprécié.
 - **Patch** : une valeur modifiée.
 
-Cette explication s'affiche au survol de l'étiquette. Cette règle est une proposition, en cours de validation avec les devs. En comparant à une version publiée, le plugin indique aussi la prochaine version attendue.
+Cette explication s'affiche au survol de l'étiquette. Cette règle est une proposition, à valider avec les développeurs de Canopée. En comparant à une version publiée, le plugin indique aussi la prochaine version attendue.
 
 Le menu **Comparé à**, en pied de carte, permet de comparer avec autre chose : une version publiée de Canopée, ou un export chargé depuis son poste (**un autre fichier…**). Le menu ne propose que les versions qui contiennent le fichier des tokens, à partir de `premiereVersion` (voir « Configurer »). Glisser un export sur la carte fonctionne aussi. Les descriptions ne comptent pas comme des changements.
 

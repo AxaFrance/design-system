@@ -2,7 +2,7 @@
 
 Le JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il est généré depuis Figma par le plugin des fiches, jamais écrit à la main. L'usage, le fonctionnel et le code sont dans le Markdown, qui suit la trame commune à toutes les fiches. Les deux fichiers restent séparés.
 
-Version du format : 0.4, en cours de validation sur Button. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
+Version du format : 0.4. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
 
 ## Les principes
 
