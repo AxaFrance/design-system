@@ -47,6 +47,7 @@ for all required consumer changes.
 - **Table aliases**: Replaced `Table.Header` and `Table.Body` with `Table.THead` and `Table.TBody`.
 - **Select options**: `Select.options` was removed; render native `option` elements as children.
 - **Class names**: Removed `classModifier` and deprecated class-name helpers. `className` appends literal classes; use supported semantic props such as `variant`, `position`, or `size` when the former modifier represented a component state.
+- **ModalHeader**: title should be passed as `children` instead of `title`. `title` is passed as-is to the `header` tag
 
 ## 👥 Client / Prospect
 

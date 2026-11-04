@@ -79,11 +79,12 @@ export const DefaultModalStory = meta.story({
           onSubmit={(e) => args.onSubmit?.(e)}
         >
           <ModalHeader
-            title={args.title}
             onCancel={() => {
               ref.current?.close();
             }}
-          />
+          >
+            {args.title}
+          </ModalHeader>
           <ModalBody>
             <p>{children}</p>
           </ModalBody>
