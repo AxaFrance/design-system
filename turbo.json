@@ -74,6 +74,7 @@
                 "@axa-fr/canopee-css#build"
             ],
             "inputs": [
+                "package-lock.json",
                 "vitest.config.ts",
                 "vitest.workspace.ts",
                 "packages/canopee-react/src/**",
