@@ -1,7 +1,7 @@
 // Export des variables et des styles Figma au format DTCG.
 // Un seul fichier, sans étape de build : le manifeste pointe directement dessus.
 
-const VERSION = '0.27.3'
+const VERSION = '0.28.0'
 const LARGEUR = 440
 const HAUTEUR_INITIALE = 600
 // Hauteur automatique : suit le contenu, dans ces bornes. Assez haute par défaut
@@ -403,6 +403,7 @@ const formeCorrespondante = (nom) => GRAMMAIRE_PRIMITIVES.find((f) => f.stricte.
 const FORMES_AVEC_VALEUR = ['spacing', 'size', 'borderWidth', 'borderRadius', 'fontSize', 'fontLineHeight', 'breakpoint']
 const CATEGORIES_CONNUES = ['color', 'font', 'border', 'spacing', 'size', 'breakpoint']
 const EXEMPLE_CATEGORIE = { color: 'color/blue/500', font: 'font/size/16', border: 'border/radius/8', spacing: 'spacing/16', size: 'size/24', breakpoint: 'breakpoint/1024' }
+const PALIERS = ['050', '100', '200', '300', '400', '500', '600', '700', '800', '900']
 
 // Une forme non reconnue peut n'être qu'un tiret final à la place d'une barre
 // oblique avant la valeur : « font/size-16 » au lieu de « font/size/16 ».
@@ -432,11 +433,8 @@ const motifNomenclature = (variable, collection) => {
   }
 
   // 3. Palier : 050, ou un multiple de 100 de 100 à 900, sur trois chiffres.
-  if (forme.id === 'colorPalier') {
-    const palier = dernierSegment(nom)
-    const n = Number(palier)
-    const surEchelle = palier === '050' || (/^\d{3}$/.test(palier) && n % 100 === 0 && n >= 100 && n <= 900)
-    if (!surEchelle) return 'palier hors échelle, attendu : 050, ou de 100 à 900 par pas de 100'
+  if (forme.id === 'colorPalier' && !PALIERS.includes(dernierSegment(nom))) {
+    return 'palier hors échelle, attendu : 050, ou de 100 à 900 par pas de 100'
   }
 
   // 4. Valeur dans le nom : ignorée quand la valeur par défaut est un alias.
@@ -449,7 +447,35 @@ const motifNomenclature = (variable, collection) => {
     }
   }
 
+  // 5. Opacité dans le nom d'une couleur transparente : ignorée pour un alias.
+  if (forme.id === 'colorAlpha') {
+    const n = Number(dernierSegment(nom))
+    const brut = variable.valuesByMode[collection.defaultModeId]
+    if (brut && typeof brut === 'object' && brut.type !== 'VARIABLE_ALIAS') {
+      const opacite = Math.round((brut.a !== undefined ? brut.a : 1) * 100)
+      if (n !== opacite) return `le nom indique ${n} % d'opacité, mais la valeur est de ${opacite} %`
+    }
+  }
+
   return null
+}
+
+// Noms des styles de texte, d'après la page Styles de texte de la documentation.
+const FAMILLES_STYLE = ['heading', 'title', 'subtitle', 'body', 'label', 'caption']
+
+const motifStyle = (nomBrut) => {
+  const nom = nomBrut.trim()
+  if (!nom.split('/').every((p) => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(p))) {
+    return "s'écrit en minuscules, sans accent ni espace, avec un tiret entre les mots"
+  }
+  const famille = nom.split('/')[0]
+  if (!FAMILLES_STYLE.includes(famille)) {
+    return `le nom doit commencer par ${FAMILLES_STYLE.slice(0, -1).join(', ')} ou ${FAMILLES_STYLE[FAMILLES_STYLE.length - 1]}`
+  }
+  if (famille === 'heading') {
+    return /^heading\/h\d$/.test(nom) ? null : 'ce nom ne suit pas le modèle des styles heading, par exemple heading/h2'
+  }
+  return /^[a-z]+\/\d+\/[a-z0-9]+(-[a-z0-9]+)*$/.test(nom) ? null : `ce nom ne suit pas le modèle des styles ${famille}, par exemple ${famille}/2/semibold`
 }
 
 // ------------------------------------------------------------------ export
@@ -604,6 +630,14 @@ const verifierNomenclaturePrimitives = (variables, collectionParId, rapport) => 
   }
 }
 
+// Nomenclature des styles de texte, y compris ceux que l'export écarte ensuite.
+const verifierNomenclatureStyles = async (rapport) => {
+  for (const style of await figma.getLocalTextStylesAsync()) {
+    const motif = motifStyle(style.name)
+    if (motif) rapport.nomenclature.push(`« ${style.name} » : ${motif}`)
+  }
+}
+
 // Construit le token DTCG de chaque variable exportable et le place dans
 // l'arbre de sa collection, plus un token par mode qui diffère du mode par
 // défaut dans l'arbre de contexte du modifier correspondant.
@@ -730,6 +764,7 @@ const analyserFichier = async () => {
   const genererDescription = construireGenerateur()
 
   verifierNomenclaturePrimitives(variables, collectionParId, rapport)
+  await verifierNomenclatureStyles(rapport)
 
   await convertirVariables(variables, collectionParId, infoParCollection, rapport, signaler, cheminDe, convertir, genererDescription, placer)
 
@@ -1410,5 +1445,13 @@ var __test = {
   DEPOT,
   verifierModifications,
   blocageDepot,
-  signalerErreur
+  signalerErreur,
+  GRAMMAIRE_PRIMITIVES,
+  CATEGORIES_CONNUES,
+  EXEMPLE_CATEGORIE,
+  PALIERS,
+  FAMILLES_STYLE,
+  PHRASES_STYLE,
+  formeCorrespondante,
+  motifStyle
 }

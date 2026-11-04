@@ -6,6 +6,8 @@
 // Pour voir le JSON produit : node test/test.js --json
 
 const assert = require('assert/strict')
+const fs = require('fs')
+const path = require('path')
 const { creerPluginSimule } = require('./figma-simule.js')
 
 const alias = (id) => ({ type: 'VARIABLE_ALIAS', id })
@@ -1361,6 +1363,119 @@ const scenarioVariablesSupprimees = async () => {
   })
 }
 
+const scenarioOpaciteEtStyles = async () => {
+  const couleurAlpha = (id, nom, valeur) => ({ id, name: nom, resolvedType: 'COLOR', variableCollectionId: 'CP', scopes: [], valuesByMode: { m1: valeur } })
+  const styleTexte = (id, nom) => ({
+    id, name: nom, description: 'Texte',
+    fontName: { family: 'Source Sans Pro', style: 'Regular' }, fontSize: 16,
+    lineHeight: { unit: 'PIXELS', value: 20 }, letterSpacing: { unit: 'PIXELS', value: 0 }
+  })
+  const plugin = creerPluginSimule({
+    collections: [{ id: 'CP', name: 'Primitive', modes: [{ modeId: 'm1', name: 'Mode 1' }], defaultModeId: 'm1' }],
+    locales: [
+      couleurAlpha('a1', 'color/black-alpha/20', { r: 0, g: 0, b: 0, a: 0.20000000298023224 }),
+      couleurAlpha('a2', 'color/black-alpha/30', { r: 0, g: 0, b: 0, a: 0.5 }),
+      couleurAlpha('a3', 'color/white-alpha/40', { r: 1, g: 1, b: 1 }),
+      couleurAlpha('a4', 'color/gray-alpha/50', alias('a1'))
+    ],
+    stylesTexte: [
+      styleTexte('s1', 'heading/h2'),
+      styleTexte('s2', 'body/2/semibold'),
+      styleTexte('s3', 'Titre/H1'),
+      styleTexte('s4', 'quote/1/regular'),
+      styleTexte('s5', 'body/2'),
+      styleTexte('s6', 'heading/2/regular')
+    ]
+  })
+  const { rapport } = await exporterDocument(plugin)
+  const motifDe = (nom) => rapport.nomenclature.find((m) => m.startsWith(`« ${nom} »`))
+  verifier('nomenclature : opacité conforme au nom, malgré l\'arrondi de Figma', () => assert.equal(motifDe('color/black-alpha/20'), undefined))
+  verifier('nomenclature : opacité différente du nom', () => {
+    assert.equal(motifDe('color/black-alpha/30'), "« color/black-alpha/30 » : le nom indique 30 % d'opacité, mais la valeur est de 50 %")
+  })
+  verifier('nomenclature : couleur sans alpha, comptée opaque', () => {
+    assert.equal(motifDe('color/white-alpha/40'), "« color/white-alpha/40 » : le nom indique 40 % d'opacité, mais la valeur est de 100 %")
+  })
+  verifier('nomenclature : opacité non comparée pour un alias', () => assert.equal(motifDe('color/gray-alpha/50'), undefined))
+  verifier('nomenclature : styles de texte conformes, non signalés', () => {
+    for (const nom of ['heading/h2', 'body/2/semibold']) assert.equal(motifDe(nom), undefined, nom)
+  })
+  verifier('nomenclature : style mal écrit', () => {
+    assert.equal(motifDe('Titre/H1'), "« Titre/H1 » : s'écrit en minuscules, sans accent ni espace, avec un tiret entre les mots")
+  })
+  verifier('nomenclature : style hors des familles', () => {
+    assert.equal(motifDe('quote/1/regular'), '« quote/1/regular » : le nom doit commencer par heading, title, subtitle, body, label ou caption')
+  })
+  verifier('nomenclature : style sans graisse', () => {
+    assert.equal(motifDe('body/2'), '« body/2 » : ce nom ne suit pas le modèle des styles body, par exemple body/2/semibold')
+  })
+  verifier('nomenclature : heading écrit comme les autres familles', () => {
+    assert.equal(motifDe('heading/2/regular'), '« heading/2/regular » : ce nom ne suit pas le modèle des styles heading, par exemple heading/h2')
+  })
+}
+
+// La doc et le plugin vivent dans le même repo : une règle de nommage changée
+// d'un seul côté fait échouer ce scénario.
+const scenarioDocumentation = async () => {
+  const fondations = (page) => fs.readFileSync(path.join(__dirname, '..', '..', '..', 'fondations', page), 'utf8')
+  const tableau = (texte, premiereColonne) => {
+    const lignes = texte.split('\n')
+    const debut = lignes.findIndex((l) => l.startsWith(`| ${premiereColonne} |`))
+    assert.notEqual(debut, -1, `tableau « ${premiereColonne} » introuvable`)
+    const corps = []
+    for (const l of lignes.slice(debut + 2)) {
+      if (!l.startsWith('|')) break
+      corps.push(l.split('|').slice(1, -1).map((c) => c.trim()))
+    }
+    return corps
+  }
+  const { __test: t } = creerPluginSimule()
+  const primitives = fondations('01-primitives.md')
+  const styles = fondations('02-styles-de-texte.md')
+  const modeles = tableau(primitives, "Ce qu'elle désigne")
+  const noms = modeles.map((l) => l[1])
+  const valeursAdmises = (partie) => {
+    const ligne = tableau(primitives, 'Partie').find((l) => l[0] === partie)
+    assert.ok(ligne, `ligne « ${partie} » introuvable`)
+    return ligne[1].split(', ')
+  }
+
+  verifier('doc : chaque modèle de 01-primitives.md suit une forme du plugin', () => {
+    for (const nom of noms) assert.ok(t.formeCorrespondante(nom), `${nom} : le plugin ne connaît pas ce modèle`)
+  })
+  verifier('doc : chaque forme du plugin a sa ligne dans 01-primitives.md', () => {
+    const couvertes = noms.map((nom) => t.formeCorrespondante(nom).id).sort()
+    assert.deepEqual(couvertes, [...t.GRAMMAIRE_PRIMITIVES].map((f) => f.id).sort())
+  })
+  verifier('doc : les catégories du plugin sont celles de 01-primitives.md', () => {
+    assert.deepEqual([...new Set(noms.map((nom) => nom.split('/')[0]))].sort(), [...t.CATEGORIES_CONNUES].sort())
+    for (const exemple of Object.values(t.EXEMPLE_CATEGORIE)) assert.ok(noms.includes(exemple), `${exemple} : absent de la doc`)
+  })
+  verifier('doc : le nom dans le code suit le nom dans Figma', () => {
+    for (const [, figma, code] of modeles) assert.equal(code, '--' + figma.replace(/\//g, '-'))
+  })
+  verifier('doc : les paliers du plugin sont ceux de 01-primitives.md', () => {
+    assert.deepEqual(valeursAdmises("Palier d'une couleur"), [...t.PALIERS])
+  })
+  verifier('doc : le plugin connaît le seul mot-clé d\'arrondi de 01-primitives.md', () => {
+    assert.deepEqual(valeursAdmises("Mot-clé d'un arrondi"), ['full'])
+  })
+  verifier('doc : les familles du plugin sont celles de 02-styles-de-texte.md', () => {
+    assert.deepEqual(tableau(styles, 'Famille').map((l) => l[0]), [...t.FAMILLES_STYLE])
+  })
+  verifier('doc : chaque style de 02-styles-de-texte.md suit le modèle du plugin', () => {
+    for (const [style] of tableau(styles, 'Style')) {
+      const complets = style.startsWith('heading/') ? [style] : [`${style}/regular`, `${style}/semibold`]
+      for (const nom of complets) assert.equal(t.motifStyle(nom), null, nom)
+    }
+  })
+  verifier('doc : les propriétés de style du plugin sont celles de 02-styles-de-texte.md', () => {
+    const phrase = /Chaque style en a quatre : ([^.]+)\./.exec(styles)
+    assert.ok(phrase, 'phrase des quatre propriétés introuvable')
+    assert.deepEqual(phrase[1].split(/, | et /).sort(), Object.keys(t.PHRASES_STYLE).sort())
+  })
+}
+
 const scenarioVariablesDeStyle = async () => {
   const plugin = creerPluginSimule({
     collections: [
@@ -1433,6 +1548,8 @@ const scenarioVariablesDeStyle = async () => {
   await scenarioBreakpoints()
   await scenarioVariablesSupprimees()
   await scenarioVariablesDeStyle()
+  await scenarioOpaciteEtStyles()
+  await scenarioDocumentation()
 
   console.log(`\n${n} vérifications passées`)
 })().catch((e) => { console.error('\n✗', e.message); process.exit(1) })

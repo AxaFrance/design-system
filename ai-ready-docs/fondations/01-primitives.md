@@ -7,15 +7,28 @@ Une primitive est une valeur brute du design system, comme une couleur ou un esp
 | Ce qu'elle désigne | Nom dans Figma | Nom dans le code |
 |---|---|---|
 | Une couleur | color/blue/500 | --color-blue-500 |
+| Une couleur transparente | color/black-alpha/20 | --color-black-alpha-20 |
+| Le blanc | color/white | --color-white |
+| Le noir | color/black | --color-black |
 | Une taille de texte | font/size/16 | --font-size-16 |
 | Un interligne | font/line-height/20 | --font-line-height-20 |
 | Une graisse | font/weight/semibold | --font-weight-semibold |
 | Une famille de police | font/family/sans-serif | --font-family-sans-serif |
 | Une épaisseur de bordure | border/width/1 | --border-width-1 |
 | Un arrondi | border/radius/8 | --border-radius-8 |
+| Un arrondi complet | border/radius/full | --border-radius-full |
 | Un espacement | spacing/16 | --spacing-16 |
 | Une largeur ou une hauteur | size/24 | --size-24 |
 | Un breakpoint | breakpoint/1024 | --breakpoint-1024 |
+
+Ces modèles sont les seuls admis. Le plugin Canopée signale un nom qui n'en suit aucun.
+
+Deux parties du nom n'acceptent que certaines valeurs.
+
+| Partie | Valeurs admises |
+|---|---|
+| Palier d'une couleur | 050, 100, 200, 300, 400, 500, 600, 700, 800, 900 |
+| Mot-clé d'un arrondi | full |
 
 Les règles d'écriture sont celles de la nomenclature de Canopée : en minuscules, en anglais, sans accent, avec un tiret entre les mots.
 

@@ -43,7 +43,7 @@ Le rapport s'affiche dans une carte « À corriger », ou « À savoir » quand 
 |---|---|
 | **Noms en conflit** | Deux tokens portent le même nom, ou un token porte le nom d'un groupe. Ceux listés ne sont pas exportés |
 | **Liens cassés** | Des tokens ou des styles pointent vers une variable qui n'existe plus, par exemple après sa suppression. Un token n'est pas exporté si le lien est dans le mode par défaut, sinon ce mode prend la valeur par défaut. Un style n'est pas exporté |
-| **Noms à corriger** | Des primitives ne suivent pas les règles de nommage |
+| **Noms à corriger** | Des primitives ou des styles de texte ne suivent pas les règles de nommage |
 | **Scope à renseigner** | Le type a été deviné d'après le nom, faute de scope. Un token déprécié n'est pas concerné, il n'a plus de scope |
 | **Caractères interdits** | Les accolades et le point ont été remplacés par un tiret |
 | **Liens vers une autre librairie** | Le code reçoit seulement la valeur, sans le lien |
@@ -53,12 +53,14 @@ Le rapport s'affiche dans une carte « À corriger », ou « À savoir » quand 
 
 Tant qu'un token est écarté par les deux premières sections, le dépôt est bloqué et l'aide sous le bouton le rappelle. Les deux dernières sont de simples informations. Les sections bloquantes et les noms à corriger sont dépliés d'office. Un fichier bien tenu n'a que des informations.
 
-La nomenclature n'est vérifiée que sur les collections dont le nom commence par « Primitive ». Quatre règles, tirées de la documentation :
+La nomenclature est vérifiée sur les collections dont le nom commence par « Primitive » et sur les styles de texte. Pour une primitive, quatre règles sont tirées de la documentation :
 
 - **Écriture** : minuscules, sans accent ni espace, un tiret entre les mots.
 - **Forme** : le schéma attendu pour la catégorie, par exemple `color/blue/500` ou `spacing/16`.
 - **Palier** : 050, ou de 100 à 900 par pas de 100.
-- **Valeur** : le nombre du nom égale la valeur de la variable.
+- **Valeur** : le nombre du nom égale la valeur de la variable. Pour une couleur transparente, il égale son opacité en pourcentage.
+
+Un style de texte suit la même règle d'écriture, et commence par une des six familles de la documentation. Un heading s'écrit `heading/h2`, et les autres familles `body/2/semibold`.
 
 ## Changements
 
@@ -208,4 +210,4 @@ node test/test.js          # toutes les vérifications, sur un Figma simulé
 node test/test.js --json   # le fichier produit par le document de test
 ```
 
-Les tests chargent `code.js` dans un Figma simulé, sans ouvrir Figma.
+Les tests chargent `code.js` dans un Figma simulé, sans ouvrir Figma. Ils lisent aussi `fondations/01-primitives.md` et `fondations/02-styles-de-texte.md`, et échouent si une règle de nommage change d'un seul côté. Ils se lancent en local, après toute modification du plugin ou de ces deux pages.
