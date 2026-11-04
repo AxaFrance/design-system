@@ -53,12 +53,12 @@ Un designer de l'équipe design system qui modifie un composant suit ces étapes
 4. Pour deux cas spécifiques, que le plugin ne détecte pas seul, le designer coche une case.
    - « Refonte complète » : le composant passe à la version majeure suivante.
    - « Fiche md modifiée » : si seul le Markdown a changé, le composant passe au patch suivant.
-5. Le designer télécharge ou copie le JSON, puis télécharge le CHANGELOG.md depuis l'onglet « Changelog ».
+5. Le designer télécharge ou copie le JSON, puis télécharge le changelog depuis l'onglet « Changelog ».
 6. Le plugin écrit la version dans le JSON. Le designer la reporte lui-même dans le titre du Markdown, avec la version de Canopée requise dans la ligne d'en-tête.
 
 ## Le changelog
 
-Chaque composant a un fichier CHANGELOG.md, dans le même dossier que son Markdown et son JSON. Ce fichier liste toutes les versions du composant, de la plus récente à la plus ancienne. Le plugin le génère à chaque export : personne ne le rédige à la main.
+Chaque composant a un fichier de changelog à son nom, par exemple button-changelog.md, dans le même dossier que son Markdown et son JSON. Ce fichier liste toutes les versions du composant, de la plus récente à la plus ancienne. Le plugin le génère à chaque export : personne ne le rédige à la main.
 
 Chaque version y a une entrée, datée du jour de l'export. Ses changements sont rangés en trois rubriques : Ajouté, Modifié et Retiré. Exemple :
 
