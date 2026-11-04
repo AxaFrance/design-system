@@ -189,8 +189,8 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0, 2026-10-27.** Une page n'a qu'un seul Button primary, sans compter le Header, et non un seul par zone. Le primary d'une bannière compte dans cette limite. Une fenêtre modale a droit à son propre primary.
 - **1.0.0, 2026-10-27.** colorScheme=business sert aux actions liées à la souscription ou à une offre commerciale.
 - **1.0.0, 2026-10-27.** Sur mobile, plusieurs boutons voisins s'empilent en colonne, sauf dans un parcours.
-- **1.0.0, 2026-10-28.** Button a une variante loading dans Figma, comme dans le code, parce que les designers en ont besoin dans leurs maquettes. Cette décision remplace celle du 2026-10-16, qui gardait loading dans le code seulement.
-- **1.0.0, 2026-10-30.** En chargement, le bouton garde sa couleur, affiche un Spinner et ne réagit plus. Il n'utilise pas l'attribut `disabled`, pour garder le focus. Cette décision remplace celle du 2026-10-27, qui désactivait le bouton pendant un chargement.
+- **1.0.0, 2026-10-28.** Button a une variante loading dans Figma, comme dans le code, parce que les designers en ont besoin dans leurs maquettes.
+- **1.0.0, 2026-10-30.** En chargement, le bouton garde sa couleur, affiche un Spinner et ne réagit plus. Il n'utilise pas l'attribut `disabled`, pour garder le focus.
 - **1.0.0, 2026-10-30.** Le secondary redevient un bouton à contour, comme l'ancien ButtonSecondary. Au survol et à l'appui, il prend le fond du tertiary dans le même état. Cette décision remplace celle du 2026-10-16, qui en faisait un bouton plein clair.
 - **1.0.0, 2026-10-30.** Button a trois tailles, selon sa hauteur : size=large (56 px), size=medium (48 px) et size=small (32 px). La valeur par défaut est size=large. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost.
 - **1.0.0, 2026-11-02.** Sur une ligne, le primary est le dernier bouton à droite.

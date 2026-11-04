@@ -189,11 +189,11 @@ Un seul geste reste indispensable : **renseigner le scope** à la création d'un
 
 ## Configurer
 
-En tête de `code.js`, la constante `DEPOT` a un champ à renseigner quand l'équipe dev aura fait ses choix :
+En tête de `code.js`, la constante `DEPOT` porte les réglages du plugin, tous déjà renseignés.
 
-- `cheminTokens` : le chemin du fichier de tokens dans le dépôt Canopée, `packages/canopee-css/design-tokens-canopee.resolver.json`. Il active la comparaison avec le code et les versions publiées, et le dépôt. Le plugin ouvre alors `https://github.com/{nom}/edit/{branche}/{cheminTokens}`, ou la page de création du fichier s'il n'est pas encore dans le repo. Tant qu'il est vide, le dépôt est bloqué.
+`cheminTokens` porte le chemin du fichier de tokens dans le dépôt Canopée, `packages/canopee-css/design-tokens-canopee.resolver.json`. Il active la comparaison avec le code et les versions publiées, et le dépôt. Le plugin ouvre alors `https://github.com/{nom}/edit/{branche}/{cheminTokens}`, ou la page de création du fichier s'il n'est pas encore dans le repo. Tant qu'il est vide, le dépôt est bloqué.
 
-`cleFichier` porte la clé du fichier Figma Fondations Canopée. Elle est déjà renseignée.
+`cleFichier` porte la clé du fichier Figma Fondations Canopée.
 
 `premiereVersion` porte la première version publiée de Canopée qui contient le fichier des tokens, `2.0.0`. Le menu « Comparé à » ne propose pas les versions plus anciennes.
 

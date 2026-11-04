@@ -143,10 +143,10 @@ Les tokens dépréciés sont supprimés tous ensemble, à la version majeure sui
 
 ## Installer le plugin
 
-Le plugin Canopée se télécharge en zip sur cette page. Il s'installe une seule fois, dans Figma Desktop.
+Le plugin Canopée est dans le dossier `ai-ready-docs/plugins-figma/plugin-export-tokens` de ce repo. Il s'installe une seule fois, dans Figma Desktop.
 
-1. Télécharger le zip ci-dessous et le décompresser.
+1. Récupérer ce dossier sur son poste.
 2. Dans Figma Desktop, ouvrir le menu **Plugins › Development › Import plugin from manifest**.
 3. Choisir le fichier manifest.json du dossier.
 
-Le plugin apparaît ensuite dans **Plugins › Development**, sous le nom **Canopée, design tokens**. Pour installer une nouvelle version, il suffit de remplacer les fichiers du dossier par ceux du nouveau zip. Figma la charge au prochain lancement du plugin.
+Le plugin apparaît ensuite dans **Plugins › Development**, sous le nom **Canopée, design tokens**. Pour installer une nouvelle version, il suffit de remplacer les fichiers du dossier par ceux de la nouvelle version. Figma la charge au prochain lancement du plugin.

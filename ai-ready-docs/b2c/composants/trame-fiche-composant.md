@@ -25,7 +25,7 @@ Exemple : naviguer vers une autre page, prendre Link.
 Seulement là où les règles diffèrent selon une valeur. Un sous-titre par valeur.
 
 ### hierarchy=primary
-Exemple : un seul primary par zone de l'interface.
+Exemple : un seul primary par page.
 
 ## Exemples
 Des cas d'usage écrits avec les propriétés de la nomenclature.
@@ -42,7 +42,7 @@ Exemple : un libellé obligatoire, une icône au plus.
 Les règles de contenu : verbe, longueur, casse, ponctuation, vocabulaire.
 
 ## Comportement
-Le sens des états et ce que fait le composant quand on l'utilise.
+Le sens des états et ce que fait le composant quand l'utilisateur s'en sert.
 Exemple : disabled ne sert jamais à masquer une permission manquante.
 
 ## Accessibilité
@@ -66,7 +66,7 @@ Les choix faits exprès, datés et motivés, pour qu'une IA ne les « corrige »
 Exemple : **1.2.0, 2026-11-04.** Le libellé reste sur une seule ligne, pour garder des boutons de hauteur identique.
 
 ## Points ouverts
-Ce qu'on sait faux ou pas encore tranché. Chaque point finit par « En attendant : », suivi de ce qui s'applique ou de « signaler ».
+Ce qui est faux ou pas encore tranché. Chaque point finit par « En attendant : », suivi de ce qui s'applique ou de « signaler ».
 Exemple : l'ordre de deux boutons côte à côte n'est défini nulle part. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
@@ -75,14 +75,14 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 
 ## Les règles d'écriture
 
-- Une fiche décrit un composant tel qu'il existe dans le code et dans la nomenclature, pas tel qu'il est découpé dans Figma. Par exemple, une seule fiche Button couvre tous les niveaux, du primary au ghost.
+- Une fiche décrit un composant tel qu'il existe dans le code et dans la nomenclature, pas tel qu'il est découpé dans Figma. Par exemple, une seule fiche Button couvre tous les niveaux, du primary au tertiary.
 - Dans les règles, les propriétés et leurs valeurs gardent les noms de la nomenclature. Exemple : hierarchy=secondary, plutôt que « Button Secondary ».
 - Les noms utilisés dans le code n'apparaissent que dans la rubrique Code.
 - Chaque règle n'est écrite qu'une fois. Si elle revient à deux endroits, les deux versions finissent par se contredire.
 - Chaque point ouvert finit par « En attendant : », suivi de la règle qui s'applique si elle est tranchée, ou de « signaler » si elle ne l'est pas. Sans cette mention, une IA qui lit le point ouvert renonce à la règle ou la devine.
 - Une règle qui vaut pour tous les composants va dans un fichier commun, pas dans chaque fiche.
 - La consigne pour l'IA, à la fin de la fiche, est la même partout, mot pour mot. Elle fait exception au fichier commun, parce qu'une IA peut ne lire qu'une fiche.
-- Le titre porte la version du composant, celle de `meta.version` dans le JSON. La ligne des design tokens, juste après le titre, reprend `meta.tokensVersion` du JSON. Le plugin calcule les deux, et `verifier-fiche.mjs` les contrôle.
+- Le titre porte la version du composant, celle de `meta.version` dans le JSON. La ligne des design tokens, juste après le titre, reprend `meta.tokensVersion` du JSON. Le plugin calcule les deux.
 - Les titres sont toujours les mêmes, dans le même ordre, pour qu'une machine s'y retrouve. Il ne faut ni en ajouter ni les renommer.
 - Les rubriques vont de ce dont un designer ou un dev a besoin en premier à ce qu'il consulte en dernier.
 - Quand une rubrique n'a rien à dire, le titre reste et la rubrique dit « Aucun ». Quand la réponse n'est pas encore connue, la fiche dit « Non documenté » à l'endroit où elle manque, et le manque va dans les points ouverts.

@@ -14,5 +14,5 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 
 | Composant | Markdown | JSON |
 |---|---|---|
-| [Button](button/button.md) | Validé le 2026-10-23, revu le 2026-11-02, six points ouverts | [Généré](button/button.json) le 2026-10-30 depuis Button, version 1.0.0, format 0.4, aucun défaut |
-| [IconButton](iconbutton/iconbutton.md) | Validé le 2026-10-27, revu le 2026-11-02, six points ouverts | [Généré](iconbutton/iconbutton.json) le 2026-11-02 depuis IconButton, version 1.0.0, format 0.4, aucun défaut |
+| Button | [button.md](button/button.md) | [button.json](button/button.json) |
+| IconButton | [iconbutton.md](iconbutton/iconbutton.md) | [iconbutton.json](iconbutton/iconbutton.json) |
