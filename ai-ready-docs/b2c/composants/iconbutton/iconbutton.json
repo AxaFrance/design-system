@@ -6,7 +6,7 @@
     "tokensVersion": "2.0.0",
     "type": "atom",
     "figmaKey": "921b5fa9be9ebca368ea2a027222ebc806a6dad6",
-    "library": "DS IA ready",
+    "library": "B2C",
     "documentationLinks": []
   },
   "api": {
@@ -1834,5 +1834,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-fiches-composants 0.4.34"
+  "_tool": "canopee-fiches-composants 0.4.38"
 }

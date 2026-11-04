@@ -6,7 +6,7 @@
     "tokensVersion": "2.0.0",
     "type": "atom",
     "figmaKey": "cbe527a60bc95af0ec43a05d55103c699fa75f2d",
-    "library": "DS IA ready",
+    "library": "B2C",
     "documentationLinks": [
       "https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-button--button"
     ]
@@ -3991,7 +3991,7 @@
   },
   "components": {
     "Spinner": {
-      "library": "DS IA ready",
+      "library": "B2C",
       "key": "cc09f5574f71f819ef6c9a883daf9be1b88fe0c2"
     },
     "account_balance": {
@@ -4013,5 +4013,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-fiches-composants 0.4.33"
+  "_tool": "canopee-fiches-composants 0.4.38"
 }
