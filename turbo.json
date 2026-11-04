@@ -41,10 +41,26 @@
         "eslint": {
             "dependsOn": [
                 "^build"
+            ],
+            "outputLogs": "errors-only"
+        },
+        "transit": {
+            "dependsOn": [
+                "^transit"
             ]
         },
-        "prettier": {},
-        "stylelint": {},
+        "prettier": {
+            "dependsOn": [
+                "transit"
+            ],
+            "outputLogs": "errors-only"
+        },
+        "stylelint": {
+            "dependsOn": [
+                "transit"
+            ],
+            "outputLogs": "errors-only"
+        },
         "lint": {
             "dependsOn": [
                 "eslint",
