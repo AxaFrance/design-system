@@ -1573,19 +1573,19 @@
           "focus-ring": {
             "layout": {
               "absolute": true,
-              "x": -5,
-              "y": -5,
+              "x": -4,
+              "y": -4,
               "constraints": {
                 "horizontal": "stretch",
                 "vertical": "stretch"
               },
               "sizingH": "fixed",
               "width": {
-                "raw": 50
+                "raw": 48
               },
               "sizingV": "fixed",
               "height": {
-                "raw": 50
+                "raw": 48
               }
             }
           }
@@ -1600,19 +1600,19 @@
           "focus-ring": {
             "layout": {
               "absolute": true,
-              "x": -5,
-              "y": -5,
+              "x": -4,
+              "y": -4,
               "constraints": {
                 "horizontal": "stretch",
                 "vertical": "stretch"
               },
               "sizingH": "fixed",
               "width": {
-                "raw": 34
+                "raw": 32
               },
               "sizingV": "fixed",
               "height": {
-                "raw": 34
+                "raw": 32
               }
             }
           }
@@ -1834,5 +1834,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-fiches-composants 0.4.32"
+  "_tool": "canopee-fiches-composants 0.4.34"
 }

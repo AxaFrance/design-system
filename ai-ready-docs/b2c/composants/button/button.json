@@ -3523,19 +3523,19 @@
           "focus-ring": {
             "layout": {
               "absolute": true,
-              "x": -5,
-              "y": -5,
+              "x": -4,
+              "y": -4,
               "constraints": {
                 "horizontal": "stretch",
                 "vertical": "stretch"
               },
               "sizingH": "fixed",
               "width": {
-                "raw": 64
+                "raw": 62
               },
               "sizingV": "fixed",
               "height": {
-                "raw": 42
+                "raw": 40
               }
             }
           }
@@ -3743,19 +3743,19 @@
           "focus-ring": {
             "layout": {
               "absolute": true,
-              "x": -5,
-              "y": -5,
+              "x": -4,
+              "y": -4,
               "constraints": {
                 "horizontal": "stretch",
                 "vertical": "stretch"
               },
               "sizingH": "fixed",
               "width": {
-                "raw": 101
+                "raw": 99
               },
               "sizingV": "fixed",
               "height": {
-                "raw": 66
+                "raw": 64
               }
             }
           }
@@ -3771,19 +3771,19 @@
           "focus-ring": {
             "layout": {
               "absolute": true,
-              "x": -5,
-              "y": -5,
+              "x": -4,
+              "y": -4,
               "constraints": {
                 "horizontal": "stretch",
                 "vertical": "stretch"
               },
               "sizingH": "fixed",
               "width": {
-                "raw": 85
+                "raw": 83
               },
               "sizingV": "fixed",
               "height": {
-                "raw": 66
+                "raw": 64
               }
             }
           }
@@ -3799,19 +3799,19 @@
           "focus-ring": {
             "layout": {
               "absolute": true,
-              "x": -5,
-              "y": -5,
+              "x": -4,
+              "y": -4,
               "constraints": {
                 "horizontal": "stretch",
                 "vertical": "stretch"
               },
               "sizingH": "fixed",
               "width": {
-                "raw": 85
+                "raw": 83
               },
               "sizingV": "fixed",
               "height": {
-                "raw": 58
+                "raw": 56
               }
             }
           }
@@ -3827,19 +3827,19 @@
           "focus-ring": {
             "layout": {
               "absolute": true,
-              "x": -5,
-              "y": -5,
+              "x": -4,
+              "y": -4,
               "constraints": {
                 "horizontal": "stretch",
                 "vertical": "stretch"
               },
               "sizingH": "fixed",
               "width": {
-                "raw": 77
+                "raw": 75
               },
               "sizingV": "fixed",
               "height": {
-                "raw": 58
+                "raw": 56
               }
             }
           }
@@ -4013,5 +4013,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-fiches-composants 0.4.32"
+  "_tool": "canopee-fiches-composants 0.4.33"
 }
