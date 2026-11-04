@@ -2,7 +2,7 @@
 
 La nomenclature définit comment nommer les composants, leurs propriétés et leurs calques, au plus près du code. Quand un élément porte le même nom dans Figma et dans le code, designers et développeurs parlent le même langage. C'est aussi ce qui permet à une IA de lire le design system et de s'en servir sans se tromper.
 
-Elle vaut pour les deux univers, Client et Prospect comme Distributeur et Collaborateur.
+Elle vaut pour le B2C et le B2B, Client et Prospect comme Distributeur et Collaborateur.
 
 ## Les nomenclatures
 

@@ -9,7 +9,7 @@ Les noms s'écrivent en PascalCase, c'est-à-dire avec une capitale au début de
 - Figma prend le nom standard du marché, celui de [MUI](https://mui.com/material-ui/all-components/) ou de [component.gallery](https://component.gallery/components/). Quand le code exporte déjà le composant sous ce nom, les deux restent identiques. Exemple : Link.
 - Quand le nom du code n'est pas standard, Figma prend quand même le nom standard. Le code s'aligne peu à peu, à chaque évolution du composant, et la fiche du composant donne le nom du code en attendant. Exemple : IconButton dans Figma, ClickIcon dans le code.
 - Le mot qui dit ce qu'est le composant vient en dernier, et les précisions avant, comme en anglais. Exemple : TextInput est un champ, IconButton un bouton, _PaginationItem un élément de Pagination. Exemple d'écart : ItemFile.
-- Un même composant porte le même nom dans les deux univers.
+- Un même composant porte le même nom en B2C et en B2B.
 - Le nom ne dit que ce qu'est le composant, sans statut, version ni emoji. Exemple d'écart : Button v2.
 - Un sigle s'écrit comme un mot. Exemple : AiAnswer, et non AIAnswer.
 - Les niveaux, les types et les orientations passent par les propriétés, pas par des composants séparés. Exemple : un seul Stepper avec la propriété orientation, et non un Horizontal Stepper et un Vertical Stepper.
@@ -30,7 +30,7 @@ Certains éléments sont affichés par le navigateur lui-même, et non par le co
 
 ## Les familles
 
-Chaque famille est une page de la librairie Figma. Les deux univers ont les mêmes familles, rangées par usage. Une famille sans composant garde sa page, et il n'y a pas de page à part pour les sous-composants.
+Chaque famille est une page de la librairie Figma. Le B2C et le B2B ont les mêmes familles, rangées par usage. Une famille sans composant garde sa page, et il n'y a pas de page à part pour les sous-composants.
 
 La page porte simplement le nom de la famille, et les pages suivent l'ordre du tableau.
 

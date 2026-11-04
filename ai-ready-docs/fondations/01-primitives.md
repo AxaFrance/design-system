@@ -49,13 +49,13 @@ Ces règles valent dans Figma comme dans le code. Les exemples donnent le nom Fi
 ### Les breakpoints
 
 - Un breakpoint porte la largeur d'écran à partir de laquelle la mise en page change. Exemple : breakpoint/1024 s'applique dès 1024 px de large.
-- Chaque univers garde ses propres breakpoints. La description de la variable indique les univers qui l'utilisent.
+- Le B2C et le B2B gardent chacun leurs breakpoints. La description de la variable indique si elle sert au B2C, au B2B ou aux deux.
 
 ## Dans le code
 
 - Les dimensions s'écrivent en rem, mais le nom garde la valeur en pixels. Exemple : --spacing-16 vaut 1rem.
 - Les arrondis, les épaisseurs de bordure et les breakpoints restent en pixels. Exemple : --border-radius-8 vaut 8px.
-- Les media queries utilisent les custom media de chaque univers, générées à partir des breakpoints. Exemple : @media (--desktop-small).
+- Les media queries utilisent les custom media propres au B2C et au B2B, générées à partir des breakpoints. Exemple : @media (--desktop-small).
 - Les anciennes variables CSS restent utilisables le temps de la migration.
 
 ## Un besoin ?

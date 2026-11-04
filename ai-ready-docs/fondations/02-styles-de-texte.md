@@ -17,11 +17,11 @@ Un style se choisit selon le rôle du texte, jamais parce que sa taille tombe ju
 
 Ce rôle et cet exemple sont aussi la description de chaque style dans Figma.
 
-Un même composant garde la même famille en B2C et en B2B. Le niveau peut changer pour garder la taille d'origine de chaque univers. Exemple : l'en-tête de colonne d'un tableau prend title/1 en B2C et title/2 en B2B.
+Un même composant garde la même famille en B2C et en B2B. Le niveau peut changer pour garder la taille d'origine du B2C ou du B2B. Exemple : l'en-tête de colonne d'un tableau prend title/1 en B2C et title/2 en B2B.
 
 Tous les styles sont en Source Sans Pro, sauf heading/h1 et heading/h2, en Publico Headline dans le B2C. Le heading/h2 du thème Prospect est en Publico Light, au lieu de Publico Headline Bold.
 
-## Un style s'adapte à l'univers, au thème et à l'écran
+## Un style s'adapte au B2C ou au B2B, au thème et à l'écran
 
 Le designer garde le même style et choisit le mode de la collection Typography sur son cadre : prospect ou client, desktop ou mobile en B2C, distributeur en B2B. Le texte prend les bonnes valeurs tout seul.
 
