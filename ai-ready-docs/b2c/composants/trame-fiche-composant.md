@@ -62,8 +62,8 @@ Les noms qu'un designer, un dev ou un PO utilise parfois pour ce composant, y co
 La liste finit par cette phrase : « Ces noms désignent <Composant>. Le seul nom à employer est <Composant>. »
 
 ## Décisions
-Les choix faits exprès, datés et motivés, pour qu'une IA ne les « corrige » pas. Chaque décision commence par la version du composant qui l'a introduite et sa date, au format **1.2.0, 2026-11-04.**
-Exemple : **1.2.0, 2026-11-04.** Le libellé reste sur une seule ligne, pour garder des boutons de hauteur identique.
+Les choix faits exprès, datés et motivés, pour qu'une IA ne les « corrige » pas. Chaque décision commence par la version du composant qui l'a introduite et sa date, au format **1.2.0 - 04/11/26.**
+Exemple : **1.2.0 - 04/11/26.** Le libellé reste sur une seule ligne, pour garder des boutons de hauteur identique.
 
 ## Points ouverts
 Ce qui est faux ou pas encore tranché. Chaque point finit par « En attendant : », suivi de ce qui s'applique ou de « signaler ».

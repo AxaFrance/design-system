@@ -143,14 +143,14 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 
 ## Décisions
 
-- **1.0.0, 2026-10-27.** Une action représentée par une icône seule passe par un composant dédié, IconButton, et non par une variante de Button. Ses règles diffèrent : pas de libellé visible, et un nom accessible obligatoire.
-- **1.0.0, 2026-10-27.** Le nom IconButton suit le standard du marché. ClickIcon, le nom actuel du code, décrit le geste et non le composant.
-- **1.0.0, 2026-10-27.** IconButton reprend les propriétés, les couleurs et l'anneau de focus de Button, pour que les deux composants restent cohérents.
-- **1.0.0, 2026-10-30.** Comme pour Button, le secondary redevient un bouton à contour. Au survol et à l'appui, il prend le fond du tertiary dans le même état.
-- **1.0.0, 2026-10-30.** IconButton reprend les deux tailles de l'ancien ClickIcon : size=small (40 px), la valeur par défaut, et size=x-small (24 px). La taille de 56 px disparaît.
-- **1.0.0, 2026-11-02.** size=small sert quand le composant qui contient l'IconButton n'est pas cliquable lui-même, comme une fenêtre modale. size=x-small sert dans un composant déjà cliquable en entier, comme ClickItem.
-- **1.0.0, 2026-11-02.** IconButton n'a pas de colorScheme business, contrairement à Button. Une souscription demande un libellé, donc un Button.
-- **1.0.0, 2026-11-04.** Comme pour Button, le secondary et le tertiary n'ont pas de fond au repos. Le bouton désactivé garde son fond gris.
+- **1.0.0 - 27/10/26.** Une action représentée par une icône seule passe par un composant dédié, IconButton, et non par une variante de Button. Ses règles diffèrent : pas de libellé visible, et un nom accessible obligatoire.
+- **1.0.0 - 27/10/26.** Le nom IconButton suit le standard du marché. ClickIcon, le nom actuel du code, décrit le geste et non le composant.
+- **1.0.0 - 27/10/26.** IconButton reprend les propriétés, les couleurs et l'anneau de focus de Button, pour que les deux composants restent cohérents.
+- **1.0.0 - 30/10/26.** Comme pour Button, le secondary redevient un bouton à contour. Au survol et à l'appui, il prend le fond du tertiary dans le même état.
+- **1.0.0 - 30/10/26.** IconButton reprend les deux tailles de l'ancien ClickIcon : size=small (40 px), la valeur par défaut, et size=x-small (24 px). La taille de 56 px disparaît.
+- **1.0.0 - 02/11/26.** size=small sert quand le composant qui contient l'IconButton n'est pas cliquable lui-même, comme une fenêtre modale. size=x-small sert dans un composant déjà cliquable en entier, comme ClickItem.
+- **1.0.0 - 02/11/26.** IconButton n'a pas de colorScheme business, contrairement à Button. Une souscription demande un libellé, donc un Button.
+- **1.0.0 - 04/11/26.** Comme pour Button, le secondary et le tertiary n'ont pas de fond au repos. Le bouton désactivé garde son fond gris.
 
 ## Points ouverts
 

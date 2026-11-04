@@ -176,28 +176,28 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 
 ## Décisions
 
-- **1.0.0, 2026-09-16.** L'importance s'appelle hierarchy, et non variant comme dans le code, parce que variant a déjà un sens dans Figma.
-- **1.0.0, 2026-10-14.** Les quatre boutons Figma, ButtonPrimary, ButtonSecondary, ButtonTertiary et ButtonGhost, sont fusionnés en un seul Button, pour suivre la nomenclature et le code.
-- **1.0.0, 2026-10-16.** Button garde trois niveaux et une seule logique d'interaction : chaque état descend d'un cran dans la même palette, et le focus reprend le survol avec un anneau. Le secondary devient un bouton plein clair. Le bouton à contour, le secondary inverse et le ghost disparaissent. Le code sera mis à jour pour suivre.
-- **1.0.0, 2026-10-16.** La taille d'écran passe par les modes de variables, et non par des variantes. Le composant a un mode par défaut, desktop, et le mode mobile se choisit sur l'instance (2026-10-23).
-- **1.0.0, 2026-10-23.** Le code actuel correspond à l'ancien Button et à l'ancienne nomenclature. Il sera mis à jour pour suivre ce composant. Le tableau des écarts relie donc les niveaux par leur nom, et non par leur rendu actuel, et il se videra quand le code aura suivi.
-- **1.0.0, 2026-10-23.** Les règles ajoutées en rédigeant la fiche sont validées : les alternatives Link, ClickIcon, Toggle et CardRadio, la règle de disabled=true, et les seuils de contraste et de taille.
-- **1.0.0, 2026-10-23.** Les règles de Comportement, d'Accessibilité et de Rédaction, reprises de la page Zeroheight de Button Primary, valent pour tous les niveaux.
-- **1.0.0, 2026-10-23.** Le thème passe par une variante `_theme`, prospect ou client, parce que la forme change : l'arrondi et les marges. Les modes de variables restent réservés aux thèmes de couleurs. Le composant n'utilise que des variables de Fondations.
-- **1.0.0, 2026-10-16.** Les actions « Modifier » et « En savoir plus » d'ItemLabel ne passent pas par Button, mais par un sous-composant propre à ItemLabel.
-- **1.0.0, 2026-10-27.** Une action représentée par une icône seule passe par un composant dédié, IconButton, et non par une variante de Button. Ses règles diffèrent : pas de libellé visible, et un nom accessible obligatoire. Son nom suit le standard du marché.
-- **1.0.0, 2026-10-27.** Une page n'a qu'un seul Button primary, sans compter le Header, et non un seul par zone. Le primary d'une bannière compte dans cette limite. Une fenêtre modale a droit à son propre primary.
-- **1.0.0, 2026-10-27.** colorScheme=business sert aux actions liées à la souscription ou à une offre commerciale.
-- **1.0.0, 2026-10-27.** Sur mobile, plusieurs boutons voisins s'empilent en colonne, sauf dans un parcours.
-- **1.0.0, 2026-10-28.** Button a une variante loading dans Figma, comme dans le code, parce que les designers en ont besoin dans leurs maquettes.
-- **1.0.0, 2026-10-30.** En chargement, le bouton garde sa couleur, affiche un Spinner et ne réagit plus. Il n'utilise pas l'attribut `disabled`, pour garder le focus.
-- **1.0.0, 2026-10-30.** Le secondary redevient un bouton à contour, comme l'ancien ButtonSecondary. Au survol et à l'appui, il prend le fond du tertiary dans le même état. Cette décision remplace celle du 2026-10-16, qui en faisait un bouton plein clair.
-- **1.0.0, 2026-10-30.** Button a trois tailles, selon sa hauteur : size=large (56 px), size=medium (48 px) et size=small (32 px). La valeur par défaut est size=large. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost.
-- **1.0.0, 2026-11-02.** Sur une ligne, le primary est le dernier bouton à droite.
-- **1.0.0, 2026-11-02.** colorScheme=business ne sert que sur une page de tarif, dans un parcours. Le bouton d'une bannière sur fond foncé ou coloré est en colorScheme=inverse. À la dernière étape d'un parcours, le bouton qui valide le tarif est en colorScheme=default. Cette décision remplace celle du 2026-10-27, qui ouvrait business à toute offre commerciale.
-- **1.0.0, 2026-11-02.** Chaque taille a son usage : size=large pour la plupart des actions, size=medium pour le Header, size=small surtout en hierarchy=tertiary, mais possible avec tous les niveaux.
-- **1.0.0, 2026-11-02.** Les actions « Modifier » et « En savoir plus » d'ItemLabel passent par un Button en size=small. Cette décision remplace celle du 2026-10-16, qui prévoyait un sous-composant propre à ItemLabel.
-- **1.0.0, 2026-11-04.** Au repos, le secondary et le tertiary n'ont pas de fond. Le bouton désactivé garde son fond gris.
+- **1.0.0 - 16/09/26.** L'importance s'appelle hierarchy, et non variant comme dans le code, parce que variant a déjà un sens dans Figma.
+- **1.0.0 - 14/10/26.** Les quatre boutons Figma, ButtonPrimary, ButtonSecondary, ButtonTertiary et ButtonGhost, sont fusionnés en un seul Button, pour suivre la nomenclature et le code.
+- **1.0.0 - 16/10/26.** Button garde trois niveaux et une seule logique d'interaction : chaque état descend d'un cran dans la même palette, et le focus reprend le survol avec un anneau. Le secondary devient un bouton plein clair. Le bouton à contour, le secondary inverse et le ghost disparaissent. Le code sera mis à jour pour suivre.
+- **1.0.0 - 16/10/26.** La taille d'écran passe par les modes de variables, et non par des variantes. Le composant a un mode par défaut, desktop, et le mode mobile se choisit sur l'instance (23/10/26).
+- **1.0.0 - 23/10/26.** Le code actuel correspond à l'ancien Button et à l'ancienne nomenclature. Il sera mis à jour pour suivre ce composant. Le tableau des écarts relie donc les niveaux par leur nom, et non par leur rendu actuel, et il se videra quand le code aura suivi.
+- **1.0.0 - 23/10/26.** Les règles ajoutées en rédigeant la fiche sont validées : les alternatives Link, ClickIcon, Toggle et CardRadio, la règle de disabled=true, et les seuils de contraste et de taille.
+- **1.0.0 - 23/10/26.** Les règles de Comportement, d'Accessibilité et de Rédaction, reprises de la page Zeroheight de Button Primary, valent pour tous les niveaux.
+- **1.0.0 - 23/10/26.** Le thème passe par une variante `_theme`, prospect ou client, parce que la forme change : l'arrondi et les marges. Les modes de variables restent réservés aux thèmes de couleurs. Le composant n'utilise que des variables de Fondations.
+- **1.0.0 - 16/10/26.** Les actions « Modifier » et « En savoir plus » d'ItemLabel ne passent pas par Button, mais par un sous-composant propre à ItemLabel.
+- **1.0.0 - 27/10/26.** Une action représentée par une icône seule passe par un composant dédié, IconButton, et non par une variante de Button. Ses règles diffèrent : pas de libellé visible, et un nom accessible obligatoire. Son nom suit le standard du marché.
+- **1.0.0 - 27/10/26.** Une page n'a qu'un seul Button primary, sans compter le Header, et non un seul par zone. Le primary d'une bannière compte dans cette limite. Une fenêtre modale a droit à son propre primary.
+- **1.0.0 - 27/10/26.** colorScheme=business sert aux actions liées à la souscription ou à une offre commerciale.
+- **1.0.0 - 27/10/26.** Sur mobile, plusieurs boutons voisins s'empilent en colonne, sauf dans un parcours.
+- **1.0.0 - 28/10/26.** Button a une variante loading dans Figma, comme dans le code, parce que les designers en ont besoin dans leurs maquettes.
+- **1.0.0 - 30/10/26.** En chargement, le bouton garde sa couleur, affiche un Spinner et ne réagit plus. Il n'utilise pas l'attribut `disabled`, pour garder le focus.
+- **1.0.0 - 30/10/26.** Le secondary redevient un bouton à contour, comme l'ancien ButtonSecondary. Au survol et à l'appui, il prend le fond du tertiary dans le même état. Cette décision remplace celle du 16/10/26, qui en faisait un bouton plein clair.
+- **1.0.0 - 30/10/26.** Button a trois tailles, selon sa hauteur : size=large (56 px), size=medium (48 px) et size=small (32 px). La valeur par défaut est size=large. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost.
+- **1.0.0 - 02/11/26.** Sur une ligne, le primary est le dernier bouton à droite.
+- **1.0.0 - 02/11/26.** colorScheme=business ne sert que sur une page de tarif, dans un parcours. Le bouton d'une bannière sur fond foncé ou coloré est en colorScheme=inverse. À la dernière étape d'un parcours, le bouton qui valide le tarif est en colorScheme=default. Cette décision remplace celle du 27/10/26, qui ouvrait business à toute offre commerciale.
+- **1.0.0 - 02/11/26.** Chaque taille a son usage : size=large pour la plupart des actions, size=medium pour le Header, size=small surtout en hierarchy=tertiary, mais possible avec tous les niveaux.
+- **1.0.0 - 02/11/26.** Les actions « Modifier » et « En savoir plus » d'ItemLabel passent par un Button en size=small. Cette décision remplace celle du 16/10/26, qui prévoyait un sous-composant propre à ItemLabel.
+- **1.0.0 - 04/11/26.** Au repos, le secondary et le tertiary n'ont pas de fond. Le bouton désactivé garde son fond gris.
 
 ## Points ouverts
 
