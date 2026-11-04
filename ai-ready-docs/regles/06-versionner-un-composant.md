@@ -32,6 +32,7 @@ Dans le détail, ces changements donnent un patch :
 Ces changements ne modifient pas la version :
 
 - des variantes déplacées dans la page Figma ;
+- le nom du fichier Figma et les clés internes de Figma, par exemple après un export depuis une autre librairie ;
 - les numéros de version reportés dans le Markdown.
 
 ## La version de Canopée requise

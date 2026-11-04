@@ -203,7 +203,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 
 - **Rendu du code.** Tant que le code n'a pas suivi, le rendu diffère de Figma : `secondary` a un fond blanc au repos et n'a pas les mêmes couleurs au survol et à l'appui, `tertiary` est un bouton plein clair, le press éclaircit au lieu de foncer, et `secondary-inverse` et `ghost` existent encore. En attendant : les noms du tableau des écarts s'appliquent, et `secondary-inverse` et `ghost` ne s'utilisent plus.
 - **Chargement dans le code.** Le code désactive le bouton pendant un chargement (`disabled={disabled || loading}`). Le bouton et son Spinner deviennent gris, et le bouton perd le focus. Il n'a pas non plus `aria-busy`. Le code affiche aussi ce Spinner sur un bouton seulement désactivé. En attendant : `loading` s'utilise sans surcharge de style, l'écart se corrige dans le code.
-- **Anneau de focus.** Il est en color/blue/300 dans Figma et en `--blue-650` dans le code. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
+- **Anneau de focus.** Il est en color/blue/300 et à 2 px du bouton dans Figma, en `--blue-650` et à 3 px dans le code. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
 - **Groupe de boutons.** L'ordre des boutons à gauche du primary n'est pas documenté, ni celui des boutons empilés en colonne sur mobile, ni la place du groupe dans la page (aligné à gauche, centré ou aligné à droite). En attendant : signaler.
 - **Autres usages du medium.** En dehors du Header, size=medium peut servir dans des cas précis, qui ne sont pas encore documentés. En attendant : signaler.
 - **Tailles dans le code.** Le code n'a pas de propriété de taille. En attendant : signaler.
