@@ -27,6 +27,9 @@ jobs:
       - name: Build packages
         run: npm run build
 
+      - name: Lint packages
+        run: npm run lint
+
       - run: npm run test
 
       - name: SonarCloud Scan

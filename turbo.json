@@ -14,8 +14,7 @@
                 "storybook-static/**"
             ],
             "dependsOn": [
-                "^build",
-                "^lint"
+                "^build"
             ]
         },
         "check-types": {
