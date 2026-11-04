@@ -53,15 +53,15 @@ Seulement pour le bouton de souscription d'une page de tarif, quand cette page e
 
 ### size=large
 
-La taille par défaut, de 56 px de haut, pour la plupart des actions. Exemples : les boutons d'une fenêtre modale, « Précédent » et « Suivant » dans un parcours.
+La taille par défaut, pour la plupart des actions. Exemples : les boutons d'une fenêtre modale, « Précédent » et « Suivant » dans un parcours.
 
 ### size=medium
 
-Un Button de 48 px de haut, pour les actions du Header.
+Le Button des actions du Header.
 
 ### size=small
 
-Le plus petit Button, de 32 px de haut, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost. Exemples : les actions « Modifier » et « En savoir plus » d'ItemLabel, le bouton d'un ContentItemDuoAction, ou celui d'un Message qui propose une action.
+Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost. Exemples : les actions « Modifier » et « En savoir plus » d'ItemLabel, le bouton d'un ContentItemDuoAction, ou celui d'un Message qui propose une action.
 
 ## Exemples
 

@@ -42,11 +42,11 @@ Sur un fond foncé ou coloré.
 
 ### size=small
 
-La taille par défaut, de 40 px de côté, quand le composant qui contient l'IconButton n'est pas cliquable lui-même. Exemple : la croix qui ferme une fenêtre modale.
+La taille par défaut, quand le composant qui contient l'IconButton n'est pas cliquable lui-même. Exemple : la croix qui ferme une fenêtre modale.
 
 ### size=x-small
 
-Un IconButton de 24 px de côté, placé dans un composant déjà cliquable en entier. Exemple : l'action à droite d'un ClickItem, une ligne cliquable.
+Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'action à droite d'un ClickItem, une ligne cliquable.
 
 ## Exemples
 
