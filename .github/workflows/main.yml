@@ -22,6 +22,7 @@ jobs:
         uses: ./.github/action/setup-node
         with:
           check-package: true
+          turbo-cache: true
 
       - name: Build packages
         run: npm run build

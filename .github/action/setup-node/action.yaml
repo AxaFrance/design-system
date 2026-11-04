@@ -5,6 +5,9 @@ inputs:
   check-package:
     description: "Check package"
     default: false
+  turbo-cache:
+    description: "Restore and save the local Turborepo cache"
+    default: false
 
 runs:
   using: composite
@@ -36,3 +39,13 @@ runs:
     - name: Install package
       run: npm ci
       shell: bash
+
+    - name: Cache Turborepo
+      if: inputs.turbo-cache == 'true'
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: .turbo/cache
+        key: ${{ runner.os }}-turbo-${{ github.job }}-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-${{ github.job }}-
+          ${{ runner.os }}-turbo-
