@@ -20,7 +20,6 @@
         },
         "check-types": {
             "dependsOn": [
-                "^check-types",
                 "^build"
             ]
         },
@@ -40,9 +39,19 @@
             "persistent": true,
             "cache": false
         },
+        "eslint": {
+            "dependsOn": [
+                "^build"
+            ]
+        },
+        "prettier": {},
+        "stylelint": {},
         "lint": {
             "dependsOn": [
-                "^check-types"
+                "eslint",
+                "prettier",
+                "check-types",
+                "stylelint"
             ]
         }
     }
