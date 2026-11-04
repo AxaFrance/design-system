@@ -139,8 +139,8 @@ const CHEMIN_TOKENS = 'packages/canopee-css/design-tokens-canopee.resolver.json'
 // Prépare le dépôt, comme le ferait l'interface après avoir lu le fichier du
 // repo : referenceRepo est son texte, ou null s'il n'y est pas. Renvoie le
 // message depot-pret.
-const deposerDocument = async (plugin, referenceRepo) => {
-  await plugin.envoyer({ type: 'deposer', referenceRepo })
+const deposerDocument = async (plugin, referenceRepo, options = {}) => {
+  await plugin.envoyer({ type: 'deposer', referenceRepo, ...options })
   const message = plugin.dernierMessage()
   assert.equal(message.type, 'depot-pret', message.message)
   return normaliser(message)
@@ -463,8 +463,8 @@ const scenarioComparerDiff = async () => {
   verifier('diff : dateFichier absent du message quand il n\'est pas fourni dans comparer', () => {
     assert.equal('dateFichier' in plugin.dernierMessage(), false)
   })
-  verifier('diff : niveau majeur quand une suppression se mêle aux autres changements', () => {
-    assert.equal(diffModifie.niveau, 'majeur')
+  verifier('diff : niveau mineur quand une suppression se mêle aux autres changements', () => {
+    assert.equal(diffModifie.niveau, 'mineur')
   })
   verifier('diff : dateReference reprise de la référence, transmise dans le message', () => {
     assert.equal(diffModifie.dateReference, t.$extensions['fr.axa.canopee'].date)
@@ -503,12 +503,12 @@ const scenarioNiveauEtVersionSuivante = async () => {
   }
 
   await comparerA(refSuppression)
-  verifier('niveau : token supprimé → majeur', () => assert.equal(plugin.dernierMessage().niveau, 'majeur'))
+  verifier('niveau : token supprimé → mineur', () => assert.equal(plugin.dernierMessage().niveau, 'mineur'))
 
   await comparerA(refChangementType)
-  verifier('niveau : $type changé → majeur, modifies marqué typeChange', () => {
+  verifier('niveau : $type changé → mineur, modifies marqué typeChange', () => {
     const d = plugin.dernierMessage()
-    assert.equal(d.niveau, 'majeur')
+    assert.equal(d.niveau, 'mineur')
     assert.equal(d.modifies[0].typeChange, true)
   })
 
@@ -528,10 +528,10 @@ const scenarioNiveauEtVersionSuivante = async () => {
   await comparerA(cloneReference())
   verifier('niveau : aucun changement → null', () => assert.equal(plugin.dernierMessage().niveau, null))
 
-  const attenduesVersionSuivante = { majeur: '2.0.0', mineur: '1.9.0', correctif: '1.8.1' }
+  const attenduesVersionSuivante = { mineur: '1.9.0', correctif: '1.8.1' }
   for (const version of ['1.8.0', '1.8.0-RC.2']) {
     await comparerA(refSuppression, version)
-    verifier(`versionSuivante : ${version}, majeur → ${attenduesVersionSuivante.majeur}`, () => assert.equal(plugin.dernierMessage().versionSuivante, attenduesVersionSuivante.majeur))
+    verifier(`versionSuivante : ${version}, suppression → ${attenduesVersionSuivante.mineur}`, () => assert.equal(plugin.dernierMessage().versionSuivante, attenduesVersionSuivante.mineur))
 
     await comparerA(refAjout, version)
     verifier(`versionSuivante : ${version}, mineur → ${attenduesVersionSuivante.mineur}`, () => assert.equal(plugin.dernierMessage().versionSuivante, attenduesVersionSuivante.mineur))
@@ -884,8 +884,8 @@ const scenarioDeposer = async () => {
   const avecSuppression = JSON.parse(courant)
   lireSet(avecSuppression, 'Primitives').Couleur.disparue = { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0, 0], hex: '#000000' } }
   const suppression = await deposerDocument(plugin, JSON.stringify(avecSuppression))
-  verifier('deposer avec une suppression par rapport au repo : feat avec point d\'exclamation', () => {
-    assert.equal(suppression.message, 'feat(canopee)!: update design tokens')
+  verifier('deposer avec une suppression par rapport au repo : feat sans point d\'exclamation', () => {
+    assert.equal(suppression.message, 'feat(canopee): update design tokens')
     assert.equal(suppression.url, urlEdition)
     assert.deepEqual(sansDate(JSON.parse(suppression.json)), jsonCourant)
   })
@@ -974,7 +974,9 @@ const scenarioMessagesDeCommit = async () => {
   doc.locales.push({ id: 'v99', name: 'spacing/32', resolvedType: 'FLOAT', variableCollectionId: 'C1', scopes: ['GAP'], valuesByMode: { m1: 32 } })
   messages.mineur = await deposer()
   doc.locales.splice(doc.locales.findIndex((v) => v.id === 'v99'), 1)
-  messages.majeur = await deposer()
+  messages.suppression = await deposer()
+  doc.locales.find((v) => v.id === 'v2').valuesByMode.m1 = 32
+  messages.majeur = (await deposerDocument(plugin, repo, { refonte: true })).message
 
   console.log('  messages de commit :', JSON.stringify(messages, null, 2).replace(/\n/g, '\n  '))
 
@@ -990,7 +992,10 @@ const scenarioMessagesDeCommit = async () => {
   verifier('commit : token ajouté → feat', () => {
     assert.equal(messages.mineur, 'feat(canopee): update design tokens')
   })
-  verifier('commit : token supprimé → feat avec point d\'exclamation', () => {
+  verifier('commit : token supprimé → feat sans point d\'exclamation', () => {
+    assert.equal(messages.suppression, 'feat(canopee): update design tokens')
+  })
+  verifier('commit : case Refonte complète → feat avec point d\'exclamation, même pour une valeur modifiée', () => {
     assert.equal(messages.majeur, 'feat(canopee)!: update design tokens')
   })
 }
@@ -1148,7 +1153,7 @@ const scenarioDiffDesModes = async () => {
       { chemin: 'Espacement/a', ...sombre, valeur: '24 px' }
     ])
     assert.deepEqual([tokenSupprime.ajoutes, tokenSupprime.modifies], [[], []])
-    assert.equal(tokenSupprime.niveau, 'majeur')
+    assert.equal(tokenSupprime.niveau, 'mineur')
   })
 
   const tokenAjoute = await comparer(document(16, 24, { avecA: false }), document(16, 24))
@@ -1473,6 +1478,13 @@ const scenarioDocumentation = async () => {
     const phrase = /Chaque style en a quatre : ([^.]+)\./.exec(styles)
     assert.ok(phrase, 'phrase des quatre propriétés introuvable')
     assert.deepEqual(phrase[1].split(/, | et /).sort(), Object.keys(t.PHRASES_STYLE).sort())
+  })
+  verifier('doc : les niveaux de 03-creer-ou-modifier-un-token.md sont ceux du plugin', () => {
+    const niveaux = Object.fromEntries(tableau(fondations('03-creer-ou-modifier-un-token.md'), 'Changement').map(([changement, niveau]) => [niveau, changement.toLowerCase()]))
+    assert.deepEqual(Object.keys(niveaux), ['Majeur', 'Mineur', 'Patch'])
+    assert.ok(niveaux.Majeur.includes('refonte complète'))
+    for (const mot of ['ajoutés', 'supprimés', 'dépréciés', 'type']) assert.ok(niveaux.Mineur.includes(mot), mot)
+    assert.ok(niveaux.Patch.includes('valeurs modifiées'))
   })
 }
 

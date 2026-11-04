@@ -1,7 +1,7 @@
 // Export des variables et des styles Figma au format DTCG.
 // Un seul fichier, sans étape de build : le manifeste pointe directement dessus.
 
-const VERSION = '0.28.0'
+const VERSION = '0.29.0'
 const LARGEUR = 440
 const HAUTEUR_INITIALE = 600
 // Hauteur automatique : suit le contenu, dans ces bornes. Assez haute par défaut
@@ -1112,13 +1112,13 @@ const comparerChemins = (a, b) => {
   return 0
 }
 
-// Niveau de changement, à la façon d'un semver : majeur si un token disparaît
-// ou change de type, sinon mineur si un token est ajouté ou déprécié, sinon
-// correctif si une valeur a changé, sinon aucun niveau. Règle proposée aux
-// devs, en cours de validation.
+// Niveau de changement : mineur si un ou plusieurs tokens sont ajoutés, supprimés,
+// dépréciés ou changent de type, sinon correctif si une ou plusieurs valeurs
+// changent, sinon aucun niveau. Le majeur n'en sort jamais : le plugin ne devine
+// pas une refonte complète, l'équipe la coche au dépôt (voir deposer). Règle
+// proposée aux devs, en cours de validation.
 const niveauDiff = (ajoutes, modifies, supprimes, deprecies) => {
-  if (supprimes.length || modifies.some((m) => m.typeChange)) return 'majeur'
-  if (ajoutes.length || deprecies.length) return 'mineur'
+  if (ajoutes.length || supprimes.length || deprecies.length || modifies.some((m) => m.typeChange)) return 'mineur'
   if (modifies.length) return 'correctif'
   return null
 }
@@ -1130,7 +1130,6 @@ const versionSuivante = (version, niveau) => {
   const m = /^(\d+)\.(\d+)\.(\d+)/.exec(version)
   if (!m) return null
   const x = Number(m[1]), y = Number(m[2]), z = Number(m[3])
-  if (niveau === 'majeur') return `${x + 1}.0.0`
   if (niveau === 'mineur') return `${x}.${y + 1}.0`
   return `${x}.${y}.${z + 1}`
 }
@@ -1384,7 +1383,7 @@ const gestionnairesMessage = {
   // Prépare le dépôt à partir de l'état actuel de Figma : le JSON à coller, le
   // message de commit selon le niveau du changement contre le fichier du repo,
   // et l'URL de l'éditeur GitHub. referenceRepo est le texte du fichier du repo,
-  // ou null s'il n'y est pas encore.
+  // ou null s'il n'y est pas encore. refonte dit si la case Refonte complète est cochée.
   deposer: async (msg) => {
     try {
       await verifierModifications()
@@ -1401,7 +1400,7 @@ const gestionnairesMessage = {
       figma.ui.postMessage({
         type: 'depot-pret',
         json: versJSON(docFinal, racinesDeGroupe),
-        message: messageCommit(construireDiff(docFinal, docRepo).niveau),
+        message: messageCommit(msg.refonte ? 'majeur' : construireDiff(docFinal, docRepo).niveau),
         url
       })
     } catch (e) {

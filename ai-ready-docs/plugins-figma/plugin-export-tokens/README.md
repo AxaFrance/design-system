@@ -76,9 +76,9 @@ Pour un token de contexte de modifier, le mode s'affiche sous le nom, par exempl
 
 Une étiquette donne le niveau du changement, du plus élevé au plus bas :
 
-- **Majeur** : un token supprimé, ou dont le type change.
-- **Mineur** : un token ajouté ou déprécié.
-- **Patch** : une valeur modifiée.
+- **Majeur** : une refonte complète des tokens. Le plugin ne la devine pas, l'équipe design system coche la case au dépôt.
+- **Mineur** : un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change.
+- **Patch** : une ou plusieurs valeurs modifiées.
 
 Cette explication s'affiche au survol de l'étiquette. Cette règle est une proposition, à valider avec les développeurs de Canopée. En comparant à une version publiée, le plugin indique aussi la prochaine version attendue.
 
@@ -92,7 +92,7 @@ Le dépôt passe par l'éditeur web de GitHub. Un designer sans droit d'écritur
 
 Le bouton « Déposer sur GitHub » est désactivé quand les tokens sont identiques au code : l'aide dessous dit qu'il n'y a rien à déposer. Il est aussi désactivé tant qu'une PR de tokens est ouverte, et un bandeau bleu juste au-dessus donne son lien (voir « La PR en cours »).
 
-Il est collé en bas de la fenêtre et ne copie rien : il ouvre la vue dépôt. Cette vue masque l'en-tête, À corriger et Changements, et s'affiche en haut de la fenêtre. Elle rappelle d'abord ce qui part dans la PR, le niveau et les compteurs de la comparaison avec le code. Le dépôt se compare toujours au code : en entrant, le plugin relance cette comparaison si le menu pointait ailleurs. Une ligne rappelle de vérifier que Fondations est publiée et que l'équipe design system a validé les changements. Vient ensuite le parcours en quatre étapes. L'étape en cours est mise en avant, les étapes faites sont cochées.
+Il est collé en bas de la fenêtre et ne copie rien : il ouvre la vue dépôt. Cette vue masque l'en-tête, À corriger et Changements, et s'affiche en haut de la fenêtre. Elle rappelle d'abord ce qui part dans la PR, le niveau et les compteurs de la comparaison avec le code. Le dépôt se compare toujours au code : en entrant, le plugin relance cette comparaison si le menu pointait ailleurs. Une ligne rappelle de vérifier que Fondations est publiée et que l'équipe design system a validé les changements. La case **Refonte complète** fait passer le dépôt en majeur : elle se décoche en quittant la vue, et se fige une fois le fichier copié. Vient ensuite le parcours en quatre étapes. L'étape en cours est mise en avant, les étapes faites sont cochées.
 
 1. **Copier et ouvrir**, désactivé tant que la comparaison avec le code est en cours, en échec ou sans changement (un lien « Réessayer » relance en cas d'échec), produit le fichier à partir de l'état actuel de Figma, le copie, et ouvre le fichier des tokens en édition sur GitHub.
 2. Sur GitHub, Cmd+A puis Cmd+V pour remplacer tout le contenu, puis cliquer sur « Commit changes ».
@@ -103,7 +103,7 @@ Il est collé en bas de la fenêtre et ne copie rien : il ouvre la vue dépôt. 
 
 Si la copie échoue, le plugin affiche le texte déjà sélectionné et il suffit de faire Cmd+C (Ctrl+C sur Windows). **Recommencer le dépôt** relance tout depuis le début. Si les tokens changent dans Figma, le texte copié n'est plus à jour, et le plugin revient aussi au début.
 
-Le message suit la convention Conventional Commits, que le repo vérifie dans sa CI. Il dépend du niveau du changement par rapport au code :
+Le message suit la convention Conventional Commits, que le repo vérifie dans sa CI. Il dépend du niveau du changement par rapport au code, ou de la case Refonte complète pour le majeur :
 
 | Niveau | Message |
 |---|---|

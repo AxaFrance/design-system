@@ -62,7 +62,7 @@ Cliquer sur **Déposer sur GitHub**. Le bouton est bloqué s'il reste une erreur
 
 **b. Suivre le parcours du plugin**
 
-Le plugin affiche le parcours en quatre étapes.
+Le plugin affiche le parcours en quatre étapes. Pour une refonte complète des tokens, cocher **Refonte complète** au-dessus des étapes.
 
 ![Le parcours de dépôt en quatre étapes dans le plugin](images/depot-2-parcours.png)
 *Suivre les quatre étapes dans l'ordre, en commençant par Copier et ouvrir.*
@@ -120,6 +120,16 @@ Quand tout est bon, le développeur intègre la PR. Au lancement suivant du plug
 ### 7. Publier une version
 
 Les projets reçoivent les nouveaux tokens avec la prochaine version du package CSS de Canopée. Ce sont les développeurs de Canopée qui décident quand elle sort.
+
+Le plugin donne un niveau à chaque dépôt, qui choisit son message de commit.
+
+| Changement | Niveau |
+|---|---|
+| Une refonte complète des tokens, cochée dans le plugin | Majeur |
+| Un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change | Mineur |
+| Une ou plusieurs valeurs modifiées | Patch |
+
+Le niveau décrit le changement des tokens. Les développeurs de Canopée décident de la version du package. Cette règle est une proposition, à valider avec les développeurs de Canopée.
 
 ## Déprécier un token
 

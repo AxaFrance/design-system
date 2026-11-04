@@ -218,6 +218,20 @@
     background: var(--figma-color-bg-secondary, #f5f5f5); color: var(--figma-color-text, #1e1e1e);
   }
   #avant-depot b { display: block; margin-bottom: 2px; }
+  /* Case à cocher aux couleurs du plugin : un contour bleu de marque, net dans les deux thèmes. */
+  .case { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; cursor: pointer; }
+  .case input {
+    flex: none; display: grid; place-content: center; width: 16px; height: 16px; margin: 0;
+    appearance: none; background: var(--figma-color-bg, #fff); border: 1.5px solid var(--texte-marque); border-radius: 3px; cursor: pointer;
+  }
+  .case input:checked { background: var(--texte-marque); }
+  .case input::before {
+    content: ""; width: 10px; height: 10px; box-shadow: inset 10px 10px var(--figma-color-bg, #fff);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); transform: scale(0);
+  }
+  .case input:checked::before { transform: scale(1); }
+  .case input:focus-visible { outline: 2px solid var(--texte-marque); outline-offset: 2px; }
+  .case input:disabled { opacity: 0.5; cursor: default; }
   #vue-depot .etapes { margin-top: 32px; }
   .rappel .resume-compact { display: inline; }
   .bouton-plein { width: 100%; }
@@ -313,6 +327,7 @@
   <p class="aide rappel" id="rappel-depot" hidden></p>
   <div id="resultat-depot"></div>
   <p id="avant-depot"><b>Avant de déposer</b>Vérifier que Fondations est publiée et que l'équipe design system a validé les changements.</p>
+  <label class="case" id="case-refonte"><input type="checkbox" id="refonte"><span>Refonte complète, passer en version majeure</span></label>
   <ol class="etapes">
     <li class="etape" id="etape-1">
       <div class="ligne-etape">
@@ -461,6 +476,7 @@
     action: null,                 // 'depot' ou 'telechargement' pendant une action, sinon null
     resultat: null,               // bandeau au-dessus des boutons : { classe, texte, fermable? }
     messageCommit: null,          // message de commit reçu au dépôt
+    refonte: false,               // case Refonte complète de la vue dépôt
     urlEnAttente: null,           // page GitHub à ouvrir une fois le JSON copié
     jsonACopier: null,            // JSON affiché à copier à la main quand la copie automatique a échoué
     copieRecente: false,          // vrai 2 secondes après la copie du message de commit
@@ -565,9 +581,9 @@
   // Étiquette de niveau, à côté du titre : mêmes couleurs que la liste, un
   // niveau plus élevé emprunte celles d'un changement plus visible.
   const ETIQUETTE_NIVEAU = {
-    majeur: ['MAJEUR', 'etiquette-supprime', 'Un token supprimé ou dont le type change : version majeure.'],
-    mineur: ['MINEUR', 'etiquette-modifie', 'Un token ajouté ou déprécié : version mineure.'],
-    correctif: ['PATCH', 'etiquette-ajoute', 'Une valeur modifiée : patch.']
+    majeur: ['MAJEUR', 'etiquette-supprime', 'Une refonte complète des tokens : version majeure.'],
+    mineur: ['MINEUR', 'etiquette-modifie', 'Un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change : version mineure.'],
+    correctif: ['PATCH', 'etiquette-ajoute', 'Une ou plusieurs valeurs modifiées : patch.']
   }
   // Rappel compact des compteurs non nuls, affiché dans l'en-tête collé.
   const resumeCompact = (d) => {
@@ -955,7 +971,7 @@
     if (etat.echec || !d || d.source !== 'repo') return ''
     const resume = resumeCompact(d)
     if (!resume) return TEXTE_IDENTIQUE_CODE
-    const [libelle, classe, titre] = ETIQUETTE_NIVEAU[d.niveau] || []
+    const [libelle, classe, titre] = ETIQUETTE_NIVEAU[etat.refonte ? 'majeur' : d.niveau] || []
     const etiquette = libelle ? `<span class="etiquette ${classe}" title="${titre}">${libelle}</span>` : ''
     return etiquette + resume
   }
@@ -996,6 +1012,10 @@
     const rappel = rappelDepot()
     $('rappel-depot').innerHTML = rappel
     $('rappel-depot').hidden = !rappel
+
+    // La case décide du message de commit : figée une fois le message préparé.
+    $('refonte').checked = etat.refonte
+    $('refonte').disabled = enAction || message
 
     $('termine').hidden = !(message && etat.aideMessage === 'copie-ok')
 
@@ -1046,6 +1066,7 @@
   // « Déposer sur GitHub » au retour.
   const changerDeVue = (vue) => {
     revenirAuDepart()
+    etat.refonte = false
     // Une préparation en cours garde son bandeau et son blocage, elle se termine seule.
     if (etat.action === null) etat.resultat = null
     etat.vue = vue
@@ -1101,7 +1122,7 @@
       majActions()
       return
     }
-    envoyer({ type: 'deposer', referenceRepo })
+    envoyer({ type: 'deposer', referenceRepo, refonte: etat.refonte })
   }
 
   const surDepotPret = async ({ json, message, url }) => {
@@ -1152,6 +1173,10 @@
   $('ouvrir-depot').onclick = () => changerDeVue('depot')
   $('retour').onclick = () => changerDeVue('normale')
   $('termine').onclick = () => changerDeVue('normale')
+  $('refonte').onchange = (e) => {
+    etat.refonte = e.target.checked
+    majActions()
+  }
   $('deposer').onclick = deposer
   $('copier-message').onclick = copierMessageCommit
   $('recommencer').onclick = deposer
