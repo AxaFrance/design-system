@@ -1,4 +1,4 @@
-# Changelog de IconButton
+# Changelog d'IconButton
 
 ## 1.0.0 - 04/11/26
 
