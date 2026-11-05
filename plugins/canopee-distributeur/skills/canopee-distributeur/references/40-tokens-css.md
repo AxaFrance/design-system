@@ -29,8 +29,8 @@ createRoot(document.getElementById("root")!).render(<App />);
 
 ```css
 .my-panel {
-  color: var(--af-color-text-primary, #000);
-  background: var(--af-color-background, #fff);
+  color: var(--text-color);
+  background: var(--white);
 }
 ```
 
