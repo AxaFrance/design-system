@@ -1,5 +1,5 @@
 // Template of scripts/reconstruire.bridge.js. Do not paste as is: scripts/construire-retour.mjs
-// injects into it the JSON of the sheet, the configuration and the format rules (taken from code.js),
+// injects into it the JSON of the sheet, the configuration and the format rules (taken from src/code.ts),
 // and writes scripts/reconstruire.bridge.js.
 //
 // Rebuilds a component in Figma from its JSON alone, to test the round trip
@@ -139,7 +139,7 @@ async function readPaint(x) {
 }
 
 // ------------------------------------------------------------ effective styles of a variant
-// The rules (matches, effectiveStyles, canonical, applicableTree, kebab) come from code.js, copied here at generation.
+// The rules (matches, effectiveStyles, canonical, applicableTree, kebab) come from src/code.ts, copied here at generation.
 __REGLES__
 
 function treeOf(cfg) {

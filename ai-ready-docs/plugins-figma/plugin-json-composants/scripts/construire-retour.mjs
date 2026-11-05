@@ -14,11 +14,13 @@
 //   --de, --a range of variants created (creer step)
 //   --fiche-globale  reads the sheet in globalThis.__FICHE_RETOUR instead of embedding it
 //   --x, --y  position of the set on the page (otherwise under the content of the page)
-// The expansion rules of the overrides are copied from code.js. No dependency.
+// The expansion rules of the overrides are copied from src/code.ts. The types are removed with
+// TypeScript (devDependency of the plugin): run npm ci first.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import ts from 'typescript'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const args = process.argv.slice(2)
@@ -42,14 +44,17 @@ if (option('--y') !== undefined) config.y = Number(option('--y'))
 const sheet = args.includes('--fiche-globale') ? 'globalThis.__FICHE_RETOUR' : JSON.stringify(JSON.parse(readFileSync(json, 'utf8')))
 const template = readFileSync(join(here, 'reconstruire.modele.js'), 'utf8')
 
-// The format rules come from code.js, between the markers DEBUT REGLES and FIN REGLES.
+// The format rules come from src/code.ts, between the markers DEBUT REGLES and FIN REGLES.
 const START = '// >>> DEBUT REGLES'
 const END = '// <<< FIN REGLES'
-const code = readFileSync(join(here, '..', 'code.js'), 'utf8')
+// src/code.ts without its types: the script pasted in figma_execute is plain JavaScript.
+const code = ts.transpileModule(readFileSync(join(here, '..', 'src', 'code.ts'), 'utf8'), {
+  compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.ESNext, removeComments: false }
+}).outputText
 const start = code.indexOf(START)
 const end = code.indexOf(END)
 if (start < 0 || end < start) {
-  console.error('Repères introuvables dans code.js : ' + START + ' et ' + END)
+  console.error('Repères introuvables dans src/code.ts : ' + START + ' et ' + END)
   process.exit(1)
 }
 const rules = code.slice(start + START.length, end).trim()

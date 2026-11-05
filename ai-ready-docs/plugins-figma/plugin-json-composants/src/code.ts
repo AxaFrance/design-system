@@ -1,6 +1,6 @@
 // Canopée, composants.
 // Exports the JSON of a Figma component, in the format described in
-// ai-ready-docs/b2c/composants/format-json-composant.md (AXA repo, ai-ready-docs branch). A single file, no build.
+// ai-ready-docs/b2c/composants/format-json-composant.md (AXA repo, ai-ready-docs branch). Built by Vite into dist/code.js.
 // Derived from the Component as Data kit (Alexis Vaysse, MIT license).
 //
 // Organization: the extraction core sits between the two markers DEBUT and FIN.
@@ -8,6 +8,37 @@
 // scripts/construire-bridge.mjs copies it as is into a script for figma_execute.
 // Everything outside the markers talks to the plugin interface, computes the component
 // version and reads the doc rules and the published Canopée versions from GitHub.
+
+import type {
+  Api,
+  ComparableSheet,
+  Config,
+  Control,
+  Index,
+  IndexEntry,
+  Issue,
+  IssueDetail,
+  IssueLocation,
+  Json,
+  Layer,
+  LayerStyles,
+  Meta,
+  Override,
+  ParentLayer,
+  Sheet,
+  SheetLike,
+  SheetVariant,
+  Slot,
+  Styles,
+  Tree,
+  TreeNode,
+  VariantStyles,
+  When,
+} from "./types";
+import type { Card, PluginToUiMessage, Sentence, Summary, UiToPluginMessage, VersionView } from "./messages";
+
+// Every message to the interface goes through here, typed.
+const post = (message: PluginToUiMessage): void => figma.ui.postMessage(message);
 
 // >>> DEBUT EXTRACTION
 const VERSION = '0.4.42'
@@ -17,7 +48,12 @@ const FORMAT = '0.4'
 const LIBRARY = 'B2C'
 // The template pages of the library (02-composants.md): each one gives the level written
 // in the JSON and the mention that opens the template description.
-const TEMPLATE_PAGES = [
+interface TemplatePage {
+  page: string
+  level: string
+  mention: string
+}
+const TEMPLATE_PAGES: TemplatePage[] = [
   { page: 'Templates - Blocks', level: 'block', mention: 'Template de bloc.' },
   { page: 'Templates - Sections', level: 'section', mention: 'Template de section.' },
   { page: 'Templates - Pages', level: 'page', mention: 'Template de page.' }
@@ -28,8 +64,8 @@ const TEMPLATE_PAGES = [
 // texts, instance swaps, slots, then those that start with an underscore.
 // Within each group, the order of the nomenclature tables, then the properties
 // specific to the component in Figma order.
-const GROUPS = { VARIANT: 0, BOOLEAN: 1, TEXT: 2, INSTANCE_SWAP: 3, SLOT: 4 }
-const ORDER = [
+const GROUPS: Record<string, number> = { VARIANT: 0, BOOLEAN: 1, TEXT: 2, INSTANCE_SWAP: 3, SLOT: 4 }
+const ORDER: string[][] = [
   ['state', 'disabled', 'open', 'selected', 'current', 'filled', 'checked', 'loading', 'status', 'hierarchy', 'tone', 'colorScheme', 'size', 'type', 'breakpoint', 'orientation', 'placement', 'first', 'last', 'even', 'sort', 'level'],
   ['required'],
   ['label', 'title', 'subtitle', 'description', 'caption', 'helper', 'message', 'placeholder', 'value'],
@@ -39,7 +75,7 @@ const ORDER = [
 // ORDER, FIXED_VALUES, TRUE_FALSE_VARIANTS and SYNONYMS are the embedded copy of the
 // Properties page. The plugin replaces them at launch with what it reads in the doc (loadRules).
 // Values imposed by the nomenclature for some variants.
-const FIXED_VALUES = {
+const FIXED_VALUES: Record<string, string[]> = {
   state: ['default', 'hover', 'focus', 'press'],
   size: ['x-small', 'small', 'medium', 'large', 'x-large'],
   hierarchy: ['primary', 'secondary', 'tertiary'],
@@ -49,9 +85,9 @@ const FIXED_VALUES = {
   sort: ['none', 'ascending', 'descending'],
   level: ['1', '2', '3', '4']
 }
-const TRUE_FALSE_VARIANTS = { disabled: ['true', 'false'], open: ['true', 'false'], selected: ['true', 'false'], current: ['true', 'false'], filled: ['true', 'false'], loading: ['true', 'false'], checked: ['true', 'false', 'mixed'], first: ['true', 'false'], last: ['true', 'false'], even: ['true', 'false'] }
+const TRUE_FALSE_VARIANTS: Record<string, string[]> = { disabled: ['true', 'false'], open: ['true', 'false'], selected: ['true', 'false'], current: ['true', 'false'], filled: ['true', 'false'], loading: ['true', 'false'], checked: ['true', 'false', 'mixed'], first: ['true', 'false'], last: ['true', 'false'], even: ['true', 'false'] }
 // Names not to use, with what to write instead.
-const SYNONYMS = { variant: 'hierarchy', mode: 'tone', invalid: 'tone', theme: '_theme' }
+const SYNONYMS: Record<string, string> = { variant: 'hierarchy', mode: 'tone', invalid: 'tone', theme: '_theme' }
 // Order of the axes for grouping overrides: structural first, state last.
 const PRIORITY = ['type', 'hierarchy', 'tone', 'colorScheme', 'size', 'breakpoint', 'orientation', 'placement', 'level', 'first', 'last', 'even', 'sort', 'filled', 'checked', 'selected', 'open', 'current', 'loading', 'status', 'state', 'disabled']
 const DEFAULT_NAME = /^(frame|group|rectangle|ellipse|vector|line|polygon|star|union|subtract|intersect|exclude|boolean|component|instance|slot|section|image|text|layer)[ -]?\d*$/i
@@ -60,31 +96,42 @@ const COPY_PREFIXES = ['Test/', 'Retour/', 'IA/']
 const RUNTIME_STATES = ['hover', 'focus', 'press', 'pressed', 'active']
 const LEVELS = ['error', 'warning', 'info']
 // Sizing of a layer in Figma, and its name in the JSON.
-const SIZINGS = { FIXED: 'fixed', HUG: 'hug', FILL: 'fill' }
-const ATTRIBUTES = { visible: 'visible', characters: 'text', mainComponent: 'component' }
+const SIZINGS: Record<string, string> = { FIXED: 'fixed', HUG: 'hug', FILL: 'fill' }
+const ATTRIBUTES: Record<string, string> = { visible: 'visible', characters: 'text', mainComponent: 'component' }
 
 // >>> DEBUT REGLES
 // The format rules, written once: scripts/construire-retour.mjs copies this block into
 // the rebuild script. Pure functions, nothing else from the plugin.
 
+// A value that is an object with named fields.
+function isRecord(x: unknown): x is Record<string, unknown> {
+  return !!x && typeof x === 'object' && !Array.isArray(x)
+}
+
 // An override targets a variant when each key of its when equals the value of the variant,
 // or contains it when the when gives a list of values.
-function matches(when, cfg) {
-  return Object.keys(when || {}).every((k) => (Array.isArray(when[k]) ? when[k].indexOf(cfg[k]) >= 0 : when[k] === cfg[k]))
+function matches(when: When | undefined, cfg: Config): boolean {
+  const w = when || {}
+  return Object.keys(w).every((k) => {
+    const wanted = w[k]
+    return Array.isArray(wanted) ? wanted.indexOf(cfg[k]) >= 0 : wanted === cfg[k]
+  })
 }
 
 // Styles of a variant: the default without its when, then each override that targets it.
 // A field set to null is removed, an emptied layer disappears.
-function effectiveStyles(styles, cfg) {
-  const copy = (x) => JSON.parse(JSON.stringify(x))
-  const eff = {}
+function effectiveStyles(styles: Partial<Styles> | undefined, cfg: Config): VariantStyles {
+  const copy = <T>(x: T): T => JSON.parse(JSON.stringify(x))
+  const eff: VariantStyles = {}
   const d = (styles && styles.default) || {}
   for (const c of Object.keys(d)) if (c !== 'when' && d[c] && typeof d[c] === 'object') eff[c] = copy(d[c])
   for (const o of (styles && styles.overrides) || []) {
     if (!matches(o.when, cfg)) continue
-    for (const c of Object.keys(o.styles || {})) {
-      for (const f of Object.keys(o.styles[c] || {})) {
-        const v = o.styles[c][f]
+    const layers = o.styles || {}
+    for (const c of Object.keys(layers)) {
+      const fields = layers[c] || {}
+      for (const f of Object.keys(fields)) {
+        const v = fields[f]
         if (v === null) { if (eff[c]) delete eff[c][f] }
         else { eff[c] = eff[c] || {}; eff[c][f] = copy(v) }
       }
@@ -96,11 +143,11 @@ function effectiveStyles(styles, cfg) {
 
 // Layer tree of a variant. A tree that carries configs only applies to the variants
 // listed, and takes precedence over the choice by when. Otherwise, the most specific when wins.
-function applicableTree(trees, cfg) {
+function applicableTree(trees: Tree[], cfg: Config): Tree | null {
   const c = canonical(cfg)
   const list = trees.find((t) => t.configs && t.configs.some((x) => canonical(x) === c))
   if (list) return list
-  let best = null
+  let best: Tree | null = null
   for (const t of trees) {
     if (t.configs || !matches(t.when, cfg)) continue
     if (!best || Object.keys(t.when).length > Object.keys(best.when).length) best = t
@@ -109,32 +156,32 @@ function applicableTree(trees, cfg) {
 }
 
 // Name in kebab-case: leftIcon gives left-icon.
-function kebab(s) { return String(s).replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase() }
+function kebab(s: unknown): string { return String(s).replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase() }
 
 // Canonical serialization: sorted keys, and an absent value is distinct from any value.
-function canonical(x) {
+function canonical(x: unknown): string {
   if (x === undefined) return '\u0000absent'
   if (Array.isArray(x)) return '[' + x.map(canonical).join(',') + ']'
-  if (x && typeof x === 'object') return '{' + Object.keys(x).sort().map((k) => JSON.stringify(k) + ':' + canonical(x[k])).join(',') + '}'
+  if (isRecord(x)) return '{' + Object.keys(x).sort().map((k) => JSON.stringify(k) + ':' + canonical(x[k])).join(',') + '}'
   return JSON.stringify(x)
 }
 // <<< FIN REGLES
 
-const camelOK = (s) => /^[a-z][a-zA-Z0-9]*$/.test(s)
-const kebabOK = (s) => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(s)
+const camelOK = (s: string): boolean => /^[a-z][a-zA-Z0-9]*$/.test(s)
+const kebabOK = (s: string): boolean => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(s)
 // Only Figma's internal #id suffix is removed, the name stays the designer's.
 // Name of a component without the prefix of its working copy (the first one found).
-const withoutCopyPrefix = (name) => {
+const withoutCopyPrefix = (name: unknown): string => {
   const n = String(name)
   const p = COPY_PREFIXES.find((x) => n.indexOf(x) === 0)
   return p ? n.slice(p.length) : n
 }
-const clean = (k) => String(k).replace(/#\d+:\d+$/, '').trim()
-const rounded = (x) => (typeof x === 'number' ? Math.round(x * 100) / 100 : x)
-const alphaOrder = (a, b) => (a < b ? -1 : a > b ? 1 : 0)
+const clean = (k: unknown): string => String(k).replace(/#\d+:\d+$/, '').trim()
+const rounded = <T>(x: T): T | number => (typeof x === 'number' ? Math.round(x * 100) / 100 : x)
+const alphaOrder = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0)
 
 // Name of the component an instance points to: the variant set when there is one.
-const componentName = (n) => {
+const componentName = (n: Layer | null | undefined): string | null => {
   if (!n) return null
   if (n.parent && n.parent.type === 'COMPONENT_SET') return n.parent.name
   const name = String(n.name)
@@ -143,46 +190,74 @@ const componentName = (n) => {
 
 // Context of an extraction: caches, index of the tokens used and read errors.
 // extractDetail creates it, then passes it to every function that reads or writes it.
-const newContext = () => ({ vars: {}, tokens: {}, textStyles: {}, components: {}, modeCollections: {}, ids: new Map(), collisions: new Set(), notFound: new Set(), errors: [], libraries: undefined, mainComponents: new Map() })
+// A variant, as captured: its root, then one candidate per layer.
+interface Candidate { nm: string; es: LayerStyles; id: string; vec?: LayerStyles; vecId?: string }
+interface Capture { id: string; root: LayerStyles; cand: Candidate[]; modes: Record<string, string> }
+interface Context {
+  vars: Record<string, { name: string; entry: IndexEntry } | null>
+  tokens: Index
+  textStyles: Index
+  components: Index
+  modeCollections: Index
+  ids: Map<Capture, Record<string, string>>
+  collisions: Set<string>
+  notFound: Set<string>
+  errors: { where: string; message: string }[]
+  libraries: Record<string, string> | undefined
+  mainComponents: Map<string, Layer | null>
+}
+const newContext = (): Context => ({ vars: {}, tokens: {}, textStyles: {}, components: {}, modeCollections: {}, ids: new Map(), collisions: new Set(), notFound: new Set(), errors: [], libraries: undefined, mainComponents: new Map() })
+
+// The message of a failure, whatever its kind (an error of another realm included).
+const messageOf = (e: unknown): string => String((isRecord(e) && e.message) || e)
+
+// An instance: the only layer that points to a main component.
+type InstanceLayer = Layer & { getMainComponentAsync(): Promise<Layer | null> }
+const isInstance = (n: Layer): n is InstanceLayer => n.type === 'INSTANCE' && typeof n.getMainComponentAsync === 'function'
+// The layers below a layer, or none if the layer cannot have any.
+const findAll = (n: Layer, test: (x: Layer) => boolean): Layer[] => (n.findAll ? n.findAll(test) : [])
+const findOne = (n: Layer, test: (x: Layer) => boolean): Layer | null => (n.findOne ? n.findOne(test) : null)
 
 // A read failed: the part of the JSON it was meant to fill is incomplete. The error
 // becomes an issue of level error (rule lecture-impossible) instead of disappearing.
-function readError(ctx, location, e, extra) {
-  const msg = String((e && e.message) || e).replace(/\.+$/, '')
+function readError(ctx: Context, location: string, e: unknown, extra?: string): void {
+  const msg = messageOf(e).replace(/\.+$/, '')
   ctx.errors.push({ where: location, message: 'Lecture impossible : ' + msg + '. ' + (extra ? extra + ' ' : '') + 'Cette partie du JSON est incomplète.' })
 }
 
 // Registration in a { library, key } index: for equal names, the smallest key is kept,
 // so that the reading order does not change the file. Figma does not give the library
 // of a remote style or component: it is then null.
-function register(index, name, entry) {
+function register(index: Index, name: string, entry: IndexEntry): void {
   const e = index[name]
   if (!e || (entry.key || '') < (e.key || '')) index[name] = entry
 }
 // Main component of an instance, read once per extraction and per node id.
-async function readMainComponent(ctx, n) {
+async function readMainComponent(ctx: Context, n: InstanceLayer): Promise<Layer | null> {
   if (!n.id) return n.getMainComponentAsync()
   if (!ctx.mainComponents.has(n.id)) ctx.mainComponents.set(n.id, await n.getMainComponentAsync())
-  return ctx.mainComponents.get(n.id)
+  return ctx.mainComponents.get(n.id) || null
 }
-const nodeLibrary = (n) => (n && n.remote ? null : LIBRARY)
+const nodeLibrary = (n: { remote?: boolean } | null): string | null => (n && n.remote ? null : LIBRARY)
 
 // A component (or a variant set) quoted by its name in the components index.
-function registerComponent(ctx, n) {
+function registerComponent(ctx: Context, n: Layer | null): string | null {
   if (!n || !n.key) return null
   const name = componentName(n)
+  if (name === null) return null
   register(ctx.components, name, { library: nodeLibrary(n), key: n.key })
   return name
 }
 
-async function libraryName(ctx, coll) {
+async function libraryName(ctx: Context, coll: VariableCollection | null): Promise<string | null> {
   if (!coll) return null
   if (!coll.remote) return LIBRARY
   if (ctx.libraries === undefined) {
-    ctx.libraries = {}
+    const libraries: Record<string, string> = {}
+    ctx.libraries = libraries
     try {
       const list = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync()
-      for (const c of list) ctx.libraries[c.key] = c.libraryName
+      for (const c of list) libraries[c.key] = c.libraryName
     } catch (e) {
       // The library name is optional: without it, library is null.
     }
@@ -192,7 +267,7 @@ async function libraryName(ctx, coll) {
 
 // Name of the variable, and registration in the tokens index. Two variables with the same
 // name and different keys are a duplicate: the smallest key is kept, and it is reported.
-async function readToken(ctx, id) {
+async function readToken(ctx: Context, id: string): Promise<string | null> {
   if (!id) return null
   let m = ctx.vars[id]
   if (m === undefined) {
@@ -201,7 +276,7 @@ async function readToken(ctx, id) {
       const v = await figma.variables.getVariableByIdAsync(id)
       if (v) {
         const coll = await figma.variables.getVariableCollectionByIdAsync(v.variableCollectionId)
-        const entry = {}
+        const entry: IndexEntry = {}
         const lib = await libraryName(ctx, coll)
         if (lib) entry.library = lib
         if (coll && coll.name) entry.collection = coll.name
@@ -223,13 +298,16 @@ async function readToken(ctx, id) {
 }
 
 // Value of a numeric property: the name of the bound variable, otherwise the raw value.
-async function readValue(ctx, node, fields, raw) {
+// What a style field holds: the name of a variable, a raw value, or a paint that is not handled.
+type Ref = { token: string } | { raw: number | string | undefined } | { unsupported: string }
+
+async function readValue(ctx: Context, node: Layer, fields: string[], raw: number | undefined): Promise<Ref> {
   const bv = node.boundVariables
   if (bv) {
     for (const c of fields) {
-      const b = bv[c]
-      if (b && b.id) {
-        const n = await readToken(ctx, b.id)
+      const id = aliasId(bv[c])
+      if (id) {
+        const n = await readToken(ctx, id)
         if (n) return { token: n }
       }
     }
@@ -237,35 +315,41 @@ async function readValue(ctx, node, fields, raw) {
   return { raw: rounded(raw) }
 }
 
-const hex2 = (x) => ('0' + Math.round(x * 255).toString(16)).slice(-2)
-const hex = (c, a) => '#' + hex2(c.r) + hex2(c.g) + hex2(c.b) + (a !== undefined && a < 1 ? hex2(a) : '')
+// The variable a field is bound to: the id of its alias (a list of aliases, one per paint, has none).
+const aliasId = (b: unknown): string | undefined => (isRecord(b) && typeof b.id === 'string' && b.id ? b.id : undefined)
+
+const hex2 = (x: number): string => ('0' + Math.round(x * 255).toString(16)).slice(-2)
+const hex = (c: RGB, a?: number): string => '#' + hex2(c.r) + hex2(c.g) + hex2(c.b) + (a !== undefined && a < 1 ? hex2(a) : '')
 
 // Color of the first visible paint: token, or raw. Gradients and images are reported.
-async function readPaint(ctx, node, field) {
+async function readPaint(ctx: Context, node: Layer, field: 'fills' | 'strokes'): Promise<Ref | null> {
   const paints = node[field]
   if (!paints || paints === figma.mixed || !paints.length) return null
   const p = paints[0]
   if (!p || p.visible === false) return null
   if (p.type !== 'SOLID') return { unsupported: p.type }
-  const links = []
-  if (node.boundVariables && node.boundVariables[field] && node.boundVariables[field][0]) links.push(node.boundVariables[field][0])
-  if (p.boundVariables && p.boundVariables.color) links.push(p.boundVariables.color)
+  const links: string[] = []
+  const bound = node.boundVariables && node.boundVariables[field]
+  const first = Array.isArray(bound) ? aliasId(bound[0]) : undefined
+  if (first) links.push(first)
+  const color = aliasId(p.boundVariables && p.boundVariables.color)
+  if (color) links.push(color)
   for (const l of links) {
-    const n = await readToken(ctx, l.id)
+    const n = await readToken(ctx, l)
     if (n) return { token: n }
   }
-  const a = (typeof p.opacity === 'number' ? p.opacity : 1) * (typeof p.color.a === 'number' ? p.color.a : 1)
+  const a = (typeof p.opacity === 'number' ? p.opacity : 1) * ('a' in p.color && typeof p.color.a === 'number' ? p.color.a : 1)
   return { raw: hex(p.color, a).toUpperCase() }
 }
 
-async function readEffects(ctx, node) {
+async function readEffects(ctx: Context, node: Layer): Promise<Json[] | null> {
   if (!node.effects || !node.effects.length) return null
-  const out = []
+  const out: Json[] = []
   for (const e of node.effects) {
     if (e.visible === false || (e.type !== 'DROP_SHADOW' && e.type !== 'INNER_SHADOW')) continue
-    const ef = { type: e.type === 'DROP_SHADOW' ? 'shadow' : 'inner-shadow', radius: rounded(e.radius) }
+    const ef: Record<string, Json | undefined> = { type: e.type === 'DROP_SHADOW' ? 'shadow' : 'inner-shadow', radius: rounded(e.radius) }
     if (e.color) {
-      let col = null
+      let col: Ref | null = null
       const b = e.boundVariables && e.boundVariables.color
       if (b && b.id) { const n = await readToken(ctx, b.id); if (n) col = { token: n } }
       ef.color = col || { raw: hex(e.color, e.color.a).toUpperCase() }
@@ -279,8 +363,8 @@ async function readEffects(ctx, node) {
 
 // Sizing of a layer: sizingH and sizingV, with the width or height of a fixed size.
 // sparse: without the hug layers, the Figma default.
-async function readSizing(ctx, node, sparse) {
-  const lay = {}
+async function readSizing(ctx: Context, node: Layer, sparse: boolean): Promise<Record<string, Json | undefined>> {
+  const lay: Record<string, Json | undefined> = {}
   if (node.layoutSizingHorizontal && (!sparse || node.layoutSizingHorizontal !== 'HUG')) {
     lay.sizingH = SIZINGS[node.layoutSizingHorizontal] || String(node.layoutSizingHorizontal).toLowerCase()
     if (node.layoutSizingHorizontal === 'FIXED' && typeof node.width === 'number') lay.width = await readValue(ctx, node, ['width'], node.width)
@@ -293,8 +377,8 @@ async function readSizing(ctx, node, sparse) {
 }
 
 // Visual styles of a layer. sparse: for a sub-element, only what matters.
-async function readVisualStyles(ctx, node, sparse, location) {
-  const s = {}
+async function readVisualStyles(ctx: Context, node: Layer, sparse: boolean, location: string): Promise<LayerStyles> {
+  const s: LayerStyles = {}
   try {
     const bg = await readPaint(ctx, node, 'fills'); if (bg) s.background = bg
     const st = await readPaint(ctx, node, 'strokes')
@@ -315,8 +399,8 @@ async function readVisualStyles(ctx, node, sparse, location) {
     if (typeof node.cornerRadius === 'number') {
       if (!sparse || node.cornerRadius > 0) s.radius = await readValue(ctx, node, ['cornerRadius', 'topLeftRadius'], node.cornerRadius)
     } else {
-      const c = ['topLeftRadius', 'topRightRadius', 'bottomRightRadius', 'bottomLeftRadius']
-      if (c.every((k) => typeof node[k] === 'number') && c.some((k) => node[k] > 0)) {
+      const c: ('topLeftRadius' | 'topRightRadius' | 'bottomRightRadius' | 'bottomLeftRadius')[] = ['topLeftRadius', 'topRightRadius', 'bottomRightRadius', 'bottomLeftRadius']
+      if (c.every((k) => typeof node[k] === 'number') && c.some((k) => (node[k] ?? 0) > 0)) {
         s.radius = {
           topLeft: await readValue(ctx, node, ['topLeftRadius'], node.topLeftRadius),
           topRight: await readValue(ctx, node, ['topRightRadius'], node.topRightRadius),
@@ -335,11 +419,11 @@ async function readVisualStyles(ctx, node, sparse, location) {
     }
     if ('itemSpacing' in node && typeof node.itemSpacing === 'number' && (!sparse || (node.layoutMode && node.layoutMode !== 'NONE' && node.itemSpacing))) s.gap = await readValue(ctx, node, ['itemSpacing'], node.itemSpacing)
     try {
-      const lay = {}
+      const lay: Record<string, Json | undefined> = {}
       if (node.layoutMode === 'HORIZONTAL') lay.direction = 'row'
       else if (node.layoutMode === 'VERTICAL') lay.direction = 'column'
       if (lay.direction) {
-        const A = { MIN: 'start', CENTER: 'center', MAX: 'end', SPACE_BETWEEN: 'space-between', BASELINE: 'baseline' }
+        const A: Record<string, string> = { MIN: 'start', CENTER: 'center', MAX: 'end', SPACE_BETWEEN: 'space-between', BASELINE: 'baseline' }
         if (node.primaryAxisAlignItems && node.primaryAxisAlignItems !== 'MIN') lay.mainAlign = A[node.primaryAxisAlignItems] || String(node.primaryAxisAlignItems).toLowerCase()
         if (node.counterAxisAlignItems && node.counterAxisAlignItems !== 'MIN') lay.crossAlign = A[node.counterAxisAlignItems] || String(node.counterAxisAlignItems).toLowerCase()
         if (node.layoutWrap === 'WRAP') lay.wrap = true
@@ -349,7 +433,8 @@ async function readVisualStyles(ctx, node, sparse, location) {
         lay.absolute = true; lay.x = rounded(node.x); lay.y = rounded(node.y)
         if (node.constraints) lay.constraints = { horizontal: String(node.constraints.horizontal).toLowerCase(), vertical: String(node.constraints.vertical).toLowerCase() }
       }
-      for (const mk of ['minWidth', 'maxWidth', 'minHeight', 'maxHeight']) if (typeof node[mk] === 'number') lay[mk] = await readValue(ctx, node, [mk], node[mk])
+      const limits: ('minWidth' | 'maxWidth' | 'minHeight' | 'maxHeight')[] = ['minWidth', 'maxWidth', 'minHeight', 'maxHeight']
+      for (const mk of limits) if (typeof node[mk] === 'number') lay[mk] = await readValue(ctx, node, [mk], node[mk])
       Object.assign(lay, await readSizing(ctx, node, sparse))
       if (Object.keys(lay).length) s.layout = lay
     } catch (e) {
@@ -363,11 +448,11 @@ async function readVisualStyles(ctx, node, sparse, location) {
 }
 
 // Text: color, then the text style when there is one, otherwise the detailed typography.
-async function readTextStyles(ctx, t, location) {
-  const s = {}
+async function readTextStyles(ctx: Context, t: Layer, location: string): Promise<LayerStyles> {
+  const s: LayerStyles = {}
   try {
     const col = await readPaint(ctx, t, 'fills'); if (col) s.textColor = col
-    let style = null
+    let style: string | null = null
     const id = t.textStyleId
     if (id && id !== figma.mixed) {
       try {
@@ -382,7 +467,7 @@ async function readTextStyles(ctx, t, location) {
     }
     if (style) s.textStyle = style
     else {
-      const ty = {}
+      const ty: Record<string, Json | undefined> = {}
       if (t.fontName && t.fontName !== figma.mixed) { ty.fontFamily = t.fontName.family; ty.fontStyle = t.fontName.style }
       if (typeof t.fontSize === 'number') ty.fontSize = t.fontSize
       if (t.lineHeight && t.lineHeight !== figma.mixed && t.lineHeight.unit && t.lineHeight.unit !== 'AUTO') ty.lineHeight = t.lineHeight.value
@@ -404,13 +489,13 @@ async function readTextStyles(ctx, t, location) {
 
 // Color of an icon: the first vector of the instance, when its color is bound
 // to a variable or overridden. Without an override, it is the original color of the icon, not a choice.
-async function instanceVector(ctx, ins, location) {
+async function instanceVector(ctx: Context, ins: Layer, location: string): Promise<{ styles: LayerStyles; id: string } | null> {
   try {
-    const v = ins.findOne((n) => n.type === 'VECTOR' || n.type === 'BOOLEAN_OPERATION')
+    const v = findOne(ins, (n) => n.type === 'VECTOR' || n.type === 'BOOLEAN_OPERATION')
     if (!v) return null
     const bg = await readPaint(ctx, v, 'fills')
     if (!bg) return null
-    if (bg.token) return { styles: { background: bg }, id: v.id }
+    if ('token' in bg) return { styles: { background: bg }, id: v.id }
     const ov = (ins.overrides || []).some((o) => o.id === v.id && (o.overriddenFields || []).indexOf('fills') >= 0)
     return ov ? { styles: { background: bg }, id: v.id } : null
   } catch (e) {
@@ -422,9 +507,9 @@ async function instanceVector(ctx, ins, location) {
 // ------------------------------------------------------------ reading the component
 // The layers of the component itself, in tree order. We do not go down into instances:
 // their inside is described in their own sheet.
-function collectLayers(root) {
-  const out = []
-  const rec = (n) => {
+function collectLayers(root: Layer): Layer[] {
+  const out: Layer[] = []
+  const rec = (n: Layer): void => {
     for (const c of n.children || []) {
       out.push(c)
       if (c.type !== 'INSTANCE' && c.children && c.children.length) rec(c)
@@ -434,8 +519,8 @@ function collectLayers(root) {
   return out
 }
 
-const readConfig = (name) => {
-  const d = {}
+const readConfig = (name: unknown): Config => {
+  const d: Config = {}
   for (const part of String(name).split(',')) {
     const i = part.indexOf('=')
     if (i > 0) d[part.slice(0, i).trim()] = part.slice(i + 1).trim()
@@ -443,7 +528,7 @@ const readConfig = (name) => {
   return d
 }
 
-function propertyRank(name, type) {
+function propertyRank(name: string, type: string): number[] {
   if (name.charAt(0) === '_') return [5, 0]
   const g = GROUPS[type] === undefined ? 4 : GROUPS[type]
   const i = ORDER[g].indexOf(name)
@@ -452,36 +537,51 @@ function propertyRank(name, type) {
 
 // Prepares what the check and the extraction share: sorted properties, variants,
 // layers of each variant, and for each property the layers it drives.
-function prepare(target) {
+type PropDef = ComponentPropertyDefinitions[string]
+interface PropInfo { key: string; name: string; def: PropDef; i: number; rank: number[] }
+interface Prep {
+  target: Layer
+  isSet: boolean
+  defs: ComponentPropertyDefinitions
+  variants: Layer[]
+  props: PropInfo[]
+  nodes: Layer[][]
+  refs: Record<string, Control[]>
+  axes: string[]
+}
+function prepare(target: Layer): Prep {
   const isSet = target.type === 'COMPONENT_SET'
   const defs = target.componentPropertyDefinitions || {}
-  const variants = isSet ? target.children.filter((c) => c.type === 'COMPONENT') : [target]
+  const variants = isSet ? (target.children || []).filter((c) => c.type === 'COMPONENT') : [target]
   if (!variants.length) throw new Error('Ce composant n\'a aucune variante.')
   const nodes = variants.map((v) => collectLayers(v))
   // Figma does not give the order of the panel. Within one group of the nomenclature, a
   // property follows the position of the first layer it drives, then its creation order.
-  const place = {}
+  const place: Record<string, number> = {}
   for (const list of nodes) {
     list.forEach((n, k) => {
       const r = n.componentPropertyReferences
       if (!r) return
-      for (const attr of Object.keys(r)) if (!(r[attr] in place) || k < place[r[attr]]) place[r[attr]] = k
+      for (const attr of Object.keys(r)) {
+        const key = String(r[attr])
+        if (!(key in place) || k < place[key]) place[key] = k
+      }
     })
   }
-  const layerRank = (key) => (key in place ? place[key] : Infinity)
+  const layerRank = (key: string): number => (key in place ? place[key] : Infinity)
   const props = Object.keys(defs).map((key, i) => {
     const def = defs[key]
     const name = clean(key)
     return { key, name, def, i, rank: propertyRank(name, def.type) }
   }).sort((a, b) => a.rank[0] - b.rank[0] || a.rank[1] - b.rank[1] || (layerRank(a.key) - layerRank(b.key) || 0) || a.i - b.i)
-  const refs = {}
-  const seen = {}
+  const refs: Record<string, Control[]> = {}
+  const seen: Record<string, boolean> = {}
   nodes.forEach((list) => {
     for (const n of list) {
       const r = n.componentPropertyReferences
       if (!r) continue
       for (const attr of Object.keys(r)) {
-        const key = r[attr]
+        const key = String(r[attr])
         const c = { layer: n.name, attribute: ATTRIBUTES[attr] || attr }
         const sig = key + '|' + c.layer + '|' + c.attribute
         if (seen[sig]) continue
@@ -495,8 +595,8 @@ function prepare(target) {
   return { target, isSet, defs, variants, props, nodes, refs, axes }
 }
 
-function defaultVariant(prep) {
-  const cfg = {}
+function defaultVariant(prep: Prep): { def: Layer; cfg: Config } {
+  const cfg: Config = {}
   for (const p of prep.props) if (p.def.type === 'VARIANT') cfg[p.name] = String(p.def.defaultValue)
   const def = prep.variants.find((c) => { const k = readConfig(c.name); return Object.keys(cfg).every((a) => k[a] === cfg[a]) }) || prep.variants[0]
   return { def, cfg }
@@ -504,20 +604,20 @@ function defaultVariant(prep) {
 
 // The template designated by the page of the component, or null. A template sub-component,
 // with its underscore, is not a template.
-function templateOf(target) {
-  if (String(target.name).split('/').pop().charAt(0) === '_') return null
+function templateOf(target: Layer): TemplatePage | null {
+  if ((String(target.name).split('/').pop() || '').charAt(0) === '_') return null
   let p = target.parent
   while (p && p.type !== 'PAGE') p = p.parent
   return (p && TEMPLATE_PAGES.find((t) => t.page === p.name)) || null
 }
 
 // ------------------------------------------------------------ nomenclature check
-async function checkNomenclature(prep) {
-  const issues = []
-  const addIssue = (rule, where, message, level) => issues.push({ level: level || 'warning', rule, where, message })
+async function checkNomenclature(prep: Prep): Promise<Issue[]> {
+  const issues: Issue[] = []
+  const addIssue = (rule: string, where: string, message: string, level?: Issue['level']): number => issues.push({ level: level || 'warning', rule, where, message })
 
   // the component
-  const last = String(prep.target.name).split('/').pop()
+  const last = String(prep.target.name).split('/').pop() || ''
   if (!/^_?[A-Z][a-zA-Z0-9]*$/.test(last)) addIssue('composant-nom', 'meta.name', 'Le nom d\'un composant s\'écrit en PascalCase, sans espace, statut ni version.')
   else if (/[A-Z]{3,}/.test(last)) addIssue('composant-nom', 'meta.name', 'Un sigle s\'écrit comme un mot. Exemple : AiAnswer, et non AIAnswer.')
 
@@ -580,8 +680,8 @@ async function checkNomenclature(prep) {
 
   // the layers, once per name
   const prefix = kebab(last.replace(/^_/, '')) + '-'
-  const boundTexts = {}
-  const seen = {}
+  const boundTexts: Record<string, boolean> = {}
+  const seen: Record<string, boolean> = {}
   for (const list of prep.nodes) {
     for (const n of list) {
       const name = String(n.name)
@@ -599,7 +699,7 @@ async function checkNomenclature(prep) {
       if (!kebabOK(name)) addIssue('calque-casse', where, 'Un calque s\'écrit en kebab-case, en minuscules, sans espace ni accent.')
       if (name.indexOf(prefix) === 0) addIssue('calque-prefixe', where, 'Un calque porte le nom de son rôle, sans reprendre celui du composant. Exemple : label, et non ' + prefix + 'label.')
       if ((n.type === 'FRAME' || n.type === 'GROUP') && (/(^|-)(wrapper|group|frame)(-|$)/.test(name) || /-and-/.test(name))) addIssue('calque-cadre', where, 'Un cadre prend son rôle (header, actions), ou content, ou container. Jamais wrapper, group ou frame, et il ne liste pas ce qu\'il contient.')
-      if (n.type === 'INSTANCE') {
+      if (isInstance(n)) {
         try {
           const mc = await n.getMainComponentAsync()
           if (mc && (name === mc.name || name === componentName(mc))) addIssue('calque-instance', where, 'Une instance imbriquée prend le nom de son rôle dans le composant, pas celui de son composant d\'origine.')
@@ -620,8 +720,8 @@ const MAX_ICON_SIZE = 48 // beyond this, an exposed component is a base and not 
 const PROGRESS_THRESHOLD = 40 // number of variants beyond which progress is announced
 const PROGRESS_STEP = 20 // one announcement every 20 variants
 // Styles of a variant in one pass: root, then each layer of its own.
-async function captureVariant(ctx, prep, variant, list) {
-  const s = { id: variant.id, root: await readVisualStyles(ctx, variant, false, 'styles.root'), cand: [], modes: {} }
+async function captureVariant(ctx: Context, prep: Prep, variant: Layer, list: Layer[]): Promise<Capture> {
+  const s: Capture = { id: variant.id, root: await readVisualStyles(ctx, variant, false, 'styles.root'), cand: [], modes: {} }
   try {
     const ex = variant.explicitVariableModes || {}
     for (const collId of Object.keys(ex)) {
@@ -639,7 +739,7 @@ async function captureVariant(ctx, prep, variant, list) {
   for (const el of list) {
     const nm = String(el.name) || el.type.toLowerCase()
     const es = el.type === 'TEXT' ? await readTextStyles(ctx, el, 'styles.' + nm) : await readVisualStyles(ctx, el, true, 'styles.' + nm)
-    const c = { nm, es, id: el.id }
+    const c: Candidate = { nm, es, id: el.id }
     if (el.type === 'INSTANCE') {
       const r = await instanceVector(ctx, el, 'styles.' + nm)
       if (r) { c.vec = r.styles; c.vecId = r.id }
@@ -650,16 +750,16 @@ async function captureVariant(ctx, prep, variant, list) {
 }
 
 // Layer tree of a variant. An instance names its component, we do not go down into it.
-async function layerTree(ctx, node) {
-  const t = { name: String(node.name) }
+async function layerTree(ctx: Context, node: Layer): Promise<TreeNode> {
+  const t: TreeNode = { name: String(node.name) }
   t.type = String(node.type).toLowerCase().replace(/_/g, '-')
   if (node.visible === false) t.hidden = true
-  if (node.type === 'INSTANCE') {
+  if (isInstance(node)) {
     try { const mc = await readMainComponent(ctx, node); if (mc) { t.component = componentName(mc); registerComponent(ctx, mc) } } catch (e) { readError(ctx, 'structure.trees', e) }
     return t
   }
   if (node.children && node.children.length) {
-    const kids = []
+    const kids: TreeNode[] = []
     for (const c of node.children) kids.push(await layerTree(ctx, c))
     t.children = kids
   }
@@ -668,16 +768,16 @@ async function layerTree(ctx, node) {
 
 // The issues that can be read in the styles produced: raw value, paint not
 // handled, text without style. A zero value is not an issue.
-function stylesIssues(styles) {
-  const out = []
+function stylesIssues(styles: Partial<Styles>): Issue[] {
+  const out: Issue[] = []
   // A raw fixed size is an issue, except for an absolute layer stretched on that axis.
-  const freeSize = (parent, key) => {
+  const freeSize = (parent: Record<string, unknown>, key: string): boolean => {
     const axis = key === 'width' ? 'horizontal' : 'vertical'
-    return parent.absolute === true && !!parent.constraints && parent.constraints[axis] === 'stretch'
+    return parent.absolute === true && isRecord(parent.constraints) && parent.constraints[axis] === 'stretch'
   }
-  const walk = (o, path, key, parent, parentKey) => {
+  const walk = (o: unknown, path: string, key: string, parent: Record<string, unknown> | null, parentKey: string): void => {
     if (Array.isArray(o)) { o.forEach((x, i) => walk(x, path + '[' + i + ']', key, parent, parentKey)); return }
-    if (!o || typeof o !== 'object') return
+    if (!isRecord(o)) return
     if (Object.keys(o).length === 1 && 'raw' in o) {
       const size = key === 'width' || key === 'height'
       const excluded = size && (parentKey !== 'layout' || !parent || freeSize(parent, key))
@@ -691,7 +791,7 @@ function stylesIssues(styles) {
   walk(styles.default, 'styles.default', '', null, '')
   for (const o of styles.overrides || []) walk(o.styles, 'styles.overrides[' + Object.keys(o.when).map((k) => k + '=' + o.when[k]).join(', ') + ']', '', null, '')
   // the same issue repeated from one variant to another is only reported once
-  const groups = new Map()
+  const groups = new Map<string, Issue>()
   for (const i of out) {
     const location = i.where.replace(/^styles\.(default|overrides\[[^\]]*\])\./, '')
     const key = i.rule + '|' + location + '|' + i.message
@@ -702,8 +802,8 @@ function stylesIssues(styles) {
 
 // For each style issue, the number of variants where it appears (key: issueSignature).
 // The input is the list of the complete styles of each variant.
-function variantsPerIssue(variantsStyles) {
-  const n = new Map()
+function variantsPerIssue(variantsStyles: VariantStyles[]): Map<string, number> {
+  const n = new Map<string, number>()
   for (const st of variantsStyles) {
     for (const d of stylesIssues({ default: st })) n.set(issueSignature(d), (n.get(issueSignature(d)) || 0) + 1)
   }
@@ -717,33 +817,35 @@ function variantsPerIssue(variantsStyles) {
 // the when that fixes the most variants. A variant only ever receives its final value,
 // so two overrides never contradict each other. null removes a field.
 // A re-expansion checks the result: a wrong export never comes out.
-function groupOverrides(axes, values, variants, baseVariant) {
+interface GroupInput { cfg: Config; styles: VariantStyles }
+interface GroupedOverride { when: Config; styles: Record<string, Record<string, Json | null>> }
+function groupOverrides(axes: string[], values: Record<string, string[]>, variants: GroupInput[], baseVariant: GroupInput): GroupedOverride[] {
   const ABSENT = '\u0000absent'
-  const a = (o, k) => Object.prototype.hasOwnProperty.call(o, k)
+  const a = (o: object, k: string): boolean => Object.prototype.hasOwnProperty.call(o, k)
 
   // units, in the order of the default then of first appearance
-  const fieldsOf = new Map()
+  const fieldsOf = new Map<string, string[]>()
   for (const v of [baseVariant].concat(variants)) {
     for (const c of Object.keys(v.styles)) {
       if (!fieldsOf.has(c)) fieldsOf.set(c, [])
-      const list = fieldsOf.get(c)
+      const list = fieldsOf.get(c) || []
       for (const f of Object.keys(v.styles[c])) if (list.indexOf(f) < 0) list.push(f)
     }
   }
-  const units = []
+  const units: { c: string; f: string }[] = []
   for (const [c, list] of fieldsOf) for (const f of list) units.push({ c, f })
-  const valueAt = (v, u) => (a(v.styles, u.c) && a(v.styles[u.c], u.f) ? v.styles[u.c][u.f] : ABSENT)
+  const valueAt = (v: GroupInput, u: { c: string; f: string }): Json | undefined => (a(v.styles, u.c) && a(v.styles[u.c], u.f) ? v.styles[u.c][u.f] : ABSENT)
   const targets = variants.map((v) => units.map((u) => canonical(valueAt(v, u))))
   const current = variants.map(() => units.map((u) => canonical(valueAt(baseVariant, u))))
 
   // candidate whens, from shortest to longest, each with the variants it targets
-  const candidates = []
-  const valuesOf = (positions, k, choices) => {
+  const candidates: { rank: number; size: number; when: Config; members: number[] }[] = []
+  const valuesOf = (positions: number[], k: number, choices: [string, string][]): void => {
     if (k === positions.length) {
-      const members = []
+      const members: number[] = []
       variants.forEach((v, i) => { if (choices.every(([ax, val]) => v.cfg[ax] === val)) members.push(i) })
       if (!members.length) return
-      const when = {}
+      const when: Config = {}
       for (const [ax, val] of choices) when[ax] = val
       candidates.push({ rank: candidates.length, size: positions.length, when, members })
       return
@@ -751,19 +853,19 @@ function groupOverrides(axes, values, variants, baseVariant) {
     const ax = axes[positions[k]]
     for (const val of values[ax] || []) valuesOf(positions, k + 1, choices.concat([[ax, val]]))
   }
-  const subsets = (s, start, positions) => {
+  const subsets = (s: number, start: number, positions: number[]): void => {
     if (positions.length === s) { valuesOf(positions, 0, []); return }
     for (let i = start; i < axes.length; i++) subsets(s, i + 1, positions.concat([i]))
   }
   for (let s = 1; s <= axes.length; s++) subsets(s, 0, [])
 
   // rules kept, stored by when
-  const byWhen = new Map()
+  const byWhen = new Map<number, { when: Config; rules: Map<number, Json | null | undefined> }>()
   for (let s = 1; s <= axes.length; s++) {
     const ofSize = candidates.filter((c) => c.size === s)
     units.forEach((u, ui) => {
       for (;;) {
-        let best = null
+        let best: (typeof candidates)[number] | null = null
         let gain = 0
         for (const c of ofSize) {
           const x = targets[c.members[0]][ui]
@@ -772,23 +874,24 @@ function groupOverrides(axes, values, variants, baseVariant) {
           if (n > gain) { best = c; gain = n }
         }
         if (!best) break
-        if (!byWhen.has(best.rank)) byWhen.set(best.rank, { when: best.when, rules: new Map() })
+        const entry = byWhen.get(best.rank) || { when: best.when, rules: new Map<number, Json | null | undefined>() }
+        byWhen.set(best.rank, entry)
         const value = valueAt(variants[best.members[0]], u)
-        byWhen.get(best.rank).rules.set(ui, value === ABSENT ? null : value)
+        entry.rules.set(ui, value === ABSENT ? null : value)
         for (const i of best.members) current[i][ui] = targets[best.members[0]][ui]
       }
     })
   }
 
   // overrides in the order of the candidates: the shortest first
-  const overrides = []
-  for (const rank of [...byWhen.keys()].sort((x, y) => x - y)) {
-    const { when, rules } = byWhen.get(rank)
-    const styles = {}
+  const overrides: GroupedOverride[] = []
+  for (const [, entry] of [...byWhen.entries()].sort((x, y) => x[0] - y[0])) {
+    const { when, rules } = entry
+    const styles: Record<string, Record<string, Json | null>> = {}
     units.forEach((u, ui) => {
       if (!rules.has(ui)) return
       if (!a(styles, u.c)) styles[u.c] = {}
-      styles[u.c][u.f] = rules.get(ui)
+      styles[u.c][u.f] = rules.get(ui) ?? null
     })
     overrides.push({ when, styles })
   }
@@ -802,29 +905,33 @@ function groupOverrides(axes, values, variants, baseVariant) {
   return overrides
 }
 
-async function extract(target, options) {
+interface ExtractOptions {
+  progress?: (done: number, total: number) => void
+  computeTokensVersion?: (inputs: { tokens: Index; textStyles: Index }) => Promise<{ version: string | null; issues: Issue[] }>
+}
+async function extract(target: Layer, options?: ExtractOptions): Promise<Sheet> {
   return (await extractDetail(target, options)).sheet
 }
 
 // The sheet, and for each issue of sheet.issues the nodes it designates (same order).
-async function extractDetail(target, options) {
-  options = options || {}
+async function extractDetail(target: Layer, opts?: ExtractOptions): Promise<{ sheet: Sheet; locations: IssueLocation[] }> {
+  const options: ExtractOptions = opts || {}
   const ctx = newContext()
   const prep = prepare(target)
   const { defs, variants: variantNodes, props, nodes, refs, axes } = prep
   const { def, cfg: cfgDef } = defaultVariant(prep)
 
   // variants sorted in the order of the properties, then by position
-  const optsOf = {}
+  const optsOf: Record<string, string[]> = {}
   for (const p of props) if (p.def.type === 'VARIANT') optsOf[p.name] = (p.def.variantOptions || []).map(String)
-  const orderCfg = (cfg) => {
-    const o = {}
+  const orderCfg = (cfg: Config): Config => {
+    const o: Config = {}
     for (const a of axes) if (a in cfg) o[a] = cfg[a]
     for (const k of Object.keys(cfg)) if (!(k in o)) o[k] = cfg[k]
     return o
   }
   const lines = variantNodes.map((v, i) => ({ v, i, cfg: orderCfg(readConfig(v.name)), pos: [rounded(v.x || 0), rounded(v.y || 0)] }))
-  const valueRank = (a, val) => { const k = optsOf[a].indexOf(val); return k === -1 ? 9999 : k }
+  const valueRank = (a: string, val: string): number => { const k = optsOf[a].indexOf(val); return k === -1 ? 9999 : k }
   lines.sort((a, b) => {
     for (const ax of axes) {
       const d = valueRank(ax, a.cfg[ax]) - valueRank(ax, b.cfg[ax])
@@ -835,9 +942,9 @@ async function extractDetail(target, options) {
   const variants = lines.map((l) => ({ values: l.cfg, position: l.pos }))
 
   // api and slots
-  const controlsOf = (key) => (refs[key] || []).map((c) => ({ layer: c.layer, attribute: c.attribute }))
-  const api = { props: {} }
-  const slots = {}
+  const controlsOf = (key: string): Control[] => (refs[key] || []).map((c) => ({ layer: c.layer, attribute: c.attribute }))
+  const api: Api = { props: {} }
+  const slots: Record<string, Slot> = {}
   for (const p of props) {
     const t = p.def.type
     if (t === 'VARIANT') api.props[p.name] = { type: 'enum', enum: optsOf[p.name], default: String(p.def.defaultValue) }
@@ -845,7 +952,7 @@ async function extractDetail(target, options) {
     else if (t === 'TEXT') slots[p.name] = { as: 'children', default: { text: String(p.def.defaultValue) }, controls: controlsOf(p.key) }
     else if (t === 'SLOT') slots[p.name] = { as: 'slot', controls: controlsOf(p.key) }
     else if (t === 'INSTANCE_SWAP') {
-      const s = { accepts: 'Instance' }
+      const s: Slot = { accepts: 'Instance' }
       const dv = p.def.defaultValue
       if (dv) {
         try {
@@ -856,9 +963,9 @@ async function extractDetail(target, options) {
         }
       }
       // preferred values: each proposed component is named and registered in the components index
-      const pref = []
+      const pref: string[] = []
       for (const pv of p.def.preferredValues || []) {
-        let n = null
+        let n: Layer | null = null
         try { n = pv.type === 'COMPONENT_SET' ? await figma.importComponentSetByKeyAsync(pv.key) : await figma.importComponentByKeyAsync(pv.key) } catch (e) {
           // The failure is reported further down by the valeur-preferee issue.
         }
@@ -875,13 +982,13 @@ async function extractDetail(target, options) {
   // meta
   // version and tokensVersion are null here: the plugin fills them after the extraction,
   // the bridge script leaves them as null.
-  const meta = { name: withoutCopyPrefix(target.name), version: null, tokensVersion: null, type: 'atom' }
+  const meta: Meta = { name: withoutCopyPrefix(target.name), version: null, tokensVersion: null, type: 'atom' }
   // an icon exposed in the panel does not make a base component: only a component
   // that carries text or exceeds the size of an icon is taken as a base
-  let exposed = null
-  for (const n of def.findAll((x) => x.type === 'INSTANCE' && x.isExposedInstance)) {
+  let exposed: InstanceLayer | null = null
+  for (const n of findAll(def, (x) => x.type === 'INSTANCE' && !!x.isExposedInstance).filter(isInstance)) {
     const m = await readMainComponent(ctx, n)
-    const icon = m && !m.findOne((x) => x.type === 'TEXT') && m.width <= MAX_ICON_SIZE && m.height <= MAX_ICON_SIZE
+    const icon = m && !findOne(m, (x) => x.type === 'TEXT') && typeof m.width === 'number' && m.width <= MAX_ICON_SIZE && typeof m.height === 'number' && m.height <= MAX_ICON_SIZE
     if (m && !icon) { exposed = n; break }
   }
   if (exposed) {
@@ -902,58 +1009,67 @@ async function extractDetail(target, options) {
 
   // styles: capture of all the variants, then keys common to the whole set.
   // A name carried several times gets a tree rank (-1, -2) in all the variants.
-  const captures = new Map()
+  const captures = new Map<Layer, Capture>()
   for (let i = 0; i < lines.length; i++) {
     const v = lines[i].v
     if (options.progress && lines.length > PROGRESS_THRESHOLD && i % PROGRESS_STEP === PROGRESS_STEP - 1) options.progress(i + 1, lines.length)
     captures.set(v, await captureVariant(ctx, prep, v, nodes[variantNodes.indexOf(v)]))
   }
-  const dup = new Set()
+  const dup = new Set<string>()
   for (const cap of captures.values()) {
-    const cnt = {}
+    const cnt: Record<string, number> = {}
     for (const c of cap.cand) { cnt[c.nm] = (cnt[c.nm] || 0) + 1; if (cnt[c.nm] > 1) dup.add(c.nm) }
   }
-  const withKeys = (cap) => {
-    const kd = {}
+  const withKeys = (cap: Capture): VariantStyles => {
+    const kd: VariantStyles = {}
     if (Object.keys(cap.modes).length) kd.modes = cap.modes
     kd.root = cap.root
     // node ids, kept in the context for the interface: never in the sheet
-    const ids = { root: cap.id }
+    const ids: Record<string, string> = { root: cap.id }
     ctx.ids.set(cap, ids)
-    const seen = {}
+    const seen: Record<string, number> = {}
     for (const c of cap.cand) {
       const n = seen[c.nm] = (seen[c.nm] || 0) + 1
       const key = dup.has(c.nm) ? c.nm + '-' + n : c.nm
       if (Object.keys(c.es).length) { kd[key] = c.es; ids[key] = c.id }
-      if (c.vec) { kd[key + '/vector'] = c.vec; ids[key + '/vector'] = c.vecId }
+      if (c.vec) { kd[key + '/vector'] = c.vec; ids[key + '/vector'] = c.vecId ?? '' }
     }
     return kd
   }
-  const defStyles = withKeys(captures.get(def))
-  const styles = { default: {} }
+  const defCapture = captures.get(def)
+  if (!defCapture) throw new Error('La variante par défaut n\'a pas été lue.')
+  const defStyles = withKeys(defCapture)
+  const styles: Styles = { default: {} }
   if (prep.isSet && axes.length) styles.default.when = orderCfg(cfgDef)
   Object.assign(styles.default, defStyles)
   const axesOrder = PRIORITY.filter((a) => axes.indexOf(a) >= 0).concat(axes.filter((a) => PRIORITY.indexOf(a) < 0))
-  const all = lines.map((l) => ({ cfg: l.cfg, styles: withKeys(captures.get(l.v)), v: l.v, cap: captures.get(l.v) }))
-  const overrides = groupOverrides(axesOrder, optsOf, all, all.find((t) => t.v === def)).map((o) => ({ when: orderCfg(o.when), styles: o.styles }))
+  const all = lines.map((l) => {
+    const cap = captures.get(l.v)
+    if (!cap) throw new Error('Une variante n\'a pas été lue.')
+    return { cfg: l.cfg, styles: withKeys(cap), v: l.v, cap }
+  })
+  const baseEntry = all.find((t) => t.v === def)
+  if (!baseEntry) throw new Error('La variante par défaut n\'a pas été lue.')
+  const overrides = groupOverrides(axesOrder, optsOf, all, baseEntry).map((o) => ({ when: orderCfg(o.when), styles: o.styles }))
   if (overrides.length) styles.overrides = overrides
 
   // trees: one per distinct structure. The one of the default variant is the base (empty when).
-  const groups = new Map()
-  const addTree = (cfg, a) => {
+  const groups = new Map<string, { tree: TreeNode[]; configs: Config[] }>()
+  const addTree = (cfg: Config, a: TreeNode[]): void => {
     const h = JSON.stringify(a)
-    if (!groups.has(h)) groups.set(h, { tree: a, configs: [] })
-    groups.get(h).configs.push(cfg)
+    const group = groups.get(h) || { tree: a, configs: [] }
+    groups.set(h, group)
+    group.configs.push(cfg)
   }
-  const treeOf = async (v) => { const a = []; for (const c of v.children || []) a.push(await layerTree(ctx, c)); return a }
+  const treeOf = async (v: Layer): Promise<TreeNode[]> => { const a: TreeNode[] = []; for (const c of v.children || []) a.push(await layerTree(ctx, c)); return a }
   addTree(orderCfg(readConfig(def.name)), await treeOf(def))
   const defHash = [...groups.keys()][0]
   for (const l of lines) if (l.v !== def) addTree(l.cfg, await treeOf(l.v))
-  const trees = []
+  const trees: Tree[] = []
   for (const [h, g] of groups) {
     if (h === defHash) { trees.push({ when: {}, tree: g.tree }); continue }
     // only the values actually drawn count: a value without a variant discriminates nothing
-    const when = {}
+    const when: When = {}
     for (const a of axes) {
       const vals = [...new Set(g.configs.map((c) => c[a]).filter((x) => x !== undefined))]
       const present = new Set(lines.map((l) => l.cfg[a]).filter((x) => x !== undefined))
@@ -964,10 +1080,10 @@ async function extractDetail(target, options) {
   }
 
   // nested components, quoted by reference
-  const uses = new Set()
+  const uses = new Set<string>()
   for (const list of nodes) {
     for (const n of list) {
-      if (n.type !== 'INSTANCE') continue
+      if (!isInstance(n)) continue
       try {
         const mc = await readMainComponent(ctx, n)
         const name = mc ? registerComponent(ctx, mc) : null
@@ -980,11 +1096,11 @@ async function extractDetail(target, options) {
   const structure = { slots, trees, uses: [...uses].sort(alphaOrder) }
 
   // tokens index, sorted by name
-  const tokens = {}
+  const tokens: Index = {}
   for (const name of Object.keys(ctx.tokens).sort(alphaOrder)) tokens[name] = ctx.tokens[name]
 
   // the other indexes, sorted by name
-  const sortIndex = (index) => { const o = {}; for (const name of Object.keys(index).sort(alphaOrder)) o[name] = index[name]; return o }
+  const sortIndex = (index: Index): Index => { const o: Index = {}; for (const name of Object.keys(index).sort(alphaOrder)) o[name] = index[name]; return o }
   const textStyles = sortIndex(ctx.textStyles)
   const components = sortIndex(ctx.components)
   const modeCollections = sortIndex(ctx.modeCollections)
@@ -1020,17 +1136,17 @@ async function extractDetail(target, options) {
 
 // The Figma nodes designated by each issue, in the order of the list: { ids, variants }.
 // These ids only serve the interface, they never enter the sheet.
-function locateIssues(ctx, prep, issues, all) {
-  const styles = new Map()
+function locateIssues(ctx: Context | null, prep: Prep, issues: Issue[], all: { cap: Capture; styles: VariantStyles }[] | null): IssueLocation[] {
+  const styles = new Map<string, { ids: string[]; cap: Set<Capture> }>()
   for (const t of all || []) {
-    const ids = ctx.ids.get(t.cap) || {}
+    const ids = (ctx && ctx.ids.get(t.cap)) || {}
     const keys = Object.keys(ids).sort((a, b) => b.length - a.length)
     for (const d of stylesIssues({ default: t.styles })) {
       const location = d.where.slice('styles.'.length)
       const key = keys.find((c) => location === c || location.indexOf(c + '.') === 0)
       if (!key || !ids[key]) continue
-      if (!styles.has(issueSignature(d))) styles.set(issueSignature(d), { ids: [], cap: new Set() })
-      const g = styles.get(issueSignature(d))
+      const g = styles.get(issueSignature(d)) || { ids: [], cap: new Set<Capture>() }
+      styles.set(issueSignature(d), g)
       if (g.ids.indexOf(ids[key]) < 0) g.ids.push(ids[key])
       g.cap.add(t.cap)
     }
@@ -1038,7 +1154,7 @@ function locateIssues(ctx, prep, issues, all) {
   return issues.map((i) => {
     if (i.where.indexOf('calque ') === 0) {
       const name = i.where.slice('calque '.length)
-      const ids = []
+      const ids: string[] = []
       let variants = 0
       for (const list of prep.nodes) {
         const m = list.filter((n) => String(n.name) === name && n.id)
@@ -1057,12 +1173,12 @@ function locateIssues(ctx, prep, issues, all) {
 }
 
 // The key of an issue: two issues with the same signature count as one.
-const issueSignature = (i) => i.level + '|' + i.rule + '|' + i.where + '|' + i.message
+const issueSignature = (i: Issue): string => i.level + '|' + i.rule + '|' + i.where + '|' + i.message
 
 // Sorting and de-duplication: same component, same order.
-function sortIssues(list) {
-  const seen = {}
-  const out = []
+function sortIssues(list: Issue[]): Issue[] {
+  const seen: Record<string, boolean> = {}
+  const out: Issue[] = []
   for (const i of list) {
     const sig = issueSignature(i)
     if (seen[sig]) continue
@@ -1072,21 +1188,21 @@ function sortIssues(list) {
   return out.sort((a, b) => LEVELS.indexOf(a.level) - LEVELS.indexOf(b.level) || alphaOrder(a.rule, b.rule) || alphaOrder(a.where, b.where) || alphaOrder(a.message, b.message))
 }
 
-const serialize = (sheet) => JSON.stringify(sheet, null, 2) + '\n'
+const serialize = (sheet: Sheet): string => JSON.stringify(sheet, null, 2) + '\n'
 // <<< FIN EXTRACTION
 
 // ------------------------------------------------------------ labels and comparison
 // What follows only serves the interface: none of it enters the sheet.
-const FIELD_LABELS = {
+const FIELD_LABELS: Record<string, string> = {
   background: 'fond', textColor: 'couleur du texte', radius: 'arrondi', padding: 'marges intérieures', gap: 'espacement',
   stroke: 'contour', strokeWeight: 'épaisseur du contour', opacity: 'opacité', effects: 'effets', typography: 'typo',
   'layout.minWidth': 'largeur minimale', 'layout.maxWidth': 'largeur maximale', 'layout.minHeight': 'hauteur minimale',
   'layout.maxHeight': 'hauteur maximale', 'layout.width': 'largeur', 'layout.height': 'hauteur'
 }
-const SIDE_LABELS = { top: 'haut', right: 'droite', bottom: 'bas', left: 'gauche' }
+const SIDE_LABELS: Record<string, string> = { top: 'haut', right: 'droite', bottom: 'bas', left: 'gauche' }
 
 // The technical location of an issue, in plain words.
-function readableLocation(where) {
+function readableLocation(where: unknown): string {
   const w = String(where)
   if (w === 'meta.name') return 'Nom du composant'
   if (w === 'meta.templateLevel') return 'Template'
@@ -1112,7 +1228,7 @@ function readableLocation(where) {
     if (!path.length) return layerName
     const first = path[0].replace(/\[\d+\]$/, '')
     let field = path.join('.')
-    let tail = []
+    let tail: string[] = []
     if (first === 'layout' && path[1] && FIELD_LABELS['layout.' + path[1]]) { field = FIELD_LABELS['layout.' + path[1]]; tail = path.slice(2) }
     else if (FIELD_LABELS[first]) { field = FIELD_LABELS[first]; tail = path.slice(1) }
     return layerName + ', ' + [field].concat(tail.map((x) => (first === 'padding' && SIDE_LABELS[x]) || x)).join(' ')
@@ -1121,11 +1237,11 @@ function readableLocation(where) {
 }
 
 // The issues of the sheet, with what the interface does with them: readable label and nodes to select.
-const detailIssues = (issues, locations) => issues.map((i, k) => Object.assign({}, i, { location: readableLocation(i.where), ids: locations[k].ids, variants: locations[k].variants }))
+const detailIssues = (issues: Issue[], locations: IssueLocation[]): IssueDetail[] => issues.map((i, k) => Object.assign({}, i, { location: readableLocation(i.where), ids: locations[k].ids, variants: locations[k].variants }))
 
 // Key figures of an already serialized sheet.
-function summarize(sheet, text) {
-  const n = (o) => Object.keys(o || {}).length
+function summarize(sheet: SheetLike, text: string) {
+  const n = (o: object | undefined): number => Object.keys(o || {}).length
   return {
     variants: (sheet.variants || []).length,
     properties: n(sheet.api && sheet.api.props) + n(sheet.structure && sheet.structure.slots),
@@ -1136,34 +1252,35 @@ function summarize(sheet, text) {
   }
 }
 // Size in bytes of a UTF-8 text, without depending on Buffer or TextEncoder.
-function byteSize(text) {
+function byteSize(text: unknown): number {
   let t = 0
-  for (const c of String(text)) { const x = c.codePointAt(0); t += x < 0x80 ? 1 : x < 0x800 ? 2 : x < 0x10000 ? 3 : 4 }
+  for (const c of String(text)) { const x = c.codePointAt(0) ?? 0; t += x < 0x80 ? 1 : x < 0x800 ? 2 : x < 0x10000 ? 3 : 4 }
   return t
 }
 
 // The leaves of a style: simple value, array, or object that has only token or only raw.
-function styleLeaves(eff) {
-  const out = new Map()
-  const rec = (v, layer, path) => {
-    const keys = v && typeof v === 'object' && !Array.isArray(v) ? Object.keys(v) : null
-    if (!keys || (keys.length === 1 && (keys[0] === 'token' || keys[0] === 'raw'))) { out.set(layer + '\u0000' + path.join('.'), { layer, path, v }); return }
+interface Leaf { layer: string; path: string[]; v: unknown }
+function styleLeaves(eff: VariantStyles): Map<string, Leaf> {
+  const out = new Map<string, Leaf>()
+  const rec = (v: unknown, layer: string, path: string[]): void => {
+    const keys = isRecord(v) ? Object.keys(v) : null
+    if (!isRecord(v) || !keys || (keys.length === 1 && (keys[0] === 'token' || keys[0] === 'raw'))) { out.set(layer + '\u0000' + path.join('.'), { layer, path, v }); return }
     for (const k of keys) rec(v[k], layer, path.concat(k))
   }
   for (const c of Object.keys(eff)) for (const f of Object.keys(eff[c])) rec(eff[c][f], c, [f])
   return out
 }
 
-const showValue = (v) => {
+const showValue = (v: unknown): string => {
   if (v === undefined) return 'rien'
   if (Array.isArray(v)) return JSON.stringify(v)
-  if (v && typeof v === 'object') return 'token' in v ? String(v.token) : v.raw + ' en brut'
+  if (isRecord(v)) return 'token' in v ? String(v.token) : String(v.raw) + ' en brut'
   return String(v)
 }
 
 // The label of a style change, under the title of its variants: without « Racine » for the
 // component itself, and with the paddings grouped (horizontal, vertical, four sides).
-function changeLabel(l) {
+function changeLabel(l: { layer: string; path: string[]; sides: string[] }): string {
   const location = readableLocation('styles.' + l.layer + '.' + l.path.join('.'))
   const prefix = l.layer === 'root' ? '' : location.split(', ')[0] + ', '
   let field
@@ -1182,14 +1299,19 @@ function changeLabel(l) {
 // Changements tab and of the changelog. Each change is { category, text } or, for styles,
 // { category: 'modifie', title, lines: [{ label, before, after }] }. The category is 'ajoute',
 // 'modifie', 'retire', or 'exclu' for what the changelog does not include. Accepts the 0.2 and 0.3 formats.
-function classifyChanges(previous, next) {
-  const a = previous || {}
-  const b = next || {}
-  const keys = (o) => Object.keys(o || {})
-  const list = (t) => t.join(', ')
-  const byCount = (n, one, many) => (n > 1 ? many : one)
-  const sentences = []
-  const note = (category, text) => sentences.push({ category, text })
+type Category = 'ajoute' | 'modifie' | 'retire' | 'exclu'
+interface TextChange { category: Category; text: string; title?: undefined; lines?: undefined }
+interface StyleLine { label: string; before: string; after: string }
+interface StyleChange { category: 'modifie'; title: string; lines: StyleLine[]; text?: undefined }
+type Change = TextChange | StyleChange
+function classifyChanges(previous: SheetLike | null | undefined, next: SheetLike | null | undefined): Change[] {
+  const a: SheetLike = previous || {}
+  const b: SheetLike = next || {}
+  const keys = (o: object | undefined): string[] => Object.keys(o || {})
+  const list = (t: string[]): string => t.join(', ')
+  const byCount = (n: number, one: string, many: string): string => (n > 1 ? many : one)
+  const sentences: Change[] = []
+  const note = (category: Category, text: string): number => sentences.push({ category, text })
 
   // properties and slots
   const pa = (a.api && a.api.props) || {}
@@ -1231,37 +1353,38 @@ function classifyChanges(previous, next) {
   }
 
   // variants
-  const variantName = (v) => keys(v.values).map((k) => k + '=' + v.values[k]).join(', ')
-  const byValues = (sheet) => { const m = new Map(); for (const v of sheet.variants || []) m.set(canonical(v.values), v); return m }
+  const variantName = (values: Config): string => keys(values).map((k) => k + '=' + values[k]).join(', ')
+  const byValues = (sheet: SheetLike): Map<string, SheetVariant> => { const m = new Map<string, SheetVariant>(); for (const v of sheet.variants || []) m.set(canonical(v.values), v); return m }
+  const valuesAt = (m: Map<string, SheetVariant>, k: string): Config => m.get(k)?.values || {}
   const va = byValues(a)
   const vb = byValues(b)
   const addedVariants = [...vb.keys()].filter((k) => !va.has(k))
   const removedVariants = [...va.keys()].filter((k) => !vb.has(k))
-  const describe = (keys2, m, direction) => {
+  const describe = (keys2: string[], m: Map<string, SheetVariant>, direction: string): void => {
     if (!keys2.length) return
-    const category = direction === 'ajoutée' ? 'ajoute' : 'retire'
+    const category: Category = direction === 'ajoutée' ? 'ajoute' : 'retire'
     if (keys2.length > 5) note(category, keys2.length + ' variantes ' + direction + 's')
-    else for (const k of keys2) note(category, 'Variante ' + direction + ' : ' + variantName(m.get(k)))
+    else for (const k of keys2) note(category, 'Variante ' + direction + ' : ' + variantName(valuesAt(m, k)))
   }
   describe(addedVariants, vb, 'ajoutée')
   describe(removedVariants, va, 'retirée')
   const common = [...vb.keys()].filter((k) => va.has(k))
-  const moved = common.filter((k) => canonical(va.get(k).position) !== canonical(vb.get(k).position)).length
+  const moved = common.filter((k) => canonical(va.get(k)?.position) !== canonical(vb.get(k)?.position)).length
   if (common.join('\u0000') !== [...va.keys()].filter((k) => vb.has(k)).join('\u0000')) note('modifie', 'Ordre des variantes modifié')
   if (moved) note('exclu', moved + ' ' + byCount(moved, 'variante déplacée', 'variantes déplacées') + ' sur le canevas')
 
   // styles: expanded variant by variant, then compared leaf by leaf
-  const axes = []
-  for (const k of common) for (const ax of keys(vb.get(k).values)) if (axes.indexOf(ax) < 0) axes.push(ax)
-  const groups = new Map()
+  const axes: string[] = []
+  for (const k of common) for (const ax of keys(valuesAt(vb, k))) if (axes.indexOf(ax) < 0) axes.push(ax)
+  const groups = new Map<string, { layer: string; path: string[]; before: unknown; after: unknown; touched: Set<number> }>()
   // The size of a stretched absolute layer follows that of its parent: it is not a change in itself.
-  const followsParent = (eff, f) => {
-    const l = eff && eff[f.layer] && eff[f.layer].layout
-    if (!l || !l.absolute || !l.constraints || f.path[0] !== 'layout') return false
+  const followsParent = (eff: VariantStyles, f: Leaf): boolean => {
+    const l = eff[f.layer] ? eff[f.layer].layout : undefined
+    if (!isRecord(l) || !l.absolute || !isRecord(l.constraints) || f.path[0] !== 'layout') return false
     return (f.path[1] === 'width' && l.constraints.horizontal === 'stretch') || (f.path[1] === 'height' && l.constraints.vertical === 'stretch')
   }
   common.forEach((k, idx) => {
-    const cfg = vb.get(k).values
+    const cfg = valuesAt(vb, k)
     const ea = effectiveStyles(a.styles, cfg)
     const eb = effectiveStyles(b.styles, cfg)
     const fa = styleLeaves(ea)
@@ -1273,20 +1396,22 @@ function classifyChanges(previous, next) {
       const cy = canonical(y && y.v)
       if (cx === cy) continue
       const f = x || y
+      if (!f) continue
       if (followsParent(ea, f) || followsParent(eb, f)) continue
       const g = key + '\u0000' + cx + '\u0000' + cy
-      if (!groups.has(g)) groups.set(g, { layer: f.layer, path: f.path, before: x && x.v, after: y && y.v, touched: new Set() })
-      groups.get(g).touched.add(idx)
+      const group = groups.get(g) || { layer: f.layer, path: f.path, before: x && x.v, after: y && y.v, touched: new Set<number>() }
+      groups.set(g, group)
+      group.touched.add(idx)
     }
   })
-  const whichVariants = (touched) => {
+  const whichVariants = (touched: Set<number>): string => {
     if (touched.size === common.length) return 'toutes les variantes'
     const members = [...touched]
-    const firstValues = vb.get(common[members[0]]).values
+    const firstValues = valuesAt(vb, common[members[0]])
     for (let size = 1; size <= axes.length; size++) {
-      const attempt = (start, picked) => {
+      const attempt = (start: number, picked: string[]): string | null => {
         if (picked.length === size) {
-          const sel = common.map((k, i) => i).filter((i) => picked.every((ax) => vb.get(common[i]).values[ax] === firstValues[ax]))
+          const sel = common.map((k, i) => i).filter((i) => picked.every((ax) => valuesAt(vb, common[i])[ax] === firstValues[ax]))
           if (sel.length === touched.size && sel.every((i) => touched.has(i))) return picked.map((ax) => ax + '=' + firstValues[ax]).join(', ')
           return null
         }
@@ -1304,15 +1429,16 @@ function classifyChanges(previous, next) {
   }
   // Grouped by touched variants: a title, then one line per change. The paddings that
   // change together, from the same value to the same value, fit on one line.
-  const byVariants = new Map()
+  const byVariants = new Map<string, Map<string, { layer: string; path: string[]; before: unknown; after: unknown; sides: string[] }>>()
   for (const g of groups.values()) {
     const which = whichVariants(g.touched)
-    if (!byVariants.has(which)) byVariants.set(which, new Map())
-    const lines = byVariants.get(which)
+    const lines = byVariants.get(which) || new Map<string, { layer: string; path: string[]; before: unknown; after: unknown; sides: string[] }>()
+    byVariants.set(which, lines)
     const margin = g.path[0] === 'padding' && g.path.length === 2
     const key = margin ? g.layer + '\u0000padding\u0000' + canonical(g.before) + '\u0000' + canonical(g.after) : g.layer + '\u0000' + g.path.join('.') + '\u0000' + canonical(g.before) + '\u0000' + canonical(g.after)
-    if (!lines.has(key)) lines.set(key, { layer: g.layer, path: g.path, before: g.before, after: g.after, sides: [] })
-    if (margin) lines.get(key).sides.push(g.path[1])
+    const line = lines.get(key) || { layer: g.layer, path: g.path, before: g.before, after: g.after, sides: [] }
+    lines.set(key, line)
+    if (margin) line.sides.push(g.path[1])
   }
   for (const [which, lines] of byVariants) {
     sentences.push({
@@ -1331,7 +1457,7 @@ function classifyChanges(previous, next) {
   if (addedTokens.length) note('ajoute', 'Variables ajoutées : ' + list(addedTokens))
   if (removedTokens.length) note('retire', 'Variables retirées : ' + list(removedTokens))
   // text styles, nested components and mode collections: additions and removals
-  const lists = [
+  const lists: ['textStyles' | 'components' | 'modeCollections', string, string, string, string][] = [
     ['textStyles', 'Style de texte ajouté : ', 'Styles de texte ajoutés : ', 'Style de texte retiré : ', 'Styles de texte retirés : '],
     ['components', 'Composant imbriqué ajouté : ', 'Composants imbriqués ajoutés : ', 'Composant imbriqué retiré : ', 'Composants imbriqués retirés : '],
     ['modeCollections', 'Collection de modes ajoutée : ', 'Collections de modes ajoutées : ', 'Collection de modes retirée : ', 'Collections de modes retirées : ']
@@ -1351,7 +1477,7 @@ function classifyChanges(previous, next) {
   const levelA = a.meta && a.meta.templateLevel
   const levelB = b.meta && b.meta.templateLevel
   if (canonical(levelA) !== canonical(levelB)) note('modifie', 'Niveau de template : ' + showValue(levelA) + ' → ' + showValue(levelB))
-  const issueCount = (f) => (f.issues || []).filter((i) => i.level !== 'info').length
+  const issueCount = (f: SheetLike): number => (f.issues || []).filter((i) => i.level !== 'info').length
   if (issueCount(a) !== issueCount(b)) note('exclu', 'Défauts : ' + issueCount(a) + ' → ' + issueCount(b))
 
   // safety net: any change that raises the version has at least one line
@@ -1361,8 +1487,8 @@ function classifyChanges(previous, next) {
 }
 
 // What changed between two sheets, in French sentences for the Changements tab.
-function compareSheets(previous, next) {
-  const sentences = classifyChanges(previous, next).map((c) => (c.title === undefined
+function compareSheets(previous: SheetLike | null | undefined, next: SheetLike | null | undefined): Sentence[] {
+  const sentences: Sentence[] = classifyChanges(previous, next).map((c) => (c.title === undefined
     ? c.text
     : { title: c.title, lines: c.lines.map((l) => l.label + ' : ' + l.before + ' → ' + l.after) }))
   if (sentences.length > 20) {
@@ -1376,12 +1502,14 @@ function compareSheets(previous, next) {
 const FIRST_VERSION = 'Première version du composant'
 const OVERHAUL = 'Refonte complète du composant'
 const MD_SHEET = 'Fiche Markdown modifiée'
-const lowerFirst = (t) => t.charAt(0).toLowerCase() + t.slice(1)
+const lowerFirst = (t: string): string => t.charAt(0).toLowerCase() + t.slice(1)
 
 // The changelog entry for the move from one sheet to the other: { ajoute, modifie, retire }.
 // A style change fits on one line: « size=medium : marges horizontales, 24 → 16 ».
-function changelogEntry(previous, next) {
-  const entry = { ajoute: [], modifie: [], retire: [] }
+interface EntryLines { ajoute: string[]; modifie: string[]; retire: string[] }
+interface ChangelogEntry extends EntryLines { version: string; date: string }
+function changelogEntry(previous: SheetLike | null | undefined, next: SheetLike | null | undefined): EntryLines {
+  const entry: EntryLines = { ajoute: [], modifie: [], retire: [] }
   for (const c of classifyChanges(previous, next)) {
     if (c.category === 'exclu') continue
     if (c.title === undefined) entry[c.category].push(c.text)
@@ -1391,17 +1519,18 @@ function changelogEntry(previous, next) {
 }
 
 // The date of an entry, displayed as DD/MM/YY. The history keeps it in the YYYY-MM-DD format.
-function displayedDate(date) {
+function displayedDate(date: string): string {
   const m = /^\d{2}(\d{2})-(\d{2})-(\d{2})$/.exec(date)
   return m ? m[3] + '/' + m[2] + '/' + m[1] : date
 }
 
 // The Markdown of the changelog, from the most recent entry to the oldest. An empty section is omitted.
-function renderChangelog(name, history) {
+function renderChangelog(name: string, history: ChangelogEntry[] | null | undefined): string {
   const blocks = ['# Changelog ' + (/^[aeiouàâéèêëîïôöùûü]/i.test(name) ? "d'" : 'de ') + name]
   for (const e of history || []) {
     blocks.push('## ' + e.version + ' - ' + displayedDate(e.date))
-    for (const [key, title] of [['ajoute', 'Ajouté'], ['modifie', 'Modifié'], ['retire', 'Retiré']]) {
+    const sections: ['ajoute' | 'modifie' | 'retire', string][] = [['ajoute', 'Ajouté'], ['modifie', 'Modifié'], ['retire', 'Retiré']]
+    for (const [key, title] of sections) {
       if (e[key] && e[key].length) blocks.push('### ' + title + '\n' + e[key].map((x) => '- ' + x).join('\n'))
     }
   }
@@ -1411,17 +1540,28 @@ function renderChangelog(name, history) {
 // The history after an export. Inputs: the base (last exported JSON), the history and the previous
 // version stored in the component set, the new sheet, the chosen version and the checked boxes.
 // Returns { history, previous }: previous is the JSON to store as the previous version.
-function computeHistory(p) {
+interface Choices { keep?: boolean; overhaul?: boolean; sheetMd?: boolean }
+interface Chosen { version: string; level: string | null; first: boolean; none: boolean; kept?: boolean }
+interface HistoryInput {
+  base: SheetLike | null
+  sheet: SheetLike
+  chosen: Chosen
+  date: string
+  choices?: Choices
+  history?: ChangelogEntry[]
+  previous?: SheetLike | null
+}
+function computeHistory(p: HistoryInput): { history: ChangelogEntry[]; previous: SheetLike | null } {
   const { base, sheet, chosen, date } = p
-  const choices = p.choices || {}
-  const stored = Array.isArray(p.history) ? p.history : []
+  const choices: Choices = p.choices || {}
+  const stored: ChangelogEntry[] = Array.isArray(p.history) ? p.history : []
   const previous = p.previous || null
-  const withoutVersion = (v) => stored.filter((e) => e.version !== v)
-  const emptyEntry = (version) => ({ version, date, ajoute: [], modifie: [], retire: [] })
+  const withoutVersion = (v: string): ChangelogEntry[] => stored.filter((e) => e.version !== v)
+  const emptyEntry = (version: string): ChangelogEntry => ({ version, date, ajoute: [], modifie: [], retire: [] })
   // the lines specific to the checked boxes: the overhaul at the top of Modifié, the Markdown sheet
   // only if the JSON did not change
-  const detail = (e) => e.ajoute.length > 0 || e.retire.length > 0 || e.modifie.some((x) => x !== OVERHAUL && x !== MD_SHEET)
-  const withChoices = (entry) => {
+  const detail = (e: EntryLines): boolean => e.ajoute.length > 0 || e.retire.length > 0 || e.modifie.some((x) => x !== OVERHAUL && x !== MD_SHEET)
+  const withChoices = (entry: ChangelogEntry): ChangelogEntry => {
     const modified = entry.modifie.slice()
     if (choices.overhaul && modified.indexOf(OVERHAUL) < 0) modified.unshift(OVERHAUL)
     if (choices.sheetMd && !choices.overhaul && !detail(entry) && modified.indexOf(MD_SHEET) < 0) modified.push(MD_SHEET)
@@ -1441,7 +1581,7 @@ function computeHistory(p) {
     if (existing && existing.ajoute.indexOf(FIRST_VERSION) >= 0) {
       return { history: stored.map((e) => (e === existing ? Object.assign({}, e, { date }) : e)), previous }
     }
-    let entry
+    let entry: ChangelogEntry
     if (previous) {
       // recomputed from the previous version: nothing piles up from one export to the next
       const computed = changelogEntry(previous, sheet)
@@ -1452,7 +1592,8 @@ function computeHistory(p) {
       // without a previous version, the new lines are added to the existing entry, without duplicates
       const computed = changelogEntry(base, sheet)
       entry = existing ? { version: v, date, ajoute: existing.ajoute.slice(), modifie: existing.modifie.slice(), retire: existing.retire.slice() } : emptyEntry(v)
-      for (const key of ['ajoute', 'modifie', 'retire']) for (const x of computed[key]) if (entry[key].indexOf(x) < 0) entry[key].push(x)
+      const keys: ('ajoute' | 'modifie' | 'retire')[] = ['ajoute', 'modifie', 'retire']
+      for (const key of keys) for (const x of computed[key]) if (entry[key].indexOf(x) < 0) entry[key].push(x)
     }
     entry = withChoices(entry)
     const history = existing ? stored.map((e) => (e === existing ? entry : e)) : [entry].concat(stored)
@@ -1477,35 +1618,37 @@ const PREVIOUS_KEY = 'version-precedente'
 // The sheet without what never counts in a change: the format, the issues, the tool,
 // the versions, the Figma file name and the Figma keys, the position of the variants on the canvas
 // and the way style overrides are grouped (only the styles of each variant count).
-function sheetForVersion(sheet) {
-  const c = JSON.parse(JSON.stringify(sheet || {}))
+function sheetForVersion(sheet: SheetLike | null | undefined): ComparableSheet {
+  const c: SheetLike = JSON.parse(JSON.stringify(sheet || {}))
   delete c.formatVersion
   delete c.issues
   delete c._tool
   if (c.meta) { delete c.meta.version; delete c.meta.tokensVersion; delete c.meta.library; delete c.meta.figmaKey }
-  for (const index of ['tokens', 'textStyles', 'components', 'modeCollections']) {
+  const indexes: ('tokens' | 'textStyles' | 'components' | 'modeCollections')[] = ['tokens', 'textStyles', 'components', 'modeCollections']
+  for (const index of indexes) {
     for (const entry of Object.values(c[index] || {})) if (entry && typeof entry === 'object') { delete entry.library; delete entry.key }
   }
+  const out: ComparableSheet = { ...c }
   if (c.styles && Array.isArray(c.variants)) {
-    const effectiveByVariant = {}
+    const effectiveByVariant: Record<string, VariantStyles> = {}
     for (const v of c.variants) effectiveByVariant[canonical(v.values)] = effectiveStyles(c.styles, v.values)
-    c.styles = effectiveByVariant
+    out.styles = effectiveByVariant
   }
-  if (Array.isArray(c.variants)) c.variants = c.variants.map((v) => ({ values: v.values }))
-  return c
+  if (Array.isArray(c.variants)) out.variants = c.variants.map((v) => ({ values: v.values }))
+  return out
 }
 
 // Level of the change between two JSON: 'mineure' (properties, slots, layers, variants),
 // 'correctif' (any other difference) or null (nothing changed). The major level is never
 // guessed: the designer chooses it.
-function changeLevel(previous, next) {
+function changeLevel(previous: SheetLike | null | undefined, next: SheetLike | null | undefined): 'mineure' | 'correctif' | null {
   const a = sheetForVersion(previous)
   const b = sheetForVersion(next)
   // properties are compared in their order, as compareSheets does
-  const properties = (f) => canonical(Object.entries((f.api && f.api.props) || {}))
-  const slots = (f) => canonical((f.structure && f.structure.slots) || {})
-  const layers = (f) => canonical((f.structure && f.structure.trees) || [])
-  const variants = (f) => (f.variants || []).map((v) => canonical(v.values)).sort().join('|')
+  const properties = (f: ComparableSheet): string => canonical(Object.entries((f.api && f.api.props) || {}))
+  const slots = (f: ComparableSheet): string => canonical((f.structure && f.structure.slots) || {})
+  const layers = (f: ComparableSheet): string => canonical((f.structure && f.structure.trees) || [])
+  const variants = (f: ComparableSheet): string => (f.variants || []).map((v) => canonical(v.values)).sort().join('|')
   if (properties(a) !== properties(b) || slots(a) !== slots(b) || layers(a) !== layers(b) || variants(a) !== variants(b)) return 'mineure'
   return canonical(a) !== canonical(b) ? 'correctif' : null
 }
@@ -1513,7 +1656,7 @@ function changeLevel(previous, next) {
 const VERSION_PATTERN = /^(\d+)\.(\d+)\.(\d+)$/
 
 // Next version after a version X.Y.Z, for a level 'majeure', 'mineure' or 'correctif'.
-function nextVersion(version, level) {
+function nextVersion(version: unknown, level: string): string | null {
   const m = VERSION_PATTERN.exec(String(version))
   if (!m) return null
   const x = Number(m[1]), y = Number(m[2]), z = Number(m[3])
@@ -1525,22 +1668,23 @@ function nextVersion(version, level) {
 
 // What the comparison with the base says about the version: first version, current version
 // (the one of the base) and detected level.
-function analyzeVersion(base, next) {
+type VersionInfo = { first: true; current: null; level: null } | { first: false; current: string; level: string | null }
+function analyzeVersion(base: SheetLike | null | undefined, next: SheetLike): VersionInfo {
   if (!base) return { first: true, current: null, level: null }
   const v = base.meta && base.meta.version
-  return { first: false, current: VERSION_PATTERN.test(String(v)) ? v : '1.0.0', level: changeLevel(base, next) }
+  return { first: false, current: v && VERSION_PATTERN.test(String(v)) ? v : '1.0.0', level: changeLevel(base, next) }
 }
 
 // The version retained according to the answers of the interface. Keep (« Non » to the delivery question):
 // the current version, as long as nothing is delivered to the devs. Complete overhaul: major.
 // Markdown sheet modified: patch, when nothing changed in the JSON.
-function chooseVersion(info, choices) {
-  choices = choices || {}
+function chooseVersion(info: VersionInfo, options?: Choices): Chosen {
+  const choices: Choices = options || {}
   if (info.first) return { version: '1.0.0', level: null, first: true, none: false }
   if (choices.keep) return { version: info.current, level: null, first: false, none: false, kept: true }
-  if (choices.overhaul) return { version: nextVersion(info.current, 'majeure'), level: 'majeure', first: false, none: false }
-  if (info.level) return { version: nextVersion(info.current, info.level), level: info.level, first: false, none: false }
-  if (choices.sheetMd) return { version: nextVersion(info.current, 'correctif'), level: 'correctif', first: false, none: false }
+  if (choices.overhaul) return { version: nextVersion(info.current, 'majeure') ?? info.current, level: 'majeure', first: false, none: false }
+  if (info.level) return { version: nextVersion(info.current, info.level) ?? info.current, level: info.level, first: false, none: false }
+  if (choices.sheetMd) return { version: nextVersion(info.current, 'correctif') ?? info.current, level: 'correctif', first: false, none: false }
   return { version: info.current, level: null, first: false, none: true }
 }
 
@@ -1562,17 +1706,17 @@ const NO_FILE_MESSAGE = 'Aucune version publiée de Canopée ne contient le fich
 // A call to GitHub that does not answer after this timeout (in milliseconds) fails.
 const GITHUB_TIMEOUT = 10000
 
-const compareVersions = (a, b) => {
+const compareVersions = (a: string, b: string): number => {
   const pa = a.split('.').map(Number), pb = b.split('.').map(Number)
   return pa[0] - pb[0] || pa[1] - pb[1] || pa[2] - pb[2]
 }
 
 // The paths of all the tokens of a published tokens file: « color.blue.700 ». The sets
 // have sources, nested groups, and a token is a node that carries $value.
-function publishedPaths(doc) {
-  const paths = new Set()
-  const visit = (node, segments) => {
-    if (!node || typeof node !== 'object') return
+function publishedPaths(doc: unknown): Set<string> {
+  const paths = new Set<string>()
+  const visit = (node: unknown, segments: string[]): void => {
+    if (!isRecord(node)) return
     if ('$value' in node) {
       const group = segments[0] === TOKENS_REPO.oldStylesGroup ? TOKENS_REPO.stylesGroup : segments[0]
       paths.add([group].concat(segments.slice(1)).join('.'))
@@ -1580,16 +1724,16 @@ function publishedPaths(doc) {
     }
     for (const k of Object.keys(node)) if (k.charAt(0) !== '$') visit(node[k], segments.concat(k))
   }
-  for (const set of Object.values((doc && doc.sets) || {})) {
-    for (const source of (set && set.sources) || []) visit(source, [])
+  for (const set of isRecord(doc) && isRecord(doc.sets) ? Object.values(doc.sets) : []) {
+    for (const source of isRecord(set) && Array.isArray(set.sources) ? set.sources : []) visit(source, [])
   }
   return paths
 }
 
 // What the tokens file must contain: the variables of the component (color/blue/700
 // gives color.blue.700) and its text styles (label/1/semibold gives typography.label.1.semibold).
-function requiredTokens(tokens, textStyles) {
-  const required = []
+function requiredTokens(tokens: Index | undefined, textStyles: Index | undefined): { name: string; path: string; where: string }[] {
+  const required: { name: string; path: string; where: string }[] = []
   for (const name of Object.keys(tokens || {})) required.push({ name, path: name.split('/').join('.'), where: 'tokens.' + name })
   for (const name of Object.keys(textStyles || {})) required.push({ name, path: TOKENS_REPO.stylesGroup + '.' + name.split('/').join('.'), where: 'textStyles.' + name })
   return required
@@ -1598,11 +1742,12 @@ function requiredTokens(tokens, textStyles) {
 // reader: { versions(): names of the tags, paths(tag): Set of the paths of the tokens file of the tag }.
 // Returns { version, issues }: version is null, with an issue of level warning, when it
 // cannot be computed.
-async function computeTokensVersion(inputs, reader) {
+interface GitHubReader { versions(): Promise<string[]>; paths(tag: string): Promise<Set<string>> }
+async function computeTokensVersion(inputs: { tokens: Index; textStyles: Index }, reader: GitHubReader): Promise<{ version: string | null; issues: Issue[] }> {
   const required = requiredTokens(inputs.tokens, inputs.textStyles)
   if (!required.length) return { version: TOKENS_REPO.firstVersion, issues: [] }
-  const union = new Set()
-  const failure = (rule, message) => ({ version: null, issues: [{ level: 'warning', rule, where: 'meta.tokensVersion', message }] })
+  const union = new Set<string>()
+  const failure = (rule: string, message: string): { version: null; issues: Issue[] } => ({ version: null, issues: [{ level: 'warning', rule, where: 'meta.tokensVersion', message }] })
   try {
     const versions = (await reader.versions())
       .filter((n) => VERSION_PATTERN.test(n) && compareVersions(n, TOKENS_REPO.firstVersion) >= 0)
@@ -1615,7 +1760,7 @@ async function computeTokensVersion(inputs, reader) {
         published = await reader.paths(v)
       } catch (e) {
         // a tag whose tokens file does not exist is ignored, the next one is tried
-        if (e && e.status === 404) { withoutFile++; continue }
+        if (isRecord(e) && e.status === 404) { withoutFile++; continue }
         throw e
       }
       if (required.every((r) => published.has(r.path))) return { version: v, issues: [] }
@@ -1623,13 +1768,13 @@ async function computeTokensVersion(inputs, reader) {
     }
     if (withoutFile === versions.length) return failure('tokens-sans-fichier', NO_FILE_MESSAGE)
   } catch (e) {
-    const status = e && e.status
+    const status = isRecord(e) ? e.status : undefined
     if (status === 403 || status === 429) return failure('tokens-limite-github', GITHUB_LIMIT_MESSAGE)
     return failure('tokens-injoignables', UNREACHABLE_MESSAGE)
   }
   const missing = required.filter((r) => !union.has(r.path))
-  const issues = missing.length
-    ? missing.map((r) => ({ level: 'warning', rule: 'token-non-publie', where: r.where, message: 'Token absent de toutes les versions publiées de Canopée : ' + r.name + '.' }))
+  const issues: Issue[] = missing.length
+    ? missing.map((r): Issue => ({ level: 'warning', rule: 'token-non-publie', where: r.where, message: 'Token absent de toutes les versions publiées de Canopée : ' + r.name + '.' }))
     : [{ level: 'warning', rule: 'tokens-sans-version-commune', where: 'meta.tokensVersion', message: 'Aucune version publiée de Canopée ne contient tous les tokens du composant.' }]
   return { version: null, issues }
 }
@@ -1638,31 +1783,36 @@ async function computeTokensVersion(inputs, reader) {
 // read are kept for the session. A call that does not answer within the timeout fails, and a
 // non-ok response throws an error that carries its HTTP status (e.status). The test provides its own
 // reader, or sets the timeout: no network call goes through there.
-const pathsCache = new Map()
-let versionsCache = null
-const fetchGitHub = async (url, timeout, parse) => {
-  let timer
-  const limit = new Promise((resolve, reject) => { timer = setTimeout(() => reject(new Error('GitHub n\'a pas répondu en ' + timeout + ' ms')), timeout) })
+const pathsCache = new Map<string, Set<string>>()
+let versionsCache: string[] | null = null
+const fetchGitHub = async <T>(url: string, timeout: number, parse: (r: FetchResponse) => T | Promise<T>): Promise<T> => {
+  let timer: number | undefined
+  const limit = new Promise<never>((resolve, reject) => { timer = setTimeout(() => reject(new Error('GitHub n\'a pas répondu en ' + timeout + ' ms')), timeout) })
   try {
     return await Promise.race([(async () => {
       const r = await fetch(url)
-      if (!r.ok) { const e = new Error('GitHub ' + r.status); e.status = r.status; throw e }
+      if (!r.ok) throw Object.assign(new Error('GitHub ' + r.status), { status: r.status })
       return parse(r)
     })(), limit])
   } finally {
-    clearTimeout(timer)
+    if (timer !== undefined) clearTimeout(timer)
   }
 }
-const createGitHubReader = (timeout) => ({
+const createGitHubReader = (timeout: number): GitHubReader => ({
   async versions() {
-    if (!versionsCache) versionsCache = await fetchGitHub('https://api.github.com/repos/' + TOKENS_REPO.name + '/tags?per_page=100', timeout, async (r) => (await r.json()).map((t) => t.name))
+    if (!versionsCache) versionsCache = await fetchGitHub('https://api.github.com/repos/' + TOKENS_REPO.name + '/tags?per_page=100', timeout, async (r) => {
+      const tags: unknown = await r.json()
+      return Array.isArray(tags) ? tags.map((t: unknown) => String(isRecord(t) ? t.name : '')) : []
+    })
     return versionsCache
   },
   async paths(tag) {
-    if (!pathsCache.has(tag)) {
-      pathsCache.set(tag, await fetchGitHub('https://raw.githubusercontent.com/' + TOKENS_REPO.name + '/' + tag + '/' + TOKENS_REPO.path, timeout, async (r) => publishedPaths(JSON.parse(await r.text()))))
+    let cached = pathsCache.get(tag)
+    if (!cached) {
+      cached = await fetchGitHub('https://raw.githubusercontent.com/' + TOKENS_REPO.name + '/' + tag + '/' + TOKENS_REPO.path, timeout, async (r) => publishedPaths(JSON.parse(await r.text())))
+      pathsCache.set(tag, cached)
     }
-    return pathsCache.get(tag)
+    return cached
   }
 })
 const githubReader = createGitHubReader(GITHUB_TIMEOUT)
@@ -1673,20 +1823,26 @@ const RULES_URL = 'https://raw.githubusercontent.com/AxaFrance/design-system/ai-
 // A short timeout: the first check of the component waits for this reading.
 const RULES_TIMEOUT = 3000
 const UNREADABLE_RULES_MESSAGE = 'Les règles de la doc n\'ont pas pu être lues. Le plugin contrôle avec sa copie.'
-const DOC_GROUPS = { Variante: 0, 'Booléen': 1, Texte: 2, 'Instance swap': 3, Slot: 4 }
+const DOC_GROUPS: Record<string, number> = { Variante: 0, 'Booléen': 1, Texte: 2, 'Instance swap': 3, Slot: 4 }
 
 // The tables of the Properties page, in the shape of the nomenclature constants. A list
 // with a value that is not in kebab-case is a sentence: the property has no imposed
 // values. Throws an error if the page no longer has the expected shape.
-function readPropertyRules(text) {
-  const lines = (title) => {
+interface Rules {
+  order: string[][]
+  fixed: Record<string, string[]>
+  trueFalse: Record<string, string[]>
+  synonyms: Record<string, string>
+}
+function readPropertyRules(text: string): Rules {
+  const lines = (title: string): string[][] => {
     const section = text.split('\n## ').find((x) => x.indexOf(title) === 0)
     if (!section) throw new Error('section absente : ' + title)
     const body = section.split('\n').filter((l) => l.charAt(0) === '|').slice(2).map((l) => l.split('|').slice(1, -1).map((c) => c.trim()))
     if (!body.length) throw new Error('tableau vide : ' + title)
     return body
   }
-  const rules = { order: [[], [], [], [], []], fixed: {}, trueFalse: {}, synonyms: {} }
+  const rules: Rules = { order: [[], [], [], [], []], fixed: {}, trueFalse: {}, synonyms: {} }
   for (const [names, type, values] of lines('Variantes et booléens').concat(lines('Contenu'))) {
     if (!(type in DOC_GROUPS) || values === undefined) throw new Error('ligne illisible : ' + names)
     for (const name of names.split(', ').filter((x) => x !== 'show*')) {
@@ -1707,20 +1863,23 @@ function readPropertyRules(text) {
 }
 
 // Replaces the embedded copy. The arrays keep their identity: the extraction reads them directly.
-function applyRules(rules) {
+function applyRules(rules: Rules): void {
   ORDER.splice(0, ORDER.length, ...rules.order)
-  for (const [copy, parsed] of [[FIXED_VALUES, rules.fixed], [TRUE_FALSE_VARIANTS, rules.trueFalse], [SYNONYMS, rules.synonyms]]) {
+  const replace = <T>(copy: Record<string, T>, parsed: Record<string, T>): void => {
     for (const name of Object.keys(copy)) delete copy[name]
     Object.assign(copy, parsed)
   }
+  replace(FIXED_VALUES, rules.fixed)
+  replace(TRUE_FALSE_VARIANTS, rules.trueFalse)
+  replace(SYNONYMS, rules.synonyms)
 }
 
 // The properties that have a list in the embedded copy, and no longer in the doc.
-const lostValues = (rules) => Object.keys(FIXED_VALUES).concat(Object.keys(TRUE_FALSE_VARIANTS))
+const lostValues = (rules: Rules): string[] => Object.keys(FIXED_VALUES).concat(Object.keys(TRUE_FALSE_VARIANTS))
   .filter((name) => rules.order[0].indexOf(name) >= 0 && !rules.fixed[name] && !rules.trueFalse[name])
 
 // Reads the doc once per session. Returns the text of the banner, or null if all is well.
-let rulesLoading = null
+let rulesLoading: Promise<string | null> | null = null
 const loadRules = () => {
   if (!rulesLoading) {
     rulesLoading = (async () => {
@@ -1741,23 +1900,26 @@ const loadRules = () => {
 // state is 'absente' (nothing was written), 'lisible' or 'illisible' (invalid JSON, or wrong
 // shape: an array for the changelog, an object for the JSON). value is null
 // unless the data is readable, and text is the raw string read.
-function readStored(node, key) {
+interface Stored<T> { state: 'absente' | 'lisible' | 'illisible'; value: T | null; text: string }
+// The changelog is a list, the JSON an object.
+const isHistory = (value: unknown): value is ChangelogEntry[] => Array.isArray(value)
+const isSheetLike = (value: unknown): value is SheetLike => isRecord(value)
+function readStored<T>(node: Layer, key: string, isShape: (value: unknown) => value is T): Stored<T> {
   let text = ''
   try {
     text = node.getSharedPluginData(BASE_NAMESPACE, key) || ''
     if (!text) return { state: 'absente', value: null, text: '' }
-    const value = JSON.parse(text)
-    const validShape = key === CHANGELOG_KEY ? Array.isArray(value) : !!value && typeof value === 'object' && !Array.isArray(value)
-    return validShape ? { state: 'lisible', value, text } : { state: 'illisible', value: null, text }
+    const value: unknown = JSON.parse(text)
+    return isShape(value) ? { state: 'lisible', value, text } : { state: 'illisible', value: null, text }
   } catch (e) {
     return { state: 'illisible', value: null, text }
   }
 }
 
 // Today's date, in the YYYY-MM-DD format.
-function todayDate() {
+function todayDate(): string {
   const d = new Date()
-  const pad2 = (n) => (n < 10 ? '0' : '') + n
+  const pad2 = (n: number): string => (n < 10 ? '0' : '') + n
   return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate())
 }
 
@@ -1777,12 +1939,12 @@ const MANUAL_BOUNDS = { widthMin: 320, widthMax: 1000, heightMin: 300, heightMax
 let manualSize = false
 let lastSize = { width: WIDTH, height: INITIAL_HEIGHT }
 
-const resizeWindow = (width, height) => {
+const resizeWindow = (width: number, height: number): void => {
   lastSize = { width, height }
   figma.ui.resize(width, height)
 }
 
-const boundManualSize = (width, height) => ({
+const boundManualSize = (width: number, height: number): { width: number; height: number } => ({
   width: Math.min(Math.max(width, MANUAL_BOUNDS.widthMin), MANUAL_BOUNDS.widthMax),
   height: Math.min(Math.max(height, MANUAL_BOUNDS.heightMin), MANUAL_BOUNDS.heightMax)
 })
@@ -1802,7 +1964,7 @@ const boundManualSize = (width, height) => ({
 })()
 
 // The component or variant set that contains a layer, unless going through an instance.
-function componentAncestor(n) {
+function componentAncestor(n: Layer): Layer | null {
   for (let p = n.parent; p; p = p.parent) {
     if (p.type === 'COMPONENT_SET') return p
     if (p.type === 'COMPONENT') return p.parent && p.parent.type === 'COMPONENT_SET' ? p.parent : p
@@ -1814,13 +1976,14 @@ function componentAncestor(n) {
 // The targeted component: the selection, brought back to its variant set. An instance
 // points to its main component, a layer to the component that contains it.
 // After a click on an issue, the selection stays attached to the displayed component.
-let displayedTarget = null
-const isInside = (n, ancestor) => { for (let p = n; p; p = p.parent) if (p === ancestor) return true; return false }
+let displayedTarget: Layer | null = null
+const isInside = (n: Layer, ancestor: Layer): boolean => { for (let p: Layer | ParentLayer | null | undefined = n; p; p = p.parent) if (p === ancestor) return true; return false }
 
-async function currentTarget() {
+async function currentTarget(): Promise<{ node: Layer; viaInstance: boolean } | null> {
   const sel = figma.currentPage.selection
   if (!sel.length) return null
-  if (displayedTarget && !displayedTarget.removed && sel.every((x) => isInside(x, displayedTarget))) return { node: displayedTarget, viaInstance: false }
+  const shown = displayedTarget
+  if (shown && !shown.removed && sel.every((x) => isInside(x, shown))) return { node: shown, viaInstance: false }
   displayedTarget = null
   let n = sel[0]
   let viaInstance = false
@@ -1838,12 +2001,12 @@ async function currentTarget() {
   return { node: n, viaInstance }
 }
 
-const fileRoot = (name) => withoutCopyPrefix(name).toLowerCase().replace(/\s+/g, '-').replace(/[\/\\:*?"<>|]/g, '-')
-const fileName = (name) => fileRoot(name) + '.json'
-const changelogName = (name) => fileRoot(name) + '-changelog.md'
+const fileRoot = (name: string): string => withoutCopyPrefix(name).toLowerCase().replace(/\s+/g, '-').replace(/[\/\\:*?"<>|]/g, '-')
+const fileName = (name: string): string => fileRoot(name) + '.json'
+const changelogName = (name: string): string => fileRoot(name) + '-changelog.md'
 
 // What the component card displays: name, variants, properties and last stored version.
-function describeCard(c) {
+function describeCard(c: { node: Layer; viaInstance: boolean }): Card {
   const n = c.node
   let properties = 0
   try { properties = Object.keys(n.componentPropertyDefinitions || {}).length } catch (e) {
@@ -1851,60 +2014,66 @@ function describeCard(c) {
   }
   // the last stored version, read in the shared base: the interface shows it before any generation
   // (an unreadable base gives none)
-  const base = readStored(n, BASE_KEY).value
+  const base = readStored(n, BASE_KEY, isSheetLike).value
   return {
     id: n.id, name: withoutCopyPrefix(n.name),
-    variants: n.type === 'COMPONENT_SET' ? n.children.length : 1,
+    variants: n.type === 'COMPONENT_SET' ? (n.children || []).length : 1,
     properties, viaInstance: c.viaInstance,
     latestVersion: base && base.meta && base.meta.version ? base.meta.version : null
   }
 }
 
-async function sendSelection() {
+async function sendSelection(): Promise<void> {
   const c = await currentTarget()
   if (!c || (watcher && watcher.id !== c.node.id)) stopWatching()
-  if (!c) { figma.ui.postMessage({ type: 'selection', name: null }); return }
-  figma.ui.postMessage({ type: 'selection', ...describeCard(c) })
+  if (!c) { post({ type: 'selection', name: null }); return }
+  post({ type: 'selection', ...describeCard(c) })
 }
 figma.on('selectionchange', sendSelection)
 
-const pageOf = (n) => { let p = n; while (p && p.type !== 'PAGE') p = p.parent; return p }
+// A page of the file (its type is what tells it).
+const isPageNode = (p: Layer | ParentLayer): p is PageNode => p.type === 'PAGE'
+const pageOf = (n: Layer | ParentLayer | null | undefined): PageNode | null => {
+  for (let p = n; p; p = p.parent) if (isPageNode(p)) return p
+  return null
+}
 
 // Watching the generated component: a change in Figma makes the JSON stale.
-let watcher = null // { id, root, page, listener, stale, timer }
+interface Watcher { id: string; root: Layer; page: PageNode; listener: (event: NodeChangeEvent) => void; stale: boolean; timer: number | null }
+let watcher: Watcher | null = null
 
 const POSITION_PROPERTIES = ['x', 'y', 'relativeTransform']
 
 // Does a change reported by Figma touch the component? ids: the identifiers of the component
 // when the watching started.
-function concernsComponent(change, root, ids) {
+function concernsComponent(change: NodeChange, root: Layer, ids: Set<string>): boolean {
   const c = change
   // moving the root on the canvas does not change the component
-  if (c.id === root.id && c.properties && c.properties.every((p) => POSITION_PROPERTIES.includes(p))) return false
+  if (c.id === root.id && 'properties' in c && c.properties && c.properties.every((p) => POSITION_PROPERTIES.includes(p))) return false
   if (ids.has(c.id)) return true
   // a layer of an instance: I<instance>;<layer>
   if (typeof c.id === 'string' && c.id.startsWith('I') && ids.has(c.id.slice(1).split(';')[0])) return true
   // a created layer: it is in the component if one of its parents is the root
   try {
-    for (let n = c.node; n && !n.removed; n = n.parent) if (n.id === root.id) return true
+    for (let n: { readonly id: string; readonly removed?: boolean; readonly parent?: ParentLayer | null } | null | undefined = c.node; n && !n.removed; n = n.parent) if (n.id === root.id) return true
   } catch (e) {
     // The parent of a deleted node is not readable: the layer is not attached.
   }
   return false
 }
 
-function stopWatching() {
+function stopWatching(): void {
   const s = watcher
   if (!s) return
   watcher = null
-  clearTimeout(s.timer)
+  if (s.timer !== null) clearTimeout(s.timer)
   try { s.page.off('nodechange', s.listener) } catch (e) {
     // The page is no longer readable: there is nothing left to detach.
   }
 }
 
 // Watches the root on its page. Only one listener stays active: the previous one is removed first.
-async function watch(root, viaInstance) {
+async function watch(root: Layer, viaInstance: boolean): Promise<void> {
   stopWatching()
   try {
     const page = pageOf(root)
@@ -1912,19 +2081,19 @@ async function watch(root, viaInstance) {
     await page.loadAsync()
     // another watcher may have started during the loading
     stopWatching()
-    const ids = new Set([root.id])
-    for (const n of root.findAll(() => true)) ids.add(n.id)
-    const s = { id: root.id, root, page, stale: false, timer: null }
+    const ids = new Set<string>([root.id])
+    for (const n of findAll(root, () => true)) ids.add(n.id)
+    const s: Watcher = { id: root.id, root, page, stale: false, timer: null, listener: () => {} }
     s.listener = (event) => {
       if (watcher !== s) return
       if (!(event.nodeChanges || []).some((c) => concernsComponent(c, root, ids))) return
       s.stale = true
-      figma.ui.postMessage({ type: 'perime', id: s.id })
-      clearTimeout(s.timer)
+      post({ type: 'perime', id: s.id })
+      if (s.timer !== null) clearTimeout(s.timer)
       // the card follows renames and added variants, without going through the selection
       s.timer = setTimeout(() => {
         if (watcher !== s) return
-        try { figma.ui.postMessage({ type: 'carte', ...describeCard({ node: root, viaInstance }) }) } catch (e) {
+        try { post({ type: 'carte', ...describeCard({ node: root, viaInstance }) }) } catch (e) {
           // The component is gone: the card keeps its last state.
         }
       }, 300)
@@ -1937,11 +2106,26 @@ async function watch(root, viaInstance) {
 }
 
 // The last generated JSON, kept as long as the user has not copied or downloaded it.
-let lastGeneration = null
+interface Generation {
+  id: string
+  sheet: Sheet
+  json: string
+  info: VersionInfo
+  chosen: Chosen
+  base: SheetLike | null
+  baseText: string
+  unreadable: boolean
+  stored: ChangelogEntry[]
+  previous: SheetLike | null
+  choices: Choices
+  overhaul?: boolean
+  written?: string
+}
+let lastGeneration: Generation | null = null
 
 // The chosen version, as the interface displays it. detected: the level found by the
 // comparison, before the checkboxes.
-const describeVersion = (d) => ({
+const describeVersion = (d: Generation): VersionView => ({
   first: d.chosen.first, none: d.chosen.none, current: d.info.current, version: d.chosen.version,
   level: d.chosen.level, detected: d.info.level, tokensVersion: d.sheet.meta.tokensVersion, kept: !!d.chosen.kept,
   // the version a delivery would bring: the one of the detected level, or the major if the overhaul is checked
@@ -1949,38 +2133,41 @@ const describeVersion = (d) => ({
 })
 
 // The history that an export of this generation would give, at the given date.
-const historyOf = (d, date) => computeHistory({ base: d.base, history: d.stored, previous: d.previous, sheet: d.sheet, chosen: d.chosen, choices: d.choices, date })
+const historyOf = (d: Generation, date: string) => computeHistory({ base: d.base, history: d.stored, previous: d.previous, sheet: d.sheet, chosen: d.chosen, choices: d.choices, date })
 
 // The Markdown of the changelog, as the interface displays and downloads it.
-const changelogOf = (d) => renderChangelog(d.sheet.meta.name, historyOf(d, todayDate()).history)
+const changelogOf = (d: Generation): string => renderChangelog(d.sheet.meta.name, historyOf(d, todayDate()).history)
 
-const handlers = {
+// One handler per message of the interface. The switch below dispatches them, and its last case
+// stops compiling when a message type of messages.ts has no handler.
+type Handlers = { [K in UiToPluginMessage['type']]: (msg: Extract<UiToPluginMessage, { type: K }>) => Promise<void> | void }
+const handlers: Handlers = {
   'ui-pret': async () => {
-    figma.ui.postMessage({ type: 'init', version: VERSION, format: FORMAT })
+    post({ type: 'init', version: VERSION, format: FORMAT })
     const warning = await loadRules()
-    if (warning) figma.ui.postMessage({ type: 'regles', warning })
+    if (warning) post({ type: 'regles', warning })
     await sendSelection()
   },
   'controler': async () => {
     const c = await currentTarget()
-    if (!c) { figma.ui.postMessage({ type: 'controle', id: null, issues: [] }); return }
+    if (!c) { post({ type: 'controle', id: null, issues: [] }); return }
     const prep = prepare(c.node)
     const issues = sortIssues(await checkNomenclature(prep))
-    figma.ui.postMessage({ type: 'controle', id: c.node.id, issues: detailIssues(issues, locateIssues(null, prep, issues, null)) })
+    post({ type: 'controle', id: c.node.id, issues: detailIssues(issues, locateIssues(null, prep, issues, null)) })
   },
   'generer': async () => {
     const c = await currentTarget()
-    if (!c) { figma.ui.postMessage({ type: 'erreur', message: 'Sélectionner un composant, ou un ensemble de variantes.' }); return }
+    if (!c) { post({ type: 'erreur', message: 'Sélectionner un composant, ou un ensemble de variantes.' }); return }
     // before the extraction: a change during the generation counts too
     await watch(c.node, c.viaInstance)
     const { sheet, locations } = await extractDetail(c.node, {
-      progress: (done, total) => figma.ui.postMessage({ type: 'progression', done, total }),
-      computeTokensVersion: (inputs) => computeTokensVersion(inputs, githubReader)
+      progress: (done: number, total: number) => post({ type: 'progression', done, total }),
+      computeTokensVersion: (inputs: { tokens: Index; textStyles: Index }) => computeTokensVersion(inputs, githubReader)
     })
     // the version: the shared base says where we start from, and the comparison says by how much we go up
-    const baseRead = readStored(c.node, BASE_KEY)
-    const historyRead = readStored(c.node, CHANGELOG_KEY)
-    const previousRead = readStored(c.node, PREVIOUS_KEY)
+    const baseRead = readStored(c.node, BASE_KEY, isSheetLike)
+    const historyRead = readStored(c.node, CHANGELOG_KEY, isHistory)
+    const previousRead = readStored(c.node, PREVIOUS_KEY, isSheetLike)
     const base = baseRead.value
     const info = analyzeVersion(base, sheet)
     const chosen = chooseVersion(info, {})
@@ -1993,23 +2180,23 @@ const handlers = {
       unreadable: baseRead.state === 'illisible' || historyRead.state === 'illisible',
       stored: historyRead.value || [], previous: previousRead.value, choices: {}
     }
-    let changes = null
+    let changes: { sentences: Sentence[] } | null = null
     try {
       if (base) changes = { sentences: compareSheets(base, sheet) }
     } catch (e) {
       // Without a readable reference export, the Changements tab stays empty.
     }
     // the designer may have renamed the component before generating
-    figma.ui.postMessage({ type: 'carte', ...describeCard(c) })
-    figma.ui.postMessage({
+    post({ type: 'carte', ...describeCard(c) })
+    post({
       type: 'fiche', id: c.node.id, json, file: fileName(c.node.name), changelogFile: changelogName(c.node.name),
       issues: detailIssues(sheet.issues, locations), summary: summarize(sheet, json), changes,
       version: describeVersion(lastGeneration), changelog: changelogOf(lastGeneration)
     })
     // the interface resets its state when receiving the sheet: a change that happened during the generation is told again
-    if (watcher && watcher.id === c.node.id && watcher.stale) figma.ui.postMessage({ type: 'perime', id: c.node.id })
-    if (baseRead.state === 'illisible') figma.ui.postMessage({ type: 'erreur', message: 'La dernière version enregistrée est illisible dans le fichier Figma. Le plugin repart de la version 1.0.0, sans toucher au changelog enregistré.' })
-    if (historyRead.state === 'illisible') figma.ui.postMessage({ type: 'erreur', message: 'Le changelog enregistré est illisible dans le fichier Figma. Le plugin ne le remplacera pas.' })
+    if (watcher && watcher.id === c.node.id && watcher.stale) post({ type: 'perime', id: c.node.id })
+    if (baseRead.state === 'illisible') post({ type: 'erreur', message: 'La dernière version enregistrée est illisible dans le fichier Figma. Le plugin repart de la version 1.0.0, sans toucher au changelog enregistré.' })
+    if (historyRead.state === 'illisible') post({ type: 'erreur', message: 'Le changelog enregistré est illisible dans le fichier Figma. Le plugin ne le remplacera pas.' })
   },
   'choisir-version': async (msg) => {
     const d = lastGeneration
@@ -2019,15 +2206,15 @@ const handlers = {
     d.chosen = chooseVersion(d.info, { keep: !!msg.keep, overhaul: !!msg.overhaul, sheetMd: !!msg.sheetMd })
     d.sheet.meta.version = d.chosen.version
     d.json = serialize(d.sheet)
-    figma.ui.postMessage({ type: 'version', id: d.id, json: d.json, version: describeVersion(d), changelog: changelogOf(d) })
+    post({ type: 'version', id: d.id, json: d.json, version: describeVersion(d), changelog: changelogOf(d) })
   },
   'selectionner': async (msg) => {
-    const nodes = []
+    const nodes: SceneNode[] = []
     for (const id of msg.ids || []) {
       const n = await figma.getNodeByIdAsync(id)
       if (n && n.type !== 'DOCUMENT' && n.type !== 'PAGE') nodes.push(n)
     }
-    if (!nodes.length) { figma.ui.postMessage({ type: 'erreur', message: 'Ces calques n\'existent plus. Générer de nouveau le JSON.' }); return }
+    if (!nodes.length) { post({ type: 'erreur', message: 'Ces calques n\'existent plus. Générer de nouveau le JSON.' }); return }
     const page = pageOf(nodes[0])
     if (page && page.id !== figma.currentPage.id) await figma.setCurrentPageAsync(page)
     const selected = nodes.filter((n) => pageOf(n) === page)
@@ -2058,7 +2245,7 @@ const handlers = {
       // Nothing to do: the preference will be written again at the next drag.
     }
     resizeWindow(WIDTH, lastSize.height)
-    figma.ui.postMessage({ type: 'recalculer-hauteur' })
+    post({ type: 'recalculer-hauteur' })
   },
   // An export (copy or download): the JSON becomes the comparison base in the component
   // set, so that all designers start from the same version. Nothing is written if another export
@@ -2067,32 +2254,33 @@ const handlers = {
     const d = lastGeneration
     if (!d || d.id !== msg.id) return
     if (watcher && watcher.id === d.id && watcher.stale) {
-      figma.ui.postMessage({ type: 'erreur', message: 'Le composant a changé depuis cette génération. Rien n\'a été enregistré : générer de nouveau le JSON, puis l\'exporter.' })
+      post({ type: 'erreur', message: 'Le composant a changé depuis cette génération. Rien n\'a été enregistré : générer de nouveau le JSON, puis l\'exporter.' })
       return
     }
     const node = await figma.getNodeByIdAsync(d.id)
+    if (!node) throw new Error('Le composant n\'existe plus. Générer de nouveau le JSON.')
     // the stored base must be the one of the generation, or the one that an export of this generation just wrote
-    const savedBase = readStored(node, BASE_KEY).text
+    const savedBase = readStored(node, BASE_KEY, isSheetLike).text
     if (savedBase !== d.baseText && savedBase !== d.written) {
-      figma.ui.postMessage({ type: 'erreur', message: 'Un autre export de ce composant a eu lieu depuis cette génération. Rien n\'a été enregistré : générer de nouveau le JSON, puis l\'exporter.' })
+      post({ type: 'erreur', message: 'Un autre export de ce composant a eu lieu depuis cette génération. Rien n\'a été enregistré : générer de nouveau le JSON, puis l\'exporter.' })
       return
     }
     const base = JSON.stringify(d.sheet)
     try {
       node.setSharedPluginData(BASE_NAMESPACE, BASE_KEY, base)
     } catch (e) {
-      figma.ui.postMessage({ type: 'erreur', message: 'La version ' + d.sheet.meta.version + ' n\'a pas pu être enregistrée dans le fichier Figma (' + Math.max(1, Math.round(byteSize(base) / 1024)) + ' Ko) : ' + ((e && e.message) || String(e)) + '. Le prochain export repartira de la version précédente.' })
+      post({ type: 'erreur', message: 'La version ' + d.sheet.meta.version + ' n\'a pas pu être enregistrée dans le fichier Figma (' + Math.max(1, Math.round(byteSize(base) / 1024)) + ' Ko) : ' + messageOf(e) + '. Le prochain export repartira de la version précédente.' })
       return
     }
     d.written = base
     if (d.unreadable) return
     // the changelog history and the previous version, with the date of the export
     const update = historyOf(d, todayDate())
-    const write = (key, text, what, consequence) => {
+    const write = (key: string, text: string, what: string, consequence: string): void => {
       try {
         node.setSharedPluginData(BASE_NAMESPACE, key, text)
       } catch (e) {
-        figma.ui.postMessage({ type: 'erreur', message: what + ' n\'a pas pu être enregistré dans le fichier Figma (' + Math.max(1, Math.round(byteSize(text) / 1024)) + ' Ko) : ' + ((e && e.message) || String(e)) + '. ' + consequence })
+        post({ type: 'erreur', message: what + ' n\'a pas pu être enregistré dans le fichier Figma (' + Math.max(1, Math.round(byteSize(text) / 1024)) + ' Ko) : ' + messageOf(e) + '. ' + consequence })
       }
     }
     write(CHANGELOG_KEY, JSON.stringify(update.history), 'L\'historique du changelog', 'Le prochain changelog repartira de l\'historique précédent.')
@@ -2100,12 +2288,44 @@ const handlers = {
   }
 }
 
-figma.ui.onmessage = async (msg) => {
-  const g = handlers[msg.type]
-  if (!g) return
-  try { await g(msg) } catch (e) { figma.ui.postMessage({ type: 'erreur', message: (e && e.message) || String(e) }) }
+// A message of unknown type is ignored; an error in a handler goes back to the interface.
+figma.ui.onmessage = async (msg: UiToPluginMessage) => {
+  try {
+    switch (msg.type) {
+      case 'ui-pret':
+        return await handlers['ui-pret'](msg)
+      case 'controler':
+        return await handlers.controler(msg)
+      case 'generer':
+        return await handlers.generer(msg)
+      case 'memoriser':
+        return await handlers.memoriser(msg)
+      case 'choisir-version':
+        return await handlers['choisir-version'](msg)
+      case 'selectionner':
+        return await handlers.selectionner(msg)
+      case 'redimensionner':
+        return await handlers.redimensionner(msg)
+      case 'redimensionner-manuel':
+        return await handlers['redimensionner-manuel'](msg)
+      case 'taille-auto':
+        return await handlers['taille-auto'](msg)
+      default: {
+        const unhandled: never = msg
+        return unhandled
+      }
+    }
+  } catch (e) {
+    post({ type: 'erreur', message: messageOf(e) })
+  }
 }
 sendSelection()
 
-// Access for the test (node test/test.js).
-var __test = { TEMPLATE_PAGES, readPropertyRules, SYNONYMS, RULES_URL, UNREADABLE_RULES_MESSAGE, concernsComponent, classifyChanges, changelogEntry, renderChangelog, computeHistory, readStored, createGitHubReader, GITHUB_LIMIT_MESSAGE, NO_FILE_MESSAGE, UNREACHABLE_MESSAGE, FIRST_VERSION, OVERHAUL, MD_SHEET, changeLevel, nextVersion, analyzeVersion, chooseVersion, computeTokensVersion, publishedPaths, requiredTokens, TOKENS_REPO, VERSION, FORMAT, ORDER, FIXED_VALUES, TRUE_FALSE_VARIANTS, PRIORITY, COPY_PREFIXES, withoutCopyPrefix, applicableTree, variantsPerIssue, issueSignature, extract, extractDetail, groupOverrides, stylesIssues, serialize, checkNomenclature, prepare, fileName, changelogName, readableLocation, compareSheets, locateIssues, summarize, matches, effectiveStyles, canonical }
+// Single access point from the test context (npm test): the functions and constants it calls directly.
+const testHooks = { TEMPLATE_PAGES, readPropertyRules, SYNONYMS, RULES_URL, UNREADABLE_RULES_MESSAGE, concernsComponent, classifyChanges, changelogEntry, renderChangelog, computeHistory, readStored, createGitHubReader, GITHUB_LIMIT_MESSAGE, NO_FILE_MESSAGE, UNREACHABLE_MESSAGE, FIRST_VERSION, OVERHAUL, MD_SHEET, changeLevel, nextVersion, analyzeVersion, chooseVersion, computeTokensVersion, publishedPaths, requiredTokens, TOKENS_REPO, VERSION, FORMAT, ORDER, FIXED_VALUES, TRUE_FALSE_VARIANTS, PRIORITY, COPY_PREFIXES, withoutCopyPrefix, applicableTree, variantsPerIssue, issueSignature, extract, extractDetail, groupOverrides, stylesIssues, serialize, checkNomenclature, prepare, fileName, changelogName, readableLocation, compareSheets, locateIssues, summarize, matches, effectiveStyles, canonical }
+
+declare global {
+  var __test: typeof testHooks
+}
+// Read by the tests through the vm context, never by Figma.
+globalThis.__test = testHooks

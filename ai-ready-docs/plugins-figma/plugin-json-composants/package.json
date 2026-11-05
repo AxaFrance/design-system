@@ -2,10 +2,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest run"
-  },
-  "prettier": {
-    "endOfLine": "auto"
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.code.json && tsc -p tsconfig.test.json",
+    "test": "npm run build && vitest run"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.142.0",

@@ -1,4 +1,4 @@
-// Runs code.js on a simulated Figma (figma-mock.js) and checks what comes out.
+// Runs dist/code.js (built from src/code.ts) on a simulated Figma (figma-mock.ts) and checks what comes out.
 // Each test prepares its own state. Only read-only preparations are shared
 // (the exported button, the frozen sheets, the generated scripts) and no test modifies them.
 // Run with: npm test
@@ -10,7 +10,7 @@ import path from 'node:path'
 import vm from 'node:vm'
 import { execFileSync, spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
-import { fakeClock, layer, connect, page, solid, alias, fakeNetwork, tokensFile, createFakePlugin, runBridge } from './figma-mock.js'
+import { fakeClock, layer, connect, page, solid, alias, fakeNetwork, tokensFile, createFakePlugin, runBridge, type MockData } from './figma-mock'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // The nomenclature and the outline live in the ai-ready-docs folder, two levels above the plugin folder.
@@ -21,14 +21,14 @@ const SCRIPTS = path.join(PLUGIN, 'scripts')
 const FIXTURES = path.join(__dirname, 'fixtures')
 
 // A shared preparation: computed at the first call, never modified afterwards.
-const memo = (fn) => {
-  let p
+const memo = (fn: MockData) => {
+  let p: MockData
   return () => p || (p = fn())
 }
 
 // Temporary folders, deleted at the end of the process.
-const folders = []
-const tempFolder = (prefix) => {
+const folders: string[] = []
+const tempFolder = (prefix: string) => {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), prefix + '-'))
   folders.push(d)
   return d
@@ -36,8 +36,8 @@ const tempFolder = (prefix) => {
 afterAll(() => { for (const d of folders) fs.rmSync(d, { recursive: true, force: true }) })
 
 // read back as JSON: the objects created in the vm context do not have the prototypes of the test
-const plain = (x) => JSON.parse(JSON.stringify(x))
-const key = (o) => JSON.stringify(o)
+const plain = (x: MockData) => JSON.parse(JSON.stringify(x))
+const key = (o: MockData) => JSON.stringify(o)
 
 // ------------------------------------------------------------ the fake button
 // Two variants (state default and hover), a bound color variable, raw
@@ -64,7 +64,7 @@ const badgeSource = { id: 'B:1', type: 'COMPONENT', name: 'tone=neutral', key: '
 // proposed in the preferred values of the swap, importable by key
 const avatarSet = { id: 'A:1', type: 'COMPONENT_SET', name: 'Avatar', key: 'KEY-AVATAR', remote: true, parent: null }
 
-const buttonChildren = (hover, name) => {
+const buttonChildren = (hover: boolean, name: string) => {
   const children = [
     layer('INSTANCE', 'left-icon', {
       id: 'LI:' + name,
@@ -88,7 +88,7 @@ const buttonChildren = (hover, name) => {
   return children
 }
 
-const buttonVariant = (name, x, y, hover) => layer('COMPONENT', name, {
+const buttonVariant = (name: string, x: number, y: number, hover: boolean) => layer('COMPONENT', name, {
   id: 'V:' + name, x, y, fills: [solid(0, 0, 0.56)], boundVariables: { fills: [alias(hover ? 'v-b8' : 'v-b7')], topLeftRadius: alias('v-r'), itemSpacing: alias('v-s') },
   strokes: hover ? [solid(0.8, 0.8, 0.8)] : [], strokeWeight: 1, strokeAlign: 'INSIDE',
   cornerRadius: 8, paddingTop: 12, paddingBottom: 12, paddingLeft: 16, paddingRight: 0, itemSpacing: 8,
@@ -126,7 +126,7 @@ const BUTTON_NETWORK = {
   }
 }
 
-const buttonDocument = () => {
+const buttonDocument = (): MockData => {
   const set = buttonSet()
   return {
     fileName: 'DS IA ready',
@@ -141,7 +141,7 @@ const buttonDocument = () => {
   }
 }
 
-const exportSheet = async (doc) => {
+const exportSheet = async (doc: MockData): Promise<MockData> => {
   const plugin = createFakePlugin(doc)
   const rawSheet = await plugin.__test.extract(doc.selection[0])
   const text = plugin.__test.serialize(rawSheet)
@@ -150,7 +150,7 @@ const exportSheet = async (doc) => {
 }
 
 // ------------------------------------------------------------ a component that deviates
-const deviationsDocument = () => {
+const deviationsDocument = (): MockData => {
   const set = connect(layer('COMPONENT_SET', 'BadButton', {
     id: 'S:200', key: 'KEY-BAD',
     componentPropertyDefinitions: {
@@ -176,15 +176,15 @@ const deviationsDocument = () => {
   return { fileName: 'Test', collections: [], variables: [], nodes: [iconSource, set], selection: [set] }
 }
 
-const rules = (sheet) => sheet.issues.map((i) => i.rule)
-const issuesFor = (sheet, rule, where) => sheet.issues.filter((i) => i.rule === rule && (where === undefined || i.where === where))
+const rules = (sheet: MockData) => sheet.issues.map((i: MockData) => i.rule)
+const issuesFor = (sheet: MockData, rule: string, where?: string) => sheet.issues.filter((i: MockData) => i.rule === rule && (where === undefined || i.where === where))
 
 // ------------------------------------------------------------ shared preparations, read only
 const button = memo(() => exportSheet(buttonDocument()))
 const deviations = memo(() => exportSheet(deviationsDocument()))
 const buttonDetail = memo(async () => (await button()).plugin.__test.extractDetail(buttonDocument().selection[0]))
 const deviationsDetail = memo(async () => (await button()).plugin.__test.extractDetail(deviationsDocument().selection[0]))
-const readJson = (name) => JSON.parse(fs.readFileSync(path.join(FIXTURES, name), 'utf8'))
+const readJson = (name: string) => JSON.parse(fs.readFileSync(path.join(FIXTURES, name), 'utf8'))
 // the export of Button in the 0.2 format, one override per variant, frozen on 2026-10-23
 const real02 = memo(() => readJson('button-format-0.2.json'))
 const real03 = memo(() => readJson('button-format-0.3.json'))
@@ -196,18 +196,18 @@ const realGrouping = memo(async () => {
   const real = real02()
   const previous = real.styles
   const axes = previous.precedence
-  const values = {}
+  const values: Record<string, MockData> = {}
   for (const a of axes) values[a] = real.api.props[a].enum
-  const withoutWhen = (st) => { const o = JSON.parse(key(st)); delete o.when; return o }
+  const withoutWhen = (st: MockData) => { const o = JSON.parse(key(st)); delete o.when; return o }
   const baseVariant = { cfg: previous.default.when, styles: withoutWhen(previous.default) }
-  const variants = [baseVariant].concat(previous.overrides.map((o) => ({ cfg: o.when, styles: effectiveStyles({ default: previous.default, overrides: [o] }, o.when) })))
+  const variants = [baseVariant].concat(previous.overrides.map((o: MockData) => ({ cfg: o.when, styles: effectiveStyles({ default: previous.default, overrides: [o] }, o.when) })))
   const grouped = groupOverrides(axes, values, variants, baseVariant)
   return { previous, baseVariant, variants, grouped }
 })
 
 // The JSON of the extraction, with the two versions that the plugin writes in it. The keys already exist
 // (as null): their order does not change.
-const withVersions = (sheet, version, tokensVersion) => {
+const withVersions = (sheet: MockData, version: string, tokensVersion: string) => {
   const f = JSON.parse(JSON.stringify(sheet))
   f.meta.version = version
   f.meta.tokensVersion = tokensVersion
@@ -215,12 +215,12 @@ const withVersions = (sheet, version, tokensVersion) => {
 }
 
 // The plugin opened on a document: ready, with the state that the test gives it.
-const openPlugin = async (doc = buttonDocument()) => {
+const openPlugin = async (doc: MockData = buttonDocument()): Promise<MockData> => {
   const p = createFakePlugin(doc)
   await p.send({ type: 'ui-pret' })
   return { doc, p }
 }
-const generate = async () => {
+const generate = async (): Promise<MockData> => {
   const { doc, p } = await openPlugin()
   await p.send({ type: 'generer' })
   return { doc, p, msg: p.lastMessage() }
@@ -233,7 +233,7 @@ const bridgeCode = memo(() => {
   execFileSync('node', [path.join(SCRIPTS, 'construire-bridge.mjs'), '--id', 'S:100', '--sortie', output], { stdio: 'pipe' })
   return fs.readFileSync(output, 'utf8')
 })
-const buildReturn = (options) => {
+const buildReturn = (options: string[]) => {
   const output = path.join(tempFolder('retour'), 'reconstruire.bridge.js')
   execFileSync('node', [path.join(SCRIPTS, 'construire-retour.mjs'), '--json', BUTTON_03, ...options, '--sortie', output], { stdio: 'pipe' })
   return fs.readFileSync(output, 'utf8')
@@ -271,7 +271,7 @@ describe('The fake button', () => {
     for (const c of ['role', 'description', 'platforms', 'states', 'interaction', 'rules', 'examples', 'invalidCombinations', '_doc_source', '_todo_ai', '_lint', '_collisions', 'runtime'])
       expect(!text.includes('"' + c + '"'), 'présent : ' + c).toBeTruthy()
     expect(!text.includes('Ne doit pas se retrouver')).toBeTruthy()
-    for (const p of Object.values(sheet.api.props)) expect(p.attribute).toBe(undefined)
+    for (const p of Object.values<MockData>(sheet.api.props)) expect(p.attribute).toBe(undefined)
   })
   it('Figma names kept: camelCase, without the #id suffix, nothing in kebab-case', async () => {
     const { sheet, text } = await button()
@@ -338,7 +338,7 @@ describe('The fake button', () => {
   it('the same issue repeated in several variants is reported once, with its count', async () => {
     const { sheet } = await button()
     const seen = new Set()
-    for (const i of sheet.issues.filter((x) => x.rule === 'valeur-brute')) {
+    for (const i of sheet.issues.filter((x: MockData) => x.rule === 'valeur-brute')) {
       const c = i.where + '|' + i.message
       expect(!seen.has(c), 'doublon : ' + c).toBeTruthy()
       seen.add(c)
@@ -378,7 +378,7 @@ describe('The fake button', () => {
     expect(sheet.structure.trees.length).toBe(2)
     expect(sheet.structure.trees[0].when).toStrictEqual({})
     expect(sheet.structure.trees[1].when).toStrictEqual({ state: 'hover' })
-    expect(sheet.structure.trees[0].tree.map((t) => t.name)).toStrictEqual(['left-icon', 'label', 'caption', 'badge'])
+    expect(sheet.structure.trees[0].tree.map((t: MockData) => t.name)).toStrictEqual(['left-icon', 'label', 'caption', 'badge'])
     expect(sheet.structure.trees[0].tree[0]).toStrictEqual({ name: 'left-icon', type: 'instance', component: 'account_balance' })
     expect(sheet.structure.trees[1].tree.slice(-1)[0]).toStrictEqual({ name: 'focus-ring', type: 'frame' })
     expect(sheet.structure.uses).toStrictEqual(['Badge', 'account_balance'])
@@ -419,9 +419,9 @@ describe('The fake button', () => {
   })
   it('a compliant component gets no nomenclature issue', async () => {
     const { sheet } = await button()
-    const e = sheet.issues.filter((i) => /^(prop|calque|composant)-/.test(i.rule) && i.rule !== 'prop-hors-nomenclature')
+    const e = sheet.issues.filter((i: MockData) => /^(prop|calque|composant)-/.test(i.rule) && i.rule !== 'prop-hors-nomenclature')
     expect(e).toStrictEqual([])
-    expect(!sheet.issues.some((i) => i.level === 'error')).toBeTruthy()
+    expect(!sheet.issues.some((i: MockData) => i.level === 'error')).toBeTruthy()
   })
   it('property with an underscore: info, not an error', async () => {
     const i = issuesFor((await button()).sheet, 'prop-hors-nomenclature', 'api.props._scrollable')
@@ -430,9 +430,9 @@ describe('The fake button', () => {
   })
   it('issues: a single list, sorted, without duplicates', async () => {
     const { sheet } = await button()
-    const sig = sheet.issues.map((i) => i.level + '|' + i.rule + '|' + i.where + '|' + i.message)
+    const sig = sheet.issues.map((i: MockData) => i.level + '|' + i.rule + '|' + i.where + '|' + i.message)
     expect(new Set(sig).size).toBe(sig.length)
-    const rank = { error: 0, warning: 1, info: 2 }
+    const rank: Record<string, number> = { error: 0, warning: 1, info: 2 }
     for (let k = 1; k < sheet.issues.length; k++) expect(rank[sheet.issues[k - 1].level] <= rank[sheet.issues[k].level]).toBeTruthy()
   })
   it('determinism: same file, same text', async () => {
@@ -450,12 +450,12 @@ describe('The fake button', () => {
     const fingerprint = crypto.createHash('sha256').update(withoutTool).digest('hex')
     const ref = readJson('sortie-reference.json')
     const version = plugin.__test.VERSION
-    if (fingerprint !== ref.empreinte && version === ref.version) expect.fail('La sortie du bouton simulé a changé sans que VERSION change. Monter VERSION dans code.js, puis mettre à jour test/fixtures/sortie-reference.json avec la nouvelle version et l\'empreinte ' + fingerprint + '.')
+    if (fingerprint !== ref.empreinte && version === ref.version) expect.fail('La sortie du bouton simulé a changé sans que VERSION change. Monter VERSION dans src/code.ts, puis mettre à jour test/fixtures/sortie-reference.json avec la nouvelle version et l\'empreinte ' + fingerprint + '.')
     expect(version === ref.version && fingerprint === ref.empreinte, 'test/fixtures/sortie-reference.json n\'est pas à jour. Y écrire { "version": "' + version + '", "empreinte": "' + fingerprint + '" }.').toBeTruthy()
   })
   it('occurrences: the number of variants where the issue appears, absent if none', async () => {
     const { plugin, sheet } = await button()
-    const occ = (where) => issuesFor(sheet, 'valeur-brute', where)[0].occurrences
+    const occ = (where: string) => issuesFor(sheet, 'valeur-brute', where)[0].occurrences
     expect(occ('styles.root.padding.top')).toBe(2)
     expect(occ('styles.left-icon.layout.width')).toBe(2)
     expect(occ('styles.root.stroke')).toBe(1)
@@ -467,13 +467,13 @@ describe('The fake button', () => {
 
 // ------------------------------------------------------------ the reads that fail
 describe('The reads that fail', () => {
-  const trap = (node, field) => Object.defineProperty(node, field, { get() { throw new Error('lecture refusée') }, configurable: true })
+  const trap = (node: MockData, field: PropertyKey) => Object.defineProperty(node, field, { get() { throw new Error('lecture refusée') }, configurable: true })
   const casing = memo(async () => {
     const doc = buttonDocument()
-    for (const v of doc.selection[0].children) trap(v.children.find((c) => c.name === 'caption'), 'fills')
+    for (const v of doc.selection[0].children) trap(v.children.find((c: MockData) => c.name === 'caption'), 'fills')
     const p = createFakePlugin(doc)
     const readVariable = p.figma.variables.getVariableByIdAsync
-    p.figma.variables.getVariableByIdAsync = async (id) => { if (id === 'v-r') throw new Error('variable illisible'); return readVariable(id) }
+    p.figma.variables.getVariableByIdAsync = async (id: string) => { if (id === 'v-r') throw new Error('variable illisible'); return readVariable(id) }
     return JSON.parse(p.__test.serialize(await p.__test.extract(doc.selection[0])))
   })
 
@@ -508,13 +508,13 @@ describe('The grouping of the overrides', () => {
     const { effectiveStyles, canonical } = plugin.__test
     const { previous, baseVariant, variants, grouped } = await realGrouping()
     expect(variants.length).toBe(50)
-    const norm = (st) => canonical(effectiveStyles({ default: st }, {}))
+    const norm = (st: MockData) => canonical(effectiveStyles({ default: st }, {}))
     for (const v of variants) expect(canonical(effectiveStyles({ default: baseVariant.styles, overrides: grouped }, v.cfg)), key(v.cfg)).toBe(norm(v.styles))
   })
   it('real Button: clearly fewer overrides, and the client theme carries its radius', async () => {
     const { grouped } = await realGrouping()
     expect(grouped.length < 30, 'surcharges : ' + grouped.length).toBeTruthy()
-    const client = grouped.find((o) => key(o.when) === '{"_theme":"client"}')
+    const client = grouped.find((o: MockData) => key(o.when) === '{"_theme":"client"}')
     expect(client).toBeTruthy()
     expect(JSON.parse(key(client.styles.root.radius))).toStrictEqual({ token: 'border/radius/8' })
   })
@@ -523,7 +523,7 @@ describe('The grouping of the overrides', () => {
     const { matches } = plugin.__test
     const { variants, grouped } = await realGrouping()
     for (const v of variants) {
-      const seen = {}
+      const seen: Record<string, MockData> = {}
       for (const o of grouped) {
         if (!matches(o.when, v.cfg)) continue
         for (const c of Object.keys(o.styles)) for (const f of Object.keys(o.styles[c])) {
@@ -587,9 +587,9 @@ describe('The grouping of the overrides', () => {
     const { plugin } = await button()
     const { effectiveStyles, variantsPerIssue, issueSignature } = plugin.__test
     const fb = real03()
-    const byVariant = fb.variants.map((v) => plain(effectiveStyles(fb.styles, v.values)))
+    const byVariant = fb.variants.map((v: MockData[]) => plain(effectiveStyles(fb.styles, v.values)))
     const n = variantsPerIssue(byVariant)
-    const i = fb.issues.find((x) => x.where === 'styles.root.layout.minWidth')
+    const i = fb.issues.find((x: MockData) => x.where === 'styles.root.layout.minWidth')
     expect(n.get(issueSignature(i))).toBe(50)
   })
   it('applicableTree: configs takes precedence over when, and only applies to its variants', async () => {
@@ -599,7 +599,7 @@ describe('The grouping of the overrides', () => {
       { when: { a: 'y' }, tree: 'C' },
       { when: {}, configs: [{ a: 'x', b: 'p' }, { a: 'y', b: 'q' }], tree: 'B' }
     ]
-    const tree = (cfg) => applicableTree(trees, cfg).tree
+    const tree = (cfg: MockData) => applicableTree(trees, cfg).tree
     expect(tree({ a: 'x', b: 'p' })).toBe('B')
     expect(tree({ a: 'y', b: 'q' })).toBe('B')
     expect(tree({ b: 'p', a: 'x' })).toBe('B')
@@ -619,14 +619,14 @@ describe('The grouping of the overrides', () => {
   })
   const propertiesPage = () => fs.readFileSync(path.join(DOCS, 'regles', '03-proprietes.md'), 'utf8')
   // The plugin opened with a given Properties page, read on the fake network.
-  const openWithRules = async (options) => {
+  const openWithRules = async (options: MockData) => {
     const doc = buttonDocument()
     doc.network = fakeNetwork({ ...BUTTON_NETWORK, ...options })
     const p = createFakePlugin(doc)
     await p.send({ type: 'ui-pret' })
-    return { doc, p, banners: p.messages.filter((m) => m.type === 'regles').map((m) => m.warning) }
+    return { doc, p, banners: p.messages.filter((m: MockData) => m.type === 'regles').map((m: MockData) => m.warning) }
   }
-  const replaceText = (text, before, after) => {
+  const replaceText = (text: string, before: string, after: string) => {
     expect(text.includes(before), 'texte absent de la page : ' + before).toBeTruthy()
     return text.replace(before, after)
   }
@@ -634,7 +634,7 @@ describe('The grouping of the overrides', () => {
     const t = (await button()).plugin.__test
     return plain({ order: t.ORDER, fixed: t.FIXED_VALUES, trueFalse: t.TRUE_FALSE_VARIANTS, synonyms: t.SYNONYMS })
   }
-  const activeRules = (p) => plain({ order: p.__test.ORDER, fixed: p.__test.FIXED_VALUES, trueFalse: p.__test.TRUE_FALSE_VARIANTS, synonyms: p.__test.SYNONYMS })
+  const activeRules = (p: MockData) => plain({ order: p.__test.ORDER, fixed: p.__test.FIXED_VALUES, trueFalse: p.__test.TRUE_FALSE_VARIANTS, synonyms: p.__test.SYNONYMS })
   it('nomenclature: the constants of code.js follow the tables of 03-proprietes.md', async () => {
     const { ORDER, FIXED_VALUES, TRUE_FALSE_VARIANTS, SYNONYMS, PRIORITY, readPropertyRules } = (await button()).plugin.__test
     const rules = plain(readPropertyRules(propertiesPage()))
@@ -648,7 +648,7 @@ describe('The grouping of the overrides', () => {
     const { doc, p, banners } = await openWithRules({ rules: propertiesPage() })
     await p.send({ type: 'ui-pret' })
     expect(banners).toStrictEqual([])
-    expect(doc.network.calls.filter((u) => u === 'https://raw.githubusercontent.com/AxaFrance/design-system/ai-ready-docs/ai-ready-docs/regles/03-proprietes.md').length).toBe(1)
+    expect(doc.network.calls.filter((u: string) => u === 'https://raw.githubusercontent.com/AxaFrance/design-system/ai-ready-docs/ai-ready-docs/regles/03-proprietes.md').length).toBe(1)
     expect(activeRules(p)).toStrictEqual(await embeddedCopy())
   })
   it('rules: the first check follows an imposed value changed in the doc', async () => {
@@ -656,13 +656,13 @@ describe('The grouping of the overrides', () => {
     const { p, banners } = await openWithRules({ rules: page })
     await p.send({ type: 'controler' })
     expect(banners).toStrictEqual([])
-    expect(p.lastMessage().issues.some((i) => i.rule === 'prop-valeurs' && i.where === 'api.props.hierarchy' && i.message.includes('secondary'))).toBeTruthy()
+    expect(p.lastMessage().issues.some((i: MockData) => i.rule === 'prop-valeurs' && i.where === 'api.props.hierarchy' && i.message.includes('secondary'))).toBeTruthy()
   })
   it('rules: the check follows a name to avoid added in the doc', async () => {
     const page = replaceText(propertiesPage(), '| theme | _theme |', '| theme | _theme |\n| hierarchy | importance |')
     const { p } = await openWithRules({ rules: page })
     await p.send({ type: 'controler' })
-    expect(p.lastMessage().issues.some((i) => i.rule === 'prop-synonyme' && i.where === 'api.props.hierarchy' && i.message.includes('importance'))).toBeTruthy()
+    expect(p.lastMessage().issues.some((i: MockData) => i.rule === 'prop-synonyme' && i.where === 'api.props.hierarchy' && i.message.includes('importance'))).toBeTruthy()
   })
   it('rules: a new property of the doc takes its place and its values', async () => {
     const page = replaceText(propertiesPage(), '| show* | Booléen |', '| density | Variante | compact, comfortable | La densité. | Non |\n| show* | Booléen |')
@@ -699,8 +699,8 @@ describe('The grouping of the overrides', () => {
     const ready = p.send({ type: 'ui-pret' })
     await clock.advance(3000)
     await ready
-    expect(p.messages.filter((m) => m.type === 'regles').map((m) => m.warning)).toStrictEqual([p.__test.UNREADABLE_RULES_MESSAGE])
-    expect(p.messages.some((m) => m.type === 'selection')).toBeTruthy()
+    expect(p.messages.filter((m: MockData) => m.type === 'regles').map((m: MockData) => m.warning)).toStrictEqual([p.__test.UNREADABLE_RULES_MESSAGE])
+    expect(p.messages.some((m: MockData) => m.type === 'selection')).toBeTruthy()
   })
   it('tokens: a published file with the new typography prefix is recognized', async () => {
     const { publishedPaths } = (await button()).plugin.__test
@@ -713,7 +713,7 @@ describe('The grouping of the overrides', () => {
       ring: { layout: { absolute: true, x: -2, y: -2, constraints: { horizontal: 'stretch', vertical: 'stretch' }, sizingH: 'fixed', width: { raw: 40 }, sizingV: 'fixed', height: { raw: 40 } } },
       barre: { layout: { absolute: true, x: 0, y: 0, constraints: { horizontal: 'stretch', vertical: 'top' }, width: { raw: 40 }, height: { raw: 8 } } }
     } }
-    const where = Array.from(stylesIssues(styles).map((i) => i.where)).sort()
+    const where = Array.from(stylesIssues(styles).map((i: MockData) => i.where)).sort()
     expect(where).toStrictEqual(['styles.barre.layout.height', 'styles.icon.layout.height', 'styles.icon.layout.width'])
   })
   it('order of the properties: at equal rank, the position of the driven layer comes before the creation order', async () => {
@@ -726,7 +726,7 @@ describe('The grouping of the overrides', () => {
       'showLeftIcon#2:1': { type: 'BOOLEAN', defaultValue: false }
     }
     connect(v)
-    expect(plain((await button()).plugin.__test.prepare(v).props.map((p) => p.name))).toStrictEqual(['showLeftIcon', 'showRightIcon'])
+    expect(plain((await button()).plugin.__test.prepare(v).props.map((p: MockData) => p.name))).toStrictEqual(['showLeftIcon', 'showRightIcon'])
   })
 })
 
@@ -742,7 +742,7 @@ describe('A component that deviates from the nomenclature', () => {
   }
   it('properties: camelCase, is, show, disabled, synonyms, values, state', async () => {
     const { sheet } = await deviations()
-    const where = (rule, where) => issuesFor(sheet, rule, where).length
+    const where = (rule: string, where: string) => issuesFor(sheet, rule, where).length
     expect(where('prop-nom', 'api.props.Size')).toBe(1)
     expect(where('prop-prefixe', 'api.props.isSelected')).toBe(1)
     expect(where('prop-booleen', 'api.props.isSelected')).toBe(0)
@@ -761,7 +761,7 @@ describe('A component that deviates from the nomenclature', () => {
   })
   it('layers: default name, prefix, text named by its content, frames, casing, instance', async () => {
     const { sheet } = await deviations()
-    const where = (rule, where) => issuesFor(sheet, rule, where).length
+    const where = (rule: string, where: string) => issuesFor(sheet, rule, where).length
     expect(where('calque-defaut', 'calque Frame 27')).toBe(1)
     expect(where('calque-prefixe', 'calque bad-button-label')).toBe(1)
     expect(where('calque-texte', 'calque Votre devis en 2 minutes')).toBe(1)
@@ -770,7 +770,7 @@ describe('A component that deviates from the nomenclature', () => {
     expect(where('calque-instance', 'calque account_balance')).toBe(1)
   })
   it('no deviation is reported as an error', async () => {
-    expect(!(await deviations()).sheet.issues.some((i) => i.level === 'error')).toBeTruthy()
+    expect(!(await deviations()).sheet.issues.some((i: MockData) => i.level === 'error')).toBeTruthy()
   })
 })
 
@@ -778,9 +778,9 @@ describe('A component that deviates from the nomenclature', () => {
 describe('The plugin, through messages', () => {
   it('opening: version, and selection brought back to the variant set', async () => {
     const { p } = await openPlugin()
-    const init = p.messages.find((m) => m.type === 'init')
+    const init = p.messages.find((m: MockData) => m.type === 'init')
     expect(init.version).toBe(p.__test.VERSION)
-    const sel = p.messages.filter((m) => m.type === 'selection').pop()
+    const sel = p.messages.filter((m: MockData) => m.type === 'selection').pop()
     expect({ name: sel.name, variants: sel.variants, properties: sel.properties }).toStrictEqual({ name: 'Button', variants: 2, properties: 6 })
     expect(sel.latestVersion, 'jamais exporté : aucune version enregistrée').toBe(null)
   })
@@ -788,7 +788,7 @@ describe('The plugin, through messages', () => {
     const { p, msg } = await generate()
     await p.send({ type: 'memoriser', id: msg.id })
     await p.send({ type: 'ui-pret' })
-    const sel = p.messages.filter((m) => m.type === 'selection').pop()
+    const sel = p.messages.filter((m: MockData) => m.type === 'selection').pop()
     expect(sel.latestVersion).toBe('1.0.0')
   })
   it('check: returns the nomenclature issues, not the raw values', async () => {
@@ -796,7 +796,7 @@ describe('The plugin, through messages', () => {
     await p.send({ type: 'controler' })
     const c = p.lastMessage()
     expect(c.type).toBe('controle')
-    expect(c.issues.every((i) => /^(prop|calque|composant|texte)-/.test(i.rule))).toBeTruthy()
+    expect(c.issues.every((i: MockData) => /^(prop|calque|composant|texte)-/.test(i.rule))).toBeTruthy()
   })
   it('generation: the JSON, with its version and that of the tokens, and the file name in lowercase', async () => {
     const { sheet } = await button()
@@ -840,7 +840,7 @@ describe('The À corriger list', () => {
   })
   it('location: the raw width of the icon carries the ids of the icons, in each variant', async () => {
     const detail = await buttonDetail()
-    const locationsOf = (where) => plain(detail.locations[detail.sheet.issues.findIndex((i) => i.where === where)])
+    const locationsOf = (where: string) => plain(detail.locations[detail.sheet.issues.findIndex((i: MockData) => i.where === where)])
     const l = locationsOf('styles.left-icon.layout.width')
     expect(plain(l.ids).sort()).toStrictEqual(['LI:state=default, hierarchy=primary', 'LI:state=hover, hierarchy=primary'])
     expect(l.variants).toBe(2)
@@ -848,7 +848,7 @@ describe('The À corriger list', () => {
   })
   it('location: a text without a style, an issue specific to a variant, the variables without a node', async () => {
     const detail = await buttonDetail()
-    const locationsOf = (where) => plain(detail.locations[detail.sheet.issues.findIndex((i) => i.where === where)])
+    const locationsOf = (where: string) => plain(detail.locations[detail.sheet.issues.findIndex((i: MockData) => i.where === where)])
     expect([...locationsOf('styles.caption').ids].sort()).toStrictEqual(['CA:state=default, hierarchy=primary', 'CA:state=hover, hierarchy=primary'])
     expect(locationsOf('styles.root.stroke')).toStrictEqual({ ids: ['V:state=hover, hierarchy=primary'], variants: 1 })
     expect(locationsOf('tokens.color/blue/700')).toStrictEqual({ ids: [], variants: 0 })
@@ -856,7 +856,7 @@ describe('The À corriger list', () => {
   })
   it('location: nomenclature, the component or all the layers of that name', async () => {
     const detail = await deviationsDetail()
-    const i = (where) => plain(detail.locations[detail.sheet.issues.findIndex((x) => x.where === where)])
+    const i = (where: string) => plain(detail.locations[detail.sheet.issues.findIndex((x: MockData) => x.where === where)])
     expect(i('calque Frame 27')).toStrictEqual({ ids: ['F:27'], variants: 1 })
     expect(i('api.props.Size')).toStrictEqual({ ids: ['S:200'], variants: 0 })
   })
@@ -876,7 +876,7 @@ describe('The À corriger list', () => {
   it('generation: readable issues, summary, no changes at the first export', async () => {
     const { sheet } = await button()
     const { msg } = await generate()
-    const i = msg.issues.find((x) => x.where === 'styles.left-icon.layout.width')
+    const i = msg.issues.find((x: MockData) => x.where === 'styles.left-icon.layout.width')
     expect(i.location).toBe('left-icon, largeur')
     expect(i.ids.length).toBe(2)
     expect(i.variants).toBe(2)
@@ -897,13 +897,13 @@ describe('The À corriger list', () => {
 
 // ------------------------------------------------------------ the selection from an issue
 describe('The selection from an issue', () => {
-  const iconsOf = (msg) => msg.issues.find((x) => x.where === 'styles.left-icon.layout.width').ids
+  const iconsOf = (msg: MockData) => msg.issues.find((x: MockData) => x.where === 'styles.left-icon.layout.width').ids
 
   it('selectionner: the nodes are selected and brought on screen', async () => {
     const { p, msg } = await generate()
     const icons = iconsOf(msg)
     await p.send({ type: 'selectionner', ids: icons, id: 'S:100' })
-    expect(p.figma.currentPage.selection.map((n) => n.id)).toStrictEqual(icons)
+    expect(p.figma.currentPage.selection.map((n: MockData) => n.id)).toStrictEqual(icons)
     expect(p.selections.length).toBe(1)
   })
   it('the name sent to the interface is that of the JSON, without the working copy prefix', async () => {
@@ -911,7 +911,7 @@ describe('The selection from an issue', () => {
     const variantSet = doc.selection[0]
     variantSet.name = 'Test/Button'
     const { p } = await openPlugin(doc)
-    const sel = p.messages.filter((m) => m.type === 'selection').pop()
+    const sel = p.messages.filter((m: MockData) => m.type === 'selection').pop()
     expect(sel.name).toBe('Button')
     expect(p.__test.withoutCopyPrefix('Test/Button')).toBe('Button')
   })
@@ -919,7 +919,7 @@ describe('The selection from an issue', () => {
     const { p, msg } = await generate()
     await p.send({ type: 'selectionner', ids: iconsOf(msg), id: 'S:100' })
     await p.send({ type: 'ui-pret' })
-    const sel = p.messages.filter((m) => m.type === 'selection').pop()
+    const sel = p.messages.filter((m: MockData) => m.type === 'selection').pop()
     expect(sel.id).toBe('S:100')
     expect(sel.name).toBe('Button')
   })
@@ -933,7 +933,7 @@ describe('The selection from an issue', () => {
     await p.send({ type: 'ui-pret' })
     p.figma.currentPage.selection = [await p.figma.getNodeByIdAsync(icons[0])]
     await p.send({ type: 'ui-pret' })
-    const sel = p.messages.filter((m) => m.type === 'selection').pop()
+    const sel = p.messages.filter((m: MockData) => m.type === 'selection').pop()
     expect(sel.id).not.toBe('S:100')
   })
   it('selectionner: vanished nodes give a message, not an exception', async () => {
@@ -1015,7 +1015,7 @@ describe('The comparison of two sheets', () => {
   it('properties, variants, structure and issues', async () => {
     const { compareSheets } = (await button()).plugin.__test
     const b = plain(real03())
-    b.api.props.state.enum = b.api.props.state.enum.filter((v) => v !== 'press')
+    b.api.props.state.enum = b.api.props.state.enum.filter((v: string) => v !== 'press')
     b.api.props.state.default = 'hover'
     b.api.props.nouvelle = { type: 'boolean', default: false }
     delete b.api.props.disabled
@@ -1027,16 +1027,16 @@ describe('The comparison of two sheets', () => {
     expect(r.includes('Propriété retirée : disabled')).toBeTruthy()
     expect(r.includes('Propriété state, valeurs retirées : press')).toBeTruthy()
     expect(r.includes('Propriété state, valeur par défaut : default → hover')).toBeTruthy()
-    expect(r.some((x) => /^Variante retirée : state=default, disabled=false/.test(x))).toBeTruthy()
+    expect(r.some((x: string) => /^Variante retirée : state=default, disabled=false/.test(x))).toBeTruthy()
     expect(r.includes('Structure des calques modifiée')).toBeTruthy()
     expect(r.includes('Défauts : 1 → 0')).toBeTruthy()
   })
   it('paddings grouped, without « Racine », and the size of a stretched absolute layer ignored', async () => {
     const { compareSheets } = (await button()).plugin.__test
-    const variant = (size, theme) => ({ values: { state: 'focus', size: size, _theme: theme }, position: [0, 0] })
-    const pad = (h, v) => ({ top: { token: v }, right: { token: h }, bottom: { token: v }, left: { token: h } })
-    const ring = (w) => ({ layout: { absolute: true, x: -5, y: -5, constraints: { horizontal: 'stretch', vertical: 'stretch' }, sizingH: 'fixed', width: { raw: w } } })
-    const sheet = (pp, pc, wp, wc) => ({
+    const variant = (size: string, theme: string) => ({ values: { state: 'focus', size: size, _theme: theme }, position: [0, 0] })
+    const pad = (h: string, v: string) => ({ top: { token: v }, right: { token: h }, bottom: { token: v }, left: { token: h } })
+    const ring = (w: number) => ({ layout: { absolute: true, x: -5, y: -5, constraints: { horizontal: 'stretch', vertical: 'stretch' }, sizingH: 'fixed', width: { raw: w } } })
+    const sheet = (pp: MockData, pc: MockData, wp: number, wc: number) => ({
       variants: [variant('medium', 'prospect'), variant('medium', 'client'), variant('large', 'prospect'), variant('large', 'client')],
       styles: {
         default: { when: { state: 'focus', size: 'large', _theme: 'prospect' }, root: { padding: pad('spacing/24', 'spacing/12') }, 'focus-ring': ring(101) },
@@ -1055,8 +1055,8 @@ describe('The comparison of two sheets', () => {
   })
   it('beyond 20 sentences: the first 20, then the remaining count', async () => {
     const { compareSheets } = (await button()).plugin.__test
-    const fa = { structure: { slots: {} } }
-    const fb = { structure: { slots: {} } }
+    const fa: MockData = { structure: { slots: {} } }
+    const fb: MockData = { structure: { slots: {} } }
     for (let k = 0; k < 25; k++) { fa.structure.slots['s' + k] = { default: { text: 'a' } }; fb.structure.slots['s' + k] = { default: { text: 'b' } } }
     const r = compareSheets(fa, fb)
     expect(r.length).toBe(21)
@@ -1096,7 +1096,7 @@ describe('The window', () => {
     await p.send({ type: 'taille-auto' })
     expect(p.clientStorage.taille).toBe(undefined)
     expect(p.resizes[p.resizes.length - 1]).toStrictEqual([440, 1200])
-    expect(p.messages.slice(before).some((m) => m.type === 'recalculer-hauteur')).toBeTruthy()
+    expect(p.messages.slice(before).some((m: MockData) => m.type === 'recalculer-hauteur')).toBeTruthy()
   })
   it('automatic height resumed after taille-auto', async () => {
     const p = await inManual()
@@ -1120,24 +1120,24 @@ describe('The interface', () => {
   it('the script of ui.html compiles', () => {
     const m = html().match(/<script>([\s\S]*)<\/script>/)
     expect(m, 'script absent').toBeTruthy()
-    new vm.Script(m[1])
+    new vm.Script(m![1])
   })
   it('escapeHtml also protects quotes, since it fills attributes', () => {
     const m = html().match(/const escapeHtml = .*/)
     expect(m, 'escapeHtml absent').toBeTruthy()
-    const escapeHtml = new Function(m[0] + '; return escapeHtml')()
+    const escapeHtml = new Function(m![0] + '; return escapeHtml')()
     expect(escapeHtml('a & <b> "c" \'d\'')).toBe('a &amp; &lt;b&gt; &quot;c&quot; &#39;d&#39;')
   })
 
   // A fake DOM: one element per id of the HTML, with what the script reads and writes.
-  function fakeInterface(onSend) {
+  function fakeInterface(onSend?: MockData): MockData {
     const source = html()
-    const elements = {}
-    const sent = []
+    const elements: Record<string, MockData> = {}
+    const sent: MockData[] = []
     const selection = { target: null }
-    const downloads = []
-    const copies = []
-    const makeElement = (id, attrs) => {
+    const downloads: MockData[] = []
+    const copies: MockData[] = []
+    const makeElement = (id: string, attrs: string): MockData => {
       const classes = new Set(((/class="([^"]*)"/.exec(attrs) || [])[1] || '').split(' ').filter(Boolean))
       const attributes = new Set()
       if (/\bhidden\b/.test(attrs.replace(/(class|title|aria-label|d|points)="[^"]*"/g, ''))) attributes.add('hidden')
@@ -1152,36 +1152,36 @@ describe('The interface', () => {
         set textContent(v) { text = String(v); markup = '' },
         get innerHTML() { return markup || text },
         set innerHTML(v) { markup = String(v); text = '' },
-        classList: { contains: (c) => classes.has(c), add: (c) => classes.add(c), remove: (c) => classes.delete(c), toggle: (c, force) => { if (force === undefined ? !classes.has(c) : force) classes.add(c); else classes.delete(c) } },
-        setAttribute(n, v) { if (n === 'hidden') this.hidden = true },
-        toggleAttribute(n, force) { if (n === 'hidden') this.hidden = force },
+        classList: { contains: (c: string) => classes.has(c), add: (c: string) => classes.add(c), remove: (c: string) => classes.delete(c), toggle: (c: string, force?: boolean) => { if (force === undefined ? !classes.has(c) : force) classes.add(c); else classes.delete(c) } },
+        setAttribute(n: string, v: MockData) { if (n === 'hidden') this.hidden = true },
+        toggleAttribute(n: string, force: boolean) { if (n === 'hidden') this.hidden = force },
         addEventListener() {}, setPointerCapture() {}, releasePointerCapture() {}, hasPointerCapture: () => false,
         focus() {}, select() {}, closest: () => null
       }
       return el
     }
     for (const m of source.matchAll(/<(\w+)([^>]*?)\bid="([^"]+)"([^>]*)>/g)) elements[m[3]] = makeElement(m[3], m[2] + ' ' + m[4])
-    const context = {
+    const context: MockData = {
       document: {
-        getElementById: (id) => elements[id], body: { classList: { add() {}, remove() {} }, appendChild() {}, removeChild() {} }, createElement: () => { const a = makeElement('a', ''); a.click = () => downloads.push({ name: a.download, href: a.href }); return a }, execCommand: () => false,
-        createRange: () => ({ selectNodeContents(el) { this.el = el } }),
-        getSelection: () => ({ removeAllRanges() { selection.target = null }, addRange(r) { selection.target = r.el } })
+        getElementById: (id: string) => elements[id], body: { classList: { add() {}, remove() {} }, appendChild() {}, removeChild() {} }, createElement: () => { const a = makeElement('a', ''); a.click = () => downloads.push({ name: a.download, href: a.href }); return a }, execCommand: () => false,
+        createRange: () => ({ selectNodeContents(this: MockData, el: MockData) { this.el = el } }),
+        getSelection: () => ({ removeAllRanges() { selection.target = null }, addRange(r: MockData) { selection.target = r.el } })
       },
-      parent: { postMessage: (m) => { sent.push(m.pluginMessage); if (onSend) onSend(m.pluginMessage) } },
-      navigator: { clipboard: { writeText: async (t) => { copies.push(t) } } }, URL: { createObjectURL: (b) => 'blob:' + b.size + ':' + b.type, revokeObjectURL() {} }, Blob, Date, setTimeout, console
+      parent: { postMessage: (m: MockData) => { sent.push(m.pluginMessage); if (onSend) onSend(m.pluginMessage) } },
+      navigator: { clipboard: { writeText: async (t: MockData) => { copies.push(t) } } }, URL: { createObjectURL: (b: MockData) => 'blob:' + b.size + ':' + b.type, revokeObjectURL() {} }, Blob, Date, setTimeout, console
     }
     vm.createContext(context)
-    new vm.Script(source.match(/<script>([\s\S]*)<\/script>/)[1]).runInContext(context)
-    const receive = (m) => context.onmessage({ data: { pluginMessage: m } })
+    new vm.Script(source.match(/<script>([\s\S]*)<\/script>/)![1]).runInContext(context)
+    const receive = (m: MockData) => context.onmessage({ data: { pluginMessage: m } })
     return { el: elements, sent, receive, source, selection, downloads, copies }
   }
   const selection = { type: 'selection', id: '1:2', name: 'Button', variants: 60, properties: 8 }
-  const versionOf = (v) => Object.assign({ first: false, none: false, current: '1.0.0', version: '1.1.0', level: 'mineure', detected: 'mineure', tokensVersion: '2.0.0', next: '1.1.0' }, v)
-  const answers = (ui, answer) => { ui.el['livree-' + answer].checked = true; ui.el['livree-' + answer].onchange() }
+  const versionOf = (v: MockData) => Object.assign({ first: false, none: false, current: '1.0.0', version: '1.1.0', level: 'mineure', detected: 'mineure', tokensVersion: '2.0.0', next: '1.1.0' }, v)
+  const answers = (ui: MockData, answer: string) => { ui.el['livree-' + answer].checked = true; ui.el['livree-' + answer].onchange() }
   // The fake DOM does not read the data-* attributes, the test gives the tab name itself.
-  const openTab = (ui, name) => { ui.el['onglet-' + name].dataset.onglet = name; ui.el.onglets.onclick({ target: { closest: () => ui.el['onglet-' + name] } }) }
-  const sheetWith = (v) => ({ type: 'fiche', id: '1:2', json: '{}', file: 'button.json', changelogFile: 'button-changelog.md', version: versionOf(v), summary: { variables: 1, overrides: 2, kb: 3 }, changes: { sentences: ['Une propriété a été ajoutée', 'Une valeur a changé'] }, issues: [] })
-  const generated = (v) => { const ui = fakeInterface(); ui.receive(selection); ui.receive(sheetWith(v)); return ui }
+  const openTab = (ui: MockData, name: string) => { ui.el['onglet-' + name].dataset.onglet = name; ui.el.onglets.onclick({ target: { closest: () => ui.el['onglet-' + name] } }) }
+  const sheetWith = (v: MockData) => ({ type: 'fiche', id: '1:2', json: '{}', file: 'button.json', changelogFile: 'button-changelog.md', version: versionOf(v), summary: { variables: 1, overrides: 2, kb: 3 }, changes: { sentences: ['Une propriété a été ajoutée', 'Une valeur a changé'] }, issues: [] })
+  const generated = (v: MockData) => { const ui = fakeInterface(); ui.receive(selection); ui.receive(sheetWith(v)); return ui }
   const ISSUE = { level: 'warning', rule: 'valeur-brute', where: 'styles.a.gap', message: 'Valeur brute.', ids: [] }
 
   it('there is no longer a header or a Version block', () => {
@@ -1327,7 +1327,7 @@ describe('The interface', () => {
     answers(ui, 'non')
     expect(ui.el.refonte.checked).toBe(false)
     expect(ui.el['case-refonte'].hidden).toBe(true)
-    expect(plain(ui.sent.filter((m) => m.type === 'choisir-version').pop())).toStrictEqual({ type: 'choisir-version', id: '1:2', keep: true, overhaul: false, sheetMd: false })
+    expect(plain(ui.sent.filter((m: MockData) => m.type === 'choisir-version').pop())).toStrictEqual({ type: 'choisir-version', id: '1:2', keep: true, overhaul: false, sheetMd: false })
     ui.receive({ type: 'version', id: '1:2', json: '{}', version: versionOf({ version: '1.0.0', level: null, kept: true }) })
     expect(ui.el.etiquette.innerHTML).toBe('<span class="etiquette etiquette-neutre">VERSION GARDÉE</span>')
     expect(ui.el['val-version'].textContent).toBe('1.0.0')
@@ -1426,7 +1426,7 @@ describe('The interface', () => {
     expect(ui.el['tuile-version'].hidden).toBe(true)
   })
   it('each level has its tag and its color', () => {
-    const scenario = [
+    const scenario: MockData[] = [
       [{ version: '2.0.0', level: 'majeure' }, 'MAJEURE', 'etiquette-supprime'],
       [{ version: '1.1.0', level: 'mineure' }, 'MINEURE', 'etiquette-modifie'],
       [{ version: '1.0.1', level: 'correctif' }, 'PATCH', 'etiquette-ajoute'],
@@ -1459,7 +1459,7 @@ describe('The interface', () => {
     const { source } = fakeInterface()
     expect(source).toMatch(/<div class="cases" id="cases" hidden>\s*<label class="case" id="case-refonte">[^\n]*<\/label>\s*<label class="case" id="case-fichemd" hidden>[^\n]*<\/label>\s*<\/div>\s*<\/div>/)
     expect(source).toMatch(/#question-livree, \.cases \{ display: flex; flex-direction: column;/)
-    const i = (id) => source.indexOf('id="' + id + '"')
+    const i = (id: string) => source.indexOf('id="' + id + '"')
     expect(i('tuile-tokens') < i('question') && i('question') < i('question-livree') && i('question-livree') < i('question-aucun') && i('question-aucun') < i('filet') && i('filet') < i('cases')).toBeTruthy()
   })
   it('the checkboxes announce the version they give, and « Aucun changement » opens the box when nothing changed', () => {
@@ -1529,7 +1529,7 @@ describe('The interface', () => {
     answers(ui, 'oui')
     ui.el.refonte.checked = true
     ui.el.refonte.onchange()
-    expect(plain(ui.sent.filter((m) => m.type === 'choisir-version'))).toStrictEqual([{ type: 'choisir-version', id: '1:2', keep: false, overhaul: false, sheetMd: false }, { type: 'choisir-version', id: '1:2', keep: false, overhaul: true, sheetMd: false }])
+    expect(plain(ui.sent.filter((m: MockData) => m.type === 'choisir-version'))).toStrictEqual([{ type: 'choisir-version', id: '1:2', keep: false, overhaul: false, sheetMd: false }, { type: 'choisir-version', id: '1:2', keep: false, overhaul: true, sheetMd: false }])
     ui.receive({ type: 'version', id: '1:2', json: '{"x":1}', version: versionOf({ version: '2.0.0', level: 'majeure' }) })
     expect(ui.el.nom.textContent).toBe('Button')
     expect(ui.el.etiquette.innerHTML).toBe('<span class="etiquette etiquette-supprime">MAJEURE</span>')
@@ -1599,9 +1599,9 @@ describe('The interface', () => {
     ui.sent.length = 0
     ui.el.generer.onclick()
     await new Promise((r) => setTimeout(r, 450))
-    expect(ui.downloads.map((t) => t.name)).toStrictEqual(['button.json'])
+    expect(ui.downloads.map((t: MockData) => t.name)).toStrictEqual(['button.json'])
     expect(ui.el.succes.textContent).toBe('JSON téléchargé.')
-    expect(ui.sent.map((m) => m.type).filter((t) => t !== 'redimensionner')).toStrictEqual(['memoriser'])
+    expect(ui.sent.map((m: MockData) => m.type).filter((t: MockData) => t !== 'redimensionner')).toStrictEqual(['memoriser'])
   })
   it('in the Changelog tab, the bottom button downloads the changelog of the component alone, without storing', () => {
     const ui = fakeInterface()
@@ -1611,10 +1611,10 @@ describe('The interface', () => {
     ui.sent.length = 0
     openTab(ui, 'changelog')
     ui.el.generer.onclick()
-    expect(ui.downloads.map((t) => t.name)).toStrictEqual(['button-changelog.md'])
+    expect(ui.downloads.map((t: MockData) => t.name)).toStrictEqual(['button-changelog.md'])
     expect(ui.downloads[0].href).toMatch(/text\/markdown/)
     expect(ui.el.succes.textContent).toBe('Changelog téléchargé.')
-    expect(ui.sent.map((m) => m.type).filter((t) => t !== 'redimensionner')).toStrictEqual([])
+    expect(ui.sent.map((m: MockData) => m.type).filter((t: MockData) => t !== 'redimensionner')).toStrictEqual([])
   })
   it('the bottom buttons act on the file of the open tab, and the plugin is called « Canopée, composants »', () => {
     const ui = fakeInterface()
@@ -1640,13 +1640,13 @@ describe('The interface', () => {
     ui.sent.length = 0
     await ui.el.copier.onclick()
     expect(ui.copies).toStrictEqual(['{}'])
-    expect(ui.sent.map((m) => m.type).filter((t) => t !== 'redimensionner')).toStrictEqual(['memoriser'])
+    expect(ui.sent.map((m: MockData) => m.type).filter((t: MockData) => t !== 'redimensionner')).toStrictEqual(['memoriser'])
     ui.sent.length = 0
     openTab(ui, 'changelog')
     await ui.el.copier.onclick()
     expect(ui.copies).toStrictEqual(['{}', '# Changelog de Button\n'])
     expect(ui.el.succes.textContent).toBe('Changelog copié.')
-    expect(ui.sent.map((m) => m.type).filter((t) => t !== 'redimensionner')).toStrictEqual([])
+    expect(ui.sent.map((m: MockData) => m.type).filter((t: MockData) => t !== 'redimensionner')).toStrictEqual([])
   })
   it('a new component clears the tag and hides the Version and Design tokens tiles, the rule and the checkboxes', () => {
     const ui = generated({})
@@ -1662,7 +1662,7 @@ describe('The interface', () => {
   // ---------------------------------------------------------- a component modified after the generation
   // The real ui.html plugged into the real code.js, with a fake page that emits nodechange.
   const release = async () => { for (let i = 0; i < 5; i++) await new Promise((r) => setImmediate(r)) }
-  async function attach() {
+  async function attach(): Promise<MockData> {
     const doc = buttonDocument()
     const set = doc.nodes[1]
     const pg = page('Composants')
@@ -1670,23 +1670,23 @@ describe('The interface', () => {
     const other = connect(layer('COMPONENT_SET', 'Autre', { id: 'S:200', componentPropertyDefinitions: {} }, [layer('COMPONENT', 'state=a', { id: 'V:a' })]), pg)
     doc.nodes.push(other)
     doc.clock = fakeClock()
-    let ui = null
+    let ui: MockData = null
     let plugin = null
-    doc.onMessage = (m) => { if (ui) ui.receive(m) }
+    doc.onMessage = (m: MockData) => { if (ui) ui.receive(m) }
     plugin = createFakePlugin(doc)
-    ui = fakeInterface((m) => { if (plugin) plugin.send(m) })
+    ui = fakeInterface((m: MockData) => { if (plugin) plugin.send(m) })
     await plugin.send({ type: 'ui-pret' })
     await release()
     const variant = set.children[1]
     const textLayer = variant.children[1]
-    const click = async (id) => { ui.el[id].onclick(); await release() }
+    const click = async (id: string) => { ui.el[id].onclick(); await release() }
     return { doc, set, pg, other, ui, p: plugin, clock: doc.clock, variant, textLayer, click }
   }
   const attachAndGenerate = async () => { const b = await attach(); await b.click('generer'); return b }
-  const change = (id, extra = {}) => ({ type: 'PROPERTY_CHANGE', origin: 'LOCAL', id, node: { id }, properties: ['fills'], ...extra })
-  const event = (...changes) => ({ nodeChanges: changes })
-  const isStale = (ui) => !ui.el.perime.hidden
-  const staleCount = (p) => p.messages.filter((m) => m.type === 'perime').length
+  const change = (id: string, extra = {}) => ({ type: 'PROPERTY_CHANGE', origin: 'LOCAL', id, node: { id }, properties: ['fills'], ...extra })
+  const event = (...changes: MockData[]) => ({ nodeChanges: changes })
+  const isStale = (ui: MockData) => !ui.el.perime.hidden
+  const staleCount = (p: MockData) => p.messages.filter((m: MockData) => m.type === 'perime').length
 
   it('a modified layer of the component: banner, copy disabled, the main button regenerates', async () => {
     const { ui, pg, textLayer } = await attachAndGenerate()
@@ -1709,7 +1709,7 @@ describe('The interface', () => {
     await ui.el.generer.onclick()
     await release()
     expect(ui.downloads.length).toBe(0)
-    expect(p.messages.filter((m) => m.type === 'memoriser').length).toBe(0)
+    expect(p.messages.filter((m: MockData) => m.type === 'memoriser').length).toBe(0)
   })
   it('after a new generation, the banner disappears and the export comes back', async () => {
     const { ui, pg, click, textLayer } = await attachAndGenerate()
@@ -1741,9 +1741,9 @@ describe('The interface', () => {
   })
   it('a deleted layer, a created layer and an instance layer make the JSON stale', async () => {
     const scenario = {
-      deleted: (b) => ({ type: 'DELETE', id: b.textLayer.id, node: { id: b.textLayer.id, removed: true, get parent() { throw new Error('nœud supprimé') } } }),
-      created: (b) => ({ type: 'CREATE', id: 'N:1', node: { id: 'N:1', parent: b.variant } }),
-      'd\'instance': (b) => ({ type: 'PROPERTY_CHANGE', id: 'I' + b.variant.children[0].id + ';55:1', node: { id: 'I' + b.variant.children[0].id + ';55:1' }, properties: ['fills'] })
+      deleted: (b: MockData) => ({ type: 'DELETE', id: b.textLayer.id, node: { id: b.textLayer.id, removed: true, get parent() { throw new Error('nœud supprimé') } } }),
+      created: (b: MockData) => ({ type: 'CREATE', id: 'N:1', node: { id: 'N:1', parent: b.variant } }),
+      'd\'instance': (b: MockData) => ({ type: 'PROPERTY_CHANGE', id: 'I' + b.variant.children[0].id + ';55:1', node: { id: 'I' + b.variant.children[0].id + ';55:1' }, properties: ['fills'] })
     }
     for (const [name, factory] of Object.entries(scenario)) {
       const b = await attachAndGenerate()
@@ -1760,7 +1760,7 @@ describe('The interface', () => {
     const b = await attach()
     const read = b.p.figma.variables.getVariableByIdAsync
     let done = false
-    b.p.figma.variables.getVariableByIdAsync = async (id) => {
+    b.p.figma.variables.getVariableByIdAsync = async (id: string) => {
       if (!done) { done = true; b.pg.trigger(event(change(b.textLayer.id))) }
       return read(id)
     }
@@ -1799,9 +1799,9 @@ describe('The interface', () => {
   })
   it('exporting a stale JSON is refused, without writing anything in the file', async () => {
     const { pg, p, set, textLayer } = await attachAndGenerate()
-    const written = []
+    const written: MockData[] = []
     const write = set.setSharedPluginData
-    set.setSharedPluginData = (...args) => { written.push(args); return write(...args) }
+    set.setSharedPluginData = (...args: MockData) => { written.push(args); return write(...args) }
     pg.trigger(event(change(textLayer.id)))
     await p.send({ type: 'memoriser', id: set.id })
     expect(plain(p.lastMessage())).toStrictEqual({ type: 'erreur', message: 'Le composant a changé depuis cette génération. Rien n\'a été enregistré : générer de nouveau le JSON, puis l\'exporter.' })
@@ -1811,11 +1811,11 @@ describe('The interface', () => {
     const { p, set, ui, click } = await attachAndGenerate()
     const written = []
     const write = set.setSharedPluginData
-    set.setSharedPluginData = (...args) => { written.push(args); return write(...args) }
+    set.setSharedPluginData = (...args: MockData) => { written.push(args); return write(...args) }
     await click('generer')
     expect(written.length > 0).toBeTruthy()
     expect(!isStale(ui)).toBeTruthy()
-    expect(p.messages.filter((m) => m.type === 'erreur').length).toBe(0)
+    expect(p.messages.filter((m: MockData) => m.type === 'erreur').length).toBe(0)
   })
   it('a rename and an added variant update the card, without clearing the displayed error', async () => {
     const b = await attachAndGenerate()
@@ -1838,9 +1838,9 @@ describe('The interface', () => {
     const b = await attachAndGenerate()
     for (let i = 0; i < 5; i++) b.pg.trigger(event(change(b.textLayer.id)))
     expect(b.clock.pending()).toBe(1)
-    const before = b.p.messages.filter((m) => m.type === 'carte').length
+    const before = b.p.messages.filter((m: MockData) => m.type === 'carte').length
     b.clock.advance()
-    expect(b.p.messages.filter((m) => m.type === 'carte').length).toBe(before + 1)
+    expect(b.p.messages.filter((m: MockData) => m.type === 'carte').length).toBe(before + 1)
   })
   it('a rename done before the generation shows in the card', async () => {
     const b = await attach()
@@ -1924,7 +1924,7 @@ describe('The rebuild', () => {
     ])
     const report = JSON.parse(await runBridge({ fileKey: DEFAULT_FILE, pages: [p] }, buildReturn(['--etape', 'supprimer'])))
     expect(report.supprimes).toStrictEqual(['COMPONENT_SET Retour/Button', 'COMPONENT state=default', 'COMPONENT state=hover'])
-    expect(p.children.map((n) => n.type + ' ' + n.name + ' ' + n.getPluginData('marque'))).toStrictEqual([
+    expect(p.children.map((n: MockData) => n.type + ' ' + n.name + ' ' + n.getPluginData('marque'))).toStrictEqual([
       'COMPONENT state=default retour-tag',
       'COMPONENT state=default ',
       'COMPONENT_SET Button retour-button',
@@ -1949,12 +1949,12 @@ describe('The extraction context', () => {
 // ------------------------------------------------------------ the templates
 describe('A template, recognized by its page in the library', () => {
   const TEMPLATE_LEVELS = [['Templates - Blocks', 'block', 'Template de bloc.'], ['Templates - Sections', 'section', 'Template de section.'], ['Templates - Pages', 'page', 'Template de page.']]
-  const inPage = (pageName, fields = {}) => {
+  const inPage = (pageName: string, fields = {}) => {
     const d = deviationsDocument()
     Object.assign(d.selection[0], { name: 'Loader', parent: { type: 'FRAME', name: 'Loader', parent: { type: 'PAGE', name: pageName } } }, fields)
     return d
   }
-  const templateIssues = (sheet) => sheet.issues.filter((i) => i.where === 'meta.templateLevel')
+  const templateIssues = (sheet: MockData) => sheet.issues.filter((i: MockData) => i.where === 'meta.templateLevel')
 
   for (const [pageName, level, mention] of TEMPLATE_LEVELS) {
     it(pageName + ' : niveau ' + level + ', sans défaut quand la description commence par la mention', async () => {
@@ -1985,7 +1985,7 @@ describe('A template, recognized by its page in the library', () => {
   it('a description without a mention is reported, and the level stays written', async () => {
     const { sheet } = await exportSheet(inPage('Templates - Sections', { description: 'Le Header assemble un logo et un menu.' }))
     expect(sheet.meta.templateLevel).toBe('section')
-    expect(templateIssues(sheet).map((i) => [i.level, i.rule, i.message])).toStrictEqual([['warning', 'template-description', 'La description de ce template doit commencer par « Template de section. ».']])
+    expect(templateIssues(sheet).map((i: MockData) => [i.level, i.rule, i.message])).toStrictEqual([['warning', 'template-description', 'La description de ce template doit commencer par « Template de section. ».']])
   })
   it('a mention placed further in the description does not count', async () => {
     const { sheet } = await exportSheet(inPage('Templates - Blocks', { description: 'Le Loader. Template de bloc.' }))
@@ -2000,7 +2000,7 @@ describe('A template, recognized by its page in the library', () => {
     const { sheet } = await exportSheet(inPage('Feedback', { description: 'Template de section. Un en-tête.' }))
     expect(!('templateLevel' in sheet.meta)).toBeTruthy()
     expect(sheet.meta.type).toBe('atom')
-    expect(templateIssues(sheet).map((i) => [i.rule, i.message])).toStrictEqual([['template-page', 'Cette description annonce un template : ranger le composant dans la page Templates - Sections.']])
+    expect(templateIssues(sheet).map((i: MockData) => [i.rule, i.message])).toStrictEqual([['template-page', 'Cette description annonce un template : ranger le composant dans la page Templates - Sections.']])
   })
   it('an ordinary component has neither a level nor a template issue', async () => {
     const { sheet } = await exportSheet(inPage('Actions', { name: 'Button', description: 'Le Button déclenche une action.' }))
@@ -2022,7 +2022,7 @@ describe('A template, recognized by its page in the library', () => {
     const { plugin } = await exportSheet(d)
     expect(plugin.__test.readableLocation('meta.templateLevel')).toBe('Template')
     const detail = await plugin.__test.extractDetail(d.selection[0])
-    const rank = detail.sheet.issues.findIndex((i) => i.rule === 'template-description')
+    const rank = detail.sheet.issues.findIndex((i: MockData) => i.rule === 'template-description')
     expect(plain(detail.locations[rank].ids)).toStrictEqual(['S:200'])
   })
   it('changing the level gives a patch and a changelog line', async () => {
@@ -2030,11 +2030,11 @@ describe('A template, recognized by its page in the library', () => {
     const previous = { meta: { name: 'Header', templateLevel: 'block' } }
     const next = { meta: { name: 'Header', templateLevel: 'section' } }
     expect(plugin.__test.changeLevel(previous, next)).toBe('correctif')
-    expect(plain(plugin.__test.classifyChanges(previous, next)).some((c) => c.category === 'modifie' && c.text === 'Niveau de template : block → section')).toBeTruthy()
+    expect(plain(plugin.__test.classifyChanges(previous, next)).some((c: MockData) => c.category === 'modifie' && c.text === 'Niveau de template : block → section')).toBeTruthy()
   })
   it('the pages and mentions of code.js follow 02-composants.md', async () => {
     const { TEMPLATE_PAGES } = (await button()).plugin.__test
-    expect(plain(TEMPLATE_PAGES).map((t) => [t.page, t.level, t.mention])).toStrictEqual(TEMPLATE_LEVELS)
+    expect(plain(TEMPLATE_PAGES).map((t: MockData) => [t.page, t.level, t.mention])).toStrictEqual(TEMPLATE_LEVELS)
     const doc = fs.readFileSync(path.join(DOCS, 'regles', '02-composants.md'), 'utf8')
     for (const t of TEMPLATE_PAGES) {
       expect(doc.includes(t.page), t.page + ' absent de 02-composants.md').toBeTruthy()
@@ -2060,7 +2060,7 @@ describe('verifier-fiche.mjs', () => {
   }
   const TOKENS = 'Utilise les design tokens de Canopée 2.0.0 ou d\'une version plus récente.'
   const DECISION = '- **1.1.0 - 04/11/26.** Le libellé reste sur une seule ligne.'
-  const sheet = (o = {}) => [
+  const sheet = (o: MockData = {}) => [
     o.title || '# Button 1.2.0', '',
     o.tokens === undefined ? TOKENS : o.tokens, '',
     '## Règles selon les propriétés', '',
@@ -2077,7 +2077,7 @@ describe('verifier-fiche.mjs', () => {
   ].join('\n')
 
   // the sheet and its outline in a temporary folder, then the script run on them
-  const check = (md, meta = {}) => {
+  const check = (md: MockData, meta = {}) => {
     const d = tempFolder('verifier-fiche')
     fs.copyFileSync(OUTLINE, path.join(d, 'trame-fiche-composant.md'))
     fs.mkdirSync(path.join(d, 'button'))
@@ -2299,27 +2299,27 @@ describe('The version level and the lines of the changelog', () => {
   const tools = async () => (await button()).plugin.__test
   const copy = () => plain(real03())
   // the text lines (the style groups have no text), with their category
-  const lines = async (a, b) => plain((await tools()).classifyChanges(a, b)).filter((c) => c.title === undefined).map((c) => c.category + ' : ' + c.text)
+  const lines = async (a: MockData, b: MockData) => plain((await tools()).classifyChanges(a, b)).filter((c: MockData) => c.title === undefined).map((c: MockData) => c.category + ' : ' + c.text)
 
   it('invariant: when the level is not null, the changelog has at least one line', async () => {
     const { changeLevel, changelogEntry } = await tools()
     const modifications = {
-      'valeur de propriété ajoutée': (b) => b.api.props.hierarchy.enum.push('quaternary'),
-      'valeurs de propriété dans un autre ordre': (b) => b.api.props.hierarchy.enum.reverse(),
-      'type de propriété changé': (b) => { b.api.props.disabled.type = 'boolean' },
-      'propriété rebranchée': (b) => { b.api.props.disabled.controls = [{ layer: 'autre', attribute: 'visible' }] },
-      'slot rebranché': (b) => { b.structure.slots.label.as = 'title' },
-      'variantes dans un autre ordre': (b) => b.variants.reverse(),
-      'variante retirée': (b) => { b.variants = b.variants.slice(1) },
-      'style de texte ajouté': (b) => { b.textStyles['label/2/semibold'] = { library: null, key: 'k' } },
-      'composant imbriqué retiré': (b) => { delete b.components.account_balance },
-      'collection de modes ajoutée': (b) => { b.modeCollections.Theme = { library: null, key: 'k' } },
-      'lien de documentation': (b) => { b.meta.documentationLinks = ['https://exemple.test/autre'] },
-      'composant renommé': (b) => { b.meta.name = 'Bouton' },
-      'style d\'une variante': (b) => { b.styles.default.root.background = { token: 'color/blue/800' } },
-      'calques': (b) => { b.structure.trees[0].tree.pop() },
-      'champ racine inconnu': (b) => { b.champInconnu = { nouveau: true } },
-      'champ inconnu dans meta': (b) => { b.meta.champInconnu = 'x' }
+      'valeur de propriété ajoutée': (b: MockData) => b.api.props.hierarchy.enum.push('quaternary'),
+      'valeurs de propriété dans un autre ordre': (b: MockData) => b.api.props.hierarchy.enum.reverse(),
+      'type de propriété changé': (b: MockData) => { b.api.props.disabled.type = 'boolean' },
+      'propriété rebranchée': (b: MockData) => { b.api.props.disabled.controls = [{ layer: 'autre', attribute: 'visible' }] },
+      'slot rebranché': (b: MockData) => { b.structure.slots.label.as = 'title' },
+      'variantes dans un autre ordre': (b: MockData) => b.variants.reverse(),
+      'variante retirée': (b: MockData) => { b.variants = b.variants.slice(1) },
+      'style de texte ajouté': (b: MockData) => { b.textStyles['label/2/semibold'] = { library: null, key: 'k' } },
+      'composant imbriqué retiré': (b: MockData) => { delete b.components.account_balance },
+      'collection de modes ajoutée': (b: MockData) => { b.modeCollections.Theme = { library: null, key: 'k' } },
+      'lien de documentation': (b: MockData) => { b.meta.documentationLinks = ['https://exemple.test/autre'] },
+      'composant renommé': (b: MockData) => { b.meta.name = 'Bouton' },
+      'style d\'une variante': (b: MockData) => { b.styles.default.root.background = { token: 'color/blue/800' } },
+      'calques': (b: MockData) => { b.structure.trees[0].tree.pop() },
+      'champ racine inconnu': (b: MockData) => { b.champInconnu = { nouveau: true } },
+      'champ inconnu dans meta': (b: MockData) => { b.meta.champInconnu = 'x' }
     }
     expect(Object.keys(modifications).length >= 10).toBeTruthy()
     for (const [name, modify] of Object.entries(modifications)) {
@@ -2340,7 +2340,7 @@ describe('The version level and the lines of the changelog', () => {
     const meta = copy(); meta.meta.library = 'Autre librairie'; meta.meta.figmaKey = 'autre-cle'
     const index = copy()
     for (const field of ['tokens', 'textStyles', 'components', 'modeCollections']) {
-      for (const entry of Object.values(index[field])) { entry.key = 'autre-' + entry.key; entry.library = 'Autre librairie' }
+      for (const entry of Object.values<MockData>(index[field])) { entry.key = 'autre-' + entry.key; entry.library = 'Autre librairie' }
     }
     const readToken = copy(); readToken.tokens['color/blue/700'].key = 'autre'; readToken.tokens['color/blue/700'].library = 'Autre'
     for (const b of [meta, index, readToken]) expect(changeLevel(real03(), b)).toBe(null)
@@ -2348,7 +2348,7 @@ describe('The version level and the lines of the changelog', () => {
   it('two groupings of the same effective styles: null level, and a real style change is seen', async () => {
     const { changeLevel } = await tools()
     const variants = [{ values: { size: 'a' } }, { values: { size: 'b' } }]
-    const sheet = (styles) => ({ variants, styles })
+    const sheet = (styles: MockData) => ({ variants, styles })
     const onA = sheet({ default: { when: { size: 'a' }, root: { background: { token: 'x' } } }, overrides: [{ when: { size: 'b' }, styles: { root: { background: { token: 'y' } } } }] })
     const onB = sheet({ default: { when: { size: 'b' }, root: { background: { token: 'y' } } }, overrides: [{ when: { size: 'a' }, styles: { root: { background: { token: 'x' } } } }] })
     expect(changeLevel(onA, onB)).toBe(null)
@@ -2379,7 +2379,7 @@ describe('The version level and the lines of the changelog', () => {
     const b = copy(); b.variants.reverse()
     expect(await lines(real03(), b)).toStrictEqual(['modifie : Ordre des variantes modifié'])
     const removed = copy(); removed.variants = removed.variants.slice(1)
-    expect(!(await lines(real03(), removed)).some((l) => /Ordre des variantes/.test(l)), 'une variante retirée ne change pas l\'ordre des autres').toBeTruthy()
+    expect(!(await lines(real03(), removed)).some((l: string) => /Ordre des variantes/.test(l)), 'une variante retirée ne change pas l\'ordre des autres').toBeTruthy()
   })
   it('text styles, nested components and mode collections: additions and removals, singular and plural', async () => {
     const one = copy()
@@ -2421,23 +2421,23 @@ describe('The version level and the lines of the changelog', () => {
     const { classifyChanges } = await tools()
     const b = copy(); b.champInconnu = 1
     expect(await lines(real03(), b)).toStrictEqual(['modifie : Autre changement dans le JSON'])
-    expect(plain(classifyChanges(null, b)).filter((c) => c.text === 'Autre changement dans le JSON'), 'première version : pas de filet').toStrictEqual([])
+    expect(plain(classifyChanges(null, b)).filter((c: MockData) => c.text === 'Autre changement dans le JSON'), 'première version : pas de filet').toStrictEqual([])
     const withUnknown = copy(); withUnknown.champInconnu = 1; withUnknown.meta.name = 'Bouton'
-    expect(!(await lines(real03(), withUnknown)).some((l) => /Autre changement/.test(l)), 'une autre ligne dispense du filet').toBeTruthy()
-    const excluded = copy(); excluded.issues = []; excluded.variants.forEach((v) => { v.position = [0, 0] })
-    expect(!(await lines(real03(), excluded)).some((l) => /Autre changement/.test(l)), 'ce qui ne compte pas ne déclenche pas le filet').toBeTruthy()
+    expect(!(await lines(real03(), withUnknown)).some((l: string) => /Autre changement/.test(l)), 'une autre ligne dispense du filet').toBeTruthy()
+    const excluded = copy(); excluded.issues = []; excluded.variants.forEach((v: MockData) => { v.position = [0, 0] })
+    expect(!(await lines(real03(), excluded)).some((l: string) => /Autre changement/.test(l)), 'ce qui ne compte pas ne déclenche pas le filet').toBeTruthy()
   })
 })
 
 describe('The design tokens version', () => {
   const tools = async () => (await button()).plugin.__test
   // a reader that serves the tokens files provided, in disorder, and counts the reads
-  const reader = (tags, files) => {
-    const readOnes = []
+  const reader = (tags: string[], files: MockData) => {
+    const readOnes: MockData[] = []
     return {
       readOnes,
       versions: async () => tags,
-      paths: async (tag) => { readOnes.push(tag); return new Set(files[tag]) }
+      paths: async (tag: string) => { readOnes.push(tag); return new Set(files[tag]) }
     }
   }
   const inputs = { tokens: { 'color/blue/700': {}, 'spacing/16': {} }, textStyles: { 'label/1/semibold': {} } }
@@ -2449,7 +2449,7 @@ describe('The design tokens version', () => {
   })
   it('requiredTokens: color/blue/700 gives color.blue.700, a text style lives under typography', async () => {
     const { requiredTokens } = await tools()
-    expect(plain(requiredTokens(inputs.tokens, inputs.textStyles).map((r) => r.path))).toStrictEqual(['color.blue.700', 'spacing.16', 'typography.label.1.semibold'])
+    expect(plain(requiredTokens(inputs.tokens, inputs.textStyles).map((r: MockData) => r.path))).toStrictEqual(['color.blue.700', 'spacing.16', 'typography.label.1.semibold'])
   })
   it('the first version that contains all the tokens, text styles included', async () => {
     const { computeTokensVersion } = await tools()
@@ -2490,7 +2490,7 @@ describe('The design tokens version', () => {
     const l = reader(['2.1.0', '2.0.0'], { '2.0.0': ['color.blue.700', 'spacing.16'], '2.1.0': ['spacing.16', 'typography.label.1.semibold'] })
     const r = plain(await computeTokensVersion(inputs, l))
     expect(r.version).toBe(null)
-    expect(r.issues.map((i) => i.rule)).toStrictEqual(['tokens-sans-version-commune'])
+    expect(r.issues.map((i: MockData) => i.rule)).toStrictEqual(['tokens-sans-version-commune'])
   })
   it('GitHub does not answer: tokens-injoignables issue, version null', async () => {
     const { computeTokensVersion } = await tools()
@@ -2517,14 +2517,14 @@ describe('The design tokens version', () => {
     await p.send({ type: 'ui-pret' })
     await p.send({ type: 'generer' })
     await p.send({ type: 'generer' })
-    const files = doc.network.calls.filter((u) => u.startsWith('https://raw.githubusercontent.com/') && u.endsWith('.resolver.json'))
-    expect(files.map((u) => u.split('/')[5]), 'chaque fichier est lu une fois pour la session').toStrictEqual(['2.0.0', '2.1.0'])
-    expect(doc.network.calls.filter((u) => u.startsWith('https://api.github.com/')).length, 'la liste des versions est gardée pour la session').toBe(1)
-    expect(doc.network.calls.every((u) => /^https:\/\/(api\.github\.com|raw\.githubusercontent\.com)\//.test(u))).toBeTruthy()
+    const files = doc.network.calls.filter((u: string) => u.startsWith('https://raw.githubusercontent.com/') && u.endsWith('.resolver.json'))
+    expect(files.map((u: string) => u.split('/')[5]), 'chaque fichier est lu une fois pour la session').toStrictEqual(['2.0.0', '2.1.0'])
+    expect(doc.network.calls.filter((u: string) => u.startsWith('https://api.github.com/')).length, 'la liste des versions est gardée pour la session').toBe(1)
+    expect(doc.network.calls.every((u: string) => /^https:\/\/(api\.github\.com|raw\.githubusercontent\.com)\//.test(u))).toBeTruthy()
   })
   // the real GitHub reader, on a fake network, with a timeout of a few milliseconds
   const ALL = ['color.blue.700', 'spacing.16', 'typography.label.1.semibold']
-  const readerOverNetwork = async (network, timeout = 1000) => {
+  const readerOverNetwork = async (network: MockData, timeout = 1000) => {
     const doc = buttonDocument()
     doc.network = network
     const p = createFakePlugin(doc)
@@ -2534,7 +2534,7 @@ describe('The design tokens version', () => {
     const { computeTokensVersion } = await tools()
     const l = await readerOverNetwork(fakeNetwork({ tags: ['2.1.0', '2.0.0'], files: { '2.1.0': tokensFile(ALL) } }))
     expect(plain(await computeTokensVersion(inputs, l))).toStrictEqual({ version: '2.1.0', issues: [] })
-    const l2 = { versions: async () => ['2.0.0', '2.1.0'], paths: async (tag) => { if (tag === '2.0.0') throw Object.assign(new Error('GitHub 404'), { status: 404 }); return new Set(ALL) } }
+    const l2 = { versions: async () => ['2.0.0', '2.1.0'], paths: async (tag: string) => { if (tag === '2.0.0') throw Object.assign(new Error('GitHub 404'), { status: 404 }); return new Set(ALL) } }
     expect(plain(await computeTokensVersion(inputs, l2))).toStrictEqual({ version: '2.1.0', issues: [] })
   })
   it('all tags answer 404: tokens-sans-fichier issue', async () => {
@@ -2562,7 +2562,7 @@ describe('The design tokens version', () => {
     const mute = await readerOverNetwork(fakeNetwork({ mute: true }), 20)
     const r = plain(await computeTokensVersion(inputs, mute))
     expect(r.version).toBe(null)
-    expect(r.issues.map((i) => i.rule)).toStrictEqual(['tokens-injoignables'])
+    expect(r.issues.map((i: MockData) => i.rule)).toStrictEqual(['tokens-injoignables'])
     expect(Date.now() - start < 2000, 'le délai coupe l\'attente').toBeTruthy()
   })
   it('the bridge script calls no network', () => {
@@ -2578,13 +2578,13 @@ describe('The design tokens version', () => {
 
 describe('The version in the plugin', () => {
   const NS = 'canopee_fiches'
-  const variantSet = (doc) => doc.nodes[1]
+  const variantSet = (doc: MockData) => doc.nodes[1]
   const generatedPlugin = async (doc = buttonDocument()) => {
     const { p } = await openPlugin(doc)
     await p.send({ type: 'generer' })
     return { doc, p, msg: p.lastMessage() }
   }
-  const exported = async (doc) => {
+  const exported = async (doc?: MockData) => {
     const r = await generatedPlugin(doc)
     await r.p.send({ type: 'memoriser', id: 'S:100' })
     return r
@@ -2722,9 +2722,9 @@ describe('The version in the plugin', () => {
     const doc = buttonDocument()
     variantSet(doc).setSharedPluginData(NS, 'export', '{pas du json')
     const { p } = await generatedPlugin(doc)
-    const msg = p.messages.find((m) => m.type === 'fiche')
+    const msg = p.messages.find((m: MockData) => m.type === 'fiche')
     expect(msg.version.first).toBe(true)
-    expect(p.messages.filter((m) => m.type === 'selection').pop().latestVersion, 'aucune version affichée pour une base illisible').toBe(null)
+    expect(p.messages.filter((m: MockData) => m.type === 'selection').pop().latestVersion, 'aucune version affichée pour une base illisible').toBe(null)
   })
   it('base write refused (size): the error shows, neither the history nor the previous version are written', async () => {
     const doc = buttonDocument()
@@ -2744,7 +2744,7 @@ describe('The version in the plugin', () => {
     const { msg } = await generatedPlugin(doc)
     expect(JSON.parse(msg.json).meta.tokensVersion).toBe(null)
     expect(msg.version.tokensVersion).toBe(null)
-    const i = msg.issues.find((x) => x.rule === 'tokens-injoignables')
+    const i = msg.issues.find((x: MockData) => x.rule === 'tokens-injoignables')
     expect(i.level).toBe('warning')
     expect(i.message).toBe('GitHub ne répond pas : la version des design tokens n\'a pas pu être calculée.')
     expect(i.location).toBe('Version des design tokens')
@@ -2754,7 +2754,7 @@ describe('The version in the plugin', () => {
     doc.network = fakeNetwork({ tags: ['2.0.0'], files: { '2.0.0': tokensFile(BUTTON_PATHS.filter((c) => c !== 'radius.medium')) } })
     const { msg } = await generatedPlugin(doc)
     expect(JSON.parse(msg.json).meta.tokensVersion).toBe(null)
-    const i = msg.issues.find((x) => x.rule === 'token-non-publie')
+    const i = msg.issues.find((x: MockData) => x.rule === 'token-non-publie')
     expect(i.message).toBe('Token absent de toutes les versions publiées de Canopée : radius/medium.')
     expect(i.location).toBe('Variable radius/medium')
   })
@@ -2773,7 +2773,7 @@ describe('The version in the plugin', () => {
 // ------------------------------------------------------------ the changelog
 describe('The changelog: the content of an entry', () => {
   const tools = async () => (await button()).plugin.__test
-  const slots = (text) => ({ structure: { slots: { label: { default: { text: text } } } } })
+  const slots = (text: string) => ({ structure: { slots: { label: { default: { text: text } } } } })
 
   it('classification: added, modified, removed', async () => {
     const { changelogEntry } = await tools()
@@ -2802,7 +2802,7 @@ describe('The changelog: the content of an entry', () => {
   })
   it('variants added and removed, including the « N variantes » form', async () => {
     const { changelogEntry } = await tools()
-    const v = (n) => ({ values: { size: n }, position: [0, 0] })
+    const v = (n: string) => ({ values: { size: n }, position: [0, 0] })
     expect(plain(changelogEntry({ variants: [v('a'), v('b')] }, { variants: [v('b'), v('c')] }))).toStrictEqual({ ajoute: ['Variante ajoutée : size=c'], modifie: [], retire: ['Variante retirée : size=a'] })
     const seven = [1, 2, 3, 4, 5, 6, 7].map((n) => v('s' + n))
     expect(plain(changelogEntry({ variants: [] }, { variants: seven })).ajoute).toStrictEqual(['7 variantes ajoutées'])
@@ -2817,9 +2817,9 @@ describe('The changelog: the content of an entry', () => {
   })
   it('a style change fits on one line: title, label in lowercase, before → after', async () => {
     const { changelogEntry } = await tools()
-    const variant = (size, theme) => ({ values: { state: 'focus', size: size, _theme: theme }, position: [0, 0] })
-    const pad = (h, v) => ({ top: { token: v }, right: { token: h }, bottom: { token: v }, left: { token: h } })
-    const sheet = (pm, pl) => ({
+    const variant = (size: string, theme: string) => ({ values: { state: 'focus', size: size, _theme: theme }, position: [0, 0] })
+    const pad = (h: string, v: string) => ({ top: { token: v }, right: { token: h }, bottom: { token: v }, left: { token: h } })
+    const sheet = (pm: MockData, pl: MockData) => ({
       variants: [variant('medium', 'prospect'), variant('large', 'prospect')],
       styles: {
         default: { when: { state: 'focus', size: 'large', _theme: 'prospect' }, root: { padding: pad('spacing/24', 'spacing/12') } },
@@ -2833,16 +2833,16 @@ describe('The changelog: the content of an entry', () => {
   })
   it('no truncation at 20 lines in the changelog, whereas the Changements tab truncates', async () => {
     const { changelogEntry, compareSheets } = await tools()
-    const fa = { structure: { slots: {} } }
-    const fb = { structure: { slots: {} } }
+    const fa: MockData = { structure: { slots: {} } }
+    const fb: MockData = { structure: { slots: {} } }
     for (let k = 0; k < 25; k++) { fa.structure.slots['s' + k] = { default: { text: 'a' } }; fb.structure.slots['s' + k] = { default: { text: 'b' } } }
     expect(changelogEntry(fa, fb).modifie.length).toBe(25)
     expect(compareSheets(fa, fb).length).toBe(21)
   })
   it('Button 0.2 against 0.3: the entry takes the sentences of compareSheets, excluded ones left out', async () => {
     const { changelogEntry, compareSheets } = await tools()
-    const wholeEntry = (c) => [].concat(c.ajoute, c.modifie, c.retire)
-    const sentences = compareSheets(real02(), real03()).filter((x) => typeof x === 'string' && !/déplacée|^Défauts/.test(x))
+    const wholeEntry = (c: MockData): string[] => [...c.ajoute, ...c.modifie, ...c.retire]
+    const sentences = compareSheets(real02(), real03()).filter((x: string) => typeof x === 'string' && !/déplacée|^Défauts/.test(x))
     const lines = wholeEntry(plain(changelogEntry(real02(), real03())))
     for (const p of sentences) expect(lines.includes(p), p).toBeTruthy()
   })
@@ -2850,7 +2850,7 @@ describe('The changelog: the content of an entry', () => {
 
 describe('The changelog: the Markdown file', () => {
   const tools = async () => (await button()).plugin.__test
-  const e = (version, extra) => Object.assign({ version, date: '2026-11-04', ajoute: [], modifie: [], retire: [] }, extra)
+  const e = (version: string, extra: MockData) => Object.assign({ version, date: '2026-11-04', ajoute: [], modifie: [], retire: [] }, extra)
 
   it('title, entries from the most recent to the oldest, empty sections omitted, final line break', async () => {
     const { renderChangelog } = await tools()
@@ -2900,10 +2900,10 @@ describe('The changelog: the Markdown file', () => {
 
 describe('The changelog: the history in the plugin', () => {
   const NS = 'canopee_fiches'
-  const variantSet = (doc) => doc.nodes[1]
-  const read = (doc, key) => variantSet(doc).getSharedPluginData(NS, key)
-  const history = (doc) => JSON.parse(read(doc, 'changelog') || '[]')
-  const exported = async (doc = buttonDocument(), choices) => {
+  const variantSet = (doc: MockData) => doc.nodes[1]
+  const read = (doc: MockData, key: string) => variantSet(doc).getSharedPluginData(NS, key)
+  const history = (doc: MockData) => JSON.parse(read(doc, 'changelog') || '[]')
+  const exported = async (doc = buttonDocument(), choices?: MockData) => {
     const { p } = await openPlugin(doc)
     await p.send({ type: 'generer' })
     if (choices) await p.send({ type: 'choisir-version', id: 'S:100', ...choices })
@@ -2912,8 +2912,8 @@ describe('The changelog: the history in the plugin', () => {
     return { doc, p, msg }
   }
   // another plugin on the same document: a new designer who opens the file
-  const reopen = async (doc, choices) => exported(doc, choices)
-  const addValue = (doc, v) => variantSet(doc).componentPropertyDefinitions.hierarchy.variantOptions.push(v)
+  const reopen = async (doc: MockData, choices?: MockData) => exported(doc, choices)
+  const addValue = (doc: MockData, v: string) => variantSet(doc).componentPropertyDefinitions.hierarchy.variantOptions.push(v)
   const today = /^\d{4}-\d{2}-\d{2}$/
   const FIRST = 'Première version du composant'
 
@@ -2941,7 +2941,7 @@ describe('The changelog: the history in the plugin', () => {
     addValue(doc, 'tertiary')
     const { msg } = await reopen(doc)
     const h = history(doc)
-    expect(h.map((x) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
+    expect(h.map((x: MockData) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
     expect(h[0].ajoute).toStrictEqual(['Propriété hierarchy, valeurs ajoutées : tertiary'])
     expect(read(doc, 'version-precedente')).toBe(base)
     expect(msg.changelog).toMatch(/^# Changelog de Button\n\n## 1\.1\.0 - [\d\/]+\n\n### Ajouté\n- Propriété hierarchy, valeurs ajoutées : tertiary\n\n## 1\.0\.0 - [\d\/]+\n/)
@@ -2954,7 +2954,7 @@ describe('The changelog: the history in the plugin', () => {
     variantSet(doc).componentPropertyDefinitions['label#1:1'].defaultValue = 'Libellé'
     await reopen(doc, { keep: true })
     let h = history(doc)
-    expect(h.map((x) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
+    expect(h.map((x: MockData) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
     expect(h[0].ajoute).toStrictEqual(['Propriété hierarchy, valeurs ajoutées : tertiary'])
     expect(h[0].modifie).toStrictEqual(['Slot label, texte par défaut : Label → Libellé'])
     // the same export repeated duplicates nothing
@@ -2979,7 +2979,7 @@ describe('The changelog: the history in the plugin', () => {
     variantSet(doc).componentPropertyDefinitions['label#1:1'].defaultValue = 'Libellé'
     await reopen(doc, { keep: true })
     const h = history(doc)
-    expect(h.map((x) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
+    expect(h.map((x: MockData) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
     expect(h[0].ajoute).toStrictEqual(['Propriété hierarchy, valeurs ajoutées : tertiary'])
     expect(h[0].modifie).toStrictEqual(['Slot label, texte par défaut : Label → Libellé'])
     await reopen(doc, { keep: true })
@@ -3004,7 +3004,7 @@ describe('The changelog: the history in the plugin', () => {
     const { doc } = await exported()
     await reopen(doc, { overhaul: false, sheetMd: true })
     const h = history(doc)
-    expect(h.map((x) => x.version)).toStrictEqual(['1.0.1', '1.0.0'])
+    expect(h.map((x: MockData) => x.version)).toStrictEqual(['1.0.1', '1.0.0'])
     expect([h[0].ajoute, h[0].modifie, h[0].retire]).toStrictEqual([[], ['Fiche Markdown modifiée'], []])
   })
   it('complete overhaul: the line at the top of Modifié, then the detail', async () => {
@@ -3042,7 +3042,7 @@ describe('The changelog: the history in the plugin', () => {
     addValue(doc, 'tertiary')
     await reopen(doc)
     const h = history(doc)
-    expect(h.map((x) => x.version)).toStrictEqual(['1.1.0'])
+    expect(h.map((x: MockData) => x.version)).toStrictEqual(['1.1.0'])
     expect(h[0].ajoute).toStrictEqual(['Propriété hierarchy, valeurs ajoutées : tertiary'])
   })
   it('component exported before the changelog, still at 1.0.0: the history starts at the first version', async () => {
@@ -3050,14 +3050,14 @@ describe('The changelog: the history in the plugin', () => {
     variantSet(doc).setSharedPluginData(NS, 'changelog', '')
     const { msg } = await reopen(doc)
     const h = history(doc)
-    expect(h.map((x) => x.version)).toStrictEqual(['1.0.0'])
+    expect(h.map((x: MockData) => x.version)).toStrictEqual(['1.0.0'])
     expect([h[0].ajoute, h[0].modifie, h[0].retire]).toStrictEqual([[FIRST], [], []])
     expect(msg.changelog).toMatch(/^# Changelog de Button\n\n## 1\.0\.0 - [\d\/]+\n\n### Ajouté\n- Première version du composant\n$/)
     // same thing when the designer keeps 1.0.0 after a change
     variantSet(doc).setSharedPluginData(NS, 'changelog', '')
     addValue(doc, 'tertiary')
     await reopen(doc, { keep: true })
-    expect(history(doc).map((x) => [x.version, x.ajoute])).toStrictEqual([['1.0.0', [FIRST]]])
+    expect(history(doc).map((x: MockData) => [x.version, x.ajoute])).toStrictEqual([['1.0.0', [FIRST]]])
   })
   it('an unreadable history is not overwritten by an export, and the message shows', async () => {
     const { doc } = await exported()
@@ -3101,7 +3101,7 @@ describe('The changelog: the history in the plugin', () => {
     await p.send({ type: 'generer' })
     await p.send({ type: 'memoriser', id: 'S:100' })
     await p.send({ type: 'memoriser', id: 'S:100' })
-    expect(history(doc).map((x) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
+    expect(history(doc).map((x: MockData) => x.version)).toStrictEqual(['1.1.0', '1.0.0'])
   })
   it('the version choice message carries the changelog of the chosen version', async () => {
     const { doc } = await exported()
@@ -3119,7 +3119,7 @@ describe('The changelog: the history in the plugin', () => {
     const doc = buttonDocument()
     const node = variantSet(doc)
     const write = node.setSharedPluginData
-    node.setSharedPluginData = (space, key, value) => { if (key === 'changelog') throw new Error('Data too large'); write(space, key, value) }
+    node.setSharedPluginData = (space: string, key: string, value: string) => { if (key === 'changelog') throw new Error('Data too large'); write(space, key, value) }
     const { p } = await openPlugin(doc)
     await p.send({ type: 'generer' })
     await p.send({ type: 'memoriser', id: 'S:100' })
@@ -3133,7 +3133,7 @@ describe('The changelog: the history in the plugin', () => {
     addValue(doc, 'tertiary')
     const node = variantSet(doc)
     const write = node.setSharedPluginData
-    node.setSharedPluginData = (space, key, value) => { if (key === 'version-precedente') throw new Error('Data too large'); write(space, key, value) }
+    node.setSharedPluginData = (space: string, key: string, value: string) => { if (key === 'version-precedente') throw new Error('Data too large'); write(space, key, value) }
     const { p } = await openPlugin(doc)
     await p.send({ type: 'generer' })
     await p.send({ type: 'memoriser', id: 'S:100' })
@@ -3166,7 +3166,7 @@ describe('The changelog: the history in the plugin', () => {
     await p.send({ type: 'generer' })
     await p.send({ type: 'memoriser', id: 'S:100' })
     await p.send({ type: 'memoriser', id: 'S:100' })
-    expect(p.messages.filter((m) => m.type === 'erreur').length).toBe(0)
+    expect(p.messages.filter((m: MockData) => m.type === 'erreur').length).toBe(0)
     expect(JSON.parse(read(doc, 'export')).meta.version).toBe('1.1.0')
   })
   it('answer « Non, garder » after a first export of the same generation: accepted, without an error', async () => {
@@ -3178,7 +3178,7 @@ describe('The changelog: the history in the plugin', () => {
     expect(JSON.parse(read(doc, 'export')).meta.version).toBe('1.1.0')
     await p.send({ type: 'choisir-version', id: 'S:100', keep: true })
     await p.send({ type: 'memoriser', id: 'S:100' })
-    expect(p.messages.filter((m) => m.type === 'erreur').length).toBe(0)
+    expect(p.messages.filter((m: MockData) => m.type === 'erreur').length).toBe(0)
     expect(JSON.parse(read(doc, 'export')).meta.version, 'la version gardée remplace celle du premier export').toBe('1.0.0')
   })
   it('an export refused because another took place does not block the next generation', async () => {
@@ -3190,7 +3190,7 @@ describe('The changelog: the history in the plugin', () => {
     await a.send({ type: 'memoriser', id: 'S:100' })
     await a.send({ type: 'generer' })
     await a.send({ type: 'memoriser', id: 'S:100' })
-    expect(a.messages.filter((m) => m.type === 'erreur').length, 'seule la première tentative est refusée').toBe(1)
+    expect(a.messages.filter((m: MockData) => m.type === 'erreur').length, 'seule la première tentative est refusée').toBe(1)
   })
 })
 
@@ -3198,9 +3198,9 @@ describe('The changelog: the history in the plugin', () => {
 describe('The texts', () => {
   it('no em dash, en dash or middle dot in the plugin files', () => {
     const forbidden = new RegExp('[' + String.fromCharCode(0x2013, 0x2014, 0xB7) + ']')
-    const extensions = new Set(['.js', '.mjs', '.html', '.json', '.md'])
-    const files = []
-    const browse = (folder) => {
+    const extensions = new Set(['.js', '.mjs', '.ts', '.html', '.json', '.md'])
+    const files: string[] = []
+    const browse = (folder: MockData) => {
       for (const e of fs.readdirSync(folder, { withFileTypes: true })) {
         const filePath = path.join(folder, e.name)
         if (e.isDirectory()) { if (e.name !== 'node_modules' && e.name !== 'dist') browse(filePath) }

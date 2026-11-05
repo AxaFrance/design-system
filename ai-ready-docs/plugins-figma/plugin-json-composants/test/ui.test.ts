@@ -1,4 +1,4 @@
-// Integration test: the real ui.html, in jsdom, connected to the real code.js (simulated
+// Integration test: the real ui.html, in jsdom, connected to the real dist/code.js (simulated
 // Figma) by a bridge that reproduces the one in Figma. It protects the message contract
 // between the two sides, which the other tests only check one side at a time.
 //
@@ -10,11 +10,11 @@
 // it fails if a type is no longer exercised end to end.
 
 import { afterEach, describe, expect, it } from 'vitest'
-import { JSDOM, VirtualConsole } from 'jsdom'
+import { JSDOM, VirtualConsole, type DOMWindow } from 'jsdom'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { fakeClock, layer, connect, page, solid, alias, fakeNetwork, tokensFile, createFakePlugin } from './figma-mock.js'
+import { fakeClock, layer, connect, page, solid, alias, fakeNetwork, tokensFile, createFakePlugin, type MockData } from './figma-mock'
 
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const DOCS = path.join(HERE, '..', '..', '..')
@@ -33,8 +33,8 @@ const TYPES_UI_TO_PLUGIN = [
   'ui-pret'
 ]
 const TYPES_PLUGIN_TO_UI = ['carte', 'controle', 'erreur', 'fiche', 'init', 'perime', 'progression', 'recalculer-hauteur', 'regles', 'selection', 'version']
-const typesToPlugin = new Set()
-const typesToUi = new Set()
+const typesToPlugin = new Set<string>()
+const typesToUi = new Set<string>()
 
 const HTML = fs.readFileSync(path.join(HERE, '..', 'ui.html'), 'utf8')
 const RULES = fs.readFileSync(path.join(DOCS, 'regles', '03-proprietes.md'), 'utf8')
@@ -50,7 +50,7 @@ const VARIABLES = [
 // What Canopée publishes: the tokens of the button exist from 2.0.0.
 const network = (options = {}) => fakeNetwork({ tags: ['2.0.0'], files: { '2.0.0': tokensFile(['color.blue.700', 'color.blue.800']) }, rules: RULES, ...options })
 
-const buttonVariant = (name, x, y, hover) =>
+const buttonVariant = (name: string, x: number, y: number, hover: boolean) =>
   layer('COMPONENT', name, { id: 'V:' + name, x, y, fills: [solid(0, 0, 0.56)], boundVariables: { fills: [alias(hover ? 'v-b8' : 'v-b7')] } }, [
     layer('TEXT', 'label', { id: 'LA:' + name, characters: 'Label', autoRename: false, fills: [solid(1, 1, 1)], boundVariables: { fills: [alias('v-b7')] }, componentPropertyReferences: { characters: 'label#1:1' } }),
     // a raw color: an issue that points at layers
@@ -59,7 +59,7 @@ const buttonVariant = (name, x, y, hover) =>
 
 // A button with a property that deviates from the nomenclature (Size), selected in a page
 // that emits its changes.
-const buttonDocument = (options = {}) => {
+const buttonDocument = (options: { empty?: boolean; network?: MockData } = {}): MockData => {
   const set = connect(
     layer(
       'COMPONENT_SET',
@@ -83,7 +83,7 @@ const buttonDocument = (options = {}) => {
 }
 
 // More than 40 variants: the plugin announces its progress.
-const wideDocument = () => {
+const wideDocument = (): MockData => {
   const options = Array.from({ length: 5 }, (_, i) => 'h' + (i + 1))
   const states = Array.from({ length: 9 }, (_, i) => 's' + (i + 1))
   const variants = []
@@ -98,39 +98,39 @@ const wideDocument = () => {
 }
 
 // The export of the button by a first designer: the JSON becomes the comparison base stored in the file.
-const exportOnce = async (doc) => {
+const exportOnce = async (doc: MockData) => {
   const plugin = createFakePlugin(doc)
   await plugin.send({ type: 'ui-pret' })
   await plugin.send({ type: 'generer' })
   await plugin.send({ type: 'memoriser', id: 'S:100' })
 }
-const addHierarchy = (doc, value) => doc.set.componentPropertyDefinitions.hierarchy.variantOptions.push(value)
+const addHierarchy = (doc: MockData, value: string) => doc.set.componentPropertyDefinitions.hierarchy.variantOptions.push(value)
 
 // ----------------------------------------------------------------------- UI
 
-const clone = (m) => JSON.parse(JSON.stringify(m))
-const normalize = (text) => text.replace(/\s+/g, ' ').trim()
+const clone = (m: MockData) => JSON.parse(JSON.stringify(m))
+const normalize = (text: string) => text.replace(/\s+/g, ' ').trim()
 
-const openedWindows = []
+const openedWindows: DOMWindow[] = []
 
 // Opens ui.html in jsdom, connected to a simulated plugin on the given document.
-const openUi = async (doc) => {
-  const errors = []
-  const downloads = []
-  const copies = []
-  const fetchCalls = []
-  const sent = []
-  const received = []
-  const duringProgress = []
-  let window = null
+const openUi = async (doc: MockData) => {
+  const errors: MockData[] = []
+  const downloads: MockData[] = []
+  const copies: MockData[] = []
+  const fetchCalls: string[] = []
+  const sent: string[] = []
+  const received: string[] = []
+  const duringProgress: string[][] = []
+  let window: DOMWindow | null = null
   let inProgress = 0
-  const track = (promise) => {
+  const track = (promise: MockData) => {
     inProgress++
     return promise.then(
       () => {
         inProgress--
       },
-      (e) => {
+      (e: MockData) => {
         inProgress--
         errors.push(e)
       }
@@ -138,7 +138,7 @@ const openUi = async (doc) => {
   }
 
   // Plugin to interface: figma.ui.postMessage(m) arrives as a message event.
-  doc.onMessage = (m) => {
+  doc.onMessage = (m: MockData) => {
     typesToUi.add(m.type)
     received.push(m.type)
     if (!window) return
@@ -165,7 +165,7 @@ const openUi = async (doc) => {
       // outside the caller's stack as in Figma.
       Object.defineProperty(w, 'postMessage', {
         configurable: true,
-        value: (m) => {
+        value: (m: MockData) => {
           typesToPlugin.add(m.pluginMessage.type)
           sent.push(m.pluginMessage.type)
           track(Promise.resolve().then(() => plugin.send(clone(m.pluginMessage))))
@@ -189,7 +189,7 @@ const openUi = async (doc) => {
       Object.defineProperty(w.navigator, 'clipboard', {
         configurable: true,
         value: {
-          writeText: async (text) => {
+          writeText: async (text: string) => {
             copies.push(text)
           }
         }
@@ -205,8 +205,9 @@ const openUi = async (doc) => {
     }
   })
 
-  const { document } = window
-  openedWindows.push(window)
+  const view = dom.window
+  const { document } = view
+  openedWindows.push(view)
 
   // Waits until the exchanges between the interface and the plugin are over.
   const settle = async () => {
@@ -220,22 +221,31 @@ const openUi = async (doc) => {
 
   // The text the person sees: without script or style, without what is hidden.
   // The date of the changelog and the version of the plugin change over time: they are replaced.
-  const text = () => {
+  const text = (): string => {
     const copy = document.body.cloneNode(true)
+    if (!(copy instanceof view.HTMLElement)) throw new Error('the copy of the body is not an element')
     copy.querySelectorAll('script, style, [hidden]').forEach((e) => e.remove())
-    return normalize(copy.textContent)
+    return normalize(copy.textContent ?? '')
       .replaceAll(plugin.__test.VERSION, '<version>')
       .replace(/\b\d{2}\/\d{2}\/\d{2}\b/g, 'jj/mm/aa')
   }
-  const clickable = (label, selector) => {
-    const matches = [...document.querySelectorAll(selector)].filter((e) => !e.closest('[hidden]') && normalize(e.textContent).startsWith(label))
+  const clickable = (label: string, selector: string): HTMLElement => {
+    const matches = [...document.querySelectorAll<HTMLElement>(selector)].filter((e) => !e.closest('[hidden]') && normalize(e.textContent ?? '').startsWith(label))
     expect(matches.length, `${matches.length} elements "${label}"`).toBe(1)
     return matches[0]
   }
-  const button = (label) => clickable(label, 'button')
-  const tab = (label) => clickable(label, '[role="tab"]')
-  const choice = (label) => clickable(label, 'label').control
-  const clickOn = async (element) => {
+  const button = (label: string): HTMLButtonElement => {
+    const element = clickable(label, 'button')
+    if (!(element instanceof view.HTMLButtonElement)) throw new Error(`"${label}" is not a button`)
+    return element
+  }
+  const tab = (label: string): HTMLElement => clickable(label, '[role="tab"]')
+  const choice = (label: string): HTMLInputElement => {
+    const element = clickable(label, 'label')
+    if (!(element instanceof view.HTMLLabelElement) || !(element.control instanceof view.HTMLInputElement)) throw new Error(`"${label}" is not a label of an input`)
+    return element.control
+  }
+  const clickOn = async (element: HTMLElement): Promise<void> => {
     element.click()
     await settle()
   }
@@ -243,17 +253,22 @@ const openUi = async (doc) => {
     expect(errors.map((e) => (e && e.message) || String(e))).toStrictEqual([])
   }
   // Content of the visible panel: the JSON or the changelog, as shown on the screen.
-  const panel = (label) => normalize(document.querySelector(`[aria-label="${label}"]`).textContent)
-  const handle = () => document.querySelector('[aria-label="Redimensionner la fenêtre"]')
+  const byAriaLabel = (label: string): Element => {
+    const element = document.querySelector(`[aria-label="${label}"]`)
+    if (!element) throw new Error(`no element labelled "${label}"`)
+    return element
+  }
+  const panel = (label: string): string => normalize(byAriaLabel(label).textContent ?? '')
+  const handle = (): Element => byAriaLabel('Redimensionner la fenêtre')
 
-  return { plugin, window, document, text, button, tab, choice, clickable, clickOn, settle, noError, downloads, copies, fetchCalls, sent, received, duringProgress, panel, handle, doc }
+  return { plugin, window: view, document, text, button, tab, choice, clickable, clickOn, settle, noError, downloads, copies, fetchCalls, sent, received, duringProgress, panel, handle, doc }
 }
 
 afterEach(() => {
-  while (openedWindows.length) openedWindows.pop().close()
+  for (const view of openedWindows.splice(0)) view.close()
 })
 
-const downloadedText = (download) => download.blob.text()
+const downloadedText = (download: MockData) => download.blob.text()
 
 // ------------------------------------------------------------------ journeys
 
@@ -332,8 +347,8 @@ describe('Interface and plugin: end-to-end journeys', () => {
   it('(e) the arrow keys move between the tabs', async () => {
     const ui = await openUi(buttonDocument())
     await ui.clickOn(ui.button('Générer le JSON'))
-    const press = async (key) => {
-      ui.tab('À corriger').parentElement.dispatchEvent(new ui.window.KeyboardEvent('keydown', { key, bubbles: true }))
+    const press = async (key: string) => {
+      ui.tab('À corriger').parentElement?.dispatchEvent(new ui.window.KeyboardEvent('keydown', { key, bubbles: true }))
       await ui.settle()
     }
     await press('ArrowRight')
@@ -387,7 +402,7 @@ describe('Interface and plugin: end-to-end journeys', () => {
     expect(issue.textContent).toContain('Valeur brute (#333333) : la relier à une variable.')
     await ui.clickOn(issue)
     expect(ui.sent).toContain('selectionner')
-    expect(Array.from(ui.plugin.figma.currentPage.selection, (n) => n.id).sort()).toStrictEqual(['CA:state=default, hierarchy=primary, Size=md', 'CA:state=hover, hierarchy=primary, Size=md'])
+    expect(Array.from<MockData, string>(ui.plugin.figma.currentPage.selection, (n) => n.id).sort()).toStrictEqual(['CA:state=default, hierarchy=primary, Size=md', 'CA:state=hover, hierarchy=primary, Size=md'])
     expect(ui.plugin.selections).toHaveLength(1)
     // Figma tells the plugin that the selection changed: the result stays
     await ui.plugin.triggerFigma('selectionchange')
@@ -482,7 +497,7 @@ describe('Interface and plugin: end-to-end journeys', () => {
     const ui = await openUi(wideDocument())
     await ui.clickOn(ui.button('Générer le JSON'))
     expect(ui.received.filter((t) => t === 'progression')).toHaveLength(2)
-    expect(ui.duringProgress.map((buttons) => buttons.find((b) => b.startsWith('Génération en cours')))).toStrictEqual(['Génération en cours, 20 sur 45...', 'Génération en cours, 40 sur 45...'])
+    expect(ui.duringProgress.map((buttons) => buttons.find((b: string) => b.startsWith('Génération en cours')))).toStrictEqual(['Génération en cours, 20 sur 45...', 'Génération en cours, 40 sur 45...'])
     expect(ui.text()).toContain('Télécharger le JSON')
     ui.noError()
     expect(ui.text()).toMatchSnapshot()
