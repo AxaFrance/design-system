@@ -47,10 +47,10 @@ export type UiToPluginMessage =
   | { type: "ui-pret" }
   | { type: "controler" }
   | { type: "generer" }
-  | { type: "memoriser"; id: string }
+  | { type: "memoriser"; id: string | null }
   | {
       type: "choisir-version";
-      id: string;
+      id: string | null;
       keep: boolean;
       overhaul: boolean;
       sheetMd: boolean;

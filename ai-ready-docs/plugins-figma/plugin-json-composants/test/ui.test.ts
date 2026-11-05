@@ -1,4 +1,4 @@
-// Integration test: the real ui.html, in jsdom, connected to the real dist/code.js (simulated
+// Integration test: the real dist/ui.html, in jsdom, connected to the real dist/code.js (simulated
 // Figma) by a bridge that reproduces the one in Figma. It protects the message contract
 // between the two sides, which the other tests only check one side at a time.
 //
@@ -36,7 +36,7 @@ const TYPES_PLUGIN_TO_UI = ['carte', 'controle', 'erreur', 'fiche', 'init', 'per
 const typesToPlugin = new Set<string>()
 const typesToUi = new Set<string>()
 
-const HTML = fs.readFileSync(path.join(HERE, '..', 'ui.html'), 'utf8')
+const HTML = fs.readFileSync(path.join(HERE, '..', 'dist', 'ui.html'), 'utf8')
 const RULES = fs.readFileSync(path.join(DOCS, 'regles', '03-proprietes.md'), 'utf8')
 
 // ------------------------------------------------------------------ documents
@@ -113,7 +113,7 @@ const normalize = (text: string) => text.replace(/\s+/g, ' ').trim()
 
 const openedWindows: DOMWindow[] = []
 
-// Opens ui.html in jsdom, connected to a simulated plugin on the given document.
+// Opens dist/ui.html in jsdom, connected to a simulated plugin on the given document.
 const openUi = async (doc: MockData) => {
   const errors: MockData[] = []
   const downloads: MockData[] = []
@@ -582,13 +582,18 @@ describe('Interface and plugin: end-to-end journeys', () => {
   })
 })
 
-// Figma reads ui.html as a single string (__html__) and runs code.js without any module system:
-// a relative reference or an import would not resolve.
-describe('files read by Figma', () => {
-  it('ui.html has no external script or stylesheet', () => {
+// Figma reads dist/ui.html as a single string (__html__) and runs dist/code.js without any
+// module system: a relative reference or an import would not resolve.
+describe('files built for Figma', () => {
+  it('dist/ui.html has no external script or stylesheet', () => {
     expect(HTML).not.toMatch(/<script[^>]*\ssrc\s*=/i)
     expect(HTML).not.toMatch(/<link[^>]*rel\s*=\s*["']?stylesheet/i)
     expect(HTML).not.toMatch(/<script[^>]*type\s*=\s*["']?module/i)
+  })
+
+  it('dist/code.js has no import or export', () => {
+    const code = fs.readFileSync(path.join(HERE, '..', 'dist', 'code.js'), 'utf8')
+    expect(code).not.toMatch(/^\s*(import|export)\b/m)
   })
 })
 

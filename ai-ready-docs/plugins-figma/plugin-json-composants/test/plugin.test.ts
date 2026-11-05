@@ -1116,14 +1116,17 @@ describe('The window', () => {
 
 // ------------------------------------------------------------ the interface
 describe('The interface', () => {
-  const html = () => fs.readFileSync(path.join(PLUGIN, 'ui.html'), 'utf8')
+  const html = () => fs.readFileSync(path.join(PLUGIN, 'dist', 'ui.html'), 'utf8')
+  // The page without its layout: one space between words, none around the tags. The checks on the
+  // markup and the style do not depend on how the sources are formatted.
+  const squash = (text: string) => text.replace(/\s+/g, ' ').replace(/ ?([<>]) ?/g, '$1')
   it('the script of ui.html compiles', () => {
     const m = html().match(/<script>([\s\S]*)<\/script>/)
     expect(m, 'script absent').toBeTruthy()
     new vm.Script(m![1])
   })
   it('escapeHtml also protects quotes, since it fills attributes', () => {
-    const m = html().match(/const escapeHtml = .*/)
+    const m = html().match(/(?:const|var|let) escapeHtml = .*/)
     expect(m, 'escapeHtml absent').toBeTruthy()
     const escapeHtml = new Function(m![0] + '; return escapeHtml')()
     expect(escapeHtml('a & <b> "c" \'d\'')).toBe('a &amp; &lt;b&gt; &quot;c&quot; &#39;d&#39;')
@@ -1173,7 +1176,7 @@ describe('The interface', () => {
     vm.createContext(context)
     new vm.Script(source.match(/<script>([\s\S]*)<\/script>/)![1]).runInContext(context)
     const receive = (m: MockData) => context.onmessage({ data: { pluginMessage: m } })
-    return { el: elements, sent, receive, source, selection, downloads, copies }
+    return { el: elements, sent, receive, source: squash(source), selection, downloads, copies }
   }
   const selection = { type: 'selection', id: '1:2', name: 'Button', variants: 60, properties: 8 }
   const versionOf = (v: MockData) => Object.assign({ first: false, none: false, current: '1.0.0', version: '1.1.0', level: 'mineure', detected: 'mineure', tokensVersion: '2.0.0', next: '1.1.0' }, v)
@@ -1199,7 +1202,7 @@ describe('The interface', () => {
   it('the automatic height is measured without the stretching of the JSON', () => {
     const { source } = fakeInterface()
     expect(source).toMatch(/body\.mesure #contenu, body\.mesure #panneau-json, body\.mesure #json-contenu, body\.mesure #json \{ flex-grow: 0; \}/)
-    expect(source).toMatch(/classList\.add\('mesure'\)[\s\S]*offsetHeight[\s\S]*classList\.remove\('mesure'\)[\s\S]*type: 'redimensionner'/)
+    expect(source).toMatch(/classList\.add\(['"]mesure['"]\)[\s\S]*offsetHeight[\s\S]*classList\.remove\(['"]mesure['"]\)[\s\S]*type: ['"]redimensionner['"]/)
   })
   it('the plugin version is in the JSON tab, under the summary', () => {
     const ui = fakeInterface()
@@ -1300,7 +1303,7 @@ describe('The interface', () => {
     expect(ui.el['livree-non-libelle'].textContent).toBe('Non, garder 1.0.0')
     expect(ui.el['val-version'].textContent).toBe('à choisir')
     expect(ui.el['tuile-version'].classList.contains('a-choisir')).toBe(true)
-    expect(ui.source).toMatch(/<div class="reponses">\s*<label class="case"><input type="radio" name="livree" id="livree-oui">[\s\S]*?id="livree-non"[\s\S]*?<\/div>/)
+    expect(ui.source).toMatch(/<div class="reponses">\s*<label class="case"><input type="radio" name="livree" id="livree-oui" ?\/?>[\s\S]*?id="livree-non"[\s\S]*?<\/div>/)
     expect(ui.el.generer.disabled).toBe(true)
     expect(ui.el['generer-libelle'].textContent).toBe('Répondre à la question')
     expect(ui.el.copier.disabled).toBe(true)
@@ -1447,7 +1450,7 @@ describe('The interface', () => {
     expect(computed.el['val-tokens'].textContent).toBe('2.0.0')
     expect(computed.el['val-tokens'].title).toBe('')
     const source = computed.source
-    expect(source.includes('<span class="pastille" id="tuile-tokens" hidden>Version minimale des tokens requise : <b id="val-tokens"></b></span>')).toBeTruthy()
+    expect(source.includes('<span class="pastille" id="tuile-tokens" hidden>Version minimale des tokens requise :<b id="val-tokens"></b></span>')).toBeTruthy()
     expect(computed.el['val-tokens'].classList.contains('tokens-erreur')).toBe(false)
     const zero = generated({ tokensVersion: null })
     expect(zero.el['val-tokens'].textContent).toBe('non calculée')
@@ -1568,8 +1571,8 @@ describe('The interface', () => {
     const { source } = fakeInterface()
     expect(source).toMatch(/id="onglet-json"[^\n]*>JSON<\/button>\s*<button type="button" class="onglet" role="tab" id="onglet-changelog" data-onglet="changelog" aria-controls="panneau-changelog" aria-selected="false" tabindex="-1">Changelog<\/button>/)
     expect(source).toMatch(/<div class="panneau" id="panneau-changelog" role="tabpanel" aria-labelledby="onglet-changelog" hidden>/)
-    expect(source).toMatch(/const TABS = \['corriger', 'json', 'changelog', 'changements'\]/)
-    expect(source).toMatch(/id="onglet-changelog"[^\n]*\n\s*<button[^\n]*id="onglet-changements"/)
+    expect(source).toMatch(/(?:const|var|let) TABS = \[\s*['"]corriger['"],\s*['"]json['"],\s*['"]changelog['"],\s*['"]changements['"]\s*\]/)
+    expect(source).toMatch(/id="onglet-changelog"[^>]*>Changelog<\/button><button[^>]*id="onglet-changements"/)
     expect(source).toMatch(/<pre id="changelog" tabindex="0" role="region" aria-label="Changelog du composant"><\/pre>/)
   })
   it('after the generation, the arrows go through the four tabs and come back to the first', () => {
@@ -1660,7 +1663,7 @@ describe('The interface', () => {
   })
 
   // ---------------------------------------------------------- a component modified after the generation
-  // The real ui.html plugged into the real code.js, with a fake page that emits nodechange.
+  // The real dist/ui.html plugged into the real dist/code.js, with a fake page that emits nodechange.
   const release = async () => { for (let i = 0; i < 5; i++) await new Promise((r) => setImmediate(r)) }
   async function attach(): Promise<MockData> {
     const doc = buttonDocument()
@@ -1880,7 +1883,7 @@ describe('The bridge', () => {
   })
   it('unknown id: clear error', async () => {
     const unknown = bridgeCode().replace('"S:100"', '"X:0"')
-    await await expect(runBridge(buttonDocument(), unknown)).rejects.toThrow(/Aucun noeud/)
+    await expect(runBridge(buttonDocument(), unknown)).rejects.toThrow(/Aucun noeud/)
   })
 })
 
@@ -1900,16 +1903,16 @@ describe('The rebuild', () => {
   it('the rebuild: file, page, name and mark come from the configuration, with default values', () => {
     const s = returnScript()
     expect(s).toMatch(/"etape":"tout"\}/)
-    expect(s.includes('const FILE_KEY = CONFIG.file || \'' + DEFAULT_FILE + '\'')).toBeTruthy()
+    expect(s).toMatch(new RegExp('const FILE_KEY = CONFIG\\.file \\|\\| [\'"]' + DEFAULT_FILE + '[\'"]'))
     const withOptions = buildReturn(['--fichier', 'F1', '--page', 'Ma page', '--nom', 'IA/Button'])
     expect(withOptions).toMatch(/"file":"F1","page":"Ma page","name":"IA\/Button"/)
   })
   it('a file other than the one in the configuration is refused, with a clear error', async () => {
-    await await expect(runBridge({ fileKey: 'AUTRE', pages: [page(DEFAULT_PAGE)] }, returnScript())).rejects.toThrow(new RegExp('Fichier refusé : AUTRE \\(attendu ' + DEFAULT_FILE + '\\)'))
-    await await expect(runBridge({ fileKey: DEFAULT_FILE, pages: [page(DEFAULT_PAGE)] }, buildReturn(['--fichier', 'F1']))).rejects.toThrow(/Fichier refusé : UWk4fT45i82ESNhGaAnj6p \(attendu F1\)/)
+    await expect(runBridge({ fileKey: 'AUTRE', pages: [page(DEFAULT_PAGE)] }, returnScript())).rejects.toThrow(new RegExp('Fichier refusé : AUTRE \\(attendu ' + DEFAULT_FILE + '\\)'))
+    await expect(runBridge({ fileKey: DEFAULT_FILE, pages: [page(DEFAULT_PAGE)] }, buildReturn(['--fichier', 'F1']))).rejects.toThrow(/Fichier refusé : UWk4fT45i82ESNhGaAnj6p \(attendu F1\)/)
   })
   it('the file of the configuration passes the check, the missing page is reported afterwards', async () => {
-    await await expect(runBridge({ fileKey: 'F1', pages: [page('Autre page')] }, buildReturn(['--fichier', 'F1', '--page', 'Ma page']))).rejects.toThrow(/Page introuvable : Ma page/)
+    await expect(runBridge({ fileKey: 'F1', pages: [page('Autre page')] }, buildReturn(['--fichier', 'F1', '--page', 'Ma page']))).rejects.toThrow(/Page introuvable : Ma page/)
   })
   it('the supprimer step only removes the named set and the components that carry its mark', async () => {
     const p = page(DEFAULT_PAGE, [
@@ -3198,7 +3201,7 @@ describe('The changelog: the history in the plugin', () => {
 describe('The texts', () => {
   it('no em dash, en dash or middle dot in the plugin files', () => {
     const forbidden = new RegExp('[' + String.fromCharCode(0x2013, 0x2014, 0xB7) + ']')
-    const extensions = new Set(['.js', '.mjs', '.ts', '.html', '.json', '.md'])
+    const extensions = new Set(['.js', '.mjs', '.ts', '.css', '.html', '.json', '.md'])
     const files: string[] = []
     const browse = (folder: MockData) => {
       for (const e of fs.readdirSync(folder, { withFileTypes: true })) {

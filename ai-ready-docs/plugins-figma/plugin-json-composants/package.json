@@ -2,8 +2,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "typecheck": "tsc -p tsconfig.code.json && tsc -p tsconfig.test.json",
+    "build": "vite build --mode code && vite build --mode ui",
+    "typecheck": "tsc -p tsconfig.code.json && tsc -p tsconfig.ui.json && tsc -p tsconfig.test.json",
     "test": "npm run build && vitest run"
   },
   "devDependencies": {

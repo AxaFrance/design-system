@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="./styles.css" />
+
+<div id="contenu">
+<div class="vide" id="vide">
+  <span class="vide-icone"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 15.5 6 12 9.5 8.5 6ZM6 8.5 9.5 12 6 15.5 2.5 12ZM18 8.5 21.5 12 18 15.5 14.5 12ZM12 14.5 15.5 18 12 21.5 8.5 18Z" fill="currentColor"/></svg></span>
+  <p class="vide-titre">Aucun composant sélectionné</p>
+  <p class="aide">Sélectionner dans Figma un composant, son ensemble de variantes ou une de ses instances.</p>
+</div>
+<div class="contexte" id="infos" hidden>
+  <div class="rangee-nom">
+    <p class="nom" id="nom"></p>
+    <span class="version-nom" id="tuile-version" hidden><span id="val-version"></span></span>
+    <span id="etiquette"></span>
+    <span class="compteurs" id="compteurs"></span>
+    <button type="button" class="icone" id="regenerer" title="Générer de nouveau" aria-label="Générer de nouveau" hidden>
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.46-3.54M13 2v3h-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="pastilles" id="tuiles" hidden>
+    <span class="pastille" id="tuile-tokens" hidden>Version minimale des tokens requise : <b id="val-tokens"></b></span>
+  </div>
+  <div class="question" id="question" hidden>
+    <div id="question-livree" role="radiogroup" aria-labelledby="question-titre">
+      <p class="question-titre" id="question-titre"></p>
+      <div class="reponses">
+        <label class="case"><input type="radio" name="livree" id="livree-oui"><span id="livree-oui-libelle"></span></label>
+        <label class="case"><input type="radio" name="livree" id="livree-non"><span id="livree-non-libelle"></span></label>
+      </div>
+    </div>
+    <p class="question-titre" id="question-aucun" hidden>Aucun changement dans le composant.</p>
+    <div class="filet" id="filet" hidden></div>
+    <div class="cases" id="cases" hidden>
+      <label class="case" id="case-refonte"><input type="checkbox" id="refonte"><span id="refonte-libelle">Refonte complète</span></label>
+      <label class="case" id="case-fichemd" hidden><input type="checkbox" id="fichemd"><span id="fichemd-libelle">Fiche md modifiée</span></label>
+    </div>
+  </div>
+</div>
+
+<div class="onglets" id="onglets" role="tablist" aria-label="Contenu de l'export" hidden>
+  <button type="button" class="onglet" role="tab" id="onglet-corriger" data-onglet="corriger" aria-controls="panneau-corriger" aria-selected="true">À corriger<span class="compteur" id="compteur-corriger" hidden></span></button>
+  <button type="button" class="onglet" role="tab" id="onglet-json" data-onglet="json" aria-controls="panneau-json" aria-selected="false" tabindex="-1">JSON</button>
+  <button type="button" class="onglet" role="tab" id="onglet-changelog" data-onglet="changelog" aria-controls="panneau-changelog" aria-selected="false" tabindex="-1">Changelog</button>
+  <button type="button" class="onglet" role="tab" id="onglet-changements" data-onglet="changements" aria-controls="panneau-changements" aria-selected="false" tabindex="-1">Changements<span class="compteur" id="compteur-changements" hidden></span></button>
+</div>
+
+<div class="panneau" id="panneau-corriger" role="tabpanel" aria-labelledby="onglet-corriger" hidden>
+  <div class="vide" id="corriger-ok" hidden>
+    <span class="vide-icone"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12.5 10 17 18.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <p class="vide-titre">Rien à corriger</p>
+    <p class="aide">Le composant respecte la nomenclature. Générer le JSON pour calculer sa version et son changelog.</p>
+  </div>
+  <ul class="liste" id="corriger-liste"></ul>
+</div>
+
+<div class="panneau" id="panneau-json" role="tabpanel" aria-labelledby="onglet-json" hidden>
+  <div id="json-contenu" hidden>
+    <p class="fichier" id="resultat-titre"></p>
+    <p class="aide" id="resume"></p>
+    <p class="aide" id="version-plugin"></p>
+    <pre id="json" tabindex="0" role="region" aria-label="JSON du composant"></pre>
+  </div>
+</div>
+
+<div class="panneau" id="panneau-changelog" role="tabpanel" aria-labelledby="onglet-changelog" hidden>
+  <div id="changelog-contenu" hidden>
+    <pre id="changelog" tabindex="0" role="region" aria-label="Changelog du composant"></pre>
+  </div>
+</div>
+
+<div class="panneau" id="panneau-changements" role="tabpanel" aria-labelledby="onglet-changements" hidden>
+  <div id="changements"></div>
+</div>
+</div>
+
+<div class="actions" id="actions" hidden>
+  <p class="bandeau erreur" id="erreur" hidden></p>
+  <p class="bandeau succes" id="succes" hidden></p>
+  <p class="bandeau info" id="perime" hidden>Le composant a changé depuis la génération de ce JSON.</p>
+  <p class="bandeau info" id="regles" hidden></p>
+  <div class="rangee" id="boutons" hidden>
+    <button type="button" class="bouton principal" id="generer" disabled>
+      <svg class="ico" id="ico-generer" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2.5H5A1.5 1.5 0 0 0 3.5 4v2.5L2 8l1.5 1.5V12A1.5 1.5 0 0 0 5 13.5h1M10 2.5h1A1.5 1.5 0 0 1 12.5 4v2.5L14 8l-1.5 1.5V12a1.5 1.5 0 0 1-1.5 1.5h-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="ico" id="ico-telecharger" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" hidden><path d="M8 2.5v7M5 6.5l3 3 3-3M2.5 10.5v2a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span id="generer-libelle">Générer le JSON</span>
+    </button>
+    <button type="button" class="bouton secondaire" id="copier" hidden>
+      <svg class="ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span id="copier-libelle">Copier le JSON</span>
+    </button>
+  </div>
+</div>
+
+<div id="poignee" aria-label="Redimensionner la fenêtre" title="Glisser pour redimensionner, double-cliquer pour revenir à la taille automatique">
+  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+    <path d="M14 3 L3 14 M14 7 L7 14 M14 11 L11 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<script type="module" src="./main.ts"></script>

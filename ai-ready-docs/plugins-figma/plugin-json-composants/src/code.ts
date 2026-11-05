@@ -20,11 +20,9 @@ import type {
   IssueDetail,
   IssueLocation,
   Json,
-  Layer,
   LayerStyles,
   Meta,
   Override,
-  ParentLayer,
   Sheet,
   SheetLike,
   SheetVariant,
@@ -35,6 +33,7 @@ import type {
   VariantStyles,
   When,
 } from "./types";
+import type { Layer, ParentLayer } from "./layer";
 import type { Card, PluginToUiMessage, Sentence, Summary, UiToPluginMessage, VersionView } from "./messages";
 
 // Every message to the interface goes through here, typed.
