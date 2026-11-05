@@ -49,7 +49,7 @@ Exemple : disabled ne sert jamais à masquer une permission manquante.
 L'élément HTML, le rôle ARIA et les attributs selon l'usage, puis le nom accessible, la navigation au clavier, le focus et les annonces.
 
 ## Code
-Liens : la page Storybook du composant, une par thème, et son dossier sur GitHub. Le lien Storybook renseigné dans Figma doit en faire partie.
+Liens : la page Storybook du composant, une par thème, son dossier sur GitHub et sa page dans le plugin Copilot. Le lien Storybook renseigné dans Figma doit en faire partie.
 Import : l'import par thème.
 Exemple : un exemple correct, le plus court possible.
 Écarts : les noms qui diffèrent entre Figma et le code, et ce qui n'existe que d'un côté.
@@ -102,7 +102,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Contenu : ce qui est obligatoire et ce qui est limité est-il dit ?
 - Comportement : que se passe-t-il au clic, au clavier, en désactivé, pendant un chargement ?
 - Accessibilité : l'élément HTML, le rôle ARIA et les attributs propres à chaque usage sont-ils là, par exemple pour ouvrir une zone, envoyer un formulaire ou charger ? Le nom accessible, le clavier, le focus, les contrastes, la taille de la zone cliquable et les annonces sont-ils couverts ?
-- Code : les liens vers Storybook et GitHub, l'import, le chargement des styles, un exemple avec du contenu et le tableau complet des écarts sont-ils là ?
+- Code : les liens vers Storybook, GitHub et le plugin Copilot, l'import, le chargement des styles, un exemple avec du contenu et le tableau complet des écarts sont-ils là ?
 - Décisions : chaque choix qui pourrait surprendre est-il expliqué, et commence-t-il par la version qui l'a introduite et sa date ? Aucune version citée n'est-elle plus récente que celle du titre ?
 - Points ouverts : tout ce qui a été ajouté sans source y figure-t-il ? Chaque point finit-il par « En attendant : » ?
 - Titre : porte-t-il la version du JSON, avec la ligne des design tokens juste en dessous ?

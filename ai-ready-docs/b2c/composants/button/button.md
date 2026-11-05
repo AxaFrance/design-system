@@ -130,6 +130,8 @@ Storybook, selon le thème : [prospect](https://axafrance.github.io/design-syste
 
 Code source : [dossier Button sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/Button).
 
+Détail de l'implémentation : [page Button du plugin Copilot](https://github.com/AxaFrance/design-system/blob/main/plugins/canopee-prospect-client/skills/canopee-prospect-client/references/01-button.md#button).
+
 Import, selon le thème :
 
 ```tsx

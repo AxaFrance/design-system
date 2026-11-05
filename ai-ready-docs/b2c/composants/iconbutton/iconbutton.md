@@ -104,6 +104,8 @@ Storybook de ClickIcon, selon le thème : [prospect](https://axafrance.github.io
 
 Code source : [dossier ClickIcon sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/ClickIcon).
 
+Détail de l'implémentation : [page ClickIcon du plugin Copilot](https://github.com/AxaFrance/design-system/blob/main/plugins/canopee-prospect-client/skills/canopee-prospect-client/references/01-button.md#clickicon).
+
 Import, selon le thème :
 
 ```tsx
