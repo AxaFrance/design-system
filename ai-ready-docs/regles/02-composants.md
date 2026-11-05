@@ -44,3 +44,11 @@ La page porte simplement le nom de la famille, et les pages suivent l'ordre du t
 | Progression | Ce qui montre l'avancement : étapes, frise, barre de progression. |
 | Structure | Ce qui organise la page : titres, accordéons, fenêtres, tableaux. |
 | AI | Les composants des assistants IA. |
+
+## Les templates
+
+Un template assemble des composants de Canopée. Un bloc regroupe des composants qui servent ensemble, une section est une bande pleine largeur faite de blocs, et une page est un écran complet fait de sections.
+
+- Le nom d'un template suit les mêmes règles que celui d'un composant. Il ne contient ni le mot Template, ni Block, Section ou Page. Exemple : Loader, qui assemble un Spinner, un titre et un sous-titre, et non TemplateLoader ou LoaderBlock.
+- La description d'un template commence par « Template de bloc. », « Template de section. » ou « Template de page. ». Dans le panneau Assets de Figma, la recherche lit aussi les descriptions. Un designer qui tape « template » voit donc tous les templates.
+- Dans la librairie Figma, un template est rangé dans la page Templates, et non dans une famille. La page Templates a trois sections Figma : Blocks, Sections et Pages.
