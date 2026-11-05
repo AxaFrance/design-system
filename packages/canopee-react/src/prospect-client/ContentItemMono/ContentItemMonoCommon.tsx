@@ -14,6 +14,12 @@ export type ContentMonoItemPictureProps = {
   picture: string;
   title: string;
   subtitle: string;
+  /**
+   * Props passed to the picture. The picture is decorative by default
+   * (`alt=""`) because the title is displayed next to it: set `alt` only
+   * when the picture carries information that the text does not.
+   */
+  basePictureProps?: Omit<ComponentProps<typeof BasePicture>, "src">;
 };
 
 export type ContentMonoItemIconProps = {
@@ -59,14 +65,14 @@ export const getContentItemCoreProps = ({
   }
 
   if (type === "picture") {
+    const { picture, basePictureProps, ...pictureItemProps } = props as Omit<
+      ContentMonoItemPictureProps,
+      "type"
+    >;
+
     return {
-      ...props,
-      leftComponent: (
-        <BasePicture
-          src={(props as ContentMonoItemPictureProps).picture}
-          alt={props.title}
-        />
-      ),
+      ...pictureItemProps,
+      leftComponent: <BasePicture src={picture} {...basePictureProps} />,
     } as ContentItemCoreProps;
   }
 

@@ -97,7 +97,7 @@ export const DataAgentCommon = ({
         {...agentProps}
         basePictureProps={{
           src: agentProps.picture,
-          alt: agentProps.title,
+          ...agentProps.basePictureProps,
         }}
         variant="agent"
       />
