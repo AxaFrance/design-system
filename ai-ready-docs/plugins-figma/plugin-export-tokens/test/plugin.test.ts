@@ -608,9 +608,9 @@ describe("default export", () => {
 
   it("number without scope, type inferred from the name and flagged", () => {
     expect(P["Opacité"].disabled.$type).toBe("number");
-    expect(P["Opacité"].disabled.$extensions["fr.axa.canopee"].typeDeduit).toBe(
-      true,
-    );
+    expect(
+      P["Opacité"].disabled.$extensions["fr.axa.canopee"].inferredType,
+    ).toBe(true);
     expect(
       report.inferredTypes.includes(
         "Opacité/disabled : traité comme un nombre",
@@ -649,7 +649,7 @@ describe("default export", () => {
   });
 
   it("name sanitized, Figma name kept, nothing otherwise", () => {
-    expect(P.Rayon["petit-5"].$extensions["fr.axa.canopee"].nomFigma).toBe(
+    expect(P.Rayon["petit-5"].$extensions["fr.axa.canopee"].figmaName).toBe(
       "Rayon/petit.5",
     );
     expect(P.Espacement.m.$extensions).toBe(undefined);

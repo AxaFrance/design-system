@@ -81,7 +81,7 @@
               "$value": 0.4,
               "$extensions": {
                 "fr.axa.canopee": {
-                  "typeDeduit": true
+                  "inferredType": true
                 }
               }
             }
@@ -101,7 +101,7 @@
               },
               "$extensions": {
                 "fr.axa.canopee": {
-                  "nomFigma": "Rayon/petit.5"
+                  "figmaName": "Rayon/petit.5"
                 }
               }
             }
@@ -112,7 +112,7 @@
               "$value": "Publico",
               "$extensions": {
                 "fr.axa.canopee": {
-                  "typeDeduit": true
+                  "inferredType": true
                 }
               }
             }

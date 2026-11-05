@@ -61,8 +61,8 @@ type DtcgType =
 
 // Keys written in $extensions['fr.axa.canopee']: part of the published file format.
 interface TokenExtensions {
-  nomFigma?: string;
-  typeDeduit?: boolean;
+  figmaName?: string;
+  inferredType?: boolean;
   alias?: string;
   fontStyle?: string;
   textDecoration?: string;
@@ -102,7 +102,7 @@ const isAlias = (v: unknown): v is VariableAlias =>
 // Any message to the interface goes through here, so that it is checked against the contract.
 const post = (message: PluginToUiMessage) => figma.ui.postMessage(message);
 
-const VERSION = "0.31.0";
+const VERSION = "0.31.1";
 const WIDTH = 440;
 const INITIAL_HEIGHT = 600;
 // Automatic height: follows the content, within these bounds. High enough by default
@@ -936,7 +936,7 @@ const readFile = async () => {
         report.externalAliases,
         `${variable.name} : pointe vers ${target.name}`,
       );
-      // alias is part of the published file format, like nomFigma and typeDeduit.
+      // alias is part of the published file format, like figmaName and inferredType.
       if (!extensions.alias) extensions.alias = target.name;
       value = await concreteValue(target, modeId);
       if (value === null || value === undefined) return null;
@@ -1085,11 +1085,11 @@ const convertVariables = async (
       continue;
     }
 
-    // The keys written in extensions (nomFigma, typeDeduit, alias) are part of the published file format: they keep their names.
+    // The keys written in extensions (figmaName, inferredType, alias) are part of the published file format: they keep their names.
     const extensions: TokenExtensions = {};
     if (isSanitized(variable.name)) {
       report.sanitizedNames.push(variable.name);
-      extensions.nomFigma = variable.name;
+      extensions.figmaName = variable.name;
     }
     // A deprecated token no longer has a scope: this is not an omission to report.
     if (inferred) {
@@ -1097,7 +1097,7 @@ const convertVariables = async (
         report.inferredTypes.push(
           `${variable.name} : traité comme ${TYPE_LABEL[type] || type}`,
         );
-      extensions.typeDeduit = true;
+      extensions.inferredType = true;
     }
 
     const defaultValue = await convert(
