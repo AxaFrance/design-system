@@ -2,7 +2,7 @@
 
 Chaque composant de Canopée a son propre numéro de version, sous la forme X.Y.Z. Ce numéro porte sur le composant dans Figma et sur sa fiche. Ce numéro monte seulement quand le composant lui-même change. Une nouvelle version de Canopée ou d'un autre composant ne le modifie pas. Il indique à tout le monde l'ampleur de chaque changement.
 
-Un template est un assemblage de composants de Canopée. Son numéro de version suit les mêmes règles que celui d'un composant, et il a sa propre fiche et son propre changelog.
+Un template est un assemblage de composants de Canopée. Son numéro de version suit les mêmes règles que celui d'un composant, et il a sa propre fiche et son propre changelog. Ce numéro monte quand l'assemblage change, pas quand un composant assemblé change.
 
 ## Où lire la version
 
