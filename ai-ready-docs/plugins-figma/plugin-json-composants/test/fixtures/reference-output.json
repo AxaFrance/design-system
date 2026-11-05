@@ -448,5 +448,5 @@
       "message": "Ce texte n'est relié à aucune propriété de texte."
     }
   ],
-  "_tool": "canopee-fiches-composants 0.4.42"
+  "_tool": "canopee-fiches-composants <version>"
 }

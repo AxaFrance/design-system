@@ -15,7 +15,7 @@ type Message<T extends PluginToUiMessage["type"]> = Extract<
   { type: T }
 >;
 
-// The elements are those of ui.html, found by their id. A missing one is a mistake of the page.
+// The elements are those of src/ui/ui.html, found by their id. A missing one is a mistake of the page.
 const $ = (id: string): HTMLElement => {
   const element = document.getElementById(id);
   if (!element) throw new Error("élément absent : " + id);

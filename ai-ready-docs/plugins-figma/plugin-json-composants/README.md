@@ -2,17 +2,18 @@
 
 Plugin Figma qui exporte le JSON d'un composant. Ce JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il suit le [format du JSON d'un composant](https://github.com/AxaFrance/design-system/blob/ai-ready-docs/ai-ready-docs/b2c/composants/format-json-composant.md). Le plugin ne touche ni au Markdown de la fiche ni au composant.
 
-Un seul fichier de code, aucune dépendance, aucun build. Le seul accès réseau est la lecture, sur le repo public de Canopée, de la liste des versions et de leurs fichiers de tokens, pour calculer la version des design tokens. L'extraction elle-même n'appelle jamais le réseau.
+Le code est écrit en TypeScript, et Vite construit les deux fichiers que Figma charge, dans `dist/`. Le seul accès réseau est la lecture, sur le repo public de Canopée, de la liste des versions et de leurs fichiers de tokens, pour calculer la version des design tokens. L'extraction elle-même n'appelle jamais le réseau.
 
 ## Installer en développement
 
 Le plugin s'importe depuis un manifeste local, sans publication.
 
 1. Récupérer ce dossier sur son poste.
-2. Dans Figma Desktop : `Plugins → Development → Import plugin from manifest…`
-3. Choisir `manifest.json`.
+2. Dans ce dossier, lancer `npm ci`, puis `npm run build`.
+3. Dans Figma Desktop : `Plugins → Development → Import plugin from manifest…`
+4. Choisir `manifest.json`.
 
-Il apparaît ensuite dans `Plugins → Development`, sous le nom « Canopée, composants ». Figma relit le dossier à chaque lancement. Son identifiant technique reste `canopee-fiches-composants` : le changer obligerait à réimporter le plugin et effacerait la taille de fenêtre retenue.
+Il apparaît ensuite dans `Plugins → Development`, sous le nom « Canopée, composants ». Figma relit `dist/` à chaque lancement : après `npm run build`, une nouvelle version s'applique sans réimporter. Son identifiant technique reste `canopee-fiches-composants` : le changer obligerait à réimporter le plugin et effacerait la taille de fenêtre retenue.
 
 ## Utiliser
 
@@ -28,13 +29,13 @@ Au lancement, le plugin lit ses règles dans la page `regles/03-proprietes.md`, 
 
 Si la page est illisible ou GitHub injoignable, le plugin garde la copie écrite dans son code et affiche un bandeau. Si une propriété n'a plus de liste de valeurs dans la doc, le bandeau la nomme et ses valeurs ne sont plus contrôlées.
 
-Le plugin suit seulement ces tableaux : un nouveau type de contrôle demande du code. `node test/test.js` échoue si la copie du code s'écarte de la page.
+Le plugin suit seulement ces tableaux : un nouveau type de contrôle demande du code. `npm test` échoue si la copie du code s'écarte de la page.
 
 ## Les templates
 
 Le plugin reconnaît un template à sa page dans la librairie : `Templates - Blocks`, `Templates - Sections` ou `Templates - Pages`. Il écrit alors `template` dans `meta.type`, et `block`, `section` ou `page` dans `meta.templateLevel`. Un composant n'a pas ce niveau, et un sous-composant rangé sur ces pages non plus. Un template bâti sur un autre composant garde `extends`.
 
-Le contrôle de nomenclature vérifie que la description du template commence par « Template de bloc. », « Template de section. » ou « Template de page. », selon sa page. Il signale aussi une description qui commence par une de ces mentions quand le composant est rangé ailleurs. `node test/test.js` échoue si ces noms s'écartent de la page `regles/02-composants.md`.
+Le contrôle de nomenclature vérifie que la description du template commence par « Template de bloc. », « Template de section. » ou « Template de page. », selon sa page. Il signale aussi une description qui commence par une de ces mentions quand le composant est rangé ailleurs. `npm test` échoue si ces noms s'écartent de la page `regles/02-composants.md`.
 
 ## Les versions
 
@@ -134,23 +135,26 @@ Les clés de premier niveau sont toujours dans cet ordre : `formatVersion`, `met
 
 ## Utiliser l'extraction depuis le bridge
 
-Le cœur de l'extraction est délimité dans `code.js` par deux commentaires repères. Pour le passer dans un `figma_execute` sans ouvrir le plugin :
+Le cœur de l'extraction est délimité dans `src/code.ts` par deux commentaires repères. Pour le passer dans un `figma_execute` sans ouvrir le plugin, après `npm ci` :
 
 ```
 node scripts/construire-bridge.mjs --id 12:34
 ```
 
-Le script produit `scripts/extraire.bridge.js`, à coller tel quel dans `figma_execute`. Il prend l'id du component set dans la constante en tête (à remplacer à la main si `--id` n'est pas donné) et retourne le JSON, sous forme de texte, sans version ni version des design tokens (elles valent `null`). Ce fichier est généré, il faut le reconstruire après chaque changement de `code.js`.
+Le script retire les types et produit `scripts/extraire.bridge.js`, à coller tel quel dans `figma_execute`. Il prend l'id du component set dans la constante en tête (à remplacer à la main si `--id` n'est pas donné) et retourne le JSON, sous forme de texte, sans version ni version des design tokens (elles valent `null`). Ce fichier est généré, il faut le reconstruire après chaque changement de `src/code.ts`.
 
 Le cœur contient aussi un bloc plus petit, entre `// >>> DEBUT REGLES` et `// <<< FIN REGLES` : les règles d'expansion des surcharges (`matches`, `effectiveStyles`, `canonical`). `scripts/construire-retour.mjs` le recopie dans le script de reconstruction, à la place du marqueur `__REGLES__` de `scripts/reconstruire.modele.js`.
 
 ## Tester
 
 ```
-node test/test.js
+npm run build       # construit dist/code.js et dist/ui.html
+npm run typecheck   # contrôle les types du code, de l'interface et des tests
+npm test            # construit le plugin, puis lance toutes les vérifications
+npm run format      # formate le code avec Prettier
 ```
 
-Le test utilise `node:test`, intégré à Node : chaque test prépare son propre état, et un échec n'arrête pas les suivants, tous sont listés. Il fait tourner `code.js` sur un Figma simulé (un bouton à deux variantes, une variable de couleur, des valeurs brutes, une icône imbriquée) et sur un GitHub simulé : aucun test n'appelle le vrai réseau. Il vérifie le niveau de changement, la version suivante, le calcul de la version des design tokens et la base partagée, puis le script du bridge, qui doit être celui que génère le code actuel. Il couvre `scripts/verifier-fiche.mjs` sur une fiche minimale, et deux garde-fous du script de reconstruction : il refuse un autre fichier que celui de sa configuration, et son étape `supprimer` ne retire que ce qui porte sa marque. La reconstruction complète se vérifie dans Figma, par l'aller-retour. Un dernier test cherche les tirets longs et le point médian dans tous les fichiers du plugin. Un test de garde compare une empreinte de la sortie du bouton à `test/sortie-reference.json` : si la sortie change, monter `VERSION` puis mettre ce fichier à jour. Un autre test lit les tableaux de `03-proprietes.md` et les compare aux constantes de `code.js` (ordre, valeurs imposées, variantes vrai ou faux) : la documentation fait foi, et c'est le code qui se corrige.
+Les tests utilisent Vitest. Chaque test prépare son propre état, et un échec n'arrête pas les suivants, tous sont listés. Ils font tourner `dist/code.js` sur un Figma simulé (un bouton à deux variantes, une variable de couleur, des valeurs brutes, une icône imbriquée) et sur un GitHub simulé : aucun test n'appelle le vrai réseau. Ils vérifient le niveau de changement, la version suivante, le calcul de la version des design tokens et la base partagée, puis le script du bridge, qui doit être celui que génère le code actuel. Ils couvrent `scripts/verifier-fiche.mjs` sur une fiche minimale, et deux garde-fous du script de reconstruction : il refuse un autre fichier que celui de sa configuration, et son étape `supprimer` ne retire que ce qui porte sa marque. La reconstruction complète se vérifie dans Figma, par l'aller-retour. Un dernier test cherche les tirets longs et le point médian dans tous les fichiers du plugin. Un test d'intégration fait tourner `dist/ui.html` dans jsdom, relié au plugin simulé, et compare les textes de l'interface à des instantanés. Un test compare le JSON du bouton à `test/fixtures/reference-output.json`. Un test de garde compare une empreinte de la sortie du bouton à `test/fixtures/sortie-reference.json` : si la sortie change, monter `VERSION` puis mettre ce fichier à jour. Un autre test lit les tableaux de `03-proprietes.md` et les compare aux constantes de `src/code.ts` (ordre, valeurs imposées, variantes vrai ou faux) : la documentation fait foi, et c'est le code qui se corrige.
 
 ## Crédit
 

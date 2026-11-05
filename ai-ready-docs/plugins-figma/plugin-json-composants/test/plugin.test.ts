@@ -584,9 +584,14 @@ describe("The fake button", () => {
     ]);
   });
   it("the exact text of the JSON of the button is the reference file test/fixtures/reference-output.json", async () => {
-    // Nothing varies from one run to the next in this text: no date, no random identifier.
+    // Only the plugin version varies in this text: no date, no random identifier.
     const { text } = await button();
-    expect(text).toBe(
+    expect(
+      text.replace(
+        /("_tool": "canopee-fiches-composants )[^"]*"/,
+        '$1<version>"',
+      ),
+    ).toBe(
       fs.readFileSync(path.join(FIXTURES, "reference-output.json"), "utf8"),
     );
   });

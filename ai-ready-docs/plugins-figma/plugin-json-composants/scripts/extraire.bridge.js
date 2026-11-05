@@ -3,7 +3,7 @@
 // du component set (ou d'un composant seul). Retourne le JSON de la fiche, sous forme de texte.
 const ID_COMPONENT_SET = "ID_DU_COMPONENT_SET"
 
-const VERSION = "0.4.42";
+const VERSION = "0.4.43";
 const FORMAT = "0.4";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.

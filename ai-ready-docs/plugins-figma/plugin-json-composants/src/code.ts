@@ -48,7 +48,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> DEBUT EXTRACTION
-const VERSION = "0.4.42";
+const VERSION = "0.4.43";
 const FORMAT = "0.4";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
