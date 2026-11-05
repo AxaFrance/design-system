@@ -5,6 +5,7 @@
     border: 1px solid var(--data-agent-border-color);
     border-radius: var(--radius-8);
     flex-direction: column;
+    background-color: var(--white-1000);
   }
 
   .af-data-agent__intro {
@@ -17,24 +18,24 @@
   .af-data-agent__info-content,
   .af-data-agent__info-click-content {
     display: flex;
+    margin: 0;
     flex-direction: column;
     gap: var(--rem-12);
+    list-style: none;
   }
 
   .af-data-agent__info-content {
     padding: var(--data-agent-intro-content-padding);
-
-    .af-data-agent__line:last-of-type {
-      display: none;
-    }
   }
 
   .af-data-agent__info-click-content {
     padding: var(--rem-16) var(--rem-16) 0;
+  }
 
-    .af-data-agent__line:last-of-type {
-      display: none;
-    }
+  .af-data-agent__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rem-12);
   }
 
   .af-data-agent__text-orias {
