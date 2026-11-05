@@ -93,6 +93,10 @@
     box-shadow: 0 0 6px var(--white);
   }
 
+  .af-title-bar .btn.af-btn--circle:focus-visible {
+    outline-color: var(--white);
+  }
+
   @media (--tablet-portrait) {
     .burger-container {
       display: none;

@@ -6,7 +6,7 @@ import * as HelpButtonStories from "./HelpButton.stories";
 # HelpButton
 
 The `HelpButton` component is the easiest way to create tooltips in the slash design-system.
-It wraps around the more customisable `Popover` component with defaults styles. By default the element to be hovered/clicked is a blue circle button with a cursive `i` inside.
+It wraps around the more customisable `Popover` component with defaults styles. By default the element to be hovered/clicked is a blue circle button with an info icon inside, named "Aide" for screen readers.
 
 ## Playground
 
@@ -47,5 +47,6 @@ There are 2 modes available for the HelpButton component
 
 If you need rich content inside the tooltip, it is possible to pass HTML as children of the component.
 You can also replace the blue circle with custom HTML by changing the `helpButtonContent` prop.
+The trigger then takes its accessible name from that content, unless you set `triggerAriaLabel`, which also replaces the default name "Aide" (for example `triggerAriaLabel="Aide sur le numéro de contrat"`). With such a name, the open help text describes the trigger (`aria-describedby`).
 
 <Canvas of={HelpButtonStories.WithHtml} sourceState="shown" />

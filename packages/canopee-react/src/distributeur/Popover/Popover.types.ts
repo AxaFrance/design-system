@@ -8,4 +8,5 @@ export type PopoverProps = {
   placement?: Placement;
   children?: React.ReactNode;
   element: React.ReactNode;
+  triggerAriaLabel?: string;
 };
