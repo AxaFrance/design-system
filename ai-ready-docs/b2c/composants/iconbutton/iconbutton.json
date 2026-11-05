@@ -7,7 +7,9 @@
     "type": "atom",
     "figmaKey": "921b5fa9be9ebca368ea2a027222ebc806a6dad6",
     "library": "B2C",
-    "documentationLinks": []
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/iconbutton/iconbutton.md"
+    ]
   },
   "api": {
     "props": {

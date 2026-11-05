@@ -106,6 +106,8 @@ Code source : [dossier ClickIcon sur GitHub](https://github.com/AxaFrance/design
 
 Détail de l'implémentation : [page ClickIcon du plugin Copilot](https://github.com/AxaFrance/design-system/blob/main/plugins/canopee-prospect-client/skills/canopee-prospect-client/references/01-button.md#clickicon).
 
+Cette fiche sur GitHub : [iconbutton.md](https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/iconbutton/iconbutton.md).
+
 Import, selon le thème :
 
 ```tsx
