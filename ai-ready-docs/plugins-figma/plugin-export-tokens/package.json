@@ -2,8 +2,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build --mode code",
-    "typecheck": "tsc -p tsconfig.code.json && tsc -p tsconfig.test.json",
+    "build": "vite build --mode code && vite build --mode ui",
+    "typecheck": "tsc -p tsconfig.code.json && tsc -p tsconfig.ui.json && tsc -p tsconfig.test.json",
     "test": "npm run build && vitest run"
   },
   "devDependencies": {
@@ -13,7 +13,6 @@
     "jsdom": "^30.1.3",
     "typescript": "~6.0.3",
     "vite": "^8.3.5",
-    "vite-plugin-singlefile": "2.3.4",
     "vitest": "^4.1.12"
   }
 }

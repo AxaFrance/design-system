@@ -1,4 +1,4 @@
-// Integration test: the real ui.html, in jsdom, connected to the real dist/code.js (mock
+// Integration test: the real dist/ui.html, in jsdom, connected to the real dist/code.js (mock
 // plugin) by a bridge that reproduces the one in Figma. It protects the message
 // contract between the two sides, which nothing else tests.
 //
@@ -26,7 +26,7 @@ const TYPES_PLUGIN_TO_UI = ['context', 'submit-ready', 'diff', 'error', 'file', 
 const typesToPlugin = new Set()
 const typesToUi = new Set()
 
-const HTML = fs.readFileSync(path.join(HERE, '..', 'ui.html'), 'utf8')
+const HTML = fs.readFileSync(path.join(HERE, '..', 'dist', 'ui.html'), 'utf8')
 
 // ------------------------------------------------------------------ documents
 
@@ -93,7 +93,7 @@ const normalize = (text: MockData) => text.replace(/\s+/g, ' ').trim()
 
 const openedWindows: MockData[] = []
 
-// Opens ui.html in jsdom, connected to a mock plugin on the given document.
+// Opens dist/ui.html in jsdom, connected to a mock plugin on the given document.
 // repoReference: text of the code file on GitHub, or null if it is not there.
 // pulls: open PRs returned by GitHub. versions: text of the code file at
 // each published version, by number.
@@ -408,6 +408,21 @@ describe('UI and plugin: end-to-end journeys', () => {
     expect(ui.plugin.openedUrls).toStrictEqual(['https://github.com/AxaFrance/design-system/pull/2091'])
     ui.noError()
     expect(ui.text()).toMatchSnapshot()
+  })
+})
+
+// Figma reads dist/ui.html as a single string (__html__) and runs dist/code.js
+// without any module system: a relative reference or an import would not resolve.
+describe('files built for Figma', () => {
+  it('dist/ui.html has no external script or stylesheet', () => {
+    expect(HTML).not.toMatch(/<script[^>]*\ssrc\s*=/i)
+    expect(HTML).not.toMatch(/<link[^>]*rel\s*=\s*["']?stylesheet/i)
+    expect(HTML).not.toMatch(/<script[^>]*type\s*=\s*["']?module/i)
+  })
+
+  it('dist/code.js has no import or export', () => {
+    const code = fs.readFileSync(path.join(HERE, '..', 'dist', 'code.js'), 'utf8')
+    expect(code).not.toMatch(/^\s*(import|export)\b/m)
   })
 })
 

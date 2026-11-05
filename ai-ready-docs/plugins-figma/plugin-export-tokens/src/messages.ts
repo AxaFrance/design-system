@@ -108,11 +108,17 @@ export interface DiffResultMessage extends DiffResult {
   version?: string
 }
 
+// The reference file is not an export of the plugin.
+export interface DiffErrorMessage {
+  type: 'diff'
+  error: string
+}
+
 export type PluginToUiMessage =
   | { type: 'context'; file: string; variables: number; styles: number; collections: number; repoUrls: RepoUrls }
   | { type: 'verification'; report: Report; blocker: SubmitBlocker | null; changed: boolean }
   | { type: 'error'; context: ErrorContext; message: string }
-  | { type: 'diff'; error: string }
+  | DiffErrorMessage
   | DiffResultMessage
   | { type: 'submit-ready'; json: string; message: string; url: string }
   | { type: 'file'; json: string; file: string }
