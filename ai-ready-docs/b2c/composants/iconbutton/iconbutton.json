@@ -1829,10 +1829,10 @@
   "issues": [
     {
       "level": "info",
-      "rule": "prop-hors-nomenclature",
+      "rule": "prop-outside-nomenclature",
       "where": "api.props._theme",
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-fiches-composants 0.4.38"
+  "_tool": "canopee-export-components 0.4.44"
 }
