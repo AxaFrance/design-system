@@ -98,4 +98,21 @@ describe("CardRadioCommon", () => {
     expect(radio).toHaveAttribute("name", "test");
     expect(radio).toHaveAttribute("value", "radio-value");
   });
+
+  it("should apply the warning variant to the card and radio", () => {
+    render(
+      <CardRadioCommon
+        label="Label"
+        RadioComponent={Radio}
+        IconComponent={MockIconComponent}
+        name="test"
+        variant="warning"
+      />,
+    );
+
+    expect(screen.getByText("Label").closest("label")).toHaveClass(
+      "af-card-radio--warning",
+    );
+    expect(screen.getByRole("radio")).toHaveClass("af-radio--warning");
+  });
 });
