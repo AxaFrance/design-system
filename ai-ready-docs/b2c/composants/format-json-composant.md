@@ -52,6 +52,7 @@ L'identité du composant.
 
 - `version` est la version du composant, propre à lui. Le plugin la calcule à chaque export, en comparant le composant au dernier JSON exporté.
 - `tokensVersion` est la première version publiée de Canopée dont le fichier de design tokens contient tous les tokens et styles de texte du composant. Elle vaut `null` quand le plugin n'a pas pu la calculer, et un défaut dit pourquoi.
+- `templateLevel` vaut `block`, `section` ou `page` pour un template, selon sa page dans la librairie Figma. Un composant n'a pas ce champ.
 - `type` vaut `atom`, ou `composed` quand le composant est bâti sur un autre, nommé alors dans `extends`.
 - `figmaKey` est la clé du composant dans la librairie. Elle permet de retrouver le vrai composant.
 
