@@ -37,7 +37,9 @@
     cursor: text;
 
     &:disabled {
+      opacity: 1;
       cursor: not-allowed;
+      -webkit-text-fill-color: var(--input-date-color);
     }
 
     &:is(
