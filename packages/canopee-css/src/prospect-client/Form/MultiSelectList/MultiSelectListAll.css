@@ -6,7 +6,7 @@
   padding: 0;
   border-radius: var(--radius-8);
   overflow: hidden auto;
-  box-shadow: 0 4px 16px -2px var(--gray-250);
+  box-shadow: 0 4px 16px -6px var(--gray-250);
   list-style-type: none;
 }
 
