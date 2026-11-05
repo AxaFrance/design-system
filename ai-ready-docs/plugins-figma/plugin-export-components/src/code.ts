@@ -1243,7 +1243,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
   for (const list of prep.nodes) {
     for (const n of list) {
       const name = String(n.name);
-      const where = "calque " + name;
+      const where = "layer " + name;
       if (n.type === "TEXT")
         boundTexts[name] =
           boundTexts[name] ||
@@ -1325,7 +1325,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
     if (!boundTexts[name] && !DEFAULT_NAME.test(name))
       addIssue(
         "text-not-linked",
-        "calque " + name,
+        "layer " + name,
         "Ce texte n'est relié à aucune propriété de texte.",
         "info",
       );
@@ -2077,8 +2077,8 @@ function locateIssues(
     }
   }
   return issues.map((i) => {
-    if (i.where.indexOf("calque ") === 0) {
-      const name = i.where.slice("calque ".length);
+    if (i.where.indexOf("layer ") === 0) {
+      const name = i.where.slice("layer ".length);
       const ids: string[] = [];
       let variants = 0;
       for (const list of prep.nodes) {
@@ -2169,7 +2169,7 @@ function readableLocation(where: unknown): string {
   if (w === "structure.uses") return "Composants imbriqués";
   let m = /^(?:api\.props|structure\.slots)\.(.+)$/.exec(w);
   if (m) return "Propriété " + m[1];
-  m = /^calque (.+)$/.exec(w);
+  m = /^layer (.+)$/.exec(w);
   if (m) return "Calque " + m[1];
   m = /^tokens\.(.+)$/.exec(w);
   if (m) return "Variable " + m[1];

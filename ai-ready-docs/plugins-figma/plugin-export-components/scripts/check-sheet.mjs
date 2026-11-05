@@ -6,9 +6,10 @@
 // the documentation link set in Figma appears in the Code section, the level of a template
 // is block, section or page, and the instruction for the AI closes the sheet.
 // Usage: node scripts/check-sheet.mjs ../../b2c/composants/button/button.md ../../b2c/composants/button/button.json
-// The outline is read in the parent folder of the sheet. Exit code 1 if there is an error, 0 otherwise (the
+// The outline is read above the sheet: one level for a component (composants/button/), two for a
+// template (templates/bloc/loader/). Exit code 1 if there is an error, 0 otherwise (the
 // remarks do not prevent exit code 0).
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const [mdPath, jsonPath] = process.argv.slice(2);
@@ -95,10 +96,21 @@ for (const [prop, vals] of Object.entries(values)) {
 }
 
 // 4. The instruction for the AI is the last section of the sheet, word for word as in the outline.
-const outline = readFileSync(
-  join(dirname(mdPath), "..", "trame-fiche-composant.md"),
-  "utf8",
-);
+const outlineName =
+  sheet.meta && sheet.meta.type === "template"
+    ? "trame-fiche-template.md"
+    : "trame-fiche-composant.md";
+const outlinePath = [
+  join(dirname(mdPath), ".."),
+  join(dirname(mdPath), "..", ".."),
+]
+  .map((folder) => join(folder, outlineName))
+  .find((candidate) => existsSync(candidate));
+if (!outlinePath) {
+  console.error("Trame introuvable : " + outlineName);
+  process.exit(2);
+}
+const outline = readFileSync(outlinePath, "utf8");
 const instruction = (outline.match(
   /^## Pour l'IA qui lit cette fiche\n+(.+)$/m,
 ) || [])[1];

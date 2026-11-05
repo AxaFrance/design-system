@@ -919,7 +919,7 @@ async function checkNomenclature(prep) {
     for (const list of prep.nodes) {
         for (const n of list) {
             const name = String(n.name);
-            const where = "calque " + name;
+            const where = "layer " + name;
             if (n.type === "TEXT")
                 boundTexts[name] =
                     boundTexts[name] ||
@@ -967,7 +967,7 @@ async function checkNomenclature(prep) {
     }
     for (const name of Object.keys(boundTexts)) {
         if (!boundTexts[name] && !DEFAULT_NAME.test(name))
-            addIssue("text-not-linked", "calque " + name, "Ce texte n'est relié à aucune propriété de texte.", "info");
+            addIssue("text-not-linked", "layer " + name, "Ce texte n'est relié à aucune propriété de texte.", "info");
     }
     return issues;
 }
@@ -1625,8 +1625,8 @@ function locateIssues(ctx, prep, issues, all) {
         }
     }
     return issues.map((i) => {
-        if (i.where.indexOf("calque ") === 0) {
-            const name = i.where.slice("calque ".length);
+        if (i.where.indexOf("layer ") === 0) {
+            const name = i.where.slice("layer ".length);
             const ids = [];
             let variants = 0;
             for (const list of prep.nodes) {

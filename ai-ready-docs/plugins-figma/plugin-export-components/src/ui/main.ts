@@ -18,7 +18,7 @@ type Message<T extends PluginToUiMessage["type"]> = Extract<
 // The elements are those of src/ui/ui.html, found by their id. A missing one is a mistake of the page.
 const $ = (id: string): HTMLElement => {
   const element = document.getElementById(id);
-  if (!element) throw new Error("élément absent : " + id);
+  if (!element) throw new Error("missing element: " + id);
   return element;
 };
 // The checks look at what the element has, not at its class: the page is ours, and the tests
@@ -31,12 +31,12 @@ const isElement = (x: unknown): x is HTMLElement =>
   typeof x === "object" && x !== null && "dataset" in x;
 const $button = (id: string): HTMLButtonElement => {
   const element = $(id);
-  if (!isButton(element)) throw new Error("pas un bouton : " + id);
+  if (!isButton(element)) throw new Error("not a button: " + id);
   return element;
 };
 const $input = (id: string): HTMLInputElement => {
   const element = $(id);
-  if (!isInput(element)) throw new Error("pas une case : " + id);
+  if (!isInput(element)) throw new Error("not a checkbox: " + id);
   return element;
 };
 // The closest element, from the target of an event.

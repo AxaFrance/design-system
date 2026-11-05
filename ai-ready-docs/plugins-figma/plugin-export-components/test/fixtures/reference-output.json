@@ -444,7 +444,7 @@
     {
       "level": "info",
       "rule": "text-not-linked",
-      "where": "calque caption",
+      "where": "layer caption",
       "message": "Ce texte n'est relié à aucune propriété de texte."
     }
   ],

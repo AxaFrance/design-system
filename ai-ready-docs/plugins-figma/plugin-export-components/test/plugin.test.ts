@@ -612,7 +612,7 @@ describe("The fake button", () => {
       "_collisions",
       "runtime",
     ])
-      expect(!text.includes('"' + c + '"'), "présent : " + c).toBeTruthy();
+      expect(!text.includes('"' + c + '"'), "present: " + c).toBeTruthy();
     expect(!text.includes("Ne doit pas se retrouver")).toBeTruthy();
     for (const p of Object.values<MockData>(sheet.api.props))
       expect(p.attribute).toBe(undefined);
@@ -899,10 +899,7 @@ describe("The fake button", () => {
     expect(second.text).toBe(text);
     expect(plugin.__test.serialize(same)).toBe(text);
     expect(text.endsWith("}\n")).toBeTruthy();
-    expect(
-      !/\d{4}-\d{2}-\d{2}/.test(text),
-      "une date dans le fichier",
-    ).toBeTruthy();
+    expect(!/\d{4}-\d{2}-\d{2}/.test(text), "a date in the file").toBeTruthy();
   });
   it("guard: if the output of the button changes, VERSION goes up and test/fixtures/guard-fingerprint.json follows", async () => {
     const { plugin, sheet } = await button();
@@ -917,13 +914,13 @@ describe("The fake button", () => {
     const version = plugin.__test.VERSION;
     if (fingerprint !== ref.fingerprint && version === ref.version)
       expect.fail(
-        "La sortie du bouton simulé a changé sans que VERSION change. Monter VERSION dans src/code.ts, puis mettre à jour test/fixtures/guard-fingerprint.json avec la nouvelle version et l'empreinte " +
+        "The output of the mock button changed without VERSION changing. Raise VERSION in src/code.ts, then update test/fixtures/guard-fingerprint.json with the new version and the fingerprint " +
           fingerprint +
           ".",
       );
     expect(
       version === ref.version && fingerprint === ref.fingerprint,
-      'test/fixtures/guard-fingerprint.json n\'est pas à jour. Y écrire { "version": "' +
+      'test/fixtures/guard-fingerprint.json is out of date. Write { "version": "' +
         version +
         '", "fingerprint": "' +
         fingerprint +
@@ -1054,7 +1051,7 @@ describe("The grouping of the overrides", () => {
             const x = key(o.styles[c][f]);
             expect(
               !(k in seen) || seen[k] === x,
-              "contradiction sur " + k + " pour " + key(v.cfg),
+              "contradiction on " + k + " for " + key(v.cfg),
             ).toBeTruthy();
             seen[k] = x;
           }
@@ -1139,7 +1136,7 @@ describe("The grouping of the overrides", () => {
     expect(canonical(effectiveStyles(st, { a: "z" }))).toBe(
       canonical({ root: { gap: { raw: 4 }, radius: { raw: 2 } } }),
     );
-    expect(st.default.root.radius.raw, "le défaut n'est pas modifié").toBe(2);
+    expect(st.default.root.radius.raw, "the default is not modified").toBe(2);
   });
   it("canonical: sorted keys, absent distinct from null", async () => {
     const { canonical } = (await button()).plugin.__test;
@@ -1213,7 +1210,7 @@ describe("The grouping of the overrides", () => {
   const replaceText = (text: string, before: string, after: string) => {
     expect(
       text.includes(before),
-      "texte absent de la page : " + before,
+      "text missing from the page: " + before,
     ).toBeTruthy();
     return text.replace(before, after);
   };
@@ -1508,12 +1505,12 @@ describe("A component that deviates from the nomenclature", () => {
     const { sheet } = await deviations();
     const where = (rule: string, where: string) =>
       issuesFor(sheet, rule, where).length;
-    expect(where("layer-default", "calque Frame 27")).toBe(1);
-    expect(where("layer-prefix", "calque bad-button-label")).toBe(1);
-    expect(where("layer-text", "calque Votre devis en 2 minutes")).toBe(1);
-    expect(where("layer-frame", "calque label-and-icon")).toBe(1);
-    expect(where("layer-case", "calque Left Icon")).toBe(1);
-    expect(where("layer-instance", "calque account_balance")).toBe(1);
+    expect(where("layer-default", "layer Frame 27")).toBe(1);
+    expect(where("layer-prefix", "layer bad-button-label")).toBe(1);
+    expect(where("layer-text", "layer Votre devis en 2 minutes")).toBe(1);
+    expect(where("layer-frame", "layer label-and-icon")).toBe(1);
+    expect(where("layer-case", "layer Left Icon")).toBe(1);
+    expect(where("layer-instance", "layer account_balance")).toBe(1);
   });
   it("no deviation is reported as an error", async () => {
     expect(
@@ -1538,10 +1535,7 @@ describe("The plugin, through messages", () => {
       variants: sel.variants,
       properties: sel.properties,
     }).toStrictEqual({ name: "Button", variants: 2, properties: 6 });
-    expect(
-      sel.latestVersion,
-      "jamais exporté : aucune version enregistrée",
-    ).toBe(null);
+    expect(sel.latestVersion, "never exported: no stored version").toBe(null);
   });
   it("after an export, the selection carries the last stored version", async () => {
     const { p, msg } = await generate();
@@ -1597,7 +1591,7 @@ describe("The À corriger list", () => {
       "Propriété isSelected",
     );
     expect(readableLocation("structure.slots.label")).toBe("Propriété label");
-    expect(readableLocation("calque Frame 27")).toBe("Calque Frame 27");
+    expect(readableLocation("layer Frame 27")).toBe("Calque Frame 27");
     expect(readableLocation("tokens.color/blue/700")).toBe(
       "Variable color/blue/700",
     );
@@ -1673,7 +1667,7 @@ describe("The À corriger list", () => {
           detail.sheet.issues.findIndex((x: MockData) => x.where === where)
         ],
       );
-    expect(i("calque Frame 27")).toStrictEqual({ ids: ["F:27"], variants: 1 });
+    expect(i("layer Frame 27")).toStrictEqual({ ids: ["F:27"], variants: 1 });
     expect(i("api.props.Size")).toStrictEqual({ ids: ["S:200"], variants: 0 });
   });
   it("the serialized JSON contains no ids, no labels, no date", async () => {
@@ -1799,19 +1793,19 @@ describe("Since the last export", () => {
     const { doc, p } = await generate();
     expect(
       doc.nodes[1].getSharedPluginData("canopee_sheets", "export"),
-      "enregistré avant toute copie",
+      "stored before any copy",
     ).toBe("");
     await p.send({ type: "record-export", id: "other:1" });
     expect(
       doc.nodes[1].getSharedPluginData("canopee_sheets", "export"),
-      "enregistré pour un autre composant",
+      "stored for another component",
     ).toBe("");
   });
   it("an export leaves no JSON on the machine", async () => {
     const { p } = await exportStored();
     expect(
       Object.keys(p.clientStorage),
-      "le stockage du poste reste vide",
+      "the client storage stays empty",
     ).toStrictEqual([]);
   });
   it("same component exported again: no change, and no date", async () => {
@@ -2301,13 +2295,13 @@ describe("The interface", () => {
     ).toBeTruthy();
     expect(
       source.indexOf('id="card"') < source.indexOf('id="tabs"'),
-      "la ligne du composant est au-dessus des onglets",
+      "the component line is above the tabs",
     ).toBeTruthy();
     expect(
       !/id="actions"[\s\S]*id="(overhaul|sheet-md|tokens-value)"[\s\S]*id="handle"/.test(
         source,
       ),
-      "les cases et la ligne des tokens ne sont plus dans la zone des boutons",
+      "the checkboxes and the tokens line are no longer in the buttons area",
     ).toBeTruthy();
   });
   it("the text of the JSON takes the free height of the window, without a handle of its own", () => {
@@ -2361,7 +2355,7 @@ describe("The interface", () => {
     const ui = fakeInterface();
     expect(
       ui.el.actions.hidden,
-      "pas de bouton grisé avant le premier message",
+      "no disabled button before the first message",
     ).toBe(true);
     ui.receive({ type: "selection", id: null, name: null });
     expect(ui.el.empty.hidden).toBe(false);
@@ -2795,9 +2789,7 @@ describe("The interface", () => {
       current: null,
       next: null,
     });
-    expect(first.el.question.hidden, "première version : pas d'encadré").toBe(
-      true,
-    );
+    expect(first.el.question.hidden, "first version: no callout").toBe(true);
   });
   it("the checkboxes: overhaul only after « Oui », md sheet only when nothing changed, the rule follows", () => {
     const first = generated({
@@ -2811,9 +2803,10 @@ describe("The interface", () => {
     expect(first.el.divider.hidden).toBe(true);
     expect(first.el["checkbox-overhaul"].hidden).toBe(true);
     const change = generated({});
-    expect(change.el.checkboxes.hidden, "rien à cocher avant la réponse").toBe(
-      true,
-    );
+    expect(
+      change.el.checkboxes.hidden,
+      "nothing to tick before the answer",
+    ).toBe(true);
     expect(change.el.divider.hidden).toBe(true);
     answers(change, "yes");
     expect(change.el.checkboxes.hidden).toBe(false);
@@ -2828,12 +2821,12 @@ describe("The interface", () => {
     });
     expect(
       nothing.el["checkbox-overhaul"].hidden,
-      "rien n'a changé : pas de refonte possible",
+      "nothing changed: no redesign possible",
     ).toBe(true);
     expect(nothing.el["checkbox-sheet-md"].hidden).toBe(false);
     expect(
       nothing.el.divider.hidden,
-      "sans question, pas de filet au-dessus des cases",
+      "without a question, no line above the checkboxes",
     ).toBe(true);
   });
   it("empty Changements: a centered state, with a title, when nothing changed or at the first export", () => {
@@ -2983,12 +2976,12 @@ describe("The interface", () => {
     ui.el.tabs.onkeydown({ key: "ArrowRight", preventDefault() {} });
     expect(
       ui.el["panel-changes"].hidden,
-      "la flèche droite passe à « Changements »",
+      "the right arrow moves to the Changements tab",
     ).toBe(false);
     ui.el.tabs.onkeydown({ key: "ArrowRight", preventDefault() {} });
     expect(
       ui.el["panel-issues"].hidden,
-      "depuis le dernier onglet, la flèche droite revient au premier",
+      "from the last tab, the right arrow goes back to the first",
     ).toBe(false);
   });
   it("after the generation, the changelog is displayed as is, without coloring", () => {
@@ -3261,7 +3254,7 @@ describe("The interface", () => {
     pg.trigger(event(change(set.id, { properties: ["x", "name"] })));
     expect(
       isStale(ui),
-      "la racine renommée en même temps qu'elle bouge est modifiée",
+      "the root renamed while moving is modified",
     ).toBeTruthy();
     const b = await attachAndGenerate();
     b.pg.trigger(event(change(b.variant.id, { properties: ["x", "y"] })));
@@ -3409,7 +3402,9 @@ describe("The interface", () => {
         node: next,
       }),
     );
-    expect(b.ui.el.name.textContent, "la carte attend le délai").toBe("Button");
+    expect(b.ui.el.name.textContent, "the card waits for the delay").toBe(
+      "Button",
+    );
     b.clock.advance();
     expect(b.ui.el.name.textContent).toBe("Bouton principal");
     expect(b.ui.el.counters.innerHTML).toMatch(/<b>3<\/b> variantes/);
@@ -3475,7 +3470,7 @@ describe("The bridge", () => {
     );
     expect(
       fs.readFileSync(regenerate, "utf8") === committedText,
-      "scripts/extract.bridge.js est périmé. Lancer : node scripts/build-bridge.mjs --id " +
+      "scripts/extract.bridge.js is stale. Run: node scripts/build-bridge.mjs --id " +
         id,
     ).toBeTruthy();
   });
@@ -3636,7 +3631,7 @@ describe("A template, recognized by its page in the library", () => {
   for (const [pageName, level, mention] of TEMPLATE_LEVELS) {
     it(
       pageName +
-        " : niveau " +
+        ": level " +
         level +
         ", sans défaut quand la description commence par la mention",
       async () => {
@@ -3829,6 +3824,12 @@ describe("check-sheet.mjs", () => {
     "composants",
     "trame-fiche-composant.md",
   );
+  const TEMPLATE_OUTLINE = path.join(
+    DOCS,
+    "b2c",
+    "templates",
+    "trame-fiche-template.md",
+  );
   const instruction = (fs
     .readFileSync(OUTLINE, "utf8")
     .match(/^## Pour l'IA qui lit cette fiche\n+(.+)$/m) || [])[1];
@@ -3892,6 +3893,7 @@ describe("check-sheet.mjs", () => {
   const check = (md: MockData, meta = {}) => {
     const d = tempFolder("check-sheet");
     fs.copyFileSync(OUTLINE, path.join(d, "trame-fiche-composant.md"));
+    fs.copyFileSync(TEMPLATE_OUTLINE, path.join(d, "trame-fiche-template.md"));
     fs.mkdirSync(path.join(d, "button"));
     fs.writeFileSync(path.join(d, "button", "button.md"), md);
     fs.writeFileSync(
@@ -3917,6 +3919,38 @@ describe("check-sheet.mjs", () => {
     const r = check(sheet());
     expect(r.code, r.output).toBe(0);
     expect(r.output).toMatch(/0 erreur\(s\)/);
+  });
+  it("a template sheet reads the template outline, two levels above it", () => {
+    const d = tempFolder("check-sheet");
+    const folder = path.join(d, "bloc", "loader");
+    fs.copyFileSync(TEMPLATE_OUTLINE, path.join(d, "trame-fiche-template.md"));
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, "loader.md"), sheet());
+    fs.writeFileSync(
+      path.join(folder, "loader.json"),
+      JSON.stringify({
+        ...MINIMAL_JSON,
+        meta: {
+          ...MINIMAL_JSON.meta,
+          type: "template",
+          templateLevel: "block",
+        },
+      }),
+    );
+    const run = () =>
+      spawnSync(
+        "node",
+        [
+          path.join(SCRIPTS, "check-sheet.mjs"),
+          path.join(folder, "loader.md"),
+          path.join(folder, "loader.json"),
+        ],
+        { encoding: "utf8" },
+      );
+    const found = run();
+    expect(found.status, found.stdout).toBe(0);
+    fs.rmSync(path.join(d, "trame-fiche-template.md"));
+    expect(run().status).toBe(2);
   });
   it("a known template level passes, an unknown level exits with 1", () => {
     expect(
@@ -4183,7 +4217,7 @@ describe("The change level and the next version", () => {
     expect(chooseVersion(first, {}).version).toBe("1.0.0");
     expect(
       chooseVersion(first, { overhaul: true }).version,
-      "pas de majeure à la première version",
+      "no major at the first version",
     ).toBe("1.0.0");
     const base = copy();
     base.meta.version = "1.1.0";
@@ -4227,7 +4261,7 @@ describe("The change level and the next version", () => {
     expect(chooseVersion(first, { keep: true }).version).toBe("1.0.0");
     expect(
       analyzeVersion(copy(), copy()).current,
-      "une base sans version repart de 1.0.0",
+      "a base without a version restarts from 1.0.0",
     ).toBe("1.0.0");
   });
 });
@@ -4296,14 +4330,13 @@ describe("The version level and the lines of the changelog", () => {
       const b = copy();
       modify(b);
       const level = changeLevel(real03(), b);
-      expect(
-        level,
-        name + " : le niveau devrait détecter la modification",
-      ).not.toBe(null);
+      expect(level, name + ": the level should detect the change").not.toBe(
+        null,
+      );
       const e = plain(changelogEntry(real03(), b));
       expect(
         e.added.length + e.modified.length + e.removed.length > 0,
-        name + " : niveau " + level + " sans ligne de changelog",
+        name + ": level " + level + " without a changelog line",
       ).toBeTruthy();
     }
     // the unknown field does raise the version, and goes through the safety net
@@ -4378,7 +4411,7 @@ describe("The version level and the lines of the changelog", () => {
     };
     expect(
       changeLevel(onA, inverse),
-      "l'ordre seul est un correctif, les styles suivent leur variante",
+      "the order alone is a patch, the styles follow their variant",
     ).toBe("patch");
   });
   it("Propriété <k>, ordre des valeurs modifié", async () => {
@@ -4426,7 +4459,7 @@ describe("The version level and the lines of the changelog", () => {
       !(await lines(real03(), removed)).some((l: string) =>
         /Ordre des variantes/.test(l),
       ),
-      "une variante retirée ne change pas l'ordre des autres",
+      "a removed variant does not change the order of the others",
     ).toBeTruthy();
   });
   it("text styles, nested components and mode collections: additions and removals, singular and plural", async () => {
@@ -4485,7 +4518,7 @@ describe("The version level and the lines of the changelog", () => {
       plain(classifyChanges(null, b)).filter(
         (c: MockData) => c.text === "Autre changement dans le JSON",
       ),
-      "première version : pas de filet",
+      "first version: no safety net",
     ).toStrictEqual([]);
     const withUnknown = copy();
     withUnknown.unknownField = 1;
@@ -4494,7 +4527,7 @@ describe("The version level and the lines of the changelog", () => {
       !(await lines(real03(), withUnknown)).some((l: string) =>
         /Autre changement/.test(l),
       ),
-      "une autre ligne dispense du filet",
+      "another line removes the need for the safety net",
     ).toBeTruthy();
     const excluded = copy();
     excluded.issues = [];
@@ -4505,7 +4538,7 @@ describe("The version level and the lines of the changelog", () => {
       !(await lines(real03(), excluded)).some((l: string) =>
         /Autre changement/.test(l),
       ),
-      "ce qui ne compte pas ne déclenche pas le filet",
+      "what does not count does not trigger the safety net",
     ).toBeTruthy();
   });
 });
@@ -4572,7 +4605,7 @@ describe("The design tokens version", () => {
     expect(plain(r)).toStrictEqual({ version: "2.1.0", issues: [] });
     expect(
       l.readOnes,
-      "versions lues dans l'ordre, arrêt à la première qui convient",
+      "versions read in order, stopping at the first that fits",
     ).toStrictEqual(["2.0.0", "2.1.0"]);
   });
   it("only the X.Y.Z versions from 2.0.0 count: no candidates, no component tags, no 1.x", async () => {
@@ -4711,13 +4744,13 @@ describe("The design tokens version", () => {
     );
     expect(
       files.map((u: string) => u.split("/")[5]),
-      "chaque fichier est lu une fois pour la session",
+      "each file is read once per session",
     ).toStrictEqual(["2.0.0", "2.1.0"]);
     expect(
       doc.network.calls.filter((u: string) =>
         u.startsWith("https://api.github.com/"),
       ).length,
-      "la liste des versions est gardée pour la session",
+      "the list of versions is kept for the session",
     ).toBe(1);
     expect(
       doc.network.calls.every((u: string) =>
@@ -4819,7 +4852,7 @@ describe("The design tokens version", () => {
     expect(r.issues.map((i: MockData) => i.rule)).toStrictEqual([
       "tokens-unreachable",
     ]);
-    expect(Date.now() - start < 2000, "le délai coupe l'attente").toBeTruthy();
+    expect(Date.now() - start < 2000, "the delay cuts the wait").toBeTruthy();
   });
   it("the bridge script calls no network", () => {
     const code = bridgeCode();
@@ -4882,7 +4915,7 @@ describe("The version in the plugin", () => {
     const { doc, msg } = await exported();
     const base = variantSet(doc).getSharedPluginData(NS, "export");
     expect(base).toBe(JSON.stringify(JSON.parse(msg.json)));
-    expect(!base.includes("\n"), "minifié").toBeTruthy();
+    expect(!base.includes("\n"), "minified").toBeTruthy();
     expect(JSON.parse(base).meta.version).toBe("1.0.0");
   });
   it("no date in the shared base, nor in the JSON", async () => {
@@ -4992,7 +5025,7 @@ describe("The version in the plugin", () => {
     });
     expect(
       p.lastMessage().version.next,
-      "la réponse Oui annonce la majeure quand la refonte est cochée",
+      "the Oui answer announces the major when the redesign is ticked",
     ).toBe("2.0.0");
     await p.send({
       type: "choose-version",
@@ -5011,12 +5044,12 @@ describe("The version in the plugin", () => {
     expect(base.meta.version).toBe("1.0.0");
     expect(
       base.api.props.hierarchy.enum.includes("secondary"),
-      "la base contient le changement",
+      "the base contains the change",
     ).toBeTruthy();
     await p.send({ type: "generate" });
     expect(
       p.lastMessage().version.none,
-      "le changement gardé ne compte plus au prochain export",
+      "the kept change no longer counts at the next export",
     ).toBe(true);
   });
   it("at the first version, the Refonte complète checkbox changes nothing", async () => {
@@ -5071,7 +5104,7 @@ describe("The version in the plugin", () => {
     expect(
       p.messages.filter((m: MockData) => m.type === "selection").pop()
         .latestVersion,
-      "aucune version affichée pour une base illisible",
+      "no version shown for an unreadable base",
     ).toBe(null);
   });
   it("base write refused (size): the error shows, neither the history nor the previous version are written", async () => {
@@ -5087,11 +5120,11 @@ describe("The version in the plugin", () => {
     expect(variantSet(doc).getSharedPluginData(NS, "export")).toBe("");
     expect(
       variantSet(doc).getSharedPluginData(NS, "changelog"),
-      "historique non écrit",
+      "history not written",
     ).toBe("");
     expect(
       variantSet(doc).getSharedPluginData(NS, "previous-version"),
-      "version précédente non écrite",
+      "previous version not written",
     ).toBe("");
   });
   it("offline: tokensVersion null and tokens-unreachable issue, the JSON is produced", async () => {
@@ -5246,7 +5279,7 @@ describe("The changelog: the content of an entry", () => {
     });
     expect(
       plain(compareSheets(a, b)),
-      "l'onglet Changements les garde",
+      "the Changements tab keeps them",
     ).toStrictEqual(["1 variante déplacée sur le canevas", "Défauts : 1 → 0"]);
   });
   it("a style change fits on one line: title, label in lowercase, before → after", async () => {
@@ -5477,7 +5510,7 @@ describe("The changelog: the history in the plugin", () => {
     ]);
     expect(
       JSON.parse(read(doc, "previous-version")).meta.version,
-      "la version précédente ne bouge pas",
+      "the previous version does not move",
     ).toBe("1.0.0");
     // a cancelled change disappears from the kept entry
     variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
@@ -5506,10 +5539,7 @@ describe("The changelog: the history in the plugin", () => {
     expect(history(doc)[0].modified).toStrictEqual([
       "Slot label, texte par défaut : Label → Libellé",
     ]);
-    expect(
-      read(doc, "previous-version"),
-      "toujours pas de version précédente",
-    ).toBe("");
+    expect(read(doc, "previous-version"), "still no previous version").toBe("");
   });
   it("first version kept: the entry stays « Première version du composant », the date is that of the export", async () => {
     const { doc } = await exported();
@@ -5622,7 +5652,7 @@ describe("The changelog: the history in the plugin", () => {
     expect(read(doc, "changelog")).toBe("{pas du json");
     expect(
       JSON.parse(read(doc, "export")).meta.version,
-      "la base est quand même enregistrée",
+      "the base is stored anyway",
     ).toBe("1.1.0");
   });
   it("a changelog that is not an array is unreadable too", async () => {
@@ -5652,7 +5682,7 @@ describe("The changelog: the history in the plugin", () => {
     expect(read(doc, "changelog"), "historique intact").toBe(before);
     expect(
       JSON.parse(read(doc, "export")).meta.version,
-      "la base est réécrite",
+      "the base is rewritten",
     ).toBe("1.0.0");
   });
   it("Copy then Download: the same history, without duplicates", async () => {
@@ -5730,13 +5760,11 @@ describe("The changelog: the history in the plugin", () => {
     await a.send({ type: "record-export", id: "S:100" });
     expect(a.lastMessage().type).toBe("error");
     expect(a.lastMessage().message).toBe(CONCURRENT_MESSAGE);
-    expect(read(doc, "export"), "la base de B est intacte").toBe(baseB);
-    expect(read(doc, "changelog"), "l'historique de B est intact").toBe(
-      historyB,
-    );
+    expect(read(doc, "export"), "the base of B is intact").toBe(baseB);
+    expect(read(doc, "changelog"), "the history of B is intact").toBe(historyB);
     expect(
       read(doc, "previous-version"),
-      "la version précédente de B est intacte",
+      "the previous version of B is intact",
     ).toBe(previousB);
   });
   it("copy then download the same generation: accepted, without an error", async () => {
@@ -5765,7 +5793,7 @@ describe("The changelog: the history in the plugin", () => {
     );
     expect(
       JSON.parse(read(doc, "export")).meta.version,
-      "la version gardée remplace celle du premier export",
+      "the kept version replaces the one of the first export",
     ).toBe("1.0.0");
   });
   it("an export refused because another took place does not block the next generation", async () => {
@@ -5779,7 +5807,7 @@ describe("The changelog: the history in the plugin", () => {
     await a.send({ type: "record-export", id: "S:100" });
     expect(
       a.messages.filter((m: MockData) => m.type === "error").length,
-      "seule la première tentative est refusée",
+      "only the first attempt is refused",
     ).toBe(1);
   });
 });
@@ -5999,12 +6027,12 @@ describe("The texts", () => {
     browse(PLUGIN);
     expect(
       files.some((f) => f.endsWith("check-sheet.mjs")),
-      "les scripts ne sont pas parcourus",
+      "the scripts are not browsed",
     ).toBeTruthy();
     for (const f of files)
       expect(
         !forbidden.test(fs.readFileSync(f, "utf8")),
-        "tiret long ou point médian dans " + path.relative(PLUGIN, f),
+        "long dash or middle dot in " + path.relative(PLUGIN, f),
       ).toBeTruthy();
   });
 });
