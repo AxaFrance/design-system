@@ -406,7 +406,7 @@
   // défaut, le reste replié. Rien ne s'affiche quand il n'y a rien à signaler.
   const rendreVerification = (r) => {
     const sections =
-      section('bloquant', 'Noms en conflit', 'Deux tokens portent le même nom, ou un token porte le nom d\'un groupe. Renommez-les dans Figma, sinon ils ne passent pas dans le code.', r.conflits, true) +
+      section('bloquant', 'Noms en conflit', 'Deux tokens ou deux collections portent le même nom, ou un token porte le nom d\'un groupe. Renommez-les dans Figma, sinon ils ne passent pas dans le code.', r.conflits, true) +
       section('bloquant', 'Liens cassés', 'Ces tokens pointent vers une variable supprimée. Reliez-les à une autre variable dans Figma.', [...r.aliasIntrouvables.map((nom) => `${nom} : ne passe pas dans le code`), ...r.aliasIntrouvablesMode], true) +
       section('attention', 'Noms à corriger', 'Ces noms ne suivent pas les règles de nommage des primitives.', r.nomenclature, true) +
       section('attention', 'Scope à renseigner', 'Sans scope, le plugin devine le type du token d\'après son nom. Renseignez le scope dans Figma pour en être sûr.', r.typesDeduits, false) +

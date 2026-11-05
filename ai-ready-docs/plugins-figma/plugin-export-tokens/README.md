@@ -41,7 +41,7 @@ Le rapport s'affiche dans une carte « À corriger », ou « À savoir » quand 
 
 | Section | Ce que ça veut dire |
 |---|---|
-| **Noms en conflit** | Deux tokens portent le même nom, ou un token porte le nom d'un groupe. Ceux listés ne sont pas exportés |
+| **Noms en conflit** | Deux tokens ou deux collections portent le même nom, ou un token porte le nom d'un groupe. Ceux listés ne sont pas exportés |
 | **Liens cassés** | Des tokens ou des styles pointent vers une variable qui n'existe plus, par exemple après sa suppression. Un token n'est pas exporté si le lien est dans le mode par défaut, sinon ce mode prend la valeur par défaut. Un style n'est pas exporté |
 | **Noms à corriger** | Des primitives ne suivent pas les règles de nommage |
 | **Scope à renseigner** | Le type a été deviné d'après le nom, faute de scope. Un token déprécié n'est pas concerné, il n'a plus de scope |
@@ -204,7 +204,7 @@ La fenêtre s'ouvre à 440 px de large, et sa hauteur suit le contenu entre 560 
 ## Développer
 
 ```
-node test/test.js          # toutes les vérifications, sur un Figma simulé
+npm test                   # toutes les vérifications, sur un Figma simulé
 node test/test.js --json   # le fichier produit par le document de test
 ```
 
