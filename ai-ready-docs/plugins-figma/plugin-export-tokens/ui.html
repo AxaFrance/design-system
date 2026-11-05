@@ -1,5 +1,5 @@
 <style>
-  /* Habillage aux couleurs d'AXA, avec les primitives de Fondations Canopée. */
+  /* AXA styling, with the primitives of Fondations Canopée. */
   :root {
     color-scheme: light dark;
     --color-blue-050: #e5e5ff;
@@ -7,34 +7,34 @@
     --color-blue-500: #0000f7;
     --color-blue-700: #00008f;
     --color-blue-800: #000066;
-    --texte-marque: var(--color-blue-700);
-    --bouton-principal: var(--color-blue-700);
-    --bouton-principal-survol: var(--color-blue-800);
-    --fond-tuile: var(--color-blue-050);
-    /* Bandeau d'information (PR en cours) : bleu AXA, distinct du gris neutre. */
-    --info-fond: var(--color-blue-050);
-    --info-texte: var(--color-blue-700);
-    --info-filet: rgba(0, 0, 143, 0.3);
-    --diff-vert: #0f7a3f;
-    --diff-rouge: #b3261e;
+    --brand-text: var(--color-blue-700);
+    --primary-button: var(--color-blue-700);
+    --primary-button-hover: var(--color-blue-800);
+    --tile-background: var(--color-blue-050);
+    /* Information banner (PR in progress): AXA blue, distinct from neutral grey. */
+    --info-background: var(--color-blue-050);
+    --info-text: var(--color-blue-700);
+    --info-border: rgba(0, 0, 143, 0.3);
+    --diff-green: #0f7a3f;
+    --diff-red: #b3261e;
     --diff-orange: #8a4b00;
   }
-  /* En mode sombre, le bleu AXA serait illisible en texte : titre et chiffres passent en blanc. */
+  /* In dark mode, AXA blue would be unreadable as text: title and figures turn white. */
   html.figma-dark {
-    --texte-marque: var(--figma-color-text, #fff);
-    /* Le bleu AXA foncé se distingue mal du fond sombre : un palier plus clair, texte blanc lisible (6,9:1). */
-    --bouton-principal: var(--color-blue-400);
-    --bouton-principal-survol: var(--color-blue-500);
-    --fond-tuile: var(--figma-color-bg-secondary, #383838);
-    /* En sombre, un bleu translucide garde le bandeau d'information bleu sans éblouir. */
-    --info-fond: rgba(51, 51, 255, 0.24);
-    --info-texte: #ccccff;
-    --info-filet: rgba(102, 102, 255, 0.6);
-    --diff-vert: var(--figma-color-text-success, #79d297);
-    --diff-rouge: var(--figma-color-text-danger, #ff9a8f);
+    --brand-text: var(--figma-color-text, #fff);
+    /* Dark AXA blue is hard to tell from the dark background: one step lighter, readable white text (6.9:1). */
+    --primary-button: var(--color-blue-400);
+    --primary-button-hover: var(--color-blue-500);
+    --tile-background: var(--figma-color-bg-secondary, #383838);
+    /* In dark mode, a translucent blue keeps the information banner blue without dazzling. */
+    --info-background: rgba(51, 51, 255, 0.24);
+    --info-text: #ccccff;
+    --info-border: rgba(102, 102, 255, 0.6);
+    --diff-green: var(--figma-color-text-success, #79d297);
+    --diff-red: var(--figma-color-text-danger, #ff9a8f);
     --diff-orange: var(--figma-color-text-warning, #f5c46b);
   }
-  /* Le contenu prend sa hauteur naturelle, les actions restent collées en bas de la fenêtre. */
+  /* The content takes its natural height, the actions stay stuck at the bottom of the window. */
   html, body { height: 100%; overflow-x: hidden; }
   body {
     box-sizing: border-box; min-height: 100%; display: flex; flex-direction: column;
@@ -43,71 +43,71 @@
     color: var(--figma-color-text, #1e1e1e);
     background: var(--figma-color-bg, #fff);
   }
-  body.redimensionnement { user-select: none; }
+  body.resizing { user-select: none; }
 
-  /* Poignée de redimensionnement manuel, en bas à droite, au-dessus de tout le reste. */
-  #poignee {
+  /* Manual resize handle, bottom right, above everything else. */
+  #handle {
     position: fixed; right: 0; bottom: 0; width: 16px; height: 16px; z-index: 1000;
     display: flex; align-items: flex-end; justify-content: flex-end;
     padding: 0; border: 0; background: transparent; cursor: nwse-resize;
     color: var(--figma-color-text-tertiary, #b3b3b3);
   }
-  .entete { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
-  .entete-texte { flex: 1 1 110px; min-width: 0; overflow-wrap: anywhere; }
-  /* Chiffres du fichier sur toute la largeur, sous le nom du fichier et alignés sur lui
-     (logo de 32 px et écart de 12 px), pour ne pas se couper contre le bouton. */
-  #resume-fichier { flex: 0 0 calc(100% - 44px); margin: -8px 0 0 44px; }
+  .header { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+  .header-text { flex: 1 1 110px; min-width: 0; overflow-wrap: anywhere; }
+  /* File figures on the full width, under the file name and aligned with it
+     (32 px logo and 12 px gap), so they do not get cut off against the button. */
+  #file-summary { flex: 0 0 calc(100% - 44px); margin: -8px 0 0 44px; }
   .logo { flex: none; display: block; border-radius: 2px; }
   h1 {
     margin: 0; font: 700 18px/24px "Publico Headline", Georgia, serif;
-    color: var(--texte-marque);
+    color: var(--brand-text);
   }
-  .aide { margin: 0; color: var(--figma-color-text-secondary, #737373); }
-  #changements { margin: 0 0 24px; }
-  .titre-bloc { margin: 0; font-size: 13px; font-weight: 700; }
-  /* En-tête de carte collant : le titre de la carte en cours de lecture reste en
-     haut au défilement, juste sous le bloc du haut. top retire la marge haute de la page
-     (16 px) et 1 px qui permet de détecter qu'il est collé (voir observerEnTetes). */
-  .titre-changements {
-    position: sticky; top: calc(var(--hauteur-haut, 16px) - 17px); z-index: 5;
+  .help { margin: 0; color: var(--figma-color-text-secondary, #737373); }
+  #changes { margin: 0 0 24px; }
+  .block-title { margin: 0; font-size: 13px; font-weight: 700; }
+  /* Sticky card header: the title of the card being read stays at
+     the top while scrolling, just under the top block. top removes the top margin of the page
+     (16 px) and 1 px that makes it possible to detect that it is stuck (see observeHeaders). */
+  .changes-title {
+    position: sticky; top: calc(var(--top-height, 16px) - 17px); z-index: 5;
     display: flex; gap: 8px; justify-content: space-between; align-items: center;
     margin: -16px -16px 0; padding: 17px 16px 12px;
     background: var(--figma-color-bg, #fff); border-radius: 8px 8px 0 0;
   }
-  .titre-changements.colle { border-bottom: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 0; }
-  .titre-changements .titre-bloc { flex: none; }
-  /* Titre de la carte Changements : toute la ligne se clique pour replier la carte. */
-  .titre-changements[role="button"] { cursor: pointer; }
-  .titre-changements[role="button"]:focus { outline: none; }
-  .titre-changements[role="button"]:focus-visible { outline: 2px solid var(--texte-marque); outline-offset: -2px; }
-  .titre-changements .titre-section { flex: none; }
-  .titre-changements[aria-expanded="true"] .chevron { transform: rotate(90deg); }
-  /* Carte repliée : la ligne de titre seule, compteurs dessous, alignés sur le titre. */
-  .carte-changements.repliee { padding-bottom: 0; }
-  /* Repliée, la ligne de titre occupe toute la carte : ses coins suivent ceux de la carte, filet compris. */
-  .titre-changements.replie { flex-wrap: wrap; row-gap: 2px; border-radius: 7px; }
-  .titre-changements.replie .resume-compact { display: block; padding-left: 18px; }
-  /* Rappel des compteurs dans l'en-tête collé, quand les compteurs sont sortis de l'écran. */
-  .resume-compact { display: none; order: 3; flex-basis: 100%; font-size: 12px; font-weight: 600; }
-  .titre-changements.avec-resume { flex-wrap: wrap; row-gap: 2px; }
-  .titre-changements.avec-resume .resume-compact { display: block; }
-  .resume-compact .ajoute { color: var(--diff-vert); }
-  .resume-compact .modifie { color: var(--texte-marque); }
-  .resume-compact .supprime { color: var(--diff-rouge); }
-  .resume-compact .deprecie { color: var(--diff-orange); }
-  .lien { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; color: var(--texte-marque); text-decoration: underline; cursor: pointer; }
+  .changes-title.stuck { border-bottom: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 0; }
+  .changes-title .block-title { flex: none; }
+  /* Title of the Changements card: the whole line is clickable to collapse the card. */
+  .changes-title[role="button"] { cursor: pointer; }
+  .changes-title[role="button"]:focus { outline: none; }
+  .changes-title[role="button"]:focus-visible { outline: 2px solid var(--brand-text); outline-offset: -2px; }
+  .changes-title .section-title { flex: none; }
+  .changes-title[aria-expanded="true"] .chevron { transform: rotate(90deg); }
+  /* Collapsed card: the title line alone, counters below, aligned with the title. */
+  .changes-card.collapsed-card { padding-bottom: 0; }
+  /* When collapsed, the title line fills the whole card: its corners follow those of the card, border included. */
+  .changes-title.collapsed { flex-wrap: wrap; row-gap: 2px; border-radius: 7px; }
+  .changes-title.collapsed .compact-summary { display: block; padding-left: 18px; }
+  /* Reminder of the counters in the sticky header, when the counters have scrolled off screen. */
+  .compact-summary { display: none; order: 3; flex-basis: 100%; font-size: 12px; font-weight: 600; }
+  .changes-title.with-summary { flex-wrap: wrap; row-gap: 2px; }
+  .changes-title.with-summary .compact-summary { display: block; }
+  .compact-summary .added { color: var(--diff-green); }
+  .compact-summary .modified { color: var(--brand-text); }
+  .compact-summary .removed { color: var(--diff-red); }
+  .compact-summary .deprecated { color: var(--diff-orange); }
+  .link { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; color: var(--brand-text); text-decoration: underline; cursor: pointer; }
 
-  .erreur-reference { margin: 8px 0 0; color: var(--diff-rouge); }
+  .reference-error { margin: 8px 0 0; color: var(--diff-red); }
 
-  /* Résultat du diff : carte, métriques, liste, pied de page. Un fichier JSON
-     glissé sur la carte entière sert de référence : elle prend un contour pendant le glisser. */
-  .carte-changements { border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 8px; padding: 16px; background: transparent; }
-  .carte-changements.survol { outline: 2px solid var(--texte-marque); outline-offset: -1px; }
-  /* Une chip par type de changement présent, avec son nombre. Active, elle est
-     cochée, colorée et entourée d'un filet de sa couleur, et ses lignes s'affichent
-     dans la liste. Un clic l'active ou la désactive. Inactive, elle garde seulement
-     un filet gris. */
-  .chips-diff { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+  /* Diff result: card, metrics, list, footer. A JSON file
+     dropped on the whole card serves as the reference: it gets an outline while dragging. */
+  .changes-card { border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 8px; padding: 16px; background: transparent; }
+  .changes-card.hover { outline: 2px solid var(--brand-text); outline-offset: -1px; }
+  /* One chip per change type present, with its count. When active, it is
+     checked, colored and surrounded by a border of its color, and its lines are displayed
+     in the list. A click toggles it. When inactive, it only keeps
+     a grey border. */
+  .diff-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
   .chip {
     display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 10px;
     border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 12px; background: transparent;
@@ -116,263 +116,263 @@
   }
   .chip:hover { border-color: currentColor; }
   .chip[aria-pressed="true"] { border-color: currentColor; }
-  .chip[aria-pressed="true"].ajoute { background: var(--figma-color-bg-success-tertiary, #e6f7ed); color: var(--diff-vert); }
-  .chip[aria-pressed="true"].modifie { background: var(--fond-tuile); color: var(--texte-marque); }
-  .chip[aria-pressed="true"].supprime { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-rouge); }
-  .chip[aria-pressed="true"].deprecie { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
+  .chip[aria-pressed="true"].added { background: var(--figma-color-bg-success-tertiary, #e6f7ed); color: var(--diff-green); }
+  .chip[aria-pressed="true"].modified { background: var(--tile-background); color: var(--brand-text); }
+  .chip[aria-pressed="true"].removed { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
+  .chip[aria-pressed="true"].deprecated { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
   .chip[aria-pressed="true"]:hover { box-shadow: inset 0 0 0 1px currentColor; }
-  .chip .coche { flex: none; }
-  .prochaine-version { margin: 0 0 12px; }
-  .diff-aucun-changement { margin: 0; color: var(--diff-vert); }
-  .liste-diff { margin: 0; padding-top: 12px; border-top: 1px solid var(--figma-color-border, #e6e6e6); }
-  /* La valeur passe sous le chemin quand la ligne manque de place, alignée à
-     droite ; elle peut elle-même passer à la ligne pour ne jamais déborder de
-     la carte, même avec un nom ou une valeur très longs. */
-  .ligne-diff { display: flex; flex-wrap: wrap; align-items: flex-start; row-gap: 2px; padding: 6px 0; }
-  .chemin-diff { flex: 1 1 180px; min-width: 0; }
-  .valeur-diff { flex: none; margin-left: auto; padding-left: 8px; min-width: 0; color: var(--figma-color-text-secondary, #737373); white-space: normal; overflow-wrap: anywhere; text-align: right; max-width: 100%; }
-  .valeur-ajoutee { color: var(--diff-vert); }
-  .valeur-supprimee { color: var(--diff-rouge); text-decoration: line-through; }
-  .etiquette { flex: none; margin-right: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; min-width: 0; }
-  .etiquette-ajoute { background: var(--figma-color-bg-success-tertiary, #e6f7ed); color: var(--diff-vert); }
-  .etiquette-modifie { background: var(--fond-tuile); color: var(--texte-marque); }
-  .etiquette-supprime { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-rouge); }
-  .etiquette-deprecie { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
-  .etiquette-fantome { visibility: hidden; }
-  /* Le mode d'un token de contexte de modifier, sous le chemin. */
-  .mode-diff { margin: 2px 0 0; font-size: 11px; color: var(--figma-color-text-secondary, #737373); }
-  /* Détail des sous-propriétés d'un composite modifié, une ligne par champ,
-     alignée avec le chemin grâce à une étiquette invisible de même taille. */
-  .ligne-champ { padding: 2px 0; flex-wrap: nowrap; }
-  .nom-champ { flex: none; color: var(--figma-color-text-secondary, #737373); }
-  .ligne-champ .valeur-diff { flex: 1 1 0; }
-  .pied-diff { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-  .pied-diff .aide { flex: none; }
-  .aide-pied-diff { margin-top: 6px; }
-  .select-reference {
+  .chip .checkmark { flex: none; }
+  .next-version { margin: 0 0 12px; }
+  .diff-no-change { margin: 0; color: var(--diff-green); }
+  .diff-list { margin: 0; padding-top: 12px; border-top: 1px solid var(--figma-color-border, #e6e6e6); }
+  /* The value goes under the path when the line runs out of room, aligned to the
+     right; it can itself wrap so as never to overflow
+     the card, even with a very long name or value. */
+  .diff-line { display: flex; flex-wrap: wrap; align-items: flex-start; row-gap: 2px; padding: 6px 0; }
+  .diff-path { flex: 1 1 180px; min-width: 0; }
+  .diff-value { flex: none; margin-left: auto; padding-left: 8px; min-width: 0; color: var(--figma-color-text-secondary, #737373); white-space: normal; overflow-wrap: anywhere; text-align: right; max-width: 100%; }
+  .value-added { color: var(--diff-green); }
+  .value-removed { color: var(--diff-red); text-decoration: line-through; }
+  .tag { flex: none; margin-right: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; min-width: 0; }
+  .tag-added { background: var(--figma-color-bg-success-tertiary, #e6f7ed); color: var(--diff-green); }
+  .tag-modified { background: var(--tile-background); color: var(--brand-text); }
+  .tag-removed { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
+  .tag-deprecated { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
+  .tag-ghost { visibility: hidden; }
+  /* The mode of a modifier context token, under the path. */
+  .diff-mode { margin: 2px 0 0; font-size: 11px; color: var(--figma-color-text-secondary, #737373); }
+  /* Detail of the sub-properties of a modified composite, one line per field,
+     aligned with the path thanks to an invisible tag of the same size. */
+  .field-line { padding: 2px 0; flex-wrap: nowrap; }
+  .field-name { flex: none; color: var(--figma-color-text-secondary, #737373); }
+  .field-line .diff-value { flex: 1 1 0; }
+  .diff-footer { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+  .diff-footer .help { flex: none; }
+  .diff-footer-help { margin-top: 6px; }
+  .reference-select {
     flex: 1 1 auto; min-width: 0; height: 28px; padding: 0 6px;
     border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 6px;
-    font: inherit; font-weight: 600; color: var(--texte-marque); background: var(--figma-color-bg, #fff);
+    font: inherit; font-weight: 600; color: var(--brand-text); background: var(--figma-color-bg, #fff);
   }
-  .bouton {
+  .button {
     display: block; width: auto; height: 40px; padding: 0 16px; border-radius: 6px; cursor: pointer; line-height: 16px;
     font: inherit; font-size: 14px; font-weight: 600;
   }
-  .bouton[hidden] { display: none; }
-  .bouton.principal { flex: 1 1 200px; border: 0; background: var(--bouton-principal); color: #fff; }
-  .bouton.principal:hover:not(:disabled) { background: var(--bouton-principal-survol); }
-  /* Repris du bouton secondaire de Canopée : fond du plugin, texte et filet de la couleur de marque. */
-  .bouton.secondaire {
+  .button[hidden] { display: none; }
+  .button.primary { flex: 1 1 200px; border: 0; background: var(--primary-button); color: #fff; }
+  .button.primary:hover:not(:disabled) { background: var(--primary-button-hover); }
+  /* Taken from the secondary button of Canopée: plugin background, text and border in the brand color. */
+  .button.secondary {
     flex: none; white-space: nowrap; border: 0;
-    background: var(--figma-color-bg, #fff); color: var(--texte-marque);
-    box-shadow: inset 0 0 0 1px var(--texte-marque);
+    background: var(--figma-color-bg, #fff); color: var(--brand-text);
+    box-shadow: inset 0 0 0 1px var(--brand-text);
   }
-  .bouton.secondaire:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--texte-marque); }
-  /* Version compacte du bouton secondaire, à droite de l'en-tête. */
-  .bouton.bouton-entete { height: 28px; padding: 0 10px; font-size: 12px; line-height: 14px; margin-left: auto; }
-  /* Bouton désactivé : un simple filet, pour qu'il s'efface derrière le bouton actif, en clair comme en sombre. */
-  .bouton:disabled {
+  .button.secondary:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--brand-text); }
+  /* Compact version of the secondary button, on the right of the header. */
+  .button.header-button { height: 28px; padding: 0 10px; font-size: 12px; line-height: 14px; margin-left: auto; }
+  /* Disabled button: a simple border, so that it fades behind the active button, in light as in dark. */
+  .button:disabled {
     border-color: transparent; background: transparent;
     box-shadow: inset 0 0 0 1px var(--figma-color-border, #e6e6e6);
     color: var(--figma-color-text-disabled, #b3b3b3); cursor: default;
   }
-  button:focus-visible { outline: 2px solid var(--texte-marque); outline-offset: 2px; }
-  .bandeau {
+  button:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+  .banner {
     display: flex; gap: 8px; justify-content: space-between; align-items: center;
     margin-top: 16px; padding: 8px 8px 8px 12px; border-radius: 6px; font-weight: 600;
   }
-  .fermer {
+  .close {
     flex: none; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 4px; cursor: pointer;
     font: 400 18px/24px system-ui, sans-serif; color: inherit; background: transparent;
   }
-  .fermer:hover { background: rgba(0, 0, 0, 0.08); }
-  .succes { background: var(--figma-color-bg-success-tertiary, #ebffee); color: var(--diff-vert); }
-  .vide { background: var(--figma-color-bg-secondary, #f5f5f5); color: var(--figma-color-text-secondary, #737373); }
-  .erreur { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-rouge); }
+  .close:hover { background: rgba(0, 0, 0, 0.08); }
+  .success { background: var(--figma-color-bg-success-tertiary, #ebffee); color: var(--diff-green); }
+  .empty { background: var(--figma-color-bg-secondary, #f5f5f5); color: var(--figma-color-text-secondary, #737373); }
+  .error { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
   .actions {
     position: sticky; bottom: 0; margin-top: auto;
     background: var(--figma-color-bg, #fff);
     border-top: 1px solid var(--figma-color-border, #e6e6e6);
     padding: 16px 0;
   }
-  .actions #resultat > * { margin: 0 0 12px; }
-  /* PR de tokens en cours, juste au-dessus du bouton « Déposer sur GitHub » qu'elle bloque. */
-  .info { justify-content: flex-start; background: var(--info-fond); color: var(--info-texte); box-shadow: inset 0 0 0 1px var(--info-filet); }
-  .info .lien { color: inherit; }
-  .icone-info { flex: none; }
-  #pr-en-cours > .bandeau { margin: 0 0 12px; }
-  .aide-boutons { margin: 0 0 12px; }
-  /* Tokens qui ne peuvent pas être déposés : l'aide sous les boutons passe en rouge. */
-  .aide-boutons.aide-alerte { color: var(--diff-rouge); font-weight: 600; }
-  .action-secondaire { margin: 12px 0 0; text-align: center; }
-  /* Vue dépôt : parcours en quatre étapes : faite (cochée, atténuée), en cours (mise en avant), à venir (atténuée). */
-  #vue-depot { padding-bottom: 16px; }
-  #vue-depot > .titre-bloc { margin-bottom: 6px; }
-  .retour { margin: 0 0 28px; }
-  /* Rappel de ce qui part dans la PR : étiquette de niveau puis compteurs, sur une ligne. */
-  .rappel { margin: 0; }
-  #resultat-depot:not(:empty) { margin-top: 16px; }
-  /* Rappel avant de déposer : un encart neutre, pour ne pas se confondre avec le texte des étapes. */
-  #avant-depot {
+  .actions #result > * { margin: 0 0 12px; }
+  /* Tokens PR in progress, just above the "Déposer sur GitHub" button that it blocks. */
+  .info { justify-content: flex-start; background: var(--info-background); color: var(--info-text); box-shadow: inset 0 0 0 1px var(--info-border); }
+  .info .link { color: inherit; }
+  .info-icon { flex: none; }
+  #pr-in-progress > .banner { margin: 0 0 12px; }
+  .buttons-help { margin: 0 0 12px; }
+  /* Tokens that cannot be submitted: the help text under the buttons turns red. */
+  .buttons-help.help-alert { color: var(--diff-red); font-weight: 600; }
+  .secondary-action { margin: 12px 0 0; text-align: center; }
+  /* Submit view: four-step flow: done (checked, dimmed), in progress (highlighted), upcoming (dimmed). */
+  #submit-view { padding-bottom: 16px; }
+  #submit-view > .block-title { margin-bottom: 6px; }
+  .back { margin: 0 0 28px; }
+  /* Reminder of what goes into the PR: level tag then counters, on one line. */
+  .reminder { margin: 0; }
+  #submit-result:not(:empty) { margin-top: 16px; }
+  /* Reminder before submitting: a neutral inset, so it is not confused with the text of the steps. */
+  #before-submit {
     margin: 16px 0 0; padding: 10px 12px; border-radius: 6px;
     background: var(--figma-color-bg-secondary, #f5f5f5); color: var(--figma-color-text, #1e1e1e);
   }
-  #avant-depot b { display: block; margin-bottom: 2px; }
-  /* Case à cocher aux couleurs du plugin : un contour bleu de marque, net dans les deux thèmes. */
-  .case { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; cursor: pointer; }
-  .case input {
+  #before-submit b { display: block; margin-bottom: 2px; }
+  /* Checkbox in the plugin colors: a brand blue outline, crisp in both themes. */
+  .checkbox { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; cursor: pointer; }
+  .checkbox input {
     flex: none; display: grid; place-content: center; width: 16px; height: 16px; margin: 0;
-    appearance: none; background: var(--figma-color-bg, #fff); border: 1.5px solid var(--texte-marque); border-radius: 3px; cursor: pointer;
+    appearance: none; background: var(--figma-color-bg, #fff); border: 1.5px solid var(--brand-text); border-radius: 3px; cursor: pointer;
   }
-  .case input:checked { background: var(--texte-marque); }
-  .case input::before {
+  .checkbox input:checked { background: var(--brand-text); }
+  .checkbox input::before {
     content: ""; width: 10px; height: 10px; box-shadow: inset 10px 10px var(--figma-color-bg, #fff);
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); transform: scale(0);
   }
-  .case input:checked::before { transform: scale(1); }
-  .case input:focus-visible { outline: 2px solid var(--texte-marque); outline-offset: 2px; }
-  .case input:disabled { opacity: 0.5; cursor: default; }
-  #vue-depot .etapes { margin-top: 32px; }
-  .rappel .resume-compact { display: inline; }
-  .bouton-plein { width: 100%; }
-  #aide-blocage { margin: 8px 0 0; }
-  #termine { margin-top: 12px; }
-  #resultat-depot > * { margin: 0 0 12px; }
-  .etapes { margin: 0 0 12px; padding: 0; list-style: none; color: inherit; }
-  .etape { margin: 0 0 14px; color: var(--figma-color-text-secondary, #737373); }
-  .etape:last-child { margin-bottom: 0; }
-  .ligne-etape { display: flex; align-items: center; gap: 10px; min-height: 32px; }
-  .repere {
+  .checkbox input:checked::before { transform: scale(1); }
+  .checkbox input:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+  .checkbox input:disabled { opacity: 0.5; cursor: default; }
+  #submit-view .steps { margin-top: 32px; }
+  .reminder .compact-summary { display: inline; }
+  .full-button { width: 100%; }
+  #block-help { margin: 8px 0 0; }
+  #finish { margin-top: 12px; }
+  #submit-result > * { margin: 0 0 12px; }
+  .steps { margin: 0 0 12px; padding: 0; list-style: none; color: inherit; }
+  .step { margin: 0 0 14px; color: var(--figma-color-text-secondary, #737373); }
+  .step:last-child { margin-bottom: 0; }
+  .step-line { display: flex; align-items: center; gap: 10px; min-height: 32px; }
+  .marker {
     flex: none; box-sizing: border-box; width: 24px; height: 24px; border-radius: 50%;
     border: 1px solid var(--figma-color-border, #e6e6e6);
     font-size: 13px; line-height: 22px; font-weight: 700; text-align: center;
   }
-  .texte-etape { flex: 1 1 0; min-width: 0; }
-  .etape.en-cours { color: var(--texte-marque); font-weight: 600; }
-  .etape.en-cours .repere { border-color: var(--texte-marque); background: var(--texte-marque); color: var(--figma-color-bg, #fff); }
-  .etape .bouton { flex: none; height: 32px; padding: 0 12px; font-size: 13px; white-space: nowrap; }
-  .detail-etape { padding-left: 34px; }
-  .detail-etape > * { margin: 4px 0 0; }
-  /* Message de commit à coller sur GitHub, sous l'étape qui le copie. */
+  .step-text { flex: 1 1 0; min-width: 0; }
+  .step.in-progress { color: var(--brand-text); font-weight: 600; }
+  .step.in-progress .marker { border-color: var(--brand-text); background: var(--brand-text); color: var(--figma-color-bg, #fff); }
+  .step .button { flex: none; height: 32px; padding: 0 12px; font-size: 13px; white-space: nowrap; }
+  .step-detail { padding-left: 34px; }
+  .step-detail > * { margin: 4px 0 0; }
+  /* Commit message to paste on GitHub, under the step that copies it. */
   .commit { margin: 4px 0 0; }
-  .champ-commit {
+  .commit-field {
     box-sizing: border-box; display: block; width: 100%; height: 28px; padding: 0 8px;
     border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 6px;
     font: 12px ui-monospace, Menlo, Consolas, monospace;
     color: var(--figma-color-text, #1e1e1e); background: var(--figma-color-bg, #fff);
   }
-  .champ-commit[hidden] { display: none; }
-  /* JSON à copier à la main quand la copie automatique échoue. */
-  .champ-json { height: 80px; padding: 6px 8px; resize: none; }
-  /* Bloc du haut collant : l'en-tête, avec le nom du fichier et ses chiffres, reste visible au défilement.
-     top compense la marge haute de la page, le trait n'apparaît qu'une fois la page défilée. */
-  .haut {
+  .commit-field[hidden] { display: none; }
+  /* JSON to copy by hand when the automatic copy fails. */
+  .json-field { height: 80px; padding: 6px 8px; resize: none; }
+  /* Sticky top block: the header, with the file name and its figures, stays visible while scrolling.
+     top offsets the top margin of the page, the line only appears once the page has scrolled. */
+  .sticky-top {
     position: sticky; top: -16px; z-index: 10;
     margin: -16px -16px 12px; padding: 16px 16px 12px;
     background: var(--figma-color-bg, #fff);
   }
-  .haut.defile { border-bottom: 1px solid var(--figma-color-border, #e6e6e6); }
+  .sticky-top.scrolled { border-bottom: 1px solid var(--figma-color-border, #e6e6e6); }
   #verification { margin: 0 0 24px; }
   details { border-top: 1px solid var(--figma-color-border, #e6e6e6); }
-  .carte-changements > details:first-of-type { border-top: none; }
+  .changes-card > details:first-of-type { border-top: none; }
   summary {
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 0; cursor: pointer; list-style: none;
   }
   summary::-webkit-details-marker { display: none; }
-  .aide-section { margin: 0 0 6px; font-size: 11px; }
-  /* Chevron des sections repliables : vers la droite fermé, vers le bas ouvert. */
-  .titre-section { display: flex; align-items: center; gap: 6px; }
+  .section-help { margin: 0 0 6px; font-size: 11px; }
+  /* Chevron of collapsible sections: pointing right when closed, down when open. */
+  .section-title { display: flex; align-items: center; gap: 6px; }
   .chevron { flex: none; color: var(--figma-color-text-secondary, #737373); transition: transform 0.15s; }
   details[open] > summary .chevron { transform: rotate(90deg); }
-  .pastille {
+  .badge {
     min-width: 8px; padding: 0 6px; border-radius: 10px; text-align: center; font-weight: 600;
     background: var(--figma-color-bg-secondary, #f5f5f5);
   }
-  .attention .pastille { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
-  .bloquant .pastille { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-rouge); }
+  .warning .badge { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
+  .blocking .badge { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
   ul { margin: 0 0 8px; padding: 0 0 0 12px; color: var(--figma-color-text-secondary, #737373); }
   li { word-break: break-word; }
 </style>
 
-<main id="contenu">
-<div class="haut" id="haut">
-<header class="entete">
+<main id="content">
+<div class="sticky-top" id="sticky-top">
+<header class="header">
   <svg class="logo" viewBox="0 0 160.501 160.501" width="32" height="32" role="img" aria-label="AXA"><rect x="0" fill="#00008f" width="160.501" height="160.501"/><polygon fill="#FF1821" points="99.358,79.26 160.501,0 151.443,0 90.3,79.26"/><path fill="#FFFFFF" d="M122.57,114.644c2.831,7.926,8.492,28.307,10.757,29.723h-15.003c0,0,0-3.113-0.849-5.379 c-0.566-2.264-6.228-19.814-6.228-19.814H87.186l-3.396,5.378c0,0,4.529,14.153,4.812,15.002 c0.566,1.133,2.548,5.096,2.548,5.096H76.712c0,0-0.283-2.265-0.566-3.114c0-0.849-1.415-4.812-1.415-4.812 s-3.396,3.68-4.246,5.378c-0.849,1.698-1.415,2.548-1.415,2.548H57.746c0,0-0.283-2.265-0.566-3.114 c0-0.849-1.415-5.095-1.415-5.095s-3.113,3.963-3.963,5.661c-0.85,1.415-1.132,2.265-1.132,2.265H39.347 c0,0,3.113-3.113,4.246-4.246c1.981-2.265,8.775-11.322,8.775-11.322l-2.831-9.625H25.759c0,0-13.587,17.834-14.153,18.399 c-0.566,0.566-4.529,6.228-4.529,6.794H0v-4.529l0.283-0.283c0.282-0.283,10.19-12.738,19.531-24.91 c8.209-10.757,16.136-21.23,16.701-22.363c1.699-2.547,3.963-7.643,3.963-7.643h12.455c0,0,0.283,4.812,0.85,5.944 c0.283,1.132,7.926,25.759,7.926,26.042l4.246-5.378L58.879,89.45c0,0-1.699-4.246-2.265-4.812h14.437c0,0,0,1.981,0.566,3.963 c0.565,1.698,3.68,13.021,3.68,13.021s9.907-12.455,10.474-13.304c1.132-1.415,1.132-3.68,1.132-3.68h11.89 c0,0-2.265,1.698-5.945,6.51c-1.415,1.699-13.87,17.834-13.87,17.834s1.133,3.68,1.698,5.661 c0.283,0.566,0.283,0.849,0.283,0.849s0.283-0.283,0.85-0.849c3.396-4.246,18.116-23.778,18.966-25.193 c0.849-1.415,1.698-2.831,2.547-4.529h11.606c0,0,0.283,3.397,0.566,4.529L122.57,114.644z M104.737,96.244 c-1.698,3.68-11.89,16.135-11.89,16.135h16.136c0,0-3.114-9.625-3.68-11.606C105.02,98.792,105.02,96.527,104.737,96.244 C105.02,95.961,105.02,95.678,104.737,96.244z M43.31,96.244c-1.698,3.68-11.889,16.135-11.889,16.135h16.135 c0,0-3.113-9.625-3.68-11.606S43.31,96.527,43.31,96.244C43.31,95.961,43.31,95.678,43.31,96.244z M67.371,133.609l4.528-5.944 c-0.282-0.566-2.83-7.926-2.83-7.926l-4.246,5.662L67.371,133.609z"/></svg>
-  <div class="entete-texte">
+  <div class="header-text">
     <h1>Design tokens</h1>
-    <p class="aide" id="contexte">Lecture du fichier…</p>
+    <p class="help" id="context">Lecture du fichier…</p>
   </div>
-  <button type="button" class="bouton secondaire bouton-entete" id="telecharger">Télécharger le fichier</button>
-  <p class="aide" id="resume-fichier"></p>
+  <button type="button" class="button secondary header-button" id="download">Télécharger le fichier</button>
+  <p class="help" id="file-summary"></p>
 </header>
 </div>
 
-<div id="verification"><p class="aide">Vérification…</p></div>
+<div id="verification"><p class="help">Vérification…</p></div>
 
-<div id="changements"></div>
-<input type="file" accept=".json" id="fichier-reference" style="display:none">
+<div id="changes"></div>
+<input type="file" accept=".json" id="reference-file" style="display:none">
 </main>
 
 <div class="actions" id="actions">
-  <div id="resultat"></div>
-  <div id="pr-en-cours"></div>
-  <button type="button" class="bouton principal bouton-plein" id="ouvrir-depot">Déposer sur GitHub</button>
-  <p class="aide aide-boutons" id="aide-blocage" hidden></p>
+  <div id="result"></div>
+  <div id="pr-in-progress"></div>
+  <button type="button" class="button primary full-button" id="open-submit">Déposer sur GitHub</button>
+  <p class="help buttons-help" id="block-help" hidden></p>
 </div>
 
-<section id="vue-depot" hidden>
-  <p class="retour"><button type="button" class="lien" id="retour">← Retour</button></p>
-  <p class="titre-bloc">Déposer sur GitHub</p>
-  <p class="aide rappel" id="rappel-depot" hidden></p>
-  <div id="resultat-depot"></div>
-  <p id="avant-depot"><b>Avant de déposer</b>Vérifier que Fondations est publiée et que l'équipe design system a validé les changements.</p>
-  <label class="case" id="case-refonte"><input type="checkbox" id="refonte"><span>Refonte complète, passer en version majeure</span></label>
-  <ol class="etapes">
-    <li class="etape" id="etape-1">
-      <div class="ligne-etape">
-        <span class="repere"></span>
-        <span class="texte-etape">Copier le fichier et ouvrir GitHub</span>
-        <button type="button" class="bouton principal" id="deposer">Copier et ouvrir</button>
+<section id="submit-view" hidden>
+  <p class="back"><button type="button" class="link" id="back">← Retour</button></p>
+  <p class="block-title">Déposer sur GitHub</p>
+  <p class="help reminder" id="submit-reminder" hidden></p>
+  <div id="submit-result"></div>
+  <p id="before-submit"><b>Avant de déposer</b>Vérifier que Fondations est publiée et que l'équipe design system a validé les changements.</p>
+  <label class="checkbox" id="redesign-checkbox"><input type="checkbox" id="redesign"><span>Refonte complète, passer en version majeure</span></label>
+  <ol class="steps">
+    <li class="step" id="step-1">
+      <div class="step-line">
+        <span class="marker"></span>
+        <span class="step-text">Copier le fichier et ouvrir GitHub</span>
+        <button type="button" class="button primary" id="submit">Copier et ouvrir</button>
       </div>
-      <div class="detail-etape">
-        <textarea class="champ-commit champ-json" id="champ-json" readonly aria-label="JSON des tokens à copier" hidden></textarea>
-        <p class="aide aide-boutons" id="aide-etape-1" hidden></p>
-      </div>
-    </li>
-    <li class="etape" id="etape-2">
-      <div class="ligne-etape">
-        <span class="repere"></span>
-        <span class="texte-etape">Sur GitHub, remplacer tout le contenu du fichier avec Cmd+A puis Cmd+V (Ctrl sur Windows). Cliquer ensuite sur « Commit changes ».</span>
+      <div class="step-detail">
+        <textarea class="commit-field json-field" id="json-field" readonly aria-label="JSON des tokens à copier" hidden></textarea>
+        <p class="help buttons-help" id="step-1-help" hidden></p>
       </div>
     </li>
-    <li class="etape" id="etape-3">
-      <div class="ligne-etape">
-        <span class="repere"></span>
-        <span class="texte-etape">Copier le message de commit</span>
-        <button type="button" class="bouton principal" id="copier-message">Copier le message</button>
+    <li class="step" id="step-2">
+      <div class="step-line">
+        <span class="marker"></span>
+        <span class="step-text">Sur GitHub, remplacer tout le contenu du fichier avec Cmd+A puis Cmd+V (Ctrl sur Windows). Cliquer ensuite sur « Commit changes ».</span>
       </div>
-      <div class="detail-etape">
-        <div class="commit" id="bloc-commit" hidden>
-          <input type="text" readonly class="champ-commit" id="champ-commit" aria-label="Message de commit">
+    </li>
+    <li class="step" id="step-3">
+      <div class="step-line">
+        <span class="marker"></span>
+        <span class="step-text">Copier le message de commit</span>
+        <button type="button" class="button primary" id="copy-message">Copier le message</button>
+      </div>
+      <div class="step-detail">
+        <div class="commit" id="commit-block" hidden>
+          <input type="text" readonly class="commit-field" id="commit-field" aria-label="Message de commit">
         </div>
-        <p class="aide">Le coller dans GitHub, garder « Create a new branch », puis cliquer sur « Propose changes ».</p>
+        <p class="help">Le coller dans GitHub, garder « Create a new branch », puis cliquer sur « Propose changes ».</p>
       </div>
     </li>
-    <li class="etape" id="etape-4">
-      <div class="ligne-etape">
-        <span class="repere"></span>
-        <span class="texte-etape">Cliquer sur « Create pull request ».</span>
+    <li class="step" id="step-4">
+      <div class="step-line">
+        <span class="marker"></span>
+        <span class="step-text">Cliquer sur « Create pull request ».</span>
       </div>
     </li>
   </ol>
-  <p class="aide aide-boutons" id="aide-boutons" hidden></p>
-  <button type="button" class="bouton principal bouton-plein" id="termine" hidden>Terminé</button>
-  <p class="action-secondaire" id="action-secondaire" hidden><button type="button" class="lien" id="recommencer">Recommencer le dépôt</button></p>
+  <p class="help buttons-help" id="buttons-help" hidden></p>
+  <button type="button" class="button primary full-button" id="finish" hidden>Terminé</button>
+  <p class="secondary-action" id="secondary-action" hidden><button type="button" class="link" id="restart">Recommencer le dépôt</button></p>
 </section>
 
 
-<div id="poignee" aria-label="Redimensionner la fenêtre" title="Glisser pour redimensionner, double-cliquer pour revenir à la taille automatique">
+<div id="handle" aria-label="Redimensionner la fenêtre" title="Glisser pour redimensionner, double-cliquer pour revenir à la taille automatique">
   <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
     <path d="M14 3 L3 14 M14 7 L7 14 M14 11 L11 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
@@ -381,908 +381,908 @@
 <script>
   const $ = (id) => document.getElementById(id)
   const html = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
-  const envoyer = (message) => parent.postMessage({ pluginMessage: message }, '*')
+  const send = (message) => parent.postMessage({ pluginMessage: message }, '*')
 
-  // Hauteur naturelle de la vue affichée, sans l'espace qui pousse les actions en bas.
-  // Les blocs masqués comptent pour zéro.
-  const ajusterHauteur = () => envoyer({ type: 'redimensionner', hauteur: 16 + $('contenu').offsetHeight + $('actions').offsetHeight + $('vue-depot').offsetHeight })
+  // Natural height of the displayed view, without the space that pushes the actions down.
+  // Hidden blocks count for zero.
+  const adjustHeight = () => send({ type: 'resize', height: 16 + $('content').offsetHeight + $('actions').offsetHeight + $('submit-view').offsetHeight })
 
-  // ------------------------------------------------------- redimensionnement manuel
+  // ------------------------------------------------------------------ manual resize
 
-  const poignee = $('poignee')
-  poignee.addEventListener('pointerdown', (e) => {
-    poignee.setPointerCapture(e.pointerId)
-    document.body.classList.add('redimensionnement')
+  const handle = $('handle')
+  handle.addEventListener('pointerdown', (e) => {
+    handle.setPointerCapture(e.pointerId)
+    document.body.classList.add('resizing')
   })
-  poignee.addEventListener('pointermove', (e) => {
-    if (!poignee.hasPointerCapture(e.pointerId)) return
-    envoyer({ type: 'redimensionner-manuel', largeur: Math.round(e.clientX + 8), hauteur: Math.round(e.clientY + 8) })
+  handle.addEventListener('pointermove', (e) => {
+    if (!handle.hasPointerCapture(e.pointerId)) return
+    send({ type: 'resize-manual', width: Math.round(e.clientX + 8), height: Math.round(e.clientY + 8) })
   })
-  poignee.addEventListener('pointerup', (e) => {
-    poignee.releasePointerCapture(e.pointerId)
-    document.body.classList.remove('redimensionnement')
+  handle.addEventListener('pointerup', (e) => {
+    handle.releasePointerCapture(e.pointerId)
+    document.body.classList.remove('resizing')
   })
-  poignee.addEventListener('dblclick', () => envoyer({ type: 'taille-auto' }))
+  handle.addEventListener('dblclick', () => send({ type: 'auto-size' }))
 
-  const compte = (n, mot) => `${n} ${mot}${n > 1 ? 's' : ''}`
+  const count = (n, word) => `${n} ${word}${n > 1 ? 's' : ''}`
 
 
   const CHEVRON = '<svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
-  // Une section du rapport : un titre en langage courant, une ligne d'aide qui dit
-  // ce qui se passe et quoi faire, puis la liste.
-  const section = (classe, titre, aide, items, ouvert) => !items.length ? '' :
-    `<details class="${classe}"${ouvert ? ' open' : ''}><summary><span class="titre-section">${CHEVRON}${titre}</span><span class="pastille">${items.length}</span></summary>
-       <p class="aide aide-section">${aide}</p>
+  // A section of the report: a title in plain language, a help line saying
+  // what happens and what to do, then the list.
+  const section = (cssClass, title, help, items, isOpen) => !items.length ? '' :
+    `<details class="${cssClass}"${isOpen ? ' open' : ''}><summary><span class="section-title">${CHEVRON}${title}</span><span class="badge">${items.length}</span></summary>
+       <p class="help section-help">${help}</p>
        <ul>${items.map((i) => `<li>${html(i)}</li>`).join('')}</ul></details>`
 
-  // Ordre : bloquant, nomenclature, puis le reste des niveaux à vérifier, puis
-  // l'information. Les sections bloquantes et la nomenclature sont ouvertes par
-  // défaut, le reste replié. Rien ne s'affiche quand il n'y a rien à signaler.
-  const rendreVerification = (r) => {
+  // Order: blocking, naming, then the rest of the levels to check, then
+  // information. Blocking and naming sections are open by
+  // default, the rest collapsed. Nothing is displayed when there is nothing to report.
+  const renderVerification = (r) => {
     const sections =
-      section('bloquant', 'Noms en conflit', 'Deux tokens ou deux collections portent le même nom, ou un token porte le nom d\'un groupe. Renommez-les dans Figma, sinon ils ne passent pas dans le code.', r.conflits, true) +
-      section('bloquant', 'Liens cassés', 'Ces tokens pointent vers une variable supprimée. Reliez-les à une autre variable dans Figma.', [...r.aliasIntrouvables.map((nom) => `${nom} : ne passe pas dans le code`), ...r.aliasIntrouvablesMode], true) +
-      section('attention', 'Noms à corriger', 'Ces noms ne suivent pas les règles de nommage des primitives et des styles de texte.', r.nomenclature, true) +
-      section('attention', 'Scope à renseigner', 'Sans scope, le plugin devine le type du token d\'après son nom. Renseignez le scope dans Figma pour en être sûr.', r.typesDeduits, false) +
-      section('attention', 'Caractères interdits', 'Le code n\'accepte ni les accolades ni le point dans un nom. Le plugin les remplace par un tiret. Renommez ces tokens dans Figma pour garder le même nom partout.', r.nomsAssainis, false) +
-      section('attention', 'Liens vers une autre librairie', 'Le code reçoit seulement leur valeur. Si la variable de l\'autre librairie change, le token ne suivra pas.', r.aliasExternes, false) +
-      section('attention', 'Styles incomplets dans le code', 'Le code reçoit ces styles, mais pas toutes leurs propriétés.', r.stylesIncomplets || [], false) +
-      section('', 'Sans description', 'Ces tokens n\'ont pas de description dans Figma, et le plugin ne sait pas en générer une. Ajoutez-en une si le nom ne dit pas à quoi sert le token.', r.sansDescription, false) +
-      section('', 'Absents du code', 'Ces éléments n\'ont pas d\'équivalent dans le code, ils restent dans Figma.', r.ecartes, false)
+      section('blocking', 'Noms en conflit', 'Deux tokens ou deux collections portent le même nom, ou un token porte le nom d\'un groupe. Renommez-les dans Figma, sinon ils ne passent pas dans le code.', r.conflicts, true) +
+      section('blocking', 'Liens cassés', 'Ces tokens pointent vers une variable supprimée. Reliez-les à une autre variable dans Figma.', [...r.missingAliases.map((name) => `${name} : ne passe pas dans le code`), ...r.missingModeAliases], true) +
+      section('warning', 'Noms à corriger', 'Ces noms ne suivent pas les règles de nommage des primitives et des styles de texte.', r.naming, true) +
+      section('warning', 'Scope à renseigner', 'Sans scope, le plugin devine le type du token d\'après son nom. Renseignez le scope dans Figma pour en être sûr.', r.inferredTypes, false) +
+      section('warning', 'Caractères interdits', 'Le code n\'accepte ni les accolades ni le point dans un nom. Le plugin les remplace par un tiret. Renommez ces tokens dans Figma pour garder le même nom partout.', r.sanitizedNames, false) +
+      section('warning', 'Liens vers une autre librairie', 'Le code reçoit seulement leur valeur. Si la variable de l\'autre librairie change, le token ne suivra pas.', r.externalAliases, false) +
+      section('warning', 'Styles incomplets dans le code', 'Le code reçoit ces styles, mais pas toutes leurs propriétés.', r.incompleteStyles || [], false) +
+      section('', 'Sans description', 'Ces tokens n\'ont pas de description dans Figma, et le plugin ne sait pas en générer une. Ajoutez-en une si le nom ne dit pas à quoi sert le token.', r.noDescription, false) +
+      section('', 'Absents du code', 'Ces éléments n\'ont pas d\'équivalent dans le code, ils restent dans Figma.', r.excluded, false)
     if (!sections) return ''
-    const total = r.conflits.length + r.aliasIntrouvables.length + r.aliasIntrouvablesMode.length + r.nomenclature.length +
-      r.typesDeduits.length + r.nomsAssainis.length + r.aliasExternes.length + (r.stylesIncomplets || []).length
-    const titre = total > 0 ? 'À corriger' : 'À savoir'
-    const pastille = total > 0 ? `<span class="pastille">${total}</span>` : ''
-    return `<div class="carte-changements"><div class="titre-changements"><p class="titre-bloc">${titre}</p>${pastille}</div>${sections}</div>`
+    const total = r.conflicts.length + r.missingAliases.length + r.missingModeAliases.length + r.naming.length +
+      r.inferredTypes.length + r.sanitizedNames.length + r.externalAliases.length + (r.incompleteStyles || []).length
+    const title = total > 0 ? 'À corriger' : 'À savoir'
+    const badge = total > 0 ? `<span class="badge">${total}</span>` : ''
+    return `<div class="changes-card"><div class="changes-title"><p class="block-title">${title}</p>${badge}</div>${sections}</div>`
   }
 
-  // Texte d'aide sous les boutons quand le dépôt est bloqué, selon la raison.
-  const texteBlocage = (b) => {
-    if (b.raison === 'fichier') return 'Le dépôt se fait depuis la librairie Fondations Canopée.'
-    if (b.raison === 'vide') return 'Aucun token à déposer dans ce fichier.'
-    if (b.raison === 'ecartes') return b.n === 1 ? '1 token bloque le dépôt. Corrigez-le d\'abord, il est signalé en rouge dans À corriger.' : `${b.n} tokens bloquent le dépôt. Corrigez-les d'abord, ils sont signalés en rouge dans À corriger.`
+  // Help text under the buttons when the submission is blocked, depending on the reason.
+  const blockerText = (b) => {
+    if (b.reason === 'file') return 'Le dépôt se fait depuis la librairie Fondations Canopée.'
+    if (b.reason === 'empty') return 'Aucun token à déposer dans ce fichier.'
+    if (b.reason === 'excluded') return b.n === 1 ? '1 token bloque le dépôt. Corrigez-le d\'abord, il est signalé en rouge dans À corriger.' : `${b.n} tokens bloquent le dépôt. Corrigez-les d'abord, ils sont signalés en rouge dans À corriger.`
     return 'Disponible dès que l\'emplacement du fichier sera fixé dans le repo.'
   }
 
-  // État de l'interface, en un seul objet : lu et modifié par les gestionnaires
-  // de messages et les actions de l'utilisateur, rendu par rendre() (plus bas).
-  // Les boutons et leurs textes se calculent uniquement à partir de vue, etape,
-  // action et blocage (voir rendreActions).
-  const etat = {
-    vue: 'normale',               // 'normale', ou 'depot' : la vue dépôt remplace tout le reste
-    depot: { urlReference: null, urlTags: null, urlPulls: null, urlVersion: null },
-    rapport: null,                // dernier rapport de vérification reçu
-    blocage: null,                // ce qui empêche le dépôt : { raison, n? } ou null
-    erreurVerification: null,     // message si la vérification a échoué
-    derniereReference: null,      // { texte, source, nomFichier, dateFichier, version } de la dernière référence chargée
-    selection: { source: 'repo' }, // référence choisie dans le menu « Comparé à » : { source, version? }
-    diffResultat: null,           // dernier diff reçu : { ajoutes, modifies, supprimes, deprecies, niveau, source, nomFichier, dateFichier, version }
-    echec: null,                  // 'pas-dans-code', 'version-absente' ou 'github' si la référence choisie n'a pas pu être lue
-    erreurComparaison: null,      // message si le calcul du diff a échoué côté plugin
-    erreurValidation: null,       // message si la référence chargée n'est pas un export du plugin
-    comparaisonCode: null,        // dernière comparaison avec le code : 'en-cours', 'identique', 'changements', 'pas-dans-code', 'echec', ou null si inconnue
-    typesMasques: [],             // types masqués dans la liste par leur chip : 'ajoutes', 'modifies', 'supprimes', 'deprecies'
-    pullsTokens: [],              // PR de tokens ouvertes : { numero, url }
-    pullsDejaTentees: false,      // vrai une fois les PR lues à l'ouverture
-    repoDejaTente: false,
-    comparaisonRepoEnCours: false,
-    listeVersions: null,          // versions publiées, triées de la plus récente à la plus ancienne, ou null tant que non chargées
-    versionsDejaTentees: false,
-    fichierEnAttente: null,       // { texte, nomFichier, dateFichier } du fichier en cours de comparaison
-    dernierFichier: null,         // le même, une fois la comparaison réussie, avec sa dateReference
-    etape: 'depart',              // 'depart', ou 'message' une fois le JSON copié et GitHub ouvert
-    action: null,                 // 'depot' ou 'telechargement' pendant une action, sinon null
-    resultat: null,               // bandeau au-dessus des boutons : { classe, texte, fermable? }
-    messageCommit: null,          // message de commit reçu au dépôt
-    refonte: false,               // case Refonte complète de la vue dépôt
-    urlEnAttente: null,           // page GitHub à ouvrir une fois le JSON copié
-    jsonACopier: null,            // JSON affiché à copier à la main quand la copie automatique a échoué
-    copieRecente: false,          // vrai 2 secondes après la copie du message de commit
-    aideMessage: null,            // 'copie-ok' ou 'copie-impossible' après un clic sur la copie du message
-    changementsReplies: true      // carte Changements repliée sur sa ligne de titre, par défaut
+  // State of the UI, in a single object: read and changed by the message
+  // handlers and the user's actions, rendered by render() (below).
+  // Buttons and their texts are computed only from view, step,
+  // action and blocker (see renderActions).
+  const state = {
+    view: 'normal',               // 'normal', or 'submit': the submission view replaces everything else
+    repoUrls: { urlReference: null, urlTags: null, urlPulls: null, urlVersion: null },
+    report: null,                // last verification report received
+    blocker: null,                // what prevents the submission: { reason, n? } or null
+    verificationError: null,     // message if the verification failed
+    lastReference: null,      // { text, source, fileName, fileDate, version } of the last reference loaded
+    selection: { source: 'repo' }, // reference chosen in the "Comparé à" menu: { source, version? }
+    diffResult: null,           // last diff received: { added, modified, removed, deprecated, level, source, fileName, fileDate, version }
+    failure: null,                  // 'not-in-code', 'version-missing' or 'github' if the chosen reference could not be read
+    comparisonError: null,      // message if the diff computation failed on the plugin side
+    validationError: null,       // message if the loaded reference is not a plugin export
+    comparisonCode: null,        // last comparison with the code: 'in-progress', 'identical', 'changes', 'not-in-code', 'failed', or null if unknown
+    hiddenTypes: [],             // types hidden in the list by their chip: 'added', 'modified', 'removed', 'deprecated'
+    tokensPulls: [],              // open tokens PRs: { number, url }
+    pullsAlreadyTried: false,      // true once the PRs have been read on opening
+    repoAlreadyTried: false,
+    repoComparisonInProgress: false,
+    versionsList: null,          // published versions, sorted from newest to oldest, or null until loaded
+    versionsAlreadyTried: false,
+    pendingFile: null,       // { text, fileName, fileDate } of the file being compared
+    lastFile: null,         // the same, once the comparison succeeded, with its referenceDate
+    step: 'start',              // 'start', or 'message' once the JSON is copied and GitHub is open
+    action: null,                 // 'submit' or 'download' during an action, otherwise null
+    result: null,               // banner above the buttons: { cssClass, text, closable? }
+    commitMessage: null,          // commit message received at submission
+    redesign: false,               // "Refonte complète" checkbox of the submission view
+    pendingUrl: null,           // GitHub page to open once the JSON is copied
+    jsonToCopy: null,            // JSON displayed to copy by hand when the automatic copy failed
+    recentCopy: false,          // true for 2 seconds after the commit message is copied
+    messageHelp: null,            // 'copy-ok' or 'copy-failed' after a click on the message copy
+    changesCollapsed: true      // Changements card collapsed to its title line, by default
   }
 
-  // Rendu du bloc vérification à partir de l'état : rien tant qu'aucun rapport
-  // n'est encore arrivé, pour garder le message d'ouverture.
-  const afficherVerification = () => {
-    if (etat.erreurVerification) {
-      $('verification').innerHTML = `<div class="bandeau erreur">Vérification impossible : ${html(etat.erreurVerification)}</div>`
+  // Rendering of the verification block from the state: nothing until a report
+  // has arrived, to keep the opening message.
+  const showVerification = () => {
+    if (state.verificationError) {
+      $('verification').innerHTML = `<div class="banner error">Vérification impossible : ${html(state.verificationError)}</div>`
       $('verification').hidden = false
       return
     }
-    if (!etat.rapport) return
-    const contenu = rendreVerification(etat.rapport)
-    $('verification').innerHTML = contenu
-    $('verification').hidden = !contenu
+    if (!state.report) return
+    const content = renderVerification(state.report)
+    $('verification').innerHTML = content
+    $('verification').hidden = !content
   }
 
-  // ---------------------------------------------------------- comparaison au code
+  // ----------------------------------------------------- comparison with the code
 
-  // Types de changement, dans l'ordre de la liste : clé du diff, mot, classe de couleur.
-  const TYPES_DIFF = [['ajoutes', 'ajouté', 'ajoute'], ['modifies', 'modifié', 'modifie'], ['supprimes', 'supprimé', 'supprime'], ['deprecies', 'déprécié', 'deprecie']]
-  const COCHE = '<svg class="coche" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 5.2 4 7.2 8 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-  const typeAffiche = (type) => !etat.typesMasques.includes(type)
+  // Change types, in list order: diff key, word, color class.
+  const DIFF_TYPES = [['added', 'ajouté', 'added'], ['modified', 'modifié', 'modified'], ['removed', 'supprimé', 'removed'], ['deprecated', 'déprécié', 'deprecated']]
+  const CHECKMARK = '<svg class="checkmark" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 5.2 4 7.2 8 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  const isTypeShown = (type) => !state.hiddenTypes.includes(type)
 
-  // Une chip par type présent dans le diff : un bouton bascule, actif par défaut.
-  const chipDiff = (type, n, mot, classe) => {
-    const actif = typeAffiche(type)
-    return `<button type="button" class="chip ${classe}" data-type="${type}" aria-pressed="${actif}">${actif ? COCHE : ''}${compte(n, mot)}</button>`
+  // One chip per type present in the diff: a toggle button, active by default.
+  const diffChip = (type, n, word, cssClass) => {
+    const active = isTypeShown(type)
+    return `<button type="button" class="chip ${cssClass}" data-type="${type}" aria-pressed="${active}">${active ? CHECKMARK : ''}${count(n, word)}</button>`
   }
 
-  // Sous la ligne principale, une ligne par sous-champ d'un composite modifié,
-  // alignée avec le chemin grâce à une étiquette invisible de même taille.
-  const ligneChampDiff = (etiquette, classe, c) =>
-    `<div class="ligne-diff ligne-champ">` +
-    `<span class="etiquette ${classe} etiquette-fantome" aria-hidden="true">${etiquette}</span>` +
-    `<span class="nom-champ">${html(c.champ)}</span>` +
-    `<span class="valeur-diff"><span class="valeur-supprimee">${html(c.avant)}</span> → <span class="valeur-ajoutee">${html(c.apres)}</span></span>` +
+  // Under the main line, one line per sub-field of a modified composite,
+  // aligned with the path thanks to an invisible tag of the same size.
+  const diffFieldLine = (kindLabel, cssClass, c) =>
+    `<div class="diff-line field-line">` +
+    `<span class="tag ${cssClass} tag-ghost" aria-hidden="true">${kindLabel}</span>` +
+    `<span class="field-name">${html(c.field)}</span>` +
+    `<span class="diff-value"><span class="value-removed">${html(c.before)}</span> → <span class="value-added">${html(c.after)}</span></span>` +
     `</div>`
 
-  // item porte chemin, et selon le cas contexte (mode d'un token de contexte de
-  // modifier, affiché sous le chemin) et champs (détail d'un composite modifié,
-  // affiché en lignes sous la ligne principale, voir ligneChampDiff).
-  const ligneDiff = (etiquette, classe, item, valeurHtml) => {
-    const mode = item.contexte ? `<div class="mode-diff">mode ${html(item.contexte)}</div>` : ''
-    const champs = (item.champs || []).map((c) => ligneChampDiff(etiquette, classe, c)).join('')
-    return `<div class="ligne-diff"><span class="etiquette ${classe}">${etiquette}</span>` +
-      `<div class="chemin-diff">${html(item.chemin).replace(/\//g, '/<wbr>')}${mode}</div>` +
-      `<span class="valeur-diff">${valeurHtml}</span></div>` + champs
+  // item carries path, and depending on the case context (mode of a modifier context
+  // token, displayed under the path) and fields (detail of a modified composite,
+  // displayed as lines under the main line, see diffFieldLine).
+  const diffLine = (kindLabel, cssClass, item, valueHtml) => {
+    const mode = item.context ? `<div class="diff-mode">mode ${html(item.context)}</div>` : ''
+    const fields = (item.fields || []).map((c) => diffFieldLine(kindLabel, cssClass, c)).join('')
+    return `<div class="diff-line"><span class="tag ${cssClass}">${kindLabel}</span>` +
+      `<div class="diff-path">${html(item.path).replace(/\//g, '/<wbr>')}${mode}</div>` +
+      `<span class="diff-value">${valueHtml}</span></div>` + fields
   }
 
-  // Nombre à la française sans Intl : le jour et le mois d'une date, sur deux chiffres.
-  const formaterDateFr = (date) => {
+  // French-style number without Intl: the day and month of a date, on two digits.
+  const formatDateFr = (date) => {
     const d = new Date(date)
-    const deuxChiffres = (n) => String(n).padStart(2, '0')
-    return `${deuxChiffres(d.getDate())}/${deuxChiffres(d.getMonth() + 1)}`
+    const twoDigits = (n) => String(n).padStart(2, '0')
+    return `${twoDigits(d.getDate())}/${twoDigits(d.getMonth() + 1)}`
   }
 
-  // Comme formaterDateFr, avec l'heure locale : sert à dateReference, l'heure
-  // exacte de l'export de la référence, plus précise que la date du fichier.
-  const formaterDateHeureFr = (date) => {
+  // Like formatDateFr, with local time: used for referenceDate, the exact
+  // time of the export of the reference, more precise than the date of the file.
+  const formatDateTimeFr = (date) => {
     const d = new Date(date)
-    const deuxChiffres = (n) => String(n).padStart(2, '0')
-    return `${formaterDateFr(d)} à ${deuxChiffres(d.getHours())}h${deuxChiffres(d.getMinutes())}`
+    const twoDigits = (n) => String(n).padStart(2, '0')
+    return `${formatDateFr(d)} à ${twoDigits(d.getHours())}h${twoDigits(d.getMinutes())}`
   }
 
-  // Libellé du fichier chargé dans le menu : la date seule, sans l'heure, qui
-  // se lit à part sous le pied (voir detailDatePiedDiff).
-  const libelleFichier = (f) => {
-    if (f.dateReference !== undefined) return `l'export du ${formaterDateFr(f.dateReference)}`
-    if (f.dateFichier !== undefined) return `l'export du ${formaterDateFr(f.dateFichier)}`
-    return f.nomFichier
+  // Label of the loaded file in the menu: the date alone, without the time, which
+  // is read separately under the footer (see footerDateDetail).
+  const fileLabel = (f) => {
+    if (f.referenceDate !== undefined) return `l'export du ${formatDateFr(f.referenceDate)}`
+    if (f.fileDate !== undefined) return `l'export du ${formatDateFr(f.fileDate)}`
+    return f.fileName
   }
 
-  // Date complète du fichier chargé, quand elle est connue : sous le menu, qui
-  // ne porte plus que la date courte. Seulement pour un fichier.
-  const detailDatePied = () => {
-    if (etat.selection.source === 'fichier' && etat.dernierFichier && etat.dernierFichier.dateReference !== undefined) {
-      return `<p class="aide aide-pied-diff">Export du ${formaterDateHeureFr(etat.dernierFichier.dateReference)}</p>`
+  // Full date of the loaded file, when it is known: under the menu, which
+  // only carries the short date. Only for a file.
+  const footerDateDetail = () => {
+    if (state.selection.source === 'file' && state.lastFile && state.lastFile.referenceDate !== undefined) {
+      return `<p class="help diff-footer-help">Export du ${formatDateTimeFr(state.lastFile.referenceDate)}</p>`
     }
     return ''
   }
 
-  // Pied de la carte : un seul menu, qui dit à quoi on compare et permet d'en
-  // changer, toujours affiché. Le code actuel, les versions publiées quand elles
-  // sont chargées, le dernier fichier chargé, et « un autre fichier… ».
-  const piedChangements = () => {
-    const { source, version } = etat.selection
-    const option = (valeur, libelle, choisie) => `<option value="${html(valeur)}"${choisie ? ' selected' : ''}>${html(libelle)}</option>`
+  // Card footer: a single menu, which says what is being compared and allows
+  // changing it, always displayed. The current code, the published versions when they
+  // are loaded, the last loaded file, and "un autre fichier…".
+  const changesFooter = () => {
+    const { source, version } = state.selection
+    const option = (value, label, chosen) => `<option value="${html(value)}"${chosen ? ' selected' : ''}>${html(label)}</option>`
     const options = [option('repo', 'le code actuel', source === 'repo')]
-    for (const v of etat.listeVersions || []) options.push(option(v, `la version ${v}`, source === 'version' && version === v))
-    if (etat.dernierFichier) options.push(option('fichier', libelleFichier(etat.dernierFichier), source === 'fichier'))
-    options.push(option('autre-fichier', 'un autre fichier…', false))
-    return `<div class="pied-diff"><label class="aide" for="select-reference">Comparé à</label>` +
-      `<select id="select-reference" class="select-reference">${options.join('')}</select></div>` +
-      detailDatePied()
+    for (const v of state.versionsList || []) options.push(option(v, `la version ${v}`, source === 'version' && version === v))
+    if (state.lastFile) options.push(option('file', fileLabel(state.lastFile), source === 'file'))
+    options.push(option('other-file', 'un autre fichier…', false))
+    return `<div class="diff-footer"><label class="help" for="reference-select">Comparé à</label>` +
+      `<select id="reference-select" class="reference-select">${options.join('')}</select></div>` +
+      footerDateDetail()
   }
 
-  // Étiquette de niveau, à côté du titre : mêmes couleurs que la liste, un
-  // niveau plus élevé emprunte celles d'un changement plus visible.
-  const ETIQUETTE_NIVEAU = {
-    majeur: ['MAJEUR', 'etiquette-supprime', 'Une refonte complète des tokens : version majeure.'],
-    mineur: ['MINEUR', 'etiquette-modifie', 'Un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change : version mineure.'],
-    correctif: ['PATCH', 'etiquette-ajoute', 'Une ou plusieurs valeurs modifiées : patch.']
+  // Level tag, next to the title: same colors as the list, a higher
+  // level borrows those of a more visible change.
+  const LEVEL_LABEL = {
+    major: ['MAJEUR', 'tag-removed', 'Une refonte complète des tokens : version majeure.'],
+    minor: ['MINEUR', 'tag-modified', 'Un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change : version mineure.'],
+    patch: ['PATCH', 'tag-added', 'Une ou plusieurs valeurs modifiées : patch.']
   }
-  // Rappel compact des compteurs non nuls, affiché dans l'en-tête collé.
-  const resumeCompact = (d) => {
+  // Compact reminder of the non-zero counters, displayed in the sticky header.
+  const compactSummary = (d) => {
     if (!d) return ''
-    const morceaux = [[d.ajoutes, 'ajouté', 'ajoute'], [d.modifies, 'modifié', 'modifie'], [d.supprimes, 'supprimé', 'supprime'], [d.deprecies, 'déprécié', 'deprecie']]
-      .filter(([liste]) => liste.length)
-      .map(([liste, mot, classe]) => `<span class="${classe}">${liste.length} ${mot}${liste.length > 1 ? 's' : ''}</span>`)
-    return morceaux.length ? `<span class="resume-compact">${morceaux.join(', ')}</span>` : ''
+    const pieces = [[d.added, 'ajouté', 'added'], [d.modified, 'modifié', 'modified'], [d.removed, 'supprimé', 'removed'], [d.deprecated, 'déprécié', 'deprecated']]
+      .filter(([list]) => list.length)
+      .map(([list, word, cssClass]) => `<span class="${cssClass}">${list.length} ${word}${list.length > 1 ? 's' : ''}</span>`)
+    return pieces.length ? `<span class="compact-summary">${pieces.join(', ')}</span>` : ''
   }
-  const titreChangements = (niveau, d) => {
-    const [libelle, classe, titre] = ETIQUETTE_NIVEAU[niveau] || []
-    const etiquette = libelle ? `<span class="etiquette ${classe}" title="${titre}">${libelle}</span>` : ''
-    const replie = etat.changementsReplies
-    return `<div class="titre-changements${replie ? ' replie' : ''}" role="button" tabindex="0" aria-expanded="${!replie}">` +
-      `<span class="titre-section">${CHEVRON}<span class="titre-bloc">Changements</span></span>${resumeCompact(d)}${etiquette}</div>`
+  const changesTitle = (level, d) => {
+    const [label, cssClass, title] = LEVEL_LABEL[level] || []
+    const kindLabel = label ? `<span class="tag ${cssClass}" title="${title}">${label}</span>` : ''
+    const collapsed = state.changesCollapsed
+    return `<div class="changes-title${collapsed ? ' collapsed' : ''}" role="button" tabindex="0" aria-expanded="${!collapsed}">` +
+      `<span class="section-title">${CHEVRON}<span class="block-title">Changements</span></span>${compactSummary(d)}${kindLabel}</div>`
   }
 
-  const rendreCorpsDiff = (d) => {
-    const total = d.ajoutes.length + d.modifies.length + d.supprimes.length + d.deprecies.length
+  const renderDiffBody = (d) => {
+    const total = d.added.length + d.modified.length + d.removed.length + d.deprecated.length
     if (total === 0) {
-      return `<p class="diff-aucun-changement">${d.source === 'repo' ? TEXTE_IDENTIQUE_CODE : 'Aucun changement : les tokens sont identiques à la version comparée.'}</p>`
+      return `<p class="diff-no-change">${d.source === 'repo' ? IDENTICAL_TO_CODE_TEXT : 'Aucun changement : les tokens sont identiques à la version comparée.'}</p>`
     }
-    const presents = TYPES_DIFF.filter(([type]) => d[type].length)
-    const chips = '<div class="chips-diff">' + presents.map(([type, mot, classe]) => chipDiff(type, d[type].length, mot, classe)).join('') + '</div>'
-    const prochaineVersion = d.versionSuivante ? `<p class="aide prochaine-version">Prochaine version : ${html(d.versionSuivante)}</p>` : ''
-    const lignes = (type) => typeAffiche(type) ? d[type] : []
-    const aucunType = presents.every(([type]) => !typeAffiche(type))
-    const corps = '<div class="liste-diff">' +
-        (aucunType ? '<p class="aide">Sélectionnez au moins un type de changement.</p>' : '') +
-        lignes('ajoutes').map((c) => ligneDiff('AJOUTÉ', 'etiquette-ajoute', c, `<span class="valeur-ajoutee">${html(c.valeur)}</span>`)).join('') +
-        lignes('modifies').map((c) => ligneDiff('MODIFIÉ', 'etiquette-modifie', c, c.champs && c.champs.length
-          ? html(c.apres)
-          : `<span class="valeur-supprimee">${html(c.avant)}</span> → <span class="valeur-ajoutee">${html(c.apres)}</span>`)).join('') +
-        lignes('supprimes').map((c) => ligneDiff('SUPPRIMÉ', 'etiquette-supprime', c, `<span class="valeur-supprimee">${html(c.valeur)}</span>`)).join('') +
-        lignes('deprecies').map((c) => ligneDiff('DÉPRÉCIÉ', 'etiquette-deprecie', c, html(c.valeur))).join('') +
+    const present = DIFF_TYPES.filter(([type]) => d[type].length)
+    const chips = '<div class="diff-chips">' + present.map(([type, word, cssClass]) => diffChip(type, d[type].length, word, cssClass)).join('') + '</div>'
+    const nextVersionHtml = d.nextVersion ? `<p class="help next-version">Prochaine version : ${html(d.nextVersion)}</p>` : ''
+    const lines = (type) => isTypeShown(type) ? d[type] : []
+    const noType = present.every(([type]) => !isTypeShown(type))
+    const bodyHtml = '<div class="diff-list">' +
+        (noType ? '<p class="help">Sélectionnez au moins un type de changement.</p>' : '') +
+        lines('added').map((c) => diffLine('AJOUTÉ', 'tag-added', c, `<span class="value-added">${html(c.value)}</span>`)).join('') +
+        lines('modified').map((c) => diffLine('MODIFIÉ', 'tag-modified', c, c.fields && c.fields.length
+          ? html(c.after)
+          : `<span class="value-removed">${html(c.before)}</span> → <span class="value-added">${html(c.after)}</span>`)).join('') +
+        lines('removed').map((c) => diffLine('SUPPRIMÉ', 'tag-removed', c, `<span class="value-removed">${html(c.value)}</span>`)).join('') +
+        lines('deprecated').map((c) => diffLine('DÉPRÉCIÉ', 'tag-deprecated', c, html(c.value))).join('') +
       '</div>'
-    return chips + prochaineVersion + corps
+    return chips + nextVersionHtml + bodyHtml
   }
 
-  const TEXTE_IDENTIQUE_CODE = 'Aucun changement : les tokens sont identiques au code.'
+  const IDENTICAL_TO_CODE_TEXT = 'Aucun changement : les tokens sont identiques au code.'
 
-  // Ce que la référence choisie n'a pas pu donner, en langage courant.
-  const TEXTES_ECHEC = {
-    'pas-dans-code': 'Les tokens ne sont pas encore dans le code. Au premier dépôt, ils seront tous ajoutés.',
-    'version-absente': 'Cette version ne contient pas encore de fichier de tokens.',
+  // What the chosen reference could not provide, in plain language.
+  const FAILURE_TEXTS = {
+    'not-in-code': 'Les tokens ne sont pas encore dans le code. Au premier dépôt, ils seront tous ajoutés.',
+    'version-missing': 'Cette version ne contient pas encore de fichier de tokens.',
     github: 'Comparaison impossible : GitHub ne répond pas.'
   }
 
-  // La carte Changements est toujours rendue, avec son menu en pied. Son corps
-  // dit où en est la comparaison : en cours, en échec, ou un diff (avec ou sans
-  // changement). Une référence invalide garde le diff précédent, avec le motif
-  // en rouge en dessous.
-  const rendreChangements = () => {
-    const erreurValidation = etat.erreurValidation ? `<p class="erreur-reference">${html(etat.erreurValidation)}</p>` : ''
-    let titre = titreChangements()
-    const replie = etat.changementsReplies
-    let corps = erreurValidation
-    if (etat.comparaisonRepoEnCours) {
-      corps = '<p class="aide">Comparaison avec le code…</p>'
-    } else if (etat.erreurComparaison) {
-      corps = `<p class="erreur-reference">Comparaison impossible : ${html(etat.erreurComparaison)}</p>`
-    } else if (etat.echec) {
-      corps = `<p class="aide">${TEXTES_ECHEC[etat.echec]}</p>`
-    } else if (etat.diffResultat) {
-      titre = titreChangements(etat.diffResultat.niveau, etat.diffResultat)
-      corps = rendreCorpsDiff(etat.diffResultat) + erreurValidation
+  // The Changements card is always rendered, with its menu in the footer. Its body
+  // says where the comparison stands: in progress, failed, or a diff (with or without
+  // changes). An invalid reference keeps the previous diff, with the reason
+  // in red below.
+  const renderChanges = () => {
+    const validationError = state.validationError ? `<p class="reference-error">${html(state.validationError)}</p>` : ''
+    let title = changesTitle()
+    const collapsed = state.changesCollapsed
+    let bodyHtml = validationError
+    if (state.repoComparisonInProgress) {
+      bodyHtml = '<p class="help">Comparaison avec le code…</p>'
+    } else if (state.comparisonError) {
+      bodyHtml = `<p class="reference-error">Comparaison impossible : ${html(state.comparisonError)}</p>`
+    } else if (state.failure) {
+      bodyHtml = `<p class="help">${FAILURE_TEXTS[state.failure]}</p>`
+    } else if (state.diffResult) {
+      title = changesTitle(state.diffResult.level, state.diffResult)
+      bodyHtml = renderDiffBody(state.diffResult) + validationError
     }
-    // Repliée, la carte ne garde que sa ligne de titre.
-    $('changements').innerHTML = `<div class="carte-changements${replie ? ' repliee' : ''}" id="carte-changements">${titre}${replie ? '' : corps + piedChangements()}</div>`
+    // When collapsed, the card only keeps its title line.
+    $('changes').innerHTML = `<div class="changes-card${collapsed ? ' collapsed-card' : ''}" id="changes-card">${title}${collapsed ? '' : bodyHtml + changesFooter()}</div>`
   }
 
-  // Rend les trois blocs pilotés par l'état (vérification, changements, actions),
-  // puis ajuste la hauteur une seule fois.
-  // Hauteur du bloc du haut, reprise par la position des en-têtes de carte collants,
-  // et trait sous ce bloc dès que la page a défilé.
-  const majHauteurHaut = () => document.documentElement.style.setProperty('--hauteur-haut', $('haut').offsetHeight + 'px')
-  majHauteurHaut()
-  if (typeof ResizeObserver === 'function') new ResizeObserver(majHauteurHaut).observe($('haut'))
-  const majTraitHaut = () => $('haut').classList.toggle('defile', (document.body.scrollTop || document.documentElement.scrollTop) > 0)
-  document.body.addEventListener('scroll', majTraitHaut, { passive: true })
-  window.addEventListener('scroll', majTraitHaut, { passive: true })
+  // Renders the three blocks driven by the state (verification, changes, actions),
+  // then adjusts the height once.
+  // Height of the top block, used for the position of sticky card headers,
+  // and line under this block as soon as the page has scrolled.
+  const updateTopHeight = () => document.documentElement.style.setProperty('--top-height', $('sticky-top').offsetHeight + 'px')
+  updateTopHeight()
+  if (typeof ResizeObserver === 'function') new ResizeObserver(updateTopHeight).observe($('sticky-top'))
+  const updateTopLine = () => $('sticky-top').classList.toggle('scrolled', (document.body.scrollTop || document.documentElement.scrollTop) > 0)
+  document.body.addEventListener('scroll', updateTopLine, { passive: true })
+  window.addEventListener('scroll', updateTopLine, { passive: true })
 
-  // Après chaque rendu, suit les en-têtes de carte : « colle » quand l'en-tête
-  // est collé en haut, « avec-resume » quand les compteurs sont sortis par le haut.
-  let observateurs = []
-  const observerEnTetes = () => {
-    observateurs.forEach((o) => o.disconnect())
-    observateurs = []
+  // After each render, tracks the card headers: "stuck" when the header
+  // is stuck at the top, "with-summary" when the counters have scrolled out at the top.
+  let observers = []
+  const observeHeaders = () => {
+    observers.forEach((o) => o.disconnect())
+    observers = []
     if (typeof IntersectionObserver !== 'function') return
-    // Les en-têtes collent sous le bloc du haut : la zone observée commence sous lui.
-    const hautBloc = $('haut').offsetHeight
-    document.querySelectorAll('.titre-changements').forEach((entete) => {
-      const colle = new IntersectionObserver(([e]) => entete.classList.toggle('colle', e.intersectionRatio < 1 && e.boundingClientRect.top < hautBloc),
-        { threshold: [1], rootMargin: `-${hautBloc}px 0px 0px 0px` })
-      colle.observe(entete)
-      observateurs.push(colle)
-      const chips = entete.parentElement.querySelector('.chips-diff')
+    // Headers stick under the top block: the observed area starts under it.
+    const topBlockHeight = $('sticky-top').offsetHeight
+    document.querySelectorAll('.changes-title').forEach((header) => {
+      const stuck = new IntersectionObserver(([e]) => header.classList.toggle('stuck', e.intersectionRatio < 1 && e.boundingClientRect.top < topBlockHeight),
+        { threshold: [1], rootMargin: `-${topBlockHeight}px 0px 0px 0px` })
+      stuck.observe(header)
+      observers.push(stuck)
+      const chips = header.parentElement.querySelector('.diff-chips')
       if (!chips) return
-      const sortie = new IntersectionObserver(([e]) => entete.classList.toggle('avec-resume', !e.isIntersecting && e.boundingClientRect.top < hautBloc),
-        { rootMargin: `-${hautBloc + entete.offsetHeight}px 0px 0px 0px` })
-      sortie.observe(chips)
-      observateurs.push(sortie)
+      const output = new IntersectionObserver(([e]) => header.classList.toggle('with-summary', !e.isIntersecting && e.boundingClientRect.top < topBlockHeight),
+        { rootMargin: `-${topBlockHeight + header.offsetHeight}px 0px 0px 0px` })
+      output.observe(chips)
+      observers.push(output)
     })
   }
 
-  const rendre = () => {
-    afficherVerification()
-    rendreChangements()
-    rendreActions()
-    observerEnTetes()
-    ajusterHauteur()
+  const render = () => {
+    showVerification()
+    renderChanges()
+    renderActions()
+    observeHeaders()
+    adjustHeight()
   }
 
-  // Replie ou déplie la carte Changements, au clic ou au clavier sur sa ligne de titre.
-  // Le rendu reconstruit le titre : le focus lui est rendu pour rester au clavier.
-  const basculerChangements = () => {
-    etat.changementsReplies = !etat.changementsReplies
-    rendre()
-    const titre = document.querySelector('#carte-changements .titre-changements')
-    if (titre && document.activeElement === document.body) titre.focus()
+  // Collapses or expands the Changements card, on click or by keyboard on its title line.
+  // The render rebuilds the title: focus is given back to it to stay on the keyboard.
+  const toggleChanges = () => {
+    state.changesCollapsed = !state.changesCollapsed
+    render()
+    const title = document.querySelector('#changes-card .changes-title')
+    if (title && document.activeElement === document.body) title.focus()
   }
-  // Clic sur une chip : masque les lignes de son type, ou les réaffiche.
-  const basculerType = (type) => {
-    etat.typesMasques = typeAffiche(type) ? [...etat.typesMasques, type] : etat.typesMasques.filter((t) => t !== type)
-    rendre()
-    const chip = document.querySelector(`#carte-changements .chip[data-type="${type}"]`)
+  // Click on a chip: hides the lines of its type, or shows them again.
+  const toggleType = (type) => {
+    state.hiddenTypes = isTypeShown(type) ? [...state.hiddenTypes, type] : state.hiddenTypes.filter((t) => t !== type)
+    render()
+    const chip = document.querySelector(`#changes-card .chip[data-type="${type}"]`)
     if (chip) chip.focus()
   }
-  $('changements').addEventListener('click', (e) => {
+  $('changes').addEventListener('click', (e) => {
     const chip = e.target.closest && e.target.closest('.chip[data-type]')
-    if (chip) return basculerType(chip.dataset.type)
-    if (e.target.closest && e.target.closest('.titre-changements[role="button"]')) basculerChangements()
+    if (chip) return toggleType(chip.dataset.type)
+    if (e.target.closest && e.target.closest('.changes-title[role="button"]')) toggleChanges()
   })
-  $('changements').addEventListener('keydown', (e) => {
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('.titre-changements[role="button"]')) {
+  $('changes').addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('.changes-title[role="button"]')) {
       e.preventDefault()
-      basculerChangements()
+      toggleChanges()
     }
   })
 
-  // Un fichier JSON glissé sur la carte entière devient la référence de comparaison.
-  const carteSous = (e) => e.target.closest && e.target.closest('#carte-changements')
-  $('changements').addEventListener('dragover', (e) => {
-    const carte = carteSous(e)
-    if (!carte) return
+  // A JSON file dropped on the whole card becomes the comparison reference.
+  const cardUnder = (e) => e.target.closest && e.target.closest('#changes-card')
+  $('changes').addEventListener('dragover', (e) => {
+    const card = cardUnder(e)
+    if (!card) return
     e.preventDefault()
-    carte.classList.add('survol')
+    card.classList.add('hover')
   })
-  $('changements').addEventListener('dragleave', (e) => {
-    const carte = carteSous(e)
-    if (carte && !carte.contains(e.relatedTarget)) carte.classList.remove('survol')
+  $('changes').addEventListener('dragleave', (e) => {
+    const card = cardUnder(e)
+    if (card && !card.contains(e.relatedTarget)) card.classList.remove('hover')
   })
-  $('changements').addEventListener('drop', (e) => {
-    const carte = carteSous(e)
-    if (!carte) return
+  $('changes').addEventListener('drop', (e) => {
+    const card = cardUnder(e)
+    if (!card) return
     e.preventDefault()
-    carte.classList.remove('survol')
+    card.classList.remove('hover')
     const f = e.dataTransfer.files && e.dataTransfer.files[0]
-    if (f) lireFichierReference(f)
+    if (f) readReferenceFile(f)
   })
-  // Empêche le navigateur d'ouvrir un fichier lâché en dehors de la carte.
+  // Prevents the browser from opening a file dropped outside the card.
   document.addEventListener('dragover', (e) => e.preventDefault())
   document.addEventListener('drop', (e) => e.preventDefault())
 
-  $('changements').addEventListener('change', (e) => {
-    if (e.target.id !== 'select-reference') return
+  $('changes').addEventListener('change', (e) => {
+    if (e.target.id !== 'reference-select') return
     const v = e.target.value
-    if (v === 'autre-fichier') {
-      // Le menu revient sur la référence courante tant qu'aucun fichier n'est choisi.
-      rendreChangements()
-      $('fichier-reference').click()
+    if (v === 'other-file') {
+      // The menu goes back to the current reference as long as no file is chosen.
+      renderChanges()
+      $('reference-file').click()
     }
-    else if (v === 'repo') comparerAuCodeActuel()
-    else if (v === 'fichier') { if (etat.dernierFichier) chargerReference(etat.dernierFichier.texte, 'fichier', etat.dernierFichier.nomFichier, etat.dernierFichier.dateFichier) }
-    else comparerAVersion(v)
+    else if (v === 'repo') compareToCurrentCode()
+    else if (v === 'file') { if (state.lastFile) loadReference(state.lastFile.text, 'file', state.lastFile.fileName, state.lastFile.fileDate) }
+    else compareToVersion(v)
   })
 
-  const chargerReference = (texte, source, nomFichier, dateFichier, version) => {
-    etat.derniereReference = { texte, source, nomFichier, dateFichier, version }
-    if (source === 'fichier') etat.fichierEnAttente = { texte, nomFichier, dateFichier }
-    etat.echec = null
-    etat.erreurComparaison = null
-    envoyer({ type: 'comparer', reference: texte, source, nomFichier, dateFichier, version })
+  const loadReference = (text, source, fileName, fileDate, version) => {
+    state.lastReference = { text, source, fileName, fileDate, version }
+    if (source === 'file') state.pendingFile = { text, fileName, fileDate }
+    state.failure = null
+    state.comparisonError = null
+    send({ type: 'compare', reference: text, source, fileName, fileDate, version })
   }
 
-  const lireFichierReference = (f) => {
-    const lecteur = new FileReader()
-    lecteur.onload = () => chargerReference(String(lecteur.result), 'fichier', f.name, f.lastModified)
-    lecteur.readAsText(f)
+  const readReferenceFile = (f) => {
+    const reader = new FileReader()
+    reader.onload = () => loadReference(String(reader.result), 'file', f.name, f.lastModified)
+    reader.readAsText(f)
   }
 
-  $('fichier-reference').onchange = (e) => {
+  $('reference-file').onchange = (e) => {
     const f = e.target.files[0]
     e.target.value = ''
-    if (f) lireFichierReference(f)
+    if (f) readReferenceFile(f)
   }
 
-  // Début d'une comparaison à une référence lue sur GitHub : le menu montre déjà
-  // la référence choisie, et les échecs précédents sont oubliés.
-  const commencerComparaison = (selection) => {
-    etat.selection = selection
-    etat.echec = null
-    etat.erreurComparaison = null
-    etat.erreurValidation = null
-    etat.comparaisonRepoEnCours = true
-    rendre()
+  // Start of a comparison with a reference read from GitHub: the menu already shows
+  // the chosen reference, and previous failures are forgotten.
+  const startComparison = (selection) => {
+    state.selection = selection
+    state.failure = null
+    state.comparisonError = null
+    state.validationError = null
+    state.repoComparisonInProgress = true
+    render()
   }
 
-  // Fin sans diff : la référence choisie n'a pas pu être lue, l'ancien diff disparaît.
-  const echouerComparaison = (echec) => {
-    etat.comparaisonRepoEnCours = false
-    etat.echec = echec
-    etat.diffResultat = null
-    rendre()
+  // End without a diff: the chosen reference could not be read, the old diff disappears.
+  const failComparison = (failure) => {
+    state.repoComparisonInProgress = false
+    state.failure = failure
+    state.diffResult = null
+    render()
   }
 
-  // Comparaison au code de la branche configurée : lancée seule à la première
-  // vérification (tenterComparaisonRepo, une fois), ou reprise depuis le <select>.
-  // Sans chemin de tokens dans le repo, rien à lire : pas d'appel réseau.
-  const comparerAuCodeActuel = async () => {
-    if (!etat.depot.urlReference) {
-      etat.selection = { source: 'repo' }
-      etat.erreurComparaison = null
-      etat.erreurValidation = null
-      etat.comparaisonCode = 'pas-dans-code'
-      echouerComparaison('pas-dans-code')
+  // Comparison with the code of the configured branch: started on its own at the first
+  // verification (tryRepoComparison, once), or resumed from the <select>.
+  // Without a tokens path in the repo, nothing to read: no network call.
+  const compareToCurrentCode = async () => {
+    if (!state.repoUrls.urlReference) {
+      state.selection = { source: 'repo' }
+      state.comparisonError = null
+      state.validationError = null
+      state.comparisonCode = 'not-in-code'
+      failComparison('not-in-code')
       return
     }
-    etat.comparaisonCode = 'en-cours'
-    commencerComparaison({ source: 'repo' })
+    state.comparisonCode = 'in-progress'
+    startComparison({ source: 'repo' })
     try {
-      const reponse = await fetch(etat.depot.urlReference)
-      if (reponse.status === 404) {
-        etat.comparaisonCode = 'pas-dans-code'
-        return echouerComparaison('pas-dans-code')
+      const response = await fetch(state.repoUrls.urlReference)
+      if (response.status === 404) {
+        state.comparisonCode = 'not-in-code'
+        return failComparison('not-in-code')
       }
-      if (!reponse.ok) throw new Error(String(reponse.status))
-      const texte = await reponse.text()
-      etat.comparaisonRepoEnCours = false
-      chargerReference(texte, 'repo')
+      if (!response.ok) throw new Error(String(response.status))
+      const text = await response.text()
+      state.repoComparisonInProgress = false
+      loadReference(text, 'repo')
     } catch (e) {
-      etat.comparaisonCode = 'echec'
-      echouerComparaison('github')
+      state.comparisonCode = 'failed'
+      failComparison('github')
     }
   }
 
-  const tenterComparaisonRepo = () => {
-    if (etat.repoDejaTente) return
-    etat.repoDejaTente = true
-    comparerAuCodeActuel()
+  const tryRepoComparison = () => {
+    if (state.repoAlreadyTried) return
+    state.repoAlreadyTried = true
+    compareToCurrentCode()
   }
 
-  // Comparaison à une version publiée choisie dans le <select>.
-  const comparerAVersion = async (tag) => {
-    commencerComparaison({ source: 'version', version: tag })
+  // Comparison with a published version chosen in the <select>.
+  const compareToVersion = async (tag) => {
+    startComparison({ source: 'version', version: tag })
     try {
-      const reponse = await fetch(etat.depot.urlVersion.replace('{tag}', tag))
-      if (reponse.status === 404) return echouerComparaison('version-absente')
-      if (!reponse.ok) throw new Error(String(reponse.status))
-      const texte = await reponse.text()
-      etat.comparaisonRepoEnCours = false
-      chargerReference(texte, 'version', undefined, undefined, tag)
+      const response = await fetch(state.repoUrls.urlVersion.replace('{tag}', tag))
+      if (response.status === 404) return failComparison('version-missing')
+      if (!response.ok) throw new Error(String(response.status))
+      const text = await response.text()
+      state.repoComparisonInProgress = false
+      loadReference(text, 'version', undefined, undefined, tag)
     } catch (e) {
-      echouerComparaison('github')
+      failComparison('github')
     }
   }
 
-  // Ordre des versions x.y.z : négatif si a est plus ancienne que b.
-  const comparerVersions = (a, b) => {
+  // Order of x.y.z versions: negative if a is older than b.
+  const compareVersions = (a, b) => {
     const pa = a.split('.').map(Number), pb = b.split('.').map(Number)
     return pa[0] - pb[0] || pa[1] - pb[1] || pa[2] - pb[2]
   }
 
-  // Liste des versions publiées, chargée une fois que le dépôt est connu, sans
-  // celles qui précèdent le fichier de tokens (premiereVersion).
-  // Si elle échoue, listeVersions reste null : le pied garde son texte d'origine.
-  const chargerListeVersions = async () => {
-    if (etat.versionsDejaTentees || !etat.depot.urlTags) return
-    etat.versionsDejaTentees = true
+  // List of published versions, loaded once the repo is known, without
+  // those that precede the tokens file (firstVersion).
+  // If it fails, versionsList stays null: the footer keeps its original text.
+  const loadVersionsList = async () => {
+    if (state.versionsAlreadyTried || !state.repoUrls.urlTags) return
+    state.versionsAlreadyTried = true
     try {
-      const reponse = await fetch(etat.depot.urlTags)
-      if (!reponse.ok) throw new Error(String(reponse.status))
-      const tags = await reponse.json()
-      const premiere = etat.depot.premiereVersion
+      const response = await fetch(state.repoUrls.urlTags)
+      if (!response.ok) throw new Error(String(response.status))
+      const tags = await response.json()
+      const firstPublished = state.repoUrls.firstVersion
       const versions = tags.map((t) => t.name)
-        .filter((n) => /^\d+\.\d+\.\d+$/.test(n) && (!premiere || comparerVersions(n, premiere) >= 0))
-      versions.sort((a, b) => comparerVersions(b, a))
-      etat.listeVersions = versions
-      rendre()
+        .filter((n) => /^\d+\.\d+\.\d+$/.test(n) && (!firstPublished || compareVersions(n, firstPublished) >= 0))
+      versions.sort((a, b) => compareVersions(b, a))
+      state.versionsList = versions
+      render()
     } catch (e) {
-      etat.listeVersions = null
+      state.versionsList = null
     }
   }
 
-  // PR de tokens ouvertes, lues à l'ouverture du plugin puis à chaque changement de vue :
-  // une PR créée depuis le dépôt apparaît au retour, et disparaît une fois intégrée.
-  // Tant qu'une PR bloque le dépôt, elles se relisent aussi quand le plugin reprend le
-  // focus, au plus une fois par intervalle : sans changement de vue possible, c'est le
-  // seul moyen de voir la PR intégrée ou fermée. Un échec garde la dernière liste connue.
-  const TITRES_PR_TOKENS = ['update design tokens', 'mettre à jour les design tokens']
-  const INTERVALLE_RELECTURE_PULLS = 15000
-  let derniereLecturePulls = 0
-  const chargerPullsTokens = async () => {
-    if (!etat.depot.urlPulls) return
-    derniereLecturePulls = Date.now()
+  // Open tokens PRs, read when the plugin opens then on every view change:
+  // a PR created from the repo shows up on return, and disappears once merged.
+  // As long as a PR blocks the submission, they are also read again when the plugin regains
+  // focus, at most once per interval: with no possible view change, this is the
+  // only way to see the PR merged or closed. A failure keeps the last known list.
+  const TOKENS_PR_TITLES = ['update design tokens', 'mettre à jour les design tokens']
+  const PULLS_REFRESH_INTERVAL = 15000
+  let lastPullsRead = 0
+  const loadTokensPulls = async () => {
+    if (!state.repoUrls.urlPulls) return
+    lastPullsRead = Date.now()
     try {
-      // no-cache : GitHub met la liste en cache 60 s, une PR fermée resterait affichée.
-      const reponse = await fetch(etat.depot.urlPulls, { cache: 'no-cache' })
-      if (!reponse.ok) throw new Error(String(reponse.status))
-      const pulls = await reponse.json()
-      etat.pullsTokens = pulls
-        .filter((p) => TITRES_PR_TOKENS.some((t) => String(p.title).toLowerCase().includes(t)) && String(p.html_url).startsWith('https://github.com/'))
-        .map((p) => ({ numero: p.number, url: p.html_url }))
+      // no-cache: GitHub caches the list for 60 s, a closed PR would stay displayed.
+      const response = await fetch(state.repoUrls.urlPulls, { cache: 'no-cache' })
+      if (!response.ok) throw new Error(String(response.status))
+      const pulls = await response.json()
+      state.tokensPulls = pulls
+        .filter((p) => TOKENS_PR_TITLES.some((t) => String(p.title).toLowerCase().includes(t)) && String(p.html_url).startsWith('https://github.com/'))
+        .map((p) => ({ number: p.number, url: p.html_url }))
     } catch (e) {
       return
     }
-    majActions()
+    updateActions()
   }
 
-  // ---------------------------------------------------------------- boutons
+  // ---------------------------------------------------------------- buttons
 
-  // Copie dans le presse-papiers : navigator.clipboard quand il est disponible,
-  // sinon un textarea hors écran, sélectionné, et execCommand. Renvoie vrai si
-  // la copie a réussi. Une seule chaîne de copie, pour le JSON comme pour le message.
-  const copier = async (texte) => {
+  // Copy to the clipboard: navigator.clipboard when it is available,
+  // otherwise an offscreen textarea, selected, and execCommand. Returns true if
+  // the copy succeeded. A single copy chain, for the JSON as for the message.
+  const copyText = async (text) => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      try { await navigator.clipboard.writeText(texte); return true } catch (e) { /* refusé : repli ci-dessous */ }
+      try { await navigator.clipboard.writeText(text); return true } catch (e) { /* refused: fallback below */ }
     }
     const zone = document.createElement('textarea')
-    zone.value = texte
+    zone.value = text
     zone.setAttribute('readonly', '')
     zone.style.cssText = 'position: fixed; left: -9999px; top: 0'
     document.body.appendChild(zone)
     zone.select()
-    let copie = false
-    try { copie = document.execCommand('copy') } catch (e) { copie = false }
+    let copy = false
+    try { copy = document.execCommand('copy') } catch (e) { copy = false }
     zone.remove()
-    return copie
+    return copy
   }
 
-  const telecharger = (contenu, nom) => {
-    const url = URL.createObjectURL(new Blob([contenu], { type: 'application/json' }))
+  const triggerDownload = (content, name) => {
+    const url = URL.createObjectURL(new Blob([content], { type: 'application/json' }))
     const a = document.createElement('a')
     a.href = url
-    a.download = nom
+    a.download = name
     a.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
 
-  const AIDE_COPIE_IMPOSSIBLE = 'Copie impossible. Le texte est sélectionné, faites Cmd+C (Ctrl+C sur Windows).'
-  const TEXTE_RIEN_A_DEPOSER = 'Rien à déposer : les tokens sont identiques au code.'
-  // Texte du bandeau des PR de tokens ouvertes, avec un lien vers chacune.
-  const ICONE_INFO = '<svg class="icone-info" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 6.2v3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="4.2" r="0.9" fill="currentColor"/></svg>'
-  const textePullsTokens = (pulls) => {
-    const boutons = pulls.map((p) => `<button type="button" class="lien" data-url="${html(p.url)}">#${html(p.numero)}</button>`)
-    const liens = boutons.length > 1 ? boutons.slice(0, -1).join(', ') + ' et ' + boutons[boutons.length - 1] : boutons[0]
+  const HELP_COPY_FAILED = 'Copie impossible. Le texte est sélectionné, faites Cmd+C (Ctrl+C sur Windows).'
+  const NOTHING_TO_SUBMIT_TEXT = 'Rien à déposer : les tokens sont identiques au code.'
+  // Text of the banner for open tokens PRs, with a link to each one.
+  const INFO_ICON = '<svg class="info-icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 6.2v3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="4.2" r="0.9" fill="currentColor"/></svg>'
+  const tokensPullsText = (pulls) => {
+    const buttons = pulls.map((p) => `<button type="button" class="link" data-url="${html(p.url)}">#${html(p.number)}</button>`)
+    const links = buttons.length > 1 ? buttons.slice(0, -1).join(', ') + ' et ' + buttons[buttons.length - 1] : buttons[0]
     return pulls.length === 1
-      ? `La PR ${liens} attend d'être intégrée par un développeur.`
-      : `Les PR ${liens} attendent d'être intégrées par un développeur.`
+      ? `La PR ${links} attend d'être intégrée par un développeur.`
+      : `Les PR ${links} attendent d'être intégrées par un développeur.`
   }
-  const TEXTE_CODE_EN_COURS = 'Comparaison avec le code en cours…'
-  const TEXTE_CODE_ECHEC = 'Comparaison avec le code impossible : GitHub ne répond pas. Réessayez dans un moment.'
-  const AIDE_ETAPE_MESSAGE = {
-    'copie-ok': 'Une fois la PR créée, un développeur la relit puis l\'intègre. D\'ici là, les changements restent affichés dans le plugin.',
-    'copie-impossible': AIDE_COPIE_IMPOSSIBLE
-  }
-
-  // Texte d'aide sous les boutons, et s'il s'affiche en alerte.
-  const aideActions = () => {
-    if (etat.etape === 'message') return { texte: etat.aideMessage ? AIDE_ETAPE_MESSAGE[etat.aideMessage] : '' }
-    if (etat.blocage) return { texte: texteBlocage(etat.blocage), alerte: etat.blocage.raison === 'ecartes' }
-    if (etat.jsonACopier !== null) return { texte: AIDE_COPIE_IMPOSSIBLE }
-    if (etat.comparaisonCode === 'en-cours') return { texte: TEXTE_CODE_EN_COURS }
-    if (etat.comparaisonCode === 'echec') return { texte: TEXTE_CODE_ECHEC, alerte: true, reessayer: true }
-    if (etat.comparaisonCode === 'identique') return { texte: TEXTE_RIEN_A_DEPOSER }
-    return { texte: '' }
+  const CODE_IN_PROGRESS_TEXT = 'Comparaison avec le code en cours…'
+  const CODE_FAILURE_TEXT = 'Comparaison avec le code impossible : GitHub ne répond pas. Réessayez dans un moment.'
+  const HELP_MESSAGE_STEP = {
+    'copy-ok': 'Une fois la PR créée, un développeur la relit puis l\'intègre. D\'ici là, les changements restent affichés dans le plugin.',
+    'copy-failed': HELP_COPY_FAILED
   }
 
-  // Ligne de rappel de la vue dépôt : le niveau et les compteurs de la comparaison
-  // avec le code. Vide quand cette comparaison n'est pas disponible.
-  const rappelDepot = () => {
-    if (etat.selection.source !== 'repo' || etat.comparaisonRepoEnCours || etat.erreurComparaison) return ''
-    if (etat.echec === 'pas-dans-code') return html(TEXTES_ECHEC['pas-dans-code'])
-    const d = etat.diffResultat
-    if (etat.echec || !d || d.source !== 'repo') return ''
-    const resume = resumeCompact(d)
-    if (!resume) return TEXTE_IDENTIQUE_CODE
-    const [libelle, classe, titre] = ETIQUETTE_NIVEAU[etat.refonte ? 'majeur' : d.niveau] || []
-    const etiquette = libelle ? `<span class="etiquette ${classe}" title="${titre}">${libelle}</span>` : ''
-    return etiquette + resume
+  // Help text under the buttons, and whether it is displayed as an alert.
+  const actionsHelp = () => {
+    if (state.step === 'message') return { text: state.messageHelp ? HELP_MESSAGE_STEP[state.messageHelp] : '' }
+    if (state.blocker) return { text: blockerText(state.blocker), alert: state.blocker.reason === 'excluded' }
+    if (state.jsonToCopy !== null) return { text: HELP_COPY_FAILED }
+    if (state.comparisonCode === 'in-progress') return { text: CODE_IN_PROGRESS_TEXT }
+    if (state.comparisonCode === 'failed') return { text: CODE_FAILURE_TEXT, alert: true, retry: true }
+    if (state.comparisonCode === 'identical') return { text: NOTHING_TO_SUBMIT_TEXT }
+    return { text: '' }
   }
 
-  // Rend la zone du bas à partir de l'état seul : l'étape, l'action en cours et le
-  // blocage décident des boutons. Les éléments sont fixes et seulement mis à jour,
-  // pour ne pas perdre une sélection de texte en cours.
-  const rendreActions = () => {
-    // Tant que la première vérification n'est pas arrivée, on ne sait pas si le dépôt est possible.
-    const enAction = etat.action !== null || etat.rapport === null
-    const message = etat.etape === 'message'
-    const depot = etat.vue === 'depot'
+  // Reminder line of the submission view: the level and the counters of the comparison
+  // with the code. Empty when this comparison is not available.
+  const submitReminder = () => {
+    if (state.selection.source !== 'repo' || state.repoComparisonInProgress || state.comparisonError) return ''
+    if (state.failure === 'not-in-code') return html(FAILURE_TEXTS['not-in-code'])
+    const d = state.diffResult
+    if (state.failure || !d || d.source !== 'repo') return ''
+    const summary = compactSummary(d)
+    if (!summary) return IDENTICAL_TO_CODE_TEXT
+    const [label, cssClass, title] = LEVEL_LABEL[state.redesign ? 'major' : d.level] || []
+    const kindLabel = label ? `<span class="tag ${cssClass}" title="${title}">${label}</span>` : ''
+    return kindLabel + summary
+  }
 
-    // Une seule vue à la fois : la vue dépôt masque le contenu et le pied.
-    $('contenu').hidden = depot
-    $('actions').hidden = depot
-    $('vue-depot').hidden = !depot
+  // Renders the bottom area from the state alone: the step, the current action and the
+  // blocker decide the buttons. Elements are fixed and only updated,
+  // so as not to lose a text selection in progress.
+  const renderActions = () => {
+    // Until the first verification has arrived, we do not know whether the submission is possible.
+    const inAction = state.action !== null || state.report === null
+    const message = state.step === 'message'
+    const submit = state.view === 'submit'
 
-    // Le bandeau de résultat suit la vue : dans le pied, ou en haut de la vue dépôt.
-    const r = etat.resultat
-    $(depot ? 'resultat-depot' : 'resultat').innerHTML = !r ? '' :
-      `<div class="bandeau ${r.classe}"><span>${html(r.texte)}</span>` +
-        (r.fermable ? '<button type="button" class="fermer" id="fermer" aria-label="Fermer" title="Fermer">×</button>' : '') + '</div>'
-    $(depot ? 'resultat' : 'resultat-depot').innerHTML = ''
+    // A single view at a time: the submission view hides the content and the footer.
+    $('content').hidden = submit
+    $('actions').hidden = submit
+    $('submit-view').hidden = !submit
 
-    // Vue normale : un seul bouton, avec la raison du blocage dessous.
-    // Rien à déposer quand les tokens sont identiques au code : les blocages gardent la priorité.
-    // Une PR de tokens ouverte bloque aussi : son bandeau, juste au-dessus du bouton, le dit.
-    const pulls = etat.pullsTokens
-    const identique = etat.blocage === null && etat.comparaisonCode === 'identique'
-    $('ouvrir-depot').disabled = enAction || etat.blocage !== null || identique || pulls.length > 0
-    $('pr-en-cours').innerHTML = !pulls.length ? '' : `<div class="bandeau info">${ICONE_INFO}<span>${textePullsTokens(pulls)}</span></div>`
-    const blocage = etat.blocage ? texteBlocage(etat.blocage) : identique ? TEXTE_RIEN_A_DEPOSER : ''
-    $('aide-blocage').textContent = blocage
-    $('aide-blocage').hidden = !blocage
-    $('aide-blocage').classList.toggle('aide-alerte', !!etat.blocage && etat.blocage.raison === 'ecartes')
+    // The result banner follows the view: in the footer, or at the top of the submission view.
+    const r = state.result
+    $(submit ? 'submit-result' : 'result').innerHTML = !r ? '' :
+      `<div class="banner ${r.cssClass}"><span>${html(r.text)}</span>` +
+        (r.closable ? '<button type="button" class="close" id="close" aria-label="Fermer" title="Fermer">×</button>' : '') + '</div>'
+    $(submit ? 'result' : 'submit-result').innerHTML = ''
 
-    const rappel = rappelDepot()
-    $('rappel-depot').innerHTML = rappel
-    $('rappel-depot').hidden = !rappel
+    // Normal view: a single button, with the reason for the blocker under it.
+    // Nothing to submit when the tokens are identical to the code: blockers keep priority.
+    // An open tokens PR also blocks: its banner, just above the button, says so.
+    const pulls = state.tokensPulls
+    const identical = state.blocker === null && state.comparisonCode === 'identical'
+    $('open-submit').disabled = inAction || state.blocker !== null || identical || pulls.length > 0
+    $('pr-in-progress').innerHTML = !pulls.length ? '' : `<div class="banner info">${INFO_ICON}<span>${tokensPullsText(pulls)}</span></div>`
+    const blocker = state.blocker ? blockerText(state.blocker) : identical ? NOTHING_TO_SUBMIT_TEXT : ''
+    $('block-help').textContent = blocker
+    $('block-help').hidden = !blocker
+    $('block-help').classList.toggle('help-alert', !!state.blocker && state.blocker.reason === 'excluded')
 
-    // La case décide du message de commit : figée une fois le message préparé.
-    $('refonte').checked = etat.refonte
-    $('refonte').disabled = enAction || message
+    const reminder = submitReminder()
+    $('submit-reminder').innerHTML = reminder
+    $('submit-reminder').hidden = !reminder
 
-    $('termine').hidden = !(message && etat.aideMessage === 'copie-ok')
+    // The checkbox decides the commit message: frozen once the message is prepared.
+    $('redesign').checked = state.redesign
+    $('redesign').disabled = inAction || message
 
-    $('champ-json').hidden = etat.jsonACopier === null
-    if (etat.jsonACopier !== null && $('champ-json').value !== etat.jsonACopier) $('champ-json').value = etat.jsonACopier
+    $('finish').hidden = !(message && state.messageHelp === 'copy-ok')
 
-    $('bloc-commit').hidden = !message
-    const commit = etat.messageCommit || ''
-    if ($('champ-commit').value !== commit) $('champ-commit').value = commit
+    $('json-field').hidden = state.jsonToCopy === null
+    if (state.jsonToCopy !== null && $('json-field').value !== state.jsonToCopy) $('json-field').value = state.jsonToCopy
 
-    // Étape en cours : 1 au départ, 2 une fois GitHub ouvert, 4 une fois le message copié.
-    const courante = !message ? 1 : (etat.aideMessage === 'copie-ok' ? 4 : 2)
+    $('commit-block').hidden = !message
+    const commit = state.commitMessage || ''
+    if ($('commit-field').value !== commit) $('commit-field').value = commit
+
+    // Current step: 1 at the start, 2 once GitHub is open, 4 once the message is copied.
+    const currentStep = !message ? 1 : (state.messageHelp === 'copy-ok' ? 4 : 2)
     for (let i = 1; i <= 4; i++) {
-      const li = $('etape-' + i)
-      li.className = 'etape ' + (i < courante ? 'faite' : i === courante ? 'en-cours' : 'a-venir')
-      if (i === courante) li.setAttribute('aria-current', 'step')
+      const li = $('step-' + i)
+      li.className = 'step ' + (i < currentStep ? 'done' : i === currentStep ? 'in-progress' : 'upcoming')
+      if (i === currentStep) li.setAttribute('aria-current', 'step')
       else li.removeAttribute('aria-current')
-      li.querySelector('.repere').textContent = i < courante ? '✓' : String(i)
+      li.querySelector('.marker').textContent = i < currentStep ? '✓' : String(i)
     }
-    // Le dépôt se compare toujours au code : pas de dépôt tant que cette comparaison est en cours, en échec ou identique.
-    const codeInutilisable = ['en-cours', 'echec', 'identique'].includes(etat.comparaisonCode)
-    $('deposer').disabled = enAction || message || etat.blocage !== null || codeInutilisable
-    $('copier-message').textContent = etat.copieRecente ? 'Copié' : 'Copier le message'
-    $('copier-message').disabled = enAction || !message
-    // À l'étape du message, seuls la copie et « Recommencer le dépôt » servent.
-    // Le téléchargement, en haut à droite, ne dépend pas du dépôt.
-    $('telecharger').disabled = enAction || (etat.blocage !== null && etat.blocage.raison === 'vide')
+    // The submission is always compared with the code: no submission while this comparison is in progress, failed or identical.
+    const codeUnusable = ['in-progress', 'failed', 'identical'].includes(state.comparisonCode)
+    $('submit').disabled = inAction || message || state.blocker !== null || codeUnusable
+    $('copy-message').textContent = state.recentCopy ? 'Copié' : 'Copier le message'
+    $('copy-message').disabled = inAction || !message
+    // At the message step, only the copy and "Recommencer le dépôt" are useful.
+    // The download, at the top right, does not depend on the submission.
+    $('download').disabled = inAction || (state.blocker !== null && state.blocker.reason === 'empty')
 
-    // Avant la copie, l'aide explique l'étape 1 et s'affiche juste sous elle ; ensuite, sous la liste.
-    const aide = aideActions()
-    const cible = $(message ? 'aide-boutons' : 'aide-etape-1')
-    const autre = $(message ? 'aide-etape-1' : 'aide-boutons')
-    cible.innerHTML = html(aide.texte) + (aide.reessayer ? ' <button type="button" class="lien" id="reessayer">Réessayer</button>' : '')
-    cible.hidden = !aide.texte
-    cible.classList.toggle('aide-alerte', !!aide.alerte)
-    autre.innerHTML = ''
-    autre.hidden = true
-    $('action-secondaire').hidden = !message
+    // Before the copy, the help explains step 1 and is displayed right under it; afterwards, under the list.
+    const help = actionsHelp()
+    const target = $(message ? 'buttons-help' : 'step-1-help')
+    const other = $(message ? 'step-1-help' : 'buttons-help')
+    target.innerHTML = html(help.text) + (help.retry ? ' <button type="button" class="link" id="retry">Réessayer</button>' : '')
+    target.hidden = !help.text
+    target.classList.toggle('help-alert', !!help.alert)
+    other.innerHTML = ''
+    other.hidden = true
+    $('secondary-action').hidden = !message
   }
 
-  const majActions = () => {
-    rendreActions()
-    ajusterHauteur()
+  const updateActions = () => {
+    renderActions()
+    adjustHeight()
   }
 
-  // Passage d'une vue à l'autre. Entrer dans la vue dépôt remet le parcours au
-  // départ ; en sortir aussi. Le focus suit : « ← Retour » à l'entrée, le bouton
-  // « Déposer sur GitHub » au retour.
-  const changerDeVue = (vue) => {
-    revenirAuDepart()
-    etat.refonte = false
-    // Une préparation en cours garde son bandeau et son blocage, elle se termine seule.
-    if (etat.action === null) etat.resultat = null
-    etat.vue = vue
+  // Switch from one view to the other. Entering the submission view resets the flow to the
+  // start; leaving it too. Focus follows: "← Retour" on entry, the
+  // "Déposer sur GitHub" button on return.
+  const changeView = (view) => {
+    backToStart()
+    state.redesign = false
+    // A preparation in progress keeps its banner and its blocker, it finishes by itself.
+    if (state.action === null) state.result = null
+    state.view = view
     window.scrollTo(0, 0)
     document.body.scrollTop = 0
-    // Le dépôt se compare toujours au code. Les PR ouvertes se relisent à chaque changement de vue.
-    chargerPullsTokens()
-    if (vue === 'depot' && etat.selection.source !== 'repo') comparerAuCodeActuel()
-    rendre()
-    $(vue === 'depot' ? 'retour' : 'ouvrir-depot').focus()
+    // The submission is always compared with the code. Open PRs are read again on every view change.
+    loadTokensPulls()
+    if (view === 'submit' && state.selection.source !== 'repo') compareToCurrentCode()
+    render()
+    $(view === 'submit' ? 'back' : 'open-submit').focus()
   }
 
-  // Retour à l'étape de départ : plus de message de commit, plus de JSON à copier.
-  let minuteurCopie = null
-  const revenirAuDepart = () => {
-    clearTimeout(minuteurCopie)
-    etat.etape = 'depart'
-    etat.messageCommit = null
-    etat.jsonACopier = null
-    etat.copieRecente = false
-    etat.aideMessage = null
+  // Back to the start step: no more commit message, no more JSON to copy.
+  let copyTimer = null
+  const backToStart = () => {
+    clearTimeout(copyTimer)
+    state.step = 'start'
+    state.commitMessage = null
+    state.jsonToCopy = null
+    state.recentCopy = false
+    state.messageHelp = null
   }
 
-  // Le JSON est copié : GitHub s'ouvre, et le designer passe au message de commit.
-  const passerAuMessage = () => {
-    envoyer({ type: 'ouvrir', url: etat.urlEnAttente })
-    etat.etape = 'message'
-    etat.action = null
-    etat.resultat = null
-    etat.jsonACopier = null
-    etat.aideMessage = null
-    majActions()
+  // The JSON is copied: GitHub opens, and the designer moves on to the commit message.
+  const goToMessage = () => {
+    send({ type: 'open', url: state.pendingUrl })
+    state.step = 'message'
+    state.action = null
+    state.result = null
+    state.jsonToCopy = null
+    state.messageHelp = null
+    updateActions()
   }
 
-  // Dépôt : lit le fichier du repo pour en comparer le contenu, puis demande au
-  // plugin de préparer le JSON et le message de commit (message 'deposer'). Un 404
-  // veut dire que le fichier n'est pas encore dans le repo.
-  const deposer = async () => {
-    revenirAuDepart()
-    etat.action = 'depot'
-    etat.resultat = { classe: 'vide', texte: 'Préparation…' }
-    majActions()
-    let referenceRepo = null
+  // Submit: reads the repo file to compare its content, then asks the
+  // plugin to prepare the JSON and the commit message ('submit' message). A 404
+  // means the file is not in the repo yet.
+  const doSubmit = async () => {
+    backToStart()
+    state.action = 'submit'
+    state.result = { cssClass: 'empty', text: 'Préparation…' }
+    updateActions()
+    let repoReference = null
     try {
-      const reponse = await fetch(etat.depot.urlReference)
-      if (reponse.status !== 404) {
-        if (!reponse.ok) throw new Error(String(reponse.status))
-        referenceRepo = await reponse.text()
+      const response = await fetch(state.repoUrls.urlReference)
+      if (response.status !== 404) {
+        if (!response.ok) throw new Error(String(response.status))
+        repoReference = await response.text()
       }
     } catch (e) {
-      etat.action = null
-      etat.resultat = { classe: 'erreur', texte: 'Dépôt impossible : GitHub ne répond pas.' }
-      majActions()
+      state.action = null
+      state.result = { cssClass: 'error', text: 'Dépôt impossible : GitHub ne répond pas.' }
+      updateActions()
       return
     }
-    envoyer({ type: 'deposer', referenceRepo, refonte: etat.refonte })
+    send({ type: 'submit', repoReference, redesign: state.redesign })
   }
 
-  const surDepotPret = async ({ json, message, url }) => {
-    etat.messageCommit = message
-    etat.urlEnAttente = url
-    if (await copier(json)) {
-      passerAuMessage()
+  const onSubmitReady = async ({ json, message, url }) => {
+    state.commitMessage = message
+    state.pendingUrl = url
+    if (await copyText(json)) {
+      goToMessage()
       return
     }
-    // Copie refusée : le JSON s'affiche, sélectionné, à copier à la main. Le
-    // dépôt continue au premier événement copy (voir plus bas).
-    etat.action = null
-    etat.resultat = null
-    etat.jsonACopier = json
-    majActions()
-    $('champ-json').focus()
-    $('champ-json').select()
+    // Copy refused: the JSON is displayed, selected, to copy by hand. The
+    // submit continues at the first copy event (see below).
+    state.action = null
+    state.result = null
+    state.jsonToCopy = json
+    updateActions()
+    $('json-field').focus()
+    $('json-field').select()
   }
 
-  // Le texte reste sélectionné pendant l'événement : le masquer tout de suite
-  // viderait la copie. Le changement d'état passe donc au tour suivant.
-  $('champ-json').addEventListener('copy', () => {
-    if (etat.jsonACopier !== null) setTimeout(passerAuMessage, 0)
+  // The text stays selected during the event: hiding it right away
+  // would empty the copy. The state change therefore moves to the next tick.
+  $('json-field').addEventListener('copy', () => {
+    if (state.jsonToCopy !== null) setTimeout(goToMessage, 0)
   })
 
-  const copierMessageCommit = async () => {
-    if (await copier(etat.messageCommit)) {
-      etat.aideMessage = 'copie-ok'
-      etat.copieRecente = true
-      clearTimeout(minuteurCopie)
-      minuteurCopie = setTimeout(() => { etat.copieRecente = false; majActions() }, 2000)
-      majActions()
+  const copyCommitMessage = async () => {
+    if (await copyText(state.commitMessage)) {
+      state.messageHelp = 'copy-ok'
+      state.recentCopy = true
+      clearTimeout(copyTimer)
+      copyTimer = setTimeout(() => { state.recentCopy = false; updateActions() }, 2000)
+      updateActions()
       return
     }
-    if (etat.aideMessage !== 'copie-ok') etat.aideMessage = 'copie-impossible'
-    majActions()
-    $('champ-commit').focus()
-    $('champ-commit').select()
+    if (state.messageHelp !== 'copy-ok') state.messageHelp = 'copy-failed'
+    updateActions()
+    $('commit-field').focus()
+    $('commit-field').select()
   }
 
-  const demanderTelechargement = () => {
-    etat.action = 'telechargement'
-    etat.resultat = null
-    majActions()
-    envoyer({ type: 'telecharger' })
+  const requestDownload = () => {
+    state.action = 'download'
+    state.result = null
+    updateActions()
+    send({ type: 'download' })
   }
 
-  $('ouvrir-depot').onclick = () => changerDeVue('depot')
-  $('retour').onclick = () => changerDeVue('normale')
-  $('termine').onclick = () => changerDeVue('normale')
-  $('refonte').onchange = (e) => {
-    etat.refonte = e.target.checked
-    majActions()
+  $('open-submit').onclick = () => changeView('submit')
+  $('back').onclick = () => changeView('normal')
+  $('finish').onclick = () => changeView('normal')
+  $('redesign').onchange = (e) => {
+    state.redesign = e.target.checked
+    updateActions()
   }
-  $('deposer').onclick = deposer
-  $('copier-message').onclick = copierMessageCommit
-  $('recommencer').onclick = deposer
-  $('vue-depot').addEventListener('click', (e) => {
-    if (e.target.closest('#reessayer')) comparerAuCodeActuel()
+  $('submit').onclick = doSubmit
+  $('copy-message').onclick = copyCommitMessage
+  $('restart').onclick = doSubmit
+  $('submit-view').addEventListener('click', (e) => {
+    if (e.target.closest('#retry')) compareToCurrentCode()
   })
-  $('pr-en-cours').addEventListener('click', (e) => {
-    const lien = e.target.closest('[data-url]')
-    if (lien) envoyer({ type: 'ouvrir', url: lien.dataset.url })
+  $('pr-in-progress').addEventListener('click', (e) => {
+    const link = e.target.closest('[data-url]')
+    if (link) send({ type: 'open', url: link.dataset.url })
   })
   window.addEventListener('focus', () => {
-    if (etat.pullsTokens.length && Date.now() - derniereLecturePulls > INTERVALLE_RELECTURE_PULLS) chargerPullsTokens()
+    if (state.tokensPulls.length && Date.now() - lastPullsRead > PULLS_REFRESH_INTERVAL) loadTokensPulls()
   })
-  $('telecharger').onclick = demanderTelechargement
-  for (const zone of [$('resultat'), $('resultat-depot')]) {
+  $('download').onclick = requestDownload
+  for (const zone of [$('result'), $('submit-result')]) {
     zone.addEventListener('click', (e) => {
-      if (!e.target.closest('#fermer')) return
-      etat.resultat = null
-      majActions()
+      if (!e.target.closest('#close')) return
+      state.result = null
+      updateActions()
     })
   }
 
-  // Une erreur du plugin s'affiche là où elle s'est produite, selon son contexte.
-  // Une erreur de dépôt ou de téléchargement réactive les boutons.
-  const afficherErreur = ({ contexte, message }) => {
-    if (contexte === 'verification') {
-      etat.erreurVerification = message
-    } else if (contexte === 'comparaison') {
-      etat.comparaisonRepoEnCours = false
-      etat.erreurComparaison = message
-      if (etat.comparaisonCode === 'en-cours') etat.comparaisonCode = 'echec'
+  // A plugin error is displayed where it occurred, depending on its context.
+  // A submission or download error re-enables the buttons.
+  const showError = ({ context, message }) => {
+    if (context === 'verification') {
+      state.verificationError = message
+    } else if (context === 'comparison') {
+      state.repoComparisonInProgress = false
+      state.comparisonError = message
+      if (state.comparisonCode === 'in-progress') state.comparisonCode = 'failed'
     } else {
-      etat.action = null
-      etat.resultat = { classe: 'erreur', texte: `${contexte === 'depot' ? 'Dépôt' : 'Téléchargement'} impossible : ${message}` }
+      state.action = null
+      state.result = { cssClass: 'error', text: `${context === 'submit' ? 'Dépôt' : 'Téléchargement'} impossible : ${message}` }
     }
-    rendre()
+    render()
   }
 
   onmessage = ({ data: { pluginMessage: msg } }) => {
     if (!msg) return
-    if (msg.type === 'contexte') {
-      $('contexte').textContent = msg.fichier
-      $('resume-fichier').textContent = [compte(msg.collections, 'collection'), compte(msg.variables, 'variable'), compte(msg.styles, 'style')].join(', ')
-      etat.depot = msg.depot
-      chargerListeVersions()
-      if (!etat.pullsDejaTentees) {
-        etat.pullsDejaTentees = true
-        chargerPullsTokens()
+    if (msg.type === 'context') {
+      $('context').textContent = msg.file
+      $('file-summary').textContent = [count(msg.collections, 'collection'), count(msg.variables, 'variable'), count(msg.styles, 'style')].join(', ')
+      state.repoUrls = msg.repoUrls
+      loadVersionsList()
+      if (!state.pullsAlreadyTried) {
+        state.pullsAlreadyTried = true
+        loadTokensPulls()
       }
-      rendre()
+      render()
       return
     }
     if (msg.type === 'verification') {
-      etat.rapport = msg.rapport
-      etat.blocage = msg.blocage
-      etat.erreurVerification = null
-      // Les tokens ont changé dans Figma : le JSON copié et le message de commit ne sont plus à jour.
-      if (msg.modifie && (etat.etape === 'message' || etat.jsonACopier !== null)) revenirAuDepart()
-      // Une comparaison à une autre référence ne dit rien des nouveaux tokens face au code : statut inconnu.
-      if (msg.modifie && etat.selection.source !== 'repo' && etat.comparaisonCode !== 'en-cours') etat.comparaisonCode = null
-      tenterComparaisonRepo()
-      rendre()
+      state.report = msg.report
+      state.blocker = msg.blocker
+      state.verificationError = null
+      // The tokens changed in Figma: the copied JSON and the commit message are no longer up to date.
+      if (msg.changed && (state.step === 'message' || state.jsonToCopy !== null)) backToStart()
+      // A comparison with another reference says nothing about the new tokens against the code: unknown status.
+      if (msg.changed && state.selection.source !== 'repo' && state.comparisonCode !== 'in-progress') state.comparisonCode = null
+      tryRepoComparison()
+      render()
       return
     }
     if (msg.type === 'diff') {
-      if (msg.erreur) {
-        etat.erreurValidation = msg.erreur
-        if (etat.comparaisonCode === 'en-cours') etat.comparaisonCode = 'echec'
+      if (msg.error) {
+        state.validationError = msg.error
+        if (state.comparisonCode === 'in-progress') state.comparisonCode = 'failed'
       } else {
-        etat.erreurValidation = null
-        etat.erreurComparaison = null
-        etat.echec = null
-        etat.diffResultat = msg
-        etat.selection = { source: msg.source, version: msg.version }
-        const total = msg.ajoutes.length + msg.modifies.length + msg.supprimes.length + msg.deprecies.length
-        if (msg.source === 'repo') etat.comparaisonCode = total === 0 ? 'identique' : 'changements'
-        if (msg.source === 'fichier' && etat.fichierEnAttente) etat.dernierFichier = { ...etat.fichierEnAttente, dateReference: msg.dateReference }
+        state.validationError = null
+        state.comparisonError = null
+        state.failure = null
+        state.diffResult = msg
+        state.selection = { source: msg.source, version: msg.version }
+        const total = msg.added.length + msg.modified.length + msg.removed.length + msg.deprecated.length
+        if (msg.source === 'repo') state.comparisonCode = total === 0 ? 'identical' : 'changes'
+        if (msg.source === 'file' && state.pendingFile) state.lastFile = { ...state.pendingFile, referenceDate: msg.referenceDate }
       }
-      rendre()
+      render()
       return
     }
-    if (msg.type === 'depot-pret') {
-      // Retour à la vue normale pendant la préparation : on n'ouvre pas GitHub.
-      if (etat.vue !== 'depot') {
-        etat.action = null
-        etat.resultat = null
-        majActions()
+    if (msg.type === 'submit-ready') {
+      // Back to the normal view during the preparation: GitHub is not opened.
+      if (state.view !== 'submit') {
+        state.action = null
+        state.result = null
+        updateActions()
         return
       }
-      surDepotPret(msg)
+      onSubmitReady(msg)
       return
     }
-    if (msg.type === 'fichier') {
-      telecharger(msg.json, msg.fichier)
-      etat.action = null
-      etat.resultat = { classe: 'succes', texte: `${msg.fichier} téléchargé`, fermable: true }
-      majActions()
+    if (msg.type === 'file') {
+      triggerDownload(msg.json, msg.file)
+      state.action = null
+      state.result = { cssClass: 'success', text: `${msg.file} téléchargé`, closable: true }
+      updateActions()
       return
     }
-    if (msg.type === 'erreur') {
-      afficherErreur(msg)
+    if (msg.type === 'error') {
+      showError(msg)
       return
     }
-    if (msg.type === 'recalculer-hauteur') ajusterHauteur()
+    if (msg.type === 'recompute-height') adjustHeight()
   }
 
-  rendreActions()
-  envoyer({ type: 'pret' })
+  renderActions()
+  send({ type: 'ready' })
 </script>
