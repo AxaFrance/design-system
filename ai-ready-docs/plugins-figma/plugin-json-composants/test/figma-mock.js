@@ -1,13 +1,12 @@
 // Builds a fake Figma: loads a code (code.js, or the bridge script) into a
 // vm context, on a document described by the caller, and exposes what is needed to talk to it.
-// CommonJS module, no dependency.
-'use strict'
+// ES module, no dependency.
+import fs from 'node:fs'
+import vm from 'node:vm'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const fs = require('fs')
-const vm = require('vm')
-const path = require('path')
-
-const CODE_PATH = path.join(__dirname, '..', 'code.js')
+const CODE_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'code.js')
 
 // ------------------------------------------------------------ layer factory
 // A fake layer has the fields that the extraction reads, with neutral values.
@@ -194,4 +193,4 @@ const runBridge = async (doc, code) => {
   return new AsyncFunction('figma', code)(figma)
 }
 
-module.exports = { fakeClock, layer, connect, page, solid, alias, fakeNetwork, tokensFile, createFakePlugin, runBridge }
+export { fakeClock, layer, connect, page, solid, alias, fakeNetwork, tokensFile, createFakePlugin, runBridge }

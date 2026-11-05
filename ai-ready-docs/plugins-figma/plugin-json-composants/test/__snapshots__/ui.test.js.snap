@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Interface and plugin: end-to-end journeys > (a) nothing selected: the invitation, and the plugin has answered to its opening 1`] = `"Aucun composant sélectionné Sélectionner dans Figma un composant, son ensemble de variantes ou une de ses instances."`;
+
+exports[`Interface and plugin: end-to-end journeys > (b) a selected component: its card, then the nomenclature check lists what deviates 1`] = `"Button 2 variantes4 propriétésjamais exporté À corriger1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale. Générer le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (c) "Générer le JSON": the plugin generates, the card shows the first version and the tabs appear 1`] = `
+{
+  "after": "Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Télécharger le JSON Copier le JSON",
+  "before": "Button 2 variantes4 propriétésjamais exporté À corriger1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale. Générer le JSON",
+}
+`;
+
+exports[`Interface and plugin: end-to-end journeys > (d) the tabs show the JSON, the changelog and the changes, and the main button follows the tab 1`] = `
+{
+  "changelog": "Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements # Changelog de Button ## 1.0.0 - jj/mm/aa ### Ajouté - Première version du composant Télécharger le changelog Copier le changelog",
+  "changes": "Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Premier exportCe composant n'a pas encore de version précédente à comparer. Télécharger le JSON Copier le JSON",
+  "json": "Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements button.json 2 variables, 1 surcharge, 3 Ko Plugin <version>, format 0.4 { "formatVersion": "0.4", "meta": { "name": "Button", "version": "1.0.0", "tokensVersion": "2.0.0", "type": "atom", "figmaKey": "KEY-BUTTON", "library": "B2C", "documentationLinks": [] }, "api": { "props": { "state": { "type": "enum", "enum": [ "default", "hover" ], "default": "default" }, "hierarchy": { "type": "enum", "enum": [ "primary" ], "default": "primary" }, "Size": { "type": "enum", "enum": [ "md" ], "default": "md" } } }, "variants": [ { "values": { "state": "default", "hierarchy": "primary", "Size": "md" }, "position": [ 0, 0 ] }, { "values": { "state": "hover", "hierarchy": "primary", "Size": "md" }, "position": [ 0, 100 ] } ], "structure": { "slots": { "label": { "as": "children", "default": { "text": "Label" }, "controls": [ { "layer": "label", "attribute": "text" } ] } }, "trees": [ { "when": {}, "tree": [ { "name": "label", "type": "text" }, { "name": "caption", "type": "text" } ] } ], "uses": [] }, "styles": { "default": { "when": { "state": "default", "hierarchy": "primary", "Size": "md" }, "root": { "background": { "token": "color/blue/700" } }, "label": { "textColor": { "token": "color/blue/700" } }, "caption": { "textColor": { "raw": "#333333" } } }, "overrides": [ { "when": { "state": "hover" }, "styles": { "root": { "background": { "token": "color/blue/800" } } } } ] }, "tokens": { "color/blue/700": { "library": "B2C", "collection": "Primitive", "key": "K-b700" }, "color/blue/800": { "library": "B2C", "collection": "Primitive", "key": "K-b800" } }, "textStyles": {}, "components": {}, "modeCollections": {}, "issues": [ { "level": "warning", "rule": "prop-nom", "where": "api.props.Size", "message": "Le nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale." }, { "level": "warning", "rule": "valeur-brute", "where": "styles.caption.textColor", "message": "Valeur brute (#333333) : la relier à une variable.", "occurrences": 2 }, { "level": "info", "rule": "texte-non-relie", "where": "calque caption", "message": "Ce texte n'est relié à aucune propriété de texte." } ], "_tool": "canopee-fiches-composants <version>" } Télécharger le JSON Copier le JSON",
+}
+`;
+
+exports[`Interface and plugin: end-to-end journeys > (e) the arrow keys move between the tabs 1`] = `"Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Premier exportCe composant n'a pas encore de version précédente à comparer. Télécharger le JSON Copier le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (f) "Télécharger le JSON": a file is offered, the success banner appears and the plugin stores the export 1`] = `"Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. JSON téléchargé. Télécharger le JSON Copier le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (g) "Copier le JSON", then "Copier le changelog": the texts are copied 1`] = `
+{
+  "afterChangelog": "Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements # Changelog de Button ## 1.0.0 - jj/mm/aa ### Ajouté - Première version du composant Changelog copié. Télécharger le changelog Copier le changelog",
+  "afterJson": "Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. JSON copié. Télécharger le JSON Copier le JSON",
+}
+`;
+
+exports[`Interface and plugin: end-to-end journeys > (h) a click on an issue selects its layers in Figma, and the interface keeps the same component 1`] = `"Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Télécharger le JSON Copier le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (i) a component changed in Figma after the generation: the interface asks to generate again 1`] = `
+{
+  "regenerated": "Button principal 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger3 JSON Changelog Changements Nom du composantLe nom d'un composant s'écrit en PascalCase, sans espace, statut ni version.Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Télécharger le JSON Copier le JSON",
+  "stale": "Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Le composant a changé depuis la génération de ce JSON. Générer de nouveau Copier le JSON",
+}
+`;
+
+exports[`Interface and plugin: end-to-end journeys > (j) another export happened since the generation: the plugin refuses to store, and the interface shows the error 1`] = `"Button 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Un autre export de ce composant a eu lieu depuis cette génération. Rien n'a été enregistré : générer de nouveau le JSON, puis l'exporter. Télécharger le JSON Copier le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (k) a component changed since its last export: the version question blocks the export until it is answered 1`] = `
+{
+  "no": "Button 1.0.0 VERSION GARDÉE Version minimale des tokens requise : 2.0.0 La version 1.0.0 a-t-elle été livrée aux devs ? Oui, passer en 1.1.0 Non, garder 1.0.0 À corriger2 JSON Changelog Changements1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Télécharger le JSON Copier le JSON",
+  "overhaul": "Button 2.0.0 MAJEURE Version minimale des tokens requise : 2.0.0 La version 1.0.0 a-t-elle été livrée aux devs ? Oui, passer en 2.0.0 Non, garder 1.0.0 Refonte complète, passer en 2.0.0 À corriger2 JSON Changelog Changements1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Télécharger le JSON Copier le JSON",
+  "question": "Button à choisir MINEURE Version minimale des tokens requise : 2.0.0 La version 1.0.0 a-t-elle été livrée aux devs ? Oui, passer en 1.1.0 Non, garder 1.0.0 À corriger2 JSON Changelog Changements1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Répondre à la question Copier le JSON",
+  "yes": "Button 1.1.0 MINEURE Version minimale des tokens requise : 2.0.0 La version 1.0.0 a-t-elle été livrée aux devs ? Oui, passer en 1.1.0 Non, garder 1.0.0 Refonte complète, passer en 2.0.0 À corriger2 JSON Changelog Changements1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.caption, couleur du texte, dans 2 variantesValeur brute (#333333) : la relier à une variable. Télécharger le JSON Copier le JSON",
+}
+`;
+
+exports[`Interface and plugin: end-to-end journeys > (l) over 40 variants, the button shows the progress of the generation 1`] = `"Wide 1.0.0 PREMIÈRE VERSION Version minimale des tokens requise : 2.0.0 À corriger2 JSON Changelog Changements Propriété hierarchyValeurs hors nomenclature (h1, h2, h3, h4, h5). Attendu parmi : primary, secondary, tertiary.Propriété stateValeurs hors nomenclature (s1, s2, s3, s4, s5, s6, s7, s8, s9). Attendu parmi : default, hover, focus, press. Télécharger le JSON Copier le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (m) the rules page cannot be read: the banner tells it 1`] = `"Button 2 variantes4 propriétésjamais exporté À corriger1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale. Les règles de la doc n'ont pas pu être lues. Le plugin contrôle avec sa copie. Générer le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (n) the extraction fails: the interface shows the error and the button works again 1`] = `"Button 2 variantes4 propriétésjamais exporté À corriger1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale. lecture impossible Générer le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (o) a second component is selected: the card changes and the result of the first is dropped 1`] = `"Autre 1 variante0 propriétéjamais exporté À corriger Rien à corriger Le composant respecte la nomenclature. Générer le JSON pour calculer sa version et son changelog. Générer le JSON"`;
+
+exports[`Interface and plugin: end-to-end journeys > (q) manual resize: the handle saves the size in the machine storage, and a double click goes back to automatic 1`] = `"Button 2 variantes4 propriétésjamais exporté À corriger1 Propriété SizeLe nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale. Générer le JSON"`;
