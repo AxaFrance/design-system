@@ -1,4 +1,4 @@
-// Runs code.js on a mock Figma plugin (figma-mock.js) and checks
+// Runs dist/code.js on a mock Figma plugin (figma-mock.ts) and checks
 // what comes out. Each suite creates its own plugin, independent of the others:
 // no suite depends on what another one left behind, and the order of
 // execution changes no result.
@@ -6,12 +6,15 @@
 
 import { beforeAll, describe, expect, it } from 'vitest'
 
-const fs = require('fs')
-const path = require('path')
-const { createMockPlugin } = require('./figma-mock.js')
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { createMockPlugin, type MockData, type MockPlugin, type PluginMessage } from './figma-mock'
 
-const alias = (id) => ({ type: 'VARIABLE_ALIAS', id })
-const shadow = (y, extra = {}) => ({ type: 'DROP_SHADOW', color: { r: 0, g: 0, b: 0, a: 0.2 }, offset: { x: 0, y }, radius: 8, spread: 0, ...extra })
+const HERE = path.dirname(fileURLToPath(import.meta.url))
+
+const alias = (id: MockData) => ({ type: 'VARIABLE_ALIAS', id })
+const shadow = (y: MockData, extra = {}) => ({ type: 'DROP_SHADOW', color: { r: 0, g: 0, b: 0, a: 0.2 }, offset: { x: 0, y }, radius: 8, spread: 0, ...extra })
 
 // Figma document shared by most suites: same collections,
 // variables and styles as before the refactoring. testDocument() returns a fresh
@@ -105,20 +108,20 @@ const COMMON_DOCUMENT = {
 const testDocument = () => JSON.parse(JSON.stringify(COMMON_DOCUMENT))
 
 // A DTCG token is read in sets.<collection>.sources[0].
-const readSet = (doc, name) => doc.sets[name].sources[0]
+const readSet = (doc: MockData, name: MockData) => doc.sets[name].sources[0]
 // Like readSet, but undefined if the collection does not exist in this document
 // (a suite document does not necessarily have Primitives and Sémantique).
-const readSetIfPresent = (doc, name) => (doc.sets[name] ? readSet(doc, name) : undefined)
+const readSetIfPresent = (doc: MockData, name: MockData) => (doc.sets[name] ? readSet(doc, name) : undefined)
 
 // Messages and reports come from another VM context: they are normalized
 // to compare arrays and objects with toStrictEqual.
-const normalize = (m) => JSON.parse(JSON.stringify(m))
+const normalize = (m: MockData) => JSON.parse(JSON.stringify(m))
 
 // Opens the plugin then downloads the loaded document, and prepares the reading
 // shortcuts (t, json, report, P/S/STY) that most suites use.
 // The report comes from the verification message sent on opening: the download
 // only returns the file.
-const exportDocument = async (plugin) => {
+const exportDocument = async (plugin: MockPlugin) => {
   await plugin.send({ type: 'ready' })
   const verification = plugin.messages.filter((m) => m.type === 'verification').pop()
   await plugin.send({ type: 'download' })
@@ -127,7 +130,7 @@ const exportDocument = async (plugin) => {
   const t = JSON.parse(last.json)
   return {
     last, t, json: last.json, file: last.file,
-    report: normalize(verification.report),
+    report: normalize(verification!.report),
     P: readSetIfPresent(t, 'Primitives'), S: readSetIfPresent(t, 'Sémantique'), STY: readSetIfPresent(t, 'Styles')
   }
 }
@@ -137,7 +140,7 @@ const TOKENS_PATH = 'packages/canopee-css/design-tokens-canopee.resolver.json'
 // Prepares the submission, as the UI would after reading the repo
 // file: repoReference is its text, or null if it is not there. Returns the
 // submit-ready message.
-const submitDocument = async (plugin, repoReference, options = {}) => {
+const submitDocument = async (plugin: MockPlugin, repoReference: MockData, options = {}) => {
   await plugin.send({ type: 'submit', repoReference, ...options })
   const message = plugin.lastMessage()
   expect(message.type, message.message).toBe('submit-ready')
@@ -146,7 +149,7 @@ const submitDocument = async (plugin, repoReference, options = {}) => {
 
 // The same document, without the export date: the only thing that changes from one
 // serialization to the next.
-const withoutDate = (doc) => {
+const withoutDate = (doc: MockData) => {
   const copy = JSON.parse(JSON.stringify(doc))
   delete copy.$extensions['fr.axa.canopee'].date
   return copy
@@ -155,7 +158,7 @@ const withoutDate = (doc) => {
 // ---------------------------------------------------------------- opening
 
 describe('opening without reference', () => {
-  let plugin
+  let plugin: MockPlugin
 
   beforeAll(async () => {
     plugin = createMockPlugin()
@@ -171,7 +174,7 @@ describe('opening without reference', () => {
 
 // Check of the shape of an export in the default configuration (null workflow).
 describe('default export', () => {
-  let plugin, last, t, json, file, report, P, S, STY
+  let plugin: MockPlugin, last: MockData, t: MockData, json: MockData, file: MockData, report: MockData, P: MockData, S: MockData, STY: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin(testDocument())
@@ -472,23 +475,23 @@ describe('default export', () => {
   })
 
   it('naming: independent size and line height, no alert without a match', () => {
-    for (const name of ['font/size/15', 'font/line-height/22']) expect(!report.naming.some((m) => m.startsWith(`« ${name} »`)), name).toBeTruthy()
+    for (const name of ['font/size/15', 'font/line-height/22']) expect(!report.naming.some((m: string) => m.startsWith(`« ${name} »`)), name).toBeTruthy()
   })
 
   it('naming: compliant names, not flagged', () => {
     const compliant = ['color/blue/700', 'spacing/16', 'font/size/16', 'font/line-height/20', 'border/radius/full', 'color/white', 'color/black-alpha/20']
-    for (const name of compliant) expect(!report.naming.some((m) => m.startsWith(`« ${name} »`)), name).toBeTruthy()
+    for (const name of compliant) expect(!report.naming.some((m: string) => m.startsWith(`« ${name} »`)), name).toBeTruthy()
   })
 
   it('naming: Sémantique collection not checked', () => {
-    expect(!report.naming.some((m) => m.includes('Action/primaire') || m.includes('Fond/marque'))).toBeTruthy()
+    expect(!report.naming.some((m: MockData) => m.includes('Action/primaire') || m.includes('Fond/marque'))).toBeTruthy()
   })
 })
 
 // ----------------------------------------------------------- compare (diff)
 
 describe('compare (diff)', () => {
-  let plugin, t, json, modifiedDiff
+  let plugin: MockPlugin, t: MockData, json: MockData, modifiedDiff: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin(testDocument())
@@ -554,13 +557,13 @@ describe('compare (diff)', () => {
 // Each case isolates a single type of change, to check the level that goes with it
 // without mixing with the others.
 describe('level and next version', () => {
-  let plugin, cloneReference, compareTo, refRemoval, refTypeChange, refAddition, refDeprecation, refModifiedValue
+  let plugin: MockPlugin, cloneReference: MockData, compareTo: MockData, refRemoval: MockData, refTypeChange: MockData, refAddition: MockData, refDeprecation: MockData, refModifiedValue: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin(testDocument())
     const { t } = await exportDocument(plugin)
     cloneReference = () => JSON.parse(JSON.stringify(t))
-    compareTo = async (ref, version) => {
+    compareTo = async (ref: MockData, version: MockData) => {
       await plugin.send({ type: 'compare', reference: JSON.stringify(ref), source: version ? 'version' : 'file', fileName: 'x.json', version })
       return plugin.lastMessage()
     }
@@ -652,7 +655,7 @@ describe('level and next version', () => {
 // referenceDate: absent without an extension in the reference, ignored when it
 // is the only difference from the current export.
 describe('reference and dates', () => {
-  let plugin, cloneReference
+  let plugin: MockPlugin, cloneReference: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin(testDocument())
@@ -682,7 +685,7 @@ describe('reference and dates', () => {
 // An invalid reference is detected before any analysis of the document: a
 // minimal plugin, with no variables or styles, is enough.
 describe('compare, invalid reference', () => {
-  let plugin, notJsonDiff, noSetsDiff
+  let plugin, notJsonDiff: MockData, noSetsDiff: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin()
@@ -744,7 +747,7 @@ const compositeDiffDocument = () => ({
 })
 
 describe('composite values and modifier contexts', () => {
-  let t, diff
+  let t, diff: MockData
 
   beforeAll(async () => {
     const plugin = createMockPlugin(compositeDiffDocument())
@@ -767,19 +770,19 @@ describe('composite values and modifier contexts', () => {
   })
 
   it('diff: modifier context token, path without suffix, modifier and context filled in', () => {
-    const m = diff.modified.find((x) => x.path === 'heading/h4/line-height' && x.modifier)
+    const m = diff.modified.find((x: MockData) => x.path === 'heading/h4/line-height' && x.modifier)
     expect(m, 'expected entry missing').toBeTruthy()
     expect([m.modifier, m.context, m.before, m.after]).toStrictEqual(['Typography', 'client-mobile', '18 px', '20 px'])
   })
 
   it('diff: text style added, value summarized rather than as JSON', () => {
-    const a = diff.added.find((x) => x.path === 'typography/Titre/H5')
+    const a = diff.added.find((x: MockData) => x.path === 'typography/Titre/H5')
     expect(a).toBeTruthy()
     expect(a.value).toBe('style de texte')
   })
 
   it('diff: text style modified, summarized at the top, size field detailed below', () => {
-    const m = diff.modified.find((x) => x.path === 'typography/Corps/1')
+    const m = diff.modified.find((x: MockData) => x.path === 'typography/Corps/1')
     expect(m).toBeTruthy()
     expect(m.before).toBe('style de texte')
     expect(m.after).toBe('style de texte')
@@ -787,7 +790,7 @@ describe('composite values and modifier contexts', () => {
   })
 
   it('diff: shadow modified, summarized at the top, blur field detailed below', () => {
-    const m = diff.modified.find((x) => x.path === 'shadow/Ombre/carte')
+    const m = diff.modified.find((x: MockData) => x.path === 'shadow/Ombre/carte')
     expect(m).toBeTruthy()
     expect(m.before).toBe('ombre')
     expect(m.after).toBe('ombre')
@@ -796,7 +799,7 @@ describe('composite values and modifier contexts', () => {
 
   it('diff: no more raw JSON values, including in the field detail', () => {
     const entries = [...diff.added, ...diff.modified, ...diff.removed, ...diff.deprecated]
-    const isRawJson = (v) => typeof v === 'string' && v.startsWith('{"')
+    const isRawJson = (v: MockData) => typeof v === 'string' && v.startsWith('{"')
     for (const e of entries) {
       if ('valeur' in e) expect(!isRawJson(e.value), e.value).toBeTruthy()
       if ('avant' in e) expect(!isRawJson(e.before), e.before).toBeTruthy()
@@ -812,7 +815,7 @@ describe('composite values and modifier contexts', () => {
 // ------------------------------------------------------------------ opening
 
 describe('opening', () => {
-  let plugin
+  let plugin: MockPlugin
 
   beforeAll(async () => {
     plugin = createMockPlugin(testDocument())
@@ -844,7 +847,7 @@ describe('opening', () => {
 // -------------------------------------------------------------------- automatic resize
 
 describe('automatic resize', () => {
-  let plugin
+  let plugin: MockPlugin
 
   beforeAll(async () => {
     plugin = createMockPlugin()
@@ -859,7 +862,7 @@ describe('automatic resize', () => {
 // ------------------------------------------------------------------ manual resize
 
 describe('manual resize', () => {
-  let plugin
+  let plugin: MockPlugin
 
   beforeAll(async () => {
     plugin = createMockPlugin()
@@ -888,7 +891,7 @@ describe('manual resize', () => {
     expect(plugin.clientStorage.size).toBe(undefined)
     expect(plugin.resizes[plugin.resizes.length - 1]).toStrictEqual([440, 1200])
     const newMessages = plugin.messages.slice(beforeAutoSize)
-    expect(newMessages.some((m) => m.type === 'recompute-height')).toBeTruthy()
+    expect(newMessages.some((m: MockData) => m.type === 'recompute-height')).toBeTruthy()
   })
 
   it('automatic resize resumed after auto size, minimum height respected', async () => {
@@ -903,13 +906,13 @@ describe('manual resize', () => {
 
 // Repository addresses, announced to the UI in the context message.
 describe('repo URLs', () => {
-  let plugin, urls
+  let plugin: MockPlugin, urls: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin()
     plugin.__test.REPO.tokensPath = TOKENS_PATH
     await plugin.send({ type: 'ready' })
-    urls = normalize(plugin.messages.find((m) => m.type === 'context').repoUrls)
+    urls = normalize(plugin.messages.find((m) => m.type === 'context')!.repoUrls)
   })
 
   it('urls: file reading, versions, GitHub editor and creation in its folder', () => {
@@ -928,7 +931,7 @@ describe('repo URLs', () => {
     plugin.__test.REPO.tokensPath = 'tokens/mon fichier.json'
     await plugin.send({ type: 'ready' })
     const lastContext = plugin.messages.filter((m) => m.type === 'context').pop()
-    expect(lastContext.repoUrls.urlCreation).toBe('https://github.com/AxaFrance/design-system/new/main/tokens?filename=mon%20fichier.json')
+    expect(lastContext!.repoUrls.urlCreation).toBe('https://github.com/AxaFrance/design-system/new/main/tokens?filename=mon%20fichier.json')
   })
 
   it('urls: the key of the Fondations file is configured', () => {
@@ -939,7 +942,7 @@ describe('repo URLs', () => {
 // One reason at a time, in priority order: file, empty, excluded, path.
 describe('submit blockers', () => {
   const report = (extra = {}) => ({ exported: 3, textStyles: 0, effectStyles: 0, conflicts: [], missingAliases: [], ...extra })
-  const getBlocker = (plugin, r) => normalize(plugin.__test.submitBlocker(r) ?? null)
+  const getBlocker = (plugin: MockPlugin, r: MockData) => normalize(plugin.__test.submitBlocker(r) ?? null)
   const inFoundations = () => createMockPlugin({ fileKey: 'MJfhu2fwxNjxlzGqOAWJNq' })
 
   it('blocker: outside Fondations, reason file, before any other', () => {
@@ -1000,7 +1003,7 @@ describe('submit blockers', () => {
 })
 
 describe('submit', () => {
-  let plugin, currentExport, currentJson, urlEdition, urlCreation, noFile
+  let plugin: MockPlugin, currentExport: MockData, currentJson: MockData, urlEdition: MockData, urlCreation: MockData, noFile: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin(testDocument())
@@ -1059,7 +1062,7 @@ describe('submit', () => {
 })
 
 describe('open', () => {
-  let plugin
+  let plugin: MockPlugin
 
   beforeAll(async () => {
     plugin = createMockPlugin()
@@ -1072,7 +1075,7 @@ describe('open', () => {
 })
 
 describe('download', () => {
-  let doc, plugin, before, newMessages
+  let doc: MockData, plugin: MockPlugin, before, newMessages: MockData
 
   beforeAll(async () => {
     doc = testDocument()
@@ -1094,18 +1097,18 @@ describe('download', () => {
   })
 
   it('download: does not touch the comparison', () => {
-    expect(newMessages.some((m) => m.type === 'diff')).toBe(false)
+    expect(newMessages.some((m: MockData) => m.type === 'diff')).toBe(false)
     expect(plugin.openedUrls).toStrictEqual([])
   })
 
   it('download right after a change: verification (changed: true) sent before the file', async () => {
     // A change made just before the click, not yet seen by the live
     // update: it is announced to the UI before the file, and taken into the JSON.
-    doc.locals.find((v) => v.id === 'v2').valuesByMode.m1 = 24
+    doc.locals.find((v: MockData) => v.id === 'v2').valuesByMode.m1 = 24
     const beforeChange = plugin.messages.length
     await plugin.send({ type: 'download' })
     const afterChange = plugin.messages.slice(beforeChange)
-    const verification = afterChange.findIndex((m) => m.type === 'verification')
+    const verification = afterChange.findIndex((m: MockData) => m.type === 'verification')
     expect(verification !== -1).toBeTruthy()
     expect(afterChange[verification].changed).toBe(true)
     expect(afterChange[afterChange.length - 1].type).toBe('file')
@@ -1117,7 +1120,7 @@ describe('download', () => {
 // would contain after the previous submission. The first one, with no file in the repo,
 // counts everything as added.
 describe('commit messages', () => {
-  let repo, messages
+  let repo: MockData, messages: MockData
 
   beforeAll(async () => {
     const doc = testDocument()
@@ -1133,13 +1136,13 @@ describe('commit messages', () => {
 
     messages.first = await doSubmit()
     messages.none = await doSubmit()
-    doc.locals.find((v) => v.id === 'v2').valuesByMode.m1 = 24
+    doc.locals.find((v: MockData) => v.id === 'v2').valuesByMode.m1 = 24
     messages.patch = await doSubmit()
     doc.locals.push({ id: 'v99', name: 'spacing/32', resolvedType: 'FLOAT', variableCollectionId: 'C1', scopes: ['GAP'], valuesByMode: { m1: 32 } })
     messages.minor = await doSubmit()
-    doc.locals.splice(doc.locals.findIndex((v) => v.id === 'v99'), 1)
+    doc.locals.splice(doc.locals.findIndex((v: MockData) => v.id === 'v99'), 1)
     messages.removal = await doSubmit()
-    doc.locals.find((v) => v.id === 'v2').valuesByMode.m1 = 32
+    doc.locals.find((v: MockData) => v.id === 'v2').valuesByMode.m1 = 32
     messages.major = (await submitDocument(plugin, repo, { redesign: true })).message
   })
 
@@ -1171,7 +1174,7 @@ describe('commit messages', () => {
 // ----------------------------------------------------------------- live update
 
 describe('live update', () => {
-  let plugin, beforeModification
+  let plugin: MockPlugin, beforeModification: MockData
 
   beforeAll(async () => {
     const doc = testDocument()
@@ -1181,7 +1184,7 @@ describe('live update', () => {
     await plugin.send({ type: 'compare', reference: json, source: 'repo' })
 
     beforeModification = plugin.messages.length
-    const spacingVariable = doc.locals.find((v) => v.id === 'v2')
+    const spacingVariable = doc.locals.find((v: MockData) => v.id === 'v2')
     spacingVariable.valuesByMode.m1 = 24
     await plugin.__test.checkModifications()
   })
@@ -1209,7 +1212,7 @@ describe('live update', () => {
 // ------------------------------------------------------------------- errors
 
 describe('errors', () => {
-  let plugin
+  let plugin: MockPlugin
 
   beforeAll(async () => {
     plugin = createMockPlugin()
@@ -1227,15 +1230,15 @@ describe('errors', () => {
 
   it('error: verification, comparison, submit and download each carry their context', async () => {
     // A file whose variables cannot be read: each action returns its context.
-    const locals = []
+    const locals: MockData[] = []
     locals.map = () => { throw new Error('lecture impossible') }
     const broken = createMockPlugin({ locals })
-    const contextOf = async (msg) => {
+    const contextOf = async (msg: MockData) => {
       const before = broken.messages.length
       await broken.send(msg)
       return normalize(broken.messages.slice(before).filter((m) => m.type === 'error'))
     }
-    const expected = (context) => [{ type: 'error', context, message: 'lecture impossible' }]
+    const expected = (context: MockData) => [{ type: 'error', context, message: 'lecture impossible' }]
     const verification = await contextOf({ type: 'ready' })
     const comparison = await contextOf({ type: 'compare', reference: '{"sets":{}}', source: 'file' })
     const submit = await contextOf({ type: 'submit', repoReference: null })
@@ -1252,7 +1255,7 @@ describe('errors', () => {
 // A broken link in the default mode excludes the token. In another mode, the
 // token stays exported and that mode takes the default value.
 describe('broken links', () => {
-  let plugin, t, report, set
+  let plugin: MockPlugin, t: MockData, report: MockData, set: MockData
 
   beforeAll(async () => {
     plugin = createMockPlugin({
@@ -1285,7 +1288,7 @@ describe('broken links', () => {
   })
 
   it('broken link in another mode: does not block the submission, only the other link counts', () => {
-    const blocker = normalize(plugin.messages.filter((m) => m.type === 'verification').pop().blocker)
+    const blocker = normalize(plugin.messages.filter((m) => m.type === 'verification').pop()!.blocker)
     expect(blocker).toStrictEqual({ reason: 'excluded', n: 1 })
   })
 })
@@ -1295,10 +1298,10 @@ describe('broken links', () => {
 // A modifier context only carries the values that differ from the default: a
 // mode that joins (or leaves) the default value is not an addition or a removal.
 describe('mode diff', () => {
-  let document, compare, dark, joinsDefault
+  let document: MockData, compare: MockData, dark: MockData, joinsDefault: MockData
 
   beforeAll(async () => {
-    document = (defaultValue, darkMode, { withA = true } = {}) => ({
+    document = (defaultValue: MockData, darkMode: MockData, { withA = true } = {}) => ({
       fileName: 'Canopée Fondations',
       collections: [{ id: 'CT', name: 'Thème', modes: [{ modeId: 'md', name: 'clair' }, { modeId: 'mx', name: 'sombre' }], defaultModeId: 'md' }],
       locals: [
@@ -1307,7 +1310,7 @@ describe('mode diff', () => {
       ]
     })
     // Diff of the current state against the reference state, each on its own plugin.
-    compare = async (referenceDoc, currentDocument) => {
+    compare = async (referenceDoc: MockData, currentDocument: MockData) => {
       const { json } = await exportDocument(createMockPlugin(referenceDoc))
       const plugin = createMockPlugin(currentDocument)
       await plugin.send({ type: 'compare', reference: json, source: 'file', fileName: 'x.json' })
@@ -1362,11 +1365,11 @@ describe('mode diff', () => {
 // ---------------------------------------------------------- size kept, on opening
 
 describe('kept size, on opening', () => {
-  let plugin
+  let plugin: MockPlugin
 
   beforeAll(async () => {
     plugin = createMockPlugin({ clientStorage: { size: { width: 550, height: 250 } } })
-    // The kept size is applied again in the leading IIFE of code.js, before any
+    // The kept size is applied again in the leading IIFE of dist/code.js, before any
     // message: leave time for microtasks to run.
     await new Promise((r) => setTimeout(r, 0))
   })
@@ -1379,13 +1382,13 @@ describe('kept size, on opening', () => {
 // ------------------------------------------------------------- deprecation
 
 describe('deprecation', () => {
-  let variable, style, plugin, t, P, report, E
+  let variable, style, plugin: MockPlugin, t: MockData, P, report: MockData, E: MockData
 
   beforeAll(async () => {
-    variable = (id, name, extra = {}) => ({
+    variable = (id: MockData, name: MockData, extra = {}) => ({
       id, name: name, resolvedType: 'FLOAT', variableCollectionId: 'CP', scopes: ['GAP'], valuesByMode: { p1: 8 }, ...extra
     })
-    style = (id, name, description) => ({
+    style = (id: MockData, name: MockData, description: MockData) => ({
       id, name: name, description, fontName: { family: 'Source Sans Pro', style: 'Regular' }, fontSize: 16,
       lineHeight: { unit: 'PIXELS', value: 20 }, letterSpacing: { unit: 'PIXELS', value: 0 }, boundVariables: {}
     })
@@ -1437,8 +1440,8 @@ describe('deprecation', () => {
   it('deprecated variable without scope: absent from inferredTypes, active without scope: present', () => {
     expect(E['sans-scope'].$deprecated).toBe('Use spacing/16 or spacing/24.')
     expect(E['sans-scope'].$type).toBe('dimension')
-    expect(!report.inferredTypes.some((e) => e.startsWith('Espacement/sans-scope :'))).toBeTruthy()
-    expect(report.inferredTypes.some((e) => e.startsWith('Espacement/sans-scope-actif :'))).toBeTruthy()
+    expect(!report.inferredTypes.some((e: string) => e.startsWith('Espacement/sans-scope :'))).toBeTruthy()
+    expect(report.inferredTypes.some((e: string) => e.startsWith('Espacement/sans-scope-actif :'))).toBeTruthy()
   })
 
   it('text style and effect style whose description starts with Deprecated: deprecated', () => {
@@ -1454,7 +1457,7 @@ describe('deprecation', () => {
     delete readSet(reference, 'Styles').typography.Ancien.titre.$deprecated
     await plugin.send({ type: 'compare', reference: JSON.stringify(reference), source: 'repo' })
     const diff = normalize(plugin.lastMessage())
-    expect(diff.deprecated.map((d) => d.path).sort()).toStrictEqual(['Espacement/avec-remplacant', 'typography/Ancien/titre'])
+    expect(diff.deprecated.map((d: MockData) => d.path).sort()).toStrictEqual(['Espacement/avec-remplacant', 'typography/Ancien/titre'])
     expect(diff.level).toBe('minor')
   })
 })
@@ -1462,10 +1465,10 @@ describe('deprecation', () => {
 // ------------------------------------------------------- incomplete exported styles
 
 describe('incomplete exported styles', () => {
-  let style, plugin, t, report, T, ext, NON_DTCG, diff
+  let style, plugin: MockPlugin, t: MockData, report: MockData, T: MockData, ext: MockData, NON_DTCG: MockData, diff: MockData
 
   beforeAll(async () => {
-    style = (id, name, parseWeight, extra = {}) => ({
+    style = (id: MockData, name: MockData, parseWeight: MockData, extra = {}) => ({
       id, name: name, description: '', fontName: { family: 'Source Sans Pro', style: parseWeight }, fontSize: 16,
       lineHeight: { unit: 'PIXELS', value: 20 }, letterSpacing: { unit: 'PIXELS', value: 0 }, boundVariables: {}, ...extra
     })
@@ -1487,7 +1490,7 @@ describe('incomplete exported styles', () => {
     ;({ t, report } = await exportDocument(plugin))
     T = readSet(t, 'Styles').typography
     // Non-DTCG fields of a style: in $extensions, never in $value.
-    ext = (name) => T[name].$extensions?.['fr.axa.canopee'] || {}
+    ext = (name: MockData) => T[name].$extensions?.['fr.axa.canopee'] || {}
     NON_DTCG = ['fontStyle', 'textDecoration', 'textTransform']
   })
 
@@ -1495,8 +1498,8 @@ describe('incomplete exported styles', () => {
     expect(report.textStyles).toBe(9)
     expect(T.Citation.$value.fontWeight).toBe(400)
     expect(ext('Citation').fontStyle).toBe('italic')
-    expect(!report.incompleteStyles.some((e) => e.startsWith('Citation'))).toBeTruthy()
-    expect(!report.excluded.some((e) => e.startsWith('Citation'))).toBeTruthy()
+    expect(!report.incompleteStyles.some((e: string) => e.startsWith('Citation'))).toBeTruthy()
+    expect(!report.excluded.some((e: string) => e.startsWith('Citation'))).toBeTruthy()
   })
 
   it('oblique style: fontStyle oblique', () => {
@@ -1529,7 +1532,7 @@ describe('incomplete exported styles', () => {
   })
 
   it('italic, underline and case never in $value, which Terrazzo reads', () => {
-    for (const [name, token] of Object.entries(T)) {
+    for (const [name, token] of Object.entries<MockData>(T)) {
       for (const key of NON_DTCG) expect(!(key in token.$value), `${name} : ${key}`).toBeTruthy()
     }
   })
@@ -1544,21 +1547,21 @@ describe('incomplete exported styles', () => {
     delete readSet(reference, 'Styles').typography.Lien.$extensions
     await plugin.send({ type: 'compare', reference: JSON.stringify(reference), source: 'file', fileName: 'reference-souligne.json' })
     diff = normalize(plugin.lastMessage())
-    const m = diff.modified.find((x) => x.path === 'typography/Lien')
+    const m = diff.modified.find((x: MockData) => x.path === 'typography/Lien')
     expect(m).toBeTruthy()
     expect(m.fields).toStrictEqual([{ field: 'décoration du texte', before: 'aucun', after: 'underline' }])
   })
 
   it('diff: nothing else changes, the other extensions stay ignored', () => {
-    expect(diff.modified.map((x) => x.path)).toStrictEqual(['typography/Lien'])
+    expect(diff.modified.map((x: MockData) => x.path)).toStrictEqual(['typography/Lien'])
   })
 })
 
 describe('breakpoints', () => {
-  let breakpoint, t, report, B
+  let breakpoint, t, report: MockData, B: MockData
 
   beforeAll(async () => {
-    breakpoint = (id, name, value) => ({ id, name: name, resolvedType: 'FLOAT', variableCollectionId: 'CP', scopes: ['WIDTH_HEIGHT'], description: 'Utilisé par prospect et client.', valuesByMode: { m1: value } })
+    breakpoint = (id: MockData, name: MockData, value: MockData) => ({ id, name: name, resolvedType: 'FLOAT', variableCollectionId: 'CP', scopes: ['WIDTH_HEIGHT'], description: 'Utilisé par prospect et client.', valuesByMode: { m1: value } })
     const plugin = createMockPlugin({
       collections: [{ id: 'CP', name: 'Primitive', modes: [{ modeId: 'm1', name: 'Mode 1' }], defaultModeId: 'm1' }],
       locals: [breakpoint('b1', 'breakpoint/1024', 1024), breakpoint('b2', 'breakpoint/0', 0), breakpoint('b3', 'breakpoint/1280', 1279)]
@@ -1573,7 +1576,7 @@ describe('breakpoints', () => {
   })
 
   it('breakpoint: compliant name, including breakpoint/0', () => {
-    expect(!report.naming.some((m) => m.startsWith('« breakpoint/1024 »') || m.startsWith('« breakpoint/0 »'))).toBeTruthy()
+    expect(!report.naming.some((m: string) => m.startsWith('« breakpoint/1024 »') || m.startsWith('« breakpoint/0 »'))).toBeTruthy()
   })
 
   it('breakpoint: the number of the name must equal the value', () => {
@@ -1584,7 +1587,7 @@ describe('breakpoints', () => {
 // The name of a set identifies its whole collection: a duplicate collection must
 // never overwrite the other without saying so.
 describe('collections with the same name', () => {
-  let duplicatePlugin, duplicate
+  let duplicatePlugin: MockPlugin, duplicate: MockData
 
   beforeAll(async () => {
     duplicatePlugin = createMockPlugin({
@@ -1610,7 +1613,7 @@ describe('collections with the same name', () => {
 
   it('collections with the same name once sanitized: the second is reported as a conflict and blocks the submission', () => {
     expect(duplicate.report.conflicts).toStrictEqual(['Collection A-B : même nom que A.B dans le code'])
-    expect(normalize(duplicatePlugin.messages.filter((m) => m.type === 'verification').pop().blocker)).toStrictEqual({ reason: 'excluded', n: 1 })
+    expect(normalize(duplicatePlugin.messages.filter((m) => m.type === 'verification').pop()!.blocker)).toStrictEqual({ reason: 'excluded', n: 1 })
   })
 
   it('collection named Styles: the set stays the styles one, the collection is reported as a conflict', async () => {
@@ -1627,7 +1630,7 @@ describe('collections with the same name', () => {
 })
 
 describe('deleted variables', () => {
-  let t, report
+  let t: MockData, report: MockData
 
   beforeAll(async () => {
     const collection = { id: 'CP', name: 'Primitive', modes: [{ modeId: 'm1', name: 'Mode 1' }], defaultModeId: 'm1' }
@@ -1660,11 +1663,11 @@ describe('deleted variables', () => {
 })
 
 describe('opacity and styles', () => {
-  let problemOf
+  let problemOf: MockData
 
   beforeAll(async () => {
-    const alphaColor = (id, name, value) => ({ id, name: name, resolvedType: 'COLOR', variableCollectionId: 'CP', scopes: [], valuesByMode: { m1: value } })
-    const textStyle = (id, name) => ({
+    const alphaColor = (id: MockData, name: MockData, value: MockData) => ({ id, name: name, resolvedType: 'COLOR', variableCollectionId: 'CP', scopes: [], valuesByMode: { m1: value } })
+    const textStyle = (id: MockData, name: MockData) => ({
       id, name: name, description: 'Texte',
       fontName: { family: 'Source Sans Pro', style: 'Regular' }, fontSize: 16,
       lineHeight: { unit: 'PIXELS', value: 20 }, letterSpacing: { unit: 'PIXELS', value: 0 }
@@ -1687,7 +1690,7 @@ describe('opacity and styles', () => {
       ]
     })
     const { report } = await exportDocument(plugin)
-    problemOf = (name) => report.naming.find((m) => m.startsWith(`« ${name} »`))
+    problemOf = (name: MockData) => report.naming.find((m: string) => m.startsWith(`« ${name} »`))
   })
 
   it('naming: opacity matching the name, despite Figma rounding', () => {
@@ -1730,18 +1733,18 @@ describe('opacity and styles', () => {
 // The docs and the plugin live in the same repo: a naming rule changed
 // on one side only makes this suite fail.
 describe('documentation', () => {
-  let foundations, table, t, primitives, styles, patterns, names, allowedValues
+  let foundations: MockData, table: MockData, t: MockData, primitives: MockData, styles: MockData, patterns: MockData, names: MockData, allowedValues: MockData
 
   beforeAll(async () => {
-    foundations = (page) => fs.readFileSync(path.join(__dirname, '..', '..', '..', 'fondations', page), 'utf8')
-    table = (text, firstColumn) => {
+    foundations = (page: MockData) => fs.readFileSync(path.join(HERE, '..', '..', '..', 'fondations', page), 'utf8')
+    table = (text: MockData, firstColumn: MockData) => {
       const lines = text.split('\n')
-      const start = lines.findIndex((l) => l.startsWith(`| ${firstColumn} |`))
+      const start = lines.findIndex((l: string) => l.startsWith(`| ${firstColumn} |`))
       expect(start, `table "${firstColumn}" not found`).not.toBe(-1)
       const bodyHtml = []
       for (const l of lines.slice(start + 2)) {
         if (!l.startsWith('|')) break
-        bodyHtml.push(l.split('|').slice(1, -1).map((c) => c.trim()))
+        bodyHtml.push(l.split('|').slice(1, -1).map((c: MockData) => c.trim()))
       }
       return bodyHtml
     }
@@ -1749,9 +1752,9 @@ describe('documentation', () => {
     primitives = foundations('01-primitives.md')
     styles = foundations('02-styles-de-texte.md')
     patterns = table(primitives, "Ce qu'elle désigne")
-    names = patterns.map((l) => l[1])
-    allowedValues = (part) => {
-      const line = table(primitives, 'Partie').find((l) => l[0] === part)
+    names = patterns.map((l: MockData) => l[1])
+    allowedValues = (part: MockData) => {
+      const line = table(primitives, 'Partie').find((l: MockData) => l[0] === part)
       expect(line, `row "${part}" not found`).toBeTruthy()
       return line[1].split(', ')
     }
@@ -1762,12 +1765,12 @@ describe('documentation', () => {
   })
 
   it('docs: each plugin shape has its line in 01-primitives.md', () => {
-    const covered = names.map((name) => t.matchingShape(name).id).sort()
+    const covered = names.map((name: MockData) => t.matchingShape(name).id).sort()
     expect(covered).toStrictEqual([...t.PRIMITIVES_GRAMMAR].map((f) => f.id).sort())
   })
 
   it('docs: the plugin categories are those of 01-primitives.md', () => {
-    expect([...new Set(names.map((name) => name.split('/')[0]))].sort()).toStrictEqual([...t.KNOWN_CATEGORIES].sort())
+    expect([...new Set(names.map((name: MockData) => name.split('/')[0]))].sort()).toStrictEqual([...t.KNOWN_CATEGORIES].sort())
     for (const example of Object.values(t.CATEGORY_EXAMPLE)) expect(names.includes(example), `${example}: absent from the docs`).toBeTruthy()
   })
 
@@ -1784,7 +1787,7 @@ describe('documentation', () => {
   })
 
   it('docs: the plugin families are those of 02-styles-de-texte.md', () => {
-    expect(table(styles, 'Famille').map((l) => l[0])).toStrictEqual([...t.STYLE_FAMILIES])
+    expect(table(styles, 'Famille').map((l: MockData) => l[0])).toStrictEqual([...t.STYLE_FAMILIES])
   })
 
   it('docs: each style of 02-styles-de-texte.md follows the plugin pattern', () => {
@@ -1797,11 +1800,11 @@ describe('documentation', () => {
   it('docs: the plugin style properties are those of 02-styles-de-texte.md', () => {
     const phrase = /Chaque style en a quatre : ([^.]+)\./.exec(styles)
     expect(phrase, 'sentence of the four properties not found').toBeTruthy()
-    expect(phrase[1].split(/, | et /).sort()).toStrictEqual(Object.keys(t.STYLE_PHRASES).sort())
+    expect(phrase![1].split(/, | et /).sort()).toStrictEqual(Object.keys(t.STYLE_PHRASES).sort())
   })
 
   it('docs: the levels of 03-creer-ou-modifier-un-token.md are those of the plugin', () => {
-    const levels = Object.fromEntries(table(foundations('03-creer-ou-modifier-un-token.md'), 'Changement').map(([change, level]) => [level, change.toLowerCase()]))
+    const levels = Object.fromEntries(table(foundations('03-creer-ou-modifier-un-token.md'), 'Changement').map(([change, level]: string[]) => [level, change.toLowerCase()]))
     expect(Object.keys(levels)).toStrictEqual(['Majeur', 'Mineur', 'Patch'])
     expect(levels.Majeur.includes('refonte complète')).toBeTruthy()
     for (const word of ['ajoutés', 'supprimés', 'dépréciés', 'type']) expect(levels.Mineur.includes(word), word).toBeTruthy()
@@ -1810,7 +1813,7 @@ describe('documentation', () => {
 })
 
 describe('style variables', () => {
-  let t, report, T, ctx
+  let t: MockData, report: MockData, T: MockData, ctx: MockData
 
   beforeAll(async () => {
     const plugin = createMockPlugin({
@@ -1848,7 +1851,7 @@ describe('style variables', () => {
   })
 
   it('style variable: absent from "Sans description"', () => {
-    expect(!report.noDescription.some((name) => name.startsWith('body/2/regular/'))).toBeTruthy()
+    expect(!report.noDescription.some((name: string) => name.startsWith('body/2/regular/'))).toBeTruthy()
   })
 
   it('style variable: a single-segment name and primitives are not concerned', () => {
@@ -1865,17 +1868,17 @@ describe('style variables', () => {
 // The file produced for the test document, byte for byte, except for the date and the
 // plugin version number: the only things that change from one run
 // to the next. Reference: test/fixtures/reference-output.json.
-const normalizeProducedFile = (text) => text
+const normalizeProducedFile = (text: MockData) => text
   .replace(/("plugin": )"[^"]*"/, '$1"<version>"')
   .replace(/("date": )"\d{4}-[^"]*"/, '$1"<date>"')
 
 describe('produced file', () => {
-  let json, reference
+  let json: MockData, reference: MockData
 
   beforeAll(async () => {
     const plugin = createMockPlugin(testDocument())
     ;({ json } = await exportDocument(plugin))
-    reference = fs.readFileSync(path.join(__dirname, 'fixtures', 'reference-output.json'), 'utf8')
+    reference = fs.readFileSync(path.join(HERE, 'fixtures', 'reference-output.json'), 'utf8')
   })
 
   it('produced file for the test document: identical to the recorded reference', () => {

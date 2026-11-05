@@ -1,5 +1,90 @@
 // Export of Figma variables and styles in the DTCG format.
-// A single file, no build step: the manifest points directly at it.
+// Built by Vite into dist/code.js, the file the manifest points at (npm run build).
+
+import type {
+  DiffEntry,
+  DiffLevel,
+  DiffMeta,
+  DiffResult,
+  DiffResultMessage,
+  ErrorContext,
+  FieldDiff,
+  ModifiedEntry,
+  PluginToUiMessage,
+  ReferenceSource,
+  RepoUrls,
+  Report,
+  SubmitBlocker,
+  UiToPluginMessage
+} from './messages'
+
+// ------------------------------------------------------------------- types
+
+// A DTCG color: an sRGB object, with the hex fallback.
+interface ColorValue {
+  colorSpace: 'srgb'
+  components: number[]
+  alpha?: number
+  hex: string
+}
+// A dimension (px) or a duration (ms).
+interface Measure {
+  value: number
+  unit: 'px' | 'ms'
+}
+interface TypographyValue {
+  fontFamily: string
+  fontSize: Measure | string
+  fontWeight: number | string
+  letterSpacing: Measure | string
+  lineHeight: number | string
+}
+interface ShadowValue {
+  color: ColorValue | string
+  offsetX: Measure | string
+  offsetY: Measure | string
+  blur: Measure | string
+  spread: Measure | string
+  inset: boolean
+}
+type TokenValue = string | number | boolean | ColorValue | Measure | TypographyValue | ShadowValue | ShadowValue[]
+type DtcgType = 'color' | 'dimension' | 'number' | 'fontWeight' | 'fontFamily' | 'duration'
+
+// Keys written in $extensions['fr.axa.canopee']: part of the published file format.
+interface TokenExtensions {
+  nomFigma?: string
+  typeDeduit?: boolean
+  alias?: string
+  fontStyle?: string
+  textDecoration?: string
+  textTransform?: string
+}
+interface Token {
+  $type: string
+  $value: TokenValue
+  $description?: string
+  $deprecated?: string | true
+  $extensions?: { 'fr.axa.canopee': TokenExtensions }
+}
+// A group of tokens: a name is either a token or a group.
+interface TokenTree {
+  [name: string]: Token | TokenTree
+}
+interface ResolverDoc {
+  name: string
+  version: string
+  $extensions: { 'fr.axa.canopee': { source: string; plugin: string; date?: string } }
+  sets: Record<string, { sources: TokenTree[] }>
+  modifiers?: Record<string, { default: string | undefined; contexts: Record<string, TokenTree[]> }>
+  resolutionOrder?: { $ref: string }[]
+}
+
+// A JSON value read from a file or a message: an object to inspect before use.
+const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null
+const isAlias = (v: unknown): v is VariableAlias => isRecord(v) && v.type === 'VARIABLE_ALIAS'
+
+// Any message to the interface goes through here, so that it is checked against the contract.
+const post = (message: PluginToUiMessage) => figma.ui.postMessage(message)
 
 const VERSION = '0.30.1'
 const WIDTH = 440
@@ -23,12 +108,12 @@ const MANUAL_BOUNDS = { widthMin: 320, widthMax: 1000, heightMin: 300, heightMax
 let manualSize = false
 let lastSize = { width: WIDTH, height: INITIAL_HEIGHT }
 
-const resizeWindow = (width, height) => {
+const resizeWindow = (width: number, height: number) => {
   lastSize = { width, height }
   figma.ui.resize(width, height)
 }
 
-const boundManualSize = (width, height) => ({
+const boundManualSize = (width: number, height: number) => ({
   width: Math.min(Math.max(width, MANUAL_BOUNDS.widthMin), MANUAL_BOUNDS.widthMax),
   height: Math.min(Math.max(height, MANUAL_BOUNDS.heightMin), MANUAL_BOUNDS.heightMax)
 })
@@ -38,8 +123,8 @@ const boundManualSize = (width, height) => ({
 // plugin from opening: the window then stays at its automatic size.
 ;(async () => {
   try {
-    const size = await figma.clientStorage.getAsync(SIZE_KEY)
-    if (size && typeof size.width === 'number' && typeof size.height === 'number') {
+    const size: unknown = await figma.clientStorage.getAsync(SIZE_KEY)
+    if (isRecord(size) && typeof size.width === 'number' && typeof size.height === 'number') {
       const bounded = boundManualSize(size.width, size.height)
       manualSize = true
       resizeWindow(bounded.width, bounded.height)
@@ -60,7 +145,14 @@ const exportDate = () => new Date().toISOString().replace(/\.\d{3}Z$/, 'Z')
 // its properties to simulate the submission without depending on a real configuration.
 // fileKey is the key of the Figma file Fondations Canopée: the submission is only
 // possible from that file (see submitBlocker).
-const REPO = {
+interface RepoConfig {
+  name: string
+  branch: string
+  tokensPath: string | null
+  fileKey: string
+  firstVersion: string
+}
+const REPO: RepoConfig = {
   name: 'AxaFrance/design-system',
   branch: 'main',
   tokensPath: 'packages/canopee-css/design-tokens-canopee.resolver.json',
@@ -72,10 +164,10 @@ const REPO = {
 
 // Recomputed on every message rather than memoized: REPO can change after
 // the script has loaded, notably in the test.
-const repoUrls = (repo) => {
+const repoUrls = (repo: RepoConfig): RepoUrls => {
   const path = repo.tokensPath
   const i = path ? path.lastIndexOf('/') : -1
-  const folder = i === -1 ? '' : path.slice(0, i)
+  const folder = path && i !== -1 ? path.slice(0, i) : ''
   const fileName = path ? path.slice(i + 1) : ''
   return {
     urlReference: path ? `https://raw.githubusercontent.com/${repo.name}/${repo.branch}/${path}` : null,
@@ -96,18 +188,19 @@ const repoUrls = (repo) => {
 
 // Commit message depending on the diff level. The repo checks the
 // Conventional Commits convention with commitlint in its CI.
-const COMMIT_MESSAGES = {
+type CommitLevel = 'major' | 'minor' | 'patch'
+const COMMIT_MESSAGES: Record<CommitLevel, string> = {
   major: 'feat(canopee)!: update design tokens',
   minor: 'feat(canopee): update design tokens',
   patch: 'fix(canopee): update design tokens'
 }
-const commitMessage = (level) => COMMIT_MESSAGES[level] || 'chore(canopee): update design tokens'
+const commitMessage = (level: CommitLevel | null) => (level && COMMIT_MESSAGES[level]) || 'chore(canopee): update design tokens'
 
 // What prevents the submission, or null. A single reason, the first in order:
 // wrong file, nothing to submit, excluded tokens, file location
 // not yet set. The file key is only readable in development
 // (enablePrivatePluginApi): without it, the file name is compared.
-const submitBlocker = (report) => {
+const submitBlocker = (report: Report): SubmitBlocker | null => {
   const inFoundations = figma.fileKey ? figma.fileKey === REPO.fileKey : figma.root.name === 'Fondations Canopée'
   if (!inFoundations) return { reason: 'file' }
   if (report.exported + report.textStyles + report.effectStyles === 0) return { reason: 'empty' }
@@ -120,26 +213,29 @@ const submitBlocker = (report) => {
 // ------------------------------------------------------------------- naming
 
 // DTCG forbids "{", "}" and "." in a name, and reserves the "$" prefix.
-const sanitize = (segment) => {
+const sanitize = (segment: string) => {
   const s = segment.trim().replace(/[{}.]/g, '-')
   return s.startsWith('$') ? '_' + s.slice(1) : s
 }
 
-const rawSegments = (name) => name.split('/').map((s) => s.trim()).filter(Boolean)
-const path = (name) => rawSegments(name).map(sanitize)
-const isSanitized = (name) => path(name).join('/') !== rawSegments(name).join('/')
-const reference = (segments) => `{${segments.join('.')}}`
-const setName = (collection) => path(collection.name).join('/')
+const rawSegments = (name: string) => name.split('/').map((s) => s.trim()).filter(Boolean)
+const path = (name: string) => rawSegments(name).map(sanitize)
+const isSanitized = (name: string) => path(name).join('/') !== rawSegments(name).join('/')
+const reference = (segments: string[]) => `{${segments.join('.')}}`
+const setName = (collection: VariableCollection) => path(collection.name).join('/')
 const SET_STYLES = 'Styles'
 
 // Puts a token in the tree. Refuses to overwrite: Figma tolerates a name being
 // both a token and a group ("a/b" and "a/b/c"), DTCG does not.
-const put = (tree, segments, token) => {
+const put = (tree: TokenTree, segments: string[], token: Token) => {
   let node = tree
   for (const s of segments.slice(0, -1)) {
-    if (node[s] === undefined) node[s] = {}
-    else if ('$value' in node[s]) return false
-    node = node[s]
+    let child = node[s]
+    if (child === undefined) {
+      child = {}
+      node[s] = child
+    } else if ('$value' in child) return false
+    node = child
   }
   const leaf = segments[segments.length - 1]
   if (node[leaf] !== undefined) return false
@@ -150,31 +246,29 @@ const put = (tree, segments, token) => {
 // ------------------------------------------------------------------- values
 
 // Figma stores its numbers as float32: a 16 can come back as 16.000000238.
-const roundNumber = (n) => Math.round(n * 10000) / 10000
-const dimension = (n) => ({ value: roundNumber(n), unit: 'px' })
-const toDuration = (n) => ({ value: roundNumber(n), unit: 'ms' })
+const roundNumber = (n: number) => Math.round(n * 10000) / 10000
+const dimension = (n: number): Measure => ({ value: roundNumber(n), unit: 'px' })
+const toDuration = (n: number): Measure => ({ value: roundNumber(n), unit: 'ms' })
 
 // 6-digit hex, no alpha channel: this is the fallback provided by the DTCG spec.
-const hex = ({ r, g, b }) => {
-  const channel = (v) => Math.round(v * 255).toString(16).padStart(2, '0')
+const hex = ({ r, g, b }: RGB) => {
+  const channel = (v: number) => Math.round(v * 255).toString(16).padStart(2, '0')
   return `#${channel(r)}${channel(g)}${channel(b)}`
 }
 
 // DTCG 2025.10: a color is an sRGB object. Alpha only appears when it
 // is defined and below fully opaque (Figma float32 values give 1 as 0.999997).
-const toColor = ({ r, g, b, a }) => {
-  const value = { colorSpace: 'srgb', components: [roundNumber(r), roundNumber(g), roundNumber(b)] }
-  if (a !== undefined && a <= 0.999) value.alpha = roundNumber(a)
-  value.hex = hex({ r, g, b })
-  return value
+const toColor = ({ r, g, b, a }: RGB & { a?: number }): ColorValue => {
+  const alpha = a !== undefined && a <= 0.999 ? { alpha: roundNumber(a) } : {}
+  return { colorSpace: 'srgb', components: [roundNumber(r), roundNumber(g), roundNumber(b)], ...alpha, hex: hex({ r, g, b }) }
 }
 
 // Figma does not say whether a number is a size, a weight or an opacity.
 // Scopes say so when they are set.
 // Label of a DTCG type in the report, in plain language.
-const TYPE_LABEL = { dimension: 'une dimension', number: 'un nombre', fontWeight: 'une graisse', fontFamily: 'une police', duration: 'une durée' }
+const TYPE_LABEL: Partial<Record<DtcgType, string>> = { dimension: 'une dimension', number: 'un nombre', fontWeight: 'une graisse', fontFamily: 'une police', duration: 'une durée' }
 
-const TYPE_BY_SCOPE = {
+const TYPE_BY_SCOPE: Partial<Record<VariableScope, DtcgType>> = {
   FONT_WEIGHT: 'fontWeight',
   OPACITY: 'number',
   FONT_SIZE: 'dimension',
@@ -190,7 +284,7 @@ const TYPE_BY_SCOPE = {
 }
 
 // Without a scope, the name is read. This is a guess, and it is flagged.
-const typeByName = (name) => {
+const typeByName = (name: string): DtcgType => {
   const n = name.toLowerCase()
   if (/opacit/.test(n)) return 'number'
   if (/weight|graisse|poids/.test(n)) return 'fontWeight'
@@ -200,12 +294,13 @@ const typeByName = (name) => {
 }
 
 // DTCG type of a variable. Null when no type fits: booleans, free strings.
-const inferType = (variable) => {
+const inferType = (variable: Variable): { type: DtcgType | null; inferred?: boolean } => {
   const scopes = variable.scopes || []
   if (variable.resolvedType === 'COLOR') return { type: 'color' }
   if (variable.resolvedType === 'FLOAT') {
     const scope = scopes.find((s) => TYPE_BY_SCOPE[s])
-    return scope ? { type: TYPE_BY_SCOPE[scope] } : { type: typeByName(variable.name), inferred: true }
+    const scopeType = scope ? TYPE_BY_SCOPE[scope] : undefined
+    return scopeType ? { type: scopeType } : { type: typeByName(variable.name), inferred: true }
   }
   if (variable.resolvedType === 'STRING') {
     if (scopes.includes('FONT_FAMILY')) return { type: 'fontFamily' }
@@ -215,16 +310,16 @@ const inferType = (variable) => {
 }
 
 // The px is canonical in the pivot. Any rem is decided when the CSS is generated.
-const numberValue = (n, type) =>
+const numberValue = (n: number, type: DtcgType): Measure | number =>
   type === 'dimension' ? dimension(n) : type === 'duration' ? toDuration(n) : roundNumber(n)
 
-const WEIGHTS = {
+const WEIGHTS: Record<string, number> = {
   thin: 100, hairline: 100, extralight: 200, ultralight: 200, light: 300,
   regular: 400, normal: 400, book: 400, medium: 500, semibold: 600, demibold: 600,
   bold: 700, extrabold: 800, ultrabold: 800, black: 900, heavy: 900
 }
 // "Italic" or "Oblique" alone, without a weight, is the italic of regular.
-const parseWeight = (figmaStyle) => {
+const parseWeight = (figmaStyle: string): number | undefined => {
   const name = figmaStyle.replace(/italic|oblique/gi, '').replace(/\s+/g, '').toLowerCase()
   return name === '' ? 400 : WEIGHTS[name]
 }
@@ -233,7 +328,7 @@ const parseWeight = (figmaStyle) => {
 // followed by the end of the text or a character that is neither a letter nor a digit.
 // Returns the text that follows the word (replacement, reason), or true if there is
 // none, or undefined when the token is not deprecated.
-const deprecation = (description) => {
+const deprecation = (description: string | undefined): string | true | undefined => {
   const m = /^\s*deprecated(?![\p{L}\p{N}])(.*)$/isu.exec(description || '')
   if (!m) return undefined
   const rest = m[1].replace(/^[\s:.,-]+/, '').trim()
@@ -242,28 +337,28 @@ const deprecation = (description) => {
 
 // The Figma description comes first for a deprecated token, so that the generated
 // comment starts with "Deprecated". Otherwise the generated one comes first.
-const assembleDescription = (generated, figma, isDeprecated) =>
+const assembleDescription = (generated: string | null, figma: string, isDeprecated: string | true | undefined) =>
   (isDeprecated ? [figma, generated] : [generated, figma]).filter(Boolean).join(' ')
 
 // ------------------------------------------------------------- descriptions
 
 // WCAG 2 contrast of a color on a white background: relative luminance channel by
 // channel, compared with the luminance of white (1).
-const relativeLuminance = ({ r, g, b }) => {
-  const channel = (c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
+const relativeLuminance = ({ r, g, b }: RGB) => {
+  const channel = (c: number) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
   return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
 }
-const contrastOnWhite = (components) => (1 + 0.05) / (relativeLuminance(components) + 0.05)
+const contrastOnWhite = (components: RGB) => (1 + 0.05) / (relativeLuminance(components) + 0.05)
 
 // French-style number, without useless decimals: formatDecimalFr(15.04, 1) → "15",
 // formatDecimalFr(1.28, 1) → "1,3".
-const formatDecimalFr = (n, decimals) => {
+const formatDecimalFr = (n: number, decimals: number) => {
   const r = Math.round(n * 10 ** decimals) / 10 ** decimals
   return Number.isInteger(r) ? String(r) : String(r).replace('.', ',')
 }
-const formatPx = (n) => formatDecimalFr(n, 4)
+const formatPx = (n: number) => formatDecimalFr(n, 4)
 const BASE_REM = 16
-const formatRem = (px) => `${roundNumber(px / BASE_REM)}rem`
+const formatRem = (px: number) => `${roundNumber(px / BASE_REM)}rem`
 
 // Grammar of primitive names, in two readings: tolerant (case
 // ignored, dash accepted before the last part, "font/size/16" as well as
@@ -272,7 +367,12 @@ const formatRem = (px) => `${roundNumber(px / BASE_REM)}rem`
 // Primitives page. colorAlpha is checked before colorStep: "color/black-alpha/20"
 // also matches colorStep ("black-alpha" is a valid kebab word),
 // and must remain an alpha shape rather than a step out of the scale.
-const PRIMITIVES_GRAMMAR = [
+interface GrammarEntry {
+  id: string
+  tolerant: RegExp
+  strict: RegExp
+}
+const PRIMITIVES_GRAMMAR: GrammarEntry[] = [
   { id: 'colorWhite', tolerant: /^color\/white$/i, strict: /^color\/white$/ },
   { id: 'colorBlack', tolerant: /^color\/black$/i, strict: /^color\/black$/ },
   { id: 'colorAlpha', tolerant: /^color\/([a-z0-9-]+)-alpha[/-]\d+$/i, strict: /^color\/[a-z0-9]+(?:-[a-z0-9]+)*-alpha\/\d+$/ },
@@ -290,7 +390,7 @@ const PRIMITIVES_GRAMMAR = [
 ]
 
 // Kind of a description, tolerant reading of the grammar above.
-const analyzeName = (name) => {
+const analyzeName = (name: string): { kind: string; m: RegExpExecArray } | null => {
   for (const { id, tolerant } of PRIMITIVES_GRAMMAR) {
     const found = tolerant.exec(name.trim())
     if (found) return { kind: id, m: found }
@@ -301,13 +401,13 @@ const analyzeName = (name) => {
 // Variables of a text style (body/2/regular/font-size): the last segment
 // gives the property, the rest of the name is the style. Description without a value, so
 // identical in all modes.
-const STYLE_PHRASES = {
+const STYLE_PHRASES: Record<string, string> = {
   'font-size': 'Taille de texte',
   'line-height': 'Interligne',
   'font-family': 'Famille de police',
   'font-weight': 'Graisse'
 }
-const styleVariableDescription = (name) => {
+const styleVariableDescription = (name: string) => {
   const segments = name.trim().split('/')
   if (segments.length < 2) return null
   const property = segments[segments.length - 1]
@@ -317,8 +417,12 @@ const styleVariableDescription = (name) => {
 }
 
 // Builds the description generator.
-const buildGenerator = () => {
-  const contrastPhrase = (value) => {
+type DescriptionGenerator = (variable: Variable, value: TokenValue | null | undefined) => string | null
+const isColorValue = (v: unknown): v is ColorValue => isRecord(v) && typeof v.hex === 'string'
+const isPxDimension = (v: unknown): v is Measure => isRecord(v) && v.unit === 'px'
+
+const buildGenerator = (): DescriptionGenerator => {
+  const contrastPhrase = (value: ColorValue) => {
     if (value.alpha !== undefined) return ''
     const [r, g, b] = value.components
     return ` Contraste de ${formatDecimalFr(contrastOnWhite({ r, g, b }), 1)}:1 sur blanc.`
@@ -334,50 +438,48 @@ const buildGenerator = () => {
     if (typeof value === 'string' && value.startsWith('{')) return null
     const kindMatch = analyzeName(variable.name)
     if (!kindMatch) return null
-    const isColor = value && typeof value === 'object' && typeof value.hex === 'string'
-    const isDimension = value && typeof value === 'object' && value.unit === 'px'
 
     switch (kindMatch.kind) {
       case 'colorWhite':
-        if (!isColor) return null
+        if (!isColorValue(value)) return null
         return `Blanc, sans teinte ni palier. ${value.hex.toUpperCase()}.`
       case 'colorBlack':
-        if (!isColor) return null
+        if (!isColorValue(value)) return null
         return `Noir, sans teinte ni palier. ${value.hex.toUpperCase()}.${contrastPhrase(value)}`
       case 'colorAlpha': {
-        if (!isColor) return null
+        if (!isColorValue(value)) return null
         const base = kindMatch.m[1].toLowerCase()
         const label = base === 'black' ? 'Noir' : base === 'white' ? 'Blanc' : `Couleur ${kindMatch.m[1]}`
         const percentage = Math.round((value.alpha !== undefined ? value.alpha : 1) * 100)
         return `${label} à ${percentage} % d'opacité.`
       }
       case 'colorStep':
-        if (!isColor) return null
+        if (!isColorValue(value)) return null
         return `Couleur ${kindMatch.m[1]}, palier ${kindMatch.m[2]}, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. ${value.hex.toUpperCase()}.${contrastPhrase(value)}`
       case 'spacing':
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Espacement de ${formatPx(value.value)} px, soit ${formatRem(value.value)} dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size.`
       case 'size':
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Dimension de ${formatPx(value.value)} px, soit ${formatRem(value.value)} dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing.`
       case 'borderRadiusFull':
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Arrondi complet, qui donne une forme de pilule, ou un cercle sur un élément carré. Vaut ${formatPx(value.value)} px.`
       case 'borderRadius':
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Arrondi d'angle de ${formatPx(value.value)} px.`
       case 'borderWidth':
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Épaisseur de bordure de ${formatPx(value.value)} px.`
       case 'breakpoint':
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Largeur d'écran de ${formatPx(value.value)} px à partir de laquelle la mise en page change. Reste en px dans le code.`
       case 'fontSize': {
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Taille de texte de ${formatPx(value.value)} px, soit ${formatRem(value.value)} dans le code.`
       }
       case 'fontLineHeight': {
-        if (!isDimension) return null
+        if (!isPxDimension(value)) return null
         return `Interligne de ${formatPx(value.value)} px, soit ${formatRem(value.value)} dans le code.`
       }
       case 'fontWeight':
@@ -398,24 +500,24 @@ const buildGenerator = () => {
 // variables of collections whose name starts with "Primitive": semantic
 // tokens are not concerned. Strict reading of PRIMITIVES_GRAMMAR
 // (see above).
-const matchingShape = (name) => PRIMITIVES_GRAMMAR.find((f) => f.strict.test(name)) || null
+const matchingShape = (name: string) => PRIMITIVES_GRAMMAR.find((f) => f.strict.test(name)) || null
 
 // Shapes whose last segment carries a px value comparable to the variable.
 const SHAPES_WITH_VALUE = ['spacing', 'size', 'borderWidth', 'borderRadius', 'fontSize', 'fontLineHeight', 'breakpoint']
 const KNOWN_CATEGORIES = ['color', 'font', 'border', 'spacing', 'size', 'breakpoint']
-const CATEGORY_EXAMPLE = { color: 'color/blue/500', font: 'font/size/16', border: 'border/radius/8', spacing: 'spacing/16', size: 'size/24', breakpoint: 'breakpoint/1024' }
+const CATEGORY_EXAMPLE: Record<string, string> = { color: 'color/blue/500', font: 'font/size/16', border: 'border/radius/8', spacing: 'spacing/16', size: 'size/24', breakpoint: 'breakpoint/1024' }
 const STEPS = ['050', '100', '200', '300', '400', '500', '600', '700', '800', '900']
 
 // An unrecognized shape may only be a final dash in place of a slash
 // before the value: "font/size-16" instead of "font/size/16".
-const lastDashToSlash = (name) => {
+const lastDashToSlash = (name: string) => {
   const i = name.lastIndexOf('-')
   return i === -1 ? null : name.slice(0, i) + '/' + name.slice(i + 1)
 }
-const lastSegment = (name) => name.slice(name.lastIndexOf('/') + 1)
+const lastSegment = (name: string) => name.slice(name.lastIndexOf('/') + 1)
 
 // A single problem per name: the one from the first rule that applies, never two.
-const namingProblem = (variable, collection) => {
+const namingProblem = (variable: Variable, collection: VariableCollection) => {
   const name = variable.name.trim()
 
   // 1. Spelling: lowercase, no accent or space, dash between words.
@@ -452,8 +554,9 @@ const namingProblem = (variable, collection) => {
   if (shape.id === 'colorAlpha') {
     const n = Number(lastSegment(name))
     const raw = variable.valuesByMode[collection.defaultModeId]
-    if (raw && typeof raw === 'object' && raw.type !== 'VARIABLE_ALIAS') {
-      const opacity = Math.round((raw.a !== undefined ? raw.a : 1) * 100)
+    if (raw && typeof raw === 'object' && !isAlias(raw)) {
+      const alpha = 'a' in raw ? raw.a : undefined
+      const opacity = Math.round((alpha !== undefined ? alpha : 1) * 100)
       if (n !== opacity) return `le nom indique ${n} % d'opacité, mais la valeur est de ${opacity} %`
     }
   }
@@ -464,7 +567,7 @@ const namingProblem = (variable, collection) => {
 // Text style names, following the Text styles page of the documentation.
 const STYLE_FAMILIES = ['heading', 'title', 'subtitle', 'body', 'label', 'caption']
 
-const styleProblem = (rawName) => {
+const styleProblem = (rawName: string) => {
   const name = rawName.trim()
   if (!name.split('/').every((p) => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(p))) {
     return "s'écrit en minuscules, sans accent ni espace, avec un tiret entre les mots"
@@ -484,6 +587,23 @@ const styleProblem = (rawName) => {
 // Reads the Figma file and builds the working state that the following steps
 // share: index of collections and variables, initial report, output tree
 // per collection, and the conversion functions that rely on them.
+type Flag = (list: string[], text: string) => void
+type ReferenceOf = (link: VariableAlias | VariableAlias[] | undefined) => Promise<string | null>
+type Place = (segments: string[], token: Token, targetTree: TokenTree, displayName: string) => boolean
+type Convert = (
+  raw: VariableValue | undefined,
+  variable: Variable,
+  type: DtcgType,
+  modeId: string,
+  extensions: TokenExtensions
+) => Promise<TokenValue | null>
+// What is kept of a collection while the file is analyzed.
+interface CollectionInfo {
+  collection: VariableCollection
+  tree: TokenTree
+  contextTrees?: Map<string, TokenTree>
+}
+
 const readFile = async () => {
   const collections = await figma.variables.getLocalVariableCollectionsAsync()
   const variables = await figma.variables.getLocalVariablesAsync()
@@ -491,7 +611,7 @@ const readFile = async () => {
   const collectionById = new Map(collections.map((c) => [c.id, c]))
   const variableById = new Map(variables.map((v) => [v.id, v]))
 
-  const report = {
+  const report: Report = {
     collections: collections.length,
     variables: variables.length,
     exported: 0,
@@ -508,40 +628,41 @@ const readFile = async () => {
     naming: [],
     incompleteStyles: []
   }
-  const flag = (list, text) => { if (!list.includes(text)) list.push(text) }
+  const flag: Flag = (list, text) => { if (!list.includes(text)) list.push(text) }
 
-  const collectionOf = async (variable) =>
+  const collectionOf = async (variable: Variable) =>
     collectionById.get(variable.variableCollectionId) ||
     (await figma.variables.getVariableCollectionByIdAsync(variable.variableCollectionId))
 
   // The token name is the variable name, without the collection: the naming
   // keeps names unique from one collection to another, and a duplicate is reported as a conflict.
-  const pathOf = (variable) => path(variable.name)
+  const pathOf = (variable: Variable) => path(variable.name)
 
   // Figma still returns a deleted variable from its id. Local but
   // absent from the file's variables, it is treated as not found.
-  const variableFrom = async (id) => {
-    if (variableById.has(id)) return variableById.get(id)
+  const variableFrom = async (id: string): Promise<Variable | null> => {
+    const known = variableById.get(id)
+    if (known !== undefined) return known
     const v = await figma.variables.getVariableByIdAsync(id)
     return v && v.remote ? v : null
   }
 
   // DTCG reference of a Figma link to a local variable. Null for a link
   // to another library, BROKEN_LINK for a variable that cannot be found.
-  const referenceOf = async (link) => {
+  const referenceOf: ReferenceOf = async (link) => {
     const alias = Array.isArray(link) ? link[0] : link
-    if (alias?.type !== 'VARIABLE_ALIAS') return null
+    if (!isAlias(alias)) return null
     const target = await variableFrom(alias.id)
     if (!target) return BROKEN_LINK
     return target.remote ? null : reference(pathOf(target))
   }
 
   // Concrete value of a variable, following aliases all the way.
-  const concreteValue = async (variable, modeId, depth = 0) => {
+  const concreteValue = async (variable: Variable, modeId: string, depth = 0): Promise<VariableValue | null | undefined> => {
     const c = await collectionOf(variable)
-    const candidates = [variable.valuesByMode[modeId], variable.valuesByMode[c?.defaultModeId], Object.values(variable.valuesByMode)[0]]
+    const candidates = [variable.valuesByMode[modeId], c ? variable.valuesByMode[c.defaultModeId] : undefined, Object.values(variable.valuesByMode)[0]]
     const raw = candidates.find((v) => v !== undefined)
-    if (raw?.type === 'VARIABLE_ALIAS' && depth < 10) {
+    if (isAlias(raw) && depth < 10) {
       const target = await variableFrom(raw.id)
       return target ? concreteValue(target, modeId, depth + 1) : null
     }
@@ -551,9 +672,9 @@ const readFile = async () => {
   // Converts a Figma value into a DTCG value. A local alias becomes a reference.
   // An alias to an external library is resolved to a value: the reference would
   // point at nothing in this file. The link stays traced in the extensions.
-  const convert = async (raw, variable, type, modeId, extensions) => {
-    let value = raw
-    if (value?.type === 'VARIABLE_ALIAS') {
+  const convert: Convert = async (raw, variable, type, modeId, extensions) => {
+    let value: VariableValue | null | undefined = raw
+    if (isAlias(value)) {
       const target = await variableFrom(value.id)
       if (!target) {
         // In the default mode, the token is excluded. In another mode, it stays
@@ -574,21 +695,22 @@ const readFile = async () => {
       value = await concreteValue(target, modeId)
       if (value === null || value === undefined) return null
     }
-    if (variable.resolvedType === 'COLOR') return toColor(value)
-    if (variable.resolvedType === 'FLOAT') return numberValue(value, type)
-    return value
+    // The type of the variable says what Figma returns as its value.
+    if (variable.resolvedType === 'COLOR') return toColor(value as RGBA)
+    if (variable.resolvedType === 'FLOAT') return numberValue(value as number, type)
+    return value as string
   }
 
   // Roots of all the token trees produced (one per set, one per modifier
   // context): serialization applies group sorting only from
   // these roots, never inside a $value or a $extensions.
-  const groupRoots = new WeakSet()
+  const groupRoots = new WeakSet<object>()
 
   // A single tree, all collections and all styles together, only used
   // to detect name conflicts: sets are merged at resolution, so a
   // conflict between two collections is as real as an internal conflict.
-  const conflictTree = {}
-  const place = (segments, token, targetTree, displayName) => {
+  const conflictTree: TokenTree = {}
+  const place: Place = (segments, token, targetTree, displayName) => {
     if (!put(conflictTree, segments, token)) { report.conflicts.push(displayName); return false }
     put(targetTree, segments, token)
     return true
@@ -596,7 +718,7 @@ const readFile = async () => {
 
   // The date is added later, at serialization (timestampedDoc): the analysis
   // is cached and may serve several submissions or downloads.
-  const doc = {
+  const doc: ResolverDoc = {
     name: figma.root.name,
     version: '2025.10',
     $extensions: { 'fr.axa.canopee': { source: figma.root.name, plugin: VERSION } },
@@ -606,8 +728,8 @@ const readFile = async () => {
   // One output tree per collection, plus, for each collection with several
   // modes, one tree per mode other than the default: it will only receive the tokens
   // whose value differs there from the default mode.
-  const infoByCollection = new Map()
-  const excludedCollections = new Set()
+  const infoByCollection = new Map<string, CollectionInfo>()
+  const excludedCollections = new Set<string>()
   for (const c of collections) {
     // The name of a set identifies its whole collection. Once sanitized, "A.B" and
     // "A-B" give the same one, and Styles is reserved for styles: the duplicate
@@ -615,17 +737,17 @@ const readFile = async () => {
     // which blocks the submission.
     const name = setName(c)
     if (doc.sets[name] || name === SET_STYLES) {
-      const problem = doc.sets[name] ? `même nom que ${collections.find((other) => setName(other) === name).name} dans le code` : 'nom réservé aux styles de texte et d\'effet'
+      const problem = doc.sets[name] ? `même nom que ${collections.find((other) => setName(other) === name)?.name} dans le code` : 'nom réservé aux styles de texte et d\'effet'
       report.conflicts.push(`Collection ${c.name} : ${problem}`)
       excludedCollections.add(c.id)
       continue
     }
-    const tree = {}
+    const tree: TokenTree = {}
     groupRoots.add(tree)
     doc.sets[name] = { sources: [tree] }
-    const info = { collection: c, tree }
+    const info: CollectionInfo = { collection: c, tree }
     if (c.modes.length > 1) {
-      info.contextTrees = new Map(c.modes.filter((m) => m.modeId !== c.defaultModeId).map((m) => [m.modeId, {}]))
+      info.contextTrees = new Map(c.modes.filter((m) => m.modeId !== c.defaultModeId).map((m): [string, TokenTree] => [m.modeId, {}]))
     }
     infoByCollection.set(c.id, info)
   }
@@ -636,7 +758,7 @@ const readFile = async () => {
 
 // Naming of primitives: only the "Primitive…" collections,
 // regardless of whether the variable is exported.
-const checkPrimitivesNaming = (variables, collectionById, report) => {
+const checkPrimitivesNaming = (variables: Variable[], collectionById: Map<string, VariableCollection>, report: Report) => {
   for (const variable of variables) {
     const collection = collectionById.get(variable.variableCollectionId)
     if (!collection || !/^primitive/i.test(collection.name)) continue
@@ -646,7 +768,7 @@ const checkPrimitivesNaming = (variables, collectionById, report) => {
 }
 
 // Naming of text styles, including those that the export excludes afterwards.
-const checkStylesNaming = async (report) => {
+const checkStylesNaming = async (report: Report) => {
   for (const style of await figma.getLocalTextStylesAsync()) {
     const problem = styleProblem(style.name)
     if (problem) report.naming.push(`« ${style.name} » : ${problem}`)
@@ -656,7 +778,17 @@ const checkStylesNaming = async (report) => {
 // Builds the DTCG token of each exportable variable and places it in
 // the tree of its collection, plus one token per mode that differs from the
 // default mode in the context tree of the matching modifier.
-const convertVariables = async (variables, collectionById, infoByCollection, report, flag, pathOf, convert, generateDescription, place) => {
+const convertVariables = async (
+  variables: Variable[],
+  collectionById: Map<string, VariableCollection>,
+  infoByCollection: Map<string, CollectionInfo>,
+  report: Report,
+  flag: Flag,
+  pathOf: (variable: Variable) => string[],
+  convert: Convert,
+  generateDescription: DescriptionGenerator,
+  place: Place
+) => {
   for (const variable of variables) {
     const collection = collectionById.get(variable.variableCollectionId)
     const { type, inferred } = inferType(variable)
@@ -674,7 +806,7 @@ const convertVariables = async (variables, collectionById, infoByCollection, rep
     }
 
     // The keys written in extensions (nomFigma, typeDeduit, alias) are part of the published file format: they keep their names.
-    const extensions = {}
+    const extensions: TokenExtensions = {}
     if (isSanitized(variable.name)) {
       report.sanitizedNames.push(variable.name)
       extensions.nomFigma = variable.name
@@ -689,10 +821,11 @@ const convertVariables = async (variables, collectionById, infoByCollection, rep
     if (defaultValue === null) continue
 
     const info = infoByCollection.get(collection.id)
+    if (!info) continue
 
     // Value of each other mode, to compare with the default mode once
     // the token is built. The computation also feeds the extensions (external alias).
-    const otherModesValues = []
+    const otherModesValues: { modeId: string; value: TokenValue }[] = []
     if (info.contextTrees) {
       for (const m of collection.modes) {
         if (m.modeId === collection.defaultModeId) continue
@@ -708,7 +841,7 @@ const convertVariables = async (variables, collectionById, infoByCollection, rep
     const defaultGenerated = generateDescription(variable, defaultValue)
     const defaultDescription = assembleDescription(defaultGenerated, variable.description, isDeprecated)
 
-    const token = { $type: type, $value: defaultValue }
+    const token: Token = { $type: type, $value: defaultValue }
     if (defaultDescription) token.$description = defaultDescription
     if (isDeprecated !== undefined) token.$deprecated = isDeprecated
     if (Object.keys(extensions).length) token.$extensions = { 'fr.axa.canopee': extensions }
@@ -721,18 +854,19 @@ const convertVariables = async (variables, collectionById, infoByCollection, rep
       if (JSON.stringify(value) !== JSON.stringify(defaultValue)) {
         const contextGenerated = generateDescription(variable, value)
         const contextDescription = assembleDescription(contextGenerated, variable.description, isDeprecated)
-        const contextToken = { ...token, $value: value }
+        const contextToken: Token = { ...token, $value: value }
         if (contextDescription) contextToken.$description = contextDescription
         else delete contextToken.$description
-        put(info.contextTrees.get(modeId), segments, contextToken)
+        const contextTree = info.contextTrees?.get(modeId)
+        if (contextTree) put(contextTree, segments, contextToken)
       }
     }
   }
 }
 
 // Adds text and effect styles in a separate Styles set, if there are any.
-const addStyles = async (doc, groupRoots, report, referenceOf, place, flag) => {
-  const stylesTree = {}
+const addStyles = async (doc: ResolverDoc, groupRoots: WeakSet<object>, report: Report, referenceOf: ReferenceOf, place: Place, flag: Flag) => {
+  const stylesTree: TokenTree = {}
   await addTextStyles(stylesTree, report, referenceOf, place, flag)
   await addEffectStyles(stylesTree, report, referenceOf, place, flag)
   if (Object.keys(stylesTree).length) {
@@ -744,16 +878,16 @@ const addStyles = async (doc, groupRoots, report, referenceOf, place, flag) => {
 // One modifier per collection with several modes: the context of the default mode
 // is empty, the others only carry the tokens whose value differs. Then
 // resolutionOrder, which merges all the sets, then all the modifiers.
-const assembleModifiersAndOrder = (doc, infoByCollection, groupRoots) => {
+const assembleModifiersAndOrder = (doc: ResolverDoc, infoByCollection: Map<string, CollectionInfo>, groupRoots: WeakSet<object>) => {
   for (const info of infoByCollection.values()) {
     if (!info.contextTrees) continue
     if (!doc.modifiers) doc.modifiers = {}
     const c = info.collection
-    const contexts = {}
+    const contexts: Record<string, TokenTree[]> = {}
     for (const m of c.modes) {
       if (m.modeId === c.defaultModeId) { contexts[m.name] = []; continue }
       const modeTree = info.contextTrees.get(m.modeId)
-      if (Object.keys(modeTree).length) {
+      if (modeTree && Object.keys(modeTree).length) {
         groupRoots.add(modeTree)
         contexts[m.name] = [modeTree]
       } else {
@@ -763,7 +897,7 @@ const assembleModifiersAndOrder = (doc, infoByCollection, groupRoots) => {
     doc.modifiers[setName(c)] = { default: c.modes.find((m) => m.modeId === c.defaultModeId)?.name, contexts }
   }
 
-  const escapePointer = (s) => s.replace(/~/g, '~0').replace(/\//g, '~1')
+  const escapePointer = (s: string) => s.replace(/~/g, '~0').replace(/\//g, '~1')
   doc.resolutionOrder = [
     ...Object.keys(doc.sets).map((name) => ({ $ref: `#/sets/${escapePointer(name)}` })),
     ...(doc.modifiers ? Object.keys(doc.modifiers).map((name) => ({ $ref: `#/modifiers/${escapePointer(name)}` })) : [])
@@ -799,7 +933,8 @@ const BROKEN_LINK = 'broken-link'
 
 // Fields of the DTCG typography type: the only ones a Figma variable can
 // replace with a reference (see boundVariables in addTextStyles).
-const TYPOGRAPHY_FIELDS = ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight']
+const TYPOGRAPHY_FIELDS: (keyof TypographyValue)[] = ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight']
+const isTypographyField = (field: string): field is keyof TypographyValue => TYPOGRAPHY_FIELDS.some((f) => f === field)
 
 // Italic, underline and case: stored in $extensions, only when the
 // style uses them. DTCG does not know them, and the code writes them in the CSS
@@ -808,7 +943,7 @@ const TYPOGRAPHY_FIELDS = ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacin
 // value is a Figma style name ("Semibold Italic"), not a CSS font-style.
 const NON_DTCG_TYPOGRAPHY_FIELDS = ['fontStyle', 'textDecoration', 'textTransform']
 
-const addTextStyles = async (stylesTree, report, referenceOf, place, flag) => {
+const addTextStyles = async (stylesTree: TokenTree, report: Report, referenceOf: ReferenceOf, place: Place, flag: Flag) => {
   for (const style of await figma.getLocalTextStylesAsync()) {
     // No DTCG equivalent: the whole style is excluded, not only the line height.
     const { lineHeight: lh, letterSpacing: ls } = style
@@ -818,7 +953,7 @@ const addTextStyles = async (stylesTree, report, referenceOf, place, flag) => {
     }
 
     const weight = parseWeight(style.fontName.style)
-    const value = {
+    const value: TypographyValue = {
       fontFamily: style.fontName.family,
       fontSize: dimension(style.fontSize),
       fontWeight: weight === undefined ? style.fontName.style : weight,
@@ -833,7 +968,7 @@ const addTextStyles = async (stylesTree, report, referenceOf, place, flag) => {
     if (weight === undefined) report.incompleteStyles.push(`${style.name} : graisse « ${style.fontName.style} » non reconnue, exportée telle quelle`)
 
     // See NON_DTCG_TYPOGRAPHY_FIELDS. Fields absent by default.
-    const nonDtcg = {}
+    const nonDtcg: TokenExtensions = {}
     if (/italic/i.test(style.fontName.style)) nonDtcg.fontStyle = 'italic'
     else if (/oblique/i.test(style.fontName.style)) nonDtcg.fontStyle = 'oblique'
     if (style.textDecoration === 'UNDERLINE') nonDtcg.textDecoration = 'underline'
@@ -848,7 +983,7 @@ const addTextStyles = async (stylesTree, report, referenceOf, place, flag) => {
     // A field bound to a variable keeps its reference rather than its value.
     let broken = false
     for (const [field, link] of Object.entries(style.boundVariables || {})) {
-      if (!TYPOGRAPHY_FIELDS.includes(field)) continue
+      if (!isTypographyField(field)) continue
       const ref = await referenceOf(link)
       if (ref === BROKEN_LINK) broken = true
       else if (ref) value[field] = ref
@@ -858,9 +993,10 @@ const addTextStyles = async (stylesTree, report, referenceOf, place, flag) => {
       continue
     }
 
-    const token = { $type: 'typography', $value: value }
+    const token: Token = { $type: 'typography', $value: value }
     if (style.description) token.$description = style.description
-    if (deprecation(style.description) !== undefined) token.$deprecated = deprecation(style.description)
+    const deprecated = deprecation(style.description)
+    if (deprecated !== undefined) token.$deprecated = deprecated
     if (Object.keys(nonDtcg).length) token.$extensions = { 'fr.axa.canopee': nonDtcg }
 
     if (place(['typography', ...path(style.name)], token, stylesTree, style.name)) {
@@ -871,15 +1007,16 @@ const addTextStyles = async (stylesTree, report, referenceOf, place, flag) => {
 }
 
 // Mapping between the fields of a Figma effect and those of a DTCG shadow.
-const SHADOW_FIELDS = { color: 'color', offsetX: 'offsetX', offsetY: 'offsetY', radius: 'blur', spread: 'spread' }
+type ShadowReferenceField = 'color' | 'offsetX' | 'offsetY' | 'blur' | 'spread'
+const SHADOW_FIELDS: Partial<Record<string, ShadowReferenceField>> = { color: 'color', offsetX: 'offsetX', offsetY: 'offsetY', radius: 'blur', spread: 'spread' }
 
-const addEffectStyles = async (stylesTree, report, referenceOf, place, flag) => {
+const addEffectStyles = async (stylesTree: TokenTree, report: Report, referenceOf: ReferenceOf, place: Place, flag: Flag) => {
   for (const style of await figma.getLocalEffectStylesAsync()) {
-    const shadows = []
+    const shadows: ShadowValue[] = []
     let broken = false
     for (const e of style.effects) {
       if ((e.type !== 'DROP_SHADOW' && e.type !== 'INNER_SHADOW') || e.visible === false) continue
-      const shadow = {
+      const shadow: ShadowValue = {
         color: toColor(e.color),
         offsetX: dimension(e.offset.x),
         offsetY: dimension(e.offset.y),
@@ -888,9 +1025,11 @@ const addEffectStyles = async (stylesTree, report, referenceOf, place, flag) => 
         inset: e.type === 'INNER_SHADOW'
       }
       for (const [field, link] of Object.entries(e.boundVariables || {})) {
-        const ref = SHADOW_FIELDS[field] && (await referenceOf(link))
+        const target = SHADOW_FIELDS[field]
+        if (!target) continue
+        const ref = await referenceOf(link)
         if (ref === BROKEN_LINK) broken = true
-        else if (ref) shadow[SHADOW_FIELDS[field]] = ref
+        else if (ref) shadow[target] = ref
       }
       shadows.push(shadow)
     }
@@ -902,9 +1041,10 @@ const addEffectStyles = async (stylesTree, report, referenceOf, place, flag) => 
       report.excluded.push(`${style.name} : effet sans ombre`)
       continue
     }
-    const token = { $type: 'shadow', $value: shadows.length === 1 ? shadows[0] : shadows }
+    const token: Token = { $type: 'shadow', $value: shadows.length === 1 ? shadows[0] : shadows }
     if (style.description) token.$description = style.description
-    if (deprecation(style.description) !== undefined) token.$deprecated = deprecation(style.description)
+    const deprecated = deprecation(style.description)
+    if (deprecated !== undefined) token.$deprecated = deprecated
 
     if (place(['shadow', ...path(style.name)], token, stylesTree, style.name)) {
       report.effectStyles++
@@ -917,15 +1057,15 @@ const addEffectStyles = async (stylesTree, report, referenceOf, place, flag) => 
 
 // Order of the DTCG properties of a token, in a group.
 const ORDER = ['$type', '$value', '$description', '$deprecated', '$extensions']
-const rank = (k) => (ORDER.includes(k) ? ORDER.indexOf(k) : ORDER.length)
-const isNumeric = (k) => /^\d+$/.test(k)
+const rank = (k: string) => (ORDER.includes(k) ? ORDER.indexOf(k) : ORDER.length)
+const isNumeric = (k: string) => /^\d+$/.test(k)
 
 // Order of keys inside a group of tokens: the DTCG properties
 // first, then fully numeric keys sorted by value ("050" before
 // "100" before "900"), then the others, with a simple string comparison.
 // Never used inside a $value or a $extensions, which keep
 // the order in which they were built.
-const tokenGroupKeys = (node) => {
+const tokenGroupKeys = (node: Record<string, unknown>) => {
   const all = Object.keys(node).filter((k) => node[k] !== undefined)
   const dtcg = all.filter((k) => ORDER.includes(k)).sort((a, b) => rank(a) - rank(b))
   const numerics = all.filter((k) => !ORDER.includes(k) && isNumeric(k))
@@ -935,7 +1075,7 @@ const tokenGroupKeys = (node) => {
   return [...dtcg, ...numerics, ...others]
 }
 
-const isSimpleArray = (v) => v.every((e) => typeof e === 'number' || typeof e === 'string' || typeof e === 'boolean')
+const isSimpleArray = (v: unknown[]) => v.every((e) => typeof e === 'number' || typeof e === 'string' || typeof e === 'boolean')
 
 // Home-made serializer: same format as JSON.stringify(v, null, 2) + '\n', with two
 // deliberate differences. First, an array that only contains numbers, strings
@@ -945,8 +1085,7 @@ const isSimpleArray = (v) => v.every((e) => typeof e === 'number' || typeof e ==
 // always puts canonical numeric keys first. This group order
 // is passed on to the children, except under $value and $extensions, which keep
 // their construction order all the way down.
-const val = (v, depth, group, roots) => {
-  if (v === null || typeof v !== 'object') return JSON.stringify(v)
+const val = (v: unknown, depth: number, group: boolean, roots: WeakSet<object>): string => {
   const INDENT = '  '.repeat(depth)
   const INNER_INDENT = '  '.repeat(depth + 1)
   if (Array.isArray(v)) {
@@ -954,6 +1093,7 @@ const val = (v, depth, group, roots) => {
     if (isSimpleArray(v)) return '[' + v.map((e) => JSON.stringify(e)).join(', ') + ']'
     return '[\n' + v.map((e) => INNER_INDENT + val(e, depth + 1, group, roots)).join(',\n') + '\n' + INDENT + ']'
   }
+  if (!isRecord(v)) return JSON.stringify(v)
   const isGroup = group || roots.has(v)
   const keys = isGroup ? tokenGroupKeys(v) : Object.keys(v).filter((k) => v[k] !== undefined)
   if (!keys.length) return '{}'
@@ -964,7 +1104,7 @@ const val = (v, depth, group, roots) => {
   return '{\n' + lines.join(',\n') + '\n' + INDENT + '}'
 }
 
-const toJson = (doc, roots) => val(doc, 0, false, roots) + '\n'
+const toJson = (doc: ResolverDoc, roots: WeakSet<object>) => val(doc, 0, false, roots) + '\n'
 
 // Fixed name: it says what the file contains and does not depend on the name of the Figma file.
 const FILE_NAME = 'design-tokens-canopee.resolver.json'
@@ -972,7 +1112,16 @@ const FILE_NAME = 'design-tokens-canopee.resolver.json'
 // -------------------------------------------------------------------- diff
 
 // A node of the tree is a token, not a group, if it carries a $value.
-const isLeaf = (node) => !!node && typeof node === 'object' && '$value' in node
+const isLeaf = (node: unknown): node is Record<string, unknown> => isRecord(node) && '$value' in node
+
+// A token of a reference file, flattened. Its type and value come from a JSON
+// file: they are inspected before use.
+interface FlatToken extends DiffMeta {
+  path: string
+  type: unknown
+  value: unknown
+  isDeprecated: boolean
+}
 
 // Flattens a token tree into the given table: path (segments joined
 // by "/", like a Figma name) → { path, type, value, isDeprecated }, plus
@@ -980,24 +1129,25 @@ const isLeaf = (node) => !!node && typeof node === 'object' && '$value' in node
 // of the table stays composite (path, modifier, context) for uniqueness,
 // but path never carries the mode: flattenDoc is the one that needs it
 // to tell apart the same path in two different contexts.
-const flattenTree = (tree, table, meta) => {
-  const visit = (node, segments) => {
+const flattenTree = (tree: unknown, table: Map<string, FlatToken>, meta?: { modifier: string; context: string }) => {
+  const visit = (node: unknown, segments: string[]) => {
     if (isLeaf(node)) {
       const path = segments.join('/')
       const key = meta ? `${path}\u0000${meta.modifier}\u0000${meta.context}` : path
       // Non-DTCG fields of a text style are compared along with its value,
       // even though they are stored in $extensions.
       let value = node.$value
-      const extensions = node.$extensions?.['fr.axa.canopee']
-      if (node.$type === 'typography' && value && typeof value === 'object' && extensions) {
-        value = { ...value }
-        for (const field of NON_DTCG_TYPOGRAPHY_FIELDS) if (extensions[field] !== undefined) value[field] = extensions[field]
+      const extensions = isRecord(node.$extensions) ? node.$extensions['fr.axa.canopee'] : undefined
+      if (node.$type === 'typography' && isRecord(value) && isRecord(extensions)) {
+        const merged = { ...value }
+        for (const field of NON_DTCG_TYPOGRAPHY_FIELDS) if (extensions[field] !== undefined) merged[field] = extensions[field]
+        value = merged
       }
-      const token = { path, type: node.$type, value, isDeprecated: node.$deprecated === true || (typeof node.$deprecated === 'string' && node.$deprecated !== '') }
+      const token: FlatToken = { path, type: node.$type, value, isDeprecated: node.$deprecated === true || (typeof node.$deprecated === 'string' && node.$deprecated !== '') }
       table.set(key, meta ? { ...token, modifier: meta.modifier, context: meta.context } : token)
       return
     }
-    if (!node || typeof node !== 'object') return
+    if (!isRecord(node)) return
     for (const [k, v] of Object.entries(node)) visit(v, [...segments, k])
   }
   visit(tree, [])
@@ -1005,15 +1155,22 @@ const flattenTree = (tree, table, meta) => {
 
 // Flattens a whole resolver document: all the sets, then the tokens of the
 // modifier contexts, marked with their modifier and their context.
-const flattenDoc = (doc) => {
-  const table = new Map()
-  for (const set of Object.values(doc?.sets || {})) {
-    const source = set?.sources?.[0]
+// The first element of a list read from a file, if the list is there.
+const firstOf = (list: unknown): unknown => (isRecord(list) ? list[0] : undefined)
+const recordIn = (container: unknown, key: string): Record<string, unknown> => {
+  const found = isRecord(container) ? container[key] : undefined
+  return isRecord(found) ? found : {}
+}
+
+const flattenDoc = (doc: unknown) => {
+  const table = new Map<string, FlatToken>()
+  for (const set of Object.values(recordIn(doc, 'sets'))) {
+    const source = isRecord(set) ? firstOf(set.sources) : undefined
     if (source) flattenTree(source, table)
   }
-  for (const [modifierName, modifier] of Object.entries(doc?.modifiers || {})) {
-    for (const [context, sources] of Object.entries(modifier?.contexts || {})) {
-      const source = sources?.[0]
+  for (const [modifierName, modifier] of Object.entries(recordIn(doc, 'modifiers'))) {
+    for (const [context, sources] of Object.entries(recordIn(modifier, 'contexts'))) {
+      const source = firstOf(sources)
       if (source) flattenTree(source, table, { modifier: modifierName, context })
     }
   }
@@ -1024,7 +1181,7 @@ const flattenDoc = (doc) => {
 // added, a removed, a deprecated, or for before/after of a modified:
 // "style de texte", "ombre", or "ombre à N couches" for an array of
 // several layers. Null for anything that is neither typography nor shadow.
-const compositeValueLabel = (type, value) => {
+const compositeValueLabel = (type: unknown, value: unknown) => {
   if (type === 'typography') return 'style de texte'
   if (type === 'shadow') return Array.isArray(value) ? `ombre à ${value.length} couches` : 'ombre'
   return null
@@ -1035,10 +1192,10 @@ const compositeValueLabel = (type, value) => {
 // duration, as is for a reference, a number or a string, short label
 // for a composite value (see compositeValueLabel), "valeur
 // composite" for everything else: no object is ever output as raw JSON.
-const formatDiffValue = (type, value) => {
+const formatDiffValue = (type: unknown, value: unknown): string => {
   if (typeof value === 'string' && value.startsWith('{')) return value
-  if (type === 'color' && value && typeof value === 'object' && typeof value.hex === 'string') return value.hex.toUpperCase()
-  if ((type === 'dimension' || type === 'duration') && value && typeof value === 'object' && typeof value.value === 'number') {
+  if (type === 'color' && isColorValue(value)) return value.hex.toUpperCase()
+  if ((type === 'dimension' || type === 'duration') && isRecord(value) && typeof value.value === 'number') {
     return `${formatDecimalFr(value.value, 4)} ${type === 'dimension' ? 'px' : 'ms'}`
   }
   if (typeof value === 'number' || typeof value === 'string') return String(value)
@@ -1046,7 +1203,7 @@ const formatDiffValue = (type, value) => {
 }
 
 // French label of a sub-field of a composite value.
-const FIELD_LABEL = {
+const FIELD_LABEL: Record<string, string> = {
   fontFamily: 'police', fontSize: 'taille', fontWeight: 'graisse', lineHeight: 'interligne', letterSpacing: 'espacement des lettres',
   fontStyle: 'style de police', textDecoration: 'décoration du texte', textTransform: 'casse',
   color: 'couleur', offsetX: 'décalage horizontal', offsetY: 'décalage vertical', blur: 'flou', spread: 'étalement', inset: 'intérieure'
@@ -1060,11 +1217,11 @@ const SHADOW_TYPE_FIELDS = ['color', 'offsetX', 'offsetY', 'blur', 'spread', 'in
 // color in uppercase hex, dimension "16 px", boolean "oui" or "non",
 // number or string as is, "aucun" for an absent field (non-DTCG
 // fields of a text style are optional), "valeur composite" otherwise.
-const formatFieldValue = (value) => {
+const formatFieldValue = (value: unknown): string => {
   if (value === undefined) return 'aucun'
   if (typeof value === 'string' && value.startsWith('{')) return value
-  if (value && typeof value === 'object' && typeof value.hex === 'string') return value.hex.toUpperCase()
-  if (value && typeof value === 'object' && typeof value.value === 'number' && value.unit === 'px') return `${formatDecimalFr(value.value, 4)} px`
+  if (isColorValue(value)) return value.hex.toUpperCase()
+  if (isRecord(value) && typeof value.value === 'number' && value.unit === 'px') return `${formatDecimalFr(value.value, 4)} px`
   if (typeof value === 'boolean') return value ? 'oui' : 'non'
   if (typeof value === 'number' || typeof value === 'string') return String(value)
   return 'valeur composite'
@@ -1072,11 +1229,11 @@ const formatFieldValue = (value) => {
 
 // Sub-properties that differ between two objects, in the order of order:
 // [{ field, before, after }]. Ignores properties that are identical on both sides.
-const diffObjectFields = (order, before, after) => {
-  const diffs = []
+const diffObjectFields = (order: readonly string[], before: unknown, after: unknown) => {
+  const diffs: FieldDiff[] = []
   for (const field of order) {
-    const va = before?.[field]
-    const vb = after?.[field]
+    const va = isRecord(before) ? before[field] : undefined
+    const vb = isRecord(after) ? after[field] : undefined
     if (JSON.stringify(va) === JSON.stringify(vb)) continue
     diffs.push({ field: FIELD_LABEL[field] || field, before: formatFieldValue(va), after: formatFieldValue(vb) })
   }
@@ -1088,7 +1245,7 @@ const diffObjectFields = (order, before, after) => {
 // several layers of the same length, one set of fields per layer, prefixed
 // "couche N, ". Undefined as soon as the comparison makes no sense: non-composite
 // type, missing value, or shadow arrays of different lengths.
-const modifiedFields = (type, before, after) => {
+const modifiedFields = (type: unknown, before: unknown, after: unknown): FieldDiff[] | undefined => {
   if (!before || !after || typeof before !== 'object' || typeof after !== 'object') return undefined
   if (type === 'typography') {
     if (Array.isArray(before) || Array.isArray(after)) return undefined
@@ -1101,7 +1258,7 @@ const modifiedFields = (type, before, after) => {
       return diffs.length ? diffs : undefined
     }
     if (Array.isArray(before) && Array.isArray(after) && before.length === after.length) {
-      const fields = []
+      const fields: FieldDiff[] = []
       before.forEach((layer, i) => {
         for (const d of diffObjectFields(SHADOW_TYPE_FIELDS, layer, after[i])) fields.push({ ...d, field: `couche ${i + 1}, ${d.field}` })
       })
@@ -1114,12 +1271,12 @@ const modifiedFields = (type, before, after) => {
 
 // Same natural order of numbers as in the output groups ("050"
 // before "100" before "900"), compared path segment by path segment.
-const compareSegments = (a, b) => {
+const compareSegments = (a: string, b: string) => {
   const na = /^\d+$/.test(a), nb = /^\d+$/.test(b)
   if (na && nb) return Number(a) - Number(b) || a.length - b.length
   return a < b ? -1 : a > b ? 1 : 0
 }
-const comparePaths = (a, b) => {
+const comparePaths = (a: string, b: string) => {
   const sa = a.split('/'), sb = b.split('/')
   for (let i = 0; i < Math.max(sa.length, sb.length); i++) {
     const c = compareSegments(sa[i] ?? '', sb[i] ?? '')
@@ -1133,7 +1290,7 @@ const comparePaths = (a, b) => {
 // change, otherwise no level. Major never comes out of it: the plugin cannot guess
 // a complete redesign, the team ticks it at submission (see submit). Rule
 // proposed to the devs, being validated.
-const diffLevel = (added, modified, removed, deprecated) => {
+const diffLevel = (added: DiffEntry[], modified: ModifiedEntry[], removed: DiffEntry[], deprecated: DiffEntry[]): DiffLevel => {
   if (added.length || removed.length || deprecated.length || modified.some((m) => m.typeChange)) return 'minor'
   if (modified.length) return 'patch'
   return null
@@ -1141,7 +1298,7 @@ const diffLevel = (added, modified, removed, deprecated) => {
 
 // Next version from a starting version ("1.8.0" or "1.8.0-RC.2",
 // the suffix after X.Y.Z is ignored) and a change level. Null without a level.
-const nextVersion = (version, level) => {
+const nextVersion = (version: string, level: DiffLevel) => {
   if (!level) return null
   const m = /^(\d+)\.(\d+)\.(\d+)/.exec(version)
   if (!m) return null
@@ -1168,16 +1325,16 @@ const nextVersion = (version, level) => {
 // or left it. It is then compared with the base token on the other side, and only
 // counts if the two differ. Without a base token on the other side, the
 // context really is added or removed.
-const buildDiff = (currentDoc, referenceDoc, version) => {
+const buildDiff = (currentDoc: unknown, referenceDoc: unknown, version?: string): DiffResult => {
   const current = flattenDoc(currentDoc)
   const reference = flattenDoc(referenceDoc)
 
-  const added = [], modified = [], removed = [], deprecated = []
-  const metaOf = (token) => (token.modifier !== undefined ? { modifier: token.modifier, context: token.context } : {})
-  const different = (a, b) => a.type !== b.type || JSON.stringify(a.value) !== JSON.stringify(b.value)
-  const modifiedEntry = (referenceToken, currentToken, meta) => {
+  const added: DiffEntry[] = [], modified: ModifiedEntry[] = [], removed: DiffEntry[] = [], deprecated: DiffEntry[] = []
+  const metaOf = (token: FlatToken): DiffMeta => (token.modifier !== undefined ? { modifier: token.modifier, context: token.context } : {})
+  const different = (a: FlatToken, b: FlatToken) => a.type !== b.type || JSON.stringify(a.value) !== JSON.stringify(b.value)
+  const modifiedEntry = (referenceToken: FlatToken, currentToken: FlatToken, meta: DiffMeta): ModifiedEntry => {
     const typeChange = referenceToken.type !== currentToken.type
-    const entry = {
+    const entry: ModifiedEntry = {
       path: currentToken.path, ...meta,
       before: formatDiffValue(referenceToken.type, referenceToken.value),
       after: formatDiffValue(currentToken.type, currentToken.value),
@@ -1216,15 +1373,15 @@ const buildDiff = (currentDoc, referenceDoc, version) => {
     }
   }
 
-  const compareContext = (a, b) => { const ca = a || '', cb = b || ''; return ca < cb ? -1 : ca > cb ? 1 : 0 }
-  const byPath = (a, b) => comparePaths(a.path, b.path) || compareContext(a.context, b.context)
+  const compareContext = (a?: string, b?: string) => { const ca = a || '', cb = b || ''; return ca < cb ? -1 : ca > cb ? 1 : 0 }
+  const byPath = (a: DiffMeta & { path: string }, b: DiffMeta & { path: string }) => comparePaths(a.path, b.path) || compareContext(a.context, b.context)
   added.sort(byPath); modified.sort(byPath); removed.sort(byPath); deprecated.sort(byPath)
   const level = diffLevel(added, modified, removed, deprecated)
 
-  const result = { added, modified, removed, deprecated, level }
+  const result: DiffResult = { added, modified, removed, deprecated, level }
   if (version !== undefined) result.nextVersion = nextVersion(version, level)
-  const referenceDate = referenceDoc?.$extensions?.['fr.axa.canopee']?.date
-  if (referenceDate !== undefined) result.referenceDate = referenceDate
+  const referenceDate = recordIn(recordIn(referenceDoc, '$extensions'), 'fr.axa.canopee').date
+  if (typeof referenceDate === 'string') result.referenceDate = referenceDate
   return result
 }
 
@@ -1233,14 +1390,17 @@ const buildDiff = (currentDoc, referenceDoc, version) => {
 // A single error message towards the UI, for all the actions that
 // can fail. The context (verification, comparison, submit or
 // download) tells the UI where to display it.
-const sendError = (e, context) => figma.ui.postMessage({ type: 'error', context, message: e?.message || String(e) })
+const sendError = (e: unknown, context: ErrorContext) => {
+  const message = isRecord(e) ? e.message : undefined
+  post({ type: 'error', context, message: typeof message === 'string' && message ? message : String(e) })
+}
 
 const announceContext = async () => {
   const collections = await figma.variables.getLocalVariableCollectionsAsync()
   const variables = await figma.variables.getLocalVariablesAsync()
   // Only text and effect styles are exported: these are the ones counted.
   const styles = (await figma.getLocalTextStylesAsync()).length + (await figma.getLocalEffectStylesAsync()).length
-  figma.ui.postMessage({ type: 'context', file: figma.root.name, variables: variables.length, styles, collections: collections.length, repoUrls: repoUrls(REPO) })
+  post({ type: 'context', file: figma.root.name, variables: variables.length, styles, collections: collections.length, repoUrls: repoUrls(REPO) })
 }
 
 // ------------------------------------------------------------- cached analysis
@@ -1273,7 +1433,7 @@ const fileSignature = async () => {
 // plugin, date) as before. The analysis itself is cached and may serve
 // several submissions or downloads: each one gets its own date,
 // set only at serialization, never at analysis.
-const timestampedDoc = (doc) => ({
+const timestampedDoc = (doc: ResolverDoc): ResolverDoc => ({
   ...doc,
   $extensions: { 'fr.axa.canopee': { ...doc.$extensions['fr.axa.canopee'], date: exportDate() } }
 })
@@ -1284,9 +1444,14 @@ const timestampedDoc = (doc) => ({
 // diff…). Submit and download go through
 // checkModifications first: a change made just before the click is thus
 // shown in the verification and the diff, not only taken into the JSON.
-let lastAnalysis = null
-let analysisSignature = null
-const analyze = async () => {
+interface Analysis {
+  doc: ResolverDoc
+  report: Report
+  groupRoots: WeakSet<object>
+}
+let lastAnalysis: Analysis | null = null
+let analysisSignature: string | null = null
+const analyze = async (): Promise<Analysis> => {
   const signature = await fileSignature()
   if (lastAnalysis && signature === analysisSignature) return lastAnalysis
   lastAnalysis = await analyzeFile()
@@ -1299,26 +1464,34 @@ const analyze = async () => {
 // Current comparison reference: JSON text and metadata (source,
 // fileName, fileDate, version). Updated on every valid 'compare' received,
 // to recompute the diff without depending on the UI (live update).
-let currentReference = null
+// The reference as the interface sends it, in a 'compare' message.
+interface ComparisonReference {
+  text: string
+  source: ReferenceSource
+  fileName?: string
+  fileDate?: number
+  version?: string
+}
+let currentReference: ComparisonReference | null = null
 
 // Computes the diff between the current export and a reference, and sends it. Used
 // for an explicit 'compare' message as well as for the live update.
-const compareAndSend = async (ref) => {
-  let referenceDoc
+const compareAndSend = async (ref: ComparisonReference) => {
+  let referenceDoc: unknown
   try {
     referenceDoc = JSON.parse(ref.text)
-    if (!referenceDoc || typeof referenceDoc !== 'object' || !referenceDoc.sets) throw new Error('invalide')
+    if (!isRecord(referenceDoc) || !referenceDoc.sets) throw new Error('invalide')
   } catch (e) {
-    figma.ui.postMessage({ type: 'diff', error: "Ce fichier n'est pas un export du plugin." })
+    post({ type: 'diff', error: "Ce fichier n'est pas un export du plugin." })
     return false
   }
   try {
     const { doc } = await analyze()
     const result = buildDiff(doc, referenceDoc, ref.version)
-    const message = { type: 'diff', source: ref.source, fileName: ref.fileName, ...result }
+    const message: DiffResultMessage = { type: 'diff', source: ref.source, fileName: ref.fileName, ...result }
     if (ref.fileDate !== undefined) message.fileDate = ref.fileDate
     if (ref.version !== undefined) message.version = ref.version
-    figma.ui.postMessage(message)
+    post(message)
   } catch (e) {
     sendError(e, 'comparison')
   }
@@ -1329,8 +1502,8 @@ const compareAndSend = async (ref) => {
 
 // Result of the verification, with what blocks the submission. changed tells the
 // UI that the tokens have changed since the previous verification.
-const sendVerification = (report, changed) =>
-  figma.ui.postMessage({ type: 'verification', report, blocker: submitBlocker(report), changed })
+const sendVerification = (report: Report, changed: boolean) =>
+  post({ type: 'verification', report, blocker: submitBlocker(report), changed })
 
 // Replays the verification and the diff when the file has changed since the
 // last analysis (same signature as the one analyze() uses, see above).
@@ -1355,8 +1528,12 @@ const checkModifications = async () => {
 if (typeof setInterval === 'function') setInterval(checkModifications, 2000)
 
 // One handler per type of message received from the UI. Each one receives the
-// whole message; the keys exactly match the original msg.type values.
-const messageHandlers = {
+// whole message; the keys exactly match the msg.type values. The type makes a
+// message type without a handler, or a handler without a message type, an error.
+type MessageHandlers = {
+  [T in UiToPluginMessage['type']]: (msg: Extract<UiToPluginMessage, { type: T }>) => void | Promise<void>
+}
+const messageHandlers: MessageHandlers = {
   // The comparison with the code is started on the UI side, at the first verification.
   ready: async () => {
     await announceContext()
@@ -1393,7 +1570,7 @@ const messageHandlers = {
       // Nothing to do: the preference will simply be written again at the next drag.
     }
     resizeWindow(WIDTH, lastSize.height)
-    figma.ui.postMessage({ type: 'recompute-height' })
+    post({ type: 'recompute-height' })
   },
 
   // Prepares the submission from the current state of Figma: the JSON to paste, the
@@ -1406,14 +1583,14 @@ const messageHandlers = {
       const { doc, groupRoots } = await analyze()
       const finalDoc = timestampedDoc(doc)
       // Without a file in the repo, or if it is unreadable, all tokens count as added.
-      let repoDoc = {}
+      let repoDoc: unknown = {}
       if (msg.repoReference) {
         try { repoDoc = JSON.parse(msg.repoReference) || {} } catch (e) { /* Unreadable JSON: same as without a file */ }
       }
       const urls = repoUrls(REPO)
       const url = msg.repoReference !== null && msg.repoReference !== undefined ? urls.urlEdition : urls.urlCreation
       if (!url) throw new Error("l'emplacement du fichier n'est pas fixé.")
-      figma.ui.postMessage({
+      post({
         type: 'submit-ready',
         json: toJson(finalDoc, groupRoots),
         message: commitMessage(msg.redesign ? 'major' : buildDiff(finalDoc, repoDoc).level),
@@ -1431,7 +1608,7 @@ const messageHandlers = {
   compare: async (msg) => {
     // An invalid reference does not replace the current reference: live
     // update would otherwise send the error back at every change.
-    const reference = { text: msg.reference, source: msg.source, fileName: msg.fileName, fileDate: msg.fileDate, version: msg.version }
+    const reference: ComparisonReference = { text: msg.reference, source: msg.source, fileName: msg.fileName, fileDate: msg.fileDate, version: msg.version }
     if (await compareAndSend(reference)) currentReference = reference
   },
 
@@ -1439,23 +1616,36 @@ const messageHandlers = {
     try {
       await checkModifications()
       const { doc, groupRoots } = await analyze()
-      figma.ui.postMessage({ type: 'file', json: toJson(timestampedDoc(doc), groupRoots), file: FILE_NAME })
+      post({ type: 'file', json: toJson(timestampedDoc(doc), groupRoots), file: FILE_NAME })
     } catch (e) {
       sendError(e, 'download')
     }
   }
 }
 
-figma.ui.onmessage = async (msg) => {
-  const handler = messageHandlers[msg.type]
-  if (handler) await handler(msg)
+// A message of unknown type is ignored.
+figma.ui.onmessage = async (msg: UiToPluginMessage) => {
+  switch (msg.type) {
+    case 'ready': return messageHandlers.ready(msg)
+    case 'resize': return messageHandlers.resize(msg)
+    case 'resize-manual': return messageHandlers['resize-manual'](msg)
+    case 'auto-size': return messageHandlers['auto-size'](msg)
+    case 'submit': return messageHandlers.submit(msg)
+    case 'open': return messageHandlers.open(msg)
+    case 'compare': return messageHandlers.compare(msg)
+    case 'download': return messageHandlers.download(msg)
+    default: {
+      const unhandled: never = msg
+      return unhandled
+    }
+  }
 }
 
 // -------------------------------------------------------------------- test
 
 // Single access point from the test context (npm test): the
 // functions it calls directly, and REPO whose properties it changes.
-var __test = {
+const testHooks = {
   VERSION,
   REPO,
   checkModifications,
@@ -1470,3 +1660,9 @@ var __test = {
   matchingShape,
   styleProblem
 }
+
+declare global {
+  var __test: typeof testHooks
+}
+// Read by the tests through the vm context, never by Figma.
+globalThis.__test = testHooks

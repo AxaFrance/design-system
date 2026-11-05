@@ -1,4 +1,4 @@
-// Integration test: the real ui.html, in jsdom, connected to the real code.js (mock
+// Integration test: the real ui.html, in jsdom, connected to the real dist/code.js (mock
 // plugin) by a bridge that reproduces the one in Figma. It protects the message
 // contract between the two sides, which nothing else tests.
 //
@@ -12,10 +12,12 @@
 
 import { afterEach, describe, expect, it } from 'vitest'
 import { JSDOM, VirtualConsole } from 'jsdom'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { createMockPlugin, type MockData, type MockPlugin, type PluginMessage } from './figma-mock'
 
-const fs = require('fs')
-const path = require('path')
-const { createMockPlugin } = require('./figma-mock.js')
+const HERE = path.dirname(fileURLToPath(import.meta.url))
 
 // Message contract between the UI and the plugin. A type renamed on one side
 // only, or that no journey exercises any more, makes the last test fail.
@@ -24,16 +26,16 @@ const TYPES_PLUGIN_TO_UI = ['context', 'submit-ready', 'diff', 'error', 'file', 
 const typesToPlugin = new Set()
 const typesToUi = new Set()
 
-const HTML = fs.readFileSync(path.join(__dirname, '..', 'ui.html'), 'utf8')
+const HTML = fs.readFileSync(path.join(HERE, '..', 'ui.html'), 'utf8')
 
 // ------------------------------------------------------------------ documents
 
-const alias = (id) => ({ type: 'VARIABLE_ALIAS', id })
+const alias = (id: MockData) => ({ type: 'VARIABLE_ALIAS', id })
 const collectionPrimitives = { id: 'C1', name: 'Primitives', modes: [{ modeId: 'm1', name: 'Mode 1' }], defaultModeId: 'm1' }
-const variable = (id, name, type, value, scopes = []) => ({ id, name: name, resolvedType: type, variableCollectionId: 'C1', scopes, valuesByMode: { m1: value } })
+const variable = (id: MockData, name: MockData, type: MockData, value: MockData, scopes: string[] = []) => ({ id, name: name, resolvedType: type, variableCollectionId: 'C1', scopes, valuesByMode: { m1: value } })
 
 // Document without a problem, in the file where the submission is allowed.
-const healthyDocument = (modifications = {}) => ({
+const healthyDocument = (modifications: { blue?: MockData; noSpacing?: boolean; withExtra?: boolean } = {}) => ({
   fileName: 'Fondations Canopée',
   collections: [collectionPrimitives],
   locals: [
@@ -77,7 +79,7 @@ const breakableDocument = () => {
 }
 
 // The tokens file that a document would produce, to serve as the code file.
-const exportJson = async (doc) => {
+const exportJson = async (doc: MockData) => {
   const plugin = createMockPlugin(doc)
   await plugin.send({ type: 'ready' })
   await plugin.send({ type: 'download' })
@@ -86,25 +88,25 @@ const exportJson = async (doc) => {
 
 // ----------------------------------------------------------------------- UI
 
-const clone = (m) => JSON.parse(JSON.stringify(m))
-const normalize = (text) => text.replace(/\s+/g, ' ').trim()
+const clone = (m: MockData) => JSON.parse(JSON.stringify(m))
+const normalize = (text: MockData) => text.replace(/\s+/g, ' ').trim()
 
-const openedWindows = []
+const openedWindows: MockData[] = []
 
 // Opens ui.html in jsdom, connected to a mock plugin on the given document.
 // repoReference: text of the code file on GitHub, or null if it is not there.
 // pulls: open PRs returned by GitHub. versions: text of the code file at
 // each published version, by number.
-const openUi = async (figmaDocument, { repoReference = null, pulls = [], versions = {} } = {}) => {
+const openUi = async (figmaDocument: MockData, { repoReference = null, pulls = [], versions = {} }: { repoReference?: string | null; pulls?: MockData[]; versions?: Record<string, string> } = {}) => {
   const plugin = createMockPlugin(figmaDocument)
-  const errors = []
-  const downloads = []
-  const copies = []
-  const fetchCalls = []
+  const errors: MockData[] = []
+  const downloads: MockData[] = []
+  const copies: MockData[] = []
+  const fetchCalls: MockData[] = []
   let inProgress = 0
-  const track = (promise) => {
+  const track = (promise: MockData) => {
     inProgress++
-    return promise.then(() => { inProgress-- }, (e) => { inProgress--; errors.push(e) })
+    return promise.then(() => { inProgress-- }, (e: MockData) => { inProgress--; errors.push(e) })
   }
 
   const virtualConsole = new VirtualConsole()
@@ -124,7 +126,7 @@ const openUi = async (figmaDocument, { repoReference = null, pulls = [], version
       // figma.ui.onmessage, outside the caller's stack as in Figma.
       Object.defineProperty(window, 'postMessage', {
         configurable: true,
-        value: (m) => {
+        value: (m: MockData) => {
           typesToPlugin.add(m.pluginMessage.type)
           track(Promise.resolve().then(() => plugin.send(clone(m.pluginMessage))))
         }
@@ -136,7 +138,7 @@ const openUi = async (figmaDocument, { repoReference = null, pulls = [], version
       })
 
       // GitHub, without a network: fixed responses depending on the address called.
-      const response = (status, bodyHtml) => ({
+      const response = (status: MockData, bodyHtml: MockData) => ({
         ok: status >= 200 && status < 300,
         status,
         text: async () => bodyHtml,
@@ -162,7 +164,7 @@ const openUi = async (figmaDocument, { repoReference = null, pulls = [], version
       window.URL.revokeObjectURL = () => {}
       window.scrollTo = () => {}
       // The clipboard, which jsdom does not provide: each copied text is kept.
-      Object.defineProperty(window.navigator, 'clipboard', { configurable: true, value: { writeText: async (text) => { copies.push(text) } } })
+      Object.defineProperty(window.navigator, 'clipboard', { configurable: true, value: { writeText: async (text: MockData) => { copies.push(text) } } })
       // The pointer capture by the handle, which jsdom does not provide either.
       window.Element.prototype.setPointerCapture = () => {}
       window.Element.prototype.hasPointerCapture = () => true
@@ -185,17 +187,17 @@ const openUi = async (figmaDocument, { repoReference = null, pulls = [], version
 
   // The text the person sees: without script or style, without what is hidden.
   const text = () => {
-    const copy = document.body.cloneNode(true)
-    copy.querySelectorAll('script, style, [hidden]').forEach((e) => e.remove())
+    const copy = document.body.cloneNode(true) as HTMLElement
+    copy.querySelectorAll('script, style, [hidden]').forEach((e: MockData) => e.remove())
     return normalize(copy.textContent)
   }
-  const clickable = (label, selector) => {
+  const clickable = (label: MockData, selector: MockData) => {
     const matches = [...document.querySelectorAll(selector)].filter((e) => normalize(e.textContent).startsWith(label))
     expect(matches.length, `${matches.length} elements "${label}"`).toBe(1)
     return matches[0]
   }
-  const button = (label) => clickable(label, 'button')
-  const clickOn = async (element) => {
+  const button = (label: MockData) => clickable(label, 'button')
+  const clickOn = async (element: MockData) => {
     element.click()
     await settle()
   }
@@ -271,7 +273,7 @@ describe('UI and plugin: end-to-end journeys', () => {
     const before = ui.plugin.resizes.length
     // A double click on the handle sends "auto size" to the plugin, which
     // resizes the window then asks the UI for a height recalculation.
-    const handle = ui.document.querySelector('[aria-label="Redimensionner la fenêtre"]')
+    const handle = ui.document.querySelector('[aria-label="Redimensionner la fenêtre"]')!
     expect(handle, 'handle not found').toBeTruthy()
     handle.dispatchEvent(new ui.window.MouseEvent('dblclick', { bubbles: true }))
     await ui.settle()
@@ -333,7 +335,7 @@ describe('UI and plugin: end-to-end journeys', () => {
 
   it('manual resize: the handle saves the size in the machine storage', async () => {
     const ui = await openUi(healthyDocument())
-    const handle = ui.document.querySelector('[aria-label="Redimensionner la fenêtre"]')
+    const handle = ui.document.querySelector('[aria-label="Redimensionner la fenêtre"]')!
     expect(handle, 'handle not found').toBeTruthy()
     expect(ui.plugin.clientStorage.size).toBe(undefined)
     handle.dispatchEvent(new ui.window.PointerEvent('pointerdown', { bubbles: true, pointerId: 1 }))
