@@ -1,0 +1,5 @@
+dist/
+test/fixtures/
+test/__snapshots__/
+*.md
+scripts/extraire.bridge.js

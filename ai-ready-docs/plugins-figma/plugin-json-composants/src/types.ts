@@ -145,7 +145,10 @@ export interface Sheet {
 }
 
 // A sheet reduced to what counts in a change of version.
-export interface ComparableSheet extends Omit<SheetLike, "styles" | "variants"> {
+export interface ComparableSheet extends Omit<
+  SheetLike,
+  "styles" | "variants"
+> {
   styles?: Partial<Styles> | Record<string, VariantStyles>;
   variants?: { values: Config }[];
 }

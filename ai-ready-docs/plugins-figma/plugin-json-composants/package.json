@@ -4,7 +4,11 @@
   "scripts": {
     "build": "vite build --mode code && vite build --mode ui",
     "typecheck": "tsc -p tsconfig.code.json && tsc -p tsconfig.ui.json && tsc -p tsconfig.test.json",
-    "test": "npm run build && vitest run"
+    "test": "npm run build && vitest run",
+    "format": "prettier --write ."
+  },
+  "prettier": {
+    "endOfLine": "auto"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.142.0",

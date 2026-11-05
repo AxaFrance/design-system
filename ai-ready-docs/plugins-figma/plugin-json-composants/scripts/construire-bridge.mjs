@@ -8,34 +8,43 @@
 //   --sortie  file to write (default scripts/extraire.bridge.js)
 // The types are removed with TypeScript (devDependency of the plugin): run npm ci first.
 
-import { readFileSync, writeFileSync } from 'node:fs'
-import { dirname, join, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import ts from 'typescript'
+import { readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import ts from "typescript";
 
-const here = dirname(fileURLToPath(import.meta.url))
-const START = '// >>> DEBUT EXTRACTION'
-const END = '// <<< FIN EXTRACTION'
+const here = dirname(fileURLToPath(import.meta.url));
+const START = "// >>> DEBUT EXTRACTION";
+const END = "// <<< FIN EXTRACTION";
 
-const args = process.argv.slice(2)
+const args = process.argv.slice(2);
 const option = (name) => {
-  const i = args.indexOf(name)
-  return i >= 0 ? args[i + 1] : undefined
-}
-const id = option('--id') || 'ID_DU_COMPONENT_SET'
-const output = resolve(option('--sortie') || join(here, 'extraire.bridge.js'))
+  const i = args.indexOf(name);
+  return i >= 0 ? args[i + 1] : undefined;
+};
+const id = option("--id") || "ID_DU_COMPONENT_SET";
+const output = resolve(option("--sortie") || join(here, "extraire.bridge.js"));
 
 // src/code.ts without its types: the script pasted in figma_execute is plain JavaScript.
-const code = ts.transpileModule(readFileSync(join(here, '..', 'src', 'code.ts'), 'utf8'), {
-  compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.ESNext, removeComments: false }
-}).outputText
-const start = code.indexOf(START)
-const end = code.indexOf(END)
+const code = ts.transpileModule(
+  readFileSync(join(here, "..", "src", "code.ts"), "utf8"),
+  {
+    compilerOptions: {
+      target: ts.ScriptTarget.ES2020,
+      module: ts.ModuleKind.ESNext,
+      removeComments: false,
+    },
+  },
+).outputText;
+const start = code.indexOf(START);
+const end = code.indexOf(END);
 if (start < 0 || end < 0 || end < start) {
-  console.error('Repères introuvables dans src/code.ts : ' + START + ' et ' + END)
-  process.exit(1)
+  console.error(
+    "Repères introuvables dans src/code.ts : " + START + " et " + END,
+  );
+  process.exit(1);
 }
-const core = code.slice(start + START.length, end).trim()
+const core = code.slice(start + START.length, end).trim();
 
 const bridge = `// Généré par scripts/construire-bridge.mjs depuis src/code.ts. Ne pas modifier à la main.
 // À coller tel quel dans un figma_execute, après avoir remplacé l'id ci-dessous par celui
@@ -48,7 +57,7 @@ const bridgeTarget = await figma.getNodeByIdAsync(ID_COMPONENT_SET)
 if (!bridgeTarget) throw new Error('Aucun noeud pour l\\'id ' + ID_COMPONENT_SET)
 if (bridgeTarget.type !== 'COMPONENT_SET' && bridgeTarget.type !== 'COMPONENT') throw new Error('Le noeud ' + ID_COMPONENT_SET + ' est de type ' + bridgeTarget.type + ' : il faut un component set ou un composant.')
 return serialize(await extract(bridgeTarget))
-`
+`;
 
-writeFileSync(output, bridge)
-console.log('Écrit : ' + output + ' (' + bridge.length + ' caractères)')
+writeFileSync(output, bridge);
+console.log("Écrit : " + output + " (" + bridge.length + " caractères)");
