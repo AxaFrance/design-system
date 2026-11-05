@@ -3,9 +3,9 @@
 // ai-ready-docs/b2c/composants/format-json-composant.md (AXA repo, ai-ready-docs branch). Built by Vite into dist/code.js.
 // Derived from the Component as Data kit (Alexis Vaysse, MIT license).
 //
-// Organization: the extraction core sits between the two markers DEBUT and FIN.
+// Organization: the extraction core sits between the two markers START and END.
 // It depends only on the figma object, never on the interface or the network: the script
-// scripts/construire-bridge.mjs copies it as is into a script for figma_execute.
+// scripts/build-bridge.mjs copies it as is into a script for figma_execute.
 // Everything outside the markers talks to the plugin interface, computes the component
 // version and reads the doc rules and the published Canopée versions from GitHub.
 
@@ -47,8 +47,8 @@ import type {
 const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
-// >>> DEBUT EXTRACTION
-const VERSION = "0.4.43";
+// >>> START EXTRACTION
+const VERSION = "0.4.44";
 const FORMAT = "0.4";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -197,8 +197,8 @@ const ATTRIBUTES: Record<string, string> = {
   mainComponent: "component",
 };
 
-// >>> DEBUT REGLES
-// The format rules, written once: scripts/construire-retour.mjs copies this block into
+// >>> START RULES
+// The format rules, written once: scripts/build-round-trip.mjs copies this block into
 // the rebuild script. Pure functions, nothing else from the plugin.
 
 // A value that is an object with named fields.
@@ -289,7 +289,7 @@ function canonical(x: unknown): string {
     );
   return JSON.stringify(x);
 }
-// <<< FIN REGLES
+// <<< END RULES
 
 const camelOK = (s: string): boolean => /^[a-z][a-zA-Z0-9]*$/.test(s);
 const kebabOK = (s: string): boolean => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(s);
@@ -377,7 +377,7 @@ const findOne = (n: Layer, test: (x: Layer) => boolean): Layer | null =>
   n.findOne ? n.findOne(test) : null;
 
 // A read failed: the part of the JSON it was meant to fill is incomplete. The error
-// becomes an issue of level error (rule lecture-impossible) instead of disappearing.
+// becomes an issue of level error (rule read-failed) instead of disappearing.
 function readError(
   ctx: Context,
   location: string,
@@ -1061,13 +1061,13 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
   const last = String(prep.target.name).split("/").pop() || "";
   if (!/^_?[A-Z][a-zA-Z0-9]*$/.test(last))
     addIssue(
-      "composant-nom",
+      "component-name",
       "meta.name",
       "Le nom d'un composant s'écrit en PascalCase, sans espace, statut ni version.",
     );
   else if (/[A-Z]{3,}/.test(last))
     addIssue(
-      "composant-nom",
+      "component-name",
       "meta.name",
       "Un sigle s'écrit comme un mot. Exemple : AiAnswer, et non AIAnswer.",
     );
@@ -1108,7 +1108,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
         : "structure.slots." + name;
     if (name.charAt(0) === "_") {
       addIssue(
-        "prop-hors-nomenclature",
+        "prop-outside-nomenclature",
         where,
         "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore.",
         "info",
@@ -1117,13 +1117,13 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
     }
     if (!camelOK(name))
       addIssue(
-        "prop-nom",
+        "prop-name",
         where,
         "Le nom d'une propriété s'écrit en camelCase, sans espace, tiret, accent ni majuscule initiale.",
       );
     if (SYNONYMS[name])
       addIssue(
-        "prop-synonyme",
+        "prop-synonym",
         where,
         "Nom hors nomenclature : écrire " + SYNONYMS[name] + ".",
       );
@@ -1131,7 +1131,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
     if (isPrefix) {
       const without = name.slice(2);
       addIssue(
-        "prop-prefixe",
+        "prop-prefix",
         where,
         "Pas de préfixe is : écrire " +
           without.charAt(0).toLowerCase() +
@@ -1148,7 +1148,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
         );
       else if (!isPrefix && !/^show[A-Z]/.test(name) && name !== "required")
         addIssue(
-          "prop-booleen",
+          "prop-boolean",
           where,
           "Un booléen d'affichage commence par show. Exemple : showIcon.",
         );
@@ -1158,7 +1158,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
       const invalid = opts.filter((o) => !kebabOK(o));
       if (invalid.length)
         addIssue(
-          "prop-valeur",
+          "prop-value",
           where,
           "Les valeurs s'écrivent en kebab-case, en minuscules, sans espace ni accent : " +
             invalid.join(", ") +
@@ -1169,7 +1169,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
         const outside = opts.filter((o) => fixed.indexOf(o) < 0);
         if (outside.length)
           addIssue(
-            "prop-valeurs",
+            "prop-values",
             where,
             "Valeurs hors nomenclature (" +
               outside.join(", ") +
@@ -1186,7 +1186,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
         const outside = opts.filter((o) => vf.indexOf(o) < 0);
         if (outside.length)
           addIssue(
-            "prop-valeurs",
+            "prop-values",
             where,
             "Valeurs hors nomenclature (" +
               outside.join(", ") +
@@ -1197,7 +1197,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
       }
       if (name === "breakpoint" && opts.some((o) => !/^\d+$/.test(o)))
         addIssue(
-          "prop-valeurs",
+          "prop-values",
           where,
           "Les valeurs de breakpoint sont des largeurs en pixels, sans unité.",
         );
@@ -1206,7 +1206,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
         opts.some((o) => RUNTIME_STATES.indexOf(o.toLowerCase()) >= 0)
       )
         addIssue(
-          "prop-etat",
+          "prop-state",
           where,
           "Cette propriété ressemble à l'état d'interaction : la nommer state, avec les valeurs default, hover, focus, press.",
         );
@@ -1222,14 +1222,10 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
           l.some((n) => n.type === "SLOT" && n.name === name),
         );
       if (!ctl.length && !freeSlot)
-        addIssue(
-          "prop-calque",
-          where,
-          "Cette propriété ne règle aucun calque.",
-        );
+        addIssue("prop-layer", where, "Cette propriété ne règle aucun calque.");
       else if (ctl.length && !ctl.some((c) => c.layer === expected))
         addIssue(
-          "prop-calque",
+          "prop-layer",
           where,
           "Cette propriété remplit le calque " +
             ctl[0].layer +
@@ -1260,7 +1256,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
       seen[sig] = true;
       if (DEFAULT_NAME.test(name)) {
         addIssue(
-          "calque-defaut",
+          "layer-default",
           where,
           "Nom par défaut : nommer le calque par son rôle.",
         );
@@ -1272,7 +1268,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
           (typeof n.characters === "string" && n.characters === name))
       ) {
         addIssue(
-          "calque-texte",
+          "layer-text",
           where,
           "Un calque de texte porte le nom de son rôle, jamais son contenu.",
         );
@@ -1281,7 +1277,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
       if (n.type === "SLOT") {
         if (!camelOK(name))
           addIssue(
-            "calque-casse",
+            "layer-case",
             where,
             "Le calque d'un slot s'écrit en camelCase, comme sa propriété.",
           );
@@ -1289,13 +1285,13 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
       }
       if (!kebabOK(name))
         addIssue(
-          "calque-casse",
+          "layer-case",
           where,
           "Un calque s'écrit en kebab-case, en minuscules, sans espace ni accent.",
         );
       if (name.indexOf(prefix) === 0)
         addIssue(
-          "calque-prefixe",
+          "layer-prefix",
           where,
           "Un calque porte le nom de son rôle, sans reprendre celui du composant. Exemple : label, et non " +
             prefix +
@@ -1306,7 +1302,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
         (/(^|-)(wrapper|group|frame)(-|$)/.test(name) || /-and-/.test(name))
       )
         addIssue(
-          "calque-cadre",
+          "layer-frame",
           where,
           "Un cadre prend son rôle (header, actions), ou content, ou container. Jamais wrapper, group ou frame, et il ne liste pas ce qu'il contient.",
         );
@@ -1315,7 +1311,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
           const mc = await n.getMainComponentAsync();
           if (mc && (name === mc.name || name === componentName(mc)))
             addIssue(
-              "calque-instance",
+              "layer-instance",
               where,
               "Une instance imbriquée prend le nom de son rôle dans le composant, pas celui de son composant d'origine.",
             );
@@ -1328,7 +1324,7 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
   for (const name of Object.keys(boundTexts)) {
     if (!boundTexts[name] && !DEFAULT_NAME.test(name))
       addIssue(
-        "texte-non-relie",
+        "text-not-linked",
         "calque " + name,
         "Ce texte n'est relié à aucune propriété de texte.",
         "info",
@@ -1450,7 +1446,7 @@ function stylesIssues(styles: Partial<Styles>): Issue[] {
       if (o.raw !== 0 && o.raw !== null && !excluded)
         out.push({
           level: "warning",
-          rule: "valeur-brute",
+          rule: "raw-value",
           where: path,
           message: "Valeur brute (" + o.raw + ") : la relier à une variable.",
         });
@@ -1459,7 +1455,7 @@ function stylesIssues(styles: Partial<Styles>): Issue[] {
     if ("unsupported" in o) {
       out.push({
         level: "warning",
-        rule: "peinture",
+        rule: "paint",
         where: path,
         message:
           "Peinture de type " +
@@ -1471,7 +1467,7 @@ function stylesIssues(styles: Partial<Styles>): Issue[] {
     if ("typography" in o && !("textStyle" in o))
       out.push({
         level: "warning",
-        rule: "style-de-texte",
+        rule: "text-style",
         where: path,
         message:
           "Texte sans style de texte : le relier à un style, la typo détaillée est reprise faute de mieux.",
@@ -1783,7 +1779,7 @@ async function extractDetail(
               ? await figma.importComponentSetByKeyAsync(pv.key)
               : await figma.importComponentByKeyAsync(pv.key);
         } catch (e) {
-          // The failure is reported further down by the valeur-preferee issue.
+          // The failure is reported further down by the preferred-value issue.
         }
         const name = n ? registerComponent(ctx, n) : null;
         if (name) pref.push(name);
@@ -1998,7 +1994,7 @@ async function extractDetail(
   for (const name of ctx.collisions)
     issues.push({
       level: "warning",
-      rule: "token-doublon",
+      rule: "token-duplicate",
       where: "tokens." + name,
       message:
         "Deux variables portent ce nom dans des collections ou des bibliothèques différentes : un seul token est indexé.",
@@ -2018,7 +2014,7 @@ async function extractDetail(
   for (const e of ctx.errors)
     issues.push({
       level: "error",
-      rule: "lecture-impossible",
+      rule: "read-failed",
       where: e.where,
       message: e.message,
     });
@@ -2027,7 +2023,7 @@ async function extractDetail(
     const [name, key] = entryKey.split("|");
     issues.push({
       level: "warning",
-      rule: "valeur-preferee",
+      rule: "preferred-value",
       where: "structure.slots." + name,
       message:
         "Le composant préféré de clé " +
@@ -2048,7 +2044,7 @@ async function extractDetail(
     components,
     modeCollections,
     issues: sortIssues(issues),
-    _tool: "canopee-fiches-composants " + VERSION,
+    _tool: "canopee-export-components " + VERSION,
   };
   return { sheet, locations: locateIssues(ctx, prep, sheet.issues, all) };
 }
@@ -2134,7 +2130,7 @@ function sortIssues(list: Issue[]): Issue[] {
 
 const serialize = (sheet: Sheet): string =>
   JSON.stringify(sheet, null, 2) + "\n";
-// <<< FIN EXTRACTION
+// <<< END EXTRACTION
 
 // ------------------------------------------------------------ labels and comparison
 // What follows only serves the interface: none of it enters the sheet.
@@ -2315,9 +2311,9 @@ function changeLabel(l: {
 
 // The classification of what changed between two sheets (objects), single source of the
 // Changements tab and of the changelog. Each change is { category, text } or, for styles,
-// { category: 'modifie', title, lines: [{ label, before, after }] }. The category is 'ajoute',
-// 'modifie', 'retire', or 'exclu' for what the changelog does not include. Accepts the 0.2 and 0.3 formats.
-type Category = "ajoute" | "modifie" | "retire" | "exclu";
+// { category: 'modified', title, lines: [{ label, before, after }] }. The category is 'added',
+// 'modified', 'removed', or 'excluded' for what the changelog does not include. Accepts the 0.2 and 0.3 formats.
+type Category = "added" | "modified" | "removed" | "excluded";
 interface TextChange {
   category: Category;
   text: string;
@@ -2330,7 +2326,7 @@ interface StyleLine {
   after: string;
 }
 interface StyleChange {
-  category: "modifie";
+  category: "modified";
   title: string;
   lines: StyleLine[];
   text?: undefined;
@@ -2357,7 +2353,7 @@ function classifyChanges(
   const removedProps = keys(pa).filter((k) => !(k in pb));
   if (addedProps.length)
     note(
-      "ajoute",
+      "added",
       byCount(
         addedProps.length,
         "Propriété ajoutée : ",
@@ -2366,7 +2362,7 @@ function classifyChanges(
     );
   if (removedProps.length)
     note(
-      "retire",
+      "removed",
       byCount(
         removedProps.length,
         "Propriété retirée : ",
@@ -2381,7 +2377,7 @@ function classifyChanges(
       .filter((k) => k in pb)
       .join("|")
   )
-    note("modifie", "Ordre des propriétés modifié");
+    note("modified", "Ordre des propriétés modifié");
   for (const k of keys(pb).filter((x) => x in pa)) {
     const ea = pa[k].enum || [];
     const eb = pb[k].enum || [];
@@ -2390,17 +2386,17 @@ function classifyChanges(
     const before = sentences.length;
     if (addedValues.length)
       note(
-        "ajoute",
+        "added",
         "Propriété " + k + ", valeurs ajoutées : " + list(addedValues),
       );
     if (removedValues.length)
       note(
-        "retire",
+        "removed",
         "Propriété " + k + ", valeurs retirées : " + list(removedValues),
       );
     if (canonical(pa[k].default) !== canonical(pb[k].default))
       note(
-        "modifie",
+        "modified",
         "Propriété " +
           k +
           ", valeur par défaut : " +
@@ -2413,10 +2409,10 @@ function classifyChanges(
       !removedValues.length &&
       ea.join("|") !== eb.join("|")
     )
-      note("modifie", "Propriété " + k + ", ordre des valeurs modifié");
+      note("modified", "Propriété " + k + ", ordre des valeurs modifié");
     // a property that differs without any line quoting it (its type, for example)
     if (sentences.length === before && canonical(pa[k]) !== canonical(pb[k]))
-      note("modifie", "Propriété " + k + " modifiée");
+      note("modified", "Propriété " + k + " modifiée");
   }
   const sa = (a.structure && a.structure.slots) || {};
   const sb = (b.structure && b.structure.slots) || {};
@@ -2424,13 +2420,13 @@ function classifyChanges(
   const removedSlots = keys(sa).filter((k) => !(k in sb));
   if (addedSlots.length)
     note(
-      "ajoute",
+      "added",
       byCount(addedSlots.length, "Slot ajouté : ", "Slots ajoutés : ") +
         list(addedSlots),
     );
   if (removedSlots.length)
     note(
-      "retire",
+      "removed",
       byCount(removedSlots.length, "Slot retiré : ", "Slots retirés : ") +
         list(removedSlots),
     );
@@ -2440,7 +2436,7 @@ function classifyChanges(
     const tb = sb[k].default && sb[k].default.text;
     if (canonical(ta) !== canonical(tb))
       note(
-        "modifie",
+        "modified",
         "Slot " +
           k +
           ", texte par défaut : " +
@@ -2452,7 +2448,7 @@ function classifyChanges(
     const wb = sb[k].default && sb[k].default.swap;
     if (canonical(wa) !== canonical(wb))
       note(
-        "modifie",
+        "modified",
         "Slot " +
           k +
           ", composant par défaut : " +
@@ -2462,7 +2458,7 @@ function classifyChanges(
       );
     // a slot that differs without any line quoting it
     if (sentences.length === before && canonical(sa[k]) !== canonical(sb[k]))
-      note("modifie", "Slot " + k + " modifié");
+      note("modified", "Slot " + k + " modifié");
   }
 
   // variants
@@ -2487,7 +2483,7 @@ function classifyChanges(
     direction: string,
   ): void => {
     if (!keys2.length) return;
-    const category: Category = direction === "ajoutée" ? "ajoute" : "retire";
+    const category: Category = direction === "ajoutée" ? "added" : "removed";
     if (keys2.length > 5)
       note(category, keys2.length + " variantes " + direction + "s");
     else
@@ -2507,10 +2503,10 @@ function classifyChanges(
     common.join("\u0000") !==
     [...va.keys()].filter((k) => vb.has(k)).join("\u0000")
   )
-    note("modifie", "Ordre des variantes modifié");
+    note("modified", "Ordre des variantes modifié");
   if (moved)
     note(
-      "exclu",
+      "excluded",
       moved +
         " " +
         byCount(moved, "variante déplacée", "variantes déplacées") +
@@ -2660,7 +2656,7 @@ function classifyChanges(
   }
   for (const [which, lines] of byVariants) {
     sentences.push({
-      category: "modifie",
+      category: "modified",
       title: which === "toutes les variantes" ? "Toutes les variantes" : which,
       lines: [...lines.values()].map((l) => ({
         label: changeLabel(l),
@@ -2675,15 +2671,15 @@ function classifyChanges(
     canonical(a.structure && a.structure.trees) !==
     canonical(b.structure && b.structure.trees)
   )
-    note("modifie", "Structure des calques modifiée");
+    note("modified", "Structure des calques modifiée");
   const ta = keys(a.tokens);
   const tb = keys(b.tokens);
   const addedTokens = tb.filter((k) => ta.indexOf(k) < 0);
   const removedTokens = ta.filter((k) => tb.indexOf(k) < 0);
   if (addedTokens.length)
-    note("ajoute", "Variables ajoutées : " + list(addedTokens));
+    note("added", "Variables ajoutées : " + list(addedTokens));
   if (removedTokens.length)
-    note("retire", "Variables retirées : " + list(removedTokens));
+    note("removed", "Variables retirées : " + list(removedTokens));
   // text styles, nested components and mode collections: additions and removals
   const lists: [
     "textStyles" | "components" | "modeCollections",
@@ -2727,12 +2723,12 @@ function classifyChanges(
     const removedKeys = ca.filter((k) => cb.indexOf(k) < 0);
     if (addedKeys.length)
       note(
-        "ajoute",
+        "added",
         byCount(addedKeys.length, oneAddition, manyAdditions) + list(addedKeys),
       );
     if (removedKeys.length)
       note(
-        "retire",
+        "removed",
         byCount(removedKeys.length, oneRemoval, manyRemovals) +
           list(removedKeys),
       );
@@ -2741,33 +2737,33 @@ function classifyChanges(
     canonical(a.meta && a.meta.documentationLinks) !==
     canonical(b.meta && b.meta.documentationLinks)
   )
-    note("modifie", "Lien de documentation modifié");
+    note("modified", "Lien de documentation modifié");
   const nameA = a.meta && a.meta.name;
   const nameB = b.meta && b.meta.name;
   if (canonical(nameA) !== canonical(nameB))
     note(
-      "modifie",
+      "modified",
       "Composant renommé : " + showValue(nameA) + " → " + showValue(nameB),
     );
   const levelA = a.meta && a.meta.templateLevel;
   const levelB = b.meta && b.meta.templateLevel;
   if (canonical(levelA) !== canonical(levelB))
     note(
-      "modifie",
+      "modified",
       "Niveau de template : " + showValue(levelA) + " → " + showValue(levelB),
     );
   const issueCount = (f: SheetLike): number =>
     (f.issues || []).filter((i) => i.level !== "info").length;
   if (issueCount(a) !== issueCount(b))
-    note("exclu", "Défauts : " + issueCount(a) + " → " + issueCount(b));
+    note("excluded", "Défauts : " + issueCount(a) + " → " + issueCount(b));
 
   // safety net: any change that raises the version has at least one line
   if (
     previous &&
-    !sentences.some((p) => p.category !== "exclu") &&
+    !sentences.some((p) => p.category !== "excluded") &&
     canonical(sheetForVersion(a)) !== canonical(sheetForVersion(b))
   )
-    note("modifie", "Autre changement dans le JSON");
+    note("modified", "Autre changement dans le JSON");
 
   return sentences;
 }
@@ -2808,12 +2804,12 @@ const MD_SHEET = "Fiche Markdown modifiée";
 const lowerFirst = (t: string): string =>
   t.charAt(0).toLowerCase() + t.slice(1);
 
-// The changelog entry for the move from one sheet to the other: { ajoute, modifie, retire }.
+// The changelog entry for the move from one sheet to the other: { added, modified, removed }.
 // A style change fits on one line: « size=medium : marges horizontales, 24 → 16 ».
 interface EntryLines {
-  ajoute: string[];
-  modifie: string[];
-  retire: string[];
+  added: string[];
+  modified: string[];
+  removed: string[];
 }
 interface ChangelogEntry extends EntryLines {
   version: string;
@@ -2823,13 +2819,13 @@ function changelogEntry(
   previous: SheetLike | null | undefined,
   next: SheetLike | null | undefined,
 ): EntryLines {
-  const entry: EntryLines = { ajoute: [], modifie: [], retire: [] };
+  const entry: EntryLines = { added: [], modified: [], removed: [] };
   for (const c of classifyChanges(previous, next)) {
-    if (c.category === "exclu") continue;
+    if (c.category === "excluded") continue;
     if (c.title === undefined) entry[c.category].push(c.text);
     else
       for (const l of c.lines)
-        entry.modifie.push(
+        entry.modified.push(
           c.title +
             " : " +
             lowerFirst(l.label) +
@@ -2860,10 +2856,10 @@ function renderChangelog(
   ];
   for (const e of history || []) {
     blocks.push("## " + e.version + " - " + displayedDate(e.date));
-    const sections: ["ajoute" | "modifie" | "retire", string][] = [
-      ["ajoute", "Ajouté"],
-      ["modifie", "Modifié"],
-      ["retire", "Retiré"],
+    const sections: ["added" | "modified" | "removed", string][] = [
+      ["added", "Ajouté"],
+      ["modified", "Modifié"],
+      ["removed", "Retiré"],
     ];
     for (const [key, title] of sections) {
       if (e[key] && e[key].length)
@@ -2912,18 +2908,18 @@ function computeHistory(p: HistoryInput): {
   const emptyEntry = (version: string): ChangelogEntry => ({
     version,
     date,
-    ajoute: [],
-    modifie: [],
-    retire: [],
+    added: [],
+    modified: [],
+    removed: [],
   });
   // the lines specific to the checked boxes: the overhaul at the top of Modifié, the Markdown sheet
   // only if the JSON did not change
   const detail = (e: EntryLines): boolean =>
-    e.ajoute.length > 0 ||
-    e.retire.length > 0 ||
-    e.modifie.some((x) => x !== OVERHAUL && x !== MD_SHEET);
+    e.added.length > 0 ||
+    e.removed.length > 0 ||
+    e.modified.some((x) => x !== OVERHAUL && x !== MD_SHEET);
   const withChoices = (entry: ChangelogEntry): ChangelogEntry => {
-    const modified = entry.modifie.slice();
+    const modified = entry.modified.slice();
     if (choices.overhaul && modified.indexOf(OVERHAUL) < 0)
       modified.unshift(OVERHAUL);
     if (
@@ -2933,7 +2929,7 @@ function computeHistory(p: HistoryInput): {
       modified.indexOf(MD_SHEET) < 0
     )
       modified.push(MD_SHEET);
-    return Object.assign({}, entry, { modifie: modified });
+    return Object.assign({}, entry, { modified: modified });
   };
   // a component exported before the changelog and still at 1.0.0 also starts at its first version
   const bootstrap =
@@ -2942,14 +2938,14 @@ function computeHistory(p: HistoryInput): {
     (chosen.none || chosen.kept);
   if (chosen.first || bootstrap) {
     const e = emptyEntry("1.0.0");
-    e.ajoute.push(FIRST_VERSION);
+    e.added.push(FIRST_VERSION);
     return { history: [e], previous: null };
   }
   if (chosen.none) return { history: stored, previous };
   if (chosen.kept) {
     const v = chosen.version;
     const existing = stored.find((e) => e.version === v);
-    if (existing && existing.ajoute.indexOf(FIRST_VERSION) >= 0) {
+    if (existing && existing.added.indexOf(FIRST_VERSION) >= 0) {
       return {
         history: stored.map((e) =>
           e === existing ? Object.assign({}, e, { date }) : e,
@@ -2963,12 +2959,12 @@ function computeHistory(p: HistoryInput): {
       const computed = changelogEntry(previous, sheet);
       // the overhaul, and the Markdown sheet as long as the JSON did not change, stay in the entry
       const keptLines = existing
-        ? existing.modifie.filter(
+        ? existing.modified.filter(
             (x) => x === OVERHAUL || (x === MD_SHEET && !detail(computed)),
           )
         : [];
       entry = Object.assign(emptyEntry(v), computed, {
-        modifie: keptLines.concat(computed.modifie),
+        modified: keptLines.concat(computed.modified),
       });
     } else {
       // without a previous version, the new lines are added to the existing entry, without duplicates
@@ -2977,15 +2973,15 @@ function computeHistory(p: HistoryInput): {
         ? {
             version: v,
             date,
-            ajoute: existing.ajoute.slice(),
-            modifie: existing.modifie.slice(),
-            retire: existing.retire.slice(),
+            added: existing.added.slice(),
+            modified: existing.modified.slice(),
+            removed: existing.removed.slice(),
           }
         : emptyEntry(v);
-      const keys: ("ajoute" | "modifie" | "retire")[] = [
-        "ajoute",
-        "modifie",
-        "retire",
+      const keys: ("added" | "modified" | "removed")[] = [
+        "added",
+        "modified",
+        "removed",
       ];
       for (const key of keys)
         for (const x of computed[key])
@@ -3011,12 +3007,12 @@ function computeHistory(p: HistoryInput): {
 // Each component has its own version X.Y.Z, independent of the code. It is written in
 // meta.version at export, and the comparison base is the last exported JSON, stored
 // in the component set (see BASE_NAMESPACE).
-const BASE_NAMESPACE = "canopee_fiches";
+const BASE_NAMESPACE = "canopee_sheets";
 const BASE_KEY = "export";
 // The changelog and the previous version are stored in the same namespace, under separate
 // keys: Figma limits each entry to 100 KB.
 const CHANGELOG_KEY = "changelog";
-const PREVIOUS_KEY = "version-precedente";
+const PREVIOUS_KEY = "previous-version";
 
 // The sheet without what never counts in a change: the format, the issues, the tool,
 // the versions, the Figma file name and the Figma keys, the position of the variants on the canvas
@@ -3057,13 +3053,13 @@ function sheetForVersion(sheet: SheetLike | null | undefined): ComparableSheet {
   return out;
 }
 
-// Level of the change between two JSON: 'mineure' (properties, slots, layers, variants),
-// 'correctif' (any other difference) or null (nothing changed). The major level is never
+// Level of the change between two JSON: 'minor' (properties, slots, layers, variants),
+// 'patch' (any other difference) or null (nothing changed). The major level is never
 // guessed: the designer chooses it.
 function changeLevel(
   previous: SheetLike | null | undefined,
   next: SheetLike | null | undefined,
-): "mineure" | "correctif" | null {
+): "minor" | "patch" | null {
   const a = sheetForVersion(previous);
   const b = sheetForVersion(next);
   // properties are compared in their order, as compareSheets does
@@ -3084,22 +3080,22 @@ function changeLevel(
     layers(a) !== layers(b) ||
     variants(a) !== variants(b)
   )
-    return "mineure";
-  return canonical(a) !== canonical(b) ? "correctif" : null;
+    return "minor";
+  return canonical(a) !== canonical(b) ? "patch" : null;
 }
 
 const VERSION_PATTERN = /^(\d+)\.(\d+)\.(\d+)$/;
 
-// Next version after a version X.Y.Z, for a level 'majeure', 'mineure' or 'correctif'.
+// Next version after a version X.Y.Z, for a level 'major', 'minor' or 'patch'.
 function nextVersion(version: unknown, level: string): string | null {
   const m = VERSION_PATTERN.exec(String(version));
   if (!m) return null;
   const x = Number(m[1]),
     y = Number(m[2]),
     z = Number(m[3]);
-  if (level === "majeure") return x + 1 + ".0.0";
-  if (level === "mineure") return x + "." + (y + 1) + ".0";
-  if (level === "correctif") return x + "." + y + "." + (z + 1);
+  if (level === "major") return x + 1 + ".0.0";
+  if (level === "minor") return x + "." + (y + 1) + ".0";
+  if (level === "patch") return x + "." + y + "." + (z + 1);
   return null;
 }
 
@@ -3138,8 +3134,8 @@ function chooseVersion(info: VersionInfo, options?: Choices): Chosen {
     };
   if (choices.overhaul)
     return {
-      version: nextVersion(info.current, "majeure") ?? info.current,
-      level: "majeure",
+      version: nextVersion(info.current, "major") ?? info.current,
+      level: "major",
       first: false,
       none: false,
     };
@@ -3152,8 +3148,8 @@ function chooseVersion(info: VersionInfo, options?: Choices): Chosen {
     };
   if (choices.sheetMd)
     return {
-      version: nextVersion(info.current, "correctif") ?? info.current,
-      level: "correctif",
+      version: nextVersion(info.current, "patch") ?? info.current,
+      level: "patch",
       first: false,
       none: false,
     };
@@ -3286,18 +3282,18 @@ async function computeTokensVersion(
       for (const c of published) union.add(c);
     }
     if (withoutFile === versions.length)
-      return failure("tokens-sans-fichier", NO_FILE_MESSAGE);
+      return failure("tokens-no-file", NO_FILE_MESSAGE);
   } catch (e) {
     const status = isRecord(e) ? e.status : undefined;
     if (status === 403 || status === 429)
-      return failure("tokens-limite-github", GITHUB_LIMIT_MESSAGE);
-    return failure("tokens-injoignables", UNREACHABLE_MESSAGE);
+      return failure("tokens-github-limit", GITHUB_LIMIT_MESSAGE);
+    return failure("tokens-unreachable", UNREACHABLE_MESSAGE);
   }
   const missing = required.filter((r) => !union.has(r.path));
   const issues: Issue[] = missing.length
     ? missing.map((r): Issue => ({
         level: "warning",
-        rule: "token-non-publie",
+        rule: "token-unpublished",
         where: r.where,
         message:
           "Token absent de toutes les versions publiées de Canopée : " +
@@ -3307,7 +3303,7 @@ async function computeTokensVersion(
     : [
         {
           level: "warning",
-          rule: "tokens-sans-version-commune",
+          rule: "tokens-no-common-version",
           where: "meta.tokensVersion",
           message:
             "Aucune version publiée de Canopée ne contient tous les tokens du composant.",
@@ -3509,12 +3505,40 @@ const loadRules = () => {
   return rulesLoading;
 };
 
+// Data written by the versions up to 0.4.43, which named the namespace, one key and the fields
+// of the changelog entries in French. It is read when the new key holds nothing, converted to the
+// new shape, and never written again. This conversion can go once Button, IconButton and the
+// Loader have been exported again with the version 0.4.44 or later.
+const LEGACY_NAMESPACE = "canopee_fiches";
+const LEGACY_KEYS: Record<string, string> = {
+  [PREVIOUS_KEY]: "version-precedente",
+};
+const LEGACY_ENTRY_FIELDS: Record<string, string> = {
+  ajoute: "added",
+  modifie: "modified",
+  retire: "removed",
+  exclu: "excluded",
+};
+function fromLegacyEntry(entry: unknown): unknown {
+  if (!isRecord(entry)) return entry;
+  const converted: Record<string, unknown> = {};
+  for (const field of Object.keys(entry)) {
+    const known = Object.prototype.hasOwnProperty.call(
+      LEGACY_ENTRY_FIELDS,
+      field,
+    );
+    converted[known ? LEGACY_ENTRY_FIELDS[field] : field] = entry[field];
+  }
+  return converted;
+}
+
 // A piece of data stored in the component set, under a key of the namespace. Returns { state, value, text }:
-// state is 'absente' (nothing was written), 'lisible' or 'illisible' (invalid JSON, or wrong
+// state is 'absent' (nothing was written), 'readable' or 'unreadable' (invalid JSON, or wrong
 // shape: an array for the changelog, an object for the JSON). value is null
 // unless the data is readable, and text is the raw string read.
+// The only place that reads the stored data: first the new keys, then the legacy ones.
 interface Stored<T> {
-  state: "absente" | "lisible" | "illisible";
+  state: "absent" | "readable" | "unreadable";
   value: T | null;
   text: string;
 }
@@ -3530,13 +3554,22 @@ function readStored<T>(
   let text = "";
   try {
     text = node.getSharedPluginData(BASE_NAMESPACE, key) || "";
-    if (!text) return { state: "absente", value: null, text: "" };
-    const value: unknown = JSON.parse(text);
+    let legacy = false;
+    if (!text) {
+      text =
+        node.getSharedPluginData(LEGACY_NAMESPACE, LEGACY_KEYS[key] ?? key) ||
+        "";
+      legacy = !!text;
+    }
+    if (!text) return { state: "absent", value: null, text: "" };
+    let value: unknown = JSON.parse(text);
+    if (legacy && key === CHANGELOG_KEY && Array.isArray(value))
+      value = value.map(fromLegacyEntry);
     return isShape(value)
-      ? { state: "lisible", value, text }
-      : { state: "illisible", value: null, text };
+      ? { state: "readable", value, text }
+      : { state: "unreadable", value: null, text };
   } catch (e) {
-    return { state: "illisible", value: null, text };
+    return { state: "unreadable", value: null, text };
   }
 }
 
@@ -3563,7 +3596,7 @@ figma.showUI(__html__, {
 
 // Manual size: dragged from the handle of the interface, kept on the machine
 // (figma.clientStorage), and takes precedence over the automatic height as long as it is active.
-const SIZE_KEY = "taille";
+const SIZE_KEY = "size";
 const MANUAL_BOUNDS = {
   widthMin: 320,
   widthMax: 1000,
@@ -3599,10 +3632,10 @@ const boundManualSize = (
     const size = await figma.clientStorage.getAsync(SIZE_KEY);
     if (
       size &&
-      typeof size.largeur === "number" &&
-      typeof size.hauteur === "number"
+      typeof size.width === "number" &&
+      typeof size.height === "number"
     ) {
-      const bounded = boundManualSize(size.largeur, size.hauteur);
+      const bounded = boundManualSize(size.width, size.height);
       manualSize = true;
       resizeWindow(bounded.width, bounded.height);
     }
@@ -3813,13 +3846,13 @@ async function watch(root: Layer, viaInstance: boolean): Promise<void> {
       )
         return;
       s.stale = true;
-      post({ type: "perime", id: s.id });
+      post({ type: "stale", id: s.id });
       if (s.timer !== null) clearTimeout(s.timer);
       // the card follows renames and added variants, without going through the selection
       s.timer = setTimeout(() => {
         if (watcher !== s) return;
         try {
-          post({ type: "carte", ...describeCard({ node: root, viaInstance }) });
+          post({ type: "card", ...describeCard({ node: root, viaInstance }) });
         } catch (e) {
           // The component is gone: the card keeps its last state.
         }
@@ -3863,7 +3896,7 @@ const describeVersion = (d: Generation): VersionView => ({
   kept: !!d.chosen.kept,
   // the version a delivery would bring: the one of the detected level, or the major if the overhaul is checked
   next: d.info.level
-    ? nextVersion(d.info.current, d.overhaul ? "majeure" : d.info.level)
+    ? nextVersion(d.info.current, d.overhaul ? "major" : d.info.level)
     : null,
 });
 
@@ -3891,31 +3924,31 @@ type Handlers = {
   ) => Promise<void> | void;
 };
 const handlers: Handlers = {
-  "ui-pret": async () => {
+  "ui-ready": async () => {
     post({ type: "init", version: VERSION, format: FORMAT });
     const warning = await loadRules();
-    if (warning) post({ type: "regles", warning });
+    if (warning) post({ type: "rules", warning });
     await sendSelection();
   },
-  controler: async () => {
+  check: async () => {
     const c = await currentTarget();
     if (!c) {
-      post({ type: "controle", id: null, issues: [] });
+      post({ type: "check-result", id: null, issues: [] });
       return;
     }
     const prep = prepare(c.node);
     const issues = sortIssues(await checkNomenclature(prep));
     post({
-      type: "controle",
+      type: "check-result",
       id: c.node.id,
       issues: detailIssues(issues, locateIssues(null, prep, issues, null)),
     });
   },
-  generer: async () => {
+  generate: async () => {
     const c = await currentTarget();
     if (!c) {
       post({
-        type: "erreur",
+        type: "error",
         message: "Sélectionner un composant, ou un ensemble de variantes.",
       });
       return;
@@ -3924,7 +3957,7 @@ const handlers: Handlers = {
     await watch(c.node, c.viaInstance);
     const { sheet, locations } = await extractDetail(c.node, {
       progress: (done: number, total: number) =>
-        post({ type: "progression", done, total }),
+        post({ type: "progress", done, total }),
       computeTokensVersion: (inputs: { tokens: Index; textStyles: Index }) =>
         computeTokensVersion(inputs, githubReader),
     });
@@ -3948,7 +3981,7 @@ const handlers: Handlers = {
       base,
       baseText: baseRead.text,
       unreadable:
-        baseRead.state === "illisible" || historyRead.state === "illisible",
+        baseRead.state === "unreadable" || historyRead.state === "unreadable",
       stored: historyRead.value || [],
       previous: previousRead.value,
       choices: {},
@@ -3960,9 +3993,9 @@ const handlers: Handlers = {
       // Without a readable reference export, the Changements tab stays empty.
     }
     // the designer may have renamed the component before generating
-    post({ type: "carte", ...describeCard(c) });
+    post({ type: "card", ...describeCard(c) });
     post({
-      type: "fiche",
+      type: "sheet",
       id: c.node.id,
       json,
       file: fileName(c.node.name),
@@ -3975,21 +4008,21 @@ const handlers: Handlers = {
     });
     // the interface resets its state when receiving the sheet: a change that happened during the generation is told again
     if (watcher && watcher.id === c.node.id && watcher.stale)
-      post({ type: "perime", id: c.node.id });
-    if (baseRead.state === "illisible")
+      post({ type: "stale", id: c.node.id });
+    if (baseRead.state === "unreadable")
       post({
-        type: "erreur",
+        type: "error",
         message:
           "La dernière version enregistrée est illisible dans le fichier Figma. Le plugin repart de la version 1.0.0, sans toucher au changelog enregistré.",
       });
-    if (historyRead.state === "illisible")
+    if (historyRead.state === "unreadable")
       post({
-        type: "erreur",
+        type: "error",
         message:
           "Le changelog enregistré est illisible dans le fichier Figma. Le plugin ne le remplacera pas.",
       });
   },
-  "choisir-version": async (msg) => {
+  "choose-version": async (msg) => {
     const d = lastGeneration;
     if (!d || d.id !== msg.id) return;
     d.overhaul = !!msg.overhaul;
@@ -4009,7 +4042,7 @@ const handlers: Handlers = {
       changelog: changelogOf(d),
     });
   },
-  selectionner: async (msg) => {
+  select: async (msg) => {
     const nodes: SceneNode[] = [];
     for (const id of msg.ids || []) {
       const n = await figma.getNodeByIdAsync(id);
@@ -4017,7 +4050,7 @@ const handlers: Handlers = {
     }
     if (!nodes.length) {
       post({
-        type: "erreur",
+        type: "error",
         message: "Ces calques n'existent plus. Générer de nouveau le JSON.",
       });
       return;
@@ -4035,27 +4068,27 @@ const handlers: Handlers = {
     figma.currentPage.selection = selected;
     figma.viewport.scrollAndZoomIntoView(selected);
   },
-  redimensionner: (msg) => {
+  resize: (msg) => {
     if (manualSize) return;
     resizeWindow(
       WIDTH,
       Math.min(Math.max(msg.height, AUTO_HEIGHT_MIN), AUTO_HEIGHT_MAX),
     );
   },
-  "redimensionner-manuel": async (msg) => {
+  "resize-manual": async (msg) => {
     const { width, height } = boundManualSize(msg.width, msg.height);
     manualSize = true;
     resizeWindow(width, height);
     try {
       await figma.clientStorage.setAsync(SIZE_KEY, {
-        largeur: width,
-        hauteur: height,
+        width,
+        height,
       });
     } catch (e) {
       // Preference not saved: the size stays applied for this session.
     }
   },
-  "taille-auto": async () => {
+  "auto-size": async () => {
     manualSize = false;
     try {
       await figma.clientStorage.deleteAsync(SIZE_KEY);
@@ -4063,17 +4096,17 @@ const handlers: Handlers = {
       // Nothing to do: the preference will be written again at the next drag.
     }
     resizeWindow(WIDTH, lastSize.height);
-    post({ type: "recalculer-hauteur" });
+    post({ type: "recompute-height" });
   },
   // An export (copy or download): the JSON becomes the comparison base in the component
   // set, so that all designers start from the same version. Nothing is written if another export
   // took place since the generation, and an unreadable changelog or base is never overwritten.
-  memoriser: async (msg) => {
+  "record-export": async (msg) => {
     const d = lastGeneration;
     if (!d || d.id !== msg.id) return;
     if (watcher && watcher.id === d.id && watcher.stale) {
       post({
-        type: "erreur",
+        type: "error",
         message:
           "Le composant a changé depuis cette génération. Rien n'a été enregistré : générer de nouveau le JSON, puis l'exporter.",
       });
@@ -4088,7 +4121,7 @@ const handlers: Handlers = {
     const savedBase = readStored(node, BASE_KEY, isSheetLike).text;
     if (savedBase !== d.baseText && savedBase !== d.written) {
       post({
-        type: "erreur",
+        type: "error",
         message:
           "Un autre export de ce composant a eu lieu depuis cette génération. Rien n'a été enregistré : générer de nouveau le JSON, puis l'exporter.",
       });
@@ -4099,7 +4132,7 @@ const handlers: Handlers = {
       node.setSharedPluginData(BASE_NAMESPACE, BASE_KEY, base);
     } catch (e) {
       post({
-        type: "erreur",
+        type: "error",
         message:
           "La version " +
           d.sheet.meta.version +
@@ -4125,7 +4158,7 @@ const handlers: Handlers = {
         node.setSharedPluginData(BASE_NAMESPACE, key, text);
       } catch (e) {
         post({
-          type: "erreur",
+          type: "error",
           message:
             what +
             " n'a pas pu être enregistré dans le fichier Figma (" +
@@ -4156,31 +4189,31 @@ const handlers: Handlers = {
 figma.ui.onmessage = async (msg: UiToPluginMessage) => {
   try {
     switch (msg.type) {
-      case "ui-pret":
-        return await handlers["ui-pret"](msg);
-      case "controler":
-        return await handlers.controler(msg);
-      case "generer":
-        return await handlers.generer(msg);
-      case "memoriser":
-        return await handlers.memoriser(msg);
-      case "choisir-version":
-        return await handlers["choisir-version"](msg);
-      case "selectionner":
-        return await handlers.selectionner(msg);
-      case "redimensionner":
-        return await handlers.redimensionner(msg);
-      case "redimensionner-manuel":
-        return await handlers["redimensionner-manuel"](msg);
-      case "taille-auto":
-        return await handlers["taille-auto"](msg);
+      case "ui-ready":
+        return await handlers["ui-ready"](msg);
+      case "check":
+        return await handlers.check(msg);
+      case "generate":
+        return await handlers.generate(msg);
+      case "record-export":
+        return await handlers["record-export"](msg);
+      case "choose-version":
+        return await handlers["choose-version"](msg);
+      case "select":
+        return await handlers.select(msg);
+      case "resize":
+        return await handlers.resize(msg);
+      case "resize-manual":
+        return await handlers["resize-manual"](msg);
+      case "auto-size":
+        return await handlers["auto-size"](msg);
       default: {
         const unhandled: never = msg;
         return unhandled;
       }
     }
   } catch (e) {
-    post({ type: "erreur", message: messageOf(e) });
+    post({ type: "error", message: messageOf(e) });
   }
 };
 sendSelection();

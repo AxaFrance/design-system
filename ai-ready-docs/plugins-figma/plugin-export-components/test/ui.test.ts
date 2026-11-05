@@ -33,26 +33,26 @@ const DOCS = path.join(HERE, "..", "..", "..");
 // Message contract between the interface and the plugin. A type renamed on one side only,
 // or that no journey exercises any more, makes the last test fail.
 const TYPES_UI_TO_PLUGIN = [
-  "choisir-version",
-  "controler",
-  "generer",
-  "memoriser",
-  "redimensionner",
-  "redimensionner-manuel",
-  "selectionner",
-  "taille-auto",
-  "ui-pret",
+  "choose-version",
+  "check",
+  "generate",
+  "record-export",
+  "resize",
+  "resize-manual",
+  "select",
+  "auto-size",
+  "ui-ready",
 ];
 const TYPES_PLUGIN_TO_UI = [
-  "carte",
-  "controle",
-  "erreur",
-  "fiche",
+  "card",
+  "check-result",
+  "error",
+  "sheet",
   "init",
-  "perime",
-  "progression",
-  "recalculer-hauteur",
-  "regles",
+  "stale",
+  "progress",
+  "recompute-height",
+  "rules",
   "selection",
   "version",
 ];
@@ -233,9 +233,9 @@ const wideDocument = (): MockData => {
 // The export of the button by a first designer: the JSON becomes the comparison base stored in the file.
 const exportOnce = async (doc: MockData) => {
   const plugin = createFakePlugin(doc);
-  await plugin.send({ type: "ui-pret" });
-  await plugin.send({ type: "generer" });
-  await plugin.send({ type: "memoriser", id: "S:100" });
+  await plugin.send({ type: "ui-ready" });
+  await plugin.send({ type: "generate" });
+  await plugin.send({ type: "record-export", id: "S:100" });
 };
 const addHierarchy = (doc: MockData, value: string) =>
   doc.set.componentPropertyDefinitions.hierarchy.variantOptions.push(value);
@@ -279,7 +279,7 @@ const openUi = async (doc: MockData) => {
     window.dispatchEvent(
       new window.MessageEvent("message", { data: { pluginMessage: clone(m) } }),
     );
-    if (m.type === "progression")
+    if (m.type === "progress")
       duringProgress.push(
         [...window.document.querySelectorAll("button")]
           .map((b) => normalize(b.textContent))
@@ -328,7 +328,7 @@ const openUi = async (doc: MockData) => {
       // What jsdom does not provide.
       w.URL.createObjectURL = (blob) => {
         downloads.push({ blob });
-        return "blob:essai";
+        return "blob:test";
       };
       w.URL.revokeObjectURL = () => {};
       w.scrollTo = () => {};
@@ -459,7 +459,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
     expect(ui.text()).toContain("Aucun composant sélectionné");
     expect(ui.text()).toContain("Sélectionner dans Figma un composant");
     expect(ui.text()).not.toContain("Générer le JSON");
-    expect(ui.sent).toContain("ui-pret");
+    expect(ui.sent).toContain("ui-ready");
     expect(ui.received).toContain("init");
     ui.noError();
     expect(ui.text()).toMatchSnapshot();
@@ -471,8 +471,8 @@ describe("Interface and plugin: end-to-end journeys", () => {
     expect(ui.text()).toContain("2 variantes");
     expect(ui.text()).toContain("4 propriétés");
     expect(ui.text()).toContain("jamais exporté");
-    expect(ui.sent).toContain("controler");
-    expect(ui.received).toContain("controle");
+    expect(ui.sent).toContain("check");
+    expect(ui.received).toContain("check-result");
     expect(ui.text()).toContain("Propriété Size");
     expect(ui.text()).toContain("Le nom d'une propriété s'écrit en camelCase");
     expect(ui.button("Générer le JSON").disabled).toBe(false);
@@ -485,8 +485,8 @@ describe("Interface and plugin: end-to-end journeys", () => {
     const ui = await openUi(buttonDocument());
     const before = ui.text();
     await ui.clickOn(ui.button("Générer le JSON"));
-    expect(ui.sent).toContain("generer");
-    expect(ui.received).toContain("fiche");
+    expect(ui.sent).toContain("generate");
+    expect(ui.received).toContain("sheet");
     expect(ui.text()).toContain("PREMIÈRE VERSION");
     expect(ui.text()).toContain("Version minimale des tokens requise : 2.0.0");
     expect(ui.text()).toContain("Télécharger le JSON");
@@ -553,16 +553,16 @@ describe("Interface and plugin: end-to-end journeys", () => {
   it('(f) "Télécharger le JSON": a file is offered, the success banner appears and the plugin stores the export', async () => {
     const ui = await openUi(buttonDocument());
     await ui.clickOn(ui.button("Générer le JSON"));
-    expect(ui.doc.set.getSharedPluginData("canopee_fiches", "export")).toBe("");
+    expect(ui.doc.set.getSharedPluginData("canopee_sheets", "export")).toBe("");
     await ui.clickOn(ui.button("Télécharger le JSON"));
     expect(ui.downloads.map((d) => d.name)).toStrictEqual(["button.json"]);
     expect(JSON.parse(await downloadedText(ui.downloads[0])).meta.name).toBe(
       "Button",
     );
     expect(ui.text()).toContain("JSON téléchargé.");
-    expect(ui.sent).toContain("memoriser");
+    expect(ui.sent).toContain("record-export");
     expect(
-      JSON.parse(ui.doc.set.getSharedPluginData("canopee_fiches", "export"))
+      JSON.parse(ui.doc.set.getSharedPluginData("canopee_sheets", "export"))
         .meta.version,
     ).toBe("1.0.0");
     ui.noError();
@@ -576,7 +576,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
     expect(ui.copies).toHaveLength(1);
     expect(JSON.parse(ui.copies[0]).meta.name).toBe("Button");
     expect(ui.text()).toContain("JSON copié.");
-    expect(ui.sent.filter((t) => t === "memoriser")).toHaveLength(1);
+    expect(ui.sent.filter((t) => t === "record-export")).toHaveLength(1);
     const afterJson = ui.text();
 
     await ui.clickOn(ui.tab("Changelog"));
@@ -585,7 +585,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
     expect(ui.copies[1]).toMatch(/^# Changelog de Button\n/);
     expect(ui.text()).toContain("Changelog copié.");
     // copying the changelog does not count as an export
-    expect(ui.sent.filter((t) => t === "memoriser")).toHaveLength(1);
+    expect(ui.sent.filter((t) => t === "record-export")).toHaveLength(1);
     ui.noError();
     expect({ afterJson, afterChangelog: ui.text() }).toMatchSnapshot();
   });
@@ -598,7 +598,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
       "Valeur brute (#333333) : la relier à une variable.",
     );
     await ui.clickOn(issue);
-    expect(ui.sent).toContain("selectionner");
+    expect(ui.sent).toContain("select");
     expect(
       Array.from<MockData, string>(
         ui.plugin.figma.currentPage.selection,
@@ -636,7 +636,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
       ],
     });
     await ui.settle();
-    expect(ui.received).toContain("perime");
+    expect(ui.received).toContain("stale");
     expect(ui.text()).toContain(
       "Le composant a changé depuis la génération de ce JSON.",
     );
@@ -646,10 +646,10 @@ describe("Interface and plugin: end-to-end journeys", () => {
 
     // the card follows the component 300 ms after the change
     ui.doc.set.name = "Button principal";
-    const cards = ui.received.filter((t) => t === "carte").length;
+    const cards = ui.received.filter((t) => t === "card").length;
     ui.doc.clock.advance();
     await ui.settle();
-    expect(ui.received.filter((t) => t === "carte")).toHaveLength(cards + 1);
+    expect(ui.received.filter((t) => t === "card")).toHaveLength(cards + 1);
     expect(ui.text()).toContain("Button principal");
 
     await ui.clickOn(ui.button("Générer de nouveau"));
@@ -666,18 +666,18 @@ describe("Interface and plugin: end-to-end journeys", () => {
     await ui.clickOn(ui.button("Générer le JSON"));
     // another designer exports the same component from another copy of the file
     ui.doc.set.setSharedPluginData(
-      "canopee_fiches",
+      "canopee_sheets",
       "export",
       '{"meta":{"version":"1.0.0"}}',
     );
     await ui.clickOn(ui.button("Télécharger le JSON"));
-    expect(ui.sent).toContain("memoriser");
-    expect(ui.received).toContain("erreur");
+    expect(ui.sent).toContain("record-export");
+    expect(ui.received).toContain("error");
     expect(ui.text()).toContain(
       "Un autre export de ce composant a eu lieu depuis cette génération. Rien n'a été enregistré",
     );
     expect(ui.text()).not.toContain("JSON téléchargé.");
-    expect(ui.doc.set.getSharedPluginData("canopee_fiches", "export")).toBe(
+    expect(ui.doc.set.getSharedPluginData("canopee_sheets", "export")).toBe(
       '{"meta":{"version":"1.0.0"}}',
     );
     ui.noError();
@@ -705,20 +705,20 @@ describe("Interface and plugin: end-to-end journeys", () => {
     expect(ui.text()).toContain("MINEURE");
     expect(ui.button("Télécharger le JSON").disabled).toBe(false);
     expect(ui.tab("Changements").textContent).toContain("1");
-    expect(ui.sent.filter((t) => t === "choisir-version")).toHaveLength(1);
+    expect(ui.sent.filter((t) => t === "choose-version")).toHaveLength(1);
     expect(ui.text()).toContain("Refonte complète, passer en 2.0.0");
     const yes = ui.text();
 
     // the overhaul checkbox goes to the next major version
     await ui.clickOn(ui.choice("Refonte complète"));
     expect(ui.text()).toContain("MAJEURE");
-    expect(ui.sent.filter((t) => t === "choisir-version")).toHaveLength(2);
+    expect(ui.sent.filter((t) => t === "choose-version")).toHaveLength(2);
     const overhaul = ui.text();
 
     // « Non »: the version is kept, and the overhaul is dropped
     await ui.clickOn(ui.choice("Non, garder 1.0.0"));
     expect(ui.text()).toContain("VERSION GARDÉE");
-    expect(ui.sent.filter((t) => t === "choisir-version")).toHaveLength(3);
+    expect(ui.sent.filter((t) => t === "choose-version")).toHaveLength(3);
     expect(JSON.parse(ui.panel("JSON du composant")).meta.version).toBe(
       "1.0.0",
     );
@@ -729,7 +729,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
   it("(l) over 40 variants, the button shows the progress of the generation", async () => {
     const ui = await openUi(wideDocument());
     await ui.clickOn(ui.button("Générer le JSON"));
-    expect(ui.received.filter((t) => t === "progression")).toHaveLength(2);
+    expect(ui.received.filter((t) => t === "progress")).toHaveLength(2);
     expect(
       ui.duringProgress.map((buttons) =>
         buttons.find((b: string) => b.startsWith("Génération en cours")),
@@ -745,7 +745,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
 
   it("(m) the rules page cannot be read: the banner tells it", async () => {
     const ui = await openUi(buttonDocument({ network: { rules: "" } }));
-    expect(ui.received).toContain("regles");
+    expect(ui.received).toContain("rules");
     expect(ui.text()).toContain(ui.plugin.__test.UNREADABLE_RULES_MESSAGE);
     ui.noError();
     expect(ui.text()).toMatchSnapshot();
@@ -763,7 +763,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
       },
     });
     await ui.clickOn(ui.button("Générer le JSON"));
-    expect(ui.received).toContain("erreur");
+    expect(ui.received).toContain("error");
     expect(ui.text()).toContain("lecture impossible");
     expect(ui.button("Générer le JSON").disabled).toBe(false);
     Object.defineProperty(doc.set, "componentPropertyDefinitions", {
@@ -802,7 +802,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
 
   it("(p) the window follows the content: the interface sends its height and the plugin resizes", async () => {
     const ui = await openUi(buttonDocument());
-    expect(ui.sent).toContain("redimensionner");
+    expect(ui.sent).toContain("resize");
     // jsdom has no layout: the measured height is the minimum of the automatic height
     expect(ui.plugin.resizes.at(-1)).toStrictEqual([440, 320]);
     ui.noError();
@@ -810,7 +810,7 @@ describe("Interface and plugin: end-to-end journeys", () => {
 
   it("(q) manual resize: the handle saves the size in the machine storage, and a double click goes back to automatic", async () => {
     const ui = await openUi(buttonDocument());
-    expect(ui.plugin.clientStorage.taille).toBe(undefined);
+    expect(ui.plugin.clientStorage.size).toBe(undefined);
     ui.handle().dispatchEvent(
       new ui.window.PointerEvent("pointerdown", {
         bubbles: true,
@@ -829,25 +829,25 @@ describe("Interface and plugin: end-to-end journeys", () => {
       new ui.window.PointerEvent("pointerup", { bubbles: true, pointerId: 1 }),
     );
     await ui.settle();
-    expect(ui.sent).toContain("redimensionner-manuel");
-    expect(clone(ui.plugin.clientStorage.taille)).toStrictEqual({
-      largeur: 520,
-      hauteur: 640,
+    expect(ui.sent).toContain("resize-manual");
+    expect(clone(ui.plugin.clientStorage.size)).toStrictEqual({
+      width: 520,
+      height: 640,
     });
     expect(ui.plugin.resizes.at(-1)).toStrictEqual([520, 640]);
 
     // a double click: the stored size is forgotten, the plugin asks the interface to measure again
-    const before = ui.sent.filter((t) => t === "redimensionner").length;
+    const before = ui.sent.filter((t) => t === "resize").length;
     ui.handle().dispatchEvent(
       new ui.window.MouseEvent("dblclick", { bubbles: true }),
     );
     await ui.settle();
-    expect(ui.sent).toContain("taille-auto");
-    expect(ui.received).toContain("recalculer-hauteur");
-    expect(ui.plugin.clientStorage.taille).toBe(undefined);
-    expect(
-      ui.sent.filter((t) => t === "redimensionner").length,
-    ).toBeGreaterThan(before);
+    expect(ui.sent).toContain("auto-size");
+    expect(ui.received).toContain("recompute-height");
+    expect(ui.plugin.clientStorage.size).toBe(undefined);
+    expect(ui.sent.filter((t) => t === "resize").length).toBeGreaterThan(
+      before,
+    );
     expect(ui.plugin.resizes.at(-1)).toStrictEqual([440, 320]);
     ui.noError();
     expect(ui.text()).toMatchSnapshot();

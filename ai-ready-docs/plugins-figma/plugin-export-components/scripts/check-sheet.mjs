@@ -5,7 +5,7 @@
 // version newer than meta.version), each open point says what applies in the meantime,
 // the documentation link set in Figma appears in the Code section, the level of a template
 // is block, section or page, and the instruction for the AI closes the sheet.
-// Usage: node scripts/verifier-fiche.mjs ../../b2c/composants/button/button.md ../../b2c/composants/button/button.json
+// Usage: node scripts/check-sheet.mjs ../../b2c/composants/button/button.md ../../b2c/composants/button/button.json
 // The outline is read in the parent folder of the sheet. Exit code 1 if there is an error, 0 otherwise (the
 // remarks do not prevent exit code 0).
 import { readFileSync } from "node:fs";
@@ -13,9 +13,7 @@ import { dirname, join } from "node:path";
 
 const [mdPath, jsonPath] = process.argv.slice(2);
 if (!mdPath || !jsonPath) {
-  console.error(
-    "Usage : node scripts/verifier-fiche.mjs <fiche.md> <fiche.json>",
-  );
+  console.error("Usage : node scripts/check-sheet.mjs <fiche.md> <fiche.json>");
   process.exit(2);
 }
 const md = readFileSync(mdPath, "utf8");

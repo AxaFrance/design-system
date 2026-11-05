@@ -1,6 +1,6 @@
 {
   "name": "Canopée, composants",
-  "id": "canopee-fiches-composants",
+  "id": "canopee-export-components",
   "api": "1.0.0",
   "main": "dist/code.js",
   "ui": "dist/ui.html",

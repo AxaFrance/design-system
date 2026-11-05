@@ -102,7 +102,7 @@ const page = (name: string, children: MockData[] = []): MockData => {
     const n: MockData = {
       type: e.type,
       name: e.name,
-      getPluginData: (key: string) => (key === "marque" && e.mark) || "",
+      getPluginData: (key: string) => (key === "mark" && e.mark) || "",
       remove: () => {
         p.children.splice(p.children.indexOf(n), 1);
       },

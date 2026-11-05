@@ -1,6 +1,6 @@
-// Template of scripts/reconstruire.bridge.js. Do not paste as is: scripts/construire-retour.mjs
+// Template of scripts/rebuild.bridge.js. Do not paste as is: scripts/build-round-trip.mjs
 // injects into it the JSON of the sheet, the configuration and the format rules (taken from src/code.ts),
-// and writes scripts/reconstruire.bridge.js.
+// and writes scripts/rebuild.bridge.js.
 //
 // Rebuilds a component in Figma from its JSON alone, to test the round trip
 // of the format. Writes only in the file and on the page of the configuration (by default, the test
@@ -8,13 +8,13 @@
 // It reads nothing but the JSON: if information is missing, it stops with an error.
 // Only these come from the configuration: the file, the page, the name of the rebuilt set,
 // the mark of the layers and the position of the result on the page (CONFIG.x, CONFIG.y).
-const SHEET = __FICHE__;
+const SHEET = __SHEET__;
 const CONFIG = __CONFIG__;
 
 const FILE_KEY = CONFIG.file || "UWk4fT45i82ESNhGaAnj6p";
 const PAGE = CONFIG.page || "Test - Components AI-ready";
 const SET_NAME = CONFIG.name || "Retour/" + SHEET.meta.name;
-const MARK = CONFIG.mark || "retour-" + kebab(SHEET.meta.name);
+const MARK = CONFIG.mark || "round-trip-" + kebab(SHEET.meta.name);
 
 if (figma.fileKey !== FILE_KEY)
   throw new Error(
@@ -24,14 +24,14 @@ const page = figma.root.children.find((p) => p.name === PAGE);
 if (!page) throw new Error("Page introuvable : " + PAGE);
 await figma.setCurrentPageAsync(page);
 
-// contournements: what the script had to look for elsewhere than in the JSON. Must stay empty.
-// horsFormat: presentation choices that the format deliberately does not carry.
+// workarounds: what the script had to look for elsewhere than in the JSON. Must stay empty.
+// outOfFormat: presentation choices that the format deliberately does not carry.
 const report = {
-  etape: CONFIG.etape,
-  contournements: {},
-  horsFormat: [],
+  step: CONFIG.step,
+  workarounds: {},
+  outOfFormat: [],
   ignores: [],
-  erreurs: [],
+  errors: [],
 };
 
 // ------------------------------------------------------------ cleanup (only our nodes)
@@ -40,7 +40,7 @@ function removeLeftovers() {
   for (const n of [...page.children]) {
     const isSet = n.type === "COMPONENT_SET" && n.name === SET_NAME;
     const isLeftover =
-      n.type === "COMPONENT" && n.getPluginData("marque") === MARK;
+      n.type === "COMPONENT" && n.getPluginData("mark") === MARK;
     if (isSet || isLeftover) {
       removed.push(n.type + " " + n.name);
       n.remove();
@@ -49,8 +49,8 @@ function removeLeftovers() {
   return removed;
 }
 
-if (CONFIG.etape === "supprimer") {
-  report.supprimes = removeLeftovers();
+if (CONFIG.step === "delete") {
+  report.deleted = removeLeftovers();
   return JSON.stringify(report);
 }
 
@@ -191,7 +191,7 @@ async function readPaint(x) {
 
 // ------------------------------------------------------------ effective styles of a variant
 // The rules (matches, effectiveStyles, canonical, applicableTree, kebab) come from src/code.ts, copied here at generation.
-__REGLES__;
+__RULES__;
 
 function treeOf(cfg) {
   return applicableTree(SHEET.structure.trees, cfg).tree;
@@ -340,7 +340,7 @@ async function createVariant(v) {
   const eff = effectiveStyles(SHEET.styles, cfg);
   const comp = figma.createComponent();
   comp.name = name;
-  comp.setPluginData("marque", MARK);
+  comp.setPluginData("mark", MARK);
   comp.x = 0;
   comp.y = 0;
   try {
@@ -410,30 +410,31 @@ async function createVariant(v) {
 
 // ------------------------------------------------------------ steps
 const variants = SHEET.variants;
-const de = CONFIG.from === undefined ? 0 : CONFIG.from;
-const a =
+const startIndex = CONFIG.from === undefined ? 0 : CONFIG.from;
+const endIndex =
   CONFIG.to === undefined
     ? variants.length
     : Math.min(CONFIG.to, variants.length);
 
-if (CONFIG.etape === "tout" || CONFIG.etape === "creer") {
-  if (de === 0) report.supprimes = removeLeftovers();
+if (CONFIG.step === "all" || CONFIG.step === "create") {
+  if (startIndex === 0) report.deleted = removeLeftovers();
   const t0 = Date.now();
   try {
-    for (let i = de; i < a; i++) await createVariant(variants[i]);
+    for (let i = startIndex; i < endIndex; i++)
+      await createVariant(variants[i]);
   } catch (e) {
-    report.erreurs.push(String((e && e.message) || e));
-    report.supprimes = (report.supprimes || []).concat(removeLeftovers());
+    report.errors.push(String((e && e.message) || e));
+    report.deleted = (report.deleted || []).concat(removeLeftovers());
     return JSON.stringify(report);
   }
-  report.created = a - de;
+  report.created = endIndex - startIndex;
   report.ms = Date.now() - t0;
 }
 
-if (CONFIG.etape === "tout" || CONFIG.etape === "assembler") {
+if (CONFIG.step === "all" || CONFIG.step === "assemble") {
   try {
     const comps = page.children.filter(
-      (n) => n.type === "COMPONENT" && n.getPluginData("marque") === MARK,
+      (n) => n.type === "COMPONENT" && n.getPluginData("mark") === MARK,
     );
     if (comps.length !== variants.length)
       throw new Error(
@@ -461,7 +462,7 @@ if (CONFIG.etape === "tout" || CONFIG.etape === "assembler") {
       maxY = Math.max(maxY, c.y + c.height);
     });
     variantSet.resizeWithoutConstraints(maxX + 64, maxY + 64);
-    report.horsFormat.push(
+    report.outOfFormat.push(
       "Taille de l'ensemble = emprise des variantes + 64 : le JSON ne porte ni la taille, ni le cadre de l'ensemble (présentation sur le canevas).",
     );
     variantSet.documentationLinks = (
@@ -544,7 +545,7 @@ if (CONFIG.etape === "tout" || CONFIG.etape === "assembler") {
         ? Math.max(...others.map((n) => n.y + n.height)) + 200
         : 0;
     }
-    report.horsFormat.push(
+    report.outOfFormat.push(
       "Emplacement de l'ensemble sur la page : choisi par la configuration, pas par le JSON.",
     );
     report.variantSet = {
@@ -557,8 +558,8 @@ if (CONFIG.etape === "tout" || CONFIG.etape === "assembler") {
       keys,
     };
   } catch (e) {
-    report.erreurs.push(String((e && e.message) || e));
-    report.supprimes = (report.supprimes || []).concat(removeLeftovers());
+    report.errors.push(String((e && e.message) || e));
+    report.deleted = (report.deleted || []).concat(removeLeftovers());
   }
 }
 return JSON.stringify(report);

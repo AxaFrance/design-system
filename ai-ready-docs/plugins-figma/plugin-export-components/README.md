@@ -13,7 +13,7 @@ Le plugin s'importe depuis un manifeste local, sans publication.
 3. Dans Figma Desktop : `Plugins → Development → Import plugin from manifest…`
 4. Choisir `manifest.json`.
 
-Il apparaît ensuite dans `Plugins → Development`, sous le nom « Canopée, composants ». Figma relit `dist/` à chaque lancement : après `npm run build`, une nouvelle version s'applique sans réimporter. Son identifiant technique reste `canopee-fiches-composants` : le changer obligerait à réimporter le plugin et effacerait la taille de fenêtre retenue.
+Il apparaît ensuite dans `Plugins → Development`, sous le nom « Canopée, composants ». Figma relit `dist/` à chaque lancement : après `npm run build`, une nouvelle version s'applique sans réimporter. Son identifiant technique est `canopee-export-components`. Jusqu'à la version 0.4.43, il était `canopee-fiches-composants` : le plugin se réimporte alors depuis le manifeste, et la taille de fenêtre retenue est perdue une fois.
 
 ## Utiliser
 
@@ -48,7 +48,7 @@ Chaque composant a sa propre version `X.Y.Z`, indépendante de celle du code. Un
 - Rien n'a changé : la version reste la même. Si seule la fiche Markdown a changé, la case « Fiche md modifiée » donne un patch.
 - Tant que rien n'est livré aux devs, la réponse « Non, garder » exporte les changements sous la version courante. L'export remplace la base enregistrée, donc ces changements ne comptent plus à l'export suivant.
 
-La version précédente et la base de comparaison sont lues dans le component set, au namespace `canopee_fiches` et à la clé `export` (`getSharedPluginData`). Si cette donnée n'existe pas, le composant n'a pas de version et reçoit `1.0.0`. Si l'écriture de la base échoue, par exemple à cause de la taille, le plugin affiche l'erreur dans la fenêtre et n'écrit ni l'historique ni la version précédente : la version n'est alors pas enregistrée, et le prochain export repart de la version précédente.
+La version précédente et la base de comparaison sont lues dans le component set, au namespace `canopee_sheets` et à la clé `export` (`getSharedPluginData`). Si cette donnée n'existe pas, le composant n'a pas de version et reçoit `1.0.0`. Si l'écriture de la base échoue, par exemple à cause de la taille, le plugin affiche l'erreur dans la fenêtre et n'écrit ni l'historique ni la version précédente : la version n'est alors pas enregistrée, et le prochain export repart de la version précédente.
 
 Une donnée rangée dans le component set est absente, lisible ou illisible. Absente, elle vaut une première version. Illisible, elle n'est jamais écrasée sans message :
 
@@ -94,10 +94,12 @@ Les cas particuliers :
 
 ### Le stockage de l'historique
 
-Le plugin range l'historique dans le component set, au namespace `canopee_fiches`, à côté de la base. Figma limite chaque entrée à 100 Ko, donc chaque donnée a sa clé.
+Le plugin range l'historique dans le component set, au namespace `canopee_sheets`, à côté de la base. Figma limite chaque entrée à 100 Ko, donc chaque donnée a sa clé.
 
-- `changelog` : le tableau JSON des entrées `{ version, date, ajoute, modifie, retire }`, la plus récente en premier. La date est celle de l'export, au format `AAAA-MM-JJ`. Le fichier téléchargé l'affiche au format `JJ/MM/AA`.
-- `version-precedente` : le JSON exporté de la version précédente. Il sert à recalculer l'entrée d'une version gardée.
+- `changelog` : le tableau JSON des entrées `{ version, date, added, modified, removed }`, la plus récente en premier. La date est celle de l'export, au format `AAAA-MM-JJ`. Le fichier téléchargé l'affiche au format `JJ/MM/AA`.
+- `previous-version` : le JSON exporté de la version précédente. Il sert à recalculer l'entrée d'une version gardée.
+
+Jusqu'à la version 0.4.43, ces données étaient rangées au namespace `canopee_fiches`, avec la clé `version-precedente` et les champs `ajoute`, `modifie` et `retire` dans le changelog. Le plugin les lit encore quand la nouvelle clé est vide, les convertit, et n'écrit que les nouvelles clés.
 
 La génération n'écrit rien. L'export (copie ou téléchargement du JSON) enregistre les deux clés, comme la base, sauf si le changelog ou la base était illisible à la génération. Si une écriture échoue, le plugin affiche l'erreur dans la fenêtre.
 
@@ -108,11 +110,11 @@ La génération n'écrit rien. L'export (copie ou téléchargement du JSON) enre
 
 `meta.tokensVersion` est la première version publiée de Canopée, à partir de `2.0.0`, dont le fichier `packages/canopee-css/design-tokens-canopee.resolver.json` contient tous les tokens du composant. Le plugin compare le nom d'une variable (`color/blue/700`) au chemin du token (`color.blue.700`), et celui d'un style de texte (`label/1/semibold`) au chemin `typography.label.1.semibold`, rangé dans le set `Styles`. Les versions publiées qui le rangent encore sous `typographie` restent reconnues. Il garde en mémoire, pendant la session, la liste des versions une fois lue et les fichiers déjà lus. Un appel à GitHub qui ne répond pas au bout de 10 secondes échoue.
 
-- Un token présent dans aucune version publiée : défaut `token-non-publie` de niveau `warning`, et `tokensVersion` vaut `null`.
-- Aucune version ne réunit tous les tokens du composant : défaut `tokens-sans-version-commune` de niveau `warning`, et `tokensVersion` vaut `null`.
-- Le fichier de tokens d'une version répond 404 : le plugin ignore cette version et essaie la suivante. Si toutes répondent 404, défaut `tokens-sans-fichier` de niveau `warning` : « Aucune version publiée de Canopée ne contient le fichier de design tokens. » `tokensVersion` vaut `null`.
-- GitHub répond 403 ou 429 : défaut `tokens-limite-github` de niveau `warning` : « GitHub limite les appels depuis ce poste : la version des design tokens n'a pas pu être calculée. Réessayer plus tard. » `tokensVersion` vaut `null`.
-- Toute autre panne, délai dépassé compris : défaut `tokens-injoignables` de niveau `warning` (« GitHub ne répond pas : la version des design tokens n'a pas pu être calculée. »), et `tokensVersion` vaut `null`.
+- Un token présent dans aucune version publiée : défaut `token-unpublished` de niveau `warning`, et `tokensVersion` vaut `null`.
+- Aucune version ne réunit tous les tokens du composant : défaut `tokens-no-common-version` de niveau `warning`, et `tokensVersion` vaut `null`.
+- Le fichier de tokens d'une version répond 404 : le plugin ignore cette version et essaie la suivante. Si toutes répondent 404, défaut `tokens-no-file` de niveau `warning` : « Aucune version publiée de Canopée ne contient le fichier de design tokens. » `tokensVersion` vaut `null`.
+- GitHub répond 403 ou 429 : défaut `tokens-github-limit` de niveau `warning` : « GitHub limite les appels depuis ce poste : la version des design tokens n'a pas pu être calculée. Réessayer plus tard. » `tokensVersion` vaut `null`.
+- Toute autre panne, délai dépassé compris : défaut `tokens-unreachable` de niveau `warning` (« GitHub ne répond pas : la version des design tokens n'a pas pu être calculée. »), et `tokensVersion` vaut `null`.
 
 La fenêtre s'agrandit avec son contenu. Une poignée en bas à droite permet de choisir sa taille, retenue sur le poste, et un double-clic dessus revient à la taille automatique. Le texte du JSON n'a pas de poignée propre : il occupe la hauteur libre de la fenêtre, 160 px au moins. Il est coloré comme dans un éditeur de code, avec les couleurs de VS Code pour les clés, les textes, les nombres, et pour true, false et null. Cmd+A ou Ctrl+A n'y sélectionne que le JSON.
 
@@ -130,7 +132,7 @@ Les clés de premier niveau sont toujours dans cet ordre : `formatVersion`, `met
 - `issues` regroupe tous les défauts : écarts à la nomenclature, valeurs brutes, textes sans style, doublons de variables. Un niveau `info` n'est pas un défaut, par exemple une propriété qui commence par un tiret bas.
 - Les différences de style entre variantes sont regroupées en surcharges dont le `when` ne cite que les propriétés utiles, sans `precedence`.
 - Le même composant, dans le même état de la base et des versions publiées, donne le même fichier, octet pour octet. Aucune date n'y figure.
-- Une lecture qui échoue dans Figma devient un défaut de niveau `error`, règle `lecture-impossible`, au lieu de laisser un JSON incomplet sans signal.
+- Une lecture qui échoue dans Figma devient un défaut de niveau `error`, règle `read-failed`, au lieu de laisser un JSON incomplet sans signal.
 - Version du plugin : les deux premiers chiffres sont ceux du format produit, le dernier monte à chaque changement de la sortie ou du comportement du plugin.
 
 ## Utiliser l'extraction depuis le bridge
@@ -138,12 +140,12 @@ Les clés de premier niveau sont toujours dans cet ordre : `formatVersion`, `met
 Le cœur de l'extraction est délimité dans `src/code.ts` par deux commentaires repères. Pour le passer dans un `figma_execute` sans ouvrir le plugin, après `npm ci` :
 
 ```
-node scripts/construire-bridge.mjs --id 12:34
+node scripts/build-bridge.mjs --id 12:34
 ```
 
-Le script retire les types et produit `scripts/extraire.bridge.js`, à coller tel quel dans `figma_execute`. Il prend l'id du component set dans la constante en tête (à remplacer à la main si `--id` n'est pas donné) et retourne le JSON, sous forme de texte, sans version ni version des design tokens (elles valent `null`). Ce fichier est généré, il faut le reconstruire après chaque changement de `src/code.ts`.
+Le script retire les types et produit `scripts/extract.bridge.js`, à coller tel quel dans `figma_execute`. Il prend l'id du component set dans la constante en tête (à remplacer à la main si `--id` n'est pas donné) et retourne le JSON, sous forme de texte, sans version ni version des design tokens (elles valent `null`). Ce fichier est généré, il faut le reconstruire après chaque changement de `src/code.ts`.
 
-Le cœur contient aussi un bloc plus petit, entre `// >>> DEBUT REGLES` et `// <<< FIN REGLES` : les règles d'expansion des surcharges (`matches`, `effectiveStyles`, `canonical`). `scripts/construire-retour.mjs` le recopie dans le script de reconstruction, à la place du marqueur `__REGLES__` de `scripts/reconstruire.modele.js`.
+Le cœur contient aussi un bloc plus petit, entre `// >>> START RULES` et `// <<< END RULES` : les règles d'expansion des surcharges (`matches`, `effectiveStyles`, `canonical`). `scripts/build-round-trip.mjs` le recopie dans le script de reconstruction, à la place du marqueur `__RULES__` de `scripts/rebuild.template.js`.
 
 ## Tester
 
@@ -154,7 +156,7 @@ npm test            # construit le plugin, puis lance toutes les vérifications
 npm run format      # formate le code avec Prettier
 ```
 
-Les tests utilisent Vitest. Chaque test prépare son propre état, et un échec n'arrête pas les suivants, tous sont listés. Ils font tourner `dist/code.js` sur un Figma simulé (un bouton à deux variantes, une variable de couleur, des valeurs brutes, une icône imbriquée) et sur un GitHub simulé : aucun test n'appelle le vrai réseau. Ils vérifient le niveau de changement, la version suivante, le calcul de la version des design tokens et la base partagée, puis le script du bridge, qui doit être celui que génère le code actuel. Ils couvrent `scripts/verifier-fiche.mjs` sur une fiche minimale, et deux garde-fous du script de reconstruction : il refuse un autre fichier que celui de sa configuration, et son étape `supprimer` ne retire que ce qui porte sa marque. La reconstruction complète se vérifie dans Figma, par l'aller-retour. Un dernier test cherche les tirets longs et le point médian dans tous les fichiers du plugin. Un test d'intégration fait tourner `dist/ui.html` dans jsdom, relié au plugin simulé, et compare les textes de l'interface à des instantanés. Un test compare le JSON du bouton à `test/fixtures/reference-output.json`. Un test de garde compare une empreinte de la sortie du bouton à `test/fixtures/sortie-reference.json` : si la sortie change, monter `VERSION` puis mettre ce fichier à jour. Un autre test lit les tableaux de `03-proprietes.md` et les compare aux constantes de `src/code.ts` (ordre, valeurs imposées, variantes vrai ou faux) : la documentation fait foi, et c'est le code qui se corrige.
+Les tests utilisent Vitest. Chaque test prépare son propre état, et un échec n'arrête pas les suivants, tous sont listés. Ils font tourner `dist/code.js` sur un Figma simulé (un bouton à deux variantes, une variable de couleur, des valeurs brutes, une icône imbriquée) et sur un GitHub simulé : aucun test n'appelle le vrai réseau. Ils vérifient le niveau de changement, la version suivante, le calcul de la version des design tokens et la base partagée, puis le script du bridge, qui doit être celui que génère le code actuel. Ils couvrent `scripts/check-sheet.mjs` sur une fiche minimale, et deux garde-fous du script de reconstruction : il refuse un autre fichier que celui de sa configuration, et son étape `delete` ne retire que ce qui porte sa marque. La reconstruction complète se vérifie dans Figma, par l'aller-retour. Un dernier test cherche les tirets longs et le point médian dans tous les fichiers du plugin. Un test d'intégration fait tourner `dist/ui.html` dans jsdom, relié au plugin simulé, et compare les textes de l'interface à des instantanés. Un test compare le JSON du bouton à `test/fixtures/reference-output.json`. Un test de garde compare une empreinte de la sortie du bouton à `test/fixtures/guard-fingerprint.json` : si la sortie change, monter `VERSION` puis mettre ce fichier à jour. Un autre test lit les tableaux de `03-proprietes.md` et les compare aux constantes de `src/code.ts` (ordre, valeurs imposées, variantes vrai ou faux) : la documentation fait foi, et c'est le code qui se corrige.
 
 ## Crédit
 
@@ -162,7 +164,7 @@ Ce plugin est dérivé du kit Component as Data d'Alexis Vaysse, sous licence MI
 
 ## Vérifier qu'une fiche suit son JSON
 
-`node scripts/verifier-fiche.mjs <fiche.md> <fiche.json>` contrôle que chaque `propriété=valeur` citée dans le Markdown existe dans le JSON, que les propriétés du tableau des écarts existent, et signale les valeurs de variante qui n'ont pas de règle. Il contrôle aussi :
+`node scripts/check-sheet.mjs <fiche.md> <fiche.json>` contrôle que chaque `propriété=valeur` citée dans le Markdown existe dans le JSON, que les propriétés du tableau des écarts existent, et signale les valeurs de variante qui n'ont pas de règle. Il contrôle aussi :
 
 - que le titre de la fiche est exactement `# <meta.name> <meta.version>` ;
 - que la ligne suivante, après une ligne vide, est « Utilise les design tokens de Canopée <meta.tokensVersion> ou d'une version plus récente. » ;

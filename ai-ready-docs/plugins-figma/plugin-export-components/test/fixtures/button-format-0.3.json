@@ -1493,14 +1493,14 @@
   "issues": [
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.root.layout.minWidth",
       "message": "Valeur brute (144) : la relier à une variable.",
       "occurrences": 1
     },
     {
       "level": "info",
-      "rule": "prop-hors-nomenclature",
+      "rule": "prop-outside-nomenclature",
       "where": "api.props._theme",
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }

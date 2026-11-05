@@ -348,105 +348,105 @@
   "issues": [
     {
       "level": "warning",
-      "rule": "style-de-texte",
-      "where": "styles.caption",
-      "message": "Texte sans style de texte : le relier à un style, la typo détaillée est reprise faute de mieux.",
-      "occurrences": 2
+      "rule": "preferred-value",
+      "where": "structure.slots.leftIcon",
+      "message": "Le composant préféré de clé KEY-ABSENT n'a pas pu être importé : il manque aux valeurs préférées."
     },
     {
       "level": "warning",
-      "rule": "token-doublon",
-      "where": "tokens.color/blue/700",
-      "message": "Deux variables portent ce nom dans des collections ou des bibliothèques différentes : un seul token est indexé."
-    },
-    {
-      "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.caption.textColor",
       "message": "Valeur brute (#333333) : la relier à une variable.",
       "occurrences": 2
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.focus-ring.strokeWeight",
       "message": "Valeur brute (2) : la relier à une variable.",
       "occurrences": 1
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.left-icon.layout.height",
       "message": "Valeur brute (24) : la relier à une variable.",
       "occurrences": 2
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.left-icon.layout.width",
       "message": "Valeur brute (24) : la relier à une variable.",
       "occurrences": 2
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.root.layout.minWidth",
       "message": "Valeur brute (144) : la relier à une variable.",
       "occurrences": 2
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.root.padding.bottom",
       "message": "Valeur brute (12) : la relier à une variable.",
       "occurrences": 2
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.root.padding.left",
       "message": "Valeur brute (16) : la relier à une variable.",
       "occurrences": 2
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.root.padding.top",
       "message": "Valeur brute (12) : la relier à une variable.",
       "occurrences": 2
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.root.stroke",
       "message": "Valeur brute (#CCCCCC) : la relier à une variable.",
       "occurrences": 1
     },
     {
       "level": "warning",
-      "rule": "valeur-brute",
+      "rule": "raw-value",
       "where": "styles.root.strokeWeight",
       "message": "Valeur brute (1) : la relier à une variable.",
       "occurrences": 1
     },
     {
       "level": "warning",
-      "rule": "valeur-preferee",
-      "where": "structure.slots.leftIcon",
-      "message": "Le composant préféré de clé KEY-ABSENT n'a pas pu être importé : il manque aux valeurs préférées."
+      "rule": "text-style",
+      "where": "styles.caption",
+      "message": "Texte sans style de texte : le relier à un style, la typo détaillée est reprise faute de mieux.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "token-duplicate",
+      "where": "tokens.color/blue/700",
+      "message": "Deux variables portent ce nom dans des collections ou des bibliothèques différentes : un seul token est indexé."
     },
     {
       "level": "info",
-      "rule": "prop-hors-nomenclature",
+      "rule": "prop-outside-nomenclature",
       "where": "api.props._scrollable",
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     },
     {
       "level": "info",
-      "rule": "texte-non-relie",
+      "rule": "text-not-linked",
       "where": "calque caption",
       "message": "Ce texte n'est relié à aucune propriété de texte."
     }
   ],
-  "_tool": "canopee-fiches-composants <version>"
+  "_tool": "canopee-export-components <version>"
 }

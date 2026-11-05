@@ -489,26 +489,26 @@ const openPlugin = async (
   doc: MockData = buttonDocument(),
 ): Promise<MockData> => {
   const p = createFakePlugin(doc);
-  await p.send({ type: "ui-pret" });
+  await p.send({ type: "ui-ready" });
   return { doc, p };
 };
 const generate = async (): Promise<MockData> => {
   const { doc, p } = await openPlugin();
-  await p.send({ type: "generer" });
+  await p.send({ type: "generate" });
   return { doc, p, msg: p.lastMessage() };
 };
 
 // Generated scripts: the bridge for the set S:100, the rebuild of Button.
 const BUTTON_03 = path.join(FIXTURES, "button-format-0.3.json");
 const bridgeCode = memo(() => {
-  const output = path.join(tempFolder("bridge"), "extraire.bridge.js");
+  const output = path.join(tempFolder("bridge"), "extract.bridge.js");
   execFileSync(
     "node",
     [
-      path.join(SCRIPTS, "construire-bridge.mjs"),
+      path.join(SCRIPTS, "build-bridge.mjs"),
       "--id",
       "S:100",
-      "--sortie",
+      "--output",
       output,
     ],
     { stdio: "pipe" },
@@ -516,15 +516,15 @@ const bridgeCode = memo(() => {
   return fs.readFileSync(output, "utf8");
 });
 const buildReturn = (options: string[]) => {
-  const output = path.join(tempFolder("retour"), "reconstruire.bridge.js");
+  const output = path.join(tempFolder("round-trip"), "rebuild.bridge.js");
   execFileSync(
     "node",
     [
-      path.join(SCRIPTS, "construire-retour.mjs"),
+      path.join(SCRIPTS, "build-round-trip.mjs"),
       "--json",
       BUTTON_03,
       ...options,
-      "--sortie",
+      "--output",
       output,
     ],
     { stdio: "pipe" },
@@ -552,7 +552,7 @@ describe("The fake button", () => {
       "_tool",
     ]);
     expect(sheet.formatVersion).toBe("0.4");
-    expect(sheet._tool).toMatch(/^canopee-fiches-composants \d/);
+    expect(sheet._tool).toMatch(/^canopee-export-components \d/);
   });
   it("meta: name, version, tokens version, type, Figma key, library, documentation links", async () => {
     const { sheet } = await button();
@@ -588,7 +588,7 @@ describe("The fake button", () => {
     const { text } = await button();
     expect(
       text.replace(
-        /("_tool": "canopee-fiches-composants )[^"]*"/,
+        /("_tool": "canopee-export-components )[^"]*"/,
         '$1<version>"',
       ),
     ).toBe(
@@ -714,26 +714,24 @@ describe("The fake button", () => {
     expect(r.padding.right).toStrictEqual({ raw: 0 });
     expect(r.layout.minWidth).toStrictEqual({ raw: 144 });
     expect(
-      issuesFor(sheet, "valeur-brute", "styles.root.padding.top").length,
+      issuesFor(sheet, "raw-value", "styles.root.padding.top").length,
     ).toBe(1);
     expect(
-      issuesFor(sheet, "valeur-brute", "styles.root.layout.minWidth").length,
+      issuesFor(sheet, "raw-value", "styles.root.layout.minWidth").length,
     ).toBe(1);
     expect(
-      issuesFor(sheet, "valeur-brute", "styles.root.padding.right").length,
+      issuesFor(sheet, "raw-value", "styles.root.padding.right").length,
     ).toBe(0);
-    expect(issuesFor(sheet, "valeur-brute", "styles.root.stroke").length).toBe(
-      1,
-    );
+    expect(issuesFor(sheet, "raw-value", "styles.root.stroke").length).toBe(1);
     expect(
-      issuesFor(sheet, "valeur-brute", "styles.left-icon.layout.width").length,
+      issuesFor(sheet, "raw-value", "styles.left-icon.layout.width").length,
     ).toBe(1);
   });
   it("the same issue repeated in several variants is reported once, with its count", async () => {
     const { sheet } = await button();
     const seen = new Set();
     for (const i of sheet.issues.filter(
-      (x: MockData) => x.rule === "valeur-brute",
+      (x: MockData) => x.rule === "raw-value",
     )) {
       const c = i.where + "|" + i.message;
       expect(!seen.has(c), "doublon : " + c).toBeTruthy();
@@ -753,8 +751,8 @@ describe("The fake button", () => {
     const { sheet } = await button();
     expect(sheet.styles.default.caption.typography.fontSize).toBe(14);
     expect(sheet.styles.default.caption.textStyle).toBe(undefined);
-    expect(issuesFor(sheet, "style-de-texte", "styles.caption").length).toBe(1);
-    expect(issuesFor(sheet, "style-de-texte", "styles.label").length).toBe(0);
+    expect(issuesFor(sheet, "text-style", "styles.caption").length).toBe(1);
+    expect(issuesFor(sheet, "text-style", "styles.label").length).toBe(0);
   });
   it("nested icon: color of the first vector under <layer>/vector", async () => {
     const { sheet } = await button();
@@ -845,7 +843,7 @@ describe("The fake button", () => {
   it("preferred value not found: reported, not added", async () => {
     const { sheet, text } = await button();
     expect(
-      issuesFor(sheet, "valeur-preferee", "structure.slots.leftIcon").length,
+      issuesFor(sheet, "preferred-value", "structure.slots.leftIcon").length,
     ).toBe(1);
     expect(!text.includes('KEY-ABSENT",')).toBeTruthy();
   });
@@ -858,15 +856,15 @@ describe("The fake button", () => {
   it("duplicate variable: reported in issues, the smallest key kept", async () => {
     const { sheet } = await button();
     expect(
-      issuesFor(sheet, "token-doublon", "tokens.color/blue/700").length,
+      issuesFor(sheet, "token-duplicate", "tokens.color/blue/700").length,
     ).toBe(1);
   });
   it("a compliant component gets no nomenclature issue", async () => {
     const { sheet } = await button();
     const e = sheet.issues.filter(
       (i: MockData) =>
-        /^(prop|calque|composant)-/.test(i.rule) &&
-        i.rule !== "prop-hors-nomenclature",
+        /^(prop|layer|component)-/.test(i.rule) &&
+        i.rule !== "prop-outside-nomenclature",
     );
     expect(e).toStrictEqual([]);
     expect(
@@ -876,7 +874,7 @@ describe("The fake button", () => {
   it("property with an underscore: info, not an error", async () => {
     const i = issuesFor(
       (await button()).sheet,
-      "prop-hors-nomenclature",
+      "prop-outside-nomenclature",
       "api.props._scrollable",
     );
     expect(i.length).toBe(1);
@@ -906,7 +904,7 @@ describe("The fake button", () => {
       "une date dans le fichier",
     ).toBeTruthy();
   });
-  it("guard: if the output of the button changes, VERSION goes up and test/fixtures/sortie-reference.json follows", async () => {
+  it("guard: if the output of the button changes, VERSION goes up and test/fixtures/guard-fingerprint.json follows", async () => {
     const { plugin, sheet } = await button();
     const withoutTool = JSON.stringify(
       Object.fromEntries(Object.entries(sheet).filter(([k]) => k !== "_tool")),
@@ -915,19 +913,19 @@ describe("The fake button", () => {
       .createHash("sha256")
       .update(withoutTool)
       .digest("hex");
-    const ref = readJson("sortie-reference.json");
+    const ref = readJson("guard-fingerprint.json");
     const version = plugin.__test.VERSION;
-    if (fingerprint !== ref.empreinte && version === ref.version)
+    if (fingerprint !== ref.fingerprint && version === ref.version)
       expect.fail(
-        "La sortie du bouton simulé a changé sans que VERSION change. Monter VERSION dans src/code.ts, puis mettre à jour test/fixtures/sortie-reference.json avec la nouvelle version et l'empreinte " +
+        "La sortie du bouton simulé a changé sans que VERSION change. Monter VERSION dans src/code.ts, puis mettre à jour test/fixtures/guard-fingerprint.json avec la nouvelle version et l'empreinte " +
           fingerprint +
           ".",
       );
     expect(
-      version === ref.version && fingerprint === ref.empreinte,
-      'test/fixtures/sortie-reference.json n\'est pas à jour. Y écrire { "version": "' +
+      version === ref.version && fingerprint === ref.fingerprint,
+      'test/fixtures/guard-fingerprint.json n\'est pas à jour. Y écrire { "version": "' +
         version +
-        '", "empreinte": "' +
+        '", "fingerprint": "' +
         fingerprint +
         '" }.',
     ).toBeTruthy();
@@ -935,14 +933,14 @@ describe("The fake button", () => {
   it("occurrences: the number of variants where the issue appears, absent if none", async () => {
     const { plugin, sheet } = await button();
     const occ = (where: string) =>
-      issuesFor(sheet, "valeur-brute", where)[0].occurrences;
+      issuesFor(sheet, "raw-value", where)[0].occurrences;
     expect(occ("styles.root.padding.top")).toBe(2);
     expect(occ("styles.left-icon.layout.width")).toBe(2);
     expect(occ("styles.root.stroke")).toBe(1);
     const { variantsPerIssue, issueSignature } = plugin.__test;
     const d = {
       level: "warning",
-      rule: "valeur-brute",
+      rule: "raw-value",
       where: "styles.a.gap",
       message: "m",
     };
@@ -979,9 +977,9 @@ describe("The reads that fail", () => {
     );
   });
 
-  it("a layer with a property that throws an exception: the export succeeds, with a lecture-impossible issue at its location", async () => {
+  it("a layer with a property that throws an exception: the export succeeds, with a read-failed issue at its location", async () => {
     const c = await casing();
-    const e = issuesFor(c, "lecture-impossible", "styles.caption");
+    const e = issuesFor(c, "read-failed", "styles.caption");
     expect(e.length).toBe(1);
     expect(e[0].level).toBe("error");
     expect(e[0].message).toBe(
@@ -995,7 +993,7 @@ describe("The reads that fail", () => {
   });
   it("an unreadable variable: value written raw, error at the tokens location, rest of the JSON produced", async () => {
     const c = await casing();
-    const e = issuesFor(c, "lecture-impossible", "tokens");
+    const e = issuesFor(c, "read-failed", "tokens");
     expect(e.length).toBe(1);
     expect(e[0].message).toMatch(
       /^Lecture impossible : variable illisible\. La variable v-r n'a pas pu être lue.* Cette partie du JSON est incomplète\.$/,
@@ -1006,10 +1004,8 @@ describe("The reads that fail", () => {
     });
     expect(!("radius/medium" in c.tokens)).toBeTruthy();
   });
-  it("without an exception, no lecture-impossible issue", async () => {
-    expect(issuesFor((await button()).sheet, "lecture-impossible").length).toBe(
-      0,
-    );
+  it("without an exception, no read-failed issue", async () => {
+    expect(issuesFor((await button()).sheet, "read-failed").length).toBe(0);
   });
 });
 
@@ -1205,12 +1201,12 @@ describe("The grouping of the overrides", () => {
     const doc = buttonDocument();
     doc.network = fakeNetwork({ ...BUTTON_NETWORK, ...options });
     const p = createFakePlugin(doc);
-    await p.send({ type: "ui-pret" });
+    await p.send({ type: "ui-ready" });
     return {
       doc,
       p,
       banners: p.messages
-        .filter((m: MockData) => m.type === "regles")
+        .filter((m: MockData) => m.type === "rules")
         .map((m: MockData) => m.warning),
     };
   };
@@ -1259,7 +1255,7 @@ describe("The grouping of the overrides", () => {
     const { doc, p, banners } = await openWithRules({
       rules: propertiesPage(),
     });
-    await p.send({ type: "ui-pret" });
+    await p.send({ type: "ui-ready" });
     expect(banners).toStrictEqual([]);
     expect(
       doc.network.calls.filter(
@@ -1277,14 +1273,14 @@ describe("The grouping of the overrides", () => {
       "| hierarchy | Variante | primary, tertiary |",
     );
     const { p, banners } = await openWithRules({ rules: page });
-    await p.send({ type: "controler" });
+    await p.send({ type: "check" });
     expect(banners).toStrictEqual([]);
     expect(
       p
         .lastMessage()
         .issues.some(
           (i: MockData) =>
-            i.rule === "prop-valeurs" &&
+            i.rule === "prop-values" &&
             i.where === "api.props.hierarchy" &&
             i.message.includes("secondary"),
         ),
@@ -1297,13 +1293,13 @@ describe("The grouping of the overrides", () => {
       "| theme | _theme |\n| hierarchy | importance |",
     );
     const { p } = await openWithRules({ rules: page });
-    await p.send({ type: "controler" });
+    await p.send({ type: "check" });
     expect(
       p
         .lastMessage()
         .issues.some(
           (i: MockData) =>
-            i.rule === "prop-synonyme" &&
+            i.rule === "prop-synonym" &&
             i.where === "api.props.hierarchy" &&
             i.message.includes("importance"),
         ),
@@ -1371,12 +1367,12 @@ describe("The grouping of the overrides", () => {
     doc.network = fakeNetwork({ ...BUTTON_NETWORK, mute: true });
     doc.clock = clock;
     const p = createFakePlugin(doc);
-    const ready = p.send({ type: "ui-pret" });
+    const ready = p.send({ type: "ui-ready" });
     await clock.advance(3000);
     await ready;
     expect(
       p.messages
-        .filter((m: MockData) => m.type === "regles")
+        .filter((m: MockData) => m.type === "rules")
         .map((m: MockData) => m.warning),
     ).toStrictEqual([p.__test.UNREADABLE_RULES_MESSAGE]);
     expect(
@@ -1474,7 +1470,7 @@ describe("A component that deviates from the nomenclature", () => {
         const d = deviationsDocument();
         d.selection[0].name = name;
         const r = await exportSheet(d);
-        expect(issuesFor(r.sheet, "composant-nom", "meta.name").length).toBe(
+        expect(issuesFor(r.sheet, "component-name", "meta.name").length).toBe(
           expected,
         );
       },
@@ -1484,26 +1480,26 @@ describe("A component that deviates from the nomenclature", () => {
     const { sheet } = await deviations();
     const where = (rule: string, where: string) =>
       issuesFor(sheet, rule, where).length;
-    expect(where("prop-nom", "api.props.Size")).toBe(1);
-    expect(where("prop-prefixe", "api.props.isSelected")).toBe(1);
-    expect(where("prop-booleen", "api.props.isSelected")).toBe(0);
+    expect(where("prop-name", "api.props.Size")).toBe(1);
+    expect(where("prop-prefix", "api.props.isSelected")).toBe(1);
+    expect(where("prop-boolean", "api.props.isSelected")).toBe(0);
     expect(where("prop-disabled", "api.props.disabled")).toBe(1);
-    expect(where("prop-booleen", "api.props.hasIcon")).toBe(1);
-    expect(where("prop-booleen", "api.props.showIcon")).toBe(0);
-    expect(where("prop-synonyme", "api.props.variant")).toBe(1);
-    expect(where("prop-synonyme", "api.props.mode")).toBe(1);
-    expect(where("prop-valeur", "api.props.Size")).toBe(1);
-    expect(where("prop-valeurs", "api.props.state")).toBe(1);
+    expect(where("prop-boolean", "api.props.hasIcon")).toBe(1);
+    expect(where("prop-boolean", "api.props.showIcon")).toBe(0);
+    expect(where("prop-synonym", "api.props.variant")).toBe(1);
+    expect(where("prop-synonym", "api.props.mode")).toBe(1);
+    expect(where("prop-value", "api.props.Size")).toBe(1);
+    expect(where("prop-values", "api.props.state")).toBe(1);
     expect(
-      issuesFor(sheet, "prop-valeurs", "api.props.state")[0].message,
+      issuesFor(sheet, "prop-values", "api.props.state")[0].message,
     ).toMatch(/disabled est une variante à part/);
-    expect(where("prop-etat", "api.props.mode")).toBe(1);
+    expect(where("prop-state", "api.props.mode")).toBe(1);
   });
   it("content property: the layer that fills it carries its name", async () => {
     expect(
       issuesFor(
         (await deviations()).sheet,
-        "prop-calque",
+        "prop-layer",
         "structure.slots.text",
       ).length,
     ).toBe(1);
@@ -1512,12 +1508,12 @@ describe("A component that deviates from the nomenclature", () => {
     const { sheet } = await deviations();
     const where = (rule: string, where: string) =>
       issuesFor(sheet, rule, where).length;
-    expect(where("calque-defaut", "calque Frame 27")).toBe(1);
-    expect(where("calque-prefixe", "calque bad-button-label")).toBe(1);
-    expect(where("calque-texte", "calque Votre devis en 2 minutes")).toBe(1);
-    expect(where("calque-cadre", "calque label-and-icon")).toBe(1);
-    expect(where("calque-casse", "calque Left Icon")).toBe(1);
-    expect(where("calque-instance", "calque account_balance")).toBe(1);
+    expect(where("layer-default", "calque Frame 27")).toBe(1);
+    expect(where("layer-prefix", "calque bad-button-label")).toBe(1);
+    expect(where("layer-text", "calque Votre devis en 2 minutes")).toBe(1);
+    expect(where("layer-frame", "calque label-and-icon")).toBe(1);
+    expect(where("layer-case", "calque Left Icon")).toBe(1);
+    expect(where("layer-instance", "calque account_balance")).toBe(1);
   });
   it("no deviation is reported as an error", async () => {
     expect(
@@ -1549,8 +1545,8 @@ describe("The plugin, through messages", () => {
   });
   it("after an export, the selection carries the last stored version", async () => {
     const { p, msg } = await generate();
-    await p.send({ type: "memoriser", id: msg.id });
-    await p.send({ type: "ui-pret" });
+    await p.send({ type: "record-export", id: msg.id });
+    await p.send({ type: "ui-ready" });
     const sel = p.messages
       .filter((m: MockData) => m.type === "selection")
       .pop();
@@ -1558,19 +1554,19 @@ describe("The plugin, through messages", () => {
   });
   it("check: returns the nomenclature issues, not the raw values", async () => {
     const { p } = await openPlugin();
-    await p.send({ type: "controler" });
+    await p.send({ type: "check" });
     const c = p.lastMessage();
-    expect(c.type).toBe("controle");
+    expect(c.type).toBe("check-result");
     expect(
       c.issues.every((i: MockData) =>
-        /^(prop|calque|composant|texte)-/.test(i.rule),
+        /^(prop|layer|component|text)-/.test(i.rule),
       ),
     ).toBeTruthy();
   });
   it("generation: the JSON, with its version and that of the tokens, and the file name in lowercase", async () => {
     const { sheet } = await button();
     const { msg } = await generate();
-    expect(msg.type).toBe("fiche");
+    expect(msg.type).toBe("sheet");
     expect(msg.file).toBe("button.json");
     expect(msg.changelogFile).toBe("button-changelog.md");
     expect(msg.json).toBe(withVersions(sheet, "1.0.0", "2.1.0"));
@@ -1587,8 +1583,8 @@ describe("The plugin, through messages", () => {
   it("nothing selected: error message, no exception", async () => {
     const { doc, p } = await openPlugin();
     doc.selection.length = 0;
-    await p.send({ type: "generer" });
-    expect(p.lastMessage().type).toBe("erreur");
+    await p.send({ type: "generate" });
+    expect(p.lastMessage().type).toBe("error");
   });
 });
 
@@ -1693,7 +1689,7 @@ describe("The À corriger list", () => {
   });
   it("check: each issue has its readable label and its ids", async () => {
     const { p } = await openPlugin();
-    await p.send({ type: "controler" });
+    await p.send({ type: "check" });
     for (const i of p.lastMessage().issues) {
       expect(typeof i.location).toBe("string");
       expect(Array.isArray(i.ids)).toBeTruthy();
@@ -1737,10 +1733,10 @@ describe("The selection from an issue", () => {
       (x: MockData) => x.where === "styles.left-icon.layout.width",
     ).ids;
 
-  it("selectionner: the nodes are selected and brought on screen", async () => {
+  it("select: the nodes are selected and brought on screen", async () => {
     const { p, msg } = await generate();
     const icons = iconsOf(msg);
-    await p.send({ type: "selectionner", ids: icons, id: "S:100" });
+    await p.send({ type: "select", ids: icons, id: "S:100" });
     expect(
       p.figma.currentPage.selection.map((n: MockData) => n.id),
     ).toStrictEqual(icons);
@@ -1759,8 +1755,8 @@ describe("The selection from an issue", () => {
   });
   it("a layer selected in the component keeps the same component", async () => {
     const { p, msg } = await generate();
-    await p.send({ type: "selectionner", ids: iconsOf(msg), id: "S:100" });
-    await p.send({ type: "ui-pret" });
+    await p.send({ type: "select", ids: iconsOf(msg), id: "S:100" });
+    await p.send({ type: "ui-ready" });
     const sel = p.messages
       .filter((m: MockData) => m.type === "selection")
       .pop();
@@ -1770,22 +1766,22 @@ describe("The selection from an issue", () => {
   it("without a click on an issue, a nested instance keeps its main component", async () => {
     const { doc, p, msg } = await generate();
     const icons = iconsOf(msg);
-    await p.send({ type: "selectionner", ids: icons, id: "S:100" });
-    await p.send({ type: "ui-pret" });
+    await p.send({ type: "select", ids: icons, id: "S:100" });
+    await p.send({ type: "ui-ready" });
     // leave the button, then come back by directly selecting an icon
     p.figma.currentPage.selection = [doc.nodes[0]];
-    await p.send({ type: "ui-pret" });
+    await p.send({ type: "ui-ready" });
     p.figma.currentPage.selection = [await p.figma.getNodeByIdAsync(icons[0])];
-    await p.send({ type: "ui-pret" });
+    await p.send({ type: "ui-ready" });
     const sel = p.messages
       .filter((m: MockData) => m.type === "selection")
       .pop();
     expect(sel.id).not.toBe("S:100");
   });
-  it("selectionner: vanished nodes give a message, not an exception", async () => {
+  it("select: vanished nodes give a message, not an exception", async () => {
     const { p } = await openPlugin();
-    await p.send({ type: "selectionner", ids: ["absent:1"] });
-    expect(p.lastMessage().type).toBe("erreur");
+    await p.send({ type: "select", ids: ["absent:1"] });
+    expect(p.lastMessage().type).toBe("error");
   });
 });
 
@@ -1794,20 +1790,20 @@ describe("Since the last export", () => {
   // a copied export: generated, then stored for the component
   const exportStored = async () => {
     const { doc, p } = await openPlugin();
-    await p.send({ type: "generer" });
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
     return { doc, p };
   };
 
   it("nothing is stored before a copy, nor for another component", async () => {
     const { doc, p } = await generate();
     expect(
-      doc.nodes[1].getSharedPluginData("canopee_fiches", "export"),
+      doc.nodes[1].getSharedPluginData("canopee_sheets", "export"),
       "enregistré avant toute copie",
     ).toBe("");
-    await p.send({ type: "memoriser", id: "autre:1" });
+    await p.send({ type: "record-export", id: "other:1" });
     expect(
-      doc.nodes[1].getSharedPluginData("canopee_fiches", "export"),
+      doc.nodes[1].getSharedPluginData("canopee_sheets", "export"),
       "enregistré pour un autre composant",
     ).toBe("");
   });
@@ -1820,26 +1816,26 @@ describe("Since the last export", () => {
   });
   it("same component exported again: no change, and no date", async () => {
     const { p } = await exportStored();
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(plain(p.lastMessage().changes)).toStrictEqual({ sentences: [] });
   });
   it("without a shared base, there is nothing to compare, even with an old export kept on the machine", async () => {
     const doc = buttonDocument();
     doc.clientStorage = {
-      "dernier-export:KEY-BUTTON": {
+      "last-export:KEY-BUTTON": {
         json: "{}",
         date: "2026-10-01T00:00:00.000Z",
       },
     };
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(p.lastMessage().changes).toBe(null);
   });
   it("a modified default text shows up in the changes", async () => {
     const { doc, p } = await exportStored();
     doc.nodes[1].componentPropertyDefinitions["label#1:1"].defaultValue =
       "Libellé";
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(plain(p.lastMessage().changes.sentences)).toStrictEqual([
       "Slot label, texte par défaut : Label → Libellé",
     ]);
@@ -2003,50 +1999,50 @@ describe("The window", () => {
   // the size chosen by hand, then the useful measures
   const inManual = async () => {
     const p = createFakePlugin(buttonDocument());
-    await p.send({ type: "redimensionner-manuel", width: 200, height: 5000 });
+    await p.send({ type: "resize-manual", width: 200, height: 5000 });
     return p;
   };
 
   it("automatic height bounded between 320 and 760, width 440", async () => {
     const p = createFakePlugin(buttonDocument());
-    await p.send({ type: "redimensionner", height: 2000 });
-    await p.send({ type: "redimensionner", height: 100 });
+    await p.send({ type: "resize", height: 2000 });
+    await p.send({ type: "resize", height: 100 });
     expect(p.resizes).toStrictEqual([
       [440, 760],
       [440, 320],
     ]);
   });
-  it("manual size bounded, applied and stored under the key taille", async () => {
+  it("manual size bounded, applied and stored under the key size", async () => {
     const p = await inManual();
     expect(p.resizes[p.resizes.length - 1]).toStrictEqual([320, 1200]);
-    expect(plain(p.clientStorage.taille)).toStrictEqual({
-      largeur: 320,
-      hauteur: 1200,
+    expect(plain(p.clientStorage.size)).toStrictEqual({
+      width: 320,
+      height: 1200,
     });
   });
   it("automatic height ignored as long as the size is manual", async () => {
     const p = await inManual();
     const before = p.resizes.length;
-    await p.send({ type: "redimensionner", height: 500 });
+    await p.send({ type: "resize", height: 500 });
     expect(p.resizes.length).toBe(before);
   });
   it("back to the automatic size: preference deleted, width 440, new height requested", async () => {
     const p = await inManual();
     const before = p.messages.length;
-    await p.send({ type: "taille-auto" });
-    expect(p.clientStorage.taille).toBe(undefined);
+    await p.send({ type: "auto-size" });
+    expect(p.clientStorage.size).toBe(undefined);
     expect(p.resizes[p.resizes.length - 1]).toStrictEqual([440, 1200]);
     expect(
       p.messages
         .slice(before)
-        .some((m: MockData) => m.type === "recalculer-hauteur"),
+        .some((m: MockData) => m.type === "recompute-height"),
     ).toBeTruthy();
   });
-  it("automatic height resumed after taille-auto", async () => {
+  it("automatic height resumed after auto-size", async () => {
     const p = await inManual();
-    await p.send({ type: "taille-auto" });
+    await p.send({ type: "auto-size" });
     const before = p.resizes.length;
-    await p.send({ type: "redimensionner", height: 500 });
+    await p.send({ type: "resize", height: 500 });
     expect(p.resizes.length).toBe(before + 1);
     expect(p.resizes[p.resizes.length - 1]).toStrictEqual([440, 500]);
   });
@@ -2054,14 +2050,14 @@ describe("The window", () => {
     const pr = createFakePlugin(
       Object.assign(buttonDocument(), {
         clientStorage: {
-          taille: { largeur: 550, hauteur: 250 },
-          "dernier-export:K": { json: "{}", date: "2026-10-01T00:00:00.000Z" },
+          size: { width: 550, height: 250 },
+          "last-export:K": { json: "{}", date: "2026-10-01T00:00:00.000Z" },
         },
       }),
     );
     await new Promise((r) => setTimeout(r, 0));
     expect(pr.resizes).toStrictEqual([[550, 300]]);
-    expect(pr.clientStorage["dernier-export:K"].json).toBe("{}");
+    expect(pr.clientStorage["last-export:K"].json).toBe("{}");
   });
 });
 
@@ -2251,26 +2247,26 @@ describe("The interface", () => {
         none: false,
         current: "1.0.0",
         version: "1.1.0",
-        level: "mineure",
-        detected: "mineure",
+        level: "minor",
+        detected: "minor",
         tokensVersion: "2.0.0",
         next: "1.1.0",
       },
       v,
     );
   const answers = (ui: MockData, answer: string) => {
-    ui.el["livree-" + answer].checked = true;
-    ui.el["livree-" + answer].onchange();
+    ui.el["delivered-" + answer].checked = true;
+    ui.el["delivered-" + answer].onchange();
   };
   // The fake DOM does not read the data-* attributes, the test gives the tab name itself.
   const openTab = (ui: MockData, name: string) => {
-    ui.el["onglet-" + name].dataset.onglet = name;
-    ui.el.onglets.onclick({
-      target: { closest: () => ui.el["onglet-" + name] },
+    ui.el["tab-" + name].dataset.tab = name;
+    ui.el.tabs.onclick({
+      target: { closest: () => ui.el["tab-" + name] },
     });
   };
   const sheetWith = (v: MockData) => ({
-    type: "fiche",
+    type: "sheet",
     id: "1:2",
     json: "{}",
     file: "button.json",
@@ -2290,7 +2286,7 @@ describe("The interface", () => {
   };
   const ISSUE = {
     level: "warning",
-    rule: "valeur-brute",
+    rule: "raw-value",
     where: "styles.a.gap",
     message: "Valeur brute.",
     ids: [],
@@ -2299,16 +2295,16 @@ describe("The interface", () => {
   it("there is no longer a header or a Version block", () => {
     const { source } = fakeInterface();
     expect(
-      !/<header|class="entete"|<h1|id="bloc-version"|version-ligne|version-reste|version-changements|NB_PHRASES/.test(
+      !/<header|class="header"|<h1|id="version-block"|version-line|version-rest|version-changes|NB_PHRASES/.test(
         source,
       ),
     ).toBeTruthy();
     expect(
-      source.indexOf('id="infos"') < source.indexOf('id="onglets"'),
+      source.indexOf('id="card"') < source.indexOf('id="tabs"'),
       "la ligne du composant est au-dessus des onglets",
     ).toBeTruthy();
     expect(
-      !/id="actions"[\s\S]*id="(refonte|fichemd|val-tokens)"[\s\S]*id="poignee"/.test(
+      !/id="actions"[\s\S]*id="(overhaul|sheet-md|tokens-value)"[\s\S]*id="handle"/.test(
         source,
       ),
       "les cases et la ligne des tokens ne sont plus dans la zone des boutons",
@@ -2317,7 +2313,7 @@ describe("The interface", () => {
   it("the text of the JSON takes the free height of the window, without a handle of its own", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /#contenu, #panneau-json, #json-contenu \{ flex: 1 0 auto; display: flex; flex-direction: column; \}/,
+      /#content, #panel-json, #json-content \{ flex: 1 0 auto; display: flex; flex-direction: column; \}/,
     );
     expect(source).toMatch(/#json \{[^}]*flex: 1 0 160px;[^}]*overflow: auto;/);
     expect(source).not.toMatch(/<textarea|resize: vertical/);
@@ -2325,40 +2321,40 @@ describe("The interface", () => {
   it("the automatic height is measured without the stretching of the JSON", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /body\.mesure #contenu, body\.mesure #panneau-json, body\.mesure #json-contenu, body\.mesure #json \{ flex-grow: 0; \}/,
+      /body\.measuring #content, body\.measuring #panel-json, body\.measuring #json-content, body\.measuring #json \{ flex-grow: 0; \}/,
     );
     expect(source).toMatch(
-      /classList\.add\(['"]mesure['"]\)[\s\S]*offsetHeight[\s\S]*classList\.remove\(['"]mesure['"]\)[\s\S]*type: ['"]redimensionner['"]/,
+      /classList\.add\(['"]measuring['"]\)[\s\S]*offsetHeight[\s\S]*classList\.remove\(['"]measuring['"]\)[\s\S]*type: ['"]resize['"]/,
     );
   });
   it("the plugin version is in the JSON tab, under the summary", () => {
     const ui = fakeInterface();
     expect(ui.source).toMatch(
-      /<div class="panneau" id="panneau-json"[\s\S]*id="resume"[\s\S]*<p class="aide" id="version-plugin">[\s\S]*<pre id="json"/,
+      /<div class="panel" id="panel-json"[\s\S]*id="summary"[\s\S]*<p class="help" id="plugin-version">[\s\S]*<pre id="json"/,
     );
     ui.receive({ type: "init", version: "0.4.3", format: "0.4" });
-    expect(ui.el["version-plugin"].textContent).toBe(
+    expect(ui.el["plugin-version"].textContent).toBe(
       "Plugin 0.4.3, format 0.4",
     );
   });
   it("the card: tile background, 8 px radius, 16 px margin, above the tabs", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /#infos \{ padding: 16px; border-radius: 8px; background: var\(--fond-tuile\); \}/,
+      /#card \{ padding: 16px; border-radius: 8px; background: var\(--tile-background\); \}/,
     );
     // after the generation: the version next to the name, in brand blue, and the design tokens as a pill below
     expect(source).toMatch(
-      /\.version-nom \{ font-size: 16px; line-height: 20px; font-weight: 700; color: var\(--texte-marque\); \}/,
+      /\.name-version \{ font-size: 16px; line-height: 20px; font-weight: 700; color: var\(--brand-text\); \}/,
     );
     expect(source).toMatch(
-      /\.pastilles \{ display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; \}/,
+      /\.pills \{ display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; \}/,
     );
-    expect(source).not.toMatch(/class="tuile-libelle"|\.tuiles \{/);
+    expect(source).not.toMatch(/class="tile-label"|\.tiles \{/);
     expect(source).toMatch(
-      /\.filet \{ height: 1px; margin: 10px 0; background: var\(--figma-color-border, #e6e6e6\); \}/,
+      /\.divider \{ height: 1px; margin: 10px 0; background: var\(--figma-color-border, #e6e6e6\); \}/,
     );
     expect(source).toMatch(
-      /id="nom"[\s\S]*id="tuile-version"[\s\S]*id="etiquette"[\s\S]*id="compteurs"[\s\S]*id="regenerer"[\s\S]*id="tuiles"[\s\S]*id="tuile-tokens"[\s\S]*id="filet"[\s\S]*id="cases"/,
+      /id="name"[\s\S]*id="version-tile"[\s\S]*id="tag"[\s\S]*id="counters"[\s\S]*id="regenerate"[\s\S]*id="tiles"[\s\S]*id="tokens-tile"[\s\S]*id="divider"[\s\S]*id="checkboxes"/,
     );
   });
   it("nothing selected: the invitation in the center, without a card, without tabs or buttons", () => {
@@ -2368,86 +2364,82 @@ describe("The interface", () => {
       "pas de bouton grisé avant le premier message",
     ).toBe(true);
     ui.receive({ type: "selection", id: null, name: null });
-    expect(ui.el.vide.hidden).toBe(false);
-    expect(ui.el.infos.hidden).toBe(true);
-    expect(ui.el.onglets.hidden).toBe(true);
+    expect(ui.el.empty.hidden).toBe(false);
+    expect(ui.el.card.hidden).toBe(true);
+    expect(ui.el.tabs.hidden).toBe(true);
     expect(ui.el.actions.hidden).toBe(true);
     expect(ui.source).toMatch(
-      /<p class="vide-titre">Aucun composant sélectionné<\/p>/,
+      /<p class="empty-title">Aucun composant sélectionné<\/p>/,
     );
     expect(ui.source).toMatch(
-      /<p class="aide">Sélectionner dans Figma un composant, son ensemble de variantes ou une de ses instances\.<\/p>/,
+      /<p class="help">Sélectionner dans Figma un composant, son ensemble de variantes ou une de ses instances\.<\/p>/,
     );
     expect(ui.source).toMatch(
-      /\.vide \{ flex: 1 0 auto;[^}]*justify-content: center;/,
+      /\.empty \{ flex: 1 0 auto;[^}]*justify-content: center;/,
     );
   });
   it("nothing selected: an error still shows, without the buttons", () => {
     const ui = fakeInterface();
     ui.receive({ type: "selection", id: null, name: null });
     ui.receive({
-      type: "erreur",
+      type: "error",
       message: "Sélectionner un composant, ou un ensemble de variantes.",
     });
     expect(ui.el.actions.hidden).toBe(false);
-    expect(ui.el.erreur.hidden).toBe(false);
-    expect(ui.el.boutons.hidden).toBe(true);
+    expect(ui.el.error.hidden).toBe(false);
+    expect(ui.el.buttons.hidden).toBe(true);
   });
   it("a selection makes the card and the buttons appear", () => {
     const ui = fakeInterface();
     ui.receive({ type: "selection", id: null, name: null });
     ui.receive(selection);
-    expect(ui.el.vide.hidden).toBe(true);
-    expect(ui.el.infos.hidden).toBe(false);
+    expect(ui.el.empty.hidden).toBe(true);
+    expect(ui.el.card.hidden).toBe(false);
     expect(ui.el.actions.hidden).toBe(false);
-    expect(ui.el.boutons.hidden).toBe(false);
-    expect(ui.el.generer.disabled).toBe(false);
+    expect(ui.el.buttons.hidden).toBe(false);
+    expect(ui.el.generate.disabled).toBe(false);
   });
   it("before the generation, the card gives the name, then the counters as pills on their own line, on the left", () => {
     const ui = fakeInterface();
     ui.receive(selection);
-    expect(ui.el.nom.textContent).toBe("Button");
-    expect(ui.el.etiquette.innerHTML).toBe("");
-    expect(ui.el.compteurs.hidden).toBe(false);
-    expect(ui.el.compteurs.innerHTML).toBe(
-      '<span class="pastille"><b>60</b> variantes</span><span class="pastille"><b>8</b> propriétés</span><span class="pastille pastille-neutre">jamais exporté</span>',
+    expect(ui.el.name.textContent).toBe("Button");
+    expect(ui.el.tag.innerHTML).toBe("");
+    expect(ui.el.counters.hidden).toBe(false);
+    expect(ui.el.counters.innerHTML).toBe(
+      '<span class="pill"><b>60</b> variantes</span><span class="pill"><b>8</b> propriétés</span><span class="pill pill-neutral">jamais exporté</span>',
     );
-    expect(ui.el.tuiles.hidden).toBe(true);
-    expect(ui.el.filet.hidden).toBe(true);
-    expect(ui.el.cases.hidden).toBe(true);
-    expect(ui.source).toMatch(
-      /\.rangee-nom \.compteurs \{[^}]*flex-basis: 100%;/,
-    );
+    expect(ui.el.tiles.hidden).toBe(true);
+    expect(ui.el.divider.hidden).toBe(true);
+    expect(ui.el.checkboxes.hidden).toBe(true);
+    expect(ui.source).toMatch(/\.name-row \.counters \{[^}]*flex-basis: 100%;/);
     expect(ui.source).not.toMatch(
-      /\.rangee-nom \.compteurs \{[^}]*margin-left: auto;/,
+      /\.name-row \.counters \{[^}]*margin-left: auto;/,
     );
     expect(ui.source).toMatch(
-      /\.pastille \{[^}]*background: var\(--figma-color-bg, #fff\);[^}]*font-size: 12px;/,
+      /\.pill \{[^}]*background: var\(--figma-color-bg, #fff\);[^}]*font-size: 12px;/,
     );
-    expect(ui.source).toMatch(
-      /\.pastille b \{ color: var\(--texte-marque\); \}/,
-    );
+    expect(ui.source).toMatch(/\.pill b \{ color: var\(--brand-text\); \}/);
   });
   it("opened from an instance: a gray pill says so", () => {
     const ui = fakeInterface();
     ui.receive(Object.assign({}, selection, { viaInstance: true }));
-    expect(ui.el.compteurs.innerHTML).toMatch(
-      /<span class="pastille pastille-neutre">depuis une instance<\/span>$/,
+    expect(ui.el.counters.innerHTML).toMatch(
+      /<span class="pill pill-neutral">depuis une instance<\/span>$/,
     );
   });
   it("after the generation, the name is alone, the tag follows it, only the Version and Design tokens tiles remain", () => {
     const ui = generated({});
-    expect(ui.el.nom.textContent).toBe("Button");
-    expect(ui.el.etiquette.innerHTML).toBe(
-      '<span class="etiquette etiquette-modifie">MINEURE</span>',
+    expect(ui.el.name.textContent).toBe("Button");
+    expect(ui.el.tag.innerHTML).toBe(
+      '<span class="tag tag-modified">MINEURE</span>',
     );
-    expect(ui.el["tuile-version"].hidden).toBe(false);
-    expect(ui.el["tuile-tokens"].hidden).toBe(false);
-    expect(ui.el.tuiles.hidden).toBe(false);
-    expect(ui.el.compteurs.hidden).toBe(true);
-    answers(ui, "oui");
-    expect(ui.el["val-version"].textContent).toBe("1.1.0");
-    expect(ui.el["generer-libelle"].textContent).toBe("Télécharger le JSON");
+    expect(ui.el["version-tile"].hidden).toBe(false);
+    expect(ui.el["tokens-tile"].hidden).toBe(false);
+    expect(ui.el.tiles.hidden).toBe(false);
+    expect(ui.el.counters.hidden).toBe(true);
+    answers(ui, "yes");
+    expect(ui.el["version-value"].textContent).toBe("1.1.0");
+    expect(ui.el["generate-label"].textContent).toBe("Télécharger le JSON");
   });
   it("Changements tab: one group per variants, bold title, and the counter counts the lines", () => {
     const ui = fakeInterface();
@@ -2471,39 +2463,39 @@ describe("The interface", () => {
         },
       }),
     );
-    expect(ui.el["compteur-changements"].textContent).toBe("3");
-    expect(ui.el.changements.innerHTML).toBe(
-      '<p class="aide">Depuis le dernier export :</p><ul class="aide">' +
-        '<li><span class="groupe">size=medium, _theme=prospect</span><ul><li>Marges horizontales : spacing/24 → spacing/16</li></ul></li>' +
-        '<li><span class="groupe">size=medium, _theme=client</span><ul><li>Marges, sur les quatre côtés : spacing/16 → spacing/12</li><li>Fond : a → b</li></ul></li></ul>',
+    expect(ui.el["counter-changes"].textContent).toBe("3");
+    expect(ui.el.changes.innerHTML).toBe(
+      '<p class="help">Depuis le dernier export :</p><ul class="help">' +
+        '<li><span class="group">size=medium, _theme=prospect</span><ul><li>Marges horizontales : spacing/24 → spacing/16</li></ul></li>' +
+        '<li><span class="group">size=medium, _theme=client</span><ul><li>Marges, sur les quatre côtés : spacing/16 → spacing/12</li><li>Fond : a → b</li></ul></li></ul>',
     );
   });
   it("JSON changed: the version question is asked, and nothing is downloaded or copied without an answer", () => {
     const ui = generated({});
     expect(ui.el.question.hidden).toBe(false);
-    expect(ui.el.question.classList.contains("a-repondre")).toBe(true);
-    expect(ui.el["question-titre"].textContent).toBe(
+    expect(ui.el.question.classList.contains("to-answer")).toBe(true);
+    expect(ui.el["question-title"].textContent).toBe(
       "La version 1.0.0 a-t-elle été livrée aux devs ?",
     );
-    expect(ui.el["livree-oui-libelle"].textContent).toBe(
+    expect(ui.el["delivered-yes-label"].textContent).toBe(
       "Oui, passer en 1.1.0",
     );
-    expect(ui.el["livree-non-libelle"].textContent).toBe("Non, garder 1.0.0");
-    expect(ui.el["val-version"].textContent).toBe("à choisir");
-    expect(ui.el["tuile-version"].classList.contains("a-choisir")).toBe(true);
+    expect(ui.el["delivered-no-label"].textContent).toBe("Non, garder 1.0.0");
+    expect(ui.el["version-value"].textContent).toBe("à choisir");
+    expect(ui.el["version-tile"].classList.contains("to-choose")).toBe(true);
     expect(ui.source).toMatch(
-      /<div class="reponses">\s*<label class="case"><input type="radio" name="livree" id="livree-oui" ?\/?>[\s\S]*?id="livree-non"[\s\S]*?<\/div>/,
+      /<div class="answers">\s*<label class="checkbox"><input type="radio" name="delivered" id="delivered-yes" ?\/?>[\s\S]*?id="delivered-no"[\s\S]*?<\/div>/,
     );
-    expect(ui.el.generer.disabled).toBe(true);
-    expect(ui.el["generer-libelle"].textContent).toBe("Répondre à la question");
-    expect(ui.el.copier.disabled).toBe(true);
-    answers(ui, "oui");
-    expect(ui.el["tuile-version"].classList.contains("a-choisir")).toBe(false);
-    expect(ui.el.question.classList.contains("a-repondre")).toBe(false);
-    expect(ui.el.generer.disabled).toBe(false);
-    expect(ui.el.copier.disabled).toBe(false);
+    expect(ui.el.generate.disabled).toBe(true);
+    expect(ui.el["generate-label"].textContent).toBe("Répondre à la question");
+    expect(ui.el.copy.disabled).toBe(true);
+    answers(ui, "yes");
+    expect(ui.el["version-tile"].classList.contains("to-choose")).toBe(false);
+    expect(ui.el.question.classList.contains("to-answer")).toBe(false);
+    expect(ui.el.generate.disabled).toBe(false);
+    expect(ui.el.copy.disabled).toBe(false);
     expect(ui.source).toMatch(
-      /\.question\.a-repondre \{ box-shadow: inset 0 0 0 2px var\(--texte-marque\); \}/,
+      /\.question\.to-answer \{ box-shadow: inset 0 0 0 2px var\(--brand-text\); \}/,
     );
   });
   it("the question is not asked at the first version, nor when nothing changed", () => {
@@ -2519,25 +2511,23 @@ describe("The interface", () => {
       { version: "1.0.0", level: null, detected: null, none: true, next: null },
     ]) {
       const ui = generated(v);
-      expect(ui.el["question-livree"].hidden).toBe(true);
-      expect(ui.el.generer.disabled).toBe(false);
-      expect(ui.el["val-version"].textContent).toBe("1.0.0");
+      expect(ui.el["question-delivered"].hidden).toBe(true);
+      expect(ui.el.generate.disabled).toBe(false);
+      expect(ui.el["version-value"].textContent).toBe("1.0.0");
     }
   });
   it("Non, garder: the plugin keeps the version, Refonte complète is unchecked, and the tag says VERSION GARDÉE", () => {
     const ui = generated({});
-    answers(ui, "oui");
-    ui.el.refonte.checked = true;
-    ui.el.refonte.onchange();
-    answers(ui, "non");
-    expect(ui.el.refonte.checked).toBe(false);
-    expect(ui.el["case-refonte"].hidden).toBe(true);
+    answers(ui, "yes");
+    ui.el.overhaul.checked = true;
+    ui.el.overhaul.onchange();
+    answers(ui, "no");
+    expect(ui.el.overhaul.checked).toBe(false);
+    expect(ui.el["checkbox-overhaul"].hidden).toBe(true);
     expect(
-      plain(
-        ui.sent.filter((m: MockData) => m.type === "choisir-version").pop(),
-      ),
+      plain(ui.sent.filter((m: MockData) => m.type === "choose-version").pop()),
     ).toStrictEqual({
-      type: "choisir-version",
+      type: "choose-version",
       id: "1:2",
       keep: true,
       overhaul: false,
@@ -2549,149 +2539,149 @@ describe("The interface", () => {
       json: "{}",
       version: versionOf({ version: "1.0.0", level: null, kept: true }),
     });
-    expect(ui.el.etiquette.innerHTML).toBe(
-      '<span class="etiquette etiquette-neutre">VERSION GARDÉE</span>',
+    expect(ui.el.tag.innerHTML).toBe(
+      '<span class="tag tag-neutral">VERSION GARDÉE</span>',
     );
-    expect(ui.el["val-version"].textContent).toBe("1.0.0");
-    expect(ui.el["generer-libelle"].textContent).toBe("Télécharger le JSON");
+    expect(ui.el["version-value"].textContent).toBe("1.0.0");
+    expect(ui.el["generate-label"].textContent).toBe("Télécharger le JSON");
   });
   it("a new generation asks the question again", () => {
     const ui = generated({});
-    answers(ui, "non");
+    answers(ui, "no");
     ui.receive(sheetWith({}));
-    expect(ui.el["livree-non"].checked).toBe(false);
-    expect(ui.el.question.classList.contains("a-repondre")).toBe(true);
-    expect(ui.el.generer.disabled).toBe(true);
+    expect(ui.el["delivered-no"].checked).toBe(false);
+    expect(ui.el.question.classList.contains("to-answer")).toBe(true);
+    expect(ui.el.generate.disabled).toBe(true);
   });
   it("before the generation, only the À corriger tab shows, and the arrows stay on it", () => {
     const ui = fakeInterface();
     ui.receive(selection);
     expect(ui.source).not.toMatch(
-      /\.onglet:disabled|tabindex="-1" disabled|-attente"/,
+      /\.tab:disabled|tabindex="-1" disabled|-attente"/,
     );
-    expect(ui.el.onglets.hidden).toBe(false);
+    expect(ui.el.tabs.hidden).toBe(false);
     expect(
-      ["corriger", "json", "changelog", "changements"].map(
-        (n) => ui.el["onglet-" + n].hidden,
+      ["issues", "json", "changelog", "changes"].map(
+        (n) => ui.el["tab-" + n].hidden,
       ),
     ).toStrictEqual([false, true, true, true]);
-    expect(ui.el["panneau-corriger"].hidden).toBe(false);
-    ui.el.onglets.onkeydown({ key: "ArrowRight", preventDefault() {} });
-    expect(ui.el["panneau-corriger"].hidden).toBe(false);
-    expect(ui.el["panneau-json"].hidden).toBe(true);
+    expect(ui.el["panel-issues"].hidden).toBe(false);
+    ui.el.tabs.onkeydown({ key: "ArrowRight", preventDefault() {} });
+    expect(ui.el["panel-issues"].hidden).toBe(false);
+    expect(ui.el["panel-json"].hidden).toBe(true);
   });
   it("after the generation with an issue, the four tabs show and À corriger is open", () => {
     const ui = fakeInterface();
     ui.receive(selection);
     ui.receive(Object.assign(sheetWith({}), { issues: [ISSUE] }));
     expect(
-      ["corriger", "json", "changelog", "changements"].map(
-        (n) => ui.el["onglet-" + n].hidden,
+      ["issues", "json", "changelog", "changes"].map(
+        (n) => ui.el["tab-" + n].hidden,
       ),
     ).toStrictEqual([false, false, false, false]);
-    expect(ui.el["panneau-corriger"].hidden).toBe(false);
-    expect(ui.el["json-contenu"].hidden).toBe(false);
-    expect(ui.el["changelog-contenu"].hidden).toBe(false);
-    expect(ui.el.changements.hidden).toBe(false);
+    expect(ui.el["panel-issues"].hidden).toBe(false);
+    expect(ui.el["json-content"].hidden).toBe(false);
+    expect(ui.el["changelog-content"].hidden).toBe(false);
+    expect(ui.el.changes.hidden).toBe(false);
   });
   it("after the generation without an issue, À corriger disappears and the first tab, JSON, is open", () => {
     const ui = generated({});
     expect(
-      ["corriger", "json", "changelog", "changements"].map(
-        (n) => ui.el["onglet-" + n].hidden,
+      ["issues", "json", "changelog", "changes"].map(
+        (n) => ui.el["tab-" + n].hidden,
       ),
     ).toStrictEqual([true, false, false, false]);
-    expect(ui.el["panneau-json"].hidden).toBe(false);
-    expect(ui.el["panneau-changements"].hidden).toBe(true);
-    expect(ui.el["panneau-corriger"].hidden).toBe(true);
+    expect(ui.el["panel-json"].hidden).toBe(false);
+    expect(ui.el["panel-changes"].hidden).toBe(true);
+    expect(ui.el["panel-issues"].hidden).toBe(true);
   });
   it("À corriger open, a new generation without an issue switches to JSON", () => {
     const ui = fakeInterface();
     ui.receive(selection);
     ui.receive(Object.assign(sheetWith({}), { issues: [ISSUE] }));
-    expect(ui.el["panneau-corriger"].hidden).toBe(false);
+    expect(ui.el["panel-issues"].hidden).toBe(false);
     ui.receive(Object.assign(sheetWith({}), { issues: [] }));
-    expect(ui.el["onglet-corriger"].hidden).toBe(true);
-    expect(ui.el["panneau-corriger"].hidden).toBe(true);
-    expect(ui.el["panneau-json"].hidden).toBe(false);
+    expect(ui.el["tab-issues"].hidden).toBe(true);
+    expect(ui.el["panel-issues"].hidden).toBe(true);
+    expect(ui.el["panel-json"].hidden).toBe(false);
   });
   it("a new component hides the JSON, Changelog and Changements tabs again", () => {
     const ui = generated({});
-    ui.receive(Object.assign({}, selection, { id: "autre", name: "Tag" }));
+    ui.receive(Object.assign({}, selection, { id: "other", name: "Tag" }));
     expect(
-      ["corriger", "json", "changelog", "changements"].map(
-        (n) => ui.el["onglet-" + n].hidden,
+      ["issues", "json", "changelog", "changes"].map(
+        (n) => ui.el["tab-" + n].hidden,
       ),
     ).toStrictEqual([false, true, true, true]);
   });
   it("the card gives the last stored version, or « jamais exporté »", () => {
     const ui = fakeInterface();
     ui.receive(Object.assign({}, selection, { latestVersion: "1.2.0" }));
-    expect(ui.el.compteurs.innerHTML).toMatch(
-      /<span class="pastille">dernière version <b>1\.2\.0<\/b><\/span>/,
+    expect(ui.el.counters.innerHTML).toMatch(
+      /<span class="pill">dernière version <b>1\.2\.0<\/b><\/span>/,
     );
     ui.receive(
       Object.assign({}, selection, {
-        id: "autre",
+        id: "other",
         name: "Tag",
         latestVersion: null,
       }),
     );
-    expect(ui.el.compteurs.innerHTML).toMatch(
-      /<span class="pastille pastille-neutre">jamais exporté<\/span>/,
+    expect(ui.el.counters.innerHTML).toMatch(
+      /<span class="pill pill-neutral">jamais exporté<\/span>/,
     );
-    expect(ui.el.compteurs.innerHTML).not.toMatch(/dernière version/);
+    expect(ui.el.counters.innerHTML).not.toMatch(/dernière version/);
   });
   it("the tabs: 14 px text, 3 px underline, counters in brand blue", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /\.onglet \{[^}]*padding: 10px 0;[^}]*border-bottom: 3px solid transparent;[^}]*font-size: 14px;/,
+      /\.tab \{[^}]*padding: 10px 0;[^}]*border-bottom: 3px solid transparent;[^}]*font-size: 14px;/,
     );
     expect(source).toMatch(
-      /\.compteur \{[^}]*background: var\(--fond-tuile\); color: var\(--texte-marque\);/,
+      /\.counter \{[^}]*background: var\(--tile-background\); color: var\(--brand-text\);/,
     );
   });
   it("before the generation, « À corriger » is a section title, and becomes a tab again afterwards", () => {
     const ui = fakeInterface();
     ui.receive(selection);
-    expect(ui.el.onglets.classList.contains("titre-seul")).toBe(true);
+    expect(ui.el.tabs.classList.contains("title-only")).toBe(true);
     expect(ui.source).toMatch(
-      /\.onglets\.titre-seul \.onglet \{ border-bottom-color: transparent; cursor: default; \}/,
+      /\.tabs\.title-only \.tab \{ border-bottom-color: transparent; cursor: default; \}/,
     );
     ui.receive(sheetWith({}));
-    expect(ui.el.onglets.classList.contains("titre-seul")).toBe(false);
+    expect(ui.el.tabs.classList.contains("title-only")).toBe(false);
   });
   it("the radio buttons and the checkboxes are drawn with a brand blue outline", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /\.case input \{[^}]*appearance: none;[^}]*border: 1\.5px solid var\(--texte-marque\);/,
+      /\.checkbox input \{[^}]*appearance: none;[^}]*border: 1\.5px solid var\(--brand-text\);/,
     );
     expect(source).toMatch(
-      /\.case input\[type="checkbox"\]:checked \{ background: var\(--texte-marque\); \}/,
+      /\.checkbox input\[type="checkbox"\]:checked \{ background: var\(--brand-text\); \}/,
     );
     expect(source).not.toMatch(/accent-color/);
   });
   it("Rien à corriger before the generation: a centered empty state, that invites to generate", () => {
     const ui = fakeInterface();
     ui.receive(selection);
-    ui.receive({ type: "controle", id: "1:2", issues: [] });
-    expect(ui.el["corriger-ok"].hidden).toBe(false);
+    ui.receive({ type: "check-result", id: "1:2", issues: [] });
+    expect(ui.el["issues-ok"].hidden).toBe(false);
     expect(ui.source).toMatch(
-      /<div class="vide" id="corriger-ok" hidden>[\s\S]*?<p class="vide-titre">Rien à corriger<\/p>\s*<p class="aide">Le composant respecte la nomenclature\. Générer le JSON pour calculer sa version et son changelog\.<\/p>/,
+      /<div class="empty" id="issues-ok" hidden>[\s\S]*?<p class="empty-title">Rien à corriger<\/p>\s*<p class="help">Le composant respecte la nomenclature\. Générer le JSON pour calculer sa version et son changelog\.<\/p>/,
     );
   });
   it("a change of component after the generation shows the counters again", () => {
     const ui = generated({});
-    ui.receive(Object.assign({}, selection, { id: "autre", name: "Tag" }));
-    expect(ui.el.compteurs.hidden).toBe(false);
-    expect(ui.el.tuiles.hidden).toBe(true);
-    expect(ui.el["tuile-version"].hidden).toBe(true);
+    ui.receive(Object.assign({}, selection, { id: "other", name: "Tag" }));
+    expect(ui.el.counters.hidden).toBe(false);
+    expect(ui.el.tiles.hidden).toBe(true);
+    expect(ui.el["version-tile"].hidden).toBe(true);
   });
   it("each level has its tag and its color", () => {
     const scenario: MockData[] = [
-      [{ version: "2.0.0", level: "majeure" }, "MAJEURE", "etiquette-supprime"],
-      [{ version: "1.1.0", level: "mineure" }, "MINEURE", "etiquette-modifie"],
-      [{ version: "1.0.1", level: "correctif" }, "PATCH", "etiquette-ajoute"],
+      [{ version: "2.0.0", level: "major" }, "MAJEURE", "tag-removed"],
+      [{ version: "1.1.0", level: "minor" }, "MINEURE", "tag-modified"],
+      [{ version: "1.0.1", level: "patch" }, "PATCH", "tag-added"],
       [
         {
           version: "1.0.0",
@@ -2701,69 +2691,69 @@ describe("The interface", () => {
           current: null,
         },
         "PREMIÈRE VERSION",
-        "etiquette-neutre",
+        "tag-neutral",
       ],
       [
         { version: "1.0.0", level: null, detected: null, none: true },
         "INCHANGÉE",
-        "etiquette-neutre",
+        "tag-neutral",
       ],
     ];
     for (const [v, label, cssClass] of scenario) {
       const ui = generated(v);
-      if (!ui.el.question.hidden) answers(ui, "oui");
-      expect(ui.el.etiquette.innerHTML).toBe(
-        '<span class="etiquette ' + cssClass + '">' + label + "</span>",
+      if (!ui.el.question.hidden) answers(ui, "yes");
+      expect(ui.el.tag.innerHTML).toBe(
+        '<span class="tag ' + cssClass + '">' + label + "</span>",
       );
-      expect(ui.el["val-version"].textContent).toBe(v.version);
+      expect(ui.el["version-value"].textContent).toBe(v.version);
     }
     const css = fakeInterface().source;
     for (const cssClass of [
-      "etiquette-supprime",
-      "etiquette-modifie",
-      "etiquette-ajoute",
-      "etiquette-neutre",
+      "tag-removed",
+      "tag-modified",
+      "tag-added",
+      "tag-neutral",
     ])
       expect(css.includes("." + cssClass + " {"), cssClass).toBeTruthy();
   });
   it("the pill Version minimale des tokens requise: computed version, or non calculée in error color", () => {
     const computed = generated({ tokensVersion: "2.0.0" });
-    expect(computed.el["val-tokens"].textContent).toBe("2.0.0");
-    expect(computed.el["val-tokens"].title).toBe("");
+    expect(computed.el["tokens-value"].textContent).toBe("2.0.0");
+    expect(computed.el["tokens-value"].title).toBe("");
     const source = computed.source;
     expect(
       source.includes(
-        '<span class="pastille" id="tuile-tokens" hidden>Version minimale des tokens requise :<b id="val-tokens"></b></span>',
+        '<span class="pill" id="tokens-tile" hidden>Version minimale des tokens requise :<b id="tokens-value"></b></span>',
       ),
     ).toBeTruthy();
-    expect(computed.el["val-tokens"].classList.contains("tokens-erreur")).toBe(
+    expect(computed.el["tokens-value"].classList.contains("tokens-error")).toBe(
       false,
     );
     const zero = generated({ tokensVersion: null });
-    expect(zero.el["val-tokens"].textContent).toBe("non calculée");
-    expect(zero.el["val-tokens"].title).toBe("Voir l'onglet À corriger");
-    expect(zero.el["val-tokens"].classList.contains("tokens-erreur")).toBe(
+    expect(zero.el["tokens-value"].textContent).toBe("non calculée");
+    expect(zero.el["tokens-value"].title).toBe("Voir l'onglet À corriger");
+    expect(zero.el["tokens-value"].classList.contains("tokens-error")).toBe(
       true,
     );
     expect(zero.source).toMatch(
-      /#val-tokens\.tokens-erreur \{ color: var\(--rouge\); \}/,
+      /#tokens-value\.tokens-error \{ color: var\(--red\); \}/,
     );
   });
   it("the question and the checkboxes share the same box: the question on top, the checkboxes under a rule, one per line", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /<div class="cases" id="cases" hidden>\s*<label class="case" id="case-refonte">[^\n]*<\/label>\s*<label class="case" id="case-fichemd" hidden>[^\n]*<\/label>\s*<\/div>\s*<\/div>/,
+      /<div class="checkboxes" id="checkboxes" hidden>\s*<label class="checkbox" id="checkbox-overhaul">[^\n]*<\/label>\s*<label class="checkbox" id="checkbox-sheet-md" hidden>[^\n]*<\/label>\s*<\/div>\s*<\/div>/,
     );
     expect(source).toMatch(
-      /#question-livree, \.cases \{ display: flex; flex-direction: column;/,
+      /#question-delivered, \.checkboxes \{ display: flex; flex-direction: column;/,
     );
     const i = (id: string) => source.indexOf('id="' + id + '"');
     expect(
-      i("tuile-tokens") < i("question") &&
-        i("question") < i("question-livree") &&
-        i("question-livree") < i("question-aucun") &&
-        i("question-aucun") < i("filet") &&
-        i("filet") < i("cases"),
+      i("tokens-tile") < i("question") &&
+        i("question") < i("question-delivered") &&
+        i("question-delivered") < i("question-none") &&
+        i("question-none") < i("divider") &&
+        i("divider") < i("checkboxes"),
     ).toBeTruthy();
   });
   it("the checkboxes announce the version they give, and « Aucun changement » opens the box when nothing changed", () => {
@@ -2772,12 +2762,12 @@ describe("The interface", () => {
       current: "1.2.4",
       next: "1.3.0",
     });
-    answers(change, "oui");
-    expect(change.el["refonte-libelle"].textContent).toBe(
+    answers(change, "yes");
+    expect(change.el["overhaul-label"].textContent).toBe(
       "Refonte complète, passer en 2.0.0",
     );
-    expect(change.el["question-aucun"].hidden).toBe(true);
-    expect(change.el.filet.hidden).toBe(false);
+    expect(change.el["question-none"].hidden).toBe(true);
+    expect(change.el.divider.hidden).toBe(false);
     const nothing = generated({
       version: "1.2.4",
       current: "1.2.4",
@@ -2787,16 +2777,16 @@ describe("The interface", () => {
       next: null,
     });
     expect(nothing.el.question.hidden).toBe(false);
-    expect(nothing.el["question-livree"].hidden).toBe(true);
-    expect(nothing.el["question-aucun"].hidden).toBe(false);
+    expect(nothing.el["question-delivered"].hidden).toBe(true);
+    expect(nothing.el["question-none"].hidden).toBe(false);
     expect(nothing.source).toMatch(
-      /id="question-aucun" hidden>Aucun changement dans le composant\.</,
+      /id="question-none" hidden>Aucun changement dans le composant\.</,
     );
-    expect(nothing.el.filet.hidden).toBe(true);
-    expect(nothing.el["fichemd-libelle"].textContent).toBe(
+    expect(nothing.el.divider.hidden).toBe(true);
+    expect(nothing.el["sheet-md-label"].textContent).toBe(
       "Fiche md modifiée, passer en 1.2.5",
     );
-    expect(nothing.el["case-refonte"].hidden).toBe(true);
+    expect(nothing.el["checkbox-overhaul"].hidden).toBe(true);
     const first = generated({
       version: "1.0.0",
       level: null,
@@ -2817,17 +2807,19 @@ describe("The interface", () => {
       first: true,
       current: null,
     });
-    expect(first.el.cases.hidden).toBe(true);
-    expect(first.el.filet.hidden).toBe(true);
-    expect(first.el["case-refonte"].hidden).toBe(true);
+    expect(first.el.checkboxes.hidden).toBe(true);
+    expect(first.el.divider.hidden).toBe(true);
+    expect(first.el["checkbox-overhaul"].hidden).toBe(true);
     const change = generated({});
-    expect(change.el.cases.hidden, "rien à cocher avant la réponse").toBe(true);
-    expect(change.el.filet.hidden).toBe(true);
-    answers(change, "oui");
-    expect(change.el.cases.hidden).toBe(false);
-    expect(change.el.filet.hidden).toBe(false);
-    expect(change.el["case-refonte"].hidden).toBe(false);
-    expect(change.el["case-fichemd"].hidden).toBe(true);
+    expect(change.el.checkboxes.hidden, "rien à cocher avant la réponse").toBe(
+      true,
+    );
+    expect(change.el.divider.hidden).toBe(true);
+    answers(change, "yes");
+    expect(change.el.checkboxes.hidden).toBe(false);
+    expect(change.el.divider.hidden).toBe(false);
+    expect(change.el["checkbox-overhaul"].hidden).toBe(false);
+    expect(change.el["checkbox-sheet-md"].hidden).toBe(true);
     const nothing = generated({
       version: "1.0.0",
       level: null,
@@ -2835,12 +2827,12 @@ describe("The interface", () => {
       none: true,
     });
     expect(
-      nothing.el["case-refonte"].hidden,
+      nothing.el["checkbox-overhaul"].hidden,
       "rien n'a changé : pas de refonte possible",
     ).toBe(true);
-    expect(nothing.el["case-fichemd"].hidden).toBe(false);
+    expect(nothing.el["checkbox-sheet-md"].hidden).toBe(false);
     expect(
-      nothing.el.filet.hidden,
+      nothing.el.divider.hidden,
       "sans question, pas de filet au-dessus des cases",
     ).toBe(true);
   });
@@ -2848,15 +2840,15 @@ describe("The interface", () => {
     const ui = fakeInterface();
     ui.receive(selection);
     ui.receive(Object.assign(sheetWith({}), { changes: { sentences: [] } }));
-    expect(ui.el.changements.innerHTML).toMatch(
-      /^<div class="vide"><span class="vide-icone"><svg[\s\S]*<\/svg><\/span><p class="vide-titre">Aucun changement<\/p><p class="aide">Le composant n&#39;a pas changé depuis le dernier export\.<\/p><\/div>$/,
+    expect(ui.el.changes.innerHTML).toMatch(
+      /^<div class="empty"><span class="empty-icon"><svg[\s\S]*<\/svg><\/span><p class="empty-title">Aucun changement<\/p><p class="help">Le composant n&#39;a pas changé depuis le dernier export\.<\/p><\/div>$/,
     );
     ui.receive(Object.assign(sheetWith({}), { changes: null }));
-    expect(ui.el.changements.innerHTML).toMatch(
-      /<p class="vide-titre">Premier export<\/p><p class="aide">Ce composant n&#39;a pas encore de version précédente à comparer\.<\/p>/,
+    expect(ui.el.changes.innerHTML).toMatch(
+      /<p class="empty-title">Premier export<\/p><p class="help">Ce composant n&#39;a pas encore de version précédente à comparer\.<\/p>/,
     );
     expect(ui.source).toMatch(
-      /#panneau-changements, #changements \{ flex: 1 0 auto; display: flex; flex-direction: column; \}/,
+      /#panel-changes, #changes \{ flex: 1 0 auto; display: flex; flex-direction: column; \}/,
     );
   });
   it("changes compared to the shared base: « Depuis le dernier export », without a date", () => {
@@ -2867,39 +2859,39 @@ describe("The interface", () => {
         changes: { sentences: ["Propriété size ajoutée"] },
       }),
     );
-    expect(ui.el.changements.innerHTML).toBe(
-      '<p class="aide">Depuis le dernier export : propriété size ajoutée</p>',
+    expect(ui.el.changes.innerHTML).toBe(
+      '<p class="help">Depuis le dernier export : propriété size ajoutée</p>',
     );
   });
   it("an error message clears the success banner of the download already done", () => {
     const ui = generated({});
-    answers(ui, "oui");
-    ui.el.generer.onclick();
-    expect(ui.el.succes.textContent).toBe("JSON téléchargé.");
-    expect(ui.el.succes.hidden).toBe(false);
-    ui.receive({ type: "erreur", message: "Un autre export a eu lieu." });
-    expect(ui.el.erreur.textContent).toBe("Un autre export a eu lieu.");
-    expect(ui.el.erreur.hidden).toBe(false);
-    expect(ui.el.succes.hidden).toBe(true);
-    expect(ui.el.succes.textContent).toBe("");
+    answers(ui, "yes");
+    ui.el.generate.onclick();
+    expect(ui.el.success.textContent).toBe("JSON téléchargé.");
+    expect(ui.el.success.hidden).toBe(false);
+    ui.receive({ type: "error", message: "Un autre export a eu lieu." });
+    expect(ui.el.error.textContent).toBe("Un autre export a eu lieu.");
+    expect(ui.el.error.hidden).toBe(false);
+    expect(ui.el.success.hidden).toBe(true);
+    expect(ui.el.success.textContent).toBe("");
   });
   it("checking a box asks the plugin for the version, then the title, the tag and the button follow", () => {
     const ui = generated({});
-    answers(ui, "oui");
-    ui.el.refonte.checked = true;
-    ui.el.refonte.onchange();
+    answers(ui, "yes");
+    ui.el.overhaul.checked = true;
+    ui.el.overhaul.onchange();
     expect(
-      plain(ui.sent.filter((m: MockData) => m.type === "choisir-version")),
+      plain(ui.sent.filter((m: MockData) => m.type === "choose-version")),
     ).toStrictEqual([
       {
-        type: "choisir-version",
+        type: "choose-version",
         id: "1:2",
         keep: false,
         overhaul: false,
         sheetMd: false,
       },
       {
-        type: "choisir-version",
+        type: "choose-version",
         id: "1:2",
         keep: false,
         overhaul: true,
@@ -2910,16 +2902,16 @@ describe("The interface", () => {
       type: "version",
       id: "1:2",
       json: '{"x":1}',
-      version: versionOf({ version: "2.0.0", level: "majeure" }),
+      version: versionOf({ version: "2.0.0", level: "major" }),
     });
-    expect(ui.el.nom.textContent).toBe("Button");
-    expect(ui.el.etiquette.innerHTML).toBe(
-      '<span class="etiquette etiquette-supprime">MAJEURE</span>',
+    expect(ui.el.name.textContent).toBe("Button");
+    expect(ui.el.tag.innerHTML).toBe(
+      '<span class="tag tag-removed">MAJEURE</span>',
     );
-    expect(ui.el["val-version"].textContent).toBe("2.0.0");
-    expect(ui.el["generer-libelle"].textContent).toBe("Télécharger le JSON");
+    expect(ui.el["version-value"].textContent).toBe("2.0.0");
+    expect(ui.el["generate-label"].textContent).toBe("Télécharger le JSON");
     expect(ui.el.json.innerHTML).toBe(
-      '{<span class="j-cle">&quot;x&quot;</span>:<span class="j-nombre">1</span>}',
+      '{<span class="j-key">&quot;x&quot;</span>:<span class="j-number">1</span>}',
     );
   });
   it("the JSON is colored like in an editor, and its text stays escaped", () => {
@@ -2931,20 +2923,20 @@ describe("The interface", () => {
       }),
     );
     expect(ui.el.json.innerHTML).toBe(
-      '{\n  <span class="j-cle">&quot;nom&quot;</span>: <span class="j-texte">&quot;a&lt;b&quot;</span>,\n' +
-        '  <span class="j-cle">&quot;n&quot;</span>: <span class="j-nombre">-1.5e2</span>,\n' +
-        '  <span class="j-cle">&quot;ok&quot;</span>: <span class="j-mot">true</span>,\n' +
-        '  <span class="j-cle">&quot;vide&quot;</span>: <span class="j-mot">null</span>,\n' +
-        '  <span class="j-cle">&quot;x&quot;</span>: <span class="j-texte">&quot;12 true&quot;</span>\n}',
+      '{\n  <span class="j-key">&quot;nom&quot;</span>: <span class="j-string">&quot;a&lt;b&quot;</span>,\n' +
+        '  <span class="j-key">&quot;n&quot;</span>: <span class="j-number">-1.5e2</span>,\n' +
+        '  <span class="j-key">&quot;ok&quot;</span>: <span class="j-keyword">true</span>,\n' +
+        '  <span class="j-key">&quot;vide&quot;</span>: <span class="j-keyword">null</span>,\n' +
+        '  <span class="j-key">&quot;x&quot;</span>: <span class="j-string">&quot;12 true&quot;</span>\n}',
     );
   });
   it("the JSON colors change with the dark theme of Figma", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /:root \{[^}]*--j-cle: #0451a5;[^}]*--j-texte: #a31515;[^}]*--j-nombre: #098658;[^}]*--j-mot: #0000ff;/,
+      /:root \{[^}]*--j-key: #0451a5;[^}]*--j-string: #a31515;[^}]*--j-number: #098658;[^}]*--j-keyword: #0000ff;/,
     );
     expect(source).toMatch(
-      /html\.figma-dark \{[^}]*--j-cle: #9cdcfe;[^}]*--j-texte: #ce9178;[^}]*--j-nombre: #b5cea8;[^}]*--j-mot: #569cd6;/,
+      /html\.figma-dark \{[^}]*--j-key: #9cdcfe;[^}]*--j-string: #ce9178;[^}]*--j-number: #b5cea8;[^}]*--j-keyword: #569cd6;/,
     );
   });
   it("Cmd+A in the JSON selects only the JSON", () => {
@@ -2968,16 +2960,16 @@ describe("The interface", () => {
   it("the Changelog tab follows the JSON tab, on the model of the others", () => {
     const { source } = fakeInterface();
     expect(source).toMatch(
-      /id="onglet-json"[^\n]*>JSON<\/button>\s*<button type="button" class="onglet" role="tab" id="onglet-changelog" data-onglet="changelog" aria-controls="panneau-changelog" aria-selected="false" tabindex="-1">Changelog<\/button>/,
+      /id="tab-json"[^\n]*>JSON<\/button>\s*<button type="button" class="tab" role="tab" id="tab-changelog" data-tab="changelog" aria-controls="panel-changelog" aria-selected="false" tabindex="-1">Changelog<\/button>/,
     );
     expect(source).toMatch(
-      /<div class="panneau" id="panneau-changelog" role="tabpanel" aria-labelledby="onglet-changelog" hidden>/,
+      /<div class="panel" id="panel-changelog" role="tabpanel" aria-labelledby="tab-changelog" hidden>/,
     );
     expect(source).toMatch(
-      /(?:const|var|let) TABS = \[\s*['"]corriger['"],\s*['"]json['"],\s*['"]changelog['"],\s*['"]changements['"]\s*\]/,
+      /(?:const|var|let) TABS = \[\s*['"]issues['"],\s*['"]json['"],\s*['"]changelog['"],\s*['"]changes['"]\s*\]/,
     );
     expect(source).toMatch(
-      /id="onglet-changelog"[^>]*>Changelog<\/button><button[^>]*id="onglet-changements"/,
+      /id="tab-changelog"[^>]*>Changelog<\/button><button[^>]*id="tab-changes"/,
     );
     expect(source).toMatch(
       /<pre id="changelog" tabindex="0" role="region" aria-label="Changelog du composant"><\/pre>/,
@@ -2988,14 +2980,14 @@ describe("The interface", () => {
     ui.receive(selection);
     ui.receive(Object.assign(sheetWith({}), { issues: [ISSUE] }));
     openTab(ui, "changelog");
-    ui.el.onglets.onkeydown({ key: "ArrowRight", preventDefault() {} });
+    ui.el.tabs.onkeydown({ key: "ArrowRight", preventDefault() {} });
     expect(
-      ui.el["panneau-changements"].hidden,
+      ui.el["panel-changes"].hidden,
       "la flèche droite passe à « Changements »",
     ).toBe(false);
-    ui.el.onglets.onkeydown({ key: "ArrowRight", preventDefault() {} });
+    ui.el.tabs.onkeydown({ key: "ArrowRight", preventDefault() {} });
     expect(
-      ui.el["panneau-corriger"].hidden,
+      ui.el["panel-issues"].hidden,
       "depuis le dernier onglet, la flèche droite revient au premier",
     ).toBe(false);
   });
@@ -3007,7 +2999,7 @@ describe("The interface", () => {
         changelog: "# Changelog de Button\n\n## 1.1.0 - 04/11/26\n",
       }),
     );
-    expect(ui.el["changelog-contenu"].hidden).toBe(false);
+    expect(ui.el["changelog-content"].hidden).toBe(false);
     expect(ui.el.changelog.textContent).toBe(
       "# Changelog de Button\n\n## 1.1.0 - 04/11/26\n",
     );
@@ -3026,19 +3018,19 @@ describe("The interface", () => {
     ui.receive(
       Object.assign(sheetWith({}), { changelog: "# Changelog de Button\n" }),
     );
-    answers(ui, "oui");
+    answers(ui, "yes");
     ui.sent.length = 0;
-    ui.el.generer.onclick();
+    ui.el.generate.onclick();
     await new Promise((r) => setTimeout(r, 450));
     expect(ui.downloads.map((t: MockData) => t.name)).toStrictEqual([
       "button.json",
     ]);
-    expect(ui.el.succes.textContent).toBe("JSON téléchargé.");
+    expect(ui.el.success.textContent).toBe("JSON téléchargé.");
     expect(
       ui.sent
         .map((m: MockData) => m.type)
-        .filter((t: MockData) => t !== "redimensionner"),
-    ).toStrictEqual(["memoriser"]);
+        .filter((t: MockData) => t !== "resize"),
+    ).toStrictEqual(["record-export"]);
   });
   it("in the Changelog tab, the bottom button downloads the changelog of the component alone, without storing", () => {
     const ui = fakeInterface();
@@ -3046,19 +3038,19 @@ describe("The interface", () => {
     ui.receive(
       Object.assign(sheetWith({}), { changelog: "# Changelog de Button\n" }),
     );
-    answers(ui, "oui");
+    answers(ui, "yes");
     ui.sent.length = 0;
     openTab(ui, "changelog");
-    ui.el.generer.onclick();
+    ui.el.generate.onclick();
     expect(ui.downloads.map((t: MockData) => t.name)).toStrictEqual([
       "button-changelog.md",
     ]);
     expect(ui.downloads[0].href).toMatch(/text\/markdown/);
-    expect(ui.el.succes.textContent).toBe("Changelog téléchargé.");
+    expect(ui.el.success.textContent).toBe("Changelog téléchargé.");
     expect(
       ui.sent
         .map((m: MockData) => m.type)
-        .filter((t: MockData) => t !== "redimensionner"),
+        .filter((t: MockData) => t !== "resize"),
     ).toStrictEqual([]);
   });
   it("the bottom buttons act on the file of the open tab, and the plugin is called « Canopée, composants »", () => {
@@ -3067,10 +3059,10 @@ describe("The interface", () => {
     ui.receive(
       Object.assign(sheetWith({}), { changelog: "# Changelog de Button\n" }),
     );
-    answers(ui, "oui");
+    answers(ui, "yes");
     const labels = () => [
-      ui.el["generer-libelle"].textContent,
-      ui.el["copier-libelle"].textContent,
+      ui.el["generate-label"].textContent,
+      ui.el["copy-label"].textContent,
     ];
     expect(labels()).toStrictEqual(["Télécharger le JSON", "Copier le JSON"]);
     openTab(ui, "changelog");
@@ -3080,11 +3072,9 @@ describe("The interface", () => {
     ]);
     openTab(ui, "json");
     expect(labels()).toStrictEqual(["Télécharger le JSON", "Copier le JSON"]);
-    openTab(ui, "changements");
+    openTab(ui, "changes");
     expect(labels()).toStrictEqual(["Télécharger le JSON", "Copier le JSON"]);
-    expect(html()).not.toMatch(
-      /id="telecharger-changelog"|id="copier-changelog"/,
-    );
+    expect(html()).not.toMatch(/id="download-changelog"|id="copy-changelog"/);
     expect(
       JSON.parse(
         fs.readFileSync(path.join(__dirname, "..", "manifest.json"), "utf8"),
@@ -3097,24 +3087,24 @@ describe("The interface", () => {
     ui.receive(
       Object.assign(sheetWith({}), { changelog: "# Changelog de Button\n" }),
     );
-    answers(ui, "oui");
+    answers(ui, "yes");
     ui.sent.length = 0;
-    await ui.el.copier.onclick();
+    await ui.el.copy.onclick();
     expect(ui.copies).toStrictEqual(["{}"]);
     expect(
       ui.sent
         .map((m: MockData) => m.type)
-        .filter((t: MockData) => t !== "redimensionner"),
-    ).toStrictEqual(["memoriser"]);
+        .filter((t: MockData) => t !== "resize"),
+    ).toStrictEqual(["record-export"]);
     ui.sent.length = 0;
     openTab(ui, "changelog");
-    await ui.el.copier.onclick();
+    await ui.el.copy.onclick();
     expect(ui.copies).toStrictEqual(["{}", "# Changelog de Button\n"]);
-    expect(ui.el.succes.textContent).toBe("Changelog copié.");
+    expect(ui.el.success.textContent).toBe("Changelog copié.");
     expect(
       ui.sent
         .map((m: MockData) => m.type)
-        .filter((t: MockData) => t !== "redimensionner"),
+        .filter((t: MockData) => t !== "resize"),
     ).toStrictEqual([]);
   });
   it("a new component clears the tag and hides the Version and Design tokens tiles, the rule and the checkboxes", () => {
@@ -3126,12 +3116,12 @@ describe("The interface", () => {
       variants: 3,
       properties: 2,
     });
-    expect(ui.el.nom.textContent).toBe("Badge");
-    expect(ui.el.etiquette.innerHTML).toBe("");
-    expect(ui.el["tuile-version"].hidden).toBe(true);
-    expect(ui.el["tuile-tokens"].hidden).toBe(true);
-    expect(ui.el.filet.hidden).toBe(true);
-    expect(ui.el.cases.hidden).toBe(true);
+    expect(ui.el.name.textContent).toBe("Badge");
+    expect(ui.el.tag.innerHTML).toBe("");
+    expect(ui.el["version-tile"].hidden).toBe(true);
+    expect(ui.el["tokens-tile"].hidden).toBe(true);
+    expect(ui.el.divider.hidden).toBe(true);
+    expect(ui.el.checkboxes.hidden).toBe(true);
   });
 
   // ---------------------------------------------------------- a component modified after the generation
@@ -3164,7 +3154,7 @@ describe("The interface", () => {
     ui = fakeInterface((m: MockData) => {
       if (plugin) plugin.send(m);
     });
-    await plugin.send({ type: "ui-pret" });
+    await plugin.send({ type: "ui-ready" });
     await release();
     const variant = set.children[1];
     const textLayer = variant.children[1];
@@ -3187,7 +3177,7 @@ describe("The interface", () => {
   }
   const attachAndGenerate = async () => {
     const b = await attach();
-    await b.click("generer");
+    await b.click("generate");
     return b;
   };
   const change = (id: string, extra = {}) => ({
@@ -3199,46 +3189,46 @@ describe("The interface", () => {
     ...extra,
   });
   const event = (...changes: MockData[]) => ({ nodeChanges: changes });
-  const isStale = (ui: MockData) => !ui.el.perime.hidden;
+  const isStale = (ui: MockData) => !ui.el.stale.hidden;
   const staleCount = (p: MockData) =>
-    p.messages.filter((m: MockData) => m.type === "perime").length;
+    p.messages.filter((m: MockData) => m.type === "stale").length;
 
   it("a modified layer of the component: banner, copy disabled, the main button regenerates", async () => {
     const { ui, pg, textLayer } = await attachAndGenerate();
     expect(!isStale(ui)).toBeTruthy();
-    expect(ui.el["generer-libelle"].textContent).toBe("Télécharger le JSON");
+    expect(ui.el["generate-label"].textContent).toBe("Télécharger le JSON");
     pg.trigger(event(change(textLayer.id)));
     expect(isStale(ui)).toBeTruthy();
     expect(ui.source).toMatch(
-      /<p class="bandeau info" id="perime" hidden>Le composant a changé depuis la génération de ce JSON\.<\/p>/,
+      /<p class="banner info" id="stale" hidden>Le composant a changé depuis la génération de ce JSON\.<\/p>/,
     );
-    expect(ui.el.copier.disabled).toBe(true);
-    expect(ui.el.generer.disabled).toBe(false);
-    expect(ui.el["generer-libelle"].textContent).toBe("Générer de nouveau");
-    expect(ui.el["ico-generer"].hidden).toBe(false);
-    expect(ui.el["ico-telecharger"].hidden).toBe(true);
+    expect(ui.el.copy.disabled).toBe(true);
+    expect(ui.el.generate.disabled).toBe(false);
+    expect(ui.el["generate-label"].textContent).toBe("Générer de nouveau");
+    expect(ui.el["icon-generate"].hidden).toBe(false);
+    expect(ui.el["icon-download"].hidden).toBe(true);
   });
   it("a click on copy or on the button does nothing but regenerate when the JSON is stale", async () => {
     const { ui, pg, p, textLayer } = await attachAndGenerate();
     pg.trigger(event(change(textLayer.id)));
-    await ui.el.copier.onclick();
+    await ui.el.copy.onclick();
     expect(ui.copies).toStrictEqual([]);
-    await ui.el.generer.onclick();
+    await ui.el.generate.onclick();
     await release();
     expect(ui.downloads.length).toBe(0);
     expect(
-      p.messages.filter((m: MockData) => m.type === "memoriser").length,
+      p.messages.filter((m: MockData) => m.type === "record-export").length,
     ).toBe(0);
   });
   it("after a new generation, the banner disappears and the export comes back", async () => {
     const { ui, pg, click, textLayer } = await attachAndGenerate();
     pg.trigger(event(change(textLayer.id)));
-    await click("generer");
+    await click("generate");
     expect(!isStale(ui)).toBeTruthy();
-    expect(ui.el.copier.disabled).toBe(false);
-    expect(ui.el["generer-libelle"].textContent).toBe("Télécharger le JSON");
-    expect(ui.el["ico-telecharger"].hidden).toBe(false);
-    await click("generer");
+    expect(ui.el.copy.disabled).toBe(false);
+    expect(ui.el["generate-label"].textContent).toBe("Télécharger le JSON");
+    expect(ui.el["icon-download"].hidden).toBe(false);
+    await click("generate");
     expect(ui.downloads.length).toBe(1);
   });
   it("a change outside the component warns of nothing", async () => {
@@ -3336,11 +3326,11 @@ describe("The interface", () => {
       }
       return read(id);
     };
-    await b.click("generer");
+    await b.click("generate");
     expect(done).toBeTruthy();
     expect(isStale(b.ui)).toBeTruthy();
-    expect(b.ui.el["generer-libelle"].textContent).toBe("Générer de nouveau");
-    expect(b.ui.el.copier.disabled).toBe(true);
+    expect(b.ui.el["generate-label"].textContent).toBe("Générer de nouveau");
+    expect(b.ui.el.copy.disabled).toBe(true);
   });
   it("switching the selection to another component removes the listener", async () => {
     const { ui, pg, p, other, textLayer } = await attachAndGenerate();
@@ -3364,8 +3354,8 @@ describe("The interface", () => {
   });
   it("several generations leave a single listener", async () => {
     const { pg, click, ui } = await attachAndGenerate();
-    await click("regenerer");
-    await click("regenerer");
+    await click("regenerate");
+    await click("regenerate");
     expect(pg.listeners.length).toBe(1);
     expect(!isStale(ui)).toBeTruthy();
   });
@@ -3378,9 +3368,9 @@ describe("The interface", () => {
       return write(...args);
     };
     pg.trigger(event(change(textLayer.id)));
-    await p.send({ type: "memoriser", id: set.id });
+    await p.send({ type: "record-export", id: set.id });
     expect(plain(p.lastMessage())).toStrictEqual({
-      type: "erreur",
+      type: "error",
       message:
         "Le composant a changé depuis cette génération. Rien n'a été enregistré : générer de nouveau le JSON, puis l'exporter.",
     });
@@ -3394,18 +3384,18 @@ describe("The interface", () => {
       written.push(args);
       return write(...args);
     };
-    await click("generer");
+    await click("generate");
     expect(written.length > 0).toBeTruthy();
     expect(!isStale(ui)).toBeTruthy();
-    expect(p.messages.filter((m: MockData) => m.type === "erreur").length).toBe(
+    expect(p.messages.filter((m: MockData) => m.type === "error").length).toBe(
       0,
     );
   });
   it("a rename and an added variant update the card, without clearing the displayed error", async () => {
     const b = await attachAndGenerate();
-    b.ui.receive({ type: "erreur", message: "Une erreur à garder." });
-    expect(b.ui.el.nom.textContent).toBe("Button");
-    expect(b.ui.el.compteurs.innerHTML).toMatch(/<b>2<\/b> variantes/);
+    b.ui.receive({ type: "error", message: "Une erreur à garder." });
+    expect(b.ui.el.name.textContent).toBe("Button");
+    expect(b.ui.el.counters.innerHTML).toMatch(/<b>2<\/b> variantes/);
     b.set.name = "Bouton principal";
     const next = connect(
       layer("COMPONENT", "state=focus, hierarchy=primary", { id: "V:focus" }),
@@ -3419,12 +3409,12 @@ describe("The interface", () => {
         node: next,
       }),
     );
-    expect(b.ui.el.nom.textContent, "la carte attend le délai").toBe("Button");
+    expect(b.ui.el.name.textContent, "la carte attend le délai").toBe("Button");
     b.clock.advance();
-    expect(b.ui.el.nom.textContent).toBe("Bouton principal");
-    expect(b.ui.el.compteurs.innerHTML).toMatch(/<b>3<\/b> variantes/);
-    expect(b.ui.el.erreur.textContent).toBe("Une erreur à garder.");
-    expect(b.ui.el.erreur.hidden).toBe(false);
+    expect(b.ui.el.name.textContent).toBe("Bouton principal");
+    expect(b.ui.el.counters.innerHTML).toMatch(/<b>3<\/b> variantes/);
+    expect(b.ui.el.error.textContent).toBe("Une erreur à garder.");
+    expect(b.ui.el.error.hidden).toBe(false);
     expect(isStale(b.ui)).toBeTruthy();
   });
   it("several close changes schedule only one refresh of the card", async () => {
@@ -3432,25 +3422,25 @@ describe("The interface", () => {
     for (let i = 0; i < 5; i++) b.pg.trigger(event(change(b.textLayer.id)));
     expect(b.clock.pending()).toBe(1);
     const before = b.p.messages.filter(
-      (m: MockData) => m.type === "carte",
+      (m: MockData) => m.type === "card",
     ).length;
     b.clock.advance();
-    expect(
-      b.p.messages.filter((m: MockData) => m.type === "carte").length,
-    ).toBe(before + 1);
+    expect(b.p.messages.filter((m: MockData) => m.type === "card").length).toBe(
+      before + 1,
+    );
   });
   it("a rename done before the generation shows in the card", async () => {
     const b = await attach();
     b.set.name = "Bouton renommé";
-    await b.click("generer");
-    expect(b.ui.el.nom.textContent).toBe("Bouton renommé");
+    await b.click("generate");
+    expect(b.ui.el.name.textContent).toBe("Bouton renommé");
   });
-  it("a perime message from another component, or before any generation, is ignored", async () => {
+  it("a stale message from another component, or before any generation, is ignored", async () => {
     const b = await attach();
-    b.ui.receive({ type: "perime", id: "S:100" });
+    b.ui.receive({ type: "stale", id: "S:100" });
     expect(!isStale(b.ui)).toBeTruthy();
-    await b.click("generer");
-    b.ui.receive({ type: "perime", id: "S:999" });
+    await b.click("generate");
+    b.ui.receive({ type: "stale", id: "S:999" });
     expect(!isStale(b.ui)).toBeTruthy();
   });
 });
@@ -3465,27 +3455,27 @@ describe("The bridge", () => {
   });
   it("the committed bridge script is the one that code.js generates", () => {
     const committedText = fs.readFileSync(
-      path.join(SCRIPTS, "extraire.bridge.js"),
+      path.join(SCRIPTS, "extract.bridge.js"),
       "utf8",
     );
     const id = (committedText.match(/^const ID_COMPONENT_SET = "(.*)"$/m) ||
       [])[1];
-    expect(id, "id introuvable dans scripts/extraire.bridge.js").toBeTruthy();
-    const regenerate = path.join(tempFolder("bridge"), "regenere.bridge.js");
+    expect(id, "id introuvable dans scripts/extract.bridge.js").toBeTruthy();
+    const regenerate = path.join(tempFolder("bridge"), "regenerated.bridge.js");
     execFileSync(
       "node",
       [
-        path.join(SCRIPTS, "construire-bridge.mjs"),
+        path.join(SCRIPTS, "build-bridge.mjs"),
         "--id",
         id,
-        "--sortie",
+        "--output",
         regenerate,
       ],
       { stdio: "pipe" },
     );
     expect(
       fs.readFileSync(regenerate, "utf8") === committedText,
-      "scripts/extraire.bridge.js est périmé. Lancer : node scripts/construire-bridge.mjs --id " +
+      "scripts/extract.bridge.js est périmé. Lancer : node scripts/build-bridge.mjs --id " +
         id,
     ).toBeTruthy();
   });
@@ -3514,9 +3504,9 @@ describe("The rebuild", () => {
       "function canonical(",
     ])
       expect(s.includes(f), "absent : " + f).toBeTruthy();
-    for (const m of ["__REGLES__", "__FICHE__", "__CONFIG__"])
+    for (const m of ["__RULES__", "__SHEET__", "__CONFIG__"])
       expect(!s.includes(m), "marqueur restant : " + m).toBeTruthy();
-    expect(!s.includes("DEBUT REGLES")).toBeTruthy();
+    expect(!s.includes("START RULES")).toBeTruthy();
     const AsyncFunction = Object.getPrototypeOf(
       async function () {},
     ).constructor;
@@ -3524,18 +3514,18 @@ describe("The rebuild", () => {
   });
   it("the rebuild: file, page, name and mark come from the configuration, with default values", () => {
     const s = returnScript();
-    expect(s).toMatch(/"etape":"tout"\}/);
+    expect(s).toMatch(/"step":"all"\}/);
     expect(s).toMatch(
       new RegExp(
         "const FILE_KEY = CONFIG\\.file \\|\\| ['\"]" + DEFAULT_FILE + "['\"]",
       ),
     );
     const withOptions = buildReturn([
-      "--fichier",
+      "--file",
       "F1",
       "--page",
       "Ma page",
-      "--nom",
+      "--name",
       "IA/Button",
     ]);
     expect(withOptions).toMatch(
@@ -3545,16 +3535,16 @@ describe("The rebuild", () => {
   it("a file other than the one in the configuration is refused, with a clear error", async () => {
     await expect(
       runBridge(
-        { fileKey: "AUTRE", pages: [page(DEFAULT_PAGE)] },
+        { fileKey: "OTHER", pages: [page(DEFAULT_PAGE)] },
         returnScript(),
       ),
     ).rejects.toThrow(
-      new RegExp("Fichier refusé : AUTRE \\(attendu " + DEFAULT_FILE + "\\)"),
+      new RegExp("Fichier refusé : OTHER \\(attendu " + DEFAULT_FILE + "\\)"),
     );
     await expect(
       runBridge(
         { fileKey: DEFAULT_FILE, pages: [page(DEFAULT_PAGE)] },
-        buildReturn(["--fichier", "F1"]),
+        buildReturn(["--file", "F1"]),
       ),
     ).rejects.toThrow(/Fichier refusé : UWk4fT45i82ESNhGaAnj6p \(attendu F1\)/);
   });
@@ -3562,41 +3552,40 @@ describe("The rebuild", () => {
     await expect(
       runBridge(
         { fileKey: "F1", pages: [page("Autre page")] },
-        buildReturn(["--fichier", "F1", "--page", "Ma page"]),
+        buildReturn(["--file", "F1", "--page", "Ma page"]),
       ),
     ).rejects.toThrow(/Page introuvable : Ma page/);
   });
-  it("the supprimer step only removes the named set and the components that carry its mark", async () => {
+  it("the delete step only removes the named set and the components that carry its mark", async () => {
     const p = page(DEFAULT_PAGE, [
       { type: "COMPONENT_SET", name: "Retour/Button" },
-      { type: "COMPONENT", name: "state=default", mark: "retour-button" },
-      { type: "COMPONENT", name: "state=hover", mark: "retour-button" },
-      { type: "COMPONENT", name: "state=default", mark: "retour-tag" },
+      { type: "COMPONENT", name: "state=default", mark: "round-trip-button" },
+      { type: "COMPONENT", name: "state=hover", mark: "round-trip-button" },
+      { type: "COMPONENT", name: "state=default", mark: "round-trip-tag" },
       { type: "COMPONENT", name: "state=default" },
-      { type: "COMPONENT_SET", name: "Button", mark: "retour-button" },
+      { type: "COMPONENT_SET", name: "Button", mark: "round-trip-button" },
       { type: "COMPONENT_SET", name: "Retour/Tag" },
       { type: "FRAME", name: "Retour/Button" },
     ]);
     const report = JSON.parse(
       await runBridge(
         { fileKey: DEFAULT_FILE, pages: [p] },
-        buildReturn(["--etape", "supprimer"]),
+        buildReturn(["--step", "delete"]),
       ),
     );
-    expect(report.supprimes).toStrictEqual([
+    expect(report.deleted).toStrictEqual([
       "COMPONENT_SET Retour/Button",
       "COMPONENT state=default",
       "COMPONENT state=hover",
     ]);
     expect(
       p.children.map(
-        (n: MockData) =>
-          n.type + " " + n.name + " " + n.getPluginData("marque"),
+        (n: MockData) => n.type + " " + n.name + " " + n.getPluginData("mark"),
       ),
     ).toStrictEqual([
-      "COMPONENT state=default retour-tag",
+      "COMPONENT state=default round-trip-tag",
       "COMPONENT state=default ",
-      "COMPONENT_SET Button retour-button",
+      "COMPONENT_SET Button round-trip-button",
       "COMPONENT_SET Retour/Tag ",
       "FRAME Retour/Button ",
     ]);
@@ -3801,11 +3790,11 @@ describe("A template, recognized by its page in the library", () => {
     const { plugin } = await button();
     const previous = { meta: { name: "Header", templateLevel: "block" } };
     const next = { meta: { name: "Header", templateLevel: "section" } };
-    expect(plugin.__test.changeLevel(previous, next)).toBe("correctif");
+    expect(plugin.__test.changeLevel(previous, next)).toBe("patch");
     expect(
       plain(plugin.__test.classifyChanges(previous, next)).some(
         (c: MockData) =>
-          c.category === "modifie" &&
+          c.category === "modified" &&
           c.text === "Niveau de template : block → section",
       ),
     ).toBeTruthy();
@@ -3832,8 +3821,8 @@ describe("A template, recognized by its page in the library", () => {
   });
 });
 
-// ------------------------------------------------------------ verifier-fiche.mjs
-describe("verifier-fiche.mjs", () => {
+// ------------------------------------------------------------ check-sheet.mjs
+describe("check-sheet.mjs", () => {
   const OUTLINE = path.join(
     DOCS,
     "b2c",
@@ -3901,7 +3890,7 @@ describe("verifier-fiche.mjs", () => {
 
   // the sheet and its outline in a temporary folder, then the script run on them
   const check = (md: MockData, meta = {}) => {
-    const d = tempFolder("verifier-fiche");
+    const d = tempFolder("check-sheet");
     fs.copyFileSync(OUTLINE, path.join(d, "trame-fiche-composant.md"));
     fs.mkdirSync(path.join(d, "button"));
     fs.writeFileSync(path.join(d, "button", "button.md"), md);
@@ -3915,7 +3904,7 @@ describe("verifier-fiche.mjs", () => {
     const r = spawnSync(
       "node",
       [
-        path.join(SCRIPTS, "verifier-fiche.mjs"),
+        path.join(SCRIPTS, "check-sheet.mjs"),
         path.join(d, "button", "button.md"),
         path.join(d, "button", "button.json"),
       ],
@@ -4088,7 +4077,7 @@ describe("The change level and the next version", () => {
     for (const v of b.variants)
       v.position = [v.position[0] + 100, v.position[1] + 100];
     b.issues = [];
-    b._tool = "canopee-fiches-composants 9.9.9";
+    b._tool = "canopee-export-components 9.9.9";
     b.formatVersion = "0.9";
     b.meta.version = "3.0.0";
     b.meta.tokensVersion = "4.0.0";
@@ -4098,7 +4087,7 @@ describe("The change level and the next version", () => {
     const { changeLevel } = await tools();
     const b = copy();
     b.api.props.hierarchy.enum.push("quaternary");
-    expect(changeLevel(real03(), b)).toBe("mineure");
+    expect(changeLevel(real03(), b)).toBe("minor");
   });
   it("property added, removed, renamed, or default value changed: minor", async () => {
     const { changeLevel } = await tools();
@@ -4116,7 +4105,7 @@ describe("The change level and the next version", () => {
     const baseVariant = copy();
     baseVariant.api.props.hierarchy.default = "secondary";
     for (const b of [added, removed, renamed, baseVariant])
-      expect(changeLevel(real03(), b)).toBe("mineure");
+      expect(changeLevel(real03(), b)).toBe("minor");
   });
   it("properties reordered: minor, as the Changements tab says", async () => {
     const { changeLevel } = await tools();
@@ -4126,7 +4115,7 @@ describe("The change level and the next version", () => {
     delete b.api.props.showLeftIcon;
     delete b.api.props._theme;
     Object.assign(b.api.props, { showLeftIcon, showRightIcon, _theme });
-    expect(changeLevel(real03(), b)).toBe("mineure");
+    expect(changeLevel(real03(), b)).toBe("minor");
   });
   it("slot, layers, variant added or removed: minor", async () => {
     const { changeLevel } = await tools();
@@ -4142,13 +4131,13 @@ describe("The change level and the next version", () => {
       position: [0, 0],
     });
     for (const b of [slot, layers, removed, added])
-      expect(changeLevel(real03(), b)).toBe("mineure");
+      expect(changeLevel(real03(), b)).toBe("minor");
   });
   it("variants in another order, without a value added or removed: patch", async () => {
     const { changeLevel } = await tools();
     const b = copy();
     b.variants.reverse();
-    expect(changeLevel(real03(), b)).toBe("correctif");
+    expect(changeLevel(real03(), b)).toBe("patch");
   });
   it("token, style, text style, component, mode, documentation link: patch", async () => {
     const { changeLevel } = await tools();
@@ -4165,23 +4154,23 @@ describe("The change level and the next version", () => {
     const alias = copy();
     alias.meta.documentationLinks = ["https://exemple.test/autre"];
     for (const b of [token, style, text, component, mode, alias])
-      expect(changeLevel(real03(), b)).toBe("correctif");
+      expect(changeLevel(real03(), b)).toBe("patch");
   });
   it("a minor level change wins over a patch", async () => {
     const { changeLevel } = await tools();
     const b = copy();
     b.tokens["color/blue/900"] = { library: null, key: "k" };
     b.api.props.hierarchy.enum.push("quaternary");
-    expect(changeLevel(real03(), b)).toBe("mineure");
+    expect(changeLevel(real03(), b)).toBe("minor");
   });
   it("nextVersion: major, minor, patch", async () => {
     const { nextVersion } = await tools();
-    expect(nextVersion("1.2.3", "majeure")).toBe("2.0.0");
-    expect(nextVersion("1.2.3", "mineure")).toBe("1.3.0");
-    expect(nextVersion("1.2.3", "correctif")).toBe("1.2.4");
-    expect(nextVersion("1.9.9", "mineure")).toBe("1.10.0");
-    expect(nextVersion("1.0.0", "inconnu")).toBe(null);
-    expect(nextVersion("pas une version", "mineure")).toBe(null);
+    expect(nextVersion("1.2.3", "major")).toBe("2.0.0");
+    expect(nextVersion("1.2.3", "minor")).toBe("1.3.0");
+    expect(nextVersion("1.2.3", "patch")).toBe("1.2.4");
+    expect(nextVersion("1.9.9", "minor")).toBe("1.10.0");
+    expect(nextVersion("1.0.0", "unknown")).toBe(null);
+    expect(nextVersion("pas une version", "minor")).toBe(null);
   });
   it("chooseVersion: first version, detected level, checkboxes, nothing changed", async () => {
     const { chooseVersion, analyzeVersion } = await tools();
@@ -4203,7 +4192,7 @@ describe("The change level and the next version", () => {
     const minor = analyzeVersion(base, b);
     expect(plain(chooseVersion(minor, {}))).toStrictEqual({
       version: "1.2.0",
-      level: "mineure",
+      level: "minor",
       first: false,
       none: false,
     });
@@ -4217,7 +4206,7 @@ describe("The change level and the next version", () => {
     });
     expect(plain(chooseVersion(nothing, { sheetMd: true }))).toStrictEqual({
       version: "1.1.1",
-      level: "correctif",
+      level: "patch",
       first: false,
       none: false,
     });
@@ -4292,14 +4281,14 @@ describe("The version level and the lines of the changelog", () => {
       "style d'une variante": (b: MockData) => {
         b.styles.default.root.background = { token: "color/blue/800" };
       },
-      calques: (b: MockData) => {
+      layers: (b: MockData) => {
         b.structure.trees[0].tree.pop();
       },
       "champ racine inconnu": (b: MockData) => {
-        b.champInconnu = { nouveau: true };
+        b.unknownField = { fresh: true };
       },
       "champ inconnu dans meta": (b: MockData) => {
-        b.meta.champInconnu = "x";
+        b.meta.unknownField = "x";
       },
     };
     expect(Object.keys(modifications).length >= 10).toBeTruthy();
@@ -4313,15 +4302,15 @@ describe("The version level and the lines of the changelog", () => {
       ).not.toBe(null);
       const e = plain(changelogEntry(real03(), b));
       expect(
-        e.ajoute.length + e.modifie.length + e.retire.length > 0,
+        e.added.length + e.modified.length + e.removed.length > 0,
         name + " : niveau " + level + " sans ligne de changelog",
       ).toBeTruthy();
     }
     // the unknown field does raise the version, and goes through the safety net
     const b = copy();
-    b.champInconnu = 1;
-    expect(changeLevel(real03(), b)).toBe("correctif");
-    expect(plain(changelogEntry(real03(), b)).modifie).toStrictEqual([
+    b.unknownField = 1;
+    expect(changeLevel(real03(), b)).toBe("patch");
+    expect(plain(changelogEntry(real03(), b)).modified).toStrictEqual([
       "Autre changement dans le JSON",
     ]);
   });
@@ -4329,7 +4318,7 @@ describe("The version level and the lines of the changelog", () => {
     const { changeLevel } = await tools();
     const meta = copy();
     meta.meta.library = "Autre librairie";
-    meta.meta.figmaKey = "autre-cle";
+    meta.meta.figmaKey = "other-key";
     const index = copy();
     for (const field of [
       "tokens",
@@ -4338,12 +4327,12 @@ describe("The version level and the lines of the changelog", () => {
       "modeCollections",
     ]) {
       for (const entry of Object.values<MockData>(index[field])) {
-        entry.key = "autre-" + entry.key;
+        entry.key = "other-" + entry.key;
         entry.library = "Autre librairie";
       }
     }
     const readToken = copy();
-    readToken.tokens["color/blue/700"].key = "autre";
+    readToken.tokens["color/blue/700"].key = "other";
     readToken.tokens["color/blue/700"].library = "Autre";
     for (const b of [meta, index, readToken])
       expect(changeLevel(real03(), b)).toBe(null);
@@ -4381,7 +4370,7 @@ describe("The version level and the lines of the changelog", () => {
         },
       ],
     });
-    expect(changeLevel(onA, other)).toBe("correctif");
+    expect(changeLevel(onA, other)).toBe("patch");
     // the order of the variants does not lose the link between a variant and its styles
     const inverse = {
       variants: variants.slice().reverse(),
@@ -4390,46 +4379,46 @@ describe("The version level and the lines of the changelog", () => {
     expect(
       changeLevel(onA, inverse),
       "l'ordre seul est un correctif, les styles suivent leur variante",
-    ).toBe("correctif");
+    ).toBe("patch");
   });
   it("Propriété <k>, ordre des valeurs modifié", async () => {
     const b = copy();
     b.api.props.hierarchy.enum.reverse();
     expect(await lines(real03(), b)).toStrictEqual([
-      "modifie : Propriété hierarchy, ordre des valeurs modifié",
+      "modified : Propriété hierarchy, ordre des valeurs modifié",
     ]);
   });
   it("Propriété <k> modifiée: only when no other line quotes it", async () => {
     const single = copy();
     single.api.props.disabled.type = "boolean";
     expect(await lines(real03(), single)).toStrictEqual([
-      "modifie : Propriété disabled modifiée",
+      "modified : Propriété disabled modifiée",
     ]);
     const quoted = copy();
     quoted.api.props.disabled.default = "true";
     quoted.api.props.disabled.type = "boolean";
     expect(await lines(real03(), quoted)).toStrictEqual([
-      "modifie : Propriété disabled, valeur par défaut : false → true",
+      "modified : Propriété disabled, valeur par défaut : false → true",
     ]);
   });
   it("Slot <k> modifié: only when no other line quotes it", async () => {
     const only = copy();
     only.structure.slots.label.as = "title";
     expect(await lines(real03(), only)).toStrictEqual([
-      "modifie : Slot label modifié",
+      "modified : Slot label modifié",
     ]);
     const quotes = copy();
     quotes.structure.slots.label.as = "title";
     quotes.structure.slots.label.default.text = "Autre";
     expect(await lines(real03(), quotes)).toStrictEqual([
-      "modifie : Slot label, texte par défaut : Label → Autre",
+      "modified : Slot label, texte par défaut : Label → Autre",
     ]);
   });
   it("Ordre des variantes modifié", async () => {
     const b = copy();
     b.variants.reverse();
     expect(await lines(real03(), b)).toStrictEqual([
-      "modifie : Ordre des variantes modifié",
+      "modified : Ordre des variantes modifié",
     ]);
     const removed = copy();
     removed.variants = removed.variants.slice(1);
@@ -4446,14 +4435,14 @@ describe("The version level and the lines of the changelog", () => {
     one.components.Spinner = { library: null, key: "k" };
     one.modeCollections.Theme = { library: null, key: "k" };
     expect(await lines(real03(), one)).toStrictEqual([
-      "ajoute : Style de texte ajouté : label/2/semibold",
-      "ajoute : Composant imbriqué ajouté : Spinner",
-      "ajoute : Collection de modes ajoutée : Theme",
+      "added : Style de texte ajouté : label/2/semibold",
+      "added : Composant imbriqué ajouté : Spinner",
+      "added : Collection de modes ajoutée : Theme",
     ]);
     expect(await lines(one, real03())).toStrictEqual([
-      "retire : Style de texte retiré : label/2/semibold",
-      "retire : Composant imbriqué retiré : Spinner",
-      "retire : Collection de modes retirée : Theme",
+      "removed : Style de texte retiré : label/2/semibold",
+      "removed : Composant imbriqué retiré : Spinner",
+      "removed : Collection de modes retirée : Theme",
     ]);
     const pad2 = copy();
     pad2.textStyles.a = { library: null, key: "k" };
@@ -4463,34 +4452,34 @@ describe("The version level and the lines of the changelog", () => {
     pad2.modeCollections.A = { library: null, key: "k" };
     pad2.modeCollections.B = { library: null, key: "k" };
     expect(await lines(real03(), pad2)).toStrictEqual([
-      "ajoute : Styles de texte ajoutés : a, b",
-      "ajoute : Composants imbriqués ajoutés : A, B",
-      "ajoute : Collections de modes ajoutées : A, B",
+      "added : Styles de texte ajoutés : a, b",
+      "added : Composants imbriqués ajoutés : A, B",
+      "added : Collections de modes ajoutées : A, B",
     ]);
     expect(await lines(pad2, real03())).toStrictEqual([
-      "retire : Styles de texte retirés : a, b",
-      "retire : Composants imbriqués retirés : A, B",
-      "retire : Collections de modes retirées : A, B",
+      "removed : Styles de texte retirés : a, b",
+      "removed : Composants imbriqués retirés : A, B",
+      "removed : Collections de modes retirées : A, B",
     ]);
   });
   it("Lien de documentation modifié, and Composant renommé : <ancien> → <nouveau>", async () => {
     const b = copy();
     b.meta.documentationLinks = ["https://exemple.test/autre"];
     expect(await lines(real03(), b)).toStrictEqual([
-      "modifie : Lien de documentation modifié",
+      "modified : Lien de documentation modifié",
     ]);
     const c = copy();
     c.meta.name = "Bouton";
     expect(await lines(real03(), c)).toStrictEqual([
-      "modifie : Composant renommé : Button → Bouton",
+      "modified : Composant renommé : Button → Bouton",
     ]);
   });
   it("Autre changement dans le JSON: safety net when nothing else says it, and only with a previous sheet", async () => {
     const { classifyChanges } = await tools();
     const b = copy();
-    b.champInconnu = 1;
+    b.unknownField = 1;
     expect(await lines(real03(), b)).toStrictEqual([
-      "modifie : Autre changement dans le JSON",
+      "modified : Autre changement dans le JSON",
     ]);
     expect(
       plain(classifyChanges(null, b)).filter(
@@ -4499,7 +4488,7 @@ describe("The version level and the lines of the changelog", () => {
       "première version : pas de filet",
     ).toStrictEqual([]);
     const withUnknown = copy();
-    withUnknown.champInconnu = 1;
+    withUnknown.unknownField = 1;
     withUnknown.meta.name = "Bouton";
     expect(
       !(await lines(real03(), withUnknown)).some((l: string) =>
@@ -4618,7 +4607,7 @@ describe("The design tokens version", () => {
     expect(r.issues).toStrictEqual([
       {
         level: "warning",
-        rule: "token-non-publie",
+        rule: "token-unpublished",
         where: "textStyles.label/1/semibold",
         message:
           "Token absent de toutes les versions publiées de Canopée : label/1/semibold.",
@@ -4636,7 +4625,7 @@ describe("The design tokens version", () => {
     expect(r.issues).toStrictEqual([
       {
         level: "warning",
-        rule: "token-non-publie",
+        rule: "token-unpublished",
         where: "tokens.color/blue/700",
         message:
           "Token absent de toutes les versions publiées de Canopée : color/blue/700.",
@@ -4652,10 +4641,10 @@ describe("The design tokens version", () => {
     const r = plain(await computeTokensVersion(inputs, l));
     expect(r.version).toBe(null);
     expect(r.issues.map((i: MockData) => i.rule)).toStrictEqual([
-      "tokens-sans-version-commune",
+      "tokens-no-common-version",
     ]);
   });
-  it("GitHub does not answer: tokens-injoignables issue, version null", async () => {
+  it("GitHub does not answer: tokens-unreachable issue, version null", async () => {
     const { computeTokensVersion } = await tools();
     const l = {
       versions: async () => {
@@ -4669,7 +4658,7 @@ describe("The design tokens version", () => {
       issues: [
         {
           level: "warning",
-          rule: "tokens-injoignables",
+          rule: "tokens-unreachable",
           where: "meta.tokensVersion",
           message:
             "GitHub ne répond pas : la version des design tokens n'a pas pu être calculée.",
@@ -4683,7 +4672,7 @@ describe("The design tokens version", () => {
       },
     };
     expect((await computeTokensVersion(inputs, l2)).issues[0].rule).toBe(
-      "tokens-injoignables",
+      "tokens-unreachable",
     );
   });
   it("no version published from 2.0.0: GitHub unreachable for the computation", async () => {
@@ -4693,7 +4682,7 @@ describe("The design tokens version", () => {
       reader(["1.8.0", "slash/3.0.0"], {}),
     );
     expect(r.version).toBe(null);
-    expect(r.issues[0].rule).toBe("tokens-injoignables");
+    expect(r.issues[0].rule).toBe("tokens-unreachable");
   });
   it("a component without a token or text style: 2.0.0, without calling GitHub", async () => {
     const { computeTokensVersion } = await tools();
@@ -4712,9 +4701,9 @@ describe("The design tokens version", () => {
   it("the plugin reads GitHub read only: list of tags, then one file per version, kept for the session", async () => {
     const doc = buttonDocument();
     const p = createFakePlugin(doc);
-    await p.send({ type: "ui-pret" });
-    await p.send({ type: "generer" });
-    await p.send({ type: "generer" });
+    await p.send({ type: "ui-ready" });
+    await p.send({ type: "generate" });
+    await p.send({ type: "generate" });
     const files = doc.network.calls.filter(
       (u: string) =>
         u.startsWith("https://raw.githubusercontent.com/") &&
@@ -4769,7 +4758,7 @@ describe("The design tokens version", () => {
       issues: [],
     });
   });
-  it("all tags answer 404: tokens-sans-fichier issue", async () => {
+  it("all tags answer 404: tokens-no-file issue", async () => {
     const { computeTokensVersion } = await tools();
     const l = await readerOverNetwork(
       fakeNetwork({ tags: ["2.1.0", "2.0.0"], files: {} }),
@@ -4780,7 +4769,7 @@ describe("The design tokens version", () => {
       issues: [
         {
           level: "warning",
-          rule: "tokens-sans-fichier",
+          rule: "tokens-no-file",
           where: "meta.tokensVersion",
           message:
             "Aucune version publiée de Canopée ne contient le fichier de design tokens.",
@@ -4788,7 +4777,7 @@ describe("The design tokens version", () => {
       ],
     });
   });
-  it("a 403 or 429 status: tokens-limite-github issue, not tokens-injoignables", async () => {
+  it("a 403 or 429 status: tokens-github-limit issue, not tokens-unreachable", async () => {
     const { computeTokensVersion } = await tools();
     for (const status of [403, 429]) {
       const l = await readerOverNetwork(fakeNetwork({ status }));
@@ -4798,7 +4787,7 @@ describe("The design tokens version", () => {
         issues: [
           {
             level: "warning",
-            rule: "tokens-limite-github",
+            rule: "tokens-github-limit",
             where: "meta.tokensVersion",
             message:
               "GitHub limite les appels depuis ce poste : la version des design tokens n'a pas pu être calculée. Réessayer plus tard.",
@@ -4814,21 +4803,21 @@ describe("The design tokens version", () => {
       },
     };
     expect((await computeTokensVersion(inputs, l2)).issues[0].rule).toBe(
-      "tokens-limite-github",
+      "tokens-github-limit",
     );
   });
-  it("another status, or a fetch with no answer after the timeout: tokens-injoignables", async () => {
+  it("another status, or a fetch with no answer after the timeout: tokens-unreachable", async () => {
     const { computeTokensVersion } = await tools();
     const l500 = await readerOverNetwork(fakeNetwork({ status: 500 }));
     expect((await computeTokensVersion(inputs, l500)).issues[0].rule).toBe(
-      "tokens-injoignables",
+      "tokens-unreachable",
     );
     const start = Date.now();
     const mute = await readerOverNetwork(fakeNetwork({ mute: true }), 20);
     const r = plain(await computeTokensVersion(inputs, mute));
     expect(r.version).toBe(null);
     expect(r.issues.map((i: MockData) => i.rule)).toStrictEqual([
-      "tokens-injoignables",
+      "tokens-unreachable",
     ]);
     expect(Date.now() - start < 2000, "le délai coupe l'attente").toBeTruthy();
   });
@@ -4849,16 +4838,16 @@ describe("The design tokens version", () => {
 });
 
 describe("The version in the plugin", () => {
-  const NS = "canopee_fiches";
+  const NS = "canopee_sheets";
   const variantSet = (doc: MockData) => doc.nodes[1];
   const generatedPlugin = async (doc = buttonDocument()) => {
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     return { doc, p, msg: p.lastMessage() };
   };
   const exported = async (doc?: MockData) => {
     const r = await generatedPlugin(doc);
-    await r.p.send({ type: "memoriser", id: "S:100" });
+    await r.p.send({ type: "record-export", id: "S:100" });
     return r;
   };
 
@@ -4889,7 +4878,7 @@ describe("The version in the plugin", () => {
     const { doc } = await generatedPlugin();
     expect(variantSet(doc).getSharedPluginData(NS, "export")).toBe("");
   });
-  it("export: the minified JSON is written in the component set, under canopee_fiches / export", async () => {
+  it("export: the minified JSON is written in the component set, under canopee_sheets / export", async () => {
     const { doc, msg } = await exported();
     const base = variantSet(doc).getSharedPluginData(NS, "export");
     expect(base).toBe(JSON.stringify(JSON.parse(msg.json)));
@@ -4906,7 +4895,7 @@ describe("The version in the plugin", () => {
   });
   it("same component exported again: no change since 1.0.0, version unchanged", async () => {
     const { p } = await exported();
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     const m = p.lastMessage();
     expect(plain(m.version)).toStrictEqual({
       first: false,
@@ -4926,17 +4915,17 @@ describe("The version in the plugin", () => {
     doc.nodes[1].componentPropertyDefinitions.hierarchy.variantOptions.push(
       "secondary",
     );
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     const m = p.lastMessage();
     expect(m.version.version).toBe("1.1.0");
-    expect(m.version.level).toBe("mineure");
+    expect(m.version.level).toBe("minor");
     expect(JSON.parse(m.json).meta.version).toBe("1.1.0");
   });
   it("a default text changes a slot: minor, and the change sentences are sent", async () => {
     const { doc, p } = await exported();
     doc.nodes[1].componentPropertyDefinitions["label#1:1"].defaultValue =
       "Libellé";
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     const m = p.lastMessage();
     expect(m.version.version).toBe("1.1.0");
     expect(plain(m.changes.sentences)).toStrictEqual([
@@ -4946,16 +4935,16 @@ describe("The version in the plugin", () => {
   it("a documentation link modified: 1.0.1, patch", async () => {
     const { doc, p } = await exported();
     doc.nodes[1].documentationLinks = [{ uri: "https://exemple.test/autre" }];
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     const m = p.lastMessage();
     expect(m.version.version).toBe("1.0.1");
-    expect(m.version.level).toBe("correctif");
+    expect(m.version.level).toBe("patch");
   });
   it("Refonte complète checkbox: major, and the JSON follows the chosen version", async () => {
     const { p } = await exported();
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     await p.send({
-      type: "choisir-version",
+      type: "choose-version",
       id: "S:100",
       overhaul: true,
       sheetMd: false,
@@ -4963,10 +4952,10 @@ describe("The version in the plugin", () => {
     const m = p.lastMessage();
     expect(m.type).toBe("version");
     expect(m.version.version).toBe("2.0.0");
-    expect(m.version.level).toBe("majeure");
+    expect(m.version.level).toBe("major");
     expect(JSON.parse(m.json).meta.version).toBe("2.0.0");
     await p.send({
-      type: "choisir-version",
+      type: "choose-version",
       id: "S:100",
       overhaul: false,
       sheetMd: false,
@@ -4975,9 +4964,9 @@ describe("The version in the plugin", () => {
   });
   it("Fiche md modifiée checkbox: patch when nothing changed", async () => {
     const { p } = await exported();
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     await p.send({
-      type: "choisir-version",
+      type: "choose-version",
       id: "S:100",
       overhaul: false,
       sheetMd: true,
@@ -4991,11 +4980,11 @@ describe("The version in the plugin", () => {
     doc.nodes[1].componentPropertyDefinitions.hierarchy.variantOptions.push(
       "secondary",
     );
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(p.lastMessage().version.version).toBe("1.1.0");
     expect(p.lastMessage().version.next).toBe("1.1.0");
     await p.send({
-      type: "choisir-version",
+      type: "choose-version",
       id: "S:100",
       keep: false,
       overhaul: true,
@@ -5006,7 +4995,7 @@ describe("The version in the plugin", () => {
       "la réponse Oui annonce la majeure quand la refonte est cochée",
     ).toBe("2.0.0");
     await p.send({
-      type: "choisir-version",
+      type: "choose-version",
       id: "S:100",
       keep: true,
       overhaul: false,
@@ -5015,16 +5004,16 @@ describe("The version in the plugin", () => {
     const m = p.lastMessage();
     expect(m.version.version).toBe("1.0.0");
     expect(m.version.kept).toBe(true);
-    expect(m.version.detected).toBe("mineure");
+    expect(m.version.detected).toBe("minor");
     expect(JSON.parse(m.json).meta.version).toBe("1.0.0");
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
     const base = JSON.parse(variantSet(doc).getSharedPluginData(NS, "export"));
     expect(base.meta.version).toBe("1.0.0");
     expect(
       base.api.props.hierarchy.enum.includes("secondary"),
       "la base contient le changement",
     ).toBeTruthy();
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(
       p.lastMessage().version.none,
       "le changement gardé ne compte plus au prochain export",
@@ -5033,7 +5022,7 @@ describe("The version in the plugin", () => {
   it("at the first version, the Refonte complète checkbox changes nothing", async () => {
     const { p } = await generatedPlugin();
     await p.send({
-      type: "choisir-version",
+      type: "choose-version",
       id: "S:100",
       overhaul: true,
       sheetMd: false,
@@ -5043,20 +5032,20 @@ describe("The version in the plugin", () => {
   it("a version choice for another component is ignored", async () => {
     const { p } = await generatedPlugin();
     const before = p.messages.length;
-    await p.send({ type: "choisir-version", id: "autre:1", overhaul: true });
+    await p.send({ type: "choose-version", id: "other:1", overhaul: true });
     expect(p.messages.length).toBe(before);
   });
   it("the export writes the JSON of the chosen version, and the next generation starts from this version", async () => {
     const { doc, p } = await generatedPlugin();
-    await p.send({ type: "memoriser", id: "S:100" });
-    await p.send({ type: "generer" });
-    await p.send({ type: "choisir-version", id: "S:100", overhaul: true });
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
+    await p.send({ type: "generate" });
+    await p.send({ type: "choose-version", id: "S:100", overhaul: true });
+    await p.send({ type: "record-export", id: "S:100" });
     expect(
       JSON.parse(variantSet(doc).getSharedPluginData(NS, "export")).meta
         .version,
     ).toBe("2.0.0");
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(p.lastMessage().version.current).toBe("2.0.0");
   });
   it("the shared base wins over the machine memo: another designer starts from the same version", async () => {
@@ -5077,7 +5066,7 @@ describe("The version in the plugin", () => {
     const doc = buttonDocument();
     variantSet(doc).setSharedPluginData(NS, "export", "{pas du json");
     const { p } = await generatedPlugin(doc);
-    const msg = p.messages.find((m: MockData) => m.type === "fiche");
+    const msg = p.messages.find((m: MockData) => m.type === "sheet");
     expect(msg.version.first).toBe(true);
     expect(
       p.messages.filter((m: MockData) => m.type === "selection").pop()
@@ -5089,9 +5078,9 @@ describe("The version in the plugin", () => {
     const doc = buttonDocument();
     doc.nodes[1].shareLimit = 1000;
     const { p } = await generatedPlugin(doc);
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
     const m = p.lastMessage();
-    expect(m.type).toBe("erreur");
+    expect(m.type).toBe("error");
     expect(m.message).toMatch(
       /^La version 1\.0\.0 n'a pas pu être enregistrée dans le fichier Figma \(\d+ Ko\) : Data too large/,
     );
@@ -5101,26 +5090,24 @@ describe("The version in the plugin", () => {
       "historique non écrit",
     ).toBe("");
     expect(
-      variantSet(doc).getSharedPluginData(NS, "version-precedente"),
+      variantSet(doc).getSharedPluginData(NS, "previous-version"),
       "version précédente non écrite",
     ).toBe("");
   });
-  it("offline: tokensVersion null and tokens-injoignables issue, the JSON is produced", async () => {
+  it("offline: tokensVersion null and tokens-unreachable issue, the JSON is produced", async () => {
     const doc = buttonDocument();
     doc.network = fakeNetwork({ outage: true });
     const { msg } = await generatedPlugin(doc);
     expect(JSON.parse(msg.json).meta.tokensVersion).toBe(null);
     expect(msg.version.tokensVersion).toBe(null);
-    const i = msg.issues.find(
-      (x: MockData) => x.rule === "tokens-injoignables",
-    );
+    const i = msg.issues.find((x: MockData) => x.rule === "tokens-unreachable");
     expect(i.level).toBe("warning");
     expect(i.message).toBe(
       "GitHub ne répond pas : la version des design tokens n'a pas pu être calculée.",
     );
     expect(i.location).toBe("Version des design tokens");
   });
-  it("token absent from all versions: token-non-publie issue in À corriger, tokensVersion null", async () => {
+  it("token absent from all versions: token-unpublished issue in À corriger, tokensVersion null", async () => {
     const doc = buttonDocument();
     doc.network = fakeNetwork({
       tags: ["2.0.0"],
@@ -5130,7 +5117,7 @@ describe("The version in the plugin", () => {
     });
     const { msg } = await generatedPlugin(doc);
     expect(JSON.parse(msg.json).meta.tokensVersion).toBe(null);
-    const i = msg.issues.find((x: MockData) => x.rule === "token-non-publie");
+    const i = msg.issues.find((x: MockData) => x.rule === "token-unpublished");
     expect(i.message).toBe(
       "Token absent de toutes les versions publiées de Canopée : radius/medium.",
     );
@@ -5138,7 +5125,7 @@ describe("The version in the plugin", () => {
   });
   it("version issues do not change the level: only the sheet counts", async () => {
     const { p } = await exported();
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(p.lastMessage().version.none).toBe(true);
   });
   it("the format is 0.4, and the plugin version starts with the format", async () => {
@@ -5189,18 +5176,18 @@ describe("The changelog: the content of an entry", () => {
       tokens: { "color/new": 1 },
     };
     expect(plain(changelogEntry(before, after))).toStrictEqual({
-      ajoute: [
+      added: [
         "Propriété ajoutée : loading",
         "Propriété size, valeurs ajoutées : large",
         "Slot ajouté : label",
         "Variables ajoutées : color/new",
       ],
-      modifie: [
+      modified: [
         "Propriété size, valeur par défaut : small → medium",
         "Slot icone, composant par défaut : Icon → Autre",
         "Structure des calques modifiée",
       ],
-      retire: [
+      removed: [
         "Propriété retirée : disabled",
         "Variables retirées : color/old",
       ],
@@ -5211,12 +5198,12 @@ describe("The changelog: the content of an entry", () => {
     const a = { api: { props: { size: {}, tone: {} } } };
     const b = { api: { props: { tone: {}, size: {} } } };
     expect(plain(changelogEntry(a, b))).toStrictEqual({
-      ajoute: [],
-      modifie: ["Ordre des propriétés modifié"],
-      retire: [],
+      added: [],
+      modified: ["Ordre des propriétés modifié"],
+      removed: [],
     });
     expect(
-      plain(changelogEntry(slots("Label"), slots("Libellé"))).modifie,
+      plain(changelogEntry(slots("Label"), slots("Libellé"))).modified,
     ).toStrictEqual(["Slot label, texte par défaut : Label → Libellé"]);
   });
   it("variants added and removed, including the « N variantes » form", async () => {
@@ -5230,16 +5217,16 @@ describe("The changelog: the content of an entry", () => {
         ),
       ),
     ).toStrictEqual({
-      ajoute: ["Variante ajoutée : size=c"],
-      modifie: [],
-      retire: ["Variante retirée : size=a"],
+      added: ["Variante ajoutée : size=c"],
+      modified: [],
+      removed: ["Variante retirée : size=a"],
     });
     const seven = [1, 2, 3, 4, 5, 6, 7].map((n) => v("s" + n));
     expect(
-      plain(changelogEntry({ variants: [] }, { variants: seven })).ajoute,
+      plain(changelogEntry({ variants: [] }, { variants: seven })).added,
     ).toStrictEqual(["7 variantes ajoutées"]);
     expect(
-      plain(changelogEntry({ variants: seven }, { variants: [] })).retire,
+      plain(changelogEntry({ variants: seven }, { variants: [] })).removed,
     ).toStrictEqual(["7 variantes retirées"]);
   });
   it("excluded: variants moved on the canvas and Défauts line", async () => {
@@ -5253,9 +5240,9 @@ describe("The changelog: the content of an entry", () => {
       issues: [],
     };
     expect(plain(changelogEntry(a, b))).toStrictEqual({
-      ajoute: [],
-      modifie: [],
-      retire: [],
+      added: [],
+      modified: [],
+      removed: [],
     });
     expect(
       plain(compareSheets(a, b)),
@@ -5292,15 +5279,15 @@ describe("The changelog: the content of an entry", () => {
       sheet(pad("spacing/16", "spacing/12"), pad("spacing/24", "spacing/12")),
     );
     expect(plain(r)).toStrictEqual({
-      ajoute: [],
-      modifie: ["size=medium : marges horizontales, spacing/24 → spacing/16"],
-      retire: [],
+      added: [],
+      modified: ["size=medium : marges horizontales, spacing/24 → spacing/16"],
+      removed: [],
     });
     const wholeEntry = changelogEntry(
       sheet(pad("spacing/24", "spacing/12"), pad("spacing/24", "spacing/12")),
       sheet(pad("spacing/16", "spacing/12"), pad("spacing/16", "spacing/12")),
     );
-    expect(plain(wholeEntry).modifie).toStrictEqual([
+    expect(plain(wholeEntry).modified).toStrictEqual([
       "Toutes les variantes : marges horizontales, spacing/24 → spacing/16",
     ]);
   });
@@ -5312,15 +5299,15 @@ describe("The changelog: the content of an entry", () => {
       fa.structure.slots["s" + k] = { default: { text: "a" } };
       fb.structure.slots["s" + k] = { default: { text: "b" } };
     }
-    expect(changelogEntry(fa, fb).modifie.length).toBe(25);
+    expect(changelogEntry(fa, fb).modified.length).toBe(25);
     expect(compareSheets(fa, fb).length).toBe(21);
   });
   it("Button 0.2 against 0.3: the entry takes the sentences of compareSheets, excluded ones left out", async () => {
     const { changelogEntry, compareSheets } = await tools();
     const wholeEntry = (c: MockData): string[] => [
-      ...c.ajoute,
-      ...c.modifie,
-      ...c.retire,
+      ...c.added,
+      ...c.modified,
+      ...c.removed,
     ];
     const sentences = compareSheets(real02(), real03()).filter(
       (x: string) => typeof x === "string" && !/déplacée|^Défauts/.test(x),
@@ -5334,7 +5321,7 @@ describe("The changelog: the Markdown file", () => {
   const tools = async () => (await button()).plugin.__test;
   const e = (version: string, extra: MockData) =>
     Object.assign(
-      { version, date: "2026-11-04", ajoute: [], modifie: [], retire: [] },
+      { version, date: "2026-11-04", added: [], modified: [], removed: [] },
       extra,
     );
 
@@ -5342,10 +5329,10 @@ describe("The changelog: the Markdown file", () => {
     const { renderChangelog } = await tools();
     const md = renderChangelog("Button", [
       e("1.1.0", {
-        ajoute: ["Propriété ajoutée : loading"],
-        modifie: ["Structure des calques modifiée"],
+        added: ["Propriété ajoutée : loading"],
+        modified: ["Structure des calques modifiée"],
       }),
-      e("1.0.0", { ajoute: ["Première version du composant"] }),
+      e("1.0.0", { added: ["Première version du composant"] }),
     ]);
     expect(md).toBe(
       [
@@ -5369,7 +5356,7 @@ describe("The changelog: the Markdown file", () => {
   });
   it("a Retiré section alone, and several lines per section", async () => {
     const { renderChangelog } = await tools();
-    const md = renderChangelog("Tag", [e("2.0.0", { retire: ["a", "b"] })]);
+    const md = renderChangelog("Tag", [e("2.0.0", { removed: ["a", "b"] })]);
     expect(md).toBe(
       "# Changelog de Tag\n\n## 2.0.0 - 04/11/26\n\n### Retiré\n- a\n- b\n",
     );
@@ -5398,18 +5385,18 @@ describe("The changelog: the Markdown file", () => {
 });
 
 describe("The changelog: the history in the plugin", () => {
-  const NS = "canopee_fiches";
+  const NS = "canopee_sheets";
   const variantSet = (doc: MockData) => doc.nodes[1];
   const read = (doc: MockData, key: string) =>
     variantSet(doc).getSharedPluginData(NS, key);
   const history = (doc: MockData) => JSON.parse(read(doc, "changelog") || "[]");
   const exported = async (doc = buttonDocument(), choices?: MockData) => {
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     if (choices)
-      await p.send({ type: "choisir-version", id: "S:100", ...choices });
+      await p.send({ type: "choose-version", id: "S:100", ...choices });
     const msg = p.lastMessage();
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
     return { doc, p, msg };
   };
   // another plugin on the same document: a new designer who opens the file
@@ -5428,20 +5415,20 @@ describe("The changelog: the history in the plugin", () => {
     expect(h.length).toBe(1);
     expect(h[0].version).toBe("1.0.0");
     expect(h[0].date).toMatch(today);
-    expect([h[0].ajoute, h[0].modifie, h[0].retire]).toStrictEqual([
+    expect([h[0].added, h[0].modified, h[0].removed]).toStrictEqual([
       [FIRST],
       [],
       [],
     ]);
-    expect(read(doc, "version-precedente")).toBe("");
+    expect(read(doc, "previous-version")).toBe("");
     expect(msg.changelog).toMatch(
       /^# Changelog de Button\n\n## 1\.0\.0 - \d{2}\/\d{2}\/\d{2}\n\n### Ajouté\n- Première version du composant\n$/,
     );
   });
   it("the generation alone writes nothing: only the export stores", async () => {
     const { doc, p } = await openPlugin();
-    await p.send({ type: "generer" });
-    expect(p.lastMessage().type).toBe("fiche");
+    await p.send({ type: "generate" });
+    expect(p.lastMessage().type).toBe("sheet");
     expect(typeof p.lastMessage().changelog).toBe("string");
     expect(read(doc, "changelog")).toBe("");
     expect(read(doc, "export")).toBe("");
@@ -5453,10 +5440,10 @@ describe("The changelog: the history in the plugin", () => {
     const { msg } = await reopen(doc);
     const h = history(doc);
     expect(h.map((x: MockData) => x.version)).toStrictEqual(["1.1.0", "1.0.0"]);
-    expect(h[0].ajoute).toStrictEqual([
+    expect(h[0].added).toStrictEqual([
       "Propriété hierarchy, valeurs ajoutées : tertiary",
     ]);
-    expect(read(doc, "version-precedente")).toBe(base);
+    expect(read(doc, "previous-version")).toBe(base);
     expect(msg.changelog).toMatch(
       /^# Changelog de Button\n\n## 1\.1\.0 - [\d\/]+\n\n### Ajouté\n- Propriété hierarchy, valeurs ajoutées : tertiary\n\n## 1\.0\.0 - [\d\/]+\n/,
     );
@@ -5471,10 +5458,10 @@ describe("The changelog: the history in the plugin", () => {
     await reopen(doc, { keep: true });
     let h = history(doc);
     expect(h.map((x: MockData) => x.version)).toStrictEqual(["1.1.0", "1.0.0"]);
-    expect(h[0].ajoute).toStrictEqual([
+    expect(h[0].added).toStrictEqual([
       "Propriété hierarchy, valeurs ajoutées : tertiary",
     ]);
-    expect(h[0].modifie).toStrictEqual([
+    expect(h[0].modified).toStrictEqual([
       "Slot label, texte par défaut : Label → Libellé",
     ]);
     // the same export repeated duplicates nothing
@@ -5482,45 +5469,45 @@ describe("The changelog: the history in the plugin", () => {
     await reopen(doc, { keep: true });
     h = history(doc);
     expect(h.length).toBe(2);
-    expect(h[0].ajoute).toStrictEqual([
+    expect(h[0].added).toStrictEqual([
       "Propriété hierarchy, valeurs ajoutées : tertiary",
     ]);
-    expect(h[0].modifie).toStrictEqual([
+    expect(h[0].modified).toStrictEqual([
       "Slot label, texte par défaut : Label → Libellé",
     ]);
     expect(
-      JSON.parse(read(doc, "version-precedente")).meta.version,
+      JSON.parse(read(doc, "previous-version")).meta.version,
       "la version précédente ne bouge pas",
     ).toBe("1.0.0");
     // a cancelled change disappears from the kept entry
     variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
       "Label";
     await reopen(doc, { keep: true });
-    expect(history(doc)[0].modifie).toStrictEqual([]);
+    expect(history(doc)[0].modified).toStrictEqual([]);
   });
   it("kept version without a previous version: the new lines are added, without duplicates", async () => {
     const { doc } = await exported();
     addValue(doc, "tertiary");
     await reopen(doc);
     // a component exported before this evolution has no previous version
-    variantSet(doc).setSharedPluginData(NS, "version-precedente", "");
+    variantSet(doc).setSharedPluginData(NS, "previous-version", "");
     variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
       "Libellé";
     await reopen(doc, { keep: true });
     const h = history(doc);
     expect(h.map((x: MockData) => x.version)).toStrictEqual(["1.1.0", "1.0.0"]);
-    expect(h[0].ajoute).toStrictEqual([
+    expect(h[0].added).toStrictEqual([
       "Propriété hierarchy, valeurs ajoutées : tertiary",
     ]);
-    expect(h[0].modifie).toStrictEqual([
+    expect(h[0].modified).toStrictEqual([
       "Slot label, texte par défaut : Label → Libellé",
     ]);
     await reopen(doc, { keep: true });
-    expect(history(doc)[0].modifie).toStrictEqual([
+    expect(history(doc)[0].modified).toStrictEqual([
       "Slot label, texte par défaut : Label → Libellé",
     ]);
     expect(
-      read(doc, "version-precedente"),
+      read(doc, "previous-version"),
       "toujours pas de version précédente",
     ).toBe("");
   });
@@ -5533,8 +5520,8 @@ describe("The changelog: the history in the plugin", () => {
     await reopen(doc, { keep: true });
     const after = history(doc);
     expect(after.length).toBe(1);
-    expect(after[0].ajoute).toStrictEqual([FIRST]);
-    expect(after[0].modifie).toStrictEqual([]);
+    expect(after[0].added).toStrictEqual([FIRST]);
+    expect(after[0].modified).toStrictEqual([]);
     expect(after[0].date).toMatch(today);
     expect(after[0].date).not.toBe("2020-01-01");
   });
@@ -5543,7 +5530,7 @@ describe("The changelog: the history in the plugin", () => {
     await reopen(doc, { overhaul: false, sheetMd: true });
     const h = history(doc);
     expect(h.map((x: MockData) => x.version)).toStrictEqual(["1.0.1", "1.0.0"]);
-    expect([h[0].ajoute, h[0].modifie, h[0].retire]).toStrictEqual([
+    expect([h[0].added, h[0].modified, h[0].removed]).toStrictEqual([
       [],
       ["Fiche Markdown modifiée"],
       [],
@@ -5556,7 +5543,7 @@ describe("The changelog: the history in the plugin", () => {
     await reopen(doc, { overhaul: true, sheetMd: false });
     const h = history(doc);
     expect(h[0].version).toBe("2.0.0");
-    expect(h[0].modifie).toStrictEqual([
+    expect(h[0].modified).toStrictEqual([
       "Refonte complète du composant",
       "Slot label, texte par défaut : Label → Libellé",
     ]);
@@ -5564,7 +5551,7 @@ describe("The changelog: the history in the plugin", () => {
   it("overhaul without any other change: the overhaul line alone", async () => {
     const { doc } = await exported();
     await reopen(doc, { overhaul: true, sheetMd: false });
-    expect(history(doc)[0].modifie).toStrictEqual([
+    expect(history(doc)[0].modified).toStrictEqual([
       "Refonte complète du composant",
     ]);
   });
@@ -5574,7 +5561,7 @@ describe("The changelog: the history in the plugin", () => {
     variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
       "Libellé";
     await reopen(doc, { keep: true });
-    expect(history(doc)[0].modifie).toStrictEqual([
+    expect(history(doc)[0].modified).toStrictEqual([
       "Refonte complète du composant",
       "Slot label, texte par défaut : Label → Libellé",
     ]);
@@ -5582,10 +5569,10 @@ describe("The changelog: the history in the plugin", () => {
   it("no change: the history stays identical", async () => {
     const { doc } = await exported();
     const before = read(doc, "changelog");
-    const previous = read(doc, "version-precedente");
+    const previous = read(doc, "previous-version");
     const { msg } = await reopen(doc);
     expect(read(doc, "changelog")).toBe(before);
-    expect(read(doc, "version-precedente")).toBe(previous);
+    expect(read(doc, "previous-version")).toBe(previous);
     expect(msg.changelog).toMatch(/^# Changelog de Button\n\n## 1\.0\.0 - /);
   });
   it("component already exported but without a history: it starts with the entry of this export", async () => {
@@ -5595,7 +5582,7 @@ describe("The changelog: the history in the plugin", () => {
     await reopen(doc);
     const h = history(doc);
     expect(h.map((x: MockData) => x.version)).toStrictEqual(["1.1.0"]);
-    expect(h[0].ajoute).toStrictEqual([
+    expect(h[0].added).toStrictEqual([
       "Propriété hierarchy, valeurs ajoutées : tertiary",
     ]);
   });
@@ -5605,7 +5592,7 @@ describe("The changelog: the history in the plugin", () => {
     const { msg } = await reopen(doc);
     const h = history(doc);
     expect(h.map((x: MockData) => x.version)).toStrictEqual(["1.0.0"]);
-    expect([h[0].ajoute, h[0].modifie, h[0].retire]).toStrictEqual([
+    expect([h[0].added, h[0].modified, h[0].removed]).toStrictEqual([
       [FIRST],
       [],
       [],
@@ -5618,7 +5605,7 @@ describe("The changelog: the history in the plugin", () => {
     addValue(doc, "tertiary");
     await reopen(doc, { keep: true });
     expect(
-      history(doc).map((x: MockData) => [x.version, x.ajoute]),
+      history(doc).map((x: MockData) => [x.version, x.added]),
     ).toStrictEqual([["1.0.0", [FIRST]]]);
   });
   it("an unreadable history is not overwritten by an export, and the message shows", async () => {
@@ -5626,12 +5613,12 @@ describe("The changelog: the history in the plugin", () => {
     variantSet(doc).setSharedPluginData(NS, "changelog", "{pas du json");
     addValue(doc, "tertiary");
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
-    expect(p.lastMessage().type).toBe("erreur");
+    await p.send({ type: "generate" });
+    expect(p.lastMessage().type).toBe("error");
     expect(p.lastMessage().message).toBe(
       "Le changelog enregistré est illisible dans le fichier Figma. Le plugin ne le remplacera pas.",
     );
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
     expect(read(doc, "changelog")).toBe("{pas du json");
     expect(
       JSON.parse(read(doc, "export")).meta.version,
@@ -5642,11 +5629,11 @@ describe("The changelog: the history in the plugin", () => {
     const { doc } = await exported();
     variantSet(doc).setSharedPluginData(NS, "changelog", '{"version":"1.0.0"}');
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(p.lastMessage().message).toMatch(
       /^Le changelog enregistré est illisible/,
     );
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
     expect(read(doc, "changelog")).toBe('{"version":"1.0.0"}');
   });
   it("an unreadable base with a stored history: the history stays intact and the message shows", async () => {
@@ -5657,11 +5644,11 @@ describe("The changelog: the history in the plugin", () => {
     expect(history(doc).length).toBe(2);
     variantSet(doc).setSharedPluginData(NS, "export", "{pas du json");
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(p.lastMessage().message).toBe(
       "La dernière version enregistrée est illisible dans le fichier Figma. Le plugin repart de la version 1.0.0, sans toucher au changelog enregistré.",
     );
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
     expect(read(doc, "changelog"), "historique intact").toBe(before);
     expect(
       JSON.parse(read(doc, "export")).meta.version,
@@ -5672,9 +5659,9 @@ describe("The changelog: the history in the plugin", () => {
     const { doc } = await exported();
     addValue(doc, "tertiary");
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
-    await p.send({ type: "memoriser", id: "S:100" });
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
     expect(history(doc).map((x: MockData) => x.version)).toStrictEqual([
       "1.1.0",
       "1.0.0",
@@ -5684,9 +5671,9 @@ describe("The changelog: the history in the plugin", () => {
     const { doc } = await exported();
     addValue(doc, "tertiary");
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
+    await p.send({ type: "generate" });
     expect(p.lastMessage().changelog).toMatch(/## 1\.1\.0 - /);
-    await p.send({ type: "choisir-version", id: "S:100", keep: true });
+    await p.send({ type: "choose-version", id: "S:100", keep: true });
     const m = p.lastMessage();
     expect(m.type).toBe("version");
     expect(m.changelog).not.toMatch(/## 1\.1\.0 - /);
@@ -5701,10 +5688,10 @@ describe("The changelog: the history in the plugin", () => {
       write(space, key, value);
     };
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
     const m = p.lastMessage();
-    expect(m.type).toBe("erreur");
+    expect(m.type).toBe("error");
     expect(m.message).toMatch(
       /^L'historique du changelog n'a pas pu être enregistré dans le fichier Figma \(\d+ Ko\) : Data too large\./,
     );
@@ -5716,12 +5703,12 @@ describe("The changelog: the history in the plugin", () => {
     const node = variantSet(doc);
     const write = node.setSharedPluginData;
     node.setSharedPluginData = (space: string, key: string, value: string) => {
-      if (key === "version-precedente") throw new Error("Data too large");
+      if (key === "previous-version") throw new Error("Data too large");
       write(space, key, value);
     };
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
     expect(p.lastMessage().message).toMatch(
       /^Le JSON de la version précédente n'a pas pu être enregistré dans le fichier Figma/,
     );
@@ -5732,23 +5719,23 @@ describe("The changelog: the history in the plugin", () => {
   it("concurrent exports: A generates, B exports a version, A exports: B stays intact and A sees the error", async () => {
     const { doc } = await exported();
     const a = (await openPlugin(doc)).p;
-    await a.send({ type: "generer" });
+    await a.send({ type: "generate" });
     // B adds a value and exports 1.1.0 while A holds its generation
     addValue(doc, "tertiary");
     await reopen(doc);
     const baseB = read(doc, "export");
     const historyB = read(doc, "changelog");
-    const previousB = read(doc, "version-precedente");
+    const previousB = read(doc, "previous-version");
     expect(JSON.parse(baseB).meta.version).toBe("1.1.0");
-    await a.send({ type: "memoriser", id: "S:100" });
-    expect(a.lastMessage().type).toBe("erreur");
+    await a.send({ type: "record-export", id: "S:100" });
+    expect(a.lastMessage().type).toBe("error");
     expect(a.lastMessage().message).toBe(CONCURRENT_MESSAGE);
     expect(read(doc, "export"), "la base de B est intacte").toBe(baseB);
     expect(read(doc, "changelog"), "l'historique de B est intact").toBe(
       historyB,
     );
     expect(
-      read(doc, "version-precedente"),
+      read(doc, "previous-version"),
       "la version précédente de B est intacte",
     ).toBe(previousB);
   });
@@ -5756,10 +5743,10 @@ describe("The changelog: the history in the plugin", () => {
     const { doc } = await exported();
     addValue(doc, "tertiary");
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
-    await p.send({ type: "memoriser", id: "S:100" });
-    await p.send({ type: "memoriser", id: "S:100" });
-    expect(p.messages.filter((m: MockData) => m.type === "erreur").length).toBe(
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(p.messages.filter((m: MockData) => m.type === "error").length).toBe(
       0,
     );
     expect(JSON.parse(read(doc, "export")).meta.version).toBe("1.1.0");
@@ -5768,12 +5755,12 @@ describe("The changelog: the history in the plugin", () => {
     const { doc } = await exported();
     addValue(doc, "tertiary");
     const { p } = await openPlugin(doc);
-    await p.send({ type: "generer" });
-    await p.send({ type: "memoriser", id: "S:100" });
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
     expect(JSON.parse(read(doc, "export")).meta.version).toBe("1.1.0");
-    await p.send({ type: "choisir-version", id: "S:100", keep: true });
-    await p.send({ type: "memoriser", id: "S:100" });
-    expect(p.messages.filter((m: MockData) => m.type === "erreur").length).toBe(
+    await p.send({ type: "choose-version", id: "S:100", keep: true });
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(p.messages.filter((m: MockData) => m.type === "error").length).toBe(
       0,
     );
     expect(
@@ -5784,16 +5771,203 @@ describe("The changelog: the history in the plugin", () => {
   it("an export refused because another took place does not block the next generation", async () => {
     const { doc } = await exported();
     const a = (await openPlugin(doc)).p;
-    await a.send({ type: "generer" });
+    await a.send({ type: "generate" });
     addValue(doc, "tertiary");
     await reopen(doc);
-    await a.send({ type: "memoriser", id: "S:100" });
-    await a.send({ type: "generer" });
-    await a.send({ type: "memoriser", id: "S:100" });
+    await a.send({ type: "record-export", id: "S:100" });
+    await a.send({ type: "generate" });
+    await a.send({ type: "record-export", id: "S:100" });
     expect(
-      a.messages.filter((m: MockData) => m.type === "erreur").length,
+      a.messages.filter((m: MockData) => m.type === "error").length,
       "seule la première tentative est refusée",
     ).toBe(1);
+  });
+});
+
+// ------------------------------------------------------------ the data of the version 0.4.43
+// Button, IconButton and the Loader were exported by the version 0.4.43, which named the
+// namespace, one key and the fields of the changelog in French, as well as its rules and its tool.
+// The plugin reads these data again and writes only the new keys.
+describe("The data stored by the version 0.4.43", () => {
+  const NS = "canopee_sheets";
+  const LEGACY_NS = "canopee_fiches";
+  const LEGACY_RULES: Record<string, string> = {
+    "raw-value": "valeur-brute",
+    "text-style": "style-de-texte",
+    "token-duplicate": "token-doublon",
+    "preferred-value": "valeur-preferee",
+    "prop-name": "prop-nom",
+    "prop-outside-nomenclature": "prop-hors-nomenclature",
+    "text-not-linked": "texte-non-relie",
+  };
+  const variantSet = (doc: MockData) => doc.nodes[1];
+  const addValue = (doc: MockData, v: string) =>
+    variantSet(doc).componentPropertyDefinitions.hierarchy.variantOptions.push(
+      v,
+    );
+  const read = (doc: MockData, space: string, key: string) =>
+    variantSet(doc).getSharedPluginData(space, key);
+  // the JSON that the plugin generates today for a component that Figma did not change
+  const todayJson = async (): Promise<string> => {
+    const { p } = await openPlugin(buttonDocument());
+    await p.send({ type: "generate" });
+    return p.lastMessage().json;
+  };
+  // the same sheet, as the version 0.4.43 stored it
+  const legacySheet = (json: string, version: string): string => {
+    const sheet = JSON.parse(json);
+    sheet.meta.version = version;
+    sheet._tool = "canopee-fiches-composants 0.4.43";
+    for (const issue of sheet.issues)
+      issue.rule = LEGACY_RULES[issue.rule] ?? issue.rule;
+    return JSON.stringify(sheet);
+  };
+  const LEGACY_HISTORY = [
+    {
+      version: "1.2.0",
+      date: "2026-10-20",
+      ajoute: ["Propriété ajoutée : loading"],
+      modifie: ["Ordre des variantes modifié"],
+      retire: [],
+    },
+    {
+      version: "1.0.0",
+      date: "2026-10-01",
+      ajoute: ["Première version du composant"],
+      modifie: [],
+      retire: ["Variante retirée : size=a"],
+    },
+  ];
+  const storeLegacy = (
+    doc: MockData,
+    sheet: string,
+    changelog?: MockData[],
+  ) => {
+    const node = variantSet(doc);
+    node.setSharedPluginData(LEGACY_NS, "export", sheet);
+    if (changelog)
+      node.setSharedPluginData(
+        LEGACY_NS,
+        "changelog",
+        JSON.stringify(changelog),
+      );
+  };
+
+  it("a component with only the old keys keeps its version, its level of change and all its changelog", async () => {
+    const stored = legacySheet(await todayJson(), "1.2.0");
+    expect(stored, "the stored sheet has the old rule names").toContain(
+      '"valeur-brute"',
+    );
+    const doc = buttonDocument();
+    addValue(doc, "tertiary");
+    storeLegacy(doc, stored, LEGACY_HISTORY);
+    const { p } = await openPlugin(doc);
+    await p.send({ type: "generate" });
+    const m = p.lastMessage();
+    expect(m.type).toBe("sheet");
+    expect(plain(m.version)).toMatchObject({
+      first: false,
+      none: false,
+      current: "1.2.0",
+      detected: "minor",
+      next: "1.3.0",
+    });
+    expect(m.changes.sentences.length).toBeGreaterThan(0);
+    expect(m.changelog).toContain("## 1.3.0");
+    expect(m.changelog).toContain("## 1.2.0 - 20/10/26");
+    expect(m.changelog).toContain("## 1.0.0 - 01/10/26");
+    expect(m.changelog).toContain("- Variante retirée : size=a");
+    await p.send({ type: "record-export", id: "S:100" });
+    const history = JSON.parse(read(doc, NS, "changelog"));
+    expect(history.map((e: MockData) => e.version)).toStrictEqual([
+      "1.3.0",
+      "1.2.0",
+      "1.0.0",
+    ]);
+    expect(history.slice(1)).toStrictEqual([
+      {
+        version: "1.2.0",
+        date: "2026-10-20",
+        added: ["Propriété ajoutée : loading"],
+        modified: ["Ordre des variantes modifié"],
+        removed: [],
+      },
+      {
+        version: "1.0.0",
+        date: "2026-10-01",
+        added: ["Première version du composant"],
+        modified: [],
+        removed: ["Variante retirée : size=a"],
+      },
+    ]);
+    expect(JSON.parse(read(doc, NS, "export")).meta.version).toBe("1.3.0");
+  });
+  it("a component already stored by 0.4.43, on a Figma that did not change, keeps its version despite its old rule names and tool", async () => {
+    const stored = legacySheet(await todayJson(), "1.2.0");
+    expect(stored).toContain('"_tool":"canopee-fiches-composants 0.4.43"');
+    expect(stored).toContain('"valeur-brute"');
+    const doc = buttonDocument();
+    storeLegacy(doc, stored, LEGACY_HISTORY);
+    const { p } = await openPlugin(doc);
+    await p.send({ type: "generate" });
+    const m = p.lastMessage();
+    expect(plain(m.version)).toMatchObject({
+      first: false,
+      none: true,
+      current: "1.2.0",
+      version: "1.2.0",
+      detected: null,
+      kept: false,
+    });
+    expect(JSON.parse(m.json).meta.version).toBe("1.2.0");
+    expect(plain(m.changes.sentences)).toStrictEqual([]);
+    const sheet = JSON.parse(m.json);
+    expect(sheet._tool).toMatch(/^canopee-export-components /);
+    expect(sheet.issues.map((i: MockData) => i.rule)).toContain("raw-value");
+  });
+  it("after a write, only the new keys are written, and the old ones stay as they were", async () => {
+    const stored = legacySheet(await todayJson(), "1.2.0");
+    const doc = buttonDocument();
+    addValue(doc, "tertiary");
+    storeLegacy(doc, stored, LEGACY_HISTORY);
+    const oldChangelog = read(doc, LEGACY_NS, "changelog");
+    const writes: string[] = [];
+    const node = variantSet(doc);
+    const write = node.setSharedPluginData;
+    node.setSharedPluginData = (space: string, key: string, value: string) => {
+      writes.push(space + "|" + key);
+      write(space, key, value);
+    };
+    const { p } = await openPlugin(doc);
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(writes.slice().sort()).toStrictEqual([
+      NS + "|changelog",
+      NS + "|export",
+      NS + "|previous-version",
+    ]);
+    expect(read(doc, NS, "previous-version")).toBe(stored);
+    expect(read(doc, LEGACY_NS, "export")).toBe(stored);
+    expect(read(doc, LEGACY_NS, "changelog")).toBe(oldChangelog);
+    expect(read(doc, LEGACY_NS, "version-precedente")).toBe("");
+    // a first export, on a component that has no old data, writes the same keys only
+    const fresh = buttonDocument();
+    const freshWrites: string[] = [];
+    const freshNode = variantSet(fresh);
+    const freshWrite = freshNode.setSharedPluginData;
+    freshNode.setSharedPluginData = (
+      space: string,
+      key: string,
+      value: string,
+    ) => {
+      freshWrites.push(space + "|" + key);
+      freshWrite(space, key, value);
+    };
+    const first = (await openPlugin(fresh)).p;
+    await first.send({ type: "generate" });
+    await first.send({ type: "record-export", id: "S:100" });
+    for (const written of freshWrites)
+      expect(written.startsWith(NS + "|"), written).toBe(true);
   });
 });
 
@@ -5824,7 +5998,7 @@ describe("The texts", () => {
     };
     browse(PLUGIN);
     expect(
-      files.some((f) => f.endsWith("verifier-fiche.mjs")),
+      files.some((f) => f.endsWith("check-sheet.mjs")),
       "les scripts ne sont pas parcourus",
     ).toBeTruthy();
     for (const f of files)

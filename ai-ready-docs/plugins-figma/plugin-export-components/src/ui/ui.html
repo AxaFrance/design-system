@@ -1,32 +1,32 @@
 <link rel="stylesheet" href="./styles.css" />
 
-<div id="contenu">
-  <div class="vide" id="vide">
-    <span class="vide-icone"
+<div id="content">
+  <div class="empty" id="empty">
+    <span class="empty-icon"
       ><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M12 2.5 15.5 6 12 9.5 8.5 6ZM6 8.5 9.5 12 6 15.5 2.5 12ZM18 8.5 21.5 12 18 15.5 14.5 12ZM12 14.5 15.5 18 12 21.5 8.5 18Z"
           fill="currentColor"
         /></svg
     ></span>
-    <p class="vide-titre">Aucun composant sélectionné</p>
-    <p class="aide">
+    <p class="empty-title">Aucun composant sélectionné</p>
+    <p class="help">
       Sélectionner dans Figma un composant, son ensemble de variantes ou une de
       ses instances.
     </p>
   </div>
-  <div class="contexte" id="infos" hidden>
-    <div class="rangee-nom">
-      <p class="nom" id="nom"></p>
-      <span class="version-nom" id="tuile-version" hidden
-        ><span id="val-version"></span
+  <div class="context" id="card" hidden>
+    <div class="name-row">
+      <p class="name" id="name"></p>
+      <span class="name-version" id="version-tile" hidden
+        ><span id="version-value"></span
       ></span>
-      <span id="etiquette"></span>
-      <span class="compteurs" id="compteurs"></span>
+      <span id="tag"></span>
+      <span class="counters" id="counters"></span>
       <button
         type="button"
-        class="icone"
-        id="regenerer"
+        class="icon-button"
+        id="regenerate"
         title="Générer de nouveau"
         aria-label="Générer de nouveau"
         hidden
@@ -43,43 +43,43 @@
         </svg>
       </button>
     </div>
-    <div class="pastilles" id="tuiles" hidden>
-      <span class="pastille" id="tuile-tokens" hidden
-        >Version minimale des tokens requise : <b id="val-tokens"></b
+    <div class="pills" id="tiles" hidden>
+      <span class="pill" id="tokens-tile" hidden
+        >Version minimale des tokens requise : <b id="tokens-value"></b
       ></span>
     </div>
     <div class="question" id="question" hidden>
       <div
-        id="question-livree"
+        id="question-delivered"
         role="radiogroup"
-        aria-labelledby="question-titre"
+        aria-labelledby="question-title"
       >
-        <p class="question-titre" id="question-titre"></p>
-        <div class="reponses">
-          <label class="case"
-            ><input type="radio" name="livree" id="livree-oui" /><span
-              id="livree-oui-libelle"
+        <p class="question-title" id="question-title"></p>
+        <div class="answers">
+          <label class="checkbox"
+            ><input type="radio" name="delivered" id="delivered-yes" /><span
+              id="delivered-yes-label"
             ></span
           ></label>
-          <label class="case"
-            ><input type="radio" name="livree" id="livree-non" /><span
-              id="livree-non-libelle"
+          <label class="checkbox"
+            ><input type="radio" name="delivered" id="delivered-no" /><span
+              id="delivered-no-label"
             ></span
           ></label>
         </div>
       </div>
-      <p class="question-titre" id="question-aucun" hidden>
+      <p class="question-title" id="question-none" hidden>
         Aucun changement dans le composant.
       </p>
-      <div class="filet" id="filet" hidden></div>
-      <div class="cases" id="cases" hidden>
-        <label class="case" id="case-refonte"
-          ><input type="checkbox" id="refonte" /><span id="refonte-libelle"
+      <div class="divider" id="divider" hidden></div>
+      <div class="checkboxes" id="checkboxes" hidden>
+        <label class="checkbox" id="checkbox-overhaul"
+          ><input type="checkbox" id="overhaul" /><span id="overhaul-label"
             >Refonte complète</span
           ></label
         >
-        <label class="case" id="case-fichemd" hidden
-          ><input type="checkbox" id="fichemd" /><span id="fichemd-libelle"
+        <label class="checkbox" id="checkbox-sheet-md" hidden
+          ><input type="checkbox" id="sheet-md" /><span id="sheet-md-label"
             >Fiche md modifiée</span
           ></label
         >
@@ -88,30 +88,30 @@
   </div>
 
   <div
-    class="onglets"
-    id="onglets"
+    class="tabs"
+    id="tabs"
     role="tablist"
     aria-label="Contenu de l'export"
     hidden
   >
     <button
       type="button"
-      class="onglet"
+      class="tab"
       role="tab"
-      id="onglet-corriger"
-      data-onglet="corriger"
-      aria-controls="panneau-corriger"
+      id="tab-issues"
+      data-tab="issues"
+      aria-controls="panel-issues"
       aria-selected="true"
     >
-      À corriger<span class="compteur" id="compteur-corriger" hidden></span>
+      À corriger<span class="counter" id="counter-issues" hidden></span>
     </button>
     <button
       type="button"
-      class="onglet"
+      class="tab"
       role="tab"
-      id="onglet-json"
-      data-onglet="json"
-      aria-controls="panneau-json"
+      id="tab-json"
+      data-tab="json"
+      aria-controls="panel-json"
       aria-selected="false"
       tabindex="-1"
     >
@@ -119,11 +119,11 @@
     </button>
     <button
       type="button"
-      class="onglet"
+      class="tab"
       role="tab"
-      id="onglet-changelog"
-      data-onglet="changelog"
-      aria-controls="panneau-changelog"
+      id="tab-changelog"
+      data-tab="changelog"
+      aria-controls="panel-changelog"
       aria-selected="false"
       tabindex="-1"
     >
@@ -131,27 +131,27 @@
     </button>
     <button
       type="button"
-      class="onglet"
+      class="tab"
       role="tab"
-      id="onglet-changements"
-      data-onglet="changements"
-      aria-controls="panneau-changements"
+      id="tab-changes"
+      data-tab="changes"
+      aria-controls="panel-changes"
       aria-selected="false"
       tabindex="-1"
     >
-      Changements<span class="compteur" id="compteur-changements" hidden></span>
+      Changements<span class="counter" id="counter-changes" hidden></span>
     </button>
   </div>
 
   <div
-    class="panneau"
-    id="panneau-corriger"
+    class="panel"
+    id="panel-issues"
     role="tabpanel"
-    aria-labelledby="onglet-corriger"
+    aria-labelledby="tab-issues"
     hidden
   >
-    <div class="vide" id="corriger-ok" hidden>
-      <span class="vide-icone"
+    <div class="empty" id="issues-ok" hidden>
+      <span class="empty-icon"
         ><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M5.5 12.5 10 17 18.5 7.5"
@@ -162,26 +162,26 @@
             stroke-linejoin="round"
           /></svg
       ></span>
-      <p class="vide-titre">Rien à corriger</p>
-      <p class="aide">
+      <p class="empty-title">Rien à corriger</p>
+      <p class="help">
         Le composant respecte la nomenclature. Générer le JSON pour calculer sa
         version et son changelog.
       </p>
     </div>
-    <ul class="liste" id="corriger-liste"></ul>
+    <ul class="list" id="issues-list"></ul>
   </div>
 
   <div
-    class="panneau"
-    id="panneau-json"
+    class="panel"
+    id="panel-json"
     role="tabpanel"
-    aria-labelledby="onglet-json"
+    aria-labelledby="tab-json"
     hidden
   >
-    <div id="json-contenu" hidden>
-      <p class="fichier" id="resultat-titre"></p>
-      <p class="aide" id="resume"></p>
-      <p class="aide" id="version-plugin"></p>
+    <div id="json-content" hidden>
+      <p class="file" id="result-title"></p>
+      <p class="help" id="summary"></p>
+      <p class="help" id="plugin-version"></p>
       <pre
         id="json"
         tabindex="0"
@@ -192,13 +192,13 @@
   </div>
 
   <div
-    class="panneau"
-    id="panneau-changelog"
+    class="panel"
+    id="panel-changelog"
     role="tabpanel"
-    aria-labelledby="onglet-changelog"
+    aria-labelledby="tab-changelog"
     hidden
   >
-    <div id="changelog-contenu" hidden>
+    <div id="changelog-content" hidden>
       <pre
         id="changelog"
         tabindex="0"
@@ -209,28 +209,28 @@
   </div>
 
   <div
-    class="panneau"
-    id="panneau-changements"
+    class="panel"
+    id="panel-changes"
     role="tabpanel"
-    aria-labelledby="onglet-changements"
+    aria-labelledby="tab-changes"
     hidden
   >
-    <div id="changements"></div>
+    <div id="changes"></div>
   </div>
 </div>
 
 <div class="actions" id="actions" hidden>
-  <p class="bandeau erreur" id="erreur" hidden></p>
-  <p class="bandeau succes" id="succes" hidden></p>
-  <p class="bandeau info" id="perime" hidden>
+  <p class="banner error" id="error" hidden></p>
+  <p class="banner success" id="success" hidden></p>
+  <p class="banner info" id="stale" hidden>
     Le composant a changé depuis la génération de ce JSON.
   </p>
-  <p class="bandeau info" id="regles" hidden></p>
-  <div class="rangee" id="boutons" hidden>
-    <button type="button" class="bouton principal" id="generer" disabled>
+  <p class="banner info" id="rules" hidden></p>
+  <div class="row" id="buttons" hidden>
+    <button type="button" class="button primary" id="generate" disabled>
       <svg
-        class="ico"
-        id="ico-generer"
+        class="svg-icon"
+        id="icon-generate"
         width="16"
         height="16"
         viewBox="0 0 16 16"
@@ -246,8 +246,8 @@
         />
       </svg>
       <svg
-        class="ico"
-        id="ico-telecharger"
+        class="svg-icon"
+        id="icon-download"
         width="16"
         height="16"
         viewBox="0 0 16 16"
@@ -263,11 +263,11 @@
           stroke-linejoin="round"
         />
       </svg>
-      <span id="generer-libelle">Générer le JSON</span>
+      <span id="generate-label">Générer le JSON</span>
     </button>
-    <button type="button" class="bouton secondaire" id="copier" hidden>
+    <button type="button" class="button secondary" id="copy" hidden>
       <svg
-        class="ico"
+        class="svg-icon"
         width="16"
         height="16"
         viewBox="0 0 16 16"
@@ -291,13 +291,13 @@
           stroke-linecap="round"
         />
       </svg>
-      <span id="copier-libelle">Copier le JSON</span>
+      <span id="copy-label">Copier le JSON</span>
     </button>
   </div>
 </div>
 
 <div
-  id="poignee"
+  id="handle"
   aria-label="Redimensionner la fenêtre"
   title="Glisser pour redimensionner, double-cliquer pour revenir à la taille automatique"
 >

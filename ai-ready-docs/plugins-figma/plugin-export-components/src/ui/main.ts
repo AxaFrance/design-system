@@ -59,7 +59,7 @@ const send = (message: UiToPluginMessage): void =>
 const plural = (n: number, word: string): string =>
   n + " " + word + (n > 1 ? "s" : "");
 const pill = (n: number, word: string): string =>
-  '<span class="pastille"><b>' +
+  '<span class="pill"><b>' +
   n +
   "</b> " +
   word +
@@ -69,36 +69,36 @@ const pill = (n: number, word: string): string =>
 // Natural height of the content and of the actions, so that the window follows it.
 // The height is measured without the stretching of the JSON: otherwise the window would never shrink again.
 const adjustHeight = (): void => {
-  document.body.classList.add("mesure");
-  const height = 16 + $("contenu").offsetHeight + $("actions").offsetHeight;
-  document.body.classList.remove("mesure");
-  send({ type: "redimensionner", height });
+  document.body.classList.add("measuring");
+  const height = 16 + $("content").offsetHeight + $("actions").offsetHeight;
+  document.body.classList.remove("measuring");
+  send({ type: "resize", height });
 };
 
 // ------------------------------------------------------- manual resizing
 
-const handle = $("poignee");
+const handle = $("handle");
 handle.addEventListener("pointerdown", (e: PointerEvent) => {
   handle.setPointerCapture(e.pointerId);
-  document.body.classList.add("redimensionnement");
+  document.body.classList.add("resizing");
 });
 handle.addEventListener("pointermove", (e: PointerEvent) => {
   if (!handle.hasPointerCapture(e.pointerId)) return;
   send({
-    type: "redimensionner-manuel",
+    type: "resize-manual",
     width: Math.round(e.clientX + 8),
     height: Math.round(e.clientY + 8),
   });
 });
 handle.addEventListener("pointerup", (e: PointerEvent) => {
   handle.releasePointerCapture(e.pointerId);
-  document.body.classList.remove("redimensionnement");
+  document.body.classList.remove("resizing");
 });
-handle.addEventListener("dblclick", () => send({ type: "taille-auto" }));
+handle.addEventListener("dblclick", () => send({ type: "auto-size" }));
 
 // The targeted component and what was generated for it: an answer that arrives for a
 // component we have left since then is dropped.
-type Tab = "corriger" | "json" | "changelog" | "changements";
+type Tab = "issues" | "json" | "changelog" | "changes";
 interface State {
   id: string | null;
   json: string | null;
@@ -110,7 +110,7 @@ interface State {
   generated: boolean;
   version: VersionView | null;
   name: string;
-  answer: "oui" | "non" | null;
+  answer: "yes" | "no" | null;
   changelog: string | null;
   stale: boolean;
 }
@@ -121,7 +121,7 @@ const state: State = {
   changelogFile: null,
   issues: [],
   inProgress: false,
-  tab: "corriger",
+  tab: "issues",
   generated: false,
   version: null,
   name: "",
@@ -129,27 +129,27 @@ const state: State = {
   changelog: null,
   stale: false,
 };
-const TABS: Tab[] = ["corriger", "json", "changelog", "changements"];
+const TABS: Tab[] = ["issues", "json", "changelog", "changes"];
 
 // Without a selected component, the bottom bar only keeps its messages, and disappears if there are none.
 const updateActions = (): void => {
-  $("boutons").hidden = !state.id;
+  $("buttons").hidden = !state.id;
   $("actions").hidden =
     !state.id &&
-    $("erreur").hidden &&
-    $("succes").hidden &&
-    $("perime").hidden &&
-    $("regles").hidden;
+    $("error").hidden &&
+    $("success").hidden &&
+    $("stale").hidden &&
+    $("rules").hidden;
 };
 const showError = (m: string): void => {
-  $("erreur").textContent = m;
-  $("erreur").hidden = !m;
+  $("error").textContent = m;
+  $("error").hidden = !m;
   updateActions();
   adjustHeight();
 };
 const showSuccess = (m: string): void => {
-  $("succes").textContent = m;
-  $("succes").hidden = !m;
+  $("success").textContent = m;
+  $("success").hidden = !m;
   updateActions();
   adjustHeight();
 };
@@ -162,9 +162,9 @@ function updateButtons(progress?: string): void {
   const blocked = generated && !state.stale && answerExpected();
   // stale JSON: only a new JSON can be exported, the main button regenerates it
   const regenerate = generated && state.stale;
-  $("perime").hidden = !(generated && state.stale);
-  $button("generer").disabled = state.inProgress || !state.id || blocked;
-  $("generer-libelle").textContent = state.inProgress
+  $("stale").hidden = !(generated && state.stale);
+  $button("generate").disabled = state.inProgress || !state.id || blocked;
+  $("generate-label").textContent = state.inProgress
     ? progress || "Génération en cours..."
     : blocked
       ? "Répondre à la question"
@@ -175,22 +175,22 @@ function updateButtons(progress?: string): void {
           : onChangelog()
             ? "Télécharger le changelog"
             : "Télécharger le JSON";
-  $("copier-libelle").textContent = onChangelog()
+  $("copy-label").textContent = onChangelog()
     ? "Copier le changelog"
     : "Copier le JSON";
   // an SVG has no hidden property: go through the attribute
-  $("ico-generer").toggleAttribute(
+  $("icon-generate").toggleAttribute(
     "hidden",
     generated && !regenerate && !state.inProgress,
   );
-  $("ico-telecharger").toggleAttribute(
+  $("icon-download").toggleAttribute(
     "hidden",
     !generated || regenerate || state.inProgress,
   );
-  $button("copier").hidden = !generated;
-  $button("copier").disabled = state.inProgress || blocked || state.stale;
-  $button("regenerer").hidden = !generated;
-  $button("regenerer").disabled = state.inProgress;
+  $button("copy").hidden = !generated;
+  $button("copy").disabled = state.inProgress || blocked || state.stale;
+  $button("regenerate").hidden = !generated;
+  $button("regenerate").disabled = state.inProgress;
   updateActions();
 }
 
@@ -199,26 +199,26 @@ function updateButtons(progress?: string): void {
 // After the generation, « À corriger » stays only if it lists at least one issue.
 const visibleTabs = (): Tab[] =>
   !state.json
-    ? ["corriger"]
+    ? ["issues"]
     : state.issues.length
       ? TABS
-      : TABS.filter((name) => name !== "corriger");
+      : TABS.filter((name) => name !== "issues");
 function updateTabs(): void {
   const visible = state.id !== null;
-  $("onglets").classList.toggle("titre-seul", !state.json);
+  $("tabs").classList.toggle("title-only", !state.json);
   // the open tab has disappeared (no more issues after a new generation): the first tab takes over
   if (!visibleTabs().includes(state.tab)) state.tab = visibleTabs()[0];
-  $("onglets").hidden = !visible;
-  $("changements").hidden = !state.json;
-  $("json-contenu").hidden = !state.json;
-  $("changelog-contenu").hidden = !state.json;
+  $("tabs").hidden = !visible;
+  $("changes").hidden = !state.json;
+  $("json-content").hidden = !state.json;
+  $("changelog-content").hidden = !state.json;
   for (const name of TABS) {
-    const b = $("onglet-" + name);
+    const b = $("tab-" + name);
     const active = name === state.tab;
     b.hidden = !visibleTabs().includes(name);
     b.setAttribute("aria-selected", active ? "true" : "false");
     b.tabIndex = active ? 0 : -1;
-    $("panneau-" + name).hidden = !visible || !active;
+    $("panel-" + name).hidden = !visible || !active;
   }
 }
 
@@ -229,19 +229,19 @@ function chooseTab(name: Tab): void {
   adjustHeight();
 }
 
-const updateCounter = (name: "corriger" | "changements", n: number): void => {
-  $("compteur-" + name).textContent = String(n);
-  $("compteur-" + name).hidden = !n;
+const updateCounter = (name: "issues" | "changes", n: number): void => {
+  $("counter-" + name).textContent = String(n);
+  $("counter-" + name).hidden = !n;
 };
 
 const tabOf = (name: string | undefined): Tab | undefined =>
   TABS.find((t) => t === name);
-$("onglets").onclick = (event) => {
-  const b = closest(event, "button[data-onglet]");
-  const tab = b ? tabOf(b.dataset.onglet) : undefined;
+$("tabs").onclick = (event) => {
+  const b = closest(event, "button[data-tab]");
+  const tab = b ? tabOf(b.dataset.tab) : undefined;
   if (tab) chooseTab(tab);
 };
-$("onglets").onkeydown = (event) => {
+$("tabs").onkeydown = (event) => {
   if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
   const tabs = visibleTabs();
   const i = tabs.indexOf(state.tab);
@@ -251,7 +251,7 @@ $("onglets").onkeydown = (event) => {
       (i + (event.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length
     ];
   chooseTab(next);
-  $("onglet-" + next).focus();
+  $("tab-" + next).focus();
 };
 
 // One row per issue. With nodes to show, it is a button that selects them in Figma.
@@ -261,10 +261,10 @@ const issueRow = (i: IssueDetail, k: number): string => {
       ? '<span class="msg">, dans ' + plural(i.variants, "variante") + "</span>"
       : "";
   const error =
-    i.level === "error" ? '<span class="erreur-mot">Erreur</span>' : "";
+    i.level === "error" ? '<span class="error-word">Erreur</span>' : "";
   const content =
     error +
-    '<strong class="ou">' +
+    '<strong class="where">' +
     escapeHtml(i.location || i.where) +
     "</strong>" +
     inVariants +
@@ -273,14 +273,14 @@ const issueRow = (i: IssueDetail, k: number): string => {
     "</div>";
   const body =
     i.ids && i.ids.length
-      ? '<button type="button" class="ligne" data-defaut="' +
+      ? '<button type="button" class="line" data-issue="' +
         k +
         '" title="' +
         escapeHtml(i.where) +
         '">' +
         content +
         "</button>"
-      : '<div class="ligne" title="' +
+      : '<div class="line" title="' +
         escapeHtml(i.where) +
         '">' +
         content +
@@ -292,18 +292,17 @@ const issueRow = (i: IssueDetail, k: number): string => {
 // The info issues are not displayed, they stay in the JSON.
 function showIssues(issues: IssueDetail[]): void {
   state.issues = issues.filter((i) => i.level !== "info");
-  $("corriger-ok").hidden = state.issues.length > 0;
-  $("corriger-liste").innerHTML = state.issues.map(issueRow).join("");
-  updateCounter("corriger", state.issues.length);
+  $("issues-ok").hidden = state.issues.length > 0;
+  $("issues-list").innerHTML = state.issues.map(issueRow).join("");
+  updateCounter("issues", state.issues.length);
   adjustHeight();
 }
 
-$("corriger-liste").onclick = (event) => {
-  const b = closest(event, "button[data-defaut]");
+$("issues-list").onclick = (event) => {
+  const b = closest(event, "button[data-issue]");
   if (!b) return;
-  const d = state.issues[Number(b.dataset.defaut)];
-  if (d && d.ids.length)
-    send({ type: "selectionner", ids: d.ids, id: state.id });
+  const d = state.issues[Number(b.dataset.issue)];
+  if (d && d.ids.length) send({ type: "select", ids: d.ids, id: state.id });
 };
 
 const clearResult = (): void => {
@@ -311,47 +310,47 @@ const clearResult = (): void => {
   state.json = null;
   state.changelog = null;
   state.version = null;
-  $("tuile-version").hidden = true;
-  $("tuile-tokens").hidden = true;
-  $("tuiles").hidden = true;
-  $("compteurs").hidden = false;
-  $("filet").hidden = true;
-  $("cases").hidden = true;
+  $("version-tile").hidden = true;
+  $("tokens-tile").hidden = true;
+  $("tiles").hidden = true;
+  $("counters").hidden = false;
+  $("divider").hidden = true;
+  $("checkboxes").hidden = true;
   $("question").hidden = true;
   clearAnswer();
-  $input("refonte").checked = false;
-  $input("fichemd").checked = false;
+  $input("overhaul").checked = false;
+  $input("sheet-md").checked = false;
   state.generated = false;
-  state.tab = "corriger";
-  updateCounter("changements", 0);
+  state.tab = "issues";
+  updateCounter("changes", 0);
   showSuccess("");
 };
 
 // The pills of the card: variants, properties, last version stored in the Figma file
 // (none if the component has never been exported).
 const updateCounters = (m: Card): void => {
-  $("compteurs").innerHTML =
+  $("counters").innerHTML =
     pill(m.variants, "variante") +
     pill(m.properties, "propriété") +
     (m.latestVersion
-      ? '<span class="pastille">dernière version <b>' +
+      ? '<span class="pill">dernière version <b>' +
         escapeHtml(m.latestVersion) +
         "</b></span>"
-      : '<span class="pastille pastille-neutre">jamais exporté</span>') +
+      : '<span class="pill pill-neutral">jamais exporté</span>') +
     (m.viaInstance
-      ? '<span class="pastille pastille-neutre">depuis une instance</span>'
+      ? '<span class="pill pill-neutral">depuis une instance</span>'
       : "");
 };
 
 // The component was modified in Figma, or its name and variants changed: the card follows, nothing else moves.
-function showCard(m: Message<"carte">): void {
+function showCard(m: Message<"card">): void {
   if (m.id !== state.id) return;
   state.name = m.name;
   updateTitle();
   updateCounters(m);
 }
 
-function markStale(m: Message<"perime">): void {
+function markStale(m: Message<"stale">): void {
   if (m.id !== state.id || !state.json) return;
   state.stale = true;
   showSuccess("");
@@ -364,19 +363,19 @@ function showSelection(m: Message<"selection">): void {
   // same component (a click on an issue selects a layer inside it): we keep the result,
   // and the check runs again as long as nothing has been generated
   if (m.name && m.id === state.id) {
-    if (!state.json) send({ type: "controler" });
+    if (!state.json) send({ type: "check" });
     return;
   }
   clearResult();
   state.id = m.name ? m.id : null;
   state.inProgress = false;
   updateButtons();
-  $("vide").hidden = !!m.name;
-  $("infos").hidden = !m.name;
-  $("corriger-liste").innerHTML = "";
-  $("corriger-ok").hidden = true;
+  $("empty").hidden = !!m.name;
+  $("card").hidden = !m.name;
+  $("issues-list").innerHTML = "";
+  $("issues-ok").hidden = true;
   state.issues = [];
-  updateCounter("corriger", 0);
+  updateCounter("issues", 0);
   updateTabs();
   if (!m.name) {
     adjustHeight();
@@ -387,10 +386,10 @@ function showSelection(m: Message<"selection">): void {
   // the last version stored in the Figma file, or none if the component has never been exported
   updateCounters(m);
   adjustHeight();
-  send({ type: "controler" });
+  send({ type: "check" });
 }
 
-function showCheck(m: Message<"controle">): void {
+function showCheck(m: Message<"check-result">): void {
   if (m.id !== state.id || state.json) return;
   showIssues(m.issues);
 }
@@ -408,7 +407,7 @@ const changeCount = (sentences: Sentence[]): number =>
 const changeToHtml = (p: Sentence): string =>
   typeof p === "string"
     ? "<li>" + escapeHtml(lowerFirst(p)) + "</li>"
-    : '<li><span class="groupe">' +
+    : '<li><span class="group">' +
       escapeHtml(p.title) +
       "</span><ul>" +
       p.lines.map((l) => "<li>" + escapeHtml(l) + "</li>").join("") +
@@ -419,16 +418,16 @@ const EQUAL_ICON =
 const NEW_ICON =
   '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l1.9 4.6L18.5 10.5l-4.6 1.9L12 17l-1.9-4.6L5.5 10.5l4.6-1.9Z" fill="currentColor"/></svg>';
 const emptyState = (icon: string, title: string, help: string): string =>
-  '<div class="vide"><span class="vide-icone">' +
+  '<div class="empty"><span class="empty-icon">' +
   icon +
-  '</span><p class="vide-titre">' +
+  '</span><p class="empty-title">' +
   escapeHtml(title) +
-  '</p><p class="aide">' +
+  '</p><p class="help">' +
   escapeHtml(help) +
   "</p></div>";
 function showChanges(c: { sentences: Sentence[] } | null): void {
-  const area = $("changements");
-  updateCounter("changements", c ? changeCount(c.sentences) : 0);
+  const area = $("changes");
+  updateCounter("changes", c ? changeCount(c.sentences) : 0);
   if (!c) {
     area.innerHTML = emptyState(
       NEW_ICON,
@@ -448,7 +447,7 @@ function showChanges(c: { sentences: Sentence[] } | null): void {
   }
   if (c.sentences.length === 1 && typeof c.sentences[0] === "string") {
     area.innerHTML =
-      '<p class="aide">' +
+      '<p class="help">' +
       since +
       " : " +
       escapeHtml(lowerFirst(c.sentences[0])) +
@@ -456,37 +455,35 @@ function showChanges(c: { sentences: Sentence[] } | null): void {
     return;
   }
   area.innerHTML =
-    '<p class="aide">' +
+    '<p class="help">' +
     since +
-    ' :</p><ul class="aide">' +
+    ' :</p><ul class="help">' +
     c.sentences.map(changeToHtml).join("") +
     "</ul>";
 }
 
 // The tag of the retained level: the detected or chosen level, or the absence of a previous version or of a change.
 const VERSION_TAGS: Record<string, [string, string]> = {
-  majeure: ["MAJEURE", "etiquette-supprime"],
-  mineure: ["MINEURE", "etiquette-modifie"],
-  correctif: ["PATCH", "etiquette-ajoute"],
+  major: ["MAJEURE", "tag-removed"],
+  minor: ["MINEURE", "tag-modified"],
+  patch: ["PATCH", "tag-added"],
 };
 function versionTag(v: VersionView): string {
   const [label, cssClass] = v.first
-    ? ["PREMIÈRE VERSION", "etiquette-neutre"]
+    ? ["PREMIÈRE VERSION", "tag-neutral"]
     : v.kept
-      ? ["VERSION GARDÉE", "etiquette-neutre"]
+      ? ["VERSION GARDÉE", "tag-neutral"]
       : v.none
-        ? ["INCHANGÉE", "etiquette-neutre"]
+        ? ["INCHANGÉE", "tag-neutral"]
         : (v.level !== null && VERSION_TAGS[v.level]) || ["", ""];
-  return label
-    ? '<span class="etiquette ' + cssClass + '">' + label + "</span>"
-    : "";
+  return label ? '<span class="tag ' + cssClass + '">' + label + "</span>" : "";
 }
 
 // The name row: the component name, then after the generation the tag of the retained level.
 function updateTitle(): void {
   const v = state.version;
-  $("nom").textContent = state.name;
-  $("etiquette").innerHTML = v ? versionTag(v) : "";
+  $("name").textContent = state.name;
+  $("tag").innerHTML = v ? versionTag(v) : "";
 }
 
 // After the generation: the version next to the name, the design tokens pill, then the version box.
@@ -494,14 +491,14 @@ function updateTitle(): void {
 function showVersion(v: VersionView): void {
   state.version = v;
   updateTitle();
-  $("compteurs").hidden = true;
-  $("tuiles").hidden = false;
-  $("tuile-version").hidden = false;
-  $("tuile-tokens").hidden = false;
-  const tokens = $("val-tokens");
+  $("counters").hidden = true;
+  $("tiles").hidden = false;
+  $("version-tile").hidden = false;
+  $("tokens-tile").hidden = false;
+  const tokens = $("tokens-value");
   tokens.textContent = v.tokensVersion || "non calculée";
   tokens.title = v.tokensVersion ? "" : "Voir l'onglet À corriger";
-  tokens.classList.toggle("tokens-erreur", !v.tokensVersion);
+  tokens.classList.toggle("tokens-error", !v.tokensVersion);
   updateQuestion();
   updateButtons();
   adjustHeight();
@@ -516,13 +513,13 @@ function answerExpected(): boolean {
 }
 function clearAnswer(): void {
   state.answer = null;
-  $input("livree-oui").checked = false;
-  $input("livree-non").checked = false;
+  $input("delivered-yes").checked = false;
+  $input("delivered-no").checked = false;
 }
 // The version that a checkbox gives, announced in its label: the next major, or the next patch.
 const boxVersion = (current: string | null, level: string): string => {
   const [x, y, z] = String(current).split(".").map(Number);
-  return level === "majeure" ? x + 1 + ".0.0" : x + "." + y + "." + (z + 1);
+  return level === "major" ? x + 1 + ".0.0" : x + "." + y + "." + (z + 1);
 };
 // The question, the version and the checkboxes, in the same box: Refonte complète only after « Oui ».
 // Without a question (nothing changed), the box says « Aucun changement dans le composant. », followed by the only
@@ -531,52 +528,53 @@ function updateQuestion(): void {
   const v = state.version;
   if (!v) return;
   const asked = questionAsked();
-  $("question-livree").hidden = !asked;
+  $("question-delivered").hidden = !asked;
   if (asked) {
-    $("question-titre").textContent =
+    $("question-title").textContent =
       "La version " + v.current + " a-t-elle été livrée aux devs ?";
-    $("livree-oui-libelle").textContent =
+    $("delivered-yes-label").textContent =
       "Oui, passer en " + (v.next || v.version);
-    $("livree-non-libelle").textContent = "Non, garder " + v.current;
+    $("delivered-no-label").textContent = "Non, garder " + v.current;
   }
-  $("val-version").textContent = answerExpected() ? "à choisir" : v.version;
-  $("tuile-version").classList.toggle("a-choisir", answerExpected());
-  $("case-refonte").hidden = v.first || !asked || state.answer !== "oui";
-  $("case-fichemd").hidden = v.first || !!v.detected;
-  $("cases").hidden = $("case-refonte").hidden && $("case-fichemd").hidden;
+  $("version-value").textContent = answerExpected() ? "à choisir" : v.version;
+  $("version-tile").classList.toggle("to-choose", answerExpected());
+  $("checkbox-overhaul").hidden = v.first || !asked || state.answer !== "yes";
+  $("checkbox-sheet-md").hidden = v.first || !!v.detected;
+  $("checkboxes").hidden =
+    $("checkbox-overhaul").hidden && $("checkbox-sheet-md").hidden;
   if (!v.first) {
-    $("refonte-libelle").textContent =
-      "Refonte complète, passer en " + boxVersion(v.current, "majeure");
-    $("fichemd-libelle").textContent =
+    $("overhaul-label").textContent =
+      "Refonte complète, passer en " + boxVersion(v.current, "major");
+    $("sheet-md-label").textContent =
       "Fiche md modifiée, passer en " + boxVersion(v.current, "patch");
   }
-  $("question-aucun").hidden = asked || $("cases").hidden;
-  $("filet").hidden = !asked || $("cases").hidden;
-  $("question").hidden = !asked && $("cases").hidden;
-  $("question").classList.toggle("a-repondre", answerExpected());
+  $("question-none").hidden = asked || $("checkboxes").hidden;
+  $("divider").hidden = !asked || $("checkboxes").hidden;
+  $("question").hidden = !asked && $("checkboxes").hidden;
+  $("question").classList.toggle("to-answer", answerExpected());
 }
 
 // An answer or a checkbox changes the version: the plugin recomputes the JSON, which the interface displays.
 const chooseVersion = (): void =>
   send({
-    type: "choisir-version",
+    type: "choose-version",
     id: state.id,
-    keep: state.answer === "non",
-    overhaul: $input("refonte").checked,
-    sheetMd: $input("fichemd").checked,
+    keep: state.answer === "no",
+    overhaul: $input("overhaul").checked,
+    sheetMd: $input("sheet-md").checked,
   });
-const submitAnswer = (answer: "oui" | "non"): void => {
+const submitAnswer = (answer: "yes" | "no"): void => {
   state.answer = answer;
-  if (answer === "non") $input("refonte").checked = false;
+  if (answer === "no") $input("overhaul").checked = false;
   updateQuestion();
   updateButtons();
   adjustHeight();
   chooseVersion();
 };
-$input("livree-oui").onchange = () => submitAnswer("oui");
-$input("livree-non").onchange = () => submitAnswer("non");
-$input("refonte").onchange = chooseVersion;
-$input("fichemd").onchange = chooseVersion;
+$input("delivered-yes").onchange = () => submitAnswer("yes");
+$input("delivered-no").onchange = () => submitAnswer("no");
+$input("overhaul").onchange = chooseVersion;
+$input("sheet-md").onchange = chooseVersion;
 
 function showChosenVersion(m: Message<"version">): void {
   if (m.id !== state.id || !state.json) return;
@@ -587,7 +585,7 @@ function showChosenVersion(m: Message<"version">): void {
   showVersion(m.version);
 }
 
-function showSheet(m: Message<"fiche">): void {
+function showSheet(m: Message<"sheet">): void {
   if (m.id !== state.id) return;
   state.inProgress = false;
   state.stale = false;
@@ -596,13 +594,13 @@ function showSheet(m: Message<"fiche">): void {
   state.file = m.file;
   state.changelogFile = m.changelogFile;
   clearAnswer();
-  $input("refonte").checked = false;
-  $input("fichemd").checked = false;
+  $input("overhaul").checked = false;
+  $input("sheet-md").checked = false;
   showVersion(m.version);
-  $("resultat-titre").textContent = m.file;
+  $("result-title").textContent = m.file;
   $("json").innerHTML = colorize(m.json);
   $("changelog").textContent = m.changelog || "";
-  $("resume").textContent =
+  $("summary").textContent =
     plural(m.summary.variables, "variable") +
     ", " +
     plural(m.summary.overrides, "surcharge") +
@@ -630,7 +628,13 @@ const colorize = (json: string): string => {
   let end = 0;
   for (const m of json.matchAll(JSON_TOKENS)) {
     const index = m.index ?? 0;
-    const cssClass = m[1] ? (m[2] ? "cle" : "texte") : m[3] ? "nombre" : "mot";
+    const cssClass = m[1]
+      ? m[2]
+        ? "key"
+        : "string"
+      : m[3]
+        ? "number"
+        : "keyword";
     html +=
       escapeHtml(json.slice(end, index)) +
       '<span class="j-' +
@@ -708,11 +712,11 @@ const generate = (): void => {
   showSuccess("");
   state.inProgress = true;
   updateButtons();
-  send({ type: "generer" });
+  send({ type: "generate" });
 };
 // Figma blocks a second download triggered by the same click, so each file is downloaded from its tab.
 // Only the JSON counts as an export.
-$button("generer").onclick = () => {
+$button("generate").onclick = () => {
   if (!state.json || state.stale) {
     generate();
     return;
@@ -725,10 +729,10 @@ $button("generer").onclick = () => {
   }
   download(state.json, state.file);
   showSuccess("JSON téléchargé.");
-  send({ type: "memoriser", id: state.id });
+  send({ type: "record-export", id: state.id });
 };
-$button("regenerer").onclick = generate;
-$button("copier").onclick = async () => {
+$button("regenerate").onclick = generate;
+$button("copy").onclick = async () => {
   if (!state.json || state.stale) return;
   if (onChangelog()) {
     if (!state.changelog) return;
@@ -742,7 +746,7 @@ $button("copier").onclick = async () => {
   }
   if (await copyText(state.json)) {
     showSuccess("JSON copié.");
-    send({ type: "memoriser", id: state.id });
+    send({ type: "record-export", id: state.id });
   } else
     showError(
       "La copie a échoué : sélectionner le texte et le copier à la main.",
@@ -757,36 +761,36 @@ onmessage = (
   if (!m) return;
   switch (m.type) {
     case "init":
-      $("version-plugin").textContent =
+      $("plugin-version").textContent =
         "Plugin " + m.version + ", format " + m.format;
       return;
-    case "regles":
-      $("regles").textContent = m.warning;
-      $("regles").hidden = false;
+    case "rules":
+      $("rules").textContent = m.warning;
+      $("rules").hidden = false;
       updateActions();
       adjustHeight();
       return;
     case "selection":
       return showSelection(m);
-    case "controle":
+    case "check-result":
       return showCheck(m);
-    case "progression":
+    case "progress":
       if (state.inProgress)
         updateButtons(
           "Génération en cours, " + m.done + " sur " + m.total + "...",
         );
       return;
-    case "fiche":
+    case "sheet":
       return showSheet(m);
-    case "perime":
+    case "stale":
       return markStale(m);
-    case "carte":
+    case "card":
       return showCard(m);
     case "version":
       return showChosenVersion(m);
-    case "recalculer-hauteur":
+    case "recompute-height":
       return adjustHeight();
-    case "erreur":
+    case "error":
       state.inProgress = false;
       updateButtons();
       // the download already took place: the success banner does not stay next to the error
@@ -799,4 +803,4 @@ onmessage = (
     }
   }
 };
-send({ type: "ui-pret" });
+send({ type: "ui-ready" });

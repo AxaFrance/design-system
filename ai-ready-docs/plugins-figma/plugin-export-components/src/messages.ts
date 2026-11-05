@@ -1,7 +1,6 @@
 // Messages exchanged between the plugin (src/code.ts) and its interface
 // (src/ui/main.ts). Both sides import these types: a message type renamed on
-// one side only no longer compiles. The types of the messages keep their
-// names in French, as the interface and the tests write them.
+// one side only no longer compiles.
 
 import type { IssueDetail } from "./types";
 
@@ -44,33 +43,33 @@ export interface Summary {
 // ------------------------------------------------------- interface to plugin
 
 export type UiToPluginMessage =
-  | { type: "ui-pret" }
-  | { type: "controler" }
-  | { type: "generer" }
-  | { type: "memoriser"; id: string | null }
+  | { type: "ui-ready" }
+  | { type: "check" }
+  | { type: "generate" }
+  | { type: "record-export"; id: string | null }
   | {
-      type: "choisir-version";
+      type: "choose-version";
       id: string | null;
       keep: boolean;
       overhaul: boolean;
       sheetMd: boolean;
     }
-  | { type: "selectionner"; ids: string[]; id?: string | null }
-  | { type: "redimensionner"; height: number }
-  | { type: "redimensionner-manuel"; width: number; height: number }
-  | { type: "taille-auto" };
+  | { type: "select"; ids: string[]; id?: string | null }
+  | { type: "resize"; height: number }
+  | { type: "resize-manual"; width: number; height: number }
+  | { type: "auto-size" };
 
 // ------------------------------------------------------- plugin to interface
 
 export type PluginToUiMessage =
   | { type: "init"; version: string; format: string }
-  | { type: "regles"; warning: string }
+  | { type: "rules"; warning: string }
   | { type: "selection"; name: null }
   | ({ type: "selection" } & Card)
-  | { type: "controle"; id: string | null; issues: IssueDetail[] }
-  | { type: "progression"; done: number; total: number }
+  | { type: "check-result"; id: string | null; issues: IssueDetail[] }
+  | { type: "progress"; done: number; total: number }
   | {
-      type: "fiche";
+      type: "sheet";
       id: string;
       json: string;
       file: string;
@@ -81,8 +80,8 @@ export type PluginToUiMessage =
       version: VersionView;
       changelog: string;
     }
-  | { type: "perime"; id: string }
-  | ({ type: "carte" } & Card)
+  | { type: "stale"; id: string }
+  | ({ type: "card" } & Card)
   | {
       type: "version";
       id: string;
@@ -90,5 +89,5 @@ export type PluginToUiMessage =
       version: VersionView;
       changelog: string;
     }
-  | { type: "recalculer-hauteur" }
-  | { type: "erreur"; message: string };
+  | { type: "recompute-height" }
+  | { type: "error"; message: string };

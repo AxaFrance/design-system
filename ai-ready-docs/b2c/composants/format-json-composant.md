@@ -200,7 +200,7 @@ Les défauts repérés par l'export : une valeur brute, un écart à la nomencla
 Chaque défaut a un `level` (`error`, `warning` ou `info`), une `rule` qui le nomme, un `where` qui dit où il se trouve, et un `message`. Un défaut de style porte aussi `occurrences`, le nombre de variantes où il apparaît. Il est absent quand le défaut ne se retrouve dans aucune variante.
 
 ```json
-{ "level": "warning", "rule": "valeur-brute", "where": "styles.root.layout.minWidth", "message": "Valeur brute (144) : la relier à une variable.", "occurrences": 50 }
+{ "level": "warning", "rule": "raw-value", "where": "styles.root.layout.minWidth", "message": "Valeur brute (144) : la relier à une variable.", "occurrences": 50 }
 ```
 
 ## La validation
