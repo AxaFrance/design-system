@@ -34,261 +34,749 @@ html.figma-dark {
   --diff-orange: var(--figma-color-text-warning, #f5c46b);
 }
 /* The content takes its natural height, the actions stay stuck at the bottom of the window. */
-html, body { height: 100%; overflow-x: hidden; }
+html,
 body {
-  box-sizing: border-box; min-height: 100%; display: flex; flex-direction: column;
-  margin: 0; padding: 16px 16px 0;
-  font: 12px/16px "Source Sans Pro", Inter, system-ui, sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  box-sizing: border-box;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 16px 16px 0;
+  font:
+    12px/16px "Source Sans Pro",
+    Inter,
+    system-ui,
+    sans-serif;
   color: var(--figma-color-text, #1e1e1e);
   background: var(--figma-color-bg, #fff);
 }
-body.resizing { user-select: none; }
+body.resizing {
+  user-select: none;
+}
 
 /* Manual resize handle, bottom right, above everything else. */
 #handle {
-  position: fixed; right: 0; bottom: 0; width: 16px; height: 16px; z-index: 1000;
-  display: flex; align-items: flex-end; justify-content: flex-end;
-  padding: 0; border: 0; background: transparent; cursor: nwse-resize;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: nwse-resize;
   color: var(--figma-color-text-tertiary, #b3b3b3);
 }
-.header { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
-.header-text { flex: 1 1 110px; min-width: 0; overflow-wrap: anywhere; }
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+}
+.header-text {
+  flex: 1 1 110px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 /* File figures on the full width, under the file name and aligned with it
    (32 px logo and 12 px gap), so they do not get cut off against the button. */
-#file-summary { flex: 0 0 calc(100% - 44px); margin: -8px 0 0 44px; }
-.logo { flex: none; display: block; border-radius: 2px; }
+#file-summary {
+  flex: 0 0 calc(100% - 44px);
+  margin: -8px 0 0 44px;
+}
+.logo {
+  flex: none;
+  display: block;
+  border-radius: 2px;
+}
 h1 {
-  margin: 0; font: 700 18px/24px "Publico Headline", Georgia, serif;
+  margin: 0;
+  font:
+    700 18px/24px "Publico Headline",
+    Georgia,
+    serif;
   color: var(--brand-text);
 }
-.help { margin: 0; color: var(--figma-color-text-secondary, #737373); }
-#changes { margin: 0 0 24px; }
-.block-title { margin: 0; font-size: 13px; font-weight: 700; }
+.help {
+  margin: 0;
+  color: var(--figma-color-text-secondary, #737373);
+}
+#changes {
+  margin: 0 0 24px;
+}
+.block-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
 /* Sticky card header: the title of the card being read stays at
    the top while scrolling, just under the top block. top removes the top margin of the page
    (16 px) and 1 px that makes it possible to detect that it is stuck (see observeHeaders). */
 .changes-title {
-  position: sticky; top: calc(var(--top-height, 16px) - 17px); z-index: 5;
-  display: flex; gap: 8px; justify-content: space-between; align-items: center;
-  margin: -16px -16px 0; padding: 17px 16px 12px;
-  background: var(--figma-color-bg, #fff); border-radius: 8px 8px 0 0;
+  position: sticky;
+  top: calc(var(--top-height, 16px) - 17px);
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  margin: -16px -16px 0;
+  padding: 17px 16px 12px;
+  background: var(--figma-color-bg, #fff);
+  border-radius: 8px 8px 0 0;
 }
-.changes-title.stuck { border-bottom: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 0; }
-.changes-title .block-title { flex: none; }
+.changes-title.stuck {
+  border-bottom: 1px solid var(--figma-color-border, #e6e6e6);
+  border-radius: 0;
+}
+.changes-title .block-title {
+  flex: none;
+}
 /* Title of the Changements card: the whole line is clickable to collapse the card. */
-.changes-title[role="button"] { cursor: pointer; }
-.changes-title[role="button"]:focus { outline: none; }
-.changes-title[role="button"]:focus-visible { outline: 2px solid var(--brand-text); outline-offset: -2px; }
-.changes-title .section-title { flex: none; }
-.changes-title[aria-expanded="true"] .chevron { transform: rotate(90deg); }
+.changes-title[role="button"] {
+  cursor: pointer;
+}
+.changes-title[role="button"]:focus {
+  outline: none;
+}
+.changes-title[role="button"]:focus-visible {
+  outline: 2px solid var(--brand-text);
+  outline-offset: -2px;
+}
+.changes-title .section-title {
+  flex: none;
+}
+.changes-title[aria-expanded="true"] .chevron {
+  transform: rotate(90deg);
+}
 /* Collapsed card: the title line alone, counters below, aligned with the title. */
-.changes-card.collapsed-card { padding-bottom: 0; }
+.changes-card.collapsed-card {
+  padding-bottom: 0;
+}
 /* When collapsed, the title line fills the whole card: its corners follow those of the card, border included. */
-.changes-title.collapsed { flex-wrap: wrap; row-gap: 2px; border-radius: 7px; }
-.changes-title.collapsed .compact-summary { display: block; padding-left: 18px; }
+.changes-title.collapsed {
+  flex-wrap: wrap;
+  row-gap: 2px;
+  border-radius: 7px;
+}
+.changes-title.collapsed .compact-summary {
+  display: block;
+  padding-left: 18px;
+}
 /* Reminder of the counters in the sticky header, when the counters have scrolled off screen. */
-.compact-summary { display: none; order: 3; flex-basis: 100%; font-size: 12px; font-weight: 600; }
-.changes-title.with-summary { flex-wrap: wrap; row-gap: 2px; }
-.changes-title.with-summary .compact-summary { display: block; }
-.compact-summary .added { color: var(--diff-green); }
-.compact-summary .modified { color: var(--brand-text); }
-.compact-summary .removed { color: var(--diff-red); }
-.compact-summary .deprecated { color: var(--diff-orange); }
-.link { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; color: var(--brand-text); text-decoration: underline; cursor: pointer; }
+.compact-summary {
+  display: none;
+  order: 3;
+  flex-basis: 100%;
+  font-size: 12px;
+  font-weight: 600;
+}
+.changes-title.with-summary {
+  flex-wrap: wrap;
+  row-gap: 2px;
+}
+.changes-title.with-summary .compact-summary {
+  display: block;
+}
+.compact-summary .added {
+  color: var(--diff-green);
+}
+.compact-summary .modified {
+  color: var(--brand-text);
+}
+.compact-summary .removed {
+  color: var(--diff-red);
+}
+.compact-summary .deprecated {
+  color: var(--diff-orange);
+}
+.link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--brand-text);
+  text-decoration: underline;
+  cursor: pointer;
+}
 
-.reference-error { margin: 8px 0 0; color: var(--diff-red); }
+.reference-error {
+  margin: 8px 0 0;
+  color: var(--diff-red);
+}
 
 /* Diff result: card, metrics, list, footer. A JSON file
    dropped on the whole card serves as the reference: it gets an outline while dragging. */
-.changes-card { border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 8px; padding: 16px; background: transparent; }
-.changes-card.hover { outline: 2px solid var(--brand-text); outline-offset: -1px; }
+.changes-card {
+  border: 1px solid var(--figma-color-border, #e6e6e6);
+  border-radius: 8px;
+  padding: 16px;
+  background: transparent;
+}
+.changes-card.hover {
+  outline: 2px solid var(--brand-text);
+  outline-offset: -1px;
+}
 /* One chip per change type present, with its count. When active, it is
    checked, colored and surrounded by a border of its color, and its lines are displayed
    in the list. A click toggles it. When inactive, it only keeps
    a grey border. */
-.diff-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.diff-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+}
 .chip {
-  display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 10px;
-  border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 12px; background: transparent;
-  font: inherit; font-weight: 600; white-space: nowrap; cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 10px;
+  border: 1px solid var(--figma-color-border, #e6e6e6);
+  border-radius: 12px;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
   color: var(--figma-color-text-secondary, #737373);
 }
-.chip:hover { border-color: currentColor; }
-.chip[aria-pressed="true"] { border-color: currentColor; }
-.chip[aria-pressed="true"].added { background: var(--figma-color-bg-success-tertiary, #e6f7ed); color: var(--diff-green); }
-.chip[aria-pressed="true"].modified { background: var(--tile-background); color: var(--brand-text); }
-.chip[aria-pressed="true"].removed { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
-.chip[aria-pressed="true"].deprecated { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
-.chip[aria-pressed="true"]:hover { box-shadow: inset 0 0 0 1px currentColor; }
-.chip .checkmark { flex: none; }
-.next-version { margin: 0 0 12px; }
-.diff-no-change { margin: 0; color: var(--diff-green); }
-.diff-list { margin: 0; padding-top: 12px; border-top: 1px solid var(--figma-color-border, #e6e6e6); }
+.chip:hover {
+  border-color: currentColor;
+}
+.chip[aria-pressed="true"] {
+  border-color: currentColor;
+}
+.chip[aria-pressed="true"].added {
+  background: var(--figma-color-bg-success-tertiary, #e6f7ed);
+  color: var(--diff-green);
+}
+.chip[aria-pressed="true"].modified {
+  background: var(--tile-background);
+  color: var(--brand-text);
+}
+.chip[aria-pressed="true"].removed {
+  background: var(--figma-color-bg-danger-tertiary, #ffe2e0);
+  color: var(--diff-red);
+}
+.chip[aria-pressed="true"].deprecated {
+  background: var(--figma-color-bg-warning-tertiary, #fff1c2);
+  color: var(--diff-orange);
+}
+.chip[aria-pressed="true"]:hover {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+.chip .checkmark {
+  flex: none;
+}
+.next-version {
+  margin: 0 0 12px;
+}
+.diff-no-change {
+  margin: 0;
+  color: var(--diff-green);
+}
+.diff-list {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--figma-color-border, #e6e6e6);
+}
 /* The value goes under the path when the line runs out of room, aligned to the
    right; it can itself wrap so as never to overflow
    the card, even with a very long name or value. */
-.diff-line { display: flex; flex-wrap: wrap; align-items: flex-start; row-gap: 2px; padding: 6px 0; }
-.diff-path { flex: 1 1 180px; min-width: 0; }
-.diff-value { flex: none; margin-left: auto; padding-left: 8px; min-width: 0; color: var(--figma-color-text-secondary, #737373); white-space: normal; overflow-wrap: anywhere; text-align: right; max-width: 100%; }
-.value-added { color: var(--diff-green); }
-.value-removed { color: var(--diff-red); text-decoration: line-through; }
-.tag { flex: none; margin-right: 6px; padding: 0 5px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; min-width: 0; }
-.tag-added { background: var(--figma-color-bg-success-tertiary, #e6f7ed); color: var(--diff-green); }
-.tag-modified { background: var(--tile-background); color: var(--brand-text); }
-.tag-removed { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
-.tag-deprecated { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
-.tag-ghost { visibility: hidden; }
+.diff-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  row-gap: 2px;
+  padding: 6px 0;
+}
+.diff-path {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+.diff-value {
+  flex: none;
+  margin-left: auto;
+  padding-left: 8px;
+  min-width: 0;
+  color: var(--figma-color-text-secondary, #737373);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: right;
+  max-width: 100%;
+}
+.value-added {
+  color: var(--diff-green);
+}
+.value-removed {
+  color: var(--diff-red);
+  text-decoration: line-through;
+}
+.tag {
+  flex: none;
+  margin-right: 6px;
+  padding: 0 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  min-width: 0;
+}
+.tag-added {
+  background: var(--figma-color-bg-success-tertiary, #e6f7ed);
+  color: var(--diff-green);
+}
+.tag-modified {
+  background: var(--tile-background);
+  color: var(--brand-text);
+}
+.tag-removed {
+  background: var(--figma-color-bg-danger-tertiary, #ffe2e0);
+  color: var(--diff-red);
+}
+.tag-deprecated {
+  background: var(--figma-color-bg-warning-tertiary, #fff1c2);
+  color: var(--diff-orange);
+}
+.tag-ghost {
+  visibility: hidden;
+}
 /* The mode of a modifier context token, under the path. */
-.diff-mode { margin: 2px 0 0; font-size: 11px; color: var(--figma-color-text-secondary, #737373); }
+.diff-mode {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--figma-color-text-secondary, #737373);
+}
 /* Detail of the sub-properties of a modified composite, one line per field,
    aligned with the path thanks to an invisible tag of the same size. */
-.field-line { padding: 2px 0; flex-wrap: nowrap; }
-.field-name { flex: none; color: var(--figma-color-text-secondary, #737373); }
-.field-line .diff-value { flex: 1 1 0; }
-.diff-footer { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-.diff-footer .help { flex: none; }
-.diff-footer-help { margin-top: 6px; }
+.field-line {
+  padding: 2px 0;
+  flex-wrap: nowrap;
+}
+.field-name {
+  flex: none;
+  color: var(--figma-color-text-secondary, #737373);
+}
+.field-line .diff-value {
+  flex: 1 1 0;
+}
+.diff-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.diff-footer .help {
+  flex: none;
+}
+.diff-footer-help {
+  margin-top: 6px;
+}
 .reference-select {
-  flex: 1 1 auto; min-width: 0; height: 28px; padding: 0 6px;
-  border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 6px;
-  font: inherit; font-weight: 600; color: var(--brand-text); background: var(--figma-color-bg, #fff);
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--figma-color-border, #e6e6e6);
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--brand-text);
+  background: var(--figma-color-bg, #fff);
 }
 .button {
-  display: block; width: auto; height: 40px; padding: 0 16px; border-radius: 6px; cursor: pointer; line-height: 16px;
-  font: inherit; font-size: 14px; font-weight: 600;
+  display: block;
+  width: auto;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 16px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
 }
-.button[hidden] { display: none; }
-.button.primary { flex: 1 1 200px; border: 0; background: var(--primary-button); color: #fff; }
-.button.primary:hover:not(:disabled) { background: var(--primary-button-hover); }
+.button[hidden] {
+  display: none;
+}
+.button.primary {
+  flex: 1 1 200px;
+  border: 0;
+  background: var(--primary-button);
+  color: #fff;
+}
+.button.primary:hover:not(:disabled) {
+  background: var(--primary-button-hover);
+}
 /* Taken from the secondary button of Canopée: plugin background, text and border in the brand color. */
 .button.secondary {
-  flex: none; white-space: nowrap; border: 0;
-  background: var(--figma-color-bg, #fff); color: var(--brand-text);
+  flex: none;
+  white-space: nowrap;
+  border: 0;
+  background: var(--figma-color-bg, #fff);
+  color: var(--brand-text);
   box-shadow: inset 0 0 0 1px var(--brand-text);
 }
-.button.secondary:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--brand-text); }
+.button.secondary:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 2px var(--brand-text);
+}
 /* Compact version of the secondary button, on the right of the header. */
-.button.header-button { height: 28px; padding: 0 10px; font-size: 12px; line-height: 14px; margin-left: auto; }
+.button.header-button {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 14px;
+  margin-left: auto;
+}
 /* Disabled button: a simple border, so that it fades behind the active button, in light as in dark. */
 .button:disabled {
-  border-color: transparent; background: transparent;
+  border-color: transparent;
+  background: transparent;
   box-shadow: inset 0 0 0 1px var(--figma-color-border, #e6e6e6);
-  color: var(--figma-color-text-disabled, #b3b3b3); cursor: default;
+  color: var(--figma-color-text-disabled, #b3b3b3);
+  cursor: default;
 }
-button:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+button:focus-visible {
+  outline: 2px solid var(--brand-text);
+  outline-offset: 2px;
+}
 .banner {
-  display: flex; gap: 8px; justify-content: space-between; align-items: center;
-  margin-top: 16px; padding: 8px 8px 8px 12px; border-radius: 6px; font-weight: 600;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 6px;
+  font-weight: 600;
 }
 .close {
-  flex: none; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 4px; cursor: pointer;
-  font: 400 18px/24px system-ui, sans-serif; color: inherit; background: transparent;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font:
+    400 18px/24px system-ui,
+    sans-serif;
+  color: inherit;
+  background: transparent;
 }
-.close:hover { background: rgba(0, 0, 0, 0.08); }
-.success { background: var(--figma-color-bg-success-tertiary, #ebffee); color: var(--diff-green); }
-.empty { background: var(--figma-color-bg-secondary, #f5f5f5); color: var(--figma-color-text-secondary, #737373); }
-.error { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
+.close:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+.success {
+  background: var(--figma-color-bg-success-tertiary, #ebffee);
+  color: var(--diff-green);
+}
+.empty {
+  background: var(--figma-color-bg-secondary, #f5f5f5);
+  color: var(--figma-color-text-secondary, #737373);
+}
+.error {
+  background: var(--figma-color-bg-danger-tertiary, #ffe2e0);
+  color: var(--diff-red);
+}
 .actions {
-  position: sticky; bottom: 0; margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
   background: var(--figma-color-bg, #fff);
   border-top: 1px solid var(--figma-color-border, #e6e6e6);
   padding: 16px 0;
 }
-.actions #result > * { margin: 0 0 12px; }
+.actions #result > * {
+  margin: 0 0 12px;
+}
 /* Tokens PR in progress, just above the "Déposer sur GitHub" button that it blocks. */
-.info { justify-content: flex-start; background: var(--info-background); color: var(--info-text); box-shadow: inset 0 0 0 1px var(--info-border); }
-.info .link { color: inherit; }
-.info-icon { flex: none; }
-#pr-in-progress > .banner { margin: 0 0 12px; }
-.buttons-help { margin: 0 0 12px; }
+.info {
+  justify-content: flex-start;
+  background: var(--info-background);
+  color: var(--info-text);
+  box-shadow: inset 0 0 0 1px var(--info-border);
+}
+.info .link {
+  color: inherit;
+}
+.info-icon {
+  flex: none;
+}
+#pr-in-progress > .banner {
+  margin: 0 0 12px;
+}
+.buttons-help {
+  margin: 0 0 12px;
+}
 /* Tokens that cannot be submitted: the help text under the buttons turns red. */
-.buttons-help.help-alert { color: var(--diff-red); font-weight: 600; }
-.secondary-action { margin: 12px 0 0; text-align: center; }
+.buttons-help.help-alert {
+  color: var(--diff-red);
+  font-weight: 600;
+}
+.secondary-action {
+  margin: 12px 0 0;
+  text-align: center;
+}
 /* Submit view: four-step flow: done (checked, dimmed), in progress (highlighted), upcoming (dimmed). */
-#submit-view { padding-bottom: 16px; }
-#submit-view > .block-title { margin-bottom: 6px; }
-.back { margin: 0 0 28px; }
+#submit-view {
+  padding-bottom: 16px;
+}
+#submit-view > .block-title {
+  margin-bottom: 6px;
+}
+.back {
+  margin: 0 0 28px;
+}
 /* Reminder of what goes into the PR: level tag then counters, on one line. */
-.reminder { margin: 0; }
-#submit-result:not(:empty) { margin-top: 16px; }
+.reminder {
+  margin: 0;
+}
+#submit-result:not(:empty) {
+  margin-top: 16px;
+}
 /* Reminder before submitting: a neutral inset, so it is not confused with the text of the steps. */
 #before-submit {
-  margin: 16px 0 0; padding: 10px 12px; border-radius: 6px;
-  background: var(--figma-color-bg-secondary, #f5f5f5); color: var(--figma-color-text, #1e1e1e);
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--figma-color-bg-secondary, #f5f5f5);
+  color: var(--figma-color-text, #1e1e1e);
 }
-#before-submit b { display: block; margin-bottom: 2px; }
+#before-submit b {
+  display: block;
+  margin-bottom: 2px;
+}
 /* Checkbox in the plugin colors: a brand blue outline, crisp in both themes. */
-.checkbox { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; cursor: pointer; }
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 12px;
+  cursor: pointer;
+}
 .checkbox input {
-  flex: none; display: grid; place-content: center; width: 16px; height: 16px; margin: 0;
-  appearance: none; background: var(--figma-color-bg, #fff); border: 1.5px solid var(--brand-text); border-radius: 3px; cursor: pointer;
+  flex: none;
+  display: grid;
+  place-content: center;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  appearance: none;
+  background: var(--figma-color-bg, #fff);
+  border: 1.5px solid var(--brand-text);
+  border-radius: 3px;
+  cursor: pointer;
 }
-.checkbox input:checked { background: var(--brand-text); }
+.checkbox input:checked {
+  background: var(--brand-text);
+}
 .checkbox input::before {
-  content: ""; width: 10px; height: 10px; box-shadow: inset 10px 10px var(--figma-color-bg, #fff);
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); transform: scale(0);
+  content: "";
+  width: 10px;
+  height: 10px;
+  box-shadow: inset 10px 10px var(--figma-color-bg, #fff);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
 }
-.checkbox input:checked::before { transform: scale(1); }
-.checkbox input:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
-.checkbox input:disabled { opacity: 0.5; cursor: default; }
-#submit-view .steps { margin-top: 32px; }
-.reminder .compact-summary { display: inline; }
-.full-button { width: 100%; }
-#block-help { margin: 8px 0 0; }
-#finish { margin-top: 12px; }
-#submit-result > * { margin: 0 0 12px; }
-.steps { margin: 0 0 12px; padding: 0; list-style: none; color: inherit; }
-.step { margin: 0 0 14px; color: var(--figma-color-text-secondary, #737373); }
-.step:last-child { margin-bottom: 0; }
-.step-line { display: flex; align-items: center; gap: 10px; min-height: 32px; }
+.checkbox input:checked::before {
+  transform: scale(1);
+}
+.checkbox input:focus-visible {
+  outline: 2px solid var(--brand-text);
+  outline-offset: 2px;
+}
+.checkbox input:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+#submit-view .steps {
+  margin-top: 32px;
+}
+.reminder .compact-summary {
+  display: inline;
+}
+.full-button {
+  width: 100%;
+}
+#block-help {
+  margin: 8px 0 0;
+}
+#finish {
+  margin-top: 12px;
+}
+#submit-result > * {
+  margin: 0 0 12px;
+}
+.steps {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  color: inherit;
+}
+.step {
+  margin: 0 0 14px;
+  color: var(--figma-color-text-secondary, #737373);
+}
+.step:last-child {
+  margin-bottom: 0;
+}
+.step-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+}
 .marker {
-  flex: none; box-sizing: border-box; width: 24px; height: 24px; border-radius: 50%;
+  flex: none;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
   border: 1px solid var(--figma-color-border, #e6e6e6);
-  font-size: 13px; line-height: 22px; font-weight: 700; text-align: center;
+  font-size: 13px;
+  line-height: 22px;
+  font-weight: 700;
+  text-align: center;
 }
-.step-text { flex: 1 1 0; min-width: 0; }
-.step.in-progress { color: var(--brand-text); font-weight: 600; }
-.step.in-progress .marker { border-color: var(--brand-text); background: var(--brand-text); color: var(--figma-color-bg, #fff); }
-.step .button { flex: none; height: 32px; padding: 0 12px; font-size: 13px; white-space: nowrap; }
-.step-detail { padding-left: 34px; }
-.step-detail > * { margin: 4px 0 0; }
+.step-text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.step.in-progress {
+  color: var(--brand-text);
+  font-weight: 600;
+}
+.step.in-progress .marker {
+  border-color: var(--brand-text);
+  background: var(--brand-text);
+  color: var(--figma-color-bg, #fff);
+}
+.step .button {
+  flex: none;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.step-detail {
+  padding-left: 34px;
+}
+.step-detail > * {
+  margin: 4px 0 0;
+}
 /* Commit message to paste on GitHub, under the step that copies it. */
-.commit { margin: 4px 0 0; }
-.commit-field {
-  box-sizing: border-box; display: block; width: 100%; height: 28px; padding: 0 8px;
-  border: 1px solid var(--figma-color-border, #e6e6e6); border-radius: 6px;
-  font: 12px ui-monospace, Menlo, Consolas, monospace;
-  color: var(--figma-color-text, #1e1e1e); background: var(--figma-color-bg, #fff);
+.commit {
+  margin: 4px 0 0;
 }
-.commit-field[hidden] { display: none; }
+.commit-field {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--figma-color-border, #e6e6e6);
+  border-radius: 6px;
+  font:
+    12px ui-monospace,
+    Menlo,
+    Consolas,
+    monospace;
+  color: var(--figma-color-text, #1e1e1e);
+  background: var(--figma-color-bg, #fff);
+}
+.commit-field[hidden] {
+  display: none;
+}
 /* JSON to copy by hand when the automatic copy fails. */
-.json-field { height: 80px; padding: 6px 8px; resize: none; }
+.json-field {
+  height: 80px;
+  padding: 6px 8px;
+  resize: none;
+}
 /* Sticky top block: the header, with the file name and its figures, stays visible while scrolling.
    top offsets the top margin of the page, the line only appears once the page has scrolled. */
 .sticky-top {
-  position: sticky; top: -16px; z-index: 10;
-  margin: -16px -16px 12px; padding: 16px 16px 12px;
+  position: sticky;
+  top: -16px;
+  z-index: 10;
+  margin: -16px -16px 12px;
+  padding: 16px 16px 12px;
   background: var(--figma-color-bg, #fff);
 }
-.sticky-top.scrolled { border-bottom: 1px solid var(--figma-color-border, #e6e6e6); }
-#verification { margin: 0 0 24px; }
-details { border-top: 1px solid var(--figma-color-border, #e6e6e6); }
-.changes-card > details:first-of-type { border-top: none; }
-summary {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 0; cursor: pointer; list-style: none;
+.sticky-top.scrolled {
+  border-bottom: 1px solid var(--figma-color-border, #e6e6e6);
 }
-summary::-webkit-details-marker { display: none; }
-.section-help { margin: 0 0 6px; font-size: 11px; }
+#verification {
+  margin: 0 0 24px;
+}
+details {
+  border-top: 1px solid var(--figma-color-border, #e6e6e6);
+}
+.changes-card > details:first-of-type {
+  border-top: none;
+}
+summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+.section-help {
+  margin: 0 0 6px;
+  font-size: 11px;
+}
 /* Chevron of collapsible sections: pointing right when closed, down when open. */
-.section-title { display: flex; align-items: center; gap: 6px; }
-.chevron { flex: none; color: var(--figma-color-text-secondary, #737373); transition: transform 0.15s; }
-details[open] > summary .chevron { transform: rotate(90deg); }
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chevron {
+  flex: none;
+  color: var(--figma-color-text-secondary, #737373);
+  transition: transform 0.15s;
+}
+details[open] > summary .chevron {
+  transform: rotate(90deg);
+}
 .badge {
-  min-width: 8px; padding: 0 6px; border-radius: 10px; text-align: center; font-weight: 600;
+  min-width: 8px;
+  padding: 0 6px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
   background: var(--figma-color-bg-secondary, #f5f5f5);
 }
-.warning .badge { background: var(--figma-color-bg-warning-tertiary, #fff1c2); color: var(--diff-orange); }
-.blocking .badge { background: var(--figma-color-bg-danger-tertiary, #ffe2e0); color: var(--diff-red); }
-ul { margin: 0 0 8px; padding: 0 0 0 12px; color: var(--figma-color-text-secondary, #737373); }
-li { word-break: break-word; }
+.warning .badge {
+  background: var(--figma-color-bg-warning-tertiary, #fff1c2);
+  color: var(--diff-orange);
+}
+.blocking .badge {
+  background: var(--figma-color-bg-danger-tertiary, #ffe2e0);
+  color: var(--diff-red);
+}
+ul {
+  margin: 0 0 8px;
+  padding: 0 0 0 12px;
+  color: var(--figma-color-text-secondary, #737373);
+}
+li {
+  word-break: break-word;
+}
