@@ -1,0 +1,39 @@
+@layer canopee {
+  .af-selection-card:is(.af-selection-card--card, :has(.af-radio__card)) {
+    --card-width: calc(180rem / 16);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, [col-start] var(--card-width));
+    grid-auto-rows: 1fr auto;
+    align-items: stretch;
+    gap: 1rem;
+
+    :is(.af-radiocard, .af-checkbox-card) {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      grid-template-rows: subgrid;
+      grid-row: span 2;
+    }
+
+    .af-card-button {
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+    }
+
+    .af-radio-add-card {
+      justify-content: center;
+    }
+
+    .af-radiocard__action {
+      display: flex;
+      min-height: 0;
+    }
+
+    &.af-selection-card--vertical {
+      grid-template-columns: auto;
+      grid-auto-rows: minmax(96px, 1fr) auto;
+    }
+  }
+}

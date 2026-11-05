@@ -95,6 +95,12 @@ When using `RadioInput`, pass `orientation` directly:
 
 For card layouts, `orientation="horizontal"` creates a responsive card grid and `orientation="vertical"` switches to a stacked layout.
 
+RadioGroup and CheckboxGroup share their layout through SelectionGroup.
+The group owns `af-selection-card` and its orientation/variant modifiers;
+individual cards keep their component-specific classes. Grid styling applies to
+`variant="card"` groups, and existing RadioGroup compositions containing RadioCard
+without an explicit variant remain supported.
+
 ## Option variants
 
 ### RadioButton
