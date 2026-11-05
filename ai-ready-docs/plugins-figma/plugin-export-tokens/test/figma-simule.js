@@ -35,6 +35,9 @@ const creerPluginSimule = ({
   const variableParId = new Map([...locales, ...distantes, ...supprimees].map((v) => [v.id, v]))
 
   const envoyes = []
+  // Pont vers une interface réelle (test d'intégration), branché par brancherInterface.
+  // Sans pont, figma.ui.postMessage se contente d'enregistrer le message.
+  let pont = null
   const redimensionnements = []
   const ouvertures = []
 
@@ -50,7 +53,7 @@ const creerPluginSimule = ({
     root: { name: nomFichier },
     showUI() {},
     openExternal: (url) => ouvertures.push(url),
-    ui: { onmessage: null, postMessage: (m) => envoyes.push(m), resize: (l, h) => redimensionnements.push([l, h]) },
+    ui: { onmessage: null, postMessage: (m) => { envoyes.push(m); if (pont) pont(m) }, resize: (l, h) => redimensionnements.push([l, h]) },
     clientStorage: {
       getAsync: async (cle) => stockageClientLocal[cle],
       setAsync: async (cle, valeur) => { stockageClientLocal[cle] = valeur },
@@ -72,6 +75,9 @@ const creerPluginSimule = ({
   return {
     // Envoie un message à l'interface, comme le ferait figma.ui.onmessage.
     envoyer: (msg) => figma.ui.onmessage(msg),
+    // Relie le plugin à une interface : chaque figma.ui.postMessage(m) appelle aussi
+    // fn(m), en plus d'être enregistré dans messages.
+    brancherInterface: (fn) => { pont = fn },
     // Messages reçus par l'interface (figma.ui.postMessage), dans l'ordre.
     messages: envoyes,
     dernierMessage: () => envoyes[envoyes.length - 1],
