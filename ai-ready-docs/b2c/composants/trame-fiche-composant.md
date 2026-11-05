@@ -96,7 +96,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 ## Avant de terminer une fiche
 
 - Quand l'utiliser : les usages courants sont-ils tous cités ? Les composants avec lesquels il peut être confondu sont-ils nommés, avec l'alternative à prendre ?
-- Règles selon les propriétés : chaque valeur a-t-elle sa règle d'usage, disabled compris ?
+- Règles selon les propriétés : chaque valeur dont les règles diffèrent a-t-elle son sous-titre, disabled compris ?
 - Exemples : chaque valeur importante a-t-elle au moins un exemple ?
 - Interdits : les combinaisons de propriétés impossibles sont-elles toutes listées ?
 - Contenu : ce qui est obligatoire et ce qui est limité est-il dit ?
