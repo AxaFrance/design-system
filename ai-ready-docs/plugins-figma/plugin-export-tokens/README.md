@@ -4,17 +4,18 @@ Plugin Figma qui vérifie les design tokens de la librairie **Fondations Canopé
 
 Le fichier exporté est le **pivot** de la chaîne : il se versionne, se relit sur son diff, et Terrazzo en tire les variables CSS. Le processus complet est décrit dans [Créer ou modifier un token](../../fondations/03-creer-ou-modifier-un-token.md).
 
-Un seul fichier de code, aucune dépendance, aucun build. Le plugin ne se connecte à internet que si le dépôt Canopée est configuré, et seulement pour lire, sans jeton.
+Le code est écrit en TypeScript, et Vite construit les deux fichiers que Figma charge, dans `dist/`. Le plugin ne se connecte à internet que si le dépôt Canopée est configuré, et seulement pour lire, sans jeton.
 
 ## Installer
 
 Le plugin s'importe depuis un manifeste local, sans publication ni validation préalable.
 
 1. Récupérer ce dossier sur son poste.
-2. Dans Figma Desktop : `Plugins → Development → Import plugin from manifest…`
-3. Choisir `manifest.json`.
+2. Dans ce dossier, lancer `npm ci`, puis `npm run build`.
+3. Dans Figma Desktop : `Plugins → Development → Import plugin from manifest…`
+4. Choisir `manifest.json`.
 
-Il apparaît ensuite dans `Plugins → Development`, sous le nom « Canopée, design tokens ». Figma relit le dossier à chaque lancement : une nouvelle version s'applique sans réimporter.
+Il apparaît ensuite dans `Plugins → Development`, sous le nom « Canopée, design tokens ». Figma relit `dist/` à chaque lancement : après `npm run build`, une nouvelle version s'applique sans réimporter.
 
 ## Utiliser
 
@@ -193,13 +194,13 @@ Un seul geste reste indispensable : **renseigner le scope** à la création d'un
 
 ## Configurer
 
-En tête de `code.js`, la constante `DEPOT` porte les réglages du plugin, tous déjà renseignés.
+En tête de `src/code.ts`, la constante `REPO` porte les réglages du plugin, tous déjà renseignés.
 
-`cheminTokens` porte le chemin du fichier de tokens dans le dépôt Canopée, `packages/canopee-css/design-tokens-canopee.resolver.json`. Il active la comparaison avec le code et les versions publiées, et le dépôt. Le plugin ouvre alors `https://github.com/{nom}/edit/{branche}/{cheminTokens}`, ou la page de création du fichier s'il n'est pas encore dans le repo. Tant qu'il est vide, le dépôt est bloqué.
+`tokensPath` porte le chemin du fichier de tokens dans le dépôt Canopée, `packages/canopee-css/design-tokens-canopee.resolver.json`. Il active la comparaison avec le code et les versions publiées, et le dépôt. Le plugin ouvre alors `https://github.com/{name}/edit/{branch}/{tokensPath}`, ou la page de création du fichier s'il n'est pas encore dans le repo. Tant qu'il est vide, le dépôt est bloqué.
 
-`cleFichier` porte la clé du fichier Figma Fondations Canopée.
+`fileKey` porte la clé du fichier Figma Fondations Canopée.
 
-`premiereVersion` porte la première version publiée de Canopée qui contient le fichier des tokens, `2.0.0`. Le menu « Comparé à » ne propose pas les versions plus anciennes.
+`firstVersion` porte la première version publiée de Canopée qui contient le fichier des tokens, `2.0.0`. Le menu « Comparé à » ne propose pas les versions plus anciennes.
 
 ## Redimensionner
 
@@ -208,8 +209,10 @@ La fenêtre s'ouvre à 440 px de large, et sa hauteur suit le contenu entre 560 
 ## Développer
 
 ```
-npm test                   # toutes les vérifications, sur un Figma simulé
-node test/test.js --json   # le fichier produit par le document de test
+npm run build       # construit dist/code.js et dist/ui.html
+npm run typecheck   # contrôle les types du code, de l'interface et des tests
+npm test            # construit le plugin, puis lance toutes les vérifications
+npm run format      # formate le code avec Prettier
 ```
 
-Les tests chargent `code.js` dans un Figma simulé, sans ouvrir Figma. Ils lisent aussi `fondations/01-primitives.md` et `fondations/02-styles-de-texte.md`, et échouent si une règle de nommage change d'un seul côté. Ils se lancent en local, après toute modification du plugin ou de ces deux pages.
+Les tests chargent `dist/code.js` et `dist/ui.html` dans un Figma simulé, sans ouvrir Figma. Ils comparent le fichier produit à `test/fixtures/reference-output.json`, et les textes de l'interface à des instantanés. Ils lisent aussi `fondations/01-primitives.md` et `fondations/02-styles-de-texte.md`, et échouent si une règle de nommage change d'un seul côté. Ils se lancent en local, après toute modification du plugin ou de ces deux pages.

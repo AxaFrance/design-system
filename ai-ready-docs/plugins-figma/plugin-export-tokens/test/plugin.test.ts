@@ -18,8 +18,8 @@ import {
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
-const alias = (id: MockData) => ({ type: "VARIABLE_ALIAS", id });
-const shadow = (y: MockData, extra = {}) => ({
+const alias = (id: string) => ({ type: "VARIABLE_ALIAS", id });
+const shadow = (y: number, extra = {}) => ({
   type: "DROP_SHADOW",
   color: { r: 0, g: 0, b: 0, a: 0.2 },
   offset: { x: 0, y },
@@ -474,10 +474,10 @@ const COMMON_DOCUMENT = {
 const testDocument = () => JSON.parse(JSON.stringify(COMMON_DOCUMENT));
 
 // A DTCG token is read in sets.<collection>.sources[0].
-const readSet = (doc: MockData, name: MockData) => doc.sets[name].sources[0];
+const readSet = (doc: MockData, name: string) => doc.sets[name].sources[0];
 // Like readSet, but undefined if the collection does not exist in this document
 // (a suite document does not necessarily have Primitives and Sémantique).
-const readSetIfPresent = (doc: MockData, name: MockData) =>
+const readSetIfPresent = (doc: MockData, name: string) =>
   doc.sets[name] ? readSet(doc, name) : undefined;
 
 // Messages and reports come from another VM context: they are normalized

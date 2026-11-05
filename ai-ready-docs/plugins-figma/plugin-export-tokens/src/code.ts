@@ -102,7 +102,7 @@ const isAlias = (v: unknown): v is VariableAlias =>
 // Any message to the interface goes through here, so that it is checked against the contract.
 const post = (message: PluginToUiMessage) => figma.ui.postMessage(message);
 
-const VERSION = "0.30.1";
+const VERSION = "0.31.0";
 const WIDTH = 440;
 const INITIAL_HEIGHT = 600;
 // Automatic height: follows the content, within these bounds. High enough by default

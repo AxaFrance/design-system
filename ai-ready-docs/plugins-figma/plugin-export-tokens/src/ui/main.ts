@@ -1412,7 +1412,12 @@ window.onmessage = ({
     showError(msg);
     return;
   }
-  if (msg.type === "recompute-height") adjustHeight();
+  if (msg.type === "recompute-height") {
+    adjustHeight();
+    return;
+  }
+  const unhandled: never = msg;
+  return unhandled;
 };
 
 renderActions();
