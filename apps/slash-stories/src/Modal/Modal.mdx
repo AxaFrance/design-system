@@ -62,7 +62,7 @@ export const YourComponent = () => {
       </button>
 
       <Modal onOutsideTap={() => ref.current?.close()} ref={ref}>
-        <ModalHeader title="Modal Title" onCancel={() => {}} />
+        <ModalHeader onCancel={() => {}}>Modal Title</ModalHeader>
         <ModalBody>
           <p>
             Voici une version avec un header classique du composant Modal. La
