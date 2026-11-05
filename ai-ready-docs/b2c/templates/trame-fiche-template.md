@@ -106,7 +106,7 @@ Comme pour un composant, le Markdown ne recopie pas ce que Figma sait déjà : l
 - Règles selon les propriétés : chaque valeur dont les règles diffèrent a-t-elle son sous-titre ?
 - Exemples : chaque valeur importante a-t-elle au moins un exemple ?
 - Interdits : les assemblages et les combinaisons de propriétés interdits sont-ils tous listés ?
-- Composition : chaque élément a-t-il sa place, sa présence et son nombre maximal ? Le niveau est-il respecté : des composants et leurs textes dans un bloc, des blocs dans une section, des sections dans une page ?
+- Composition : chaque élément a-t-il sa place, sa présence et son nombre maximal ? Le niveau est-il respecté : des composants et d'autres éléments dans un bloc, des blocs dans une section, des sections dans une page ?
 - Comportement : que se passe-t-il quand l'utilisateur s'en sert, et quand l'écran rétrécit ?
 - Accessibilité : l'élément HTML, le rôle ARIA, l'ordre de lecture et la hiérarchie des titres sont-ils là ?
 - Code : la rubrique traite-t-elle le bon cas, selon que le template existe ou non dans le code ?
