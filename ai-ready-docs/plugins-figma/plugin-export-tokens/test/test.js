@@ -1341,6 +1341,45 @@ const scenarioBreakpoints = async () => {
   })
 }
 
+// Le nom d'un set identifie toute sa collection : une collection en double ne
+// doit jamais écraser l'autre sans le dire.
+const scenarioCollectionsDeMemeNom = async () => {
+  const pluginDoublon = creerPluginSimule({
+    nomFichier: 'Fondations Canopée',
+    collections: [
+      { id: 'CA', name: 'A.B', modes: [{ modeId: 'm1', name: 'Mode 1' }], defaultModeId: 'm1' },
+      { id: 'CB', name: 'A-B', modes: [{ modeId: 'm2', name: 'clair' }, { modeId: 'm3', name: 'sombre' }], defaultModeId: 'm2' }
+    ],
+    locales: [
+      { id: 'v1', name: 'spacing/1', resolvedType: 'FLOAT', variableCollectionId: 'CA', scopes: ['GAP'], valuesByMode: { m1: 1 } },
+      { id: 'v2', name: 'spacing/2', resolvedType: 'FLOAT', variableCollectionId: 'CB', scopes: ['GAP'], valuesByMode: { m2: 2, m3: 3 } }
+    ]
+  })
+  const doublon = await exporterDocument(pluginDoublon)
+  verifier('collections de même nom une fois assaini : la première garde son set, la seconde reste hors du fichier', () => {
+    assert.equal(lireSet(doublon.t, 'A-B').spacing['1'].$value.value, 1)
+    assert.equal(lireSet(doublon.t, 'A-B').spacing['2'], undefined)
+    assert.equal(doublon.t.modifiers, undefined)
+    assert.equal(doublon.rapport.exportees, 1)
+  })
+  verifier('collections de même nom une fois assaini : la seconde remonte en conflit et bloque le dépôt', () => {
+    assert.deepEqual(doublon.rapport.conflits, ['Collection A-B : même nom que A.B dans le code'])
+    assert.deepEqual(normaliser(pluginDoublon.messages.filter((m) => m.type === 'verification').pop().blocage), { raison: 'ecartes', n: 1 })
+  })
+
+  const pluginReserve = creerPluginSimule({
+    collections: [{ id: 'CS', name: 'Styles', modes: [{ modeId: 'm1', name: 'Mode 1' }], defaultModeId: 'm1' }],
+    locales: [{ id: 'v1', name: 'spacing/1', resolvedType: 'FLOAT', variableCollectionId: 'CS', scopes: ['GAP'], valuesByMode: { m1: 1 } }],
+    stylesEffet: [{ id: 'e1', name: 'shadow/1', description: '', effects: [ombre(2, { visible: true })] }]
+  })
+  const reserve = await exporterDocument(pluginReserve)
+  verifier('collection nommée Styles : le set reste celui des styles, la collection remonte en conflit', () => {
+    assert.equal(reserve.rapport.stylesEffet, 1)
+    assert.equal(lireSet(reserve.t, 'Styles').spacing, undefined)
+    assert.deepEqual(reserve.rapport.conflits, ['Collection Styles : nom réservé aux styles de texte et d\'effet'])
+  })
+}
+
 const scenarioVariablesSupprimees = async () => {
   const collection = { id: 'CP', name: 'Primitive', modes: [{ modeId: 'm1', name: 'Mode 1' }], defaultModeId: 'm1' }
   const supprimee = { id: 'vs', name: 'Shadow/Blur', resolvedType: 'FLOAT', variableCollectionId: 'CP', scopes: ['EFFECT_FLOAT'], valuesByMode: { m1: 8 } }
@@ -1558,6 +1597,7 @@ const scenarioVariablesDeStyle = async () => {
   await scenarioTailleRetenueAOuverture()
   await scenarioStylesIncomplets()
   await scenarioBreakpoints()
+  await scenarioCollectionsDeMemeNom()
   await scenarioVariablesSupprimees()
   await scenarioVariablesDeStyle()
   await scenarioOpaciteEtStyles()

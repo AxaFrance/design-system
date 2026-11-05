@@ -1,7 +1,7 @@
 // Export des variables et des styles Figma au format DTCG.
 // Un seul fichier, sans étape de build : le manifeste pointe directement dessus.
 
-const VERSION = '0.30.0'
+const VERSION = '0.30.1'
 const LARGEUR = 440
 const HAUTEUR_INITIALE = 600
 // Hauteur automatique : suit le contenu, dans ces bornes. Assez haute par défaut
@@ -130,6 +130,7 @@ const chemin = (nom) => segmentsBruts(nom).map(assainir)
 const estAssaini = (nom) => chemin(nom).join('/') !== segmentsBruts(nom).join('/')
 const reference = (segments) => `{${segments.join('.')}}`
 const nomSet = (collection) => chemin(collection.name).join('/')
+const SET_STYLES = 'Styles'
 
 // Pose un token dans l'arbre. Refuse d'écraser : Figma tolère qu'un nom soit à la
 // fois un token et un groupe (« a/b » et « a/b/c »), DTCG non.
@@ -605,10 +606,22 @@ const lireFichier = async () => {
   // modes, un arbre par mode autre que le défaut : il ne recevra que les tokens
   // dont la valeur y diffère du mode par défaut.
   const infoParCollection = new Map()
+  const collectionsEcartees = new Set()
   for (const c of collections) {
+    // Le nom d'un set identifie toute sa collection. Une fois assainis, « A.B » et
+    // « A-B » donnent le même, et Styles est réservé aux styles : la collection en
+    // double écraserait l'autre. Elle reste hors du fichier et remonte en conflit,
+    // ce qui bloque le dépôt.
+    const nom = nomSet(c)
+    if (doc.sets[nom] || nom === SET_STYLES) {
+      const motif = doc.sets[nom] ? `même nom que ${collections.find((autre) => nomSet(autre) === nom).name} dans le code` : 'nom réservé aux styles de texte et d\'effet'
+      rapport.conflits.push(`Collection ${c.name} : ${motif}`)
+      collectionsEcartees.add(c.id)
+      continue
+    }
     const arbre = {}
     racinesDeGroupe.add(arbre)
-    doc.sets[nomSet(c)] = { sources: [arbre] }
+    doc.sets[nom] = { sources: [arbre] }
     const info = { collection: c, arbre }
     if (c.modes.length > 1) {
       info.arbresContexte = new Map(c.modes.filter((m) => m.modeId !== c.defaultModeId).map((m) => [m.modeId, {}]))
@@ -616,7 +629,8 @@ const lireFichier = async () => {
     infoParCollection.set(c.id, info)
   }
 
-  return { variables, collectionParId, rapport, signaler, doc, infoParCollection, racinesDeGroupe, cheminDe, referenceDe, convertir, placer }
+  const variablesGardees = variables.filter((v) => !collectionsEcartees.has(v.variableCollectionId))
+  return { variables: variablesGardees, collectionParId, rapport, signaler, doc, infoParCollection, racinesDeGroupe, cheminDe, referenceDe, convertir, placer }
 }
 
 // Nomenclature des primitives : uniquement les collections « Primitive… »,
@@ -721,7 +735,7 @@ const ajouterStyles = async (doc, racinesDeGroupe, rapport, referenceDe, placer,
   await ajouterStylesEffet(arbreStyles, rapport, referenceDe, placer, signaler)
   if (Object.keys(arbreStyles).length) {
     racinesDeGroupe.add(arbreStyles)
-    doc.sets.Styles = { sources: [arbreStyles] }
+    doc.sets[SET_STYLES] = { sources: [arbreStyles] }
   }
 }
 
