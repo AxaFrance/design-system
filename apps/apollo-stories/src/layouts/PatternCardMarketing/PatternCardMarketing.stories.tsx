@@ -1,8 +1,10 @@
 import {
+  Card,
   CardMarketing,
   PatternCardMarketing,
 } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
+import "../layout.css";
 
 const cards = Array.from({ length: 4 }, (_, index) => (
   <CardMarketing
@@ -30,3 +32,15 @@ export const ThreeCards: Story = {};
 export const TwoCards: Story = { args: { children: cards.slice(0, 2) } };
 
 export const FourCards: Story = { args: { children: cards } };
+
+export const ContentZones: Story = {
+  parameters: { layout: "fullscreen" },
+  args: {
+    className: "layout-demo",
+    children: Array.from({ length: 3 }, (_, index) => (
+      <Card key={index} className="af-card--layout">
+        Content {index + 1}
+      </Card>
+    )),
+  },
+};

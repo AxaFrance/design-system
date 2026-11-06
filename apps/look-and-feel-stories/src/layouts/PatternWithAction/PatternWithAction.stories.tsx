@@ -6,6 +6,7 @@ import {
   PatternWithAction,
 } from "@axa-fr/canopee-react/client";
 import type { Meta, StoryObj } from "@storybook/react";
+import "../layout.css";
 
 const content = (
   <PatternMozaicGrid
@@ -55,5 +56,29 @@ export const WithoutAction: Story = { args: { children: content } };
 export const CustomHeadingLevel: Story = {
   args: {
     headingProps: { children: "Pour aller plus loin", level: 3 },
+  },
+};
+
+export const ContentAndActionZones: Story = {
+  name: "Content + Action Zones",
+  args: {
+    className: "layout-demo",
+    headingProps: { children: "Heading" },
+    children: [
+      <Card key="content" className="af-card--layout">
+        Content
+      </Card>,
+      <PatternWithAction.Action key="action">
+        <Card className="af-card--layout">Action</Card>
+      </PatternWithAction.Action>,
+    ],
+  },
+};
+
+export const ContentOnlyZone: Story = {
+  args: {
+    className: "layout-demo",
+    headingProps: { children: "Heading" },
+    children: <Card className="af-card--layout">Content</Card>,
   },
 };

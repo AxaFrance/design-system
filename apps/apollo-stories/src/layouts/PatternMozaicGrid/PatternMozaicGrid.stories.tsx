@@ -5,6 +5,7 @@ import {
   PatternMozaicGrid,
 } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
+import "../layout.css";
 
 const meta = {
   title: "Layouts/Pattern Mozaic Grid",
@@ -56,6 +57,18 @@ export const AllBreakpoints: Story = {
     "data-cols-desktop-small": 6,
     "data-cols-desktop-medium": 4,
     "data-cols-desktop-large": 3,
+  },
+};
+
+export const ContentZones: Story = {
+  args: {
+    ...AllBreakpoints.args,
+    className: "layout-demo",
+    children: Array.from({ length: 6 }, (_, index) => (
+      <Card key={index} className="af-card--layout">
+        Content {index + 1}
+      </Card>
+    )),
   },
 };
 
