@@ -8,22 +8,96 @@ describe.each([
   ["Client", ClientPattern],
 ] as const)("PatternWithAction %s", (_, PatternWithAction) => {
   it("renders heading, action and content in separate areas", () => {
-    render(
+    const { container } = render(
       <PatternWithAction headingProps={{ children: "My documents" }}>
         <PatternWithAction.Action>
           <button type="button">See all</button>
         </PatternWithAction.Action>
-        <p>Content</p>
+        <p>
+          <a href="#documents">Content</a>
+        </p>
       </PatternWithAction>,
     );
     const heading = screen.getByRole("heading", { level: 2 });
     const header = heading.closest(".af-pattern-with-action__header");
     expect(heading).toHaveTextContent("My documents");
-    expect(header).toContainElement(screen.getByRole("button"));
+    expect(header).not.toContainElement(screen.getByRole("button"));
     expect(
       screen.getByRole("button").closest(".af-pattern-with-action__action"),
     ).not.toBeNull();
-    expect(header).not.toContainElement(screen.getByText("Content"));
+    expect(header).not.toContainElement(screen.getByRole("link"));
+    expect(
+      container
+        .querySelector(".af-pattern-with-action__content")
+        ?.compareDocumentPosition(
+          container.querySelector(".af-pattern-with-action__action")!,
+        ),
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(
+      screen
+        .getByRole("link")
+        .compareDocumentPosition(screen.getByRole("button")),
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  it("renders repeated actions nested in fragments", () => {
+    const { container } = render(
+      <PatternWithAction>
+        <>
+          <PatternWithAction.Action>
+            <button type="button">Action one</button>
+          </PatternWithAction.Action>
+          <p>Content</p>
+          <PatternWithAction.Action>
+            <button type="button">Action two</button>
+          </PatternWithAction.Action>
+        </>
+      </PatternWithAction>,
+    );
+
+    expect(
+      container.querySelectorAll(".af-pattern-with-action__action button"),
+    ).toHaveLength(2);
+    expect(
+      container.querySelector(".af-pattern-with-action__header"),
+    ).toBeNull();
+    expect(
+      container.querySelector(".af-pattern-with-action__action"),
+    ).toHaveTextContent("Action oneAction two");
+    expect(
+      container.querySelector(".af-pattern-with-action__content"),
+    ).toHaveTextContent("Content");
+    expect(
+      container
+        .querySelector(".af-pattern-with-action__content")
+        ?.compareDocumentPosition(
+          container.querySelector(".af-pattern-with-action__action")!,
+        ),
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(
+      container.querySelector(".af-pattern-with-action"),
+    ).toHaveTextContent("Content");
+  });
+
+  it("keeps actions returned by custom components in the content", () => {
+    const CustomAction = () => (
+      <PatternWithAction.Action>
+        <button type="button">Nested action</button>
+      </PatternWithAction.Action>
+    );
+    const { container } = render(
+      <PatternWithAction>
+        <CustomAction />
+      </PatternWithAction>,
+    );
+
+    expect(screen.getByRole("button", { name: "Nested action" })).toBeVisible();
+    expect(
+      container.querySelector(".af-pattern-with-action__header"),
+    ).toBeNull();
+    expect(
+      screen.getByRole("button").closest(".af-pattern-with-action__action"),
+    ).toBeNull();
   });
 
   it("supports a custom heading level and no action", () => {
