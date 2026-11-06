@@ -406,8 +406,8 @@ type CardMarketingProps = Omit<CardProps<'div'>, 'children' | 'title' | 'variant
         alt: string; // alt="" si l'image est décorative
     };
     sources?: ComponentProps<'source'>[]; // Sources <picture>, de la plus préférée au fallback
-    title: string;
-    text: string;
+    title: ReactNode;
+    text: ReactNode;
     linkProps: LinkProps & { href: string; children: ReactNode };
     variant?: 'vertical' | 'horizontal'; // (défaut: "vertical")
 };
