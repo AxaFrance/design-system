@@ -4,6 +4,7 @@ import {
   PatternMozaicFree,
 } from "@axa-fr/canopee-react/prospect";
 import type { Meta, StoryObj } from "@storybook/react";
+import "../layout.css";
 
 const meta = {
   title: "Layouts/Pattern Mozaic Free",
@@ -30,6 +31,18 @@ export const TwoColumns: Story = {};
 export const ThreeColumns: Story = { args: { cols: 3 } };
 
 export const FiveColumns: Story = { args: { cols: 5 } };
+
+export const ContentZones: Story = {
+  args: {
+    className: "layout-demo",
+    cols: 3,
+    children: Array.from({ length: 6 }, (_, index) => (
+      <Card key={index} className="af-card--layout">
+        Content {index + 1}
+      </Card>
+    )),
+  },
+};
 
 export const WithCardMarketing: Story = {
   args: {
