@@ -14,7 +14,10 @@ export default meta;
 type StoryProps = ComponentProps<typeof FormLayout>;
 
 const Demo = () => (
-  <LayoutDemo centerClassName="layout-demo" title="Form Layout Title">
+  <LayoutDemo
+    mainProps={{ className: "layout-demo" }}
+    title="Form Layout Title"
+  >
     <FormLayout>
       <FormLayout.Header>
         <Card>

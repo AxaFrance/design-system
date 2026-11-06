@@ -30,7 +30,10 @@ const meta = {
   parameters: { layout: "fullscreen" },
   decorators: [
     (Story) => (
-      <LayoutDemo centerClassName="layout-demo" title="Car insurance">
+      <LayoutDemo
+        mainProps={{ className: "layout-demo" }}
+        title="Car insurance"
+      >
         <Story />
       </LayoutDemo>
     ),

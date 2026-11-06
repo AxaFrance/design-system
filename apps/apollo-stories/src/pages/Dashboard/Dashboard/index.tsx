@@ -15,6 +15,7 @@ export const Dashboard = () => (
   <LayoutDemo title="">
     <MainLayout.Top className="grid">
       <CardMessage
+        role="alert"
         title="This is a title"
         text="I am the text of the card message"
         variant="error"

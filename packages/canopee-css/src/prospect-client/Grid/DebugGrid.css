@@ -15,6 +15,7 @@
     height: 100%;
     opacity: 0.5;
     mix-blend-mode: multiply;
+    pointer-events: none;
 
     .grid {
       --name: "mobile: 0 to 667px";
