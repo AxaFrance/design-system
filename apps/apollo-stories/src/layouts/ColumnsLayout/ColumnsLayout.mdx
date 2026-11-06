@@ -51,10 +51,10 @@ along with the page header and footer.
 | `ColumnsLayout.Content` | Main content in the center.                       |
 | `ColumnsLayout.Right`   | Supporting content on the right.                  |
 
-Use each subcomponent at most once, as a direct child of `ColumnsLayout`.
-Do not wrap these subcomponents in a fragment or a custom component: the layout
-identifies its direct children to assign each zone. Multiple elements can be
-placed inside a zone.
+Slots may be repeated and nested in fragments. Loose children and
+`ColumnsLayout.Content` are rendered in the Content zone. Slots returned by a
+custom component are treated as ordinary content because the layout cannot
+inspect a component's rendered output.
 
 Omit a subcomponent when its zone is not needed. Zone visibility is controlled
 by composition, not by boolean props.
@@ -70,8 +70,9 @@ on 8 columns of the 12-column grid from the small desktop breakpoint.
 On mobile and tablet, the content still uses the available width.
 
 `ColumnsLayout.Top` remains optional and spans the full grid width, even when
-`isFit` is enabled. Do not combine `isFit` with either side column: it is a
-usage constraint, not a mechanism that hides or removes those zones.
+`isFit` is enabled. If a recognized Left or Right slot is present, `isFit` is
+ignored and all content remains visible. Slots returned by custom components remain ordinary
+content and cannot be inspected by this guard.
 
 ```tsx
 <main className="grid">
@@ -102,6 +103,9 @@ order. From the small desktop breakpoint, the layout uses the 12-column grid:
 The Top zone remains above the heading and columns when present.
 
 ## Props
+
+Native section props, including `id`, `ref`, `aria-*`, `style` and event handlers,
+are forwarded to the columns section, not the separate `ColumnsLayout.Top` area.
 
 | Prop           | Type           | Description                                                                                                              |
 | -------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |

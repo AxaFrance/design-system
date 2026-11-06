@@ -1,17 +1,20 @@
 import {
-  Children,
   isValidElement,
+  type ComponentProps,
   type ComponentType,
   type PropsWithChildren,
   type ReactElement,
+  type ReactNode,
 } from "react";
 import { type HeadingProps } from "../../Heading/types";
 import "@axa-fr/canopee-css/prospect/Layout/ColumnLayout/ColumnsLayoutAll.css";
 import { getClassName } from "../../utilities/getClassName";
+import { flattenFragments } from "../../utilities/flattenFragments";
 
-export type ColumnsLayoutProps = {
+export type ColumnsLayoutProps = ComponentProps<"section"> & {
   headingProps?: HeadingProps;
-} & { className?: string; isFit?: boolean } & PropsWithChildren;
+  isFit?: boolean;
+};
 
 export const Top = ({ children }: PropsWithChildren) => children;
 export const Left = ({ children }: PropsWithChildren) => children;
@@ -32,24 +35,24 @@ export const ColumnsLayoutCommon = ({
   isFit,
   ...columnsLayoutProps
 }: ColumnsLayoutCommonProps) => {
-  const childrenArray = Children.toArray(children);
-
-  const top = childrenArray.find(
-    (child) => isValidElement(child) && child.type === Top,
+  const childrenArray = flattenFragments(children);
+  const isSlot = (
+    child: ReactNode,
+    slot: ComponentType<PropsWithChildren>,
+  ): child is ReactElement<PropsWithChildren> =>
+    isValidElement(child) && child.type === slot;
+  const top = childrenArray.filter((child) => isSlot(child, Top));
+  const left = childrenArray.filter((child) => isSlot(child, Left));
+  const right = childrenArray.filter((child) => isSlot(child, Right));
+  const content = childrenArray.filter(
+    (child) =>
+      !isSlot(child, Top) && !isSlot(child, Left) && !isSlot(child, Right),
   );
-  const left = childrenArray.find(
-    (child) => isValidElement(child) && child.type === Left,
-  );
-  const content = childrenArray.find(
-    (child) => isValidElement(child) && child.type === Content,
-  );
-  const right = childrenArray.find(
-    (child) => isValidElement(child) && child.type === Right,
-  );
+  const invalidFit = Boolean(isFit) && (left.length > 0 || right.length > 0);
 
   return (
     <>
-      {top ? (
+      {top.length > 0 ? (
         <article className={`${DEFAULT_CLASS_NAME}__top subgrid`}>
           {top}
         </article>
@@ -57,23 +60,23 @@ export const ColumnsLayoutCommon = ({
       <section
         className={getClassName({
           baseClassName: DEFAULT_CLASS_NAME,
-          modifiers: [isFit ? "fit" : ""],
-          className,
+          modifiers: [isFit && !invalidFit ? "fit" : ""],
+          className: `grid subgrid ${className ?? ""}`,
         })}
         {...columnsLayoutProps}
       >
         {headingProps ? <HeadingComponent {...headingProps} /> : null}
-        {left ? (
+        {left.length > 0 ? (
           <section className={`${DEFAULT_CLASS_NAME}__left subgrid`}>
             {left}
           </section>
         ) : null}
-        {content ? (
+        {content.length > 0 ? (
           <section className={`${DEFAULT_CLASS_NAME}__content subgrid`}>
             {content}
           </section>
         ) : null}
-        {right ? (
+        {right.length > 0 ? (
           <section className={`${DEFAULT_CLASS_NAME}__right subgrid`}>
             {right}
           </section>
