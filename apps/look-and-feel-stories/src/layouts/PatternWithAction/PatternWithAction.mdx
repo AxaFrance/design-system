@@ -6,18 +6,19 @@ import * as Stories from "./PatternWithAction.stories";
 # PatternWithAction
 
 Section composed of an optional heading, an optional call to action and content.
-On desktop (above 1023px), the action is aligned to the right of the heading.
-On mobile and tablet, the action is displayed after the content.
+The action follows content in the DOM and keyboard order. On desktop (above
+1023px), it is visually aligned to the right of the heading; on mobile and
+tablet, it is displayed after the content.
 
 ```tsx
 import { Button, PatternWithAction } from "@axa-fr/canopee-react/client";
 
 <main className="grid">
   <PatternWithAction headingProps={{ children: "Mes derniers documents" }}>
+    <p>Content</p>
     <PatternWithAction.Action>
       <Button variant="secondary">Afficher mes documents</Button>
     </PatternWithAction.Action>
-    <p>Content</p>
   </PatternWithAction>
 </main>;
 ```
@@ -30,8 +31,12 @@ import { Button, PatternWithAction } from "@axa-fr/canopee-react/client";
 | `children`             | Content. Wrap the call to action in `PatternWithAction.Action`. |
 | Native `section` props | `id`, `className`, `style`, `ref`, ARIA attributes, etc.        |
 
-Only the first `PatternWithAction.Action` is displayed in the header.
-The header is omitted when there is no heading and no action.
+All direct `PatternWithAction.Action` slots are displayed after content in the
+DOM; on desktop they are visually aligned with the heading. Slots may be
+repeated and nested in fragments. Other children are content. An action
+returned by a custom component is treated as content because the layout cannot
+inspect a component's rendered output. The heading area is omitted when there
+is no heading.
 
 ## Composition
 

@@ -1,5 +1,4 @@
 import {
-  Children,
   isValidElement,
   type ComponentProps,
   type ComponentType,
@@ -9,6 +8,7 @@ import {
 import "@axa-fr/canopee-css/prospect/Layout/PatternWithAction/PatternWithActionAll.css";
 import type { HeadingProps } from "../../Heading/types";
 import { getClassName } from "../../utilities/getClassName";
+import { flattenFragments } from "../../utilities/flattenFragments";
 
 const DEFAULT_CLASS_NAME = "af-pattern-with-action";
 
@@ -36,10 +36,10 @@ export const PatternWithActionCommon = ({
   HeadingComponent,
   ...sectionProps
 }: PatternWithActionCommonProps) => {
-  const childrenArray = Children.toArray(children);
+  const childrenArray = flattenFragments(children);
   const isAction = (child: (typeof childrenArray)[number]) =>
     isValidElement(child) && child.type === Action;
-  const action = childrenArray.find(isAction);
+  const actions = childrenArray.filter(isAction);
   const content = childrenArray.filter((child) => !isAction(child));
 
   return (
@@ -50,17 +50,19 @@ export const PatternWithActionCommon = ({
         className: `subgrid ${className ?? ""}`,
       })}
     >
-      {headingProps || action ? (
+      {headingProps ? (
         <div className={`${DEFAULT_CLASS_NAME}__header`}>
-          {headingProps ? (
-            <HeadingComponent level={2} {...headingProps} />
-          ) : null}
-          {action ? (
-            <div className={`${DEFAULT_CLASS_NAME}__action`}>{action}</div>
-          ) : null}
+          <HeadingComponent level={2} {...headingProps} />
         </div>
       ) : null}
-      {content}
+      {content.length > 0 ? (
+        <div className={`${DEFAULT_CLASS_NAME}__content subgrid`}>
+          {content}
+        </div>
+      ) : null}
+      {actions.length > 0 ? (
+        <div className={`${DEFAULT_CLASS_NAME}__action`}>{actions}</div>
+      ) : null}
     </section>
   );
 };
