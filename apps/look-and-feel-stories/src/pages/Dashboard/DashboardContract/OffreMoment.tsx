@@ -4,7 +4,7 @@ export const OffreMoment = () => (
   <CardMarketing
     image={{
       src: "https://dummyimage.com/282x130/edf/00008F",
-      alt: "Assurez votre habitation dès maintenant",
+      alt: "",
     }}
     title="Offre épargne du moment"
     text=""
