@@ -38,7 +38,10 @@ const Demo = ({
   content = 4,
   heightAgent = 400,
 }: StoryProps) => (
-  <LayoutDemo centerClassName="layout-demo" title="Form Layout Title">
+  <LayoutDemo
+    mainProps={{ className: "layout-demo" }}
+    title="Form Layout Title"
+  >
     <ExitLayout headingProps={headingProps} iconProps={iconProps}>
       <ExitLayout.Content>
         {Array.from({ length: content }, (_, i) => (

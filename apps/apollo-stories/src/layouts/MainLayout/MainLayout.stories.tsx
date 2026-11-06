@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Button,
   Card,
+  DebugGrid,
   Icon,
   MainLayout,
   type MainLayoutProps,
@@ -60,6 +61,19 @@ const meta = {
   title: "Layouts/Main Layout",
   component: MainLayout,
   parameters: { layout: "fullscreen" },
+  decorators: [
+    (Story, { args }) => (
+      <>
+        {args.debugGridProps ? (
+          <DebugGrid<{ forceVisible?: boolean }>
+            {...args.debugGridProps}
+            forceVisible
+          />
+        ) : null}
+        <Story args={{ ...args, debugGridProps: undefined }} />
+      </>
+    ),
+  ],
   argTypes: {
     children: { control: false },
     headerProps: { control: "object" },
@@ -69,7 +83,7 @@ const meta = {
     className: "layout-demo",
     headerProps,
     footerProps,
-    DebugGridProps: { isCheckedByDefault: true, forceVisible: true },
+    debugGridProps: { isCheckedByDefault: true },
   },
 } satisfies Meta<typeof MainLayout>;
 

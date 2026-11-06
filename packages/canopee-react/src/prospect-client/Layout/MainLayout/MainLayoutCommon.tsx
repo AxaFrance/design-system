@@ -1,6 +1,6 @@
 import {
-  Children,
   isValidElement,
+  type ComponentProps,
   type ComponentType,
   type PropsWithChildren,
   type ReactElement,
@@ -14,6 +14,7 @@ import { type LinkProps } from "../../Link/LinkCommon";
 import { type IconProps } from "../../Icon/IconCommon";
 
 import { getClassName } from "../../utilities/getClassName";
+import { flattenFragments } from "../../utilities/flattenFragments";
 
 export type MainLayoutSlotProps = PropsWithChildren<{
   /** Additional class applied to the element wrapping the slot. */
@@ -33,11 +34,11 @@ export type MainLayoutProps = {
   /** Props passed to `Footer`. Omit it to render no footer. */
   footerProps?: FooterProps;
   /** Props passed to `DebugGrid`. Omit it to render no debug grid. */
-  DebugGridProps?: DebugGridProps & { forceVisible?: boolean };
+  debugGridProps?: DebugGridProps;
   /** Additional class applied to the layout root element. */
   className?: string;
-  /** Additional class applied to the `<main>` element. */
-  centerClassName?: string;
+  /** Native props passed to `<main>` when main content is present. */
+  mainProps?: Omit<ComponentProps<"main">, "children">;
   /**
    * Main page content, rendered in `<main className="grid">`.
    * Use `MainLayout.Top` and `MainLayout.Bottom` to render content around it.
@@ -62,12 +63,12 @@ const isSlot = (
   isValidElement(child) && child.type === slot;
 
 export const MainLayoutCommon = ({
-  DebugGridProps,
+  debugGridProps,
   headerProps,
   footerProps,
   backLinkProps,
   className,
-  centerClassName,
+  mainProps,
   children,
   HeaderComponent,
   FooterComponent,
@@ -75,17 +76,17 @@ export const MainLayoutCommon = ({
   LinkComponent,
   IconComponent,
 }: MainLayoutCommonProps) => {
-  const childrenArray = Children.toArray(children);
+  const childrenArray = flattenFragments(children);
 
-  const top = childrenArray.find((child) => isSlot(child, Top));
-  const bottom = childrenArray.find((child) => isSlot(child, Bottom));
+  const top = childrenArray.filter((child) => isSlot(child, Top));
+  const bottom = childrenArray.filter((child) => isSlot(child, Bottom));
   const mainChildren = childrenArray.filter(
     (child) => !isSlot(child, Top) && !isSlot(child, Bottom),
   );
 
   return (
     <>
-      {DebugGridProps ? <DebugGridComponent {...DebugGridProps} /> : null}
+      {debugGridProps ? <DebugGridComponent {...debugGridProps} /> : null}
       <div
         className={getClassName({
           baseClassName: DEFAULT_CLASS,
@@ -102,36 +103,39 @@ export const MainLayoutCommon = ({
               />
             </div>
           ) : null}
-          {top ? (
+          {top.map((slot) => (
             <div
+              key={slot.key}
               className={getClassName({
                 baseClassName: `${DEFAULT_CLASS}__top`,
-                className: top.props.className,
+                className: slot.props.className,
               })}
             >
-              {top}
+              {slot}
             </div>
-          ) : null}
+          ))}
           {mainChildren.length > 0 ? (
             <main
+              {...mainProps}
               className={getClassName({
-                baseClassName: `${DEFAULT_CLASS}__center grid`,
-                className: centerClassName,
+                baseClassName: `${DEFAULT_CLASS}__center`,
+                className: `grid ${mainProps?.className ?? ""}`,
               })}
             >
               {mainChildren}
             </main>
           ) : null}
-          {bottom ? (
+          {bottom.map((slot) => (
             <div
+              key={slot.key}
               className={getClassName({
                 baseClassName: `${DEFAULT_CLASS}__bottom`,
-                className: bottom.props.className,
+                className: slot.props.className,
               })}
             >
-              {bottom}
+              {slot}
             </div>
-          ) : null}
+          ))}
         </div>
         {footerProps ? <FooterComponent {...footerProps} /> : null}
       </div>

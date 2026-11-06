@@ -312,7 +312,7 @@ export const TablePage = () => {
   );
 
   return (
-    <LayoutDemo title="Démo table" centerClassName="table-page">
+    <LayoutDemo title="Démo table" mainProps={{ className: "table-page" }}>
       <section className="table-page__content subgrid">
         <Heading level={1}>Liste des produits</Heading>
         {!isMobile && (

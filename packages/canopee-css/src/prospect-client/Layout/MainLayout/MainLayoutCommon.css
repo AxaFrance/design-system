@@ -12,8 +12,8 @@
     }
 
     .af-main-layout__center {
-      z-index: 0; /* Ensure main layout children are above DebugGrid */
       flex: 1;
+      align-content: start;
     }
 
     .af-main-layout__back-link {

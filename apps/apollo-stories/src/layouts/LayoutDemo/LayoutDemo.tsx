@@ -1,7 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from "react";
 import type { MainLayoutProps } from "@axa-fr/canopee-react/prospect";
-import { Button, Icon, MainLayout } from "@axa-fr/canopee-react/prospect";
+import {
+  Button,
+  DebugGrid,
+  Icon,
+  MainLayout,
+} from "@axa-fr/canopee-react/prospect";
 
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
 import { action } from "storybook/actions";
@@ -33,33 +38,35 @@ export const LayoutDemo = ({
   title?: string;
 } & Omit<
   MainLayoutProps,
-  "headerProps" | "footerProps" | "DebugGridProps"
+  "headerProps" | "footerProps" | "debugGridProps"
 >) => (
-  <MainLayout
-    DebugGridProps={{ isCheckedByDefault: true, forceVisible: true }}
-    headerProps={{
-      appNameProps: { label: title ?? "" },
-      tabMenuProps,
-      menuBurgerProps,
-      "aria-label": title ?? "",
-      actionChildren: (
-        <Button
-          variant="secondary"
-          iconLeft={<Icon src={accountBalance} size="S" />}
-          onClick={action("Logout clicked")}
-        >
-          Accéder à AXA Banque
-        </Button>
-      ),
-    }}
-    footerProps={{
-      links,
-      socialMedias,
-      copyright,
-      expandLinkText,
-    }}
-    {...props}
-  >
-    {children}
-  </MainLayout>
+  <>
+    <DebugGrid<{ forceVisible?: boolean }> isCheckedByDefault forceVisible />
+    <MainLayout
+      headerProps={{
+        appNameProps: { label: title ?? "" },
+        tabMenuProps,
+        menuBurgerProps,
+        "aria-label": title ?? "",
+        actionChildren: (
+          <Button
+            variant="secondary"
+            iconLeft={<Icon src={accountBalance} size="S" />}
+            onClick={action("Logout clicked")}
+          >
+            Accéder à AXA Banque
+          </Button>
+        ),
+      }}
+      footerProps={{
+        links,
+        socialMedias,
+        copyright,
+        expandLinkText,
+      }}
+      {...props}
+    >
+      {children}
+    </MainLayout>
+  </>
 );
