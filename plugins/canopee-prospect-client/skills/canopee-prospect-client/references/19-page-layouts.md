@@ -53,9 +53,9 @@ type MainLayoutProps = {
   headerProps?: HeaderProps; // Props du Header (absent = pas de header)
   footerProps?: FooterProps; // Props du Footer (absent = pas de footer)
   backLinkProps?: LinkProps; // Lien retour sous le header, avec une icône flèche gauche
-  DebugGridProps?: DebugGridProps & { forceVisible?: boolean }; // Affiche la DebugGrid
+  debugGridProps?: DebugGridProps; // Options de la grille de développement
   className?: string; // Classe sur la racine .af-main-layout
-  centerClassName?: string; // Classe sur le <main>
+  mainProps?: Omit<ComponentProps<"main">, "children">; // Props natives du <main>, dont className et ref
   children?: ReactNode; // Contenu rendu dans <main class="grid">
 };
 ```
