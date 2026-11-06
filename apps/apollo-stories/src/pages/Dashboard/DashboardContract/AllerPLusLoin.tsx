@@ -16,37 +16,37 @@ export const AllerPlusLoin = () => (
       <CardMarketing
         image={{
           src: "https://dummyimage.com/282x130/edf/00008F",
-          alt: "Assurez votre habitation dès maintenant",
+          alt: "",
         }}
         title="Assurez votre habitation dès maintenant"
         text="Découvrez notre offre et obtenez un tarif."
         linkProps={{
           href: "/offre",
-          children: "Découvrir notre offre",
+          children: "Découvrir l'offre habitation",
         }}
       />
       <CardMarketing
         image={{
           src: "https://dummyimage.com/282x130/edf/00008F",
-          alt: "Assurez votre habitation dès maintenant",
+          alt: "",
         }}
         title="Assurez votre habitation dès maintenant"
         text="Découvrez notre offre et obtenez un tarif."
         linkProps={{
           href: "/offre",
-          children: "Découvrir notre offre",
+          children: "Obtenir un tarif habitation",
         }}
       />
       <CardMarketing
         image={{
           src: "https://dummyimage.com/282x130/edf/00008F",
-          alt: "Assurez votre habitation dès maintenant",
+          alt: "",
         }}
         title="Assurez votre habitation dès maintenant"
         text="Découvrez notre offre et obtenez un tarif."
         linkProps={{
           href: "/offre",
-          children: "Découvrir notre offre",
+          children: "En savoir plus sur l'offre habitation",
         }}
       />
     </PatternMozaicGrid>

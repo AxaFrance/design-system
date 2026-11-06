@@ -1,6 +1,7 @@
 import { createRef } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { CardMarketing as ProspectCardMarketing } from "../CardMarketingApollo";
 import { CardMarketing as ClientCardMarketing } from "../CardMarketingLF";
 
@@ -15,6 +16,40 @@ describe.each([
     linkProps: { href: "/offer", children: "Discover the offer" },
   };
 
+  it.each(["", "House protected by insurance"])(
+    "has no axe violations with image alt %j",
+    async (alt) => {
+      const { container } = render(
+        <main>
+          <CardMarketing
+            {...props}
+            image={{ ...props.image, alt }}
+            title="Home insurance"
+          />
+          <CardMarketing
+            {...props}
+            image={{ ...props.image, alt: "" }}
+            title="Auto insurance"
+            variant="horizontal"
+          />
+        </main>,
+      );
+
+      expect(
+        screen.getByRole("link", { name: "Home insurance Discover the offer" }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: "Auto insurance Discover the offer" }),
+      ).toBeInTheDocument();
+      if (alt) {
+        expect(screen.getByRole("img", { name: alt })).toBeInTheDocument();
+      } else {
+        expect(screen.queryByRole("img")).toBeNull();
+      }
+      expect(await axe(container)).toHaveNoViolations();
+    },
+  );
+
   it("renders a Card with the default vertical layout and a Link", () => {
     render(<CardMarketing {...props} data-testid="card" />);
 
@@ -26,7 +61,7 @@ describe.each([
     expect(screen.getByText(props.title)).toBeInTheDocument();
     expect(screen.getByText(props.text)).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: "Discover the offer" }),
+      screen.getByRole("link", { name: "Insurance Discover the offer" }),
     ).toHaveAttribute("href", "/offer");
     expect(screen.getByRole("img", { name: props.image.alt })).toHaveAttribute(
       "src",
@@ -53,6 +88,52 @@ describe.each([
 
     expect(screen.getByText("title").tagName).toBe("STRONG");
     expect(screen.getByText("details").tagName).toBe("EM");
+  });
+
+  it("supports block elements in text without invalid nesting", () => {
+    const { container } = render(
+      <CardMarketing
+        {...props}
+        text={
+          <>
+            <p>First paragraph</p>
+            <ul>
+              <li>First detail</li>
+            </ul>
+          </>
+        }
+      />,
+    );
+
+    const text = container.querySelector(".af-card-marketing__text");
+    expect(text?.tagName).toBe("DIV");
+    expect(text).toContainElement(screen.getByText("First paragraph"));
+    expect(text).toContainElement(screen.getByText("First detail"));
+  });
+
+  it("includes the title in the link name without adding a heading", () => {
+    render(
+      <>
+        <CardMarketing
+          {...props}
+          title="Home insurance"
+          linkProps={{ ...props.linkProps, children: "Discover the offer" }}
+        />
+        <CardMarketing
+          {...props}
+          title="Auto insurance"
+          linkProps={{ ...props.linkProps, children: "Discover the offer" }}
+        />
+      </>,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "Home insurance Discover the offer" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Auto insurance Discover the offer" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("heading")).toBeNull();
   });
 
   it("forwards root props and merges classes without duplicates", async () => {
@@ -115,13 +196,14 @@ describe.each([
         {...props}
         linkProps={{
           ...props.linkProps,
+          "aria-label": "Open insurance offer",
           openInNewTab: true,
           className: "custom-link",
         }}
       />,
     );
 
-    const link = screen.getByRole("link", { name: /Discover the offer/ });
+    const link = screen.getByRole("link", { name: "Open insurance offer" });
     expect(link).toHaveClass("af-link", "custom-link");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");

@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react";
+import { useId, type ComponentProps, type ReactNode } from "react";
 import arrowForward from "@material-symbols/svg-400/outlined/arrow_forward.svg";
 import "@axa-fr/canopee-css/prospect/CardMarketing/CardMarketingAll.css";
 import type { CardCommon, CardCommonProps } from "../Card/CardCommon";
@@ -23,7 +23,7 @@ export type CardMarketingProps = Omit<
   title: ReactNode;
   /** Description displayed between the title and link. */
   text: ReactNode;
-  /** Link destination, label and native link attributes. */
+  /** Link destination and native attributes. Its accessible name combines title and label unless `aria-label` is provided. */
   linkProps: LinkProps & { href: string; children: ReactNode };
   /** Image above the content by default; horizontal places it on the left on desktop. */
   variant?: "vertical" | "horizontal";
@@ -47,35 +47,50 @@ export const CardMarketingCommon = ({
   LinkComponent,
   IconComponent,
   ...cardProps
-}: CardMarketingCommonProps) => (
-  <CardComponent
-    {...cardProps}
-    className={getClassName({
-      baseClassName: DEFAULT_CLASS_NAME,
-      modifiers: [variant],
-      className,
-    })}
-  >
-    <picture className={`${DEFAULT_CLASS_NAME}__picture`}>
-      {sources.map((source) => (
-        <source
-          key={`${source.media ?? ""}-${source.type ?? ""}-${source.srcSet}`}
-          {...source}
+}: CardMarketingCommonProps) => {
+  const titleId = useId();
+  const linkLabelId = useId();
+  const linkLabelledBy = linkProps["aria-label"]
+    ? linkProps["aria-labelledby"]
+    : [linkProps["aria-labelledby"], titleId, linkLabelId]
+        .filter(Boolean)
+        .join(" ");
+
+  return (
+    <CardComponent
+      {...cardProps}
+      className={getClassName({
+        baseClassName: DEFAULT_CLASS_NAME,
+        modifiers: [variant],
+        className,
+      })}
+    >
+      <picture className={`${DEFAULT_CLASS_NAME}__picture`}>
+        {sources.map((source) => (
+          <source
+            key={`${source.media ?? ""}-${source.type ?? ""}-${source.srcSet}`}
+            {...source}
+          />
+        ))}
+        <img
+          {...image}
+          alt={image.alt}
+          className={`${DEFAULT_CLASS_NAME}__image`}
         />
-      ))}
-      <img
-        {...image}
-        alt={image.alt}
-        className={`${DEFAULT_CLASS_NAME}__image`}
-      />
-    </picture>
-    <div className={`${DEFAULT_CLASS_NAME}__content`}>
-      <strong className={`${DEFAULT_CLASS_NAME}__title`}>{title}</strong>
-      <p className={`${DEFAULT_CLASS_NAME}__text`}>{text}</p>
-      <LinkComponent
-        rightIcon={<IconComponent src={arrowForward} size="S" />}
-        {...linkProps}
-      />
-    </div>
-  </CardComponent>
-);
+      </picture>
+      <div className={`${DEFAULT_CLASS_NAME}__content`}>
+        <strong id={titleId} className={`${DEFAULT_CLASS_NAME}__title`}>
+          {title}
+        </strong>
+        <div className={`${DEFAULT_CLASS_NAME}__text`}>{text}</div>
+        <LinkComponent
+          rightIcon={<IconComponent src={arrowForward} size="S" />}
+          {...linkProps}
+          aria-labelledby={linkLabelledBy}
+        >
+          <span id={linkLabelId}>{linkProps.children}</span>
+        </LinkComponent>
+      </div>
+    </CardComponent>
+  );
+};

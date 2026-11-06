@@ -32,6 +32,10 @@ fallback image.
 places it on the left from the small desktop breakpoint (1024px); below that
 breakpoint the image remains above the content.
 
+The link's accessible name combines the card title and link label by default.
+An `aria-label` provided through `linkProps` overrides this name. Keep the
+visible link label at the start of any custom `aria-label`.
+
 Other `Card` props, including `style`, `className`, event handlers and ARIA
 attributes, are forwarded to the root. `title`, `variant` and `children` are
 reserved for the marketing card's content and layout.

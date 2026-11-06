@@ -48,6 +48,11 @@
         aspect-ratio: auto;
         flex: 0 0 42%;
       }
+
+      .af-card-marketing__image {
+        position: absolute;
+        inset: 0;
+      }
     }
   }
 }
