@@ -45,7 +45,8 @@
   dl,
   dt,
   dd,
-  ul {
+  ul,
+  ol {
     margin: 0;
   }
 }
