@@ -1,0 +1,23 @@
+@layer canopee {
+  .af-main-layout {
+    display: flex;
+    min-height: 100svh;
+    flex-direction: column;
+    background-color: var(--main-layout-background-color);
+
+    .af-main-layout__content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .af-main-layout__center {
+      flex: 1;
+      align-content: start;
+    }
+
+    .af-main-layout__back-link {
+      padding-top: var(--rem-24);
+    }
+  }
+}

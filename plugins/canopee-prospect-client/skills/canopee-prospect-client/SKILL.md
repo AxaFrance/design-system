@@ -123,6 +123,24 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 <DebugGrid />
 ```
 
+Pour construire une page, ne recrée pas la grille à la main : utilise `MainLayout` (header, `<main class="grid">`, footer), `ColumnsLayout` (colonnes gauche, contenu, droite) et les patterns (`PatternWithAction`, `PatternMozaicGrid`, `PatternMozaicFree`, `PatternCardMarketing`). Tout est détaillé dans **[references/19-page-layouts.md](./references/19-page-layouts.md)**.
+
+```tsx
+<MainLayout headerProps={headerProps} footerProps={footerProps}>
+	<ColumnsLayout headingProps={{ children: "Bonjour Marion" }}>
+		<ColumnsLayout.Left>…</ColumnsLayout.Left>
+		<ColumnsLayout.Content>
+			<PatternWithAction headingProps={{ children: "Mes contrats" }}>
+				<PatternWithAction.Action>
+					<Link href="/contrats" variant="button-secondary">Voir tout</Link>
+				</PatternWithAction.Action>
+				<PatternMozaicFree>…</PatternMozaicFree>
+			</PatternWithAction>
+		</ColumnsLayout.Content>
+	</ColumnsLayout>
+</MainLayout>
+```
+
 ## Catalogue des composants — quand lire quelle référence
 
 ### Boutons et actions
@@ -234,6 +252,17 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `TableMobileCard`  | [14-data-display.md](./references/14-data-display.md) | Table au format carte sur mobile (dl/dt/dd) |
 | `TimelineVertical` | [14-data-display.md](./references/14-data-display.md) | Timeline verticale avec titre et tag        |
 
+### Layouts de page et patterns
+
+| Composant              | Référence                                             | Cas d'usage                                                                  |
+| ---------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `MainLayout`           | [19-page-layouts.md](./references/19-page-layouts.md) | Page complète : Header, lien retour, slots Top/Bottom, `<main class="grid">`, Footer |
+| `ColumnsLayout`        | [19-page-layouts.md](./references/19-page-layouts.md) | Titre de page + colonnes Left / Content / Right (`isFit` pour centrer)        |
+| `PatternWithAction`    | [19-page-layouts.md](./references/19-page-layouts.md) | Section titre + action (à droite en desktop, après le contenu en mobile)      |
+| `PatternMozaicGrid`    | [19-page-layouts.md](./references/19-page-layouts.md) | Mosaïque alignée sur les colonnes de la grille, responsive par breakpoint     |
+| `PatternMozaicFree`    | [19-page-layouts.md](./references/19-page-layouts.md) | N colonnes égales indépendantes de la grille (1 colonne sous 1024px)          |
+| `PatternCardMarketing` | [19-page-layouts.md](./references/19-page-layouts.md) | Disposition de `CardMarketing` (la 1re occupe 2 lignes avec 3 cartes)         |
+
 ### Layout
 
 | Composant       | Référence                                 | Cas d'usage                                 |
@@ -244,7 +273,8 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 | `ExitLayoutSkeleton` | [12-layout.md](./references/12-layout.md) | Version skeleton de `ExitLayout`            |
 | `Fieldset`      | [12-layout.md](./references/12-layout.md) | Groupe de form en carte                     |
 | `LevelSelector` | [12-layout.md](./references/12-layout.md) | Sélecteur de niveau par incréments          |
-| `Card`          | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant`) |
+| `Card`          | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant="unstyled vertical"`) |
+| `CardMarketing` | [12-layout.md](./references/12-layout.md) | Carte promotionnelle image + titre + texte + lien (vertical / horizontal) |
 | `AppName`       | [12-layout.md](./references/12-layout.md) | Logo AXA + nom d'application, lien cliquable |
 | `Header`        | [12-layout.md](./references/12-layout.md) | En-tête responsive (AppName + TabMenu + MenuBurger) |
 | `MenuBurger`    | [12-layout.md](./references/12-layout.md) | Menu compte utilisateur avec popover desktop |
@@ -258,6 +288,12 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ## Changements récents à connaître
 
+- Nouveaux layouts de page `MainLayout` et `ColumnsLayout`, et nouveaux patterns `PatternWithAction`, `PatternMozaicGrid`, `PatternMozaicFree` et `PatternCardMarketing` (voir [19-page-layouts.md](./references/19-page-layouts.md)).
+- Nouveau composant `CardMarketing` (variants `vertical` / `horizontal`).
+- `Card` accepte maintenant les variants combinables `unstyled` et `vertical` (par exemple `variant="vertical unstyled"`).
+- `Link` accepte les variants `button-*` pour s'afficher comme un bouton : préfère-les à `className="af-btn-client …"`.
+- Le reboot remet à zéro la marge des `ul`.
+- Dans Storybook, les pages d'exemple sont regroupées sous **Pages/Exemples** (dont un Dashboard complet) et les layouts sous **Layouts**.
 - `Skeleton` a été refondu autour d'une API typée par `variant` et `size` avec `SkeletonProps` discriminé.
 - `SkeletonGrid` accepte maintenant `grid: SkeletonProps[][]` et rend chaque cellule comme un vrai `Skeleton`.
 - `SkeletonList` s'appuie sur `SkeletonGrid` pour éviter de dupliquer le rendu des cellules.
@@ -283,4 +319,4 @@ La grille repose sur des **colonnes CSS custom properties** via `GridContainerPr
 
 ---
 
-_Version : 2026.08.07_
+_Version : 2026.11.02_

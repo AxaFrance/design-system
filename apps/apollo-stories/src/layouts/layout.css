@@ -1,0 +1,15 @@
+.layout-demo {
+  .af-card--layout,
+  .af-exit-page__actions,
+  .af-exit-page__content,
+  .af-form-layout__header,
+  .af-form-layout__fields,
+  .af-form-layout__actions {
+    background: hsla(137, 99%, 34%, 0.216);
+    border: 3px dashed hsla(137, 99%, 34%, 0.613);
+  }
+
+  .af-card--layout--plainheight {
+    height: 80svh;
+  }
+}

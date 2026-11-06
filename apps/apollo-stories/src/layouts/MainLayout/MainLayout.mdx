@@ -1,0 +1,118 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as MainLayoutStories from "./MainLayout.stories";
+
+<Meta of={MainLayoutStories} name="Main Layout" />
+
+# Main Layout
+
+`MainLayout` provides the page skeleton of an application: a header, optional
+areas above and below the main content, the `<main>` element and a footer.
+
+Like [`ColumnsLayout`](?path=/docs/layouts-columns-layout--docs), the areas are
+placed around the main content with subcomponents: `MainLayout.Top` and
+`MainLayout.Bottom`. The other children are the main content.
+
+## Import
+
+```tsx
+import { MainLayout } from "@axa-fr/canopee-react/prospect";
+
+export const MyPage = () => (
+  <MainLayout
+    headerProps={{ appNameProps: { label: "Car insurance" } }}
+    footerProps={{ copyright: "@AXA - Tous droits réservés" }}
+  >
+    <MainLayout.Top>
+      <p>Your quote / Your cover</p>
+    </MainLayout.Top>
+    <p>Your available cover options</p>
+    <MainLayout.Bottom>
+      <p>Need help?</p>
+    </MainLayout.Bottom>
+  </MainLayout>
+);
+```
+
+## Structure
+
+The areas are always rendered in the following order, whatever the order of
+the subcomponents in `children`. Slots may be repeated and nested in fragments.
+Children outside `Top` and `Bottom` are rendered in `<main>`. Slots returned by
+a custom component are treated as ordinary main content because the layout
+cannot inspect a component's rendered output.
+
+| Order | Area         | Provided by         | Rendered element                                   |
+| ----- | ------------ | ------------------- | -------------------------------------------------- |
+| 1     | Debug grid   | `debugGridProps`    | `DebugGrid`                                        |
+| 2     | Header       | `headerProps`       | `Header`                                           |
+| 3     | Back link    | `backLinkProps`     | `<div className="af-main-layout__back-link grid">` |
+| 4     | Top area     | `MainLayout.Top`    | `<div className="af-main-layout__top">`            |
+| 5     | Main content | `children`          | `<main className="af-main-layout__center grid">`   |
+| 6     | Bottom area  | `MainLayout.Bottom` | `<div className="af-main-layout__bottom">`         |
+| 7     | Footer       | `footerProps`       | `Footer`                                           |
+
+Use `MainLayout.Top` for content placed before the page content, such as a
+breadcrumb or a message, and `MainLayout.Bottom` for content placed after it,
+outside the `<main>` landmark.
+For urgent messages outside `<main>`, give the message itself `role="alert"` so
+assistive technology announces it without changing the slot's placement.
+
+All children that are not wrapped in `MainLayout.Top` or `MainLayout.Bottom`
+are rendered in the main content: a page layout such as `ColumnsLayout` can be
+passed directly, without adding another `<main>` element.
+
+```tsx
+<MainLayout headerProps={headerProps}>
+  <MainLayout.Top>
+    <CardMessage title="Information" text="…" />
+  </MainLayout.Top>
+  <ColumnsLayout headingProps={{ children: "Hello" }}>…</ColumnsLayout>
+</MainLayout>
+```
+
+## Props
+
+### MainLayout
+
+Use `mainProps` to pass native attributes and a `ref` to the main element, for
+example `mainProps={{ id: "page-content", tabIndex: -1 }}` as the target of a
+skip link to `#page-content`. `mainProps.className` is merged with the internal
+main classes. Only `children` is excluded: use layout children instead. These
+props do not force an empty main element to render when there is no main content.
+
+| Prop             | Type                                       | Description                                                                    |
+| ---------------- | ------------------------------------------ | ------------------------------------------------------------------------------ |
+| `children`       | `ReactNode`                                | Main content. `MainLayout.Top` and `MainLayout.Bottom` are rendered around it. |
+| `headerProps`    | `HeaderProps`                              | Props passed to `Header`. Omit it to render no header.                         |
+| `footerProps`    | `FooterProps`                              | Props passed to `Footer`. Omit it to render no footer.                         |
+| `backLinkProps`  | `LinkProps`                                | Props of the back link displayed under the header. Omit it to render none.     |
+| `debugGridProps` | `DebugGridProps`                           | Development-only grid options (`cols`, `isCheckedByDefault`).                  |
+| `className`      | `string`                                   | Additional class applied to the layout root element.                           |
+| `mainProps`      | `Omit<ComponentProps<"main">, "children">` | Native props passed to `<main>`, including `className` and `ref`.              |
+
+### MainLayout.Top, MainLayout.Bottom
+
+| Prop        | Type        | Description                                   |
+| ----------- | ----------- | --------------------------------------------- |
+| `children`  | `ReactNode` | Content of the area.                          |
+| `className` | `string`    | Additional class applied to the area wrapper. |
+
+<Controls of={MainLayoutStories.Default} />
+
+## Examples
+
+### Top + Children + Bottom
+
+<Canvas of={MainLayoutStories.Default} />
+
+### Top + Children
+
+<Canvas of={MainLayoutStories.TopAndContent} />
+
+### Children + Bottom
+
+<Canvas of={MainLayoutStories.ContentAndBottom} />
+
+### Children only
+
+<Canvas of={MainLayoutStories.ContentOnly} />

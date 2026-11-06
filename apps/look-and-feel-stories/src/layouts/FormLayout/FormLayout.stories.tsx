@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Card, FormLayout, Link } from "@axa-fr/canopee-react/client";
 import type { ComponentProps } from "react";
 import { LayoutDemo } from "../LayoutDemo/LayoutDemo";
+import "../layout.css";
 
 const meta: Meta = {
   title: "Layouts/Form Layout",
@@ -13,7 +14,10 @@ export default meta;
 type StoryProps = ComponentProps<typeof FormLayout>;
 
 const Demo = () => (
-  <LayoutDemo title="Form Layout Title">
+  <LayoutDemo
+    mainProps={{ className: "layout-demo" }}
+    title="Form Layout Title"
+  >
     <FormLayout>
       <FormLayout.Header>
         <Card>
@@ -87,7 +91,10 @@ const Demo = () => (
           </code>
           <p>
             You can play with them on this demo{" "}
-            <Link href="./?path=/story/pages-form--form-story" target="_top">
+            <Link
+              href="./?path=/story/pages-exemples-form--form-story"
+              target="_top"
+            >
               here
             </Link>
             .

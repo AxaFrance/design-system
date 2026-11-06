@@ -1,0 +1,31 @@
+@layer canopee {
+  .grid .af-pattern-mozaic-grid {
+    --row-gap: var(--rem-16);
+    --mozaic-available-cols: var(--cols);
+  }
+
+  .grid .af-pattern-mozaic-grid.subgrid > * {
+    --start: auto;
+    --cols: clamp(1, var(--cols-mobile), var(--mozaic-available-cols));
+
+    @media (--tablet) {
+      --cols: clamp(1, var(--cols-tablet), var(--mozaic-available-cols));
+    }
+
+    @media (--desktop-small) {
+      --cols: clamp(1, var(--cols-desktop-small), var(--mozaic-available-cols));
+    }
+
+    @media (--desktop-medium) {
+      --cols: clamp(
+        1,
+        var(--cols-desktop-medium),
+        var(--mozaic-available-cols)
+      );
+    }
+
+    @media (--desktop-large) {
+      --cols: clamp(1, var(--cols-desktop-large), var(--mozaic-available-cols));
+    }
+  }
+}

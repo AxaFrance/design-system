@@ -1,16 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from "react";
+import type { MainLayoutProps } from "@axa-fr/canopee-react/prospect";
 import {
-  DebugGrid,
-  Header,
-  Icon,
-  Footer,
   Button,
+  DebugGrid,
+  Icon,
+  MainLayout,
 } from "@axa-fr/canopee-react/prospect";
 
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
 import { action } from "storybook/actions";
-import "./LayoutDemo.css";
 
 import {
   copyright,
@@ -33,32 +32,41 @@ import {
 export const LayoutDemo = ({
   children,
   title,
+  ...props
 }: {
   children: ReactNode;
   title?: string;
-}) => (
+} & Omit<
+  MainLayoutProps,
+  "headerProps" | "footerProps" | "debugGridProps"
+>) => (
   <>
-    <DebugGrid isCheckedByDefault forceVisible />
-    <Header
-      appNameProps={{ label: title ?? "Mon application" }}
-      tabMenuProps={tabMenuProps}
-      menuBurgerProps={menuBurgerProps}
-      actionChildren={
-        <Button
-          variant="secondary"
-          iconLeft={<Icon src={accountBalance} size="S" />}
-          onClick={action("Logout clicked")}
-        >
-          Accéder à AXA Banque
-        </Button>
-      }
-    />
-    <main className="grid">{children}</main>
-    <Footer
-      links={links}
-      socialMedias={socialMedias}
-      copyright={copyright}
-      expandLinkText={expandLinkText}
-    />
+    <DebugGrid<{ forceVisible?: boolean }> isCheckedByDefault forceVisible />
+    <MainLayout
+      headerProps={{
+        appNameProps: { label: title ?? "" },
+        tabMenuProps,
+        menuBurgerProps,
+        "aria-label": title ?? "",
+        actionChildren: (
+          <Button
+            variant="secondary"
+            iconLeft={<Icon src={accountBalance} size="S" />}
+            onClick={action("Logout clicked")}
+          >
+            Accéder à AXA Banque
+          </Button>
+        ),
+      }}
+      footerProps={{
+        links,
+        socialMedias,
+        copyright,
+        expandLinkText,
+      }}
+      {...props}
+    >
+      {children}
+    </MainLayout>
   </>
 );

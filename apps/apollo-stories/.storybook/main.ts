@@ -27,6 +27,7 @@ export default defineMain({
     "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../src/pages/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../src/pages/**/*.mdx",
+    "../src/layouts/**/*.mdx",
     "../src/layouts/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   staticDirs: ["../public"],

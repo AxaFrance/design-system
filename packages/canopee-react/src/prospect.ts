@@ -28,6 +28,10 @@ export {
   type CardVariants,
 } from "./prospect-client/Card/CardApollo";
 export {
+  CardMarketing,
+  type CardMarketingProps,
+} from "./prospect-client/CardMarketing/CardMarketingApollo";
+export {
   CardMessage,
   cardMessageVariants,
   type CardMessageVariants,
@@ -128,9 +132,34 @@ export {
   type FooterProps,
 } from "./prospect-client/Layout/Footer/FooterApollo";
 export {
+  ColumnsLayout,
+  type ColumnsLayoutProps,
+} from "./prospect-client/Layout/ColumnLayout/ColumnsLayoutApollo";
+export {
+  MainLayout,
+  type MainLayoutProps,
+  type MainLayoutSlotProps,
+} from "./prospect-client/Layout/MainLayout/MainLayoutApollo";
+export {
   FormLayout,
   type FormLayoutProps,
 } from "./prospect-client/Layout/FormLayout/FormLayout";
+export {
+  PatternMozaicGrid,
+  type PatternMozaicGridProps,
+} from "./prospect-client/Layout/PatternMozaicGrid/PatternMozaicGrid";
+export {
+  PatternMozaicFree,
+  type PatternMozaicFreeProps,
+} from "./prospect-client/Layout/PatternMozaicFree/PatternMozaicFree";
+export {
+  PatternCardMarketing,
+  type PatternCardMarketingProps,
+} from "./prospect-client/Layout/PatternCardMarketing/PatternCardMarketing";
+export {
+  PatternWithAction,
+  type PatternWithActionProps,
+} from "./prospect-client/Layout/PatternWithAction/PatternWithActionApollo";
 export {
   LevelSelector,
   type LevelSelectorProps,

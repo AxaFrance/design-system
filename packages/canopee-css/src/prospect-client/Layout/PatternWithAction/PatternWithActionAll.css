@@ -1,0 +1,45 @@
+@layer canopee {
+  /*
+   * The section stays a `.subgrid` so its content can use the parent columns.
+   * Do not set `display`, `grid-template-columns` or `column-gap` on it.
+   */
+  .af-pattern-with-action {
+    --row-gap: var(--rem-16);
+  }
+
+  .af-pattern-with-action__header {
+    display: contents;
+  }
+
+  .af-pattern-with-action.subgrid > .af-pattern-with-action__header > *,
+  .af-pattern-with-action.subgrid > .af-pattern-with-action__content,
+  .af-pattern-with-action.subgrid > .af-pattern-with-action__action {
+    grid-column: 1 / -1;
+  }
+
+  /* The action follows content in the DOM, but shares the heading row on desktop. */
+  @media (--desktop-small) {
+    .af-pattern-with-action__header > * {
+      grid-row: 1;
+    }
+
+    .af-pattern-with-action.subgrid:has(> .af-pattern-with-action__header)
+      > .af-pattern-with-action__content,
+    .af-pattern-with-action.subgrid:has(> .af-pattern-with-action__action)
+      > .af-pattern-with-action__content {
+      grid-row: 2;
+    }
+
+    .af-pattern-with-action.subgrid:has(> .af-pattern-with-action__action)
+      > .af-pattern-with-action__header
+      > * {
+      grid-column: 1 / -4;
+    }
+
+    .af-pattern-with-action.subgrid > .af-pattern-with-action__action {
+      grid-column: -4 / -1;
+      grid-row: 1;
+      justify-self: end;
+    }
+  }
+}

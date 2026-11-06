@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TablePage } from "./Table";
 
 const meta: Meta = {
-  title: "Pages/Table",
+  title: "Pages/Exemples/Table",
   parameters: { layout: "fullscreen" },
 };
 

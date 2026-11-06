@@ -3,6 +3,7 @@ import { Card, ExitLayout } from "@axa-fr/canopee-react/client";
 import check from "@material-symbols/svg-400/rounded/check.svg";
 import type { ComponentProps } from "react";
 import { LayoutDemo } from "../LayoutDemo/LayoutDemo";
+import "../layout.css";
 
 const meta: Meta = {
   title: "Layouts/Exit Layout",
@@ -37,7 +38,10 @@ const Demo = ({
   content = 4,
   heightAgent = 400,
 }: StoryProps) => (
-  <LayoutDemo title="Form Layout Title">
+  <LayoutDemo
+    mainProps={{ className: "layout-demo" }}
+    title="Form Layout Title"
+  >
     <ExitLayout headingProps={headingProps} iconProps={iconProps}>
       <ExitLayout.Content>
         {Array.from({ length: content }, (_, i) => (
@@ -46,7 +50,11 @@ const Demo = ({
       </ExitLayout.Content>
 
       <ExitLayout.Agent>
-        {showAgent ? <Card style={{ height: heightAgent }}>AGENT</Card> : null}
+        {showAgent ? (
+          <Card className="af-card--layout" style={{ height: heightAgent }}>
+            AGENT
+          </Card>
+        ) : null}
       </ExitLayout.Agent>
 
       <ExitLayout.Action>

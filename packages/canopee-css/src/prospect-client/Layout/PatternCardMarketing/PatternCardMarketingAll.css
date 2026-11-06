@@ -1,0 +1,21 @@
+@layer canopee {
+  .af-pattern-card-marketing,
+  .grid .af-pattern-card-marketing {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: 1fr;
+    gap: var(--rem-16);
+
+    > * {
+      grid-column: auto;
+    }
+
+    @media (--desktop-small) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      > :first-child:nth-last-child(3) {
+        grid-row: span 2;
+      }
+    }
+  }
+}

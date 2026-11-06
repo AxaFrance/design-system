@@ -5,6 +5,7 @@
     border: 1px solid var(--data-agent-border-color);
     border-radius: var(--radius-8);
     flex-direction: column;
+    background-color: var(--white-1000);
   }
 
   .af-data-agent__intro {

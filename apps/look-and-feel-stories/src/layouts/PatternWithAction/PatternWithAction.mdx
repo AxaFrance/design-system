@@ -1,0 +1,64 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as Stories from "./PatternWithAction.stories";
+
+<Meta of={Stories} />
+
+# PatternWithAction
+
+Section composed of an optional heading, an optional call to action and content.
+The action follows content in the DOM and keyboard order. On desktop (above
+1023px), it is visually aligned to the right of the heading; on mobile and
+tablet, it is displayed after the content.
+
+```tsx
+import { Button, PatternWithAction } from "@axa-fr/canopee-react/client";
+
+<main className="grid">
+  <PatternWithAction headingProps={{ children: "Mes derniers documents" }}>
+    <p>Content</p>
+    <PatternWithAction.Action>
+      <Button variant="secondary">Afficher mes documents</Button>
+    </PatternWithAction.Action>
+  </PatternWithAction>
+</main>;
+```
+
+## Props
+
+| Prop                   | Description                                                     |
+| ---------------------- | --------------------------------------------------------------- |
+| `headingProps`         | `Heading` props. The heading level defaults to `2`.             |
+| `children`             | Content. Wrap the call to action in `PatternWithAction.Action`. |
+| Native `section` props | `id`, `className`, `style`, `ref`, ARIA attributes, etc.        |
+
+All direct `PatternWithAction.Action` slots are displayed after content in the
+DOM; on desktop they are visually aligned with the heading. Slots may be
+repeated and nested in fragments. Other children are content. An action
+returned by a custom component is treated as content because the layout cannot
+inspect a component's rendered output. The heading area is omitted when there
+is no heading.
+
+## Composition
+
+Use inside `.grid`, either directly or through an uninterrupted chain of
+`.subgrid` containers. The component adds `subgrid` automatically, so its
+content (for example `PatternMozaicGrid`) inherits the parent's columns.
+The vertical gap uses `--rem-16`.
+
+## With action
+
+<Canvas of={Stories.WithAction} />
+<Controls of={Stories.WithAction} />
+
+## Without action
+
+<Canvas of={Stories.WithoutAction} />
+
+## Custom heading level
+
+<Canvas of={Stories.CustomHeadingLevel} />
+
+## Debug grid
+
+The stories include `DebugGrid`. Use the **Grid** toggle at the bottom left of
+the canvas to show or hide the grid columns.

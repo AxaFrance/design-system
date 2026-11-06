@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import {
   Button,
-  DebugGrid,
   Dropdown,
   Pagination,
   Table,
@@ -16,6 +15,7 @@ import {
   Tag,
   Heading,
 } from "@axa-fr/canopee-react/prospect";
+import { LayoutDemo } from "../../layouts/LayoutDemo/LayoutDemo";
 
 const useIsSmallScreen = (breakPointToCheck: number) => {
   const subscribe = useCallback((listener: () => void) => {
@@ -312,139 +312,133 @@ export const TablePage = () => {
   );
 
   return (
-    <>
-      <DebugGrid isCheckedByDefault forceVisible />
-      <main className="grid table-page">
-        <section className="table-page__content subgrid">
-          <Heading level={1}>Liste des produits</Heading>
-          {!isMobile && (
-            <>
-              <div className="table-page__dropdown">
-                <Dropdown
-                  id="items-per-page"
-                  label="Nombre de ligne"
-                  value={itemsPerPage.toString()}
-                  onChange={handleItemsPerPageChange}
-                >
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                </Dropdown>
-              </div>
+    <LayoutDemo title="Démo table" mainProps={{ className: "table-page" }}>
+      <section className="table-page__content subgrid">
+        <Heading level={1}>Liste des produits</Heading>
+        {!isMobile && (
+          <>
+            <div className="table-page__dropdown">
+              <Dropdown
+                id="items-per-page"
+                label="Nombre de lignes"
+                value={itemsPerPage.toString()}
+                onChange={handleItemsPerPageChange}
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </Dropdown>
+            </div>
 
-              <div className="table-scroll">
-                <Table>
-                  <Table.THead>
-                    <Table.Tr>
-                      <Table.Th
-                        onCheck={() => handleColumnCheck(0)}
-                        onSort={() => handleSort("reference")}
-                      >
-                        Référence
-                      </Table.Th>
-                      <Table.Th
-                        onCheck={() => handleColumnCheck(1)}
-                        onSort={() => handleSort("societe")}
-                      >
-                        Société
-                      </Table.Th>
-                      <Table.Th
-                        onCheck={() => handleColumnCheck(2)}
-                        onSort={() => handleSort("contact")}
-                      >
-                        Contact
-                      </Table.Th>
-                      <Table.Th
-                        onCheck={() => handleColumnCheck(3)}
-                        onSort={() => handleSort("montant")}
-                      >
-                        Montant
-                      </Table.Th>
-                      <Table.Th
-                        onCheck={() => handleColumnCheck(4)}
-                        onSort={() => handleSort("statut")}
-                      >
-                        Statut
-                      </Table.Th>
+            <div className="table-scroll">
+              <Table>
+                <Table.THead>
+                  <Table.Tr>
+                    <Table.Th
+                      onCheck={() => handleColumnCheck(0)}
+                      onSort={() => handleSort("reference")}
+                    >
+                      Référence
+                    </Table.Th>
+                    <Table.Th
+                      onCheck={() => handleColumnCheck(1)}
+                      onSort={() => handleSort("societe")}
+                    >
+                      Société
+                    </Table.Th>
+                    <Table.Th
+                      onCheck={() => handleColumnCheck(2)}
+                      onSort={() => handleSort("contact")}
+                    >
+                      Contact
+                    </Table.Th>
+                    <Table.Th
+                      onCheck={() => handleColumnCheck(3)}
+                      onSort={() => handleSort("montant")}
+                    >
+                      Montant
+                    </Table.Th>
+                    <Table.Th
+                      onCheck={() => handleColumnCheck(4)}
+                      onSort={() => handleSort("statut")}
+                    >
+                      Statut
+                    </Table.Th>
+                  </Table.Tr>
+                </Table.THead>
+
+                <Table.TBody variant="alternate">
+                  {currentData.map((row) => (
+                    <Table.Tr key={row.id} size="M">
+                      <Table.Td variant={getColumnVariant(0)}>
+                        {row.reference}
+                      </Table.Td>
+                      <Table.Td variant={getColumnVariant(1)}>
+                        {row.societe}
+                      </Table.Td>
+                      <Table.Td variant={getColumnVariant(2)}>
+                        {row.contact}
+                      </Table.Td>
+                      <Table.Td position="right" variant={getColumnVariant(3)}>
+                        {row.montant.toFixed(2)} €
+                      </Table.Td>
+                      <Table.Td variant={getColumnVariant(4)}>
+                        {getStatusTag(row.statut)}
+                      </Table.Td>
                     </Table.Tr>
-                  </Table.THead>
+                  ))}
+                </Table.TBody>
+              </Table>
+            </div>
 
-                  <Table.TBody variant="alternate">
-                    {currentData.map((row) => (
-                      <Table.Tr key={row.id} size="M">
-                        <Table.Td variant={getColumnVariant(0)}>
-                          {row.reference}
-                        </Table.Td>
-                        <Table.Td variant={getColumnVariant(1)}>
-                          {row.societe}
-                        </Table.Td>
-                        <Table.Td variant={getColumnVariant(2)}>
-                          {row.contact}
-                        </Table.Td>
-                        <Table.Td
-                          position="right"
-                          variant={getColumnVariant(3)}
-                        >
-                          {row.montant.toFixed(2)} €
-                        </Table.Td>
-                        <Table.Td variant={getColumnVariant(4)}>
-                          {getStatusTag(row.statut)}
-                        </Table.Td>
-                      </Table.Tr>
-                    ))}
-                  </Table.TBody>
-                </Table>
-              </div>
+            <Pagination
+              numberPages={totalPages}
+              currentPage={currentPage}
+              onChangePage={handlePageChange}
+              asItem={Button}
+              className="table-page__pagination"
+            />
+          </>
+        )}
 
-              <Pagination
-                numberPages={totalPages}
-                currentPage={currentPage}
-                onChangePage={handlePageChange}
-                asItem={Button}
-                className="table-page__pagination"
-              />
-            </>
-          )}
+        {isMobile ? (
+          <>
+            {sortedData.map((elem) => (
+              <TableMobileCard key={elem.id}>
+                <TableMobileCard.DRow>
+                  <TableMobileCard.Dt>Référence</TableMobileCard.Dt>
+                  <TableMobileCard.Dd>{elem.reference}</TableMobileCard.Dd>
+                </TableMobileCard.DRow>
 
-          {isMobile ? (
-            <>
-              {sortedData.map((elem) => (
-                <TableMobileCard key={elem.id}>
-                  <TableMobileCard.DRow>
-                    <TableMobileCard.Dt>Référence</TableMobileCard.Dt>
-                    <TableMobileCard.Dd>{elem.reference}</TableMobileCard.Dd>
-                  </TableMobileCard.DRow>
+                <TableMobileCard.DRow>
+                  <TableMobileCard.Dt>Société</TableMobileCard.Dt>
+                  <TableMobileCard.Dd>{elem.societe}</TableMobileCard.Dd>
+                </TableMobileCard.DRow>
 
-                  <TableMobileCard.DRow>
-                    <TableMobileCard.Dt>Société</TableMobileCard.Dt>
-                    <TableMobileCard.Dd>{elem.societe}</TableMobileCard.Dd>
-                  </TableMobileCard.DRow>
+                <TableMobileCard.DRow>
+                  <TableMobileCard.Dt>Contact</TableMobileCard.Dt>
+                  <TableMobileCard.Dd>{elem.contact}</TableMobileCard.Dd>
+                </TableMobileCard.DRow>
 
-                  <TableMobileCard.DRow>
-                    <TableMobileCard.Dt>Contact</TableMobileCard.Dt>
-                    <TableMobileCard.Dd>{elem.contact}</TableMobileCard.Dd>
-                  </TableMobileCard.DRow>
+                <TableMobileCard.DRow>
+                  <TableMobileCard.Dt>Montant</TableMobileCard.Dt>
+                  <TableMobileCard.Dd>
+                    {elem.montant.toFixed(2)} €
+                  </TableMobileCard.Dd>
+                </TableMobileCard.DRow>
 
-                  <TableMobileCard.DRow>
-                    <TableMobileCard.Dt>Montant</TableMobileCard.Dt>
-                    <TableMobileCard.Dd>
-                      {elem.montant.toFixed(2)} €
-                    </TableMobileCard.Dd>
-                  </TableMobileCard.DRow>
-
-                  <TableMobileCard.DRow>
-                    <TableMobileCard.Dt>Status</TableMobileCard.Dt>
-                    <TableMobileCard.Dd>
-                      {getStatusTag(elem.statut)}
-                    </TableMobileCard.Dd>
-                  </TableMobileCard.DRow>
-                </TableMobileCard>
-              ))}
-            </>
-          ) : null}
-        </section>
-      </main>
-    </>
+                <TableMobileCard.DRow>
+                  <TableMobileCard.Dt>Status</TableMobileCard.Dt>
+                  <TableMobileCard.Dd>
+                    {getStatusTag(elem.statut)}
+                  </TableMobileCard.Dd>
+                </TableMobileCard.DRow>
+              </TableMobileCard>
+            ))}
+          </>
+        ) : null}
+      </section>
+    </LayoutDemo>
   );
 };

@@ -1,0 +1,46 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as Stories from "./PatternMozaicFree.stories";
+
+<Meta of={Stories} />
+
+# PatternMozaicFree
+
+Arranges content in equal-width columns independently of the application's grid.
+Unlike `PatternMozaicGrid`, `cols` sets the **number of columns**, not the span
+of each child. Five columns are possible even inside the 12-column application grid.
+
+```tsx
+import { Card, PatternMozaicFree } from "@axa-fr/canopee-react/prospect";
+
+<PatternMozaicFree cols={3}>
+  <Card>First card</Card>
+  <Card>Second card</Card>
+  <Card>Third card</Card>
+</PatternMozaicFree>;
+```
+
+## Responsive layout
+
+The layout uses one column on mobile and tablet. Above 1023px, it uses `cols`
+equal-width columns (2 by default). Use positive whole numbers.
+The gap and block padding use `--rem-16`.
+
+The component works on its own or inside `.grid` and `.subgrid` containers.
+It does not add `subgrid` or change the styles of its React children.
+Native section props, including `className`, `style`, `ref` and ARIA attributes,
+are forwarded to the root element.
+
+<Canvas of={Stories.TwoColumns} />
+<Controls of={Stories.TwoColumns} />
+
+## Three columns
+
+<Canvas of={Stories.ThreeColumns} />
+
+## Five independent columns
+
+<Canvas of={Stories.FiveColumns} />
+
+## Marketing cards
+
+<Canvas of={Stories.WithCardMarketing} />

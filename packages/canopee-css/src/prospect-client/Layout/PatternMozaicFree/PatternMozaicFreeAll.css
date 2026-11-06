@@ -1,0 +1,17 @@
+@layer canopee {
+  .af-pattern-mozaic-free,
+  .grid .af-pattern-mozaic-free {
+    display: grid;
+    padding-block: var(--rem-16);
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--rem-16);
+
+    > * {
+      grid-column: auto;
+    }
+
+    @media (--desktop-small) {
+      grid-template-columns: repeat(var(--mozaic-free-cols, 2), minmax(0, 1fr));
+    }
+  }
+}

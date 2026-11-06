@@ -26,6 +26,7 @@
 @import "./Tag/TagLF.css";
 @import "./TagList/TagListAll.css";
 @import "./CardMessage/CardMessageLF.css";
+@import "./CardMarketing/CardMarketingAll.css";
 @import "./AccordionCore/AccordionCoreLF.css";
 @import "./ProgressBar/ProgressBarLF.css";
 @import "./ProgressBarGroup/ProgressBarGroupLF.css";
@@ -69,6 +70,12 @@
 @import "./TableMobileCard/TableMobileCardAll.css";
 @import "./Layout/ExitLayout/ExitLayoutAll.css";
 @import "./Layout/FormLayout/FormLayoutAll.css";
+@import "./Layout/PatternMozaicGrid/PatternMozaicGridAll.css";
+@import "./Layout/PatternMozaicFree/PatternMozaicFreeAll.css";
+@import "./Layout/PatternCardMarketing/PatternCardMarketingAll.css";
+@import "./Layout/PatternWithAction/PatternWithActionAll.css";
+@import "./Layout/ColumnLayout/ColumnsLayoutAll.css";
+@import "./Layout/MainLayout/MainLayoutLF.css";
 @import "./Loader/LoaderLF.css";
 @import "./MessageBar/MessageBarAll.css";
 @import "./TabBar/TabBarLF.css";
