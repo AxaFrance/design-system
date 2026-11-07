@@ -180,7 +180,7 @@
       }
 
       &:has(:popover-open)::after {
-        background-color: var(--blue-1000-48);
+        background-color: var(--header-backdrop-color);
         pointer-events: auto;
       }
     }
