@@ -10,28 +10,29 @@ Responsive page header, in two styles as in the mockup:
 - **Default**: AXA logo, an optional `TabMenu`, optional action children (a secondary button) and an optional `MenuBurger` (the primary button).
 - **Parcours**: AXA logo and a `title`, at the end of the header, in place of the actions.
 
-On desktop (1024px and more), everything is on one line; the `MenuBurger` panel uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API), with a veil on the page. On mobile (up to 1023px), the header shows the logo, the title and a "Menu" button. The button opens a full screen panel with its own close button: the `TabMenu` items (with their optional `icon`) and the `MenuBurger` click items as small `ClickItem`s, then, at the bottom, the action children and the `MenuBurger` children.
+The same elements serve both screen sizes; CSS lays them out. On desktop (1024px and more), everything is on one line; the `MenuBurger` panel uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API), with a veil on the page: blue-1000 at 40% in the prospect look, gray-1000 at 48% in the client look. On mobile (up to 1023px), the header shows the logo, the title and a "Menu" button. The button opens the menu, a native popover under the header; a close button takes the place of the "Menu" button. The menu shows the `TabMenu` items as links, a divider, the `MenuBurger` click items, then, at the bottom, the action children and the `MenuBurger` children.
 
 ## Layout
 
-| Measure                         | Mobile                            | Desktop        |
-| ------------------------------- | --------------------------------- | -------------- |
-| Side margins                    | 16px                              | 60px           |
-| Logo                            | 40px                              | 56px           |
-| Space above and under the logo  | 8px                               | 16px           |
-| Logo to navigation              | —                                 | 24px           |
-| Action children to `MenuBurger` | —                                 | 40px           |
-| Title (Publico Headline Bold)   | 20px                              | 24px           |
-| Menu button (icon)              | 32px                              | —              |
-| Menu panel                      | Full screen, close button of 40px | 371px wide     |
-| Panel padding                   | 24px                              | 24px 16px 16px |
+| Measure                         | Mobile                          | Desktop        |
+| ------------------------------- | ------------------------------- | -------------- |
+| Side margins                    | 16px                            | 60px           |
+| Logo                            | 40px                            | 56px           |
+| Space above and under the logo  | 8px                             | 16px           |
+| Logo to navigation              | —                               | 24px           |
+| Action children to `MenuBurger` | —                               | 40px           |
+| Title (Publico Headline Bold)   | 20px                            | 24px           |
+| Menu button and close button    | 32px, in the header bar         | —              |
+| Menu panel                      | Under the header, to the bottom | 371px wide     |
+| Panel padding                   | 24px                            | 24px 16px 16px |
+| Links to entries divider        | 16px above and below            | —              |
 
 ## Accessibility
 
-- One `<header>`, one `<nav>` at a time: the `TabMenu` on desktop, the panel navigation on mobile. Give a name to the `TabMenu` with `aria-label` when the page has several navigations: the panel navigation gets the same name.
-- The `TabMenu` item with `isActive` is the current page: in the mobile panel, its link gets `aria-current="page"`.
-- The "Menu" button gives its state with `aria-expanded` and points to the panel with `aria-controls`. Its name does not change; pass `clickIconProps={{ "aria-label": "…" }}` to change it. At 32px, it meets the minimum target size of WCAG 2.2 (2.5.8, 24px).
-- The mobile panel is a modal dialog named like the button. While it is open, the focus moves to its close button ("Fermer le menu", see `closeButtonAriaLabel`), the rest of the page, the header included, is `inert` and does not scroll. Escape, the close button, a link or an entry closes the panel and the focus goes back to the "Menu" button. Other buttons of the panel (one that opens a modal, for instance) leave it open.
+- One `<header>` and one `<nav>`, the `TabMenu`, on every screen size. Give it a name with `aria-label` when the page has several navigations.
+- The "Menu" button opens the menu with the native Popover API (`popovertarget`): browsers give its expanded state to assistive technologies. It points to the menu with `aria-controls`. Its name does not change; pass `clickIconProps={{ "aria-label": "…" }}` to change it. At 32px, it meets the minimum target size of WCAG 2.2 (2.5.8, 24px).
+- The menu is not modal. The browser closes it with Escape, the close button ("Fermer le menu", see `closeButtonAriaLabel`) or a click outside of it, and gives the focus back to the "Menu" button. The close button comes right after the "Menu" button in the focus order; when it covers that button, it shows its focus. The page does not scroll while the menu is open.
+- On mobile, CSS puts the action children after the `MenuBurger` click items; browsers that support `reading-flow` follow that order with the keyboard.
 
 ## Import
 
@@ -49,15 +50,13 @@ import {
   type HeaderProps,
   type MenuBurgerProps,
 } from "@axa-fr/canopee-react/client";
-import contract from "@material-symbols/svg-400/rounded/contract-fill.svg";
-import home from "@material-symbols/svg-400/rounded/home-fill.svg";
 import logout from "@material-symbols/svg-400/rounded/logout.svg";
 import settings from "@material-symbols/svg-400/rounded/settings-fill.svg";
 
 const tabMenuProps: HeaderProps["tabMenuProps"] = {
   items: [
-    { href: "/", label: "Accueil", icon: home, isActive: true },
-    { href: "/contrats", label: "Contrats", icon: contract },
+    { href: "/", label: "Accueil", isActive: true },
+    { href: "/contrats", label: "Contrats" },
   ],
 };
 
@@ -96,10 +95,10 @@ const menuBurgerProps: MenuBurgerProps = {
 | Prop                   | Type              | Default            | Description                                                                                                  |
 | ---------------------- | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `appNameProps`         | `AppNameProps`    | —                  | AXA logo (`logoLinkProps`, `logoAlt`). **Required.** `label` is deprecated: the mockup shows the logo alone. |
-| `tabMenuProps`         | `TabMenuProps`    | `undefined`        | Navigation items rendered as a tab menu. Each item accepts an `icon`, shown in the mobile panel only.        |
+| `tabMenuProps`         | `TabMenuProps`    | `undefined`        | Navigation items: tabs on desktop, links at the top of the mobile menu.                                      |
 | `menuBurgerProps`      | `MenuBurgerProps` | `undefined`        | Account menu rendered as a burger button on desktop.                                                         |
 | `clickIconProps`       | `ClickIconProps`  | `undefined`        | Props forwarded to the mobile "Menu" button.                                                                 |
-| `closeButtonAriaLabel` | `string`          | `"Fermer le menu"` | Accessible name of the close button of the mobile panel.                                                     |
+| `closeButtonAriaLabel` | `string`          | `"Fermer le menu"` | Accessible name of the close button of the mobile menu.                                                      |
 | `title`                | `string`          | `undefined`        | Title displayed at the end of the header ("Parcours" style).                                                 |
 | `actionChildren`       | `ReactNode`       | `undefined`        | Free content rendered in the actions zone (e.g. a CTA button).                                               |
 | `className`            | `string`          | `undefined`        | Additional CSS class on the `<header>` element.                                                              |

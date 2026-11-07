@@ -413,10 +413,10 @@ import { Link } from "react-router";
 
 En-tête de page responsive, en deux styles comme la maquette : « Default » (logo, `TabMenu`, `actionChildren` pour le bouton secondaire, `MenuBurger` pour le bouton principal) et « Parcours » (logo et `title` en fin d'en-tête, à la place des actions).
 
-- **Desktop** (≥ 1024 px) : tout sur une ligne ; marges de 60 px, 24 px entre le logo et la navigation, 40 px entre les actions.
-- **Mobile** (≤ 1023 px) : logo, titre et bouton « Menu » de 32 px (`aria-expanded`, `aria-controls`). Le bouton ouvre un panneau plein écran (dialogue modal) avec sa croix : entrées du `TabMenu` (liens, avec leur `icon` facultative) et `clickItems` du `MenuBurger` en `ClickItem` « small », puis, en bas, `actionChildren` et les `children` du `MenuBurger`.
-- Panneau ouvert : reste de la page `inert`, en-tête compris, et sans défilement ; focus sur la croix. Échap, la croix, un lien ou une entrée le ferment et rendent le focus au bouton « Menu ». Les autres boutons du panneau (ouverture d'une modale, par exemple) le laissent ouvert.
-- L'élément du `TabMenu` avec `isActive` est la page courante : son lien porte `aria-current="page"` dans le panneau.
+- Les mêmes éléments servent aux deux tailles d'écran ; le CSS les dispose.
+- **Desktop** (≥ 1024 px) : tout sur une ligne ; marges de 60 px, 24 px entre le logo et la navigation, 40 px entre les actions. Voile derrière le `MenuBurger` ouvert : `blue-1000` à 40 % en prospect, `gray-1000` à 48 % en client.
+- **Mobile** (≤ 1023 px) : logo, titre et bouton « Menu » de 32 px (`aria-controls`). Le bouton ouvre le menu, un popover natif sous l'en-tête ; une croix prend la place du bouton. Dans le menu : les entrées du `TabMenu` en liens (atome `ItemMenu`), un séparateur, les `clickItems` du `MenuBurger`, puis, en bas, `actionChildren` et les `children` du `MenuBurger`.
+- Menu ouvert : non modal, page sans défilement. Le navigateur le ferme par Échap, la croix ou un clic à l'extérieur, et rend le focus au bouton « Menu ».
 - `appNameProps.label` est déprécié : la maquette montre le logo seul.
 
 ### Import
@@ -431,10 +431,10 @@ import { Header } from '@axa-fr/canopee-react/prospect';
 ```tsx
 type HeaderProps = Omit<ComponentPropsWithoutRef<'header'>, 'title'> & {
     appNameProps: AppNameProps; // Logo AXA (obligatoire) ; `label` déprécié
-    tabMenuProps?: TabMenuProps; // Navigation principale ; chaque item accepte `icon` (panneau mobile seulement)
+    tabMenuProps?: TabMenuProps; // Navigation principale : onglets sur desktop, liens en haut du menu mobile
     menuBurgerProps?: MenuBurgerProps; // Menu compte utilisateur
     clickIconProps?: ClickIconProps; // Props du bouton « Menu » mobile (nom accessible par défaut : « Menu »)
-    closeButtonAriaLabel?: string; // Nom de la croix du panneau mobile (défaut : « Fermer le menu »)
+    closeButtonAriaLabel?: string; // Nom de la croix du menu mobile (défaut : « Fermer le menu »)
     title?: string; // Titre du style « Parcours », en fin d'en-tête (desktop et mobile)
     actionChildren?: ReactNode; // Contenu libre dans la zone actions
 };
@@ -501,7 +501,7 @@ const menuBurgerProps: MenuBurgerProps = {
 
 Bouton compte utilisateur avec panneau popover.
 
-- **Mobile** : bouton masqué, panneau affiché en ligne. Dans le `Header`, ses `clickItems` et ses `children` passent dans le panneau du bouton « Menu ».
+- **Mobile** : bouton masqué, panneau affiché en ligne. Dans le `Header`, ses `clickItems` et ses `children` s'affichent dans le menu du bouton « Menu ».
 - **Desktop** : bouton ouvre/ferme le panneau (371 px, marges 24 / 16 / 16 px) via la [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
 
 ```tsx
