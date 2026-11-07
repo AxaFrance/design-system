@@ -124,7 +124,7 @@
   }
 
   /* Menu content, as in the Menu Burger mockup: navigation links, then the
-     account entries, then the buttons at the bottom. */
+     account entries after a divider, then the buttons at the bottom. */
   @media not (--desktop-small) {
     .af-header__menu .af-header__actions,
     .af-header__menu .af-menu-burger,
@@ -139,6 +139,13 @@
 
     .af-header__menu .af-menu-burger__section--actions {
       order: 2;
+    }
+
+    /* A divider separates the navigation links from the account entries. */
+    .af-header__menu:has(.af-header__tab-menu)
+      .af-menu-burger__section--actions {
+      padding-top: var(--rem-16);
+      border-top: 1px solid var(--blue-200);
     }
 
     .af-header__menu .af-header__actions-children {
