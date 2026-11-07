@@ -411,10 +411,13 @@ import { Link } from "react-router";
 
 ## Header
 
-En-tête de page responsive avec logo, menu de navigation, menu burger et actions.
+En-tête de page responsive, en deux styles comme la maquette : « Default » (logo, `TabMenu`, `actionChildren` pour le bouton secondaire, `MenuBurger` pour le bouton principal) et « Parcours » (logo et `title` en fin d'en-tête, à la place des actions).
 
-- **Mobile** : l'icône hamburger ouvre/ferme le bloc menu via un état React (Escape pour fermer).
-- **Desktop** : le menu s'affiche en ligne, l'icône est masquée.
+- Les mêmes éléments servent aux deux tailles d'écran ; le CSS les dispose.
+- **Desktop** (≥ 1024 px) : tout sur une ligne ; marges de 60 px, 24 px entre le logo et la navigation, 40 px entre les actions. Voile derrière le `MenuBurger` ouvert : `blue-1000` à 40 % en prospect, `gray-1000` à 48 % en client.
+- **Mobile** (≤ 1023 px) : logo, titre et bouton « Menu » de 32 px (`aria-controls`). Le bouton ouvre le menu, un popover natif sous l'en-tête ; une croix prend la place du bouton. Dans le menu : les entrées du `TabMenu` en liens (atome `ItemMenu`), un séparateur, les `clickItems` du `MenuBurger`, puis, en bas, `actionChildren` et les `children` du `MenuBurger`.
+- Menu ouvert : non modal, page sans défilement. Le navigateur le ferme par Échap, la croix ou un clic à l'extérieur, et rend le focus au bouton « Menu ». Le choix d'un lien ou d'une entrée, ou un focus qui quitte le menu pour la page, le ferme aussi.
+- `appNameProps.label` est déprécié : la maquette montre le logo seul.
 
 ### Import
 
@@ -427,11 +430,12 @@ import { Header } from '@axa-fr/canopee-react/prospect';
 
 ```tsx
 type HeaderProps = Omit<ComponentPropsWithoutRef<'header'>, 'title'> & {
-    appNameProps: AppNameProps; // Props du composant AppName (obligatoire)
-    tabMenuProps?: TabMenuProps; // Navigation principale
+    appNameProps: AppNameProps; // Logo AXA (obligatoire) ; `label` déprécié
+    tabMenuProps?: TabMenuProps; // Navigation principale : onglets sur desktop, liens en haut du menu mobile
     menuBurgerProps?: MenuBurgerProps; // Menu compte utilisateur
-    clickIconProps?: ClickIconProps; // Props du bouton hamburger mobile
-    title?: string; // Titre affiché dans la zone actions (desktop)
+    clickIconProps?: ClickIconProps; // Props du bouton « Menu » mobile (nom accessible par défaut : « Menu »)
+    closeButtonAriaLabel?: string; // Nom de la croix du menu mobile (défaut : « Fermer le menu »)
+    title?: string; // Titre du style « Parcours », en fin d'en-tête (desktop et mobile)
     actionChildren?: ReactNode; // Contenu libre dans la zone actions
 };
 ```
@@ -497,8 +501,8 @@ const menuBurgerProps: MenuBurgerProps = {
 
 Bouton compte utilisateur avec panneau popover.
 
-- **Mobile** : bouton masqué, panneau affiché en ligne dans le menu ouvert.
-- **Desktop** : bouton ouvre/ferme le panneau via la [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
+- **Mobile** : bouton masqué, panneau affiché en ligne. Dans le `Header`, ses `clickItems` et ses `children` s'affichent dans le menu du bouton « Menu ».
+- **Desktop** : bouton ouvre/ferme le panneau (371 px, marges 24 / 16 / 16 px) via la [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API).
 
 ```tsx
 import { MenuBurger } from '@axa-fr/canopee-react/prospect';
