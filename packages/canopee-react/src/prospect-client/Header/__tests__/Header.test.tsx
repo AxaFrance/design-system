@@ -1,14 +1,13 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { createRef, StrictMode, type ComponentProps } from "react";
+import { type ComponentProps } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { AppName } from "../../AppName/AppName";
 import { Button } from "../../Button/ButtonApollo";
 import { ClickIcon } from "../../ClickIcon/ClickIconApollo";
 import { Heading } from "../../Heading/HeadingApollo";
-import { ClickItem } from "../../List/ClickItem/ClickItemApollo";
 import { MenuBurger } from "../../MenuBurger/MenuBurgerApollo";
 import { useIsSmallScreen } from "../../utilities/hook/useIsSmallScreen";
 import { Header as HeaderApollo } from "../HeaderApollo";
@@ -26,8 +25,7 @@ const defaultProps = {
   HeadingComponent: Heading,
   MenuBurgerComponent: MenuBurger,
   ClickIconComponent: ClickIcon,
-  ClickItemComponent: ClickItem,
-  appNameProps: { label: "Mon application" },
+  appNameProps: { logoLinkProps: { href: "/" } },
 } as const;
 
 const tabMenuItems = [
@@ -35,10 +33,8 @@ const tabMenuItems = [
   { href: "#contrats", label: "Contrats" },
 ];
 
-const menuBurgerWithLabel = { buttonLabel: "Mon espace" };
-
 const fullProps = (): Partial<HeaderCommonProps> => ({
-  tabMenuProps: { items: tabMenuItems },
+  tabMenuProps: { items: tabMenuItems, "aria-label": "Navigation" },
   menuBurgerProps: {
     buttonLabel: "Mon espace",
     clickItems: [{ title: "Mon profil", onClick: vi.fn() }],
@@ -52,722 +48,292 @@ const renderHeader = (props: Partial<HeaderCommonProps> = {}) =>
 
 const getMenuButton = () => screen.getByRole("button", { name: "Menu" });
 
-const getMenuPanel = () => {
-  const panelId = getMenuButton().getAttribute("aria-controls");
-  return document.getElementById(panelId ?? "") as HTMLElement;
-};
+const getMenu = () =>
+  document.getElementById(
+    getMenuButton().getAttribute("popovertarget") ?? "",
+  ) as HTMLElement;
 
-const openMenu = async (user = userEvent.setup()) => {
-  await user.click(getMenuButton());
-  return user;
-};
+// The jsdom polyfill of vitest.setup.ts shows an open popover with an inline
+// display: block, and a closed one with display: none.
+const isOpen = (element: HTMLElement) => element.style.display === "block";
 
 // ─── Tests ───────────────────────────────────────────────────────────────────
 
-/**
- * useIsSmallScreen is mocked. Each describe group sets the return value
- * to reflect either desktop (false) or mobile (true) context.
- */
 describe("HeaderCommon", () => {
-  describe("large screens", () => {
+  describe.each([
+    ["large screens", false],
+    ["small screens", true],
+  ])("on %s", (_, isSmallScreen) => {
     beforeEach(() => {
-      vi.mocked(useIsSmallScreen).mockReturnValue(false);
+      vi.mocked(useIsSmallScreen).mockReturnValue(isSmallScreen);
     });
 
-    describe("AppName", () => {
-      it("renders the app name label", () => {
-        renderHeader();
-        expect(screen.getByText("Mon application")).toBeInTheDocument();
-      });
+    it("renders the logo, a link to the home page", () => {
+      renderHeader();
 
-      it("applies af-header__app-name class", () => {
-        renderHeader();
-        expect(
-          screen.getByText("Mon application").closest(".af-header__app-name"),
-        ).toBeInTheDocument();
-      });
-
-      it("renders the logo alone when no label is given, as in the mockup", () => {
-        renderHeader({ appNameProps: { logoAlt: "Accueil AXA" } });
-
-        expect(screen.getByAltText("Accueil AXA")).toBeInTheDocument();
-        expect(
-          document.querySelector(".af-app-name__label"),
-        ).toBeEmptyDOMElement();
-      });
+      expect(screen.getByRole("link")).toHaveAttribute("href", "/");
     });
 
-    describe("TabMenu", () => {
-      it("is rendered when tabMenuProps is provided", () => {
-        renderHeader({ tabMenuProps: { items: tabMenuItems } });
-        expect(screen.getByRole("navigation")).toBeInTheDocument();
-      });
+    it("renders the deprecated app name when it is provided", () => {
+      renderHeader({ appNameProps: { label: "Mon application" } });
 
-      it("is not rendered when tabMenuProps is not provided", () => {
-        renderHeader();
-        expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
-      });
-
-      it("applies af-header__tab-menu class", () => {
-        renderHeader({ tabMenuProps: { items: tabMenuItems } });
-        expect(screen.getByRole("navigation")).toHaveClass(
-          "af-header__tab-menu",
-        );
-      });
-
-      it("renders all tab items", () => {
-        renderHeader({ tabMenuProps: { items: tabMenuItems } });
-        expect(screen.getByText("Accueil")).toBeInTheDocument();
-        expect(screen.getByText("Contrats")).toBeInTheDocument();
-      });
-
-      it("does not show the icons of the entries in the tabs", () => {
-        renderHeader({
-          tabMenuProps: {
-            items: [{ href: "#accueil", label: "Accueil", icon: "home.svg" }],
-          },
-        });
-
-        const link = screen.getByRole("link", { name: "Accueil" });
-        expect(link).not.toHaveAttribute("icon");
-        expect(link.querySelector("svg")).toBeNull();
-      });
+      expect(screen.getByText("Mon application")).toBeInTheDocument();
     });
 
-    describe("MenuBurger", () => {
-      it("is rendered when menuBurgerProps is provided", () => {
-        renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-        expect(
-          document.querySelector(".af-header__menu-burger"),
-        ).toBeInTheDocument();
-        expect(
-          screen.getByRole("button", { name: /mon espace/i }),
-        ).toBeInTheDocument();
-      });
+    it("renders the title as a heading of level 1, outside the menu", () => {
+      renderHeader({ ...fullProps(), title: "Devis assurance auto" });
 
-      it("is not rendered when menuBurgerProps is not provided", () => {
-        renderHeader();
-        expect(
-          document.querySelector(".af-header__menu-burger"),
-        ).not.toBeInTheDocument();
+      const title = screen.getByRole("heading", {
+        level: 1,
+        name: "Devis assurance auto",
       });
+      expect(title.closest(".af-header__title")).not.toBeNull();
+      expect(getMenu()).not.toContainElement(title);
     });
 
-    describe("title", () => {
-      it("is rendered as a level 1 heading", () => {
-        renderHeader({
-          title: "Mon titre",
-          menuBurgerProps: menuBurgerWithLabel,
-        });
-        expect(
-          screen.getByRole("heading", { level: 1, name: "Mon titre" }),
-        ).toBeInTheDocument();
-      });
-
-      it("is rendered alone, without any action", () => {
-        renderHeader({ title: "Devis assurance auto" });
-        expect(
-          screen
-            .getByRole("heading", { level: 1, name: "Devis assurance auto" })
-            .closest(".af-header__actions"),
-        ).toBeInTheDocument();
-      });
-
-      it("applies af-header__title class", () => {
-        renderHeader({ title: "Mon titre" });
-        expect(
-          screen.getByText("Mon titre").closest(".af-header__title"),
-        ).toBeInTheDocument();
-      });
-
-      it("is not rendered when title is not provided", () => {
-        renderHeader();
-        expect(
-          screen.queryByRole("heading", { level: 1 }),
-        ).not.toBeInTheDocument();
-      });
-    });
-
-    describe("actionChildren", () => {
-      it("is rendered when provided", () => {
-        renderHeader({ actionChildren: <span>Action</span> });
-        expect(screen.getByText("Action")).toBeInTheDocument();
-      });
-
-      it("is wrapped in af-header__actions-children", () => {
-        renderHeader({ actionChildren: <span>Action</span> });
-        expect(
-          screen.getByText("Action").closest(".af-header__actions-children"),
-        ).toBeInTheDocument();
-      });
-
-      it("is not rendered when not provided", () => {
-        renderHeader();
-        expect(
-          document.querySelector(".af-header__actions-children"),
-        ).not.toBeInTheDocument();
-      });
-    });
-
-    it("renders neither the menu button nor the menu panel", () => {
+    it("renders the navigation, the actions and the account menu once, in the menu", () => {
       renderHeader(fullProps());
+
+      const menu = getMenu();
+      // Closed popovers hide their content: query hidden elements too.
+      const navigation = screen.getByRole("navigation", {
+        name: "Navigation",
+        hidden: true,
+      });
+
+      expect(screen.getAllByRole("navigation", { hidden: true })).toHaveLength(
+        1,
+      );
+      expect(menu).toContainElement(navigation);
+      expect(navigation).toHaveClass("af-tab-menu", "af-header__tab-menu");
+      expect(
+        within(navigation).getByRole("link", { name: "Accueil", hidden: true }),
+      ).toHaveClass("af-item-menu", "af-item-menu--active");
+      expect(
+        within(navigation).getByRole("link", {
+          name: "Contrats",
+          hidden: true,
+        }),
+      ).toBeInTheDocument();
+      expect(
+        within(menu).getByRole("button", {
+          name: "Accéder à AXA Banque",
+          hidden: true,
+        }).parentElement,
+      ).toHaveClass("af-header__actions-children");
+      expect(menu.querySelector(".af-header__actions")).toContainElement(
+        menu.querySelector(".af-menu-burger"),
+      );
+      expect(menu.querySelector(".af-menu-burger")).toHaveClass(
+        "af-header__menu-burger",
+      );
+      expect(within(menu).getByText("Mon profil")).toBeInTheDocument();
+      expect(
+        within(menu).getByRole("button", { name: "Déconnexion", hidden: true }),
+      ).toBeInTheDocument();
+    });
+
+    it("renders the menu button and the close button with their names", () => {
+      renderHeader({
+        ...fullProps(),
+        clickIconProps: { src: "", "aria-label": "Ouvrir la navigation" },
+        closeButtonAriaLabel: "Fermer la navigation",
+      });
+
+      const menuButton = screen.getByRole("button", {
+        name: "Ouvrir la navigation",
+      });
+      const closeButton = screen.getByRole("button", {
+        name: "Fermer la navigation",
+        hidden: true,
+      });
+
+      expect(menuButton).toHaveClass("af-header__menu-icon");
+      expect(closeButton).toHaveClass("af-header__menu-close");
+      expect(menuButton).not.toHaveAttribute("aria-haspopup");
+    });
+
+    it("renders neither the menu button nor the menu without content", () => {
+      const { container } = renderHeader({ title: "Devis assurance auto" });
+
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+      expect(container.querySelector(".af-header__menu")).toBeNull();
+    });
+
+    it.each([
+      ["tabMenuProps", { tabMenuProps: { items: tabMenuItems } }],
+      ["menuBurgerProps", { menuBurgerProps: { buttonLabel: "Mon espace" } }],
+      ["actionChildren", { actionChildren: <Button>Action</Button> }],
+    ])("renders the menu button with %s only", (_name, props) => {
+      renderHeader(props);
+
+      expect(getMenuButton()).toBeInTheDocument();
+    });
+
+    it("renders no menu button with an empty navigation", () => {
+      renderHeader({ tabMenuProps: { items: [] } });
 
       expect(
         screen.queryByRole("button", { name: "Menu" }),
       ).not.toBeInTheDocument();
-      expect(
-        document.querySelector(".af-header__panel"),
-      ).not.toBeInTheDocument();
+    });
+
+    it("keeps the className and the props of the header", () => {
+      renderHeader({ className: "my-header", "aria-label": "En-tête" });
+
+      expect(screen.getByRole("banner", { name: "En-tête" })).toHaveClass(
+        "af-header",
+        "my-header",
+      );
     });
 
     it("shouldn't have an accessibility violation", async () => {
-      const { container } = renderHeader({ ...fullProps(), title: "Titre" });
+      const { container } = renderHeader({
+        ...fullProps(),
+        title: "Devis assurance auto",
+      });
 
       expect(await axe(container)).toHaveNoViolations();
     });
   });
 
-  describe("small screens", () => {
+  describe("on large screens", () => {
+    beforeEach(() => {
+      vi.mocked(useIsSmallScreen).mockReturnValue(false);
+    });
+
+    it("does not make the menu a popover", () => {
+      renderHeader(fullProps());
+
+      expect(getMenu()).not.toHaveAttribute("popover");
+    });
+
+    it("opens the account menu with its own button", () => {
+      renderHeader(fullProps());
+
+      expect(
+        screen.getByRole("button", { name: "Mon espace" }),
+      ).toHaveAttribute("popovertargetaction", "toggle");
+    });
+  });
+
+  describe("on small screens", () => {
     beforeEach(() => {
       vi.mocked(useIsSmallScreen).mockReturnValue(true);
     });
 
-    describe("bar", () => {
-      it("renders the title next to the logo, outside the menu panel", () => {
-        renderHeader({ ...fullProps(), title: "Devis assurance auto" });
+    it("makes the menu a native popover, controlled by the menu button", () => {
+      renderHeader(fullProps());
 
-        const title = screen.getByRole("heading", {
-          level: 1,
-          name: "Devis assurance auto",
-        });
-        expect(title.closest(".af-header__panel")).toBeNull();
-        expect(title.closest(".af-header__actions")).toBeNull();
-      });
+      const menuButton = getMenuButton();
+      const menu = getMenu();
 
-      it("renders no menu button when there is nothing to put in the panel", () => {
-        renderHeader({ title: "Devis assurance auto" });
-
-        expect(
-          screen.queryByRole("button", { name: "Menu" }),
-        ).not.toBeInTheDocument();
-      });
-
-      it("renders no menu button for an account menu without content", () => {
-        renderHeader({ menuBurgerProps: menuBurgerWithLabel });
-
-        expect(
-          screen.queryByRole("button", { name: "Menu" }),
-        ).not.toBeInTheDocument();
-      });
-
-      it("does not render the large screen navigation nor the account button", () => {
-        renderHeader(fullProps());
-
-        expect(
-          document.querySelector(".af-header__menu"),
-        ).not.toBeInTheDocument();
-        expect(
-          screen.queryByRole("button", { name: /mon espace/i }),
-        ).not.toBeInTheDocument();
-      });
+      expect(menu).toHaveAttribute("popover", "auto");
+      expect(menu).toHaveClass("af-header__menu");
+      expect(menuButton).toHaveAttribute("aria-controls", menu.id);
+      expect(menuButton).toHaveAttribute("popovertargetaction", "toggle");
     });
 
-    describe("menu button", () => {
-      it.each([
-        ["navigation", { tabMenuProps: { items: tabMenuItems } }],
-        [
-          "account entries",
-          {
-            menuBurgerProps: {
-              ...menuBurgerWithLabel,
-              clickItems: [{ title: "Mon profil" }],
-            },
-          },
-        ],
-        ["free content", { actionChildren: <span>Action</span> }],
-      ])("is rendered for %s", (_, props) => {
-        renderHeader(props);
+    it("hides the menu with the close button, the first element of the menu", () => {
+      renderHeader(fullProps());
 
-        expect(getMenuButton()).toHaveClass("af-header__menu-icon");
+      const closeButton = screen.getByRole("button", {
+        name: "Fermer le menu",
+        hidden: true,
       });
 
-      it("is a collapsed button controlling the hidden panel", () => {
-        renderHeader(fullProps());
-
-        const button = getMenuButton();
-        expect(button).toHaveAttribute("aria-expanded", "false");
-        expect(button).not.toHaveAttribute("aria-haspopup");
-        expect(button).toHaveClass("af-click-icon--medium");
-        expect(getMenuPanel()).toHaveClass("af-header__panel");
-        expect(getMenuPanel()).not.toBeVisible();
-      });
-
-      it("uses a custom accessible name from clickIconProps", () => {
-        renderHeader({
-          ...fullProps(),
-          clickIconProps: { "aria-label": "Ouvrir la navigation", src: "" },
-        });
-
-        expect(
-          screen.getByRole("button", { name: "Ouvrir la navigation" }),
-        ).toHaveAttribute("aria-expanded", "false");
-      });
-
-      it("calls the onClick of clickIconProps", async () => {
-        const onClick = vi.fn();
-        renderHeader({ ...fullProps(), clickIconProps: { onClick, src: "" } });
-
-        await openMenu();
-
-        expect(onClick).toHaveBeenCalledOnce();
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
-      });
-
-      it("forwards the ref of clickIconProps to the button", () => {
-        const objectRef = createRef<HTMLButtonElement>();
-        const callbackRef = vi.fn();
-        const { unmount } = renderHeader({
-          ...fullProps(),
-          clickIconProps: { ref: objectRef, src: "" },
-        });
-        expect(objectRef.current).toBe(getMenuButton());
-        unmount();
-
-        renderHeader({
-          ...fullProps(),
-          clickIconProps: { ref: callbackRef, src: "" },
-        });
-        expect(callbackRef).toHaveBeenCalledWith(getMenuButton());
-      });
-
-      it("gets a unique panel id in each header", () => {
-        render(
-          <>
-            <HeaderCommon {...defaultProps} {...fullProps()} />
-            <HeaderCommon {...defaultProps} {...fullProps()} />
-          </>,
-        );
-
-        const [first, second] = screen.getAllByRole("button", {
-          name: "Menu",
-        });
-        const firstId = first.getAttribute("aria-controls");
-        const secondId = second.getAttribute("aria-controls");
-
-        expect(firstId).not.toBe(secondId);
-        expect(document.getElementById(firstId ?? "")).toBeInTheDocument();
-        expect(document.getElementById(secondId ?? "")).toBeInTheDocument();
-      });
+      expect(getMenu().firstElementChild).toBe(closeButton);
+      expect(closeButton).toHaveAttribute("popovertarget", getMenu().id);
+      expect(closeButton).toHaveAttribute("popovertargetaction", "hide");
     });
 
-    describe("opening and closing", () => {
-      it("opens a modal panel named like the button and focuses its close button", async () => {
-        renderHeader(fullProps());
+    it("does not render the account menu button", () => {
+      renderHeader(fullProps());
 
-        await openMenu();
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
-        expect(getMenuPanel()).toBeVisible();
-        expect(screen.getByRole("dialog", { name: "Menu" })).toBe(
-          getMenuPanel(),
-        );
-        expect(getMenuPanel()).toHaveAttribute("aria-modal", "true");
-        expect(
-          screen.getByRole("button", { name: "Fermer le menu" }),
-        ).toHaveFocus();
-      });
-
-      it("opens with Enter, closes with Escape and gives the focus back to the button", async () => {
-        const user = userEvent.setup();
-        renderHeader(fullProps());
-
-        await user.tab();
-        expect(getMenuButton()).toHaveFocus();
-
-        await user.keyboard("{Enter}");
-        expect(getMenuPanel()).toBeVisible();
-        expect(
-          screen.getByRole("button", { name: "Fermer le menu" }),
-        ).toHaveFocus();
-
-        await user.keyboard("{Escape}");
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
-        expect(getMenuPanel()).not.toBeVisible();
-        expect(getMenuButton()).toHaveFocus();
-      });
-
-      it("opens with Space and lets Tab move through the panel entries", async () => {
-        const user = userEvent.setup();
-        renderHeader(fullProps());
-
-        getMenuButton().focus();
-        await user.keyboard(" ");
-        expect(getMenuPanel()).toBeVisible();
-
-        await user.tab();
-        expect(screen.getByRole("link", { name: "Accueil" })).toHaveFocus();
-        await user.tab();
-        expect(screen.getByRole("link", { name: "Contrats" })).toHaveFocus();
-        await user.tab();
-        expect(
-          screen.getByRole("button", { name: "Mon profil" }),
-        ).toHaveFocus();
-      });
-
-      it("closes with its close button and gives the focus back to the menu button", async () => {
-        renderHeader(fullProps());
-        const user = await openMenu();
-
-        await user.click(
-          screen.getByRole("button", { name: "Fermer le menu" }),
-        );
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
-        expect(getMenuPanel()).not.toBeVisible();
-        expect(getMenuButton()).toHaveFocus();
-      });
-
-      it("uses a custom accessible name for the close button", async () => {
-        renderHeader({
-          ...fullProps(),
-          closeButtonAriaLabel: "Fermer la navigation",
-        });
-        await openMenu();
-
-        expect(
-          screen.getByRole("button", { name: "Fermer la navigation" }),
-        ).toHaveFocus();
-      });
-
-      it("closes when a navigation link is chosen", async () => {
-        const onClick = vi.fn();
-        renderHeader({
-          tabMenuProps: {
-            items: [{ href: "#contrats", label: "Contrats", onClick }],
-          },
-        });
-        const user = await openMenu();
-
-        await user.click(screen.getByRole("link", { name: "Contrats" }));
-
-        expect(onClick).toHaveBeenCalledOnce();
-        expect(getMenuPanel()).not.toBeVisible();
-        expect(getMenuButton()).toHaveFocus();
-      });
-
-      it("closes when an account entry is chosen", async () => {
-        const props = fullProps();
-        renderHeader(props);
-        const user = await openMenu();
-
-        await user.click(screen.getByRole("button", { name: "Mon profil" }));
-
-        expect(
-          props.menuBurgerProps?.clickItems?.[0].onClick,
-        ).toHaveBeenCalled();
-        expect(getMenuPanel()).not.toBeVisible();
-      });
-
-      it("closes when a link of the free content is chosen", async () => {
-        renderHeader({
-          ...fullProps(),
-          actionChildren: <a href="#banque">Accéder à AXA Banque</a>,
-        });
-        const user = await openMenu();
-
-        await user.click(
-          screen.getByRole("link", { name: "Accéder à AXA Banque" }),
-        );
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
-      });
-
-      it("stays open when another button of the panel is clicked", async () => {
-        const onClick = vi.fn();
-        renderHeader({
-          ...fullProps(),
-          actionChildren: (
-            <Button variant="secondary" onClick={onClick}>
-              Nous contacter
-            </Button>
-          ),
-        });
-        const user = await openMenu();
-
-        await user.click(
-          screen.getByRole("button", { name: "Nous contacter" }),
-        );
-
-        expect(onClick).toHaveBeenCalledOnce();
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
-      });
-
-      it("still calls the onClickCapture of the header", async () => {
-        const onClickCapture = vi.fn();
-        renderHeader({ ...fullProps(), onClickCapture });
-
-        await openMenu();
-
-        expect(onClickCapture).toHaveBeenCalled();
-      });
-
-      it("stays open when a non-interactive part of the panel is clicked", async () => {
-        renderHeader({
-          ...fullProps(),
-          actionChildren: <p>Besoin d&apos;aide ?</p>,
-        });
-        const user = await openMenu();
-
-        await user.click(screen.getByText("Besoin d'aide ?"));
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
-      });
-
-      it("ignores an Escape key already handled by another component", async () => {
-        const handledElsewhere = (event: KeyboardEvent) =>
-          event.preventDefault();
-        renderHeader(fullProps());
-        const user = await openMenu();
-
-        document.addEventListener("keydown", handledElsewhere, {
-          capture: true,
-        });
-        await user.keyboard("{Escape}");
-        document.removeEventListener("keydown", handledElsewhere, {
-          capture: true,
-        });
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
-      });
-
-      it("leaves Escape to a dialog open in the panel", async () => {
-        renderHeader({
-          ...fullProps(),
-          actionChildren: (
-            <dialog open aria-label="Confirmation">
-              <button type="button">Annuler</button>
-            </dialog>
-          ),
-        });
-        const user = await openMenu();
-
-        screen.getByRole("button", { name: "Annuler" }).focus();
-        await user.keyboard("{Escape}");
-
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "true");
-      });
-
-      it("forgets the open state when the screen becomes large", async () => {
-        const { rerender } = renderHeader(fullProps());
-        await openMenu();
-
-        vi.mocked(useIsSmallScreen).mockReturnValue(false);
-        rerender(<HeaderCommon {...defaultProps} {...fullProps()} />);
-        expect(
-          document.querySelector(".af-header__panel"),
-        ).not.toBeInTheDocument();
-
-        vi.mocked(useIsSmallScreen).mockReturnValue(true);
-        rerender(<HeaderCommon {...defaultProps} {...fullProps()} />);
-        expect(getMenuButton()).toHaveAttribute("aria-expanded", "false");
-        expect(getMenuPanel()).not.toBeVisible();
-      });
+      expect(
+        screen.queryByRole("button", { name: "Mon espace" }),
+      ).not.toBeInTheDocument();
     });
 
-    describe("panel content", () => {
-      it("renders the navigation entries as links wrapping a small ClickItem", async () => {
-        renderHeader(fullProps());
-        await openMenu();
+    it("opens and closes the menu with the menu button", async () => {
+      const user = userEvent.setup();
+      renderHeader(fullProps());
 
-        const navigation = within(getMenuPanel()).getByRole("navigation");
-        const link = within(navigation).getByRole("link", { name: "Accueil" });
+      await user.click(getMenuButton());
+      expect(isOpen(getMenu())).toBe(true);
 
-        expect(link).toHaveAttribute("href", "#accueil");
-        expect(link).toHaveClass("af-header__panel-link");
-        expect(
-          link.querySelector(".af-apollo-click-item--small"),
-        ).toBeInTheDocument();
-      });
-
-      it("shows the icon of a navigation entry in the panel", async () => {
-        renderHeader({
-          tabMenuProps: {
-            items: [
-              { href: "#accueil", label: "Accueil", icon: "home.svg" },
-              { href: "#contrats", label: "Contrats" },
-            ],
-          },
-        });
-        await openMenu();
-
-        expect(
-          screen
-            .getByRole("link", { name: "Accueil" })
-            .querySelector(".af-apollo-click-item__leading svg"),
-        ).toHaveAttribute("data-src", "home.svg");
-        expect(
-          screen
-            .getByRole("link", { name: "Contrats" })
-            .querySelector(".af-apollo-click-item__leading svg"),
-        ).toBeNull();
-      });
-
-      it("marks only the current page with aria-current", async () => {
-        renderHeader(fullProps());
-        await openMenu();
-
-        expect(screen.getByRole("link", { name: "Accueil" })).toHaveAttribute(
-          "aria-current",
-          "page",
-        );
-        expect(
-          screen.getByRole("link", { name: "Contrats" }),
-        ).not.toHaveAttribute("aria-current");
-      });
-
-      it("names the panel navigation like the large screen navigation", async () => {
-        renderHeader({
-          tabMenuProps: {
-            items: tabMenuItems,
-            "aria-label": "Navigation principale",
-          },
-        });
-        await openMenu();
-
-        expect(
-          screen.getByRole("navigation", { name: "Navigation principale" }),
-        ).toBeInTheDocument();
-      });
-
-      it("orders entries, free content and account content like the mockup", async () => {
-        renderHeader(fullProps());
-        await openMenu();
-
-        const texts = Array.from(
-          getMenuPanel().querySelectorAll(
-            ".af-apollo-click-item__title, .af-btn-client",
-          ),
-        ).map((element) => element.textContent);
-
-        expect(texts).toEqual([
-          "Accueil",
-          "Contrats",
-          "Mon profil",
-          "Accéder à AXA Banque",
-          "Déconnexion",
-        ]);
-      });
-
-      it("keeps a key for each entry when several share the same title", async () => {
-        const consoleError = vi
-          .spyOn(console, "error")
-          .mockImplementation(() => undefined);
-        renderHeader({
-          menuBurgerProps: {
-            ...menuBurgerWithLabel,
-            clickItems: [{ title: "Préférences" }, { title: "Préférences" }],
-          },
-        });
-        await openMenu();
-
-        expect(screen.getAllByText("Préférences")).toHaveLength(2);
-        expect(consoleError).not.toHaveBeenCalled();
-        consoleError.mockRestore();
-      });
+      await user.click(getMenuButton());
+      expect(isOpen(getMenu())).toBe(false);
     });
 
-    describe("rest of the page", () => {
-      const renderPage = () =>
-        render(
-          <>
-            <HeaderCommon {...defaultProps} {...fullProps()} />
-            <main>
-              <a href="#contenu">Contenu</a>
-            </main>
-            <footer inert>Pied de page</footer>
-          </>,
-        );
+    it("closes the menu with the close button", async () => {
+      const user = userEvent.setup();
+      renderHeader(fullProps());
 
-      it("is inert while the panel is open, and restored when it closes", async () => {
-        renderPage();
-        const main = screen.getByRole("main", { hidden: true });
+      await user.click(getMenuButton());
+      await user.click(screen.getByRole("button", { name: "Fermer le menu" }));
 
-        const user = await openMenu();
-        expect(main).toHaveAttribute("inert");
-        expect(getMenuButton()).toHaveAttribute("inert");
-        expect(document.querySelector(".af-header__app-name")).toHaveAttribute(
-          "inert",
-        );
-        expect(getMenuPanel()).not.toHaveAttribute("inert");
-
-        await user.keyboard("{Escape}");
-        expect(main).not.toHaveAttribute("inert");
-        expect(getMenuButton()).not.toHaveAttribute("inert");
-      });
-
-      it("leaves the elements that were already inert as they were", async () => {
-        renderPage();
-
-        const user = await openMenu();
-        await user.keyboard("{Escape}");
-
-        expect(screen.getByText("Pied de page")).toHaveAttribute("inert");
-      });
-
-      it("does not scroll while the panel is open", async () => {
-        document.documentElement.style.overflow = "auto";
-        renderPage();
-
-        const user = await openMenu();
-        expect(document.documentElement.style.overflow).toBe("hidden");
-
-        await user.keyboard("{Escape}");
-        expect(document.documentElement.style.overflow).toBe("auto");
-        document.documentElement.style.overflow = "";
-      });
-
-      it("is restored when the header is removed while open", async () => {
-        const { unmount } = renderPage();
-        const main = screen.getByRole("main", { hidden: true });
-        await openMenu();
-
-        unmount();
-
-        expect(main).not.toHaveAttribute("inert");
-        expect(document.documentElement.style.overflow).toBe("");
-      });
-
-      it("is restored in strict mode as well", async () => {
-        render(
-          <StrictMode>
-            <HeaderCommon {...defaultProps} {...fullProps()} />
-            <main>Contenu</main>
-          </StrictMode>,
-        );
-        const main = screen.getByRole("main", { hidden: true });
-
-        const user = await openMenu();
-        expect(main).toHaveAttribute("inert");
-        expect(
-          screen.getByRole("button", { name: "Fermer le menu" }),
-        ).toHaveFocus();
-
-        await user.keyboard("{Escape}");
-        expect(main).not.toHaveAttribute("inert");
-        expect(document.documentElement.style.overflow).toBe("");
-        expect(getMenuButton()).toHaveFocus();
-      });
+      expect(isOpen(getMenu())).toBe(false);
     });
 
-    it("shouldn't have an accessibility violation, panel closed", async () => {
-      const { container } = renderHeader({ ...fullProps(), title: "Titre" });
+    it("closes the menu with Escape", async () => {
+      const user = userEvent.setup();
+      renderHeader(fullProps());
 
-      expect(await axe(container)).toHaveNoViolations();
+      await user.click(getMenuButton());
+      await user.keyboard("{Escape}");
+
+      expect(isOpen(getMenu())).toBe(false);
     });
 
-    it("shouldn't have an accessibility violation, panel open", async () => {
-      const { container } = renderHeader({ ...fullProps(), title: "Titre" });
-      await openMenu();
+    it("closes the menu with a click outside of it", async () => {
+      const user = userEvent.setup();
+      renderHeader({ ...fullProps(), title: "Devis assurance auto" });
+
+      await user.click(getMenuButton());
+      await user.click(screen.getByRole("heading", { level: 1 }));
+
+      expect(isOpen(getMenu())).toBe(false);
+    });
+
+    it("keeps the menu open with a click inside it", async () => {
+      const user = userEvent.setup();
+      renderHeader(fullProps());
+
+      await user.click(getMenuButton());
+      await user.click(
+        screen.getByRole("button", { name: "Accéder à AXA Banque" }),
+      );
+
+      expect(isOpen(getMenu())).toBe(true);
+    });
+
+    it("keeps the onClick of clickIconProps", async () => {
+      const onClick = vi.fn();
+      const user = userEvent.setup();
+      renderHeader({ ...fullProps(), clickIconProps: { src: "", onClick } });
+
+      await user.click(getMenuButton());
+
+      expect(onClick).toHaveBeenCalledTimes(1);
+      expect(isOpen(getMenu())).toBe(true);
+    });
+
+    it("stops being a popover on large screens", () => {
+      const { rerender } = renderHeader(fullProps());
+      expect(getMenu()).toHaveAttribute("popover", "auto");
+
+      vi.mocked(useIsSmallScreen).mockReturnValue(false);
+      rerender(<HeaderCommon {...defaultProps} {...fullProps()} />);
+
+      expect(getMenu()).not.toHaveAttribute("popover");
+    });
+
+    it("shouldn't have an accessibility violation, menu open", async () => {
+      const user = userEvent.setup();
+      const { container } = renderHeader(fullProps());
+
+      await user.click(getMenuButton());
 
       expect(await axe(container)).toHaveNoViolations();
     });
@@ -776,26 +342,31 @@ describe("HeaderCommon", () => {
 
 describe.each([
   ["Apollo", HeaderApollo],
-  ["Look & Feel", HeaderLF],
-])("%s Header", (_, Header) => {
+  ["LF", HeaderLF],
+])("Header %s", (_, Header) => {
   beforeEach(() => {
     vi.mocked(useIsSmallScreen).mockReturnValue(true);
   });
 
-  it("renders the navigation entries as ClickItems in the menu panel", async () => {
+  it("renders the menu with the components of the look", async () => {
+    const user = userEvent.setup();
     render(
       <Header
-        appNameProps={{ label: "Mon application" }}
+        appNameProps={{ logoLinkProps: { href: "/" } }}
         tabMenuProps={{ items: tabMenuItems }}
+        menuBurgerProps={{
+          buttonLabel: "Mon espace",
+          clickItems: [{ title: "Mon profil", onClick: vi.fn() }],
+        }}
       />,
     );
 
-    await openMenu();
+    await user.click(getMenuButton());
 
+    expect(isOpen(getMenu())).toBe(true);
     expect(
-      screen
-        .getByRole("link", { name: "Contrats" })
-        .querySelector(".af-apollo-click-item"),
+      within(getMenu()).getByRole("link", { name: "Accueil" }),
     ).toBeInTheDocument();
+    expect(within(getMenu()).getByText("Mon profil")).toBeInTheDocument();
   });
 });

@@ -4,7 +4,6 @@ import { AppName } from "../AppName/AppName";
 import { Heading } from "../Heading/HeadingApollo";
 import { MenuBurger } from "../MenuBurger/MenuBurgerApollo";
 import { ClickIcon } from "../ClickIcon/ClickIconApollo";
-import { ClickItem } from "../List/ClickItem/ClickItemApollo";
 import { HeaderCommon, type HeaderProps } from "./HeaderCommon";
 
 export const Header = (props: HeaderProps) => (
@@ -13,7 +12,6 @@ export const Header = (props: HeaderProps) => (
     HeadingComponent={Heading}
     MenuBurgerComponent={MenuBurger}
     ClickIconComponent={ClickIcon}
-    ClickItemComponent={ClickItem}
     {...props}
   />
 );

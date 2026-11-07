@@ -2,6 +2,8 @@
 
 @layer canopee {
   .af-header {
+    --header-focus-color: var(--blue-650);
+
     border-top: 2px solid var(--blue-1000);
     border-bottom: 2px solid var(--blue-200);
   }

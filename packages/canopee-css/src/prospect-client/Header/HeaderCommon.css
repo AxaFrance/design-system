@@ -40,97 +40,121 @@
     }
   }
 
-  /* Menu button: the 32px icon of the mockup, without padding. */
-  .af-header .af-header__menu-icon {
+  /* Menu button and close button: the 32px icons of the mockup, without
+     padding. Both belong to the header bar. */
+  .af-header .af-header__menu-icon,
+  .af-header .af-header__menu-close {
     padding: 0;
     flex-shrink: 0;
   }
 
+  .af-header__menu-icon {
+    anchor-name: --af-header-menu-icon;
+  }
+
+  /* Small screens: the menu is a native popover. Closed, or before the
+     popover attribute is set, it is not displayed. */
   .af-header__menu {
     display: none;
   }
 
-  /* Small screens: a full screen panel with its own close button, the
-     buttons at the bottom (Menu Burger mockup). */
-  .af-header__panel {
+  .af-header__menu:popover-open {
     position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    left: 0;
+    inset: 0;
     display: flex;
-    height: 100dvh;
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    margin: 0;
     padding: var(--rem-24);
+    border: 0;
     flex-direction: column;
     gap: var(--rem-16);
     overflow-y: auto;
     overscroll-behavior: contain;
+    color: inherit;
     background: var(--white);
+    transition: opacity var(--transition-duration);
+    reading-flow: flex-visual;
+  }
 
-    &[hidden] {
-      display: none;
+  @starting-style {
+    .af-header__menu:popover-open {
+      opacity: 0;
     }
   }
 
-  .af-header__panel-close {
-    flex-shrink: 0;
+  html:has(.af-header__menu:popover-open) {
+    overflow: hidden;
+  }
+
+  /* Without anchor positioning, the menu covers the screen and its close
+     button is at the top. */
+  .af-header__menu-close {
     align-self: flex-end;
   }
 
-  .af-header__panel-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .af-header__panel-item + .af-header__panel-item {
-    margin-top: var(--rem-16);
-    padding-top: var(--rem-16);
-    border-top: 1px solid var(--blue-200);
-  }
-
-  .af-header__panel-item .af-apollo-click-item__leading:empty {
-    display: none;
-  }
-
-  .af-header__panel-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-
-    &:focus-visible {
-      outline: 2px solid var(--blue-650);
-      outline-offset: var(--rem-4);
+  /* With anchor positioning, the menu opens under the header and the close
+     button takes the place of the menu button. */
+  @supports (top: anchor(--af-header bottom)) {
+    .af-header__menu:popover-open {
+      top: anchor(--af-header bottom);
+      position-anchor: --af-header;
     }
 
-    /* Current page: the text of the selected Item Menu. */
-    &[aria-current="page"] .af-apollo-click-item {
-      --click-item-title-color: var(--blue-1000);
-      --click-item-title-font-weight: 700;
+    .af-header__menu-close {
+      position: fixed;
+      top: anchor(top);
+      left: anchor(left);
+      position-anchor: --af-header-menu-icon;
     }
-  }
 
-  .af-header__panel-bottom {
-    margin-top: auto;
-  }
-
-  .af-header__panel-bottom,
-  .af-header__panel-actions,
-  .af-header__panel-footer {
-    display: grid;
-    gap: var(--rem-16);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .af-header__panel:not([hidden]) {
-      animation: af-header-panel-in var(--transition-duration) ease-out;
-    }
-  }
-
-  @keyframes af-header-panel-in {
-    from {
+    /* The close button has no background: the menu button under it is hidden,
+       so that only the cross shows. It keeps the focus (see below). */
+    .af-header:has(.af-header__menu:popover-open) .af-header__menu-icon {
       opacity: 0;
-      transform: translateY(-0.25rem);
+    }
+  }
+
+  /* The close button covers the focused menu button: it shows its focus. */
+  .af-header:has(.af-header__menu-icon:focus-visible) .af-header__menu-close {
+    outline: 2px solid var(--header-focus-color);
+    outline-offset: 2px;
+  }
+
+  /* Menu content, as in the Menu Burger mockup: navigation links, then the
+     account entries, then the buttons at the bottom. */
+  @media not (--desktop-small) {
+    .af-header__menu .af-header__actions,
+    .af-header__menu .af-menu-burger,
+    .af-header__menu .af-menu-burger__panel {
+      display: contents;
+    }
+
+    .af-header__menu .af-header__tab-menu {
+      padding: 0;
+      order: 1;
+    }
+
+    .af-header__menu .af-menu-burger__section--actions {
+      order: 2;
+    }
+
+    .af-header__menu .af-header__actions-children {
+      display: grid;
+      margin-top: auto;
+      order: 3;
+      gap: var(--rem-16);
+    }
+
+    .af-header__menu .af-menu-burger__content {
+      margin-top: auto;
+      order: 4;
+    }
+
+    .af-header__actions-children + .af-menu-burger .af-menu-burger__content {
+      margin-top: 0;
     }
   }
 
@@ -139,6 +163,7 @@
       display: grid;
       padding-inline: var(--rem-60);
       grid-template-columns: auto 1fr;
+      grid-auto-flow: column;
       column-gap: var(--rem-24);
       anchor-name: --header;
 
@@ -164,12 +189,17 @@
       margin-inline-end: 0;
     }
 
-    .af-header .af-header__title h1 {
-      --heading-title-font-size: var(--rem-24);
-      --heading-title-line-height: var(--rem-30);
+    .af-header .af-header__title {
+      order: 1;
+
+      h1 {
+        --heading-title-font-size: var(--rem-24);
+        --heading-title-line-height: var(--rem-30);
+      }
     }
 
-    .af-header__menu-icon {
+    .af-header .af-header__menu-icon,
+    .af-header .af-header__menu-close {
       display: none;
     }
 
@@ -182,6 +212,7 @@
 
     .af-header__actions {
       display: flex;
+      grid-column: 2;
       align-items: center;
       justify-content: flex-end;
       gap: var(--rem-40);

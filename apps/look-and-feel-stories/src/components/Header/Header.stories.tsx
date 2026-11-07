@@ -9,8 +9,6 @@ import {
 } from "@axa-fr/canopee-react/client";
 
 import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fill.svg";
-import contract from "@material-symbols/svg-400/rounded/contract-fill.svg";
-import home from "@material-symbols/svg-400/rounded/home-fill.svg";
 import logout from "@material-symbols/svg-400/rounded/logout.svg";
 import settings from "@material-symbols/svg-400/rounded/settings-fill.svg";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -29,11 +27,10 @@ const appNameProps: HeaderProps["appNameProps"] = {
   logoLinkProps: { href: "#" },
 };
 
-// The icons are only shown in the small screen menu.
 const tabMenuProps: HeaderProps["tabMenuProps"] = {
   items: [
-    { href: "#accueil", label: "Accueil", icon: home, isActive: true },
-    { href: "#contrats", label: "Contrats", icon: contract },
+    { href: "#accueil", label: "Accueil", isActive: true },
+    { href: "#contrats", label: "Contrats" },
   ],
 };
 
