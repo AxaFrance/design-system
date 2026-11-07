@@ -208,6 +208,15 @@ describe("HeaderCommon", () => {
       expect(getMenu()).not.toHaveAttribute("popover");
     });
 
+    it("ignores the choice of a link, the menu not being a popover", async () => {
+      const user = userEvent.setup();
+      renderHeader(fullProps());
+
+      await user.click(screen.getByRole("link", { name: "Contrats" }));
+
+      expect(getMenu()).not.toHaveAttribute("popover");
+    });
+
     it("opens the account menu with its own button", () => {
       renderHeader(fullProps());
 
@@ -305,6 +314,50 @@ describe("HeaderCommon", () => {
         screen.getByRole("button", { name: "Accéder à AXA Banque" }),
       );
 
+      expect(isOpen(getMenu())).toBe(true);
+    });
+
+    it.each([
+      ["a navigation link", "link", "Contrats"],
+      ["an account entry", "button", "Mon profil"],
+    ] as const)("closes the menu when %s is chosen", async (_, role, name) => {
+      const user = userEvent.setup();
+      renderHeader(fullProps());
+
+      await user.click(getMenuButton());
+      await user.click(within(getMenu()).getByRole(role, { name }));
+
+      expect(isOpen(getMenu())).toBe(false);
+    });
+
+    it("closes the menu when the focus leaves it for the page", async () => {
+      const user = userEvent.setup();
+      render(
+        <>
+          <HeaderCommon {...defaultProps} {...fullProps()} />
+          <button type="button">Contenu de la page</button>
+        </>,
+      );
+
+      await user.click(getMenuButton());
+      within(getMenu()).getByRole("button", { name: "Déconnexion" }).focus();
+      await user.tab();
+
+      expect(
+        screen.getByRole("button", { name: "Contenu de la page" }),
+      ).toHaveFocus();
+      expect(isOpen(getMenu())).toBe(false);
+    });
+
+    it("keeps the menu open when the focus goes back to the menu button", async () => {
+      const user = userEvent.setup();
+      renderHeader(fullProps());
+
+      await user.click(getMenuButton());
+      within(getMenu()).getByRole("button", { name: "Fermer le menu" }).focus();
+      await user.tab({ shift: true });
+
+      expect(getMenuButton()).toHaveFocus();
       expect(isOpen(getMenu())).toBe(true);
     });
 

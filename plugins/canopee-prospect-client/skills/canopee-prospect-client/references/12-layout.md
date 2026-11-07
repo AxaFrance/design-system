@@ -416,7 +416,7 @@ En-tête de page responsive, en deux styles comme la maquette : « Default » (l
 - Les mêmes éléments servent aux deux tailles d'écran ; le CSS les dispose.
 - **Desktop** (≥ 1024 px) : tout sur une ligne ; marges de 60 px, 24 px entre le logo et la navigation, 40 px entre les actions. Voile derrière le `MenuBurger` ouvert : `blue-1000` à 40 % en prospect, `gray-1000` à 48 % en client.
 - **Mobile** (≤ 1023 px) : logo, titre et bouton « Menu » de 32 px (`aria-controls`). Le bouton ouvre le menu, un popover natif sous l'en-tête ; une croix prend la place du bouton. Dans le menu : les entrées du `TabMenu` en liens (atome `ItemMenu`), un séparateur, les `clickItems` du `MenuBurger`, puis, en bas, `actionChildren` et les `children` du `MenuBurger`.
-- Menu ouvert : non modal, page sans défilement. Le navigateur le ferme par Échap, la croix ou un clic à l'extérieur, et rend le focus au bouton « Menu ».
+- Menu ouvert : non modal, page sans défilement. Le navigateur le ferme par Échap, la croix ou un clic à l'extérieur, et rend le focus au bouton « Menu ». Le choix d'un lien ou d'une entrée, ou un focus qui quitte le menu pour la page, le ferme aussi.
 - `appNameProps.label` est déprécié : la maquette montre le logo seul.
 
 ### Import

@@ -31,7 +31,7 @@ The same elements serve both screen sizes; CSS lays them out. On desktop (1024px
 
 - One `<header>` and one `<nav>`, the `TabMenu`, on every screen size. Give it a name with `aria-label` when the page has several navigations.
 - The "Menu" button opens the menu with the native Popover API (`popovertarget`): browsers give its expanded state to assistive technologies. It points to the menu with `aria-controls`. Its name does not change; pass `clickIconProps={{ "aria-label": "…" }}` to change it. At 32px, it meets the minimum target size of WCAG 2.2 (2.5.8, 24px).
-- The menu is not modal. The browser closes it with Escape, the close button ("Fermer le menu", see `closeButtonAriaLabel`) or a click outside of it, and gives the focus back to the "Menu" button. The close button comes right after the "Menu" button in the focus order; when it covers that button, it shows its focus. The page does not scroll while the menu is open.
+- The menu is not modal. The browser closes it with Escape, the close button ("Fermer le menu", see `closeButtonAriaLabel`) or a click outside of it, and gives the focus back to the "Menu" button. Choosing a link or a `MenuBurger` entry, or moving the focus out of the menu to the page, closes it too. The close button comes right after the "Menu" button in the focus order; when it covers that button, it shows its focus. The page does not scroll while the menu is open.
 - On mobile, CSS puts the action children after the `MenuBurger` click items; browsers that support `reading-flow` follow that order with the keyboard.
 
 ## Import

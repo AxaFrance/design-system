@@ -4,6 +4,8 @@ import {
   useId,
   type ComponentPropsWithoutRef,
   type ComponentType,
+  type FocusEvent,
+  type MouseEvent,
   type ReactNode,
 } from "react";
 import { type AppNameProps } from "../AppName/AppName";
@@ -74,6 +76,37 @@ type HeaderCommonProps = HeaderProps & {
   ClickIconComponent: ComponentType<ClickIconProps>;
 };
 
+// Choosing one of them leaves the page or changes it: the menu closes.
+const MENU_CHOICES = "a[href], .af-menu-burger__click-items button";
+
+// The menu is a popover on small screens only.
+const hideMenu = (menu: HTMLElement) => {
+  if (menu.hasAttribute("popover")) {
+    menu.hidePopover();
+  }
+};
+
+// The focus leaves the menu for the page under it: the menu closes. It stays
+// open when the focus goes back to the menu button or leaves the window.
+const handleMenuBlur = (event: FocusEvent<HTMLDivElement>) => {
+  const next = event.relatedTarget;
+  const menu = event.currentTarget;
+
+  if (
+    next &&
+    !menu.contains(next) &&
+    next.getAttribute("popovertarget") !== menu.id
+  ) {
+    hideMenu(menu);
+  }
+};
+
+const handleMenuClick = (event: MouseEvent<HTMLDivElement>) => {
+  if (event.target instanceof Element && event.target.closest(MENU_CHOICES)) {
+    hideMenu(event.currentTarget);
+  }
+};
+
 const withElementClass = <T extends { className?: string }>(
   props: T,
   baseClassName: string,
@@ -94,7 +127,8 @@ const withElementClass = <T extends { className?: string }>(
  * - Small screens: logo, title and a menu button. The button opens the menu
  *   as a native popover under the header: the browser handles Escape, light
  *   dismiss and the return of the focus. The close button of the menu sits on
- *   the menu button.
+ *   the menu button. A link, an entry or a focus that leaves the menu closes
+ *   it too.
  */
 export const HeaderCommon = ({
   appNameProps,
@@ -166,10 +200,15 @@ export const HeaderCommon = ({
             popoverTargetAction="toggle"
           />
 
+          {/* Delegated click of the links and buttons of the menu, which the
+              keyboard activates too. */}
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
           <div
             id={menuId}
             popover={isSmallScreen ? "auto" : undefined}
             className="af-header__menu"
+            onBlur={handleMenuBlur}
+            onClick={handleMenuClick}
           >
             <ClickIconComponent
               src={closeIcon}
