@@ -28,6 +28,10 @@ Un sous-composant sert à construire les autres, il n'est pas posé tel quel dan
 
 Certains éléments sont affichés par le navigateur lui-même, et non par le code, comme la liste qui s'ouvre sous un select natif. Ils ont leurs propres composants, dans un dossier native. Exemple : native/SelectList. Dans la librairie Figma, ces composants ont leur page, nommée Native.
 
+## Les composants archivés
+
+Un composant archivé garde son nom, précédé du dossier _archive. Le tiret bas le retire de la librairie publiée. Exemple : _archive/List.
+
 ## Les familles
 
 Chaque famille est une page de la librairie Figma. Le B2C et le B2B ont les mêmes familles, rangées par usage. Une famille sans composant garde sa page, et il n'y a pas de page à part pour les sous-composants.
