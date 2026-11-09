@@ -96,13 +96,13 @@ Les calques, les contenus que l'usage remplit, et les composants imbriqués.
 "structure": {
   "slots": {
     "label": { "as": "children", "default": { "text": "Label" }, "controls": [{ "layer": "label", "attribute": "text" }] },
-    "leftIcon": { "accepts": "Instance", "default": { "swap": "account_balance" }, "preferred": ["account_balance"], "controls": [{ "layer": "left-icon", "attribute": "component" }] }
+    "leftIcon": { "accepts": "Instance", "default": { "swap": "icon/account-balance" }, "preferred": ["icon/account-balance"], "controls": [{ "layer": "left-icon", "attribute": "component" }] }
   },
   "trees": [
     { "when": {}, "tree": [
-      { "name": "left-icon", "type": "instance", "component": "account_balance" },
+      { "name": "left-icon", "type": "instance", "component": "icon/account-balance" },
       { "name": "label", "type": "text" },
-      { "name": "right-icon", "type": "instance", "component": "account_balance" }
+      { "name": "right-icon", "type": "instance", "component": "icon/account-balance" }
     ] },
     { "when": { "state": "focus" }, "tree": [ ] }
   ],
@@ -176,7 +176,7 @@ Chaque composant imbriqué ou proposé dans un swap, une seule fois, trié par n
 
 ```json
 "components": {
-  "account_balance": { "library": null, "key": "…" }
+  "icon/account-balance": { "library": null, "key": "…" }
 }
 ```
 

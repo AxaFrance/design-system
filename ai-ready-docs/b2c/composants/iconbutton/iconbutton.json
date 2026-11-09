@@ -1193,10 +1193,10 @@
       "icon": {
         "accepts": "Instance",
         "default": {
-          "swap": "account_balance"
+          "swap": "icon/account-balance"
         },
         "preferred": [
-          "account_balance"
+          "icon/account-balance"
         ],
         "controls": [
           {
@@ -1213,7 +1213,7 @@
           {
             "name": "icon",
             "type": "instance",
-            "component": "account_balance"
+            "component": "icon/account-balance"
           }
         ]
       },
@@ -1226,7 +1226,7 @@
           {
             "name": "icon",
             "type": "instance",
-            "component": "account_balance"
+            "component": "icon/account-balance"
           },
           {
             "name": "focus-ring",
@@ -1236,7 +1236,7 @@
       }
     ],
     "uses": [
-      "account_balance"
+      "icon/account-balance"
     ]
   },
   "styles": {
@@ -1363,7 +1363,7 @@
         "styles": {
           "focus-ring": {
             "stroke": {
-              "token": "color/blue/300"
+              "token": "color/blue/400"
             },
             "strokeWeight": {
               "token": "border/width/2"
@@ -1759,10 +1759,10 @@
       "collection": "Primitive",
       "key": "415225848ac7e2d89a5d2ca4dbc8d7debd4377fe"
     },
-    "color/blue/300": {
+    "color/blue/400": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "114011b20bf2d95b83614ca60e5f298d82909080"
+      "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
     },
     "color/blue/700": {
       "library": "Fondations Canopée",
@@ -1822,9 +1822,9 @@
   },
   "textStyles": {},
   "components": {
-    "account_balance": {
+    "icon/account-balance": {
       "library": null,
-      "key": "601fd16fa38fce5c385d55647a62d156336c3eb0"
+      "key": "b3851c784ccef4c351dfa539b744499293b1b010"
     }
   },
   "modeCollections": {},
