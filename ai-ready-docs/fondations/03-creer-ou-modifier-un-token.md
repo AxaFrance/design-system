@@ -31,6 +31,10 @@ Il manque un token, ou une valeur ne convient plus ? Il suffit de le signaler en
 
 L'équipe design system crée et modifie les tokens uniquement dans le fichier Figma Fondations Canopée. Les librairies de composants B2C et B2B utilisent exclusivement ces tokens.
 
+Un token sémantique porte un nom qui dit son usage, comme icon/size/small. Sa valeur pointe vers une primitive, une valeur brute comme size/24. L'équipe design system range chaque token sémantique dans une collection, selon ce qui fait changer la valeur du token.
+
+La collection Typography change selon le B2C ou le B2B, le thème et l'écran. Elle a un jeu de valeurs, appelé mode, pour chaque combinaison, soit cinq en tout. La collection Size garde les mêmes valeurs partout et n'a qu'un mode. Pour des couleurs qui changent selon le thème, l'équipe créerait une collection Color, avec un mode par thème.
+
 Avant de publier, vérifier dans le plugin Canopée qu'il n'y a pas d'erreur.
 
 ### 3. Publier et valider dans Figma

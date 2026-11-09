@@ -57,7 +57,7 @@ Ces règles valent dans Figma comme dans le code. Les exemples donnent le nom Fi
 ### Spacing ou size
 
 - spacing pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap.
-- size pour la largeur ou la hauteur d'un élément, comme une icon ou un logo.
+- size pour la largeur ou la hauteur d'un élément, comme un logo. En B2C, une icône prend une taille d'icône, comme icon/size/small, et non une primitive size.
 
 ### Les breakpoints
 
