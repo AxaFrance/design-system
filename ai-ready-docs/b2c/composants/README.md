@@ -16,3 +16,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 |---|---|---|---|
 | Button | [button.md](button/button.md) | [button.json](button/button.json) | [button-changelog.md](button/button-changelog.md) |
 | IconButton | [iconbutton.md](iconbutton/iconbutton.md) | [iconbutton.json](iconbutton/iconbutton.json) | [iconbutton-changelog.md](iconbutton/iconbutton-changelog.md) |
+| Divider | [divider.md](divider/divider.md) | [divider.json](divider/divider.json) | [divider-changelog.md](divider/divider-changelog.md) |

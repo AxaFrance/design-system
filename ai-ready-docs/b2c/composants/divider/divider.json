@@ -1,0 +1,173 @@
+{
+  "formatVersion": "0.4",
+  "meta": {
+    "name": "Divider",
+    "version": "1.0.0",
+    "tokensVersion": "2.0.0",
+    "type": "atom",
+    "figmaKey": "0841d322d140783b9b43fc5aed99d67a34ccf0a6",
+    "library": "B2C",
+    "documentationLinks": []
+  },
+  "api": {
+    "props": {
+      "orientation": {
+        "type": "enum",
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "orientation": "horizontal"
+      },
+      "position": [
+        41,
+        41
+      ]
+    },
+    {
+      "values": {
+        "orientation": "vertical"
+      },
+      "position": [
+        41,
+        66
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": []
+      }
+    ],
+    "uses": []
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "orientation": "horizontal"
+      },
+      "root": {
+        "background": {
+          "token": "color/gray/200"
+        },
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "row",
+          "clip": false,
+          "maxHeight": {
+            "raw": 1
+          },
+          "sizingH": "fixed",
+          "width": {
+            "raw": 100
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "border/width/1"
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "orientation": "vertical"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "row",
+              "clip": false,
+              "maxWidth": {
+                "raw": 1
+              },
+              "sizingH": "fixed",
+              "width": {
+                "token": "border/width/1"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 100
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/width/1": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a3fa5d8b91d34001a5c85064ef0d8a63bb5dafd2"
+    },
+    "color/gray/200": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a221368bce559430e99d794dd8575360a84e91a2"
+    }
+  },
+  "textStyles": {},
+  "components": {},
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.layout.height",
+      "message": "Valeur brute (100) : la relier à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.layout.maxHeight",
+      "message": "Valeur brute (1) : la relier à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.layout.maxWidth",
+      "message": "Valeur brute (1) : la relier à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.layout.width",
+      "message": "Valeur brute (100) : la relier à une variable.",
+      "occurrences": 1
+    }
+  ],
+  "_tool": "canopee-export-components 0.4.44"
+}
