@@ -7,7 +7,9 @@
     "type": "atom",
     "figmaKey": "0841d322d140783b9b43fc5aed99d67a34ccf0a6",
     "library": "B2C",
-    "documentationLinks": []
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/divider/divider.md"
+    ]
   },
   "api": {
     "props": {
