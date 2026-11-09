@@ -4,8 +4,8 @@
   "$extensions": {
     "fr.axa.canopee": {
       "source": "Fondations Canopée",
-      "plugin": "0.25.0",
-      "date": "2026-10-26T14:16:49Z"
+      "plugin": "0.31.1",
+      "date": "2026-11-09T11:09:19Z"
     }
   },
   "sets": {
@@ -2344,10 +2344,66 @@
         }
       ]
     },
+    "Size": {
+      "sources": [
+        {
+          "icon": {
+            "size": {
+              "extra-small": {
+                "$type": "dimension",
+                "$value": "{size.16}"
+              },
+              "large": {
+                "$type": "dimension",
+                "$value": "{size.40}"
+              },
+              "medium": {
+                "$type": "dimension",
+                "$value": "{size.32}"
+              },
+              "small": {
+                "$type": "dimension",
+                "$value": "{size.24}"
+              }
+            }
+          }
+        }
+      ]
+    },
     "Styles": {
       "sources": [
         {
-          "typographie": {
+          "shadow": {
+            "shadow": {
+              "$type": "shadow",
+              "$value": {
+                "color": {
+                  "colorSpace": "srgb",
+                  "components": [0.2, 0.2, 0.2],
+                  "alpha": 0.25,
+                  "hex": "#333333"
+                },
+                "offsetX": {
+                  "value": 0,
+                  "unit": "px"
+                },
+                "offsetY": {
+                  "value": 0,
+                  "unit": "px"
+                },
+                "blur": {
+                  "value": 8,
+                  "unit": "px"
+                },
+                "spread": {
+                  "value": 0,
+                  "unit": "px"
+                },
+                "inset": false
+              }
+            }
+          },
+          "typography": {
             "body": {
               "1": {
                 "regular": {
@@ -3588,6 +3644,9 @@
     },
     {
       "$ref": "#/sets/Typography"
+    },
+    {
+      "$ref": "#/sets/Size"
     },
     {
       "$ref": "#/sets/Styles"
