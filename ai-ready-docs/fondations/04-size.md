@@ -1,8 +1,10 @@
-# Tailles d'icônes
+# Size
 
-Les tailles d'icônes sont des tokens sémantiques : leur nom dit à quoi elles servent, et leur valeur pointe vers une primitive. Dans Figma, elles sont rangées dans la collection Size de la librairie Fondations Canopée. Elles reprennent les quatre tailles d'icône du code B2C. Le B2B n'a pas encore de tailles d'icônes.
+La collection Size de la librairie Fondations Canopée réunit les tailles sémantiques. Une taille sémantique porte un nom qui dit son usage, et sa valeur pointe vers une primitive. Ces tailles gardent la même valeur quels que soient le thème et l'écran : la collection Size n'a donc qu'un mode.
 
-## Les tailles
+## Les tailles d'icônes
+
+Elles reprennent les quatre tailles d'icône du code B2C. Le B2B n'a pas encore de tailles d'icônes.
 
 | Nom dans Figma | Primitive | Nom dans le code |
 |---|---|---|
@@ -11,9 +13,9 @@ Les tailles d'icônes sont des tokens sémantiques : leur nom dit à quoi elles 
 | icon/size/medium | size/32 | --icon-size-medium |
 | icon/size/large | size/40 | --icon-size-large |
 
-Dans Figma, ces variables ne sont proposées que dans les champs de largeur et de hauteur. Elles gardent la même valeur quels que soient le thème et l'écran : la collection Size n'a donc qu'un mode.
+Dans Figma, ces variables ne sont proposées que dans les champs de largeur et de hauteur.
 
-## Le nom d'une taille d'icône
+## Le nom d'une taille
 
 - Le nom ne porte jamais la valeur. Exemple : icon/size/small, et non size/24.
 - Le nom donne l'élément (icon), la propriété (size), puis le palier, de extra-small à large.
