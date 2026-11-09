@@ -63,19 +63,35 @@ describe.each([
     ).toBeInTheDocument();
   });
 
-  it.each(["Left", "Right", "both"] as const)(
-    "ignores fit with %s slots without losing content",
-    (side) => {
+  it.each([
+    {
+      side: "Left",
+      slots: <ColumnsLayout.Left>Left</ColumnsLayout.Left>,
+      expectedSides: ["Left"],
+    },
+    {
+      side: "Right",
+      slots: <ColumnsLayout.Right>Right</ColumnsLayout.Right>,
+      expectedSides: ["Right"],
+    },
+    {
+      side: "both",
+      slots: (
+        <>
+          <ColumnsLayout.Left>Left</ColumnsLayout.Left>
+          <ColumnsLayout.Right>Right</ColumnsLayout.Right>
+        </>
+      ),
+      expectedSides: ["Left", "Right"],
+    },
+  ])(
+    "ignores fit with $side slots without losing content",
+    ({ slots, expectedSides }) => {
       const { container, rerender } = render(
         <ColumnsLayout isFit>
           <>
-            {side !== "Right" ? (
-              <ColumnsLayout.Left>Left</ColumnsLayout.Left>
-            ) : null}
+            {slots}
             <ColumnsLayout.Content>Content</ColumnsLayout.Content>
-            {side !== "Left" ? (
-              <ColumnsLayout.Right>Right</ColumnsLayout.Right>
-            ) : null}
           </>
         </ColumnsLayout>,
       );
@@ -84,10 +100,9 @@ describe.each([
         "af-columns-layout--fit",
       );
       expect(screen.getByText("Content")).toBeInTheDocument();
-      if (side !== "Right")
-        expect(screen.getByText("Left")).toBeInTheDocument();
-      if (side !== "Left")
-        expect(screen.getByText("Right")).toBeInTheDocument();
+      expect(
+        ["Left", "Right"].filter((label) => screen.queryByText(label)),
+      ).toEqual(expectedSides);
       rerender(
         <ColumnsLayout isFit>
           <ColumnsLayout.Content>Content</ColumnsLayout.Content>
