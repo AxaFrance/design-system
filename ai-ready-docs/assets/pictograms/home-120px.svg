@@ -1,0 +1,26 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M80.4183 42.0121L62.4183 67.9929V104.366L95.4183 85.3134V50.6724L80.4183 42.0121Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M74.4183 55.8685L84.9183 49.8063V65.3948L74.4183 71.457V55.8685Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M74.4183 67.9929L81.9183 63.6628L84.9183 65.3948L74.4183 71.457V67.9929Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M81.9183 51.5384V63.6627L84.9183 65.3948V49.8063L81.9183 51.5384Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M74.4183 97.4378V76.6532L84.9183 70.591L84.9183 91.3756L74.4183 97.4378Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M77.5982 84.1293L76.1718 85.0203C76.1554 85.0285 76.145 85.0453 76.145 85.0636V85.9986C76.145 86.0346 76.1829 86.0581 76.2152 86.042L77.6519 85.1664C77.6684 85.1582 77.6684 85.126 77.6684 85.1077V84.1727C77.6684 84.1367 77.6304 84.1132 77.5982 84.1293Z" fill="white"/>
+<path d="M77.5982 84.1293C77.0272 84.4148 76.7429 84.7347 76.1718 85.0203M77.5982 84.1293C77.6304 84.1132 77.6684 84.1367 77.6684 84.1727V85.1077C77.6684 85.126 77.6684 85.1582 77.6519 85.1664L76.2152 86.042C76.1829 86.0581 76.145 86.0346 76.145 85.9986V85.0636C76.145 85.0453 76.1554 85.0285 76.1718 85.0203M77.5982 84.1293L76.1718 85.0203" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M62.4183 67.9929L57.9183 70.591V67.1269L78.9183 35.95L98.4183 47.2083V48.9403L95.4183 50.6724L80.4183 42.0121L62.4183 67.9929Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M57.9183 67.1269L20.4183 45.4762L41.4183 14.3326L78.9183 35.9499L57.9183 67.1269Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M57.9183 67.1269V70.591L20.4183 48.9403V45.4763L57.9183 67.1269Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M23.4183 50.6724V81.8493L62.4183 104.366V67.9929L57.9183 70.591L23.4183 50.6724Z" fill="white"/>
+<path d="M62.4183 80.1173L23.4183 57.6006V50.6724L57.9183 70.591L62.4183 67.9929V80.1173Z" fill="#E2EFFF"/>
+<path d="M23.4183 50.6724V81.8493L62.4183 104.366V67.9929L57.9183 70.591L23.4183 50.6724Z" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M30.9183 58.4666L39.9183 63.6628V79.2512L30.9183 74.0551V58.4666Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M33.9183 60.1987V72.323L30.9183 74.0551V58.4666L33.9183 60.1987Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M33.9183 72.3231L39.9183 75.7872V79.2513L30.9183 74.0551L33.9183 72.3231Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M45.9183 67.1269V82.7153L54.9183 87.9115V72.323L45.9183 67.1269Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M48.9183 68.8589V80.9833L45.9183 82.7153V67.1269L48.9183 68.8589Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<path d="M45.9183 82.7153L48.9183 80.9833L54.9183 84.4474V87.9115L45.9183 82.7153Z" fill="#E2EFFF" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F"/>
+<mask id="stroke0_2370_19268" maskUnits="userSpaceOnUse" x="18.4183" y="12.3326" width="82" height="94" fill="black">
+<rect fill="white" x="18.4183" y="12.3326" width="82" height="94"/>
+<path d="M78.9183 35.95L41.4183 14.3326L20.4183 45.4762V48.9403L23.4183 50.6724V57.6006V81.8493L62.4183 104.366L95.4183 85.3134V50.6724L98.4183 48.9403V47.2083L78.9183 35.95Z"/>
+</mask>
+<path d="M78.9183 35.95L41.4183 14.3326L20.4183 45.4762V48.9403L23.4183 50.6724V57.6006V81.8493L62.4183 104.366L95.4183 85.3134V50.6724L98.4183 48.9403V47.2083L78.9183 35.95Z" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="#00008F" mask="url(#stroke0_2370_19268)"/>
+</svg>
