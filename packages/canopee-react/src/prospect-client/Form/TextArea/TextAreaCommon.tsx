@@ -2,6 +2,7 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
+  type ReactNode,
   useId,
 } from "react";
 import { getClassName } from "../../utilities/getClassName";
@@ -14,7 +15,7 @@ import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
 
 export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ItemLabelProps["children"];
-  helper?: string;
+  helper?: ReactNode;
   containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,

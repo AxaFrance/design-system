@@ -164,7 +164,7 @@ import { TextArea } from "@axa-fr/canopee-react/prospect";
 ```tsx
 type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   label?: ReactNode;
-  helper?: string;
+  helper?: ReactNode;
   message?: ReactNode;
   messageType?: "error" | "success" | "warning";
   containerProps?: GridContainerProps;
