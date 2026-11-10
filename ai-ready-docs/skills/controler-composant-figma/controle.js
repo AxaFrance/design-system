@@ -17,6 +17,8 @@ const ROLES = [
   { nom: /^(label|title|subtitle|description|caption|helper|message|value)$/, test: (n) => n.type === "TEXT", attendu: "un texte" },
   { nom: /^(icon|left-icon|right-icon)$/, test: (n) => n.type === "INSTANCE", attendu: "une instance" },
 ];
+// Nom donné par Figma ou par un import : « Frame 27 », « Vector », « axa_logo_solid_rgb 1 ».
+const NOM_PAR_DEFAUT = /^(Frame|Group|Rectangle|Ellipse|Vector|Line|Polygon|Star|Union|Subtract|Intersect|Exclude|Text|Image|Component|Instance)( \d+)?$|\s\d+$/;
 // Surcharges d'instance, par famille. Permises : le contenu et la place dans la maquette.
 const CONTENU = ["characters", "componentProperties", "mainComponent", "text"];
 const PLACEMENT = ["layoutGrow", "layoutAlign", "layoutPositioning", "constraints", "reactions", "x", "y", "explicitVariableModes"];
@@ -130,6 +132,10 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   if (n.targetAspectRatio && (!!lies.width) !== (!!lies.height))
     note("taille-verrouillee", ou + " : ratio verrouillé, seule la " + (lies.width ? "largeur" : "hauteur") + " est reliée");
   for (const r of ROLES) if (r.nom.test(n.name) && !r.test(n)) note("role-incoherent", ou + " : nommé " + n.name + ", ce n'est pas " + r.attendu);
+  // Un nom par défaut, hors calques d'un composant imbriqué, qui appartiennent à ce composant.
+  let imbrique = false;
+  for (let p = n.parent; p && p !== v; p = p.parent) if (p.type === "INSTANCE") imbrique = true;
+  if (n !== v && !imbrique && NOM_PAR_DEFAUT.test(n.name)) note("nom-par-defaut", ou);
   if (n.type === "INSTANCE" && n !== v) {
     let mc = null;
     try { mc = await n.getMainComponentAsync(); } catch (e) { mc = null; }

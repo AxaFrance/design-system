@@ -34,6 +34,7 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 | taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Les formes et les calques absolus étirés ne sont pas comptés. |
 | taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
 | role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est pas un texte, une `icon` qui n'est pas une instance. |
+| nom-par-defaut | Un calque garde un nom donné par Figma ou par un import, comme « Frame 27 » ou « axa_logo_solid_rgb 1 ». Les calques d'un composant imbriqué ne sont pas comptés. |
 | instance-sans-master | Un composant imbriqué pointe vers un composant principal qui n'existe plus, souvent une variante supprimée. |
 | instance-hors-fondations | Un composant imbriqué vient d'une librairie sans porter un nom d'asset de Fondations : icon/, pictogram/, logo/ ou flag/. |
 | instance-texte, instance-visibilite | Une instance affiche un autre texte que sa propriété, ou une visibilité contraire à son booléen. |
