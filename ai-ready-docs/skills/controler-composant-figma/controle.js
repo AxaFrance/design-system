@@ -1,12 +1,15 @@
 // Contrôle général d'un composant Figma et de toutes ses instances.
 // À coller tel quel dans figma_execute, avec le fileKey du fichier, après avoir
-// remplacé SET_ID. Lecture seule : le script ne modifie rien.
-// Il rend { set, variantes, instances, defauts, surcharges } ; chaque défaut porte des exemples.
+// remplacé SET_ID et PATTERN, et choisi MODE. Lecture seule : le script ne modifie rien dans le fichier.
+// Il rend { set, variantes, instances, defauts, surcharges, releve } ; chaque défaut porte des exemples.
 
 const SET_ID = "SET_ID";
 // Pattern d'interaction du composant, d'après la page des principes d'interaction :
 // "Fond", "Contour", "Hybride" ou "Halo". Une chaîne vide pour un composant sans état d'interaction.
 const PATTERN = "PATTERN";
+// "releve" avant une modification du composant : le script note les surcharges de toutes ses instances
+// dans le stockage local du plugin, sans rien écrire dans le fichier. "controle" ensuite, pour signaler celles qui ont disparu.
+const MODE = "controle";
 // Calques qui peuvent n'exister que dans certaines variantes, comme l'anneau de focus.
 const CALQUES_OPTIONNELS = ["focus-ring"];
 // Formes : leur taille vient du tracé, elle n'est pas une valeur de mise en page.
@@ -41,6 +44,39 @@ const set = await figma.getNodeByIdAsync(SET_ID);
 if (!set || set.type !== "COMPONENT_SET") return "SET_ID ne désigne pas un ensemble de variantes.";
 if (!["Fond", "Contour", "Hybride", "Halo", ""].includes(PATTERN)) return "PATTERN vaut Fond, Contour, Hybride, Halo, ou une chaîne vide.";
 await figma.loadAllPagesAsync();
+
+// Relevé des surcharges, avant une modification du composant.
+const cleReleve = "controle-surcharges/" + figma.root.name + "/" + SET_ID;
+// Surcharges d'une instance : les champs modifiés, et les propriétés texte, booléen ou échange d'instance
+// qui n'ont pas leur valeur par défaut. Figma ne range pas ces propriétés parmi les surcharges.
+const surchargesDe = async (i, page) => {
+  const champs = {};
+  for (const o of i.overrides || []) for (const f of o.overriddenFields) {
+    const cible = await figma.getNodeByIdAsync(o.id);
+    champs[o.id + "|" + f] = page.name + " / " + i.name + " / " + (cible ? cible.name : o.id) + " / " + f;
+  }
+  const definitions = set.componentPropertyDefinitions;
+  for (const [k, p] of Object.entries(i.componentProperties || {})) {
+    if (p.type === "VARIANT" || !definitions[k] || p.value === definitions[k].defaultValue) continue;
+    champs["propriete|" + k.split("#").pop() + "|" + JSON.stringify(p.value)] = page.name + " / " + i.name + " / propriété " + k.split("#")[0] + " = " + String(p.value).slice(0, 40);
+  }
+  return champs;
+};
+if (MODE === "releve") {
+  const surchargesAvant = {};
+  let nombre = 0;
+  for (const v of set.children) for (const i of await v.getInstancesAsync()) {
+    let page = i;
+    while (page && page.type !== "PAGE") page = page.parent;
+    if (!page || i.removed) continue;
+    surchargesAvant[i.id] = await surchargesDe(i, page);
+    nombre += Object.keys(surchargesAvant[i.id]).length;
+  }
+  await figma.clientStorage.setAsync(cleReleve, { date: new Date().toISOString(), surcharges: surchargesAvant });
+  return { set: set.name, releve: Object.keys(surchargesAvant).length + " instances et " + nombre + " surcharges notées" };
+}
+if (MODE !== "controle") return "MODE vaut releve ou controle.";
+const releve = await figma.clientStorage.getAsync(cleReleve);
 
 const defauts = {};
 const note = (regle, exemple) => {
@@ -259,6 +295,7 @@ const calqueDuComposant = async (i, cible, mc) => {
   return figma.getNodeByIdAsync(reste.includes(";") ? "I" + reste : reste).catch(() => null);
 };
 let instances = 0, coupe = false;
+const vues = new Set();
 const surcharges = { permises: { contenu: 0, placement: 0, asset: 0 }, noms: 0, sansEffet: { nombre: 0, champs: {}, exemples: [] }, aVerifier: {}, exemples: {} };
 for (const v of set.children) {
   if (coupe) break;
@@ -273,6 +310,12 @@ for (const v of set.children) {
     const props = i.componentProperties || {};
     const champs = new Map();
     for (const o of i.overrides || []) for (const f of o.overriddenFields) champs.set(o.id.split(";").pop() + "|" + f, o.id);
+    // Surcharges présentes au relevé et disparues depuis.
+    if (releve && releve.surcharges[i.id]) {
+      vues.add(i.id);
+      const actuelles = new Set(Object.keys(await surchargesDe(i, page)));
+      for (const [cle, libelle] of Object.entries(releve.surcharges[i.id])) if (!actuelles.has(cle)) note("surcharge-perdue", libelle);
+    }
     for (const n of i.findAll(() => true)) {
       const refs = n.componentPropertyReferences || {};
       if (refs.characters && props[refs.characters] && n.characters !== props[refs.characters].value)
@@ -336,4 +379,8 @@ return {
   instances: coupe ? instances + " (contrôle arrêté à la durée maximale, instances suivantes non lues)" : instances,
   defauts: Object.keys(defauts).length ? defauts : "aucun",
   surcharges,
+  releve: !releve ? "aucun" : {
+    date: releve.date,
+    instancesDisparues: coupe ? "non comptées" : Object.keys(releve.surcharges).filter((id) => !vues.has(id) && Object.keys(releve.surcharges[id]).length).length,
+  },
 };

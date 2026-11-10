@@ -14,10 +14,11 @@ Il demande Figma Desktop, avec le plugin Desktop Bridge ouvert dans le fichier, 
 L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
 1. Lire [controle.js](controle.js) et remplacer `SET_ID` par l'id de l'ensemble de variantes, par exemple `41:9085`. Remplacer aussi `PATTERN` par le pattern du composant, d'après le tableau « Les quatre patterns » de la page [Principes d'interaction](../../regles/06-principes-d-interaction.md) : `Fond`, `Contour`, `Hybride` ou `Halo`. Un composant sans état d'interaction prend une chaîne vide. Si le composant n'est pas dans le tableau, demander son pattern au designer.
-2. Lancer le script avec `figma_execute`, sur le fichier où vit le composant, avec une durée maximale de 300 000 ms, soit cinq minutes. Le script parcourt les instances de tout le fichier.
-3. Relancer le script dans un second appel. Si le résultat change entre les deux appels, la modification faite avant le contrôle n'est pas terminée. Le script de modification tourne peut-être encore en arrière-plan, ou une écriture se propage d'une variante aux autres.
-4. Corriger chaque défaut, puis relancer le script jusqu'à ce que `defauts` vaille « aucun ». Un défaut peut rester s'il a une raison.
-5. Donner au designer le nombre de variantes et d'instances contrôlées, et la raison de chaque défaut laissé.
+2. Avant de modifier le composant, lancer le script avec `MODE` à `"releve"`. Le script note les surcharges et les valeurs de propriétés de toutes les instances, dans le stockage local du plugin Desktop Bridge, sans rien écrire dans le fichier. Sans relevé, le contrôle ne voit pas les surcharges perdues.
+3. Après la modification, lancer le script avec `MODE` à `"controle"`, avec `figma_execute`, sur le fichier où vit le composant, et une durée maximale de 300 000 ms, soit cinq minutes. Le script parcourt les instances de tout le fichier. Le résultat donne la date du relevé : un relevé ancien peut signaler une surcharge qu'un designer a retirée depuis.
+4. Relancer le script dans un second appel. Si le résultat change entre les deux appels, la modification faite avant le contrôle n'est pas terminée. Le script de modification tourne peut-être encore en arrière-plan, ou une écriture se propage d'une variante aux autres.
+5. Corriger chaque défaut, puis relancer le script jusqu'à ce que `defauts` vaille « aucun ». Un défaut peut rester s'il a une raison.
+6. Donner au designer le nombre de variantes et d'instances contrôlées, et la raison de chaque défaut laissé.
 
 ## Ce que le script signale
 
@@ -47,6 +48,7 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 | instance-sans-master | Un composant imbriqué pointe vers un composant principal qui n'existe plus, souvent une variante supprimée. |
 | instance-hors-fondations | Un composant imbriqué vient d'une librairie sans porter un nom d'asset de Fondations : icon/, pictogram/, logo/ ou flag/. |
 | instance-texte, instance-visibilite | Une instance affiche un autre texte que sa propriété, ou une visibilité contraire à son booléen. |
+| surcharge-perdue | Une surcharge ou une valeur de propriété notée au relevé a disparu d'une instance. Le résultat compte aussi les instances disparues depuis le relevé. |
 | instance-opacite, instance-couleur-texte | Une instance que personne n'a modifiée n'a pas la même opacité, ou la même couleur de texte, que le composant. |
 
 ## Le relevé des surcharges
@@ -76,5 +78,4 @@ Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produ
 
 - Les règles propres à chaque pattern d'interaction et leurs exceptions. Exemple : la border d'un champ qui passe à 2 px au hover.
 - Le rendu au pixel. Une capture d'écran reste utile en plus du script.
-- Les surcharges perdues par une modification du composant, qui demandent un relevé avant et une comparaison après.
 - La taille d'une icône posée sur l'instance plutôt que tenue par son composant principal.
