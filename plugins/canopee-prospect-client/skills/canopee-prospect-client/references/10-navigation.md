@@ -229,7 +229,7 @@ type StepperProps = {
     currentStepProgress?: number; // Progression (0-100) dans l'étape courante
     currentTitle?: ReactNode; // Titre de l'étape
     currentSubtitle?: ReactNode; // Sous-titre de l'étape
-    helper?: string; // Texte d'aide sous la barre
+    helper?: ReactNode; // Texte d'aide sous la barre
     icon?: string; // Icône SVG affichée devant le titre
     iconProps?: HeadingCommonProps['iconProps']; // Options de l'icône du Heading
     message?: string; // Message de validation/erreur
