@@ -4,6 +4,9 @@
 // Il rend { set, variantes, instances, defauts, surcharges } ; chaque défaut porte des exemples.
 
 const SET_ID = "SET_ID";
+// Pattern d'interaction du composant, d'après la page des principes d'interaction :
+// "Fond", "Contour", "Hybride" ou "Halo". Une chaîne vide pour un composant sans état d'interaction.
+const PATTERN = "PATTERN";
 // Calques qui peuvent n'exister que dans certaines variantes, comme l'anneau de focus.
 const CALQUES_OPTIONNELS = ["focus-ring"];
 // Formes : leur taille vient du tracé, elle n'est pas une valeur de mise en page.
@@ -36,6 +39,7 @@ const DUREE_MAX_MS = 240000;
 const debut = Date.now();
 const set = await figma.getNodeByIdAsync(SET_ID);
 if (!set || set.type !== "COMPONENT_SET") return "SET_ID ne désigne pas un ensemble de variantes.";
+if (!["Fond", "Contour", "Hybride", "Halo", ""].includes(PATTERN)) return "PATTERN vaut Fond, Contour, Hybride, Halo, ou une chaîne vide.";
 await figma.loadAllPagesAsync();
 
 const defauts = {};
@@ -180,7 +184,64 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
 for (const [p, m] of Object.entries(masques))
   if (m.masque === m.variantes && !m.lie) note("calque-toujours-masque", p + " : masqué dans les " + m.variantes + " variantes, sans booléen");
 
-// 3. Les instances de tout le fichier : texte, visibilité, rendu et surcharges.
+// 3. Les règles communes des principes d'interaction : press, disabled, hover et focus.
+// Calques propres à une variante, hors calques d'un composant imbriqué, rangés par chemin.
+const propres = (v) => {
+  const m = new Map([["", v]]);
+  for (const n of v.findAll(() => true)) {
+    let imbrique = false;
+    for (let p = n.parent; p && p !== v; p = p.parent) if (p.type === "INSTANCE") imbrique = true;
+    if (!imbrique) m.set(chemin(n, v), n);
+  }
+  return m;
+};
+// Variante qui ne diffère de v que par la valeur d'une propriété.
+const jumelle = (v, prop, val) => set.children.find((w) => {
+  const a = w.variantProperties || {}, b = v.variantProperties || {};
+  return Object.keys(b).every((k) => (k === prop ? a[k] === val : a[k] === b[k]));
+});
+const couleurDe = async (p) => (p && p.boundVariables && p.boundVariables.color ? await variable(p.boundVariables.color.id) : null);
+if (PATTERN) for (const v of set.children) {
+  const vp = v.variantProperties || {};
+  const etat = vp.state;
+  if (["Contour", "Halo"].includes(PATTERN) && etat === "press") note("press-en-trop", v.name + " : le pattern " + PATTERN + " n'a pas de press");
+  if (vp.disabled === "true" && etat && etat !== "default") note("disabled-avec-etat", v.name + " : disabled=true n'existe qu'avec state=default");
+  // Le hover ne prend jamais une nuance 050 : seule compte une couleur qui change par rapport au default.
+  if (etat === "hover") {
+    const repos = jumelle(v, "state", "default");
+    const calquesRepos = repos ? propres(repos) : new Map();
+    for (const [p, n] of propres(v)) for (const champ of ["fills", "strokes"]) for (const peinture of visibles(n[champ])) {
+      const vv = await couleurDe(peinture);
+      if (!vv || !/\/050$/.test(vv.name)) continue;
+      const avant = calquesRepos.get(p);
+      const dejaLa = avant && (await Promise.all(visibles(avant[champ]).map(couleurDe))).some((x) => x && x.id === vv.id);
+      if (!dejaLa) note("hover-050", v.name + " / " + (p || "racine") + " : " + champ + " " + vv.name);
+    }
+  }
+  // Le focus ajoute un indicateur color/blue/400 de 2 px, et une outline s'écarte de 2 px du composant.
+  if (etat === "focus") {
+    const indicateurs = [];
+    for (const [p, n] of propres(v)) for (const peinture of visibles(n.strokes)) {
+      const vv = await couleurDe(peinture);
+      if (vv && vv.name === "color/blue/400") indicateurs.push(n);
+    }
+    if (!indicateurs.length) note("focus-absent", v.name + " : aucun contour color/blue/400");
+    for (const n of indicateurs) {
+      const ou = v.name + " / " + (chemin(n, v) || "racine");
+      const ep = typeof n.strokeWeight === "number" ? n.strokeWeight : Math.max(n.strokeTopWeight, n.strokeRightWeight, n.strokeBottomWeight, n.strokeLeftWeight);
+      if (ep !== 2) note("focus-epaisseur", ou + " : " + ep + " px au lieu de 2 px");
+      if (n.name !== "focus-ring") continue;
+      const a = v.absoluteBoundingBox, r = n.absoluteBoundingBox;
+      const retrait = n.strokeAlign === "INSIDE" ? ep : n.strokeAlign === "CENTER" ? ep / 2 : 0;
+      const ecarts = { haut: a.y - r.y, droite: r.x + r.width - a.x - a.width, bas: r.y + r.height - a.y - a.height, gauche: a.x - r.x };
+      const cotes = PATTERN === "Hybride" ? { haut: 2, bas: 2, gauche: 0, droite: 0 } : { haut: 2, bas: 2, gauche: 2, droite: 2 };
+      const faux = Object.keys(cotes).filter((k) => Math.abs(ecarts[k] - retrait - cotes[k]) > 0.5);
+      if (faux.length) note("focus-ecart", ou + " : écart " + faux.map((k) => k + " " + Math.round((ecarts[k] - retrait) * 10) / 10 + " px au lieu de " + cotes[k]).join(", "));
+    }
+  }
+}
+
+// 4. Les instances de tout le fichier : texte, visibilité, rendu et surcharges.
 // Valeur d'un champ, comparable entre un calque d'instance et le calque du composant.
 const valeur = (n, champ) => {
   let x;

@@ -13,7 +13,7 @@ Il demande Figma Desktop, avec le plugin Desktop Bridge ouvert dans le fichier, 
 
 L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
-1. Lire [controle.js](controle.js) et remplacer `SET_ID` par l'id de l'ensemble de variantes, par exemple `41:9085`.
+1. Lire [controle.js](controle.js) et remplacer `SET_ID` par l'id de l'ensemble de variantes, par exemple `41:9085`. Remplacer aussi `PATTERN` par le pattern du composant, d'après le tableau « Les quatre patterns » de la page [Principes d'interaction](../../regles/06-principes-d-interaction.md) : `Fond`, `Contour`, `Hybride` ou `Halo`. Un composant sans état d'interaction prend une chaîne vide. Si le composant n'est pas dans le tableau, demander son pattern au designer.
 2. Lancer le script avec `figma_execute`, sur le fichier où vit le composant, avec une durée maximale de 300 000 ms, soit cinq minutes. Le script parcourt les instances de tout le fichier.
 3. Relancer le script dans un second appel. Si le résultat change entre les deux appels, la modification faite avant le contrôle n'est pas terminée. Le script de modification tourne peut-être encore en arrière-plan, ou une écriture se propage d'une variante aux autres.
 4. Corriger chaque défaut, puis relancer le script jusqu'à ce que `defauts` vaille « aucun ». Un défaut peut rester s'il a une raison.
@@ -39,6 +39,11 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 | contour-invisible | Un contour intérieur a la couleur du fond de son calque. |
 | masque-sans-effet | Un masque n'a aucun calque au-dessus de lui, ou c'est un rectangle sans arrondi qui contient déjà tout ce qu'il masque. |
 | calque-toujours-masque | Un calque est masqué dans toutes les variantes, sans booléen pour l'afficher. |
+| press-en-trop | Un composant du pattern Contour ou Halo a une variante state=press. |
+| disabled-avec-etat | Une variante disabled=true a un autre état que state=default. |
+| hover-050 | Une couleur passe à une nuance 050 au hover, alors qu'elle était différente en default. |
+| focus-absent, focus-epaisseur | Une variante state=focus n'a aucun contour color/blue/400, ou ce contour ne fait pas 2 px. |
+| focus-ecart | Le calque `focus-ring` n'est pas à 2 px du composant, ou pas à 0 px sur les côtés pour le pattern Hybride. |
 | instance-sans-master | Un composant imbriqué pointe vers un composant principal qui n'existe plus, souvent une variante supprimée. |
 | instance-hors-fondations | Un composant imbriqué vient d'une librairie sans porter un nom d'asset de Fondations : icon/, pictogram/, logo/ ou flag/. |
 | instance-texte, instance-visibilite | Une instance affiche un autre texte que sa propriété, ou une visibilité contraire à son booléen. |
@@ -69,7 +74,7 @@ Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produ
 
 ## Ce que le script ne contrôle pas encore
 
-- Les règles propres à chaque pattern d'interaction, qui décrit comment un composant change au survol et au focus. Exemple : le focus sur la border d'un champ, ou en outline autour d'un bouton.
+- Les règles propres à chaque pattern d'interaction et leurs exceptions. Exemple : la border d'un champ qui passe à 2 px au hover.
 - Le rendu au pixel. Une capture d'écran reste utile en plus du script.
 - Les surcharges perdues par une modification du composant, qui demandent un relevé avant et une comparaison après.
 - La taille d'une icône posée sur l'instance plutôt que tenue par son composant principal.
