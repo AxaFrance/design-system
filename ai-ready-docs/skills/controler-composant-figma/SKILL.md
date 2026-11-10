@@ -5,47 +5,50 @@ description: Contrôler un composant de la librairie Figma Canopée et toutes se
 
 # Contrôler un composant Figma
 
-Le plugin Canopée, composants contrôle le JSON. Il ne voit ni les instances posées dans le fichier, ni ce qui se perd quand un script copie ou modifie un composant. Ce skill couvre ce manque, avec un script fixe en lecture seule.
+Le plugin « Canopée, composants » contrôle le JSON qu'il génère pour chaque composant. Il ne voit ni les instances posées dans le fichier, ni ce qui se perd quand un script copie ou modifie un composant. Ce skill comble ce manque. Il fournit un script toujours identique, qui lit le composant et ses instances sans rien modifier.
 
 Il demande Figma Desktop, avec le plugin Desktop Bridge ouvert dans le fichier, et le serveur MCP Figma Console, qui donne l'outil `figma_execute`.
 
 ## Lancer le contrôle
 
+L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
+
 1. Lire [controle.js](controle.js) et remplacer `SET_ID` par l'id de l'ensemble de variantes, par exemple `41:9085`.
-2. Lancer le script avec `figma_execute`, sur le fichier où vit le composant, avec un délai de 300 000 ms. Le script parcourt les instances de tout le fichier, ce qui prend plusieurs secondes.
-3. Relancer le script dans un second appel. Un résultat qui change entre les deux signale une écriture qui se répercute sur d'autres variantes, ou un script encore en cours.
-4. Corriger chaque défaut, puis relancer jusqu'à obtenir « aucun ».
-5. Rendre compte à l'équipe design system : le nombre de variantes et d'instances contrôlées, et chaque défaut laissé avec sa raison.
+2. Lancer le script avec `figma_execute`, sur le fichier où vit le composant, avec une durée maximale de 300 000 ms, soit cinq minutes. Le script parcourt les instances de tout le fichier.
+3. Relancer le script dans un second appel. Si le résultat change entre les deux appels, la modification faite avant le contrôle n'est pas terminée. Le script de modification tourne peut-être encore en arrière-plan, ou une écriture se propage d'une variante aux autres.
+4. Corriger chaque défaut, puis relancer le script jusqu'à ce que `defauts` vaille « aucun ». Un défaut peut rester s'il a une raison.
+5. Donner au designer le nombre de variantes et d'instances contrôlées, et la raison de chaque défaut laissé.
 
 ## Ce que le script signale
 
 | Règle | Défaut |
 |---|---|
-| structure-differente | Une variante n'a pas les mêmes calques que la majorité. L'anneau de focus est permis là où il sert. |
+| structure-differente | Une variante n'a pas les mêmes calques que la majorité. Le calque `focus-ring` n'est pas compté, car seules certaines variantes l'ont. |
 | lien-propriete-mort, lien-propriete-absent | Un calque est relié à une propriété qui n'existe plus, ou n'est pas relié alors que le même calque l'est dans d'autres variantes. |
-| visibilite-defaut | Un calque relié à un booléen n'a pas la visibilité de la valeur par défaut. |
+| visibilite-defaut | Un calque relié à un booléen est masqué alors que le booléen vaut true par défaut, ou l'inverse. |
 | couleur-brute | Une couleur n'est reliée à aucun token. |
-| couleur-de-base-fausse | Une couleur reliée à un token garde une autre couleur de base. Figma peut afficher cette base à la place du token. |
+| couleur-de-base-fausse | Une couleur reliée à un token garde en mémoire une valeur différente de celle du token. Figma peut afficher cette ancienne valeur à la place du token. |
 | opacite-sur-peinture | Une couleur de token porte une opacité. Les instances la perdent, l'opacité va donc sur le calque. |
 | texte-sans-style | Un texte n'a pas de style de texte. |
 | espacement-brut, epaisseur-brute | Un espacement d'auto-layout ou une épaisseur de contour n'est relié à aucun token. |
 | instance-texte, instance-visibilite | Une instance affiche un autre texte que sa propriété, ou une visibilité contraire à son booléen. |
-| instance-opacite, instance-couleur-texte | Sans surcharge sur l'instance, son rendu diffère du composant : opacité ou couleur du texte. |
+| instance-opacite, instance-couleur-texte | Une instance que personne n'a modifiée n'a pas la même opacité, ou la même couleur de texte, que le composant. |
 
 ## Les pièges connus
 
-Relevés sur Spinner et Link. Chacun a produit une erreur invisible sur le composant lui-même.
+Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produisent une erreur qui ne se voit pas sur le composant, seulement sur ses instances ou ses autres variantes.
 
 - **Une variante copiée par `clone()` perd ses liens aux propriétés.** Il faut les réécrire, puis contrôler les instances.
 - **Une opacité posée sur une couleur de token ne passe pas aux instances.** Elle va sur le calque, et la couleur reste à 100 %.
-- **La couleur de base d'une peinture reliée doit égaler la valeur du token.** Elle se lit avec `variable.resolveForConsumer(node)` avant l'écriture.
-- **Des textes reliés à la même propriété texte, tous mis en forme pareil, partagent toute modification.** Une écriture sur l'un s'applique à tous, dans un script comme dans l'interface. Après chaque écriture, il faut relire chaque variante dans un appel séparé. Un soulignement qui change selon l'état passe par un calque `underline`, plus sûr.
-- **Les appels à la librairie peuvent bloquer un script.** `importStyleByKeyAsync`, `importVariableByKeyAsync` et `figma.teamLibrary` font parfois dépasser le délai. Le script continue alors en arrière-plan et réécrit plus tard. Il vaut mieux retrouver un token ou un style depuis une liaison existante, sur un autre composant du fichier.
+- **Une couleur reliée à un token doit garder la valeur du token comme couleur de base.** Le script lit cette valeur avec `variable.resolveForConsumer(node)`, avant d'écrire la couleur.
+- **Des textes reliés à la même propriété texte, avec la même mise en forme, partagent leurs modifications.** Une écriture sur l'un s'applique à tous, dans un script comme dans l'interface. Après chaque écriture, il faut relire chaque variante dans un appel séparé. Un soulignement qui change selon l'état passe par un calque `underline`, plus sûr.
+- **Un calque au ratio verrouillé ne garde qu'une dimension reliée.** Relier la hauteur détache la largeur. Il faut déverrouiller le ratio avec `unlockAspectRatio()`, puis relier les deux.
+- **Les appels à la librairie font parfois dépasser la durée maximale de `figma_execute`.** C'est le cas de `importStyleByKeyAsync`, `importVariableByKeyAsync` et `figma.teamLibrary`. Le script continue alors en arrière-plan et réécrit plus tard. Il vaut mieux reprendre le token ou le style sur un autre composant du fichier qui l'utilise déjà.
 - **Les polices se chargent avant toute écriture de texte**, avec `figma.loadFontAsync`.
-- **La description s'écrit dans `descriptionMarkdown`**, que Figma affiche, et pas seulement dans `description`.
-- **Rien ne reste dans le document après un essai**, pas même une donnée de plugin.
+- **La description s'écrit dans `descriptionMarkdown`, le champ que Figma affiche.** Écrire seulement dans `description` ne suffit pas.
+- **Un script d'essai supprime tout ce qu'il a créé, données de plugin comprises.**
 
 ## Ce que le script ne contrôle pas encore
 
-- Les règles propres à chaque pattern des principes d'interaction, comme le focus sur la border ou en outline.
+- Les règles propres à chaque pattern d'interaction, qui décrit comment un composant change au survol et au focus. Exemple : le focus sur la border d'un champ, ou en outline autour d'un bouton.
 - Le rendu au pixel. Une capture d'écran reste utile en plus du script.
