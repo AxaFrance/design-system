@@ -1427,6 +1427,116 @@ describe("The grouping of the overrides", () => {
       "styles.icon.layout.width",
     ]);
   });
+  it("raw sizes: the size of a drawn layer, a shape or a group, is not reported", async () => {
+    const { stylesIssues } = (await button()).plugin.__test;
+    const size = (w: number) => ({
+      layout: {
+        sizingH: "fixed",
+        width: { raw: w },
+        sizingV: "fixed",
+        height: { raw: w },
+      },
+    });
+    const styles = {
+      default: { track: size(29), box: size(24) },
+      overrides: [{ when: { size: "small" }, styles: { track: size(13) } }],
+    };
+    const where = (drawn?: Set<string>) =>
+      Array.from(
+        stylesIssues(styles, drawn).map((i: MockData) => i.where),
+      ).sort();
+    expect(where(new Set(["track"]))).toStrictEqual([
+      "styles.box.layout.height",
+      "styles.box.layout.width",
+    ]);
+    // without the set, the size of the track is reported, once per raw value
+    expect(where()).toStrictEqual([
+      "styles.box.layout.height",
+      "styles.box.layout.width",
+      "styles.track.layout.height",
+      "styles.track.layout.height",
+      "styles.track.layout.width",
+      "styles.track.layout.width",
+    ]);
+  });
+  it("drawn layers and frames without auto-layout: no size issue on the drawing, no padding nor gap", async () => {
+    const fixed = (w: number, h: number) => ({
+      layoutSizingHorizontal: "FIXED",
+      layoutSizingVertical: "FIXED",
+      width: w,
+      height: h,
+    });
+    const set = connect(
+      layer(
+        "COMPONENT_SET",
+        "Spinner",
+        {
+          id: "S:300",
+          key: "KEY-SPINNER",
+          componentPropertyDefinitions: {
+            size: {
+              type: "VARIANT",
+              defaultValue: "large",
+              variantOptions: ["large"],
+            },
+          },
+        },
+        [
+          layer(
+            "COMPONENT",
+            "size=large",
+            {
+              x: 0,
+              y: 0,
+              layoutMode: "NONE",
+              paddingTop: 2,
+              paddingRight: 1,
+              paddingBottom: 2,
+              paddingLeft: 1,
+              itemSpacing: 10,
+              ...fixed(40, 40),
+            },
+            [
+              layer("GROUP", "content", { ...fixed(29, 29) }, [
+                layer("ELLIPSE", "track", {
+                  ...fixed(29, 29),
+                  strokes: [solid(0, 0, 0.56)],
+                  strokeWeight: 3,
+                }),
+                layer("VECTOR", "arc", {
+                  ...fixed(29, 14.5),
+                  strokes: [solid(0, 0, 0.56)],
+                  strokeWeight: 3,
+                }),
+              ]),
+              layer("FRAME", "box", { ...fixed(24, 24) }),
+            ],
+          ),
+        ],
+      ),
+    );
+    const { sheet } = await exportSheet({
+      fileName: "Test",
+      collections: [],
+      variables: [],
+      nodes: [set],
+      selection: [set],
+    });
+    const root = sheet.styles.default.root;
+    expect(root.padding).toBeUndefined();
+    expect(root.gap).toBeUndefined();
+    expect(sheet.styles.default.track.layout.width).toStrictEqual({ raw: 29 });
+    const sizes = issuesFor(sheet, "raw-value")
+      .map((i: MockData) => i.where)
+      .filter((w: string) => /layout\.(width|height)$/.test(w))
+      .sort();
+    expect(sizes).toStrictEqual([
+      "styles.box.layout.height",
+      "styles.box.layout.width",
+      "styles.root.layout.height",
+      "styles.root.layout.width",
+    ]);
+  });
   it("order of the properties: at equal rank, the position of the driven layer comes before the creation order", async () => {
     const v = layer("COMPONENT", "Toggle", { id: "T:2" }, [
       layer("FRAME", "left-icon", {

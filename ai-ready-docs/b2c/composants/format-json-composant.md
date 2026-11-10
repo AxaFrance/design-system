@@ -142,7 +142,8 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
 
 - Une surcharge vaut pour toutes les variantes dont les valeurs correspondent à son `when`, qui ne cite que les propriétés utiles. Elle complète le style par défaut : ce qu'elle ne cite pas reste celui du défaut, et `null` retire une valeur.
 - Une variante part du style par défaut et reçoit toutes les surcharges qui lui correspondent. Deux surcharges qui correspondent à une même variante ne se contredisent jamais : l'ordre ne compte pas.
-- Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, sauf pour un calque absolu étiré sur l'axe concerné.
+- Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, sauf pour un calque absolu étiré sur l'axe concerné, et pour une forme ou un groupe (ellipse, vecteur, rectangle...), dont la taille vient du tracé.
+- Les marges intérieures (`padding`) et l'espacement (`gap`) ne s'écrivent que pour un calque en auto-layout. Sans auto-layout, Figma ne les applique pas.
 - La typo s'écrit par le nom du style de texte, `textStyle`. Sa clé se lit dans l'index `textStyles`.
 - `layout.clip` dit si la racine coupe ce qui dépasse. Il est toujours écrit sur la racine.
 - Un calque posé en absolu porte ses `constraints`, par exemple `{ "horizontal": "stretch", "vertical": "stretch" }`, à côté de `absolute`, `x` et `y`.

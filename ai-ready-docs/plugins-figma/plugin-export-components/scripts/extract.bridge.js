@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.4.44";
+const VERSION = "0.4.45";
 const FORMAT = "0.4";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -263,6 +263,7 @@ const newContext = () => ({
     components: {},
     modeCollections: {},
     ids: new Map(),
+    drawn: new Set(),
     collisions: new Set(),
     notFound: new Set(),
     errors: [],
@@ -524,7 +525,10 @@ async function readVisualStyles(ctx, node, sparse, location) {
                 };
             }
         }
+        // padding and gap only act in auto-layout: without it, they are not read
+        const autoLayout = !!node.layoutMode && node.layoutMode !== "NONE";
         if ("paddingTop" in node &&
+            autoLayout &&
             (!sparse ||
                 node.paddingTop ||
                 node.paddingRight ||
@@ -539,8 +543,8 @@ async function readVisualStyles(ctx, node, sparse, location) {
         }
         if ("itemSpacing" in node &&
             typeof node.itemSpacing === "number" &&
-            (!sparse ||
-                (node.layoutMode && node.layoutMode !== "NONE" && node.itemSpacing)))
+            autoLayout &&
+            (!sparse || node.itemSpacing))
             s.gap = await readValue(ctx, node, ["itemSpacing"], node.itemSpacing);
         try {
             const lay = {};
@@ -975,6 +979,17 @@ async function checkNomenclature(prep) {
 const MAX_ICON_SIZE = 48; // beyond this, an exposed component is a base and not an icon
 const PROGRESS_THRESHOLD = 40; // number of variants beyond which progress is announced
 const PROGRESS_STEP = 20; // one announcement every 20 variants
+// Drawn layers: their width and height come from the drawing, not from the layout.
+const DRAWN_TYPES = new Set([
+    "ELLIPSE",
+    "VECTOR",
+    "RECTANGLE",
+    "LINE",
+    "POLYGON",
+    "STAR",
+    "BOOLEAN_OPERATION",
+    "GROUP",
+]);
 // Styles of a variant in one pass: root, then each layer of its own.
 async function captureVariant(ctx, prep, variant, list) {
     const s = {
@@ -1009,6 +1024,8 @@ async function captureVariant(ctx, prep, variant, list) {
             ? await readTextStyles(ctx, el, "styles." + nm)
             : await readVisualStyles(ctx, el, true, "styles." + nm);
         const c = { nm, es, id: el.id };
+        if (DRAWN_TYPES.has(el.type))
+            c.drawn = true;
         if (el.type === "INSTANCE") {
             const r = await instanceVector(ctx, el, "styles." + nm);
             if (r) {
@@ -1049,7 +1066,8 @@ async function layerTree(ctx, node) {
 }
 // The issues that can be read in the styles produced: raw value, paint not
 // handled, text without style. A zero value is not an issue.
-function stylesIssues(styles) {
+// drawn: the keys of the drawn layers, whose size is not an issue.
+function stylesIssues(styles, drawn) {
     const out = [];
     // A raw fixed size is an issue, except for an absolute layer stretched on that axis.
     const freeSize = (parent, key) => {
@@ -1057,6 +1075,16 @@ function stylesIssues(styles) {
         return (parent.absolute === true &&
             isRecord(parent.constraints) &&
             parent.constraints[axis] === "stretch");
+    };
+    // nor for a drawn layer, a shape or a group
+    const drawnSize = (path) => {
+        if (!drawn || !drawn.size)
+            return false;
+        const location = path.replace(/^styles\.(default|overrides\[[^\]]*\])\./, "");
+        for (const k of drawn)
+            if (location.indexOf(k + ".layout.") === 0)
+                return true;
+        return false;
     };
     const walk = (o, path, key, parent, parentKey) => {
         if (Array.isArray(o)) {
@@ -1067,7 +1095,11 @@ function stylesIssues(styles) {
             return;
         if (Object.keys(o).length === 1 && "raw" in o) {
             const size = key === "width" || key === "height";
-            const excluded = size && (parentKey !== "layout" || !parent || freeSize(parent, key));
+            const excluded = size &&
+                (parentKey !== "layout" ||
+                    !parent ||
+                    freeSize(parent, key) ||
+                    drawnSize(path));
             if (o.raw !== 0 && o.raw !== null && !excluded)
                 out.push({
                     level: "warning",
@@ -1122,10 +1154,10 @@ function stylesIssues(styles) {
 }
 // For each style issue, the number of variants where it appears (key: issueSignature).
 // The input is the list of the complete styles of each variant.
-function variantsPerIssue(variantsStyles) {
+function variantsPerIssue(variantsStyles, drawn) {
     const n = new Map();
     for (const st of variantsStyles) {
-        for (const d of stylesIssues({ default: st }))
+        for (const d of stylesIssues({ default: st }, drawn))
             n.set(issueSignature(d), (n.get(issueSignature(d)) || 0) + 1);
     }
     return n;
@@ -1437,6 +1469,8 @@ async function extractDetail(target, opts) {
         for (const c of cap.cand) {
             const n = (seen[c.nm] = (seen[c.nm] || 0) + 1);
             const key = dup.has(c.nm) ? c.nm + "-" + n : c.nm;
+            if (c.drawn)
+                ctx.drawn.add(key);
             if (Object.keys(c.es).length) {
                 kd[key] = c.es;
                 ids[key] = c.id;
@@ -1543,8 +1577,8 @@ async function extractDetail(target, opts) {
     const modeCollections = sortIndex(ctx.modeCollections);
     // a single list of issues: nomenclature, raw values, duplicate variables
     const issues = await checkNomenclature(prep);
-    const variantCounts = variantsPerIssue(all.map((t) => t.styles));
-    for (const i of stylesIssues(styles)) {
+    const variantCounts = variantsPerIssue(all.map((t) => t.styles), ctx.drawn);
+    for (const i of stylesIssues(styles, ctx.drawn)) {
         const n = variantCounts.get(issueSignature(i));
         if (n)
             i.occurrences = n;
@@ -1609,7 +1643,7 @@ function locateIssues(ctx, prep, issues, all) {
     for (const t of all || []) {
         const ids = (ctx && ctx.ids.get(t.cap)) || {};
         const keys = Object.keys(ids).sort((a, b) => b.length - a.length);
-        for (const d of stylesIssues({ default: t.styles })) {
+        for (const d of stylesIssues({ default: t.styles }, ctx ? ctx.drawn : undefined)) {
             const location = d.where.slice("styles.".length);
             const key = keys.find((c) => location === c || location.indexOf(c + ".") === 0);
             if (!key || !ids[key])
