@@ -215,4 +215,4 @@ npm test            # construit le plugin, puis lance toutes les vérifications
 npm run format      # formate le code avec Prettier
 ```
 
-Les tests chargent `dist/code.js` et `dist/ui.html` dans un Figma simulé, sans ouvrir Figma. Ils comparent le fichier produit à `test/fixtures/reference-output.json`, et les textes de l'interface à des instantanés. Ils lisent aussi `fondations/01-primitives.md` et `fondations/02-styles-de-texte.md`, et échouent si une règle de nommage change d'un seul côté. Ils se lancent en local, après toute modification du plugin ou de ces deux pages.
+Les tests chargent `dist/code.js` et `dist/ui.html` dans un Figma simulé, sans ouvrir Figma. Ils comparent le fichier produit à `test/fixtures/reference-output.json`, et les textes de l'interface à des instantanés. Ils lisent aussi `fondations/01-primitives.md` et `fondations/02-typographies.md`, et échouent si une règle de nommage change d'un seul côté. Ils se lancent en local, après toute modification du plugin ou de ces deux pages.

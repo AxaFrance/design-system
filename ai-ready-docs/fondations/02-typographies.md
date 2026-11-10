@@ -1,4 +1,4 @@
-# Styles de texte
+# Typographies
 
 Un style de texte réunit la police, la graisse, la taille et l'interligne d'un texte. Les styles de Canopée sont dans la librairie Fondations Canopée, et chacune de leurs valeurs est reliée à une variable. Ils servent au B2C comme au B2B.
 

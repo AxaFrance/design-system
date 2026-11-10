@@ -3033,7 +3033,7 @@ describe("documentation", () => {
     };
     ({ __test: t } = createMockPlugin());
     primitives = foundations("01-primitives.md");
-    styles = foundations("02-styles-de-texte.md");
+    styles = foundations("02-typographies.md");
     patterns = table(primitives, "Ce qu'elle désigne");
     names = patterns.map((l: MockData) => l[1]);
     allowedValues = (part: MockData) => {
@@ -3086,13 +3086,13 @@ describe("documentation", () => {
     expect(allowedValues("Mot-clé d'un arrondi")).toStrictEqual(["full"]);
   });
 
-  it("docs: the plugin families are those of 02-styles-de-texte.md", () => {
+  it("docs: the plugin families are those of 02-typographies.md", () => {
     expect(table(styles, "Famille").map((l: MockData) => l[0])).toStrictEqual([
       ...t.STYLE_FAMILIES,
     ]);
   });
 
-  it("docs: each style of 02-styles-de-texte.md follows the plugin pattern", () => {
+  it("docs: each style of 02-typographies.md follows the plugin pattern", () => {
     for (const [style] of table(styles, "Style")) {
       const fullNames = style.startsWith("heading/")
         ? [style]
@@ -3102,7 +3102,7 @@ describe("documentation", () => {
     }
   });
 
-  it("docs: the plugin style properties are those of 02-styles-de-texte.md", () => {
+  it("docs: the plugin style properties are those of 02-typographies.md", () => {
     const phrase = /Chaque style en a quatre : ([^.]+)\./.exec(styles);
     expect(phrase, "sentence of the four properties not found").toBeTruthy();
     expect(phrase![1].split(/, | et /).sort()).toStrictEqual(
