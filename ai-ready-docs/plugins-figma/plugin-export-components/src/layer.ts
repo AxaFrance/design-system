@@ -5,6 +5,8 @@ export interface ParentLayer {
   readonly id: string;
   readonly name: string;
   readonly type: string;
+  readonly key?: string;
+  readonly remote?: boolean;
   readonly removed?: boolean;
   readonly parent?: ParentLayer | null;
   getSharedPluginData(namespace: string, key: string): string;

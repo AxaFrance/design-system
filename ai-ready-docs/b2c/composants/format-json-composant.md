@@ -2,7 +2,7 @@
 
 Le JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il est généré depuis Figma par le plugin des fiches, jamais écrit à la main. L'usage, le fonctionnel et le code sont dans le Markdown, qui suit la trame commune à toutes les fiches. Les deux fichiers restent séparés.
 
-Version du format : 0.5. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
+Version du format : 0.6. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
 
 ## Les principes
 
@@ -20,7 +20,7 @@ Version du format : 0.5. La structure reprend celle du plugin Component as Data,
 
 ```json
 {
-  "formatVersion": "0.5",
+  "formatVersion": "0.6",
   "meta": { },
   "api": { },
   "variants": [ ],
@@ -116,6 +116,7 @@ Les calques, les contenus que l'usage remplit, et les composants imbriqués.
 - `hidden: true` signale un calque masqué par défaut.
 - `uses` liste tous les composants imbriqués dans les calques propres du composant, qu'ils soient ou non dans un ensemble de variantes, sans doublon et triés par nom. Ils sont cités par référence, leur intérieur est décrit dans leur propre fiche.
 - Les arbres et les slots nomment les composants. Leur clé se lit dans l'index `components`.
+- Une instance d'un composant à variantes porte aussi `values`, les valeurs de la variante utilisée. Exemple : `{ "name": "spinner", "type": "instance", "component": "Spinner", "values": { "colorScheme": "white", "size": "small", "_animation": "1" } }`.
 
 ## styles
 
@@ -182,7 +183,7 @@ Chaque composant imbriqué ou proposé dans un swap, une seule fois, trié par n
 }
 ```
 
-- La clé est celle du composant utilisé, ou de l'ensemble de variantes quand c'est lui qui est proposé.
+- La clé est celle du composant utilisé. Pour un composant à variantes, c'est la clé de l'ensemble de variantes, la même que `meta.figmaKey` dans sa propre fiche.
 - Figma ne donne pas le nom de la bibliothèque d'un composant ou d'un style qui vient d'une autre bibliothèque. `library` vaut alors `null`, et la clé suffit pour le retrouver.
 
 ## modeCollections

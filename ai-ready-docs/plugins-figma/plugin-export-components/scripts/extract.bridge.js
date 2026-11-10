@@ -3,8 +3,8 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.5.0";
-const FORMAT = "0.5";
+const VERSION = "0.6.0";
+const FORMAT = "0.6";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
 const LIBRARY = "B2C";
@@ -307,14 +307,34 @@ async function readMainComponent(ctx, n) {
 }
 const nodeLibrary = (n) => n && n.remote ? null : LIBRARY;
 // A component (or a variant set) quoted by its name in the components index.
+// A variant is indexed with the key of its set, the one its own sheet gives in meta.figmaKey.
 function registerComponent(ctx, n) {
     if (!n || !n.key)
         return null;
     const name = componentName(n);
     if (name === null)
         return null;
-    register(ctx.components, name, { library: nodeLibrary(n), key: n.key });
+    const set = n.parent && n.parent.type === "COMPONENT_SET" && n.parent.key
+        ? n.parent
+        : null;
+    register(ctx.components, name, {
+        library: nodeLibrary(set || n),
+        key: set && set.key ? set.key : n.key,
+    });
     return name;
+}
+// Variant values of a component, read from its name: "size=small, tone=neutral".
+// Null for a component outside a variant set.
+function variantValues(n) {
+    if (!n.parent || n.parent.type !== "COMPONENT_SET")
+        return null;
+    const values = {};
+    for (const part of String(n.name).split(",")) {
+        const i = part.indexOf("=");
+        if (i > 0)
+            values[part.slice(0, i).trim()] = part.slice(i + 1).trim();
+    }
+    return Object.keys(values).length ? values : null;
 }
 async function libraryName(ctx, coll) {
     if (!coll)
@@ -1052,6 +1072,9 @@ async function layerTree(ctx, node) {
             const mc = await readMainComponent(ctx, node);
             if (mc) {
                 t.component = componentName(mc);
+                const values = variantValues(mc);
+                if (values)
+                    t.values = values;
                 registerComponent(ctx, mc);
             }
         }

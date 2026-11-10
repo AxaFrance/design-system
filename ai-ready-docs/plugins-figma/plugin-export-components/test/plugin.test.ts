@@ -551,7 +551,7 @@ describe("The fake button", () => {
       "issues",
       "_tool",
     ]);
-    expect(sheet.formatVersion).toBe("0.5");
+    expect(sheet.formatVersion).toBe("0.6");
     expect(sheet._tool).toMatch(/^canopee-export-components \d/);
   });
   it("meta: name, version, tokens version, type, Figma key, library, documentation links", async () => {
@@ -1514,7 +1514,58 @@ describe("The grouping of the overrides", () => {
       ),
     ).toStrictEqual([]);
     expect(sheet.tokens["color/blue/700"]).toBeDefined();
-    expect(plugin.__test.FORMAT).toBe("0.5");
+  });
+  it("nested variant: the tree gives its variant values, the index the key of its set", async () => {
+    const spinnerVariant = {
+      id: "SP:1",
+      type: "COMPONENT",
+      name: "colorScheme=white, size=small",
+      key: "KEY-SP-VARIANT",
+      remote: false,
+      parent: { type: "COMPONENT_SET", name: "Spinner", key: "KEY-SP-SET" },
+    };
+    const set = connect(
+      layer(
+        "COMPONENT_SET",
+        "Chip",
+        {
+          id: "S:500",
+          key: "KEY-CHIP",
+          componentPropertyDefinitions: {
+            size: {
+              type: "VARIANT",
+              defaultValue: "small",
+              variantOptions: ["small"],
+            },
+          },
+        },
+        [
+          layer("COMPONENT", "size=small", { x: 0, y: 0 }, [
+            layer("INSTANCE", "spinner", { mainComponent: spinnerVariant }),
+          ]),
+        ],
+      ),
+    );
+    const { sheet } = await exportSheet({
+      fileName: "Test",
+      collections: [],
+      variables: [],
+      nodes: [set],
+      selection: [set],
+    });
+    expect(sheet.structure.trees[0].tree).toStrictEqual([
+      {
+        name: "spinner",
+        type: "instance",
+        component: "Spinner",
+        values: { colorScheme: "white", size: "small" },
+      },
+    ]);
+    expect(sheet.components.Spinner).toStrictEqual({
+      library: "B2C",
+      key: "KEY-SP-SET",
+    });
+    expect(sheet.structure.uses).toStrictEqual(["Spinner"]);
   });
   it("drawn layers and frames without auto-layout: no size issue on the drawing, no padding nor gap", async () => {
     const fixed = (w: number, h: number) => ({
@@ -5328,9 +5379,9 @@ describe("The version in the plugin", () => {
     await p.send({ type: "generate" });
     expect(p.lastMessage().version.none).toBe(true);
   });
-  it("the format is 0.5, and the plugin version starts with the format", async () => {
+  it("the format is 0.6, and the plugin version starts with the format", async () => {
     const { p } = await openPlugin();
-    expect(p.__test.FORMAT).toBe("0.5");
+    expect(p.__test.FORMAT).toBe("0.6");
     expect(p.__test.VERSION.startsWith(p.__test.FORMAT + ".")).toBeTruthy();
   });
 });

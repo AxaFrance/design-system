@@ -93,6 +93,7 @@ export interface TreeNode {
   type?: string;
   hidden?: boolean;
   component?: string | null;
+  values?: Record<string, string>;
   children?: TreeNode[];
 }
 
