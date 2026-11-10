@@ -60,10 +60,10 @@ Le contraste du focus est d'au moins 3:1 avec les couleurs qui le touchent, comm
 |---|---|---|---|
 | default | Border color/gray/500, 1 px. Le placeholder et l'icône du champ sont en color/gray/600. Link : texte et underline 1 px en color/blue/700. | TextInput : border color/gray/500, 1 px, placeholder color/gray/600. FileInput : border dashed color/gray/500, 1 px. | Aucune. |
 | hover | La border passe à 2 px, sans changer de couleur. Pour Link, l'underline passe à 2 px. | TextInput : border color/gray/500, 1 px → 2 px. Link : underline 1 px → 2 px. | FileInput : le Button « Importer fichier » de la zone de dépôt prend aussi son hover, fond color/blue/050 → color/blue/100, et le garde au focus. C'est une exception à la règle des composants imbriqués. |
-| focus | La border passe en color/blue/400, 2 px, même en tone=error. Un curseur apparaît dans les champs de saisie. | TextInput : border color/gray/500 → color/blue/400, 2 px. TextInput en cours de saisie : rendu du focus, avec le curseur. | Link : underline 2 px, comme au hover, et outline color/blue/400, 2 px, avec un outline-offset de 2 px. FileInput : la border dashed color/gray/500 devient solid color/blue/400, 2 px. |
+| focus | La border passe en color/blue/400, 2 px, même en tone=error ou tone=warning. Un curseur apparaît dans les champs de saisie. | TextInput : border color/gray/500 → color/blue/400, 2 px. TextInput en cours de saisie : rendu du focus, avec le curseur. | Link : underline 2 px, comme au hover, et outline color/blue/400, 2 px, avec un outline-offset de 2 px. FileInput : la border dashed color/gray/500 devient solid color/blue/400, 2 px. |
 | press | Pas de press. | TextInput : au clic, rendu du focus, sans nuance en plus. | Aucune. |
 
-Un champ en tone=error retrouve la couleur de son tone quand il perd le focus, et son message d'erreur reste affiché pendant le focus. Il n'existe pas d'état typing : pendant la saisie, le champ reste en state=focus, et passe en filled=true dès le premier caractère.
+Un champ en tone=error ou tone=warning retrouve la couleur de son tone quand il perd le focus, et son message reste affiché pendant le focus. Il n'existe pas d'état typing : pendant la saisie, le champ reste en state=focus, et passe en filled=true dès le premier caractère.
 
 ### Hybride
 
