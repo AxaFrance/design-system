@@ -370,13 +370,13 @@
       },
       "track": {
         "stroke": {
-          "token": "color/blue/700",
-          "opacity": 0.2
+          "token": "color/blue/700"
         },
         "strokeWeight": {
           "token": "border/width/3"
         },
         "strokeAlign": "center",
+        "opacity": 0.2,
         "layout": {
           "sizingH": "fixed",
           "width": {
@@ -416,8 +416,7 @@
         "styles": {
           "track": {
             "stroke": {
-              "token": "color/white",
-              "opacity": 0.2
+              "token": "color/white"
             }
           },
           "arc": {
@@ -434,8 +433,7 @@
         "styles": {
           "track": {
             "stroke": {
-              "token": "color/gray/800",
-              "opacity": 0.2
+              "token": "color/gray/800"
             }
           },
           "arc": {
