@@ -7,7 +7,7 @@ description: Contrôler un composant de la librairie Figma Canopée et toutes se
 
 Le plugin « Canopée, composants » contrôle le JSON qu'il génère pour chaque composant. Il ne voit ni les instances posées dans le fichier, ni ce qui se perd quand un script copie ou modifie un composant. Ce skill comble ce manque. Il fournit un script toujours identique, qui lit le composant et ses instances sans rien modifier.
 
-Il demande Figma Desktop, avec le plugin Desktop Bridge ouvert dans le fichier, et le serveur MCP Figma Console, qui donne l'outil `figma_execute`.
+Il demande Figma Desktop, avec le plugin Desktop Bridge ouvert dans le fichier, et le serveur MCP Figma Console, qui donne l'outil `figma_execute`. Le fichier reste au premier plan dans Figma pendant le contrôle : en arrière-plan, Figma ralentit le plugin, et le bridge coupe le script au bout de quelques secondes.
 
 ## Lancer le contrôle
 
@@ -44,8 +44,9 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
 Le script range aussi les surcharges de toutes les instances du fichier.
 
-- **Permises.** Le contenu (texte, valeur de propriété, échange d'icône, photo), la place dans la maquette (remplir le parent, contraintes, interaction de prototype, mode de variable), et la taille ou la couleur d'un asset de Fondations.
+- **Permises.** Le contenu (texte, valeur de propriété, échange d'icône, photo, largeur ou hauteur qui suit le contenu), la place dans la maquette (remplir le parent, contraintes, interaction de prototype, mode de variable), et la taille ou la couleur d'un asset de Fondations.
 - **Noms de calque.** Un calque renommé dans une instance.
+- **Sans effet.** Une surcharge qui garde la valeur du composant. Elle ne change rien au rendu, mais l'instance ne suivra plus ce point si le composant change. Il suffit de la réinitialiser.
 - **À vérifier, par famille.** La taille, la couleur, le texte, les marges, la visibilité et le reste. Ces surcharges contournent souvent le composant. Chaque famille donne trois exemples, à regarder avant de conclure.
 
 ## Les pièges connus
@@ -67,6 +68,5 @@ Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produ
 - Les règles propres à chaque pattern d'interaction, qui décrit comment un composant change au survol et au focus. Exemple : le focus sur la border d'un champ, ou en outline autour d'un bouton.
 - Le rendu au pixel. Une capture d'écran reste utile en plus du script.
 - Les surcharges perdues par une modification du composant, qui demandent un relevé avant et une comparaison après.
-- Les surcharges sans effet, dont la valeur égale celle du composant principal.
 - Les calques inutiles et les groupes imbriqués sans rôle, comme un masque qui ne coupe rien ou un contour de la couleur de son fond.
 - La taille d'une icône posée sur l'instance plutôt que tenue par son composant principal.

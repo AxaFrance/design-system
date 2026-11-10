@@ -145,8 +145,24 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
 }
 
 // 3. Les instances de tout le fichier : texte, visibilité, rendu et surcharges.
+// Valeur d'un champ, comparable entre un calque d'instance et le calque du composant.
+const valeur = (n, champ) => {
+  let x;
+  try { x = n[champ]; } catch (e) { return undefined; }
+  if (x === undefined || typeof x === "symbol") return undefined;
+  return typeof x === "number" ? String(Math.round(x * 100) / 100) : JSON.stringify(x);
+};
+// Calque du composant principal qui correspond à un calque de l'instance.
+// Un calque d'un composant imbriqué garde la valeur que lui donne le composant principal.
+const calqueDuComposant = async (i, cible, mc) => {
+  if (cible.id === i.id) return mc;
+  const prefixe = "I" + i.id.replace(/^I/, "") + ";";
+  if (!cible.id.startsWith(prefixe)) return null;
+  const reste = cible.id.slice(prefixe.length);
+  return figma.getNodeByIdAsync(reste.includes(";") ? "I" + reste : reste).catch(() => null);
+};
 let instances = 0, coupe = false;
-const surcharges = { permises: { contenu: 0, placement: 0, asset: 0 }, noms: 0, aVerifier: {}, exemples: {} };
+const surcharges = { permises: { contenu: 0, placement: 0, asset: 0 }, noms: 0, sansEffet: { nombre: 0, champs: {}, exemples: [] }, aVerifier: {}, exemples: {} };
 for (const v of set.children) {
   if (coupe) break;
   for (const i of await v.getInstancesAsync()) {
@@ -155,6 +171,7 @@ for (const v of set.children) {
     while (page && page.type !== "PAGE") page = page.parent;
     if (!page || i.removed) continue;
     instances++;
+    const mcInstance = await i.getMainComponentAsync().catch(() => null);
     const ou = page.name + " / " + i.name + " (" + v.name + ")";
     const props = i.componentProperties || {};
     const champs = new Map();
@@ -185,6 +202,20 @@ for (const v of set.children) {
       if (champ === "name") { surcharges.noms++; continue; }
       const cible = await figma.getNodeByIdAsync(idInstance);
       if (champ === "fills" && cible && Array.isArray(cible.fills) && cible.fills.some((f) => f.type === "IMAGE")) { surcharges.permises.contenu++; continue; }
+      // Une largeur ou une hauteur qui suit le contenu, ou qui remplit le parent, n'est pas choisie par le designer.
+      const axe = { width: "layoutSizingHorizontal", height: "layoutSizingVertical" }[champ];
+      if (axe && cible && cible[axe] === "HUG") { surcharges.permises.contenu++; continue; }
+      if (axe && cible && cible[axe] === "FILL") { surcharges.permises.placement++; continue; }
+      // Sans effet : la valeur est celle du composant, mais l'instance ne suivra plus ce champ s'il change.
+      const ref = cible && mcInstance ? await calqueDuComposant(i, cible, mcInstance) : null;
+      const valeurInstance = cible ? valeur(cible, champ) : undefined;
+      if (ref && valeurInstance !== undefined && valeurInstance === valeur(ref, champ)) {
+        const s = surcharges.sansEffet;
+        s.nombre++;
+        s.champs[champ] = (s.champs[champ] || 0) + 1;
+        if (s.exemples.length < 5) s.exemples.push(ou + " : " + cible.name + " / " + champ);
+        continue;
+      }
       let dansAsset = false;
       for (let p = cible; p && p !== i; p = p.parent) {
         if (p.type === "INSTANCE") {
