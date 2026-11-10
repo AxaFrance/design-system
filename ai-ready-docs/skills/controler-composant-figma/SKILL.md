@@ -23,7 +23,7 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
 | Règle | Défaut |
 |---|---|
-| structure-differente | Une variante n'a pas les mêmes calques que la majorité. Le calque `focus-ring` n'est pas compté, car seules certaines variantes l'ont. |
+| structure-differente | Une variante n'a pas les mêmes calques que la majorité des variantes de même type. Le calque `focus-ring` n'est pas compté, car seules certaines variantes l'ont. |
 | lien-propriete-mort, lien-propriete-absent | Un calque est relié à une propriété qui n'existe plus, ou n'est pas relié alors que le même calque l'est dans d'autres variantes. |
 | visibilite-defaut | Un calque relié à un booléen est masqué alors que le booléen vaut true par défaut, ou l'inverse. |
 | couleur-brute | Une couleur n'est reliée à aucun token. |
@@ -31,8 +31,21 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 | opacite-sur-peinture | Une couleur de token porte une opacité. Les instances la perdent, l'opacité va donc sur le calque. |
 | texte-sans-style | Un texte n'a pas de style de texte. |
 | espacement-brut, epaisseur-brute | Un espacement d'auto-layout ou une épaisseur de contour n'est relié à aucun token. |
+| taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Les formes et les calques absolus étirés ne sont pas comptés. |
+| taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
+| role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est pas un texte, une `icon` qui n'est pas une instance. |
+| instance-sans-master | Un composant imbriqué pointe vers un composant principal qui n'existe plus, souvent une variante supprimée. |
+| instance-hors-fondations | Un composant imbriqué vient d'une librairie sans porter un nom d'asset de Fondations : icon/, pictogram/, logo/ ou flag/. |
 | instance-texte, instance-visibilite | Une instance affiche un autre texte que sa propriété, ou une visibilité contraire à son booléen. |
 | instance-opacite, instance-couleur-texte | Une instance que personne n'a modifiée n'a pas la même opacité, ou la même couleur de texte, que le composant. |
+
+## Le relevé des surcharges
+
+Le script range aussi les surcharges de toutes les instances du fichier.
+
+- **Permises.** Le contenu (texte, valeur de propriété, échange d'icône, photo), la place dans la maquette (remplir le parent, contraintes, interaction de prototype, mode de variable), et la taille ou la couleur d'un asset de Fondations.
+- **Noms de calque.** Un calque renommé dans une instance.
+- **À vérifier, par famille.** La taille, la couleur, le texte, les marges, la visibilité et le reste. Ces surcharges contournent souvent le composant. Chaque famille donne trois exemples, à regarder avant de conclure.
 
 ## Les pièges connus
 
@@ -52,3 +65,7 @@ Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produ
 
 - Les règles propres à chaque pattern d'interaction, qui décrit comment un composant change au survol et au focus. Exemple : le focus sur la border d'un champ, ou en outline autour d'un bouton.
 - Le rendu au pixel. Une capture d'écran reste utile en plus du script.
+- Les surcharges perdues par une modification du composant, qui demandent un relevé avant et une comparaison après.
+- Les surcharges sans effet, dont la valeur égale celle du composant principal.
+- Les calques inutiles et les groupes imbriqués sans rôle, comme un masque qui ne coupe rien ou un contour de la couleur de son fond.
+- La taille d'une icône posée sur l'instance plutôt que tenue par son composant principal.

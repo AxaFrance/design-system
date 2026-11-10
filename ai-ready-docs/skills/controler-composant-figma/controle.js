@@ -1,13 +1,37 @@
 // Contrôle général d'un composant Figma et de toutes ses instances.
-// À coller tel quel dans figma_execute, avec le fileKey de la branche, après avoir
+// À coller tel quel dans figma_execute, avec le fileKey du fichier, après avoir
 // remplacé SET_ID. Lecture seule : le script ne modifie rien.
-// Il rend { set, variantes, instances, defauts } ; chaque défaut porte un exemple.
+// Il rend { set, variantes, instances, defauts, surcharges } ; chaque défaut porte des exemples.
 
 const SET_ID = "SET_ID";
 // Calques qui peuvent n'exister que dans certaines variantes, comme l'anneau de focus.
 const CALQUES_OPTIONNELS = ["focus-ring"];
+// Formes : leur taille vient du tracé, elle n'est pas une valeur de mise en page.
 const FORMES = ["ELLIPSE", "VECTOR", "RECTANGLE", "LINE", "POLYGON", "STAR", "BOOLEAN_OPERATION", "GROUP"];
+// Un asset de Fondations porte un nom qui commence par son type.
+const ASSET = /^(icon|pictogram|logo|flag)\//;
+// Rôle attendu d'un calque, selon son nom.
+const ROLES = [
+  { nom: /^mask$/, test: (n) => n.isMask === true, attendu: "un masque" },
+  { nom: /^focus-ring$/, test: (n) => n.type === "FRAME" && n.layoutPositioning === "ABSOLUTE", attendu: "un cadre posé en absolu" },
+  { nom: /^(label|title|subtitle|description|caption|helper|message|value)$/, test: (n) => n.type === "TEXT", attendu: "un texte" },
+  { nom: /^(icon|left-icon|right-icon)$/, test: (n) => n.type === "INSTANCE", attendu: "une instance" },
+];
+// Surcharges d'instance, par famille. Permises : le contenu et la place dans la maquette.
+const CONTENU = ["characters", "componentProperties", "mainComponent", "text"];
+const PLACEMENT = ["layoutGrow", "layoutAlign", "layoutPositioning", "constraints", "reactions", "x", "y", "explicitVariableModes"];
+// À vérifier, rangées par famille.
+const FAMILLES = {
+  taille: ["width", "height", "minWidth", "maxWidth", "minHeight", "maxHeight", "primaryAxisSizingMode", "counterAxisSizingMode", "layoutSizingHorizontal", "layoutSizingVertical", "textAutoResize"],
+  couleur: ["fills", "strokes", "opacity", "effects", "fillStyleId", "strokeStyleId"],
+  texte: ["textStyleId", "fontName", "fontSize", "fontWeight", "lineHeight", "letterSpacing", "textDecoration", "textDecorationThickness", "textCase"],
+  marges: ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "itemSpacing", "primaryAxisAlignItems", "counterAxisAlignItems", "cornerRadius", "strokeWeight"],
+  visibilite: ["visible"],
+};
+const famille = (champ) => Object.keys(FAMILLES).find((f) => FAMILLES[f].includes(champ)) || "autres";
+const DUREE_MAX_MS = 240000;
 
+const debut = Date.now();
 const set = await figma.getNodeByIdAsync(SET_ID);
 if (!set || set.type !== "COMPONENT_SET") return "SET_ID ne désigne pas un ensemble de variantes.";
 await figma.loadAllPagesAsync();
@@ -30,17 +54,24 @@ const chemin = (n, racine) => {
   while (n && n !== racine) { p.unshift(n.name); n = n.parent; }
   return p.join("/");
 };
+const nomComposant = (mc) => (mc.parent && mc.parent.type === "COMPONENT_SET" ? mc.parent.name : mc.name);
 const defs = set.componentPropertyDefinitions;
 
-// 1. Le set : mêmes calques partout, liens aux propriétés, peintures et valeurs.
-const structures = {};
-for (const v of set.children) {
-  const noms = v.findAll(() => true).map((n) => chemin(n, v)).filter((p) => !CALQUES_OPTIONNELS.some((o) => p.split("/").includes(o)));
-  const cle = noms.join("|");
-  (structures[cle] = structures[cle] || []).push(v.name);
+// 1. Le set : mêmes calques partout et liens aux propriétés.
+// Les variantes se comparent à l'intérieur d'une même valeur de type, qui change la structure.
+const typeDe = (v) => { const m = /(?:^|, )type=([^,]+)/.exec(v.name); return m ? m[1] : ""; };
+const parType = {};
+for (const v of set.children) (parType[typeDe(v)] = parType[typeDe(v)] || []).push(v);
+for (const variantes of Object.values(parType)) {
+  const structures = {};
+  for (const v of variantes) {
+    const noms = v.findAll(() => true).map((n) => chemin(n, v)).filter((p) => !CALQUES_OPTIONNELS.some((o) => p.split("/").includes(o)));
+    const cle = noms.join("|");
+    (structures[cle] = structures[cle] || []).push(v.name);
+  }
+  const formes = Object.values(structures).sort((a, b) => b.length - a.length);
+  for (const groupe of formes.slice(1)) for (const nom of groupe) note("structure-differente", nom + " n'a pas les mêmes calques que la majorité des variantes de son type");
 }
-const formes = Object.values(structures).sort((a, b) => b.length - a.length);
-for (const groupe of formes.slice(1)) for (const nom of groupe) note("structure-differente", nom + " n'a pas les mêmes calques que la majorité des variantes");
 
 const liens = {};
 for (const v of set.children) for (const n of v.findAll(() => true)) {
@@ -62,6 +93,7 @@ for (const v of set.children) for (const n of v.findAll(() => true)) {
     note("visibilite-defaut", v.name + " / " + chemin(n, v) + " : visible=" + n.visible + ", défaut du booléen " + defs[refs.visible].defaultValue);
 }
 
+// 2. Le set : couleurs, valeurs, tailles, rôles et instances imbriquées.
 for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   const ou = v.name + " / " + (chemin(n, v) || "racine");
   for (const champ of ["fills", "strokes"]) {
@@ -88,35 +120,78 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   }
   if (typeof n.strokeWeight === "number" && n.strokes && n.strokes.length && !lies.strokeWeight && !lies.strokeTopWeight)
     note("epaisseur-brute", ou + " : " + n.strokeWeight);
+  // Une taille fixe se relie à un token, sauf pour une forme ou un calque absolu étiré.
+  if (!FORMES.includes(n.type)) {
+    const etire = (axe) => n.layoutPositioning === "ABSOLUTE" && n.constraints && n.constraints[axe] === "STRETCH";
+    if (n.layoutSizingHorizontal === "FIXED" && !lies.width && !etire("horizontal")) note("taille-brute", ou + " : largeur " + Math.round(n.width * 100) / 100);
+    if (n.layoutSizingVertical === "FIXED" && !lies.height && !etire("vertical")) note("taille-brute", ou + " : hauteur " + Math.round(n.height * 100) / 100);
+  }
+  // Un ratio verrouillé ne garde qu'une dimension reliée.
+  if (n.targetAspectRatio && (!!lies.width) !== (!!lies.height))
+    note("taille-verrouillee", ou + " : ratio verrouillé, seule la " + (lies.width ? "largeur" : "hauteur") + " est reliée");
+  for (const r of ROLES) if (r.nom.test(n.name) && !r.test(n)) note("role-incoherent", ou + " : nommé " + n.name + ", ce n'est pas " + r.attendu);
+  if (n.type === "INSTANCE" && n !== v) {
+    let mc = null;
+    try { mc = await n.getMainComponentAsync(); } catch (e) { mc = null; }
+    if (!mc || mc.removed) note("instance-sans-master", ou + " : son composant principal n'existe plus");
+    else if (mc.remote && !ASSET.test(nomComposant(mc))) note("instance-hors-fondations", ou + " : " + nomComposant(mc) + " vient d'une librairie, sans nom d'asset de Fondations");
+  }
 }
 
-// 2. Les instances de tout le fichier : texte, visibilité et rendu conformes.
-let instances = 0;
-for (const v of set.children) for (const i of await v.getInstancesAsync()) {
-  let page = i;
-  while (page && page.type !== "PAGE") page = page.parent;
-  if (!page || i.removed) continue;
-  instances++;
-  const ou = page.name + " / " + i.name + " (" + v.name + ")";
-  const props = i.componentProperties || {};
-  const surcharges = new Set();
-  for (const o of i.overrides || []) for (const f of o.overriddenFields) surcharges.add(o.id.split(";").pop() + "|" + f);
-  for (const n of i.findAll(() => true)) {
-    const refs = n.componentPropertyReferences || {};
-    if (refs.characters && props[refs.characters] && n.characters !== props[refs.characters].value)
-      note("instance-texte", ou + " : affiche « " + n.characters + " », la propriété vaut « " + props[refs.characters].value + " »");
-    if (refs.visible && props[refs.visible] && n.visible !== props[refs.visible].value)
-      note("instance-visibilite", ou + " : " + n.name + " visible=" + n.visible + ", booléen " + props[refs.visible].value);
-    const idMain = n.id.split(";").pop();
-    const m = await figma.getNodeByIdAsync(idMain);
-    if (!m || m.type !== n.type) continue;
-    const opa = (x) => x.opacity * (x.fills && Array.isArray(x.fills) && x.fills[0] && typeof x.fills[0].opacity === "number" ? x.fills[0].opacity : 1);
-    if (!surcharges.has(idMain + "|opacity") && !surcharges.has(idMain + "|fills") && Math.abs(opa(n) - opa(m)) > 0.01)
-      note("instance-opacite", ou + " : " + n.name + " à " + Math.round(opa(n) * 100) + " %, " + Math.round(opa(m) * 100) + " % sur le composant");
-    if (n.type === "TEXT" && !surcharges.has(idMain + "|fills")) {
-      const a = n.getStyledTextSegments(["fills"])[0], b = m.getStyledTextSegments(["fills"])[0];
-      if (a && b && a.fills[0] && b.fills[0] && !memeCouleur(a.fills[0].color, b.fills[0].color))
-        note("instance-couleur-texte", ou + " : " + n.name + " en " + rgb(a.fills[0].color) + ", " + rgb(b.fills[0].color) + " sur le composant");
+// 3. Les instances de tout le fichier : texte, visibilité, rendu et surcharges.
+let instances = 0, coupe = false;
+const surcharges = { permises: { contenu: 0, placement: 0, asset: 0 }, noms: 0, aVerifier: {}, exemples: {} };
+for (const v of set.children) {
+  if (coupe) break;
+  for (const i of await v.getInstancesAsync()) {
+    if (Date.now() - debut > DUREE_MAX_MS) { coupe = true; break; }
+    let page = i;
+    while (page && page.type !== "PAGE") page = page.parent;
+    if (!page || i.removed) continue;
+    instances++;
+    const ou = page.name + " / " + i.name + " (" + v.name + ")";
+    const props = i.componentProperties || {};
+    const champs = new Map();
+    for (const o of i.overrides || []) for (const f of o.overriddenFields) champs.set(o.id.split(";").pop() + "|" + f, o.id);
+    for (const n of i.findAll(() => true)) {
+      const refs = n.componentPropertyReferences || {};
+      if (refs.characters && props[refs.characters] && n.characters !== props[refs.characters].value)
+        note("instance-texte", ou + " : affiche « " + n.characters + " », la propriété vaut « " + props[refs.characters].value + " »");
+      if (refs.visible && props[refs.visible] && n.visible !== props[refs.visible].value)
+        note("instance-visibilite", ou + " : " + n.name + " visible=" + n.visible + ", booléen " + props[refs.visible].value);
+      const idMain = n.id.split(";").pop();
+      const m = await figma.getNodeByIdAsync(idMain);
+      if (!m || m.type !== n.type) continue;
+      const opa = (x) => x.opacity * (x.fills && Array.isArray(x.fills) && x.fills[0] && typeof x.fills[0].opacity === "number" ? x.fills[0].opacity : 1);
+      if (!champs.has(idMain + "|opacity") && !champs.has(idMain + "|fills") && Math.abs(opa(n) - opa(m)) > 0.01)
+        note("instance-opacite", ou + " : " + n.name + " à " + Math.round(opa(n) * 100) + " %, " + Math.round(opa(m) * 100) + " % sur le composant");
+      if (n.type === "TEXT" && !champs.has(idMain + "|fills")) {
+        const a = n.getStyledTextSegments(["fills"])[0], b = m.getStyledTextSegments(["fills"])[0];
+        if (a && b && a.fills[0] && b.fills[0] && !memeCouleur(a.fills[0].color, b.fills[0].color))
+          note("instance-couleur-texte", ou + " : " + n.name + " en " + rgb(a.fills[0].color) + ", " + rgb(b.fills[0].color) + " sur le composant");
+      }
+    }
+    // Classement des surcharges : permises, noms de calque, ou à vérifier par famille.
+    for (const [cle, idInstance] of champs) {
+      const champ = cle.split("|")[1];
+      if (CONTENU.includes(champ)) { surcharges.permises.contenu++; continue; }
+      if (PLACEMENT.includes(champ)) { surcharges.permises.placement++; continue; }
+      if (champ === "name") { surcharges.noms++; continue; }
+      const cible = await figma.getNodeByIdAsync(idInstance);
+      if (champ === "fills" && cible && Array.isArray(cible.fills) && cible.fills.some((f) => f.type === "IMAGE")) { surcharges.permises.contenu++; continue; }
+      let dansAsset = false;
+      for (let p = cible; p && p !== i; p = p.parent) {
+        if (p.type === "INSTANCE") {
+          const mc = await p.getMainComponentAsync().catch(() => null);
+          if (mc && ASSET.test(nomComposant(mc)) && ["fills", "width", "height", "boundVariables"].includes(champ)) dansAsset = true;
+        }
+      }
+      if (dansAsset) { surcharges.permises.asset++; continue; }
+      const f = famille(champ);
+      const g = surcharges.aVerifier[f] || (surcharges.aVerifier[f] = {});
+      g[champ] = (g[champ] || 0) + 1;
+      const ex = surcharges.exemples[f] || (surcharges.exemples[f] = []);
+      if (ex.length < 3) ex.push(ou + " : " + (cible ? cible.name : idInstance) + " / " + champ);
     }
   }
 }
@@ -124,6 +199,7 @@ for (const v of set.children) for (const i of await v.getInstancesAsync()) {
 return {
   set: set.name,
   variantes: set.children.length,
-  instances,
+  instances: coupe ? instances + " (contrôle arrêté à la durée maximale, instances suivantes non lues)" : instances,
   defauts: Object.keys(defauts).length ? defauts : "aucun",
+  surcharges,
 };
