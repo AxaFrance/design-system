@@ -3794,23 +3794,23 @@ describe("A template, recognized by its page in the library", () => {
       ),
     ).toBeTruthy();
   });
-  it("the pages and mentions of code.js follow 02-composants.md", async () => {
+  it("the pages and mentions of code.js follow 07-templates.md", async () => {
     const { TEMPLATE_PAGES } = (await button()).plugin.__test;
     expect(
       plain(TEMPLATE_PAGES).map((t: MockData) => [t.page, t.level, t.mention]),
     ).toStrictEqual(TEMPLATE_LEVELS);
     const doc = fs.readFileSync(
-      path.join(DOCS, "regles", "02-composants.md"),
+      path.join(DOCS, "regles", "07-templates.md"),
       "utf8",
     );
     for (const t of TEMPLATE_PAGES) {
       expect(
         doc.includes(t.page),
-        t.page + " absent de 02-composants.md",
+        t.page + " absent de 07-templates.md",
       ).toBeTruthy();
       expect(
         doc.includes("« " + t.mention + " »"),
-        t.mention + " absent de 02-composants.md",
+        t.mention + " absent de 07-templates.md",
       ).toBeTruthy();
     }
   });

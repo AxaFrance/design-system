@@ -48,17 +48,3 @@ La page porte simplement le nom de la famille, et les pages suivent l'ordre du t
 | Progression | Ce qui montre l'avancement : étapes, frise, barre de progression. |
 | Structure | Ce qui organise la page : titres, accordéons, fenêtres, tableaux. |
 | AI | Les composants des assistants IA. |
-
-## Les templates
-
-Un template assemble des composants de Canopée. Un bloc regroupe des composants et d'autres éléments qui servent ensemble, comme des textes, des images, des icônes, des logos ou des pictogrammes. Une section est une bande pleine largeur faite de blocs, et une page est un écran complet fait de sections.
-
-- Le nom d'un template suit les mêmes règles que celui d'un composant. Il ne contient ni le mot Template, ni Block, Section ou Page. Exemple : Loader, qui assemble un Spinner, un titre et un sous-titre, et non TemplateLoader ou LoaderBlock.
-- La description d'un template commence par « Template de bloc. », « Template de section. » ou « Template de page. ». Dans le panneau Assets de Figma, la recherche lit aussi les descriptions. Un designer qui tape « template » voit donc tous les templates.
-- Dans la librairie Figma, un template n'est pas rangé dans une famille. Il a sa page : Templates - Blocks pour un bloc, Templates - Sections pour une section et Templates - Pages pour une page.
-
-## Les assets
-
-Les icônes, les pictogrammes, les logos et les drapeaux vivent dans la librairie Fondations Canopée, avec une page par type. Leur nom commence par un dossier qui dit ce type : icon, pictogram, logo ou flag. Ce nom s'écrit en kebab-case, c'est-à-dire en minuscules, avec un tiret entre les mots. Exemple : icon/account-balance.
-
-Une icône reprend le nom qu'elle a dans Material Symbols, la bibliothèque d'icônes du code, avec des tirets à la place des tirets bas. Sa version pleine prend le suffixe -fill, comme dans le code. Exemple : icon/thumb-up-fill, pour le fichier thumb_up-fill.svg.

@@ -35,7 +35,7 @@ Le plugin suit seulement ces tableaux : un nouveau type de contrôle demande du 
 
 Le plugin reconnaît un template à sa page dans la librairie : `Templates - Blocks`, `Templates - Sections` ou `Templates - Pages`. Il écrit alors `template` dans `meta.type`, et `block`, `section` ou `page` dans `meta.templateLevel`. Un composant n'a pas ce niveau, et un sous-composant rangé sur ces pages non plus. Un template bâti sur un autre composant garde `extends`.
 
-Le contrôle de nomenclature vérifie que la description du template commence par « Template de bloc. », « Template de section. » ou « Template de page. », selon sa page. Il signale aussi une description qui commence par une de ces mentions quand le composant est rangé ailleurs. `npm test` échoue si ces noms s'écartent de la page `regles/02-composants.md`.
+Le contrôle de nomenclature vérifie que la description du template commence par « Template de bloc. », « Template de section. » ou « Template de page. », selon sa page. Il signale aussi une description qui commence par une de ces mentions quand le composant est rangé ailleurs. `npm test` échoue si ces noms s'écartent de la page `regles/07-templates.md`.
 
 ## Les versions
 

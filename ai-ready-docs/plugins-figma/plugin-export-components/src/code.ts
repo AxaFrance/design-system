@@ -53,7 +53,7 @@ const FORMAT = "0.4";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
 const LIBRARY = "B2C";
-// The template pages of the library (02-composants.md): each one gives the level written
+// The template pages of the library (07-templates.md): each one gives the level written
 // in the JSON and the mention that opens the template description.
 interface TemplatePage {
   page: string;
