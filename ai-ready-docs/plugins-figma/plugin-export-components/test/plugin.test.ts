@@ -551,7 +551,7 @@ describe("The fake button", () => {
       "issues",
       "_tool",
     ]);
-    expect(sheet.formatVersion).toBe("0.4");
+    expect(sheet.formatVersion).toBe("0.5");
     expect(sheet._tool).toMatch(/^canopee-export-components \d/);
   });
   it("meta: name, version, tokens version, type, Figma key, library, documentation links", async () => {
@@ -1458,6 +1458,63 @@ describe("The grouping of the overrides", () => {
       "styles.track.layout.width",
       "styles.track.layout.width",
     ]);
+  });
+  it("paints: a color bound to a token keeps its opacity, written only below 100 %", async () => {
+    const shape = (name: string, opacity?: number) =>
+      layer("ELLIPSE", name, {
+        strokes: [
+          opacity === undefined
+            ? solid(0, 0, 0.56)
+            : { ...solid(0, 0, 0.56), opacity },
+        ],
+        strokeWeight: 3,
+        boundVariables: { strokes: [alias("v-b7")] },
+      });
+    const set = connect(
+      layer(
+        "COMPONENT_SET",
+        "Ring",
+        {
+          id: "S:400",
+          key: "KEY-RING",
+          componentPropertyDefinitions: {
+            size: {
+              type: "VARIANT",
+              defaultValue: "large",
+              variantOptions: ["large"],
+            },
+          },
+        },
+        [
+          layer("COMPONENT", "size=large", { x: 0, y: 0 }, [
+            shape("track", 0.20000000298023224),
+            shape("arc"),
+          ]),
+        ],
+      ),
+    );
+    const { sheet, plugin } = await exportSheet({
+      fileName: "Test",
+      collections: COLLECTIONS,
+      variables: VARIABLES,
+      libraries: [{ key: "CKR", libraryName: "Fondations Canopée" }],
+      nodes: [set],
+      selection: [set],
+    });
+    expect(sheet.styles.default.track.stroke).toStrictEqual({
+      token: "color/blue/700",
+      opacity: 0.2,
+    });
+    expect(sheet.styles.default.arc.stroke).toStrictEqual({
+      token: "color/blue/700",
+    });
+    expect(
+      issuesFor(sheet, "raw-value").filter((i: MockData) =>
+        /\.stroke$/.test(i.where),
+      ),
+    ).toStrictEqual([]);
+    expect(sheet.tokens["color/blue/700"]).toBeDefined();
+    expect(plugin.__test.FORMAT).toBe("0.5");
   });
   it("drawn layers and frames without auto-layout: no size issue on the drawing, no padding nor gap", async () => {
     const fixed = (w: number, h: number) => ({
@@ -5271,9 +5328,9 @@ describe("The version in the plugin", () => {
     await p.send({ type: "generate" });
     expect(p.lastMessage().version.none).toBe(true);
   });
-  it("the format is 0.4, and the plugin version starts with the format", async () => {
+  it("the format is 0.5, and the plugin version starts with the format", async () => {
     const { p } = await openPlugin();
-    expect(p.__test.FORMAT).toBe("0.4");
+    expect(p.__test.FORMAT).toBe("0.5");
     expect(p.__test.VERSION.startsWith(p.__test.FORMAT + ".")).toBeTruthy();
   });
 });

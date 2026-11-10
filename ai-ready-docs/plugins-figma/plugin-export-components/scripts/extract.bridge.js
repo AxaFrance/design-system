@@ -3,8 +3,8 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.4.45";
-const FORMAT = "0.4";
+const VERSION = "0.5.0";
+const FORMAT = "0.5";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
 const LIBRARY = "B2C";
@@ -398,6 +398,7 @@ const hex = (c, a) => "#" +
     hex2(c.b) +
     (a !== undefined && a < 1 ? hex2(a) : "");
 // Color of the first visible paint: token, or raw. Gradients and images are reported.
+// A token paint below full opacity keeps its opacity next to the token.
 async function readPaint(ctx, node, field) {
     const paints = node[field];
     if (!paints || paints === figma.mixed || !paints.length)
@@ -415,10 +416,13 @@ async function readPaint(ctx, node, field) {
     const color = aliasId(p.boundVariables && p.boundVariables.color);
     if (color)
         links.push(color);
+    const opacity = typeof p.opacity === "number" ? p.opacity : 1;
     for (const l of links) {
         const n = await readToken(ctx, l);
         if (n)
-            return { token: n };
+            return opacity < 1
+                ? { token: n, opacity: Number(rounded(opacity)) }
+                : { token: n };
     }
     const a = (typeof p.opacity === "number" ? p.opacity : 1) *
         ("a" in p.color && typeof p.color.a === "number" ? p.color.a : 1);

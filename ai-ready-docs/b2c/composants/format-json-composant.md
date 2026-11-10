@@ -2,7 +2,7 @@
 
 Le JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il est généré depuis Figma par le plugin des fiches, jamais écrit à la main. L'usage, le fonctionnel et le code sont dans le Markdown, qui suit la trame commune à toutes les fiches. Les deux fichiers restent séparés.
 
-Version du format : 0.4. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
+Version du format : 0.5. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
 
 ## Les principes
 
@@ -20,7 +20,7 @@ Version du format : 0.4. La structure reprend celle du plugin Component as Data,
 
 ```json
 {
-  "formatVersion": "0.4",
+  "formatVersion": "0.5",
   "meta": { },
   "api": { },
   "variants": [ ],
@@ -143,6 +143,7 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
 - Une surcharge vaut pour toutes les variantes dont les valeurs correspondent à son `when`, qui ne cite que les propriétés utiles. Elle complète le style par défaut : ce qu'elle ne cite pas reste celui du défaut, et `null` retire une valeur.
 - Une variante part du style par défaut et reçoit toutes les surcharges qui lui correspondent. Deux surcharges qui correspondent à une même variante ne se contredisent jamais : l'ordre ne compte pas.
 - Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, sauf pour un calque absolu étiré sur l'axe concerné, et pour une forme ou un groupe (ellipse, vecteur, rectangle...), dont la taille vient du tracé.
+- Une couleur reliée à une variable mais pas tout à fait opaque garde son opacité, entre 0 et 1, à côté du token. Exemple : `{ "token": "color/blue/700", "opacity": 0.2 }`.
 - Les marges intérieures (`padding`) et l'espacement (`gap`) ne s'écrivent que pour un calque en auto-layout. Sans auto-layout, Figma ne les applique pas.
 - La typo s'écrit par le nom du style de texte, `textStyle`. Sa clé se lit dans l'index `textStyles`.
 - `layout.clip` dit si la racine coupe ce qui dépasse. Il est toujours écrit sur la racine.

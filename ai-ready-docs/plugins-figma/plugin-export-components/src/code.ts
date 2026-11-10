@@ -48,8 +48,8 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.4.45";
-const FORMAT = "0.4";
+const VERSION = "0.5.0";
+const FORMAT = "0.5";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
 const LIBRARY = "B2C";
@@ -494,7 +494,7 @@ async function readToken(ctx: Context, id: string): Promise<string | null> {
 // Value of a numeric property: the name of the bound variable, otherwise the raw value.
 // What a style field holds: the name of a variable, a raw value, or a paint that is not handled.
 type Ref =
-  | { token: string }
+  | { token: string; opacity?: number }
   | { raw: number | string | undefined }
   | { unsupported: string };
 
@@ -531,6 +531,7 @@ const hex = (c: RGB, a?: number): string =>
   (a !== undefined && a < 1 ? hex2(a) : "");
 
 // Color of the first visible paint: token, or raw. Gradients and images are reported.
+// A token paint below full opacity keeps its opacity next to the token.
 async function readPaint(
   ctx: Context,
   node: Layer,
@@ -547,9 +548,13 @@ async function readPaint(
   if (first) links.push(first);
   const color = aliasId(p.boundVariables && p.boundVariables.color);
   if (color) links.push(color);
+  const opacity = typeof p.opacity === "number" ? p.opacity : 1;
   for (const l of links) {
     const n = await readToken(ctx, l);
-    if (n) return { token: n };
+    if (n)
+      return opacity < 1
+        ? { token: n, opacity: Number(rounded(opacity)) }
+        : { token: n };
   }
   const a =
     (typeof p.opacity === "number" ? p.opacity : 1) *
@@ -2317,7 +2322,12 @@ const showValue = (v: unknown): string => {
   if (v === undefined) return "rien";
   if (Array.isArray(v)) return JSON.stringify(v);
   if (isRecord(v))
-    return "token" in v ? String(v.token) : String(v.raw) + " en brut";
+    return "token" in v
+      ? String(v.token) +
+          (typeof v.opacity === "number"
+            ? " à " + Math.round(v.opacity * 100) + " %"
+            : "")
+      : String(v.raw) + " en brut";
   return String(v);
 };
 
