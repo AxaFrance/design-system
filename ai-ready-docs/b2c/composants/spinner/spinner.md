@@ -31,15 +31,11 @@ Sur un fond foncé, comme le fond bleu d'un Button.
 
 ### colorScheme=gray
 
-Non documenté.
+Sur un fond neutre, comme la ligne d'un fichier en cours d'envoi.
 
 ### size=small
 
 Dans un autre composant, comme un Button.
-
-### size=medium
-
-Non documenté.
 
 ### size=large
 
@@ -65,7 +61,6 @@ Le texte lu par les lecteurs d'écran est « Chargement en cours » par défaut.
 ## Comportement
 
 - Le Spinner s'affiche le temps du chargement, et disparaît dès que le contenu est chargé.
-- Il sert pour une attente de moins de 5 secondes. Au-delà : Non documenté.
 - Il ne réagit ni au clic ni au clavier.
 
 ## Accessibilité
@@ -112,7 +107,7 @@ Exemple :
 |---|---|
 | colorScheme | `variant` |
 | size=small | `size={24}` |
-| size=medium | `size={32}` |
+| Aucun équivalent | `size={32}` |
 | size=large | `size={40}` |
 | _animation | Aucun équivalent |
 | Aucun équivalent | `text`, le nom accessible |
@@ -131,12 +126,12 @@ Ces noms désignent Spinner. Le seul nom à employer est Spinner.
 - **1.0.0 - 10/11/26.** L'anneau fixe prend la couleur de l'arc qui tourne, à 20 % d'opacité, comme dans le code. En colorScheme=white, l'arc blanc reste ainsi visible sur l'anneau.
 - **1.0.0 - 10/11/26.** L'anneau laisse 4 px de marge dans son cadre, pour suivre une grille de 4 px, comme le code du thème prospect.
 - **1.0.0 - 10/11/26.** size=large et colorScheme=blue sont les valeurs par défaut, comme dans le code.
+- **1.0.0 - 10/11/26.** La taille moyenne est retirée de Figma : elle ne servait que dans ClickItem, un composant de la page Legacy.
 - **1.0.0 - 10/11/26.** _animation ne sert qu'à animer le Spinner dans un prototype Figma.
 
 ## Points ouverts
 
-- **colorScheme=gray et size=medium.** Aucune source ne dit quand les prendre. En attendant : signaler.
-- **Attente de plus de 5 secondes.** Aucune règle ne dit quoi afficher. En attendant : signaler.
+- **Taille moyenne du code.** Le code propose encore `size={32}`, que Figma n'a plus. En attendant : ne pas l'utiliser.
 - **Rôle ARIA du code.** Le code pose role="alert" par défaut, et toujours `aria-live="assertive"`, même pour un chargement qui laisse l'utilisateur continuer. En attendant : signaler.
 - **Mouvement réduit.** Le CSS du Spinner ne tient pas compte de `prefers-reduced-motion`. En attendant : signaler.
 - **Épaisseur du trait.** Le code du thème client trace un trait de 2 px en size=small et de 4 px en size=large, contre 3 px dans Figma. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.

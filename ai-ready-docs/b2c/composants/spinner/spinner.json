@@ -26,7 +26,6 @@
         "type": "enum",
         "enum": [
           "small",
-          "medium",
           "large"
         ],
         "default": "large"
@@ -52,7 +51,7 @@
       },
       "position": [
         40,
-        128
+        88
       ]
     },
     {
@@ -63,7 +62,7 @@
       },
       "position": [
         90,
-        128
+        88
       ]
     },
     {
@@ -74,57 +73,13 @@
       },
       "position": [
         140,
-        128
+        88
       ]
     },
     {
       "values": {
         "colorScheme": "blue",
         "size": "small",
-        "_animation": "4"
-      },
-      "position": [
-        190,
-        128
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "medium",
-        "_animation": "1"
-      },
-      "position": [
-        40,
-        88
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "medium",
-        "_animation": "2"
-      },
-      "position": [
-        90,
-        88
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "medium",
-        "_animation": "3"
-      },
-      "position": [
-        140,
-        88
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "medium",
         "_animation": "4"
       },
       "position": [
@@ -184,7 +139,7 @@
       },
       "position": [
         40,
-        400
+        280
       ]
     },
     {
@@ -195,7 +150,7 @@
       },
       "position": [
         90,
-        400
+        280
       ]
     },
     {
@@ -206,7 +161,7 @@
       },
       "position": [
         140,
-        400
+        280
       ]
     },
     {
@@ -216,52 +171,8 @@
         "_animation": "4"
       },
       "position": [
-        191,
-        400
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "white",
-        "size": "medium",
-        "_animation": "1"
-      },
-      "position": [
-        40,
-        360
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "white",
-        "size": "medium",
-        "_animation": "2"
-      },
-      "position": [
-        90,
-        360
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "white",
-        "size": "medium",
-        "_animation": "3"
-      },
-      "position": [
-        140,
-        360
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "white",
-        "size": "medium",
-        "_animation": "4"
-      },
-      "position": [
-        191,
-        360
+        190,
+        280
       ]
     },
     {
@@ -272,7 +183,7 @@
       },
       "position": [
         40,
-        312
+        232
       ]
     },
     {
@@ -283,7 +194,7 @@
       },
       "position": [
         90,
-        312
+        232
       ]
     },
     {
@@ -294,7 +205,7 @@
       },
       "position": [
         140,
-        312
+        232
       ]
     },
     {
@@ -304,8 +215,8 @@
         "_animation": "4"
       },
       "position": [
-        191,
-        312
+        190,
+        232
       ]
     },
     {
@@ -316,7 +227,7 @@
       },
       "position": [
         40,
-        264
+        184
       ]
     },
     {
@@ -327,7 +238,7 @@
       },
       "position": [
         90,
-        264
+        184
       ]
     },
     {
@@ -338,7 +249,7 @@
       },
       "position": [
         140,
-        264
+        184
       ]
     },
     {
@@ -348,52 +259,8 @@
         "_animation": "4"
       },
       "position": [
-        189,
-        264
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "gray",
-        "size": "medium",
-        "_animation": "1"
-      },
-      "position": [
-        40,
-        224
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "gray",
-        "size": "medium",
-        "_animation": "2"
-      },
-      "position": [
-        90,
-        224
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "gray",
-        "size": "medium",
-        "_animation": "3"
-      },
-      "position": [
-        140,
-        224
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "gray",
-        "size": "medium",
-        "_animation": "4"
-      },
-      "position": [
-        189,
-        224
+        190,
+        184
       ]
     },
     {
@@ -404,7 +271,7 @@
       },
       "position": [
         40,
-        176
+        136
       ]
     },
     {
@@ -415,7 +282,7 @@
       },
       "position": [
         90,
-        176
+        136
       ]
     },
     {
@@ -426,7 +293,7 @@
       },
       "position": [
         140,
-        176
+        136
       ]
     },
     {
@@ -436,8 +303,8 @@
         "_animation": "4"
       },
       "position": [
-        189,
-        176
+        190,
+        136
       ]
     }
   ],
@@ -633,62 +500,6 @@
             }
           }
         }
-      },
-      {
-        "when": {
-          "size": "medium"
-        },
-        "styles": {
-          "root": {
-            "layout": {
-              "clip": false,
-              "sizingH": "fixed",
-              "width": {
-                "token": "size/32"
-              },
-              "sizingV": "fixed",
-              "height": {
-                "token": "size/32"
-              }
-            }
-          },
-          "content": {
-            "layout": {
-              "sizingH": "fixed",
-              "width": {
-                "raw": 21
-              },
-              "sizingV": "fixed",
-              "height": {
-                "raw": 21
-              }
-            }
-          },
-          "track": {
-            "layout": {
-              "sizingH": "fixed",
-              "width": {
-                "raw": 21
-              },
-              "sizingV": "fixed",
-              "height": {
-                "raw": 21
-              }
-            }
-          },
-          "arc": {
-            "layout": {
-              "sizingH": "fixed",
-              "width": {
-                "raw": 21
-              },
-              "sizingV": "fixed",
-              "height": {
-                "raw": 10.5
-              }
-            }
-          }
-        }
       }
     ]
   },
@@ -717,11 +528,6 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "5e38d21160185c1068f481ef9380b4cfb8321532"
-    },
-    "size/32": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "67485646e52a2a7bdb6ab6eeca9154deb920a387"
     },
     "size/40": {
       "library": "Fondations Canopée",
