@@ -356,15 +356,22 @@ for (const v of set.children) {
         if (s.exemples.length < 5) s.exemples.push(ou + " : " + cible.name + " / " + champ);
         continue;
       }
+      // Un asset de Fondations peut changer de couleur dans une instance, pas de taille : le composant la tient.
       let dansAsset = false;
       for (let p = cible; p && p !== i; p = p.parent) {
         if (p.type === "INSTANCE") {
           const mc = await p.getMainComponentAsync().catch(() => null);
-          if (mc && ASSET.test(nomComposant(mc)) && ["fills", "width", "height", "boundVariables"].includes(champ)) dansAsset = true;
+          if (mc && ASSET.test(nomComposant(mc))) dansAsset = true;
         }
       }
-      if (dansAsset) { surcharges.permises.asset++; continue; }
-      const f = famille(champ);
+      let couleurAsset = dansAsset && champ === "fills";
+      if (dansAsset && champ === "boundVariables" && cible && ref) {
+        const a = cible.boundVariables || {}, b = ref.boundVariables || {};
+        const changes = [...new Set([...Object.keys(a), ...Object.keys(b)])].filter((k) => JSON.stringify(a[k]) !== JSON.stringify(b[k]));
+        couleurAsset = changes.length > 0 && changes.every((k) => k === "fills" || k === "strokes");
+      }
+      if (couleurAsset) { surcharges.permises.asset++; continue; }
+      const f = dansAsset && ["width", "height", "boundVariables"].includes(champ) ? "taille" : famille(champ);
       const g = surcharges.aVerifier[f] || (surcharges.aVerifier[f] = {});
       g[champ] = (g[champ] || 0) + 1;
       const ex = surcharges.exemples[f] || (surcharges.exemples[f] = []);

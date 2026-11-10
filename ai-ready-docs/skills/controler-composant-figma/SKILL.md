@@ -55,10 +55,10 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
 Le script range aussi les surcharges de toutes les instances du fichier.
 
-- **Permises.** Le contenu (texte, valeur de propriété, échange d'icône, photo, largeur ou hauteur qui suit le contenu), la place dans la maquette (remplir le parent, contraintes, interaction de prototype, mode de variable), et la taille ou la couleur d'un asset de Fondations.
+- **Permises.** Le contenu (texte, valeur de propriété, échange d'icône, photo, largeur ou hauteur qui suit le contenu), la place dans la maquette (remplir le parent, contraintes, interaction de prototype, mode de variable), et la couleur d'un asset de Fondations.
 - **Noms de calque.** Un calque renommé dans une instance.
 - **Sans effet.** Une surcharge qui garde la valeur du composant. Elle ne change rien au rendu, mais l'instance ne suivra plus ce point si le composant change. Il suffit de la réinitialiser.
-- **À vérifier, par famille.** La taille, la couleur, le texte, les marges, la visibilité et le reste. Ces surcharges contournent souvent le composant. Chaque famille donne trois exemples, à regarder avant de conclure.
+- **À vérifier, par famille.** La taille, dont celle d'une icône que le composant tient avec un token, la couleur, le texte, les marges, la visibilité et le reste. Ces surcharges contournent souvent le composant. Chaque famille donne trois exemples, à regarder avant de conclure.
 
 ## Les pièges connus
 
@@ -78,4 +78,3 @@ Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produ
 
 - Les règles propres à chaque pattern d'interaction et leurs exceptions. Exemple : la border d'un champ qui passe à 2 px au hover.
 - Le rendu au pixel. Une capture d'écran reste utile en plus du script.
-- La taille d'une icône posée sur l'instance plutôt que tenue par son composant principal.
