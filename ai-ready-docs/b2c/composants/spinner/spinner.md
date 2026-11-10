@@ -4,7 +4,7 @@ Utilise les design tokens de Canopée 2.0.0 ou d'une version plus récente.
 
 ## Description
 
-Le Spinner indique que l'action de l'utilisateur a bien été prise en compte et qu'elle est en cours de chargement.
+Le Spinner indique qu'un contenu est en cours de chargement, ou qu'une action est en cours de traitement.
 
 ## Quand l'utiliser
 
