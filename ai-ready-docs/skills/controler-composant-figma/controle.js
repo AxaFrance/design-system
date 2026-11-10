@@ -95,7 +95,9 @@ for (const v of set.children) for (const n of v.findAll(() => true)) {
     note("visibilite-defaut", v.name + " / " + chemin(n, v) + " : visible=" + n.visible + ", défaut du booléen " + defs[refs.visible].defaultValue);
 }
 
-// 2. Le set : couleurs, valeurs, tailles, rôles et instances imbriquées.
+// 2. Le set : couleurs, valeurs, tailles, rôles, calques sans rôle et instances imbriquées.
+const visibles = (peintures) => (Array.isArray(peintures) ? peintures.filter((p) => p.visible !== false) : []);
+const masques = {};
 for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   const ou = v.name + " / " + (chemin(n, v) || "racine");
   for (const champ of ["fills", "strokes"]) {
@@ -136,6 +138,37 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   let imbrique = false;
   for (let p = n.parent; p && p !== v; p = p.parent) if (p.type === "INSTANCE") imbrique = true;
   if (n !== v && !imbrique && NOM_PAR_DEFAUT.test(n.name)) note("nom-par-defaut", ou);
+  // Calques sans rôle, hors calques d'un composant imbriqué.
+  if (!imbrique) {
+    const f = visibles(n.fills), s = visibles(n.strokes);
+    // Un contour intérieur de la couleur du fond ne se voit pas.
+    if (f.length === 1 && s.length === 1 && f[0].type === "SOLID" && s[0].type === "SOLID" && n.strokeAlign === "INSIDE") {
+      const vf = f[0].boundVariables && f[0].boundVariables.color, vs = s[0].boundVariables && s[0].boundVariables.color;
+      const meme = vf && vs ? vf.id === vs.id : !vf && !vs && memeCouleur(f[0].color, s[0].color);
+      if (meme && f[0].opacity === s[0].opacity) note("contour-invisible", ou + " : contour intérieur de la couleur du fond");
+    }
+    // Un groupe ou un cadre qui n'enveloppe qu'un calque de même taille, sans rendu ni lien propre.
+    const lie = Object.keys(n.componentPropertyReferences || {}).length > 0;
+    const rendu = f.length || s.length || visibles(n.effects).length || n.opacity < 1 || !["PASS_THROUGH", "NORMAL"].includes(n.blendMode);
+    if (n !== v && (n.type === "GROUP" || n.type === "FRAME") && !CALQUES_OPTIONNELS.includes(n.name) && n.children.length === 1 && !rendu && !lie) {
+      const c = n.children[0];
+      if (Math.abs(c.width - n.width) < 0.5 && Math.abs(c.height - n.height) < 0.5) note("groupe-sans-role", ou + " : n'enveloppe que " + c.name + ", à la même taille");
+    }
+    // Un masque coupe les calques posés au-dessus de lui.
+    if (n.isMask) {
+      const couverts = n.parent.children.slice(n.parent.children.indexOf(n) + 1);
+      const dedans = (c) => c.x >= n.x - 0.5 && c.y >= n.y - 0.5 && c.x + c.width <= n.x + n.width + 0.5 && c.y + c.height <= n.y + n.height + 0.5;
+      if (!couverts.length) note("masque-sans-effet", ou + " : aucun calque au-dessus du masque");
+      else if (n.type === "RECTANGLE" && n.cornerRadius === 0 && couverts.every(dedans)) note("masque-sans-effet", ou + " : rectangle qui contient déjà tout ce qu'il masque");
+    }
+    // Un calque masqué dans toutes les variantes, sans booléen, ne sert à rien.
+    if (n !== v) {
+      const m = masques[chemin(n, v)] || (masques[chemin(n, v)] = { variantes: 0, masque: 0, lie: false });
+      m.variantes++;
+      if (!n.visible) m.masque++;
+      if ((n.componentPropertyReferences || {}).visible) m.lie = true;
+    }
+  }
   if (n.type === "INSTANCE" && n !== v) {
     let mc = null;
     try { mc = await n.getMainComponentAsync(); } catch (e) { mc = null; }
@@ -143,6 +176,9 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
     else if (mc.remote && !ASSET.test(nomComposant(mc))) note("instance-hors-fondations", ou + " : " + nomComposant(mc) + " vient d'une librairie, sans nom d'asset de Fondations");
   }
 }
+
+for (const [p, m] of Object.entries(masques))
+  if (m.masque === m.variantes && !m.lie) note("calque-toujours-masque", p + " : masqué dans les " + m.variantes + " variantes, sans booléen");
 
 // 3. Les instances de tout le fichier : texte, visibilité, rendu et surcharges.
 // Valeur d'un champ, comparable entre un calque d'instance et le calque du composant.

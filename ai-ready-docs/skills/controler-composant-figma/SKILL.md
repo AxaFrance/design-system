@@ -35,6 +35,10 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 | taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
 | role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est pas un texte, une `icon` qui n'est pas une instance. |
 | nom-par-defaut | Un calque garde un nom donné par Figma ou par un import, comme « Frame 27 » ou « axa_logo_solid_rgb 1 ». Les calques d'un composant imbriqué ne sont pas comptés. |
+| groupe-sans-role | Un groupe ou un cadre n'enveloppe qu'un calque, à la même taille, sans fond, contour, effet, opacité ni lien à une propriété. |
+| contour-invisible | Un contour intérieur a la couleur du fond de son calque. |
+| masque-sans-effet | Un masque n'a aucun calque au-dessus de lui, ou c'est un rectangle sans arrondi qui contient déjà tout ce qu'il masque. |
+| calque-toujours-masque | Un calque est masqué dans toutes les variantes, sans booléen pour l'afficher. |
 | instance-sans-master | Un composant imbriqué pointe vers un composant principal qui n'existe plus, souvent une variante supprimée. |
 | instance-hors-fondations | Un composant imbriqué vient d'une librairie sans porter un nom d'asset de Fondations : icon/, pictogram/, logo/ ou flag/. |
 | instance-texte, instance-visibilite | Une instance affiche un autre texte que sa propriété, ou une visibilité contraire à son booléen. |
@@ -68,5 +72,4 @@ Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produ
 - Les règles propres à chaque pattern d'interaction, qui décrit comment un composant change au survol et au focus. Exemple : le focus sur la border d'un champ, ou en outline autour d'un bouton.
 - Le rendu au pixel. Une capture d'écran reste utile en plus du script.
 - Les surcharges perdues par une modification du composant, qui demandent un relevé avant et une comparaison après.
-- Les calques inutiles et les groupes imbriqués sans rôle, comme un masque qui ne coupe rien ou un contour de la couleur de son fond.
 - La taille d'une icône posée sur l'instance plutôt que tenue par son composant principal.
