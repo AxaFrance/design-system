@@ -1,0 +1,744 @@
+{
+  "formatVersion": "0.5",
+  "meta": {
+    "name": "Spinner",
+    "version": "1.0.0",
+    "tokensVersion": "2.0.0",
+    "type": "atom",
+    "figmaKey": "f5b2f8759e53f2fe2ae4163ae5a9b6ab1bdc5810",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/spinner/spinner.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "colorScheme": {
+        "type": "enum",
+        "enum": [
+          "blue",
+          "white",
+          "gray"
+        ],
+        "default": "blue"
+      },
+      "size": {
+        "type": "enum",
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "default": "large"
+      },
+      "_animation": {
+        "type": "enum",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "default": "1"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "small",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        128
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "small",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        128
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "small",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        128
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "small",
+        "_animation": "4"
+      },
+      "position": [
+        190,
+        128
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "medium",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        88
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "medium",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        88
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "medium",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        88
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "medium",
+        "_animation": "4"
+      },
+      "position": [
+        190,
+        88
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "large",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "large",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "large",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "large",
+        "_animation": "4"
+      },
+      "position": [
+        190,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "small",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        400
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "small",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        400
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "small",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        400
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "small",
+        "_animation": "4"
+      },
+      "position": [
+        191,
+        400
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "medium",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        360
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "medium",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        360
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "medium",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        360
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "medium",
+        "_animation": "4"
+      },
+      "position": [
+        191,
+        360
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "large",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        312
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "large",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        312
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "large",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        312
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "large",
+        "_animation": "4"
+      },
+      "position": [
+        191,
+        312
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        264
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        264
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        264
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "4"
+      },
+      "position": [
+        189,
+        264
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "medium",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        224
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "medium",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        224
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "medium",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        224
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "medium",
+        "_animation": "4"
+      },
+      "position": [
+        189,
+        224
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        176
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        176
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        176
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "4"
+      },
+      "position": [
+        189,
+        176
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "content",
+            "type": "group",
+            "children": [
+              {
+                "name": "track",
+                "type": "ellipse"
+              },
+              {
+                "name": "arc",
+                "type": "vector"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "uses": []
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "colorScheme": "blue",
+        "size": "large",
+        "_animation": "1"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "layout": {
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "content": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 29
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 29
+          }
+        }
+      },
+      "track": {
+        "stroke": {
+          "token": "color/blue/700",
+          "opacity": 0.2
+        },
+        "strokeWeight": {
+          "token": "border/width/3"
+        },
+        "strokeAlign": "center",
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 29
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 29
+          }
+        }
+      },
+      "arc": {
+        "stroke": {
+          "token": "color/blue/700"
+        },
+        "strokeWeight": {
+          "token": "border/width/3"
+        },
+        "strokeAlign": "center",
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 29
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 14.5
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "colorScheme": "white"
+        },
+        "styles": {
+          "track": {
+            "stroke": {
+              "token": "color/white",
+              "opacity": 0.2
+            }
+          },
+          "arc": {
+            "stroke": {
+              "token": "color/white"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "colorScheme": "gray"
+        },
+        "styles": {
+          "track": {
+            "stroke": {
+              "token": "color/gray/800",
+              "opacity": 0.2
+            }
+          },
+          "arc": {
+            "stroke": {
+              "token": "color/gray/800"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/24"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/24"
+              }
+            }
+          },
+          "content": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 13
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 13
+              }
+            }
+          },
+          "track": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 13
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 13
+              }
+            }
+          },
+          "arc": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 13
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6.5
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "medium"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/32"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/32"
+              }
+            }
+          },
+          "content": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 21
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 21
+              }
+            }
+          },
+          "track": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 21
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 21
+              }
+            }
+          },
+          "arc": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 21
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 10.5
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/width/3": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ff4fe0c6e5dc06a5be36b742c9cef3c52b02e589"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/800": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "fe28dbe1aed177067927c271ad02e997ffda2c24"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "size/24": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "5e38d21160185c1068f481ef9380b4cfb8321532"
+    },
+    "size/32": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "67485646e52a2a7bdb6ab6eeca9154deb920a387"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    }
+  },
+  "textStyles": {},
+  "components": {},
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._animation",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    }
+  ],
+  "_tool": "canopee-export-components 0.5.0"
+}
