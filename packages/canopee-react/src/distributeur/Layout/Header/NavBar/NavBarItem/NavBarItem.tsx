@@ -85,7 +85,12 @@ const NavBarItem = ({
         }
       }
 
-      if (key === "ArrowRight" || key === "ArrowLeft" || key === "Escape") {
+      if (
+        key === "ArrowRight" ||
+        key === "ArrowLeft" ||
+        key === "Escape" ||
+        key === "Tab"
+      ) {
         closeMenu();
       }
     },

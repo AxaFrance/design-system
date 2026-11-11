@@ -91,6 +91,83 @@ describe("NavBar", () => {
     },
   );
 
+  it("moves the focus with the arrow keys", async () => {
+    const user = userEvent.setup();
+    renderNavBar();
+    const home = screen.getByRole("menuitem", { name: "Home" });
+    const contracts = screen.getByRole("menuitem", { name: "Contrats" });
+    home.focus();
+
+    await user.keyboard("{ArrowRight}");
+
+    expect(contracts).toHaveFocus();
+
+    await user.keyboard("{ArrowDown}");
+
+    expect(screen.getByRole("menuitem", { name: "Auto" })).toHaveFocus();
+
+    await user.keyboard("{ArrowUp}");
+
+    expect(contracts).toHaveFocus();
+
+    await user.keyboard("{ArrowLeft}");
+
+    expect(home).toHaveFocus();
+  });
+
+  it("gives the focus back to the parent item when Escape closes a submenu", async () => {
+    const user = userEvent.setup();
+    renderNavBar();
+    const home = screen.getByRole("menuitem", { name: "Home" });
+    const contracts = screen.getByRole("menuitem", { name: "Contrats" });
+    home.focus();
+    await user.keyboard("{ArrowRight}{ArrowDown}");
+
+    expect(screen.getByRole("menuitem", { name: "Auto" })).toHaveFocus();
+
+    await user.keyboard("{Escape}");
+
+    expect(contracts).toHaveAttribute("aria-expanded", "false");
+    expect(contracts).toHaveFocus();
+
+    await user.keyboard("{Escape}");
+
+    expect(contracts).toHaveFocus();
+  });
+
+  it("closes an open submenu when Tab leaves it", async () => {
+    const user = userEvent.setup();
+    renderNavBar();
+    const contracts = screen.getByRole("menuitem", { name: "Contrats" });
+    screen.getByRole("menuitem", { name: "Home" }).focus();
+    await user.keyboard("{ArrowRight}{ArrowDown}");
+
+    await user.tab();
+
+    expect(screen.getByRole("button", { name: "Après le menu" })).toHaveFocus();
+    expect(contracts).toHaveAttribute("aria-expanded", "false");
+
+    await user.tab({ shift: true });
+
+    expect(contracts).toHaveFocus();
+  });
+
+  it("closes an open submenu when Shift+Tab leaves it", async () => {
+    const user = userEvent.setup();
+    renderNavBar();
+    const contracts = screen.getByRole("menuitem", { name: "Contrats" });
+    screen.getByRole("menuitem", { name: "Home" }).focus();
+    await user.keyboard("{ArrowRight}{ArrowDown}");
+
+    await user.tab({ shift: true });
+
+    expect(contracts).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("menubar")).not.toContainElement(
+      document.activeElement as HTMLElement,
+    );
+    expect(document.body).not.toHaveFocus();
+  });
+
   it("still handles arrow keys and Escape", async () => {
     const user = userEvent.setup();
     renderNavBar();
@@ -106,7 +183,6 @@ describe("NavBar", () => {
     expect(home).toHaveAttribute("tabindex", "-1");
     expect(contracts).toHaveAttribute("tabindex", "0");
 
-    contracts.focus();
     await user.keyboard("{ArrowDown}");
 
     expect(preventedKeys.get("ArrowDown")).toBe(true);
