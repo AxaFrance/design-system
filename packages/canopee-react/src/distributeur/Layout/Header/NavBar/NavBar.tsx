@@ -40,9 +40,6 @@ const NavBar = ({ positionInit = 0, children, ...otherProps }: Props) => {
 
   const handleKeys = useCallback(
     (key: string) => {
-      if (key === "Escape") {
-        setIsMenuFocused(false);
-      }
       if (key === "ArrowRight" || key === "ArrowLeft") {
         const newPosition = getPosition(validChildren.length, position, key);
         setPosition(newPosition);
