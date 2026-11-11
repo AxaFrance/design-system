@@ -66,7 +66,6 @@ const MonInput = () => (
 | `disabled` | `boolean` | `false` | État désactivé |
 | `readOnly` | `boolean` | `false` | État lecture seule |
 | `required` | `boolean` | `false` | Champ obligatoire |
-| `classModifier` | `string` | - | Classes CSS modificatrices |
 
 Attributs HTML standard `<input>` supportés.
 

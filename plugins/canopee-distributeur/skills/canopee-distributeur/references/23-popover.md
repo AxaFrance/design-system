@@ -17,7 +17,6 @@ import { Popover } from "@axa-fr/canopee-react/distributeur";
 | `children` | `ReactNode` | **Obligatoire** | Élément déclencheur |
 | `placement` | `Placement` | `"top"` | Position du popover (`"top"`, `"bottom"`, `"left"`, `"right"`, `"top-start"`, …) |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 `Placement` provient de `@floating-ui/react`.
 
