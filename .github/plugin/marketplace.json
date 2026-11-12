@@ -19,7 +19,7 @@
       "name": "canopee-prospect-client",
       "source": "./plugins/canopee-prospect-client",
       "description": "Canopée Prospect-Client plugin for GitHub Copilot.",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "skills": ["./skills/canopee-prospect-client"]
     },
     {
