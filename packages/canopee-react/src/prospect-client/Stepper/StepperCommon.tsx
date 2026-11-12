@@ -5,9 +5,9 @@ import {
   useId,
 } from "react";
 import { type ItemMessageProps } from "../Form/ItemMessage/ItemMessage";
-import { type ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
 import type { HeadingCommonProps } from "../Heading/HeadingCommon";
 import type { HeadingLevel } from "../Heading/types";
+import { type ProgressBarGroupProps } from "../ProgressBarGroup/ProgressBarGroupCommon";
 
 export type StepperProps = {
   currentStepProgress?: number;
@@ -15,7 +15,7 @@ export type StepperProps = {
   currentSubtitle?: ReactNode;
   currentTitle?: ReactNode;
   nbSteps?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
-  helper?: string;
+  helper?: ReactNode;
   icon?: string;
   iconProps?: HeadingCommonProps["iconProps"];
   message?: string;

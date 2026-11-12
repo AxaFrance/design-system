@@ -3,6 +3,7 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
+  type ReactNode,
   useId,
 } from "react";
 import type { SingleValue } from "react-select";
@@ -19,7 +20,7 @@ import { type OptionType } from "./InputPhone.types";
 import { maskFrenchPhoneNumber } from "./maskFrenchPhoneNumber";
 
 export type InputPhoneProps = ComponentPropsWithRef<"input"> & {
-  helper?: string;
+  helper?: ReactNode;
   defaultCountry?: string;
   showSelect?: boolean;
   disabled?: boolean;

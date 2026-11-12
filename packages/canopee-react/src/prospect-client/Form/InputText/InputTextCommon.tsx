@@ -4,18 +4,18 @@ import {
   type ReactNode,
   useId,
 } from "react";
+import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 import { InputTextAtom } from "../InputTextAtom/InputTextAtomCommon";
 import {
   ItemLabelCommon,
   type ItemLabelProps,
 } from "../ItemLabel/ItemLabelCommon";
 import { type ItemMessageProps } from "../ItemMessage/ItemMessage";
-import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
 
 export type InputTextProps = ComponentProps<"input"> & {
   unit?: ReactNode;
   label?: ItemLabelProps["children"];
-  helper?: string;
+  helper?: ReactNode;
   containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,

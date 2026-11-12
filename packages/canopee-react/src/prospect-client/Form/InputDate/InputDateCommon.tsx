@@ -2,6 +2,7 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
+  type ReactNode,
   useId,
 } from "react";
 import { getClassName } from "../../utilities/getClassName";
@@ -22,7 +23,7 @@ export type InputDateProps = Omit<
   value?: Date | string;
   min?: InputDateAtomProps["min"];
   max?: InputDateAtomProps["max"];
-  helper?: string;
+  helper?: ReactNode;
   hidePicker?: boolean;
   label: ItemLabelProps["children"];
   containerProps?: GridContainerProps;

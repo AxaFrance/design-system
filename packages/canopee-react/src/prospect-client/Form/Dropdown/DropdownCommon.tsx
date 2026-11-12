@@ -3,6 +3,7 @@ import {
   type ComponentProps,
   type ComponentPropsWithRef,
   type ComponentType,
+  type ReactNode,
   useId,
 } from "react";
 import type { GridContainerProps } from "../../utilities/types/GridContainerProps";
@@ -17,7 +18,7 @@ export type DropdownProps = ComponentPropsWithRef<"select"> & {
   label?: ItemLabelProps["children"];
   placeholder?: string;
   description?: string;
-  helper?: string;
+  helper?: ReactNode;
   containerProps?: GridContainerProps;
 } & Pick<
     ItemLabelProps,
