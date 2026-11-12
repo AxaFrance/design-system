@@ -136,6 +136,7 @@ Ces noms désignent Spinner. Le seul nom à employer est Spinner.
 - **Mouvement réduit.** Le CSS du Spinner ne tient pas compte de `prefers-reduced-motion`. En attendant : signaler.
 - **Épaisseur du trait.** Le code du thème client trace un trait de 2 px en size=small et de 4 px en size=large, contre 3 px dans Figma. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
 - **Retouches locales.** L'interdit de modifier la couleur ou la taille reprend la règle de Button, d'IconButton et de Divider, sans source propre au Spinner. En attendant : il s'applique.
+- **Fichier en cours d'envoi.** Dans le code, la ligne d'un fichier en cours d'envoi affiche un Spinner bleu, alors que la fiche le donne en colorScheme=gray. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
