@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./client-CdQKUOTE.js";import{Ht as r}from"./MessageBarCommon-BxIbuzbM.js";var i=t({RadioStory:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{n(),a={title:`Components/Form/Radio/Radio`,component:r,argTypes:{name:{control:{type:`text`}},value:{control:{type:`text`}},checked:{control:{type:`boolean`}},variant:{control:{type:`select`},options:[`error`,`warning`]}},args:{name:`option1`,value:`option1`}},o={name:`Playground`},s=[`RadioStory`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  name: "Playground"
-}`,...o.parameters?.docs?.source}}}})))()}export{i as n,c as r,o as t};

@@ -1,0 +1,7 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{B as n,Xt as r,nt as i,t as a}from"./client-BA4V0FF1.js";import{zr as o}from"./MessageBarCommon-Bs3XJyGc.js";import{a as s,o as c}from"./settings-fill-xXiKbUtr.js";import{a as l,i as u,n as d,o as f,r as p,s as m,t as h}from"./LayoutDemo.constant-BwaEsiuj.js";var g,_,v;function y(){return(y=e((()=>{a(),c(),p(),g=t(),{action:_}=__STORYBOOK_MODULE_ACTIONS__,v=({children:e,title:t,...a})=>(0,g.jsxs)(g.Fragment,{children:[(0,g.jsx)(i,{isCheckedByDefault:!0,forceVisible:!0}),(0,g.jsx)(n,{headerProps:{appNameProps:{label:t??``},tabMenuProps:m,menuBurgerProps:l,"aria-label":t??``,actionChildren:(0,g.jsx)(r,{variant:`secondary`,iconLeft:(0,g.jsx)(o,{src:s,size:`S`}),onClick:_(`Logout clicked`),children:`Accéder à AXA Banque`})},footerProps:{links:u,socialMedias:f,copyright:h,expandLinkText:d},...a,children:e})]}),v.__docgenInfo={description:`Storybook layout wrapper used by page and layout stories.
+
+@component
+@param {{ children: ReactNode; title?: string }} props - LayoutDemo props.
+@param {ReactNode} props.children - Story content rendered between the header and the footer.
+@param {string} [props.title] - Title shown in the header.
+@returns {JSX.Element} The rendered Storybook layout wrapper.`,methods:[],displayName:`LayoutDemo`,props:{children:{required:!0,tsType:{name:`ReactNode`},description:``},title:{required:!1,tsType:{name:`string`},description:``}}}})))()}export{y as n,v as t};

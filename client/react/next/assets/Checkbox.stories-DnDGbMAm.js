@@ -1,0 +1,3 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./client-BA4V0FF1.js";import{Fn as r}from"./MessageBarCommon-Bs3XJyGc.js";var i=t({CheckboxStory:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{n(),a={title:`Components/Form/Checkbox/Checkbox`,component:r,argTypes:{name:{control:{type:`text`}},value:{control:{type:`text`}},checked:{control:{type:`boolean`}},variant:{control:{type:`select`},options:[`error`,`warning`]},hasError:{table:{disable:!0}}},args:{name:`option1`,value:`option1`}},o={name:`Playground`},s=[`CheckboxStory`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  name: "Playground"
+}`,...o.parameters?.docs?.source}}}})))()}export{i as n,c as r,o as t};
