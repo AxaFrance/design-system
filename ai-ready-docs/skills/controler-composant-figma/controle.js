@@ -157,26 +157,26 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
     }
   }
   if (n.type === "TEXT" && !n.textStyleId) note("texte-sans-style", ou);
+  // Les calques d'un composant imbriqué appartiennent à ce composant : seules leurs couleurs sont contrôlées ici.
+  let imbrique = false;
+  for (let p = n.parent; p && p !== v; p = p.parent) if (p.type === "INSTANCE") imbrique = true;
   const lies = n.boundVariables || {};
-  if (n.layoutMode && n.layoutMode !== "NONE") {
+  if (!imbrique && n.layoutMode && n.layoutMode !== "NONE") {
     for (const f of ["itemSpacing", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft"])
       if (n[f] && !lies[f]) note("espacement-brut", ou + " : " + f + " " + n[f]);
   }
-  if (typeof n.strokeWeight === "number" && n.strokes && n.strokes.length && !lies.strokeWeight && !lies.strokeTopWeight)
+  if (!imbrique && typeof n.strokeWeight === "number" && n.strokes && n.strokes.length && !lies.strokeWeight && !lies.strokeTopWeight)
     note("epaisseur-brute", ou + " : " + n.strokeWeight);
   // Une taille fixe se relie à un token, sauf pour une forme ou un calque absolu étiré.
-  if (!FORMES.includes(n.type)) {
+  if (!imbrique && !FORMES.includes(n.type)) {
     const etire = (axe) => n.layoutPositioning === "ABSOLUTE" && n.constraints && n.constraints[axe] === "STRETCH";
     if (n.layoutSizingHorizontal === "FIXED" && !lies.width && !etire("horizontal")) note("taille-brute", ou + " : largeur " + Math.round(n.width * 100) / 100);
     if (n.layoutSizingVertical === "FIXED" && !lies.height && !etire("vertical")) note("taille-brute", ou + " : hauteur " + Math.round(n.height * 100) / 100);
   }
   // Un ratio verrouillé ne garde qu'une dimension reliée.
-  if (n.targetAspectRatio && (!!lies.width) !== (!!lies.height))
+  if (!imbrique && n.targetAspectRatio && (!!lies.width) !== (!!lies.height))
     note("taille-verrouillee", ou + " : ratio verrouillé, seule la " + (lies.width ? "largeur" : "hauteur") + " est reliée");
-  for (const r of ROLES) if (r.nom.test(n.name) && !r.test(n)) note("role-incoherent", ou + " : nommé " + n.name + ", ce n'est pas " + r.attendu);
-  // Un nom par défaut, hors calques d'un composant imbriqué, qui appartiennent à ce composant.
-  let imbrique = false;
-  for (let p = n.parent; p && p !== v; p = p.parent) if (p.type === "INSTANCE") imbrique = true;
+  if (!imbrique) for (const r of ROLES) if (r.nom.test(n.name) && !r.test(n)) note("role-incoherent", ou + " : nommé " + n.name + ", ce n'est pas " + r.attendu);
   if (n !== v && !imbrique && NOM_PAR_DEFAUT.test(n.name)) note("nom-par-defaut", ou);
   // Calques sans rôle, hors calques d'un composant imbriqué.
   if (!imbrique) {

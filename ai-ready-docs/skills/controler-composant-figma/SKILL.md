@@ -22,6 +22,8 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
 ## Ce que le script signale
 
+Les calques d'un composant imbriqué, comme une icône de Fondations, appartiennent à ce composant. Le script ne contrôle que leurs couleurs, car un composant recolore souvent ses icônes. Un autre défaut à l'intérieur d'un composant imbriqué se trouve en lançant le skill sur ce composant, dans son propre fichier.
+
 | Règle | Défaut |
 |---|---|
 | structure-differente | Une variante n'a pas les mêmes calques que la majorité des variantes de même type. Le calque `focus-ring` n'est pas compté, car seules certaines variantes l'ont. |
@@ -35,7 +37,7 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 | taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Les formes et les calques absolus étirés ne sont pas comptés. |
 | taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
 | role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est pas un texte, une `icon` qui n'est pas une instance. |
-| nom-par-defaut | Un calque garde un nom donné par Figma ou par un import, comme « Frame 27 » ou « axa_logo_solid_rgb 1 ». Les calques d'un composant imbriqué ne sont pas comptés. |
+| nom-par-defaut | Un calque garde un nom donné par Figma ou par un import, comme « Frame 27 » ou « axa_logo_solid_rgb 1 ». |
 | groupe-sans-role | Un groupe ou un cadre n'enveloppe qu'un calque, à la même taille, sans fond, contour, effet, opacité ni lien à une propriété. |
 | contour-invisible | Un contour intérieur a la couleur du fond de son calque. |
 | masque-sans-effet | Un masque n'a aucun calque au-dessus de lui, ou c'est un rectangle sans arrondi qui contient déjà tout ce qu'il masque. |
