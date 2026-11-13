@@ -2,6 +2,6 @@
 
 @layer canopee {
   .af-divider {
-    --divider-border-color: var(--blue-200);
+    --divider-border-color: var(--color-gray-200);
   }
 }
