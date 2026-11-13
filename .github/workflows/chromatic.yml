@@ -14,6 +14,8 @@ jobs:
 
       - name: Setup Node.js
         uses: ./.github/action/setup-node
+        with:
+          turbo-cache: true
 
       - name: Build packages
         run: npm run build
@@ -23,7 +25,7 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_REACT }}
           zip: true
-          buildScriptName: "build"
+          storybookBuildDir: storybook-static
           workingDir: "apps/slash-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
@@ -33,7 +35,7 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
           zip: true
-          buildScriptName: "build"
+          storybookBuildDir: storybook-static
           workingDir: "apps/look-and-feel-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
@@ -42,7 +44,7 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_APOLLO_REACT }}
           zip: true
-          buildScriptName: "build"
+          storybookBuildDir: storybook-static
           workingDir: "apps/apollo-stories"
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"

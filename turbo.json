@@ -2,18 +2,23 @@
     "$schema": "https://v2-11-10.turborepo.dev/schema.json",
     "tasks": {
         "build": {
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                "!**/__tests__/**",
+                "!**/*.{test,spec}.{ts,tsx}",
+                "!**/*.md"
+            ],
             "outputs": [
                 "dist/**",
+                "generated/**",
                 "storybook-static/**"
             ],
             "dependsOn": [
-                "^build",
-                "^lint"
+                "^build"
             ]
         },
         "check-types": {
             "dependsOn": [
-                "^check-types",
                 "^build"
             ]
         },
@@ -33,9 +38,55 @@
             "persistent": true,
             "cache": false
         },
+        "eslint": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputLogs": "errors-only"
+        },
+        "transit": {
+            "dependsOn": [
+                "^transit"
+            ]
+        },
+        "prettier": {
+            "dependsOn": [
+                "transit"
+            ],
+            "outputLogs": "errors-only"
+        },
+        "stylelint": {
+            "dependsOn": [
+                "transit"
+            ],
+            "outputLogs": "errors-only"
+        },
         "lint": {
             "dependsOn": [
-                "^check-types"
+                "eslint",
+                "prettier",
+                "check-types",
+                "stylelint"
+            ]
+        },
+        "//#test:coverage": {
+            "dependsOn": [
+                "@axa-fr/canopee-css#build"
+            ],
+            "inputs": [
+                "vitest.config.ts",
+                "vitest.workspace.ts",
+                "packages/canopee-react/src/**",
+                "packages/canopee-react/package.json",
+                "packages/canopee-react/tsconfig.json",
+                "packages/canopee-react/vitest.config.ts",
+                "packages/canopee-react/vitest.setup.ts"
+            ],
+            "outputs": [
+                "coverage/**"
+            ],
+            "env": [
+                "CI"
             ]
         }
     }
