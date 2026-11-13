@@ -73,17 +73,17 @@ Chaque type de changement présent a sa chip, avec son nombre. Toutes sont activ
 
 La carte est repliée à l'ouverture du plugin : elle ne montre que le niveau et le résumé des compteurs. Un clic sur son titre la déplie ou la replie.
 
-Pour un token de contexte de modifier, le mode s'affiche sous le nom, par exemple client-mobile. Un mode qui reprend la valeur par défaut compte comme une valeur modifiée, pas comme une suppression. Un style de texte ou une ombre se résument en un mot plutôt qu'en JSON, avec le détail des propriétés qui changent juste en dessous quand ils sont modifiés.
+Pour un token de contexte de modifier, le mode s'affiche sous le nom, par exemple client-mobile. Un mode qui reprend la valeur par défaut compte comme une valeur modifiée, pas comme une suppression. Un style de texte ou une ombre se résument en un mot plutôt qu'en JSON, avec le détail des propriétés qui changent juste en dessous quand ils sont modifiés. Une description qui change seule s'affiche de la même façon, sur une ligne description sous le token. Quand la valeur change aussi, seule la valeur s'affiche. Une description générée par le plugin compte aussi : si une version du plugin la reformule, les tokens concernés apparaissent comme modifiés au dépôt suivant.
 
 Une étiquette donne le niveau du changement, du plus élevé au plus bas :
 
 - **Majeur** : une refonte complète des tokens. Le plugin ne la devine pas, l'équipe design system coche la case au dépôt.
 - **Mineur** : un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change.
-- **Patch** : une ou plusieurs valeurs modifiées.
+- **Patch** : une ou plusieurs valeurs ou descriptions modifiées.
 
 Cette explication s'affiche au survol de l'étiquette. Cette règle est une proposition, à valider avec les développeurs de Canopée. En comparant à une version publiée, le plugin indique aussi la prochaine version attendue.
 
-Le menu **Comparé à**, en pied de carte, permet de comparer avec autre chose : une version publiée de Canopée, ou un export chargé depuis son poste (**un autre fichier…**). Le menu ne propose que les versions qui contiennent le fichier des tokens, à partir de `premiereVersion` (voir « Configurer »). Glisser un export sur la carte fonctionne aussi. Les descriptions ne comptent pas comme des changements.
+Le menu **Comparé à**, en pied de carte, permet de comparer avec autre chose : une version publiée de Canopée, ou un export chargé depuis son poste (**un autre fichier…**). Le menu ne propose que les versions qui contiennent le fichier des tokens, à partir de `premiereVersion` (voir « Configurer »). Glisser un export sur la carte fonctionne aussi.
 
 Tant que le fichier des tokens n'est pas dans le code, la carte le dit : au premier dépôt, tous les tokens seront ajoutés. Si GitHub ne répond pas, elle le dit aussi, et le menu reste disponible.
 

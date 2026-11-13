@@ -463,6 +463,21 @@ describe("UI and plugin: end-to-end journeys", () => {
     expect({ collapsed, expanded: ui.text() }).toMatchSnapshot();
   });
 
+  it("a description that changes alone is shown as modified, not as identical to the code", async () => {
+    const reference = JSON.parse(await exportJson(healthyDocument()));
+    reference.sets.Primitives.sources[0].color.blue["700"].$description =
+      "Ancien texte";
+    const ui = await openUi(healthyDocument(), {
+      repoReference: JSON.stringify(reference),
+    });
+    await ui.clickOn(ui.clickable("Changements", '[role="button"]'));
+    expect(ui.text()).not.toContain("identiques au code");
+    expect(ui.text()).toContain("MODIFIÉ");
+    expect(ui.text()).toContain("description");
+    expect(ui.text()).toContain("Ancien texte");
+    ui.noError();
+  });
+
   it('full submission: "Copier et ouvrir", "Copier le message", then "Terminé"', async () => {
     const ui = await openUi(healthyDocument());
     await ui.clickOn(ui.button("Déposer sur GitHub"));

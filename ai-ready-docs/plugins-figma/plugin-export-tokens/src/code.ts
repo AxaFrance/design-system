@@ -102,7 +102,7 @@ const isAlias = (v: unknown): v is VariableAlias =>
 // Any message to the interface goes through here, so that it is checked against the contract.
 const post = (message: PluginToUiMessage) => figma.ui.postMessage(message);
 
-const VERSION = "0.31.1";
+const VERSION = "0.32.0";
 const WIDTH = 440;
 const INITIAL_HEIGHT = 600;
 // Automatic height: follows the content, within these bounds. High enough by default
@@ -1556,11 +1556,12 @@ interface FlatToken extends DiffMeta {
   path: string;
   type: unknown;
   value: unknown;
+  description: string | undefined;
   isDeprecated: boolean;
 }
 
 // Flattens a token tree into the given table: path (segments joined
-// by "/", like a Figma name) → { path, type, value, isDeprecated }, plus
+// by "/", like a Figma name) → { path, type, value, description, isDeprecated }, plus
 // modifier and context when meta is provided (a modifier context). The key
 // of the table stays composite (path, modifier, context) for uniqueness,
 // but path never carries the mode: flattenDoc is the one that needs it
@@ -1597,6 +1598,10 @@ const flattenTree = (
         path,
         type: node.$type,
         value,
+        description:
+          typeof node.$description === "string" && node.$description !== ""
+            ? node.$description
+            : undefined,
         isDeprecated:
           node.$deprecated === true ||
           (typeof node.$deprecated === "string" && node.$deprecated !== ""),
@@ -1844,10 +1849,16 @@ const nextVersion = (version: string, level: DiffLevel) => {
 };
 
 // Compares the current document with a reference: added, modified (different type
-// or value), removed, deprecated (newly $deprecated).
-// $description and $extensions are ignored: being generated, they would change with
-// every evolution of the plugin. The only exception is the non-DTCG fields of a text
-// style, which come from Figma (see flattenTree).
+// or value, or description alone), removed, deprecated (newly $deprecated).
+// $extensions are ignored, except the non-DTCG fields of a text style, which come
+// from Figma (see flattenTree). A $description counts only for two tokens with the
+// same key (same path and context): if type and value are identical but the
+// description differs, the token is modified with a single "description" field
+// (absent description shown as "aucune"). If the value or type changes too, no
+// description field is added, the generated description often repeats the value.
+// A newly deprecated token does not enter modified for its description alone.
+// The cross comparisons with a base token (referenceBase, currentBase) only look
+// at value and type.
 // path never carries the mode; modifier and context qualify a token of a
 // modifier context, absent for a set token. added/deprecated
 // carry the current value, removed the value of the reference, modified
@@ -1924,11 +1935,33 @@ const buildDiff = (
       }
       continue;
     }
+    const newlyDeprecated =
+      currentToken.isDeprecated && !referenceToken.isDeprecated;
     if (different(referenceToken, currentToken))
       modified.push(
         modifiedEntry(referenceToken, currentToken, metaOf(currentToken)),
       );
-    if (currentToken.isDeprecated && !referenceToken.isDeprecated) {
+    else if (
+      !newlyDeprecated &&
+      referenceToken.description !== currentToken.description
+    ) {
+      const shown = formatDiffValue(currentToken.type, currentToken.value);
+      modified.push({
+        path: currentToken.path,
+        ...metaOf(currentToken),
+        before: shown,
+        after: shown,
+        typeChange: false,
+        fields: [
+          {
+            field: "description",
+            before: referenceToken.description ?? "aucune",
+            after: currentToken.description ?? "aucune",
+          },
+        ],
+      });
+    }
+    if (newlyDeprecated) {
       deprecated.push({
         path: currentToken.path,
         ...metaOf(currentToken),

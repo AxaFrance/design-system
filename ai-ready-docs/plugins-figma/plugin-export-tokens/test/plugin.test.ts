@@ -1154,6 +1154,116 @@ describe("compare (diff)", () => {
 
 // Each case isolates a single type of change, to check the level that goes with it
 // without mixing with the others.
+describe("compare (diff), descriptions", () => {
+  let plugin: MockPlugin, t: MockData;
+  const compareWith = async (reference: MockData) => {
+    await plugin.send({
+      type: "compare",
+      reference: JSON.stringify(reference),
+      source: "file",
+      fileName: "x.json",
+    });
+    return normalize(plugin.lastMessage());
+  };
+  const cloneReference = () => JSON.parse(JSON.stringify(t));
+
+  beforeAll(async () => {
+    plugin = createMockPlugin(testDocument());
+    ({ t } = await exportDocument(plugin));
+  });
+
+  it("description added to a token whose value does not change: one modified entry with a description field", async () => {
+    const reference = cloneReference();
+    const token = readSet(reference, "Primitives").color.blue["700"];
+    const current = token.$description;
+    delete token.$description;
+    const d = await compareWith(reference);
+    expect(d.modified).toStrictEqual([
+      {
+        path: "color/blue/700",
+        before: "#00008F",
+        after: "#00008F",
+        typeChange: false,
+        fields: [{ field: "description", before: "aucune", after: current }],
+      },
+    ]);
+    expect(d.level).toBe("patch");
+  });
+
+  it("description modified (A to B): the field carries both texts", async () => {
+    const reference = cloneReference();
+    const token = readSet(reference, "Primitives").Couleur["AXA blue 100"];
+    token.$description = "Ancien texte";
+    const d = await compareWith(reference);
+    expect(d.modified).toHaveLength(1);
+    expect(d.modified[0].path).toBe("Couleur/AXA blue 100");
+    expect(d.modified[0].typeChange).toBe(false);
+    expect(d.modified[0].fields).toStrictEqual([
+      {
+        field: "description",
+        before: "Ancien texte",
+        after: "Bleu de marque",
+      },
+    ]);
+    expect(d.level).toBe("patch");
+  });
+
+  it("value and description modified together: modified entry without a description line", async () => {
+    const reference = cloneReference();
+    const token = readSet(reference, "Primitives").color.blue["700"];
+    token.$value = { ...token.$value, hex: "#000066" };
+    token.$description = "Autre texte";
+    const d = await compareWith(reference);
+    expect(d.modified).toHaveLength(1);
+    expect(d.modified[0].path).toBe("color/blue/700");
+    expect(d.modified[0].before).toBe("#000066");
+    expect(d.modified[0].fields).toBeUndefined();
+  });
+
+  it("newly deprecated token: in deprecated, not in modified for its description", async () => {
+    const reference = cloneReference();
+    const token = readSet(reference, "Primitives").Couleur[
+      "old grey DEPRECATED"
+    ];
+    delete token.$deprecated;
+    token.$description = "Ancien texte";
+    const d = await compareWith(reference);
+    expect(d.deprecated.map((x: MockData) => x.path)).toStrictEqual([
+      "Couleur/old grey DEPRECATED",
+    ]);
+    expect(d.modified).toStrictEqual([]);
+  });
+
+  it("text style whose description alone changes: only the description field", async () => {
+    const styleDoc = createMockPlugin(compositeDiffDocument());
+    const { t: styles } = await exportDocument(styleDoc);
+    const reference = JSON.parse(JSON.stringify(styles));
+    const STY = readSet(reference, "Styles");
+    STY.typography.Corps["1"].$description = "Ancien texte";
+    STY.shadow.Ombre.carte.$description = "Autre ancien texte";
+    await styleDoc.send({
+      type: "compare",
+      reference: JSON.stringify(reference),
+      source: "file",
+      fileName: "x.json",
+    });
+    const d = normalize(styleDoc.lastMessage());
+    const text = d.modified.find(
+      (x: MockData) => x.path === "typography/Corps/1",
+    );
+    const shadowEntry = d.modified.find(
+      (x: MockData) => x.path === "shadow/Ombre/carte",
+    );
+    expect(text.fields).toStrictEqual([
+      { field: "description", before: "Ancien texte", after: "aucune" },
+    ]);
+    expect(shadowEntry.fields).toStrictEqual([
+      { field: "description", before: "Autre ancien texte", after: "aucune" },
+    ]);
+    expect(d.level).toBe("patch");
+  });
+});
+
 describe("level and next version", () => {
   let plugin: MockPlugin,
     cloneReference: MockData,
@@ -3120,7 +3230,8 @@ describe("documentation", () => {
     expect(levels.Majeur.includes("refonte complète")).toBeTruthy();
     for (const word of ["ajoutés", "supprimés", "dépréciés", "type"])
       expect(levels.Mineur.includes(word), word).toBeTruthy();
-    expect(levels.Patch.includes("valeurs modifiées")).toBeTruthy();
+    for (const word of ["valeurs", "descriptions", "modifiées"])
+      expect(levels.Patch.includes(word), word).toBeTruthy();
   });
 });
 
