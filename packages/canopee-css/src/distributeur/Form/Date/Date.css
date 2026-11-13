@@ -17,6 +17,7 @@
   .af-form__date--success::after {
     position: relative;
     top: 5px;
+    font-family: icons;
     color: var(--valid-element-color);
     content: "\EABA";
   }

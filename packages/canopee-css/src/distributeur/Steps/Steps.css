@@ -1,7 +1,7 @@
 @layer canopee {
   .af-steps-new {
-    --font-size-step: var(--font-size-base, 1rem);
-    --font-size-step-number: calc(var(--font-size-base, 1rem) + 0.2rem);
+    --font-size-step: 1rem;
+    --font-size-step-number: calc(var(--font-size-step) + 0.2rem);
     --steps-color-active: var(--axablue80);
     --steps-color: var(--gray80);
 
