@@ -154,3 +154,13 @@ La variable ne doit être ni renommée, ni masquée à la publication. Dans le c
 ### Supprimer
 
 Les tokens dépréciés sont supprimés tous ensemble, à la version majeure suivante de Canopée. Les développeurs de Canopée décident quand elle sort. L'équipe design system supprime alors les variables dans Fondations Canopée, puis dépose le changement sur GitHub avec le plugin.
+
+## Installer le plugin
+
+Le plugin Canopée se récupère sous forme de zip, en pièce jointe de la page « Créer ou modifier un token » sur Zeroheight. Il s'installe une seule fois, dans Figma Desktop.
+
+1. Télécharger le zip et le décompresser sur son poste.
+2. Dans Figma Desktop, ouvrir le menu **Plugins › Development › Import plugin from manifest**.
+3. Choisir le fichier manifest.json du dossier décompressé.
+
+Le plugin apparaît ensuite dans **Plugins › Development**, sous le nom **Canopée, design tokens**. Pour installer une nouvelle version, il suffit de remplacer les fichiers du dossier par ceux du nouveau zip. Figma la charge au prochain lancement du plugin.

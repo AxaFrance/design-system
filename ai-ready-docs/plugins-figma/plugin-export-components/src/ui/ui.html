@@ -1,0 +1,314 @@
+<link rel="stylesheet" href="./styles.css" />
+
+<div id="content">
+  <div class="empty" id="empty">
+    <span class="empty-icon"
+      ><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 2.5 15.5 6 12 9.5 8.5 6ZM6 8.5 9.5 12 6 15.5 2.5 12ZM18 8.5 21.5 12 18 15.5 14.5 12ZM12 14.5 15.5 18 12 21.5 8.5 18Z"
+          fill="currentColor"
+        /></svg
+    ></span>
+    <p class="empty-title">Aucun composant sélectionné</p>
+    <p class="help">
+      Sélectionner dans Figma un composant, son ensemble de variantes ou une de
+      ses instances.
+    </p>
+  </div>
+  <div class="context" id="card" hidden>
+    <div class="name-row">
+      <p class="name" id="name"></p>
+      <span class="name-version" id="version-tile" hidden
+        ><span id="version-value"></span
+      ></span>
+      <span id="tag"></span>
+      <span class="counters" id="counters"></span>
+      <button
+        type="button"
+        class="icon-button"
+        id="regenerate"
+        title="Générer de nouveau"
+        aria-label="Générer de nouveau"
+        hidden
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M13 8a5 5 0 1 1-1.46-3.54M13 2v3h-3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="pills" id="tiles" hidden>
+      <span class="pill" id="tokens-tile" hidden
+        >Version minimale des tokens requise : <b id="tokens-value"></b
+      ></span>
+    </div>
+    <div class="question" id="question" hidden>
+      <div
+        id="question-delivered"
+        role="radiogroup"
+        aria-labelledby="question-title"
+      >
+        <p class="question-title" id="question-title"></p>
+        <div class="answers">
+          <label class="checkbox"
+            ><input type="radio" name="delivered" id="delivered-yes" /><span
+              id="delivered-yes-label"
+            ></span
+          ></label>
+          <label class="checkbox"
+            ><input type="radio" name="delivered" id="delivered-no" /><span
+              id="delivered-no-label"
+            ></span
+          ></label>
+        </div>
+      </div>
+      <p class="question-title" id="question-none" hidden>
+        Aucun changement dans le composant.
+      </p>
+      <div class="divider" id="divider" hidden></div>
+      <div class="checkboxes" id="checkboxes" hidden>
+        <label class="checkbox" id="checkbox-overhaul"
+          ><input type="checkbox" id="overhaul" /><span id="overhaul-label"
+            >Refonte complète</span
+          ></label
+        >
+        <label class="checkbox" id="checkbox-sheet-md" hidden
+          ><input type="checkbox" id="sheet-md" /><span id="sheet-md-label"
+            >Fiche md modifiée</span
+          ></label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="tabs"
+    id="tabs"
+    role="tablist"
+    aria-label="Contenu de l'export"
+    hidden
+  >
+    <button
+      type="button"
+      class="tab"
+      role="tab"
+      id="tab-issues"
+      data-tab="issues"
+      aria-controls="panel-issues"
+      aria-selected="true"
+    >
+      À corriger<span class="counter" id="counter-issues" hidden></span>
+    </button>
+    <button
+      type="button"
+      class="tab"
+      role="tab"
+      id="tab-json"
+      data-tab="json"
+      aria-controls="panel-json"
+      aria-selected="false"
+      tabindex="-1"
+    >
+      JSON
+    </button>
+    <button
+      type="button"
+      class="tab"
+      role="tab"
+      id="tab-changelog"
+      data-tab="changelog"
+      aria-controls="panel-changelog"
+      aria-selected="false"
+      tabindex="-1"
+    >
+      Changelog
+    </button>
+    <button
+      type="button"
+      class="tab"
+      role="tab"
+      id="tab-changes"
+      data-tab="changes"
+      aria-controls="panel-changes"
+      aria-selected="false"
+      tabindex="-1"
+    >
+      Changements<span class="counter" id="counter-changes" hidden></span>
+    </button>
+  </div>
+
+  <div
+    class="panel"
+    id="panel-issues"
+    role="tabpanel"
+    aria-labelledby="tab-issues"
+    hidden
+  >
+    <div class="empty" id="issues-ok" hidden>
+      <span class="empty-icon"
+        ><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M5.5 12.5 10 17 18.5 7.5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          /></svg
+      ></span>
+      <p class="empty-title">Rien à corriger</p>
+      <p class="help">
+        Le composant respecte la nomenclature. Générer le JSON pour calculer sa
+        version et son changelog.
+      </p>
+    </div>
+    <ul class="list" id="issues-list"></ul>
+  </div>
+
+  <div
+    class="panel"
+    id="panel-json"
+    role="tabpanel"
+    aria-labelledby="tab-json"
+    hidden
+  >
+    <div id="json-content" hidden>
+      <p class="file" id="result-title"></p>
+      <p class="help" id="summary"></p>
+      <p class="help" id="plugin-version"></p>
+      <pre
+        id="json"
+        tabindex="0"
+        role="region"
+        aria-label="JSON du composant"
+      ></pre>
+    </div>
+  </div>
+
+  <div
+    class="panel"
+    id="panel-changelog"
+    role="tabpanel"
+    aria-labelledby="tab-changelog"
+    hidden
+  >
+    <div id="changelog-content" hidden>
+      <pre
+        id="changelog"
+        tabindex="0"
+        role="region"
+        aria-label="Changelog du composant"
+      ></pre>
+    </div>
+  </div>
+
+  <div
+    class="panel"
+    id="panel-changes"
+    role="tabpanel"
+    aria-labelledby="tab-changes"
+    hidden
+  >
+    <div id="changes"></div>
+  </div>
+</div>
+
+<div class="actions" id="actions" hidden>
+  <p class="banner error" id="error" hidden></p>
+  <p class="banner success" id="success" hidden></p>
+  <p class="banner info" id="stale" hidden>
+    Le composant a changé depuis la génération de ce JSON.
+  </p>
+  <p class="banner info" id="rules" hidden></p>
+  <div class="row" id="buttons" hidden>
+    <button type="button" class="button primary" id="generate" disabled>
+      <svg
+        class="svg-icon"
+        id="icon-generate"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          d="M6 2.5H5A1.5 1.5 0 0 0 3.5 4v2.5L2 8l1.5 1.5V12A1.5 1.5 0 0 0 5 13.5h1M10 2.5h1A1.5 1.5 0 0 1 12.5 4v2.5L14 8l-1.5 1.5V12a1.5 1.5 0 0 1-1.5 1.5h-1"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <svg
+        class="svg-icon"
+        id="icon-download"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+        hidden
+      >
+        <path
+          d="M8 2.5v7M5 6.5l3 3 3-3M2.5 10.5v2a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-2"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span id="generate-label">Générer le JSON</span>
+    </button>
+    <button type="button" class="button secondary" id="copy" hidden>
+      <svg
+        class="svg-icon"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <rect
+          x="5.5"
+          y="5.5"
+          width="8"
+          height="8"
+          rx="1.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+        <path
+          d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span id="copy-label">Copier le JSON</span>
+    </button>
+  </div>
+</div>
+
+<div
+  id="handle"
+  aria-label="Redimensionner la fenêtre"
+  title="Glisser pour redimensionner, double-cliquer pour revenir à la taille automatique"
+>
+  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+    <path
+      d="M14 3 L3 14 M14 7 L7 14 M14 11 L11 14"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+
+<script type="module" src="./main.ts"></script>

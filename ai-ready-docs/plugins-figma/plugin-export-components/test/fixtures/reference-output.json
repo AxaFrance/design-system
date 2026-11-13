@@ -1,0 +1,458 @@
+{
+  "formatVersion": "0.6",
+  "meta": {
+    "name": "Button",
+    "version": null,
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "KEY-BUTTON",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://exemple.test/button"
+    ]
+  },
+  "api": {
+    "props": {
+      "state": {
+        "type": "enum",
+        "enum": [
+          "default",
+          "hover"
+        ],
+        "default": "default"
+      },
+      "hierarchy": {
+        "type": "enum",
+        "enum": [
+          "primary",
+          "secondary"
+        ],
+        "default": "primary"
+      },
+      "showLeftIcon": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "left-icon",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "_scrollable": {
+        "type": "boolean",
+        "default": false,
+        "controls": []
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "state": "default",
+        "hierarchy": "primary"
+      },
+      "position": [
+        64,
+        64
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "hierarchy": "primary"
+      },
+      "position": [
+        64,
+        184
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "label": {
+        "as": "children",
+        "default": {
+          "text": "Label"
+        },
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "text"
+          }
+        ]
+      },
+      "leftIcon": {
+        "accepts": "Instance",
+        "default": {
+          "swap": "account_balance"
+        },
+        "preferred": [
+          "Avatar",
+          "account_balance"
+        ],
+        "controls": [
+          {
+            "layer": "left-icon",
+            "attribute": "component"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "left-icon",
+            "type": "instance",
+            "component": "account_balance"
+          },
+          {
+            "name": "label",
+            "type": "text"
+          },
+          {
+            "name": "caption",
+            "type": "text"
+          },
+          {
+            "name": "badge",
+            "type": "instance",
+            "component": "Badge",
+            "values": {
+              "tone": "neutral"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "hover"
+        },
+        "tree": [
+          {
+            "name": "left-icon",
+            "type": "instance",
+            "component": "account_balance"
+          },
+          {
+            "name": "label",
+            "type": "text"
+          },
+          {
+            "name": "caption",
+            "type": "text"
+          },
+          {
+            "name": "badge",
+            "type": "instance",
+            "component": "Badge",
+            "values": {
+              "tone": "neutral"
+            }
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Badge",
+      "account_balance"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "state": "default",
+        "hierarchy": "primary"
+      },
+      "root": {
+        "background": {
+          "token": "color/blue/700"
+        },
+        "radius": {
+          "token": "radius/medium"
+        },
+        "padding": {
+          "top": {
+            "raw": 12
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 12
+          },
+          "left": {
+            "raw": 16
+          }
+        },
+        "gap": {
+          "token": "spacing/small"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "clip": true,
+          "minWidth": {
+            "raw": 144
+          },
+          "sizingH": "hug",
+          "sizingV": "hug"
+        }
+      },
+      "left-icon": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 24
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 24
+          }
+        }
+      },
+      "left-icon/vector": {
+        "background": {
+          "token": "color/white"
+        }
+      },
+      "label": {
+        "textColor": {
+          "token": "color/white"
+        },
+        "textStyle": "label/1/semibold",
+        "layout": {
+          "sizingH": "fill",
+          "textAlignVertical": "center"
+        }
+      },
+      "caption": {
+        "textColor": {
+          "raw": "#333333"
+        },
+        "typography": {
+          "fontFamily": "Source Sans Pro",
+          "fontStyle": "Regular",
+          "fontSize": 14,
+          "lineHeight": 20
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "state": "hover"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/blue/800"
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "clip": false,
+              "minWidth": {
+                "raw": 144
+              },
+              "sizingH": "hug",
+              "sizingV": "hug"
+            },
+            "stroke": {
+              "raw": "#CCCCCC"
+            },
+            "strokeWeight": {
+              "raw": 1
+            },
+            "strokeAlign": "inside"
+          },
+          "modes": {
+            "Semantic": "client"
+          },
+          "focus-ring": {
+            "stroke": {
+              "token": "color/blue/700"
+            },
+            "strokeWeight": {
+              "raw": 2
+            },
+            "layout": {
+              "absolute": true,
+              "x": -2,
+              "y": -2,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "color/blue/700": {
+      "library": "B2C",
+      "collection": "Primitive",
+      "key": "K-b700"
+    },
+    "color/blue/800": {
+      "library": "B2C",
+      "collection": "Primitive",
+      "key": "K-b800"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "K-white"
+    },
+    "radius/medium": {
+      "library": "B2C",
+      "collection": "Primitive",
+      "key": "K-radius"
+    },
+    "spacing/small": {
+      "library": "B2C",
+      "collection": "Primitive",
+      "key": "K-space"
+    }
+  },
+  "textStyles": {
+    "label/1/semibold": {
+      "library": null,
+      "key": "KEY-STYLE"
+    }
+  },
+  "components": {
+    "Avatar": {
+      "library": null,
+      "key": "KEY-AVATAR"
+    },
+    "Badge": {
+      "library": "B2C",
+      "key": "KEY-BADGE"
+    },
+    "account_balance": {
+      "library": null,
+      "key": "KEY-ICON"
+    }
+  },
+  "modeCollections": {
+    "Semantic": {
+      "library": "B2C",
+      "key": "CK3"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "preferred-value",
+      "where": "structure.slots.leftIcon",
+      "message": "Le composant préféré de clé KEY-ABSENT n'a pas pu être importé : il manque aux valeurs préférées."
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.caption.textColor",
+      "message": "Valeur brute (#333333) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.focus-ring.strokeWeight",
+      "message": "Valeur brute (2) : la relier à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.left-icon.layout.height",
+      "message": "Valeur brute (24) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.left-icon.layout.width",
+      "message": "Valeur brute (24) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.layout.minWidth",
+      "message": "Valeur brute (144) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.padding.bottom",
+      "message": "Valeur brute (12) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.padding.left",
+      "message": "Valeur brute (16) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.padding.top",
+      "message": "Valeur brute (12) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.stroke",
+      "message": "Valeur brute (#CCCCCC) : la relier à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.strokeWeight",
+      "message": "Valeur brute (1) : la relier à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "text-style",
+      "where": "styles.caption",
+      "message": "Texte sans style de texte : le relier à un style, la typo détaillée est reprise faute de mieux.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "token-duplicate",
+      "where": "tokens.color/blue/700",
+      "message": "Deux variables portent ce nom dans des collections ou des bibliothèques différentes : un seul token est indexé."
+    },
+    {
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._scrollable",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    },
+    {
+      "level": "info",
+      "rule": "text-not-linked",
+      "where": "layer caption",
+      "message": "Ce texte n'est relié à aucune propriété de texte."
+    }
+  ],
+  "_tool": "canopee-export-components <version>"
+}

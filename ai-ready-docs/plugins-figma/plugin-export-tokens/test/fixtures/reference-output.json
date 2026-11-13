@@ -1,0 +1,474 @@
+{
+  "name": "Canopée B2B",
+  "version": "2025.10",
+  "$extensions": {
+    "fr.axa.canopee": {
+      "source": "Canopée B2B",
+      "plugin": "<version>",
+      "date": "<date>"
+    }
+  },
+  "sets": {
+    "Primitives": {
+      "sources": [
+        {
+          "Couleur": {
+            "AXA blue 100": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [0, 0, 0.5608],
+                "hex": "#00008f"
+              },
+              "$description": "Bleu de marque"
+            },
+            "gris": {
+              "050": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.95, 0.95, 0.95],
+                  "hex": "#f2f2f2"
+                }
+              },
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.9, 0.9, 0.9],
+                  "hex": "#e6e6e6"
+                }
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0.1, 0.1, 0.1],
+                  "hex": "#1a1a1a"
+                }
+              }
+            },
+            "old grey DEPRECATED": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [0.5, 0.5, 0.5],
+                "hex": "#808080"
+              },
+              "$description": "Deprecated: use color/blue/700.",
+              "$deprecated": "use color/blue/700."
+            }
+          },
+          "Espacement": {
+            "m": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              }
+            },
+            "xs": {
+              "$type": "dimension",
+              "$value": {
+                "value": 4,
+                "unit": "px"
+              }
+            }
+          },
+          "Opacité": {
+            "disabled": {
+              "$type": "number",
+              "$value": 0.4,
+              "$extensions": {
+                "fr.axa.canopee": {
+                  "inferredType": true
+                }
+              }
+            }
+          },
+          "Police": {
+            "famille": {
+              "$type": "fontFamily",
+              "$value": "Source Sans Pro"
+            }
+          },
+          "Rayon": {
+            "petit-5": {
+              "$type": "dimension",
+              "$value": {
+                "value": 4,
+                "unit": "px"
+              },
+              "$extensions": {
+                "fr.axa.canopee": {
+                  "figmaName": "Rayon/petit.5"
+                }
+              }
+            }
+          },
+          "Typo": {
+            "famille secondaire": {
+              "$type": "fontFamily",
+              "$value": "Publico",
+              "$extensions": {
+                "fr.axa.canopee": {
+                  "inferredType": true
+                }
+              }
+            }
+          },
+          "border": {
+            "radius": {
+              "8": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 8,
+                  "unit": "px"
+                },
+                "$description": "Arrondi d'angle de 8 px."
+              },
+              "full": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 9999,
+                  "unit": "px"
+                },
+                "$description": "Arrondi complet, qui donne une forme de pilule, ou un cercle sur un élément carré. Vaut 9999 px."
+              }
+            },
+            "width": {
+              "1": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 1,
+                  "unit": "px"
+                },
+                "$description": "Épaisseur de bordure de 1 px."
+              },
+              "2": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 2,
+                  "unit": "px"
+                },
+                "$description": "Épaisseur de bordure de 2 px. Utilisé pour les inputs en erreur."
+              }
+            }
+          },
+          "color": {
+            "black": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [0, 0, 0],
+                "hex": "#000000"
+              },
+              "$description": "Noir, sans teinte ni palier. #000000. Contraste de 21:1 sur blanc."
+            },
+            "black-alpha": {
+              "20": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0, 0],
+                  "alpha": 0.2,
+                  "hex": "#000000"
+                },
+                "$description": "Noir à 20 % d'opacité."
+              }
+            },
+            "blue": {
+              "700": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [0, 0, 0.5608],
+                  "hex": "#00008f"
+                },
+                "$description": "Couleur blue, palier 700, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #00008F. Contraste de 15:1 sur blanc."
+              },
+              "800": {
+                "$type": "color",
+                "$value": "{color.blue.700}"
+              }
+            },
+            "cotton-candy": {
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0, 0.3451],
+                  "hex": "#ff0058"
+                },
+                "$description": "Couleur cotton-candy, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FF0058. Contraste de 3,9:1 sur blanc."
+              }
+            },
+            "sunshine": {
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [1, 0.898, 0],
+                  "hex": "#ffe500"
+                },
+                "$description": "Couleur sunshine, palier 500, sur une échelle qui va du 050, le plus clair, au 900, le plus foncé. #FFE500. Contraste de 1,3:1 sur blanc."
+              }
+            },
+            "white": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [1, 1, 1],
+                "hex": "#ffffff"
+              },
+              "$description": "Blanc, sans teinte ni palier. #FFFFFF."
+            }
+          },
+          "font": {
+            "family": {
+              "sans-serif": {
+                "$type": "fontFamily",
+                "$value": "Source Sans Pro",
+                "$description": "Famille de police Source Sans Pro."
+              }
+            },
+            "line-height": {
+              "20": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 20,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 20 px, soit 1.25rem dans le code."
+              },
+              "22": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 22,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 22 px, soit 1.375rem dans le code."
+              },
+              "23": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 23,
+                  "unit": "px"
+                },
+                "$description": "Interligne de 23 px, soit 1.4375rem dans le code."
+              }
+            },
+            "size": {
+              "15": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 15,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 15 px, soit 0.9375rem dans le code."
+              },
+              "16": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 16,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 16 px, soit 1rem dans le code."
+              }
+            },
+            "size-18": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Taille de texte de 18 px, soit 1.125rem dans le code."
+            },
+            "weight": {
+              "semibold": {
+                "$type": "fontWeight",
+                "$value": 600,
+                "$description": "Graisse semibold, de valeur 600."
+              }
+            }
+          },
+          "size": {
+            "24": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Dimension de 24 px, soit 1.5rem dans le code. Pour la largeur ou la hauteur d'un élément, comme une icône ou un logo. Pour l'espace dans un élément ou entre deux éléments, utiliser un token spacing."
+            }
+          },
+          "spacing": {
+            "2": {
+              "$type": "dimension",
+              "$value": {
+                "value": 2,
+                "unit": "px"
+              },
+              "$description": "Espacement de 2 px, soit 0.125rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "12": {
+              "$type": "dimension",
+              "$value": {
+                "value": 10,
+                "unit": "px"
+              },
+              "$description": "Espacement de 10 px, soit 0.625rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            },
+            "16": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Espacement de 16 px, soit 1rem dans le code. Pour l'espace dans un élément ou entre deux éléments, comme un padding ou un gap. Pour une largeur ou une hauteur, utiliser un token size."
+            }
+          }
+        }
+      ]
+    },
+    "Sémantique": {
+      "sources": [
+        {
+          "Action": {
+            "primaire": {
+              "$type": "color",
+              "$value": "{Couleur.AXA blue 100}"
+            }
+          },
+          "Fond": {
+            "marque": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [1, 0, 0],
+                "alpha": 0.5,
+                "hex": "#ff0000"
+              },
+              "$extensions": {
+                "fr.axa.canopee": {
+                  "alias": "Marque/Bleu"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Styles": {
+      "sources": [
+        {
+          "shadow": {
+            "Élévation": {
+              "2": {
+                "$type": "shadow",
+                "$value": {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [0, 0, 0],
+                    "alpha": 0.2,
+                    "hex": "#000000"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 2,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 8,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "inset": false
+                }
+              },
+              "marque": {
+                "$type": "shadow",
+                "$value": {
+                  "color": "{Couleur.AXA blue 100}",
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 4,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 8,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "inset": false
+                }
+              }
+            }
+          },
+          "typography": {
+            "Titre": {
+              "H1": {
+                "$type": "typography",
+                "$value": {
+                  "fontFamily": "Source Sans Pro",
+                  "fontSize": "{Espacement.m}",
+                  "fontWeight": 700,
+                  "letterSpacing": {
+                    "value": -0.32,
+                    "unit": "px"
+                  },
+                  "lineHeight": 1.25
+                },
+                "$description": "Titre de page"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "Sémantique": {
+      "default": "prospect",
+      "contexts": {
+        "prospect": [],
+        "client": [
+          {
+            "Action": {
+              "primaire": {
+                "$type": "color",
+                "$value": "{Couleur.old grey DEPRECATED}"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/Primitives"
+    },
+    {
+      "$ref": "#/sets/Sémantique"
+    },
+    {
+      "$ref": "#/sets/Styles"
+    },
+    {
+      "$ref": "#/modifiers/Sémantique"
+    }
+  ]
+}

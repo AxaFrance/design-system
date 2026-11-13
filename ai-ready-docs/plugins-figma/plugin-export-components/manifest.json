@@ -1,0 +1,17 @@
+{
+  "name": "Canopée, composants",
+  "id": "canopee-export-components",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "permissions": ["teamlibrary"],
+  "networkAccess": {
+    "allowedDomains": [
+      "https://api.github.com",
+      "https://raw.githubusercontent.com"
+    ],
+    "reasoning": "Lire en lecture seule, sur le repo public Canopée, les règles de nomenclature de la doc, la liste des versions et les fichiers de tokens publiés, pour contrôler un composant et calculer la version de ses design tokens. Extraction, contrôle de nomenclature et export restent en local. La permission teamlibrary sert seulement à lire le nom de la bibliothèque d'une variable."
+  }
+}

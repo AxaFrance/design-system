@@ -1,0 +1,298 @@
+{
+  "formatVersion": "0.6",
+  "meta": {
+    "name": "Avatar",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "7a44fe984b9253385813a2d1a0e138495e5ab5af",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/avatar/avatar.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "type": {
+        "type": "enum",
+        "enum": [
+          "picture",
+          "profile",
+          "logo"
+        ],
+        "default": "picture"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "type": "picture"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "type": "profile"
+      },
+      "position": [
+        112,
+        40
+      ]
+    },
+    {
+      "values": {
+        "type": "logo"
+      },
+      "position": [
+        184,
+        40
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "mask",
+            "type": "ellipse"
+          },
+          {
+            "name": "photo",
+            "type": "rectangle"
+          }
+        ]
+      },
+      {
+        "when": {
+          "type": "profile"
+        },
+        "tree": [
+          {
+            "name": "background",
+            "type": "ellipse"
+          },
+          {
+            "name": "icon",
+            "type": "instance",
+            "component": "icon/person"
+          }
+        ]
+      },
+      {
+        "when": {
+          "type": "logo"
+        },
+        "tree": [
+          {
+            "name": "mask",
+            "type": "ellipse"
+          },
+          {
+            "name": "logo",
+            "type": "instance",
+            "component": "logo/axa",
+            "values": {
+              "type": "solid-blue"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "icon/person",
+      "logo/axa"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "type": "picture"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "layout": {
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/48"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/48"
+          }
+        }
+      },
+      "mask": {
+        "background": {
+          "token": "color/white"
+        },
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/48"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/48"
+          }
+        }
+      },
+      "photo": {
+        "background": {
+          "unsupported": "IMAGE"
+        },
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/48"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/48"
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "type": "profile"
+        },
+        "styles": {
+          "mask": {
+            "background": null,
+            "layout": null
+          },
+          "photo": {
+            "background": null,
+            "layout": null
+          },
+          "background": {
+            "background": {
+              "token": "color/white"
+            },
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/48"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/48"
+              }
+            }
+          },
+          "icon": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "token": "icon/size/small"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "icon/size/small"
+              }
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "logo"
+        },
+        "styles": {
+          "mask": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          },
+          "photo": {
+            "background": null,
+            "layout": null
+          },
+          "logo": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/48"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/48"
+              }
+            }
+          },
+          "logo/vector": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "icon/size/small": {
+      "library": "Fondations Canopée",
+      "collection": "Size",
+      "key": "9e4bd3df25a2a614d95da75baf2dc6ebd46f65c2"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    }
+  },
+  "textStyles": {},
+  "components": {
+    "icon/person": {
+      "library": null,
+      "key": "ba59896d102f1605765728edb0164a366fa0eb7b"
+    },
+    "logo/axa": {
+      "library": null,
+      "key": "cff900c2d705d88592f4cfe1a11c3b1ddc8db7ae"
+    }
+  },
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "paint",
+      "where": "styles.photo.background",
+      "message": "Peinture de type IMAGE non reprise : seule une couleur unie se relie à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
+    }
+  ],
+  "_tool": "canopee-export-components 0.6.0"
+}
