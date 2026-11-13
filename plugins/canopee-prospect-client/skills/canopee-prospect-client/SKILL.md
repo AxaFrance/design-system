@@ -228,7 +228,7 @@ Pour construire une page, ne recrée pas la grille à la main : utilise `MainLay
 | Composant              | Référence                                               | Cas d'usage                                        |
 | ---------------------- | ------------------------------------------------------- | -------------------------------------------------- |
 | `List`                 | [08-lists.md](./references/08-lists.md)                 | Conteneur de liste (`<ul>` / `<ol>`)               |
-| `ClickItem`            | [08-lists.md](./references/08-lists.md)                 | Item de liste cliquable (small/medium/large/agent) |
+| `ClickItem`            | [08-lists.md](./references/08-lists.md)                 | Item de liste cliquable, lien (`href`) ou bouton   |
 | `ContentItemDuo`       | [08-lists.md](./references/08-lists.md)                 | Paire label/valeur avec bouton optionnel           |
 | `ContentItemDuoAction` | [08-lists.md](./references/08-lists.md)                 | Item duo avec action toggle ou buttons             |
 | `ContentItemMono`      | [09-content-items.md](./references/09-content-items.md) | Item mono (icon/picture/stick)                     |
