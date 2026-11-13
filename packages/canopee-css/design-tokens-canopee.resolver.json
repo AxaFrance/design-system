@@ -4,8 +4,8 @@
   "$extensions": {
     "fr.axa.canopee": {
       "source": "Fondations Canopée",
-      "plugin": "0.31.1",
-      "date": "2026-11-09T11:09:19Z"
+      "plugin": "0.32.0",
+      "date": "2026-11-13T09:35:56Z"
     }
   },
   "sets": {
@@ -2351,19 +2351,23 @@
             "size": {
               "extra-small": {
                 "$type": "dimension",
-                "$value": "{size.16}"
+                "$value": "{size.16}",
+                "$description": "Taille d'une icône, en largeur et en hauteur. Plus petite que small."
               },
               "large": {
                 "$type": "dimension",
-                "$value": "{size.40}"
+                "$value": "{size.40}",
+                "$description": "Taille d'une icône, en largeur et en hauteur. Plus grande que medium."
               },
               "medium": {
                 "$type": "dimension",
-                "$value": "{size.32}"
+                "$value": "{size.32}",
+                "$description": "Taille d'une icône, en largeur et en hauteur. Entre small et large."
               },
               "small": {
                 "$type": "dimension",
-                "$value": "{size.24}"
+                "$value": "{size.24}",
+                "$description": "Taille d'une icône, en largeur et en hauteur. Entre extra-small et medium."
               }
             }
           }
@@ -2400,7 +2404,8 @@
                   "unit": "px"
                 },
                 "inset": false
-              }
+              },
+              "$description": "Ombre portée tout autour d'un élément, pour le détacher du fond."
             }
           },
           "typography": {
