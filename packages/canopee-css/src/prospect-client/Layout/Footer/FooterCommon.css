@@ -89,6 +89,11 @@
     padding: var(--rem-26) var(--rem-52);
     justify-content: space-between;
     cursor: pointer;
+
+    /* all: unset removes the focus ring: bring back the browser one, as on the links */
+    &:focus-visible {
+      outline: revert;
+    }
   }
 
   .af-footer__menuAboutTriggerText {
