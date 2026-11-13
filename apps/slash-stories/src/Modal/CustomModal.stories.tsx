@@ -38,7 +38,12 @@ export const CustomTitleModalStory = meta.story({
   render: ({ children, cancelButtonText, saveButtonText, ...args }) => {
     return (
       <div>
-        <Modal {...args} title={undefined} onOutsideTap={() => {}}>
+        <Modal
+          {...args}
+          title={undefined}
+          aria-labelledby="headerId"
+          onOutsideTap={() => {}}
+        >
           <ModalHeaderBase id="headerId">{args.title}</ModalHeaderBase>
           <ModalBody>
             <p>{children}</p>

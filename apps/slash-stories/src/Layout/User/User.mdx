@@ -15,17 +15,18 @@ import { User } from "@axa-fr/canopee-react/distributeur";
 
 ```tsx
 const UserComponent = () => (
-  <User
-    href="/#"
-    name="Pierre Martin"
-    profile="profile"
-    title="Voir mon profil"
-  >
+  <User href="/#" name="Pierre Martin" profile="profile">
     {children}
   </User>
 );
 export default UserDefault;
 ```
+
+## Accessibility
+
+With `href`, the link is named by its visible content, the name and the profile.
+`title` is optional and has no default: if you set one, start it with that
+visible text, e.g. `title="Pierre Martin, voir mon profil"`.
 
 ## Stories
 
