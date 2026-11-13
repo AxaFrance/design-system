@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/react";
 
 import "@axa-fr/canopee-css/prospect/common/tokens.css";
+import "@axa-fr/canopee-css/prospect/common/design-tokens.css";
 
 const preview: Preview = {
   parameters: {

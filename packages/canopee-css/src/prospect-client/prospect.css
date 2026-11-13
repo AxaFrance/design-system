@@ -1,6 +1,7 @@
 @layer reset, canopee;
 
 @import "./common/tokens.css";
+@import "./common/design-tokens.css";
 @import "./common/reboot.css";
 @import "./Grid/Grid.css";
 @import "./Form/ItemMessage/ItemMessageAll.css";
