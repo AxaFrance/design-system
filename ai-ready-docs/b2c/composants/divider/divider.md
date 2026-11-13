@@ -26,7 +26,7 @@ Entre deux zones empilées.
 
 ### orientation=vertical
 
-Entre deux éléments posés côte à côte.
+Entre deux éléments posés côte à côte. Le trait prend toute la hauteur de son conteneur.
 
 ## Exemples
 
