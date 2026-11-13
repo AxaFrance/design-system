@@ -6,6 +6,8 @@ Une propriété est un réglage d'un composant : son état, sa taille, son texte
 
 Une variante change le rendu du composant. Un booléen affiche ou masque un élément. Les noms s'écrivent en camelCase et les valeurs en kebab-case, comme le fixe la nomenclature.
 
+Dans la colonne Valeurs, une liste de valeurs séparées par des virgules est imposée. Une phrase veut dire que chaque composant choisit ses valeurs.
+
 | Propriété | Type Figma | Valeurs | À quoi elle sert | Existe côté code |
 |---|---|---|---|---|
 | state | Variante | default, hover, focus, press | L'interaction en cours : par défaut, au survol, au focus, à l'appui. | Non, Figma seulement. Le code utilise :hover, :focus et :active en CSS. |
@@ -39,6 +41,15 @@ Une propriété de contenu remplit un élément du composant : un texte, une ico
 | placeholder, value | Texte | Texte libre | Le texte d'un champ : placeholder quand il est vide, value quand il est rempli. Les deux remplissent le calque value. | Oui |
 | icon, leftIcon, rightIcon | Instance swap | Une instance de la librairie | Toujours icon, quel que soit son usage, avec left ou right seulement s'il y en a deux. | Oui, parfois sous un autre nom |
 | children, header, actions | Slot | Des éléments libres | Une zone libre du composant. La principale s'appelle children, comme dans le code, les autres portent le nom de leur rôle. Exemple : header pour l'en-tête, actions pour les boutons. | Oui, parfois sous un autre nom |
+
+## Les noms à éviter
+
+| Nom à éviter | Nom à écrire |
+|---|---|
+| variant | hierarchy |
+| mode | tone |
+| invalid | tone |
+| theme | _theme |
 
 ## Appliquer les propriétés
 

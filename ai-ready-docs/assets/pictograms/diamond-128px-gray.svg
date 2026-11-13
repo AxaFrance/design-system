@@ -1,0 +1,18 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M58 12.0386L34 25.895V32.8232L58 46.6796H70L94 32.8232V25.895L70 12.0386H58Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M58 46.6797L38 79.0113H90L70 46.6797H58Z" fill="#E5E5E5" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M94 32.8232L120 61.6909L90 79.0113L70 46.6796L94 32.8232Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M94 32.8232V25.895L120 31.6687V61.6909L94 32.8232Z" fill="#E5E5E5" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M70 12.0386L90 14.348L120 31.6686L94 25.895L70 12.0386Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M58 12.0386L38 14.348L8 31.6686L34 25.895L58 12.0386Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M34 25.895V32.8232L8 61.6909V31.6687L34 25.895Z" fill="#E5E5E5" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M34 32.8232L58 46.6796L38 79.0113L8 61.6909L34 32.8232Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M38 79.0112L64 119.426L90 79.0112H38Z" fill="white" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M8 61.6909L38 79.0113L64 119.426L8 61.6909Z" fill="#E5E5E5" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<path d="M90 79.0113L120 61.6909L64 119.426L90 79.0113Z" fill="#E5E5E5" stroke-linecap="round" stroke-linejoin="round" stroke="#333333"/>
+<mask id="stroke0_2331_28917" maskUnits="userSpaceOnUse" x="6" y="10.0386" width="116" height="111" fill="black">
+<rect fill="white" x="6" y="10.0386" width="116" height="111"/>
+<path d="M90 14.348L70 12.0386H58L38 14.348L8 31.6686V61.6908L64 119.426L120 61.6908V31.6686L90 14.348Z"/>
+</mask>
+<path d="M90 14.348L70 12.0386H58L38 14.348L8 31.6686V61.6908L64 119.426L120 61.6908V31.6686L90 14.348Z" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="#333333" mask="url(#stroke0_2331_28917)"/>
+</svg>

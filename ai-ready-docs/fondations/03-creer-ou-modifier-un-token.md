@@ -31,6 +31,10 @@ Il manque un token, ou une valeur ne convient plus ? Il suffit de le signaler en
 
 L'équipe design system crée et modifie les tokens uniquement dans le fichier Figma Fondations Canopée. Les librairies de composants B2C et B2B utilisent exclusivement ces tokens.
 
+Un token sémantique porte un nom qui dit son usage, comme icon/size/small. Sa valeur pointe vers une primitive, une valeur brute comme size/24. L'équipe design system range chaque token sémantique dans une collection, selon ce qui fait changer la valeur du token.
+
+La collection Typography change selon le B2C ou le B2B, le thème et l'écran. Elle a un jeu de valeurs, appelé mode, pour chaque combinaison, soit cinq en tout. La collection Size garde les mêmes valeurs partout et n'a qu'un mode. Pour des couleurs qui changent selon le thème, l'équipe créerait une collection Color, avec un mode par thème.
+
 Avant de publier, vérifier dans le plugin Canopée qu'il n'y a pas d'erreur.
 
 ### 3. Publier et valider dans Figma
@@ -62,7 +66,7 @@ Cliquer sur **Déposer sur GitHub**. Le bouton est bloqué s'il reste une erreur
 
 **b. Suivre le parcours du plugin**
 
-Le plugin affiche le parcours en quatre étapes.
+Le plugin affiche le parcours en quatre étapes. Pour une refonte complète des tokens, cocher **Refonte complète** au-dessus des étapes.
 
 ![Le parcours de dépôt en quatre étapes dans le plugin](images/depot-2-parcours.png)
 *Suivre les quatre étapes dans l'ordre, en commençant par Copier et ouvrir.*
@@ -120,6 +124,16 @@ Quand tout est bon, le développeur intègre la PR. Au lancement suivant du plug
 ### 7. Publier une version
 
 Les projets reçoivent les nouveaux tokens avec la prochaine version du package CSS de Canopée. Ce sont les développeurs de Canopée qui décident quand elle sort.
+
+Le plugin donne un niveau à chaque dépôt, qui choisit son message de commit.
+
+| Changement | Niveau |
+|---|---|
+| Une refonte complète des tokens, cochée dans le plugin | Majeur |
+| Un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change | Mineur |
+| Une ou plusieurs valeurs ou descriptions modifiées | Patch |
+
+Le niveau décrit le changement des tokens. Les développeurs de Canopée décident de la version du package. Cette règle est une proposition, à valider avec les développeurs de Canopée.
 
 ## Déprécier un token
 
