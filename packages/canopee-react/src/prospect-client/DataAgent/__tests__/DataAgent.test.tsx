@@ -1,6 +1,7 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   ContentMonoItemIconProps,
   ContentMonoItemPictureProps,
@@ -95,6 +96,13 @@ const verifyOriasText = () => {
   expect(screen.getByText(oriasText)).toBeInTheDocument();
 };
 
+const setWindowWidth = (width: number) => {
+  act(() => {
+    window.innerWidth = width;
+  });
+  fireEvent(window, new Event("resize"));
+};
+
 describe("DataAgentCommon", () => {
   it("renders all sections with all props", () => {
     render(
@@ -155,6 +163,30 @@ describe("DataAgentCommon", () => {
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("renders the agent picture as decorative", () => {
+    const { container } = render(<DataAgent agentProps={agentProps} />);
+
+    expect(
+      screen.queryByRole("img", { name: "Michel Lhote" }),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector("img")).toHaveAttribute("alt", "");
+  });
+
+  it("passes basePictureProps to the agent picture", () => {
+    render(
+      <DataAgent
+        agentProps={{
+          ...agentProps,
+          basePictureProps: { alt: "Portrait de Michel Lhote" },
+        }}
+      />,
+    );
+
+    expect(
+      screen.getByRole("img", { name: "Portrait de Michel Lhote" }),
+    ).toHaveAttribute("src", "agent.png");
   });
 });
 
@@ -224,5 +256,185 @@ describe("DataAgentCommon Mobile layout", () => {
     verifyContentsProps();
     verifyClickContentsProps();
     verifyOriasText();
+  });
+
+  it("renders the compact agent picture as decorative", () => {
+    const { container } = render(
+      <DataAgent agentProps={agentProps} variant="compact" />,
+    );
+
+    expect(
+      screen.queryByRole("img", { name: "Michel Lhote" }),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector("img")).toHaveAttribute("alt", "");
+    expect(container.querySelector("img")).toHaveAttribute("src", "agent.png");
+  });
+
+  it("passes basePictureProps to the compact agent picture", () => {
+    render(
+      <DataAgent
+        agentProps={{
+          ...agentProps,
+          basePictureProps: { alt: "Portrait de Michel Lhote" },
+        }}
+        variant="compact"
+      />,
+    );
+
+    expect(
+      screen.getByRole("img", { name: "Portrait de Michel Lhote" }),
+    ).toHaveAttribute("src", "agent.png");
+  });
+});
+
+describe("DataAgentCommon click items", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("renders the click items in the small variant, whatever their variant", () => {
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        clickContents={[
+          { icon: "accountBalance", title: "Nous contacter" },
+          { variant: "medium", icon: "accountBalance", title: "Rendez-vous" },
+          { variant: "large", icon: "accountBalance", title: "Site web" },
+        ]}
+      />,
+    );
+
+    ["Nous contacter", "Rendez-vous", "Site web"].forEach((title) => {
+      expect(
+        screen.getByText(title).closest(".af-apollo-click-item"),
+      ).toHaveClass("af-apollo-click-item--small");
+    });
+  });
+
+  it("keeps the focus on a click item when the DataAgent renders again", () => {
+    const renderDataAgent = () => (
+      <DataAgent
+        agentProps={agentProps}
+        clickContents={[{ title: "Nous contacter", onClick: () => {} }]}
+      />
+    );
+    const { rerender } = render(renderDataAgent());
+    screen.getByRole("button", { name: /Nous contacter/ }).focus();
+
+    rerender(renderDataAgent());
+
+    expect(
+      screen.getByRole("button", { name: /Nous contacter/ }),
+    ).toHaveFocus();
+  });
+});
+
+describe("DataAgentCommon lists", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("renders the contents and the click items as lists", () => {
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        contents={contents}
+        clickContents={clickContents}
+      />,
+    );
+
+    const [contentList, clickList] = screen.getAllByRole("list");
+    expect(within(contentList).getAllByRole("listitem")).toHaveLength(3);
+    expect(within(clickList).getAllByRole("listitem")).toHaveLength(3);
+  });
+
+  it("puts a divider between the items, not after the last one", () => {
+    [1, 2, 3].forEach((count) => {
+      const { unmount } = render(
+        <DataAgent
+          agentProps={agentProps}
+          contents={
+            contents.slice(0, count) as TupleMax3<ContentMonoItemIconProps>
+          }
+          clickContents={
+            clickContents.slice(0, count) as TupleMax3<ClickItemProps>
+          }
+        />,
+      );
+
+      screen.getAllByRole("list").forEach((list) => {
+        const items = within(list).getAllByRole("listitem");
+        expect(items).toHaveLength(count);
+        items.forEach((item, index) => {
+          expect(within(item).queryAllByRole("separator")).toHaveLength(
+            index < count - 1 ? 1 : 0,
+          );
+        });
+      });
+      unmount();
+    });
+  });
+});
+
+describe("DataAgentCommon section and compact props", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("passes the section attributes to the root element", () => {
+    render(<DataAgent agentProps={agentProps} aria-label="Votre conseiller" />);
+
+    expect(
+      screen.getByRole("region", { name: "Votre conseiller" }),
+    ).toHaveClass("af-data-agent");
+  });
+
+  it("makes the compact click item interactive", async () => {
+    const onClick = vi.fn();
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        variant="compact"
+        compactClickItemProps={{ onClick }}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /Michel Lhote/ }));
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps the compact click item static without compactClickItemProps", () => {
+    render(<DataAgent agentProps={agentProps} variant="compact" />);
+
+    expect(screen.getByText("Michel Lhote")).toBeInTheDocument();
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+});
+
+describe("DataAgentCommon ORIAS mention", () => {
+  beforeEach(() => {
+    setWindowWidth(1280);
+  });
+
+  it("renders oriasText", () => {
+    render(<DataAgent agentProps={agentProps} oriasText={oriasText} />);
+
+    verifyOriasText();
+  });
+
+  it("prefers oriasText to the deprecated texteOrias", () => {
+    render(
+      <DataAgent
+        agentProps={agentProps}
+        oriasText={oriasText}
+        texteOrias="N° Orias (orias.fr) : 00000000"
+      />,
+    );
+
+    verifyOriasText();
+    expect(
+      screen.queryByText("N° Orias (orias.fr) : 00000000"),
+    ).not.toBeInTheDocument();
   });
 });

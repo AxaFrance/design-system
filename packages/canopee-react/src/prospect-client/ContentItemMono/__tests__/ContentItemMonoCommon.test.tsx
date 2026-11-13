@@ -85,7 +85,7 @@ describe("ContentItemMonoCommon Component", () => {
     );
   });
 
-  it("renders correctly for type 'picture'", () => {
+  it("renders a decorative picture for type 'picture'", () => {
     render(
       <ContentItemMonoCommon
         type="picture"
@@ -98,8 +98,27 @@ describe("ContentItemMonoCommon Component", () => {
 
     expect(screen.getByText("Picture Title")).toBeInTheDocument();
     expect(screen.getByText("Picture Subtitle")).toBeInTheDocument();
-    expect(screen.getByRole("img")).toHaveAttribute("src", "test-picture.jpg");
-    expect(screen.getByRole("img")).toHaveAttribute("alt", "Picture Title");
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    const picture = screen.getByRole("presentation");
+    expect(picture).toHaveAttribute("src", "test-picture.jpg");
+    expect(picture).toHaveAttribute("alt", "");
+  });
+
+  it("passes basePictureProps to the picture", () => {
+    render(
+      <ContentItemMonoCommon
+        type="picture"
+        picture="test-picture.jpg"
+        title="Picture Title"
+        subtitle="Picture Subtitle"
+        basePictureProps={{ alt: "Agency front", className: "custom" }}
+        IconComponent={Icon}
+      />,
+    );
+
+    const picture = screen.getByRole("img", { name: "Agency front" });
+    expect(picture).toHaveAttribute("src", "test-picture.jpg");
+    expect(picture).toHaveClass("af-basepicture", "custom");
   });
 
   it("renders correctly for type 'stick'", () => {
