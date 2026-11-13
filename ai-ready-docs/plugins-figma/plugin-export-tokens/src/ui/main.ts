@@ -424,7 +424,11 @@ const LEVEL_LABEL: Record<string, [string, string, string] | undefined> = {
     "tag-modified",
     "Un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change : version mineure.",
   ],
-  patch: ["PATCH", "tag-added", "Une ou plusieurs valeurs ou descriptions modifiées : patch."],
+  patch: [
+    "PATCH",
+    "tag-added",
+    "Une ou plusieurs valeurs ou descriptions modifiées : patch.",
+  ],
 };
 // Compact reminder of the non-zero counters, displayed in the sticky header.
 const compactSummary = (d?: DiffResultMessage | null) => {
