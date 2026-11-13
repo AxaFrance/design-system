@@ -88,7 +88,6 @@ Le composant `HeaderTitle` rend un `<h1>` stylé avec support d'un sous-titre, d
 | `anchorNavBarItems` | `AnchorNavBarItem[]` | - | Éléments de navigation par ancres sous le titre |
 | `children` | `ReactNode` | - | Contenu additionnel après le titre |
 | `className` | `string` | `"af-title-bar"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### Utilisation
 

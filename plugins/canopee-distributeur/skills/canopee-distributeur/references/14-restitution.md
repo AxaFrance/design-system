@@ -40,7 +40,6 @@ Conteneur racine `<article>`.
 |------|------|--------|-------------|
 | `children` | `ReactNode` | - | Contenu (HeaderRestitution + SectionRestitution) |
 | `className` | `string` | `"af-restitution"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM (ex : `"lg"`) |
 
 ### HeaderRestitution
 
@@ -52,7 +51,6 @@ En-tête avec titre, sous-titre et contenu à droite (ex : bouton Modifier).
 | `subtitle` | `ReactNode` | - | Sous-titre |
 | `rightTitle` | `ReactNode` | - | Contenu à droite (ex : lien de modification) |
 | `className` | `string` | `"af-restitution__header"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### SectionRestitution
 
@@ -62,7 +60,6 @@ Conteneur `<section>` pour les lignes de restitution.
 |------|------|--------|-------------|
 | `children` | `ReactNode` | - | Éléments `SectionRestitutionRow` |
 | `className` | `string` | `"af-restitution__content"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### SectionRestitutionRow
 
@@ -74,7 +71,6 @@ Ligne de restitution avec titre optionnel. Peut contenir des `SectionRestitution
 | `children` | `ReactNode` | - | Éléments `SectionRestitutionColumn` |
 | `className` | `string` | `"col col-sm-12 col-md-12 col-lg-12 col-xl-12"` | Classe CSS |
 | `classNameContainer` | `string` | `"row af-restitution__content-left"` | Classe CSS du conteneur interne |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### SectionRestitutionColumn
 
@@ -85,7 +81,6 @@ Colonne à l'intérieur d'une ligne, avec titre optionnel. Contient les élémen
 | `title` | `string` | - | Titre de la colonne |
 | `children` | `ReactNode` | - | Éléments `Restitution` |
 | `className` | `string` | `"col-sm-12 col-md-12 col-lg-6 col-xl-6"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### Restitution
 
@@ -96,7 +91,7 @@ Paire label/valeur rendue en `<dl>`. Si aucun enfant n'est passé, affiche `"-"`
 | `label` | `string` | **Obligatoire** | Label de la donnée |
 | `children` | `ReactNode` | `"-"` | Valeur à afficher |
 | `className` | `string` | `"af-restitution__listdef"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM (ex : `"marge"`) |
+| `variant` | `"marge"` | - | Variante CSS BEM (`af-restitution__listdef--marge`) |
 
 ### RestitutionList
 
@@ -143,7 +138,7 @@ import {
 } from "@axa-fr/canopee-react/distributeur";
 
 const RecapContrat = () => (
-  <ArticleRestitution classModifier="lg">
+  <ArticleRestitution>
     <HeaderRestitution
       title="Tarifs"
       subtitle="Tout adhérent, assuré, base (sans EAC ou sans PAC)"
@@ -159,7 +154,7 @@ const RecapContrat = () => (
           <Restitution label="TA">99,99 %</Restitution>
           <Restitution label="EURO">EURO</Restitution>
           <Restitution label="TT" />
-          <Restitution label="Garanties complémentaires" classModifier="marge">
+          <Restitution label="Garanties complémentaires" variant="marge">
             <RestitutionList
               values={[
                 "Vol au domicile",

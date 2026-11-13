@@ -42,11 +42,7 @@ Input `<input type="number">` stylé seul, sans label.
 
 #### Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `classModifier` | `string` | - | Modificateur CSS BEM |
-
-Plus tous les attributs HTML standard de `<input>` sauf `type` (forcé à `"number"`).
+Les attributs HTML standard de `<input>` sauf `type` (forcé à `"number"`).
 
 ## Utilisation
 
