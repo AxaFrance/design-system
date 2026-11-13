@@ -2,6 +2,10 @@
 
 @layer canopee {
   .af-header {
+    /* Large screens: page behind the open account menu, #00008f at 40%. */
+    --header-backdrop-color: var(--blue-1000-40);
+    --header-focus-color: var(--blue-1000);
+
     border-bottom: 1px solid var(--blue-200);
   }
 }
