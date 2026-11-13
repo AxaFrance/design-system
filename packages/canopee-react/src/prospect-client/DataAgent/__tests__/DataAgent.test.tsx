@@ -156,6 +156,30 @@ describe("DataAgentCommon", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("renders the agent picture as decorative", () => {
+    const { container } = render(<DataAgent agentProps={agentProps} />);
+
+    expect(
+      screen.queryByRole("img", { name: "Michel Lhote" }),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector("img")).toHaveAttribute("alt", "");
+  });
+
+  it("passes basePictureProps to the agent picture", () => {
+    render(
+      <DataAgent
+        agentProps={{
+          ...agentProps,
+          basePictureProps: { alt: "Portrait de Michel Lhote" },
+        }}
+      />,
+    );
+
+    expect(
+      screen.getByRole("img", { name: "Portrait de Michel Lhote" }),
+    ).toHaveAttribute("src", "agent.png");
+  });
 });
 
 describe("DataAgentCommon Mobile layout", () => {
@@ -224,5 +248,33 @@ describe("DataAgentCommon Mobile layout", () => {
     verifyContentsProps();
     verifyClickContentsProps();
     verifyOriasText();
+  });
+
+  it("renders the compact agent picture as decorative", () => {
+    const { container } = render(
+      <DataAgent agentProps={agentProps} variant="compact" />,
+    );
+
+    expect(
+      screen.queryByRole("img", { name: "Michel Lhote" }),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector("img")).toHaveAttribute("alt", "");
+    expect(container.querySelector("img")).toHaveAttribute("src", "agent.png");
+  });
+
+  it("passes basePictureProps to the compact agent picture", () => {
+    render(
+      <DataAgent
+        agentProps={{
+          ...agentProps,
+          basePictureProps: { alt: "Portrait de Michel Lhote" },
+        }}
+        variant="compact"
+      />,
+    );
+
+    expect(
+      screen.getByRole("img", { name: "Portrait de Michel Lhote" }),
+    ).toHaveAttribute("src", "agent.png");
   });
 });
