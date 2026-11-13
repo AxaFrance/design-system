@@ -8,6 +8,56 @@ describe("<Popover />", () => {
     user = userEvent.setup();
   });
 
+  describe.each(["click", "hover"] as const)(
+    "trigger name in %s mode",
+    (mode) => {
+      it("names the trigger with triggerAriaLabel", () => {
+        const { getByRole } = render(
+          <Popover
+            mode={mode}
+            popoverElement={<p>Modal content</p>}
+            triggerAriaLabel="Aide"
+          >
+            <span aria-hidden="true">?</span>
+          </Popover>,
+        );
+
+        expect(getByRole("button")).toHaveAccessibleName("Aide");
+      });
+
+      it("keeps the name of the trigger content without triggerAriaLabel", () => {
+        const { getByRole } = render(
+          <Popover mode={mode} popoverElement={<p>Modal content</p>}>
+            <span>Source</span>
+          </Popover>,
+        );
+
+        expect(getByRole("button")).toHaveAccessibleName("Source");
+        expect(getByRole("button")).not.toHaveAttribute("aria-label");
+      });
+
+      it("describes the named trigger by the open popover content", async () => {
+        const { getByRole } = render(
+          <Popover
+            mode={mode}
+            popoverElement={<p>Modal content</p>}
+            triggerAriaLabel="Aide"
+          >
+            <span aria-hidden="true">?</span>
+          </Popover>,
+        );
+        const trigger = getByRole("button");
+
+        expect(trigger).not.toHaveAttribute("aria-describedby");
+
+        await (mode === "click" ? user.click(trigger) : user.hover(trigger));
+
+        expect(trigger).toHaveAccessibleName("Aide");
+        expect(trigger).toHaveAccessibleDescription("Modal content");
+      });
+    },
+  );
+
   describe('mode "click"', () => {
     it('Should contain PopoverClick element when mode "click"', () => {
       const { getByRole } = render(

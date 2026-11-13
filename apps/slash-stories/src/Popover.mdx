@@ -70,5 +70,15 @@ const MyComponent = () => (
       <td></td>
       <td>React element that triggers the popover</td>
     </tr>
+    <tr>
+      <td>triggerAriaLabel</td>
+      <td>Accessible name of the trigger</td>
+      <td></td>
+      <td>
+        Required when <code>children</code> has no text, an icon for example.
+        Once open, the popover describes the trigger with
+        <code>aria-describedby</code>.
+      </td>
+    </tr>
   </tbody>
 </table>

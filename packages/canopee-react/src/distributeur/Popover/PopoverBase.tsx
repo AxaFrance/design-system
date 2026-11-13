@@ -10,6 +10,7 @@ type Props = {
   element: React.ReactNode;
   children: React.ReactNode | React.ReactNode[];
   isOpen: boolean;
+  contentId?: string;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: (event: React.MouseEvent) => void;
 };
@@ -20,6 +21,7 @@ const PopoverBase = ({
   placement = "right",
   className,
   element,
+  contentId,
   onMouseEnter,
   onMouseLeave,
 }: Props) => {
@@ -29,6 +31,7 @@ const PopoverBase = ({
       placement={placement}
       isOpen={isOpen}
       className={className}
+      contentId={contentId}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

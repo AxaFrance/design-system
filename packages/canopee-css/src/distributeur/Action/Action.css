@@ -25,6 +25,11 @@
     outline: none;
   }
 
+  .btn.af-btn--circle:focus-visible {
+    outline: calc(2rem / 16) solid var(--axablue80);
+    outline-offset: calc(2rem / 16);
+  }
+
   .btn.af-btn--circle:focus:hover {
     color: var(--axablue80);
   }

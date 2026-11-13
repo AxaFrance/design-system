@@ -12,19 +12,24 @@ import { Popover } from "@axa-fr/canopee-react/distributeur";
 
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
-| `mode` | `"click" \| "over"` | **Obligatoire** | Déclenchement par clic ou par survol |
+| `mode` | `"click" \| "hover"` | **Obligatoire** | Déclenchement par clic ou par survol |
 | `popoverElement` | `ReactNode` | **Obligatoire** | Contenu affiché dans le popover |
-| `children` | `ReactNode` | **Obligatoire** | Élément déclencheur |
+| `children` | `ReactNode` | **Obligatoire** | Contenu du déclencheur |
+| `triggerAriaLabel` | `string` | - | Nom accessible du déclencheur (`aria-label`) ; obligatoire si `children` n'a pas de texte (icône seule) |
 | `placement` | `Placement` | `"top"` | Position du popover (`"top"`, `"bottom"`, `"left"`, `"right"`, `"top-start"`, …) |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 `Placement` provient de `@floating-ui/react`.
+
+Le déclencheur est rendu dans un `<div role="button" tabIndex={0}>` qui entoure `children` : ne pas y
+placer un `<button>` (élément interactif imbriqué) ; donner du texte ou un `triggerAriaLabel`. Avec
+`triggerAriaLabel`, le contenu ouvert décrit le déclencheur (`aria-describedby`).
 
 ## Utilisation
 
 ```tsx
-import { Popover } from "@axa-fr/canopee-react/distributeur";
+import { Popover, Svg } from "@axa-fr/canopee-react/distributeur";
+import infoIcon from "@material-symbols/svg-400/rounded/info_i-fill.svg";
 
 // Déclenché au clic
 <Popover
@@ -32,12 +37,21 @@ import { Popover } from "@axa-fr/canopee-react/distributeur";
   placement="top"
   popoverElement={<p>Contenu d'aide contextuelle</p>}
 >
-  <button type="button">Aide</button>
+  <span>Aide</span>
+</Popover>
+
+// Déclencheur sans texte : nommé par triggerAriaLabel
+<Popover
+  mode="click"
+  popoverElement={<p>Contenu d'aide contextuelle</p>}
+  triggerAriaLabel="Aide sur la franchise"
+>
+  <Svg src={infoIcon} />
 </Popover>
 
 // Déclenché au survol
 <Popover
-  mode="over"
+  mode="hover"
   placement="right"
   popoverElement={<span>Informations supplémentaires</span>}
 >
@@ -45,4 +59,4 @@ import { Popover } from "@axa-fr/canopee-react/distributeur";
 </Popover>
 ```
 
-> **Note :** Pour un bouton d'aide stylé avec icône "i", préférer le composant `HelpButton` qui encapsule `Popover`.
+> **Note :** Pour un bouton d'aide stylé avec icône info, préférer le composant `HelpButton` qui encapsule `Popover`.
