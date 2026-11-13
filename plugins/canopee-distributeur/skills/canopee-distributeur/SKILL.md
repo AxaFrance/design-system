@@ -186,6 +186,7 @@ Disponibles via `@axa-fr/canopee-react/distributeur-experimental` — API instab
 | `CardData`                                                  | [26-card-data.md](./references/26-card-data.md)                 | Carte de données avec en-tête structuré               |
 | `EditorialMessage`                                          | [27-editorial-message.md](./references/27-editorial-message.md) | Message éditorial (écologie, promo, info)             |
 | `Summary`                                                   | [28-summary.md](./references/28-summary.md)                     | Récapitulatif des erreurs de formulaire               |
+| `FileDownload`                                              | [41-file-download.md](./references/41-file-download.md)         | Présentation, téléchargement et consultation d'un fichier  |
 
 ## Variants rapides à mémoriser
 
