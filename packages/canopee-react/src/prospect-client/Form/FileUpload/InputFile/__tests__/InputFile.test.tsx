@@ -13,6 +13,7 @@ import {
 } from "../../../ItemLabel/ItemLabelCommon";
 import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 import { InputFileCommon, type InputFileProps } from "../InputFileCommon";
+import { InputFile as InputFileApollo } from "../InputFileApollo";
 
 const ButtonMock = (props: ButtonProps) => (
   <ButtonCommon {...props} SpinnerComponent={Spinner} />
@@ -198,4 +199,56 @@ describe("InputFile", () => {
       expect(input).toHaveAttribute("accept", "image/*");
     });
   });
+});
+
+describe("InputFile description", () => {
+  it("should describe the input with its description and helper", () => {
+    render(
+      <InputFileApollo
+        label="Justificatif"
+        description="Description"
+        helper="Aide"
+      />,
+    );
+
+    expect(screen.getByLabelText("Justificatif")).toHaveAccessibleDescription(
+      "Description Aide",
+    );
+  });
+
+  it("should keep a description id passed in labelProps", () => {
+    render(
+      <InputFileApollo
+        label="Justificatif"
+        description="Description"
+        labelProps={{ descriptionId: "description-id" }}
+      />,
+    );
+
+    expect(screen.getByText("Description")).toHaveAttribute(
+      "id",
+      "description-id",
+    );
+    expect(screen.getByLabelText("Justificatif")).toHaveAccessibleDescription(
+      "Description",
+    );
+  });
+
+  it.each(["error", "warning", "success"] as const)(
+    "should describe the input with its %s message",
+    (messageType) => {
+      render(
+        <InputFileApollo
+          label="Justificatif"
+          helper="Aide"
+          message="Message"
+          messageType={messageType}
+        />,
+      );
+
+      expect(screen.getByLabelText("Justificatif")).toHaveAccessibleDescription(
+        "Aide Message",
+      );
+    },
+  );
 });

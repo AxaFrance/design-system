@@ -7,6 +7,7 @@ import { Spinner } from "../../../../Spinner/SpinnerCommon";
 import { ItemMessage } from "../../../ItemMessage/ItemMessage";
 
 import { ItemFileCommon, type ItemFileProps } from "../ItemFileCommon";
+import { ItemFile as ItemFileApollo } from "../ItemFileApollo";
 
 const ItemFile = (props: ItemFileProps) => (
   <ItemFileCommon
@@ -58,7 +59,7 @@ describe("<ItemFile />", () => {
   it("should hide preview button when loading", () => {
     render(<ItemFile file={mockFile} isLoading />);
 
-    const previewButton = screen.queryByLabelText(/Previsualiser le fichier/);
+    const previewButton = screen.queryByLabelText(/Prévisualiser le fichier/);
     expect(previewButton).not.toBeInTheDocument();
   });
 
@@ -86,7 +87,7 @@ describe("<ItemFile />", () => {
   it("should hide preview button when there is an error", () => {
     render(<ItemFile file={mockFile} errorMessage="File upload failed" />);
 
-    const previewButton = screen.queryByLabelText(/Previsualiser le fichier/);
+    const previewButton = screen.queryByLabelText(/Prévisualiser le fichier/);
     expect(previewButton).not.toBeInTheDocument();
   });
 
@@ -101,7 +102,7 @@ describe("<ItemFile />", () => {
     render(<ItemFile file={mockFile} />);
 
     const previewButton = screen.getByLabelText(
-      /Previsualiser le fichier test-document.pdf/,
+      /Prévisualiser le fichier test-document.pdf/,
     );
     expect(previewButton).toBeInTheDocument();
   });
@@ -135,7 +136,7 @@ describe("<ItemFile />", () => {
     render(<ItemFile file={mockFile} onPreview={onPreview} />);
 
     const previewButton = screen.getByLabelText(
-      /Previsualiser le fichier test-document.pdf/,
+      /Prévisualiser le fichier test-document.pdf/,
     );
     await user.click(previewButton);
 
@@ -155,7 +156,7 @@ describe("<ItemFile />", () => {
       screen.getByLabelText("Suppression du fichier test-document.pdf"),
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText("Previsualiser le fichier test-document.pdf"),
+      screen.getByLabelText("Prévisualiser le fichier test-document.pdf"),
     ).toBeInTheDocument();
   });
 
@@ -171,7 +172,7 @@ describe("<ItemFile />", () => {
       />,
     );
 
-    const previewButton = screen.getByLabelText(/Previsualiser le fichier/);
+    const previewButton = screen.getByLabelText(/Prévisualiser le fichier/);
     expect(previewButton).toHaveClass("custom-preview-btn");
   });
 
@@ -202,5 +203,37 @@ describe("<ItemFile />", () => {
 
     const section = screen.getByTestId("custom-item-file");
     expect(section).toHaveAttribute("role", "article");
+  });
+});
+
+describe("<ItemFile /> status icon", () => {
+  it("should name the success icon", () => {
+    render(<ItemFileApollo file={mockFile} />);
+
+    expect(
+      screen.getByRole("img", { name: "Fichier chargé" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", {
+        name: "Prévisualiser le fichier test-document.pdf",
+      }),
+    ).toBeInTheDocument();
+  });
+
+  it("should name the success icon with successLabel", () => {
+    render(<ItemFileApollo file={mockFile} successLabel="Document reçu" />);
+
+    expect(
+      screen.getByRole("img", { name: "Document reçu" }),
+    ).toBeInTheDocument();
+  });
+
+  it("should keep the error icon decorative", () => {
+    render(
+      <ItemFileApollo file={mockFile} errorMessage="Fichier trop lourd" />,
+    );
+
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByText("Fichier trop lourd")).toBeInTheDocument();
   });
 });
