@@ -1,5 +1,6 @@
 import "@axa-fr/canopee-css/client/common/reboot.css";
 import "@axa-fr/canopee-css/client/common/tokens.css";
+import "@axa-fr/canopee-css/client/common/design-tokens.css";
 import "@axa-fr/canopee-css/client/Grid/Grid.css";
 import "@fontsource/source-sans-pro";
 

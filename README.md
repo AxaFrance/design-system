@@ -221,18 +221,20 @@ const App = () => {
 
 ## Utilisation des CSS variables
 
-Il suffit d'importer le fichier des tokens dans votre application.
+Il suffit d'importer le fichier des tokens dans votre application. Pour les univers Client et Prospect, importez aussi `design-tokens.css` juste après : il contient les nouveaux design tokens.
 
 Pour Univers Client :
 
 ```typescript
 import "@axa-fr/canopee-css/client/common/tokens.css";
+import "@axa-fr/canopee-css/client/common/design-tokens.css";
 ```
 
 Pour Univers Prospect :
 
 ```typescript
 import "@axa-fr/canopee-css/prospect/common/tokens.css";
+import "@axa-fr/canopee-css/prospect/common/design-tokens.css";
 ```
 
 Pour Univers Collab-Distrib :

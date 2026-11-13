@@ -35,8 +35,19 @@ const staysInPx = (id) =>
     id.startsWith(p),
   );
 
+// Fallback fonts, which Figma does not carry, as in the current code.
+const FONT_FALLBACKS = { "font.family.sans-serif": "arial, sans-serif" };
+
 const formatValue = (token) => {
   const v = token.$value;
+  if (
+    token.$type === "fontFamily" &&
+    !token.aliasOf &&
+    FONT_FALLBACKS[token.id]
+  ) {
+    const families = [v].flat().map((family) => `"${family}"`);
+    return [...families, FONT_FALLBACKS[token.id]].join(", ");
+  }
   if (token.$type === "color")
     return token.aliasOf ? undefined : toHsl(v.components);
   if (token.$type !== "dimension" || staysInPx(token.id) || v?.unit !== "px")

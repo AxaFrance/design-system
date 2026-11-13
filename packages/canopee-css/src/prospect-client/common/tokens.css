@@ -6,11 +6,9 @@
   /* FONTS                                                                   */
 
   /* *************************************************************************/
-  --font-family-sans-serif: "Source Sans Pro", arial, sans-serif;
   --font-family-serif: georgia, times, "Times New Roman", serif;
   --font-family-base: var(--font-family-sans-serif);
   --font-family-publico-bold: "Publico Headline Bold";
-  --font-family-publico-headline: "Publico Headline";
   --font-family-publico: "Publico";
   --font-size-base: 16;
 
@@ -30,7 +28,6 @@
   --white-gray-1000: hsl(0deg, 0%, 98%);
 
   /* ⛔ legacy names colors - DO NOT USE */
-  --color-white: var(--white-1000);
   --color-black: var(--black-1000);
   --dark: var(--black-1000);
   --white: var(--white-1000);
@@ -60,7 +57,6 @@
   --color-blue-1: var(--blue-1200);
   --axa-blue-100: var(--blue-1000);
   --color-axa: var(--blue-1000);
-  --color-blue-800: var(--blue-1000);
   --axa-blue-100-20: var(--blue-1000-20);
 
   /* pas utilisé */
@@ -74,9 +70,7 @@
   --color-blue-3: var(--blue-650);
   --color-ocean-blue: var(--blue-550);
   --axa-blue-20: var(--blue-200);
-  --color-blue-400: var(--blue-200);
   --color-btn-tertiary-bg-darker: var(--blue-100);
-  --color-blue-200: var(--blue-080);
   --color-btn-tertiary-bg: var(--blue-080);
   --axa-blue-8: var(--blue-080);
   --axa-blue-4: var(--blue-040);
@@ -101,7 +95,6 @@
   --color-red: var(--red-alert-1000);
 
   /* pas utilisé */
-  --color-red-700: var(--red-alert-1200);
   --color-btn-error-text: var(--red-alert-1200);
 
   /* RED PRIMITIVES **************************************************************/
@@ -118,11 +111,9 @@
   --warning-120: var(--orange-1050);
   --color-btn-business-dark: var(--orange-1050);
   --warning-100: var(--orange-1000);
-  --color-orange-700: var(--orange-1000);
   --color-btn-business: var(--orange-1000);
   --warning-80: var(--orange-800);
   --color-btn-business-light: var(--orange-800);
-  --color-orange-100: var(--orange-050);
 
   /* ORANGE PRIMITIVES **************************************************************/
 
@@ -140,22 +131,17 @@
   --gray-050: hsl(0deg, 0%, 96%);
 
   /* ⛔ legacy names colors - DO NOT USE */
-  --color-gray-900: var(--gray-1000);
   --neutral-100: var(--gray-1000);
   --neutral-80: var(--gray-800);
-  --color-gray-700: var(--gray-800);
   --color-gray: var(--gray-800);
   --color-gray-32: var(--gray-800);
   --neutral-50: var(--gray-500);
-  --color-gray-500: var(--gray-500);
   --color-btn-disabled-text: var(--gray-500);
   --neutral-50-20: var(--gray-500-20);
   --neutral-25: var(--gray-250);
   --color-gray-1: var(--gray-250);
   --neutral-14: var(--gray-140);
-  --color-gray-400: var(--gray-140);
   --neutral-5: var(--gray-050);
-  --color-gray-200: var(--gray-050);
 
   /* GRAY PRIMITIVES **************************************************************/
 
@@ -167,7 +153,6 @@
 
   /* ⛔ legacy names colors - DO NOT USE */
   --green-100: var(--green-1000);
-  --color-green-600: var(--green-1000);
   --aqua-green-12: var(--green-040);
 
   /* GREEN PRIMITIVES **************************************************************/
@@ -195,11 +180,6 @@
   --size-4: 4px;
   --size-8: 8px;
   --size-10: 10px;
-  --size-12: 12px;
-  --size-16: 16px;
-  --size-24: 24px;
-  --size-32: 32px;
-  --size-40: 40px;
 
   /* *************************************************************************/
 
@@ -261,8 +241,6 @@
   /* BODY TYPOGRAPHY                                                          */
 
   /* *************************************************************************/
-  --font-weight-regular: 400;
-  --font-weight-semibold: 600;
   --body-1-font-size: var(--rem-18);
   --body-1-line-height: var(--rem-23);
   --body-2-font-size: var(--rem-16);
