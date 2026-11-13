@@ -2,7 +2,7 @@
 
 Le JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il est généré depuis Figma par le plugin des fiches, jamais écrit à la main. L'usage, le fonctionnel et le code sont dans le Markdown, qui suit la trame commune à toutes les fiches. Les deux fichiers restent séparés.
 
-Version du format : 0.4. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
+Version du format : 0.6. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
 
 ## Les principes
 
@@ -20,7 +20,7 @@ Version du format : 0.4. La structure reprend celle du plugin Component as Data,
 
 ```json
 {
-  "formatVersion": "0.4",
+  "formatVersion": "0.6",
   "meta": { },
   "api": { },
   "variants": [ ],
@@ -52,7 +52,8 @@ L'identité du composant.
 
 - `version` est la version du composant, propre à lui. Le plugin la calcule à chaque export, en comparant le composant au dernier JSON exporté.
 - `tokensVersion` est la première version publiée de Canopée dont le fichier de design tokens contient tous les tokens et styles de texte du composant. Elle vaut `null` quand le plugin n'a pas pu la calculer, et un défaut dit pourquoi.
-- `type` vaut `atom`, ou `composed` quand le composant est bâti sur un autre, nommé alors dans `extends`.
+- `templateLevel` vaut `block`, `section` ou `page` pour un template, selon sa page dans la librairie Figma. Un composant n'a pas ce champ.
+- `type` vaut `atom`, ou `composed` quand le composant est bâti sur un autre, nommé alors dans `extends`. Pour un template, il vaut `template`, et `extends` reste écrit si le template est bâti sur un autre composant.
 - `figmaKey` est la clé du composant dans la librairie. Elle permet de retrouver le vrai composant.
 
 ## api
@@ -95,13 +96,13 @@ Les calques, les contenus que l'usage remplit, et les composants imbriqués.
 "structure": {
   "slots": {
     "label": { "as": "children", "default": { "text": "Label" }, "controls": [{ "layer": "label", "attribute": "text" }] },
-    "leftIcon": { "accepts": "Instance", "default": { "swap": "account_balance" }, "preferred": ["account_balance"], "controls": [{ "layer": "left-icon", "attribute": "component" }] }
+    "leftIcon": { "accepts": "Instance", "default": { "swap": "icon/account-balance" }, "preferred": ["icon/account-balance"], "controls": [{ "layer": "left-icon", "attribute": "component" }] }
   },
   "trees": [
     { "when": {}, "tree": [
-      { "name": "left-icon", "type": "instance", "component": "account_balance" },
+      { "name": "left-icon", "type": "instance", "component": "icon/account-balance" },
       { "name": "label", "type": "text" },
-      { "name": "right-icon", "type": "instance", "component": "account_balance" }
+      { "name": "right-icon", "type": "instance", "component": "icon/account-balance" }
     ] },
     { "when": { "state": "focus" }, "tree": [ ] }
   ],
@@ -115,6 +116,7 @@ Les calques, les contenus que l'usage remplit, et les composants imbriqués.
 - `hidden: true` signale un calque masqué par défaut.
 - `uses` liste tous les composants imbriqués dans les calques propres du composant, qu'ils soient ou non dans un ensemble de variantes, sans doublon et triés par nom. Ils sont cités par référence, leur intérieur est décrit dans leur propre fiche.
 - Les arbres et les slots nomment les composants. Leur clé se lit dans l'index `components`.
+- Une instance d'un composant à variantes porte aussi `values`, les valeurs de la variante utilisée. Exemple : `{ "name": "spinner", "type": "instance", "component": "Spinner", "values": { "colorScheme": "white", "size": "small", "_animation": "1" } }`.
 
 ## styles
 
@@ -141,7 +143,9 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
 
 - Une surcharge vaut pour toutes les variantes dont les valeurs correspondent à son `when`, qui ne cite que les propriétés utiles. Elle complète le style par défaut : ce qu'elle ne cite pas reste celui du défaut, et `null` retire une valeur.
 - Une variante part du style par défaut et reçoit toutes les surcharges qui lui correspondent. Deux surcharges qui correspondent à une même variante ne se contredisent jamais : l'ordre ne compte pas.
-- Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, sauf pour un calque absolu étiré sur l'axe concerné.
+- Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, sauf pour un calque absolu étiré sur l'axe concerné, et pour une forme ou un groupe (ellipse, vecteur, rectangle...), dont la taille vient du tracé.
+- Une couleur reliée à une variable mais pas tout à fait opaque garde son opacité, entre 0 et 1, à côté du token. Exemple : `{ "token": "color/blue/700", "opacity": 0.2 }`.
+- Les marges intérieures (`padding`) et l'espacement (`gap`) ne s'écrivent que pour un calque en auto-layout. Sans auto-layout, Figma ne les applique pas.
 - La typo s'écrit par le nom du style de texte, `textStyle`. Sa clé se lit dans l'index `textStyles`.
 - `layout.clip` dit si la racine coupe ce qui dépasse. Il est toujours écrit sur la racine.
 - Un calque posé en absolu porte ses `constraints`, par exemple `{ "horizontal": "stretch", "vertical": "stretch" }`, à côté de `absolute`, `x` et `y`.
@@ -175,11 +179,11 @@ Chaque composant imbriqué ou proposé dans un swap, une seule fois, trié par n
 
 ```json
 "components": {
-  "account_balance": { "library": null, "key": "…" }
+  "icon/account-balance": { "library": null, "key": "…" }
 }
 ```
 
-- La clé est celle du composant utilisé, ou de l'ensemble de variantes quand c'est lui qui est proposé.
+- La clé est celle du composant utilisé. Pour un composant à variantes, c'est la clé de l'ensemble de variantes, la même que `meta.figmaKey` dans sa propre fiche.
 - Figma ne donne pas le nom de la bibliothèque d'un composant ou d'un style qui vient d'une autre bibliothèque. `library` vaut alors `null`, et la clé suffit pour le retrouver.
 
 ## modeCollections
@@ -199,7 +203,7 @@ Les défauts repérés par l'export : une valeur brute, un écart à la nomencla
 Chaque défaut a un `level` (`error`, `warning` ou `info`), une `rule` qui le nomme, un `where` qui dit où il se trouve, et un `message`. Un défaut de style porte aussi `occurrences`, le nombre de variantes où il apparaît. Il est absent quand le défaut ne se retrouve dans aucune variante.
 
 ```json
-{ "level": "warning", "rule": "valeur-brute", "where": "styles.root.layout.minWidth", "message": "Valeur brute (144) : la relier à une variable.", "occurrences": 50 }
+{ "level": "warning", "rule": "raw-value", "where": "styles.root.layout.minWidth", "message": "Valeur brute (144) : la relier à une variable.", "occurrences": 50 }
 ```
 
 ## La validation

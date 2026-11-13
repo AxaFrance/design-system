@@ -9,8 +9,9 @@ Elle vaut pour le B2C et le B2B, Client et Prospect comme Distributeur et Collab
 - **Composants** : les noms des composants et leurs familles.
 - **Propriétés** : les propriétés communes à tous les composants, et comment construire celles d'un composant.
 - **Calques** : les calques d'un composant.
+- **Templates** : les noms des templates et leur page dans la librairie Figma.
 
-Les design tokens ont une documentation dédiée.
+Les design tokens et les assets ont une documentation dédiée.
 
 ## Les grands principes
 
