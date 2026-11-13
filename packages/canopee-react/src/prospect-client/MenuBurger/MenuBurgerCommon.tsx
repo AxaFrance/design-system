@@ -128,7 +128,6 @@ export const MenuBurgerCommon = ({
           }
           popoverTarget={popoverId}
           popoverTargetAction="toggle"
-          aria-haspopup="true"
         >
           {buttonLabel}
         </ButtonComponent>
