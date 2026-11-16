@@ -42,6 +42,8 @@ Une propriété de contenu remplit un élément du composant : un texte, une ico
 | icon, leftIcon, rightIcon | Instance swap | Une instance de la librairie | Toujours icon, quel que soit son usage, avec left ou right seulement s'il y en a deux. | Oui, parfois sous un autre nom |
 | children, header, actions | Slot | Des éléments libres | Une zone libre du composant. La principale s'appelle children, comme dans le code, les autres portent le nom de leur rôle. Exemple : header pour l'en-tête, actions pour les boutons. | Oui, parfois sous un autre nom |
 
+Une propriété texte a « Label » pour valeur par défaut, dans tous les composants et quel que soit son nom. Un designer qui oublie de remplacer ce texte le voit tout de suite dans sa maquette, et une IA ne le prend pas pour un vrai libellé.
+
 ## Les noms à éviter
 
 | Nom à éviter | Nom à écrire |
