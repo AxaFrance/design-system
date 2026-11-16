@@ -1,9 +1,9 @@
 {
-  "formatVersion": "0.4",
+  "formatVersion": "0.7",
   "meta": {
     "name": "IconButton",
     "version": "1.0.0",
-    "tokensVersion": "2.0.0",
+    "tokensVersion": null,
     "type": "atom",
     "figmaKey": "921b5fa9be9ebca368ea2a027222ebc806a6dad6",
     "library": "B2C",
@@ -1292,11 +1292,11 @@
         "layout": {
           "sizingH": "fixed",
           "width": {
-            "token": "size/24"
+            "token": "icon/size/small"
           },
           "sizingV": "fixed",
           "height": {
-            "token": "size/24"
+            "token": "icon/size/small"
           }
         }
       },
@@ -1346,11 +1346,11 @@
             "layout": {
               "sizingH": "fixed",
               "width": {
-                "token": "size/16"
+                "token": "icon/size/extra-small"
               },
               "sizingV": "fixed",
               "height": {
-                "token": "size/16"
+                "token": "icon/size/extra-small"
               }
             }
           }
@@ -1794,10 +1794,15 @@
       "collection": "Primitive",
       "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
     },
-    "size/16": {
+    "icon/size/extra-small": {
       "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "b50a280ae51f957a217154710fae04336ca74fbb"
+      "collection": "Size",
+      "key": "e519598c6039fae5541d56b0787ac7c1c0ca7673"
+    },
+    "icon/size/small": {
+      "library": "Fondations Canopée",
+      "collection": "Size",
+      "key": "9e4bd3df25a2a614d95da75baf2dc6ebd46f65c2"
     },
     "size/24": {
       "library": "Fondations Canopée",
@@ -1830,11 +1835,23 @@
   "modeCollections": {},
   "issues": [
     {
+      "level": "warning",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/extra-small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small."
+    },
+    {
+      "level": "warning",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
+    },
+    {
       "level": "info",
       "rule": "prop-outside-nomenclature",
       "where": "api.props._theme",
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.4.44"
+  "_tool": "canopee-export-components 0.7.0"
 }
