@@ -1,6 +1,6 @@
 # Button 1.0.0
 
-Utilise les design tokens de Canopée 2.0.0 ou d'une version plus récente.
+Utilise les design tokens de Canopée X.Y.Z ou d'une version plus récente.
 
 ## Description
 
@@ -62,6 +62,10 @@ Le Button des actions du Header.
 ### size=small
 
 Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost. Exemples : les actions « Modifier » et « En savoir plus » d'ItemLabel, le bouton d'un ContentItemDuoAction, ou celui d'un Message qui propose une action.
+
+### breakpoint=0
+
+Sur un écran de moins de 1024 px de large. size=large passe de 56 à 48 px de haut, et size=medium de 48 à 40 px. size=small garde 32 px. Le libellé utilise la version mobile de son style de texte.
 
 ## Exemples
 
@@ -132,6 +136,8 @@ Code source : [dossier Button sur GitHub](https://github.com/AxaFrance/design-sy
 
 Détail de l'implémentation : [page Button du plugin Copilot](https://github.com/AxaFrance/design-system/blob/main/plugins/canopee-prospect-client/skills/canopee-prospect-client/references/01-button.md#button).
 
+Cette fiche sur GitHub : [button.md](https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/button/button.md).
+
 Import, selon le thème :
 
 ```tsx
@@ -168,7 +174,7 @@ import { Icon } from "@axa-fr/canopee-react/prospect";
 | rightIcon, affichée par showRightIcon | `iconRight` |
 | loading | `loading` |
 
-`variant` vaut `primary` par défaut. Sans équivalent dans le code : state, que le code rend par `:hover`, `:focus-visible` et `:active`, et _theme, qui correspond au chemin d'import, `/prospect` ou `/client`. size n'a pas d'équivalent non plus : le code n'a qu'une taille. Sans équivalent dans Figma : `type`, qui vaut `button` par défaut, les autres attributs HTML du `<button>`, et les variantes `secondary-inverse` et `ghost`.
+`variant` vaut `primary` par défaut. Sans équivalent dans le code : state, que le code rend par `:hover`, `:focus-visible` et `:active`, et _theme, qui correspond au chemin d'import, `/prospect` ou `/client`. size n'a pas d'équivalent non plus : le code n'a qu'une taille. breakpoint n'a pas d'équivalent non plus. Dans le code, une media query agrandit seulement le libellé à partir de 1024 px, et le bouton garde la même hauteur. Sans équivalent dans Figma : `type`, qui vaut `button` par défaut, les autres attributs HTML du `<button>`, et les variantes `secondary-inverse` et `ghost`.
 
 ## Noms à ne pas employer
 
@@ -200,6 +206,8 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 02/11/26.** Chaque taille a son usage : size=large pour la plupart des actions, size=medium pour le Header, size=small surtout en hierarchy=tertiary, mais possible avec tous les niveaux.
 - **1.0.0 - 02/11/26.** Les actions « Modifier » et « En savoir plus » d'ItemLabel passent par un Button en size=small. Cette décision remplace celle du 16/10/26, qui prévoyait un sous-composant propre à ItemLabel.
 - **1.0.0 - 04/11/26.** Au repos, le secondary et le tertiary n'ont pas de fond. Le bouton désactivé garde son fond gris.
+- **1.0.0 - 16/11/26.** Button a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024. Sur desktop, les hauteurs restent celles du 30/10/26 : 56, 48 et 32 px. Sur mobile, size=large mesure 48 px, size=medium 40 px et size=small 32 px. Cette décision remplace celle du 16/10/26, qui gérait la taille d'écran avec les modes de variables.
+- **1.0.0 - 16/11/26.** Dans Figma, la hauteur de chaque taille est une hauteur minimale. Un contenu plus haut agrandit le bouton, mais le bouton ne descend jamais sous cette hauteur.
 
 ## Points ouverts
 
@@ -208,7 +216,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **Anneau de focus.** Il est en color/blue/400 et à 2 px du bouton dans Figma, en `--blue-650` et à 3 px dans le code. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
 - **Groupe de boutons.** L'ordre des boutons à gauche du primary n'est pas documenté, ni celui des boutons empilés en colonne sur mobile, ni la place du groupe dans la page (aligné à gauche, centré ou aligné à droite). En attendant : signaler.
 - **Autres usages du medium.** En dehors du Header, size=medium peut servir dans des cas précis, qui ne sont pas encore documentés. En attendant : signaler.
-- **Tailles dans le code.** Le code n'a pas de propriété de taille. En attendant : signaler.
+- **Tailles dans le code.** Le code n'a pas de propriété de taille, et son bouton mesure 56 px sur desktop comme sur mobile. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
