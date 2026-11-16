@@ -7,7 +7,7 @@ const SET_ID = "SET_ID";
 // Pattern d'interaction du composant, d'après la page des principes d'interaction :
 // "Fond", "Contour", "Hybride" ou "Halo". Une chaîne vide pour un composant sans état d'interaction.
 const PATTERN = "PATTERN";
-// "releve" avant une modification du composant : le script note les surcharges de toutes ses instances
+// "releve" avant une modification du composant : le script note les surcharges de toutes ses instances, avec leur valeur,
 // dans le stockage local du plugin, sans rien écrire dans le fichier. "controle" ensuite, pour signaler celles qui ont disparu.
 const MODE = "controle";
 // Calques qui peuvent n'exister que dans certaines variantes, comme l'anneau de focus.
@@ -47,18 +47,38 @@ await figma.loadAllPagesAsync();
 
 // Relevé des surcharges, avant une modification du composant.
 const cleReleve = "controle-surcharges/" + figma.root.name + "/" + SET_ID;
+// Chemin d'un calque dans l'instance, fait des noms de ses parents. Il reste le même quand l'instance passe
+// à une autre variante, alors que l'identifiant des calques change. Un calque précédé d'un frère du même nom prend un rang.
+const cheminStable = (n, racine) => {
+  const p = [];
+  while (n && n !== racine) {
+    const rang = n.parent ? n.parent.children.filter((c) => c.name === n.name).indexOf(n) : 0;
+    p.unshift(rang > 0 ? n.name + "#" + rang : n.name);
+    n = n.parent;
+  }
+  return p.join("/") || "racine";
+};
+// Valeur d'un champ, gardée au relevé pour pouvoir rétablir une surcharge perdue.
+const valeurDe = (n, champ) => {
+  let x;
+  try { x = n[champ]; } catch (e) { return undefined; }
+  if (x === undefined || typeof x === "symbol") return undefined;
+  return typeof x === "string" ? x : JSON.stringify(x);
+};
 // Surcharges d'une instance : les champs modifiés, et les propriétés texte, booléen ou échange d'instance
 // qui n'ont pas leur valeur par défaut. Figma ne range pas ces propriétés parmi les surcharges.
+// Chaque surcharge garde un libellé lisible et sa valeur.
 const surchargesDe = async (i, page) => {
   const champs = {};
   for (const o of i.overrides || []) for (const f of o.overriddenFields) {
     const cible = await figma.getNodeByIdAsync(o.id);
-    champs[o.id + "|" + f] = page.name + " / " + i.name + " / " + (cible ? cible.name : o.id) + " / " + f;
+    const ou = cible ? cheminStable(cible, i) : o.id;
+    champs["calque|" + ou + "|" + f] = { libelle: page.name + " / " + i.name + " / " + ou + " / " + f, valeur: cible ? valeurDe(cible, f) : undefined };
   }
   const definitions = set.componentPropertyDefinitions;
   for (const [k, p] of Object.entries(i.componentProperties || {})) {
     if (p.type === "VARIANT" || !definitions[k] || p.value === definitions[k].defaultValue) continue;
-    champs["propriete|" + k.split("#").pop() + "|" + JSON.stringify(p.value)] = page.name + " / " + i.name + " / propriété " + k.split("#")[0] + " = " + String(p.value).slice(0, 40);
+    champs["propriete|" + k.split("#").pop() + "|" + JSON.stringify(p.value)] = { libelle: page.name + " / " + i.name + " / propriété " + k.split("#")[0] + " = " + String(p.value).slice(0, 40), valeur: JSON.stringify(p.value) };
   }
   return champs;
 };
@@ -72,7 +92,7 @@ if (MODE === "releve") {
     surchargesAvant[i.id] = await surchargesDe(i, page);
     nombre += Object.keys(surchargesAvant[i.id]).length;
   }
-  await figma.clientStorage.setAsync(cleReleve, { date: new Date().toISOString(), surcharges: surchargesAvant });
+  await figma.clientStorage.setAsync(cleReleve, { version: 2, date: new Date().toISOString(), surcharges: surchargesAvant });
   return { set: set.name, releve: Object.keys(surchargesAvant).length + " instances et " + nombre + " surcharges notées" };
 }
 if (MODE !== "controle") return "MODE vaut releve ou controle.";
@@ -115,15 +135,20 @@ for (const variantes of Object.values(parType)) {
   for (const groupe of formes.slice(1)) for (const nom of groupe) note("structure-differente", nom + " n'a pas les mêmes calques que la majorité des variantes de son type");
 }
 
+// Les calques d'un composant imbriqué sont reliés aux propriétés de ce composant, pas à celles du set.
+const dansInstance = (n, racine) => {
+  for (let p = n.parent; p && p !== racine; p = p.parent) if (p.type === "INSTANCE") return true;
+  return false;
+};
 const liens = {};
-for (const v of set.children) for (const n of v.findAll(() => true)) {
+for (const v of set.children) for (const n of v.findAll((x) => !dansInstance(x, v))) {
   const refs = n.componentPropertyReferences || {};
   for (const [champ, cle] of Object.entries(refs)) {
     if (!(cle in defs)) note("lien-propriete-mort", v.name + " / " + chemin(n, v) + " : " + champ + " vers " + cle);
     (liens[chemin(n, v) + "|" + champ] = liens[chemin(n, v) + "|" + champ] || new Set()).add(cle);
   }
 }
-for (const v of set.children) for (const n of v.findAll(() => true)) {
+for (const v of set.children) for (const n of v.findAll((x) => !dansInstance(x, v))) {
   for (const k of Object.keys(liens)) {
     const [p, champ] = k.split("|");
     if (p !== chemin(n, v)) continue;
@@ -316,11 +341,19 @@ for (const v of set.children) {
     const props = i.componentProperties || {};
     const champs = new Map();
     for (const o of i.overrides || []) for (const f of o.overriddenFields) champs.set(o.id.split(";").pop() + "|" + f, o.id);
-    // Surcharges présentes au relevé et disparues depuis.
+    // Surcharges présentes au relevé et disparues depuis, avec la valeur notée pour pouvoir la rétablir.
+    // Un relevé sans version range les calques par identifiant, et ne garde que le libellé.
     if (releve && releve.surcharges[i.id]) {
       vues.add(i.id);
-      const actuelles = new Set(Object.keys(await surchargesDe(i, page)));
-      for (const [cle, libelle] of Object.entries(releve.surcharges[i.id])) if (!actuelles.has(cle)) note("surcharge-perdue", libelle);
+      const actuelles = await surchargesDe(i, page);
+      const parIdentifiant = new Set();
+      if (!releve.version) for (const o of i.overrides || []) for (const f of o.overriddenFields) parIdentifiant.add(o.id + "|" + f);
+      for (const [cle, x] of Object.entries(releve.surcharges[i.id])) {
+        if (cle in actuelles || parIdentifiant.has(cle)) continue;
+        const libelle = typeof x === "string" ? x : x.libelle;
+        const valeurNotee = x && typeof x === "object" && x.valeur !== undefined ? " (valeur au relevé : " + String(x.valeur).slice(0, 120) + ")" : "";
+        note("surcharge-perdue", libelle + valeurNotee);
+      }
     }
     for (const n of i.findAll(() => true)) {
       const refs = n.componentPropertyReferences || {};
