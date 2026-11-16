@@ -60,6 +60,8 @@ Une propriété de contenu remplit un élément du composant : un texte, une ico
 - Les niveaux d'importance passent par hierarchy, pas par des composants séparés. Exemple : un seul Button, pas un Button Primary et un Button Secondary.
 - Tout composant qui peut charger a la propriété loading, même quand son code obtient aujourd'hui ce cas autrement. Le code adopte ensuite la même propriété, pour que tous les composants se règlent de la même façon. Exemple : un champ dont le code affiche un Spinner à la place de son icon.
 - Pour un nombre, comme un pourcentage, la variante propose quelques valeurs et garde le nom du code. Exemple : value sur une barre de progression, avec 0, 5, 10 et ainsi de suite jusqu'à 100.
+- Un composant dont le rendu change d'un breakpoint à l'autre a une variante par breakpoint, avec la propriété breakpoint. Chaque largeur d'écran a ainsi un rendu montré dans Figma, et le composant ne change pas d'un breakpoint à l'autre sans variante pour le montrer. Exemple : Tag, dont le texte passe de 14 px en mobile à 16 px en desktop.
+- Un composant qui garde le même rendu sur toutes les largeurs d'écran n'a pas de propriété breakpoint. Exemple : Spinner ou Divider.
 
 ### Les éléments d'un composant
 
