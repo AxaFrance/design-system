@@ -62,6 +62,7 @@ export interface Layer {
   readonly layoutPositioning?: string;
   readonly layoutSizingHorizontal?: string;
   readonly layoutSizingVertical?: string;
+  readonly textAutoResize?: string;
   readonly primaryAxisAlignItems?: string;
   readonly counterAxisAlignItems?: string;
   readonly clipsContent?: boolean;

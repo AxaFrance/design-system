@@ -48,7 +48,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.6.0";
+const VERSION = "0.6.1";
 const FORMAT = "0.6";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -612,6 +612,17 @@ async function readEffects(ctx: Context, node: Layer): Promise<Json[] | null> {
   return out.length ? out : null;
 }
 
+// Sizing of a layer on one axis. Figma reports a fixed size for any hidden layer,
+// so a text that fits its content keeps the automatic size its textAutoResize gives.
+function sizingOf(node: Layer, axis: "H" | "V"): string | undefined {
+  const sizing =
+    axis === "H" ? node.layoutSizingHorizontal : node.layoutSizingVertical;
+  if (sizing !== "FIXED" || node.type !== "TEXT") return sizing;
+  if (node.textAutoResize === "WIDTH_AND_HEIGHT") return "HUG";
+  if (node.textAutoResize === "HEIGHT" && axis === "V") return "HUG";
+  return sizing;
+}
+
 // Sizing of a layer: sizingH and sizingV, with the width or height of a fixed size.
 // sparse: without the hug layers, the Figma default.
 async function readSizing(
@@ -620,30 +631,16 @@ async function readSizing(
   sparse: boolean,
 ): Promise<Record<string, Json | undefined>> {
   const lay: Record<string, Json | undefined> = {};
-  if (
-    node.layoutSizingHorizontal &&
-    (!sparse || node.layoutSizingHorizontal !== "HUG")
-  ) {
-    lay.sizingH =
-      SIZINGS[node.layoutSizingHorizontal] ||
-      String(node.layoutSizingHorizontal).toLowerCase();
-    if (
-      node.layoutSizingHorizontal === "FIXED" &&
-      typeof node.width === "number"
-    )
+  const sizingH = sizingOf(node, "H");
+  const sizingV = sizingOf(node, "V");
+  if (sizingH && (!sparse || sizingH !== "HUG")) {
+    lay.sizingH = SIZINGS[sizingH] || String(sizingH).toLowerCase();
+    if (sizingH === "FIXED" && typeof node.width === "number")
       lay.width = await readValue(ctx, node, ["width"], node.width);
   }
-  if (
-    node.layoutSizingVertical &&
-    (!sparse || node.layoutSizingVertical !== "HUG")
-  ) {
-    lay.sizingV =
-      SIZINGS[node.layoutSizingVertical] ||
-      String(node.layoutSizingVertical).toLowerCase();
-    if (
-      node.layoutSizingVertical === "FIXED" &&
-      typeof node.height === "number"
-    )
+  if (sizingV && (!sparse || sizingV !== "HUG")) {
+    lay.sizingV = SIZINGS[sizingV] || String(sizingV).toLowerCase();
+    if (sizingV === "FIXED" && typeof node.height === "number")
       lay.height = await readValue(ctx, node, ["height"], node.height);
   }
   return lay;

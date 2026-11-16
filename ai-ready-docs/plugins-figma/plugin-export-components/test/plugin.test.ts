@@ -1645,6 +1645,74 @@ describe("The grouping of the overrides", () => {
       "styles.root.layout.width",
     ]);
   });
+  it("a text that fits its content keeps an automatic size, even when it is hidden", async () => {
+    const texte = (name: string, auto: string, extra: object) =>
+      layer("TEXT", name, {
+        characters: "0 %",
+        autoRename: false,
+        textStyleId: "S:1",
+        textAutoResize: auto,
+        layoutSizingHorizontal: "FIXED",
+        layoutSizingVertical: "FIXED",
+        width: 25,
+        height: 20,
+        ...extra,
+      });
+    const set = connect(
+      layer(
+        "COMPONENT_SET",
+        "ProgressBar",
+        {
+          id: "S:310",
+          key: "KEY-PROGRESS",
+          componentPropertyDefinitions: {
+            value: {
+              type: "VARIANT",
+              defaultValue: "0",
+              variantOptions: ["0"],
+            },
+          },
+        },
+        [
+          layer(
+            "COMPONENT",
+            "value=0",
+            {
+              x: 0,
+              y: 0,
+              layoutMode: "HORIZONTAL",
+              layoutSizingHorizontal: "HUG",
+              layoutSizingVertical: "HUG",
+              width: 100,
+              height: 20,
+            },
+            [
+              // Hidden: Figma reports a fixed size, the text still fits its content.
+              texte("percentage", "WIDTH_AND_HEIGHT", { visible: false }),
+              // Fixed width, height from the text.
+              texte("caption", "HEIGHT", { width: 80 }),
+            ],
+          ),
+        ],
+      ),
+    );
+    const { sheet } = await exportSheet({
+      fileName: "Test",
+      collections: [],
+      variables: [],
+      nodes: [set],
+      selection: [set],
+    });
+    const styles = sheet.styles.default;
+    expect(styles.percentage?.layout?.width).toBeUndefined();
+    expect(styles.percentage?.layout?.height).toBeUndefined();
+    expect(styles.caption.layout.width).toStrictEqual({ raw: 80 });
+    expect(styles.caption.layout.height).toBeUndefined();
+    const sizes = issuesFor(sheet, "raw-value")
+      .map((i: MockData) => i.where)
+      .filter((w: string) => /layout\.(width|height)$/.test(w));
+    expect(sizes).toStrictEqual(["styles.caption.layout.width"]);
+  });
   it("order of the properties: at equal rank, the position of the driven layer comes before the creation order", async () => {
     const v = layer("COMPONENT", "Toggle", { id: "T:2" }, [
       layer("FRAME", "left-icon", {
