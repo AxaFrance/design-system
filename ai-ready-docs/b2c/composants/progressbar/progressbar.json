@@ -1,0 +1,839 @@
+{
+  "formatVersion": "0.6",
+  "meta": {
+    "name": "ProgressBar",
+    "version": "1.0.0",
+    "tokensVersion": "2.0.0",
+    "type": "atom",
+    "figmaKey": "bf387893b1199b74b7effb6d3471a691296ae58d",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/progressbar/progressbar.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "value": {
+        "type": "enum",
+        "enum": [
+          "0",
+          "5",
+          "10",
+          "15",
+          "20",
+          "25",
+          "30",
+          "35",
+          "40",
+          "45",
+          "50",
+          "55",
+          "60",
+          "65",
+          "70",
+          "75",
+          "80",
+          "85",
+          "90",
+          "95",
+          "100"
+        ],
+        "default": "0"
+      },
+      "showPercentage": {
+        "type": "boolean",
+        "default": false,
+        "controls": [
+          {
+            "layer": "percentage",
+            "attribute": "visible"
+          }
+        ]
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "value": "0"
+      },
+      "position": [
+        41,
+        41
+      ]
+    },
+    {
+      "values": {
+        "value": "5"
+      },
+      "position": [
+        41,
+        63
+      ]
+    },
+    {
+      "values": {
+        "value": "10"
+      },
+      "position": [
+        41,
+        85
+      ]
+    },
+    {
+      "values": {
+        "value": "15"
+      },
+      "position": [
+        41,
+        107
+      ]
+    },
+    {
+      "values": {
+        "value": "20"
+      },
+      "position": [
+        41,
+        129
+      ]
+    },
+    {
+      "values": {
+        "value": "25"
+      },
+      "position": [
+        41,
+        151
+      ]
+    },
+    {
+      "values": {
+        "value": "30"
+      },
+      "position": [
+        41,
+        173
+      ]
+    },
+    {
+      "values": {
+        "value": "35"
+      },
+      "position": [
+        41,
+        195
+      ]
+    },
+    {
+      "values": {
+        "value": "40"
+      },
+      "position": [
+        41,
+        217
+      ]
+    },
+    {
+      "values": {
+        "value": "45"
+      },
+      "position": [
+        41,
+        239
+      ]
+    },
+    {
+      "values": {
+        "value": "50"
+      },
+      "position": [
+        41,
+        261
+      ]
+    },
+    {
+      "values": {
+        "value": "55"
+      },
+      "position": [
+        41,
+        283
+      ]
+    },
+    {
+      "values": {
+        "value": "60"
+      },
+      "position": [
+        41,
+        305
+      ]
+    },
+    {
+      "values": {
+        "value": "65"
+      },
+      "position": [
+        41,
+        327
+      ]
+    },
+    {
+      "values": {
+        "value": "70"
+      },
+      "position": [
+        41,
+        349
+      ]
+    },
+    {
+      "values": {
+        "value": "75"
+      },
+      "position": [
+        41,
+        371
+      ]
+    },
+    {
+      "values": {
+        "value": "80"
+      },
+      "position": [
+        41,
+        393
+      ]
+    },
+    {
+      "values": {
+        "value": "85"
+      },
+      "position": [
+        41,
+        415
+      ]
+    },
+    {
+      "values": {
+        "value": "90"
+      },
+      "position": [
+        41,
+        437
+      ]
+    },
+    {
+      "values": {
+        "value": "95"
+      },
+      "position": [
+        41,
+        459
+      ]
+    },
+    {
+      "values": {
+        "value": "100"
+      },
+      "position": [
+        41,
+        481
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "track",
+                "type": "rectangle"
+              },
+              {
+                "name": "bar",
+                "type": "rectangle"
+              }
+            ]
+          },
+          {
+            "name": "percentage",
+            "type": "text",
+            "hidden": true
+          }
+        ]
+      }
+    ],
+    "uses": []
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "value": "0"
+      },
+      "modes": {
+        "Typography": "prospect-desktop"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "clip": true,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 100
+          },
+          "sizingV": "hug"
+        }
+      },
+      "content": {
+        "layout": {
+          "sizingH": "fill",
+          "sizingV": "fixed",
+          "height": {
+            "raw": 6
+          }
+        }
+      },
+      "track": {
+        "background": {
+          "token": "color/gray/100"
+        },
+        "radius": {
+          "token": "border/radius/4"
+        },
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 100
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 6
+          }
+        }
+      },
+      "bar": {
+        "background": {
+          "token": "color/blue/700"
+        },
+        "opacity": 0,
+        "radius": {
+          "token": "border/radius/4"
+        },
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 6
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 6
+          }
+        }
+      },
+      "percentage": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "label/2/semibold",
+        "textAlign": "center",
+        "layout": {
+          "textAlignVertical": "center"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "value": "5"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 5
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "10"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 10
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "15"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 15
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "20"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 20
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "25"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 25
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "30"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 30
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "35"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 35
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "40"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 40
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "45"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 45
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "50"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 50
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "55"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 55
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "60"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 60
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "65"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 65
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "70"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 70
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "75"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 75
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "80"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 80
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "85"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 85
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "90"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 90
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "95"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 95
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "value": "100"
+        },
+        "styles": {
+          "bar": {
+            "opacity": null,
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 100
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "31b5a8a1b3e357eefb3ba1a6bf4d8f85f93bbab1"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "label/2/semibold": {
+      "library": null,
+      "key": "fb08d79b8680b675f8f78bedc146317e675eb5dc"
+    }
+  },
+  "components": {},
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.content.layout.height",
+      "message": "Valeur brute (6) : la relier à une variable.",
+      "occurrences": 21
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.layout.width",
+      "message": "Valeur brute (100) : la relier à une variable.",
+      "occurrences": 21
+    },
+    {
+      "level": "info",
+      "rule": "text-not-linked",
+      "where": "layer percentage",
+      "message": "Ce texte n'est relié à aucune propriété de texte."
+    }
+  ],
+  "_tool": "canopee-export-components 0.6.1"
+}
