@@ -22,3 +22,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | ProgressBar | [progressbar.md](progressbar/progressbar.md) | [progressbar.json](progressbar/progressbar.json) | [progressbar-changelog.md](progressbar/progressbar-changelog.md) |
 | _StepperProgress | [_stepperprogress.md](_stepperprogress/_stepperprogress.md) | [_stepperprogress.json](_stepperprogress/_stepperprogress.json) | [_stepperprogress-changelog.md](_stepperprogress/_stepperprogress-changelog.md) |
 | Tag | [tag.md](tag/tag.md) | [tag.json](tag/tag.json) | [tag-changelog.md](tag/tag-changelog.md) |
+| _FormLabel | [_formlabel.md](_formlabel/_formlabel.md) | [_formlabel.json](_formlabel/_formlabel.json) | [_formlabel-changelog.md](_formlabel/_formlabel-changelog.md) |
