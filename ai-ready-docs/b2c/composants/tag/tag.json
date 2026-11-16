@@ -47,7 +47,7 @@
         "breakpoint": "0"
       },
       "position": [
-        633,
+        498,
         50
       ]
     },
@@ -67,7 +67,7 @@
         "breakpoint": "0"
       },
       "position": [
-        702,
+        567,
         50
       ]
     },
@@ -87,7 +87,7 @@
         "breakpoint": "0"
       },
       "position": [
-        771,
+        636,
         50
       ]
     },
@@ -107,7 +107,7 @@
         "breakpoint": "0"
       },
       "position": [
-        840,
+        705,
         50
       ]
     },
@@ -127,7 +127,7 @@
         "breakpoint": "0"
       },
       "position": [
-        909,
+        774,
         50
       ]
     }
@@ -227,8 +227,7 @@
           "label": {
             "textColor": {
               "token": "color/green/700"
-            },
-            "layout": null
+            }
           }
         }
       },
@@ -245,8 +244,7 @@
           "label": {
             "textColor": {
               "token": "color/orange/700"
-            },
-            "layout": null
+            }
           }
         }
       },
@@ -263,8 +261,7 @@
           "label": {
             "textColor": {
               "token": "color/red/700"
-            },
-            "layout": null
+            }
           }
         }
       },
@@ -281,8 +278,7 @@
           "label": {
             "textColor": {
               "token": "color/gray/700"
-            },
-            "layout": null
+            }
           }
         }
       },
