@@ -34,7 +34,7 @@ Les calques d'un composant imbriqué, comme une icône de Fondations, appartienn
 | opacite-sur-peinture | Une couleur de token porte une opacité. Les instances la perdent, l'opacité va donc sur le calque. |
 | texte-sans-style | Un texte n'a pas de style de texte. |
 | espacement-brut, epaisseur-brute | Un espacement d'auto-layout ou une épaisseur de contour n'est relié à aucun token. |
-| taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Les formes et les calques absolus étirés ne sont pas comptés. |
+| taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Les formes, les calques absolus étirés et les textes qui s'adaptent à leur contenu ne sont pas comptés. |
 | taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
 | role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est pas un texte, une `icon` qui n'est pas une instance. |
 | nom-par-defaut | Un calque garde un nom donné par Figma ou par un import, comme « Frame 27 » ou « axa_logo_solid_rgb 1 ». |
@@ -70,6 +70,7 @@ Ces pièges ont été relevés en retravaillant Spinner et Link. Plusieurs produ
 - **Une opacité posée sur une couleur de token ne passe pas aux instances.** Elle va sur le calque, et la couleur reste à 100 %.
 - **Une couleur reliée à un token doit garder la valeur du token comme couleur de base.** Le script lit cette valeur avec `variable.resolveForConsumer(node)`, avant d'écrire la couleur.
 - **Des textes reliés à la même propriété texte, avec la même mise en forme, partagent leurs modifications.** Une écriture sur l'un s'applique à tous, dans un script comme dans l'interface. Après chaque écriture, il faut relire chaque variante dans un appel séparé. Un soulignement qui change selon l'état passe par un calque `underline`, plus sûr.
+- **Figma annonce une taille fixe pour tout calque masqué.** Un texte masqué qui s'adapte à son contenu semble avoir une largeur et une hauteur fixes. Pour connaître son vrai réglage, il faut l'afficher le temps de le lire.
 - **Un calque au ratio verrouillé ne garde qu'une dimension reliée.** Relier la hauteur détache la largeur. Il faut déverrouiller le ratio avec `unlockAspectRatio()`, puis relier les deux.
 - **Les appels à la librairie font parfois dépasser la durée maximale de `figma_execute`.** C'est le cas de `importStyleByKeyAsync`, `importVariableByKeyAsync` et `figma.teamLibrary`. Le script continue alors en arrière-plan et réécrit plus tard. Il vaut mieux reprendre le token ou le style sur un autre composant du fichier qui l'utilise déjà.
 - **Les polices se chargent avant toute écriture de texte**, avec `figma.loadFontAsync`.

@@ -170,8 +170,14 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   // Une taille fixe se relie à un token, sauf pour une forme ou un calque absolu étiré.
   if (!imbrique && !FORMES.includes(n.type)) {
     const etire = (axe) => n.layoutPositioning === "ABSOLUTE" && n.constraints && n.constraints[axe] === "STRETCH";
-    if (n.layoutSizingHorizontal === "FIXED" && !lies.width && !etire("horizontal")) note("taille-brute", ou + " : largeur " + Math.round(n.width * 100) / 100);
-    if (n.layoutSizingVertical === "FIXED" && !lies.height && !etire("vertical")) note("taille-brute", ou + " : hauteur " + Math.round(n.height * 100) / 100);
+    // Figma annonce une taille fixe pour tout calque masqué : un texte qui s'adapte à son contenu garde sa taille automatique.
+    const fixe = (axe) => {
+      const s = axe === "horizontal" ? n.layoutSizingHorizontal : n.layoutSizingVertical;
+      if (s !== "FIXED" || n.type !== "TEXT") return s === "FIXED";
+      return !(n.textAutoResize === "WIDTH_AND_HEIGHT" || (n.textAutoResize === "HEIGHT" && axe === "vertical"));
+    };
+    if (fixe("horizontal") && !lies.width && !etire("horizontal")) note("taille-brute", ou + " : largeur " + Math.round(n.width * 100) / 100);
+    if (fixe("vertical") && !lies.height && !etire("vertical")) note("taille-brute", ou + " : hauteur " + Math.round(n.height * 100) / 100);
   }
   // Un ratio verrouillé ne garde qu'une dimension reliée.
   if (!imbrique && n.targetAspectRatio && (!!lies.width) !== (!!lies.height))
