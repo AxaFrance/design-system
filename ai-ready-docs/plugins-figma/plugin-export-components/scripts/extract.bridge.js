@@ -3,8 +3,8 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.6.1";
-const FORMAT = "0.6";
+const VERSION = "0.7.0";
+const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
 const LIBRARY = "B2C";
@@ -869,9 +869,11 @@ async function checkNomenclature(prep) {
     for (const p of prep.props) {
         const name = p.name;
         const t = p.def.type;
-        const where = t === "VARIANT" || t === "BOOLEAN"
-            ? "api.props." + name
-            : "structure.slots." + name;
+        const where = name === "breakpoint" && t === "VARIANT"
+            ? "meta.breakpoints"
+            : t === "VARIANT" || t === "BOOLEAN"
+                ? "api.props." + name
+                : "structure.slots." + name;
         if (name.charAt(0) === "_") {
             addIssue("prop-outside-nomenclature", where, "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore.", "info");
             continue;
@@ -1319,7 +1321,7 @@ async function extractDetail(target, opts) {
     const ctx = newContext();
     const prep = prepare(target);
     const { defs, variants: variantNodes, props, nodes, refs, axes } = prep;
-    const { def, cfg: cfgDef } = defaultVariant(prep);
+    const { def: figmaDef, cfg: figmaCfg } = defaultVariant(prep);
     // variants sorted in the order of the properties, then by position
     const optsOf = {};
     for (const p of props)
@@ -1335,6 +1337,30 @@ async function extractDetail(target, opts) {
                 o[k] = cfg[k];
         return o;
     };
+    // A breakpoint variant property is not a prop of the code: the code is mobile first
+    // (media queries from a width). The base of the styles and of the structure is the default
+    // variant of Figma with its smallest breakpoint, the larger ones come as overrides.
+    const hasBreakpoint = axes.indexOf("breakpoint") >= 0;
+    const breakpointOptions = hasBreakpoint
+        ? optsOf.breakpoint.filter((o) => /^\d+$/.test(o))
+        : [];
+    const breakpoints = breakpointOptions
+        .map(Number)
+        .sort((a, b) => a - b);
+    let def = figmaDef;
+    let cfgDef = figmaCfg;
+    if (breakpointOptions.length) {
+        const smallest = breakpointOptions.reduce((a, b) => Number(b) < Number(a) ? b : a);
+        const mobileCfg = { ...figmaCfg, breakpoint: smallest };
+        const mobile = prep.variants.find((c) => {
+            const k = readConfig(c.name);
+            return Object.keys(mobileCfg).every((a) => k[a] === mobileCfg[a]);
+        });
+        if (mobile) {
+            def = mobile;
+            cfgDef = mobileCfg;
+        }
+    }
     const lines = variantNodes.map((v, i) => ({
         v,
         i,
@@ -1360,6 +1386,8 @@ async function extractDetail(target, opts) {
     const slots = {};
     for (const p of props) {
         const t = p.def.type;
+        if (t === "VARIANT" && p.name === "breakpoint" && hasBreakpoint)
+            continue;
         if (t === "VARIANT")
             api.props[p.name] = {
                 type: "enum",
@@ -1437,7 +1465,7 @@ async function extractDetail(target, opts) {
     // an icon exposed in the panel does not make a base component: only a component
     // that carries text or exceeds the size of an icon is taken as a base
     let exposed = null;
-    for (const n of findAll(def, (x) => x.type === "INSTANCE" && !!x.isExposedInstance).filter(isInstance)) {
+    for (const n of findAll(figmaDef, (x) => x.type === "INSTANCE" && !!x.isExposedInstance).filter(isInstance)) {
         const m = await readMainComponent(ctx, n);
         const icon = m &&
             !findOne(m, (x) => x.type === "TEXT") &&
@@ -1469,6 +1497,8 @@ async function extractDetail(target, opts) {
     }
     meta.figmaKey = target.key || null;
     meta.library = LIBRARY;
+    if (breakpoints.length)
+        meta.breakpoints = breakpoints;
     meta.documentationLinks = (target.documentationLinks || []).map((l) => l.uri);
     // styles: capture of all the variants, then keys common to the whole set.
     // A name carried several times gets a tree rank (-1, -2) in all the variants.
@@ -1713,6 +1743,7 @@ function locateIssues(ctx, prep, issues, all) {
         }
         if (i.where === "meta.name" ||
             i.where === "meta.templateLevel" ||
+            i.where === "meta.breakpoints" ||
             i.where.indexOf("api.props.") === 0 ||
             i.where.indexOf("structure.slots.") === 0)
             return { ids: prep.target.id ? [prep.target.id] : [], variants: 0 };

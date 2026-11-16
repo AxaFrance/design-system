@@ -48,8 +48,8 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.6.1";
-const FORMAT = "0.6";
+const VERSION = "0.7.0";
+const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
 const LIBRARY = "B2C";
@@ -1132,9 +1132,11 @@ async function checkNomenclature(prep: Prep): Promise<Issue[]> {
     const name = p.name;
     const t = p.def.type;
     const where =
-      t === "VARIANT" || t === "BOOLEAN"
-        ? "api.props." + name
-        : "structure.slots." + name;
+      name === "breakpoint" && t === "VARIANT"
+        ? "meta.breakpoints"
+        : t === "VARIANT" || t === "BOOLEAN"
+          ? "api.props." + name
+          : "structure.slots." + name;
     if (name.charAt(0) === "_") {
       addIssue(
         "prop-outside-nomenclature",
@@ -1758,7 +1760,7 @@ async function extractDetail(
   const ctx = newContext();
   const prep = prepare(target);
   const { defs, variants: variantNodes, props, nodes, refs, axes } = prep;
-  const { def, cfg: cfgDef } = defaultVariant(prep);
+  const { def: figmaDef, cfg: figmaCfg } = defaultVariant(prep);
 
   // variants sorted in the order of the properties, then by position
   const optsOf: Record<string, string[]> = {};
@@ -1771,6 +1773,32 @@ async function extractDetail(
     for (const k of Object.keys(cfg)) if (!(k in o)) o[k] = cfg[k];
     return o;
   };
+  // A breakpoint variant property is not a prop of the code: the code is mobile first
+  // (media queries from a width). The base of the styles and of the structure is the default
+  // variant of Figma with its smallest breakpoint, the larger ones come as overrides.
+  const hasBreakpoint = axes.indexOf("breakpoint") >= 0;
+  const breakpointOptions = hasBreakpoint
+    ? optsOf.breakpoint.filter((o) => /^\d+$/.test(o))
+    : [];
+  const breakpoints = breakpointOptions
+    .map(Number)
+    .sort((a, b) => a - b);
+  let def = figmaDef;
+  let cfgDef = figmaCfg;
+  if (breakpointOptions.length) {
+    const smallest = breakpointOptions.reduce((a, b) =>
+      Number(b) < Number(a) ? b : a,
+    );
+    const mobileCfg: Config = { ...figmaCfg, breakpoint: smallest };
+    const mobile = prep.variants.find((c) => {
+      const k = readConfig(c.name);
+      return Object.keys(mobileCfg).every((a) => k[a] === mobileCfg[a]);
+    });
+    if (mobile) {
+      def = mobile;
+      cfgDef = mobileCfg;
+    }
+  }
   const lines = variantNodes.map((v, i) => ({
     v,
     i,
@@ -1797,6 +1825,7 @@ async function extractDetail(
   const slots: Record<string, Slot> = {};
   for (const p of props) {
     const t = p.def.type;
+    if (t === "VARIANT" && p.name === "breakpoint" && hasBreakpoint) continue;
     if (t === "VARIANT")
       api.props[p.name] = {
         type: "enum",
@@ -1870,7 +1899,7 @@ async function extractDetail(
   // that carries text or exceeds the size of an icon is taken as a base
   let exposed: InstanceLayer | null = null;
   for (const n of findAll(
-    def,
+    figmaDef,
     (x) => x.type === "INSTANCE" && !!x.isExposedInstance,
   ).filter(isInstance)) {
     const m = await readMainComponent(ctx, n);
@@ -1905,6 +1934,7 @@ async function extractDetail(
   }
   meta.figmaKey = target.key || null;
   meta.library = LIBRARY;
+  if (breakpoints.length) meta.breakpoints = breakpoints;
   meta.documentationLinks = (target.documentationLinks || []).map((l) => l.uri);
 
   // styles: capture of all the variants, then keys common to the whole set.
@@ -2166,6 +2196,7 @@ function locateIssues(
     if (
       i.where === "meta.name" ||
       i.where === "meta.templateLevel" ||
+      i.where === "meta.breakpoints" ||
       i.where.indexOf("api.props.") === 0 ||
       i.where.indexOf("structure.slots.") === 0
     )
@@ -2406,12 +2437,28 @@ interface StyleChange {
   text?: undefined;
 }
 type Change = TextChange | StyleChange;
+// Before format 0.7, a breakpoint variant was listed in api.props. It now lives in
+// meta.breakpoints: an older sheet is read the same way, so the move is not a change.
+function withBreakpointsInMeta(sheet: SheetLike): SheetLike {
+  const p = sheet.api && sheet.api.props && sheet.api.props.breakpoint;
+  if (!p || !Array.isArray(p.enum)) return sheet;
+  const s: SheetLike = JSON.parse(JSON.stringify(sheet));
+  const values = p.enum.map(String).filter((v) => /^\d+$/.test(v));
+  if (s.api && s.api.props) delete s.api.props.breakpoint;
+  if (values.length && !(s.meta && s.meta.breakpoints))
+    s.meta = {
+      ...(s.meta || {}),
+      breakpoints: values.map(Number).sort((x, y) => x - y),
+    };
+  return s;
+}
+
 function classifyChanges(
   previous: SheetLike | null | undefined,
   next: SheetLike | null | undefined,
 ): Change[] {
-  const a: SheetLike = previous || {};
-  const b: SheetLike = next || {};
+  const a: SheetLike = withBreakpointsInMeta(previous || {});
+  const b: SheetLike = withBreakpointsInMeta(next || {});
   const keys = (o: object | undefined): string[] => Object.keys(o || {});
   const list = (t: string[]): string => t.join(", ");
   const byCount = (n: number, one: string, many: string): string =>
@@ -2442,6 +2489,29 @@ function classifyChanges(
         "Propriété retirée : ",
         "Propriétés retirées : ",
       ) + list(removedProps),
+    );
+  // breakpoints: the widths where the rendering changes
+  const ba = ((a.meta && a.meta.breakpoints) || []).map(String);
+  const bb = ((b.meta && b.meta.breakpoints) || []).map(String);
+  const addedBreakpoints = bb.filter((v) => ba.indexOf(v) < 0);
+  const removedBreakpoints = ba.filter((v) => bb.indexOf(v) < 0);
+  if (addedBreakpoints.length)
+    note(
+      "added",
+      byCount(
+        addedBreakpoints.length,
+        "Breakpoint ajouté : ",
+        "Breakpoints ajoutés : ",
+      ) + list(addedBreakpoints),
+    );
+  if (removedBreakpoints.length)
+    note(
+      "removed",
+      byCount(
+        removedBreakpoints.length,
+        "Breakpoint retiré : ",
+        "Breakpoints retirés : ",
+      ) + list(removedBreakpoints),
     );
   if (
     keys(pb)
@@ -3092,7 +3162,9 @@ const PREVIOUS_KEY = "previous-version";
 // the versions, the Figma file name and the Figma keys, the position of the variants on the canvas
 // and the way style overrides are grouped (only the styles of each variant count).
 function sheetForVersion(sheet: SheetLike | null | undefined): ComparableSheet {
-  const c: SheetLike = JSON.parse(JSON.stringify(sheet || {}));
+  const c: SheetLike = JSON.parse(
+    JSON.stringify(withBreakpointsInMeta(sheet || {})),
+  );
   delete c.formatVersion;
   delete c.issues;
   delete c._tool;

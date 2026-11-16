@@ -27,6 +27,9 @@ for (const [name, p] of Object.entries(
 )) {
   values[name] = p.type === "enum" ? p.enum.map(String) : ["true", "false"];
 }
+// breakpoint is not a prop of the code: its values are the widths listed in meta.breakpoints.
+const breakpoints = ((sheet.meta && sheet.meta.breakpoints) || []).map(String);
+if (breakpoints.length) values.breakpoint = breakpoints;
 const slots = Object.keys(
   sheet.structure && sheet.structure.slots ? sheet.structure.slots : {},
 );
@@ -79,7 +82,11 @@ const titles = new Set(
 );
 const ignoredProps = new Set(["state", "_theme"]);
 for (const [prop, vals] of Object.entries(values)) {
-  if (ignoredProps.has(prop) || !(sheet.api.props[prop].type === "enum"))
+  if (
+    ignoredProps.has(prop) ||
+    prop === "breakpoint" ||
+    !(sheet.api.props[prop].type === "enum")
+  )
     continue;
   const baseVariant = String(sheet.api.props[prop].default);
   for (const v of vals) {

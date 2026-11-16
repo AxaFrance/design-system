@@ -551,7 +551,7 @@ describe("The fake button", () => {
       "issues",
       "_tool",
     ]);
-    expect(sheet.formatVersion).toBe("0.6");
+    expect(sheet.formatVersion).toBe("0.7");
     expect(sheet._tool).toMatch(/^canopee-export-components \d/);
   });
   it("meta: name, version, tokens version, type, Figma key, library, documentation links", async () => {
@@ -1003,6 +1003,95 @@ describe("The reads that fail", () => {
   });
   it("without an exception, no read-failed issue", async () => {
     expect(issuesFor((await button()).sheet, "read-failed").length).toBe(0);
+  });
+});
+
+// ------------------------------------------------------------ the breakpoint property
+describe("The breakpoint variant property", () => {
+  const cell = (name: string, spacing: number) =>
+    layer(
+      "COMPONENT",
+      name,
+      {
+        x: 0,
+        y: 0,
+        layoutMode: "HORIZONTAL",
+        itemSpacing: spacing,
+        layoutSizingHorizontal: "FIXED",
+        layoutSizingVertical: "FIXED",
+        width: 100,
+        height: 40,
+      },
+      [],
+    );
+  const breakpointSet = () =>
+    connect(
+      layer(
+        "COMPONENT_SET",
+        "Banner",
+        {
+          id: "S:900",
+          key: "KEY-BANNER",
+          componentPropertyDefinitions: {
+            breakpoint: {
+              type: "VARIANT",
+              defaultValue: "1024",
+              variantOptions: ["1024", "0"],
+            },
+            colorScheme: {
+              type: "VARIANT",
+              defaultValue: "light",
+              variantOptions: ["light", "dark"],
+            },
+          },
+        },
+        [
+          cell("breakpoint=1024, colorScheme=light", 24),
+          cell("breakpoint=1024, colorScheme=dark", 24),
+          cell("breakpoint=0, colorScheme=light", 8),
+          cell("breakpoint=0, colorScheme=dark", 8),
+        ],
+      ),
+    );
+  const exportBanner = () => {
+    const set = breakpointSet();
+    return exportSheet({
+      fileName: "Test",
+      collections: [],
+      variables: [],
+      nodes: [set],
+      selection: [set],
+    });
+  };
+
+  it("breakpoint leaves api.props and meta lists the widths in ascending order, after library", async () => {
+    const { sheet } = await exportBanner();
+    expect(sheet.api.props.breakpoint).toBeUndefined();
+    expect(sheet.api.props.colorScheme).toBeDefined();
+    expect(sheet.meta.breakpoints).toStrictEqual([0, 1024]);
+    const keys = Object.keys(sheet.meta);
+    expect(keys.indexOf("breakpoints")).toBe(keys.indexOf("library") + 1);
+  });
+  it("the base style is the smallest breakpoint, the default of Figma comes as an override", async () => {
+    const { sheet } = await exportBanner();
+    expect(sheet.styles.default.when.breakpoint).toBe("0");
+    expect(sheet.styles.default.when.colorScheme).toBe("light");
+    expect(sheet.styles.default.root.gap).toStrictEqual({ raw: 8 });
+    const wide = sheet.styles.overrides.find(
+      (o: MockData) => o.when.breakpoint === "1024",
+    );
+    expect(wide).toBeDefined();
+    expect(wide.styles.root.gap).toStrictEqual({ raw: 24 });
+  });
+  it("the variants list keeps breakpoint in its values", async () => {
+    const { sheet } = await exportBanner();
+    expect(sheet.variants.length).toBe(4);
+    for (const v of sheet.variants)
+      expect(["0", "1024"]).toContain(v.values.breakpoint);
+  });
+  it("without a breakpoint property, meta has no breakpoints", async () => {
+    const { sheet } = await button();
+    expect("breakpoints" in sheet.meta).toBe(false);
   });
 });
 
@@ -4206,6 +4295,21 @@ describe("check-sheet.mjs", () => {
     expect(r.code, r.output).toBe(0);
     expect(r.output).toMatch(/0 erreur\(s\)/);
   });
+  it("a breakpoint=value mention is valid when the value is in meta.breakpoints, and needs no rule", () => {
+    const withBreakpoint = {
+      meta: { breakpoints: [0, 1024] },
+    };
+    const r = check(sheet({ mention: "breakpoint=1024" }), withBreakpoint.meta);
+    expect(r.code, r.output).toBe(0);
+    expect(r.output).not.toMatch(/breakpoint/);
+    expect(r.output).toMatch(/1 erreur|0 erreur\(s\), 0 remarque/);
+    const unknown = check(
+      sheet({ mention: "breakpoint=768" }),
+      withBreakpoint.meta,
+    );
+    expect(unknown.code).toBe(1);
+    expect(unknown.output).toMatch(/Valeur inconnue du JSON : breakpoint=768/);
+  });
   it("a template sheet reads the template outline, two levels above it", () => {
     const d = tempFolder("check-sheet");
     const folder = path.join(d, "bloc", "loader");
@@ -4561,6 +4665,24 @@ describe("The version level and the lines of the changelog", () => {
       .filter((c: MockData) => c.title === undefined)
       .map((c: MockData) => c.category + " : " + c.text);
 
+  it("a breakpoint moved from api.props to meta.breakpoints is not a change, a new breakpoint is", async () => {
+    const { classifyChanges, changeLevel } = await tools();
+    const before = copy();
+    before.api.props.breakpoint = {
+      type: "enum",
+      enum: ["1024", "0"],
+      default: "1024",
+    };
+    const after = copy();
+    after.meta.breakpoints = [0, 1024];
+    expect(plain(classifyChanges(before, after))).toStrictEqual([]);
+    expect(changeLevel(before, after)).toBe(null);
+    const wider = copy();
+    wider.meta.breakpoints = [0, 768, 1024];
+    expect(await lines(after, wider)).toStrictEqual([
+      "added : Breakpoint ajouté : 768",
+    ]);
+  });
   it("invariant: when the level is not null, the changelog has at least one line", async () => {
     const { changeLevel, changelogEntry } = await tools();
     const modifications = {
@@ -5447,9 +5569,9 @@ describe("The version in the plugin", () => {
     await p.send({ type: "generate" });
     expect(p.lastMessage().version.none).toBe(true);
   });
-  it("the format is 0.6, and the plugin version starts with the format", async () => {
+  it("the format is 0.7, and the plugin version starts with the format", async () => {
     const { p } = await openPlugin();
-    expect(p.__test.FORMAT).toBe("0.6");
+    expect(p.__test.FORMAT).toBe("0.7");
     expect(p.__test.VERSION.startsWith(p.__test.FORMAT + ".")).toBeTruthy();
   });
 });

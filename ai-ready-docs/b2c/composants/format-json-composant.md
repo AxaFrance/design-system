@@ -2,7 +2,7 @@
 
 Le JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il est généré depuis Figma par le plugin des fiches, jamais écrit à la main. L'usage, le fonctionnel et le code sont dans le Markdown, qui suit la trame commune à toutes les fiches. Les deux fichiers restent séparés.
 
-Version du format : 0.6. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
+Version du format : 0.7. La structure reprend celle du plugin Component as Data, sans ce que traite le Markdown.
 
 ## Les principes
 
@@ -20,7 +20,7 @@ Version du format : 0.6. La structure reprend celle du plugin Component as Data,
 
 ```json
 {
-  "formatVersion": "0.6",
+  "formatVersion": "0.7",
   "meta": { },
   "api": { },
   "variants": [ ],
@@ -55,6 +55,7 @@ L'identité du composant.
 - `templateLevel` vaut `block`, `section` ou `page` pour un template, selon sa page dans la librairie Figma. Un composant n'a pas ce champ.
 - `type` vaut `atom`, ou `composed` quand le composant est bâti sur un autre, nommé alors dans `extends`. Pour un template, il vaut `template`, et `extends` reste écrit si le template est bâti sur un autre composant.
 - `figmaKey` est la clé du composant dans la librairie. Elle permet de retrouver le vrai composant.
+- `breakpoints` liste, du plus petit au plus grand, les largeurs d'écran en pixels à partir desquelles le rendu change, d'après la propriété breakpoint de Figma. Exemple : `[0, 1024]`. Un composant qui garde le même rendu sur toutes les largeurs d'écran n'a pas ce champ.
 
 ## api
 
@@ -73,6 +74,7 @@ Les propriétés, dans l'ordre de la nomenclature.
 - `enum` pour une variante, `boolean` pour un booléen. Les textes, les swaps et les slots sont décrits dans `structure.slots`.
 - `controls` dit quel calque la propriété règle, et comment : `visible` règle l'affichage du calque, `text` son texte, `component` le composant placé dans une instance.
 - Les booléens ne figurent pas dans `variants`, qui ne liste que les combinaisons de variantes.
+- La propriété breakpoint ne figure pas dans `props`. Dans le code, c'est la largeur de l'écran qui choisit le rendu, sans prop à régler. Ses valeurs se lisent dans `meta.breakpoints`.
 - Les identifiants internes de Figma ne sont pas repris, parce qu'ils changent d'un fichier à l'autre.
 
 ## variants
@@ -152,6 +154,7 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
 - Un calque de texte porte son `layout` quand il s'écarte des valeurs par défaut de Figma : `sizingH` et `sizingV` (`fixed`, `hug` ou `fill`, `hug` par défaut), et `textAlignVertical` (`top` par défaut). Un texte sans `layout` est en `hug` et aligné en haut.
 - La couleur d'une icône se note sur son vecteur : `left-icon/vector` désigne le premier vecteur de l'instance placée dans le calque `left-icon`, là où Figma pose la couleur.
 - Les modes de variables fixés sur le composant, comme le thème, se notent aussi ici. La clé de leur collection se lit dans l'index `modeCollections`.
+- Pour un composant qui a des breakpoints, le style par défaut est celui du plus petit, le mobile, même si Figma propose le desktop par défaut. Une surcharge dont le `when` cite un breakpoint plus grand vaut à partir de cette largeur, comme une media query du code.
 
 ## tokens
 

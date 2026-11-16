@@ -79,6 +79,7 @@ export interface Meta {
   templateLevel?: string;
   figmaKey?: string | null;
   library?: string;
+  breakpoints?: number[];
   documentationLinks?: string[];
 }
 
