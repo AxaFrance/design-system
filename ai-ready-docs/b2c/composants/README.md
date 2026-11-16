@@ -21,3 +21,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | Avatar | [avatar.md](avatar/avatar.md) | [avatar.json](avatar/avatar.json) | [avatar-changelog.md](avatar/avatar-changelog.md) |
 | ProgressBar | [progressbar.md](progressbar/progressbar.md) | [progressbar.json](progressbar/progressbar.json) | [progressbar-changelog.md](progressbar/progressbar-changelog.md) |
 | _StepperProgress | [_stepperprogress.md](_stepperprogress/_stepperprogress.md) | [_stepperprogress.json](_stepperprogress/_stepperprogress.json) | [_stepperprogress-changelog.md](_stepperprogress/_stepperprogress-changelog.md) |
+| Tag | [tag.md](tag/tag.md) | [tag.json](tag/tag.json) | [tag-changelog.md](tag/tag-changelog.md) |

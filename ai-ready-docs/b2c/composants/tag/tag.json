@@ -1,0 +1,399 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Tag",
+    "version": "1.0.0",
+    "tokensVersion": "2.0.0",
+    "type": "atom",
+    "figmaKey": "01d45958c08d2ff9337d8942a096d2665832f4e2",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/tag/tag.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "tone": {
+        "type": "enum",
+        "enum": [
+          "information",
+          "success",
+          "warning",
+          "error",
+          "neutral"
+        ],
+        "default": "information"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "tone": "information",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "tone": "information",
+        "breakpoint": "0"
+      },
+      "position": [
+        633,
+        50
+      ]
+    },
+    {
+      "values": {
+        "tone": "success",
+        "breakpoint": "1024"
+      },
+      "position": [
+        117,
+        48
+      ]
+    },
+    {
+      "values": {
+        "tone": "success",
+        "breakpoint": "0"
+      },
+      "position": [
+        702,
+        50
+      ]
+    },
+    {
+      "values": {
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        186,
+        48
+      ]
+    },
+    {
+      "values": {
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        771,
+        50
+      ]
+    },
+    {
+      "values": {
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        255,
+        48
+      ]
+    },
+    {
+      "values": {
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        840,
+        50
+      ]
+    },
+    {
+      "values": {
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        324,
+        48
+      ]
+    },
+    {
+      "values": {
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        909,
+        50
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "label": {
+        "as": "children",
+        "default": {
+          "text": "Label"
+        },
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "label",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "uses": []
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "tone": "information",
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "background": {
+          "token": "color/azure/050"
+        },
+        "radius": {
+          "token": "border/radius/4"
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "token": "spacing/6"
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "token": "spacing/6"
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "hug",
+          "sizingV": "hug"
+        }
+      },
+      "label": {
+        "textColor": {
+          "token": "color/azure/700"
+        },
+        "textStyle": "label/2/semibold",
+        "textAlign": "center",
+        "layout": {
+          "textAlignVertical": "center"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "tone": "success"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/green/050"
+            }
+          },
+          "label": {
+            "textColor": {
+              "token": "color/green/700"
+            },
+            "layout": null
+          }
+        }
+      },
+      {
+        "when": {
+          "tone": "warning"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/orange/050"
+            }
+          },
+          "label": {
+            "textColor": {
+              "token": "color/orange/700"
+            },
+            "layout": null
+          }
+        }
+      },
+      {
+        "when": {
+          "tone": "error"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/red/050"
+            }
+          },
+          "label": {
+            "textColor": {
+              "token": "color/red/700"
+            },
+            "layout": null
+          }
+        }
+      },
+      {
+        "when": {
+          "tone": "neutral"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/050"
+            }
+          },
+          "label": {
+            "textColor": {
+              "token": "color/gray/700"
+            },
+            "layout": null
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
+          "root": {
+            "padding": {
+              "top": {
+                "raw": 0
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "raw": 0
+              },
+              "left": {
+                "token": "spacing/8"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "31b5a8a1b3e357eefb3ba1a6bf4d8f85f93bbab1"
+    },
+    "color/azure/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ec904b02238e2af5ea94a55745ccb3e6821e5ace"
+    },
+    "color/azure/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e4db7baec72ca931eb5b6964f7a1b3dd69c6384f"
+    },
+    "color/gray/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
+    "color/gray/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
+    },
+    "color/green/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a00d0dcfe5d498664dc4572ad2fd9b4b78c33169"
+    },
+    "color/green/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "4f3937bbac6af27537ef6ed88b048f7ab6e37608"
+    },
+    "color/orange/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f81ec32ea353b4eaf4d03d0721137622b39356a0"
+    },
+    "color/orange/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f110ea9515a46b5770edb6fe44d9c343523e6d8c"
+    },
+    "color/red/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "0edc473ca246a59c22a095d02a908e2324a1e15d"
+    },
+    "color/red/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "adf5a69d4f184522878973debd0b0206086f1157"
+    },
+    "spacing/6": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "8a9022b6c99d49e876e2680384edeca9db6b5e20"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "label/2/semibold": {
+      "library": null,
+      "key": "fb08d79b8680b675f8f78bedc146317e675eb5dc"
+    }
+  },
+  "components": {},
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [],
+  "_tool": "canopee-export-components 0.7.0"
+}
