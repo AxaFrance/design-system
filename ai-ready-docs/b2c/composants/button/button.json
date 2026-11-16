@@ -6159,20 +6159,6 @@
         },
         "styles": {
           "root": {
-            "padding": {
-              "top": {
-                "token": "spacing/6"
-              },
-              "right": {
-                "token": "spacing/8"
-              },
-              "bottom": {
-                "token": "spacing/6"
-              },
-              "left": {
-                "token": "spacing/8"
-              }
-            },
             "gap": {
               "token": "spacing/8"
             },
@@ -6592,6 +6578,54 @@
               },
               "sizingH": "hug",
               "sizingV": "hug"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "root": {
+            "padding": {
+              "top": {
+                "token": "spacing/4"
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "token": "spacing/4"
+              },
+              "left": {
+                "token": "spacing/8"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "root": {
+            "padding": {
+              "top": {
+                "token": "spacing/6"
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "token": "spacing/6"
+              },
+              "left": {
+                "token": "spacing/8"
+              }
             }
           }
         }
@@ -7409,6 +7443,11 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "4344572ea5671cb93751381dd4d4db2d8ee60144"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
     },
     "spacing/6": {
       "library": "Fondations Canopée",
