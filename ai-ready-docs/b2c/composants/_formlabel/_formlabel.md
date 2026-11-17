@@ -17,7 +17,7 @@ Le _FormLabel est le libellé d'un champ de formulaire, qui dit à l'utilisateur
 
 - Ajouter un libellé au-dessus d'un champ de Canopée : le champ a déjà son _FormLabel.
 - Le texte d'aide ou le message sous un champ : prendre _FormHelperText.
-- Un titre de page ou de section : Non documenté.
+- Un titre de page ou de section : prendre Heading.
 
 ## Règles selon les propriétés
 
@@ -153,7 +153,6 @@ Ces noms désignent _FormLabel. Le seul nom à employer est _FormLabel.
 - **Alignement de « Modifier ».** Le code aligne l'action en bas quand une description est présente, et la centre sinon (`ItemLabelCommon.css:51`). En attendant : les maquettes suivent Figma, et le code s'utilise sans surcharge de style.
 - **Description non annoncée dans le code.** Le code pose `aria-describedby` sur le `<label>` et non sur le champ (`ItemLabelCommon.tsx:140`). Un lecteur d'écran ne lit donc pas la description quand le champ reçoit le focus. En attendant : signaler.
 - **Couleurs dans le code.** Le code affiche le libellé dans un gris plus clair que Figma, et la description dans un gris plus foncé (`ItemLabelApollo.css:5`). En attendant : signaler.
-- **Titre de page ou de section.** Le composant à prendre pour un titre n'est pas documenté. Le code de Canopée a un composant `Heading`. En attendant : signaler.
 - **Champ facultatif.** Le code n'ajoute pas « (facultatif) » de lui-même, et aucun champ ne le fait. En attendant : écrire la mention dans le libellé.
 - **Longueur.** L'ancienne documentation du B2C limitait aussi le libellé à cinq mots, alors que ses propres exemples en ont six. En attendant : 120 caractères et deux lignes au plus.
 - **Plugin Copilot.** Sa page ItemLabel dit que `required` ajoute l'attribut HTML `required`. Dans le code, `required` n'affiche que l'astérisque, et c'est le champ qui porte l'attribut. En attendant : la fiche fait foi.

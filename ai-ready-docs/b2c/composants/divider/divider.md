@@ -15,7 +15,7 @@ Le Divider sépare deux groupes de contenu par un trait fin. Son sens se règle 
 
 ### À ne pas utiliser pour
 
-- Structurer les sections d'une page : prendre des titres, de heading/h2 à heading/h4.
+- Structurer les sections d'une page : prendre Heading.
 - Séparer chaque élément d'une vue : trop de Divider surchargent l'interface.
 
 ## Règles selon les propriétés
