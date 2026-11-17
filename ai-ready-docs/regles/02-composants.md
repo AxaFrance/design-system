@@ -12,7 +12,7 @@ Les noms s'écrivent en PascalCase, c'est-à-dire avec une capitale au début de
 - Un même composant porte le même nom en B2C et en B2B.
 - Le nom ne dit que ce qu'est le composant, sans statut, version ni emoji. Exemple d'écart : Button v2.
 - Un sigle s'écrit comme un mot. Exemple : AiAnswer, et non AIAnswer.
-- Les niveaux, les types et les orientations passent par les propriétés, pas par des composants séparés. Exemple : un seul Stepper avec la propriété orientation, et non un Horizontal Stepper et un Vertical Stepper.
+- Les niveaux, les types et les orientations passent par les propriétés, pas par des composants séparés. Exemple : un seul Divider avec la propriété orientation, et non un Divider horizontal et un Divider vertical.
 - Deux versions deviennent deux composants quand elles n'ont pas les mêmes propriétés. Exemple : un champ date a les propriétés de son calendrier, c'est un composant à part. Un champ mot de passe a les mêmes propriétés qu'un champ texte, c'est un type.
 
 ## Les sous-composants

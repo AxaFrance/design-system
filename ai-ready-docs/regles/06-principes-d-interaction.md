@@ -21,7 +21,7 @@ Dans les exemples, « A → B » se lit : la valeur en default, puis la valeur d
 
 Le token color/blue/600 est réservé aux éléments interactifs, et c'est leur couleur d'accent. Exemples : le fond d'un Button primary, le texte d'un Link, la piste d'un Switch en checked=true. Un élément qui ne se clique pas, comme un titre, prend une autre couleur, comme color/blue/700, la couleur de la marque.
 
-Au hover, color/blue/600 passe à color/blue/700, puis à color/blue/800 au press, comme le veulent les règles communes ci-dessous.
+Quand le pattern change cette couleur au hover, comme le fond d'un Button primary ou la piste d'un Switch, color/blue/600 passe à color/blue/700, puis à color/blue/800 au press. Le texte d'un Link reste en color/blue/600 au hover, car seul son soulignement change.
 
 ## Les quatre patterns
 
@@ -102,7 +102,7 @@ La propriété loading a son propre rendu, avec un spinner, et n'est pas traité
 | checked, selected, current | L'état dure, et le hover s'y ajoute. L'élément prend la couleur d'accent color/blue/600, en fond, en border ou en border-bottom selon le pattern. | _PaginationItem en current=true : fond color/blue/600, texte color/white. | Voir le tableau de chaque pattern. |
 | filled | La valeur saisie s'affiche. Seuls les champs ont cet état. | DateInput qui contient « 12/09/2000 » : filled=true. | Aucune. |
 | open | Le contenu s'affiche : une liste, un calendrier, le contenu d'un Accordion. Le composant garde son rendu, et le hover ou le focus s'y ajoutent quand ils ont lieu. | Accordion en open=true : l'IconButton de son en-tête prend le hover et le focus. | Aucune. |
-| disabled | Chaque élément présent passe en gris : fond color/gray/050, border et couleur d'accent color/gray/300, texte et icône color/gray/400. Un composant sans fond ou sans border n'en gagne pas. | Checkbox en checked=true et disabled=true : case color/gray/300, coche color/white. TextInput en disabled=true : placeholder ou valeur en color/gray/400. | Link dans un champ, comme « En savoir plus » : reste color/blue/600, car il reste cliquable quand le champ est désactivé. Button et IconButton : fond color/gray/050 sans border, quelle que soit leur hierarchy, même sans fond ni border en default. _Tab : la border-bottom garde le color/gray/200 du default. |
+| disabled | Chaque élément présent passe en gris : fond color/gray/050, border et couleur d'accent color/gray/300, texte et icône color/gray/400. Un composant sans fond ou sans border n'en gagne pas. | Checkbox en checked=true et disabled=true : case color/gray/300, coche color/white. TextInput en disabled=true : placeholder ou valeur en color/gray/400. | Link dans un champ, comme « En savoir plus » : reste color/blue/600, car il reste cliquable quand le champ est désactivé. Button et IconButton : fond color/gray/050 sans border, quelle que soit leur hierarchy, même sans fond ni border en default. _Tab : la border-bottom garde le color/gray/200 du default. Switch : piste color/gray/300 en checked=false comme en checked=true, et poignée color/gray/100. |
 
 disabled=true n'existe qu'avec state=default : un composant désactivé n'a ni hover, ni focus, ni press. Un champ désactivé a le même rendu, rempli ou non.
 

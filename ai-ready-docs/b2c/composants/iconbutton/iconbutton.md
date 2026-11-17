@@ -165,7 +165,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **Navigation.** Zeroheight permet à Click Icon d'être un lien `<a>` quand l'action mène à une autre page. Le code ne le permet pas, et la fiche Button renvoie vers Link pour naviguer. En attendant : signaler.
 - **Plusieurs primary.** La fiche Button n'autorise qu'un seul Button primary par page, sans compter le Header. Rien ne dit si un IconButton primary compte dans cette limite. En attendant : signaler.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.
-- **Bleu d'interaction dans le code.** Le code dessine ClickIcon dans un bleu plus foncé que color/blue/600 (`ClickIconCommon.css:33`). En attendant : signaler.
+- **Bleu d'interaction dans le code.** Le code dessine l'icône de ClickIcon dans le bleu de la marque, plus foncé que color/blue/600 (`IconCommon.css:24`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
