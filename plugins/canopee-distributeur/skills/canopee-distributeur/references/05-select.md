@@ -76,14 +76,13 @@ const SelecteurCouleur = () => {
       id="couleur"
       name="couleur"
       placeholder="Choisir une couleur"
-      options={[
-        { value: "rouge", label: "Rouge" },
-        { value: "vert", label: "Vert" },
-        { value: "bleu", label: "Bleu" }
-      ]}
       value={couleur}
       onChange={(e) => setCouleur(e.target.value)}
-    />
+    >
+      <option value="rouge">Rouge</option>
+      <option value="vert">Vert</option>
+      <option value="bleu">Bleu</option>
+    </Select>
   );
 };
 ```

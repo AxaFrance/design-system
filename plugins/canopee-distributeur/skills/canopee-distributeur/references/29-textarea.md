@@ -38,11 +38,7 @@ Champ `<textarea>` stylé seul, sans label ni gestion d'erreur.
 
 #### Props
 
-| Prop | Type | Défaut | Description |
-|------|------|--------|-------------|
-| `classModifier` | `string` | - | Modificateur CSS BEM |
-
-Plus tous les attributs HTML standard de `<textarea>`.
+Les attributs HTML standard de `<textarea>`.
 
 ## Utilisation
 

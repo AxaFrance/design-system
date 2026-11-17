@@ -16,7 +16,6 @@ import { Action } from "@axa-fr/canopee-react/distributeur";
 | `href` | `string` | - | URL de destination |
 | `onClick` | `MouseEventHandler` | - | Gestionnaire de clic |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 Tous les attributs HTML standard du `<a>` sont supportés (`aria-label`, `target`, `rel`, `aria-disabled`, …).
 

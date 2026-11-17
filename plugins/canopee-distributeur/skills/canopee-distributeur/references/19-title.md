@@ -16,7 +16,6 @@ import { Title } from "@axa-fr/canopee-react/distributeur";
 | `contentLeft` | `ReactElement` | - | Élément affiché à gauche, dans la balise de titre |
 | `contentRight` | `ReactNode` | - | Élément affiché à droite, hors de la balise de titre |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 Tous les attributs HTML standard du `<h2>` (ou du heading choisi) sont supportés.
 

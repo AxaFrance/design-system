@@ -35,7 +35,6 @@ Cellule de données du tableau.
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Classes de modificateur CSS |
 
 Tous les attributs HTML standard de `<table>` sont supportés.
 

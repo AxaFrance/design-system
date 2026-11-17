@@ -57,7 +57,7 @@ Jamais de sélecteurs par tag HTML ou par ID.
 
 **Messages de formulaire — `forceDisplayMessage` obligatoire**
 
-Les composants formulaire haut niveau (`TextInput`, `SelectInput`, `TextareaInput`, `DateInput`, `NumberInput`, `PassInput`, `CheckboxInput`, `RadioInput`, `ChoiceInput`, `MultiSelectInput`, `FileInput`) gèrent deux types de messages :
+Les composants formulaire haut niveau (`TextInput`, `SelectInput`, `TextareaInput`, `DateInput`, `NumberInput`, `CheckboxInput`, `RadioInput`, `ChoiceInput`, `MultiSelectInput`, `FileInput`) gèrent deux types de messages :
 
 - **`helpMessage`** : message d'aide affiché par défaut sous le champ (texte gris discret).
 - **`message`** + **`messageType`** + **`forceDisplayMessage={true}`** : message de statut (erreur, succès, avertissement) qui **remplace** `helpMessage` quand il est activé.
@@ -149,7 +149,6 @@ Lis la référence correspondante dès que le développeur demande de l'aide sur
 | ---------------------------- | ----------------------------------------------------- | ---------------------------------------- |
 | `TextInput` / `Text`         | [03-text-input.md](./references/03-text-input.md)     | Champs texte, email, tel, password, url… |
 | `Textarea` / `TextareaInput` | [29-textarea.md](./references/29-textarea.md)         | Texte multiligne                         |
-| `Pass` / `PassInput`         | [32-pass-input.md](./references/32-pass-input.md)     | Mot de passe avec toggle visibilité      |
 | `Number` / `NumberInput`     | [33-number-input.md](./references/33-number-input.md) | Entrée numérique                         |
 | `Date` / `DateInput`         | [31-date-input.md](./references/31-date-input.md)     | Sélecteur de date                        |
 

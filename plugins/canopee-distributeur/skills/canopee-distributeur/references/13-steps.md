@@ -27,7 +27,6 @@ import {
 |------|------|--------|-------------|
 | `children` | `ReactNode` | - | Éléments `Step` enfants |
 | `className` | `string` | `"af-steps-new"` | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### Props — Step
 
@@ -41,7 +40,6 @@ import {
 | `onClick` | `(e: CustomClickEvent) => void` | - | Gestionnaire de clic (utilisé en mode `"link"`) |
 | `stateLabel` | `string` | - | Label d'état pour l'accessibilité (ex : "complété", "en cours", "à venir") |
 | `className` | `string` | - | Classe CSS |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ### Modes de Step
 

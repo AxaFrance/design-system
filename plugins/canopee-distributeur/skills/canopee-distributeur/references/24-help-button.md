@@ -17,7 +17,6 @@ import { HelpButton } from "@axa-fr/canopee-react/distributeur";
 | `mode` | `"click" \| "over"` | `"click"` | Déclenchement par clic ou au survol |
 | `placement` | `Placement` | `"right"` | Position du popover (`"top"`, `"bottom"`, `"left"`, `"right"`, …) |
 | `className` | `string` | - | Classes CSS additionnelles |
-| `classModifier` | `string` | - | Modificateur CSS BEM |
 
 ## Utilisation
 
