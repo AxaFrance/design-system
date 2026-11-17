@@ -62,7 +62,7 @@ Sur un écran de moins de 1024 px de large. Le libellé et la description utilis
 
 - Un libellé, obligatoire.
 - Une description, facultative.
-- Deux actions au plus, chacune un Link : « Modifier » à droite du libellé, « En savoir plus » en dessous.
+- Deux actions au plus, chacune un Link small : « Modifier » à droite du libellé, « En savoir plus » en dessous.
 
 ## Rédaction
 
@@ -141,7 +141,7 @@ Ces noms désignent _FormLabel. Le seul nom à employer est _FormLabel.
 ## Décisions
 
 - **1.0.0 - 02/11/26.** Les actions « Modifier » et « En savoir plus » passent par un Button tertiary small, et non par l'ancien ButtonGhost.
-- **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » passent par Link, rendu en `<button>` dans le code. Sans marge, elles s'alignent sur le libellé et gardent la hauteur du texte. Cette décision remplace celle du 02/11/26, qui les faisait passer par Button.
+- **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » passent par un Link small, rendu en `<button>` dans le code. Sans marge, elles s'alignent sur le libellé et gardent la hauteur du texte. Cette décision remplace celle du 02/11/26, qui les faisait passer par Button.
 - **1.0.0 - 16/11/26.** Dans Figma, les thèmes prospect et client partagent un seul _FormLabel, celui du thème prospect, car leurs deux versions ne différaient que par le thème des actions.
 - **1.0.0 - 16/11/26.** showSideButton est un booléen, et non une variante. Les deux actions peuvent s'afficher ensemble, comme dans le code.
 - **1.0.0 - 16/11/26.** Dans Figma, « Modifier » est centré en hauteur à côté du libellé et de la description, dans tous les cas.
