@@ -4265,7 +4265,7 @@ describe("check-sheet.mjs", () => {
     ].join("\n");
 
   // the sheet and its outline in a temporary folder, then the script run on them
-  const check = (md: MockData, meta = {}) => {
+  const check = (md: MockData, meta = {}, props = {}) => {
     const d = tempFolder("check-sheet");
     fs.copyFileSync(OUTLINE, path.join(d, "trame-fiche-composant.md"));
     fs.copyFileSync(TEMPLATE_OUTLINE, path.join(d, "trame-fiche-template.md"));
@@ -4276,6 +4276,7 @@ describe("check-sheet.mjs", () => {
       JSON.stringify({
         ...MINIMAL_JSON,
         meta: { ...MINIMAL_JSON.meta, ...meta },
+        api: { props: { ...MINIMAL_JSON.api.props, ...props } },
       }),
     );
     const r = spawnSync(
@@ -4499,6 +4500,19 @@ describe("check-sheet.mjs", () => {
     const r = check(sheet().replace("### size=lg", "### autre titre"));
     expect(r.code, r.output).toBe(0);
     expect(r.output).toMatch(/REMARQUE {2}Pas de règle pour size=lg/);
+  });
+  it("numeric values and properties outside the nomenclature need no rule", () => {
+    const r = check(
+      sheet(),
+      {},
+      {
+        value: { type: "enum", enum: ["0", "5", "10"], default: "0" },
+        _animation: { type: "enum", enum: ["1", "2"], default: "1" },
+        _mode: { type: "enum", enum: ["light", "dark"], default: "light" },
+      },
+    );
+    expect(r.code, r.output).toBe(0);
+    expect(r.output).toMatch(/0 remarque\(s\)/);
   });
 });
 

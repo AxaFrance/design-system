@@ -165,7 +165,7 @@ Ce plugin est dérivé du kit Component as Data d'Alexis Vaysse, sous licence MI
 
 ## Vérifier qu'une fiche suit son JSON
 
-`node scripts/check-sheet.mjs <fiche.md> <fiche.json>` contrôle que chaque `propriété=valeur` citée dans le Markdown existe dans le JSON, que les propriétés du tableau des écarts existent, et signale les valeurs de variante qui n'ont pas de règle. Il contrôle aussi :
+`node scripts/check-sheet.mjs <fiche.md> <fiche.json>` contrôle que chaque `propriété=valeur` citée dans le Markdown existe dans le JSON, que les propriétés du tableau des écarts existent, et signale les valeurs de variante qui n'ont pas de règle, sauf pour state, breakpoint, une propriété qui commence par un tiret bas, et une propriété dont toutes les valeurs sont des nombres. Il contrôle aussi :
 
 - que le titre de la fiche est exactement `# <meta.name> <meta.version>` ;
 - que la ligne suivante, après une ligne vide, est « Utilise les design tokens de Canopée <meta.tokensVersion> ou d'une version plus récente. », ou « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée. » quand `meta.tokensVersion` vaut `null` ;

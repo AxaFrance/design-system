@@ -80,11 +80,16 @@ for (const line of codeCategory.split("\n").filter((l) => l.startsWith("|"))) {
 const titles = new Set(
   [...text.matchAll(/^### (\S+=\S+)\s*$/gm)].map((m) => m[1]),
 );
+// No rule is asked for state, breakpoint, a property outside the nomenclature (« _animation »),
+// or a property whose values are all numbers (« value », « stepsCount »): their values do not
+// each need a rule.
 const ignoredProps = new Set(["state", "_theme"]);
 for (const [prop, vals] of Object.entries(values)) {
   if (
     ignoredProps.has(prop) ||
     prop === "breakpoint" ||
+    prop.charAt(0) === "_" ||
+    vals.every((v) => /^\d+$/.test(String(v))) ||
     !(sheet.api.props[prop].type === "enum")
   )
     continue;
