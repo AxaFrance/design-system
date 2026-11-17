@@ -1,0 +1,410 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_FormHelperText",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "ff44f9fe2270f928a96a8ca2b509b56c7d45cc74",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/_formhelpertext/_formhelpertext.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "tone": {
+        "type": "enum",
+        "enum": [
+          "error",
+          "success",
+          "warning",
+          "neutral"
+        ],
+        "default": "error"
+      },
+      "showIcon": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "icon",
+            "attribute": "visible"
+          }
+        ]
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        173,
+        40
+      ]
+    },
+    {
+      "values": {
+        "tone": "success",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40.5,
+        76
+      ]
+    },
+    {
+      "values": {
+        "tone": "success",
+        "breakpoint": "0"
+      },
+      "position": [
+        173,
+        72
+      ]
+    },
+    {
+      "values": {
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        112
+      ]
+    },
+    {
+      "values": {
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        173,
+        104
+      ]
+    },
+    {
+      "values": {
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        148
+      ]
+    },
+    {
+      "values": {
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        173,
+        136
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "message": {
+        "as": "children",
+        "default": {
+          "text": "Message"
+        },
+        "controls": [
+          {
+            "layer": "message",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "icon",
+            "type": "instance",
+            "component": "icon/error"
+          },
+          {
+            "name": "message",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "when": {
+          "tone": "success"
+        },
+        "tree": [
+          {
+            "name": "icon",
+            "type": "instance",
+            "component": "icon/check-circle"
+          },
+          {
+            "name": "message",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "when": {
+          "tone": "warning"
+        },
+        "tree": [
+          {
+            "name": "icon",
+            "type": "instance",
+            "component": "icon/warning"
+          },
+          {
+            "name": "message",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "when": {
+          "tone": "neutral"
+        },
+        "tree": [
+          {
+            "name": "icon",
+            "type": "instance",
+            "component": "icon/info"
+          },
+          {
+            "name": "message",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "icon/check-circle",
+      "icon/error",
+      "icon/info",
+      "icon/warning"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "hug",
+          "sizingV": "hug"
+        }
+      },
+      "icon": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "icon/size/extra-small"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "icon/size/extra-small"
+          }
+        }
+      },
+      "icon/vector": {
+        "background": {
+          "token": "color/red/700"
+        }
+      },
+      "message": {
+        "textColor": {
+          "token": "color/red/700"
+        },
+        "textStyle": "caption/2/regular",
+        "layout": {
+          "textAlignVertical": "center"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "tone": "success"
+        },
+        "styles": {
+          "icon/vector": {
+            "background": {
+              "token": "color/green/700"
+            }
+          },
+          "message": {
+            "textColor": {
+              "token": "color/green/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "tone": "warning"
+        },
+        "styles": {
+          "icon/vector": {
+            "background": {
+              "token": "color/orange/700"
+            }
+          },
+          "message": {
+            "textColor": {
+              "token": "color/orange/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "tone": "neutral"
+        },
+        "styles": {
+          "icon/vector": {
+            "background": {
+              "token": "color/gray/700"
+            }
+          },
+          "message": {
+            "textColor": {
+              "token": "color/gray/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "color/gray/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
+    },
+    "color/green/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "4f3937bbac6af27537ef6ed88b048f7ab6e37608"
+    },
+    "color/orange/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f110ea9515a46b5770edb6fe44d9c343523e6d8c"
+    },
+    "color/red/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "adf5a69d4f184522878973debd0b0206086f1157"
+    },
+    "icon/size/extra-small": {
+      "library": "Fondations Canopée",
+      "collection": "Size",
+      "key": "e519598c6039fae5541d56b0787ac7c1c0ca7673"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
+    }
+  },
+  "textStyles": {
+    "caption/2/regular": {
+      "library": null,
+      "key": "a83d29cc7002b29250a14401fe001de7d0300bdf"
+    }
+  },
+  "components": {
+    "icon/check-circle": {
+      "library": null,
+      "key": "12141d35ab2b89f95abdfa1b2dd818df4e8f0abe"
+    },
+    "icon/error": {
+      "library": null,
+      "key": "cbaded91f196061dc22e81952c92e816ffabe937"
+    },
+    "icon/info": {
+      "library": null,
+      "key": "e3d543c08b72d9eb25bf55b895fe22e61a00cd3d"
+    },
+    "icon/warning": {
+      "library": null,
+      "key": "3b5fd650419ab21822210da5db263cecc3cd6f97"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/extra-small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.0"
+}
