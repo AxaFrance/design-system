@@ -58,7 +58,7 @@ Le contraste du focus est d'au moins 3:1 avec les couleurs qui le touchent, comm
 | default | Le fond est coloré, color/white ou absent. | Button primary : fond color/blue/600. _PaginationItem : sans fond, texte color/blue/600. FormCard : fond color/white, border color/gray/500, 1 px. | Aucune. |
 | hover | Le fond passe à la nuance suivante de sa couleur. Un fond blanc ou transparent passe en color/gray/100. | Button primary : color/blue/600 → color/blue/700. _PaginationItem, sans fond : → color/gray/100. Switch : son fond est la piste, color/gray/500 → color/gray/600. | Button et IconButton en hierarchy=secondary ou tertiary, et tous les Button et IconButton en colorScheme=inverse : fond color/blue/100, puis color/blue/200 au press. Exemple : Button primary en colorScheme=inverse, fond color/white → color/blue/100. |
 | focus | Un composant compact, de type bouton (Button, IconButton, _PaginationItem, Switch), prend une outline color/blue/400, 2 px, avec un outline-offset de 2 px, même s'il a une border. Une surface (FormCard, _LevelSelectorStep, _SelectListItem) prend le focus sur sa border, qui passe en color/blue/400, 2 px, sans outline. | Button secondary : fond color/blue/100, comme au hover, et une outline color/blue/400, 2 px. Sa border ne change pas. FormCard : border color/gray/500, 1 px → color/blue/400, 2 px. | Aucune. |
-| press | Une nuance de plus que le hover. | Button primary : fond color/blue/600 → color/blue/800. Button secondary : sans fond → fond color/blue/200. | Aucune. |
+| press | Une nuance de plus que le hover. | Button primary : fond color/blue/600 → color/blue/800. Button secondary : sans fond → fond color/blue/200. | Switch : pas de press, car sa poignée bouge dès l'appui. |
 
 ### Contour
 
@@ -111,7 +111,7 @@ disabled=true n'existe qu'avec state=default : un composant désactivé n'a ni h
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
 | checked, current | Fond plein color/blue/600. Le texte et l'icône posés dessus passent en color/white. | _LevelSelectorStep en checked=true : fond color/blue/600, texte color/white. | FormCard : border color/blue/600, 2 px, sans fond. _SelectListItem : c'est sa Checkbox qui prend l'état checked. |
-| checked, current + hover | Le hover s'ajoute : fond color/gray/100, et l'état checked reste visible. | FormCard en checked=true et state=hover : fond color/gray/100, border color/blue/600, 2 px. | _PaginationItem, _LevelSelectorStep, Switch : pas de hover, l'élément garde son rendu checked ou current. |
+| checked, current + hover | Le hover s'ajoute : fond color/gray/100, et l'état checked reste visible. | FormCard en checked=true et state=hover : fond color/gray/100, border color/blue/600, 2 px. | _PaginationItem, _LevelSelectorStep : pas de hover, l'élément garde son rendu checked ou current. Switch : la piste et l'icône passent à la nuance suivante, color/blue/600 → color/blue/700. |
 
 ### Contour
 
