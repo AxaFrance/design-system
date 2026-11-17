@@ -19,7 +19,7 @@ Le Button déclenche une action dans la page. Son importance se règle avec hier
 - Naviguer vers une autre page : prendre Link.
 - Une action représentée par une icône seule : prendre IconButton.
 - Activer ou désactiver une option : prendre Switch.
-- Choisir une option parmi plusieurs : prendre CardRadio.
+- Choisir une option parmi plusieurs : prendre FormCard.
 
 ## Règles selon les propriétés
 
@@ -189,7 +189,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 16/10/26.** Button garde trois niveaux et une seule logique d'interaction : chaque état descend d'un cran dans la même palette, et le focus reprend le survol avec un anneau. Le secondary devient un bouton plein clair. Le bouton à contour, le secondary inverse et le ghost disparaissent. Le code sera mis à jour pour suivre.
 - **1.0.0 - 16/10/26.** La taille d'écran passe par les modes de variables, et non par des variantes. Le composant a un mode par défaut, desktop, et le mode mobile se choisit sur l'instance (23/10/26).
 - **1.0.0 - 23/10/26.** Le code actuel correspond à l'ancien Button et à l'ancienne nomenclature. Il sera mis à jour pour suivre ce composant. Le tableau des écarts relie donc les niveaux par leur nom, et non par leur rendu actuel, et il se videra quand le code aura suivi.
-- **1.0.0 - 23/10/26.** Les règles ajoutées en rédigeant la fiche sont validées : les alternatives Link, ClickIcon, Toggle et CardRadio, la règle de disabled=true, et les seuils de contraste et de taille.
+- **1.0.0 - 23/10/26.** Les règles ajoutées en rédigeant la fiche sont validées : les alternatives Link, IconButton, Switch et FormCard, la règle de disabled=true, et les seuils de contraste et de taille.
 - **1.0.0 - 23/10/26.** Les règles de Comportement, d'Accessibilité et de Rédaction, reprises de la page Zeroheight de Button Primary, valent pour tous les niveaux.
 - **1.0.0 - 23/10/26.** Le thème passe par une variante `_theme`, prospect ou client, parce que la forme change : l'arrondi et les marges. Les modes de variables restent réservés aux thèmes de couleurs. Le composant n'utilise que des variables de Fondations.
 - **1.0.0 - 16/10/26.** Les actions « Modifier » et « En savoir plus » de _FormLabel ne passent pas par Button, mais par un sous-composant propre à _FormLabel.

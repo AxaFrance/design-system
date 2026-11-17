@@ -37,7 +37,7 @@ Une propriété de contenu remplit un élément du composant : un texte, une ico
 
 | Propriété | Type Figma | Valeurs | À quoi elle sert | Existe côté code |
 |---|---|---|---|---|
-| label, title, subtitle, description, caption, helper, message | Texte | Texte libre | Le rôle du texte, pas sa place. Exemple : label pour un bouton ou un CardRadio, title pour une carte de contenu, message pour une erreur. | Oui, parfois sous un autre nom |
+| label, title, subtitle, description, caption, helper, message | Texte | Texte libre | Le rôle du texte, pas sa place. Exemple : label pour un bouton ou une FormCard, title pour une carte de contenu, message pour une erreur. | Oui, parfois sous un autre nom |
 | placeholder, value | Texte | Texte libre | Le texte d'un champ : placeholder quand il est vide, value quand il est rempli. Les deux remplissent le calque value. | Oui |
 | icon, leftIcon, rightIcon | Instance swap | Une instance de la librairie | Toujours icon, quel que soit son usage, avec left ou right seulement s'il y en a deux. | Oui, parfois sous un autre nom |
 | children, header, actions | Slot | Des éléments libres | Une zone libre du composant. La principale s'appelle children, comme dans le code, les autres portent le nom de leur rôle. Exemple : header pour l'en-tête, actions pour les boutons. | Oui, parfois sous un autre nom |
