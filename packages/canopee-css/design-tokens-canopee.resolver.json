@@ -5,7 +5,7 @@
     "fr.axa.canopee": {
       "source": "Fondations Canopée",
       "plugin": "0.32.0",
-      "date": "2026-11-13T09:35:56Z"
+      "date": "2026-11-16T14:07:45Z"
     }
   },
   "sets": {
@@ -1391,6 +1391,14 @@
               }
             },
             "size": {
+              "12": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 12,
+                  "unit": "px"
+                },
+                "$description": "Taille de texte de 12 px, soit 0.75rem dans le code."
+              },
               "13": {
                 "$type": "dimension",
                 "$value": {
@@ -1819,7 +1827,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style body/2/regular."
                 }
               },
@@ -1841,7 +1849,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style body/2/semibold."
                 }
               }
@@ -1865,7 +1873,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.18}",
+                  "$value": "{font.line-height.20}",
                   "$description": "Interligne du style body/3/regular."
                 }
               },
@@ -1887,7 +1895,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.18}",
+                  "$value": "{font.line-height.20}",
                   "$description": "Interligne du style body/3/semibold."
                 }
               }
@@ -1913,7 +1921,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style caption/1/regular."
                 }
               }
@@ -1927,7 +1935,7 @@
                 },
                 "font-size": {
                   "$type": "dimension",
-                  "$value": "{font.size.16}",
+                  "$value": "{font.size.14}",
                   "$description": "Taille de texte du style caption/2/regular."
                 },
                 "font-weight": {
@@ -2099,7 +2107,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style label/2/regular."
                 }
               },
@@ -2121,7 +2129,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style label/2/semibold."
                 }
               }
@@ -2145,7 +2153,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.18}",
+                  "$value": "{font.line-height.20}",
                   "$description": "Interligne du style label/3/regular."
                 }
               },
@@ -2167,7 +2175,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.18}",
+                  "$value": "{font.line-height.20}",
                   "$description": "Interligne du style label/3/semibold."
                 }
               }
@@ -2217,7 +2225,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style subtitle/2/regular."
                 }
               },
@@ -2239,7 +2247,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style subtitle/2/semibold."
                 }
               }
@@ -2263,7 +2271,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.18}",
+                  "$value": "{font.line-height.20}",
                   "$description": "Interligne du style subtitle/3/regular."
                 }
               }
@@ -2335,7 +2343,7 @@
                 },
                 "line-height": {
                   "$type": "dimension",
-                  "$value": "{font.line-height.20}",
+                  "$value": "{font.line-height.24}",
                   "$description": "Interligne du style title/2/semibold."
                 }
               }
@@ -2816,11 +2824,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style body/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style body/1/regular."
                   }
                 },
                 "semibold": {
@@ -2828,11 +2831,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style body/1/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style body/1/semibold."
                   }
                 }
               },
@@ -2845,7 +2843,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style body/2/regular."
                   }
                 },
@@ -2857,7 +2855,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style body/2/semibold."
                   }
                 }
@@ -2873,7 +2871,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style caption/1/regular."
                   }
                 }
@@ -2882,12 +2880,12 @@
                 "regular": {
                   "font-size": {
                     "$type": "dimension",
-                    "$value": "{font.size.14}",
+                    "$value": "{font.size.12}",
                     "$description": "Taille de texte du style caption/2/regular."
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.16}",
                     "$description": "Interligne du style caption/2/regular."
                   }
                 }
@@ -2945,11 +2943,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style label/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style label/1/regular."
                   }
                 },
                 "semibold": {
@@ -2957,11 +2950,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style label/1/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style label/1/semibold."
                   }
                 }
               },
@@ -2974,7 +2962,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style label/2/regular."
                   }
                 },
@@ -2986,7 +2974,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style label/2/semibold."
                   }
                 }
@@ -2999,11 +2987,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style subtitle/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style subtitle/1/regular."
                   }
                 }
               },
@@ -3016,7 +2999,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style subtitle/2/regular."
                   }
                 },
@@ -3028,7 +3011,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style subtitle/2/semibold."
                   }
                 }
@@ -3041,11 +3024,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style title/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style title/1/regular."
                   }
                 },
                 "semibold": {
@@ -3053,11 +3031,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style title/1/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style title/1/semibold."
                   }
                 }
               },
@@ -3070,7 +3043,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style title/2/semibold."
                   }
                 }
@@ -3100,11 +3073,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style body/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style body/1/regular."
                   }
                 },
                 "semibold": {
@@ -3112,11 +3080,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style body/1/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style body/1/semibold."
                   }
                 }
               },
@@ -3129,7 +3092,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style body/2/regular."
                   }
                 },
@@ -3141,7 +3104,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style body/2/semibold."
                   }
                 }
@@ -3157,7 +3120,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style caption/1/regular."
                   }
                 }
@@ -3166,12 +3129,12 @@
                 "regular": {
                   "font-size": {
                     "$type": "dimension",
-                    "$value": "{font.size.14}",
+                    "$value": "{font.size.12}",
                     "$description": "Taille de texte du style caption/2/regular."
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.16}",
                     "$description": "Interligne du style caption/2/regular."
                   }
                 }
@@ -3234,11 +3197,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style label/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style label/1/regular."
                   }
                 },
                 "semibold": {
@@ -3246,11 +3204,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style label/1/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style label/1/semibold."
                   }
                 }
               },
@@ -3263,7 +3216,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style label/2/regular."
                   }
                 },
@@ -3275,7 +3228,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style label/2/semibold."
                   }
                 }
@@ -3288,11 +3241,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style subtitle/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style subtitle/1/regular."
                   }
                 }
               },
@@ -3305,7 +3253,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style subtitle/2/regular."
                   }
                 },
@@ -3317,7 +3265,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style subtitle/2/semibold."
                   }
                 }
@@ -3330,11 +3278,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style title/1/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style title/1/regular."
                   }
                 },
                 "semibold": {
@@ -3342,11 +3285,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.16}",
                     "$description": "Taille de texte du style title/1/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style title/1/semibold."
                   }
                 }
               },
@@ -3359,7 +3297,7 @@
                   },
                   "line-height": {
                     "$type": "dimension",
-                    "$value": "{font.line-height.18}",
+                    "$value": "{font.line-height.20}",
                     "$description": "Interligne du style title/2/semibold."
                   }
                 }
@@ -3392,11 +3330,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.15}",
                     "$description": "Taille de texte du style body/3/regular."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style body/3/regular."
                   }
                 },
                 "semibold": {
@@ -3404,11 +3337,6 @@
                     "$type": "dimension",
                     "$value": "{font.size.15}",
                     "$description": "Taille de texte du style body/3/semibold."
-                  },
-                  "line-height": {
-                    "$type": "dimension",
-                    "$value": "{font.line-height.20}",
-                    "$description": "Interligne du style body/3/semibold."
                   }
                 }
               }
@@ -3607,6 +3535,15 @@
                     "$type": "dimension",
                     "$value": "{font.line-height.22}",
                     "$description": "Interligne du style subtitle/2/semibold."
+                  }
+                }
+              },
+              "3": {
+                "regular": {
+                  "line-height": {
+                    "$type": "dimension",
+                    "$value": "{font.line-height.18}",
+                    "$description": "Interligne du style subtitle/3/regular."
                   }
                 }
               }
