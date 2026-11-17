@@ -16,7 +16,7 @@ Le Button déclenche une action dans la page. Son importance se règle avec hier
 
 ### À ne pas utiliser pour
 
-- Naviguer vers une autre page : prendre Link.
+- Naviguer vers une autre page : prendre Link. Seule exception, un appel à l'action qui doit avoir l'apparence d'un bouton, comme « Obtenir un tarif » : Button dans la maquette, et Link avec la `variant` du même niveau dans le code, comme `button-primary`.
 - Une action représentée par une icône seule : prendre IconButton.
 - Activer ou désactiver une option : prendre Switch.
 - Choisir une option parmi plusieurs : prendre FormCard.
@@ -210,6 +210,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 16/11/26.** Button a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024. Sur desktop, les hauteurs restent celles du 30/10/26 : 56, 48 et 32 px. Sur mobile, size=large mesure 48 px, size=medium 40 px et size=small 32 px. Cette décision remplace celle du 16/10/26, qui gérait la taille d'écran avec les modes de variables.
 - **1.0.0 - 16/11/26.** Dans Figma, la hauteur de chaque taille est une hauteur minimale. Un contenu plus haut agrandit le bouton, mais le bouton ne descend jamais sous cette hauteur.
 - **1.0.0 - 17/11/26.** Le Button prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, le texte, l'icône, le Spinner et la border passent en color/blue/600.
+- **1.0.0 - 17/11/26.** Un appel à l'action qui mène vers une autre page garde l'apparence d'un Button dans la maquette, mais devient un Link dans le code, pour rester un lien. Le Link du code a pour cela des variantes `button-primary`, `button-secondary`… MUI et Polaris font de même, avec un bouton qui accepte une adresse.
 
 ## Points ouverts
 
