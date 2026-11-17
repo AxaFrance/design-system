@@ -25,3 +25,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | _FormLabel | [_formlabel.md](_formlabel/_formlabel.md) | [_formlabel.json](_formlabel/_formlabel.json) | [_formlabel-changelog.md](_formlabel/_formlabel-changelog.md) |
 | _FormHelperText | [_formhelpertext.md](_formhelpertext/_formhelpertext.md) | [_formhelpertext.json](_formhelpertext/_formhelpertext.json) | [_formhelpertext-changelog.md](_formhelpertext/_formhelpertext-changelog.md) |
 | Stepper | [stepper.md](stepper/stepper.md) | [stepper.json](stepper/stepper.json) | [stepper-changelog.md](stepper/stepper-changelog.md) |
+| Switch | [switch.md](switch/switch.md) | [switch.json](switch/switch.json) | [switch-changelog.md](switch/switch-changelog.md) |

@@ -1,0 +1,830 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Switch",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "87be75e4b6a4d6d35a7c71451d39f33bb18bc455",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/switch/switch.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "state": {
+        "type": "enum",
+        "enum": [
+          "default",
+          "hover",
+          "focus"
+        ],
+        "default": "default"
+      },
+      "disabled": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "checked": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "showLabel": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "visible"
+          }
+        ]
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "checked": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        348,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "checked": "true",
+        "breakpoint": "1024"
+      },
+      "position": [
+        162,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "checked": "true",
+        "breakpoint": "0"
+      },
+      "position": [
+        465,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "checked": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        184
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        348,
+        184
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "checked": "true",
+        "breakpoint": "1024"
+      },
+      "position": [
+        162,
+        184
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "checked": "true",
+        "breakpoint": "0"
+      },
+      "position": [
+        465,
+        184
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "checked": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        88
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        348,
+        88
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "checked": "true",
+        "breakpoint": "1024"
+      },
+      "position": [
+        162,
+        88
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "checked": "true",
+        "breakpoint": "0"
+      },
+      "position": [
+        465,
+        88
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "checked": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        136
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        348,
+        136
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "checked": "true",
+        "breakpoint": "1024"
+      },
+      "position": [
+        162,
+        136
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "checked": "true",
+        "breakpoint": "0"
+      },
+      "position": [
+        465,
+        136
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "label": {
+        "as": "children",
+        "default": {
+          "text": "Label"
+        },
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "handle",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/cross"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "label",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": [
+            "default",
+            "hover"
+          ],
+          "checked": "true"
+        },
+        "tree": [
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "handle",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/check"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "label",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "checked": "false"
+        },
+        "tree": [
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "handle",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/cross"
+                  }
+                ]
+              },
+              {
+                "name": "focus-ring",
+                "type": "frame"
+              }
+            ]
+          },
+          {
+            "name": "label",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "checked": "true"
+        },
+        "tree": [
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "handle",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/check"
+                  }
+                ]
+              },
+              {
+                "name": "focus-ring",
+                "type": "frame"
+              }
+            ]
+          },
+          {
+            "name": "label",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "icon/check",
+      "icon/cross"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "state": "default",
+        "disabled": "false",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "hug",
+          "sizingV": "hug"
+        }
+      },
+      "input": {
+        "background": {
+          "token": "color/gray/500"
+        },
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/2"
+          },
+          "right": {
+            "token": "spacing/2"
+          },
+          "bottom": {
+            "token": "spacing/2"
+          },
+          "left": {
+            "token": "spacing/2"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/24"
+          }
+        }
+      },
+      "handle": {
+        "background": {
+          "token": "color/white"
+        },
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/2"
+          },
+          "right": {
+            "token": "spacing/2"
+          },
+          "bottom": {
+            "token": "spacing/2"
+          },
+          "left": {
+            "token": "spacing/2"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center"
+        }
+      },
+      "icon": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "icon/size/extra-small"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "icon/size/extra-small"
+          }
+        }
+      },
+      "icon/vector": {
+        "background": {
+          "token": "color/gray/500"
+        }
+      },
+      "label": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "label/1/regular"
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          }
+        }
+      },
+      {
+        "when": {
+          "checked": "true"
+        },
+        "styles": {
+          "input": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "end",
+              "crossAlign": "center",
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/40"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/24"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus"
+        },
+        "styles": {
+          "focus-ring": {
+            "stroke": {
+              "token": "color/blue/400"
+            },
+            "strokeWeight": {
+              "token": "border/width/2"
+            },
+            "strokeAlign": "inside",
+            "radius": {
+              "token": "border/radius/full"
+            },
+            "layout": {
+              "absolute": true,
+              "x": -4,
+              "y": -4,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 48
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 32
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "disabled": "true"
+        },
+        "styles": {
+          "input": {
+            "background": {
+              "token": "color/gray/300"
+            }
+          },
+          "handle": {
+            "background": {
+              "token": "color/gray/100"
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/gray/400"
+            }
+          },
+          "label": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover",
+          "checked": "false"
+        },
+        "styles": {
+          "input": {
+            "background": {
+              "token": "color/gray/600"
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/gray/600"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "checked": "false"
+        },
+        "styles": {
+          "input": {
+            "background": {
+              "token": "color/gray/600"
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/gray/600"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover",
+          "checked": "true"
+        },
+        "styles": {
+          "input": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "checked": "true"
+        },
+        "styles": {
+          "input": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "false",
+          "checked": "true"
+        },
+        "styles": {
+          "input": {
+            "background": {
+              "token": "color/blue/600"
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/blue/600"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
+    },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
+    },
+    "color/gray/300": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9973e98ffd3af230076688cc4d4a5e00cf60eaed"
+    },
+    "color/gray/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "eaff1ed01f768ac5086ba33fed8a6e56d3c91536"
+    },
+    "color/gray/500": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b70dd74bd6ce12b6892e6bf6f0bcaca0e74ffe5a"
+    },
+    "color/gray/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d12a13846395d779ce6239438a435137917d7841"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "icon/size/extra-small": {
+      "library": "Fondations Canopée",
+      "collection": "Size",
+      "key": "e519598c6039fae5541d56b0787ac7c1c0ca7673"
+    },
+    "size/24": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "5e38d21160185c1068f481ef9380b4cfb8321532"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    },
+    "spacing/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e87f2294ffcf1cc7e76196ee612ceffc9fb4b2aa"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "label/1/regular": {
+      "library": null,
+      "key": "25d5f460b082ed62adea298eec870f2fdb097ee7"
+    }
+  },
+  "components": {
+    "icon/check": {
+      "library": null,
+      "key": "25f6b9c78953f72ec91ab4874c16ff60ca8aacd3"
+    },
+    "icon/cross": {
+      "library": null,
+      "key": "a00941610fd7d9c5487caf18b45b447da2641fd6"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/extra-small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.0"
+}
