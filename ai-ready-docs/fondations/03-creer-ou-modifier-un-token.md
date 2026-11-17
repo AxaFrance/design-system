@@ -137,7 +137,7 @@ Le niveau décrit le changement des tokens. Les développeurs de Canopée décid
 
 ## Déprécier un token
 
-Un token qui ne doit plus servir n'est pas supprimé tout de suite. Il est d'abord déprécié, pour laisser aux designers et aux développeurs le temps de le remplacer dans leurs fichiers et leur code. Il est supprimé à la version majeure suivante de Canopée.
+Un token qui ne doit plus servir n'est pas supprimé tout de suite. Il est d'abord déprécié, pour laisser aux designers et aux développeurs le temps de le remplacer dans leurs fichiers et leur code. Il est supprimé dans une version suivante de Canopée, mineure elle aussi.
 
 ### Déprécier
 
@@ -147,13 +147,13 @@ L'équipe design system :
 2. Retire tous les scopes de la variable. Elle n'apparaît plus dans les sélecteurs de Figma, mais les fichiers qui l'utilisent continuent de fonctionner.
 3. Dépose le changement sur GitHub avec le plugin, comme décrit à l'étape 4 « Déposer sur GitHub ». Le plugin compte le token comme déprécié, ce qui donne une version mineure.
 
-Quand le token a un remplaçant, sa valeur est souvent reliée à ce nouveau token, sous forme d'alias. Les projets qui ne sont pas encore à jour affichent ainsi déjà la nouvelle valeur. Cette phase de transition dure jusqu'à la version majeure suivante.
+Quand le token a un remplaçant, sa valeur est souvent reliée à ce nouveau token, sous forme d'alias. Les projets qui ne sont pas encore à jour affichent ainsi déjà la nouvelle valeur. Cette phase de transition dure au moins une version.
 
 La variable ne doit être ni renommée, ni masquée à la publication. Dans le code, elle reste disponible jusqu'à sa suppression.
 
 ### Supprimer
 
-Les tokens dépréciés sont supprimés tous ensemble, à la version majeure suivante de Canopée. Les développeurs de Canopée décident quand elle sort. L'équipe design system supprime alors les variables dans Fondations Canopée, puis dépose le changement sur GitHub avec le plugin.
+Un token déprécié est supprimé au plus tôt dans la version suivante de Canopée. Le plugin compte la suppression comme un changement mineur. L'équipe design system supprime la variable dans Fondations Canopée, puis dépose le changement sur GitHub avec le plugin.
 
 ## Installer le plugin
 
