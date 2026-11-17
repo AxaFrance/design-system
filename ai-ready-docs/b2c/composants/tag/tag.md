@@ -16,7 +16,7 @@ Le Tag est un texte court et non cliquable, qui donne le statut ou la catégorie
 
 ### À ne pas utiliser pour
 
-- Plusieurs statuts ou catégories sur un même élément : prendre TagList.
+- Plusieurs statuts ou catégories sur un même élément : Non documenté.
 - Une information longue, de plus de deux mots : écrire un texte à côté de l'élément.
 - Une action : prendre Button.
 - Un lien : prendre Link.
@@ -147,7 +147,7 @@ Ces noms désignent Tag. Le seul nom à employer est Tag.
 - **Fond de tone=success.** Sans bordure, le fond très pâle de tone=success se distingue mal d'une page blanche. En attendant : signaler.
 - **Palier de la couleur du texte.** Le texte prend le palier 700 dans tous les tons, car le palier 600 n'atteint pas le contraste AA (WCAG) avec les palettes actuelles. L'équipe design system prévoit de retravailler les palettes pour que le palier 600 l'atteigne, puis de passer le texte en 600. En attendant : 700.
 - **Retour à la ligne dans le code.** Le code n'empêche pas un texte long de passer à la ligne. En attendant : respecter la limite de 21 caractères.
-- **Plusieurs tags sur un même élément.** L'ancienne documentation du B2C l'interdit, alors que le code a un composant TagList. En attendant : TagList.
+- **Plusieurs tags sur un même élément.** L'ancienne documentation du B2C l'interdit, alors que le code a un composant TagList. En attendant : signaler.
 - **Information ou warning.** La frontière entre une action possible (tone=information) et une action attendue (tone=warning) n'est pas écrite dans l'ancienne documentation du B2C. Cette fiche la reprend de l'usage courant des design systems du marché. En attendant : elle s'applique.
 - **Filtre.** Canopée n'a pas de composant de filtre pour le B2C. En attendant : signaler.
 - **Annonce d'un statut qui change.** Canopée ne fournit pas de composant pour faire cette annonce. En attendant : une zone `aria-live` dans la page.

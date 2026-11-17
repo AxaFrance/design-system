@@ -61,7 +61,7 @@ Le Button des actions du Header.
 
 ### size=small
 
-Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost. Exemples : le bouton d'un ContentItemDuoAction, ou celui d'un Message qui propose une action.
+Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Exemple : l'action d'une alerte ou d'une ligne de liste.
 
 ### breakpoint=0
 

@@ -46,7 +46,7 @@ La taille par défaut, quand le composant qui contient l'IconButton n'est pas cl
 
 ### size=x-small
 
-Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'action à droite d'un ClickItem, une ligne cliquable.
+Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'action à droite d'une ligne de liste cliquable en entier.
 
 ## Exemples
 
@@ -152,7 +152,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **1.0.0 - 27/10/26.** IconButton reprend les propriétés, les couleurs et l'anneau de focus de Button, pour que les deux composants restent cohérents.
 - **1.0.0 - 30/10/26.** Comme pour Button, le secondary redevient un bouton à contour. Au survol et à l'appui, il prend le fond du tertiary dans le même état.
 - **1.0.0 - 30/10/26.** IconButton reprend les deux tailles de l'ancien ClickIcon : size=small (40 px), la valeur par défaut, et size=x-small (24 px). La taille de 56 px disparaît.
-- **1.0.0 - 02/11/26.** size=small sert quand le composant qui contient l'IconButton n'est pas cliquable lui-même, comme une fenêtre modale. size=x-small sert dans un composant déjà cliquable en entier, comme ClickItem.
+- **1.0.0 - 02/11/26.** size=small sert quand le composant qui contient l'IconButton n'est pas cliquable lui-même, comme une fenêtre modale. size=x-small sert dans un composant déjà cliquable en entier, comme une ligne de liste cliquable en entier.
 - **1.0.0 - 02/11/26.** IconButton n'a pas de colorScheme business, contrairement à Button. Une souscription demande un libellé, donc un Button.
 - **1.0.0 - 04/11/26.** Comme pour Button, le secondary et le tertiary n'ont pas de fond au repos. Le bouton désactivé garde son fond gris.
 - **1.0.0 - 17/11/26.** L'IconButton prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, l'icône et la border passent en color/blue/600.
