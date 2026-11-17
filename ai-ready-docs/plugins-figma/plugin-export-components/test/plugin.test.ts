@@ -4427,9 +4427,26 @@ describe("check-sheet.mjs", () => {
     }
   });
   it("a JSON without a design tokens version exits with 1", () => {
-    const r = check(sheet(), { tokensVersion: null });
+    const r = check(sheet(), { tokensVersion: undefined });
     expect(r.code).toBe(1);
     expect(r.output).toMatch(/ERREUR {4}JSON sans version des design tokens/);
+  });
+  it("a null design tokens version asks for the unpublished tokens line", () => {
+    const unpublished =
+      "Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée.";
+    const ok = check(sheet({ tokens: unpublished }), { tokensVersion: null });
+    expect(ok.code, ok.output).toBe(0);
+    expect(!/JSON sans version des design tokens/.test(ok.output)).toBeTruthy();
+    for (const tokens of [
+      "Utilise les design tokens de Canopée X.Y.Z ou d'une version plus récente.",
+      "Utilise les design tokens de Canopée 2.0.0 ou d'une version plus récente.",
+    ]) {
+      const r = check(sheet({ tokens }), { tokensVersion: null });
+      expect(r.code, tokens).toBe(1);
+      expect(r.output).toMatch(
+        /ERREUR {4}La ligne des design tokens ne suit pas le titre : « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée\. »/,
+      );
+    }
   });
   it("a JSON without a version exits with 1, without an absurd title", () => {
     const r = check(sheet(), { version: null });

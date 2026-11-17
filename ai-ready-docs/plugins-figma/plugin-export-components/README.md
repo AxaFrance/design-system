@@ -168,10 +168,10 @@ Ce plugin est dérivé du kit Component as Data d'Alexis Vaysse, sous licence MI
 `node scripts/check-sheet.mjs <fiche.md> <fiche.json>` contrôle que chaque `propriété=valeur` citée dans le Markdown existe dans le JSON, que les propriétés du tableau des écarts existent, et signale les valeurs de variante qui n'ont pas de règle. Il contrôle aussi :
 
 - que le titre de la fiche est exactement `# <meta.name> <meta.version>` ;
-- que la ligne suivante, après une ligne vide, est « Utilise les design tokens de Canopée <meta.tokensVersion> ou d'une version plus récente. » ;
+- que la ligne suivante, après une ligne vide, est « Utilise les design tokens de Canopée <meta.tokensVersion> ou d'une version plus récente. », ou « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée. » quand `meta.tokensVersion` vaut `null` ;
 - que chaque décision de la rubrique « Décisions » commence par `- **X.Y.Z - JJ/MM/AA.**`, sans version plus récente que `meta.version` ;
 - que chaque point ouvert finit par « En attendant : » ;
 - que le lien Storybook renseigné dans Figma figure dans la rubrique Code ;
 - que la consigne pour l'IA est la dernière rubrique, mot pour mot comme dans la trame.
 
-Il sort en erreur si une propriété ou une valeur est inconnue, si la version ou la version des design tokens manque dans le JSON, si le titre, la consigne ou la ligne des design tokens ne sont pas ceux attendus, si une décision n'a pas sa version et sa date, si un point ouvert ne dit pas ce qui s'applique en attendant ou si le lien Storybook manque.
+Il sort en erreur si une propriété ou une valeur est inconnue, si la version manque dans le JSON, ou si `meta.tokensVersion` n'y figure pas, si le titre, la consigne ou la ligne des design tokens ne sont pas ceux attendus, si une décision n'a pas sa version et sa date, si un point ouvert ne dit pas ce qui s'applique en attendant ou si le lien Storybook manque.

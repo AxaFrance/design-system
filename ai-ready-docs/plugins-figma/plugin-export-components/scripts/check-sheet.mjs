@@ -144,14 +144,23 @@ else if (
       meta.version +
       " »",
   );
-if (!versionPattern.test(String(meta.tokensVersion)))
+// A null tokensVersion means that no published version holds the tokens of the component, with
+// their values: the sheet then says so in its own line.
+const UNPUBLISHED_TOKENS_LINE =
+  "Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée.";
+if (
+  meta.tokensVersion !== null &&
+  !versionPattern.test(String(meta.tokensVersion))
+)
   errors.push("JSON sans version des design tokens");
 else {
   const lines = (text.split(/^# .*$/m)[1] || "").split("\n");
   const expectedLine =
-    "Utilise les design tokens de Canopée " +
-    meta.tokensVersion +
-    " ou d'une version plus récente.";
+    meta.tokensVersion === null
+      ? UNPUBLISHED_TOKENS_LINE
+      : "Utilise les design tokens de Canopée " +
+        meta.tokensVersion +
+        " ou d'une version plus récente.";
   if (lines.find((l) => l.trim() !== "") !== expectedLine)
     errors.push(
       "La ligne des design tokens ne suit pas le titre : « " +
