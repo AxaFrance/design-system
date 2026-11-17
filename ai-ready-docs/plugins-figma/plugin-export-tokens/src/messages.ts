@@ -68,7 +68,7 @@ export interface ModifiedEntry extends DiffMeta {
   fields?: FieldDiff[];
 }
 
-export type DiffLevel = "minor" | "patch" | null;
+export type DiffLevel = "major" | "minor" | "patch" | null;
 
 export interface DiffResult {
   added: DiffEntry[];

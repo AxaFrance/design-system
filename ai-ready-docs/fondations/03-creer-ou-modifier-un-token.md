@@ -129,8 +129,8 @@ Le plugin donne un niveau à chaque dépôt, qui choisit son message de commit.
 
 | Changement | Niveau |
 |---|---|
-| Une refonte complète des tokens, cochée dans le plugin | Majeur |
-| Un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change | Mineur |
+| Un ou plusieurs tokens supprimés, ou une refonte complète des tokens, cochée dans le plugin | Majeur |
+| Un ou plusieurs tokens ajoutés ou dépréciés, ou dont le type change | Mineur |
 | Une ou plusieurs valeurs ou descriptions modifiées | Patch |
 
 Le niveau décrit le changement des tokens. Les développeurs de Canopée décident de la version du package. Cette règle est une proposition, à valider avec les développeurs de Canopée.

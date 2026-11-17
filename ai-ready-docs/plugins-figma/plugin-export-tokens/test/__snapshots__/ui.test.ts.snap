@@ -2,7 +2,7 @@
 
 exports[`UI and plugin: end-to-end journeys > "Comparé à" menu: choosing a published version compares with the code file of that version 1`] = `
 {
-  "after": "Design tokens Fondations Canopée Télécharger le fichier 1 collection, 4 variables, 0 style Changements1 suppriméMINEUR1 suppriméProchaine version : 2.2.0SUPPRIMÉspacing/88 pxComparé àle code actuella version 2.1.0la version 2.0.0un autre fichier… Déposer sur GitHub Rien à déposer : les tokens sont identiques au code.",
+  "after": "Design tokens Fondations Canopée Télécharger le fichier 1 collection, 4 variables, 0 style Changements1 suppriméMAJEUR1 suppriméProchaine version : 3.0.0SUPPRIMÉspacing/88 pxComparé àle code actuella version 2.1.0la version 2.0.0un autre fichier… Déposer sur GitHub Rien à déposer : les tokens sont identiques au code.",
   "before": "Design tokens Fondations Canopée Télécharger le fichier 1 collection, 4 variables, 0 style ChangementsAucun changement : les tokens sont identiques au code.Comparé àle code actuella version 2.1.0la version 2.0.0un autre fichier… Déposer sur GitHub Rien à déposer : les tokens sont identiques au code.",
 }
 `;
@@ -25,8 +25,8 @@ exports[`UI and plugin: end-to-end journeys > (e) the resize messages of the UI 
 
 exports[`UI and plugin: end-to-end journeys > (f) the comparison with the code file shows the "Changements" card 1`] = `
 {
-  "collapsed": "Design tokens Fondations Canopée Télécharger le fichier 1 collection, 4 variables, 0 style Changements1 ajouté, 1 modifié, 1 suppriméMINEUR Déposer sur GitHub",
-  "expanded": "Design tokens Fondations Canopée Télécharger le fichier 1 collection, 4 variables, 0 style Changements1 ajouté, 1 modifié, 1 suppriméMINEUR1 ajouté1 modifié1 suppriméAJOUTÉspacing/22 pxMODIFIÉcolor/blue/700#000080 → #00008FSUPPRIMÉspacing/88 pxComparé àle code actuella version 2.1.0la version 2.0.0un autre fichier… Déposer sur GitHub",
+  "collapsed": "Design tokens Fondations Canopée Télécharger le fichier 1 collection, 4 variables, 0 style Changements1 ajouté, 1 modifié, 1 suppriméMAJEUR Déposer sur GitHub",
+  "expanded": "Design tokens Fondations Canopée Télécharger le fichier 1 collection, 4 variables, 0 style Changements1 ajouté, 1 modifié, 1 suppriméMAJEUR1 ajouté1 modifié1 suppriméAJOUTÉspacing/22 pxMODIFIÉcolor/blue/700#000080 → #00008FSUPPRIMÉspacing/88 pxComparé àle code actuella version 2.1.0la version 2.0.0un autre fichier… Déposer sur GitHub",
 }
 `;
 
