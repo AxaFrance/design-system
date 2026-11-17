@@ -77,8 +77,8 @@ Pour un token de contexte de modifier, le mode s'affiche sous le nom, par exempl
 
 Une étiquette donne le niveau du changement, du plus élevé au plus bas :
 
-- **Majeur** : un ou plusieurs tokens supprimés, car leur suppression casse le code qui les utilise, ou une refonte complète des tokens. Le plugin ne devine pas une refonte, l'équipe design system coche la case au dépôt.
-- **Mineur** : un ou plusieurs tokens ajoutés ou dépréciés, ou dont le type change.
+- **Majeur** : une refonte complète des tokens. Le plugin ne la devine pas, l'équipe design system coche la case au dépôt.
+- **Mineur** : un ou plusieurs tokens ajoutés, supprimés ou dépréciés, ou dont le type change.
 - **Patch** : une ou plusieurs valeurs ou descriptions modifiées.
 
 Cette explication s'affiche au survol de l'étiquette. Cette règle est une proposition, à valider avec les développeurs de Canopée. En comparant à une version publiée, le plugin indique aussi la prochaine version attendue.

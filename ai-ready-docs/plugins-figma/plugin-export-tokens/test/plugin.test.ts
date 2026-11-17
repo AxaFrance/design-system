@@ -1139,8 +1139,8 @@ describe("compare (diff)", () => {
     expect("dateFichier" in plugin.lastMessage()).toBe(false);
   });
 
-  it("diff: major level when a removal is mixed with the other changes", () => {
-    expect(modifiedDiff.level).toBe("major");
+  it("diff: minor level when a removal is mixed with the other changes", () => {
+    expect(modifiedDiff.level).toBe("minor");
   });
 
   it("diff: referenceDate taken from the reference, passed on in the message", () => {
@@ -1314,8 +1314,8 @@ describe("level and next version", () => {
     await compareTo(refRemoval);
   });
 
-  it("level: token removed → major", () => {
-    expect(plugin.lastMessage().level).toBe("major");
+  it("level: token removed → minor", () => {
+    expect(plugin.lastMessage().level).toBe("minor");
   });
 
   it("level: $type changed → minor, modified marked typeChange", async () => {
@@ -1347,12 +1347,12 @@ describe("level and next version", () => {
     expect(plugin.lastMessage().level).toBe(null);
   });
 
-  const expectedNextVersion = { major: "2.0.0", minor: "1.9.0", patch: "1.8.1" };
+  const expectedNextVersion = { minor: "1.9.0", patch: "1.8.1" };
 
   for (const version of ["1.8.0", "1.8.0-RC.2"]) {
-    it(`nextVersion: ${version}, removal → ${expectedNextVersion.major}`, async () => {
+    it(`nextVersion: ${version}, removal → ${expectedNextVersion.minor}`, async () => {
       await compareTo(refRemoval, version);
-      expect(plugin.lastMessage().nextVersion).toBe(expectedNextVersion.major);
+      expect(plugin.lastMessage().nextVersion).toBe(expectedNextVersion.minor);
     });
 
     it(`nextVersion: ${version}, minor → ${expectedNextVersion.minor}`, async () => {
@@ -1934,14 +1934,14 @@ describe("submit", () => {
     expect(withoutDate(JSON.parse(identical.json))).toStrictEqual(currentJson);
   });
 
-  it("submit with a removal compared with the repo: feat with exclamation mark", async () => {
+  it("submit with a removal compared with the repo: feat without exclamation mark", async () => {
     const withRemoval = JSON.parse(currentExport);
     readSet(withRemoval, "Primitives").Couleur.disparue = {
       $type: "color",
       $value: { colorSpace: "srgb", components: [0, 0, 0], hex: "#000000" },
     };
     const removal = await submitDocument(plugin, JSON.stringify(withRemoval));
-    expect(removal.message).toBe("feat(canopee)!: update design tokens");
+    expect(removal.message).toBe("feat(canopee): update design tokens");
     expect(removal.url).toBe(urlEdition);
     expect(withoutDate(JSON.parse(removal.json))).toStrictEqual(currentJson);
   });
@@ -2097,8 +2097,8 @@ describe("commit messages", () => {
     expect(messages.minor).toBe("feat(canopee): update design tokens");
   });
 
-  it("commit: token removed → feat with exclamation mark", () => {
-    expect(messages.removal).toBe("feat(canopee)!: update design tokens");
+  it("commit: token removed → feat without exclamation mark", () => {
+    expect(messages.removal).toBe("feat(canopee): update design tokens");
   });
 
   it("commit: Refonte complète checkbox → feat with exclamation mark, even for a modified value", () => {
@@ -2419,7 +2419,7 @@ describe("mode diff", () => {
       { path: "Espacement/a", ...dark, value: "24 px" },
     ]);
     expect([removedToken.added, removedToken.modified]).toStrictEqual([[], []]);
-    expect(removedToken.level).toBe("major");
+    expect(removedToken.level).toBe("minor");
   });
 
   it("mode diff: a token added with its modes gives added entries, base and mode", async () => {
@@ -3227,11 +3227,9 @@ describe("documentation", () => {
       ),
     );
     expect(Object.keys(levels)).toStrictEqual(["Majeur", "Mineur", "Patch"]);
-    for (const word of ["refonte complète", "supprimés"])
-      expect(levels.Majeur.includes(word), word).toBeTruthy();
-    for (const word of ["ajoutés", "dépréciés", "type"])
+    expect(levels.Majeur.includes("refonte complète")).toBeTruthy();
+    for (const word of ["ajoutés", "supprimés", "dépréciés", "type"])
       expect(levels.Mineur.includes(word), word).toBeTruthy();
-    expect(levels.Mineur.includes("supprimés")).toBe(false);
     for (const word of ["valeurs", "descriptions", "modifiées"])
       expect(levels.Patch.includes(word), word).toBeTruthy();
   });

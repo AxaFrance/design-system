@@ -417,7 +417,7 @@ const LEVEL_LABEL: Record<string, [string, string, string] | undefined> = {
   major: [
     "MAJEUR",
     "tag-removed",
-    "Une refonte complète, ou un token supprimé : version majeure.",
+    "Une refonte complète des tokens : version majeure.",
   ],
   minor: [
     "MINEUR",

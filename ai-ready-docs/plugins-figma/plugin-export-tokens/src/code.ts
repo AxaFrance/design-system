@@ -102,7 +102,7 @@ const isAlias = (v: unknown): v is VariableAlias =>
 // Any message to the interface goes through here, so that it is checked against the contract.
 const post = (message: PluginToUiMessage) => figma.ui.postMessage(message);
 
-const VERSION = "0.33.0";
+const VERSION = "0.32.0";
 const WIDTH = 440;
 const INITIAL_HEIGHT = 600;
 // Automatic height: follows the content, within these bounds. High enough by default
@@ -1813,18 +1813,23 @@ const comparePaths = (a: string, b: string) => {
   return 0;
 };
 
-// Change level: major if one or more tokens are removed, since a removal breaks the code
-// that uses them. Otherwise minor if one or more tokens are added, deprecated or change type,
-// otherwise patch if one or more values change, otherwise no level. A complete redesign is
-// also major: the plugin cannot guess it, the team ticks it at submission (see submit).
+// Change level: minor if one or more tokens are added, removed,
+// deprecated or change type, otherwise patch if one or more values
+// change, otherwise no level. Major never comes out of it: the plugin cannot guess
+// a complete redesign, the team ticks it at submission (see submit). Rule
+// proposed to the devs, being validated.
 const diffLevel = (
   added: DiffEntry[],
   modified: ModifiedEntry[],
   removed: DiffEntry[],
   deprecated: DiffEntry[],
 ): DiffLevel => {
-  if (removed.length) return "major";
-  if (added.length || deprecated.length || modified.some((m) => m.typeChange))
+  if (
+    added.length ||
+    removed.length ||
+    deprecated.length ||
+    modified.some((m) => m.typeChange)
+  )
     return "minor";
   if (modified.length) return "patch";
   return null;
@@ -1839,7 +1844,6 @@ const nextVersion = (version: string, level: DiffLevel) => {
   const x = Number(m[1]),
     y = Number(m[2]),
     z = Number(m[3]);
-  if (level === "major") return `${x + 1}.0.0`;
   if (level === "minor") return `${x}.${y + 1}.0`;
   return `${x}.${y}.${z + 1}`;
 };
