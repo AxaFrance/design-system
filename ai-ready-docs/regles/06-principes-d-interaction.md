@@ -111,7 +111,7 @@ disabled=true n'existe qu'avec state=default : un composant désactivé n'a ni h
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
 | checked, current | Fond plein color/blue/600. Le texte et l'icône posés dessus passent en color/white. | _LevelSelectorStep en checked=true : fond color/blue/600, texte color/white. | FormCard : border color/blue/600, 2 px, sans fond. _SelectListItem : c'est sa Checkbox qui prend l'état checked. |
-| checked, current + hover | Le hover s'ajoute : fond color/gray/100, et l'état checked reste visible. | FormCard en checked=true et state=hover : fond color/gray/100, border color/blue/600, 2 px. | _PaginationItem, _LevelSelectorStep : pas de hover, l'élément garde son rendu checked ou current. Switch : la piste et l'icône passent à la nuance suivante, color/blue/600 → color/blue/700. |
+| checked, current + hover | Le fond plein passe à la nuance suivante, color/blue/600 → color/blue/700, et l'état checked reste visible. | Switch en checked=true et state=hover : piste et icône color/blue/600 → color/blue/700. | FormCard, sans fond plein : fond color/gray/100, border color/blue/600, 2 px. _PaginationItem, _LevelSelectorStep : pas de hover, l'élément garde son rendu checked ou current. |
 
 ### Contour
 
