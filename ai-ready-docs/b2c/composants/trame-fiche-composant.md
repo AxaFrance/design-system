@@ -76,7 +76,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 ## Les règles d'écriture
 
 - Une fiche décrit un composant tel qu'il existe dans le code et dans la nomenclature, pas tel qu'il est découpé dans Figma. Par exemple, une seule fiche Button couvre tous les niveaux, du primary au tertiary.
-- Une fiche ne cite ni un composant archivé ou supprimé, ni un usage relevé dans une page archivée. Ces éléments ne servent plus de modèle, et les citer laisserait croire qu'ils existent encore.
+- Une fiche ne cite ni un composant archivé ou supprimé, ni un usage relevé dans une page archivée. Ces éléments ne servent plus de modèle, et les citer laisserait croire qu'ils existent encore. Seule une décision qui explique un remplacement les nomme, comme l'ancien ButtonGhost remplacé par Button.
 - Dans les règles, les propriétés et leurs valeurs gardent les noms de la nomenclature. Exemple : hierarchy=secondary, plutôt que « Button Secondary ».
 - Les noms utilisés dans le code n'apparaissent que dans la rubrique Code.
 - Chaque règle n'est écrite qu'une fois. Si elle revient à deux endroits, les deux versions finissent par se contredire.
