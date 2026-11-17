@@ -83,7 +83,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Chaque point ouvert finit par « En attendant : », suivi de la règle qui s'applique si elle est tranchée, ou de « signaler » si elle ne l'est pas. Sans cette mention, une IA qui lit le point ouvert renonce à la règle ou la devine.
 - Une règle qui vaut pour tous les composants va dans un fichier commun, pas dans chaque fiche.
 - La consigne pour l'IA, à la fin de la fiche, est la même partout, mot pour mot. Elle fait exception au fichier commun, parce qu'une IA peut ne lire qu'une fiche.
-- Le titre porte la version du composant, celle de `meta.version` dans le JSON. La ligne des design tokens, juste après le titre, reprend `meta.tokensVersion` du JSON. Le plugin calcule les deux.
+- Le titre porte la version du composant, celle de `meta.version` dans le JSON. La ligne des design tokens, juste après le titre, reprend `meta.tokensVersion` du JSON. Le plugin calcule les deux. Quand `meta.tokensVersion` vaut `null`, aucune version publiée de Canopée n'a encore les tokens du composant avec leurs valeurs, et la ligne devient : « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée. »
 - Les titres sont toujours les mêmes, dans le même ordre, pour qu'une machine s'y retrouve. Il ne faut ni en ajouter ni les renommer.
 - Les rubriques vont de ce dont un designer ou un dev a besoin en premier à ce qu'il consulte en dernier.
 - Quand une rubrique n'a rien à dire, le titre reste et la rubrique dit « Aucun ». Quand la réponse n'est pas encore connue, la fiche dit « Non documenté » à l'endroit où elle manque, et le manque va dans les points ouverts.

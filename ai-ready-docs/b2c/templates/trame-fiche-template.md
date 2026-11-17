@@ -91,7 +91,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Les noms utilisés dans le code n'apparaissent que dans la rubrique Code.
 - Chaque règle n'est écrite qu'une fois. Si elle revient à deux endroits, les deux versions finissent par se contredire.
 - La consigne pour l'IA, à la fin de la fiche, est la même partout, mot pour mot, parce qu'une IA peut ne lire qu'une fiche.
-- Le titre de la fiche porte la version du template, celle de `meta.version` dans le JSON. La ligne des design tokens, juste après le titre, reprend `meta.tokensVersion` du JSON.
+- Le titre de la fiche porte la version du template, celle de `meta.version` dans le JSON. La ligne des design tokens, juste après le titre, reprend `meta.tokensVersion` du JSON. Quand `meta.tokensVersion` vaut `null`, aucune version publiée de Canopée n'a encore les tokens du composant avec leurs valeurs, et la ligne devient : « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée. »
 - Les titres des rubriques sont toujours les mêmes, dans le même ordre, pour qu'une machine s'y retrouve. Il ne faut ni en ajouter ni les renommer.
 - Quand une rubrique n'a rien à dire, le titre reste et la rubrique dit « Aucun ». Quand la réponse n'est pas encore connue, la fiche dit « Non documenté » à l'endroit où elle manque, et le manque va dans les points ouverts.
 

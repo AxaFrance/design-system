@@ -1,6 +1,6 @@
 # IconButton 1.0.0
 
-Utilise les design tokens de Canopée X.Y.Z ou d'une version plus récente.
+Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée.
 
 ## Description
 
