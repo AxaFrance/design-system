@@ -6444,3 +6444,576 @@ describe("The texts", () => {
       ).toBeTruthy();
   });
 });
+
+// ------------------------------------------------------------ the values of the design tokens
+describe("The values of the design tokens", () => {
+  const tools = async () => (await button()).plugin.__test;
+  const dim = (n: number): MockData => ({
+    $type: "dimension",
+    $value: { value: n, unit: "px" },
+  });
+  const ref = (path: string, type: string): MockData => ({
+    $type: type,
+    $value: "{" + path + "}",
+  });
+  // A published file in the real format: primitives, a Typography set that the modifier overrides
+  // by context, and the text style label/1/semibold in Styles.
+  const valuesFile = (o: {
+    blue?: MockData;
+    lineHeight?: number;
+    mobileLineHeight?: number;
+    group?: string;
+    resolutionOrder?: boolean;
+  }): MockData => {
+    const lh = o.lineHeight ?? 24;
+    const mobile = o.mobileLineHeight ?? 20;
+    const field = (name: string, type: string, path: string) => ({
+      [name]: ref(path, type),
+    });
+    return {
+      name: "Canopée",
+      version: "0",
+      sets: {
+        Primitive: {
+          sources: [
+            {
+              color: {
+                blue: {
+                  "700": {
+                    $type: "color",
+                    $value: o.blue ?? {
+                      colorSpace: "srgb",
+                      components: [0, 0, 0.8235],
+                      hex: "#0000d2",
+                    },
+                  },
+                },
+                brand: ref("color.blue.700", "color"),
+              },
+              font: {
+                family: {
+                  "sans-serif": {
+                    $type: "fontFamily",
+                    $value: "Source Sans Pro",
+                  },
+                },
+                size: { "16": dim(16) },
+                weight: { semibold: { $type: "fontWeight", $value: 600 } },
+                "line-height": { "20": dim(20), "24": dim(24) },
+              },
+            },
+          ],
+        },
+        Typography: {
+          sources: [
+            {
+              label: {
+                "1": {
+                  semibold: {
+                    ...field(
+                      "font-family",
+                      "fontFamily",
+                      "font.family.sans-serif",
+                    ),
+                    ...field("font-size", "dimension", "font.size.16"),
+                    ...field(
+                      "font-weight",
+                      "fontWeight",
+                      "font.weight.semibold",
+                    ),
+                    ...field(
+                      "line-height",
+                      "dimension",
+                      "font.line-height." + lh,
+                    ),
+                  },
+                },
+              },
+            },
+          ],
+        },
+        Styles: {
+          sources: [
+            {
+              [o.group ?? "typography"]: {
+                label: {
+                  "1": {
+                    semibold: {
+                      $type: "typography",
+                      $value: {
+                        fontFamily: "{label.1.semibold.font-family}",
+                        fontSize: "{label.1.semibold.font-size}",
+                        fontWeight: "{label.1.semibold.font-weight}",
+                        letterSpacing: { value: 0, unit: "px" },
+                        lineHeight: "{label.1.semibold.line-height}",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+      modifiers: {
+        Typography: {
+          default: "prospect-desktop",
+          contexts: {
+            "prospect-desktop": [],
+            "prospect-mobile": [
+              {
+                label: {
+                  "1": {
+                    semibold: field(
+                      "line-height",
+                      "dimension",
+                      "font.line-height." + mobile,
+                    ),
+                  },
+                },
+              },
+            ],
+          },
+        },
+      },
+      ...(o.resolutionOrder === false
+        ? {}
+        : {
+            resolutionOrder: [
+              { $ref: "#/sets/Primitive" },
+              { $ref: "#/sets/Typography" },
+              { $ref: "#/sets/Styles" },
+              { $ref: "#/modifiers/Typography" },
+            ],
+          }),
+    };
+  };
+  // the reader of the pure function: serves values from the files provided
+  const valuesReader = async (files: MockData, tags: string[]) => {
+    const { createPublishedValues } = await tools();
+    return {
+      versions: async () => tags,
+      paths: async (tag: string) => {
+        const { publishedPaths } = await tools();
+        return publishedPaths(plain(files[tag]));
+      },
+      values: async (tag: string) => createPublishedValues(plain(files[tag])),
+    };
+  };
+  const TEXT = { "label/1/semibold": {} };
+  const figmaText = (mobile: number): MockData => ({
+    "label/1/semibold": {
+      "prospect-desktop": {
+        fontSize: 16,
+        lineHeight: 24,
+        fontFamily: "Source Sans Pro",
+        fontWeight: 600,
+      },
+      "prospect-mobile": {
+        fontSize: 16,
+        lineHeight: mobile,
+        fontFamily: "Source Sans Pro",
+        fontWeight: 600,
+      },
+    },
+  });
+
+  it("createPublishedValues: references followed, context overrides, default context", async () => {
+    const { createPublishedValues } = await tools();
+    const v = createPublishedValues(plain(valuesFile({})));
+    expect(plain(v.contexts)).toStrictEqual([
+      "prospect-desktop",
+      "prospect-mobile",
+    ]);
+    const style = (c: string | null) =>
+      plain(v.read("typography.label.1.semibold", c));
+    expect(style(null).value.lineHeight).toStrictEqual({
+      value: 24,
+      unit: "px",
+    });
+    expect(style("prospect-desktop").value.lineHeight.value).toBe(24);
+    expect(style("prospect-mobile").value.lineHeight.value).toBe(20);
+    expect(style("prospect-mobile").value.fontWeight).toBe(600);
+    expect(style("prospect-mobile").value.fontFamily).toBe("Source Sans Pro");
+    // an alias of an alias ends on the color
+    expect(plain(v.read("color.brand", null))).toStrictEqual({
+      type: "color",
+      value: { colorSpace: "srgb", components: [0, 0, 0.8235], hex: "#0000d2" },
+    });
+    expect(v.read("color.unknown", null)).toBeUndefined();
+  });
+  it("createPublishedValues: the old group typographie is read as typography, the order is optional", async () => {
+    const { createPublishedValues } = await tools();
+    const v = createPublishedValues(
+      plain(valuesFile({ group: "typographie", resolutionOrder: false })),
+    );
+    expect(
+      v.read("typography.label.1.semibold", "prospect-mobile"),
+    ).toBeTruthy();
+  });
+  it("normalizeValue: colors in lowercase hex without opaque alpha, dimensions in px, weights in numbers", async () => {
+    const { normalizeValue } = await tools();
+    const n = (x: MockData, t?: string) => plain({ v: normalizeValue(x, t) }).v;
+    expect(n("#0000D2")).toBe("#0000d2");
+    expect(n("#0000d2ff")).toBe("#0000d2");
+    expect(n({ hex: "#0000d2", alpha: 1 })).toBe("#0000d2");
+    expect(n({ hex: "#0000d2", alpha: 0.5 })).toBe("#0000d280");
+    expect(n({ components: [0, 0, 0.8235] })).toBe("#0000d2");
+    expect(n("#fff")).toBe("#ffffff");
+    expect(n({ value: 16, unit: "px" })).toBe(16);
+    expect(n({ value: 1.5, unit: "rem" })).toBe(24);
+    expect(n("16px")).toBe(16);
+    expect(n("SemiBold", "fontWeight")).toBe(600);
+    expect(n("semi-bold", "fontWeight")).toBe(600);
+    expect(n("600", "fontWeight")).toBe(600);
+    expect(n(["Source Sans Pro", "sans-serif"], "fontFamily")).toBe(
+      "source sans pro",
+    );
+  });
+
+  it("a version whose value differs is dropped: the line height of label/1/semibold in prospect-mobile", async () => {
+    const { computeTokensVersion } = await tools();
+    const l = await valuesReader(
+      {
+        "2.0.0": valuesFile({ mobileLineHeight: 20 }),
+        "2.1.0": valuesFile({ mobileLineHeight: 24 }),
+      },
+      ["2.1.0", "2.0.0"],
+    );
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: {},
+          textStyles: TEXT,
+          values: { tokens: {}, textStyles: figmaText(24) },
+        },
+        l,
+      ),
+    );
+    expect(r).toStrictEqual({ version: "2.1.0", issues: [] });
+  });
+  it("a version where everything matches is kept, whatever the way the values are written", async () => {
+    const { computeTokensVersion } = await tools();
+    const l = await valuesReader({ "2.0.0": valuesFile({}) }, ["2.0.0"]);
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: { "color/blue/700": {}, "color/brand": {} },
+          textStyles: TEXT,
+          values: {
+            // single mode: compared with the default context. An alias is already resolved by Figma.
+            tokens: {
+              "color/blue/700": { "": "#0000D2" },
+              "color/brand": { "": "#0000d2" },
+            },
+            textStyles: figmaText(20),
+          },
+        },
+        l,
+      ),
+    );
+    expect(r).toStrictEqual({ version: "2.0.0", issues: [] });
+  });
+  it("a color that differs drops the version", async () => {
+    const { computeTokensVersion } = await tools();
+    const l = await valuesReader(
+      {
+        "2.0.0": valuesFile({ blue: { hex: "#0000c8" } }),
+        "2.1.0": valuesFile({}),
+      },
+      ["2.0.0", "2.1.0"],
+    );
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: { "color/blue/700": {} },
+          textStyles: {},
+          values: {
+            tokens: { "color/blue/700": { "": "#0000d2" } },
+            textStyles: {},
+          },
+        },
+        l,
+      ),
+    );
+    expect(r.version).toBe("2.1.0");
+    // an alpha that is not 1 is a different color
+    const r2 = plain(
+      await computeTokensVersion(
+        {
+          tokens: { "color/blue/700": {} },
+          textStyles: {},
+          values: {
+            tokens: { "color/blue/700": { "": "#0000d280" } },
+            textStyles: {},
+          },
+        },
+        l,
+      ),
+    );
+    expect(r2.version).toBe(null);
+  });
+  it("no version holds the value: token-value-unpublished, one per token, and null", async () => {
+    const { computeTokensVersion } = await tools();
+    const l = await valuesReader(
+      {
+        "2.0.0": valuesFile({}),
+        "2.1.0": valuesFile({ mobileLineHeight: 20 }),
+      },
+      ["2.0.0", "2.1.0"],
+    );
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: { "color/blue/700": {} },
+          textStyles: TEXT,
+          values: {
+            tokens: { "color/blue/700": { "": "#0000d2" } },
+            textStyles: figmaText(22),
+          },
+        },
+        l,
+      ),
+    );
+    expect(r).toStrictEqual({
+      version: null,
+      issues: [
+        {
+          level: "warning",
+          rule: "token-value-unpublished",
+          where: "textStyles.label/1/semibold",
+          message:
+            "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold.",
+        },
+      ],
+    });
+  });
+  it("a token absent stays token-unpublished, next to a value that differs", async () => {
+    const { computeTokensVersion } = await tools();
+    const l = await valuesReader({ "2.0.0": valuesFile({}) }, ["2.0.0"]);
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: { "color/red/500": {} },
+          textStyles: TEXT,
+          values: { tokens: {}, textStyles: figmaText(22) },
+        },
+        l,
+      ),
+    );
+    expect(r.issues.map((i: MockData) => i.rule + " " + i.where)).toStrictEqual(
+      [
+        "token-unpublished tokens.color/red/500",
+        "token-value-unpublished textStyles.label/1/semibold",
+      ],
+    );
+  });
+  it("what Figma could not read is not compared, and a reader without values compares the paths only", async () => {
+    const { computeTokensVersion } = await tools();
+    const l = await valuesReader({ "2.0.0": valuesFile({}) }, ["2.0.0"]);
+    const noValues = plain(
+      await computeTokensVersion(
+        {
+          tokens: {},
+          textStyles: TEXT,
+          values: { tokens: {}, textStyles: {} },
+        },
+        l,
+      ),
+    );
+    expect(noValues.version).toBe("2.0.0");
+    const old = {
+      versions: l.versions,
+      paths: l.paths,
+    };
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: {},
+          textStyles: TEXT,
+          values: { tokens: {}, textStyles: figmaText(99) },
+        },
+        old,
+      ),
+    );
+    expect(r.version).toBe("2.0.0");
+  });
+  it("a mode of Figma with no context of this name is not compared", async () => {
+    const { computeTokensVersion } = await tools();
+    const l = await valuesReader({ "2.0.0": valuesFile({}) }, ["2.0.0"]);
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: {},
+          textStyles: TEXT,
+          values: {
+            tokens: {},
+            textStyles: {
+              "label/1/semibold": {
+                "prospect-desktop": { lineHeight: 24 },
+                "unknown-mode": { lineHeight: 99 },
+              },
+            },
+          },
+        },
+        l,
+      ),
+    );
+    expect(r.version).toBe("2.0.0");
+  });
+  it("the real reader reads each file once for the paths and the values", async () => {
+    const { computeTokensVersion } = await tools();
+    const doc = buttonDocument();
+    doc.network = fakeNetwork({
+      tags: ["2.1.0", "2.0.0"],
+      files: {
+        "2.0.0": valuesFile({ mobileLineHeight: 20 }),
+        "2.1.0": valuesFile({ mobileLineHeight: 24 }),
+      },
+    });
+    const p = createFakePlugin(doc);
+    const reader = p.__test.createGitHubReader(1000);
+    const r = plain(
+      await computeTokensVersion(
+        {
+          tokens: {},
+          textStyles: TEXT,
+          values: { tokens: {}, textStyles: figmaText(24) },
+        },
+        reader,
+      ),
+    );
+    expect(r.version).toBe("2.1.0");
+    const files = doc.network.calls.filter((u: string) =>
+      u.endsWith(".resolver.json"),
+    );
+    expect(files.map((u: string) => u.split("/")[5])).toStrictEqual([
+      "2.0.0",
+      "2.1.0",
+    ]);
+  });
+
+  // what the extraction reads in Figma
+  const valuesDocument = (): MockData => {
+    const doc = buttonDocument();
+    doc.collections = COLLECTIONS.concat([
+      {
+        id: "TY",
+        name: "Typography",
+        key: "CKT",
+        modes: [
+          { modeId: "md", name: "prospect-desktop" },
+          { modeId: "mm", name: "prospect-mobile" },
+        ],
+      },
+    ]);
+    doc.variables = VARIABLES.map((v: MockData) =>
+      v.id === "v-b7"
+        ? { ...v, valuesByMode: { m1: { r: 0, g: 0, b: 0.8235, a: 1 } } }
+        : v.id === "v-s"
+          ? {
+              ...v,
+              valuesByMode: { m1: { type: "VARIABLE_ALIAS", id: "v-p16" } },
+            }
+          : v,
+    ).concat([
+      {
+        id: "v-p16",
+        name: "spacing/16",
+        variableCollectionId: "C1",
+        valuesByMode: { m1: 16 },
+      },
+      {
+        id: "v-p24",
+        name: "font/line-height/24",
+        variableCollectionId: "C1",
+        valuesByMode: { m1: 24 },
+      },
+      {
+        id: "v-lh",
+        name: "label/1/semibold/line-height",
+        variableCollectionId: "TY",
+        valuesByMode: {
+          md: { type: "VARIABLE_ALIAS", id: "v-p24" },
+          mm: 20,
+        },
+      },
+      {
+        id: "v-ff",
+        name: "label/1/semibold/font-family",
+        variableCollectionId: "TY",
+        valuesByMode: { md: "Source Sans Pro", mm: "Source Sans Pro" },
+      },
+    ]);
+    doc.styles = [
+      {
+        id: "S:1",
+        name: "label/1/semibold",
+        key: "KEY-STYLE",
+        remote: true,
+        fontSize: 16,
+        lineHeight: { unit: "PIXELS", value: 99 },
+        boundVariables: {
+          lineHeight: { type: "VARIABLE_ALIAS", id: "v-lh" },
+          fontFamily: { type: "VARIABLE_ALIAS", id: "v-ff" },
+        },
+      },
+    ];
+    return doc;
+  };
+  it("extraction: variables and text style values by mode, aliases resolved, single mode keyed with an empty name", async () => {
+    const doc = valuesDocument();
+    const p = createFakePlugin(doc);
+    let seen: MockData = null;
+    await p.__test.extract(doc.selection[0], {
+      computeTokensVersion: async (inputs: MockData) => {
+        seen = plain(inputs.values);
+        return { version: null, issues: [] };
+      },
+    });
+    expect(seen.tokens["color/blue/700"]).toStrictEqual({ "": "#0000d2" });
+    expect(seen.tokens["spacing/small"]).toStrictEqual({ "": 16 });
+    expect(seen.textStyles["label/1/semibold"]).toStrictEqual({
+      "prospect-desktop": {
+        fontSize: 16,
+        lineHeight: 24,
+        fontFamily: "Source Sans Pro",
+      },
+      "prospect-mobile": {
+        fontSize: 16,
+        lineHeight: 20,
+        fontFamily: "Source Sans Pro",
+      },
+    });
+  });
+  it("extraction: the values do not change the JSON, and a variable without value is simply not compared", async () => {
+    const withValues = valuesDocument();
+    const a = await exportSheet(withValues);
+    const b = await button();
+    expect(a.text).toBe(b.text);
+  });
+  it("extraction to version: the value that Figma holds picks the published version", async () => {
+    const doc = valuesDocument();
+    doc.network = fakeNetwork({
+      tags: ["2.1.0", "2.0.0"],
+      files: {
+        "2.0.0": valuesFile({ mobileLineHeight: 24 }),
+        "2.1.0": valuesFile({ mobileLineHeight: 20 }),
+      },
+    });
+    const p = createFakePlugin(doc);
+    const reader = p.__test.createGitHubReader(1000);
+    const sheet = await p.__test.extract(doc.selection[0], {
+      computeTokensVersion: (inputs: MockData) =>
+        p.__test.computeTokensVersion(
+          {
+            tokens: {},
+            textStyles: { "label/1/semibold": {} },
+            values: inputs.values,
+          },
+          reader,
+        ),
+    });
+    expect(sheet.meta.tokensVersion).toBe("2.1.0");
+  });
+});

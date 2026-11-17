@@ -14,6 +14,8 @@ import type {
   ComparableSheet,
   Config,
   Control,
+  FigmaModeValues,
+  FigmaValues,
   Index,
   IndexEntry,
   Issue,
@@ -48,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.0";
+const VERSION = "0.7.1";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -346,6 +348,9 @@ interface Context {
   // keys of the drawn layers (shapes and groups): their size is not an issue
   drawn: Set<string>;
   collisions: Set<string>;
+  // Values read in Figma for the comparison with the published tokens, by variable id and by name.
+  modes: Map<string, VariableModes | null>;
+  values: FigmaValues;
   notFound: Set<string>;
   errors: { where: string; message: string }[];
   libraries: Record<string, string> | undefined;
@@ -360,6 +365,8 @@ const newContext = (): Context => ({
   ids: new Map(),
   drawn: new Set(),
   collisions: new Set(),
+  modes: new Map(),
+  values: { tokens: {}, textStyles: {} },
   notFound: new Set(),
   errors: [],
   libraries: undefined,
@@ -489,11 +496,17 @@ async function readToken(ctx: Context, id: string): Promise<string | null> {
         if (v.key) entry.key = v.key;
         m = { name: v.name, entry };
         const existing = ctx.tokens[v.name];
-        if (!existing) ctx.tokens[v.name] = entry;
+        let kept = false;
+        if (!existing) kept = true;
         else if ((existing.key || "") !== (entry.key || "")) {
           ctx.collisions.add(v.name);
-          if ((entry.key || "") < (existing.key || ""))
-            ctx.tokens[v.name] = entry;
+          if ((entry.key || "") < (existing.key || "")) kept = true;
+        }
+        if (kept) {
+          ctx.tokens[v.name] = entry;
+          const modes = await variableModes(ctx, id, 0);
+          if (modes) ctx.values.tokens[v.name] = modes.values;
+          else delete ctx.values.tokens[v.name];
         }
       }
     } catch (e) {
@@ -509,6 +522,119 @@ async function readToken(ctx: Context, id: string): Promise<string | null> {
     ctx.vars[id] = m;
   }
   return m ? m.name : null;
+}
+
+// The value of a variable in each mode of its collection, aliases followed down to the
+// value. A color is a hex string. A collection with a single mode is keyed "". Null when the
+// variable has no readable value: the comparison with the published tokens then skips it.
+interface VariableModes {
+  values: FigmaModeValues;
+  // value of the first mode, used when an alias targets a mode that has no equivalent
+  first: Json | undefined;
+}
+async function variableModes(
+  ctx: Context,
+  id: string,
+  depth: number,
+): Promise<VariableModes | null> {
+  if (depth > 10) return null;
+  if (ctx.modes.has(id)) return ctx.modes.get(id) || null;
+  let result: VariableModes | null = null;
+  try {
+    const v = await figma.variables.getVariableByIdAsync(id);
+    const coll = v
+      ? await figma.variables.getVariableCollectionByIdAsync(
+          v.variableCollectionId,
+        )
+      : null;
+    if (v && coll && v.valuesByMode && coll.modes) {
+      const values: FigmaModeValues = {};
+      let first: Json | undefined;
+      for (const mode of coll.modes) {
+        const value = await modeValue(
+          ctx,
+          v.valuesByMode[mode.modeId],
+          mode.name,
+          depth,
+        );
+        if (value === undefined) continue;
+        if (first === undefined) first = value;
+        values[coll.modes.length === 1 ? "" : mode.name] = value;
+      }
+      if (first !== undefined) result = { values, first };
+    }
+  } catch (e) {
+    // An unreadable value is not compared.
+    result = null;
+  }
+  ctx.modes.set(id, result);
+  return result;
+}
+async function modeValue(
+  ctx: Context,
+  raw: unknown,
+  modeName: string,
+  depth: number,
+): Promise<Json | undefined> {
+  if (typeof raw === "number" || typeof raw === "boolean") return raw;
+  if (typeof raw === "string") return raw;
+  if (!isRecord(raw)) return undefined;
+  if (raw.type === "VARIABLE_ALIAS" && typeof raw.id === "string") {
+    const target = await variableModes(ctx, raw.id, depth + 1);
+    if (!target) return undefined;
+    const same = target.values[modeName];
+    return same !== undefined ? same : target.first;
+  }
+  if (
+    typeof raw.r === "number" &&
+    typeof raw.g === "number" &&
+    typeof raw.b === "number"
+  )
+    return hex(
+      { r: raw.r, g: raw.g, b: raw.b },
+      typeof raw.a === "number" ? raw.a : undefined,
+    );
+  return undefined;
+}
+
+// The size, line height, font family and weight of a text style, by mode. A field bound to a
+// variable takes the variable's value in each mode. A size or a line height that is not bound
+// is read as is (pixels only). A family or a weight that is not bound is not compared.
+async function textStyleModes(
+  ctx: Context,
+  st: TextStyle,
+): Promise<FigmaModeValues | null> {
+  const bound: Record<string, unknown> = isRecord(st.boundVariables)
+    ? st.boundVariables
+    : {};
+  const fields = ["fontSize", "lineHeight", "fontFamily", "fontWeight"];
+  const perField: Record<string, FigmaModeValues> = {};
+  const names = new Set<string>();
+  for (const f of fields) {
+    const id = aliasId(bound[f]);
+    const modes = id ? await variableModes(ctx, id, 0) : null;
+    if (!modes) continue;
+    perField[f] = modes.values;
+    for (const n of Object.keys(modes.values)) if (n) names.add(n);
+  }
+  const raw: Record<string, Json> = {};
+  if (!perField.fontSize && typeof st.fontSize === "number")
+    raw.fontSize = st.fontSize;
+  const lh = st.lineHeight;
+  if (!perField.lineHeight && lh && lh.unit === "PIXELS" && "value" in lh)
+    raw.lineHeight = lh.value;
+  const out: FigmaModeValues = {};
+  for (const name of names.size ? [...names].sort(alphaOrder) : [""]) {
+    const value: Record<string, Json> = { ...raw };
+    for (const f of fields) {
+      const modes = perField[f];
+      if (!modes) continue;
+      const v = modes[name] !== undefined ? modes[name] : modes[""];
+      if (v !== undefined) value[f] = v;
+    }
+    if (Object.keys(value).length) out[name] = value;
+  }
+  return Object.keys(out).length ? out : null;
 }
 
 // Value of a numeric property: the name of the bound variable, otherwise the raw value.
@@ -863,6 +989,10 @@ async function readTextStyles(
               library: nodeLibrary(st),
               key: st.key,
             });
+          if (!ctx.values.textStyles[st.name]) {
+            const modes = await textStyleModes(ctx, st as TextStyle);
+            if (modes) ctx.values.textStyles[st.name] = modes;
+          }
         }
       } catch (e) {
         readError(ctx, location, e);
@@ -1460,10 +1590,7 @@ async function layerTree(ctx: Context, node: Layer): Promise<TreeNode> {
 // The issues that can be read in the styles produced: raw value, paint not
 // handled, text without style. A zero value is not an issue.
 // drawn: the keys of the drawn layers, whose size is not an issue.
-function stylesIssues(
-  styles: Partial<Styles>,
-  drawn?: Set<string>,
-): Issue[] {
+function stylesIssues(styles: Partial<Styles>, drawn?: Set<string>): Issue[] {
   const out: Issue[] = [];
   // A raw fixed size is an issue, except for an absolute layer stretched on that axis.
   const freeSize = (parent: Record<string, unknown>, key: string): boolean => {
@@ -1481,7 +1608,8 @@ function stylesIssues(
       /^styles\.(default|overrides\[[^\]]*\])\./,
       "",
     );
-    for (const k of drawn) if (location.indexOf(k + ".layout.") === 0) return true;
+    for (const k of drawn)
+      if (location.indexOf(k + ".layout.") === 0) return true;
     return false;
   };
   const walk = (
@@ -1742,6 +1870,7 @@ interface ExtractOptions {
   computeTokensVersion?: (inputs: {
     tokens: Index;
     textStyles: Index;
+    values?: FigmaValues;
   }) => Promise<{ version: string | null; issues: Issue[] }>;
 }
 async function extract(
@@ -1780,9 +1909,7 @@ async function extractDetail(
   const breakpointOptions = hasBreakpoint
     ? optsOf.breakpoint.filter((o) => /^\d+$/.test(o))
     : [];
-  const breakpoints = breakpointOptions
-    .map(Number)
-    .sort((a, b) => a - b);
+  const breakpoints = breakpointOptions.map(Number).sort((a, b) => a - b);
   let def = figmaDef;
   let cfgDef = figmaCfg;
   if (breakpointOptions.length) {
@@ -2097,11 +2224,13 @@ async function extractDetail(
     });
 
   // The design tokens version comes from outside (the network is never called here):
-  // options.computeTokensVersion({ tokens, textStyles }) returns { version, issues }.
+  // options.computeTokensVersion({ tokens, textStyles, values }) returns { version, issues }.
+  // values: what Figma holds for these tokens and text styles, mode by mode.
   if (options.computeTokensVersion) {
     const computation = await options.computeTokensVersion({
       tokens,
       textStyles,
+      values: ctx.values,
     });
     meta.tokensVersion = computation.version;
     for (const i of computation.issues) issues.push(i);
@@ -3379,21 +3508,288 @@ function requiredTokens(
   return required;
 }
 
-// reader: { versions(): names of the tags, paths(tag): Set of the paths of the tokens file of the tag }.
+// ---- published values: what the tokens file holds, resolved by context
+// The context is a mode of the Typography modifier: « prospect-mobile ». A null context is the
+// default one, where no modifier overrides anything.
+const REFERENCE = /^\{([^{}]+)\}$/;
+const TYPOGRAPHY_FIELDS: Record<string, string> = {
+  fontFamily: "fontFamily",
+  fontSize: "dimension",
+  fontWeight: "fontWeight",
+  lineHeight: "dimension",
+};
+const FONT_WEIGHTS: Record<string, number> = {
+  thin: 100,
+  hairline: 100,
+  extralight: 200,
+  ultralight: 200,
+  light: 300,
+  regular: 400,
+  normal: 400,
+  book: 400,
+  medium: 500,
+  semibold: 600,
+  demibold: 600,
+  bold: 700,
+  extrabold: 800,
+  ultrabold: 800,
+  black: 900,
+  heavy: 900,
+};
+interface PublishedRead {
+  type?: string;
+  // a text style is an object with its resolved fields
+  value: unknown;
+}
+interface PublishedValues {
+  contexts: string[];
+  read(path: string, context: string | null): PublishedRead | undefined;
+}
+
+// The path of a token from its segments, with the group of the text styles under its current name.
+const tokenPath = (segments: string[]): string =>
+  (segments[0] === TOKENS_REPO.oldStylesGroup
+    ? [TOKENS_REPO.stylesGroup].concat(segments.slice(1))
+    : segments
+  ).join(".");
+
+function walkTokens(
+  node: unknown,
+  segments: string[],
+  found: (path: string, token: Record<string, unknown>) => void,
+): void {
+  if (!isRecord(node)) return;
+  if ("$value" in node) {
+    found(tokenPath(segments), node);
+    return;
+  }
+  for (const k of Object.keys(node))
+    if (k.charAt(0) !== "$") walkTokens(node[k], segments.concat(k), found);
+}
+
+// The names of the sets in the resolution order, then the others: a later set overrides an earlier one.
+function orderedSets(doc: Record<string, unknown>): Record<string, unknown>[] {
+  const sets = isRecord(doc.sets) ? doc.sets : {};
+  const names: string[] = [];
+  for (const entry of Array.isArray(doc.resolutionOrder)
+    ? doc.resolutionOrder
+    : []) {
+    const ref =
+      typeof entry === "string" ? entry : isRecord(entry) ? entry.$ref : "";
+    const m = /^(?:#\/sets\/)?([^/]+)$/.exec(
+      typeof ref === "string" ? ref : "",
+    );
+    if (m && m[1] in sets && !names.includes(m[1])) names.push(m[1]);
+  }
+  for (const k of Object.keys(sets)) if (!names.includes(k)) names.push(k);
+  return names.map((n) => sets[n]).filter(isRecord);
+}
+
+function createPublishedValues(doc: unknown): PublishedValues {
+  const d = isRecord(doc) ? doc : {};
+  const base = new Map<string, Record<string, unknown>>();
+  for (const set of orderedSets(d))
+    for (const source of Array.isArray(set.sources) ? set.sources : [])
+      walkTokens(source, [], (p, t) => base.set(p, t));
+  const modifiers = (isRecord(d.modifiers) ? Object.values(d.modifiers) : [])
+    .filter(isRecord)
+    .map((m) => ({
+      default: typeof m.default === "string" ? m.default : null,
+      contexts: isRecord(m.contexts) ? m.contexts : {},
+    }));
+  const contexts: string[] = [];
+  for (const m of modifiers)
+    for (const c of Object.keys(m.contexts))
+      if (!contexts.includes(c)) contexts.push(c);
+  const maps = new Map<string, Map<string, Record<string, unknown>>>();
+  const tokensIn = (context: string | null) => {
+    const cacheKey = context === null ? "\u0000" : context;
+    let tokens = maps.get(cacheKey);
+    if (!tokens) {
+      tokens = new Map(base);
+      for (const m of modifiers) {
+        const name =
+          context !== null && context in m.contexts ? context : m.default;
+        const trees = name !== null ? m.contexts[name] : undefined;
+        for (const tree of Array.isArray(trees) ? trees : [])
+          walkTokens(tree, [], (p, t) => tokens!.set(p, t));
+      }
+      maps.set(cacheKey, tokens);
+    }
+    return tokens;
+  };
+  // The value of a token with its references followed, and its type.
+  const resolve = (
+    tokens: Map<string, Record<string, unknown>>,
+    value: unknown,
+    type: string | undefined,
+    depth: number,
+  ): PublishedRead | undefined => {
+    if (depth > 20) return undefined;
+    const ref = typeof value === "string" ? REFERENCE.exec(value) : null;
+    if (!ref) return { type, value };
+    const target = tokens.get(tokenPath(ref[1].split(".")));
+    if (!target) return undefined;
+    return resolve(
+      tokens,
+      target.$value,
+      typeof target.$type === "string" ? target.$type : type,
+      depth + 1,
+    );
+  };
+  return {
+    contexts,
+    read(path, context) {
+      const tokens = tokensIn(context);
+      const token = tokens.get(path);
+      if (!token) return undefined;
+      const type = typeof token.$type === "string" ? token.$type : undefined;
+      if (type === "typography" && isRecord(token.$value)) {
+        const fields: Record<string, unknown> = {};
+        for (const f of Object.keys(TYPOGRAPHY_FIELDS)) {
+          if (!(f in token.$value)) continue;
+          const r = resolve(tokens, token.$value[f], TYPOGRAPHY_FIELDS[f], 0);
+          if (r) fields[f] = r.value;
+        }
+        return { type, value: fields };
+      }
+      return resolve(tokens, token.$value, type, 0);
+    },
+  };
+}
+
+// ---- normalization: the same value written the same way on both sides
+const round3 = (n: number): number => Math.round(n * 1000) / 1000;
+const HEX = /^#?([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
+function normalizeHex(text: string): string | undefined {
+  const m = HEX.exec(text.trim());
+  if (!m) return undefined;
+  let h = m[1].toLowerCase();
+  if (h.length <= 4) h = h.replace(/./g, (c) => c + c);
+  if (h.length === 8 && h.slice(6) === "ff") h = h.slice(0, 6);
+  return "#" + h;
+}
+function normalizeColor(value: unknown): string | undefined {
+  if (typeof value === "string") return normalizeHex(value);
+  if (!isRecord(value)) return undefined;
+  const alpha = typeof value.alpha === "number" ? value.alpha : 1;
+  let color: string | undefined;
+  if (typeof value.hex === "string") color = normalizeHex(value.hex);
+  else if (
+    Array.isArray(value.components) &&
+    value.components.length >= 3 &&
+    value.components.every((c) => typeof c === "number")
+  )
+    color = normalizeHex(
+      "#" +
+        value.components
+          .slice(0, 3)
+          .map((c) => hex2(Math.min(1, Math.max(0, c))))
+          .join(""),
+    );
+  if (color && color.length === 7 && alpha < 1) color += hex2(alpha);
+  return color;
+}
+// A dimension is a number of pixels: 16, "16px", { value: 16, unit: "px" } (a rem is 16 px).
+function normalizeNumber(value: unknown): number | undefined {
+  if (typeof value === "number") return round3(value);
+  if (typeof value === "string" && /^-?\d+(\.\d+)?(px)?$/.test(value.trim()))
+    return round3(parseFloat(value));
+  if (isRecord(value) && typeof value.value === "number")
+    return round3(value.value * (value.unit === "rem" ? 16 : 1));
+  return undefined;
+}
+function normalizeWeight(value: unknown): string | number | undefined {
+  const n = normalizeNumber(value);
+  if (n !== undefined) return n;
+  if (typeof value !== "string") return undefined;
+  const name = value.toLowerCase().replace(/[\s_-]/g, "");
+  return FONT_WEIGHTS[name] ?? name;
+}
+function normalizeFamily(value: unknown): string | undefined {
+  const first = Array.isArray(value) ? value[0] : value;
+  if (typeof first !== "string") return undefined;
+  return first
+    .split(",")[0]
+    .trim()
+    .replace(/^["']|["']$/g, "")
+    .toLowerCase();
+}
+function normalizeValue(value: unknown, type?: string): unknown {
+  if (value === undefined || value === null) return undefined;
+  if (type === "fontWeight") return normalizeWeight(value);
+  if (type === "fontFamily") return normalizeFamily(value);
+  if (
+    type === "color" ||
+    (typeof value === "string" && value.charAt(0) === "#") ||
+    (isRecord(value) && ("hex" in value || "components" in value))
+  )
+    return normalizeColor(value);
+  const n = normalizeNumber(value);
+  if (n !== undefined) return n;
+  return typeof value === "string" ? value.trim() : value;
+}
+
+// Whether what Figma holds for a token or a text style is what the file publishes. Each mode of
+// Figma is compared with the context of the same name, and the key "" (a collection with a single mode)
+// with the default context. A mode with no context of this name is not compared. For a text style,
+// only the fields Figma could read are compared.
+function sameValues(
+  figma: FigmaModeValues,
+  published: PublishedValues,
+  path: string,
+): boolean {
+  for (const mode of Object.keys(figma)) {
+    if (mode !== "" && !published.contexts.includes(mode)) continue;
+    const read = published.read(path, mode === "" ? null : mode);
+    if (!read) return false;
+    const mine = figma[mode];
+    if (read.type === "typography") {
+      if (!isRecord(mine) || !isRecord(read.value)) return false;
+      for (const f of Object.keys(mine)) {
+        const type = TYPOGRAPHY_FIELDS[f];
+        const a = normalizeValue(mine[f], type);
+        const b = normalizeValue(read.value[f], type);
+        if (a === undefined || a !== b) return false;
+      }
+      continue;
+    }
+    const a = normalizeValue(mine, read.type);
+    if (a === undefined || a !== normalizeValue(read.value, read.type))
+      return false;
+  }
+  return true;
+}
+
+// reader: { versions(): names of the tags, paths(tag): Set of the paths of the tokens file of the tag,
+// values(tag): the same file, to read the value of a path by context }. Without values, the
+// values are not compared.
 // Returns { version, issues }: version is null, with an issue of level warning, when it
 // cannot be computed.
 interface GitHubReader {
   versions(): Promise<string[]>;
   paths(tag: string): Promise<Set<string>>;
+  values?(tag: string): Promise<PublishedValues>;
 }
 async function computeTokensVersion(
-  inputs: { tokens: Index; textStyles: Index },
+  inputs: { tokens: Index; textStyles: Index; values?: FigmaValues },
   reader: GitHubReader,
 ): Promise<{ version: string | null; issues: Issue[] }> {
   const required = requiredTokens(inputs.tokens, inputs.textStyles);
   if (!required.length)
     return { version: TOKENS_REPO.firstVersion, issues: [] };
+  // What Figma holds, by path: nothing to compare for a token whose value was not read.
+  const figmaValues = new Map<string, FigmaModeValues>();
+  if (inputs.values && reader.values)
+    for (const r of required) {
+      const group = r.where.startsWith("textStyles.")
+        ? inputs.values.textStyles
+        : inputs.values.tokens;
+      if (group[r.name]) figmaValues.set(r.path, group[r.name]);
+    }
   const union = new Set<string>();
+  // the paths found in a version, with a value that matches, in at least one version
+  const confirmed = new Set<string>();
   const failure = (
     rule: string,
     message: string,
@@ -3423,9 +3819,17 @@ async function computeTokensVersion(
         }
         throw e;
       }
-      if (required.every((r) => published.has(r.path)))
-        return { version: v, issues: [] };
       for (const c of published) union.add(c);
+      const present = required.filter((r) => published.has(r.path));
+      const values =
+        figmaValues.size && reader.values ? await reader.values(v) : null;
+      let all = present.length === required.length;
+      for (const r of present) {
+        const mine = figmaValues.get(r.path);
+        if (values && mine && !sameValues(mine, values, r.path)) all = false;
+        else confirmed.add(r.path);
+      }
+      if (all) return { version: v, issues: [] };
     }
     if (withoutFile === versions.length)
       return failure("tokens-no-file", NO_FILE_MESSAGE);
@@ -3436,25 +3840,36 @@ async function computeTokensVersion(
     return failure("tokens-unreachable", UNREACHABLE_MESSAGE);
   }
   const missing = required.filter((r) => !union.has(r.path));
-  const issues: Issue[] = missing.length
-    ? missing.map((r): Issue => ({
-        level: "warning",
-        rule: "token-unpublished",
-        where: r.where,
-        message:
-          "Token absent de toutes les versions publiées de Canopée : " +
-          r.name +
-          ".",
-      }))
-    : [
-        {
-          level: "warning",
-          rule: "tokens-no-common-version",
-          where: "meta.tokensVersion",
-          message:
-            "Aucune version publiée de Canopée ne contient tous les tokens du composant.",
-        },
-      ];
+  const otherValue = required.filter(
+    (r) => union.has(r.path) && !confirmed.has(r.path),
+  );
+  const issues: Issue[] = missing.map((r): Issue => ({
+    level: "warning",
+    rule: "token-unpublished",
+    where: r.where,
+    message:
+      "Token absent de toutes les versions publiées de Canopée : " +
+      r.name +
+      ".",
+  }));
+  for (const r of otherValue)
+    issues.push({
+      level: "warning",
+      rule: "token-value-unpublished",
+      where: r.where,
+      message:
+        "Valeur absente de toutes les versions publiées de Canopée : " +
+        r.name +
+        ".",
+    });
+  if (!issues.length)
+    issues.push({
+      level: "warning",
+      rule: "tokens-no-common-version",
+      where: "meta.tokensVersion",
+      message:
+        "Aucune version publiée de Canopée ne contient tous les tokens du composant.",
+    });
   return { version: null, issues };
 }
 
@@ -3462,7 +3877,10 @@ async function computeTokensVersion(
 // read are kept for the session. A call that does not answer within the timeout fails, and a
 // non-ok response throws an error that carries its HTTP status (e.status). The test provides its own
 // reader, or sets the timeout: no network call goes through there.
-const pathsCache = new Map<string, Set<string>>();
+const filesCache = new Map<
+  string,
+  { paths: Set<string>; values: PublishedValues }
+>();
 let versionsCache: string[] | null = null;
 const fetchGitHub = async <T>(
   url: string,
@@ -3492,25 +3910,10 @@ const fetchGitHub = async <T>(
     if (timer !== undefined) clearTimeout(timer);
   }
 };
-const createGitHubReader = (timeout: number): GitHubReader => ({
-  async versions() {
-    if (!versionsCache)
-      versionsCache = await fetchGitHub(
-        "https://api.github.com/repos/" +
-          TOKENS_REPO.name +
-          "/tags?per_page=100",
-        timeout,
-        async (r) => {
-          const tags: unknown = await r.json();
-          return Array.isArray(tags)
-            ? tags.map((t: unknown) => String(isRecord(t) ? t.name : ""))
-            : [];
-        },
-      );
-    return versionsCache;
-  },
-  async paths(tag) {
-    let cached = pathsCache.get(tag);
+const createGitHubReader = (timeout: number): GitHubReader => {
+  // one read per tag, whether the paths or the values are asked first
+  const readFile = async (tag: string) => {
+    let cached = filesCache.get(tag);
     if (!cached) {
       cached = await fetchGitHub(
         "https://raw.githubusercontent.com/" +
@@ -3520,13 +3923,43 @@ const createGitHubReader = (timeout: number): GitHubReader => ({
           "/" +
           TOKENS_REPO.path,
         timeout,
-        async (r) => publishedPaths(JSON.parse(await r.text())),
+        async (r) => {
+          const doc: unknown = JSON.parse(await r.text());
+          return {
+            paths: publishedPaths(doc),
+            values: createPublishedValues(doc),
+          };
+        },
       );
-      pathsCache.set(tag, cached);
+      filesCache.set(tag, cached);
     }
     return cached;
-  },
-});
+  };
+  return {
+    async versions() {
+      if (!versionsCache)
+        versionsCache = await fetchGitHub(
+          "https://api.github.com/repos/" +
+            TOKENS_REPO.name +
+            "/tags?per_page=100",
+          timeout,
+          async (r) => {
+            const tags: unknown = await r.json();
+            return Array.isArray(tags)
+              ? tags.map((t: unknown) => String(isRecord(t) ? t.name : ""))
+              : [];
+          },
+        );
+      return versionsCache;
+    },
+    async paths(tag) {
+      return (await readFile(tag)).paths;
+    },
+    async values(tag) {
+      return (await readFile(tag)).values;
+    },
+  };
+};
 const githubReader = createGitHubReader(GITHUB_TIMEOUT);
 
 // ------------------------------------------------------------ doc rules
@@ -4104,8 +4537,11 @@ const handlers: Handlers = {
     const { sheet, locations } = await extractDetail(c.node, {
       progress: (done: number, total: number) =>
         post({ type: "progress", done, total }),
-      computeTokensVersion: (inputs: { tokens: Index; textStyles: Index }) =>
-        computeTokensVersion(inputs, githubReader),
+      computeTokensVersion: (inputs: {
+        tokens: Index;
+        textStyles: Index;
+        values?: FigmaValues;
+      }) => computeTokensVersion(inputs, githubReader),
     });
     // the version: the shared base says where we start from, and the comparison says by how much we go up
     const baseRead = readStored(c.node, BASE_KEY, isSheetLike);
@@ -4390,6 +4826,8 @@ const testHooks = {
   chooseVersion,
   computeTokensVersion,
   publishedPaths,
+  createPublishedValues,
+  normalizeValue,
   requiredTokens,
   TOKENS_REPO,
   VERSION,

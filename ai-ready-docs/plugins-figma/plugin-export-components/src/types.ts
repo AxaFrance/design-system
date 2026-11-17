@@ -50,6 +50,15 @@ export interface IndexEntry {
 }
 export type Index = Record<string, IndexEntry>;
 
+// Values read in Figma, to compare with the published design tokens. For each name, the
+// resolved value by mode name. The key "" stands for a collection with a single mode.
+// A text style holds { fontSize, lineHeight, fontFamily, fontWeight } (the fields it can read).
+export type FigmaModeValues = Record<string, Json>;
+export interface FigmaValues {
+  tokens: Record<string, FigmaModeValues>;
+  textStyles: Record<string, FigmaModeValues>;
+}
+
 export interface Control {
   layer: string;
   attribute: string;

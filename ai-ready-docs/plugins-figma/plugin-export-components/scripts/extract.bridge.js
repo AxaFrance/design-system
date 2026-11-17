@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.0";
+const VERSION = "0.7.1";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -265,6 +265,8 @@ const newContext = () => ({
     ids: new Map(),
     drawn: new Set(),
     collisions: new Set(),
+    modes: new Map(),
+    values: { tokens: {}, textStyles: {} },
     notFound: new Set(),
     errors: [],
     libraries: undefined,
@@ -377,12 +379,21 @@ async function readToken(ctx, id) {
                     entry.key = v.key;
                 m = { name: v.name, entry };
                 const existing = ctx.tokens[v.name];
+                let kept = false;
                 if (!existing)
-                    ctx.tokens[v.name] = entry;
+                    kept = true;
                 else if ((existing.key || "") !== (entry.key || "")) {
                     ctx.collisions.add(v.name);
                     if ((entry.key || "") < (existing.key || ""))
-                        ctx.tokens[v.name] = entry;
+                        kept = true;
+                }
+                if (kept) {
+                    ctx.tokens[v.name] = entry;
+                    const modes = await variableModes(ctx, id, 0);
+                    if (modes)
+                        ctx.values.tokens[v.name] = modes.values;
+                    else
+                        delete ctx.values.tokens[v.name];
                 }
             }
         }
@@ -394,6 +405,101 @@ async function readToken(ctx, id) {
         ctx.vars[id] = m;
     }
     return m ? m.name : null;
+}
+async function variableModes(ctx, id, depth) {
+    if (depth > 10)
+        return null;
+    if (ctx.modes.has(id))
+        return ctx.modes.get(id) || null;
+    let result = null;
+    try {
+        const v = await figma.variables.getVariableByIdAsync(id);
+        const coll = v
+            ? await figma.variables.getVariableCollectionByIdAsync(v.variableCollectionId)
+            : null;
+        if (v && coll && v.valuesByMode && coll.modes) {
+            const values = {};
+            let first;
+            for (const mode of coll.modes) {
+                const value = await modeValue(ctx, v.valuesByMode[mode.modeId], mode.name, depth);
+                if (value === undefined)
+                    continue;
+                if (first === undefined)
+                    first = value;
+                values[coll.modes.length === 1 ? "" : mode.name] = value;
+            }
+            if (first !== undefined)
+                result = { values, first };
+        }
+    }
+    catch (e) {
+        // An unreadable value is not compared.
+        result = null;
+    }
+    ctx.modes.set(id, result);
+    return result;
+}
+async function modeValue(ctx, raw, modeName, depth) {
+    if (typeof raw === "number" || typeof raw === "boolean")
+        return raw;
+    if (typeof raw === "string")
+        return raw;
+    if (!isRecord(raw))
+        return undefined;
+    if (raw.type === "VARIABLE_ALIAS" && typeof raw.id === "string") {
+        const target = await variableModes(ctx, raw.id, depth + 1);
+        if (!target)
+            return undefined;
+        const same = target.values[modeName];
+        return same !== undefined ? same : target.first;
+    }
+    if (typeof raw.r === "number" &&
+        typeof raw.g === "number" &&
+        typeof raw.b === "number")
+        return hex({ r: raw.r, g: raw.g, b: raw.b }, typeof raw.a === "number" ? raw.a : undefined);
+    return undefined;
+}
+// The size, line height, font family and weight of a text style, by mode. A field bound to a
+// variable takes the variable's value in each mode. A size or a line height that is not bound
+// is read as is (pixels only). A family or a weight that is not bound is not compared.
+async function textStyleModes(ctx, st) {
+    const bound = isRecord(st.boundVariables)
+        ? st.boundVariables
+        : {};
+    const fields = ["fontSize", "lineHeight", "fontFamily", "fontWeight"];
+    const perField = {};
+    const names = new Set();
+    for (const f of fields) {
+        const id = aliasId(bound[f]);
+        const modes = id ? await variableModes(ctx, id, 0) : null;
+        if (!modes)
+            continue;
+        perField[f] = modes.values;
+        for (const n of Object.keys(modes.values))
+            if (n)
+                names.add(n);
+    }
+    const raw = {};
+    if (!perField.fontSize && typeof st.fontSize === "number")
+        raw.fontSize = st.fontSize;
+    const lh = st.lineHeight;
+    if (!perField.lineHeight && lh && lh.unit === "PIXELS" && "value" in lh)
+        raw.lineHeight = lh.value;
+    const out = {};
+    for (const name of names.size ? [...names].sort(alphaOrder) : [""]) {
+        const value = { ...raw };
+        for (const f of fields) {
+            const modes = perField[f];
+            if (!modes)
+                continue;
+            const v = modes[name] !== undefined ? modes[name] : modes[""];
+            if (v !== undefined)
+                value[f] = v;
+        }
+        if (Object.keys(value).length)
+            out[name] = value;
+    }
+    return Object.keys(out).length ? out : null;
 }
 async function readValue(ctx, node, fields, raw) {
     const bv = node.boundVariables;
@@ -657,6 +763,11 @@ async function readTextStyles(ctx, t, location) {
                             library: nodeLibrary(st),
                             key: st.key,
                         });
+                    if (!ctx.values.textStyles[st.name]) {
+                        const modes = await textStyleModes(ctx, st);
+                        if (modes)
+                            ctx.values.textStyles[st.name] = modes;
+                    }
                 }
             }
             catch (e) {
@@ -1344,9 +1455,7 @@ async function extractDetail(target, opts) {
     const breakpointOptions = hasBreakpoint
         ? optsOf.breakpoint.filter((o) => /^\d+$/.test(o))
         : [];
-    const breakpoints = breakpointOptions
-        .map(Number)
-        .sort((a, b) => a - b);
+    const breakpoints = breakpointOptions.map(Number).sort((a, b) => a - b);
     let def = figmaDef;
     let cfgDef = figmaCfg;
     if (breakpointOptions.length) {
@@ -1655,11 +1764,13 @@ async function extractDetail(target, opts) {
             message: "Deux variables portent ce nom dans des collections ou des bibliothèques différentes : un seul token est indexé.",
         });
     // The design tokens version comes from outside (the network is never called here):
-    // options.computeTokensVersion({ tokens, textStyles }) returns { version, issues }.
+    // options.computeTokensVersion({ tokens, textStyles, values }) returns { version, issues }.
+    // values: what Figma holds for these tokens and text styles, mode by mode.
     if (options.computeTokensVersion) {
         const computation = await options.computeTokensVersion({
             tokens,
             textStyles,
+            values: ctx.values,
         });
         meta.tokensVersion = computation.version;
         for (const i of computation.issues)
