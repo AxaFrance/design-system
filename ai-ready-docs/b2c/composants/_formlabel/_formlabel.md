@@ -145,6 +145,7 @@ Ces noms désignent _FormLabel. Le seul nom à employer est _FormLabel.
 - **1.0.0 - 16/11/26.** Dans Figma, les thèmes prospect et client partagent un seul _FormLabel, celui du thème prospect, car leurs deux versions ne différaient que par le thème des actions.
 - **1.0.0 - 16/11/26.** showSideButton est un booléen, et non une variante. Les deux actions peuvent s'afficher ensemble, comme dans le code.
 - **1.0.0 - 16/11/26.** Dans Figma, « Modifier » est centré en hauteur à côté du libellé et de la description, dans tous les cas.
+- **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » prennent color/blue/600, la couleur réservée aux éléments interactifs, comme tout Link.
 
 ## Points ouverts
 

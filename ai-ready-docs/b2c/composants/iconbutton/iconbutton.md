@@ -155,6 +155,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **1.0.0 - 02/11/26.** size=small sert quand le composant qui contient l'IconButton n'est pas cliquable lui-même, comme une fenêtre modale. size=x-small sert dans un composant déjà cliquable en entier, comme ClickItem.
 - **1.0.0 - 02/11/26.** IconButton n'a pas de colorScheme business, contrairement à Button. Une souscription demande un libellé, donc un Button.
 - **1.0.0 - 04/11/26.** Comme pour Button, le secondary et le tertiary n'ont pas de fond au repos. Le bouton désactivé garde son fond gris.
+- **1.0.0 - 17/11/26.** L'IconButton prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, l'icône et la border passent en color/blue/600.
 
 ## Points ouverts
 
@@ -164,6 +165,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **Navigation.** Zeroheight permet à Click Icon d'être un lien `<a>` quand l'action mène à une autre page. Le code ne le permet pas, et la fiche Button renvoie vers Link pour naviguer. En attendant : signaler.
 - **Plusieurs primary.** La fiche Button n'autorise qu'un seul Button primary par page, sans compter le Header. Rien ne dit si un IconButton primary compte dans cette limite. En attendant : signaler.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.
+- **Bleu d'interaction dans le code.** Le code dessine ClickIcon dans un bleu plus foncé que color/blue/600 (`ClickIconCommon.css:33`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

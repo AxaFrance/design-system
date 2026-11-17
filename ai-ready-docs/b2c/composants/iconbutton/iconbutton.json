@@ -1251,7 +1251,7 @@
       },
       "root": {
         "background": {
-          "token": "color/blue/700"
+          "token": "color/blue/600"
         },
         "radius": {
           "token": "border/radius/full"
@@ -1487,7 +1487,7 @@
         "styles": {
           "root": {
             "stroke": {
-              "token": "color/blue/700"
+              "token": "color/blue/600"
             },
             "strokeWeight": {
               "token": "border/width/2"
@@ -1496,7 +1496,7 @@
           },
           "icon/vector": {
             "background": {
-              "token": "color/blue/700"
+              "token": "color/blue/600"
             }
           }
         }
@@ -1509,7 +1509,7 @@
         "styles": {
           "icon/vector": {
             "background": {
-              "token": "color/blue/700"
+              "token": "color/blue/600"
             }
           }
         }
@@ -1561,7 +1561,7 @@
         "styles": {
           "icon/vector": {
             "background": {
-              "token": "color/blue/700"
+              "token": "color/blue/600"
             }
           }
         }
@@ -1655,7 +1655,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/800"
+              "token": "color/blue/700"
             }
           }
         }
@@ -1669,7 +1669,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/800"
+              "token": "color/blue/700"
             }
           }
         }
@@ -1683,7 +1683,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/900"
+              "token": "color/blue/800"
             }
           }
         }
@@ -1764,6 +1764,11 @@
       "collection": "Primitive",
       "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
     },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
     "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -1773,11 +1778,6 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "2e36040c543e5f01f1a2280e47800237d7196ddb"
-    },
-    "color/blue/900": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "69f1741d419054252059295309b3955025459b81"
     },
     "color/gray/050": {
       "library": "Fondations Canopée",

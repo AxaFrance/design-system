@@ -209,6 +209,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » de _FormLabel passent par Link, rendu en `<button>` dans le code. Cette décision remplace celle du 02/11/26, qui les faisait passer par un Button en size=small.
 - **1.0.0 - 16/11/26.** Button a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024. Sur desktop, les hauteurs restent celles du 30/10/26 : 56, 48 et 32 px. Sur mobile, size=large mesure 48 px, size=medium 40 px et size=small 32 px. Cette décision remplace celle du 16/10/26, qui gérait la taille d'écran avec les modes de variables.
 - **1.0.0 - 16/11/26.** Dans Figma, la hauteur de chaque taille est une hauteur minimale. Un contenu plus haut agrandit le bouton, mais le bouton ne descend jamais sous cette hauteur.
+- **1.0.0 - 17/11/26.** Le Button prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, le texte, l'icône, le Spinner et la border passent en color/blue/600.
 
 ## Points ouverts
 
@@ -218,6 +219,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **Groupe de boutons.** L'ordre des boutons à gauche du primary n'est pas documenté, ni celui des boutons empilés en colonne sur mobile, ni la place du groupe dans la page (aligné à gauche, centré ou aligné à droite). En attendant : signaler.
 - **Autres usages du medium.** En dehors du Header, size=medium peut servir dans des cas précis, qui ne sont pas encore documentés. En attendant : signaler.
 - **Tailles dans le code.** Le code n'a pas de propriété de taille, et son bouton mesure 56 px sur desktop comme sur mobile. En attendant : signaler.
+- **Bleu d'interaction dans le code.** Le code dessine le Button dans le bleu de la marque, plus foncé que color/blue/600 (`ButtonApollo.css:5`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
