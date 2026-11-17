@@ -20,7 +20,12 @@ const ASSET = /^(icon|pictogram|logo|flag)\//;
 const ROLES = [
   { nom: /^mask$/, test: (n) => n.isMask === true, attendu: "un masque" },
   { nom: /^focus-ring$/, test: (n) => n.type === "FRAME" && n.layoutPositioning === "ABSOLUTE", attendu: "un cadre posé en absolu" },
-  { nom: /^(label|title|subtitle|description|caption|helper|message|value)$/, test: (n) => n.type === "TEXT", attendu: "un texte" },
+  // Un texte, ou l'instance d'un sous-composant qui porte ce texte, comme le message d'un Stepper, un _FormHelperText.
+  {
+    nom: /^(label|title|subtitle|description|caption|helper|message|value)$/,
+    test: (n) => n.type === "TEXT" || (n.type === "INSTANCE" && !!n.findOne((x) => x.type === "TEXT")),
+    attendu: "un texte, ni une instance qui en contient un",
+  },
   { nom: /^(icon|left-icon|right-icon)$/, test: (n) => n.type === "INSTANCE", attendu: "une instance" },
 ];
 // Nom donné par Figma ou par un import : « Frame 27 », « Vector », « axa_logo_solid_rgb 1 ».

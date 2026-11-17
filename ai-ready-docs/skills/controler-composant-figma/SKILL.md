@@ -15,7 +15,7 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
 1. Lire [controle.js](controle.js) et remplacer `SET_ID` par l'id de l'ensemble de variantes, par exemple `41:9085`. Remplacer aussi `PATTERN` par le pattern du composant, d'après le tableau « Les quatre patterns » de la page [Principes d'interaction](../../regles/06-principes-d-interaction.md) : `Fond`, `Contour`, `Hybride` ou `Halo`. Un composant sans état d'interaction prend une chaîne vide. Si le composant n'est pas dans le tableau, demander son pattern au designer.
 2. Avant de modifier le composant, lancer le script avec `MODE` à `"releve"`. Le script note les surcharges et les valeurs de propriétés de toutes les instances, dans le stockage local du plugin Desktop Bridge, sans rien écrire dans le fichier. Il range chaque surcharge par le chemin de son calque, qui ne change pas quand une instance passe à une autre variante, et garde sa valeur pour pouvoir la rétablir. Sans relevé, le contrôle ne voit pas les surcharges perdues.
-3. Après la modification, lancer le script avec `MODE` à `"controle"`, avec `figma_execute`, sur le fichier où vit le composant, et une durée maximale de 300 000 ms, soit cinq minutes. Le script parcourt les instances de tout le fichier. Le résultat donne la date du relevé : un relevé ancien peut signaler une surcharge qu'un designer a retirée depuis.
+3. Après la modification, lancer le script avec `MODE` à `"controle"`, avec `figma_execute`, sur le fichier où vit le composant, et une durée maximale de 300 000 ms, soit cinq minutes. Le script parcourt les instances de tout le fichier. Il s'arrête de lui-même au bout de quatre minutes, et le résultat signale alors les instances qu'il n'a pas lues. Le résultat donne la date du relevé : un relevé ancien peut signaler une surcharge qu'un designer a retirée depuis.
 4. Relancer le script dans un second appel. Si le résultat change entre les deux appels, la modification faite avant le contrôle n'est pas terminée. Le script de modification tourne peut-être encore en arrière-plan, ou une écriture se propage d'une variante aux autres.
 5. Corriger chaque défaut, puis relancer le script jusqu'à ce que `defauts` vaille « aucun ». Un défaut peut rester s'il a une raison.
 6. Donner au designer le nombre de variantes et d'instances contrôlées, et la raison de chaque défaut laissé.
@@ -37,7 +37,8 @@ Les calques d'un composant imbriqué, comme une icône de Fondations, appartienn
 | espacement-brut, epaisseur-brute | Un espacement d'auto-layout ou une épaisseur de contour n'est relié à aucun token. |
 | taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Les formes, les calques absolus étirés et les textes qui s'adaptent à leur contenu ne sont pas comptés. |
 | taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
-| role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est pas un texte, une `icon` qui n'est pas une instance. |
+| variable-introuvable | Une couleur est reliée à une variable que Figma ne trouve plus, souvent dans une librairie retirée du fichier. |
+| role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est ni un texte, ni une instance qui en contient un, une `icon` qui n'est pas une instance. |
 | nom-par-defaut | Un calque garde un nom donné par Figma ou par un import, comme « Frame 27 » ou « axa_logo_solid_rgb 1 ». |
 | groupe-sans-role | Un groupe ou un cadre n'enveloppe qu'un calque, à la même taille, sans fond, contour, effet, opacité ni lien à une propriété. |
 | contour-invisible | Un contour intérieur a la couleur du fond de son calque. |
