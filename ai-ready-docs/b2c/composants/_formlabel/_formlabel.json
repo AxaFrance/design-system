@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "tokensVersion": "2.0.0",
     "type": "composed",
-    "extends": "Button",
+    "extends": "Link",
     "figmaKey": "ce6bf2d97aff5d9deefb5aa4d0763b09325bca29",
     "library": "B2C",
     "breakpoints": [
@@ -61,21 +61,17 @@
     },
     "exposed": [
       {
-        "from": "Button",
+        "from": "Link",
         "props": [
           "rightIcon",
           "leftIcon",
           "label",
-          "showLeftIcon",
           "showRightIcon",
+          "showLeftIcon",
           "state",
-          "disabled",
-          "loading",
-          "hierarchy",
           "colorScheme",
           "size",
-          "breakpoint",
-          "_theme"
+          "breakpoint"
         ]
       }
     ]
@@ -163,16 +159,12 @@
                 "name": "side-button",
                 "type": "instance",
                 "hidden": true,
-                "component": "Button",
+                "component": "Link",
                 "values": {
                   "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
                   "colorScheme": "default",
                   "size": "small",
-                  "breakpoint": "0",
-                  "_theme": "prospect"
+                  "breakpoint": "0"
                 }
               }
             ]
@@ -180,16 +172,12 @@
           {
             "name": "more-button",
             "type": "instance",
-            "component": "Button",
+            "component": "Link",
             "values": {
               "state": "default",
-              "disabled": "false",
-              "loading": "false",
-              "hierarchy": "tertiary",
               "colorScheme": "default",
               "size": "small",
-              "breakpoint": "0",
-              "_theme": "prospect"
+              "breakpoint": "0"
             }
           }
         ]
@@ -231,16 +219,12 @@
                 "name": "side-button",
                 "type": "instance",
                 "hidden": true,
-                "component": "Button",
+                "component": "Link",
                 "values": {
                   "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
                   "colorScheme": "default",
                   "size": "small",
-                  "breakpoint": "1024",
-                  "_theme": "prospect"
+                  "breakpoint": "1024"
                 }
               }
             ]
@@ -248,23 +232,19 @@
           {
             "name": "more-button",
             "type": "instance",
-            "component": "Button",
+            "component": "Link",
             "values": {
               "state": "default",
-              "disabled": "false",
-              "loading": "false",
-              "hierarchy": "tertiary",
               "colorScheme": "default",
               "size": "small",
-              "breakpoint": "1024",
-              "_theme": "prospect"
+              "breakpoint": "1024"
             }
           }
         ]
       }
     ],
     "uses": [
-      "Button"
+      "Link"
     ]
   },
   "styles": {
@@ -364,33 +344,12 @@
         }
       },
       "side-button": {
-        "radius": {
-          "token": "border/radius/full"
-        },
-        "padding": {
-          "top": {
-            "token": "spacing/6"
-          },
-          "right": {
-            "token": "spacing/8"
-          },
-          "bottom": {
-            "token": "spacing/6"
-          },
-          "left": {
-            "token": "spacing/8"
-          }
-        },
         "gap": {
-          "token": "spacing/8"
+          "token": "spacing/4"
         },
         "layout": {
           "direction": "row",
-          "mainAlign": "center",
-          "crossAlign": "center",
-          "minHeight": {
-            "token": "size/32"
-          }
+          "crossAlign": "center"
         }
       },
       "side-button/vector": {
@@ -399,33 +358,12 @@
         }
       },
       "more-button": {
-        "radius": {
-          "token": "border/radius/full"
-        },
-        "padding": {
-          "top": {
-            "token": "spacing/6"
-          },
-          "right": {
-            "token": "spacing/8"
-          },
-          "bottom": {
-            "token": "spacing/6"
-          },
-          "left": {
-            "token": "spacing/8"
-          }
-        },
         "gap": {
-          "token": "spacing/8"
+          "token": "spacing/4"
         },
         "layout": {
           "direction": "row",
-          "mainAlign": "center",
-          "crossAlign": "center",
-          "minHeight": {
-            "token": "size/32"
-          }
+          "crossAlign": "center"
         }
       },
       "more-button/vector": {
@@ -442,49 +380,12 @@
         "styles": {
           "modes": {
             "Typography": "prospect-desktop"
-          },
-          "side-button": {
-            "padding": {
-              "top": {
-                "token": "spacing/4"
-              },
-              "right": {
-                "token": "spacing/8"
-              },
-              "bottom": {
-                "token": "spacing/4"
-              },
-              "left": {
-                "token": "spacing/8"
-              }
-            }
-          },
-          "more-button": {
-            "padding": {
-              "top": {
-                "token": "spacing/4"
-              },
-              "right": {
-                "token": "spacing/8"
-              },
-              "bottom": {
-                "token": "spacing/4"
-              },
-              "left": {
-                "token": "spacing/8"
-              }
-            }
           }
         }
       }
     ]
   },
   "tokens": {
-    "border/radius/full": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
-    },
     "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -500,11 +401,6 @@
       "collection": "Primitive",
       "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
     },
-    "size/32": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "67485646e52a2a7bdb6ab6eeca9154deb920a387"
-    },
     "spacing/12": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -514,16 +410,6 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "ece7a179702a367a2194768137236fd4d4231725"
-    },
-    "spacing/6": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "8a9022b6c99d49e876e2680384edeca9db6b5e20"
-    },
-    "spacing/8": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
     }
   },
   "textStyles": {
@@ -537,9 +423,9 @@
     }
   },
   "components": {
-    "Button": {
+    "Link": {
       "library": "B2C",
-      "key": "cbe527a60bc95af0ec43a05d55103c699fa75f2d"
+      "key": "21dffdf1d3f75cb371d309d059f95d8242b53557"
     }
   },
   "modeCollections": {
