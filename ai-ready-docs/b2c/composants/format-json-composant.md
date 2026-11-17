@@ -127,18 +127,18 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
 ```json
 "styles": {
   "default": {
-    "when": { "state": "default", "disabled": "false", "hierarchy": "primary", "colorScheme": "default" },
+    "when": { "state": "default", "disabled": "false", "hierarchy": "primary", "colorScheme": "default", "breakpoint": "0" },
     "root": {
-      "background": { "token": "color/blue/700" },
-      "radius": { "token": "Button_primary/Radius" },
-      "padding": { "top": { "token": "Button_primary/Padding Top & Bottom" } },
-      "layout": { "direction": "row", "mainAlign": "center", "crossAlign": "center", "clip": true, "minWidth": { "raw": 144 } }
+      "background": { "token": "color/blue/600" },
+      "radius": { "token": "border/radius/full" },
+      "padding": { "top": { "token": "spacing/12" } },
+      "layout": { "direction": "row", "mainAlign": "center", "crossAlign": "center", "clip": false, "minHeight": { "token": "size/48" } }
     },
     "label": { "textColor": { "token": "color/white" }, "textStyle": "label/1/semibold", "layout": { "sizingH": "fill", "textAlignVertical": "center" } },
     "left-icon/vector": { "background": { "token": "color/white" } }
   },
   "overrides": [
-    { "when": { "state": "hover" }, "styles": { "root": { "background": { "token": "color/blue/800" } } } }
+    { "when": { "state": "hover", "hierarchy": "primary", "colorScheme": "default" }, "styles": { "root": { "background": { "token": "color/blue/700" } } } }
   ]
 }
 ```
@@ -162,7 +162,7 @@ Chaque variable utilisée, une seule fois, avec sa librairie, sa collection et s
 
 ```json
 "tokens": {
-  "color/blue/700": { "library": "Fondations Canopée", "collection": "Primitive", "key": "…" }
+  "color/blue/600": { "library": "Fondations Canopée", "collection": "Primitive", "key": "…" }
 }
 ```
 
