@@ -78,7 +78,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Une fiche décrit un composant tel qu'il existe dans le code et dans la nomenclature, pas tel qu'il est découpé dans Figma. Par exemple, une seule fiche Button couvre tous les niveaux, du primary au tertiary.
 - Une fiche ne cite ni un composant archivé ou supprimé, ni un usage relevé dans une page archivée. Ces éléments ne servent plus de modèle, et les citer laisserait croire qu'ils existent encore. Seule une décision qui explique un remplacement les nomme, comme l'ancien ButtonGhost remplacé par Button.
 - Dans les règles, les propriétés et leurs valeurs gardent les noms de la nomenclature. Exemple : hierarchy=secondary, plutôt que « Button Secondary ».
-- Les noms utilisés dans le code n'apparaissent que dans la rubrique Code.
+- Les noms utilisés dans le code n'apparaissent que dans les rubriques Code, Noms à ne pas employer, Décisions et Points ouverts.
 - Chaque règle n'est écrite qu'une fois. Si elle revient à deux endroits, les deux versions finissent par se contredire.
 - Chaque point ouvert finit par « En attendant : », suivi de la règle qui s'applique si elle est tranchée, ou de « signaler » si elle ne l'est pas. Sans cette mention, une IA qui lit le point ouvert renonce à la règle ou la devine.
 - Une règle qui vaut pour tous les composants va dans un fichier commun, pas dans chaque fiche.
@@ -107,5 +107,5 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Décisions : chaque choix qui pourrait surprendre est-il expliqué, et commence-t-il par la version qui l'a introduite et sa date ? Aucune version citée n'est-elle plus récente que celle du titre ?
 - Points ouverts : tout ce qui a été ajouté sans source y figure-t-il ? Chaque point finit-il par « En attendant : » ?
 - Titre : porte-t-il la version du JSON, avec la ligne des design tokens juste en dessous ?
-- Partout : aucune règle n'est-elle écrite deux fois ? Aucun rendu, couleur ou taille, n'est-il décrit ? C'est le rôle du JSON.
+- Partout : aucune règle n'est-elle écrite deux fois ? Aucun rendu, couleur ou taille, n'est-il décrit ? C'est le rôle du JSON. Une décision ou un point ouvert peut citer une couleur ou une taille, pour expliquer un choix ou un écart.
 - Partout : une question qu'un designer ou un dev poserait reste-t-elle sans réponse et sans « Non documenté » ?

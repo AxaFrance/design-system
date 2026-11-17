@@ -63,7 +63,7 @@ Exemple : un exemple correct, le plus court possible.
 |---|---|
 
 Si le template n'existe pas dans le code :
-Composants : les composants du code à assembler, avec le lien vers leur fiche.
+Composants : les composants du code à assembler, par leur nom dans la nomenclature.
 Import : l'import de ces composants, par thème.
 Exemple : un exemple d'assemblage correct, le plus court possible.
 

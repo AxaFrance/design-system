@@ -28,7 +28,7 @@ Quand Figma et le code ne donnent pas le même nom, une propriété garde le nom
 - **kebab-case pour tout le reste** : les valeurs de variantes, les calques et les design tokens s'écrivent en minuscules, avec un tiret entre les mots, comme dans le code. Exemple : top-left, left-icon.
 - **En anglais**, sauf les valeurs métier, qui restent en français. Une valeur métier désigne un produit ou une garantie AXA. Exemple : prevoyance.
 - **Sans accent**, quelle que soit la langue.
-- **Sans préfixe ni emoji.** Une exception, le tiret bas, qui signale un sous-composant ou une propriété hors nomenclature.
+- **Sans préfixe ni emoji.** Une exception, le tiret bas, qui signale un sous-composant, une propriété hors nomenclature ou le dossier _archive/ des composants archivés. Les composants affichés par le navigateur lui-même sont rangés dans un dossier native/.
 
 ## Un besoin ?
 

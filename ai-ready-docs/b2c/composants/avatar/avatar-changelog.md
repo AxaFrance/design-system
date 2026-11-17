@@ -1,4 +1,4 @@
-# Changelog de Avatar
+# Changelog d'Avatar
 
 ## 1.0.0 - 12/11/26
 

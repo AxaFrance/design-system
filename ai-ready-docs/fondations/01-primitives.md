@@ -21,6 +21,8 @@ Une primitive est une valeur brute du design system, comme une couleur ou un esp
 | Une largeur ou une hauteur | size/24 | --size-24 |
 | Un breakpoint | breakpoint/1024 | --breakpoint-1024 |
 
+Le noir et les couleurs transparentes n'ont pas encore de token. Leurs lignes donnent le nom à prendre le jour où ils seront créés.
+
 Ces modèles sont les seuls admis. Le plugin Canopée signale un nom qui n'en suit aucun.
 
 Deux parties du nom n'acceptent que certaines valeurs.

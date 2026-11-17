@@ -20,6 +20,7 @@ Chaque composant a une fiche en deux parties : un Markdown qui dit quand et comm
 
 Dans le détail, ces changements donnent une version mineure :
 
+- une propriété ou une valeur ajoutée ;
 - une propriété ou une valeur retirée ou renommée ;
 - une valeur par défaut qui change ;
 - un nouvel ordre des propriétés ;
@@ -28,8 +29,7 @@ Dans le détail, ces changements donnent une version mineure :
 Dans le détail, ces changements donnent un patch :
 
 - une couleur, une marge, un style de texte ou un design token qui change ;
-- un Markdown modifié sans changement dans Figma ;
-- …
+- un Markdown modifié sans changement dans Figma…
 
 Ces changements ne modifient pas la version :
 
