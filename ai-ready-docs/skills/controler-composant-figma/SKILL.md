@@ -26,6 +26,7 @@ Les calques d'un composant imbriqué, comme une icône de Fondations, appartienn
 
 | Règle | Défaut |
 |---|---|
+| entete-different | L'en-tête Header Composants, posé au-dessus du composant, n'a pas le même titre que le nom du composant, ou pas la même description. Une description validée se reporte dans les deux. |
 | structure-differente | Une variante n'a pas les mêmes calques que la majorité des variantes de même type. Le calque `focus-ring` n'est pas compté, car seules certaines variantes l'ont. |
 | lien-propriete-mort, lien-propriete-absent | Un calque est relié à une propriété qui n'existe plus, ou n'est pas relié alors que le même calque l'est dans d'autres variantes. |
 | visibilite-defaut | Un calque relié à un booléen est masqué alors que le booléen vaut true par défaut, ou l'inverse. |
@@ -46,7 +47,7 @@ Les calques d'un composant imbriqué, comme une icône de Fondations, appartienn
 | disabled-avec-etat | Une variante disabled=true a un autre état que state=default. |
 | hover-050 | Une couleur passe à une nuance 050 au hover, alors qu'elle était différente en default. |
 | focus-absent, focus-epaisseur | Une variante state=focus n'a aucun contour color/blue/400, ou ce contour ne fait pas 2 px. |
-| focus-ecart | Le calque `focus-ring` n'est pas à 2 px du composant, ou pas à 0 px sur les côtés pour le pattern Hybride. |
+| focus-ecart | Le calque `focus-ring` n'est pas à 2 px du calque qu'il entoure, ou pas à 0 px sur les côtés pour le pattern Hybride. Ce calque est son parent : le composant, ou une partie seulement, comme la piste d'un Switch. |
 | instance-sans-master | Un composant imbriqué pointe vers un composant principal qui n'existe plus, souvent une variante supprimée. |
 | instance-hors-fondations | Un composant imbriqué vient d'une librairie sans porter un nom d'asset de Fondations : icon/, pictogram/, logo/ ou flag/. |
 | instance-texte, instance-visibilite | Une instance affiche un autre texte que sa propriété, ou une visibilité contraire à son booléen. |

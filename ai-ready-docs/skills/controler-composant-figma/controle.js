@@ -160,6 +160,22 @@ for (const v of set.children) for (const n of v.findAll((x) => !dansInstance(x, 
     note("visibilite-defaut", v.name + " / " + chemin(n, v) + " : visible=" + n.visible + ", défaut du booléen " + defs[refs.visible].defaultValue);
 }
 
+// L'en-tête Header Composants, posé au-dessus du composant dans le même cadre, reprend son nom et sa description.
+const cadre = set.parent;
+if (cadre && cadre.type !== "PAGE" && "findAll" in cadre) {
+  for (const h of cadre.findAll((n) => n.type === "INSTANCE" && n.name === "Header Composants")) {
+    const props = h.componentProperties || {};
+    const texte = (nom) => {
+      const k = Object.keys(props).find((x) => x.split("#")[0] === nom);
+      return k ? String(props[k].value).trim() : null;
+    };
+    const titre = texte("Titre"), description = texte("Description"), attendue = (set.description || "").trim();
+    if (titre !== null && titre !== set.name) note("entete-different", "titre « " + titre + " », alors que le composant s'appelle « " + set.name + " »");
+    if (description !== null && description !== attendue)
+      note("entete-different", "description « " + description.slice(0, 120) + " », alors que celle du composant est « " + attendue.slice(0, 120) + " »");
+  }
+}
+
 // 2. Le set : couleurs, valeurs, tailles, rôles, calques sans rôle et instances imbriquées.
 const visibles = (peintures) => (Array.isArray(peintures) ? peintures.filter((p) => p.visible !== false) : []);
 const masques = {};
@@ -298,7 +314,8 @@ if (PATTERN) for (const v of set.children) {
       const ep = typeof n.strokeWeight === "number" ? n.strokeWeight : Math.max(n.strokeTopWeight, n.strokeRightWeight, n.strokeBottomWeight, n.strokeLeftWeight);
       if (ep !== 2) note("focus-epaisseur", ou + " : " + ep + " px au lieu de 2 px");
       if (n.name !== "focus-ring") continue;
-      const a = v.absoluteBoundingBox, r = n.absoluteBoundingBox;
+      // L'anneau entoure son parent : le composant, ou une partie seulement, comme la piste d'un Switch.
+      const a = n.parent.absoluteBoundingBox, r = n.absoluteBoundingBox;
       const retrait = n.strokeAlign === "INSIDE" ? ep : n.strokeAlign === "CENTER" ? ep / 2 : 0;
       const ecarts = { haut: a.y - r.y, droite: r.x + r.width - a.x - a.width, bas: r.y + r.height - a.y - a.height, gauche: a.x - r.x };
       const cotes = PATTERN === "Hybride" ? { haut: 2, bas: 2, gauche: 0, droite: 0 } : { haut: 2, bas: 2, gauche: 2, droite: 2 };
