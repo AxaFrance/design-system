@@ -29,13 +29,9 @@ Le titre de l'étape est le titre principal de la page.
 
 Le titre de l'étape est un titre de niveau 2, sous le titre de la page.
 
-### showHelper=true
-
-Le texte d'aide précise une règle qui vaut pour toute l'étape. Exemple : « Sauf mention du contraire, tous les champs sont obligatoires. »
-
 ### showMessage=true
 
-Un _FormHelperText donne le résultat de l'étape précédente ou signale un problème, avec un message de succès par défaut, d'erreur ou d'avertissement.
+Un _FormHelperText sous les barres, neutre et sans icône par défaut. Il donne une aide qui vaut pour toute l'étape, comme « Sauf mention du contraire, tous les champs sont obligatoires. » Il peut aussi confirmer l'étape précédente ou signaler une erreur ou un avertissement.
 
 ### breakpoint=0
 
@@ -45,7 +41,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 
 - Deuxième étape d'un devis en quatre étapes, à moitié remplie : quatre barres, réglées avec stepsCount, title « Vos coordonnées », subtitle « Étape 2 sur 4 ».
 - Première étape d'une souscription, quand le titre de l'étape est le titre de la page : titleLevel=1, title « Votre besoin », subtitle « Étape 1 sur 3 ».
-- Étape avec des champs obligatoires : showHelper=true, helper « Sauf mention du contraire, tous les champs sont obligatoires. »
+- Étape avec des champs obligatoires : showMessage=true, message « Sauf mention du contraire, tous les champs sont obligatoires. »
 
 ## Interdits
 
@@ -57,7 +53,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 ## Contenu
 
 - Un titre, obligatoire.
-- Un sous-titre, un texte d'aide et un message, facultatifs.
+- Un sous-titre et un _FormHelperText, facultatifs.
 - Une barre de progression par étape, de 2 à 8, réglées avec stepsCount.
 
 ## Rédaction
@@ -119,13 +115,12 @@ Exemple :
 |---|---|
 | title | `currentTitle` |
 | subtitle, affiché par showSubtitle | `currentSubtitle` |
-| helper, affiché par showHelper | `helper` |
-| Le message, affiché par showMessage | `message` et `messageType` |
+| Le _FormHelperText, affiché par showMessage | `helper` pour une aide, ou `message` et `messageType` |
 | Le nombre de barres | `nbSteps` |
 | La valeur de chaque barre | `currentStep` et `currentStepProgress` |
 | titleLevel | `titleLevel`, de 1 à 4 dans le code |
 
-Dans le code, `currentStep` compte les étapes à partir de 0. `currentStepProgress` va de 0 à 100 et vaut 0 par défaut : sans lui, la barre de l'étape en cours reste vide. `messageType` vaut `success` par défaut, `titleLevel` vaut 2, et `helper` n'a pas de valeur par défaut.
+Dans le code, `currentStep` compte les étapes à partir de 0. `currentStepProgress` va de 0 à 100 et vaut 0 par défaut : sans lui, la barre de l'étape en cours reste vide. `messageType` vaut `success` par défaut, et `titleLevel` vaut 2.
 
 Le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. Une media query change les textes et les espacements à partir de 1024 px.
 
@@ -140,6 +135,7 @@ Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 ## Décisions
 
 - **1.0.0 - 17/11/26.** Le Stepper garde ses deux thèmes, prospect et client, car leurs espacements diffèrent, comme dans le code.
+- **1.0.0 - 17/11/26.** Le Stepper n'a qu'un texte sous les barres, un _FormHelperText neutre et sans icône par défaut, qui porte l'aide comme le message. L'ancien texte d'aide gris disparaît.
 - **1.0.0 - 17/11/26.** Le Stepper n'a pas d'icône devant son titre. Le code retirera la sienne quand il suivra ce composant.
 
 ## Points ouverts
@@ -148,7 +144,7 @@ Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 - **Niveau de titre par défaut.** titleLevel vaut 1 par défaut dans Figma et 2 dans le code. En attendant : régler titleLevel sur chaque Stepper.
 - **Changement d'étape non annoncé.** Quand l'étape change, rien ne l'annonce aux lecteurs d'écran. La position n'est lue que dans le sous-titre, s'il est affiché. En attendant : signaler.
 - **Navigation entre les étapes.** Le composant qui permet de passer d'une étape à l'autre n'est pas désigné. En attendant : signaler.
-- **Texte d'aide par défaut.** helper vaut par défaut « Sauf mention du contraire, tous les champs sont obligatoires. », alors que les autres textes ont pour valeur par défaut le nom de leur propriété, comme « Title ». En attendant : cette phrase.
+- **Aide et message dans le code.** Le code affiche l'aide (`helper`) et le message (`message`) dans deux éléments séparés, l'un sous l'autre, et le message y est un succès par défaut. Figma n'en garde qu'un, le _FormHelperText, neutre par défaut. En attendant : un seul des deux à la fois.
 - **Plugin Copilot.** Sa page Stepper compte les étapes à partir de 1, alors que le code compte à partir de 0. En attendant : la fiche fait foi.
 - **Ancienne documentation.** Une page de l'ancienne documentation du B2C décrit une navigation au clavier d'étape en étape, alors que le Stepper n'est pas interactif. En attendant : la fiche fait foi.
 

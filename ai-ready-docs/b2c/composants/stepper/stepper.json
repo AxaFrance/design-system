@@ -36,16 +36,6 @@
           }
         ]
       },
-      "showHelper": {
-        "type": "boolean",
-        "default": true,
-        "controls": [
-          {
-            "layer": "helper",
-            "attribute": "visible"
-          }
-        ]
-      },
       "showMessage": {
         "type": "boolean",
         "default": true,
@@ -105,7 +95,7 @@
       },
       "position": [
         40,
-        482
+        402
       ]
     },
     {
@@ -116,7 +106,7 @@
       },
       "position": [
         520,
-        482
+        402
       ]
     },
     {
@@ -127,7 +117,7 @@
       },
       "position": [
         40,
-        280
+        216
       ]
     },
     {
@@ -138,7 +128,7 @@
       },
       "position": [
         520,
-        276
+        216
       ]
     },
     {
@@ -149,7 +139,7 @@
       },
       "position": [
         40,
-        712
+        568
       ]
     },
     {
@@ -160,7 +150,7 @@
       },
       "position": [
         520,
-        712
+        568
       ]
     }
   ],
@@ -186,18 +176,6 @@
         "controls": [
           {
             "layer": "subtitle",
-            "attribute": "text"
-          }
-        ]
-      },
-      "helper": {
-        "as": "children",
-        "default": {
-          "text": "Sauf mention du contraire, tous les champs sont obligatoires."
-        },
-        "controls": [
-          {
-            "layer": "helper",
             "attribute": "text"
           }
         ]
@@ -230,57 +208,11 @@
             }
           },
           {
-            "name": "helper",
-            "type": "text"
-          },
-          {
             "name": "message",
             "type": "instance",
             "component": "_FormHelperText",
             "values": {
-              "tone": "success",
-              "breakpoint": "0"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024"
-        },
-        "tree": [
-          {
-            "name": "header",
-            "type": "frame",
-            "children": [
-              {
-                "name": "subtitle",
-                "type": "text"
-              },
-              {
-                "name": "title",
-                "type": "text"
-              }
-            ]
-          },
-          {
-            "name": "progress",
-            "type": "instance",
-            "component": "_StepperProgress",
-            "values": {
-              "stepsCount": "8"
-            }
-          },
-          {
-            "name": "helper",
-            "type": "text"
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "success",
+              "tone": "neutral",
               "breakpoint": "1024"
             }
           }
@@ -371,16 +303,6 @@
           "sizingH": "fill"
         }
       },
-      "helper": {
-        "textColor": {
-          "token": "color/gray/600"
-        },
-        "textStyle": "body/2/regular",
-        "layout": {
-          "sizingH": "fill",
-          "textAlignVertical": "center"
-        }
-      },
       "message": {
         "gap": {
           "token": "spacing/4"
@@ -392,7 +314,7 @@
       },
       "message/vector": {
         "background": {
-          "token": "color/green/700"
+          "token": "color/gray/700"
         }
       }
     },
@@ -481,15 +403,10 @@
       "collection": "Primitive",
       "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
-    "color/gray/600": {
+    "color/gray/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "d12a13846395d779ce6239438a435137917d7841"
-    },
-    "color/green/700": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "4f3937bbac6af27537ef6ed88b048f7ab6e37608"
+      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
     },
     "spacing/12": {
       "library": "Fondations Canopée",
@@ -513,10 +430,6 @@
     }
   },
   "textStyles": {
-    "body/2/regular": {
-      "library": null,
-      "key": "432b58a5d1fb9849fccebcd3a81e25ac571b6947"
-    },
     "heading/h1": {
       "library": null,
       "key": "67bce9c9e572d4a9289b9290919091ade508473a"
