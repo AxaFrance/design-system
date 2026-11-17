@@ -117,7 +117,7 @@
       "description": {
         "as": "children",
         "default": {
-          "text": "Label"
+          "text": "Description"
         },
         "controls": [
           {
