@@ -33,19 +33,19 @@ En B2C, la taille ne dépend que de l'écran, prospect et client ont les mêmes 
 | heading/h2 | 32 / 40 | 24 / 30 | 20 / 24 |
 | heading/h3 | 24 / 30 | 20 / 24 | 18 / 24 |
 | heading/h4 | 20 / 24 | 18 / 24 | 16 / 22 |
-| title/1 | 18 / 24 | 16 / 20 | 20 / 24 |
-| title/2 | 16 / 20 | 14 / 18 | 16 / 22 |
-| subtitle/1 | 18 / 24 | 16 / 20 | 18 / 24 |
-| subtitle/2 | 16 / 20 | 14 / 18 | 16 / 22 |
-| subtitle/3 | 14 / 18 | 14 / 18 | 14 / 18 |
-| body/1 | 18 / 24 | 16 / 20 | 18 / 24 |
-| body/2 | 16 / 20 | 14 / 18 | 16 / 22 |
-| body/3 | 14 / 18 | 14 / 18 | 15 / 20 |
-| label/1 | 18 / 24 | 16 / 20 | 16 / 20 |
-| label/2 | 16 / 20 | 14 / 18 | 14 / 16 |
-| label/3 | 14 / 18 | 14 / 18 | 13 / 16 |
-| caption/1 | 16 / 20 | 14 / 18 | 14 / 18 |
-| caption/2 | 16 / 20 | 14 / 18 | 13 / 16 |
+| title/1 | 18 / 24 | 16 / 24 | 20 / 24 |
+| title/2 | 16 / 24 | 14 / 20 | 16 / 22 |
+| subtitle/1 | 18 / 24 | 16 / 24 | 18 / 24 |
+| subtitle/2 | 16 / 24 | 14 / 20 | 16 / 22 |
+| subtitle/3 | 14 / 20 | 14 / 20 | 14 / 18 |
+| body/1 | 18 / 24 | 16 / 24 | 18 / 24 |
+| body/2 | 16 / 24 | 14 / 20 | 16 / 22 |
+| body/3 | 14 / 20 | 14 / 20 | 15 / 20 |
+| label/1 | 18 / 24 | 16 / 24 | 16 / 20 |
+| label/2 | 16 / 24 | 14 / 20 | 14 / 16 |
+| label/3 | 14 / 20 | 14 / 20 | 13 / 16 |
+| caption/1 | 16 / 24 | 14 / 20 | 14 / 18 |
+| caption/2 | 14 / 20 | 12 / 16 | 13 / 16 |
 
 Le premier chiffre est la taille, le second l'interligne, en pixels. Un style en regular et sa version en semibold ont les mêmes valeurs.
 
