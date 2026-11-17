@@ -62,7 +62,7 @@ Sur un écran de moins de 1024 px de large. Le libellé et la description utilis
 
 - Un libellé, obligatoire.
 - Une description, facultative.
-- Deux actions au plus, chacune un Link small : « Modifier » à droite du libellé, « En savoir plus » en dessous.
+- Deux actions au plus, chacune un Link small : « Modifier » à droite du libellé, « En savoir plus » en dessous, avec l'icône icon/info-outline à gauche, comme dans le code.
 
 ## Rédaction
 

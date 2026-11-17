@@ -133,6 +133,7 @@ Ces noms désignent Avatar. Le seul nom à employer est Avatar.
 - **Retouches locales.** L'interdit de modifier la taille, la forme ou les couleurs reprend la règle de Button, d'IconButton, de Divider et de Spinner, sans source propre à l'Avatar. En attendant : il s'applique.
 - **Nom lu deux fois dans le code.** ContentItemMono et DataAgent donnent comme texte alternatif le titre déjà écrit à côté de la photo. En attendant : signaler.
 - **Photo non carrée.** Dans le code, une photo qui n'est pas carrée est déformée pour remplir le cercle. En attendant : fournir une photo carrée.
+- **Image décorative.** Aucun composant n'est désigné pour une image décorative ou une illustration. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

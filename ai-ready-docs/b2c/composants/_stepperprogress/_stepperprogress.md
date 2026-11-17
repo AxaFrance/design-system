@@ -91,7 +91,7 @@ Exemple, dans Stepper :
 | stepsCount | `stepsCount`, appelé `nbSteps` dans Stepper |
 | La valeur de chaque barre | `currentStep` et `currentStepProgress` |
 
-Dans le code, les barres se calculent à partir de deux props. `currentStep` donne la position de l'étape en cours, en comptant à partir de 0, et `currentStepProgress` son avancement, de 0 à `max`, qui vaut 100 par défaut. Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : `max`, que Stepper ne transmet pas, `className` et les autres attributs de `<ol>`.
+Dans le code, `stepsCount` vaut 4 par défaut (`ProgressBarGroupCommon.tsx:21`), contre 2 dans Figma. Les barres se calculent à partir de deux props. `currentStep` donne la position de l'étape en cours, en comptant à partir de 0, et `currentStepProgress` son avancement, de 0 à `max`, qui vaut 100 par défaut. Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : `max`, que Stepper ne transmet pas, `className` et les autres attributs de `<ol>`.
 
 ## Noms à ne pas employer
 
