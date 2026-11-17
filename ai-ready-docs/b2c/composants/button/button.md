@@ -18,7 +18,7 @@ Le Button déclenche une action dans la page. Son importance se règle avec hier
 
 - Naviguer vers une autre page : prendre Link.
 - Une action représentée par une icône seule : prendre IconButton.
-- Activer ou désactiver une option : prendre Toggle.
+- Activer ou désactiver une option : prendre Switch.
 - Choisir une option parmi plusieurs : prendre CardRadio.
 
 ## Règles selon les propriétés

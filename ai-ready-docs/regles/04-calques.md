@@ -34,7 +34,7 @@ Ces calques reprennent les propriétés de contenu, qui remplissent un élément
 | actions | Le groupe de boutons ou de liens d'action. Chacun y porte le nom action. |
 | list | Le cadre qui contient une série d'éléments répétés. |
 | item | Un élément répété dans une list. |
-| input | La zone de saisie d'un champ, ou la partie à cocher d'un Checkbox, d'un Radio ou d'un Toggle. |
+| input | La zone de saisie d'un champ, ou la partie à cocher d'un Checkbox, d'un Radio ou d'un Switch. |
 | divider | Le trait de séparation entre deux parties. |
 | focus-ring | L'anneau qui entoure le composant quand il a le focus. Il déborde du composant, il est donc posé hors de la mise en page. |
 
