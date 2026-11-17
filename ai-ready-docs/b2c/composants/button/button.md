@@ -211,6 +211,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 16/11/26.** Dans Figma, la hauteur de chaque taille est une hauteur minimale. Un contenu plus haut agrandit le bouton, mais le bouton ne descend jamais sous cette hauteur.
 - **1.0.0 - 17/11/26.** Le Button prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, le texte, l'icône, le Spinner et la border passent en color/blue/600.
 - **1.0.0 - 17/11/26.** Un appel à l'action qui mène vers une autre page garde l'apparence d'un Button dans la maquette, mais devient un Link dans le code, pour rester un lien. Le Link du code a pour cela des variantes `button-primary`, `button-secondary`… MUI et Polaris font de même, avec un bouton qui accepte une adresse.
+- **1.0.0 - 17/11/26.** En size=small, le Spinner d'un Button en chargement prend sa taille x-small, de 16 px, ajoutée pour l'occasion, au lieu d'un Spinner réduit localement.
 
 ## Points ouverts
 

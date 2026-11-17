@@ -5938,6 +5938,10 @@
           "colorScheme": [
             "business",
             "default"
+          ],
+          "size": [
+            "large",
+            "medium"
           ]
         },
         "tree": [
@@ -5974,9 +5978,54 @@
           "state": "default",
           "disabled": "false",
           "loading": "true",
+          "hierarchy": "primary",
+          "colorScheme": [
+            "business",
+            "default"
+          ],
+          "size": "small"
+        },
+        "tree": [
+          {
+            "name": "left-icon",
+            "type": "instance",
+            "hidden": true,
+            "component": "icon/account-balance"
+          },
+          {
+            "name": "label",
+            "type": "text"
+          },
+          {
+            "name": "right-icon",
+            "type": "instance",
+            "hidden": true,
+            "component": "icon/account-balance"
+          },
+          {
+            "name": "spinner",
+            "type": "instance",
+            "component": "Spinner",
+            "values": {
+              "colorScheme": "white",
+              "size": "x-small",
+              "_animation": "1"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "false",
+          "loading": "true",
           "colorScheme": [
             "default",
             "inverse"
+          ],
+          "size": [
+            "large",
+            "medium"
           ]
         },
         "tree": [
@@ -6003,6 +6052,46 @@
             "values": {
               "colorScheme": "blue",
               "size": "small",
+              "_animation": "1"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "false",
+          "loading": "true",
+          "colorScheme": [
+            "default",
+            "inverse"
+          ],
+          "size": "small"
+        },
+        "tree": [
+          {
+            "name": "left-icon",
+            "type": "instance",
+            "hidden": true,
+            "component": "icon/account-balance"
+          },
+          {
+            "name": "label",
+            "type": "text"
+          },
+          {
+            "name": "right-icon",
+            "type": "instance",
+            "hidden": true,
+            "component": "icon/account-balance"
+          },
+          {
+            "name": "spinner",
+            "type": "instance",
+            "component": "Spinner",
+            "values": {
+              "colorScheme": "blue",
+              "size": "x-small",
               "_animation": "1"
             }
           }
@@ -7500,11 +7589,23 @@
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
     },
     {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/2/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
+    },
+    {
       "level": "info",
       "rule": "prop-outside-nomenclature",
       "where": "api.props._theme",
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.0"
+  "_tool": "canopee-export-components 0.7.1"
 }

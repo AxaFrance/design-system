@@ -26,7 +26,8 @@
         "type": "enum",
         "enum": [
           "small",
-          "large"
+          "large",
+          "x-small"
         ],
         "default": "large"
       },
@@ -133,13 +134,57 @@
     },
     {
       "values": {
+        "colorScheme": "blue",
+        "size": "x-small",
+        "_animation": "1"
+      },
+      "position": [
+        44,
+        136
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "x-small",
+        "_animation": "2"
+      },
+      "position": [
+        94,
+        136
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "x-small",
+        "_animation": "3"
+      },
+      "position": [
+        144,
+        136
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "x-small",
+        "_animation": "4"
+      },
+      "position": [
+        194,
+        136
+      ]
+    },
+    {
+      "values": {
         "colorScheme": "white",
         "size": "small",
         "_animation": "1"
       },
       "position": [
         40,
-        280
+        376
       ]
     },
     {
@@ -150,7 +195,7 @@
       },
       "position": [
         90,
-        280
+        376
       ]
     },
     {
@@ -161,7 +206,7 @@
       },
       "position": [
         140,
-        280
+        376
       ]
     },
     {
@@ -172,7 +217,7 @@
       },
       "position": [
         190,
-        280
+        376
       ]
     },
     {
@@ -183,7 +228,7 @@
       },
       "position": [
         40,
-        232
+        328
       ]
     },
     {
@@ -194,7 +239,7 @@
       },
       "position": [
         90,
-        232
+        328
       ]
     },
     {
@@ -205,7 +250,7 @@
       },
       "position": [
         140,
-        232
+        328
       ]
     },
     {
@@ -216,7 +261,51 @@
       },
       "position": [
         190,
-        232
+        328
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "x-small",
+        "_animation": "1"
+      },
+      "position": [
+        44,
+        424
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "x-small",
+        "_animation": "2"
+      },
+      "position": [
+        94,
+        424
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "x-small",
+        "_animation": "3"
+      },
+      "position": [
+        144,
+        424
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "size": "x-small",
+        "_animation": "4"
+      },
+      "position": [
+        194,
+        424
       ]
     },
     {
@@ -227,7 +316,7 @@
       },
       "position": [
         40,
-        184
+        232
       ]
     },
     {
@@ -238,7 +327,7 @@
       },
       "position": [
         90,
-        184
+        232
       ]
     },
     {
@@ -249,7 +338,7 @@
       },
       "position": [
         140,
-        184
+        232
       ]
     },
     {
@@ -260,7 +349,7 @@
       },
       "position": [
         190,
-        184
+        232
       ]
     },
     {
@@ -271,7 +360,7 @@
       },
       "position": [
         40,
-        136
+        184
       ]
     },
     {
@@ -282,7 +371,7 @@
       },
       "position": [
         90,
-        136
+        184
       ]
     },
     {
@@ -293,7 +382,7 @@
       },
       "position": [
         140,
-        136
+        184
       ]
     },
     {
@@ -304,7 +393,51 @@
       },
       "position": [
         190,
-        136
+        184
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "x-small",
+        "_animation": "1"
+      },
+      "position": [
+        44,
+        280
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "x-small",
+        "_animation": "2"
+      },
+      "position": [
+        94,
+        280
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "x-small",
+        "_animation": "3"
+      },
+      "position": [
+        144,
+        280
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "x-small",
+        "_animation": "4"
+      },
+      "position": [
+        194,
+        280
       ]
     }
   ],
@@ -498,10 +631,77 @@
             }
           }
         }
+      },
+      {
+        "when": {
+          "size": "x-small"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/16"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/16"
+              }
+            }
+          },
+          "content": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 10
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 10
+              }
+            }
+          },
+          "track": {
+            "strokeWeight": {
+              "token": "border/width/2"
+            },
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 10
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 10
+              }
+            }
+          },
+          "arc": {
+            "strokeWeight": {
+              "token": "border/width/2"
+            },
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 10
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 5
+              }
+            }
+          }
+        }
       }
     ]
   },
   "tokens": {
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
     "border/width/3": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -521,6 +721,11 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "size/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b50a280ae51f957a217154710fae04336ca74fbb"
     },
     "size/24": {
       "library": "Fondations Canopée",
