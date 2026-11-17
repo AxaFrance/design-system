@@ -61,7 +61,7 @@ Le Button des actions du Header.
 
 ### size=small
 
-Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost. Exemples : les actions « Modifier » et « En savoir plus » de _FormLabel, le bouton d'un ContentItemDuoAction, ou celui d'un Message qui propose une action.
+Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Un Button en hierarchy=tertiary et size=small remplace l'ancien ButtonGhost. Exemples : le bouton d'un ContentItemDuoAction, ou celui d'un Message qui propose une action.
 
 ### breakpoint=0
 
@@ -206,6 +206,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 02/11/26.** Chaque taille a son usage : size=large pour la plupart des actions, size=medium pour le Header, size=small surtout en hierarchy=tertiary, mais possible avec tous les niveaux.
 - **1.0.0 - 02/11/26.** Les actions « Modifier » et « En savoir plus » de _FormLabel passent par un Button en size=small. Cette décision remplace celle du 16/10/26, qui prévoyait un sous-composant propre à _FormLabel.
 - **1.0.0 - 04/11/26.** Au repos, le secondary et le tertiary n'ont pas de fond. Le bouton désactivé garde son fond gris.
+- **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » de _FormLabel passent par Link, rendu en `<button>` dans le code. Cette décision remplace celle du 02/11/26, qui les faisait passer par un Button en size=small.
 - **1.0.0 - 16/11/26.** Button a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024. Sur desktop, les hauteurs restent celles du 30/10/26 : 56, 48 et 32 px. Sur mobile, size=large mesure 48 px, size=medium 40 px et size=small 32 px. Cette décision remplace celle du 16/10/26, qui gérait la taille d'écran avec les modes de variables.
 - **1.0.0 - 16/11/26.** Dans Figma, la hauteur de chaque taille est une hauteur minimale. Un contenu plus haut agrandit le bouton, mais le bouton ne descend jamais sous cette hauteur.
 

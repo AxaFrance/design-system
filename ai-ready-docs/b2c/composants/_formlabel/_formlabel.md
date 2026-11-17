@@ -56,14 +56,13 @@ Sur un écran de moins de 1024 px de large. Le libellé et la description utilis
 ## Interdits
 
 - Masquer le libellé, ou le remplacer par un placeholder ou une icône.
-- Changer le niveau ou la taille des actions « Modifier » et « En savoir plus ».
 - Modifier localement la taille, l'espacement ou les couleurs du _FormLabel, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
 ## Contenu
 
 - Un libellé, obligatoire.
 - Une description, facultative.
-- Deux actions au plus, chacune un Button : « Modifier » à droite du libellé, « En savoir plus » en dessous.
+- Deux actions au plus, chacune un Link : « Modifier » à droite du libellé, « En savoir plus » en dessous.
 
 ## Rédaction
 
@@ -75,7 +74,7 @@ Sur un écran de moins de 1024 px de large. Le libellé et la description utilis
 ## Comportement
 
 - Un clic sur le libellé place le focus dans le champ.
-- Le libellé ne s'atteint pas avec la touche Tab. Seules les actions « Modifier » et « En savoir plus » s'atteignent, et elles suivent les règles de Button.
+- Le libellé ne s'atteint pas avec la touche Tab. Seules les actions « Modifier » et « En savoir plus » s'atteignent. Elles suivent les règles de Link, mais le code les rend en `<button>`, car elles agissent dans la page.
 
 ## Accessibilité
 
@@ -129,7 +128,7 @@ import { InputText } from "@axa-fr/canopee-react/prospect";
 | required | `required` |
 | showSideButton, et le texte de l'action | `sideButtonLabel` |
 | showMoreButton, et le texte de l'action | `moreButtonLabel` |
-| Les actions, des Button tertiary small | `variant="ghost"`, imposé par le composant |
+| Les actions, des Link | Des Button en `variant="ghost"`, imposé par le composant |
 
 Dans le code, une action s'affiche dès que son texte est renseigné, et le composant ne s'affiche pas sans libellé. Le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. Une media query agrandit le libellé et la description à partir de 1024 px. Sans équivalent dans Figma : `htmlFor`, `onSideButtonClick`, `onMoreButtonClick`, `sideButtonProps`, `moreButtonProps`, et les autres attributs de `<label>`.
 
@@ -142,13 +141,14 @@ Ces noms désignent _FormLabel. Le seul nom à employer est _FormLabel.
 ## Décisions
 
 - **1.0.0 - 02/11/26.** Les actions « Modifier » et « En savoir plus » passent par un Button tertiary small, et non par l'ancien ButtonGhost.
+- **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » passent par Link, rendu en `<button>` dans le code. Sans marge, elles s'alignent sur le libellé et gardent la hauteur du texte. Cette décision remplace celle du 02/11/26, qui les faisait passer par Button.
 - **1.0.0 - 16/11/26.** Dans Figma, les thèmes prospect et client partagent un seul _FormLabel, celui du thème prospect, car leurs deux versions ne différaient que par le thème des actions.
 - **1.0.0 - 16/11/26.** showSideButton est un booléen, et non une variante. Les deux actions peuvent s'afficher ensemble, comme dans le code.
 - **1.0.0 - 16/11/26.** Dans Figma, « Modifier » est centré en hauteur à côté du libellé et de la description, dans tous les cas.
 
 ## Points ouverts
 
-- **Hauteur des actions.** Les actions sont des Button de 32 px de haut, avec une marge de 8 px sur les côtés. Le code les affiche en `variant="ghost"`, sans marge, sur la hauteur du texte (`ButtonApollo.css:75`). Le _FormLabel est donc plus haut dans Figma, et l'icône de « En savoir plus » est décalée de 8 px par rapport au libellé. L'équipe design system doit encore trancher. En attendant : les maquettes suivent Figma, et le code s'utilise sans surcharge de style. L'écart se corrige dans le code de Canopée.
+- **Soulignement des actions dans le code.** Le code souligne « Modifier » et « En savoir plus » seulement au survol et au focus (`ButtonCommon.css:51`), alors que Link est souligné en permanence. En attendant : les maquettes suivent Figma, et le code s'utilise sans surcharge de style. L'écart se corrige dans le code de Canopée.
 - **Alignement de « Modifier ».** Le code aligne l'action en bas quand une description est présente, et la centre sinon (`ItemLabelCommon.css:51`). En attendant : les maquettes suivent Figma, et le code s'utilise sans surcharge de style.
 - **Description non annoncée dans le code.** Le code pose `aria-describedby` sur le `<label>` et non sur le champ (`ItemLabelCommon.tsx:140`). Un lecteur d'écran ne lit donc pas la description quand le champ reçoit le focus. En attendant : signaler.
 - **Couleurs dans le code.** Le code affiche le libellé dans un gris plus clair que Figma, et la description dans un gris plus foncé (`ItemLabelApollo.css:5`). En attendant : signaler.
