@@ -74,7 +74,7 @@ Un élément `<div>`. Le titre est une balise de titre HTML, `<h1>` ou `<h2>` se
 - La liste des barres est reliée au titre et au sous-titre de l'étape avec `aria-labelledby`.
 - Les barres sont masquées aux lecteurs d'écran avec `aria-hidden`.
 - Le texte contraste avec le fond à 4,5:1 au moins (WCAG).
-- Le message suit les règles de _FormHelperText : seul un message tone=error apparu après une action de l'utilisateur porte `role="alert"`.
+- Le message suit les règles de _FormHelperText : seul un message d'erreur apparu après une action de l'utilisateur porte `role="alert"`.
 - L'annonce d'un changement d'étape aux lecteurs d'écran : Non documenté.
 
 ## Code
