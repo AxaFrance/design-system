@@ -3,7 +3,7 @@
   "meta": {
     "name": "Tag",
     "version": "1.0.0",
-    "tokensVersion": "2.0.0",
+    "tokensVersion": null,
     "type": "atom",
     "figmaKey": "01d45958c08d2ff9337d8942a096d2665832f4e2",
     "library": "B2C",
@@ -390,6 +390,13 @@
       "key": "be959715ddac77dedafba55e157014b702551c02"
     }
   },
-  "issues": [],
-  "_tool": "canopee-export-components 0.7.0"
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/2/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.1"
 }

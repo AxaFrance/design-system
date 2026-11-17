@@ -3,7 +3,7 @@
   "meta": {
     "name": "Stepper",
     "version": "1.0.0",
-    "tokensVersion": "2.0.0",
+    "tokensVersion": null,
     "type": "composed",
     "extends": "_StepperProgress",
     "figmaKey": "c4daa3b8267f4bbf5ce1e8871fd5564988c3d73d",
@@ -468,11 +468,29 @@
       "occurrences": 8
     },
     {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.heading/h1",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : heading/h1."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.heading/h2",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : heading/h2."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/2/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/regular."
+    },
+    {
       "level": "info",
       "rule": "prop-outside-nomenclature",
       "where": "api.props._theme",
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.0"
+  "_tool": "canopee-export-components 0.7.1"
 }

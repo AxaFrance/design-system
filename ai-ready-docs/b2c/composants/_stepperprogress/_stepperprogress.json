@@ -1,5 +1,5 @@
 {
-  "formatVersion": "0.6",
+  "formatVersion": "0.7",
   "meta": {
     "name": "_StepperProgress",
     "version": "1.0.0",
@@ -822,5 +822,5 @@
       "occurrences": 7
     }
   ],
-  "_tool": "canopee-export-components 0.6.1"
+  "_tool": "canopee-export-components 0.7.1"
 }

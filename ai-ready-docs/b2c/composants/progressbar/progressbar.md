@@ -1,6 +1,6 @@
 # ProgressBar 1.0.0
 
-Utilise les design tokens de Canopée 2.0.0 ou d'une version plus récente.
+Utilise les design tokens de Canopée X.Y.Z ou d'une version plus récente.
 
 ## Description
 

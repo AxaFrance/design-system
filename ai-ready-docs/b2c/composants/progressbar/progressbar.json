@@ -1,9 +1,9 @@
 {
-  "formatVersion": "0.6",
+  "formatVersion": "0.7",
   "meta": {
     "name": "ProgressBar",
     "version": "1.0.0",
-    "tokensVersion": "2.0.0",
+    "tokensVersion": null,
     "type": "atom",
     "figmaKey": "bf387893b1199b74b7effb6d3471a691296ae58d",
     "library": "B2C",
@@ -829,11 +829,17 @@
       "occurrences": 21
     },
     {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/2/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
+    },
+    {
       "level": "info",
       "rule": "text-not-linked",
       "where": "layer percentage",
       "message": "Ce texte n'est relié à aucune propriété de texte."
     }
   ],
-  "_tool": "canopee-export-components 0.6.1"
+  "_tool": "canopee-export-components 0.7.1"
 }

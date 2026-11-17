@@ -3,7 +3,7 @@
   "meta": {
     "name": "_FormLabel",
     "version": "1.0.0",
-    "tokensVersion": "2.0.0",
+    "tokensVersion": null,
     "type": "composed",
     "extends": "Link",
     "figmaKey": "ce6bf2d97aff5d9deefb5aa4d0763b09325bca29",
@@ -443,11 +443,23 @@
       "occurrences": 2
     },
     {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.caption/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : caption/1/regular."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
+    },
+    {
       "level": "info",
       "rule": "text-not-linked",
       "where": "layer required",
       "message": "Ce texte n'est relié à aucune propriété de texte."
     }
   ],
-  "_tool": "canopee-export-components 0.7.0"
+  "_tool": "canopee-export-components 0.7.1"
 }
