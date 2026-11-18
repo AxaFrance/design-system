@@ -61,6 +61,15 @@
         "props": [
           "stepsCount"
         ]
+      },
+      {
+        "from": "_FormHelperText",
+        "props": [
+          "showIcon",
+          "message",
+          "tone",
+          "breakpoint"
+        ]
       }
     ]
   },
@@ -462,13 +471,6 @@
   "issues": [
     {
       "level": "warning",
-      "rule": "raw-value",
-      "where": "styles.root.layout.width",
-      "message": "Valeur brute (400) : la relier à une variable.",
-      "occurrences": 8
-    },
-    {
-      "level": "warning",
       "rule": "token-value-unpublished",
       "where": "textStyles.heading/h1",
       "message": "Valeur absente de toutes les versions publiées de Canopée : heading/h1."
@@ -492,5 +494,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.1"
+  "_tool": "canopee-export-components 0.7.4"
 }
