@@ -389,13 +389,6 @@
     {
       "level": "warning",
       "rule": "raw-value",
-      "where": "styles.root.layout.minWidth",
-      "message": "Valeur brute (144) : la relier à une variable.",
-      "occurrences": 2
-    },
-    {
-      "level": "warning",
-      "rule": "raw-value",
       "where": "styles.root.padding.bottom",
       "message": "Valeur brute (12) : la relier à une variable.",
       "occurrences": 2

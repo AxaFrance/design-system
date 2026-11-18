@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.2";
+const VERSION = "0.7.3";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1169,6 +1169,12 @@ async function captureVariant(ctx, prep, variant, list) {
         const c = { nm, es, id: el.id };
         if (DRAWN_TYPES.has(el.type))
             c.drawn = true;
+        // an element drawn by the browser, like the text cursor (native/), keeps its own size
+        if (isInstance(el)) {
+            const m = await readMainComponent(ctx, el);
+            if (m && /^native\//.test(componentName(m) || ""))
+                c.drawn = true;
+        }
         if (el.type === "INSTANCE") {
             const r = await instanceVector(ctx, el, "styles." + nm);
             if (r) {
@@ -1241,11 +1247,18 @@ function stylesIssues(styles, drawn) {
             return;
         if (Object.keys(o).length === 1 && "raw" in o) {
             const size = key === "width" || key === "height";
-            const excluded = size &&
-                (parentKey !== "layout" ||
-                    !parent ||
-                    freeSize(parent, key) ||
-                    drawnSize(path));
+            // the size of the component itself follows its container in a mockup, and a
+            // minimum or maximum size is a layout guard: neither is meant to carry a token
+            const location = path.replace(/^styles\.(default\.|overrides\[[^\]]*\]\.(styles\.)?)?/, "");
+            const rootSize = size && (location === "root.layout.width" || location === "root.layout.height");
+            const minMax = ["minWidth", "maxWidth", "minHeight", "maxHeight"].includes(key);
+            const excluded = rootSize ||
+                minMax ||
+                (size &&
+                    (parentKey !== "layout" ||
+                        !parent ||
+                        freeSize(parent, key) ||
+                        drawnSize(path)));
             if (o.raw !== 0 && o.raw !== null && !excluded)
                 out.push({
                     level: "warning",

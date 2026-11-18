@@ -146,7 +146,7 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
 
 - Une surcharge vaut pour toutes les variantes dont les valeurs correspondent à son `when`, qui ne cite que les propriétés utiles. Elle complète le style par défaut : ce qu'elle ne cite pas reste celui du défaut, et `null` retire une valeur.
 - Une variante part du style par défaut et reçoit toutes les surcharges qui lui correspondent. Deux surcharges qui correspondent à une même variante ne se contredisent jamais : l'ordre ne compte pas.
-- Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, sauf pour un calque absolu étiré sur l'axe concerné, et pour une forme ou un groupe (ellipse, vecteur, rectangle...), dont la taille vient du tracé.
+- Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, avec quatre exceptions. La taille du composant lui-même suit son conteneur dans une maquette, et une taille minimale ou maximale garde la mise en page. Un calque absolu étiré sur l'axe concerné suit son parent. Une forme, un groupe (ellipse, vecteur, rectangle...) ou un élément affiché par le navigateur, comme le curseur (native/), garde la taille de son tracé.
 - Une couleur reliée à une variable mais pas tout à fait opaque garde son opacité, entre 0 et 1, à côté du token. Exemple : `{ "token": "color/blue/700", "opacity": 0.2 }`.
 - Les marges intérieures (`padding`) et l'espacement (`gap`) ne s'écrivent que pour un calque en auto-layout. Sans auto-layout, Figma ne les applique pas.
 - La typo s'écrit par le nom du style de texte, `textStyle`. Sa clé se lit dans l'index `textStyles`.
@@ -207,7 +207,7 @@ Les défauts repérés par l'export : une valeur brute, un écart à la nomencla
 Chaque défaut a un `level` (`error`, `warning` ou `info`), une `rule` qui le nomme, un `where` qui dit où il se trouve, et un `message`. Un défaut de style porte aussi `occurrences`, le nombre de variantes où il apparaît. Il est absent quand le défaut ne se retrouve dans aucune variante.
 
 ```json
-{ "level": "warning", "rule": "raw-value", "where": "styles.root.layout.minWidth", "message": "Valeur brute (144) : la relier à une variable.", "occurrences": 50 }
+{ "level": "warning", "rule": "raw-value", "where": "styles.root.padding.top", "message": "Valeur brute (12) : la relier à une variable.", "occurrences": 50 }
 ```
 
 ## La validation

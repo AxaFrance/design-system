@@ -718,7 +718,7 @@ describe("The fake button", () => {
     ).toBe(1);
     expect(
       issuesFor(sheet, "raw-value", "styles.root.layout.minWidth").length,
-    ).toBe(1);
+    ).toBe(0);
     expect(
       issuesFor(sheet, "raw-value", "styles.root.padding.right").length,
     ).toBe(0);
@@ -1234,7 +1234,7 @@ describe("The grouping of the overrides", () => {
     );
     expect(canonical(undefined)).not.toBe(canonical(null));
   });
-  it("occurrences of real Button: the raw minimum width counts 50 variants, not 1 override", async () => {
+  it("occurrences of real Button: the raw minimum width is no longer an issue, a minimum size carries no token", async () => {
     const { plugin } = await button();
     const { effectiveStyles, variantsPerIssue, issueSignature } = plugin.__test;
     const fb = real03();
@@ -1245,7 +1245,7 @@ describe("The grouping of the overrides", () => {
     const i = fb.issues.find(
       (x: MockData) => x.where === "styles.root.layout.minWidth",
     );
-    expect(n.get(issueSignature(i))).toBe(50);
+    expect(n.get(issueSignature(i))).toBe(undefined);
   });
   it("applicableTree: configs takes precedence over when, and only applies to its variants", async () => {
     const { applicableTree } = (await button()).plugin.__test;
@@ -1730,8 +1730,6 @@ describe("The grouping of the overrides", () => {
     expect(sizes).toStrictEqual([
       "styles.box.layout.height",
       "styles.box.layout.width",
-      "styles.root.layout.height",
-      "styles.root.layout.width",
     ]);
   });
   it("a text that fits its content keeps an automatic size, even when it is hidden", async () => {
@@ -4100,6 +4098,33 @@ describe("A template, recognized by its page in the library", () => {
       "_FormHelperText",
       "_FormHelperText",
     ]);
+  });
+  it("an element drawn by the browser (native/) keeps its size without an issue", async () => {
+    const d = inPage("Forms", { description: "Le champ." });
+    const variant = d.selection[0].children[0];
+    const comp = (name: string, id: string) =>
+      connect(layer("COMPONENT", name, { id, key: "KEY-" + id, width: 4, height: 24 }));
+    for (const [name, mc] of [
+      ["cursor", comp("native/Cursor", "C:31")],
+      ["badge", comp("Badge", "C:32")],
+    ] as const) {
+      const instance = connect(
+        layer("INSTANCE", name, {
+          mainComponent: mc,
+          componentProperties: {},
+          width: 4,
+          height: 24,
+          layoutSizingHorizontal: "FIXED",
+          layoutSizingVertical: "FIXED",
+        }),
+        variant,
+      );
+      variant.children.push(instance);
+    }
+    const { sheet } = await exportSheet(d);
+    const where = issuesFor(sheet, "raw-value").map((i: MockData) => i.where);
+    expect(where.some((w: string) => w.startsWith("styles.cursor."))).toBe(false);
+    expect(where.some((w: string) => w.startsWith("styles.badge."))).toBe(true);
   });
   it("a description without a mention is reported, and the level stays written", async () => {
     const { sheet } = await exportSheet(
