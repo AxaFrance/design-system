@@ -26,3 +26,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | _FormHelperText | [_formhelpertext.md](_formhelpertext/_formhelpertext.md) | [_formhelpertext.json](_formhelpertext/_formhelpertext.json) | [_formhelpertext-changelog.md](_formhelpertext/_formhelpertext-changelog.md) |
 | Stepper | [stepper.md](stepper/stepper.md) | [stepper.json](stepper/stepper.json) | [stepper-changelog.md](stepper/stepper-changelog.md) |
 | Switch | [switch.md](switch/switch.md) | [switch.json](switch/switch.json) | [switch-changelog.md](switch/switch-changelog.md) |
+| TextInput | [textinput.md](textinput/textinput.md) | [textinput.json](textinput/textinput.json) | [textinput-changelog.md](textinput/textinput-changelog.md) |
