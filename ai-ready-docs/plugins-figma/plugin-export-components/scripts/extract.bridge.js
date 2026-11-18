@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.3";
+const VERSION = "0.7.4";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1169,6 +1169,9 @@ async function captureVariant(ctx, prep, variant, list) {
         const c = { nm, es, id: el.id };
         if (DRAWN_TYPES.has(el.type))
             c.drawn = true;
+        // Figma gives a fixed size to every hidden layer: its size is not an issue
+        if (el.visible === false)
+            c.drawn = true;
         // an element drawn by the browser, like the text cursor (native/), keeps its own size
         if (isInstance(el)) {
             const m = await readMainComponent(ctx, el);
@@ -1589,7 +1592,16 @@ async function extractDetail(target, opts) {
     // exposed instance is listed in api.exposed, in the order of the layers, and the
     // first one names the base component in extends.
     const exposedLayers = [];
+    // an instance exposed inside another instance belongs to that one: its own sheet lists it
+    const insideInstance = (n) => {
+        for (let p = n.parent; p && p.type !== "COMPONENT" && p.type !== "COMPONENT_SET"; p = p.parent)
+            if (p.type === "INSTANCE")
+                return true;
+        return false;
+    };
     for (const n of findAll(figmaDef, (x) => x.type === "INSTANCE" && !!x.isExposedInstance).filter(isInstance)) {
+        if (insideInstance(n))
+            continue;
         const m = await readMainComponent(ctx, n);
         const icon = m &&
             !findOne(m, (x) => x.type === "TEXT") &&

@@ -4099,6 +4099,61 @@ describe("A template, recognized by its page in the library", () => {
       "_FormHelperText",
     ]);
   });
+  it("an instance exposed inside another exposed instance is not listed again", async () => {
+    const d = inPage("Forms", { description: "Le champ." });
+    const variant = d.selection[0].children[0];
+    const link = connect(
+      layer("COMPONENT", "Link", { id: "C:41", key: "KEY-LINK", width: 80, height: 24 }, [
+        layer("TEXT", "label", { characters: "x", autoRename: false }),
+      ]),
+    );
+    const formLabel = connect(
+      layer("COMPONENT", "_FormLabel", { id: "C:42", key: "KEY-FL", width: 300, height: 80 }, [
+        layer("TEXT", "label", { characters: "x", autoRename: false }),
+      ]),
+    );
+    const outer = connect(
+      layer("INSTANCE", "label", {
+        mainComponent: formLabel,
+        isExposedInstance: true,
+        componentProperties: {},
+      }),
+      variant,
+    );
+    const inner = connect(
+      layer("INSTANCE", "more-button", {
+        mainComponent: link,
+        isExposedInstance: true,
+        componentProperties: {},
+      }),
+      outer,
+    );
+    outer.children = [inner];
+    variant.children.push(outer);
+    const { sheet } = await exportSheet(d);
+    expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual(["_FormLabel"]);
+  });
+  it("a hidden layer keeps its size without an issue, Figma gives it a fixed size", async () => {
+    const d = inPage("Forms", { description: "Le champ." });
+    const variant = d.selection[0].children[0];
+    for (const [name, visible] of [["hidden-box", false], ["shown-box", true]] as const) {
+      const frame = connect(
+        layer("FRAME", name, {
+          visible,
+          width: 120,
+          height: 24,
+          layoutSizingHorizontal: "FIXED",
+          layoutSizingVertical: "FIXED",
+        }),
+        variant,
+      );
+      variant.children.push(frame);
+    }
+    const { sheet } = await exportSheet(d);
+    const where = issuesFor(sheet, "raw-value").map((i: MockData) => i.where);
+    expect(where.some((w: string) => w.startsWith("styles.hidden-box."))).toBe(false);
+    expect(where.some((w: string) => w.startsWith("styles.shown-box."))).toBe(true);
+  });
   it("an element drawn by the browser (native/) keeps its size without an issue", async () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];
