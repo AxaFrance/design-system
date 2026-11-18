@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.1";
+const VERSION = "0.7.2";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -2023,8 +2023,10 @@ async function extractDetail(
     type: "atom",
   };
   // an icon exposed in the panel does not make a base component: only a component
-  // that carries text or exceeds the size of an icon is taken as a base
-  let exposed: InstanceLayer | null = null;
+  // that carries text or exceeds the size of an icon is taken as a base. Every such
+  // exposed instance is listed in api.exposed, in the order of the layers, and the
+  // first one names the base component in extends.
+  const exposedLayers: InstanceLayer[] = [];
   for (const n of findAll(
     figmaDef,
     (x) => x.type === "INSTANCE" && !!x.isExposedInstance,
@@ -2037,21 +2039,20 @@ async function extractDetail(
       m.width <= MAX_ICON_SIZE &&
       typeof m.height === "number" &&
       m.height <= MAX_ICON_SIZE;
-    if (m && !icon) {
-      exposed = n;
-      break;
-    }
+    if (m && !icon) exposedLayers.push(n);
   }
-  if (exposed) {
-    const mc = await readMainComponent(ctx, exposed);
+  if (exposedLayers.length) {
+    const entries = [];
+    for (const n of exposedLayers) {
+      const mc = await readMainComponent(ctx, n);
+      entries.push({
+        from: componentName(mc),
+        props: Object.keys(n.componentProperties || {}).map(clean),
+      });
+    }
     meta.type = "composed";
-    meta.extends = componentName(mc);
-    api.exposed = [
-      {
-        from: meta.extends,
-        props: Object.keys(exposed.componentProperties || {}).map(clean),
-      },
-    ];
+    meta.extends = entries[0].from;
+    api.exposed = entries;
   }
   // a template built on another component keeps extends
   const template = templateOf(target);

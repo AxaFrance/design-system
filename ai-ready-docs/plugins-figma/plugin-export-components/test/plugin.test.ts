@@ -4068,6 +4068,39 @@ describe("A template, recognized by its page in the library", () => {
     expect(sheet.meta.type).toBe("template");
     expect(sheet.meta.extends).toBe("Spinner");
   });
+  it("every exposed instance that is not an icon is listed in api.exposed, the first one in extends", async () => {
+    const d = inPage("Forms", { description: "Le champ." });
+    const variant = d.selection[0].children[0];
+    const base = (name: string, id: string) =>
+      connect(
+        layer("COMPONENT", name, { id, key: "KEY-" + name, width: 200, height: 40 }, [
+          layer("TEXT", "label", { characters: "x", autoRename: false }),
+        ]),
+      );
+    for (const [layerName, comp] of [
+      ["label", base("_FormLabel", "C:21")],
+      ["helper", base("_FormHelperText", "C:22")],
+      ["message", base("_FormHelperText", "C:23")],
+    ] as const) {
+      const instance = connect(
+        layer("INSTANCE", layerName, {
+          mainComponent: comp,
+          isExposedInstance: true,
+          componentProperties: {},
+        }),
+        variant,
+      );
+      variant.children.push(instance);
+    }
+    const { sheet } = await exportSheet(d);
+    expect(sheet.meta.type).toBe("composed");
+    expect(sheet.meta.extends).toBe("_FormLabel");
+    expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual([
+      "_FormLabel",
+      "_FormHelperText",
+      "_FormHelperText",
+    ]);
+  });
   it("a description without a mention is reported, and the level stays written", async () => {
     const { sheet } = await exportSheet(
       inPage("Templates - Sections", {
