@@ -1,0 +1,2064 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "TextArea",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "_FormLabel",
+    "figmaKey": "a114a41f91316738839dea19e5fe5ac02484702f",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/textarea/textarea.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "state": {
+        "type": "enum",
+        "enum": [
+          "default",
+          "hover",
+          "focus"
+        ],
+        "default": "default"
+      },
+      "disabled": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "filled": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "tone": {
+        "type": "enum",
+        "enum": [
+          "neutral",
+          "warning",
+          "error"
+        ],
+        "default": "neutral"
+      },
+      "showLabel": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showPlaceholder": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "value",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showHelper": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "helper",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "_showCursor": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "cursor",
+            "attribute": "visible"
+          }
+        ]
+      }
+    },
+    "exposed": [
+      {
+        "from": "_FormLabel",
+        "props": [
+          "showSideButton",
+          "showMoreButton",
+          "showDescription",
+          "required",
+          "label",
+          "description",
+          "breakpoint"
+        ]
+      },
+      {
+        "from": "_FormHelperText",
+        "props": [
+          "showIcon",
+          "message",
+          "tone",
+          "breakpoint"
+        ]
+      },
+      {
+        "from": "_FormHelperText",
+        "props": [
+          "showIcon",
+          "message",
+          "tone",
+          "breakpoint"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        1344,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        536
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        1344,
+        536
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        1080
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        1344,
+        1080
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        292
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        1344,
+        292
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        808
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        1344,
+        808
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        1352
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        1344,
+        1352
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        1624
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        1344,
+        1624
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        480,
+        1624
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        1776,
+        1624
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        480,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        1776,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        480,
+        536
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        1776,
+        536
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        480,
+        1080
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        1776,
+        1080
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        480,
+        292
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        1776,
+        292
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        480,
+        808
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        1776,
+        808
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        480,
+        1352
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        1776,
+        1352
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        912,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        2208,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        912,
+        536
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        2208,
+        536
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        912,
+        1080
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        2208,
+        1080
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        912,
+        292
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        2208,
+        292
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "warning",
+        "breakpoint": "1024"
+      },
+      "position": [
+        912,
+        808
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "warning",
+        "breakpoint": "0"
+      },
+      "position": [
+        2208,
+        808
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        912,
+        1352
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "filled": "true",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        2208,
+        1352
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "placeholder": {
+        "as": "children",
+        "default": {
+          "text": "Placeholder"
+        },
+        "controls": [
+          {
+            "layer": "value",
+            "attribute": "text"
+          }
+        ]
+      },
+      "value": {
+        "as": "children",
+        "default": {
+          "text": "Value"
+        },
+        "controls": [
+          {
+            "layer": "value",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "hidden": true,
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": [
+            "default",
+            "hover"
+          ],
+          "tone": "neutral",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "hidden": true,
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": [
+            "default",
+            "hover"
+          ],
+          "disabled": "false",
+          "tone": "warning",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "warning",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": [
+            "default",
+            "hover"
+          ],
+          "disabled": "false",
+          "tone": "warning",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "warning",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": [
+            "default",
+            "hover"
+          ],
+          "disabled": "false",
+          "tone": "error",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "error",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": [
+            "default",
+            "hover"
+          ],
+          "disabled": "false",
+          "tone": "error",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "error",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "tone": "neutral",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  },
+                  {
+                    "name": "cursor",
+                    "type": "instance",
+                    "component": "native/Cursor",
+                    "values": {
+                      "type": "typing"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "hidden": true,
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "tone": "neutral",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  },
+                  {
+                    "name": "cursor",
+                    "type": "instance",
+                    "component": "native/Cursor",
+                    "values": {
+                      "type": "typing"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "hidden": true,
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "tone": "warning",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  },
+                  {
+                    "name": "cursor",
+                    "type": "instance",
+                    "component": "native/Cursor",
+                    "values": {
+                      "type": "typing"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "warning",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "tone": "warning",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  },
+                  {
+                    "name": "cursor",
+                    "type": "instance",
+                    "component": "native/Cursor",
+                    "values": {
+                      "type": "typing"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "warning",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "tone": "error",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  },
+                  {
+                    "name": "cursor",
+                    "type": "instance",
+                    "component": "native/Cursor",
+                    "values": {
+                      "type": "typing"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "error",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "tone": "error",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "instance",
+            "component": "_FormLabel",
+            "values": {
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "input",
+            "type": "frame",
+            "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "value",
+                    "type": "text"
+                  },
+                  {
+                    "name": "cursor",
+                    "type": "instance",
+                    "component": "native/Cursor",
+                    "values": {
+                      "type": "typing"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "resize-handle",
+                "type": "instance",
+                "component": "native/ResizeHandle"
+              }
+            ]
+          },
+          {
+            "name": "helper",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "error",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "_FormHelperText",
+      "_FormLabel",
+      "native/Cursor",
+      "native/ResizeHandle"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "state": "default",
+        "disabled": "false",
+        "filled": "false",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "column",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 384
+          },
+          "sizingV": "hug"
+        }
+      },
+      "label": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "column",
+          "mainAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "label/vector": {
+        "background": {
+          "token": "color/blue/600"
+        }
+      },
+      "input": {
+        "background": {
+          "token": "color/white"
+        },
+        "stroke": {
+          "token": "color/gray/500"
+        },
+        "strokeWeight": {
+          "token": "border/width/1"
+        },
+        "strokeAlign": "inside",
+        "radius": {
+          "token": "border/radius/8"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "column",
+          "crossAlign": "end",
+          "sizingH": "fill"
+        }
+      },
+      "content": {
+        "layout": {
+          "direction": "row",
+          "minHeight": {
+            "token": "size/48"
+          },
+          "sizingH": "fill"
+        }
+      },
+      "value": {
+        "textColor": {
+          "token": "color/gray/600"
+        },
+        "textStyle": "label/1/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "resize-handle": {
+        "layout": {
+          "absolute": true,
+          "x": 372,
+          "y": 68,
+          "constraints": {
+            "horizontal": "max",
+            "vertical": "max"
+          },
+          "sizingH": "fixed",
+          "width": {
+            "raw": 8
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 8
+          }
+        }
+      },
+      "helper": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "helper/vector": {
+        "background": {
+          "token": "color/gray/700"
+        }
+      },
+      "message": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "raw": 328
+          }
+        }
+      },
+      "message/vector": {
+        "background": {
+          "token": "color/gray/700"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "tone": "warning"
+        },
+        "styles": {
+          "message": {
+            "layout": {
+              "direction": "row",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            }
+          },
+          "message/vector": {
+            "background": {
+              "token": "color/orange/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "tone": "error"
+        },
+        "styles": {
+          "message": {
+            "layout": {
+              "direction": "row",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            }
+          },
+          "message/vector": {
+            "background": {
+              "token": "color/red/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover"
+        },
+        "styles": {
+          "input": {
+            "strokeWeight": {
+              "token": "border/width/2"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus"
+        },
+        "styles": {
+          "input": {
+            "stroke": {
+              "token": "color/blue/400"
+            },
+            "strokeWeight": {
+              "token": "border/width/2"
+            }
+          },
+          "cursor": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 4
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 24
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "disabled": "true"
+        },
+        "styles": {
+          "input": {
+            "background": {
+              "token": "color/gray/050"
+            },
+            "stroke": {
+              "token": "color/gray/300"
+            }
+          },
+          "value": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "default",
+          "tone": "warning"
+        },
+        "styles": {
+          "input": {
+            "stroke": {
+              "token": "color/orange/600"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover",
+          "tone": "warning"
+        },
+        "styles": {
+          "input": {
+            "stroke": {
+              "token": "color/orange/600"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "tone": "warning"
+        },
+        "styles": {
+          "value": {
+            "layout": null
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "default",
+          "tone": "error"
+        },
+        "styles": {
+          "input": {
+            "stroke": {
+              "token": "color/red/600"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover",
+          "tone": "error"
+        },
+        "styles": {
+          "input": {
+            "stroke": {
+              "token": "color/red/600"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "tone": "error"
+        },
+        "styles": {
+          "value": {
+            "layout": null
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover",
+          "filled": "false"
+        },
+        "styles": {
+          "input": {
+            "layout": {
+              "direction": "column",
+              "mainAlign": "end",
+              "crossAlign": "end",
+              "sizingH": "fill"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "filled": "true"
+        },
+        "styles": {
+          "value": {
+            "layout": null
+          }
+        }
+      },
+      {
+        "when": {
+          "disabled": "true",
+          "filled": "false"
+        },
+        "styles": {
+          "input": {
+            "layout": {
+              "direction": "column",
+              "mainAlign": "end",
+              "crossAlign": "end",
+              "sizingH": "fill"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "disabled": "false",
+          "filled": "true"
+        },
+        "styles": {
+          "value": {
+            "textColor": {
+              "token": "color/gray/900"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "filled": "false",
+          "tone": "neutral"
+        },
+        "styles": {
+          "input": {
+            "layout": {
+              "direction": "column",
+              "mainAlign": "end",
+              "crossAlign": "end",
+              "sizingH": "fill"
+            }
+          },
+          "value": {
+            "layout": {
+              "textAlignVertical": "center"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "default",
+          "filled": "false",
+          "tone": "warning"
+        },
+        "styles": {
+          "input": {
+            "layout": {
+              "direction": "column",
+              "mainAlign": "end",
+              "crossAlign": "end",
+              "sizingH": "fill"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "default",
+          "filled": "false",
+          "tone": "error"
+        },
+        "styles": {
+          "input": {
+            "layout": {
+              "direction": "column",
+              "mainAlign": "end",
+              "crossAlign": "end",
+              "sizingH": "fill"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "false",
+          "filled": "true",
+          "tone": "neutral"
+        },
+        "styles": {
+          "input": {
+            "layout": {
+              "direction": "column",
+              "mainAlign": "end",
+              "crossAlign": "end",
+              "sizingH": "fill"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a1de4b2e8994f5a0b6465f03861f2c845d0c7fe4"
+    },
+    "border/width/1": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a3fa5d8b91d34001a5c85064ef0d8a63bb5dafd2"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
+    },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
+    "color/gray/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
+    "color/gray/300": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9973e98ffd3af230076688cc4d4a5e00cf60eaed"
+    },
+    "color/gray/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "eaff1ed01f768ac5086ba33fed8a6e56d3c91536"
+    },
+    "color/gray/500": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b70dd74bd6ce12b6892e6bf6f0bcaca0e74ffe5a"
+    },
+    "color/gray/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d12a13846395d779ce6239438a435137917d7841"
+    },
+    "color/gray/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "color/orange/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7fb4e2f2ed2dc7ebbd5db1d092c3bf16d2268c2c"
+    },
+    "color/orange/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f110ea9515a46b5770edb6fe44d9c343523e6d8c"
+    },
+    "color/red/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1a03a11408b1f1093ad838cea571b34a5664465f"
+    },
+    "color/red/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "adf5a69d4f184522878973debd0b0206086f1157"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "label/1/regular": {
+      "library": null,
+      "key": "25d5f460b082ed62adea298eec870f2fdb097ee7"
+    }
+  },
+  "components": {
+    "_FormHelperText": {
+      "library": "B2C",
+      "key": "ff44f9fe2270f928a96a8ca2b509b56c7d45cc74"
+    },
+    "_FormLabel": {
+      "library": "B2C",
+      "key": "ce6bf2d97aff5d9deefb5aa4d0763b09325bca29"
+    },
+    "native/Cursor": {
+      "library": "B2C",
+      "key": "c2f34cbd3d53bdf59f89a0b468dc543115a9ad95"
+    },
+    "native/ResizeHandle": {
+      "library": "B2C",
+      "key": "a58dbb1aa19e6d2b01ac6cbd136467d712ec61f8"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular."
+    },
+    {
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._showCursor",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.4"
+}

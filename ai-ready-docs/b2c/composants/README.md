@@ -28,3 +28,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | Switch | [switch.md](switch/switch.md) | [switch.json](switch/switch.json) | [switch-changelog.md](switch/switch-changelog.md) |
 | TextInput | [textinput.md](textinput/textinput.md) | [textinput.json](textinput/textinput.json) | [textinput-changelog.md](textinput/textinput-changelog.md) |
 | Radio | [radio.md](radio/radio.md) | [radio.json](radio/radio.json) | [radio-changelog.md](radio/radio-changelog.md) |
+| TextArea | [textarea.md](textarea/textarea.md) | [textarea.json](textarea/textarea.json) | [textarea-changelog.md](textarea/textarea-changelog.md) |
