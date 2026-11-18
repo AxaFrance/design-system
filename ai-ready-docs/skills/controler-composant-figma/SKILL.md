@@ -35,7 +35,7 @@ Les calques d'un composant imbriqué, comme une icône de Fondations, appartienn
 | opacite-sur-peinture | Une couleur de token porte une opacité. Les instances la perdent, l'opacité va donc sur le calque. |
 | texte-sans-style | Un texte n'a pas de style de texte. |
 | espacement-brut, epaisseur-brute | Un espacement d'auto-layout ou une épaisseur de contour n'est relié à aucun token. |
-| taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Les formes, les calques absolus étirés et les textes qui s'adaptent à leur contenu ne sont pas comptés. |
+| taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Ne sont pas comptés : la taille du composant lui-même, les formes, les calques absolus étirés, les textes qui s'adaptent à leur contenu, les éléments affichés par le navigateur (native/) et les calques masqués. |
 | taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
 | variable-introuvable | Une couleur est reliée à une variable que Figma ne trouve plus, souvent dans une librairie retirée du fichier. |
 | role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est ni un texte, ni une instance qui en contient un, une `icon` qui n'est pas une instance. |

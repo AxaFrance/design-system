@@ -213,8 +213,15 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   }
   if (!imbrique && typeof n.strokeWeight === "number" && n.strokes && n.strokes.length && !lies.strokeWeight && !lies.strokeTopWeight)
     note("epaisseur-brute", ou + " : " + n.strokeWeight);
-  // Une taille fixe se relie à un token, sauf pour une forme ou un calque absolu étiré.
-  if (!imbrique && !FORMES.includes(n.type)) {
+  // Une taille fixe se relie à un token, sauf pour une forme ou un calque absolu étiré. La taille du composant
+  // lui-même suit son conteneur, un élément affiché par le navigateur (native/) garde la sienne, et Figma
+  // annonce une taille fixe pour tout calque masqué : ces trois cas ne sont pas comptés.
+  let natif = false;
+  if (n.type === "INSTANCE") {
+    const mc = await n.getMainComponentAsync().catch(() => null);
+    natif = !!mc && /^native\//.test(nomComposant(mc));
+  }
+  if (!imbrique && !FORMES.includes(n.type) && n !== v && !natif && n.visible !== false) {
     const etire = (axe) => n.layoutPositioning === "ABSOLUTE" && n.constraints && n.constraints[axe] === "STRETCH";
     // Figma annonce une taille fixe pour tout calque masqué : un texte qui s'adapte à son contenu garde sa taille automatique.
     const fixe = (axe) => {
