@@ -343,16 +343,16 @@
                     "component": "icon/cross"
                   }
                 ]
-              },
-              {
-                "name": "focus-ring",
-                "type": "frame"
               }
             ]
           },
           {
             "name": "label",
             "type": "text"
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
           }
         ]
       },
@@ -377,16 +377,16 @@
                     "component": "icon/check"
                   }
                 ]
-              },
-              {
-                "name": "focus-ring",
-                "type": "frame"
               }
             ]
           },
           {
             "name": "label",
             "type": "text"
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
           }
         ]
       }
@@ -565,27 +565,7 @@
             "strokeWeight": {
               "token": "border/width/2"
             },
-            "strokeAlign": "inside",
-            "radius": {
-              "token": "border/radius/full"
-            },
-            "layout": {
-              "absolute": true,
-              "x": -4,
-              "y": -4,
-              "constraints": {
-                "horizontal": "stretch",
-                "vertical": "stretch"
-              },
-              "sizingH": "fixed",
-              "width": {
-                "raw": 48
-              },
-              "sizingV": "fixed",
-              "height": {
-                "raw": 32
-              }
-            }
+            "strokeAlign": "inside"
           }
         }
       },
@@ -612,6 +592,60 @@
           "label": {
             "textColor": {
               "token": "color/gray/400"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "focus-ring": {
+            "layout": {
+              "absolute": true,
+              "x": -4,
+              "y": -4,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 98
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 32
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "focus-ring": {
+            "layout": {
+              "absolute": true,
+              "x": -4,
+              "y": -4,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 93
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 32
+              }
             }
           }
         }
@@ -824,7 +858,13 @@
       "rule": "token-unpublished",
       "where": "tokens.icon/size/extra-small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.0"
+  "_tool": "canopee-export-components 0.7.4"
 }

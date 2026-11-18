@@ -74,7 +74,7 @@ Un élément `<input type="checkbox">` avec `role="switch"`, dans un `<label>`.
 
 - Le nom accessible est le libellé. En showLabel=false, le Switch se relie au texte qui le nomme, avec `aria-labelledby`.
 - Le lecteur d'écran annonce le nom, le rôle et la position du Switch. Exemple : « Notifications par e-mail, interrupteur, activé ».
-- Le Switch entre dans l'ordre de tabulation, sauf en disabled=true. Le focus clavier reste toujours visible, et son anneau entoure la piste.
+- Le Switch entre dans l'ordre de tabulation, sauf en disabled=true. Le focus clavier reste toujours visible, et son anneau entoure la piste et son libellé.
 - La touche Espace le fait basculer. La touche Entrée ne fait rien, comme sur une case à cocher native.
 - Les icônes de la poignée sont décoratives et masquées au lecteur d'écran avec `aria-hidden="true"`.
 - La position du Switch se voit à la place de la poignée et à son icône, pas seulement à la couleur de la piste.
@@ -139,12 +139,14 @@ Ces noms désignent Switch. Le seul nom à employer est Switch.
 - **1.0.0 - 17/11/26.** En disabled=true, la piste prend la couleur d'accent des composants désactivés, color/gray/300, en checked=false comme en checked=true. La poignée passe en color/gray/100, pour qu'un Switch en disabled=true se distingue d'un Switch en state=default. L'icône passe en color/gray/400.
 - **1.0.0 - 17/11/26.** Le Switch mesure 40 × 24 px, comme dans le code.
 - **1.0.0 - 17/11/26.** Les icônes de la poignée viennent de Fondations Canopée, à la taille icon/size/extra-small.
+- **1.0.0 - 18/11/26.** L'anneau de focus entoure la piste et le libellé, comme celui de Checkbox et Radio, car un clic sur le libellé bascule aussi le Switch.
 
 ## Points ouverts
 
 - **Rôle dans le code.** Le code utilise une case à cocher sans `role="switch"` (`ToggleCommon.tsx:45`). Le lecteur d'écran annonce donc « case à cocher » au lieu d'« interrupteur ». En attendant : signaler.
 - **Libellé dans le code.** Le code n'a pas de libellé : son `<label>` n'enveloppe que le Switch, sans texte. En attendant : écrire le libellé à part et le relier par `htmlFor` ou `aria-labelledby`.
 - **Hover dans le code.** Le code n'a pas de hover (`ToggleCommon.css`). En attendant : signaler.
+- **Anneau de focus dans le code.** Le code trace l'anneau autour de la piste seule (`ToggleCommon.css:69`), car le libellé s'écrit à part. En attendant : signaler.
 - **Couleurs dans le code.** Le code diffère de Figma sur quatre couleurs. La piste en checked=false est d'un gris plus clair (`ToggleCommon.css:3`). La piste en checked=true est d'un bleu plus foncé (`ToggleCommon.css:75`). L'anneau de focus est bleu foncé (`ToggleCommon.css:5`). En disabled=true, la piste et l'icône sont en gris moyen (`ToggleCommon.css:22`). Les couleurs de Figma font foi. En attendant : signaler.
 - **Message d'échec.** Aucun composant n'est défini pour dire pourquoi le changement n'a pas pu s'appliquer. En attendant : signaler.
 
