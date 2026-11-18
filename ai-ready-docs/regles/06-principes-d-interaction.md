@@ -84,7 +84,7 @@ Un champ en tone=error ou tone=warning retrouve la couleur de son tone quand il 
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| default | La case ou le bouton radio a un fond color/white et une border color/gray/500, 1 px, sans halo. | Checkbox : case de 24 px, fond color/white, border color/gray/500, 1 px. | Aucune. |
+| default | La case ou le bouton radio a un fond color/white et une border color/gray/500, 1 px, sans halo. En tone=error ou tone=warning, le fond prend la nuance 050 de la couleur du ton, et la border sa nuance 600, en 2 px. | Checkbox : case de 24 px, fond color/white, border color/gray/500, 1 px. Radio en tone=error : fond color/red/050, border color/red/600, 2 px. | Aucune. |
 | hover | Un halo color/blue/100 de 40 px apparaît, centré derrière la case ou le bouton radio. La border de la case ou du bouton radio passe à 2 px, sans changer de couleur. | Checkbox : border color/gray/500, 1 px → 2 px, halo color/blue/100 de 40 px. | Le halo est color/blue/100, et non color/gray/100 comme le veut la règle commune. Dans un composant qui a son propre hover : voir les composants imbriqués. |
 | focus | Outline color/blue/400, 2 px, sans arrondi, avec un outline-offset de 2 px, autour de la case ou du bouton radio et de son label. Le halo du hover reste affiché. Plus grand que la case, il dépasse de l'outline, tracée par-dessus. | Radio : halo et border 2 px, comme au hover, et une outline rectangulaire autour du bouton radio et de son label. | Aucune. |
 | press | Pas de press. | Checkbox : pas de variante state=press. | Aucune. |
