@@ -11,6 +11,7 @@ Le TextArea permet à l'utilisateur de saisir un texte long, sur plusieurs ligne
 ### À utiliser pour
 
 - Saisir un texte libre de plusieurs phrases, comme une demande, un commentaire ou la description d'un sinistre.
+- Afficher un texte déjà connu et bloqué, que l'utilisateur peut changer avec l'action « Modifier » de son libellé.
 
 ### À ne pas utiliser pour
 
@@ -42,7 +43,7 @@ La valeur est refusée.
 
 ### disabled=true
 
-Le champ ne peut pas être modifié pour l'instant.
+Le champ ne peut pas être modifié. disabled=true sert aussi à montrer un texte bloqué, avec l'action « Modifier » du libellé.
 
 ### showLabel=false
 
@@ -56,7 +57,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 
 - Demande libre : label « Votre demande », avec l'aide « 1800 caractères maximum. »
 - Champ obligatoire resté vide : tone=error, filled=false, message « Décrivez votre demande en quelques mots. »
-- Champ bloqué tant qu'une autre réponse manque : disabled=true.
+- Texte connu et bloqué : disabled=true, filled=true, avec l'action « Modifier » du libellé.
 
 ## Interdits
 
@@ -85,7 +86,8 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - Quand le texte dépasse la hauteur du champ, il défile dans le champ. L'utilisateur peut agrandir le champ avec la poignée en bas à droite.
 - La touche Entrée ajoute une ligne. Elle n'envoie pas le formulaire.
 - Pendant le focus, la bordure passe en color/blue/400, même en tone=warning ou tone=error, et le message reste affiché. Le champ retrouve la couleur de son ton quand il perd le focus.
-- En disabled=true, le champ ne réagit ni au clic ni au clavier.
+- En disabled=true, le champ ne réagit ni au clic ni au clavier. L'action « Modifier » du libellé reste cliquable.
+- Un clic sur « Modifier » ne débloque pas le champ de lui-même : la page le repasse en disabled=false. La place du focus après ce clic : Non documenté.
 - Le moment où le message d'erreur apparaît, à la sortie du champ ou à l'envoi du formulaire : Non documenté.
 
 ## Accessibilité
@@ -161,7 +163,7 @@ Ces noms désignent TextArea. Le seul nom à employer est TextArea.
 - **1.0.0 - 18/11/26.** Les états suivent les principes d'interaction du pattern Contour. Au hover, la bordure passe à 2 px sans changer de couleur, et au focus en color/blue/400, 2 px. Une valeur saisie passe en color/gray/900 sans toucher à la bordure. L'ancienne version et le code mettent du bleu foncé au hover, au focus et en filled=true.
 - **1.0.0 - 18/11/26.** En tone=warning et tone=error, la bordure prend la couleur du ton, en 1 px au repos et en 2 px au hover, comme en tone=neutral. Le message porte le sens, en plus de la couleur.
 - **1.0.0 - 18/11/26.** L'aide et le message sont deux _FormHelperText inclus dans le TextArea et réglables depuis lui, comme `helper` et `message` dans le code. Une consigne et une erreur peuvent ainsi s'afficher ensemble.
-- **1.0.0 - 18/11/26.** En disabled=true, seul le champ passe en gris. Le libellé et l'aide restent lisibles, comme dans tous les champs de saisie.
+- **1.0.0 - 18/11/26.** En disabled=true, seul le champ passe en gris. Le libellé et l'aide restent lisibles, car un champ désactivé montre aussi un texte bloqué.
 - **1.0.0 - 18/11/26.** La poignée de redimensionnement reste grise dans tous les états, car le navigateur l'affiche lui-même. Dans Figma, c'est le composant native/ResizeHandle, placé en position absolue dans le coin du champ.
 - **1.0.0 - 18/11/26.** Le champ fait au moins deux lignes, soit 80 px de haut avec ses marges intérieures, sur desktop comme sur mobile.
 - **1.0.0 - 18/11/26.** Le TextArea a 40 variantes : toutes les combinaisons de state, filled et tone, et deux variantes en disabled=true, pour chaque breakpoint.
@@ -175,6 +177,7 @@ Ces noms désignent TextArea. Le seul nom à employer est TextArea.
 - **Thème client dans le code.** Le code du thème client garde un arrondi de 4 px (`TextAreaLF.css:5`). En attendant : signaler.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
 - **Avertissement dans le code.** Le code ne relie pas le message d'avertissement au champ. `aria-describedby` ne pointe que vers l'aide (`TextAreaCommon.tsx:91`), et `aria-errormessage` ne sert qu'en erreur (`TextAreaCommon.tsx:90`). Le lecteur d'écran annonce l'avertissement quand il apparaît, mais ne le relit pas quand le champ reprend le focus. En attendant : signaler.
+- **Focus après « Modifier ».** La place du focus après un clic sur « Modifier » n'est pas définie. En attendant : signaler.
 - **Moment d'affichage de l'erreur.** Rien ne dit si le message d'erreur apparaît à la sortie du champ ou à l'envoi du formulaire. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
