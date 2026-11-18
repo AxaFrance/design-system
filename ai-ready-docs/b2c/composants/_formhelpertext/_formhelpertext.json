@@ -259,12 +259,12 @@
       },
       "icon/vector": {
         "background": {
-          "token": "color/red/700"
+          "token": "color/red/600"
         }
       },
       "message": {
         "textColor": {
-          "token": "color/red/700"
+          "token": "color/red/600"
         },
         "textStyle": "caption/2/regular",
         "layout": {
@@ -280,12 +280,12 @@
         "styles": {
           "icon/vector": {
             "background": {
-              "token": "color/green/700"
+              "token": "color/green/600"
             }
           },
           "message": {
             "textColor": {
-              "token": "color/green/700"
+              "token": "color/green/600"
             }
           }
         }
@@ -297,12 +297,12 @@
         "styles": {
           "icon/vector": {
             "background": {
-              "token": "color/orange/700"
+              "token": "color/orange/600"
             }
           },
           "message": {
             "textColor": {
-              "token": "color/orange/700"
+              "token": "color/orange/600"
             }
           }
         }
@@ -314,12 +314,12 @@
         "styles": {
           "icon/vector": {
             "background": {
-              "token": "color/gray/700"
+              "token": "color/gray/600"
             }
           },
           "message": {
             "textColor": {
-              "token": "color/gray/700"
+              "token": "color/gray/600"
             }
           }
         }
@@ -337,25 +337,25 @@
     ]
   },
   "tokens": {
-    "color/gray/700": {
+    "color/gray/600": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
+      "key": "d12a13846395d779ce6239438a435137917d7841"
     },
-    "color/green/700": {
+    "color/green/600": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "4f3937bbac6af27537ef6ed88b048f7ab6e37608"
+      "key": "fac6d79b3c4d9f1461509bd2e2ba1fcce60243d3"
     },
-    "color/orange/700": {
+    "color/orange/600": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "f110ea9515a46b5770edb6fe44d9c343523e6d8c"
+      "key": "7fb4e2f2ed2dc7ebbd5db1d092c3bf16d2268c2c"
     },
-    "color/red/700": {
+    "color/red/600": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "adf5a69d4f184522878973debd0b0206086f1157"
+      "key": "1a03a11408b1f1093ad838cea571b34a5664465f"
     },
     "icon/size/extra-small": {
       "library": "Fondations Canopée",
@@ -404,7 +404,13 @@
       "rule": "token-unpublished",
       "where": "tokens.icon/size/extra-small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.caption/2/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : caption/2/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.0"
+  "_tool": "canopee-export-components 0.7.4"
 }

@@ -1573,7 +1573,7 @@
       },
       "helper/vector": {
         "background": {
-          "token": "color/gray/700"
+          "token": "color/gray/600"
         }
       },
       "message": {
@@ -1591,7 +1591,7 @@
       },
       "message/vector": {
         "background": {
-          "token": "color/gray/700"
+          "token": "color/gray/600"
         }
       }
     },
@@ -1610,7 +1610,7 @@
           },
           "message/vector": {
             "background": {
-              "token": "color/orange/700"
+              "token": "color/orange/600"
             }
           }
         }
@@ -1629,7 +1629,7 @@
           },
           "message/vector": {
             "background": {
-              "token": "color/red/700"
+              "token": "color/red/600"
             }
           }
         }
@@ -1960,11 +1960,6 @@
       "collection": "Primitive",
       "key": "d12a13846395d779ce6239438a435137917d7841"
     },
-    "color/gray/700": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
-    },
     "color/gray/900": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -1975,20 +1970,10 @@
       "collection": "Primitive",
       "key": "7fb4e2f2ed2dc7ebbd5db1d092c3bf16d2268c2c"
     },
-    "color/orange/700": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "f110ea9515a46b5770edb6fe44d9c343523e6d8c"
-    },
     "color/red/600": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "1a03a11408b1f1093ad838cea571b34a5664465f"
-    },
-    "color/red/700": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "adf5a69d4f184522878973debd0b0206086f1157"
     },
     "color/white": {
       "library": "Fondations Canopée",

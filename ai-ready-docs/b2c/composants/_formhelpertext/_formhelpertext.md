@@ -93,7 +93,7 @@ Un élément `<small>`.
 - Un message tone=error qui apparaît après une interaction porte `role="alert"`, pour être annoncé tout de suite. Les autres messages, y compris un message tone=error affiché dès le chargement, n'ont pas de rôle ARIA : le lien par `aria-describedby` suffit.
 - L'icône est décorative et masquée au lecteur d'écran avec `aria-hidden="true"`. Le sens passe par le texte, jamais par la couleur ou l'icône seule.
 - Le message commence par un texte masqué à l'écran, lu par le lecteur d'écran, qui donne son ton : « Succès : », « Erreur : », « Attention : » ou « Information : ». Exemple : le lecteur d'écran lit « Erreur : Veuillez renseigner votre e-mail. »
-- Le texte contraste avec le fond blanc à 4,5:1 au moins (WCAG) : 5,0:1 en tone=success, 8,9:1 en tone=error, 8,0:1 en tone=warning, 8,5:1 en tone=neutral.
+- Le WCAG demande un contraste de 4,5:1 au moins pour un texte. Sur fond blanc, le texte atteint 5,9:1 en tone=error, 5,2:1 en tone=warning et 5,7:1 en tone=neutral. En tone=success, il n'atteint que 3,0:1, voir les points ouverts.
 - Le _FormHelperText ne reçoit pas le focus et n'entre pas dans l'ordre de tabulation.
 - Le message suit le champ dans le DOM, juste après lui.
 
@@ -148,14 +148,14 @@ Ces noms désignent _FormHelperText. Le seul nom à employer est _FormHelperText
 - **1.0.0 - 16/11/26.** Le _FormHelperText a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024.
 - **1.0.0 - 16/11/26.** tone=neutral est ajouté pour l'aide à la saisie, comme le helper text de Material Design et de Carbon.
 - **1.0.0 - 16/11/26.** showIcon masque l'icône, seulement avec tone=neutral. Un texte d'aide se lit sans icône, comme dans Material Design et Carbon. Dans les autres tons, l'icône double le sens du texte, pour qu'il ne repose pas sur la couleur seule. L'ancienne documentation du B2C interdisait de masquer l'icône, quel que soit le ton.
-- **1.0.0 - 16/11/26.** Le texte et l'icône prennent le palier 700 dans tous les tons, comme le Tag. Le palier 600 de success n'atteint pas le contraste AA (WCAG) sur fond blanc.
 - **1.0.0 - 16/11/26.** Les icônes viennent de Fondations Canopée, à la taille icon/size/extra-small.
 - **1.0.0 - 17/11/26.** tone=error est la valeur par défaut, comme dans le code.
 - **1.0.0 - 17/11/26.** Dans Figma, le _FormHelperText s'adapte à la longueur de son texte. Le composant qui le contient, comme un champ, règle sa largeur et le retour à la ligne.
+- **1.0.0 - 18/11/26.** Le texte et l'icône prennent le palier 600 dans tous les tons, comme la bordure d'un champ en tone=error ou tone=warning. Le palier 700 de l'ancienne version n'est plus utilisé.
 
 ## Points ouverts
 
-- **Palier de la couleur.** L'équipe design system prévoit de retravailler les palettes pour que le palier 600 atteigne le contraste AA, puis de passer en 600. En attendant : 700.
+- **Contraste de tone=success.** Sur fond blanc, color/green/600 n'atteint que 3,0:1, sous les 4,5:1 que le WCAG demande pour un texte. L'équipe design system prévoit de retravailler la palette verte. En attendant : signaler.
 - **Aide à la saisie dans le code.** Le code affiche l'aide avec la prop `helper` du champ, et non avec ItemMessage (`InputTextCommon.tsx:95`). Il affiche l'aide et le message tone=error l'un sous l'autre, alors que cette fiche les remplace l'un par l'autre. Le code n'a pas non plus de quoi masquer l'icône d'un ItemMessage. En attendant : signaler.
 - **Lien au champ dans le code.** Le code relie le message tone=error au champ avec `aria-errormessage`, et réserve `aria-describedby` à l'aide et au message tone=success (`InputTextCommon.tsx:62`). En attendant : signaler.
 - **Couleurs dans le code.** Le code affiche tone=error et tone=warning dans un rouge et un orange plus clairs que Figma, à environ 4,7:1 sur fond blanc (`ItemMessageAll.css:3`). En attendant : signaler.

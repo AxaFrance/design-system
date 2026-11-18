@@ -323,7 +323,7 @@
       },
       "message/vector": {
         "background": {
-          "token": "color/gray/700"
+          "token": "color/gray/600"
         }
       }
     },
@@ -412,10 +412,10 @@
       "collection": "Primitive",
       "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
-    "color/gray/700": {
+    "color/gray/600": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
+      "key": "d12a13846395d779ce6239438a435137917d7841"
     },
     "spacing/12": {
       "library": "Fondations Canopée",
