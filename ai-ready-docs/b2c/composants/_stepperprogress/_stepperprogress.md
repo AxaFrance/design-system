@@ -32,7 +32,7 @@ Aucun.
 
 ## Contenu
 
-- Seulement des ProgressBar. Le titre, le texte d'aide et le message appartiennent au Stepper.
+- Seulement des ProgressBar. Le titre et le message appartiennent au Stepper.
 
 ## Rédaction
 

@@ -156,6 +156,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **1.0.0 - 02/11/26.** IconButton n'a pas de colorScheme business, contrairement à Button. Une souscription demande un libellé, donc un Button.
 - **1.0.0 - 04/11/26.** Comme pour Button, le secondary et le tertiary n'ont pas de fond au repos. Le bouton désactivé garde son fond gris.
 - **1.0.0 - 17/11/26.** L'IconButton prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, l'icône et la border passent en color/blue/600.
+- **1.0.0 - 19/11/26.** Comme pour Button, le thème passe par une variante `_theme`, prospect ou client, parce que la forme change : l'IconButton est rond en prospect, avec un arrondi de 8 px en client.
 
 ## Points ouverts
 

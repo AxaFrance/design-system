@@ -94,7 +94,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - Le calendrier vient du navigateur : son aspect change d'un navigateur et d'un système à l'autre.
 - Une date minimale ou maximale grise les jours hors limite dans le calendrier. Une date hors limite reste possible au clavier : la page vérifie la date et passe le champ en tone=error.
 - La touche qui ouvre le calendrier au clavier dépend du navigateur : Non documenté.
-- Pendant le focus, la bordure passe en color/blue/400, même en tone=warning ou tone=error, et le message reste affiché. Le champ retrouve la couleur de son ton quand il perd le focus.
+- Pendant le focus, le message reste affiché, même en tone=warning ou tone=error.
 - En disabled=true, le champ ne réagit ni au clic ni au clavier.
 - Le moment où le message d'erreur apparaît, à la sortie du champ ou à l'envoi du formulaire : Non documenté.
 
@@ -166,7 +166,7 @@ Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. 
 
 ## Noms à ne pas employer
 
-InputDate, Input Date, DatePicker, sélecteur de date, champ date.
+InputDate, Input Date, sélecteur de date, champ date.
 
 Ces noms désignent DateInput. Le seul nom à employer est DateInput.
 
@@ -192,6 +192,7 @@ Ces noms désignent DateInput. Le seul nom à employer est DateInput.
 - **Valeur en showIcon=false.** Avec `hidePicker`, le code ignore `min` et `max` (`InputDateCommon.tsx:102`). Il n'ajoute les barres obliques que si la page renvoie dans `value` ce que `onChange` lui donne (`InputDateTextAtom.tsx:23`). En attendant : passer la valeur au format JJ/MM/AAAA, et vérifier les limites dans la page.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
 - **Avertissement dans le code.** Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputDateCommon.tsx:68`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
+- **Interligne dans le code.** Sur desktop, le code utilise un interligne de 1,25 (`InputDateCommon.css:74`), plus serré que celui du style label/1/regular. En attendant : signaler.
 - **Moment d'affichage de l'erreur.** Rien ne dit si le message d'erreur apparaît à la sortie du champ ou à l'envoi du formulaire. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche

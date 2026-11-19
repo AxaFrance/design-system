@@ -128,7 +128,7 @@ Sans équivalent dans Figma : `icon` et `iconProps`, qui affichent une icône de
 
 ## Noms à ne pas employer
 
-Stepper Progress, barre d'étapes, fil d'étapes, progression du parcours.
+Barre d'étapes, fil d'étapes, progression du parcours.
 
 Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 

@@ -18,8 +18,8 @@ Le Button déclenche une action dans la page. Son importance se règle avec hier
 
 - Naviguer vers une autre page : prendre Link. Seule exception, un appel à l'action qui doit avoir l'apparence d'un bouton, comme « Obtenir un tarif » : Button dans la maquette, et Link avec la `variant` du même niveau dans le code, comme `button-primary`.
 - Une action représentée par une icône seule : prendre IconButton.
-- Activer ou désactiver une option : prendre Switch.
-- Choisir une option parmi plusieurs : prendre FormCard.
+- Activer ou désactiver une option : prendre Switch si l'effet est immédiat, sinon Checkbox.
+- Choisir une option parmi plusieurs : prendre Radio ou Checkbox, ou FormCard pour une option présentée en carte.
 
 ## Règles selon les propriétés
 

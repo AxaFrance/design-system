@@ -109,7 +109,7 @@ Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. 
 
 ## Noms à ne pas employer
 
-_Base_picture, Trombi, Profil, photo de profil, photo conseiller, vignette, pastille.
+_Base_picture, Trombi, Profil, photo de profil, photo conseiller, vignette.
 
 Ces noms désignent Avatar. Le seul nom à employer est Avatar.
 

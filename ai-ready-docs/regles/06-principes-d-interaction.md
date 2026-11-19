@@ -65,7 +65,7 @@ Le contraste du focus est d'au moins 3:1 avec les couleurs qui le touchent, comm
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
 | default | Border color/gray/500, 1 px, ou de la couleur du ton en tone=error et tone=warning. Le placeholder et l'icône du champ sont en color/gray/600. Link : texte et underline 1 px en color/blue/600. | TextInput : border color/gray/500, 1 px, placeholder color/gray/600. FileUpload : border dashed color/gray/500, 1 px. | Aucune. |
-| hover | La border passe à 2 px, sans changer de couleur. Pour Link, l'underline passe à 2 px. | TextInput : border color/gray/500, 1 px → 2 px. Link : underline 1 px → 2 px. | FileUpload : le Button « Importer fichier » de la zone de dépôt prend aussi son hover, fond color/blue/050 → color/blue/100, et le garde au focus. C'est une exception à la règle des composants imbriqués. |
+| hover | La border passe à 2 px, sans changer de couleur. Pour Link, l'underline passe à 2 px. | TextInput : border color/gray/500, 1 px → 2 px. Link : underline 1 px → 2 px. | FileUpload : le Button « Importer fichier » de la zone de dépôt prend aussi son hover, sans fond → fond color/blue/100, et le garde au focus. C'est une exception à la règle des composants imbriqués. |
 | focus | La border passe en color/blue/400, 2 px, même en tone=error ou tone=warning. Un curseur apparaît dans les champs de saisie. | TextInput : border color/gray/500 → color/blue/400, 2 px. TextInput en cours de saisie : rendu du focus, avec le curseur. | Link : underline 2 px, comme au hover, et outline color/blue/400, 2 px, avec un outline-offset de 2 px. FileUpload : la border dashed color/gray/500 devient solid color/blue/400, 2 px. |
 | press | Pas de press. | TextInput : au clic, rendu du focus, sans nuance en plus. | Aucune. |
 
@@ -156,6 +156,6 @@ disabled=true n'existe qu'avec state=default : un composant désactivé n'a ni h
 | Composant | Règle |
 |---|---|
 | _SelectListItem | Seuls default, hover et focus sont les siens, et sa Checkbox ne change pas pendant ces trois états. Au hover, la ligne passe en color/gray/100, et la Checkbox n'a pas de halo. La Checkbox prend tous les autres états, checked et disabled compris. |
-| PhoneInput | L'indicatif est un Select, toujours en filled=true et prérempli avec +33, texte et flèche en color/gray/900. Le numéro est un TextInput. Chacun réagit seul et suit sa règle. |
+| PhoneInput | Les propriétés state, filled et tone décrivent le champ du numéro. L'indicatif, toujours rempli et prérempli avec +33, garde son rendu, texte et flèche en color/gray/900. Ses propres états ne sont pas encore définis. |
 | Accordion | Pas d'état d'interaction : l'IconButton de son en-tête prend le hover, le focus et le press. Le seul état propre à l'Accordion est open. |
 | FileUpload | Le Button « Importer fichier » de la zone de dépôt prend aussi son hover quand FileUpload le prend, et le garde au focus. |

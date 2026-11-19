@@ -85,7 +85,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - Un clic dans le champ ou sur son libellé donne le focus au champ.
 - Quand le texte dépasse la hauteur du champ, il défile dans le champ. L'utilisateur peut agrandir le champ avec la poignée en bas à droite.
 - La touche Entrée ajoute une ligne. Elle n'envoie pas le formulaire.
-- Pendant le focus, la bordure passe en color/blue/400, même en tone=warning ou tone=error, et le message reste affiché. Le champ retrouve la couleur de son ton quand il perd le focus.
+- Pendant le focus, le message reste affiché, même en tone=warning ou tone=error.
 - En disabled=true, le champ ne réagit ni au clic ni au clavier. L'action « Modifier » du libellé reste cliquable.
 - Un clic sur « Modifier » ne débloque pas le champ de lui-même : la page le repasse en disabled=false. La place du focus après ce clic : Non documenté.
 - Le moment où le message d'erreur apparaît, à la sortie du champ ou à l'envoi du formulaire : Non documenté.

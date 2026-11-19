@@ -55,7 +55,7 @@ Sur un écran de moins de 1024 px de large. Le libellé et la description utilis
 
 ## Interdits
 
-- Masquer le libellé, ou le remplacer par un placeholder ou une icône.
+- Masquer le libellé en dehors de la propriété showLabel du composant qui le contient, ou le remplacer par un placeholder ou une icône.
 - Modifier localement la taille, l'espacement ou les couleurs du _FormLabel, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
 ## Contenu
@@ -80,7 +80,7 @@ Sur un écran de moins de 1024 px de large. Le libellé et la description utilis
 
 Un élément `<label>`. Son attribut `for` reprend l'`id` du champ, pour relier le libellé au champ.
 
-- Le libellé reste visible en permanence.
+- Le libellé reste visible en permanence, sauf quand le composant qui le contient le masque avec sa propriété showLabel.
 - L'astérisque est masqué aux lecteurs d'écran avec `aria-hidden`. Le champ porte lui-même l'attribut `required`, que le lecteur d'écran annonce.
 - La description est lue avec le champ, grâce à `aria-describedby` posé sur le champ.
 - Le texte contraste avec le fond à 4,5:1 au moins (WCAG).

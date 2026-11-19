@@ -78,7 +78,7 @@ Une propriété qui commence par un tiret bas est hors nomenclature. Soit elle n
 
 Les propriétés marquées Figma seulement dans les tableaux n'ont pas de tiret bas. Elles font partie de la nomenclature, c'est simplement le code qui gère ces cas tout seul.
 
-Une variante peut exister dans Figma sans exister dans le code. C'est le cas quand le style d'un composant dépend d'un composant qu'il contient. Le code le calcule tout seul, mais dans Figma un composant ne peut pas lire les propriétés d'un composant imbriqué. Cette variante porte le nom de ce qu'elle représente. Exemple : quand TextInput est désactivé et que son _FormLabel affiche l'action Modifier, le champ prend un autre style. Dans Figma, ce cas a sa propre variante, editable.
+Une variante peut exister dans Figma sans exister dans le code. C'est le cas quand le style d'un composant dépend d'un composant qu'il contient. Le code le calcule tout seul, mais dans Figma un composant ne peut pas lire les propriétés d'un composant imbriqué. Cette variante porte le nom de ce qu'elle représente.
 
 ### L'ordre dans le panneau
 

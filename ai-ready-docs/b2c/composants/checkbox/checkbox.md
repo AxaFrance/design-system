@@ -42,7 +42,7 @@ L'option ne peut pas être cochée ou décochée pour l'instant. Un texte à cô
 
 ### showLabel=false
 
-Le libellé de la Checkbox est masqué. C'est permis seulement quand un autre texte visible nomme déjà l'option, comme le titre d'une ligne de tableau.
+Le libellé de la Checkbox est masqué. C'est permis seulement quand un autre texte visible nomme déjà l'option, comme le titre d'une FormCard ou d'une ligne de tableau.
 
 ### breakpoint=0
 

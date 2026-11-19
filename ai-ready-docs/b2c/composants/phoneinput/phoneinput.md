@@ -91,7 +91,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - L'indicatif est prérempli avec la France, +33. Un clic dessus ouvre la liste des pays.
 - Le hover, le focus et le ton du champ du numéro ne changent pas le rendu de l'indicatif. Le rendu de l'indicatif au hover, au focus et liste ouverte : Non documenté.
 - Avec le code « +33 », le champ du numéro ne garde que les chiffres, dix au plus, et les groupe par deux, comme 06 12 34 56 78. Le format des numéros des autres pays : Non documenté.
-- Pendant le focus, la bordure du champ passe en color/blue/400, même en tone=warning ou tone=error, et le message reste affiché. Le champ retrouve la couleur de son ton quand il perd le focus.
+- Pendant le focus, le message reste affiché, même en tone=warning ou tone=error.
 - En disabled=true, l'indicatif et le champ ne réagissent ni au clic ni au clavier. L'action « Modifier » du libellé reste cliquable.
 - Un clic sur « Modifier » ne débloque pas le champ de lui-même : la page le repasse en disabled=false. La place du focus après ce clic : Non documenté.
 - Le moment où le message d'erreur apparaît, à la sortie du champ ou à l'envoi du formulaire : Non documenté.
@@ -199,6 +199,7 @@ Ces noms désignent PhoneInput. Le seul nom à employer est PhoneInput.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
 - **Avertissement dans le code.** Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputPhoneCommon.tsx:84`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
 - **Focus après « Modifier ».** La place du focus après un clic sur « Modifier » n'est pas définie. En attendant : signaler.
+- **Texte saisi et interligne dans le code.** Le champ du numéro reprend celui d'`InputText` : le code affiche le texte saisi en semi-gras (`InputTextAtomCommon.css:24`), alors que Figma l'affiche en regular. Son interligne de 1,25 (`InputTextAtomCommon.css:25`) est plus serré que celui du style label/1/regular. En attendant : signaler.
 - **Moment d'affichage de l'erreur.** Rien ne dit si le message d'erreur apparaît à la sortie du champ ou à l'envoi du formulaire. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
