@@ -22,11 +22,16 @@ jobs:
         uses: ./.github/action/setup-node
         with:
           check-package: true
+          turbo-cache: true
 
       - name: Build packages
         run: npm run build
 
-      - run: npm run test
+      - name: Lint packages
+        run: npm run lint
+
+      - name: Test packages
+        run: npx turbo run test:coverage
 
       - name: SonarCloud Scan
         if:

@@ -8,26 +8,6 @@
             "with": [
                 "@axa-fr/canopee-css#dev:prospect",
                 "@axa-fr/canopee-react#dev"
-            ],
-            "persistent": true,
-            "cache": false
-        },
-        "lint": {
-            "dependsOn": [
-                "eslint",
-                "prettier",
-                "check-types"
-            ]
-        },
-        "eslint": {
-            "dependsOn": [
-                "^build"
-            ]
-        },
-        "prettier": {},
-        "check-types": {
-            "dependsOn": [
-                "^build"
             ]
         }
     }
