@@ -1,0 +1,25 @@
+@layer canopee {
+  .af-list-form-helper {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    gap: 0.25rem;
+    line-height: 1.25rem;
+    list-style: none;
+  }
+
+  .af-list-form-helper__link {
+    text-decoration: none;
+    color: inherit;
+
+    & .af-item-form-helper__label {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--axablue80);
+      outline-offset: 2px;
+    }
+  }
+}

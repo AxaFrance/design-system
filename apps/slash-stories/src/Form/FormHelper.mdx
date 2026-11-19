@@ -1,0 +1,78 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as FormHelperStories from "./FormHelper.stories";
+
+<Meta of={FormHelperStories} />
+
+# FormHelper
+
+`FormHelper` shows the progress of a form made of several sections on a single
+page: which sections are completed, which one is in progress and which ones are
+still to fill. It can sit next to a vertical stepper or accordions.
+
+Do not use it with a horizontal stepper, nor as a page navigation or an anchor
+menu (use the Navbar or the Anchor Menu instead).
+
+```tsx
+import { FormHelper, ListFormHelper } from "@axa-fr/canopee-react/distributeur";
+
+export const MyFormHelper = () => (
+  <FormHelper title="Assistant de création">
+    <ListFormHelper
+      steps={[
+        {
+          label: "Informations clients",
+          variant: "validated",
+          href: "#informations-clients",
+        },
+        { label: "Tarification", variant: "inprogress", href: "#tarification" },
+        { label: "Signature du contrat", variant: "todo" },
+      ]}
+    />
+  </FormHelper>
+);
+```
+
+## Anatomy
+
+1. `FormHelper`: the container, with its title (blue header) and its legend
+   (the three states, rendered with `ItemFormHelper`).
+2. The body (`children`), usually a `ListFormHelper`: the list of steps, each
+   rendered with `ItemFormHelper` and the name of the section.
+
+## Steps
+
+Each step of `ListFormHelper` takes a `label`, a `variant` (`todo`,
+`inprogress` or `validated`) and an optional `href` to the section. If you
+already drive `VerticalStep` components, map their mode: `locked` → `todo`,
+`edited` → `inprogress`, `validated` → `validated`.
+
+## Sticky
+
+The helper does not position itself: make it sticky from your layout, for
+example with a `className`.
+
+```css
+.my-form-helper {
+  position: sticky;
+  top: 1rem;
+}
+```
+
+## Accessibility
+
+- The container is an `aside` named "Progression du formulaire" (`aria-label`
+  can be overridden) and the title is a real heading (`heading`, `h2` by
+  default).
+- Steps are an ordered list. When a step has an `href`, the list is wrapped in a
+  `nav` named "étapes du formulaire" (`navAriaLabel`).
+- The first step in progress gets `aria-current="step"`.
+- Screen readers read the name of each step followed by its state, e.g.
+  "Tarification, en cours". Links are always underlined.
+- `stateLabels` replaces the state texts of the legend and of the steps, e.g.
+  for another language.
+
+## Playground
+
+<Canvas of={FormHelperStories.Playground} />
+
+<Controls of={FormHelperStories.Playground} />
