@@ -4181,6 +4181,60 @@ describe("A template, recognized by its page in the library", () => {
     expect(where.some((w: string) => w.startsWith("styles.cursor."))).toBe(false);
     expect(where.some((w: string) => w.startsWith("styles.badge."))).toBe(true);
   });
+  it("the tokens version counts the tokens of a nested component, not those of an asset", async () => {
+    const seen = async (componentName: string) => {
+      const d = inPage("Forms", { description: "Le champ." });
+      const variant = d.selection[0].children[0];
+      const mc = connect(
+        layer("COMPONENT", componentName, { id: "C:61", key: "KEY-C:61", width: 8, height: 8 }),
+      );
+      const instance = connect(
+        layer(
+          "INSTANCE",
+          "nested",
+          { mainComponent: mc, componentProperties: {}, width: 8, height: 8 },
+          [
+            layer("RECTANGLE", "shape", {
+              fills: [solid(0, 0, 0.5)],
+              boundVariables: { fills: [alias("v-b8")] },
+            }),
+          ],
+        ),
+        variant,
+      );
+      variant.children.push(instance);
+      d.variables = VARIABLES;
+      d.collections = COLLECTIONS;
+      const p = createFakePlugin(d);
+      let inputs: MockData = null;
+      const sheet = await p.__test.extract(d.selection[0], {
+        computeTokensVersion: async (i: MockData) => {
+          inputs = plain(i);
+          return {
+            version: null,
+            issues: [
+              {
+                level: "warning",
+                rule: "token-unpublished",
+                where: "tokens.color/blue/800",
+                message: "Token absent de toutes les versions publiées de Canopée : color/blue/800.",
+              },
+            ],
+          };
+        },
+      });
+      return { inputs, sheet: plain(sheet) };
+    };
+    const component = await seen("Badge");
+    expect(Object.keys(component.inputs.tokens)).toContain("color/blue/800");
+    // the nested token counts for the version, but stays out of the tokens index of the sheet
+    expect(Object.keys(component.sheet.tokens)).not.toContain("color/blue/800");
+    const issue = component.sheet.issues.find((i: MockData) => i.rule === "token-unpublished");
+    expect(issue.where).toBe("structure.uses");
+    expect(issue.message).toContain("dans un composant inclus");
+    const asset = await seen("icon/star");
+    expect(Object.keys(asset.inputs.tokens)).not.toContain("color/blue/800");
+  });
   it("an element drawn by the browser (native/) keeps its colors and spacing without an issue", async () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];

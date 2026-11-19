@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.5";
+const VERSION = "0.7.6";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1925,6 +1925,76 @@ async function extract(
 }
 
 // The sheet, and for each issue of sheet.issues the nodes it designates (same order).
+// Tokens and text styles of the nested components of the design system, outside the tokens index:
+// they only count for the version. An asset (icon/, pictogram/, logo/, flag/) or a native element
+// (native/) is skipped, and so is a token that the component already uses itself.
+async function nestedTokens(
+  ctx: Context,
+  nodes: Layer[][],
+): Promise<{ tokens: Index; textStyles: Index; values: FigmaValues }> {
+  const out = {
+    tokens: {} as Index,
+    textStyles: {} as Index,
+    values: { tokens: {}, textStyles: {} } as FigmaValues,
+  };
+  const ids = new Set<string>();
+  const styleIds = new Set<string>();
+  const collect = (o: unknown): void => {
+    if (Array.isArray(o)) return o.forEach(collect);
+    if (isRecord(o) && o.type === "VARIABLE_ALIAS" && typeof o.id === "string")
+      ids.add(o.id);
+  };
+  for (const list of nodes)
+    for (const n of list) {
+      if (!isInstance(n)) continue;
+      let mc: Layer | null = null;
+      try {
+        mc = await readMainComponent(ctx, n);
+      } catch (e) {
+        continue;
+      }
+      const name = componentName(mc) || "";
+      if (!name || /^(icon|pictogram|logo|flag|native)\//.test(name)) continue;
+      const inside = typeof n.findAll === "function" ? n.findAll(() => true) : [];
+      for (const l of [n, ...inside]) {
+        if (isRecord(l.boundVariables))
+          for (const v of Object.values(l.boundVariables)) collect(v);
+        for (const field of ["fills", "strokes"] as const) {
+          const paints = (l as unknown as Record<string, unknown>)[field];
+          if (Array.isArray(paints))
+            for (const p of paints)
+              if (isRecord(p) && isRecord(p.boundVariables))
+                collect(p.boundVariables.color);
+        }
+        const st = (l as unknown as Record<string, unknown>).textStyleId;
+        if (l.type === "TEXT" && typeof st === "string" && st) styleIds.add(st);
+      }
+    }
+  for (const id of ids) {
+    try {
+      const v = await figma.variables.getVariableByIdAsync(id);
+      if (!v || ctx.tokens[v.name] || out.tokens[v.name]) continue;
+      out.tokens[v.name] = v.key ? { key: v.key } : {};
+      const modes = await variableModes(ctx, id, 0);
+      if (modes) out.values.tokens[v.name] = modes.values;
+    } catch (e) {
+      // a variable that cannot be read does not count
+    }
+  }
+  for (const id of styleIds) {
+    try {
+      const st = await figma.getStyleByIdAsync(id);
+      if (!st || ctx.textStyles[st.name] || out.textStyles[st.name]) continue;
+      out.textStyles[st.name] = st.key ? { key: st.key } : {};
+      const modes = await textStyleModes(ctx, st as TextStyle);
+      if (modes) out.values.textStyles[st.name] = modes;
+    } catch (e) {
+      // a text style that cannot be read does not count
+    }
+  }
+  return out;
+}
+
 async function extractDetail(
   target: Layer,
   opts?: ExtractOptions,
@@ -2280,14 +2350,29 @@ async function extractDetail(
   // The design tokens version comes from outside (the network is never called here):
   // options.computeTokensVersion({ tokens, textStyles, values }) returns { version, issues }.
   // values: what Figma holds for these tokens and text styles, mode by mode.
+  // The tokens of the nested components count too: a component is only usable with a
+  // version that also holds the tokens of the components it contains. An asset or a native
+  // element is not a component of the design system, and does not count.
   if (options.computeTokensVersion) {
+    const nested = await nestedTokens(ctx, nodes);
     const computation = await options.computeTokensVersion({
-      tokens,
-      textStyles,
-      values: ctx.values,
+      tokens: { ...tokens, ...nested.tokens },
+      textStyles: { ...textStyles, ...nested.textStyles },
+      values: {
+        tokens: { ...ctx.values.tokens, ...nested.values.tokens },
+        textStyles: { ...ctx.values.textStyles, ...nested.values.textStyles },
+      },
     });
     meta.tokensVersion = computation.version;
-    for (const i of computation.issues) issues.push(i);
+    for (const i of computation.issues) {
+      const m = /^(tokens|textStyles)\.(.+)$/.exec(i.where);
+      const own = m && (m[1] === "tokens" ? tokens[m[2]] : textStyles[m[2]]);
+      if (m && !own) {
+        i.where = "structure.uses";
+        i.message = i.message.replace(/\.$/, ", dans un composant inclus.");
+      }
+      issues.push(i);
+    }
   }
 
   for (const e of ctx.errors)
