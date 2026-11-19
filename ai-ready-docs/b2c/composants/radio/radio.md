@@ -64,7 +64,7 @@ Sur un écran de moins de 1024 px de large. Le libellé utilise la version mobil
 
 ## Contenu
 
-- Un libellé, à droite du bouton radio, sauf en showLabel=false.
+- Un libellé, à droite du bouton radio, sauf en showLabel=false. Sur plusieurs lignes, il garde le bouton radio aligné sur sa première ligne.
 - Une seule option par Radio.
 - Au moins deux Radio par groupe, avec un titre de groupe qui dit ce qui est choisi.
 - Les Radio d'un groupe sont empilés les uns sous les autres. Ils ne se placent côte à côte que pour deux ou trois options courtes, comme « Oui » et « Non ».

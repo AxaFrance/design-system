@@ -759,7 +759,7 @@
               "y": -8,
               "constraints": {
                 "horizontal": "min",
-                "vertical": "center"
+                "vertical": "min"
               },
               "sizingH": "fixed",
               "width": {
@@ -793,7 +793,7 @@
               "y": -8,
               "constraints": {
                 "horizontal": "min",
-                "vertical": "center"
+                "vertical": "min"
               },
               "sizingH": "fixed",
               "width": {
@@ -1046,5 +1046,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.4"
+  "_tool": "canopee-export-components 0.7.5"
 }

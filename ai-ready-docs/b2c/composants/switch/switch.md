@@ -52,7 +52,7 @@ Sur un écran de moins de 1024 px de large. Le libellé utilise la version mobil
 
 ## Contenu
 
-- Un libellé, à droite du Switch.
+- Un libellé, à droite du Switch. Sur plusieurs lignes, il garde la piste alignée sur sa première ligne.
 - Une seule option par Switch.
 
 ## Rédaction

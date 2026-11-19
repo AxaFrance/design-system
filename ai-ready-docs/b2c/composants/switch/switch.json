@@ -430,7 +430,6 @@
         },
         "layout": {
           "direction": "row",
-          "crossAlign": "center",
           "clip": false,
           "sizingH": "hug",
           "sizingV": "hug"
@@ -866,5 +865,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.4"
+  "_tool": "canopee-export-components 0.7.5"
 }
