@@ -50,7 +50,7 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "tsc-files": "^1.1.4",
-    "typescript": "~6.0.3",
+    "typescript": "~7.0.2",
     "turbo": "^2.11.10",
     "vite": "^8.3.8",
     "vitest": "^4.1.12"
