@@ -1,6 +1,6 @@
 # _StepperProgress 1.0.0
 
-Utilise les design tokens de Canopée 2.0.0 ou d'une version plus récente.
+Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée.
 
 ## Description
 

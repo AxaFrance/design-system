@@ -3,7 +3,7 @@
   "meta": {
     "name": "_StepperProgress",
     "version": "1.0.0",
-    "tokensVersion": "2.0.0",
+    "tokensVersion": null,
     "type": "composed",
     "extends": "ProgressBar",
     "figmaKey": "9881823f3bcb2412faa2cceace4151aeb05f837f",
@@ -820,6 +820,19 @@
       "key": "be959715ddac77dedafba55e157014b702551c02"
     }
   },
-  "issues": [],
-  "_tool": "canopee-export-components 0.7.5"
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.6"
 }
