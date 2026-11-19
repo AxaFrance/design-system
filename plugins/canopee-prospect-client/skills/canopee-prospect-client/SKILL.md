@@ -127,17 +127,19 @@ Pour construire une page, ne recrée pas la grille à la main : utilise `MainLay
 
 ```tsx
 <MainLayout headerProps={headerProps} footerProps={footerProps}>
-	<ColumnsLayout headingProps={{ children: "Bonjour Marion" }}>
-		<ColumnsLayout.Left>…</ColumnsLayout.Left>
-		<ColumnsLayout.Content>
-			<PatternWithAction headingProps={{ children: "Mes contrats" }}>
-				<PatternWithAction.Action>
-					<Link href="/contrats" variant="button-secondary">Voir tout</Link>
-				</PatternWithAction.Action>
-				<PatternMozaicFree>…</PatternMozaicFree>
-			</PatternWithAction>
-		</ColumnsLayout.Content>
-	</ColumnsLayout>
+  <ColumnsLayout headingProps={{ children: "Bonjour Marion" }}>
+    <ColumnsLayout.Left>…</ColumnsLayout.Left>
+    <ColumnsLayout.Content>
+      <PatternWithAction headingProps={{ children: "Mes contrats" }}>
+        <PatternWithAction.Action>
+          <Link href="/contrats" variant="button-secondary">
+            Voir tout
+          </Link>
+        </PatternWithAction.Action>
+        <PatternMozaicFree>…</PatternMozaicFree>
+      </PatternWithAction>
+    </ColumnsLayout.Content>
+  </ColumnsLayout>
 </MainLayout>
 ```
 
@@ -213,7 +215,15 @@ Pour construire une page, ne recrée pas la grille à la main : utilise `MainLay
 | `CardCheckboxOption` | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte checkbox |
 | `Radio`              | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Radio simple (bas niveau)             |
 | `CardRadioGroup`     | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Groupe de radios en cartes            |
-| `CardRadio`    | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
+| `CardRadio`          | [05-form-checkbox-radio.md](./references/05-form-checkbox-radio.md) | Option individuelle de carte radio    |
+
+### Formulaires — multi-sélection
+
+| Composant             | Référence                                             | Cas d'usage                               |
+| --------------------- | ----------------------------------------------------- | ----------------------------------------- |
+| `ItemMultiSelect`     | [19-multi-select.md](./references/19-multi-select.md) | Item checkbox pour multi-sélection        |
+| `MultiSelectList`     | [19-multi-select.md](./references/19-multi-select.md) | Liste de checkboxes multi-sélection       |
+| `DropdownMultiSelect` | [19-multi-select.md](./references/19-multi-select.md) | Select multiple complet (dropdown + tags) |
 
 ### Upload de fichiers
 
@@ -236,13 +246,14 @@ Pour construire une page, ne recrée pas la grille à la main : utilise `MainLay
 
 ### Visuels et affichage de données
 
-| Composant | Référence                                   | Cas d'usage                                          |
-| --------- | ------------------------------------------- | ---------------------------------------------------- |
-| `Tag`     | [15-visuals.md](./references/15-visuals.md) | Label de statut (info/success/warning/error/neutral) |
-| `Icon`    | [15-visuals.md](./references/15-visuals.md) | Icône SVG avec variante et taille                    |
-| `Heading` | [15-visuals.md](./references/15-visuals.md) | Titre de page avec icône, sous-titres, tag           |
-| `Divider` | [15-visuals.md](./references/15-visuals.md) | Séparateur `<hr>`                                    |
-| `Toggle`  | [15-visuals.md](./references/15-visuals.md) | Interrupteur on/off                                  |
+| Composant | Référence                                             | Cas d'usage                                          |
+| --------- | ----------------------------------------------------- | ---------------------------------------------------- |
+| `Tag`     | [15-visuals.md](./references/15-visuals.md)           | Label de statut (info/success/warning/error/neutral) |
+| `TagList` | [19-multi-select.md](./references/19-multi-select.md) | Liste de tags avec overflow automatique              |
+| `Icon`    | [15-visuals.md](./references/15-visuals.md)           | Icône SVG avec variante et taille                    |
+| `Heading` | [15-visuals.md](./references/15-visuals.md)           | Titre de page avec icône, sous-titres, tag           |
+| `Divider` | [15-visuals.md](./references/15-visuals.md)           | Séparateur `<hr>`                                    |
+| `Toggle`  | [15-visuals.md](./references/15-visuals.md)           | Interrupteur on/off                                  |
 
 ### Tableaux
 
@@ -254,30 +265,30 @@ Pour construire une page, ne recrée pas la grille à la main : utilise `MainLay
 
 ### Layouts de page et patterns
 
-| Composant              | Référence                                             | Cas d'usage                                                                  |
-| ---------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Composant              | Référence                                             | Cas d'usage                                                                          |
+| ---------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | `MainLayout`           | [19-page-layouts.md](./references/19-page-layouts.md) | Page complète : Header, lien retour, slots Top/Bottom, `<main class="grid">`, Footer |
-| `ColumnsLayout`        | [19-page-layouts.md](./references/19-page-layouts.md) | Titre de page + colonnes Left / Content / Right (`isFit` pour centrer)        |
-| `PatternWithAction`    | [19-page-layouts.md](./references/19-page-layouts.md) | Section titre + action (à droite en desktop, après le contenu en mobile)      |
-| `PatternMozaicGrid`    | [19-page-layouts.md](./references/19-page-layouts.md) | Mosaïque alignée sur les colonnes de la grille, responsive par breakpoint     |
-| `PatternMozaicFree`    | [19-page-layouts.md](./references/19-page-layouts.md) | N colonnes égales indépendantes de la grille (1 colonne sous 1024px)          |
-| `PatternCardMarketing` | [19-page-layouts.md](./references/19-page-layouts.md) | Disposition de `CardMarketing` (la 1re occupe 2 lignes avec 3 cartes)         |
+| `ColumnsLayout`        | [19-page-layouts.md](./references/19-page-layouts.md) | Titre de page + colonnes Left / Content / Right (`isFit` pour centrer)               |
+| `PatternWithAction`    | [19-page-layouts.md](./references/19-page-layouts.md) | Section titre + action (à droite en desktop, après le contenu en mobile)             |
+| `PatternMozaicGrid`    | [19-page-layouts.md](./references/19-page-layouts.md) | Mosaïque alignée sur les colonnes de la grille, responsive par breakpoint            |
+| `PatternMozaicFree`    | [19-page-layouts.md](./references/19-page-layouts.md) | N colonnes égales indépendantes de la grille (1 colonne sous 1024px)                 |
+| `PatternCardMarketing` | [19-page-layouts.md](./references/19-page-layouts.md) | Disposition de `CardMarketing` (la 1re occupe 2 lignes avec 3 cartes)                |
 
 ### Layout
 
-| Composant       | Référence                                 | Cas d'usage                                 |
-| --------------- | ----------------------------------------- | ------------------------------------------- |
-| `Footer`        | [12-layout.md](./references/12-layout.md) | Pied de page avec liens, réseaux, copyright |
-| `FormLayout`    | [12-layout.md](./references/12-layout.md) | Mise en page de formulaire responsive       |
-| `ExitLayout`    | [12-layout.md](./references/12-layout.md) | Page de sortie (confirmation / erreur)      |
-| `ExitLayoutSkeleton` | [12-layout.md](./references/12-layout.md) | Version skeleton de `ExitLayout`            |
-| `Fieldset`      | [12-layout.md](./references/12-layout.md) | Groupe de form en carte                     |
-| `LevelSelector` | [12-layout.md](./references/12-layout.md) | Sélecteur de niveau par incréments          |
-| `Card`          | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant="unstyled vertical"`) |
-| `CardMarketing` | [12-layout.md](./references/12-layout.md) | Carte promotionnelle image + titre + texte + lien (vertical / horizontal) |
-| `AppName`       | [12-layout.md](./references/12-layout.md) | Logo AXA + nom d'application, lien cliquable |
-| `Header`        | [12-layout.md](./references/12-layout.md) | En-tête responsive (AppName + TabMenu + MenuBurger) |
-| `MenuBurger`    | [12-layout.md](./references/12-layout.md) | Menu compte utilisateur avec popover desktop |
+| Composant            | Référence                                 | Cas d'usage                                                               |
+| -------------------- | ----------------------------------------- | ------------------------------------------------------------------------- |
+| `Footer`             | [12-layout.md](./references/12-layout.md) | Pied de page avec liens, réseaux, copyright                               |
+| `FormLayout`         | [12-layout.md](./references/12-layout.md) | Mise en page de formulaire responsive                                     |
+| `ExitLayout`         | [12-layout.md](./references/12-layout.md) | Page de sortie (confirmation / erreur)                                    |
+| `ExitLayoutSkeleton` | [12-layout.md](./references/12-layout.md) | Version skeleton de `ExitLayout`                                          |
+| `Fieldset`           | [12-layout.md](./references/12-layout.md) | Groupe de form en carte                                                   |
+| `LevelSelector`      | [12-layout.md](./references/12-layout.md) | Sélecteur de niveau par incréments                                        |
+| `Card`               | [12-layout.md](./references/12-layout.md) | Conteneur carte polymorphique (`as`, `variant="unstyled vertical"`)       |
+| `CardMarketing`      | [12-layout.md](./references/12-layout.md) | Carte promotionnelle image + titre + texte + lien (vertical / horizontal) |
+| `AppName`            | [12-layout.md](./references/12-layout.md) | Logo AXA + nom d'application, lien cliquable                              |
+| `Header`             | [12-layout.md](./references/12-layout.md) | En-tête responsive (AppName + TabMenu + MenuBurger)                       |
+| `MenuBurger`         | [12-layout.md](./references/12-layout.md) | Menu compte utilisateur avec popover desktop                              |
 
 ### Pages complètes
 

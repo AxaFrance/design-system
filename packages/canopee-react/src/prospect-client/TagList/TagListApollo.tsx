@@ -8,5 +8,5 @@ import "@axa-fr/canopee-css/prospect/TagList/TagListAll.css";
 export type TagListProps = Omit<TagListCommonProps, "OverflowTag">;
 
 export const TagList = (props: TagListProps) => (
-  <TagListCommon {...props} OverflowTag={Tag} />
+  <TagListCommon {...props} OverflowTagComponent={Tag} />
 );
