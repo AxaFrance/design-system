@@ -32,7 +32,7 @@ Un élément affiché par le navigateur ou le système (native/), comme le curse
 | structure-differente | Une variante n'a pas les mêmes calques que la majorité des variantes de même type. Le calque `focus-ring` n'est pas compté, car seules certaines variantes l'ont. |
 | lien-propriete-mort, lien-propriete-absent | Un calque est relié à une propriété qui n'existe plus, ou n'est pas relié alors que le même calque l'est dans d'autres variantes. |
 | visibilite-defaut | Un calque relié à un booléen est masqué alors que le booléen vaut true par défaut, ou l'inverse. |
-| couleur-brute | Une couleur n'est reliée à aucun token. |
+| couleur-brute | Une couleur n'est reliée à aucun token. Les couleurs d'un drapeau de Fondations (flag/) ne sont pas comptées. |
 | couleur-de-base-fausse | Une couleur reliée à un token garde en mémoire une valeur différente de celle du token. Figma peut afficher cette ancienne valeur à la place du token. |
 | opacite-sur-peinture | Une couleur de token porte une opacité. Les instances la perdent, l'opacité va donc sur le calque. |
 | texte-sans-style | Un texte n'a pas de style de texte. |

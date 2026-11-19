@@ -188,14 +188,16 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   const ou = v.name + " / " + (chemin(n, v) || "racine");
   // Un élément affiché par le navigateur ou le système (native/), comme le curseur ou le calendrier, garde
   // ses couleurs, ses valeurs et sa taille, sans design tokens : rien n'y est contrôlé.
-  let natif = false;
+  // Un drapeau de Fondations (flag/) garde ses propres couleurs : elles ne sont pas contrôlées.
+  let natif = false, drapeau = false;
   for (let p = n; p && p !== v; p = p.parent) {
     if (p.type !== "INSTANCE") continue;
     const mc = await p.getMainComponentAsync().catch(() => null);
     if (mc && /^native\//.test(nomComposant(mc))) { natif = true; break; }
+    if (mc && /^flag\//.test(nomComposant(mc))) drapeau = true;
   }
   if (natif) continue;
-  for (const champ of ["fills", "strokes"]) {
+  if (!drapeau) for (const champ of ["fills", "strokes"]) {
     const peintures = champ === "fills" && n.type === "TEXT" ? n.getStyledTextSegments(["fills"]).flatMap((s) => s.fills) : n[champ];
     if (!Array.isArray(peintures)) continue;
     for (const p of peintures) {
