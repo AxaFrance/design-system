@@ -18,7 +18,7 @@ Le Radio permet à l'utilisateur de choisir une option dans un groupe à choix u
 - Choisir plusieurs options à la fois : prendre Checkbox.
 - Accepter des conditions ou donner un consentement : prendre Checkbox.
 - Activer ou désactiver un réglage qui s'applique tout de suite : prendre Switch.
-- Choisir parmi une longue liste d'options : prendre Dropdown.
+- Choisir parmi une longue liste d'options : prendre Select.
 - Choisir une option présentée en carte, avec un titre, une description ou une icône : prendre FormCard, qui contient déjà un Radio.
 - Une seule option, sans alternative : prendre Checkbox.
 
