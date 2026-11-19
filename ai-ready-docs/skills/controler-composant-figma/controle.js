@@ -186,6 +186,15 @@ const visibles = (peintures) => (Array.isArray(peintures) ? peintures.filter((p)
 const masques = {};
 for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   const ou = v.name + " / " + (chemin(n, v) || "racine");
+  // Un élément affiché par le navigateur ou le système (native/), comme le curseur ou le calendrier, garde
+  // ses couleurs, ses valeurs et sa taille, sans design tokens : rien n'y est contrôlé.
+  let natif = false;
+  for (let p = n; p && p !== v; p = p.parent) {
+    if (p.type !== "INSTANCE") continue;
+    const mc = await p.getMainComponentAsync().catch(() => null);
+    if (mc && /^native\//.test(nomComposant(mc))) { natif = true; break; }
+  }
+  if (natif) continue;
   for (const champ of ["fills", "strokes"]) {
     const peintures = champ === "fills" && n.type === "TEXT" ? n.getStyledTextSegments(["fills"]).flatMap((s) => s.fills) : n[champ];
     if (!Array.isArray(peintures)) continue;
@@ -214,14 +223,9 @@ for (const v of set.children) for (const n of [v, ...v.findAll(() => true)]) {
   if (!imbrique && typeof n.strokeWeight === "number" && n.strokes && n.strokes.length && !lies.strokeWeight && !lies.strokeTopWeight)
     note("epaisseur-brute", ou + " : " + n.strokeWeight);
   // Une taille fixe se relie à un token, sauf pour une forme ou un calque absolu étiré. La taille du composant
-  // lui-même suit son conteneur, un élément affiché par le navigateur (native/) garde la sienne, et Figma
-  // annonce une taille fixe pour tout calque masqué : ces trois cas ne sont pas comptés.
-  let natif = false;
-  if (n.type === "INSTANCE") {
-    const mc = await n.getMainComponentAsync().catch(() => null);
-    natif = !!mc && /^native\//.test(nomComposant(mc));
-  }
-  if (!imbrique && !FORMES.includes(n.type) && n !== v && !natif && n.visible !== false) {
+  // lui-même suit son conteneur, et Figma annonce une taille fixe pour tout calque masqué : ces deux cas ne
+  // sont pas comptés.
+  if (!imbrique && !FORMES.includes(n.type) && n !== v && n.visible !== false) {
     const etire = (axe) => n.layoutPositioning === "ABSOLUTE" && n.constraints && n.constraints[axe] === "STRETCH";
     // Figma annonce une taille fixe pour tout calque masqué : un texte qui s'adapte à son contenu garde sa taille automatique.
     const fixe = (axe) => {

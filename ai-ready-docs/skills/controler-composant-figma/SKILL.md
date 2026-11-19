@@ -24,6 +24,8 @@ L'agent IA suit ces étapes, puis rend compte au designer qui l'a lancé.
 
 Les calques d'un composant imbriqué, comme une icône de Fondations, appartiennent à ce composant. Le script ne contrôle que leurs couleurs, car un composant recolore souvent ses icônes. Un autre défaut à l'intérieur d'un composant imbriqué se trouve en lançant le skill sur ce composant, dans son propre fichier.
 
+Un élément affiché par le navigateur ou le système (native/), comme le curseur ou le calendrier, garde ses couleurs, ses valeurs et sa taille, sans design tokens. Le script ne contrôle rien sur lui, ni sur ses calques.
+
 | Règle | Défaut |
 |---|---|
 | entete-different | L'en-tête Header Composants, posé au-dessus du composant, n'a pas le même titre que le nom du composant, ou pas la même description. Une description validée se reporte dans les deux. |
@@ -35,7 +37,7 @@ Les calques d'un composant imbriqué, comme une icône de Fondations, appartienn
 | opacite-sur-peinture | Une couleur de token porte une opacité. Les instances la perdent, l'opacité va donc sur le calque. |
 | texte-sans-style | Un texte n'a pas de style de texte. |
 | espacement-brut, epaisseur-brute | Un espacement d'auto-layout ou une épaisseur de contour n'est relié à aucun token. |
-| taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Ne sont pas comptés : la taille du composant lui-même, les formes, les calques absolus étirés, les textes qui s'adaptent à leur contenu, les éléments affichés par le navigateur (native/) et les calques masqués. |
+| taille-brute | Une largeur ou une hauteur fixe n'est reliée à aucun token. Ne sont pas comptés : la taille du composant lui-même, les formes, les calques absolus étirés, les textes qui s'adaptent à leur contenu et les calques masqués. |
 | taille-verrouillee | Un calque a son ratio verrouillé et une seule de ses dimensions reliée. |
 | variable-introuvable | Une couleur est reliée à une variable que Figma ne trouve plus, souvent dans une librairie retirée du fichier. |
 | role-incoherent | Le nom d'un calque annonce un rôle qu'il n'a pas : un `mask` qui n'est pas un masque, un `label` qui n'est ni un texte, ni une instance qui en contient un, une `icon` qui n'est pas une instance. |

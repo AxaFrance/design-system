@@ -4181,6 +4181,38 @@ describe("A template, recognized by its page in the library", () => {
     expect(where.some((w: string) => w.startsWith("styles.cursor."))).toBe(false);
     expect(where.some((w: string) => w.startsWith("styles.badge."))).toBe(true);
   });
+  it("an element drawn by the browser (native/) keeps its colors and spacing without an issue", async () => {
+    const d = inPage("Forms", { description: "Le champ." });
+    const variant = d.selection[0].children[0];
+    const comp = (name: string, id: string) =>
+      connect(layer("COMPONENT", name, { id, key: "KEY-" + id, width: 200, height: 300 }));
+    for (const [name, mc] of [
+      ["picker", comp("native/DatePicker", "C:41")],
+      ["panel", comp("Panel", "C:42")],
+    ] as const) {
+      const instance = connect(
+        layer("INSTANCE", name, {
+          mainComponent: mc,
+          componentProperties: {},
+          width: 200,
+          height: 300,
+          layoutMode: "VERTICAL",
+          itemSpacing: 12,
+          paddingTop: 16,
+          paddingRight: 16,
+          paddingBottom: 16,
+          paddingLeft: 16,
+          fills: [{ type: "SOLID", visible: true, opacity: 1, color: { r: 1, g: 1, b: 1 } }],
+        }),
+        variant,
+      );
+      variant.children.push(instance);
+    }
+    const { sheet } = await exportSheet(d);
+    const where = issuesFor(sheet, "raw-value").map((i: MockData) => i.where);
+    expect(where.some((w: string) => w.startsWith("styles.picker."))).toBe(false);
+    expect(where.some((w: string) => w.startsWith("styles.panel."))).toBe(true);
+  });
   it("a description without a mention is reported, and the level stays written", async () => {
     const { sheet } = await exportSheet(
       inPage("Templates - Sections", {

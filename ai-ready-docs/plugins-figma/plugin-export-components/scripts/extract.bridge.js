@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.4";
+const VERSION = "0.7.5";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -264,6 +264,7 @@ const newContext = () => ({
     modeCollections: {},
     ids: new Map(),
     drawn: new Set(),
+    native: new Set(),
     collisions: new Set(),
     modes: new Map(),
     values: { tokens: {}, textStyles: {} },
@@ -1175,8 +1176,11 @@ async function captureVariant(ctx, prep, variant, list) {
         // an element drawn by the browser, like the text cursor (native/), keeps its own size
         if (isInstance(el)) {
             const m = await readMainComponent(ctx, el);
-            if (m && /^native\//.test(componentName(m) || ""))
+            if (m && /^native\//.test(componentName(m) || "")) {
                 c.drawn = true;
+                // it also keeps the colors and the spacing of the system, without tokens
+                c.native = true;
+            }
         }
         if (el.type === "INSTANCE") {
             const r = await instanceVector(ctx, el, "styles." + nm);
@@ -1222,8 +1226,19 @@ async function layerTree(ctx, node) {
 // The issues that can be read in the styles produced: raw value, paint not
 // handled, text without style. A zero value is not an issue.
 // drawn: the keys of the drawn layers, whose size is not an issue.
-function stylesIssues(styles, drawn) {
+// native: the keys of the layers drawn by the browser or the system, where no raw value is an issue.
+function stylesIssues(styles, drawn, native) {
     const out = [];
+    // a layer drawn by the browser or the system keeps its own colors and spacing
+    const nativeLayer = (path) => {
+        if (!native || !native.size)
+            return false;
+        const location = path.replace(/^styles\.(default\.|overrides\[[^\]]*\]\.(styles\.)?)?/, "");
+        for (const k of native)
+            if (location.indexOf(k + ".") === 0)
+                return true;
+        return false;
+    };
     // A raw fixed size is an issue, except for an absolute layer stretched on that axis.
     const freeSize = (parent, key) => {
         const axis = key === "width" ? "horizontal" : "vertical";
@@ -1262,7 +1277,7 @@ function stylesIssues(styles, drawn) {
                         !parent ||
                         freeSize(parent, key) ||
                         drawnSize(path)));
-            if (o.raw !== 0 && o.raw !== null && !excluded)
+            if (o.raw !== 0 && o.raw !== null && !excluded && !nativeLayer(path))
                 out.push({
                     level: "warning",
                     rule: "raw-value",
@@ -1316,10 +1331,10 @@ function stylesIssues(styles, drawn) {
 }
 // For each style issue, the number of variants where it appears (key: issueSignature).
 // The input is the list of the complete styles of each variant.
-function variantsPerIssue(variantsStyles, drawn) {
+function variantsPerIssue(variantsStyles, drawn, native) {
     const n = new Map();
     for (const st of variantsStyles) {
-        for (const d of stylesIssues({ default: st }, drawn))
+        for (const d of stylesIssues({ default: st }, drawn, native))
             n.set(issueSignature(d), (n.get(issueSignature(d)) || 0) + 1);
     }
     return n;
@@ -1670,6 +1685,8 @@ async function extractDetail(target, opts) {
             const key = dup.has(c.nm) ? c.nm + "-" + n : c.nm;
             if (c.drawn)
                 ctx.drawn.add(key);
+            if (c.native)
+                ctx.native.add(key);
             if (Object.keys(c.es).length) {
                 kd[key] = c.es;
                 ids[key] = c.id;
@@ -1776,8 +1793,8 @@ async function extractDetail(target, opts) {
     const modeCollections = sortIndex(ctx.modeCollections);
     // a single list of issues: nomenclature, raw values, duplicate variables
     const issues = await checkNomenclature(prep);
-    const variantCounts = variantsPerIssue(all.map((t) => t.styles), ctx.drawn);
-    for (const i of stylesIssues(styles, ctx.drawn)) {
+    const variantCounts = variantsPerIssue(all.map((t) => t.styles), ctx.drawn, ctx.native);
+    for (const i of stylesIssues(styles, ctx.drawn, ctx.native)) {
         const n = variantCounts.get(issueSignature(i));
         if (n)
             i.occurrences = n;
@@ -1844,7 +1861,7 @@ function locateIssues(ctx, prep, issues, all) {
     for (const t of all || []) {
         const ids = (ctx && ctx.ids.get(t.cap)) || {};
         const keys = Object.keys(ids).sort((a, b) => b.length - a.length);
-        for (const d of stylesIssues({ default: t.styles }, ctx ? ctx.drawn : undefined)) {
+        for (const d of stylesIssues({ default: t.styles }, ctx ? ctx.drawn : undefined, ctx ? ctx.native : undefined)) {
             const location = d.where.slice("styles.".length);
             const key = keys.find((c) => location === c || location.indexOf(c + ".") === 0);
             if (!key || !ids[key])

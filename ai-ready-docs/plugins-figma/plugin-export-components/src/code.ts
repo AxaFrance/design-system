@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.4";
+const VERSION = "0.7.5";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -331,6 +331,7 @@ interface Candidate {
   vec?: LayerStyles;
   vecId?: string;
   drawn?: boolean;
+  native?: boolean;
 }
 interface Capture {
   id: string;
@@ -347,6 +348,8 @@ interface Context {
   ids: Map<Capture, Record<string, string>>;
   // keys of the drawn layers (shapes and groups): their size is not an issue
   drawn: Set<string>;
+  // keys of the layers drawn by the browser or the system (native/): no raw value is an issue
+  native: Set<string>;
   collisions: Set<string>;
   // Values read in Figma for the comparison with the published tokens, by variable id and by name.
   modes: Map<string, VariableModes | null>;
@@ -364,6 +367,7 @@ const newContext = (): Context => ({
   modeCollections: {},
   ids: new Map(),
   drawn: new Set(),
+  native: new Set(),
   collisions: new Set(),
   modes: new Map(),
   values: { tokens: {}, textStyles: {} },
@@ -1553,7 +1557,11 @@ async function captureVariant(
     // an element drawn by the browser, like the text cursor (native/), keeps its own size
     if (isInstance(el)) {
       const m = await readMainComponent(ctx, el);
-      if (m && /^native\//.test(componentName(m) || "")) c.drawn = true;
+      if (m && /^native\//.test(componentName(m) || "")) {
+        c.drawn = true;
+        // it also keeps the colors and the spacing of the system, without tokens
+        c.native = true;
+      }
     }
     if (el.type === "INSTANCE") {
       const r = await instanceVector(ctx, el, "styles." + nm);
@@ -1597,8 +1605,23 @@ async function layerTree(ctx: Context, node: Layer): Promise<TreeNode> {
 // The issues that can be read in the styles produced: raw value, paint not
 // handled, text without style. A zero value is not an issue.
 // drawn: the keys of the drawn layers, whose size is not an issue.
-function stylesIssues(styles: Partial<Styles>, drawn?: Set<string>): Issue[] {
+// native: the keys of the layers drawn by the browser or the system, where no raw value is an issue.
+function stylesIssues(
+  styles: Partial<Styles>,
+  drawn?: Set<string>,
+  native?: Set<string>,
+): Issue[] {
   const out: Issue[] = [];
+  // a layer drawn by the browser or the system keeps its own colors and spacing
+  const nativeLayer = (path: string): boolean => {
+    if (!native || !native.size) return false;
+    const location = path.replace(
+      /^styles\.(default\.|overrides\[[^\]]*\]\.(styles\.)?)?/,
+      "",
+    );
+    for (const k of native) if (location.indexOf(k + ".") === 0) return true;
+    return false;
+  };
   // A raw fixed size is an issue, except for an absolute layer stretched on that axis.
   const freeSize = (parent: Record<string, unknown>, key: string): boolean => {
     const axis = key === "width" ? "horizontal" : "vertical";
@@ -1654,7 +1677,7 @@ function stylesIssues(styles: Partial<Styles>, drawn?: Set<string>): Issue[] {
             !parent ||
             freeSize(parent, key) ||
             drawnSize(path)));
-      if (o.raw !== 0 && o.raw !== null && !excluded)
+      if (o.raw !== 0 && o.raw !== null && !excluded && !nativeLayer(path))
         out.push({
           level: "warning",
           rule: "raw-value",
@@ -1722,10 +1745,11 @@ function stylesIssues(styles: Partial<Styles>, drawn?: Set<string>): Issue[] {
 function variantsPerIssue(
   variantsStyles: VariantStyles[],
   drawn?: Set<string>,
+  native?: Set<string>,
 ): Map<string, number> {
   const n = new Map<string, number>();
   for (const st of variantsStyles) {
-    for (const d of stylesIssues({ default: st }, drawn))
+    for (const d of stylesIssues({ default: st }, drawn, native))
       n.set(issueSignature(d), (n.get(issueSignature(d)) || 0) + 1);
   }
   return n;
@@ -2128,6 +2152,7 @@ async function extractDetail(
       const n = (seen[c.nm] = (seen[c.nm] || 0) + 1);
       const key = dup.has(c.nm) ? c.nm + "-" + n : c.nm;
       if (c.drawn) ctx.drawn.add(key);
+      if (c.native) ctx.native.add(key);
       if (Object.keys(c.es).length) {
         kd[key] = c.es;
         ids[key] = c.id;
@@ -2236,8 +2261,9 @@ async function extractDetail(
   const variantCounts = variantsPerIssue(
     all.map((t) => t.styles),
     ctx.drawn,
+    ctx.native,
   );
-  for (const i of stylesIssues(styles, ctx.drawn)) {
+  for (const i of stylesIssues(styles, ctx.drawn, ctx.native)) {
     const n = variantCounts.get(issueSignature(i));
     if (n) i.occurrences = n;
     issues.push(i);
@@ -2317,6 +2343,7 @@ function locateIssues(
     for (const d of stylesIssues(
       { default: t.styles },
       ctx ? ctx.drawn : undefined,
+      ctx ? ctx.native : undefined,
     )) {
       const location = d.where.slice("styles.".length);
       const key = keys.find(
