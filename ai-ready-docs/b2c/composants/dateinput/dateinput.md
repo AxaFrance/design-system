@@ -96,7 +96,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - La touche qui ouvre le calendrier au clavier dépend du navigateur : Non documenté.
 - Pendant le focus, le message reste affiché, même en tone=warning ou tone=error.
 - En disabled=true, le champ ne réagit ni au clic ni au clavier.
-- Le moment où le message d'erreur apparaît, à la sortie du champ ou à l'envoi du formulaire : Non documenté.
+- Le message d'erreur apparaît quand l'utilisateur quitte le champ ou envoie le formulaire. Il disparaît quand la saisie est corrigée.
 
 ## Accessibilité
 
@@ -105,7 +105,7 @@ Un élément `<input type="date">`, relié à son libellé par un `<label>` dont
 - Le nom accessible est le libellé. Le placeholder ne le remplace jamais.
 - En showLabel=false, le champ prend son nom accessible avec `aria-labelledby`, qui pointe vers le texte visible qui le nomme.
 - L'aide est lue avec le champ, grâce à `aria-describedby`.
-- En tone=error, le champ porte `aria-invalid="true"`, et `aria-errormessage` le relie au message.
+- En tone=error, le champ porte `aria-invalid="true"`, et `aria-describedby` le relie au message, avec l'aide.
 - En tone=warning, `aria-describedby` relie le message au champ, sans `aria-invalid`.
 - Une date de naissance porte l'attribut `autocomplete="bday"` (WCAG 1.3.5).
 - Un champ obligatoire porte l'attribut `required`, que le lecteur d'écran annonce.
@@ -191,9 +191,8 @@ Ces noms désignent DateInput. Le seul nom à employer est DateInput.
 - **Dates en objet Date.** Le code convertit la date selon l'heure UTC (`InputDate.helper.ts:2`), et une date à minuit, heure de Paris, s'affiche la veille. En attendant : passer `value`, `min` et `max` en texte.
 - **Valeur en showIcon=false.** Avec `hidePicker`, le code ignore `min` et `max` (`InputDateCommon.tsx:102`). Il n'ajoute les barres obliques que si la page renvoie dans `value` ce que `onChange` lui donne (`InputDateTextAtom.tsx:23`). En attendant : passer la valeur au format JJ/MM/AAAA, et vérifier les limites dans la page.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
-- **Avertissement dans le code.** Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputDateCommon.tsx:68`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
+- **Lien des messages dans le code.** Le code relie le message d'erreur avec `aria-errormessage`, au lieu de `aria-describedby`. Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputDateCommon.tsx:68`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
 - **Interligne dans le code.** Sur desktop, le code utilise un interligne de 1,25 (`InputDateCommon.css:74`), plus serré que celui du style label/1/regular. En attendant : signaler.
-- **Moment d'affichage de l'erreur.** Rien ne dit si le message d'erreur apparaît à la sortie du champ ou à l'envoi du formulaire. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

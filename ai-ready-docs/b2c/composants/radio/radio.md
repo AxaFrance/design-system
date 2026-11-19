@@ -51,7 +51,7 @@ Sur un écran de moins de 1024 px de large. Le libellé utilise la version mobil
 ## Exemples
 
 - Fréquence de paiement : deux Radio, label « Mensuel » en checked=true et label « Annuel » en checked=false.
-- Choix obligatoire laissé vide, après l'envoi du formulaire : tous les Radio du groupe en tone=error, avec le _FormHelperText tone=error « Veuillez choisir une fréquence de paiement. » sous le groupe.
+- Choix obligatoire laissé vide, après l'envoi du formulaire : tous les Radio du groupe en tone=error, avec le _FormHelperText tone=error « Choisissez une fréquence de paiement. » sous le groupe.
 - Option indisponible pour ce contrat : disabled=true, label « Trimestriel », avec un texte qui dit pourquoi.
 - Carte d'option : FormCard, dont le Radio est en showLabel=false, car le titre de la carte nomme déjà l'option.
 

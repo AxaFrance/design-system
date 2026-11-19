@@ -88,7 +88,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - Pendant le focus, le message reste affiché, même en tone=warning ou tone=error.
 - En disabled=true, le champ ne réagit ni au clic ni au clavier. L'action « Modifier » du libellé reste cliquable.
 - Un clic sur « Modifier » ne débloque pas le champ de lui-même : la page le repasse en disabled=false. La place du focus après ce clic : Non documenté.
-- Le moment où le message d'erreur apparaît, à la sortie du champ ou à l'envoi du formulaire : Non documenté.
+- Le message d'erreur apparaît quand l'utilisateur quitte le champ ou envoie le formulaire. Il disparaît quand la saisie est corrigée.
 
 ## Accessibilité
 
@@ -97,7 +97,7 @@ Un élément `<textarea>`, relié à son libellé par un `<label>` dont l'attrib
 - Le nom accessible est le libellé. Le placeholder ne le remplace jamais.
 - En showLabel=false, le champ prend son nom accessible avec `aria-labelledby`, qui pointe vers le texte visible qui le nomme.
 - L'aide est lue avec le champ, grâce à `aria-describedby`.
-- En tone=error, le champ porte `aria-invalid="true"`, et `aria-errormessage` le relie au message.
+- En tone=error, le champ porte `aria-invalid="true"`, et `aria-describedby` le relie au message, avec l'aide.
 - En tone=warning, `aria-describedby` relie le message au champ, sans `aria-invalid`.
 - Un nombre maximum de caractères passe par l'attribut `maxlength`, et l'aide l'annonce.
 - Un champ obligatoire porte l'attribut `required`, que le lecteur d'écran annonce.
@@ -176,9 +176,8 @@ Ces noms désignent TextArea. Le seul nom à employer est TextArea.
 - **Interligne et hauteur dans le code.** Le code utilise un interligne de 125 % (`TextAreaCommon.css:12`), soit 20 px sur mobile et 22,5 px sur desktop, au lieu des 24 px du style label/1/regular. Sur mobile, le champ fait 72 px de haut dans le code, au lieu de 80 (`TextAreaCommon.css:6`). En attendant : signaler.
 - **Thème client dans le code.** Le code du thème client garde un arrondi de 4 px (`TextAreaLF.css:5`). En attendant : signaler.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
-- **Avertissement dans le code.** Le code ne relie pas le message d'avertissement au champ. `aria-describedby` ne pointe que vers l'aide (`TextAreaCommon.tsx:91`), et `aria-errormessage` ne sert qu'en erreur (`TextAreaCommon.tsx:90`). Le lecteur d'écran annonce l'avertissement quand il apparaît, mais ne le relit pas quand le champ reprend le focus. En attendant : signaler.
+- **Lien des messages dans le code.** Le code relie le message d'erreur avec `aria-errormessage`, au lieu de `aria-describedby`. Le code ne relie pas le message d'avertissement au champ. `aria-describedby` ne pointe que vers l'aide (`TextAreaCommon.tsx:91`), et `aria-errormessage` ne sert qu'en erreur (`TextAreaCommon.tsx:90`). Le lecteur d'écran annonce l'avertissement quand il apparaît, mais ne le relit pas quand le champ reprend le focus. En attendant : signaler.
 - **Focus après « Modifier ».** La place du focus après un clic sur « Modifier » n'est pas définie. En attendant : signaler.
-- **Moment d'affichage de l'erreur.** Rien ne dit si le message d'erreur apparaît à la sortie du champ ou à l'envoi du formulaire. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

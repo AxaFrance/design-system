@@ -10,7 +10,7 @@ Le _FormHelperText est un message court qui aide à remplir un champ ou répond 
 
 ### À utiliser pour
 
-- Dire ce qui ne va pas dans une saisie, sous le champ concerné. Exemple : « Veuillez renseigner votre e-mail. » sous TextInput.
+- Dire ce qui ne va pas dans une saisie, sous le champ concerné. Exemple : « Renseignez votre e-mail. » sous TextInput.
 - Confirmer qu'une saisie ou une action a abouti. Exemple : « Modifications enregistrées ».
 - Attirer l'attention sur une information importante qui ne bloque pas. Exemple : « Cette adresse e-mail semble erronée. Si c'est bien la vôtre, vous pouvez continuer. »
 - Aider à remplir un champ, avant toute saisie. Exemple : « Format attendu : JJ/MM/AAAA ».
@@ -32,7 +32,7 @@ Une saisie ou une action réussie. Exemple : « Modifications enregistrées ».
 
 ### tone=error
 
-Une saisie incorrecte ou une action qui a échoué. Quand l'utilisateur peut corriger, le texte dit quoi faire. Exemple : « Veuillez renseigner votre prénom. »
+Une saisie incorrecte ou une action qui a échoué. Quand l'utilisateur peut corriger, le texte dit quoi faire. Exemple : « Renseignez votre prénom. »
 
 ### tone=warning
 
@@ -52,8 +52,8 @@ Sur un écran de moins de 1024 px de large. Le texte utilise la version mobile d
 
 ## Exemples
 
-- E-mail obligatoire laissé vide, après l'envoi du formulaire : tone=error, « Veuillez renseigner votre e-mail. »
-- Numéro de téléphone au mauvais format : tone=error, « Veuillez renseigner un numéro français (10 chiffres). »
+- E-mail obligatoire laissé vide, après l'envoi du formulaire : tone=error, « Renseignez votre e-mail. »
+- Numéro de téléphone au mauvais format : tone=error, « Saisissez un numéro français de 10 chiffres. »
 - Adresse e-mail inhabituelle, mais acceptée : tone=warning, « Cette adresse e-mail semble erronée. Si c'est bien la vôtre, vous pouvez continuer. »
 - Coordonnées enregistrées : tone=success, « Modifications enregistrées ».
 - Date de naissance à saisir : tone=neutral, « Format attendu : JJ/MM/AAAA ».
@@ -74,7 +74,7 @@ Sur un écran de moins de 1024 px de large. Le texte utilise la version mobile d
 - Une formulation factuelle et sobre.
 - Pour confirmer un résultat ou donner un format : un nom ou un participe passé, sans phrase. Exemple : « Modifications enregistrées ». À éviter : « Vos modifications ont bien été enregistrées ».
 - Avec tone=warning : une ou deux phrases complètes, terminées par un point.
-- Pour demander une action : une phrase complète, avec « Veuillez » et l'action à faire, terminée par un point. Exemple : « Veuillez signer le mandat pour continuer. »
+- Pour demander une action : une phrase complète, qui commence par un verbe à l'impératif et se termine par un point. Exemple : « Signez le mandat pour continuer. »
 - Une majuscule au début seulement.
 - La longueur maximale du texte : Non documenté.
 
@@ -119,7 +119,7 @@ L'import du composant charge aussi ses styles. Il n'y a pas de CSS à importer e
 Exemple :
 
 ```tsx
-<ItemMessage id="email-message" messageType="error" message="Veuillez renseigner votre e-mail." />
+<ItemMessage id="email-message" messageType="error" message="Renseignez votre e-mail." />
 ```
 
 Écarts entre Figma et le code :

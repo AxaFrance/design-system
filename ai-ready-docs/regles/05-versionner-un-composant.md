@@ -39,7 +39,7 @@ Ces changements ne modifient pas la version :
 
 ## La version de Canopée requise
 
-En tête du Markdown, une ligne indique la version minimale de Canopée dont le composant a besoin. Exemple : « Utilise les design tokens de Canopée 2.0.0 ou d'une version plus récente. » Le plugin la calcule à chaque export, à partir des versions publiées sur GitHub. Dans un projet qui utilise une version plus ancienne de Canopée, certains design tokens du composant risquent de manquer.
+En tête du Markdown, une ligne indique la version minimale de Canopée dont le composant a besoin. Exemple : « Utilise les design tokens de Canopée 2.0.0 ou d'une version plus récente. » Quand le composant utilise un design token absent de toutes les versions publiées, la ligne devient « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée. » Le plugin la calcule à chaque export, à partir des versions publiées sur GitHub. Dans un projet qui utilise une version plus ancienne de Canopée, certains design tokens du composant risquent de manquer.
 
 ## Exporter un composant modifié
 

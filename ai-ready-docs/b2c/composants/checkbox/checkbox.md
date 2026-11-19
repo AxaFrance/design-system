@@ -51,7 +51,7 @@ Sur un écran de moins de 1024 px de large. Le libellé utilise la version mobil
 ## Exemples
 
 - Conditions à accepter avant l'envoi : une Checkbox seule, label « J'accepte les conditions générales », checked=false au départ.
-- Conditions non acceptées, après l'envoi du formulaire : tone=error, avec le _FormHelperText tone=error « Veuillez accepter les conditions générales pour continuer. » sous la Checkbox.
+- Conditions non acceptées, après l'envoi du formulaire : tone=error, avec le _FormHelperText tone=error « Acceptez les conditions générales pour continuer. » sous la Checkbox.
 - Garanties à ajouter : un groupe de Checkbox, labels « Bris de glace », « Assistance 0 km », « Véhicule de remplacement ».
 - Garantie indisponible pour ce contrat : disabled=true, label « Véhicule de remplacement », avec un texte qui dit pourquoi.
 - Ligne de tableau dont le titre nomme déjà l'option : showLabel=false, dans une cellule de tableau.

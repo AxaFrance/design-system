@@ -65,7 +65,7 @@ Sur un écran de moins de 1024 px de large. Le libellé utilise la version mobil
 
 - Un clic sur le Switch ou sur son libellé fait passer checked de false à true, ou l'inverse. La poignée glisse de gauche à droite, ou l'inverse.
 - Le changement s'applique tout de suite, sans bouton de validation.
-- Si le changement ne peut pas s'appliquer, par exemple après une erreur du serveur, le Switch revient à sa position d'avant et un message dit pourquoi. Le composant qui affiche ce message : Non documenté.
+- Si le changement ne peut pas s'appliquer, par exemple après une erreur du serveur, le Switch revient à sa position d'avant, et un _FormHelperText d'erreur, sous le Switch, dit pourquoi.
 - En disabled=true, le Switch ne réagit ni au clic ni au clavier.
 
 ## Accessibilité
@@ -148,7 +148,6 @@ Ces noms désignent Switch. Le seul nom à employer est Switch.
 - **Hover dans le code.** Le code n'a pas de hover (`ToggleCommon.css`). En attendant : signaler.
 - **Anneau de focus dans le code.** Le code trace l'anneau autour de la piste seule (`ToggleCommon.css:69`), car le libellé s'écrit à part. En attendant : signaler.
 - **Couleurs dans le code.** Le code diffère de Figma sur quatre couleurs. La piste en checked=false est d'un gris plus clair (`ToggleCommon.css:3`). La piste en checked=true est d'un bleu plus foncé (`ToggleCommon.css:75`). L'anneau de focus est bleu foncé (`ToggleCommon.css:5`). En disabled=true, la piste et l'icône sont en gris moyen (`ToggleCommon.css:22`). Les couleurs de Figma font foi. En attendant : signaler.
-- **Message d'échec.** Aucun composant n'est défini pour dire pourquoi le changement n'a pas pu s'appliquer. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

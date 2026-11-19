@@ -42,7 +42,7 @@ Une propriété de contenu remplit un élément du composant : un texte, une ico
 | icon, leftIcon, rightIcon | Instance swap | Une instance de la librairie | Toujours icon, quel que soit son usage, avec left ou right seulement s'il y en a deux. | Oui, parfois sous un autre nom |
 | children, header, actions | Slot | Des éléments libres | Une zone libre du composant. La principale s'appelle children, comme dans le code, les autres portent le nom de leur rôle. Exemple : header pour l'en-tête, actions pour les boutons. | Oui, parfois sous un autre nom |
 
-Une propriété texte a pour valeur par défaut son propre nom, avec une majuscule. Exemple : « Label » pour label, « Message » pour message, « Description » pour description. Un designer qui oublie de remplacer ce texte le voit tout de suite dans sa maquette, et une IA ne le prend pas pour un vrai texte.
+Une propriété texte a pour valeur par défaut son propre nom, avec une majuscule. Exemple : « Label » pour label, « Message » pour message, « Description » pour description. Seule exception, un champ au format fixe montre un exemple de ce format, comme « JJ/MM/AAAA » pour une date ou « 07 89 10 11 12 » pour un numéro de téléphone. Un designer qui oublie de remplacer ce texte le voit tout de suite dans sa maquette, et une IA ne le prend pas pour un vrai texte.
 
 ## Les noms à éviter
 
@@ -59,6 +59,7 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 
 - Si le rendu change, c'est une variante. Si un élément apparaît ou disparaît, c'est un booléen.
 - Un élément que le designer peut à la fois masquer et remplacer a deux propriétés, un booléen pour l'afficher et une propriété de contenu pour le remplir. Exemple : showIcon et icon.
+- showLabel=false n'est permis que quand un autre texte visible nomme déjà l'élément, comme le titre d'une FormCard ou l'en-tête d'une colonne de tableau. Dans le code, l'élément se relie à ce texte avec `aria-labelledby`.
 - Les niveaux d'importance passent par hierarchy, pas par des composants séparés. Exemple : un seul Button, pas un Button Primary et un Button Secondary.
 - Tout composant qui peut charger a la propriété loading, même quand son code obtient aujourd'hui ce cas autrement. Le code adopte ensuite la même propriété, pour que tous les composants se règlent de la même façon. Exemple : un champ dont le code affiche un Spinner à la place de son icon.
 - Pour un nombre, comme un pourcentage, la variante propose quelques valeurs et garde le nom du code. Exemple : value sur une barre de progression, avec 0, 5, 10 et ainsi de suite jusqu'à 100.

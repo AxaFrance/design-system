@@ -94,7 +94,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - Pendant le focus, le message reste affiché, même en tone=warning ou tone=error.
 - En disabled=true, l'indicatif et le champ ne réagissent ni au clic ni au clavier. L'action « Modifier » du libellé reste cliquable.
 - Un clic sur « Modifier » ne débloque pas le champ de lui-même : la page le repasse en disabled=false. La place du focus après ce clic : Non documenté.
-- Le moment où le message d'erreur apparaît, à la sortie du champ ou à l'envoi du formulaire : Non documenté.
+- Le message d'erreur apparaît quand l'utilisateur quitte le champ ou envoie le formulaire. Il disparaît quand la saisie est corrigée.
 
 ## Accessibilité
 
@@ -103,7 +103,7 @@ Un élément `<input type="tel">`, relié à son libellé par un `<label>` dont 
 - Le nom accessible du champ est le libellé. Le placeholder ne le remplace jamais.
 - En showLabel=false, le champ prend son nom accessible avec `aria-labelledby`, qui pointe vers le texte visible qui le nomme.
 - L'aide est lue avec le champ, grâce à `aria-describedby`.
-- En tone=error, le champ porte `aria-invalid="true"`, et `aria-errormessage` le relie au message.
+- En tone=error, le champ porte `aria-invalid="true"`, et `aria-describedby` le relie au message, avec l'aide.
 - En tone=warning, `aria-describedby` relie le message au champ, sans `aria-invalid`.
 - Le champ porte l'attribut `autocomplete="tel-national"`, pour que le navigateur propose le numéro de l'utilisateur sans son indicatif (WCAG 1.3.5).
 - Un champ obligatoire porte l'attribut `required`, que le lecteur d'écran annonce.
@@ -197,10 +197,9 @@ Ces noms désignent PhoneInput. Le seul nom à employer est PhoneInput.
 - **États de l'indicatif.** Aucune variante ne montre l'indicatif au hover, au focus ou avec la liste ouverte. En attendant : signaler.
 - **Page du plugin Copilot.** Elle décrit `defaultCountry="FR"` et des options `{ label, value }`, alors que le code attend `"+33"` (`CountryCodeSelect.tsx:20`) et des options `{ code, flag }` (`InputPhone.types.ts:1`). En attendant : suivre cette fiche.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
-- **Avertissement dans le code.** Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputPhoneCommon.tsx:84`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
+- **Lien des messages dans le code.** Le code relie le message d'erreur avec `aria-errormessage`, au lieu de `aria-describedby`. Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputPhoneCommon.tsx:84`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
 - **Focus après « Modifier ».** La place du focus après un clic sur « Modifier » n'est pas définie. En attendant : signaler.
 - **Texte saisi et interligne dans le code.** Le champ du numéro reprend celui d'`InputText` : le code affiche le texte saisi en semi-gras (`InputTextAtomCommon.css:24`), alors que Figma l'affiche en regular. Son interligne de 1,25 (`InputTextAtomCommon.css:25`) est plus serré que celui du style label/1/regular. En attendant : signaler.
-- **Moment d'affichage de l'erreur.** Rien ne dit si le message d'erreur apparaît à la sortie du champ ou à l'envoi du formulaire. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

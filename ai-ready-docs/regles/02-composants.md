@@ -24,6 +24,10 @@ Un sous-composant sert à construire les autres, il n'est pas posé tel quel dan
 - Si le code l'exporte sous un autre nom, la même règle s'applique, et le code s'aligne peu à peu. Exemple : _FileUploadItem dans Figma, ItemFile dans le code.
 - Il est rangé dans la famille du composant qu'il construit. S'il en construit plusieurs, il va dans la famille de ce qu'il est. Exemple : _FormLabel va dans Forms, même s'il sert aussi aux cellules de tableau.
 
+## Les modifications locales
+
+Un composant ne se modifie pas localement : ni sa taille, ni ses espacements, ni ses couleurs, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system, qui fait évoluer le composant.
+
 ## Les composants du navigateur
 
 Certains éléments sont affichés par le navigateur ou par le système du téléphone, et non par le code, comme la liste qui s'ouvre sous un select natif ou le clavier. Ils ont leurs propres composants, dans un dossier native. Exemple : native/SelectList. Dans la librairie Figma, ces composants ont leur page, nommée Native.
