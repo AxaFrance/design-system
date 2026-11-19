@@ -19,7 +19,7 @@ Le TextInput permet à l'utilisateur de saisir un texte court, sur une seule lig
 - Un choix parmi une liste fermée : prendre Select.
 - Un numéro de téléphone : prendre PhoneInput.
 - Une date : prendre DateInput.
-- Un fichier à envoyer : prendre FileUpload.
+- Un fichier à envoyer : prendre FileInput.
 
 ## Règles selon les propriétés
 

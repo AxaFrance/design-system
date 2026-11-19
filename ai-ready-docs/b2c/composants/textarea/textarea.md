@@ -17,7 +17,7 @@ Le TextArea permet à l'utilisateur de saisir un texte long, sur plusieurs ligne
 
 - Un texte court sur une seule ligne, comme un nom ou une adresse e-mail : prendre TextInput.
 - Un choix parmi une liste fermée : prendre Select.
-- Un fichier à envoyer : prendre FileUpload.
+- Un fichier à envoyer : prendre FileInput.
 
 ## Règles selon les propriétés
 

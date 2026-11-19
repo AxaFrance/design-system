@@ -10,7 +10,7 @@ Le _FormLabel est le libellé d'un champ de formulaire, qui dit à l'utilisateur
 
 ### À utiliser pour
 
-- Construire les champs de formulaire, qui le contiennent déjà : TextInput, TextArea, Select, PhoneInput, DateInput et FileInput.
+- Construire les champs de formulaire, qui le contiennent : TextInput, TextArea, Select, PhoneInput, DateInput et FileInput.
 - Nommer un champ qu'aucun champ de Canopée ne couvre, dans une composition propre à un produit.
 
 ### À ne pas utiliser pour
