@@ -146,6 +146,7 @@ disabled=true n'existe qu'avec state=default : un composant désactivé n'a ni h
 
 - Si un état ne change pas l'apparence du composant, il n'a pas de variante. Exemple : Checkbox ne change pas quand une personne appuie dessus, donc elle n'a pas de variante state=press.
 - Une valeur s'écrit telle quelle, jamais comme un écart. Exemple : « fond color/blue/800 », et non « fond +100 ».
+- Un libellé peut passer sur plusieurs lignes. La case d'une Checkbox, le bouton d'un Radio ou la piste d'un Switch restent alors alignés sur sa première ligne : le composant s'aligne en haut, et le halo s'accroche en haut de la case ou du bouton.
 
 ### Les composants imbriqués
 
