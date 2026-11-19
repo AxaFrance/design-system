@@ -135,6 +135,7 @@ Ces noms désignent Spinner. Le seul nom à employer est Spinner.
 - **1.0.0 - 10/11/26.** La taille moyenne est retirée de Figma : elle ne servait que dans ClickItem, un composant de la page Legacy.
 - **1.0.0 - 10/11/26.** _animation ne sert qu'à animer le Spinner dans un prototype Figma.
 - **1.0.0 - 17/11/26.** size=x-small ajoute un Spinner de 16 px, pour le petit Button. Sa marge passe à 2 px et son trait à 2 px, pour que l'anneau reste lisible à cette taille.
+- **1.0.0 - 19/11/26.** En colorScheme=blue, le Spinner prend color/blue/600, la couleur réservée aux éléments interactifs, au lieu du color/blue/700 de la marque. Il suit ainsi le Button qui le contient pendant un chargement.
 
 ## Points ouverts
 

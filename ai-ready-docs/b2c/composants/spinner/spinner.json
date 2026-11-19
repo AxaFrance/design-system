@@ -503,7 +503,7 @@
       },
       "track": {
         "stroke": {
-          "token": "color/blue/700"
+          "token": "color/blue/600"
         },
         "strokeWeight": {
           "token": "border/width/3"
@@ -523,7 +523,7 @@
       },
       "arc": {
         "stroke": {
-          "token": "color/blue/700"
+          "token": "color/blue/600"
         },
         "strokeWeight": {
           "token": "border/width/3"
@@ -707,10 +707,10 @@
       "collection": "Primitive",
       "key": "ff4fe0c6e5dc06a5be36b742c9cef3c52b02e589"
     },
-    "color/blue/700": {
+    "color/blue/600": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
     },
     "color/gray/800": {
       "library": "Fondations Canopée",
@@ -749,5 +749,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.5"
+  "_tool": "canopee-export-components 0.7.6"
 }
