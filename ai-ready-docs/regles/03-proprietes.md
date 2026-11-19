@@ -42,6 +42,8 @@ Une propriété de contenu remplit un élément du composant : un texte, une ico
 | icon, leftIcon, rightIcon | Instance swap | Une instance de la librairie | Toujours icon, quel que soit son usage, avec left ou right seulement s'il y en a deux. | Oui, parfois sous un autre nom |
 | children, header, actions | Slot | Des éléments libres | Une zone libre du composant. La principale s'appelle children, comme dans le code, les autres portent le nom de leur rôle. Exemple : header pour l'en-tête, actions pour les boutons. | Oui, parfois sous un autre nom |
 
+Une variante prend par défaut la valeur du code, sauf décision contraire écrite dans la fiche du composant. Un booléen d'affichage vaut true quand l'élément sert dans la plupart des usages, et false sinon. Exemple : showHelper vaut true, et le showIcon de TextInput vaut false.
+
 Une propriété texte a pour valeur par défaut son propre nom, avec une majuscule. Exemple : « Label » pour label, « Message » pour message, « Description » pour description. Seule exception, un champ au format fixe montre un exemple de ce format, comme « JJ/MM/AAAA » pour une date ou « 07 89 10 11 12 » pour un numéro de téléphone. Un designer qui oublie de remplacer ce texte le voit tout de suite dans sa maquette, et une IA ne le prend pas pour un vrai texte.
 
 ## Les noms à éviter
