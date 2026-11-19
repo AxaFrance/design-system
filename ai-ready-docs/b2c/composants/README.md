@@ -29,3 +29,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | TextInput | [textinput.md](textinput/textinput.md) | [textinput.json](textinput/textinput.json) | [textinput-changelog.md](textinput/textinput-changelog.md) |
 | Radio | [radio.md](radio/radio.md) | [radio.json](radio/radio.json) | [radio-changelog.md](radio/radio-changelog.md) |
 | TextArea | [textarea.md](textarea/textarea.md) | [textarea.json](textarea/textarea.json) | [textarea-changelog.md](textarea/textarea-changelog.md) |
+| PhoneInput | [phoneinput.md](phoneinput/phoneinput.md) | [phoneinput.json](phoneinput/phoneinput.json) | [phoneinput-changelog.md](phoneinput/phoneinput-changelog.md) |
