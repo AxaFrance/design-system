@@ -75,7 +75,9 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 
 ### Les propriétés hors nomenclature
 
-Une propriété qui commence par un tiret bas est hors nomenclature. Soit elle ne sert qu'au prototype et n'aura jamais d'équivalent dans le code, soit elle est provisoire et disparaîtra. Le tiret bas prévient les designers, et permet à un outil qui relie Figma au code de l'ignorer. Exemple : _scrollable pour le défilement en prototype. Le thème est aussi hors nomenclature, parce qu'il passera par les modes de variables. En attendant, il s'écrit _theme, avec les valeurs client et prospect.
+Une propriété qui commence par un tiret bas est hors nomenclature. Soit elle ne sert qu'au prototype et n'aura jamais d'équivalent dans le code, soit elle est provisoire et disparaîtra. Le tiret bas prévient les designers, et permet à un outil qui relie Figma au code de l'ignorer. Exemple : _scrollable pour le défilement en prototype. Le thème est aussi hors nomenclature, parce que ses couleurs passent par les modes de variables. Quand sa forme change, il s'écrit _theme, avec les valeurs client et prospect.
+
+Un composant garde _theme quand sa forme change entre les thèmes : ses espacements, ou un arrondi qui passe du rond à l'angle. Exemples : Button, IconButton et Stepper. Un simple écart d'arrondi, comme 8 et 4 px, se fusionne sur le thème prospect, comme pour TextInput, Radio et Checkbox.
 
 Les propriétés marquées Figma seulement dans les tableaux n'ont pas de tiret bas. Elles font partie de la nomenclature, c'est simplement le code qui gère ces cas tout seul.
 
