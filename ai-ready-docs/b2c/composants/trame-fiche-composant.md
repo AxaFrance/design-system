@@ -58,7 +58,7 @@ Exemple : un exemple correct, le plus court possible.
 |---|---|
 
 ## Noms à ne pas employer
-Les noms qu'un designer, un dev ou un PO utilise parfois pour ce composant, y compris ses anciens noms.
+Les noms qu'un designer, un dev ou un PO utilise parfois pour ce composant, y compris ses anciens noms. La liste ne cite jamais le nom d'une partie du composant que la fiche emploie, comme « case » pour la Checkbox.
 La liste finit par cette phrase : « Ces noms désignent <Composant>. Le seul nom à employer est <Composant>. »
 
 ## Décisions
@@ -80,6 +80,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Dans les règles, les propriétés et leurs valeurs gardent les noms de la nomenclature. Exemple : hierarchy=secondary, plutôt que « Button Secondary ».
 - Les noms utilisés dans le code n'apparaissent que dans les rubriques Code, Noms à ne pas employer, Décisions et Points ouverts.
 - Chaque règle n'est écrite qu'une fois. Si elle revient à deux endroits, les deux versions finissent par se contredire.
+- Aucune règle ne mène à une combinaison listée dans les Interdits. Exemple d'écart : une règle qui passe une Checkbox cochée en tone=error, alors que les Interdits excluent checked=true avec tone=error.
 - Chaque point ouvert finit par « En attendant : », suivi de la règle qui s'applique si elle est tranchée, ou de « signaler » si elle ne l'est pas. Sans cette mention, une IA qui lit le point ouvert renonce à la règle ou la devine.
 - Une règle qui vaut pour tous les composants va dans un fichier commun, pas dans chaque fiche.
 - La consigne pour l'IA, à la fin de la fiche, est la même partout, mot pour mot. Elle fait exception au fichier commun, parce qu'une IA peut ne lire qu'une fiche.
@@ -102,7 +103,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Interdits : les combinaisons de propriétés impossibles sont-elles toutes listées ?
 - Contenu : ce qui est obligatoire et ce qui est limité est-il dit ?
 - Comportement : que se passe-t-il au clic, au clavier, en désactivé, pendant un chargement ?
-- Accessibilité : l'élément HTML, le rôle ARIA et les attributs propres à chaque usage sont-ils là, par exemple pour ouvrir une zone, envoyer un formulaire ou charger ? Le nom accessible, le clavier, le focus, les contrastes, la taille de la zone cliquable et les annonces sont-ils couverts ?
+- Accessibilité : l'élément HTML, le rôle ARIA et les attributs propres à chaque usage sont-ils là, par exemple pour ouvrir une zone, envoyer un formulaire ou charger ? Le nom accessible, le clavier, le focus, les contrastes, la taille de la zone cliquable et les annonces sont-ils couverts ? Ce que la fiche dit du code est-il vérifié dans le code lui-même, et pas seulement dans le guide ARIA ?
 - Code : les liens vers Storybook, GitHub et le plugin Copilot, l'import, le chargement des styles, un exemple avec du contenu et le tableau complet des écarts sont-ils là ?
 - Décisions : chaque choix qui pourrait surprendre est-il expliqué, et commence-t-il par la version qui l'a introduite et sa date ? Aucune version citée n'est-elle plus récente que celle du titre ?
 - Points ouverts : tout ce qui a été ajouté sans source y figure-t-il ? Chaque point finit-il par « En attendant : » ?

@@ -34,6 +34,8 @@ Ils reproduisent le rendu du système : leurs couleurs ne viennent pas des desig
 
 Un composant archivé garde son nom, précédé du dossier _archive. Le tiret bas le retire de la librairie publiée. Exemple : _archive/List.
 
+Un composant ne s'archive ni ne se supprime tant qu'un autre composant ou un template l'utilise. Ses instances passent d'abord au composant qui le remplace. Exemple : le bouton radio seul, utilisé par FormCard, est remplacé par un Radio en showLabel=false.
+
 ## Les familles
 
 Chaque famille est une page de la librairie Figma. Le B2C et le B2B ont les mêmes familles, rangées par usage. Une famille sans composant garde sa page, et il n'y a pas de page à part pour les sous-composants.
