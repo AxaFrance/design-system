@@ -141,35 +141,6 @@
   "textStyles": {},
   "components": {},
   "modeCollections": {},
-  "issues": [
-    {
-      "level": "warning",
-      "rule": "raw-value",
-      "where": "styles.root.layout.height",
-      "message": "Valeur brute (100) : la relier à une variable.",
-      "occurrences": 1
-    },
-    {
-      "level": "warning",
-      "rule": "raw-value",
-      "where": "styles.root.layout.maxHeight",
-      "message": "Valeur brute (1) : la relier à une variable.",
-      "occurrences": 1
-    },
-    {
-      "level": "warning",
-      "rule": "raw-value",
-      "where": "styles.root.layout.maxWidth",
-      "message": "Valeur brute (1) : la relier à une variable.",
-      "occurrences": 1
-    },
-    {
-      "level": "warning",
-      "rule": "raw-value",
-      "where": "styles.root.layout.width",
-      "message": "Valeur brute (100) : la relier à une variable.",
-      "occurrences": 1
-    }
-  ],
-  "_tool": "canopee-export-components 0.7.1"
+  "issues": [],
+  "_tool": "canopee-export-components 0.7.5"
 }

@@ -81,7 +81,7 @@ Sur un écran de moins de 1024 px de large. Le texte utilise la version mobile d
 ## Comportement
 
 - Le _FormHelperText ne réagit ni au clic ni au clavier.
-- Sous un champ, un seul _FormHelperText à la fois. Un message tone=error ou tone=warning prend la place du message tone=neutral, au lieu de s'afficher dessous.
+- Sous un champ, l'aide en tone=neutral et le message en tone=error ou tone=warning s'affichent l'un sous l'autre. Une consigne reste ainsi lisible quand une erreur apparaît.
 - tone=error s'affiche après une interaction avec le champ : quand l'utilisateur le quitte ou envoie le formulaire. Il disparaît quand la saisie est corrigée.
 - Le composant qui contient le _FormHelperText, comme un champ, règle sa largeur. Le texte passe à la ligne quand il dépasse cette largeur.
 
@@ -152,11 +152,12 @@ Ces noms désignent _FormHelperText. Le seul nom à employer est _FormHelperText
 - **1.0.0 - 17/11/26.** tone=error est la valeur par défaut, comme dans le code.
 - **1.0.0 - 17/11/26.** Dans Figma, le _FormHelperText s'adapte à la longueur de son texte. Le composant qui le contient, comme un champ, règle sa largeur et le retour à la ligne.
 - **1.0.0 - 18/11/26.** Le texte et l'icône prennent le palier 600 dans tous les tons, comme la bordure d'un champ en tone=error ou tone=warning. Le palier 700 de l'ancienne version n'est plus utilisé.
+- **1.0.0 - 19/11/26.** Sous un champ, l'aide et le message sont deux _FormHelperText qui s'affichent l'un sous l'autre, comme `helper` et `message` dans le code.
 
 ## Points ouverts
 
 - **Contraste de tone=success.** Sur fond blanc, color/green/600 n'atteint que 3,0:1, sous les 4,5:1 que le WCAG demande pour un texte. L'équipe design system prévoit de retravailler la palette verte. En attendant : signaler.
-- **Aide à la saisie dans le code.** Le code affiche l'aide avec la prop `helper` du champ, et non avec ItemMessage (`InputTextCommon.tsx:95`). Il affiche l'aide et le message tone=error l'un sous l'autre, alors que cette fiche les remplace l'un par l'autre. Le code n'a pas non plus de quoi masquer l'icône d'un ItemMessage. En attendant : signaler.
+- **Aide à la saisie dans le code.** Le code affiche l'aide avec la prop `helper` du champ, et non avec ItemMessage (`InputTextCommon.tsx:95`). Le code n'a pas de quoi masquer l'icône d'un ItemMessage. En attendant : signaler.
 - **Lien au champ dans le code.** Le code relie le message tone=error au champ avec `aria-errormessage`, et réserve `aria-describedby` à l'aide et au message tone=success (`InputTextCommon.tsx:62`). En attendant : signaler.
 - **Couleurs dans le code.** Le code affiche tone=error et tone=warning dans un rouge et un orange plus clairs que Figma, à environ 4,7:1 sur fond blanc (`ItemMessageAll.css:3`). En attendant : signaler.
 - **Longueur.** La longueur maximale du texte n'est pas fixée. En attendant : signaler.

@@ -759,6 +759,18 @@
             "attribute": "text"
           }
         ]
+      },
+      "icon": {
+        "accepts": "Instance",
+        "default": {
+          "swap": "icon/currency-euro"
+        },
+        "controls": [
+          {
+            "layer": "icon",
+            "attribute": "component"
+          }
+        ]
       }
     },
     "trees": [
@@ -2384,8 +2396,7 @@
           "value": {
             "textColor": {
               "token": "color/gray/900"
-            },
-            "textStyle": "label/1/semibold"
+            }
           },
           "icon/vector": {
             "background": {
@@ -2488,9 +2499,6 @@
               },
               "sizingH": "fill"
             }
-          },
-          "value": {
-            "textStyle": "label/1/semibold"
           }
         }
       },
@@ -2561,19 +2569,6 @@
             "background": {
               "token": "color/gray/900"
             }
-          }
-        }
-      },
-      {
-        "when": {
-          "state": "default",
-          "disabled": "false",
-          "filled": "true",
-          "tone": "neutral"
-        },
-        "styles": {
-          "value": {
-            "textStyle": "label/1/semibold"
           }
         }
       }
@@ -2685,10 +2680,6 @@
     "label/1/regular": {
       "library": null,
       "key": "25d5f460b082ed62adea298eec870f2fdb097ee7"
-    },
-    "label/1/semibold": {
-      "library": null,
-      "key": "93f55f2c2de90c39788c6b9212105e0463dd959d"
     }
   },
   "components": {
@@ -2733,17 +2724,11 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular."
     },
     {
-      "level": "warning",
-      "rule": "token-value-unpublished",
-      "where": "textStyles.label/1/semibold",
-      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
-    },
-    {
       "level": "info",
       "rule": "prop-outside-nomenclature",
       "where": "api.props._showCursor",
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.4"
+  "_tool": "canopee-export-components 0.7.5"
 }

@@ -35,6 +35,13 @@
           "showPercentage",
           "value"
         ]
+      },
+      {
+        "from": "ProgressBar",
+        "props": [
+          "showPercentage",
+          "value"
+        ]
       }
     ]
   },
@@ -813,14 +820,6 @@
       "key": "be959715ddac77dedafba55e157014b702551c02"
     }
   },
-  "issues": [
-    {
-      "level": "warning",
-      "rule": "raw-value",
-      "where": "styles.root.layout.width",
-      "message": "Valeur brute (713) : la relier à une variable.",
-      "occurrences": 7
-    }
-  ],
-  "_tool": "canopee-export-components 0.7.1"
+  "issues": [],
+  "_tool": "canopee-export-components 0.7.5"
 }

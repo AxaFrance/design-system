@@ -294,5 +294,5 @@
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
     }
   ],
-  "_tool": "canopee-export-components 0.7.1"
+  "_tool": "canopee-export-components 0.7.5"
 }
