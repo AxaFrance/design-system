@@ -34,8 +34,11 @@ import { ContentItemMono } from "@axa-fr/canopee-react/prospect";
   picture: string;             // src de l'image
   title: string;
   subtitle: string;
+  basePictureProps?: Omit<ComponentProps<typeof BasePicture>, "src">;
 }
 ```
+
+L'image est décorative par défaut (`alt=""`) : le titre est déjà affiché à côté, un `alt` identique le ferait lire deux fois par les lecteurs d'écran. Passer `basePictureProps={{ alt: "…" }}` seulement si l'image porte une information que le texte ne donne pas.
 
 **Mode `stick`** :
 ```tsx
@@ -102,6 +105,8 @@ type DataAgentProps = {
   isCompact?: boolean;                             // Variante compacte sur mobile  (défaut: true)
 };
 ```
+
+La photo de l'agent est décorative dans les deux mises en page (`alt=""`), puisque son nom est affiché à côté. `agentProps.basePictureProps` est transmis à l'image, en mise en page normale comme compacte.
 
 ### Exemple
 

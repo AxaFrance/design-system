@@ -46,7 +46,7 @@ describe("ValidPageCommon", () => {
   });
 
   it("renders the DataAgent if dataAgentProps is provided", () => {
-    renderValidPage({
+    const { container } = renderValidPage({
       dataAgentProps: {
         agentProps: {
           title: "Michel Lhote",
@@ -58,9 +58,10 @@ describe("ValidPageCommon", () => {
     });
     expect(screen.getByText("Michel Lhote")).toBeInTheDocument();
     expect(screen.getByText("AXA Assurance & Banque")).toBeInTheDocument();
-    expect(
-      screen.getByRole("img", { name: "Michel Lhote" }),
-    ).toBeInTheDocument();
+    expect(container.querySelector('img[src="agent.png"]')).toHaveAttribute(
+      "alt",
+      "",
+    );
   });
 
   it("does not render the DataAgent if dataAgentProps is missing", () => {
