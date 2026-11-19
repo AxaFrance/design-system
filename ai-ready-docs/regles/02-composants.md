@@ -32,7 +32,7 @@ Un composant ne se modifie pas localement : ni sa taille, ni ses espacements, ni
 
 Certains éléments sont affichés par le navigateur ou par le système du téléphone, et non par le code, comme la liste qui s'ouvre sous un select natif ou le clavier. Ils ont leurs propres composants, dans un dossier native. Exemple : native/SelectList. Dans la librairie Figma, ces composants ont leur page, nommée Native.
 
-Ils reproduisent le rendu du système : leurs couleurs ne viennent pas des design tokens, et ils n'ont pas de fiche.
+Ils reproduisent le rendu du système : leurs couleurs ne viennent pas des design tokens, et ils n'ont pas de fiche. Une propriété os choisit le système ou le navigateur reproduit, quand leur rendu diffère. Exemple : native/DatePicker, avec os=chrome et os=ios.
 
 ## Les composants archivés
 
