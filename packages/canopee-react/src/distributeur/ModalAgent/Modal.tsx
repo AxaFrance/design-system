@@ -13,6 +13,8 @@ export type ModalProps = React.DetailedHTMLProps<
   onOutsideTap: (event: React.MouseEvent | React.KeyboardEvent) => void;
   /**
    * `aria-label` of the modal, used for accessibility.
+   * When omitted, name the modal with `aria-labelledby` and the `titleId` of its
+   * `ModalHeader`.
    */
   title?: string;
   className?: string;
@@ -39,7 +41,7 @@ const Modal = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
     <dialog
-      aria-label={title}
+      aria-label={title || undefined}
       className={componentClassName}
       onClick={onOutsideTap}
       {...props}

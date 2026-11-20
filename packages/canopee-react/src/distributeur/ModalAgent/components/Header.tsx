@@ -9,6 +9,10 @@ export type HeaderProps = React.HTMLAttributes<HTMLDivElement> & {
    */
   children?: ReactNode;
   /**
+   * Id of the title, to name the modal with `aria-labelledby`.
+   */
+  titleId?: string;
+  /**
    * Callback function called when the close button is clicked.
    */
   onCancel: MouseEventHandler<HTMLButtonElement>;
@@ -26,6 +30,7 @@ const Header = ({
   className,
   closeButtonAriaLabel = "Fermer la boite de dialogue",
   onCancel,
+  titleId,
   children,
   ...props
 }: HeaderProps) => {
@@ -36,7 +41,9 @@ const Header = ({
 
   return (
     <header className={componentClassName} {...props}>
-      <h4 className="af-modal__header-title">{children}</h4>
+      <h4 className="af-modal__header-title" id={titleId}>
+        {children}
+      </h4>
       <button
         className="af-modal__header-close-btn"
         type="button"

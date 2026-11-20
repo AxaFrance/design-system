@@ -47,13 +47,13 @@
     margin-left: calc(4 / var(--font-size-base) * 1rem);
   }
 
+  .af-slash-link:focus {
+    outline: none;
+  }
+
   .af-slash-link:focus-visible {
     outline: 2px solid var(--link-color);
     outline-offset: 2px;
-  }
-
-  .af-slash-link:focus {
-    outline: none;
   }
 
   .af-slash-link:hover {

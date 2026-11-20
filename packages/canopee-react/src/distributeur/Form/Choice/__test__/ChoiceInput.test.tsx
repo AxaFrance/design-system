@@ -23,6 +23,16 @@ describe("ChoiceInput", () => {
     expect(non).toHaveClass("af-form__input-radio");
   });
 
+  it("labels the radiogroup without a for attribute on its div", () => {
+    // Act
+    const { container } = render(
+      <ChoiceInput id="choix" label="ChoiceInput label" value="true" />,
+    );
+
+    // Assert
+    expect(container.querySelector("div[for]")).toBeNull();
+  });
+
   it("shouldn't print help message on force display message", () => {
     // Act
     render(

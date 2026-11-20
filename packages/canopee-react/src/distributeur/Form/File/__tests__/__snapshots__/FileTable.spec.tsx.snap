@@ -12,6 +12,7 @@ exports[`<File.FileTable> > renders Errors correctly with empty errors 1`] = `
         class="af-form__file-line"
       >
         <i
+          aria-hidden="true"
           class="glyphicon glyphicon-file"
         />
         <span>
@@ -21,6 +22,7 @@ exports[`<File.FileTable> > renders Errors correctly with empty errors 1`] = `
           2
         </span>
         <button
+          aria-label="Supprimer youhou.txt"
           class="af-link af-link--delete-file"
           type="button"
         >
@@ -62,6 +64,7 @@ exports[`<File.FileTable> > renders File.FileTable correctly 1`] = `
         class="af-form__file-line"
       >
         <i
+          aria-hidden="true"
           class="glyphicon glyphicon-file"
         />
         <span>
@@ -71,6 +74,7 @@ exports[`<File.FileTable> > renders File.FileTable correctly 1`] = `
           2
         </span>
         <button
+          aria-label="Supprimer superfile.pdf"
           class="af-link af-link--delete-file"
           type="button"
         >

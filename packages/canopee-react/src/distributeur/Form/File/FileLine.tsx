@@ -14,9 +14,9 @@ const FileLine = ({ className, file, disabled, id, onClick }: Props) => {
   return (
     <li className={componentClassName}>
       {file && file.type && file.type.startsWith("image") ? (
-        <i className="glyphicon glyphicon-picture" />
+        <i className="glyphicon glyphicon-picture" aria-hidden="true" />
       ) : (
-        <i className="glyphicon glyphicon-file" />
+        <i className="glyphicon glyphicon-file" aria-hidden="true" />
       )}
       <span>{file.name}</span>
       <span>{file.size}</span>
@@ -25,6 +25,7 @@ const FileLine = ({ className, file, disabled, id, onClick }: Props) => {
         disabled={disabled}
         type="button"
         className="af-link af-link--delete-file"
+        aria-label={`Supprimer ${file.name}`}
         onClick={() => onClick(id)}
       >
         <span className="af-link__text">Supprimer</span>

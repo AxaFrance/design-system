@@ -35,7 +35,7 @@ describe("Alert component", () => {
       />,
     );
 
-    const alert = screen.getByRole("alert");
+    const alert = screen.getByRole("status");
     const alertTitle = screen.getByText("Info: information is optionnal");
 
     expect(alert).toHaveClass("custom-class af-alert af-alert--info");
@@ -51,7 +51,7 @@ describe("Alert component", () => {
       </Message>,
     );
 
-    const alert = screen.getByRole("alert");
+    const alert = screen.getByRole("status");
     const alertChildren = screen.getByText("Children");
     const alertTitle = screen.getByText(
       "Success: your request has been approved",
@@ -74,6 +74,37 @@ describe("Alert component", () => {
     fireEvent.click(closeButton);
 
     expect(mockOnClose).toHaveBeenCalled();
+  });
+  it.each([
+    ["error", "alert"],
+    ["warning", "alert"],
+    ["info", "status"],
+    ["success", "status"],
+  ] as const)("should give the %s variant the %s role", (variant, role) => {
+    render(<Message variant={variant} title="Message" />);
+
+    expect(screen.getByRole(role)).toHaveTextContent("Message");
+    expect(
+      screen.queryByRole(role === "alert" ? "status" : "alert"),
+    ).not.toBeInTheDocument();
+  });
+  it("should name the close button in French by default", () => {
+    render(<Message title="Information" onClose={mockOnClose} />);
+
+    expect(screen.getByRole("button", { name: "Fermer" })).toBeInTheDocument();
+  });
+  it("should name the close button with closeButtonAriaLabel", () => {
+    render(
+      <Message
+        title="Information"
+        onClose={mockOnClose}
+        closeButtonAriaLabel="Fermer le message"
+      />,
+    );
+
+    expect(
+      screen.getByRole("button", { name: "Fermer le message" }),
+    ).toBeInTheDocument();
   });
   it("shouldn't have an accessibility violation <Message />", async () => {
     // Act

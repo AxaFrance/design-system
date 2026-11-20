@@ -125,8 +125,24 @@ describe("HeaderTitle", () => {
 
     expect(screen.getByRole("link", { name: "Accueil" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "À Propos" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Services" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Services (nouvelle fenêtre)" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Contact" })).toBeInTheDocument();
+  });
+
+  it("passes newWindowLabel to the anchor nav bar", () => {
+    render(
+      <HeaderTitle
+        title="Titre de la page"
+        anchorNavBarItems={items}
+        newWindowLabel="opens in a new tab"
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "Services (opens in a new tab)" }),
+    ).toBeInTheDocument();
   });
 
   it("ne doit pas avoir de violations d’accessibilité (axe)", async () => {
