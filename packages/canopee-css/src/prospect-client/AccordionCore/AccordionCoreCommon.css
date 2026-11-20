@@ -5,6 +5,10 @@
     --summary-areas: "summary arrow";
     --summary-columns: 1fr auto;
 
+    &:not([class*="reverse"]) {
+      background-color: var(--white-1000);
+    }
+
     .af-accordion__arrow {
       grid-area: arrow;
       transition: transform 0.2s ease-in-out;
@@ -37,7 +41,7 @@
     display: grid;
     padding: var(--spacing-summary-block) var(--spacing-summary-inline);
     align-items: center;
-    column-gap: 16px;
+    column-gap: var(--rem-16);
     font-weight: 600;
     line-height: var(--accordion-title-line-height);
     cursor: pointer;
