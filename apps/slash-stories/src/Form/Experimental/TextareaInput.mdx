@@ -1,0 +1,120 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Primary,
+  Title,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./TextareaInput.stories";
+
+<Meta of={Stories} title="Form/Experimental/TextareaInput" />
+
+<Title />
+
+## ⚠️ Experimental component
+
+`TextareaInput` is experimental and its API may change in a future release.
+It is available from the experimental Distributeur entry point:
+
+```tsx
+import { TextareaInput } from "@axa-fr/canopee-react/distributeur/experimental";
+```
+
+## Playground
+
+<Primary />
+<Controls />
+
+Use the Controls panel to explore the label, messages, state, and native
+textarea attributes. The default example is uncontrolled so you can type in it
+without a Storybook control overriding your edits.
+
+## Usage
+
+```tsx
+import { TextareaInput } from "@axa-fr/canopee-react/distributeur/experimental";
+
+<form className="af-form">
+  <TextareaInput
+    label="Describe your request"
+    helpMessage="Include the details we need to assist you."
+    rows={5}
+    defaultValue="I need help with..."
+  />
+</form>;
+```
+
+Use `defaultValue` for an uncontrolled field. For a controlled field, pass
+`value` and update it in `onChange`; otherwise the controlled value will not
+change as the user types.
+
+## Labels and messages
+
+Provide a clear `label` for every field. `labelPosition` supports `topLeft`
+(the default), `centerLeft`, and `above`. Set `required` when the field is
+mandatory; it uses the native textarea required behavior. Use `helpMessage` for
+instructions and `errorMessage` for a concise, actionable error. Keep errors
+available as text rather than communicating them only through color. The
+textarea references both messages via `aria-describedby` and is marked
+`aria-invalid` when an error is present. Manage when to display an error in
+your form; `errorMessage` does not replace native form validation.
+
+## Native textarea behavior
+
+`rows`, `cols`, and `maxLength` are native textarea attributes. Setting
+`maxLength` limits input length but does **not** add an automatic character
+counter. Textareas accept line breaks with the keyboard's normal Enter/newline
+behavior and can be resized vertically.
+
+The textarea has a minimum width of `45rem` (720px with a 16px root font size).
+Allow enough horizontal space for the field, its label and any right-hand
+content. The native `cols` attribute does not shrink the field below this CSS
+minimum width.
+
+`disabled` prevents interaction; `readOnly` keeps the value selectable while
+preventing edits. `onChange` receives the native textarea change event, and a
+ref can be used to access the underlying textarea element.
+
+## Examples
+
+### Label above the field
+
+<Canvas of={Stories.AboveLabel} />
+
+### Help button on the right
+
+Pass a `HelpButton` through `contentRight` to display a contextual help button to the
+right of the textarea. Its children are the popover content; clicking the button
+opens the help text.
+
+```tsx
+import { HelpButton } from "@axa-fr/canopee-react/distributeur";
+import { TextareaInput } from "@axa-fr/canopee-react/distributeur/experimental";
+
+<form className="af-form">
+  <TextareaInput
+    label="Share your feedback"
+    rows={4}
+    contentRight={
+      <HelpButton mode="click">
+        Describe your experience without including personal information.
+      </HelpButton>
+    }
+  />
+</form>;
+```
+
+<Canvas of={Stories.WithHelpButton} />
+
+### Error with help text
+
+<Canvas of={Stories.ErrorState} />
+
+### Disabled and read-only
+
+<Canvas of={Stories.Disabled} />
+<Canvas of={Stories.ReadOnly} />
+
+### Native character limit and rows
+
+<Canvas of={Stories.CharacterLimit} />

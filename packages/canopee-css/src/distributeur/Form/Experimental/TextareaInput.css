@@ -1,0 +1,8 @@
+@layer canopee {
+  .af-input__input.af-input__textarea {
+    min-width: 45rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.5rem;
+    resize: vertical;
+  }
+}

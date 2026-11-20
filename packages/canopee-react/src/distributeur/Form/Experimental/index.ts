@@ -8,6 +8,8 @@ export { Label } from "./Label";
 export { Select } from "./Select";
 export { SelectInput } from "./SelectInput";
 export type { SelectInputProps } from "./SelectInput";
+export { TextareaInput } from "./TextareaInput";
+export type { TextareaInputProps } from "./TextareaInput";
 export { TextInput } from "./TextInput";
 export type { TextInputProps } from "./TextInput";
 export type {
