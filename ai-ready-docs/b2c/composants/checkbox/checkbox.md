@@ -20,7 +20,7 @@ La Checkbox permet à l'utilisateur de cocher une option, seule ou dans un group
 - Activer ou désactiver un réglage qui s'applique tout de suite : prendre Switch.
 - Lancer une action, comme enregistrer ou supprimer : prendre Button.
 - Choisir une option présentée en carte, avec un titre, une description ou une icône : prendre FormCard, qui contient déjà une Checkbox.
-- Choisir plusieurs options dans une longue liste : Non documenté.
+- Choisir plusieurs options dans une longue liste : prendre Select, à choix multiple.
 
 ## Règles selon les propriétés
 
