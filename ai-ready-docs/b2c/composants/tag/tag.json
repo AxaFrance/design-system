@@ -17,6 +17,14 @@
   },
   "api": {
     "props": {
+      "disabled": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
       "tone": {
         "type": "enum",
         "enum": [
@@ -33,6 +41,7 @@
   "variants": [
     {
       "values": {
+        "disabled": "false",
         "tone": "information",
         "breakpoint": "1024"
       },
@@ -43,16 +52,18 @@
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "information",
         "breakpoint": "0"
       },
       "position": [
-        498,
+        567,
         50
       ]
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "success",
         "breakpoint": "1024"
       },
@@ -63,16 +74,18 @@
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "success",
         "breakpoint": "0"
       },
       "position": [
-        567,
+        636,
         50
       ]
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "warning",
         "breakpoint": "1024"
       },
@@ -83,16 +96,18 @@
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "warning",
         "breakpoint": "0"
       },
       "position": [
-        636,
+        705,
         50
       ]
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "error",
         "breakpoint": "1024"
       },
@@ -103,16 +118,18 @@
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "error",
         "breakpoint": "0"
       },
       "position": [
-        705,
+        774,
         50
       ]
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "neutral",
         "breakpoint": "1024"
       },
@@ -123,11 +140,34 @@
     },
     {
       "values": {
+        "disabled": "false",
         "tone": "neutral",
         "breakpoint": "0"
       },
       "position": [
-        774,
+        843,
+        50
+      ]
+    },
+    {
+      "values": {
+        "disabled": "true",
+        "tone": "neutral",
+        "breakpoint": "1024"
+      },
+      "position": [
+        393,
+        48
+      ]
+    },
+    {
+      "values": {
+        "disabled": "true",
+        "tone": "neutral",
+        "breakpoint": "0"
+      },
+      "position": [
+        912,
         50
       ]
     }
@@ -163,6 +203,7 @@
   "styles": {
     "default": {
       "when": {
+        "disabled": "false",
         "tone": "information",
         "breakpoint": "0"
       },
@@ -274,11 +315,6 @@
             "background": {
               "token": "color/gray/050"
             }
-          },
-          "label": {
-            "textColor": {
-              "token": "color/gray/700"
-            }
           }
         }
       },
@@ -307,6 +343,31 @@
             }
           }
         }
+      },
+      {
+        "when": {
+          "disabled": "true"
+        },
+        "styles": {
+          "label": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "disabled": "false",
+          "tone": "neutral"
+        },
+        "styles": {
+          "label": {
+            "textColor": {
+              "token": "color/gray/700"
+            }
+          }
+        }
       }
     ]
   },
@@ -330,6 +391,11 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
+    "color/gray/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "eaff1ed01f768ac5086ba33fed8a6e56d3c91536"
     },
     "color/gray/700": {
       "library": "Fondations Canopée",
@@ -398,5 +464,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.5"
+  "_tool": "canopee-export-components 0.7.6"
 }
