@@ -81,6 +81,11 @@ export const CardCheckboxCommon = ({
   };
 
   const hasError = Boolean(message) && messageType === "error";
+  // The message joins the aria-describedby given to an option or to all of them
+  const getDescribedBy = (optionDescribedBy?: string) =>
+    [optionDescribedBy ?? inputProps["aria-describedby"], message && messageId]
+      .filter(Boolean)
+      .join(" ") || undefined;
 
   return (
     <fieldset
@@ -113,6 +118,9 @@ export const CardCheckboxCommon = ({
             {...inputProps}
             {...cardCheckboxItemProps}
             type={type}
+            aria-describedby={getDescribedBy(
+              cardCheckboxItemProps["aria-describedby"],
+            )}
             aria-invalid={hasError || undefined}
             aria-errormessage={hasError ? messageId : undefined}
             name={name}
