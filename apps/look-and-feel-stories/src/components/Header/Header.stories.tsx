@@ -1,8 +1,8 @@
 import {
   Header,
   type ClickItemStates,
+  type HeaderProps,
   type MenuBurgerProps,
-  type TabMenuProps,
   Button,
   Icon,
   type TagVariants,
@@ -22,9 +22,14 @@ const meta: Meta<typeof Header> = {
 
 export default meta;
 
-const tabMenuProps: TabMenuProps = {
+// The mockup shows the AXA logo alone, a link to the home page.
+const appNameProps: HeaderProps["appNameProps"] = {
+  logoLinkProps: { href: "#" },
+};
+
+const tabMenuProps: HeaderProps["tabMenuProps"] = {
   items: [
-    { href: "#accueil", label: "Accueil" },
+    { href: "#accueil", label: "Accueil", isActive: true },
     { href: "#contrats", label: "Contrats" },
   ],
 };
@@ -84,7 +89,7 @@ const menuBurgerProps: MenuBurgerProps = {
 
 export const Default: StoryObj<typeof Header> = {
   args: {
-    appNameProps: { label: "Mon application" },
+    appNameProps,
     tabMenuProps,
     menuBurgerProps,
     actionChildren: (
@@ -101,20 +106,20 @@ export const Default: StoryObj<typeof Header> = {
 
 export const Logo: StoryObj<typeof Header> = {
   args: {
-    appNameProps: { label: "Mon application" },
+    appNameProps,
   },
 };
 
 export const LogoAndMenu: StoryObj<typeof Header> = {
   args: {
-    appNameProps: { label: "Mon application" },
+    appNameProps,
     tabMenuProps,
   },
 };
 
 export const LogoAndActionChildren: StoryObj<typeof Header> = {
   args: {
-    appNameProps: { label: "Mon application" },
+    appNameProps,
     actionChildren: (
       <Button
         variant="secondary"
@@ -129,7 +134,7 @@ export const LogoAndActionChildren: StoryObj<typeof Header> = {
 
 export const LogoAndActionChildrenAndMenuBurger: StoryObj<typeof Header> = {
   args: {
-    appNameProps: { label: "Mon application" },
+    appNameProps,
     actionChildren: (
       <Button
         variant="secondary"
@@ -145,7 +150,7 @@ export const LogoAndActionChildrenAndMenuBurger: StoryObj<typeof Header> = {
 
 export const LogoAndMenuBurger: StoryObj<typeof Header> = {
   args: {
-    appNameProps: { label: "Mon application" },
+    appNameProps,
     menuBurgerProps,
   },
 };
@@ -153,14 +158,35 @@ export const LogoAndMenuBurger: StoryObj<typeof Header> = {
 export const LogoAndMenuWithTitle: StoryObj<typeof Header> = {
   args: {
     title: "Tableau de bord",
-    appNameProps: { label: "Mon application" },
+    appNameProps,
     tabMenuProps,
   },
 };
 
 export const LogoWithTitle: StoryObj<typeof Header> = {
+  name: "Parcours (logo and title)",
   args: {
-    title: "Tableau de bord",
-    appNameProps: { label: "Mon application" },
+    title: "Devis assurance auto",
+    appNameProps,
+  },
+};
+
+/**
+ * Deprecated: the Header mockup shows the AXA logo alone, without any name
+ * next to it. `appNameProps.label` still works in 2.x.
+ */
+export const DeprecatedAppNameLabel: StoryObj<typeof Header> = {
+  name: "Deprecated: application name next to the logo",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Deprecated: `appNameProps.label` displays a name next to the logo, which is not in the Header mockup. Leave it empty; the title of the Parcours style goes in `title`.",
+      },
+    },
+  },
+  args: {
+    appNameProps: { ...appNameProps, label: "Mon application" },
+    tabMenuProps,
   },
 };
