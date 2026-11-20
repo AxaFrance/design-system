@@ -35,6 +35,28 @@
       outline: 2px solid var(--click-icon-outline-color);
       outline-offset: 2px;
     }
+
+    &:has(.af-icon--error) {
+      --click-icon-background-color: var(--red-100);
+
+      &:hover {
+        --click-icon-background-color: var(--red-200);
+        --click-icon-svg-fill: var(--red-alert-1000);
+      }
+
+      &:active {
+        --click-icon-background-color: var(--red-alert-900);
+        --click-icon-svg-fill: var(--white-1000);
+      }
+
+      &.af-click-icon--ghost:hover {
+        --click-icon-svg-fill: var(--red-alert-1200);
+      }
+
+      &.af-click-icon--ghost:active {
+        --click-icon-svg-fill: var(--red-alert-800);
+      }
+    }
   }
 
   /* Should be deleted, prefer use :disabled */
