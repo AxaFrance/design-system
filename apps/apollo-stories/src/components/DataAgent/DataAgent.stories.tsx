@@ -46,7 +46,7 @@ export const Default: Story = {
     ],
     clickContents: [
       {
-        variant: "large",
+        variant: "small",
         icon: alternateEmail,
         title: "Nous contacter",
         onClick: action("Clicked on Nous contacter"),
@@ -64,7 +64,7 @@ export const Default: Story = {
         onClick: action("Clicked on Voir le site-web"),
       },
     ],
-    texteOrias: "N° Orias (orias.fr) : 10057601 - 10057601",
+    oriasText: "N° Orias (orias.fr) : 10057601 - 10057601",
     isCompact: true,
   },
 };
@@ -78,6 +78,9 @@ export const DesktopCompact: Story = {
       title: "Michel Lhote",
       subtitle: "AXA Assurance & Banque",
       type: "picture",
+    },
+    compactClickItemProps: {
+      onClick: action("Clicked on the agent"),
     },
     variant: "compact",
   },
