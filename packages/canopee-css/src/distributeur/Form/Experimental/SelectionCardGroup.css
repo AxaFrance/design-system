@@ -1,0 +1,60 @@
+@layer canopee {
+  .af-selection-card:is(
+    .af-selection-card--card,
+    :has(.af-selection-card-item)
+  ) {
+    --card-width: calc(180rem / 16);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, [col-start] var(--card-width));
+    grid-auto-rows: 1fr auto;
+    align-items: stretch;
+    gap: 1rem;
+
+    .af-selection-card-item {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      grid-template-rows: subgrid;
+      grid-row: span 2;
+      row-gap: inherit;
+    }
+
+    .af-card-button {
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+    }
+
+    .af-radio-add-card {
+      justify-content: center;
+    }
+
+    .af-selection-card-item__action {
+      display: flex;
+      min-height: 0;
+    }
+
+    &.af-selection-card--vertical {
+      grid-template-columns: auto;
+      grid-auto-rows: minmax(96px, 1fr) auto;
+      row-gap: 0;
+
+      .af-card-button {
+        min-width: auto;
+      }
+
+      .af-selection-card-item {
+        padding-bottom: 1rem;
+      }
+
+      .af-selection-card-item:last-child {
+        padding-bottom: 0;
+      }
+
+      .af-selection-card-item__action {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

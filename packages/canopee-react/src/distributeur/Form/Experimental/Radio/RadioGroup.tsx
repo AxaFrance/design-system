@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { getClassName } from "../../../utilities/helpers/getClassName";
+import { SelectionGroup } from "../SelectionGroup";
 
 export type RadioGroupProps = {
   className?: string;
@@ -14,11 +14,14 @@ export const RadioGroup = ({
   variant = "button",
   className,
 }: RadioGroupProps) => {
-  const finalClassName = getClassName({
-    baseClassName: "af-radio__group",
-    modifiers: [orientation, variant],
-    className,
-  });
-
-  return <div className={finalClassName}>{children}</div>;
+  return (
+    <SelectionGroup
+      baseClassName="af-radio__group"
+      orientation={orientation}
+      variant={variant}
+      className={className}
+    >
+      {children}
+    </SelectionGroup>
+  );
 };
