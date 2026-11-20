@@ -12,7 +12,7 @@
       1024
     ],
     "documentationLinks": [
-      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/_tab/_tab.md"
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/tabs/tabs.md"
     ]
   },
   "api": {
@@ -66,7 +66,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         48
       ]
     },
@@ -90,7 +90,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         456
       ]
     },
@@ -114,7 +114,7 @@
         "breakpoint": "0"
       },
       "position": [
-        682,
+        537,
         48
       ]
     },
@@ -138,7 +138,7 @@
         "breakpoint": "0"
       },
       "position": [
-        682,
+        537,
         456
       ]
     },
@@ -162,7 +162,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         128
       ]
     },
@@ -186,7 +186,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         536
       ]
     },
@@ -210,7 +210,7 @@
         "breakpoint": "0"
       },
       "position": [
-        682,
+        537,
         128
       ]
     },
@@ -234,7 +234,7 @@
         "breakpoint": "0"
       },
       "position": [
-        682,
+        537,
         536
       ]
     },
@@ -258,7 +258,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         208
       ]
     },
@@ -282,7 +282,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         616
       ]
     },
@@ -306,7 +306,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         288
       ]
     },
@@ -330,7 +330,7 @@
         "breakpoint": "0"
       },
       "position": [
-        566,
+        421,
         696
       ]
     },
@@ -354,7 +354,7 @@
         "breakpoint": "0"
       },
       "position": [
-        682,
+        537,
         288
       ]
     },
@@ -378,7 +378,7 @@
         "breakpoint": "0"
       },
       "position": [
-        682,
+        537,
         696
       ]
     }
