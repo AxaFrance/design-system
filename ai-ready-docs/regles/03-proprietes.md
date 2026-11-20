@@ -72,7 +72,7 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 
 - Quand un composant en contient un autre, les propriétés du composant contenu sont exposées dans le panneau de celui qui le contient. Elles gardent leur nom et ne sont pas recréées. Exemple : un champ contient un libellé, le texte du libellé se règle depuis le panneau du champ.
 - Une propriété qui ne règle qu'un élément porte le nom de cet élément en préfixe. Exemple : iconPlacement pour placer l'icon d'un titre.
-- Une liste d'éléments devient un slot, avec le nom du code, même quand Figma l'affiche aujourd'hui avec des booléens numérotés. Exemple : children pour les onglets d'un composant d'onglets.
+- Une liste d'éléments devient un slot, avec le nom du code, même quand Figma l'affiche aujourd'hui avec des booléens numérotés. Exemple : items pour les _Tab de Tabs, comme dans le code.
 - Un texte reste une propriété texte, nommée selon son rôle, même quand le code le reçoit dans children. Exemple : description pour le texte d'un message.
 
 ### Les propriétés hors nomenclature

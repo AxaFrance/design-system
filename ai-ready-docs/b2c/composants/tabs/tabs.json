@@ -1,0 +1,638 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Tabs",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "0c2961b0449770a55ccca2fe6b72788f0a123f36",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/tabs/tabs.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "placement": {
+        "type": "enum",
+        "enum": [
+          "left",
+          "center"
+        ],
+        "default": "left"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "breakpoint": "1024",
+        "placement": "left"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "breakpoint": "1024",
+        "placement": "center"
+      },
+      "position": [
+        48,
+        152
+      ]
+    },
+    {
+      "values": {
+        "breakpoint": "0",
+        "placement": "left"
+      },
+      "position": [
+        730,
+        48
+      ]
+    },
+    {
+      "values": {
+        "breakpoint": "0",
+        "placement": "center"
+      },
+      "position": [
+        730,
+        152
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "items": {
+        "as": "slot",
+        "controls": [
+          {
+            "layer": "items",
+            "attribute": "slotContentId"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "items",
+            "type": "slot",
+            "children": [
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_Tab",
+                "values": {
+                  "state": "default",
+                  "selected": "true",
+                  "breakpoint": "0",
+                  "colorScheme": "default"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_Tab",
+                "values": {
+                  "state": "default",
+                  "selected": "false",
+                  "breakpoint": "0",
+                  "colorScheme": "default"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_Tab",
+                "values": {
+                  "state": "default",
+                  "selected": "false",
+                  "breakpoint": "0",
+                  "colorScheme": "default"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "items",
+            "type": "slot",
+            "children": [
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_Tab",
+                "values": {
+                  "state": "default",
+                  "selected": "true",
+                  "breakpoint": "1024",
+                  "colorScheme": "default"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_Tab",
+                "values": {
+                  "state": "default",
+                  "selected": "false",
+                  "breakpoint": "1024",
+                  "colorScheme": "default"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_Tab",
+                "values": {
+                  "state": "default",
+                  "selected": "false",
+                  "breakpoint": "1024",
+                  "colorScheme": "default"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "_Tab"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "breakpoint": "0",
+        "placement": "left"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "stroke": {
+          "token": "color/gray/200"
+        },
+        "strokeWeights": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "token": "border/width/1"
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "strokeAlign": "inside",
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "row",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 343
+          },
+          "sizingV": "hug"
+        }
+      },
+      "items": {
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill"
+        }
+      },
+      "item-1": {
+        "stroke": {
+          "token": "color/blue/600"
+        },
+        "strokeWeights": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "token": "border/width/2"
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "strokeAlign": "inside",
+        "padding": {
+          "top": {
+            "token": "spacing/12"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/12"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "minHeight": {
+            "token": "size/48"
+          }
+        }
+      },
+      "item-2": {
+        "stroke": {
+          "token": "color/gray/200"
+        },
+        "strokeWeights": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "token": "border/width/1"
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "strokeAlign": "inside",
+        "padding": {
+          "top": {
+            "token": "spacing/12"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/12"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "minHeight": {
+            "token": "size/48"
+          }
+        }
+      },
+      "item-3": {
+        "stroke": {
+          "token": "color/gray/200"
+        },
+        "strokeWeights": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "token": "border/width/1"
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "strokeAlign": "inside",
+        "padding": {
+          "top": {
+            "token": "spacing/12"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/12"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "minHeight": {
+            "token": "size/48"
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
+          "root": {
+            "layout": {
+              "direction": "row",
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 522
+              },
+              "sizingV": "hug"
+            }
+          },
+          "item-1": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/16"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/16"
+              }
+            },
+            "gap": {
+              "token": "spacing/8"
+            }
+          },
+          "item-2": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/16"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/16"
+              }
+            },
+            "gap": {
+              "token": "spacing/8"
+            }
+          },
+          "item-3": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/16"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/16"
+              }
+            },
+            "gap": {
+              "token": "spacing/8"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "placement": "left"
+        },
+        "styles": {
+          "item-1": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center"
+            }
+          },
+          "item-2": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center"
+            }
+          },
+          "item-3": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "placement": "center"
+        },
+        "styles": {
+          "item-1": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            }
+          },
+          "item-2": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            }
+          },
+          "item-3": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "0",
+          "placement": "center"
+        },
+        "styles": {
+          "item-1": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/48"
+              },
+              "sizingH": "fill"
+            }
+          },
+          "item-2": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/48"
+              },
+              "sizingH": "fill"
+            }
+          },
+          "item-3": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/48"
+              },
+              "sizingH": "fill"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/width/1": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a3fa5d8b91d34001a5c85064ef0d8a63bb5dafd2"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
+    "color/gray/200": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a221368bce559430e99d794dd8575360a84e91a2"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    },
+    "spacing/12": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6cfd5a3c3e9c964463b4b26cce753ba1aec30649"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {},
+  "components": {
+    "_Tab": {
+      "library": "B2C",
+      "key": "6d6ef143e4f590b8a76969270df74482547d6189"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.6"
+}
