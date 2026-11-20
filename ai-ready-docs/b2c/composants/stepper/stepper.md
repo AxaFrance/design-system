@@ -47,6 +47,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 
 - Faire démarrer le Stepper ailleurs qu'à l'étape 1.
 - Afficher une barre de l'étape en cours à moins de 10 %.
+- Afficher le pourcentage d'une barre.
 - Déplacer le Stepper ailleurs que sous le Header, au-dessus du contenu de l'étape.
 - Modifier localement la taille, l'espacement ou les couleurs du Stepper, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
@@ -54,7 +55,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 
 - Un titre, obligatoire.
 - Un sous-titre et un _FormHelperText, facultatifs.
-- Une barre de progression par étape, de 2 à 8, réglées avec stepsCount.
+- Une barre de progression par étape, de 2 à 8, réglées avec stepsCount. Les barres sont des ProgressBar, réunies dans un _StepperProgress ([_stepperprogress.json](_stepperprogress.json)).
 
 ## Rédaction
 
@@ -71,7 +72,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 
 Un élément `<div>`. Le titre est une balise de titre HTML, `<h1>` ou `<h2>` selon titleLevel.
 
-- La liste des barres est reliée au titre et au sous-titre de l'étape avec `aria-labelledby`.
+- Les barres forment une liste ordonnée `<ol>`, avec une barre `<progress>` dans chaque `<li>`. La liste est reliée au titre et au sous-titre de l'étape avec `aria-labelledby`, et ne s'atteint pas avec la touche Tab.
 - Les barres sont masquées aux lecteurs d'écran avec `aria-hidden`.
 - Le texte contraste avec le fond à 4,5:1 au moins (WCAG).
 - Le message suit les règles de _FormHelperText : seul un message d'erreur apparu après une action de l'utilisateur porte `role="alert"`.
@@ -82,6 +83,8 @@ Un élément `<div>`. Le titre est une balise de titre HTML, `<h1>` ou `<h2>` se
 Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-stepper--stepper) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-stepper--stepper-client).
 
 Code source : [dossier Stepper sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/Stepper).
+
+Les barres viennent de ProgressBarGroup : [dossier ProgressBarGroup sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/ProgressBarGroup), et [page ProgressBarGroup du plugin Copilot](https://github.com/AxaFrance/design-system/blob/main/plugins/canopee-prospect-client/skills/canopee-prospect-client/references/11-progress.md#progressbargroup).
 
 Détail de l'implémentation : [page Stepper du plugin Copilot](https://github.com/AxaFrance/design-system/blob/main/plugins/canopee-prospect-client/skills/canopee-prospect-client/references/10-navigation.md#stepper).
 
@@ -116,11 +119,12 @@ Exemple :
 | title | `currentTitle` |
 | subtitle, affiché par showSubtitle | `currentSubtitle` |
 | Le _FormHelperText, affiché par showMessage | `helper` pour une aide, ou `message` et `messageType` |
-| Le nombre de barres | `nbSteps` |
+| Les barres, un _StepperProgress | `ProgressBarGroup`, affiché par Stepper |
+| Le nombre de barres, réglé dans le _StepperProgress | `nbSteps`, transmis à `stepsCount` de `ProgressBarGroup` |
 | La valeur de chaque barre | `currentStep` et `currentStepProgress` |
 | titleLevel | `titleLevel`, de 1 à 4 dans le code |
 
-Dans le code, `currentStep` compte les étapes à partir de 0. `currentStepProgress` va de 0 à 100 et vaut 0 par défaut : sans lui, la barre de l'étape en cours reste vide. `messageType` vaut `success` par défaut, et `titleLevel` vaut 2.
+Dans le code, `currentStep` compte les étapes à partir de 0. Utilisé seul, `ProgressBarGroup` a 4 barres par défaut (`ProgressBarGroupCommon.tsx:21`), contre 2 dans Figma, et un `max` que Stepper ne transmet pas. `currentStepProgress` va de 0 à 100 et vaut 0 par défaut : sans lui, la barre de l'étape en cours reste vide. `messageType` vaut `success` par défaut, et `titleLevel` vaut 2.
 
 Le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. Une media query change les textes et les espacements à partir de 1024 px.
 
@@ -128,12 +132,14 @@ Sans équivalent dans Figma : `icon` et `iconProps`, qui affichent une icône de
 
 ## Noms à ne pas employer
 
-Barre d'étapes, fil d'étapes, progression du parcours.
+Barre d'étapes, fil d'étapes, progression du parcours, _Progress_Bar_Group, Progress Bar Group.
 
 Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 
 ## Décisions
 
+- **1.0.0 - 16/11/26.** Les barres sont un sous-composant, _StepperProgress, qui suit la règle des sous-composants : le composant construit, puis l'élément. Il s'appelait _Progress_Bar_Group, et sa propriété Step est devenue stepsCount. Dans le code, c'est ProgressBarGroup.
+- **1.0.0 - 16/11/26.** Dans Figma, les thèmes prospect et client partagent un seul _StepperProgress, celui du thème prospect, car leurs deux versions avaient le même rendu.
 - **1.0.0 - 17/11/26.** Le Stepper garde ses deux thèmes, prospect et client, car leurs espacements diffèrent, comme dans le code.
 - **1.0.0 - 17/11/26.** Le Stepper n'a qu'un texte sous les barres, un _FormHelperText neutre et sans icône par défaut, qui porte l'aide comme le message. L'ancien texte d'aide gris disparaît.
 - **1.0.0 - 17/11/26.** Le Stepper n'a pas d'icône devant son titre. Le code retirera la sienne quand il suivra ce composant.
@@ -145,7 +151,7 @@ Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 - **Changement d'étape non annoncé.** Quand l'étape change, rien ne l'annonce aux lecteurs d'écran. La position n'est lue que dans le sous-titre, s'il est affiché. En attendant : signaler.
 - **Navigation entre les étapes.** Le composant qui permet de passer d'une étape à l'autre n'est pas désigné. En attendant : signaler.
 - **Aide et message dans le code.** Le code affiche l'aide (`helper`) et le message (`message`) dans deux éléments séparés, l'un sous l'autre, et le message y est un succès par défaut. Figma n'en garde qu'un, le _FormHelperText, neutre par défaut. En attendant : un seul des deux à la fois.
-- **Plugin Copilot.** Sa page Stepper compte les étapes à partir de 1, alors que le code compte à partir de 0. En attendant : la fiche fait foi.
+- **Plugin Copilot.** Ses pages Stepper et ProgressBarGroup comptent les étapes à partir de 1, alors que le code compte à partir de 0. La page ProgressBarGroup et son Storybook le présentent aussi comme utilisable seul, sans Stepper. En attendant : la fiche fait foi.
 - **Ancienne documentation.** Une page de l'ancienne documentation du B2C décrit une navigation au clavier d'étape en étape, alors que le Stepper n'est pas interactif. En attendant : la fiche fait foi.
 
 ## Pour l'IA qui lit cette fiche
