@@ -133,6 +133,19 @@ describe("ButtonMultiActions", () => {
     expect(trigger).toHaveFocus();
   });
 
+  it("forwards id to the trigger and derives the menu id from it", () => {
+    render(
+      <ButtonMultiActions id="row-1-actions">
+        <button type="button">Voir</button>
+      </ButtonMultiActions>,
+    );
+
+    const trigger = screen.getByRole("button", { name: "Actions" });
+
+    expect(trigger).toHaveAttribute("id", "row-1-actions");
+    expect(trigger).toHaveAttribute("aria-controls", "row-1-actions-menu");
+  });
+
   it("has no accessibility violations", async () => {
     const { container } = render(
       <ButtonMultiActions menuLabel="Actions supplémentaires">
