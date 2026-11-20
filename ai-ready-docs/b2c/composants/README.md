@@ -34,3 +34,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | DateInput | [dateinput.md](dateinput/dateinput.md) | [dateinput.json](dateinput/dateinput.json) | [dateinput-changelog.md](dateinput/dateinput-changelog.md) |
 | Checkbox | [checkbox.md](checkbox/checkbox.md) | [checkbox.json](checkbox/checkbox.json) | [checkbox-changelog.md](checkbox/checkbox-changelog.md) |
 | Select | [select.md](select/select.md) | [select.json](select/select.json) | [select-changelog.md](select/select-changelog.md) |
+| LevelSelector | [levelselector.md](levelselector/levelselector.md) | [levelselector.json](levelselector/levelselector.json) | [levelselector-changelog.md](levelselector/levelselector-changelog.md) |

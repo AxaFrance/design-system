@@ -1,0 +1,323 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_LevelSelectorStep",
+    "version": "1.0.0",
+    "tokensVersion": "2.0.0",
+    "type": "atom",
+    "figmaKey": "220f525bb5e18062b678ec4875155ea0f57e6e32",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": []
+  },
+  "api": {
+    "props": {
+      "state": {
+        "type": "enum",
+        "enum": [
+          "default",
+          "hover",
+          "focus"
+        ],
+        "default": "default"
+      },
+      "checked": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "state": "default",
+        "checked": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        446,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "checked": "true",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        88
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "checked": "true",
+        "breakpoint": "0"
+      },
+      "position": [
+        446,
+        88
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "checked": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        162,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        568,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "checked": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        284,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        690,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "checked": "true",
+        "breakpoint": "1024"
+      },
+      "position": [
+        284,
+        88
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "checked": "true",
+        "breakpoint": "0"
+      },
+      "position": [
+        690,
+        88
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": []
+      }
+    ],
+    "uses": []
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "state": "default",
+        "checked": "false",
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "stroke": {
+          "token": "color/blue/600"
+        },
+        "strokeWeight": {
+          "token": "border/width/1"
+        },
+        "strokeAlign": "inside",
+        "radius": {
+          "token": "border/radius/16"
+        },
+        "layout": {
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 98
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/24"
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
+          "root": {
+            "layout": {
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 98
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/16"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "checked": "true"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/blue/600"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/100"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus"
+        },
+        "styles": {
+          "root": {
+            "stroke": {
+              "token": "color/blue/400"
+            },
+            "strokeWeight": {
+              "token": "border/width/2"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "default",
+          "checked": "true"
+        },
+        "styles": {
+          "root": {
+            "stroke": null,
+            "strokeWeight": null,
+            "strokeAlign": null
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "82fb631e5ec1073cae184ebde5fa4adb67361a29"
+    },
+    "border/width/1": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a3fa5d8b91d34001a5c85064ef0d8a63bb5dafd2"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
+    },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
+    "color/gray/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
+    },
+    "size/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b50a280ae51f957a217154710fae04336ca74fbb"
+    },
+    "size/24": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "5e38d21160185c1068f481ef9380b4cfb8321532"
+    }
+  },
+  "textStyles": {},
+  "components": {},
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [],
+  "_tool": "canopee-export-components 0.7.6"
+}
