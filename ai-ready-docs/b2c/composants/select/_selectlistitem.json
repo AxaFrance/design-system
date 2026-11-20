@@ -1,0 +1,356 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_SelectListItem",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "Checkbox",
+    "figmaKey": "77d38dfc12de26b7e7c17c47cd137d8343499016",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": []
+  },
+  "api": {
+    "props": {
+      "state": {
+        "type": "enum",
+        "enum": [
+          "default",
+          "hover",
+          "focus"
+        ],
+        "default": "default"
+      }
+    },
+    "exposed": [
+      {
+        "from": "Checkbox",
+        "props": [
+          "showLabel",
+          "label",
+          "state",
+          "disabled",
+          "checked",
+          "tone",
+          "breakpoint"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "state": "default",
+        "breakpoint": "1024"
+      },
+      "position": [
+        41,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "breakpoint": "0"
+      },
+      "position": [
+        423,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        112
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "breakpoint": "0"
+      },
+      "position": [
+        423,
+        112
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        184
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "breakpoint": "0"
+      },
+      "position": [
+        423,
+        184
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "checkbox",
+            "type": "instance",
+            "component": "Checkbox",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": [
+            "default",
+            "hover"
+          ],
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "checkbox",
+            "type": "instance",
+            "component": "Checkbox",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "checkbox",
+            "type": "instance",
+            "component": "Checkbox",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "tone": "neutral",
+              "breakpoint": "1024"
+            }
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "checkbox",
+            "type": "instance",
+            "component": "Checkbox",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "tone": "neutral",
+              "breakpoint": "0"
+            }
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Checkbox"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "state": "default",
+        "breakpoint": "0"
+      },
+      "root": {
+        "background": {
+          "token": "color/white"
+        },
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 262
+          },
+          "sizingV": "hug"
+        }
+      },
+      "checkbox": {
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "state": "hover"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/100"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus"
+        },
+        "styles": {
+          "focus-ring": {
+            "stroke": {
+              "token": "color/blue/400"
+            },
+            "strokeWeight": {
+              "token": "border/width/2"
+            },
+            "strokeAlign": "inside",
+            "layout": {
+              "absolute": true,
+              "x": 0,
+              "y": 0,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 262
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 56
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
+    },
+    "color/gray/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {},
+  "components": {
+    "Checkbox": {
+      "library": "B2C",
+      "key": "de8005c5bc15de5ce107df96db6d33bb192dc9ed"
+    }
+  },
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular/line-height, dans un composant inclus."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.6"
+}

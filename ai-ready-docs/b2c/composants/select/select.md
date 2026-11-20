@@ -80,9 +80,9 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 
 - Un libellé, un _FormLabel, obligatoire sauf dans le cas de showLabel=false.
 - Un placeholder, affiché tant qu'aucune option n'est choisie. En multiple=false, il est obligatoire, sauf quand une option est choisie par défaut : sans lui, le navigateur choisit la première option, et le champ ne peut pas rester vide.
-- L'option choisie. En multiple=true, les options choisies, en Tags, dans le champ : c'est un _SelectTagList, le groupe de Tags du Select.
+- L'option choisie. En multiple=true, les options choisies, en Tags, dans le champ : c'est un _SelectTagList, le groupe de Tags du Select ([_selecttaglist.json](_selecttaglist.json)).
 - Une flèche, à droite, qui ouvre la liste.
-- La liste des options. En multiple=false, c'est la liste du navigateur. En multiple=true, c'est un _SelectList, dont chaque ligne est un _SelectListItem : une option et sa Checkbox.
+- La liste des options. En multiple=false, c'est la liste du navigateur. En multiple=true, c'est un _SelectList ([_selectlist.json](_selectlist.json)), dont chaque ligne est un _SelectListItem ([_selectlistitem.json](_selectlistitem.json)) : une option et sa Checkbox.
 - Une aide, facultative : un _FormHelperText neutre et sans icône, sous le champ.
 - Un message, obligatoire en tone=warning ou tone=error : un second _FormHelperText, du même ton que le champ, sous l'aide.
 

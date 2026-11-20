@@ -9,6 +9,7 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 - Quand aucun composant ne convient à un besoin, l'IA le signale au lieu d'en inventer un.
 - Quand une fiche ne répond pas, l'IA le signale au lieu de deviner. La consigne est écrite à la fin de chaque fiche, parce qu'une IA peut n'en lire qu'une.
 - Les propriétés et leurs valeurs portent les noms de la nomenclature. Les noms du code n'apparaissent que dans les rubriques Code, Noms à ne pas employer, Décisions et Points ouverts de chaque fiche.
+- Un sous-composant qui ne sert qu'à un seul composant n'a pas de fiche. Son JSON est rangé dans le dossier de ce composant, et la fiche de ce composant le cite. Exemple : _SelectList, dans le dossier de Select.
 
 ## Les fiches
 

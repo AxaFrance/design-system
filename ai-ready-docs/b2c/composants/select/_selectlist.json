@@ -1,0 +1,418 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_SelectList",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "82c123e423504def2da276ea01fa5d11c0b8d52e",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": []
+  },
+  "api": {
+    "props": {}
+  },
+  "variants": [
+    {
+      "values": {
+        "breakpoint": "1024"
+      },
+      "position": [
+        41,
+        41
+      ]
+    },
+    {
+      "values": {
+        "breakpoint": "0"
+      },
+      "position": [
+        41,
+        347
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "items": {
+        "as": "slot",
+        "controls": [
+          {
+            "layer": "items",
+            "attribute": "slotContentId"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "items",
+            "type": "slot",
+            "children": [
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "0"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "0"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "0"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "0"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "items",
+            "type": "slot",
+            "children": [
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_SelectListItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "_SelectListItem"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "breakpoint": "0"
+      },
+      "root": {
+        "radius": {
+          "token": "border/radius/8"
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "column",
+          "clip": true,
+          "maxHeight": {
+            "raw": 266
+          },
+          "sizingH": "fixed",
+          "width": {
+            "raw": 333
+          },
+          "sizingV": "hug"
+        },
+        "effects": [
+          {
+            "type": "shadow",
+            "radius": 8,
+            "color": {
+              "raw": "#33333340"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "items": {
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "item-1": {
+        "background": {
+          "token": "color/white"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "item-2": {
+        "background": {
+          "token": "color/white"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "item-3": {
+        "background": {
+          "token": "color/white"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "item-4": {
+        "background": {
+          "token": "color/white"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "item-5": {
+        "background": {
+          "token": "color/white"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fill"
+        }
+      }
+    }
+  },
+  "tokens": {
+    "border/radius/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a1de4b2e8994f5a0b6465f03861f2c845d0c7fe4"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {},
+  "components": {
+    "_SelectListItem": {
+      "library": "B2C",
+      "key": "77d38dfc12de26b7e7c17c47cd137d8343499016"
+    }
+  },
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.effects[0].color",
+      "message": "Valeur brute (#33333340) : la relier à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular/line-height, dans un composant inclus."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.6"
+}
