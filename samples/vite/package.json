@@ -17,7 +17,7 @@
     "react": ">= 19",
     "react-dom": ">= 19",
     "react-hook-form": "^7.87.0",
-    "react-router": "^7.18.5"
+    "react-router": "^8.5.1"
   },
   "devDependencies": {
     "@axa-fr/eslint-config-design-system": "*",
