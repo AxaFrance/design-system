@@ -35,6 +35,7 @@
 @import "./Steps/VerticalStep.css";
 @import "./Form/File/File.css";
 @import "./Accordion/Accordion.css";
+@import "./FileDownload/FileDownload.css";
 @import "./Link/Link.css";
 @import "./Popover/Popover.css";
 @import "./Loader/Loader.css";
