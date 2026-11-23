@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.10";
+const VERSION = "0.7.11";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -3186,20 +3186,31 @@ function classifyChanges(
 }
 
 // What changed between two sheets, in French sentences for the Changements tab.
+// subs: the attached sub-components, whose changes come after those of the component, each
+// line preceded by the name of its sub-component.
 function compareSheets(
   previous: SheetLike | null | undefined,
   next: SheetLike | null | undefined,
+  subs?: SubChange[],
 ): Sentence[] {
-  const sentences: Sentence[] = classifyChanges(previous, next).map((c) =>
-    c.title === undefined
-      ? c.text
-      : {
-          title: c.title,
-          lines: c.lines.map(
-            (l) => l.label + " : " + l.before + " → " + l.after,
-          ),
-        },
-  );
+  const sentencesOf = (
+    a: SheetLike | null | undefined,
+    b: SheetLike | null | undefined,
+    prefix: string,
+  ): Sentence[] =>
+    classifyChanges(a, b).map((c) =>
+      c.title === undefined
+        ? prefix + c.text
+        : {
+            title: prefix + c.title,
+            lines: c.lines.map(
+              (l) => l.label + " : " + l.before + " → " + l.after,
+            ),
+          },
+    );
+  const sentences: Sentence[] = sentencesOf(previous, next, "");
+  for (const s of subs || [])
+    if (s.base) sentences.push(...sentencesOf(s.base, s.sheet, s.name + " : "));
   if (sentences.length > 20) {
     const rest = sentences.length - 20;
     return sentences
@@ -3235,15 +3246,17 @@ interface ChangelogEntry extends EntryLines {
 function changelogEntry(
   previous: SheetLike | null | undefined,
   next: SheetLike | null | undefined,
+  prefix = "",
 ): EntryLines {
   const entry: EntryLines = { added: [], modified: [], removed: [] };
   for (const c of classifyChanges(previous, next)) {
     if (c.category === "excluded") continue;
-    if (c.title === undefined) entry[c.category].push(c.text);
+    if (c.title === undefined) entry[c.category].push(prefix + c.text);
     else
       for (const l of c.lines)
         entry.modified.push(
-          c.title +
+          prefix +
+            c.title +
             " : " +
             lowerFirst(l.label) +
             ", " +
@@ -3306,6 +3319,8 @@ interface Chosen {
 interface HistoryInput {
   base: SheetLike | null;
   sheet: SheetLike;
+  // the attached sub-components: their changes join the lines of the entry
+  subs?: SubChange[];
   chosen: Chosen;
   date: string;
   choices?: Choices;
@@ -3317,6 +3332,21 @@ function computeHistory(p: HistoryInput): {
   previous: SheetLike | null;
 } {
   const { base, sheet, chosen, date } = p;
+  const subs: SubChange[] = p.subs || [];
+  // the entry of the component, with the lines of its sub-components, each preceded by their name
+  const entryOf = (from: SheetLike | null | undefined): EntryLines => {
+    const e = changelogEntry(from, sheet);
+    for (const s of subs) {
+      if (!s.base) continue;
+      const lines = changelogEntry(s.base, s.sheet, s.name + " : ");
+      e.added.push(...lines.added);
+      e.modified.push(...lines.modified);
+      e.removed.push(...lines.removed);
+    }
+    return e;
+  };
+  const isSubLine = (x: string): boolean =>
+    subs.some((s) => x.indexOf(s.name + " : ") === 0);
   const choices: Choices = p.choices || {};
   const stored: ChangelogEntry[] = Array.isArray(p.history) ? p.history : [];
   const previous = p.previous || null;
@@ -3373,19 +3403,26 @@ function computeHistory(p: HistoryInput): {
     let entry: ChangelogEntry;
     if (previous) {
       // recomputed from the previous version: nothing piles up from one export to the next
-      const computed = changelogEntry(previous, sheet);
+      const computed = entryOf(previous);
       // the overhaul, and the Markdown sheet as long as the JSON did not change, stay in the entry
       const keptLines = existing
         ? existing.modified.filter(
             (x) => x === OVERHAUL || (x === MD_SHEET && !detail(computed)),
           )
         : [];
+      // the lines of the sub-components stay too: their stored copy is not the one of the previous version
+      const subLines = (key: "added" | "modified" | "removed"): string[] =>
+        (existing ? existing[key] : []).filter(
+          (x) => isSubLine(x) && computed[key].indexOf(x) < 0,
+        );
       entry = Object.assign(emptyEntry(v), computed, {
-        modified: keptLines.concat(computed.modified),
+        added: computed.added.concat(subLines("added")),
+        modified: keptLines.concat(computed.modified, subLines("modified")),
+        removed: computed.removed.concat(subLines("removed")),
       });
     } else {
       // without a previous version, the new lines are added to the existing entry, without duplicates
-      const computed = changelogEntry(base, sheet);
+      const computed = entryOf(base);
       entry = existing
         ? {
             version: v,
@@ -3411,7 +3448,7 @@ function computeHistory(p: HistoryInput): {
     return { history, previous };
   }
   // new version: the entry compares the base with the new sheet
-  const computed = changelogEntry(base, sheet);
+  const computed = entryOf(base);
   const entry = withChoices(
     Object.assign(emptyEntry(chosen.version), computed),
   );
@@ -3430,6 +3467,18 @@ const BASE_KEY = "export";
 // keys: Figma limits each entry to 100 KB.
 const CHANGELOG_KEY = "changelog";
 const PREVIOUS_KEY = "previous-version";
+// The copy of the JSON of the attached sub-components, { name: JSON }, in the component set
+// of the parent only: an export of a sub-component alone never reads or writes it, so that it
+// does not erase the difference.
+const SUBS_KEY = "subExports";
+
+// An attached sub-component: its name, its JSON stored at the last export of the parent
+// (null without a copy: it does not count) and its current JSON.
+interface SubChange {
+  name: string;
+  base: SheetLike | null;
+  sheet: SheetLike;
+}
 
 // The sheet without what never counts in a change: the format, the issues, the tool,
 // the versions, the Figma file name and the Figma keys, the position of the variants on the canvas
@@ -3503,6 +3552,14 @@ function changeLevel(
   return canonical(a) !== canonical(b) ? "patch" : null;
 }
 
+// The strongest of several levels: minor, then patch, then none.
+function strongestLevel(
+  levels: ("minor" | "patch" | null)[],
+): "minor" | "patch" | null {
+  if (levels.indexOf("minor") >= 0) return "minor";
+  return levels.indexOf("patch") >= 0 ? "patch" : null;
+}
+
 const VERSION_PATTERN = /^(\d+)\.(\d+)\.(\d+)$/;
 
 // Next version after a version X.Y.Z, for a level 'major', 'minor' or 'patch'.
@@ -3526,13 +3583,18 @@ type VersionInfo =
 function analyzeVersion(
   base: SheetLike | null | undefined,
   next: SheetLike,
+  subs?: SubChange[],
 ): VersionInfo {
   if (!base) return { first: true, current: null, level: null };
   const v = base.meta && base.meta.version;
   return {
     first: false,
     current: v && VERSION_PATTERN.test(String(v)) ? v : "1.0.0",
-    level: changeLevel(base, next),
+    level: strongestLevel(
+      [changeLevel(base, next)].concat(
+        (subs || []).map((s) => (s.base ? changeLevel(s.base, s.sheet) : null)),
+      ),
+    ),
   };
 }
 
@@ -4296,6 +4358,65 @@ function readStored<T>(
   }
 }
 
+// The sub-components attached to a component: local components or sets whose name starts with _,
+// used in its variants, and whose first documentation link is the same as its own (a
+// sub-component with its own sheet points elsewhere). Sorted by name.
+async function findAttachedSubs(
+  node: Layer,
+): Promise<{ name: string; node: Layer }[]> {
+  const link = (node.documentationLinks || [])[0];
+  if (!link || !link.uri) return [];
+  const found = new Map<string, Layer>();
+  const ctx = newContext();
+  // the sub-components of an attached sub-component count too, like _SelectListItem in _SelectList
+  const queue: Layer[] = [node];
+  while (queue.length) {
+    const current = queue.shift() as Layer;
+    for (const list of prepare(current).nodes)
+      for (const n of list) {
+        if (!isInstance(n)) continue;
+        try {
+          const mc = await readMainComponent(ctx, n);
+          if (!mc) continue;
+          const target =
+            mc.parent && mc.parent.type === "COMPONENT_SET"
+              ? (mc.parent as unknown as Layer)
+              : mc;
+          const name = componentName(mc);
+          if (!name || name.charAt(0) !== "_" || found.has(name)) continue;
+          if (mc.remote || target.remote || target.id === node.id) continue;
+          const first = (target.documentationLinks || [])[0];
+          if (first && first.uri === link.uri) {
+            found.set(name, target);
+            queue.push(target);
+          }
+        } catch (e) {
+          // A sub-component that cannot be read does not count.
+        }
+      }
+  }
+  return [...found.keys()]
+    .sort(alphaOrder)
+    .map((name) => ({ name, node: found.get(name) as Layer }));
+}
+
+// The stored copy of the sub-components: an unreadable copy, or one of its entries, is absent.
+function readSubCopies(node: Layer): {
+  copies: Record<string, SheetLike>;
+  text: string;
+} {
+  const read = readStored(
+    node,
+    SUBS_KEY,
+    (v: unknown): v is Record<string, unknown> => isRecord(v),
+  );
+  const copies: Record<string, SheetLike> = {};
+  for (const name of Object.keys(read.value || {}))
+    if (isSheetLike((read.value as Record<string, unknown>)[name]))
+      copies[name] = (read.value as Record<string, unknown>)[name] as SheetLike;
+  return { copies, text: read.text };
+}
+
 // Today's date, in the YYYY-MM-DD format.
 function todayDate(): string {
   const d = new Date();
@@ -4597,6 +4718,8 @@ interface Generation {
   chosen: Chosen;
   base: SheetLike | null;
   baseText: string;
+  // the attached sub-components, with their stored copy and their current JSON
+  subs: SubChange[];
   unreadable: boolean;
   stored: ChangelogEntry[];
   previous: SheetLike | null;
@@ -4627,6 +4750,7 @@ const describeVersion = (d: Generation): VersionView => ({
 const historyOf = (d: Generation, date: string) =>
   computeHistory({
     base: d.base,
+    subs: d.subs,
     history: d.stored,
     previous: d.previous,
     sheet: d.sheet,
@@ -4692,7 +4816,24 @@ const handlers: Handlers = {
     const historyRead = readStored(c.node, CHANGELOG_KEY, isHistory);
     const previousRead = readStored(c.node, PREVIOUS_KEY, isSheetLike);
     const base = baseRead.value;
-    const info = analyzeVersion(base, sheet);
+    // the attached sub-components: their JSON now, and the copy stored with the parent
+    const { copies } = readSubCopies(c.node);
+    const subs: SubChange[] = [];
+    for (const s of await findAttachedSubs(c.node)) {
+      try {
+        const sub = await extractDetail(s.node, {
+          computeTokensVersion: async () => ({ version: null, issues: [] }),
+        });
+        subs.push({
+          name: s.name,
+          base: copies[s.name] || null,
+          sheet: sub.sheet,
+        });
+      } catch (e) {
+        // A sub-component that cannot be extracted does not count.
+      }
+    }
+    const info = analyzeVersion(base, sheet, subs);
     const chosen = chooseVersion(info, {});
     sheet.meta.version = chosen.version;
     const json = serialize(sheet);
@@ -4706,6 +4847,7 @@ const handlers: Handlers = {
       chosen,
       base,
       baseText: baseRead.text,
+      subs,
       unreadable:
         baseRead.state === "unreadable" || historyRead.state === "unreadable",
       stored: historyRead.value || [],
@@ -4714,7 +4856,7 @@ const handlers: Handlers = {
     };
     let changes: { sentences: Sentence[] } | null = null;
     try {
-      if (base) changes = { sentences: compareSheets(base, sheet) };
+      if (base) changes = { sentences: compareSheets(base, sheet, subs) };
     } catch (e) {
       // Without a readable reference export, the Changements tab stays empty.
     }
@@ -4871,6 +5013,25 @@ const handlers: Handlers = {
       return;
     }
     d.written = base;
+    // the copy of the sub-components, written with the base of the parent
+    if (d.subs.length) {
+      const copies: Record<string, SheetLike> = {};
+      for (const s of d.subs) copies[s.name] = s.sheet;
+      const text = JSON.stringify(copies);
+      try {
+        node.setSharedPluginData(BASE_NAMESPACE, SUBS_KEY, text);
+      } catch (e) {
+        post({
+          type: "error",
+          message:
+            "La copie des sous-composants n'a pas pu être enregistrée dans le fichier Figma (" +
+            Math.max(1, Math.round(byteSize(text) / 1024)) +
+            " Ko) : " +
+            messageOf(e) +
+            ". Les changements d'un sous-composant ne seront pas détectés au prochain export.",
+        });
+      }
+    }
     if (d.unreadable) return;
     // the changelog history and the previous version, with the date of the export
     const update = historyOf(d, todayDate());

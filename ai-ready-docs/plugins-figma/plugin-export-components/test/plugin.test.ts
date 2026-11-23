@@ -6450,6 +6450,207 @@ describe("The changelog: the history in the plugin", () => {
   });
 });
 
+// A sub-component without a sheet of its own (its documentation link is the one of the parent)
+// is part of the parent: its changes raise the version of the parent and join its changelog.
+describe("The sub-components attached to a component", () => {
+  const NS = "canopee_sheets";
+  const variantSet = (doc: MockData) => doc.nodes[1];
+  const subOf = (doc: MockData) => doc.nodes[2];
+  // Button, with an instance of _Tab in each variant; link: the documentation link of _Tab
+  const documentWithSub = (link = "https://exemple.test/button"): MockData => {
+    const doc = buttonDocument();
+    const tab = connect(
+      layer(
+        "COMPONENT_SET",
+        "_Tab",
+        {
+          id: "T:0",
+          key: "KEY-TAB",
+          documentationLinks: [{ uri: link }],
+          componentPropertyDefinitions: {
+            tone: {
+              type: "VARIANT",
+              defaultValue: "a",
+              variantOptions: ["a"],
+            },
+          },
+        },
+        [
+          layer("COMPONENT", "tone=a", { id: "T:1", key: "KEY-TAB-1" }, [
+            layer("TEXT", "tab-label", {
+              characters: "Tab",
+              autoRename: false,
+            }),
+          ]),
+        ],
+      ),
+    );
+    for (const variant of variantSet(doc).children)
+      variant.children.push(
+        connect(
+          layer("INSTANCE", "tab", {
+            id: "TI:" + variant.name,
+            mainComponent: tab.children[0],
+          }),
+          variant,
+        ),
+      );
+    doc.nodes.push(tab);
+    return doc;
+  };
+  const changeSub = (doc: MockData) =>
+    subOf(doc).componentPropertyDefinitions.tone.variantOptions.push("b");
+  const generated = async (doc: MockData) => {
+    const p = createFakePlugin(doc);
+    await p.send({ type: "ui-ready" });
+    await p.send({ type: "generate" });
+    return p;
+  };
+  const sheetMessage = (p: MockData) =>
+    p.messages.filter((m: MockData) => m.type === "sheet").pop();
+
+  it("first export of the parent: version 1.0.0, and the copy of the sub-components is written", async () => {
+    const doc = documentWithSub();
+    const p = await generated(doc);
+    expect(sheetMessage(p).version.version).toBe("1.0.0");
+    expect(variantSet(doc).getSharedPluginData(NS, "subExports")).toBe("");
+    await p.send({ type: "record-export", id: "S:100" });
+    const copy = JSON.parse(
+      variantSet(doc).getSharedPluginData(NS, "subExports"),
+    );
+    expect(Object.keys(copy)).toStrictEqual(["_Tab"]);
+    expect(copy._Tab.meta.name).toBe("_Tab");
+  });
+  it("a change in an attached sub-component raises the version of the parent and joins its changelog", async () => {
+    const doc = documentWithSub();
+    const p = await generated(doc);
+    await p.send({ type: "record-export", id: "S:100" });
+    changeSub(doc);
+    await p.send({ type: "generate" });
+    const m = sheetMessage(p);
+    expect(m.version.detected).toBe("minor");
+    expect(m.version.version).toBe("1.1.0");
+    expect(m.changelog).toMatch(/^- _Tab : .+$/m);
+    expect(
+      plain(m.changes.sentences).some((x: MockData) =>
+        (typeof x === "string" ? x : x.title).startsWith("_Tab : "),
+      ),
+    ).toBe(true);
+    await p.send({ type: "record-export", id: "S:100" });
+    await p.send({ type: "generate" });
+    const again = sheetMessage(p);
+    expect(again.version.none).toBe(true);
+    expect(again.version.current).toBe("1.1.0");
+    expect(again.changelog).toMatch(/^- _Tab : .+$/m);
+  });
+  it("a sub-component whose documentation link points elsewhere is ignored", async () => {
+    const doc = documentWithSub("https://exemple.test/tab");
+    const p = await generated(doc);
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(variantSet(doc).getSharedPluginData(NS, "subExports")).toBe("");
+    changeSub(doc);
+    await p.send({ type: "generate" });
+    const m = sheetMessage(p);
+    expect(m.version.none).toBe(true);
+    expect(m.version.version).toBe("1.0.0");
+  });
+  it("an export of the sub-component alone does not erase the difference for the parent", async () => {
+    const doc = documentWithSub();
+    const p = await generated(doc);
+    await p.send({ type: "record-export", id: "S:100" });
+    changeSub(doc);
+    // the designer exports _Tab alone
+    doc.selection.length = 0;
+    doc.selection.push(subOf(doc));
+    await p.send({ type: "generate" });
+    expect(sheetMessage(p).id).toBe("T:0");
+    await p.send({ type: "record-export", id: "T:0" });
+    expect(subOf(doc).getSharedPluginData(NS, "export")).not.toBe("");
+    expect(subOf(doc).getSharedPluginData(NS, "subExports")).toBe("");
+    // then the parent
+    doc.selection.length = 0;
+    doc.selection.push(variantSet(doc));
+    await p.send({ type: "generate" });
+    const m = sheetMessage(p);
+    expect(m.id).toBe("S:100");
+    expect(m.version.version).toBe("1.1.0");
+    expect(m.changelog).toMatch(/^- _Tab : .+$/m);
+  });
+  it("a sub-component of an attached sub-component counts too", async () => {
+    const doc = documentWithSub();
+    // _Mark, attached to the same sheet, is used by _Tab only
+    const mark = connect(
+      layer(
+        "COMPONENT_SET",
+        "_Mark",
+        {
+          id: "M:0",
+          key: "KEY-MARK",
+          documentationLinks: [{ uri: "https://exemple.test/button" }],
+          componentPropertyDefinitions: {
+            tone: {
+              type: "VARIANT",
+              defaultValue: "a",
+              variantOptions: ["a"],
+            },
+          },
+        },
+        [layer("COMPONENT", "tone=a", { id: "M:1", key: "KEY-MARK-1" }, [])],
+      ),
+    );
+    const tabVariant = subOf(doc).children[0];
+    tabVariant.children.push(
+      connect(
+        layer("INSTANCE", "mark", { id: "MI:1", mainComponent: mark.children[0] }),
+        tabVariant,
+      ),
+    );
+    doc.nodes.push(mark);
+    const p = await generated(doc);
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(
+      Object.keys(
+        JSON.parse(variantSet(doc).getSharedPluginData(NS, "subExports")),
+      ),
+    ).toStrictEqual(["_Mark", "_Tab"]);
+    mark.componentPropertyDefinitions.tone.variantOptions.push("b");
+    await p.send({ type: "generate" });
+    const m = sheetMessage(p);
+    expect(m.version.version).toBe("1.1.0");
+    expect(m.changelog).toMatch(/^- _Mark : .+$/m);
+  });
+  it("an unreadable copy counts as absent", async () => {
+    const doc = documentWithSub();
+    const p = await generated(doc);
+    await p.send({ type: "record-export", id: "S:100" });
+    variantSet(doc).setSharedPluginData(NS, "subExports", "{pas du json");
+    changeSub(doc);
+    await p.send({ type: "generate" });
+    expect(sheetMessage(p).version.none).toBe(true);
+  });
+  it("copy write refused (size): the error shows, the base of the parent is written", async () => {
+    const doc = documentWithSub();
+    const p = await generated(doc);
+    // only the write of the copy is refused, as Figma does beyond 100 KB
+    const write = variantSet(doc).setSharedPluginData;
+    variantSet(doc).setSharedPluginData = (
+      space: string,
+      key: string,
+      value: string,
+    ) => {
+      if (key === "subExports") throw new Error("Data too large");
+      write(space, key, value);
+    };
+    await p.send({ type: "record-export", id: "S:100" });
+    const errors = p.messages.filter((m: MockData) => m.type === "error");
+    expect(errors.pop().message).toMatch(
+      /^La copie des sous-composants n'a pas pu être enregistrée dans le fichier Figma \(\d+ Ko\)/,
+    );
+    expect(variantSet(doc).getSharedPluginData(NS, "export")).not.toBe("");
+    expect(variantSet(doc).getSharedPluginData(NS, "subExports")).toBe("");
+  });
+});
+
 // ------------------------------------------------------------ the data of the version 0.4.43
 // Button, IconButton and the Loader were exported by the version 0.4.43, which named the
 // namespace, one key and the fields of the changelog in French, as well as its rules and its tool.
